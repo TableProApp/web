@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso 和 libSQL",
     "header": {
-        "title": "适用于 {devices} 的 Turso、libSQL 客户端",
-        "lead": "使用 URL 和令牌连接 Turso 数据库，以 SQLite 语法查询，修改表、索引和触发器。同一驱动也可打开自托管 sqld 服务器和 Mac 上的 libSQL 文件。"
+        "title": "Turso 和 libSQL 客户端",
+        "lead": "通过 URL 和令牌连接 Turso 数据库。浏览表并运行 SQLite 查询，或打开本地 libSQL 文件。"
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "连接 Turso",
             "paragraphs": [
-                "连接类型选择 Turso，<ui>连接模式</ui>（Connection Mode）保持<ui>远程 (Turso)</ui>（Remote (Turso)）。粘贴以 <code>.turso.io</code> 结尾的数据库 HTTPS URL，将令牌填入 <ui>API Token</ui>，保存在 macOS 钥匙串。Turso 仪表盘可获取两者，也可用 <code>turso db show my-db --url</code>、<code>turso db tokens create my-db</code>。",
-                "<code>libsql://</code> URL 会改写为 HTTPS，导入后创建远程连接。URL 指定单个数据库，因此无主机、端口或数据库字段。使用 HTTPS 而非明文 HTTP 时连接加密，不提供 SSH 隧道。"
+                "选择 <ui>远程 (Turso)</ui> (Remote (Turso))（位于 <ui>连接模式</ui> (Connection Mode)）。粘贴数据库 HTTPS URL 和 <ui>API Token</ui>，令牌保存在 macOS Keychain。两者均可从 Turso 控制台或 CLI 获取。",
+                "导入的 <code>libsql://</code> URL 会转换为 HTTPS 远程连接。每个 URL 指定一个数据库。普通 HTTP URL 未加密，不支持 SSH 隧道。"
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "表、索引和触发器",
             "paragraphs": [
                 "<structure>Structure 标签页</structure> 可创建表、添加和删除列及索引，创建、编辑和删除触发器。侧边栏可重命名表，但不能重命名视图。",
-                "远程数据库调整列顺序或修改外键时，TablePro 生成重建脚本供自行审查运行。重建需要跨多个 HTTP 请求的单个事务，因此不能代为执行。"
+                "远程列顺序和外键更改会生成重建脚本，供您检查并运行。TablePro 无法跨独立 HTTP 请求将其作为一个事务执行。"
             ]
         },
         {

@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "GUI etcd untuk {devices}",
-        "lead": "Telusuri kunci cluster berdasarkan prefiks, ubah nilai dan lease dari grid, serta jalankan perintah bergaya etcdctl seperti <code>get --prefix</code>, <code>lease grant</code>, dan <code>member list</code> dalam editor."
+        "title": "GUI etcd",
+        "lead": "Telusuri kunci berdasarkan awalan, ubah nilai, dan kelola sewa dengan perintah bergaya etcdctl."
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host dan port klien ke TablePro. etcd tidak memiliki database, sehingga formulir tidak memiliki bidang Database. Gunakan port klien: port peer tidak menyediakan gateway JSON, dan koneksi ke port tersebut tidak akan terbuka. Formulir menerima satu endpoint tanpa failover, jadi pilih anggota yang aktif.",
+                "Masukkan satu host dan port klien. Port peer tidak memiliki gateway JSON. Tidak ada pemilihan database atau failover endpoint.",
                 "Kosongkan <ui>Username</ui> dan <ui>Password</ui> pada cluster tanpa autentikasi. Pengguna tanpa peran <code>root</code> dapat terhubung dan menelusuri kunci yang diizinkan perannya, sementara <code>endpoint status</code> serta perintah <code>user</code> dan <code>role</code> mengembalikan penolakan izin.",
                 "TLS diatur melalui <ui>TLS Mode</ui> dalam bidang Advanced, bukan bagian SSL, dan awalnya Disabled. Required (skip verify) mengenkripsi tanpa verifikasi, Verify CA memeriksa sertifikat terhadap file CA yang Anda tentukan, dan Verify Identity menambahkan pemeriksaan nama host. Sertifikat dan kunci klien menambahkan TLS timbal balik.",
                 "Akses cluster di balik bastion melalui <network>tunnel SSH</network>. URL <code>etcd://</code> dan <code>etcds://</code> dapat diimpor, dan keduanya tidak otomatis mengaktifkan TLS."
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Tetapkan <ui>Key Prefix Root</ui>, seperti <code>/app</code>, untuk membatasi koneksi pada satu subpohon. Sidebar mengelompokkan kunci berdasarkan segmen jalur pertama di bawahnya, dan setiap kunci berupa baris dengan nilai, versi, revisi perubahan dan pembuatan, serta lease.",
                 "Menyimpan perubahan mengirim perintah. Nilai atau lease baru menulis ulang kunci, lease NULL menghapus lease, dan mengganti nama kunci menulis nama baru serta menghapus nama lama. Kolom revisi dikelola etcd, sehingga mengeditnya menghentikan penyimpanan dan menyebutkan kolom tersebut.",
-                "Editor menerima perintah bergaya etcdctl, dengan pelengkapan perintah dan flag: <code>get</code> dengan <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code>, dan pengurutan, <code>put</code> dengan <code>--lease</code>, <code>del</code>, <code>watch</code>, subperintah <code>lease</code>, <code>member list</code>, <code>endpoint status</code> dan <code>health</code>, <code>compaction</code>, serta perintah <code>auth</code>, <code>user</code>, dan <code>role</code>. Perintah lain dikembalikan sebagai tidak dikenal tanpa mencapai server.",
+                "Jalankan perintah bergaya etcdctl untuk kunci, watch, lease, member, endpoint, pemadatan, dan kontrol akses, dengan pelengkapan perintah dan flag. Perintah yang tidak didukung ditolak sebelum mencapai server.",
                 "Driver etcd tidak dapat membuka sesi hanya baca, sehingga <safeMode>Safe Mode</safeMode> menganggap setiap perintah sebagai penulisan: pada level Alert dan Safe Mode, setiap perintah meminta konfirmasi terlebih dahulu, dan Read-Only memblokir semuanya."
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "Lease dan cluster",
             "paragraphs": [
-                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> dengan <code>--keys</code>, <code>list</code>, dan <code>keep-alive</code> mengelola lease, dan <code>compaction</code> memangkas riwayat revisi. <code>member list</code>, <code>endpoint status</code>, dan <code>endpoint health</code> melaporkan kondisi cluster melalui editor, karena etcd tidak memiliki Server Dashboard.",
+                "Kelola lease dan pemadatan revisi dari editor. Gunakan perintah untuk memeriksa member serta status atau kesehatan endpoint; etcd tidak memiliki Server Dashboard.",
                 "Menjalankan <code>auth enable</code> dari editor mengaktifkan autentikasi untuk seluruh cluster. Koneksi dengan nama pengguna dan kata sandi tetap berfungsi; koneksi tanpa keduanya harus dibuka ulang dengan kredensial."
             ]
         },

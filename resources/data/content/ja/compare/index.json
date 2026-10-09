@@ -1,250 +1,249 @@
 {
-  "seo": {
-    "title": "TablePro と他のデータベースクライアントを比較",
-    "description": "TablePlus、DBeaver、DataGrip、Navicat、Beekeeper Studio、Sequel Ace、Postico、HeidiSQL、phpMyAdmin と TablePro を比較。確認日と出典付き。"
-  },
-  "og": {
-    "kicker": "比較",
-    "title": "TablePro と他のデータベースクライアント"
-  },
-  "header": {
-    "title": "TablePro と他のデータベースクライアントを比較",
-    "lead": "各比較ページでは、相手のクライアントが向いている場面、TablePro の異なる点、TablePro にできないことを示します。他製品に関する情報は公式の情報源に基づき、確認日を付けています。"
-  },
-  "bySituation": {
-    "title": "用途から選ぶ",
-    "lead": "各クライアントを一行で紹介し、詳しい比較にリンクします。",
-    "tablepro": "ネイティブの Mac アプリと、別の iPhone・iPad アプリを備えたオープンソースクライアントなら TablePro。AI アシスタントと MCP サーバーは Mac アプリで無料で使え、{apps} の保存済み接続をインポートできます。",
-    "items": {
-      "tableplus": "Windows や Linux でも使う、または Vertica・Greenplum に接続するなら TablePlus。",
-      "dbeaver": "Windows、macOS と Linux で JDBC ドライバーのあるどのエンジンにも接続する無料クライアントなら DBeaver。",
-      "datagrip": "バージョン管理内蔵の JetBrains データベース IDE が欲しく、非商用利用か既に JetBrains を購入しているなら DataGrip。",
-      "navicat": "データモデリングやチーム用 Navicat Cloud が必要で、永続ライセンスが予算に合うなら Navicat。",
-      "beekeeper-studio": "Windows、macOS、Linux で同じように使えるオープンソースクライアントが欲しいなら Beekeeper Studio。",
-      "sequel-ace": "MySQL と MariaDB だけを使い、Mac App Store で入手できる無料のオープンソース Mac アプリが欲しいなら Sequel Ace。",
-      "sequel-pro": "まだ Sequel Pro を使っていますか？最終版 {status.version} は {status.date} のものです。Sequel Ace が継続し、TablePro はその接続をインポートできます。",
-      "postico": "PostgreSQL だけを使い、買い切りの専用 Mac アプリが欲しいなら Postico。",
-      "heidisql": "Windows で HeidiSQL を使い、Apple silicon Mac でも同じ無料クライアントが欲しいなら HeidiSQL。",
-      "phpmyadmin": "cPanel で phpMyAdmin を提供するホスティングなど、ブラウザーで MySQL・MariaDB を管理するなら phpMyAdmin。",
-      "mysql-workbench": "SQL ノートブックと MySQL Enterprise Backup 連携を備えた Oracle 公式の MySQL ツールなら MySQL Workbench。",
-      "pgadmin": "PostgreSQL だけを使い、デバッガー、pgAgent のジョブ、複数人で共有する Web サーバーが欲しいなら pgAdmin。",
-      "dbgate": "Windows、macOS、Linux で動き、Web アプリとしても使えるオープンソースクライアントなら DbGate。",
-      "mongodb-compass": "MongoDB だけを使い、集計パイプラインをステージごとに組み立てたり、コレクションのスキーマを調べたりするなら MongoDB Compass。",
-      "ssms": "SQL Server エージェントや Always On には Windows の SQL Server Management Studio。Mac 版はなく、Mac では Microsoft が Visual Studio Code と MSSQL 拡張機能を勧めています。"
-    }
-  },
-  "atAGlance": {
-    "title": "一覧比較",
-    "lead": "各クライアントのプラットフォーム、ソースコードと価格。価格は税別米ドル定価です。",
-    "caption": "{date} に比較したクライアント。出典はページ末尾に記載します。"
-  },
-  "openSource": {
-    "title": "Mac のオープンソースクライアント",
-    "lead": "これらはオープンソースライセンスでコードを公開します。Sequel Pro は保守終了、phpMyAdmin は Web サーバーで動きブラウザーで開きます。",
-    "caption": "{date} に確認したオープンソースクライアント。"
-  },
-  "switching": {
-    "title": "TablePro への移行",
-    "body": "TablePro は {apps} の保存済み接続をパスワードも含めてインポートします。Navicat はそこでエクスポートしたファイルから読みます。",
-    "none": "{others} のインポーターはありません。手動で追加するか接続 URL を貼り付けます。",
-    "link": "接続を移行する",
-    "docs": "ドキュメントの移行ガイド"
-  },
-  "method": {
-    "title": "比較ページの作成方法",
-    "paragraphs": [
-      "他製品に関するすべての情報は、公式サイト、ドキュメント、リポジトリ、リリースノートやストア掲載、または配布するパッケージマネージャー・プラットフォーム提供元という公式出典に基づきます。各ページに出典と確認日を載せています。",
-      "TablePro の欄はサイトの他の部分と同じデータを使い、料金、プラットフォームと機能は料金・機能ページに一致します。",
-      "他の人が再現できる測定を出典として見つけられなかったため、速度、メモリーや起動時間の数値は載せません。",
-      "価格や機能は変わります。古い情報があれば <issues>GitHub で issue を作成</issues>してください。"
-    ]
-  },
-  "labels": {
-    "factsChecked": "{date} に情報を確認",
-    "orList": {
-      "separator": "、",
-      "last": " または "
+    "seo": {
+        "title": "データベースクライアントの比較",
+        "description": "機能、対応データベース、プラットフォーム、ライセンスで TablePro と他のデータベースクライアントを比較。確認日と公式の出典を掲載しています。"
     },
-    "sourcesLink": "出典",
-    "shortAnswer": {
-      "title": "結論から",
-      "lead": "Mac で {name} の代替を探していますか？それぞれのクライアントが向く場合をまとめました。",
-      "tablepro": "TablePro が向く場合",
-      "competitor": "{name} が向く場合"
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro と他のデータベースクライアント"
     },
-    "glance": {
-      "title": "一覧比較",
-      "caption": "{date} に TablePro と {name} を比較。出典はページ末尾に記載します。",
-      "feature": "比較項目",
-      "more": "{name} について"
+    "header": {
+        "title": "データベースクライアントの比較",
+        "lead": "機能、サポートされているデータベース、ライセンスを比較します。各比較には、公式の情報源と確認日が含まれています。"
     },
-    "rows": {
-      "platforms": "プラットフォーム",
-      "technology": "使用技術",
-      "price": "価格",
-      "licence": "オープンソース",
-      "databases": "データベース",
-      "ai": "AI アシスタント",
-      "mcp": "MCP サーバー",
-      "ios": "iPhone と iPad",
-      "sync": "同期",
-      "import": "TablePro への移行"
+    "bySituation": {
+        "title": "どのクライアントが作業に合いますか？",
+        "lead": "必要なツールから始めます。",
+        "tablepro": "TablePro は、いくつかのデータベース タイプに対応するネイティブのオープンソース クライアントです。 AI チャットと MCP は、Mac アプリで無料です。 {apps} から接続をインポートします。",
+        "items": {
+            "tableplus": "Windows または Linux のサポートに加え、 Vertica および Greenplum。",
+            "dbeaver": "JDBC ドライバーをサポートするクロスプラットフォーム クライアント。",
+            "datagrip": "コードインスペクションとバージョン管理を備えたデータベース IDE。非営利作品の場合は無料です。",
+            "navicat": "Navicat Cloud を介したデータ モデリングと共有プロジェクト。",
+            "beekeeper-studio": "Windows、 macOS、および Linux で同じ機能を備えたオープンソース クライアント。",
+            "sequel-ace": "MySQL および MariaDB に焦点を当てた無料の Mac App Store クライアント。",
+            "sequel-pro": "Sequel Pro から移行しますか?その最後のリリースは、 {status.date} 上の {status.version} でした。 Sequel Ace と TablePro を比較してください。",
+            "postico": "1 回限りのライセンスを持つ集中型 PostgreSQL クライアント。",
+            "heidisql": "Windows、 Linux、および Apple silicon Mac 用の無料クライアント。",
+            "phpmyadmin": "MySQL または MariaDB は、cPanel ホスティングを含むブラウザー経由でアクセスします。",
+            "mysql-workbench": "SQL ノートブックと MySQL Enterprise Backup 連携を備えた Oracle の MySQL ツール。",
+            "pgadmin": "PostgreSQL 管理 (デバッガー、pgAgent ジョブ、および共有サーバー オプションを使用)。",
+            "dbgate": "デスクトップおよび Web 用のオープンソース SQL および NoSQL クライアント。",
+            "mongodb-compass": "MongoDB 集計パイプライン、スキーマ分析、ライブ サーバー メトリクス。",
+            "ssms": "Windows に対する SQL Server の管理 ( Agent および Always On を含む)。"
+        }
     },
-    "cell": {
-      "yes": "あり",
-      "no": "なし",
-      "partial": "一部対応",
-      "edition": "{edition} エディションで対応",
-      "since": "{version} 以降",
-      "sinceDated": "{date} の {version} 以降",
-      "source": "出典",
-      "none": "該当なし"
+    "atAGlance": {
+        "title": "一覧比較",
+        "lead": "プラットフォーム、オープンソース ライセンス、および米国の税抜定価。",
+        "caption": "{date} に比較したクライアント。出典はページ末尾に記載します。"
     },
-    "platforms": {
-      "mac": "Mac",
-      "windows": "Windows",
-      "linux": "Linux",
-      "ios": "iPhone と iPad",
-      "web": "サーバー上の Web アプリ"
-    },
-    "macRequirement": "macOS {version} 以降",
-    "languages": {
-      "en": "英語",
-      "vi": "ベトナム語",
-      "zh-Hans": "簡体字中国語",
-      "zh-Hant": "繁体字中国語",
-      "ko": "韓国語",
-      "tr": "トルコ語",
-      "fr": "フランス語"
-    },
-    "builds": {
-      "both": "Apple silicon と Intel のビルド",
-      "universal": "Apple silicon と Intel でネイティブ動作",
-      "arm64": "Apple silicon のみ",
-      "x86_64": "Intel のみ"
-    },
-    "licence": {
-      "yes": "はい：{licence}",
-      "yesEdition": "はい：{edition} エディションは {licence}",
-      "no": "いいえ"
-    },
-    "currency": {
-      "pattern": "${amount}",
-      "decimal": ".",
-      "group": ","
-    },
-    "price": {
-      "free": "無料",
-      "labelled": "{label}：{price}",
-      "amount": {
-        "once": "買い切り {amount}",
-        "month": "月額 {amount}",
-        "year": "年額 {amount}",
-        "none": "{amount}"
-      },
-      "per": {
-        "device": "{price}/デバイス",
-        "user": "{price}/ユーザー",
-        "seat": "{price}/シート",
-        "license": "{price}/ライセンス",
-        "none": "{price}"
-      },
-      "units": {
-        "one": "{price}、1 台用",
-        "other": "{price}、最大 {count} 台"
-      },
-      "minUnits": {
-        "one": "{price}、最低 1 シート",
-        "other": "{price}、最低 {count} シート"
-      },
-      "renewal": "更新",
-      "ios": "iPhone・iPad アプリ",
-      "macAppStore": "Mac App Store",
-      "audience": {
-        "individual": "個人",
-        "organization": "組織",
-        "personal": "個人利用",
-        "commercial": "商用",
-        "student": "学生",
-        "non-commercial": "非商用利用"
-      },
-      "continuity": {
-        "1": "1 年目",
-        "2": "2 年目",
-        "3": "3 年目以降"
-      },
-      "withContinuity": "{label}、{year}"
-    },
-    "tablepro": {
-      "technology": "Swift とネイティブデータベースドライバー",
-      "priceFree": "無料で利用できます。有料プランで Mac アプリにオプション機能を追加できます。",
-      "starter": "月額 {monthly}、年額 {yearly} または買い切り {lifetime}",
-      "team": "1 シートごとに月額 {monthly}、年額 {yearly} または買い切り {lifetime}、最低 {min} シート",
-      "iosPrice": "iPhone・iPad アプリは無料で、アプリ内課金はありません。",
-      "licence": "はい：有料機能のコードも含め {licence}",
-      "databases": "{engines} など",
-      "databasesLink": "対応データベース",
-      "ai": "Mac アプリで無料。クラウドでも Mac 上でも、自分で選んだ AI プロバイダーを使用",
-      "mcp": "Mac で無料。Mac 上だけで待ち受け、外部アプリに許す操作は接続ごとに設定",
-      "ios": "別の無料アプリ、アプリ内課金なし",
-      "sync": "iCloud Sync：Mac では {tier} に含まれ、iPhone・iPad では無料"
-    },
-    "import": {
-      "yes": "{name} の接続を保存パスワードも含めインポートします。",
-      "yesFile": "{name} でエクスポートした {format} ファイルから {name} の接続と保存パスワードをインポートします。",
-      "noPasswords": "{name} の接続をインポートします。パスワードは移しません。",
-      "none": "{name} のインポーターはありません。",
-      "link": "移行方法"
-    },
-    "tiers": {
-      "starter": "Starter",
-      "team": "Team"
-    },
-    "tierBadge": "{tier} プラン",
-    "sections": {
-      "stronger": "{name} が優れる点",
-      "differs": "TablePro の違い",
-      "limits": "TablePro ができないこと",
-      "switching": "{name} からの移行",
-      "faq": "よくある質問",
-      "sources": "出典",
-      "more": "他の比較",
-      "cta": "TablePro を入手"
+    "openSource": {
+        "title": "オープンソースのオプション",
+        "lead": "これらのクライアントは、オープンソース ライセンスに基づいてソース コードを公開しています。 Sequel Pro はメンテナンスされていません。 phpMyAdmin は Web サーバー上で実行されます。",
+        "caption": "{date} に確認したオープンソースクライアント。"
     },
     "switching": {
-      "docs": "ドキュメントの移行ガイド"
+        "title": "TablePro への移行",
+        "body": "{apps} から接続と保存されたパスワードをインポートします。 Navicat には、エクスポートされた接続ファイルが必要です。",
+        "none": "{others} からのインポート機能はありません。手動で接続を追加するか、接続 URL を貼り付けてください。",
+        "link": "接続をインポート",
+        "docs": "切り替えガイド"
     },
-    "sources": {
-      "intro": "{name} に関する情報は、{date} に以下のページで確認しました。価格は税別米ドル定価です。",
-      "retrieved": "{date} に確認",
-      "latest": "その時点の最新 {name} は {date} 公開の {version}。",
-      "tablepro": "TablePro の欄は Mac 版 {macVersion} と iPhone・iPad 版 {iosVersion} を説明します。",
-      "trademarks": "TablePro は独立したオープンソースプロジェクトで、ここで比較している製品の開発元とは提携しておらず、その承認も受けていません。製品名は各所有者の商標です。"
+    "method": {
+        "title": "出典と範囲",
+        "paragraphs": [
+            "競合他社の事実には、公式 Web サイト、ドキュメント、リポジトリ、リリース ノート、ストアのリスト、またはそれを配布するパッケージ マネージャーやプラットフォーム ベンダーが使用されます。出典には確認日が記載されています。",
+            "TablePro の価格、プラットフォーム、機能は、このサイトの共有製品データを使用しています。再現可能なベンチマークが引用されていないため、これらのページでは速度やメモリについては主張していません。",
+            "価格や機能は変わる場合があります。<issues>古くなった情報を GitHub で報告してください</issues>。"
+        ]
     },
-    "cta": {
-      "body": "TablePro は無料でダウンロードできます。有料プランで Mac アプリにオプション機能を追加できます。",
-      "pricing": "料金を見る",
-      "hub": "すべての比較"
-    },
-    "status": {
-      "active": "保守中",
-      "discontinued": "開発終了"
-    },
-    "hub": {
-      "client": "クライアント",
-      "platforms": "プラットフォーム",
-      "openSource": "オープンソース",
-      "free": "無料で利用",
-      "paid": "有料プラン",
-      "paidFrom": "{price} から",
-      "noPaid": "なし",
-      "freeYes": "はい",
-      "freeNo": "いいえ",
-      "license": "ライセンス",
-      "status": "状況",
-      "latest": "最新リリース",
-      "latestValue": "{version}、{date}",
-      "compareLink": "TablePro vs {name}"
+    "labels": {
+        "factsChecked": "{date} に情報を確認",
+        "orList": {
+            "separator": "、",
+            "last": " または "
+        },
+        "sourcesLink": "出典",
+        "shortAnswer": {
+            "title": "どちらかを選択する",
+            "lead": "TablePro または {name} を使用する理由。",
+            "tablepro": "TablePro が適している用途",
+            "competitor": "{name} が適している用途"
+        },
+        "glance": {
+            "title": "一覧比較",
+            "caption": "{date} に TablePro と {name} を比較。出典はページ末尾に記載します。",
+            "feature": "比較項目",
+            "more": "{name} について"
+        },
+        "rows": {
+            "platforms": "プラットフォーム",
+            "technology": "使用技術",
+            "price": "価格",
+            "licence": "オープンソース",
+            "databases": "データベース",
+            "ai": "AI アシスタント",
+            "mcp": "MCP サーバー",
+            "ios": "iPhone と iPad",
+            "sync": "同期",
+            "import": "TablePro への移行"
+        },
+        "cell": {
+            "yes": "あり",
+            "no": "なし",
+            "partial": "一部対応",
+            "edition": "{edition} エディションで対応",
+            "since": "{version} 以降",
+            "sinceDated": "{date} の {version} 以降",
+            "source": "出典",
+            "none": "該当なし"
+        },
+        "platforms": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone と iPad",
+            "web": "サーバー上の Web アプリ"
+        },
+        "macRequirement": "macOS {version} 以降",
+        "languages": {
+            "en": "英語",
+            "vi": "ベトナム語",
+            "zh-Hans": "簡体字中国語",
+            "zh-Hant": "繁体字中国語",
+            "ko": "韓国語",
+            "tr": "トルコ語",
+            "fr": "フランス語"
+        },
+        "builds": {
+            "both": "Apple silicon と Intel のビルド",
+            "universal": "Apple silicon と Intel でネイティブ動作",
+            "arm64": "Apple silicon のみ",
+            "x86_64": "Intel のみ"
+        },
+        "licence": {
+            "yes": "はい：{licence}",
+            "yesEdition": "はい：{edition} エディションは {licence}",
+            "no": "いいえ"
+        },
+        "currency": {
+            "pattern": "${amount}",
+            "decimal": ".",
+            "group": ","
+        },
+        "price": {
+            "free": "無料",
+            "labelled": "{label}：{price}",
+            "amount": {
+                "once": "買い切り {amount}",
+                "month": "月額 {amount}",
+                "year": "年額 {amount}",
+                "none": "{amount}"
+            },
+            "per": {
+                "device": "{price}/デバイス",
+                "user": "{price}/ユーザー",
+                "seat": "{price}/シート",
+                "license": "{price}/ライセンス",
+                "none": "{price}"
+            },
+            "units": {
+                "one": "{price}、1 台用",
+                "other": "{price}、最大 {count} 台"
+            },
+            "minUnits": {
+                "one": "{price}、最低 1 シート",
+                "other": "{price}、最低 {count} シート"
+            },
+            "renewal": "更新",
+            "ios": "iPhone・iPad アプリ",
+            "macAppStore": "Mac App Store",
+            "audience": {
+                "individual": "個人",
+                "organization": "組織",
+                "personal": "個人利用",
+                "commercial": "商用",
+                "student": "学生",
+                "non-commercial": "非商用利用"
+            },
+            "continuity": {
+                "1": "1 年目",
+                "2": "2 年目",
+                "3": "3 年目以降"
+            },
+            "withContinuity": "{label}、{year}"
+        },
+        "tablepro": {
+            "technology": "Swift とネイティブデータベースドライバー",
+            "priceFree": "無料で利用できます。有料プランで Mac アプリにオプション機能を追加できます。",
+            "starter": "月額 {monthly}、年額 {yearly} または買い切り {lifetime}",
+            "team": "1 シートごとに月額 {monthly}、年額 {yearly} または買い切り {lifetime}、最低 {min} シート",
+            "iosPrice": "iPhone・iPad アプリは無料で、アプリ内課金はありません。",
+            "licence": "はい：有料機能のコードも含め {licence}",
+            "databases": "{engines} など",
+            "databasesLink": "対応データベース",
+            "ai": "Mac アプリでは無料です。クラウド プロバイダーまたはローカル モデルを選択します。プロバイダー料金が適用される場合があります。",
+            "mcp": "Mac アプリでは無料です。ローカルホストのみ、接続ごとのアクセス制御あり。",
+            "ios": "別の無料アプリ、アプリ内課金なし",
+            "sync": "iCloud Sync：Mac では {tier} に含まれ、iPhone・iPad では無料"
+        },
+        "import": {
+            "yes": "{name} の接続を保存パスワードも含めインポートします。",
+            "yesFile": "{name} でエクスポートした {format} ファイルから {name} の接続と保存パスワードをインポートします。",
+            "noPasswords": "{name} の接続をインポートします。パスワードは移しません。",
+            "none": "{name} のインポーターはありません。",
+            "link": "移行方法"
+        },
+        "tiers": {
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "tierBadge": "{tier} プラン",
+        "sections": {
+            "stronger": "{name} を使用する理由",
+            "differs": "重要な相違点",
+            "limits": "TablePro の制限",
+            "switching": "{name} からの移行",
+            "faq": "よくある質問",
+            "sources": "出典",
+            "more": "他の比較",
+            "cta": "TablePro を入手"
+        },
+        "switching": {
+            "docs": "ドキュメントの移行ガイド"
+        },
+        "sources": {
+            "intro": "{name} の情報は {date} に確認しました。価格は米国の税抜定価です。",
+            "retrieved": "{date} に確認",
+            "latest": "その時点の最新 {name} は {date} 公開の {version}。",
+            "tablepro": "TablePro の欄は Mac 版 {macVersion} と iPhone・iPad 版 {iosVersion} を説明します。",
+            "trademarks": "TablePro は独立したオープンソースプロジェクトで、ここで比較している製品の開発元とは提携しておらず、その承認も受けていません。製品名は各所有者の商標です。"
+        },
+        "cta": {
+            "body": "コアアプリは無料です。有料プランではオプション機能が追加されます。",
+            "pricing": "料金を見る",
+            "hub": "すべての比較"
+        },
+        "status": {
+            "active": "保守中",
+            "discontinued": "開発終了"
+        },
+        "hub": {
+            "client": "クライアント",
+            "platforms": "プラットフォーム",
+            "openSource": "オープンソース",
+            "free": "無料で利用",
+            "paid": "有料プラン",
+            "paidFrom": "{price} から",
+            "noPaid": "なし",
+            "freeYes": "はい",
+            "freeNo": "いいえ",
+            "license": "ライセンス",
+            "status": "状況",
+            "latest": "最新リリース",
+            "latestValue": "{version}、{date}",
+            "compareLink": "TablePro vs {name}"
+        }
     }
-  }
 }

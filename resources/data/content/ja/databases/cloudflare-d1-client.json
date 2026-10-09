@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "{devices} 用 Cloudflare D1 クライアント",
-        "lead": "一つの接続から Cloudflare アカウント内の D1 データベースにアクセスし、Cloudflare API 経由で SQLite 方言を使って問い合わせます。Structure タブでテーブル、インデックスとトリガーを管理できます。"
+        "title": "Cloudflare D1 クライアント",
+        "lead": "Cloudflare アカウント内の D1 データベースを参照し、API 経由で SQLite クエリを実行できます。"
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "API トークンで接続",
             "paragraphs": [
-                "D1 接続にはデータベース名または UUID、Cloudflare アカウント ID、API トークンの三つが必要です。トークンは <ui>API Token</ui> 欄に入力し、<credentials>macOS キーチェーン</credentials> に保存します。すべてのリクエストが HTTPS で Cloudflare API に向かうため、ホスト、ポート、SSL 設定や SSH トンネルはありません。",
-                "Custom token テンプレートから <ui>Account > D1 > Edit</ui> 権限のトークンを作成し、一度だけ表示されるときにコピーしてください。そのトークンは接続先だけでなく、アカウント内のすべての D1 データベースにアクセスできます。",
+                "D1 のデータベース名か UUID、Cloudflare アカウント ID、<ui>API Token</ui> を入力します。トークンは <credentials>macOS Keychain</credentials> に保存します。通信は HTTPS で、ホスト、ポート、TLS 設定、SSH トンネルはありません。",
+                "<ui>Account > D1 > Edit</ui> 権限でトークンを作り、表示時にコピーします。選んだデータベースだけでなく、アカウント内のすべての D1 データベースにアクセスできます。",
                 "<code>d1://account-id/database-name</code> URL のインポートでアカウントとデータベースを入力できます。トークンは URL に含まれないため、後で貼り付けてください。"
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "データベースの切り替えとクエリ",
             "paragraphs": [
-                "ツールバーの切り替え欄にはアカウントの D1 データベースを一覧表示し、再接続せずに切り替えられます。データベースの作成・削除もできます。各タブは開いたときのデータベースに留まります。",
+                "再接続せずにアカウント内の D1 データベースを切り替えられます。切り替えメニューで作成や削除もできます。既存のタブは元のデータベースを維持します。",
                 "クエリは SQLite 方言を使います。<explain>EXPLAIN QUERY PLAN</explain> は図で表示し、行の編集は保存までグリッドに保留します。<editing>Preview SQL</editing> で先に文を確認できます。",
                 "各文を単独で成立するように書いてください。一つの文で設定した <code>PRAGMA</code> や一時テーブルは次の文で消えます。各文は実行時にコミットし、ロールバックできません。Cloudflare がレート制限すると、エラーには再試行前に要求された待機時間を含みます。"
             ]

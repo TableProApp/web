@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Pengeditan data",
-        "title": "Telusuri dan edit data dengan aman"
+        "title": "Pengeditan data"
     },
     "header": {
-        "title": "Telusuri dan edit data dengan aman",
-        "lead": "Untuk bekerja langsung dengan baris: mencari baris yang diperlukan, mengubah beberapa nilai, dan melakukannya pada database produksi tanpa kejutan. Perubahan menunggu hingga Anda menyimpan, dan setiap koneksi menentukan kehati-hatian TablePro sebelum menjalankan pernyataan.",
+        "title": "Pengeditan data",
+        "lead": "Filter baris, ikuti kunci asing dan edit nilai di grid. Perubahan menunggu hingga Anda menyimpannya, dengan SQL tersedia untuk ditinjau terlebih dahulu.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filter dan aturan sorotan",
                     "paragraphs": [
-                        "Bilah filter (<kbd>⌘⇧F</kbd>) menyusun klausa WHERE dari {filterOperatorCount} operator, dari = dan BETWEEN hingga REGEX, atau menerima kondisi SQL mentah. Simpan filter untuk tabel dan panggil kembali nanti tanpa menjalankannya. Aturan sorotan mewarnai baris atau sel berdasarkan nilainya, seperti pemformatan bersyarat dalam spreadsheet, dan tetap berada di Mac ini."
+                        "Buat filter dengan {filterOperatorCount} operator atau kondisi SQL, lalu simpan untuk digunakan kembali. Aturan sorotan mewarnai baris atau sel yang cocok dan tetap di Mac ini."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Foreign key dan JSON",
                     "paragraphs": [
-                        "Ikuti foreign key ke baris yang ditunjuknya di tab baru, atau lihat pratinjau baris dalam popover. Saat mengedit kolom foreign key, pemilih nilai mencantumkan baris rujukan berdasarkan kolom pilihan Anda, seperti nama belakang dan nama depan pelanggan. Nilai JSON terbuka dalam penampil dengan pohon untuk navigasi dan mode teks untuk pengeditan."
+                        "Ikuti kunci asing ke baris referensinya atau pratinjau di tempatnya. Pemilih nilai membantu Anda memilih dari baris yang direferensikan. Buka nilai JSON di penampil pohon atau editor teks."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "Ubah data, lalu simpan sekali",
+            "title": "Tinjau hasil edit sebelum menyimpan",
             "paragraphs": [
-                "Perubahan sel, baris baru, dan penghapusan menunggu di tab dengan penanda hingga Anda menekan <kbd>⌘S</kbd>; tidak ada yang dikirim sebelumnya. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) mencantumkan pernyataan dengan nilai terisi. Penyimpanan mengirimnya dengan parameter terikat, dalam satu transaksi jika mesin mengizinkan, serta memeriksa apakah setiap pernyataan mengubah jumlah baris yang diharapkan; jika tidak, penyimpanan dibatalkan."
+                "Perubahan, baris baru, dan penghapusan tetap di tab hingga disimpan dengan <kbd>⌘S</kbd>. <ui>Preview SQL</ui> menampilkan pernyataan yang tertunda. Penyimpanan menggunakan parameter terikat dan memeriksa jumlah baris yang terpengaruh, dengan transaksi dan rollback jika didukung engine."
             ],
             "points": [
                 "Editor sel berdasarkan tipe kolom: pemilih tanggal dan waktu, daftar ENUM dan SET, array, JSON, editor heksadesimal untuk nilai biner, dan penampil gambar.",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "Safe Mode untuk koneksi produksi",
+            "title": "Safe Mode",
             "paragraphs": [
-                "Setiap koneksi memiliki level Safe Mode: {macSafeModeLevels}. Koneksi baru dimulai pada {macSafeModeDefault}, yang menjalankan pernyataan sesuai tulisannya. Alert meminta konfirmasi sebelum penulisan; level Safe Mode juga meminta Touch ID atau kata sandi Mac, level Full juga meminta konfirmasi sebelum pembacaan, dan Read-Only menolak penulisan serta menonaktifkan pengeditan. Safe Mode gratis.",
-                "Di setiap level, DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi terlebih dahulu. Beberapa kondisi menaikkan level koneksi selama berlaku: mesin yang hanya membaca, Agent mode yang menaikkannya hingga setidaknya Alert, serta level minimum yang diatur organisasi lewat pengelolaan perangkat (MDM)."
+                "Pilih level per koneksi: {macSafeModeLevels}. Standarnya adalah {macSafeModeDefault}, yang menjalankan pernyataan tanpa konfirmasi. Alert mengonfirmasi penulisan; Safe Mode menambahkan Touch ID atau persetujuan kata sandi. Level penuh juga mengonfirmasi pembacaan. Read-Only memblokir penulisan dan pengeditan. Safe Mode gratis.",
+                "DROP, TRUNCATE dan DELETE tanpa WHERE selalu memerlukan konfirmasi. Mode Agent jendela penuh menerapkan setidaknya Alert. Mesin read-only dan kebijakan manajemen perangkat organisasi juga dapat meningkatkan tingkat efektif."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind menyimpan nilai yang diganti saat menyimpan, sehingga <ui>Restore Previous Values</ui> dapat mengembalikannya. Lembar tinjauan terlebih dahulu menunjukkan apa yang akan terjadi pada setiap baris, termasuk baris yang berubah setelah penyimpanan; pemulihan melewati Safe Mode, dalam satu transaksi jika mesin mengizinkan. Pemulihan itu sendiri dapat dipulihkan kembali.",
-                "Nilai tersimpan tetap berada di Mac ini selama {rewindDays} hari, dienkripsi dengan kunci dalam Rantai Kunci, dan tidak pernah disinkronkan. Saat paket berakhir, TablePro berhenti merekam penyimpanan dan <ui>Restore Previous Values</ui> menampilkan peringatan."
+                "Tinjau dan pulihkan nilai yang diganti saat penyimpanan dengan <ui>Restore Previous Values</ui>. Peninjauan menandai baris yang berubah sejak penyimpanan itu. Pemulihan mengikuti Safe Mode dalam satu transaksi jika engine mengizinkan.",
+                "Nilai sebelumnya tetap terenkripsi di Mac ini selama {rewindDays} hari dan tidak pernah disinkronkan. Perekaman dan pemulihan berhenti ketika paket berbayar Anda berakhir."
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Dokumen dan kunci",
             "paragraphs": [
-                "Tidak semua mesin menyimpan baris. Di MongoDB Anda menyisipkan dan mengedit dokumen utuh sebagai Extended JSON, menghapus field dari dokumen, serta mengganti nama atau menghapus field di seluruh koleksi lewat tab Structure. Di Redis Anda mengganti nama kunci, mengatur TTL, mengedit nilai string di grid, menambah kunci string, hash, list, set, atau sorted-set, serta mengubah tipe lain dengan perintah di editor."
+                "Edit dokumen MongoDB sebagai Extended JSON, atau ganti nama dan hapus bidang di seluruh koleksi. Di Redis, edit string, ganti nama kunci dan atur TTL di grid, atau tambahkan string, hash, daftar, set, atau kunci set yang diurutkan. Gunakan perintah editor untuk mengubah tipe nilai lainnya."
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "Di iPhone dan iPad",
             "paragraphs": [
-                "Dalam aplikasi iPhone dan iPad, baris tampil sebagai kartu yang dapat diurutkan, dicari, dan difilter dengan AND dan OR; mengetuk foreign key menampilkan pratinjau baris rujukan. Anda dapat mengedit baris, mengatur nilai ke NULL, menyisipkan baris, dan menghapusnya dengan geseran; pengeditan dan penghapusan memerlukan primary key. Pada baris baru, setiap kolom awalnya DEFAULT dan dapat diatur ke NULL atau string kosong.",
-                "Safe Mode di sana memiliki level sendiri, {iosSafeModeLevels}, dengan {iosSafeModeDefault} sebagai bawaan koneksi baru. Perubahan tertunda, Preview SQL, aturan sorotan, dan Data Rewind hanya tersedia di aplikasi Mac."
+                "Telusuri baris sebagai kartu, urutkan dan filter, atau ketuk kunci asing untuk melihat pratinjau barisnya. Edit nilai atau atur NULL; mengedit dan menghapus memerlukan kunci utama. Baris baru dimulai dengan nilai DEFAULT, dengan NULL dan string kosong tersedia sebagai gantinya.",
+                "Safe Mode di mobile menawarkan {iosSafeModeLevels}, dengan default {iosSafeModeDefault}. Perubahan tertunda, Preview SQL, aturan sorotan, dan Data Rewind saat ini hanya tersedia di Mac."
             ],
             "links": [
                 {

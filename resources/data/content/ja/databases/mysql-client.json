@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL と MariaDB",
     "header": {
-        "title": "{devices} 用 MySQL・MariaDB クライアント",
-        "lead": "スキーマを理解する自動補完で SQL を書き、すべての文をプレビューしながら行を編集し、ユーザー、セッションとバックアップを管理できます。同じドライバーは MariaDB、TiDB、OceanBase、Databend にも対応します。"
+        "title": "MySQL・MariaDB クライアント",
+        "lead": "MySQL をクエリし、SQL プレビューで行を編集できます。同じ接続からユーザー、セッション、バックアップを管理できます。"
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホスト、ポートとユーザーを指定するか、<code>mysql://</code> URL を貼り付けます。<code>caching_sha2_password</code> を使う MySQL 8 アカウントも初回から接続できます。データベースを空欄にして後で選ぶこともでき、同じ接続内でそのまま切り替えられます。",
+                "ホスト、ポート、ユーザーを入力するか、<code>mysql://</code> URL を貼り付けます。MySQL 8 の <code>caching_sha2_password</code> に対応します。データベースは省略でき、切り替えても同じ接続を使います。",
                 "新しい接続の SSL は Preferred で始まり、最初に TLS を試します。TLS ハンドシェイクが失敗した場合にだけ平文へフォールバックします。厳密に検証するには、プロバイダーの証明書とともに Verify CA または Verify Identity を選んでください。",
-                "プライベートネットワークのサーバーには、<network>必要に応じて踏み台ホストを使う SSH トンネル、SOCKS5 プロキシ、Cloudflare Access トンネルや独自のトンネルコマンド</network>（kubectl port-forward など）で接続できます。",
-                "Amazon RDS と Aurora では、接続のたびに新しいトークンを署名する <cloudAuth>AWS IAM</cloudAuth> で認証でき、AWS アカウントからインスタンスを直接インポートできます。Google Cloud SQL では、TablePro が Cloud SQL Auth Proxy をダウンロードして実行します。",
-                "Sequel Ace から移行する場合、<importApps>Import from Other App</importApps> がそのお気に入りと、確認後にキーチェーン内のパスワードを読み取ります。"
+                "<network>SSH トンネル、踏み台ホスト、プロキシ、トンネルコマンド</network>で非公開サーバーに接続できます。",
+                "<cloudAuth>AWS IAM</cloudAuth> で Amazon RDS・Aurora にログインでき、接続ごとに新しいトークンを使います。AWS のインスタンスをインポートするか、Google Cloud SQL に Cloud SQL Auth Proxy を使えます。",
+                "<importApps>Import from Other App</importApps> は Sequel Ace のお気に入りを読み取ります。Keychain のパスワードをインポートするには確認が必要です。"
             ]
         },
         {
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "SQL エディターはスキーマからテーブル名とカラム名を補完し、エイリアスや CTE にも対応します。カーソル下の文かスクリプト全体を実行できます。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE と EXPLAIN ANALYZE</explain> はプラン図やツリーとして描画し、EXPLAIN Compare は二回の実行の違いを示します。",
-                "行の編集は保存まで保留し、<editing>Preview SQL</editing> で正確な文を先に表示します。保存はバインドパラメーターで実行し、予定と異なる行数を変更する文があれば停止します。主キーのないテーブルも編集でき、その場合は全カラムで行を特定します。",
+                "スキーマ名、エイリアス、CTE を補完します。現在の文やスクリプト全体を実行できます。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE、EXPLAIN ANALYZE</explain> を図やツリーで表示し、二つのプランを比較できます。",
+                "編集内容を一時保存し、<editing>Preview SQL</editing> で実行文を確認します。保存はバインドパラメーターを使い、行数が想定外なら中止します。主キーがない場合は全列で行を照合します。",
                 "すべてのセッションが utf8mb4 を使うため、絵文字やラテン文字以外のテキストも正しく往復できます。古いクライアントが Latin 1 経由で書いたデータベースのテキストは、UTF-8 via Latin 1 エンコーディングでそのクライアントと同じように読み取れます。",
                 "パーティションテーブルは <code>VALUES LESS THAN (2024)</code> などの境界とともにパーティションを表示します。テーブルとカラムのコメントはサイドバーとグリッドのカラム見出しに表示します。"
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "スキーマ",
             "paragraphs": [
-                "<structure>Structure タブ</structure> はカラム、インデックス、外部キー、CHECK 制約と生成カラムの変更を保留し、実行前に DDL を表示します。<code>lower(email)</code> などの式によるインデックスキーには MySQL 8.0.13 以降が必要です。",
+                "<structure>Structure タブ</structure>で列、インデックス、外部キー、CHECK 制約、生成列の変更を準備します。保存前に DDL を確認します。式インデックスのキーには MySQL 8.0.13 以降が必要です。",
                 "ルーチンとトリガーはソースとともにサイドバーに表示します。<erDiagram>ER 図</erDiagram> はスキーマを読み取り専用の図として描き、PNG や SQL にエクスポートできます。",
-                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は、二つの MySQL や MariaDB のスキーマまたはデータを比較し、一方を他方に揃えるスクリプトを生成します。データを失う変更は、対象に含めるまで保留します。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）は MySQL・MariaDB のスキーマやデータを比較し、同期スクリプトを生成します。データを削除しうる変更は、自分で含めるまで保留します。"
             ]
         },
         {
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> はアカウントごとの権限を個々のカラムまで表示し、すべての GRANT と REVOKE を、実行前に確認する SQL として保留します。",
+                "<administer>Users & Roles</administer> は列単位まで権限を表示します。準備した GRANT・REVOKE 文を適用前に確認できます。",
                 "Server Dashboard は数秒ごとに更新するセッション、サーバーメトリクスと遅いクエリを一覧表示します。<code>KILL QUERY</code> で実行中のクエリをキャンセルし、<code>KILL</code> でセッションを終了します。PROCESS 権限のないアカウントには自身のセッションだけを表示します。",
                 "テーブル保守は OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE と REPAIR TABLE を実行し、実行前に文を表示します。",
                 "<backup>Backup Dump</backup> は {dumpTool}、Restore Dump は mysql クライアントを、どちらも接続の SSH トンネル経由で実行します。先に Mac に MySQL クライアントツールをインストールしてください。復元はダンプが指定するオブジェクトを置き換えます。",
-                "離席中にサーバーの接続枠を空けるには、数分間アイドルになると接続を解放する設定を使えます。次のクエリで再接続します。開いたトランザクションや一時テーブルなど、再接続で失うものをセッションが保持する場合は接続を維持します。"
+                "アイドル接続を自動解放し、次のクエリで再接続できます。開いているトランザクションや一時テーブルなど、再接続で失われる状態があるセッションは維持します。"
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "データの移動",
             "paragraphs": [
-                "{importFormats} ファイルを <importData>インポート</importData> し、読み込み先テーブルへのカラムの対応付けと、行が失敗したときの処理を選べます。テーブルや結果を {exportFormats} としてエクスポートできます。",
-                "<copy>Copy To</copy> は、テーブル、データまたは両方を MySQL や異なるエンジンの別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。"
+                "列の対応付けと行エラーの処理を使って {importFormats} ファイルを<importData>インポート</importData>できます。テーブルや結果を {exportFormats} で出力できます。",
+                "<copy>Copy To</copy> はテーブル、データ、または両方を別の MySQL 接続やエンジンに転送します。近似が必要な列型は確認してください。"
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace は Sequel Pro を引き継ぐ MySQL・MariaDB 用 Mac アプリです。MCP サーバーは既定でオフで、変更しない限り読み取り専用です。AI チャットはありません。MySQL と MariaDB だけを使う場合に適しています。"
+                "text": "Sequel Ace は Mac の MySQL・MariaDB に特化しています。MCP サーバーは初期状態では無効で、設定を変えない限り読み取り専用です。AI チャットはありません。"
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench は Oracle 公式の MySQL ツールです。新しいバージョンは MySQL Shell を基盤に作り直され、SQL ノートブックを備えます。Oracle は以前のバージョンの保守を終了しています。MySQL だけを使い、開発元のツールを使いたい場合に適しています。"
+                "text": "MySQL Workbench は Oracle の MySQL ツールです。現行世代は MySQL Shell と SQL ノートブックを使い、旧世代は Oracle の保守対象ではありません。"
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin は Web サーバーで動き、どのブラウザーでも使えます。cPanel にも含まれます。デスクトップアプリからデータベースへの経路がなく、ホスティングパネルからしかアクセスできないサーバーに適しています。"
+                "text": "phpMyAdmin は Web サーバーで動き、cPanel に含まれます。デスクトップからの接続を許可しないホスティング環境でも、管理パネル経由でアクセスできるデータベースに接続できます。"
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL は長年 Windows で使われてきたオープンソースのクライアントで、現在は macOS アプリも提供しています。すでに Windows で使っていて、Mac でも同じクライアントを使いたい場合に適しています。"
+                "text": "HeidiSQL は Windows・macOS アプリを備えたオープンソースのデータベースクライアントです。"
             }
         ],
         "notes": {}

@@ -48,7 +48,7 @@ it('serves the English posts as an Atom feed, newest first', function (): void {
         ->and((string) $feed->id)->toBe('https://tablepro.app/blog')
         ->and((string) $feed->title)->toBe('TablePro Blog')
         ->and((string) $feed->subtitle)->toBe(app(ContentRepository::class)->page('blog', 'en')['seo']['description'])
-        ->and((string) $feed->subtitle)->toContain('Guides')->toContain('release announcements')
+        ->and((string) $feed->subtitle)->toContain('Database guides')->toContain('release notes')
         ->and((string) $feed->author->name)->not->toBe('')
         ->and(blogFeedLinks($feed))->toBe(['self' => 'https://tablepro.app/blog/feed.xml', 'alternate' => 'https://tablepro.app/blog'])
         ->and((string) $feed->updated)->toBe($posts[0]->date->toAtomString())

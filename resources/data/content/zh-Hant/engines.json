@@ -1,19 +1,19 @@
 {
     "postgresql": {
-        "tagline": "陣列、jsonb 和 PostGIS 值、EXPLAIN 圖、Users & Roles 及 pg_dump 備份。",
+        "tagline": "jsonb、陣列和 PostGIS；EXPLAIN 圖。",
         "limits": {
             "column-reorder-script-only": "重排欄位會產生重建資料表的指令碼。TablePro 僅顯示指令碼，從不執行。"
         }
     },
     "mysql": {
-        "tagline": "透過 TCP 連線至 MySQL，支援 EXPLAIN 圖、Users & Roles、AWS IAM 登入和 mysqldump 備份。",
+        "tagline": "EXPLAIN 圖、使用者和工作階段；mysqldump 備份。",
         "limits": {
             "tcp-only": "連線使用主機和連接埠，透過 TCP 建立。不支援本機 Unix Socket。",
             "load-data-local-refused": "驅動程式拒絕 LOAD DATA LOCAL INFILE。請改用 Import 載入檔案。"
         }
     },
     "sqlserver": {
-        "tagline": "支援 GO 批次處理和 PRINT 輸出的 T-SQL、Kerberos 或 Microsoft Entra ID 登入，以及 .bacpac 備份。",
+        "tagline": "T-SQL、GO 批次和 PRINT；Kerberos 與 Entra ID。",
         "limits": {
             "no-named-instances": "不支援具名執行個體。請連線至執行個體的 TCP 連接埠。",
             "no-ntlm": "不支援 NTLM。請使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID。",
@@ -23,7 +23,7 @@
         }
     },
     "sqlite": {
-        "tagline": "在此 Mac 或 SSH 伺服器的原位置開啟資料庫檔案，支援載入擴充功能。",
+        "tagline": "本機或透過 SSH 託管的資料庫檔案；可載入擴充功能。",
         "limits": {
             "no-encryption": "無法開啟 SQLCipher、SEE 檔案等加密資料庫。請先解密檔案。",
             "no-primary-key-changes": "無法新增、移除或移動主索引鍵。",
@@ -33,7 +33,7 @@
         }
     },
     "mongodb": {
-        "tagline": "mongosh 風格的 JavaScript Shell、Extended JSON 文件，以及透過 SRV 連線至 Atlas 叢集。",
+        "tagline": "mongosh 風格查詢；Extended JSON 文件編輯。",
         "limits": {
             "no-transactions": "不支援交易。",
             "no-gridfs-or-change-streams": "不支援 GridFS 或變更串流。",
@@ -41,7 +41,7 @@
         }
     },
     "redis": {
-        "tagline": "Redis 指令、依冒號分層的鍵樹、TTL，以及 Sentinel 或 Cluster 連線。",
+        "tagline": "鍵和 TTL；Standalone、Sentinel 和 Cluster。",
         "limits": {
             "string-values-only": "格線中僅可編輯字串值。清單、集合、雜湊、有序集合和串流請用指令修改。",
             "no-pubsub": "沒有 pub/sub 檢視。PUBLISH 可作為指令執行，不進行訂閱。",
@@ -52,14 +52,14 @@
         }
     },
     "mariadb": {
-        "tagline": "透過 MySQL 驅動程式支援 MariaDB 序列、虛擬和持久欄位，以及 JSON 欄位。",
+        "tagline": "MariaDB 序列、產生欄位和 JSON。",
         "limits": {
             "no-cloud-sql-proxy": "MariaDB 不提供 Cloud SQL Auth Proxy。請透過 SSH 通道存取私有伺服器。",
             "roles-listed-as-users": "Users & Roles 將 MariaDB 角色列為使用者。請在編輯器中用 SQL 建立和授予角色。"
         }
     },
     "tidb": {
-        "tagline": "透過 MySQL 驅動程式連線至 TiDB 和 TiDB Cloud，Stop 傳送 KILL TIDB QUERY。",
+        "tagline": "透過 MySQL 驅動程式連線至 TiDB 和 TiDB Cloud。",
         "limits": {
             "no-triggers-or-routines": "沒有觸發程序、預存常式或事件。",
             "no-dashboard-or-dump": "沒有 Server Dashboard 和 Backup Dump。請改用 TiDB 的 Dumpling 匯出。",
@@ -67,7 +67,7 @@
         }
     },
     "oceanbase": {
-        "tagline": "以 user@tenant 登入 MySQL 模式的 OceanBase 租戶，可直連或透過 OBProxy。",
+        "tagline": "直接或透過 OBProxy 連線至 MySQL 模式租戶。",
         "limits": {
             "mysql-mode-only": "僅可連線至 MySQL 模式租戶，拒絕 Oracle 模式租戶。",
             "no-dashboard-or-dump": "沒有 Server Dashboard 和 Backup Dump。",
@@ -75,7 +75,7 @@
         }
     },
     "databend": {
-        "tagline": "透過 Databend 的 MySQL 處理常式連線至 Databend 和 Databend Cloud。",
+        "tagline": "透過 MySQL 處理常式連線至 Databend 和 Databend Cloud。",
         "limits": {
             "no-keys-or-indexes": "Databend 沒有索引、主索引鍵或外部索引鍵，編輯列時會比對所有欄位，拒絕可能修改多列的儲存操作。",
             "no-compare-sync": "無法使用 Compare & Sync。",
@@ -84,7 +84,7 @@
         }
     },
     "redshift": {
-        "tagline": "透過 PostgreSQL 驅動程式連線至 Amazon Redshift，DDL 中包含 DISTKEY 和 SORTKEY。",
+        "tagline": "Redshift 叢集與 Serverless；分佈鍵和排序鍵。",
         "limits": {
             "no-aws-iam": "Redshift 不支援 AWS IAM 登入。請使用資料庫使用者登入。",
             "structure-read-only": "Structure 分頁唯讀。請在編輯器中執行 DDL。",
@@ -92,14 +92,14 @@
         }
     },
     "cockroachdb": {
-        "tagline": "透過 PostgreSQL 線路協定連線至 CockroachDB 和 CockroachDB Cloud。",
+        "tagline": "透過 PostgreSQL 驅動程式連線至 CockroachDB 和 CockroachDB Cloud。",
         "limits": {
             "structure-read-only": "Structure 分頁唯讀。請在編輯器中用 SQL 修改結構。",
             "no-dump-or-maintenance": "沒有 Backup Dump、Restore Dump 或資料表維護。請使用 CockroachDB 自帶的 BACKUP 和 RESTORE 陳述式。"
         }
     },
     "pglite": {
-        "tagline": "透過其 Socket 伺服器提供的 PGlite，作為一般 PostgreSQL 連線使用。",
+        "tagline": "透過另外啟動的通訊端伺服器連線至 PGlite。",
         "limits": {
             "needs-socket-server": "PGlite 必須透過 @electric-sql/pglite-socket 提供服務，需自行啟動並保持執行。",
             "single-client": "Socket 伺服器一次只接受一個用戶端。",
@@ -107,7 +107,7 @@
         }
     },
     "oracle": {
-        "tagline": "無需 Instant Client 的純 Swift 驅動程式，支援 PL/SQL 指令碼和 DBMS_OUTPUT。",
+        "tagline": "SQL 和 PL/SQL；無需 Oracle Instant Client。",
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "不支援 Oracle Wallet、作業系統驗證、Kerberos 或 LDAP。請使用服務名稱或 SID 及密碼連線。",
             "no-explain": "Oracle 沒有 EXPLAIN 或執行計畫檢視。",
@@ -116,7 +116,7 @@
         }
     },
     "clickhouse": {
-        "tagline": "透過 HTTP 或 HTTPS 連線至 ClickHouse，支援各類 EXPLAIN、Mutation 和 Parts 分頁。",
+        "tagline": "HTTP 查詢、EXPLAIN 計畫和 MergeTree 資料片段。",
         "limits": {
             "http-only": "連線使用 ClickHouse 的 HTTP 介面，不使用原生 TCP 協定。",
             "tls-off-by-default": "TLS 預設關閉。請在連線表單中選擇 SSL 模式以使用 HTTPS。",
@@ -125,7 +125,7 @@
         }
     },
     "duckdb": {
-        "tagline": "DuckDB 檔案、將 Parquet、CSV 和 JSON 檔案作為檢視，以及記憶體資料庫。",
+        "tagline": "DuckDB 資料庫；用 SQL 查詢 Parquet、CSV 和 JSON。",
         "limits": {
             "one-writer-per-file": "連線開啟期間，一個 DuckDB 檔案同時只允許一個處理程序寫入。",
             "extensions-download-on-first-use": "驅動程式包含核心功能、JSON、Parquet、ICU 和自動完成擴充功能。httpfs 等其他擴充功能會在查詢首次需要時從 DuckDB 下載。",
@@ -133,7 +133,7 @@
         }
     },
     "cassandra": {
-        "tagline": "支援接入節點、TLS 和 Amazon Keyspaces SigV4 登入的 CQL。",
+        "tagline": "CQL 鍵空間；Amazon Keyspaces IAM 登入。",
         "limits": {
             "scalar-edits-only": "格線中僅可編輯純量欄位。集合、Tuple、使用者定義型別和期間型別需在編輯器中使用 UPDATE。",
             "no-consistency-level": "沒有一致性等級設定。陳述式使用驅動程式預設值 LOCAL_ONE 執行。",
@@ -142,50 +142,50 @@
         }
     },
     "scylladb": {
-        "tagline": "透過 Cassandra 驅動程式連線至 ScyllaDB，使用相同的 CQL 工作流程。",
+        "tagline": "透過 Cassandra 驅動程式使用 CQL。",
         "limits": {}
     },
     "dynamodb": {
-        "tagline": "PartiQL 和 DynamoDB API JSON，規劃器依篩選條件選擇 Query 或 Scan，並回報每次讀取消耗的讀取容量。",
+        "tagline": "PartiQL、依鍵讀取和消耗容量。",
         "limits": {
             "one-account-and-region": "每個連線對應一個區域中的一個 AWS 帳戶。",
             "no-dax-or-truncate": "不支援 DAX 端點，也不提供 Truncate。"
         }
     },
     "bigquery": {
-        "tagline": "GoogleSQL，支援 Max Bytes Billed 和查詢執行前的 Dry Run 費用估算。",
+        "tagline": "GoogleSQL、試執行估算和計費位元組上限。",
         "limits": {
             "structure-read-only": "Structure 分頁唯讀。請在編輯器中執行 DDL。",
             "no-transactions": "不支援交易。"
         }
     },
     "snowflake": {
-        "tagline": "支援金鑰組、瀏覽器 SSO、OAuth 或含動態密碼的密碼登入，Session Context 提供倉儲和角色。",
+        "tagline": "切換倉儲和角色；SSO 與金鑰組登入。",
         "limits": {
             "duo-passcode-only": "Duo 僅支援動態密碼，不支援推播核准。"
         }
     },
     "cloudflare-d1": {
-        "tagline": "透過 D1 HTTP API 存取 Cloudflare 帳戶中的所有 D1 資料庫。",
+        "tagline": "透過 D1 API 連線至 Cloudflare 帳戶資料庫。",
         "limits": {
             "no-session-state-or-transactions": "每個陳述式都是獨立 HTTP 請求，不保留工作階段狀態，也不支援交易。"
         }
     },
     "turso": {
-        "tagline": "透過 libSQL 驅動程式，使用權杖經 HTTP 連線至遠端 Turso 資料庫。",
+        "tagline": "透過 libSQL 驅動程式連線至遠端 Turso 資料庫。",
         "limits": {
             "no-database-switching-or-branches": "每個連線對應一個資料庫，不支援切換資料庫或分支。",
             "no-embedded-replicas": "不支援內嵌複本。本機檔案獨立開啟，不會同步。"
         }
     },
     "libsql": {
-        "tagline": "此 Mac 上的 libSQL 檔案，或透過 HTTP 連線至 sqld 伺服器。",
+        "tagline": "本機 libSQL 檔案和遠端 sqld 伺服器。",
         "limits": {
             "dump-local-file-only": "Backup Dump 僅支援本機 libSQL 檔案，不支援遠端資料庫。"
         }
     },
     "elasticsearch": {
-        "tagline": "Query DSL 主控台、將索引作為資料表，以及依 _id 編輯文件。",
+        "tagline": "Query DSL 主控台；依 _id 編輯文件。",
         "limits": {
             "no-opensearch": "不支援 OpenSearch。",
             "aliases-not-listed": "側邊欄不列出別名和資料串流。請在主控台透過名稱存取。",
@@ -193,7 +193,7 @@
         }
     },
     "etcd": {
-        "tagline": "透過 v3 JSON 閘道提供部分 etcdctl 功能：前綴下的鍵、租約和成員。",
+        "tagline": "依前綴瀏覽鍵、租約和 etcdctl 風格命令。",
         "limits": {
             "no-txn": "不支援 txn。",
             "json-gateway-only": "連線使用 v3 JSON 閘道，不使用 gRPC。",
@@ -201,7 +201,7 @@
         }
     },
     "kafka": {
-        "tagline": "透過 KafkaQL 消費和產生訊息，提供主題、分割區和消費者群組延遲。",
+        "tagline": "主題訊息、消費者延遲和 KafkaQL。",
         "limits": {
             "no-schema-registry": "不讀取 Schema Registry，因此 Avro 和 Protobuf 值顯示為原始位元組。",
             "no-topic-create-or-offset-reset": "不支援建立主題、編輯主題設定或重設消費者群組位移。",
@@ -209,53 +209,53 @@
         }
     },
     "surrealdb": {
-        "tagline": "透過 HTTP RPC 使用 SurrealQL，支援 root、命名空間、資料庫、紀錄或權杖登入。",
+        "tagline": "SurrealQL 查詢和保留型別的記錄編輯。",
         "limits": {
             "no-syntax-highlighting": "編輯器不對 SurrealQL 提供語法醒目提示。",
             "no-live-queries": "不支援即時查詢。請重新執行查詢查看新紀錄。"
         }
     },
     "teradata": {
-        "tagline": "TD2 或 TDNEGO 登入，在側邊欄列出程序和巨集。",
+        "tagline": "TD2 和 TDNEGO 登入；程序和巨集。",
         "limits": {
             "ldap-kerberos-jwt-refused": "拒絕 LDAP、Kerberos 和 JWT 登入。請使用 TD2 或 TDNEGO。",
             "foreign-keys-not-listed": "不列出外部索引鍵。請查看資料表的 DDL。"
         }
     },
     "trino": {
-        "tagline": "透過 Trino REST API 執行跨目錄 SQL，使用密碼或 JWT 登入。",
+        "tagline": "透過 Trino REST API 跨目錄執行 SQL。",
         "limits": {
             "no-presto": "不支援 Presto 伺服器。",
             "no-kerberos-or-oauth": "不支援 Kerberos 或 OAuth 登入。"
         }
     },
     "beancount": {
-        "tagline": "將 Beancount 帳本讀取為 SQL 資料表，並支援 BQL 查詢。",
+        "tagline": "帳本的唯讀 SQL 資料表；透過 rledger 使用 BQL。",
         "limits": {
             "projected-tables": "TablePro 開啟帳本時，將其讀取至 {value} 張唯讀 SQL 資料表中，不會寫回帳本。",
             "needs-ledger-tool": "需要在此 Mac 安裝 rledger 或 Python beancount。"
         }
     },
     "spanner": {
-        "tagline": "連線時自動識別 GoogleSQL 或 PostgreSQL 方言，並支援 Spanner 模擬器。",
+        "tagline": "GoogleSQL 和 PostgreSQL 方言；Spanner 模擬器。",
         "limits": {
             "structure-read-only": "Structure 分頁唯讀。請在編輯器中用 ALTER TABLE 修改資料表。"
         }
     },
     "typesense": {
-        "tagline": "REST 請求主控台、將集合視為資料表，以及指標儀表板。",
+        "tagline": "REST 主控台、集合和指標。",
         "limits": {
             "api-keys-as-users": "Typesense 沒有使用者帳戶，因此在其他引擎列出使用者的位置列出 API 金鑰。"
         }
     },
     "weaviate": {
-        "tagline": "集合視為資料表，透過 GraphQL 讀取、REST 寫入。",
+        "tagline": "GraphQL 讀取和 REST 文件編輯。",
         "limits": {
             "graphql-reads-rest-writes": "GraphQL 僅讀取。瀏覽和列編輯透過 Weaviate 的 REST 端點。"
         }
     },
     "cloudflare-r2-sql": {
-        "tagline": "對 Cloudflare R2 中儲存的 Iceberg 資料表執行唯讀 SQL。",
+        "tagline": "對 R2 中的 Iceberg 資料表執行唯讀 SQL。",
         "limits": {
             "rows-per-query": "每次查詢最多傳回 {value} 列。",
             "no-offset": "不支援 OFFSET。",
@@ -263,13 +263,13 @@
         }
     },
     "dameng": {
-        "tagline": "透過原生協定連線至 Dameng DM8，支援 EXPLAIN 計畫和 SSH 通道。",
+        "tagline": "原生協定 DM8 查詢、EXPLAIN 和 SSH 通道。",
         "limits": {
             "no-tls": "不支援 TLS。存取私有網路之外的伺服器時，請使用 SSH 通道。"
         }
     },
     "sap-hana": {
-        "tagline": "支援 SAP HANA Cloud、HANA 2.0 和 HANA Express，結構以唯讀方式顯示。",
+        "tagline": "HANA Cloud、HANA 2.0 和 Express；唯讀 Structure。",
         "limits": {
             "no-tunnels": "不支援 SSH 通道、SOCKS 代理伺服器、Cloudflare 通道或通道指令。",
             "unsupported-auth-methods": "不支援 X.509 憑證、JWT、SAML、Kerberos 或 LDAP 登入。請使用資料庫使用者和密碼。"

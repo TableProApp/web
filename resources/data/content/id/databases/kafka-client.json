@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Klien Apache Kafka untuk {devices}",
-        "lead": "Baca topik dari posisi awal pilihan Anda, lihat seberapa jauh setiap grup consumer tertinggal, dan hasilkan pesan uji, semuanya menggunakan KafkaQL, bahasa perintah milik TablePro sendiri. Topik adalah log, sehingga grid membaca pesan dan tidak pernah mengeditnya."
+        "title": "Klien Apache Kafka",
+        "lead": "Periksa pesan topic dan consumer lag, atau kirim pesan uji dengan KafkaQL, bahasa perintah milik TablePro."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host dan port satu broker; anggota cluster lainnya ditemukan melaluinya, dan <ui>Additional Bootstrap Servers</ui> mencantumkan broker yang dicoba jika broker pertama tidak menjawab. Satu koneksi adalah satu cluster, sehingga tidak ada bidang Database, dan sidebar langsung menampilkan topiknya.",
+                "Masukkan host dan port broker bootstrap. <ui>Additional Bootstrap Servers</ui> menambahkan broker cadangan. Setiap koneksi mengakses satu cluster; sidebar menampilkan topic-nya.",
                 "<ui>Security Protocol</ui> adalah PLAINTEXT, SSL, SASL_PLAINTEXT, atau SASL_SSL, dan <ui>SASL Mechanism</ui> adalah PLAIN, SCRAM-SHA-256, atau SCRAM-SHA-512. PLAIN cocok untuk Confluent Cloud; SCRAM untuk Amazon MSK dan broker yang dihosting sendiri. Dengan SSL atau SASL_SSL tanpa mode SSL yang dipilih, rantai sertifikat dan nama host diverifikasi. CA pribadi dimasukkan ke <ui>CA Certificate</ui>, dan sertifikat serta kunci klien menambahkan TLS timbal balik.",
                 "Melalui <network>tunnel SSH</network>, koneksi tetap pada broker bootstrap, sehingga hanya membaca partisi yang dipimpin broker tersebut. <ui>Import from URL…</ui> menerima URL <code>kafka://</code>, yang tidak dibuka macOS sebagai tautan."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Baca, periksa, dan hasilkan",
             "paragraphs": [
-                "Membuka topik menampilkan pesan terbaru, dengan pesan paling baru di akhir, beserta partisi, offset, timestamp, kunci, nilai, header, dan ukuran. Pesan dari partisi berbeda diselingi berdasarkan timestamp untuk membantu pembacaan; partisi dan offset mengidentifikasi pesan. Kunci atau nilai yang bukan UTF-8 ditampilkan sebagai heksadesimal, dan tombstone tetap dibedakan dari pesan kosong.",
-                "KafkaQL mengganti pengurutan dan filter dengan posisi awal: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code>, atau <code>FROM TIME</code> dengan timestamp ISO 8601, secara opsional dibatasi pada beberapa partisi. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code>, dan <code>DESCRIBE TOPIC</code> mencakup bagian cluster lainnya.",
+                "Telusuri pesan terbaru beserta partisi, offset, timestamp, kunci, nilai, dan header. Pesan antarpartisi diselingi berdasarkan timestamp; partisi dan offset mengidentifikasinya. Nilai non-UTF-8 ditampilkan sebagai heksadesimal. Tombstone tetap berbeda dari pesan kosong.",
+                "Gunakan KafkaQL untuk membaca dari pesan terbaru, terlama, offset tertentu, atau timestamp ISO 8601, dengan batasan partisi opsional. Perintah SHOW menampilkan topic, broker, grup, dan detail cluster; DESCRIBE TOPIC memeriksa topic.",
                 "<code>DESCRIBE GROUP</code> adalah laporan lag: offset yang di-commit, offset akhir, dan selisihnya per partisi. Partisi yang belum pernah di-commit grup tidak menampilkan lag, alih-alih angka yang dihitung dari nol, dan <code>SHOW GROUPS</code> menandai daftar terpotong jika broker tidak dapat diakses.",
                 "<code>PRODUCE INTO</code> menulis pesan dengan kunci, header, dan partisi opsional. Pesan berkunci tanpa partisi ditempatkan seperti yang dilakukan producer Kafka sendiri. Batch gzip, snappy, lz4, dan zstd didekompresi saat dibaca, tanpa pengaturan yang perlu dipilih.",
-                "Sel tidak dapat diedit, baris tidak dapat dihapus, dan kolom tidak dapat diurutkan karena Kafka tidak memiliki pembaruan, penghapusan per pesan, atau pengurutan di server, dan grid menonaktifkan kontrol tersebut. Setiap halaman melanjutkan dari akhir halaman sebelumnya, sehingga topik yang menerima tulisan baru tidak pernah mengulangi atau melewatkan pesan."
+                "Pesan tidak dapat diedit atau dihapus satu per satu, dan kolom tidak dapat diurutkan. Paging berlanjut dari posisi sebelumnya saat pesan baru tiba."
             ]
         },
         {

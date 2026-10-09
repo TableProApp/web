@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro frente a DBeaver",
+        "title": "TablePro vs DBeaver: funciones y ediciones",
         "description": "DBeaver usa Java y JDBC en Windows, macOS y Linux. TablePro es nativo en Mac, iPhone y iPad. Compara bases, IA, MCP y precios."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro frente a DBeaver",
-        "lead": "DBeaver es un cliente para Windows, macOS y Linux, basado en Java. Su edición Community es gratis y de código abierto, y sus ediciones de pago añaden más funciones. TablePro es un cliente de código abierto con una app nativa para Mac y otra para iPhone y iPad, y funciones de pago opcionales en el Mac."
+        "lead": "DBeaver Community es un cliente JDBC gratuito y de código abierto. Las ediciones de pago añaden compatibilidad con NoSQL y otras herramientas. Compáralas con las bases de datos y funciones de TablePro."
     },
     "shortAnswer": {
         "tablepro": [
-            "Quieres MongoDB, Redis o Cassandra sin pagar. En TablePro todos los motores compatibles son gratis, mientras que DBeaver Community deja fuera las bases de datos NoSQL.",
-            "Quieres una app para Mac que no necesite Java. TablePro está escrito en Swift y sus controladores de bases de datos son nativos, sin JDBC.",
-            "Quieres un asistente de IA con el proveedor que elijas, sin coste. El chat de IA de DBeaver Community solo funciona con OpenAI y GitHub Copilot.",
-            "Quieres un servidor MCP que los clientes de IA puedan usar con tus conexiones, gratis en la app para Mac.",
-            "También quieres una app para iPhone y iPad."
+            "Acceso gratuito a motores NoSQL compatibles, como MongoDB, Redis y Cassandra.",
+            "Controladores nativos, sin necesidad de Java ni JDBC.",
+            "MCP y chat de IA gratuitos, con el proveedor que elijas."
         ],
         "competitor": [
-            "Trabajas en Windows o Linux además de en el Mac.",
-            "Necesitas un motor para el que TablePro no tiene controlador. DBeaver Community se conecta a cualquier motor que tenga un controlador JDBC.",
-            "Necesitas un generador visual de consultas, un diagrama ER editable o tareas programadas. Las ediciones de pago de DBeaver los incluyen."
+            "Compatibilidad con Windows o Linux.",
+            "Motores JDBC que no están entre los controladores compatibles de TablePro.",
+            "Herramientas de pago como un editor visual de consultas, diagramas ER editables y tareas programadas."
         ]
     },
     "glance": {
@@ -45,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DBeaver funciona en Windows, macOS y Linux, así que un mismo cliente sirve en todos los ordenadores que usas.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Community se conecta a cualquier motor que tenga un controlador JDBC, incluidos motores para los que TablePro no tiene controlador.",
                 "cite": [
@@ -106,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "Hay una <link>app para iPhone y iPad</link> gratuita, sin compras dentro de la app.",
+                "text": "La <link>app independiente para iPhone y iPad</link> es gratis, sin compras dentro de la app.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -117,13 +107,7 @@
         "intro": "",
         "items": [
             {
-                "text": "No hay app de TablePro para Windows ni Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro solo se conecta a los motores para los que tiene controladores. No hay conexión JDBC genérica, así que consulta primero las <link>bases de datos compatibles</link>.",
+                "text": "TablePro necesita un controlador compatible. No hay una conexión JDBC genérica; revisa primero las <link>bases de datos compatibles</link>.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,7 +121,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro lee las conexiones de tu workspace de DBeaver, de Community o de cualquier edición de pago. DBeaver no necesita estar abierto y sus archivos no se modifican.",
+        "intro": "Importa las conexiones de un espacio de trabajo de DBeaver, de Community o de una edición de pago. DBeaver puede estar cerrado y sus archivos no se modifican.",
         "steps": [
             "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
             "Selecciona DBeaver y activa <ui>Include passwords</ui>. TablePro descifra las contraseñas que guardó DBeaver, así que no hay nada que aprobar en el Llavero.",
@@ -159,14 +143,8 @@
         {
             "id": "speed",
             "question": "¿Cómo son la velocidad y el uso de memoria frente a DBeaver?",
-            "answer": "Esta página no hace afirmaciones sobre velocidad ni memoria, porque ninguno de los dos proyectos publica una medición que otros puedan reproducir. Lo que sí puedes comprobar es que la descarga de DBeaver incluye un runtime de Java, y que TablePro no necesita ninguno.",
+            "answer": "Aquí no se cita ningún benchmark reproducible, por lo que esta comparación no hace afirmaciones de velocidad o memoria. DBeaver incluye un entorno Java; TablePro no necesita Java.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "¿TablePro es gratis como DBeaver Community?",
-            "answer": "Sí para todos los motores compatibles, el asistente de IA y el servidor MCP: TablePro se puede usar gratis y es de código abierto bajo AGPLv3. Mientras que DBeaver vende sus funciones adicionales como ediciones separadas, TablePro las ofrece como planes Starter y Team para la app para Mac, con funciones como {starterExamples}. <link>Ver precios</link>.",
-            "href": "/pricing"
         },
         {
             "id": "unsupported",

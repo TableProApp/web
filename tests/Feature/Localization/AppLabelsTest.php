@@ -30,6 +30,35 @@ function appLabelsCopy(string $locale, string $file): array
 }
 
 /**
+ * @param  list<string>  $source
+ * @param  array<string, array<string, string>>  $known
+ * @return list<string>
+ */
+function appLabelsOffences(array $source, string $text, array $known, string $locale): array
+{
+    $target = appLabelsIn($text);
+
+    if (count($target) !== count($source)) {
+        return [count($target) . ' labels, the source has ' . count($source)];
+    }
+
+    $offences = [];
+
+    foreach ($source as $index => $english) {
+        $expected = $known[$english][$locale] ?? $english;
+        $shown = $target[$index];
+
+        if ($shown['label'] !== $expected) {
+            $offences[] = "<ui>{$shown['label']}</ui> should be <ui>{$expected}</ui>";
+        } elseif ($expected !== $english && ! appLabelsGlossed($shown['after'], $english)) {
+            $offences[] = "<ui>{$expected}</ui> needs ({$english}) after it";
+        }
+    }
+
+    return $offences;
+}
+
+/**
  * Each <ui> label of a string with the text that follows its closing tag.
  *
  * @return list<array{label: string, after: string}>
@@ -124,37 +153,31 @@ it('shows each label as the app does in that language, with the English label af
 
     foreach (appLabelsFiles() as $file) {
         $translated = appLabelsCopy($locale, $file);
-
-        foreach (appLabelsCopy('en', $file) as $key => $value) {
-            $source = is_string($value) ? appLabelsIn($value) : [];
-
-            if ($source === []) {
-                continue;
-            }
-
-            $target = appLabelsIn((string) $translated[$key]);
-
-            if (count($target) !== count($source)) {
-                $offences[] = "{$file} {$key}: " . count($target) . ' labels, the English has ' . count($source);
-
-                continue;
-            }
-
-            foreach ($source as $index => $english) {
-                $expected = $known[$english['label']][$locale] ?? $english['label'];
-                $shown = $target[$index];
-
-                if ($shown['label'] !== $expected) {
-                    $offences[] = "{$file} {$key}: <ui>{$shown['label']}</ui> should be <ui>{$expected}</ui>";
-                } elseif ($expected !== $english['label'] && ! appLabelsGlossed($shown['after'], $english['label'])) {
-                    $offences[] = "{$file} {$key}: <ui>{$expected}</ui> needs ({$english['label']}) after it";
-                }
+        $english = appLabelsCopy('en', $file);
+        foreach ($english as $key => $value) {
+            $source = is_string($value) ? array_column(appLabelsIn($value), 'label') : [];
+            $translation = $translated[$key] ?? '';
+            $checks = appLabelsOffences($source, is_string($translation) ? $translation : '', $known, $locale);
+            if ($checks !== []) {
+                $offences[] = "{$file} {$key}: " . implode('; ', $checks);
             }
         }
     }
 
     expect($offences)->toBe([], "content/{$locale}:\n  " . implode("\n  ", $offences));
 })->with(appLabelsLocales());
+
+it('rejects wrong label order, spelling and missing glosses', function (): void {
+    $known = require base_path('tests/Support/app-ui-labels.php');
+    $labels = ['Preview SQL', 'Add Row'];
+    $valid = '<ui>Aperçu SQL</ui> (Preview SQL), <ui>Ajouter une ligne</ui> (Add Row)';
+
+    expect(appLabelsOffences($labels, $valid, $known, 'fr'))->toBe([])
+        ->and(appLabelsOffences($labels, '<ui>Ajouter une ligne</ui> (Add Row), <ui>Aperçu SQL</ui> (Preview SQL)', $known, 'fr'))->not->toBe([])
+        ->and(appLabelsOffences($labels, '<ui>Aperçu SQL</ui>, <ui>Ajouter une ligne</ui> (Add Row)', $known, 'fr'))->not->toBe([])
+        ->and(appLabelsOffences($labels, '<ui>Wrong</ui>, <ui>Ajouter une ligne</ui> (Add Row)', $known, 'fr'))->not->toBe([])
+        ->and(appLabelsOffences([], '<ui>Aperçu SQL</ui> (Preview SQL)', $known, 'fr'))->not->toBe([]);
+});
 
 it('gives a Vietnamese label its English label in parentheses at least once per page', function (): void {
     $offences = [];

@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "SQL editor with autocomplete and EXPLAIN",
-        "description": "Write SQL with schema-aware autocomplete and parameters, search your query history, keep saved queries, and read EXPLAIN plans as diagrams in TablePro."
+        "description": "Write SQL with schema-aware autocomplete. Save queries, search local history and inspect EXPLAIN plans on supported databases."
     },
     "og": {
         "kicker": "Querying",
-        "title": "Write, run and understand queries"
+        "title": "SQL editor"
     },
     "header": {
-        "title": "Write, run and understand queries",
-        "lead": "For anyone who writes SQL against a live database: write with the schema at hand, run one statement or a whole script, keep the queries worth keeping, and find out why one got slower. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
+        "title": "SQL editor",
+        "lead": "Write SQL with schema-aware autocomplete. Save queries you reuse, search your history and inspect plans on supported engines.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "An editor that knows your schema",
+            "title": "Schema-aware autocomplete",
             "paragraphs": [
-                "Autocomplete reads the connection’s schema as you type: tables after FROM and JOIN, the columns of an alias, and the columns of a CTE or subquery defined earlier in the statement. Highlighting uses tree-sitter, and <kbd>⌘⇧L</kbd> formats the statement at the cursor without dropping your comments.",
-                "<kbd>⌘⏎</kbd> runs the statement at the cursor or the selection, <kbd>⌘⇧⏎</kbd> runs them all, <kbd>⌘⌥⏎</kbd> runs without the row cap, and <kbd>⌘.</kbd> cancels. A batch of ordinary statements runs in one transaction and rolls back if one fails. The exceptions are scripts that manage their own transaction, SQL Server scripts and statements no transaction can hold, such as VACUUM. DDL on MySQL, MariaDB and Oracle commits on its own."
+                "Autocomplete suggests tables and columns, including aliases, CTEs and subqueries. Format the current statement with <kbd>⌘⇧L</kbd> while keeping its comments.",
+                "Run the current statement, a selection or a whole script. Ordinary statement batches use one transaction and roll back on failure. SQL Server scripts, explicit transactions and statements such as VACUUM are exceptions. DDL on MySQL, MariaDB and Oracle commits independently."
             ],
             "points": [
                 "Statement markers in the gutter, each with its own run button.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Parameters, history and saved queries",
             "paragraphs": [
-                "Write <code>:customer_id</code> in a query and TablePro asks for its value and type before running it, binding the value natively where the driver supports that.",
-                "Every query you run goes into a local history (<kbd>⌘Y</kbd>) with full-text search and filters for source, failures and time range. It keeps {historyEntries} entries for {historyDays} days by default and is never synced.",
-                "Save a query with a keyword such as <code>dau</code>, then type the keyword in the editor to expand it. Saved queries keep a version history. A linked SQL folder syncs a folder of <code>.sql</code> files with the sidebar both ways, with Git status letters for each file. It is free, and separate from Linked Folders, the Starter feature for shared connection files."
+                "Use parameters such as <code>:customer_id</code> to enter values before a query runs. Values are bound natively where the driver supports it.",
+                "Search local query history by text, source, failures or time range. It keeps {historyEntries} entries for {historyDays} days by default and never syncs.",
+                "Save queries with reusable keywords and version history. Link a folder of <code>.sql</code> files to the sidebar with two-way updates and Git status. Linked SQL folders are free, separate from the paid Linked Folders feature for connection files."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly and tabs",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) finds tables, views and system tables across every open connection, along with your saved and recent queries. Each tab keeps its own SQL, sort, filters and column widths, and tabs come back after you quit and reopen the app; <kbd>⌃Tab</kbd> moves between the tabs you used last."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) searches tables, views and queries across open connections. Tabs retain their SQL and grid settings when you reopen the app."
             ]
         },
         {
             "id": "performance",
-            "title": "Read the plan, compare it, track it",
+            "title": "Query performance",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN and EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> shows a query’s plan as a diagram, as a tree with cost bars, or as the engine’s raw output. Pick an earlier run of the same query as the baseline and Compare tells you whether it got slower and whether the plan changed; a difference under {explainNoise}% counts as noise. Both are free."
+                        "View query plans as diagrams, cost trees or raw engine output. Compare with an earlier run to spot timing and plan changes; differences under {explainNoise}% count as noise. Both features are free."
                     ],
                     "engines": [
                         { "label": "Plan as a diagram and tree", "list": "explainDiagram" },
@@ -68,7 +68,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights reads this Mac’s query history and ranks what it finds: the queries run most, the slowest, the ones that fail, and the ones that got slower than in the period before. Queries are grouped by shape, so one statement run with different values counts once. The numbers are computed on your Mac and never uploaded."
+                        "Find slow, failing and frequently run queries in this Mac's local history. Similar statements are grouped regardless of parameter values. Query Insights compares periods locally; it is not server-wide monitoring and uploads no metrics."
                     ],
                     "paid": ["query-insights"],
                     "asset": "mac-query-insights"
@@ -84,7 +84,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Draw a result as a bar, line, area or scatter chart, with a time axis for dates and one series for each value of a column you choose. A chart draws up to {chartPoints} points and {chartSeries} series from the first {chartInspectedRows} rows, and its toolbar says when it stops short."
+                        "Plot results as bar, line, area or scatter charts. Charts show up to {chartPoints} points and {chartSeries} series from the first {chartInspectedRows} rows, with a notice when truncated."
                     ],
                     "paid": ["result-charts"],
                     "asset": "mac-result-chart"
@@ -93,7 +93,7 @@
                     "id": "map",
                     "title": "Map view",
                     "paragraphs": [
-                        "When a column holds geometry, as WKT, WKB, GeoJSON, ClickHouse tuples or Elasticsearch geo_point values, the Map view draws it on Apple Maps, and selecting a shape selects its row. Your rows stay on the Mac; Apple serves the map tiles. The Map view is free."
+                        "View supported geometry columns on Apple Maps and select a shape to find its row. Rows stay on your Mac; Apple supplies the map tiles. Map view is free."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -101,9 +101,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Engines that do not speak SQL",
+            "title": "Other query languages",
             "paragraphs": [
-                "On a connection that does not use SQL, the editor takes that engine’s own language, and each engine’s page explains what it supports. The MongoDB editor is a mongosh-style JavaScript shell that runs inside TablePro, not mongosh itself."
+                "Use each non-SQL engine's query language in the editor. MongoDB uses a built-in mongosh-style JavaScript shell, not mongosh itself. See the database pages for supported commands."
             ],
             "engines": [{ "label": "Query language by engine", "list": "otherLanguages" }]
         },

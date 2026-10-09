@@ -1,42 +1,42 @@
 {
     "compare-sync": {
-        "detail": "Comparez la structure ou les données de deux bases et vérifiez le script de synchronisation avant son exécution.",
+        "detail": "Comparez les bases compatibles et vérifiez un script de synchronisation du schéma ou des données.",
         "lapse": "Son ouverture affiche une alerte demandant une licence."
     },
     "query-insights": {
-        "detail": "Consultez les requêtes les plus exécutées, les plus lentes et celles qui ont ralenti, à partir de l’historique de ce Mac.",
+        "detail": "Repérez les requêtes lentes, en échec ou fréquentes dans l’historique local de ce Mac.",
         "lapse": "La vue reste en place, recouverte d’une demande de licence."
     },
     "result-charts": {
-        "detail": "Créez des graphiques en barres, en courbes, en aires et en nuage de points à partir d’un résultat.",
+        "detail": "Affichez les résultats en graphiques à barres, courbes, aires ou nuages de points.",
         "lapse": "Le graphique reste en place, recouvert d’une demande de licence."
     },
     "data-rewind": {
-        "detail": "Rétablissez les valeurs qu’avaient les lignes avant l’enregistrement d’une modification.",
+        "detail": "Vérifiez et restaurez les valeurs admissibles d’un enregistrement récent. Ce n’est pas une sauvegarde.",
         "lapse": "Les enregistrements ne sont plus consignés et la restauration affiche une alerte."
     },
     "icloud-sync": {
-        "detail": "Synchronisez les connexions et les réglages entre vos Mac, ainsi qu’avec l’application iPhone et iPad.",
+        "detail": "Synchronisez les données sélectionnées entre Mac et les données de connexion compatibles avec iPhone et iPad.",
         "lapse": "La synchronisation s’interrompt et les Réglages en indiquent la raison."
     },
     "linked-folders": {
-        "detail": "Lisez les connexions depuis des dossiers partagés de fichiers .tablepro, comme un dépôt Git ou un disque d’équipe.",
+        "detail": "Lisez les fichiers de connexion d’un dossier partagé, dépôt Git ou disque d’équipe.",
         "lapse": "Les connexions de Linked Folders disparaissent de votre liste de connexions."
     },
     "encrypted-export": {
-        "detail": "Incluez les mots de passe dans un export .tablepro, chiffrés avec une phrase secrète.",
+        "detail": "Exportez des fichiers .tablepro avec des mots de passe chiffrés par une phrase secrète.",
         "lapse": "L’option d’inclure les mots de passe disparaît des exports. Les exports non chiffrés et l’importation de fichiers chiffrés continuent de fonctionner."
     },
     "environment-variables": {
-        "detail": "Utilisez $VAR dans les champs de connexion, comme l’hôte ou l’utilisateur ; TablePro le remplace lors de la connexion.",
+        "detail": "Résolvez $VAR dans les champs de connexion compatibles au moment de la connexion.",
         "lapse": "$VAR n’est plus remplacé, sans aucun avertissement : la connexion utilise le texte tel qu’il est écrit."
     },
     "team-catalog": {
-        "detail": "Publiez des connexions sans mots de passe dans un dossier partagé que votre équipe lit via Linked Folders.",
+        "detail": "Publiez des fichiers de connexion sans mots de passe dans un dossier partagé.",
         "lapse": "Les commandes de publication sont masquées."
     },
     "team-library": {
-        "detail": "Partagez des connexions et des requêtes enregistrées avec votre équipe via le serveur de TablePro. Les mots de passe ne sont jamais envoyés.",
+        "detail": "Partagez connexions et requêtes enregistrées via le serveur de TablePro. Les mots de passe ne sont jamais envoyés.",
         "lapse": "Les connexions et requêtes de l’équipe sont masquées jusqu’à ce qu’une offre Team soit à nouveau active."
     }
 }

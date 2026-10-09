@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DBeaver：原生或 Java",
+        "title": "TablePro 與 DBeaver：功能與版本",
         "description": "DBeaver 基於 Java 和 JDBC 支援 Windows、macOS 與 Linux。TablePro 是 Mac、iPhone 與 iPad 原生用戶端。比較引擎、AI、MCP 和價格。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DBeaver",
-        "lead": "DBeaver 是基於 Java 的 Windows、macOS 與 Linux 用戶端。Community 版免費開源，付費版新增更多功能。TablePro 是開源用戶端，分別提供 Mac 和 iPhone、iPad 原生 App，並在 Mac 上提供選用付費功能。"
+        "lead": "DBeaver 社群是一個免費、開源的 JDBC 用戶端。其付費版本添加了 NoSQL 支援和其他工具。將這些版本與 TablePro 支援的資料庫和功能進行比較。"
     },
     "shortAnswer": {
         "tablepro": [
-            "您希望免費使用 MongoDB、Redis 或 Cassandra。TablePro 所有支援引擎均免費，DBeaver Community 不包含 NoSQL 資料庫。",
-            "您希望 Mac App 無須 Java。TablePro 用 Swift 編寫，資料庫驅動程式為原生驅動程式，不使用 JDBC。",
-            "您希望免費使用可自選供應商的 AI 助理。DBeaver Community 的 AI 聊天僅支援 OpenAI 和 GitHub Copilot。",
-            "您希望 Mac App 免費提供 MCP 伺服器，讓 AI 用戶端使用您的連線。",
-            "您也希望有 iPhone 與 iPad App。"
+            "免費存取支援的 NoSQL 引擎，包括 MongoDB、 Redis 和 Cassandra。",
+            "原生驅動程序，沒有 Java 或 JDBC 要求。",
+            "MCP 和 AI 與您選擇的提供者免費聊天。"
         ],
         "competitor": [
-            "您除了 Mac，也在 Windows 或 Linux 上工作。",
-            "您需要 TablePro 沒有驅動程式的引擎。DBeaver Community 可連接任何有 JDBC 驅動程式的引擎。",
-            "您需要視覺化查詢建立器、可編輯 ER 圖或排程工作。DBeaver 付費版提供這些功能。"
+            "Windows 或 Linux 支援。",
+            "JDBC 引擎超出了 TablePro 支援的驅動程式。",
+            "付費工具，例如視覺化查詢產生器、可編輯 ER 圖和排程任務。"
         ]
     },
     "glance": {
@@ -45,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DBeaver 可在 Windows、macOS 與 Linux 上執行，一個用戶端即可涵蓋您使用的電腦。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Community 可連接任何有 JDBC 驅動程式的引擎，包括 TablePro 沒有驅動程式的引擎。",
                 "cite": [
@@ -106,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "提供免費的 <link>iPhone 與 iPad App</link>，無 App 內購買。",
+                "text": "單獨的 <link>iPhone 和 iPad 應用程式</link> 是免費的，沒有應用程式內購。",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -117,13 +107,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 沒有 Windows 或 Linux App。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro 僅連接已有驅動程式的引擎，不提供通用 JDBC 連線，請先檢查<link>支援的資料庫</link>。",
+                "text": "TablePro 需要支援的驅動程式。沒有通用的 JDBC 連線，因此首先檢查 <link>支援的資料庫</link>。",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,7 +121,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 讀取 DBeaver 工作區中的連線，支援 Community 及所有付費版。DBeaver 無須開啟，檔案也不會修改。",
+        "intro": "從 DBeaver 工作區、社群或付費版本匯入連線。 DBeaver 可以保持關閉狀態，其檔案不會變更。",
         "steps": [
             "在 TablePro 中選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
             "選擇 DBeaver 並開啟<ui>包含密碼</ui>（Include passwords）。TablePro 會解密 DBeaver 儲存的密碼，因此無須在鑰匙圈中核准。",
@@ -159,14 +143,8 @@
         {
             "id": "speed",
             "question": "與 DBeaver 相比，速度和記憶體用量如何？",
-            "answer": "本頁不做速度或記憶體方面的宣稱，因為兩個專案都沒有發佈他人可重現的測量結果。可核實的是 DBeaver 下載套件包含 Java 執行環境，而 TablePro 不需要。",
+            "answer": "這裡沒有引用可重複的基準，因此這個比較沒有提出速度或記憶體聲明。 DBeaver 捆綁 Java 運行時； TablePro 不需要 Java。",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro 像 DBeaver Community 一樣免費嗎？",
-            "answer": "所有支援引擎、AI 助理和 MCP 伺服器均免費；TablePro 可免費使用，並以 AGPLv3 開源。DBeaver 將額外功能作為獨立版本銷售，TablePro 則透過 Mac App 的 Starter 和 Team 方案提供 {starterExamples} 等功能。<link>查看價格</link>。",
-            "href": "/pricing"
         },
         {
             "id": "unsupported",

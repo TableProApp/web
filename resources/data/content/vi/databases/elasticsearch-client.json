@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "Client Elasticsearch cho {devices}",
-        "lead": "Một console cho request Query DSL, và một data grid đọc mỗi index như một table, sửa document theo <code>_id</code>. Cả hai đều không dùng SQL: mọi thao tác là một REST request gửi tới cluster."
+        "title": "Elasticsearch client",
+        "lead": "Chạy request Query DSL và xem document trong index dạng data grid. Sửa document theo ID."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host và REST port của cluster, rồi chọn <ui>Phương thức xác thực (Auth Method)</ui>. Username & Password gửi HTTP Basic. API Key gửi nội dung ô này trong header <code>Authorization: ApiKey</code>, nên hãy dán giá trị <code>encoded</code> mà request tạo API key trả về. None dành cho cluster phát triển đã tắt bảo mật. Mỗi connection chỉ kết nối tới một cluster, nên form không có ô Cơ sở dữ liệu (Database).",
+                "Nhập REST host và port, rồi chọn <ui>Auth Method</ui>: Username & Password, API Key hoặc None. API key dùng giá trị <code>encoded</code> từ Elasticsearch. Mỗi connection tới một cluster.",
                 "Connection mới để SSL ở Đã tắt (Disabled), tức HTTP thường. Mọi chế độ khác dùng HTTPS: Ưu tiên (Preferred) và Bắt buộc, bỏ qua xác minh (Required, skip verify) chấp nhận chứng chỉ tự ký, còn Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ. Elasticsearch 8.x bật sẵn bảo mật và TLS, nên cluster 8.x thường cần HTTPS và thông tin đăng nhập."
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "Index và console Query DSL",
             "paragraphs": [
-                "Console nhận method, path và JSON body tùy chọn, giống Kibana Dev Tools, chẳng hạn <code>GET /orders/_search</code> kèm một query <code>match</code>. Các hit tìm được hiện thành dòng, request <code>_cat</code> có <code>format=json</code> và các response dạng mảng khác thành table, còn lại hiển thị dưới dạng JSON đã định dạng. Endpoint <code>_sql</code> không dùng được.",
+                "Viết method, path và JSON body tùy chọn, như <code>GET /orders/_search</code>. Search hit và response dạng array hiển thị thành dòng; response khác hiển thị JSON đã format. Không có endpoint <code>_sql</code>.",
                 "Sidebar liệt kê index như table và ẩn các tên bắt đầu bằng dấu chấm. Cột lấy từ mapping: field kiểu object được trải thành đường dẫn có dấu chấm như <code>address.city</code>, field nested có một cột JSON cho cả mảng cùng một cột cho mỗi field con, và mọi document đều có <code>_id</code>, <code>_index</code> và <code>_score</code>.",
                 "<filters>Bộ lọc theo cột</filters> được chuyển thành query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> và <code>exists</code>, còn dòng lọc SQL thô (Raw SQL) nhận cú pháp Lucene, như <code>name:Widget</code>, và gửi đi dưới dạng <code>query_string</code>. Sắp xếp theo field <code>text</code> sẽ dùng subfield <code>.keyword</code> nếu mapping có.",
-                "Thay đổi trong data grid thành REST call theo <code>_id</code>: <code>_update</code> cho document được sửa, <code>_doc</code> để tạo hoặc xóa document. Nhập <code>_id</code> vào dòng mới để tự đặt tên document. Mảng nested được sửa qua cột JSON của nó; giá trị gõ vào một cột con sẽ chặn thao tác lưu, nêu tên cột đó và không gửi gì đi."
+                "Sửa document theo <code>_id</code> bằng REST call. Nhập ID cho document mới. Sửa array lồng qua cột JSON; sửa cột lá chặn lưu mà không gửi request."
             ]
         },
         {

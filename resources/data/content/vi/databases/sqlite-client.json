@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "Client SQLite cho {devices}",
-        "lead": "Mở file cơ sở dữ liệu từ Finder, bằng cách kéo thả hoặc từ một server SSH, query bằng bản SQLite đi kèm ứng dụng, và thay đổi cấu trúc qua các script dựng lại table mà bạn xem trước khi chạy."
+        "title": "SQLite client",
+        "lead": "Mở file SQLite, chạy SQL và xem table. Xem thay đổi cấu trúc trước áp dụng."
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "Mở file cơ sở dữ liệu",
             "paragraphs": [
-                "Chọn file trong form connection, hoặc kéo nó vào cửa sổ TablePro hay biểu tượng trên Dock. Nếu đường dẫn trỏ tới một file chưa tồn tại, file sẽ được tạo khi kết nối. Một file được mở như SQLite khi những byte đầu tiên của nó là <code>SQLite format 3</code>, dù tên file là gì.",
-                "Finder liệt kê TablePro trong mục Mở bằng (Open With) cho các file .db, .sqlite, .sqlite3 và tương tự. Cơ sở dữ liệu nằm trong thư mục được macOS bảo vệ, như Tin nhắn hay lịch sử Safari, cần cấp quyền Truy cập toàn bộ ổ đĩa (Full Disk Access) trước, và thường phải thoát ứng dụng đang giữ file.",
-                "Cơ sở dữ liệu nằm trên máy khác được mở qua <remoteFiles>mục Tệp từ xa (Remote File)</remoteFiles>. Chế độ On the Server chạy câu lệnh của bạn trên chính file đang dùng qua SSH, máy chủ chỉ cần có <code>python3</code>. Chế độ As a Read-Only Copy tải một bản chụp qua SFTP và mở nó ở chế độ chỉ đọc.",
+                "Chọn file hoặc kéo vào TablePro. Path mới tạo cơ sở dữ liệu lúc kết nối. File SQLite nhận diện theo header <code>SQLite format 3</code>, không theo phần mở rộng.",
+                "Mở file .db, .sqlite và .sqlite3 từ Finder. Thư mục bảo vệ như Messages hoặc lịch sử Safari cần Full Disk Access; có thể cần thoát ứng dụng sở hữu.",
+                "Mở cơ sở dữ liệu từ xa trong <remoteFiles>Remote File pane</remoteFiles>. On the Server query file trực tiếp qua SSH và cần <code>python3</code>. As a Read-Only Copy tải snapshot qua SFTP.",
                 "Muốn xem thử trước, hãy chọn Trợ giúp > Mở cơ sở dữ liệu mẫu (Help > Open Sample Database). Lệnh này mở Chinook, một cơ sở dữ liệu mẫu nhỏ của một cửa hàng nhạc số, đi kèm ứng dụng."
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "Driver mang theo bản SQLite riêng, nên SQL của bạn chạy trên cùng một phiên bản dù máy dùng macOS nào. <explain>EXPLAIN QUERY PLAN</explain> được vẽ thành sơ đồ.",
-                "Bạn nạp extension như sqlite-vec và SpatiaLite cho từng connection, theo thứ tự bạn sắp xếp, và hàm cùng virtual table của chúng dùng được trong editor, sidebar và tab Structure. Hàm SQL <code>load_extension()</code> vẫn bị từ chối, và danh sách extension đến qua đồng bộ, qua connection được import hay qua một liên kết sẽ không nạp gì cho tới khi bạn đồng ý.",
+                "Driver có SQLite riêng, không phụ thuộc phiên bản macOS. Xem <explain>EXPLAIN QUERY PLAN</explain> dạng sơ đồ.",
+                "Tải extension riêng cho connection như sqlite-vec hoặc SpatiaLite. Danh sách extension import, sync hoặc liên kết cần duyệt trước khi tải. Hàm SQL <code>load_extension()</code> bị chặn.",
                 "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh. Khi một chương trình khác thay đổi file, sidebar tự tải lại."
             ]
         },
@@ -67,7 +67,7 @@
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
                 "<importData>Import</importData> file {importFormats}, hoặc mở file CSV, JSON hay XLSX trong <dataFiles>cửa sổ Data Files</dataFiles> rồi import từ đó. Table và kết quả query export được ra {exportFormats}.",
-                "<copy>Copy To</copy> chuyển table cùng các dòng dữ liệu sang một connection khác, chẳng hạn một server PostgreSQL, và liệt kê mọi kiểu cột phải chuyển gần đúng. Tham khảo thêm <files>làm việc với file như cơ sở dữ liệu</files>."
+                "<copy>Copy To</copy> chuyển table và dòng sang engine khác, kèm danh sách kiểu chuyển đổi gần đúng. Xem <files>file dạng cơ sở dữ liệu</files>."
             ]
         },
         {

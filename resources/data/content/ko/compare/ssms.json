@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Mac용 SQL Server Management Studio 대안",
-        "lead": "SQL Server Management Studio는 SQL Server와 Azure SQL용 Microsoft 무료 도구이며 Windows에서만 실행합니다. Microsoft는 {cells.microsoftOnMac.date}에 Azure Data Studio를 종료하고 사용자에게 macOS에서도 실행되는 Visual Studio Code와 MSSQL 확장을 권합니다. TablePro는 SQL Server와 다른 엔진에 연결하는 네이티브 Mac 클라이언트입니다."
+        "lead": "SQL Server Management Studio는 SQL Server 및 Azure SQL용 Microsoft의 Windows 전용 도구입니다. TablePro는 네이티브 앱에서 SQL Server에 연결하지만 SSMS의 관리 도구를 대체하지는 않습니다."
     },
     "shortAnswer": {
         "tablepro": [
-            "Mac에서 작업하며 T-SQL 스크립트를 GO 줄마다 배치로 실행하는 네이티브 SQL Server 앱을 원합니다.",
-            "SQL Server 로그인, Kerberos, Microsoft Entra ID로 로그인합니다.",
-            "PostgreSQL, MySQL, SQLite, Redis도 사용하며 하나의 클라이언트로 모두 다루고 싶습니다.",
-            "원하는 AI 제공업체로 Mac 앱에서 무료 AI 도우미와 MCP 서버를 쓰고 싶습니다.",
-            "SQL Server에 연결하는 무료 iPhone·iPad 앱을 원합니다."
+            "GO로 구분된 T-SQL 배치가 포함된 SQL Server용 네이티브 클라이언트입니다.",
+            "SQL Server 로그인, Kerberos 또는 Microsoft Entra ID 로그인.",
+            "SQL Server, PostgreSQL, MySQL, SQLite 또는 Redis 와 함께."
         ],
         "competitor": [
-            "SQL Server 에이전트 작업, Always On 가용성 그룹, Always Encrypted를 관리합니다.",
-            "실시간 쿼리 통계, 튜닝 어드바이저, 대시보드로 성능을 조정합니다.",
-            "로그인, 사용자, 역할을 관리하거나 데이터베이스 다이어그램에서 테이블을 설계합니다.",
-            "실행할 Windows 컴퓨터가 있습니다."
+            "SQL Server Agent, Always On 또는 Always Encrypted 관리.",
+            "실시간 쿼리 통계, 튜닝 조언자 및 대시보드.",
+            "로그인 및 역할 관리 또는 데이터베이스 다이어그램 디자인."
         ],
-        "competitorTitle": "Windows에서 SQL Server Management Studio를 계속 쓰는 것이 맞는 경우"
+        "competitorTitle": "SQL Server Management Studio를 계속 사용할 경우"
     },
     "glance": {
         "intro": "SQL Server Management Studio에는 Mac 버전이 없습니다. Mac에서 Microsoft의 선택지는 Visual Studio Code와 MSSQL 확장입니다. Microsoft는 {cells.microsoftOnMac.date}에 Azure Data Studio를 종료하고 사용자를 그쪽으로 안내합니다."
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio는 SQL Server, Azure SQL Database, Azure SQL Managed Instance, Fabric의 SQL 데이터베이스를 위한 Microsoft 공식 도구이며 무료입니다.",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft는 이 도구를 SQL Server 에이전트 작업과 일반 관리의 공식 지원 도구로 소개합니다.",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Always On 가용성 그룹을 구성·모니터링·문제 해결하고 로그인, 사용자, 역할, Always Encrypted를 관리합니다.",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "실시간 쿼리 통계, 클라이언트 통계, 튜닝 어드바이저, 대시보드가 성능 작업을 돕습니다.",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Visual Studio Installer로 추가하는 GitHub Copilot이 T-SQL 작성, 수정, 최적화를 돕습니다.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro는 Mac에서 네이티브로 실행하며 Apple silicon과 Intel용 별도 빌드가 있습니다. SQL Server Management Studio는 Windows에서만 실행합니다.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "일부 기능은 유료입니다. Starter는 {starterExamples} 등을 추가하며 SQL Server Management Studio는 무료입니다.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "{devices} 用 ClickHouse クライアント",
-        "lead": "ClickHouse の HTTP インターフェイスで分析 SQL を実行し、クエリのプラン、パイプラインや推定行数を確認できます。テーブルの Parts タブでは MergeTree のパーツとパーティションを管理します。長いクエリは実行中に読み取った行数を報告し、Stop はサーバー上で停止します。"
+        "title": "ClickHouse クライアント",
+        "lead": "分析クエリを実行し、プランとパイプラインを確認して、テーブルのパーツとパーティションを管理できます。"
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホスト、HTTP ポート、ユーザーと、必要ならデータベースを指定します。データベースはその場で切り替え、既存タブは開いたときのデータベースに留まります。<ui>View > Sidebar as Tree</ui> でサーバーのデータベースを展開できるツリーとして表示します。",
+                "ホスト、HTTP ポート、ユーザー、任意のデータベースを入力します。再接続せずにデータベースを切り替えられます。既存のタブは元のデータベースを維持し、<ui>View > Sidebar as Tree</ui> はその場でデータベースを展開します。",
                 "SSL モードを選ぶと HTTPS に切り替わります。443 または ClickHouse Cloud の 8443 ポートは Verify Identity を有効にし、CA ファイルまたはシステムの信頼ストアで証明書を検証します。Verify CA は CA ファイルが必要です。クライアント証明書と鍵で相互 TLS が必要なサーバーに接続できます。",
                 "TLS なしではネットワーク上に平文 HTTP を送る代わりに、<network>SSH トンネル</network> 経由でリモートサーバーに接続してください。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "各クエリは固有の ID を持ち、進捗を要求するため、長いクエリも読み取った行数を随時報告します。Stop はその ID の <code>KILL QUERY</code> を送り、接続のクエリタイムアウトもサーバーに伝わります。",
+                "実行中は読み取った行数を確認できます。Stop は <code>KILL QUERY</code> を送り、接続のクエリタイムアウトもサーバーに渡します。",
                 "<explain>Explain メニュー</explain> は Plan、Pipeline、AST、Syntax、Estimate を提供します。字下げされた出力を図やツリーにし、Estimate ではクエリが読む予定の行、マークとパーツを示します。",
-                "グリッドの編集は <editing>Preview SQL</editing> を確認後、<code>INSERT</code>、<code>ALTER TABLE … UPDATE</code> と <code>ALTER TABLE … DELETE</code> で送ります。ClickHouse は更新と削除をバックグラウンドミューテーションとして実行するため、保存は受付済みであり適用済みではありません。<code>system.mutations</code> で進捗を確認できます。マテリアライズドビューは読み取り専用です。",
+                "行の挿入や UPDATE・DELETE のミューテーションを送る前に <editing>Preview SQL</editing> を確認します。保存成功は受理されたことを意味し、適用済みとは限りません。<code>system.mutations</code> で進捗を確認します。マテリアライズドビューは読み取り専用です。",
                 "ClickHouse の point や ring タプルを含む結果は <map>地図ビュー</map> で開けます。独自の <code>FORMAT</code> 句を持つクエリはサーバーの生の出力を一つのカラムに表示するため、グリッド表示には句を省いてください。"
             ]
         },
@@ -48,7 +48,7 @@
             "title": "テーブル、パーツとパーティション",
             "paragraphs": [
                 "テーブルには Structure、Indexes、DDL、Parts タブがあります。Indexes はソートキーとデータスキップインデックスを示し、DDL はエンジンと設定を含む完全な <code>CREATE TABLE</code> を表示します。",
-                "Parts は <code>system.parts</code> のすべてのパーツを、パーティション、行数、ディスクサイズ、変更日時と active フラグとともに表示し、Optimize、Drop Partition、Detach Partition を実行できます。",
+                "<code>system.parts</code> にあるパーツのパーティション、行数、サイズ、有効状態を確認できます。Parts タブから Optimize、Drop Partition、Detach Partition を実行できます。",
                 "<structure>Structure タブ</structure> はカラムの追加・変更・削除とデータスキップインデックスの削除に対応します。ソートキーと主キーは作成時に固定されるため、データスキップインデックスは <code>ALTER TABLE … ADD INDEX</code> で追加し、他の変更にはテーブルを再作成します。"
             ]
         },

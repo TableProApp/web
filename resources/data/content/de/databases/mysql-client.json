@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL und MariaDB",
     "header": {
-        "title": "Client für MySQL und MariaDB auf {devices}",
-        "lead": "Schreibe SQL mit schemaabhängiger Vervollständigung, bearbeite Zeilen mit Vorschau jeder Anweisung und verwalte Benutzer, Sitzungen und Backups. Derselbe Treiber deckt auch MariaDB, TiDB, OceanBase und Databend ab."
+        "title": "Client für MySQL und MariaDB",
+        "lead": "Frage MySQL ab und bearbeite Zeilen mit Preview SQL. Verwalte Benutzer, Sitzungen und Backups in derselben Verbindung."
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host, Port und Benutzer an oder füge eine <code>mysql://</code>-URL ein. MySQL-8-Konten mit <code>caching_sha2_password</code> verbinden sich beim ersten Versuch. Lass die Datenbank leer und wähle später eine: Der Wechsel erfolgt direkt auf derselben Verbindung.",
+                "Gib Host, Port und Benutzer ein oder füge eine <code>mysql://</code>-URL ein. MySQL-8-Konten mit <code>caching_sha2_password</code> werden unterstützt. Die Datenbank ist optional; beim Wechsel bleibt die Verbindung erhalten.",
                 "Neue Verbindungen beginnen mit SSL Preferred: TLS wird zuerst versucht, Klartext erst nach einem fehlgeschlagenen TLS-Handshake. Für eine strikte Prüfung wähle Verify CA oder Verify Identity mit dem Zertifikat deines Anbieters.",
-                "Einen Server in einem privaten Netzwerk erreichst du über einen <network>SSH-Tunnel, bei Bedarf mit Jump-Hosts, einen SOCKS5-Proxy, einen Cloudflare-Access-Tunnel oder deinen eigenen Tunnelbefehl</network> wie kubectl port-forward.",
-                "Melde dich bei Amazon RDS und Aurora mit <cloudAuth>AWS IAM</cloudAuth> an, das bei jeder Verbindung einen neuen Token signiert, und importiere Instanzen direkt aus deinem AWS-Konto. Für Google Cloud SQL lädt TablePro den Cloud SQL Auth Proxy herunter und führt ihn aus.",
-                "Wechselst du von Sequel Ace? <importApps>Import from Other App</importApps> liest dessen Favoriten und nach deiner Bestätigung die im Schlüsselbund gespeicherten Passwörter."
+                "Erreiche private Server über <network>SSH-Tunnel, Jump Hosts, Proxys oder Tunnel-Befehle</network>.",
+                "Melde dich bei Amazon RDS oder Aurora mit <cloudAuth>AWS IAM</cloudAuth> und einem neuen Token für jede Verbindung an. Importiere Instanzen aus AWS oder nutze für Google Cloud SQL den Cloud SQL Auth Proxy.",
+                "<importApps>Import from Other App</importApps> liest Sequel-Ace-Favoriten. Das Importieren von Schlüsselbund-Passwörtern braucht deine Bestätigung."
             ]
         },
         {
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Der SQL-Editor vervollständigt Tabellen- und Spaltennamen aus dem Schema einschließlich Aliasen und CTEs und führt die Anweisung am Cursor oder das ganze Skript aus. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE und EXPLAIN ANALYZE</explain> werden als Plandiagramm oder Baum gezeichnet; EXPLAIN Compare zeigt Änderungen zwischen zwei Ausführungen.",
-                "Zeilenänderungen werden bis zum Speichern vorgemerkt, und <editing>Preview SQL</editing> zeigt zuerst die genauen Anweisungen. Speichern nutzt gebundene Parameter und stoppt, wenn eine Anweisung eine unerwartete Zeilenzahl ändern würde. Auch Tabellen ohne Primärschlüssel lassen sich bearbeiten: Die Zeile wird über jede Spalte identifiziert.",
+                "Die Vervollständigung umfasst Schemanamen, Aliasse und CTEs. Führe die aktuelle Anweisung oder ein ganzes Skript aus. Sieh <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE und EXPLAIN ANALYZE</explain> als Diagramme oder Bäume und vergleiche zwei Pläne.",
+                "Bereite Änderungen vor und prüfe Anweisungen mit <editing>Preview SQL</editing>. Speichern nutzt gebundene Parameter und stoppt bei unerwarteten Zeilenzahlen. Ohne Primärschlüssel werden alle Spalten abgeglichen.",
                 "Jede Sitzung nutzt utf8mb4, damit Emojis und nichtlateinische Texte beim Lesen und Schreiben unverändert bleiben. Für eine Datenbank, deren Text ein alter Client über Latin 1 geschrieben hat, liest die Kodierung UTF-8 via Latin 1 ihn so, wie dieser Client es tat.",
                 "Partitionierte Tabellen zeigen ihre Partitionen mit Grenzen wie <code>VALUES LESS THAN (2024)</code>; Tabellen- und Spaltenkommentare erscheinen in der Seitenleiste und in den Spaltenköpfen der Datentabelle."
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten vor und zeigt das DDL vor der Ausführung. Indexschlüssel über Ausdrücke wie <code>lower(email)</code> brauchen MySQL 8.0.13 oder neuer.",
+                "Bereite Spalten, Indizes, Fremdschlüssel, CHECK-Bedingungen und generierte Spalten im <structure>Structure-Tab</structure> vor. Prüfe die DDL vor dem Speichern. Ausdrucksbasierte Indexschlüssel brauchen MySQL 8.0.13 oder neuer.",
                 "Routinen und Trigger erscheinen mit ihrem Quelltext in der Seitenleiste. Das <erDiagram>ER-Diagramm</erDiagram> zeichnet das Schema als schreibgeschütztes Bild, das du als PNG oder SQL exportieren kannst.",
-                "<compareSync>Compare & Sync</compareSync>, Teil des Tarifs {compareSyncTier}, vergleicht zwei MySQL- oder MariaDB-Schemas oder deren Daten und schreibt ein Skript zum Abgleichen. Änderungen mit Datenverlust werden zurückgehalten, bis du sie einbeziehst."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht MySQL- oder MariaDB-Schemas oder Daten und erzeugt ein Sync-Skript. Änderungen, die Daten entfernen könnten, bleiben zurückgehalten, bis du sie einschließt."
             ]
         },
         {
             "id": "operate",
             "title": "Verwalten",
             "paragraphs": [
-                "<administer>Users & Roles</administer> zeigt die Rechte jedes Kontos bis zu einzelnen Spalten und merkt jedes GRANT und REVOKE als SQL vor, das du vor der Ausführung liest.",
+                "<administer>Users & Roles</administer> zeigt Berechtigungen bis auf Spaltenebene. Prüfe vorbereitete GRANT- und REVOKE-Anweisungen vor dem Anwenden.",
                 "Das Server-Dashboard listet Sitzungen, Servermetriken und langsame Abfragen, alle paar Sekunden aktualisiert. Es bricht Abfragen mit <code>KILL QUERY</code> ab oder beendet Sitzungen mit <code>KILL</code>. Ein Konto ohne PROCESS-Recht sieht nur eigene Sitzungen.",
                 "Tabellenwartung führt OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE und REPAIR TABLE aus und zeigt vorher die Anweisung.",
                 "<backup>Backup Dump</backup> führt {dumpTool} aus, Restore Dump den mysql-Client, beides über den SSH-Tunnel der Verbindung. Installiere zuerst die MySQL-Clientwerkzeuge auf deinem Mac. Eine Wiederherstellung ersetzt die im Dump benannten Objekte.",
-                "Damit auf dem Server ein Verbindungsplatz frei wird, während du weg bist, stelle ein, dass sich die Verbindung nach einigen Minuten Inaktivität selbst trennt; die nächste Abfrage öffnet eine neue. TablePro behält die Verbindung, wenn die Sitzung etwas hält, das beim Neuverbinden verloren ginge, etwa eine offene Transaktion oder eine temporäre Tabelle."
+                "Gib inaktive Verbindungen automatisch frei und verbinde bei der nächsten Abfrage neu. TablePro hält Sitzungen mit Zustand offen, der sonst verloren ginge, etwa eine offene Transaktion oder temporäre Tabelle."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "Daten übertragen",
             "paragraphs": [
-                "<importData>Importiere</importData> {importFormats}-Dateien mit Spaltenzuordnung zur Zieltabelle und wählbarem Verhalten bei einer fehlerhaften Zeile. Exportiere Tabellen oder Ergebnisse als {exportFormats}.",
-                "<copy>Copy To</copy> sendet Tabellen, Daten oder beides an eine andere Verbindung, auf MySQL oder einem anderen System, und listet jeden Spaltentyp auf, der nur näherungsweise übertragen werden kann."
+                "<importData>Import</importData> liest {importFormats}-Dateien mit Spaltenzuordnung und Behandlung fehlerhafter Zeilen. Exportiere Tabellen oder Ergebnisse als {exportFormats}.",
+                "<copy>Copy To</copy> überträgt Tabellen, Daten oder beides an eine andere MySQL-Verbindung oder Engine. Prüfe Spaltentypen, die angenähert werden müssen."
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace führt Sequel Pro als Mac-App für MySQL und MariaDB fort. Es hat einen standardmäßig ausgeschalteten MCP-Server, der ohne Änderung schreibgeschützt ist, und keinen KI-Chat. Es passt, wenn du nur MySQL und MariaDB nutzt."
+                "text": "Sequel Ace konzentriert sich auf MySQL und MariaDB auf Mac. Sein MCP-Server ist standardmäßig aus und schreibgeschützt, sofern du dies nicht änderst. Es hat keinen KI-Chat."
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench ist Oracles eigenes Tool für MySQL. Die neue Generation basiert auf MySQL Shell und bringt SQL-Notebooks mit, und Oracle pflegt die vorherige nicht mehr. Es passt, wenn du nur MySQL nutzt und das Tool des Herstellers willst."
+                "text": "MySQL Workbench ist Oracles MySQL-Werkzeug. Die aktuelle Generation nutzt MySQL Shell und SQL-Notebooks; Oracle pflegt die vorherige Generation nicht mehr."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin läuft auf deinem Webserver in jedem Browser und ist in cPanel enthalten. Es passt für Server, die du nur über ein Hosting-Panel erreichst, wo eine Desktop-App keinen Zugangsweg zur Datenbank hat."
+                "text": "phpMyAdmin läuft auf einem Webserver und ist in cPanel enthalten. Es erreicht Datenbanken über Hosting-Panels, die keine Desktop-Verbindungen erlauben."
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL ist ein langjähriger Open-Source-Client aus Windows, der inzwischen auch eine macOS-App bietet. Es passt, wenn du es bereits unter Windows nutzt und denselben Client auf deinem Mac willst."
+                "text": "HeidiSQL ist ein Open-Source-Datenbankclient mit Apps für Windows und macOS."
             }
         ],
         "notes": {}

@@ -10,8 +10,8 @@
     "engine": "cassandra",
     "breadcrumb": "Cassandra và ScyllaDB",
     "header": {
-        "title": "Client Cassandra và ScyllaDB cho {devices}",
-        "lead": "Duyệt keyspace và table, chạy CQL trong editor, và sửa các dòng được ghi lại theo đầy đủ khóa chính. Cùng một driver còn kết nối tới ScyllaDB và Amazon Keyspaces."
+        "title": "Cassandra và ScyllaDB client",
+        "lead": "Xem keyspace, chạy CQL và sửa dòng theo khóa chính. Kết nối Cassandra, ScyllaDB hoặc Amazon Keyspaces."
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập một contact point và port của nó, kèm tên đăng nhập và mật khẩu nếu cluster có cấu hình authenticator. Không có ô keyspace: hãy chọn keyspace trong sidebar sau khi kết nối, hoặc ghi nó vào phần path của một URL <code>cassandra://</code> hay <code>cql://</code> rồi import URL đó. Việc đổi keyspace diễn ra ngay trên connection đang dùng và danh sách không hiện các keyspace hệ thống, còn những tab đang mở vẫn ở lại keyspace của riêng chúng.",
+                "Nhập contact point, port và thông tin đăng nhập cần thiết. Chọn keyspace sau kết nối hoặc import URL <code>cassandra://</code> hay <code>cql://</code> có keyspace trong path. Tab hiện có giữ keyspace khi bạn chuyển.",
                 "Connection mới để TLS ở trạng thái tắt. Ưu tiên (Preferred) và Required đều mã hóa mà không kiểm tra chứng chỉ, vì driver không có opportunistic TLS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) cần một file chứng chỉ CA và không bao giờ quay về dùng chứng chỉ gốc của hệ thống. Với mutual TLS, hãy thêm chứng chỉ client, key của nó và passphrase của key. Cluster nằm trong mạng nội bộ được kết nối qua <network>SSH tunnel</network>.",
                 "Amazon Keyspaces đăng nhập bằng SigV4 thay vì mật khẩu. Hãy trỏ connection tới endpoint theo region, chẳng hạn <code>cassandra.us-east-1.amazonaws.com</code> ở port 9142, đặt Xác thực (Authentication) sang <awsIam>một chế độ AWS IAM</awsIam> (access key, profile hoặc AWS IAM Identity Center), để trống tên đăng nhập và mật khẩu, rồi bật TLS, vì Keyspaces từ chối kết nối không mã hóa."
             ]
@@ -37,10 +37,10 @@
             "id": "work",
             "title": "Duyệt dữ liệu và chạy CQL",
             "paragraphs": [
-                "Mở một table từ sidebar để xem trong data grid. List, set, map và tuple hiện dưới dạng collection, user-defined type hiện theo các field của nó, <code>duration</code> hiện như <code>1d2h30m</code>, vector là một danh sách số và blob ở dạng hex. Kết quả trong CQL editor chỉ đọc, nên muốn sửa dòng thì hãy mở table từ sidebar.",
+                "Xem giá trị CQL trong data grid, gồm collection, kiểu tự định nghĩa, duration, vector và blob. Kết quả editor chỉ đọc; sửa dòng trong table mở từ sidebar.",
                 "CQL không có OFFSET, nên các trang được đọc lần lượt từ dòng đầu tiên: Next và Previous qua những trang đã xem tốn một lần đọc cho mỗi trang, còn nhảy tới một trang ở xa sẽ đọc mọi trang đứng trước nó. Các dòng đến theo thứ tự token, và bấm vào tiêu đề cột không sắp xếp lại chúng, vì CQL chỉ sắp xếp dòng theo clustering column bên trong một partition. Không có gì được đếm khi mở table; <ui>Đếm chính xác (Count Exactly)</ui> chạy <code>SELECT COUNT(*)</code>, câu lệnh này đọc mọi partition.",
                 "<filters>Bộ lọc</filters> thêm <code>ALLOW FILTERING</code>, nên server đọc mọi partition trừ khi bộ lọc cố định toàn bộ partition key. Contains, starts with và ends with được gửi dưới dạng LIKE, mà Cassandra chỉ nhận trên cột có index SASI hoặc SAI. Những toán tử CQL không diễn đạt được, như not equals hay is NULL, bị từ chối kèm tên toán tử, và các điều kiện chỉ nối được bằng AND, vì CQL không có OR.",
-                "<editing>Giá trị bạn sửa</editing> được gửi theo kiểu CQL của cột, và chỉ cần một giá trị không đọc được là cả lần lưu dừng lại. Mỗi dòng được ghi bằng một câu lệnh riêng, xác định bằng đầy đủ khóa chính. <ui>Thêm dòng (Add Row)</ui> ghi <code>INSERT … IF NOT EXISTS</code>, nên dòng mới không bao giờ ghi đè lên dòng đang giữ khóa đó. Cột khóa không sửa trực tiếp được: hãy xóa dòng rồi thêm lại.",
+                "<editing>Thay đổi</editing> được kiểm tra theo kiểu CQL và ghi từng dòng bằng toàn bộ khóa chính. Giá trị không hợp lệ dừng lưu. <ui>Add Row</ui> dùng <code>INSERT … IF NOT EXISTS</code>. Để đổi key, xóa và thêm lại dòng.",
                 "Cột counter cần <code>UPDATE … SET c = c + 1</code> trong CQL editor; server từ chối câu UPDATE thông thường mà thao tác sửa trên data grid sinh ra. Thời gian chờ kết nối lấy từ phần Tùy chọn (Options) của connection, còn request CQL giữ thời gian chờ cố định của driver, không đổi theo query timeout của ứng dụng."
             ]
         },

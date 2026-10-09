@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs TablePlus: open source, or Windows and Linux too",
+        "title": "TablePro vs TablePlus: features and licensing",
         "description": "Two native database clients with Mac, iPhone and iPad apps: compare platforms, prices, AI and MCP, and importing your TablePlus connections into TablePro."
     },
     "og": {
@@ -9,18 +9,18 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus and TablePro are database clients that both describe themselves as native, with apps for the Mac, iPhone and iPad. TablePlus also runs on Windows and Linux. TablePro is open source, and its paid plans add optional features to the Mac app. Despite the similar names, they are separate products from unrelated makers."
+        "lead": "TablePlus and TablePro are native database clients. Compare their free features, licensing and supported platforms. They are separate products from unrelated makers."
     },
     "shortAnswer": {
         "tablepro": [
-            "You want an open-source client. TablePro is open source under the AGPLv3, including the code of its paid features.",
-            "You want a free iPhone and iPad app with no in-app purchases.",
-            "You would rather pay only for the features you need. The free app has no tab or window limits, and paid plans add features such as {starterExamples}."
+            "An open-source client, including the code of paid features.",
+            "A free app with no tab or window limits. Paid plans add {starterExamples}.",
+            "A free iPhone and iPad app with no in-app purchases."
         ],
         "competitor": [
-            "You also work on Windows or Linux.",
-            "You connect to Vertica or Greenplum, which TablePlus lists and TablePro does not support.",
-            "You get your Mac apps through Setapp."
+            "Windows or Linux support.",
+            "Vertica or Greenplum connections.",
+            "A client available through Setapp."
         ]
     },
     "glance": {
@@ -48,26 +48,27 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePlus runs on Windows and Linux as well as the Mac, so one client can follow you across computers.",
-                "cite": ["platforms"],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "It lists engines that TablePro does not support, such as Vertica and Greenplum.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It is available through Setapp, if that is how you get your Mac apps.",
-                "cite": ["cells.setapp"],
+                "cite": [
+                    "cells.setapp"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It runs on older systems: macOS {mac.minVersion} and iOS {cells.ios.value} are enough, where TablePro needs newer versions of both.",
-                "cite": ["mac", "cells.ios"],
+                "cite": [
+                    "mac",
+                    "cells.ios"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -78,7 +79,9 @@
         "items": [
             {
                 "text": "TablePro is open source under the AGPLv3, including the code of its paid features. TablePlus is closed source.",
-                "cite": ["licence"],
+                "cite": [
+                    "licence"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -90,13 +93,17 @@
             },
             {
                 "text": "The iPhone and iPad app is free, with no in-app purchases and no license. The TablePlus iPhone app has in-app purchases, or comes with a TablePlus license.",
-                "cite": ["cells.ios"],
+                "cite": [
+                    "cells.ios"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> keeps connections in step between your Macs and your iPhone or iPad. It is part of Starter on the Mac, and free in the iPhone and iPad app. TablePlus syncs its connections through a cloud folder you choose, such as Dropbox or iCloud.",
-                "cite": ["cells.sync"],
+                "text": "<link>iCloud Sync</link> syncs connections across Macs, iPhones and iPads. It requires Starter on the Mac and is free on iPhone and iPad. TablePlus syncs its connections through a cloud folder you choose, such as Dropbox or iCloud.",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -112,13 +119,7 @@
         "intro": "",
         "items": [
             {
-                "text": "There is no TablePro app for Windows or Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Like TablePlus, TablePro has a separate <link>iPhone and iPad app</link>, and it does less than the Mac app: it has no AI assistant, no MCP server and no autocomplete.",
+                "text": "TablePro’s separate <link>iPhone and iPad app</link> has fewer features than the Mac app: no AI assistant, MCP server or autocomplete.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -130,7 +131,7 @@
                 "href": null
             },
             {
-                "text": "A TablePlus license keeps working after its year of updates, and so does a TablePro one-time purchase. A monthly or yearly TablePro plan does not: when it ends, its paid features lock and the rest of the app keeps working.",
+                "text": "TablePlus licenses keep working after their year of updates. TablePro one-time purchases do not expire. TablePro subscriptions lock paid features when they end; the free app keeps working.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -138,7 +139,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro reads your TablePlus connections where TablePlus keeps them, including those of TablePlus’s Setapp edition. TablePlus does not need to be open, and its files are not changed.",
+        "intro": "Import TablePlus connections, including the Setapp edition’s. TablePlus can stay closed, and its files are not changed.",
         "steps": [
             "In TablePro, choose <ui>File > Import > Import from Other App…</ui>",
             "Select TablePlus. Turn on <ui>Include passwords</ui> to read saved passwords from the macOS Keychain.",
@@ -162,19 +163,7 @@
         {
             "id": "speed",
             "question": "How does TablePro’s speed compare with TablePlus?",
-            "answer": "This page makes no speed or memory claims. Neither app publishes a measurement that others can reproduce, and the result depends on your Mac, your database and your network.",
-            "href": null
-        },
-        {
-            "id": "license",
-            "question": "Do I need a license to use TablePro?",
-            "answer": "No. TablePro is free to use, including every supported engine, the AI assistant, the MCP server and Safe Mode. A Starter or Team plan adds optional features to the Mac app, such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "ios-license",
-            "question": "Does the iPhone and iPad app need a license?",
-            "answer": "No. The iPhone and iPad app is free, with no in-app purchases. To sync it with a Mac through iCloud, the Mac needs Starter.",
+            "answer": "No reproducible benchmark is cited here. Performance depends on the query, database, network and computer; native architecture alone does not establish a speed advantage.",
             "href": null
         }
     ],

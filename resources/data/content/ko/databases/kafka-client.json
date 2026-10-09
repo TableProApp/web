@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "{devices}용 Apache Kafka 클라이언트",
-        "lead": "선택한 시작 위치부터 토픽을 읽고 소비자 그룹별 지연을 확인하며 테스트 메시지를 생성하는 작업을 모두 TablePro 자체 명령 언어인 KafkaQL로 합니다. 토픽은 로그이므로 그리드는 메시지를 읽을 뿐 편집하지 않습니다."
+        "title": "Apache Kafka 클라이언트",
+        "lead": "토픽 메시지와 소비자 지연을 확인하고 TablePro의 명령 언어 KafkaQL로 테스트 메시지를 생성하세요."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "브로커 하나의 호스트·포트를 입력하면 나머지 클러스터를 찾습니다. <ui>추가 부트스트랩 서버</ui>(Additional Bootstrap Servers)는 첫 브로커가 응답하지 않을 때 시도할 목록입니다. 연결 하나는 클러스터 하나로 Database 필드는 없고 사이드바에 토픽이 바로 표시됩니다.",
+                "부트스트랩 브로커의 호스트와 포트를 입력하세요. <ui>추가 부트스트랩 서버</ui> (Additional Bootstrap Servers)로 대체 브로커를 추가합니다. 각 연결은 하나의 클러스터에 연결되며 사이드바에 토픽을 표시합니다.",
                 "<ui>보안 프로토콜</ui>(Security Protocol)은 PLAINTEXT, SSL, SASL_PLAINTEXT 또는 SASL_SSL이며 <ui>SASL 메커니즘</ui>(SASL Mechanism)은 PLAIN, SCRAM-SHA-256 또는 SCRAM-SHA-512입니다. PLAIN은 Confluent Cloud, SCRAM은 Amazon MSK·자체 호스팅 브로커에 맞습니다. SSL·SASL_SSL에서 SSL 모드를 선택하지 않으면 인증서 체인·호스트 이름을 검사합니다. 사설 CA는 <ui>CA 인증서</ui>(CA Certificate)에 넣고 클라이언트 인증서·키는 상호 TLS를 추가합니다.",
                 "<network>SSH 터널</network>에서는 부트스트랩 브로커에만 연결해 그 브로커가 리더인 파티션만 읽습니다. <ui>URL에서 가져오기…</ui>(Import from URL…)는 <code>kafka://</code> URL을 받지만 macOS는 링크로 열지 않습니다."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "읽기, 검사 및 생성",
             "paragraphs": [
-                "토픽을 열면 최근 메시지를 최신이 마지막인 순서로 표시하며 파티션, 오프셋, 타임스탬프, 키, 값, 헤더와 크기가 나옵니다. 읽기 편하도록 다른 파티션 메시지를 시간순으로 섞지만 메시지 식별자는 파티션·오프셋입니다. UTF-8이 아닌 키·값은 십육진수로 표시하고 tombstone은 빈 메시지와 구별합니다.",
-                "KafkaQL은 정렬·필터 대신 시작 위치를 씁니다. <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> 또는 ISO 8601 시간의 <code>FROM TIME</code>이며 일부 파티션만 지정할 수도 있습니다. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code>, <code>DESCRIBE TOPIC</code>으로 나머지 클러스터 정보를 봅니다.",
+                "최근 메시지의 파티션, 오프셋, 타임스탬프, 키, 값, 헤더를 확인하세요. 여러 파티션의 메시지는 시간순으로 섞어 표시하며 파티션과 오프셋으로 식별합니다. UTF-8이 아닌 값은 16진수로 표시하고 tombstone은 빈 메시지와 구분합니다.",
+                "KafkaQL로 최신, 최초, 특정 오프셋 또는 ISO 8601 타임스탬프부터 소비하세요. 파티션도 지정할 수 있습니다. SHOW는 토픽, 브로커, 그룹, 클러스터 정보를 나열하며 DESCRIBE TOPIC은 토픽을 조회합니다.",
                 "<code>DESCRIBE GROUP</code>은 파티션별 커밋 오프셋, 끝 오프셋과 차이를 보여 주는 지연 보고입니다. 그룹이 커밋한 적 없는 파티션은 0부터 계산하지 않고 지연 없음으로 표시합니다. 브로커에 접근 못하면 <code>SHOW GROUPS</code>는 목록이 잘렸다고 표시합니다.",
                 "<code>PRODUCE INTO</code>는 선택 키·헤더·파티션으로 메시지를 씁니다. 키가 있고 파티션이 없으면 Kafka 자체 프로듀서와 같은 위치로 보냅니다. gzip, snappy, lz4, zstd 배치는 읽으며 압축을 풀고 별도 설정은 없습니다.",
-                "Kafka에는 업데이트, 메시지별 삭제나 서버 측 정렬이 없어 셀 편집·행 삭제·열 정렬을 할 수 없고 해당 컨트롤이 흐리게 표시됩니다. 각 페이지는 이전 끝에서 이어져 쓰기 중인 토픽에서도 메시지를 반복하거나 건너뛰지 않습니다."
+                "메시지를 편집하거나 개별 삭제할 수 없으며 열 정렬도 지원하지 않습니다. 새 메시지가 도착해도 이전 위치에서 페이지 조회를 이어갑니다."
             ]
         },
         {

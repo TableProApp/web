@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Cloudflare D1 client for {devices}",
-        "lead": "Reach the D1 databases in your Cloudflare account from one connection, query them in SQLite’s dialect over Cloudflare’s API, and manage their tables, indexes and triggers in the Structure tab."
+        "title": "Cloudflare D1 client",
+        "lead": "Browse D1 databases in your Cloudflare account and run SQLite queries through its API."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connect with an API token",
             "paragraphs": [
-                "A D1 connection takes three values: the database’s name or UUID, your Cloudflare account ID and an API token. The token goes in the field labelled <ui>API Token</ui> and is kept in the <credentials>macOS Keychain</credentials>. There is no host, port, SSL setting or SSH tunnel, because every request goes to Cloudflare’s API over HTTPS.",
-                "Create the token from the Custom token template with the <ui>Account > D1 > Edit</ui> permission, and copy it when Cloudflare shows it, because it is shown once. That token reaches every D1 database in the account, not only the one you connect to.",
+                "Enter a D1 database name or UUID, Cloudflare account ID and <ui>API Token</ui>. The token stays in the <credentials>macOS Keychain</credentials>. Requests use HTTPS; there is no host, port, TLS setting or SSH tunnel.",
+                "Create a token with <ui>Account > D1 > Edit</ui> permission and copy it when shown. It grants access to every D1 database in the account, not just the selected one.",
                 "Importing a <code>d1://account-id/database-name</code> URL fills in the account and the database; the token never travels in the URL, so paste it in afterwards."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Switch databases and query",
             "paragraphs": [
-                "The database switcher in the toolbar lists the account’s D1 databases and moves between them without reconnecting. It creates and drops databases too. Each tab stays on the database it was opened on.",
+                "Switch between the account’s D1 databases without reconnecting. The switcher also creates and drops databases. Existing tabs keep their starting database.",
                 "Queries use SQLite’s dialect. <explain>EXPLAIN QUERY PLAN</explain> is drawn as a diagram, and row edits wait in the grid until you save, with <editing>Preview SQL</editing> showing the statements first.",
                 "Write each statement so it stands on its own: a <code>PRAGMA</code> setting or a temporary table made by one statement is gone by the next, and every statement commits when it runs, with nothing to roll back. When Cloudflare rate-limits a request, the error carries the wait Cloudflare asked for before a retry."
             ]

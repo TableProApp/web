@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "適用於 {devices} 的 Snowflake 用戶端",
-        "lead": "依帳戶要求的方式登入，無須重新連線切換工作階段的倉儲和角色，再查詢、編輯資料表並卸載至 stage。"
+        "title": "Snowflake 用戶端",
+        "lead": "查詢和編輯資料表，切換倉儲與角色，並匯出到暫存區。"
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "連線與登入",
             "paragraphs": [
-                "填寫帳戶識別碼，例如 <code>myorg-myaccount</code> 或舊式 <code>xy12345.us-east-1</code>，即 <code>.snowflakecomputing.com</code> 前的部分。所有請求經 HTTPS 傳送至帳戶端點，因此無主機、SSL 區域或 SSH 面板。",
-                "選擇<ui>驗證方式</ui>（Auth Method）後僅顯示所需欄位。金鑰對使用 PKCS#8 私密金鑰為每次連線簽章，因此 Mac 時鐘必須準確。瀏覽器 SSO 前往身分供應商，OAuth 權杖依貼上內容使用且從不重新整理。帳戶強制 MFA 時，密碼需配合 <ui>MFA 驗證碼（TOTP）</ui>（MFA Passcode (TOTP)）中的目前驗證碼。",
+                "輸入 <code>.snowflakecomputing.com</code> 前的帳戶識別碼，例如 <code>myorg-myaccount</code>。請求使用 HTTPS；無需主機、TLS 區域或 SSH 面板。",
+                "從 <ui>驗證方式</ui> (Auth Method) 中選擇 PKCS#8 金鑰組、瀏覽器 SSO、OAuth 權杖，或密碼加 <ui>MFA 驗證碼（TOTP）</ui> (MFA Passcode (TOTP))。金鑰組要求裝置時鐘準確。貼上的 OAuth 權杖不會重新整理。",
                 "帳戶開啟 <code>ALLOW_CLIENT_MFA_CACHING</code> 時，一次新驗證碼即可：Snowflake 傳回 MFA 權杖，TablePro 儲存在<credentials>鑰匙圈</credentials>。啟用 <code>ALLOW_ID_TOKEN</code> 時，瀏覽器 SSO 儲存登入權杖，後續連線跳過瀏覽器直到 Snowflake 拒絕。",
                 "Snowflake 無 URL scheme。可在 <ui>CLI 連線名稱</ui>（CLI Connection Name）指定設定區段，連線時從 <code>~/.snowflake/connections.toml</code> 讀取所有留空欄位。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "倉儲、角色與查詢",
             "paragraphs": [
-                "<ui>資料庫 > Session Context</ui>（Database > Session Context）用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 無須重新連線切換倉儲或角色。一個 TablePro 連線對應一個 Snowflake 工作階段，閒置時仍保持。繫結第二個資料庫的分頁在同一工作階段中先執行 <code>USE DATABASE</code>。",
+                "透過 <ui>資料庫 > Session Context</ui> (Database > Session Context) 變更倉儲和角色。連線在閒置時保留一個工作階段；其他資料庫的分頁會在執行陳述式前執行 <code>USE DATABASE</code>。",
                 "側邊欄依資料庫和 schema 分組物件。物件清單來自不需倉儲的 <code>SHOW</code> 指令，欄位詳情來自需要倉儲的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 傳回 Snowflake 原始文字計畫。",
-                "<editing>格線編輯</editing>在伺服器繫結值，VARIANT、OBJECT、ARRAY 儲存格透過 <code>PARSE_JSON</code> 傳送。編輯依宣告主索引鍵定位，無主索引鍵則依所有欄位。Snowflake 從不強制索引鍵條件約束，重複鍵意味著編輯或刪除影響所有符合列，請先檢查重複。"
+                "<editing>表格編輯</editing>在伺服器端繫結值，VARIANT、OBJECT 和 ARRAY 儲存格透過 <code>PARSE_JSON</code> 傳送。編輯依已宣告的主索引鍵定位，沒有主索引鍵時比對所有欄位。標準 Snowflake 資料表不強制鍵條件約束，因此重複鍵會讓編輯或刪除影響所有符合列；編輯前請檢查重複值。混合資料表會強制執行鍵條件約束。"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "移動資料",
             "paragraphs": [
                 "透過連線<importData>匯入</importData> {importFormats}，將資料表或結果以 {exportFormats} 匯出至 Mac。",
-                "要不經 Mac 卸載資料表，選擇<ui>檔案 > Server-Side Export…</ui>（File > Server-Side Export…），指定 stage，可含或不含 <code>@</code>。<backup>Server-Side Export</backup> 以自有權限執行 <code>COPY INTO</code>，寫入 gzip 壓縮 CSV、Parquet 或 JSON；面板等待完成，不寫入 Mac。"
+                "選擇 <ui>檔案 > Server-Side Export…</ui> (File > Server-Side Export…) 和暫存區。<backup>Server-Side Export</backup> 使用您的權限執行 <code>COPY INTO</code>，寫入 gzip 壓縮 CSV、Parquet 或 JSON。操作會等待完成，檔案不經過 Mac。"
             ]
         }
     ],

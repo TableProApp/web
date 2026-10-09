@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Download TablePro for Mac",
-        "description": "Download TablePro for Mac, with separate builds for Apple silicon and Intel, or install it with Homebrew. The iPhone and iPad app is on the App Store."
+        "title": "Download TablePro",
+        "description": "Download TablePro, with separate builds for Apple silicon and Intel, or install it with Homebrew. The iPhone and iPad app is on the App Store."
     },
     "og": {
         "kicker": "Download",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Download TablePro",
-        "lead": "Download the Mac app for your Mac’s chip, or install it with Homebrew. The iPhone and iPad app is on the App Store."
+        "lead": "Choose a build for your device."
     },
     "mac": {
         "otherWays": "Other ways to install",
@@ -22,19 +22,19 @@
         "source": "Build from source (AGPLv3)"
     },
     "ios": {
-        "body": "A separate app built for {devices}, with its own set of features.",
+        "body": "A free app for {devices}, with its own set of features.",
         "link": "TablePro for {devices}"
     },
     "install": {
         "title": "Install and first run",
         "steps": [
-            "Open the downloaded .dmg file from your Downloads folder.",
+            "Open the downloaded .dmg file.",
             "Drag TablePro into the Applications folder.",
-            "Open TablePro from Applications. Because it came from the internet, macOS asks you to confirm the first time. Choose <ui>Open</ui>.",
-            "Add a connection, or choose <ui>Help > Open Sample Database</ui> to look around first. It opens Chinook, a small SQLite database that comes with the app."
+            "Open TablePro from Applications. Choose <ui>Open</ui> when macOS asks you to confirm.",
+            "Add a connection, or try the bundled Chinook SQLite database through <ui>Help > Open Sample Database</ui>."
         ],
         "signing": "Both builds are signed with a Developer ID and notarized by Apple, so you don’t need to change any security setting to open TablePro.",
-        "drivers": "Drivers for common databases come with the app. The others download the first time you pick that database, which needs an internet connection, and they update separately from the app.",
+        "drivers": "Common drivers are bundled. Others need an internet connection to download on first use and update separately from the app.",
         "databases": "Supported databases",
         "guide": {
             "label": "Read the installation guide",

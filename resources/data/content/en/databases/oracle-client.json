@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Oracle Database client for {devices}",
-        "description": "Connect to Oracle Database without Instant Client, run PL/SQL and SQL*Plus scripts, read DBMS_OUTPUT, and start Data Pump exports on the server."
+        "description": "Connect to Oracle Database without Instant Client, run SQL and PL/SQL scripts, read DBMS_OUTPUT, and start Data Pump exports on the server."
     },
     "og": {
         "kicker": "Databases",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "Oracle Database client for {devices}",
-        "lead": "The driver speaks Oracle’s TNS protocol in Swift, so Instant Client and the rest of Oracle’s stack stay off your Mac. Run SQL and PL/SQL, including scripts written for SQL*Plus, and read what DBMS_OUTPUT prints beside each result."
+        "title": "Oracle Database client",
+        "lead": "Run SQL and PL/SQL without installing Oracle Instant Client. Read DBMS_OUTPUT alongside query results."
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Enter the host, the listener port and a Service Name, or switch <ui>Connection Type</ui> to SID for an instance that has no service. Sign in with a username and password, as Normal or with the SYSDBA or SYSOPER role.",
+                "Enter a host, listener port and Service Name, or choose SID in <ui>Connection Type</ui>. Password sign-in supports Normal, SYSDBA and SYSOPER roles.",
                 "Native Network Encryption needs no setup: when the server asks for it, AES with a SHA-2 checksum is offered, and the <ui>Network Encryption</ui> setting changes what TablePro offers. For TLS, choose Required for TCPS, or Verify CA or Verify Identity with a CA certificate. New connections start with SSL off, and Preferred stays on plain TCP.",
                 "On Oracle Autonomous Database, copy the host, port and service name from the TLS connection string, not the mTLS one, and set SSL to Required or Verify CA. Wallet files are never read, so the database has to accept TLS without mutual TLS.",
                 "A RAC SCAN listener, a shared server or a load balancer in front of the database needs no configuration, and an <network>SSH tunnel</network> reaches a listener on a private network."
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL, PL/SQL and transactions",
             "paragraphs": [
-                "A PL/SQL block or a stored unit runs as one statement, however many semicolons it holds: put the cursor in it and run it. Scripts written for SQL*Plus or SQL Developer run unchanged, with a line holding only <code>/</code> ending the unit above it. A unit that does not compile fails with Oracle’s own errors, one per line with its position.",
+                "Run PL/SQL blocks and stored units as single statements. A <code>/</code> line ends a unit in scripts. Compilation errors include Oracle’s messages and source positions. SQL*Plus client commands are not supported.",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> lines show with the result of the statement that printed them, with no <code>SET SERVEROUTPUT ON</code> needed. In an anonymous block, <code>:name</code> is a <parameters>query parameter</parameters> you fill in from a panel.",
                 "Each statement commits when it succeeds. Start with <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> or <code>LOCK TABLE</code> to hold changes, and everything after it waits for your <code>COMMIT</code> or <code>ROLLBACK</code>, grid saves included.",
                 "Each user is a schema, and <code>⌘K</code> switches the active one without reconnecting. Row edits are staged with <editing>Preview SQL</editing>. A block that drops or truncates, even through <code>EXECUTE IMMEDIATE</code>, raises the <safeMode>dangerous query warning</safeMode> before it runs."
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "The <structure>Structure tab</structure> writes <code>ALTER TABLE</code> to add, rename, modify and drop columns and to create indexes, with case-sensitive names double-quoted. Table info also carries primary keys, foreign keys and the CREATE TABLE DDL.",
+                "Add, rename, modify and drop columns or create indexes in the <structure>Structure tab</structure>. Names are quoted when case-sensitive. Inspect primary keys, foreign keys and CREATE TABLE DDL.",
                 "A partitioned table lists its partitions under it, each with its position, and subpartitions nest under their partition. Query one with <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync>, part of the {compareSyncTier} plan, compares two Oracle schemas, or their data, and saves a script with a <code>/</code> line after each unit, ready for SQL*Plus or SQLcl."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compares Oracle schemas or data. Scripts use <code>/</code> separators for SQL*Plus or SQLcl."
             ]
         },
         {

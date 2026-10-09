@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Cliente de Cloudflare D1 para {devices}",
-        "lead": "Acesse os bancos D1 da sua conta Cloudflare por uma conexão, consulte-os no dialeto de SQLite pela API da Cloudflare e gerencie tabelas, índices e triggers na aba Structure."
+        "title": "Cliente de Cloudflare D1",
+        "lead": "Navegue pelos bancos de dados D1 em sua conta Cloudflare e execute consultas SQLite por meio de sua API."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Conecte com um token de API",
             "paragraphs": [
-                "Uma conexão D1 usa três valores: o nome ou UUID do banco, o ID da sua conta Cloudflare e um token de API. O token fica no campo <ui>API Token</ui> e é armazenado no <credentials>Chaves do macOS</credentials>. Não há host, porta, configuração SSL ou túnel SSH, pois todas as requisições usam HTTPS para acessar a API da Cloudflare.",
-                "Crie o token pelo modelo Custom token com a permissão <ui>Account > D1 > Edit</ui> e copie-o quando a Cloudflare o mostrar, pois ele só é exibido uma vez. Esse token acessa todos os bancos D1 da conta, não apenas aquele ao qual você se conecta.",
+                "Insira um nome de banco de dados D1 ou UUID, ID da conta Cloudflare e <ui>API Token</ui>. O token permanece em <credentials>macOS Keychain</credentials>. As solicitações usam HTTPS; não há host, porta, configuração TLS ou túnel SSH.",
+                "Crie um token com permissão <ui>Account > D1 > Edit</ui> e copie-o quando mostrado. Concede acesso a todos os bancos de dados D1 da conta, não apenas ao selecionado.",
                 "Importar uma URL <code>d1://account-id/database-name</code> preenche a conta e o banco; o token nunca é incluído na URL, portanto cole-o depois."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Alterne entre bancos e consulte",
             "paragraphs": [
-                "O seletor de bancos na barra de ferramentas lista os bancos D1 da conta e alterna entre eles sem reconectar. Ele também cria e exclui bancos. Cada aba permanece no banco em que foi aberta.",
+                "Alternar entre os bancos de dados D1 da conta sem reconectar. O switcher também cria e descarta bancos de dados. As guias existentes mantêm seu banco de dados inicial.",
                 "As consultas usam o dialeto de SQLite. <explain>EXPLAIN QUERY PLAN</explain> é apresentado como um diagrama, e as edições de linhas aguardam na grade até salvar, com <editing>Preview SQL</editing> mostrando as instruções antes da execução.",
                 "Escreva cada instrução para funcionar de forma independente: uma configuração <code>PRAGMA</code> ou uma tabela temporária criada por uma instrução desaparece na próxima, e cada instrução é confirmada quando executada, sem possibilidade de rollback. Quando a Cloudflare limita a frequência de uma requisição, o erro informa o tempo de espera solicitado antes de tentar novamente."
             ]

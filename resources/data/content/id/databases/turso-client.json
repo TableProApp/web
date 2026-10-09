@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso dan libSQL",
     "header": {
-        "title": "Klien Turso dan libSQL untuk {devices}",
-        "lead": "Hubungkan database Turso dengan URL dan token, jalankan kueri menggunakan sintaks SQLite, serta ubah tabel, indeks, dan trigger. Driver yang sama membuka server sqld yang Anda hosting sendiri dan file libSQL di Mac."
+        "title": "Klien Turso dan libSQL",
+        "lead": "Hubungkan ke database Turso dengan URL dan tokennya. Telusuri tabel dan jalankan kueri SQLite, atau buka file libSQL lokal."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Hubungkan ke Turso",
             "paragraphs": [
-                "Pilih Turso dalam daftar jenis koneksi dan biarkan <ui>Connection Mode</ui> pada <ui>Remote (Turso)</ui>. Tempel URL HTTPS database, yang berakhiran <code>.turso.io</code>, dan masukkan token pada bidang <ui>API Token</ui>, yang disimpan di Rantai Kunci macOS. Dashboard Turso menampilkan keduanya, demikian pula <code>turso db show my-db --url</code> dan <code>turso db tokens create my-db</code>.",
-                "URL <code>libsql://</code> diubah menjadi HTTPS, dan mengimpornya membuat koneksi jarak jauh. Tidak ada bidang host, port, atau database karena URL menunjuk satu database. Koneksi terenkripsi jika URL menggunakan HTTPS, bukan HTTP tanpa enkripsi, dan tunnel SSH tidak tersedia."
+                "Pilih <ui>Remote (Turso)</ui> di <ui>Connection Mode</ui>. Tempelkan URL HTTPS database dan <ui>API Token</ui>, yang disimpan di macOS Rantai Kunci. Dapatkan keduanya dari dasbor Turso atau CLI.",
+                "URL <code>libsql://</code> yang diimpor menjadi koneksi jarak jauh HTTPS. Setiap URL menamai satu database. URL HTTP biasa tidak dienkripsi; Terowongan SSH tidak tersedia."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tabel, indeks, dan trigger",
             "paragraphs": [
                 "<structure>Tab Structure</structure> membuat tabel, menambah dan menghapus kolom serta indeks, dan membuat, mengedit, serta menghapus trigger. Tabel, tetapi bukan view, dapat diganti namanya dari sidebar.",
-                "Untuk mengurutkan ulang kolom atau mengubah foreign key pada database jarak jauh, TablePro menulis skrip pembangunan ulang untuk Anda baca dan jalankan sendiri. Aplikasi tidak dapat menjalankannya karena pembangunan ulang memerlukan satu transaksi di seluruh permintaan HTTP yang terpisah."
+                "Penyusunan ulang kolom jarak jauh dan perubahan kunci asing menghasilkan skrip pembangunan kembali untuk Anda tinjau dan jalankan. TablePro tidak dapat menjalankannya sebagai satu transaksi di permintaan HTTP terpisah."
             ]
         },
         {

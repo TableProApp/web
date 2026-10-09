@@ -4,7 +4,7 @@ export default {
     "status": "Kesalahan {status}",
     "notFound": {
         "title": "Halaman tidak ditemukan",
-        "body": "Alamat mungkin salah ketik atau halaman telah dipindahkan. Halaman berikut dapat menjadi titik awal."
+        "body": "Periksa alamat atau gunakan salah satu tautan di bawah."
     },
     "gone": {
         "title": "Halaman ini telah dihapus",

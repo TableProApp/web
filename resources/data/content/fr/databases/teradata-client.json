@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Client Teradata pour {devices}",
-        "lead": "Authentifiez-vous avec TD2 ou TDNEGO, parcourez bases et utilisateurs avec leurs tables, vues, procédures et macros, et interrogez et modifiez via un pilote Swift natif sans logiciel client Teradata à installer."
+        "title": "Client Teradata",
+        "lead": "Interrogez et modifiez Teradata sans installer de logiciel client supplémentaire. Parcourez bases, utilisateurs, procédures et macros."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez hôte, utilisateur et mot de passe. Tout système Vantage acceptant TD2 fonctionne, sans vérification de version. <ui>Logon Mechanism</ui> dans Options accepte <code>TD2</code> ou <code>TDNEGO</code> ; <ui>Base de données</ui> (Database) n’est nécessaire que pour un défaut différent de celui du compte.",
+                "Saisissez hôte, nom d’utilisateur et mot de passe. Choisissez <code>TD2</code> ou <code>TDNEGO</code> dans <ui>Logon Mechanism</ui>. <ui>Base de données</ui> (Database) remplace la base par défaut du compte. Les serveurs Vantage acceptant TD2 sont pris en charge sans vérification de version.",
                 "Le port par défaut transporte une session en clair. Tout mode SSL la déplace au point WebSocket de la passerelle sur le port 443, non modifiable. Verify CA exige un certificat d’AC ; Verify Identity contrôle chaîne et nom d’hôte avec ce certificat ou, sans lui, le magasin de confiance système.",
                 "Laissez <ui>Transaction Mode</ui> sur <code>DEFAULT</code> sauf si un script nécessite les règles de commit ANSI ou TERA et la sensibilité à la casse de session. Utilisez un <network>tunnel SSH</network> derrière un bastion. <ui>Importer depuis une URL…</ui> (Import from URL…) accepte les URL <code>teradata://</code>, que macOS n’ouvre pas comme liens."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Base et utilisateur sont tous deux des espaces de noms dans Teradata ; ils figurent en haut de la barre latérale avec tables et vues. Un onglet lié à une seconde base conserve la session et exécute <code>DATABASE</code> avant ses instructions.",
+                "Parcourez bases et utilisateurs comme espaces de noms. Les onglets sur une autre base partagent la session et exécutent <code>DATABASE</code> avant leurs instructions.",
                 "Les procédures stockées figurent dans la barre latérale et les macros sous Fonctions, ouvrant leur <objects>source dans un onglet en lecture seule</objects>.",
                 "Teradata n’a pas de <code>LIMIT</code> : la première page utilise <code>TOP</code>, les suivantes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> retourne le plan en texte brut. Les modifications attendent l’enregistrement et <editing>Preview SQL</editing> montre d’abord chaque instruction."
             ]

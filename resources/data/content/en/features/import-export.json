@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Import & export",
-        "title": "Import, export and data files"
+        "title": "Import and export"
     },
     "header": {
-        "title": "Import, export and data files",
-        "lead": "For moving data between files and databases: loading a spreadsheet into a table, handing a query result to someone as Excel, cleaning up a CSV before you use it, or taking a dump before a risky change. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
+        "title": "Import and export",
+        "lead": "Import files into supported tables and export tables or query results. Open CSV, JSON and Excel files without a database connection.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "Import files into a table",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> imports {importFormats} files. A SQL file runs as statements, including <code>.sql.gz</code> dumps and SQL Server scripts split with <code>GO</code>. The other formats load into an existing table, or into a new one named after the file with columns taken from it; an Excel workbook imports its first sheet.",
-                "Each field maps to a column, and the import runs in one transaction unless you turn that off. When a row fails, you choose whether to stop and roll back, stop and keep what was imported, or skip the row and carry on. You can then save a report of the skipped rows as CSV."
+                "Import {importFormats} files. Data formats use column mapping into existing or new tables; Excel imports the first sheet only. SQL files run as statements, including <code>.sql.gz</code> dumps and SQL Server scripts using <code>GO</code>.",
+                "Imports use one transaction unless disabled. Choose how to handle failed rows: roll back, keep imported rows or skip failures. Export skipped rows as CSV for review."
             ],
             "engines": [{ "label": "Engines without import", "list": "noImport" }],
             "asset": "mac-import-mapping",
@@ -27,7 +27,7 @@
                     "id": "mappings",
                     "title": "Saved mappings and encodings",
                     "paragraphs": [
-                        "TablePro remembers the mapping you chose for each table, for CSV, JSON and Excel imports. <ui>Match by Name</ui> or <ui>Match by Position</ui> maps every field in one click. Matching by position works for CSV and Excel, where the order of fields comes from the file. CSV and SQL imports read UTF-16 and Japanese, Chinese and Korean encodings such as Shift JIS, GB 18030, Big5 and EUC-KR."
+                        "Reuse saved column mappings for CSV, JSON and Excel. <ui>Match by Name</ui> maps named fields; <ui>Match by Position</ui> works for CSV and Excel. CSV and SQL also support UTF-16 and selected Japanese, Chinese and Korean encodings."
                     ],
                     "since": "0.77.0"
                 }
@@ -37,22 +37,22 @@
             "id": "export",
             "title": "Export tables and results",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exports the tables and views you select to {exportFormats}. Each one streams from the database as it is written, so the row cap of the data grid does not apply. On SQL engines each table can take its own WHERE clause, row limit and choice of columns. SQL exports can carry structure, compress with gzip and split into parts, and Excel puts each table on its own sheet. MongoDB collections also export as a mongosh script, and SQL export is not offered for MongoDB or Redis.",
-                "<ui>Export Results</ui> writes what a query returned; a result the row cap cut short runs again and streams in full. {exportPluginFormats} export comes from a free plugin you install in <ui>Settings > Plugins</ui>, and writes one file per table."
+                "Export tables and views to {exportFormats}, streaming beyond the grid's row cap. SQL engines support per-table filters, limits and column selection. SQL exports can include structure; Excel uses one sheet per table. MongoDB supports mongosh-script export, not SQL export. Redis also has no SQL export.",
+                "<ui>Export Results</ui> reruns capped queries to stream the full result. Add {exportPluginFormats} export through a free plugin in <ui>Settings > Plugins</ui>, with one file per table."
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files: work on a file without a database",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "Open, search and clean up",
+                    "title": "Edit data files",
                     "paragraphs": [
-                        "Open a CSV, TSV or other delimited text file, or JSON and JSON Lines, from Finder or with <kbd>⌘O</kbd>, and the Data Files window shows it as a table you can edit. Filter it with the data grid’s filter bar, search every column, find and replace with regular expressions, and tidy it with Fill Down, Trim Whitespace, Change Case and Remove Duplicate Rows. Excel workbooks open with a tab per sheet and compressed files such as <code>.csv.gz</code> open too, both read-only.",
-                        "The window works on a private copy, and <kbd>⌘S</kbd> writes the file back in its own format, leaving untouched rows as they were."
+                        "Open and edit delimited text, JSON and JSON Lines as tables. Filter, search, replace text or remove duplicate rows. Excel sheets and compressed files such as <code>.csv.gz</code> open read-only.",
+                        "Changes stay in a private copy until you save. Saving writes the original format and preserves untouched rows."
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -60,7 +60,7 @@
                     "id": "statistics",
                     "title": "Column statistics, then export or import",
                     "paragraphs": [
-                        "Column statistics give a column’s empty and distinct counts, its range and its most common values; click a value to filter the file to it. When the file is ready, export it to another format, or send it to a table on an open connection with <ui>Import into Table</ui>."
+                        "Inspect empty and distinct counts, ranges and common values. Click a value to filter, then export the file or use <ui>Import into Table</ui> on an open connection."
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -68,10 +68,10 @@
         },
         {
             "id": "backup",
-            "title": "Back up with your engine’s own tools",
+            "title": "Backup and restore",
             "paragraphs": [
-                "Backup Dump and Restore Dump work through {backupTools}, over the connection’s SSH tunnel and with its TLS settings, so a server behind a bastion needs no second tunnel. Each of these except DuckDB is a command-line tool you install; DuckDB writes the dump itself, as a database file or a folder of Parquet files.",
-                "On {serverSideExport}, Server-Side Export has the server write the export instead: an Oracle Data Pump job, a Snowflake stage or a Cloud Storage bucket. Nothing lands on your Mac."
+                "Backup Dump and Restore Dump use {backupTools}, with the connection's SSH and TLS settings. Install the required command-line tool yourself, except for DuckDB, which writes its own database or Parquet dump.",
+                "Server-Side Export on {serverSideExport} writes through Oracle Data Pump, a Snowflake stage or Cloud Storage. The export stays off your Mac."
             ],
             "engines": [{ "label": "Backup Dump, with its tool", "list": "backupEngines" }],
             "asset": "mac-backup-dump"
@@ -92,7 +92,7 @@
             "id": "between-databases",
             "title": "From one database to another",
             "paragraphs": [
-                "Moving tables or rows between two connections needs no file in between. Copy To and Transfer To do it directly, across engines too, and show what they will write before anything runs."
+                "Copy or transfer tables between supported connections without an intermediate file. See Schema for type conversion and review details."
             ],
             "links": [{ "label": "Copy To and Transfer To", "href": "/features/schema#copy" }]
         },

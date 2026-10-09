@@ -255,7 +255,9 @@ it('states the limits a phone user would otherwise discover', function (): void 
     expect(implode("\n", $en['mac']['paragraphs']))->toContain('Starter or Team')->toContain('free here');
 
     // Share Usage Data is off until the reader turns it on.
-    expect($en['privacy']['paragraphs'][0])->toStartWith('Nothing goes to TablePro unless you turn on Share Usage Data');
+    expect($en['privacy']['paragraphs'][0])->toStartWith('Usage reporting is off by default.')
+        ->toContain('Enable Share Usage Data in <ui>Settings > Privacy</ui>')
+        ->toContain('No hostnames, usernames, passwords, queries or rows.');
 
     // The same limits are in the Vietnamese copy, with as many items.
     expect(iosPageContent('vi')['limits']['items'])->toHaveCount(count($en['limits']['items']));

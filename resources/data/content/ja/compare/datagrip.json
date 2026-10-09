@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DataGrip：IDE とネイティブクライアント",
+        "title": "TablePro と DataGrip: データベースクライアントまたは IDE",
         "description": "DataGrip は非商用利用のみ無料の JetBrains 製 IDE。TablePro はオープンソースのネイティブクライアントです。価格、AI、MCP、Git、移行を比較します。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DataGrip",
-        "lead": "DataGrip は {technology} を基盤とする、Windows、macOS、Linux 用の JetBrains 製データベース IDE です。非商用利用は無料で、その他の作業には月額・年額のサブスクリプションが必要です。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントです。どの用途でも無料で利用でき、有料プランは Mac アプリにオプション機能を追加します。"
+        "lead": "DataGrip は JetBrains のデータベース IDE であり、 {technology} 上に構築されています。 TablePro はネイティブ データベースクライアントです。編集ツール、AI の機能、商用ライセンスを比較してください。"
     },
     "shortAnswer": {
         "tablepro": [
-            "有料の仕事にも無料で使えるクライアントが欲しい。TablePro はどの用途でも無料で、有料プランは {starterExamples} などの機能を追加する。",
-            "追加したプロバイダーへ直接リクエストを送り、TablePro 独自の AI サービスやクレジットを介さない AI アシスタントが欲しい。Mac アプリでは MCP サーバーとともに無料で使える。",
-            "フル IDE よりも、Swift で書かれた Mac アプリを使いたい。",
-            "iPhone・iPad 用のアプリも欲しい。"
+            "商用作業が無料のクライアント。有料プランには {starterExamples} が追加されます。",
+            "完全な IDE ではなくネイティブ クライアント。",
+            "無料の AI チャットと MCP、選択した AI プロバイダー。"
         ],
         "competitor": [
-            "Mac に加え、Windows や Linux でも作業している。",
-            "クエリと同じウィンドウでコード検査やバージョン管理ができる IDE を使いたい。",
-            "学習、趣味のプロジェクト、商業的利益のないオープンソース活動など、非商用の作業をしている。DataGrip はその用途なら全機能が無料。",
-            "Firebird、Informix、Databricks など、TablePro 非対応のエンジンに接続する。"
+            "クエリと並行したコード インスペクションとバージョン管理。",
+            "非商用作業用のフル機能を備えた無料の IDE。",
+            "Windows または Linux のサポート、または Firebird、Informix、Databricks などの JDBC エンジン。"
         ]
     },
     "glance": {
@@ -41,14 +39,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DataGrip は Windows、macOS、Linux で動作するため、複数のコンピューターで同じ IDE を使えます。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "IDE として、Git などのバージョン管理をクエリと並べて使えます。完全対応のエンジンではコード検査とクイックフィックスも利用できます。",
                 "cite": [
@@ -80,7 +70,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro は商用を含むどの用途でも無料で、試用期間や時間制限はありません。Mac アプリは既定で毎日 <link>利用状況レポート</link>を TablePro に送信し、設定で無効にできます。DataGrip の無料ライセンスは非商用専用で、無効にできない利用統計を収集します。",
+                "text": "TablePro は商用作品であれば無料です。日次 Mac <link>使用状況レポート</link> はデフォルトで有効になっており、 Settings で無効にできます。 DataGrip の無料ライセンスは非営利のみで、使用統計が必須です。",
                 "cite": [
                     "prices"
                 ],
@@ -96,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "<link>AI アシスタント</link>は Mac アプリで無料です。クラウド上でも Mac 上でも、選んだプロバイダーと連携します。TablePro は AI サービスを運営せず、AI クレジットも販売しません。DataGrip は JetBrains AI を使い、クレジット枠付きの独自サービスに加えて、自分のプロバイダーキーやローカルモデルも利用できます。",
+                "text": "TablePro の <link>AI アシスタント</link> は、Mac アプリで無料です。クラウド プロバイダーまたはローカル モデルを選択します。プロバイダー料金が適用される場合があります。 JetBrains AI にはクレジット クォータがあり、独自のプロバイダー キーまたはローカル モデルを受け入れます。",
                 "cite": [
                     "cells.ai"
                 ],
@@ -112,13 +102,13 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> は二つのデータベースの構造またはデータを比較し、一方をもう一方に合わせるスクリプトを生成します。Starter に含まれます。",
+                "text": "<link>Compare & Sync</link> は、2 つのデータベースの構造またはデータを比較し、同期スクリプトを生成します。これは Starter の一部です。",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
             },
             {
-                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。DataGrip にはモバイルアプリがありません。",
+                "text": "個別の <link>iPhone および iPad アプリ</link> は無料で、アプリ内購入はありません。 DataGrip にはモバイル アプリがありません。",
                 "cite": [
                     "platforms"
                 ],
@@ -130,12 +120,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "TablePro には Windows・Linux 用アプリがありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "TablePro は IDE ではなくクライアントです。<link>リンクした SQL フォルダー</link>で各ファイルの Git 状態と履歴を見られますが、ステージング、コミット、プッシュ、ブランチ操作は別の Git ツールで行います。",
                 "cite": [],
@@ -151,7 +135,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro は DataGrip のグローバルデータソースと最近のプロジェクトのデータソースを読み取ります。DataGrip を開いておく必要はなく、ファイルも変更しません。",
+        "intro": "DataGrip のグローバル データ ソースと最近のプロジェクトのデータ ソースをインポートします。 DataGrip は閉じたままにすることができ、そのファイルは変更されません。",
         "steps": [
             "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
             "DataGrip を選び、<ui>Include passwords</ui> をオンにして、macOS キーチェーンに保存されたパスワードを読み取ります。SSH パスワードと鍵のパスフレーズも含みます。",
@@ -167,15 +151,9 @@
     },
     "faq": [
         {
-            "id": "commercial-use",
-            "question": "無料の TablePro を有料の仕事に使えますか？",
-            "answer": "はい。Mac アプリはどの用途でも無料で、試用期間や時間制限はありません。DataGrip が無料なのは非商用利用のみで、商用製品の開発や有料サービスの提供にはサブスクリプションが必要です。",
-            "href": null
-        },
-        {
             "id": "ai-provider",
             "question": "TablePro の AI アシスタントも JetBrains AI のようなプランが必要ですか？",
-            "answer": "いいえ。TablePro は独自の AI サービスを運営しません。API キー、既存のアカウント、Mac 上のモデルなど、プロバイダーを追加します。追加するまでは何も送信されません。<link>AI アシスタントの仕組み</link>。",
+            "answer": "TablePro AI プランは必要ありません。プロバイダー キー、サポートされているアカウント、またはローカル モデルを追加します。プロバイダー料金が適用される場合があります。セットアップ前に AI リクエストは送信されません。 <link>AI セットアップとデータ処理</link>。",
             "href": "/features/ai-mcp"
         },
         {

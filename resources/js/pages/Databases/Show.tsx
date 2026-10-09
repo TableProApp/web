@@ -46,7 +46,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
     const devices = joinList(deviceNamesFor(engine, platforms), m.common.list);
     /* The Mac alone, for a page whose heading must not promise the iPhone app (Redis: no key browsing there). */
     const macDevices = joinList(platforms.mac?.deviceNames ?? [], m.common.list);
-    /* The search title carries the platforms like the H1 does, from the same data (sitemap §A.3). */
+    /* Search titles describe current platforms; the English H1 is platform-neutral. */
     const title = fmt(content.seo.title, { devices, macDevices });
     const tiers = Object.fromEntries(PAID_FEATURES.map((feature) => [tierToken(feature.id), m.pricing.tiers[feature.tier].name]));
     const values = { ...tiers, ...engineValues(engine, m.common.list), devices };

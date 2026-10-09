@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs HeidiSQL: two free, open-source clients",
+        "title": "TablePro vs HeidiSQL: databases, platforms and pricing",
         "description": "HeidiSQL is free on Windows, Linux and, since 2026, Apple silicon Macs. TablePro is native on Mac, iPhone and iPad. Compare databases, builds and prices."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs HeidiSQL",
-        "lead": "HeidiSQL is a free, open-source client that began on Windows and also runs on Linux. Since January 2026 it has a Mac build for Apple silicon. TablePro is an open-source client with a Mac app for Apple silicon and Intel, a separate iPhone and iPad app, and optional paid features on the Mac."
+        "lead": "HeidiSQL and TablePro are open-source database clients with different engine and platform support. HeidiSQL has no paid plans; TablePro charges for optional features."
     },
     "shortAnswer": {
         "tablepro": [
-            "Your Mac has an Intel processor. TablePro has a separate build for Intel and one for Apple silicon.",
-            "You also work with MongoDB, Redis, ClickHouse or DuckDB, not only SQL servers.",
-            "You want saved passwords in the macOS Keychain, and a Safe Mode level that asks for Touch ID before writes on production connections.",
-            "You want an AI assistant and an MCP server, free in the Mac app.",
-            "You want an iPhone and iPad app as well."
+            "An official Intel Mac build, as well as Apple silicon.",
+            "MongoDB, Redis, ClickHouse or DuckDB alongside SQL servers.",
+            "Free AI chat and MCP, plus a separate iPhone and iPad app."
         ],
         "competitor": [
-            "You also work on Windows or Linux, and want the same free client on each.",
-            "You connect to Firebird, Interbase or ProxySQL, which TablePro does not support.",
-            "You want every feature free, with no paid plans.",
-            "You know HeidiSQL from Windows and want it on a Mac with Apple silicon."
+            "The same free client on Windows, Linux and Apple silicon Macs.",
+            "Firebird, Interbase or ProxySQL connections.",
+            "Every feature free, with no paid plans."
         ]
     },
     "glance": {
@@ -39,20 +36,19 @@
         "intro": "",
         "items": [
             {
-                "text": "HeidiSQL runs on Windows, Linux and the Mac, so one free client covers the computers you use.",
-                "cite": ["platforms"],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "It connects to Firebird, Interbase and ProxySQL, which TablePro does not support.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It is free and open source under the GPL, with no paid plans.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -63,7 +59,9 @@
         "items": [
             {
                 "text": "TablePro runs on Intel Macs as well as Apple silicon, with a separate build for each. HeidiSQL’s Mac build is for Apple silicon only.",
-                "cite": ["cells.macBuild"],
+                "cite": [
+                    "cells.macBuild"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -97,12 +95,6 @@
         "intro": "",
         "items": [
             {
-                "text": "There is no TablePro app for Windows or Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Firebird, Interbase and ProxySQL are not among the supported engines.",
                 "cite": [],
                 "feature": null,
@@ -110,7 +102,9 @@
             },
             {
                 "text": "Some features are paid. Starter adds features such as {starterExamples}, while HeidiSQL has no paid plans.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -138,18 +132,6 @@
             "question": "Which databases do both clients cover?",
             "answer": "HeidiSQL’s site lists MySQL, MariaDB, SQL Server, PostgreSQL, SQLite and Redshift, and TablePro supports all of them. HeidiSQL adds Firebird, Interbase and ProxySQL. TablePro adds document, key-value and analytical engines such as MongoDB, Redis and ClickHouse.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Is TablePro free like HeidiSQL?",
-            "answer": "Free to use, but not entirely free the way HeidiSQL is. Every supported engine, the AI assistant and the MCP server cost nothing, and the code is open source under the AGPLv3. HeidiSQL has no paid plans, while a Starter or Team plan adds optional features to the TablePro Mac app, such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "Which TablePro build do I need?",
-            "answer": "The one for your Mac’s processor: Apple silicon or Intel. The download page offers both. <link>Download TablePro</link>.",
-            "href": "/download"
         }
     ],
     "notes": {

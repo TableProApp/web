@@ -376,6 +376,11 @@ final class AssetManifest
         $base = $entry['replacement']['base'];
 
         if ($entry['kind'] === 'og-card') {
+            // The supplied default-language site card has one canonical URL,
+            // also used by old shares and the account app.
+            if ($id === 'og-site' && ($locale ?? Locales::default()) === Locales::default()) {
+                return '/og.png';
+            }
             return "{$dir}/{$base}-" . ($locale ?? Locales::default()) . ".{$format}";
         }
 

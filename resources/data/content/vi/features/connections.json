@@ -5,37 +5,42 @@
     },
     "og": {
         "kicker": "Kết nối",
-        "title": "Connection, tunnel và thông tin đăng nhập"
+        "title": "Connection"
     },
     "header": {
-        "title": "Connection, tunnel và thông tin đăng nhập",
-        "lead": "Dành cho bạn khi cơ sở dữ liệu nằm sau bastion, trong một cluster hay sau một lớp đăng nhập cloud: thiết lập connection một lần, kèm đường kết nối và nguồn mật khẩu mà nó cần, rồi đặt quy tắc chặt hơn cho các connection production. Mọi thứ ở đây có trong ứng dụng Mac. Ứng dụng cho iPhone và iPad làm được một phần trong số đó.",
+        "title": "Connection",
+        "lead": "Lưu và sắp xếp connection, tới server riêng qua SSH và đăng nhập bằng tài khoản cloud được hỗ trợ.",
         "docs": "/connections"
     },
     "sections": [
         {
             "id": "organize",
-            "title": "Quản lý thư viện connection",
+            "title": "Sắp xếp connection",
             "paragraphs": [
-                "Mỗi connection được chỉnh trong một form gồm các tab Tổng quát, Mạng, Tùy chọn và Giao diện (General, Network, Options, Appearance). Import một URL kết nối, kể cả URL <code>jdbc:</code> và URL <code>+ssh</code> có kèm chặng SSH, form sẽ tự điền; nếu clipboard đang có sẵn một URL như vậy, form sẽ gợi ý <ui>Dùng URL trong clipboard</ui> (Use clipboard URL).",
-                "Gán cho connection một màu, bao nhiêu tag tùy ý và một vị trí trong các nhóm lồng nhau, rồi đánh dấu yêu thích những connection bạn dùng nhiều nhất. Môi trường được quản lý bằng tag: local, development, production và testing có sẵn, và bạn có thể thêm tag riêng. Khi thư viện còn trống, TablePro gợi ý <ui>Mở cơ sở dữ liệu mẫu</ui> (Open Sample Database), một bản SQLite của Chinook đi kèm ứng dụng.",
-                "Mở nhiều connection trong cùng một cửa sổ. Dải connection ở mép trái cửa sổ chuyển qua lại giữa chúng, và mỗi connection quay về đúng tab bạn dùng gần nhất. <ui>Mở trong cửa sổ mới</ui> (Open in New Window) đặt một connection cạnh connection khác."
+                "Điền cài đặt connection từ URL, gồm URL <code>jdbc:</code> và <code>+ssh</code>. Dùng <ui>Use clipboard URL</ui> để import URL đã sao chép.",
+                "Sắp xếp connection trong nhóm lồng nhau, thêm tag, màu và đánh dấu yêu thích. Thử mẫu SQLite có sẵn bằng <ui>Open Sample Database</ui>.",
+                "Giữ nhiều connection trong một cửa sổ hoặc dùng <ui>Open in New Window</ui>. Mỗi connection nhớ tab gần nhất."
             ],
             "asset": "mac-connection-library"
         },
         {
             "id": "import",
-            "title": "Mang theo các connection bạn đã có",
+            "title": "Import connection",
             "paragraphs": [
-                "Hiếm khi bạn bắt đầu từ một danh sách trống: TablePro đọc connection từ một database client khác, từ file cấu hình của dự án hoặc từ tài khoản AWS của bạn."
+                "Import từ database client khác, file cấu hình dự án hoặc tài khoản AWS."
             ],
-            "links": [{ "label": "File connection và liên kết chia sẻ", "href": "/features/sync-and-teams#share" }],
+            "links": [
+                {
+                    "label": "File connection và liên kết chia sẻ",
+                    "href": "/features/sync-and-teams#share"
+                }
+            ],
             "blocks": [
                 {
                     "id": "other-apps",
                     "title": "Từ một database client khác",
                     "paragraphs": [
-                        "<ui>Nhập từ ứng dụng khác</ui> (Import from Other App) đọc các connection đã lưu trong {connectionImportApps}, kể cả bản Setapp của TablePlus. Mật khẩu cũng được mang theo nếu ứng dụng đó có lưu, bao gồm cả mật khẩu đã mã hóa mà DBeaver và Navicat giữ. Connection từ Navicat được lấy từ file export <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> đọc {connectionImportApps}, gồm bản Setapp của TablePlus. Import mật khẩu tùy cách ứng dụng nguồn lưu chúng. Hỗ trợ mật khẩu mã hóa của DBeaver và Navicat; Navicat cần file export <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -43,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Từ file cấu hình của dự án",
                     "paragraphs": [
-                        "<ui>Mở thư mục dự án</ui> (Open Project Folder) quét một dự án để tìm thiết lập cơ sở dữ liệu trong <code>.env</code>, <code>wp-config.php</code>, schema Prisma, <code>config/database.yml</code> của Rails, <code>docker-compose.yml</code>, <code>application.properties</code> hoặc <code>application.yml</code> của Spring, và <code>appsettings.json</code>. Mỗi bộ thông tin tìm được hiện kèm tên file chứa nó, và bộ bạn chọn sẽ được điền sẵn vào form connection; mật khẩu được lưu thẳng vào Keychain. Khi <code>prod</code>, <code>production</code> hay <code>live</code> xuất hiện như một từ riêng trong đường dẫn file, host hoặc tên cơ sở dữ liệu, connection đó bắt đầu ở mức Safe Mode Alert."
+                        "<ui>Open Project Folder</ui> tìm cài đặt cơ sở dữ liệu trong file môi trường, framework và Docker được hỗ trợ. Xem từng nguồn trước khi import; mật khẩu vào Keychain. Tên production được nhận diện bắt đầu ở Alert thay vì mức Safe Mode mặc định."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -58,25 +63,30 @@
         },
         {
             "id": "network",
-            "title": "Kết nối tới cơ sở dữ liệu sau bastion, proxy hay trong cluster",
+            "title": "SSH, TLS và tunnel",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "ssh",
                     "title": "SSH và TLS",
                     "paragraphs": [
-                        "SSH tunnel xác thực bằng mật khẩu, private key, SSH agent (chẳng hạn agent của 1Password) hoặc keyboard-interactive, và có thể đi lần lượt qua các jump host hoặc dùng <code>ProxyJump</code> trong <code>~/.ssh/config</code>. Mã dùng một lần có thể được sinh từ secret lưu trong Keychain hoặc được hỏi ở mỗi lần kết nối, và với một host key lạ, TablePro hiện fingerprint của nó trước khi tin cậy. Lưu một tunnel thành SSH profile để dùng lại.",
-                        "TLS có các chế độ Disabled, Preferred, Required, Verify CA và Verify Identity, với CA, chứng chỉ client và key của riêng bạn. Required mã hóa nhưng không kiểm tra chứng chỉ của server; các chế độ Verify thì có kiểm tra."
+                        "Kết nối SSH bằng mật khẩu, key, agent hoặc prompt tương tác. Dùng jump host hoặc <code>ProxyJump</code>, tái sử dụng tunnel bằng SSH profile. Host key chưa biết cần bạn duyệt fingerprint.",
+                        "Chọn mức TLS và cung cấp CA hoặc client certificate. Required mã hóa mà không xác minh chứng chỉ server; Verify CA và Verify Identity thêm bước xác minh."
                     ],
-                    "engines": [{ "label": "Engine kết nối qua mạng nhưng không có SSH tunnel", "list": "noSsh" }],
+                    "engines": [
+                        {
+                            "label": "Engine kết nối qua mạng nhưng không có SSH tunnel",
+                            "list": "noSsh"
+                        }
+                    ],
                     "asset": "mac-connection-ssh-form"
                 },
                 {
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL và tunnel command",
                     "paragraphs": [
-                        "Khi không vào được bằng SSH, tab Mạng (Network) kết nối qua SOCKS5 proxy có phân giải DNS ở phía proxy. Tab này cũng kết nối qua Cloudflare Access, khi đó TablePro chạy <code>cloudflared</code> và đăng nhập bằng trình duyệt hoặc service token. Với {cloudSqlProxy}, tab này kết nối qua Cloud SQL Auth Proxy, được TablePro tải về, kiểm tra và chạy.",
-                        "Tunnel Command chạy <code>kubectl port-forward</code>, <code>aws ssm start-session</code> hoặc một lệnh của riêng bạn, rồi kết nối vào port cục bộ mà lệnh đó mở ra. Một connection còn có thể chạy một shell script trước khi kết nối, có hỏi bạn trước ở mỗi phiên làm việc, và chạy các câu lệnh SQL ngay sau khi kết nối."
+                        "Dùng SOCKS5 với DNS từ xa hoặc Cloudflare Access qua <code>cloudflared</code>. Với {cloudSqlProxy}, TablePro tải, kiểm tra và chạy Cloud SQL Auth Proxy.",
+                        "Tunnel Command kết nối qua cổng local do <code>kubectl port-forward</code>, <code>aws ssm start-session</code> hoặc command của bạn mở. Shell script trước kết nối hỏi duyệt ở mỗi session."
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -89,41 +99,65 @@
                 "Xác thực cơ sở dữ liệu bằng AWS IAM ký một token mới cho mỗi lần kết nối, từ access key, một profile trong <code>~/.aws</code> (hỗ trợ <code>credential_process</code> và assume role) hoặc AWS IAM Identity Center. Cách xác thực này cũng nâng TLS lên Required. Amazon ElastiCache for Redis, Amazon Keyspaces và DynamoDB có cơ chế ký AWS riêng.",
                 "SQL Server đăng nhập bằng Microsoft Entra ID qua trình duyệt, với client ID của app registration do bạn cung cấp, hoặc bằng Kerberos từ ticket có sẵn hay từ principal và mật khẩu. Google BigQuery nhận service account key, Application Default Credentials hoặc Google OAuth với client của riêng bạn, còn Google Cloud Spanner và Cloud SQL Auth Proxy có thể dùng tài khoản Google của bạn."
             ],
-            "engines": [{ "label": "Xác thực AWS IAM trên RDS và Aurora", "list": "awsIam" }],
+            "engines": [
+                {
+                    "label": "Xác thực AWS IAM trên RDS và Aurora",
+                    "list": "awsIam"
+                }
+            ],
             "links": [
-                { "label": "SQL Server trong TablePro", "href": "/sql-server-client" },
-                { "label": "BigQuery trong TablePro", "href": "/bigquery-client" }
+                {
+                    "label": "SQL Server trong TablePro",
+                    "href": "/sql-server-client"
+                },
+                {
+                    "label": "BigQuery trong TablePro",
+                    "href": "/bigquery-client"
+                }
             ]
         },
         {
             "id": "credentials",
-            "title": "Giữ mật khẩu ở đúng chỗ",
+            "title": "Thông tin đăng nhập và nguồn mật khẩu",
             "paragraphs": [
-                "Mật khẩu được lưu trong Keychain của macOS; khi bật iCloud Sync, tính năng đồng bộ mật khẩu đưa chúng sang các thiết bị khác của bạn qua iCloud Keychain. SSH key vẫn là một file trên đĩa mà connection trỏ tới; chỉ passphrase của nó được lưu vào Keychain.",
-                "Credential profile dùng chung một thông tin đăng nhập cho nhiều connection và có thể lấy mật khẩu lúc kết nối từ 1Password (<code>op</code>), HashiCorp Vault, AWS Secrets Manager, một shell command, một file hoặc một biến môi trường. Các nguồn mật khẩu này miễn phí, không bao giờ được đồng bộ, và mỗi công cụ dòng lệnh phải nằm trong <code>PATH</code>, hoặc trong <code>/usr/local/bin</code> hay <code>/opt/homebrew/bin</code>. Connection cũng có thể dùng <code>~/.pgpass</code> với PostgreSQL, Amazon Redshift và CockroachDB, hoặc hỏi mật khẩu ở mỗi lần kết nối."
+                "Mật khẩu và passphrase SSH key lưu trong macOS Keychain. Đồng bộ mật khẩu qua iCloud Keychain cần bật riêng. File SSH key nằm trên ổ đĩa.",
+                "Credential profile miễn phí tái sử dụng thông tin đăng nhập và đọc mật khẩu từ 1Password, Vault, AWS Secrets Manager, command, file hoặc biến môi trường. Cần cài công cụ CLI tương ứng. Nguồn không đồng bộ. Connection thuộc họ PostgreSQL còn dùng được <code>~/.pgpass</code> ở nơi hỗ trợ."
             ],
-            "links": [{ "label": "iCloud Sync và đồng bộ mật khẩu", "href": "/features/sync-and-teams#icloud-sync" }],
+            "links": [
+                {
+                    "label": "iCloud Sync và đồng bộ mật khẩu",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ],
             "blocks": [
                 {
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Viết <code>$DB_HOST</code> vào host, tên cơ sở dữ liệu, tên người dùng, SSH host, SSH user và đường dẫn key, đường dẫn chứng chỉ TLS, startup command hay các trường của driver trong một connection, và TablePro điền giá trị từ môi trường của chính nó khi kết nối. Port và mật khẩu không bao giờ được đọc theo cách này; với mật khẩu, hãy dùng một nguồn mật khẩu."
+                        "Dùng tham chiếu như <code>$DB_HOST</code> trong trường connection được hỗ trợ. Giá trị lấy từ môi trường ứng dụng lúc kết nối. Không áp dụng cho port và mật khẩu; mật khẩu có nguồn riêng, miễn phí."
                     ],
-                    "paid": ["environment-variables"]
+                    "paid": [
+                        "environment-variables"
+                    ]
                 }
             ]
         },
         {
             "id": "policies",
-            "title": "Quy tắc riêng của từng connection",
+            "title": "Chính sách connection",
             "paragraphs": [
-                "Mức Safe Mode của connection quyết định một câu lệnh được chạy ngay, được hỏi lại trước, cần Touch ID hoặc mật khẩu, hay bị từ chối. Mức External Clients (Blocked, Read Only hoặc Read & Write) quyết định MCP client và AppleScript được làm gì với connection đó, và chỉ nằm trên máy Mac này. Chính sách AI (Always Allow, Ask Each Time hoặc Never) quyết định trợ lý AI được dùng connection mà không cần hỏi, chỉ sau khi hỏi, hay không bao giờ; Never còn chặn luôn MCP client.",
+                "Safe Mode kiểm soát việc xác nhận câu lệnh. External Clients kiểm soát truy cập MCP và AppleScript, mặc định Read Only và chỉ nằm trên máy Mac này. Chính sách AI kiểm soát trợ lý; Never cũng chặn MCP client.",
                 "Tổ chức của bạn có thể áp một mức Safe Mode tối thiểu cho mọi connection, và kiểm soát việc cập nhật, thông qua configuration profile."
             ],
             "links": [
-                { "label": "Các mức Safe Mode", "href": "/features/data-editing#safe-mode" },
-                { "label": "MCP client và External Clients", "href": "/features/ai-mcp#mcp" }
+                {
+                    "label": "Các mức Safe Mode",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "MCP client và External Clients",
+                    "href": "/features/ai-mcp#mcp"
+                }
             ],
             "blocks": [
                 {
@@ -143,25 +177,80 @@
                 "Ứng dụng cho iPhone và iPad có form connection riêng cho {iosPicker}, với nhóm, một tag cho mỗi connection và mục yêu thích. SSH tunnel xác thực bằng mật khẩu hoặc private key, từ file hoặc dán vào, và có kiểm tra host key; SSH agent và jump host không được hỗ trợ trên iPhone và iPad. TLS có thể kiểm tra chứng chỉ của server, trừ với SQL Server: kết nối được mã hóa nhưng không kiểm tra. Chứng chỉ chỉ nằm trên thiết bị và không bao giờ được đồng bộ.",
                 "Mật khẩu và key dán vào được lưu trong Keychain. Connection SQL Server đồng bộ từ Mac có thể đăng nhập bằng Microsoft Entra ID. Import từ ứng dụng khác, đăng nhập bằng AWS IAM, Kerberos và Google, proxy và tunnel command, nguồn mật khẩu và timeout chỉ có trong ứng dụng Mac."
             ],
-            "links": [{ "label": "Kết nối an toàn trên iPhone và iPad", "href": "/ios#security" }]
+            "links": [
+                {
+                    "label": "Kết nối an toàn trên iPhone và iPad",
+                    "href": "/ios#security"
+                }
+            ]
         }
     ],
     "availability": [
-        { "label": "Form connection, nhóm, tag và mục yêu thích", "ios": "partial", "iosNote": "Một tag cho mỗi connection; không có màu" },
-        { "label": "Import từ URL hoặc clipboard", "ios": "no" },
-        { "label": "Import từ ứng dụng khác, thư mục dự án và AWS", "ios": "no" },
-        { "label": "SSH tunnel bằng mật khẩu hoặc private key", "ios": "yes" },
-        { "label": "SSH agent, mã dùng một lần và jump host", "ios": "no" },
-        { "label": "TLS có kiểm tra chứng chỉ", "ios": "partial", "iosNote": "SQL Server mã hóa nhưng không kiểm tra" },
-        { "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và Tunnel Command", "ios": "no" },
-        { "label": "Đăng nhập bằng AWS IAM, Kerberos và Google", "ios": "no" },
-        { "label": "Microsoft Entra ID", "ios": "partial", "iosNote": "Với connection đồng bộ từ Mac" },
-        { "label": "Lưu mật khẩu trong Keychain", "ios": "yes" },
-        { "label": "Nguồn mật khẩu, credential profile và ~/.pgpass", "ios": "no" },
-        { "label": "Environment Variables", "paid": "environment-variables", "ios": "no" },
-        { "label": "Safe Mode cho từng connection", "ios": "partial", "iosNote": "{iosSafeModeLevels}" },
-        { "label": "Connect timeout và query timeout", "ios": "no" },
-        { "label": "Mức Safe Mode tối thiểu qua configuration profile", "ios": "no" }
+        {
+            "label": "Form connection, nhóm, tag và mục yêu thích",
+            "ios": "partial",
+            "iosNote": "Một tag cho mỗi connection; không có màu"
+        },
+        {
+            "label": "Import từ URL hoặc clipboard",
+            "ios": "no"
+        },
+        {
+            "label": "Import từ ứng dụng khác, thư mục dự án và AWS",
+            "ios": "no"
+        },
+        {
+            "label": "SSH tunnel bằng mật khẩu hoặc private key",
+            "ios": "yes"
+        },
+        {
+            "label": "SSH agent, mã dùng một lần và jump host",
+            "ios": "no"
+        },
+        {
+            "label": "TLS có kiểm tra chứng chỉ",
+            "ios": "partial",
+            "iosNote": "SQL Server mã hóa nhưng không kiểm tra"
+        },
+        {
+            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và Tunnel Command",
+            "ios": "no"
+        },
+        {
+            "label": "Đăng nhập bằng AWS IAM, Kerberos và Google",
+            "ios": "no"
+        },
+        {
+            "label": "Microsoft Entra ID",
+            "ios": "partial",
+            "iosNote": "Với connection đồng bộ từ Mac"
+        },
+        {
+            "label": "Lưu mật khẩu trong Keychain",
+            "ios": "yes"
+        },
+        {
+            "label": "Nguồn mật khẩu, credential profile và ~/.pgpass",
+            "ios": "no"
+        },
+        {
+            "label": "Environment Variables",
+            "paid": "environment-variables",
+            "ios": "no"
+        },
+        {
+            "label": "Safe Mode cho từng connection",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "Connect timeout và query timeout",
+            "ios": "no"
+        },
+        {
+            "label": "Mức Safe Mode tối thiểu qua configuration profile",
+            "ios": "no"
+        }
     ],
     "limits": [
         "Nguồn mật khẩu, cùng proxy và tunnel command trong tab Mạng, chỉ nằm trên máy Mac nơi bạn thiết lập: chúng không bao giờ được đồng bộ, nên một connection đồng bộ sang máy Mac khác cần thiết lập lại các phần này.",
@@ -171,19 +260,55 @@
         "Xác thực AWS IAM dùng được với {awsIam}, không dùng được với Amazon Redshift. Configuration profile chỉ áp được mức Safe Mode tối thiểu và thiết lập cập nhật, ngoài ra không có gì khác."
     ],
     "docs": [
-        { "label": "Quản lý connection", "docs": "/connections" },
-        { "label": "Chuyển từ client khác sang TablePro", "docs": "/switching" },
-        { "label": "Open Project Folder", "docs": "/features/project-folder-import" },
-        { "label": "SSH tunnel", "docs": "/connections/ssh-tunneling" },
-        { "label": "Tunnel Command", "docs": "/connections/tunnel-command" },
-        { "label": "Xác thực AWS IAM", "docs": "/connections/aws-iam" },
-        { "label": "Credential profile", "docs": "/connections/credential-profiles" },
-        { "label": "Nguồn mật khẩu và Environment Variables", "docs": "/features/connection-sharing#environment-variables" }
+        {
+            "label": "Quản lý connection",
+            "docs": "/connections"
+        },
+        {
+            "label": "Chuyển từ client khác sang TablePro",
+            "docs": "/switching"
+        },
+        {
+            "label": "Open Project Folder",
+            "docs": "/features/project-folder-import"
+        },
+        {
+            "label": "SSH tunnel",
+            "docs": "/connections/ssh-tunneling"
+        },
+        {
+            "label": "Tunnel Command",
+            "docs": "/connections/tunnel-command"
+        },
+        {
+            "label": "Xác thực AWS IAM",
+            "docs": "/connections/aws-iam"
+        },
+        {
+            "label": "Credential profile",
+            "docs": "/connections/credential-profiles"
+        },
+        {
+            "label": "Nguồn mật khẩu và Environment Variables",
+            "docs": "/features/connection-sharing#environment-variables"
+        }
     ],
     "related": [
-        { "label": "Đồng bộ và chia sẻ connection", "href": "/features/sync-and-teams" },
-        { "label": "Safe Mode và chỉnh sửa dữ liệu", "href": "/features/data-editing#safe-mode" },
-        { "label": "So sánh TablePro với các client khác", "href": "/compare" },
-        { "label": "Gói trả phí bổ sung những gì", "href": "/pricing#features" }
+        {
+            "label": "Đồng bộ và chia sẻ connection",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "label": "Safe Mode và chỉnh sửa dữ liệu",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "So sánh TablePro với các client khác",
+            "href": "/compare"
+        },
+        {
+            "label": "Gói trả phí bổ sung những gì",
+            "href": "/pricing#features"
+        }
     ]
 }

@@ -4,7 +4,7 @@ export default {
     "status": "Erreur {status}",
     "notFound": {
         "title": "Page introuvable",
-        "body": "L’adresse est peut-être incorrecte ou la page a été déplacée. Vous pouvez commencer par l’une de ces pages."
+        "body": "Vérifiez l’adresse ou utilisez l’un des liens ci-dessous."
     },
     "gone": {
         "title": "Cette page a été supprimée",

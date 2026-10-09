@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "Cliente SurrealDB para {devices}",
-        "lead": "Autentícate en el nivel donde se definió tu usuario, ejecuta scripts SurrealQL y edita registros campo a campo, manteniendo tipos de enlaces de registro, fechas y decimales."
+        "title": "Cliente SurrealDB",
+        "lead": "Ejecuta SurrealQL y edita campos de registros conservando sus tipos."
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "SurrealDB no puede inferir el nivel del usuario de sus credenciales, así que <ui>Auth Level</ui> lo indica y el formulario pide lo demás. Root acepta usuario y contraseña; Namespace añade el espacio de nombres; Database, también la base. Record Access requiere namespace, base, método de <code>DEFINE ACCESS</code> y campos de acceso. Token acepta un JWT que ya tengas, incluido uno de SurrealDB Cloud.",
+                "Elige <ui>Auth Level</ui> para el usuario: Root, Namespace, Database, Record Access o Token. Namespace y Database requieren sus nombres. Record Access también necesita el método de acceso y los campos de inicio de sesión; Token acepta un JWT existente.",
                 "El controlador usa CBOR por HTTP RPC, manteniendo los tipos de enlaces, fechas, duraciones, decimales y UUID. Un enlace <code>surrealdb://</code> abre el formulario rellenado; un servidor remoto se alcanza con <network>túnel SSH</network>.",
                 "SSL empieza en Disabled, HTTP sin cifrar; los demás modos usan HTTPS. Verify CA y Verify Identity usan el almacén de confianza del sistema; un archivo CA en SSL/TLS se ignora, así que instala antes una CA privada en macOS."
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL y registros",
             "paragraphs": [
-                "El editor ejecuta scripts SurrealQL completos, incluido <code>RELATE</code> entre dos registros, con autocompletado de sentencias comunes. <explain>Explain y Explain Full</explain> vuelven a ejecutar la consulta con <code>EXPLAIN</code> para mostrar su resolución y uso de índices; el plan vuelve como texto sin procesar.",
+                "Ejecuta scripts SurrealQL completos, incluido <code>RELATE</code>, con autocompletado de instrucciones. <explain>Explain y Explain Full</explain> ejecutan la consulta con <code>EXPLAIN</code> y devuelven un plan de texto.",
                 "Los namespaces están arriba en la barra lateral con sus bases dentro. Cambiar de uno u otro nunca reconecta, porque el namespace y la base de datos viajan en cada solicitud. Solo un usuario root ve todos los namespaces.",
-                "Cambiar una celda ejecuta <code>UPDATE</code> solo de los campos tocados, con parámetros tipados: <code>int</code> sigue siendo <code>int</code>, sin tocar campos calculados <code>FUTURE</code> ni cambios ajenos. Deja <code>id</code> vacío para generar uno o escribe <code>table:id</code>. Una tabla <code>SCHEMALESS</code> obtiene las columnas de los registros leídos.",
+                "Las ediciones de celdas solo actualizan los campos cambiados como parámetros tipados y conservan los campos calculados <code>FUTURE</code> y los cambios de otros usuarios. Deja <code>id</code> vacío para generar el ID. Las columnas de tablas SCHEMALESS vienen de los registros obtenidos.",
                 "Los <filters>filtros</filters> se convierten en SurrealQL; una fila Raw SQL acepta una condición, como un recorrido de grafo. Se rechazan condiciones que escriban, contengan <code>;</code> o comentario, o llamen <code>fn::</code> o <code>http::</code>; ejecútalas en el editor."
             ]
         },

@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "Interfaz gráfica Redis para {macDevices}",
-        "lead": "Explora claves en un árbol dividido por dos puntos, ve su tipo, TTL y longitud de un vistazo y ejecuta comandos con las comillas de redis-cli, en un servidor, un primario gestionado por Sentinel o un Redis Cluster."
+        "title": "Interfaz gráfica Redis",
+        "lead": "En Mac, explora claves y ejecuta comandos en despliegues Standalone, Sentinel o Cluster. iPhone y iPad solo admiten comandos Standalone."
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Elige un <ui>Connection Mode</ui>. Standalone usa un host y un puerto. Sentinel usa uno o varios nodos Sentinel y el nombre del grupo del primario, sigue al quorum hasta el primario y cambia con él tras una conmutación por error. Cluster usa cualquier miembro accesible como semilla, lee el mapa de shards y envía cada comando al shard que tiene su clave.",
+                "Elige <ui>Connection Mode</ui>: Standalone, Sentinel o Cluster. Sentinel sigue al primario tras un failover; Cluster descubre shards desde un miembro inicial y dirige los comandos al shard correspondiente.",
                 "Inicia sesión con una contraseña, o rellena Username para iniciar sesión como usuario ACL de Redis 6. En Amazon ElastiCache, elige un modo <cloudAuth>AWS IAM</cloudAuth> y un token de corta duración pasa a ser la contraseña; el IAM de ElastiCache requiere TLS activado.",
                 "Las conexiones nuevas empiezan sin TLS. Upstash, Redis Cloud y similares lo requieren; pegar una URL <code>rediss://</code> lo activa. No hay alternativa sin cifrar, así que Preferred actúa como Required. Los servidores Valkey se conectan igual que Redis.",
                 "La barra lateral muestra cada base de datos numerada a partir de <code>db0</code>, y al hacer clic en una se explora allí mismo."
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "Claves y comandos",
             "paragraphs": [
-                "Los nombres de clave se dividen en carpetas en cada dos puntos, o en el separador que fijes en la pestaña Options. Cada clave es una fila de la cuadrícula con Key, Type, TTL, Length y Value. Una cadena se muestra completa; un hash, una lista, un set, un sorted set o un stream muestra sus primeras entradas, y Length indica cuántas hay. Un valor que no es UTF-8 válido, como un payload gzip, se abre en el editor hexadecimal.",
-                "<editing>En la cuadrícula</editing>, editar el nombre de una clave ejecuta <code>RENAME</code>, un TTL ejecuta <code>EXPIRE</code> o <code>PERSIST</code>, y un valor de cadena ejecuta <code>SET</code>. Add Row escribe el tipo que elijas con <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> o <code>SET</code>. La barra de filtros compara los nombres de clave con patrones glob de Redis y filtra por tipo, mediante <code>SCAN MATCH</code> y <code>SCAN TYPE</code> en el servidor.",
-                "El editor acepta un comando por sentencia, con las comillas que usa redis-cli, y envía tal cual los comandos que no reconoce. <code>DB 3 GET key</code> ejecuta un comando en otra base de datos sin mover la sesión, y dentro de un bloque <code>MULTI</code> cada comando responde <code>QUEUED</code> hasta que <code>EXEC</code> devuelve todas las respuestas en orden.",
+                "Explora claves en carpetas separadas por dos puntos o elige otro separador. Cada fila muestra tipo, TTL, longitud y valor. Las colecciones muestran sus primeras entradas; los valores no UTF-8 se abren en el editor hexadecimal.",
+                "<editing>Edita nombres de clave, TTL y valores de cadenas</editing> en la cuadrícula. Add Row crea hashes, listas, sets, sorted sets o cadenas. Filtra nombres y tipos en el servidor con <code>SCAN MATCH</code> y <code>SCAN TYPE</code>.",
+                "Ejecuta comandos con las reglas de comillas de redis-cli. Los comandos desconocidos se envían tal cual. <code>DB 3 GET key</code> apunta a otra base sin cambiar la sesión. En <code>MULTI</code>, las respuestas quedan en cola hasta <code>EXEC</code>.",
                 "<safeMode>Safe Mode</safeMode> considera escritura todo comando de Redis, incluido <code>GET</code>, así que los niveles Alert y Safe Mode confirman cada uno y Read-Only los bloquea todos. <code>FLUSHDB</code> y <code>FLUSHALL</code> preguntan antes de ejecutarse, incluso en Silent."
             ]
         },
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight es la herramienta oficial de Redis. Además de un explorador de claves y un Workbench de comandos, tiene un espacio Pub/Sub, un perfilador de comandos, inspección del slow log y análisis de memoria. Elígelo para supervisar y ajustar un despliegue de Redis; TablePro encaja si Redis convive con las bases de datos SQL que usas a diario.",
+                "text": "Elige Redis Insight por su explorador de claves, Workbench de comandos, espacio Pub/Sub, profiler, registros de consultas lentas y análisis de memoria. TablePro usa Redis junto con bases SQL.",
                 "notes": [
                     "redis-insight-copilot"
                 ]

@@ -3,8 +3,8 @@ import type { Messages } from '../../types.ts';
 export default {
     "titleTemplate": "{title} – TablePro",
     "product": {
-        "short": "TablePro は開発者向けの、ネイティブなオープンソースのデータベースクライアントです。",
-        "long": "TablePro は開発者向けの、ネイティブなオープンソースのデータベースクライアントです。{deviceList} 向けのアプリで、{featuredEngines} などのデータベースにクエリを実行し、データを閲覧・編集できます。"
+        "short": "TablePro はネイティブなオープンソースのデータベースクライアントです。",
+        "long": "TablePro はネイティブなオープンソースのデータベースクライアントです。{featuredEngines} などでクエリを実行し、データを閲覧・編集できます。{deviceList} 向けに提供しています。"
     },
     "macApp": {
         "alternateName": "Mac 版 TablePro",

@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "データ編集",
-        "title": "データを安全に閲覧・編集"
+        "title": "データ編集"
     },
     "header": {
-        "title": "データを安全に閲覧・編集",
-        "lead": "行を直接操作するための機能です。必要な行を探し、いくつかの値を変更し、本番データベースでも予期しない操作を防ぎます。編集は保存まで保留され、文を実行する前に TablePro がどの程度慎重に確認するかは接続ごとに決まります。",
+        "title": "データ編集",
+        "lead": "行をフィルターし、外部キーをたどり、グリッドで値を編集できます。変更は保存するまで反映されず、先に SQL を確認できます。",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "フィルターとハイライトルール",
                     "paragraphs": [
-                        "フィルターバー（<kbd>⌘⇧F</kbd>）は =、BETWEEN から REGEX まで {filterOperatorCount} 個の演算子で WHERE 句を組み立てるほか、生の SQL 条件も使えます。テーブルのフィルターを保存し、実行せずに後で呼び出せます。ハイライトルールはスプレッドシートの条件付き書式のように、値に応じて行やセルに色を付け、この Mac にのみ保存します。"
+                        "{filterOperatorCount} 個の演算子や SQL 条件でフィルターを作り、保存して再利用できます。ハイライトルールは一致する行やセルを色付けし、この Mac に保存します。"
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "外部キーと JSON",
                     "paragraphs": [
-                        "外部キーの参照先の行を新しいタブで開くか、ポップオーバーでプレビューできます。外部キーカラムの編集時には、値の選択欄が顧客の姓と名など指定したカラムで参照先の行を一覧表示します。JSON 値は、内容を探すツリーと編集用テキストモードを備えたビューアーで開きます。"
+                        "外部キーから参照先の行へ移動するか、その場でプレビューできます。値の選択画面で参照先の行を選べます。JSON 値はツリービューやテキストエディターで開けます。"
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "データを変更し、一度に保存",
+            "title": "保存前に編集内容を確認",
             "paragraphs": [
-                "セルの編集、新規行と削除はタブ内でマークされ、<kbd>⌘S</kbd> を押すまで保留されます。それ以前には送信しません。<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）は値を埋めた文を一覧表示します。保存時はバインドパラメーターで送信し、エンジンが許す場合は一つのトランザクションで実行します。各文が予定どおりの行数を変更したか確認し、一つでも違えば保存をロールバックします。"
+                "編集、新しい行、削除は <kbd>⌘S</kbd> で保存するまでタブ内に留まります。<ui>Preview SQL</ui> で保留中の文を確認できます。保存はバインドパラメーターと影響行数の確認を使い、対応エンジンではトランザクションとロールバックも使います。"
             ],
             "points": [
                 "型に合ったセルエディター：日時選択、ENUM と SET のリスト、配列、JSON、バイナリ値の 16 進エディター、画像ビューアー。",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "本番接続を守る Safe Mode",
+            "title": "Safe Mode",
             "paragraphs": [
-                "各接続には Safe Mode レベルがあり、{macSafeModeLevels} から選びます。新規接続は {macSafeModeDefault} で始まり、文をそのまま実行します。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求めます。Full 系は読み取り前も確認し、Read-Only は書き込みを拒否して編集を無効にします。Safe Mode は無料です。",
-                "どのレベルでも DROP、TRUNCATE、WHERE のない DELETE は停止して事前確認します。読み取り専用のエンジン、最低 Alert に引き上げる Agent mode、組織がデバイス管理（MDM）で定める最低レベルなど、一部の条件は適用中に接続のレベルを引き上げます。"
+                "接続ごとに {macSafeModeLevels} から選べます。既定の {macSafeModeDefault} は確認なしで実行します。Alert は書き込みを確認し、Safe Mode は Touch ID かパスワードの承認も求めます。Full レベルは読み取りも確認します。Read-Only は書き込みと編集をブロックします。Safe Mode は無料です。",
+                "DROP、TRUNCATE、WHERE のない DELETE は常に確認が必要です。全画面の Agent modeは最低でも Alert を適用します。読み取り専用エンジンや組織の端末管理ポリシーによって、実際のレベルが上がる場合もあります。"
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind は保存で置き換えた値を保持し、<ui>Restore Previous Values</ui> で戻せます。まず確認シートで、保存後に変更された行も含め、各行に何が起きるかを表示します。復元は Safe Mode を通し、エンジンが許す場合は一つのトランザクションで実行します。復元操作自体も復元できます。",
-                "保存した値は、キーチェーンの鍵で暗号化してこの Mac に {rewindDays} 日間保持し、同期しません。プランが終了すると保存内容の記録が止まり、<ui>Restore Previous Values</ui> は復元の代わりにアラートを表示します。"
+                "<ui>Restore Previous Values</ui> で保存時に置き換えた値を確認・復元できます。その保存後に変わった行を示します。復元は Safe Mode に従い、対応エンジンでは一つのトランザクションで行います。",
+                "以前の値はこの Mac 上で暗号化して {rewindDays} 日間保持し、同期しません。有料プランが終了すると記録と復元は停止します。"
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "ドキュメントとキー",
             "paragraphs": [
-                "すべてのエンジンが行を保存するわけではありません。MongoDB ではドキュメント全体を Extended JSON として挿入・編集し、ドキュメントからフィールドを削除できます。Structure タブではコレクション全体のフィールドを名前変更・削除できます。Redis ではグリッドでキーの名前変更、TTL の設定、文字列値の編集を行い、string、hash、list、set、sorted-set キーを追加できます。他の型はエディターのコマンドで変更します。"
+                "MongoDB ドキュメントを Extended JSON で編集し、コレクション全体でフィールド名変更・削除ができます。Redis はグリッドで文字列、キー名、TTL を編集し、文字列、ハッシュ、リスト、セット、ソート済みセットのキーを追加できます。他の値の型はエディターのコマンドで変更します。"
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "iPhone と iPad では",
             "paragraphs": [
-                "iPhone・iPad アプリでは行をカードで表示し、並べ替え、検索、AND と OR による絞り込みができます。外部キーをタップすると参照先の行をプレビューします。行を編集し、値を NULL に設定し、行を追加し、スワイプで削除できます。編集と削除には主キーが必要です。新しい行では各フィールドは最初 DEFAULT になり、NULL または空文字列に変更できます。",
-                "iPhone と iPad の Safe Mode には独自のレベル {iosSafeModeLevels} があり、新規接続の既定は {iosSafeModeDefault} です。編集の保留、Preview SQL、ハイライトルールと Data Rewind は Mac アプリ専用です。"
+                "カード形式で行を参照し、ソートやフィルター、外部キーの行プレビューができます。値を編集したり NULL に設定できます。編集と削除には主キーが必要です。新しい行は DEFAULT で始まり、NULL や空文字列も選べます。",
+                "モバイルの Safe Mode は {iosSafeModeLevels} を提供し、初期値は {iosSafeModeDefault} です。編集の一時保存、Preview SQL、ハイライトルール、Data Rewind は現在 Mac のみです。"
             ],
             "links": [
                 {

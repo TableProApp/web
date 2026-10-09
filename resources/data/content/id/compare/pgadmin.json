@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs pgAdmin: alat admin PostgreSQL atau klien",
+        "title": "TablePro vs pgAdmin: Alat dan administrasi PostgreSQL",
         "description": "pgAdmin adalah alat administrasi PostgreSQL gratis bersumber terbuka, di desktop atau server web. TablePro mendukung PostgreSQL dan mesin lain."
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs pgAdmin",
-        "lead": "pgAdmin 4 adalah alat administrasi dan pengembangan gratis bersumber terbuka untuk PostgreSQL. Aplikasi ini berjalan sebagai aplikasi desktop di Windows, macOS, dan Linux, atau di server web yang digunakan bersama oleh beberapa orang. TablePro adalah klien sumber terbuka untuk PostgreSQL dan mesin lain, dengan aplikasi iPhone dan iPad terpisah serta fitur berbayar opsional pada Mac."
+        "lead": "pgAdmin berfokus pada administrasi PostgreSQL, di aplikasi desktop atau di server web bersama. TablePro mendukung PostgreSQL bersama tipe database lainnya."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda juga menggunakan MySQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya PostgreSQL.",
-            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Rantai Kunci macOS.",
-            "Anda menginginkan tingkat Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
-            "Anda menginginkan server MCP agar klien AI seperti Claude Code atau Cursor dapat menggunakan koneksi tersimpan Anda.",
-            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke PostgreSQL."
+            "PostgreSQL bersama MySQL, SQL Server, SQLite, Redis atau MongoDB.",
+            "Per koneksi Safe Mode, termasuk Touch ID sebelum menulis.",
+            "MCP gratis atau aplikasi iPhone dan iPad gratis terpisah."
         ],
         "competitor": [
-            "Anda hanya menggunakan PostgreSQL, dan sebagian besar pekerjaan Anda adalah administrasi.",
-            "Anda men-debug fungsi PL/pgSQL atau menjadwalkan job dengan pgAgent.",
-            "Anda ingin psql, pg_dump, dan pg_restore sudah disertakan, tanpa perlu memasang apa pun lagi.",
-            "Anda ingin satu instalasi di server web yang dibuka tim Anda di peramban.",
-            "Anda juga bekerja di Windows atau Linux."
+            "Administrasi PostgreSQL, termasuk debugger PL/pgSQL dan pekerjaan pgAgent.",
+            "Paket psql, pg_dump dan pg_restore.",
+            "Instalasi server web bersama, atau dukungan Windows dan Linux."
         ]
     },
     "glance": {
@@ -57,31 +53,43 @@
         "items": [
             {
                 "text": "pgAdmin dibuat untuk PostgreSQL, dan juga untuk EDB Postgres Advanced Server.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Debugger-nya menelusuri fungsi PL/pgSQL langkah demi langkah, dan alat schema diff-nya membandingkan dua skema. Keduanya gratis.",
-                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "cite": [
+                    "cells.debugger",
+                    "cells.schemaDiff"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Alat ERD-nya merancang dan mendokumentasikan skema.",
-                "cite": ["cells.diagram"],
+                "cite": [
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "psql, pg_dump, pg_dumpall, dan pg_restore sudah disertakan, jadi pencadangan dan pemulihan berfungsi tanpa memasang apa pun lagi.",
-                "cite": ["cells.backupRestore"],
+                "cite": [
+                    "cells.backupRestore"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Aplikasi ini berjalan di Windows, macOS, dan Linux, atau di server web untuk beberapa pengguna, dan pgAgent menjadwalkan job SQL, shell, dan batch.",
-                "cite": ["platforms", "cells.jobScheduler"],
+                "cite": [
+                    "platforms",
+                    "cells.jobScheduler"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,7 +106,9 @@
             },
             {
                 "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. pgAdmin adalah aplikasi web Python yang berjalan dalam runtime desktop {technology} atau di server web.",
-                "cite": ["technology"],
+                "cite": [
+                    "technology"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -132,7 +142,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux, dan tidak ada versi web untuk dipasang di server.",
+                "text": "Tidak ada versi web untuk diinstal di server.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -157,7 +167,9 @@
             },
             {
                 "text": "<link>Compare & Sync</link> termasuk Starter, sedangkan schema diff pgAdmin gratis.",
-                "cite": ["cells.schemaDiff"],
+                "cite": [
+                    "cells.schemaDiff"
+                ],
                 "feature": "compare-sync",
                 "href": null
             }
@@ -185,12 +197,6 @@
             "question": "Bisakah tim saya berbagi TablePro seperti berbagi server pgAdmin?",
             "answer": "Tidak melalui peramban: TablePro berjalan di setiap Mac. Koneksi dibagikan melalui file koneksi, atau melalui Team Catalog dan Team Library dengan paket Team. <link>Baca tentang berbagi</link>.",
             "href": "/features/sync-and-teams"
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis seperti pgAdmin?",
-            "answer": "Gratis digunakan. PostgreSQL dan mesin lain yang didukung, asisten AI, serta server MCP tidak dikenai biaya, dan kodenya bersumber terbuka dengan AGPLv3. Berbeda dari pgAdmin, TablePro juga memiliki paket berbayar: Starter dan Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

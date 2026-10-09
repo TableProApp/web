@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "Client SQLite pour {devices}",
-        "lead": "Ouvrez un fichier de base depuis le Finder, par glisser-déposer ou depuis un serveur SSH, interrogez-le avec le SQLite intégré à l’application et modifiez sa structure via des scripts de reconstruction que vous vérifiez avant leur exécution."
+        "title": "Client SQLite",
+        "lead": "Ouvrez un fichier SQLite, exécutez du SQL et inspectez ses tables. Vérifiez les changements de structure avant application."
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "Ouvrez un fichier de base de données",
             "paragraphs": [
-                "Choisissez un fichier dans le formulaire de connexion ou glissez-le sur une fenêtre TablePro ou sur l’icône du Dock. Un chemin vers un fichier qui n’existe pas encore crée ce fichier à la connexion. Un fichier s’ouvre comme base SQLite si ses premiers octets sont <code>SQLite format 3</code>, quel que soit son nom.",
-                "Le Finder propose TablePro sous Ouvrir avec pour les fichiers .db, .sqlite, .sqlite3 et similaires. Une base située dans un dossier que macOS protège, comme Messages ou l’historique de Safari, nécessite d’abord l’Accès complet au disque (Full Disk Access), et l’app à laquelle elle appartient doit généralement être fermée.",
-                "Une base sur une autre machine s’ouvre dans le <remoteFiles>panneau Remote File</remoteFiles>. L’option On the Server exécute vos instructions directement sur le fichier distant via SSH, sans rien installer sur l’hôte à part <code>python3</code>. L’option As a Read-Only Copy récupère un instantané par SFTP et l’ouvre en lecture seule.",
+                "Choisissez un fichier ou glissez-le sur TablePro. Un nouveau chemin crée une base lors de la connexion. Les fichiers SQLite sont identifiés par leur en-tête <code>SQLite format 3</code>, pas leur extension.",
+                "Ouvrez les fichiers .db, .sqlite et .sqlite3 depuis le Finder. Les dossiers protégés, comme Messages ou l’historique Safari, nécessitent l’accès complet au disque ; il peut aussi falloir quitter l’app propriétaire.",
+                "Ouvrez une base distante dans le <remoteFiles>panneau Remote File</remoteFiles>. On the Server interroge le fichier en direct via SSH et nécessite <code>python3</code>. As a Read-Only Copy télécharge un instantané via SFTP.",
                 "Pour découvrir l’app, choisissez Aide > Ouvrir la base de données d’exemple (Help > Open Sample Database). Cela ouvre Chinook, une petite base d’exemple de boutique de musique en ligne, fournie avec l’app."
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Le pilote embarque son propre SQLite : votre SQL s’exécute sur la même version, quelle que soit votre version de macOS. <explain>EXPLAIN QUERY PLAN</explain> est dessiné en diagramme.",
-                "Chargez des extensions comme sqlite-vec et SpatiaLite par connexion, dans l’ordre où vous les listez : leurs fonctions et tables virtuelles fonctionnent dans l’éditeur, la barre latérale et l’onglet Structure. La fonction SQL <code>load_extension()</code> reste refusée, et une liste reçue par synchronisation, par une connexion importée ou par un lien ne charge rien tant que vous ne l’avez pas approuvée.",
+                "Le pilote inclut SQLite, indépendamment de votre version de macOS. Affichez <explain>EXPLAIN QUERY PLAN</explain> en diagramme.",
+                "Chargez des extensions comme sqlite-vec ou SpatiaLite par connexion. Les listes d’extensions importées, synchronisées ou liées nécessitent une approbation avant chargement. La fonction SQL <code>load_extension()</code> est bloquée.",
                 "Les modifications de lignes attendent l’enregistrement, et <editing>Preview SQL</editing> montre d’abord chaque instruction. Si un autre programme change le fichier, la barre latérale se recharge seule."
             ]
         },
@@ -67,7 +67,7 @@
             "title": "Transférez des données",
             "paragraphs": [
                 "<importData>Importez</importData> des fichiers {importFormats}, ou ouvrez un fichier CSV, JSON ou XLSX dans la <dataFiles>fenêtre Data Files</dataFiles> et importez-le depuis celle-ci. Les tables et les résultats s’exportent en {exportFormats}.",
-                "<copy>Copy To</copy> déplace des tables et leurs lignes vers une autre connexion, comme un serveur PostgreSQL, et liste chaque type de colonne qu’il doit approximer. Voir aussi <files>utiliser les fichiers comme bases de données</files>."
+                "<copy>Copy To</copy> transfère tables et lignes vers un autre moteur et liste les approximations de types. Voir <files>les fichiers comme bases de données</files>."
             ]
         },
         {

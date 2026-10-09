@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso và libSQL",
     "header": {
-        "title": "Client Turso và libSQL cho {devices}",
-        "lead": "Kết nối tới cơ sở dữ liệu Turso bằng URL và token, query theo cú pháp SQLite, và thay đổi table, index và trigger của nó. Cùng một driver còn mở được server sqld tự host và file libSQL trên máy Mac của bạn."
+        "title": "Turso và libSQL client",
+        "lead": "Kết nối Turso bằng URL và token. Xem table, chạy query SQLite hoặc mở file libSQL local."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Kết nối tới Turso",
             "paragraphs": [
-                "Chọn Turso trong danh sách loại connection và giữ <ui>Chế độ kết nối (Connection Mode)</ui> ở <ui>Từ xa (Turso)</ui>. Dán URL HTTPS của cơ sở dữ liệu, có đuôi <code>.turso.io</code>, và nhập token vào ô có nhãn <ui>API Token</ui>, được lưu trong Keychain của macOS. Dashboard của Turso hiển thị cả hai, và hai lệnh <code>turso db show my-db --url</code> và <code>turso db tokens create my-db</code> cũng vậy.",
-                "URL <code>libsql://</code> được đổi sang HTTPS, và import URL đó sẽ tạo một connection từ xa. Không có ô host, port hay cơ sở dữ liệu, vì URL đã chỉ định một cơ sở dữ liệu. Connection được mã hóa khi URL dùng HTTPS thay vì HTTP thường, và không có SSH tunnel."
+                "Chọn <ui>Remote (Turso)</ui> trong <ui>Connection Mode</ui>. Dán HTTPS URL của cơ sở dữ liệu và <ui>API Token</ui>, lưu trong macOS Keychain. Lấy cả hai từ dashboard hoặc CLI Turso.",
+                "URL <code>libsql://</code> import trở thành connection remote HTTPS. Mỗi URL chỉ một cơ sở dữ liệu. URL HTTP thường không mã hóa; không có SSH tunnel."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Table, index và trigger",
             "paragraphs": [
                 "<structure>Tab Structure</structure> tạo table, thêm và xóa cột cùng index, và tạo, sửa, xóa trigger. Table, nhưng không phải view, có thể đổi tên từ sidebar.",
-                "Với việc đổi thứ tự cột hay thay đổi khóa ngoại trên cơ sở dữ liệu từ xa, TablePro viết script dựng lại table để bạn đọc và tự chạy. TablePro không thể chạy script đó thay bạn, vì việc dựng lại cần một transaction trải qua nhiều request HTTP riêng lẻ."
+                "Sắp lại cột hoặc đổi khóa ngoại từ xa tạo script dựng lại để bạn xem và chạy. TablePro không chạy được thành một transaction qua các HTTP request riêng."
             ]
         },
         {

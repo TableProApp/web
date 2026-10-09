@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "Éditeur SQL avec autocomplétion et EXPLAIN",
-        "description": "Écrivez du SQL avec complétion du schéma et paramètres, cherchez dans l’historique, enregistrez des requêtes et lisez des diagrammes EXPLAIN."
+        "description": "Écrivez du SQL avec autocomplétion du schéma. Sauvegardez les requêtes, consultez l’historique local et les plans EXPLAIN des bases compatibles."
     },
     "og": {
         "kicker": "Requêtes",
-        "title": "Rédigez, exécutez et comprenez vos requêtes"
+        "title": "Éditeur SQL"
     },
     "header": {
-        "title": "Rédigez, exécutez et comprenez vos requêtes",
-        "lead": "Pour ceux qui écrivent du SQL sur une base active : rédigez avec le schéma à portée de main, exécutez une instruction ou un script entier, gardez les requêtes utiles et trouvez pourquoi l’une a ralenti. Tout est disponible sur Mac. L’application iPhone et iPad en couvre une partie.",
+        "title": "Éditeur SQL",
+        "lead": "Écrivez du SQL avec autocomplétion du schéma. Enregistrez les requêtes réutilisées, recherchez dans l’historique et inspectez les plans des moteurs compatibles.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "Un éditeur qui connaît votre schéma",
+            "title": "Autocomplétion du schéma",
             "paragraphs": [
-                "L’autocomplétion lit le schéma pendant la saisie : tables après FROM et JOIN, colonnes d’un alias et colonnes d’une CTE ou sous-requête définie plus tôt. La coloration utilise tree-sitter ; <kbd>⌘⇧L</kbd> formate l’instruction au curseur sans supprimer vos commentaires.",
-                "<kbd>⌘⏎</kbd> exécute l’instruction au curseur ou la sélection, <kbd>⌘⇧⏎</kbd> les exécute toutes, <kbd>⌘⌥⏎</kbd> sans limite de lignes et <kbd>⌘.</kbd> annule. Un lot d’instructions ordinaires s’exécute dans une transaction et est annulé si l’une échoue. Font exception les scripts qui gèrent eux-mêmes leur transaction, les scripts SQL Server et les instructions qu’aucune transaction ne peut contenir, comme VACUUM. Sur MySQL, MariaDB et Oracle, le DDL est validé (commit) implicitement."
+                "L’autocomplétion propose tables et colonnes, avec alias, CTE et sous-requêtes. Formatez l’instruction courante avec <kbd>⌘⇧L</kbd> en conservant ses commentaires.",
+                "Exécutez l’instruction courante, une sélection ou un script entier. Les lots ordinaires utilisent une transaction et sont annulés en cas d’échec. Les scripts SQL Server, transactions explicites et instructions comme VACUUM font exception. Le DDL sur MySQL, MariaDB et Oracle est validé indépendamment."
             ],
             "points": [
                 "Repères d’instructions dans la marge, chacun avec son bouton d’exécution.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Paramètres, historique et requêtes enregistrées",
             "paragraphs": [
-                "Écrivez <code>:customer_id</code> dans une requête ; TablePro demande sa valeur et son type avant exécution, puis lie la valeur nativement si le pilote le permet.",
-                "Chaque requête exécutée entre dans l’historique local (<kbd>⌘Y</kbd>), avec recherche plein texte et filtres par source, échecs et période. Il conserve par défaut {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
-                "Enregistrez une requête avec un mot-clé comme <code>dau</code>, puis saisissez ce mot-clé dans l’éditeur pour le développer. Les requêtes enregistrées gardent un historique des versions. Un dossier SQL lié synchronise les fichiers <code>.sql</code> avec la barre latérale dans les deux sens, avec une lettre d’état Git pour chaque fichier. C’est gratuit et distinct de Linked Folders, la fonctionnalité Starter pour les fichiers de connexion partagés."
+                "Utilisez des paramètres comme <code>:customer_id</code> pour saisir les valeurs avant l’exécution. Elles sont liées nativement lorsque le pilote le permet.",
+                "Recherchez dans l’historique local par texte, source, erreurs ou période. Il conserve par défaut {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
+                "Enregistrez les requêtes avec mots-clés réutilisables et historique de versions. Liez un dossier de fichiers <code>.sql</code> à la barre latérale, avec mises à jour bidirectionnelles et statut Git. Les dossiers SQL liés sont gratuits, distincts de Linked Folders, la fonction payante pour les fichiers de connexion."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly et onglets",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) trouve les tables, les vues et les tables système de toutes les connexions ouvertes, ainsi que vos requêtes enregistrées et récentes. Chaque onglet conserve son SQL, son tri, ses filtres et ses largeurs de colonnes, et les onglets reviennent lorsque vous quittez puis rouvrez l’application ; <kbd>⌃Tab</kbd> passe d’un onglet récemment utilisé à l’autre."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) recherche tables, vues et requêtes dans les connexions ouvertes. Les onglets conservent leur SQL et les réglages de grille à la réouverture de l’app."
             ]
         },
         {
             "id": "performance",
-            "title": "Lisez, comparez et suivez le plan",
+            "title": "Performances des requêtes",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN et EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> affiche le plan d’une requête sous forme de diagramme, d’arbre avec barres de coût ou de sortie brute du moteur. Choisissez une exécution antérieure de la même requête comme référence ; Compare indique si elle a ralenti et si le plan a changé. Une différence inférieure à {explainNoise} % est considérée comme du bruit. Les deux sont gratuits."
+                        "Affichez les plans en diagrammes, arbres de coûts ou sortie brute du moteur. Comparez à une exécution antérieure pour repérer les variations de durée et de plan ; les écarts inférieurs à {explainNoise} % sont considérés comme du bruit. Les deux fonctions sont gratuites."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights analyse l’historique de ce Mac et classe les requêtes les plus exécutées, les plus lentes, celles qui échouent et celles qui ont ralenti par rapport à la période précédente. Elles sont regroupées par forme : une même instruction exécutée avec des valeurs différentes ne compte qu’une fois. Les chiffres sont calculés sur votre Mac et ne sont jamais envoyés."
+                        "Repérez les requêtes lentes, en échec ou fréquentes dans l’historique local de ce Mac. Les instructions similaires sont regroupées sans tenir compte des valeurs de paramètres. Query Insights compare les périodes localement ; ce n’est pas une surveillance globale du serveur et aucune métrique n’est envoyée."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Représentez un résultat en barres, courbes, aires ou nuage de points, avec un axe temporel pour les dates et une série pour chaque valeur d’une colonne de votre choix. Un graphique trace jusqu’à {chartPoints} points et {chartSeries} séries depuis les {chartInspectedRows} premières lignes ; sa barre d’outils signale quand il s’arrête avant la fin."
+                        "Affichez les résultats en graphiques à barres, courbes, aires ou nuages de points. Ils affichent jusqu’à {chartPoints} points et {chartSeries} séries des {chartInspectedRows} premières lignes, avec un avertissement en cas de troncature."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Vue Carte",
                     "paragraphs": [
-                        "Lorsqu’une colonne contient une géométrie en WKT, WKB, GeoJSON, tuples ClickHouse ou valeurs geo_point Elasticsearch, la vue Carte la dessine sur Apple Maps ; sélectionner une forme sélectionne sa ligne. Vos lignes restent sur le Mac ; Apple fournit les tuiles. La vue Carte est gratuite."
+                        "Affichez les colonnes géométriques compatibles dans Apple Plans et sélectionnez une forme pour retrouver sa ligne. Les lignes restent sur le Mac ; Apple fournit les tuiles cartographiques. La vue carte est gratuite."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Moteurs qui ne parlent pas SQL",
+            "title": "Autres langages de requête",
             "paragraphs": [
-                "Sur une connexion sans SQL, l’éditeur accepte le langage propre à ce moteur, et la page de chaque moteur explique ce qui est pris en charge. L’éditeur MongoDB est un shell JavaScript de type mongosh exécuté dans TablePro, pas mongosh lui-même."
+                "Utilisez dans l’éditeur le langage de chaque moteur non SQL. MongoDB utilise un shell JavaScript intégré de type mongosh, pas mongosh lui-même. Les pages des bases listent les commandes compatibles."
             ],
             "engines": [
                 {

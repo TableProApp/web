@@ -6,9 +6,9 @@ export default {
         "guides": "Anleitungen",
         "releases": "Versionshinweise"
     },
-    "latest": "Zu manchen Versionen gibt es auch einen Beitrag im Blog. Der neueste ist <post>{title}</post>.",
+    "latest": "Neuester Versionsbeitrag: <post>{title}</post>.",
     "post": {
-        "archive": "Dieser am {date} veröffentlichte Beitrag beschreibt {release} in seinem damaligen Stand. Was TablePro heute bietet, findest du unter <features>Funktionen</features> und im <changelog>Änderungsprotokoll</changelog> (Englisch).",
+        "archive": "Veröffentlicht am {date}. Dieser Beitrag beschreibt {release} zum Veröffentlichungszeitpunkt. Aktuelle <features>Funktionen</features> und Änderungen stehen im <changelog>Changelog</changelog> (Englisch).",
         "correction": "Korrektur, {date}",
         "toc": "Auf dieser Seite",
         "pages": "Verwandte Seiten",

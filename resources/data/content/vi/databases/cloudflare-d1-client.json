@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Client Cloudflare D1 cho {devices}",
-        "lead": "Mở các cơ sở dữ liệu D1 trong tài khoản Cloudflare của bạn từ một connection, query theo dialect của SQLite qua API của Cloudflare, và quản lý table, index và trigger trong tab Structure."
+        "title": "Cloudflare D1 client",
+        "lead": "Xem cơ sở dữ liệu D1 trong tài khoản Cloudflare và chạy query SQLite qua API."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Kết nối bằng API token",
             "paragraphs": [
-                "Connection D1 cần ba giá trị: tên hoặc UUID của cơ sở dữ liệu, account ID Cloudflare của bạn và một API token. Token được nhập vào ô có nhãn <ui>API Token</ui> và lưu trong <credentials>Keychain của macOS</credentials>. Không có host, port, thiết lập SSL hay SSH tunnel, vì mọi request đều đi tới API của Cloudflare qua HTTPS.",
-                "Hãy tạo token từ mẫu Custom token với quyền <ui>Account > D1 > Edit</ui>, và chép lại ngay khi Cloudflare hiển thị, vì token chỉ hiện một lần. Token đó truy cập được toàn bộ cơ sở dữ liệu D1 trong tài khoản, không chỉ cơ sở dữ liệu bạn đang kết nối.",
+                "Nhập tên hoặc UUID cơ sở dữ liệu D1, ID tài khoản Cloudflare và <ui>API Token</ui>. Token nằm trong <credentials>macOS Keychain</credentials>. Request dùng HTTPS; không có host, port, cài đặt TLS hay SSH tunnel.",
+                "Tạo token có quyền <ui>Account > D1 > Edit</ui> và sao chép khi hiển thị. Quyền token áp dụng ở cấp tài khoản D1, không giới hạn ở cơ sở dữ liệu đã chọn.",
                 "Import một URL <code>d1://account-id/database-name</code> sẽ điền sẵn tài khoản và cơ sở dữ liệu; token không bao giờ nằm trong URL, nên hãy dán token vào sau."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Đổi cơ sở dữ liệu và query",
             "paragraphs": [
-                "Bộ chuyển cơ sở dữ liệu trên thanh công cụ liệt kê các cơ sở dữ liệu D1 của tài khoản và chuyển qua lại giữa chúng mà không cần kết nối lại. Từ đây bạn cũng tạo và xóa được cơ sở dữ liệu. Mỗi tab giữ nguyên cơ sở dữ liệu mà nó được mở trên đó.",
+                "Chuyển giữa cơ sở dữ liệu D1 của tài khoản không cần kết nối lại. Bộ chuyển còn tạo và drop cơ sở dữ liệu. Tab hiện có giữ cơ sở dữ liệu ban đầu.",
                 "Query dùng dialect của SQLite. <explain>EXPLAIN QUERY PLAN</explain> được vẽ thành sơ đồ, còn thay đổi trên các dòng nằm chờ trong data grid cho tới khi bạn lưu, với <editing>Preview SQL</editing> hiển thị trước các câu lệnh.",
                 "Hãy viết mỗi câu lệnh sao cho nó tự đứng được: thiết lập <code>PRAGMA</code> hay temporary table do một câu lệnh tạo ra sẽ không còn ở câu tiếp theo, và mỗi câu lệnh được commit ngay khi chạy, không có gì để rollback. Khi Cloudflare giới hạn tần suất một request, thông báo lỗi kèm khoảng thời gian Cloudflare yêu cầu chờ trước khi thử lại."
             ]

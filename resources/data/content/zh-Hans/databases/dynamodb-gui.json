@@ -10,8 +10,8 @@
     "engine": "dynamodb",
     "breadcrumb": "Amazon DynamoDB",
     "header": {
-        "title": "适用于 {devices} 的 Amazon DynamoDB GUI",
-        "lead": "通过键和索引浏览表，查看每次读取消耗的读取容量，不丢失类型地编辑项目，在编辑器执行 PartiQL 或 DynamoDB API 请求。"
+        "title": "Amazon DynamoDB GUI",
+        "lead": "浏览项目，按键查询，并查看消耗的读取容量。编辑带类型的值，或运行 PartiQL 请求。"
     },
     "asset": "mac-db-dynamodb-planner",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "选择<ui>认证方式</ui>（Auth Method）、<ui>AWS 区域</ui>（AWS Region），侧边栏列出该区域的表。方式为带可选会话令牌的访问密钥、按 AWS CLI 方式读取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的配置，或会话过期时打开登录提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 配置。",
+                "选择 <ui>认证方式</ui> (Auth Method) 和 <ui>AWS 区域</ui> (AWS Region)。可使用访问密钥和可选会话令牌、AWS CLI 配置文件或 <cloudAuth>AWS IAM Identity Center</cloudAuth>。Identity Center 会话过期时会提示登录。",
                 "配置解析 <code>credential_process</code> 辅助程序和 <code>role_arn</code> 链，过期临时凭据重新获取并重试请求一次。所有请求经 HTTPS、Signature Version 4 签名，无 SSL 设置或 SSH 隧道。中国、European Sovereign Cloud 等其他 AWS 分区的区域自动访问自身端点，无需自定义。",
                 "DynamoDB Local 运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，选 <ui>DynamoDB Local (no credentials)</ui>；8000 端口留空<ui>自定义端点</ui>（Custom Endpoint）。自定义端点仅在此 Mac 可用明文 HTTP。设置指南列出<permissions>各任务需要的 IAM 操作</permissions>。"
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "读取、筛选和编辑项目",
             "paragraphs": [
-                "打开、筛选和分页都经过同一规划器。用 = 固定分区键则对单分区 Query；符合索引键的筛选对该索引 Query；其余 Scan 读取全表，并对每个读取项目计费。状态栏显示所选读取方式、返回数、DynamoDB 为找到它们读取的数及消耗读取容量单位。",
-                "排序键的<filters>筛选</filters>为 =、<、<=、>、>=、BETWEEN、STARTS WITH 时加入键条件。其余变为 DynamoDB 读取后应用的 FilterExpression，减少行但不减少账单。嵌套属性用 <code>address.city</code>、<code>items[0].sku</code> 等路径筛选。",
+                "键筛选使用 Query，其他筛选使用 Scan。Scan 读取整张表，并按所有已读取项目计费。状态栏显示所选操作、返回与扫描项目数，以及消耗的读取容量。",
+                "支持的<filters>排序键筛选</filters>使用键条件。其他筛选在读取后执行，不会降低费用。支持 <code>address.city</code> 和 <code>items[0].sku</code> 等嵌套路径。",
                 "单分区 Query 点击排序键头让 DynamoDB 按该顺序返回。其他排序在读取包含所有匹配项目时由网格完成，否则状态栏注明。下一页从上页结束处继续。网格下总数是 DynamoDB 自身项目数；<ui>精确计数</ui>（Count Exactly）读取所有符合筛选的项目，该读取全额计费。",
                 "表仅声明键，列来自项目：键属性、首批项目样本中的属性及当前页属性。map、list、set 显示 JSON 并在 JSON 编辑器打开，数字保留所有位。",
-                "各修改行保存为一个 PartiQL 语句，<editing>所有值保留类型</editing>：Number 仍为 Number，<code>02134</code> 等 String 仍为 String，JSON 编辑的 String Set 仍为 String Set。更新逐个检查改动属性是否等于网格加载值，宁可失败也不覆盖他人改动。<ui>设为 NULL</ui>（Set NULL）移除属性。",
+                "每行作为一条 PartiQL 语句保存，并<editing>保留类型</editing>。更新会对照加载时的值检查已更改属性，拒绝覆盖并发更改。<ui>设为 NULL</ui> (Set NULL) 会删除该属性。",
                 "编辑器接受名称双引号、字符串单引号的 PartiQL，或 DynamoDB 操作名后跟请求 JSON，如 <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code>。其他操作名拒绝。项目返回网格，其他响应显示 JSON。限流请求退避重试，<code>⌘.</code> 停止运行语句。"
             ]
         },

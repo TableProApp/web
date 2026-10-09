@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "支援自動完成與 EXPLAIN 的 SQL 編輯器",
-        "description": "在 TablePro 中使用感知結構的自動完成與參數撰寫 SQL，搜尋查詢歷史、儲存查詢，並以圖形查看 EXPLAIN 執行計畫。"
+        "description": "使用綱要感知的自動完成編寫 SQL。儲存查詢、搜尋本機歷史，並查看支援的資料庫的 EXPLAIN 計畫。"
     },
     "og": {
         "kicker": "查詢",
-        "title": "撰寫、執行與理解查詢"
+        "title": "SQL 編輯器"
     },
     "header": {
-        "title": "撰寫、執行與理解查詢",
-        "lead": "適合在實際資料庫上撰寫 SQL 的使用者：參考結構撰寫查詢，執行一個陳述式或整份指令碼，儲存值得保留的查詢，並找出變慢的原因。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
+        "title": "SQL 編輯器",
+        "lead": "使用綱要感知的自動完成編寫 SQL。儲存常用查詢、搜尋歷史，並檢查支援的引擎的計畫。",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "了解資料庫結構的編輯器",
+            "title": "綱要感知的自動完成",
             "paragraphs": [
-                "自動完成在輸入時讀取連線的結構：FROM 與 JOIN 後的資料表、別名對應的欄位，以及陳述式前面定義的 CTE 或子查詢的欄位。語法醒目提示使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化游標所在陳述式，同時保留註解。",
-                "<kbd>⌘⏎</kbd> 執行游標所在陳述式或選取內容，<kbd>⌘⇧⏎</kbd> 執行全部，<kbd>⌘⌥⏎</kbd> 不限列數執行，<kbd>⌘.</kbd> 取消。一般陳述式批次在同一交易中執行，任一陳述式失敗即復原。例外包括自行管理交易的指令碼、SQL Server 指令碼，以及 VACUUM 等不能放入交易的陳述式。MySQL、MariaDB 與 Oracle 上的 DDL 會自行提交。"
+                "自動完成建議資料表和欄位，包括別名、CTE 和子查詢。用 <kbd>⌘⇧L</kbd> 格式化目前陳述式，並保留註解。",
+                "執行目前陳述式、選取內容或完整腳本。一般陳述式批次使用一個交易，失敗時復原。SQL Server 腳本、明確交易及 VACUUM 等陳述式除外。MySQL、MariaDB 和 Oracle 的 DDL 獨立提交。"
             ],
             "points": [
                 "編輯器行號旁的陳述式標記各有獨立的執行按鈕。",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "參數、歷史與已儲存查詢",
             "paragraphs": [
-                "在查詢中寫入 <code>:customer_id</code>，TablePro 會在執行前詢問其值與型別，並在驅動程式支援時使用原生參數繫結。",
-                "每次執行的查詢都會進入本機歷史（<kbd>⌘Y</kbd>），支援全文搜尋及來源、失敗與時間範圍篩選。預設儲存 {historyEntries} 筆紀錄，保留 {historyDays} 天，從不同步。",
-                "以 <code>dau</code> 等關鍵字儲存查詢，然後在編輯器中輸入關鍵字展開。已儲存查詢保留版本歷史。連結 SQL 資料夾會將存放 <code>.sql</code> 檔案的資料夾與側邊欄雙向同步，並顯示各檔案的 Git 狀態字母。此功能免費，與用於共用連線檔案的 Starter 功能 Linked Folders 相互獨立。"
+                "用 <code>:customer_id</code> 等參數在查詢執行前輸入值。在驅動程式支援時，值會原生繫結。",
+                "依文字、來源、失敗或時間範圍搜尋本機查詢歷史。預設保留 {historyEntries} 條記錄，期限為 {historyDays} 天，絕不參與同步。",
+                "儲存帶可重複使用關鍵字和版本歷史的查詢。將 <code>.sql</code> 資料夾連結到側邊欄，支援雙向更新和 Git 狀態。SQL 資料夾連結免費，與連線檔案的付費 Linked Folders 功能不同。"
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly 與分頁",
             "paragraphs": [
-                "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已開啟連線中尋找資料表、檢視表與系統資料表，也搜尋已儲存和最近的查詢。每個分頁保留自己的 SQL、排序、篩選與欄寬，結束並重新開啟 App 後會還原；<kbd>⌃Tab</kbd> 可在最近使用的分頁間切換。"
+                "Open Quickly（<kbd>⌘⇧O</kbd>）跨已開啟連線搜尋資料表、檢視和查詢。重新開啟 App 時，分頁保留 SQL 和表格設定。"
             ]
         },
         {
             "id": "performance",
-            "title": "查看、比較與追蹤執行計畫",
+            "title": "查詢效能",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN 與 EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> 將查詢計畫顯示為圖形、含成本長條的樹狀圖或引擎原始輸出。選擇同一查詢的較早執行作為基準，Compare 會說明是否變慢以及計畫是否改變；小於 {explainNoise}% 的差異視為雜訊。兩項功能均免費。"
+                        "將查詢計畫顯示為圖表、成本樹或引擎原始輸出。與之前執行比較，發現耗時和計畫變化；低於 {explainNoise}% 的差異視為雜訊。兩項功能皆免費。"
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights 讀取此 Mac 的查詢歷史，並對結果排名：執行最多的查詢、最慢的查詢、失敗的查詢，以及比上一時段變慢的查詢。查詢依結構分類，因此使用不同值執行的同一陳述式只算一種。數據在 Mac 上計算，從不上傳。"
+                        "在這台 Mac 的本機歷史中尋找緩慢、失敗和常用查詢。相似陳述式依結構分組，不受參數值影響。Query Insights 在本機比較時段，並非伺服器級監控，不上傳指標。"
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "將結果繪製為長條圖、折線圖、區域圖或散佈圖，日期使用時間軸，所選欄位的每個值對應一個數列。圖表從前 {chartInspectedRows} 列中最多繪製 {chartPoints} 個點和 {chartSeries} 個數列，未全部繪製時工具列會提示。"
+                        "將結果繪製為長條圖、折線圖、面積圖或散佈圖。從前 {chartInspectedRows} 列顯示最多 {chartPoints} 個點和 {chartSeries} 個系列，截斷時會提示。"
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "地圖檢視",
                     "paragraphs": [
-                        "當欄位儲存 WKT、WKB、GeoJSON、ClickHouse 元組或 Elasticsearch geo_point 幾何值時，地圖檢視會將其繪製到 Apple 地圖上，選取圖形也會選取對應列。列資料保留在 Mac 上，地圖圖磚由 Apple 提供。地圖檢視免費。"
+                        "在 Apple Maps 上顯示支援的幾何欄位，選擇圖形定位對應列。列資料保留在 Mac；地圖圖磚由 Apple 提供。地圖檢視免費。"
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "不使用 SQL 的引擎",
+            "title": "其他查詢語言",
             "paragraphs": [
-                "對於不使用 SQL 的連線，編輯器接受該引擎自己的語言，各引擎頁面介紹具體支援範圍。MongoDB 編輯器是在 TablePro 內執行的 mongosh 風格 JavaScript shell，並非 mongosh 本身。"
+                "在編輯器中使用各非 SQL 引擎的查詢語言。MongoDB 使用內建 mongosh 風格 JavaScript shell，而非 mongosh 本身。支援的命令請見資料庫頁面。"
             ],
             "engines": [
                 {

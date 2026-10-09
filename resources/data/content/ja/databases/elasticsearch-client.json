@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "{devices} 用 Elasticsearch クライアント",
-        "lead": "Query DSL リクエスト用のコンソールと、各インデックスをテーブルとして読み、<code>_id</code> でドキュメントを編集するグリッド。どちらも SQL ではなく、すべての操作はクラスターへの REST リクエストです。"
+        "title": "Elasticsearch クライアント",
+        "lead": "Query DSL リクエストを実行し、インデックスのドキュメントをグリッドで参照できます。ID を使ってドキュメントを編集します。"
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "クラスターのホストと REST ポートを入力し、<ui>Auth Method</ui> を選びます。Username & Password は HTTP Basic、API Key は <code>Authorization: ApiKey</code> ヘッダーを送るため、API キー作成リクエストが返す <code>encoded</code> 値を貼り付けます。None はセキュリティを切った開発クラスター向けです。一つのクラスターに接続するため Database フィールドはありません。",
+                "REST のホストとポートを入力し、<ui>Auth Method</ui> で Username & Password、API Key、None を選びます。API キーは Elasticsearch の <code>encoded</code> 値を使います。各接続は一つのクラスターに接続します。",
                 "新しい接続の SSL Disabled は平文 HTTP です。それ以外は HTTPS で、Preferred と Required (skip verify) は自己署名証明書を許可し、Verify CA と Verify Identity は検証します。Elasticsearch 8.x は既定でセキュリティと TLS が有効なので、通常 HTTPS と認証情報が必要です。"
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "インデックスと Query DSL コンソール",
             "paragraphs": [
-                "コンソールは Kibana Dev Tools のようにメソッド、パスと任意の JSON 本文を受け付けます。例は <code>match</code> クエリを持つ <code>GET /orders/_search</code> です。検索ヒットは行、<code>format=json</code> 付き <code>_cat</code> リクエストや配列応答はテーブル、その他は整形した JSON として表示します。<code>_sql</code> エンドポイントは利用できません。",
+                "<code>GET /orders/_search</code> のようにメソッド、パス、任意の JSON 本文を書きます。検索結果と配列レスポンスは行として、その他は整形済み JSON として表示します。<code>_sql</code> エンドポイントは使えません。",
                 "サイドバーはインデックスをテーブルとして一覧にし、ドットで始まる名前を隠します。カラムはマッピングから取り、オブジェクトは <code>address.city</code> などのドット区切りパスに展開、nested フィールドは配列の JSON カラムと各リーフのカラムを作ります。各ドキュメントには <code>_id</code>、<code>_index</code>、<code>_score</code> があります。",
                 "<filters>カラムフィルター</filters> は <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> クエリになり、Raw SQL フィルター行は <code>name:Widget</code> などの Lucene 構文を <code>query_string</code> として送ります。<code>text</code> フィールドの並べ替えはマッピングにあれば <code>.keyword</code> サブフィールドを使います。",
-                "グリッド編集は <code>_id</code> をキーにした REST 呼び出しとなり、変更は <code>_update</code>、作成・削除は <code>_doc</code> です。新しい行の <code>_id</code> でドキュメントを命名できます。nested 配列は JSON カラムで変更してください。リーフカラムの入力は保存を止め、カラム名を示し、何も送信しません。"
+                "REST 呼び出しで <code>_id</code> ごとにドキュメントを編集します。新しいドキュメントには ID を入力します。ネストした配列は JSON 列で変更します。末端の列を編集すると、リクエストを送らずに保存をブロックします。"
             ]
         },
         {

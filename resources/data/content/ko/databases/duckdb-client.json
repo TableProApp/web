@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "{devices}용 DuckDB 클라이언트",
-        "lead": "DuckDB 데이터베이스 파일을 열거나 Parquet, CSV, JSON 파일을 지정해 그대로 SQL로 쿼리합니다. DuckDB는 드라이버 안에서 실행되므로 서버에 연결하지 않는 한 서버는 실행되지 않습니다."
+        "title": "DuckDB 클라이언트",
+        "lead": "DuckDB 데이터베이스를 열거나 Parquet, CSV, JSON 파일을 SQL로 조회하세요. 로컬 데이터베이스 서버가 필요하지 않습니다."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "파일 열기",
             "paragraphs": [
-                "<code>.duckdb</code>나 <code>.ddb</code> 파일을 선택하거나 아직 없는 경로를 입력해 만듭니다. <code>:memory:</code>를 입력하면 세션 동안만 유지되는 데이터베이스가 됩니다. DuckDB는 첫 바이트에 파일을 표시하므로 파일 이름과 관계없이 DuckDB로 열립니다.",
-                "<code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> 또는 <code>.ndjson</code> 파일을 선택하면 메모리 데이터베이스의 읽기 전용 뷰로 열립니다. 하나는 <code>file</code>, 다른 하나는 파일 이름으로 지정됩니다. 디스크 파일은 바이트 단위까지 그대로 유지됩니다. 내용을 바꾸려면 <code>.duckdb</code> 데이터베이스에 파일로부터 테이블을 만드세요.",
-                "Finder에서 <code>.duckdb</code> 파일을 더블 클릭하면 여기서 열립니다. Parquet 파일의 다음으로 열기에 TablePro가 표시되며 <ui>파일 > 파일 열기</ui>(File > Open File)로 선택한 Parquet는 <dataFiles>Data Files 창</dataFiles>이 아니라 DuckDB 연결로 열립니다.",
-                "<ui>원격(Quack, 실험적)</ui>(Remote (Quack, experimental))은 <code>quack_serve</code>로 시작한 DuckDB 서버에 연결해 <code>remotedb</code> 같은 별칭으로 연결하며 그 별칭을 통해 테이블 이름으로 접근합니다. 첫 원격 연결은 DuckDB에서 <code>quack</code> 확장을 다운로드합니다."
+                "<code>.duckdb</code> 또는 <code>.ddb</code> 파일을 열거나 새 경로를 입력해 만드세요. 임시 데이터베이스는 <code>:memory:</code>를 사용합니다. 파일은 확장자가 아닌 헤더로 식별됩니다.",
+                "Parquet, CSV, TSV, JSON, NDJSON을 <code>file</code> 및 파일 이름의 읽기 전용 뷰로 여세요. 원본 파일은 바뀌지 않습니다. 데이터를 편집하려면 DuckDB 데이터베이스에 테이블을 만드세요.",
+                "Finder에서 DuckDB 파일을 여세요. Parquet 파일은 <ui>파일 > 파일 열기</ui> (File > Open File)로 DuckDB 연결로 열며 <dataFiles>Data Files 창</dataFiles>에서는 열지 않습니다.",
+                "<ui>원격(Quack, 실험적)</ui> (Remote (Quack, experimental))은 별칭으로 <code>quack_serve</code> 서버에 연결합니다. 첫 연결에서 DuckDB의 <code>quack</code> 확장을 다운로드합니다."
             ]
         },
         {
             "id": "work",
             "title": "쿼리 및 편집",
             "paragraphs": [
-                "모든 연결에서 <code>SELECT * FROM 'data.csv'</code>나 <code>read_parquet('events.parquet')</code>처럼 SQL로 파일을 직접 읽을 수 있습니다. 다른 DuckDB 파일을 <code>ATTACH</code>하면 사이드바에 두 번째 데이터베이스로 나타나고 <code>⌘K</code>로 재연결 없이 전환합니다. 재연결 후에는 연결한 데이터베이스가 유지되지 않습니다.",
+                "<code>SELECT * FROM 'data.csv'</code>처럼 파일을 직접 조회하세요. <code>ATTACH</code>로 다른 DuckDB 파일을 사이드바에 추가하고 <code>⌘K</code>로 전환합니다. 재연결하면 연결된 파일 목록은 유지되지 않습니다.",
                 "<explain>EXPLAIN</explain>은 계획 다이어그램으로 표시됩니다. 테이블 행을 편집할 때 <editing>Preview SQL</editing>이 각 명령문을 먼저 보여 주며 데이터 파일의 뷰는 읽기 전용입니다."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "<structure>Structure 탭</structure>은 테이블을 편집하고 실행 전에 DDL을 보여 줍니다. 여기서 데이터베이스는 파일이므로 앱에서 생성·삭제하지 않으며 두 번째 파일에 접근하려면 <code>ATTACH</code>를 사용합니다."
+                "<structure>Structure 탭</structure>에서 테이블을 편집하고 실행 전에 DDL을 확인합니다. 사이드바에는 데이터베이스 생성 또는 삭제 기능이 없습니다. 파일은 연결할 때 새 경로를 입력해 만들고 다른 파일에는 <code>ATTACH</code>로 접근하세요."
             ]
         },
         {

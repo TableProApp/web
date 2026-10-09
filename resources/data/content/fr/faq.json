@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Questions fréquentes",
-        "description": "Réponses sur TablePro : gratuité, licences, Mac, iPhone et bases compatibles, données envoyées, équipes et remboursements."
+        "description": "Réponses sur les apps TablePro, les bases compatibles, les forfaits payants, les licences, la confidentialité et les comptes."
     },
     "og": {
         "kicker": "FAQ",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Questions fréquentes",
-        "lead": "Des réponses courtes sur les applications, les licences, la confidentialité et les comptes, avec des liens vers la page qui traite chaque sujet en détail."
+        "lead": "Questions sur les apps, les licences et la confidentialité."
     },
     "breadcrumb": "FAQ",
     "jump": "Questions par thème",
@@ -31,37 +31,37 @@
                     "id": "what-is-tablepro",
                     "question": "Qu’est-ce que TablePro ?",
                     "answer": [
-                        "TablePro est un client de bases de données natif et open source pour les développeurs. Sur Mac, connectez-vous à {featuredEngines} et d’autres moteurs, rédigez et exécutez des requêtes, parcourez et modifiez les données, et modifiez les schémas. L’application iPhone et iPad est une application distincte, plus réduite, pour travailler sur vos bases loin de votre bureau.",
-                        "La <features>page des fonctionnalités</features> explique chaque partie."
+                        "Un client natif et open source de bases de données. Sur Mac, interrogez et modifiez {featuredEngines} et d’autres moteurs, et travaillez sur les schémas. L’app iPhone et iPad propose un ensemble plus restreint d’outils.",
+                        "Voir toutes les <features>fonctions</features>."
                     ]
                 },
                 {
                     "id": "native",
                     "question": "Que signifie « natif » ici ?",
                     "answer": [
-                        "Chaque application TablePro est écrite en Swift pour sa plateforme. Sur Mac, elle utilise AppKit et SwiftUI, le Trousseau et Touch ID. Sur iPhone et iPad, elle utilise Face ID, les widgets, Raccourcis et les Activités en direct. Les pilotes de bases de données sont eux aussi natifs, sans JDBC."
+                        "TablePro utilise des interfaces et pilotes natifs, sans Electron ni JDBC. Les apps actuelles sont écrites en Swift : AppKit et SwiftUI sur Mac, et des fonctions comme Face ID et Raccourcis sur iPhone et iPad."
                     ]
                 },
                 {
                     "id": "is-it-free",
                     "question": "TablePro est-il gratuit ?",
                     "answer": [
-                        "L’application Mac se télécharge et s’utilise gratuitement, sans période d’essai ni limite de temps. Une licence Starter ou Team ajoute des fonctionnalités facultatives, listées sur la <pricing>page des tarifs</pricing>. Se connecter à n’importe quel moteur pris en charge ne nécessite aucune licence, pas plus que l’assistant IA, le serveur MCP ou Safe Mode.",
-                        "L’application iPhone et iPad est gratuite, sans achats intégrés, et ne nécessite aucune licence."
+                        "Oui. L’app Mac n’a ni période d’essai ni limite de durée. Tous les moteurs compatibles, l’IA, MCP et Safe Mode sont gratuits. Starter et Team ajoutent les fonctions de la <pricing>page des tarifs</pricing>.",
+                        "L’app iPhone et iPad est gratuite, sans licence ni achats intégrés."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro est-il open source ?",
                     "answer": [
-                        "Oui. Les deux applications sont open source sous AGPLv3, y compris le code des fonctionnalités payantes, dans un <source>dépôt GitHub</source>. Une version que vous compilez depuis le code source vérifie la licence de la même manière que les versions que nous publions."
+                        "Oui. Les deux apps, y compris le code des fonctions payantes, sont sous AGPLv3 dans un <source>dépôt GitHub</source>. Les versions compilées depuis le code vérifient aussi les licences des fonctions payantes."
                     ]
                 },
                 {
                     "id": "work-use",
                     "question": "Puis-je utiliser TablePro au travail ?",
                     "answer": [
-                        "Oui, quelle que soit la taille de l’entreprise. L’AGPL n’impose aucune condition pour exécuter TablePro. Ses conditions s’appliquent à sa distribution et à la mise à disposition d’une version modifiée à d’autres personnes via un réseau. Le <agpl>texte de la licence</agpl> fournit les détails."
+                        "Oui, dans une entreprise de toute taille. L’AGPL n’impose aucune condition pour exécuter TablePro. Ses conditions concernent la distribution et la mise à disposition d’une version modifiée via un réseau. Consultez le <agpl>texte de la licence</agpl>."
                     ]
                 }
             ]
@@ -74,15 +74,15 @@
                     "id": "mac-requirements",
                     "question": "Sur quels Mac TablePro fonctionne-t-il ?",
                     "answer": [
-                        "TablePro pour Mac nécessite {macRequirement}. Des versions distinctes existent pour Apple silicon et Intel ; la <download>page de téléchargement</download> propose les deux et Homebrew installe la bonne."
+                        "L’app Mac nécessite {macRequirement}. Choisissez Apple silicon ou Intel sur la <download>page de téléchargement</download>, ou laissez Homebrew sélectionner la version."
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "Existe-t-il une application iPhone et iPad ?",
                     "answer": [
-                        "Oui. TablePro pour iPhone et iPad est sur l’App Store, nécessite {iosRequirement} et est gratuit, sans achats intégrés. Il se connecte à {iosEngines}, avec tunnels SSH, Safe Mode et Face ID, et permet de parcourir et modifier les tables et d’exécuter des requêtes.",
-                        "C’est une application distincte pour téléphone et tablette, pas une copie de l’application Mac : elle n’a par exemple ni assistant IA, ni serveur MCP, ni requêtes enregistrées. La <ios>page iPhone et iPad</ios> liste ce qu’elle fait et ce qu’elle laisse de côté."
+                        "Oui. L’app gratuite de l’App Store nécessite {iosRequirement} et se connecte à {iosEngines}. Elle prend en charge les requêtes, tunnels SSH, Safe Mode et Face ID ; la consultation et l’édition des tables dépendent du moteur.",
+                        "Elle n’a ni assistant IA, ni serveur MCP, ni requêtes enregistrées. Consultez ses <ios>fonctions et limites</ios>."
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                     "id": "languages",
                     "question": "Dans quelles langues les applications sont-elles disponibles ?",
                     "answer": [
-                        "L’interface de l’application Mac est disponible en {macLanguages}. Dans les langues autres que l’anglais, certains écrans affichent encore du texte en anglais. L’application iPhone et iPad est disponible en {iosLanguages}.",
-                        "Ce site web et l’espace compte sont disponibles en plusieurs langues. La <docs>documentation</docs> est en anglais."
+                        "L’app Mac prend en charge {macLanguages}, mais certains écrans traduits affichent encore de l’anglais. L’app iPhone et iPad prend en charge {iosLanguages}.",
+                        "Le site et le portail de compte sont disponibles en plusieurs langues. La <docs>documentation</docs> est en anglais."
                     ]
                 }
             ]
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "À quelles bases puis-je me connecter ?",
                     "answer": [
-                        "Sur Mac : {featuredEngines} et d’autres, dont des moteurs documentaires, clé-valeur, de recherche, de streaming et analytiques. La <databases>page des bases de données</databases> liste chaque moteur, avec ce que TablePro prend en charge pour lui.",
+                        "L’app Mac prend en charge {featuredEngines} et d’autres moteurs. Consultez les <databases>bases compatibles</databases> pour les capacités de chaque moteur.",
                         "L’application iPhone et iPad se connecte à {iosEngines}."
                     ]
                 },
@@ -118,31 +118,31 @@
                     "id": "drivers",
                     "question": "Dois-je installer des pilotes de bases de données ?",
                     "answer": [
-                        "Non. Les pilotes de {bundledEngines} sont fournis avec l’application Mac. Les autres se téléchargent la première fois que vous choisissez leur moteur, ce qui nécessite une connexion internet, et sont mis à jour séparément de l’application. Avant de charger un pilote, l’application vérifie sa somme de contrôle publiée et sa signature de code.",
-                        "Sur iPhone et iPad, les pilotes sont intégrés ; aucun téléchargement n’est nécessaire."
+                        "Les pilotes de {bundledEngines} sont inclus sur Mac. Les autres sont téléchargés à la première utilisation, nécessitent internet et se mettent à jour séparément. TablePro vérifie leur somme de contrôle et leur signature de code.",
+                        "Tous les pilotes iPhone et iPad sont intégrés."
                     ]
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "Puis-je me connecter via SSH ou SSL ?",
+                    "question": "Puis-je me connecter par SSH ou TLS ?",
                     "answer": [
-                        "Oui. Sur Mac, les tunnels SSH s’authentifient par mot de passe, clé ou agent SSH, dont celui de 1Password, et peuvent passer par des hôtes de rebond. SSL/TLS peut vérifier le certificat serveur. Une connexion peut aussi passer par Cloudflare Access, Cloud SQL Auth Proxy, un proxy SOCKS5 ou une commande comme kubectl port-forward. La <connections>page des connexions</connections> détaille chaque option.",
-                        "Sur iPhone et iPad, les tunnels SSH s’authentifient par mot de passe ou clé privée ; les hôtes de rebond ne sont pas pris en charge."
+                        "Oui, lorsque le moteur le permet. L’app Mac prend en charge clés SSH, mots de passe, agents et hôtes de rebond, ainsi que la vérification des certificats TLS et les tunnels ou proxys externes. Voir les <connections>options de connexion</connections>.",
+                        "Sur iPhone et iPad, SSH utilise un mot de passe ou une clé privée. Les hôtes de rebond ne sont pas pris en charge."
                     ]
                 },
                 {
                     "id": "passwords",
                     "question": "Où mes mots de passe sont-ils stockés ?",
                     "answer": [
-                        "Sur Mac, dans le Trousseau macOS. Une connexion peut aussi lire son mot de passe lors de la connexion depuis un fichier, une variable d’environnement, une commande shell, 1Password, HashiCorp Vault ou AWS Secrets Manager. Sur iPhone et iPad, ils sont dans le Trousseau de l’appareil.",
-                        "Avec iCloud Sync activé, les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) sous Catégories synchronisées (Sync Categories) sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad, qui utilise le Trousseau iCloud."
+                        "Les mots de passe enregistrés restent dans le trousseau. Sur Mac, vous pouvez aussi les lire depuis des fichiers, variables d’environnement, commandes shell, 1Password, Vault ou AWS Secrets Manager.",
+                        "La synchronisation des mots de passe s’active séparément : <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad. Elle utilise le trousseau iCloud."
                     ]
                 },
                 {
                     "id": "import-connections",
                     "question": "Puis-je importer mes connexions d’une autre application ?",
                     "answer": [
-                        "Oui. L’application Mac importe les connexions depuis {importApps}, mots de passe enregistrés compris. L’importation est gratuite."
+                        "Oui. L’app Mac importe les connexions et mots de passe enregistrés de {importApps}. L’import est gratuit."
                     ]
                 }
             ]
@@ -155,45 +155,45 @@
                     "id": "what-a-license-adds",
                     "question": "Qu’ajoute une licence ?",
                     "answer": [
-                        "Une licence Starter ajoute {starterFeatures} à l’application Mac. Team comprend tout ce que contient Starter et ajoute {teamFeatures}, pour partager des connexions et des requêtes avec votre équipe. La <pricing>page des tarifs</pricing> décrit chaque fonctionnalité."
+                        "Starter ajoute {starterFeatures} à l’app Mac. Team ajoute aussi {teamFeatures}. Consultez les <pricing>fonctions payantes</pricing> pour les détails."
                     ]
                 },
                 {
                     "id": "cost",
                     "question": "Combien coûte une licence ?",
                     "answer": [
-                        "Starter et Team sont chacun vendus au mois, à l’année ou en paiement unique, avec des prix en dollars américains. Team est facturé par poste, avec un minimum de {teamMinSeats} postes. Les prix et les totaux actuels figurent sur la <pricing>page des tarifs</pricing>."
+                        "Choisissez un paiement mensuel, annuel ou unique en dollars américains. Team commence à {teamMinSeats} postes. Consultez les <pricing>prix et totaux actuels</pricing>."
                     ]
                 },
                 {
                     "id": "how-many-macs",
                     "question": "Combien de Mac une licence couvre-t-elle ?",
                     "answer": [
-                        "Une licence Starter est destinée à une personne, sur un maximum de {starterActivations} Mac. Une licence Team dispose de {teamMinSeats} à {teamMaxSeats} postes, chacun correspondant à un Mac activé. Un iPhone ou un iPad n’en utilise jamais : cette application n’a pas de licence.",
-                        "Pour déplacer une licence vers un autre Mac, retirez l’ancien dans <account>votre compte</account>."
+                        "Starter couvre une personne sur {starterActivations} Mac au maximum. Team propose {teamMinSeats}–{teamMaxSeats} postes ; chaque poste correspond à un Mac activé. iPhone et iPad n’utilisent aucun poste.",
+                        "Pour transférer une activation, retirez l’ancien Mac dans <account>votre compte</account>."
                     ]
                 },
                 {
                     "id": "subscription-ends",
                     "question": "Que se passe-t-il à la fin de mon abonnement ?",
                     "answer": [
-                        "Les fonctionnalités payantes se verrouillent : iCloud Sync s’interrompt, par exemple, et les connexions issues de Linked Folders ou de Team Library sont masquées. Tout le reste continue de fonctionner, et vos connexions, requêtes et réglages restent tels quels sur votre Mac. Un renouvellement réactive les fonctionnalités payantes.",
-                        "Un achat à paiement unique n’a pas de date d’expiration. Rien ne change sur iPhone ou iPad."
+                        "Les fonctions payantes s’arrêtent : iCloud Sync est suspendu et les connexions partagées peuvent être masquées. Vos connexions, requêtes et réglages locaux restent. Les fonctions gratuites continuent ; le renouvellement rétablit l’accès payant.",
+                        "Les licences à achat unique n’expirent pas. iPhone et iPad ne sont pas concernés."
                     ]
                 },
                 {
                     "id": "offline",
                     "question": "Une licence fonctionne-t-elle hors ligne ?",
                     "answer": [
-                        "Oui. L’application Mac vérifie la signature de la licence sur votre Mac à chaque démarrage, et la confirme auprès de notre serveur tous les {revalidateDays} jours. Si elle ne peut pas joindre le serveur, les fonctionnalités payantes continuent de fonctionner pendant {graceDays} jours après la dernière vérification réussie.",
-                        "Certaines choses nécessitent par nature une connexion internet : le premier téléchargement d’un pilote, les mises à jour et les fournisseurs d’IA hébergés dans le cloud."
+                        "Oui, pendant la fenêtre hors ligne. TablePro vérifie la signature au lancement et contacte le serveur tous les {revalidateDays} jours. Si le serveur est inaccessible, les fonctions payantes restent actives pendant {graceDays} jours après la dernière vérification réussie.",
+                        "Les téléchargements de pilotes, mises à jour et IA cloud nécessitent toujours internet."
                     ]
                 },
                 {
                     "id": "payment",
                     "question": "Qui gère le paiement ?",
                     "answer": [
-                        "{merchant} est notre merchant of record : vous achetez la licence auprès de {merchant}, qui encaisse le paiement, calcule la taxe sur les ventes ou la TVA lors du règlement et vous envoie le reçu par e-mail. Vos factures, votre moyen de paiement et votre abonnement se trouvent dans le <portal>portail client de {merchant}</portal>, où vous vous connectez avec l’adresse e-mail utilisée pour l’achat."
+                        "{merchant} est le merchant of record et gère paiement, taxes et reçus. Gérez factures et abonnements dans le <portal>portail client de {merchant}</portal> avec votre e-mail d’achat."
                     ]
                 },
                 {
@@ -214,14 +214,14 @@
                     "id": "refunds",
                     "question": "Puis-je obtenir un remboursement ?",
                     "answer": [
-                        "Oui, pour toute offre, dans les {refundDays} jours suivant l’achat, et pour chaque renouvellement mensuel ou annuel, dans les {refundDays} jours suivant son paiement. La <refundPolicy>politique de remboursement</refundPolicy> explique comment faire la demande et ce qu’il advient de la licence."
+                        "Oui. Les achats et renouvellements d’abonnement sont remboursables dans les {refundDays} jours suivant chaque paiement. Voir la <refundPolicy>politique de remboursement</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "J’ai perdu ma clé de licence. Où est-elle ?",
                     "answer": [
-                        "Dans l’e-mail que nous vous avons envoyé lors de l’achat, et dans <account>votre compte</account> : connectez-vous avec l’adresse e-mail utilisée pour l’achat ; vos licences y figurent avec leurs clés."
+                        "Retrouvez-la dans l’e-mail d’achat ou <account>votre compte</account>. Connectez-vous avec l’e-mail d’achat pour voir vos clés."
                     ]
                 },
                 {
@@ -241,30 +241,30 @@
                     "id": "what-is-sent",
                     "question": "Que transmettent les applications à TablePro ?",
                     "answer": [
-                        "Sans licence activée, le seul envoi de l’application Mac à TablePro est un rapport d’utilisation quotidien, activé par défaut et désactivable dans <ui>Réglages > Général > Confidentialité</ui> (Settings > General > Privacy). Il contient un identifiant de machine haché et des informations sur l’application, comme sa version, sa langue et les types de bases auxquelles vous vous connectez, et jamais de noms d’hôtes, de noms d’utilisateur, de mots de passe, de requêtes ni de lignes.",
-                        "Avec une licence, l’application Mac la vérifie aussi tous les {revalidateDays} jours, en envoyant la clé, le même identifiant de machine, le nom de votre Mac et les versions de l’application et de macOS. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Share Usage Data. La <privacy>politique de confidentialité</privacy> donne la liste complète, y compris ce que notre serveur conserve."
+                        "L’app Mac envoie par défaut un rapport quotidien ; désactivez-le dans <ui>Réglages > Général > Confidentialité</ui> (Settings > General > Privacy). Il contient un identifiant de machine haché, des détails de l’app et les types de bases, jamais les noms d’hôtes, identifiants, mots de passe, requêtes ou lignes.",
+                        "Les vérifications de licence ont lieu tous les {revalidateDays} jours et transmettent clé, identifiant de machine, nom du Mac et versions de l’app et de macOS. Les rapports iPhone et iPad sont facultatifs. Team Library reçoit les réglages et SQL enregistrés que vous publiez. Voir la <privacy>politique de confidentialité</privacy>, y compris la journalisation des IP."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Dois-je m’inscrire ?",
                     "answer": [
-                        "Aucune inscription n’est nécessaire pour utiliser les applications. Si vous achetez une licence, <account>votre compte</account> affiche vos licences, vos Mac activés et les postes de votre équipe ; vous vous y connectez avec un lien que nous envoyons à l’adresse e-mail utilisée pour l’achat."
+                        "Aucune inscription n’est nécessaire pour utiliser les apps. Les acheteurs gèrent licences, Mac et postes dans <account>leur compte</account>, via un lien envoyé à leur e-mail d’achat."
                     ]
                 },
                 {
                     "id": "ai-data",
                     "question": "L’assistant IA envoie-t-il mes données à TablePro ?",
                     "answer": [
-                        "Non. L’assistant IA se trouve dans l’application Mac et ses demandes vont directement au fournisseur que vous ajoutez, sans jamais passer par TablePro. Par défaut, une demande inclut le type et le nom de la base, les définitions de tables et de colonnes du schéma, ainsi que la requête en cours ; les lignes de résultats ne sont envoyées que si vous activez cette option. {localAiProviders} fonctionnent sur votre Mac. La <aiMcp>page IA et MCP</aiMcp> fournit les détails."
+                        "Non. Les requêtes vont directement au fournisseur choisi, sans passer par TablePro. Elles incluent par défaut le type et le nom de la base, le schéma et la requête en cours. Les lignes de résultat nécessitent une activation séparée. {localAiProviders} fonctionnent localement. Les fournisseurs peuvent facturer l’utilisation. Voir le <aiMcp>traitement des données IA</aiMcp>."
                     ]
                 },
                 {
                     "id": "icloud-data",
                     "question": "Que stocke iCloud Sync et où ?",
                     "answer": [
-                        "iCloud Sync reste désactivé tant que vous ne l’activez pas. Les connexions synchronisées et, sur Mac, les autres catégories que vous choisissez vont dans une base de données privée de votre propre compte iCloud, que TablePro ne peut pas lire. Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) sous Catégories synchronisées (Sync Categories) sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad.",
-                        "Sur Mac, iCloud Sync fait partie d’une licence Starter ou Team. Sur iPhone et iPad, il est gratuit."
+                        "La synchronisation est désactivée par défaut et utilise une base privée dans votre compte iCloud, que TablePro ne peut pas lire. Les mots de passe nécessitent une activation séparée : <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad.",
+                        "iCloud Sync nécessite Starter ou Team sur Mac et est gratuit sur iPhone et iPad."
                     ]
                 }
             ]
@@ -277,28 +277,28 @@
                     "id": "sign-in",
                     "question": "Comment me connecter à mon compte ?",
                     "answer": [
-                        "Allez dans <account>votre compte</account> et saisissez l’adresse e-mail utilisée pour l’achat. Nous vous envoyons un lien de connexion à usage unique, qui expire peu après. Seule l’adresse ayant acheté une licence peut se connecter ; les membres rejoignent l’équipe avec un code d’invitation dans l’application Mac."
+                        "Saisissez votre e-mail d’achat dans <account>votre compte</account>. Le lien envoyé s’utilise une seule fois et expire rapidement. Seuls les acheteurs accèdent au portail ; les membres de l’équipe utilisent un code d’invitation dans l’app Mac."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Comment ajouter ou retirer des membres de l’équipe ?",
                     "answer": [
-                        "Dans <account>votre compte</account>, invitez une personne par e-mail. Elle reçoit un code à saisir dans TablePro sur son Mac, dans <ui>Réglages > Licence</ui> (Settings > License), et son Mac occupe un poste. Retirer un membre libère son poste, déconnecte ses Mac et supprime ce qu’il a publié dans Team Library."
+                        "Invitez vos collègues par e-mail dans <account>votre compte</account>. Ils saisissent le code dans <ui>Réglages > Licence</ui> (Settings > License) ; chaque Mac activé utilise un poste. Retirer un membre libère le poste et supprime ses éléments publiés dans Team Library. Ses Mac perdent l’accès payant à la prochaine vérification de licence, pas immédiatement."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "Comment modifier le nombre de postes ?",
                     "answer": [
-                        "Pour un abonnement Team mensuel ou annuel, modifiez-le dans <account>votre compte</account> ; le changement apparaît sur la facture suivante. Pour une licence Team à paiement unique, écrivez à <email>{email}</email>."
+                        "Modifiez les postes d’abonnement dans <account>votre compte</account> ; la différence apparaît sur la prochaine facture. Pour les licences à achat unique, écrivez à <email>{email}</email>."
                     ]
                 },
                 {
                     "id": "cancel",
                     "question": "Comment résilier un abonnement ?",
                     "answer": [
-                        "Résiliez-le dans <account>votre compte</account> ou dans le <portal>portail client de {merchant}</portal>. Aucun nouveau paiement n’est prélevé et la licence reste active jusqu’à la fin de la période payée. Vous pouvez reprendre l’abonnement avant cette date."
+                        "Résiliez dans <account>votre compte</account> ou le <portal>portail de {merchant}</portal>. L’accès continue jusqu’à la fin de la période payée, sans nouveau renouvellement. Vous pouvez reprendre avant cette date."
                     ]
                 }
             ]
@@ -311,23 +311,23 @@
                     "id": "switch-connections",
                     "question": "Dois-je reconfigurer mes connexions ?",
                     "answer": [
-                        "Non. TablePro importe les connexions depuis {importApps}, avec mots de passe enregistrés, tunnels SSH et paramètres SSL."
+                        "Si votre client actuel est pris en charge, importez les connexions de {importApps}, avec mots de passe enregistrés, tunnels SSH et réglages TLS."
                     ]
                 },
                 {
                     "id": "compare",
                     "question": "Comment TablePro se compare-t-il aux autres clients de bases de données ?",
                     "answer": [
-                        "Les <compare>comparaisons</compare> placent TablePro à côté d’autres clients, avec la date de vérification de chaque fait, et indiquent dans quels cas chacun convient le mieux."
+                        "Les <compare>comparaisons</compare> présentent différences, dates de vérification et sources, y compris les cas où un autre client peut mieux convenir."
                     ]
                 }
             ]
         }
     ],
     "contact": {
-        "title": "Vous n’avez pas trouvé votre réponse ?",
+        "title": "Besoin d’aide ?",
         "body": "Écrivez à <email>{email}</email> ou signalez un problème sur <issues>GitHub</issues>.",
         "chat": "Démarrer un chat en direct",
-        "chatNote": "Le chat se charge sur chaque page une fois son chargement terminé."
+        "chatNote": "Le chat en direct se charge une fois la page chargée."
     }
 }

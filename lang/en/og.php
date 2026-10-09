@@ -23,7 +23,7 @@ return [
         'feature' => 'Features',
     ],
 
-    'author' => 'The TablePro team',
+    'author' => 'TablePro',
 
     'byline' => ':author · :date',
 ];

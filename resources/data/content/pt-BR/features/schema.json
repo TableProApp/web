@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "Esquema",
-        "title": "Esquema, comparação e sincronização"
+        "title": "Comparação de esquema e banco de dados"
     },
     "header": {
-        "title": "Esquema, comparação e sincronização",
-        "lead": "Para mudar a estrutura de um banco e manter dois bancos alinhados. Edite uma tabela vendo o DDL, veja como as tabelas se relacionam, alinhe o ambiente de homologação ao de desenvolvimento ou copie tabelas para outro servidor ou mecanismo. Tudo aqui está no app para Mac. O app para iPhone e iPad cobre uma parte.",
+        "title": "Comparação de esquema e banco de dados",
+        "lead": "Inspecione os relacionamentos das tabelas, altere as estruturas das tabelas suportadas e compare os bancos de dados antes de aplicar um script de sincronização.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Altere a estrutura e leia o DDL primeiro",
+            "title": "Editar estrutura da tabela",
             "paragraphs": [
-                "A aba Structure edita colunas, índices, chaves estrangeiras e restrições CHECK de uma tabela em uma grade. As mudanças aguardam até você salvar, e <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) mostra as instruções ALTER TABLE antes de executar qualquer coisa. Mudanças que removem algo, alteram um tipo, adicionam NOT NULL ou alteram a chave primária pedem confirmação primeiro, mesmo em conexões com nível de Safe Mode {macSafeModeDefault}.",
-                "Índices podem usar chaves de expressão como <code>lower(email)</code>. New Table cria uma tabela da mesma forma, com prévia SQL ao vivo. No SQLite, libSQL, Turso e Cloudflare D1, que não permitem alterar uma chave estrangeira diretamente, TablePro gera uma reconstrução da tabela para você revisar. Após sua confirmação, executa no SQLite e em arquivos libSQL locais; no Turso, libSQL remoto e D1, deixa a execução por sua conta."
+                "Edite colunas, índices, chaves estrangeiras e restrições CHECK na aba Structure. Revise o DDL pendente com <ui>Preview SQL</ui>. Alterações destrutivas, de tipo, NOT NULL e chave primária exigem confirmação mesmo em {macSafeModeDefault}.",
+                "Crie tabelas com uma visualização SQL ao vivo. As alterações de chave estrangeira nos mecanismos da família SQLite podem exigir uma reconstrução da tabela. TablePro executa reconstruções confirmadas em SQLite e libSQL local; no Turso, libSQL remoto e Cloudflare D1, você mesmo executa o script gerado."
             ],
             "engines": [
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "Veja como as tabelas se relacionam",
+            "title": "Diagrama ER",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> desenha as tabelas e chaves estrangeiras do esquema atual, com cardinalidade pé de galinha calculada a partir das chaves primárias e únicas. Tabelas de junção como <code>product_tags</code> são representadas por uma única linha muitos-para-muitos. Exporte o diagrama como PNG, copie como imagem ou exporte como SQL: as instruções CREATE TABLE com suas chaves estrangeiras.",
-                "O diagrama é um instantâneo para ler e compartilhar. As tabelas são alteradas na aba Structure, não na tela do diagrama."
+                "<ui>View ER Diagram</ui> mostra tabelas e relacionamentos de chave estrangeira com notação de pé de galinha. Exporte como PNG ou SQL ou copie o diagrama como imagem.",
+                "O diagrama é somente leitura, não um designer de esquema. Faça alterações na guia Estrutura."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Rotinas, triggers e pastas na barra lateral",
+            "title": "Objetos de banco de dados",
             "paragraphs": [
-                "Sob cada esquema, a barra lateral lista procedimentos, funções e triggers quando o mecanismo os possui e abre seu código em uma aba somente leitura, de onde você pode copiar ou abrir no editor. Redshift, CockroachDB, PGlite e SAP HANA não listam nenhum. Partições PostgreSQL aparecem sob a tabela pai."
+                "Inspecione rotinas e gatilhos suportados em guias de origem somente leitura e, em seguida, copie seu SQL ou abra-o no editor. As listagens de objetos variam de acordo com o mecanismo. As partições PostgreSQL aparecem em sua tabela pai."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Pastas para tabelas e visualizações",
                     "paragraphs": [
-                        "Agrupe tabelas e visualizações em pastas arrastando-as ou usando <ui>Move to</ui>, no layout em lista ou árvore da barra lateral. O campo de filtro pesquisa dentro das pastas. Uma pasta existe apenas no TablePro e não altera nada no servidor; com o iCloud Sync ativado, as pastas acompanham você nos outros Macs."
+                        "Agrupe tabelas e visualizações com arrastar e soltar ou <ui>Move to</ui>. As pastas alteram apenas a barra lateral, não o banco de dados, e sincronizam entre Macs quando iCloud Sync está habilitado."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Escolha origem e destino, que podem ser dois servidores ou dois bancos no mesmo servidor. Compare & Sync lista todas as tabelas diferentes, com visualizações, rotinas e triggers se você os incluir. No modo de dados, associa as linhas por chave e marca cada valor diferente, com filtro e limite de linhas por tabela, permitindo comparar um trecho de uma tabela grande.",
-                "O script gerado é ordenado por chaves estrangeiras e escrito para o cliente do próprio destino. Instruções que destroem dados, como remover colunas, restringir tipos ou excluir linhas, ficam retidas até você autorizá-las naquela execução. Uma conexão Read-Only não pode ser escolhida como destino. Salve uma comparação para executá-la novamente com um clique."
+                "Compare esquema ou dados entre um banco de dados de origem e de destino. Inclua visualizações, rotinas e gatilhos quando houver suporte. As comparações de dados correspondem a linhas por chave, com filtros e limites de linha para cada tabela.",
+                "Revise um script de sincronização gerado ordenado por chaves estrangeiras. As alterações destrutivas permanecem excluídas até que você as permita para essa execução. As conexões Read-Only não podem ser destinos. Salve comparações para reutilização."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database e Transfer To",
+            "title": "Copiar e transferir tabelas",
             "paragraphs": [
-                "Copy To envia tabelas, visualizações, rotinas e triggers, como estrutura, dados ou ambos, para outro banco em qualquer conexão salva, inclusive com outro mecanismo. Antes de qualquer gravação, uma revisão lista o DDL, as linhas esperadas de cada tabela e todos os tipos de coluna alterados na transferência. Uma coluna <code>ENUM</code> de MariaDB, por exemplo, chega ao PostgreSQL como <code>VARCHAR</code> sem sua lista de valores permitidos. Uma cláusula WHERE e um limite de linhas por tabela permitem copiar parte de uma tabela.",
-                "Duplicate Database copia um banco inteiro com outro nome na mesma conexão. Transfer To move linhas diretamente para uma tabela existente em outra conexão aberta, com mapeamento de colunas e sem arquivo intermediário. Os três são gratuitos."
+                "Copy To move objetos e dados suportados entre bancos de dados, inclusive entre mecanismos. Revise primeiro o DDL, as contagens de linhas e as conversões de tipo. As conversões podem perder restrições: MariaDB <code>ENUM</code> se torna PostgreSQL <code>VARCHAR</code> sem sua lista de valores permitidos.",
+                "Duplicate Database copia um banco de dados na mesma conexão. Transfer To mapeia linhas para uma tabela existente em outra conexão, sem arquivo intermediário. Essas ferramentas são gratuitas."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles mostra os privilégios de cada usuário como uma árvore, do servidor até uma única coluna. Concessões e revogações aguardam como mudanças pendentes e mostram seu SQL antes de executar; você não precisa escrever GRANT manualmente."
+                        "Inspecione privilégios do servidor às colunas nos mecanismos suportados. Prepare concessões e revogações e revise o SQL antes de aplicá-las."
                     ],
                     "engines": [
                         {

@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "支持自动补全和 EXPLAIN 的 SQL 编辑器",
-        "description": "在 TablePro 中使用感知结构的自动补全和参数编写 SQL，搜索查询历史、保存查询，并以图形查看 EXPLAIN 执行计划。"
+        "description": "使用结构感知的自动补全编写 SQL。保存查询、搜索本地历史，并查看支持的数据库的 EXPLAIN 计划。"
     },
     "og": {
         "kicker": "查询",
-        "title": "编写、运行和理解查询"
+        "title": "SQL 编辑器"
     },
     "header": {
-        "title": "编写、运行和理解查询",
-        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
+        "title": "SQL 编辑器",
+        "lead": "使用结构感知的自动补全编写 SQL。保存常用查询、搜索历史，并检查支持的引擎的计划。",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "了解数据库结构的编辑器",
+            "title": "结构感知的自动补全",
             "paragraphs": [
-                "自动补全在输入时读取连接的结构：FROM 和 JOIN 后的表、别名对应的列，以及语句前面定义的 CTE 或子查询的列。语法高亮使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化光标所在语句，同时保留注释。",
-                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚。例外包括自行管理事务的脚本、SQL Server 脚本，以及 VACUUM 等不能放入事务的语句。MySQL、MariaDB 和 Oracle 上的 DDL 会自行提交。"
+                "自动补全建议表和列，包括别名、CTE 和子查询。用 <kbd>⌘⇧L</kbd> 格式化当前语句，并保留注释。",
+                "运行当前语句、选中内容或完整脚本。普通语句批次使用一个事务，失败时回滚。SQL Server 脚本、显式事务及 VACUUM 等语句除外。MySQL、MariaDB 和 Oracle 的 DDL 独立提交。"
             ],
             "points": [
                 "编辑器行号旁的语句标记各有独立的运行按钮。",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "参数、历史和已保存查询",
             "paragraphs": [
-                "在查询中写入 <code>:customer_id</code>，TablePro 会在运行前询问其值和类型，并在驱动支持时使用原生参数绑定。",
-                "每次运行的查询都会进入本地历史（<kbd>⌘Y</kbd>），支持全文搜索及来源、失败和时间范围筛选。默认保存 {historyEntries} 条记录，保留 {historyDays} 天，从不同步。",
-                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹会将存放 <code>.sql</code> 文件的文件夹与侧边栏双向同步，并显示各文件的 Git 状态字母。该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
+                "用 <code>:customer_id</code> 等参数在查询执行前输入值。在驱动支持时，值会原生绑定。",
+                "按文本、来源、失败或时间范围搜索本地查询历史。默认保留 {historyEntries} 条记录，期限为 {historyDays} 天，绝不参与同步。",
+                "保存带可复用关键词和版本历史的查询。将 <code>.sql</code> 文件夹链接到侧边栏，支持双向更新和 Git 状态。SQL 文件夹链接免费，与连接文件的付费 Linked Folders 功能不同。"
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly 和标签页",
             "paragraphs": [
-                "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已打开连接中查找表、视图和系统表，也搜索已保存和最近的查询。每个标签页保留自己的 SQL、排序、筛选和列宽，退出并重新打开应用后会恢复；<kbd>⌃Tab</kbd> 可在最近使用的标签页间切换。"
+                "Open Quickly（<kbd>⌘⇧O</kbd>）跨已打开连接搜索表、视图和查询。重新打开 App 时，标签页保留 SQL 和表格设置。"
             ]
         },
         {
             "id": "performance",
-            "title": "查看、对比和跟踪执行计划",
+            "title": "查询性能",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN 和 EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> 将查询计划显示为图形、带成本条的树或引擎原始输出。选择同一查询的早前运行作为基准，Compare 会说明是否变慢以及计划是否改变；小于 {explainNoise}% 的差异视为噪声。两项功能均免费。"
+                        "将查询计划显示为图表、成本树或引擎原始输出。与之前运行比较，发现耗时和计划变化；低于 {explainNoise}% 的差异视为噪声。两项功能均免费。"
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights 读取此 Mac 的查询历史，并对结果排名：运行最多的查询、最慢的查询、失败的查询，以及比上一时段变慢的查询。查询按结构归类，因此使用不同值运行的同一语句只算一种。数据在 Mac 上计算，从不上传。"
+                        "在这台 Mac 的本地历史中查找缓慢、失败和常用查询。相似语句按结构分组，不受参数值影响。Query Insights 在本地比较时段，并非服务器级监控，不上传指标。"
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "将结果绘制为柱状图、折线图、面积图或散点图，日期使用时间轴，所选列的每个值对应一个系列。图表从前 {chartInspectedRows} 行中最多绘制 {chartPoints} 个点和 {chartSeries} 个系列，未全部绘制时工具栏会提示。"
+                        "将结果绘制为柱状图、折线图、面积图或散点图。从前 {chartInspectedRows} 行显示最多 {chartPoints} 个点和 {chartSeries} 个系列，截断时会提示。"
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "地图视图",
                     "paragraphs": [
-                        "当列存储 WKT、WKB、GeoJSON、ClickHouse 元组或 Elasticsearch geo_point 几何值时，地图视图会将其绘制到 Apple 地图上，选择图形也会选择对应行。行数据保留在 Mac 上，地图瓦片由 Apple 提供。地图视图免费。"
+                        "在 Apple Maps 上显示支持的几何列，选择图形定位对应行。行数据保留在 Mac；地图图块由 Apple 提供。地图视图免费。"
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "不使用 SQL 的引擎",
+            "title": "其他查询语言",
             "paragraphs": [
-                "对于不使用 SQL 的连接，编辑器接受该引擎自己的语言，各引擎页面介绍具体支持范围。MongoDB 编辑器是在 TablePro 内运行的 mongosh 风格 JavaScript shell，并非 mongosh 本身。"
+                "在编辑器中使用各非 SQL 引擎的查询语言。MongoDB 使用内置 mongosh 风格 JavaScript shell，而非 mongosh 本身。支持的命令见数据库页面。"
             ],
             "engines": [
                 {

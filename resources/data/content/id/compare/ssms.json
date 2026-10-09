@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Alternatif SQL Server Management Studio untuk Mac",
-        "lead": "SQL Server Management Studio adalah alat gratis dari Microsoft untuk SQL Server dan Azure SQL, dan hanya berjalan di Windows. Microsoft menghentikan Azure Data Studio pada {cells.microsoftOnMac.date} dan mengarahkan penggunanya ke Visual Studio Code dengan ekstensi MSSQL, yang juga berjalan di macOS. TablePro adalah klien Mac native yang terhubung ke SQL Server dan mesin lain."
+        "lead": "SQL Server Management Studio adalah alat khusus Windows milik Microsoft untuk SQL Server dan Azure SQL. TablePro terhubung ke SQL Server dari aplikasi asli, namun tidak menggantikan alat administrasi SSMS."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda bekerja di Mac dan menginginkan aplikasi native untuk SQL Server, tempat skrip T-SQL berjalan batch demi batch di setiap baris GO.",
-            "Anda masuk dengan login SQL Server, Kerberos, atau Microsoft Entra ID.",
-            "Anda juga menggunakan PostgreSQL, MySQL, SQLite, atau Redis, dan menginginkan satu klien untuk semuanya.",
-            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda.",
-            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke SQL Server."
+            "Klien asli untuk SQL Server, dengan kumpulan T-SQL yang dipisahkan GO.",
+            "Login SQL Server, login Kerberos atau Microsoft Entra ID.",
+            "SQL Server bersama PostgreSQL, MySQL, SQLite atau Redis."
         ],
         "competitor": [
-            "Anda mengelola job SQL Server Agent, availability group Always On, atau Always Encrypted.",
-            "Anda menyetel performa dengan statistik kueri langsung, tuning advisor, dan dasbor.",
-            "Anda mengelola login, pengguna, dan peran, atau merancang tabel dalam diagram database.",
-            "Anda memiliki komputer Windows untuk menjalankannya."
+            "Administrasi SQL Server Agent, Always On, atau Always Encrypted.",
+            "Statistik kueri langsung, penasihat penyetelan, dan dasbor.",
+            "Login dan administrasi peran, atau desain diagram database."
         ],
-        "competitorTitle": "Tetap gunakan SQL Server Management Studio di Windows jika"
+        "competitorTitle": "Tetap gunakan SQL Server Management Studio untuk"
     },
     "glance": {
         "intro": "SQL Server Management Studio tidak memiliki versi Mac. Pilihan resmi Microsoft di Mac adalah Visual Studio Code dengan ekstensi MSSQL: Microsoft menghentikan Azure Data Studio pada {cells.microsoftOnMac.date} dan mengarahkan penggunanya ke sana."
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio adalah alat resmi Microsoft untuk SQL Server, Azure SQL Database, Azure SQL Managed Instance, dan SQL database di Fabric, dan gratis.",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft menyebutnya sebagai tempat yang didukung untuk job SQL Server Agent dan administrasi umum.",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "SSMS mengonfigurasi, memantau, dan memecahkan masalah availability group Always On, serta mengelola login, pengguna, peran, dan Always Encrypted.",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Statistik kueri langsung, statistik klien, tuning advisor, dan dasbor membantu pekerjaan performa.",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "GitHub Copilot, yang ditambahkan dengan Visual Studio Installer, menulis, memperbaiki, dan mengoptimalkan T-SQL.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro berjalan native di Mac, dengan build terpisah untuk Apple silicon dan Intel. SQL Server Management Studio hanya berjalan di Windows.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "Beberapa fitur berbayar. Starter menambahkan fitur seperti {starterExamples}, sedangkan SQL Server Management Studio gratis.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

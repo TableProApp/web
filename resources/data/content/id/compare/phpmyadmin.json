@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs phpMyAdmin: web atau app Mac",
+        "title": "TablePro vs phpMyAdmin: desktop atau browser",
         "description": "phpMyAdmin berjalan di server web dan dibuka di peramban. TablePro berjalan di Mac dan terhubung langsung atau via SSH. Bandingkan database dan akses."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs phpMyAdmin",
-        "lead": "phpMyAdmin adalah alat web gratis bersumber terbuka untuk MySQL dan MariaDB. Alat dipasang pada server web dan disertakan dalam cPanel. TablePro adalah aplikasi sumber terbuka untuk Mac, dengan aplikasi iPhone dan iPad terpisah, yang terhubung langsung ke database atau melalui tunnel SSH."
+        "lead": "phpMyAdmin berjalan di server web dan disertakan dengan cPanel. TablePro terhubung dari aplikasi asli, secara langsung atau melalui SSH. Paket hosting Anda mungkin menentukan mana yang dapat Anda gunakan."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda lebih suka tidak memasang apa pun pada server dan bekerja dari Mac dengan koneksi langsung atau SSH.",
-            "Anda juga menggunakan PostgreSQL, SQL Server, SQLite, Redis, atau mesin lain.",
-            "Anda menginginkan level Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
-            "Anda sering memindahkan data. Mengimpor CSV, JSON, XLSX, atau SQL dan mengekspornya gratis.",
-            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac."
+            "Klien yang terhubung secara langsung atau melalui SSH, tanpa menginstal apa pun di server.",
+            "MySQL dan MariaDB bersama tipe database lainnya.",
+            "Per koneksi Safe Mode dan chat AI gratis dan MCP."
         ],
         "competitor": [
-            "Hosting menyediakannya di cPanel dan Anda tidak memiliki akses SSH atau akses jarak jauh ke database.",
-            "Anda ingin bekerja dari komputer mana pun dengan peramban, tanpa memasang apa pun.",
-            "Anda atau tim memerlukan bahasa antarmuka yang tidak tersedia dalam aplikasi Mac TablePro."
+            "Akses database melalui cPanel ketika host Anda tidak mengizinkan SSH atau koneksi jarak jauh.",
+            "Akses dari komputer mana pun dengan browser.",
+            "Bahasa antarmuka tidak tersedia di TablePro."
         ]
     },
     "glance": {
@@ -111,7 +109,7 @@
                 "href": "/features/connections#network"
             },
             {
-                "text": "Tidak ada instalasi web yang harus diamankan dan diperbarui. Dokumentasi phpMyAdmin menjelaskan cara mengamankan instalasinya dengan HTTPS, aturan akses, serta autentikasi dua faktor.",
+                "text": "phpMyAdmin memerlukan instalasi server, dengan pembaruan dan kontrol aksesnya sendiri. Dokumennya mencakup HTTPS, aturan akses, dan proses masuk dua faktor.",
                 "cite": [
                     "cells.hardening"
                 ],
@@ -197,12 +195,6 @@
             "question": "Bagaimana dengan Adminer?",
             "answer": "Adminer adalah alat web sumber terbuka lain yang disediakan sebagai satu file PHP. Selain MySQL dan MariaDB, alat terhubung ke PostgreSQL, SQLite, SQL Server, serta Oracle. Seperti phpMyAdmin, alat berjalan pada server, sehingga instalasinya memerlukan perhatian yang sama.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis seperti phpMyAdmin?",
-            "answer": "Untuk pekerjaan MySQL dan MariaDB, ya: aplikasi Mac TablePro gratis digunakan dan bersumber terbuka dengan AGPLv3, mencakup semua mesin yang didukung, asisten AI, dan server MCP. Berbeda dari phpMyAdmin, aplikasi juga memiliki paket berbayar: Starter dan Team menambah fitur opsional seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

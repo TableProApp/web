@@ -155,12 +155,12 @@ it('briefs the social card at 1200 × 630 and records the cards in use', functio
 
     expect($social)
         ->toContain('**Current state.**')
-        ->toContain('`/og/bespoke/og-site-en.png` in English and')
+        ->toContain('`/og.png` in English and')
         ->toContain('`/og/bespoke/og-site-vi.png` in Vietnamese')
-        ->toContain('The generated `/og.png` and `/og/vi/default.png` stay committed')
+        ->toContain('The generated `/og/vi/default.png` stays committed')
         ->toContain('php artisan og:generate --type=all --locale=all')
         ->toContain('1200 × 630')
-        ->toContain('| Export | 1200×630 px (1×) · PNG · opaque · max 300 KB per file |')
+        ->toContain('| Export | 1200×630 px (1×) · PNG · opaque · max 320 KB per file |')
         ->toContain('Safe area');
 
     foreach ((new AssetManifest())->assets() as $id => $entry) {

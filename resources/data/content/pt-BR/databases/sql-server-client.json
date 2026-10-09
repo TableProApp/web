@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "Cliente de SQL Server para {devices}",
-        "lead": "Execute scripts T-SQL lote a lote, com GO e PRINT tratados como no SQL Server Management Studio, e entre com login SQL Server, Kerberos ou conta corporativa Microsoft Entra ID. Servidores em Windows, Linux, Docker e Azure SQL Database se conectam da mesma forma."
+        "title": "Cliente de SQL Server",
+        "lead": "Execute scripts T-SQL com lotes GO e saída PRINT. Conecte-se com um login SQL Server, Kerberos ou Microsoft Entra ID."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Informe o host e a porta TCP, depois escolha <ui>Authentication</ui>, e o formulário se adapta: login e senha SQL Server, Windows Authentication por Kerberos ou Microsoft Entra ID. Preencha Database para um login vinculado a um banco, como um usuário contido do Azure SQL.",
+                "Insira um host e uma porta TCP e escolha <ui>Authentication</ui>: login SQL Server, Kerberos ou Microsoft Entra ID. Logins com escopo de banco de dados, incluindo usuários contidos no Azure SQL, também precisam do campo Banco de dados.",
                 "Kerberos usa o ticket já presente no cache de credenciais ou solicita um com o principal e a senha informados. Conecte pelo nome do host em vez do IP, pois o ticket é emitido para o SPN registrado do servidor. TablePro nunca executa <code>kinit</code> nem edita <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> entra pelo fluxo de código de dispositivo, que respeita autenticação multifator e Conditional Access. Você registra um aplicativo no Azure e informa seu ID de cliente; os tokens ficam nas Chaves de login, marcados como exclusivos do dispositivo, e são renovados em segundo plano.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> usa login de código de dispositivo com autenticação multifator e acesso condicional. Registre um aplicativo do Azure e insira seu ID de cliente. Os tokens são atualizados em segundo plano e permanecem nas chaves de login somente do dispositivo.",
                 "Novas conexões começam em Preferred, que no SQL Server criptografa apenas o login. Escolha Required ou um modo mais rigoroso para criptografar a sessão inteira; Verify CA e Verify Identity verificam o certificado com as raízes do sistema macOS. TablePro também pode executar Cloud SQL Auth Proxy para Google Cloud SQL, e <network>túneis SSH</network> acessam servidores em redes privadas."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "Scripts, lotes e edições",
             "paragraphs": [
-                "Um script chega ao servidor um lote por vez, dividido em cada linha que contém apenas <code>GO</code>, como enviado por sqlcmd, e <code>GO 5</code> executa o lote anterior cinco vezes. Cada conjunto de resultados abre na própria aba, e a saída de <code>PRINT</code> e as mensagens informativas aparecem na visualização Output.",
-                "Coloque <code>BEGIN TRAN</code> e <code>COMMIT</code> em um script quando uma falha precisar desfazer os lotes anteriores; um script que deixa uma transação aberta termina com um aviso. A execução para no primeiro lote com falha, e o erro informa a linha no editor.",
+                "Scripts divididos em linhas <code>GO</code>; <code>GO 5</code> repete o lote anterior cinco vezes. Cada conjunto de resultados é aberto em uma guia separada. Leia a saída <code>PRINT</code> e mensagens informativas em Saída.",
+                "Use <code>BEGIN TRAN</code> e <code>COMMIT</code> quando os lotes precisarem ser transacionais. Uma transação aberta produz um aviso. A execução para no primeiro lote com falha, com sua linha de editor no erro.",
                 "Cada sessão abre com as opções SET exigidas por índices filtrados, views indexadas e índices em colunas calculadas, como <code>ANSI_NULLS</code> e <code>QUOTED_IDENTIFIER</code> ativados. Isso também significa que <code>col = NULL</code> não corresponde a nada: compare com <code>IS NULL</code>.",
                 "As tabelas ficam dentro de seus esquemas na barra lateral, e <code>⌘K</code> muda o banco na mesma conexão, sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>, novas linhas deixam as colunas IDENTITY para o servidor, e valores <code>nvarchar(max)</code> chegam completos."
             ]
@@ -50,7 +50,7 @@
             "title": "Esquema",
             "paragraphs": [
                 "A <structure>aba Structure</structure> prepara alterações em colunas, índices, chaves estrangeiras e restrições e mostra o T-SQL antes de executar. Esquemas podem ser excluídos pela barra lateral; SQL Server recusa excluir um esquema que ainda contenha objetos. Crie um com CREATE SCHEMA no editor.",
-                "<compareSync>Compare & Sync</compareSync>, parte do plano {compareSyncTier}, compara dois esquemas SQL Server ou seus dados e salva um script com uma linha <code>GO</code> após cada instrução, pronto para sqlcmd ou SQL Server Management Studio."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compara esquemas ou dados SQL Server. Os scripts gerados separam instruções com <code>GO</code> para sqlcmd ou SQL Server Management Studio."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Mova dados",
             "paragraphs": [
-                "<importData>Importe</importData> arquivos {importFormats}. Um arquivo <code>.sql</code> com linhas <code>GO</code> executa um lote por vez, como em sqlcmd. Exporte tabelas ou resultados como {exportFormats}; uma exportação SQL encerra cada instrução com uma linha <code>GO</code>, para que cada uma execute no próprio lote."
+                "<importData>Importar arquivos</importData> {importFormats}. Os arquivos SQL respeitam os lotes <code>GO</code>. Exportar tabelas ou resultados como {exportFormats}; As exportações SQL também usam separadores <code>GO</code>."
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio é a ferramenta da Microsoft para SQL Server e Azure SQL. Escolha-a para administração que TablePro não cobre, como jobs SQL Server Agent, grupos de disponibilidade Always On, estatísticas de consultas ao vivo e ferramentas de otimização de desempenho.",
+                "text": "O SQL Server Management Studio cobre a administração além do TablePro, incluindo trabalhos SQL Server Agent, grupos de disponibilidade Always On, estatísticas de consulta em tempo real e ajuste de desempenho.",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

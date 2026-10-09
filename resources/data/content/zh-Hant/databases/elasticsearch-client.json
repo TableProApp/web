@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "適用於 {devices} 的 Elasticsearch 用戶端",
-        "lead": "提供 Query DSL 請求主控台，以及將索引讀取為資料表、依 <code>_id</code> 編輯文件的格線。兩者都不執行 SQL：所有操作都是送往叢集的 REST 請求。"
+        "title": "Elasticsearch 用戶端",
+        "lead": "執行 Query DSL 請求，在表格中瀏覽索引文件，並依 ID 編輯文件。"
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入叢集主機和 REST 連接埠，選擇<ui>驗證方式</ui>（Auth Method）。Username & Password 傳送 HTTP Basic，API Key 透過 <code>Authorization: ApiKey</code> 標頭傳送欄位，請貼上建立 API 金鑰請求傳回的 <code>encoded</code> 值。None 適合關閉安全性的開發叢集。連線對應一個叢集，所以表單無 Database 欄位。",
+                "輸入 REST 主機和連接埠，再從 <ui>驗證方式</ui> (Auth Method) 中選擇 Username & Password、API Key 或 None。API 金鑰使用 Elasticsearch 的 <code>encoded</code> 值。每個連線存取一個叢集。",
                 "新連線預設 SSL Disabled，即明文 HTTP。其他模式用 HTTPS：Preferred、Required (skip verify) 接受自我簽署憑證，Verify CA、Verify Identity 驗證憑證。Elasticsearch 8.x 預設開啟安全性和 TLS，因此通常需要 HTTPS 和認證資訊。"
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "索引與 Query DSL 主控台",
             "paragraphs": [
-                "主控台像 Kibana Dev Tools 一樣接受方法、路徑及選用 JSON 本文，例如帶 <code>match</code> 查詢的 <code>GET /orders/_search</code>。搜尋命中傳回為列，帶 <code>format=json</code> 的 <code>_cat</code> 請求及其他陣列回應轉為資料表，其餘顯示格式化 JSON。無法存取 <code>_sql</code> 端點。",
+                "編寫方法、路徑和選用 JSON 主體，例如 <code>GET /orders/_search</code>。搜尋命中和陣列回應顯示為列，其他回應顯示為格式化 JSON。不提供 <code>_sql</code> 端點。",
                 "側邊欄將索引列為資料表，隱藏點號開頭的名稱。欄位來自對應：物件欄位展開為 <code>address.city</code> 等點分路徑，nested 欄位有一個存放陣列的 JSON 欄及每個葉欄位的欄，每個文件含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
                 "<filters>欄位篩選</filters>轉換為 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> 查詢，Raw SQL 篩選列接受 <code>name:Widget</code> 等 Lucene 語法，以 <code>query_string</code> 傳送。排序 <code>text</code> 欄位時，對應存在 <code>.keyword</code> 子欄位則使用它。",
-                "格線編輯轉換為以 <code>_id</code> 為鍵的 REST 呼叫：修改用 <code>_update</code>，建立刪除用 <code>_doc</code>。新列輸入 <code>_id</code> 為文件命名。透過 JSON 欄修改 nested 陣列；在葉欄輸入值會停止儲存，指出欄名且不傳送任何內容。"
+                "透過 REST 呼叫依 <code>_id</code> 編輯文件。新文件需輸入 ID。巢狀陣列透過 JSON 欄位修改；編輯葉節點欄位會阻止儲存，不會傳送請求。"
             ]
         },
         {

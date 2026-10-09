@@ -7,7 +7,8 @@
 // It launches the chrome-headless-shell 149.0.7827.22 the committed cards were
 // rendered with, from puppeteer's cache in the home directory, unless
 // PUPPETEER_EXECUTABLE_PATH names another binary.
-const puppeteer = require('/opt/homebrew/lib/node_modules/puppeteer');
+// Resolve from the project or NODE_PATH, without pinning one developer's machine.
+const puppeteer = require('puppeteer');
 const os = require('os');
 const path = require('path');
 

@@ -10,8 +10,8 @@
     "engine": "cassandra",
     "breadcrumb": "Cassandra 및 ScyllaDB",
     "header": {
-        "title": "{devices}용 Cassandra·ScyllaDB 클라이언트",
-        "lead": "키스페이스·테이블을 탐색하고 편집기에서 CQL을 실행하며 전체 기본 키로 기록되는 행을 편집합니다. 같은 드라이버로 ScyllaDB와 Amazon Keyspaces에도 연결합니다."
+        "title": "Cassandra 및 ScyllaDB 클라이언트",
+        "lead": "키스페이스를 탐색하고 CQL을 실행하며 기본 키로 행을 편집하세요. Cassandra, ScyllaDB, Amazon Keyspaces에 연결할 수 있습니다."
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "접점과 포트를 입력하고 클러스터에 인증기가 설정돼 있으면 사용자 이름·비밀번호도 넣습니다. 키스페이스 필드는 없어 연결 후 사이드바에서 고르거나 <code>cassandra://</code>·<code>cql://</code> URL 경로에 넣어 가져옵니다. 키스페이스는 재접속 없이 바뀌며 시스템 키스페이스는 목록에서 제외됩니다. 열린 탭은 각자 키스페이스를 유지합니다.",
+                "접속 지점, 포트, 필요한 자격 증명을 입력하세요. 연결 후 키스페이스를 선택하거나 경로에 키스페이스를 담은 <code>cassandra://</code> 또는 <code>cql://</code> URL을 가져오세요. 전환해도 기존 탭은 원래 키스페이스를 유지합니다.",
                 "새 연결은 TLS가 꺼져 있습니다. 드라이버에 기회적 TLS가 없어 Preferred·Required 모두 인증서 검사 없이 암호화합니다. Verify CA·Verify Identity는 CA 인증서 파일이 필요하며 시스템 루트로 대체하지 않습니다. 상호 TLS는 클라이언트 인증서, 키와 키 암호 문구를 추가합니다. 사설 네트워크 클러스터에는 <network>SSH 터널</network>로 접근합니다.",
                 "Amazon Keyspaces는 비밀번호 대신 SigV4로 로그인합니다. 9142 포트의 <code>cassandra.us-east-1.amazonaws.com</code> 같은 리전 엔드포인트로 연결하고 Authentication을 <awsIam>AWS IAM 방식</awsIam>(액세스 키, 프로필 또는 AWS IAM Identity Center)으로 설정합니다. 사용자 이름·비밀번호는 비우고 평문을 거부하므로 TLS를 켜세요."
             ]
@@ -37,10 +37,10 @@
             "id": "work",
             "title": "탐색 및 CQL 실행",
             "paragraphs": [
-                "사이드바에서 테이블을 열어 데이터 그리드로 읽습니다. 리스트·세트·맵·튜플은 컬렉션, 사용자 정의 유형은 필드, <code>duration</code>은 <code>1d2h30m</code>, 벡터는 숫자 목록, blob은 십육진수로 표시됩니다. CQL 편집기 결과는 읽기 전용이므로 사이드바에서 연 테이블로 행을 변경합니다.",
+                "컬렉션, 사용자 정의 타입, 기간, 벡터, blob 등 CQL 값을 테이블 그리드에서 살펴보세요. 편집기 결과는 읽기 전용이며 행 편집은 사이드바에서 연 테이블에서 합니다.",
                 "CQL에는 OFFSET이 없어 첫 행부터 앞으로 읽습니다. 이미 본 페이지의 Next·Previous는 읽기 한 번이고 먼 페이지로 이동하면 앞 페이지를 모두 읽습니다. 행은 토큰 순서이며 CQL은 한 파티션 내 클러스터링 열만 정렬하므로 열 헤더는 재정렬하지 않습니다. 테이블을 열 때는 세지 않고 <ui>정확히 계산</ui>(Count Exactly)의 <code>SELECT COUNT(*)</code>가 모든 파티션을 읽습니다.",
                 "<filters>필터</filters>는 <code>ALLOW FILTERING</code>을 추가하므로 전체 파티션 키를 지정하지 않으면 서버가 모든 파티션을 읽습니다. 포함·시작·끝 일치는 LIKE로 보내고 Cassandra는 SASI·SAI 인덱스 열에서만 받습니다. 같지 않음·is NULL처럼 CQL로 표현 못하는 연산자는 이름을 알려 거부하며 OR가 없어 조건은 AND만 사용합니다.",
-                "<editing>편집한 값</editing>은 열의 CQL 유형으로 보내며 파싱 못하는 값은 전체 저장을 멈춥니다. 각 행은 전체 기본 키로 지정한 개별 명령문으로 씁니다. <ui>행 추가</ui>(Add Row)는 <code>INSERT … IF NOT EXISTS</code>를 써 같은 키의 기존 행을 덮어쓰지 않습니다. 키 열은 직접 변경 못하므로 행을 삭제하고 다시 추가하세요.",
+                "<editing>편집 내용</editing>은 CQL 타입으로 검증하고 전체 기본 키를 사용해 행별로 저장합니다. 잘못된 값은 저장을 중단시킵니다. <ui>행 추가</ui> (Add Row)는 <code>INSERT … IF NOT EXISTS</code>를 사용합니다. 키를 바꾸려면 행을 삭제하고 다시 삽입하세요.",
                 "카운터 열은 CQL 편집기에서 <code>UPDATE … SET c = c + 1</code>이 필요하며 그리드가 쓰는 일반 UPDATE는 서버가 거부합니다. 연결 시간 제한은 Options를 따르지만 CQL 요청은 드라이버 고정 제한을 유지하고 앱의 쿼리 시간 제한은 바꾸지 않습니다."
             ]
         },

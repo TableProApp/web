@@ -47,8 +47,8 @@ export default {
     },
     "newsletter": {
         "title": "通过邮件接收发行说明",
-        "body": "不定期发送英语发行说明邮件。每封邮件均包含退订链接。",
-        "note": "我们会先向您发送确认链接。<link>隐私政策</link>"
+        "body": "不定期发送英语发行说明。可在任意邮件中退订。",
+        "note": "请通过邮件确认订阅。<link>隐私政策</link>"
     },
     "bottom": {
         "copyright": "© {year} TablePro，由{city}的 {maker} 开发。源代码采用 AGPLv3 许可证。"

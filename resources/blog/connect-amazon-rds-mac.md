@@ -1,15 +1,15 @@
 ---
 slug: connect-amazon-rds-mac
-title: "How to connect to Amazon RDS for PostgreSQL or MySQL from a Mac"
+title: "Connect to Amazon RDS for PostgreSQL or MySQL from a Mac"
 seoTitle: "Connect to Amazon RDS PostgreSQL or MySQL on Mac"
-description: Reach an RDS or Aurora endpoint directly or through a bastion, verify its TLS certificate, and sign in with AWS IAM instead of a stored password.
+description: Connect to RDS or Aurora from a Mac. Check network access, verify TLS certificates and configure AWS IAM authentication in the CLI or TablePro.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: Endpoint, security group, certificate, then IAM instead of a password.
 tags: [postgresql, mysql, aws-iam, ssh]
 ---
 
-An RDS instance is an ordinary PostgreSQL or MySQL server behind an AWS hostname. Most failed connections are not about the client at all: the network does not let you in, or the login is set up for a different kind of authentication than the one you are using. This guide covers both sides.
+To connect to RDS or Aurora, you need the database endpoint, network access and a database login. Check those first, then configure TLS and optional IAM authentication in your client.
 
 ## Find the endpoint {#endpoint}
 
@@ -23,9 +23,9 @@ aws rds describe-db-instances \
 
 An Aurora cluster has a writer endpoint and a reader endpoint. Writes sent to the reader endpoint fail on the server, whatever client you use.
 
-## Can your Mac reach it? {#network}
+## Check network access {#network}
 
-Two settings decide whether a connection from your Mac gets through:
+Check public access and the security group:
 
 - **Public access**: an instance that is not publicly accessible has no address outside its VPC. Reach it through a bastion host in the same VPC, or a VPN.
 - **The security group**: it needs an inbound rule for the database port (5432 or 3306) from your address, or from the bastion's.
@@ -34,7 +34,7 @@ If either one is wrong, the connection times out rather than failing with a clea
 
 ## Verify the certificate {#tls}
 
-RDS serves TLS. To check that you are talking to RDS and not something in between, download the RDS certificate bundle and point the client at it:
+Download the RDS certificate bundle and use it to verify the server:
 
 ```bash
 curl -O https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
@@ -56,11 +56,11 @@ mysql -h mydb.abc123.us-east-1.rds.amazonaws.com -P 3306 -u app -p \
 
 On the **Network** tab, set **Connect via** to **SSH Tunnel** and fill in the bastion's **SSH Host**, **SSH User** and key. Leave **Host** on **General** as the RDS endpoint: the tunnel resolves it from the bastion, inside the VPC.
 
-A tunnel has one cost. The driver then connects to `127.0.0.1`, which no certificate names, so **Verify CA** and **Verify Identity** drop to **Required (skip verify)** for that connection. The traffic is still encrypted to the database. [Connecting through an SSH tunnel](/blog/postgresql-ssh-tunnel-mac) covers keys, agents and jump hosts.
+Through a tunnel, the driver connects to `127.0.0.1`. **Verify CA** and **Verify Identity** become **Required (skip verify)**: traffic remains encrypted, but the server certificate is not checked. See [SSH tunnel setup](/blog/postgresql-ssh-tunnel-mac) for keys, agents and jump hosts.
 
-### Several instances at once
+### Import RDS instances
 
-**File > Import > Import from AWS…** lists the RDS instances and Aurora clusters an AWS profile can see. Pick the profile, tick the regions to search and click **Continue**, then choose the rows to add. The profile needs `rds:DescribeDBInstances` and `rds:DescribeDBClusters`, which the `AmazonRDSReadOnlyAccess` policy includes. **Username** stays empty, because the database user is rarely the master user.
+**File > Import > Import from AWS…** lists RDS instances and Aurora clusters visible to an AWS profile. Pick the profile, select regions and click **Continue**, then choose instances. The profile needs `rds:DescribeDBInstances` and `rds:DescribeDBClusters`, included in `AmazonRDSReadOnlyAccess`. **Username** stays empty; enter the database user you want to use.
 
 ## Sign in with AWS IAM {#iam}
 
@@ -101,21 +101,21 @@ In TablePro, set **Authentication** on **General** to one of the AWS options. Th
 
 **AWS Region** is read from a standard RDS hostname. Fill it in for a CNAME or a custom endpoint.
 
-Each connect signs a fresh token, and automatic reconnects sign another, so there is nothing to paste or refresh. The token is never written to disk. IAM requires TLS, so an **SSL Mode** of **Disabled** or **Preferred** is raised for the connect.
+Each connection and automatic reconnect signs a fresh token; it is never written to disk. IAM requires TLS, so TablePro raises **SSL Mode** when it is **Disabled** or **Preferred**.
 
 A tunnel TablePro opens needs nothing more: the token is signed for the **Host** and **Port** in the form. If you run a port forward yourself and **Host** says `127.0.0.1`, put the real endpoint in **RDS Endpoint**, or the token is signed for the wrong host.
 
-## Where it stops {#limits}
+## Limitations {#limits}
 
 - A database user is either password-authenticated or IAM-authenticated. Connecting with a password as a user that has `rds_iam` fails, and so does IAM as a user that has only a password.
 - Profiles that use `mfa_serial` or `web_identity_token_file` are not supported. Assume-role profiles, `credential_process` and IAM Identity Center are.
 - Behind an SSH tunnel, the certificate is not checked, as described above.
 
-## If it does not connect {#troubleshooting}
+## Troubleshooting {#troubleshooting}
 
 - **The connection times out**: the security group or public access setting is blocking you. Check the inbound rule and the address you connect from.
 - **PAM authentication failed** on PostgreSQL, or **Access denied** on MySQL, with IAM: the token was signed for a different endpoint than the one RDS sees. Check **Host**, or **RDS Endpoint** when you forward the port yourself, including the port.
 - **Could not determine an AWS region**: the hostname is not a standard RDS endpoint. Fill in **AWS Region**.
 - **AWS SSO Sign-In Required**: the cached session expired. Accept the prompt, or run `aws sso login --profile <name>`.
 
-Every IAM option and message is in the [AWS IAM Authentication](https://docs.tablepro.app/connections/aws-iam) docs, and the certificate modes are in [SSL/TLS](https://docs.tablepro.app/connections/ssl). On this site, see the [PostgreSQL](/postgresql-client) and [MySQL](/mysql-client) pages and [signing in with your cloud account](/features/connections#cloud-auth).
+See [AWS IAM Authentication](https://docs.tablepro.app/connections/aws-iam) and [SSL/TLS](https://docs.tablepro.app/connections/ssl) for all options and errors. Feature overviews: [PostgreSQL](/postgresql-client), [MySQL](/mysql-client) and [cloud sign-in](/features/connections#cloud-auth).

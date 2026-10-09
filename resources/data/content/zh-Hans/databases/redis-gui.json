@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "适用于 {macDevices} 的 Redis GUI",
-        "lead": "以冒号分层的树浏览键，一眼查看各键类型、TTL 和长度，在单服务器、Sentinel 管理的主节点或 Redis Cluster 上按 redis-cli 引号规则运行 Redis 命令。"
+        "title": "Redis GUI",
+        "lead": "在 Mac 上浏览键，并在 Standalone、Sentinel 或 Cluster 部署中运行命令。iPhone 和 iPad 仅支持 Standalone 命令。"
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "选择<ui>连接模式</ui>（Connection Mode）。Standalone 填主机端口。Sentinel 填一个或多个 Sentinel 节点和主组名，跟随法定多数找到主节点，并在故障转移后跟随迁移。Cluster 以任意可达成员为种子，读取分片映射，将命令送往拥有其键的分片。",
+                "从 <ui>连接模式</ui> (Connection Mode) 中选择 Standalone、Sentinel 或 Cluster。Sentinel 在故障转移后跟随主节点；Cluster 从种子成员发现分片，并将命令路由至所属分片。",
                 "用密码登录，或填写 Username 以 Redis 6 ACL 用户登录。Amazon ElastiCache 选择 <cloudAuth>AWS IAM</cloudAuth> 模式，用短期令牌作为密码；ElastiCache IAM 需开启 TLS。",
                 "新连接 TLS 关闭。Upstash、Redis Cloud 等服务要求 TLS，粘贴 <code>rediss://</code> URL 会开启。无明文回退，Preferred 等同 Required。Valkey 服务器与 Redis 连接方式相同。",
                 "侧边栏从 <code>db0</code> 起列出各编号数据库，点击原地浏览。"
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "键和命令",
             "paragraphs": [
-                "键名在每个冒号或 Options 标签页设置的分隔符处分为文件夹。每个键为一行，包含 Key、Type、TTL、Length、Value。字符串完整显示；hash、list、set、sorted set、stream 显示开头条目，Length 标明数量。非有效 UTF-8 值（如 gzip 数据）在十六进制编辑器打开。",
-                "<editing>网格中</editing>编辑键名运行 <code>RENAME</code>，TTL 运行 <code>EXPIRE</code> 或 <code>PERSIST</code>，字符串值运行 <code>SET</code>。Add Row 用 <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> 或 <code>SET</code> 写所选类型。筛选栏在服务器用 <code>SCAN MATCH</code>、<code>SCAN TYPE</code> 按 Redis glob 模式匹配键名并限定类型。",
-                "编辑器每语句接受一条命令，按 redis-cli 引号规则，无法识别的命令原样发送。<code>DB 3 GET key</code> 不移动会话而在其他数据库执行单条命令。<code>MULTI</code> 块内各命令返回 <code>QUEUED</code>，直到 <code>EXEC</code> 按顺序返回所有响应。",
+                "按冒号分隔的文件夹浏览键，也可选择其他分隔符。每行显示键类型、TTL、长度和值。集合显示前几个条目；非 UTF-8 值在十六进制编辑器中打开。",
+                "在表格中<editing>编辑键名、TTL 和字符串值</editing>。Add Row 可创建哈希、列表、集合、有序集合或字符串。通过服务器端 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 筛选键名和类型。",
+                "使用 redis-cli 风格引号规则运行命令。未知命令按原样发送。<code>DB 3 GET key</code> 可访问另一个数据库而不改变会话。<code>MULTI</code> 中的响应会排队，直到 <code>EXEC</code>。",
                 "<safeMode>Safe Mode</safeMode> 将包括 <code>GET</code> 的所有 Redis 命令视为写入，Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
             ]
         },
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight 是 Redis 官方工具。除键浏览器和命令 Workbench，还有 Pub/Sub 工作区、命令分析器、慢日志检查及内存分析。监控调优 Redis 部署时选择它；Redis 与日常 SQL 数据库一起使用时，TablePro 更合适。",
+                "text": "Redis Insight 提供键浏览器、命令 Workbench、Pub/Sub 工作区、分析器、慢日志和内存分析。TablePro 可同时处理 Redis 和 SQL 数据库。",
                 "notes": [
                     "redis-insight-copilot"
                 ]

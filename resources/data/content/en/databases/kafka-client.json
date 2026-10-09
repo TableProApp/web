@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Apache Kafka client for {devices}",
-        "lead": "Read a topic from the start position you choose, see how far each consumer group lags, and produce a test message, all with KafkaQL, TablePro’s own command language. A topic is a log, so the grid reads messages and never edits them."
+        "title": "Apache Kafka client",
+        "lead": "Inspect topic messages and consumer lag, or produce a test message with KafkaQL, TablePro’s own command language."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Enter one broker’s host and port; the rest of the cluster is discovered from it, and <ui>Additional Bootstrap Servers</ui> lists brokers to try if the first does not answer. A connection is one cluster, so there is no Database field and the sidebar shows its topics directly.",
+                "Enter a bootstrap broker’s host and port. <ui>Additional Bootstrap Servers</ui> adds fallback brokers. Each connection reaches one cluster; the sidebar lists its topics.",
                 "<ui>Security Protocol</ui> is PLAINTEXT, SSL, SASL_PLAINTEXT or SASL_SSL, and <ui>SASL Mechanism</ui> is PLAIN, SCRAM-SHA-256 or SCRAM-SHA-512. PLAIN suits Confluent Cloud; SCRAM suits Amazon MSK and self-hosted brokers. With SSL or SASL_SSL and no SSL mode chosen, the certificate chain and hostname are verified. A private CA goes in <ui>CA Certificate</ui>, and a client certificate and key add mutual TLS.",
                 "Through an <network>SSH tunnel</network>, the connection stays on the bootstrap broker, so it reads only the partitions that broker leads. <ui>Import from URL…</ui> accepts <code>kafka://</code> URLs, which macOS does not open as links."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Read, inspect and produce",
             "paragraphs": [
-                "Opening a topic shows its most recent messages, newest last, with partition, offset, timestamp, key, value, headers and sizes. Messages from different partitions are interleaved by timestamp as a reading aid; partition and offset are what identify a message. A key or value that is not UTF-8 shows as hex, and a tombstone stays distinct from an empty message.",
-                "KafkaQL replaces sorting and filtering with a start position: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> or <code>FROM TIME</code> with an ISO 8601 timestamp, optionally limited to some partitions. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> and <code>DESCRIBE TOPIC</code> cover the rest of the cluster.",
+                "Browse recent messages with partition, offset, timestamp, key, value and headers. Cross-partition messages are interleaved by timestamp; partition and offset identify them. Non-UTF-8 values show as hex. Tombstones remain distinct from empty messages.",
+                "Use KafkaQL to consume from newest, oldest, a specific offset or an ISO 8601 timestamp, optionally scoped to partitions. SHOW commands list topics, brokers, groups and cluster details; DESCRIBE TOPIC inspects a topic.",
                 "<code>DESCRIBE GROUP</code> is the lag report: the committed offset, the end offset and the gap, per partition. A partition the group has never committed shows no lag rather than a number counted from zero, and <code>SHOW GROUPS</code> marks its list truncated when a broker cannot be reached.",
                 "<code>PRODUCE INTO</code> writes a message with an optional key, headers and partition. A keyed message with no partition lands where Kafka’s own producer would put it. gzip, snappy, lz4 and zstd batches are decompressed as they are read, with no setting to choose.",
-                "Cells cannot be edited, rows cannot be deleted and columns cannot be sorted, because Kafka has no update, no per-message delete and no server-side sort, and the grid dims those controls. Each page continues from where the last one stopped, so a topic that is being written to never repeats or skips a message."
+                "Messages cannot be edited or individually deleted, and columns cannot be sorted. Paging continues from the previous position as new messages arrive."
             ]
         },
         {

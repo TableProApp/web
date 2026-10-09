@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass：MongoDB 専用か、多種対応か",
+        "title": "TablePro と MongoDB Compass: シェルまたはビジュアル ツール",
         "description": "MongoDB Compass は MongoDB の無料 GUI で、ステージごとの集計とスキーマ分析を備えます。TablePro は Mac で SQL データベースや Redis と並べて MongoDB に対応します。"
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass は MongoDB 公式の無料 GUI で、データの探索、集計パイプラインの作成、コレクションのスキーマの把握に使います。TablePro は SQL データベース、Redis などのエンジンと並べて MongoDB に接続するオープンソースクライアントで、Mac では任意の有料機能を追加できます。"
+        "lead": "Compass は、集計ビルダーとスキーマ分析を備えた MongoDB 独自の GUI です。 TablePro は、MongoDB を SQL データベースや他のエンジンと並べて配置します。"
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB は PostgreSQL、MySQL、SQL Server や Redis と並ぶ使用データベースの一つで、一つのクライアントで扱いたい。",
-            "変数、ループ、コレクション・フィールドパス・演算子の補完がある mongosh 風のシェルが好み。",
-            "コレクション全体でフィールドの名前変更や削除を行い、実行前にすべてのステートメントを確認したい。",
-            "クラウドでも Mac 上でも選んだプロバイダーで使える AI アシスタントと、外部の AI クライアント向けの MCP サーバーが欲しい。"
+            "MongoDB と PostgreSQL、 MySQL、 SQL Server または Redis。",
+            "変数、ループ、オートコンプリートを備えた mongosh スタイルのシェル。",
+            "コレクション全体のフィールドが変更され、実行前にステートメントが表示されます。"
         ],
         "competitor": [
-            "MongoDB だけを使い、MongoDB 公式の無料ツールが欲しい。",
-            "集計パイプラインをステージごとに組み立て、各ステージの後にプレビューを見たい。",
-            "コレクションのスキーマを調べたり、コレクションとその関係を図でモデリングしたりする。",
-            "MongoDB の視覚的な実行プランとリアルタイムのサーバー指標が欲しい。",
-            "Windows や Linux でも作業する。"
+            "プレビュー付きの段階ごとの集計ビルダー。",
+            "スキーマ分析、コレクション モデリング、関係図。",
+            "視覚的な説明プランとライブ MongoDB サーバー メトリクス。"
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass は MongoDB 公式の GUI で、無料です。",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "集計パイプラインをステージごとに組み立て、各ステージの後にデータをプレビューできます。",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "コレクションのドキュメントをサンプリングしてフィールドの型、日付の範囲、頻出値を示し、データベースのコレクションの ER 図を描きます。",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "実行プランを視覚的に表示し、リアルタイムのサーバー指標も備えます。",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Windows、macOS、Linux で動作します。",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "<link>AI アシスタント</link>はクラウドでも Mac 上でも選んだ AI プロバイダーで動き、MCP サーバーを通じて外部の AI クライアントが保存済みの接続を使えます。どちらも無料です。Compass の AI 機能は Azure OpenAI を使います。",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Windows と Linux 用の TablePro アプリはありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "それぞれどの AI を使いますか？",
             "answer": "Compass の自然言語クエリとアシスタントは Azure OpenAI を使い、設定で AI 機能をオフにできます。TablePro の AI アシスタントは Mac 上のモデルを含め選んだプロバイダーを使い、Mac アプリで無料です。<link>TablePro の AI について</link>。",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "MongoDB で TablePro は無料ですか？",
-            "answer": "はい。MongoDB と他の対応エンジン、AI アシスタントと MCP サーバーは Mac アプリで無料です。有料プランは {starterExamples} など任意の機能を追加します。<link>料金を見る</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

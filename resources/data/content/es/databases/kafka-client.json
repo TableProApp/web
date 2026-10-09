@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Cliente Apache Kafka para {devices}",
-        "lead": "Lee un topic desde la posición que elijas, comprueba el retraso de cada grupo de consumidores y produce un mensaje de prueba con KafkaQL, el lenguaje de comandos propio de TablePro. Un topic es un registro: la cuadrícula lee mensajes y nunca los edita."
+        "title": "Cliente Apache Kafka",
+        "lead": "Inspecciona mensajes de topics y el retraso de consumidores, o produce un mensaje de prueba con KafkaQL, el lenguaje de comandos de TablePro."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Introduce el host y puerto de un broker; a partir de él se descubre el resto del clúster. <ui>Additional Bootstrap Servers</ui> enumera brokers que probar si el primero no responde. Una conexión corresponde a un clúster, así que no hay campo Base de datos y la barra lateral muestra sus topics directamente.",
+                "Introduce host y puerto de un broker bootstrap. <ui>Additional Bootstrap Servers</ui> añade brokers de respaldo. Cada conexión accede a un clúster; la barra lateral muestra sus topics.",
                 "<ui>Security Protocol</ui> es PLAINTEXT, SSL, SASL_PLAINTEXT o SASL_SSL; <ui>SASL Mechanism</ui> es PLAIN, SCRAM-SHA-256 o SCRAM-SHA-512. PLAIN sirve para Confluent Cloud; SCRAM, para Amazon MSK y brokers propios. Con SSL o SASL_SSL sin modo SSL elegido, se verifican la cadena de certificados y el host. Una CA privada va en <ui>CA Certificate</ui>; un certificado de cliente y clave añaden TLS mutuo.",
                 "Con un <network>túnel SSH</network>, la conexión permanece en el broker bootstrap, así que solo lee las particiones que este lidera. <ui>Import from URL…</ui> acepta URL <code>kafka://</code>, que macOS no abre como enlaces."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Lee, inspecciona y produce",
             "paragraphs": [
-                "Abrir un topic muestra sus mensajes más recientes, con el más nuevo al final, junto con partición, offset, fecha, clave, valor, cabeceras y tamaños. Los mensajes de distintas particiones se intercalan por fecha para facilitar la lectura; partición y offset identifican el mensaje. Claves o valores que no sean UTF-8 se muestran en hexadecimal; un tombstone sigue distinguiéndose de un mensaje vacío.",
-                "KafkaQL sustituye ordenación y filtros por una posición inicial: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> o <code>FROM TIME</code> con fecha ISO 8601, opcionalmente limitada a algunas particiones. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> y <code>DESCRIBE TOPIC</code> cubren el resto del clúster.",
+                "Explora mensajes recientes con partición, offset, marca de tiempo, clave, valor y cabeceras. Los mensajes entre particiones se intercalan por marca de tiempo; partición y offset los identifican. Los valores no UTF-8 aparecen en hexadecimal. Los tombstones se distinguen de los mensajes vacíos.",
+                "Con KafkaQL, consume desde el mensaje más reciente, el más antiguo, un offset o una marca de tiempo ISO 8601, limitando opcionalmente las particiones. Los comandos SHOW listan topics, brokers, grupos y detalles del clúster; DESCRIBE TOPIC inspecciona un topic.",
                 "<code>DESCRIBE GROUP</code> muestra el retraso: offset confirmado, offset final y diferencia por partición. Una partición en la que el grupo nunca confirmó un offset no muestra retraso, en lugar de contar desde cero; <code>SHOW GROUPS</code> marca la lista como truncada si un broker no es accesible.",
                 "<code>PRODUCE INTO</code> escribe un mensaje con clave, cabeceras y partición opcionales. Un mensaje con clave sin partición se coloca donde lo pondría el productor de Kafka. Los lotes gzip, snappy, lz4 y zstd se descomprimen al leerlos, sin elegir ningún ajuste.",
-                "No se pueden editar celdas, borrar filas ni ordenar columnas, porque Kafka no tiene actualización, eliminación por mensaje ni ordenación en el servidor; la cuadrícula atenúa esos controles. Cada página continúa donde terminó la anterior, por lo que un topic que recibe mensajes nunca repite ni omite ninguno."
+                "Los mensajes no se pueden editar ni eliminar individualmente, y las columnas no se pueden ordenar. La paginación continúa desde la posición anterior aunque lleguen mensajes nuevos."
             ]
         },
         {

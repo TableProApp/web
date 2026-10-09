@@ -890,6 +890,12 @@ final class HandoffDocument
         $locales = Locales::codes();
 
         if ($entry['kind'] === 'og-card') {
+            if ($base === 'og-site') {
+                $locales = array_values(array_diff($locales, [Locales::default()]));
+
+                return 'public/og.png (en); ' . "{$dir}/{$base}-" . $this->brace($locales) . '.png';
+            }
+
             return "{$dir}/{$base}-" . $this->brace($locales) . '.png';
         }
 

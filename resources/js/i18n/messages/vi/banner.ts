@@ -2,8 +2,8 @@ import type { Messages } from '../../types.ts';
 
 export default {
     label: 'Thông báo',
-    message: 'Bạn dùng TablePro hằng ngày? License thêm tính năng trả phí và nuôi bản phát hành tiếp theo.',
-    short: 'Bạn dùng hằng ngày?',
-    cta: 'Mua license',
+    message: 'Gói trả phí bổ sung tính năng và tài trợ phát triển TablePro.',
+    short: 'Gói trả phí tùy chọn',
+    cta: 'Xem các gói',
     licensed: 'Đã có license? Ẩn đi',
 } satisfies Messages['banner'];

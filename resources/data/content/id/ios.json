@@ -9,72 +9,72 @@
     },
     "hero": {
         "title": "TablePro untuk iPhone dan iPad",
-        "lead": "Terhubung ke database, telusuri dan edit baris, serta jalankan kueri dari ponsel atau tablet, dengan tunnel SSH, Safe Mode, dan Face ID. Ini aplikasi terpisah untuk iPhone dan iPad, bukan salinan aplikasi Mac.",
+        "lead": "Telusuri tabel yang didukung, jalankan kueri, dan edit baris di ponsel atau tablet Anda.",
         "noSignUp": "Tanpa pendaftaran dan lisensi",
         "mac": "Mencari aplikasi Mac? <download>Unduh TablePro untuk Mac</download>."
     },
     "databases": {
         "title": "Database",
-        "lead": "Buat koneksi ke database berikut di iPhone dan iPad. Driver sudah disertakan dalam aplikasi, jadi tidak ada yang perlu diunduh.",
+        "lead": "Buat koneksi ke database ini. Semua driver sudah terpasang.",
         "syncedOnly": "Koneksi {engines} dapat dibuka jika berasal dari Mac, melalui iCloud Sync atau file .tablepro. Anda tidak dapat membuatnya dalam aplikasi ini.",
-        "others": "Koneksi ke database lain juga disinkronkan dari Mac dan tampil dalam daftar, tetapi aplikasi ini tidak memiliki drivernya sehingga tidak dapat dibuka. <databases>Halaman database</databases> mencantumkan semua mesin yang didukung aplikasi Mac.",
-        "files": "SQLite: pilih file database dan aplikasi menyalinnya ke penyimpanan sendiri, sehingga pengeditan Anda mengubah salinan tersebut. Anda juga dapat membuat database baru. DuckDB membuka file di lokasinya atau berjalan dalam memori.",
-        "redis": "Redis: jalankan perintah pada tab Query. Penelusuran kunci Redis tidak tersedia di aplikasi iPhone dan iPad.",
+        "others": "Koneksi lain yang disinkronkan dari Mac muncul dalam daftar, tetapi tidak dapat dibuka tanpa driver yang didukung. Lihat semua <databases>database yang didukung</databases>.",
+        "files": "SQLite menyalin file pilihan Anda ke penyimpanan aplikasi; suntingan mengubah salinan itu. Anda juga dapat membuat database. DuckDB membuka file di tempatnya atau berjalan di memori.",
+        "redis": "Redis mendukung perintah di tab Query, tetapi tidak mendukung penelusuran kunci.",
         "sample": "Untuk mencoba terlebih dahulu, buka Chinook, database contoh yang disertakan."
     },
     "browse": {
         "title": "Telusuri dan edit tabel",
         "paragraphs": [
-            "Setiap koneksi terbuka pada tabelnya, dengan editor kueri, riwayat, dan detail koneksi dalam tab masing-masing.",
-            "Baris tampil sebagai kartu, dengan primary key atau kolom pertama sebagai judul dan kolom berikutnya di bawah. Urutkan berdasarkan kolom apa pun, cari di semua kolom kecuali biner, serta gabungkan filter dengan AND atau OR. Pilih jumlah baris per halaman dan lompat ke halaman mana pun. Ketuk nilai foreign key untuk pratinjau baris rujukan. Tampilan Structure mencantumkan kolom, indeks, dan foreign key tabel.",
-            "Buka baris untuk mengedit: ubah nilai, atur NULL, dan konfirmasi sebelum disimpan. Anda juga dapat menyisipkan atau menghapus baris, melakukan truncate atau menghapus tabel. Pengeditan dan penghapusan baris memerlukan primary key, dan tidak ada yang berubah pada koneksi Read-Only."
+            "Setiap koneksi memiliki tab untuk tabel, kueri, riwayat, dan detail koneksi.",
+            "Telusuri kartu baris, urutkan kolom, cari nilai non-biner, dan gabungkan filter dengan AND atau OR. Ketuk kunci asing untuk melihat pratinjau baris yang direferensikan. Structure mencantumkan kolom, indeks, dan kunci asing.",
+            "Buka baris untuk mengedit nilai atau mengatur NULL, lalu konfirmasi penyimpanan. Menyisipkan dan menghapus baris, atau memotong dan melepas tabel. Pengeditan dan penghapusan baris memerlukan kunci utama. Read-Only memblokir perubahan."
         ]
     },
     "query": {
         "title": "Jalankan kueri",
         "paragraphs": [
-            "Tulis SQL dengan sorotan sintaks, jalankan, dan hentikan saat berjalan. Mulai dengan templat SELECT, lalu salin atau bagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT melalui papan klip atau lembar berbagi.",
-            "Aplikasi menyimpan hingga {results} baris hasil; tambahkan LIMIT untuk melihat bagian lain dari hasil besar. Riwayat menyimpan {history} kueri terakhir di perangkat ini lintas koneksi dan tidak disinkronkan.",
-            "Saat kueri berjalan, Aktivitas Langsung menampilkan kemajuan pada Layar Terkunci dan Dynamic Island: waktu yang telah berlalu dan jumlah baris yang diterima. Layar Terkunci dan Dynamic Island yang diperluas juga menampilkan SQL, kecuali Anda mengaktifkan <ui>Settings > Live Activities > Hide Query</ui>."
+            "Tulis SQL dengan penyorotan sintaks, jalankan atau hentikan, lalu bagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT. Gunakan clipboard atau menu berbagi.",
+            "Hasil menyimpan hingga {results} baris; gunakan LIMIT untuk kueri besar. Riwayat menyimpan {history} kueri terakhir dari semua koneksi di perangkat ini dan tidak disinkronkan.",
+            "Aktivitas Langsung menampilkan waktu berlalu dan baris yang diterima di Layar Terkunci dan Dynamic Island. SQL juga ditampilkan di Layar Terkunci dan Dynamic Island yang diperluas, kecuali <ui>Settings > Live Activities > Hide Query</ui> aktif."
         ]
     },
     "security": {
         "title": "Terhubung dengan aman",
         "paragraphs": [
-            "Tunnel SSH masuk dengan kata sandi atau private key dari file atau tempelan, dengan frasa sandi opsional. Saat pertama kali mengakses server, aplikasi menampilkan sidik jari host key dan meminta Anda memercayainya.",
-            "TLS diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan mengirim sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga dapat memverifikasi sertifikat dan mengirim sertifikat klien. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
-            "Kata sandi dan key tempelan disimpan dalam Rantai Kunci. Koneksi SQL Server yang memakai Microsoft Entra ID dapat masuk di sini setelah disinkronkan dari Mac; autentikasi Windows tidak didukung. Untuk mengakses server dengan nama .local di jaringan Anda, izinkan akses Jaringan Lokal saat iOS meminta."
+            "Terowongan SSH menggunakan kata sandi atau kunci pribadi, dengan frasa sandi opsional. Impor atau tempel kuncinya. Aplikasi ini meminta Anda untuk mempercayai sidik jari kunci host server pada koneksi pertama.",
+            "Pengaturan TLS berlaku per koneksi. MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat dan hostname serta menggunakan sertifikat klien. Redis mendukung verifikasi sertifikat dan sertifikat klien. Mode Required SQL Server mengenkripsi tanpa verifikasi sertifikat. Sertifikat tetap di perangkat ini.",
+            "Kata sandi dan kunci yang ditempel tetap berada di Rantai Kunci. Koneksi SQL Server yang disinkronkan dapat menggunakan autentikasi Microsoft Entra ID, bukan Windows. Izinkan akses Jaringan Lokal untuk menjangkau .host lokal."
         ]
     },
     "safeMode": {
         "title": "Safe Mode dan kunci aplikasi",
         "paragraphs": [
-            "Setiap koneksi memiliki level Safe Mode: {levels}. Confirm Writes meminta persetujuan sebelum pernyataan yang mengubah data berjalan. Read-Only menolaknya sebelum mencapai server. Pernyataan yang tidak dapat dikenali sebagai pembacaan dianggap penulisan.",
-            "Atur level koneksi dalam bagian Organization dan level awal koneksi baru dalam Settings. Pintasan yang menambah baris mengikuti level yang sama.",
-            "Dalam <ui>Settings > Security</ui>, kunci aplikasi dengan Face ID atau Touch ID, dengan kode sandi sebagai alternatif. Setelah aktif, aplikasi meminta autentikasi setiap kali dimulai dan setelah durasi Auto-Lock yang Anda pilih."
+            "Pilih level per koneksi: {levels}. Confirm Writes bertanya sebelum menulis; Read-Only memblokirnya. Pernyataan yang tidak dikenali dihitung sebagai tulisan.",
+            "Atur tingkat di Organization dan default untuk koneksi baru di Settings. Pintasan mengikuti tingkat yang sama.",
+            "Aktifkan Face ID atau Touch ID di <ui>Settings > Security</ui>, dengan penggantian kode sandi. Aplikasi terkunci saat peluncuran dan setelah interval Kunci Otomatis yang Anda pilih."
         ]
     },
     "ipad": {
         "title": "Di iPad",
         "paragraphs": [
-            "Satu aplikasi untuk iPhone dan iPad. Di iPad aplikasi berjalan dalam orientasi apa pun dan beberapa jendela sekaligus dengan Stage Manager atau Split View; bilah tab dapat berubah menjadi sidebar.",
-            "Dengan keyboard, ⌘1 hingga ⌘4 berpindah antara Tables, Query, History, dan Info; ⌘F mencari, ⌘↩ menjalankan kueri, dan ⌘N menambah koneksi. Trackpad atau mouse juga didukung."
+            "Di iPad, gunakan orientasi apa pun dan beberapa jendela dengan Stage Manager atau Split View. Bilah tab bisa menjadi sidebar.",
+            "Pintasan keyboard mencakup ⌘1–⌘4 untuk tab, ⌘F untuk mencari, ⌘↩ untuk menjalankan kueri, dan ⌘N untuk koneksi baru. Mouse dan trackpad juga berfungsi."
         ]
     },
     "mac": {
         "title": "Bersama Mac Anda",
         "paragraphs": [
-            "Aktifkan iCloud Sync saat penyiapan atau nanti dalam Settings, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sync Passwords juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
-            "iCloud Sync gratis di sini. Di Mac fitur ini termasuk lisensi Starter atau Team, sehingga Mac tanpa lisensi tidak disinkronkan. <pricing>Halaman harga</pricing> menjelaskan detailnya.",
-            "Tanpa iCloud, ekspor koneksi sebagai file .tablepro dan buka di perangkat lain melalui AirDrop atau File. Kata sandi tidak disertakan kecuali Anda memasukkannya, lalu file dienkripsi dengan frasa sandi pilihan Anda. Keduanya gratis di sini; di Mac, ekspor dengan kata sandi termasuk fitur berlisensi.",
-            "Saat iCloud Sync aktif, Handoff melanjutkan koneksi atau tabel terbuka antara Mac dan iPhone atau iPad. <sync>Sinkronisasi dan tim</sync> menjelaskan keduanya lebih lanjut."
+            "Aktifkan iCloud Sync untuk berbagi koneksi, grup, dan tag melalui akun iCloud Anda. Untuk kata sandi, aktifkan Sync Passwords secara terpisah. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar Mac.",
+            "Sinkronisasi gratis di sini; Mac membutuhkan Starter atau Team. Lihat <pricing>harga</pricing>.",
+            "Atau transfer file .tablepro melalui AirDrop atau Files. Ekspor mengecualikan kata sandi kecuali Anda memasukkannya dan mengenkripsinya dengan frasa sandi. Kedua opsi tersebut gratis di sini; ekspor terenkripsi memerlukan lisensi berbayar di Mac.",
+            "Dengan sinkronisasi diaktifkan, Handoff melanjutkan koneksi atau tabel terbuka di perangkat lain. Lihat <sync>Sync dan team</sync>."
         ]
     },
     "automation": {
         "title": "Pintasan, widget, dan Spotlight",
         "paragraphs": [
-            "Open Connection membuka koneksi dari pintasan atau Siri. Add Row to Table dan Add Rows to Table menyisipkan data ke tabel tanpa membuka aplikasi dari teks JSON atau CSV atau file. Keduanya hanya berjalan saat perangkat tidak terkunci, mengikuti level Safe Mode koneksi, dan tidak mendukung koneksi Redis.",
-            "Widget Quick Connect menempatkan koneksi awal Anda pada Layar Utama, dan satu ketukan membukanya. Koneksi juga tampil dalam pencarian Spotlight."
+            "Gunakan Siri atau Pintasan untuk membuka koneksi. Add Row to Table dan Add Rows to Table memasukkan JSON atau CSV tanpa membuka app. Tindakan ini tidak berjalan saat perangkat terkunci, mengikuti Safe Mode, dan tidak mendukung Redis.",
+            "Widget Quick Connect membuka koneksi pertama Anda dari Layar Beranda. Koneksi juga muncul di Spotlight."
         ]
     },
     "limits": {
@@ -105,8 +105,8 @@
     "privacy": {
         "title": "Privasi",
         "paragraphs": [
-            "Tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data saat penyiapan atau nanti di <ui>Settings > Privacy</ui>. Jika aktif, aplikasi mengirim satu laporan per hari berisi hash ID perangkat, versi aplikasi dan iOS, arsitektur prosesor, bahasa, jenis database yang dipakai, jumlah koneksi, dan beberapa tanggal penggunaan pertama. Tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
-            "Aplikasi tidak memeriksa lisensi, tidak memeriksa pembaruan, dan tidak meminta plugin. Kueri dikirim ke server Anda, iCloud Sync ke akun iCloud Anda, dan login Entra ke Microsoft. <privacyIos>Kebijakan privasi</privacyIos> menjelaskan detailnya."
+            "Pelaporan penggunaan dinonaktifkan secara default. Aktifkan Share Usage Data di <ui>Settings > Privacy</ui> untuk mengirim laporan harian: ID perangkat yang di-hash, versi app dan iOS, arsitektur, bahasa, jenis database, jumlah koneksi, dan tanggal penggunaan pertama. Tanpa hostname, nama pengguna, kata sandi, kueri, atau baris.",
+            "Tidak ada pemeriksaan lisensi, pembaruan, atau plugin yang dikirim ke TablePro. Kueri dikirim ke database Anda, iCloud Sync ke akun iCloud Anda, dan login Entra ke Microsoft. Baca <privacyIos>kebijakan privasi</privacyIos>."
         ]
     },
     "get": {
@@ -123,7 +123,7 @@
             },
             {
                 "question": "Apakah sama dengan aplikasi Mac?",
-                "answer": "Tidak. Ini aplikasi lebih kecil untuk ponsel dan tablet. <iosLimits>Daftar di atas</iosLimits> menunjukkan fitur yang tetap di Mac."
+                "answer": "Tidak. Ini memiliki kumpulan fitur yang lebih kecil. Lihat <iosLimits>fitur tidak tersedia di sini</iosLimits>."
             }
         ]
     }

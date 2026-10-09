@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "適用於 {devices} 的 SQL Server 用戶端",
-        "lead": "逐批次執行 T-SQL 指令碼，依 SQL Server Management Studio 的方式處理 GO 和 PRINT，並使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 工作帳戶驗證。Windows、Linux、Docker 伺服器及 Azure SQL Database 均以相同方式連線。"
+        "title": "SQL Server 用戶端",
+        "lead": "執行包含 GO 批次和 PRINT 輸出的 T-SQL 腳本。使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 連線。"
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機和 TCP 連接埠，再選擇<ui>身分驗證</ui>（Authentication），表單會隨之調整：SQL Server 使用者密碼、Kerberos Windows Authentication 或 Microsoft Entra ID。屬於單一資料庫的登入，例如 Azure SQL contained user，也需填寫 Database。",
+                "輸入主機和 TCP 連接埠，然後在 <ui>身分驗證</ui> (Authentication) 中選擇 SQL Server 登入、Kerberos 或 Microsoft Entra ID。資料庫範圍登入（包括 Azure SQL 包含使用者）還需要 Database 欄位。",
                 "Kerberos 使用認證資訊快取中的現有票證，或根據輸入的主體和密碼請求票證。票證為伺服器註冊的 SPN 簽發，因此請用主機名稱而非 IP 連線。TablePro 從不執行 <code>kinit</code> 或編輯 <code>/etc/krb5.conf</code>。",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用裝置代碼流程登入，遵循多因素驗證和 Conditional Access。需在 Azure 註冊 App 並填寫用戶端 ID；權杖儲存在登入鑰匙圈中，標記為僅限此裝置，並在背景重新整理。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用裝置代碼登入，支援多重要素驗證和 Conditional Access。註冊 Azure 應用程式並輸入用戶端 ID。權杖在背景重新整理，儲存在僅限本裝置的登入鑰匙圈中。",
                 "新連線預設為 Preferred，在 SQL Server 上僅加密登入。要加密整個工作階段，請選 Required 或更嚴格等級；Verify CA、Verify Identity 使用 macOS 系統根憑證驗證。TablePro 也可為 Google Cloud SQL 執行 Cloud SQL Auth Proxy，並透過 <network>SSH 通道</network>存取私有網路伺服器。"
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "指令碼、批次與編輯",
             "paragraphs": [
-                "指令碼依僅含 <code>GO</code> 的行分隔，像 sqlcmd 一樣逐批次傳送伺服器；<code>GO 5</code> 將前一批次執行五次。每個結果集在獨立分頁開啟，<code>PRINT</code> 輸出和資訊訊息顯示在 Output 檢視。",
-                "若失敗需復原之前的批次，請在指令碼加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；指令碼留下未結束交易時會在結尾提示。執行在首個失敗批次停止，錯誤指出編輯器中的行號。",
+                "腳本在 <code>GO</code> 列處拆分；<code>GO 5</code> 將前一個批次重複五次。每個結果集在獨立分頁開啟。Output 顯示 <code>PRINT</code> 輸出和資訊訊息。",
+                "批次需要交易時使用 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>。未結束交易會顯示提示。執行在首個失敗批次停止，錯誤中包含編輯器行號。",
                 "每個工作階段以篩選索引、索引檢視表和計算欄位索引所需的 SET 選項開啟，例如啟用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不符合任何紀錄，請用 <code>IS NULL</code> 比較。",
                 "資料表在側邊欄 schema 下巢狀顯示，<code>⌘K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
             ]
@@ -50,7 +50,7 @@
             "title": "結構",
             "paragraphs": [
                 "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵和條件約束的修改，在執行前顯示 T-SQL。可從側邊欄刪除 schema，但 SQL Server 拒絕刪除仍含物件的 schema；建立請在編輯器使用 CREATE SCHEMA。",
-                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 SQL Server schema 或資料，儲存每個陳述式後附 <code>GO</code> 行的指令碼，可直接用於 sqlcmd 或 SQL Server Management Studio。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比較 SQL Server 綱要或資料。產生腳本用適用於 sqlcmd 或 SQL Server Management Studio 的 <code>GO</code> 分隔陳述式。"
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "移動資料",
             "paragraphs": [
-                "<importData>匯入</importData> {importFormats} 檔案。含 <code>GO</code> 行的 <code>.sql</code> 檔案像 sqlcmd 一樣逐批次執行。資料表或結果匯出為 {exportFormats}；SQL 匯出在每個陳述式後加 <code>GO</code> 行，使其各自作為獨立批次執行。"
+                "<importData>匯入</importData> {importFormats} 檔案。SQL 檔案識別 <code>GO</code> 批次。將資料表或結果匯出為 {exportFormats}；SQL 匯出同樣使用 <code>GO</code> 分隔符。"
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio 是 Microsoft 自有 SQL Server、Azure SQL 工具。SQL Server Agent 工作、Always On 可用性群組、即時查詢統計及效能調校等 TablePro 未涵蓋的管理任務可選用它。",
+                "text": "SQL Server Management Studio 提供超出 TablePro 的管理功能，包括 SQL Server Agent 工作、Always On 可用性群組、即時查詢統計和效能調校。",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

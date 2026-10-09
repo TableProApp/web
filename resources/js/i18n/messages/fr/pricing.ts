@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Gratuit",
-            "description": "L’application Mac sans les fonctionnalités payantes, et l’application iPhone et iPad.",
+            "description": "Les outils essentiels pour vos bases, sans période d’essai.",
             "activation": "Aucune inscription nécessaire pour utiliser l’application.",
             "includesTitle": "Comprend",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Ajoute à l’application Mac des fonctionnalités comme {examples}.",
             "activation": {
-                "one": "Une licence pour une personne, sur {count} Mac.",
-                "other": "Une licence pour une personne, sur un maximum de {count} Mac."
+                "one": "Une personne, {count} Mac.",
+                "other": "Une personne, jusqu’à {count} Mac."
             },
             "includesTitle": "Tout ce qui est gratuit, plus",
             "cta": "Acheter Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Ajoute à Starter des connexions et des requêtes partagées avec votre équipe.",
-            "activation": "Chaque poste correspond à un Mac activé.",
+            "description": "Partagez connexions et requêtes enregistrées avec votre équipe.",
+            "activation": "Un Mac activé par poste.",
             "includesTitle": "Tout ce que contient Starter, plus",
             "cta": "Acheter Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Toutes les offres payantes peuvent être remboursées dans un délai de {count} jour suivant l’achat, et chaque renouvellement mensuel ou annuel dans un délai de {count} jour suivant son paiement. Voir la <link>politique de remboursement</link>.",
         "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {count} jours suivant son paiement. Voir la <link>politique de remboursement</link>."
     },
-    "finePrint": "Prix en dollars américains. {merchant} est le merchant of record : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
+    "finePrint": "Prix en dollars américains. {merchant} gère le paiement et calcule la taxe de vente ou la TVA au paiement en tant que merchant of record.",
     "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Vérification du code…",
         "percent": "Code accepté : {amount} % de réduction, appliquée lors du règlement.",
         "fixed": "Code accepté : {amount} de réduction, appliquée lors du règlement.",
-        "invalid": "Ce code de réduction est invalide ou a expiré."
+        "invalid": "Ce code est invalide ou a expiré."
     },
     "checkout": {
-        "failed": "Impossible d’ouvrir la page de paiement. Réessayez."
+        "failed": "Impossible d’ouvrir le paiement. Réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

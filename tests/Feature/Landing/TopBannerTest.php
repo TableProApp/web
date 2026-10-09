@@ -216,19 +216,18 @@ it('asks the phone reader whether they are a regular user, before the link', fun
 })->with(fn(): array => array_keys(bannerLocales()));
 
 /*
- * The ask sells the license first and names what the money pays for second:
- * a license adds the paid features and funds the next release. The link leads
- * with the verb, and the phone question keeps the sentence's "every day".
+ * The banner names paid features and development funding, with a verb-led
+ * link. Both use a short optional-plan label, not a daily-use question.
  */
-it('names what a license adds and what it pays for, and leads the link with a verb', function (string $locale, string $license, string $adds, string $funds, string $verb, string $daily): void {
+it('names paid features and development funding, and leads the link with a verb', function (string $locale, string $license, string $adds, string $funds, string $verb, string $short): void {
     $copy = bannerCatalog($locale);
 
     expect($copy['message'])->toContain($license)->toContain($adds)->toContain($funds);
     expect($copy['cta'])->toStartWith($verb);
-    expect($copy['short'])->toContain($daily)->toEndWith('?');
+    expect($copy['short'])->toBe($short);
 })->with([
-    'en' => ['en', 'license', 'paid features', 'funds', 'Get ', 'daily'],
-    'vi' => ['vi', 'License', 'tính năng trả phí', 'nuôi', 'Mua ', 'hằng ngày'],
+    'en' => ['en', 'Paid plans', 'features', 'fund', 'See ', 'Optional paid plans'],
+    'vi' => ['vi', 'Gói trả phí', 'tính năng', 'phát triển', 'Xem ', 'Gói trả phí tùy chọn'],
 ]);
 
 it('states a fact rather than pleading, and never says the whole app is free', function (string $locale): void {

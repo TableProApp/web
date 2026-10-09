@@ -254,6 +254,12 @@ it('draws every generated card on the current template', function (): void {
     $ground = array_map(hexdec(...), str_split(strtolower($match[1]), 2));
 
     foreach (ogCardsExpected() as $path) {
+        // Supplied artwork occupies the canonical English default URL.
+        // Its geometry, opacity and budget are checked in BespokeOgCardTest.
+        if ($path === '/og.png' && app(AssetManifest::class)->ogCard(OgImages::SITE_CARD, Locales::default()) === $path) {
+            continue;
+        }
+
         $image = imagecreatefrompng(base_path('public' . $path));
 
         Assert::assertNotFalse($image, "{$path} is not a PNG");

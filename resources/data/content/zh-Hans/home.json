@@ -1,26 +1,26 @@
 {
     "seo": {
         "title": "TablePro：适用于 {deviceList} 的原生数据库客户端",
-        "titleFallback": "TablePro：面向开发者的原生数据库客户端",
+        "titleFallback": "TablePro：原生、开源的数据库客户端",
         "description": "TablePro 是支持 PostgreSQL、MySQL、SQL Server、MongoDB、Redis 等的原生开源数据库客户端。免费使用，提供可选付费功能。"
     },
     "og": {
         "kicker": "",
-        "title": "TablePro 是面向开发者的原生开源数据库客户端。"
+        "title": "原生数据库客户端。"
     },
     "hero": {
-        "title": "为开发者打造的原生数据库客户端。",
+        "title": "原生数据库客户端。",
         "subtitle": "在 {featuredEngines} <more>等数据库</more>中运行查询、浏览和编辑数据。",
-        "native": "原生是指每款应用都针对各自的平台使用 Swift 编写，在 Mac 上使用 AppKit 和 SwiftUI。不含 Electron，也不含 Java 运行时。",
+        "native": "采用原生界面，不依赖 Electron 或 Java 运行时。",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "其他安装方式",
-        "business": "TablePro 开源且可免费使用。付费方案为 {paidPlatformApps}增加可选功能。<pricing>查看定价</pricing>"
+        "business": "免费使用，代码开源。付费方案为 {paidPlatformApps}添加功能。<pricing>查看价格</pricing>"
     },
     "databases": {
-        "title": "关系型、文档、键值和分析型数据库",
-        "lead": "部分驱动随 {macApp}提供。其余驱动会在首次选择对应数据库时下载，并独立于应用更新。",
-        "count": "在 Mac 上，TablePro 可连接 {count} 种数据库，按类型分组：",
+        "title": "支持的数据库",
+        "lead": "{macApp}内置常用驱动，其他驱动在首次使用时下载。",
+        "count": "在 Mac 上连接 {count} 种数据库：",
         "ios": "在 {iosDevices} 上，TablePro 可连接 {iosEngines}。",
         "iosSynced": "从 Mac 同步的 {syncedOnly} 连接也可在这些设备上打开。",
         "link": "受支持的数据库"
@@ -30,84 +30,84 @@
         "link": "赞助 TablePro"
     },
     "workflows": {
-        "title": "Mac 应用能做什么",
-        "paid": "{tier} 方案：{features}。",
+        "title": "数据库操作",
+        "paid": "可选付费功能：{features}（{tier}）。",
         "link": "所有功能",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
-                "title": "编写、运行和理解查询",
-                "body": "SQL 编辑器提供感知数据库结构的自动补全、<code>:name</code> 查询参数、可搜索的历史记录、已保存查询，以及存放 <code>.sql</code> 文件并显示 Git 状态的文件夹。在受支持的引擎上，EXPLAIN 会将执行计划绘制为图表，EXPLAIN Compare 则可将计划与基准进行比较。"
+                "title": "SQL 编辑器",
+                "body": "根据结构自动补全表和列。保存常用查询，并搜索查询历史。"
             },
             {
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
-                "title": "编辑数据和结构，保存前先查看 SQL",
-                "body": "单元格编辑、新增行和删除会暂存至您保存时，Preview SQL 可先显示将执行的语句。对于 TablePro 可编辑结构的引擎，Structure 标签页会以相同方式暂存列、索引、外键和 CHECK 约束的修改。还包含筛选器、已保存筛选器、高亮规则、外键选择器和各标签页独立的撤销功能。"
+                "title": "预览更改",
+                "body": "行编辑在保存后才会提交。先检查 SQL，或撤销当前标签页中的更改。"
             },
             {
                 "id": "schema",
                 "asset": "mac-compare-sync-structure",
-                "title": "在数据库之间对比、同步和复制",
-                "body": "Compare & Sync 对比两个数据库的结构或数据，并生成脚本使其中一个与另一个一致。删除列等风险操作会被保留，供您审查。Copy To 可将表或整个数据库复制到另一连接，即使引擎不同也可以，并列出所有需要近似转换的类型。还包含只读 ER 图，以及适用于 {usersRolesEngines} 的 Users & Roles。"
+                "title": "比较数据库",
+                "body": "在支持的引擎上比较结构或数据，并生成同步脚本。纳入可能删除数据的更改前，先检查内容。"
             },
             {
                 "id": "files",
                 "asset": "mac-data-files-window",
-                "title": "导入、导出和打开数据文件",
-                "body": "在支持导入的引擎上导入 {importFormats} 文件，并导出为 {exportFormats}。Data Files 窗口可在不连接数据库的情况下打开 CSV、JSON 和 XLSX 文件，供您搜索和筛选，并整理 CSV 和 JSON。Backup Dump 和 Restore Dump 使用各引擎自己的命令行工具（{dumpTools}）；请安装 Mac 上尚未具备的工具。"
+                "title": "导入和导出",
+                "body": "在支持的引擎上导入 {importFormats} 文件。将表或查询结果导出为 {exportFormats}。"
             },
             {
                 "id": "connect",
                 "asset": "mac-connection-ssh-form",
-                "title": "通过 SSH、TLS 和云端登录连接",
-                "body": "通过带跳板机的 SSH 隧道、TLS、AWS IAM、Microsoft Entra ID、Google 登录，或 <code>kubectl port-forward</code> 等隧道命令访问数据库。从钥匙串、1Password、Vault 或 AWS Secrets Manager 获取密码。可在主机、用户等连接字段中以 <code>$VAR</code> 引用环境变量。"
+                "title": "连接服务器",
+                "body": "使用 SSH 隧道、TLS 或支持的云端登录方式连接。用分组和标签整理已保存的连接。"
             }
         ]
     },
     "safety": {
-        "title": "生产数据库的安全防护",
+        "title": "Safe Mode",
         "body": [
-            "在 Mac 上，可按环境为连接添加标签和颜色，并为每个连接设置 Safe Mode 级别。Silent 直接执行语句，Alert 在写入前询问，名为 Safe Mode 的级别还要求 Touch ID 或密码，Read-Only 则拒绝写入。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
-            "在 Agent mode 下，AI 助手可执行语句。以 Agent mode 打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
+            "为每个连接设置 Safe Mode 级别。在 Mac 上，Alert 会在写入前请求确认；Safe Mode 和 Safe Mode (Full) 还需要 Touch ID 或密码。默认级别为 Silent。DROP、TRUNCATE 和不带 WHERE 的 DELETE 始终需要确认。",
+            "在 iPhone 和 iPad 上，Confirm Writes 会在写入前请求确认。Read-Only 在两款 App 中都拒绝写入；对 MongoDB、Redis 和 etcd 则阻止所有命令。"
         ],
         "levels": "Safe Mode 级别",
         "link": "Safe Mode"
     },
     "ai": {
-        "title": "AI 助手和 MCP 服务器",
+        "title": "AI 助手与 MCP",
         "body": [
-            "在 Mac 上，可选的 AI 助手可解释、优化和修复查询，并回答有关数据库结构的问题。提供商由您选择：使用 API 密钥、已有账户或在 Mac 本地运行的模型。TablePro 不运营自己的 AI 服务，添加提供商前不会发送任何内容。",
-            "聊天默认从只读的 Ask 模式开始。在 Edit 和 Agent 模式下，助手可执行语句。从 Alert 到 Safe Mode (Full)，每次写入都等待您确认；Read-Only 拒绝写入，而 DROP 和 TRUNCATE 始终需要您点击确认。",
-            "内置 MCP（Model Context Protocol）服务器让 {mcpClients} 等 AI 客户端可使用您保存的连接，而无需看到密码。它仅监听 {mcpHost}，每个连接可分别设置外部应用的权限：Blocked、Read Only（默认）或 Read & Write。",
-            "这些功能全部免费。"
+            "使用您选择的服务商或本地模型解释、修复 SQL。在 Mac 上提供；添加服务商前不会发送任何数据。",
+            "聊天默认使用 Ask 模式。Edit 和 Agent 可在 Safe Mode 限制下执行语句；Silent 下写入可能无需批准。全窗口 Agent mode使用 Alert 或更严格的级别。",
+            "通过内置 MCP (Model Context Protocol) 服务器，将 {mcpClients} 等客户端连接到已保存的连接。服务器监听 {mcpHost}，默认关闭，启用后从只读权限开始。客户端无法看到已保存的密码。",
+            "两项功能均免费。AI 服务商可能另收使用费用。"
         ],
         "providers": "可添加的提供商：{providers}。"
     },
     "platforms": {
         "title": "适用于 {deviceList} 的原生应用",
         "cardTitle": "{devices} 版 TablePro",
-        "mac": "Mac 版 TablePro 是使用 Swift 编写的应用，为 {architectures} 提供独立构建版本。它将密码保存在钥匙串中，在更严格的 Safe Mode 级别下要求 Touch ID 验证，并自动更新。",
-        "ios": "在 {devices} 上，TablePro 是具有独立功能范围的应用。通过 SSH 或 TLS 连接，浏览表、运行查询和编辑行，并提供可选 Face ID 锁定、快捷指令、主屏幕小组件和显示运行中查询的实时活动。",
-        "sync": "iCloud Sync 可在 Mac 与 iPhone 或 iPad 之间同步连接、分组和标签。默认关闭，Mac 上需要 {tier} 方案。开启 iCloud Sync 后，可通过 Handoff 在另一设备继续使用已打开的连接。"
+        "mac": "桌面 App 为 {architectures} 提供独立版本，包含 SQL 编辑器、结构工具、AI 助手和 MCP 服务器。",
+        "ios": "在 {devices} 上运行查询并操作支持的表。这是一款独立的免费 App，支持 SSH 隧道和可选的 Face ID 锁定。",
+        "sync": "iCloud Sync 在 Apple 设备间共享连接、分组和标签。默认关闭，Mac 上需要 {tier}。"
     },
     "switch": {
-        "title": "从其他应用迁移",
+        "title": "迁移连接",
         "lead": "从其他应用导入和 Open Project Folder 仅在 {macApp}中提供。",
         "import": "从 {apps} 导入连接，包括已保存的密码。",
         "importWithoutPasswords": "从 {apps} 导入连接时不包含密码。",
-        "project": "Open Project Folder 读取项目中的 <code>.env</code>、<code>docker-compose.yml</code>、Prisma schema 和其他配置文件，并根据找到的信息填写新连接。",
+        "project": "Open Project Folder 可从支持的项目文件创建连接，包括 <code>.env</code>、<code>docker-compose.yml</code> 和 Prisma 结构文件。",
         "link": "对比 TablePro 与其他客户端"
     },
     "pricing": {
-        "title": "免费使用，付费方案按需选择",
-        "lead": "{macApp}可免费下载使用，没有试用期或时间限制。Starter 或 Team 方案可增加 {starterExamples} 等可选功能。Team 包含 Starter 的全部功能，并增加 {teamExamples}，便于与团队共享连接和查询。{iosApp}免费，且无应用内购买。"
+        "title": "Free、Starter 和 Team",
+        "lead": "{macApp}可免费使用，没有试用期。Starter 添加 {starterExamples}，Team 添加 {teamExamples}。{iosApp}免费，无 App 内购买。"
     },
     "openSource": {
-        "title": "开源，随时下载",
-        "body": "TablePro 采用 AGPLv3 开源，包括付费功能的代码。付费方案和赞助商为开发提供资金。TablePro 没有投资者，也不出售数据。",
-        "maker": "TablePro 由{country}{city}的个人开发者 {maker} 开发。",
+        "title": "开源",
+        "body": "TablePro 以 AGPLv3 开源，包括付费功能的代码。许可证收入和赞助支持开发。",
+        "maker": "由 {country} {city} 的 {maker} 开发。",
         "about": "关于 TablePro",
         "github": "在 GitHub 查看",
         "productHunt": "Product Hunt 上的 TablePro"

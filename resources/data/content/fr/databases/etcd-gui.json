@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "Interface graphique etcd pour {devices}",
-        "lead": "Parcourez les clés d’un cluster par préfixe, modifiez valeurs et baux dans une grille et exécutez dans l’éditeur des commandes à la façon d’etcdctl, comme <code>get --prefix</code>, <code>lease grant</code> et <code>member list</code>."
+        "title": "Interface graphique etcd",
+        "lead": "Parcourez les clés par préfixe, inspectez valeurs et baux, et utilisez des commandes de type etcdctl."
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez un hôte et le port client. etcd n’a pas de bases de données ; il n’y a donc pas de champ Base de données. Visez le port client : le port pair n’offre aucune passerelle JSON et une connexion dirigée vers lui ne s’ouvre jamais. Le formulaire prend un seul point de terminaison, sans basculement ; choisissez donc un membre disponible.",
+                "Connectez un hôte sur son port client. Les ports de pairs et la passerelle JSON ne sont pas pris en charge. Il n’y a ni sélection de base ni basculement entre endpoints.",
                 "Laissez <ui>Nom d’utilisateur</ui> (Username) et <ui>Mot de passe</ui> (Password) vides sur un cluster sans authentification. Un utilisateur sans rôle <code>root</code> se connecte et parcourt les clés couvertes par ses rôles, tandis que <code>endpoint status</code> et les commandes <code>user</code> et <code>role</code> répondent par un refus d’autorisation.",
                 "TLS se définit avec <ui>Mode TLS</ui> (TLS Mode) dans les champs Advanced, pas dans une section SSL, et commence sur Disabled. Required (skip verify) chiffre sans contrôle, Verify CA contrôle le certificat avec le fichier d’AC indiqué et Verify Identity ajoute le nom d’hôte. Un certificat client et sa clé ajoutent TLS mutuel.",
                 "Accédez à un cluster derrière un bastion via un <network>tunnel SSH</network>. Les URL <code>etcd://</code> et <code>etcds://</code> peuvent être importées ; aucune n’active TLS par elle-même."
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Définissez <ui>Racine du préfixe de clé</ui> (Key Prefix Root), par exemple <code>/app</code>, pour limiter une connexion à un sous-arbre. La barre latérale regroupe les clés par leur premier segment de chemin sous cette racine ; chaque clé est une ligne avec valeur, version, révisions de modification et de création, et bail.",
                 "Enregistrer une modification envoie des commandes. Une nouvelle valeur ou un nouveau bail réécrit la clé, un bail NULL retire le bail, et renommer une clé écrit le nouveau nom et supprime l’ancien. Les colonnes de révision appartiennent à etcd ; les modifier bloque donc l’enregistrement et nomme la colonne.",
-                "L’éditeur accepte les commandes à la façon d’etcdctl, avec complétion des commandes et options : <code>get</code> avec <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> et le tri, <code>put</code> avec <code>--lease</code>, <code>del</code>, <code>watch</code>, les sous-commandes <code>lease</code>, <code>member list</code>, <code>endpoint status</code> et <code>health</code>, <code>compaction</code>, ainsi que <code>auth</code>, <code>user</code> et <code>role</code>. Toute autre commande revient comme inconnue sans atteindre le serveur.",
+                "Utilisez les commandes de type etcdctl pour clés, watches, baux, membres, endpoints, compactage et droits d’accès, avec complétion des options. Les commandes non prises en charge sont rejetées avant envoi.",
                 "Le pilote etcd ne peut pas ouvrir de session en lecture seule ; <safeMode>Safe Mode</safeMode> traite donc chaque commande comme une écriture : aux niveaux Alert et Safe Mode, chacune demande confirmation, tandis que Read-Only les bloque toutes."
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "Baux et cluster",
             "paragraphs": [
-                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> avec <code>--keys</code>, <code>list</code> et <code>keep-alive</code> gèrent les baux ; <code>compaction</code> raccourcit l’historique des révisions. <code>member list</code>, <code>endpoint status</code> et <code>endpoint health</code> renseignent sur le cluster depuis l’éditeur, car etcd n’a pas de Server Dashboard.",
+                "Gérez les baux et le compactage des révisions dans l’éditeur. Inspectez membres, statut et santé des endpoints par commandes ; il n’y a pas de Server Dashboard.",
                 "Exécuter <code>auth enable</code> depuis l’éditeur active l’authentification pour tout le cluster. Une connexion avec utilisateur et mot de passe continue à fonctionner ; une connexion sans les deux doit être rouverte avec des identifiants."
             ]
         },

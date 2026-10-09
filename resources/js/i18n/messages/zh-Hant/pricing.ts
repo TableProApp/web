@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "免費",
-            "description": "不含付費功能的 Mac App，以及 iPhone 與 iPad App。",
+            "description": "基本資料庫工具，無試用期限。",
             "activation": "無需註冊即可使用 App。",
             "includesTitle": "包含",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "為 Mac App 加入 {examples} 等功能。",
             "activation": {
-                "one": "一份授權供一人使用，可用於 {count} 台 Mac。",
-                "other": "一份授權供一人使用，最多可用於 {count} 台 Mac。"
+                "one": "1 人，{count} 台 Mac。",
+                "other": "1 人，最多 {count} 台 Mac。"
             },
             "includesTitle": "免費版的所有功能，另加",
             "cta": "購買 Starter"
         },
         "team": {
             "name": "Team",
-            "description": "在 Starter 的基礎上，增加與團隊共用連線和查詢的功能。",
-            "activation": "每個席位對應一台已啟用的 Mac。",
+            "description": "與團隊共用連線和已儲存的查詢。",
+            "activation": "每個席位對應 1 台已啟用的 Mac。",
             "includesTitle": "Starter 的所有功能，另加",
             "cta": "購買 Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "所有付費方案均可在購買後 {count} 天內退款，月付或年付方案的每次續訂也可在扣款後 {count} 天內退款。詳見<link>退款政策</link>。",
         "other": "所有付費方案均可在購買後 {count} 天內退款，月付或年付方案的每次續訂也可在扣款後 {count} 天內退款。詳見<link>退款政策</link>。"
     },
-    "finePrint": "價格以美元計。{merchant} 為 merchant of record，負責收款，並在結帳時計算銷售稅或加值稅。",
+    "finePrint": "價格以美元計。{merchant} 作為 merchant of record 處理付款，並在結帳時計算銷售稅或加值稅。",
     "finePrintCurrency": "價格以美元計。",
     "comparePlans": "比較方案",
     "section": {
@@ -129,7 +129,7 @@ export default {
         "invalid": "此折扣碼無效或已過期。"
     },
     "checkout": {
-        "failed": "無法開始結帳。請再試一次。"
+        "failed": "無法開啟結帳頁面。請再試一次。"
     },
     "offers": {
         "name": "{plan}，{cycle}",

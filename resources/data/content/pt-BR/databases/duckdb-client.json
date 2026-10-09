@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "Cliente de DuckDB para {devices}",
-        "lead": "Abra um arquivo de banco DuckDB ou escolha um arquivo Parquet, CSV ou JSON e consulte-o com SQL no próprio local. DuckDB funciona dentro do driver, portanto nada é executado como servidor, a menos que você se conecte a um."
+        "title": "Cliente de DuckDB",
+        "lead": "Abra um banco de dados DuckDB ou consulte os arquivos Parquet, CSV e JSON com SQL. Nenhum servidor de banco de dados local é necessário."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "Abra um arquivo",
             "paragraphs": [
-                "Escolha um arquivo <code>.duckdb</code> ou <code>.ddb</code> ou digite um caminho que ainda não existe para criá-lo. Digite <code>:memory:</code> para um banco que dura enquanto a sessão estiver aberta. Um banco abre como DuckDB independentemente do nome do arquivo, pois DuckDB identifica seus arquivos nos primeiros bytes.",
-                "Escolha um arquivo <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> ou <code>.ndjson</code>, e ele abre como views somente leitura em um banco em memória: uma chamada <code>file</code> e outra com o nome do arquivo. O arquivo no disco permanece idêntico, byte por byte; para alterar seu conteúdo, crie uma tabela a partir dele em um banco <code>.duckdb</code>.",
-                "Clique duas vezes em um arquivo <code>.duckdb</code> no Finder para abri-lo aqui. Arquivos Parquet listam TablePro em Abrir Com, e um arquivo Parquet escolhido em <ui>File > Open File</ui> abre como conexão DuckDB em vez de na <dataFiles>janela Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> se conecta a um servidor DuckDB iniciado com <code>quack_serve</code> e o anexa com um alias, como <code>remotedb</code>; acesse as tabelas pelo nome usando esse alias. A primeira conexão remota baixa a extensão <code>quack</code> do DuckDB."
+                "Abra um arquivo <code>.duckdb</code> ou <code>.ddb</code>, insira um novo caminho para criar um ou use <code>:memory:</code> para um banco de dados temporário. Os arquivos são identificados pelo cabeçalho e não pela extensão.",
+                "Abra Parquet, CSV, TSV, JSON ou NDJSON como views somente leitura chamadas <code>file</code> e pelo nome do arquivo. O original não muda. Crie uma tabela em um banco DuckDB para editar os dados.",
+                "Abra arquivos DuckDB no Finder. Os arquivos Parquet são abertos como conexões DuckDB com <ui>File > Open File</ui>, não na janela <dataFiles>Data Files</dataFiles>.",
+                "<ui>Remote (Quack, experimental)</ui> se conecta a um servidor <code>quack_serve</code> sob um alias. A primeira conexão baixa a extensão <code>quack</code> do DuckDB."
             ]
         },
         {
             "id": "work",
             "title": "Consulte e edite",
             "paragraphs": [
-                "Qualquer conexão pode ler um arquivo diretamente por SQL, como em <code>SELECT * FROM 'data.csv'</code> ou <code>read_parquet('events.parquet')</code>. Use <code>ATTACH</code> em outro arquivo DuckDB para adicioná-lo à barra lateral como um segundo banco, e <code>⌘K</code> alterna entre eles sem reconectar. DuckDB não mantém nenhum banco anexado depois de reconectar.",
+                "Consulte arquivos diretamente, como <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> adiciona outro arquivo DuckDB à barra lateral; <code>⌘K</code> alterna entre eles. Os anexos não sobrevivem às reconexões.",
                 "<explain>EXPLAIN</explain> é apresentado como um diagrama de plano. As linhas de uma tabela podem ser editadas com <editing>Preview SQL</editing> mostrando cada instrução antes da execução, enquanto as views de um arquivo de dados permanecem somente leitura."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "A <structure>aba Structure</structure> edita tabelas e mostra o DDL antes da execução. Aqui um banco é um arquivo, portanto não é possível criar ou excluir um pelo app; <code>ATTACH</code> permite acessar um segundo arquivo."
+                "A aba <structure>Structure</structure> edita tabelas e mostra o DDL antes de ser executado. Não há ação de criar ou descartar banco de dados na barra lateral. Para criar um arquivo, insira um novo caminho ao conectar; use <code>ATTACH</code> para acessar um segundo arquivo."
             ]
         },
         {

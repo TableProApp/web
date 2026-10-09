@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs TablePlus：开源与平台支持",
+        "title": "TablePro 与 TablePlus：功能和许可",
         "description": "比较两款提供 Mac、iPhone 和 iPad 应用的原生数据库客户端：平台、价格、AI、MCP，以及将 TablePlus 连接导入 TablePro 的流程。"
     },
     "og": {
@@ -9,18 +9,18 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus 和 TablePro 都是自称原生的数据库客户端，提供 Mac、iPhone 和 iPad 应用。TablePlus 也可在 Windows 和 Linux 上运行。TablePro 开源，付费方案为 Mac 应用添加可选功能。两者名称相似，但出自互不相关的开发者，是各自独立的产品。"
+        "lead": "TablePlus 和 TablePro 是原生数据库客户端。比较他们的免费功能、许可和支持的平台。它们是来自不相关制造商的独立产品。"
     },
     "shortAnswer": {
         "tablepro": [
-            "您希望使用开源客户端。TablePro 包括付费功能代码在内，均以 AGPLv3 开源。",
-            "您希望使用免费的 iPhone 和 iPad 应用，无应用内购买。",
-            "您希望只为所需功能付费。免费应用没有标签页或窗口数量限制，付费方案添加 {starterExamples} 等功能。"
+            "一个开源客户端，包括付费功能的代码。",
+            "一款没有选项卡或窗口限制的免费应用程序。付费计划添加 {starterExamples}。",
+            "一款免费的 iPhone 和 iPad 应用程序，无需应用内购买。"
         ],
         "competitor": [
-            "您也在 Windows 或 Linux 上工作。",
-            "您连接 TablePlus 列出而 TablePro 不支持的 Vertica 或 Greenplum。",
-            "您通过 Setapp 获取 Mac 应用。"
+            "Windows 或 Linux 支持。",
+            "Vertica 或 Greenplum 连接。",
+            "可通过 Setapp 使用的客户端。"
         ]
     },
     "glance": {
@@ -47,14 +47,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "TablePlus 除 Mac 外，也可在 Windows 和 Linux 上运行，让同一个客户端伴随您使用不同电脑。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "列出 Vertica 和 Greenplum 等 TablePro 不支持的引擎。",
                 "cite": [
@@ -108,7 +100,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> 让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 应用中免费。TablePlus 通过您选择的云端文件夹（如 Dropbox 或 iCloud）同步连接。",
+                "text": "<link>iCloud Sync</link> 同步 Mac、iPhone 和 iPad 之间的连接。它需要 Mac 上的 Starter，并且在 iPhone 和 iPad 上免费。 TablePlus 通过您选择的云文件夹（例如 Dropbox 或 iCloud ）同步其连接。",
                 "cite": [
                     "cells.sync"
                 ],
@@ -127,13 +119,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 没有 Windows 或 Linux 应用。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "与 TablePlus 一样，TablePro 有独立的 <link>iPhone 和 iPad 应用</link>，功能少于 Mac 应用：没有 AI 助手、MCP 服务器或自动补全。",
+                "text": "[[183]] TablePro 的独立 <link>iPhone 和 iPad 应用程序</link> 的功能比 Mac 应用程序少：没有 AI 助手、MCP 服务器或自动完成功能。",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -145,7 +131,7 @@
                 "href": null
             },
             {
-                "text": "TablePlus 许可证在一年更新期结束后仍可使用，TablePro 一次性购买也一样。TablePro 月付或年付方案则不同：结束后付费功能锁定，其余应用功能仍可使用。",
+                "text": "TablePlus 许可证在更新一年后继续有效。 TablePro 一次性购买不会过期。 TablePro订阅结束时会锁定付费功能；免费应用程序继续运行。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -153,7 +139,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 从 TablePlus 保存连接的位置读取连接，包括 Setapp 版。TablePlus 无需打开，文件也不会修改。",
+        "intro": "导入 TablePlus 连接，包括 Setapp 版本的连接。 TablePlus 可以保持关闭状态，并且其文件不会更改。",
         "steps": [
             "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
             "选择 TablePlus，开启<ui>包含密码</ui>（Include passwords）以读取 macOS 钥匙串中保存的密码。",
@@ -177,19 +163,7 @@
         {
             "id": "speed",
             "question": "TablePro 与 TablePlus 的速度相比如何？",
-            "answer": "本页不作速度或内存方面的宣称。两款应用都没有发布他人可复现的测量结果，结果取决于您的 Mac、数据库和网络。",
-            "href": null
-        },
-        {
-            "id": "license",
-            "question": "使用 TablePro 需要许可证吗？",
-            "answer": "不需要。TablePro 可免费使用，包含所有支持引擎、AI 助手、MCP 服务器和 Safe Mode。Starter 或 Team 方案为 Mac 应用添加 {starterExamples} 等可选功能。<link>查看价格</link>。",
-            "href": "/pricing"
-        },
-        {
-            "id": "ios-license",
-            "question": "iPhone 和 iPad 应用需要许可证吗？",
-            "answer": "不需要。iPhone 和 iPad 应用免费，无应用内购买。若要通过 iCloud 与 Mac 同步，Mac 需要 Starter。",
+            "answer": "这里没有引用可重复的基准。性能取决于查询、数据库、网络和计算机；仅原生架构并不能建立速度优势。",
             "href": null
         }
     ],

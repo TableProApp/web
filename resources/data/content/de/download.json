@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "TablePro für Mac herunterladen",
-        "description": "Lade TablePro für Macs mit Apple silicon oder Intel herunter oder installiere es mit Homebrew. Die iPhone- und iPad-App gibt es im App Store."
+        "title": "TablePro herunterladen",
+        "description": "Lade TablePro mit separaten Builds für Apple silicon und Intel herunter oder installiere es mit Homebrew. Die App für iPhone und iPad gibt es im App Store."
     },
     "og": {
         "kicker": "Download",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "TablePro herunterladen",
-        "lead": "Lade die passende Mac-App für den Chip deines Macs herunter oder installiere sie mit Homebrew. Die iPhone- und iPad-App gibt es im App Store."
+        "lead": "Wähle einen Build für dein Gerät."
     },
     "mac": {
         "otherWays": "Weitere Installationsmöglichkeiten",
@@ -22,19 +22,19 @@
         "source": "Aus dem Quellcode bauen (AGPLv3)"
     },
     "ios": {
-        "body": "Eine eigenständige App für {devices} mit eigenen Funktionen.",
+        "body": "Eine kostenlose App für {devices} mit eigenem Funktionsumfang.",
         "link": "TablePro für {devices}"
     },
     "install": {
         "title": "Installation und erster Start",
         "steps": [
-            "Öffne die heruntergeladene .dmg-Datei aus deinem Downloads-Ordner.",
+            "Öffne die heruntergeladene .dmg-Datei.",
             "Ziehe TablePro in den Ordner Programme.",
-            "Öffne TablePro aus dem Ordner Programme. Da die App aus dem Internet stammt, fragt macOS beim ersten Mal nach einer Bestätigung. Wähle <ui>Open</ui>.",
-            "Füge eine Verbindung hinzu oder wähle <ui>Help > Open Sample Database</ui>, um dich zunächst umzusehen. Das öffnet Chinook, eine kleine SQLite-Datenbank, die mit der App geliefert wird."
+            "Öffne TablePro aus Programme. Wähle <ui>Open</ui>, wenn macOS um Bestätigung bittet.",
+            "Füge eine Verbindung hinzu oder teste die enthaltene Chinook-SQLite-Datenbank über <ui>Help > Open Sample Database</ui>."
         ],
         "signing": "Beide Versionen sind mit einer Developer ID signiert und von Apple notarisiert. Du musst daher keine Sicherheitseinstellung ändern, um TablePro zu öffnen.",
-        "drivers": "Treiber für gängige Datenbanken werden mit der App geliefert. Die anderen werden beim ersten Auswählen der jeweiligen Datenbank heruntergeladen, wofür eine Internetverbindung nötig ist. Sie werden unabhängig von der App aktualisiert.",
+        "drivers": "Gängige Treiber sind enthalten. Andere benötigen Internet für den ersten Download und werden unabhängig von der App aktualisiert.",
         "databases": "Unterstützte Datenbanken",
         "guide": {
             "label": "Installationsanleitung lesen (Englisch)",

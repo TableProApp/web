@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Daten bearbeiten",
-        "title": "Daten sicher durchsuchen und bearbeiten"
+        "title": "Daten bearbeiten"
     },
     "header": {
-        "title": "Daten sicher durchsuchen und bearbeiten",
-        "lead": "Für die direkte Arbeit mit Zeilen: die richtigen finden, einige Werte ändern und dabei auf einer Produktionsdatenbank Überraschungen vermeiden. Änderungen warten bis zum Speichern, und jede Verbindung legt fest, wie vorsichtig TablePro ist, bevor eine Anweisung ausgeführt wird.",
+        "title": "Daten bearbeiten",
+        "lead": "Filtere Zeilen, folge Fremdschlüsseln und bearbeite Werte im Raster. Änderungen warten auf das Speichern; SQL lässt sich vorher prüfen.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filter und Hervorhebungsregeln",
                     "paragraphs": [
-                        "Die Filterleiste (<kbd>⌘⇧F</kbd>) erstellt eine WHERE-Klausel aus {filterOperatorCount} Operatoren, von = und BETWEEN bis REGEX, oder akzeptiert eine frei formulierte SQL-Bedingung. Speichere einen Filter für eine Tabelle und hole ihn später zurück, ohne ihn auszuführen. Hervorhebungsregeln färben Zeilen oder Zellen nach Werten, wie bedingte Formatierung in Tabellenkalkulationen, und bleiben auf diesem Mac."
+                        "Erstelle Filter mit {filterOperatorCount} Operatoren oder einer SQL-Bedingung und speichere sie zur Wiederverwendung. Hervorhebungsregeln färben passende Zeilen oder Zellen und bleiben auf diesem Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Fremdschlüssel und JSON",
                     "paragraphs": [
-                        "Folge einem Fremdschlüssel zur zugehörigen Zeile in einem neuen Tab oder sieh sie dir als Vorschau in einem Popover an. Beim Bearbeiten einer Fremdschlüsselspalte listet die Werteauswahl die referenzierten Zeilen anhand der Spalten auf, die du wählst, etwa Nach- und Vorname eines Kunden. JSON-Werte öffnen sich in einem Viewer mit Baumansicht zur Orientierung und Textmodus zum Bearbeiten."
+                        "Folge einem Fremdschlüssel zur referenzierten Zeile oder zeige sie direkt als Vorschau. Ein Auswahldialog hilft bei referenzierten Werten. Öffne JSON-Werte in einer Baumansicht oder einem Texteditor."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "Daten ändern, einmal speichern",
+            "title": "Änderungen vor dem Speichern prüfen",
             "paragraphs": [
-                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab, bis du <kbd>⌘S</kbd> drückst; vorher wird nichts gesendet. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Dabei wird geprüft, ob jede Anweisung die erwartete Anzahl von Zeilen geändert hat; falls nicht, wird das Speichern zurückgerollt."
+                "Änderungen, neue Zeilen und Löschungen bleiben im Tab, bis du mit <kbd>⌘S</kbd> speicherst. <ui>Preview SQL</ui> zeigt ausstehende Anweisungen. Speichern nutzt gebundene Parameter und prüft betroffene Zeilenzahlen, mit Transaktion und Rollback, wo die Engine es unterstützt."
             ],
             "points": [
                 "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "Safe Mode für Produktionsverbindungen",
+            "title": "Safe Mode",
             "paragraphs": [
-                "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Neue Verbindungen starten mit {macSafeModeDefault}; dort werden Anweisungen unverändert ausgeführt. Alert fragt vor Schreibvorgängen; die Stufen Safe Mode und Safe Mode (Full) verlangen zusätzlich Touch ID oder dein Mac-Passwort. Die Stufen mit dem Zusatz (Full) fragen auch vor Lesevorgängen; Read-Only verweigert Schreibvorgänge und deaktiviert die Bearbeitung. Der Safe Mode ist kostenlos.",
-                "Auf jeder Stufe halten DROP, TRUNCATE und ein DELETE ohne WHERE an und fragen zuerst nach. Manches hebt die Stufe einer Verbindung an, solange es gilt: ein System, das nur liest, der Agent mode, der sie auf mindestens Alert anhebt, und eine Mindeststufe, die deine Organisation per Geräteverwaltung (MDM) festlegt."
+                "Wähle pro Verbindung eine Stufe: {macSafeModeLevels}. Der Standard {macSafeModeDefault} führt Anweisungen ohne Bestätigung aus. Alert bestätigt Schreibvorgänge; Safe Mode ergänzt Touch ID oder Passwortfreigabe. Full-Stufen bestätigen auch Lesevorgänge. Read-Only blockiert Schreiben und Bearbeitung. Safe Mode ist kostenlos.",
+                "DROP, TRUNCATE und DELETE ohne WHERE benötigen immer eine Bestätigung. Agent mode im ganzen Fenster erzwingt mindestens Alert. Schreibgeschützte Engines und Geräteverwaltungsrichtlinien eines Unternehmens können die wirksame Stufe ebenfalls erhöhen."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind bewahrt die Werte auf, die ein Speichervorgang ersetzt hat, damit <ui>Restore Previous Values</ui> sie wiederherstellen kann. Ein Prüfdialog zeigt zuerst, was mit jeder Zeile geschieht, auch mit Zeilen, die sich nach deinem Speichern geändert haben. Die Wiederherstellung durchläuft den Safe Mode, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
-                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Restore Previous Values</ui> zeigt stattdessen einen Hinweis."
+                "Prüfe und stelle durch Speichern ersetzte Werte mit <ui>Restore Previous Values</ui> wieder her. Die Prüfung markiert seitdem geänderte Zeilen. Wiederherstellungen folgen Safe Mode und nutzen eine Transaktion, wo die Engine es erlaubt.",
+                "Frühere Werte bleiben {rewindDays} Tage verschlüsselt auf diesem Mac und werden nie synchronisiert. Aufzeichnung und Wiederherstellung stoppen bei Ende des kostenpflichtigen Tarifs."
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Dokumente und Schlüssel",
             "paragraphs": [
-                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Feld aus einem Dokument und benennst im Tab Structure ein Feld in der ganzen Sammlung um oder entfernst es. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest String-Werte in der Datentabelle, fügst einen String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel hinzu und änderst die anderen Typen mit Befehlen im Editor."
+                "Bearbeite MongoDB-Dokumente als Extended JSON oder benenne und entferne Felder in ganzen Collections. Auf Redis bearbeitest du Strings, benennst Schlüssel um und setzt TTLs im Raster oder fügst String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel hinzu. Andere Werttypen änderst du mit Editorbefehlen."
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "Auf iPhone und iPad",
             "paragraphs": [
-                "Auf iPhone und iPad erscheinen Zeilen als Karten zum Sortieren, Suchen und Filtern mit AND und OR. Das Tippen auf einen Fremdschlüssel zeigt die zugehörige Zeile. Du kannst Zeilen bearbeiten, Werte auf NULL setzen, Zeilen einfügen und per Wischen löschen; Bearbeiten und Löschen benötigen einen Primärschlüssel. In einer neuen Zeile steht jedes Feld zunächst auf DEFAULT und lässt sich auf NULL oder eine leere Zeichenfolge setzen.",
-                "Der Safe Mode hat dort eigene Stufen, {iosSafeModeLevels}, mit {iosSafeModeDefault} als Standard für neue Verbindungen. Vorgemerkte Änderungen, Preview SQL, Hervorhebungsregeln und Data Rewind gibt es nur auf dem Mac."
+                "Durchsuche Zeilen als Karten, sortiere und filtere sie oder tippe auf einen Fremdschlüssel für die Zeilenvorschau. Bearbeite Werte oder setze NULL; Bearbeiten und Löschen benötigen einen Primärschlüssel. Neue Zeilen starten mit DEFAULT-Werten, alternativ NULL oder leerem String.",
+                "Mobiles Safe Mode bietet {iosSafeModeLevels}, standardmäßig {iosSafeModeDefault}. Vorgemerkte Änderungen, Preview SQL, Hervorhebungsregeln und Data Rewind sind derzeit nur auf dem Mac verfügbar."
             ],
             "links": [
                 {

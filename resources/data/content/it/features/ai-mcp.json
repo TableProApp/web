@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "IA e MCP",
-        "title": "Assistente IA e server MCP"
+        "title": "Assistente IA e MCP"
     },
     "header": {
-        "title": "Assistente IA e server MCP",
-        "lead": "Per sviluppatori che vogliono aiuto con SQL da un modello scelto da loro o un client IA che lavori con i loro database. Fai domande sullo schema, chiedi di rivedere o correggere una query oppure consenti a client MCP (Model Context Protocol) come Claude Code e Cursor di usare le connessioni salvate. Tutto è opzionale e disponibile solo nell’app per Mac; nulla raggiunge un modello finché non aggiungi un provider o connetti un client.",
+        "title": "Assistente IA e MCP",
+        "lead": "Spiega o risolvi SQL con il tuo fornitore preferito. Connetti i client IA alle connessioni salvate tramite MCP (Model Context Protocol).",
         "docs": "/features/ai-assistant"
     },
     "sections": [
         {
             "id": "assistant",
-            "title": "Usa il provider scelto da te",
+            "title": "Scegli il tuo fornitore IA",
             "paragraphs": [
-                "L’assistente funziona con questi provider: {aiProviders}. A seconda del provider, incolli una chiave API, accedi con un account che hai già oppure esegui un modello sul Mac. TablePro non gestisce un proprio servizio IA: le richieste vanno direttamente al provider e non viene inviato nulla finché non ne aggiungi uno.",
-                "Ogni messaggio include la struttura delle tabelle della connessione, fino al limite impostato da te, e la query nell’editor. Le righe dei risultati vengono inviate solo se attivi l’opzione in <ui>Settings > AI</ui>. Ogni connessione ha anche una politica IA; Never impedisce l’accesso sia all’assistente sia ai client MCP."
+                "Provider supportati: {aiProviders}. Utilizza una chiave API, un account esistente o un modello locale, a seconda del provider. Le richieste vanno direttamente al tuo fornitore; TablePro non esegue il servizio IA. La funzionalità è gratuita, ma potrebbero essere applicati costi del provider.",
+                "I messaggi includono il contesto dello schema e la query nell’editor. Le righe dei risultati sono escluse, salvo attivazione in <ui>Settings > AI</ui>. Imposta la policy IA di una connessione su Never per bloccare sia l’assistente sia i client MCP."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,16 +26,16 @@
             "id": "in-the-editor",
             "title": "Rivedi, spiega, ottimizza e correggi",
             "paragraphs": [
-                "Posiziona il cursore in un’istruzione e scegli Review with AI (<kbd>⌥⇧⌘L</kbd>) per verificarne correttezza, costo e sicurezza, Explain (<kbd>⌘L</kbd>) per sapere cosa fa passo dopo passo oppure Optimize (<kbd>⌥⌘L</kbd>) per una riscrittura o un indice. Quando una query fallisce, Fix with AI compare nell’avviso di errore. La richiesta include la struttura delle tabelle nominate e l’istruzione non viene eseguita. <ui>Apply to Editor</ui> sostituisce l’istruzione solo dopo la tua conferma.",
-                "I suggerimenti in linea mostrano testo fantasma mentre scrivi e sono disattivati per impostazione predefinita. Le AI Rules associano note di testo semplice a una connessione, come quale colonna non deve mai essere selezionata, e accompagnano ogni messaggio."
+                "Rivedi un'affermazione, spiegala o richiedi un'ottimizzazione. La correzione con IA è disponibile quando una query non riesce. Queste azioni inviano lo schema pertinente e SQL senza eseguire l'istruzione. <ui>Apply to Editor</ui> richiede conferma.",
+                "I suggerimenti in linea sono disattivati per imposto predefinita. Aggiungi regole IA specifiche della connessione per fornire istruzioni con ciascun messaggio; si tratta di istruzioni modello, non di autorizzazioni del database applicate."
             ]
         },
         {
             "id": "agent-mode",
             "title": "Modalità della chat e Agent mode",
             "paragraphs": [
-                "La chat ha tre modalità. Ask, quella predefinita, consulta lo schema e non esegue nulla. Edit può anche eseguire query e Agent può anche eseguire DROP, TRUNCATE e altre istruzioni distruttive. A {macSafeModeDefault}, il livello Safe Mode da cui iniziano le nuove connessioni, le scritture in Edit e Agent avvengono senza chiedere; da Alert a Safe Mode (Full), ciascuna attende Run e Read-Only le rifiuta. Le istruzioni distruttive attendono sempre un clic e non possono mai essere approvate in anticipo.",
-                "Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica l’intera finestra a una sessione: le sessioni di questa connessione, la conversazione e l’SQL proposto ed eseguito. Mentre è attiva, la connessione resta ad Alert o a un livello più restrittivo, quindi nessuna scrittura avviene finché non fai clic su Run. È un promemoria, non un blocco: basta un tasto per disattivarla. Le sessioni restano su questo Mac."
+                "Ask è la modalità chat predefinita: legge lo schema senza eseguire istruzioni. Edit può eseguire query; Agent può anche proporre istruzioni distruttive. Al livello predefinito {macSafeModeDefault}, le scritture di Edit e Agent possono partire senza approvazione. Alert e i livelli più restrittivi chiedono conferma; Read-Only le blocca. Le istruzioni distruttive richiedono sempre conferma.",
+                "Agent a finestra intera è distinto dall’opzione Agent della chat. Mantiene la connessione almeno ad Alert, quindi le scritture attendono Run. Disattivando la modalità, viene rimosso il livello minimo. Le sessioni restano su questo Mac."
             ],
             "asset": "mac-agent-mode",
             "links": [
@@ -47,10 +47,10 @@
         },
         {
             "id": "mcp",
-            "title": "Il server MCP",
+            "title": "Connettere client IA esterni",
             "paragraphs": [
-                "Il server MCP integrato permette ai client IA di lavorare tramite le connessioni salvate in TablePro senza mai vedere una password. Ascolta solo su {mcpHost}, senza modalità remota, ed è disattivato finché non lo attivi o un client configurato lo avvia.",
-                "I suoi strumenti coprono connessioni, esplorazione dello schema, lettura e scrittura dei dati, database e oggetti, amministrazione del server, schede e cronologia dell’app, con prompt e risorse ricavati dallo schema attivo. Ogni chiamata entra in un registro di attività sul Mac, con le istruzioni registrate come digest anziché testo; le query eseguite da un client compaiono anche nella cronologia."
+                "Il server MCP integrato fornisce ai clienti l'accesso tramite connessioni salvate senza esporre le loro password. È disattivato per imposto predefinita e ascolta solo su {mcpHost}. Abilitalo tu stesso o lascia che sia un client configurato ad avviarlo.",
+                "I client possono ispezionare gli schemi e utilizzare query, oggetti e strumenti di amministrazione consentiti. Le chiamate vengono registrate localmente con digest di istruzioni; le query eseguite vengono visualizzate anche nella cronologia delle query."
             ],
             "asset": "mac-mcp-settings",
             "blocks": [
@@ -58,8 +58,8 @@
                     "id": "connect",
                     "title": "Connetti un client",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> contiene istruzioni di configurazione e un frammento da copiare per {mcpSetupClients}. Il bridge incluso <code>tablepro-mcp</code> funziona anche con {mcpBridgeClients}. Avvia TablePro quando serve e trova il server, quindi la configurazione del client non contiene porta o token. L’estensione ufficiale Raycast si abbina invece all’app e approvi l’abbinamento sul Mac.",
-                        "Una richiesta tipica: chiedi al client gli utenti che condividono un indirizzo email. Può chiamare <code>list_tables</code> e <code>describe_table</code>, scoprire che la colonna si chiama <code>email_address</code> ed eseguire un SELECT tramite la connessione salvata, senza che tu incolli lo schema nella chat."
+                        "Trova le istruzioni di configurazione per {mcpSetupClients} in <ui>Settings > Integrations</ui>. Il bridge <code>tablepro-mcp</code> in bundle supporta anche {mcpBridgeClients} e avvia l'app quando necessario. Raycast utilizza un flusso di abbinamento separato che richiede l'approvazione.",
+                        "Ad esempio, chiedi a un cliente di trovare indirizzi email duplicati. Può ispezionare lo schema, identificare la colonna ed eseguire uno SELECT consentito tramite la connessione salvata."
                     ]
                 },
                 {
@@ -69,25 +69,25 @@
                         "Ogni chiamata supera questi controlli e prevale quello più restrittivo."
                     ],
                     "points": [
-                        "Ambito del token: Read Only, Read & Write o Full Access, eventualmente limitato a connessioni nominate. Il bridge riceve automaticamente un token Read & Write, quindi i client che lo usano non possono eseguire istruzioni distruttive.",
-                        "External Clients, impostato per connessione: Blocked, Read Only (predefinito) o Read & Write. Una connessione bloccata non viene nemmeno elencata.",
-                        "Approvazione della connessione: la prima volta che un client accede a una connessione, una finestra sul Mac chiede conferma. Scegli se deve chiedere ogni volta, una volta per connessione oppure mai.",
+                        "Ambito del token: Read Only, Read & Write o Full Access, con eventuale limitazione a connessioni specifiche. Il bridge usa Read & Write, che esclude le istruzioni distruttive.",
+                        "External Clients: Blocked, Read Only (predefinito) o Read & Write per connessione. Le connessioni Blocked non compaiono nell’elenco.",
+                        "Approvazione della connessione: chiedi ogni volta, una volta per connessione o mai.",
                         "Politica IA: una connessione impostata su Never rifiuta anche i client MCP.",
-                        "Safe Mode: le scritture richiedono conferma al livello della connessione e DROP o TRUNCATE richiedono un token Full Access e la tua approvazione ogni volta. Le istruzioni che leggono o scrivono file o eseguono codice sul server vengono rifiutate."
+                        "Safe Mode: la conferma segue il livello della connessione. DROP e TRUNCATE richiedono Full Access e approvazione ogni volta. Le istruzioni che accedono ai file o eseguono codice sul server vengono rifiutate."
                     ]
                 }
             ]
         },
         {
             "id": "outside-servers",
-            "title": "Server MCP esterni",
+            "title": "Utilizza strumenti MCP esterni",
             "paragraphs": [
-                "Funziona anche nell’altra direzione: una sessione IA in TablePro può chiamare strumenti su un server MCP che gestisci, tramite Streamable HTTP, con HTTPS obbligatorio salvo che il server sia su questo Mac. Scegli su quali connessioni offrire ogni server. Ogni chiamata mostra una card e attende il tuo clic, senza approvazioni permanenti. Indirizzo e token del server restano su questo Mac."
+                "L'assistente di TablePro può anche chiamare un server MCP esterno tramite Streamable HTTP. È richiesto HTTPS tranne che per i server locali. Scegli quali connessioni possono utilizzare ciascun server; ogni chiamata allo strumento richiede un clic. Le imposti del server rimangono su questo Mac."
             ]
         },
         {
             "id": "automation",
-            "title": "Automazione fuori dalla chat",
+            "title": "Automazione",
             "paragraphs": [
                 "AppleScript può connettersi, eseguire una query e aprire una tabella, rispettando i livelli External Clients e Safe Mode della connessione. I link <code>tablepro://</code> aprono una connessione, una tabella o una scheda di query; una query in un link viene inserita dopo la conferma e non viene mai eseguita autonomamente. Gli URL di database come <code>postgresql://</code> si aprono come connessioni.",
                 "Il comando shell <code>tablepro</code> apre questi URL e file nell’app; non esegue query dal terminale. L’estensione ufficiale Raycast cerca nelle connessioni, nelle tabelle e nella cronologia ed esegue query tramite l’app abbinata."
@@ -97,7 +97,7 @@
             "id": "privacy",
             "title": "Dove vanno i tuoi dati",
             "paragraphs": [
-                "Prompt, contesto dello schema e allegati vanno al provider scelto, secondo i termini del tuo account con quel provider. Con Ollama, llama.cpp, MLX o un server compatibile con OpenAI gestito da te, restano sulla tua macchina. TablePro non riceve nulla e il rapporto giornaliero d’uso dell’app per Mac non contiene informazioni su IA o MCP.",
+                "Le richieste, lo schema e gli allegati vengono inviati direttamente al provider in base ai relativi termini. I modelli locali li mantengono sul tuo computer quando vengono serviti localmente. TablePro non riceve nessuno di questi contenuti. I client MCP esterni gestiscono i dati a cui si accede in base alle proprie imposti e termini.",
                 "Quando aggiungi GitHub Copilot, l’opzione per inviare telemetria a GitHub è inizialmente attiva; disattivala dove configuri Copilot."
             ],
             "links": [
@@ -109,9 +109,9 @@
         },
         {
             "id": "iphone",
-            "title": "Non disponibile su iPhone o iPad",
+            "title": "Disponibilità",
             "paragraphs": [
-                "L’app per iPhone e iPad non ha assistente IA, Agent mode o server MCP. Tutto in questa pagina è disponibile nell’app per Mac."
+                "IA, MCP e gli strumenti di automazione in questa pagina sono attualmente disponibili solo su Mac."
             ],
             "links": [
                 {
@@ -127,11 +127,11 @@
             "ios": "no"
         },
         {
-            "label": "Review, Explain, Optimize e Fix with AI",
+            "label": "Review, Explain, Optimize e Fix with IA",
             "ios": "no"
         },
         {
-            "label": "Suggerimenti in linea e AI Rules",
+            "label": "Suggerimenti in linea e IA Rules",
             "ios": "no"
         },
         {

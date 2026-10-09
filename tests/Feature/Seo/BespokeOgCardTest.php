@@ -14,11 +14,13 @@ require_once __DIR__ . '/helpers.php';
 
 /**
  * The bespoke default social card: `og-site` in resources/data/assets.json,
- * delivered as `public/og/bespoke/og-site-{locale}.png` (docs/visual-assets.md,
+ * delivered as `public/og.png` in English and
+ * `public/og/bespoke/og-site-{locale}.png` otherwise (docs/visual-assets.md,
  * "og-site").
  *
  * Once the entry is supplied, every page without a card of its own shares it
- * in place of the generated `/og.png` and `/og/vi/default.png`, each locale
+ * at the canonical `/og.png` in English or in place of another locale's
+ * generated generic card, each locale
  * on its own file. `OgImages::fallback()` asks `AssetManifest::ogCard()` first.
  *
  * These cases read the committed card files and the real page registry. The
@@ -116,10 +118,10 @@ it('ships the card as an opaque 1200 × 630 PNG within budget, one per locale', 
 
 it('puts the card on every page without its own, in its language, instead of the generated one', function (): void {
     $manifest = bespokeSuppliedManifest($this->scratch);
-    $generated = array_map(OgImages::fallbackPath(...), Locales::codes());
+    $generated = array_map(OgImages::fallbackPath(...), array_values(array_diff(Locales::codes(), [Locales::default()])));
 
     foreach (Locales::codes() as $locale) {
-        expect($manifest->ogCard(OgImages::SITE_CARD, $locale))->toBe("/og/bespoke/og-site-{$locale}.png");
+        expect($manifest->ogCard(OgImages::SITE_CARD, $locale))->toBe($locale === Locales::default() ? '/og.png' : "/og/bespoke/og-site-{$locale}.png");
     }
 
     $sharing = [];
@@ -135,7 +137,7 @@ it('puts the card on every page without its own, in its language, instead of the
 
             Assert::assertNotContains($shared, $generated, "{$path} still shares the generated generic card");
 
-            if ($shared === "/og/bespoke/og-site-{$locale}.png") {
+            if ($shared === $manifest->ogCard(OgImages::SITE_CARD, $locale)) {
                 Assert::assertSame([1200, 630, 'image/png'], [$image['width'], $image['height'], $image['type']], "{$path}: the og:image tags disagree with the card");
                 $sharing[] = $path;
 

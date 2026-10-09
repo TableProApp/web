@@ -1,26 +1,26 @@
 {
     "seo": {
         "title": "TablePro: database client native cho {deviceList}",
-        "titleFallback": "TablePro: database client native cho lập trình viên",
+        "titleFallback": "TablePro: database client native, mã nguồn mở",
         "description": "Database client native, mã nguồn mở để quản lý PostgreSQL, MySQL, SQL Server, MongoDB, Redis và nhiều cơ sở dữ liệu khác. Dùng miễn phí, có gói trả phí."
     },
     "og": {
         "kicker": "",
-        "title": "TablePro là database client native, mã nguồn mở, dành cho lập trình viên."
+        "title": "Database client native."
     },
     "hero": {
-        "title": "Database client native dành cho lập trình viên.",
+        "title": "Database client native.",
         "subtitle": "Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} <more>và nhiều cơ sở dữ liệu khác</more>.",
-        "native": "Native nghĩa là mỗi ứng dụng được viết bằng Swift cho đúng nền tảng của nó, trên Mac dùng AppKit và SwiftUI. Không dùng Electron, không cần Java runtime.",
+        "native": "Giao diện native, không dùng Electron hay Java runtime.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Cách cài đặt khác",
-        "business": "TablePro là phần mềm mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung một số tính năng cho {paidPlatformApps}. <pricing>Xem bảng giá</pricing>"
+        "business": "Mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung tính năng cho {paidPlatformApps}. <pricing>Xem bảng giá</pricing>"
     },
     "databases": {
-        "title": "Cơ sở dữ liệu quan hệ, document, key-value và phân tích",
-        "lead": "Một số driver có sẵn trong {macApp}. Các driver còn lại được tải về vào lần đầu bạn chọn cơ sở dữ liệu đó, và được cập nhật riêng, không phụ thuộc vào bản cập nhật của ứng dụng.",
-        "count": "Trên Mac, TablePro kết nối được tới {count} cơ sở dữ liệu, chia theo loại:",
+        "title": "Cơ sở dữ liệu được hỗ trợ",
+        "lead": "Driver phổ biến có sẵn trong {macApp}; driver khác tải vào lần đầu sử dụng.",
+        "count": "Kết nối tới {count} cơ sở dữ liệu trên Mac:",
         "ios": "Trên {iosDevices}, TablePro kết nối được tới {iosEngines}.",
         "iosSynced": "Connection {syncedOnly} được đồng bộ từ máy Mac cũng mở được trên các thiết bị này.",
         "link": "Cơ sở dữ liệu được hỗ trợ"
@@ -30,84 +30,84 @@
         "link": "Tài trợ TablePro"
     },
     "workflows": {
-        "title": "Những gì ứng dụng Mac làm được",
-        "paid": "Gói {tier}: {features}.",
+        "title": "Làm việc với cơ sở dữ liệu",
+        "paid": "Tính năng trả phí tùy chọn: {features} ({tier}).",
         "link": "Tất cả tính năng",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
-                "title": "Viết, chạy và phân tích query",
-                "body": "SQL editor có autocomplete theo schema, tham số query dạng <code>:name</code>, lịch sử query tìm kiếm được, query đã lưu và thư mục file <code>.sql</code> có hiển thị trạng thái Git. EXPLAIN vẽ execution plan thành sơ đồ trên các engine được hỗ trợ, còn EXPLAIN Compare so sánh plan hiện tại với một baseline."
+                "title": "SQL editor",
+                "body": "Autocomplete gợi ý table và cột từ schema. Lưu các query thường dùng và tìm lại trong lịch sử query."
             },
             {
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
-                "title": "Sửa dữ liệu và schema, xem câu lệnh SQL trước khi lưu",
-                "body": "Các thay đổi trong ô, dòng mới và dòng bị xóa đều chờ tới khi bạn lưu, và Preview SQL cho bạn xem trước các câu lệnh. Trên các engine cho phép sửa cấu trúc, tab Structure cũng giữ các thay đổi về cột, index, khóa ngoại và CHECK theo cách đó. Kèm theo là bộ lọc, bộ lọc đã lưu, highlight rules, bộ chọn giá trị khóa ngoại và undo theo từng tab."
+                "title": "Xem trước thay đổi",
+                "body": "Các thay đổi trên dòng chờ tới khi bạn lưu. Xem trước SQL hoặc undo trong tab."
             },
             {
                 "id": "schema",
                 "asset": "mac-compare-sync-structure",
-                "title": "So sánh, đồng bộ và sao chép giữa các cơ sở dữ liệu",
-                "body": "Compare & Sync so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và tạo script để đưa bên này về giống bên kia. Các thay đổi rủi ro, như xóa một cột, được giữ lại để bạn xem xét. Copy To sao chép table hoặc cả cơ sở dữ liệu sang một connection khác, kể cả khi khác engine, và liệt kê mọi kiểu dữ liệu phải chuyển đổi gần đúng. Kèm theo là ER diagram chỉ đọc và Users & Roles cho {usersRolesEngines}."
+                "title": "So sánh cơ sở dữ liệu",
+                "body": "So sánh schema hoặc dữ liệu trên các engine được hỗ trợ và tạo script đồng bộ. Xem xét các thay đổi có thể xóa dữ liệu trước khi đưa vào script."
             },
             {
                 "id": "files",
                 "asset": "mac-data-files-window",
-                "title": "Import, export và mở file dữ liệu",
-                "body": "Import file {importFormats} trên các engine hỗ trợ import, và export ra {exportFormats}. Cửa sổ Data Files mở file CSV, JSON và XLSX mà không cần cơ sở dữ liệu, để bạn tìm kiếm và lọc các file này, và làm sạch file CSV và JSON. Backup Dump và Restore Dump dùng công cụ dòng lệnh riêng của từng engine ({dumpTools}); bạn cần cài những công cụ mà máy Mac chưa có."
+                "title": "Import và export",
+                "body": "Import file {importFormats} ở nơi được hỗ trợ. Export table hoặc kết quả query ra {exportFormats}."
             },
             {
                 "id": "connect",
                 "asset": "mac-connection-ssh-form",
-                "title": "Kết nối qua SSH, TLS và đăng nhập cloud",
-                "body": "Kết nối tới cơ sở dữ liệu qua SSH tunnel có jump host, TLS, AWS IAM, Microsoft Entra ID, đăng nhập Google hoặc một tunnel command như <code>kubectl port-forward</code>. Lấy mật khẩu từ Keychain, 1Password, Vault hoặc AWS Secrets Manager. Dùng biến môi trường dạng <code>$VAR</code> trong host, user và các trường khác của connection."
+                "title": "Kết nối tới server",
+                "body": "Dùng SSH tunnel, TLS hoặc phương thức đăng nhập cloud được hỗ trợ. Sắp xếp connection đã lưu bằng nhóm và tag."
             }
         ]
     },
     "safety": {
-        "title": "Lớp bảo vệ khi làm việc với production",
+        "title": "Safe Mode",
         "body": [
-            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode. Silent chạy câu lệnh đúng như bạn viết, Alert hỏi lại trước khi ghi, các mức mang tên Safe Mode còn yêu cầu Touch ID hoặc mật khẩu, còn Read-Only từ chối câu lệnh ghi. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read-Only từ chối luôn.",
-            "Ở Agent mode, trợ lý AI có thể chạy câu lệnh. Khi một connection đang mở ở Agent mode, connection đó chạy ở mức Alert hoặc nghiêm ngặt hơn. Data Rewind có thể khôi phục các giá trị mà một lần lưu gần đây đã ghi đè. Đây không phải là bản sao lưu."
+            "Đặt mức Safe Mode cho từng connection. Trên Mac, Alert hỏi trước khi ghi. Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu. Silent là mặc định. DROP, TRUNCATE và DELETE không có WHERE luôn hỏi lại.",
+            "Trên iPhone và iPad, Confirm Writes hỏi trước khi ghi. Read-Only từ chối thao tác ghi trên cả hai ứng dụng; với MongoDB, Redis và etcd, mức này chặn mọi command."
         ],
         "levels": "Các mức Safe Mode",
         "link": "Safe Mode"
     },
     "ai": {
-        "title": "Trợ lý AI và MCP server",
+        "title": "Trợ lý AI và MCP",
         "body": [
-            "Trên Mac, trợ lý AI (tùy chọn) giải thích, tối ưu và sửa lỗi query, đồng thời trả lời câu hỏi về schema của bạn. Bạn tự chọn nhà cung cấp AI: dùng API key, đăng nhập bằng tài khoản bạn đang có, hoặc chạy model ngay trên máy Mac. TablePro không vận hành dịch vụ AI nào, và không có gì được gửi đi cho tới khi bạn thêm nhà cung cấp.",
-            "Chat mặc định ở chế độ Ask, chỉ đọc dữ liệu. Ở chế độ Edit và Agent, trợ lý có thể chạy câu lệnh. Từ mức Alert tới Safe Mode (Full), mỗi câu lệnh ghi chờ bạn duyệt, Read-Only từ chối các câu lệnh này, còn DROP hay TRUNCATE luôn cần bạn bấm xác nhận.",
-            "MCP (Model Context Protocol) server tích hợp sẵn cho phép các AI client như {mcpClients} dùng connection đã lưu mà không thấy mật khẩu. Server chỉ lắng nghe trên {mcpHost}, và mỗi connection tự quyết định ứng dụng bên ngoài được làm gì: Blocked, Read Only (mặc định) hoặc Read & Write.",
-            "Tất cả đều miễn phí."
+            "Giải thích hoặc sửa SQL với nhà cung cấp bạn chọn, kể cả model chạy trên máy. Có trên Mac; không gửi gì cho tới khi bạn thêm nhà cung cấp.",
+            "Chat bắt đầu ở Ask. Edit và Agent có thể chạy câu lệnh theo Safe Mode; ở Silent, thao tác ghi có thể chạy mà không cần duyệt. Agent mode toàn cửa sổ dùng Alert hoặc nghiêm ngặt hơn.",
+            "Kết nối các client như {mcpClients} tới connection đã lưu qua MCP (Model Context Protocol) server tích hợp sẵn. Server lắng nghe trên {mcpHost}, tắt theo mặc định và bắt đầu với quyền chỉ đọc. Client không thấy mật khẩu đã lưu.",
+            "Cả hai tính năng đều miễn phí. Nhà cung cấp AI có thể tính phí sử dụng."
         ],
         "providers": "Nhà cung cấp AI bạn có thể thêm: {providers}."
     },
     "platforms": {
         "title": "Ứng dụng native cho {deviceList}",
         "cardTitle": "TablePro cho {devices}",
-        "mac": "Trên Mac, TablePro là ứng dụng Swift với bản build riêng cho {architectures}. Ứng dụng lưu mật khẩu trong Keychain, hỏi Touch ID ở các mức Safe Mode nghiêm ngặt và tự cập nhật.",
-        "ios": "Trên {devices}, TablePro là một ứng dụng riêng với phạm vi riêng. Kết nối qua SSH hoặc TLS, xem table, chạy query và sửa dòng, kèm khóa Face ID tùy chọn, Phím tắt, tiện ích trên Màn hình chính và Hoạt động trực tiếp cho query đang chạy.",
-        "sync": "iCloud Sync đồng bộ connection, nhóm connection và tag giữa máy Mac với iPhone hoặc iPad. Tính năng này tắt theo mặc định, và trên Mac cần gói {tier}. Khi bật iCloud Sync, Handoff cho bạn tiếp tục một connection đang mở trên thiết bị kia."
+        "mac": "Ứng dụng desktop có bản build riêng cho {architectures}, gồm SQL editor, công cụ schema, trợ lý AI và MCP server.",
+        "ios": "Chạy query và làm việc với các table được hỗ trợ trên {devices}. Ứng dụng riêng, miễn phí, có SSH tunnel và khóa Face ID tùy chọn.",
+        "sync": "iCloud Sync chia sẻ connection, nhóm và tag giữa các thiết bị Apple. Tắt theo mặc định và cần gói {tier} trên Mac."
     },
     "switch": {
-        "title": "Chuyển từ ứng dụng khác",
+        "title": "Chuyển connection sang TablePro",
         "lead": "Import từ ứng dụng khác và Open Project Folder chỉ có trong {macApp}.",
         "import": "Bạn import được connection từ {apps}, kèm cả mật khẩu đã lưu.",
         "importWithoutPasswords": "Connection từ {apps} được import nhưng không kèm mật khẩu.",
-        "project": "Open Project Folder đọc file <code>.env</code>, <code>docker-compose.yml</code>, Prisma schema và các file cấu hình khác của dự án, rồi điền sẵn connection mới từ những gì tìm thấy.",
+        "project": "Open Project Folder tạo connection từ file dự án được hỗ trợ, gồm <code>.env</code>, <code>docker-compose.yml</code> và Prisma schema.",
         "link": "So sánh TablePro với các client khác"
     },
     "pricing": {
-        "title": "Dùng miễn phí, có gói trả phí tùy chọn",
-        "lead": "Bạn tải về và dùng {macApp} miễn phí, không phải bản dùng thử và không giới hạn thời gian. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng, như {starterExamples}. Gói Team gồm mọi thứ trong Starter, có thêm {teamExamples} để chia sẻ connection và query trong nhóm. Còn {iosApp} thì miễn phí, không có mua hàng trong ứng dụng."
+        "title": "Free, Starter và Team",
+        "lead": "Dùng {macApp} miễn phí, không có thời gian dùng thử. Starter thêm {starterExamples}; Team thêm {teamExamples}. Còn {iosApp} miễn phí, không có mua hàng trong ứng dụng."
     },
     "openSource": {
-        "title": "Mã nguồn mở và sẵn sàng để tải về",
-        "body": "TablePro là phần mềm mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Các gói trả phí và nhà tài trợ là nguồn kinh phí phát triển TablePro. TablePro không có nhà đầu tư và không bán dữ liệu.",
-        "maker": "TablePro do {maker}, một lập trình viên độc lập tại {city}, {country}, phát triển.",
+        "title": "Mã nguồn mở",
+        "body": "TablePro có mã nguồn mở theo AGPLv3, kể cả mã của tính năng trả phí. License và nhà tài trợ là nguồn kinh phí phát triển.",
+        "maker": "Do {maker} phát triển tại {city}, {country}.",
         "about": "Giới thiệu về TablePro",
         "github": "Xem trên GitHub",
         "productHunt": "TablePro trên Product Hunt"

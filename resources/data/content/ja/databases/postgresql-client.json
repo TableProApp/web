@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "{devices} 用 PostgreSQL クライアント",
-        "lead": "スキーマ、配列、jsonb と PostGIS を操作し、EXPLAIN プランを図で確認。ロール、セッション、保守とバックアップを管理できます。同じドライバーは Amazon Redshift、CockroachDB と PGlite にも対応します。"
+        "title": "PostgreSQL クライアント",
+        "lead": "PostgreSQL をクエリし、スキーマを参照して、SQL プレビューで行を編集できます。EXPLAIN プラン、jsonb、配列、PostGIS 値を確認できます。"
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホスト、ポート、ユーザーとデータベースを指定するか、<code>postgresql://</code> または <code>postgres://</code> URL を貼り付けます。PostgreSQL への接続にはデータベース指定が必要です。",
+                "ホスト、ポート、ユーザー、データベースを入力するか、<code>postgresql://</code>・<code>postgres://</code> URL を貼り付けます。データベースは必須です。",
                 "新規接続の SSL は Preferred（libpq の <code>sslmode=prefer</code>）で始まります。サーバー証明書を検証するには Verify CA または Verify Identity を選んでください。",
                 "Use ~/.pgpass を有効にすると <code>~/.pgpass</code> からパスワードを読み取ります。フォームには検出結果を表示し、権限によって libpq がファイルを無視する場合も知らせます。",
-                "プライベートサーバーには、<network>必要に応じて踏み台ホストを使う SSH トンネル、SOCKS5 プロキシ、Cloudflare Access トンネルやトンネルコマンド</network>（kubectl port-forward など）でアクセスできます。Amazon RDS と Aurora では <code>rds_iam</code> を付与したロールで <cloudAuth>AWS IAM</cloudAuth> 認証できます。Google Cloud SQL では TablePro が Cloud SQL Auth Proxy をダウンロードして実行します。",
+                "<network>SSH トンネル、踏み台ホスト、プロキシ、トンネルコマンド</network>で非公開サーバーに接続できます。Amazon RDS・Aurora は <code>rds_iam</code> を付与したロールの <cloudAuth>AWS IAM</cloudAuth> に対応します。Google Cloud SQL は Cloud SQL Auth Proxy を使います。",
                 "<code>-c application_name=reporting</code> など、libpq が接続オプションとして受け付けるものは Connection Options に入力します。"
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "SQL エディターはスキーマからテーブル名とカラム名を補完します。<explain>EXPLAIN と EXPLAIN ANALYZE</explain> は FORMAT JSON で実行し、プラン図やツリーで表示します。EXPLAIN Compare は変更後にプランが遅くなったかを示します。",
-                "jsonb は整形し、uuid、inet、timestamptz、interval と bytea はそれぞれの形式で表示します。配列カラムはリストエディターで開き、個々の要素を追加、削除、並べ替え、NULL にできます。enum カラムでは定義済みのラベルを選べます。",
+                "スキーマを参照する補完機能で SQL を書けます。<explain>EXPLAIN と EXPLAIN ANALYZE</explain> を図やツリーで表示し、二回の実行プランを比較できます。",
+                "整形済み jsonb と uuid、inet、timestamptz、interval、bytea などの PostgreSQL 型を確認できます。配列要素をリストで編集でき、enum 列では定義済みラベルを選べます。",
                 "PostGIS の geometry と geography 値は SRID 付き EWKT として読み取り、ジオメトリを含む結果は <results>地図ビュー</results> で開けます。地図タイルは Apple が提供し、行データは Mac に残ります。",
                 "行の編集は保存まで保留し、<editing>Preview SQL</editing> が文をすべて先に表示します。保存にはバインドパラメーターを使います。マテリアライズドビューの行は読み取り専用です。メニューから更新でき、PostgreSQL が要求する一意インデックスがあれば並行更新できます。"
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "スキーマと構造",
             "paragraphs": [
-                "アクセスできるすべてのスキーマを一覧表示します。作成・編集シートは CREATE SCHEMA、所有者、コメント、USAGE と CREATE の権限付与を生成し、実行前に表示します。",
-                "<structure>Structure タブ</structure> はカラム、インデックス、外部キー、CHECK 制約と生成カラムの変更を保留します。パーティションテーブルには境界付きのパーティションを表示し、さらに分割されている場合は入れ子にします。enum、複合型、ドメイン、範囲型は Types 配下に表示し、enum のラベルを追加・名前変更できます。",
+                "アクセスできるスキーマを参照できます。所有者、コメント、権限を含めてスキーマを作成・編集し、適用前に SQL を確認できます。",
+                "<structure>Structure タブ</structure>で列、インデックス、外部キー、CHECK、生成列の変更を準備します。パーティションの境界と、enum、複合型、ドメイン、範囲などの PostgreSQL Types を参照できます。enum ラベルは追加や名前変更ができます。",
                 "ビューの定義はすべてのテーブルにスキーマ修飾を付けて再生成します。並行作成に失敗して無効になったインデックスは、Indexes タブで名前を表示します。",
-                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は、二つの PostgreSQL スキーマまたはデータを比較し、一方を他方に揃えるスクリプトを生成します。データを失う変更は保留します。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）は PostgreSQL のスキーマやデータを比較し、同期スクリプトを生成します。データを削除しうる変更は確認のため保留します。"
             ]
         },
         {
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> は権限の付与・取り消し前に各権限の由来を表示し、すべての文を SQL として保留します。",
+                "<administer>Users & Roles</administer> で各権限の付与元を確認できます。付与や取り消しは SQL として準備されます。",
                 "Server Dashboard はセッション、接続数、キャッシュヒット率、データベースサイズと遅いクエリを表示します。<code>pg_cancel_backend</code> でクエリをキャンセルし、<code>pg_terminate_backend</code> でセッションを終了します。スーパーユーザーでも <code>pg_monitor</code> のメンバーでもないロールは、他のセッションのクエリを見られません。",
-                "テーブル保守は FULL、ANALYZE、VERBOSE オプション付きの VACUUM と、ANALYZE、REINDEX、CLUSTER を実行し、先に文を表示します。",
+                "テーブルの保守を実行する前に VACUUM、ANALYZE、REINDEX、CLUSTER を確認できます。",
                 "<backup>Backup Dump と Restore Dump</backup> は、接続の SSH トンネル経由で自分でインストールした {dumpTool} と pg_restore を実行します。Homebrew でインストールしてください。PostgreSQL 9.1 サーバーのバックアップには pg_dump 14 以前を使います。"
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "データの移動",
             "paragraphs": [
-                "{importFormats} ファイルを <importData>インポート</importData> できます。データファイルはカラムごとに対応付けたテーブルに読み込み、行が失敗したときの処理も選べます。テーブルや結果を {exportFormats} にエクスポートでき、SQL エクスポートはテーブル、ビューとマテリアライズドビューのコメントを保持します。",
-                "<copy>Copy To</copy> は、テーブル、データまたは両方を PostgreSQL や異なるエンジンの別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。"
+                "列の対応付けと行エラーの処理を使って {importFormats} ファイルを<importData>インポート</importData>できます。テーブルや結果を {exportFormats} で出力できます。SQL 出力はテーブル、ビュー、マテリアライズドビューのコメントを保持します。",
+                "<copy>Copy To</copy> はテーブル、データ、または両方を別の PostgreSQL 接続やエンジンに転送します。近似が必要な列型は確認してください。"
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin は長年使われている PostgreSQL 用のオープンソース管理ツールで、デバッガー、スキーマ差分、バックアップと復元を備えます。PostgreSQL だけを使い、管理作業が中心の場合に適しています。",
+                "text": "pgAdmin は PostgreSQL の管理に特化し、デバッガー、スキーマ差分、バックアップと復元を提供します。",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 は閲覧と編集を中心にした PostgreSQL 用 Mac アプリです。公式ドキュメントでもバックアップと復元、ユーザー管理、監視などの管理機能は対象外としています。PostgreSQL だけを使い、専用の Mac アプリが欲しい場合に適しています。"
+                "text": "Postico 2 は Mac で PostgreSQL を参照・編集するためのツールです。ドキュメントではバックアップと復元、ユーザー管理、監視を対象外としています。"
             }
         ],
         "notes": {

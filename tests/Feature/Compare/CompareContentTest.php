@@ -313,9 +313,9 @@ it('gives the hub TablePro’s own line, and every comparison a trademark notice
 
     $english = compareHubCopy('en');
 
-    expect($english['labels']['shortAnswer']['lead'])->toContain('alternative');
+    expect($english['labels']['shortAnswer']['lead'])->toBe('Reasons to use TablePro or {name}.');
     expect($english['labels']['sources']['trademarks'])->toContain('not affiliated', 'trademarks');
-    expect($english['bySituation']['tablepro'])->toStartWith('Choose TablePro if');
+    expect($english['bySituation']['tablepro'])->toContain('native, open-source', '{apps}');
 });
 
 it('does not sell free AI and MCP as a difference from a product that includes both', function (): void {

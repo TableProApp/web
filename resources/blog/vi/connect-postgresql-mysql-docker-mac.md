@@ -1,15 +1,15 @@
 ---
 slug: connect-postgresql-mysql-docker-mac
-title: "Cách kết nối PostgreSQL hoặc MySQL trong Docker từ máy Mac"
+title: "Kết nối PostgreSQL hoặc MySQL trong Docker từ Mac"
 seoTitle: "Kết nối PostgreSQL, MySQL trong Docker trên Mac"
-description: Publish port của container, kết nối tới localhost bằng psql, mysql hoặc một GUI, và để TablePro đọc thiết lập từ docker-compose.yml.
+description: Publish port cơ sở dữ liệu Docker và kết nối từ Mac bằng psql, mysql hoặc TablePro. Import cài đặt connection từ file Compose.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: Publish port, kết nối tới localhost, hoặc đọc docker-compose.yml.
 tags: [postgresql, mysql, project-folder]
 ---
 
-Cơ sở dữ liệu trong container lắng nghe bên trong mạng của Docker. Máy Mac của bạn chỉ tới được nó qua một port bạn publish ra ngoài. Khi port đã được publish, cơ sở dữ liệu nằm ở `localhost` như mọi server local khác, và client nào cũng kết nối theo cách quen thuộc.
+Publish port cơ sở dữ liệu của container, rồi kết nối `localhost` từ Mac. Dùng `psql`, `mysql` hoặc TablePro; file Compose có thể cung cấp cài đặt connection.
 
 ## Publish port {#publish-the-port}
 
@@ -49,11 +49,11 @@ Nếu chưa cài client nào, hãy chạy client có sẵn trong container: `doc
 3. Điền **Tên người dùng** (Username) và **Mật khẩu** (Password) theo bảng ở trên. PostgreSQL còn cần **Cơ sở dữ liệu** (Database): với container mới tạo, `postgres` là dùng được. Với MySQL, bạn có thể để trống **Cơ sở dữ liệu** rồi chọn sau bằng `Cmd+K`.
 4. Bấm **Kiểm tra kết nối** (Test Connection), rồi **Lưu & kết nối** (Save & Connect).
 
-Driver MySQL của TablePro chỉ kết nối qua TCP, nên `localhost` dùng được ở đây dù không dùng được với client `mysql`. Tài khoản MySQL 8 dùng `caching_sha2_password` kết nối được mà không cần đổi auth plugin. Với MySQL, để trống **Tên người dùng** nghĩa là dùng tên đăng nhập macOS của bạn, nên hãy gõ `root`.
+Driver MySQL của TablePro dùng TCP, nên `localhost` dùng được ở đây. `caching_sha2_password` của MySQL 8 không cần đổi auth plugin. Nhập `root` rõ ràng: **Tên người dùng** (Username) MySQL trống dùng tên đăng nhập macOS.
 
 Nếu bạn đã có sẵn connection string thì không cần điền từng ô. Bấm **Nhập từ URL…** (Import from URL…) ở cuối bảng chọn loại cơ sở dữ liệu, dán URL, xem phần xem trước rồi bấm **Nhập** (Import). Form mở ra với các ô đã điền sẵn. Mật khẩu có `@`, `#` hoặc `%` cần được percent-encode trước: `p@ss` thành `p%40ss`.
 
-## Đọc thiết lập từ file Compose {#compose}
+## Import cài đặt từ file Compose {#compose}
 
 Trong một dự án, những thông tin trên nằm trong `docker-compose.yml`:
 
@@ -71,7 +71,7 @@ services:
 
 Tên service `db` chỉ phân giải được bên trong mạng của Compose. Từ máy Mac, địa chỉ vẫn là `localhost` và port đã publish.
 
-TablePro đọc được file này để bạn không phải gõ lại:
+Để import cài đặt:
 
 1. Chọn **Tệp > Nhập > Mở thư mục dự án…** (File > Import > Open Project Folder…) và chọn thư mục dự án.
 2. Bảng hiện ra liệt kê mỗi bộ thông tin đăng nhập tìm được trên một dòng, gồm loại cơ sở dữ liệu, host, port, user và cơ sở dữ liệu, kèm file và key chứa nó. Một service trong Compose hiện với host `127.0.0.1` và port đã publish.
@@ -92,12 +92,12 @@ Hai ghi chú trên một dòng cho biết nó có thể không kết nối đư�
 - TablePro không khởi động, dừng hay liệt kê container. Ứng dụng kết nối tới bất cứ thứ gì đang lắng nghe trên port đó.
 - Connection MySQL không bao giờ dùng Unix socket. Hãy cho connection một host và một port.
 
-## Nếu không kết nối được {#troubleshooting}
+## Xử lý lỗi {#troubleshooting}
 
 - **Connection refused**: không có gì lắng nghe trên port đó. Dùng `docker ps` để kiểm tra container có đang chạy và port đã được publish chưa.
 - **Password authentication failed** trên PostgreSQL, hoặc **Access denied** trên MySQL, dù bạn dùng đúng mật khẩu trong lệnh `docker run`: `POSTGRES_PASSWORD` và `MYSQL_ROOT_PASSWORD` chỉ có tác dụng khi thư mục dữ liệu được tạo lần đầu. Container khởi động trên một volume có sẵn vẫn giữ mật khẩu từ lúc volume đó được tạo.
 - **Kết nối được, nhưng vào nhầm server**: một PostgreSQL hoặc MySQL khác trên máy Mac đang giữ port. Hãy publish container ra một port khác.
 
-Form connection được mô tả từng ô trong tài liệu cho [PostgreSQL](https://docs.tablepro.app/databases/postgresql) và [MySQL](https://docs.tablepro.app/databases/mysql), còn các file cấu hình mà lượt quét đọc được liệt kê trong [Open Project Folder](https://docs.tablepro.app/features/project-folder-import) (các trang tài liệu đều bằng tiếng Anh). Trên trang này, hãy xem trang [PostgreSQL](/vi/postgresql-client), trang [MySQL](/vi/mysql-client) và mục [import connection từ một dự án](/vi/features/connections#project-folder).
+Xem tài liệu [PostgreSQL](https://docs.tablepro.app/databases/postgresql) và [MySQL](https://docs.tablepro.app/databases/mysql) cho trường connection. [Open Project Folder](https://docs.tablepro.app/features/project-folder-import) liệt kê file cấu hình được hỗ trợ. Trang [PostgreSQL](/vi/postgresql-client), [MySQL](/vi/mysql-client) và [import dự án](/vi/features/connections#project-folder) tóm tắt tính năng TablePro.
 
-Khi đã kết nối được với container, bước tiếp theo thường là nạp dữ liệu: xem [cách import file CSV vào PostgreSQL hoặc MySQL](/vi/blog/import-csv-postgresql-mysql).
+Để nạp dữ liệu tiếp, xem [import CSV](/vi/blog/import-csv-postgresql-mysql).

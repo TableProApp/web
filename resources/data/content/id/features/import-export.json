@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Impor dan ekspor",
-        "title": "Impor, ekspor, dan file data"
+        "title": "Impor dan ekspor"
     },
     "header": {
-        "title": "Impor, ekspor, dan file data",
-        "lead": "Untuk memindahkan data antara file dan database: memuat spreadsheet ke tabel, menyerahkan hasil kueri sebagai Excel, merapikan CSV sebelum dipakai, atau membuat dump sebelum perubahan berisiko. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
+        "title": "Impor dan ekspor",
+        "lead": "Impor file ke tabel yang didukung dan ekspor tabel atau hasil kueri. Buka file CSV, JSON dan Excel tanpa koneksi database.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "Impor file ke tabel",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> mengimpor file {importFormats}. File SQL dijalankan sebagai pernyataan, termasuk dump <code>.sql.gz</code> dan skrip SQL Server yang dipisahkan dengan <code>GO</code>. Format lain dimuat ke tabel yang ada atau tabel baru bernama sesuai file dengan kolom yang diambil darinya; workbook Excel mengimpor sheet pertama.",
-                "Setiap field dipetakan ke kolom, dan impor berjalan dalam satu transaksi kecuali Anda menonaktifkannya. Saat baris gagal, Anda memilih berhenti dan membatalkan semuanya, berhenti dan mempertahankan yang sudah diimpor, atau melewati baris dan melanjutkan. Setelah itu, Anda dapat menyimpan laporan baris yang dilewati sebagai CSV."
+                "Impor file {importFormats}. Format data menggunakan pemetaan kolom ke dalam tabel yang sudah ada atau baru; Excel hanya mengimpor lembar pertama. File SQL dijalankan sebagai pernyataan, termasuk dump <code>.sql.gz</code> dan skrip SQL Server menggunakan <code>GO</code>.",
+                "Impor menggunakan satu transaksi kecuali opsi ini dinonaktifkan. Pilih penanganan baris yang gagal: rollback, pertahankan baris yang telah diimpor, atau lewati kegagalan. Ekspor baris yang dilewati sebagai CSV untuk ditinjau."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Pemetaan tersimpan dan encoding",
                     "paragraphs": [
-                        "TablePro mengingat pemetaan pilihan Anda untuk setiap tabel pada impor CSV, JSON, dan Excel. <ui>Match by Name</ui> atau <ui>Match by Position</ui> memetakan semua field dengan satu klik. Pencocokan berdasarkan posisi berlaku untuk CSV dan Excel, yang urutan field-nya berasal dari file. Impor CSV dan SQL membaca UTF-16 serta encoding Jepang, Mandarin, dan Korea seperti Shift JIS, GB 18030, Big5, dan EUC-KR."
+                        "Gunakan kembali pemetaan kolom yang disimpan untuk CSV, JSON dan Excel. <ui>Match by Name</ui> memetakan bidang bernama; <ui>Match by Position</ui> berfungsi untuk CSV dan Excel. CSV dan SQL juga mendukung UTF-16 dan pengkodean bahasa Jepang, Cina, dan Korea tertentu."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,22 +42,22 @@
             "id": "export",
             "title": "Ekspor tabel dan hasil",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> mengekspor tabel dan view yang dicentang ke {exportFormats}. Setiap tabel dialirkan dari database saat ditulis, sehingga batas baris grid data tidak berlaku. Pada mesin SQL setiap tabel dapat memiliki klausa WHERE, batas baris, dan pilihan kolom sendiri. Ekspor SQL dapat menyertakan struktur, dikompresi dengan gzip, dan dibagi menjadi beberapa bagian; Excel menempatkan setiap tabel pada sheet sendiri. Koleksi MongoDB juga dapat diekspor sebagai skrip mongosh, sedangkan ekspor SQL tidak tersedia untuk MongoDB atau Redis.",
-                "<ui>Export Results</ui> menulis hasil kueri; hasil yang terpotong batas baris dijalankan ulang dan dialirkan secara lengkap. Ekspor {exportPluginFormats} berasal dari plugin gratis yang Anda instal di <ui>Settings > Plugins</ui> dan menulis satu file per tabel."
+                "Ekspor tabel dan tampilan ke {exportFormats}, streaming melampaui batas baris grid. Mesin SQL mendukung filter per tabel, batasan, dan pemilihan kolom. Ekspor SQL dapat mencakup struktur; Excel menggunakan satu lembar per tabel. MongoDB mendukung ekspor skrip mongosh, bukan ekspor SQL. Redis juga tidak memiliki ekspor SQL.",
+                "<ui>Export Results</ui> memutar ulang kueri yang dibatasi untuk mengalirkan hasil lengkap. Tambahkan ekspor {exportPluginFormats} melalui plugin gratis di <ui>Settings > Plugins</ui>, dengan satu file per tabel."
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files: olah file tanpa database",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "Buka, cari, dan rapikan",
+                    "title": "Edit file data",
                     "paragraphs": [
-                        "Buka file CSV, TSV, atau teks ber-delimiter lainnya, JSON, atau JSON Lines dari Finder atau dengan <kbd>⌘O</kbd>; jendela Data Files menampilkannya sebagai tabel yang dapat diedit. Filter dengan bilah filter grid, cari di semua kolom, cari dan ganti dengan ekspresi reguler, serta rapikan dengan Fill Down, Trim Whitespace, Change Case, dan Remove Duplicate Rows. Workbook Excel terbuka dengan satu tab per sheet; file terkompresi seperti <code>.csv.gz</code> juga dapat dibuka, keduanya hanya-baca.",
-                        "Jendela bekerja pada salinan privat, dan <kbd>⌘S</kbd> menulis file kembali dalam format aslinya, dengan baris yang tidak disentuh tetap seperti semula."
+                        "Buka dan edit teks yang dibatasi, JSON dan JSON Lines sebagai tabel. Filter, cari, ganti teks, atau hapus baris duplikat. Lembar Excel dan file terkompresi seperti <code>.csv.gz</code> terbuka hanya-baca.",
+                        "Perubahan tetap berada dalam salinan pribadi sampai Anda menyimpannya. Menyimpan menulis format asli dan mempertahankan baris yang tidak tersentuh."
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "Statistik kolom, lalu ekspor atau impor",
                     "paragraphs": [
-                        "Statistik kolom menampilkan jumlah nilai kosong dan unik, rentang nilai, serta nilai paling umum; klik nilai untuk memfilter file berdasarkan nilai itu. Setelah file siap, ekspor ke format lain atau kirim ke tabel pada koneksi terbuka dengan <ui>Import into Table</ui>."
+                        "Periksa jumlah nilai kosong dan unik, rentang, dan nilai yang sering muncul. Klik nilai untuk memfilter, lalu ekspor file atau gunakan <ui>Import into Table</ui> pada koneksi yang terbuka."
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -73,10 +73,10 @@
         },
         {
             "id": "backup",
-            "title": "Cadangkan dengan alat milik mesin database Anda",
+            "title": "Pencadangan dan pemulihan",
             "paragraphs": [
-                "Backup Dump dan Restore Dump bekerja melalui {backupTools}, lewat tunnel SSH koneksi dan pengaturan TLS-nya, sehingga server di balik bastion tidak memerlukan tunnel kedua. Semua kecuali DuckDB adalah alat baris perintah yang harus Anda instal; DuckDB menulis dump sendiri, sebagai file database atau folder file Parquet.",
-                "Pada {serverSideExport}, Server-Side Export meminta server menulis ekspor: job Oracle Data Pump, stage Snowflake, atau bucket Cloud Storage. Tidak ada yang disimpan di Mac Anda."
+                "Backup Dump dan Restore Dump menggunakan {backupTools}, dengan pengaturan koneksi SSH dan TLS. Instal sendiri alat baris perintah yang diperlukan, kecuali DuckDB, yang menulis databasenya sendiri atau Parquet dump.",
+                "Server-Side Export pada {serverSideExport} menulis melalui Oracle Data Pump, stage Snowflake, atau Cloud Storage. Ekspor tidak melewati Mac Anda."
             ],
             "engines": [
                 {
@@ -108,7 +108,7 @@
             "id": "between-databases",
             "title": "Dari satu database ke database lain",
             "paragraphs": [
-                "Memindahkan tabel atau baris antara dua koneksi tidak memerlukan file perantara. Copy To dan Transfer To melakukannya langsung, termasuk lintas mesin, serta menampilkan yang akan ditulis sebelum apa pun berjalan."
+                "Menyalin atau mentransfer tabel antara koneksi yang didukung tanpa file perantara. Lihat Skema untuk mengetahui detail konversi dan tinjauan tipe."
             ],
             "links": [
                 {

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs HeidiSQL：無料のオープンソースクライアント",
+        "title": "TablePro と HeidiSQL: データベース、プラットフォーム、価格設定",
         "description": "HeidiSQL は Windows、Linux、2026 年から Apple silicon Mac で無料。TablePro は Mac、iPhone、iPad のネイティブアプリ。対応データベース、ビルドと料金を比較します。"
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs HeidiSQL",
-        "lead": "HeidiSQL は Windows から始まり Linux でも動く無料のオープンソースクライアントです。2026 年 1 月から Apple silicon 向け Mac ビルドがあります。TablePro は Apple silicon・Intel 用の Mac アプリ、別の iPhone・iPad アプリと Mac のオプションの有料機能を持つオープンソースクライアントです。"
+        "lead": "HeidiSQL および TablePro は、異なるエンジンとプラットフォームをサポートするオープンソース データベースクライアントです。 HeidiSQL には有料プランはありません。 TablePro はオプション機能の料金を請求します。"
     },
     "shortAnswer": {
         "tablepro": [
-            "Intel Mac を使う。TablePro は Intel と Apple silicon に別のビルドがあります。",
-            "SQL サーバーだけでなく MongoDB、Redis、ClickHouse や DuckDB も使う。",
-            "パスワードを macOS キーチェーンに保存し、本番接続の書き込み前に Touch ID を求める Safe Mode が欲しい。",
-            "Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
-            "iPhone・iPad アプリも欲しい。"
+            "公式 Intel Mac ビルド、および Apple silicon。",
+            "MongoDB、 Redis、 ClickHouse または DuckDB と SQL サーバー。",
+            "無料の AI チャットと MCP、さらに別の iPhone および iPad アプリ。"
         ],
         "competitor": [
-            "Windows や Linux でも同じ無料クライアントを使いたい。",
-            "TablePro が対応しない Firebird、Interbase や ProxySQL に接続する。",
-            "有料プランなしですべての機能を無料で使いたい。",
-            "Windows の HeidiSQL に慣れ、Apple silicon Mac でも使いたい。"
+            "Windows、 Linux、および Apple silicon Mac 上の同じ無料クライアント。",
+            "Firebird、 Interbase または ProxySQL 接続。",
+            "すべての機能は無料で、有料プランはありません。"
         ]
     },
     "glance": {
@@ -38,14 +35,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "HeidiSQL は Windows、Linux と Mac で動き、使うコンピューターを一つの無料クライアントで扱えます。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "TablePro が対応しない Firebird、Interbase と ProxySQL に接続します。",
                 "cite": [
@@ -106,12 +95,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Windows と Linux 用の TablePro アプリはありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Firebird、Interbase と ProxySQL は対応しません。",
                 "cite": [],
                 "feature": null,
@@ -149,18 +132,6 @@
             "question": "両方が対応するデータベースは？",
             "answer": "HeidiSQL のサイトが挙げる MySQL、MariaDB、SQL Server、PostgreSQL、SQLite と Redshift は TablePro もすべて対応します。HeidiSQL は Firebird、Interbase と ProxySQL を追加し、TablePro は MongoDB、Redis や ClickHouse などのドキュメント、キー・バリューと分析エンジンを追加します。",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro も HeidiSQL のように無料ですか？",
-            "answer": "無料で使えますが、HeidiSQL のようにすべて無料ではありません。全対応エンジン、AI アシスタントと MCP サーバーは無料で、コードは AGPLv3 のオープンソースです。HeidiSQL に有料プランはなく、TablePro は Starter や Team が Mac に {starterExamples} などのオプション機能を追加します。<link>料金を見る</link>。",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "どの TablePro ビルドを使うべきですか？",
-            "answer": "Mac のプロセッサーに合う Apple silicon または Intel 版です。ダウンロードページで両方を提供します。<link>TablePro をダウンロード</link>。",
-            "href": "/download"
         }
     ],
     "notes": {

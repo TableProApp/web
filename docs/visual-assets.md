@@ -49,7 +49,7 @@ Every asset takes its geometry from its kind (design-system §6.3), unless the a
 | `diagram` | diagram | 16:9 | desktop 1216×684 · tablet 720×405 · phone 343×193 | vector (SVG) | SVG | alpha as needed | 60 KB | — |
 | `illustration` | illustration | 16:9 | desktop 1216×684 · tablet 720×405 · phone 343×193 | 2432×1368 px (2×) | PNG master → AVIF, WebP | alpha as needed | 250 KB | 720, 1216, 2432 |
 | `figure` | per-figure | from the source | desktop 704 wide · tablet 704 wide · phone 343 wide | 1408 px wide (2×) | PNG master → AVIF, WebP | alpha as the source | 200 KB | 704, 1408 |
-| `og-card` | og-card | 1200:630 | — | 1200×630 px (1×) | PNG | opaque | 300 KB | 1200 |
+| `og-card` | og-card | 1200:630 | — | 1200×630 px (1×) | PNG | opaque | 320 KB | 1200 |
 
 - `window`: A full Mac window, 1216 x 684 pt on a 2x display, captured with screencapture -w -o (docs/screenshots.md). Below 768px the page shows the entry's mobile crop; 343 x 193 is only the placeholder fallback. A window never reaches supplied without its crop.
 - `mobile-crop`: Shown only below 768px, centred at 343 px wide (never stretched). Cut at native pixels from the same 2x capture as the entry that names it (a window, a detail or an iPad capture), so a 686 px cut is a 343 pt region and the Mac or iPad text keeps its real size on a phone; an illustration's crop is a tall recomposition of the same captures. When no native cut holds what the brief asks for, the crop may be scaled down uniformly, never below 0.6x; its brief records the scale. 1:1 is allowed as an aspect override.
@@ -11828,6 +11828,16 @@ No editorial image slot. This app's screens are live data, forms and controls, w
 
 ## Social cards (Open Graph)
 
+**English update (2026-10-09).** The approved Figma export now supplies `/og.png`: a dark orange-accented
+card with the TablePro logo, “A native database client.” and “Run queries. Browse and edit data.” beside a real
+app data grid. The export is re-encoded losslessly as an opaque 1200 × 630 PNG (309,140 bytes); the OG budget
+is 320 KB to retain the exact exported pixels. Following English-copy approval, the eleven other locale
+defaults use their translated short headline in the existing light composition. Their PNGs were regenerated;
+this does not claim they are translations of the Figma artwork. This English design supersedes the older light-layout brief below.
+English has one default file and URL: `/og.png`; `og:generate` preserves it when supplied. The former
+`/og/bespoke/og-site-en.png` duplicate is retired. The `og-site` manifest entry still supplies its alt text and
+export rules; other locales keep their existing paths.
+
 **Current state.** One social card is bespoke artwork: `og-site` below, supplied on 2026-10-03, which every page
 without a card of its own shares. Every other `og:image` is a card that `php artisan og:generate` renders from the
 templates in `resources/views/og/` (architecture §1.15): the TablePro logo and the page's own title on the site
@@ -11835,8 +11845,8 @@ palette, set in Inter, with no screenshot and no app chrome. Those cards are com
 generated, not drawn, so they are not part of your work.
 
 - The generic card, used by every page without a card of its own (the homepage, the hubs, `/pricing`, `/download`,
-  `/ios`, `/faq`, the legal pages and the blog index): the bespoke `/og/bespoke/og-site-en.png` in English and
-  `/og/bespoke/og-site-vi.png` in Vietnamese. The generated `/og.png` and `/og/vi/default.png` stay committed and
+  `/ios`, `/faq`, the legal pages and the blog index): the supplied `/og.png` in English and
+  `/og/bespoke/og-site-vi.png` in Vietnamese. The generated `/og/vi/default.png` stays committed and
   current: a locale whose bespoke file is missing falls back to its generated card, and `/og.png` is the card that
   shares made before the rebuild and the platform app's default point at.
 - Page cards: `/og/{feature,database,compare}/{slug}.png` in English and `/og/vi/{feature,database,compare}/{slug}.png`
@@ -11870,10 +11880,10 @@ từ 2026-10-03). Phần dưới mô tả ảnh OG mặc định 1200 × 630 nà
 | Type | og-card (`og-card`) · **P3** · supplied |
 | Used on | `/` · og:image; `/features` · og:image; `/databases` · og:image; `/compare` · og:image; `/pricing` · og:image; `/download` · og:image; `/ios` · og:image; `/faq` · og:image; `/blog` · og:image; `/privacy` · og:image; `/terms` · og:image; `/refund-policy` · og:image |
 | Aspect | 1200:630 |
-| Export | 1200×630 px (1×) · PNG · opaque · max 300 KB per file |
+| Export | 1200×630 px (1×) · PNG · opaque · max 320 KB per file |
 | Light and dark | One image for both page themes |
 | Locale | One file per locale (en, vi, es, de, fr, ja, pt-BR, zh-Hans, ko, zh-Hant, it, id) |
-| Replace with | `public/og/bespoke/og-site-{en,vi,es,de,fr,ja,pt-BR,zh-Hans,ko,zh-Hant,it,id}.png` |
+| Replace with | `public/og.png (en); public/og/bespoke/og-site-{vi,es,de,fr,ja,pt-BR,zh-Hans,ko,zh-Hant,it,id}.png` |
 
 - Placeholder text (en): Designed social card for every page without its own OG image: the TablePro logo and the product sentence.
 - Placeholder text (vi): Ảnh chia sẻ mạng xã hội thiết kế riêng, dùng cho mọi trang không có ảnh OG riêng: logo TablePro và câu giới thiệu sản phẩm.
@@ -11887,18 +11897,18 @@ từ 2026-10-03). Phần dưới mô tả ảnh OG mặc định 1200 × 630 nà
 - Placeholder text (zh-Hant): 為沒有獨立 OG 圖片的頁面設計的社群卡片：TablePro 標誌和產品介紹句。
 - Placeholder text (it): Scheda social progettata per ogni pagina senza una propria immagine OG: il logo TablePro e la frase sul prodotto.
 - Placeholder text (id): Kartu sosial yang dirancang untuk setiap halaman tanpa gambar OG sendiri: logo TablePro dan kalimat produk.
-- Proposed alt text (en): The TablePro logo and the words: TablePro is a native, open-source database client for developers. Below them, the address tablepro.app.
-- Proposed alt text (vi): Logo TablePro và dòng chữ: TablePro là database client native, mã nguồn mở, dành cho lập trình viên. Bên dưới là địa chỉ tablepro.app.
-- Proposed alt text (es): Logo de TablePro y texto: TablePro es un cliente nativo de bases de datos de código abierto para desarrolladores. Debajo, la dirección tablepro.app.
-- Proposed alt text (de): TablePro-Logo und die Worte: TablePro ist ein nativer Open-Source-Datenbankclient für Entwickler. Darunter die Adresse tablepro.app.
-- Proposed alt text (fr): Logo TablePro et texte : TablePro est un client de bases de données natif et open source pour les développeurs. Dessous, l’adresse tablepro.app.
-- Proposed alt text (ja): TablePro のロゴと「TablePro は開発者向けの、ネイティブなオープンソースのデータベースクライアントです。」という文。その下に tablepro.app のアドレスがあります。
-- Proposed alt text (pt-BR): O logotipo do TablePro e as palavras: TablePro é um cliente nativo de banco de dados, de código aberto, para desenvolvedores. Abaixo, o endereço tablepro.app.
-- Proposed alt text (zh-Hans): TablePro 标志及文字：TablePro 是面向开发者的原生开源数据库客户端。下方为地址 tablepro.app。
-- Proposed alt text (ko): TablePro 로고와 “TablePro는 개발자를 위한 네이티브 오픈 소스 데이터베이스 클라이언트입니다.”라는 문장. 아래에는 tablepro.app 주소가 있습니다.
-- Proposed alt text (zh-Hant): TablePro 標誌及文字：TablePro 是為開發者打造的原生開放原始碼資料庫用戶端。下方為網址 tablepro.app。
-- Proposed alt text (it): Il logo TablePro e le parole: TablePro è un client di database nativo e open source per sviluppatori. Sotto, l’indirizzo tablepro.app.
-- Proposed alt text (id): Logo TablePro dan tulisan: TablePro adalah klien database native dan sumber terbuka untuk pengembang. Di bawahnya, alamat tablepro.app.
+- Proposed alt text (en): TablePro logo beside the words: A native database client. Run queries. Browse and edit data. A TablePro data grid appears on the right.
+- Proposed alt text (vi): TablePro. Database client native. tablepro.app.
+- Proposed alt text (es): TablePro. Un cliente nativo de bases de datos. tablepro.app.
+- Proposed alt text (de): TablePro. Ein nativer Datenbankclient. tablepro.app.
+- Proposed alt text (fr): TablePro. Un client natif de bases de données. tablepro.app.
+- Proposed alt text (ja): TablePro. ネイティブのデータベースクライアント。 tablepro.app.
+- Proposed alt text (pt-BR): TablePro. Um cliente de banco de dados nativo. tablepro.app.
+- Proposed alt text (zh-Hans): TablePro. 原生数据库客户端。 tablepro.app.
+- Proposed alt text (ko): TablePro. 네이티브 데이터베이스 클라이언트. tablepro.app.
+- Proposed alt text (zh-Hant): TablePro. 原生資料庫用戶端。 tablepro.app.
+- Proposed alt text (it): TablePro. Un client database nativo. tablepro.app.
+- Proposed alt text (id): TablePro. Klien database native. tablepro.app.
 
 **Purpose**
 
@@ -11909,10 +11919,10 @@ without a card of its own.
 
 - Designed brand artwork, not a screenshot. Subject: the TablePro logo with its wordmark, and the identity sentence
   of positioning §6.1 (the "OG fallback" row) in the card's language, in two lines at 56 px:
-  - en: "TablePro is a native, open-source database client for developers."
-  - vi: "TablePro là database client native, mã nguồn mở, dành cho lập trình viên."
-- The homepage H1 ("A native database client for developers.") also fits, but positioning §6.1 reserves the
-  identity sentence for this card.
+  - en: "A native database client."
+  - vi: "Database client native."
+- The localized default cards use the translated `home.og.title`. English uses the approved Figma export,
+  not the historical HTML template. Do not recreate an English duplicate.
 - Optional: one crop of a real Mac capture made for this handoff with sample data (for example from the
   `mac-hero-window` capture once it exists). Never drawn UI, a mock-up or the placeholder box.
 - Leave out anything that goes stale or is banned site-wide (positioning §12): platform or device lists, version
@@ -11922,7 +11932,7 @@ without a card of its own.
 
 **Framing**
 
-- Exactly 1200 × 630 px, opaque PNG in sRGB, at most 300 KB.
+- Exactly 1200 × 630 px, opaque PNG in sRGB, at most 320 KB.
 - Safe area: the logo and all text at least 64 px from every edge. X crops the card to 2:1, and small link previews
   scale it to about 500 px wide, so the sentence must stay legible at that width: about 52 px type or larger, at most
   three lines in either language (the Vietnamese sentence is longer; check it).
@@ -11935,14 +11945,14 @@ One light image. Link previews have no theme and sit on the host app's own backg
 
 **Locale**
 
-Two files with the same layout, one per locale: `og-site-en.png` and `og-site-vi.png`. Only the sentence changes. The
+One file per locale: `/og.png` in English and `og-site-vi.png` in Vietnamese. The
 English card carries only English and the Vietnamese card only Vietnamese.
 
 **Open evidence**
 
 None. The page head already reads this entry: `App\Support\Seo\OgImages` asks
 `AssetManifest::ogCard('og-site', $locale)` before it falls back to the generated card. Setting the entry to `supplied`
-(with its `src`) and adding `public/og/bespoke/og-site-{en,vi}.png` switches every page without a card of its own to
+(with its `src`) and adding `public/og.png` or `public/og/bespoke/og-site-vi.png` switches every page without a card of its own to
 the bespoke card. Each locale switches only once its own file exists, so a missing Vietnamese file leaves
 `/og/vi/default.png` in use.
 

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Navicat: client mã nguồn đóng hay mã nguồn mở",
+        "title": "TablePro và Navicat: phiên bản, tính năng và giá",
         "description": "Navicat Premium bán theo license vĩnh viễn hoặc gói thuê bao, có bản Lite miễn phí. TablePro là mã nguồn mở, dùng miễn phí. So sánh giá, AI và ứng dụng iPhone."
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Navicat",
-        "lead": "Navicat Premium là client cho Windows, macOS và Linux, bán cho từng người dùng theo license vĩnh viễn hoặc gói thuê bao theo tháng hay theo năm, kèm một bản Premium Lite miễn phí. TablePro là client mã nguồn mở, có một ứng dụng native cho Mac và một ứng dụng khác cho iPhone và iPad. TablePro dùng miễn phí, còn các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac."
+        "lead": "So sánh Navicat Premium, Premium Lite và TablePro theo tính năng, license và cơ sở dữ liệu hỗ trợ. Navicat có license vĩnh viễn hoặc subscription tháng/năm; TablePro có tính năng miễn phí và trả phí tùy chọn."
     },
     "shortAnswer": {
         "tablepro": [
-            "Bạn muốn một ứng dụng miễn phí có sẵn trợ lý AI, MCP server và Safe Mode, và chỉ cần gói trả phí cho những tính năng như {starterExamples}.",
-            "Bạn muốn dùng một client mã nguồn mở. TablePro là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí.",
-            "Bạn muốn một ứng dụng iPhone và iPad miễn phí dùng cho nhiều engine, thay vì mua các ứng dụng riêng cho từng engine.",
-            "Bạn dùng những engine không có trong danh sách của Navicat Premium, như ClickHouse, DuckDB hay Cassandra."
+            "Client miễn phí có AI chat, MCP và Safe Mode. Gói trả phí thêm {starterExamples}.",
+            "Mã nguồn mở, kể cả tính năng trả phí.",
+            "Connection ClickHouse, DuckDB hoặc Cassandra."
         ],
         "competitor": [
-            "Bạn còn làm việc trên Windows hoặc Linux.",
-            "Bạn thiết kế schema bằng một công cụ data modeling. Navicat có công cụ này trong bản Premium Enterprise.",
-            "Bạn đồng bộ connection, query và model với đồng nghiệp qua Navicat Cloud, hoặc qua Navicat On-Prem Server đặt trên máy chủ của mình."
+            "Hỗ trợ Windows hoặc Linux.",
+            "Data modeling trong Premium Enterprise.",
+            "Navicat Cloud hoặc Navicat On-Prem Server cho connection, query và model chung."
         ]
     },
     "glance": {
@@ -45,26 +44,26 @@
         "intro": "",
         "items": [
             {
-                "text": "Navicat Premium chạy trên Windows, macOS và Linux.",
-                "cite": ["platforms"],
+                "text": "Premium Enterprise thêm công cụ data modeling. ER diagram TablePro chỉ hiển thị schema đã có.",
+                "cite": [
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Bản Premium Enterprise có thêm công cụ data modeling. ER diagram của TablePro chỉ hiển thị một schema đã có sẵn.",
-                "cite": ["cells.dataModeling"],
+                "text": "Navicat Cloud, hoặc Navicat On-Prem Server nếu mọi thứ phải nội bộ, sync cài đặt connection, query và model, chia sẻ với người bạn mời.",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Navicat Cloud, hoặc Navicat On-Prem Server nếu mọi thứ phải nằm trong hạ tầng nội bộ, giữ thiết lập connection, query và model đồng bộ, đồng thời chia sẻ chúng với những người bạn mời.",
-                "cite": ["cells.sync"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Premium Lite miễn phí cho cả mục đích thương mại lẫn phi thương mại, nếu các tính năng cốt lõi của nó đủ cho công việc của bạn.",
-                "cite": ["prices"],
+                "text": "Premium Lite miễn phí cho cả thương mại và phi thương mại nếu tính năng cơ bản đủ cho công việc.",
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -75,7 +74,9 @@
         "items": [
             {
                 "text": "TablePro là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Navicat là phần mềm mã nguồn đóng.",
-                "cite": ["licence"],
+                "cite": [
+                    "licence"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -86,20 +87,26 @@
                 "href": "/pricing"
             },
             {
-                "text": "Cả hai đều đồng bộ được cấu trúc. <link>Compare & Sync</link> của TablePro so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và tạo script cho phần khác nhau, giữ lại những câu lệnh làm mất dữ liệu cho tới khi bạn cho phép. Tính năng này thuộc gói Starter.",
-                "cite": ["cells.schemaSync"],
+                "text": "<link>Compare & Sync</link> của TablePro so cấu trúc hoặc dữ liệu và tạo script đồng bộ. Câu lệnh phá hủy dữ liệu không đưa vào tới khi bạn cho phép. Có trong Starter.",
+                "cite": [
+                    "cells.schemaSync"
+                ],
                 "feature": "compare-sync",
                 "href": null
             },
             {
                 "text": "Một <link>ứng dụng cho iPhone và iPad</link> miễn phí kết nối được tới nhiều engine, không có mua hàng trong ứng dụng. Navicat bán các ứng dụng riêng cho từng engine, như Navicat for MySQL.",
-                "cite": ["cells.ios"],
+                "cite": [
+                    "cells.ios"
+                ],
                 "feature": null,
                 "href": "/ios"
             },
             {
-                "text": "Cả hai đều kết nối được tới MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis và Snowflake. TablePro còn kết nối được tới <link>những engine không có trong danh sách của Navicat Premium</link>, như ClickHouse, DuckDB, Cassandra và Elasticsearch. Ngược lại, bản Premium Enterprise có một số engine không nằm trong danh sách của TablePro, như KingbaseES và openGauss.",
-                "cite": ["cells.databases"],
+                "text": "TablePro thêm <link>ClickHouse, DuckDB, Cassandra và Elasticsearch</link> ngoài engine Navicat Premium liệt kê. Ngược lại Premium Enterprise có engine TablePro không hỗ trợ, gồm KingbaseES và openGauss. Bảng liệt kê engine chung.",
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": "/databases"
             }
@@ -109,31 +116,25 @@
         "intro": "",
         "items": [
             {
-                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro không có công cụ data modeling. <link>ER diagram</link> chỉ là bản xem chỉ đọc của một schema đã có, export được ra PNG hoặc SQL.",
+                "text": "Không có công cụ data modeling. <link>ER diagram</link> là góc nhìn chỉ đọc của schema có sẵn, export được PNG hoặc SQL.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/schema#er-diagram"
             },
             {
-                "text": "TablePro không có công cụ lập lịch tác vụ, nên so sánh, export và sao lưu chỉ chạy khi bạn bắt đầu.",
+                "text": "Không có task scheduler, nên so sánh, export và backup chỉ chạy khi bạn bắt đầu.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Chỉ một ứng dụng TablePro cho iPhone và iPad đã dùng được cho nhiều engine, nhưng làm được ít hơn ứng dụng Mac: không có trợ lý AI, MCP server hay autocomplete.",
+                "text": "Ứng dụng iPhone và iPad TablePro hỗ trợ nhiều engine, nhưng không có trợ lý AI, MCP server hay autocomplete.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "License vĩnh viễn của Navicat vẫn dùng được sau năm bảo trì, gói TablePro mua một lần cũng vậy. Gói TablePro theo tháng hoặc theo năm thì không: khi gói kết thúc, các tính năng trả phí bị khóa, phần còn lại của ứng dụng vẫn hoạt động.",
+                "text": "License vĩnh viễn Navicat tiếp tục hoạt động sau năm maintenance. TablePro thanh toán một lần không hết hạn. Subscription TablePro khóa tính năng trả phí khi kết thúc; ứng dụng miễn phí vẫn hoạt động.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -141,7 +142,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro import connection Navicat từ một file bạn export trong Navicat, nên bước đầu tiên làm trong Navicat. Thiết lập riêng của Navicat không bị đọc hay thay đổi.",
+        "intro": "Export file connection từ Navicat, rồi import vào TablePro. Cài đặt Navicat không bị thay đổi.",
         "steps": [
             "Trong Navicat, chọn <ui>File > Export Connections…</ui>, chọn các connection, bật <ui>Export Password</ui> rồi lưu file .ncx.",
             "Trong TablePro, chọn <ui>Tệp > Nhập > Nhập từ ứng dụng khác…</ui> (File > Import > Import from Other App…).",

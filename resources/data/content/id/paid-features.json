@@ -1,42 +1,42 @@
 {
     "compare-sync": {
-        "detail": "Bandingkan struktur atau data dua database, lalu tinjau skrip sinkronisasi sebelum dijalankan.",
+        "detail": "Bandingkan database yang didukung dan tinjau skema atau skrip sinkronisasi data.",
         "lapse": "Saat dibuka, muncul peringatan yang meminta lisensi."
     },
     "query-insights": {
-        "detail": "Lihat kueri yang paling sering Anda jalankan, yang paling lambat, dan yang melambat, dari riwayat Mac ini.",
+        "detail": "Temukan kueri yang lambat, gagal, dan sering dijalankan di riwayat lokal Mac ini.",
         "lapse": "Tampilan tetap ada, tertutup permintaan lisensi."
     },
     "result-charts": {
-        "detail": "Buat diagram batang, garis, area, dan sebar dari hasil kueri.",
+        "detail": "Plot hasil kueri sebagai diagram batang, garis, area, atau sebar.",
         "lapse": "Diagram tetap ada, tertutup permintaan lisensi."
     },
     "data-rewind": {
-        "detail": "Kembalikan nilai yang dimiliki baris sebelum perubahan Anda disimpan.",
+        "detail": "Tinjau dan pulihkan nilai yang memenuhi syarat dari penyimpanan terbaru. Bukan cadangan.",
         "lapse": "Penyimpanan tidak lagi direkam, dan pemulihan menampilkan peringatan."
     },
     "icloud-sync": {
-        "detail": "Sinkronkan koneksi dan pengaturan antar-Mac Anda serta dengan aplikasi iPhone dan iPad.",
+        "detail": "Sinkronkan data yang dipilih antara Mac dan data koneksi yang didukung dengan iPhone dan iPad.",
         "lapse": "Sinkronisasi dijeda, dan Pengaturan menjelaskan alasannya."
     },
     "linked-folders": {
-        "detail": "Baca koneksi dari folder bersama berisi file .tablepro, seperti repositori Git atau drive tim.",
+        "detail": "Membaca file koneksi dari folder bersama, repositori Git, atau drive tim.",
         "lapse": "Koneksi dari Linked Folders hilang dari daftar koneksi Anda."
     },
     "encrypted-export": {
-        "detail": "Sertakan kata sandi dalam ekspor .tablepro yang dienkripsi dengan frasa sandi.",
+        "detail": "Ekspor file .tablepro dengan kata sandi yang dienkripsi dengan frasa sandi.",
         "lapse": "Ekspor kehilangan opsi untuk menyertakan kata sandi. Ekspor biasa dan impor file terenkripsi tetap berfungsi."
     },
     "environment-variables": {
-        "detail": "Gunakan $VAR pada kolom koneksi seperti host atau pengguna; TablePro menggantinya saat Anda terhubung.",
+        "detail": "Selesaikan $VAR di bidang koneksi yang didukung saat Anda terhubung.",
         "lapse": "$VAR tidak lagi diganti, dan tidak ada pemberitahuan: koneksi memakai teks persis seperti yang ditulis."
     },
     "team-catalog": {
-        "detail": "Publikasikan koneksi tanpa kata sandi ke folder bersama yang dibaca tim Anda melalui Linked Folders.",
+        "detail": "Publikasikan file koneksi tanpa kata sandi ke folder bersama.",
         "lapse": "Perintah publikasi disembunyikan."
     },
     "team-library": {
-        "detail": "Bagikan koneksi dan kueri tersimpan kepada tim melalui server TablePro. Kata sandi tidak pernah diunggah.",
+        "detail": "Berbagi koneksi dan menyimpan kueri melalui server TablePro. Jangan pernah mengunggah kata sandi.",
         "lapse": "Koneksi dan kueri tim disembunyikan hingga paket Team aktif kembali."
     }
 }

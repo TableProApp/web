@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Grátis",
-            "description": "O app para Mac sem os recursos pagos e o app para iPhone e iPad.",
+            "description": "Ferramentas essenciais de banco de dados, sem período de teste.",
             "activation": "Não é preciso se cadastrar para usar o app.",
             "includesTitle": "Inclui",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Adiciona ao app para Mac recursos como {examples}.",
             "activation": {
-                "one": "Uma licença para uma pessoa, em {count} Mac.",
-                "other": "Uma licença para uma pessoa, em até {count} Macs."
+                "one": "Uma pessoa, {count} Mac.",
+                "other": "Uma pessoa, até {count} Macs."
             },
             "includesTitle": "Tudo do plano Grátis, mais",
             "cta": "Comprar Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Além dos recursos do Starter, adiciona conexões e consultas compartilhadas com sua equipe.",
-            "activation": "Cada vaga corresponde a um Mac ativado.",
+            "description": "Compartilhe conexões e consultas salvas com sua equipe.",
+            "activation": "Um Mac ativado por vaga.",
             "includesTitle": "Tudo do Starter, mais",
             "cta": "Comprar Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Todos os planos pagos podem ser reembolsados em até {count} dia após a compra, e cada renovação mensal ou anual em até {count} dia após a cobrança. Veja a <link>política de reembolso</link>.",
         "other": "Todos os planos pagos podem ser reembolsados em até {count} dias após a compra, e cada renovação mensal ou anual em até {count} dias após a cobrança. Veja a <link>política de reembolso</link>."
     },
-    "finePrint": "Preços em dólares americanos. {merchant} é o merchant of record: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
+    "finePrint": "Preços em dólares americanos. {merchant} processa pagamentos e calcula tributos sobre vendas ou IVA no checkout como merchant of record.",
     "finePrintCurrency": "Preços em dólares americanos.",
     "comparePlans": "Comparar planos",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Verificando o código…",
         "percent": "Código aceito: {amount}% de desconto, aplicado no checkout.",
         "fixed": "Código aceito: {amount} de desconto, aplicado no checkout.",
-        "invalid": "Esse código de desconto é inválido ou expirou."
+        "invalid": "Este código é inválido ou expirou."
     },
     "checkout": {
-        "failed": "Não foi possível iniciar o checkout. Tente novamente."
+        "failed": "Não foi possível abrir o checkout. Tente novamente."
     },
     "offers": {
         "name": "{plan}, {cycle}",

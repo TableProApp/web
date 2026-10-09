@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "AI dan MCP",
-        "title": "Asisten AI dan server MCP"
+        "title": "Asisten AI dan MCP"
     },
     "header": {
-        "title": "Asisten AI dan server MCP",
-        "lead": "Untuk developer yang ingin bantuan SQL dari model pilihan sendiri, atau ingin klien AI bekerja dengan database mereka. Tanyakan skema, minta tinjauan atau perbaikan kueri, atau izinkan klien MCP (Model Context Protocol) seperti Claude Code dan Cursor memakai koneksi tersimpan. Semuanya opsional dan hanya tersedia di aplikasi Mac; tidak ada yang mencapai model hingga Anda menambahkan penyedia atau menghubungkan klien.",
+        "title": "Asisten AI dan MCP",
+        "lead": "Jelaskan atau perbaiki SQL dengan penyedia pilihan Anda. Hubungkan klien AI ke koneksi tersimpan melalui MCP (Model Context Protocol).",
         "docs": "/features/ai-assistant"
     },
     "sections": [
         {
             "id": "assistant",
-            "title": "Gunakan penyedia pilihan Anda",
+            "title": "Pilih penyedia AI Anda",
             "paragraphs": [
-                "Asisten mendukung penyedia berikut: {aiProviders}. Bergantung pada penyedia, Anda menempelkan kunci API, masuk dengan akun yang sudah dimiliki, atau menjalankan model di Mac. TablePro tidak menjalankan layanan AI sendiri: permintaan langsung ke penyedia, dan tidak ada yang dikirim hingga Anda menambahkannya.",
-                "Setiap pesan membawa struktur tabel koneksi, hingga batas yang Anda atur, serta kueri di editor. Baris hasil hanya dikirim jika Anda mengaktifkannya di <ui>Settings > AI</ui>. Setiap koneksi juga memiliki kebijakan AI; Never menjauhkan asisten maupun klien MCP dari koneksi itu."
+                "Penyedia yang didukung: {aiProviders}. Gunakan kunci API, akun yang sudah ada, atau model lokal, bergantung pada penyedianya. Permintaan dikirim langsung ke penyedia Anda; TablePro tidak menjalankan layanan AI. Fitur ini gratis, tetapi mungkin dikenakan biaya penyedia.",
+                "Pesan menyertakan konteks skema dan kueri di editor. Baris hasil tidak disertakan kecuali diaktifkan di <ui>Settings > AI</ui>. Atur kebijakan AI koneksi ke Never untuk memblokir asisten dan klien MCP."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,16 +26,16 @@
             "id": "in-the-editor",
             "title": "Tinjau, jelaskan, optimalkan, dan perbaiki",
             "paragraphs": [
-                "Tempatkan kursor dalam pernyataan, lalu pilih Review with AI (<kbd>⌥⇧⌘L</kbd>) untuk ketepatan, biaya, dan keamanan, Explain (<kbd>⌘L</kbd>) untuk penjelasan langkah demi langkah, atau Optimize (<kbd>⌥⌘L</kbd>) untuk penulisan ulang atau indeks. Saat kueri gagal, Fix with AI ada di banner kesalahan. Permintaan membawa struktur tabel yang disebutkan, dan pernyataannya tidak dijalankan. <ui>Apply to Editor</ui> hanya mengganti pernyataan setelah Anda mengonfirmasi.",
-                "Saran inline menampilkan teks bayangan saat Anda mengetik dan nonaktif secara bawaan. AI Rules menyematkan catatan teks biasa pada koneksi, seperti kolom yang tidak boleh pernah di-SELECT, dan disertakan dalam setiap pesan."
+                "Tinjau pernyataan, jelaskan, atau minta pengoptimalan. Perbaikan dengan AI tersedia ketika kueri gagal. Tindakan ini mengirimkan skema dan SQL yang relevan tanpa menjalankan pernyataan. <ui>Apply to Editor</ui> memerlukan konfirmasi.",
+                "Saran sebaris dinonaktifkan secara default. Tambahkan Aturan AI khusus koneksi untuk memberikan instruksi pada setiap pesan; itu adalah instruksi model, bukan izin database yang diterapkan."
             ]
         },
         {
             "id": "agent-mode",
             "title": "Mode chat dan Agent mode",
             "paragraphs": [
-                "Chat memiliki tiga mode. Ask, mode bawaan, memeriksa skema dan tidak menjalankan apa pun. Edit juga dapat menjalankan kueri, dan Agent juga dapat menjalankan DROP, TRUNCATE, serta pernyataan destruktif lainnya. Pada {macSafeModeDefault}, level Safe Mode awal koneksi baru, penulisan dalam Edit dan Agent berjalan tanpa meminta konfirmasi; dari Alert hingga Safe Mode (Full), masing-masing menunggu Run, dan Read-Only menolaknya. Pernyataan destruktif selalu menunggu klik dan tidak pernah dapat disetujui sebelumnya.",
-                "Agent mode (<kbd>⌥⇧⌘A</kbd>) memberikan seluruh jendela kepada satu sesi: sesi pada koneksi ini, percakapan, serta SQL yang diusulkan dan dijalankan. Selama aktif, koneksi dipertahankan pada Alert atau lebih ketat, sehingga penulisan tidak berjalan sebelum Anda mengeklik Run. Ini pengingat, bukan kunci: satu pintasan dapat menonaktifkannya. Sesi tetap di Mac ini."
+                "Ask adalah mode chat default: membaca skema tanpa menjalankan pernyataan. Edit dapat menjalankan kueri; Agent juga dapat mengusulkan pernyataan destruktif. Pada tingkat default {macSafeModeDefault}, penulisan Edit dan Agent dapat berjalan tanpa persetujuan. Alert dan tingkat yang lebih ketat meminta konfirmasi; Read-Only memblokir penulisan. Pernyataan destruktif selalu memerlukan konfirmasi.",
+                "Mode Agent layar penuh terpisah dari opsi Agent di chat. Koneksi tetap pada Alert atau tingkat yang lebih ketat, sehingga penulisan menunggu Run. Menonaktifkan mode ini menghapus batas minimum tersebut. Sesi tetap di Mac ini."
             ],
             "asset": "mac-agent-mode",
             "links": [
@@ -47,10 +47,10 @@
         },
         {
             "id": "mcp",
-            "title": "Server MCP",
+            "title": "Hubungkan klien AI eksternal",
             "paragraphs": [
-                "Server MCP bawaan memungkinkan klien AI bekerja melalui koneksi tersimpan di TablePro tanpa pernah melihat kata sandi. Server hanya mendengarkan di {mcpHost}, tanpa mode jarak jauh, dan nonaktif hingga Anda mengaktifkannya atau klien yang disiapkan memulainya.",
-                "Alatnya mencakup koneksi, penemuan skema, baca dan tulis data, database dan objek, administrasi server, serta tab dan riwayat aplikasi, dengan prompt dan resource dari skema aktif. Setiap panggilan masuk ke log aktivitas di Mac, dengan pernyataan direkam sebagai digest alih-alih teks; kueri yang dijalankan klien juga masuk ke riwayat kueri."
+                "Server MCP internal memberi klien akses melalui koneksi tersimpan tanpa mengungkapkan kata sandi mereka. Ini dinonaktifkan secara default dan hanya mendengarkan di {mcpHost}. Aktifkan sendiri atau biarkan klien yang dikonfigurasi memulainya.",
+                "Klien dapat memeriksa skema dan menggunakan alat kueri, objek, dan administrasi yang diizinkan. Panggilan dicatat secara lokal dengan intisari pernyataan; kueri yang dieksekusi juga muncul di riwayat kueri."
             ],
             "asset": "mac-mcp-settings",
             "blocks": [
@@ -58,8 +58,8 @@
                     "id": "connect",
                     "title": "Hubungkan klien",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> menyediakan langkah pengaturan dan cuplikan untuk disalin bagi {mcpSetupClients}. Bridge bawaan <code>tablepro-mcp</code> juga mendukung {mcpBridgeClients}. Bridge ini memulai TablePro saat diperlukan dan menemukan server, sehingga konfigurasi klien tidak menyimpan port atau token. Ekstensi resmi Raycast dipasangkan dengan aplikasi, dan Anda menyetujui pairing tersebut di Mac.",
-                        "Permintaan umum: minta klien mencari pengguna yang berbagi alamat email. Klien dapat memanggil <code>list_tables</code> dan <code>describe_table</code>, melihat nama kolom <code>email_address</code>, lalu menjalankan satu SELECT melalui koneksi tersimpan, tanpa Anda menempelkan skema ke chat."
+                        "Temukan petunjuk pengaturan untuk {mcpSetupClients} di <ui>Settings > Integrations</ui>. Jembatan <code>tablepro-mcp</code> yang dibundel juga mendukung {mcpBridgeClients} dan memulai aplikasi bila diperlukan. Raycast menggunakan aliran pemasangan terpisah yang memerlukan persetujuan.",
+                        "Misalnya, minta klien untuk menemukan alamat email duplikat. Itu dapat memeriksa skema, mengidentifikasi kolom dan menjalankan SELECT yang diizinkan melalui koneksi tersimpan Anda."
                     ]
                 },
                 {
@@ -69,25 +69,25 @@
                         "Setiap panggilan melewati pemeriksaan berikut, dan yang paling ketat berlaku."
                     ],
                     "points": [
-                        "Cakupan token: Read Only, Read & Write, atau Full Access, dapat dibatasi ke koneksi tertentu. Bridge menerima token Read & Write secara otomatis, sehingga klien yang memakainya tidak dapat menjalankan pernyataan destruktif.",
-                        "External Clients, diatur per koneksi: Blocked, Read Only (bawaan), atau Read & Write. Koneksi yang diblokir bahkan tidak dicantumkan.",
-                        "Persetujuan koneksi: saat klien pertama kali mengakses koneksi, dialog di Mac meminta konfirmasi. Anda memilih meminta setiap kali, sekali per koneksi, atau tidak pernah.",
+                        "Cakupan token: Read Only, Read & Write, atau Full Access, dengan batasan opsional untuk koneksi tertentu. Bridge menggunakan Read & Write, yang tidak mengizinkan pernyataan destruktif.",
+                        "External Clients: Blocked, Read Only (default), atau Read & Write per koneksi. Koneksi Blocked tidak muncul dalam daftar.",
+                        "Persetujuan koneksi: tanyakan setiap saat, sekali per koneksi, atau tidak sama sekali.",
                         "Kebijakan AI: koneksi yang diatur ke Never juga menolak klien MCP.",
-                        "Safe Mode: penulisan meminta konfirmasi sesuai level koneksi, dan DROP atau TRUNCATE memerlukan token Full Access serta persetujuan Anda setiap kali. Pernyataan yang membaca atau menulis file atau menjalankan kode di server ditolak."
+                        "Safe Mode: konfirmasi mengikuti tingkat koneksi. DROP dan TRUNCATE memerlukan Full Access dan persetujuan setiap kali. Pernyataan akses file dan eksekusi kode di server ditolak."
                     ]
                 }
             ]
         },
         {
             "id": "outside-servers",
-            "title": "Server MCP eksternal",
+            "title": "Gunakan alat MCP eksternal",
             "paragraphs": [
-                "Arah sebaliknya juga didukung: sesi AI di TablePro dapat memanggil alat pada server MCP yang Anda jalankan melalui Streamable HTTP, dengan HTTPS wajib kecuali server berada di Mac ini. Anda memilih koneksi tempat setiap server ditawarkan. Setiap panggilan menampilkan kartu dan menunggu klik Anda, tanpa persetujuan permanen. Alamat dan token server tetap di Mac ini."
+                "Asisten TablePro juga dapat memanggil server MCP eksternal melalui Streamable HTTP. HTTPS diperlukan kecuali untuk server lokal. Pilih koneksi mana yang dapat menggunakan setiap server; setiap panggilan alat memerlukan satu klik. Setting server tetap di Mac ini."
             ]
         },
         {
             "id": "automation",
-            "title": "Otomasi di luar chat",
+            "title": "Otomatisasi",
             "paragraphs": [
                 "AppleScript dapat terhubung, menjalankan kueri, dan membuka tabel, sesuai level External Clients serta Safe Mode koneksi. Tautan <code>tablepro://</code> membuka koneksi, tabel, atau tab kueri; kueri dalam tautan diisikan setelah Anda mengonfirmasi dan tidak pernah berjalan sendiri. URL database seperti <code>postgresql://</code> terbuka sebagai koneksi.",
                 "Perintah shell <code>tablepro</code> membuka URL tersebut dan file dalam aplikasi; tidak menjalankan kueri dari terminal. Ekstensi resmi Raycast mencari koneksi, tabel, dan riwayat kueri, serta menjalankan kueri melalui aplikasi yang dipasangkan."
@@ -97,7 +97,7 @@
             "id": "privacy",
             "title": "Ke mana data Anda dikirim",
             "paragraphs": [
-                "Prompt, konteks skema, dan lampiran dikirim ke penyedia pilihan Anda sesuai ketentuan akun Anda dengan penyedia itu. Dengan Ollama, llama.cpp, MLX, atau server kompatibel OpenAI yang Anda jalankan sendiri, semuanya tetap di mesin Anda. TablePro tidak menerima apa pun, dan laporan penggunaan harian aplikasi Mac tidak membawa informasi AI atau MCP.",
+                "Perintah, skema, dan lampiran dikirim langsung ke penyedia Anda berdasarkan ketentuannya. Model lokal menyimpannya di mesin Anda saat disajikan secara lokal. TablePro tidak menerima konten ini. Klien MCP eksternal menangani data yang diakses berdasarkan pengaturan dan persyaratannya sendiri.",
                 "Saat Anda menambahkan GitHub Copilot, opsi mengirim telemetri ke GitHub aktif secara bawaan; nonaktifkan di tempat Anda mengatur Copilot."
             ],
             "links": [
@@ -109,9 +109,9 @@
         },
         {
             "id": "iphone",
-            "title": "Tidak tersedia di iPhone atau iPad",
+            "title": "Platform yang didukung",
             "paragraphs": [
-                "Aplikasi iPhone dan iPad tidak memiliki asisten AI, Agent mode, atau server MCP. Semua fitur halaman ini ada di aplikasi Mac."
+                "AI, MCP dan alat otomatisasi di halaman ini saat ini hanya tersedia di Mac."
             ],
             "links": [
                 {

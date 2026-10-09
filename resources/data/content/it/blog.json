@@ -1,25 +1,25 @@
 {
-  "seo": {
-    "title": "Blog",
-    "description": "Guide per lavorare con i database su Mac e annunci di rilascio del team TablePro, in inglese: aggiunte e correzioni di ogni versione.",
-    "indexable": false
-  },
-  "og": {
-    "kicker": "Blog",
-    "title": "Guide e annunci di rilascio del team TablePro"
-  },
-  "header": {
-    "title": "Blog",
-    "lead": "Annunci di rilascio, dal più recente. Non tutte le versioni hanno un articolo. Gli articoli sono disponibili solo in inglese. Le note complete di ogni versione si trovano nel <changelog>registro delle modifiche</changelog> (inglese)."
-  },
-  "corrections": {
-    "tablepro-0-74": {
-      "date": "2026-10-02",
-      "text": "La vista Mappa carica i tasselli cartografici da Apple, quindi questo articolo sovrastima ciò che rimane sul tuo Mac. Le righe restano sul Mac; Apple fornisce i tasselli della mappa per l’area visualizzata."
+    "seo": {
+        "title": "Blog",
+        "description": "Guide ai database e note di rilascio di TablePro. Istruzioni pratiche per connessioni, SQL, importazioni e MCP.",
+        "indexable": false
     },
-    "tablepro-for-iphone": {
-      "date": "2026-10-02",
-      "text": "La versione 1.0 non rifiuta le connessioni che passano attraverso un jump host SSH, come affermava questo articolo. I jump host non sono supportati su iPhone e iPad, quindi apri queste connessioni sul Mac. Su Oracle, come su SQLite, DuckDB e SQL Server, solo un salvataggio con più di un’istruzione viene eseguito all’interno di una transazione. Solo DuckDB può funzionare in memoria; un file SQLite viene copiato nell’app."
+    "og": {
+        "kicker": "Blog",
+        "title": "Guide ai database e note di rilascio"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Articoli sulle versioni di TablePro. Le note complete sono nel <changelog>changelog</changelog> (inglese)."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "La vista Mappa carica i tasselli cartografici da Apple, quindi questo articolo sovrastima ciò che rimane sul tuo Mac. Le righe restano sul Mac; Apple fornisce i tasselli della mappa per l’area visualizzata."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "La versione 1.0 non rifiuta le connessioni che passano attraverso un jump host SSH, come affermava questo articolo. I jump host non sono supportati su iPhone e iPad, quindi apri queste connessioni sul Mac. Su Oracle, come su SQLite, DuckDB e SQL Server, solo un salvataggio con più di un’istruzione viene eseguito all’interno di una transazione. Solo DuckDB può funzionare in memoria; un file SQLite viene copiato nell’app."
+        }
     }
-  }
 }

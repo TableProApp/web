@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "结构",
-        "title": "结构、对比和同步"
+        "title": "结构与数据库比较"
     },
     "header": {
-        "title": "结构、对比和同步",
-        "lead": "用于修改数据库结构并保持两个数据库一致。对照 DDL 编辑表，了解表间关系，让预发布环境与开发环境一致，或将表复制到其他服务器或引擎。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
+        "title": "结构与数据库比较",
+        "lead": "检查表关系，更改支持的表结构，并在应用同步脚本前比较数据库。",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "修改结构前先查看 DDL",
+            "title": "编辑表结构",
             "paragraphs": [
-                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>预览 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的 Safe Mode 级别为 {macSafeModeDefault}。",
-                "索引可使用 <code>lower(email)</code> 等表达式键。New Table 以相同方式创建表，并提供实时 SQL 预览。对于不能直接修改外键的 SQLite、libSQL、Turso 和 Cloudflare D1，TablePro 生成表重建脚本供审查；SQLite 和本地 libSQL 文件在确认后执行，Turso、远程 libSQL 和 D1 则需自行运行。"
+                "在 Structure 标签页编辑列、索引、外键和 CHECK 约束。通过 <ui>预览 SQL</ui> (Preview SQL) 检查待执行 DDL。破坏性更改、类型更改、NOT NULL 和主键更改即使在 {macSafeModeDefault} 下也需确认。",
+                "创建表时实时预览 SQL。SQLite 系列引擎的外键更改可能需要重建表。TablePro 在 SQLite 和本地 libSQL 上运行已确认的重建；Turso、远程 libSQL 和 Cloudflare D1 需自行运行生成脚本。"
             ],
             "engines": [
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "了解表间关系",
+            "title": "ER 图",
             "paragraphs": [
-                "<ui>查看 ER 图</ui>（View ER Diagram）绘制当前 schema 的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
-                "ER 图是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
+                "<ui>查看 ER 图</ui> (View ER Diagram) 用乌鸦脚表示法显示表和外键关系。可导出为 PNG 或 SQL，或将图复制为图片。",
+                "图表只读，不是结构设计器。请在 Structure 标签页更改。"
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "侧边栏中的例程、触发器和文件夹",
+            "title": "数据库对象",
             "paragraphs": [
-                "引擎支持时，侧边栏在每个 schema 下列出存储过程、函数和触发器，并以只读标签页打开其源码，可复制或在编辑器中打开。Redshift、CockroachDB、PGlite 和 SAP HANA 不列出这些对象。PostgreSQL 分区显示在父表下。"
+                "在只读源码标签页查看支持的例程和触发器，再复制 SQL 或在编辑器中打开。对象列表因引擎而异。PostgreSQL 分区显示在父表下。"
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "表和视图的文件夹",
                     "paragraphs": [
-                        "在侧边栏列表或树形布局中，拖动表和视图或使用<ui>移动到</ui>（Move to）将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
+                        "通过拖放或 <ui>移动到</ui> (Move to) 整理表和视图。文件夹仅改变侧边栏，不改变数据库；启用 iCloud Sync 后可在 Mac 间同步。"
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "选择源和目标，可为两台服务器或同一服务器上的两个数据库。Compare & Sync 会列出所有存在差异的表，也可包含视图、例程和触发器。数据模式按键匹配行并标记每个不同值，支持每表筛选和行数限制，以便比较大表的一部分。",
-                "生成的脚本按外键顺序排列，并针对目标原生客户端编写。删除列、缩小类型或删除行等破坏数据的语句，会暂缓到本次运行明确允许后才执行。Read-Only 连接不能选为目标。保存对比后可一键重新运行。"
+                "比较源和目标数据库的结构或数据。在支持时包含视图、例程和触发器。数据比较按键匹配行，可逐表设置筛选和行数限制。",
+                "检查按外键排序的同步脚本。破坏性更改保持排除，直到您在本次运行中允许。Read-Only 连接不能作为目标。可保存比较供复用。"
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To、Duplicate Database 和 Transfer To",
+            "title": "复制和传输表",
             "paragraphs": [
-                "Copy To 将表、视图、例程和触发器以结构、数据或两者的形式发送到任意已保存连接上的其他数据库，也支持不同引擎。写入前的审查会列出 DDL、各表预计行数以及迁移时改变的每个列类型。例如，MariaDB 的 <code>ENUM</code> 列迁入 PostgreSQL 后变为 <code>VARCHAR</code>，不保留允许值列表。可通过每表 WHERE 子句和行数限制仅复制部分数据。",
-                "Duplicate Database 在同一连接中以新名称复制整个数据库。Transfer To 根据列映射，直接将行传入另一个已打开连接上的现有表，无需中间文件。三项功能均免费。"
+                "Copy To 在数据库间移动支持的对象和数据，也可跨引擎。先检查 DDL、行数和类型转换。转换可能丢失约束，例如 MariaDB <code>ENUM</code> 变为 PostgreSQL <code>VARCHAR</code>，不保留允许值列表。",
+                "Duplicate Database 在同一连接上复制数据库。Transfer To 将行映射到另一连接的已有表，无需中间文件。这些工具免费。"
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles 以树形显示每个用户从服务器到单列的权限。授权和撤销先作为暂存修改，并在执行前展示 SQL，因此无需手写 GRANT。"
+                        "在支持的引擎上检查从服务器到列级的权限。暂存授权和撤销，再在应用前检查 SQL。"
                     ],
                     "engines": [
                         {

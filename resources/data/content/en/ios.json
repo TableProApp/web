@@ -9,72 +9,72 @@
     },
     "hero": {
         "title": "TablePro for iPhone and iPad",
-        "lead": "Connect to your databases, browse and edit rows and run queries from your phone or tablet, with SSH tunnels, Safe Mode and Face ID. It is a separate app made for iPhone and iPad, not a copy of the Mac app.",
+        "lead": "Browse supported tables, run queries and edit rows on your phone or tablet.",
         "noSignUp": "No sign-up and no license",
         "mac": "Looking for the Mac app? <download>Download TablePro for Mac</download>."
     },
     "databases": {
         "title": "Databases",
-        "lead": "Create connections to these databases on iPhone and iPad. Their drivers are built into the app, so there is nothing to download.",
+        "lead": "Create connections to these databases. All drivers are built in.",
         "syncedOnly": "{engines} connections open when they come from your Mac, through iCloud Sync or a .tablepro file. You can’t create one in this app.",
-        "others": "Connections to other databases sync from the Mac too and appear in your list, but this app has no driver for them, so they don’t open here. The <databases>databases page</databases> lists every engine the Mac app supports.",
-        "files": "SQLite: pick a database file and the app copies it into its own storage, so your edits change the copy. You can also create a new database. DuckDB opens a file where it is, or runs in memory.",
-        "redis": "Redis: run commands in the Query tab. Browsing Redis keys is not available in the iPhone and iPad app.",
+        "others": "Other connections synced from the Mac appear in your list but cannot open without a supported driver. See all <databases>supported databases</databases>.",
+        "files": "SQLite copies your chosen file into app storage; edits change that copy. You can also create a database. DuckDB opens a file in place or runs in memory.",
+        "redis": "Redis supports commands in the Query tab, not key browsing.",
         "sample": "To look around first, open Chinook, the sample database that comes with the app."
     },
     "browse": {
         "title": "Browse and edit tables",
         "paragraphs": [
-            "Each connection opens on its tables, with the query editor, your history and the connection’s details in their own tabs.",
-            "Rows show as cards, with the primary key or first column as the title and the next columns under it. Sort by any column, search every column except binary ones, and stack filters with AND or OR. Choose how many rows a page holds and jump to any page. Tap a foreign key value to preview the row it points to. The Structure view lists the table’s columns, indexes and foreign keys.",
-            "Open a row to edit it: change values, set NULL, and confirm before it saves. You can also insert and delete rows, and truncate or drop a table. Editing and deleting rows needs a primary key, and nothing changes on a Read-Only connection."
+            "Each connection has tabs for tables, queries, history and connection details.",
+            "Browse row cards, sort columns, search non-binary values and combine filters with AND or OR. Tap a foreign key to preview the referenced row. Structure lists columns, indexes and foreign keys.",
+            "Open a row to edit values or set NULL, then confirm the save. Insert and delete rows, or truncate and drop tables. Row edits and deletions require a primary key. Read-Only blocks changes."
         ]
     },
     "query": {
         "title": "Run queries",
         "paragraphs": [
-            "Write SQL with syntax highlighting, run it, and stop it while it runs. Start from a SELECT template, then copy or share the results as JSON, CSV or SQL INSERT statements, through the clipboard or the share sheet.",
-            "The app keeps up to {results} rows of a result; add a LIMIT to see a different part of a large one. History keeps your last {history} queries on this device, across connections, and does not sync.",
-            "While a query runs, a Live Activity shows its progress on the Lock Screen and in the Dynamic Island: the elapsed time and the rows received. The Lock Screen and the expanded Dynamic Island show the SQL too, unless you turn on <ui>Settings > Live Activities > Hide Query</ui>."
+            "Write SQL with syntax highlighting, run or stop it, and share results as JSON, CSV or SQL INSERT statements. Use the clipboard or share sheet.",
+            "Results keep up to {results} rows; use LIMIT for large queries. History keeps the last {history} queries across connections on this device and does not sync.",
+            "Live Activities show elapsed time and rows received on the Lock Screen and Dynamic Island. They also show SQL on the Lock Screen and expanded Island unless <ui>Settings > Live Activities > Hide Query</ui> is on."
         ]
     },
     "security": {
         "title": "Connect securely",
         "paragraphs": [
-            "SSH tunnels sign in with a password or a private key, from a file or pasted in, with an optional passphrase. The first time you reach a server, the app shows its host key fingerprint and asks you to trust it.",
-            "TLS is set per connection. MySQL, MariaDB, TiDB, OceanBase and PostgreSQL connections can verify the server’s certificate and host name and present a client certificate, from a file, pasted text or a PKCS#12 bundle. Redis connections can verify the certificate and present a client certificate too. SQL Server can encrypt the connection (Required) but does not verify the certificate. Certificates stay on this device and never sync.",
-            "Passwords and pasted keys are stored in the Keychain. A SQL Server connection that uses Microsoft Entra ID can sign in here once it syncs from your Mac; Windows authentication is not supported. To reach a server by its .local name on your network, allow Local Network access when iOS asks."
+            "SSH tunnels use a password or private key, with an optional passphrase. Import or paste the key. The app asks you to trust the server’s host key fingerprint on first connection.",
+            "TLS settings are per connection. MySQL, MariaDB, TiDB, OceanBase and PostgreSQL can verify certificates and hostnames and use client certificates. Redis supports certificate verification and client certificates. SQL Server’s Required mode encrypts without certificate verification. Certificates stay on this device.",
+            "Passwords and pasted keys stay in the Keychain. Synced SQL Server connections can use Microsoft Entra ID, not Windows authentication. Allow Local Network access to reach .local hosts."
         ]
     },
     "safeMode": {
         "title": "Safe Mode and app lock",
         "paragraphs": [
-            "Each connection has a Safe Mode level: {levels}. Confirm Writes asks before a statement that changes data runs. Read-Only refuses it before it reaches the server. A statement the app can’t identify as a read counts as a write.",
-            "Set a connection’s level in its Organization section, and the level new connections start with in Settings. Shortcuts that add rows follow the same level.",
-            "In <ui>Settings > Security</ui>, lock the app with Face ID or Touch ID, with your passcode as the fallback. Once it is on, the app asks every time it starts and again after the Auto-Lock time you choose."
+            "Choose a level per connection: {levels}. Confirm Writes asks before writes; Read-Only blocks them. Unrecognized statements count as writes.",
+            "Set the level under Organization, and the default for new connections in Settings. Shortcuts follow the same level.",
+            "Enable Face ID or Touch ID in <ui>Settings > Security</ui>, with passcode fallback. The app locks on launch and after your chosen Auto-Lock interval."
         ]
     },
     "ipad": {
         "title": "On iPad",
         "paragraphs": [
-            "One app for iPhone and iPad. On iPad it runs in any orientation and in several windows at once with Stage Manager or Split View, and its tab bar can turn into a sidebar.",
-            "With a keyboard, ⌘1 to ⌘4 switch between Tables, Query, History and Info, ⌘F searches, ⌘↩ runs the query and ⌘N adds a connection. A trackpad or mouse works too."
+            "On iPad, use any orientation and multiple windows with Stage Manager or Split View. The tab bar can become a sidebar.",
+            "Keyboard shortcuts include ⌘1–⌘4 for tabs, ⌘F to search, ⌘↩ to run a query and ⌘N for a new connection. Mouse and trackpad work too."
         ]
     },
     "mac": {
         "title": "With your Mac",
         "paragraphs": [
-            "Turn on iCloud Sync, during setup or later in Settings, and your connections, groups and tags sync between your iPhone, iPad and Mac through your own iCloud account. Passwords sync only if you also turn on Sync Passwords. Saved queries, SSH profiles and settings sync only between Macs.",
-            "iCloud Sync is free here. On the Mac it is part of a Starter or Team license, so a Mac without one does not sync. The <pricing>pricing page</pricing> has the details.",
-            "Without iCloud, export connections as a .tablepro file and open it on another device through AirDrop or Files. Passwords are left out unless you include them, and then a passphrase you choose encrypts the file. Both are free here; on the Mac, exporting with passwords is part of a license.",
-            "With iCloud Sync on, Handoff continues an open connection or table between your Mac and your iPhone or iPad. <sync>Sync and teams</sync> covers both in more detail."
+            "Enable iCloud Sync to share connections, groups and tags through your own iCloud account. Passwords need Sync Passwords enabled separately. Saved queries, SSH profiles and settings sync only between Macs.",
+            "Sync is free here; the Mac needs Starter or Team. See <pricing>pricing</pricing>.",
+            "Or transfer a .tablepro file through AirDrop or Files. Exports exclude passwords unless you include them and encrypt with a passphrase. Both options are free here; encrypted export needs a paid license on the Mac.",
+            "With sync enabled, Handoff continues an open connection or table on another device. See <sync>Sync and teams</sync>."
         ]
     },
     "automation": {
         "title": "Shortcuts, widgets and Spotlight",
         "paragraphs": [
-            "Open Connection opens a connection from a shortcut or from Siri. Add Row to Table and Add Rows to Table insert into a table without opening the app, from JSON or CSV text or a file. They run only while the device is not locked, follow the connection’s Safe Mode level, and don’t work with Redis connections.",
-            "Quick Connect widgets put your first connections on the Home Screen, and a tap opens one. Your connections also appear in Spotlight search."
+            "Use Siri or Shortcuts to open connections. Add Row to Table and Add Rows to Table insert JSON or CSV without opening the app. These actions do not run while the device is locked, follow Safe Mode and do not support Redis.",
+            "Quick Connect widgets open your first connections from the Home Screen. Connections also appear in Spotlight."
         ]
     },
     "limits": {
@@ -105,8 +105,8 @@
     "privacy": {
         "title": "Privacy",
         "paragraphs": [
-            "Nothing goes to TablePro unless you turn on Share Usage Data, during setup or later in <ui>Settings > Privacy</ui>. If you do, the app sends one report a day with a hashed device ID, the app and iOS versions, the processor architecture, its language, the types of database you use, a connection count and a few first-use dates. Never hostnames, usernames, passwords, queries or rows.",
-            "The app makes no license check, no update check and no plugin request. Your queries go to your own servers, iCloud Sync to your own iCloud account, and Entra sign-in to Microsoft. The <privacyIos>privacy policy</privacyIos> has the details."
+            "Usage reporting is off by default. Enable Share Usage Data in <ui>Settings > Privacy</ui> to send a daily report: hashed device ID, app and iOS versions, architecture, language, database types, connection count and first-use dates. No hostnames, usernames, passwords, queries or rows.",
+            "No license, update or plugin checks go to TablePro. Queries go to your databases, iCloud Sync to your iCloud account and Entra sign-in to Microsoft. Read the <privacyIos>privacy policy</privacyIos>."
         ]
     },
     "get": {
@@ -123,7 +123,7 @@
             },
             {
                 "question": "Is it the same as the Mac app?",
-                "answer": "No. It is a smaller app built for the phone and tablet. The <iosLimits>list above</iosLimits> shows what stays on the Mac."
+                "answer": "No. It has a smaller feature set. See <iosLimits>features not available here</iosLimits>."
             }
         ]
     }

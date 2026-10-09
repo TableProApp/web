@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DataGrip: IDE cơ sở dữ liệu hay client native",
+        "title": "TablePro và DataGrip: database client hay IDE",
         "description": "DataGrip là IDE của JetBrains, chỉ miễn phí cho mục đích phi thương mại. TablePro là client native, mã nguồn mở. So sánh giá, AI, MCP, Git và cách import."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DataGrip",
-        "lead": "DataGrip là IDE cho cơ sở dữ liệu của JetBrains, chạy trên Windows, macOS và Linux, được xây dựng trên {technology}. DataGrip miễn phí cho mục đích phi thương mại, còn với các công việc khác thì bạn trả theo gói thuê bao năm hoặc tháng. TablePro là client mã nguồn mở, có một ứng dụng native cho Mac và một ứng dụng khác cho iPhone và iPad. TablePro dùng miễn phí cho mọi loại công việc, còn các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac."
+        "lead": "DataGrip là IDE cơ sở dữ liệu của JetBrains, xây dựng trên {technology}. TablePro là database client native. So sánh công cụ chỉnh sửa, AI và license thương mại."
     },
     "shortAnswer": {
         "tablepro": [
-            "Bạn muốn một client dùng miễn phí được cả cho công việc thương mại. TablePro dùng miễn phí cho mọi loại công việc, còn các gói trả phí bổ sung những tính năng như {starterExamples}.",
-            "Bạn muốn một trợ lý AI gửi yêu cầu thẳng tới nhà cung cấp AI bạn thêm vào, không qua dịch vụ AI hay credit nào của TablePro. Trợ lý AI miễn phí trong ứng dụng Mac, MCP server cũng vậy.",
-            "Bạn thích một ứng dụng Mac viết bằng Swift hơn là một IDE đầy đủ.",
-            "Bạn cũng muốn có ứng dụng cho iPhone và iPad."
+            "Client miễn phí cho công việc thương mại. Gói trả phí thêm {starterExamples}.",
+            "Client native thay vì IDE đầy đủ.",
+            "AI chat và MCP miễn phí, tự chọn nhà cung cấp AI."
         ],
         "competitor": [
-            "Bạn làm việc trên Windows hoặc Linux, không chỉ trên Mac.",
-            "Bạn muốn một IDE, có code inspection và version control ngay trong cửa sổ bạn viết query.",
-            "Bạn dùng cho mục đích phi thương mại, như học tập, dự án cá nhân hay đóng góp mã nguồn mở không vì lợi ích thương mại. DataGrip miễn phí cho những trường hợp này, với đầy đủ tính năng.",
-            "Bạn kết nối tới những engine TablePro không hỗ trợ, như Firebird, Informix hay Databricks."
+            "Code inspection và version control cạnh query.",
+            "IDE đủ tính năng miễn phí cho công việc phi thương mại.",
+            "Hỗ trợ Windows/Linux hoặc engine JDBC như Firebird, Informix và Databricks."
         ]
     },
     "glance": {
@@ -42,26 +40,27 @@
         "intro": "",
         "items": [
             {
-                "text": "DataGrip chạy trên Windows, macOS và Linux, nên bạn dùng được cùng một IDE trên các máy tính khác nhau.",
-                "cite": ["platforms"],
+                "text": "Đây là IDE. Version control như Git nằm cạnh query; engine hỗ trợ đầy đủ có code inspection và quick fix.",
+                "cite": [
+                    "cells.vcs",
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "DataGrip là một IDE. Version control như Git nằm ngay cạnh query của bạn, và các engine được hỗ trợ đầy đủ có code inspection cùng quick-fix.",
-                "cite": ["cells.vcs", "cells.databases"],
+                "text": "Kết nối engine TablePro không hỗ trợ, như Firebird, Informix và Databricks, với hỗ trợ cơ bản qua driver JDBC.",
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "DataGrip kết nối được với những engine TablePro không hỗ trợ, như Firebird, Informix và Databricks, ở mức hỗ trợ cơ bản qua JDBC driver của chúng.",
-                "cite": ["cells.databases"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Dùng cho mục đích phi thương mại thì miễn phí, với đầy đủ tính năng của bản trả phí.",
-                "cite": ["prices"],
+                "text": "Dùng phi thương mại miễn phí, có mọi tính năng bản trả phí.",
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -71,38 +70,48 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro dùng miễn phí cho mọi loại công việc, kể cả công việc thương mại, không phải bản dùng thử và không giới hạn thời gian. Ứng dụng Mac gửi cho TablePro một <link>báo cáo sử dụng</link> mỗi ngày, bật sẵn theo mặc định, và bạn có thể tắt trong phần Cài đặt. License miễn phí của DataGrip chỉ dành cho mục đích phi thương mại, và luôn thu thập số liệu thống kê sử dụng mà bạn không thể tắt.",
-                "cite": ["prices"],
+                "text": "TablePro miễn phí cho công việc thương mại. <link>Báo cáo sử dụng</link> hằng ngày trên Mac bật theo mặc định và tắt được trong Settings. License miễn phí DataGrip chỉ phi thương mại, bắt buộc thống kê sử dụng.",
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": "/privacy#mac-usage-report"
             },
             {
                 "text": "TablePro là ứng dụng Mac viết bằng Swift, với driver cơ sở dữ liệu native. DataGrip được xây dựng trên {technology}.",
-                "cite": ["technology"],
+                "cite": [
+                    "technology"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "<link>Trợ lý AI</link> miễn phí trong ứng dụng Mac và làm việc với nhà cung cấp AI do bạn chọn, trên cloud hoặc ngay trên máy Mac; TablePro không vận hành dịch vụ AI nào và không bán AI credit. DataGrip dùng JetBrains AI, có dịch vụ riêng với hạn mức credit, và cũng nhận API key của nhà cung cấp bạn chọn hoặc một model chạy cục bộ.",
-                "cite": ["cells.ai"],
+                "text": "<link>Trợ lý AI</link> TablePro miễn phí trên Mac; chọn nhà cung cấp cloud hoặc model local. Nhà cung cấp có thể tính phí. JetBrains AI có quota credit, nhận key nhà cung cấp hoặc model local.",
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
                 "text": "Cả hai đều có MCP server. <link>MCP server của TablePro</link> miễn phí, chỉ lắng nghe trên máy Mac của bạn, và mỗi connection tự quyết định ứng dụng bên ngoài được làm gì: Blocked, Read Only hoặc Read & Write.",
-                "cite": ["cells.mcp"],
+                "cite": [
+                    "cells.mcp"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và viết script để đưa cơ sở dữ liệu này về khớp với cơ sở dữ liệu kia. Tính năng này thuộc gói Starter.",
+                "text": "<link>Compare & Sync</link> so cấu trúc hoặc dữ liệu hai cơ sở dữ liệu và tạo script đồng bộ. Có trong Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
             },
             {
-                "text": "Có <link>ứng dụng cho iPhone và iPad</link> miễn phí, không có mua hàng trong ứng dụng. DataGrip không có ứng dụng di động.",
-                "cite": ["platforms"],
+                "text": "<link>Ứng dụng iPhone và iPad</link> riêng miễn phí, không có mua hàng trong ứng dụng. DataGrip không có ứng dụng mobile.",
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": "/ios"
             }
@@ -112,19 +121,13 @@
         "intro": "",
         "items": [
             {
-                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro là client, không phải IDE. Một <link>linked SQL folder</link> hiển thị trạng thái và lịch sử Git của từng file, nhưng bạn stage, commit, push và tạo branch bằng công cụ Git của riêng mình.",
+                "text": "TablePro là client, không phải IDE. <link>Linked SQL folder</link> hiển thị trạng thái Git và lịch sử từng file, nhưng stage, commit, push và branch trong công cụ Git của bạn.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#history"
             },
             {
-                "text": "TablePro chỉ kết nối tới những engine có driver của TablePro, không có kiểu kết nối JDBC chung. Bạn hãy xem danh sách <link>cơ sở dữ liệu được hỗ trợ</link> trước.",
+                "text": "TablePro chỉ kết nối engine có driver, không có connection JDBC chung. Xem <link>cơ sở dữ liệu được hỗ trợ</link> trước.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -132,7 +135,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro đọc các data source toàn cục của DataGrip và data source của các project bạn mở gần đây. DataGrip không cần đang mở, và các file của DataGrip không bị thay đổi.",
+        "intro": "Import data source toàn cục và data source của dự án gần đây trong DataGrip. DataGrip có thể đóng, file không bị thay đổi.",
         "steps": [
             "Trong TablePro, chọn <ui>Tệp > Nhập > Nhập từ ứng dụng khác…</ui> (File > Import > Import from Other App…).",
             "Chọn DataGrip. Bật <ui>Bao gồm mật khẩu</ui> (Include passwords) để đọc các mật khẩu DataGrip đã lưu trong Keychain của macOS, kể cả mật khẩu SSH và passphrase của key.",
@@ -148,27 +151,21 @@
     },
     "faq": [
         {
-            "id": "commercial-use",
-            "question": "Tôi có thể dùng bản TablePro miễn phí cho công việc thương mại không?",
-            "answer": "Có. Ứng dụng Mac dùng miễn phí cho mọi loại công việc, không phải bản dùng thử và không giới hạn thời gian. DataGrip chỉ miễn phí cho mục đích phi thương mại, nên muốn dùng DataGrip để phát triển sản phẩm thương mại hoặc cung cấp dịch vụ có thu phí thì bạn cần mua gói thuê bao.",
-            "href": null
-        },
-        {
             "id": "ai-provider",
-            "question": "Trợ lý AI của TablePro có cần mua gói như JetBrains AI không?",
-            "answer": "Không. TablePro không vận hành dịch vụ AI nào. Bạn tự thêm nhà cung cấp AI: dùng API key, đăng nhập bằng tài khoản bạn đang có, hoặc chạy model ngay trên máy Mac. Không có gì được gửi đi cho tới khi bạn thêm nhà cung cấp. <link>Xem cách trợ lý AI hoạt động</link>.",
+            "question": "Trợ lý AI TablePro có cần gói như JetBrains AI không?",
+            "answer": "Không cần gói AI TablePro. Thêm key nhà cung cấp, tài khoản được hỗ trợ hoặc model local. Nhà cung cấp có thể tính phí; không gửi request AI trước thiết lập. Xem <link>thiết lập AI và xử lý dữ liệu</link>.",
             "href": "/features/ai-mcp"
         },
         {
             "id": "mcp",
-            "question": "DataGrip cũng có MCP server. MCP server của TablePro làm được gì?",
-            "answer": "MCP server cho phép các client như Claude Code và Cursor dùng connection đã lưu trong TablePro mà không thấy mật khẩu. Server chỉ lắng nghe trên 127.0.0.1, mỗi connection mặc định là Read Only với ứng dụng bên ngoài cho tới khi bạn đổi, và tính năng này miễn phí. DataGrip có MCP server riêng từ phiên bản {cells.mcp.version}.",
+            "question": "DataGrip cũng có MCP server. MCP của TablePro làm gì?",
+            "answer": "Cho client như Claude Code và Cursor dùng connection TablePro đã lưu mà không thấy mật khẩu. Chỉ lắng nghe trên 127.0.0.1, mỗi connection mặc định Read Only với ứng dụng ngoài trừ khi bạn đổi, và miễn phí. DataGrip có MCP từ {cells.mcp.version}.",
             "href": null
         },
         {
             "id": "jdbc-url",
-            "question": "Tôi có thể dán JDBC URL từ DataGrip không?",
-            "answer": "Được, với những engine TablePro hỗ trợ. <ui>Tệp > Nhập > Nhập từ URL…</ui> (File > Import > Import from URL…) đọc được URL dạng jdbc: cũng như postgres:// và mysql://. Muốn chuyển tất cả data source sang một lần, hãy dùng chức năng import ở trên.",
+            "question": "Có thể dán JDBC URL từ DataGrip không?",
+            "answer": "Có, với engine TablePro hỗ trợ. <ui>File > Import > Import from URL…</ui> đọc URL jdbc: cùng postgres:// và mysql://. Để chuyển mọi data source cùng lúc, dùng importer phía trên.",
             "href": null
         }
     ],

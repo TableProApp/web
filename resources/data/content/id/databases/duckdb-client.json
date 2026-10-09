@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "Klien DuckDB untuk {devices}",
-        "lead": "Buka file database DuckDB, atau pilih file Parquet, CSV, atau JSON dan kueri langsung dengan SQL di lokasi asal. DuckDB berjalan di dalam driver, sehingga tidak ada server yang berjalan kecuali Anda terhubung ke server."
+        "title": "Klien DuckDB",
+        "lead": "Buka database DuckDB atau kueri file Parquet, CSV, dan JSON dengan SQL. Tidak diperlukan server database lokal."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "Buka file",
             "paragraphs": [
-                "Pilih file <code>.duckdb</code> atau <code>.ddb</code>, atau ketik jalur yang belum ada untuk membuatnya. Ketik <code>:memory:</code> untuk database yang bertahan selama sesi. Database dibuka sebagai DuckDB apa pun nama file-nya karena DuckDB menandai file-nya pada byte awal.",
-                "Pilih file <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code>, atau <code>.ndjson</code>, dan file dibuka sebagai view hanya baca dalam database di memori, satu bernama <code>file</code> dan satu sesuai nama file. File pada disk tetap identik byte demi byte; untuk mengubah isinya, buat tabel darinya dalam database <code>.duckdb</code>.",
-                "Klik dua kali file <code>.duckdb</code> di Finder untuk membukanya di sini. File Parquet menampilkan TablePro pada Buka Dengan, dan file Parquet yang dipilih melalui <ui>File > Open File</ui> dibuka sebagai koneksi DuckDB, bukan di <dataFiles>jendela Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> terhubung ke server DuckDB yang dimulai menggunakan <code>quack_serve</code> dan melampirkannya dengan alias seperti <code>remotedb</code>; akses tabelnya berdasarkan nama melalui alias tersebut. Koneksi jarak jauh pertama mengunduh ekstensi <code>quack</code> dari DuckDB."
+                "Buka file <code>.duckdb</code> atau <code>.ddb</code>, masukkan jalur baru untuk membuatnya, atau gunakan <code>:memory:</code> untuk database sementara. File diidentifikasi berdasarkan headernya, bukan ekstensinya.",
+                "Buka Parquet, CSV, TSV, JSON, atau NDJSON sebagai view hanya-baca bernama <code>file</code> dan nama file tersebut. File sumber tidak berubah. Buat tabel dalam database DuckDB untuk mengedit datanya.",
+                "Buka file DuckDB dari Finder. File Parquet dibuka sebagai koneksi DuckDB dengan <ui>File > Open File</ui>, bukan di jendela <dataFiles>Data Files</dataFiles>.",
+                "<ui>Remote (Quack, experimental)</ui> terhubung ke server <code>quack_serve</code> dengan alias. Koneksi pertama mengunduh ekstensi <code>quack</code> DuckDB."
             ]
         },
         {
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Setiap koneksi dapat membaca file langsung dari SQL, seperti <code>SELECT * FROM 'data.csv'</code> atau <code>read_parquet('events.parquet')</code>. Gunakan <code>ATTACH</code> pada file DuckDB lain untuk menambahkannya ke sidebar sebagai database kedua, dan <code>⌘K</code> berpindah di antaranya tanpa menghubungkan ulang. DuckDB tidak mempertahankan lampiran setelah koneksi dibuka ulang.",
+                "File kueri secara langsung, seperti <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> menambahkan file DuckDB lainnya ke sidebar; <code>⌘K</code> beralih di antara keduanya. Lampiran tidak dapat bertahan jika dihubungkan kembali.",
                 "<explain>EXPLAIN</explain> digambar sebagai diagram rencana. Baris tabel dapat diedit dengan <editing>Preview SQL</editing> yang menampilkan setiap pernyataan terlebih dahulu, sedangkan view atas file data tetap hanya baca."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "<structure>Tab Structure</structure> mengedit tabel dan menampilkan DDL sebelum dijalankan. Database di sini berupa file, sehingga tidak dapat dibuat atau dihapus dari aplikasi; <code>ATTACH</code> digunakan untuk mengakses file kedua."
+                "Tab <structure>Structure</structure> mengedit tabel dan menampilkan DDL sebelum dijalankan. Tidak ada tindakan buat atau lepas database di sidebar. Untuk membuat file, masukkan jalur baru saat menghubungkan; gunakan <code>ATTACH</code> untuk mencapai file kedua."
             ]
         },
         {

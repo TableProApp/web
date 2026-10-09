@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Gratis",
-            "description": "La app para Mac sin las funciones de pago, y la app para iPhone y iPad.",
+            "description": "Herramientas básicas de bases de datos, sin periodo de prueba.",
             "activation": "No necesitas registrarte para usar la app.",
             "includesTitle": "Incluye",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Añade a la app para Mac funciones como {examples}.",
             "activation": {
-                "one": "Una licencia para una persona, en {count} Mac.",
-                "other": "Una licencia para una persona, en hasta {count} Mac."
+                "one": "Una persona, {count} Mac.",
+                "other": "Una persona, hasta {count} Mac."
             },
             "includesTitle": "Todo lo del plan Gratis, más",
             "cta": "Comprar Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Además de Starter, añade conexiones y consultas compartidas con tu equipo.",
-            "activation": "Cada puesto corresponde a un Mac activado.",
+            "description": "Comparte conexiones y consultas guardadas con tu equipo.",
+            "activation": "Un Mac activado por puesto.",
             "includesTitle": "Todo lo de Starter, más",
             "cta": "Comprar Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Todos los planes de pago se pueden reembolsar en el plazo de {count} día desde la compra, y cada renovación mensual o anual en el plazo de {count} día desde su cobro. Consulta la <link>política de reembolso</link>.",
         "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra, y cada renovación mensual o anual en los {count} días siguientes a su cobro. Consulta la <link>política de reembolso</link>."
     },
-    "finePrint": "Precios en dólares estadounidenses. {merchant} es el merchant of record: recibe el pago y calcula los impuestos sobre ventas o el IVA al finalizar la compra.",
+    "finePrint": "Precios en dólares estadounidenses. {merchant} gestiona el pago y calcula el impuesto sobre ventas o el IVA al pagar, como merchant of record.",
     "finePrintCurrency": "Precios en dólares estadounidenses.",
     "comparePlans": "Comparar planes",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Comprobando el código…",
         "percent": "Código aceptado: {amount}% de descuento, aplicado al finalizar la compra.",
         "fixed": "Código aceptado: {amount} de descuento, aplicado al finalizar la compra.",
-        "invalid": "Ese código de descuento no es válido o ha caducado."
+        "invalid": "Este código no es válido o ha caducado."
     },
     "checkout": {
-        "failed": "No se pudo iniciar la compra. Vuelve a intentarlo."
+        "failed": "No se pudo abrir el pago. Inténtalo de nuevo."
     },
     "offers": {
         "name": "{plan}, {cycle}",

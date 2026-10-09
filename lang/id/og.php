@@ -7,6 +7,6 @@ return [
         'database' => 'Database',
         'feature' => 'Fitur',
     ],
-    'author' => 'Tim TablePro',
+    'author' => 'TablePro',
     'byline' => ':author · :date',
 ];

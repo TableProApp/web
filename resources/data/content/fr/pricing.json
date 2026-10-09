@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Tarifs",
-        "lead": "L’application Mac se télécharge et s’utilise gratuitement, sans période d’essai ni limite de temps. Une offre Starter ou Team ajoute des fonctionnalités facultatives. L’application iPhone et iPad est gratuite, sans achats intégrés."
+        "lead": "Utilisez l’app Mac gratuitement, sans période d’essai. Starter et Team ajoutent des fonctions optionnelles. L’app iPhone et iPad est gratuite, sans achats intégrés."
     },
     "plans": {
         "title": "Offres"
     },
     "features": {
         "title": "Ce qu’ajoute une offre payante",
-        "lead": "Ce sont les seules fonctionnalités nécessitant une offre payante, et toutes se trouvent dans l’application Mac. Team comprend tout ce que contient Starter. La connexion à tous les moteurs compatibles ne nécessite aucune licence, pas plus que l’assistant IA, le serveur MCP ou Safe Mode."
+        "lead": "Seules les fonctions listées ici nécessitent un forfait payant, actuellement sur Mac. Team inclut Starter. Tous les moteurs compatibles, l’assistant IA, MCP et Safe Mode sont gratuits."
     },
     "license": {
         "title": "Fonctionnement des licences",
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Une licence Starter est destinée à une personne, sur un maximum de {activations} Mac. Avec Team, chaque poste correspond à un Mac activé, celui de l’acheteur compris ; une personne travaillant sur deux Mac utilise donc deux postes. L’application iPhone et iPad n’utilise jamais de licence ni de poste."
+                "body": "Starter couvre une personne sur {activations} Mac au maximum. Chaque poste Team couvre un Mac activé, y compris celui de l’acheteur. Deux Mac utilisent deux postes. L’app iPhone et iPad n’utilise ni licence ni poste."
             },
             "activate": {
                 "term": "Activation",
-                "body": "Saisissez votre clé de licence dans TablePro sur votre Mac, dans <ui>Réglages > Licence</ui> (Settings > License). Pour l’utiliser sur un autre Mac, retirez l’ancien sur la page Macs de <account>votre compte</account>."
+                "body": "Saisissez votre clé dans <ui>Réglages > Licence</ui> (Settings > License). Pour transférer une activation, retirez l’ancien Mac depuis la page Mac de <account>votre compte</account>."
             },
             "checks": {
                 "term": "Vérifications",
-                "body": "TablePro vérifie la signature de la licence à chaque ouverture et confirme la licence auprès du serveur TablePro tous les {revalidateDays} jours. Si votre Mac ne peut pas joindre le serveur, les fonctionnalités payantes continuent de fonctionner pendant {graceDays} jours. La confirmation envoie la clé de licence, un identifiant de machine haché, le nom du Mac et les versions de l’application et de macOS."
+                "body": "TablePro vérifie la signature de licence au lancement et contacte son serveur tous les {revalidateDays} jours. Si le serveur est inaccessible, les fonctions payantes restent actives pendant {graceDays} jours après la dernière vérification réussie. Les vérifications transmettent la clé, un identifiant de machine haché, le nom du Mac et les versions de l’app et de macOS."
             },
             "ends": {
                 "term": "À la fin d’une offre",
-                "body": "Si une offre mensuelle ou annuelle prend fin, les fonctionnalités payantes cessent de fonctionner et le reste de l’application continue de fonctionner comme dans l’offre gratuite."
+                "body": "À la fin d’un abonnement, les fonctions payantes sont désactivées. Tout ce qui est inclus dans Free reste utilisable."
             },
             "oneTime": {
                 "term": "Paiement unique",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Facturation",
-        "merchant": "{merchant} est le merchant of record de TablePro. Il vous vend l’offre, encaisse le paiement, calcule la taxe sur les ventes ou la TVA selon votre adresse de facturation, et vous envoie reçu et facture par e-mail.",
-        "renewal": "Les offres mensuelles et annuelles se renouvellent automatiquement jusqu’à ce que vous les résiliiez, dans <account>votre compte</account> ou dans le portail client de {merchant}. Après résiliation, l’offre reste active jusqu’à la fin de la période payée et vous pouvez la reprendre avant cette date. Si un paiement de renouvellement échoue, {merchant} vous envoie un lien pour mettre à jour votre carte et réessaie le paiement pendant environ trois semaines.",
-        "portal": "Pour les achats via {merchant}, vos factures, reçus, moyen de paiement et résiliation se trouvent dans le <portal>portail client de {merchant}</portal>, où vous vous connectez avec l’adresse e-mail utilisée lors du règlement. <account>Facturation et factures</account> dans votre compte l’ouvre également."
+        "merchant": "{merchant} est le merchant of record. Il gère le paiement, calcule la taxe de vente ou la TVA selon votre adresse de facturation et envoie reçus et factures par e-mail.",
+        "renewal": "Les abonnements se renouvellent jusqu’à leur résiliation dans <account>votre compte</account> ou le portail de {merchant}. L’accès reste actif jusqu’à la fin de la période payée ; vous pouvez reprendre avant cette date. Un renouvellement échoué déclenche un e-mail pour mettre à jour la carte et des tentatives de paiement pendant environ trois semaines.",
+        "portal": "Gérez factures, reçus, moyens de paiement et résiliation dans le <portal>portail client de {merchant}</portal>. Connectez-vous avec l’e-mail d’achat. <account>Facturation et factures</account> ouvre le même portail."
     },
     "refunds": {
         "title": "Remboursements",
-        "body": "Toutes les offres peuvent être remboursées dans les {refundDays} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {refundDays} jours suivant son paiement. La <link>politique de remboursement</link> explique comment faire la demande et ce qu’il advient de la licence."
+        "body": "Les achats et renouvellements d’abonnement sont remboursables dans les {refundDays} jours suivant chaque paiement. Consultez la <link>politique de remboursement</link> pour la procédure et les effets sur votre licence."
     },
     "team": {
         "title": "Offres Team",
         "seats": "Une offre Team est facturée par poste, de {min} à {max} postes.",
-        "invites": "La personne qui a acheté l’offre gère l’équipe dans son compte. Elle invite ses collègues par e-mail ; chaque invitation est un code à usage unique, qui expire après une semaine et nécessite un poste libre.",
-        "changes": "Avec une offre Team mensuelle ou annuelle, vous modifiez le nombre de postes dans votre compte et la différence apparaît sur la facture suivante. Pour ajouter des postes à un achat Team à paiement unique, écrivez à <email>{email}</email>.",
+        "invites": "L’acheteur gère les invitations dans son compte. Chaque code nécessite un poste disponible, s’utilise une seule fois et expire après une semaine.",
+        "changes": "Modifiez les postes d’abonnement dans votre compte ; la différence apparaît sur la prochaine facture. Pour ajouter des postes à un achat unique, écrivez à <email>{email}</email>.",
         "account": "Gérez votre équipe dans votre compte"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "Comparaison avec d’autres clients",
-        "body": "Chaque comparaison présente les prix de l’autre client à côté de ceux de TablePro, avec la date de leur vérification."
+        "body": "Comparez les prix et fonctions avec d’autres clients. Chaque comparaison indique une date de vérification et des sources."
     },
     "faq": {
         "title": "Questions sur les offres",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Où trouver ma clé de licence ?",
-                "answer": "Elle figure dans l’e-mail reçu après le règlement. Vous pouvez aussi vous connecter à <account>votre compte</account> avec l’adresse e-mail utilisée pour l’achat : votre clé y figure, avec tous les Mac sur lesquels elle est activée."
+                "answer": "Retrouvez votre clé dans l’e-mail d’achat ou <account>votre compte</account>. Connectez-vous avec l’e-mail d’achat pour voir les clés et les Mac activés."
             }
         }
     }

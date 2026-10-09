@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "Client Elasticsearch pour {devices}",
-        "lead": "Une console pour les requêtes Query DSL et une grille qui lit chaque index comme une table et modifie les documents par leur <code>_id</code>. Aucun des deux n’utilise SQL : chaque action est une requête REST au cluster."
+        "title": "Client Elasticsearch",
+        "lead": "Exécutez des requêtes Query DSL et parcourez les documents d’index dans la grille. Modifiez les documents par leur ID."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez l’hôte et le port REST du cluster, puis choisissez une <ui>Méthode d’authentification</ui> (Auth Method). Username & Password envoie HTTP Basic. API Key envoie le champ dans l’en-tête <code>Authorization: ApiKey</code> ; collez donc la valeur <code>encoded</code> retournée par la création d’une clé API. L’option None convient à un cluster de développement sans sécurité. Une connexion donne accès à un cluster ; le formulaire n’a donc pas de champ Base de données.",
+                "Saisissez l’hôte REST et le port, puis choisissez <ui>Méthode d’authentification</ui> (Auth Method) : Username & Password, API Key ou None. Pour les clés API, utilisez la valeur <code>encoded</code>. Chaque connexion correspond à un cluster.",
                 "Les nouvelles connexions démarrent avec SSL sur Disabled, soit HTTP en clair. Tous les autres modes utilisent HTTPS : Preferred et Required (skip verify) acceptent un certificat autosigné, tandis que Verify CA et Verify Identity le contrôlent. Elasticsearch 8.x active sécurité et TLS par défaut ; un cluster 8.x nécessite donc généralement HTTPS et des identifiants."
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "Index et console Query DSL",
             "paragraphs": [
-                "La console prend une méthode, un chemin et un corps JSON facultatif, comme Kibana Dev Tools, par exemple <code>GET /orders/_search</code> avec une requête <code>match</code>. Les résultats de recherche reviennent en lignes, les requêtes <code>_cat</code> avec <code>format=json</code> et les autres réponses en tableau deviennent une table, et le reste s’affiche en JSON formaté. Le point de terminaison <code>_sql</code> n’est pas accessible.",
+                "Écrivez la méthode, le chemin et, si besoin, du JSON, par exemple <code>GET /orders/_search</code>. Les hits et tableaux apparaissent en lignes, les autres réponses en JSON formaté. <code>_sql</code> n’est pas disponible.",
                 "La barre latérale liste les index comme tables et masque les noms commençant par un point. Les colonnes viennent du mapping : les champs objets sont aplatis en chemins comme <code>address.city</code>, un champ imbriqué reçoit une colonne JSON pour son tableau et une colonne par feuille ; chaque document comporte <code>_id</code>, <code>_index</code> et <code>_score</code>.",
                 "Les <filters>filtres de colonne</filters> deviennent des requêtes <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> et <code>exists</code> ; la ligne de filtre Raw SQL accepte la syntaxe Lucene, telle que <code>name:Widget</code>, envoyée en <code>query_string</code>. Le tri d’un champ <code>text</code> utilise son sous-champ <code>.keyword</code> si le mapping en contient un.",
-                "Les modifications de grille deviennent des appels REST identifiés par <code>_id</code> : <code>_update</code> pour modifier un document, <code>_doc</code> pour le créer ou le supprimer. Saisissez un <code>_id</code> dans une nouvelle ligne pour nommer le document. Modifiez un tableau imbriqué via sa colonne JSON ; une valeur saisie dans une colonne feuille bloque l’enregistrement, nomme la colonne et n’envoie rien."
+                "Modifiez les documents par <code>_id</code> via REST. Les nouveaux documents nécessitent un ID. Modifiez les tableaux imbriqués dans la colonne JSON ; modifier une colonne feuille bloque l’enregistrement sans envoyer de requête."
             ]
         },
         {

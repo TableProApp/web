@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass: uno o più database",
+        "title": "TablePro vs MongoDB Compass: shell o strumenti visivi",
         "description": "MongoDB Compass è la GUI gratuita di MongoDB, con aggregazioni per fasi e analisi dello schema. TablePro copre MongoDB con database SQL e Redis sul Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass è la GUI ufficiale e gratuita di MongoDB, per esplorare i dati, creare pipeline di aggregazione e studiare lo schema di una collection. TablePro è un client open source che si connette a MongoDB insieme a database SQL, Redis e altri motori, con funzioni a pagamento opzionali sul Mac."
+        "lead": "Compass è la GUI di MongoDB, con un generatore di aggregazioni e un'analisi dello schema. TablePro posiziona MongoDB insieme ai database SQL e ad altri motori."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB è uno dei vari database che usi, insieme a PostgreSQL, MySQL, SQL Server o Redis, e vuoi un solo client per tutti.",
-            "Ti piace una shell in stile mongosh, con variabili, cicli e completamento automatico di collection, percorsi dei campi e operatori.",
-            "Vuoi rinominare o rimuovere un campo in un’intera collection, vedendo ogni istruzione prima che venga eseguita.",
-            "Vuoi un assistente IA con il fornitore che scegli, nel cloud o sul tuo Mac, e un server MCP per i client IA esterni."
+            "MongoDB insieme a PostgreSQL, MySQL, SQL Server o Redis.",
+            "Una shell in stile mongosh con variabili, loop e completamento automatico.",
+            "Modifiche ai campi a livello di raccolta, con istruzioni mostrate prima della loro esecuzione."
         ],
         "competitor": [
-            "MongoDB è il tuo unico database e vuoi lo strumento ufficiale di MongoDB, gratuito.",
-            "Crei pipeline di aggregazione una fase alla volta e vuoi un’anteprima dopo ogni fase.",
-            "Studi lo schema di una collection oppure modelli le collection e le loro relazioni in un diagramma.",
-            "Vuoi un piano di esecuzione visuale e metriche del server in tempo reale per MongoDB.",
-            "Lavori anche su Windows o Linux."
+            "Un generatore di aggregazioni passo per passo con anteprime.",
+            "Analisi di schemi, modellazione di collezioni e diagrammi di relazione.",
+            "Spiegazione visiva dei piani e metriche del server MongoDB in tempo reale."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass è la GUI ufficiale di MongoDB ed è gratuita.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Le pipeline di aggregazione si creano una fase alla volta, con un’anteprima dei dati dopo ogni fase.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Campiona i documenti di una collection per mostrare tipi di campo, intervalli di date e valori frequenti, e disegna un diagramma entità-relazione delle collection di un database.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "I piani di esecuzione sono visuali e le metriche del server in tempo reale sono integrate.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Funziona su Windows, macOS e Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "L’<link>assistente IA</link> funziona con il fornitore IA che scegli, nel cloud o sul tuo Mac, e il server MCP permette ai client IA esterni di usare le connessioni salvate. Entrambi sono gratuiti. Le funzioni IA di Compass usano Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Non c’è un’app TablePro per Windows o Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -176,14 +173,8 @@
         {
             "id": "ai",
             "question": "Quale IA usa ciascuno?",
-            "answer": "Le query in linguaggio naturale e l’assistente di Compass usano Azure OpenAI, e puoi disattivare le funzioni IA nelle impostazioni. L’assistente IA di TablePro usa il fornitore che scegli, anche un modello sul tuo Mac, ed è gratuito nell’app per Mac. <link>Leggi dell’IA in TablePro</link>.",
+            "answer": "Le query in linguaggio naturale e l’assistente di Compass usano Azure OpenAI, e puoi disattivare le funzioni IA nelle imposti. L’assistente IA di TablePro usa il fornitore che scegli, anche un modello sul tuo Mac, ed è gratuito nell’app per Mac. <link>Leggi dell’IA in TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "TablePro è gratuito per MongoDB?",
-            "answer": "Sì. MongoDB e gli altri motori supportati, l’assistente IA e il server MCP sono gratuiti nell’app per Mac. I piani a pagamento aggiungono funzioni opzionali come {starterExamples}. <link>Vedi i prezzi</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

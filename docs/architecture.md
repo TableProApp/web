@@ -406,12 +406,14 @@ them from each page's content (`og` block, or the post's front matter):
 English at `public/og/{type}/{slug}.png` and the generic `public/og.png`,
 Other languages under `public/og/{locale}/`. A page with no card of its own, or whose own
 card file is missing, falls back to its language's generic card: the bespoke
-`og-site` card (`public/og/bespoke/og-site-{locale}.png`, an owner asset in
+`og-site` card (`public/og.png` in English, `public/og/bespoke/og-site-{locale}.png` otherwise, an owner asset in
 `resources/data/assets.json`) once that entry is supplied and the locale's file
 exists, else the generated one. Only when no generic card exists does the page
 emit no `og:image`, rather than a broken one. `Seo/OgCardsTest` fails in either case. Regenerate them through
 the `og cards` workflow rather than on a schedule; a scheduled run would
-rewrite tracked files and leave the deploy checkout dirty.
+rewrite tracked files and leave the deploy checkout dirty. The English supplied
+default artwork is preserved by generation, not overwritten. Its retired
+`/og/bespoke/og-site-en.png` URL redirects to `/og.png`.
 
 Release facts (versions, dates, requirements and the App Store price) are data
 in `platforms.json`, not fetched per page. `php artisan release:check` compares

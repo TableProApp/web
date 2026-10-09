@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs pgAdmin：PostgreSQL 管理工具或用戶端",
+        "title": "TablePro 與 pgAdmin：PostgreSQL 工具與管理",
         "description": "pgAdmin 是免費開放原始碼的 PostgreSQL 管理工具，可在桌面或 Web 伺服器上執行。TablePro 支援 PostgreSQL 及其他引擎。"
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs pgAdmin",
-        "lead": "pgAdmin 4 是免費開放原始碼的 PostgreSQL 管理與開發工具，可作為桌面 App 在 Windows、macOS 與 Linux 上執行，也可部署在多人共用的 Web 伺服器上。TablePro 是支援 PostgreSQL 及其他引擎的開放原始碼用戶端，提供獨立的 iPhone 與 iPad App，並在 Mac 上提供選用付費功能。"
+        "lead": "pgAdmin 專注於 PostgreSQL 管理，可使用桌面 App 或共用的 Web 伺服器。TablePro 可在同一用戶端使用 PostgreSQL 與其他類型的資料庫。"
     },
     "shortAnswer": {
         "tablepro": [
-            "您除了 PostgreSQL，也使用 MySQL、SQL Server、SQLite、Redis 或 MongoDB。",
-            "您希望使用以 Swift 編寫的原生 Mac App，密碼儲存在 macOS 鑰匙圈中。",
-            "您希望每個連線都有 Safe Mode 層級，例如正式環境用 Read-Only，或寫入前要求 Touch ID。",
-            "您希望有 MCP 伺服器，讓 Claude Code 或 Cursor 等 AI 用戶端使用您已儲存的連線。",
-            "您希望有免費的 iPhone 與 iPad App 連線 PostgreSQL。"
+            "在同一用戶端使用 PostgreSQL 與 MySQL、SQL Server、SQLite、Redis 或 MongoDB。",
+            "每個連線可設定 Safe Mode，包含寫入前的 Touch ID 確認。",
+            "免費 MCP 或單獨的免費 iPhone 和 iPad 應用程式。"
         ],
         "competitor": [
-            "您只使用 PostgreSQL，而且大部分工作是管理。",
-            "您需要偵錯 PL/pgSQL 函式，或用 pgAgent 排程工作。",
-            "您希望內建 psql、pg_dump 和 pg_restore，無須另外安裝。",
-            "您希望在 Web 伺服器上安裝一次，讓團隊透過瀏覽器使用。",
-            "您也在 Windows 或 Linux 上工作。"
+            "PostgreSQL 管理工具，包含 PL/pgSQL 偵錯器與 pgAgent 工作。",
+            "捆綁 psql、pg_dump 和 pg_restore。",
+            "共用 Web 伺服器安裝，或 Windows 和 Linux 支援。"
         ]
     },
     "glance": {
@@ -57,31 +53,43 @@
         "items": [
             {
                 "text": "pgAdmin 專為 PostgreSQL 打造，也支援 EDB Postgres Advanced Server。",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "偵錯工具可逐步執行 PL/pgSQL 函式，schema diff 工具可比較兩個 schema，兩者均免費。",
-                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "cite": [
+                    "cells.debugger",
+                    "cells.schemaDiff"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "ERD 工具用於設計和記錄 schema。",
-                "cite": ["cells.diagram"],
+                "cite": [
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "內建 psql、pg_dump、pg_dumpall 和 pg_restore，備份與還原無須另外安裝。",
-                "cite": ["cells.backupRestore"],
+                "cite": [
+                    "cells.backupRestore"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "可在 Windows、macOS 與 Linux 上執行，或部署在多人使用的 Web 伺服器上，pgAgent 還能排程 SQL、shell 和批次工作。",
-                "cite": ["platforms", "cells.jobScheduler"],
+                "cite": [
+                    "platforms",
+                    "cells.jobScheduler"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,7 +106,9 @@
             },
             {
                 "text": "TablePro 是以 Swift 編寫的 Mac App，使用原生資料庫驅動程式。pgAdmin 是 Python Web 應用程式，在 {technology} 桌面執行環境或 Web 伺服器上執行。",
-                "cite": ["technology"],
+                "cite": [
+                    "technology"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -132,7 +142,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 沒有 Windows 或 Linux App，也沒有可安裝到伺服器的 Web 版本。",
+                "text": "沒有可安裝於伺服器的 Web 版本。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -157,7 +167,9 @@
             },
             {
                 "text": "<link>Compare & Sync</link> 屬於 Starter，而 pgAdmin 的 schema diff 免費。",
-                "cite": ["cells.schemaDiff"],
+                "cite": [
+                    "cells.schemaDiff"
+                ],
                 "feature": "compare-sync",
                 "href": null
             }
@@ -185,12 +197,6 @@
             "question": "團隊能像共用 pgAdmin 伺服器那樣共用 TablePro 嗎？",
             "answer": "無法透過瀏覽器：TablePro 在每台 Mac 上執行。團隊成員可透過連線檔案分享連線，或在 Team 方案中使用 Team Catalog 和 Team Library。<link>了解分享方式</link>。",
             "href": "/features/sync-and-teams"
-        },
-        {
-            "id": "free",
-            "question": "TablePro 像 pgAdmin 一樣免費嗎？",
-            "answer": "可免費使用。PostgreSQL 及其他支援的引擎、AI 助手和 MCP 伺服器均免費，程式碼依 AGPLv3 開放原始碼。與 pgAdmin 不同的是，TablePro 也有付費方案：Starter 和 Team 為 Mac App 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

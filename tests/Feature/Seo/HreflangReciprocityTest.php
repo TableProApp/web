@@ -214,30 +214,30 @@ it('shares the registry head on every real page, in every locale it renders in',
      * registry to the page is under test, not only the registry.
      */
     $checked = 0;
+    $heads = [];
+    // Render each URL once. Reuse only its asserted SEO props for reciprocal
+    // checks instead of rendering the same large SSR page for every sibling.
+    $headFor = function (string $path) use (&$heads): array {
+        if (! array_key_exists($path, $heads)) {
+            $this->get($path)->assertOk()->assertInertia(function (AssertableInertia $page) use (&$heads, $path): void {
+                $heads[$path] = $page->toArray()['props']['seo'];
+            });
+        }
+
+        return $heads[$path];
+    };
 
     foreach (app(PageRegistry::class)->all() as $entry) {
         foreach ($entry->renderLocales as $locale) {
             $path = $entry->url($locale, false);
-            $seo = null;
-
-            $response = $this->get($path);
-
-            Assert::assertSame(200, $response->getStatusCode(), "{$path} does not render");
-
-            $response->assertInertia(function (AssertableInertia $page) use (&$seo): void {
-                $seo = $page->toArray()['props']['seo'];
-            });
+            $seo = $headFor($path);
 
             unset($seo['ogImage']);
 
             expect($seo)->toBe(hreflangExpected($entry, $locale), "{$path}: the shared seo prop disagrees with the registry");
 
             foreach ($seo['alternates'] as $alternate) {
-                $back = null;
-
-                $this->get(seoPathOf($alternate['href']))->assertOk()->assertInertia(function (AssertableInertia $page) use (&$back): void {
-                    $back = $page->toArray()['props']['seo']['alternates'];
-                });
+                $back = $headFor(seoPathOf($alternate['href']))['alternates'];
 
                 expect($back)->toBe($seo['alternates'], "{$alternate['href']} does not list {$path} back");
             }

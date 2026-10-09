@@ -10,8 +10,8 @@
     "engine": "cassandra",
     "breadcrumb": "Cassandra e ScyllaDB",
     "header": {
-        "title": "Client Cassandra e ScyllaDB per {devices}",
-        "lead": "Esplora keyspace e tabelle, esegui CQL nell’editor e modifica righe riscritte tramite la chiave primaria completa. Lo stesso driver si connette a ScyllaDB e Amazon Keyspaces."
+        "title": "Client Cassandra e ScyllaDB",
+        "lead": "Sfoglia gli spazi delle chiavi, esegui CQL e modifica le righe in base alle relative chiavi primarie. Connettiti a Cassandra, ScyllaDB o Amazon Keyspaces."
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connetti",
             "paragraphs": [
-                "Fornisci a TablePro un punto di contatto e la porta, più nome utente e password quando il cluster ha un autenticatore configurato. Non c’è un campo keyspace: scegline uno nella barra laterale dopo la connessione oppure inseriscilo nel percorso di un URL <code>cassandra://</code> o <code>cql://</code> e importalo. Il cambio di keyspace avviene sulla stessa connessione ed esclude quelli di sistema dall’elenco, mentre le schede già aperte mantengono il proprio keyspace.",
+                "Inserisci un punto di contatto, una porta ed eventuali credenziali richieste. Scegli uno spazio chiave dopo la connessione o importa un URL <code>cassandra://</code> o <code>cql://</code> con uno nel suo percorso. Le schede esistenti mantengono il loro spazio delle chiavi quando cambi.",
                 "TLS è disattivato sulle nuove connessioni. Preferred e Required cifrano senza verificare il certificato, perché il driver non offre TLS opportunistico. Verify CA e Verify Identity richiedono un file di certificato CA e non ripiegano mai sulle radici di sistema. Per TLS reciproco aggiungi un certificato client, la chiave e la passphrase della chiave. Un cluster su una rete privata è raggiungibile tramite un <network>tunnel SSH</network>.",
                 "Amazon Keyspaces accede con SigV4 anziché password. Usa l’endpoint regionale, come <code>cassandra.us-east-1.amazonaws.com</code> sulla porta 9142, imposta Authentication su <awsIam>una modalità AWS IAM</awsIam> (chiave di accesso, profilo o AWS IAM Identity Center), lascia vuoti nome utente e password e attiva TLS, perché Keyspaces rifiuta il traffico in chiaro."
             ]
@@ -37,10 +37,10 @@
             "id": "work",
             "title": "Esplora ed esegui CQL",
             "paragraphs": [
-                "Apri una tabella dalla barra laterale per leggerla nella griglia. Liste, set, mappe e tuple appaiono come collezioni, un tipo definito dall’utente come i suoi campi, un <code>duration</code> come <code>1d2h30m</code>, un vettore come lista di numeri e un blob in esadecimale. I risultati nell’editor CQL sono in sola lettura, quindi le righe si modificano dalla tabella aperta nella barra laterale.",
+                "Sfoglia i valori CQL nella griglia della tabella, incluse raccolte, tipi definiti dall'utente, durate, vettori e BLOB. I risultati dell'editor sono di sola lettura; modifica le righe nella tabella aperta dalla barra laterale.",
                 "CQL non ha OFFSET, quindi le pagine vengono lette in avanti dalla prima riga: Next e Previous sulle pagine già mostrate costano una lettura ciascuno e saltare a una pagina lontana legge tutte quelle precedenti. Le righe arrivano in ordine di token e un’intestazione di colonna non le riordina, perché CQL ordina solo per colonne di clustering dentro una partizione. Non viene contato nulla all’apertura; <ui>Count Exactly</ui> esegue <code>SELECT COUNT(*)</code>, che legge ogni partizione.",
                 "I <filters>filtri</filters> aggiungono <code>ALLOW FILTERING</code>, quindi il server legge ogni partizione a meno che il filtro non fissi l’intera chiave di partizione. Contiene, inizia con e termina con vengono inviati come LIKE, che Cassandra accetta solo su colonne con indice SASI o SAI. Gli operatori non esprimibili in CQL, come diverso da o is NULL, vengono rifiutati indicandone il nome e le condizioni si uniscono solo con AND, perché CQL non ha OR.",
-                "Un <editing>valore modificato</editing> viene inviato con il tipo CQL della colonna e un valore non interpretabile interrompe l’intero salvataggio. Ogni riga viene scritta con una propria istruzione e identificata dalla chiave primaria completa. <ui>Add Row</ui> scrive <code>INSERT … IF NOT EXISTS</code>, quindi una nuova riga non sovrascrive mai una che possiede già la stessa chiave. Una colonna di chiave non può essere modificata sul posto: elimina la riga e aggiungila di nuovo.",
+                "<editing>Le modifiche</editing> sono convalidate come tipi CQL e scritte per riga dalla chiave primaria completa. Valori non validi interrompono il salvataggio. <ui>Add Row</ui> utilizza <code>INSERT … IF NOT EXISTS</code>. Per modificare una chiave, eliminare e reinserire la riga.",
                 "Le colonne contatore richiedono <code>UPDATE … SET c = c + 1</code> nell’editor CQL; il server rifiuta il semplice UPDATE scritto da una modifica nella griglia. Il timeout di connessione proviene da Options della connessione, mentre le richieste CQL mantengono il timeout fisso del driver, che il timeout delle query dell’app non cambia."
             ]
         },

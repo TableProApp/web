@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs. phpMyAdmin: web ou app Mac",
+        "title": "TablePro vs phpMyAdmin: desktop ou navegador",
         "description": "phpMyAdmin funciona no servidor web e abre no navegador. TablePro funciona no Mac e conecta diretamente ou por SSH. Compare bancos, acesso e configuração."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs. phpMyAdmin",
-        "lead": "phpMyAdmin é uma ferramenta web gratuita e de código aberto para MySQL e MariaDB. É instalada em um servidor web e está incluída no cPanel. TablePro é um app de código aberto para Mac, com um app separado para iPhone e iPad, que se conecta ao banco diretamente ou por um túnel SSH."
+        "lead": "phpMyAdmin é executado em um servidor web e está incluído no cPanel. TablePro se conecta a partir de um aplicativo nativo, diretamente ou por meio de SSH. Seu plano de hospedagem pode determinar qual você pode usar."
     },
     "shortAnswer": {
         "tablepro": [
-            "Você prefere não instalar nada no servidor e trabalhar pelo Mac, conectando diretamente ou por SSH.",
-            "Você também usa PostgreSQL, SQL Server, SQLite, Redis ou outros mecanismos.",
-            "Você quer um nível de Safe Mode por conexão, como Read-Only para produção ou Touch ID antes de gravar.",
-            "Você transfere dados com frequência. Importar arquivos CSV, JSON, XLSX ou SQL e exportá-los é gratuito.",
-            "Você quer um assistente de IA e servidor MCP gratuitos no app para Mac."
+            "Um cliente que se conecta diretamente ou através de SSH, sem nada instalado no servidor.",
+            "MySQL e MariaDB junto com outros tipos de banco de dados.",
+            "Safe Mode por conexão e bate-papo gratuito AI e MCP."
         ],
         "competitor": [
-            "Sua hospedagem o oferece no cPanel e você não tem acesso SSH ou remoto ao banco.",
-            "Você quer trabalhar em qualquer computador com navegador, sem instalar nada nele.",
-            "Você ou sua equipe precisam da interface em um idioma não oferecido pelo app TablePro para Mac."
+            "Acesso ao banco de dados através do cPanel quando seu host não permite SSH nem conexões remotas.",
+            "Acesso de qualquer computador com navegador.",
+            "Um idioma de interface indisponível em TablePro."
         ]
     },
     "glance": {
@@ -111,7 +109,7 @@
                 "href": "/features/connections#network"
             },
             {
-                "text": "Não há uma instalação web para proteger e manter atualizada. A documentação de phpMyAdmin explica como proteger a sua com HTTPS, regras de acesso e autenticação de dois fatores.",
+                "text": "phpMyAdmin requer instalação de servidor, com atualizações e controles de acesso próprios. Seus documentos cobrem HTTPS, regras de acesso e login de dois fatores.",
                 "cite": [
                     "cells.hardening"
                 ],
@@ -197,12 +195,6 @@
             "question": "E quanto ao Adminer?",
             "answer": "Adminer é outra ferramenta web de código aberto, distribuída como um único arquivo PHP. Além de MySQL e MariaDB, se conecta a PostgreSQL, SQLite, SQL Server e Oracle. Como phpMyAdmin, funciona no servidor, portanto sua instalação exige os mesmos cuidados.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro é gratuito como phpMyAdmin?",
-            "answer": "Para trabalhar com MySQL e MariaDB, sim: o app TablePro para Mac é de uso gratuito e de código aberto sob a AGPLv3, com todos os mecanismos suportados, assistente de IA e servidor MCP. Diferentemente de phpMyAdmin, também tem planos pagos: Starter e Team adicionam recursos opcionais como {starterExamples}. <link>Ver preços</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

@@ -1,60 +1,60 @@
 {
     "seo": {
-        "title": "クエリとデータベース管理の機能",
-        "description": "TablePro の機能を分野別に紹介します。クエリ、データ編集、スキーマ操作、インポートとエクスポート、AI と MCP、接続と同期。有料機能は明示しています。"
+        "title": "データベースクライアントの機能 | TablePro",
+        "description": "クエリを書く、データを編集する、スキーマを調べる、ファイルとデータベース間でデータを移す。TablePro の無料・有料機能をご覧ください。"
     },
     "og": {
         "kicker": "機能",
-        "title": "TablePro でできること"
+        "title": "機能"
     },
     "header": {
-        "title": "TablePro でできること",
-        "lead": "Mac アプリはすべての作業を行える環境です。iPhone・iPad アプリは機能範囲が小さい別のネイティブアプリで、各機能ページで対応内容を説明しています。"
+        "title": "機能",
+        "lead": "対応データベースのデータをクエリ、編集、操作できます。"
     },
     "areas": {
         "title": "作業別の機能",
-        "paid": "{tier} プラン：{features}",
+        "paid": "追加の有料機能：{features}（{tier}）",
         "noPaid": "有料機能なし",
         "items": [
             {
                 "slug": "querying",
-                "summary": "スキーマを把握した自動補完、<code>:name</code> パラメーター、検索可能な履歴、保存済みクエリ、比較できる EXPLAIN 計画、グラフや地図での結果表示。"
+                "summary": "補完機能で SQL を書き、保存したクエリを再利用し、履歴を検索できます。対応エンジンでクエリプランを確認できます。"
             },
             {
                 "slug": "data-editing",
-                "summary": "フィルターとハイライトルール、参照先をたどれる外部キー、保存まで保留する編集、接続ごとの Safe Mode レベル、保存で置き換えた値を戻す Data Rewind。"
+                "summary": "行をフィルターし、外部キーをたどり、保存前に編集内容を確認できます。"
             },
             {
                 "slug": "schema",
-                "summary": "DDL プレビュー付きの構造変更、読み取り専用 ER 図、2 つのデータベース間の Compare & Sync、エンジン間の Copy To、Users & Roles。"
+                "summary": "リレーションを確認し、テーブル構造を変更して、対応データベースを比較できます。"
             },
             {
                 "slug": "import-export",
-                "summary": "{importFormats} ファイルのインポート、テーブルと結果のエクスポート、接続なしでデータファイルを開く機能、各エンジンのダンプツールで行うバックアップ。"
+                "summary": "{importFormats} ファイルを取り込み、テーブルや結果を出力できます。データベース接続なしでデータファイルを開けます。"
             },
             {
                 "slug": "ai-mcp",
-                "summary": "自分で選んだプロバイダーを使うオプションの AI アシスタントと、Claude Code や Cursor などが保存済み接続を使えるローカル MCP（Model Context Protocol）サーバー。"
+                "summary": "好みの AI プロバイダーを使うか、MCP (Model Context Protocol) で外部クライアントを接続できます。"
             },
             {
                 "slug": "connections",
-                "summary": "踏み台ホスト付き SSH トンネル、TLS、クラウドログインとトンネルコマンド、キーチェーンや秘密情報管理サービスからのパスワード、他のアプリからの接続インポート。"
+                "summary": "SSH トンネルやクラウド認証を使い、他のアプリから接続を取り込めます。"
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Mac、iPhone、iPad 間の iCloud Sync、共有できる接続ファイル、チーム共有のための Team Catalog と Team Library。"
+                "summary": "iCloud で同期するか、チームで接続やクエリを共有できます。"
             }
         ]
     },
     "ios": {
         "title": "iPhone と iPad",
-        "body": "iPhone・iPad 版 TablePro は別のアプリで、無料、アプリ内課金なしです。SSH や TLS で接続し、行を閲覧・編集し、クエリを実行できます。ショートカット、ホーム画面ウィジェット、実行中のクエリのライブアクティビティにも対応します。AI アシスタント、スキーマ編集、Data Rewind、Compare & Sync はありません。",
+        "body": "iPhone・iPad でテーブル参照、行編集、クエリ実行ができます。別の無料モバイルアプリで、アプリ内課金はありません。対応状況は各機能ページに記載しています。",
         "link": "iPhone・iPad 版 TablePro"
     },
     "paid": {
         "title": "無料と有料",
-        "lead": "Mac アプリは無料で、試用期間はありません。Starter または Team プランで以下の機能を追加でき、Team は Starter の全機能を含みます。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。iPhone・iPad アプリは無料で、アプリ内課金もありません。",
-        "caption": "Mac アプリの有料機能、必要なプラン、説明ページ",
+        "lead": "基本機能は試用期限なしで無料です。Starter は Mac アプリに有料機能を追加し、Team は Starter を含みます。対応する全データベース、AI アシスタント、MCP、Safe Mode はライセンスなしで使えます。",
+        "caption": "現在 Mac で使える有料機能",
         "columns": {
             "feature": "機能",
             "plan": "プラン",
@@ -64,7 +64,7 @@
     },
     "docs": {
         "title": "ドキュメント",
-        "body": "TablePro のドキュメントには機能ごとのページがあり、すべての設定とショートカットを説明しています。",
+        "body": "設定手順、設定項目、ショートカットを確認できます。",
         "link": "ドキュメントを読む",
         "path": "/features/overview"
     },
@@ -80,19 +80,19 @@
         },
         "paidBadge": "{name}：{tier} プラン",
         "header": {
-            "paid": "このページの有料機能：{features}。その他はすべて無料です。",
+            "paid": "有料：{features}。その他は無料です。",
             "paidItem": "{name} ({tier})",
             "allFree": "このページの機能はすべて無料です。",
             "docs": "ドキュメントを読む"
         },
         "sections": {
             "availability": "対応範囲",
-            "limits": "知っておきたい制約",
+            "limits": "制限",
             "docs": "ドキュメント",
             "related": "関連情報"
         },
         "availability": {
-            "caption": "このページの各機能、Mac で必要なプラン、iPhone・iPad での対応範囲",
+            "caption": "Mac・iPhone・iPad の対応状況とプラン",
             "capability": "機能",
             "free": "無料",
             "notAvailable": "非対応",
@@ -100,7 +100,7 @@
         },
         "download": {
             "title": "TablePro を入手",
-            "body": "TablePro はオープンソースで、無料で使えます。有料プランで Mac アプリにオプション機能を追加できます。",
+            "body": "無料で使えるオープンソースアプリです。",
             "pricing": "料金を見る"
         }
     }

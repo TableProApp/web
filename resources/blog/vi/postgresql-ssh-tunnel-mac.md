@@ -1,16 +1,16 @@
 ---
 slug: postgresql-ssh-tunnel-mac
-title: "Cách kết nối PostgreSQL qua SSH tunnel trên Mac"
-description: Lệnh ssh -L để tới PostgreSQL nằm sau bastion, rồi dựng cùng tunnel đó trong TablePro bằng mật khẩu, private key, SSH agent hoặc jump host.
+title: "Kết nối PostgreSQL qua SSH tunnel trên Mac"
+description: Kết nối PostgreSQL qua SSH bằng ssh -L hoặc TablePro. Thiết lập key, agent, jump host và hiểu giới hạn TLS của tunnel.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: Chạy ssh -L trước, rồi dựng cùng tunnel đó trong form connection.
 tags: [postgresql, ssh]
 ---
 
-Một server PostgreSQL trong mạng nội bộ không có port nào để máy Mac của bạn kết nối thẳng tới. Bạn tới được nó bằng cách đăng nhập SSH vào một máy nhìn thấy server đó, rồi chuyển tiếp một port qua phiên đăng nhập ấy. Bài này bắt đầu với lệnh `ssh` thuần, sau đó dựng cùng tunnel đó trong form connection của TablePro.
+Dùng SSH tunnel khi PostgreSQL truy cập được từ bastion nhưng không từ máy Mac. Chuyển tiếp port local bằng `ssh`, hoặc để TablePro quản lý tunnel cùng connection cơ sở dữ liệu.
 
-## Lệnh ssh thuần {#ssh-command}
+## Chuyển tiếp port bằng ssh {#ssh-command}
 
 ```bash
 ssh -N -L 5433:localhost:5432 deploy@bastion.example.com
@@ -19,7 +19,7 @@ ssh -N -L 5433:localhost:5432 deploy@bastion.example.com
 - `-L 5433:localhost:5432` lắng nghe trên port 5433 của máy Mac và chuyển tiếp tới `localhost:5432` theo cách server SSH nhìn thấy.
 - `-N` không mở shell. Lệnh chạy ở foreground cho tới khi bạn bấm `Ctrl+C`.
 
-Phần giữa của `-L` được phân giải trên server SSH, không phải trên máy Mac. Nếu PostgreSQL chạy ngay trên server SSH thì đó là `localhost`. Nếu nó chạy ở một máy khác trong mạng nội bộ, hãy dùng tên mà server SSH biết, ví dụ `db.internal:5432`.
+Đích trong `-L` phân giải trên server SSH. Dùng `localhost` nếu PostgreSQL chạy ở đó, hoặc địa chỉ mạng nội bộ như `db.internal:5432` nếu chạy nơi khác.
 
 Khi tunnel đang mở, kết nối vào đầu local của nó:
 
@@ -41,9 +41,9 @@ Nếu key đã nằm trong agent (`ssh-add ~/.ssh/id_ed25519`) thì không cần
 
 Tunnel là một tiến trình riêng. Đóng cửa sổ terminal đó thì mọi client đang đi qua tunnel đều mất kết nối.
 
-## Cùng tunnel đó trong TablePro {#in-tablepro}
+## Thiết lập tunnel trong TablePro {#in-tablepro}
 
-TablePro mở tunnel khi connection mở và đóng tunnel cùng với connection, nên bạn không phải giữ một cửa sổ terminal nào.
+TablePro mở và đóng tunnel cùng connection cơ sở dữ liệu.
 
 1. Bấm **Kết nối mới…** (New Connection…) trên cửa sổ chào mừng, hoặc bấm `Cmd+N`, rồi chọn **PostgreSQL**.
 2. Ở tab **Tổng quát** (General), mô tả cơ sở dữ liệu theo cách server SSH nhìn thấy: **Máy chủ** (Host), là `localhost` khi PostgreSQL chạy ngay trên server SSH, cùng **Cổng** (Port), **Cơ sở dữ liệu** (Database), **Tên người dùng** (Username) và **Mật khẩu** (Password). PostgreSQL không kết nối được nếu thiếu tên cơ sở dữ liệu.
@@ -71,7 +71,7 @@ Menu **Phương thức** hiện tên các phương thức bằng tiếng Anh.
 
 Với **SSH Agent**, việc ký diễn ra trong agent và TablePro không đọc private key.
 
-Có một chi tiết dễ vấp. Ứng dụng mở từ Finder nhận `SSH_AUTH_SOCK` từ launchd, tức là agent do macOS chạy, bất kể shell profile của bạn export gì. Nếu key của bạn nằm trong 1Password hoặc Secretive, hãy chọn **1Password** hoặc **Đường dẫn tùy chỉnh**.
+Ứng dụng mở từ Finder nhận `SSH_AUTH_SOCK` từ launchd, không phải shell profile. Với key trong 1Password hoặc Secretive, chọn **1Password** hoặc **Đường dẫn tùy chỉnh** (Custom Path).
 
 Nếu server hỏi mã xác minh, mục **Xác thực hai yếu tố** (Two-Factor Authentication) xử lý việc đó. **Nhắc khi kết nối** (Prompt at Connect) hỏi bạn ở mỗi lần kết nối. **Tự động tạo** (Auto Generate) tính mã từ TOTP secret bạn nhập.
 
@@ -81,7 +81,7 @@ Với cơ sở dữ liệu nằm sau nhiều bastion, mở mục **Jump Host** (
 
 Nếu bạn để trống danh sách và host SSH khớp với một mục trong `~/.ssh/config` có `ProxyJump`, TablePro đi theo dòng đó.
 
-## Server chỉ lắng nghe trên unix socket {#unix-socket}
+## Chuyển tiếp Unix socket {#unix-socket}
 
 Một số server PostgreSQL chỉ nhận kết nối `local` và không mở port TCP nào. `ssh` chuyển tiếp được tới file socket:
 
@@ -99,10 +99,10 @@ Trong TablePro, điền đường dẫn đó vào **Đường dẫn socket** (So
 - Jump host chỉ dùng được trong ứng dụng cho Mac. Ứng dụng cho iPhone và iPad không mở được connection có jump host.
 - **Đường hầm SSH** không có với các cơ sở dữ liệu dạng file như SQLite và DuckDB.
 
-## Nếu không kết nối được {#troubleshooting}
+## Xử lý lỗi {#troubleshooting}
 
 - **"The SSH server could not reach …"**: SSH đã thông nhưng việc chuyển tiếp thì không. Kiểm tra **Máy chủ** ở tab **Tổng quát**. Cơ sở dữ liệu bind vào `127.0.0.1`, là mặc định của PostgreSQL, cần **Máy chủ** đặt là `localhost`.
 - **Tunnel kết nối được nhưng cơ sở dữ liệu từ chối đăng nhập**: thông tin đăng nhập SSH và thông tin đăng nhập cơ sở dữ liệu là hai bộ riêng. Kiểm tra xem bạn có điền nhầm bộ này vào ô của bộ kia không.
 - **Chính SSH bị lỗi**: chạy `ssh -v deploy@bastion.example.com` trong Terminal với cùng host, user và key. Nếu lệnh đó cũng lỗi thì vấn đề nằm ở phía server.
 
-Tài liệu liệt kê mọi thông báo lỗi SSH kèm nguyên nhân trong trang [SSH Tunneling](https://docs.tablepro.app/connections/ssh-tunneling) (tiếng Anh). Những gì TablePro làm được sau khi kết nối nằm ở [trang PostgreSQL](/vi/postgresql-client), còn các cách khác để tới một cơ sở dữ liệu nội bộ, như SOCKS proxy hay lệnh `kubectl port-forward`, nằm ở mục [Kết nối](/vi/features/connections#network).
+Xem [SSH Tunneling](https://docs.tablepro.app/connections/ssh-tunneling) cho thông báo lỗi và [tổng quan PostgreSQL](/vi/postgresql-client) cho tính năng cơ sở dữ liệu. [Kết nối mạng](/vi/features/connections#network) còn hướng dẫn SOCKS proxy và `kubectl port-forward`.

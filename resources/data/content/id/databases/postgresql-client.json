@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "Klien PostgreSQL untuk {devices}",
-        "lead": "Gunakan skema, array, jsonb, dan PostGIS, baca rencana EXPLAIN sebagai diagram, serta kelola peran, sesi, pemeliharaan, dan pencadangan. Driver yang sama juga mendukung Amazon Redshift, CockroachDB, dan PGlite."
+        "title": "Klien PostgreSQL",
+        "lead": "Kueri PostgreSQL, telusuri skema dan edit baris dengan pratinjau SQL. Periksa paket EXPLAIN, jsonb, array, dan nilai PostGIS."
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host, port, pengguna, dan database ke TablePro, atau tempel URL <code>postgresql://</code> maupun <code>postgres://</code>. PostgreSQL memerlukan database untuk terhubung.",
+                "Masukkan host, port, pengguna dan database, atau tempel URL <code>postgresql://</code> atau <code>postgres://</code>. Basis data diperlukan.",
                 "Koneksi baru menggunakan SSL Preferred, yaitu <code>sslmode=prefer</code> libpq. Pilih Verify CA atau Verify Identity untuk memeriksa sertifikat server.",
                 "Aktifkan Use ~/.pgpass untuk membaca kata sandi dari <code>~/.pgpass</code>. Formulir melaporkan hasilnya, termasuk file dengan izin yang akan membuat libpq mengabaikannya.",
-                "Akses server pribadi melalui <network>tunnel SSH, dengan jump host jika diperlukan, proxy SOCKS5, tunnel Cloudflare Access, atau perintah tunnel</network> seperti kubectl port-forward. Pada Amazon RDS dan Aurora, masuk menggunakan <cloudAuth>AWS IAM</cloudAuth> sebagai peran dengan <code>rds_iam</code>. Untuk Google Cloud SQL, TablePro mengunduh dan menjalankan Cloud SQL Auth Proxy.",
+                "Jangkau server pribadi melalui terowongan <network>SSH, host lompat, proksi, atau perintah terowongan</network>. Amazon RDS dan Aurora mendukung <cloudAuth>AWS IAM</cloudAuth> untuk peran yang diberikan <code>rds_iam</code>. Google Cloud SQL menggunakan Proksi Auth Cloud SQL.",
                 "Setiap opsi koneksi yang diterima libpq, seperti <code>-c application_name=reporting</code>, dimasukkan ke Connection Options."
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Editor SQL melengkapi nama tabel dan kolom dari skema. <explain>EXPLAIN dan EXPLAIN ANALYZE</explain> menggunakan FORMAT JSON dan digambar sebagai diagram atau pohon rencana, dan EXPLAIN Compare menunjukkan apakah rencana menjadi lebih lambat setelah perubahan.",
-                "jsonb diformat, dan uuid, inet, timestamptz, interval, serta bytea ditampilkan sesuai jenisnya. Kolom array membuka editor daftar untuk menambah, menghapus, mengurutkan ulang, dan menetapkan elemen tertentu ke null, sedangkan kolom enum menyediakan labelnya.",
+                "Tulis SQL dengan pelengkapan otomatis sadar skema. Lihat <explain>EXPLAIN dan EXPLAIN ANALYZE</explain> sebagai diagram atau pohon, dan bandingkan rencana dari dua proses.",
+                "Periksa jenis jsonb dan PostgreSQL yang diformat, termasuk uuid, inet, timestamptz, interval, dan bytea. Edit elemen array sebagai daftar; kolom enum menawarkan labelnya.",
                 "Nilai geometry dan geography PostGIS dibaca sebagai EWKT dengan SRID-nya, dan hasil bergeometri dibuka pada <results>Tampilan Peta</results>. Ubin peta berasal dari Apple; baris data tetap di Mac.",
                 "Perubahan baris ditampung hingga Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu, dan penyimpanan menggunakan parameter terikat. Baris materialized view hanya baca: refresh dari menunya, secara konkuren jika view memiliki indeks unik yang diwajibkan PostgreSQL."
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "Skema dan struktur",
             "paragraphs": [
-                "Semua skema yang dapat diakses dicantumkan. Buat dan edit skema dari lembar yang menulis CREATE SCHEMA, pemilik, komentar, serta izin USAGE dan CREATE, lalu menampilkannya sebelum dijalankan.",
-                "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, constraint CHECK, dan kolom generated. Tabel berpartisi mencantumkan partisi beserta batasnya, bertingkat jika partisi dipartisi lagi. Enum, komposit, domain, dan range tercantum di bawah Types, dan label enum dapat ditambah serta diganti namanya.",
+                "Telusuri skema yang dapat diakses. Buat atau edit skema beserta pemilik, komentar, dan izinnya, lalu tinjau SQL sebelum menerapkannya.",
+                "Siapkan perubahan kolom, indeks, kunci asing, CHECK, dan kolom hasil perhitungan di <structure>tab Structure</structure>. Telusuri batas partisi dan tipe PostgreSQL, termasuk enum, komposit, domain, dan rentang. Label enum dapat ditambahkan atau diganti namanya.",
                 "Definisi view dibangun ulang dengan nama skema pada setiap tabel, dan indeks yang tidak valid akibat kegagalan pembuatan konkuren disebutkan di tab Indexes.",
-                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema PostgreSQL atau datanya dan menulis skrip untuk menyelaraskannya, dengan menahan perubahan yang akan menghilangkan data."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) membandingkan skema atau data PostgreSQL dan menghasilkan skrip sinkronisasi. Perubahan yang dapat menghapus data ditahan untuk ditinjau."
             ]
         },
         {
             "id": "operate",
             "title": "Administrasi",
             "paragraphs": [
-                "<administer>Users & Roles</administer> menunjukkan asal setiap hak akses sebelum Anda memberikan atau mencabutnya dan menampung setiap pernyataan sebagai SQL.",
+                "Tinjau sumber setiap hak istimewa di <administer>Users & Roles</administer>. Perubahan pemberian dan pencabutan dipentaskan sebagai SQL.",
                 "Server Dashboard menampilkan sesi, koneksi, rasio cache hit, ukuran database, dan kueri lambat. Dashboard membatalkan kueri dengan <code>pg_cancel_backend</code> atau menghentikan sesi dengan <code>pg_terminate_backend</code>. Peran yang bukan superuser maupun anggota <code>pg_monitor</code> melihat sesi lain tanpa kuerinya.",
-                "Pemeliharaan tabel menjalankan VACUUM dengan opsi FULL, ANALYZE, dan VERBOSE, serta ANALYZE, REINDEX, dan CLUSTER, lalu menampilkan pernyataan terlebih dahulu.",
+                "Pratinjau VACUUM, ANALYZE, REINDEX dan CLUSTER sebelum menjalankan pemeliharaan tabel.",
                 "<backup>Backup Dump dan Restore Dump</backup> menjalankan {dumpTool} dan pg_restore milik Anda melalui tunnel SSH koneksi. Pasang menggunakan Homebrew; untuk mencadangkan server PostgreSQL 9.1, gunakan pg_dump 14 atau sebelumnya."
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> file {importFormats}; file data dimuat ke tabel yang Anda petakan per kolom, dan Anda memilih tindakan jika baris gagal. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mempertahankan komentar tabel, view, dan materialized view.",
-                "<copy>Copy To</copy> mengirim tabel, datanya, atau keduanya ke koneksi PostgreSQL lain atau mesin berbeda, serta mencantumkan setiap jenis kolom yang harus didekatkan ke jenis tujuan."
+                "File <importData>Import</importData> {importFormats} dengan pemetaan kolom dan penanganan kesalahan baris. Ekspor tabel atau hasil sebagai {exportFormats}; Ekspor SQL mempertahankan tabel, tampilan, dan komentar tampilan terwujud.",
+                "<copy>Copy To</copy> mentransfer tabel, data, atau keduanya ke koneksi atau mesin PostgreSQL lainnya. Tinjau semua jenis kolom yang harus diperkirakan."
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin adalah alat administrasi sumber terbuka yang telah lama digunakan untuk PostgreSQL, dengan debugger, perbandingan skema, serta pencadangan dan pemulihan. Cocok jika Anda hanya menggunakan PostgreSQL dan sebagian besar pekerjaan Anda adalah administrasi.",
+                "text": "pgAdmin berfokus pada administrasi PostgreSQL, termasuk debugger, perbedaan skema, serta pencadangan dan pemulihan.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 adalah aplikasi Mac untuk PostgreSQL yang berfokus pada penelusuran dan pengeditan. Dokumentasinya tidak mencakup administrasi seperti pencadangan dan pemulihan, pengelolaan pengguna, serta pemantauan. Cocok jika Anda hanya menggunakan PostgreSQL dan menginginkan aplikasi Mac yang terfokus."
+                "text": "Postico 2 berfokus pada penelusuran dan pengeditan PostgreSQL di Mac. Dokumentasinya tidak termasuk pencadangan dan pemulihan, manajemen dan pemantauan pengguna."
             }
         ],
         "notes": {

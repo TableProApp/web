@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "{devices} 用 Oracle Database クライアント",
-        "description": "Instant Client なしで Oracle Database に接続し、PL/SQL・SQL*Plus スクリプトを実行。DBMS_OUTPUT を読み、サーバーで Data Pump エクスポートを開始できます。"
+        "description": "Instant Client なしで Oracle Database に接続し、SQL・PL/SQL スクリプトを実行、DBMS_OUTPUT を表示、サーバーで Data Pump エクスポートを開始できます。"
     },
     "og": {
         "kicker": "データベース",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "{devices} 用 Oracle Database クライアント",
-        "lead": "ドライバーは Swift で Oracle の TNS プロトコルを使うため、Instant Client など Oracle のソフトを Mac に入れる必要はありません。SQL*Plus 向けのスクリプトを含む SQL と PL/SQL を実行し、各結果の横で DBMS_OUTPUT の出力を読めます。"
+        "title": "Oracle Database クライアント",
+        "lead": "Oracle Instant Client を入れずに SQL・PL/SQL を実行できます。DBMS_OUTPUT をクエリ結果と並べて確認できます。"
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホスト、リスナーポートと Service Name を入力し、サービスのないインスタンスでは <ui>Connection Type</ui> を SID にします。ユーザー名とパスワードで Normal、SYSDBA または SYSOPER ロールとしてログインします。",
+                "ホスト、リスナーポート、Service Name を入力するか、<ui>Connection Type</ui> で SID を選びます。パスワード認証は Normal、SYSDBA、SYSOPER に対応します。",
                 "Native Network Encryption は設定不要で、サーバーが要求すると SHA-2 チェックサム付き AES を提示します。<ui>Network Encryption</ui> は提示内容を変更します。TLS は TCPS 用 Required、または CA 証明書付き Verify CA・Verify Identity を選びます。新規接続は SSL 無効で、Preferred は平文 TCP のままです。",
                 "Oracle Autonomous Database では mTLS ではなく TLS 接続文字列からホスト、ポートとサービス名をコピーし、SSL を Required か Verify CA にします。ウォレットファイルは読まないため、データベースは相互 TLS なしの TLS を受け付ける必要があります。",
                 "RAC SCAN リスナー、共有サーバーやデータベース前のロードバランサーは設定不要です。プライベートネットワークのリスナーには <network>SSH トンネル</network> で接続します。"
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL、PL/SQL とトランザクション",
             "paragraphs": [
-                "PL/SQL ブロックやストアドユニットはセミコロンの数によらず一つの文として実行するので、中にカーソルを置いて実行してください。SQL*Plus や SQL Developer のスクリプトはそのまま動作し、<code>/</code> だけの行は直前のユニットを終えます。コンパイル失敗は Oracle のエラーを一行ずつ位置付きで表示します。",
+                "PL/SQL ブロックとストアドユニットを一つの文として実行できます。スクリプトでは <code>/</code> の行でユニットを区切ります。コンパイルエラーに Oracle のメッセージとソース位置を表示します。SQL*Plus のクライアントコマンドには対応しません。",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> の各行は出力した文の結果と表示し、<code>SET SERVEROUTPUT ON</code> は不要です。無名ブロックの <code>:name</code> はパネルで入力する <parameters>クエリパラメーター</parameters> です。",
                 "各文は成功時にコミットします。変更を保持するには <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> や <code>LOCK TABLE</code> で始めると、グリッド保存も含む以後のすべては <code>COMMIT</code> か <code>ROLLBACK</code> を待ちます。",
                 "各ユーザーがスキーマで、<code>⌘K</code> は再接続せずアクティブなものを切り替えます。行編集は <editing>Preview SQL</editing> で保留します。<code>EXECUTE IMMEDIATE</code> 経由でも削除や truncate を行うブロックは実行前に <safeMode>危険なクエリの警告</safeMode> を表示します。"
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "スキーマ",
             "paragraphs": [
-                "<structure>Structure タブ</structure> は <code>ALTER TABLE</code> でカラムを追加、名前変更、変更・削除し、インデックスを作成します。大文字小文字を区別する名前は二重引用符で囲みます。テーブル情報には主キー、外部キーと CREATE TABLE DDL も含みます。",
+                "<structure>Structure タブ</structure>で列の追加、名前変更、修正、削除、インデックス作成ができます。大文字・小文字を区別する名前は引用符で囲みます。主キー、外部キー、CREATE TABLE DDL を確認できます。",
                 "パーティションテーブルは配下に位置付きのパーティションを一覧表示し、サブパーティションをその中に表示します。一つを問い合わせるには <code>SELECT * FROM orders PARTITION (p2024)</code> を使います。",
-                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は二つの Oracle スキーマやデータを比較し、各ユニット後に <code>/</code> 行を入れた SQL*Plus や SQLcl 用スクリプトを保存します。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）は Oracle のスキーマやデータを比較します。スクリプトは SQL*Plus・SQLcl 用に <code>/</code> で区切ります。"
             ]
         },
         {

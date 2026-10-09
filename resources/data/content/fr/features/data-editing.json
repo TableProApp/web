@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Modification des données",
-        "title": "Parcourez et modifiez les données en toute sécurité"
+        "title": "Modification des données"
     },
     "header": {
-        "title": "Parcourez et modifiez les données en toute sécurité",
-        "lead": "Pour travailler directement sur les lignes : trouver celles qu’il vous faut, modifier quelques valeurs et le faire en production sans surprise. Les modifications attendent l’enregistrement, et chaque connexion décide du niveau de précaution de TablePro avant l’exécution d’une instruction.",
+        "title": "Modification des données",
+        "lead": "Filtrez les lignes, suivez les clés étrangères et modifiez les valeurs dans la grille. Les changements attendent l’enregistrement et le SQL peut être vérifié d’abord.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filtres et règles de surbrillance",
                     "paragraphs": [
-                        "La barre de filtres (<kbd>⌘⇧F</kbd>) construit une clause WHERE à partir de {filterOperatorCount} opérateurs, de = et BETWEEN à REGEX, ou accepte une condition SQL brute. Enregistrez un filtre pour une table et rappelez-le plus tard sans l’exécuter. Les règles de surbrillance colorent les lignes ou les cellules selon leurs valeurs, comme la mise en forme conditionnelle d’un tableur, et restent sur ce Mac."
+                        "Créez des filtres avec {filterOperatorCount} opérateurs ou une condition SQL, puis enregistrez-les. Les règles de surbrillance colorent les lignes ou cellules correspondantes et restent sur ce Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Clés étrangères et JSON",
                     "paragraphs": [
-                        "Suivez une clé étrangère jusqu’à la ligne vers laquelle elle pointe, dans un nouvel onglet, ou prévisualisez cette ligne dans une fenêtre contextuelle. Lorsque vous modifiez une colonne de clé étrangère, le sélecteur de valeurs liste les lignes référencées selon les colonnes de votre choix, comme le nom et le prénom d’un client. Les valeurs JSON s’ouvrent dans un visualiseur, avec un arbre pour s’y retrouver et un mode texte pour les modifier."
+                        "Suivez une clé étrangère vers sa ligne ou prévisualisez-la sur place. Un sélecteur aide à choisir parmi les lignes référencées. Ouvrez les valeurs JSON dans un arbre ou un éditeur de texte."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "Modifiez les données, puis enregistrez une fois",
+            "title": "Vérifiez les modifications avant d’enregistrer",
             "paragraphs": [
-                "Les modifications de cellules, les nouvelles lignes et les suppressions attendent dans l’onglet, signalées, jusqu’à ce que vous appuyiez sur <kbd>⌘S</kbd> ; rien n’est envoyé avant. <ui>Aperçu SQL</ui> (Preview SQL, <kbd>⌘⇧P</kbd>) liste les instructions avec leurs valeurs renseignées. L’enregistrement les envoie avec des paramètres liés, dans une seule transaction lorsque le moteur le permet, et vérifie que chaque instruction a modifié le nombre de lignes attendu ; sinon, l’enregistrement est annulé (rollback)."
+                "Modifications, nouvelles lignes et suppressions restent dans l’onglet jusqu’à l’enregistrement avec <kbd>⌘S</kbd>. <ui>Aperçu SQL</ui> (Preview SQL) affiche les instructions en attente. L’enregistrement lie les paramètres et vérifie le nombre de lignes affectées, avec transaction et annulation lorsque le moteur le permet."
             ],
             "points": [
                 "Éditeurs adaptés au type de colonne : date et heure, listes ENUM et SET, tableaux, JSON, éditeur hexadécimal pour valeurs binaires et visualiseur d’images.",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "Safe Mode pour les connexions de production",
+            "title": "Safe Mode",
             "paragraphs": [
-                "Chaque connexion a un niveau de Safe Mode : {macSafeModeLevels}. Les nouvelles connexions commencent au niveau {macSafeModeDefault}, où les instructions s’exécutent telles quelles. Alert demande confirmation avant une écriture ; les niveaux Safe Mode demandent aussi Touch ID ou le mot de passe de votre Mac, et les niveaux (Full) demandent aussi confirmation avant les lectures. Read-Only refuse les écritures et désactive la modification. Safe Mode est gratuit.",
-                "À tous les niveaux, DROP, TRUNCATE et un DELETE sans WHERE s’arrêtent et demandent d’abord confirmation. Certaines situations relèvent le niveau d’une connexion tant qu’elles s’appliquent : un moteur qui ne fait que lire, Agent mode, qui le porte au moins à Alert, et un niveau minimal fixé par votre organisation via la gestion des appareils (MDM)."
+                "Choisissez un niveau par connexion : {macSafeModeLevels}. Le niveau par défaut {macSafeModeDefault} exécute sans confirmation. Alert confirme les écritures ; Safe Mode ajoute Touch ID ou un mot de passe. Les niveaux Full confirment aussi les lectures. Read-Only bloque écritures et édition. Safe Mode est gratuit.",
+                "DROP, TRUNCATE et DELETE sans WHERE nécessitent toujours confirmation. Agent mode en pleine fenêtre impose au moins Alert. Les moteurs en lecture seule et la politique de gestion des appareils d’une organisation peuvent aussi relever le niveau effectif."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserve les valeurs remplacées pour que <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) les rétablisse. Une feuille de vérification montre d’abord ce qu’il adviendra de chaque ligne, y compris de celles qui ont changé après votre enregistrement ; la restauration passe par Safe Mode, dans une seule transaction lorsque le moteur le permet. Une restauration peut elle-même être restaurée.",
-                "Les valeurs restent sur ce Mac pendant {rewindDays} jours, chiffrées avec une clé conservée dans votre Trousseau, et ne se synchronisent jamais. À la fin d’une offre, TablePro cesse de consigner les enregistrements et <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) affiche une alerte à la place."
+                "Vérifiez et restaurez les valeurs remplacées par un enregistrement avec <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values). La revue signale les lignes modifiées depuis. Les restaurations suivent Safe Mode, dans une transaction lorsque le moteur le permet.",
+                "Les anciennes valeurs restent chiffrées sur ce Mac pendant {rewindDays} jours et ne se synchronisent jamais. L’enregistrement et la restauration s’arrêtent à la fin du forfait payant."
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documents et clés",
             "paragraphs": [
-                "Tous les moteurs ne stockent pas des lignes. Sur MongoDB, insérez et modifiez des documents entiers en Extended JSON, retirez un champ d’un document et renommez ou retirez un champ dans toute une collection depuis l’onglet Structure. Sur Redis, renommez les clés, définissez les TTL, modifiez les valeurs de type string dans la grille, ajoutez une clé string, hash, list, set ou sorted-set et modifiez les autres types avec des commandes dans l’éditeur."
+                "Modifiez les documents MongoDB en Extended JSON, ou renommez et supprimez des champs dans une collection. Sur Redis, modifiez les chaînes, renommez les clés et définissez les TTL dans la grille, ou ajoutez des clés string, hash, list, set ou sorted set. Utilisez les commandes de l’éditeur pour les autres types."
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "Sur iPhone et iPad",
             "paragraphs": [
-                "Dans l’application iPhone et iPad, les lignes s’affichent sous forme de cartes que vous pouvez trier, rechercher et filtrer avec AND et OR ; toucher une clé étrangère prévisualise la ligne vers laquelle elle pointe. Vous pouvez modifier une ligne et mettre une valeur à NULL, insérer des lignes et les supprimer d’un balayage ; la modification et la suppression nécessitent une clé primaire. Dans une nouvelle ligne, chaque champ part de sa valeur DEFAULT et peut passer à NULL ou à une chaîne vide.",
-                "Safe Mode y a ses propres niveaux, {iosSafeModeLevels}, avec {iosSafeModeDefault} par défaut pour les nouvelles connexions. Les modifications en attente, Preview SQL, les règles de surbrillance et Data Rewind n’existent que dans l’application Mac."
+                "Parcourez les lignes en cartes, triez et filtrez, ou touchez une clé étrangère pour voir sa ligne. Modifiez les valeurs ou définissez NULL ; édition et suppression nécessitent une clé primaire. Les nouvelles lignes commencent avec DEFAULT, avec NULL et chaîne vide comme alternatives.",
+                "Safe Mode mobile propose {iosSafeModeLevels}, avec {iosSafeModeDefault} par défaut. Les modifications en attente, Preview SQL, règles de surbrillance et Data Rewind sont actuellement réservés au Mac."
             ],
             "links": [
                 {

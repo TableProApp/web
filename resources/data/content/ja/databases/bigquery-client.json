@@ -10,8 +10,8 @@
     "engine": "bigquery",
     "breadcrumb": "Google BigQuery",
     "header": {
-        "title": "{devices} 用 Google BigQuery クライアント",
-        "lead": "プロジェクトのデータセットに GoogleSQL を書き、実行前にスキャン量を確認し、ジョブの請求上限を設定できます。行はグリッドで編集でき、テーブルは Mac を通さず Cloud Storage にアンロードできます。"
+        "title": "Google BigQuery クライアント",
+        "lead": "GoogleSQL を書き、クエリ費用を見積もり、課金対象バイト数の上限を設定できます。"
     },
     "asset": "mac-db-bigquery-dry-run",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Google Cloud で認証",
             "paragraphs": [
-                "<ui>Auth Method</ui> を選び、名前や番号ではなく ID を <ui>Project ID</ui> に入力します。<ui>Application Default Credentials</ui> は <code>gcloud auth application-default login</code> が書くファイルを読むため、gcloud 設定済みなら最短の方法です。<ui>Service Account Key</ui> は .json 鍵ファイルまたは貼り付けた JSON を使います。",
+                "<ui>Auth Method</ui> を選び、名前や番号ではなく <ui>Project ID</ui> を入力します。<ui>Application Default Credentials</ui> は gcloud のログインファイルを使い、<ui>Service Account Key</ui> は JSON ファイルや貼り付けたキーを受け付けます。",
                 "Google Account (OAuth) は Google Cloud Console で作成したデスクトップ OAuth クライアントでブラウザー認証します。更新トークンはクライアントごとに一つキーチェーンに保持し、次の接続ではブラウザー不要です。一つの OAuth クライアントで認証できるのは一つの Google アカウントなので、二つ目には別のクライアントか専用の更新トークンが必要です。",
                 "すべて BigQuery の REST API を使うため、ホスト、ポート、接続 URL や SSH トンネルはありません。<ui>Location</ui> は各ジョブに送る処理場所を設定します。<cloudAuth>クラウド認証</cloudAuth>も参照してください。"
             ]
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "クエリと費用の制御",
             "paragraphs": [
-                "実行前に <explain>Explain</explain> メニューの <ui>Dry Run (Cost)</ui> を選べます。処理・請求される予定のバイト数、キャッシュヒットフラグと米ドルの推定費用を表示し、クエリ自体は実行しません。",
-                "実行後のステータスバーは処理バイト数、請求バイト数とオンデマンド料金での推定費用を表示し、キャッシュヒットを示します。厳密な上限には Advanced タブの <ui>Max Bytes Billed</ui> を設定します。BigQuery は超えるジョブを実行せず拒否します。",
+                "<explain>Explain</explain> の <ui>Dry Run (Cost)</ui> で、実行せずに処理バイト数、課金バイト数、オンデマンド費用を見積もれます。結果にはキャッシュ状態も表示します。",
+                "実行後は処理バイト数、課金バイト数、推定オンデマンド費用、キャッシュ状態を確認できます。<ui>Max Bytes Billed</ui> を設定すると、課金バイト数が上限を超えるジョブを拒否します。",
                 "補完、引用と整形は GoogleSQL に従い、テーブル名をバッククォートで囲み、STRUCT と ARRAY は JSON 表示します。データセットがデータベースの役割を担い、サイドバーに表示します。<code>⌘K</code> で切り替え、各タブは開いたデータセットに留まります。ジョブはクエリタイムアウトまでポーリングしてキャンセルします。No limit なら完了まで待ちます。",
                 "セル、挿入と削除は <editing>グリッド</editing> で操作します。UPDATE と DELETE は宣言した主キーで特定し、なければ ARRAY、JSON、GEOGRAPHY 以外の全カラムで特定するため、同一行は一緒に変わります。一行を正確に編集するには <code>PRIMARY KEY (…) NOT ENFORCED</code> を宣言します。パーティションテーブルではエディターでパーティションフィルター付きの UPDATE と DELETE を書いてください。"
             ]
@@ -53,7 +53,7 @@
             "title": "データの移動",
             "paragraphs": [
                 "TablePro は BigQuery のインポートに対応しません。テーブルやクエリ結果を Mac に {exportFormats} で <export>エクスポート</export> できます。",
-                "<backup>Server-Side Export</backup> は <code>EXPORT DATA</code> でテーブルを <code>gs://</code> プレフィックス配下に分割し、CSV、Parquet や改行区切り JSON としてアンロードします。自分の接続と権限で実行し、シートは完了まで待機します。Mac にファイルを書きません。"
+                "<backup>Server-Side Export</backup> は <code>EXPORT DATA</code> で CSV、Parquet、改行区切り JSON を <code>gs://</code> 配下に出力します。あなたの権限で実行し、完了を待ちます。ファイルは Mac を経由しません。"
             ]
         }
     ],

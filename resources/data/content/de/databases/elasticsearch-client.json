@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "Elasticsearch-Client für {devices}",
-        "lead": "Eine Konsole für Query-DSL-Anfragen und ein Raster, das jeden Index als Tabelle liest und Dokumente über ihre <code>_id</code> bearbeitet. Beides läuft ohne SQL: Jede Aktion ist eine REST-Anfrage an den Cluster."
+        "title": "Elasticsearch-Client",
+        "lead": "Führe Query-DSL-Anfragen aus und durchsuche Indexdokumente im Raster. Bearbeite Dokumente anhand ihrer IDs."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und REST-Port des Clusters ein und wähle eine <ui>Auth Method</ui>. Username & Password sendet HTTP Basic. API Key sendet das Feld im Header <code>Authorization: ApiKey</code>; füge daher den <code>encoded</code>-Wert aus der Antwort auf die API-Schlüsselerstellung ein. Die Option None eignet sich für einen Entwicklungscluster ohne Sicherheit. Eine Verbindung erreicht einen Cluster, daher hat das Formular kein Datenbankfeld.",
+                "Gib REST-Host und Port ein und wähle <ui>Auth Method</ui> : Username & Password, API Key oder None. Nutze bei API-Schlüsseln den <code>encoded</code>-Wert. Jede Verbindung entspricht einem Cluster.",
                 "Neue Verbindungen beginnen mit SSL Disabled, also Klartext-HTTP. Jeder andere Modus nutzt HTTPS: Preferred und Required (skip verify) akzeptieren selbstsignierte Zertifikate; Verify CA und Verify Identity überprüfen sie. Elasticsearch 8.x aktiviert Sicherheit und TLS standardmäßig, daher benötigt ein 8.x-Cluster meist HTTPS und Zugangsdaten."
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "Indizes und Query-DSL-Konsole",
             "paragraphs": [
-                "Die Konsole nimmt Methode, Pfad und optionalen JSON-Body wie Kibana Dev Tools entgegen, etwa <code>GET /orders/_search</code> mit einer <code>match</code>-Abfrage. Suchtreffer werden als Zeilen angezeigt, <code>_cat</code>-Anfragen mit <code>format=json</code> und andere Array-Antworten als Tabelle, alles andere als formatiertes JSON. Der Endpunkt <code>_sql</code> ist nicht erreichbar.",
+                "Schreibe Methode, Pfad und optional JSON, etwa <code>GET /orders/_search</code>. Treffer und Arrays erscheinen als Zeilen, andere Antworten als formatiertes JSON. <code>_sql</code> ist nicht verfügbar.",
                 "Die Seitenleiste listet Indizes als Tabellen und verbirgt Namen, die mit einem Punkt beginnen. Spalten stammen aus dem Mapping: Objektfelder werden zu Punktpfaden wie <code>address.city</code>, ein verschachteltes Feld erhält eine JSON-Spalte für sein Array und eine Spalte pro Blatt. Jedes Dokument enthält <code>_id</code>, <code>_index</code> und <code>_score</code>.",
                 "<filters>Spaltenfilter</filters> werden zu <code>term</code>-, <code>range</code>-, <code>wildcard</code>-, <code>terms</code>- und <code>exists</code>-Abfragen. Die Raw-SQL-Filterzeile nimmt Lucene-Syntax wie <code>name:Widget</code> entgegen, gesendet als <code>query_string</code>. Beim Sortieren eines <code>text</code>-Feldes wird dessen <code>.keyword</code>-Unterfeld verwendet, sofern das Mapping eines hat.",
-                "Rasteränderungen werden zu REST-Aufrufen über <code>_id</code>: <code>_update</code> für ein geändertes Dokument, <code>_doc</code> zum Erstellen oder Löschen. Gib einer neuen Zeile eine <code>_id</code>, um das Dokument zu benennen. Ändere verschachtelte Arrays über ihre JSON-Spalte; ein Wert in einer Blattspalte stoppt das Speichern, nennt die Spalte und sendet nichts."
+                "Bearbeite Dokumente per <code>_id</code> über REST. Neue Dokumente brauchen eine ID. Bearbeite verschachtelte Arrays in der JSON-Spalte; Änderungen an Blattspalten verhindern das Speichern, ohne eine Anfrage zu senden."
             ]
         },
         {

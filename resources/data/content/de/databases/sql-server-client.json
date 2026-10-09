@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "SQL-Server-Client für {devices}",
-        "lead": "Führe T-SQL-Skripte Batch für Batch aus, mit GO und PRINT wie in SQL Server Management Studio, und melde dich mit SQL-Server-Login, Kerberos oder Microsoft-Entra-ID-Geschäftskonto an. Server unter Windows, Linux, Docker und Azure SQL Database verbinden gleich."
+        "title": "SQL-Server-Client",
+        "lead": "Führe T-SQL-Skripte mit GO-Batches und PRINT-Ausgabe aus. Verbinde dich mit SQL-Server-Anmeldung, Kerberos oder Microsoft Entra ID."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und TCP-Port an und wähle <ui>Authentication</ui>; das Formular passt sich an: SQL-Server-Login und Passwort, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID. Fülle Datenbank für einen datenbankgebundenen Login wie einen Azure-SQL-Contained-User aus.",
+                "Gib Host und TCP-Port ein und wähle <ui>Authentication</ui>: SQL-Server-Anmeldung, Kerberos oder Microsoft Entra ID. Datenbankgebundene Anmeldungen, auch Azure-SQL-Contained-Users, brauchen außerdem das Feld Database.",
                 "Kerberos nutzt das Ticket im Zugangsdaten-Cache oder fordert eines mit eingegebenem Prinzipal und Passwort an. Verbinde per Hostname statt IP, weil das Ticket für den registrierten SPN des Servers gilt. TablePro führt nie <code>kinit</code> aus und bearbeitet nie <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> meldet per Gerätecodefluss an, der MFA und Conditional Access respektiert. Registriere eine App in Azure und gib ihre Client-ID ein; Tokens bleiben im Anmeldeschlüsselbund als nur auf diesem Gerät nutzbar und werden im Hintergrund erneuert.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> nutzt Gerätecode-Anmeldung mit Mehrfaktor-Authentifizierung und Conditional Access. Registriere eine Azure-Anwendung und gib ihre Client-ID ein. Tokens werden im Hintergrund erneuert und bleiben im gerätegebundenen Anmeldeschlüsselbund.",
                 "Neue Verbindungen beginnen mit Preferred, das bei SQL Server nur die Anmeldung verschlüsselt. Wähle Required oder strenger für die ganze Sitzung; Verify CA und Verify Identity nutzen macOS-Systemwurzeln. TablePro kann auch den Cloud SQL Auth Proxy für Google Cloud SQL ausführen; <network>SSH-Tunnel</network> erreichen private Netzwerke."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "Skripte, Batches und Änderungen",
             "paragraphs": [
-                "Ein Skript erreicht den Server Batch für Batch, geteilt an Zeilen mit nur <code>GO</code> wie bei sqlcmd; <code>GO 5</code> führt den vorherigen Batch fünfmal aus. Jede Ergebnismenge öffnet einen eigenen Tab; <code>PRINT</code> und Informationsmeldungen erscheinen in Ausgabe.",
-                "Setze <code>BEGIN TRAN</code> und <code>COMMIT</code> ins Skript, wenn ein Fehler vorherige Batches rückgängig machen muss; eine offen gebliebene Transaktion wird am Ende gemeldet. Die Ausführung stoppt beim ersten fehlgeschlagenen Batch, und der Fehler nennt seine Editorzeile.",
+                "Skripte werden an <code>GO</code>-Zeilen getrennt; <code>GO 5</code> wiederholt den vorigen Batch fünfmal. Jeder Ergebnissatz öffnet einen eigenen Tab. Lies <code>PRINT</code>-Ausgaben und Informationsmeldungen in Output.",
+                "Nutze <code>BEGIN TRAN</code> und <code>COMMIT</code> für transaktionale Batches. Eine offene Transaktion erzeugt einen Hinweis. Die Ausführung stoppt am ersten fehlgeschlagenen Batch; der Fehler zeigt seine Editorzeile.",
                 "Jede Sitzung startet mit den SET-Optionen für gefilterte Indizes, indizierte Sichten und Indizes berechneter Spalten, etwa aktivem <code>ANSI_NULLS</code> und <code>QUOTED_IDENTIFIER</code>. Daher findet <code>col = NULL</code> nichts: Vergleiche mit <code>IS NULL</code>.",
                 "Tabellen liegen unter ihren Schemas; <code>⌘K</code> wechselt die Datenbank ohne Neuverbinden. Änderungen werden mit <editing>Preview SQL</editing> vorgemerkt, neue Zeilen überlassen IDENTITY-Spalten dem Server, und <code>nvarchar(max)</code> kommt vollständig an."
             ]
@@ -50,7 +50,7 @@
             "title": "Schema",
             "paragraphs": [
                 "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln und Bedingungen vor und zeigt T-SQL vorher. Schemas werden in der Seitenleiste gelöscht; SQL Server verweigert Schemas mit Objekten. Erstelle eines mit CREATE SCHEMA im Editor.",
-                "<compareSync>Compare & Sync</compareSync> im Tarif {compareSyncTier} vergleicht zwei SQL-Server-Schemas oder Daten und speichert ein Skript mit <code>GO</code> nach jeder Anweisung, bereit für sqlcmd oder SQL Server Management Studio."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht SQL-Server-Schemas oder Daten. Erzeugte Skripte trennen Anweisungen mit <code>GO</code> für sqlcmd oder SQL Server Management Studio."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Daten übertragen",
             "paragraphs": [
-                "<importData>Importiere</importData> {importFormats}-Dateien. Eine <code>.sql</code>-Datei mit <code>GO</code> läuft Batch für Batch wie sqlcmd. Exportiere Tabellen oder Ergebnisse als {exportFormats}; SQL-Export endet jede Anweisung mit <code>GO</code> als eigenem Batch."
+                "<importData>Import</importData> liest {importFormats}-Dateien. SQL-Dateien beachten <code>GO</code>-Batches. Exportiere Tabellen oder Ergebnisse als {exportFormats}; SQL-Exporte nutzen ebenfalls <code>GO</code>-Trennzeichen."
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio ist Microsofts eigenes Tool für SQL Server und Azure SQL. Wähle es für Verwaltung außerhalb von TablePro, etwa SQL-Server-Agent-Jobs, Always-On-Verfügbarkeitsgruppen, Live-Abfragestatistiken und Performance-Tuning.",
+                "text": "SQL Server Management Studio bietet weitergehende Verwaltung als TablePro, etwa SQL-Server-Agent-Jobs, Always-On-Verfügbarkeitsgruppen, Live-Abfragestatistiken und Leistungsoptimierung.",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

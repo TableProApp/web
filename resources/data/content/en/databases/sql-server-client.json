@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "SQL Server client for {devices}",
-        "lead": "Run T-SQL scripts batch by batch, with GO and PRINT handled the way SQL Server Management Studio handles them, and sign in with a SQL Server login, Kerberos or a Microsoft Entra ID work account. Servers on Windows, Linux, Docker and Azure SQL Database connect the same way."
+        "title": "SQL Server client",
+        "lead": "Run T-SQL scripts with GO batches and PRINT output. Connect with a SQL Server login, Kerberos or Microsoft Entra ID."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give the host and the TCP port, then choose <ui>Authentication</ui> and the form follows it: a SQL Server login and password, Windows Authentication through Kerberos, or Microsoft Entra ID. Fill in Database for a login that belongs to one database, such as an Azure SQL contained user.",
+                "Enter a host and TCP port, then choose <ui>Authentication</ui>: SQL Server login, Kerberos or Microsoft Entra ID. Database-scoped logins, including Azure SQL contained users, also need the Database field.",
                 "Kerberos uses the ticket already in your credential cache, or requests one from a principal and password you enter. Connect by hostname rather than IP address, because the ticket is issued for the server’s registered SPN. TablePro never runs <code>kinit</code> or edits <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> signs in through the device code flow, which honours multifactor authentication and Conditional Access. You register an application in Azure and enter its client ID; tokens stay in your login keychain, marked device-only, and refresh in the background.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> uses device-code sign-in with multifactor authentication and Conditional Access. Register an Azure application and enter its client ID. Tokens refresh in the background and stay in the device-only login keychain.",
                 "New connections start on Preferred, which on SQL Server encrypts the login only. Choose Required or stricter to encrypt the whole session; Verify CA and Verify Identity check the certificate against the macOS system roots. TablePro can also run the Cloud SQL Auth Proxy for Google Cloud SQL, and <network>SSH tunnels</network> reach servers on a private network."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "Scripts, batches and edits",
             "paragraphs": [
-                "A script reaches the server one batch at a time, split at each line that holds only <code>GO</code>, as sqlcmd sends it, and <code>GO 5</code> runs the batch before it five times. Each result set opens in its own tab, and <code>PRINT</code> output and informational messages show in the Output view.",
-                "Put <code>BEGIN TRAN</code> and <code>COMMIT</code> in a script when a failure has to undo the batches before it; a script that leaves a transaction open ends with a notice saying so. The run stops at the first batch that fails, and the error names its line in the editor.",
+                "Scripts split at <code>GO</code> lines; <code>GO 5</code> repeats the preceding batch five times. Each result set opens in a separate tab. Read <code>PRINT</code> output and informational messages in Output.",
+                "Use <code>BEGIN TRAN</code> and <code>COMMIT</code> when batches must be transactional. An open transaction produces a notice. Execution stops at the first failed batch, with its editor line in the error.",
                 "Every session opens with the SET options that filtered indexes, indexed views and indexes on computed columns require, such as <code>ANSI_NULLS</code> and <code>QUOTED_IDENTIFIER</code> on. That also means <code>col = NULL</code> matches nothing: compare with <code>IS NULL</code>.",
                 "Tables nest under their schema in the sidebar, and <code>⌘K</code> changes database in place, with no reconnect. Row edits are staged with <editing>Preview SQL</editing>, new rows leave IDENTITY columns to the server, and <code>nvarchar(max)</code> values arrive whole."
             ]
@@ -50,7 +50,7 @@
             "title": "Schema",
             "paragraphs": [
                 "The <structure>Structure tab</structure> stages changes to columns, indexes, foreign keys and constraints, and shows the T-SQL before it runs. Schemas can be dropped from the sidebar; SQL Server refuses to drop a schema that still holds objects. Create one with CREATE SCHEMA in the editor.",
-                "<compareSync>Compare & Sync</compareSync>, part of the {compareSyncTier} plan, compares two SQL Server schemas, or their data, and saves a script with a <code>GO</code> line after each statement, ready for sqlcmd or SQL Server Management Studio."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compares SQL Server schemas or data. Generated scripts separate statements with <code>GO</code> for sqlcmd or SQL Server Management Studio."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Move data",
             "paragraphs": [
-                "<importData>Import</importData> {importFormats} files. A <code>.sql</code> file with <code>GO</code> lines runs a batch at a time, the way sqlcmd runs it. Export tables or results as {exportFormats}; a SQL export ends every statement with a <code>GO</code> line, so each runs as its own batch."
+                "<importData>Import</importData> {importFormats} files. SQL files respect <code>GO</code> batches. Export tables or results as {exportFormats}; SQL exports also use <code>GO</code> separators."
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio is Microsoft’s own tool for SQL Server and Azure SQL. Choose it for the administration TablePro does not cover, such as SQL Server Agent jobs, Always On availability groups, live query statistics and its performance tuning tools.",
+                "text": "SQL Server Management Studio covers administration beyond TablePro, including SQL Server Agent jobs, Always On availability groups, live query statistics and performance tuning.",
                 "notes": ["ssms-github-copilot-component"]
             },
             {

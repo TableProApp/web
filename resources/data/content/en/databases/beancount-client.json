@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Query a Beancount ledger with SQL on {devices}",
+        "title": "Beancount client for {devices}",
         "description": "Open a Beancount ledger as read-only SQL tables of transactions, postings, balances and metadata, follow its includes, and run BQL through rledger."
     },
     "og": {
@@ -10,8 +10,8 @@
     "engine": "beancount",
     "breadcrumb": "Beancount",
     "header": {
-        "title": "Query a Beancount ledger with SQL on {devices}",
-        "lead": "Open a <code>.beancount</code> file and query its transactions, postings, balances and metadata as SQL tables, or send BQL to rledger. The ledger stays a text file that you edit in your own editor."
+        "title": "Beancount client",
+        "lead": "Query a ledger as SQL tables or use BQL with rledger. Edit the source ledger in your own text editor."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -24,8 +24,8 @@
             "id": "connect",
             "title": "Open a ledger",
             "paragraphs": [
-                "TablePro runs <code>rledger</code> or Python Beancount to read the ledger. If you are choosing one, install rledger: it wins when both are present, BQL runs through it alone, and only it fills the <code>diagnostics</code> table with validation output.",
-                "Choose the file with <ui>Browse…</ui> in the connection form. The ledger path is the whole connection, with no host, port, password or database. A <code>.beancount</code> file also opens from Finder, and <code>beancount:///path/to/main.beancount</code> URLs import.",
+                "Install <code>rledger</code> or Python Beancount. rledger takes precedence when both are available; only rledger supports BQL and validation output in <code>diagnostics</code>.",
+                "Choose a ledger with <ui>Browse…</ui> or open a <code>.beancount</code> file from Finder. The path is the entire connection. <code>beancount:///path/to/main.beancount</code> URLs can also be imported.",
                 "An app opened from Finder does not inherit your shell’s <code>PATH</code>. If the backend runs in Terminal but not here, name it with <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> or <code>TABLEPRO_BEANCOUNT_PYTHON</code> and relaunch.",
                 "The Python backend runs the plugins that ship with Beancount and skips any other <code>plugin</code> directive, which is third-party code, until you turn on <ui>Run Ledger Plugins</ui> for that connection. Skipped plugins are listed in <code>diagnostics</code>."
             ]
@@ -34,7 +34,7 @@
             "id": "work",
             "title": "Query the ledger",
             "paragraphs": [
-                "The tables cover transactions and postings, accounts, balances and balance assertions, prices and commodities, every other directive, metadata, tags and links, and the source files. Postings join transactions on <code>transaction_id</code>, and accounts join by name.",
+                "Query transactions, postings, accounts, balances, prices, directives, metadata and source files as tables. Join postings to transactions on <code>transaction_id</code>, and accounts by name.",
                 "Amounts arrive booked, with arithmetic, costs and prices resolved, and posting costs and inline prices in columns of their own. Transactions, postings and several directive tables carry a <code>source_location</code> such as <code>main.beancount:42</code>, so a row leads back to its line.",
                 "Prefix a query with <code>BQL:</code> to send it to rledger instead of the tables. Browsing, row counts and paging work on a BQL result; SQL parameters do not.",
                 "<code>include</code> directives are followed, literal paths and globs alike, and every ledger file and referenced document is watched. Save a change in your editor and the next query reads it without reconnecting. The connection is always at <safeMode>Safe Mode</safeMode> Read-Only, so INSERT, UPDATE, DELETE and schema changes are refused."

@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "Trino client for {devices}",
-        "lead": "Join tables from different catalogs in one query, read the plan Trino will run, and stop a runaway query on the coordinator. What a write can do depends on the connector behind each catalog."
+        "title": "Trino client",
+        "lead": "Query across catalogs, inspect plans and cancel running queries. Write support depends on each catalog’s connector."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Connect and sign in",
             "paragraphs": [
-                "Enter the coordinator’s host and port and a <ui>Username</ui>, the user your queries run as. <ui>Catalog</ui> and <ui>Schema</ui> are optional starting points; leave Catalog empty to browse every catalog. An IANA <ui>Time Zone</ui> in the Options section sets the session’s zone.",
+                "Enter the coordinator host, port and <ui>Username</ui>. Optional <ui>Catalog</ui> and <ui>Schema</ui> set the starting location. Set an IANA <ui>Time Zone</ui> for the session.",
                 "Sign in with a password, sent as HTTP Basic for LDAP or password-file authentication, or with a JWT access token sent as a bearer credential. Either one goes only over TLS: with SSL Disabled, a connection that holds one is refused before anything is sent. A client certificate and key on the SSL pane add mutual TLS.",
                 "SSL starts Disabled, which is plain HTTP; every other mode forces TLS with no plaintext fallback, and port 443 turns on Verify Identity. A redirect from a proxy in front of the coordinator is never followed; the error names where it pointed. Reach a coordinator behind a bastion through an <network>SSH tunnel</network>, and bring a <code>trino://</code> URL in with <ui>Import from URL…</ui>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Query across catalogs",
             "paragraphs": [
-                "A connection opens on a catalog and schema, and any query can still name <code>catalog.schema.table</code> in full, such as a join between a Hive table and a PostgreSQL table. The sidebar expands each catalog into schemas and tables, with materialized views beside tables and views and row counts from <code>SHOW STATS</code>.",
+                "Query fully qualified <code>catalog.schema.table</code> names to join across catalogs. Browse catalogs, schemas, tables and materialized views; row-count estimates come from <code>SHOW STATS</code>.",
                 "<code>bigint</code> and <code>decimal</code> are read as exact text, not floating point. <code>varbinary</code> shows as hex, <code>array</code>, <code>map</code> and <code>row</code> as JSON, and timestamps keep the value the server returned.",
                 "<explain>Explain</explain> offers Logical, Distributed, IO, Validate and Analyze. Validate checks a query without running it, Analyze runs it and reports actual timings, and every plan comes back as raw text.",
                 "<code>SET SESSION</code> holds for the rest of the connection. <ui>Query > Cancel Query</ui> tells the coordinator to kill the running query, and that is the way to stop one: the connection’s query timeout does not reach Trino.",
-                "<editing>Cell edits</editing> become INSERT, UPDATE and DELETE, each value carrying its Trino type. Trino reports no primary keys, so an edit matches on every column of the row as it was read, with no transaction to roll it back. Editing one of two identical rows changes both; check for duplicates first."
+                "<editing>Cell edits</editing> use typed INSERT, UPDATE and DELETE statements. Trino reports no primary keys, so edits match every original column. Identical rows change together, with no transaction to undo them. Check for duplicates before editing."
             ]
         },
         {

@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "{devices} 用 Apache Kafka クライアント",
-        "lead": "選んだ開始位置からトピックを読み、各コンシューマーグループの遅延を確認し、テストメッセージを送信します。すべて TablePro 独自のコマンド言語 KafkaQL で行います。トピックはログなので、グリッドはメッセージを読み取り、編集はしません。"
+        "title": "Apache Kafka クライアント",
+        "lead": "トピックのメッセージやコンシューマーの遅延を確認し、TablePro 独自のコマンド言語 KafkaQL でテストメッセージを送信できます。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "一つのブローカーのホストとポートを入力すると、残りのクラスターを検出します。<ui>Additional Bootstrap Servers</ui> は最初が応答しない場合に試すブローカーを指定します。一つの接続は一つのクラスターで、Database フィールドはなく、サイドバーにトピックを直接表示します。",
+                "ブートストラップブローカーのホストとポートを入力します。<ui>Additional Bootstrap Servers</ui> で予備のブローカーを追加できます。各接続は一つのクラスターにつながり、サイドバーにトピックを表示します。",
                 "<ui>Security Protocol</ui> は PLAINTEXT、SSL、SASL_PLAINTEXT または SASL_SSL、<ui>SASL Mechanism</ui> は PLAIN、SCRAM-SHA-256 または SCRAM-SHA-512 です。PLAIN は Confluent Cloud、SCRAM は Amazon MSK と自己ホストのブローカー向けです。SSL または SASL_SSL で SSL モード未選択なら証明書チェーンとホスト名を検証します。プライベート CA は <ui>CA Certificate</ui>、クライアント証明書と鍵は相互 TLS に使います。",
                 "<network>SSH トンネル</network> では接続がブートストラップブローカーに留まり、そのブローカーがリーダーのパーティションだけを読みます。<ui>Import from URL…</ui> は <code>kafka://</code> URL を受け付けますが、macOS はリンクとして開きません。"
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "読み取り、確認と送信",
             "paragraphs": [
-                "トピックを開くと最近のメッセージを新しいものが最後になる順序で表示し、パーティション、オフセット、タイムスタンプ、キー、値、ヘッダーとサイズを示します。読みやすくするため異なるパーティションを時刻で混在させますが、メッセージの識別はパーティションとオフセットです。UTF-8 ではないキーや値は十六進数で表示し、tombstone と空のメッセージを区別します。",
-                "KafkaQL は並べ替えや絞り込みの代わりに開始位置を指定します。<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code> または ISO 8601 時刻付き <code>FROM TIME</code> で、任意のパーティションに限定できます。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code> と <code>DESCRIBE TOPIC</code> でクラスターの他の情報を確認します。",
+                "最近のメッセージをパーティション、オフセット、時刻、キー、値、ヘッダーとともに参照できます。パーティションをまたぐメッセージは時刻順に並び、パーティションとオフセットで識別します。UTF-8 以外の値は 16 進数で表示し、トゥームストーンと空メッセージは区別します。",
+                "KafkaQL で最新、最古、指定オフセット、ISO 8601 の時刻から読み取れます。対象パーティションも指定できます。SHOW はトピック、ブローカー、グループ、クラスター情報を一覧表示し、DESCRIBE TOPIC はトピックを調べます。",
                 "<code>DESCRIBE GROUP</code> はパーティションごとのコミット済みオフセット、末尾オフセットと差分を示す遅延レポートです。グループが一度もコミットしていないパーティションはゼロから数えず遅延なしと表示します。ブローカーにアクセスできないと <code>SHOW GROUPS</code> は一覧が不完全と示します。",
                 "<code>PRODUCE INTO</code> は任意のキー、ヘッダーとパーティションを持つメッセージを書き込みます。キーがありパーティション未指定なら Kafka 自身の producer と同じ場所に送ります。gzip、snappy、lz4、zstd バッチは読み取り時に展開し、設定の選択は不要です。",
-                "Kafka に更新、メッセージ単位の削除、サーバー側の並べ替えがないため、セル編集、行削除やカラムソートはできず、操作を無効表示にします。各ページは前の終了位置から続けるため、書き込み中のトピックでもメッセージを重複・欠落させません。"
+                "メッセージの編集や個別削除、列のソートはできません。新しいメッセージが届いても、前の位置からページ送りを続けます。"
             ]
         },
         {

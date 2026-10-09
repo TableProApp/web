@@ -6,9 +6,9 @@ export default {
         guides: 'Hướng dẫn',
         releases: 'Ghi chú phát hành',
     },
-    latest: 'Một số phiên bản còn có bài viết trên blog. Bài mới nhất là <post>{title}</post>.',
+    latest: 'Bài phát hành mới nhất: <post>{title}</post>.',
     post: {
-        archive: 'Bài viết đăng ngày {date}, mô tả {release} tại thời điểm đó. Để biết TablePro hiện có những gì, hãy xem <features>Tính năng</features> và <changelog>changelog</changelog> (tiếng Anh).',
+        archive: 'Đăng ngày {date}. Bài viết mô tả {release} lúc phát hành. Xem <features>tính năng hiện tại</features> và <changelog>changelog</changelog> (tiếng Anh).',
         correction: 'Đính chính ngày {date}',
         toc: 'Trên trang này',
         pages: 'Trang liên quan',

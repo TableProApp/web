@@ -1,7 +1,7 @@
 ---
 title: Política de privacidad
 description: Qué recopilan las apps, el sitio web y el portal de cuentas de TablePro, adónde se envía, cuánto tiempo se conserva y cómo modificarlo o eliminarlo.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
@@ -124,7 +124,7 @@ Handoff transmite el identificador de la conexión abierta y el nombre de la tab
 
 **Documentación.** La documentación en docs.tablepro.app está alojada en Mintlify, que recibe tu dirección IP y los datos de tu navegador con cada página, y las páginas cargan sus fuentes desde Google Fonts. La documentación hace su propia pregunta sobre cookies, porque no puede leer la respuesta que diste en este sitio. Hasta que selecciones **Allow** allí, no establece cookies ni guarda ningún ID de visitante. Si lo permites, Google Analytics establece las cookies `_ga` y `_ga_<ID>` y mide tus visitas a la documentación, y Mintlify guarda un ID de visitante aleatorio, `mintlify_anonymous_id`, en el almacenamiento local para contarlas. **Cookie settings**, en el pie de la documentación, cambia tu respuesta, y al rechazar se eliminan ambos. Base jurídica: tu consentimiento.
 
-Leer el sitio no establece cookies propias. Suscribirse al boletín o iniciar una compra o una comprobación de código de descuento envía una solicitud a nuestro servidor que establece las dos cookies del portal de cuentas, `tablepro-session` y `XSRF-TOKEN`. Todo lo que el sitio conserva en tu navegador aparece en [Cookies y almacenamiento del navegador](#cookies).
+Leer el sitio no establece cookies propias. Las solicitudes de suscripción al boletín, compra y comprobación de códigos de descuento desde el sitio público omiten las credenciales: no envían cookies del portal de cuentas ni aceptan cookies de la respuesta. Abrir páginas del portal es una acción separada que establece las cookies del portal indicadas abajo. Todo lo que el sitio conserva en tu navegador aparece en [Cookies y almacenamiento del navegador](#cookies).
 
 ## Compras {#purchases}
 
@@ -144,7 +144,7 @@ Si te suscribes a las notas de versión, almacenamos tu correo y el idioma de la
 
 ## Cookies y almacenamiento del navegador {#cookies}
 
-Leer el sitio público no establece cookies propias; suscribirse al boletín o iniciar una compra establece las dos cookies del portal estrictamente necesarias indicadas abajo. Cloudflare Web Analytics no establece cookies ni almacena nada en tu navegador. Las cookies de Google Analytics no se establecen hasta que las permites. Crisp establece sus cookies en todas las páginas una vez cargado el chat. Nada de esto se usa para publicidad ni se vende.
+Leer el sitio público y sus solicitudes de boletín, compra y códigos de descuento no establecen cookies propias. Abrir páginas del portal establece las dos cookies estrictamente necesarias indicadas abajo. Cloudflare Web Analytics no establece cookies ni almacena nada en tu navegador. Las cookies de Google Analytics no se establecen hasta que las permites. Crisp establece sus cookies en todas las páginas una vez cargado el chat. Nada de esto se usa para publicidad ni se vende.
 
 - **`_ga` y `_ga_<ID>`** (cookies de Google Analytics, hasta 2 años, solo si permites el análisis): un identificador aleatorio del navegador y el estado de tu visita actual. Rechazarlas, o cambiar tu respuesta después, las elimina. Base jurídica: consentimiento.
 - **`tablepro:analytics-consent`** (almacenamiento local, hasta que lo borres): tu respuesta a la pregunta sobre análisis, para no preguntarte en todas las páginas. El sitio web y el portal de cuentas lo comparten. Base jurídica: estrictamente necesario para respetar tu elección.
@@ -152,7 +152,7 @@ Leer el sitio público no establece cookies propias; suscribirse al boletín o i
 - **`theme`** y **`tablepro:banner-dismissed`** (almacenamiento local, hasta que lo borres): si elegiste apariencia clara, oscura o del sistema, y qué aviso cerraste y hasta cuándo: 30 días, o un año si indicas que tienes licencia o compras una. Base jurídica: interés legítimo.
 - **`mintlify_anonymous_id`** (almacenamiento local en docs.tablepro.app, lo guarda Mintlify, solo si permites Google Analytics allí): el ID de visitante descrito en [Sitio web](#website). Al rechazar se elimina. La documentación guarda su propia respuesta `tablepro:analytics-consent`. Base jurídica: consentimiento.
 - **Cookies que comienzan por `crisp-client/`** (Crisp, por ejemplo `crisp-client/session/…`; 6 meses, renovados cuando vuelves; establecidas en todas las páginas al cargar el chat): mantienen el chat y tu conversación entre páginas y visitas. Base jurídica: interés legítimo, para ofrecer soporte en todas las páginas.
-- **`tablepro-session` y `XSRF-TOKEN`** (cookies del portal de cuentas, 2 horas): mantienen tu sesión iniciada y protegen los formularios del portal contra falsificación de solicitudes entre sitios. Otras páginas del portal, como la confirmación de compra y las páginas del boletín, también las establecen, al igual que suscribirse al boletín o iniciar una compra o una comprobación de código de descuento desde cualquier página del sitio. Base jurídica: estrictamente necesarias.
+- **`tablepro-session` y `XSRF-TOKEN`** (cookies del portal de cuentas, 2 horas): mantienen tu sesión iniciada y protegen los formularios del portal contra falsificación de solicitudes entre sitios. Abrir otras páginas del portal, como la confirmación de compra y las páginas del boletín, también las establece. Las solicitudes de boletín, compra y códigos de descuento desde el sitio público omiten las credenciales y no conservan estas cookies. Base jurídica: estrictamente necesarias.
 
 Puedes cambiar o retirar tu respuesta sobre análisis en cualquier momento desde **Configuración de cookies** en el pie de todas las páginas, o aquí:
 

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass: satu database atau banyak",
+        "title": "TablePro vs MongoDB Compass: shell atau alat visual",
         "description": "MongoDB Compass adalah GUI gratis dari MongoDB, dengan tahap agregasi dan analisis skema. TablePro mendukung MongoDB bersama SQL dan Redis di Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass adalah GUI gratis resmi dari MongoDB untuk menjelajahi data, membangun pipeline agregasi, dan mempelajari skema sebuah koleksi. TablePro adalah klien sumber terbuka yang terhubung ke MongoDB bersama database SQL, Redis, dan mesin lain, dengan fitur berbayar opsional pada Mac."
+        "lead": "Compass adalah GUI milik MongoDB, dengan pembuat agregasi dan analisis skema. TablePro menempatkan MongoDB bersama database SQL Anda dan mesin lainnya."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB adalah salah satu dari beberapa database yang Anda gunakan, bersama PostgreSQL, MySQL, SQL Server, atau Redis, dan Anda menginginkan satu klien untuk semuanya.",
-            "Anda menyukai shell bergaya mongosh, dengan variabel, perulangan, dan pelengkapan otomatis untuk koleksi, jalur field, dan operator.",
-            "Anda ingin mengganti nama atau menghapus field di seluruh koleksi, dengan setiap pernyataan ditampilkan sebelum dijalankan.",
-            "Anda menginginkan asisten AI dengan penyedia pilihan Anda, di cloud atau di Mac Anda, serta server MCP untuk klien AI eksternal."
+            "MongoDB bersama PostgreSQL, MySQL, SQL Server atau Redis.",
+            "Shell bergaya mongosh dengan variabel, loop, dan pelengkapan otomatis.",
+            "Bidang seluruh koleksi berubah, dengan pernyataan ditampilkan sebelum dijalankan."
         ],
         "competitor": [
-            "MongoDB adalah satu-satunya database Anda, dan Anda menginginkan alat gratis resmi dari MongoDB.",
-            "Anda membangun pipeline agregasi tahap demi tahap dan menginginkan pratinjau setelah setiap tahap.",
-            "Anda mempelajari skema sebuah koleksi, atau memodelkan koleksi beserta relasinya dalam diagram.",
-            "Anda menginginkan explain plan visual dan metrik server langsung untuk MongoDB.",
-            "Anda juga bekerja di Windows atau Linux."
+            "Pembuat agregasi tahap demi tahap dengan pratinjau.",
+            "Analisis skema, pemodelan koleksi, dan diagram hubungan.",
+            "Rencana penjelasan visual dan metrik server MongoDB langsung."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass adalah GUI resmi dari MongoDB, dan gratis.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Pipeline agregasi dibangun tahap demi tahap, dengan pratinjau data setelah setiap tahap.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Compass mengambil sampel dokumen sebuah koleksi untuk menampilkan tipe field, rentang tanggal, dan nilai yang sering muncul, serta menggambar diagram entitas-relasi untuk koleksi dalam sebuah database.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Explain plan ditampilkan secara visual, dan metrik server langsung sudah tersedia.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Compass berjalan di Windows, macOS, dan Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "<link>Asisten AI</link> bekerja dengan penyedia AI pilihan Anda, di cloud atau di Mac Anda, dan server MCP memungkinkan klien AI eksternal menggunakan koneksi tersimpan Anda. Keduanya gratis. Fitur AI Compass menggunakan Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "AI apa yang digunakan masing-masing?",
             "answer": "Kueri bahasa alami dan asisten Compass menggunakan Azure OpenAI, dan Anda dapat mematikan fitur AI di pengaturannya. Asisten AI TablePro menggunakan penyedia pilihan Anda, termasuk model di Mac Anda, dan gratis dalam aplikasi Mac. <link>Baca tentang AI di TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis untuk MongoDB?",
-            "answer": "Ya. MongoDB dan mesin lain yang didukung, asisten AI, serta server MCP gratis dalam aplikasi Mac. Paket berbayar menambah fitur opsional seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

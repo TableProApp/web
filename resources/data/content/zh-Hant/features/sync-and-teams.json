@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "同步與團隊",
-        "title": "跨裝置同步，與團隊共用"
+        "title": "同步與共用"
     },
     "header": {
-        "title": "跨裝置同步，與團隊共用",
-        "lead": "適用於在多台裝置上使用 TablePro，或多人需要相同連線的情況。iCloud Sync 同步自己的 Mac、iPhone 與 iPad；連線檔案、Linked Folders 和 Team 功能用於與他人共用連線和查詢。",
+        "title": "同步與共用",
+        "lead": "透過 iCloud Sync連線、共用連線檔案，或向團隊發佈連線和查詢。",
         "docs": "/features/icloud-sync"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "icloud-sync",
             "title": "iCloud Sync",
             "paragraphs": [
-                "iCloud Sync 在登入同一 iCloud 帳戶的所有 Mac、iPhone 與 iPad 上保持連線資源庫一致。紀錄存入該帳戶的私有資料庫；各裝置預設關閉同步，需自行開啟。iPhone 與 iPad 上免費，Mac 需要包含此功能的方案。",
-                "密碼僅在同時啟用 Mac 的 Sync Categories 下的<ui>密碼</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密碼</ui>（Sync Passwords）時才會同步。密碼透過 iCloud 鑰匙圈傳輸。在 Mac 上，同一開關也會同步 TablePro 在鑰匙圈中儲存的其他機密資料，例如 AI 供應商金鑰和授權金鑰。將連線標為 Local only，可讓連線及其喜好項目和已儲存查詢僅保留在一台 Mac 上。"
+                "透過私人 iCloud 資料庫在 Mac、iPhone 和 iPad 間同步，需在各裝置單獨開啟。iCloud Sync 在 Mac 上需要 Starter 或 Team，在 iPhone 和 iPad 上免費。",
+                "在 Mac 開啟 <ui>密碼</ui> (Passwords) 或行動版開啟 <ui>同步密碼</ui> (Sync Passwords) 後，密碼單獨透過 iCloud Keychain 同步。Mac 開關也同步已儲存 AI 和授權金鑰。將連線標記為 Local only，可將其及已儲存查詢排除在同步外。"
             ],
             "points": [
                 "Mac 可選擇同步內容：連線、群組和標籤、設定、SSH 設定檔、認證資訊設定檔（名稱和使用者名稱，從不包含密碼）、資料表和資料庫喜好項目、包含 SQL 的已儲存查詢，以及資料表資料夾。",
@@ -35,7 +35,7 @@
             "id": "handoff",
             "title": "接力（Handoff）",
             "paragraphs": [
-                "在 iPhone 或 iPad 的 TablePro 中開啟連線或資料表，Mac 會在 Dock 中提供接續，反向亦然。接力會重新開啟同一個已儲存連線，因此兩台裝置都必須有此連線：iCloud Sync 可同步，而從檔案匯入的副本視為不同連線。接力透過 Apple 在裝置間傳遞連線 ID 和已開啟資料表名稱；未開啟資料表時傳遞連線名稱，無名稱時傳遞主機。"
+                "在另一台 Apple 裝置繼續使用同一已儲存連線或資料表。兩台裝置都需透過 iCloud Sync連線；檔案匯入副本的 ID 不同。Handoff 透過 Apple 傳遞連線 ID 和資料表名稱，不傳遞查詢工作階段。沒有開啟的資料表時，改為傳遞連線名稱；未命名時傳遞主機。"
             ],
             "paid": [
                 "icloud-sync"
@@ -46,8 +46,8 @@
             "id": "share",
             "title": "共用連線",
             "paragraphs": [
-                "將連線匯出為 <code>.tablepro</code> 檔案可傳送給同事或與程式碼一同儲存。檔案包含連線及其群組、標籤和 SSH 設定，不含密碼。Encrypted Export 可加入密碼，並以通關密語和 AES-256-GCM 加密整個檔案。無論是否加密，在 Mac、iPhone 與 iPad 上匯入檔案均免費。",
-                "iPhone 與 iPad 上使用通關密語匯出含密碼的檔案也免費。連線也可透過 <code>tablepro://import</code> 連結分享，包含主機、連接埠、使用者名稱、資料庫及 SSH、TLS 設定，從不包含密碼。"
+                "匯出包含連線設定、群組和標籤但不含密碼的 <code>.tablepro</code> 檔案。Encrypted Export 用通關片語和 AES-256-GCM 加密後包含密碼。兩種格式皆可在 Mac、iPhone 和 iPad 免費匯入。",
+                "iPhone 和 iPad 上的加密密碼匯出免費。<code>tablepro://import</code> 共用連結攜帶連線設定，絕不攜帶密碼。"
             ],
             "paid": [
                 "encrypted-export"
@@ -63,8 +63,8 @@
             "id": "linked-folders",
             "title": "Linked Folders",
             "paragraphs": [
-                "新增 Git 簽出目錄或共用雲端硬碟等資料夾，TablePro 會將其中每個 <code>.tablepro</code> 檔案列為連線，並隨檔案新增或修改更新清單。連結的連線在 TablePro 中唯讀，需修改檔案來變更。加密檔案會跳過，因此共用資料夾儲存的是設定而非密碼，連結檔案中的啟動指令和通道指令也會被忽略。",
-                "Linked Folders 監控連線檔案。連結 SQL 資料夾是另一項功能，屬於已儲存查詢的免費功能，用於讓 <code>.sql</code> 資料夾與已儲存查詢保持同步。"
+                "監看 Git 簽出目錄或共用雲端硬碟等資料夾中的 <code>.tablepro</code> 連線檔案。透過檔案而非 App 編輯連線。略過加密檔案，忽略啟動和通道命令。",
+                "Linked Folders 用於連線檔案。SQL 資料夾連結是用於已儲存 <code>.sql</code> 查詢的獨立免費功能。"
             ],
             "paid": [
                 "linked-folders"
@@ -80,14 +80,14 @@
             "id": "team",
             "title": "Team Catalog 與 Team Library",
             "paragraphs": [
-                "為 Team 授權下的所有人提供相同連線的兩種方式：一種透過現有共用資料夾，另一種透過 TablePro 伺服器。"
+                "透過 Team Catalog 在自己的資料夾共用，或透過 Team Library 在 TablePro 伺服器共用。"
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
                     "title": "Team Catalog",
                     "paragraphs": [
-                        "<ui>分享 > 發佈到團隊目錄…</ui>（Share > Publish to Team Catalog…）將所選連線以不含密碼的 <code>.tablepro</code> 檔案寫入共用資料夾。團隊成員將該資料夾新增為 Linked Folder，因此目錄透過現有共用雲端硬碟或儲存庫分發，不經過 TablePro。"
+                        "<ui>分享 > 發佈到團隊目錄…</ui> (Share > Publish to Team Catalog…) 將不含密碼的連線檔案寫入共用資料夾。隊友將其加入為 Linked Folder。檔案由您的雲端硬碟或儲存庫傳遞，不經過 TablePro 伺服器。"
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "連線上的<ui>分享 > 發佈到團隊庫…</ui>（Share > Publish to Team Library…）和 Favorites 側邊欄的<ui>將已儲存的查詢發佈到團隊…</ui>（Publish Saved Queries to Team…）將連線及已儲存查詢上傳至 TablePro 伺服器。授權下的每台 Mac 會下載，查詢在 Favorites 側邊欄中顯示發佈者姓名。上傳連線設定和查詢 SQL 文字，從不上傳密碼。成員的 Mac 會忽略接收到的啟動指令和通道指令，因此不會自行執行任何指令。再次發佈會取代先前發佈的內容。"
+                        "<ui>分享 > 發佈到團隊庫…</ui> (Share > Publish to Team Library…) 和 <ui>將已儲存的查詢發佈到團隊…</ui> (Publish Saved Queries to Team…) 將連線設定和已儲存查詢 SQL 上傳至 TablePro 伺服器，絕不上傳密碼。同一授權下的 Mac 可下載。忽略啟動和通道命令；重新發佈會取代之前的內容。"
                     ],
                     "paid": [
                         "team-library"
@@ -114,10 +114,10 @@
         },
         {
             "id": "seats",
-            "title": "席位、邀請與帳戶",
+            "title": "Team 席位",
             "paragraphs": [
-                "Team 授權依席位計價，一個席位代表一台已啟用 Mac，而非一個人。透過網頁帳戶邀請成員，每人會透過郵件收到單次使用代碼，在 Mac 的<ui>設定 > 授權</ui>（Settings > License）中輸入；邀請需要空閒席位。App 顯示團隊成員，席位和邀請則在網頁管理。",
-                "有效月付或年付訂閱可自行調整席位數，一次性購買需聯絡支援。移除成員會立即釋出席位，並刪除其發佈至 Team Library 的內容；該成員的 Mac 在下次授權檢查時失去付費功能，最長 {licenseCheckDays} 天。帳戶頁供授權購買者使用。"
+                "一個 Team 席位對應一台已啟用 Mac，而非一個人。購買者透過網頁帳戶管理邀請和席位。受邀者收到用於 <ui>設定 > 授權</ui> (Settings > License) 的一次性代碼；每次邀請都需要可用席位。",
+                "在帳戶變更訂閱席位；一次性購買請聯絡支援。移除隊友會釋放席位，並刪除其 Team Library 內容。付費存取在下次授權檢查時結束，最長 {licenseCheckDays} 天。"
             ],
             "links": [
                 {

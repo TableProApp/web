@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "セキュリティ",
-        "lead": "TablePro が認証情報をどこに保存し、アプリが何を送信し、どう署名・更新されるか、そして各保護がどこまで及ぶかをまとめています。"
+        "lead": "TablePro の認証情報の保存、データ送信、更新、データベースの保護について説明します。"
     },
     "breadcrumb": "セキュリティ",
     "jump": "このページの内容",
@@ -18,7 +18,7 @@
     "sections": [
         {
             "id": "credentials",
-            "title": "認証情報の保存場所",
+            "title": "認証情報",
             "items": [
                 {
                     "id": "mac-keychain",
@@ -91,7 +91,7 @@
         },
         {
             "id": "distribution",
-            "title": "アプリの配布方法",
+            "title": "アプリの配布",
             "items": [
                 {
                     "id": "signing",
@@ -135,7 +135,7 @@
         },
         {
             "id": "safe-mode",
-            "title": "データベースを操作ミスから守るもの",
+            "title": "データベースの保護",
             "items": [
                 {
                     "id": "levels",

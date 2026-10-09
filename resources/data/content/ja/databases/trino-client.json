@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "{devices} 用 Trino クライアント",
-        "lead": "一つのクエリで異なるカタログのテーブルを結合し、Trino が実行するプランを確認し、暴走したクエリをコーディネーターで停止できます。書き込みでできることは、各カタログのコネクターによって異なります。"
+        "title": "Trino クライアント",
+        "lead": "カタログを横断してクエリし、プランを確認して、実行中のクエリを取り消せます。書き込み対応は各カタログのコネクターによって異なります。"
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "接続と認証",
             "paragraphs": [
-                "コーディネーターのホスト、ポートと、クエリを実行する <ui>Username</ui> を入力します。<ui>Catalog</ui> と <ui>Schema</ui> は開始位置として任意指定し、Catalog を空欄にすればすべて閲覧できます。Options の IANA <ui>Time Zone</ui> はセッションのタイムゾーンを設定します。",
+                "コーディネーターのホスト、ポート、<ui>Username</ui> を入力します。任意の <ui>Catalog</ui> と <ui>Schema</ui> で開始位置を指定し、セッションの <ui>Time Zone</ui> を IANA 形式で設定します。",
                 "パスワードは LDAP や password-file 認証用の HTTP Basic、JWT アクセストークンは Bearer 認証情報として送ります。どちらも TLS のみで送り、SSL Disabled のまま保持する接続は送信前に拒否します。SSL ペインのクライアント証明書と鍵で相互 TLS を追加できます。",
                 "SSL は平文 HTTP の Disabled で始まります。他のモードはすべて TLS を強制し、平文へフォールバックしません。443 ポートは Verify Identity を有効にします。コーディネーター前のプロキシのリダイレクトは追跡せず、エラーに転送先を表示します。踏み台の背後には <network>SSH トンネル</network> を使い、<ui>Import from URL…</ui> で <code>trino://</code> URL を取り込めます。"
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "カタログをまたいでクエリ",
             "paragraphs": [
-                "接続は一つのカタログとスキーマで開きますが、Hive と PostgreSQL のテーブルを結合するなど、クエリで <code>catalog.schema.table</code> を完全指定できます。サイドバーは各カタログをスキーマとテーブルに展開し、テーブル・ビューと並んでマテリアライズドビューを表示します。行数は <code>SHOW STATS</code> から取得します。",
+                "完全修飾した <code>catalog.schema.table</code> 名でカタログをまたぐ結合ができます。カタログ、スキーマ、テーブル、マテリアライズドビューを参照できます。推定行数は <code>SHOW STATS</code> から取得します。",
                 "<code>bigint</code> と <code>decimal</code> は浮動小数点ではなく正確なテキストとして読み取ります。<code>varbinary</code> は 16 進、<code>array</code>、<code>map</code>、<code>row</code> は JSON で表示し、タイムスタンプはサーバーが返した値を保持します。",
                 "<explain>Explain</explain> は Logical、Distributed、IO、Validate、Analyze を提供します。Validate は実行せず検査し、Analyze は実行して実測時間を報告します。プランはすべて生のテキストで返ります。",
                 "<code>SET SESSION</code> は接続中維持します。<ui>Query > Cancel Query</ui> はコーディネーターに実行中クエリの終了を要求します。接続のクエリタイムアウトは Trino に伝わらないため、停止にはこの操作を使います。",
-                "<editing>セルの編集</editing> は各値に Trino の型を付けた INSERT、UPDATE、DELETE になります。Trino は主キーを報告しないため、読み取った行の全カラムで特定し、ロールバック用のトランザクションもありません。同一の二行の一方を編集すると両方が変わります。先に重複を確認してください。"
+                "<editing>セル編集</editing>は型付き INSERT、UPDATE、DELETE を使います。Trino は主キーを報告しないため、元の全列で照合します。同じ行はまとめて変更され、取り消せるトランザクションはありません。編集前に重複を確認してください。"
             ]
         },
         {

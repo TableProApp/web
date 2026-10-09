@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs TablePlus: 오픈 소스와 지원 플랫폼",
+        "title": "TablePro vs TablePlus: 기능 및 라이선스",
         "description": "Mac, iPhone, iPad 앱을 제공하는 두 네이티브 데이터베이스 클라이언트의 플랫폼, 가격, AI, MCP와 TablePlus 연결을 TablePro로 가져오는 방법을 비교하세요."
     },
     "og": {
@@ -9,18 +9,18 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus와 TablePro는 모두 스스로를 네이티브라고 설명하는 데이터베이스 클라이언트로, Mac, iPhone, iPad 앱을 제공합니다. TablePlus는 Windows와 Linux에서도 실행됩니다. TablePro는 오픈 소스이며 유료 플랜은 Mac 앱에 선택 기능을 추가합니다. 이름은 비슷하지만 서로 관련 없는 개발사가 만든 별개의 제품입니다."
+        "lead": "TablePlus 및 TablePro는 네이티브 데이터베이스 클라이언트입니다. 무료 기능, 라이선스 및 지원되는 플랫폼을 비교해 보세요. 관련 없는 제조사의 별도 제품입니다."
     },
     "shortAnswer": {
         "tablepro": [
-            "오픈 소스 클라이언트를 원합니다. TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다.",
-            "앱 내 구입이 없는 무료 iPhone·iPad 앱을 원합니다.",
-            "필요한 기능에만 비용을 내고 싶습니다. 무료 앱에는 탭이나 창 제한이 없으며 유료 플랜은 {starterExamples} 같은 기능을 추가합니다."
+            "유료 기능 코드를 포함한 오픈 소스 클라이언트입니다.",
+            "탭이나 창 제한이 없는 무료 앱입니다. 유료 플랜에는 {starterExamples}가 추가됩니다.",
+            "인앱 구매가 없는 무료 iPhone 및 iPad 앱입니다."
         ],
         "competitor": [
-            "Windows나 Linux에서도 작업합니다.",
-            "TablePlus가 지원 목록에 포함하지만 TablePro는 지원하지 않는 Vertica나 Greenplum에 연결합니다.",
-            "Setapp으로 Mac 앱을 이용합니다."
+            "Windows 또는 Linux를 지원합니다.",
+            "Vertica 또는 Greenplum 연결.",
+            "Setapp을 통해 사용 가능한 클라이언트입니다."
         ]
     },
     "glance": {
@@ -47,14 +47,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "TablePlus는 Mac뿐 아니라 Windows와 Linux에서도 실행되므로 여러 컴퓨터에서 같은 클라이언트를 사용할 수 있습니다.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Vertica, Greenplum처럼 TablePro가 지원하지 않는 엔진을 지원 목록에 포함합니다.",
                 "cite": [
@@ -108,7 +100,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link>는 Mac과 iPhone 또는 iPad 사이의 연결을 맞춰 줍니다. Mac에서는 Starter에 포함되며 iPhone·iPad 앱에서는 무료입니다. TablePlus는 Dropbox나 iCloud처럼 직접 고른 클라우드 폴더를 통해 연결을 동기화합니다.",
+                "text": "<link>iCloud Sync</link>는 Mac, iPhone 및 iPad 전반에서 연결을 동기화합니다. Mac에는 Starter가 필요하며 iPhone 및 iPad에서는 무료입니다. TablePlus는 Dropbox 또는 iCloud와 같이 선택한 클라우드 폴더를 통해 연결을 동기화합니다.",
                 "cite": [
                     "cells.sync"
                 ],
@@ -127,13 +119,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro에는 Windows나 Linux용 앱이 없습니다.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePlus처럼 TablePro도 별도의 <link>iPhone·iPad 앱</link>이 있습니다. Mac 앱보다 기능이 적으며 AI 어시스턴트, MCP 서버, 자동 완성은 없습니다.",
+                "text": "TablePro의 별도 <link>iPhone 및 iPad 앱</link>는 Mac 앱보다 기능이 적습니다. AI 보조자, MCP 서버 또는 자동 완성 기능이 없습니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -145,7 +131,7 @@
                 "href": null
             },
             {
-                "text": "TablePlus 라이선스는 1년 업데이트 기간이 끝나도 계속 사용할 수 있으며 TablePro 일회성 구매도 마찬가지입니다. TablePro 월간·연간 플랜은 다릅니다. 종료되면 유료 기능이 잠기고 나머지 앱 기능은 계속 작동합니다.",
+                "text": "TablePlus 라이선스는 업데이트 이후에도 계속 작동합니다. TablePro 일회성 구매는 만료되지 않습니다. TablePro 구독은 종료되면 유료 기능이 잠깁니다. 무료 앱이 계속 작동합니다.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -153,7 +139,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro는 TablePlus가 저장하는 위치에서 연결을 읽으며 Setapp 에디션의 연결도 포함합니다. TablePlus를 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
+        "intro": "Setapp 에디션을 포함하여 TablePlus 연결을 가져옵니다. TablePlus는 닫힌 상태로 유지될 수 있으며 해당 파일은 변경되지 않습니다.",
         "steps": [
             "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
             "TablePlus를 선택합니다. <ui>암호 포함</ui>(Include passwords)을 켜서 macOS 키체인에 저장된 암호를 읽습니다.",
@@ -177,19 +163,7 @@
         {
             "id": "speed",
             "question": "TablePro의 속도는 TablePlus와 어떻게 비교되나요?",
-            "answer": "이 페이지는 속도나 메모리에 관한 주장을 하지 않습니다. 어느 앱도 다른 사람이 재현할 수 있는 측정 결과를 공개하지 않으며 결과는 Mac, 데이터베이스, 네트워크에 따라 달라집니다.",
-            "href": null
-        },
-        {
-            "id": "license",
-            "question": "TablePro를 사용하려면 라이선스가 필요한가요?",
-            "answer": "아니요. TablePro는 지원하는 모든 엔진, AI 어시스턴트, MCP 서버, Safe Mode를 포함해 무료로 사용할 수 있습니다. Starter 또는 Team 플랜은 Mac 앱에 {starterExamples} 같은 선택 기능을 추가합니다. <link>요금 보기</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "ios-license",
-            "question": "iPhone·iPad 앱에 라이선스가 필요한가요?",
-            "answer": "아니요. iPhone·iPad 앱은 무료이며 앱 내 구입은 없습니다. iCloud로 Mac과 동기화하려면 Mac에 Starter가 필요합니다.",
+            "answer": "여기에는 재현 가능한 벤치마크가 인용되어 있지 않습니다. 성능은 쿼리, 데이터베이스, 네트워크 및 컴퓨터에 따라 달라집니다. 네이티브 아키텍처만으로는 속도상의 이점을 얻을 수 없습니다.",
             "href": null
         }
     ],

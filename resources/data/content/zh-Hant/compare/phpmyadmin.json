@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs phpMyAdmin：Web 工具或 Mac App",
+        "title": "TablePro 與 phpMyAdmin：桌面或瀏覽器",
         "description": "phpMyAdmin 執行於 Web 伺服器，在瀏覽器開啟。TablePro 執行於 Mac，直接或經 SSH 連線。比較資料庫、設定和存取。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs phpMyAdmin",
-        "lead": "phpMyAdmin 是 MySQL、MariaDB 的免費開放原始碼 Web 工具，安裝在 Web 伺服器，cPanel 已包含。TablePro 是 Mac 開放原始碼 App，有獨立 iPhone、iPad App，直接或經 SSH 通道連線資料庫。"
+        "lead": "phpMyAdmin 在 Web 伺服器上執行，並隨 cPanel 提供。TablePro 從原生 App 直接或透過 SSH 連線。您的主機方案可能決定可使用哪一種方式。"
     },
     "shortAnswer": {
         "tablepro": [
-            "希望伺服器不安裝任何軟體，從 Mac 直接或經 SSH 工作。",
-            "也使用 PostgreSQL、SQL Server、SQLite、Redis 等引擎。",
-            "希望每個連線都有 Safe Mode 等級，如正式環境 Read-Only，或寫入前 Touch ID。",
-            "經常移入移出資料。CSV、JSON、XLSX、SQL 檔案匯入匯出免費。",
-            "希望 Mac App 內免費 AI 助理和 MCP 伺服器。"
+            "直接連線或透過 SSH 連線的用戶端，伺服器上未安裝任何內容。",
+            "MySQL 和 MariaDB 以及其他資料庫類型。",
+            "每個連線 Safe Mode 和免費 AI 聊天和 MCP。"
         ],
         "competitor": [
-            "主機商在 cPanel 提供，且無 SSH 或資料庫遠端存取。",
-            "希望從任何有瀏覽器的電腦工作，無須安裝。",
-            "個人或團隊需要 TablePro Mac App 不提供的介面語言。"
+            "主機不允許 SSH 或遠端連線時，透過 cPanel 存取資料庫。",
+            "從任何具有瀏覽器的電腦存取。",
+            "TablePro 中不可用的介面語言。"
         ]
     },
     "glance": {
@@ -111,7 +109,7 @@
                 "href": "/features/connections#network"
             },
             {
-                "text": "沒有需保護更新的 Web 安裝。phpMyAdmin 文件說明透過 HTTPS、存取規則和雙因素登入保護其安裝。",
+                "text": "phpMyAdmin 需安裝於伺服器，並自行處理更新與存取控制。文件說明 HTTPS、存取規則與雙因素登入。",
                 "cite": [
                     "cells.hardening"
                 ],
@@ -197,12 +195,6 @@
             "question": "Adminer 呢？",
             "answer": "Adminer 是另一個開放原始碼 Web 工具，以單一 PHP 檔案提供。除 MySQL、MariaDB，也連線 PostgreSQL、SQLite、SQL Server、Oracle。像 phpMyAdmin 一樣在伺服器執行，安裝需同樣維護保護。",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro 像 phpMyAdmin 一樣免費嗎？",
-            "answer": "MySQL、MariaDB 工作免費：TablePro Mac App 依 AGPLv3 開放原始碼，含所有支援引擎、AI 助理、MCP 伺服器。與 phpMyAdmin 不同也有付費方案，Starter、Team 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

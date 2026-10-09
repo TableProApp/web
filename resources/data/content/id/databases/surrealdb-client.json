@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "Klien SurrealDB untuk {devices}",
-        "lead": "Masuk pada tingkat tempat pengguna Anda didefinisikan, jalankan skrip SurrealQL, dan edit record per bidang, dengan tautan record, tanggal-waktu, dan desimal tetap menggunakan jenis aslinya."
+        "title": "Klien SurrealDB",
+        "lead": "Jalankan SurrealQL dan edit kolom rekaman sambil mempertahankan tipenya."
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Hubungkan dan masuk",
             "paragraphs": [
-                "SurrealDB tidak dapat menentukan dari kredensial tingkat tempat pengguna didefinisikan, sehingga <ui>Auth Level</ui> menetapkannya dan formulir meminta data lainnya. Root memerlukan nama pengguna dan kata sandi, Namespace menambahkan namespace, dan Database juga menambahkan database. Record Access memerlukan namespace, database, metode akses dari <code>DEFINE ACCESS</code>, dan bidang masuknya. Token memerlukan JWT yang sudah Anda miliki, termasuk untuk SurrealDB Cloud.",
+                "Pilih <ui>Auth Level</ui> untuk pengguna: Root, Namespace, Database, Record Access atau Token. Namespace dan Database memerlukan namanya. Akses Rekam juga memerlukan metode akses dan bidang masuk; Token menerima JWT yang ada.",
                 "Driver menggunakan CBOR melalui endpoint HTTP RPC, sehingga tautan record, tanggal-waktu, durasi, desimal, dan UUID mempertahankan jenisnya. Tautan <code>surrealdb://</code> membuka formulir koneksi yang sudah terisi, dan server jarak jauh dapat diakses melalui <network>tunnel SSH</network>.",
                 "SSL awalnya Disabled, yang menggunakan HTTP tanpa enkripsi; mode lainnya menggunakan HTTPS. Verify CA dan Verify Identity memeriksa sertifikat terhadap penyimpanan kepercayaan sistem, dan file CA yang diatur pada panel SSL/TLS diabaikan, jadi pasang CA pribadi di macOS terlebih dahulu."
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL dan record",
             "paragraphs": [
-                "Editor menjalankan skrip SurrealQL lengkap, termasuk <code>RELATE</code> antara dua record, dengan pelengkapan pernyataan umum. <explain>Explain dan Explain Full</explain> menjalankan ulang kueri saat ini dengan <code>EXPLAIN</code> untuk menunjukkan cara penyelesaiannya dan apakah indeks digunakan; rencana dikembalikan sebagai teks mentah.",
+                "Jalankan skrip SurrealQL lengkap, termasuk <code>RELATE</code>, dengan pelengkapan pernyataan. <explain>Explain dan Explain Full</explain> menjalankan kueri dengan <code>EXPLAIN</code> dan mengembalikan rencana teks.",
                 "Namespace berada di bagian atas sidebar dengan database di dalamnya. Berpindah namespace atau database tidak pernah membuka ulang koneksi karena keduanya disertakan pada setiap permintaan. Hanya pengguna root yang dapat melihat semua namespace.",
-                "Mengubah sel menjalankan <code>UPDATE</code> yang hanya menetapkan bidang yang Anda ubah sebagai parameter bertipe, sehingga <code>int</code> tetap <code>int</code>, dan bidang terhitung <code>FUTURE</code> serta perubahan dari penulis lain tidak disentuh. Kosongkan <code>id</code> pada baris baru untuk membuatnya otomatis, atau ketik <code>table:id</code>. Tabel <code>SCHEMALESS</code> mengambil kolomnya dari record yang diambil.",
+                "Pembaruan pengeditan sel hanya mengubah bidang sebagai parameter yang diketik, mempertahankan bidang <code>FUTURE</code> yang dihitung dan perubahan penulis lainnya. Biarkan <code>id</code> kosong untuk ID yang dibuat secara otomatis. Kolom tabel SCHEMALESS berasal dari catatan yang diambil.",
                 "<filters>Filter</filters> diubah menjadi SurrealQL, dan baris Raw SQL menerima satu kondisi, seperti traversal graf. Kondisi yang menulis, mengandung <code>;</code> atau komentar, atau memanggil <code>fn::</code> maupun <code>http::</code> ditolak; jalankan di editor."
             ]
         },

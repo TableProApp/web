@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "適用於 {devices} 的 etcd GUI",
-        "lead": "依前綴瀏覽叢集的索引鍵，在格線修改值和租約，在編輯器執行 <code>get --prefix</code>、<code>lease grant</code>、<code>member list</code> 等 etcdctl 風格指令。"
+        "title": "etcd GUI",
+        "lead": "依前綴瀏覽鍵、變更值，並使用 etcdctl 風格命令管理租約。"
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "填寫主機和用戶端連接埠。etcd 沒有資料庫，因此表單無 Database 欄位。請使用用戶端連接埠；對等連接埠不提供 JSON 閘道，指向它的連線無法開啟。表單僅接受一個端點且不容錯移轉，請選擇在線成員。",
+                "輸入一個主機和用戶端連接埠。對等連接埠沒有 JSON 閘道。不提供資料庫選擇或端點容錯移轉。",
                 "無驗證叢集請留空<ui>使用者名稱</ui>（Username）和<ui>密碼</ui>（Password）。沒有 <code>root</code> 角色的使用者可連線並瀏覽其角色允許的索引鍵，但 <code>endpoint status</code>、<code>user</code> 和 <code>role</code> 指令傳回權限拒絕。",
                 "TLS 在 Advanced 欄位的 <ui>TLS 模式</ui>（TLS Mode）設定，非 SSL 區域，預設 Disabled。Required (skip verify) 加密但不驗證，Verify CA 對照指定 CA 檔案驗證憑證，Verify Identity 再檢查主機名稱。用戶端憑證和金鑰提供雙向 TLS。",
                 "透過 <network>SSH 通道</network>存取堡壘主機後的叢集。可匯入 <code>etcd://</code>、<code>etcds://</code> URL，兩者均不會自行開啟 TLS。"
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "設定<ui>索引鍵前綴根目錄</ui>（Key Prefix Root）（如 <code>/app</code>）將連線限制於一個子樹。側邊欄依其下第一個路徑區段分組，每個索引鍵一列，顯示值、版本、修改和建立修訂號及租約。",
                 "儲存編輯傳送指令。新值或租約重新 put 索引鍵，NULL 租約移除租約，重新命名先 put 新名稱再刪除舊名稱。修訂號欄由 etcd 管理，編輯會停止儲存並指出欄名。",
-                "編輯器接受 etcdctl 風格指令，補全指令和旗標：帶 <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> 及排序的 <code>get</code>，帶 <code>--lease</code> 的 <code>put</code>，<code>del</code>、<code>watch</code>、<code>lease</code> 子指令、<code>member list</code>、<code>endpoint status</code> 和 <code>health</code>、<code>compaction</code>，以及 <code>auth</code>、<code>user</code>、<code>role</code>。其他指令不傳送伺服器，直接傳回未知指令。",
+                "執行 etcdctl 風格的鍵、watch、租約、成員、端點、壓縮和存取控制命令，支援命令及旗標自動完成。不支援的命令會在傳送到伺服器前被拒絕。",
                 "etcd 驅動程式無法開啟唯讀工作階段，因此 <safeMode>Safe Mode</safeMode> 將所有指令視為寫入：Alert、Safe Mode 等級每次先確認，Read-Only 全部阻擋。"
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "租約與叢集",
             "paragraphs": [
-                "<code>lease grant</code>、<code>revoke</code>、帶 <code>--keys</code> 的 <code>timetolive</code>、<code>list</code>、<code>keep-alive</code> 管理租約，<code>compaction</code> 裁剪修訂歷程。etcd 無 Server Dashboard，請在編輯器用 <code>member list</code>、<code>endpoint status</code>、<code>endpoint health</code> 查看叢集。",
+                "在編輯器中管理租約和修訂壓縮。透過命令查看成員、端點狀態或健康情況；etcd 沒有 Server Dashboard。",
                 "在編輯器執行 <code>auth enable</code> 開啟整個叢集的驗證。儲存使用者名稱和密碼的連線繼續運作；兩者均無的連線需帶認證資訊重新開啟。"
             ]
         },

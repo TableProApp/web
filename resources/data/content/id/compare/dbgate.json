@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DbGate: Mac dan iPhone, atau desktop dan web",
+        "title": "TablePro vs DbGate: edisi dan platform yang didukung",
         "description": "DbGate adalah klien sumber terbuka untuk Windows, macOS, Linux, dan web, dengan edisi Premium berbayar. TablePro bersumber terbuka dan native di Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DbGate",
-        "lead": "DbGate adalah klien sumber terbuka untuk database SQL dan NoSQL, dibangun di atas {technology}. Aplikasi ini berjalan di Windows, macOS, dan Linux serta sebagai aplikasi web, dengan edisi Community gratis dan edisi Premium berbayar. TablePro adalah klien sumber terbuka dengan aplikasi Mac native, aplikasi iPhone dan iPad terpisah, serta fitur berbayar opsional pada Mac."
+        "lead": "DbGate menyediakan klien desktop dan web berbasis {technology}. Bandingkan edisi Community dan Premium dengan klien native TablePro."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda menginginkan asisten AI tanpa edisi berbayar. Asisten AI gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, sedangkan chat database DbGate ada di {cells.ai.edition}.",
-            "Anda masuk ke database dengan AWS IAM atau Microsoft Entra ID, dan ingin melakukannya secara gratis.",
-            "Anda menginginkan pencadangan melalui alat dump milik setiap mesin tanpa edisi berbayar.",
-            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Rantai Kunci macOS.",
-            "Anda juga menginginkan aplikasi iPhone dan iPad."
+            "Chat AI gratis dengan penyedia pilihan Anda.",
+            "Login AWS IAM dan Microsoft Entra ID tanpa paket berbayar.",
+            "Pencadangan gratis melalui alat dump engine yang didukung."
         ],
         "competitor": [
-            "Anda juga bekerja di Windows atau Linux, atau menginginkan aplikasi web yang dibuka tim Anda di peramban.",
-            "Anda terhubung ke Firebird, Azure Cosmos DB, atau Firestore, yang tidak didukung TablePro.",
-            "Anda menginginkan perancang kueri visual, mulai dari edisi {cells.queryDesigner.edition}.",
-            "Anda ingin DbGate Cloud menyimpan koneksi dan file SQL Anda di setiap perangkat tempat Anda masuk."
+            "Klien untuk Windows, Linux, atau server web.",
+            "Koneksi Firebird, Azure Cosmos DB, atau Firestore.",
+            "Perancang kueri visual dalam {cells.queryDesigner.edition}, atau sinkronisasi DbGate Cloud."
         ]
     },
     "glance": {
@@ -56,31 +53,43 @@
         "items": [
             {
                 "text": "DbGate berjalan di Windows, macOS, dan Linux, serta sebagai aplikasi web yang Anda pasang di server.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "DbGate terhubung ke mesin yang tidak didukung TablePro, seperti Firebird, dan edisi berbayarnya menambahkan Azure Cosmos DB dan Firestore.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Edisi Community gratis dan bersumber terbuka dengan {licence}, dengan diagram ER di setiap edisi.",
-                "cite": ["licence", "cells.diagram"],
+                "cite": [
+                    "licence",
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Premium menambahkan perancang kueri visual dan alat yang membandingkan serta menerapkan model database.",
-                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "cite": [
+                    "cells.queryDesigner",
+                    "cells.modelCompare"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "DbGate Cloud menyimpan koneksi dan file SQL di setiap perangkat tempat Anda masuk, hingga {cells.sync.value} koneksi pada Community.",
-                "cite": ["cells.sync"],
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -91,36 +100,45 @@
         "items": [
             {
                 "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. DbGate dibangun di atas {technology}. Keduanya menyediakan build untuk Mac Apple silicon dan Intel.",
-                "cite": ["technology", "mac"],
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau di Mac Anda. Chat database DbGate ada di edisi berbayar dan melewati gateway DbGate ke OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
                 "text": "<link>Masuk dengan AWS IAM dan Microsoft Entra ID</link> gratis di TablePro. DbGate mencantumkannya di edisi berbayar.",
-                "cite": ["cells.cloudAuth"],
+                "cite": [
+                    "cells.cloudAuth"
+                ],
                 "feature": null,
                 "href": "/features/connections#cloud-auth"
             },
             {
                 "text": "<link>Pencadangan</link> melalui alat dump milik setiap mesin gratis di TablePro. Pencadangan dan pemulihan native DbGate ada di edisi berbayar.",
-                "cite": ["cells.backup"],
+                "cite": [
+                    "cells.backup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
             {
-                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad Anda. Fitur ini termasuk Starter pada Mac dan gratis dalam aplikasi iPhone serta iPad.",
+                "text": "<link>iCloud Sync</link> menyinkronkan koneksi antar-Mac, iPhone, dan iPad. Starter diperlukan di Mac; di iPhone dan iPad fitur ini gratis.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "Tersedia <link>aplikasi iPhone dan iPad</link> gratis tanpa pembelian dalam aplikasi.",
+                "text": "<link>Aplikasi terpisah untuk iPhone dan iPad</link> gratis, tanpa pembelian dalam aplikasi.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -131,7 +149,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux, dan tidak ada versi web.",
+                "text": "Tidak ada versi web.",
                 "cite": [],
                 "feature": null,
                 "href": null

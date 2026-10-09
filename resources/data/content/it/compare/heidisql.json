@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs HeidiSQL: client open source",
+        "title": "TablePro vs HeidiSQL: database, piattaforme e prezzi",
         "description": "HeidiSQL è gratuito su Windows, Linux e Mac Apple silicon dal 2026. TablePro è nativo su Mac, iPhone e iPad. Confronta database, versioni e prezzi."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs HeidiSQL",
-        "lead": "HeidiSQL è un client gratuito e open source nato su Windows che funziona anche su Linux. Da gennaio 2026 offre una build Mac per Apple silicon. TablePro è un client open source con app Mac per Apple silicon e Intel, un’app separata per iPhone e iPad e funzioni a pagamento opzionali sul Mac."
+        "lead": "HeidiSQL e TablePro sono client database open source con supporto diverso per motori e piattaforme. HeidiSQL non ha piani a pagamento; TablePro fa pagare funzioni opzionali."
     },
     "shortAnswer": {
         "tablepro": [
-            "Il tuo Mac ha un processore Intel. TablePro ha una build separata per Intel e una per Apple silicon.",
-            "Lavori anche con MongoDB, Redis, ClickHouse o DuckDB, non solo server SQL.",
-            "Vuoi password salvate nel Portachiavi di macOS e un livello Safe Mode che chieda Touch ID prima di scrivere su connessioni di produzione.",
-            "Vuoi un assistente IA e un server MCP gratuiti nell’app per Mac.",
-            "Vuoi anche un’app per iPhone e iPad."
+            "Una build ufficiale per Mac Intel, oltre ad Apple silicon.",
+            "MongoDB, Redis, ClickHouse o DuckDB insieme ai server SQL.",
+            "Chat IA e MCP gratuiti e un’app separata per iPhone e iPad."
         ],
         "competitor": [
-            "Lavori anche su Windows o Linux e vuoi lo stesso client gratuito su ciascuno.",
-            "Ti connetti a Firebird, Interbase o ProxySQL, non supportati da TablePro.",
-            "Vuoi tutte le funzioni gratuite, senza piani a pagamento.",
-            "Conosci HeidiSQL da Windows e lo vuoi su un Mac con Apple silicon."
+            "Lo stesso client gratuito su Windows, Linux e Mac Apple silicon.",
+            "Connessioni Firebird, Interbase o ProxySQL.",
+            "Tutte le funzionalità sono gratuite, senza piani a pagamento."
         ]
     },
     "glance": {
@@ -38,14 +35,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "HeidiSQL funziona su Windows, Linux e Mac, quindi un client gratuito copre i computer che usi.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Si connette a Firebird, Interbase e ProxySQL, non supportati da TablePro.",
                 "cite": [
@@ -106,12 +95,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Non c’è un’app TablePro per Windows o Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Firebird, Interbase e ProxySQL non sono tra i motori supportati.",
                 "cite": [],
                 "feature": null,
@@ -149,18 +132,6 @@
             "question": "Quali database coprono entrambi i client?",
             "answer": "Il sito di HeidiSQL elenca MySQL, MariaDB, SQL Server, PostgreSQL, SQLite e Redshift e TablePro li supporta tutti. HeidiSQL aggiunge Firebird, Interbase e ProxySQL. TablePro aggiunge motori documentali, chiave-valore e analitici come MongoDB, Redis e ClickHouse.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro è gratuito come HeidiSQL?",
-            "answer": "È gratuito da usare, ma non interamente gratuito come HeidiSQL. Ogni motore supportato, l’assistente IA e il server MCP non costano nulla e il codice è open source con licenza AGPLv3. HeidiSQL non ha piani a pagamento, mentre Starter o Team aggiunge funzioni opzionali all’app TablePro per Mac, come {starterExamples}. <link>Vedi i prezzi</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "Quale build di TablePro mi serve?",
-            "answer": "Quella per il processore del Mac: Apple silicon o Intel. La pagina di download offre entrambe. <link>Scarica TablePro</link>.",
-            "href": "/download"
         }
     ],
     "notes": {

@@ -30,6 +30,42 @@ function wordingContent(string $locale): array
     return $files;
 }
 
+function wordingPlainName(string $text): string
+{
+    return (string) preg_replace('/[-\x{2011}\x{00A0}\x{202F}]/u', ' ', $text);
+}
+
+/**
+ * The exact proper-name requirements of one source string, independent of its prose.
+ *
+ * @return list<string>
+ */
+function wordingNameContract(string $text): array
+{
+    static $names = null;
+    $names ??= [...array_column(json_decode((string) file_get_contents(WORDING_RESOURCES . '/data/paid-features.json'), true, 512, JSON_THROW_ON_ERROR), 'name'), 'Safe Mode'];
+    $required = array_values(array_filter($names, fn(string $name): bool => str_contains(wordingPlainName($text), wordingPlainName($name))));
+
+    if (mb_stripos($text, 'merchant of record') !== false) {
+        $required[] = 'merchant of record';
+    }
+
+    sort($required);
+
+    return $required;
+}
+
+/**
+ * @param  list<string>  $required
+ * @return list<string>
+ */
+function wordingMissingNames(string $text, array $required): array
+{
+    return array_values(array_filter($required, fn(string $name): bool => $name === 'merchant of record'
+        ? mb_stripos(wordingPlainName($text), $name) === false
+        : ! str_contains(wordingPlainName($text), wordingPlainName($name))));
+}
+
 /**
  * The strings of a UI catalog file, in source order.
  *
@@ -184,16 +220,9 @@ it('keeps the names of paid features, Safe Mode and the merchant of record where
 
     foreach (wordingContent('en') as $file => $values) {
         foreach ($values as $key => $value) {
-            $target = $plain($translated[$file][$key] ?? '');
-
-            foreach ($names as $name) {
-                if (str_contains($plain($value), $plain($name)) && ! str_contains($target, $plain($name))) {
-                    $offences[] = "content/{$locale}/{$file} {$key}: {$name}";
-                }
-            }
-
-            if (str_contains($value, 'merchant of record') && mb_stripos($target, 'merchant of record') === false) {
-                $offences[] = "content/{$locale}/{$file} {$key}: merchant of record";
+            $checks = wordingMissingNames($translated[$file][$key] ?? '', wordingNameContract($value));
+            if ($checks !== []) {
+                $offences[] = "content/{$locale}/{$file} {$key}: " . implode(', ', $checks);
             }
         }
     }
@@ -221,6 +250,15 @@ it('keeps the names of paid features, Safe Mode and the merchant of record where
 
     expect($offences)->toBe([], "Names the English copy uses and the translation does not:\n  " . implode("\n  ", $offences));
 })->with(array_values(array_diff(wordingLocales(), ['en'])));
+
+it('retains proper-name and merchant requirements independently of translated prose', function (): void {
+    $required = wordingNameContract('Data Rewind, Safe Mode and our merchant of record.');
+
+    expect($required)->toBe(['Data Rewind', 'Safe Mode', 'merchant of record'])
+        ->and(wordingMissingNames('Data Rewind / Safe-Mode / Merchant of Record', $required))->toBe([])
+        ->and(wordingMissingNames('Data Rewind / Safe Mode', $required))->toBe(['merchant of record'])
+        ->and(wordingMissingNames('Data Recovery / Safe Mode / merchant of record', $required))->toBe(['Data Rewind']);
+});
 
 it('puts a no-break space before French double punctuation and inside guillemets', function (): void {
     $offences = [];

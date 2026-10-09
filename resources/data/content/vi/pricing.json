@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Bảng giá",
-        "lead": "Bạn có thể tải về và dùng ứng dụng cho Mac miễn phí, không phải bản dùng thử và không giới hạn thời gian. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng này. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng."
+        "lead": "Dùng ứng dụng Mac miễn phí, không có thời gian dùng thử. Starter và Team thêm tính năng tùy chọn. Ứng dụng iPhone và iPad miễn phí, không có mua hàng trong ứng dụng."
     },
     "plans": {
         "title": "Các gói"
     },
     "features": {
         "title": "Gói trả phí bổ sung những gì",
-        "lead": "Đây là những tính năng duy nhất cần gói trả phí, và tất cả đều nằm trong ứng dụng Mac. Gói Team gồm mọi thứ trong gói Starter. Kết nối tới bất kỳ engine nào được hỗ trợ, trợ lý AI, MCP server và Safe Mode đều không cần license."
+        "lead": "Chỉ các tính năng liệt kê ở đây cần gói trả phí, hiện trên Mac. Team gồm Starter. Mọi engine được hỗ trợ, trợ lý AI, MCP và Safe Mode đều miễn phí."
     },
     "license": {
         "title": "License hoạt động thế nào",
         "items": {
             "macs": {
                 "term": "Máy Mac",
-                "body": "Một license Starter dành cho một người, trên tối đa {activations} máy Mac. Với gói Team, mỗi seat là một máy Mac được kích hoạt, tính cả máy của người mua, nên một người làm việc trên hai máy Mac cần hai seat. Ứng dụng cho iPhone và iPad không bao giờ dùng license hay seat."
+                "body": "Starter dành cho một người trên tối đa {activations} máy Mac. Mỗi seat Team là một máy Mac đã kích hoạt, kể cả máy của người mua. Hai máy Mac dùng hai seat. Ứng dụng iPhone và iPad không dùng license hay seat."
             },
             "activate": {
                 "term": "Kích hoạt",
-                "body": "Nhập license key trong TablePro trên máy Mac, tại <ui>Cài đặt > Giấy phép</ui> (Settings > License). Muốn dùng trên một máy Mac khác, hãy gỡ máy cũ ở trang Máy Mac trong <account>tài khoản của bạn</account>."
+                "body": "Nhập key trong <ui>Cài đặt > License</ui> (Settings > License). Để chuyển lượt kích hoạt, gỡ máy Mac cũ trên trang Macs trong <account>tài khoản của bạn</account>."
             },
             "checks": {
                 "term": "Kiểm tra",
-                "body": "TablePro kiểm tra chữ ký của license mỗi lần mở ứng dụng, và xác nhận license với máy chủ của TablePro mỗi {revalidateDays} ngày. Nếu máy Mac không kết nối được tới máy chủ, các tính năng trả phí vẫn hoạt động trong {graceDays} ngày. Mỗi lần xác nhận, ứng dụng gửi license key, mã máy đã được băm (hash), tên máy Mac, phiên bản ứng dụng và phiên bản macOS."
+                "body": "TablePro kiểm tra chữ ký license khi mở ứng dụng và liên lạc với server mỗi {revalidateDays} ngày. Nếu không liên lạc được, tính năng trả phí hoạt động thêm {graceDays} ngày từ lần kiểm tra thành công gần nhất. Request gửi key, ID máy đã hash, tên máy Mac, phiên bản ứng dụng và macOS."
             },
             "ends": {
                 "term": "Khi gói kết thúc",
-                "body": "Khi gói theo tháng hoặc theo năm kết thúc, các tính năng trả phí ngừng hoạt động, phần còn lại của ứng dụng vẫn chạy như ở gói Miễn phí."
+                "body": "Khi subscription kết thúc, tính năng trả phí dừng. Mọi tính năng Free vẫn hoạt động."
             },
             "oneTime": {
                 "term": "Mua một lần",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Thanh toán",
-        "merchant": "{merchant} là merchant of record của TablePro: {merchant} bán gói cho bạn, nhận thanh toán, tính thuế bán hàng hoặc VAT (nếu có) theo địa chỉ thanh toán, rồi gửi biên nhận và hóa đơn qua email.",
-        "renewal": "Gói theo tháng và theo năm tự động gia hạn cho tới khi bạn hủy, trong <account>tài khoản của bạn</account> hoặc trong cổng khách hàng của {merchant}. Sau khi hủy, gói vẫn hoạt động tới hết kỳ bạn đã trả tiền, và bạn có thể bật lại gia hạn trước khi kỳ đó kết thúc. Nếu lần thanh toán gia hạn không thành công, {merchant} gửi email kèm liên kết để bạn cập nhật thẻ, rồi thử thu tiền lại trong khoảng ba tuần.",
-        "portal": "Với các giao dịch qua {merchant}, hóa đơn, biên nhận, phương thức thanh toán và việc hủy gói nằm trong <portal>cổng khách hàng của {merchant}</portal>, nơi bạn đăng nhập bằng địa chỉ email đã dùng khi thanh toán. Mục <account>Thanh toán và hóa đơn</account> trong tài khoản của bạn cũng mở cổng này."
+        "merchant": "{merchant} là merchant of record. Dịch vụ này xử lý thanh toán, tính thuế bán hàng hoặc VAT từ địa chỉ thanh toán và gửi biên lai, hóa đơn qua email.",
+        "renewal": "Subscription gia hạn cho tới khi bạn hủy trong <account>tài khoản</account> hoặc trang khách hàng của {merchant}. Quyền sử dụng tiếp tục tới hết kỳ đã trả; bạn có thể tiếp tục subscription trước khi kỳ đó kết thúc. Nếu gia hạn thất bại, dịch vụ gửi email yêu cầu cập nhật thẻ và thử thu tiền lại trong khoảng ba tuần.",
+        "portal": "Quản lý hóa đơn, biên lai, phương thức thanh toán và hủy subscription trong <portal>trang khách hàng của {merchant}</portal>. Đăng nhập bằng email đã mua. <account>Billing & invoices</account> mở cùng trang đó."
     },
     "refunds": {
         "title": "Hoàn tiền",
-        "body": "Mọi gói đều được hoàn tiền trong vòng {refundDays} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {refundDays} ngày kể từ ngày tính phí. <link>Chính sách hoàn tiền</link> giải thích cách yêu cầu và điều gì xảy ra với license."
+        "body": "Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó. Xem <link>chính sách hoàn tiền</link> để biết cách yêu cầu và ảnh hưởng tới license."
     },
     "team": {
         "title": "Gói Team",
         "seats": "Gói Team tính phí theo seat, từ {min} đến {max} seat.",
-        "invites": "Người mua gói quản lý nhóm trong tài khoản của mình. Họ mời thành viên nhóm qua email, và mỗi lời mời là một mã chỉ dùng được một lần, hết hạn sau một tuần và cần còn seat trống.",
-        "changes": "Với gói Team theo tháng hoặc theo năm, bạn đổi số seat trong tài khoản, và phần chênh lệch sẽ có trên hóa đơn kỳ tới. Muốn thêm seat cho gói Team mua một lần, hãy gửi email tới <email>{email}</email>.",
+        "invites": "Người mua quản lý lời mời trong tài khoản. Mỗi mã cần một seat trống, dùng một lần và hết hạn sau một tuần.",
+        "changes": "Đổi số seat của subscription trong tài khoản; chênh lệch nằm trên hóa đơn tiếp theo. Với thanh toán một lần, gửi email tới <email>{email}</email> để thêm seat.",
         "account": "Quản lý nhóm trong tài khoản"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "So sánh với các client khác",
-        "body": "Mỗi trang so sánh đặt giá của ứng dụng kia bên cạnh giá của TablePro, kèm ngày kiểm tra."
+        "body": "So sánh giá và tính năng với client khác. Mỗi bài có ngày kiểm tra và nguồn."
     },
     "faq": {
         "title": "Câu hỏi về các gói",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Tìm license key ở đâu?",
-                "answer": "License key có trong email bạn nhận được sau khi thanh toán. Bạn cũng có thể đăng nhập vào <account>tài khoản của bạn</account> bằng địa chỉ email đã dùng khi mua: key nằm ở đó, cùng với mọi máy Mac đã kích hoạt key."
+                "answer": "Xem key trong email mua hàng hoặc <account>tài khoản của bạn</account>. Đăng nhập bằng email đã mua để xem key và máy Mac đã kích hoạt."
             }
         }
     }

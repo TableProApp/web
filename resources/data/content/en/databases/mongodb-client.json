@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "MongoDB client for {devices}",
-        "lead": "Write queries the way mongosh takes them, page through collections in a grid, and insert or edit whole documents as Extended JSON. Rename or remove a field across a collection, with every statement shown before it runs."
+        "title": "MongoDB client",
+        "lead": "Browse collections, query with mongosh-style syntax and edit documents as Extended JSON."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "List one host, or several <code>host:port</code> pairs for a replica set, and the primary is found for you. You can also paste a <code>mongodb://</code> or <code>mongodb+srv://</code> URL. Sign in with SCRAM-SHA-1, SCRAM-SHA-256, X.509 or AWS IAM, and set <ui>Auth Database</ui> when your user is defined in <code>admin</code> but you browse another database.",
+                "Enter a host or replica-set <code>host:port</code> list, or paste a <code>mongodb://</code> or <code>mongodb+srv://</code> URL. Authentication supports SCRAM-SHA-1, SCRAM-SHA-256, X.509 and AWS IAM. Set <ui>Auth Database</ui> to the database that defines your user.",
                 "A host ending in <code>.mongodb.net</code> turns on SRV and TLS for you, which MongoDB Atlas requires. Add your IP address to the cluster’s access list first: traffic from an address that is not on it times out rather than failing.",
                 "New connections start with TLS off, and the driver has no fallback, so Preferred behaves as Required. Read Preference and Write Concern are set per connection, and the write concern goes out with every insert, update and delete, from the shell or from a grid save.",
                 "Through an <network>SSH tunnel</network>, only the first host in the list is used, so replica set discovery and failover are off for that session."
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "Query and edit documents",
             "paragraphs": [
-                "The query tab is a JavaScript shell that accepts mongosh syntax: unquoted keys, regex literals, <code>ISODate()</code>, variables, loops and <code>forEach</code>. It runs inside TablePro, so nothing else needs installing, and a variable you define stays available in every tab on the connection until you disconnect. Autocomplete offers collections, methods, nested field paths and the <code>$</code> operators valid at the cursor.",
-                "A collection opens as a grid, with top-level fields as columns and nested objects as Extended JSON. An edited cell keeps its field’s type, so a date stays a date and an ObjectId stays an ObjectId, and an edit inside a nested object writes only the path that changed, such as <code>address.city</code>.",
-                "<editing>Insert Document and Edit Document</editing> take a whole document as Extended JSON. Edit Document reads it from the server again, and if someone changed or deleted it after the sheet opened, nothing is saved and the sheet says so. <ui>Remove Field</ui> on a cell sends <code>$unset</code>.",
+                "Use mongosh-style JavaScript in the Query tab: regex, <code>ISODate()</code>, variables, loops and <code>forEach</code>. No separate shell installation is needed. Variables persist across connection tabs until disconnect. Autocomplete includes collections, field paths, methods and operators.",
+                "Browse top-level fields as columns and nested objects as Extended JSON. Cell edits preserve types such as dates and ObjectIds. Nested edits update only the changed path, such as <code>address.city</code>.",
+                "<editing>Insert Document and Edit Document</editing> use Extended JSON. Edit Document re-reads the server document and refuses to save if it changed or disappeared while open. <ui>Remove Field</ui> sends <code>$unset</code>.",
                 "The <filters>filter bar</filters> reaches into nested objects and arrays of objects, so <code>customer.country</code> and <code>items.sku</code> filter directly. A field holding GeoJSON opens on the <map>Map view</map>.",
                 "<safeMode>Safe Mode</safeMode> treats every statement on a MongoDB connection as a write, because the driver cannot open a read-only session. The Alert and Safe Mode levels confirm each one, and Read-Only blocks them all."
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "Collections, indexes and validators",
             "paragraphs": [
-                "The <structure>Structure tab</structure> lists each index with its fields in key order and its kind, such as hashed, text, 2dsphere or wildcard. Show DDL writes the <code>createIndex</code> calls that rebuild them, with every option the server reports.",
-                "Rename or remove a field across a whole collection from the same tab. Each change is one <code>updateMany</code>, shown in Preview SQL, and a field the <code>$jsonSchema</code> validator declares changes there too. The save is refused before anything is written when an index, a search index or a view still uses the name.",
+                "Inspect index fields, types and options in the <structure>Structure tab</structure>. Show DDL generates <code>createIndex</code> calls with the options reported by the server.",
+                "Rename or remove a field across a collection with a previewed <code>updateMany</code>. The validator updates too. Saving is blocked if an index, search index or view still uses the field.",
                 "<ui>New Table</ui> creates a collection whose fields become a <code>$jsonSchema</code> validator, then builds the indexes you list. Views and time-series collections appear in the sidebar, and views open read-only."
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass is MongoDB’s own GUI. It builds aggregation pipelines stage by stage with a preview after each stage, analyses a collection’s schema from a sample of its documents, and draws explain plans. Choose it when you shape pipelines visually or study one collection’s structure; TablePro fits when MongoDB is one of several databases you work with in the same app.",
+                "text": "Choose MongoDB Compass for visual aggregation pipelines, sampled schema analysis and explain plans. TablePro queries MongoDB alongside other database engines.",
                 "notes": ["compass-natural-language"]
             }
         ],

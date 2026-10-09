@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "{devices} 用 SQLite クライアント",
-        "lead": "Finder、ドラッグや SSH サーバーからデータベースファイルを開き、アプリに同梱した SQLite で問い合わせます。構造の変更は、実行前に確認する再構築スクリプトで行います。"
+        "title": "SQLite クライアント",
+        "lead": "SQLite ファイルを開き、SQL を実行してテーブルを確認できます。構造の変更は適用前に確認できます。"
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "データベースファイルを開く",
             "paragraphs": [
-                "接続フォームでファイルを選ぶか、TablePro のウィンドウや Dock アイコンにドラッグします。存在しないファイルのパスは接続時に作成します。名前に関係なく、先頭バイトが <code>SQLite format 3</code> なら SQLite として開きます。",
-                "Finder は .db、.sqlite、.sqlite3 などのファイルの「このアプリケーションで開く」に TablePro を表示します。Messages や Safari の履歴など macOS が保護するフォルダーのデータベースには、先にフルディスクアクセスが必要で、通常は所有するアプリも終了させる必要があります。",
-                "別のマシンのデータベースは <remoteFiles>Remote File ペイン</remoteFiles> で開きます。On the Server は SSH 経由で実ファイルに文を実行し、ホストには <code>python3</code> 以外のインストールは不要です。As a Read-Only Copy は SFTP でスナップショットを取得し、読み取り専用で開きます。",
+                "ファイルを選ぶか TablePro にドラッグします。新しいパスは接続時にデータベースを作成します。SQLite ファイルは拡張子ではなく <code>SQLite format 3</code> ヘッダーで識別します。",
+                "Finder から .db、.sqlite、.sqlite3 ファイルを開けます。メッセージや Safari 履歴など保護されたフォルダーにはフルディスクアクセスが必要です。元のアプリを終了する必要がある場合もあります。",
+                "<remoteFiles>Remote File ペイン</remoteFiles>でリモートデータベースを開けます。On the Server は SSH 経由で実ファイルをクエリし、<code>python3</code> が必要です。As a Read-Only Copy は SFTP でスナップショットをダウンロードします。",
                 "まず試すには Help > Open Sample Database を選んでください。アプリに同梱したデジタル音楽ストアの小さなサンプル Chinook を開きます。"
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "ドライバーは独自の SQLite を同梱し、macOS のバージョンに関係なく同じバージョンで SQL を実行します。<explain>EXPLAIN QUERY PLAN</explain> は図で表示します。",
-                "sqlite-vec や SpatiaLite などの拡張を接続ごとに記載順で読み込めます。関数や仮想テーブルはエディター、サイドバーと Structure タブで使えます。SQL 関数 <code>load_extension()</code> は引き続き拒否します。同期、接続のインポートやリンクで届いたリストは、承認するまで何も読み込みません。",
+                "ドライバーに SQLite を含み、macOS のバージョンとは独立しています。<explain>EXPLAIN QUERY PLAN</explain> を図で表示できます。",
+                "sqlite-vec・SpatiaLite などの拡張を接続ごとに読み込めます。インポート、同期、リンク経由の拡張一覧は読み込み前に承認が必要です。SQL の <code>load_extension()</code> はブロックします。",
                 "行の編集は保存まで保留し、<editing>Preview SQL</editing> がすべての文を先に表示します。他のプログラムがファイルを変更すると、サイドバーは自動的に再読み込みします。"
             ]
         },
@@ -67,7 +67,7 @@
             "title": "データの移動",
             "paragraphs": [
                 "{importFormats} ファイルを <importData>インポート</importData> するか、CSV、JSON、XLSX を <dataFiles>Data Files ウィンドウ</dataFiles> で開いてそこからインポートできます。テーブルと結果は {exportFormats} にエクスポートします。",
-                "<copy>Copy To</copy> はテーブルと行を PostgreSQL サーバーなど別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。<files>ファイルをデータベースとして扱う方法</files>も参照してください。"
+                "<copy>Copy To</copy> はテーブルと行を別のエンジンに転送し、型の近似一覧を表示します。<files>ファイルをデータベースとして扱う機能</files>もご覧ください。"
             ]
         },
         {

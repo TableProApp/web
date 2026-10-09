@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Mac 版 TablePro をダウンロード",
-        "description": "Mac 版 TablePro を Apple silicon 用または Intel 用のビルドでダウンロードするか、Homebrew でインストールできます。iPhone・iPad アプリは App Store にあります。"
+        "title": "TablePro をダウンロード",
+        "description": "Apple silicon・Intel 向けの TablePro をダウンロードするか、Homebrew でインストールできます。iPhone・iPad アプリは App Store で入手できます。"
     },
     "og": {
         "kicker": "ダウンロード",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "TablePro をダウンロード",
-        "lead": "お使いの Mac のチップに合うアプリをダウンロードするか、Homebrew でインストールしてください。iPhone・iPad アプリは App Store にあります。"
+        "lead": "お使いのデバイス向けのビルドを選んでください。"
     },
     "mac": {
         "otherWays": "その他のインストール方法",
@@ -22,19 +22,19 @@
         "source": "ソースからビルド（AGPLv3）"
     },
     "ios": {
-        "body": "{devices} 専用の別のアプリで、独自の機能を備えています。",
+        "body": "{devices} 向けの無料アプリです。デスクトップ版とは機能が異なります。",
         "link": "{devices} 版 TablePro"
     },
     "install": {
         "title": "インストールと初回起動",
         "steps": [
-            "ダウンロードフォルダーにある、ダウンロードした .dmg ファイルを開きます。",
+            "ダウンロードした .dmg ファイルを開きます。",
             "TablePro をアプリケーションフォルダーにドラッグします。",
-            "アプリケーションフォルダーから TablePro を開きます。インターネットからダウンロードしたアプリのため、初回は macOS が確認を求めます。<ui>Open</ui> を選んでください。",
-            "接続を追加するか、まず試すなら <ui>Help > Open Sample Database</ui> を選びます。アプリに同梱された、小さな SQLite データベース Chinook が開きます。"
+            "アプリケーションから TablePro を開きます。macOS の確認が表示されたら <ui>Open</ui> を選びます。",
+            "接続を追加するか、<ui>Help > Open Sample Database</ui> から同梱の Chinook SQLite データベースを試せます。"
         ],
         "signing": "どちらのビルドも Developer ID で署名され、Apple の公証を受けています。TablePro を開くためにセキュリティ設定を変更する必要はありません。",
-        "drivers": "一般的なデータベースのドライバーはアプリに同梱されています。それ以外はそのデータベースを初めて選んだときにダウンロードされるため、インターネット接続が必要です。ドライバーはアプリとは別に更新されます。",
+        "drivers": "一般的なドライバーは同梱されています。その他は初回にインターネットからダウンロードし、アプリとは別に更新されます。",
         "databases": "対応データベース",
         "guide": {
             "label": "インストールガイドを読む（英語）",

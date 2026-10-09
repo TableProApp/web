@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Unterstützte Datenbanken",
-        "description": "Von TablePro unterstützte Datenbanken nach Art: Abfragesprache, mitgelieferter oder nachgeladener Treiber und Unterstützung auf iPhone und iPad."
+        "description": "Finde deine Datenbank, prüfe unterstützte Funktionen und vergleiche Abfragesprachen, Treiberbereitstellung und Verfügbarkeit auf iPhone und iPad."
     },
     "og": {
         "kicker": "Datenbanken",
-        "title": "Datenbanken, mit denen sich TablePro verbindet"
+        "title": "Unterstützte Datenbanken"
     },
     "header": {
-        "title": "Datenbanken, mit denen sich TablePro verbindet",
-        "lead": "Native Treiber für {count} Datenbanken, darunter {featured}. Jede Zeile nennt die Abfragesprache, die Herkunft des Treibers und ob die Engine auf iPhone und iPad geöffnet werden kann."
+        "title": "Unterstützte Datenbanken",
+        "lead": "Finde deine Datenbank und prüfe die unterstützten Funktionen. TablePro verbindet {count} Engines, darunter {featured}."
     },
     "jump": "Kategorien",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Analytik und Data Warehouses",
-            "intro": "Data Warehouses, spaltenorientierte Engines und föderierte Abfrage-Engines, bei denen ein Scan Zeit oder Geld kostet."
+            "intro": "Data Warehouses, spaltenorientierte Datenbanken und katalogübergreifende Abfrage-Engines."
         },
         "cloud": {
             "title": "Cloud und Serverless",
-            "intro": "SQL-Dienste, die über HTTP mit einem Konto-Token erreichbar sind, und libSQL-Dateien auf deinem Mac."
+            "intro": "SQL-Dienste über HTTP und lokale libSQL-Dateien."
         },
         "document": {
             "title": "Dokumentenorientiert",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Ein Log statt einer Tabelle: Nachrichten mit KafkaQL, der eigenen Befehlssprache von TablePro, lesen und schreiben."
+            "intro": "Lies und erzeuge Nachrichten mit KafkaQL, der Befehlssprache von TablePro."
         },
         "coordination": {
             "title": "Koordination",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "Dateien",
-            "intro": "Datenbanken in Dateien, die direkt geöffnet werden, ohne einen Server zu betreiben."
+            "intro": "Frage Datenbankdateien und Ledgers ohne Datenbankserver ab."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Wie Treiber bereitgestellt werden",
         "paragraphs": [
-            "Die Treiber für {bundled} sind in der Mac-App enthalten und verbinden sich ohne weitere Installation.",
-            "Jeder andere Treiber ist ein signiertes Plugin, das beim ersten Auswählen seiner Engine heruntergeladen wird, bevor sich das Verbindungsformular öffnet. Dieser erste Download erfordert eine Internetverbindung.",
-            "Vor der Installation eines heruntergeladenen Treibers gleicht TablePro dessen SHA-256-Prüfsumme mit der Plugin-Registry ab und prüft seine Codesignatur.",
-            "Plugins werden nach ihrem eigenen Zeitplan aktualisiert, sodass eine Treiberkorrektur ohne App-Update eintreffen kann. Ein gerade verwendeter Treiber wird nach dem Neustart der App aktualisiert.",
-            "Die App für iPhone und iPad enthält ihre Treiber bereits, sodass dort nichts heruntergeladen wird."
+            "Die Treiber für {bundled} sind in der Mac-App enthalten. Zum Verbinden brauchst du keine separate Client-Software.",
+            "Andere Treiber werden beim ersten Auswählen der Datenbank als signierte Plugins heruntergeladen. Dafür brauchst du eine Internetverbindung.",
+            "TablePro gleicht die SHA-256-Prüfsumme jedes Plugins mit der Registry ab und prüft vor der Installation seine Codesignatur.",
+            "Treiber-Plugins werden unabhängig von der App aktualisiert. Updates eines genutzten Treibers greifen nach einem Neustart.",
+            "Die App für iPhone und iPad hat integrierte Treiber und lädt keine Plugins herunter."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro für iPhone und iPad"
     },
     "license": {
-        "title": "Keine Datenbank erfordert eine Lizenz",
-        "body": "Die Verbindung mit jeder Engine auf dieser Seite ist kostenlos. Ein Starter- oder Team-Tarif ergänzt die Mac-App um optionale Funktionen; keine davon ist an eine bestimmte Datenbank gebunden.",
+        "title": "In Free enthalten",
+        "body": "Jede unterstützte Datenbankverbindung ist in Free enthalten. Starter und Team ergänzen optionale Funktionen in der Mac-App.",
         "link": "Preise ansehen"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Funktioniert auf {devices}",
             "bundled": "Treiber in der Mac-App enthalten",
-            "registry": "Der Treiber wird heruntergeladen, wenn du {name} erstmals auswählst",
-            "free": "Kostenlos nutzbar, mit <pricing>optionalen bezahlten Tarifen</pricing>"
+            "registry": "Treiber wird bei der ersten Nutzung von {name} heruntergeladen",
+            "free": "In Free enthalten; <pricing>kostenpflichtige Pläne ergänzen optionale Funktionen</pricing>"
         },
         "release": "Neu in {version}",
         "docs": "Einrichtungsanleitung für {name}",
@@ -147,7 +147,7 @@
             "related": "Verwandte Themen"
         },
         "iphone": {
-            "picker": "{name} wird beim Erstellen einer Verbindung in der App für iPhone und iPad angeboten; die App verbindet sich direkt damit.",
+            "picker": "{name} ist beim Erstellen einer Verbindung in der App für iPhone und iPad verfügbar.",
             "synced": "Die App für iPhone und iPad öffnet {name}-Verbindungen nur, wenn sie von einem Mac kommen, über iCloud Sync oder eine exportierte Verbindungsdatei. Dort kannst du keine erstellen.",
             "none": "Die App für iPhone und iPad hat keinen {name}-Treiber. Vom Mac synchronisierte {name}-Verbindungen erscheinen in ihrer Liste, lassen sich aber nicht öffnen.",
             "link": "TablePro für iPhone und iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "TablePro herunterladen",
-            "mac": "Die Mac-App kannst du kostenlos herunterladen und nutzen. Ein Starter- oder Team-Tarif ergänzt sie um optionale Funktionen.",
+            "mac": "Lade die Mac-App kostenlos herunter. Starter und Team ergänzen optionale Funktionen.",
             "ios": "Die App für iPhone und iPad ist im App Store erhältlich.",
             "pricing": "Preise ansehen"
         }

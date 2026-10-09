@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "Editor SQL con autocompletado y EXPLAIN",
-        "description": "Escribe SQL con autocompletado del esquema y parámetros, busca en el historial, guarda consultas y visualiza diagramas EXPLAIN en TablePro."
+        "description": "Escribe SQL con autocompletado según el esquema. Guarda consultas, busca en el historial local e inspecciona planes EXPLAIN en bases compatibles."
     },
     "og": {
         "kicker": "Consultas",
-        "title": "Escribe, ejecuta y comprende consultas"
+        "title": "Editor SQL"
     },
     "header": {
-        "title": "Escribe, ejecuta y comprende consultas",
-        "lead": "Para quien escribe SQL contra una base de datos activa: escribe con el esquema a mano, ejecuta una sentencia o un script completo, conserva las consultas útiles y averigua por qué una se volvió más lenta. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
+        "title": "Editor SQL",
+        "lead": "Escribe SQL con autocompletado según el esquema. Guarda consultas reutilizables, busca en tu historial e inspecciona planes en motores compatibles.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "Un editor que conoce tu esquema",
+            "title": "Autocompletado según el esquema",
             "paragraphs": [
-                "El autocompletado lee el esquema de la conexión mientras escribes: tablas después de FROM y JOIN, columnas de un alias y columnas de una CTE o subconsulta definida antes en la sentencia. El resaltado usa tree-sitter y <kbd>⌘⇧L</kbd> da formato a la sentencia del cursor sin eliminar tus comentarios.",
-                "<kbd>⌘⏎</kbd> ejecuta la sentencia del cursor o la selección; <kbd>⌘⇧⏎</kbd> las ejecuta todas; <kbd>⌘⌥⏎</kbd> ejecuta sin límite de filas y <kbd>⌘.</kbd> cancela. Un lote de sentencias normales se ejecuta en una transacción y se revierte si alguna falla. Las excepciones son scripts que gestionan su propia transacción, scripts SQL Server y sentencias que no admiten transacciones, como VACUUM. El DDL en MySQL, MariaDB y Oracle se confirma por sí solo."
+                "El autocompletado sugiere tablas y columnas, incluidos alias, CTE y subconsultas. Formatea la instrucción actual con <kbd>⌘⇧L</kbd> conservando los comentarios.",
+                "Ejecuta la instrucción actual, una selección o un script completo. Los lotes ordinarios usan una transacción y revierten si fallan. Los scripts de SQL Server, transacciones explícitas e instrucciones como VACUUM son excepciones. El DDL en MySQL, MariaDB y Oracle confirma por separado."
             ],
             "points": [
                 "Marcadores de sentencia en el margen, cada uno con su botón de ejecución.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Parámetros, historial y consultas guardadas",
             "paragraphs": [
-                "Escribe <code>:customer_id</code> en una consulta y TablePro pide su valor y tipo antes de ejecutarla, vinculando el valor de forma nativa si el controlador lo admite.",
-                "Cada consulta ejecutada entra en el historial local (<kbd>⌘Y</kbd>), con búsqueda de texto completo y filtros por origen, fallos y periodo. Por defecto conserva {historyEntries} entradas durante {historyDays} días y nunca se sincroniza.",
-                "Guarda una consulta con una palabra clave como <code>dau</code> y escríbela en el editor para expandirla. Las consultas guardadas conservan historial de versiones. Una carpeta SQL vinculada sincroniza una carpeta de archivos <code>.sql</code> con la barra lateral en ambos sentidos, con letras de estado Git por archivo. Es gratis e independiente de Linked Folders, la función Starter para archivos de conexión compartidos."
+                "Usa parámetros como <code>:customer_id</code> para introducir valores antes de ejecutar. Se vinculan de forma nativa cuando el controlador lo admite.",
+                "Busca en el historial local por texto, origen, errores o periodo. Guarda por defecto {historyEntries} entradas durante {historyDays} días y nunca se sincroniza.",
+                "Guarda consultas con palabras clave reutilizables e historial de versiones. Enlaza una carpeta de archivos <code>.sql</code> a la barra lateral, con actualizaciones bidireccionales y estado de Git. Las carpetas SQL enlazadas son gratis, independientes de Linked Folders, la función de pago para archivos de conexión."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly y pestañas",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) encuentra tablas, vistas y tablas del sistema en todas las conexiones abiertas, además de consultas guardadas y recientes. Cada pestaña conserva su SQL, orden, filtros y anchos de columna, y las pestañas vuelven al cerrar y abrir la app; <kbd>⌃Tab</kbd> alterna entre las usadas más recientemente."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) busca tablas, vistas y consultas en conexiones abiertas. Las pestañas conservan su SQL y ajustes de cuadrícula al volver a abrir la app."
             ]
         },
         {
             "id": "performance",
-            "title": "Lee, compara y sigue el plan",
+            "title": "Rendimiento de consultas",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN y EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> muestra el plan de una consulta como diagrama, árbol con barras de coste o salida original del motor. Elige una ejecución anterior de la misma consulta como referencia y Compare indica si se volvió más lenta y si cambió el plan; una diferencia inferior al {explainNoise}% se considera ruido. Ambas funciones son gratis."
+                        "Muestra planes como diagramas, árboles de coste o salida del motor. Compara con una ejecución anterior para detectar cambios de tiempo y plan; diferencias inferiores al {explainNoise}% cuentan como ruido. Ambas funciones son gratis."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights lee el historial de consultas de este Mac y clasifica lo que encuentra: las más ejecutadas, las más lentas, las que fallan y las que se volvieron más lentas respecto al periodo anterior. Las consultas se agrupan por forma, así que una sentencia con valores diferentes cuenta una vez. Los números se calculan en tu Mac y nunca se suben."
+                        "Encuentra consultas lentas, fallidas o frecuentes en el historial local de este Mac. Las instrucciones similares se agrupan sin importar los valores de parámetros. Query Insights compara periodos localmente; no supervisa todo el servidor ni sube métricas."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Representa un resultado como gráfico de barras, líneas, áreas o dispersión, con eje temporal para fechas y una serie por valor de la columna elegida. Un gráfico dibuja hasta {chartPoints} puntos y {chartSeries} series de las primeras {chartInspectedRows} filas; su barra de herramientas indica cuándo se queda corto."
+                        "Representa resultados como gráficos de barras, líneas, áreas o dispersión. Muestran hasta {chartPoints} puntos y {chartSeries} series de las primeras {chartInspectedRows} filas, con aviso si se recortan."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Vista de mapa",
                     "paragraphs": [
-                        "Cuando una columna contiene geometría como WKT, WKB, GeoJSON, tuplas ClickHouse o valores geo_point de Elasticsearch, la vista de mapa la dibuja en Apple Maps y seleccionar una forma selecciona su fila. Tus filas permanecen en el Mac; Apple proporciona las teselas. La vista de mapa es gratis."
+                        "Muestra columnas geométricas compatibles en Mapas de Apple y selecciona una figura para encontrar su fila. Las filas permanecen en el Mac; Apple proporciona los mosaicos del mapa. La vista de mapa es gratis."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Motores que no hablan SQL",
+            "title": "Otros lenguajes de consulta",
             "paragraphs": [
-                "En conexiones que no usan SQL, el editor acepta el lenguaje propio del motor y la página de cada motor explica qué admite. El editor MongoDB es un shell JavaScript al estilo mongosh que se ejecuta dentro de TablePro, no mongosh en sí."
+                "Usa en el editor el lenguaje de consulta de cada motor no SQL. MongoDB usa un shell JavaScript integrado al estilo de mongosh, no mongosh. Las páginas de bases listan los comandos compatibles."
             ],
             "engines": [
                 {

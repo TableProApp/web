@@ -1,7 +1,7 @@
 ---
 title: Política de privacidade
 description: O que os apps, site e portal da conta TablePro coletam, para onde os dados vão, por quanto tempo são mantidos e como alterá-los ou excluí-los.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site tablepro.app, a documentação em docs.tablepro.app e o portal da conta tablepro.app/account. Descreve o que cada um realmente envia e armazena hoje. Os dois apps são de código aberto sob a AGPLv3, portanto você pode ler o código que envia os dados abaixo no [repositório TablePro]({github}).
@@ -124,7 +124,7 @@ Handoff transmite o ID da conexão aberta e o nome da tabela aberta entre seus d
 
 **Documentação.** A documentação em docs.tablepro.app é hospedada pela Mintlify, que recebe seu endereço IP e os dados do seu navegador a cada página, e as páginas carregam as fontes do Google Fonts. A documentação faz a própria pergunta sobre cookies, porque não consegue ler a resposta que você deu neste site. Até você escolher **Allow** lá, ela não define cookies nem guarda um ID de visitante. Se permitir, Google Analytics define os cookies `_ga` e `_ga_<ID>` e mede suas visitas à documentação, e Mintlify guarda um ID de visitante aleatório, `mintlify_anonymous_id`, no armazenamento local para contá-las. **Cookie settings**, no rodapé da documentação, altera sua resposta, e recusar remove os dois. Base legal: seu consentimento.
 
-Ler o site não define cookies próprios. Inscrever-se na newsletter, iniciar checkout ou verificar um código de desconto envia uma solicitação ao servidor que define os dois cookies do portal da conta, `tablepro-session` e `XSRF-TOKEN`. Tudo que o site mantém no navegador está listado em [Cookies e armazenamento do navegador](#cookies).
+Ler o site não define cookies próprios. As solicitações de inscrição na newsletter, checkout e códigos de desconto do site público omitem credenciais: não enviam cookies do portal da conta nem aceitam cookies da resposta. Abrir páginas do portal da conta é uma operação separada que define os cookies do portal abaixo. Tudo que o site mantém no navegador está listado em [Cookies e armazenamento do navegador](#cookies).
 
 ## Compras {#purchases}
 
@@ -144,7 +144,7 @@ Se você se inscrever nas notas de versão, armazenamos seu email e o idioma da 
 
 ## Cookies e armazenamento do navegador {#cookies}
 
-Ler o site público não define cookies próprios; inscrever-se na newsletter ou iniciar checkout define os dois cookies estritamente necessários do portal listados abaixo. Cloudflare Web Analytics não define cookies nem armazena nada no navegador. Cookies Google Analytics só são definidos após sua permissão. Crisp define seus cookies em todas as páginas quando o chat carrega. Nada aqui é usado para publicidade ou vendido.
+Ler o site público e suas solicitações de newsletter, checkout e códigos de desconto não define cookies próprios. Abrir páginas do portal da conta define os dois cookies estritamente necessários listados abaixo. Cloudflare Web Analytics não define cookies nem armazena nada no navegador. Os cookies do Google Analytics só são definidos com seu consentimento. Crisp define seus cookies em cada página após a chat carregar. Nada aqui é usado para publicidade ou vendido.
 
 - **`_ga` e `_ga_<ID>`** (cookies Google Analytics, até 2 anos, apenas se permitir análises): um identificador aleatório do navegador e o estado da visita atual. Recusar ou alterar sua resposta depois os exclui. Base legal: consentimento.
 - **`tablepro:analytics-consent`** (armazenamento local, até você limpar): sua resposta à pergunta de análises, para não perguntar em todas as páginas. Site e portal da conta compartilham o registro. Base legal: estritamente necessário para respeitar sua escolha.
@@ -152,7 +152,7 @@ Ler o site público não define cookies próprios; inscrever-se na newsletter ou
 - **`theme`** e **`tablepro:banner-dismissed`** (armazenamento local, até você limpar): se escolheu aparência clara, escura ou do sistema e qual aviso fechou e até quando: 30 dias ou um ano se informar que tem licença ou comprar uma. Base legal: interesse legítimo.
 - **`mintlify_anonymous_id`** (armazenamento local em docs.tablepro.app, definido pela Mintlify, somente se você permitir Google Analytics lá): o ID de visitante descrito em [Site](#website). Recusar o remove. A documentação guarda a própria resposta `tablepro:analytics-consent`. Base legal: consentimento.
 - **Cookies que começam com `crisp-client/`** (Crisp, por exemplo `crisp-client/session/…`; 6 meses, renovados quando você volta; definidos em todas as páginas quando o chat carrega): mantêm o chat e sua conversa entre páginas e visitas. Base legal: interesse legítimo, para oferecer suporte em todas as páginas.
-- **`tablepro-session` e `XSRF-TOKEN`** (cookies do portal da conta, 2 horas): mantêm você conectado e protegem formulários contra falsificação de solicitações entre sites. Outras páginas do portal, como confirmação de compra e newsletter, também os definem, assim como inscrever-se na newsletter, iniciar checkout ou verificar um código de desconto em qualquer página deste site. Base legal: estritamente necessário.
+- **`tablepro-session` e `XSRF-TOKEN`** (cookies do portal da conta, 2 horas): mantêm sua sessão e protegem os formulários do portal contra falsificação de solicitações entre sites (CSRF). Abrir outras páginas do portal, como confirmação de compra e páginas da newsletter, também os define. As solicitações de newsletter, checkout e códigos de desconto do site público omitem credenciais e não mantêm esses cookies. Base legal: estritamente necessários.
 
 Você pode alterar ou retirar a resposta sobre análises a qualquer momento em **Configurações de cookies**, no rodapé de todas as páginas, ou aqui:
 

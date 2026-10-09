@@ -5,24 +5,24 @@
     },
     "og": {
         "kicker": "Skema",
-        "title": "Skema, perbandingan, dan sinkronisasi"
+        "title": "Perbandingan skema dan database"
     },
     "header": {
-        "title": "Skema, perbandingan, dan sinkronisasi",
-        "lead": "Untuk mengubah struktur database dan menyelaraskan dua database. Edit tabel sambil melihat DDL, lihat hubungan antartabel, selaraskan staging dengan pengembangan, atau salin tabel ke server atau mesin lain. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
+        "title": "Perbandingan skema dan database",
+        "lead": "Periksa hubungan tabel, ubah struktur tabel yang didukung, dan bandingkan database sebelum menerapkan skrip sinkronisasi.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Ubah struktur, baca DDL terlebih dahulu",
+            "title": "Edit struktur tabel",
             "paragraphs": [
-                "Tab Structure mengedit kolom, indeks, foreign key, dan constraint CHECK tabel dalam grid. Perubahan menunggu hingga Anda menyimpan, dan <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) menampilkan pernyataan ALTER TABLE sebelum apa pun berjalan. Perubahan yang menghapus sesuatu, mengubah tipe, menambah NOT NULL, atau mengubah primary key meminta konfirmasi terlebih dahulu, bahkan pada koneksi dengan level Safe Mode {macSafeModeDefault}.",
-                "Indeks dapat memakai ekspresi sebagai key, seperti <code>lower(email)</code>. New Table menyusun tabel dengan cara yang sama, dengan pratinjau SQL langsung. Pada SQLite, libSQL, Turso, dan Cloudflare D1, yang tidak dapat mengubah foreign key secara langsung, TablePro menyiapkan pembangunan ulang tabel untuk ditinjau. Setelah dikonfirmasi, skrip dijalankan pada SQLite dan file libSQL lokal; pada Turso, libSQL jarak jauh, dan D1, Anda menjalankannya sendiri."
+                "Edit kolom, indeks, kunci asing, dan batasan CHECK di tab Structure. Tinjau DDL tertunda dengan <ui>Preview SQL</ui>. Perubahan destruktif, tipe, NOT NULL, dan kunci utama memerlukan konfirmasi bahkan pada {macSafeModeDefault}.",
+                "Buat tabel dengan pratinjau SQL langsung. Perubahan kunci asing pada mesin keluarga SQLite mungkin memerlukan pembuatan ulang tabel. TablePro menjalankan pembangunan kembali yang dikonfirmasi pada SQLite dan libSQL lokal; di Turso, libSQL jarak jauh, dan Cloudflare D1, Anda menjalankan sendiri skrip yang dihasilkan."
             ],
             "engines": [
                 {
-                    "label": "Struktur hanya-baca",
+                    "label": "Structure hanya-baca",
                     "list": "schemaReadOnly"
                 },
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "Lihat hubungan antartabel",
+            "title": "Diagram ER",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> menggambar tabel dan foreign key skema saat ini, dengan kardinalitas crow’s-foot yang dihitung dari primary key dan unique key. Tabel penghubung seperti <code>product_tags</code> disederhanakan menjadi satu garis banyak-ke-banyak. Ekspor diagram sebagai PNG, salin sebagai gambar, atau ekspor sebagai SQL: pernyataan CREATE TABLE beserta foreign key-nya.",
-                "Diagram adalah snapshot untuk dibaca dan dibagikan. Tabel diubah di tab Structure, bukan di kanvas."
+                "<ui>View ER Diagram</ui> menunjukkan tabel dan hubungan kunci asing dengan notasi gagak. Ekspor sebagai PNG atau SQL, atau salin diagram sebagai gambar.",
+                "Diagram bersifat read-only, bukan perancang skema. Buat perubahan di tab Structure."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Routine, trigger, dan folder di sidebar",
+            "title": "Objek database",
             "paragraphs": [
-                "Di bawah setiap skema, sidebar mencantumkan procedure, function, dan trigger jika mesin memilikinya, serta membuka kode sumbernya dalam tab hanya-baca yang dapat disalin atau dibuka di editor. Redshift, CockroachDB, PGlite, dan SAP HANA tidak mencantumkannya. Partisi PostgreSQL berada di bawah tabel induk."
+                "Periksa rutinitas dan pemicu yang didukung di tab sumber hanya baca, lalu salin SQL atau buka di editor. Daftar objek bervariasi berdasarkan mesin. Partisi PostgreSQL muncul di bawah tabel induknya."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Folder untuk tabel dan view",
                     "paragraphs": [
-                        "Kelompokkan tabel dan view ke folder dengan menyeretnya atau memakai <ui>Move to</ui>, dalam tata letak daftar atau pohon sidebar. Kolom filter juga mencari di dalam folder. Folder hanya ada di TablePro dan tidak mengubah apa pun di server; saat iCloud Sync aktif, folder mengikuti Anda ke Mac lainnya."
+                        "Kelompokkan tabel dan tampilan dengan drag-and-drop atau <ui>Move to</ui>. Folder hanya mengubah sidebar, bukan database, dan menyinkronkan antar Mac saat iCloud Sync diaktifkan."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Pilih sumber dan tujuan, yang dapat berupa dua server atau dua database pada satu server. Compare & Sync mencantumkan setiap tabel yang berbeda, beserta view, routine, dan trigger jika disertakan. Dalam mode data, baris dicocokkan berdasarkan key dan setiap nilai berbeda ditandai, dengan filter serta batas baris per tabel, sehingga Anda dapat membandingkan sebagian tabel besar.",
-                "Skrip yang dihasilkan diurutkan berdasarkan foreign key dan ditulis untuk klien milik mesin tujuan. Pernyataan yang menghilangkan data, seperti menghapus kolom, mempersempit tipe, atau menghapus baris, ditahan hingga Anda mengizinkannya untuk eksekusi tersebut. Koneksi Read-Only tidak dapat dipilih sebagai tujuan. Simpan perbandingan untuk menjalankannya lagi dengan satu klik."
+                "Bandingkan skema atau data antara database sumber dan target. Sertakan tampilan, rutinitas, dan pemicu jika didukung. Perbandingan data mencocokkan baris demi kunci, dengan filter dan batas baris untuk setiap tabel.",
+                "Tinjau skrip sinkronisasi yang dihasilkan yang diurutkan berdasarkan kunci asing. Perubahan yang merusak tetap dikecualikan sampai Anda mengizinkannya untuk dijalankan. Koneksi Read-Only tidak dapat menjadi target. Simpan perbandingan untuk digunakan kembali."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database, dan Transfer To",
+            "title": "Salin dan transfer tabel",
             "paragraphs": [
-                "Copy To mengirim tabel, view, routine, dan trigger, sebagai struktur, data, atau keduanya, ke database lain pada koneksi tersimpan mana pun, termasuk mesin berbeda. Sebelum penulisan, tinjauan mencantumkan DDL, perkiraan baris setiap tabel, dan setiap tipe kolom yang berubah selama transfer. Kolom <code>ENUM</code> MariaDB, misalnya, tiba di PostgreSQL sebagai <code>VARCHAR</code> tanpa daftar nilai yang diizinkan. Klausa WHERE dan batas baris per tabel memungkinkan penyalinan sebagian tabel.",
-                "Duplicate Database menyalin seluruh database dengan nama baru pada koneksi yang sama. Transfer To memindahkan baris langsung ke tabel yang sudah ada pada koneksi lain yang terbuka, dengan pemetaan kolom dan tanpa file perantara. Ketiganya gratis."
+                "Copy To memindahkan objek dan data yang didukung antar database, termasuk antar mesin. Tinjau DDL, jumlah baris, dan ketik konversi terlebih dahulu. Konversi dapat kehilangan batasan: MariaDB <code>ENUM</code> menjadi PostgreSQL <code>VARCHAR</code> tanpa daftar nilai yang diizinkan.",
+                "Duplicate Database menyalin database pada koneksi yang sama. Transfer To memetakan baris ke tabel yang sudah ada pada koneksi lain tanpa file perantara. Alat ini gratis."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles menampilkan hak akses setiap pengguna sebagai pohon, dari server hingga satu kolom. Pemberian dan pencabutan akses menunggu sebagai perubahan tertunda dan menampilkan SQL sebelum berjalan, sehingga Anda tidak perlu menulis GRANT secara manual."
+                        "Periksa hak akses dari tingkat server hingga kolom pada engine yang didukung. Siapkan pemberian dan pencabutan izin, lalu tinjau SQL sebelum menerapkannya."
                     ],
                     "engines": [
                         {
@@ -179,7 +179,7 @@
     ],
     "docs": [
         {
-            "label": "Struktur tabel",
+            "label": "Structure tabel",
             "docs": "/features/table-structure"
         },
         {

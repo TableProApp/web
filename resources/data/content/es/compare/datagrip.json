@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DataGrip: IDE o cliente nativo",
+        "title": "TablePro vs DataGrip: cliente de bases de datos o IDE",
         "description": "DataGrip es un IDE gratuito solo para uso no comercial. TablePro es un cliente nativo de código abierto. Compara precios, IA, MCP, Git e importación."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DataGrip",
-        "lead": "DataGrip es el IDE de bases de datos de JetBrains para Windows, macOS y Linux, basado en {technology}. Es gratuito para uso no comercial y requiere una suscripción anual o mensual para otros trabajos. TablePro es un cliente de código abierto con una app nativa para Mac y otra para iPhone y iPad. Es gratuito para cualquier trabajo y los planes de pago añaden funciones opcionales a la app para Mac."
+        "lead": "DataGrip es el IDE de bases de datos de JetBrains, basado en {technology}. TablePro es un cliente nativo de bases de datos. Compara sus herramientas de edición, funciones de IA y licencias comerciales."
     },
     "shortAnswer": {
         "tablepro": [
-            "Quieres un cliente que puedas usar para trabajo remunerado sin pagar. TablePro es gratuito para cualquier trabajo y los planes de pago añaden funciones como {starterExamples}.",
-            "Quieres un asistente de IA que envíe las solicitudes directamente al proveedor que añadas, sin servicio de IA ni créditos propios de TablePro de por medio. Es gratuito en la app para Mac, al igual que el servidor MCP.",
-            "Prefieres una app para Mac escrita en Swift a un IDE completo.",
-            "También quieres una app para iPhone y iPad."
+            "Un cliente gratuito para uso comercial. Los planes de pago añaden {starterExamples}.",
+            "Un cliente nativo en lugar de un IDE completo.",
+            "Chat de IA y MCP gratuitos, con el proveedor de IA que elijas."
         ],
         "competitor": [
-            "Trabajas en Windows o Linux además de Mac.",
-            "Quieres un IDE con inspecciones de código y control de versiones en la misma ventana que tus consultas.",
-            "Tu trabajo no es comercial, como aprendizaje, un proyecto personal o trabajo de código abierto sin beneficio comercial. DataGrip es gratuito para ello, con todas sus funciones.",
-            "Te conectas a motores que TablePro no admite, como Firebird, Informix o Databricks."
+            "Inspecciones de código y control de versiones junto con las consultas.",
+            "Un IDE completo, gratuito para uso no comercial.",
+            "Windows o Linux, o motores JDBC como Firebird, Informix y Databricks."
         ]
     },
     "glance": {
@@ -41,14 +39,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DataGrip funciona en Windows, macOS y Linux, así que el mismo IDE te acompaña entre ordenadores.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Es un IDE. El control de versiones, como Git, está junto a tus consultas y los motores con soporte completo ofrecen inspecciones de código y correcciones rápidas.",
                 "cite": [
@@ -80,7 +70,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro es gratuito para cualquier trabajo, incluido el comercial, sin periodo de prueba ni límite de tiempo. La app para Mac envía a TablePro un <link>informe de uso</link> diario, activado por defecto, que puedes desactivar en Ajustes. La licencia gratuita de DataGrip solo permite uso no comercial y recopila estadísticas de uso que no puedes desactivar.",
+                "text": "TablePro es gratis para uso comercial. El <link>informe de uso</link> diario del Mac está activado por defecto y se puede desactivar en Settings. La licencia gratuita de DataGrip solo permite uso no comercial, con estadísticas de uso obligatorias.",
                 "cite": [
                     "prices"
                 ],
@@ -96,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "El <link>asistente de IA</link> es gratuito en la app para Mac y funciona con el proveedor que elijas, en la nube o en tu Mac; TablePro no opera ningún servicio de IA ni vende créditos de IA. DataGrip usa JetBrains AI, que tiene su propio servicio con una cuota de créditos y también acepta tu propia clave de proveedor o un modelo local.",
+                "text": "El <link>asistente de IA</link> de TablePro es gratis en la app para Mac; eliges un proveedor en la nube o un modelo local. El proveedor puede cobrar. JetBrains AI tiene una cuota de créditos y acepta tu propia clave de proveedor o un modelo local.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -112,13 +102,13 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> compara la estructura o los datos de dos bases de datos y genera el script que las alinea. Forma parte de Starter.",
+                "text": "<link>Compare & Sync</link> compara la estructura o los datos de dos bases y genera un script de sincronización. Forma parte de Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
             },
             {
-                "text": "Hay una <link>app gratuita para iPhone y iPad</link>, sin compras dentro de la app. DataGrip no tiene app móvil.",
+                "text": "La <link>app independiente para iPhone y iPad</link> es gratis, sin compras dentro de la app. DataGrip no tiene app móvil.",
                 "cite": [
                     "platforms"
                 ],
@@ -130,12 +120,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "No hay TablePro para Windows ni Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "TablePro es un cliente, no un IDE. Una <link>carpeta SQL vinculada</link> muestra el estado y el historial de Git de cada archivo, pero la preparación, los commits, los envíos y las ramas se gestionan en tu propia herramienta Git.",
                 "cite": [],
@@ -151,7 +135,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro lee las fuentes de datos globales de DataGrip y las de tus proyectos recientes. DataGrip no necesita estar abierto y sus archivos no se modifican.",
+        "intro": "Importa las fuentes de datos globales de DataGrip y las de los proyectos recientes. DataGrip puede estar cerrado y sus archivos no se modifican.",
         "steps": [
             "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
             "Selecciona DataGrip. Activa <ui>Include passwords</ui> para leer las contraseñas que DataGrip guardó en el llavero de macOS, incluidas las contraseñas SSH y las frases de contraseña de las claves.",
@@ -167,15 +151,9 @@
     },
     "faq": [
         {
-            "id": "commercial-use",
-            "question": "¿Puedo usar la app gratuita de TablePro para trabajo remunerado?",
-            "answer": "Sí. La app para Mac es gratuita para cualquier trabajo, sin periodo de prueba ni límite de tiempo. DataGrip solo es gratuito para uso no comercial, así que crear productos comerciales o prestar servicios remunerados con él requiere una suscripción.",
-            "href": null
-        },
-        {
             "id": "ai-provider",
             "question": "¿El asistente de IA de TablePro necesita un plan como JetBrains AI?",
-            "answer": "No. TablePro no opera un servicio de IA propio. Añades un proveedor: una clave de API, una cuenta que ya tengas o un modelo que se ejecute en tu Mac. No se envía nada hasta que añadas uno. <link>Cómo funciona el asistente de IA</link>.",
+            "answer": "No necesitas un plan de IA de TablePro. Añade una clave de proveedor, una cuenta compatible o un modelo local. El proveedor puede cobrar; no se envían solicitudes de IA antes de configurarlo. <link>Configuración de IA y tratamiento de datos</link>.",
             "href": "/features/ai-mcp"
         },
         {

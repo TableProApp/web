@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Snowflake client for {devices}",
-        "lead": "Sign in the way your account requires, move the session between warehouses and roles without reconnecting, then query, edit and unload tables to a stage."
+        "title": "Snowflake client",
+        "lead": "Query and edit tables, switch warehouses and roles, and export to a stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connect and sign in",
             "paragraphs": [
-                "Enter the account identifier, such as <code>myorg-myaccount</code> or a legacy locator like <code>xy12345.us-east-1</code>: whatever sits in front of <code>.snowflakecomputing.com</code>. Every request goes over HTTPS to that account’s endpoint, so there is no host, no SSL section and no SSH pane.",
-                "Pick an <ui>Auth Method</ui> and the form shows only what it needs. A key pair signs each connect with your PKCS#8 private key, so the Mac’s clock has to be right. Browser SSO sends you to your identity provider. An OAuth token is used as pasted and never refreshed. A password goes with a current code in <ui>MFA Passcode (TOTP)</ui> when the account enforces MFA.",
+                "Enter the account identifier before <code>.snowflakecomputing.com</code>, such as <code>myorg-myaccount</code>. Requests use HTTPS; no host, TLS section or SSH pane is needed.",
+                "Choose an <ui>Auth Method</ui>: PKCS#8 key pair, browser SSO, OAuth token, or password with <ui>MFA Passcode (TOTP)</ui>. Key pairs require an accurate device clock. Pasted OAuth tokens are not refreshed.",
                 "With <code>ALLOW_CLIENT_MFA_CACHING</code> on the account, one fresh passcode is enough: Snowflake returns an MFA token that TablePro keeps in the <credentials>Keychain</credentials>. With <code>ALLOW_ID_TOKEN</code>, browser SSO keeps a sign-in token there, and later connects skip the browser until Snowflake rejects it.",
                 "Snowflake has no URL scheme. Name a section in <ui>CLI Connection Name</ui> instead, and every field you leave empty is read from <code>~/.snowflake/connections.toml</code> when you connect."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouses, roles and queries",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> moves the session to another warehouse or role with <code>USE WAREHOUSE</code> and <code>USE ROLE</code>, without reconnecting. One TablePro connection is one Snowflake session, kept open while idle, and a tab bound to a second database runs <code>USE DATABASE</code> ahead of its statements on that same session.",
+                "Change warehouses and roles with <ui>Database > Session Context</ui>. The connection keeps one session while idle; tabs on another database run <code>USE DATABASE</code> before their statements.",
                 "The sidebar groups objects by database and schema. Object lists come from <code>SHOW</code> commands, which run without a warehouse; column details come from <code>INFORMATION_SCHEMA</code>, which needs one. <explain>Explain</explain> returns Snowflake’s plan as raw text.",
-                "<editing>Grid edits</editing> bind their values on the server, with VARIANT, OBJECT and ARRAY cells sent through <code>PARSE_JSON</code>. An edit keys on the declared primary key, or on every column when there is none. Snowflake never enforces key constraints, so a duplicated key value means an edit or a delete reaches every matching row: check a table for duplicates before you edit it."
+                "<editing>Grid edits</editing> bind their values on the server, with VARIANT, OBJECT and ARRAY cells sent through <code>PARSE_JSON</code>. An edit keys on the declared primary key, or on every column when there is none. Standard Snowflake tables do not enforce key constraints, so a duplicated key value means an edit or a delete reaches every matching row: check a table for duplicates before you edit it. Hybrid tables enforce their keys."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Move data",
             "paragraphs": [
                 "<importData>Import</importData> {importFormats} files through the connection, and export a table or a result to your Mac as {exportFormats}.",
-                "To unload a table without passing it through your Mac, choose <ui>File > Server-Side Export…</ui> and name a stage, with or without its <code>@</code>. <backup>Server-Side Export</backup> runs <code>COPY INTO</code> with your own privileges and writes gzipped CSV, Parquet or JSON; the sheet waits until the unload finishes, and nothing lands on the Mac."
+                "Choose <ui>File > Server-Side Export…</ui> and a stage. <backup>Server-Side Export</backup> runs <code>COPY INTO</code> with your privileges, writing gzipped CSV, Parquet or JSON. It waits for completion; files do not pass through your Mac."
             ]
         }
     ],

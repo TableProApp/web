@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs HeidiSQL: hai client miễn phí, mã nguồn mở",
+        "title": "TablePro và HeidiSQL: cơ sở dữ liệu, nền tảng và giá",
         "description": "HeidiSQL miễn phí trên Windows, Linux và, từ 2026, Mac Apple silicon. TablePro có ứng dụng native cho Mac, iPhone, iPad. So sánh cơ sở dữ liệu, bản build, giá."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs HeidiSQL",
-        "lead": "HeidiSQL là client miễn phí, mã nguồn mở, ra đời trên Windows và cũng chạy trên Linux. Từ tháng 1 năm 2026, HeidiSQL có bản cho Mac chạy Apple silicon. TablePro là client mã nguồn mở, có ứng dụng Mac cho cả Apple silicon và Intel, một ứng dụng riêng cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+        "lead": "HeidiSQL và TablePro là database client mã nguồn mở, khác hỗ trợ engine và nền tảng. HeidiSQL không có gói trả phí; TablePro tính phí tính năng tùy chọn."
     },
     "shortAnswer": {
         "tablepro": [
-            "Máy Mac của bạn dùng chip Intel. TablePro có một bản cho Intel và một bản riêng cho Apple silicon.",
-            "Bạn còn làm việc với MongoDB, Redis, ClickHouse hay DuckDB, không chỉ các cơ sở dữ liệu SQL.",
-            "Bạn muốn mật khẩu được lưu trong Keychain của macOS, và một mức Safe Mode hỏi Touch ID trước khi ghi trên các connection production.",
-            "Bạn muốn có trợ lý AI và MCP server, miễn phí trong ứng dụng Mac.",
-            "Bạn muốn có thêm ứng dụng cho iPhone và iPad."
+            "Bản build Intel Mac chính thức, cùng Apple silicon.",
+            "MongoDB, Redis, ClickHouse hoặc DuckDB cạnh server SQL.",
+            "AI chat và MCP miễn phí, thêm ứng dụng iPhone và iPad riêng."
         ],
         "competitor": [
-            "Bạn còn làm việc trên Windows hoặc Linux, và muốn dùng cùng một client miễn phí trên mỗi máy.",
-            "Bạn kết nối tới Firebird, Interbase hoặc ProxySQL, những engine TablePro không hỗ trợ.",
-            "Bạn muốn mọi tính năng đều miễn phí, không có gói trả phí nào.",
-            "Bạn đã quen HeidiSQL trên Windows và muốn dùng nó trên máy Mac chạy Apple silicon."
+            "Cùng client miễn phí trên Windows, Linux và Mac Apple silicon.",
+            "Connection Firebird, Interbase hoặc ProxySQL.",
+            "Mọi tính năng miễn phí, không có gói trả phí."
         ]
     },
     "glance": {
@@ -39,20 +36,19 @@
         "intro": "",
         "items": [
             {
-                "text": "HeidiSQL chạy trên Windows, Linux và Mac, nên một client miễn phí dùng được trên mọi máy tính bạn đang dùng.",
-                "cite": ["platforms"],
+                "text": "Kết nối Firebird, Interbase và ProxySQL mà TablePro không hỗ trợ.",
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "HeidiSQL kết nối được tới Firebird, Interbase và ProxySQL, những engine TablePro không hỗ trợ.",
-                "cite": ["cells.databases"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "HeidiSQL miễn phí và là mã nguồn mở theo license GPL, không có gói trả phí.",
-                "cite": ["licence", "prices"],
+                "text": "Miễn phí, mã nguồn mở theo GPL, không có gói trả phí.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -63,7 +59,9 @@
         "items": [
             {
                 "text": "TablePro chạy trên cả máy Mac dùng Intel lẫn Apple silicon, với bản riêng cho từng loại chip. Bản cho Mac của HeidiSQL chỉ dành cho Apple silicon.",
-                "cite": ["cells.macBuild"],
+                "cite": [
+                    "cells.macBuild"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -97,20 +95,16 @@
         "intro": "",
         "items": [
             {
-                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
+                "text": "Firebird, Interbase và ProxySQL không thuộc engine được hỗ trợ.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Firebird, Interbase và ProxySQL không nằm trong danh sách engine được hỗ trợ.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}, trong khi HeidiSQL không có gói trả phí.",
-                "cite": ["prices"],
+                "text": "Một số tính năng trả phí. Starter thêm tính năng như {starterExamples}, còn HeidiSQL không có gói trả phí.",
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -138,18 +132,6 @@
             "question": "Cả hai client cùng hỗ trợ những cơ sở dữ liệu nào?",
             "answer": "Website của HeidiSQL liệt kê MySQL, MariaDB, SQL Server, PostgreSQL, SQLite và Redshift, và TablePro hỗ trợ tất cả những cơ sở dữ liệu này. HeidiSQL có thêm Firebird, Interbase và ProxySQL. TablePro có thêm các engine document, key-value và phân tích như MongoDB, Redis và ClickHouse.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro có miễn phí như HeidiSQL không?",
-            "answer": "TablePro dùng miễn phí, nhưng không hoàn toàn miễn phí như HeidiSQL. Mọi engine được hỗ trợ, trợ lý AI và MCP server đều không mất phí, và mã nguồn mở theo giấy phép AGPLv3. HeidiSQL không có gói trả phí, còn gói Starter hoặc Team bổ sung các tính năng tùy chọn cho ứng dụng TablePro trên Mac, như {starterExamples}. <link>Xem bảng giá</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "Tôi cần tải bản TablePro nào?",
-            "answer": "Bản đúng với chip của máy Mac: Apple silicon hoặc Intel. Trang tải về có cả hai bản. <link>Tải TablePro</link>.",
-            "href": "/download"
         }
     ],
     "notes": {

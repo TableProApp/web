@@ -779,7 +779,7 @@ When supplied, `src` is `{light: Source, dark?: Source}`, or `{en: {light, dark?
 | `diagram` | diagram | 16:9 | as `window` | vector | SVG; one file per locale when it holds words | — | 60 KB |
 | `illustration` | illustration | 16:9 | as `window` | 2432×1368 (2×) | PNG → AVIF, WebP | as needed | 250 KB |
 | `figure` (blog) | per figure | from the source image | 704 wide / 720 / 343 | 1408 wide (2×) | PNG → AVIF, WebP | as the source | 200 KB |
-| `og-card` (not a slot) | — | 1200:630 | — | 1200×630 | PNG | no | 300 KB |
+| `og-card` (not a slot) | — | 1200:630 | — | 1200×630 | PNG | no | 320 KB |
 
 Where each value comes from:
 
@@ -1098,8 +1098,8 @@ Windows or Linux buttons appear.
   (`compare.blade.php:176,181`, `database.blade.php:164`) are removed with the old templates. No screenshot and no app
   chrome appear on cards.
 - **Generic fallback.** The template-generated brand card (logo plus the localized identity sentence) is written to
-  `/og.png` for English, regenerated in place, and to `/og/vi/default.png` for Vietnamese (sitemap §C.7). It is the
-  default `og:image` per locale. Today's `/og.png` carries the unevidenced "Native speed." slogan. Rewriting the file
+  `/og.png` for English, preserving supplied artwork at that URL, and to `/og/vi/default.png` for Vietnamese (sitemap §C.7). It is the
+  default `og:image` per locale. The English `/og.png` now carries the approved Figma design. Replacing the file
   at the same URL corrects every external cache and old share that points to it. The old image stays in git
   history. `/og@2x.png` is deleted: it was publicly served, carried the same slogan, and nothing referenced it (git
   history keeps it). Bespoke social art stays in the asset handoff (spec §9.1;

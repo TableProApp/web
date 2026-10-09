@@ -48,6 +48,23 @@ const LEGAL_RENEWAL_REFUND = [
     'id' => 'setiap perpanjangan bulanan atau tahunan',
 ];
 
+// The shorter marketing sentence still promises a new window for each charge.
+// Legal pages and UI catalogs retain the explicit monthly/yearly contract above.
+const MARKETING_RENEWAL_REFUND = [
+    'en' => ['Purchases and subscription renewals', 'within {refundDays} days of each charge'],
+    'vi' => ['Mỗi lần mua hoặc gia hạn subscription', 'trong {refundDays} ngày từ lần thu phí đó'],
+    'es' => ['Las compras y renovaciones de suscripciones', '{refundDays} días siguientes a cada cobro'],
+    'de' => ['Käufe und Aboverlängerungen', '{refundDays} Tagen nach jeder Abbuchung'],
+    'fr' => ['Les achats et renouvellements d’abonnement', '{refundDays} jours suivant chaque paiement'],
+    'ja' => ['購入やサブスクリプションの更新', '各請求から {refundDays} 日以内'],
+    'pt-BR' => ['Compras e renovações de assinatura', '{refundDays} dias após cada cobrança'],
+    'zh-Hans' => ['购买和订阅续费', '每次扣款后 {refundDays} 天内退款'],
+    'ko' => ['구매와 구독 갱신', '각 결제 후 {refundDays}일 이내'],
+    'zh-Hant' => ['購買和訂閱續費', '每次扣款後 {refundDays} 天內退款'],
+    'it' => ['Gli acquisti e i rinnovi degli abbonamenti', '{refundDays} giorni da ogni addebito'],
+    'id' => ['Pembelian dan perpanjangan langganan', '{refundDays} hari setelah setiap tagihan'],
+];
+
 /**
  * @return list<string>
  */
@@ -121,8 +138,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 8, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '8 tháng 10 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 9, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '9 tháng 10 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -409,7 +426,13 @@ it('refunds each monthly or yearly renewal within the window of its own charge, 
     }
 
     foreach ($texts as $where => [$text, $slot]) {
-        $at = mb_strpos($text, $phrase);
+        if (in_array($where, ['pricing.json refunds', 'faq.json refunds'], true)) {
+            [$renewals, $chargeWindow] = MARKETING_RENEWAL_REFUND[$locale];
+            expect($text)->toContain($renewals)->toContain($chargeWindow);
+            $at = mb_strpos($text, $renewals);
+        } else {
+            $at = mb_strpos($text, $phrase);
+        }
 
         expect($at)->not->toBeFalse("{$locale} {$where} does not refund a monthly or yearly renewal");
         expect(mb_substr($text, (int) $at))->toContain($slot);

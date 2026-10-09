@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "常見問題",
-        "description": "TablePro 問答：免費功能和授權增加的功能、支援的 Mac、iPhone 和資料庫、App 傳送的資訊、團隊及退款。"
+        "description": "關於 TablePro App、支援的資料庫、付費方案、授權、隱私權和帳戶的解答。"
     },
     "og": {
         "kicker": "常見問題",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "常見問題",
-        "lead": "關於 App、授權、隱私權和帳戶的簡明回答，並附上詳細說明頁面的連結。"
+        "lead": "關於 App、授權和隱私權的問題。"
     },
     "breadcrumb": "常見問題",
     "jump": "依主題查看問題",
@@ -31,37 +31,37 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro 是什麼？",
                     "answer": [
-                        "TablePro 是為開發者打造的原生開放原始碼資料庫用戶端。在 Mac 上可連線至 {featuredEngines} 等引擎、撰寫和執行查詢、瀏覽和編輯資料，以及修改結構。iPhone 與 iPad App 是獨立的精簡 App，方便您離開辦公桌時處理資料庫。",
-                        "<features>功能頁面</features>逐項介紹各部分的用途。"
+                        "原生、開源的資料庫用戶端。在 Mac 上可查詢和編輯 {featuredEngines} 等資料庫，並操作綱要。iPhone 和 iPad App 提供較少的資料庫工具。",
+                        "查看全部<features>功能</features>。"
                     ]
                 },
                 {
                     "id": "native",
                     "question": "這裡的「原生」是什麼意思？",
                     "answer": [
-                        "每款 TablePro App 都針對各自的平台使用 Swift 編寫。Mac 上使用 AppKit、SwiftUI、鑰匙圈與 Touch ID；iPhone 與 iPad 上使用 Face ID、小工具、捷徑和即時動態。資料庫驅動程式也為原生實作，不使用 JDBC。"
+                        "TablePro 使用原生介面和資料庫驅動程式，不使用 Electron 或 JDBC。目前 App 使用 Swift：Mac 上採用 AppKit 和 SwiftUI，iPhone 和 iPad 上使用 Face ID、Shortcuts 等裝置功能。"
                     ]
                 },
                 {
                     "id": "is-it-free",
                     "question": "TablePro 免費嗎？",
                     "answer": [
-                        "Mac App 可免費下載使用，沒有試用期或時間限制。Starter 或 Team 授權可增加選用功能，<pricing>價格方案頁面</pricing>列出了這些功能。連線至任何支援的引擎，以及使用 AI 助理、MCP 伺服器或 Safe Mode，均無需授權。",
-                        "iPhone 與 iPad App 免費，沒有 App 內購買，也無需授權。"
+                        "是的。Mac App 沒有試用期或時間限制。所有支援的引擎、AI、MCP 和 Safe Mode 皆免費。Starter 和 Team 加入<pricing>價格頁面</pricing>列出的功能。",
+                        "iPhone 和 iPad App 免費，無需授權，也沒有 App 內購買。"
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro 開放原始碼嗎？",
                     "answer": [
-                        "是的。兩款 App 均採用 AGPLv3 開放原始碼，包括付費功能程式碼，位於同一個 <source>GitHub 儲存庫</source>。從原始碼自行建置的版本也與我們發佈的版本以相同方式檢查授權。"
+                        "是的。兩款 App（包括付費功能程式碼）以 AGPLv3 在同一個 <source>GitHub 儲存庫</source>公開。從原始碼建置的版本仍會檢查付費功能授權。"
                     ]
                 },
                 {
                     "id": "work-use",
                     "question": "可以在工作中使用 TablePro 嗎？",
                     "answer": [
-                        "可以，適用於任何規模的公司。AGPL 對執行 TablePro 不設條件；其條件適用於散布軟體，以及透過網路向他人提供修改版。詳情請參閱<agpl>授權全文</agpl>。"
+                        "可以，公司規模不限。AGPL 不對執行 TablePro 附加條件；條件適用於散佈軟體，或透過網路向他人提供修改版。詳見<agpl>授權原文</agpl>。"
                     ]
                 }
             ]
@@ -74,15 +74,15 @@
                     "id": "mac-requirements",
                     "question": "哪些 Mac 可以執行 TablePro？",
                     "answer": [
-                        "Mac 版 TablePro 需要 {macRequirement}。Apple silicon 與 Intel 有獨立建置版本，<download>下載頁面</download>提供兩者，Homebrew 會自動安裝合適的版本。"
+                        "Mac App 需要 {macRequirement}。在<download>下載頁面</download>選擇 Apple silicon 或 Intel，或由 Homebrew 自動選擇版本。"
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "有 iPhone 與 iPad App 嗎？",
                     "answer": [
-                        "有。iPhone 與 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免費且無 App 內購買。可連線至 {iosEngines}，支援 SSH 通道、Safe Mode 和 Face ID，能瀏覽、編輯資料表和執行查詢。",
-                        "它是為手機和平板打造的獨立 App，並非 Mac App 的複製版，例如沒有 AI 助理、MCP 伺服器和已儲存查詢。<ios>iPhone 與 iPad 頁面</ios>列出了提供及未提供的功能。"
+                        "有。免費的 App Store App 需要 {iosRequirement}，可連線至 {iosEngines}。支援查詢、SSH 通道、Safe Mode 和 Face ID；資料表瀏覽和編輯取決於引擎。",
+                        "沒有 AI 助手、MCP 伺服器或已儲存查詢。查看<ios>功能與限制</ios>。"
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                     "id": "languages",
                     "question": "App 支援哪些語言？",
                     "answer": [
-                        "Mac App 介面支援 {macLanguages}。在英文以外的語言中，部分介面仍顯示英文。iPhone 與 iPad App 支援 {iosLanguages}。",
-                        "本網站和帳戶入口網站支援多種語言。<docs>文件</docs>為英文。"
+                        "Mac App 支援 {macLanguages}，但部分已翻譯介面仍顯示英文。iPhone 和 iPad App 支援 {iosLanguages}。",
+                        "網站和帳戶入口網站支援多種語言。<docs>文件</docs>為英文。"
                     ]
                 }
             ]
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "可以連線至哪些資料庫？",
                     "answer": [
-                        "Mac 支援 {featuredEngines} 等引擎，包括文件、鍵值、搜尋、串流和分析型引擎。<databases>資料庫頁面</databases>列出了所有引擎，以及 TablePro 對各引擎的支援範圍。",
+                        "Mac App 支援 {featuredEngines} 等資料庫。各引擎功能請見<databases>支援的資料庫</databases>。",
                         "iPhone 與 iPad App 可連線至 {iosEngines}。"
                     ]
                 },
@@ -118,31 +118,31 @@
                     "id": "drivers",
                     "question": "需要安裝資料庫驅動程式嗎？",
                     "answer": [
-                        "不需要。{bundledEngines} 的驅動程式隨 Mac App 提供。其他驅動程式在首次選擇對應引擎時下載，需要網際網路連線，並獨立於 App 更新。載入前，App 會驗證驅動程式的公開檢查碼與程式碼簽章。",
-                        "iPhone 與 iPad 的驅動程式內建於 App，無需下載。"
+                        "Mac 內建 {bundledEngines} 的驅動程式。其他驅動程式首次使用時需要連網下載，且獨立更新。TablePro 驗證其校驗值及程式碼簽章。",
+                        "iPhone 和 iPad 的所有驅動程式皆內建。"
                     ]
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "可以透過 SSH 或 SSL 連線嗎？",
+                    "question": "能透過 SSH 或 TLS 連線嗎？",
                     "answer": [
-                        "可以。Mac 上的 SSH 通道支援密碼、金鑰或 SSH 代理程式（包括 1Password）驗證，並可經過跳板主機。SSL/TLS 可驗證伺服器憑證。連線也可經 Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 代理伺服器或 kubectl port-forward 等指令建立。<connections>連線頁面</connections>介紹了各選項。",
-                        "iPhone 與 iPad 上的 SSH 通道支援密碼或私密金鑰驗證，不支援跳板主機。"
+                        "可以，前提是引擎支援。Mac App 支援 SSH 金鑰、密碼、代理程式和跳板主機，以及 TLS 憑證驗證、外部通道或代理。請見<connections>連線選項</connections>。",
+                        "iPhone 和 iPad 上的 SSH 使用密碼或私密金鑰，不支援跳板主機。"
                     ]
                 },
                 {
                     "id": "passwords",
                     "question": "密碼存在哪裡？",
                     "answer": [
-                        "Mac 上保存在 macOS 鑰匙圈中，也可在連線時從檔案、環境變數、Shell 指令、1Password、HashiCorp Vault 或 AWS Secrets Manager 讀取。iPhone 與 iPad 上保存在裝置鑰匙圈中。",
-                        "開啟 iCloud Sync 後，還必須開啟 Mac 上 Sync Categories 中的<ui>密碼</ui>（Passwords），或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords），才會透過 iCloud 鑰匙圈同步密碼。"
+                        "已儲存密碼保留在 Keychain。Mac 上也可從檔案、環境變數、shell 命令、1Password、Vault 或 AWS Secrets Manager 解析密碼。",
+                        "密碼同步需要單獨開啟：在 Mac 啟用 <ui>密碼</ui> (Passwords)，或在 iPhone 和 iPad 啟用 <ui>同步密碼</ui> (Sync Passwords)，透過 iCloud Keychain 同步。"
                     ]
                 },
                 {
                     "id": "import-connections",
                     "question": "可以從其他 App 匯入連線嗎？",
                     "answer": [
-                        "可以。Mac App 可從 {importApps} 匯入連線，包括已儲存密碼。匯入功能免費。"
+                        "可以。Mac App 可從 {importApps} 匯入連線和已儲存密碼，匯入功能免費。"
                     ]
                 }
             ]
@@ -155,45 +155,45 @@
                     "id": "what-a-license-adds",
                     "question": "授權增加哪些功能？",
                     "answer": [
-                        "Starter 授權為 Mac App 增加 {starterFeatures}。Team 包含 Starter 的所有功能，並增加 {teamFeatures}，用於與團隊共用連線和查詢。<pricing>價格方案頁面</pricing>逐項說明。"
+                        "Starter 為 Mac App 加入 {starterFeatures}，Team 還加入 {teamFeatures}。詳見<pricing>付費功能</pricing>。"
                     ]
                 },
                 {
                     "id": "cost",
                     "question": "授權多少錢？",
                     "answer": [
-                        "Starter 與 Team 均提供月付、年付或一次性購買，價格以美元計。Team 按席位定價，最少 {teamMinSeats} 個席位。目前價格和總額見<pricing>價格方案頁面</pricing>。"
+                        "可選擇美元月繳、年繳或一次性付款。Team 從 {teamMinSeats} 個席位起。查看目前<pricing>價格和總額</pricing>。"
                     ]
                 },
                 {
                     "id": "how-many-macs",
                     "question": "一份授權涵蓋多少台 Mac？",
                     "answer": [
-                        "Starter 授權供一人使用，最多可用於 {starterActivations} 台 Mac。Team 授權含 {teamMinSeats} 至 {teamMaxSeats} 個席位，每個席位對應一台已啟用 Mac。iPhone 與 iPad 從不占用席位，其 App 沒有授權。",
-                        "若要將授權移至另一台 Mac，請在<account>您的帳戶</account>移除舊裝置。"
+                        "Starter 供一人在最多 {starterActivations} 台 Mac 上使用。Team 提供 {teamMinSeats}–{teamMaxSeats} 個席位，每個席位對應一台已啟用 Mac。iPhone 和 iPad 不占席位。",
+                        "移轉啟用時，請在<account>帳戶</account>中移除舊 Mac。"
                     ]
                 },
                 {
                     "id": "subscription-ends",
                     "question": "訂閱結束後會怎樣？",
                     "answer": [
-                        "付費功能會鎖定，例如 iCloud Sync 暫停，Linked Folders 或 Team Library 中的連線被隱藏。其餘功能繼續運作，連線、查詢和設定原樣保留在 Mac 上。續訂後付費功能恢復。",
-                        "一次性購買沒有到期日。iPhone 與 iPad 不受影響。"
+                        "付費功能會停止：iCloud Sync 暫停，共用連線可能隱藏。本機連線、查詢和設定保留，免費功能繼續可用。續訂後恢復付費存取。",
+                        "一次性授權沒有到期日。iPhone 和 iPad 不受影響。"
                     ]
                 },
                 {
                     "id": "offline",
                     "question": "授權可離線使用嗎？",
                     "answer": [
-                        "可以。Mac App 每次啟動都會在本機驗證授權簽章，並每隔 {revalidateDays} 天向伺服器驗證。若無法連線至伺服器，付費功能可自上次成功驗證起繼續使用 {graceDays} 天。",
-                        "部分功能本身需要網路，例如首次下載驅動程式、更新和雲端 AI 供應商。"
+                        "可以，在離線寬限期內可用。TablePro 啟動時驗證簽章，每 {revalidateDays} 天檢查伺服器。若伺服器無法存取，付費功能在上次成功檢查後可繼續使用 {graceDays} 天。",
+                        "驅動程式下載、更新和雲端 AI 仍需要網路連線。"
                     ]
                 },
                 {
                     "id": "payment",
                     "question": "誰處理付款？",
                     "answer": [
-                        "{merchant} 是我們的 merchant of record。您向 {merchant} 購買授權，由其收款、在結帳時計算銷售稅或加值稅並寄送收據郵件。發票、付款方式和訂閱可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用購買時的電子郵件登入。"
+                        "{merchant} 是 merchant of record，負責付款、稅費和收據。用購買信箱登入 <portal>{merchant} 客戶入口網站</portal>，管理發票和訂閱。"
                     ]
                 },
                 {
@@ -214,14 +214,14 @@
                     "id": "refunds",
                     "question": "可以退款嗎？",
                     "answer": [
-                        "可以。所有方案均可在購買後 {refundDays} 天內退款，月付或年付方案的每次續訂也可在扣款後 {refundDays} 天內退款。<refundPolicy>退款政策</refundPolicy>說明了申請方法和授權後續處理。"
+                        "可以。購買和訂閱續費皆可在每次扣款後 {refundDays} 天內退款。查看<refundPolicy>退款政策</refundPolicy>。"
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "授權金鑰遺失了，在哪裡找？",
                     "answer": [
-                        "在購買時寄送的郵件和<account>您的帳戶</account>中。使用購買時的電子郵件登入，即可查看授權及其金鑰。"
+                        "在購買郵件或<account>帳戶</account>中尋找。用購買信箱登入即可查看金鑰。"
                     ]
                 },
                 {
@@ -241,30 +241,30 @@
                     "id": "what-is-sent",
                     "question": "App 會向 TablePro 傳送什麼？",
                     "answer": [
-                        "未啟用授權時，Mac App 向 TablePro 發出的唯一請求是每日使用報告，預設開啟，可在<ui>設定 > 一般 > 隱私</ui>（Settings > General > Privacy）中關閉。它包含經過雜湊處理的機器 ID、App 版本、語言和所連線資料庫類型等資訊，從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
-                        "啟用授權後，Mac App 還會每隔 {revalidateDays} 天驗證，傳送金鑰、相同機器 ID、Mac 名稱及 App 和 macOS 版本。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。<privacy>隱私權政策</privacy>提供完整清單，包括伺服器儲存的內容。"
+                        "Mac App 預設每天傳送使用報告，可在 <ui>設定 > 一般 > 隱私</ui> (Settings > General > Privacy) 關閉。報告包含雜湊機器 ID、App 資訊和資料庫型別，絕不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
+                        "授權檢查每 {revalidateDays} 天執行，傳送金鑰、機器 ID、Mac 名稱及 App 和 macOS 版本。iPhone 和 iPad 報告需主動開啟。Team Library 接收您發佈的設定和已儲存 SQL。查看<privacy>隱私權政策</privacy>，其中包括 IP 記錄說明。"
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "需要註冊嗎？",
                     "answer": [
-                        "兩款 App 均無需註冊。購買授權後，<account>您的帳戶</account>會顯示授權、已啟用的 Mac 和團隊席位，透過寄送至購買電子郵件的連結登入。"
+                        "使用 App 無需註冊。購買者透過傳送到購買信箱的連結登入<account>帳戶</account>，管理授權、Mac 和席位。"
                     ]
                 },
                 {
                     "id": "ai-data",
                     "question": "AI 助理會將我的資料傳送給 TablePro 嗎？",
                     "answer": [
-                        "不會。AI 助理位於 Mac App 中，請求直接傳送至您加入的供應商，從不經過 TablePro。預設包含資料庫類型和名稱、結構中的資料表和欄位定義及目前查詢，結果列僅在您開啟後傳送。{localAiProviders} 在您自己的 Mac 上執行。詳情見 <aiMcp>AI 和 MCP 頁面</aiMcp>。"
+                        "不會。請求直接傳送給您選擇的服務商，不經過 TablePro。預設包含資料庫型別和名稱、綱要及目前查詢；結果列需單獨同意。{localAiProviders} 在本機執行。服務商可能收取使用費用。請見 <aiMcp>AI 資料處理</aiMcp>。"
                     ]
                 },
                 {
                     "id": "icloud-data",
                     "question": "iCloud Sync 儲存什麼，存在哪裡？",
                     "answer": [
-                        "iCloud Sync 預設關閉。同步的連線和 Mac 上選擇的其他類別存入您自己 iCloud 帳戶的私有資料庫，TablePro 無法讀取。只有同時開啟 Mac 上 Sync Categories 中的<ui>密碼</ui>（Passwords），或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords）才會同步密碼。",
-                        "Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，iPhone 與 iPad 上免費。"
+                        "同步預設關閉，使用您 iCloud 帳戶中的私人資料庫，TablePro 無法讀取。密碼需單獨開啟：Mac 上的 <ui>密碼</ui> (Passwords)，或 iPhone 和 iPad 上的 <ui>同步密碼</ui> (Sync Passwords)。",
+                        "iCloud Sync 在 Mac 上需要 Starter 或 Team，在 iPhone 和 iPad 上免費。"
                     ]
                 }
             ]
@@ -277,28 +277,28 @@
                     "id": "sign-in",
                     "question": "如何登入帳戶？",
                     "answer": [
-                        "前往<account>您的帳戶</account>，輸入購買時的電子郵件。我們會寄送只能使用一次、短期內到期的登入連結。只有購買授權的地址可登入；團隊成員在 Mac App 中用邀請代碼加入。"
+                        "在<account>帳戶</account>輸入購買信箱。郵件連結僅可使用一次，很快失效。只有購買者登入入口網站；團隊成員在 Mac App 中使用邀請碼。"
                     ]
                 },
                 {
                     "id": "members",
                     "question": "如何新增或移除團隊成員？",
                     "answer": [
-                        "在<account>您的帳戶</account>中透過電子郵件邀請。成員收到代碼後，在 Mac 上的 TablePro 中進入<ui>設定 > 授權</ui>（Settings > License）輸入，其 Mac 占用一個席位。移除成員會釋出席位、讓其 Mac 登出，並刪除其發佈至 Team Library 的內容。"
+                        "在<account>帳戶</account>中透過信箱邀請隊友。他們在 <ui>設定 > 授權</ui> (Settings > License) 輸入代碼，每台已啟用 Mac 占一個席位。移除成員會釋放席位，並刪除其發佈的 Team Library 項目。其 Mac 在下次授權檢查時失去付費存取，而非立即失效。"
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "如何變更席位數？",
                     "answer": [
-                        "月付或年付 Team 訂閱可在<account>您的帳戶</account>中變更，變更會反映在下一張帳單中。一次性 Team 授權請寄送郵件至 <email>{email}</email>。"
+                        "在<account>帳戶</account>中變更訂閱席位，差額會顯示在下次帳單。一次性授權請郵件聯絡 <email>{email}</email>。"
                     ]
                 },
                 {
                     "id": "cancel",
                     "question": "如何取消訂閱？",
                     "answer": [
-                        "在<account>您的帳戶</account>或 <portal>{merchant} 客戶入口網站</portal>中取消。不會再次扣款，授權可繼續使用至已付費期間結束，並可在此前恢復。"
+                        "在<account>帳戶</account>或 <portal>{merchant} 入口網站</portal>取消。付費期間內繼續可用，不再續訂；到期前可恢復。"
                     ]
                 }
             ]
@@ -311,23 +311,23 @@
                     "id": "switch-connections",
                     "question": "需要重新設定連線嗎？",
                     "answer": [
-                        "不需要。TablePro 可從 {importApps} 匯入連線，包括已儲存密碼、SSH 通道和 SSL 設定。"
+                        "若支援您目前的用戶端，可從 {importApps} 匯入連線，包括已儲存密碼、SSH 通道和 TLS 設定。"
                     ]
                 },
                 {
                     "id": "compare",
                     "question": "TablePro 與其他資料庫用戶端相比如何？",
                     "answer": [
-                        "<compare>比較頁面</compare>將 TablePro 與其他用戶端並列比較，註明各項事實的核實日期，並說明各自更適合的情境。"
+                        "查看<compare>比較頁面</compare>，了解差異、核查日期和來源，也包括其他用戶端可能更適合的情況。"
                     ]
                 }
             ]
         }
     ],
     "contact": {
-        "title": "沒找到答案？",
+        "title": "需要協助？",
         "body": "請寄送郵件至 <email>{email}</email>，或在 <issues>GitHub</issues> 回報問題。",
         "chat": "開始線上聊天",
-        "chatNote": "每個網頁載入完成後都會載入聊天。"
+        "chatNote": "線上聊天在頁面載入完成後載入。"
     }
 }

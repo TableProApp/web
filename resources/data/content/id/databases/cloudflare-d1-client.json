@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Klien Cloudflare D1 untuk {devices}",
-        "lead": "Akses database D1 dalam akun Cloudflare melalui satu koneksi, jalankan kueri dengan dialek SQLite melalui API Cloudflare, serta kelola tabel, indeks, dan trigger di tab Structure."
+        "title": "Klien Cloudflare D1",
+        "lead": "Jelajahi database D1 di akun Cloudflare Anda dan jalankan kueri SQLite melalui API-nya."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Hubungkan dengan token API",
             "paragraphs": [
-                "Koneksi D1 memerlukan tiga nilai: nama atau UUID database, ID akun Cloudflare, dan token API. Token dimasukkan pada bidang <ui>API Token</ui> dan disimpan di <credentials>Rantai Kunci macOS</credentials>. Tidak ada host, port, pengaturan SSL, atau tunnel SSH karena setiap permintaan menuju API Cloudflare melalui HTTPS.",
-                "Buat token dari templat Custom token dengan izin <ui>Account > D1 > Edit</ui>, lalu salin saat Cloudflare menampilkannya karena token hanya ditampilkan sekali. Token tersebut dapat mengakses setiap database D1 dalam akun, bukan hanya database yang Anda hubungkan.",
+                "Masukkan nama database D1 atau UUID, ID akun Cloudflare dan <ui>API Token</ui>. Token tetap berada di <credentials>macOS Rantai Kunci</credentials>. Permintaan menggunakan HTTPS; tidak ada host, port, pengaturan TLS atau terowongan SSH.",
+                "Buat token dengan izin <ui>Account > D1 > Edit</ui> dan salin saat ditampilkan. Ini memberikan akses ke setiap database D1 di akun, bukan hanya database yang dipilih.",
                 "Mengimpor URL <code>d1://account-id/database-name</code> mengisi akun dan database; token tidak pernah disertakan dalam URL, jadi tempel token setelahnya."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Berpindah database dan jalankan kueri",
             "paragraphs": [
-                "Pemilih database di toolbar mencantumkan database D1 dalam akun dan berpindah di antaranya tanpa membuka ulang koneksi. Pemilih juga dapat membuat dan menghapus database. Setiap tab tetap pada database tempat tab dibuka.",
+                "Beralih di antara database D1 akun tanpa menghubungkan kembali. Pengalih juga membuat dan menghapus database. Tab yang ada menyimpan database awalnya.",
                 "Kueri menggunakan dialek SQLite. <explain>EXPLAIN QUERY PLAN</explain> digambar sebagai diagram, dan perubahan baris menunggu di grid sampai Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan pernyataan terlebih dahulu.",
                 "Tulis setiap pernyataan agar dapat berdiri sendiri: pengaturan <code>PRAGMA</code> atau tabel sementara yang dibuat satu pernyataan hilang pada pernyataan berikutnya, dan setiap pernyataan langsung melakukan commit saat berjalan, tanpa rollback. Saat Cloudflare membatasi permintaan, kesalahan menyertakan waktu tunggu yang diminta sebelum mencoba lagi."
             ]

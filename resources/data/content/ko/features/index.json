@@ -1,60 +1,60 @@
 {
     "seo": {
-        "title": "쿼리 및 데이터베이스 관리 기능",
-        "description": "쿼리, 데이터 편집, 스키마 작업, 가져오기 및 내보내기, AI와 MCP, 연결 및 동기화 등 TablePro의 기능을 영역별로 소개하고 유료 기능을 표시합니다."
+        "title": "데이터베이스 클라이언트 기능 | TablePro",
+        "description": "쿼리 작성, 데이터 편집, 스키마 확인, 파일과 데이터베이스 간 데이터 이동. TablePro의 무료 및 유료 기능을 살펴보세요."
     },
     "og": {
         "kicker": "기능",
-        "title": "TablePro로 할 수 있는 일"
+        "title": "기능"
     },
     "header": {
-        "title": "TablePro로 할 수 있는 일",
-        "lead": "Mac 앱은 모든 작업을 위한 도구입니다. iPhone 및 iPad 앱은 기능 범위가 더 작은 별도의 네이티브 앱이며 각 기능 페이지에서 해당 앱의 기능을 설명합니다."
+        "title": "기능",
+        "lead": "지원되는 데이터베이스의 데이터를 조회하고 편집하며 작업하세요."
     },
     "areas": {
         "title": "작업별 기능",
-        "paid": "{tier} 플랜: {features}",
+        "paid": "선택 유료 기능: {features} ({tier})",
         "noPaid": "유료 기능 없음",
         "items": [
             {
                 "slug": "querying",
-                "summary": "스키마 인식 자동 완성, <code>:name</code> 매개변수, 검색 가능한 기록, 저장된 쿼리, 비교 가능한 EXPLAIN 계획 및 차트나 지도로 보는 결과."
+                "summary": "자동 완성으로 SQL을 작성하고 저장된 쿼리를 재사용하며 기록을 검색하세요. 지원되는 엔진의 쿼리 계획을 확인할 수 있습니다."
             },
             {
                 "slug": "data-editing",
-                "summary": "필터와 강조 규칙, 참조 행을 따라갈 수 있는 외래 키, 저장까지 보류되는 편집, 연결별 Safe Mode 수준 및 저장으로 대체된 값을 복원하는 Data Rewind."
+                "summary": "행을 필터링하고 외래 키를 따라가며 저장 전에 편집을 검토하세요."
             },
             {
                 "slug": "schema",
-                "summary": "DDL 미리보기가 있는 구조 변경, 읽기 전용 ER 다이어그램, 두 데이터베이스 간 Compare & Sync, 엔진 간 Copy To 및 Users & Roles."
+                "summary": "관계를 확인하고 테이블 구조를 바꾸며 지원되는 데이터베이스를 비교하세요."
             },
             {
                 "slug": "import-export",
-                "summary": "{importFormats} 파일 가져오기, 테이블 및 결과 내보내기, 연결 없이 데이터 파일 열기 및 지원 엔진 자체 덤프 도구를 사용하는 백업."
+                "summary": "{importFormats} 파일을 가져오고 테이블이나 결과를 내보내세요. 데이터베이스 연결 없이 데이터 파일을 열 수 있습니다."
             },
             {
                 "slug": "ai-mcp",
-                "summary": "선택한 제공업체를 사용하는 선택적 AI 어시스턴트 및 Claude Code와 Cursor 같은 클라이언트가 저장된 연결을 이용하게 하는 로컬 MCP(Model Context Protocol) 서버."
+                "summary": "선호하는 AI 제공자를 사용하거나 MCP (Model Context Protocol)로 외부 클라이언트를 연결하세요."
             },
             {
                 "slug": "connections",
-                "summary": "점프 호스트를 통한 SSH 터널, TLS, 클라우드 로그인 및 터널 명령, 키체인이나 비밀 관리 서비스에서 가져오는 비밀번호 및 다른 앱에서 가져온 연결."
+                "summary": "SSH 터널과 클라우드 로그인을 사용하고 다른 앱에서 연결을 가져오세요."
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Mac, iPhone 및 iPad 간 iCloud Sync, 공유 가능한 연결 파일 및 팀 공유를 위한 Team Catalog와 Team Library."
+                "summary": "iCloud로 동기화하거나 팀과 연결 및 쿼리를 공유하세요."
             }
         ]
     },
     "ios": {
         "title": "iPhone 및 iPad",
-        "body": "iPhone 및 iPad용 TablePro는 무료이며 앱 내 구입이 없는 별도 앱입니다. SSH 또는 TLS로 연결하고 행을 탐색하고 편집하고 쿼리를 실행하며 단축어, 홈 화면 위젯 및 실행 중인 쿼리의 실시간 현황을 제공합니다. AI 어시스턴트, 스키마 편집, Data Rewind 및 Compare & Sync는 없습니다.",
+        "body": "iPhone 및 iPad에서 테이블을 탐색하고 행을 편집하며 쿼리를 실행하세요. 별도의 모바일 앱은 무료이며 앱 내 구입이 없습니다. 기능 지원 여부는 각 상세 페이지에 표시됩니다.",
         "link": "iPhone 및 iPad용 TablePro"
     },
     "paid": {
         "title": "무료 및 유료",
-        "lead": "Mac 앱은 무료이며 체험 기간이 없습니다. Starter 또는 Team 플랜은 아래 기능을 Mac 앱에 추가하며 Team은 Starter의 모든 기능을 포함합니다. 지원하는 모든 엔진 연결, AI 어시스턴트, MCP 서버 및 Safe Mode는 라이선스가 필요하지 않으며 iPhone 및 iPad 앱은 무료이고 앱 내 구입이 없습니다.",
-        "caption": "Mac 앱의 유료 기능, 필요한 플랜 및 설명 페이지",
+        "lead": "핵심 앱은 체험 기간 없이 무료입니다. Starter는 Mac 앱에 유료 기능을 추가하며 Team은 Starter를 포함합니다. 지원되는 모든 데이터베이스, AI 도우미, MCP, Safe Mode는 라이선스 없이 사용할 수 있습니다.",
+        "caption": "현재 Mac에서 제공되는 유료 기능",
         "columns": {
             "feature": "기능",
             "plan": "플랜",
@@ -64,7 +64,7 @@
     },
     "docs": {
         "title": "문서",
-        "body": "TablePro 문서에는 기능별 페이지가 있으며 모든 설정과 단축키를 설명합니다.",
+        "body": "설정 방법, 설정 항목, 단축키를 확인하세요.",
         "link": "문서 읽기",
         "path": "/features/overview"
     },
@@ -80,19 +80,19 @@
         },
         "paidBadge": "{name}: {tier} 플랜",
         "header": {
-            "paid": "이 페이지의 유료 기능: {features}. 나머지는 모두 무료입니다.",
+            "paid": "유료: {features}. 나머지 기능은 무료입니다.",
             "paidItem": "{name} ({tier})",
             "allFree": "이 페이지의 모든 기능은 무료입니다.",
             "docs": "문서 읽기"
         },
         "sections": {
             "availability": "지원 범위",
-            "limits": "알아둘 제한 사항",
+            "limits": "제한 사항",
             "docs": "문서",
             "related": "관련 항목"
         },
         "availability": {
-            "caption": "이 페이지의 각 기능, Mac에서 필요한 플랜 및 iPhone과 iPad 지원 범위",
+            "caption": "Mac, iPhone, iPad의 지원 환경과 플랜",
             "capability": "기능",
             "free": "무료",
             "notAvailable": "지원되지 않음",
@@ -100,7 +100,7 @@
         },
         "download": {
             "title": "TablePro 받기",
-            "body": "TablePro는 오픈 소스이며 무료로 사용할 수 있습니다. 유료 플랜은 Mac 앱에 선택 기능을 추가합니다.",
+            "body": "무료로 사용하는 오픈 소스 앱입니다.",
             "pricing": "요금 보기"
         }
     }

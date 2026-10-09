@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "DuckDB-Client für {devices}",
-        "lead": "Öffne eine DuckDB-Datenbankdatei oder wähle eine Parquet-, CSV- oder JSON-Datei und frage sie direkt mit SQL ab. DuckDB läuft im Treiber; es läuft daher kein Server, sofern du dich nicht mit einem verbindest."
+        "title": "DuckDB-Client",
+        "lead": "Öffne Datenbanken oder frage Parquet, CSV und JSON mit SQL ab, ohne Datenbankserver."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "Eine Datei öffnen",
             "paragraphs": [
-                "Wähle eine <code>.duckdb</code>- oder <code>.ddb</code>-Datei oder gib einen noch nicht vorhandenen Pfad an, um eine zu erstellen. Gib stattdessen <code>:memory:</code> für eine Datenbank ein, die so lange wie die Sitzung besteht. Eine Datenbank öffnet sich unabhängig vom Dateinamen als DuckDB, weil DuckDB seine Dateien in den ersten Bytes kennzeichnet.",
-                "Wähle eine <code>.parquet</code>-, <code>.csv</code>-, <code>.tsv</code>-, <code>.json</code>- oder <code>.ndjson</code>-Datei, und sie öffnet sich als schreibgeschützte Sichten in einer In-Memory-Datenbank: eine namens <code>file</code> und eine mit dem Dateinamen. Die Datei auf dem Datenträger bleibt Byte für Byte unverändert; erstelle zum Ändern ihres Inhalts eine Tabelle daraus in einer <code>.duckdb</code>-Datenbank.",
-                "Doppelklicke eine <code>.duckdb</code>-Datei im Finder, um sie hier zu öffnen. Bei Parquet-Dateien steht TablePro unter Öffnen mit. Eine über <ui>File > Open File</ui> gewählte Parquet-Datei öffnet sich als DuckDB-Verbindung statt im <dataFiles>Fenster Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> verbindet sich mit einem über <code>quack_serve</code> gestarteten DuckDB-Server und bindet ihn unter einem Alias wie <code>remotedb</code> ein; über diesen Alias erreichst du seine Tabellen nach Namen. Die erste Remote-Verbindung lädt die Erweiterung <code>quack</code> von DuckDB herunter."
+                "Öffne .duckdb oder .ddb, gib einen neuen Pfad zum Erstellen einer Datei ein oder nutze <code>:memory:</code> für eine temporäre Datenbank. Entscheidend ist der Dateiheader, nicht die Endung.",
+                "Öffne Parquet, CSV, TSV, JSON oder NDJSON als schreibgeschützte Views namens <code>file</code> und nach dem Dateinamen. Die Quelle bleibt unverändert. Erstelle zum Bearbeiten eine DuckDB-Tabelle.",
+                "Öffne Datenbankdateien im Finder. Parquet wird über <ui>File > Open File</ui> als DuckDB-Verbindung geöffnet, nicht im <dataFiles>Data Files-Fenster</dataFiles>.",
+                "<ui>Remote (Quack, experimental)</ui> verbindet sich mit einem <code>quack_serve</code>-Alias. Beim ersten Mal wird die <code>quack</code>-Erweiterung heruntergeladen."
             ]
         },
         {
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Jede Verbindung kann eine Datei direkt aus SQL lesen, etwa mit <code>SELECT * FROM 'data.csv'</code> oder <code>read_parquet('events.parquet')</code>. Binde eine weitere DuckDB-Datei mit <code>ATTACH</code> ein, und sie erscheint als zweite Datenbank in der Seitenleiste; <code>⌘K</code> wechselt ohne erneutes Verbinden zwischen ihnen. DuckDB behält nach dem erneuten Verbinden keine Einbindung.",
+                "Frage Dateien direkt ab, etwa mit <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> ergänzt eine Datei in der Seitenleiste; wechsle mit ⌘K. Angefügte Dateien bleiben nach dem Wiederverbinden nicht erhalten.",
                 "<explain>EXPLAIN</explain> wird als Plandiagramm dargestellt. Tabellenzeilen werden mit <editing>Preview SQL</editing> bearbeitet, das jede Anweisung zuerst zeigt; Sichten über eine Datendatei bleiben schreibgeschützt."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "Der <structure>Structure-Tab</structure> bearbeitet Tabellen und zeigt das DDL vor der Ausführung. Eine Datenbank ist hier eine Datei; es gibt daher kein Erstellen oder Löschen einer Datenbank in der App. <code>ATTACH</code> erschließt eine zweite Datei."
+                "Bearbeite Tabellen im <structure>Structure-Tab</structure> mit DDL-Vorschau. Die Seitenleiste erstellt oder löscht keine Datenbanken. Zum Erstellen einer Datei verbinde einen neuen Pfad; füge eine zweite Datei mit <code>ATTACH</code> hinzu."
             ]
         },
         {

@@ -47,8 +47,8 @@ export default {
     },
     "newsletter": {
         "title": "Notes de version par e-mail",
-        "body": "Des e-mails occasionnels, en anglais, avec les notes de version. Chaque e-mail contient un lien de désinscription.",
-        "note": "Nous vous envoyons d’abord un lien de confirmation. <link>Politique de confidentialité</link>"
+        "body": "Des notes de version occasionnelles, en anglais. Désabonnez-vous dans n’importe quel e-mail.",
+        "note": "Confirmez votre abonnement par e-mail. <link>Politique de confidentialité</link>"
     },
     "bottom": {
         "copyright": "© {year} TablePro, créé par {maker} à {city}. Code source sous AGPLv3."

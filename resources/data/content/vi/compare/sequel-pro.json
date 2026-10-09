@@ -9,21 +9,21 @@
     },
     "header": {
         "title": "Lựa chọn thay thế Sequel Pro trên Mac",
-        "lead": "Sequel Pro không còn được phát triển. Bản phát hành cuối là bản cho Intel từ năm 2016, Homebrew đã gỡ ứng dụng này, và website của Sequel Pro không truy cập được khi trang này được kiểm tra. Sequel Ace tiếp nối Sequel Pro cho MySQL và MariaDB. TablePro là một lựa chọn khác nếu bạn muốn một client cho nhiều cơ sở dữ liệu hơn, và TablePro import được connection từ Sequel Ace."
+        "lead": "Sequel Ace là ứng dụng kế thừa Sequel Pro đang được duy trì. TablePro là lựa chọn khác khi cần nhiều loại cơ sở dữ liệu hơn. Chuyển connection đã lưu sang TablePro qua Sequel Ace."
     },
     "shortAnswer": {
+        "lead": "Lý do dùng TablePro hoặc Sequel Ace.",
         "tablepro": [
-            "Bạn còn làm việc với PostgreSQL, SQL Server, SQLite, Redis hay MongoDB, không chỉ MySQL và MariaDB.",
-            "Bạn muốn có trợ lý AI và MCP server, miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn.",
-            "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới MySQL và MariaDB.",
-            "Bạn sẵn sàng làm quen với một giao diện khác, và muốn connection trong Sequel Ace được chuyển sang kèm mật khẩu."
+            "MySQL và MariaDB cạnh loại cơ sở dữ liệu khác.",
+            "AI chat và MCP miễn phí, hoặc ứng dụng iPhone và iPad.",
+            "Giao diện khác, import connection qua Sequel Ace."
         ],
         "competitor": [
-            "Bạn muốn giữ giao diện Sequel Pro quen thuộc, miễn phí và vẫn được duy trì.",
-            "Bạn chỉ dùng MySQL và MariaDB.",
-            "Bạn quen cài ứng dụng từ Mac App Store."
+            "Giao diện Sequel Pro quen thuộc, được duy trì trong Sequel Ace.",
+            "Client tập trung MySQL và MariaDB.",
+            "Ứng dụng trên Mac App Store."
         ],
-        "competitorTitle": "Chọn Sequel Ace nếu"
+        "competitorTitle": "Cân nhắc Sequel Ace khi cần"
     },
     "glance": {
         "intro": "Bản phát hành cuối của Sequel Pro là {status.version}, ra ngày {status.date}. Bảng dưới đây cho thấy tình trạng hiện tại của Sequel Pro, đặt cạnh TablePro. Muốn so sánh với bản kế tục còn được duy trì, hãy đọc trang TablePro vs Sequel Ace."
@@ -51,13 +51,18 @@
         "items": [
             {
                 "text": "Sequel Pro miễn phí và là mã nguồn mở theo license MIT.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Mã nguồn của Sequel Pro được tiếp nối trong Sequel Ace, bản kế tục đang được duy trì và giữ nguyên giao diện cho MySQL và MariaDB.",
-                "cite": ["cells.successor"],
+                "cite": [
+                    "cells.successor"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -68,7 +73,10 @@
         "items": [
             {
                 "text": "TablePro đang được duy trì và có bản riêng cho Apple silicon và Intel. Bản phát hành cuối của Sequel Pro là bản cho Intel, cần Rosetta để chạy trên Apple silicon.",
-                "cite": ["status", "cells.rosetta"],
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
                 "feature": null,
                 "href": null
             },

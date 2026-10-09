@@ -59,6 +59,18 @@ afterEach(function (): void {
     File::deleteDirectory($this->public);
 });
 
+it('preserves supplied English artwork at the canonical default URL while generating other cards', function (): void {
+    $artwork = seoPngBytes();
+    File::put($this->public . '/og.png', $artwork);
+
+    $this->artisan('og:generate')->assertSuccessful();
+
+    expect($this->rendered)->not->toHaveKey('/og.png')
+        ->toHaveKey('/og/vi/default.png')
+        ->toHaveKey('/og/feature/querying.png');
+    expect(File::get($this->public . '/og.png'))->toBe($artwork);
+});
+
 it('renders every card in both languages by default', function (): void {
     $this->artisan('og:generate')->assertSuccessful();
 

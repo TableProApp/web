@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "适用于 {devices} 的 Cloudflare D1 客户端",
-        "lead": "从一个连接访问 Cloudflare 账户中的 D1 数据库，通过 Cloudflare API 使用 SQLite 方言查询，并在 Structure 标签页管理表、索引和触发器。"
+        "title": "Cloudflare D1 客户端",
+        "lead": "浏览 Cloudflare 账户中的 D1 数据库，并通过其 API 运行 SQLite 查询。"
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "使用 API 令牌连接",
             "paragraphs": [
-                "D1 连接需要三个值：数据库名称或 UUID、Cloudflare 账户 ID 和 API 令牌。令牌填入 <ui>API Token</ui> 字段，保存在 <credentials>macOS 钥匙串</credentials>。所有请求经 HTTPS 发送到 Cloudflare API，因此没有主机、端口、SSL 设置或 SSH 隧道。",
-                "通过 Custom token 模板创建带 <ui>Account > D1 > Edit</ui> 权限的令牌，Cloudflare 仅显示一次，请及时复制。令牌可访问账户中所有 D1 数据库，不仅是当前连接的数据库。",
+                "输入 D1 数据库名称或 UUID、Cloudflare 账户 ID 和 <ui>API Token</ui>。令牌保存在 <credentials>macOS Keychain</credentials>。请求使用 HTTPS；没有主机、端口、TLS 设置或 SSH 隧道。",
+                "创建具有 <ui>Account > D1 > Edit</ui> 权限的令牌，并在显示时复制。它可访问账户中的所有 D1 数据库，不仅是所选数据库。",
                 "导入 <code>d1://account-id/database-name</code> URL 会填入账户和数据库；令牌从不包含在 URL 中，需随后粘贴。"
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "切换数据库并查询",
             "paragraphs": [
-                "工具栏数据库切换器列出账户的 D1 数据库，无需重连即可切换，也可创建和删除数据库。各标签页保持在打开时的数据库。",
+                "无需重新连接即可切换账户中的 D1 数据库。切换器也可创建和删除数据库；已有标签页保留原数据库。",
                 "查询使用 SQLite 方言。<explain>EXPLAIN QUERY PLAN</explain> 绘制为图形，行编辑在网格中暂存至保存，<editing>Preview SQL</editing> 先显示语句。",
                 "请让每条语句独立成立：一条语句设置的 <code>PRAGMA</code> 或临时表在下一条时消失，每条执行即提交，无法回滚。Cloudflare 限流时，错误包含重试前要求等待的时间。"
             ]

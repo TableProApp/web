@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "适用于 {devices} 的 Apache Kafka 客户端",
-        "lead": "用 TablePro 自有的命令语言 KafkaQL 从所选起点读取主题，查看每个消费者组的延迟，并生成测试消息。主题是日志，所以网格仅读取消息，从不编辑。"
+        "title": "Apache Kafka 客户端",
+        "lead": "检查主题消息和消费者延迟，或使用 TablePro 的命令语言 KafkaQL 发送测试消息。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入一个代理的主机和端口，从它发现集群其余部分。<ui>额外的 Bootstrap 服务器</ui>（Additional Bootstrap Servers）列出首个代理无响应时尝试的代理。一个连接对应一个集群，无 Database 字段，侧边栏直接显示主题。",
+                "输入引导代理的主机和端口。<ui>额外的 Bootstrap 服务器</ui> (Additional Bootstrap Servers) 可添加备用代理。每个连接访问一个集群，侧边栏显示其主题。",
                 "<ui>安全协议</ui>（Security Protocol）可选 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 机制</ui>（SASL Mechanism）可选 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 适合 Confluent Cloud，SCRAM 适合 Amazon MSK 和自托管代理。SSL 或 SASL_SSL 未选择 SSL 模式时验证证书链和主机名。私有 CA 填入 <ui>CA 证书</ui>（CA Certificate），客户端证书和密钥提供双向 TLS。",
                 "通过 <network>SSH 隧道</network>时连接停留在引导代理，仅读取该代理领导的分区。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不将其作为链接打开。"
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "读取、检查和生成",
             "paragraphs": [
-                "打开主题显示最近消息，最新在最后，含分区、偏移量、时间戳、键、值、头和大小。不同分区的消息按时间戳交错以方便阅读；真正标识消息的是分区和偏移量。非 UTF-8 的键或值显示为十六进制，tombstone 与空消息保持区别。",
-                "KafkaQL 用起始位置替代排序和筛选：<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code>，或带 ISO 8601 时间戳的 <code>FROM TIME</code>，可限定部分分区。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code>、<code>DESCRIBE TOPIC</code> 查看集群其他信息。",
+                "浏览近期消息及其分区、偏移量、时间戳、键、值和标头。跨分区消息按时间戳交错显示，由分区和偏移量标识。非 UTF-8 值显示为十六进制；墓碑消息与空消息保持区分。",
+                "用 KafkaQL 从最新、最早、指定偏移量或 ISO 8601 时间戳开始消费，也可限定分区。SHOW 列出主题、代理、组和集群详情；DESCRIBE TOPIC 检查主题。",
                 "<code>DESCRIBE GROUP</code> 是延迟报告，逐分区显示已提交偏移、末端偏移和差值。组从未提交过的分区显示无延迟，而不是从零计算。代理不可达时 <code>SHOW GROUPS</code> 标注列表已截断。",
                 "<code>PRODUCE INTO</code> 写入消息，可选键、头和分区。有键但未指定分区的消息落在 Kafka 自身生产者会选择的位置。读取时自动解压 gzip、snappy、lz4、zstd 批次，无需选择设置。",
-                "Kafka 无更新、逐消息删除或服务器端排序，因此无法编辑单元格、删除行或按列排序，相应控件显示禁用。每页从上页停止处继续，因此持续写入的主题也不重复或跳过消息。"
+                "不能编辑或单独删除消息，也不能按列排序。新消息到达时，分页会从上次位置继续。"
             ]
         },
         {

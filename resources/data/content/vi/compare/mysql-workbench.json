@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MySQL Workbench: chỉ MySQL, hay nhiều engine",
+        "title": "TablePro và MySQL Workbench: tính năng và tương thích",
         "description": "MySQL Workbench là công cụ miễn phí của Oracle cho MySQL, nay được viết lại trên MySQL Shell. TablePro hỗ trợ MySQL và nhiều engine khác trên Mac, iPhone, iPad."
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MySQL Workbench",
-        "lead": "MySQL Workbench là công cụ miễn phí, mã nguồn mở của Oracle dành cho MySQL. Phiên bản {status.version} được viết lại trên nền MySQL Shell, và Oracle không còn bảo trì Workbench 8.0. TablePro là client mã nguồn mở cho MySQL, MariaDB và nhiều engine khác, có ứng dụng riêng cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+        "lead": "MySQL Workbench là công cụ MySQL của Oracle. Phiên bản {status.version} xây dựng lại trên MySQL Shell. So với TablePro cho MySQL, MariaDB và cơ sở dữ liệu khác."
     },
     "shortAnswer": {
         "tablepro": [
-            "Bạn còn dùng MariaDB, PostgreSQL, SQL Server, SQLite hay Redis, và muốn một client cho tất cả.",
-            "Bạn vẫn chạy server MySQL 8.0. TablePro kết nối được tới các server này, còn Workbench mới hỗ trợ MySQL {cells.databases.version} trở lên.",
-            "Máy Mac của bạn dùng chip Intel. TablePro có một bản cho Intel và một bản cho Apple silicon.",
-            "Bạn muốn trợ lý AI và MCP server miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn.",
-            "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới MySQL và MariaDB."
+            "MySQL và MariaDB cạnh loại cơ sở dữ liệu khác.",
+            "Connection MySQL 8.0; Workbench mới hỗ trợ {cells.databases.version} trở lên.",
+            "Bản build Intel Mac hoặc ứng dụng iPhone và iPad miễn phí."
         ],
         "competitor": [
-            "Bạn muốn dùng công cụ chính thức của Oracle cho MySQL, miễn phí và mã nguồn mở.",
-            "Bạn thích notebook kết hợp query, kết quả và ghi chú, chạy được cả JavaScript và TypeScript ngoài SQL.",
-            "Bạn dùng MySQL Enterprise Backup và muốn lên lịch, khôi phục bản sao lưu từ một ứng dụng desktop.",
-            "Bạn đang chuyển sang MySQL HeatWave trên OCI và muốn có trình hướng dẫn migration.",
-            "Bạn còn làm việc trên Windows hoặc Linux và muốn dùng cùng một công cụ trên mỗi máy."
+            "Công cụ MySQL miễn phí của Oracle.",
+            "SQL notebook với JavaScript và TypeScript.",
+            "Tích hợp MySQL Enterprise Backup hoặc hướng dẫn chuyển sang HeatWave."
         ]
     },
     "glance": {
@@ -57,31 +53,34 @@
         "items": [
             {
                 "text": "MySQL Workbench là công cụ chính thức của Oracle cho MySQL, miễn phí và mã nguồn mở theo license GPL.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "SQL notebook kết hợp query, kết quả và ghi chú trong một tài liệu, chạy được cả JavaScript và TypeScript ngoài SQL.",
-                "cite": ["cells.notebooks"],
+                "cite": [
+                    "cells.notebooks"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Khi dùng cùng MySQL Enterprise Backup, MySQL Workbench tạo, lên lịch và khôi phục bản sao lưu đầy đủ và tăng dần.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "HeatWave Migration Assistant hướng dẫn từng bước khi chuyển sang MySQL HeatWave trên OCI.",
-                "cite": ["cells.migration"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "MySQL Workbench chạy trên Windows, macOS và Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.migration"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,19 +97,25 @@
             },
             {
                 "text": "TablePro cũng kết nối được tới server MySQL 8.0. Oracle hỗ trợ MySQL {cells.databases.version} trở lên trong Workbench mới, và cho biết các phiên bản cũ hơn có thể vẫn chạy được.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "TablePro chạy trên Mac dùng chip Intel lẫn Apple silicon, với bản build riêng cho mỗi loại. Bản tải về cho Mac của Workbench mới chỉ dành cho Apple silicon.",
-                "cite": ["mac"],
+                "cite": [
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "<link>Backup Dump</link> chạy mysqldump và Restore Dump chạy mysql, nên sao lưu không cần MySQL Enterprise Backup. Cả hai đều miễn phí.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
@@ -132,32 +137,28 @@
         "intro": "",
         "items": [
             {
-                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
+                "text": "Không có notebook, connection MySQL chạy SQL, không chạy JavaScript hoặc TypeScript.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Không có notebook, và connection MySQL chỉ chạy SQL, không chạy JavaScript hay TypeScript.",
+                "text": "TablePro không tích hợp MySQL Enterprise Backup hay trợ lý chuyển sang MySQL HeatWave.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "TablePro không tích hợp MySQL Enterprise Backup và không có trình hướng dẫn migration sang MySQL HeatWave.",
+                "text": "Chỉ kết nối MySQL qua TCP, không qua file socket local.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "TablePro chỉ kết nối tới MySQL qua TCP, không qua file socket cục bộ.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}, trong khi MySQL Workbench miễn phí.",
-                "cite": ["prices"],
+                "text": "Một số tính năng trả phí. Starter thêm tính năng như {starterExamples}, còn MySQL Workbench miễn phí.",
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -191,12 +192,6 @@
             "question": "MySQL Workbench có chạy trên Mac dùng chip Intel không?",
             "answer": "Bản tải về cho Mac của phiên bản {status.version} chỉ dành cho Apple silicon. TablePro có bản build riêng cho Mac dùng chip Intel. <link>Tải về TablePro</link>.",
             "href": "/download"
-        },
-        {
-            "id": "free",
-            "question": "TablePro có miễn phí như MySQL Workbench không?",
-            "answer": "TablePro dùng miễn phí. MySQL, MariaDB và các engine khác được hỗ trợ, trợ lý AI và MCP server đều không mất phí, và mã nguồn mở theo giấy phép AGPLv3. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng Mac, như {starterExamples}. <link>Xem bảng giá</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

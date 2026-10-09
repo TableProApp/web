@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "適用於 {devices} 的 SQLite 用戶端",
-        "lead": "從 Finder、拖放或 SSH 伺服器開啟資料庫檔案，使用 App 內建 SQLite 查詢，並透過執行前檢閱的重建指令碼修改結構。"
+        "title": "SQLite 用戶端",
+        "lead": "開啟 SQLite 檔案，執行 SQL 並檢查資料表。套用結構變更前先檢查內容。"
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "開啟資料庫檔案",
             "paragraphs": [
-                "在連線表單選擇檔案，或拖到 TablePro 視窗或 Dock 圖示。不存在的檔案路徑會在連線時建立。無論檔名是什麼，開頭位元組為 <code>SQLite format 3</code> 時便以 SQLite 開啟。",
-                "Finder 會在 .db、.sqlite、.sqlite3 等檔案的「打開檔案的應用程式」中列出 TablePro。Messages、Safari 歷史等受 macOS 保護資料夾中的資料庫，需要先授予完整磁碟存取權，通常也需結束所屬 App。",
-                "其他機器上的資料庫透過 <remoteFiles>Remote File 面板</remoteFiles>開啟。On the Server 透過 SSH 對即時檔案執行陳述式，主機除 <code>python3</code> 外無須安裝任何內容。As a Read-Only Copy 經 SFTP 取得快照並唯讀開啟。",
+                "選擇檔案或拖入 TablePro。連線至新路徑時會建立資料庫。SQLite 檔案透過 <code>SQLite format 3</code> 標頭辨識，而非副檔名。",
+                "從 Finder 開啟 .db、.sqlite 和 .sqlite3 檔案。訊息或 Safari 歷史記錄等受保護資料夾需要完整磁碟存取權限；所屬 App 也可能需要結束。",
+                "在 <remoteFiles>Remote File 面板</remoteFiles>開啟遠端資料庫。On the Server 透過 SSH 查詢即時檔案，需要 <code>python3</code>。As a Read-Only Copy 透過 SFTP 下載快照。",
                 "可先選擇 Help > Open Sample Database，開啟 App 附帶的小型數位音樂商店範例 Chinook。"
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "驅動程式內建 SQLite，不論 macOS 版本，SQL 均在同一版本執行。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形。",
-                "可依列出順序為每個連線載入 sqlite-vec、SpatiaLite 等擴充功能，其函式和虛擬資料表可用於編輯器、側邊欄和 Structure 分頁。SQL 函式 <code>load_extension()</code> 仍被拒絕，透過同步、匯入連線或連結傳入的清單，在核准前不會載入任何擴充功能。",
+                "驅動程式內建 SQLite，不依賴 macOS 版本。將 <explain>EXPLAIN QUERY PLAN</explain> 顯示為圖表。",
+                "依連線載入 sqlite-vec 或 SpatiaLite 等擴充功能。匯入、同步或連結的擴充功能清單需在載入前核准。SQL 函式 <code>load_extension()</code> 被封鎖。",
                 "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示所有陳述式。其他程式修改檔案時，側邊欄會自動重新載入。"
             ]
         },
@@ -67,7 +67,7 @@
             "title": "移動資料",
             "paragraphs": [
                 "<importData>匯入</importData> {importFormats} 檔案，或在 <dataFiles>Data Files 視窗</dataFiles>開啟 CSV、JSON、XLSX 後從中匯入。資料表和結果匯出為 {exportFormats}。",
-                "<copy>Copy To</copy> 將資料表和列移動至 PostgreSQL 伺服器等其他連線，列出所有需要近似轉換的欄位型別。另見<files>將檔案作為資料庫處理</files>。"
+                "<copy>Copy To</copy> 將資料表和列傳到其他引擎，並列出型別近似轉換。另見<files>將檔案作為資料庫</files>。"
             ]
         },
         {

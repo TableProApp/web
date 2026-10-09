@@ -94,6 +94,11 @@ it('labels each hub link with the H1 of the page it opens', function (string $pr
     'German' => ['/de', 'de'],
 ]);
 
+it('separates the English hub importer list with a comma and a space', function (): void {
+    get('/compare')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('content.labels.orList.separator', ', '));
+});
+
 it('sends every other comparison to a comparison page, and never the page itself', function (): void {
     foreach (CompareSlugs::ALL as $slug) {
         $others = array_values(array_diff(CompareSlugs::ALL, [$slug]));
@@ -241,8 +246,13 @@ it('server-renders the added comparisons with the facts they turn on', function 
     $ssms = HTMLDocument::createFromString(ssrHtml('/compare/ssms'), LIBXML_NOERROR)->querySelector('main');
 
     expect(trim($ssms->querySelector('h1')->textContent))->toBe('SQL Server Management Studio alternatives for Mac');
-    expect($ssms->textContent)->toContain('Keep SQL Server Management Studio, on Windows, if')->not->toContain('TablePro vs SQL Server Management Studio');
+    expect($ssms->textContent)->toContain('Keep SQL Server Management Studio for')->not->toContain('TablePro vs SQL Server Management Studio');
     expect($ssms->querySelector('#row-ios'))->not->toBeNull();
+
+    $sequelPro = HTMLDocument::createFromString(ssrHtml('/compare/sequel-pro'), LIBXML_NOERROR)->querySelector('main');
+    expect($sequelPro->querySelector('#short-answer')->textContent)
+        ->toContain('Consider Sequel Ace for')
+        ->toContain('Reasons to use TablePro or Sequel Ace.');
 
     $monthly = collect(comparedProduct('dbgate')['prices'])->where('period', 'month')->whereNull('minUnits')->min('amount');
 

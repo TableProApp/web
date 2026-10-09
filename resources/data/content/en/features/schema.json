@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "Schema",
-        "title": "Schema, compare and sync"
+        "title": "Schema and database comparison"
     },
     "header": {
-        "title": "Schema, compare and sync",
-        "lead": "For changing a database’s structure and keeping two databases in step. Edit a table with the DDL in front of you, see how the tables relate, bring staging in line with development, or copy tables to another server or engine. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
+        "title": "Schema and database comparison",
+        "lead": "Inspect table relationships, change supported table structures and compare databases before applying a sync script.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Change structure, read the DDL first",
+            "title": "Edit table structure",
             "paragraphs": [
-                "The Structure tab edits a table’s columns, indexes, foreign keys and CHECK constraints in a grid. Changes wait until you save, and <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) shows the ALTER TABLE statements before anything runs. A change that removes something, changes a type, adds NOT NULL or changes the primary key asks first, even on a connection whose Safe Mode level is {macSafeModeDefault}.",
-                "Indexes can use expression keys such as <code>lower(email)</code>. New Table builds a table the same way, with a live SQL preview. On SQLite, libSQL, Turso and Cloudflare D1, which cannot alter a foreign key in place, TablePro writes a table rebuild for you to review. It runs it on SQLite and a local libSQL file once you confirm, and leaves it to you on Turso, remote libSQL and D1."
+                "Edit columns, indexes, foreign keys and CHECK constraints in the Structure tab. Review pending DDL with <ui>Preview SQL</ui>. Destructive changes, type changes, NOT NULL and primary-key changes require confirmation even at {macSafeModeDefault}.",
+                "Create tables with a live SQL preview. Foreign-key changes on SQLite-family engines may require a table rebuild. TablePro runs confirmed rebuilds on SQLite and local libSQL; on Turso, remote libSQL and Cloudflare D1, you run the generated script yourself."
             ],
             "engines": [
                 { "label": "Structure is read-only", "list": "schemaReadOnly" },
@@ -28,25 +28,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "See how the tables relate",
+            "title": "ER diagram",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> draws the current schema’s tables and foreign keys, with crow’s-foot cardinality worked out from primary and unique keys. Junction tables such as <code>product_tags</code> fold into one many-to-many line. Export the diagram as a PNG, copy it as an image, or export it as SQL: the CREATE TABLE statements with their foreign keys.",
-                "The diagram is a snapshot to read and share. Tables are changed in the Structure tab, not on the canvas."
+                "<ui>View ER Diagram</ui> shows tables and foreign-key relationships with crow's-foot notation. Export as PNG or SQL, or copy the diagram as an image.",
+                "The diagram is read-only, not a schema designer. Make changes in the Structure tab."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Routines, triggers and folders in the sidebar",
+            "title": "Database objects",
             "paragraphs": [
-                "Under each schema the sidebar lists procedures, functions and triggers where the engine has them, and opens their source in a read-only tab you can copy from or open in the editor. Redshift, CockroachDB, PGlite and SAP HANA list none. PostgreSQL partitions sit under their parent table."
+                "Inspect supported routines and triggers in read-only source tabs, then copy their SQL or open it in the editor. Object listings vary by engine. PostgreSQL partitions appear under their parent table."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Folders for tables and views",
                     "paragraphs": [
-                        "Group tables and views into folders by dragging them or with <ui>Move to</ui>, in the list or the tree layout of the sidebar. The filter field looks inside folders. A folder exists only in TablePro and changes nothing on the server; with iCloud Sync on, folders follow you to your other Macs."
+                        "Group tables and views with drag-and-drop or <ui>Move to</ui>. Folders change only the sidebar, not the database, and sync between Macs when iCloud Sync is enabled."
                     ],
                     "since": "0.77.0"
                 }
@@ -56,18 +56,18 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Pick a source and a target, which can be two servers or two databases on one server. Compare & Sync lists every table that differs, with views, routines and triggers if you include them. In data mode it matches rows by key and marks each value that differs, with a filter and a row limit per table, so you can compare one stretch of a large table.",
-                "The script it generates is ordered by foreign keys and written for the target’s own client. Statements that destroy data, such as dropping a column, narrowing a type or deleting rows, are held back until you allow them for that run. A connection set to Read-Only cannot be picked as the target. Save a comparison to run it again in one click."
+                "Compare schema or data between a source and target database. Include views, routines and triggers where supported. Data comparisons match rows by key, with filters and row limits for each table.",
+                "Review a generated sync script ordered by foreign keys. Destructive changes stay excluded until you allow them for that run. Read-Only connections cannot be targets. Save comparisons for reuse."
             ],
             "paid": ["compare-sync"],
             "asset": "mac-compare-sync-structure"
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database and Transfer To",
+            "title": "Copy and transfer tables",
             "paragraphs": [
-                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that changes on the way. An <code>ENUM</code> column from MariaDB, for example, arrives in PostgreSQL as <code>VARCHAR</code> without its list of allowed values. A WHERE clause and a row limit per table copy part of a table.",
-                "Duplicate Database copies a whole database under a new name on the same connection. Transfer To moves rows straight into an existing table on another open connection, with a column mapping and no file in between. All three are free."
+                "Copy To moves supported objects and data between databases, including across engines. Review DDL, row counts and type conversions first. Conversions can lose constraints: MariaDB <code>ENUM</code> becomes PostgreSQL <code>VARCHAR</code> without its allowed-value list.",
+                "Duplicate Database copies a database on the same connection. Transfer To maps rows into an existing table on another connection without an intermediate file. These tools are free."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -82,7 +82,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles shows each user’s privileges as a tree from the server down to a single column. Grants and revokes wait as staged changes and show their SQL before they run, so you never write a GRANT by hand."
+                        "Inspect privileges from server to column level on supported engines. Stage grants and revokes, then review their SQL before applying them."
                     ],
                     "engines": [{ "label": "Users & Roles", "list": "usersRoles" }],
                     "asset": "mac-users-roles-mysql"

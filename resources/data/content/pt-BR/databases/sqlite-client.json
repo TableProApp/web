@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "Cliente de SQLite para {devices}",
-        "lead": "Abra um arquivo de banco de dados pelo Finder, arrastando-o ou acessando um servidor SSH, consulte-o com o SQLite incluído no app e altere sua estrutura com scripts de reconstrução que você revisa antes da execução."
+        "title": "Cliente de SQLite",
+        "lead": "Abra um arquivo SQLite, execute SQL e inspecione suas tabelas. Revise as alterações na estrutura antes de aplicá-las."
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "Abra um arquivo de banco de dados",
             "paragraphs": [
-                "Escolha um arquivo no formulário de conexão ou arraste-o para uma janela do TablePro ou para o ícone no Dock. Um caminho para um arquivo que ainda não existe cria esse arquivo ao conectar. Um arquivo abre como SQLite quando seus primeiros bytes dizem <code>SQLite format 3</code>, independentemente do nome.",
-                "O Finder lista TablePro em Abrir Com para arquivos .db, .sqlite, .sqlite3 e similares. Um banco em uma pasta protegida pelo macOS, como Mensagens ou histórico do Safari, exige primeiro Acesso Total ao Disco, e geralmente é preciso encerrar o app que o utiliza.",
-                "Um banco em outra máquina abre pelo <remoteFiles>painel Remote File</remoteFiles>. On the Server executa suas instruções no arquivo ativo por SSH, sem instalar nada no host além de <code>python3</code>. As a Read-Only Copy busca um snapshot por SFTP e o abre somente para leitura.",
+                "Escolha um arquivo ou arraste-o para TablePro. Um novo caminho cria um banco de dados na conexão. Os arquivos SQLite são identificados pelo cabeçalho <code>SQLite format 3</code>, não pela extensão.",
+                "Abra arquivos .db, .sqlite e .sqlite3 no Finder. Pastas protegidas, como Mensagens ou histórico do Safari, precisam de acesso total ao disco; o aplicativo proprietário também pode precisar ser encerrado.",
+                "Abra um banco remoto no <remoteFiles>painel Remote File</remoteFiles>. On the Server consulta o arquivo remoto via SSH e exige <code>python3</code>. As a Read-Only Copy baixa uma cópia via SFTP.",
                 "Para explorar primeiro, escolha Help > Open Sample Database. Ele abre Chinook, um pequeno exemplo de loja de música digital incluído no app."
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "Consulte e edite",
             "paragraphs": [
-                "O driver inclui seu próprio SQLite, portanto seu SQL usa a mesma versão independentemente do macOS. <explain>EXPLAIN QUERY PLAN</explain> é apresentado como um diagrama.",
-                "Carregue extensões como sqlite-vec e SpatiaLite por conexão, na ordem em que você as lista, e suas funções e tabelas virtuais funcionam no editor, na barra lateral e na aba Structure. A função SQL <code>load_extension()</code> continua bloqueada, e uma lista recebida por sincronização, importação de conexão ou link não carrega nada até você aprová-la.",
+                "O driver inclui SQLite, independente da versão do macOS. Visualize <explain>EXPLAIN QUERY PLAN</explain> como um diagrama.",
+                "Carregue extensões por conexão, como sqlite-vec ou SpatiaLite. Listas de extensões importadas, sincronizadas ou vinculadas precisam de aprovação antes do carregamento. A função <code>load_extension()</code> SQL está bloqueada.",
                 "As edições de linhas ficam pendentes até salvar, com <editing>Preview SQL</editing> mostrando cada instrução antes da execução. Quando outro programa altera o arquivo, a barra lateral recarrega automaticamente."
             ]
         },
@@ -67,7 +67,7 @@
             "title": "Mova dados",
             "paragraphs": [
                 "<importData>Importe</importData> arquivos {importFormats}, ou abra um arquivo CSV, JSON ou XLSX na <dataFiles>janela Data Files</dataFiles> e importe por ela. Tabelas e resultados são exportados como {exportFormats}.",
-                "<copy>Copy To</copy> transfere tabelas e suas linhas para outra conexão, como um servidor PostgreSQL, e lista cada tipo de coluna que precisa aproximar. Veja também <files>como trabalhar com arquivos como bancos de dados</files>."
+                "<copy>Copy To</copy> transfere tabelas e linhas para outro mecanismo, com uma lista de aproximações de tipo. Consulte <files>arquivos como bancos de dados</files>."
             ]
         },
         {

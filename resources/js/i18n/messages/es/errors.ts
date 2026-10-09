@@ -4,7 +4,7 @@ export default {
     "status": "Error {status}",
     "notFound": {
         "title": "Página no encontrada",
-        "body": "Puede que la dirección esté mal escrita o que la página se haya movido. Estas páginas son un buen punto de partida."
+        "body": "Comprueba la dirección o usa uno de los enlaces siguientes."
     },
     "gone": {
         "title": "Esta página se ha eliminado",

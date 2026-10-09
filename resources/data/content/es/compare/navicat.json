@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Navicat: cliente de código abierto",
+        "title": "TablePro vs Navicat: ediciones, funciones y precios",
         "description": "Navicat ofrece licencia perpetua, suscripción y una edición Lite gratuita. TablePro es gratuito y de código abierto. Compara precios, IA y apps."
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Navicat",
-        "lead": "Navicat Premium es un cliente para Windows, macOS y Linux, vendido por usuario con licencia perpetua o suscripción mensual o anual, con una edición Premium Lite gratuita. TablePro es un cliente de código abierto con una app nativa para Mac y otra para iPhone y iPad. Es gratuito y los planes de pago añaden funciones opcionales a la app para Mac."
+        "lead": "Compara Navicat Premium, Premium Lite y TablePro por funciones, licencias y bases compatibles. Navicat ofrece una licencia perpetua o una suscripción mensual o anual; TablePro tiene funciones gratuitas y funciones de pago opcionales."
     },
     "shortAnswer": {
         "tablepro": [
-            "Quieres una app gratuita que ya incluya el asistente de IA, el servidor MCP y Safe Mode, con un plan de pago solo para funciones como {starterExamples}.",
-            "Quieres un cliente de código abierto. TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago.",
-            "Quieres una sola app gratuita para iPhone y iPad con varios motores, en lugar de apps de pago independientes para cada motor.",
-            "Usas motores que Navicat Premium no incluye, como ClickHouse, DuckDB o Cassandra."
+            "Un cliente gratuito con chat de IA, MCP y Safe Mode. Los planes de pago añaden {starterExamples}.",
+            "Código abierto, incluidas las funciones de pago.",
+            "Conexiones a ClickHouse, DuckDB o Cassandra."
         ],
         "competitor": [
-            "Trabajas en Windows o Linux además de Mac.",
-            "Diseñas esquemas con una herramienta de modelado de datos. Navicat incluye una en Premium Enterprise.",
-            "Sincronizas conexiones, consultas y modelos con compañeros mediante Navicat Cloud o Navicat On-Prem Server en tu propio servidor."
+            "Compatibilidad con Windows o Linux.",
+            "Modelado de datos en Premium Enterprise.",
+            "Navicat Cloud o Navicat On-Prem Server para compartir conexiones, consultas y modelos."
         ]
     },
     "glance": {
@@ -44,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "Navicat Premium funciona en Windows, macOS y Linux.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Premium Enterprise añade una herramienta de modelado de datos. El diagrama ER de TablePro solo muestra un esquema ya existente.",
                 "cite": [
@@ -96,7 +87,7 @@
                 "href": "/pricing"
             },
             {
-                "text": "Ambos sincronizan la estructura. <link>Compare & Sync</link> de TablePro compara la estructura o los datos de dos bases de datos y genera un script con las diferencias, reteniendo las instrucciones que destruyen datos hasta que las autorices. Forma parte de Starter.",
+                "text": "<link>Compare & Sync</link> de TablePro compara la estructura o los datos y genera un script de sincronización. Las instrucciones destructivas se excluyen hasta que las permitas. Forma parte de Starter.",
                 "cite": [
                     "cells.schemaSync"
                 ],
@@ -112,7 +103,7 @@
                 "href": "/ios"
             },
             {
-                "text": "Ambos se conectan a MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis y Snowflake. TablePro también se conecta a <link>motores que Navicat Premium no incluye</link>, como ClickHouse, DuckDB, Cassandra y Elasticsearch. A su vez, Premium Enterprise incluye algunos que TablePro no incluye, como KingbaseES y openGauss.",
+                "text": "TablePro añade <link>ClickHouse, DuckDB, Cassandra y Elasticsearch</link> a los motores que lista Navicat Premium. Premium Enterprise lista otros que TablePro no admite, como KingbaseES y openGauss. La tabla muestra los motores que comparten.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -124,12 +115,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "No hay TablePro para Windows ni Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "No hay herramienta de modelado de datos. El <link>diagrama ER</link> es una vista de solo lectura de un esquema existente, exportable a PNG o SQL.",
                 "cite": [],
@@ -143,13 +128,13 @@
                 "href": null
             },
             {
-                "text": "La única app de TablePro para iPhone y iPad cubre varios motores, pero hace menos que la app para Mac: no tiene asistente de IA, servidor MCP ni autocompletado.",
+                "text": "La app de TablePro para iPhone y iPad admite varios motores, pero no tiene asistente de IA, servidor MCP ni autocompletado.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Una licencia perpetua de Navicat sigue funcionando después de su año de mantenimiento, al igual que una compra de pago único de TablePro. Un plan mensual o anual de TablePro no: al finalizar, sus funciones de pago se bloquean y el resto de la app sigue funcionando.",
+                "text": "Las licencias perpetuas de Navicat siguen funcionando tras su año de mantenimiento. Las compras únicas de TablePro no caducan. Al terminar una suscripción de TablePro se bloquean las funciones de pago; la app gratuita sigue funcionando.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -157,7 +142,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro importa conexiones de Navicat desde un archivo exportado en Navicat, así que el traslado empieza allí. La configuración propia de Navicat no se lee ni se modifica.",
+        "intro": "Exporta un archivo de conexiones de Navicat e impórtalo en TablePro. Los ajustes de Navicat no se modifican.",
         "steps": [
             "En Navicat, elige <ui>File > Export Connections…</ui>, selecciona las conexiones, activa <ui>Export Password</ui> y guarda el archivo .ncx.",
             "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",

@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "Elasticsearch client for {devices}",
-        "lead": "A console for Query DSL requests, and a grid that reads each index as a table and edits documents by their <code>_id</code>. Neither runs on SQL: every action is a REST request to the cluster."
+        "title": "Elasticsearch client",
+        "lead": "Run Query DSL requests and browse index documents in a grid. Edit documents by their IDs."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Enter the cluster’s host and REST port and pick an <ui>Auth Method</ui>. Username & Password sends HTTP Basic. API Key sends the field in an <code>Authorization: ApiKey</code> header, so paste the <code>encoded</code> value a create API key request returns. None suits a development cluster with security off. A connection reaches one cluster, so the form has no Database field.",
+                "Enter the REST host and port, then choose an <ui>Auth Method</ui>: Username & Password, API Key or None. API keys use the <code>encoded</code> value from Elasticsearch. Each connection reaches one cluster.",
                 "New connections start with SSL Disabled, which is plain HTTP. Every other mode uses HTTPS: Preferred and Required (skip verify) accept a self-signed certificate, and Verify CA and Verify Identity check it. Elasticsearch 8.x turns security and TLS on by default, so an 8.x cluster usually needs HTTPS and credentials."
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "Indices and the Query DSL console",
             "paragraphs": [
-                "The console takes a method, a path and an optional JSON body, the way Kibana Dev Tools does, such as <code>GET /orders/_search</code> with a <code>match</code> query. Search hits come back as rows, <code>_cat</code> requests with <code>format=json</code> and other array responses become a table, and anything else shows as formatted JSON. The <code>_sql</code> endpoint is not reachable.",
+                "Write a method, path and optional JSON body, such as <code>GET /orders/_search</code>. Search hits and array responses display as rows; other responses show formatted JSON. The <code>_sql</code> endpoint is unavailable.",
                 "The sidebar lists indices as tables and hides names that begin with a dot. Columns come from the mapping: object fields flatten to dotted paths such as <code>address.city</code>, a nested field gets one JSON column for its array plus a column per leaf, and every document carries <code>_id</code>, <code>_index</code> and <code>_score</code>.",
                 "<filters>Column filters</filters> become <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> and <code>exists</code> queries, and the Raw SQL filter row takes Lucene syntax, such as <code>name:Widget</code>, sent as a <code>query_string</code>. Sorting a <code>text</code> field uses its <code>.keyword</code> subfield when the mapping has one.",
-                "Grid edits become REST calls keyed by <code>_id</code>: <code>_update</code> for a changed document, <code>_doc</code> to create or delete one. Type an <code>_id</code> into a new row to name the document. Change a nested array through its JSON column; a value typed into one of its leaf columns stops the save, which names the column and sends nothing."
+                "Edit documents by <code>_id</code> with REST calls. Enter an ID for a new document. Change nested arrays through their JSON column; editing a leaf column blocks the save without sending a request."
             ]
         },
         {

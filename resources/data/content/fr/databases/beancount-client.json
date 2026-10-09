@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Beancount en SQL sur {devices}",
+        "title": "Client Beancount pour {devices}",
         "description": "Ouvrez Beancount en tables SQL en lecture seule : transactions, écritures, soldes et métadonnées. Suivez les inclusions et lancez BQL via rledger."
     },
     "og": {
@@ -10,8 +10,8 @@
     "engine": "beancount",
     "breadcrumb": "Beancount",
     "header": {
-        "title": "Interrogez un livre Beancount en SQL sur {devices}",
-        "lead": "Ouvrez un fichier <code>.beancount</code> et interrogez ses transactions, écritures, soldes et métadonnées comme des tables SQL, ou envoyez du BQL à rledger. Le livre reste un fichier texte que vous modifiez dans votre propre éditeur."
+        "title": "Client Beancount",
+        "lead": "Interrogez un ledger comme des tables SQL ou avec BQL via rledger. Modifiez le fichier source dans votre éditeur de texte."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -24,8 +24,8 @@
             "id": "connect",
             "title": "Ouvrez un livre",
             "paragraphs": [
-                "TablePro exécute <code>rledger</code> ou Python Beancount pour lire le livre. Si vous devez choisir, installez rledger : il est prioritaire lorsque les deux sont présents, BQL ne fonctionne que par son intermédiaire et lui seul remplit la table <code>diagnostics</code> avec les résultats de validation.",
-                "Choisissez le fichier avec <ui>Parcourir…</ui> (Browse…) dans le formulaire de connexion. Le chemin du livre définit toute la connexion, sans hôte, port, mot de passe ni base de données. Un fichier <code>.beancount</code> s’ouvre aussi depuis le Finder et les URL <code>beancount:///path/to/main.beancount</code> peuvent être importées.",
+                "Installez <code>rledger</code> ou Python Beancount. Si les deux sont disponibles, rledger est utilisé. Seul rledger prend en charge BQL et les résultats de validation via <code>diagnostics</code>.",
+                "Choisissez un ledger avec <ui>Parcourir…</ui> (Browse…) ou ouvrez un fichier .beancount dans le Finder. Le chemin constitue toute la connexion. Vous pouvez aussi importer des URL <code>beancount:///path/to/main.beancount</code>.",
                 "Une app ouverte depuis le Finder n’hérite pas du <code>PATH</code> de votre shell. Si le moteur fonctionne dans Terminal mais pas ici, indiquez-le avec <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code>, puis relancez l’app.",
                 "Le moteur Python exécute les plugins fournis avec Beancount et ignore toute autre directive <code>plugin</code>, qui représente du code tiers, jusqu’à ce que vous activiez <ui>Exécuter les plugins Ledger</ui> (Run Ledger Plugins) pour cette connexion. Les plugins ignorés figurent dans <code>diagnostics</code>."
             ]
@@ -34,7 +34,7 @@
             "id": "work",
             "title": "Interrogez le livre",
             "paragraphs": [
-                "Les tables couvrent les transactions et écritures, les comptes, soldes et assertions de solde, prix et unités de valeur, toutes les autres directives, métadonnées, étiquettes et liens, ainsi que les fichiers sources. Les écritures se joignent aux transactions sur <code>transaction_id</code> et les comptes par leur nom.",
+                "Interrogez transactions, écritures, comptes, soldes, prix, directives, métadonnées et fichiers source comme des tables. Reliez écritures et transactions par <code>transaction_id</code>, et les comptes par leur nom.",
                 "Les montants arrivent comptabilisés, avec calculs, coûts et prix résolus ; les coûts des écritures et les prix en ligne occupent leurs propres colonnes. Les transactions, écritures et plusieurs tables de directives comportent une <code>source_location</code> telle que <code>main.beancount:42</code>, pour retrouver la ligne source d’un enregistrement.",
                 "Préfixez une requête par <code>BQL:</code> pour l’envoyer à rledger plutôt qu’aux tables. La navigation, le comptage des lignes et la pagination fonctionnent sur un résultat BQL ; les paramètres SQL, non.",
                 "Les directives <code>include</code> sont suivies, pour les chemins explicites comme les motifs glob, et tous les fichiers du livre et documents référencés sont surveillés. Enregistrez une modification dans votre éditeur : la requête suivante la lit sans reconnexion. La connexion reste toujours au niveau Read-Only de <safeMode>Safe Mode</safeMode> ; INSERT, UPDATE, DELETE et les modifications de schéma sont donc refusés."

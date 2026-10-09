@@ -22,7 +22,7 @@ export function iosStatus(engine: Pick<EngineSummary, 'ios'>): IosStatus {
 }
 
 /**
- * The device names an engine page's H1 lists: the Mac's, plus the iPhone and
+ * Device names for availability and search titles (and translated H1s): the Mac's, plus the iPhone and
  * iPad app's when that app offers the engine. An engine iOS opens only from a
  * synced connection is not one you can use there from scratch, so its page
  * names the Mac alone (sitemap §A.3: "Amazon Redshift client for Mac").

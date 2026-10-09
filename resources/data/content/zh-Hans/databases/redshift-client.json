@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "适用于 {devices} 的 Amazon Redshift 客户端",
-        "lead": "使用应用内置 PostgreSQL 驱动查询预置集群或 Serverless 工作组，查看每表分布方式和排序键，并在自有 schema 旁浏览 Spectrum 和 datashare schema。"
+        "title": "Amazon Redshift 客户端",
+        "lead": "查询预置集群或 Serverless 工作组。检查排序键、分布方式和外部结构。"
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "主机使用集群端点，Redshift Serverless 使用工作组端点，两者监听相同端口。数据库必填，每个集群创建时都有名为 <code>dev</code> 的数据库。导入 <code>redshift://</code> URL 可填充表单。",
+                "输入集群或 Serverless 工作组端点、端口和数据库。集群默认从 <code>dev</code> 开始。<code>redshift://</code> URL 可自动填充表单。",
                 "新连接 SSL 为 Preferred，不检查版本，因此 AWS 仍运行的任何集群都可连接。密码存入钥匙串或从 <code>~/.pgpass</code> 读取，是连接的两种<credentials>凭据选项</credentials>。无法公开访问的集群通过通往其 VPC 堡垒机的 <network>SSH 隧道</network>访问。"
             ]
         },
@@ -40,9 +40,9 @@
             "title": "查询和编辑",
             "paragraphs": [
                 "查询和<editing>带 Preview SQL 的暂存行编辑</editing>通过同一驱动，与 <postgresql>PostgreSQL</postgresql> 相同。绑定非当前数据库的标签页会为其打开第二个连接。",
-                "表信息从 <code>svv_table_info</code> 读取分布方式、排序键和大小，DDL 标签页输出 DISTKEY、SORTKEY、DISTSTYLE、ENCODE。外键会列出，但 Redshift 不强制执行，因此不会阻止违反外键的行。",
+                "从 <code>svv_table_info</code> 查看分布方式、排序键和大小。DDL 包含 DISTKEY、SORTKEY、DISTSTYLE 和 ENCODE。外键会列出，但 Redshift 不强制执行。",
                 "<explain>EXPLAIN 和 EXPLAIN VERBOSE</explain> 返回 Redshift 文本计划，不绘制图形。",
-                "用 <code>CREATE EXTERNAL SCHEMA</code> 创建的 schema，无论是 S3 上的 Spectrum、联合查询、跨数据库引用或 datashare，均与自有 schema 并列且标为 External。表可正常浏览、筛选、排序、导出，但因 Redshift 不接受 UPDATE、DELETE 而只读。不会显示行数，列类型按外部目录报告读取。"
+                "与本地结构一起浏览外部 Spectrum、联合查询、跨数据库和 datashare 结构。外部表支持筛选、排序和导出，但只读。无法获取行数；类型来自外部目录。"
             ]
         },
         {

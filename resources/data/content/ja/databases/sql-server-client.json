@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "{devices} 用 SQL Server クライアント",
-        "lead": "T-SQL スクリプトをバッチごとに実行し、GO と PRINT を SQL Server Management Studio と同じように処理します。SQL Server ログイン、Kerberos、Microsoft Entra ID の職場アカウントで認証できます。Windows、Linux、Docker のサーバーと Azure SQL Database は同じ方法で接続します。"
+        "title": "SQL Server クライアント",
+        "lead": "GO バッチと PRINT 出力を含む T-SQL スクリプトを実行できます。SQL Server ログイン、Kerberos、Microsoft Entra ID で接続できます。"
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホストと TCP ポートを入力し、<ui>Authentication</ui> を選ぶとフォームが認証方式に合わせて変わります。SQL Server のログインとパスワード、Kerberos による Windows 認証、Microsoft Entra ID に対応します。Azure SQL の contained user など一つのデータベースに属するログインでは Database も指定してください。",
+                "ホストと TCP ポートを入力し、<ui>Authentication</ui> で SQL Server ログイン、Kerberos、Microsoft Entra ID を選びます。Azure SQL の contained user などデータベース範囲のログインには Database の入力も必要です。",
                 "Kerberos は認証情報キャッシュの既存チケットを使うか、入力したプリンシパルとパスワードで取得します。チケットはサーバーの登録済み SPN に対して発行するため、IP アドレスではなくホスト名で接続してください。TablePro は <code>kinit</code> を実行せず、<code>/etc/krb5.conf</code> も編集しません。",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> は多要素認証と Conditional Access に従うデバイスコードフローで認証します。Azure でアプリを登録し、クライアント ID を入力してください。トークンはデバイス限定としてログインキーチェーンに保持し、バックグラウンドで更新します。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> はデバイスコード認証を使い、多要素認証と Conditional Access に対応します。Azure アプリを登録し、クライアント ID を入力します。トークンはバックグラウンドで更新し、デバイス専用のログイン Keychain に保存します。",
                 "新規接続は Preferred で始まり、SQL Server ではログインだけを暗号化します。セッション全体を暗号化するには Required 以上を選んでください。Verify CA と Verify Identity は macOS のシステムルート証明書で検証します。Google Cloud SQL 用の Cloud SQL Auth Proxy も実行でき、プライベートネットワークには <network>SSH トンネル</network> で接続できます。"
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "スクリプト、バッチと編集",
             "paragraphs": [
-                "スクリプトは sqlcmd と同じく、<code>GO</code> だけがある行ごとに分割し、一つずつバッチとしてサーバーに送ります。<code>GO 5</code> は直前のバッチを五回実行します。結果セットはそれぞれ専用タブで開き、<code>PRINT</code> 出力と情報メッセージは Output ビューに表示します。",
-                "失敗時にそれ以前のバッチも戻す必要がある場合は、スクリプトに <code>BEGIN TRAN</code> と <code>COMMIT</code> を記述してください。トランザクションを開いたままのスクリプトは、終了時に通知します。最初に失敗したバッチで実行を停止し、エディター内の行番号をエラーに表示します。",
+                "スクリプトは <code>GO</code> の行で分割します。<code>GO 5</code> は直前のバッチを五回繰り返します。結果セットごとに別のタブを開きます。Output に <code>PRINT</code> と情報メッセージを表示します。",
+                "バッチをトランザクションにするには <code>BEGIN TRAN</code> と <code>COMMIT</code> を使います。開いているトランザクションは通知します。最初に失敗したバッチで停止し、エラーにエディターの行番号を表示します。",
                 "すべてのセッションは、フィルター付きインデックス、インデックス付きビューと計算カラムのインデックスに必要な SET オプションで開きます。例えば <code>ANSI_NULLS</code> と <code>QUOTED_IDENTIFIER</code> をオンにします。そのため <code>col = NULL</code> は何にも一致せず、<code>IS NULL</code> で比較してください。",
                 "サイドバーではスキーマ配下にテーブルを表示し、<code>⌘K</code> は再接続せずにデータベースを切り替えます。行の編集は <editing>Preview SQL</editing> とともに保留し、新規行の IDENTITY カラムはサーバーに任せます。<code>nvarchar(max)</code> の値は全体を受け取ります。"
             ]
@@ -50,7 +50,7 @@
             "title": "スキーマ",
             "paragraphs": [
                 "<structure>Structure タブ</structure> はカラム、インデックス、外部キーと制約の変更を保留し、実行前に T-SQL を表示します。スキーマはサイドバーから削除できますが、オブジェクトが残るスキーマは SQL Server が拒否します。作成はエディターで CREATE SCHEMA を使います。",
-                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は二つの SQL Server スキーマまたはデータを比較し、各文の後に <code>GO</code> 行を付けたスクリプトを保存します。sqlcmd や SQL Server Management Studio でそのまま使えます。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）は SQL Server のスキーマやデータを比較します。生成スクリプトは sqlcmd・SQL Server Management Studio 向けに <code>GO</code> で文を区切ります。"
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "データの移動",
             "paragraphs": [
-                "{importFormats} ファイルを <importData>インポート</importData> できます。<code>GO</code> 行を含む <code>.sql</code> ファイルは sqlcmd と同じくバッチごとに実行します。テーブルや結果を {exportFormats} にエクスポートでき、SQL エクスポートは各文を <code>GO</code> 行で終えるため、独立したバッチとして実行します。"
+                "{importFormats} ファイルを<importData>インポート</importData>できます。SQL ファイルは <code>GO</code> バッチを認識します。テーブルや結果を {exportFormats} で出力でき、SQL 出力も <code>GO</code> で区切ります。"
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio は Microsoft 純正の SQL Server・Azure SQL 用ツールです。SQL Server Agent ジョブ、Always On 可用性グループ、ライブクエリ統計とパフォーマンス調整ツールなど、TablePro が扱わない管理機能に適しています。",
+                "text": "SQL Server Management Studio は TablePro より広い管理機能を提供し、SQL Server Agent ジョブ、Always On 可用性グループ、ライブクエリ統計、パフォーマンス調整を含みます。",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

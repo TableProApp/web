@@ -260,21 +260,30 @@ it('states the refund window under the buy buttons, with the policy linked', fun
     'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.', '/vi/refund-policy'],
 ]);
 
-it('states each licensing fact once in the body, and repeats none in the short FAQ', function (): void {
+it('keeps licensing facts visible and the short FAQ focused on account tasks', function (): void {
     $html = html_entity_decode(ssrHtml('/pricing'), ENT_QUOTES | ENT_HTML5);
     $main = strip_tags(substr($html, (int) strpos($html, '<main'), (int) strrpos($html, '</main>') - (int) strpos($html, '<main')));
 
-    foreach (['no trial period or time limit', 'the Mac needs Starter or Team', 'US dollars', 'paid features keep working for'] as $fact) {
-        expect(substr_count($main, $fact))->toBe(1, $fact);
+    $pricing = pricingPageJson('pricing.json');
+
+    foreach (['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for ' . $pricing['license']['offlineGraceDays'] . ' days after the last successful check'] as $fact) {
+        expect($main)->toContain($fact);
     }
 
-    // The Team card, then "How licenses work" for the seat and the plan table for support.
-    foreach (['seat is one activated Mac', 'answered first, within one business day'] as $fact) {
-        expect(substr_count($main, $fact))->toBe(2, $fact);
+    expect($main)->toContain('One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day');
+
+    $content = pricingPageJson('content/en/pricing.json');
+
+    expect(array_keys($content['faq']['items']))->toBe(['payment-methods', 'company-invoice', 'lost-key']);
+
+    foreach ($content['faq']['items'] as $item) {
+        foreach (['{graceDays}', '{activations}', 'no trial period', 'one activated Mac'] as $duplicate) {
+            expect($item['answer'])->not->toContain($duplicate);
+        }
     }
 });
 
-it('says who a Starter license is for wherever it says how many Macs', function (string $locale, string $person): void {
+it('says who a Starter license is for wherever it says how many Macs', function (string $locale, string $person, ?string $cardPerson = null, ?string $detailPerson = null): void {
     // The rule is the terms' own: "Using a license".
     expect(File::get(resource_path("data/legal/{$locale}/terms.md")))->toContain($person);
 
@@ -284,24 +293,25 @@ it('says who a Starter license is for wherever it says how many Macs', function 
     expect($forms[2])->not->toBeEmpty();
 
     foreach ($forms[2] as $form) {
-        expect($form)->toContain($person);
+        expect(mb_strtolower($form))->toContain(mb_strtolower($cardPerson ?? $person));
+        expect($form)->toContain('{count}');
     }
 
     $licensing = collect(pricingPageJson("content/{$locale}/faq.json")['groups'])->firstWhere('id', 'licensing')['items'];
 
-    expect(pricingPageJson("content/{$locale}/pricing.json")['license']['items']['macs']['body'])->toContain($person);
-    expect(collect($licensing)->firstWhere('id', 'how-many-macs')['answer'][0])->toContain($person);
+    expect(pricingPageJson("content/{$locale}/pricing.json")['license']['items']['macs']['body'])->toContain($detailPerson ?? $person);
+    expect(collect($licensing)->firstWhere('id', 'how-many-macs')['answer'][0])->toContain($detailPerson ?? $person);
 })->with([
     ['en', 'one person'],
     ['vi', 'một người'],
     ['es', 'una persona'],
     ['de', 'eine Person'],
     ['fr', 'une personne'],
-    ['ja', '1 人用'],
+    ['ja', '1 人用', '1 人', '一人'],
     ['pt-BR', 'uma pessoa'],
-    ['zh-Hans', '供一人使用'],
-    ['zh-Hant', '供一人使用'],
-    ['ko', '한 사람'],
+    ['zh-Hans', '供一人使用', '1 人', '供一人'],
+    ['zh-Hant', '供一人使用', '1 人', '供一人'],
+    ['ko', '한 사람', '1명'],
     ['it', 'una persona'],
     ['id', 'satu orang'],
 ]);
@@ -317,17 +327,17 @@ it('names the plans and the account\'s pages as checkout and the account app do'
     expect($content['billing']['portal'])->toContain("<account>{$billing}</account>");
 })->with([
     ['en', 'the Macs page', 'Billing & invoices'],
-    ['vi', 'trang Máy Mac', 'Thanh toán và hóa đơn'],
-    ['es', 'la página Macs', 'Facturación y facturas'],
-    ['de', '„Macs“', 'Abrechnung und Rechnungen'],
-    ['fr', 'la page Macs', 'Facturation et factures'],
-    ['ja', 'Mac ページ', '請求と請求書'],
-    ['pt-BR', 'página Macs', 'Cobrança e faturas'],
-    ['zh-Hans', 'Macs 页面', '账单与发票'],
-    ['zh-Hant', 'Macs 頁面', '帳單與發票'],
-    ['ko', 'Mac 페이지', '결제 및 청구서'],
-    ['it', 'pagina Mac del', 'Fatturazione e fatture'],
-    ['id', 'halaman Mac', 'Penagihan dan faktur'],
+    ['vi', 'trang Macs', 'Billing & invoices'],
+    ['es', 'la página de Mac', 'Facturación y facturas'],
+    ['de', 'Macs-Seite', 'Abrechnung und Rechnungen'],
+    ['fr', 'la page Mac', 'Facturation et factures'],
+    ['ja', 'Macs ページ', 'Billing & invoices'],
+    ['pt-BR', 'página Macs', 'Faturamento e faturas'],
+    ['zh-Hans', 'Macs 页面', 'Billing & invoices'],
+    ['zh-Hant', 'Macs 頁面', 'Billing & invoices'],
+    ['ko', 'Macs 페이지', 'Billing & invoices'],
+    ['it', 'pagina Macs', 'Fatturazione e fatture'],
+    ['id', 'halaman Macs', 'Penagihan & faktur'],
 ]);
 
 it('asks in its short FAQ only what the full FAQ answers, in the same words', function (): void {

@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "{devices}용 Trino 클라이언트",
-        "lead": "한 쿼리에서 다른 카탈로그의 테이블을 조인하고 Trino 실행 계획을 읽으며 과도한 쿼리를 코디네이터에서 중단합니다. 쓰기 기능은 각 카탈로그의 커넥터에 따라 달라집니다."
+        "title": "Trino 클라이언트",
+        "lead": "카탈로그를 가로질러 조회하고 실행 계획을 확인하며 실행 중인 쿼리를 취소하세요. 쓰기 지원은 각 카탈로그의 커넥터에 따라 다릅니다."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "연결 및 로그인",
             "paragraphs": [
-                "코디네이터의 호스트, 포트와 쿼리를 실행할 <ui>사용자 이름</ui>(Username)을 입력합니다. <ui>Catalog</ui>와 <ui>스키마</ui>(Schema)는 선택적인 시작 위치이며 Catalog를 비우면 모두 탐색합니다. Options의 IANA <ui>시간대</ui>(Time Zone)는 세션 시간대를 설정합니다.",
+                "코디네이터 호스트, 포트, <ui>사용자 이름</ui> (Username)을 입력하세요. 선택적인 <ui>Catalog</ui>와 <ui>스키마</ui> (Schema)로 시작 위치를 정하고 세션의 <ui>시간대</ui> (Time Zone)을 IANA 형식으로 설정합니다.",
                 "비밀번호는 LDAP·password-file 인증의 HTTP Basic으로, JWT 액세스 토큰은 bearer 자격 증명으로 전송합니다. 둘 다 TLS로만 보내며 SSL Disabled 상태에서 보유한 연결은 전송 전에 거부합니다. SSL 패널의 클라이언트 인증서와 키로 상호 TLS를 추가합니다.",
                 "SSL은 평문 HTTP인 Disabled로 시작합니다. 나머지 모드는 모두 평문 대체 없이 TLS를 강제하고 443 포트는 Verify Identity를 켭니다. 코디네이터 앞 프록시의 리다이렉트는 따라가지 않으며 오류에 대상 주소를 표시합니다. 배스천 뒤는 <network>SSH 터널</network>로 접근하며 <ui>URL에서 가져오기…</ui>(Import from URL…)로 <code>trino://</code> URL을 가져옵니다."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "카탈로그 간 쿼리",
             "paragraphs": [
-                "연결은 카탈로그·스키마에서 시작하지만 Hive와 PostgreSQL 테이블 조인처럼 <code>catalog.schema.table</code> 전체 이름을 쿼리에 쓸 수 있습니다. 사이드바는 각 카탈로그의 스키마·테이블을 펼치고 구체화된 뷰도 함께 표시하며 행 수는 <code>SHOW STATS</code>에서 읽습니다.",
+                "전체 이름인 <code>catalog.schema.table</code>로 카탈로그 간 조인을 하세요. 카탈로그, 스키마, 테이블, 구체화된 뷰를 살펴볼 수 있습니다. 추정 행 수는 <code>SHOW STATS</code>에서 가져옵니다.",
                 "<code>bigint</code>와 <code>decimal</code>은 부동소수점이 아닌 정확한 텍스트로 읽습니다. <code>varbinary</code>는 16진수, <code>array</code>, <code>map</code>, <code>row</code>는 JSON으로 표시하며 타임스탬프는 서버 반환 값을 유지합니다.",
                 "<explain>Explain</explain>은 Logical, Distributed, IO, Validate와 Analyze를 제공합니다. Validate는 실행 없이 검사하고 Analyze는 실행해 실제 시간을 보고하며 모든 계획은 원시 텍스트입니다.",
                 "<code>SET SESSION</code>은 연결 동안 유지됩니다. <ui>쿼리 > 쿼리 취소</ui>(Query > Cancel Query)는 코디네이터에 실행 쿼리 종료를 요청하며 연결의 쿼리 제한 시간은 Trino에 전달되지 않으므로 이 방법으로 중단합니다.",
-                "<editing>셀 편집</editing>은 각 값의 Trino 유형을 포함하는 INSERT, UPDATE와 DELETE가 됩니다. Trino는 기본 키를 보고하지 않으므로 읽은 행의 모든 열로 매칭하며 롤백 트랜잭션도 없습니다. 동일한 두 행 중 하나를 편집하면 둘 다 바뀌니 먼저 중복을 확인하세요."
+                "<editing>셀 편집</editing>은 타입이 지정된 INSERT, UPDATE, DELETE를 사용합니다. Trino는 기본 키를 보고하지 않아 원래의 모든 열로 행을 식별합니다. 동일한 행은 함께 바뀌며 되돌릴 트랜잭션이 없습니다. 편집 전에 중복을 확인하세요."
             ]
         },
         {

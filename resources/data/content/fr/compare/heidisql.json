@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro face à HeidiSQL",
+        "title": "TablePro vs HeidiSQL : bases, plateformes et tarifs",
         "description": "HeidiSQL est gratuit sur Windows, Linux et Mac Apple silicon depuis 2026. TablePro est natif sur Mac, iPhone et iPad. Comparez bases, versions et prix."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro face à HeidiSQL",
-        "lead": "HeidiSQL est un client gratuit open source né sur Windows et disponible sur Linux. Depuis janvier 2026, il propose une version Mac Apple silicon. TablePro est open source avec versions Mac Apple silicon et Intel, app iPhone et iPad séparée et fonctions payantes facultatives sur Mac."
+        "lead": "HeidiSQL et TablePro sont des clients de bases de données open source qui prennent en charge des moteurs et plateformes différents. HeidiSQL n’a pas de forfait payant ; TablePro facture des fonctions optionnelles."
     },
     "shortAnswer": {
         "tablepro": [
-            "Votre Mac a Intel. TablePro propose des versions séparées Intel et Apple silicon.",
-            "Vous utilisez aussi MongoDB, Redis, ClickHouse ou DuckDB, pas seulement des serveurs SQL.",
-            "Vous voulez les mots de passe dans le Trousseau macOS et un niveau de Safe Mode demandant Touch ID avant d’écrire en production.",
-            "Vous voulez assistant IA et serveur MCP gratuits sur Mac.",
-            "Vous voulez aussi une app iPhone et iPad."
+            "Une version officielle pour Mac Intel, en plus d’Apple silicon.",
+            "MongoDB, Redis, ClickHouse ou DuckDB en plus des serveurs SQL.",
+            "Chat IA et MCP gratuits, avec une app distincte pour iPhone et iPad."
         ],
         "competitor": [
-            "Vous travaillez aussi sur Windows ou Linux et voulez le même client gratuit.",
-            "Vous connectez Firebird, Interbase ou ProxySQL, absents de TablePro.",
-            "Vous voulez toutes les fonctions gratuites, sans forfait payant.",
-            "Vous connaissez HeidiSQL sur Windows et le voulez sur Mac Apple silicon."
+            "Le même client gratuit sur Windows, Linux et Mac avec Apple silicon.",
+            "Des connexions à Firebird, Interbase ou ProxySQL.",
+            "Toutes les fonctions gratuites, sans forfait payant."
         ]
     },
     "glance": {
@@ -38,14 +35,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "HeidiSQL tourne sur Windows, Linux et Mac ; un client gratuit couvre vos ordinateurs.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Il connecte Firebird, Interbase et ProxySQL, absents de TablePro.",
                 "cite": [
@@ -106,12 +95,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Il n’existe pas d’app TablePro pour Windows ni pour Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Firebird, Interbase et ProxySQL ne sont pas pris en charge.",
                 "cite": [],
                 "feature": null,
@@ -149,18 +132,6 @@
             "question": "Quelles bases couvrent les deux clients ?",
             "answer": "HeidiSQL liste MySQL, MariaDB, SQL Server, PostgreSQL, SQLite et Redshift ; TablePro les prend tous. HeidiSQL ajoute Firebird, Interbase et ProxySQL. TablePro ajoute moteurs documentaires, clé-valeur et analytiques comme MongoDB, Redis et ClickHouse.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro est-il gratuit comme HeidiSQL ?",
-            "answer": "Il s’utilise gratuitement, mais n’est pas entièrement gratuit comme HeidiSQL. Moteurs, IA et MCP ne coûtent rien ; code ouvert AGPLv3. HeidiSQL n’a pas de forfait payant ; Starter ou Team ajoutent des fonctions Mac comme {starterExamples}. <link>Voir les tarifs</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "Quelle version de TablePro me faut-il ?",
-            "answer": "Celle de votre processeur : Apple silicon ou Intel. La page propose les deux. <link>Télécharger TablePro</link>.",
-            "href": "/download"
         }
     ],
     "notes": {

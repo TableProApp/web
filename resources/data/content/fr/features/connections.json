@@ -5,29 +5,29 @@
     },
     "og": {
         "kicker": "Connexions",
-        "title": "Connexions, tunnels et identifiants"
+        "title": "Connexions"
     },
     "header": {
-        "title": "Connexions, tunnels et identifiants",
-        "lead": "Si vos bases de données se trouvent derrière un bastion, un cluster ou une authentification cloud, configurez chaque connexion une fois avec le chemin d’accès et la source de mot de passe nécessaires, puis imposez des règles plus strictes aux connexions de production. Tout ce qui suit concerne l’app Mac. L’application iPhone et iPad en couvre une partie.",
+        "title": "Connexions",
+        "lead": "Enregistrez et organisez les connexions, accédez aux serveurs privés par SSH et connectez-vous avec les comptes cloud compatibles.",
         "docs": "/connections"
     },
     "sections": [
         {
             "id": "organize",
-            "title": "Conservez une bibliothèque de connexions",
+            "title": "Organisez vos connexions",
             "paragraphs": [
-                "Chaque connexion se modifie dans un formulaire unique avec les onglets General, Network, Options et Appearance. Importez une URL de connexion, y compris une URL <code>jdbc:</code> ou <code>+ssh</code> contenant un rebond SSH, et le formulaire se remplit automatiquement ; si une URL est déjà dans le presse-papiers, le formulaire propose <ui>Utiliser l’URL du presse-papiers</ui> (Use clipboard URL).",
-                "Attribuez à chaque connexion une couleur, autant de tags que vous le souhaitez et une place dans des groupes imbriqués, puis marquez vos connexions fréquentes comme favorites. Les environnements sont des tags : local, développement, production et test sont prédéfinis, et vous pouvez ajouter les vôtres. Une bibliothèque vide propose <ui>Ouvrir la base de données d’exemple</ui> (Open Sample Database), une copie SQLite de Chinook intégrée à l’app.",
-                "Ouvrez plusieurs connexions dans une fenêtre. La barre de connexions sur le bord gauche permet de passer de l’une à l’autre, et chaque connexion retrouve le dernier onglet utilisé. <ui>Ouvrir dans une nouvelle fenêtre</ui> (Open in New Window) permet de les afficher côte à côte."
+                "Remplissez les réglages depuis une URL, y compris <code>jdbc:</code> et <code>+ssh</code>. Utilisez <ui>Utiliser l’URL du presse-papiers</ui> (Use clipboard URL) pour importer une URL copiée.",
+                "Classez les connexions en groupes imbriqués, ajoutez tags et couleurs et marquez vos favoris. Essayez l’exemple SQLite inclus avec <ui>Ouvrir la base de données d’exemple</ui> (Open Sample Database).",
+                "Gardez plusieurs connexions dans une fenêtre ou utilisez <ui>Ouvrir dans une nouvelle fenêtre</ui> (Open in New Window). Chaque connexion mémorise son dernier onglet."
             ],
             "asset": "mac-connection-library"
         },
         {
             "id": "import",
-            "title": "Importez vos connexions existantes",
+            "title": "Importer des connexions",
             "paragraphs": [
-                "Vous partez rarement d’une liste vide : TablePro lit les connexions d’un autre client, des fichiers de configuration d’un projet ou de votre compte AWS."
+                "Importez depuis un autre client de bases, des fichiers de configuration de projet ou votre compte AWS."
             ],
             "links": [
                 {
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Depuis un autre client de bases de données",
                     "paragraphs": [
-                        "<ui>Importer depuis une autre app</ui> (Import from Other App) lit les connexions enregistrées dans {connectionImportApps}, y compris l’édition Setapp de TablePlus. L’import récupère les mots de passe lorsque l’app les a stockés, y compris les mots de passe chiffrés de DBeaver et Navicat. Les connexions Navicat proviennent d’un fichier d’export <code>.ncx</code>."
+                        "<ui>Importer depuis une autre app</ui> (Import from Other App) lit {connectionImportApps}, y compris l’édition Setapp de TablePlus. L’import des mots de passe dépend de leur stockage dans l’app source. Les mots de passe chiffrés de DBeaver et Navicat sont pris en charge ; Navicat nécessite un export <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Depuis les fichiers de configuration d’un projet",
                     "paragraphs": [
-                        "<ui>Ouvrir le dossier du projet</ui> (Open Project Folder) recherche les paramètres de base de données dans <code>.env</code>, <code>wp-config.php</code>, un schéma Prisma, le fichier Rails <code>config/database.yml</code>, <code>docker-compose.yml</code>, les fichiers Spring <code>application.properties</code> ou <code>application.yml</code> et <code>appsettings.json</code>. Chaque configuration trouvée est affichée avec son fichier d’origine ; celle que vous choisissez remplit le formulaire de connexion et les mots de passe vont directement dans le Trousseau. Si <code>prod</code>, <code>production</code> ou <code>live</code> apparaît comme mot entier dans le chemin du fichier, l’hôte ou le nom de la base, cette connexion commence au niveau Alert de Safe Mode."
+                        "<ui>Ouvrir le dossier du projet</ui> (Open Project Folder) trouve les réglages de base dans les fichiers compatibles d’environnement, framework et Docker. Vérifiez chaque source avant d’importer ; les mots de passe vont au trousseau. Les noms de production reconnus commencent à Alert plutôt qu’au niveau Safe Mode habituel."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -63,15 +63,15 @@
         },
         {
             "id": "network",
-            "title": "Accédez aux bases derrière un bastion, un proxy ou un cluster",
+            "title": "SSH, TLS et tunnels",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "ssh",
                     "title": "SSH et TLS",
                     "paragraphs": [
-                        "Les tunnels SSH s’authentifient avec un mot de passe, une clé privée, un agent SSH comme celui de 1Password ou des invites keyboard-interactive, et peuvent traverser des hôtes de rebond dans l’ordre ou suivre <code>ProxyJump</code> dans <code>~/.ssh/config</code>. Un code à usage unique peut être généré à partir d’un secret du Trousseau ou demandé à chaque connexion ; TablePro affiche l’empreinte d’une clé d’hôte inconnue avant de lui faire confiance. Enregistrez un tunnel comme profil SSH pour le réutiliser.",
-                        "TLS propose les modes Disabled, Preferred, Required, Verify CA et Verify Identity, avec votre propre AC, certificat client et clé. Required chiffre sans vérifier le certificat du serveur ; les modes Verify le contrôlent."
+                        "Connectez-vous par SSH avec mots de passe, clés, agents ou invites interactives. Utilisez des hôtes de rebond ou <code>ProxyJump</code> et réutilisez les tunnels comme profils SSH. Les clés d’hôte inconnues nécessitent l’approbation de leur empreinte.",
+                        "Choisissez le mode TLS et fournissez les certificats CA ou clients. Required chiffre sans valider le certificat serveur ; Verify CA et Verify Identity ajoutent des vérifications."
                     ],
                     "engines": [
                         {
@@ -85,8 +85,8 @@
                     "id": "tunnels",
                     "title": "Proxys, Cloudflare, Cloud SQL et commandes de tunnel",
                     "paragraphs": [
-                        "Lorsque SSH n’est pas la voie d’accès, l’onglet Network permet de se connecter via un proxy SOCKS5 avec DNS distant. Il permet aussi de se connecter via Cloudflare Access, où TablePro exécute <code>cloudflared</code> et s’authentifie dans le navigateur ou avec un jeton de service. Pour {cloudSqlProxy}, il passe par Cloud SQL Auth Proxy, que TablePro télécharge, vérifie et exécute.",
-                        "Tunnel Command lance <code>kubectl port-forward</code>, <code>aws ssm start-session</code> ou votre propre commande, puis se connecte au port local ouvert. Une connexion peut aussi exécuter un script shell avant de se connecter, en demandant votre accord à chaque session, puis des instructions SQL immédiatement après."
+                        "Utilisez SOCKS5 avec DNS distant ou Cloudflare Access via <code>cloudflared</code>. Pour {cloudSqlProxy}, TablePro télécharge, vérifie et exécute Cloud SQL Auth Proxy.",
+                        "Tunnel Command se connecte via un port local ouvert par <code>kubectl port-forward</code>, <code>aws ssm start-session</code> ou votre commande. Les scripts shell avant connexion demandent approbation à chaque session."
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -118,10 +118,10 @@
         },
         {
             "id": "credentials",
-            "title": "Conservez les mots de passe au bon endroit",
+            "title": "Identifiants et sources de mots de passe",
             "paragraphs": [
-                "Les mots de passe sont enregistrés dans le Trousseau macOS ; avec iCloud Sync activé, la synchronisation des mots de passe les transmet à vos autres appareils via le Trousseau iCloud. Une clé SSH reste un fichier sur disque auquel la connexion fait référence ; seule sa phrase secrète va dans le Trousseau.",
-                "Un profil d’identifiants partage une authentification entre plusieurs connexions et peut lire le mot de passe à la connexion depuis 1Password (<code>op</code>), HashiCorp Vault, AWS Secrets Manager, une commande shell, un fichier ou une variable d’environnement. Ces sources de mot de passe sont gratuites et ne sont jamais synchronisées ; chaque outil en ligne de commande doit être dans votre <code>PATH</code>, dans <code>/usr/local/bin</code> ou <code>/opt/homebrew/bin</code>. Une connexion peut aussi utiliser <code>~/.pgpass</code> pour PostgreSQL, Amazon Redshift et CockroachDB, ou demander le mot de passe à chaque fois."
+                "Les mots de passe et phrases secrètes des clés SSH sont stockés dans le trousseau macOS. La synchronisation des mots de passe via le trousseau iCloud est un réglage facultatif distinct. Les fichiers de clés SSH restent sur disque.",
+                "Les profils d’identifiants gratuits réutilisent les accès et lisent les mots de passe depuis 1Password, Vault, AWS Secrets Manager, commandes, fichiers ou variables d’environnement. Les outils CLI requis doivent être installés. Les sources ne se synchronisent jamais. Les connexions de la famille PostgreSQL peuvent aussi utiliser <code>~/.pgpass</code> lorsque compatible."
             ],
             "links": [
                 {
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Inscrivez <code>$DB_HOST</code> dans l’hôte, la base de données, le nom d’utilisateur, l’hôte et l’utilisateur SSH, le chemin de clé SSH, les chemins des certificats TLS, les commandes de démarrage ou les champs du pilote d’une connexion ; TablePro remplace la référence par la valeur de son propre environnement à la connexion. Le port et le mot de passe ne sont jamais lus de cette façon ; attribuez plutôt une source au mot de passe."
+                        "Utilisez des références comme <code>$DB_HOST</code> dans les champs compatibles. Les valeurs viennent de l’environnement de l’app au moment de la connexion. Les champs port et mot de passe sont exclus ; les mots de passe utilisent des sources gratuites distinctes."
                     ],
                     "paid": [
                         "environment-variables"
@@ -144,9 +144,9 @@
         },
         {
             "id": "policies",
-            "title": "Les règles propres à chaque connexion",
+            "title": "Politiques de connexion",
             "paragraphs": [
-                "Le niveau de Safe Mode d’une connexion détermine si une instruction s’exécute telle quelle, demande une confirmation, exige Touch ID ou votre mot de passe, ou est refusée. Son niveau External Clients — Blocked, Read Only ou Read & Write — définit ce que les clients MCP et AppleScript peuvent faire et reste sur ce Mac. Sa politique d’IA détermine si l’assistant peut l’utiliser sans demander, uniquement après confirmation ou jamais ; Never bloque aussi les clients MCP.",
+                "Safe Mode contrôle la confirmation des instructions. External Clients contrôle l’accès MCP et AppleScript, vaut Read Only par défaut et reste sur ce Mac. La politique IA contrôle l’assistant ; Never bloque aussi les clients MCP.",
                 "Une organisation peut imposer un niveau minimal de Safe Mode pour chaque connexion et contrôler les mises à jour via un profil de configuration."
             ],
             "links": [

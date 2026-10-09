@@ -1,25 +1,25 @@
 {
-  "seo": {
-    "title": "Blog",
-    "description": "Guias para trabalhar com bancos de dados no Mac e anúncios de versões da equipe TablePro, em inglês: o que cada versão adiciona e corrige.",
-    "indexable": false
-  },
-  "og": {
-    "kicker": "Blog",
-    "title": "Guias e anúncios de versões da equipe TablePro"
-  },
-  "header": {
-    "title": "Blog",
-    "lead": "Anúncios de versões, do mais recente para o mais antigo. Nem toda versão ganha um artigo. Os artigos estão disponíveis apenas em inglês. As notas completas de cada versão estão no <changelog>histórico de alterações</changelog> (inglês)."
-  },
-  "corrections": {
-    "tablepro-0-74": {
-      "date": "2026-10-02",
-      "text": "A visualização Mapa carrega da Apple os blocos do mapa, portanto este artigo exagera o que permanece no seu Mac. Suas linhas ficam no Mac; a Apple fornece os blocos do mapa para a área exibida na tela."
+    "seo": {
+        "title": "Blog",
+        "description": "Guias de bancos de dados e notas de versão do TablePro. Passos práticos para conexões, SQL, importações e MCP.",
+        "indexable": false
     },
-    "tablepro-for-iphone": {
-      "date": "2026-10-02",
-      "text": "A versão 1.0 não recusa conexões que passam por um host intermediário SSH, ao contrário do que este artigo dizia. Não há suporte a hosts intermediários no iPhone e iPad; abra essas conexões no Mac. No Oracle, assim como no SQLite, DuckDB e SQL Server, apenas salvamentos com mais de uma instrução são executados dentro de uma transação. Somente DuckDB pode executar em memória; um arquivo SQLite é copiado para o app."
+    "og": {
+        "kicker": "Blog",
+        "title": "Guias de bancos de dados e notas de versão"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Posts sobre versões do TablePro. As notas completas estão no <changelog>changelog</changelog> (inglês)."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "A visualização Mapa carrega da Apple os blocos do mapa, portanto este artigo exagera o que permanece no seu Mac. Suas linhas ficam no Mac; a Apple fornece os blocos do mapa para a área exibida na tela."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "A versão 1.0 não recusa conexões que passam por um host intermediário SSH, ao contrário do que este artigo dizia. Não há suporte a hosts intermediários no iPhone e iPad; abra essas conexões no Mac. No Oracle, assim como no SQLite, DuckDB e SQL Server, apenas salvamentos com mais de uma instrução são executados dentro de uma transação. Somente DuckDB pode executar em memória; um arquivo SQLite é copiado para o app."
+        }
     }
-  }
 }

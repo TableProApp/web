@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL 與 MariaDB",
     "header": {
-        "title": "適用於 {devices} 的 MySQL、MariaDB 用戶端",
-        "lead": "使用感知結構的自動完成撰寫 SQL，預覽每個陳述式後編輯列，並管理使用者、工作階段和備份。同一驅動程式也支援 MariaDB、TiDB、OceanBase 和 Databend。"
+        "title": "MySQL 與 MariaDB 用戶端",
+        "lead": "查詢 MySQL，透過 SQL 預覽編輯列，並在同一個連線中管理使用者、工作階段和備份。"
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機、連接埠和使用者，或貼上 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 帳戶首次即可連線。資料庫可留空後再選擇，切換資料庫在同一連線中完成。",
+                "輸入主機、連接埠和使用者，或貼上 <code>mysql://</code> URL。支援 MySQL 8 的 <code>caching_sha2_password</code> 帳戶。資料庫為選用；切換資料庫時保留同一連線。",
                 "新連線的 SSL 預設為 Preferred，先嘗試 TLS，僅在 TLS 交握失敗後退回明文。嚴格驗證請選擇 Verify CA 或 Verify Identity，並使用供應商憑證。",
-                "私有網路伺服器可透過 <network>SSH 通道（依需使用跳板主機）、SOCKS5 代理、Cloudflare Access 通道或自訂通道指令</network>（例如 kubectl port-forward）連線。",
-                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登入，每次連線簽發新權杖，也可從 AWS 帳戶直接匯入執行個體。對於 Google Cloud SQL，TablePro 會下載並執行 Cloud SQL Auth Proxy。",
-                "從 Sequel Ace 移轉？<importApps>Import from Other App</importApps> 讀取其喜好項目，並在確認後讀取其儲存在鑰匙圈中的密碼。"
+                "透過 <network>SSH 通道、跳板主機、代理或通道命令</network>存取私人伺服器。",
+                "透過 <cloudAuth>AWS IAM</cloudAuth> 登入 Amazon RDS 或 Aurora，每次連線使用新權杖。可從 AWS 匯入執行個體，或透過 Cloud SQL Auth Proxy 連線至 Google Cloud SQL。",
+                "<importApps>Import from Other App</importApps> 讀取 Sequel Ace 收藏。匯入 Keychain 密碼需要您的確認。"
             ]
         },
         {
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "SQL 編輯器從結構完成資料表和欄位名稱，包括別名和 CTE，可執行游標下的陳述式或整份指令碼。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 與 EXPLAIN ANALYZE</explain> 繪製為計畫圖或樹狀圖，EXPLAIN Compare 顯示兩次執行間的變化。",
-                "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示確切陳述式。儲存使用繫結參數執行，陳述式將修改的列數與預期不符時停止。沒有主索引鍵的資料表仍可編輯，透過所有欄位比對列。",
+                "自動完成包含綱要名稱、別名和 CTE。可執行目前陳述式或完整腳本。將 <explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 和 EXPLAIN ANALYZE</explain> 顯示為圖表或樹，並比較兩個計畫。",
+                "暫存變更，並透過 <editing>Preview SQL</editing> 檢查陳述式。儲存使用繫結參數，列數不符合預期時停止。沒有主鍵時，編輯比對所有欄位。",
                 "所有工作階段使用 utf8mb4，表情符號和非拉丁文字可正確往返。舊用戶端透過 Latin 1 寫入的資料庫文字，可用 UTF-8 via Latin 1 編碼依該用戶端方式讀取。",
                 "分割資料表列出各分割區及界限，例如 <code>VALUES LESS THAN (2024)</code>；資料表和欄位註解顯示在側邊欄及格線欄位標題中。"
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "結構",
             "paragraphs": [
-                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵、CHECK 條件約束和產生欄位的修改，並在執行前顯示 DDL。<code>lower(email)</code> 等運算式索引鍵需要 MySQL 8.0.13 或更新版本。",
+                "在 <structure>Structure 分頁</structure>暫存欄位、索引、外部索引鍵、CHECK 條件約束和產生欄位。儲存前檢查 DDL。運算式索引鍵需要 MySQL 8.0.13 或更新版本。",
                 "常式和觸發程序及其原始碼顯示在側邊欄。<erDiagram>ER 圖</erDiagram> 將結構繪製為唯讀圖，可匯出為 PNG 或 SQL。",
-                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 MySQL 或 MariaDB 結構或資料，產生使兩者一致的指令碼。可能導致資料遺失的修改會暫緩，直到明確包含。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比較 MySQL 或 MariaDB 綱要或資料，並產生同步腳本。可能刪除資料的變更會保留，直到您主動納入。"
             ]
         },
         {
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> 顯示每個帳戶直到單一欄位的權限，並將所有 GRANT 和 REVOKE 暫存為執行前可檢閱的 SQL。",
+                "<administer>Users & Roles</administer> 顯示細至欄位層級的權限。套用前檢查暫存的 GRANT 和 REVOKE 陳述式。",
                 "Server Dashboard 每隔幾秒重新整理工作階段、伺服器指標和慢查詢。使用 <code>KILL QUERY</code> 取消執行中的查詢，<code>KILL</code> 終止工作階段。沒有 PROCESS 權限的帳戶僅看到自己的工作階段。",
                 "資料表維護執行 OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE 和 REPAIR TABLE，並在執行前顯示陳述式。",
                 "<backup>Backup Dump</backup> 執行 {dumpTool}，Restore Dump 執行 mysql 用戶端，兩者均透過連線的 SSH 通道；請先在 Mac 安裝 MySQL 用戶端工具。還原會取代傾印指定的物件。",
-                "離開時可設定連線在閒置數分鐘後釋放，以歸還伺服器連線名額；下次查詢會新建連線。若工作階段持有重新連線會遺失的狀態，例如未結束交易或暫存資料表，TablePro 會保持連線。"
+                "自動釋放閒置連線，在下次查詢時重新連線。若工作階段中有重新連線會遺失的狀態，例如未提交交易或暫存資料表，TablePro 會保留工作階段。"
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "移動資料",
             "paragraphs": [
-                "<importData>匯入</importData> {importFormats} 檔案，為目標資料表對應欄位，並選擇列失敗時的處理方式。資料表或結果可匯出為 {exportFormats}。",
-                "<copy>Copy To</copy> 將資料表、資料或兩者傳送至 MySQL 或其他引擎的連線，並列出所有需要近似轉換的欄位型別。"
+                "<importData>匯入</importData> {importFormats} 檔案，支援欄位對應和列錯誤處理。將資料表或結果匯出為 {exportFormats}。",
+                "<copy>Copy To</copy> 將資料表、資料或兩者傳到另一個 MySQL 連線或引擎。請檢查需要近似轉換的欄位型別。"
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace 繼承 Sequel Pro，是 MySQL、MariaDB 的 Mac App。MCP 伺服器預設關閉，未修改時唯讀，沒有 AI 聊天。僅使用 MySQL 和 MariaDB 時較合適。"
+                "text": "Sequel Ace 專注於 Mac 上的 MySQL 和 MariaDB。MCP 伺服器預設關閉，除非變更設定，否則為唯讀。沒有 AI 聊天。"
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench 是 Oracle 官方的 MySQL 工具。新版本以 MySQL Shell 為基礎重寫，具備 SQL 筆記本，Oracle 已不再維護上一代。僅使用 MySQL、希望使用官方工具時較合適。"
+                "text": "MySQL Workbench 是 Oracle 的 MySQL 工具。目前這一代使用 MySQL Shell 和 SQL 筆記本；Oracle 已不再維護上一代。"
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin 在 Web 伺服器上執行，可使用任意瀏覽器，cPanel 也包含它。伺服器只能透過主機管理面板存取，而桌面 App 無法直達資料庫時較合適。"
+                "text": "phpMyAdmin 在 Web 伺服器上執行，並包含在 cPanel 中。它可存取主機面板提供的資料庫，即使該主機不允許桌面連線。"
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL 是源自 Windows 的老牌開放原始碼用戶端，如今也提供 macOS App。已在 Windows 上使用它、希望在 Mac 上使用同一用戶端時較合適。"
+                "text": "HeidiSQL 是開源資料庫用戶端，提供 Windows 和 macOS App。"
             }
         ],
         "notes": {}

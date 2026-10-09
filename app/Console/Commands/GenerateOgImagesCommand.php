@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\Og\OgImageRenderer;
 use App\Services\Og\OgImageRenderException;
+use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
@@ -32,8 +33,8 @@ use Throwable;
  * (`OgImages::cardPath()`, `OgImages::fallbackPath()`):
  *
  * - `site`: the generic brand card per locale, from `content/{locale}/home.json`
- *   → `og`. English goes to `/og.png`, regenerated in place so old shares and
- *   the platform's default pick it up; Vietnamese to `/og/vi/default.png`.
+ *   → `og`. English goes to `/og.png` unless supplied artwork already occupies
+ *   that URL, in which case it is preserved; Vietnamese to `/og/vi/default.png`.
  * - `feature`, `database`, `compare`: one card per page, from the `og` block
  *   of its content file. A page whose content has no `og` block keeps
  *   whatever card it has.
@@ -65,6 +66,7 @@ class GenerateOgImagesCommand extends Command
         OgImageRenderer $renderer,
         OgFonts $fonts,
         Filesystem $files,
+        AssetManifest $assets,
     ): int {
         $type = (string) $this->option('type');
         $locale = (string) $this->option('locale');
@@ -89,6 +91,12 @@ class GenerateOgImagesCommand extends Command
 
         if (($type === 'all' || $type === 'site') && $slug === null) {
             foreach ($locales as $code) {
+                if ($assets->ogCard(OgImages::SITE_CARD, $code) === OgImages::fallbackPath($code)) {
+                    $this->components->info("Preserved supplied site artwork ({$code}) at " . OgImages::fallbackPath($code));
+
+                    continue;
+                }
+
                 $card = $this->siteCard($content, $code);
 
                 if ($card === null) {

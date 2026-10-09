@@ -53,8 +53,8 @@ export default {
     },
     newsletter: {
         title: 'Release notes by email',
-        body: 'Occasional emails with release notes. Every email has an unsubscribe link.',
-        note: 'We email you a confirmation link first. <link>Privacy policy</link>',
+        body: 'Occasional release notes. Unsubscribe in any email.',
+        note: 'Confirm your subscription by email. <link>Privacy policy</link>',
     },
     bottom: {
         copyright: '© {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3.',

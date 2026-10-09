@@ -21,7 +21,7 @@ export default {
     tiers: {
         free: {
             name: 'Miễn phí',
-            description: 'Ứng dụng cho Mac (trừ các tính năng trả phí) và ứng dụng cho iPhone và iPad.',
+            description: 'Công cụ cơ sở dữ liệu cơ bản, không có thời gian dùng thử.',
             activation: 'Không cần đăng ký để dùng ứng dụng.',
             includesTitle: 'Bao gồm',
             includes: [
@@ -36,15 +36,15 @@ export default {
             name: 'Starter',
             description: 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             activation: {
-                other: 'Một license cho một người, dùng trên tối đa {count} máy Mac.',
+                other: 'Một người, tối đa {count} máy Mac.',
             },
             includesTitle: 'Mọi thứ trong gói Miễn phí, cộng thêm',
             cta: 'Mua gói Starter',
         },
         team: {
             name: 'Team',
-            description: 'Bổ sung connection và query dùng chung với nhóm của bạn, ngoài các tính năng của gói Starter.',
-            activation: 'Mỗi seat là một máy Mac được kích hoạt.',
+            description: 'Chia sẻ connection và query đã lưu với nhóm.',
+            activation: 'Một máy Mac đã kích hoạt cho mỗi seat.',
             includesTitle: 'Mọi thứ trong gói Starter, cộng thêm',
             cta: 'Mua gói Team',
         },
@@ -85,7 +85,7 @@ export default {
     refund: {
         other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {count} ngày kể từ ngày tính phí. Xem <link>chính sách hoàn tiền</link>.',
     },
-    finePrint: 'Giá tính bằng USD. {merchant} là merchant of record: {merchant} nhận thanh toán và tính thuế bán hàng hoặc VAT (nếu có) khi bạn thanh toán.',
+    finePrint: 'Giá tính bằng USD. {merchant} xử lý thanh toán và tính thuế bán hàng hoặc VAT tại checkout với vai trò merchant of record.',
     finePrintCurrency: 'Giá tính bằng USD.',
     comparePlans: 'So sánh các gói',
     section: {

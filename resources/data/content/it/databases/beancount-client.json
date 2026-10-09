@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Beancount SQL per {devices}",
+        "title": "Client Beancount per {devices}",
         "description": "Apri transazioni, registrazioni, saldi e metadati Beancount come tabelle SQL in sola lettura. Segui le inclusioni ed esegui BQL con rledger."
     },
     "og": {
@@ -10,8 +10,8 @@
     "engine": "beancount",
     "breadcrumb": "Beancount",
     "header": {
-        "title": "Interroga un registro Beancount con SQL su {devices}",
-        "lead": "Apri un file <code>.beancount</code> e interroga transazioni, registrazioni, saldi e metadati come tabelle SQL, oppure invia BQL a rledger. Il registro rimane un file di testo che modifichi nel tuo editor."
+        "title": "Cliente Beancount",
+        "lead": "Interroga un libro mastro come tabelle SQL o utilizza BQL con rledger. Modifica il registro di origine nel tuo editor di testo."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -24,8 +24,8 @@
             "id": "connect",
             "title": "Apri un registro",
             "paragraphs": [
-                "TablePro esegue <code>rledger</code> o Python Beancount per leggere il registro. Se devi scegliere, installa rledger: ha la precedenza quando sono presenti entrambi, è l’unico a eseguire BQL ed è l’unico a riempire la tabella <code>diagnostics</code> con i risultati della validazione.",
-                "Scegli il file con <ui>Browse…</ui> nel modulo di connessione. Il percorso del registro definisce l’intera connessione, senza host, porta, password o database. Un file <code>.beancount</code> si apre anche dal Finder ed è possibile importare URL <code>beancount:///path/to/main.beancount</code>.",
+                "Installa <code>rledger</code> o Python Beancount. rledger ha la precedenza se sono disponibili entrambi; solo rledger supporta BQL e l’output di validazione in <code>diagnostics</code>.",
+                "Scegli un libro mastro con <ui>Browse…</ui> o apri un file <code>.beancount</code> dal Finder. Il percorso è l'intera connessione. È anche possibile importare gli URL <code>beancount:///path/to/main.beancount</code>.",
                 "Un’app aperta dal Finder non eredita il <code>PATH</code> della shell. Se il backend funziona in Terminal ma non qui, indicane il percorso con <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> o <code>TABLEPRO_BEANCOUNT_PYTHON</code> e riavvia.",
                 "Il backend Python esegue i plugin inclusi in Beancount e ignora tutte le altre direttive <code>plugin</code>, che contengono codice di terze parti, finché non attivi <ui>Run Ledger Plugins</ui> per quella connessione. I plugin ignorati sono elencati in <code>diagnostics</code>."
             ]
@@ -34,7 +34,7 @@
             "id": "work",
             "title": "Interroga il registro",
             "paragraphs": [
-                "Le tabelle coprono transazioni e registrazioni, conti, saldi e asserzioni sui saldi, prezzi e commodity, tutte le altre direttive, metadati, tag e link e i file sorgente. Le registrazioni si uniscono alle transazioni su <code>transaction_id</code> e i conti per nome.",
+                "Interroga transazioni, registrazioni, conti, saldi, prezzi, direttive, metadati e file di origine come tabelle. Unisci le registrazioni alle transazioni su <code>transaction_id</code> e ai conti per nome.",
                 "Gli importi arrivano contabilizzati, con operazioni aritmetiche, costi e prezzi risolti e con i costi delle registrazioni e i prezzi inline in colonne dedicate. Transazioni, registrazioni e varie tabelle delle direttive contengono una <code>source_location</code> come <code>main.beancount:42</code>, così una riga rimanda alla sua riga nel file.",
                 "Aggiungi il prefisso <code>BQL:</code> a una query per inviarla a rledger anziché alle tabelle. Navigazione, conteggio delle righe e paginazione funzionano sui risultati BQL; i parametri SQL no.",
                 "Le direttive <code>include</code> vengono seguite, sia con percorsi letterali sia con glob, e tutti i file del registro e i documenti citati vengono monitorati. Salva una modifica nell’editor e la query successiva la legge senza riconnettersi. La connessione è sempre al livello Read-Only di <safeMode>Safe Mode</safeMode>, quindi INSERT, UPDATE, DELETE e le modifiche allo schema vengono rifiutati."

@@ -162,10 +162,10 @@ it('holds every page file to the schema in components/databases/README.md', func
              * platforms.json (sitemap §A.3, spec §5 "keep Mac-specific search
              * titles"), and the two never disagree.
              */
-            expect($copy['seo']['title'])->toBe($copy['header']['title'], "{$where}: seo.title must match the H1");
+            expect(preg_match('/\{(devices|macDevices)\}/', $copy['seo']['title']))->toBe(1, "{$where}: search titles name current availability from data");
 
             expect(array_keys($copy['header']))->toBe(['title', 'lead']);
-            expect(preg_match('/\{(devices|macDevices)\}/', $copy['header']['title']))->toBe(1, "{$where}: the H1 names its platforms from data");
+            expect(preg_match('/\{(devices|macDevices)\}/', $copy['header']['title']))->toBe(0, "{$where}: identity is platform-neutral in every locale");
             expect($copy['breadcrumb'])->toBeString()->not->toBe('');
 
             $slot = static function (string $id) use ($assets, $slug, $where): void {
@@ -597,7 +597,7 @@ it('titles each engine page with the platforms its heading names, and keeps the 
     expect($html('/postgresql-client'))->toMatch($title('PostgreSQL client for Mac, iPhone and iPad – TablePro'));
     expect($html('/vi/postgresql-client'))->toMatch($title('Client PostgreSQL cho Mac, iPhone và iPad – TablePro'));
     // Key browsing is Mac-only in iOS 1.0 (positioning §12), so the heading and title promise only the Mac.
-    expect($html('/redis-gui'))->toMatch($title('Redis GUI for Mac – TablePro'))->toMatch('#>Redis GUI for Mac</h1>#');
+    expect($html('/redis-gui'))->toMatch($title('Redis GUI for Mac – TablePro'))->toMatch('#>Redis GUI</h1>#');
     expect($html('/vi/redis-gui'))->toMatch($title('GUI Redis cho Mac – TablePro'));
 });
 
@@ -808,7 +808,7 @@ it('labels a link to the cloud sign-in section the same way on every page', func
     }
 });
 
-it('says when each other tool fits, unless it is discontinued', function (): void {
+it('describes other tools without generic endorsements', function (): void {
     $products = collect(json_decode((string) file_get_contents(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR)['products'])->keyBy('id');
     $checked = 0;
 
@@ -820,20 +820,22 @@ it('says when each other tool fits, unless it is discontinued', function (): voi
 
             $checked++;
 
-            expect(preg_match('/\b(fits|Choose it)\b/', $item['text']))->toBe(1, "content/en/databases/{$slug}.json: {$item['product']} does not say when to choose it");
+            expect($item['text'])->toBeString()->not->toBe('');
+            expect(mb_strlen($item['text']))->toBeGreaterThan(35);
+            expect($item['text'])->not->toMatch('/\b(best alternative|perfect choice|seamless experience)\b/i');
         }
     }
 
     expect($checked)->toBeGreaterThan(5);
 });
 
-it('shows a phone capture where a page’s heading promises the iPhone and iPad app', function (): void {
+it('shows a phone capture for supported table browsers in the iPhone and iPad app', function (): void {
     $engines = collect(databasePagesEngines())->keyBy('id');
     $assets = json_decode((string) file_get_contents(resource_path('data/assets.json')), true, 512, JSON_THROW_ON_ERROR)['assets'];
     $promising = [];
 
     foreach (databasePagesFiles('en') as $slug => $copy) {
-        if (! str_contains($copy['header']['title'], '{devices}') || ! $engines[$copy['engine']]['ios']['inPicker']) {
+        if (! $engines[$copy['engine']]['ios']['inPicker'] || (collect($copy['sections'])->firstWhere('id', 'iphone')['asset'] ?? null) === null) {
             continue;
         }
 

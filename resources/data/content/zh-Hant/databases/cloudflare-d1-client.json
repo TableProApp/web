@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "適用於 {devices} 的 Cloudflare D1 用戶端",
-        "lead": "從一個連線存取 Cloudflare 帳戶中的 D1 資料庫，透過 Cloudflare API 使用 SQLite 方言查詢，並在 Structure 分頁管理資料表、索引和觸發程序。"
+        "title": "Cloudflare D1 用戶端",
+        "lead": "瀏覽 Cloudflare 帳戶中的 D1 資料庫，並透過其 API 執行 SQLite 查詢。"
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "使用 API 權杖連線",
             "paragraphs": [
-                "D1 連線需要三個值：資料庫名稱或 UUID、Cloudflare 帳戶 ID 和 API 權杖。權杖填入 <ui>API Token</ui> 欄位，儲存在 <credentials>macOS 鑰匙圈</credentials>。所有請求經 HTTPS 傳送至 Cloudflare API，因此沒有主機、連接埠、SSL 設定或 SSH 通道。",
-                "透過 Custom token 範本建立含 <ui>Account > D1 > Edit</ui> 權限的權杖，Cloudflare 僅顯示一次，請及時複製。權杖可存取帳戶中所有 D1 資料庫，不僅是目前連線的資料庫。",
+                "輸入 D1 資料庫名稱或 UUID、Cloudflare 帳戶 ID 和 <ui>API Token</ui>。權杖儲存在 <credentials>macOS Keychain</credentials>。請求使用 HTTPS；沒有主機、連接埠、TLS 設定或 SSH 通道。",
+                "建立具有 <ui>Account > D1 > Edit</ui> 權限的權杖，並在顯示時複製。它可存取帳戶中的所有 D1 資料庫，不僅是所選資料庫。",
                 "匯入 <code>d1://account-id/database-name</code> URL 會填入帳戶和資料庫；權杖從不包含在 URL 中，需隨後貼上。"
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "切換資料庫並查詢",
             "paragraphs": [
-                "工具列資料庫切換器列出帳戶的 D1 資料庫，無須重新連線即可切換，也可建立和刪除資料庫。各分頁保持在開啟時的資料庫。",
+                "無需重新連線即可切換帳戶中的 D1 資料庫。切換器也可建立和刪除資料庫；既有分頁保留原資料庫。",
                 "查詢使用 SQLite 方言。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形，列編輯在格線中暫存至儲存，<editing>Preview SQL</editing> 先顯示陳述式。",
                 "請讓每個陳述式獨立成立：一個陳述式設定的 <code>PRAGMA</code> 或暫存資料表在下一個時消失，每個執行即提交，無法復原。Cloudflare 限流時，錯誤包含重試前要求等待的時間。"
             ]

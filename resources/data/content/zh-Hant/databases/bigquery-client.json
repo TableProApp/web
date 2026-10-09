@@ -10,8 +10,8 @@
     "engine": "bigquery",
     "breadcrumb": "Google BigQuery",
     "header": {
-        "title": "適用於 {devices} 的 Google BigQuery 用戶端",
-        "lead": "對專案資料集撰寫 GoogleSQL，執行前查看掃描量，並限制工作計費。可在格線編輯列，將資料表卸載至 Cloud Storage 而不經 Mac。"
+        "title": "Google BigQuery 用戶端",
+        "lead": "編寫 GoogleSQL，估算查詢費用，並設定計費位元組上限。"
     },
     "asset": "mac-db-bigquery-dry-run",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "登入 Google Cloud",
             "paragraphs": [
-                "選擇<ui>驗證方式</ui>（Auth Method）並填寫<ui>專案 ID</ui>（Project ID），需用 ID 而非專案名稱或編號。<ui>Application Default Credentials</ui> 讀取 <code>gcloud auth application-default login</code> 寫入的檔案，已設定 gcloud 時最方便。<ui>服務帳戶金鑰</ui>（Service Account Key）接受 .json 金鑰檔案或貼上 JSON。",
+                "選擇 <ui>驗證方式</ui> (Auth Method)，輸入 <ui>專案 ID</ui> (Project ID)，而非專案名稱或編號。<ui>Application Default Credentials</ui> 使用 gcloud 的登入檔案；<ui>服務帳戶金鑰</ui> (Service Account Key) 接受 JSON 檔案或貼上的金鑰。",
                 "Google Account (OAuth) 使用在 Google Cloud Console 建立的桌面 OAuth 用戶端透過瀏覽器登入。更新權杖儲存在鑰匙圈，每個用戶端一個，後續連線無須瀏覽器。一個 OAuth 用戶端登入一個 Google 帳戶，第二個帳戶需第二個用戶端或自有更新權杖。",
                 "全部透過 BigQuery REST API，無主機、連接埠、連線 URL 或 SSH 通道。<ui>位置</ui>（Location）設定每個工作傳送的處理位置。詳見<cloudAuth>雲端帳戶登入</cloudAuth>。"
             ]
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "查詢與成本控制",
             "paragraphs": [
-                "執行前在 <explain>Explain</explain> 選單選擇 <ui>Dry Run (Cost)</ui>，結果列出預計處理和計費位元組數、快取命中標記和美元估計成本，查詢本身不執行。",
-                "執行後狀態列顯示處理位元組數、計費位元組數和隨需費率估算，並標記快取命中。需硬上限時，在連線 Advanced 分頁設定<ui>最大計費位元組數</ui>（Max Bytes Billed），BigQuery 會拒絕超出計費的工作而不執行。",
+                "在 <explain>Explain</explain> 中選擇 <ui>Dry Run (Cost)</ui>，無需執行查詢即可估算處理位元組數、計費位元組數和隨選費用。結果也顯示快取狀態。",
+                "查詢後查看處理位元組數、計費位元組數、預估隨選費用和快取狀態。設定 <ui>最大計費位元組數</ui> (Max Bytes Billed) 可拒絕超出計費位元組上限的工作。",
                 "完成、引用和格式化遵循 GoogleSQL，資料表名稱用反引號，STRUCT、ARRAY 欄位顯示為 JSON。資料集代替資料庫，列在側邊欄，<code>⌘K</code> 切換，每個分頁保持初始資料集。工作輪詢至查詢逾時後取消，No limit 時等待完成。",
                 "儲存格、插入和刪除透過<editing>格線</editing>操作。UPDATE、DELETE 依宣告主索引鍵比對，無主索引鍵則比對除 ARRAY、JSON、GEOGRAPHY 外所有欄位，因此相同列會一起修改。宣告 <code>PRIMARY KEY (…) NOT ENFORCED</code> 可精確編輯一列。分割資料表請在編輯器寫含分割區篩選的 UPDATE、DELETE。"
             ]
@@ -53,7 +53,7 @@
             "title": "移動資料",
             "paragraphs": [
                 "TablePro 不提供 BigQuery 匯入。可將資料表或查詢結果以 {exportFormats} <export>匯出</export>至 Mac。",
-                "<backup>Server-Side Export</backup> 用 <code>EXPORT DATA</code> 將資料表卸載至 <code>gs://</code> 前綴，以 CSV、Parquet 或換行分隔 JSON 分片儲存。使用您的連線和權限執行，面板等待完成，不在 Mac 寫入檔案。"
+                "<backup>Server-Side Export</backup> 使用 <code>EXPORT DATA</code> 將 CSV、Parquet 或換行分隔的 JSON 寫入 <code>gs://</code> 前綴。操作使用您的權限，並等待完成。檔案不經過 Mac。"
             ]
         }
     ],

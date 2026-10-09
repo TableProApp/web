@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DBeaver: klien native atau Java",
+        "title": "TablePro vs DBeaver: fitur dan edisi",
         "description": "DBeaver memakai Java dan JDBC di Windows, macOS, dan Linux. TablePro native untuk Mac, iPhone, dan iPad. Bandingkan database, AI, MCP, dan harga."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DBeaver",
-        "lead": "DBeaver adalah klien untuk Windows, macOS, dan Linux, dibangun di atas Java. Edisi Community gratis dan sumber terbuka, dan edisi berbayarnya menambah fitur. TablePro adalah klien sumber terbuka dengan aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad, serta fitur berbayar opsional di Mac."
+        "lead": "DBeaver Community adalah klien JDBC gratis dan sumber terbuka. Edisi berbayar menambahkan dukungan NoSQL dan alat lain. Bandingkan dengan database dan fitur yang didukung TablePro."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda ingin MongoDB, Redis, atau Cassandra tanpa membayar. Setiap mesin yang didukung gratis di TablePro, sedangkan DBeaver Community tidak menyertakan database NoSQL.",
-            "Anda ingin aplikasi Mac yang tidak memerlukan Java. TablePro ditulis dalam Swift, dan driver databasenya native, tanpa JDBC.",
-            "Anda ingin asisten AI dengan penyedia pilihan Anda, tanpa biaya. Chat AI DBeaver Community hanya bekerja dengan OpenAI dan GitHub Copilot.",
-            "Anda ingin server MCP yang dapat digunakan klien AI dengan koneksi Anda, gratis dalam aplikasi Mac.",
-            "Anda juga ingin aplikasi untuk iPhone dan iPad."
+            "Akses gratis ke engine NoSQL yang didukung, termasuk MongoDB, Redis, dan Cassandra.",
+            "Driver native, tanpa memerlukan Java atau JDBC.",
+            "MCP dan chat AI gratis dengan penyedia pilihan Anda."
         ],
         "competitor": [
-            "Anda bekerja di Windows atau Linux selain Mac.",
-            "Anda membutuhkan mesin yang drivernya tidak tersedia di TablePro. DBeaver Community terhubung ke mesin apa pun yang memiliki driver JDBC.",
-            "Anda membutuhkan pembuat kueri visual, diagram ER yang dapat diedit, atau tugas terjadwal. Edisi berbayar DBeaver memilikinya."
+            "Dukungan Windows atau Linux.",
+            "Engine JDBC di luar driver yang didukung TablePro.",
+            "Alat berbayar seperti pembuat kueri visual, diagram ER yang dapat diedit, dan tugas terjadwal."
         ]
     },
     "glance": {
@@ -45,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DBeaver berjalan di Windows, macOS, dan Linux, sehingga satu klien mencakup komputer yang Anda gunakan.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Community terhubung ke mesin apa pun yang memiliki driver JDBC, termasuk mesin yang drivernya tidak tersedia di TablePro.",
                 "cite": [
@@ -106,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "Tersedia <link>aplikasi iPhone dan iPad gratis</link>, tanpa pembelian dalam aplikasi.",
+                "text": "<link>Aplikasi terpisah untuk iPhone dan iPad</link> gratis, tanpa pembelian dalam aplikasi.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -117,13 +107,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro hanya terhubung ke mesin yang drivernya tersedia di TablePro. Tidak ada koneksi JDBC generik, jadi periksa <link>database yang didukung</link> terlebih dahulu.",
+                "text": "TablePro memerlukan driver yang didukung. Tidak ada koneksi JDBC generik; periksa <link>database yang didukung</link> terlebih dahulu.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,7 +121,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca koneksi dalam workspace DBeaver Anda, dari Community atau edisi berbayar mana pun. DBeaver tidak perlu terbuka, dan file-nya tidak diubah.",
+        "intro": "Impor koneksi dari workspace DBeaver, baik Community maupun edisi berbayar. DBeaver boleh tetap tertutup dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
             "Pilih DBeaver dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan DBeaver, jadi tidak ada yang perlu disetujui di Rantai Kunci.",
@@ -159,14 +143,8 @@
         {
             "id": "speed",
             "question": "Bagaimana perbandingan kecepatan dan penggunaan memori dengan DBeaver?",
-            "answer": "Halaman ini tidak membuat klaim kecepatan atau memori, karena kedua proyek tidak menerbitkan pengukuran yang dapat direproduksi orang lain. Yang dapat Anda periksa adalah unduhan DBeaver menyertakan runtime Java, dan TablePro tidak memerlukannya.",
+            "answer": "Tidak ada benchmark yang dapat direproduksi di sini, jadi perbandingan ini tidak membuat klaim kecepatan atau memori. DBeaver menyertakan runtime Java; TablePro tidak memerlukan Java.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis seperti DBeaver Community?",
-            "answer": "Ya untuk setiap mesin yang didukung, asisten AI, dan server MCP: TablePro gratis digunakan dan sumber terbuka dengan AGPLv3. DBeaver menjual fitur tambahannya sebagai edisi terpisah, sedangkan TablePro menawarkannya sebagai paket Starter dan Team untuk aplikasi Mac, dengan fitur seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         },
         {
             "id": "unsupported",

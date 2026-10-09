@@ -230,7 +230,7 @@ describe('the visual contract', function (): void {
 
         expect(array_map(fn(array $kind): int => $kind['maxBytes'], $kinds))->toBe([
             'window' => 250000, 'mobile-crop' => 120000, 'detail' => 150000, 'phone' => 150000, 'ipad' => 250000,
-            'diagram' => 60000, 'illustration' => 250000, 'figure' => 200000, 'og-card' => 300000,
+            'diagram' => 60000, 'illustration' => 250000, 'figure' => 200000, 'og-card' => 320000,
         ]);
     });
 });
@@ -830,7 +830,8 @@ describe('the supplied path, on an isolated fixture', function (): void {
         $real = new AssetManifest();
 
         foreach (['en', 'vi'] as $locale) {
-            expect($real->ogCard('og-site', $locale))->toBe($real->isSupplied('og-site') ? "/og/bespoke/og-site-{$locale}.png" : null);
+            $path = $locale === Locales::default() ? '/og.png' : "/og/bespoke/og-site-{$locale}.png";
+            expect($real->ogCard('og-site', $locale))->toBe($real->isSupplied('og-site') ? $path : null);
         }
     });
 });

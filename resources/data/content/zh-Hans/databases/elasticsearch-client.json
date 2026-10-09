@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "适用于 {devices} 的 Elasticsearch 客户端",
-        "lead": "提供 Query DSL 请求控制台，以及将索引读取为表、按 <code>_id</code> 编辑文档的网格。两者都不运行 SQL：所有操作都是发往集群的 REST 请求。"
+        "title": "Elasticsearch 客户端",
+        "lead": "运行 Query DSL 请求，在表格中浏览索引文档，并按 ID 编辑文档。"
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入集群主机和 REST 端口，选择<ui>认证方式</ui>（Auth Method）。Username & Password 发送 HTTP Basic，API Key 通过 <code>Authorization: ApiKey</code> 头发送字段，请粘贴创建 API 密钥请求返回的 <code>encoded</code> 值。None 适合关闭安全的开发集群。连接对应一个集群，所以表单无 Database 字段。",
+                "输入 REST 主机和端口，再从 <ui>认证方式</ui> (Auth Method) 中选择 Username & Password、API Key 或 None。API 密钥使用 Elasticsearch 的 <code>encoded</code> 值。每个连接访问一个集群。",
                 "新连接默认 SSL Disabled，即明文 HTTP。其他模式用 HTTPS：Preferred、Required (skip verify) 接受自签证书，Verify CA、Verify Identity 验证证书。Elasticsearch 8.x 默认开启安全和 TLS，因此通常需要 HTTPS 和凭据。"
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "索引和 Query DSL 控制台",
             "paragraphs": [
-                "控制台像 Kibana Dev Tools 一样接受方法、路径及可选 JSON 正文，例如带 <code>match</code> 查询的 <code>GET /orders/_search</code>。搜索命中返回为行，带 <code>format=json</code> 的 <code>_cat</code> 请求及其他数组响应转为表，其余显示格式化 JSON。无法访问 <code>_sql</code> 端点。",
+                "编写方法、路径和可选 JSON 请求体，例如 <code>GET /orders/_search</code>。搜索命中和数组响应显示为行，其他响应显示为格式化 JSON。不提供 <code>_sql</code> 端点。",
                 "侧边栏将索引列为表，隐藏点号开头的名称。列来自映射：对象字段展开为 <code>address.city</code> 等点分路径，nested 字段有一个存放数组的 JSON 列及每个叶字段的列，每个文档含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
                 "<filters>列筛选</filters>转换为 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> 查询，Raw SQL 筛选行接受 <code>name:Widget</code> 等 Lucene 语法，以 <code>query_string</code> 发送。排序 <code>text</code> 字段时，映射存在 <code>.keyword</code> 子字段则使用它。",
-                "网格编辑转换为以 <code>_id</code> 为键的 REST 调用：修改用 <code>_update</code>，创建删除用 <code>_doc</code>。新行输入 <code>_id</code> 为文档命名。通过 JSON 列修改 nested 数组；在叶列输入值会停止保存，指出列名且不发送任何内容。"
+                "通过 REST 调用按 <code>_id</code> 编辑文档。新文档需输入 ID。嵌套数组通过 JSON 列修改；编辑叶子列会阻止保存，不会发送请求。"
             ]
         },
         {

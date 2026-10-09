@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Cliente de Snowflake para {devices}",
-        "lead": "Entre da forma exigida pela sua conta, alterne a sessão entre warehouses e funções sem reconectar e depois consulte, edite e exporte tabelas para um stage."
+        "title": "Cliente de Snowflake",
+        "lead": "Consulte e edite tabelas, troque warehouses e funções e exporte para um stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Conecte-se e entre",
             "paragraphs": [
-                "Informe o identificador da conta, como <code>myorg-myaccount</code> ou um localizador antigo como <code>xy12345.us-east-1</code>: o que precede <code>.snowflakecomputing.com</code>. Todas as requisições usam HTTPS para o endpoint da conta, portanto não há host, seção SSL ou painel SSH.",
-                "Escolha um <ui>Auth Method</ui>, e o formulário mostra apenas o necessário. Um par de chaves assina cada conexão com sua chave privada PKCS#8, portanto o relógio do Mac precisa estar correto. Browser SSO direciona você ao provedor de identidade. Um token OAuth é usado como colado e nunca renovado. Uma senha é acompanhada de um código atual em <ui>MFA Passcode (TOTP)</ui> quando a conta exige MFA.",
+                "Insira o identificador da conta antes de <code>.snowflakecomputing.com</code>, como <code>myorg-myaccount</code>. As solicitações usam HTTPS; nenhum host, seção TLS ou painel SSH é necessário.",
+                "Escolha um <ui>Auth Method</ui>: par de chaves PKCS#8, SSO do navegador, token OAuth ou senha com <ui>MFA Passcode (TOTP)</ui>. Os pares de chaves requerem um relógio de dispositivo preciso. Os tokens OAuth colados não são atualizados.",
                 "Com <code>ALLOW_CLIENT_MFA_CACHING</code> na conta, um código novo é suficiente: Snowflake retorna um token MFA que TablePro guarda no <credentials>Chaves</credentials>. Com <code>ALLOW_ID_TOKEN</code>, Browser SSO guarda ali um token de login, e as próximas conexões dispensam o navegador até Snowflake recusá-lo.",
                 "Snowflake não tem um esquema de URL. Informe o nome de uma seção em <ui>CLI Connection Name</ui>, e cada campo deixado vazio será lido de <code>~/.snowflake/connections.toml</code> ao conectar."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouses, funções e consultas",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> muda a sessão para outro warehouse ou função com <code>USE WAREHOUSE</code> e <code>USE ROLE</code>, sem reconectar. Uma conexão TablePro é uma sessão Snowflake, mantida aberta durante a inatividade, e uma aba vinculada a um segundo banco executa <code>USE DATABASE</code> antes das instruções nessa mesma sessão.",
+                "Troque warehouses e funções em <ui>Database > Session Context</ui>. A conexão mantém uma sessão enquanto ociosa; abas de outro banco executam <code>USE DATABASE</code> antes das instruções.",
                 "A barra lateral agrupa os objetos por banco e esquema. As listas de objetos vêm de comandos <code>SHOW</code>, que funcionam sem warehouse; os detalhes das colunas vêm de <code>INFORMATION_SCHEMA</code>, que exige um. <explain>Explain</explain> retorna o plano de Snowflake como texto bruto.",
-                "As <editing>edições na grade</editing> vinculam os valores no servidor, com células VARIANT, OBJECT e ARRAY enviadas por <code>PARSE_JSON</code>. Uma edição usa a chave primária declarada ou todas as colunas quando não há chave. Snowflake nunca impõe restrições de chave, portanto um valor de chave duplicado faz uma edição ou exclusão atingir todas as linhas correspondentes: verifique se há duplicatas antes de editar uma tabela."
+                "<editing>Grid edits</editing> vinculam seus valores no servidor, com células VARIANT, OBJECT e ARRAY enviadas através de <code>PARSE_JSON</code>. Uma chave de edição na chave primária declarada ou em cada coluna quando não houver nenhuma. As tabelas Snowflake padrão não impõem restrições de chave, portanto, um valor de chave duplicado significa que uma edição ou exclusão atinge todas as linhas correspondentes: verifique se há duplicatas em uma tabela antes de editá-la. As tabelas híbridas impõem suas chaves."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Mova dados",
             "paragraphs": [
                 "<importData>Importe</importData> arquivos {importFormats} pela conexão e exporte uma tabela ou um resultado para o Mac como {exportFormats}.",
-                "Para exportar uma tabela sem passar pelo Mac, escolha <ui>File > Server-Side Export…</ui> e informe um stage, com ou sem <code>@</code>. <backup>Server-Side Export</backup> executa <code>COPY INTO</code> com seus próprios privilégios e grava CSV comprimido com gzip, Parquet ou JSON; a tela aguarda a conclusão, e nada é gravado no Mac."
+                "Escolha <ui>File > Server-Side Export…</ui> e um stage. <backup>Server-Side Export</backup> executa <code>COPY INTO</code> com suas permissões, gravando CSV gzip, Parquet ou JSON. Espera a conclusão; os arquivos não passam pelo Mac."
             ]
         }
     ],

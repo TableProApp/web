@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "{devices}용 Elasticsearch 클라이언트",
-        "lead": "Query DSL 요청 콘솔과 각 인덱스를 테이블로 읽고 <code>_id</code>로 문서를 편집하는 그리드입니다. 둘 다 SQL이 아니며 모든 작업은 클러스터에 보내는 REST 요청입니다."
+        "title": "Elasticsearch 클라이언트",
+        "lead": "Query DSL 요청을 실행하고 인덱스 문서를 그리드에서 탐색하세요. ID로 문서를 편집합니다."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "클러스터 호스트·REST 포트를 입력하고 <ui>인증 방식</ui>(Auth Method)을 고르세요. Username & Password는 HTTP Basic, API Key는 <code>Authorization: ApiKey</code> 헤더로 보내니 API 키 생성 요청이 반환한 <code>encoded</code> 값을 붙여 넣으세요. None은 보안을 끈 개발 클러스터용입니다. 한 클러스터에 연결하므로 Database 필드는 없습니다.",
+                "REST 호스트와 포트를 입력하고 <ui>인증 방식</ui> (Auth Method)에서 Username & Password, API Key, None을 선택하세요. API 키는 Elasticsearch의 <code>encoded</code> 값을 사용합니다. 각 연결은 하나의 클러스터에 연결합니다.",
                 "새 연결의 SSL Disabled는 평문 HTTP입니다. 나머지는 HTTPS로 Preferred·Required (skip verify)는 자체 서명 인증서를 허용하고 Verify CA·Verify Identity는 검사합니다. Elasticsearch 8.x는 기본적으로 보안·TLS를 켜므로 보통 HTTPS와 자격 증명이 필요합니다."
             ]
         },
@@ -31,10 +31,10 @@
             "id": "work",
             "title": "인덱스 및 Query DSL 콘솔",
             "paragraphs": [
-                "콘솔은 Kibana Dev Tools처럼 메서드, 경로와 선택 JSON 본문을 받습니다. 예를 들어 <code>match</code> 쿼리를 담은 <code>GET /orders/_search</code>입니다. 검색 결과는 행, <code>format=json</code>을 쓴 <code>_cat</code> 요청·다른 배열 응답은 테이블, 나머지는 서식 있는 JSON으로 표시됩니다. <code>_sql</code> 엔드포인트에는 접근할 수 없습니다.",
+                "<code>GET /orders/_search</code>처럼 메서드, 경로, 선택적인 JSON 본문을 작성하세요. 검색 결과와 배열 응답은 행으로, 나머지는 서식이 지정된 JSON으로 표시됩니다. <code>_sql</code> 엔드포인트는 사용할 수 없습니다.",
                 "사이드바는 인덱스를 테이블로 나열하고 점으로 시작하는 이름은 숨깁니다. 열은 매핑에서 읽어 객체 필드를 <code>address.city</code> 같은 점 경로로 펼칩니다. nested 필드는 배열용 JSON 열 하나와 리프별 열을 가지며 모든 문서에 <code>_id</code>, <code>_index</code>, <code>_score</code>가 있습니다.",
                 "<filters>열 필터</filters>는 <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code>, <code>exists</code> 쿼리로 변환됩니다. Raw SQL 필터 행은 <code>name:Widget</code> 같은 Lucene 구문을 <code>query_string</code>으로 보냅니다. <code>text</code> 필드 정렬은 매핑에 있으면 <code>.keyword</code> 하위 필드를 씁니다.",
-                "그리드 편집은 <code>_id</code>를 키로 REST를 호출합니다. 변경은 <code>_update</code>, 생성·삭제는 <code>_doc</code>입니다. 새 행에 <code>_id</code>를 입력해 문서 이름을 정합니다. nested 배열은 JSON 열에서 바꾸세요. 리프 열에 값을 입력하면 저장을 멈추고 열을 알리며 아무것도 전송하지 않습니다."
+                "REST 호출로 <code>_id</code>에 따라 문서를 편집하세요. 새 문서에는 ID를 입력합니다. 중첩 배열은 JSON 열에서 변경하며 말단 열을 편집하면 요청을 보내지 않고 저장을 차단합니다."
             ]
         },
         {

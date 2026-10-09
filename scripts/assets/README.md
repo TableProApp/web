@@ -21,18 +21,23 @@ python3 scripts/assets/diagram-icloud-sync/build.py public/images/features \
 
 ## `og-site/`
 
-`og-site-{en,vi}.html` are the 1200 × 630 card templates, with the fonts embedded so the render cannot fall back.
+The English template is historical reference only. The approved Figma export at `public/og.png` is the single
+English default; do not regenerate it from these templates or recreate `public/og/bespoke/og-site-en.png`.
+The localized cards keep the existing composition and now use the approved short product headline.
+
+`og-site-{en,vi}.html` are the original 1200 × 630 card templates, with the fonts embedded so the render cannot fall back.
 `render.cjs` renders one with headless Chrome at scale 1 and reports which font drew each glyph. `finalize.py`
-converts the result to an opaque sRGB PNG under the 300 KB cap.
+converts the result to an opaque sRGB PNG under 300 KB (the manifest allows 320 KB).
 
 ```bash
-node scripts/assets/og-site/render.cjs scripts/assets/og-site/og-site-en.html /tmp/raw-en.png
-python3 scripts/assets/og-site/finalize.py /tmp/raw-en.png public/og/bespoke/og-site-en.png
+node scripts/assets/og-site/render.cjs scripts/assets/og-site/og-site-vi.html /tmp/raw-vi.png
+python3 scripts/assets/og-site/finalize.py /tmp/raw-vi.png public/og/bespoke/og-site-vi.png
 ```
 
-`render.cjs` loads the Homebrew-global puppeteer (`/opt/homebrew/lib/node_modules`) and launches
+`render.cjs` resolves Puppeteer from the project or `NODE_PATH` and launches
 chrome-headless-shell 149.0.7827.22, the build the committed cards used, from `~/.cache/puppeteer`. Set
-`PUPPETEER_EXECUTABLE_PATH` to use another binary, and adjust the puppeteer path for another machine.
+`PUPPETEER_EXECUTABLE_PATH` to use another binary; set `NODE_PATH` to the global npm module directory
+if Puppeteer is not installed locally. The English Figma export is never an output of these commands.
 
 For the other supported languages, build temporary HTML from the same original composition, then render and
 finalize each card using the commands above:

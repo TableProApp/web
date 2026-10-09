@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -124,7 +124,7 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 **Documentation.** The documentation at docs.tablepro.app is hosted by Mintlify, which receives your IP address and your browser's details with each page, and the pages load their fonts from Google Fonts. The documentation asks its own cookie question, because it cannot read the answer you gave on this site. Until you choose **Allow** there, it sets no cookies and keeps no visitor ID. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits to the documentation, and Mintlify keeps a random visitor ID, `mintlify_anonymous_id`, in local storage to count them. **Cookie settings** in the documentation's footer changes your answer, and declining removes both. Lawful basis: your consent.
 
-Reading the site sets no cookies of its own. Subscribing to the newsletter, or starting a checkout or a discount code check, sends a request to our server that sets the two account portal cookies, `tablepro-session` and `XSRF-TOKEN`. Everything the site keeps in your browser is listed under [Cookies and browser storage](#cookies).
+Reading the site sets no cookies of its own. Newsletter signup, checkout and discount-code requests from the public site omit credentials: they neither send account-portal cookies nor accept cookies from the response. Opening account-portal pages is separate and sets the portal cookies below. Everything the site keeps in your browser is listed under [Cookies and browser storage](#cookies).
 
 ## Purchases {#purchases}
 
@@ -144,7 +144,7 @@ If you subscribe to release notes, we store your email address and the language 
 
 ## Cookies and browser storage {#cookies}
 
-Reading the public website sets no cookies of its own; subscribing to the newsletter or starting a checkout sets the two strictly necessary portal cookies listed below. Cloudflare Web Analytics sets no cookies and stores nothing in your browser. The Google Analytics cookies are not set until you allow them. Crisp sets its cookies on every page once the chat has loaded. Nothing here is used for advertising or sold.
+Reading the public website and its newsletter, checkout and discount-code requests set no cookies of their own. Opening account-portal pages sets the two strictly necessary portal cookies listed below. Cloudflare Web Analytics sets no cookies and stores nothing in your browser. The Google Analytics cookies are not set until you allow them. Crisp sets its cookies on every page once the chat has loaded. Nothing here is used for advertising or sold.
 
 - **`_ga` and `_ga_<ID>`** (Google Analytics cookies, up to 2 years, only if you allow analytics): a random identifier for your browser and the state of your current visit. Declining, or changing your answer later, deletes them. Lawful basis: consent.
 - **`tablepro:analytics-consent`** (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. The website and the account portal share it. Lawful basis: strictly necessary to honor your choice.
@@ -152,7 +152,7 @@ Reading the public website sets no cookies of its own; subscribing to the newsle
 - **`theme`** and **`tablepro:banner-dismissed`** (local storage, until you clear it): whether you chose a light, dark or system appearance, and which banner you closed and until when: 30 days, or a year if you say you have a license or buy one. Lawful basis: legitimate interest.
 - **`mintlify_anonymous_id`** (local storage on docs.tablepro.app, set by Mintlify, only if you allow analytics there): the visitor ID described under [Website](#website). Declining removes it. The documentation keeps its own `tablepro:analytics-consent` answer. Lawful basis: consent.
 - **Cookies starting with `crisp-client/`** (Crisp, for example `crisp-client/session/…`; 6 months, renewed when you return; set on every page once the chat has loaded): keep the chat and your conversation across pages and visits. Lawful basis: legitimate interest, to offer support on every page.
-- **`tablepro-session` and `XSRF-TOKEN`** (account portal cookies, 2 hours): keep you signed in and protect the portal's forms against cross-site request forgery. The portal's other pages, such as the purchase confirmation and the newsletter pages, set them too, and so does subscribing to the newsletter or starting a checkout or a discount code check from any page of this site. Lawful basis: strictly necessary.
+- **`tablepro-session` and `XSRF-TOKEN`** (account portal cookies, 2 hours): keep you signed in and protect the portal's forms against cross-site request forgery. Opening the portal's other pages, such as purchase confirmation and newsletter pages, sets them too. Public-site newsletter, checkout and discount-code requests omit credentials and do not retain these cookies. Lawful basis: strictly necessary.
 
 You can change or withdraw your analytics answer at any time with **Cookie settings** in the footer of every page, or here:
 

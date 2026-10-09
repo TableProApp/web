@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "Client PostgreSQL per {devices}",
-        "lead": "Lavora con schemi, array, jsonb e PostGIS, leggi piani EXPLAIN come diagrammi e gestisci ruoli, sessioni, manutenzione e backup. Lo stesso driver supporta anche Amazon Redshift, CockroachDB e PGlite."
+        "title": "Client PostgreSQL",
+        "lead": "Interroga PostgreSQL, sfoglia schemi e modifica righe con le anteprime SQL. Esamina i piani EXPLAIN, jsonb, gli array e i valori PostGIS."
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "Connetti",
             "paragraphs": [
-                "Fornisci host, porta, utente e database a TablePro oppure incolla un URL <code>postgresql://</code> o <code>postgres://</code>. PostgreSQL richiede il database per connettersi.",
+                "Inserisci un host, una porta, un utente e un database oppure incolla un URL <code>postgresql://</code> o <code>postgres://</code>. La banca dati è obbligatoria.",
                 "Le nuove connessioni iniziano con SSL su Preferred, il <code>sslmode=prefer</code> di libpq. Scegli Verify CA o Verify Identity per verificare il certificato del server.",
                 "Attiva Use ~/.pgpass per leggere la password da <code>~/.pgpass</code>. Il modulo segnala ciò che ha trovato, incluso un file con permessi che farebbero sì che libpq lo ignori.",
-                "Raggiungi un server privato tramite un <network>tunnel SSH, con jump host se necessari, proxy SOCKS5, tunnel Cloudflare Access o comando di tunnel</network> come kubectl port-forward. Su Amazon RDS e Aurora accedi con <cloudAuth>AWS IAM</cloudAuth> come ruolo con <code>rds_iam</code>. Per Google Cloud SQL, TablePro scarica ed esegue Cloud SQL Auth Proxy.",
+                "Raggiungi server privati tramite tunnel <network>SSH, jump host, proxy o comandi tunnel</network>. Amazon RDS e Aurora supportano <cloudAuth>AWS IAM</cloudAuth> per i ruoli concessi <code>rds_iam</code>. Google Cloud SQL utilizza il proxy di autenticazione Cloud SQL.",
                 "Qualsiasi opzione di connessione accettata da libpq, come <code>-c application_name=reporting</code>, va in Connection Options."
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "Esegui query e modifica",
             "paragraphs": [
-                "L’editor SQL completa nomi di tabelle e colonne dallo schema. <explain>EXPLAIN ed EXPLAIN ANALYZE</explain> usano FORMAT JSON e vengono rappresentati come diagramma o albero del piano; EXPLAIN Compare mostra se un piano è diventato più lento dopo una modifica.",
-                "jsonb viene formattato e uuid, inet, timestamptz, interval e bytea mantengono la propria rappresentazione. Le colonne array aprono un editor di liste in cui aggiungi, rimuovi, riordini e imposti a null singoli elementi; le colonne enum offrono le proprie etichette.",
+                "Scrivi SQL con completamento automatico compatibile con lo schema. Visualizza <explain>EXPLAIN e EXPLAIN ANALYZE</explain> come diagrammi o alberi e confronta i piani di due esecuzioni.",
+                "Ispeziona i tipi jsonb e PostgreSQL formattati, inclusi uuid, inet, timestamptz, interval e bytea. Modifica gli elementi dell'array come un elenco; le colonne enum offrono le loro etichette.",
                 "I valori geometry e geography di PostGIS vengono letti come EWKT con SRID e un risultato con geometria si apre nella <results>vista Mappa</results>. I tasselli della mappa provengono da Apple; le righe rimangono sul Mac.",
                 "Le modifiche alle righe restano in attesa del salvataggio, con <editing>Preview SQL</editing> che mostra prima ogni istruzione; i salvataggi usano parametri associati. Le righe di una vista materializzata sono in sola lettura: aggiornala dal menu, in modo concorrente quando ha l’indice univoco richiesto da PostgreSQL."
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "Schemi e struttura",
             "paragraphs": [
-                "Ogni schema accessibile è elencato. Crea e modifica schemi da una schermata che scrive CREATE SCHEMA, proprietario, commento e permessi USAGE e CREATE e li mostra prima dell’esecuzione.",
-                "La <structure>scheda Structure</structure> prepara modifiche a colonne, indici, chiavi esterne, vincoli CHECK e colonne generate. Le tabelle partizionate elencano le partizioni con i limiti, annidate se una partizione è a sua volta partizionata. Enum, tipi compositi, domini e intervalli sono elencati sotto Types e le etichette enum possono essere aggiunte e rinominate.",
+                "Sfoglia gli schemi accessibili. Crea o modifica uno schema, il proprietario, il commento e le autorizzazioni, poi controlla il SQL prima di applicarlo.",
+                "Prepara modifiche a colonne, indici, chiavi esterne, vincoli CHECK e colonne generate nella <structure>scheda Structure</structure>. Esamina i limiti delle partizioni e i tipi PostgreSQL: enum, compositi, domini e intervalli. Puoi aggiungere o rinominare le etichette enum.",
                 "La definizione di una vista viene ricostruita con ogni tabella qualificata dallo schema e un indice rimasto non valido dopo una creazione concorrente fallita viene indicato nella scheda Indexes.",
-                "<compareSync>Compare & Sync</compareSync>, incluso nel piano {compareSyncTier}, confronta due schemi PostgreSQL o i loro dati e scrive lo script per allinearli, escludendo modifiche che farebbero perdere dati."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) confronta schemi o dati PostgreSQL e genera uno script di sincronizzazione. Le modifiche che potrebbero rimuovere dati vengono trattenute per la revisione."
             ]
         },
         {
             "id": "operate",
             "title": "Amministra",
             "paragraphs": [
-                "<administer>Users & Roles</administer> mostra l’origine di ogni privilegio prima di concederlo o revocarlo e prepara ogni istruzione come SQL.",
+                "Esamina l'origine di ciascun privilegio in <administer>Users & Roles</administer>. Le modifiche di concessione e revoca vengono organizzate come SQL.",
                 "Il Server Dashboard mostra sessioni, connessioni, rapporto di hit della cache, dimensione del database e query lente. Annulla una query con <code>pg_cancel_backend</code> o termina una sessione con <code>pg_terminate_backend</code>. Un ruolo che non è superutente né membro di <code>pg_monitor</code> vede le altre sessioni senza le query.",
-                "La manutenzione delle tabelle esegue VACUUM con opzioni FULL, ANALYZE e VERBOSE, oltre ad ANALYZE, REINDEX e CLUSTER, e mostra prima l’istruzione.",
+                "Visualizza l'anteprima di VACUUM, ANALYZE, REINDEX e CLUSTER prima di eseguire la manutenzione della tabella.",
                 "<backup>Backup Dump e Restore Dump</backup> eseguono i tuoi {dumpTool} e pg_restore tramite il tunnel SSH della connessione. Installali con Homebrew; per un backup di un server PostgreSQL 9.1 usa pg_dump 14 o precedente."
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "Sposta i dati",
             "paragraphs": [
-                "<importData>Importa</importData> file {importFormats}; un file di dati viene caricato in una tabella con mappatura colonna per colonna e scegli cosa accade se una riga fallisce. Esporta una tabella o un risultato in {exportFormats}; un’esportazione SQL mantiene i commenti di tabelle, viste e viste materializzate.",
-                "<copy>Copy To</copy> invia tabelle, dati o entrambi a un’altra connessione PostgreSQL o di un altro motore ed elenca ogni tipo di colonna che deve approssimare."
+                "<importData>Import</importData> {importFormats} file con mappatura delle colonne e gestione degli errori di riga. Esporta tabelle o risultati come {exportFormats}; Le esportazioni SQL conservano i commenti di tabella, vista e vista materializzata.",
+                "<copy>Copy To</copy> trasferisce tabelle, dati o entrambi a un'altra connessione o motore PostgreSQL. Esamina tutti i tipi di colonna che devono essere approssimati."
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin è il consolidato strumento di amministrazione open source per PostgreSQL, con debugger, confronto degli schemi e backup e ripristino. È adatto se usi solo PostgreSQL e l’amministrazione è la parte principale del lavoro.",
+                "text": "pgAdmin si concentra sull'amministrazione PostgreSQL, incluso un debugger, differenze di schema, backup e ripristino.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 è un’app per Mac dedicata a PostgreSQL, centrata su esplorazione e modifica. La sua documentazione non include attività amministrative come backup e ripristino, gestione utenti e monitoraggio. È adatto se usi solo PostgreSQL e vuoi un’app Mac dedicata."
+                "text": "Postico 2 si concentra sulla navigazione e la modifica di PostgreSQL su Mac. La sua documentazione esclude backup e ripristino, gestione e monitoraggio degli utenti."
             }
         ],
         "notes": {

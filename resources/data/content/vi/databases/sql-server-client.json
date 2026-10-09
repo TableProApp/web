@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "Client SQL Server cho {devices}",
-        "lead": "Chạy script T-SQL theo từng batch, với GO và PRINT được xử lý giống SQL Server Management Studio, và đăng nhập bằng SQL Server login, Kerberos hoặc tài khoản công việc Microsoft Entra ID. Server chạy trên Windows, Linux, Docker và Azure SQL Database đều kết nối theo cùng một cách."
+        "title": "SQL Server client",
+        "lead": "Chạy script T-SQL với batch GO và output PRINT. Kết nối bằng login SQL Server, Kerberos hoặc Microsoft Entra ID."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host và port TCP, rồi chọn <ui>Xác thực (Authentication)</ui>, form sẽ đổi theo lựa chọn đó: SQL Server login kèm mật khẩu, Windows Authentication qua Kerberos, hoặc Microsoft Entra ID. Hãy điền Database cho login chỉ thuộc về một cơ sở dữ liệu, như contained user của Azure SQL.",
+                "Nhập host và TCP port, rồi chọn <ui>Authentication</ui>: login SQL Server, Kerberos hoặc Microsoft Entra ID. Login theo cơ sở dữ liệu, gồm Azure SQL contained user, còn cần trường Database.",
                 "Kerberos dùng ticket đã có trong credential cache của bạn, hoặc xin ticket mới từ principal và mật khẩu bạn nhập. Hãy kết nối bằng hostname thay vì địa chỉ IP, vì ticket được cấp cho SPN đã đăng ký của server. TablePro không bao giờ chạy <code>kinit</code> hay sửa <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> đăng nhập qua device code flow, có hỗ trợ xác thực đa yếu tố và Conditional Access. Bạn đăng ký một application trong Azure rồi nhập client ID của nó; token được lưu trong login keychain, đánh dấu chỉ dùng trên thiết bị này, và tự làm mới ở chế độ nền.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> dùng device-code sign-in với MFA và Conditional Access. Đăng ký ứng dụng Azure và nhập client ID. Token refresh nền và nằm trong login keychain chỉ trên thiết bị.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred), mà trên SQL Server chỉ mã hóa bước đăng nhập. Hãy chọn Required hoặc chặt hơn để mã hóa toàn bộ phiên; Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo bộ chứng chỉ gốc của macOS. TablePro cũng chạy được Cloud SQL Auth Proxy cho Google Cloud SQL, và <network>SSH tunnel</network> đưa bạn tới server trong mạng nội bộ."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "Script, batch và chỉnh sửa",
             "paragraphs": [
-                "Script được gửi tới server từng batch một, tách tại mỗi dòng chỉ có <code>GO</code>, giống cách sqlcmd gửi, và <code>GO 5</code> chạy batch đứng trước nó năm lần. Mỗi result set mở trong một tab riêng, còn kết quả <code>PRINT</code> và các thông báo thông tin hiện trong chế độ Output.",
-                "Hãy đặt <code>BEGIN TRAN</code> và <code>COMMIT</code> trong script khi một lỗi cần hoàn tác các batch đã chạy trước đó; script nào để một transaction còn mở sẽ kết thúc bằng một thông báo nhắc điều này. Lần chạy dừng ở batch đầu tiên bị lỗi, và thông báo lỗi nêu đúng dòng trong editor.",
+                "Script tách theo dòng <code>GO</code>; <code>GO 5</code> lặp batch trước năm lần. Mỗi result set mở tab riêng. Đọc output <code>PRINT</code> và thông báo trong Output.",
+                "Dùng <code>BEGIN TRAN</code> và <code>COMMIT</code> khi batch cần transaction. Transaction đang mở có thông báo. Thực thi dừng ở batch lỗi đầu, có dòng editor trong lỗi.",
                 "Mọi session đều mở với các tùy chọn SET mà filtered index, indexed view và index trên cột computed cần, như bật <code>ANSI_NULLS</code> và <code>QUOTED_IDENTIFIER</code>. Vì vậy <code>col = NULL</code> không khớp dòng nào: hãy so sánh bằng <code>IS NULL</code>.",
                 "Table nằm dưới schema của nó trong sidebar, và <code>⌘K</code> đổi cơ sở dữ liệu ngay tại chỗ, không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>, dòng mới để server tự gán giá trị cho cột IDENTITY, và giá trị <code>nvarchar(max)</code> được nhận đầy đủ."
             ]
@@ -50,7 +50,7 @@
             "title": "Schema",
             "paragraphs": [
                 "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại và ràng buộc ở trạng thái chờ lưu, và hiển thị câu T-SQL trước khi chạy. Bạn xóa được schema ngay trong sidebar; SQL Server từ chối xóa schema vẫn còn chứa đối tượng. Hãy tạo schema bằng CREATE SCHEMA trong editor.",
-                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema SQL Server, hoặc dữ liệu của chúng, rồi lưu một script có dòng <code>GO</code> sau mỗi câu lệnh, sẵn sàng chạy trong sqlcmd hoặc SQL Server Management Studio."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so schema hoặc dữ liệu SQL Server. Script tạo ra phân tách câu lệnh bằng <code>GO</code> cho sqlcmd hoặc SQL Server Management Studio."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "<importData>Import</importData> file {importFormats}. File <code>.sql</code> có dòng <code>GO</code> chạy từng batch một, giống cách sqlcmd chạy. Export table hoặc kết quả query ra {exportFormats}; bản export SQL kết thúc mỗi câu lệnh bằng một dòng <code>GO</code>, để mỗi câu chạy thành một batch riêng."
+                "<importData>Import</importData> file {importFormats}. File SQL theo batch <code>GO</code>. Export table hoặc kết quả ra {exportFormats}; SQL export cũng dùng dấu phân tách <code>GO</code>."
             ]
         },
         {
@@ -82,13 +82,17 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio là công cụ chính hãng của Microsoft cho SQL Server và Azure SQL. Hãy chọn nó cho những việc quản trị mà TablePro không làm, như job của SQL Server Agent, Always On availability group, live query statistics và các công cụ tinh chỉnh hiệu năng.",
-                "notes": ["ssms-github-copilot-component"]
+                "text": "SQL Server Management Studio quản trị ngoài phạm vi TablePro, gồm job SQL Server Agent, nhóm Always On, thống kê query trực tiếp và tối ưu hiệu năng.",
+                "notes": [
+                    "ssms-github-copilot-component"
+                ]
             },
             {
                 "product": "azure-data-studio",
                 "text": "Azure Data Studio từng là query editor của Microsoft cho SQL Server và Azure SQL, với các extension cho những việc như SQL Server Agent và Profiler.",
-                "notes": ["ads-retired-successor"]
+                "notes": [
+                    "ads-retired-successor"
+                ]
             }
         ],
         "notes": {

@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Client Snowflake pour {devices}",
-        "lead": "Authentifiez-vous comme votre compte l’exige, passez la session entre entrepôts et rôles sans reconnexion, puis interrogez, modifiez et exportez des tables vers un stage."
+        "title": "Client Snowflake",
+        "lead": "Interrogez et modifiez les tables, changez de warehouse et de rôle, et exportez vers un stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez l’identifiant du compte, tel que <code>myorg-myaccount</code> ou un ancien locator comme <code>xy12345.us-east-1</code> : ce qui précède <code>.snowflakecomputing.com</code>. Chaque requête passe par HTTPS vers ce compte ; il n’y a donc ni hôte, ni section SSL, ni panneau SSH.",
-                "Choisissez une <ui>Méthode d’authentification</ui> (Auth Method) ; le formulaire ne montre que les champs nécessaires. Une paire de clés signe chaque connexion avec votre clé privée PKCS#8 ; l’horloge du Mac doit être juste. SSO navigateur vous envoie au fournisseur d’identité. Un jeton OAuth est utilisé tel que collé, jamais actualisé. Un mot de passe s’accompagne d’un code actuel dans <ui>Code MFA (TOTP)</ui> (MFA Passcode (TOTP)) si le compte impose MFA.",
+                "Saisissez l’identifiant du compte avant <code>.snowflakecomputing.com</code>, par exemple <code>myorg-myaccount</code>. Les requêtes utilisent HTTPS ; aucun hôte, section TLS ni panneau SSH n’est nécessaire.",
+                "Choisissez une <ui>Méthode d’authentification</ui> (Auth Method) : paire de clés PKCS#8, SSO dans le navigateur, token OAuth ou mot de passe avec <ui>Code MFA (TOTP)</ui> (MFA Passcode (TOTP)). Les paires de clés nécessitent une horloge d’appareil exacte. Les tokens OAuth collés ne sont pas renouvelés.",
                 "Avec <code>ALLOW_CLIENT_MFA_CACHING</code> sur le compte, un code frais suffit : Snowflake retourne un jeton MFA conservé par TablePro dans le <credentials>Trousseau</credentials>. Avec <code>ALLOW_ID_TOKEN</code>, SSO y garde un jeton de connexion et les connexions suivantes évitent le navigateur jusqu’à son rejet par Snowflake.",
                 "Snowflake n’a pas de schéma d’URL. Nommez une section dans <ui>Nom de connexion CLI</ui> (CLI Connection Name) ; chaque champ laissé vide est lu depuis <code>~/.snowflake/connections.toml</code> à la connexion."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Entrepôts, rôles et requêtes",
             "paragraphs": [
-                "<ui>Base de données > Contexte de session</ui> (Database > Session Context) change d’entrepôt ou rôle avec <code>USE WAREHOUSE</code> et <code>USE ROLE</code>, sans reconnexion. Une connexion TablePro est une session Snowflake gardée ouverte au repos ; un onglet lié à une autre base exécute <code>USE DATABASE</code> avant ses instructions sur cette même session.",
+                "Changez de warehouse et de rôle via <ui>Base de données > Contexte de session</ui> (Database > Session Context). La connexion conserve une session au repos ; les onglets sur une autre base exécutent <code>USE DATABASE</code> avant leurs instructions.",
                 "La barre latérale regroupe les objets par base et schéma. Les listes viennent des commandes <code>SHOW</code>, sans entrepôt ; les détails de colonnes de <code>INFORMATION_SCHEMA</code> en nécessitent un. <explain>Explain</explain> retourne le plan Snowflake en texte brut.",
-                "Les <editing>modifications de grille</editing> lient les valeurs sur le serveur ; VARIANT, OBJECT et ARRAY passent par <code>PARSE_JSON</code>. La ligne est identifiée par la clé primaire déclarée, ou toutes les colonnes sans clé. Snowflake n’impose jamais les contraintes de clé ; une clé dupliquée fait donc modifier ou supprimer toutes les lignes correspondantes : vérifiez les doublons avant édition."
+                "Les <editing>modifications de grille</editing> lient les valeurs sur le serveur ; les cellules VARIANT, OBJECT et ARRAY passent par <code>PARSE_JSON</code>. Une modification utilise la clé primaire déclarée ou toutes les colonnes si elle est absente. Les tables standard Snowflake n’imposent pas les contraintes de clé : un doublon fait donc modifier ou supprimer toutes les lignes correspondantes. Vérifiez les doublons avant modification. Les tables hybrides imposent leurs clés."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Transférez des données",
             "paragraphs": [
                 "<importData>Importez</importData> des fichiers {importFormats} via la connexion et exportez tables ou résultats sur votre Mac en {exportFormats}.",
-                "Pour exporter une table sans passer par votre Mac, choisissez <ui>Fichier > Exportation côté serveur…</ui> (File > Server-Side Export…) et nommez un stage, avec ou sans <code>@</code>. <backup>Server-Side Export</backup> exécute <code>COPY INTO</code> avec vos privilèges et écrit CSV gzip, Parquet ou JSON ; le dialogue attend la fin et rien n’arrive sur le Mac."
+                "Choisissez <ui>Fichier > Exportation côté serveur…</ui> (File > Server-Side Export…) et un stage. <backup>Server-Side Export</backup> exécute <code>COPY INTO</code> avec vos droits pour écrire du CSV compressé avec gzip, Parquet ou JSON. TablePro attend la fin ; les fichiers ne passent pas par votre Mac."
             ]
         }
     ],

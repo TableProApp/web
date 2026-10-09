@@ -10,8 +10,8 @@
     "engine": "bigquery",
     "breadcrumb": "Google BigQuery",
     "header": {
-        "title": "Cliente de Google BigQuery para {devices}",
-        "lead": "Escribe GoogleSQL sobre los conjuntos de datos de tu proyecto, comprueba lo que escaneará una consulta antes de ejecutarla y limita lo que puede facturar un trabajo. Puedes editar filas en la cuadrícula y descargar tablas a Cloud Storage sin pasar por tu Mac."
+        "title": "Cliente de Google BigQuery",
+        "lead": "Escribe GoogleSQL, estima el coste de las consultas y limita los bytes facturados."
     },
     "asset": "mac-db-bigquery-dry-run",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Inicia sesión en Google Cloud",
             "paragraphs": [
-                "Elige un <ui>Auth Method</ui> e introduce el <ui>Project ID</ui>: el ID, no su nombre ni su número. <ui>Application Default Credentials</ui> lee el archivo creado por <code>gcloud auth application-default login</code>, por lo que es la vía más directa si gcloud ya está configurado. <ui>Service Account Key</ui> acepta un archivo de clave .json o el JSON pegado.",
+                "Elige <ui>Auth Method</ui> e introduce el <ui>Project ID</ui>, no el nombre ni el número. <ui>Application Default Credentials</ui> usa el archivo de inicio de sesión de gcloud; <ui>Service Account Key</ui> acepta un archivo JSON o una clave pegada.",
                 "Cuenta de Google (OAuth) inicia sesión en el navegador con un cliente OAuth de escritorio que creas en Google Cloud Console. El token de actualización se guarda en el Llavero, uno por cliente OAuth, por lo que las conexiones posteriores no abren el navegador. Cada cliente OAuth inicia sesión en una cuenta de Google; una segunda cuenta necesita otro cliente o su propio token de actualización.",
                 "Todo pasa por la API REST de BigQuery, así que no hay host, puerto, URL de conexión ni túnel SSH. <ui>Location</ui> establece la ubicación de procesamiento enviada con cada trabajo. Más sobre <cloudAuth>autenticación en la nube</cloudAuth>."
             ]
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "Consulta y controla el coste",
             "paragraphs": [
-                "Antes de ejecutar una consulta, elige <ui>Dry Run (Cost)</ui> en el menú <explain>Explain</explain>. El resultado muestra los bytes que procesaría y facturaría la consulta, un indicador de acierto de caché y un coste estimado en dólares estadounidenses; la consulta no se ejecuta.",
-                "Tras la ejecución, la barra de estado muestra los bytes procesados, los facturados y una estimación a la tarifa bajo demanda, e indica los aciertos de caché. Para fijar un límite estricto, configura <ui>Max Bytes Billed</ui> en la pestaña Advanced de la conexión: BigQuery rechazará un trabajo que lo supere en lugar de ejecutarlo.",
+                "Elige <ui>Dry Run (Cost)</ui> en <explain>Explain</explain> para estimar los bytes procesados y facturados, el coste bajo demanda y el estado de la caché sin ejecutar la consulta.",
+                "Tras una consulta, revisa los bytes procesados y facturados, el coste estimado bajo demanda y la caché. <ui>Max Bytes Billed</ui> rechaza los trabajos que superen el límite de bytes facturados.",
                 "El autocompletado, las comillas y el formato siguen GoogleSQL, con acentos graves alrededor de los nombres de tabla; las columnas STRUCT y ARRAY se muestran como JSON. Los conjuntos de datos actúan como bases de datos: aparecen en la barra lateral, <code>⌘K</code> permite cambiar entre ellos y cada pestaña permanece en el conjunto con el que se abrió. Se consulta el estado del trabajo hasta el tiempo de espera de consulta y después se cancela; con Sin límite, TablePro espera hasta que termine.",
                 "Las celdas, inserciones y eliminaciones pasan por la <editing>cuadrícula</editing>. UPDATE y DELETE identifican una fila por su clave primaria declarada; en tablas sin ella, comparan todas las columnas salvo ARRAY, JSON y GEOGRAPHY, por lo que las filas idénticas cambian juntas. Declara <code>PRIMARY KEY (…) NOT ENFORCED</code> para editar una sola fila con precisión. En una tabla particionada, escribe UPDATE y DELETE con un filtro de partición en el editor."
             ]
@@ -53,7 +53,7 @@
             "title": "Transfiere datos",
             "paragraphs": [
                 "TablePro no ofrece importación para BigQuery. <export>Exporta</export> una tabla o el resultado de una consulta a tu Mac como {exportFormats}.",
-                "<backup>Server-Side Export</backup> descarga una tabla con <code>EXPORT DATA</code> a un prefijo <code>gs://</code> como CSV, Parquet o JSON delimitado por saltos de línea, en fragmentos bajo ese prefijo. Se ejecuta en tu conexión con tus permisos, el cuadro espera hasta que termine y no se escribe ningún archivo en tu Mac."
+                "<backup>Server-Side Export</backup> usa <code>EXPORT DATA</code> para escribir CSV, Parquet o NDJSON en un prefijo <code>gs://</code> con tus permisos. TablePro espera a que termine; los archivos no pasan por tu Mac."
             ]
         }
     ],

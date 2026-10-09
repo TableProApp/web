@@ -9,13 +9,11 @@ import { joinList } from '@/i18n/format';
 import { FACTS } from '@/lib/data/facts';
 import { devicesOf, macPlatform } from '@/lib/data/platforms';
 import { cn } from '@/lib/utils';
-import { paidLines, releasedIos } from './availability';
+import { releasedIos } from './availability';
 import type { HomeContent } from './types';
 
 interface SafetySectionProps {
     content: HomeContent['safety'];
-    /** The workflows' paid-plan sentence, "Requires a {tier} plan: {features}." */
-    paidTemplate: string;
 }
 
 /**
@@ -25,11 +23,10 @@ interface SafetySectionProps {
  * (design-system §4.7).
  *
  * Stated with its limits: DROP, TRUNCATE and DELETE without WHERE ask at every
- * level, and other writes wait only at the stricter ones; Data Rewind is not a
- * backup. The level names on each platform come from facts.json, so the page
+ * level, and other writes wait only at the stricter ones. The level names on each platform come from facts.json, so the page
  * never counts them.
  */
-export default function SafetySection({ content, paidTemplate }: SafetySectionProps) {
+export default function SafetySection({ content }: SafetySectionProps) {
     const { m } = useI18n();
     const ios = releasedIos();
     const crop = useShownSlot()('mac-safe-mode-touchid');
@@ -63,12 +60,6 @@ export default function SafetySection({ content, paidTemplate }: SafetySectionPr
                             </DescriptionItem>
                         )}
                     </DescriptionList>
-
-                    {paidLines(['data-rewind'], m, paidTemplate).map((line) => (
-                        <p key={line} className="type-small mt-4 text-muted-foreground">
-                            {line}
-                        </p>
-                    ))}
 
                     <p className="mt-4">
                         <LocaleLink href="/features/data-editing#safe-mode" className={textLinkClasses('standalone')}>

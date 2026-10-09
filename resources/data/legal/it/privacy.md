@@ -1,7 +1,7 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
@@ -124,7 +124,7 @@ Handoff passa l'ID della connessione aperta e il nome della tabella aperta tra i
 
 **Documentazione.** La documentazione su docs.tablepro.app è ospitata da Mintlify, che riceve il tuo indirizzo IP e i dati del tuo browser a ogni pagina, e le pagine caricano i caratteri da Google Fonts. La documentazione pone la propria domanda sui cookie, perché non può leggere la risposta che hai dato su questo sito. Finché lì non scegli **Allow**, non imposta cookie e non conserva alcun ID visitatore. Se lo autorizzi, Google Analytics imposta i cookie `_ga` e `_ga_<ID>` e misura le tue visite alla documentazione, e Mintlify conserva un ID visitatore casuale, `mintlify_anonymous_id`, nell'archiviazione locale per contarle. **Cookie settings**, nel piè di pagina della documentazione, cambia la tua risposta, e il rifiuto rimuove entrambi. Base giuridica: il tuo consenso.
 
-La consultazione del sito non imposta cookie propri. Iscriversi alla newsletter oppure avviare un acquisto o una verifica di un codice sconto invia una richiesta al nostro server che imposta i due cookie del portale account, `tablepro-session` e `XSRF-TOKEN`. Tutto ciò che il sito conserva nel browser è elencato in [Cookie e archiviazione nel browser](#cookies).
+Leggere il sito non imposta cookie propri. Le richieste di iscrizione alla newsletter, checkout e verifica dei codici sconto dal sito pubblico omettono le credenziali: non inviano i cookie del portale account né accettano cookie dalla risposta. Aprire le pagine del portale account è un’operazione distinta che imposta i cookie del portale elencati sotto. Tutto ciò che il sito conserva nel browser è indicato in [Cookie e archiviazione del browser](#cookies).
 
 ## Acquisti {#purchases}
 
@@ -144,7 +144,7 @@ Se ti iscrivi alle note di rilascio, conserviamo il tuo indirizzo email e la lin
 
 ## Cookie e archiviazione nel browser {#cookies}
 
-La consultazione del sito pubblico non imposta cookie propri; iscriversi alla newsletter o avviare un acquisto imposta i due cookie del portale strettamente necessari elencati di seguito. Cloudflare Web Analytics non imposta cookie e non conserva nulla nel browser. I cookie di Google Analytics non vengono impostati finché non li autorizzi. Crisp imposta i suoi cookie su ogni pagina dopo il caricamento della chat. Nessun dato descritto qui viene usato per la pubblicità o venduto.
+La lettura del sito pubblico e le sue richieste per newsletter, checkout e codici sconto non impostano cookie propri. Aprire le pagine del portale account imposta i due cookie strettamente necessari elencati sotto. Cloudflare Web Analytics non imposta cookie e non conserva nulla nel browser. I cookie di Google Analytics vengono impostati solo con il tuo consenso. Crisp imposta i propri cookie su ogni pagina dopo il caricamento della chat. Nulla viene usato per pubblicità o venduto.
 
 - **`_ga` e `_ga_<ID>`** (cookie di Google Analytics, fino a 2 anni, solo se autorizzi le analisi): un identificatore casuale per il browser e lo stato della visita corrente. Rifiutarli o modificare successivamente la risposta li elimina. Base giuridica: consenso.
 - **`tablepro:analytics-consent`** (archiviazione locale, finché non la cancelli): la risposta alla richiesta sulle analisi, per non riproporla su ogni pagina. Il sito web e il portale account la condividono. Base giuridica: strettamente necessaria per rispettare la tua scelta.
@@ -152,7 +152,7 @@ La consultazione del sito pubblico non imposta cookie propri; iscriversi alla ne
 - **`theme`** e **`tablepro:banner-dismissed`** (archiviazione locale, finché non la cancelli): la scelta di un aspetto chiaro, scuro o di sistema e il banner che hai chiuso e fino a quando: 30 giorni oppure un anno se dichiari di avere una licenza o ne acquisti una. Base giuridica: legittimo interesse.
 - **`mintlify_anonymous_id`** (archiviazione locale su docs.tablepro.app, impostato da Mintlify, solo se lì autorizzi Google Analytics): l'ID visitatore descritto in [Sito web](#website). Il rifiuto lo rimuove. La documentazione conserva la propria risposta `tablepro:analytics-consent`. Base giuridica: consenso.
 - **Cookie che iniziano con `crisp-client/`** (Crisp, per esempio `crisp-client/session/…`; 6 mesi, rinnovati quando ritorni; impostati su ogni pagina dopo il caricamento della chat): mantengono la chat e la conversazione tra pagine e visite. Base giuridica: legittimo interesse, per offrire supporto su ogni pagina.
-- **`tablepro-session` e `XSRF-TOKEN`** (cookie del portale account, 2 ore): mantengono l'accesso e proteggono i moduli del portale dalla falsificazione delle richieste tra siti. Anche le altre pagine del portale, come la conferma d'acquisto e le pagine della newsletter, li impostano, così come l'iscrizione alla newsletter o l'avvio di un acquisto o di una verifica di un codice sconto da qualsiasi pagina di questo sito. Base giuridica: strettamente necessari.
+- **`tablepro-session` e `XSRF-TOKEN`** (cookie del portale account, 2 ore): mantengono l’accesso e proteggono i moduli del portale dalle richieste contraffatte tra siti (CSRF). Anche aprire altre pagine del portale, come la conferma d’acquisto e le pagine della newsletter, li imposta. Le richieste per newsletter, checkout e codici sconto dal sito pubblico omettono le credenziali e non conservano questi cookie. Base giuridica: strettamente necessari.
 
 Puoi modificare o revocare la risposta sulle analisi in qualsiasi momento tramite **Impostazioni cookie** nel piè di pagina di ogni pagina oppure qui:
 

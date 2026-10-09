@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Tải TablePro cho Mac",
-        "description": "Tải TablePro cho Mac, có bản riêng cho Apple silicon và Intel, hoặc cài bằng Homebrew. Ứng dụng cho iPhone và iPad có trên App Store."
+        "title": "Tải TablePro",
+        "description": "Tải TablePro với bản build riêng cho Apple silicon và Intel, hoặc cài bằng Homebrew. Ứng dụng iPhone và iPad có trên App Store."
     },
     "og": {
         "kicker": "Tải về",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Tải TablePro",
-        "lead": "Tải bản ứng dụng Mac phù hợp với chip của máy bạn, hoặc cài bằng Homebrew. Ứng dụng cho iPhone và iPad có trên App Store."
+        "lead": "Chọn bản build cho thiết bị của bạn."
     },
     "mac": {
         "otherWays": "Cách cài đặt khác",
@@ -22,19 +22,19 @@
         "source": "Build từ mã nguồn (AGPLv3)"
     },
     "ios": {
-        "body": "Một ứng dụng riêng cho {devices}, có bộ tính năng của riêng mình.",
+        "body": "Ứng dụng miễn phí cho {devices}, với bộ tính năng riêng.",
         "link": "TablePro cho {devices}"
     },
     "install": {
         "title": "Cài đặt và mở lần đầu",
         "steps": [
-            "Mở file .dmg vừa tải trong thư mục Tải về (Downloads).",
+            "Mở file .dmg đã tải về.",
             "Kéo TablePro vào thư mục Ứng dụng (Applications).",
-            "Mở TablePro từ thư mục Ứng dụng. Vì ứng dụng được tải từ internet, macOS sẽ hỏi xác nhận ở lần mở đầu tiên. Hãy chọn <ui>Mở</ui> (Open).",
-            "Thêm một connection, hoặc chọn <ui>Trợ giúp > Mở cơ sở dữ liệu mẫu</ui> (Help > Open Sample Database) để xem thử trước. Lệnh này mở Chinook, một cơ sở dữ liệu SQLite nhỏ đi kèm ứng dụng."
+            "Mở TablePro từ Applications. Chọn <ui>Open</ui> khi macOS hỏi xác nhận.",
+            "Thêm connection, hoặc thử cơ sở dữ liệu SQLite Chinook có sẵn qua <ui>Help > Open Sample Database</ui>."
         ],
         "signing": "Cả hai bản build đều được ký bằng Developer ID và được Apple notarize, nên bạn không cần thay đổi cài đặt bảo mật nào để mở TablePro.",
-        "drivers": "Driver cho các cơ sở dữ liệu phổ biến có sẵn trong ứng dụng. Các driver khác được tải về ở lần đầu bạn chọn cơ sở dữ liệu đó (cần kết nối internet) và được cập nhật độc lập với ứng dụng.",
+        "drivers": "Các driver phổ biến có sẵn. Driver khác cần internet để tải vào lần đầu sử dụng và cập nhật riêng.",
         "databases": "Cơ sở dữ liệu được hỗ trợ",
         "guide": {
             "label": "Đọc hướng dẫn cài đặt (tiếng Anh)",

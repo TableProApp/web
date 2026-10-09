@@ -39,7 +39,7 @@ export default {
     tiers: {
         free: {
             name: 'Free',
-            description: 'The Mac app without the paid features, and the iPhone and iPad app.',
+            description: 'Core database tools, with no trial period.',
             activation: 'No sign-up to use the app.',
             includesTitle: 'Includes',
             includes: [
@@ -55,16 +55,16 @@ export default {
             // `{examples}`: the highlighted Starter features from paid-features.json, joined for the language.
             description: 'Adds features such as {examples} to the Mac app.',
             activation: {
-                one: 'One license for one person, on {count} Mac.',
-                other: 'One license for one person, on up to {count} Macs.',
+                one: 'One person, {count} Mac.',
+                other: 'One person, up to {count} Macs.',
             },
             includesTitle: 'Everything in Free, plus',
             cta: 'Get Starter',
         },
         team: {
             name: 'Team',
-            description: 'Adds connections and queries shared with your team, on top of Starter.',
-            activation: 'Each seat is one activated Mac.',
+            description: 'Share connections and saved queries with your team.',
+            activation: 'One activated Mac per seat.',
             includesTitle: 'Everything in Starter, plus',
             cta: 'Get Team',
         },
@@ -113,7 +113,7 @@ export default {
         other: 'Every paid plan can be refunded within {count} days of purchase, and each monthly or yearly renewal within {count} days of its charge. See the <link>refund policy</link>.',
     },
     /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
-    finePrint: 'Prices in US dollars. {merchant} is the merchant of record: it takes the payment and calculates any sales tax or VAT at checkout.',
+    finePrint: 'Prices in US dollars. {merchant} handles payment and calculates sales tax or VAT at checkout as merchant of record.',
     /** The line under the cards when checkout is another provider's, so no merchant is named. */
     finePrintCurrency: 'Prices in US dollars.',
     comparePlans: 'Compare plans',
@@ -143,10 +143,10 @@ export default {
         checking: 'Checking the code…',
         percent: 'Code accepted: {amount}% off, applied at checkout.',
         fixed: 'Code accepted: {amount} off, applied at checkout.',
-        invalid: 'That discount code is invalid or has expired.',
+        invalid: 'This code is invalid or has expired.',
     },
     checkout: {
-        failed: "Couldn't start checkout. Try again.",
+        failed: "Couldn't open checkout. Try again.",
     },
     /** Structured data: one offer per visible price. */
     offers: {

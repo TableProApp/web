@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL et MariaDB",
     "header": {
-        "title": "Client MySQL et MariaDB pour {devices}",
-        "lead": "Écrivez du SQL avec complétion du schéma, modifiez les lignes avec aperçu de chaque instruction et gérez utilisateurs, sessions et sauvegardes. Le même pilote couvre aussi MariaDB, TiDB, OceanBase et Databend."
+        "title": "Client MySQL et MariaDB",
+        "lead": "Interrogez MySQL et modifiez les lignes avec Preview SQL. Gérez utilisateurs, sessions et sauvegardes depuis la même connexion."
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez un hôte, un port et un utilisateur, ou collez une URL <code>mysql://</code>. Les comptes MySQL 8 avec <code>caching_sha2_password</code> se connectent dès le premier essai. Laissez la base vide pour la choisir ensuite : le changement s’effectue sur place, sur la même connexion.",
+                "Saisissez hôte, port et utilisateur, ou collez une URL <code>mysql://</code>. Les comptes MySQL 8 avec <code>caching_sha2_password</code> sont pris en charge. La base est facultative ; en changer conserve la même connexion.",
                 "Les nouvelles connexions démarrent avec SSL sur Preferred, qui tente TLS d’abord et ne se replie sur une connexion en clair qu’après l’échec de la négociation TLS. Pour un contrôle strict, choisissez Verify CA ou Verify Identity avec le certificat de votre fournisseur.",
-                "Pour un serveur en réseau privé, connectez-vous via un <network>tunnel SSH, avec des hôtes de rebond si nécessaire, un proxy SOCKS5, un tunnel Cloudflare Access ou votre propre commande de tunnel</network> comme kubectl port-forward.",
-                "Sur Amazon RDS et Aurora, authentifiez-vous avec <cloudAuth>AWS IAM</cloudAuth>, qui signe un nouveau jeton à chaque connexion, et importez les instances depuis votre compte AWS. Pour Google Cloud SQL, TablePro télécharge et exécute Cloud SQL Auth Proxy pour vous.",
-                "Vous venez de Sequel Ace ? <importApps>Importer depuis une autre app</importApps> (Import from Other App) lit ses favoris et, après confirmation, ses mots de passe conservés dans le Trousseau."
+                "Accédez aux serveurs privés via <network>tunnels SSH, hôtes de rebond, proxys ou commandes de tunnel</network>.",
+                "Connectez-vous à Amazon RDS ou Aurora avec <cloudAuth>AWS IAM</cloudAuth>, avec un nouveau token à chaque connexion. Importez des instances depuis AWS ou utilisez Cloud SQL Auth Proxy pour Google Cloud SQL.",
+                "<importApps>Import from Other App</importApps> lit les favoris Sequel Ace. L’importation des mots de passe du trousseau nécessite votre confirmation."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "L’éditeur SQL complète les noms de tables et de colonnes à partir du schéma, alias et CTE compris, et exécute soit l’instruction sous le curseur, soit le script entier. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE et EXPLAIN ANALYZE</explain> sont représentés sous forme de diagramme ou d’arbre ; EXPLAIN Compare montre les changements entre deux exécutions.",
-                "Les modifications de lignes restent en attente jusqu’à l’enregistrement, et <editing>Preview SQL</editing> montre d’abord les instructions exactes. L’enregistrement utilise des paramètres liés et s’arrête si une instruction modifierait un nombre de lignes inattendu. Une table sans clé primaire reste modifiable : la ligne est identifiée par toutes les colonnes.",
+                "La complétion inclut noms de schémas, alias et CTE. Exécutez l’instruction courante ou un script entier. Affichez <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE et EXPLAIN ANALYZE</explain> en diagrammes ou arbres et comparez deux plans.",
+                "Préparez les modifications et vérifiez les instructions avec <editing>Preview SQL</editing>. L’enregistrement utilise des paramètres liés et s’arrête si le nombre de lignes est inattendu. Sans clé primaire, toutes les colonnes servent à identifier la ligne.",
                 "Chaque session utilise utf8mb4 : les emoji et le texte non latin sont conservés à l’écriture comme à la lecture. Pour une base dont le texte a été écrit par un ancien client via Latin 1, l’encodage UTF-8 via Latin 1 le lit comme ce client.",
                 "Les tables partitionnées listent leurs partitions avec leurs bornes, comme <code>VALUES LESS THAN (2024)</code> ; les commentaires des tables et colonnes apparaissent dans la barre latérale et dans les en-têtes de colonnes de la grille."
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "Schéma",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> prépare les changements de colonnes, index, clés étrangères, contraintes CHECK et colonnes générées, et montre le DDL avant exécution. Les clés d’index sur expression comme <code>lower(email)</code> nécessitent MySQL 8.0.13 ou plus récent.",
+                "Préparez colonnes, index, clés étrangères, contraintes CHECK et colonnes générées dans l’<structure>onglet Structure</structure>. Vérifiez le DDL avant enregistrement. Les clés d’index d’expression nécessitent MySQL 8.0.13 ou ultérieur.",
                 "Les routines et déclencheurs figurent dans la barre latérale avec leur source. Le <erDiagram>diagramme ER</erDiagram> représente le schéma en image en lecture seule, exportable en PNG ou SQL.",
-                "<compareSync>Compare & Sync</compareSync>, inclus dans l’offre {compareSyncTier}, compare deux schémas MySQL ou MariaDB, ou leurs données, et écrit le script qui les aligne. Les changements entraînant une perte de données sont retenus jusqu’à ce que vous les incluiez."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compare schémas ou données MySQL ou MariaDB et génère un script de synchronisation. Les changements susceptibles de supprimer des données restent exclus tant que vous ne les ajoutez pas."
             ]
         },
         {
             "id": "operate",
             "title": "Administrer",
             "paragraphs": [
-                "<administer>Users & Roles</administer> montre les privilèges de chaque compte jusqu’aux colonnes individuelles et prépare chaque GRANT et REVOKE en SQL à lire avant exécution.",
+                "<administer>Users & Roles</administer> détaille les droits jusqu’aux colonnes. Vérifiez les instructions GRANT et REVOKE préparées avant de les appliquer.",
                 "Server Dashboard liste les sessions, les métriques du serveur et les requêtes lentes, actualisées toutes les quelques secondes. Il annule une requête en cours avec <code>KILL QUERY</code> ou met fin à une session avec <code>KILL</code>. Un compte sans le privilège PROCESS ne voit que ses propres sessions.",
                 "La maintenance des tables exécute OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE et REPAIR TABLE, et montre l’instruction avant de l’exécuter.",
                 "<backup>Backup Dump</backup> lance {dumpTool} et Restore Dump utilise le client mysql, tous deux via le tunnel SSH de la connexion ; installez d’abord les outils clients MySQL sur votre Mac. Une restauration remplace les objets nommés par le dump.",
-                "Pour rendre une connexion au serveur pendant votre absence, réglez la connexion pour qu’elle se ferme après quelques minutes d’inactivité ; la requête suivante en ouvre une nouvelle. TablePro la garde ouverte si la session contient quelque chose qu’une reconnexion ferait perdre, comme une transaction ouverte ou une table temporaire."
+                "Libérez automatiquement les connexions inactives et reconnectez-vous à la prochaine requête. TablePro conserve les sessions dont une reconnexion perdrait l’état, comme une transaction ouverte ou une table temporaire."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "<importData>Importez</importData> des fichiers {importFormats}, avec correspondance des colonnes pour la table cible et choix du comportement si une ligne échoue. Exportez une table ou un résultat en {exportFormats}.",
-                "<copy>Copy To</copy> envoie des tables, leurs données ou les deux vers une autre connexion, sur MySQL ou sur un autre moteur, et liste chaque type de colonne qu’il doit approximer."
+                "<importData>Import</importData> lit les fichiers {importFormats} avec correspondance des colonnes et gestion des erreurs par ligne. Exportez tables ou résultats en {exportFormats}.",
+                "<copy>Copy To</copy> transfère tables, données ou les deux vers une autre connexion MySQL ou un autre moteur. Vérifiez les types de colonnes qui doivent être approximés."
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace poursuit Sequel Pro comme app Mac pour MySQL et MariaDB. Son serveur MCP est désactivé par défaut et en lecture seule sauf modification ; il n’a pas de chat IA. Il convient si vous n’utilisez que MySQL et MariaDB."
+                "text": "Sequel Ace se concentre sur MySQL et MariaDB sur Mac. Son serveur MCP est désactivé par défaut et reste en lecture seule sauf modification. Il n’a pas de chat IA."
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench est l’outil d’Oracle pour MySQL. Sa nouvelle génération est construite sur MySQL Shell, avec des notebooks SQL, et Oracle ne maintient plus la précédente. Il convient si vous n’utilisez que MySQL et voulez l’outil de l’éditeur."
+                "text": "MySQL Workbench est l’outil MySQL d’Oracle. La génération actuelle utilise MySQL Shell et des notebooks SQL ; Oracle ne maintient plus la précédente."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin tourne sur votre serveur web et fonctionne dans tout navigateur ; cPanel l’inclut. Il convient pour un serveur accessible uniquement via un panneau d’hébergement, là où une app de bureau n’a aucun chemin vers la base."
+                "text": "phpMyAdmin fonctionne sur un serveur web et est inclus dans cPanel. Il peut atteindre les bases accessibles via des panneaux d’hébergement qui n’autorisent pas les connexions depuis un ordinateur."
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL est un client open source historique sous Windows qui propose désormais aussi une app macOS. Il convient si vous l’utilisez déjà sur Windows et voulez le même client sur votre Mac."
+                "text": "HeidiSQL est un client de bases de données open source avec des apps Windows et macOS."
             }
         ],
         "notes": {}

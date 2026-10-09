@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "常见问题",
-        "description": "TablePro 问答：免费功能和许可证增加的功能、支持的 Mac、iPhone 和数据库、应用发送的信息、团队及退款。"
+        "description": "关于 TablePro App、支持的数据库、付费方案、许可证、隐私和账户的解答。"
     },
     "og": {
         "kicker": "常见问题",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "常见问题",
-        "lead": "关于应用、许可证、隐私和账户的简明回答，并附上详细说明页面的链接。"
+        "lead": "关于 App、许可证和隐私的问题。"
     },
     "breadcrumb": "常见问题",
     "jump": "按主题查看问题",
@@ -31,37 +31,37 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro 是什么？",
                     "answer": [
-                        "TablePro 是面向开发者的原生开源数据库客户端。在 Mac 上可连接 {featuredEngines} 等引擎，编写和运行查询、浏览和编辑数据，以及修改结构。iPhone 和 iPad 应用是独立的精简应用，方便您离开办公桌时处理数据库。",
-                        "<features>功能页面</features>逐项介绍各部分的用途。"
+                        "原生、开源的数据库客户端。在 Mac 上可查询和编辑 {featuredEngines} 等数据库，并操作结构。iPhone 和 iPad App 提供较少的数据库工具。",
+                        "查看全部<features>功能</features>。"
                     ]
                 },
                 {
                     "id": "native",
                     "question": "这里的“原生”是什么意思？",
                     "answer": [
-                        "每款 TablePro 应用都针对各自的平台使用 Swift 编写。Mac 上使用 AppKit、SwiftUI、钥匙串和 Touch ID；iPhone 和 iPad 上使用 Face ID、小组件、快捷指令和实时活动。数据库驱动也为原生实现，不使用 JDBC。"
+                        "TablePro 使用原生界面和数据库驱动，不使用 Electron 或 JDBC。当前 App 使用 Swift：Mac 上采用 AppKit 和 SwiftUI，iPhone 和 iPad 上使用 Face ID、Shortcuts 等设备功能。"
                     ]
                 },
                 {
                     "id": "is-it-free",
                     "question": "TablePro 免费吗？",
                     "answer": [
-                        "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或 Safe Mode，均无需许可证。",
-                        "iPhone 和 iPad 应用免费，没有应用内购买，也无需许可证。"
+                        "是的。Mac App 没有试用期或时间限制。所有支持的引擎、AI、MCP 和 Safe Mode 均免费。Starter 和 Team 添加<pricing>价格页面</pricing>列出的功能。",
+                        "iPhone 和 iPad App 免费，无需许可证，也没有 App 内购买。"
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro 开源吗？",
                     "answer": [
-                        "是的。两款应用均采用 AGPLv3 开源，包括付费功能代码，位于同一个 <source>GitHub 仓库</source>。从源代码自行构建的版本也与我们发布的版本以相同方式检查许可证。"
+                        "是的。两款 App（包括付费功能代码）以 AGPLv3 在同一个 <source>GitHub 仓库</source>公开。从源码构建的版本仍会检查付费功能许可证。"
                     ]
                 },
                 {
                     "id": "work-use",
                     "question": "可以在工作中使用 TablePro 吗？",
                     "answer": [
-                        "可以，适用于任何规模的公司。AGPL 对运行 TablePro 不设条件；其条件适用于分发软件，以及通过网络向他人提供修改版。详情请参阅<agpl>许可证全文</agpl>。"
+                        "可以，公司规模不限。AGPL 不对运行 TablePro 附加条件；条件适用于分发软件，或通过网络向他人提供修改版。详见<agpl>许可证原文</agpl>。"
                     ]
                 }
             ]
@@ -74,15 +74,15 @@
                     "id": "mac-requirements",
                     "question": "哪些 Mac 可以运行 TablePro？",
                     "answer": [
-                        "Mac 版 TablePro 需要 {macRequirement}。Apple silicon 和 Intel 有独立构建版本，<download>下载页面</download>提供两者，Homebrew 会自动安装合适的版本。"
+                        "Mac App 需要 {macRequirement}。在<download>下载页面</download>选择 Apple silicon 或 Intel，或由 Homebrew 自动选择版本。"
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "有 iPhone 和 iPad 应用吗？",
                     "answer": [
-                        "有。iPhone 和 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免费且无应用内购买。可连接 {iosEngines}，支持 SSH 隧道、Safe Mode 和 Face ID，能浏览、编辑表和运行查询。",
-                        "它是为手机和平板打造的独立应用，并非 Mac 应用的复制版，例如没有 AI 助手、MCP 服务器和已保存查询。<ios>iPhone 和 iPad 页面</ios>列出了提供及未提供的功能。"
+                        "有。免费的 App Store App 需要 {iosRequirement}，可连接 {iosEngines}。支持查询、SSH 隧道、Safe Mode 和 Face ID；表浏览和编辑取决于引擎。",
+                        "没有 AI 助手、MCP 服务器或已保存查询。查看<ios>功能与限制</ios>。"
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                     "id": "languages",
                     "question": "应用支持哪些语言？",
                     "answer": [
-                        "Mac 应用界面支持 {macLanguages}。在英语以外的语言中，部分界面仍显示英文。iPhone 和 iPad 应用支持 {iosLanguages}。",
-                        "本网站和账户门户支持多种语言。<docs>文档</docs>为英文。"
+                        "Mac App 支持 {macLanguages}，但部分已翻译界面仍显示英文。iPhone 和 iPad App 支持 {iosLanguages}。",
+                        "网站和账户门户支持多种语言。<docs>文档</docs>为英文。"
                     ]
                 }
             ]
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "可以连接哪些数据库？",
                     "answer": [
-                        "Mac 支持 {featuredEngines} 等引擎，包括文档、键值、搜索、流处理和分析型引擎。<databases>数据库页面</databases>列出了所有引擎，以及 TablePro 对各引擎的支持范围。",
+                        "Mac App 支持 {featuredEngines} 等数据库。各引擎功能见<databases>支持的数据库</databases>。",
                         "iPhone 和 iPad 应用可连接 {iosEngines}。"
                     ]
                 },
@@ -118,31 +118,31 @@
                     "id": "drivers",
                     "question": "需要安装数据库驱动吗？",
                     "answer": [
-                        "不需要。{bundledEngines} 的驱动随 Mac 应用提供。其他驱动在首次选择对应引擎时下载，需要互联网连接，并独立于应用更新。加载前，应用会验证驱动的公开校验和与代码签名。",
-                        "iPhone 和 iPad 的驱动内置于应用，无需下载。"
+                        "Mac 内置 {bundledEngines} 的驱动。其他驱动首次使用时需要联网下载，且独立更新。TablePro 验证其校验和及代码签名。",
+                        "iPhone 和 iPad 的所有驱动均内置。"
                     ]
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "可以通过 SSH 或 SSL 连接吗？",
+                    "question": "能通过 SSH 或 TLS 连接吗？",
                     "answer": [
-                        "可以。Mac 上的 SSH 隧道支持密码、密钥或 SSH agent（包括 1Password）认证，并可经过跳板机。SSL/TLS 可验证服务器证书。连接也可经 Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 代理或 kubectl port-forward 等命令建立。<connections>连接页面</connections>介绍了各选项。",
-                        "iPhone 和 iPad 上的 SSH 隧道支持密码或私钥认证，不支持跳板机。"
+                        "可以，前提是引擎支持。Mac App 支持 SSH 密钥、密码、代理和跳板主机，以及 TLS 证书验证、外部隧道或代理。见<connections>连接选项</connections>。",
+                        "iPhone 和 iPad 上的 SSH 使用密码或私钥，不支持跳板主机。"
                     ]
                 },
                 {
                     "id": "passwords",
                     "question": "密码存在哪里？",
                     "answer": [
-                        "Mac 上保存在 macOS 钥匙串中，也可在连接时从文件、环境变量、Shell 命令、1Password、HashiCorp Vault 或 AWS Secrets Manager 读取。iPhone 和 iPad 上保存在设备钥匙串中。",
-                        "开启 iCloud Sync 后，还必须开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords），才会通过 iCloud 钥匙串同步密码。"
+                        "已保存密码保留在 Keychain。Mac 上也可从文件、环境变量、shell 命令、1Password、Vault 或 AWS Secrets Manager 解析密码。",
+                        "密码同步需要单独开启：在 Mac 启用 <ui>密码</ui> (Passwords)，或在 iPhone 和 iPad 启用 <ui>同步密码</ui> (Sync Passwords)，通过 iCloud Keychain 同步。"
                     ]
                 },
                 {
                     "id": "import-connections",
                     "question": "可以从其他应用导入连接吗？",
                     "answer": [
-                        "可以。Mac 应用可从 {importApps} 导入连接，包括已保存密码。导入功能免费。"
+                        "可以。Mac App 可从 {importApps} 导入连接和已保存密码，导入功能免费。"
                     ]
                 }
             ]
@@ -155,45 +155,45 @@
                     "id": "what-a-license-adds",
                     "question": "许可证增加哪些功能？",
                     "answer": [
-                        "Starter 许可证为 Mac 应用增加 {starterFeatures}。Team 包含 Starter 的全部功能，并增加 {teamFeatures}，用于与团队共享连接和查询。<pricing>定价页面</pricing>逐项说明。"
+                        "Starter 为 Mac App 添加 {starterFeatures}，Team 还添加 {teamFeatures}。详见<pricing>付费功能</pricing>。"
                     ]
                 },
                 {
                     "id": "cost",
                     "question": "许可证多少钱？",
                     "answer": [
-                        "Starter 和 Team 均提供月付、年付或一次性购买，价格以美元计。Team 按席位定价，最少 {teamMinSeats} 个席位。当前价格和总额见<pricing>定价页面</pricing>。"
+                        "可选择美元月付、年付或一次性付款。Team 从 {teamMinSeats} 个席位起。查看当前<pricing>价格和总额</pricing>。"
                     ]
                 },
                 {
                     "id": "how-many-macs",
                     "question": "一个许可证涵盖多少台 Mac？",
                     "answer": [
-                        "Starter 许可证供一人使用，最多可用于 {starterActivations} 台 Mac。Team 许可证含 {teamMinSeats} 至 {teamMaxSeats} 个席位，每个席位对应一台已激活 Mac。iPhone 和 iPad 从不占用席位，其应用没有许可证。",
-                        "若要将许可证移至另一台 Mac，请在<account>您的账户</account>移除旧设备。"
+                        "Starter 供一人在最多 {starterActivations} 台 Mac 上使用。Team 提供 {teamMinSeats}–{teamMaxSeats} 个席位，每个席位对应一台已激活 Mac。iPhone 和 iPad 不占席位。",
+                        "转移激活时，请在<account>账户</account>中移除旧 Mac。"
                     ]
                 },
                 {
                     "id": "subscription-ends",
                     "question": "订阅结束后会怎样？",
                     "answer": [
-                        "付费功能会锁定，例如 iCloud Sync 暂停，Linked Folders 或 Team Library 中的连接被隐藏。其余功能继续运行，连接、查询和设置原样保留在 Mac 上。续订后付费功能恢复。",
-                        "一次性购买没有到期日。iPhone 和 iPad 不受影响。"
+                        "付费功能会停止：iCloud Sync 暂停，共享连接可能隐藏。本地连接、查询和设置保留，免费功能继续可用。续订后恢复付费访问。",
+                        "一次性许可证没有到期日。iPhone 和 iPad 不受影响。"
                     ]
                 },
                 {
                     "id": "offline",
                     "question": "许可证可离线使用吗？",
                     "answer": [
-                        "可以。Mac 应用每次启动都会在本机验证许可证签名，并每隔 {revalidateDays} 天向服务器验证。若无法连接服务器，付费功能可自上次成功验证起继续使用 {graceDays} 天。",
-                        "部分功能本身需要网络，如首次下载驱动、更新和云端 AI 提供商。"
+                        "可以，在离线宽限期内可用。TablePro 启动时验证签名，每 {revalidateDays} 天检查服务器。若服务器无法访问，付费功能在上次成功检查后可继续使用 {graceDays} 天。",
+                        "驱动下载、更新和云端 AI 仍需要联网。"
                     ]
                 },
                 {
                     "id": "payment",
                     "question": "谁处理付款？",
                     "answer": [
-                        "{merchant} 是我们的 merchant of record。您向 {merchant} 购买许可证，由其收款、在结账时计算销售税或增值税并发送收据邮件。发票、付款方式和订阅可在 <portal>{merchant} 客户门户</portal>中管理，使用购买时的邮箱登录。"
+                        "{merchant} 是 merchant of record，负责付款、税费和收据。用购买邮箱登录 <portal>{merchant} 客户门户</portal>，管理发票和订阅。"
                     ]
                 },
                 {
@@ -214,14 +214,14 @@
                     "id": "refunds",
                     "question": "可以退款吗？",
                     "answer": [
-                        "可以。所有方案均可在购买后 {refundDays} 天内退款，月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。<refundPolicy>退款政策</refundPolicy>说明了申请方法和许可证后续处理。"
+                        "可以。购买和订阅续费均可在每次扣款后 {refundDays} 天内退款。查看<refundPolicy>退款政策</refundPolicy>。"
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "许可证密钥丢了，在哪里找？",
                     "answer": [
-                        "在购买时发送的邮件和<account>您的账户</account>中。使用购买时的邮箱登录，即可查看许可证及其密钥。"
+                        "在购买邮件或<account>账户</account>中查找。用购买邮箱登录即可查看密钥。"
                     ]
                 },
                 {
@@ -241,30 +241,30 @@
                     "id": "what-is-sent",
                     "question": "应用会向 TablePro 发送什么？",
                     "answer": [
-                        "未激活许可证时，Mac 应用向 TablePro 发出的唯一请求是每日使用报告，默认开启，可在<ui>设置 > 通用 > 隐私</ui>（Settings > General > Privacy）中关闭。它包含经过哈希处理的机器 ID、应用版本、语言和所连接数据库类型等信息，从不包含主机名、用户名、密码、查询或行数据。",
-                        "激活许可证后，Mac 应用还会每隔 {revalidateDays} 天验证，发送密钥、相同机器 ID、Mac 名称及应用和 macOS 版本。iPhone 和 iPad 除非开启 Share Usage Data，否则不向 TablePro 发送信息。<privacy>隐私政策</privacy>提供完整列表，包括服务器存储的内容。"
+                        "Mac App 默认每天发送使用报告，可在 <ui>设置 > 通用 > 隐私</ui> (Settings > General > Privacy) 关闭。报告包含哈希机器 ID、App 信息和数据库类型，绝不包含主机名、用户名、密码、查询或行数据。",
+                        "许可证检查每 {revalidateDays} 天运行，发送密钥、机器 ID、Mac 名称及 App 和 macOS 版本。iPhone 和 iPad 报告需主动开启。Team Library 接收您发布的设置和已保存 SQL。查看<privacy>隐私政策</privacy>，其中包括 IP 日志说明。"
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "需要注册吗？",
                     "answer": [
-                        "两款应用均无需注册。购买许可证后，<account>您的账户</account>会显示许可证、已激活的 Mac 和团队席位，通过发送至购买邮箱的链接登录。"
+                        "使用 App 无需注册。购买者通过发送到购买邮箱的链接登录<account>账户</account>，管理许可证、Mac 和席位。"
                     ]
                 },
                 {
                     "id": "ai-data",
                     "question": "AI 助手会将我的数据发送给 TablePro 吗？",
                     "answer": [
-                        "不会。AI 助手位于 Mac 应用中，请求直接发送至您添加的提供商，从不经过 TablePro。默认包含数据库类型和名称、结构中的表和列定义及当前查询，结果行仅在您开启后发送。{localAiProviders} 在您自己的 Mac 上运行。详情见 <aiMcp>AI 和 MCP 页面</aiMcp>。"
+                        "不会。请求直接发送给您选择的服务商，不经过 TablePro。默认包含数据库类型和名称、结构及当前查询；结果行需单独授权。{localAiProviders} 在本地运行。服务商可能收取使用费用。见 <aiMcp>AI 数据处理</aiMcp>。"
                     ]
                 },
                 {
                     "id": "icloud-data",
                     "question": "iCloud Sync 存储什么，存在哪里？",
                     "answer": [
-                        "iCloud Sync 默认关闭。同步的连接和 Mac 上选择的其他类别存入您自己 iCloud 账户的私有数据库，TablePro 无法读取。只有同时开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords）才会同步密码。",
-                        "Mac 上的 iCloud Sync 属于 Starter 或 Team 许可证功能，iPhone 和 iPad 上免费。"
+                        "同步默认关闭，使用您 iCloud 账户中的私有数据库，TablePro 无法读取。密码需单独开启：Mac 上的 <ui>密码</ui> (Passwords)，或 iPhone 和 iPad 上的 <ui>同步密码</ui> (Sync Passwords)。",
+                        "iCloud Sync 在 Mac 上需要 Starter 或 Team，在 iPhone 和 iPad 上免费。"
                     ]
                 }
             ]
@@ -277,28 +277,28 @@
                     "id": "sign-in",
                     "question": "如何登录账户？",
                     "answer": [
-                        "前往<account>您的账户</account>，输入购买时的邮箱。我们会发送只能使用一次、短期内到期的登录链接。只有购买许可证的地址可登录；团队成员在 Mac 应用中用邀请代码加入。"
+                        "在<account>账户</account>输入购买邮箱。邮件链接仅可使用一次，很快失效。只有购买者登录门户；团队成员在 Mac App 中使用邀请码。"
                     ]
                 },
                 {
                     "id": "members",
                     "question": "如何添加或移除团队成员？",
                     "answer": [
-                        "在<account>您的账户</account>中通过邮件邀请。成员收到代码后，在 Mac 上的 TablePro 中进入<ui>设置 > 许可证</ui>（Settings > License）输入，其 Mac 占用一个席位。移除成员会释放席位、让其 Mac 退出登录，并删除其发布到 Team Library 的内容。"
+                        "在<account>账户</account>中通过邮箱邀请队友。他们在 <ui>设置 > 许可证</ui> (Settings > License) 输入代码，每台已激活 Mac 占一个席位。移除成员会释放席位，并删除其发布的 Team Library 项目。其 Mac 在下次许可证检查时失去付费访问，而非立即失效。"
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "如何更改席位数？",
                     "answer": [
-                        "月付或年付 Team 订阅可在<account>您的账户</account>中更改，变更会反映在下一张账单中。一次性 Team 许可证请发送邮件至 <email>{email}</email>。"
+                        "在<account>账户</account>中更改订阅席位，差额会显示在下次账单。一次性许可证请邮件联系 <email>{email}</email>。"
                     ]
                 },
                 {
                     "id": "cancel",
                     "question": "如何取消订阅？",
                     "answer": [
-                        "在<account>您的账户</account>或 <portal>{merchant} 客户门户</portal>中取消。不会再次扣款，许可证可继续使用至已付费期间结束，并可在此前恢复。"
+                        "在<account>账户</account>或 <portal>{merchant} 门户</portal>取消。付费期内继续可用，不再续订；到期前可恢复。"
                     ]
                 }
             ]
@@ -311,23 +311,23 @@
                     "id": "switch-connections",
                     "question": "需要重新设置连接吗？",
                     "answer": [
-                        "不需要。TablePro 可从 {importApps} 导入连接，包括已保存密码、SSH 隧道和 SSL 设置。"
+                        "若支持您当前的客户端，可从 {importApps} 导入连接，包括已保存密码、SSH 隧道和 TLS 设置。"
                     ]
                 },
                 {
                     "id": "compare",
                     "question": "TablePro 与其他数据库客户端相比如何？",
                     "answer": [
-                        "<compare>对比页面</compare>将 TablePro 与其他客户端并列比较，注明各项事实的核实日期，并说明各自更适合的场景。"
+                        "查看<compare>比较页面</compare>，了解差异、核查日期和来源，也包括其他客户端可能更适合的情况。"
                     ]
                 }
             ]
         }
     ],
     "contact": {
-        "title": "没找到答案？",
+        "title": "需要帮助？",
         "body": "请发送邮件至 <email>{email}</email>，或在 <issues>GitHub</issues> 报告问题。",
         "chat": "开始在线聊天",
-        "chatNote": "每个页面加载完成后都会加载聊天。"
+        "chatNote": "在线聊天在页面加载完成后加载。"
     }
 }

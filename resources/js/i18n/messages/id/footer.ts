@@ -47,8 +47,8 @@ export default {
     },
     "newsletter": {
         "title": "Catatan rilis lewat email",
-        "body": "Email sesekali dalam bahasa Inggris berisi catatan rilis. Setiap email memiliki tautan berhenti berlangganan.",
-        "note": "Kami mengirim tautan konfirmasi lewat email terlebih dahulu. <link>Kebijakan privasi</link>"
+        "body": "Catatan rilis sesekali dalam bahasa Inggris. Berhenti berlangganan melalui email mana pun.",
+        "note": "Konfirmasikan langganan melalui email. <link>Kebijakan privasi</link>"
     },
     "bottom": {
         "copyright": "© {year} TablePro, dibuat oleh {maker} di {city}. Kode sumber di bawah AGPLv3."

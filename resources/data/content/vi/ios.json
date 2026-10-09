@@ -9,72 +9,72 @@
     },
     "hero": {
         "title": "TablePro cho iPhone và iPad",
-        "lead": "Kết nối tới cơ sở dữ liệu, xem và sửa dữ liệu, chạy query ngay trên điện thoại hoặc máy tính bảng, với SSH tunnel, Safe Mode và Face ID. Đây là một ứng dụng riêng làm cho iPhone và iPad, không phải bản sao của ứng dụng cho Mac.",
+        "lead": "Xem table được hỗ trợ, chạy query và sửa dòng trên điện thoại hoặc tablet.",
         "noSignUp": "Không cần đăng ký, không cần license",
         "mac": "Bạn cần ứng dụng cho Mac? <download>Tải TablePro cho Mac</download>."
     },
     "databases": {
         "title": "Cơ sở dữ liệu",
-        "lead": "Trên iPhone và iPad, bạn tạo được connection tới các cơ sở dữ liệu dưới đây. Driver cho các cơ sở dữ liệu này có sẵn trong ứng dụng, nên không phải tải thêm gì.",
+        "lead": "Tạo connection tới các cơ sở dữ liệu này. Mọi driver đều có sẵn.",
         "syncedOnly": "Connection {engines} mở được khi chúng đến từ máy Mac của bạn, qua iCloud Sync hoặc một file .tablepro. Bạn không tạo được connection loại này trong ứng dụng.",
-        "others": "Connection tới các cơ sở dữ liệu khác cũng được đồng bộ từ Mac và hiện trong danh sách, nhưng ứng dụng này không có driver tương ứng, nên các connection đó không mở được ở đây. <databases>Trang Cơ sở dữ liệu</databases> liệt kê mọi engine mà ứng dụng Mac hỗ trợ.",
-        "files": "SQLite: khi bạn chọn một file cơ sở dữ liệu, ứng dụng sao chép file vào vùng lưu trữ riêng của mình, nên các thay đổi của bạn áp dụng lên bản sao. Bạn cũng có thể tạo cơ sở dữ liệu mới. DuckDB mở file ngay tại chỗ, hoặc chạy trong bộ nhớ.",
-        "redis": "Redis: chạy lệnh trong tab Truy vấn (Query). Duyệt các key của Redis không có trong ứng dụng cho iPhone và iPad.",
+        "others": "Connection khác đồng bộ từ Mac có trong danh sách nhưng không mở được nếu thiếu driver hỗ trợ. Xem tất cả <databases>cơ sở dữ liệu được hỗ trợ</databases>.",
+        "files": "SQLite sao chép file bạn chọn vào bộ nhớ ứng dụng; các thay đổi áp dụng lên bản sao. Bạn cũng tạo được cơ sở dữ liệu mới. DuckDB mở file tại chỗ hoặc chạy trong bộ nhớ.",
+        "redis": "Redis hỗ trợ command trong tab Query, không hỗ trợ xem key.",
         "sample": "Muốn xem thử trước, bạn có thể mở Chinook, cơ sở dữ liệu mẫu đi kèm ứng dụng."
     },
     "browse": {
         "title": "Xem và sửa table",
         "paragraphs": [
-            "Mỗi connection mở ra danh sách table của nó, còn query editor, lịch sử và thông tin của connection nằm ở các tab riêng.",
-            "Các dòng hiện dưới dạng thẻ, với khóa chính hoặc cột đầu tiên làm tiêu đề và các cột tiếp theo bên dưới. Bạn có thể sắp xếp theo bất kỳ cột nào, tìm trên mọi cột trừ cột nhị phân, và kết hợp nhiều bộ lọc bằng AND hoặc OR. Chọn số dòng mỗi trang và chuyển tới trang bất kỳ. Chạm vào một giá trị khóa ngoại để xem trước dòng mà nó trỏ tới. Phần Structure liệt kê cột, index và khóa ngoại của table.",
-            "Mở một dòng để sửa: thay đổi giá trị, đặt NULL, và xác nhận trước khi lưu. Bạn cũng có thể thêm và xóa dòng, truncate hoặc drop một table. Sửa và xóa dòng cần table có khóa chính, và không có gì thay đổi được trên một connection Read-Only."
+            "Mỗi connection có tab table, query, lịch sử và thông tin connection.",
+            "Xem dòng dạng thẻ, sắp xếp cột, tìm giá trị không phải binary và kết hợp bộ lọc bằng AND hoặc OR. Chạm vào khóa ngoại để xem dòng được tham chiếu. Structure liệt kê cột, index và khóa ngoại.",
+            "Mở dòng để sửa giá trị hoặc đặt NULL, rồi xác nhận lưu. Thêm và xóa dòng, hoặc truncate và drop table. Sửa và xóa dòng cần khóa chính. Read-Only chặn thay đổi."
         ]
     },
     "query": {
         "title": "Chạy query",
         "paragraphs": [
-            "Viết SQL với tô sáng cú pháp, chạy query và dừng nó khi đang chạy. Bắt đầu từ một mẫu SELECT, rồi sao chép hoặc chia sẻ kết quả dưới dạng JSON, CSV hoặc câu lệnh SQL INSERT, qua clipboard hoặc bảng chia sẻ.",
-            "Ứng dụng giữ tối đa {results} dòng của một kết quả; hãy thêm LIMIT để xem một phần khác của kết quả lớn. Lịch sử lưu {history} query gần nhất trên thiết bị này, cho mọi connection, và không được đồng bộ.",
-            "Khi một query đang chạy, Hoạt động trực tiếp hiển thị tiến độ trên Màn hình khóa và trong Dynamic Island: thời gian đã chạy và số dòng đã nhận. Màn hình khóa và Dynamic Island khi mở rộng cũng hiện câu SQL, trừ khi bạn bật <ui>Cài đặt > Hoạt động trực tiếp > Ẩn truy vấn</ui> (Settings > Live Activities > Hide Query)."
+            "Viết SQL có syntax highlighting, chạy hoặc dừng query và chia sẻ kết quả dạng JSON, CSV hoặc câu lệnh SQL INSERT. Dùng clipboard hoặc bảng chia sẻ.",
+            "Kết quả giữ tối đa {results} dòng; dùng LIMIT với query lớn. Lịch sử giữ {history} query gần nhất giữa các connection trên thiết bị này và không đồng bộ.",
+            "Hoạt động trực tiếp hiển thị thời gian chạy và số dòng nhận được trên Màn hình khóa và Dynamic Island. SQL cũng hiển thị trên Màn hình khóa và Island mở rộng, trừ khi bật <ui>Cài đặt > Hoạt động trực tiếp > Ẩn query</ui> (Settings > Live Activities > Hide Query)."
         ]
     },
     "security": {
         "title": "Kết nối an toàn",
         "paragraphs": [
-            "SSH tunnel xác thực bằng mật khẩu hoặc private key, lấy từ file hoặc dán vào, kèm passphrase nếu có. Lần đầu bạn kết nối tới một máy chủ, ứng dụng hiện dấu vân tay host key của máy chủ và hỏi bạn có tin cậy nó không.",
-            "TLS được thiết lập riêng cho từng connection. Connection MySQL, MariaDB, TiDB, OceanBase và PostgreSQL có thể xác minh chứng chỉ và hostname của máy chủ, và gửi chứng chỉ client, lấy từ file, văn bản dán vào hoặc gói PKCS#12. Connection Redis cũng có thể xác minh chứng chỉ và gửi chứng chỉ client. SQL Server có thể mã hóa kết nối (Required) nhưng không xác minh chứng chỉ. Chứng chỉ nằm lại trên thiết bị này và không bao giờ được đồng bộ.",
-            "Mật khẩu và key dán vào được lưu trong Keychain. Một connection SQL Server dùng Microsoft Entra ID có thể đăng nhập ở đây sau khi được đồng bộ từ máy Mac; ứng dụng không hỗ trợ xác thực Windows. Để kết nối tới một máy chủ trong mạng nội bộ bằng tên .local, hãy cho phép truy cập Mạng cục bộ khi iOS hỏi."
+            "SSH tunnel dùng mật khẩu hoặc private key, có passphrase tùy chọn. Import hoặc dán key. Lần kết nối đầu, ứng dụng hỏi bạn có tin fingerprint host key của server không.",
+            "TLS có cài đặt riêng cho từng connection. MySQL, MariaDB, TiDB, OceanBase và PostgreSQL xác minh chứng chỉ, hostname và dùng được client certificate. Redis hỗ trợ xác minh chứng chỉ và client certificate. Required của SQL Server mã hóa nhưng không xác minh chứng chỉ. Chứng chỉ chỉ nằm trên thiết bị này.",
+            "Mật khẩu và key đã dán nằm trong Keychain. Connection SQL Server được đồng bộ dùng được Microsoft Entra ID, không dùng Windows authentication. Cho phép truy cập Mạng cục bộ để kết nối host .local."
         ]
     },
     "safeMode": {
         "title": "Safe Mode và khóa ứng dụng",
         "paragraphs": [
-            "Mỗi connection có một mức Safe Mode: {levels}. Confirm Writes hỏi lại trước khi chạy một câu lệnh làm thay đổi dữ liệu. Read-Only từ chối câu lệnh đó trước khi nó tới máy chủ. Câu lệnh nào ứng dụng không xác định được là lệnh đọc thì được tính là lệnh ghi.",
-            "Đặt mức Safe Mode cho một connection trong mục Tổ chức (Organization) của nó, và mức mặc định cho connection mới trong Cài đặt. Các tác vụ Phím tắt thêm dòng cũng tuân theo mức này.",
-            "Trong <ui>Cài đặt > Bảo mật</ui> (Settings > Security), bạn có thể khóa ứng dụng bằng Face ID hoặc Touch ID, với mật mã thiết bị làm phương án dự phòng. Khi đã bật, ứng dụng hỏi mỗi lần khởi động và hỏi lại sau khoảng thời gian Tự khóa (Auto-Lock) bạn chọn."
+            "Chọn mức cho từng connection: {levels}. Confirm Writes hỏi trước khi ghi; Read-Only chặn ghi. Câu lệnh không nhận diện được tính là ghi.",
+            "Đặt mức trong Organization và mức mặc định cho connection mới trong Settings. Phím tắt dùng cùng mức đó.",
+            "Bật Face ID hoặc Touch ID trong <ui>Cài đặt > Bảo mật</ui> (Settings > Security), dùng mật mã khi cần. Ứng dụng khóa khi mở và sau khoảng Auto-Lock bạn chọn."
         ]
     },
     "ipad": {
         "title": "Trên iPad",
         "paragraphs": [
-            "Một ứng dụng cho cả iPhone và iPad. Trên iPad, ứng dụng chạy ở mọi hướng màn hình và trong nhiều cửa sổ cùng lúc với Stage Manager hoặc Split View, và thanh tab có thể chuyển thành thanh bên.",
-            "Với bàn phím, ⌘1 tới ⌘4 chuyển giữa các tab Bảng, Truy vấn, Lịch sử và Thông tin (Tables, Query, History, Info), ⌘F để tìm kiếm, ⌘↩ để chạy query và ⌘N để thêm connection. Bạn cũng có thể dùng trackpad hoặc chuột."
+            "Trên iPad, dùng mọi hướng màn hình và nhiều cửa sổ với Stage Manager hoặc Split View. Thanh tab có thể chuyển thành sidebar.",
+            "Phím tắt gồm ⌘1–⌘4 để chuyển tab, ⌘F tìm kiếm, ⌘↩ chạy query và ⌘N thêm connection. Hỗ trợ chuột và trackpad."
         ]
     },
     "mac": {
         "title": "Dùng cùng máy Mac",
         "paragraphs": [
-            "Bật iCloud Sync khi thiết lập ứng dụng hoặc sau đó trong Cài đặt, rồi connection, nhóm và tag của bạn được đồng bộ giữa iPhone, iPad và Mac qua tài khoản iCloud của chính bạn. Mật khẩu chỉ được đồng bộ nếu bạn bật thêm Đồng bộ mật khẩu (Sync Passwords). Query đã lưu, SSH profile và cài đặt chỉ được đồng bộ giữa các máy Mac.",
-            "iCloud Sync miễn phí ở đây. Trên Mac, tính năng này thuộc license Starter hoặc Team, nên máy Mac không có license sẽ không đồng bộ. Xem chi tiết tại <pricing>trang bảng giá</pricing>.",
-            "Không dùng iCloud, bạn có thể export connection ra file .tablepro rồi mở file trên thiết bị khác qua AirDrop hoặc ứng dụng Tệp. Mật khẩu không được đưa vào file trừ khi bạn chọn đưa vào, và khi đó file được mã hóa bằng một passphrase do bạn đặt. Cả hai đều miễn phí ở đây; trên Mac, export kèm mật khẩu thuộc license.",
-            "Khi bật iCloud Sync, Handoff tiếp tục một connection hoặc table đang mở giữa máy Mac và iPhone hoặc iPad của bạn. Trang <sync>Đồng bộ và làm việc nhóm</sync> trình bày chi tiết cả hai tính năng này."
+            "Bật iCloud Sync để chia sẻ connection, nhóm và tag qua tài khoản iCloud của bạn. Mật khẩu cần bật Sync Passwords riêng. Query đã lưu, SSH profile và cài đặt chỉ đồng bộ giữa các máy Mac.",
+            "Sync miễn phí ở đây; Mac cần Starter hoặc Team. Xem <pricing>bảng giá</pricing>.",
+            "Hoặc chuyển file .tablepro qua AirDrop hay Files. Export không kèm mật khẩu trừ khi bạn chọn thêm và mã hóa bằng passphrase. Cả hai tùy chọn miễn phí ở đây; export mã hóa cần license trả phí trên Mac.",
+            "Khi bật sync, Handoff tiếp tục connection hoặc table đang mở trên thiết bị khác. Xem <sync>Sync và nhóm</sync>."
         ]
     },
     "automation": {
         "title": "Phím tắt, tiện ích và Spotlight",
         "paragraphs": [
-            "Tác vụ Mở kết nối (Open Connection) mở một connection từ ứng dụng Phím tắt hoặc từ Siri. Thêm dòng vào bảng (Add Row to Table) và Thêm nhiều dòng vào bảng (Add Rows to Table) thêm dữ liệu vào một table mà không cần mở ứng dụng, từ văn bản JSON hoặc CSV, hoặc từ một file. Các tác vụ này chỉ chạy khi thiết bị không bị khóa, tuân theo mức Safe Mode của connection, và không dùng được với connection Redis.",
-            "Tiện ích Kết nối nhanh (Quick Connect) đặt các connection đầu tiên của bạn lên Màn hình chính, chạm vào là mở. Các connection của bạn cũng hiện trong kết quả tìm kiếm Spotlight."
+            "Dùng Siri hoặc Phím tắt để mở connection. Add Row to Table và Add Rows to Table thêm JSON hoặc CSV mà không mở ứng dụng. Các thao tác này không chạy khi thiết bị khóa, tuân theo Safe Mode và không hỗ trợ Redis.",
+            "Widget Quick Connect mở các connection đầu tiên từ Màn hình chính. Connection cũng xuất hiện trong Spotlight."
         ]
     },
     "limits": {
@@ -105,8 +105,8 @@
     "privacy": {
         "title": "Quyền riêng tư",
         "paragraphs": [
-            "Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data), khi thiết lập ứng dụng hoặc sau đó trong <ui>Cài đặt > Quyền riêng tư</ui> (Settings > Privacy). Nếu bạn bật, ứng dụng gửi mỗi ngày một báo cáo gồm mã thiết bị đã băm, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, các loại cơ sở dữ liệu bạn dùng, số lượng connection và một vài mốc ngày dùng lần đầu. Không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng.",
-            "Ứng dụng không kiểm tra license, không kiểm tra cập nhật và không gửi yêu cầu nào về plugin. Query của bạn đi tới máy chủ của chính bạn, iCloud Sync tới tài khoản iCloud của chính bạn, và việc đăng nhập Entra tới Microsoft. Xem chi tiết trong <privacyIos>chính sách quyền riêng tư</privacyIos>."
+            "Báo cáo sử dụng tắt theo mặc định. Bật Share Usage Data trong <ui>Cài đặt > Quyền riêng tư</ui> (Settings > Privacy) để gửi báo cáo hằng ngày: ID thiết bị đã hash, phiên bản ứng dụng và iOS, kiến trúc, ngôn ngữ, loại cơ sở dữ liệu, số connection và ngày dùng đầu tiên. Không có hostname, username, mật khẩu, query hay dòng dữ liệu.",
+            "Không có request kiểm tra license, cập nhật hay plugin tới TablePro. Query gửi tới cơ sở dữ liệu của bạn, iCloud Sync tới tài khoản iCloud và đăng nhập Entra tới Microsoft. Xem <privacyIos>chính sách quyền riêng tư</privacyIos>."
         ]
     },
     "get": {
@@ -123,7 +123,7 @@
             },
             {
                 "question": "Ứng dụng có giống ứng dụng cho Mac không?",
-                "answer": "Không. Đây là một ứng dụng gọn hơn, làm cho điện thoại và máy tính bảng. <iosLimits>Danh sách ở trên</iosLimits> cho biết những gì chỉ có trên Mac."
+                "answer": "Không. Ứng dụng có ít tính năng hơn. Xem <iosLimits>các tính năng không có ở đây</iosLimits>."
             }
         ]
     }

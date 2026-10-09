@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass：一种数据库或多种",
+        "title": "TablePro 与 MongoDB Compass：shell 或可视化工具",
         "description": "MongoDB Compass 是 MongoDB 免费的 GUI，支持按阶段构建聚合和 schema 分析。TablePro 在 Mac 上同时支持 MongoDB、SQL 数据库和 Redis。"
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass 是 MongoDB 官方的免费 GUI，用于浏览数据、构建聚合管道和研究集合的 schema。TablePro 是开源客户端，可连接 MongoDB 以及 SQL 数据库、Redis 和其他引擎，并在 Mac 上提供可选付费功能。"
+        "lead": "Compass 是 MongoDB 自己的 GUI，具有聚合构建器和模式分析。 TablePro 将 MongoDB 与 SQL 数据库和其他引擎放在一起。"
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB 只是您使用的数据库之一，您还使用 PostgreSQL、MySQL、SQL Server 或 Redis，希望用一个客户端处理所有这些数据库。",
-            "您喜欢 mongosh 风格的 shell，支持变量、循环，并能自动补全集合、字段路径和运算符。",
-            "您希望在整个集合中重命名或删除字段，执行前显示每条语句。",
-            "您希望 AI 助手可自选服务商，使用云端或 Mac 本地模型，并有供外部 AI 客户端使用的 MCP 服务器。"
+            "MongoDB 以及 PostgreSQL、 MySQL、 SQL Server 或 Redis。",
+            "具有变量、循环和自动完成功能的 mongosh 风格 shell。",
+            "集合范围的字段更改，语句在运行之前显示。"
         ],
         "competitor": [
-            "MongoDB 是您唯一的数据库，您希望使用 MongoDB 官方的免费工具。",
-            "您按阶段构建聚合管道，希望每个阶段后都能预览数据。",
-            "您需要研究集合的 schema，或在图中为集合及其关系建模。",
-            "您需要 MongoDB 的可视化执行计划和实时服务器指标。",
-            "您也在 Windows 或 Linux 上工作。"
+            "具有预览功能的分阶段聚合构建器。",
+            "模式分析、集合建模和关系图。",
+            "可视化解释计划和实时 MongoDB 服务器指标。"
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass 是 MongoDB 官方的 GUI，且免费。",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "聚合管道按阶段构建，每个阶段后都可预览数据。",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "对集合中的文档抽样，显示字段类型、日期范围和常见值，并为数据库中的集合绘制实体关系图。",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "执行计划可视化，并内置实时服务器指标。",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "可在 Windows、macOS 和 Linux 上运行。",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "<link>AI 助手</link>使用您选择的 AI 服务商，可用云端或 Mac 本地模型，MCP 服务器让外部 AI 客户端使用您已保存的连接。两者均免费。Compass 的 AI 功能使用 Azure OpenAI。",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "TablePro 没有 Windows 或 Linux 应用。",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "两者分别使用哪种 AI？",
             "answer": "Compass 的自然语言查询和助手使用 Azure OpenAI，可在设置中关闭 AI 功能。TablePro 的 AI 助手使用您选择的服务商，包括在 Mac 上运行的模型，在 Mac 应用中免费。<link>了解 TablePro 中的 AI</link>。",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "TablePro 用于 MongoDB 免费吗？",
-            "answer": "免费。MongoDB 及其他支持的引擎、AI 助手和 MCP 服务器在 Mac 应用中均免费。付费方案添加 {starterExamples} 等可选功能。<link>查看价格</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

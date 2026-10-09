@@ -98,6 +98,7 @@ it('retires exactly the URLs the disposition table retires', function (): void {
         '/docs' => [301, 'https://docs.tablepro.app/'],
         '/docs/raycast' => [301, 'https://docs.tablepro.app/external-api/raycast'],
         '/mariadb-client' => [301, '/mysql-client#mariadb'],
+        '/og/bespoke/og-site-en.png' => [301, '/og.png'],
         '/pglite-client' => [301, '/postgresql-client#pglite'],
         '/releases' => [301, 'https://docs.tablepro.app/changelog'],
         '/scylladb-client' => [301, '/cassandra-client#scylladb'],
@@ -294,6 +295,14 @@ it('sends every internal target to a page that answers 200', function (): void {
     }
 
     foreach ($targets as $path => $from) {
+        if ($path === '/og.png') {
+            expect($from)->toBe('/og/bespoke/og-site-en.png');
+            expect(File::exists(base_path('public/og.png')))->toBeTrue();
+            expect(getimagesize(base_path('public/og.png')))->toMatchArray([0 => 1200, 1 => 630, 2 => IMAGETYPE_PNG]);
+
+            continue;
+        }
+
         /*
          * The one target that is a file, not a page: nginx serves the sitemap
          * `sitemap:generate` writes, and robots.txt advertises it.

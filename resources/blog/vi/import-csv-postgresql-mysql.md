@@ -1,14 +1,14 @@
 ---
 slug: import-csv-postgresql-mysql
-title: "Cách import file CSV vào PostgreSQL hoặc MySQL"
-description: Nạp file CSV vào table bằng \copy của psql hoặc LOAD DATA của MySQL, hoặc trong TablePro với ghép cột, table mới dựng từ file và một transaction.
+title: "Import file CSV vào PostgreSQL hoặc MySQL"
+description: Nạp CSV bằng \copy của PostgreSQL, LOAD DATA của MySQL hoặc TablePro. Ghép cột, tạo table từ file và chọn cách xử lý lỗi.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: \copy, LOAD DATA, hoặc import có ghép cột.
 tags: [postgresql, mysql, import, data-files]
 ---
 
-Cả hai server đều có sẵn công cụ nạp dữ liệu hàng loạt, và cả hai đều cần hai điều được giải quyết trước: một table có các cột khớp với file, và một file mà server hoặc client được phép đọc. Bài này đưa ra các lệnh thuần, rồi làm cùng việc import đó trong TablePro.
+Dùng `\copy` của PostgreSQL, `LOAD DATA` của MySQL hoặc TablePro để import dòng CSV. Công cụ dòng lệnh cần table khớp trước; TablePro còn tạo được table từ file.
 
 ## PostgreSQL: \copy {#postgresql}
 
@@ -44,9 +44,9 @@ IGNORE 1 LINES
 
 `LOCAL` đọc file từ máy Mac. MySQL 8 mặc định tắt tính năng này ở phía server, nên server cần `local_infile=ON` và client phải được chạy bằng `mysql --local-infile=1`. Không có `LOCAL` thì server đọc ổ đĩa của chính nó, và `secure_file_priv` giới hạn được đọc ở đâu. File lưu trên Windows kết thúc dòng bằng `\r\n`; hãy ghi rõ điều đó trong `LINES TERMINATED BY`.
 
-## Trong TablePro {#in-tablepro}
+## Import trong TablePro {#in-tablepro}
 
-Tính năng import của TablePro đọc file trên máy Mac và insert các dòng qua connection bạn đang có, nên không cần tới `local_infile` hay một file nằm trên server.
+TablePro đọc file local và thêm dòng qua connection cơ sở dữ liệu. Không cần `local_infile` hay bản sao trên server.
 
 1. Mở connection.
 2. Chọn **Tệp > Nhập > Nhập dữ liệu…** (File > Import > Import Data…, `Cmd+Shift+I`) rồi chọn file `.csv` hoặc `.tsv`. Phần mở rộng quyết định định dạng. Với file CSV lưu dưới đuôi `.txt` hoặc không có đuôi, hãy dùng **Import Data From** trong cùng menu và chọn định dạng.
@@ -58,21 +58,21 @@ Tính năng import của TablePro đọc file trên máy Mac và insert các dò
 
 ### Ghép trường với cột {#mapping}
 
-Mỗi trường trong file có một dòng với một ô đánh dấu và một menu chọn cột. Trường có tên trùng tên một cột, không phân biệt hoa thường, được ghép sẵn với cột đó. Các trường còn lại bắt đầu ở **Bỏ qua** (Skip). Menu **Match Columns** ghép tất cả trong một lần:
+Field ghép với cột theo tên, không phân biệt hoa thường. Field không khớp bắt đầu ở **Bỏ qua** (Skip). Dùng checkbox và menu cột của từng field, hoặc **Match Columns**:
 
 - **Match by Name**: mỗi trường vào cột cùng tên.
 - **Match by Position**: trường đầu vào cột đầu, cứ thế tiếp tục.
 - **Use Saved Mapping**: cách ghép bạn đã dùng cho table này lần trước.
 
-Khi bạn bấm **Nhập**, TablePro lưu mọi lựa chọn khác với cách ghép theo tên, riêng cho từng table. File tiếp theo vào table đó bắt đầu từ cách ghép này, và bảng import ghi **Restored the mapping saved for** kèm tên table. Cách ghép đã lưu chỉ nằm trên máy Mac này.
+Bấm **Nhập** (Import) lưu mapping tùy chỉnh cho table trên Mac này. Lần import sau khôi phục mapping, hiển thị **Restored the mapping saved for** cùng tên table.
 
-### Hoặc tạo table từ file {#new-table}
+### Tạo table từ file {#new-table}
 
-Với **Bảng mới**, tên table lấy từ tên file, viết thường, khoảng trắng và dấu câu đổi thành dấu gạch dưới. Tên đã có thì được thêm hậu tố số, nên một file `orders.csv` thứ hai sẽ được đề xuất tên `orders_2`. Bên dưới, mỗi cột có tên, kiểu, cờ khóa chính, cờ cho phép NULL và giá trị mặc định, tất cả đều sửa được trước khi table được tạo.
+**Bảng mới** (New table) dùng tên file viết thường, đổi khoảng trắng và dấu câu thành gạch dưới. Tên đã có được thêm hậu tố: file `orders.csv` thứ hai gợi ý `orders_2`. Sửa tên, kiểu, khóa chính, cho phép NULL và mặc định của từng cột trước khi tạo.
 
-Kiểu được suy ra từ mọi dòng trong file, không phải từ một mẫu. Một cột chứa số ở mọi dòng trừ một dòng sẽ có kiểu text, và đó thường là dấu hiệu có một dòng bị lỗi định dạng.
+Kiểu suy ra từ mọi dòng, không phải mẫu. Một giá trị không phải số có thể biến cột vốn là số thành text; kiểm tra file nếu kiểu suy ra không đúng.
 
-### Khi một dòng bị lỗi {#errors}
+### Chọn cách xử lý lỗi {#errors}
 
 | Tùy chọn | Mặc định |
 |---|---|
@@ -86,7 +86,7 @@ Trường nằm trong dấu ngoặc kép giữ nguyên dấu phẩy và xuống 
 
 ## Làm sạch file trước {#clean-first}
 
-Nếu file cần chỉnh sửa, như cắt khoảng trắng, bỏ dòng trùng hay tách một cột, hãy mở nó trước bằng **Tệp > Mở tệp…** (File > Open File…). File mở trong một cửa sổ riêng, có data grid, bộ lọc và tìm kiếm, thay thế, không cần cơ sở dữ liệu. Khi file đã ổn, chọn **Sửa > Dữ liệu > Import into Table…** (Edit > Data > Import into Table…) và chọn connection. Bảng import mở ra với các dòng đúng như trong cửa sổ đó, kể cả những chỉnh sửa chưa lưu.
+Để cắt khoảng trắng, xóa dòng trùng hoặc tách cột, dùng **Tệp > Mở tệp…** (File > Open File…) trước. Cửa sổ riêng có data grid, bộ lọc và tìm/thay thế. Chọn **Sửa > Dữ liệu > Import into Table…** (Edit > Data > Import into Table…) cùng connection để import các dòng đó, kể cả thay đổi chưa lưu.
 
 Đó cũng là cách để import file nén `.csv.gz`, loại file mà **Nhập dữ liệu…** không đọc.
 
@@ -97,10 +97,10 @@ Nếu file cần chỉnh sửa, như cắt khoảng trắng, bỏ dòng trùng h
 - Câu lệnh `LOAD DATA LOCAL INFILE` của MySQL gõ trong editor bị driver của TablePro từ chối. Hãy dùng **Nhập dữ liệu…**.
 - Khi import vào table có sẵn, mỗi trường đi vào một cột mà table đã có, hoặc bị bỏ qua.
 
-## Nếu import không được {#troubleshooting}
+## Xử lý lỗi {#troubleshooting}
 
 - **Mọi giá trị dồn vào một cột**: dấu phân cách bị đoán sai. Hãy tự đặt **Delimiter**.
 - **Chữ có dấu hoặc chữ Nhật bị lỗi font**: file không dùng encoding đã chọn. Đặt **Encoding** đúng với encoding file được lưu, ví dụ Windows-1252 hoặc Shift JIS.
 - **Cột ngày hoặc cột số từ chối một số dòng**: cơ sở dữ liệu không đọc được giá trị theo kiểu đó. Hãy import vào một cột text, hoặc vào table mới, rồi chuyển đổi bằng SQL sau.
 
-Mọi tùy chọn, kể cả import JSON và Excel, nằm trong tài liệu [Import & Export](https://docs.tablepro.app/features/import-export), còn cửa sổ làm sạch file nằm trong [Data Files](https://docs.tablepro.app/features/data-files) (tài liệu bằng tiếng Anh). Trên trang này, hãy xem mục [import file vào table](/vi/features/import-export#import), trang [PostgreSQL](/vi/postgresql-client) và trang [MySQL](/vi/mysql-client).
+Xem [Import & Export](https://docs.tablepro.app/features/import-export) cho tùy chọn JSON/Excel, và [Data Files](https://docs.tablepro.app/features/data-files) cho sửa file. Tổng quan: [import](/vi/features/import-export#import), [PostgreSQL](/vi/postgresql-client) và [MySQL](/vi/mysql-client).

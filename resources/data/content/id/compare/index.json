@@ -1,62 +1,61 @@
 {
     "seo": {
-        "title": "Bandingkan TablePro dengan klien lain",
-        "description": "Bandingkan TablePro dengan TablePlus, DBeaver, DataGrip, Navicat, Beekeeper Studio, Sequel Ace, Postico, HeidiSQL, dan phpMyAdmin, dengan sumber resmi."
+        "title": "Bandingkan klien database",
+        "description": "Bandingkan TablePro dengan klien lain berdasarkan fitur, database, platform, dan lisensi. Dilengkapi tanggal pemeriksaan dan sumber resmi."
     },
     "og": {
         "kicker": "Perbandingan",
         "title": "TablePro dan klien database lainnya"
     },
     "header": {
-        "title": "Bandingkan TablePro dengan klien database lain",
-        "lead": "Setiap perbandingan menjelaskan keunggulan klien lain, perbedaan TablePro, dan hal yang tidak dilakukan TablePro. Fakta produk lain berasal dari sumber resmi dan menyertakan tanggal pemeriksaan."
+        "title": "Bandingkan klien database",
+        "lead": "Bandingkan fitur, database yang didukung, dan lisensi. Setiap perbandingan mencakup sumber resmi dan tanggal pemeriksaan."
     },
     "bySituation": {
-        "title": "Pilih sesuai kebutuhan",
-        "lead": "Satu baris untuk setiap klien, dengan tautan ke perbandingan lengkap.",
-        "tablepro": "Pilih TablePro jika Anda menginginkan klien sumber terbuka dengan aplikasi Mac native dan aplikasi terpisah untuk iPhone dan iPad. Asisten AI dan server MCP gratis dalam aplikasi Mac, dan TablePro mengimpor koneksi tersimpan dari {apps}.",
+        "title": "Klien mana yang sesuai dengan pekerjaan Anda?",
+        "lead": "Mulailah dengan alat yang Anda perlukan.",
+        "tablepro": "TablePro adalah klien database native dan open source untuk beberapa jenis database. Chat AI dan MCP gratis di app Mac. Impor koneksi dari {apps}.",
         "items": {
-            "tableplus": "Pilih TablePlus jika Anda juga bekerja di Windows atau Linux, atau terhubung ke Vertica maupun Greenplum.",
-            "dbeaver": "Pilih DBeaver jika Anda menginginkan klien gratis untuk Windows, macOS, dan Linux yang terhubung ke mesin apa pun dengan driver JDBC.",
-            "datagrip": "Pilih DataGrip jika Anda menginginkan IDE database JetBrains dengan kontrol versi bawaan, dan pekerjaan Anda nonkomersial atau Anda sudah membayar alat JetBrains.",
-            "navicat": "Pilih Navicat jika Anda memerlukan pemodelan data atau Navicat Cloud untuk bekerja bersama tim, dan lisensi permanen sesuai anggaran Anda.",
-            "beekeeper-studio": "Pilih Beekeeper Studio jika Anda menginginkan klien sumber terbuka yang bekerja dengan cara yang sama di Windows, macOS, dan Linux.",
-            "sequel-ace": "Pilih Sequel Ace jika Anda hanya menggunakan MySQL dan MariaDB serta menginginkan aplikasi Mac gratis bersumber terbuka dari Mac App Store.",
-            "sequel-pro": "Masih menggunakan Sequel Pro? Rilis terakhirnya, {status.version}, berasal dari {status.date}. Sequel Ace melanjutkannya, dan TablePro mengimpor koneksi Sequel Ace.",
-            "postico": "Pilih Postico jika Anda hanya menggunakan PostgreSQL dan menginginkan aplikasi Mac khusus dengan lisensi sekali bayar.",
-            "heidisql": "Pilih HeidiSQL jika Anda sudah menggunakannya di Windows dan menginginkan klien gratis yang sama pada Mac dengan Apple silicon.",
-            "phpmyadmin": "Pilih phpMyAdmin jika Anda mengelola MySQL atau MariaDB dalam peramban, misalnya pada hosting yang menyediakannya melalui cPanel.",
-            "mysql-workbench": "Pilih MySQL Workbench jika Anda menginginkan alat resmi Oracle untuk MySQL, dengan notebook SQL dan integrasi MySQL Enterprise Backup.",
-            "pgadmin": "Pilih pgAdmin jika Anda hanya menggunakan PostgreSQL dan menginginkan debugger-nya, job pgAgent, atau server web yang digunakan bersama beberapa orang.",
-            "dbgate": "Pilih DbGate jika Anda menginginkan klien sumber terbuka untuk Windows, macOS, dan Linux yang juga berjalan sebagai aplikasi web.",
-            "mongodb-compass": "Pilih MongoDB Compass jika MongoDB adalah satu-satunya database Anda dan Anda membangun pipeline agregasi tahap demi tahap atau mempelajari skema koleksi.",
-            "ssms": "Pilih SQL Server Management Studio di Windows untuk SQL Server Agent dan Always On. Tidak ada versi Mac, dan di Mac Microsoft mengarahkan ke Visual Studio Code dengan ekstensi MSSQL."
+            "tableplus": "Dukungan Windows atau Linux, ditambah Vertica dan Greenplum.",
+            "dbeaver": "Klien lintas platform dengan dukungan driver JDBC.",
+            "datagrip": "IDE database dengan inspeksi kode dan kontrol versi. Gratis untuk pekerjaan non-komersial.",
+            "navicat": "Pemodelan data dan proyek bersama melalui Navicat Cloud.",
+            "beekeeper-studio": "Klien sumber terbuka dengan fitur yang sama di Windows, macOS, dan Linux.",
+            "sequel-ace": "Klien Mac App Store gratis yang berfokus pada MySQL dan MariaDB.",
+            "sequel-pro": "Beralih dari Sequel Pro? Rilis terakhirnya adalah {status.version}, pada {status.date}. Bandingkan Sequel Ace dan TablePro.",
+            "postico": "Klien PostgreSQL terfokus dengan lisensi satu kali.",
+            "heidisql": "Klien gratis untuk Windows, Linux, dan Mac dengan Apple silicon.",
+            "phpmyadmin": "Akses MySQL atau MariaDB melalui browser Anda, termasuk hosting cPanel.",
+            "mysql-workbench": "Alat Oracle MySQL, dengan notebook SQL dan integrasi MySQL Enterprise Backup.",
+            "pgadmin": "Administrasi PostgreSQL, dengan debugger, pekerjaan pgAgent, dan opsi server bersama.",
+            "dbgate": "Klien SQL dan NoSQL sumber terbuka untuk desktop dan web.",
+            "mongodb-compass": "Alur agregasi MongoDB, analisis skema, dan metrik server langsung.",
+            "ssms": "Administrasi SQL Server di Windows, termasuk Agent dan Always On."
         }
     },
     "atAGlance": {
         "title": "Sekilas",
-        "lead": "Platform, kode sumber, dan harga setiap klien yang dibandingkan. Harga adalah harga daftar dalam dolar AS, sebelum pajak.",
+        "lead": "Platform, lisensi open source, dan harga resmi AS sebelum pajak.",
         "caption": "Klien dibandingkan pada {date}. Sumber tercantum di akhir halaman."
     },
     "openSource": {
-        "title": "Klien sumber terbuka di Mac",
-        "lead": "Klien ini menerbitkan kode sumber dengan lisensi sumber terbuka. Sequel Pro tidak lagi dipelihara, dan phpMyAdmin berjalan pada server web yang dibuka melalui peramban.",
+        "title": "Opsi sumber terbuka",
+        "lead": "Klien ini menerbitkan kode sumber di bawah lisensi sumber terbuka. Sequel Pro tidak dirawat; phpMyAdmin berjalan di server web.",
         "caption": "Klien sumber terbuka, diperiksa pada {date}."
     },
     "switching": {
         "title": "Beralih ke TablePro",
-        "body": "TablePro mengimpor koneksi tersimpan dari {apps}, termasuk kata sandi tersimpan. Koneksi Navicat berasal dari file yang Anda ekspor di Navicat.",
-        "none": "Tidak ada pengimpor untuk {others}. Tambahkan koneksi secara manual atau tempel URL koneksi.",
-        "link": "Bawa koneksi Anda",
-        "docs": "Panduan beralih dalam dokumentasi"
+        "body": "Impor koneksi dan kata sandi tersimpan dari {apps}. Navicat memerlukan file koneksi yang diekspor.",
+        "none": "Tidak ada importir untuk {others}. Tambahkan koneksi secara manual atau tempelkan URL koneksi.",
+        "link": "Impor koneksi",
+        "docs": "Panduan peralihan"
     },
     "method": {
-        "title": "Cara halaman ini ditulis",
+        "title": "Sumber dan ruang lingkup",
         "paragraphs": [
-            "Setiap fakta produk lain berasal dari sumber resmi: situs, dokumentasi, repositori, catatan rilis, atau halaman toko produk tersebut, atau pengelola paket maupun penyedia platform yang mendistribusikannya. Setiap halaman mencantumkan sumber beserta tanggal pemeriksaan.",
-            "Informasi TablePro berasal dari data yang sama dengan bagian situs lainnya, sehingga harga, platform, dan fitur sesuai dengan halaman harga serta fitur.",
-            "Tidak ada angka kecepatan, memori, atau waktu mulai karena tidak ditemukan pengukuran klien yang dapat direproduksi orang lain untuk dikutip.",
-            "Harga dan fitur berubah. Jika informasi sudah usang, <issues>buka issue di GitHub</issues>."
+            "Fakta pesaing menggunakan situs web resmi, dokumen, repositori, catatan rilis dan daftar toko, atau manajer paket atau vendor platform yang mendistribusikannya. Sumber menyertakan tanggal yang diperiksa.",
+            "Harga, platform, dan fitur TablePro menggunakan data produk yang dibagikan di situs ini. Tidak ada tolok ukur yang dapat direproduksi yang dikutip, jadi halaman ini tidak mengklaim kecepatan atau memori.",
+            "Harga dan fitur dapat berubah. <issues>Laporkan fakta usang di GitHub</issues>."
         ]
     },
     "labels": {
@@ -67,10 +66,10 @@
         },
         "sourcesLink": "Sumber",
         "shortAnswer": {
-            "title": "Jawaban singkat",
-            "lead": "Mencari alternatif {name} di Mac? Berikut situasi yang cocok untuk masing-masing klien.",
-            "tablepro": "Pilih TablePro jika",
-            "competitor": "Pilih {name} jika"
+            "title": "Memilih di antara keduanya",
+            "lead": "Alasan menggunakan TablePro atau {name}.",
+            "tablepro": "Pertimbangkan TablePro untuk",
+            "competitor": "Pertimbangkan {name} untuk"
         },
         "glance": {
             "title": "Sekilas",
@@ -184,8 +183,8 @@
             "licence": "Ya: {licence}, termasuk kode fitur berbayar",
             "databases": "{engines} dan lainnya",
             "databasesLink": "Database yang didukung",
-            "ai": "Gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau Mac",
-            "mcp": "Gratis dalam aplikasi Mac. Server hanya mendengarkan di Mac Anda, dan setiap koneksi menentukan tindakan yang diizinkan untuk aplikasi luar",
+            "ai": "Gratis di aplikasi Mac. Pilih penyedia cloud atau model lokal; biaya penyedia mungkin berlaku.",
+            "mcp": "Gratis di app Mac. Hanya localhost, dengan kontrol akses per koneksi.",
             "ios": "Aplikasi gratis terpisah, tanpa pembelian dalam aplikasi",
             "sync": "iCloud Sync: bagian dari {tier} di Mac, gratis di iPhone dan iPad"
         },
@@ -202,9 +201,9 @@
         },
         "tierBadge": "Paket {tier}",
         "sections": {
-            "stronger": "Keunggulan {name}",
-            "differs": "Perbedaan TablePro",
-            "limits": "Hal yang tidak dilakukan TablePro",
+            "stronger": "Alasan menggunakan {name}",
+            "differs": "Perbedaan itu penting",
+            "limits": "Batas TablePro",
             "switching": "Beralih dari {name}",
             "faq": "Pertanyaan",
             "sources": "Sumber",
@@ -215,14 +214,14 @@
             "docs": "Panduan beralih dalam dokumentasi"
         },
         "sources": {
-            "intro": "Fakta tentang {name} diperiksa pada {date} berdasarkan halaman ini. Harga adalah harga daftar dalam dolar AS, sebelum pajak.",
+            "intro": "Informasi {name} diperiksa pada {date}. Harga resmi AS sebelum pajak.",
             "retrieved": "diperiksa pada {date}",
             "latest": "Rilis {name} terbaru pada tanggal itu: {version}, diterbitkan {date}.",
             "tablepro": "Kolom TablePro menjelaskan TablePro {macVersion} untuk Mac dan {iosVersion} untuk iPhone dan iPad.",
             "trademarks": "TablePro adalah proyek sumber terbuka independen yang tidak berafiliasi dengan pembuat produk yang dibandingkan di sini dan tidak didukung oleh mereka. Nama produk adalah merek dagang pemiliknya masing-masing."
         },
         "cta": {
-            "body": "TablePro gratis diunduh. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",
+            "body": "Aplikasi inti gratis. Paket berbayar menambahkan fitur opsional.",
             "pricing": "Lihat harga",
             "hub": "Semua perbandingan"
         },

@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "Client MongoDB per {devices}",
-        "lead": "Scrivi query come in mongosh, esplora collezioni nella griglia e inserisci o modifica interi documenti come Extended JSON. Rinomina o rimuovi un campo in una collezione, vedendo ogni istruzione prima dell’esecuzione."
+        "title": "Client MongoDB",
+        "lead": "Sfoglia raccolte, esegui query con la sintassi in stile mongosh e modifica documenti come JSON esteso."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "Connetti",
             "paragraphs": [
-                "Elenca un host o più coppie <code>host:port</code> per un replica set e il primario viene trovato automaticamente. Puoi anche incollare un URL <code>mongodb://</code> o <code>mongodb+srv://</code>. Accedi con SCRAM-SHA-1, SCRAM-SHA-256, X.509 o AWS IAM e imposta <ui>Auth Database</ui> quando l’utente è definito in <code>admin</code> ma esplori un altro database.",
+                "Inserisci un elenco <code>host:port</code> di host o set di repliche oppure incollare un URL <code>mongodb://</code> o <code>mongodb+srv://</code>. L'autenticazione supporta SCRAM-SHA-1, SCRAM-SHA-256, X.509 e AWS IAM. Imposta <ui>Auth Database</ui> sul database che definisce il tuo utente.",
                 "Un host che termina con <code>.mongodb.net</code> attiva automaticamente SRV e TLS, come richiesto da MongoDB Atlas. Aggiungi prima l’indirizzo IP all’elenco di accesso del cluster: il traffico da un indirizzo non presente va in timeout anziché fallire subito.",
                 "Le nuove connessioni iniziano con TLS disattivato e il driver non offre fallback, quindi Preferred si comporta come Required. Read Preference e Write Concern si impostano per connessione e write concern accompagna ogni inserimento, aggiornamento ed eliminazione dalla shell o da un salvataggio nella griglia.",
                 "Tramite un <network>tunnel SSH</network> viene usato solo il primo host dell’elenco, quindi scoperta del replica set e failover sono disattivati per quella sessione."
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "Interroga e modifica documenti",
             "paragraphs": [
-                "La scheda delle query è una shell JavaScript che accetta sintassi mongosh: chiavi senza apici, regex letterali, <code>ISODate()</code>, variabili, cicli e <code>forEach</code>. Funziona dentro TablePro senza altre installazioni e una variabile definita rimane disponibile in ogni scheda della connessione fino alla disconnessione. Il completamento offre collezioni, metodi, percorsi di campi annidati e operatori <code>$</code> validi al cursore.",
-                "Una collezione si apre come griglia, con campi di primo livello come colonne e oggetti annidati come Extended JSON. Una cella modificata mantiene il tipo del campo, quindi una data rimane data e un ObjectId rimane ObjectId; una modifica in un oggetto annidato scrive solo il percorso cambiato, come <code>address.city</code>.",
-                "<editing>Insert Document ed Edit Document</editing> accettano un intero documento come Extended JSON. Edit Document lo legge di nuovo dal server e, se qualcuno lo ha modificato o eliminato dopo l’apertura della schermata, non salva nulla e lo segnala. <ui>Remove Field</ui> su una cella invia <code>$unset</code>.",
+                "Utilizza JavaScript in stile mongosh nella scheda Query: regex, <code>ISODate()</code>, variabili, loop e <code>forEach</code>. Non è necessaria alcuna installazione separata della shell. Le variabili persistono nelle schede di connessione fino alla disconnessione. Il completamento automatico include raccolte, percorsi di campo, metodi e operatori.",
+                "Sfoglia i campi di livello superiore come colonne e gli oggetti nidificati come JSON esteso. Le modifiche alle celle preservano tipi come date e ObjectId. Le modifiche nidificate aggiornano solo il percorso modificato, ad esempio <code>address.city</code>.",
+                "<editing>Insert Document ed Edit Document</editing> usano Extended JSON. Edit Document rilegge il documento sul server e rifiuta il salvataggio se nel frattempo è cambiato o scomparso. <ui>Remove Field</ui> invia <code>$unset</code>.",
                 "La <filters>barra dei filtri</filters> accede a oggetti annidati e array di oggetti, quindi <code>customer.country</code> e <code>items.sku</code> filtrano direttamente. Un campo contenente GeoJSON si apre nella <map>vista Mappa</map>.",
                 "<safeMode>Safe Mode</safeMode> considera ogni istruzione su una connessione MongoDB una scrittura, perché il driver non può aprire una sessione in sola lettura. I livelli Alert e Safe Mode confermano ciascuna e Read-Only le blocca tutte."
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "Collezioni, indici e validatori",
             "paragraphs": [
-                "La <structure>scheda Structure</structure> elenca ogni indice con i campi in ordine di chiave e il tipo, come hashed, text, 2dsphere o wildcard. Show DDL scrive le chiamate <code>createIndex</code> che li ricreano, con ogni opzione riportata dal server.",
-                "Rinomina o rimuovi un campo nell’intera collezione dalla stessa scheda. Ogni modifica è un <code>updateMany</code>, mostrato in Preview SQL, e un campo dichiarato dal validatore <code>$jsonSchema</code> cambia anche lì. Il salvataggio viene rifiutato prima di qualsiasi scrittura quando un indice, indice di ricerca o vista usa ancora il nome.",
+                "Esamina campi, tipi e opzioni degli indici nella <structure>scheda Structure</structure>. Show DDL genera chiamate <code>createIndex</code> con le opzioni riportate dal server.",
+                "Rinominare o rimuovere un campo in una raccolta con un <code>updateMany</code> in anteprima. Anche il validatore si aggiorna. Il salvataggio viene bloccato se un indice, un indice di ricerca o una vista utilizza ancora il campo.",
                 "<ui>New Table</ui> crea una collezione i cui campi diventano un validatore <code>$jsonSchema</code>, poi crea gli indici elencati. Viste e collezioni time-series compaiono nella barra laterale e le viste si aprono in sola lettura."
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass è l’interfaccia grafica di MongoDB. Costruisce pipeline di aggregazione una fase alla volta con anteprima dopo ogni fase, analizza lo schema di una collezione da un campione di documenti e rappresenta piani explain. Sceglilo per costruire pipeline visivamente o studiare la struttura di una collezione; TablePro è adatto quando MongoDB è uno dei diversi database usati nella stessa app.",
+                "text": "Scegli MongoDB Compass per pipeline di aggregazione visiva, analisi di schemi campionati e spiegazione dei piani. TablePro interroga MongoDB insieme ad altri motori di database.",
                 "notes": [
                     "compass-natural-language"
                 ]

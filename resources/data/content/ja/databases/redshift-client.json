@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "{devices} 用 Amazon Redshift クライアント",
-        "lead": "アプリ同梱の PostgreSQL ドライバーでプロビジョンドクラスターや Serverless ワークグループに問い合わせ、各テーブルの分散方式とソートキーを確認し、自分のスキーマと並んで Spectrum や datashare のスキーマを閲覧できます。"
+        "title": "Amazon Redshift クライアント",
+        "lead": "プロビジョニング済みクラスターや Serverless ワークグループをクエリできます。ソートキー、分散方式、外部スキーマを確認できます。"
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホストにはクラスターエンドポイント、Redshift Serverless ならワークグループエンドポイントを使い、どちらも同じポートで待ち受けます。データベースは必須で、すべてのクラスターには作成時に <code>dev</code> が用意されます。<code>redshift://</code> URL のインポートでフォームを入力できます。",
+                "クラスターか Serverless ワークグループのエンドポイント、ポート、データベースを入力します。クラスターの初期値は <code>dev</code> です。<code>redshift://</code> URL からフォームを入力できます。",
                 "新規接続は SSL を Preferred にし、バージョン検査は行わないため、AWS が稼働させているクラスターなら接続できます。パスワードはキーチェーンに保存するか <code>~/.pgpass</code> から読み取り、接続の <credentials>認証情報オプション</credentials> の二つです。公開アクセスできないクラスターには、VPC 内の踏み台への <network>SSH トンネル</network> でアクセスします。"
             ]
         },
@@ -40,9 +40,9 @@
             "title": "クエリと編集",
             "paragraphs": [
                 "クエリと <editing>Preview SQL 付きの行編集保留</editing> は、同じドライバーを使う <postgresql>PostgreSQL</postgresql> と同じように動作します。有効なデータベース以外に紐付いたタブは、そのために二つ目の接続を開きます。",
-                "テーブル情報は <code>svv_table_info</code> から分散方式、ソートキーとサイズを読み取り、DDL タブは DISTKEY、SORTKEY、DISTSTYLE、ENCODE を書き出します。外部キーは表示しますが Redshift は強制しないため、違反する行も防げません。",
+                "<code>svv_table_info</code> で分散方式、ソートキー、サイズを確認できます。DDL に DISTKEY、SORTKEY、DISTSTYLE、ENCODE を表示します。外部キーは一覧に出ますが、Redshift は強制しません。",
                 "<explain>EXPLAIN と EXPLAIN VERBOSE</explain> は Redshift のプランを図ではなくテキストで返します。",
-                "<code>CREATE EXTERNAL SCHEMA</code> で作ったスキーマは、S3 上の Spectrum、フェデレーテッドクエリ、データベース間参照や datashare を問わず、独自スキーマと並んで External と表示します。テーブルは通常どおり閲覧、絞り込み、並べ替えとエクスポートができますが、Redshift が UPDATE と DELETE を受け付けないため読み取り専用です。行数は表示せず、カラム型は外部カタログの報告をそのまま読みます。"
+                "ローカルと並べて Spectrum、フェデレーテッド、データベース横断、datashare の外部スキーマを参照できます。外部テーブルはフィルター、ソート、出力が可能ですが、読み取り専用です。行数は取得できず、型は外部カタログから取得します。"
             ]
         },
         {

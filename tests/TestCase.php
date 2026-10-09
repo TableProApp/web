@@ -51,4 +51,14 @@ abstract class TestCase extends BaseTestCase
 
         return $this;
     }
+
+    /** Use the production manifest even when a local dev server is running. */
+    protected function withVite()
+    {
+        parent::withVite();
+
+        $this->app->make(Vite::class)->useHotFile(storage_path('framework/testing/never-hot'));
+
+        return $this;
+    }
 }

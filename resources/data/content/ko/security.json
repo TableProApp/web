@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "보안",
-        "lead": "TablePro가 자격 증명을 어디에 저장하는지, 앱이 무엇을 보내는지, 어떻게 서명되고 업데이트되는지, 각 보호 장치가 어디까지인지 정리했습니다."
+        "lead": "TablePro의 자격 증명 저장, 데이터 전송, 업데이트, 데이터베이스 보호 방식을 설명합니다."
     },
     "breadcrumb": "보안",
     "jump": "이 페이지의 내용",
@@ -18,7 +18,7 @@
     "sections": [
         {
             "id": "credentials",
-            "title": "자격 증명이 저장되는 곳",
+            "title": "자격 증명",
             "items": [
                 {
                     "id": "mac-keychain",
@@ -91,7 +91,7 @@
         },
         {
             "id": "distribution",
-            "title": "앱이 전달되는 방식",
+            "title": "앱 배포",
             "items": [
                 {
                     "id": "signing",
@@ -135,7 +135,7 @@
         },
         {
             "id": "safe-mode",
-            "title": "실수로부터 데이터베이스를 지키는 장치",
+            "title": "데이터베이스 보호",
             "items": [
                 {
                     "id": "levels",

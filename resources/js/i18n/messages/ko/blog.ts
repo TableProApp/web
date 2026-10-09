@@ -6,9 +6,9 @@ export default {
         "guides": "가이드",
         "releases": "릴리스 노트"
     },
-    "latest": "일부 릴리스는 블로그 글로도 소개합니다. 최신 글은 <post>{title}</post>입니다.",
+    "latest": "최신 릴리스 글: <post>{title}</post>.",
     "post": {
-        "archive": "{date}에 게시된 이 글은 당시의 {release}에 대해 설명합니다. 현재 TablePro의 기능은 <features>기능</features> 및 <changelog>변경 기록</changelog> (영어)을 참고하세요.",
+        "archive": "{date} 게시. 이 글은 {release} 출시 당시를 기준으로 합니다. 현재 <features>기능</features>과 <changelog>변경 기록</changelog> (영어)을 확인하세요.",
         "correction": "정정, {date}",
         "toc": "이 페이지의 내용",
         "pages": "관련 페이지",

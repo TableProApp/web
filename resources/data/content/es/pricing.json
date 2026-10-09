@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Precios",
-        "lead": "La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales. La app para iPhone y iPad es gratis, sin compras dentro de la app."
+        "lead": "Usa la app para Mac gratis, sin periodo de prueba. Starter y Team añaden funciones opcionales. La app para iPhone y iPad es gratis, sin compras dentro de la app."
     },
     "plans": {
         "title": "Planes"
     },
     "features": {
         "title": "Qué añade un plan de pago",
-        "lead": "Estas son las únicas funciones que requieren un plan de pago y todas están en la app para Mac. Team incluye todo lo de Starter. Conectarse a cualquier motor compatible no requiere licencia, y tampoco la requieren el asistente de IA, el servidor MCP ni Safe Mode."
+        "lead": "Solo las funciones listadas aquí requieren un plan de pago, actualmente en el Mac. Team incluye Starter. Todos los motores compatibles, el asistente de IA, MCP y Safe Mode son gratis."
     },
     "license": {
         "title": "Cómo funcionan las licencias",
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Una licencia Starter es para una persona, en hasta {activations} Mac. En Team, cada puesto corresponde a un Mac activado, incluido el del comprador, así que quien trabaja en dos Mac usa dos puestos. La app para iPhone y iPad nunca usa una licencia ni un puesto."
+                "body": "Starter cubre a una persona en hasta {activations} Mac. Cada puesto de Team cubre un Mac activado, incluido el del comprador. Dos Mac usan dos puestos. La app para iPhone y iPad no usa licencia ni puesto."
             },
             "activate": {
                 "term": "Activación",
-                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Settings > License</ui>. Para usarla en otro Mac, elimina el anterior en la página Macs de <account>tu cuenta</account>."
+                "body": "Introduce tu clave en <ui>Settings > License</ui>. Para trasladar una activación, elimina el Mac anterior en la página de Mac de <account>tu cuenta</account>."
             },
             "checks": {
                 "term": "Comprobaciones",
-                "body": "TablePro comprueba la firma de la licencia cada vez que se abre y confirma la licencia con el servidor de TablePro cada {revalidateDays} días. Si tu Mac no puede conectar con el servidor, las funciones de pago siguen funcionando durante {graceDays} días. La confirmación envía la clave de licencia, un identificador de máquina con hash, el nombre del Mac y las versiones de la app y de macOS."
+                "body": "TablePro verifica la firma de la licencia al iniciar y consulta su servidor cada {revalidateDays} días. Si el servidor no está disponible, las funciones de pago siguen activas durante {graceDays} días desde la última verificación correcta. Las verificaciones envían la clave, un ID de máquina con hash, el nombre del Mac y las versiones de la app y de macOS."
             },
             "ends": {
                 "term": "Cuando termina un plan",
-                "body": "Si termina un plan mensual o anual, las funciones de pago dejan de funcionar y el resto de la app sigue funcionando como en el plan Gratis."
+                "body": "Al terminar una suscripción se desactivan las funciones de pago. Todo lo incluido en Free sigue funcionando."
             },
             "oneTime": {
                 "term": "Pago único",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Facturación",
-        "merchant": "{merchant} es el merchant of record de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo.",
-        "renewal": "Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles en <account>tu cuenta</account> o en el portal de clientes de {merchant}. Tras cancelar, el plan sigue funcionando hasta el final del periodo pagado y puedes reanudarlo antes de esa fecha. Si falla un pago de renovación, {merchant} te envía un enlace para actualizar tu tarjeta y vuelve a intentar cobrar durante unas tres semanas.",
-        "portal": "Para compras realizadas a través de {merchant}, las facturas, los recibos, el método de pago y la cancelación están en el <portal>portal de clientes de {merchant}</portal>, al que accedes con el correo usado al comprar. <account>Facturación y facturas</account> en tu cuenta también lo abre."
+        "merchant": "{merchant} es el merchant of record. Gestiona el pago, calcula el impuesto sobre ventas o el IVA según tu dirección de facturación y envía recibos y facturas por correo.",
+        "renewal": "Las suscripciones se renuevan hasta que canceles en <account>tu cuenta</account> o en el portal de {merchant}. Conservas el acceso hasta el final del periodo pagado; puedes reanudar antes de que termine. Si falla una renovación, recibirás un correo para actualizar tu tarjeta y se reintentará el pago durante unas tres semanas.",
+        "portal": "Gestiona facturas, recibos, métodos de pago y cancelación en el <portal>portal de clientes de {merchant}</portal>. Accede con el correo de compra. <account>Facturación y facturas</account> abre el mismo portal."
     },
     "refunds": {
         "title": "Reembolsos",
-        "body": "Todos los planes se pueden reembolsar en los {refundDays} días siguientes a la compra, y cada renovación mensual o anual en los {refundDays} días siguientes a su cobro. La <link>política de reembolso</link> explica cómo solicitarlo y qué ocurre con la licencia."
+        "body": "Las compras y renovaciones de suscripciones se pueden reembolsar dentro de los {refundDays} días siguientes a cada cobro. Consulta la <link>política de reembolso</link> para conocer el proceso y sus efectos sobre tu licencia."
     },
     "team": {
         "title": "Planes Team",
         "seats": "El precio de un plan Team es por puesto, de {min} a {max} puestos.",
-        "invites": "Quien compró el plan gestiona el equipo en su cuenta. Invita a sus compañeros por correo, y cada invitación es un código de un solo uso que caduca al cabo de una semana y requiere un puesto libre.",
-        "changes": "En un plan Team mensual o anual, cambias el número de puestos en tu cuenta y la diferencia aparece en la siguiente factura. Para añadir puestos a una compra Team de pago único, escribe a <email>{email}</email>.",
+        "invites": "El comprador gestiona las invitaciones en su cuenta. Cada código necesita un puesto libre, sirve una vez y caduca tras una semana.",
+        "changes": "Cambia los puestos de la suscripción en tu cuenta; la diferencia aparece en la próxima factura. Para añadir puestos a una compra única, escribe a <email>{email}</email>.",
         "account": "Gestiona tu equipo en tu cuenta"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "Comparado con otros clientes",
-        "body": "Cada comparación muestra los precios del otro cliente junto a los de TablePro, con la fecha en que se comprobaron."
+        "body": "Compara precios y funciones con otros clientes. Cada comparación incluye fecha de verificación y fuentes."
     },
     "faq": {
         "title": "Preguntas sobre los planes",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "¿Dónde encuentro mi clave de licencia?",
-                "answer": "Está en el correo que recibiste tras comprar. También puedes entrar en <account>tu cuenta</account> con el correo usado para la compra: allí está tu clave, junto con todos los Mac donde está activada."
+                "answer": "Encuentra tu clave en el correo de compra o en <account>tu cuenta</account>. Accede con el correo de compra para ver las claves y los Mac activados."
             }
         }
     }

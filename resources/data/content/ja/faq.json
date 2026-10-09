@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "よくある質問",
-        "description": "TablePro についての回答：無料の機能とライセンスで追加される機能、対応する Mac・iPhone・データベース、アプリが送る情報、チーム、返金。"
+        "description": "TablePro のアプリ、対応データベース、有料プラン、ライセンス、プライバシー、アカウントの質問に答えます。"
     },
     "og": {
         "kicker": "よくある質問",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "よくある質問",
-        "lead": "アプリ、ライセンス、プライバシー、アカウントについて簡潔に回答します。それぞれの詳しい説明ページへのリンクもあります。"
+        "lead": "アプリ、ライセンス、プライバシーについて。"
     },
     "breadcrumb": "よくある質問",
     "jump": "トピック別の質問",
@@ -31,37 +31,37 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro とは何ですか？",
                     "answer": [
-                        "TablePro は開発者向けの、ネイティブなオープンソースのデータベースクライアントです。Mac では {featuredEngines} などに接続し、クエリの作成・実行、データの閲覧・編集、スキーマの変更ができます。iPhone・iPad アプリは、デスクを離れてデータベースを扱うための、機能を絞った別のアプリです。",
-                        "<features>機能ページ</features>で各機能を詳しく紹介しています。"
+                        "ネイティブでオープンソースのデータベースクライアントです。Mac では {featuredEngines} などをクエリ・編集し、スキーマを操作できます。iPhone・iPad アプリのデータベース機能は限定されています。",
+                        "すべての<features>機能を見る</features>。"
                     ]
                 },
                 {
                     "id": "native",
                     "question": "ここでの「ネイティブ」とは何ですか？",
                     "answer": [
-                        "各 TablePro アプリは、それぞれのプラットフォーム向けに Swift で書かれています。Mac では AppKit、SwiftUI、キーチェーン、Touch ID を使い、iPhone・iPad では Face ID、ウィジェット、ショートカット、ライブアクティビティを使います。データベースドライバーもネイティブで、JDBC は使いません。"
+                        "TablePro はネイティブのインターフェースとドライバーを使い、Electron・JDBC は使いません。現在のアプリは Swift 製です。Mac は AppKit と SwiftUI、iPhone・iPad は Face ID や Shortcuts などのデバイス機能を使います。"
                     ]
                 },
                 {
                     "id": "is-it-free",
                     "question": "TablePro は無料ですか？",
                     "answer": [
-                        "Mac アプリは無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team ライセンスで Mac アプリにオプション機能を追加できます。<pricing>料金ページ</pricing>に一覧があります。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。",
-                        "iPhone・iPad アプリは無料で、アプリ内課金はなく、ライセンスも不要です。"
+                        "はい。Mac アプリには試用期間や期限がありません。対応する全エンジン、AI、MCP、Safe Mode は無料です。Starter と Team は<pricing>料金ページ</pricing>の機能を追加します。",
+                        "iPhone・iPad アプリは無料で、ライセンスやアプリ内課金はありません。"
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro はオープンソースですか？",
                     "answer": [
-                        "はい。両アプリは有料機能のコードも含め、AGPLv3 で公開しており、1 つの <source>GitHub リポジトリ</source>にあります。ソースから自分でビルドした場合も、公開ビルドと同じ方法でライセンスを確認します。"
+                        "はい。両アプリは有料機能のコードも含め、一つの <source>GitHub リポジトリ</source>で AGPLv3 として公開しています。ソースからビルドしても、有料機能のライセンス確認は行います。"
                     ]
                 },
                 {
                     "id": "work-use",
                     "question": "TablePro を仕事で使えますか？",
                     "answer": [
-                        "はい。企業の規模に関係なく利用できます。AGPL は TablePro の実行に条件を課しません。条件が適用されるのは、配布する場合と、変更版をネットワーク経由で他者に提供する場合です。詳細は<agpl>ライセンス本文</agpl>をご覧ください。"
+                        "はい。会社の規模は問いません。AGPL は TablePro の実行に条件を課しません。配布や、改変版をネットワーク経由で他者に提供する場合に適用されます。詳細は<agpl>ライセンス本文</agpl>をご覧ください。"
                     ]
                 }
             ]
@@ -74,15 +74,15 @@
                     "id": "mac-requirements",
                     "question": "どの Mac で TablePro が動きますか？",
                     "answer": [
-                        "Mac 版 TablePro は {macRequirement}が必要です。Apple silicon 用と Intel 用のビルドをそれぞれ用意しています。<download>ダウンロードページ</download>には両方があり、Homebrew は適切なものをインストールします。"
+                        "Mac アプリには {macRequirement} が必要です。<download>ダウンロードページ</download>で Apple silicon・Intel を選ぶか、Homebrew に選択を任せられます。"
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "iPhone・iPad 版はありますか？",
                     "answer": [
-                        "はい。iPhone・iPad 版 TablePro は App Store で提供しており、{iosRequirement}が必要です。無料で、アプリ内課金はありません。SSH トンネル、Safe Mode、Face ID に対応し、{iosEngines} に接続してテーブルの閲覧・編集やクエリの実行ができます。",
-                        "スマートフォンとタブレット向けに作られた別のアプリで、Mac アプリのコピーではありません。例えば AI アシスタント、MCP サーバー、保存済みクエリはありません。<ios>iPhone・iPad ページ</ios>に対応機能と非対応機能を掲載しています。"
+                        "はい。無料の App Store アプリは {iosRequirement} が必要で、{iosEngines} に接続できます。クエリ、SSH トンネル、Safe Mode、Face ID に対応します。テーブル参照・編集の対応はエンジンによって異なります。",
+                        "AI アシスタント、MCP サーバー、保存済みクエリはありません。<ios>機能と制限</ios>をご覧ください。"
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                     "id": "languages",
                     "question": "アプリはどの言語に対応していますか？",
                     "answer": [
-                        "Mac アプリのインターフェイスは {macLanguages} に対応しています。英語以外の言語では、一部の画面に英語のテキストが残っています。iPhone・iPad アプリは {iosLanguages} に対応しています。",
-                        "このウェブサイトとアカウントポータルは複数の言語で利用できます。<docs>ドキュメント</docs>は英語です。"
+                        "Mac アプリは {macLanguages} に対応しますが、一部の翻訳済み画面にも英語が残っています。iPhone・iPad アプリは {iosLanguages} に対応します。",
+                        "Web サイトとアカウントポータルは複数言語に対応しています。<docs>ドキュメント</docs>は英語です。"
                     ]
                 }
             ]
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "どのデータベースに接続できますか？",
                     "answer": [
-                        "Mac では {featuredEngines} などに接続できます。ドキュメント、キーバリュー、検索、ストリーミング、分析用エンジンも含まれます。<databases>データベースページ</databases>にすべてのエンジンと、それぞれで TablePro が対応する機能を掲載しています。",
+                        "Mac アプリは {featuredEngines} などに対応しています。エンジンごとの機能は<databases>対応データベース</databases>で確認できます。",
                         "iPhone・iPad アプリは {iosEngines} に接続できます。"
                     ]
                 },
@@ -118,31 +118,31 @@
                     "id": "drivers",
                     "question": "データベースドライバーのインストールは必要ですか？",
                     "answer": [
-                        "いいえ。{bundledEngines} のドライバーは Mac アプリに同梱されています。その他のドライバーは、そのエンジンを初めて選んだときにダウンロードされるため、インターネット接続が必要です。ドライバーはアプリとは別に更新されます。読み込む前に、アプリは公開されたチェックサムとコード署名を検証します。",
-                        "iPhone・iPad のドライバーはアプリに組み込まれているため、ダウンロードはありません。"
+                        "Mac には {bundledEngines} のドライバーを同梱しています。その他は初回にインターネットからダウンロードし、独立して更新します。TablePro がチェックサムとコード署名を検証します。",
+                        "iPhone・iPad のドライバーはすべて組み込みです。"
                     ]
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "SSH または SSL で接続できますか？",
+                    "question": "SSH や TLS で接続できますか？",
                     "answer": [
-                        "はい。Mac の SSH トンネルはパスワード、鍵、1Password のものを含む SSH エージェントで認証でき、踏み台ホストも使えます。SSL/TLS はサーバー証明書を検証できます。Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 プロキシ、kubectl port-forward などのコマンド経由でも接続できます。<connections>接続ページ</connections>で各方法を説明しています。",
-                        "iPhone・iPad の SSH トンネルはパスワードまたは秘密鍵で認証します。踏み台ホストは非対応です。"
+                        "はい。エンジンが対応している場合に使えます。Mac は SSH キー、パスワード、エージェント、踏み台ホスト、TLS 証明書の検証、外部トンネルやプロキシに対応します。<connections>接続方法</connections>をご覧ください。",
+                        "iPhone・iPad の SSH はパスワードか秘密鍵を使います。踏み台ホストには対応しません。"
                     ]
                 },
                 {
                     "id": "passwords",
                     "question": "パスワードはどこに保存されますか？",
                     "answer": [
-                        "Mac では macOS キーチェーンに保存します。接続時にファイル、環境変数、シェルコマンド、1Password、HashiCorp Vault、AWS Secrets Manager から読むこともできます。iPhone・iPad ではデバイスのキーチェーンに保存します。",
-                        "iCloud Sync がオンでも、Mac の Sync Categories の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> を別途オンにした場合のみ、iCloud キーチェーンでパスワードを同期します。"
+                        "保存したパスワードは Keychain に保持します。Mac ではファイル、環境変数、シェルコマンド、1Password、Vault、AWS Secrets Manager から取得することもできます。",
+                        "パスワード同期は別途有効にする必要があります。Mac の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> を有効にすると、iCloud Keychain を使います。"
                     ]
                 },
                 {
                     "id": "import-connections",
                     "question": "他のアプリの接続を取り込めますか？",
                     "answer": [
-                        "はい。Mac アプリは {importApps} から保存済みパスワードも含めて接続を取り込めます。インポートは無料です。"
+                        "はい。Mac アプリは {importApps} から接続と保存済みパスワードを無料でインポートできます。"
                     ]
                 }
             ]
@@ -155,45 +155,45 @@
                     "id": "what-a-license-adds",
                     "question": "ライセンスで何が追加されますか？",
                     "answer": [
-                        "Starter ライセンスは Mac アプリに {starterFeatures} を追加します。Team は Starter の全機能に加え、接続とクエリをチームで共有する {teamFeatures} を追加します。<pricing>料金ページ</pricing>でそれぞれを説明しています。"
+                        "Starter は Mac アプリに {starterFeatures} を追加します。Team はさらに {teamFeatures} を追加します。詳しくは<pricing>有料機能</pricing>をご覧ください。"
                     ]
                 },
                 {
                     "id": "cost",
                     "question": "ライセンスの料金はいくらですか？",
                     "answer": [
-                        "Starter と Team はそれぞれ月払い、年払い、買い切りで販売し、価格は米ドルです。Team はシート単位で、最低 {teamMinSeats} シートです。現在の料金と合計は<pricing>料金ページ</pricing>をご覧ください。"
+                        "米ドルでの月払い、年払い、買い切りを選べます。Team は {teamMinSeats} 席からです。最新の<pricing>料金と合計</pricing>をご覧ください。"
                     ]
                 },
                 {
                     "id": "how-many-macs",
                     "question": "1 ライセンスで何台の Mac を使えますか？",
                     "answer": [
-                        "Starter ライセンスは 1 人用で、最大 {starterActivations} 台の Mac で使えます。Team は {teamMinSeats}～{teamMaxSeats} シートで、1 シートは有効化した Mac 1 台です。iPhone・iPad はシートを使わず、アプリにライセンスもありません。",
-                        "別の Mac にライセンスを移すには、<account>アカウント</account>で古い Mac を削除してください。"
+                        "Starter は一人で最大 {starterActivations} 台の Mac を使えます。Team は {teamMinSeats}～{teamMaxSeats} 席で、認証した Mac 一台につき一席を使います。iPhone・iPad は席を使いません。",
+                        "認証を移すには、<account>アカウント</account>で元の Mac を削除します。"
                     ]
                 },
                 {
                     "id": "subscription-ends",
                     "question": "サブスクリプションが終了するとどうなりますか？",
                     "answer": [
-                        "有料機能が使えなくなります。例えば iCloud Sync は一時停止し、Linked Folders や Team Library の接続は非表示になります。それ以外は引き続き使え、接続、クエリ、設定はそのまま Mac に残ります。更新すると有料機能が再び使えます。",
-                        "買い切りに有効期限はありません。iPhone・iPad には変更はありません。"
+                        "有料機能が停止し、iCloud Sync は一時停止します。共有接続が非表示になる場合もあります。ローカルの接続、クエリ、設定は残り、無料機能も使えます。更新すると有料機能を再開できます。",
+                        "買い切りライセンスに有効期限はありません。iPhone・iPad には影響しません。"
                     ]
                 },
                 {
                     "id": "offline",
                     "question": "ライセンスはオフラインで使えますか？",
                     "answer": [
-                        "はい。Mac アプリは起動ごとに Mac 内でライセンスの署名を検証し、{revalidateDays} 日ごとにサーバーで確認します。サーバーに接続できない場合は、最後に確認が成功してから {graceDays} 日間、有料機能が使えます。",
-                        "初回のドライバーダウンロード、アップデート、クラウドで動く AI プロバイダーなど、性質上インターネットが必要な機能はあります。"
+                        "はい。オフライン猶予期間内で使えます。起動時に署名を検証し、{revalidateDays} 日ごとにサーバーへ確認します。接続できない場合、有料機能は最後の確認成功から {graceDays} 日間使えます。",
+                        "ドライバーのダウンロード、更新、クラウド AI にはインターネット接続が必要です。"
                     ]
                 },
                 {
                     "id": "payment",
                     "question": "支払いは誰が処理しますか？",
                     "answer": [
-                        "{merchant} が merchant of record です。お客様は {merchant} からライセンスを購入し、同社が支払いを受け取り、チェックアウト時の売上税や VAT を計算し、領収書をメールで送ります。請求書、支払い方法、サブスクリプションは <portal>{merchant} のカスタマーポータル</portal>で管理でき、購入時のメールアドレスでログインします。"
+                        "{merchant} が merchant of record として決済、税金、領収書を扱います。購入時のメールアドレスで <portal>{merchant} のカスタマーポータル</portal>にログインし、請求書やサブスクリプションを管理できます。"
                     ]
                 },
                 {
@@ -214,14 +214,14 @@
                     "id": "refunds",
                     "question": "返金はできますか？",
                     "answer": [
-                        "はい。すべてのプランで購入から {refundDays} 日以内に返金でき、月払い・年払いの各更新も請求日から {refundDays} 日以内なら返金できます。申請方法とライセンスの扱いは<refundPolicy>返金ポリシー</refundPolicy>をご覧ください。"
+                        "はい。購入やサブスクリプションの更新は、各請求から {refundDays} 日以内なら返金対象です。<refundPolicy>返金ポリシー</refundPolicy>をご覧ください。"
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "ライセンスキーをなくしました。どこにありますか？",
                     "answer": [
-                        "購入時に送ったメールと、<account>アカウント</account>にあります。購入時のメールアドレスでログインすると、ライセンスとキーが表示されます。"
+                        "購入メールか<account>アカウント</account>で確認できます。購入時のメールアドレスでログインすると、キーが表示されます。"
                     ]
                 },
                 {
@@ -241,30 +241,30 @@
                     "id": "what-is-sent",
                     "question": "アプリは TablePro に何を送りますか？",
                     "answer": [
-                        "ライセンスを有効化していない場合、Mac アプリが TablePro に送るのは 1 日 1 回の利用状況レポートだけです。初期設定でオンですが、<ui>Settings > General > Privacy</ui> で切り替えられます。ハッシュ化したマシン ID、アプリのバージョン・言語・接続先のデータベースの種類などを含みます。ホスト名、ユーザー名、パスワード、クエリ、行データは含みません。",
-                        "ライセンスがある場合は、{revalidateDays} 日ごとにキー、同じマシン ID、Mac の名前、アプリと macOS のバージョンを送って確認します。iPhone・iPad は Share Usage Data をオンにしない限り、TablePro へ送信しません。サーバーの保存内容も含む全体の一覧は<privacy>プライバシーポリシー</privacy>をご覧ください。"
+                        "Mac アプリは初期設定で毎日利用レポートを送ります。<ui>Settings > General > Privacy</ui> で無効にできます。ハッシュ化した端末 ID、アプリ情報、データベースの種類を含みますが、ホスト名、ユーザー名、パスワード、クエリ、行データは含みません。",
+                        "ライセンス確認は {revalidateDays} 日ごとに行い、キー、端末 ID、Mac 名、アプリと macOS のバージョンを送ります。iPhone・iPad のレポートは任意です。Team Library は公開した設定や保存済み SQL を受け取ります。IP ログを含む<privacy>プライバシーポリシー</privacy>をご覧ください。"
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "登録は必要ですか？",
                     "answer": [
-                        "どちらのアプリも登録なしで使えます。ライセンスを購入すると、<account>アカウント</account>にライセンス、有効化した Mac、チームのシートが表示されます。購入時のメールアドレスへ送るリンクでログインできます。"
+                        "アプリの利用に登録は不要です。購入者は購入時のメールアドレスに届くリンクから<account>アカウント</account>にログインし、ライセンス、Mac、席を管理できます。"
                     ]
                 },
                 {
                     "id": "ai-data",
                     "question": "AI アシスタントはデータを TablePro に送りますか？",
                     "answer": [
-                        "いいえ。AI アシスタントは Mac アプリの機能で、リクエストは追加したプロバイダーへ直接送られ、TablePro を経由しません。初期設定ではデータベースの種類と名前、スキーマのテーブルとカラム定義、現在のクエリを含みます。結果の行はオンにした場合のみ送られます。{localAiProviders} はお客様の Mac 上で動きます。詳細は <aiMcp>AI と MCP ページ</aiMcp>をご覧ください。"
+                        "いいえ。リクエストは TablePro を経由せず、選んだプロバイダーに直接送ります。既定ではデータベースの種類と名前、スキーマ、現在のクエリを含みます。結果の行には別途同意が必要です。{localAiProviders} はローカルで動きます。プロバイダーの利用料金がかかる場合があります。<aiMcp>AI のデータ処理</aiMcp>をご覧ください。"
                     ]
                 },
                 {
                     "id": "icloud-data",
                     "question": "iCloud Sync は何をどこに保存しますか？",
                     "answer": [
-                        "iCloud Sync はオンにするまで無効です。同期する接続と、Mac で選んだ他のカテゴリは、お客様自身の iCloud アカウント内の非公開データベースに保存され、TablePro は読めません。パスワードは Mac の Sync Categories の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> もオンにした場合のみ同期します。",
-                        "Mac の iCloud Sync は Starter または Team ライセンスの機能です。iPhone・iPad では無料です。"
+                        "同期は初期状態では無効です。あなたの iCloud アカウント内の非公開データベースを使い、TablePro は読めません。パスワードは Mac の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> で別途有効にします。",
+                        "iCloud Sync は Mac では Starter または Team が必要で、iPhone・iPad では無料です。"
                     ]
                 }
             ]
@@ -277,28 +277,28 @@
                     "id": "sign-in",
                     "question": "アカウントにはどうログインしますか？",
                     "answer": [
-                        "<account>アカウント</account>を開き、購入時のメールアドレスを入力してください。一度だけ使える、有効期限の短いログインリンクをお送りします。ログインできるのは購入したアドレスのみです。チームメンバーは Mac アプリの招待コードで参加します。"
+                        "<account>アカウント</account>で購入時のメールアドレスを入力します。届くリンクは一回限りで、短時間で失効します。ポータルにログインするのは購入者だけです。チームメンバーは Mac アプリで招待コードを使います。"
                     ]
                 },
                 {
                     "id": "members",
                     "question": "チームメンバーを追加・削除するには？",
                     "answer": [
-                        "<account>アカウント</account>からメールで招待します。相手は受け取ったコードを Mac の TablePro の <ui>Settings > License</ui> に入力し、その Mac が 1 シートを使います。メンバーを削除すると、シートが空き、その方の Mac はログアウトされ、Team Library に公開した内容も削除されます。"
+                        "<account>アカウント</account>からメールでメンバーを招待します。メンバーは <ui>Settings > License</ui> にコードを入力し、認証した Mac ごとに一席を使います。メンバーを削除すると席が空き、公開した Team Library 項目も削除します。有料機能は即時ではなく次回のライセンス確認時に使えなくなります。"
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "シート数を変更するには？",
                     "answer": [
-                        "月払い・年払いの Team サブスクリプションは<account>アカウント</account>で変更できます。次の請求書に反映されます。買い切りの Team ライセンスの場合は <email>{email}</email> にご連絡ください。"
+                        "<account>アカウント</account>でサブスクリプションの席数を変更できます。差額は次の請求書に反映します。買い切りライセンスは <email>{email}</email> にご連絡ください。"
                     ]
                 },
                 {
                     "id": "cancel",
                     "question": "サブスクリプションを解約するには？",
                     "answer": [
-                        "<account>アカウント</account>または <portal>{merchant} のカスタマーポータル</portal>で解約します。以降の請求は発生せず、ライセンスは支払い済みの期間が終わるまで使えます。それまでに再開もできます。"
+                        "<account>アカウント</account>か <portal>{merchant} のポータル</portal>で解約できます。支払い済みの期間は利用でき、次の更新は行いません。期間が終わる前なら再開できます。"
                     ]
                 }
             ]
@@ -311,23 +311,23 @@
                     "id": "switch-connections",
                     "question": "接続を設定し直す必要がありますか？",
                     "answer": [
-                        "いいえ。TablePro は {importApps} から、保存済みパスワード、SSH トンネル、SSL 設定も含めて接続をインポートできます。"
+                        "現在のクライアントが対応していれば、{importApps} から保存済みパスワード、SSH トンネル、TLS 設定を含めて接続をインポートできます。"
                     ]
                 },
                 {
                     "id": "compare",
                     "question": "TablePro と他のクライアントの違いは？",
                     "answer": [
-                        "<compare>比較ページ</compare>は TablePro と他のクライアントを並べ、情報の確認日と、それぞれが適する場面を示しています。"
+                        "<compare>比較ページ</compare>で相違点、確認日、出典、他のクライアントが向いている場合を確認できます。"
                     ]
                 }
             ]
         }
     ],
     "contact": {
-        "title": "お探しの回答がありませんか？",
+        "title": "お困りですか？",
         "body": "<email>{email}</email> にメールを送るか、<issues>GitHub</issues> で問題を報告してください。",
         "chat": "チャットを開始",
-        "chatNote": "チャットは、各ページの読み込みが完了した後に読み込まれます。"
+        "chatNote": "ライブチャットはページの読み込み完了後に表示します。"
     }
 }

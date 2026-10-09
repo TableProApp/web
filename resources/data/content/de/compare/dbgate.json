@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs. DbGate: Mac und iPhone oder Desktop und Web",
+        "title": "TablePro vs DbGate: Editionen und unterstützte Plattformen",
         "description": "DbGate ist ein Open-Source-Client für Windows, macOS, Linux und das Web, mit kostenpflichtigen Premium-Editionen. TablePro ist Open Source und nativ."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs. DbGate",
-        "lead": "DbGate ist ein Open-Source-Client für SQL- und NoSQL-Datenbanken auf Basis von {technology}. Er läuft unter Windows, macOS und Linux sowie als Web-App, mit einer kostenlosen Community-Edition und kostenpflichtigen Premium-Editionen. TablePro ist ein Open-Source-Client mit einer nativen Mac-App, einer separaten iPhone- und iPad-App und optionalen kostenpflichtigen Funktionen auf dem Mac."
+        "lead": "DbGate bietet Desktop- und Webclients auf Basis von {technology}. Vergleiche Community und Premium mit TablePros nativem Client."
     },
     "shortAnswer": {
         "tablepro": [
-            "Du möchtest einen KI-Assistenten ohne kostenpflichtige Edition. Er ist in der Mac-App kostenlos, mit einem KI-Anbieter deiner Wahl, während der Datenbank-Chat von DbGate in {cells.ai.edition} enthalten ist.",
-            "Du meldest dich bei Datenbanken mit AWS IAM oder Microsoft Entra ID an und möchtest das kostenlos.",
-            "Du möchtest Sicherungen mit dem Dump-Tool der jeweiligen Engine, ohne kostenpflichtige Edition.",
-            "Du möchtest eine native Mac-App in Swift, mit Passwörtern im macOS-Schlüsselbund.",
-            "Du möchtest auch eine iPhone- und iPad-App."
+            "Kostenloser KI-Chat mit dem Anbieter deiner Wahl.",
+            "Anmeldung mit AWS IAM und Microsoft Entra ID ohne kostenpflichtigen Tarif.",
+            "Kostenlose Backups mit den Dump-Werkzeugen unterstützter Engines."
         ],
         "competitor": [
-            "Du arbeitest auch unter Windows oder Linux oder möchtest eine Web-App, die dein Team im Browser öffnet.",
-            "Du verbindest dich mit Firebird, Azure Cosmos DB oder Firestore, die TablePro nicht unterstützt.",
-            "Du möchtest einen visuellen Abfrage-Designer, ab der Edition {cells.queryDesigner.edition}.",
-            "Du möchtest, dass DbGate Cloud deine Verbindungen und SQL-Dateien auf jedem Gerät bereithält, an dem du dich anmeldest."
+            "Ein Client für Windows, Linux oder einen Webserver.",
+            "Verbindungen zu Firebird, Azure Cosmos DB oder Firestore.",
+            "Ein visueller Abfrageeditor in {cells.queryDesigner.edition} oder DbGate-Cloud-Synchronisierung."
         ]
     },
     "glance": {
@@ -56,31 +53,43 @@
         "items": [
             {
                 "text": "DbGate läuft unter Windows, macOS und Linux und außerdem als Web-App, die du auf einem Server bereitstellst.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Es verbindet sich mit Engines, die TablePro nicht unterstützt, etwa Firebird, und die kostenpflichtigen Editionen ergänzen Azure Cosmos DB und Firestore.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Die Community-Edition ist kostenlos und Open Source unter der {licence}, mit ER-Diagrammen in jeder Edition.",
-                "cite": ["licence", "cells.diagram"],
+                "cite": [
+                    "licence",
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Premium ergänzt einen visuellen Abfrage-Designer und ein Werkzeug, das Datenbankmodelle vergleicht und bereitstellt.",
-                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "cite": [
+                    "cells.queryDesigner",
+                    "cells.modelCompare"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "DbGate Cloud hält Verbindungen und SQL-Dateien auf jedem Gerät bereit, an dem du dich anmeldest, in Community mit bis zu {cells.sync.value} Verbindungen.",
-                "cite": ["cells.sync"],
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -91,36 +100,45 @@
         "items": [
             {
                 "text": "TablePro ist eine Mac-App in Swift mit nativen Datenbanktreibern. DbGate basiert auf {technology}. Beide bieten Builds für Macs mit Apple silicon und Intel.",
-                "cite": ["technology", "mac"],
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Der <link>KI-Assistent</link> ist in der Mac-App kostenlos, mit einem KI-Anbieter deiner Wahl, in der Cloud oder auf deinem Mac. Der Datenbank-Chat von DbGate gehört zu den kostenpflichtigen Editionen und läuft über DbGates Gateway zu OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
                 "text": "Die <link>Anmeldung mit AWS IAM und Microsoft Entra ID</link> ist in TablePro kostenlos. DbGate führt sie in seinen kostenpflichtigen Editionen.",
-                "cite": ["cells.cloudAuth"],
+                "cite": [
+                    "cells.cloudAuth"
+                ],
                 "feature": null,
                 "href": "/features/connections#cloud-auth"
             },
             {
                 "text": "<link>Sicherungen</link> über das Dump-Tool der jeweiligen Engine sind in TablePro kostenlos. Native Sicherung und Wiederherstellung bietet DbGate in seinen kostenpflichtigen Editionen.",
-                "cite": ["cells.backup"],
+                "cite": [
+                    "cells.backup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
             {
-                "text": "<link>iCloud Sync</link> hält Verbindungen zwischen deinen Macs und deinem iPhone oder iPad synchron. Die Funktion gehört zu Starter auf dem Mac und ist in der iPhone- und iPad-App kostenlos.",
+                "text": "<link>iCloud Sync</link> synchronisiert Verbindungen zwischen Macs, iPhones und iPads. Auf dem Mac ist Starter erforderlich; auf iPhone und iPad ist die Funktion kostenlos.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "Es gibt eine kostenlose <link>App für iPhone und iPad</link>, ohne In-App-Käufe.",
+                "text": "Die separate <link>App für iPhone und iPad</link> ist kostenlos, ohne In-App-Käufe.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -131,7 +149,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Es gibt keine TablePro-App für Windows oder Linux und keine Webversion.",
+                "text": "Es gibt keine Webversion.",
                 "cite": [],
                 "feature": null,
                 "href": null

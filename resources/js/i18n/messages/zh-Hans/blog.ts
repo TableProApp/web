@@ -6,9 +6,9 @@ export default {
         "guides": "指南",
         "releases": "发行说明"
     },
-    "latest": "部分版本还会在博客上发布文章。最新一篇是<post>{title}</post>。",
+    "latest": "最新版本文章：<post>{title}</post>。",
     "post": {
-        "archive": "此文章发布于 {date}，介绍的是当时的 {release}。了解 TablePro 当前的功能，请查看<features>功能</features>和<changelog>更新日志</changelog>（英语）。",
+        "archive": "发布于 {date}。本文介绍 {release} 发布时的功能。请查看当前<features>功能</features>和<changelog>更新日志</changelog>（英语）。",
         "correction": "更正，{date}",
         "toc": "本页内容",
         "pages": "相关页面",

@@ -1,17 +1,17 @@
 ---
 slug: postgresql-ssh-tunnel-mac
-title: "How to connect to PostgreSQL through an SSH tunnel on a Mac"
+title: "Connect to PostgreSQL through an SSH tunnel on a Mac"
 seoTitle: "Connect to PostgreSQL over an SSH tunnel on a Mac"
-description: The ssh -L command for a PostgreSQL server behind a bastion, then the same tunnel in TablePro with a password, a key, an agent or jump hosts.
+description: Connect to PostgreSQL over SSH with ssh -L or TablePro. Set up keys, agents and jump hosts, and understand the tunnel’s TLS limits.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: ssh -L first, then the same tunnel in the connection form.
 tags: [postgresql, ssh]
 ---
 
-A PostgreSQL server in a private network has no port you can reach from your Mac. You get to it by logging in to a machine that can see it and forwarding a port through that login. This guide starts with the plain `ssh` command, then sets up the same tunnel in TablePro's connection form.
+Use an SSH tunnel when PostgreSQL is reachable from a bastion but not from your Mac. Forward a local port with `ssh`, or let TablePro manage the tunnel with the database connection.
 
-## The plain ssh command {#ssh-command}
+## Forward a port with ssh {#ssh-command}
 
 ```bash
 ssh -N -L 5433:localhost:5432 deploy@bastion.example.com
@@ -20,7 +20,7 @@ ssh -N -L 5433:localhost:5432 deploy@bastion.example.com
 - `-L 5433:localhost:5432` listens on port 5433 on your Mac and forwards it to `localhost:5432` as the SSH server sees it.
 - `-N` opens no shell. The command stays in the foreground until you press `Ctrl+C`.
 
-The middle part of `-L` is resolved on the SSH server, not on your Mac. If PostgreSQL runs on the SSH server itself, it is `localhost`. If it runs elsewhere in the private network, use the name the SSH server knows it by, such as `db.internal:5432`.
+The destination in `-L` is resolved on the SSH server. Use `localhost` if PostgreSQL runs there, or a private-network address such as `db.internal:5432` if it runs elsewhere.
 
 While the tunnel is up, connect to its local end:
 
@@ -42,9 +42,9 @@ With the key loaded in an agent (`ssh-add ~/.ssh/id_ed25519`), `-i` is not neede
 
 The tunnel is a separate process. Close that terminal and every client connected through it drops.
 
-## The same tunnel in TablePro {#in-tablepro}
+## Set up the tunnel in TablePro {#in-tablepro}
 
-TablePro opens the tunnel when the connection opens and closes it with the connection, so there is no terminal to keep around.
+TablePro opens and closes the tunnel with the database connection.
 
 1. Click **New Connection…** on the welcome window, or press `Cmd+N`, and pick **PostgreSQL**.
 2. On **General**, describe the database as the SSH server sees it: **Host** (`localhost` when PostgreSQL runs on the SSH server), **Port**, **Database**, **Username** and **Password**. PostgreSQL does not connect without a database name.
@@ -70,7 +70,7 @@ To use one bastion for several connections, click **Save Current as Profile…**
 
 With **SSH Agent**, signing stays in the agent and TablePro never reads the private key.
 
-One detail trips people up. An app started from Finder gets `SSH_AUTH_SOCK` from launchd, which means the agent macOS runs, whatever your shell profile exports. If your keys live in 1Password or Secretive, choose **1Password** or **Custom Path** instead.
+Apps launched from Finder get `SSH_AUTH_SOCK` from launchd, not your shell profile. For keys in 1Password or Secretive, choose **1Password** or **Custom Path** instead.
 
 If the server asks for a verification code, the **Two-Factor Authentication** section covers it. **Prompt at Connect** asks you each time. **Auto Generate** computes the code from the TOTP secret you enter.
 
@@ -80,7 +80,7 @@ For a database behind more than one bastion, expand **Jump Hosts** and click **A
 
 Leave the list empty and, if the SSH host matches a `~/.ssh/config` entry that has `ProxyJump`, TablePro follows that line instead.
 
-## A server that only listens on a unix socket {#unix-socket}
+## Forward a Unix socket {#unix-socket}
 
 Some PostgreSQL servers accept `local` connections only and open no TCP port. `ssh` can forward to the socket file:
 
@@ -90,7 +90,7 @@ ssh -N -L 5433:/var/run/postgresql/.s.PGSQL.5432 deploy@bastion.example.com
 
 In TablePro, put that path in **Socket Path** under **Forward To** on the **Network** tab. Point at the socket file, not the directory. **Host** and **Port** are then unused. A socket cannot negotiate TLS, so TablePro turns it off for that connection, and the SSH tunnel encrypts the whole path.
 
-## Where it stops {#limits}
+## Limitations {#limits}
 
 - Certificate checks do not survive a tunnel. The driver connects to `127.0.0.1`, so **Verify CA** and **Verify Identity** drop to **Required (skip verify)** for a tunneled connection. TLS still runs all the way to the database.
 - The local end of the tunnel listens on a port between 60000 and 65000. If the macOS firewall asks about it, allow it.
@@ -98,10 +98,10 @@ In TablePro, put that path in **Socket Path** under **Forward To** on the **Netw
 - Jump hosts work in the Mac app only. The iPhone and iPad app does not open a connection that has them.
 - **SSH Tunnel** is not offered for file databases such as SQLite and DuckDB.
 
-## If it does not connect {#troubleshooting}
+## Troubleshooting {#troubleshooting}
 
 - **"The SSH server could not reach …"**: SSH worked and the forward did not. Check **Host** on **General**. A database bound to `127.0.0.1`, which is the PostgreSQL default, needs **Host** set to `localhost`.
 - **The tunnel connects and the database refuses the login**: the SSH credentials and the database credentials are separate. Check that one set did not end up in the other's fields.
 - **SSH itself fails**: run `ssh -v deploy@bastion.example.com` in Terminal with the same host, user and key. If that fails too, the problem is on the server.
 
-The docs list every SSH error message with its cause in [SSH Tunneling](https://docs.tablepro.app/connections/ssh-tunneling). What TablePro does once you are connected is on the [PostgreSQL page](/postgresql-client), and the other ways to reach a private database, such as a SOCKS proxy or a `kubectl port-forward` command, are under [Connections](/features/connections#network).
+See [SSH Tunneling](https://docs.tablepro.app/connections/ssh-tunneling) for error messages and the [PostgreSQL overview](/postgresql-client) for database features. [Network connections](/features/connections#network) also covers SOCKS proxies and `kubectl port-forward`.
