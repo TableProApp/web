@@ -106,13 +106,13 @@ it('renders every page of a family in each locale it renders in', function (stri
     }
 })->with(fn(): array => array_keys(landingFamilies()));
 
-it('renders the Vietnamese blog listing of the English posts, unindexed', function (): void {
+it('renders and indexes the Vietnamese blog listing', function (): void {
     get('/vi/blog')
         ->assertOk()
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Blog/Index')
             ->where('locale', 'vi')
-            ->where('seo.robots', 'noindex, follow')
+            ->where('seo.robots', 'index, follow')
             ->has('posts', count(glob(resource_path('blog/*.md')) ?: [])));
 });
 
