@@ -74,6 +74,46 @@ html {
   word-break: keep-all;
 }
 
+/*
+ * Testimonials. The marks follow the language of the quoted text, and from
+ * 768px the opening mark hangs in the cell's padding so the text keeps its edge.
+ */
+.testimonial-quote {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+.testimonial-quote:lang(de) {
+  quotes: "\201E" "\201C" "\201A" "\2018";
+}
+
+.testimonial-quote:lang(fr) {
+  quotes: "\00AB\00A0" "\00A0\00BB" "\201C" "\201D";
+}
+
+.testimonial-quote:lang(ja),
+.testimonial-quote:lang(zh-Hant) {
+  quotes: "\300C" "\300D" "\300E" "\300F";
+}
+
+.testimonial-quote > p:first-child::before {
+  content: open-quote;
+}
+
+.testimonial-quote > p:last-child::after {
+  content: close-quote;
+}
+
+@media (min-width: 48rem) {
+  .testimonial-quote > p:first-child {
+    position: relative;
+  }
+
+  .testimonial-quote > p:first-child::before {
+    position: absolute;
+    right: 100%;
+  }
+}
+
 :lang(ja) {
   line-break: strict;
 }

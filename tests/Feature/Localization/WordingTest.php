@@ -137,6 +137,12 @@ function wordingStrings(string $locale): array
         }
     }
 
+    foreach (json_decode((string) file_get_contents(WORDING_RESOURCES . '/data/testimonials.json'), true, 512, JSON_THROW_ON_ERROR)['quotes'] as $quote) {
+        if (isset($quote['translations'][$locale])) {
+            $strings["testimonials.json {$quote['id']}"] = $quote['translations'][$locale];
+        }
+    }
+
     return array_map(
         fn(string $text): string => (string) preg_replace(['#<ui>.*?</ui>#u', '/`[^`]*`/u', '#<code>.*?</code>#u', '#https?://\S+#u'], ' ', $text),
         $strings,

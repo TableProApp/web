@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabaseController;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Assets\AssetManifest;
+use App\Support\Content\Testimonials;
 use App\Support\Seo\PageRegistry;
 use Dom\Element;
 use Dom\HTMLDocument;
@@ -71,7 +72,7 @@ function homeSectionIds(string $html): array
 }
 
 /** The ten homepage sections, in sitemap §D's order. Sponsors is third by the owner's decision (spec §0). */
-const HOME_SECTIONS = ['top', 'databases', 'sponsors', 'features', 'safety', 'ai', 'platforms', 'switch', 'pricing', 'open-source'];
+const HOME_SECTIONS = ['top', 'databases', 'sponsors', 'features', 'safety', 'ai', 'platforms', 'switch', 'testimonials', 'pricing', 'open-source'];
 
 /** Older ids that land inside the section that replaced them (sitemap §C.2). */
 const HOME_ALIASES = ['mcp' => 'ai', 'mobile' => 'platforms', 'compare' => 'switch', 'license' => 'pricing'];
@@ -220,6 +221,14 @@ describe('props and copy', function (): void {
         get('/')->assertInertia(fn(AssertableInertia $page) => $page
             ->where('iosEngines.picker', $picker)
             ->where('iosEngines.syncedOnly', $syncedOnly));
+    });
+
+    it('sends six quotes, the reader\'s language first', function (): void {
+        get('/ja')->assertInertia(fn(AssertableInertia $page) => $page
+            ->has('testimonials', Testimonials::SHOWN)
+            ->where('testimonials.0.lang', 'ja')
+            ->where('testimonials.0.translation', null)
+            ->where('testimonials.1.translatedFrom', 'en'));
     });
 
     it('names Product Hunt as a plain text link from facts.json, with no badge', function (): void {
@@ -416,7 +425,7 @@ describe('server-rendered', function (): void {
         expect(substr_count($html, '<main'))->toBe(1, "{$path} must have exactly one main landmark");
     })->with(['/', '/vi']);
 
-    it('renders the ten sections in order, with Sponsors third', function (string $path): void {
+    it('renders the eleven sections in order, with Sponsors third', function (string $path): void {
         $ids = array_values(array_intersect(homeSectionIds(ssrHome($path)), HOME_SECTIONS));
 
         expect($ids)->toBe(HOME_SECTIONS);
@@ -732,5 +741,50 @@ describe('server-rendered', function (): void {
         expect(ssrHome('/'))
             ->toContain('data-asset-id="mac-hero-window"')
             ->toContain('data-asset-id="mac-hero-window-mobile"');
+    });
+
+    it('shows each post in the reader\'s language, with the original behind a labelled disclosure, the author\'s photo and a link to the post', function (string $path, string $locale): void {
+        $section = HTMLDocument::createFromString(ssrHome($path), LIBXML_NOERROR)->querySelector('#testimonials');
+        $labels = homeContent($locale)['testimonials']['translatedFrom'];
+        $flat = fn(string $text): string => (string) preg_replace('/\s+/u', '', $text);
+
+        expect($section)->not->toBeNull();
+
+        $items = $section->querySelectorAll('ul > li');
+
+        expect($items)->toHaveCount(Testimonials::SHOWN);
+
+        foreach (app(Testimonials::class)->forLocale($locale) as $index => $quote) {
+            $item = $items->item($index);
+            $blockquote = $item->querySelector('blockquote');
+            $details = $item->querySelector('details');
+
+            if ($quote['translation'] === null) {
+                expect($blockquote->getAttribute('lang'))->toBe($quote['lang'], "{$path} {$quote['id']}");
+                expect($flat($blockquote->textContent))->toBe($flat($quote['text']), "{$path} {$quote['id']} is not the text as written");
+                expect($details)->toBeNull();
+            } else {
+                expect($blockquote->hasAttribute('lang'))->toBeFalse("{$path} {$quote['id']}: the translation is in the page's language");
+                expect($flat($blockquote->textContent))->toBe($flat($quote['translation']));
+                expect($details?->querySelector('summary')?->textContent)->toBe($labels[$quote['translatedFrom']]);
+                expect($flat((string) $details?->querySelector("[lang=\"{$quote['lang']}\"]")?->textContent))->toBe($flat($quote['text']), "{$path} {$quote['id']}: the original is one click away");
+            }
+
+            expect($item->querySelector('[translate="no"]')->textContent)->toBe($quote['name']);
+            expect($item->querySelector('a[href="' . $quote['url'] . '"]'))->not->toBeNull("{$path} {$quote['id']} does not link its post");
+
+            $photo = $item->querySelector('img');
+            expect($photo?->getAttribute('src'))->toBe("/images/testimonials/{$quote['id']}.webp");
+            expect($photo?->getAttribute('alt'))->toBe('', 'the name beside the photo already says who it is');
+        }
+    })->with([
+        ['/', 'en'],
+        ['/ja', 'ja'],
+        ['/vi', 'vi'],
+        ['/zh-Hant', 'zh-Hant'],
+    ]);
+
+    it('marks up no quote as a review or a rating', function (): void {
+        expect(ssrHome('/'))->toContain('id="testimonials"')->not->toContain('"Review"')->not->toContain('aggregateRating');
     });
 });
