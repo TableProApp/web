@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
@@ -221,7 +221,7 @@ TablePro 不以十六歲以下兒童為對象，也不會在明知的情況下�
 
 ## 安全 {#security}
 
-App、網站、帳戶入口網站與我們的伺服器之間使用 HTTPS。[使用情況報告](#mac-usage-report)中所述國家查詢為例外，使用未加密的 HTTP。帳戶登入連結僅以雜湊形式保存，系統存取限於營運 TablePro 的人員。沒有系統完全安全。回報弱點請參閱[安全性頁面](/zh-Hant/security#report)，或寄送郵件至 [{email}](mailto:{email})。
+App、網站、帳戶入口網站與我們的伺服器之間使用 HTTPS。[使用情況報告](#mac-usage-report)中所述國家查詢為例外，使用未加密的 HTTP。帳戶登入連結僅以雜湊形式保存，系統存取僅限於 {publisherName} 及[資料接收方](#sharing)中列出的服務供應商。沒有系統完全安全。回報弱點請參閱[安全性頁面](/zh-Hant/security#report)，或寄送郵件至 [{email}](mailto:{email})。
 
 ## 政策變更 {#changes}
 

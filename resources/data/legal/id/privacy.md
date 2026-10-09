@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -221,7 +221,7 @@ TablePro tidak ditujukan kepada anak di bawah 16 tahun, dan kami tidak dengan se
 
 ## Keamanan {#security}
 
-Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Pencarian negara yang dijelaskan di [Laporan penggunaan](#mac-usage-report) adalah pengecualian: pencarian dilakukan melalui HTTP tanpa enkripsi. Tautan masuk akun hanya disimpan sebagai hash, dan akses ke sistem kami dibatasi kepada orang yang menjalankan TablePro. Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
+Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Pencarian negara yang dijelaskan di [Laporan penggunaan](#mac-usage-report) adalah pengecualian: pencarian dilakukan melalui HTTP tanpa enkripsi. Tautan masuk akun hanya disimpan sebagai hash, dan akses ke sistem kami dibatasi untuk {publisherName} dan penyedia layanan yang tercantum di [Penerima data](#sharing). Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
 
 ## Perubahan kebijakan ini {#changes}
 

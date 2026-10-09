@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes tablepro.app/account. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
@@ -221,7 +221,7 @@ TablePro ne s’adresse pas aux enfants de moins de 16 ans et nous ne collectons
 
 ## Sécurité {#security}
 
-Le trafic entre applications, site, portail de comptes et serveur utilise HTTPS. Les recherches de pays décrites dans [Rapport d’utilisation](#mac-usage-report) font exception : elles utilisent HTTP non chiffré. Les liens de connexion ne sont stockés que sous forme de hachages et l’accès à nos systèmes est limité aux personnes exploitant TablePro. Aucun système n’est parfaitement sécurisé. Pour signaler une vulnérabilité, consultez la [page Sécurité](/fr/security#report) ou écrivez à [{email}](mailto:{email}).
+Le trafic entre applications, site, portail de comptes et serveur utilise HTTPS. Les recherches de pays décrites dans [Rapport d’utilisation](#mac-usage-report) font exception : elles utilisent HTTP non chiffré. Les liens de connexion ne sont stockés que sous forme de hachages et l’accès à nos systèmes est limité à {publisherName} et aux prestataires indiqués dans [Qui reçoit les données](#sharing). Aucun système n’est parfaitement sécurisé. Pour signaler une vulnérabilité, consultez la [page Sécurité](/fr/security#report) ou écrivez à [{email}](mailto:{email}).
 
 ## Modification de cette politique {#changes}
 
