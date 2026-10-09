@@ -95,6 +95,22 @@ it('sets the root font from the per-language stacks international.css declares',
     expect(stylesheet('app.css'))->toMatch('/\nhtml \{\s*font-family: var\(--font-sans, var\(--default-font-family\)\);\s*\}/');
 });
 
+it('keeps the macOS face first in each CJK stack, and Meiryo ahead of Yu Gothic for Windows', function (): void {
+    preg_match_all('/html:lang\(([A-Za-z-]+)\) \{\s*--font-sans: ([^;]+);/', stylesheet('international.css'), $rules, PREG_SET_ORDER);
+
+    $stacks = [];
+
+    foreach ($rules as [, $language, $stack]) {
+        $stacks[$language] = array_map(fn(string $face): string => trim($face, ' "'), explode(',', $stack));
+    }
+
+    // Windows draws Yu Gothic too light at 400.
+    expect(array_slice($stacks['ja'], 0, 4))->toBe(['Inter Variable', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Yu Gothic']);
+    expect(array_slice($stacks['ko'], 0, 3))->toBe(['Inter Variable', 'Apple SD Gothic Neo', 'Malgun Gothic']);
+    expect(array_slice($stacks['zh-Hans'], 0, 3))->toBe(['Inter Variable', 'PingFang SC', 'Microsoft YaHei']);
+    expect(array_slice($stacks['zh-Hant'], 0, 3))->toBe(['Inter Variable', 'PingFang TC', 'Microsoft JhengHei']);
+});
+
 it('breaks Korean between words and keeps Japanese line starts clean', function (): void {
     $css = stylesheet('app.css');
 
