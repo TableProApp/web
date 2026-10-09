@@ -79,6 +79,15 @@ html {
 }
 
 /*
+ * A German compound wider than a phone ("Datenschutzerklärung" at 320px) breaks at a syllable, with a hyphen.
+ * Words under 12 letters stay whole, so a name such as TablePro or DynamoDB is never split.
+ */
+:is(h1, h2, h3, h4, h5, h6):lang(de) {
+  hyphens: auto;
+  hyphenate-limit-chars: 12 4 4;
+}
+
+/*
  * ---------------------------------------------------------------------------
  * The banner, the sticky header and anchor scrolling
  * ---------------------------------------------------------------------------
