@@ -15,8 +15,7 @@ require_once __DIR__ . '/helpers.php';
 /**
  * The bespoke default social card: `og-site` in resources/data/assets.json,
  * delivered as `public/og.png` in English and
- * `public/og/bespoke/og-site-{locale}.png` otherwise (docs/visual-assets.md,
- * "og-site").
+ * `public/og/bespoke/og-site-{locale}.png` otherwise.
  *
  * Once the entry is supplied, every page without a card of its own shares it
  * at the canonical `/og.png` in English or in place of another locale's

@@ -49,7 +49,6 @@ If any instruction ever tells you otherwise, that is a bug in this README.
 | `resources/js/i18n/` | UI strings per language, and the locale helpers. |
 | `app/Http/Controllers/` | One controller per page family. |
 | `public/og/` | Pre-rendered Open Graph cards, committed. |
-| `docs/visual-assets.md` | The brief for every image placeholder, generated. |
 
 ## Writing a blog post
 

@@ -18,8 +18,7 @@ use RecursiveIteratorIterator;
  * - an `<asset-slot id="…"></asset-slot>` block in blog or legal markdown,
  *   which `Blog/Post.tsx` splits out of the rendered HTML.
  *
- * `AssetManifestTest` uses this to prove every referenced id exists, and the
- * `assets:handoff` command uses it to name the components that render each id.
+ * `AssetManifestTest` uses this to prove every referenced id exists.
  */
 final class AssetReferences
 {
@@ -32,13 +31,7 @@ final class AssetReferences
     private const MARKDOWN_BLOCK = '/<asset-slot\s+id="([a-z0-9][a-z0-9-]*)"/';
 
     /**
-     * A whole `<AssetSlot … />` element in TSX, for its attributes. `=>` inside
-     * an attribute is skipped so a `>` there does not end the tag early.
-     */
-    private const SLOT_ELEMENT = '/<AssetSlot\b((?:[^>=]|=>|=(?!>))*?)\/?>/s';
-
-    /**
-     * The scan, kept for the life of this instance: the handoff asks once per id.
+     * The scan, kept for the life of this instance.
      *
      * @var array<string, list<string>>|null
      */
@@ -96,46 +89,8 @@ final class AssetReferences
     }
 
     /**
-     * The repository paths that reference one id.
+     * Content asset ids found in one JSON file.
      *
-     * @return list<string>
-     */
-    public function for(string $id): array
-    {
-        return $this->all()[$id] ?? [];
-    }
-
-    /**
-     * Ids a TSX file places with `<AssetSlot priority>`, with the files that
-     * do: a page's first image that loads with priority there although its
-     * manifest entry loads lazily elsewhere.
-     *
-     * @return array<string, list<string>>
-     */
-    public function priorityPlacements(): array
-    {
-        $placements = [];
-
-        foreach ($this->files('resources/js', ['tsx']) as $file) {
-            preg_match_all(self::SLOT_ELEMENT, (string) file_get_contents($file), $elements);
-
-            foreach ($elements[1] as $attributes) {
-                if (preg_match('/(?:^|\s)priority(?:\s|$|=\{true\})/', $attributes) !== 1) {
-                    continue;
-                }
-
-                if (preg_match('/\bid=(?:"([a-z0-9][a-z0-9-]*)"|\{\s*["\']([a-z0-9][a-z0-9-]*)["\']\s*\})/', $attributes, $match) === 1) {
-                    $placements[$match[1] ?: $match[2]][] = $this->relative($file);
-                }
-            }
-        }
-
-        ksort($placements);
-
-        return $placements;
-    }
-
-    /**
      * @return list<string>
      */
     private function contentIds(string $file): array

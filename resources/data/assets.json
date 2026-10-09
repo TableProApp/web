@@ -1,5 +1,5 @@
 {
-  "$comment": "The public site's visual asset manifest (architecture §1.9). `kinds` pins geometry and export rules (design-system §6.3); `assets` holds one entry per id. `status` is the only render switch: placeholder renders the visible brief, supplied renders <picture> from `src`. Files: {replacement.dir}/{base}-{light|dark}[-{locale}]-{width}.{format}; vector kinds drop the width; og-card files are {base}-{locale}.png. docs/visual-assets.md is generated from this file and docs/rebuild/assets/*.md by `php artisan assets:handoff`.",
+  "$comment": "The public site's visual asset manifest (architecture §1.9). `kinds` pins geometry and export rules (design-system §6.3); `assets` holds one entry per id. `status` is the only render switch: placeholder renders the visible brief, supplied renders <picture> from `src`. Files: {replacement.dir}/{base}-{light|dark}[-{locale}]-{width}.{format}; vector kinds drop the width; og-card files are {base}-{locale}.png. Frontend catalogs are generated from this file by `php artisan assets:generate`.",
   "kinds": {
     "window": {
       "type": "screenshot",

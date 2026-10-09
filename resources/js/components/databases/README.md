@@ -22,11 +22,8 @@ Exactly these files, and nothing else:
 1. `resources/data/content/en/databases/{slug}.json` and `resources/data/content/vi/databases/{slug}.json` for each
    slug you write. The slug must already be in `App\Support\Content\Slugs\DatabaseSlugs::ALL` and be the `slug` of a
    `page: "own"` engine in `engines.json`.
-2. `docs/rebuild/assets/databases.md`: one section per `databases`-family slot your pages use (the lead slot, and a
-   window slot's `-mobile` crop too, such as `mac-db-redis-keys-mobile`), in the format of
-   `docs/rebuild/assets/_template.md`, added after the existing sections. `assets:handoff` reads one file per family,
-   so a section in any other file is reported. A new or changed slot is a manifest edit plus its brief; then run
-   `php artisan assets:handoff`.
+2. For a new or changed slot, edit `resources/data/assets.json`, then run
+   `php artisan assets:generate`. Optional image briefs stay local and are not required by CI.
 
 A page does not edit the template (`pages/Databases/*`, `components/databases/*`), the controller,
 `DatabaseSlugs.php`, the hub file or any test. If a fact you need is missing from data, or a limit sentence is wrong,

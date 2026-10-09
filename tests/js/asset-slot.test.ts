@@ -360,7 +360,7 @@ function project(manifest: AssetManifestData): SlotManifestData {
 test('the metadata and selected language render every real slot exactly as the manifest does', () => {
     const slotIds = Object.keys(real.assets).filter((id) => real.assets[id].slot);
 
-    assert.deepEqual(Object.keys(bundled.assets), slotIds, 'the slice lists other ids than the manifest has slots; run php artisan assets:handoff');
+    assert.deepEqual(Object.keys(bundled.assets), slotIds, 'the slice lists other ids than the manifest has slots; run php artisan assets:generate');
 
     for (const locale of locales) {
         const copy = JSON.parse(readFileSync(new URL(`../../resources/js/lib/data/asset-locales/${locale}.json`, import.meta.url), 'utf8'));

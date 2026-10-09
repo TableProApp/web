@@ -34,7 +34,7 @@ interface AssetSlotProps {
  * `useShownSlot()` first. When the owner supplies the files and flips `status`
  * to `supplied`, the same call renders `<picture>` with `srcset`, `sizes`,
  * dimensions, theme variants and the right loading priority. The geometry is
- * identical in both modes. See docs/visual-assets.md for the briefs.
+ * identical in both modes.
  */
 export default function AssetSlot({ id, sizes, className, caption = true, priority }: AssetSlotProps) {
     const { locale, m } = useI18n();
