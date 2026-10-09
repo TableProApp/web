@@ -2,8 +2,9 @@
  * Shared with TableProApp/web and TableProApp/license at resources/css/international.css. Change both in the same release. See docs/shared-files.md.
  */
 /* Native script fonts supplement Inter without downloading a second UI font. */
+/* Windows draws Yu Gothic too light at 400, so Meiryo comes first where it is installed. */
 html:lang(ja) {
-  --font-sans: "Inter Variable", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
+  --font-sans: "Inter Variable", "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
 }
 html:lang(ko) {
   --font-sans: "Inter Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", sans-serif;
