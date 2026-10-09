@@ -160,9 +160,8 @@ in a block's `engines`: `{ "label": "Plan as text", "list": "explainText" }`. Ro
   `illustration` runs full width below it. Never place a `-mobile` crop: its window's slot renders it.
 - Place every slot the sitemap gives your page (`AssetManifestTest` fails for the whole `features` family until every
   one of its slots is placed somewhere).
-- A new id or a changed description is a manifest edit plus its brief in `docs/rebuild/assets/features.md` (same
-  headings as `_template.md`, one `## id` per slot your page places; `assets:handoff` reads one file per family);
-  then run `php artisan assets:handoff`.
+- A new id or a changed description is a manifest edit; then run `php artisan assets:generate`.
+  Optional image briefs stay local and are not required by CI.
 
 ## Vietnamese
 

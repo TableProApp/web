@@ -112,8 +112,8 @@ php artisan sitemap:generate
 WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=my-post   # needs Chromium (PUPPETEER_EXECUTABLE_PATH); cards print WEB_DOMAIN
 php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: a supported locale code or all
                                 # commit public/og; delete a retired page's card (Seo/OgCardsTest fails on a missing or orphaned card)
-php artisan assets:handoff      # after editing assets.json or docs/rebuild/assets/*.md
-php artisan assets:handoff --check   # what CI runs: fails on a stale generated file
+php artisan assets:generate    # after editing resources/data/assets.json
+php artisan assets:generate --check   # checks only frontend asset catalogs
 php artisan release:check       # network: compares platforms.json with GitHub, Sparkle, Homebrew, App Store
 ```
 
@@ -163,9 +163,9 @@ fake GitHub with `Http::fake()`. Tests that assert on rendered markup go behind
   the file, a slot is a described placeholder outside production and renders
   nothing in production (the shared `assetPlaceholders` prop); layout that
   makes room for a slot asks `useShownSlot()` first. A new slot or a changed description is a
-  manifest edit plus a brief in `docs/rebuild/assets/{family}.md`; then run
-  `php artisan assets:handoff`, which regenerates `docs/visual-assets.md` and
-  the bundle's `resources/js/lib/data/asset-slots.json` and `asset-locales/*.json`. Never hand-edit generated files.
+  manifest edit; then run `php artisan assets:generate`, which regenerates
+  the bundle's `resources/js/lib/data/asset-slots.json` and `asset-locales/*.json`.
+  Local asset briefs are optional and are not read by code or CI. Never hand-edit generated catalogs.
 
 ## Frontend
 

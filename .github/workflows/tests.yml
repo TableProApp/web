@@ -59,12 +59,8 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate
 
-      # docs/visual-assets.md and resources/js/lib/data/asset-slots.json are
-      # generated from resources/data/assets.json and docs/rebuild/assets/*.md.
-      # A manifest or brief edit without `php artisan assets:handoff` would
-      # ship a stale owner handoff, or pages still showing the old slot state.
-      - name: Asset handoff is current
-        run: php artisan assets:handoff --check
+      - name: Bundled asset catalogs are current
+        run: php artisan assets:generate --check
 
       - name: Tests
         run: ./vendor/bin/pest

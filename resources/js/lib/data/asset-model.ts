@@ -115,7 +115,7 @@ export type SlotEntry = Pick<
 
 /**
  * The manifest as the browser receives it: `AssetManifest::slotProjection()`
- * in PHP, written by `php artisan assets:handoff` to
+ * in PHP, written by `php artisan assets:generate` to
  * `resources/js/lib/data/asset-slots.json`. The full `AssetManifestData`
  * satisfies it too, which is how the tests render the real manifest.
  */
@@ -320,7 +320,7 @@ export function slotSupplied(manifest: SlotManifestData, id: string, locale: str
 /** The entry's text for a field, which the bundled projection keeps only for the state that shows it. */
 function required(text: LocalizedText | undefined, id: string, field: string): LocalizedText {
     if (text === undefined) {
-        throw new Error(`Asset "${id}" has no ${field} here. Run php artisan assets:handoff to refresh resources/js/lib/data/asset-slots.json.`);
+        throw new Error(`Asset "${id}" has no ${field} here. Run php artisan assets:generate to refresh resources/js/lib/data/asset-slots.json.`);
     }
 
     return text;

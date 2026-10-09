@@ -3,7 +3,7 @@
  *
  * The source of truth is resources/data/assets.json. The bundle imports only
  * its geometry slice, `./asset-slots.json`, plus the current language’s text
- * from `./asset-locales/{locale}.json`. `php artisan assets:handoff` writes
+ * from `./asset-locales/{locale}.json`. `php artisan assets:generate` writes
  * both from the manifest. The page resolver awaits the selected catalog before
  * SSR or hydration; other languages stay in separate chunks. Handoff fields
  * and bespoke social cards stay out of the browser’s JavaScript.

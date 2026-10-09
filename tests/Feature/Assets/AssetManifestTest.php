@@ -717,7 +717,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
     /*
      * The bundle imports geometry and selected text, excluding the owner's
      * handoff fields (architecture §1.4 asks a shared-chunk addition to stay
-     * near 10 KB gzipped). A manifest edit without `php artisan assets:handoff`
+     * near 10 KB gzipped). A manifest edit without `php artisan assets:generate`
      * would leave the site rendering the old state, so a stale slice fails
      * here.
      */
@@ -726,7 +726,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
         $committed = resource_path('js/lib/data/asset-slots.json');
 
         expect($committed)->toBeFile();
-        Assert::assertSame($manifest->slotProjectionJson(), (string) file_get_contents($committed), 'resources/js/lib/data/asset-slots.json is stale. Run: php artisan assets:handoff');
+        Assert::assertSame($manifest->slotProjectionJson(), (string) file_get_contents($committed), 'resources/js/lib/data/asset-slots.json is stale. Run: php artisan assets:generate');
 
         $projection = $manifest->slotProjection();
         $slots = array_keys(array_filter($manifest->assets(), fn(array $entry): bool => $entry['slot']));
@@ -749,7 +749,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
         foreach (Locales::codes() as $locale) {
             $path = resource_path('js/lib/data/asset-locales/' . $locale . '.json');
             expect($path)->toBeFile();
-            Assert::assertSame($manifest->slotTextProjectionJson($locale), (string) file_get_contents($path), "Asset text for {$locale} is stale. Run: php artisan assets:handoff");
+            Assert::assertSame($manifest->slotTextProjectionJson($locale), (string) file_get_contents($path), "Asset text for {$locale} is stale. Run: php artisan assets:generate");
             $copy = $manifest->slotTextProjection($locale);
             expect(array_keys($copy))->toBe($slots);
             $copyBytes = strlen((string) gzencode(json_encode($copy, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 9));

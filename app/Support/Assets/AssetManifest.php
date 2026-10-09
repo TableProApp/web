@@ -118,7 +118,7 @@ final class AssetManifest
 
     /**
      * The part of the manifest a browser needs to render `<AssetSlot>`, which
-     * `assets:handoff` writes to `resources/js/lib/data/asset-slots.json` for
+     * `assets:generate` writes to `resources/js/lib/data/asset-slots.json` for
      * the bundle.
      *
      * The full manifest includes all languages and owner-only metadata: `usedOn`, `handoffPriority`, `legacySource`, the kinds'
