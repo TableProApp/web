@@ -227,25 +227,25 @@ dataset('reviewed facts', [
         ['Trên Mac, bạn gắn tag', 'Khi một connection đang mở ở Agent mode', '<code>$VAR</code>'],
         ['mọi connection chạy ở mức Alert', 'bạn tự cài các công cụ này'],
     ],
-    'the refund window starts at purchase, or a yearly plan’s latest renewal' => [
+    'the refund window starts at purchase, and again at every monthly or yearly renewal' => [
         'content/en/pricing.json',
-        ['within {refundDays} days of purchase, or, for a yearly plan, of its most recent renewal'],
-        ['days of payment'],
+        ['within {refundDays} days of purchase, and each monthly or yearly renewal within {refundDays} days of its charge'],
+        ['days of payment', 'for a yearly plan'],
     ],
     'the refund window (vi)' => [
         'content/vi/pricing.json',
-        ['kể từ ngày mua, hoặc, với gói theo năm, kể từ ngày gia hạn gần nhất', 'chỉ thanh toán một lần'],
+        ['kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm', 'chỉ thanh toán một lần'],
         ['kể từ khi thanh toán', 'được trả một lần', 'Các điều kiện chỉ áp dụng'],
     ],
     'the refund policy describes its own window' => [
         'legal/en/refund-policy.md',
-        ['of purchase, or of the latest renewal for a yearly plan', '](/pricing#refunds)'],
-        ['days of payment'],
+        ['of purchase, and each monthly or yearly renewal within {refundDays} days of its charge', '](/pricing#refunds)'],
+        ['days of payment', 'for a yearly'],
     ],
     'the FAQ names the bundled drivers from data and the Mac sync toggle' => [
         'content/en/faq.json',
-        ['Drivers for {bundledEngines} come with the Mac app', '<ui>Passwords</ui> under Sync Categories on the Mac', 'or, for a yearly plan, of its most recent renewal'],
-        ['the most common engines', 'every driver is built into the app', 'days of buying'],
+        ['Drivers for {bundledEngines} come with the Mac app', '<ui>Passwords</ui> under Sync Categories on the Mac', 'and each monthly or yearly renewal within {refundDays} days of its charge'],
+        ['the most common engines', 'every driver is built into the app', 'days of buying', 'for a yearly plan'],
     ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',

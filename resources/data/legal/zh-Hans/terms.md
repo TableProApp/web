@@ -8,7 +8,7 @@ updatedAt: "2026-10-08"
 
 ## 定义 {#definitions}
 
-- “**TablePro**”、“**我们**”及“**我们的**”指 TablePro 项目及其维护者。
+- “**TablePro**”、“**我们**”及“**我们的**”指{publisherCountry}{publisherCity}的个人开发者 {publisherName}，即 TablePro 的发布者。
 - “**应用**”指 Mac 版 TablePro 和 iPhone、iPad 版 TablePro，包括其更新和插件。
 - “**网站**”指 tablepro.app、docs.tablepro.app 及我们运营的其他域名。
 - “**服务**”指网站、账户门户，以及 Mac 应用用于许可证验证和 Team Library 的服务器。

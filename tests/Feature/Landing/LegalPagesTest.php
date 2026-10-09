@@ -1,8 +1,10 @@
 <?php
 
 use App\Support\Localization\Locales;
+use App\Services\Content\SiteFacts;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Seo\PageRegistry;
+use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -28,6 +30,22 @@ const LEGAL_FIRST_QUERY = [
     'zh-Hant' => '首次執行查詢',
     'it' => 'prima query',
     'id' => 'kueri pertama',
+];
+
+// The phrase each language uses for a monthly or yearly renewal, refundable on its own.
+const LEGAL_RENEWAL_REFUND = [
+    'en' => 'each monthly or yearly renewal',
+    'vi' => 'mỗi lần gia hạn theo tháng hoặc theo năm',
+    'es' => 'cada renovación mensual o anual',
+    'de' => 'jede monatliche oder jährliche Verlängerung',
+    'fr' => 'chaque renouvellement mensuel ou annuel',
+    'ja' => '月払い・年払いの各更新',
+    'pt-BR' => 'cada renovação mensal ou anual',
+    'zh-Hans' => '月付或年付方案的每次续订',
+    'ko' => '월간 또는 연간 플랜의 각 갱신',
+    'zh-Hant' => '月付或年付方案的每次續訂',
+    'it' => 'ogni rinnovo mensile o annuale',
+    'id' => 'setiap perpanjangan bulanan atau tahunan',
 ];
 
 /**
@@ -137,7 +155,7 @@ it('takes every number and address from the data files, the same ones in every l
 
     foreach (LegalDocuments::DOCUMENTS as $document) {
         expect($documents->tokenNames($document, $locale))->toBe($documents->tokenNames($document, 'en'));
-        expect(array_diff($documents->tokenNames($document, $locale), array_keys($documents->tokens())))->toBe([]);
+        expect(array_diff($documents->tokenNames($document, $locale), array_keys($documents->tokens($locale))))->toBe([]);
 
         $source = legalSource($document, $locale);
 
@@ -365,6 +383,73 @@ it('keeps the refund window from pricing.json and tells a subscriber how to stop
     expect($source)->toContain('{revalidateDays}');
     Assert::assertStringNotContainsStringIgnoringCase('machines deactivate', $source);
 })->with(['en', 'vi']);
+
+it('refunds each monthly or yearly renewal within the window of its own charge, in the policy, on the pricing page and in the FAQ', function (string $locale): void {
+    $phrase = LEGAL_RENEWAL_REFUND[$locale];
+    $days = (string) json_decode(File::get(resource_path('data/pricing.json')), true)['refund']['days'];
+    $policy = YamlFrontMatter::parse(legalSource('refund-policy', $locale));
+    $faq = collect(json_decode(File::get(resource_path("data/content/{$locale}/faq.json")), true)['groups'])
+        ->flatMap(fn(array $group): array => $group['items'])
+        ->firstWhere('id', 'refunds');
+
+    preg_match('/\brefund"?:\s*\{(.*?)\n\s*\}/s', File::get(resource_path("js/i18n/messages/{$locale}/pricing.ts")), $catalog);
+    preg_match_all('/:\s*(["\'])(.+?)\1,?\s*$/m', $catalog[1] ?? '', $forms);
+
+    $texts = [
+        'refund-policy.md description' => [(string) $policy->matter('description'), '{refundDays}'],
+        'refund-policy.md intro' => [(string) strtok($policy->body(), "\n"), '{refundDays}'],
+        'pricing.json refunds' => [json_decode(File::get(resource_path("data/content/{$locale}/pricing.json")), true)['refunds']['body'], '{refundDays}'],
+        'faq.json refunds' => [$faq['answer'][0] ?? '', '{refundDays}'],
+    ];
+
+    expect($forms[2])->not->toBeEmpty();
+
+    foreach ($forms[2] as $index => $form) {
+        $texts["pricing.ts refund form {$index}"] = [$form, '{count}'];
+    }
+
+    foreach ($texts as $where => [$text, $slot]) {
+        $at = mb_strpos($text, $phrase);
+
+        expect($at)->not->toBeFalse("{$locale} {$where} does not refund a monthly or yearly renewal");
+        expect(mb_substr($text, (int) $at))->toContain($slot);
+        expect($text)->not->toMatch('/(?<!\d)' . $days . '(?!\d)/u');
+    }
+})->with(legalLocales());
+
+it('names the publisher from facts.json as the provider in the terms and the data controller in the privacy policy', function (string $locale): void {
+    $publisher = app(SiteFacts::class)->publisher($locale);
+
+    expect($publisher)->not->toBeNull();
+
+    foreach (['terms' => 'definitions', 'privacy' => 'controller'] as $document => $section) {
+        expect(legalSection($document, $locale, $section))
+            ->toContain('{publisherName}')
+            ->toContain('{publisherCity}')
+            ->toContain('{publisherCountry}');
+
+        Assert::assertStringNotContainsString($publisher['name'], legalSource($document, $locale));
+        Assert::assertStringNotContainsString($publisher['city'], legalSource($document, $locale));
+
+        expect(app(LegalDocuments::class)->render($document, $locale)['html'])
+            ->toContain($publisher['name'])
+            ->toContain($publisher['city'])
+            ->toContain($publisher['country']);
+    }
+
+    expect(legalSection('privacy', $locale, 'controller'))->toContain('[{email}](mailto:{email})');
+})->with(legalLocales());
+
+it('points a vulnerability report in the privacy policy at the security page', function (string $locale): void {
+    $prefix = Locales::prefixFor($locale);
+    $href = ($prefix === null ? '' : "/{$prefix}") . '/security#report';
+    $security = json_decode(File::get(resource_path("data/content/{$locale}/security.json")), true);
+
+    expect(legalSection('privacy', $locale, 'security'))->toContain("]({$href})");
+    expect(app(LegalDocuments::class)->render('privacy', $locale)['html'])->toContain('href="' . $href . '"');
+    expect(array_column($security['sections'], 'id'))->toContain('report');
+    expect(app(PageRegistry::class)->find('landing.security', [])->renderLocales)->toContain($locale);
+})->with(legalLocales());
 
 it('links each document to pages in its own language', function (string $locale): void {
     $prefix = Locales::prefixFor($locale);

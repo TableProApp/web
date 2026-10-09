@@ -18,7 +18,7 @@ updatedAt: "2026-10-08"
 
 ## 誰負責處理 {#controller}
 
-發佈 App 和本網站的 TablePro 是此處所述個人資料的責任方（資料控制者）。如對本政策或您的資料有疑問，請寄送郵件至 [{email}](mailto:{email})。
+發佈 TablePro App 和本網站的{publisherCountry}{publisherCity}個人開發者 {publisherName} 是此處所述個人資料的責任方（資料控制者）。如對本政策或您的資料有疑問，請寄送郵件至 [{email}](mailto:{email})。
 
 ## Mac 版 TablePro {#mac-app}
 
@@ -221,7 +221,7 @@ TablePro 不以十六歲以下兒童為對象，也不會在明知的情況下�
 
 ## 安全 {#security}
 
-App、網站、帳戶入口網站與我們的伺服器之間使用 HTTPS。[使用情況報告](#mac-usage-report)中所述國家查詢為例外，使用未加密的 HTTP。帳戶登入連結僅以雜湊形式保存，系統存取限於營運 TablePro 的人員。沒有系統完全安全。回報弱點請寄送郵件至 [{email}](mailto:{email})。
+App、網站、帳戶入口網站與我們的伺服器之間使用 HTTPS。[使用情況報告](#mac-usage-report)中所述國家查詢為例外，使用未加密的 HTTP。帳戶登入連結僅以雜湊形式保存，系統存取限於營運 TablePro 的人員。沒有系統完全安全。回報弱點請參閱[安全性頁面](/zh-Hant/security#report)，或寄送郵件至 [{email}](mailto:{email})。
 
 ## 政策變更 {#changes}
 

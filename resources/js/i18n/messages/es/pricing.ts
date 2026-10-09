@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Todas las funciones de pago",
     "refund": {
-        "one": "Todos los planes de pago se pueden reembolsar en el plazo de {count} día desde la compra. Consulta la <link>política de reembolso</link>.",
-        "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra. Consulta la <link>política de reembolso</link>."
+        "one": "Todos los planes de pago se pueden reembolsar en el plazo de {count} día desde la compra, y cada renovación mensual o anual en el plazo de {count} día desde su cobro. Consulta la <link>política de reembolso</link>.",
+        "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra, y cada renovación mensual o anual en los {count} días siguientes a su cobro. Consulta la <link>política de reembolso</link>."
     },
     "finePrint": "Precios en dólares estadounidenses. {merchant} es el merchant of record: recibe el pago y calcula los impuestos sobre ventas o el IVA al finalizar la compra.",
     "finePrintCurrency": "Precios en dólares estadounidenses.",

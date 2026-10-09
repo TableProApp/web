@@ -83,7 +83,7 @@ export default {
     },
     allFeatures: 'Tất cả tính năng trả phí',
     refund: {
-        other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua. Xem <link>chính sách hoàn tiền</link>.',
+        other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {count} ngày kể từ ngày tính phí. Xem <link>chính sách hoàn tiền</link>.',
     },
     finePrint: 'Giá tính bằng USD. {merchant} là merchant of record: {merchant} nhận thanh toán và tính thuế bán hàng hoặc VAT (nếu có) khi bạn thanh toán.',
     finePrintCurrency: 'Giá tính bằng USD.',

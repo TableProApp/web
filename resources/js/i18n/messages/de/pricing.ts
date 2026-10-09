@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Alle Bezahlfunktionen",
     "refund": {
-        "one": "Jeder bezahlte Tarif kann innerhalb von {count} Tag nach dem Kauf erstattet werden. Details in der <link>Erstattungsrichtlinie</link>.",
-        "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden. Details in der <link>Erstattungsrichtlinie</link>."
+        "one": "Jeder bezahlte Tarif kann innerhalb von {count} Tag nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tag nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>.",
+        "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tagen nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>."
     },
     "finePrint": "Preise in US-Dollar. {merchant} ist der Merchant of Record: Er nimmt die Zahlung entgegen und berechnet beim Kauf die anfallende Verkaufs- oder Mehrwertsteuer.",
     "finePrintCurrency": "Preise in US-Dollar.",

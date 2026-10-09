@@ -18,7 +18,7 @@ Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die
 
 ## Wer verantwortlich ist {#controller}
 
-TablePro, das die Apps und diese Website veröffentlicht, ist für die hier beschriebenen personenbezogenen Daten verantwortlich (Verantwortlicher für die Datenverarbeitung). Bei Fragen zu dieser Erklärung oder deinen Daten schreibe an [{email}](mailto:{email}).
+{publisherName}, ein Einzelentwickler in {publisherCity}, {publisherCountry}, veröffentlicht die TablePro-Apps und diese Website und ist für die hier beschriebenen personenbezogenen Daten verantwortlich (Verantwortlicher für die Datenverarbeitung). Bei Fragen zu dieser Erklärung oder deinen Daten schreibe an [{email}](mailto:{email}).
 
 ## TablePro für Mac {#mac-app}
 
@@ -221,7 +221,7 @@ TablePro richtet sich nicht an Kinder unter 16 Jahren. Wir erfassen ihre persone
 
 ## Sicherheit {#security}
 
-Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. Die unter [Nutzungsbericht](#mac-usage-report) beschriebenen Länderabfragen bilden die Ausnahme: Sie erfolgen über unverschlüsseltes HTTP. Anmeldelinks werden nur als Hashes gespeichert; nur die Personen, die TablePro betreiben, haben Zugang zu unseren Systemen. Kein System ist vollkommen sicher. Sicherheitslücken kannst du an [{email}](mailto:{email}) melden.
+Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. Die unter [Nutzungsbericht](#mac-usage-report) beschriebenen Länderabfragen bilden die Ausnahme: Sie erfolgen über unverschlüsseltes HTTP. Anmeldelinks werden nur als Hashes gespeichert; nur die Personen, die TablePro betreiben, haben Zugang zu unseren Systemen. Kein System ist vollkommen sicher. Sicherheitslücken meldest du wie auf der [Sicherheitsseite](/de/security#report) beschrieben oder per E-Mail an [{email}](mailto:{email}).
 
 ## Änderungen dieser Erklärung {#changes}
 

@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
     "refund": {
-        "one": "Toutes les offres payantes peuvent être remboursées dans un délai de {count} jour suivant l’achat. Voir la <link>politique de remboursement</link>.",
-        "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat. Voir la <link>politique de remboursement</link>."
+        "one": "Toutes les offres payantes peuvent être remboursées dans un délai de {count} jour suivant l’achat, et chaque renouvellement mensuel ou annuel dans un délai de {count} jour suivant son paiement. Voir la <link>politique de remboursement</link>.",
+        "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {count} jours suivant son paiement. Voir la <link>politique de remboursement</link>."
     },
     "finePrint": "Prix en dollars américains. {merchant} est le merchant of record : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
     "finePrintCurrency": "Prix en dollars américains.",

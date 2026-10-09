@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Todos os recursos pagos",
     "refund": {
-        "one": "Todos os planos pagos podem ser reembolsados em até {count} dia após a compra. Veja a <link>política de reembolso</link>.",
-        "other": "Todos os planos pagos podem ser reembolsados em até {count} dias após a compra. Veja a <link>política de reembolso</link>."
+        "one": "Todos os planos pagos podem ser reembolsados em até {count} dia após a compra, e cada renovação mensal ou anual em até {count} dia após a cobrança. Veja a <link>política de reembolso</link>.",
+        "other": "Todos os planos pagos podem ser reembolsados em até {count} dias após a compra, e cada renovação mensal ou anual em até {count} dias após a cobrança. Veja a <link>política de reembolso</link>."
     },
     "finePrint": "Preços em dólares americanos. {merchant} é o merchant of record: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
     "finePrintCurrency": "Preços em dólares americanos.",

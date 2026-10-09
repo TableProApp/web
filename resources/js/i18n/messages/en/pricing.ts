@@ -109,8 +109,8 @@ export default {
     /** A link to the plan table, after a card's highlighted features. */
     allFeatures: 'Every paid feature',
     refund: {
-        one: 'Every paid plan can be refunded within {count} day of purchase. See the <link>refund policy</link>.',
-        other: 'Every paid plan can be refunded within {count} days of purchase. See the <link>refund policy</link>.',
+        one: 'Every paid plan can be refunded within {count} day of purchase, and each monthly or yearly renewal within {count} day of its charge. See the <link>refund policy</link>.',
+        other: 'Every paid plan can be refunded within {count} days of purchase, and each monthly or yearly renewal within {count} days of its charge. See the <link>refund policy</link>.',
     },
     /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
     finePrint: 'Prices in US dollars. {merchant} is the merchant of record: it takes the payment and calculates any sales tax or VAT at checkout.',
