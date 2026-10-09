@@ -2,7 +2,7 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "currency": {
-        "pattern": "${amount}",
+        "pattern": "US${amount}",
         "decimal": ".",
         "group": ","
     },
