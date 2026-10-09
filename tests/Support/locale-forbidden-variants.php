@@ -5,6 +5,7 @@
 
 return [
     'vi' => [
+        ['/Điều khoản dịch vụ/iu', 'Điều khoản sử dụng'],
         ['/biểu đồ điểm/iu', 'biểu đồ phân tán (scatter)'],
         ['/thư mục SQL liên kết/iu', 'linked SQL folder'],
         ['/thư mục liên kết/iu', 'Linked Folders'],
@@ -319,6 +320,7 @@ return [
         ['/席次/u', '席位'],
     ],
     'it' => [
+        ['/\\bportachiavi\\b/u', 'Portachiavi'],
         ['/\\bmodalità sicura\\b/iu', 'Safe Mode'],
         ['/\\(Completa\\)|\\blivelli Completi\\b/u', '(Full): Safe Mode (Full), Alert (Full), i livelli Full'],
         ['/\\blivello Avviso\\b|\\b(?:ad?|da|come) Avviso\\b|\\bAvviso chiede\\b/u', 'Alert'],
@@ -364,6 +366,11 @@ return [
         ['/\\b(?:[Aa]ssistente|[Cc]hat|[Cc]lient|[Pp]rovider) AI\\b/u', 'IA'],
     ],
     'id' => [
+        ['/\\bberkas\\b/iu', 'file'],
+        ['/\\bbilah samping\\b/iu', 'sidebar'],
+        ['/\\bpada hingga\\b/iu', 'di maksimal'],
+        ['/\\bobrolan\\b/iu', 'chat'],
+        ['/(?<!iCloud )\\bKeychain\\b/u', 'Rantai Kunci'],
         ['/\\bBandingkan (?:dan|&) Sinkronkan\\b/u', 'Compare & Sync'],
         ['/\\bAnalisis Kueri\\b/u', 'Query Insights'],
         ['/\\bDiagram Hasil\\b/u', 'Result Charts'],
