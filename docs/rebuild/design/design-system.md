@@ -1357,7 +1357,7 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 
 ### 8.1 Home (`/`, `/vi`)
 
-The ten sections, their ids, aliases and slots are sitemap §D's. `HomepageRenderTest` and sitemap §G.3 pin these ids.
+The eleven sections, their ids, aliases and slots are sitemap §D's. `HomepageRenderTest` and sitemap §G.3 pin these ids.
 
 ```
 SiteHeader
@@ -1397,10 +1397,17 @@ SiteHeader
 §8  COMING FROM ANOTHER APP  #switch   (alias #compare)
     text at text width: importers named (passwords where true) · Open Project Folder
     Compare TablePro with other clients →  (/compare)
-§9  PRICING  #pricing   (alias #license)
+§9  WHAT DEVELOPERS SAY  #testimonials                        cells, flush: the quotes close on the next join
+    H2 + lead ("quoted from public posts, each linked to the original")
+    six quotes as cells, 1 / 2 / 3 across (768, 1280), the reader's language first. Each cell: the quote at body 500,
+    its marks in the quoted language with the opening one hanging in the padding from 768; a quote in another language
+    shows its translation, with the original behind a Disclosure labelled "Translated from …"; on the cell's floor the
+    name (small 500), handle · platform ↗ (muted) and the author's own photo, 40px, 6px radius, a 10% hairline, on the right.
+    No dates, ratings, platform logos or Review markup. Photos are 96px WebP under public/images/testimonials
+§10 PRICING  #pricing   (alias #license)
     H2 + lead (free core · optional paid features on Mac · open source) · BillingCycleControl + caption
     PricingCard ×3 as joined cells (compact: no Includes list) · Compare plans →  (/pricing) · Prices in USD … line
-§10 OPEN SOURCE AND GET STARTED  #open-source                 background, not surface
+§11 OPEN SOURCE AND GET STARTED  #open-source                 background, not surface
     AGPLv3 · View on GitHub ↗ · one sentence on how the project is funded
     PlatformActions as cells, flush on the footer's rule: [Download for Mac] primary + AvailabilityLine · App Store badge + AvailabilityLine
 SiteFooter

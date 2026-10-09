@@ -88,15 +88,20 @@ it('imports the shared foundation into the site stylesheet', function (): void {
 });
 
 it('sets the root font from the per-language stacks international.css declares', function (): void {
-    preg_match_all('/html:lang\(([A-Za-z-]+)\) \{\s*--font-sans:/', stylesheet('international.css'), $languages);
+    preg_match_all('/^:lang\(([A-Za-z-]+)\) \{\s*--font-sans:/m', stylesheet('international.css'), $languages);
 
     expect($languages[1])->toBe(['ja', 'ko', 'zh-Hans', 'zh-Hant']);
     // The preflight reads `--default-font-family`, which no language overrides.
     expect(stylesheet('app.css'))->toMatch('/\nhtml \{\s*font-family: var\(--font-sans, var\(--default-font-family\)\);\s*\}/');
 });
 
+it('gives text marked as another language that language\'s faces, below every utility', function (): void {
+    // A Japanese quote on an English page: without it, a Mac draws some kanji in the Chinese face.
+    expect(stylesheet('international.css'))->toMatch('/@layer base \{\s*:where\(:not\(html\)\[lang\]\) \{\s*font-family: var\(--font-sans, var\(--default-font-family\)\);/');
+});
+
 it('keeps the macOS face first in each CJK stack, and Meiryo ahead of Yu Gothic for Windows', function (): void {
-    preg_match_all('/html:lang\(([A-Za-z-]+)\) \{\s*--font-sans: ([^;]+);/', stylesheet('international.css'), $rules, PREG_SET_ORDER);
+    preg_match_all('/^:lang\(([A-Za-z-]+)\) \{\s*--font-sans: ([^;]+);/m', stylesheet('international.css'), $rules, PREG_SET_ORDER);
 
     $stacks = [];
 

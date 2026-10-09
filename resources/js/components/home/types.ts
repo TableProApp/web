@@ -36,11 +36,26 @@ export interface HomeIosEngines {
     syncedOnly: string[];
 }
 
+// A quote as App\Support\Content\Testimonials picks it for the page's locale.
+export interface HomeTestimonial {
+    id: string;
+    name: string;
+    handle: string | null;
+    platform: string;
+    url: string;
+    avatar: string;
+    lang: string;
+    text: string;
+    translation: string | null;
+    translatedFrom: keyof HomeContent['testimonials']['translatedFrom'] | null;
+}
+
 export interface HomePageProps {
     content: HomeContent;
     engines: HomeEngine[];
     categories: HomeCategory[];
     iosEngines: HomeIosEngines;
+    testimonials: HomeTestimonial[];
     /** How the plan cards hand a purchase to the platform. */
     checkout: CheckoutProp;
 }

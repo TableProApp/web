@@ -3,15 +3,22 @@
  */
 /* Native script fonts supplement Inter without downloading a second UI font. */
 /* Windows draws Yu Gothic too light at 400, so Meiryo comes first where it is installed. */
-html:lang(ja) {
+:lang(ja) {
   --font-sans: "Inter Variable", "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
 }
-html:lang(ko) {
+:lang(ko) {
   --font-sans: "Inter Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", sans-serif;
 }
-html:lang(zh-Hans) {
+:lang(zh-Hans) {
   --font-sans: "Inter Variable", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
 }
-html:lang(zh-Hant) {
+:lang(zh-Hant) {
   --font-sans: "Inter Variable", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+}
+
+/* Text marked as another language than the page takes that language's faces: a Japanese quote on an English page. */
+@layer base {
+  :where(:not(html)[lang]) {
+    font-family: var(--font-sans, var(--default-font-family));
+  }
 }
