@@ -54,6 +54,7 @@ const INTERNAL: Record<string, string> = {
     termsSupport: '/terms#support',
     refundPolicy: '/refund-policy',
     about: '/about',
+    security: '/security',
 };
 
 type ExternalKey = 'docs' | 'changelog' | 'github' | 'issues' | 'discussions' | 'sponsorsProgram' | 'license' | 'portal' | 'appStore';

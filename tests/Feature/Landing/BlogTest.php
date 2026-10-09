@@ -169,6 +169,35 @@ it('keeps the guides and the release posts apart: a guide announces no release',
     expect(array_intersect_key(BLOG_GUIDES, BLOG_PUBLISHED))->toBe([]);
 });
 
+it('describes the blog as guides and release posts in every language', function (): void {
+    $kinds = [
+        'en' => ['guides', 'release'],
+        'vi' => ['hướng dẫn', 'phát hành'],
+        'es' => ['guías', 'versiones'],
+        'de' => ['anleitungen', 'versionsankündigungen'],
+        'fr' => ['guides', 'versions'],
+        'ja' => ['ガイド', 'リリース'],
+        'ko' => ['가이드', '릴리스'],
+        'zh-Hans' => ['指南', '版本发布'],
+        'zh-Hant' => ['指南', '版本發佈'],
+        'pt-BR' => ['guias', 'versões'],
+        'it' => ['guide', 'rilascio'],
+        'id' => ['panduan', 'rilis'],
+    ];
+
+    expect(array_keys($kinds))->toEqualCanonicalizing(Locales::codes());
+
+    foreach ($kinds as $locale => $words) {
+        $copy = app(ContentRepository::class)->page('blog', $locale);
+
+        foreach (['seo.description' => $copy['seo']['description'], 'og.title' => $copy['og']['title']] as $key => $text) {
+            foreach ($words as $word) {
+                expect(mb_stripos($text, $word))->not->toBeFalse("content/{$locale}/blog.json {$key} does not say \"{$word}\": {$text}");
+            }
+        }
+    }
+});
+
 it('renders each guide in English and Vietnamese, as a guide', function (string $slug, string $locale): void {
     $prefix = $locale === 'en' ? '' : "/{$locale}";
     $matter = blogMatter($slug, $locale);

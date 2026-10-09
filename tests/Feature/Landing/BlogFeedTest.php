@@ -3,6 +3,7 @@
 use App\Services\Blog\AtomFeed;
 use App\Services\Blog\BlogService;
 use App\Services\Blog\Post;
+use App\Support\Content\ContentRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Testing\TestResponse;
 use Inertia\Testing\AssertableInertia;
@@ -46,6 +47,8 @@ it('serves the English posts as an Atom feed, newest first', function (): void {
         ->and($feed->getDocNamespaces())->toBe(['' => ATOM])
         ->and((string) $feed->id)->toBe('https://tablepro.app/blog')
         ->and((string) $feed->title)->toBe('TablePro Blog')
+        ->and((string) $feed->subtitle)->toBe(app(ContentRepository::class)->page('blog', 'en')['seo']['description'])
+        ->and((string) $feed->subtitle)->toContain('Guides')->toContain('release announcements')
         ->and((string) $feed->author->name)->not->toBe('')
         ->and(blogFeedLinks($feed))->toBe(['self' => 'https://tablepro.app/blog/feed.xml', 'alternate' => 'https://tablepro.app/blog'])
         ->and((string) $feed->updated)->toBe($posts[0]->date->toAtomString())

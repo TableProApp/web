@@ -14,7 +14,7 @@
     "shortAnswer": {
         "tablepro": [
             "Anda juga menggunakan MySQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya PostgreSQL.",
-            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Keychain macOS.",
+            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Rantai Kunci macOS.",
             "Anda menginginkan tingkat Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
             "Anda menginginkan server MCP agar klien AI seperti Claude Code atau Cursor dapat menggunakan koneksi tersimpan Anda.",
             "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke PostgreSQL."
@@ -167,8 +167,8 @@
         "intro": "TablePro tidak memiliki pengimpor untuk pgAdmin. Tambahkan setiap server sebagai koneksi TablePro: isi formulir koneksi atau tempel URL yang diawali postgresql:// pada <ui>File > Import > Import from URL…</ui>",
         "steps": [],
         "after": [
-            "Jika proyek menyimpan URL database dalam berkas .env atau skema Prisma, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
-            "Kata sandi dimasukkan ke Keychain macOS. TablePro juga membaca ~/.pgpass untuk koneksi PostgreSQL.",
+            "Jika proyek menyimpan URL database dalam file .env atau skema Prisma, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
+            "Kata sandi dimasukkan ke Rantai Kunci macOS. TablePro juga membaca ~/.pgpass untuk koneksi PostgreSQL.",
             "Riwayat kueri dimulai dari awal di TablePro."
         ],
         "docs": null
@@ -183,7 +183,7 @@
         {
             "id": "web",
             "question": "Bisakah tim saya berbagi TablePro seperti berbagi server pgAdmin?",
-            "answer": "Tidak melalui peramban: TablePro berjalan di setiap Mac. Koneksi dibagikan melalui berkas koneksi, atau melalui Team Catalog dan Team Library dengan paket Team. <link>Baca tentang berbagi</link>.",
+            "answer": "Tidak melalui peramban: TablePro berjalan di setiap Mac. Koneksi dibagikan melalui file koneksi, atau melalui Team Catalog dan Team Library dengan paket Team. <link>Baca tentang berbagi</link>.",
             "href": "/features/sync-and-teams"
         },
         {
