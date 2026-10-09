@@ -84,7 +84,7 @@ L'app per Mac invia dati a questi servizi solo quando li configuri, direttamente
 
 ### Dati che rimangono sul Mac {#mac-local}
 
-Le password sono conservate nel portachiavi di macOS. L'elenco delle connessioni, la cronologia delle query, Query Insights, le istantanee di Data Rewind, le impostazioni e le schede aperte sono conservati sul Mac. L'app fa riferimento alle chiavi SSH nella loro posizione sul disco e non le copia. L'app non contiene un sistema di segnalazione degli arresti anomali né una libreria di analisi di terze parti.
+Le password sono conservate nel Portachiavi di macOS. L'elenco delle connessioni, la cronologia delle query, Query Insights, le istantanee di Data Rewind, le impostazioni e le schede aperte sono conservati sul Mac. L'app fa riferimento alle chiavi SSH nella loro posizione sul disco e non le copia. L'app non contiene un sistema di segnalazione degli arresti anomali né una libreria di analisi di terze parti.
 
 ## TablePro per iPhone e iPad {#ios-app}
 
@@ -92,7 +92,7 @@ Le password sono conservate nel portachiavi di macOS. L'elenco delle connessioni
 
 L'app non verifica licenze o aggiornamenti e non effettua richieste di plugin. Oltre al rapporto facoltativo, si connette solo ai tuoi database e server SSH, a iCloud di Apple se attivi iCloud Sync e a Microsoft quando una connessione SQL Server accede con Microsoft Entra ID.
 
-Sul dispositivo, le password e le chiavi SSH incollate sono conservate nel portachiavi e i certificati non vengono mai sincronizzati. La cronologia delle query rimane sul dispositivo. Le connessioni vengono aggiunte all'indice Spotlight locale per consentirti di cercarle. Durante l'esecuzione di una query, la relativa Live Activity mostra l'SQL sulla schermata di blocco e nella Dynamic Island espansa, a meno che non attivi **Settings > Live Activities > Hide Query**.
+Sul dispositivo, le password e le chiavi SSH incollate sono conservate nel Portachiavi e i certificati non vengono mai sincronizzati. La cronologia delle query rimane sul dispositivo. Le connessioni vengono aggiunte all'indice Spotlight locale per consentirti di cercarle. Durante l'esecuzione di una query, la relativa Live Activity mostra l'SQL sulla schermata di blocco e nella Dynamic Island espansa, a meno che non attivi **Settings > Live Activities > Hide Query**.
 
 Se condividi le analisi con gli sviluppatori di app nelle impostazioni di iPhone o iPad, Apple può passarci rapporti sugli arresti anomali e statistiche di utilizzo tramite App Store Connect. L'app non contiene un proprio sistema di segnalazione degli arresti anomali né una propria libreria di analisi di terze parti.
 
@@ -102,7 +102,7 @@ iCloud Sync è disattivato finché non lo attivi, sia sul Mac sia su iPhone e iP
 
 - Sul Mac scegli cosa sincronizzare: connessioni, gruppi e tag, impostazioni, profili SSH, profili delle credenziali (nome e nome utente, mai la password), tabelle e database preferiti, query salvate (incluso il testo SQL) e cartelle delle tabelle. Un record di connessione include host, porta, nome utente, nome del database, impostazioni SSH e SSL, comandi di avvio, script prima della connessione e regole di IA. La cronologia delle query, le istantanee di Data Rewind e le fonti delle password non vengono mai sincronizzate.
 - iPhone e iPad sincronizzano connessioni, gruppi e tag.
-- Le password vengono sincronizzate solo se attivi anche **Passwords** in Sync Categories sul Mac oppure **Sync Passwords** su iPhone e iPad, tramite iCloud Keychain. Sul Mac questo sincronizza anche gli altri segreti che TablePro conserva nel portachiavi, come le chiavi dei fornitori di IA e la chiave di licenza.
+- Le password vengono sincronizzate solo se attivi anche **Passwords** in Sync Categories sul Mac oppure **Sync Passwords** su iPhone e iPad, tramite iCloud Keychain. Sul Mac questo sincronizza anche gli altri segreti che TablePro conserva nel Portachiavi, come le chiavi dei fornitori di IA e la chiave di licenza.
 
 Sul Mac, iCloud Sync fa parte di una licenza Starter o Team. Su iPhone e iPad è gratuito.
 

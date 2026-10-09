@@ -35,7 +35,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk mengaktifkan fitur berbayar aplikasi Mac dengan Kunci Lisensinya, pada jumlah Mac dan selama periode paket Anda:
 
-- Lisensi **Starter** untuk satu orang, pada hingga {starterActivations} Mac.
+- Lisensi **Starter** untuk satu orang, di maksimal {starterActivations} Mac.
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} dan maksimum {teamMaxSeats} seat. Setiap seat adalah satu Mac yang diaktifkan. Pembeli mengundang anggota tim, yang bergabung dengan kode undangan.
 
 Anda tidak boleh membagikan Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankannya tanpa izin tertulis kami.

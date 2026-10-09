@@ -13,7 +13,7 @@ Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs
 - Kueri yang Anda jalankan, hasilnya, dan kata sandi Anda tidak dikirim ke TablePro. Pengecualiannya adalah data yang Anda pilih untuk dipublikasikan ke Team Library: pengaturan koneksi (tanpa kata sandi) dan kueri tersimpan.
 - Permintaan AI dikirim langsung dari aplikasi Mac ke penyedia AI yang Anda konfigurasikan, bukan kepada kami.
 - Server kami menyimpan alamat IP setiap laporan penggunaan dan pemeriksaan lisensi, serta mencari negara untuk setiap laporan penggunaan. Kami belum menetapkan batas waktu penyimpanan data ini.
-- Situs web menghitung tampilan halaman menggunakan Cloudflare Web Analytics, yang tidak memasang cookie. Situs juga memuat Google Analytics, yang hanya memasang cookie jika Anda mengizinkannya. Setiap halaman juga memuat layanan obrolan langsung kami, Crisp, yang memasang cookie sendiri.
+- Situs web menghitung tampilan halaman menggunakan Cloudflare Web Analytics, yang tidak memasang cookie. Situs juga memuat Google Analytics, yang hanya memasang cookie jika Anda mengizinkannya. Setiap halaman juga memuat layanan chat langsung kami, Crisp, yang memasang cookie sendiri.
 - Pembelian dijual oleh {merchant}, merchant of record kami.
 
 ## Penanggung jawab {#controller}
@@ -54,14 +54,14 @@ Server kami mencatat setiap permintaan lisensi beserta alamat IP dan isinya, ser
 
 ### Team Library {#library}
 
-Team Library merupakan bagian dari lisensi Team. Saat Anda memilih **Share > Publish to Team Library…** pada koneksi atau **Publish Saved Queries to Team…** di bilah samping Favorites, aplikasi Mac mengunggah data yang Anda publikasikan ke server kami:
+Team Library merupakan bagian dari lisensi Team. Saat Anda memilih **Share > Publish to Team Library…** pada koneksi atau **Publish Saved Queries to Team…** di sidebar Favorites, aplikasi Mac mengunggah data yang Anda publikasikan ke server kami:
 
 - pengaturan koneksi: host, port, nama database, nama pengguna, pengaturan SSH dan SSL, opsi driver, perintah awal, pengaturan Tunnel Command, tingkat Safe Mode, dan pengaturan AI, tetapi tidak pernah kata sandi;
 - kueri tersimpan: nama, teks SQL, kata kunci, dan foldernya.
 
 Mac dengan lisensi Team yang sama mengunduh pustaka saat dimulai, paling sering sekali seminggu, dan Mac yang memublikasikannya mengunduh ulang segera setelahnya. Publikasi baru menggantikan publikasi Anda sebelumnya. Menghapus anggota dari tim menghapus semua data yang dipublikasikan anggota tersebut. Jika lisensi kedaluwarsa atau ditangguhkan, pustaka tetap berada di server kami sampai Anda meminta penghapusannya.
 
-Team Catalog, fitur Team lainnya, menulis berkas koneksi tanpa kata sandi ke folder bersama yang Anda pilih. Data ini tidak melewati server kami.
+Team Catalog, fitur Team lainnya, menulis file koneksi tanpa kata sandi ke folder bersama yang Anda pilih. Data ini tidak melewati server kami.
 
 ### Pembaruan dan plugin {#mac-updates}
 
@@ -84,7 +84,7 @@ Aplikasi Mac hanya mengirim data ke layanan berikut saat Anda mengonfigurasikann
 
 ### Data yang tetap berada di Mac Anda {#mac-local}
 
-Kata sandi disimpan di Keychain macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Aplikasi tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga.
+Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Aplikasi tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga.
 
 ## TablePro untuk iPhone dan iPad {#ios-app}
 
@@ -92,7 +92,7 @@ Kata sandi disimpan di Keychain macOS. Daftar koneksi, riwayat kueri, Query Insi
 
 Aplikasi tidak melakukan pemeriksaan lisensi, pemeriksaan pembaruan, atau permintaan plugin. Selain laporan opsional tersebut, aplikasi hanya terhubung ke database dan server SSH Anda, iCloud Apple jika Anda mengaktifkan iCloud Sync, serta Microsoft saat koneksi SQL Server masuk menggunakan Microsoft Entra ID.
 
-Di perangkat, kata sandi dan kunci SSH yang ditempel disimpan di Keychain, dan sertifikat tidak pernah disinkronkan. Riwayat kueri tetap berada di perangkat. Koneksi Anda ditambahkan ke indeks Spotlight di perangkat agar dapat dicari. Saat kueri berjalan, Live Activity menampilkan SQL pada Layar Terkunci dan Dynamic Island yang diperluas, kecuali Anda mengaktifkan **Settings > Live Activities > Hide Query**.
+Di perangkat, kata sandi dan kunci SSH yang ditempel disimpan di Rantai Kunci, dan sertifikat tidak pernah disinkronkan. Riwayat kueri tetap berada di perangkat. Koneksi Anda ditambahkan ke indeks Spotlight di perangkat agar dapat dicari. Saat kueri berjalan, Live Activity menampilkan SQL pada Layar Terkunci dan Dynamic Island yang diperluas, kecuali Anda mengaktifkan **Settings > Live Activities > Hide Query**.
 
 Jika Anda membagikan analitik kepada pengembang aplikasi melalui pengaturan iPhone atau iPad, Apple dapat mengirim laporan kerusakan dan statistik penggunaan kepada kami melalui App Store Connect. Aplikasi tidak memiliki pelapor kerusakan atau pustaka analitik pihak ketiga sendiri.
 
@@ -102,7 +102,7 @@ iCloud Sync nonaktif sampai Anda mengaktifkannya, baik di Mac maupun iPhone dan 
 
 - Di Mac, Anda memilih data yang disinkronkan: koneksi, grup dan tag, pengaturan, profil SSH, profil kredensial (nama dan nama penggunanya, tanpa kata sandi), tabel dan database favorit, kueri tersimpan (termasuk teks SQL), serta folder tabel. Data koneksi mencakup host, port, nama pengguna, nama database, pengaturan SSH dan SSL, perintah awal, skrip sebelum koneksi, dan aturan AI. Riwayat kueri, snapshot Data Rewind, dan sumber kata sandi tidak pernah disinkronkan.
 - iPhone dan iPad menyinkronkan koneksi, grup, dan tag.
-- Kata sandi hanya disinkronkan jika Anda juga mengaktifkan **Passwords** di Sync Categories pada Mac atau **Sync Passwords** pada iPhone dan iPad, menggunakan iCloud Keychain. Di Mac, opsi ini juga menyinkronkan rahasia lain yang disimpan TablePro di Keychain, seperti kunci penyedia AI dan kunci lisensi.
+- Kata sandi hanya disinkronkan jika Anda juga mengaktifkan **Passwords** di Sync Categories pada Mac atau **Sync Passwords** pada iPhone dan iPad, menggunakan iCloud Keychain. Di Mac, opsi ini juga menyinkronkan rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi.
 
 Di Mac, iCloud Sync merupakan bagian dari lisensi Starter atau Team. Di iPhone dan iPad, fitur ini gratis.
 
@@ -116,7 +116,7 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Google Analytics.** Situs memuat Google Analytics pada setiap halaman dalam Consent Mode. Sampai Anda memilih **Izinkan** pada pertanyaan cookie, Google Analytics tidak memasang cookie dan hanya mengirim sinyal tanpa cookie ke Google untuk setiap halaman, tanpa pengenal yang disimpan di perangkat Anda. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda, seperti halaman yang dilihat, klik unduhan, dan awal proses pembelian. Penyimpanan iklan, personalisasi iklan, dan data pengguna iklan selalu ditolak. Google menyatakan bahwa Google Analytics 4 tidak mencatat atau menyimpan alamat IP. Properti Google Analytics kami menggunakan masa retensi bawaan Google: Google menghapus data tingkat pengguna dan tingkat peristiwa yang dikumpulkannya setelah 2 bulan. Laporan standar Google, yang berisi jumlah keseluruhan alih-alih pengenal, tidak terpengaruh. Dasar hukum: persetujuan Anda untuk cookie.
 
-**Obrolan langsung.** Setiap halaman situs web dan portal akun menampilkan tombol obrolan dari penyedia kami, Crisp. Setelah halaman selesai dimuat, peramban memuat skrip Crisp dari `client.crisp.chat`, dan Crisp memasang cookie yang dijelaskan di [Cookie dan penyimpanan peramban](#cookies). Crisp menerima alamat IP Anda, detail peramban, alamat halaman yang Anda lihat, dan pesan yang Anda tulis, serta menyimpan alamat IP jika Anda memulai percakapan. Kami hanya memberi tahu Crisp bahasa halaman, tanpa informasi lain tentang Anda. Crisp berbasis di Prancis.
+**Chat langsung.** Setiap halaman situs web dan portal akun menampilkan tombol chat dari penyedia kami, Crisp. Setelah halaman selesai dimuat, peramban memuat skrip Crisp dari `client.crisp.chat`, dan Crisp memasang cookie yang dijelaskan di [Cookie dan penyimpanan peramban](#cookies). Crisp menerima alamat IP Anda, detail peramban, alamat halaman yang Anda lihat, dan pesan yang Anda tulis, serta menyimpan alamat IP jika Anda memulai percakapan. Kami hanya memberi tahu Crisp bahasa halaman, tanpa informasi lain tentang Anda. Crisp berbasis di Prancis.
 
 **Skrip pembayaran.** Saat Anda mengarahkan penunjuk atau berpindah dengan tombol Tab ke tombol Beli, peramban memuat skrip pembayaran {merchant} dari jsDelivr (`cdn.jsdelivr.net`), yang menerima alamat IP dan detail peramban Anda. Halaman pembayaran itu sendiri baru dibuka dari {merchant} saat Anda mengeklik.
 
@@ -144,14 +144,14 @@ Jika Anda berlangganan catatan rilis, kami menyimpan alamat email dan bahasa hal
 
 ## Cookie dan penyimpanan peramban {#cookies}
 
-Membaca situs web publik tidak memasang cookie milik situs sendiri; berlangganan buletin atau memulai pembayaran memasang dua cookie portal yang benar-benar diperlukan dan tercantum di bawah ini. Cloudflare Web Analytics tidak memasang cookie atau menyimpan apa pun di peramban. Cookie Google Analytics tidak dipasang sampai Anda mengizinkannya. Crisp memasang cookie pada setiap halaman setelah obrolan dimuat. Tidak ada data di sini yang digunakan untuk iklan atau dijual.
+Membaca situs web publik tidak memasang cookie milik situs sendiri; berlangganan buletin atau memulai pembayaran memasang dua cookie portal yang benar-benar diperlukan dan tercantum di bawah ini. Cloudflare Web Analytics tidak memasang cookie atau menyimpan apa pun di peramban. Cookie Google Analytics tidak dipasang sampai Anda mengizinkannya. Crisp memasang cookie pada setiap halaman setelah chat dimuat. Tidak ada data di sini yang digunakan untuk iklan atau dijual.
 
 - **`_ga` dan `_ga_<ID>`** (cookie Google Analytics, hingga 2 tahun, hanya jika Anda mengizinkan analitik): pengenal acak untuk peramban dan status kunjungan saat ini. Menolak atau mengubah jawaban kemudian akan menghapusnya. Dasar hukum: persetujuan.
 - **`tablepro:analytics-consent`** (penyimpanan lokal, sampai Anda menghapusnya): jawaban Anda atas pertanyaan analitik, agar tidak ditanyakan pada setiap halaman. Situs web dan portal akun berbagi data ini. Dasar hukum: benar-benar diperlukan untuk menghormati pilihan Anda.
 - **`tablepro:attribution`** (penyimpanan lokal, 90 hari): catatan kunjungan pertama yang dijelaskan di [Situs web](#website). Catatan ini tidak berisi pengenal Anda dan hanya dikirim bersama permintaan pembayaran, lalu dibuang oleh server kami. Dasar hukum: kepentingan yang sah.
 - **`theme`** dan **`tablepro:banner-dismissed`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem, serta banner yang Anda tutup dan batas waktunya: 30 hari, atau satu tahun jika Anda menyatakan sudah memiliki lisensi atau membelinya. Dasar hukum: kepentingan yang sah.
 - **`mintlify_anonymous_id`** (penyimpanan lokal di docs.tablepro.app, dipasang oleh Mintlify, hanya jika Anda mengizinkan Google Analytics di sana): ID pengunjung yang dijelaskan di [Situs web](#website). Menolak akan menghapusnya. Dokumentasi menyimpan jawaban `tablepro:analytics-consent` miliknya sendiri. Dasar hukum: persetujuan.
-- **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah obrolan dimuat): mempertahankan obrolan dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
+- **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah chat dimuat): mempertahankan chat dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
 - **`tablepro-session` dan `XSRF-TOKEN`** (cookie portal akun, 2 jam): menjaga sesi masuk dan melindungi formulir portal dari pemalsuan permintaan lintas situs. Halaman portal lainnya, seperti konfirmasi pembelian dan halaman buletin, juga memasangnya, demikian pula berlangganan buletin atau memulai pembayaran maupun pemeriksaan kode diskon dari halaman mana pun di situs ini. Dasar hukum: benar-benar diperlukan.
 
 Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengaturan cookie** di footer setiap halaman, atau di sini:
@@ -163,8 +163,8 @@ Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengatura
 Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan GDPR dan UK GDPR adalah:
 
 - **Kontrak** (Art. 6(1)(b)): penjualan dan penyediaan lisensi, pemeriksaan lisensi, portal akun, dan Team Library.
-- **Kepentingan yang sah** (Art. 6(1)(f)): laporan penggunaan aplikasi Mac dan pencarian negaranya, log permintaan lisensi, keamanan dan pencegahan penyalahgunaan, log server web, Cloudflare Web Analytics, catatan atribusi pembelian, dan obrolan langsung di setiap halaman.
-- **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui obrolan langsung.
+- **Kepentingan yang sah** (Art. 6(1)(f)): laporan penggunaan aplikasi Mac dan pencarian negaranya, log permintaan lisensi, keamanan dan pencegahan penyalahgunaan, log server web, Cloudflare Web Analytics, catatan atribusi pembelian, dan chat langsung di setiap halaman.
+- **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
 - **Kewajiban hukum** (Art. 6(1)(c)): catatan pajak dan akuntansi, serta jawaban atas permintaan yang sah menurut hukum.
 
 ## Penerima data {#sharing}
@@ -175,7 +175,7 @@ Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalan
 - **Penyedia pengiriman email**, untuk tautan masuk, kuitansi dari kami, undangan tim, dan buletin.
 - **Penyedia hosting kami dan Cloudflare**, untuk situs web, portal akun, dan server yang berkomunikasi dengan aplikasi. Cloudflare juga menghitung tampilan halaman menggunakan Cloudflare Web Analytics.
 - **Google**, untuk Google Analytics di situs web, dokumentasi, dan portal akun.
-- **Crisp**, untuk obrolan langsung pada setiap halaman situs web dan portal akun.
+- **Crisp**, untuk chat langsung pada setiap halaman situs web dan portal akun.
 - **jsDelivr**, yang menyajikan skrip pembayaran {merchant} ke peramban saat Anda mengarahkan penunjuk ke tombol Beli.
 - **Mintlify**, yang menghosting dokumentasi di docs.tablepro.app.
 - **ip-api.com, ipinfo.io, dan geoplugin.net**, yang menerima alamat IP dari laporan penggunaan untuk pencarian negara.
@@ -197,7 +197,7 @@ Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses
 - **Buletin**: sampai Anda berhenti berlangganan atau kami menghapus alamat email atas permintaan Anda.
 - **Google Analytics**: data tingkat pengguna dan tingkat peristiwa selama 2 bulan, masa retensi bawaan Google yang digunakan properti kami. Cookie bertahan hingga 2 tahun atau dihapus saat Anda menolak.
 - **Cloudflare Web Analytics**: Cloudflare menampilkan jumlah tampilan halaman selama enam bulan terakhir kepada kami. Tidak ada data yang disimpan di peramban.
-- **Obrolan langsung dan email dukungan**: disimpan oleh Crisp dan di kotak email kami sampai dihapus. Mintalah kepada kami untuk menghapus percakapan dan email Anda.
+- **Chat langsung dan email dukungan**: disimpan oleh Crisp dan di kotak email kami sampai dihapus. Mintalah kepada kami untuk menghapus percakapan dan email Anda.
 - **Log server web**: disimpan untuk keamanan dan pemecahan masalah. Kami belum menetapkan masa penyimpanan tetap.
 
 ## Hak Anda {#rights}
