@@ -221,7 +221,7 @@ TablePro 不面向十六岁以下儿童，也不会在明知的情况下收集�
 
 ## 安全 {#security}
 
-应用、网站、账户门户与我们的服务器之间使用 HTTPS。[使用情况报告](#mac-usage-report)中所述国家查询为例外，使用未加密的 HTTP。账户登录链接仅以哈希形式保存，系统访问限于运营 TablePro 的人员。没有系统完全安全。报告漏洞请参阅[安全页面](/zh-Hans/security#report)，或发送邮件至 [{email}](mailto:{email})。
+应用、网站、账户门户与我们的服务器之间使用 HTTPS。[使用情况报告](#mac-usage-report)中所述国家查询为例外，使用未加密的 HTTP。账户登录链接仅以哈希形式保存，系统访问仅限于 {publisherName} 及[数据接收方](#sharing)中列出的服务提供商。没有系统完全安全。报告漏洞请参阅[安全页面](/zh-Hans/security#report)，或发送邮件至 [{email}](mailto:{email})。
 
 ## 政策变更 {#changes}
 

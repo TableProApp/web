@@ -221,7 +221,7 @@ TablePro không hướng tới trẻ em dưới 16 tuổi, và chúng tôi khôn
 
 ## Bảo mật {#security}
 
-Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Ngoại lệ là các lần tra quốc gia được mô tả trong mục [Báo cáo sử dụng](#mac-usage-report): chúng dùng HTTP không mã hóa. Liên kết đăng nhập trang tài khoản chỉ được lưu dưới dạng giá trị băm, và quyền truy cập vào hệ thống của chúng tôi chỉ dành cho những người vận hành TablePro. Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
+Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Ngoại lệ là các lần tra quốc gia được mô tả trong mục [Báo cáo sử dụng](#mac-usage-report): chúng dùng HTTP không mã hóa. Liên kết đăng nhập trang tài khoản chỉ được lưu dưới dạng giá trị băm, và quyền truy cập vào hệ thống của chúng tôi chỉ dành cho {publisherName} và các nhà cung cấp dịch vụ được liệt kê trong mục [Bên nhận dữ liệu](#sharing). Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
 
 ## Thay đổi chính sách {#changes}
 

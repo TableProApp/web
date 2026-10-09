@@ -95,6 +95,22 @@ it('sets the root font from the per-language stacks international.css declares',
     expect(stylesheet('app.css'))->toMatch('/\nhtml \{\s*font-family: var\(--font-sans, var\(--default-font-family\)\);\s*\}/');
 });
 
+it('keeps the macOS face first in each CJK stack, and Meiryo ahead of Yu Gothic for Windows', function (): void {
+    preg_match_all('/html:lang\(([A-Za-z-]+)\) \{\s*--font-sans: ([^;]+);/', stylesheet('international.css'), $rules, PREG_SET_ORDER);
+
+    $stacks = [];
+
+    foreach ($rules as [, $language, $stack]) {
+        $stacks[$language] = array_map(fn(string $face): string => trim($face, ' "'), explode(',', $stack));
+    }
+
+    // Windows draws Yu Gothic too light at 400.
+    expect(array_slice($stacks['ja'], 0, 4))->toBe(['Inter Variable', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Yu Gothic']);
+    expect(array_slice($stacks['ko'], 0, 3))->toBe(['Inter Variable', 'Apple SD Gothic Neo', 'Malgun Gothic']);
+    expect(array_slice($stacks['zh-Hans'], 0, 3))->toBe(['Inter Variable', 'PingFang SC', 'Microsoft YaHei']);
+    expect(array_slice($stacks['zh-Hant'], 0, 3))->toBe(['Inter Variable', 'PingFang TC', 'Microsoft JhengHei']);
+});
+
 it('breaks Korean between words and keeps Japanese line starts clean', function (): void {
     $css = stylesheet('app.css');
 
@@ -114,4 +130,16 @@ it('hyphenates the fact terms of an engine page, a third of a narrow card', func
      * 27px into the value beside them, "Puerto predeterminado" 31px.
      */
     expect(ssrHtml('/de/postgresql-client'))->toMatch('/<dl class="[^"]*\[&amp;_dt\]:hyphens-auto[^"]*">/');
+});
+
+it('hyphenates long German words in headings, keyed on the language of a German page', function (): void {
+    /*
+     * Measured at 320px before: "Datenschutzerklärun|g", "Nutzungsbedingunge|n"
+     * and "Gewährleistungsausschlu|ss" broke with no hyphen.
+     */
+    expect(stylesheet('app.css'))->toMatch('/\n:is\(h1, h2, h3, h4, h5, h6\):lang\(de\) \{\s*hyphens: auto;\s*hyphenate-limit-chars: 12 4 4;\s*\}/');
+
+    $this->withoutVite();
+
+    expect($this->get('/de/privacy')->getContent())->toContain('<html lang="de"');
 });

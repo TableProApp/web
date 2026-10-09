@@ -64,6 +64,20 @@ it('lists exactly the indexable pages of the registry, once each', function (): 
     expect($urls)->toBe(array_values(array_unique($urls)));
 });
 
+it('lists the English and Vietnamese blog indexes as each other\'s alternates, and no other language of it', function (): void {
+    $urls = seoGenerateSitemap();
+    $base = LocalizedUrl::base();
+
+    foreach (['/blog', '/vi/blog'] as $path) {
+        expect($urls)->toHaveKey($base . $path);
+        expect($urls[$base . $path]['alternates'])->toBe(['en' => "{$base}/blog", 'vi' => "{$base}/vi/blog", 'x-default' => "{$base}/blog"]);
+    }
+
+    foreach (array_diff(Locales::codes(), ['en', 'vi']) as $locale) {
+        expect($urls)->not->toHaveKey("{$base}/{$locale}/blog");
+    }
+});
+
 it('lists absolute, clean, canonical URLs only', function (): void {
     foreach (seoGenerateSitemap() as $loc => $url) {
         expect($loc)->toStartWith(LocalizedUrl::base() . '/');

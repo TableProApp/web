@@ -463,6 +463,23 @@ it('names the publisher from facts.json as the provider in the terms and the dat
     expect(legalSection('privacy', $locale, 'controller'))->toContain('[{email}](mailto:{email})');
 })->with(legalLocales());
 
+it('describes the publisher as one person, never a company or a team', function (): void {
+    $offences = [];
+
+    foreach ([...File::allFiles(resource_path('data/legal')), ...File::allFiles(resource_path('data/content'))] as $file) {
+        // A capital "Team" before TablePro is the reader's: "Kann mein Team TablePro …".
+        if (preg_match_all('/当社|弊社|당사|저희|本公司|people who run TablePro|TablePro (?:[Tt]eam|チーム|팀|团队|團隊)|TablePro-Team|(?:team|[Tt]im|équipe|equipe|equipo de|[Đđ]ội ngũ) TablePro/u', $file->getContents(), $matches) > 0) {
+            $offences[] = $file->getRelativePathname() . ': ' . implode(', ', array_unique($matches[0]));
+        }
+    }
+
+    expect($offences)->toBe([]);
+});
+
+it('limits access to the systems to the publisher and the providers that receive data', function (string $locale): void {
+    expect(legalSection('privacy', $locale, 'security'))->toContain('{publisherName}')->toContain('](#sharing)');
+})->with(legalLocales());
+
 it('points a vulnerability report in the privacy policy at the security page', function (string $locale): void {
     $prefix = Locales::prefixFor($locale);
     $href = ($prefix === null ? '' : "/{$prefix}") . '/security#report';

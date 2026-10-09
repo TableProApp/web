@@ -221,7 +221,7 @@ TablePro non è rivolto ai minori di 16 anni e non raccogliamo consapevolmente i
 
 ## Sicurezza {#security}
 
-Il traffico tra le app, il sito web, il portale account e il nostro server usa HTTPS. Le ricerche del paese descritte in [Rapporto sull'utilizzo](#mac-usage-report) sono l'eccezione: avvengono tramite HTTP non cifrato. I link di accesso all'account vengono conservati solo come hash e l'accesso ai nostri sistemi è limitato alle persone che gestiscono TablePro. Nessun sistema è perfettamente sicuro. Per segnalare una vulnerabilità, consulta la [pagina Sicurezza](/it/security#report) o scrivi a [{email}](mailto:{email}).
+Il traffico tra le app, il sito web, il portale account e il nostro server usa HTTPS. Le ricerche del paese descritte in [Rapporto sull'utilizzo](#mac-usage-report) sono l'eccezione: avvengono tramite HTTP non cifrato. I link di accesso all'account vengono conservati solo come hash e l'accesso ai nostri sistemi è limitato a {publisherName} e ai fornitori di servizi elencati in [Chi riceve i dati](#sharing). Nessun sistema è perfettamente sicuro. Per segnalare una vulnerabilità, consulta la [pagina Sicurezza](/it/security#report) o scrivi a [{email}](mailto:{email}).
 
 ## Modifiche a questa informativa {#changes}
 

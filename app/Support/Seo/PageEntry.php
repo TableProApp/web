@@ -8,8 +8,8 @@ use App\Support\Localization\LocalizedUrl;
  * One public page, as every SEO surface sees it.
  *
  * A page lists the locales it **renders** in and, separately, the locales it is
- * **indexed** in. They differ on purpose: `/vi/blog` answers 200 with
- * Vietnamese chrome but carries `noindex, follow`, because what it lists is
+ * **indexed** in. They differ on purpose: `/de/blog` answers 200 with
+ * German chrome but carries `noindex, follow`, because what it lists is
  * English. The canonical, the robots value, hreflang, the sitemap, the OG card
  * and the language switcher are all derived from these two lists, so none of
  * them can disagree with another.

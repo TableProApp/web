@@ -26,8 +26,9 @@ use Throwable;
  * Two kinds of post: release announcements, an English-only archive, and
  * guides, each with a Vietnamese version under `resources/blog/vi`. `/vi/blog`
  * lists the Vietnamese guides and the English release posts, each of those
- * marked as English and linked at its English URL; it renders without being
- * indexed, which `seo.indexable: false` in `content/vi/blog.json` decides.
+ * marked as English and linked at its English URL, and is indexed with `/blog`
+ * as its alternate. Every other language's index lists only the English posts
+ * and is not indexed (`seo.indexable: false` in its `blog.json`).
  * `/vi/blog/{slug}` never wraps an English body: `EnsurePageRenders` answers
  * it with a 404 that links the English post by its title
  * (`MissingTranslationException::forEntry()`).

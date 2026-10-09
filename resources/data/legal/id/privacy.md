@@ -221,7 +221,7 @@ TablePro tidak ditujukan kepada anak di bawah 16 tahun, dan kami tidak dengan se
 
 ## Keamanan {#security}
 
-Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Pencarian negara yang dijelaskan di [Laporan penggunaan](#mac-usage-report) adalah pengecualian: pencarian dilakukan melalui HTTP tanpa enkripsi. Tautan masuk akun hanya disimpan sebagai hash, dan akses ke sistem kami dibatasi kepada orang yang menjalankan TablePro. Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
+Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Pencarian negara yang dijelaskan di [Laporan penggunaan](#mac-usage-report) adalah pengecualian: pencarian dilakukan melalui HTTP tanpa enkripsi. Tautan masuk akun hanya disimpan sebagai hash, dan akses ke sistem kami dibatasi untuk {publisherName} dan penyedia layanan yang tercantum di [Penerima data](#sharing). Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
 
 ## Perubahan kebijakan ini {#changes}
 

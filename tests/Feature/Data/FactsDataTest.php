@@ -139,6 +139,10 @@ it('names the publisher once, with the city and country in every supported langu
     ]);
 });
 
+it('names the publisher as the copyright holder of the code and of the content', function (string $file): void {
+    expect(File::get(base_path($file)))->toContain('Copyright (c) 2026 ' . factsJson()['publisher']['name'] . ' (TablePro)');
+})->with(['LICENSE', 'LICENSE-CONTENT']);
+
 it('names the AI providers in the app order, Mac only', function (): void {
     $ai = factsJson()['ai'];
 

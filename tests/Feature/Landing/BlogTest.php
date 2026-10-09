@@ -32,10 +32,10 @@ require_once __DIR__ . '/../Releases/ReleaseFixtures.php';
  *   manifest entry keeps the original image as its source, the `content-…`
  *   heading ids that links out in the world point at, and a dated correction
  *   only where a post said something that was never true.
- * - `/vi/blog` renders in Vietnamese without being indexed and lists the
- *   English posts as English, at their English URLs. `/vi/blog/{slug}` is a
- *   404 that links the English post by its title, never an English body under
- *   Vietnamese chrome.
+ * - `/vi/blog` is indexed, paired with `/blog`, and lists the Vietnamese
+ *   guides and the English posts as English, at their English URLs.
+ *   `/vi/blog/{slug}` is a 404 that links the English post by its title, never
+ *   an English body under Vietnamese chrome.
  * - Related posts stay in the post's language.
  * - The template adds what the archive cannot: the byline, the archive note
  *   once a newer release is out, the pages that cover the post's tags today,
@@ -145,7 +145,7 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('locale', 'en')
             ->where('seo.robots', 'index, follow')
             ->where('seo.canonical', 'https://localhost/blog')
-            ->where('seo.alternates', [])
+            ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->where('content.header.title', 'Blog')
             ->where('content.header.lead', fn(string $lead): bool => str_contains($lead, 'Posts about TablePro releases.') && str_contains($lead, '<changelog>'))
             ->missing('content.corrections')
@@ -497,7 +497,7 @@ it('chooses related posts by shared topic first, then by closeness in time, and 
     }
 });
 
-it('renders /vi/blog in Vietnamese, unindexed, listing the guides in Vietnamese and the release posts as English', function (): void {
+it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese and the release posts as English', function (): void {
     $response = $this->get('/vi/blog');
     $first = count(BLOG_GUIDES);
 
@@ -506,10 +506,10 @@ it('renders /vi/blog in Vietnamese, unindexed, listing the guides in Vietnamese 
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Blog/Index')
             ->where('locale', 'vi')
-            ->where('seo.robots', 'noindex, follow')
-            ->where('seo.canonical', null)
-            ->where('seo.alternates', [])
-            ->where('content.seo.indexable', false)
+            ->where('seo.robots', 'index, follow')
+            ->where('seo.canonical', 'https://localhost/vi/blog')
+            ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
+            ->missing('content.seo.indexable')
             ->has('posts', count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
             ->where('posts', fn($posts): bool => collect($posts)->take($first)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
@@ -740,12 +740,15 @@ describe('server-rendered', function (): void {
             ->toContain('Apple serves the map tiles');
     });
 
-    it('marks every English post on /vi/blog as English', function (): void {
+    it('marks every English post on /vi/blog as English, on a page indexed with /blog as its alternate', function (): void {
         $html = (string) $this->get('/vi/blog')->getContent();
 
         expect($html)
             ->toContain('<html lang="vi"')
-            ->toContain('content="noindex, follow"')
+            ->toContain('content="index, follow"')
+            ->toContain('<link rel="canonical" href="https://localhost/vi/blog"')
+            ->toContain('<link rel="alternate" hreflang="en" href="https://localhost/blog"')
+            ->toContain('<link rel="alternate" hreflang="vi" href="https://localhost/vi/blog"')
             ->toMatch('#href="/blog/tablepro-0-77" hreflang="en" lang="en"#i')
             ->toContain('(tiếng Anh)')
             ->not->toContain('href="/vi/blog/tablepro-0-77"');

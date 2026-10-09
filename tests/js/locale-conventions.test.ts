@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
+import { formatUsd } from '../../resources/js/i18n/format.ts';
+
 import en from '../../resources/js/i18n/messages/en/index.ts';
 import vi from '../../resources/js/i18n/messages/vi/index.ts';
 import es from '../../resources/js/i18n/messages/es/index.ts';
@@ -74,6 +76,11 @@ test('comparison pages write prices the way the pricing page does', () => {
     for (const [locale, m] of Object.entries(catalogs)) {
         assert.deepEqual(content(locale, 'compare/index.json').labels.currency, m.pricing.currency, `${locale}: compare/index.json labels.currency`);
     }
+});
+
+test('Traditional Chinese writes US$, since a bare $ reads as the Taiwan or Hong Kong dollar', () => {
+    assert.equal(formatUsd(2.99, zh_Hant.pricing.currency), 'US$2.99');
+    assert.equal(formatUsd(1499, zh_Hant.pricing.currency), 'US$1,499');
 });
 
 test('the email placeholder is not left in English', () => {

@@ -7,7 +7,7 @@ date: 2026-09-22
 release: "TablePro for iPhone and iPad 1.0"
 author: TablePro Team
 tags: [release, ios, ipados, icloud-sync]
-ogPunchline: Ten engines on the phone. Every driver built in.
+ogPunchline: Every driver built in. Nothing downloads when you pick an engine.
 ---
 
 TablePro for iPhone and iPad is on the App Store. It is free, there are no in-app purchases, and it needs iOS or iPadOS 18.

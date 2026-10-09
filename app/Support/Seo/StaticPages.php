@@ -10,9 +10,8 @@ use App\Support\Localization\Locales;
  *
  * Each renders in a locale when `resources/data/content/{locale}/{page}.json`
  * exists, and is indexable there unless that file sets `seo.indexable` to
- * false. That flag is how `/vi/blog` renders without being indexed: it lives in
- * the content file, not in code, so the owner can flip it once Vietnamese
- * summaries exist.
+ * false. That flag is how `/de/blog`, which lists only English posts, renders
+ * without being indexed: it lives in the content file, not in code.
  *
  * A page with no content file in any locale is not a page: `find()` returns
  * null, the registry knows no such page, and the route answers 404.
