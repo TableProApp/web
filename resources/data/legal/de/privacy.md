@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
@@ -221,7 +221,7 @@ TablePro richtet sich nicht an Kinder unter 16 Jahren. Wir erfassen ihre persone
 
 ## Sicherheit {#security}
 
-Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. Die unter [Nutzungsbericht](#mac-usage-report) beschriebenen Länderabfragen bilden die Ausnahme: Sie erfolgen über unverschlüsseltes HTTP. Anmeldelinks werden nur als Hashes gespeichert; nur die Personen, die TablePro betreiben, haben Zugang zu unseren Systemen. Kein System ist vollkommen sicher. Sicherheitslücken meldest du wie auf der [Sicherheitsseite](/de/security#report) beschrieben oder per E-Mail an [{email}](mailto:{email}).
+Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. Die unter [Nutzungsbericht](#mac-usage-report) beschriebenen Länderabfragen bilden die Ausnahme: Sie erfolgen über unverschlüsseltes HTTP. Anmeldelinks werden nur als Hashes gespeichert; Zugang zu unseren Systemen haben nur {publisherName} und die unter [Wer Daten erhält](#sharing) genannten Dienstleister. Kein System ist vollkommen sicher. Sicherheitslücken meldest du wie auf der [Sicherheitsseite](/de/security#report) beschrieben oder per E-Mail an [{email}](mailto:{email}).
 
 ## Änderungen dieser Erklärung {#changes}
 

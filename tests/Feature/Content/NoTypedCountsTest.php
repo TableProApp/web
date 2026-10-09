@@ -1,5 +1,7 @@
 <?php
 
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 require_once __DIR__ . '/helpers.php';
 
 /**
@@ -124,4 +126,24 @@ it('allows a competitor count only in a comparison cell that cites a source (A6)
         ->and(contentGuardIsSourcedNote('resources/data/content/en/compare/tableplus.json', 'notes.no-such-note', dated: false))->toBeFalse()
         ->and(contentGuardIsSourcedNote('resources/data/content/en/compare/tableplus.json', 'faq.0.answer', dated: false))->toBeFalse()
         ->and(contentGuardIsSourcedNote('resources/data/content/en/home.json', "notes.{$sourced}", dated: false))->toBeFalse();
+});
+
+it('counts no engines on any post’s OG card', function (): void {
+    /*
+     * A release post is exempt as an archive, but its punchline is its OG
+     * card, shared long after the count goes stale: the iPhone post's "Ten
+     * engines on the phone" left out Redshift, which opens there once synced.
+     * Engines only: "Diff two databases" is a workflow.
+     */
+    $offences = [];
+
+    foreach ([...(glob(resource_path('blog/*.md')) ?: []), ...(glob(resource_path('blog/vi/*.md')) ?: [])] as $post) {
+        $punchline = (string) YamlFrontMatter::parseFile($post)->matter('ogPunchline');
+
+        if (preg_match('/(?<![\p{L}\p{N}.,-])(?:\d+\+?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|twenty|thirty)\s+(?:[\p{L}-]+\s+){0,2}?engines?\b/iu', $punchline, $match) === 1) {
+            $offences[] = contentGuardRelative($post) . ": \"{$match[0]}\"";
+        }
+    }
+
+    expect($offences)->toBe([]);
 });

@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-09"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -221,7 +221,7 @@ TablePro không hướng tới trẻ em dưới 16 tuổi, và chúng tôi khôn
 
 ## Bảo mật {#security}
 
-Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Ngoại lệ là các lần tra quốc gia được mô tả trong mục [Báo cáo sử dụng](#mac-usage-report): chúng dùng HTTP không mã hóa. Liên kết đăng nhập trang tài khoản chỉ được lưu dưới dạng giá trị băm, và quyền truy cập vào hệ thống của chúng tôi chỉ dành cho những người vận hành TablePro. Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
+Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Ngoại lệ là các lần tra quốc gia được mô tả trong mục [Báo cáo sử dụng](#mac-usage-report): chúng dùng HTTP không mã hóa. Liên kết đăng nhập trang tài khoản chỉ được lưu dưới dạng giá trị băm, và quyền truy cập vào hệ thống của chúng tôi chỉ dành cho {publisherName} và các nhà cung cấp dịch vụ được liệt kê trong mục [Bên nhận dữ liệu](#sharing). Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
 
 ## Thay đổi chính sách {#changes}
 

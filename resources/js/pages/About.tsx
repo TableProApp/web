@@ -163,7 +163,10 @@ export default function About({ content, publisher, repositoryCreated, links, or
             {logo !== null && (
                 <Section id="brand" title={content.brand.title} width="text">
                     <div className="type-body space-y-6 text-foreground">
-                        <p>{content.brand.name}</p>
+                        <div className="space-y-4">
+                            <p>{content.brand.name}</p>
+                            <p>{rich(content.brand.usage)}</p>
+                        </div>
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
                             <img src={logo.src} alt={content.brand.alt} width={64} height={64} loading="lazy" decoding="async" className="size-16" />
                             <a href={logo.src} download className={textLinkClasses('standalone')}>

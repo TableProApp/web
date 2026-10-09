@@ -245,6 +245,7 @@ it('carries every cycle\'s price in the server HTML and hides all but the yearly
 })->with([
     'English' => ['/pricing', '$%s', '.'],
     'Vietnamese' => ['/vi/pricing', "%s\u{a0}US$", ','],
+    'Traditional Chinese' => ['/zh-Hant/pricing', 'US$%s', '.'],
 ]);
 
 it('states the refund window under the buy buttons, with the policy linked', function (string $path, string $sentence, string $href): void {

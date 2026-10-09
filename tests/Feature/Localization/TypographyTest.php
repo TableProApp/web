@@ -131,3 +131,15 @@ it('hyphenates the fact terms of an engine page, a third of a narrow card', func
      */
     expect(ssrHtml('/de/postgresql-client'))->toMatch('/<dl class="[^"]*\[&amp;_dt\]:hyphens-auto[^"]*">/');
 });
+
+it('hyphenates long German words in headings, keyed on the language of a German page', function (): void {
+    /*
+     * Measured at 320px before: "Datenschutzerklärun|g", "Nutzungsbedingunge|n"
+     * and "Gewährleistungsausschlu|ss" broke with no hyphen.
+     */
+    expect(stylesheet('app.css'))->toMatch('/\n:is\(h1, h2, h3, h4, h5, h6\):lang\(de\) \{\s*hyphens: auto;\s*hyphenate-limit-chars: 12 4 4;\s*\}/');
+
+    $this->withoutVite();
+
+    expect($this->get('/de/privacy')->getContent())->toContain('<html lang="de"');
+});
