@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs HeidiSQL: klien sumber terbuka",
+        "title": "TablePro vs HeidiSQL: database, platform, dan harga",
         "description": "HeidiSQL gratis di Windows, Linux, dan Mac Apple silicon sejak 2026. TablePro native di Mac, iPhone, dan iPad. Bandingkan database, build, dan harga."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs HeidiSQL",
-        "lead": "HeidiSQL adalah klien gratis bersumber terbuka yang berasal dari Windows dan juga berjalan di Linux. Sejak Januari 2026, tersedia build Mac untuk Apple silicon. TablePro adalah klien sumber terbuka dengan aplikasi Mac untuk Apple silicon dan Intel, aplikasi iPhone dan iPad terpisah, serta fitur berbayar opsional pada Mac."
+        "lead": "HeidiSQL dan TablePro adalah klien database sumber terbuka dengan dukungan engine dan platform yang berbeda. HeidiSQL tidak memiliki paket berbayar; TablePro mengenakan biaya untuk fitur opsional."
     },
     "shortAnswer": {
         "tablepro": [
-            "Mac Anda menggunakan prosesor Intel. TablePro memiliki build terpisah untuk Intel dan Apple silicon.",
-            "Anda juga menggunakan MongoDB, Redis, ClickHouse, atau DuckDB, bukan hanya server SQL.",
-            "Anda menginginkan kata sandi di Rantai Kunci macOS serta level Safe Mode yang meminta Touch ID sebelum penulisan pada koneksi produksi.",
-            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac.",
-            "Anda juga menginginkan aplikasi iPhone dan iPad."
+            "Build resmi untuk Mac Intel, selain Apple silicon.",
+            "MongoDB, Redis, ClickHouse, atau DuckDB bersama server SQL.",
+            "Chat AI dan MCP gratis, serta aplikasi terpisah untuk iPhone dan iPad."
         ],
         "competitor": [
-            "Anda juga bekerja di Windows atau Linux dan menginginkan klien gratis yang sama pada masing-masing.",
-            "Anda terhubung ke Firebird, Interbase, atau ProxySQL, yang tidak didukung TablePro.",
-            "Anda menginginkan semua fitur gratis tanpa paket berbayar.",
-            "Anda mengenal HeidiSQL dari Windows dan ingin menggunakannya pada Mac dengan Apple silicon."
+            "Klien gratis yang sama di Windows, Linux, dan Mac Apple silicon.",
+            "koneksi Firebird, Interbase atau ProxySQL.",
+            "Setiap fitur gratis, tanpa paket berbayar."
         ]
     },
     "glance": {
@@ -38,14 +35,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "HeidiSQL berjalan di Windows, Linux, dan Mac, sehingga satu klien gratis mencakup komputer yang Anda gunakan.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Aplikasi terhubung ke Firebird, Interbase, dan ProxySQL, yang tidak didukung TablePro.",
                 "cite": [
@@ -106,12 +95,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Firebird, Interbase, dan ProxySQL tidak termasuk mesin yang didukung.",
                 "cite": [],
                 "feature": null,
@@ -149,18 +132,6 @@
             "question": "Database apa yang didukung kedua klien?",
             "answer": "Situs HeidiSQL mencantumkan MySQL, MariaDB, SQL Server, PostgreSQL, SQLite, dan Redshift, dan TablePro mendukung semuanya. HeidiSQL menambahkan Firebird, Interbase, dan ProxySQL. TablePro menambahkan mesin dokumen, kunci-nilai, dan analitik seperti MongoDB, Redis, dan ClickHouse.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis seperti HeidiSQL?",
-            "answer": "Gratis digunakan, tetapi tidak sepenuhnya gratis seperti HeidiSQL. Semua mesin yang didukung, asisten AI, dan server MCP tidak memerlukan biaya, dan kodenya bersumber terbuka dengan AGPLv3. HeidiSQL tidak memiliki paket berbayar, sedangkan Starter atau Team menambah fitur opsional pada aplikasi Mac TablePro, seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "intel-download",
-            "question": "Build TablePro mana yang saya perlukan?",
-            "answer": "Build untuk prosesor Mac Anda: Apple silicon atau Intel. Halaman unduhan menyediakan keduanya. <link>Unduh TablePro</link>.",
-            "href": "/download"
         }
     ],
     "notes": {

@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "适用于 {devices} 的 PostgreSQL 客户端",
-        "lead": "处理 schema、数组、jsonb 和 PostGIS，以图形查看 EXPLAIN 计划，并管理角色、会话、维护和备份。同一驱动也支持 Amazon Redshift、CockroachDB 和 PGlite。"
+        "title": "PostgreSQL 客户端",
+        "lead": "查询 PostgreSQL，浏览结构，并通过 SQL 预览编辑行。检查 EXPLAIN 计划、jsonb、数组和 PostGIS 值。"
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供主机、端口、用户和数据库，或粘贴 <code>postgresql://</code>、<code>postgres://</code> URL。PostgreSQL 连接必须指定数据库。",
+                "输入主机、端口、用户和数据库，或粘贴 <code>postgresql://</code>、<code>postgres://</code> URL。数据库为必填项。",
                 "新连接的 SSL 默认为 Preferred，即 libpq 的 <code>sslmode=prefer</code>。要验证服务器证书，请选 Verify CA 或 Verify Identity。",
                 "启用 Use ~/.pgpass 从 <code>~/.pgpass</code> 读取密码。表单报告发现的情况，包括因权限而被 libpq 忽略的文件。",
-                "可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或隧道命令</network>（例如 kubectl port-forward）访问私有服务器。在 Amazon RDS 和 Aurora 上，以获授 <code>rds_iam</code> 的角色通过 <cloudAuth>AWS IAM</cloudAuth> 登录。对于 Google Cloud SQL，TablePro 会下载并运行 Cloud SQL Auth Proxy。",
+                "通过 <network>SSH 隧道、跳板主机、代理或隧道命令</network>访问私有服务器。Amazon RDS 和 Aurora 对获授 <code>rds_iam</code> 的角色支持 <cloudAuth>AWS IAM</cloudAuth>。Google Cloud SQL 使用 Cloud SQL Auth Proxy。",
                 "libpq 接受的任何连接选项，例如 <code>-c application_name=reporting</code>，均可填写在 Connection Options 中。"
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "SQL 编辑器从结构补全表名和列名。<explain>EXPLAIN 和 EXPLAIN ANALYZE</explain> 使用 FORMAT JSON 执行，绘制为计划图或树；EXPLAIN Compare 显示计划在修改后是否变慢。",
-                "jsonb 格式化显示，uuid、inet、timestamptz、interval 和 bytea 按各自形式显示。数组列打开列表编辑器，可添加、删除、重排单个元素或设为 null，enum 列提供其标签。",
+                "使用结构感知的自动补全编写 SQL。将 <explain>EXPLAIN 和 EXPLAIN ANALYZE</explain> 显示为图表或树，并比较两次运行的计划。",
+                "查看格式化 jsonb 以及 uuid、inet、timestamptz、interval、bytea 等 PostgreSQL 类型。数组元素可作为列表编辑；enum 列提供其标签选项。",
                 "PostGIS geometry 和 geography 值以含 SRID 的 EWKT 读取，含几何数据的结果可在 <results>地图视图</results> 打开。地图瓦片来自 Apple，行数据保留在 Mac。",
                 "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示所有语句，保存使用绑定参数。物化视图的行只读，可从菜单刷新；若有 PostgreSQL 要求的唯一索引，可并发刷新。"
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "Schema 和结构",
             "paragraphs": [
-                "列出所有可访问的 schema。可通过面板创建和编辑，生成 CREATE SCHEMA、所有者、注释及 USAGE、CREATE 授权，并在执行前展示。",
-                "<structure>Structure 标签页</structure> 暂存列、索引、外键、CHECK 约束和生成列的修改。分区表显示分区及边界，子分区按嵌套排列。枚举、复合类型、域和范围类型列在 Types 下，可添加和重命名枚举标签。",
+                "浏览有权访问的结构。创建或编辑结构的所有者、注释和授权，并在应用前检查 SQL。",
+                "在 <structure>Structure 标签页</structure>暂存列、索引、外键、CHECK 和生成列更改。浏览分区边界以及 PostgreSQL Types，包括枚举、复合类型、域和范围。可添加或重命名枚举标签。",
                 "视图定义重建时为每个表加上 schema 限定；并发创建失败留下的无效索引会在 Indexes 标签页中标明名称。",
-                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 PostgreSQL schema 或数据，生成使两者一致的脚本，并暂缓可能丢失数据的修改。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比较 PostgreSQL 结构或数据，并生成同步脚本。可能删除数据的更改会保留以供检查。"
             ]
         },
         {
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> 在授权或撤销前显示每项权限来源，并将每条语句暂存为 SQL。",
+                "在 <administer>Users & Roles</administer> 中检查每项权限的来源。授权和撤销更改会暂存为 SQL。",
                 "Server Dashboard 显示会话、连接、缓存命中率、数据库大小和慢查询。使用 <code>pg_cancel_backend</code> 取消查询，或 <code>pg_terminate_backend</code> 终止会话。既非超级用户又非 <code>pg_monitor</code> 成员的角色，可看到其他会话但看不到其查询。",
-                "表维护可运行带 FULL、ANALYZE、VERBOSE 选项的 VACUUM，以及 ANALYZE、REINDEX、CLUSTER，并先显示语句。",
+                "执行表维护前，预览 VACUUM、ANALYZE、REINDEX 和 CLUSTER。",
                 "<backup>Backup Dump 和 Restore Dump</backup> 通过连接的 SSH 隧道运行您自行安装的 {dumpTool} 和 pg_restore。使用 Homebrew 安装；备份 PostgreSQL 9.1 服务器需用 pg_dump 14 或更早版本。"
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "移动数据",
             "paragraphs": [
-                "<importData>导入</importData> {importFormats} 文件；数据文件载入逐列映射的表，并可选择行失败时的处理。表或结果可导出为 {exportFormats}，SQL 导出保留表、视图和物化视图的注释。",
-                "<copy>Copy To</copy> 将表、数据或两者发送到 PostgreSQL 或其他引擎的连接，并列出所有需要近似转换的列类型。"
+                "<importData>导入</importData> {importFormats} 文件，支持列映射和行错误处理。将表或结果导出为 {exportFormats}；SQL 导出保留表、视图和物化视图注释。",
+                "<copy>Copy To</copy> 将表、数据或两者传到另一个 PostgreSQL 连接或引擎。请检查需要近似转换的列类型。"
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin 是老牌 PostgreSQL 开源管理工具，提供调试器、结构差异比较和备份还原。仅使用 PostgreSQL 且以管理工作为主时较合适。",
+                "text": "pgAdmin 专注于 PostgreSQL 管理，包括调试器、结构差异比较、备份和恢复。",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 是以浏览和编辑为中心的 PostgreSQL Mac 应用。其官方文档将备份还原、用户管理和监控等管理功能列为未涵盖内容。仅使用 PostgreSQL、希望使用专注于它的 Mac 应用时较合适。"
+                "text": "Postico 2 专注于 Mac 上的 PostgreSQL 浏览和编辑。其文档明确排除备份恢复、用户管理和监控。"
             }
         ],
         "notes": {

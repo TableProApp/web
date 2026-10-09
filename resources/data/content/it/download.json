@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Scarica TablePro per Mac",
-        "description": "Scarica TablePro per Mac, con build separate per Apple silicon e Intel, oppure installalo con Homebrew. L’app per iPhone e iPad è su App Store."
+        "title": "Scarica TablePro",
+        "description": "Scarica TablePro, con build separate per Apple silicon e Intel, oppure installalo con Homebrew. L'app per iPhone e iPad si trova sullo App Store."
     },
     "og": {
         "kicker": "Download",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Scarica TablePro",
-        "lead": "Scarica l’app per Mac adatta al chip del tuo Mac oppure installala con Homebrew. L’app per iPhone e iPad è su App Store."
+        "lead": "Scegli una build per il tuo dispositivo."
     },
     "mac": {
         "otherWays": "Altri modi per installare",
@@ -22,19 +22,19 @@
         "source": "Compila dal sorgente (AGPLv3)"
     },
     "ios": {
-        "body": "Un’app separata realizzata per {devices}, con un proprio insieme di funzionalità.",
+        "body": "Un'app gratuita per {devices}, con il proprio set di funzionalità.",
         "link": "TablePro per {devices}"
     },
     "install": {
         "title": "Installazione e primo avvio",
         "steps": [
-            "Apri il file .dmg scaricato dalla cartella Download.",
+            "Apri il file .dmg scaricato.",
             "Trascina TablePro nella cartella Applicazioni.",
-            "Apri TablePro da Applicazioni. Poiché proviene da internet, macOS chiede conferma al primo avvio. Scegli <ui>Open</ui> (Apri).",
-            "Aggiungi una connessione oppure scegli <ui>Help > Open Sample Database</ui> per esplorare prima l’app. Si apre Chinook, un piccolo database SQLite incluso nell’app."
+            "Apri TablePro da Applicazioni. Scegli <ui>Open</ui> quando macOS ti chiede di confermare.",
+            "Aggiungi una connessione o prova il database Chinook SQLite in bundle tramite <ui>Help > Open Sample Database</ui>."
         ],
-        "signing": "Entrambe le build sono firmate con un Developer ID e autenticate da Apple, quindi non devi modificare alcuna impostazione di sicurezza per aprire TablePro.",
-        "drivers": "I driver per i database più comuni sono inclusi nell’app. Gli altri vengono scaricati la prima volta che scegli quel database, operazione che richiede una connessione internet, e si aggiornano separatamente dall’app.",
+        "signing": "Entrambe le build sono firmate con un Developer ID e autenticate da Apple, quindi non devi modificare alcuna imposto di sicurezza per aprire TablePro.",
+        "drivers": "I driver comuni sono raggruppati. Altri necessitano di una connessione Internet per scaricare al primo utilizzo e aggiornare separatamente dall'app.",
         "databases": "Database supportati",
         "guide": {
             "label": "Leggi la guida all’installazione (inglese)",

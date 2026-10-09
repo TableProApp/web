@@ -7,6 +7,6 @@ return [
         'database' => 'Bancos de dados',
         'feature' => 'Recursos',
     ],
-    'author' => 'A equipe TablePro',
+    'author' => 'TablePro',
     'byline' => ':author · :date',
 ];

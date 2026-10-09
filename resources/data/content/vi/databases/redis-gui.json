@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "GUI Redis cho {macDevices}",
-        "lead": "Xem key dạng cây phân theo dấu hai chấm, đọc ngay type, TTL và độ dài của từng key, và chạy lệnh Redis với cách đặt ngoặc giống redis-cli, trên một server đơn lẻ, một primary do Sentinel quản lý hay một Redis Cluster."
+        "title": "Redis GUI",
+        "lead": "Trên Mac, xem key và chạy command với Standalone, Sentinel hoặc Cluster. iPhone và iPad chỉ hỗ trợ command Standalone."
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Hãy chọn <ui>Chế độ kết nối (Connection Mode)</ui>. Standalone cần host và port. Sentinel cần một hoặc nhiều node Sentinel cùng tên nhóm primary, đi theo quorum tới primary và chuyển theo nó sau failover. Cluster nhận bất kỳ thành viên nào còn kết nối được làm seed, đọc sơ đồ shard và gửi từng lệnh tới shard đang giữ key của lệnh đó.",
+                "Chọn <ui>Connection Mode</ui>: Standalone, Sentinel hoặc Cluster. Sentinel theo primary sau failover; Cluster tìm shard từ seed member và chuyển command tới shard sở hữu.",
                 "Đăng nhập bằng mật khẩu, hoặc điền Username để đăng nhập dưới tên một ACL user của Redis 6. Trên Amazon ElastiCache, hãy chọn một chế độ <cloudAuth>AWS IAM</cloudAuth>, và một token ngắn hạn sẽ được dùng làm mật khẩu; ElastiCache IAM yêu cầu bật TLS.",
                 "Connection mới để TLS tắt. Upstash, Redis Cloud và các dịch vụ tương tự bắt buộc dùng TLS, và URL <code>rediss://</code> khi dán vào sẽ bật TLS. Không có cơ chế lùi về kết nối không mã hóa, nên Ưu tiên (Preferred) hoạt động như Required. Server Valkey kết nối theo cùng cách như Redis.",
                 "Sidebar liệt kê từng cơ sở dữ liệu đánh số, từ <code>db0</code> trở lên, và bạn bấm vào một cơ sở dữ liệu để xem ngay tại chỗ."
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "Key và lệnh",
             "paragraphs": [
-                "Tên key được chia thành thư mục tại mỗi dấu hai chấm, hoặc tại ký tự phân tách bạn đặt trong tab Options. Mỗi key là một dòng trong data grid với Key, Type, TTL, Length và Value. String hiện đầy đủ; hash, list, set, sorted set hay stream hiện các phần tử đầu tiên, còn Length cho biết tổng cộng có bao nhiêu. Giá trị không phải UTF-8 hợp lệ, như dữ liệu nén gzip, mở trong hex editor.",
-                "<editing>Trong data grid</editing>, sửa tên key sẽ chạy <code>RENAME</code>, sửa TTL chạy <code>EXPIRE</code> hoặc <code>PERSIST</code>, và sửa giá trị string chạy <code>SET</code>. Thêm dòng (Add Row) ghi đúng type bạn chọn bằng <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> hoặc <code>SET</code>. Thanh lọc so khớp tên key bằng glob pattern của Redis và lọc theo type, dùng <code>SCAN MATCH</code> và <code>SCAN TYPE</code> trên server.",
-                "Editor nhận mỗi câu lệnh một lệnh, đặt ngoặc theo cách của redis-cli, và gửi nguyên văn những lệnh nó không nhận ra. <code>DB 3 GET key</code> chạy một lệnh trên cơ sở dữ liệu khác mà không dời session, còn trong khối <code>MULTI</code>, mỗi lệnh trả về <code>QUEUED</code> cho tới khi <code>EXEC</code> trả lại mọi kết quả theo đúng thứ tự.",
+                "Xem key theo thư mục phân tách bằng dấu hai chấm, hoặc chọn dấu khác. Mỗi dòng hiển thị kiểu key, TTL, độ dài và giá trị. Collection hiện các mục đầu; giá trị không phải UTF-8 mở trong hex editor.",
+                "<editing>Sửa tên key, TTL và string</editing> trong data grid. Add Row tạo hash, list, set, sorted set hoặc string. Lọc tên và kiểu key bằng <code>SCAN MATCH</code> và <code>SCAN TYPE</code> phía server.",
+                "Chạy command với quy tắc quote kiểu redis-cli. Command chưa biết gửi nguyên văn. <code>DB 3 GET key</code> tới cơ sở dữ liệu khác mà không đổi session. Trong <code>MULTI</code>, response chờ tới <code>EXEC</code>.",
                 "<safeMode>Safe Mode</safeMode> coi mọi lệnh Redis là thao tác ghi, kể cả <code>GET</code>, nên các mức Alert và Safe Mode hỏi xác nhận từng lệnh, còn Read-Only chặn tất cả. <code>FLUSHDB</code> và <code>FLUSHALL</code> luôn hỏi trước khi chạy, kể cả ở mức Silent."
             ]
         },
@@ -61,8 +61,10 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight là công cụ chính hãng của Redis. Ngoài trình xem key và Workbench để chạy lệnh, Redis Insight còn có không gian làm việc cho Pub/Sub, command profiler, công cụ xem slow log và phân tích bộ nhớ. Hãy chọn Redis Insight khi cần theo dõi và tinh chỉnh một hệ thống Redis; TablePro hợp hơn khi Redis nằm cạnh các cơ sở dữ liệu SQL bạn dùng hằng ngày.",
-                "notes": ["redis-insight-copilot"]
+                "text": "Chọn Redis Insight cho trình xem key, command Workbench, workspace Pub/Sub, profiler, slow log và phân tích bộ nhớ. TablePro làm việc với Redis cùng cơ sở dữ liệu SQL.",
+                "notes": [
+                    "redis-insight-copilot"
+                ]
             }
         ],
         "notes": {

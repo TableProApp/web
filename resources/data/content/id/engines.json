@@ -1,19 +1,19 @@
 {
     "postgresql": {
-        "tagline": "Array, jsonb, dan nilai PostGIS, diagram EXPLAIN, Users & Roles, serta cadangan pg_dump.",
+        "tagline": "jsonb, array dan PostGIS; diagram EXPLAIN.",
         "limits": {
             "column-reorder-script-only": "Mengurutkan ulang kolom menghasilkan skrip pembangunan ulang tabel. TablePro menampilkan skrip dan tidak pernah menjalankannya."
         }
     },
     "mysql": {
-        "tagline": "MySQL melalui TCP, dengan diagram EXPLAIN, Users & Roles, login AWS IAM, serta cadangan mysqldump.",
+        "tagline": "diagram EXPLAIN, pengguna dan sesi; cadangan mysqldump.",
         "limits": {
             "tcp-only": "Koneksi memakai host dan port melalui TCP. Socket Unix lokal tidak didukung.",
             "load-data-local-refused": "Driver menolak LOAD DATA LOCAL INFILE. Muat file melalui Impor."
         }
     },
     "sqlserver": {
-        "tagline": "T-SQL dengan batch GO dan keluaran PRINT, login Kerberos atau Microsoft Entra ID, serta cadangan .bacpac.",
+        "tagline": "T-SQL, GO batch dan PRINT; Kerberos dan Entra ID.",
         "limits": {
             "no-named-instances": "Named instance tidak didukung. Terhubung ke port TCP instans.",
             "no-ntlm": "NTLM tidak didukung. Masuk dengan login SQL Server, Kerberos, atau Microsoft Entra ID.",
@@ -23,7 +23,7 @@
         }
     },
     "sqlite": {
-        "tagline": "File database dibuka di lokasi aslinya, di Mac ini atau server SSH, dengan ekstensi yang dapat dimuat.",
+        "tagline": "File database lokal dan yang dihosting SSH; ekstensi yang dapat dimuat.",
         "limits": {
             "no-encryption": "Database terenkripsi, seperti file SQLCipher dan SEE, tidak dapat dibuka. Dekripsi file terlebih dahulu.",
             "no-primary-key-changes": "Primary key tidak dapat ditambah, dihapus, atau dipindah.",
@@ -33,7 +33,7 @@
         }
     },
     "mongodb": {
-        "tagline": "Shell JavaScript bergaya mongosh, dokumen sebagai Extended JSON, serta cluster Atlas melalui SRV.",
+        "tagline": "kueri bergaya mongosh; Pengeditan dokumen JSON yang diperluas.",
         "limits": {
             "no-transactions": "Transaksi tidak didukung.",
             "no-gridfs-or-change-streams": "GridFS dan change stream tidak didukung.",
@@ -41,7 +41,7 @@
         }
     },
     "redis": {
-        "tagline": "Perintah Redis, pohon key yang dipisah pada titik dua, TTL, serta koneksi Sentinel atau Cluster.",
+        "tagline": "Kunci dan TTL; Standalone, Sentinel dan Cluster.",
         "limits": {
             "string-values-only": "Hanya nilai string yang dapat diedit di grid. Ubah list, set, hash, sorted set, dan stream dengan perintah.",
             "no-pubsub": "Tidak ada tampilan pub/sub. PUBLISH berjalan sebagai perintah, dan tidak ada yang berlangganan.",
@@ -52,14 +52,14 @@
         }
     },
     "mariadb": {
-        "tagline": "Driver MySQL dengan sequence MariaDB, kolom virtual dan persisten, serta kolom JSON.",
+        "tagline": "Urutan MariaDB, kolom yang dihasilkan dan JSON.",
         "limits": {
             "no-cloud-sql-proxy": "Cloud SQL Auth Proxy tidak tersedia untuk MariaDB. Akses server privat lewat tunnel SSH.",
             "roles-listed-as-users": "Users & Roles mencantumkan peran MariaDB sebagai pengguna. Buat dan berikan peran dengan SQL di editor."
         }
     },
     "tidb": {
-        "tagline": "TiDB dan TiDB Cloud pada driver MySQL, dengan Stop dikirim sebagai KILL TIDB QUERY.",
+        "tagline": "TiDB dan TiDB Cloud melalui driver MySQL.",
         "limits": {
             "no-triggers-or-routines": "Tidak ada trigger, stored routine, atau event.",
             "no-dashboard-or-dump": "Tidak ada Server Dashboard atau Backup Dump. Ekspor dengan Dumpling TiDB.",
@@ -67,7 +67,7 @@
         }
     },
     "oceanbase": {
-        "tagline": "Tenant OceanBase dalam mode MySQL, masuk sebagai user@tenant, secara langsung atau melalui OBProxy.",
+        "tagline": "Penyewa mode MySQL, secara langsung atau melalui OBProxy.",
         "limits": {
             "mysql-mode-only": "Hanya tenant mode MySQL yang terhubung. Tenant mode Oracle ditolak.",
             "no-dashboard-or-dump": "Tidak ada Server Dashboard atau Backup Dump.",
@@ -75,7 +75,7 @@
         }
     },
     "databend": {
-        "tagline": "Databend dan Databend Cloud melalui handler MySQL Databend.",
+        "tagline": "Databend dan Databend Cloud melalui pengendali MySQL.",
         "limits": {
             "no-keys-or-indexes": "Databend tidak memiliki indeks, primary key, atau foreign key, sehingga edit baris mencocokkan semua kolom, dan penyimpanan yang akan mengubah lebih dari satu baris ditolak.",
             "no-compare-sync": "Compare & Sync tidak tersedia.",
@@ -84,7 +84,7 @@
         }
     },
     "redshift": {
-        "tagline": "Amazon Redshift pada driver PostgreSQL, dengan DISTKEY dan SORTKEY dalam DDL.",
+        "tagline": "cluster Redshift dan Serverless; kunci distribusi dan pengurutan.",
         "limits": {
             "no-aws-iam": "Login AWS IAM tidak tersedia untuk Redshift. Masuk sebagai pengguna database.",
             "structure-read-only": "Tab Structure hanya-baca. Jalankan DDL di editor.",
@@ -92,14 +92,14 @@
         }
     },
     "cockroachdb": {
-        "tagline": "CockroachDB dan CockroachDB Cloud melalui protokol komunikasi PostgreSQL.",
+        "tagline": "CockroachDB dan CockroachDB Cloud melalui driver PostgreSQL.",
         "limits": {
             "structure-read-only": "Tab Structure hanya-baca. Jalankan perubahan skema sebagai SQL di editor.",
             "no-dump-or-maintenance": "Tidak ada Backup Dump, Restore Dump, atau pemeliharaan tabel. Gunakan pernyataan BACKUP dan RESTORE CockroachDB sendiri."
         }
     },
     "pglite": {
-        "tagline": "PGlite dilayani server socket-nya sebagai koneksi PostgreSQL biasa.",
+        "tagline": "PGlite melalui server soket yang dimulai secara terpisah.",
         "limits": {
             "needs-socket-server": "PGlite harus dilayani oleh @electric-sql/pglite-socket, yang Anda mulai sendiri dan pertahankan berjalan.",
             "single-client": "Server socket menerima satu klien setiap kali.",
@@ -107,7 +107,7 @@
         }
     },
     "oracle": {
-        "tagline": "Driver sepenuhnya Swift tanpa Instant Client, dengan skrip PL/SQL dan DBMS_OUTPUT.",
+        "tagline": "SQL dan PL/SQL; tanpa Oracle Instant Client.",
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Wallet Oracle, autentikasi OS, Kerberos, dan LDAP tidak didukung. Terhubung dengan nama layanan atau SID dan kata sandi.",
             "no-explain": "Tidak ada EXPLAIN atau tampilan rencana eksekusi untuk Oracle.",
@@ -116,7 +116,7 @@
         }
     },
     "clickhouse": {
-        "tagline": "ClickHouse melalui HTTP atau HTTPS, dengan variasi EXPLAIN, mutation, dan tab Parts.",
+        "tagline": "Kueri HTTP, paket EXPLAIN, dan bagian MergeTree.",
         "limits": {
             "http-only": "Koneksi memakai antarmuka HTTP ClickHouse. Protokol TCP native tidak digunakan.",
             "tls-off-by-default": "TLS nonaktif secara bawaan. Pilih mode SSL pada formulir koneksi untuk memakai HTTPS.",
@@ -125,7 +125,7 @@
         }
     },
     "duckdb": {
-        "tagline": "File DuckDB, file Parquet, CSV, dan JSON sebagai view, serta database dalam memori.",
+        "tagline": "database DuckDB; SQL di atas Parquet, CSV dan JSON.",
         "limits": {
             "one-writer-per-file": "Satu proses menulis ke file DuckDB pada satu waktu, selama koneksi terbuka.",
             "extensions-download-on-first-use": "Driver mencakup fungsi inti dan ekstensi JSON, Parquet, ICU, serta pelengkapan otomatis. Ekstensi lain, seperti httpfs, diunduh dari DuckDB saat kueri pertama kali memerlukannya.",
@@ -133,7 +133,7 @@
         }
     },
     "cassandra": {
-        "tagline": "CQL dengan contact point, TLS, dan login Amazon Keyspaces SigV4.",
+        "tagline": "ruang kunci CQL; Masuk IAM Amazon Keyspaces.",
         "limits": {
             "scalar-edits-only": "Hanya kolom skalar yang dapat diedit di grid. Koleksi, tuple, tipe buatan pengguna, dan durasi memerlukan UPDATE di editor.",
             "no-consistency-level": "Tidak ada pengaturan level konsistensi. Pernyataan memakai bawaan driver, LOCAL_ONE.",
@@ -142,50 +142,50 @@
         }
     },
     "scylladb": {
-        "tagline": "ScyllaDB melalui driver Cassandra, dengan alur kerja CQL yang sama.",
+        "tagline": "CQL melalui driver Cassandra.",
         "limits": {}
     },
     "dynamodb": {
-        "tagline": "PartiQL dan JSON API DynamoDB, dengan perencana yang memilih Query atau Scan dari filter dan melaporkan kapasitas baca yang dikonsumsi setiap pembacaan.",
+        "tagline": "PartiQL, pembacaan yang sadar kunci dan kapasitas yang dikonsumsi.",
         "limits": {
             "one-account-and-region": "Setiap koneksi mencakup satu akun AWS pada satu region.",
             "no-dax-or-truncate": "Endpoint DAX tidak didukung, dan Truncate tidak tersedia."
         }
     },
     "bigquery": {
-        "tagline": "GoogleSQL dengan Max Bytes Billed dan estimasi biaya Dry Run sebelum kueri berjalan.",
+        "tagline": "GoogleSQL, perkiraan uji coba, dan batas byte yang ditagih.",
         "limits": {
             "structure-read-only": "Tab Structure hanya-baca. Jalankan DDL di editor.",
             "no-transactions": "Transaksi tidak didukung."
         }
     },
     "snowflake": {
-        "tagline": "Pasangan key, SSO browser, OAuth, atau kata sandi dengan kode, dengan warehouse dan peran dalam Session Context.",
+        "tagline": "Pergantian warehouse dan peran; login SSO dan pasangan kunci.",
         "limits": {
             "duo-passcode-only": "Duo hanya mendukung kode. Persetujuan push tidak didukung."
         }
     },
     "cloudflare-d1": {
-        "tagline": "Setiap database D1 dalam akun Cloudflare, diakses melalui API HTTP D1.",
+        "tagline": "Database akun Cloudflare melalui D1 API.",
         "limits": {
             "no-session-state-or-transactions": "Setiap pernyataan adalah permintaan HTTP terpisah: status sesi tidak diteruskan, dan transaksi tidak didukung."
         }
     },
     "turso": {
-        "tagline": "Database Turso jarak jauh melalui HTTP dengan token, melalui driver libSQL.",
+        "tagline": "Database Turso jarak jauh melalui driver libSQL.",
         "limits": {
             "no-database-switching-or-branches": "Setiap koneksi adalah satu database. Pergantian database dan branch tidak didukung.",
             "no-embedded-replicas": "Replika tertanam tidak didukung: file lokal dibuka sendiri dan tidak disinkronkan."
         }
     },
     "libsql": {
-        "tagline": "File libSQL di Mac ini atau server sqld melalui HTTP.",
+        "tagline": "File libSQL lokal dan server sqld jarak jauh.",
         "limits": {
             "dump-local-file-only": "Backup Dump hanya mendukung file libSQL lokal, bukan database jarak jauh."
         }
     },
     "elasticsearch": {
-        "tagline": "Konsol Query DSL, indeks sebagai tabel, dan edit dokumen berdasarkan _id.",
+        "tagline": "Konsol Query DSL; edit dokumen berdasarkan _id.",
         "limits": {
             "no-opensearch": "OpenSearch tidak didukung.",
             "aliases-not-listed": "Alias dan data stream tidak tercantum di sidebar. Akses dengan namanya di konsol.",
@@ -193,7 +193,7 @@
         }
     },
     "etcd": {
-        "tagline": "Sebagian fitur etcdctl melalui gateway JSON v3: key di bawah prefiks, lease, dan anggota.",
+        "tagline": "Kunci berdasarkan awalan, lease, dan perintah bergaya etcdctl.",
         "limits": {
             "no-txn": "txn tidak didukung.",
             "json-gateway-only": "Koneksi memakai gateway JSON v3, bukan gRPC.",
@@ -201,7 +201,7 @@
         }
     },
     "kafka": {
-        "tagline": "Konsumsi dan produksi dengan KafkaQL, dengan topic, partisi, dan lag consumer group.",
+        "tagline": "Pesan topik, kelambatan konsumen, dan KafkaQL.",
         "limits": {
             "no-schema-registry": "Schema Registry tidak dibaca, sehingga nilai Avro dan Protobuf tampil sebagai byte mentah.",
             "no-topic-create-or-offset-reset": "Pembuatan topic, pengeditan konfigurasi topic, dan reset offset consumer group tidak didukung.",
@@ -209,53 +209,53 @@
         }
     },
     "surrealdb": {
-        "tagline": "SurrealQL melalui HTTP RPC, dengan login root, namespace, database, record, atau token.",
+        "tagline": "Kueri SurrealQL dan perubahan record bertipe.",
         "limits": {
             "no-syntax-highlighting": "SurrealQL tidak mendapat sorotan sintaks di editor.",
             "no-live-queries": "Live query tidak didukung. Jalankan ulang kueri untuk melihat record baru."
         }
     },
     "teradata": {
-        "tagline": "Login TD2 atau TDNEGO, dengan procedure dan makro tercantum di sidebar.",
+        "tagline": "masuk TD2 dan TDNEGO; prosedur dan makro.",
         "limits": {
             "ldap-kerberos-jwt-refused": "Login LDAP, Kerberos, dan JWT ditolak. Gunakan TD2 atau TDNEGO.",
             "foreign-keys-not-listed": "Foreign key tidak tercantum. Baca dari DDL tabel."
         }
     },
     "trino": {
-        "tagline": "SQL lintas katalog melalui API REST Trino, dengan login kata sandi atau JWT.",
+        "tagline": "Lintas katalog SQL melalui REST API Trino.",
         "limits": {
             "no-presto": "Server Presto tidak didukung.",
             "no-kerberos-or-oauth": "Login Kerberos dan OAuth tidak didukung."
         }
     },
     "beancount": {
-        "tagline": "Buku besar Beancount dibaca sebagai tabel SQL, ditambah kueri BQL.",
+        "tagline": "Tabel SQL hanya-baca dari buku besar; BQL dengan rledger.",
         "limits": {
             "projected-tables": "TablePro membaca buku besar menjadi {value} tabel SQL hanya-baca saat dibuka. Tidak ada yang ditulis kembali ke buku besar.",
             "needs-ledger-tool": "Memerlukan rledger atau Python beancount terinstal di Mac ini."
         }
     },
     "spanner": {
-        "tagline": "Dialek GoogleSQL atau PostgreSQL, dideteksi saat terhubung, serta emulator Spanner.",
+        "tagline": "Dialek GoogleSQL dan PostgreSQL; emulator Spanner.",
         "limits": {
             "structure-read-only": "Tab Structure hanya-baca. Ubah tabel dengan ALTER TABLE di editor."
         }
     },
     "typesense": {
-        "tagline": "Konsol permintaan REST, koleksi sebagai tabel, dan dasbor metrik.",
+        "tagline": "Konsol REST, koleksi, dan metrik.",
         "limits": {
             "api-keys-as-users": "Typesense tidak memiliki akun pengguna, sehingga API key dicantumkan di tempat mesin lain menampilkan pengguna."
         }
     },
     "weaviate": {
-        "tagline": "Koleksi sebagai tabel, dibaca dengan GraphQL dan ditulis lewat REST.",
+        "tagline": "Pembacaan GraphQL dan pengeditan dokumen REST.",
         "limits": {
             "graphql-reads-rest-writes": "GraphQL hanya membaca. Penelusuran dan edit baris melalui endpoint REST Weaviate."
         }
     },
     "cloudflare-r2-sql": {
-        "tagline": "SQL hanya-baca pada tabel Iceberg yang disimpan di Cloudflare R2.",
+        "tagline": "SQL hanya-baca di atas tabel Iceberg di R2.",
         "limits": {
             "rows-per-query": "Kueri mengembalikan paling banyak {value} baris.",
             "no-offset": "OFFSET tidak didukung.",
@@ -263,13 +263,13 @@
         }
     },
     "dameng": {
-        "tagline": "Dameng DM8 melalui protokol native, dengan rencana EXPLAIN dan tunnel SSH.",
+        "tagline": "Kueri DM8 dengan protokol native, EXPLAIN, dan tunnel SSH.",
         "limits": {
             "no-tls": "TLS tidak didukung. Akses server di luar jaringan privat melalui tunnel SSH."
         }
     },
     "sap-hana": {
-        "tagline": "SAP HANA Cloud, HANA 2.0, dan HANA Express, dengan struktur ditampilkan hanya-baca.",
+        "tagline": "HANA Cloud, HANA 2.0 dan Ekspres; struktur hanya-baca.",
         "limits": {
             "no-tunnels": "Tunnel SSH, proxy SOCKS, tunnel Cloudflare, dan perintah tunnel tidak didukung.",
             "unsupported-auth-methods": "Login sertifikat X.509, JWT, SAML, Kerberos, dan LDAP tidak didukung. Masuk sebagai pengguna database dengan kata sandi."

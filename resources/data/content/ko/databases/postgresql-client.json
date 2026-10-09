@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "{devices}용 PostgreSQL 클라이언트",
-        "lead": "스키마, 배열, jsonb와 PostGIS를 다루고 EXPLAIN 계획을 다이어그램으로 확인하며 역할, 세션, 유지 관리와 백업을 관리합니다. 같은 드라이버는 Amazon Redshift, CockroachDB와 PGlite도 지원합니다."
+        "title": "PostgreSQL 클라이언트",
+        "lead": "PostgreSQL을 조회하고 스키마를 탐색하며 SQL 미리보기로 행을 편집하세요. EXPLAIN 계획, jsonb, 배열, PostGIS 값을 확인할 수 있습니다."
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트, 포트, 사용자와 데이터베이스를 입력하거나 <code>postgresql://</code> 또는 <code>postgres://</code> URL을 붙여넣습니다. PostgreSQL은 연결할 데이터베이스가 필요합니다.",
+                "호스트, 포트, 사용자, 데이터베이스를 입력하거나 <code>postgresql://</code> 또는 <code>postgres://</code> URL을 붙여 넣으세요. 데이터베이스는 필수입니다.",
                 "새 연결의 SSL은 Preferred, 즉 libpq의 <code>sslmode=prefer</code>로 시작합니다. 서버 인증서를 검사하려면 Verify CA나 Verify Identity를 선택하세요.",
                 "Use ~/.pgpass를 켜면 <code>~/.pgpass</code>에서 비밀번호를 읽습니다. 양식은 찾은 결과를 표시하고 파일 권한 때문에 libpq가 무시하는 경우도 알립니다.",
-                "사설 서버에는 <network>필요시 점프 호스트를 쓰는 SSH 터널, SOCKS5 프록시, Cloudflare Access 터널 또는 터널 명령</network>인 kubectl port-forward 등으로 접근합니다. Amazon RDS와 Aurora는 <code>rds_iam</code>을 부여받은 역할로 <cloudAuth>AWS IAM</cloudAuth> 로그인합니다. Google Cloud SQL에서는 TablePro가 Cloud SQL Auth Proxy를 다운로드하고 실행합니다.",
+                "<network>SSH 터널, 점프 호스트, 프록시, 터널 명령</network>으로 비공개 서버에 연결하세요. Amazon RDS와 Aurora는 <code>rds_iam</code> 권한이 있는 역할에 <cloudAuth>AWS IAM</cloudAuth>을 지원합니다. Google Cloud SQL은 Cloud SQL Auth Proxy를 사용합니다.",
                 "<code>-c application_name=reporting</code>처럼 libpq가 허용하는 연결 옵션은 Connection Options에 입력합니다."
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "쿼리 및 편집",
             "paragraphs": [
-                "SQL 편집기는 스키마에서 테이블·열 이름을 완성합니다. <explain>EXPLAIN과 EXPLAIN ANALYZE</explain>는 FORMAT JSON으로 실행해 계획 다이어그램이나 트리로 보여 주며 EXPLAIN Compare는 변경 후 계획이 느려졌는지를 표시합니다.",
-                "jsonb는 서식을 갖춰 표시되고 uuid, inet, timestamptz, interval과 bytea는 고유 형식으로 표시됩니다. 배열 열은 목록 편집기에서 개별 요소를 추가·제거·재정렬하거나 null로 설정하며 enum 열은 해당 라벨을 제공합니다.",
+                "스키마 기반 자동 완성으로 SQL을 작성하세요. <explain>EXPLAIN과 EXPLAIN ANALYZE</explain>를 다이어그램이나 트리로 보고 두 실행의 계획을 비교할 수 있습니다.",
+                "서식이 지정된 jsonb와 uuid, inet, timestamptz, interval, bytea 등 PostgreSQL 타입을 확인하세요. 배열 요소는 목록으로 편집하고 enum 열은 정의된 레이블을 제공합니다.",
                 "PostGIS의 geometry·geography 값은 SRID가 포함된 EWKT로 읽히며 지오메트리 결과는 <results>지도 보기</results>로 열립니다. 지도 타일은 Apple이 제공하고 행 데이터는 Mac에 남습니다.",
                 "행 편집은 저장까지 대기하고 <editing>Preview SQL</editing>이 모든 명령문을 먼저 보여 주며 바인딩 매개변수로 저장합니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며 PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침이 가능합니다."
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "스키마 및 구조",
             "paragraphs": [
-                "접근 가능한 모든 스키마를 나열합니다. 스키마 생성·편집 화면에서 CREATE SCHEMA, 소유자, 주석 및 USAGE·CREATE 권한 부여를 작성하고 실행 전에 보여 줍니다.",
-                "<structure>Structure 탭</structure>은 열, 인덱스, 외래 키, CHECK 제약 조건 및 생성 열 변경을 임시 저장합니다. 분할 테이블은 경계와 함께 파티션을 표시하고 다시 분할된 파티션은 중첩됩니다. enum, 복합 유형, 도메인과 범위는 Types 아래에 표시되며 enum 라벨을 추가하거나 이름을 바꿀 수 있습니다.",
+                "접근 가능한 스키마를 살펴보세요. 소유자, 주석, 권한을 포함해 스키마를 만들거나 편집하고 적용 전에 SQL을 확인합니다.",
+                "<structure>Structure 탭</structure>에서 열, 인덱스, 외래 키, CHECK, 생성 열 변경을 준비하세요. 파티션 경계와 enum, 복합 타입, 도메인, 범위 등 PostgreSQL Types를 살펴볼 수 있습니다. enum 레이블은 추가하거나 이름을 바꿀 수 있습니다.",
                 "뷰 정의는 모든 테이블을 스키마로 한정해 재구성하며 동시 생성 실패로 무효가 된 인덱스는 Indexes 탭에 이름이 표시됩니다.",
-                "{compareSyncTier} 플랜의 <compareSync>Compare & Sync</compareSync>는 두 PostgreSQL 스키마나 데이터를 비교해 한쪽을 다른 쪽에 맞추는 스크립트를 작성하며 데이터 손실이 발생하는 변경은 보류합니다."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 PostgreSQL 스키마나 데이터를 비교하고 동기화 스크립트를 만듭니다. 데이터가 삭제될 수 있는 변경은 검토하도록 보류합니다."
             ]
         },
         {
             "id": "operate",
             "title": "관리",
             "paragraphs": [
-                "<administer>Users & Roles</administer>는 권한 부여·취소 전에 각 권한의 출처를 보여 주고 모든 명령문을 SQL로 임시 저장합니다.",
+                "<administer>Users & Roles</administer>에서 각 권한의 출처를 확인하세요. 권한 부여와 회수 변경은 SQL로 준비됩니다.",
                 "Server Dashboard는 세션, 연결, 캐시 적중률, 데이터베이스 크기와 느린 쿼리를 보여 줍니다. <code>pg_cancel_backend</code>로 쿼리를 취소하거나 <code>pg_terminate_backend</code>로 세션을 종료합니다. 슈퍼유저도 <code>pg_monitor</code> 멤버도 아닌 역할은 다른 세션은 보지만 쿼리는 보지 못합니다.",
-                "테이블 유지 관리는 FULL, ANALYZE, VERBOSE 옵션의 VACUUM과 ANALYZE, REINDEX, CLUSTER를 실행하며 명령문을 먼저 보여 줍니다.",
+                "테이블 유지 관리를 실행하기 전에 VACUUM, ANALYZE, REINDEX, CLUSTER를 미리 확인하세요.",
                 "<backup>Backup Dump와 Restore Dump</backup>는 연결의 SSH 터널로 직접 설치한 {dumpTool}와 pg_restore를 실행합니다. Homebrew로 설치하세요. PostgreSQL 9.1 서버를 백업하려면 pg_dump 14 이하를 사용합니다."
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "데이터 이동",
             "paragraphs": [
-                "{importFormats} 파일을 <importData>가져오며</importData> 열별로 매핑한 테이블에 데이터 파일을 넣고 행 실패 시 동작을 선택합니다. 테이블이나 결과는 {exportFormats}로 내보내며 SQL 내보내기는 테이블, 뷰와 구체화된 뷰의 주석을 보존합니다.",
-                "<copy>Copy To</copy>는 테이블, 데이터 또는 둘 다를 PostgreSQL이나 다른 엔진의 연결로 보내고 근사 변환이 필요한 모든 열 유형을 나열합니다."
+                "열 매핑과 행 오류 처리를 사용해 {importFormats} 파일을 <importData>가져오세요</importData>. 테이블이나 결과를 {exportFormats} 형식으로 내보낼 수 있습니다. SQL 내보내기는 테이블, 뷰, 구체화된 뷰의 주석을 유지합니다.",
+                "<copy>Copy To</copy>는 테이블, 데이터 또는 둘 다 다른 PostgreSQL 연결이나 엔진으로 전송합니다. 근사 변환이 필요한 열 타입은 검토하세요."
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin은 오랫동안 사용된 PostgreSQL 오픈 소스 관리 도구로 디버거, 스키마 차이 비교, 백업·복원을 제공합니다. PostgreSQL만 사용하고 관리 작업이 대부분이라면 적합합니다.",
+                "text": "pgAdmin은 디버거, 스키마 비교, 백업 및 복원 등 PostgreSQL 관리에 집중합니다.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2는 탐색과 편집 중심의 PostgreSQL Mac 앱입니다. 공식 문서에서도 백업·복원, 사용자 관리와 모니터링 같은 관리 기능을 제외합니다. PostgreSQL만 사용하고 그에 특화된 Mac 앱을 원한다면 적합합니다."
+                "text": "Postico 2는 Mac에서 PostgreSQL 탐색과 편집에 집중합니다. 문서상 백업 및 복원, 사용자 관리, 모니터링은 제외됩니다."
             }
         ],
         "notes": {

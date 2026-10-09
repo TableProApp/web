@@ -76,7 +76,7 @@ export default function Home({ content, engines, categories, iosEngines, checkou
             />
             <SponsorsSection content={content.sponsors} />
             <WorkflowsSection content={content.workflows} engines={engines} />
-            <SafetySection content={content.safety} paidTemplate={content.workflows.paid} />
+            <SafetySection content={content.safety} />
             <AiSection content={content.ai} />
             <PlatformsSection content={content.platforms} availability={availability} />
             <SwitchSection content={content.switch} macApp={macApp} />

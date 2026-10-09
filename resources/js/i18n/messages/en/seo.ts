@@ -16,8 +16,8 @@
 export default {
     titleTemplate: '{title} – TablePro',
     product: {
-        short: 'TablePro is a native, open-source database client for developers.',
-        long: 'TablePro is a native, open-source database client for developers. Run queries, browse and edit data in {featuredEngines} and more, with apps for {deviceList}.',
+        short: 'TablePro is a native, open-source database client.',
+        long: 'TablePro is a native, open-source database client. Run queries, browse and edit data in {featuredEngines} and more. Available for {deviceList}.',
     },
     macApp: {
         alternateName: 'TablePro for Mac',

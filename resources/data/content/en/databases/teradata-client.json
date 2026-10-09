@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Teradata client for {devices}",
-        "lead": "Log on with TD2 or TDNEGO, browse databases and users with their tables, views, procedures and macros, and query and edit through a native Swift driver, with no Teradata client software to install."
+        "title": "Teradata client",
+        "lead": "Query and edit Teradata without installing separate client software. Browse databases, users, procedures and macros."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connect and log on",
             "paragraphs": [
-                "Enter the host, username and password. Any Vantage system that accepts a TD2 logon works, and no version is checked. <ui>Logon Mechanism</ui> in the Options section takes <code>TD2</code> or <code>TDNEGO</code>, and <ui>Database</ui> is needed only for a default other than your account’s.",
+                "Enter a host, username and password. Choose <code>TD2</code> or <code>TDNEGO</code> in <ui>Logon Mechanism</ui>. <ui>Database</ui> overrides the account default. Vantage servers accepting TD2 are supported without a version check.",
                 "The default port carries a plain session. Any SSL mode moves the session to the gateway’s WebSocket endpoint on port 443, which cannot be changed. Verify CA needs a CA certificate, and Verify Identity checks the chain and hostname against that certificate or, without one, the system trust store.",
                 "Leave <ui>Transaction Mode</ui> on <code>DEFAULT</code> unless a script needs ANSI or TERA commit rules and case sensitivity on the session. Reach a system behind a bastion through an <network>SSH tunnel</network>. <ui>Import from URL…</ui> accepts <code>teradata://</code> URLs, which macOS does not open as links."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Query and edit",
             "paragraphs": [
-                "A database and a user are both namespaces in Teradata, so both appear at the top of the sidebar with their tables and views. A tab bound to a second database keeps the same session and runs <code>DATABASE</code> ahead of its statements.",
+                "Browse both databases and users as namespaces. Tabs on another database share the session and run <code>DATABASE</code> before their statements.",
                 "Stored procedures are listed in the sidebar, and macros sit under Functions, each opening its <objects>source in a read-only tab</objects>.",
                 "Teradata has no <code>LIMIT</code>, so a table’s first page comes back with <code>TOP</code> and later pages with <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> returns Teradata’s plan as raw text. Row edits wait until you save, and <editing>Preview SQL</editing> shows each statement first."
             ]

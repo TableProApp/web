@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso et libSQL",
     "header": {
-        "title": "Client Turso et libSQL pour {devices}",
-        "lead": "Connectez Turso par URL et jeton, interrogez en syntaxe SQLite et changez tables, index et déclencheurs. Le même pilote ouvre vos serveurs sqld et fichiers libSQL sur Mac."
+        "title": "Client Turso et libSQL",
+        "lead": "Connectez une base Turso avec son URL et son token. Parcourez les tables, exécutez des requêtes SQLite ou ouvrez un fichier libSQL local."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Connectez-vous à Turso",
             "paragraphs": [
-                "Choisissez Turso comme type et laissez <ui>Mode de connexion</ui> (Connection Mode) sur <ui>Distant (Turso)</ui> (Remote (Turso)). Collez l’URL HTTPS de la base terminant par <code>.turso.io</code> et un jeton dans <ui>Jeton API</ui> (API Token), conservé dans le Trousseau macOS. Le tableau Turso montre les deux, ainsi que <code>turso db show my-db --url</code> et <code>turso db tokens create my-db</code>.",
-                "Une URL <code>libsql://</code> est réécrite en HTTPS et son import crée une connexion distante. Il n’y a ni hôte, port ni base à saisir, car l’URL nomme une base. La connexion est chiffrée si elle utilise HTTPS plutôt que HTTP clair ; il n’y a pas de tunnel SSH."
+                "Choisissez <ui>Distant (Turso)</ui> (Remote (Turso)) dans <ui>Mode de connexion</ui> (Connection Mode). Collez l’URL HTTPS de la base et un <ui>Jeton API</ui> (API Token), stocké dans le trousseau macOS. Vous les trouverez dans le tableau de bord ou la CLI Turso.",
+                "Les URL <code>libsql://</code> importées deviennent des connexions distantes HTTPS. Chaque URL désigne une base. Les URL HTTP simples ne sont pas chiffrées ; les tunnels SSH ne sont pas disponibles."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tables, index et déclencheurs",
             "paragraphs": [
                 "L’<structure>onglet Structure</structure> crée des tables, ajoute et supprime colonnes et index, crée, modifie et supprime des déclencheurs. Les tables, pas les vues, se renomment dans la barre latérale.",
-                "Pour réordonner des colonnes ou changer une clé étrangère distante, TablePro écrit le script de reconstruction à lire et exécuter vous-même. Il ne peut le lancer, car la reconstruction nécessite une transaction entre requêtes HTTP distinctes."
+                "Les changements d’ordre des colonnes et de clés étrangères sur une base distante génèrent un script de reconstruction à vérifier et exécuter. TablePro ne peut pas l’exécuter en une seule transaction sur des requêtes HTTP distinctes."
             ]
         },
         {

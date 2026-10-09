@@ -9,72 +9,72 @@
     },
     "hero": {
         "title": "iPhone 및 iPad용 TablePro",
-        "lead": "휴대폰이나 태블릿에서 데이터베이스에 연결해 행을 탐색·편집하고 쿼리를 실행하세요. SSH 터널, Safe Mode 및 Face ID를 지원합니다. iPhone과 iPad용으로 만든 별도 앱이며 Mac 앱의 복사본이 아닙니다.",
+        "lead": "휴대폰이나 태블릿에서 지원되는 테이블을 탐색하고 쿼리를 실행하며 행을 편집하세요.",
         "noSignUp": "가입 및 라이선스 불필요",
         "mac": "Mac 앱을 찾고 계신가요? <download>Mac용 TablePro 다운로드</download>."
     },
     "databases": {
         "title": "데이터베이스",
-        "lead": "iPhone 및 iPad에서 아래 데이터베이스의 연결을 만들 수 있습니다. 드라이버는 앱에 내장되어 있어 다운로드할 필요가 없습니다.",
+        "lead": "이 데이터베이스에 연결을 만드세요. 모든 드라이버는 내장되어 있습니다.",
         "syncedOnly": "{engines} 연결은 Mac에서 iCloud Sync 또는 .tablepro 파일로 가져온 경우에 열 수 있습니다. 이 앱에서는 만들 수 없습니다.",
-        "others": "다른 데이터베이스 연결도 Mac에서 동기화되어 목록에 나타나지만 이 앱에는 해당 드라이버가 없어 열 수 없습니다. Mac 앱이 지원하는 모든 엔진은 <databases>데이터베이스 페이지</databases>에 있습니다.",
-        "files": "SQLite: 파일을 선택하면 앱 저장소로 복사하며 편집은 해당 사본을 변경합니다. 새 데이터베이스도 만들 수 있습니다. DuckDB는 파일을 원래 위치에서 열거나 메모리에서 실행합니다.",
-        "redis": "Redis: Query 탭에서 명령을 실행하세요. iPhone 및 iPad 앱에서는 Redis 키 탐색을 제공하지 않습니다.",
+        "others": "Mac에서 동기화한 다른 연결도 목록에 표시되지만 지원 드라이버가 없으면 열 수 없습니다. 전체 <databases>지원 데이터베이스</databases>를 확인하세요.",
+        "files": "SQLite는 선택한 파일을 앱 저장소로 복사하고 사본을 편집합니다. 데이터베이스도 만들 수 있습니다. DuckDB는 파일을 원래 위치에서 열거나 메모리에서 실행합니다.",
+        "redis": "Redis는 Query 탭의 명령을 지원하며 키 탐색은 지원하지 않습니다.",
         "sample": "먼저 둘러보려면 앱에 포함된 샘플 데이터베이스 Chinook를 여세요."
     },
     "browse": {
         "title": "테이블 탐색 및 편집",
         "paragraphs": [
-            "연결을 열면 테이블이 표시되며 쿼리 편집기, 기록 및 연결 정보는 각각의 탭에 있습니다.",
-            "행은 카드로 표시되며 기본 키 또는 첫 열이 제목이 되고 다음 열이 아래에 표시됩니다. 원하는 열로 정렬하고 바이너리 열을 제외한 전체 열을 검색하며 AND 또는 OR로 필터를 조합할 수 있습니다. 페이지당 행 수를 선택하고 원하는 페이지로 이동하세요. 외래 키 값을 탭하면 참조 행을 미리 봅니다. Structure 화면에는 열, 인덱스 및 외래 키가 표시됩니다.",
-            "행을 열어 값을 변경하거나 NULL로 설정하고 저장 전에 확인합니다. 행 삽입·삭제 및 테이블 비우기나 삭제도 가능합니다. 행 편집과 삭제에는 기본 키가 필요하며 Read-Only 연결에서는 변경할 수 없습니다."
+            "각 연결에는 테이블, 쿼리, 기록, 연결 정보 탭이 있습니다.",
+            "행 카드를 탐색하고 열을 정렬하며 바이너리가 아닌 값을 검색하고 AND 또는 OR로 필터를 조합하세요. 외래 키를 누르면 참조 행을 미리 봅니다. Structure는 열, 인덱스, 외래 키를 나열합니다.",
+            "행을 열어 값을 편집하거나 NULL로 설정한 뒤 저장을 확인하세요. 행 삽입과 삭제, 테이블 비우기와 삭제를 지원합니다. 행 편집과 삭제에는 기본 키가 필요합니다. Read-Only는 변경을 차단합니다."
         ]
     },
     "query": {
         "title": "쿼리 실행",
         "paragraphs": [
-            "구문 강조가 있는 SQL을 작성하고 실행하며 실행 중에 중지할 수 있습니다. SELECT 템플릿으로 시작하고 결과를 JSON, CSV 또는 SQL INSERT 문으로 클립보드나 공유 시트를 통해 복사하거나 공유하세요.",
-            "앱은 결과를 최대 {results}행 보관합니다. 큰 결과의 다른 부분을 보려면 LIMIT을 추가하세요. 기록은 연결에 관계없이 이 기기의 최근 {history}개 쿼리를 보관하며 동기화되지 않습니다.",
-            "쿼리가 실행되면 실시간 현황이 잠금 화면과 Dynamic Island에 경과 시간과 받은 행 수를 표시합니다. <ui>설정 > 실시간 현황 > 쿼리 가리기</ui>(Settings > Live Activities > Hide Query)를 켜지 않으면 잠금 화면과 확장된 Dynamic Island에 SQL도 표시됩니다."
+            "구문 강조로 SQL을 작성하고 실행하거나 중지하며 결과를 JSON, CSV, SQL INSERT 문으로 공유하세요. 클립보드나 공유 시트를 사용합니다.",
+            "결과는 최대 {results}개 행을 유지합니다. 큰 쿼리에는 LIMIT를 사용하세요. 기록은 이 기기의 연결 전체에서 최근 {history}개 쿼리를 유지하며 동기화하지 않습니다.",
+            "Live Activities는 잠금 화면과 Dynamic Island에 경과 시간과 받은 행 수를 표시합니다. <ui>설정 > 실시간 현황 > 쿼리 가리기</ui> (Settings > Live Activities > Hide Query)를 켜지 않으면 잠금 화면과 확장된 Island에 SQL도 표시됩니다."
         ]
     },
     "security": {
         "title": "안전하게 연결",
         "paragraphs": [
-            "SSH 터널은 비밀번호 또는 파일에서 읽거나 붙여 넣은 개인 키로 로그인하며 선택적으로 암호 문구를 사용할 수 있습니다. 처음 서버에 연결하면 호스트 키 지문을 보여주고 신뢰 여부를 확인합니다.",
-            "TLS는 연결별로 설정합니다. MySQL, MariaDB, TiDB, OceanBase 및 PostgreSQL은 서버 인증서와 호스트 이름을 검증하고 파일, 붙여 넣은 텍스트 또는 PKCS#12 번들의 클라이언트 인증서를 제시할 수 있습니다. Redis도 인증서를 검증하고 클라이언트 인증서를 제시할 수 있습니다. SQL Server는 연결 암호화(Required)가 가능하지만 인증서를 검증하지 않습니다. 인증서는 이 기기에 남으며 동기화하지 않습니다.",
-            "비밀번호와 붙여 넣은 키는 키체인에 저장합니다. Microsoft Entra ID를 사용하는 SQL Server 연결은 Mac에서 동기화한 후 로그인할 수 있으며 Windows 인증은 지원하지 않습니다. 네트워크의 .local 이름으로 서버에 연결하려면 iOS에서 요청할 때 로컬 네트워크 접근을 허용하세요."
+            "SSH 터널은 암호 또는 개인 키와 선택적인 암호 구문을 사용합니다. 키는 가져오거나 붙여 넣으세요. 처음 연결할 때 서버 호스트 키 지문을 신뢰할지 묻습니다.",
+            "TLS는 연결별로 설정합니다. MySQL, MariaDB, TiDB, OceanBase, PostgreSQL은 인증서와 호스트 이름 검증 및 클라이언트 인증서를 지원합니다. Redis는 인증서 검증과 클라이언트 인증서를 지원합니다. SQL Server의 Required는 인증서 검증 없이 암호화합니다. 인증서는 이 기기에 남습니다.",
+            "암호와 붙여 넣은 키는 Keychain에 저장됩니다. 동기화한 SQL Server 연결은 Microsoft Entra ID를 사용할 수 있지만 Windows 인증은 사용할 수 없습니다. .local 호스트에 연결하려면 Local Network 접근을 허용하세요."
         ]
     },
     "safeMode": {
         "title": "Safe Mode 및 앱 잠금",
         "paragraphs": [
-            "각 연결의 Safe Mode 수준은 {levels}입니다. Confirm Writes는 데이터를 변경하는 명령문을 실행하기 전에 확인하며 Read-Only는 서버에 도달하기 전에 거부합니다. 읽기라고 식별할 수 없는 명령문은 쓰기로 처리합니다.",
-            "연결의 Organization 섹션에서 수준을 설정하고 새 연결의 기본 수준은 Settings에서 설정합니다. 행을 추가하는 단축어도 같은 수준을 따릅니다.",
-            "<ui>설정 > 보안</ui>(Settings > Security)에서 Face ID 또는 Touch ID로 앱을 잠그고 대체 수단으로 기기 암호를 사용할 수 있습니다. 켜면 앱을 시작할 때마다 인증을 요청하고 선택한 Auto-Lock 시간이 지나면 다시 요청합니다."
+            "연결별로 {levels} 중에서 선택하세요. Confirm Writes는 쓰기 전에 확인하고 Read-Only는 차단합니다. 인식되지 않은 구문은 쓰기로 처리합니다.",
+            "Organization에서 수준을 설정하고 새 연결의 기본값은 Settings에서 지정하세요. Shortcuts도 같은 수준을 따릅니다.",
+            "<ui>설정 > 보안</ui> (Settings > Security)에서 Face ID 또는 Touch ID를 켜고 암호를 대체 수단으로 사용할 수 있습니다. 시작 시와 선택한 Auto-Lock 시간이 지나면 잠깁니다."
         ]
     },
     "ipad": {
         "title": "iPad에서 사용",
         "paragraphs": [
-            "iPhone과 iPad에 같은 앱을 사용합니다. iPad에서는 모든 방향을 지원하고 Stage Manager 또는 Split View로 여러 창을 동시에 열 수 있으며 탭 막대를 사이드바로 바꿀 수 있습니다.",
-            "키보드에서는 ⌘1~⌘4로 Tables, Query, History 및 Info를 전환하고 ⌘F로 검색, ⌘↩로 쿼리 실행, ⌘N으로 연결을 추가합니다. 트랙패드나 마우스도 사용할 수 있습니다."
+            "iPad에서는 모든 방향과 Stage Manager 또는 Split View의 여러 창을 사용할 수 있습니다. 탭 막대는 사이드바로 바꿀 수 있습니다.",
+            "⌘1–⌘4 탭 전환, ⌘F 검색, ⌘↩ 쿼리 실행, ⌘N 새 연결 등 키보드 단축키를 제공합니다. 마우스와 트랙패드도 지원합니다."
         ]
     },
     "mac": {
         "title": "Mac과 함께 사용",
         "paragraphs": [
-            "설정 과정 또는 이후 Settings에서 iCloud Sync를 켜면 본인의 iCloud 계정을 통해 iPhone, iPad 및 Mac 간에 연결, 그룹과 태그가 동기화됩니다. 비밀번호는 Sync Passwords도 켜야 동기화됩니다. 저장된 쿼리, SSH 프로필 및 설정은 Mac끼리만 동기화됩니다.",
-            "이 앱의 iCloud Sync는 무료입니다. Mac에서는 Starter 또는 Team 라이선스에 포함되므로 라이선스가 없는 Mac은 동기화하지 않습니다. 자세한 내용은 <pricing>요금 페이지</pricing>에 있습니다.",
-            "iCloud 없이 연결을 .tablepro 파일로 내보내고 AirDrop 또는 파일 앱으로 다른 기기에서 열 수 있습니다. 선택하지 않으면 비밀번호는 포함되지 않으며 포함할 경우 지정한 암호 문구로 파일을 암호화합니다. 이 앱에서는 둘 다 무료지만 Mac에서 비밀번호를 포함해 내보내려면 라이선스가 필요합니다.",
-            "iCloud Sync가 켜져 있으면 Handoff로 Mac과 iPhone·iPad 간에 열린 연결이나 테이블을 이어갈 수 있습니다. <sync>동기화 및 팀</sync>에서 두 기능을 자세히 설명합니다."
+            "iCloud Sync를 켜서 자신의 iCloud 계정으로 연결, 그룹, 태그를 공유하세요. 암호는 Sync Passwords를 별도로 켜야 합니다. 저장된 쿼리, SSH 프로필, 설정은 Mac 간에만 동기화됩니다.",
+            "여기서는 동기화가 무료이며 Mac에는 Starter 또는 Team이 필요합니다. <pricing>요금 보기</pricing>.",
+            "AirDrop이나 Files로 .tablepro 파일을 옮길 수도 있습니다. 암호를 포함하고 암호 구문으로 암호화하지 않으면 내보내기에 암호가 없습니다. 여기서는 두 옵션 모두 무료이며 Mac의 Encrypted Export에는 유료 라이선스가 필요합니다.",
+            "동기화를 켜면 Handoff로 열린 연결이나 테이블을 다른 기기에서 이어서 사용합니다. <sync>동기화와 팀</sync>을 확인하세요."
         ]
     },
     "automation": {
         "title": "단축어, 위젯 및 Spotlight",
         "paragraphs": [
-            "Open Connection은 단축어나 Siri에서 연결을 엽니다. Add Row to Table과 Add Rows to Table은 앱을 열지 않고 JSON·CSV 텍스트 또는 파일로 행을 삽입합니다. 기기가 잠겨 있지 않을 때만 작동하고 연결의 Safe Mode 수준을 따르며 Redis 연결에서는 작동하지 않습니다.",
-            "Quick Connect 위젯은 목록의 첫 연결들을 홈 화면에 표시하고 탭하면 엽니다. 연결은 Spotlight 검색에도 표시됩니다."
+            "Siri나 Shortcuts로 연결을 여세요. Add Row to Table과 Add Rows to Table은 앱을 열지 않고 JSON 또는 CSV를 삽입합니다. 잠긴 기기에서는 실행되지 않고 Safe Mode를 따르며 Redis는 지원하지 않습니다.",
+            "Quick Connect 위젯은 홈 화면에서 목록 앞쪽 연결을 엽니다. 연결은 Spotlight에도 표시됩니다."
         ]
     },
     "limits": {
@@ -105,8 +105,8 @@
     "privacy": {
         "title": "개인정보 보호",
         "paragraphs": [
-            "설정 과정 또는 이후 <ui>설정 > 개인정보 보호</ui>(Settings > Privacy)에서 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 켜면 해시된 기기 ID, 앱과 iOS 버전, 프로세서 아키텍처, 언어, 사용하는 데이터베이스 유형, 연결 수 및 몇 가지 최초 사용 날짜를 하루 한 번 보고합니다. 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 보내지 않습니다.",
-            "라이선스 확인, 업데이트 확인 및 플러그인 요청은 없습니다. 쿼리는 본인의 서버로, iCloud Sync는 본인의 iCloud 계정으로, Entra 로그인은 Microsoft로 전송됩니다. <privacyIos>개인정보 처리방침</privacyIos>에 자세한 내용이 있습니다."
+            "사용 보고는 기본적으로 꺼져 있습니다. <ui>설정 > 개인정보 보호</ui> (Settings > Privacy)에서 Share Usage Data를 켜면 해시된 기기 ID, 앱 및 iOS 버전, 아키텍처, 언어, 데이터베이스 유형, 연결 수, 첫 사용 날짜를 매일 보냅니다. 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다.",
+            "TablePro로 라이선스, 업데이트, 플러그인 확인을 보내지 않습니다. 쿼리는 데이터베이스로, iCloud Sync는 iCloud 계정으로, Entra 로그인은 Microsoft로 전송됩니다. <privacyIos>개인정보 처리방침</privacyIos>을 확인하세요."
         ]
     },
     "get": {
@@ -123,7 +123,7 @@
             },
             {
                 "question": "Mac 앱과 동일한가요?",
-                "answer": "아니요. 휴대폰과 태블릿을 위해 만든 더 작은 앱입니다. Mac에만 있는 기능은 <iosLimits>위 목록</iosLimits>에 나와 있습니다."
+                "answer": "아니요. 기능이 더 적습니다. <iosLimits>여기서 사용할 수 없는 기능</iosLimits>을 확인하세요."
             }
         ]
     }

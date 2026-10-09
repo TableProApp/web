@@ -9,21 +9,21 @@
     },
     "header": {
         "title": "Mac 上的 Sequel Pro 替代方案",
-        "lead": "Sequel Pro 已停止開發，最後發行為 2016 年 Intel 版本，Homebrew 已移除，檢查本頁時網站也無法存取。Sequel Ace 為 MySQL 和 MariaDB 繼續開發。如果想以一個用戶端連線更多資料庫，TablePro 也是選項，可匯入 Sequel Ace 連線。"
+        "lead": "Sequel Ace 是 Sequel Pro 的維護後繼者。 當您需要更多資料庫類型時，TablePro 是另一個選擇。將已儲存的連線移至 TablePro 需要經過 Sequel Ace。"
     },
     "shortAnswer": {
+        "lead": "使用 TablePro 或 Sequel Ace 的原因。",
         "tablepro": [
-            "除了 MySQL、MariaDB，也使用 PostgreSQL、SQL Server、SQLite、Redis 或 MongoDB。",
-            "希望在 Mac App 免費使用 AI 助理和 MCP 伺服器，自選 AI 供應商。",
-            "希望有免費 iPhone、iPad App 連線 MySQL 和 MariaDB。",
-            "願意學習不同介面，希望 Sequel Ace 連線連同密碼移轉。"
+            "MySQL 和 MariaDB 以及其他資料庫類型。",
+            "免費 AI 聊天和 MCP 或 iPhone 和 iPad 應用程式。",
+            "不同的接口，透過 Sequel Ace 匯入連線。"
         ],
         "competitor": [
-            "希望繼續用熟悉的 Sequel Pro 介面，免費且持續維護。",
-            "僅使用 MySQL 和 MariaDB。",
-            "從 Mac App Store 安裝 App。"
+            "Sequel Pro 熟悉的介面，在 Sequel Ace 中保持。",
+            "專注於 MySQL 和 MariaDB 的用戶端。",
+            "來自 Mac App Store 的應用程式。"
         ],
-        "competitorTitle": "適合選擇 Sequel Ace 的情況"
+        "competitorTitle": "考慮 Sequel Ace"
     },
     "glance": {
         "intro": "Sequel Pro 最後發行是 {status.date} 的 {status.version}。表中並列顯示目前狀況和 TablePro。與持續維護的後繼者比較請看 TablePro vs Sequel Ace。"

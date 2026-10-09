@@ -47,8 +47,8 @@ export default {
     },
     newsletter: {
         title: 'Ghi chú phát hành qua email',
-        body: 'Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành. Email nào cũng có liên kết hủy đăng ký.',
-        note: 'Chúng tôi sẽ gửi cho bạn một liên kết xác nhận trước. <link>Chính sách quyền riêng tư</link>',
+        body: 'Thỉnh thoảng gửi ghi chú phát hành bằng tiếng Anh. Hủy đăng ký trong bất kỳ email nào.',
+        note: 'Xác nhận đăng ký qua email. <link>Chính sách quyền riêng tư</link>',
     },
     bottom: {
         copyright: '© {year} TablePro, do {maker} phát triển tại {city}. Mã nguồn theo giấy phép AGPLv3.',

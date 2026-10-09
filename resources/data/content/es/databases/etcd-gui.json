@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "Interfaz gráfica de etcd para {devices}",
-        "lead": "Explora las claves de un clúster por prefijo, cambia valores y arrendamientos en una cuadrícula y ejecuta comandos al estilo etcdctl, como <code>get --prefix</code>, <code>lease grant</code> y <code>member list</code>, en el editor."
+        "title": "Interfaz gráfica de etcd",
+        "lead": "Explora claves por prefijo, inspecciona valores y leases, y usa comandos al estilo etcdctl."
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Indica un host y el puerto de cliente. etcd no tiene bases de datos, así que no hay campo Base de datos. Usa el puerto de cliente: el puerto de pares no ofrece gateway JSON y una conexión dirigida allí nunca se abre. El formulario acepta un solo endpoint y no conmuta a otro si falla; elige un miembro disponible.",
+                "Conecta un host por su puerto de cliente. No se admiten puertos de pares ni la pasarela JSON. No hay selección de base ni conmutación entre endpoints.",
                 "Deja <ui>Username</ui> y <ui>Password</ui> vacíos si el clúster no tiene autenticación. Un usuario sin el rol <code>root</code> puede conectar y explorar las claves cubiertas por sus roles, mientras <code>endpoint status</code> y los comandos <code>user</code> y <code>role</code> responden con permiso denegado.",
                 "TLS se configura con <ui>TLS Mode</ui> en los campos Advanced, no en una sección SSL, y empieza en Disabled. Required (skip verify) cifra sin comprobar, Verify CA comprueba el certificado con el archivo de CA indicado, y Verify Identity añade el nombre de host. Un certificado de cliente y su clave añaden TLS mutuo.",
                 "Accede a un clúster detrás de un bastión mediante un <network>túnel SSH</network>. Se pueden importar URL <code>etcd://</code> y <code>etcds://</code>; ninguna activa TLS por sí sola."
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Configura <ui>Key Prefix Root</ui>, como <code>/app</code>, para limitar una conexión a un subárbol. La barra lateral agrupa las claves por el primer segmento de ruta bajo esa raíz, y cada clave es una fila con valor, versión, revisiones de modificación y creación, y arrendamiento.",
                 "Guardar una edición envía comandos. Un valor o arrendamiento nuevo vuelve a escribir la clave; un arrendamiento NULL lo elimina; renombrar una clave escribe el nombre nuevo y borra el antiguo. Las columnas de revisión pertenecen a etcd, así que editarlas detiene el guardado e indica la columna.",
-                "El editor acepta comandos al estilo etcdctl, con autocompletado de comandos y opciones: <code>get</code> con <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> y ordenación; <code>put</code> con <code>--lease</code>; <code>del</code>; <code>watch</code>; subcomandos <code>lease</code>; <code>member list</code>; <code>endpoint status</code> y <code>health</code>; <code>compaction</code>; y comandos <code>auth</code>, <code>user</code> y <code>role</code>. Cualquier otro devuelve comando desconocido sin llegar al servidor.",
+                "Usa comandos al estilo etcdctl para claves, watches, leases, miembros, endpoints, compactación y permisos, con autocompletado de opciones. Los comandos no admitidos se rechazan antes de enviarlos.",
                 "El controlador etcd no puede abrir una sesión de solo lectura, así que <safeMode>Safe Mode</safeMode> considera todo comando una escritura: en los niveles Alert y Safe Mode pide permiso cada vez, y Read-Only los bloquea todos."
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "Arrendamientos y clúster",
             "paragraphs": [
-                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> con <code>--keys</code>, <code>list</code> y <code>keep-alive</code> gestionan arrendamientos; <code>compaction</code> recorta el historial de revisiones. <code>member list</code>, <code>endpoint status</code> y <code>endpoint health</code> informan sobre el clúster desde el editor, ya que no hay Server Dashboard para etcd.",
+                "Gestiona leases y compactación de revisiones en el editor. Inspecciona miembros, estado y salud de endpoints mediante comandos; no hay Server Dashboard.",
                 "Ejecutar <code>auth enable</code> desde el editor activa la autenticación en todo el clúster. Una conexión con usuario y contraseña sigue funcionando; una que no tenga ninguno debe reabrirse con credenciales."
             ]
         },

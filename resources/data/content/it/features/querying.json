@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "Editor SQL e piani EXPLAIN",
-        "description": "Scrivi SQL con completamento basato sullo schema e parametri. Cerca nella cronologia, salva query e leggi i piani EXPLAIN come diagrammi."
+        "description": "Scrivi SQL con suggerimenti basati sullo schema. Salva query, cerca nella cronologia locale e controlla i piani EXPLAIN sui database supportati."
     },
     "og": {
         "kicker": "Query",
-        "title": "Scrivi, esegui e comprendi le query"
+        "title": "Editor SQL"
     },
     "header": {
-        "title": "Scrivi, esegui e comprendi le query",
-        "lead": "Per chi scrive SQL su un database attivo: scrivi con lo schema a portata di mano, esegui una singola istruzione o un intero script, conserva le query utili e scopri perché una è rallentata. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
+        "title": "Editor SQL",
+        "lead": "Scrivi SQL con completamento automatico compatibile con lo schema. Salva le query che riutilizzi, effettua ricerche nella cronologia e controlla i piani sui motori supportati.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "Un editor che conosce il tuo schema",
+            "title": "Completamento automatico compatibile con lo schema",
             "paragraphs": [
-                "Il completamento automatico legge lo schema della connessione mentre scrivi: tabelle dopo FROM e JOIN, colonne di un alias e colonne di una CTE o sottoquery definita in precedenza nell’istruzione. L’evidenziazione usa tree-sitter e <kbd>⌘⇧L</kbd> formatta l’istruzione al cursore senza rimuovere i commenti.",
-                "<kbd>⌘⏎</kbd> esegue l’istruzione al cursore o la selezione, <kbd>⌘⇧⏎</kbd> le esegue tutte, <kbd>⌘⌥⏎</kbd> esegue senza limite di righe e <kbd>⌘.</kbd> annulla. Un gruppo di istruzioni ordinarie viene eseguito in una transazione e annullato se una fallisce. Fanno eccezione gli script che gestiscono la propria transazione, gli script SQL Server e le istruzioni che non possono rientrare in transazioni, come VACUUM. Il DDL su MySQL, MariaDB e Oracle esegue autonomamente il commit."
+                "Il completamento automatico suggerisce tabelle e colonne, inclusi alias, CTE e sottoquery. Formatta la dichiarazione corrente con <kbd>⌘⇧L</kbd> mantenendo i suoi commenti.",
+                "Esegui l'istruzione corrente, una selezione o un intero script. I batch di estratti conto ordinari utilizzano una transazione ed eseguono il rollback in caso di errore. Fanno eccezione gli script SQL Server, le transazioni esplicite e le istruzioni come VACUUM. DDL su MySQL, MariaDB e Oracle si impegnano in modo indipendente."
             ],
             "points": [
                 "Indicatori delle istruzioni nel margine, ciascuno con un proprio pulsante di esecuzione.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Parametri, cronologia e query salvate",
             "paragraphs": [
-                "Scrivi <code>:customer_id</code> in una query e TablePro chiede il valore e il tipo prima di eseguirla, associando il valore nativamente quando il driver lo supporta.",
-                "Ogni query eseguita entra in una cronologia locale (<kbd>⌘Y</kbd>) con ricerca a testo completo e filtri per origine, errori e intervallo temporale. Per impostazione predefinita conserva {historyEntries} voci per {historyDays} giorni e non viene mai sincronizzata.",
-                "Salva una query con una parola chiave come <code>dau</code>, poi scrivila nell’editor per espandere la query. Le query salvate conservano una cronologia delle versioni. Una cartella SQL collegata sincronizza una cartella di file <code>.sql</code> con la barra laterale in entrambe le direzioni, con lettere di stato Git per ogni file. È gratuita e distinta da Linked Folders, la funzionalità Starter per file di connessione condivisi."
+                "Usa parametri come <code>:customer_id</code> per immettere valori prima dell'esecuzione di una query. I valori sono associati in modo nativo laddove il driver lo supporta.",
+                "Cerca nella cronologia delle query locali per testo, fonte, errori o intervallo di tempo. Per imposto predefinita, mantiene le voci {historyEntries} per i giorni {historyDays} e non si sincronizza mai.",
+                "Salva le query con parole chiave riutilizzabili e cronologia delle versioni. Collega una cartella di file <code>.sql</code> alla barra laterale con aggiornamenti bidirezionali e stato Git. Le cartelle SQL collegate sono gratuite, separate dalla funzionalità Linked Folders a pagamento per i file di connessione."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly e schede",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) trova tabelle, viste e tabelle di sistema in tutte le connessioni aperte, insieme alle query salvate e recenti. Ogni scheda mantiene il proprio SQL, ordinamento, filtri e larghezze delle colonne; le schede tornano quando chiudi e riapri l’app. <kbd>⌃Tab</kbd> passa tra le schede usate per ultime."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) cerca tabelle, viste e query attraverso connessioni aperte. Le schede mantengono le SQL e le imposti della griglia quando riapri l'app."
             ]
         },
         {
             "id": "performance",
-            "title": "Leggi, confronta e monitora il piano",
+            "title": "Interrogare le prestazioni",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN ed EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> mostra il piano di una query come diagramma, albero con barre di costo o output grezzo del motore. Scegli un’esecuzione precedente della stessa query come riferimento e Compare indica se è rallentata e se il piano è cambiato; una differenza inferiore al {explainNoise}% è considerata rumore. Entrambi sono gratuiti."
+                        "Visualizza i piani di query come diagrammi, alberi dei costi o risultati grezzi del motore. Confrontare con una corsa precedente per individuare i tempi e pianificare le modifiche; le differenze inferiori a {explainNoise}% contano come rumore. Entrambe le funzionalità sono gratuite."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights legge la cronologia di questo Mac e classifica ciò che trova: le query più eseguite, le più lente, quelle che falliscono e quelle rallentate rispetto al periodo precedente. Le query vengono raggruppate per forma, quindi un’istruzione eseguita con valori diversi conta una sola volta. I numeri vengono calcolati sul tuo Mac e non vengono mai caricati."
+                        "Trova query lente, con errori ed eseguite frequentemente nella cronologia locale di questo Mac. Le istruzioni simili vengono raggruppate indipendentemente dai valori dei parametri. Query Insights confronta i periodi localmente; non è un monitoraggio a livello di server e non carica alcuna metrica."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Rappresenta un risultato con un grafico a barre, a linee, ad area o a dispersione, con un asse temporale per le date e una serie per ogni valore di una colonna scelta. Un grafico mostra fino a {chartPoints} punti e {chartSeries} serie dalle prime {chartInspectedRows} righe; la barra degli strumenti segnala quando la rappresentazione viene limitata."
+                        "Crea grafici a barre, linee, area o dispersione dai risultati. Mostrano fino a {chartPoints} punti e {chartSeries} serie dalle prime {chartInspectedRows} righe, con un avviso se i dati sono troncati."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Vista Mappa",
                     "paragraphs": [
-                        "Quando una colonna contiene geometrie, come WKT, WKB, GeoJSON, tuple ClickHouse o valori geo_point di Elasticsearch, la vista Mappa le disegna su Apple Maps e selezionare una forma seleziona la sua riga. Le righe restano sul Mac; Apple fornisce i tasselli della mappa. La vista Mappa è gratuita."
+                        "Visualizza le colonne geometriche supportate su Apple Maps e seleziona una forma per trovare la relativa riga. Le righe rimangono sul tuo Mac; Apple fornisce i riquadri della mappa. La visualizzazione della mappa è gratuita."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Motori che non usano SQL",
+            "title": "Altri linguaggi di query",
             "paragraphs": [
-                "Su una connessione che non usa SQL, l’editor accetta il linguaggio del motore e la pagina di ogni motore spiega ciò che supporta. L’editor MongoDB è una shell JavaScript in stile mongosh eseguita all’interno di TablePro, non mongosh stesso."
+                "Usa il linguaggio di query di ciascun motore non SQL nell'editor. MongoDB utilizza una shell JavaScript in stile mongosh incorporata, non mongosh stesso. Consulta le pagine del database per i comandi supportati."
             ],
             "engines": [
                 {
@@ -192,7 +192,7 @@
         }
     ],
     "limits": [
-        "Una query restituisce al massimo {rowCap} righe, a meno che non aumenti il limite in Impostazioni, fino a {rowCapMax}, o la esegua con <kbd>⌘⌥⏎</kbd>. Un LIMIT scritto da te prevale sempre.",
+        "Una query restituisce al massimo {rowCap} righe, a meno che non aumenti il limite in Imposti, fino a {rowCapMax}, o la esegua con <kbd>⌘⌥⏎</kbd>. Un LIMIT scritto da te prevale sempre.",
         "La cronologia delle query e Query Insights riguardano solo questo Mac: non includono le query eseguite su un altro Mac o su iPhone.",
         "Il comando shell <code>tablepro</code> apre connessioni e file nell’app. Non esegue query dal terminale."
     ],

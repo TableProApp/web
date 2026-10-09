@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Bases de données prises en charge",
-        "description": "Bases prises en charge par TablePro, par type, langage, pilote intégré ou téléchargé et disponibilité sur iPhone et iPad."
+        "description": "Trouvez votre base, vérifiez les fonctions prises en charge et comparez langages de requête, installation des pilotes et disponibilité sur iPhone et iPad."
     },
     "og": {
         "kicker": "Bases de données",
-        "title": "Les bases de données auxquelles TablePro se connecte"
+        "title": "Bases de données prises en charge"
     },
     "header": {
-        "title": "Les bases de données auxquelles TablePro se connecte",
-        "lead": "Des pilotes natifs pour {count} bases de données, dont {featured}. Chaque ligne indique le langage utilisé, la provenance du pilote et la possibilité d’ouvrir la base sur iPhone et iPad."
+        "title": "Bases de données prises en charge",
+        "lead": "Trouvez votre base et vérifiez les fonctions prises en charge. TablePro se connecte à {count} moteurs, dont {featured}."
     },
     "jump": "Catégories",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Analytiques et entrepôts de données",
-            "intro": "Des entrepôts de données, moteurs colonnaires et moteurs de requêtes fédérées, où un parcours coûte du temps ou de l’argent."
+            "intro": "Entrepôts de données, bases colonnaires et moteurs de requête entre catalogues."
         },
         "cloud": {
             "title": "Cloud et serverless",
-            "intro": "Des services SQL accessibles par HTTP avec un jeton de compte et des fichiers libSQL sur votre Mac."
+            "intro": "Services SQL via HTTP et fichiers libSQL locaux."
         },
         "document": {
             "title": "Documentaires",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Un journal plutôt qu’une table : lisez et écrivez des messages avec KafkaQL, le langage de commandes propre à TablePro."
+            "intro": "Lisez et produisez des messages avec KafkaQL, le langage de commandes de TablePro."
         },
         "coordination": {
             "title": "Coordination",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "Fichiers",
-            "intro": "Des bases conservées dans des fichiers qui s’ouvrent directement, sans serveur à lancer."
+            "intro": "Interrogez des fichiers de base et des ledgers sans serveur de base de données."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Comment les pilotes sont distribués",
         "paragraphs": [
-            "Les pilotes pour {bundled} sont intégrés à l’app Mac et se connectent sans rien installer d’autre.",
-            "Tous les autres pilotes sont des plugins signés, téléchargés la première fois que vous choisissez leur moteur, avant l’ouverture du formulaire de connexion. Ce premier téléchargement nécessite une connexion Internet.",
-            "Avant d’installer un pilote téléchargé, TablePro compare sa somme de contrôle SHA-256 à celle du registre des plugins et vérifie sa signature de code.",
-            "Les plugins suivent leur propre calendrier de mise à jour : une correction de pilote peut arriver sans mise à jour de l’app. Un pilote en cours d’utilisation est mis à jour après le redémarrage de l’app.",
-            "L’app iPhone et iPad intègre ses pilotes ; rien n’y est donc téléchargé."
+            "Les pilotes pour {bundled} sont inclus dans l’app Mac. Aucun logiciel client supplémentaire n’est nécessaire pour se connecter.",
+            "Les autres pilotes sont téléchargés comme plugins signés lorsque vous choisissez la base pour la première fois. Ce téléchargement nécessite internet.",
+            "TablePro compare la somme SHA-256 de chaque plugin au registre et vérifie sa signature de code avant installation.",
+            "Les plugins de pilotes sont mis à jour séparément de l’app. La mise à jour d’un pilote en cours d’utilisation prend effet après redémarrage.",
+            "L’app iPhone et iPad intègre ses pilotes et ne télécharge pas de plugins."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro pour iPhone et iPad"
     },
     "license": {
-        "title": "Aucune base de données ne nécessite de licence",
-        "body": "La connexion à tous les moteurs de cette page est gratuite. Une offre Starter ou Team ajoute des fonctions facultatives à l’app Mac, et aucune n’est liée à une base de données particulière.",
+        "title": "Inclus dans Free",
+        "body": "Toutes les connexions aux bases prises en charge sont incluses dans Free. Starter et Team ajoutent des fonctions facultatives à l’app Mac.",
         "link": "Voir les tarifs"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Fonctionne sur {devices}",
             "bundled": "Pilote intégré à l’app Mac",
-            "registry": "Le pilote se télécharge la première fois que vous choisissez {name}",
-            "free": "S’utilise gratuitement, avec des <pricing>offres payantes facultatives</pricing>"
+            "registry": "Pilote téléchargé à la première utilisation de {name}",
+            "free": "Inclus dans Free ; <pricing>les offres payantes ajoutent des fonctions facultatives</pricing>"
         },
         "release": "Nouveau dans {version}",
         "docs": "Guide de configuration de {name}",
@@ -147,7 +147,7 @@
             "related": "À voir aussi"
         },
         "iphone": {
-            "picker": "{name} est proposé lors de la création d’une connexion dans l’app iPhone et iPad, qui s’y connecte directement.",
+            "picker": "{name} est proposé lors de la création d’une connexion dans l’app iPhone et iPad.",
             "synced": "L’app iPhone et iPad n’ouvre les connexions {name} que lorsqu’elles proviennent d’un Mac, via iCloud Sync ou un fichier de connexion exporté. Vous ne pouvez pas en créer sur ces appareils.",
             "none": "L’app iPhone et iPad n’a pas de pilote {name}. Les connexions {name} synchronisées depuis un Mac apparaissent dans sa liste, mais ne s’ouvrent pas.",
             "link": "TablePro pour iPhone et iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "Obtenez TablePro",
-            "mac": "L’app Mac se télécharge et s’utilise gratuitement. Une offre Starter ou Team ajoute des fonctions facultatives.",
+            "mac": "Téléchargez gratuitement l’app Mac. Starter et Team ajoutent des fonctions facultatives.",
             "ios": "L’app iPhone et iPad est disponible sur l’App Store.",
             "pricing": "Voir les tarifs"
         }

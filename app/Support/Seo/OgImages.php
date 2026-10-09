@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\File;
  *
  * The bespoke card is the `og-site` entry of `resources/data/assets.json`
  * (spec §9.1, docs/rebuild/assets/og.md). Marking it `supplied` and dropping
- * in `og-site-{locale}.png` is all it takes: `AssetManifest::ogCard()` answers
+ * in `/og.png` for English or `og-site-{locale}.png` for another locale
+ * is all it takes: `AssetManifest::ogCard()` answers
  * only once the entry is supplied and that locale's file exists, so a locale
  * whose file is missing keeps its generated card.
  *
@@ -32,9 +33,9 @@ use Illuminate\Support\Facades\File;
  * - A page card is `/og/{family}/{slug}.png` in the default locale, so every
  *   card shared before the rebuild keeps resolving, and
  *   `/og/{locale}/{family}/{slug}.png` in any other.
- * - The generic card is `/og.png` in the default locale (the file is
- *   regenerated in place, so old shares and the platform app's default pick up
- *   the new card) and `/og/{locale}/default.png` in any other (sitemap §C.7).
+ * - The generic card is `/og.png` in the default locale. Supplied artwork is
+ *   preserved by the generator, so old shares and the platform app use the
+ *   same card. Other locales retain their existing supplied/fallback paths.
  */
 final class OgImages
 {

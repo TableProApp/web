@@ -9,21 +9,21 @@
     },
     "header": {
         "title": "Alternatives à Sequel Pro sur Mac",
-        "lead": "Sequel Pro n’est plus développé. Sa dernière version est une compilation Intel de 2016, Homebrew l’a supprimé et son site était indisponible lors de la vérification de cette page. Sequel Ace lui succède pour MySQL et MariaDB. TablePro est une autre option si vous voulez un seul client pour davantage de bases, et il importe les connexions Sequel Ace."
+        "lead": "Sequel Ace est le successeur maintenu de Sequel Pro. TablePro est une autre option si vous avez besoin de davantage de types de bases. Le transfert des connexions enregistrées vers TablePro passe par Sequel Ace."
     },
     "shortAnswer": {
+        "lead": "Les raisons de choisir TablePro ou Sequel Ace.",
         "tablepro": [
-            "Vous travaillez aussi avec PostgreSQL, SQL Server, SQLite, Redis ou MongoDB, en plus de MySQL et MariaDB.",
-            "Vous voulez un assistant IA et un serveur MCP, gratuits dans l’app Mac, avec le fournisseur d’IA de votre choix.",
-            "Vous voulez une app gratuite pour iPhone et iPad qui se connecte à MySQL et MariaDB.",
-            "Vous êtes prêt à apprendre une autre interface et voulez récupérer vos connexions Sequel Ace avec leurs mots de passe."
+            "MySQL et MariaDB en plus d’autres types de bases.",
+            "Chat IA et MCP gratuits, ou une app pour iPhone et iPad.",
+            "Une autre interface, avec import des connexions via Sequel Ace."
         ],
         "competitor": [
-            "Vous voulez retrouver l’interface Sequel Pro que vous connaissez, gratuite et maintenue.",
-            "Vous utilisez uniquement MySQL et MariaDB.",
-            "Vous installez vos apps depuis le Mac App Store."
+            "L’interface familière de Sequel Pro, maintenue dans Sequel Ace.",
+            "Un client centré sur MySQL et MariaDB.",
+            "Une app du Mac App Store."
         ],
-        "competitorTitle": "Choisissez Sequel Ace si"
+        "competitorTitle": "Sequel Ace pour"
     },
     "glance": {
         "intro": "La dernière version de Sequel Pro est {status.version}, datée du {status.date}. Le tableau présente sa situation actuelle face à TablePro. Pour le comparer à son successeur maintenu, consultez TablePro vs Sequel Ace."

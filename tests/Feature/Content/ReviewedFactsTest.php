@@ -42,7 +42,7 @@ function reviewedText(string $file): string
 dataset('reviewed facts', [
     'column reorder runs only on SQLite and a local libSQL file' => [
         'content/en/features/schema.json',
-        ['On PostgreSQL, Turso, remote libSQL and Cloudflare D1, TablePro writes the rebuild script', 'leaves it to you on Turso, remote libSQL and D1'],
+        ['On PostgreSQL, Turso, remote libSQL and Cloudflare D1, TablePro writes the rebuild script', 'on Turso, remote libSQL and Cloudflare D1, you run the generated script yourself'],
         ['rebuilds the table on SQLite, libSQL, Turso and Cloudflare D1'],
     ],
     'column reorder (vi)' => [
@@ -52,12 +52,12 @@ dataset('reviewed facts', [
     ],
     'Handoff also passes the connection name' => [
         'content/en/features/sync-and-teams.json',
-        ['With no table open, it passes the connection’s name instead', 'at their next license check, within {licenseCheckDays} days', '<ui>Publish Saved Queries to Team…</ui>'],
+        ['With no table open, it passes the connection’s name instead', 'at the next license check, within {licenseCheckDays} days', '<ui>Publish Saved Queries to Team…</ui>'],
         ['Only the connection’s ID and the table’s name pass', 'signs their Macs out'],
     ],
     'Handoff, seats and publishing (vi)' => [
         'content/vi/features/sync-and-teams.json',
-        ['khi chưa mở table nào, tên connection', 'trong vòng {licenseCheckDays} ngày', 'Dành cho lúc bạn'],
+        ['Nếu không mở table, nó gửi tên connection', 'trong {licenseCheckDays} ngày', 'Một seat Team là một máy Mac đã kích hoạt, không phải một người.'],
         ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên'],
     ],
     'Redis Add Row covers five types; restores are transactional only where the engine allows' => [
@@ -67,17 +67,17 @@ dataset('reviewed facts', [
     ],
     'Redis, rewind and Safe Mode level names (vi)' => [
         'content/vi/features/data-editing.json',
-        ['hai mức Safe Mode và Safe Mode (Full)', 'trong một transaction nếu engine cho phép.'],
+        ['Các mức Full còn hỏi trước khi đọc.', 'trong một transaction ở engine hỗ trợ.'],
         ['thêm key thuộc kiểu bất kỳ', 'các mức Safe Mode còn yêu cầu'],
     ],
     'Read-Only refuses AI writes rather than waiting for Run' => [
         'content/en/features/ai-mcp.json',
-        ['from Alert to Safe Mode (Full) each one waits for Run, and Read-Only refuses them'],
+        ['Alert and stricter levels confirm writes; Read-Only refuses them.', 'Edit and Agent writes can run without approval', 'Destructive statements always require confirmation'],
         ['at Alert or a stricter level each one waits for Run'],
     ],
     'the MCP server runs on the reader’s Mac (vi)' => [
         'content/vi/features/ai-mcp.json',
-        ['chạy trên máy Mac của bạn', 'Read-Only từ chối luôn', 'không phải cơ chế khóa'],
+        ['chạy trên máy Mac của bạn', 'Read-Only từ chối ghi', 'đây là hướng dẫn cho model, không phải quyền cơ sở dữ liệu được cưỡng chế'],
         ['chạy ngay trên máy của TablePro', 'ổ khóa'],
     ],
     'DDL commits on its own on MySQL, MariaDB and Oracle' => [
@@ -85,9 +85,9 @@ dataset('reviewed facts', [
         ['DDL on MySQL, MariaDB and Oracle', 'such as VACUUM'],
         ['SQL Server scripts and MySQL DDL'],
     ],
-    'password tools resolve from Homebrew folders; only some sign-ins are Mac-only' => [
+    'password tools must be installed; only some sign-ins are Mac-only' => [
         'content/en/features/connections.json',
-        ['<code>/opt/homebrew/bin</code>', 'AWS IAM, Kerberos and Google sign-in'],
+        ['Required CLI tools must be installed.', 'AWS IAM, Kerberos and Google sign-in'],
         ['Importing from other apps, cloud sign-in'],
     ],
     'SQL files run as statements, not into a table' => [
@@ -184,7 +184,7 @@ dataset('reviewed facts', [
     ],
     'Navicat Premium subscriptions (vi)' => [
         'content/vi/compare/navicat.json',
-        ['license vĩnh viễn hoặc gói thuê bao theo tháng hay theo năm', 'license vĩnh viễn kèm một năm bảo trì hoặc gói thuê bao theo tháng hay theo năm'],
+        ['license vĩnh viễn hoặc subscription tháng/năm', 'license vĩnh viễn kèm một năm bảo trì hoặc gói thuê bao theo tháng hay theo năm'],
         ['với giá chỉ hiện khi thanh toán'],
     ],
     'TablePro is not defined as a Mac client' => [
@@ -204,7 +204,7 @@ dataset('reviewed facts', [
     ],
     'the hub says "there is no", never "not yet" (vi)' => [
         'content/vi/compare/index.json',
-        ['Không có công cụ import cho {others}', 'Tải TablePro'],
+        ['Không có importer cho {others}', 'Tải TablePro'],
         ['Chưa có công cụ import', 'Dùng thử TablePro'],
     ],
     'the Mac app’s languages come from platforms.json' => [
@@ -217,24 +217,34 @@ dataset('reviewed facts', [
         ['Postico 2 is sold only as one-time licenses'],
         ['no EXPLAIN,'],
     ],
-    'the homepage scopes Safe Mode, Agent mode, importers and dump tools' => [
+    'the homepage scopes Safe Mode and distinguishes full-window Agent mode' => [
         'content/en/home.json',
-        ['On the Mac, tag and color connections', 'While a connection is open in Agent mode', 'install any your Mac doesn’t already have', '<code>$VAR</code>'],
+        ['Set a Safe Mode level for each connection.', 'Full-window Agent mode uses Alert or stricter.', 'Silent is the default.', 'for MongoDB, Redis and etcd it blocks all commands'],
         ['While Agent mode is on, every connection', 'which you install yourself', 'Drivers for common databases'],
+    ],
+    'backup tools require installation apart from DuckDB' => [
+        'content/en/features/import-export.json',
+        ['use {backupTools}', 'Install the required command-line tool yourself, except for DuckDB'],
+        ['Every driver is built into the app'],
+    ],
+    'connection colors and environment variables are scoped on the detail page' => [
+        'content/en/features/connections.json',
+        ['add tags and colors', 'One tag per connection; no colors', 'Use references such as <code>$DB_HOST</code>', 'Port and password fields are excluded'],
+        [],
     ],
     'the homepage (vi)' => [
         'content/vi/home.json',
-        ['Trên Mac, bạn gắn tag', 'Khi một connection đang mở ở Agent mode', '<code>$VAR</code>'],
+        ['Sắp xếp connection đã lưu bằng nhóm và tag.', 'Agent mode toàn cửa sổ dùng Alert hoặc nghiêm ngặt hơn.'],
         ['mọi connection chạy ở mức Alert', 'bạn tự cài các công cụ này'],
     ],
     'the refund window starts at purchase, and again at every monthly or yearly renewal' => [
         'content/en/pricing.json',
-        ['within {refundDays} days of purchase, and each monthly or yearly renewal within {refundDays} days of its charge'],
+        ['Purchases and subscription renewals are refundable within {refundDays} days of each charge'],
         ['days of payment', 'for a yearly plan'],
     ],
     'the refund window (vi)' => [
         'content/vi/pricing.json',
-        ['kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm', 'chỉ thanh toán một lần'],
+        ['Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó.', 'chỉ thanh toán một lần'],
         ['kể từ khi thanh toán', 'được trả một lần', 'Các điều kiện chỉ áp dụng'],
     ],
     'the refund policy describes its own window' => [
@@ -244,28 +254,30 @@ dataset('reviewed facts', [
     ],
     'the FAQ names the bundled drivers from data and the Mac sync toggle' => [
         'content/en/faq.json',
-        ['Drivers for {bundledEngines} come with the Mac app', '<ui>Passwords</ui> under Sync Categories on the Mac', 'and each monthly or yearly renewal within {refundDays} days of its charge'],
+        ['Drivers for {bundledEngines} are bundled on the Mac', 'Others download on first use', 'Password sync is a separate opt-in', '<ui>Passwords</ui> on the Mac', 'Purchases and subscription renewals are refundable within {refundDays} days of each charge'],
         ['the most common engines', 'every driver is built into the app', 'days of buying', 'for a yearly plan'],
     ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',
-        ['Driver cho {bundledEngines}', 'Bắt đầu chat', 'SSH tunnel xác thực bằng', 'Trang Kết nối'],
+        ['Mac có sẵn driver cho {bundledEngines}', 'Bắt đầu chat', 'SSH dùng mật khẩu hoặc private key', '<connections>tùy chọn kết nối</connections>'],
         ['Trò chuyện trực tuyến', 'cập nhật riêng với ứng dụng', 'Các điều kiện chỉ áp dụng'],
     ],
     'the iPhone page states the 1.0 row-editor and Redis TLS limits' => [
         'content/en/ios.json',
-        ['don’t save a row while a long text or binary value shows shortened', 'they check the certificate and not the host name', 'expanded Dynamic Island', 'the processor architecture', '<sync>', '<databases>'],
+        ['don’t save a row while a long text or binary value shows shortened', 'they check the certificate and not the host name', 'SQL on the Lock Screen and expanded Island', 'architecture', '<sync>', '<databases>'],
         ['Every driver is built into the app', 'SQL Server connections are encrypted without'],
     ],
     'the iPhone page (vi)' => [
         'content/vi/ios.json',
-        ['đừng lưu một dòng khi giá trị văn bản dài', 'Dynamic Island khi mở rộng', 'kiến trúc bộ xử lý', 'tác vụ Phím tắt thêm dòng'],
+        ['đừng lưu một dòng khi giá trị văn bản dài', 'Island mở rộng', 'kiến trúc', 'tác vụ Phím tắt thêm dòng'],
         ['cấp độ', 'Các phím tắt thêm dòng'],
     ],
     'the privacy policy describes what the site and apps actually do' => [
         'legal/en/privacy.md',
         [
-            'subscribing to the newsletter or starting a checkout or a discount code check from any page of this site',
+            'Newsletter signup, checkout and discount-code requests from the public site omit credentials',
+            'they neither send account-portal cookies nor accept cookies from the response',
+            'Opening account-portal pages is separate',
             'cdn.jsdelivr.net',
             'when an MCP client you have set up launches TablePro\'s bridge or pairs with it',
             '**MCP servers you add.**',
@@ -298,7 +310,7 @@ dataset('reviewed facts', [
     ],
     'the blog (vi) promises no translation' => [
         'content/vi/blog.json',
-        ['Các bài này chỉ có bằng tiếng Anh.', 'Jump host không được hỗ trợ trên iPhone và iPad'],
+        ['<changelog>changelog</changelog> (tiếng Anh)', 'Jump host không được hỗ trợ trên iPhone và iPad'],
         ['chưa có bản tiếng Việt', 'Một email ngắn mỗi khi'],
     ],
     'Vietnamese engine notes say "native", never "gốc"' => [
@@ -309,17 +321,17 @@ dataset('reviewed facts', [
     // Plugins/KafkaDriverPlugin/KafkaQL.swift is the parser; Kafka itself has no such language (v0.78.0).
     'KafkaQL is introduced as TablePro’s own command language' => [
         'content/en/databases/kafka-client.json',
-        ['all with KafkaQL, TablePro’s own command language.'],
+        ['with KafkaQL, TablePro’s own command language.'],
         ['all with KafkaQL.'],
     ],
     'KafkaQL (vi)' => [
         'content/vi/databases/kafka-client.json',
-        ['bằng KafkaQL, ngôn ngữ lệnh riêng của TablePro.'],
+        ['bằng KafkaQL, ngôn ngữ command riêng của TablePro.'],
         ['tất cả bằng KafkaQL.'],
     ],
     'the hub says whose language KafkaQL is' => [
         'content/en/databases/index.json',
-        ['with KafkaQL, TablePro’s own command language.'],
+        ['with KafkaQL, TablePro’s command language.'],
         ['messages with KafkaQL.'],
     ],
     'another tool’s AI feature is named as that tool’s' => [
@@ -368,12 +380,12 @@ dataset('reviewed facts', [
     // RowDetailView.swift:302-337 offers NULL only; InsertRowView.swift:134-151 offers Use Default, NULL and Empty String (iOS 232e8dae6).
     'on iPhone, DEFAULT belongs to a new row, not to editing one' => [
         'content/en/features/data-editing.json',
-        ['edit a row and set a value to NULL, insert rows', 'In a new row, each field starts at its DEFAULT'],
+        ['Edit values or set NULL', 'New rows start with DEFAULT values, with NULL and empty string available instead'],
         ['set a value to NULL or DEFAULT'],
     ],
     'DEFAULT on iPhone (vi)' => [
         'content/vi/features/data-editing.json',
-        ['Trong dòng mới, mỗi cột ban đầu nhận DEFAULT'],
+        ['Dòng mới bắt đầu với DEFAULT, có thể chọn NULL hoặc chuỗi rỗng.'],
         ['NULL hoặc DEFAULT'],
     ],
 ]);
@@ -414,7 +426,7 @@ it('writes the Vietnamese iPhone tab with its app label, and structure as cấu 
     }
 });
 
-it('keeps no sentence word for word across the Move data sections of engine pages', function (): void {
+it('avoids repeating long sentences across engine Move data sections', function (): void {
     $seen = [];
 
     foreach (File::files(resource_path('data/content/en/databases')) as $file) {
@@ -431,7 +443,10 @@ it('keeps no sentence word for word across the Move data sections of engine page
 
             foreach ($section['paragraphs'] as $paragraph) {
                 foreach (preg_split('/(?<=[.!?])\s+/', $paragraph) as $sentence) {
-                    if (mb_strlen($sentence) < 40) {
+                    // Short capability statements should be consistent, not forced synonyms.
+                    $words = preg_split('/\s+/u', trim(strip_tags($sentence)), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+
+                    if (count($words) < 20) {
                         continue;
                     }
 

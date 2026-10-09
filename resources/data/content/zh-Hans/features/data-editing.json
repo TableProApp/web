@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "数据编辑",
-        "title": "安全浏览和编辑数据"
+        "title": "数据编辑"
     },
     "header": {
-        "title": "安全浏览和编辑数据",
-        "lead": "直接处理行：找到所需记录，修改几个值，在生产数据库上操作也避免意外。编辑暂存至保存时才执行，每个连接决定 TablePro 在执行语句前采取何种谨慎措施。",
+        "title": "数据编辑",
+        "lead": "筛选行、跟随外键，并在表格中编辑值。更改在保存时才会提交，可先检查 SQL。",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "筛选和高亮规则",
                     "paragraphs": [
-                        "筛选栏（<kbd>⌘⇧F</kbd>）使用从 =、BETWEEN 到 REGEX 的 {filterOperatorCount} 个运算符构建 WHERE 子句，也可接受原始 SQL 条件。可为表保存筛选，并在以后载入而不立即运行。高亮规则根据值为行或单元格着色，类似电子表格中的条件格式，设置仅保存在此 Mac 上。"
+                        "用 {filterOperatorCount} 种运算符或 SQL 条件构建筛选，并保存以复用。高亮规则为匹配行或单元格着色，保留在这台 Mac。"
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "外键和 JSON",
                     "paragraphs": [
-                        "可沿外键在新标签页打开引用行，或在浮窗中预览。编辑外键列时，值选择器按所选列列出被引用行，例如客户的姓和名。JSON 值在查看器中打开，树形模式便于浏览，文本模式用于编辑。"
+                        "跟随外键访问引用行，或就地预览。值选择器帮助从引用行中选择。JSON 值可在树状查看器或文本编辑器中打开。"
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "修改数据后统一保存",
+            "title": "保存前检查更改",
             "paragraphs": [
-                "单元格编辑、新增行和删除在标签页中标记并暂存，按下 <kbd>⌘S</kbd> 前不会发送任何修改。<ui>预览 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）列出已填入值的语句。保存时以绑定参数发送，在引擎允许时于同一事务中执行，并检查每条语句修改的行数是否符合预期；任一不符即回滚保存。"
+                "编辑、新增行和删除会保留在标签页，直到用 <kbd>⌘S</kbd> 保存。<ui>预览 SQL</ui> (Preview SQL) 显示待执行语句。保存使用绑定参数并检查受影响行数，在引擎支持时使用事务和回滚。"
             ],
             "points": [
                 "按列类型提供单元格编辑器：日期时间选择器、ENUM 和 SET 列表、数组、JSON、二进制值十六进制编辑器及图片查看器。",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "生产连接的 Safe Mode",
+            "title": "Safe Mode",
             "paragraphs": [
-                "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，名称含 Safe Mode 的级别还要求 Touch ID 或 Mac 密码，名称含 Full 的级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。Safe Mode 免费。",
-                "所有级别下，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停止并先询问。某些条件在生效期间会提高连接级别，例如只读引擎、将级别至少提高至 Alert 的 Agent mode，以及组织通过设备管理（MDM）设置的最低级别。"
+                "为每个连接选择级别：{macSafeModeLevels}。默认 {macSafeModeDefault} 无需确认便执行语句。Alert 确认写入；Safe Mode 增加 Touch ID 或密码批准。Full 级别也确认读取。Read-Only 阻止写入和编辑。Safe Mode 免费。",
+                "DROP、TRUNCATE 和不带 WHERE 的 DELETE 始终需要确认。全窗口 Agent mode至少强制 Alert。只读引擎和组织设备管理策略也可能提高实际级别。"
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind 保留保存时被替换的值，可通过<ui>恢复之前的值</ui>（Restore Previous Values）还原。审查面板先显示每行将发生的变化，包括保存后又被修改的行；还原遵循 Safe Mode，在引擎允许时于同一事务中执行。还原操作本身也可还原。",
-                "保存的值使用钥匙串中的密钥加密，在此 Mac 上保留 {rewindDays} 天，从不同步。方案结束后，TablePro 停止记录保存操作，<ui>恢复之前的值</ui>（Restore Previous Values）将显示提示而不再还原。"
+                "用 <ui>恢复之前的值</ui> (Restore Previous Values) 检查并恢复保存时替换的值。检查会标记保存后再次更改的行。恢复遵循 Safe Mode，在引擎允许时使用一个事务。",
+                "先前值在这台 Mac 上加密保留 {rewindDays} 天，绝不参与同步。付费方案结束后，记录和恢复停止。"
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "文档和键",
             "paragraphs": [
-                "并非所有引擎都存储行。MongoDB 可用 Extended JSON 插入和编辑整个文档、从文档移除字段，并在 Structure 标签页为整个集合重命名或移除字段。Redis 可在网格中重命名键、设置 TTL 和编辑字符串值，添加 string、hash、list、set 或 sorted-set 键，其他类型通过编辑器命令修改。"
+                "以 Extended JSON 编辑 MongoDB 文档，或在整个集合中重命名和删除字段。Redis 可在表格中编辑字符串、重命名键、设置 TTL，或添加字符串、哈希、列表、集合、有序集合键。其他值类型通过编辑器命令更改。"
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
             "paragraphs": [
-                "iPhone 和 iPad 应用将行显示为卡片，支持排序、搜索及 AND、OR 筛选，点按外键可预览引用行。可编辑行，将值设为 NULL，插入行并滑动删除；编辑和删除需要主键。在新行中，每个字段初始为 DEFAULT，也可设为 NULL 或空字符串。",
-                "移动端 Safe Mode 有自己的级别 {iosSafeModeLevels}，新连接默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 仅在 Mac 应用中提供。"
+                "以卡片浏览行、排序和筛选，或点击外键预览引用行。编辑值或设为 NULL；编辑和删除需要主键。新增行以 DEFAULT 值开始，也可改为 NULL 或空字符串。",
+                "移动端 Safe Mode 提供 {iosSafeModeLevels}，默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 目前仅在 Mac 提供。"
             ],
             "links": [
                 {

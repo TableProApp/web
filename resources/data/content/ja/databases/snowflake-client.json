@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "{devices} 用 Snowflake クライアント",
-        "lead": "アカウントが要求する方式で認証し、再接続せずにセッションのウェアハウスとロールを切り替えて、テーブルを問い合わせ、編集し、ステージにアンロードできます。"
+        "title": "Snowflake クライアント",
+        "lead": "テーブルをクエリ・編集し、ウェアハウスやロールを切り替え、ステージに出力できます。"
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "接続と認証",
             "paragraphs": [
-                "<code>myorg-myaccount</code> や旧形式の <code>xy12345.us-east-1</code> など、<code>.snowflakecomputing.com</code> の前に付くアカウント識別子を入力します。すべてのリクエストは HTTPS でアカウントのエンドポイントに送るため、ホスト、SSL セクションや SSH ペインはありません。",
-                "<ui>Auth Method</ui> を選ぶと必要な項目だけ表示します。鍵ペアは PKCS#8 秘密鍵で接続ごとに署名するため、Mac の時計が正確である必要があります。ブラウザー SSO は ID プロバイダーへ進みます。OAuth トークンは貼り付けたまま使い、更新しません。MFA 必須のアカウントではパスワードと <ui>MFA Passcode (TOTP)</ui> の現在のコードを使います。",
+                "<code>myorg-myaccount</code> のように <code>.snowflakecomputing.com</code> より前のアカウント識別子を入力します。通信は HTTPS で、ホスト、TLS セクション、SSH ペインは不要です。",
+                "<ui>Auth Method</ui> で PKCS#8 キーペア、ブラウザー SSO、OAuth トークン、または <ui>MFA Passcode (TOTP)</ui> 付きパスワードを選びます。キーペアには正確なデバイス時計が必要です。貼り付けた OAuth トークンは更新しません。",
                 "アカウントの <code>ALLOW_CLIENT_MFA_CACHING</code> が有効なら、新しいコードは一回で済みます。Snowflake が返す MFA トークンを TablePro が <credentials>キーチェーン</credentials> に保存します。<code>ALLOW_ID_TOKEN</code> ならブラウザー SSO のログイントークンを保存し、Snowflake が拒否するまで次の接続はブラウザーを省略します。",
                 "Snowflake には URL スキームがありません。代わりに <ui>CLI Connection Name</ui> にセクション名を指定すると、空欄のフィールドを接続時に <code>~/.snowflake/connections.toml</code> から読みます。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "ウェアハウス、ロールとクエリ",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> は <code>USE WAREHOUSE</code> と <code>USE ROLE</code> で、再接続せずセッションのウェアハウスやロールを切り替えます。一つの TablePro 接続は一つの Snowflake セッションで、アイドル中も保持します。別のデータベースに紐付いたタブは、同じセッションで文の前に <code>USE DATABASE</code> を実行します。",
+                "<ui>Database > Session Context</ui> でウェアハウスとロールを切り替えます。アイドル時も一つのセッションを保持し、別のデータベースのタブは文の前に <code>USE DATABASE</code> を実行します。",
                 "サイドバーはデータベースとスキーマでオブジェクトをまとめます。一覧はウェアハウス不要の <code>SHOW</code> コマンドから取得し、カラム詳細はウェアハウスが必要な <code>INFORMATION_SCHEMA</code> から取得します。<explain>Explain</explain> は Snowflake のプランを生のテキストで返します。",
-                "<editing>グリッド編集</editing> は値をサーバーでバインドし、VARIANT、OBJECT、ARRAY セルは <code>PARSE_JSON</code> を使って送ります。宣言した主キー、なければ全カラムで特定します。Snowflake はキー制約を強制しないため、重複キーがあれば編集や削除はすべての一致行に及びます。編集前に重複を確認してください。"
+                "<editing>グリッド編集</editing>はサーバー側で値をバインドし、VARIANT、OBJECT、ARRAY は <code>PARSE_JSON</code> を通します。宣言された主キー、なければ全列で行を照合します。通常の Snowflake テーブルはキー制約を強制しないため、キーが重複すると一致する全行を更新・削除します。編集前に重複を確認してください。ハイブリッドテーブルはキーを強制します。"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "データの移動",
             "paragraphs": [
                 "接続経由で {importFormats} ファイルを <importData>インポート</importData> し、テーブルや結果を Mac に {exportFormats} でエクスポートできます。",
-                "Mac を通さずにテーブルをアンロードするには、<ui>File > Server-Side Export…</ui> で <code>@</code> あり・なしのステージ名を指定します。<backup>Server-Side Export</backup> は自分の権限で <code>COPY INTO</code> を実行し、gzip CSV、Parquet や JSON を書き込みます。シートは完了まで待機し、Mac に保存しません。"
+                "<ui>File > Server-Side Export…</ui> とステージを選びます。<backup>Server-Side Export</backup> はあなたの権限で <code>COPY INTO</code> を実行し、gzip 圧縮 CSV、Parquet、JSON を書き出します。完了を待ち、ファイルは Mac を経由しません。"
             ]
         }
     ],

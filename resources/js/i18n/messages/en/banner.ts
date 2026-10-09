@@ -15,8 +15,8 @@
  */
 export default {
     label: 'Announcement',
-    message: 'Use TablePro every day? A license adds the paid features and funds the next release.',
-    short: 'Use TablePro daily?',
-    cta: 'Get a license',
+    message: 'Paid plans add features and fund TablePro’s development.',
+    short: 'Optional paid plans',
+    cta: 'See plans',
     licensed: 'Have a license? Hide this',
 };

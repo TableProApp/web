@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Klien Oracle Database untuk {devices}",
-        "description": "Hubungkan Oracle tanpa Instant Client, jalankan PL/SQL dan skrip SQL*Plus, baca DBMS_OUTPUT, serta mulai ekspor Data Pump pada server."
+        "description": "Hubungkan ke Oracle Database tanpa Instant Client, jalankan skrip SQL dan PL/SQL, baca DBMS_OUTPUT, dan mulai ekspor Data Pump di server."
     },
     "og": {
         "kicker": "Database",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "Klien Oracle Database untuk {devices}",
-        "lead": "Driver menggunakan protokol TNS Oracle dalam Swift, sehingga Instant Client dan perangkat lunak Oracle lainnya tidak perlu dipasang di Mac. Jalankan SQL dan PL/SQL, termasuk skrip SQL*Plus, dan baca keluaran DBMS_OUTPUT di samping setiap hasil."
+        "title": "Klien Oracle Database",
+        "lead": "Jalankan SQL dan PL/SQL tanpa menginstal Oracle Instant Client. Baca DBMS_OUTPUT bersama hasil kueri."
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host, port listener, dan Service Name, atau ubah <ui>Connection Type</ui> ke SID untuk instance tanpa layanan. Masuk dengan nama pengguna dan kata sandi sebagai Normal atau dengan peran SYSDBA maupun SYSOPER.",
+                "Masukkan host, port pendengar dan Nama Layanan, atau pilih SID di <ui>Connection Type</ui>. Masuk dengan kata sandi mendukung peran Normal, SYSDBA, dan SYSOPER.",
                 "Native Network Encryption tidak memerlukan konfigurasi: saat server memintanya, AES dengan checksum SHA-2 ditawarkan, dan pengaturan <ui>Network Encryption</ui> mengubah tawaran TablePro. Untuk TLS, pilih Required untuk TCPS, atau Verify CA maupun Verify Identity dengan sertifikat CA. Koneksi baru menggunakan SSL nonaktif, dan Preferred tetap menggunakan TCP tanpa enkripsi.",
                 "Pada Oracle Autonomous Database, salin host, port, dan nama layanan dari string koneksi TLS, bukan mTLS, lalu atur SSL ke Required atau Verify CA. File wallet tidak pernah dibaca, sehingga database harus menerima TLS tanpa TLS timbal balik.",
                 "Listener RAC SCAN, server bersama, atau load balancer di depan database tidak memerlukan konfigurasi, dan <network>tunnel SSH</network> mengakses listener pada jaringan pribadi."
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL, PL/SQL, dan transaksi",
             "paragraphs": [
-                "Blok PL/SQL atau unit tersimpan berjalan sebagai satu pernyataan, berapa pun jumlah titik komanya: letakkan kursor di dalamnya dan jalankan. Skrip SQL*Plus atau SQL Developer berjalan tanpa perubahan, dengan baris yang hanya berisi <code>/</code> mengakhiri unit di atasnya. Unit yang gagal dikompilasi mengembalikan kesalahan Oracle sendiri, satu per baris beserta posisinya.",
+                "Jalankan blok PL/SQL dan unit yang disimpan sebagai pernyataan tunggal. Baris <code>/</code> mengakhiri unit dalam skrip. Kesalahan kompilasi mencakup pesan Oracle dan posisi sumber. Perintah klien SQL*Plus tidak didukung.",
                 "Baris <code>DBMS_OUTPUT.PUT_LINE</code> ditampilkan bersama hasil pernyataan yang mencetaknya, tanpa memerlukan <code>SET SERVEROUTPUT ON</code>. Dalam blok anonim, <code>:name</code> adalah <parameters>parameter kueri</parameters> yang Anda isi dari panel.",
                 "Setiap pernyataan melakukan commit saat berhasil. Awali dengan <code>SET TRANSACTION</code>, <code>SAVEPOINT</code>, atau <code>LOCK TABLE</code> untuk menahan perubahan, dan semua setelahnya menunggu <code>COMMIT</code> atau <code>ROLLBACK</code>, termasuk penyimpanan grid.",
                 "Setiap pengguna adalah skema, dan <code>⌘K</code> mengganti skema aktif tanpa membuka ulang koneksi. Perubahan baris ditampung dengan <editing>Preview SQL</editing>. Blok yang menghapus atau melakukan truncate, bahkan melalui <code>EXECUTE IMMEDIATE</code>, memunculkan <safeMode>peringatan kueri berbahaya</safeMode> sebelum berjalan."
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "Skema",
             "paragraphs": [
-                "<structure>Tab Structure</structure> menulis <code>ALTER TABLE</code> untuk menambah, mengganti nama, mengubah, dan menghapus kolom serta membuat indeks, dengan nama yang sensitif huruf besar-kecil dalam kutip ganda. Informasi tabel juga memuat primary key, foreign key, dan DDL CREATE TABLE.",
+                "Tambahkan, ganti nama, ubah dan hapus kolom atau buat indeks di tab <structure>Structure</structure>. Nama dikutip jika peka huruf besar-kecil. Periksa kunci utama, kunci asing, dan CREATE TABLE DDL.",
                 "Tabel berpartisi mencantumkan partisinya di bawah tabel, masing-masing dengan posisi, dan subpartisi berada di bawah partisinya. Kueri salah satunya dengan <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema Oracle atau datanya dan menyimpan skrip dengan baris <code>/</code> setelah setiap unit, siap untuk SQL*Plus atau SQLcl."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) membandingkan skema atau data Oracle. Skrip menggunakan pemisah <code>/</code> untuk SQL*Plus atau SQLcl."
             ]
         },
         {

@@ -20,9 +20,9 @@ export default {
         guides: 'Guides',
         releases: 'Release notes',
     },
-    latest: 'Some releases also get a post on the blog. The latest is <post>{title}</post>.',
+    latest: 'Latest release post: <post>{title}</post>.',
     post: {
-        archive: 'Published on {date}, this post describes {release} as it was then. For what TablePro does today, see <features>Features</features> and the <changelog>changelog</changelog>.',
+        archive: 'Published {date}. This post covers {release} at release. See current <features>features</features> and the <changelog>changelog</changelog>.',
         correction: 'Correction, {date}',
         toc: 'On this page',
         pages: 'Related pages',

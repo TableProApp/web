@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "适用于 {devices} 的 SQLite 客户端",
-        "lead": "从 Finder、拖放或 SSH 服务器打开数据库文件，使用应用内置 SQLite 查询，并通过执行前审查的重建脚本修改结构。"
+        "title": "SQLite 客户端",
+        "lead": "打开 SQLite 文件，运行 SQL 并检查表。应用结构更改前先检查内容。"
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "打开数据库文件",
             "paragraphs": [
-                "在连接表单选择文件，或拖到 TablePro 窗口或 Dock 图标。不存在的文件路径会在连接时创建。无论文件名是什么，开头字节为 <code>SQLite format 3</code> 时便以 SQLite 打开。",
-                "Finder 会在 .db、.sqlite、.sqlite3 等文件的“打开方式”中列出 TablePro。Messages、Safari 历史等受 macOS 保护文件夹中的数据库，需要先授予完全磁盘访问权限，通常还需退出所属应用。",
-                "其他机器上的数据库通过 <remoteFiles>Remote File 面板</remoteFiles>打开。On the Server 通过 SSH 对实时文件执行语句，主机除 <code>python3</code> 外无需安装任何内容。As a Read-Only Copy 经 SFTP 获取快照并只读打开。",
+                "选择文件或拖入 TablePro。连接新路径时会创建数据库。SQLite 文件通过 <code>SQLite format 3</code> 头部识别，而非扩展名。",
+                "从 Finder 打开 .db、.sqlite 和 .sqlite3 文件。信息或 Safari 历史记录等受保护文件夹需要完全磁盘访问权限；所属 App 也可能需要退出。",
+                "在 <remoteFiles>Remote File 面板</remoteFiles>打开远程数据库。On the Server 通过 SSH 查询实时文件，需要 <code>python3</code>。As a Read-Only Copy 通过 SFTP 下载快照。",
                 "可先选择 Help > Open Sample Database，打开应用附带的小型数字音乐商店示例 Chinook。"
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "驱动内置 SQLite，不论 macOS 版本，SQL 均在同一版本运行。<explain>EXPLAIN QUERY PLAN</explain> 绘制为图形。",
-                "可按列出顺序为每个连接加载 sqlite-vec、SpatiaLite 等扩展，其函数和虚拟表可用于编辑器、侧边栏和 Structure 标签页。SQL 函数 <code>load_extension()</code> 仍被拒绝，通过同步、导入连接或链接传入的列表，在批准前不会加载任何扩展。",
+                "驱动内置 SQLite，不依赖 macOS 版本。将 <explain>EXPLAIN QUERY PLAN</explain> 显示为图表。",
+                "按连接加载 sqlite-vec 或 SpatiaLite 等扩展。导入、同步或链接的扩展列表需在加载前批准。SQL 函数 <code>load_extension()</code> 被阻止。",
                 "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示所有语句。其他程序修改文件时，侧边栏会自动重新加载。"
             ]
         },
@@ -67,7 +67,7 @@
             "title": "移动数据",
             "paragraphs": [
                 "<importData>导入</importData> {importFormats} 文件，或在 <dataFiles>Data Files 窗口</dataFiles>打开 CSV、JSON、XLSX 后从中导入。表和结果导出为 {exportFormats}。",
-                "<copy>Copy To</copy> 将表和行移动到 PostgreSQL 服务器等其他连接，列出所有需要近似转换的列类型。另见<files>将文件作为数据库处理</files>。"
+                "<copy>Copy To</copy> 将表和行传到其他引擎，并列出类型近似转换。另见<files>将文件作为数据库</files>。"
             ]
         },
         {

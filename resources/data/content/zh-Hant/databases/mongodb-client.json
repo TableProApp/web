@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "適用於 {devices} 的 MongoDB 用戶端",
-        "lead": "依 mongosh 語法寫查詢，在格線分頁瀏覽集合，以 Extended JSON 插入或編輯整個文件。重新命名或移除整個集合的欄位，每個陳述式均在執行前顯示。"
+        "title": "MongoDB 用戶端",
+        "lead": "瀏覽集合，使用 mongosh 風格語法查詢，並以 Extended JSON 編輯文件。"
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "列一個主機或複本集的多個 <code>host:port</code>，自動找到主要節點。也可貼上 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。以 SCRAM-SHA-1、SCRAM-SHA-256、X.509 或 AWS IAM 登入；使用者定義在 <code>admin</code> 但瀏覽其他資料庫時設定 <ui>Auth Database</ui>。",
+                "輸入主機或複本集的 <code>host:port</code> 清單，或貼上 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。支援 SCRAM-SHA-1、SCRAM-SHA-256、X.509 和 AWS IAM。將 <ui>Auth Database</ui> 設為定義使用者的資料庫。",
                 "以 <code>.mongodb.net</code> 結尾的主機自動開啟 MongoDB Atlas 所需的 SRV 和 TLS。請先將 IP 加入叢集存取清單：未列出位址的流量會逾時，而非立即失敗。",
                 "新連線 TLS 關閉，驅動程式無退回機制，所以 Preferred 等同 Required。Read Preference、Write Concern 依連線設定，寫入關注隨 shell 或格線儲存的每次插入、更新、刪除傳送。",
                 "透過 <network>SSH 通道</network>連線時僅使用清單中的第一個主機，因此該工作階段不進行複本集探索和容錯移轉。"
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "查詢與編輯文件",
             "paragraphs": [
-                "查詢分頁是接受 mongosh 語法的 JavaScript shell：無引號索引鍵、規則運算式常值、<code>ISODate()</code>、變數、迴圈和 <code>forEach</code>。在 TablePro 內執行無須另裝軟體，定義的變數在斷線前可用於連線的所有分頁。補全提供集合、方法、巢狀欄位路徑及游標處有效的 <code>$</code> 運算子。",
-                "集合以格線開啟，頂層欄位為欄，巢狀物件為 Extended JSON。編輯儲存格保留欄位型別，日期仍為日期，ObjectId 仍為 ObjectId；巢狀物件編輯僅寫入 <code>address.city</code> 等改動路徑。",
-                "<editing>Insert Document 與 Edit Document</editing> 接受整個 Extended JSON 文件。Edit Document 重新從伺服器讀取；面板開啟後若他人修改或刪除，不儲存任何內容並提示。儲存格 <ui>Remove Field</ui> 傳送 <code>$unset</code>。",
+                "在 Query 分頁使用 mongosh 風格 JavaScript，包括正規表示式、<code>ISODate()</code>、變數、迴圈和 <code>forEach</code>，無需安裝獨立 shell。變數在中斷連線前跨連線分頁保留。自動完成涵蓋集合、欄位路徑、方法和運算子。",
+                "頂層欄位顯示為欄，巢狀物件顯示為 Extended JSON。儲存格編輯保留日期、ObjectId 等型別。巢狀編輯僅更新已變更路徑，例如 <code>address.city</code>。",
+                "<editing>Insert Document 和 Edit Document</editing> 使用 Extended JSON。Edit Document 會重新讀取伺服器文件；若編輯期間文件已變更或消失，則拒絕儲存。<ui>Remove Field</ui> 傳送 <code>$unset</code>。",
                 "<filters>篩選列</filters>可存取巢狀物件和物件陣列，直接篩選 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 欄位在<map>地圖檢視</map>開啟。",
                 "驅動程式無法開啟唯讀工作階段，所以 <safeMode>Safe Mode</safeMode> 將 MongoDB 連線的所有陳述式視為寫入。Alert、Safe Mode 等級逐一確認，Read-Only 全部阻擋。"
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "集合、索引與驗證器",
             "paragraphs": [
-                "<structure>Structure 分頁</structure>依索引鍵順序列出各索引欄位及 hashed、text、2dsphere、wildcard 等種類。Show DDL 產生重建它們的 <code>createIndex</code> 呼叫，含伺服器報告的所有選項。",
-                "在同一分頁重新命名或移除整個集合的欄位。每次修改為一個 <code>updateMany</code>，在 Preview SQL 顯示，<code>$jsonSchema</code> 驗證器宣告的欄位也同步修改。索引、搜尋索引或檢視表仍使用該名稱時，任何寫入前即拒絕儲存。",
+                "在 <structure>Structure 分頁</structure>檢查索引欄位、型別和選項。Show DDL 使用伺服器回報的選項產生 <code>createIndex</code> 呼叫。",
+                "透過預覽後的 <code>updateMany</code> 在整個集合中重新命名或刪除欄位，驗證器也會更新。若索引、搜尋索引或檢視仍使用該欄位，則阻止儲存。",
                 "<ui>新增資料表</ui>（New Table）建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側邊欄，檢視表以唯讀開啟。"
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass 是 MongoDB 官方 GUI，逐階段建構彙總管線，每階段後預覽，從文件樣本分析集合結構，並繪製執行計畫。需要視覺化建構管線或研究單一集合結構時選擇它；MongoDB 是同一 App 中使用的多種資料庫之一時，TablePro 更合適。",
+                "text": "MongoDB Compass 提供視覺化彙總管線、取樣結構分析和執行計畫。TablePro 可在同一 App 中查詢 MongoDB 和其他資料庫引擎。",
                 "notes": [
                     "compass-natural-language"
                 ]

@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso und libSQL",
     "header": {
-        "title": "Client für Turso und libSQL auf {devices}",
-        "lead": "Verbinde Turso mit URL und Token, frage in SQLite-Syntax ab und ändere Tabellen, Indizes und Trigger. Derselbe Treiber öffnet eigene sqld-Server und libSQL-Dateien auf deinem Mac."
+        "title": "Client für Turso und libSQL",
+        "lead": "Verbinde eine Turso-Datenbank mit URL und Token. Durchsuche Tabellen, führe SQLite-Abfragen aus oder öffne eine lokale libSQL-Datei."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Mit Turso verbinden",
             "paragraphs": [
-                "Wähle Turso als Verbindungstyp und lasse <ui>Connection Mode</ui> auf <ui>Remote (Turso)</ui>. Füge die HTTPS-Datenbank-URL mit Endung <code>.turso.io</code> und einen Token unter <ui>API Token</ui> ein, der im macOS-Schlüsselbund bleibt. Turso zeigt beides im Dashboard, ebenso <code>turso db show my-db --url</code> und <code>turso db tokens create my-db</code>.",
-                "Eine <code>libsql://</code>-URL wird auf HTTPS umgeschrieben; ihr Import erstellt eine Remote-Verbindung. Host-, Port- und Datenbankfelder fehlen, weil die URL eine Datenbank nennt. Verschlüsselt ist die Verbindung bei HTTPS statt Klartext-HTTP; es gibt keinen SSH-Tunnel."
+                "Wähle <ui>Remote (Turso)</ui> unter <ui>Connection Mode</ui>. Füge die HTTPS-URL der Datenbank und ein <ui>API Token</ui> ein, das im macOS-Schlüsselbund gespeichert wird. Beides findest du im Turso-Dashboard oder CLI.",
+                "Importierte <code>libsql://</code>-URLs werden zu entfernten HTTPS-Verbindungen. Jede URL nennt eine Datenbank. Einfache HTTP-URLs sind unverschlüsselt; SSH-Tunnel sind nicht verfügbar."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tabellen, Indizes und Trigger",
             "paragraphs": [
                 "Der <structure>Structure-Tab</structure> erstellt Tabellen, fügt Spalten und Indizes hinzu und entfernt sie und erstellt, bearbeitet und löscht Trigger. Tabellen, nicht Sichten, lassen sich in der Seitenleiste umbenennen.",
-                "Zum Umordnen von Spalten oder Ändern eines Fremdschlüssels in einer Remote-Datenbank schreibt TablePro das Neuaufbauskript zum Lesen und eigenen Ausführen. Es kann es nicht selbst ausführen, weil eine Transaktion über getrennte HTTP-Anfragen nötig wäre."
+                "Spaltenumordnungen und Fremdschlüsseländerungen auf entfernten Datenbanken erzeugen ein Rebuild-Skript zur Prüfung und Ausführung. TablePro kann es nicht als einzelne Transaktion über getrennte HTTP-Anfragen ausführen."
             ]
         },
         {

@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "適用於 {devices} 的 Amazon Redshift 用戶端",
-        "lead": "使用 App 內建 PostgreSQL 驅動程式查詢佈建叢集或 Serverless 工作群組，查看每個資料表的分佈方式和排序鍵，並在自有 schema 旁瀏覽 Spectrum 和 datashare schema。"
+        "title": "Amazon Redshift 用戶端",
+        "lead": "查詢佈建的叢集或 Serverless 工作群組。檢查排序鍵、分佈方式和外部綱要。"
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "主機使用叢集端點，Redshift Serverless 使用工作群組端點，兩者監聽相同連接埠。資料庫必填，每個叢集建立時都有名為 <code>dev</code> 的資料庫。匯入 <code>redshift://</code> URL 可填入表單。",
+                "輸入叢集或 Serverless 工作群組端點、連接埠和資料庫。叢集預設從 <code>dev</code> 開始。<code>redshift://</code> URL 可自動填入表單。",
                 "新連線 SSL 為 Preferred，不檢查版本，因此 AWS 仍執行的任何叢集都可連線。密碼存入鑰匙圈或從 <code>~/.pgpass</code> 讀取，是連線的兩種<credentials>認證資訊選項</credentials>。無法公開存取的叢集透過通往其 VPC 堡壘主機的 <network>SSH 通道</network>存取。"
             ]
         },
@@ -40,9 +40,9 @@
             "title": "查詢與編輯",
             "paragraphs": [
                 "查詢和<editing>含 Preview SQL 的暫存列編輯</editing>透過同一驅動程式，與 <postgresql>PostgreSQL</postgresql> 相同。繫結非目前資料庫的分頁會為其開啟第二個連線。",
-                "資料表資訊從 <code>svv_table_info</code> 讀取分佈方式、排序鍵和大小，DDL 分頁輸出 DISTKEY、SORTKEY、DISTSTYLE、ENCODE。外部索引鍵會列出，但 Redshift 不強制執行，因此不會阻止違反外部索引鍵的列。",
+                "從 <code>svv_table_info</code> 查看分佈方式、排序鍵和大小。DDL 包含 DISTKEY、SORTKEY、DISTSTYLE 和 ENCODE。外部索引鍵會列出，但 Redshift 不強制執行。",
                 "<explain>EXPLAIN 和 EXPLAIN VERBOSE</explain> 傳回 Redshift 文字計畫，不繪製圖形。",
-                "用 <code>CREATE EXTERNAL SCHEMA</code> 建立的 schema，無論是 S3 上的 Spectrum、聯邦查詢、跨資料庫參照或 datashare，均與自有 schema 並列且標為 External。資料表可正常瀏覽、篩選、排序、匯出，但因 Redshift 不接受 UPDATE、DELETE 而唯讀。不會顯示列數，欄位型別依外部目錄報告讀取。"
+                "與本機綱要一起瀏覽外部 Spectrum、聯合查詢、跨資料庫和 datashare 綱要。外部資料表支援篩選、排序和匯出，但為唯讀。無法取得列數；型別來自外部目錄。"
             ]
         },
         {

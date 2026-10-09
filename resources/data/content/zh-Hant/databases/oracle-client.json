@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "適用於 {devices} 的 Oracle Database 用戶端",
-        "description": "無須 Instant Client 連線 Oracle Database，執行 PL/SQL、SQL*Plus 指令碼，讀取 DBMS_OUTPUT，在伺服器啟動 Data Pump 匯出。"
+        "description": "無需 Instant Client 即可連線至 Oracle Database，執行 SQL 和 PL/SQL 腳本、讀取 DBMS_OUTPUT，並在伺服器上啟動 Data Pump 匯出。"
     },
     "og": {
         "kicker": "資料庫",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "適用於 {devices} 的 Oracle Database 用戶端",
-        "lead": "驅動程式用 Swift 實作 Oracle TNS 通訊協定，Mac 無須 Instant Client 或其他 Oracle 軟體。執行 SQL、PL/SQL，包括為 SQL*Plus 編寫的指令碼，並在各結果旁讀取 DBMS_OUTPUT 輸出。"
+        "title": "Oracle Database 用戶端",
+        "lead": "無需安裝 Oracle Instant Client 即可執行 SQL 和 PL/SQL，同時查看查詢結果和 DBMS_OUTPUT。"
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入主機、監聽連接埠及 Service Name，無服務的執行個體將<ui>連線類型</ui>（Connection Type）切為 SID。用使用者名稱密碼以 Normal、SYSDBA 或 SYSOPER 角色登入。",
+                "輸入主機、監聽連接埠和 Service Name，或在 <ui>連線類型</ui> (Connection Type) 中選擇 SID。密碼登入支援 Normal、SYSDBA 和 SYSOPER 角色。",
                 "Native Network Encryption 無須設定：伺服器要求時提供帶 SHA-2 總和檢查碼的 AES，<ui>Network Encryption</ui> 改變 TablePro 提供的選項。TLS 選擇用於 TCPS 的 Required，或帶 CA 憑證的 Verify CA、Verify Identity。新連線 SSL 關閉，Preferred 仍用明文 TCP。",
                 "Oracle Autonomous Database 請從 TLS 連線字串（非 mTLS）複製主機、連接埠和服務名稱，SSL 設 Required 或 Verify CA。從不讀取錢包檔案，所以資料庫必須接受不帶雙向 TLS 的 TLS。",
                 "RAC SCAN 監聽器、共用伺服器或資料庫前的負載平衡器無須設定；私有網路監聽器透過 <network>SSH 通道</network>存取。"
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL、PL/SQL 與交易",
             "paragraphs": [
-                "PL/SQL 區塊或儲存單元無論含多少分號都作為一個陳述式執行，游標置於其中即可。SQL*Plus 或 SQL Developer 指令碼無須修改，單獨 <code>/</code> 列結束上方單元。編譯失敗顯示 Oracle 原始錯誤，每列附位置。",
+                "將 PL/SQL 區塊和預存單元作為單條陳述式執行。腳本中的 <code>/</code> 列結束一個單元。編譯錯誤包含 Oracle 訊息和原始碼位置。不支援 SQL*Plus 用戶端命令。",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> 列與列印它的陳述式結果一起顯示，無須 <code>SET SERVEROUTPUT ON</code>。匿名區塊中的 <code>:name</code> 是在面板填寫的<parameters>查詢參數</parameters>。",
                 "各陳述式成功即提交。用 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 開始保留改動，其後包括格線儲存均等待 <code>COMMIT</code> 或 <code>ROLLBACK</code>。",
                 "每個使用者是一個 schema，<code>⌘K</code> 無須重新連線切換使用中 schema。列編輯暫存並可 <editing>Preview SQL</editing>。執行 drop 或 truncate 的區塊即使透過 <code>EXECUTE IMMEDIATE</code>，也在執行前觸發<safeMode>危險查詢警告</safeMode>。"
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "結構",
             "paragraphs": [
-                "<structure>Structure 分頁</structure>用 <code>ALTER TABLE</code> 新增、重新命名、修改、刪除欄位及建立索引，對區分大小寫的名稱加雙引號。資料表資訊還含主索引鍵、外部索引鍵和 CREATE TABLE DDL。",
+                "在 <structure>Structure 分頁</structure>新增、重新命名、修改或刪除欄位，也可建立索引。區分大小寫的名稱會加引號。可查看主索引鍵、外部索引鍵和 CREATE TABLE DDL。",
                 "分割區資料表下列出各分割區及位置，子分割區巢狀於所屬分割區內。用 <code>SELECT * FROM orders PARTITION (p2024)</code> 查詢一個分割區。",
-                "{compareSyncTier} 方案的 <compareSync>Compare & Sync</compareSync> 比較兩個 Oracle schema 或其資料，儲存每個單元後帶 <code>/</code> 列的指令碼，可用於 SQL*Plus 或 SQLcl。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比較 Oracle 綱要或資料。腳本使用適用於 SQL*Plus 或 SQLcl 的 <code>/</code> 分隔符。"
             ]
         },
         {

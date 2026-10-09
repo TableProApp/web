@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass: MongoDB 전용 또는 여러 엔진",
+        "title": "TablePro vs MongoDB Compass: 쉘 또는 시각적 도구",
         "description": "MongoDB Compass는 단계별 집계와 스키마 분석을 갖춘 MongoDB의 무료 GUI입니다. TablePro는 Mac에서 SQL 데이터베이스, Redis와 함께 MongoDB를 지원합니다."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass는 MongoDB의 공식 무료 GUI로 데이터 탐색, 집계 파이프라인 작성, 컬렉션 스키마 파악에 씁니다. TablePro는 SQL 데이터베이스, Redis 등 다른 엔진과 함께 MongoDB에 연결하는 오픈 소스 클라이언트이며 Mac에서 선택형 유료 기능을 추가할 수 있습니다."
+        "lead": "Compass는 집계 빌더와 스키마 분석 기능을 갖춘 MongoDB의 자체 GUI입니다. TablePro는 SQL 데이터베이스 및 기타 엔진과 함께 MongoDB를 배치합니다."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB는 PostgreSQL, MySQL, SQL Server, Redis와 함께 쓰는 데이터베이스 중 하나이며 하나의 클라이언트로 모두 다루고 싶습니다.",
-            "변수, 반복문, 컬렉션·필드 경로·연산자 자동 완성이 있는 mongosh 스타일 셸을 좋아합니다.",
-            "컬렉션 전체에서 필드 이름을 바꾸거나 지우고 실행 전에 모든 명령문을 확인하고 싶습니다.",
-            "클라우드나 Mac에서 원하는 제공업체로 쓰는 AI 도우미와 외부 AI 클라이언트용 MCP 서버를 원합니다."
+            "MongoDB, PostgreSQL, MySQL, SQL Server 또는 Redis 와 함께.",
+            "변수, 루프 및 자동 완성 기능을 갖춘 mongosh 스타일 셸입니다.",
+            "실행되기 전에 명령문이 표시되는 컬렉션 전체 필드 변경."
         ],
         "competitor": [
-            "MongoDB만 사용하며 MongoDB의 공식 무료 도구를 원합니다.",
-            "집계 파이프라인을 단계별로 만들고 단계마다 미리 보기를 원합니다.",
-            "컬렉션 스키마를 살펴보거나 컬렉션과 그 관계를 다이어그램으로 모델링합니다.",
-            "MongoDB용 시각적 실행 계획과 실시간 서버 지표를 원합니다.",
-            "Windows나 Linux에서도 작업합니다."
+            "미리보기가 포함된 단계별 집계 빌더입니다.",
+            "스키마 분석, 컬렉션 모델링 및 관계 다이어그램.",
+            "계획과 실시간 MongoDB 서버 측정항목을 시각적으로 설명합니다."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass는 MongoDB의 공식 GUI이며 무료입니다.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "집계 파이프라인을 단계별로 만들고 단계마다 데이터를 미리 봅니다.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "컬렉션의 문서를 샘플링해 필드 유형, 날짜 범위, 자주 나오는 값을 보여 주고 데이터베이스 컬렉션의 ER 다이어그램을 그립니다.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "실행 계획을 시각적으로 보여 주고 실시간 서버 지표도 갖췄습니다.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Windows, macOS, Linux에서 실행합니다.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "<link>AI 도우미</link>는 클라우드나 Mac에서 원하는 AI 제공업체로 작동하며 MCP 서버로 외부 AI 클라이언트가 저장된 연결을 씁니다. 둘 다 무료입니다. Compass의 AI 기능은 Azure OpenAI를 사용합니다.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Windows·Linux용 TablePro 앱은 없습니다.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "각각 어떤 AI를 쓰나요?",
             "answer": "Compass의 자연어 쿼리와 도우미는 Azure OpenAI를 사용하며 설정에서 AI 기능을 끌 수 있습니다. TablePro의 AI 도우미는 Mac에서 실행하는 모델을 포함해 원하는 제공업체를 쓰며 Mac 앱에서 무료입니다. <link>TablePro의 AI 읽기</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "MongoDB에서 TablePro는 무료인가요?",
-            "answer": "네. MongoDB와 다른 지원 엔진, AI 도우미, MCP 서버는 Mac 앱에서 무료입니다. 유료 플랜은 {starterExamples} 등 선택 기능을 추가합니다. <link>가격 보기</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

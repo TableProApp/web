@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Edición de datos",
-        "title": "Explora y edita datos con seguridad"
+        "title": "Edición de datos"
     },
     "header": {
-        "title": "Explora y edita datos con seguridad",
-        "lead": "Para trabajar directamente con filas: encontrar las necesarias, cambiar unos valores y hacerlo en producción sin sorpresas. Las ediciones esperan hasta guardar y cada conexión decide qué precauciones toma TablePro antes de ejecutar una sentencia.",
+        "title": "Edición de datos",
+        "lead": "Filtra filas, sigue claves foráneas y edita valores en la cuadrícula. Los cambios esperan al guardado y puedes revisar primero el SQL.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filtros y reglas de resaltado",
                     "paragraphs": [
-                        "La barra de filtros (<kbd>⌘⇧F</kbd>) construye WHERE con {filterOperatorCount} operadores, desde = y BETWEEN hasta REGEX, o acepta una condición SQL directa. Guarda un filtro para una tabla y recupéralo sin ejecutarlo. Las reglas de resaltado colorean filas o celdas según sus valores, como formato condicional en una hoja de cálculo, y permanecen en este Mac."
+                        "Crea filtros con {filterOperatorCount} operadores o una condición SQL y guárdalos para reutilizar. Las reglas de resaltado colorean filas o celdas coincidentes y permanecen en este Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Claves foráneas y JSON",
                     "paragraphs": [
-                        "Sigue una clave foránea hasta su fila en otra pestaña o previsualízala en una ventana emergente. Al editar una columna de clave foránea, el selector muestra las filas referenciadas con las columnas elegidas, como apellidos y nombre de un cliente. Los valores JSON se abren en un visor con árbol para navegar y modo de texto para editar."
+                        "Sigue una clave foránea a su fila o previsualízala en el sitio. Un selector ayuda a elegir filas referenciadas. Abre valores JSON en un visor de árbol o editor de texto."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "Modifica datos y guarda una vez",
+            "title": "Revisa cambios antes de guardar",
             "paragraphs": [
-                "Las ediciones de celdas, filas nuevas y eliminaciones esperan marcadas en la pestaña hasta pulsar <kbd>⌘S</kbd>; no se envía nada antes. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) enumera las sentencias con valores incluidos. Al guardar se envían con parámetros vinculados, en una transacción si el motor lo permite, y se comprueba que cada sentencia cambie el número esperado de filas; si no, se revierte el guardado."
+                "Cambios, filas nuevas y eliminaciones permanecen en la pestaña hasta guardar con <kbd>⌘S</kbd>. <ui>Preview SQL</ui> muestra instrucciones pendientes. El guardado vincula parámetros y comprueba filas afectadas, con transacción y reversión donde el motor lo admita."
             ],
             "points": [
                 "Editores según tipo de columna: selector de fecha y hora, listas ENUM y SET, arrays, JSON, editor hexadecimal para binarios y visor de imágenes.",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "Safe Mode para conexiones de producción",
+            "title": "Safe Mode",
             "paragraphs": [
-                "Cada conexión tiene un nivel de Safe Mode: {macSafeModeLevels}. Las nuevas empiezan en {macSafeModeDefault}, donde las sentencias se ejecutan tal como están escritas. Alert pregunta antes de una escritura; los niveles Safe Mode también piden Touch ID o la contraseña del Mac; los niveles Full preguntan también antes de las lecturas, y Read-Only rechaza las escrituras y desactiva la edición. Safe Mode es gratis.",
-                "En todos los niveles, DROP, TRUNCATE y DELETE sin WHERE se detienen y preguntan primero. Algunas condiciones elevan el nivel de una conexión mientras se aplican: un motor que solo lee, Agent mode, que lo eleva al menos a Alert, y un nivel mínimo fijado por tu organización mediante la gestión de dispositivos (MDM)."
+                "Elige un nivel por conexión: {macSafeModeLevels}. El predeterminado {macSafeModeDefault} ejecuta sin confirmación. Alert confirma escrituras; Safe Mode añade Touch ID o contraseña. Los niveles Full también confirman lecturas. Read-Only bloquea escritura y edición. Safe Mode es gratis.",
+                "DROP, TRUNCATE y DELETE sin WHERE siempre requieren confirmación. Agent mode a ventana completa exige como mínimo Alert. Los motores de solo lectura y las políticas de gestión de dispositivos de una organización también pueden elevar el nivel efectivo."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> pueda recuperarlos. Antes, una hoja de revisión muestra lo que ocurrirá con cada fila, incluidas las que cambiaron después de tu guardado; la restauración pasa por Safe Mode, en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
-                "Los valores guardados permanecen en este Mac durante {rewindDays} días, cifrados con una clave del Llavero, y nunca se sincronizan. Al terminar un plan, TablePro deja de registrar guardados y <ui>Restore Previous Values</ui> muestra un aviso."
+                "Revisa y restaura valores sustituidos por un guardado con <ui>Restore Previous Values</ui>. La revisión señala filas cambiadas desde entonces. Las restauraciones siguen Safe Mode, en una transacción donde el motor lo permita.",
+                "Los valores anteriores permanecen cifrados en este Mac durante {rewindDays} días y nunca se sincronizan. El registro y la restauración se detienen cuando termina el plan de pago."
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documentos y claves",
             "paragraphs": [
-                "No todos los motores almacenan filas. En MongoDB insertas y editas documentos completos como Extended JSON, eliminas un campo de un documento y renombras o eliminas un campo en toda una colección desde la pestaña Structure. En Redis renombras claves, configuras TTL y editas cadenas en la cuadrícula, añades claves string, hash, list, set o sorted-set y cambias otros tipos con comandos en el editor."
+                "Edita documentos MongoDB como Extended JSON o renombra y elimina campos en una colección. En Redis edita strings, renombra claves y establece TTL en la cuadrícula, o añade claves string, hash, list, set o sorted set. Usa comandos del editor para otros tipos."
             ],
             "links": [
                 {
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "En iPhone y iPad",
             "paragraphs": [
-                "En iPhone y iPad, las filas son tarjetas que puedes ordenar, buscar y filtrar con AND y OR, y tocar una clave foránea previsualiza su fila. Puedes editar una fila, establecer NULL, insertar filas y eliminarlas deslizando; editar y eliminar requiere clave primaria. En una fila nueva, cada campo empieza con su DEFAULT y puede cambiarse a NULL o a una cadena vacía.",
-                "Safe Mode tiene allí niveles propios, {iosSafeModeLevels}, con {iosSafeModeDefault} por defecto para conexiones nuevas. Las ediciones pendientes, Preview SQL, las reglas de resaltado y Data Rewind solo están en el Mac."
+                "Explora filas como tarjetas, ordénalas y filtra, o toca una clave foránea para ver su fila. Edita valores o establece NULL; editar y eliminar requiere clave primaria. Las filas nuevas empiezan con DEFAULT, con NULL o cadena vacía como alternativas.",
+                "Safe Mode móvil ofrece {iosSafeModeLevels}, con {iosSafeModeDefault} por defecto. Los cambios pendientes, Preview SQL, reglas de resaltado y Data Rewind están disponibles actualmente solo en el Mac."
             ],
             "links": [
                 {

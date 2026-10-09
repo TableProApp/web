@@ -10,8 +10,8 @@
     "engine": "elasticsearch",
     "breadcrumb": "Elasticsearch",
     "header": {
-        "title": "Client Elasticsearch per {devices}",
-        "lead": "Una console per richieste Query DSL e una griglia che legge ogni indice come tabella e modifica documenti tramite <code>_id</code>. Nessuna delle due usa SQL: ogni azione è una richiesta REST al cluster."
+        "title": "Client Elasticsearch",
+        "lead": "Esegui richieste Query DSL e sfoglia i documenti indice in una griglia. Modifica i documenti in base ai loro ID."
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,18 +23,18 @@
             "id": "connect",
             "title": "Connetti",
             "paragraphs": [
-                "Inserisci host e porta REST del cluster e scegli un <ui>Auth Method</ui>. Username & Password invia HTTP Basic. API Key invia il campo in un’intestazione <code>Authorization: ApiKey</code>, quindi incolla il valore <code>encoded</code> restituito dalla richiesta di creazione di una chiave API. None è adatto a un cluster di sviluppo con sicurezza disattivata. Una connessione raggiunge un cluster, quindi il modulo non ha un campo Database.",
-                "Le nuove connessioni iniziano con SSL Disabled, cioè HTTP non cifrato. Ogni altra modalità usa HTTPS: Preferred e Required (skip verify) accettano un certificato autofirmato, mentre Verify CA e Verify Identity lo verificano. Elasticsearch 8.x attiva sicurezza e TLS per impostazione predefinita, quindi un cluster 8.x richiede solitamente HTTPS e credenziali."
+                "Inserisci host e porta REST, poi scegli un <ui>Auth Method</ui>: Username & Password, API Key o None. Le chiavi API usano il valore <code>encoded</code> di Elasticsearch. Ogni connessione raggiunge un solo cluster.",
+                "Le nuove connessioni iniziano con SSL Disabled, cioè HTTP non cifrato. Ogni altra modalità usa HTTPS: Preferred e Required (skip verify) accettano un certificato autofirmato, mentre Verify CA e Verify Identity lo verificano. Elasticsearch 8.x attiva sicurezza e TLS per imposto predefinita, quindi un cluster 8.x richiede solitamente HTTPS e credenziali."
             ]
         },
         {
             "id": "work",
             "title": "Indici e console Query DSL",
             "paragraphs": [
-                "La console accetta un metodo, un percorso e un corpo JSON facoltativo, come Kibana Dev Tools, per esempio <code>GET /orders/_search</code> con una query <code>match</code>. I risultati della ricerca vengono restituiti come righe, le richieste <code>_cat</code> con <code>format=json</code> e altre risposte array diventano una tabella e tutto il resto appare come JSON formattato. L’endpoint <code>_sql</code> non è raggiungibile.",
+                "Scrivi un metodo, un percorso e un corpo JSON opzionale, come <code>GET /orders/_search</code>. I risultati della ricerca e le risposte dell'array vengono visualizzati come righe; altre risposte mostrano il formato JSON. L'endpoint <code>_sql</code> non è disponibile.",
                 "La barra laterale elenca gli indici come tabelle e nasconde i nomi che iniziano con un punto. Le colonne provengono dal mapping: i campi oggetto vengono appiattiti in percorsi con punti come <code>address.city</code>, un campo nested riceve una colonna JSON per l’array e una colonna per ogni foglia e ogni documento contiene <code>_id</code>, <code>_index</code> e <code>_score</code>.",
                 "I <filters>filtri delle colonne</filters> diventano query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> ed <code>exists</code>; la riga del filtro Raw SQL accetta sintassi Lucene, come <code>name:Widget</code>, inviata come <code>query_string</code>. Ordinare un campo <code>text</code> usa il sottocampo <code>.keyword</code> quando il mapping ne contiene uno.",
-                "Le modifiche nella griglia diventano chiamate REST basate su <code>_id</code>: <code>_update</code> per un documento modificato e <code>_doc</code> per crearne o eliminarne uno. Digita un <code>_id</code> in una nuova riga per assegnare un nome al documento. Modifica un array nested tramite la sua colonna JSON; un valore digitato in una colonna foglia interrompe il salvataggio, che indica la colonna e non invia nulla."
+                "Modifica i documenti tramite <code>_id</code> con chiamate REST. Inserisci un ID per un nuovo documento. Cambia gli array nidificati attraverso la loro colonna JSON; la modifica di una colonna foglia blocca il salvataggio senza inviare una richiesta."
             ]
         },
         {
@@ -58,7 +58,7 @@
         {
             "id": "deep-paging",
             "question": "Posso scorrere oltre la finestra dei risultati?",
-            "answer": "Sì. La paginazione oltre la finestra predefinita di Elasticsearch passa a <code>search_after</code> su un point-in-time. Il passaggio avviene al limite predefinito, quindi un indice con <code>max_result_window</code> ridotto genera un errore prima: riporta l’impostazione al valore predefinito."
+            "answer": "Sì. La paginazione oltre la finestra predefinita di Elasticsearch passa a <code>search_after</code> su un point-in-time. Il passaggio avviene al limite predefinito, quindi un indice con <code>max_result_window</code> ridotto genera un errore prima: riporta l’imposto al valore predefinito."
         },
         {
             "id": "sort-id",

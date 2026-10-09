@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs. MongoDB Compass: um banco ou vários",
+        "title": "TablePro vs MongoDB Compass: shell ou ferramentas visuais",
         "description": "MongoDB Compass é a GUI gratuita do MongoDB, com agregações por etapas e análise de esquema. TablePro atende MongoDB junto a bancos SQL e Redis no Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs. MongoDB Compass",
-        "lead": "MongoDB Compass é a GUI oficial e gratuita do MongoDB, para explorar dados, criar pipelines de agregação e estudar o esquema de uma coleção. TablePro é um cliente de código aberto que se conecta ao MongoDB junto a bancos SQL, Redis e outros mecanismos, com recursos pagos opcionais no Mac."
+        "lead": "Compass é a própria GUI do MongoDB, com um construtor de agregação e análise de esquema. TablePro coloca MongoDB ao lado de seus bancos de dados SQL e outros mecanismos."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB é um dos vários bancos que você usa, junto a PostgreSQL, MySQL, SQL Server ou Redis, e você quer um cliente para todos.",
-            "Você gosta de um shell no estilo mongosh, com variáveis, loops e autocompletar para coleções, caminhos de campos e operadores.",
-            "Você quer renomear ou remover um campo em uma coleção inteira, vendo cada comando antes de ele rodar.",
-            "Você quer um assistente de IA com o provedor que escolher, na nuvem ou no seu Mac, e um servidor MCP para clientes de IA externos."
+            "MongoDB junto com PostgreSQL, MySQL, SQL Server ou Redis.",
+            "Um shell estilo mongosh com variáveis, loops e preenchimento automático.",
+            "Mudanças nos campos de toda a coleção, com instruções mostradas antes de serem executadas."
         ],
         "competitor": [
-            "MongoDB é seu único banco, e você quer a ferramenta oficial do MongoDB, gratuita.",
-            "Você cria pipelines de agregação etapa por etapa e quer uma prévia após cada etapa.",
-            "Você estuda o esquema de uma coleção ou modela coleções e seus relacionamentos em um diagrama.",
-            "Você quer um plano de execução visual e métricas do servidor em tempo real para MongoDB.",
-            "Você também trabalha em Windows ou Linux."
+            "Um construtor de agregação passo a passo com visualizações.",
+            "Análise de esquemas, modelagem de coleções e diagramas de relacionamento.",
+            "Planos de explicação visual e métricas do servidor MongoDB ao vivo."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass é a GUI oficial do MongoDB e é gratuito.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Pipelines de agregação são criados etapa por etapa, com uma prévia dos dados após cada etapa.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Ele amostra os documentos de uma coleção para mostrar tipos de campo, intervalos de datas e valores frequentes, e desenha um diagrama entidade-relacionamento das coleções de um banco.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Planos de execução são visuais, e métricas do servidor em tempo real vêm integradas.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Funciona em Windows, macOS e Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "O <link>assistente de IA</link> funciona com o provedor de IA que você escolher, na nuvem ou no seu Mac, e o servidor MCP permite que clientes de IA externos usem suas conexões salvas. Ambos são gratuitos. Os recursos de IA do Compass usam Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Não há app TablePro para Windows ou Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "Qual IA cada um usa?",
             "answer": "As consultas em linguagem natural e o assistente do Compass usam Azure OpenAI, e você pode desativar os recursos de IA nas configurações. O assistente de IA do TablePro usa o provedor que você escolher, inclusive um modelo no seu Mac, e é gratuito no app para Mac. <link>Leia sobre IA no TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "TablePro é gratuito para MongoDB?",
-            "answer": "Sim. MongoDB e os outros mecanismos suportados, o assistente de IA e o servidor MCP são gratuitos no app para Mac. Planos pagos adicionam recursos opcionais como {starterExamples}. <link>Ver preços</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

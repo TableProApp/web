@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DataGrip: IDE atau klien native",
+        "title": "TablePro vs DataGrip: klien database atau IDE",
         "description": "DataGrip adalah IDE JetBrains, gratis hanya untuk penggunaan nonkomersial. TablePro adalah klien native sumber terbuka. Bandingkan AI, MCP, Git, dan impor."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DataGrip",
-        "lead": "DataGrip adalah IDE database JetBrains untuk Windows, macOS, dan Linux, dibangun di atas {technology}. Gratis untuk penggunaan nonkomersial, dan berlangganan tahunan atau bulanan untuk pekerjaan lain. TablePro adalah klien sumber terbuka dengan aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad. Gratis digunakan untuk pekerjaan apa pun, dan paket berbayar menambahkan fitur opsional pada aplikasi Mac."
+        "lead": "DataGrip adalah IDE database JetBrains yang berbasis {technology}. TablePro adalah klien database native. Bandingkan alat pengeditan, fitur AI, dan lisensi komersialnya."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda ingin klien untuk pekerjaan berbayar tanpa harus membayar. TablePro gratis digunakan untuk pekerjaan apa pun, dan paket berbayar menambahkan fitur seperti {starterExamples}.",
-            "Anda ingin asisten AI yang mengirim permintaan langsung ke penyedia yang Anda tambahkan, tanpa layanan AI atau kredit milik TablePro sebagai perantara. Gratis dalam aplikasi Mac, begitu pula server MCP.",
-            "Anda lebih memilih aplikasi Mac yang ditulis dalam Swift daripada IDE lengkap.",
-            "Anda juga ingin aplikasi untuk iPhone dan iPad."
+            "Klien gratis untuk pekerjaan komersial. Paket berbayar menambahkan {starterExamples}.",
+            "Klien native, bukan IDE lengkap.",
+            "Chat AI dan MCP gratis, dengan penyedia AI pilihan Anda."
         ],
         "competitor": [
-            "Anda bekerja di Windows atau Linux selain Mac.",
-            "Anda ingin IDE dengan pemeriksaan kode dan kontrol versi dalam jendela yang sama dengan kueri.",
-            "Pekerjaan Anda nonkomersial, seperti belajar, proyek hobi, atau pekerjaan sumber terbuka tanpa manfaat komersial. DataGrip gratis untuk itu, dengan semua fitur.",
-            "Anda terhubung ke mesin yang tidak didukung TablePro, seperti Firebird, Informix, atau Databricks."
+            "Inspeksi kode dan kontrol versi bersama kueri.",
+            "IDE lengkap gratis untuk pekerjaan nonkomersial.",
+            "Dukungan Windows atau Linux, atau engine JDBC seperti Firebird, Informix, dan Databricks."
         ]
     },
     "glance": {
@@ -41,14 +39,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DataGrip berjalan di Windows, macOS, dan Linux, sehingga IDE yang sama mengikuti Anda di berbagai komputer.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Ini adalah IDE. Kontrol versi seperti Git berada di samping kueri, dan mesin dengan dukungan lengkap mendapat pemeriksaan kode serta perbaikan cepat.",
                 "cite": [
@@ -80,7 +70,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro gratis digunakan untuk pekerjaan apa pun, termasuk komersial, tanpa masa uji coba atau batas waktu. Aplikasi Mac mengirim <link>laporan penggunaan</link> harian ke TablePro, aktif secara default, yang dapat Anda nonaktifkan di Pengaturan. Lisensi gratis DataGrip hanya untuk penggunaan nonkomersial, dan mengumpulkan statistik penggunaan yang tidak dapat Anda nonaktifkan.",
+                "text": "TablePro gratis untuk pekerjaan komersial. <link>Laporan penggunaan</link> harian Mac aktif secara default dan dapat dinonaktifkan di Settings. Lisensi gratis DataGrip hanya untuk penggunaan nonkomersial, dengan statistik penggunaan wajib.",
                 "cite": [
                     "prices"
                 ],
@@ -96,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac dan bekerja dengan penyedia pilihan Anda, di cloud atau Mac Anda; TablePro tidak mengoperasikan layanan AI dan tidak menjual kredit AI. DataGrip menggunakan JetBrains AI, yang memiliki layanan sendiri dengan kuota kredit serta menerima kunci penyedia Anda atau model lokal.",
+                "text": "<link>Asisten AI</link> TablePro gratis di Mac; pilih penyedia cloud atau model lokal. Biaya penyedia mungkin berlaku. JetBrains AI memiliki kuota kredit dan menerima kunci penyedia Anda atau model lokal.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -112,13 +102,13 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menulis skrip untuk menyelaraskan satu dengan yang lain. Fitur ini termasuk Starter.",
+                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menghasilkan skrip sinkronisasi. Fitur ini termasuk dalam Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
             },
             {
-                "text": "Tersedia <link>aplikasi iPhone dan iPad gratis</link>, tanpa pembelian dalam aplikasi. DataGrip tidak memiliki aplikasi seluler.",
+                "text": "<link>Aplikasi terpisah untuk iPhone dan iPad</link> gratis, tanpa pembelian dalam aplikasi. DataGrip tidak memiliki aplikasi seluler.",
                 "cite": [
                     "platforms"
                 ],
@@ -130,12 +120,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "TablePro adalah klien, bukan IDE. <link>Folder SQL tertaut</link> menampilkan status serta riwayat Git setiap file, tetapi staging, commit, push, dan branch dilakukan di alat Git Anda sendiri.",
                 "cite": [],
@@ -151,7 +135,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca sumber data global DataGrip dan sumber data proyek terbaru Anda. DataGrip tidak perlu terbuka, dan file-nya tidak diubah.",
+        "intro": "Impor sumber data global DataGrip dan sumber data proyek terbaru. DataGrip boleh tetap tertutup dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
             "Pilih DataGrip. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi yang disimpan DataGrip dalam Rantai Kunci macOS, termasuk kata sandi SSH dan frasa sandi kunci.",
@@ -167,15 +151,9 @@
     },
     "faq": [
         {
-            "id": "commercial-use",
-            "question": "Bisakah saya menggunakan aplikasi TablePro gratis untuk pekerjaan berbayar?",
-            "answer": "Ya. Aplikasi Mac gratis digunakan untuk pekerjaan apa pun, tanpa masa uji coba atau batas waktu. DataGrip gratis hanya untuk penggunaan nonkomersial, jadi membuat produk komersial atau menyediakan layanan berbayar memerlukan langganan.",
-            "href": null
-        },
-        {
             "id": "ai-provider",
             "question": "Apakah asisten AI TablePro memerlukan paket seperti JetBrains AI?",
-            "answer": "Tidak. TablePro tidak mengoperasikan layanan AI sendiri. Anda menambahkan penyedia: kunci API, akun yang sudah dimiliki, atau model yang berjalan di Mac Anda. Tidak ada yang dikirim sampai Anda menambahkannya. <link>Cara kerja asisten AI</link>.",
+            "answer": "Tidak diperlukan paket AI TablePro. Tambahkan kunci penyedia, akun yang didukung, atau model lokal. Biaya penyedia mungkin berlaku; permintaan AI tidak dikirim sebelum penyiapan. <link>Penyiapan AI dan penanganan data</link>.",
             "href": "/features/ai-mcp"
         },
         {

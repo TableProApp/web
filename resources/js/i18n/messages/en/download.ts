@@ -31,7 +31,7 @@ export default {
         badgeUndated: 'v{version}',
         notes: 'Release notes',
         unavailable:
-            'The current release details could not be loaded. Both buttons open the latest release on GitHub, where you can choose the disk image for your Mac.',
+            'Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.',
     },
     file: {
         sized: '{name} · {size} MB',
@@ -45,7 +45,7 @@ export default {
     onAnotherDevice: 'To install the Mac app, open this page on your Mac.',
     whichMac: {
         summary: 'Which Mac do I have?',
-        body: 'Open the Apple menu and choose About This Mac. A Mac with Apple silicon shows a Chip line, such as Apple M2. An Intel Mac shows a Processor line that names Intel.',
+        body: 'Choose About This Mac in the Apple menu. A Chip line means Apple silicon; a Processor line naming Intel means Intel.',
     },
     checksum: {
         summary: 'Verify your download',

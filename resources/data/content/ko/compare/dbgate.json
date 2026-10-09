@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DbGate: Mac과 iPhone, 또는 데스크톱과 웹",
+        "title": "TablePro vs DbGate: 에디션 및 지원 플랫폼",
         "description": "DbGate는 Windows, macOS, Linux와 웹용 오픈 소스 클라이언트이며 유료 Premium 에디션이 있습니다. TablePro는 오픈 소스이며 Mac과 iPhone에서 네이티브입니다."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DbGate",
-        "lead": "DbGate는 {technology} 기반의 SQL·NoSQL 데이터베이스용 오픈 소스 클라이언트입니다. Windows, macOS, Linux와 웹 앱으로 실행하며 무료 Community 에디션과 유료 Premium 에디션이 있습니다. TablePro는 네이티브 Mac 앱과 별도 iPhone·iPad 앱이 있는 오픈 소스 클라이언트이며 Mac에서 선택형 유료 기능을 추가할 수 있습니다."
+        "lead": "DbGate는 {technology}를 기반으로 구축된 데스크톱 및 웹 클라이언트를 제공합니다. Community 및 Premium 버전을 TablePro의 네이티브 클라이언트와 비교해 보세요."
     },
     "shortAnswer": {
         "tablepro": [
-            "유료 에디션 없이 AI 도우미를 원합니다. Mac 앱에서 무료이며 AI 제공업체를 고를 수 있지만 DbGate의 데이터베이스 채팅은 {cells.ai.edition} 에디션에 있습니다.",
-            "AWS IAM이나 Microsoft Entra ID로 데이터베이스에 로그인하며 이를 무료로 쓰고 싶습니다.",
-            "유료 에디션 없이 각 엔진의 덤프 도구로 백업하고 싶습니다.",
-            "Swift로 만든 네이티브 Mac 앱에서 비밀번호를 macOS 키체인에 저장하고 싶습니다.",
-            "iPhone·iPad 앱도 원합니다."
+            "원하는 제공업체와 무료 AI 채팅을 즐겨보세요.",
+            "AWS IAM 및 Microsoft Entra ID는 유료 계층 없이 로그인합니다.",
+            "지원되는 엔진의 덤프 도구를 통한 무료 백업."
         ],
         "competitor": [
-            "Windows나 Linux에서도 작업하거나 팀이 브라우저로 여는 웹 앱을 원합니다.",
-            "TablePro가 지원하지 않는 Firebird, Azure Cosmos DB, Firestore에 연결합니다.",
-            "{cells.queryDesigner.edition} 에디션부터 제공되는 시각적 쿼리 디자이너를 원합니다.",
-            "DbGate Cloud로 로그인한 어느 기기에서든 연결과 SQL 파일을 쓰고 싶습니다."
+            "Windows, Linux 또는 웹 서버용 클라이언트입니다.",
+            "Firebird, Azure Cosmos DB 또는 Firestore 연결.",
+            "{cells.queryDesigner.edition} 또는 DbGate 클라우드 동기화의 시각적 쿼리 디자이너입니다."
         ]
     },
     "glance": {
@@ -56,31 +53,43 @@
         "items": [
             {
                 "text": "DbGate는 Windows, macOS, Linux에서 실행하며 서버에 배포하는 웹 앱으로도 쓸 수 있습니다.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Firebird처럼 TablePro가 지원하지 않는 엔진에 연결하며 유료 에디션에서 Azure Cosmos DB와 Firestore를 추가합니다.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Community 에디션은 {licence} 라이선스의 무료 오픈 소스이며 ER 다이어그램은 모든 에디션에 있습니다.",
-                "cite": ["licence", "cells.diagram"],
+                "cite": [
+                    "licence",
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Premium은 시각적 쿼리 디자이너와 데이터베이스 모델을 비교·배포하는 도구를 추가합니다.",
-                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "cite": [
+                    "cells.queryDesigner",
+                    "cells.modelCompare"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "DbGate Cloud로 로그인한 어느 기기에서든 연결과 SQL 파일을 쓰며 Community에서는 연결을 {cells.sync.value}개까지 저장합니다.",
-                "cite": ["cells.sync"],
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -91,36 +100,45 @@
         "items": [
             {
                 "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. DbGate는 {technology} 기반입니다. 둘 다 Apple silicon과 Intel Mac용 빌드가 있습니다.",
-                "cite": ["technology", "mac"],
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "<link>AI 도우미</link>는 Mac 앱에서 무료이며 클라우드나 Mac에서 실행되는 AI 제공업체를 고를 수 있습니다. DbGate의 데이터베이스 채팅은 유료 에디션에 있고 DbGate 게이트웨이를 거쳐 OpenAI를 사용합니다.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
                 "text": "<link>AWS IAM·Microsoft Entra ID 로그인</link>은 TablePro에서 무료입니다. DbGate는 이를 유료 에디션에 포함합니다.",
-                "cite": ["cells.cloudAuth"],
+                "cite": [
+                    "cells.cloudAuth"
+                ],
                 "feature": null,
                 "href": "/features/connections#cloud-auth"
             },
             {
                 "text": "각 엔진의 덤프 도구를 이용한 <link>백업</link>은 TablePro에서 무료입니다. DbGate의 네이티브 백업·복원은 유료 에디션에 있습니다.",
-                "cite": ["cells.backup"],
+                "cite": [
+                    "cells.backup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
             {
-                "text": "<link>iCloud Sync</link>는 Mac과 iPhone·iPad의 연결을 맞춥니다. Mac은 Starter에 포함되고 iPhone·iPad 앱은 무료입니다.",
+                "text": "<link>iCloud Sync</link>는 Mac, iPhone 및 iPad의 연결을 동기화합니다. Mac에는 Starter가 필요하며 iPhone 및 iPad에서는 무료입니다.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "무료 <link>iPhone·iPad 앱</link>이 있으며 인앱 구매는 없습니다.",
+                "text": "별도의 <link>iPhone 및 iPad 앱</link>는 무료이며 인앱 구매가 없습니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -131,7 +149,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Windows·Linux용 TablePro 앱이 없고 웹 버전도 없습니다.",
+                "text": "웹버전은 없습니다.",
                 "cite": [],
                 "feature": null,
                 "href": null

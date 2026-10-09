@@ -10,8 +10,8 @@
     "engine": "cassandra",
     "breadcrumb": "Cassandra and ScyllaDB",
     "header": {
-        "title": "Cassandra and ScyllaDB client for {devices}",
-        "lead": "Browse keyspaces and tables, run CQL in the editor, and edit rows that are written back by their full primary key. The same driver connects to ScyllaDB and to Amazon Keyspaces."
+        "title": "Cassandra and ScyllaDB client",
+        "lead": "Browse keyspaces, run CQL and edit rows by their primary keys. Connect to Cassandra, ScyllaDB or Amazon Keyspaces."
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give TablePro a contact point and its port, plus a user name and password when the cluster has an authenticator configured. There is no keyspace field: pick one in the sidebar after connecting, or put it in the path of a <code>cassandra://</code> or <code>cql://</code> URL and import that. Switching keyspaces happens in place and leaves the system keyspaces out of the list, while tabs that are already open stay on their own keyspace.",
+                "Enter a contact point, port and any required credentials. Choose a keyspace after connecting, or import a <code>cassandra://</code> or <code>cql://</code> URL with one in its path. Existing tabs keep their keyspace when you switch.",
                 "TLS is off on a new connection. Preferred and Required both encrypt without checking the certificate, because the driver has no opportunistic TLS. Verify CA and Verify Identity need a CA certificate file and never fall back to the system roots. For mutual TLS, add a client certificate, its key and the key’s passphrase. A cluster on a private network is reached through an <network>SSH tunnel</network>.",
                 "Amazon Keyspaces signs in with SigV4 instead of a password. Point the connection at the regional endpoint, such as <code>cassandra.us-east-1.amazonaws.com</code> on port 9142, set Authentication to <awsIam>an AWS IAM mode</awsIam> (an access key, a profile or AWS IAM Identity Center), leave the user name and password empty and turn TLS on, because Keyspaces refuses plain text."
             ]
@@ -37,10 +37,10 @@
             "id": "work",
             "title": "Browse and run CQL",
             "paragraphs": [
-                "Open a table from the sidebar to read it in the data grid. Lists, sets, maps and tuples show as collections, a user-defined type as its fields, a <code>duration</code> as <code>1d2h30m</code>, a vector as a list of numbers and a blob as hex. Results in the CQL editor are read-only, so rows are changed from the table opened in the sidebar.",
+                "Browse CQL values in the table grid, including collections, user-defined types, durations, vectors and blobs. Editor results are read-only; edit rows in the table opened from the sidebar.",
                 "CQL has no OFFSET, so pages are read forward from the first row: Next and Previous over pages already shown cost one read each, and a jump to a distant page reads every page before it. Rows arrive in token order, and a column header does not re-sort them, because CQL orders rows only by clustering columns inside one partition. Nothing is counted when a table opens; <ui>Count Exactly</ui> runs <code>SELECT COUNT(*)</code>, which reads every partition.",
                 "<filters>Filters</filters> add <code>ALLOW FILTERING</code>, so the server reads every partition unless the filter pins the whole partition key. Contains, starts with and ends with are sent as LIKE, which Cassandra accepts only on a column with a SASI or SAI index. Operators CQL cannot express, such as not equals or is NULL, are refused by name, and conditions join with AND only, because CQL has no OR.",
-                "An <editing>edited value</editing> is sent as its column’s CQL type, and a value that does not parse stops the whole save. Each row is written by its own statement, named by its full primary key. <ui>Add Row</ui> writes <code>INSERT … IF NOT EXISTS</code>, so a new row never overwrites one that already holds its key. A key column cannot be changed in place: delete the row and add it again.",
+                "<editing>Edits</editing> are validated as CQL types and written per row by the full primary key. Invalid values stop the save. <ui>Add Row</ui> uses <code>INSERT … IF NOT EXISTS</code>. To change a key, delete and reinsert the row.",
                 "Counter columns need <code>UPDATE … SET c = c + 1</code> in the CQL editor; the server rejects the plain UPDATE a grid edit writes. The connect timeout comes from the connection’s Options, while CQL requests keep the driver’s own fixed timeout, which the app’s query timeout does not change."
             ]
         },

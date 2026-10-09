@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Postico: PostgreSQL only, or many engines",
+        "title": "TablePro vs Postico: PostgreSQL tools and licensing",
         "description": "Postico 2 is a Mac app for PostgreSQL with one-time licenses. TablePro covers PostgreSQL and other engines. Compare prices, server tools, sync and setup."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Postico",
-        "lead": "Postico 2 is a Mac app for PostgreSQL and the databases that speak its protocol, sold with one-time licenses. TablePro is an open-source client for PostgreSQL and other engines, with a separate iPhone and iPad app and optional paid features on the Mac."
+        "lead": "Postico focuses on PostgreSQL and databases that speak its protocol. TablePro connects to PostgreSQL and other database types. Compare their query tools, server tools and licenses."
     },
     "shortAnswer": {
         "tablepro": [
-            "You also work with MySQL, SQL Server, SQLite, Redis or MongoDB, not only PostgreSQL.",
-            "You also look after the server. Users & Roles, a Server Dashboard that can terminate a session, VACUUM and pg_dump backups are free in the Mac app.",
-            "You tune queries. EXPLAIN shows a plan as a diagram, and EXPLAIN Compare checks a new plan against a baseline.",
-            "You want a free iPhone and iPad app that connects to PostgreSQL.",
-            "You want the AI assistant and the MCP server at no cost."
+            "PostgreSQL alongside other database types.",
+            "Free roles, sessions, VACUUM and pg_dump tools.",
+            "EXPLAIN diagrams and baseline comparisons."
         ],
         "competitor": [
-            "You only use PostgreSQL, Redshift, CockroachDB or Greenplum, and want an app built for that work.",
-            "You want a Mac App Store copy, or a license priced for personal, commercial, team or student use.",
-            "You want your server settings synced through iCloud or Dropbox."
+            "A focused client for PostgreSQL-compatible databases, including Greenplum.",
+            "A Mac App Store copy or a one-time license.",
+            "Server settings synced through iCloud or Dropbox."
         ]
     },
     "glance": {
@@ -43,25 +41,34 @@
         "items": [
             {
                 "text": "Postico 2 is built for PostgreSQL and the databases that speak its protocol, including Greenplum, which TablePro does not support.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "A license is paid once, with prices for personal, commercial, team and student use, and there is a copy on the Mac App Store.",
-                "cite": ["prices", "cells.macAppStore"],
+                "cite": [
+                    "prices",
+                    "cells.macAppStore"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "The evaluation version has no time limit, though some features stay off until you buy a license.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Server settings sync through iCloud or Dropbox.",
-                "cite": ["cells.sync"],
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -78,7 +85,9 @@
             },
             {
                 "text": "<link>Server work</link> is in the free app: Users & Roles with grants down to a column, a Server Dashboard with sessions and slow queries, and VACUUM with the SQL shown first. Postico says it is not designed for these tasks.",
-                "cite": ["cells.administration"],
+                "cite": [
+                    "cells.administration"
+                ],
                 "feature": null,
                 "href": "/features/schema#administer"
             },
@@ -89,7 +98,7 @@
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>iCloud Sync</link> keeps connections in step between your Macs and your iPhone or iPad. It is part of Starter on the Mac, and free in the iPhone and iPad app.",
+                "text": "<link>iCloud Sync</link> syncs connections across Macs, iPhones and iPads. It requires Starter on the Mac and is free on iPhone and iPad.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -124,7 +133,7 @@
                 "href": null
             },
             {
-                "text": "Postico 2 is sold only as one-time licenses. A monthly or yearly TablePro plan locks its paid features when it ends, though the rest of the app keeps working; Starter and Team also come as one-time purchases with no expiry date.",
+                "text": "Postico 2 is sold only as one-time licenses. TablePro offers subscriptions and one-time purchases. Subscriptions lock paid features when they end; the free app keeps working. One-time purchases do not expire.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -159,12 +168,6 @@
             "question": "Can I manage roles and sessions in TablePro?",
             "answer": "Yes, in the Mac app and for free. Users & Roles grants and revokes privileges with the SQL shown first, and the Server Dashboard lists sessions and can terminate one. <link>Read about server tools</link>.",
             "href": "/features/schema#administer"
-        },
-        {
-            "id": "license",
-            "question": "Do I need a license to use TablePro with PostgreSQL?",
-            "answer": "No. PostgreSQL and every other supported engine are free, along with the AI assistant and the MCP server. A Starter or Team plan adds optional features to the Mac app, such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

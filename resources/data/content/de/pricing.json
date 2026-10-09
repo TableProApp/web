@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Preise",
-        "lead": "Die Mac-App lässt sich kostenlos herunterladen und nutzen, ohne Testzeitraum oder Zeitlimit. Ein Starter- oder Team-Tarif ergänzt sie um optionale Funktionen. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe."
+        "lead": "Nutze die Mac-App kostenlos, ohne Testzeitraum. Starter und Team ergänzen optionale Funktionen. Die App für iPhone und iPad ist kostenlos, ohne In-App-Käufe."
     },
     "plans": {
         "title": "Tarife"
     },
     "features": {
         "title": "Was ein bezahlter Tarif zusätzlich bietet",
-        "lead": "Nur diese Funktionen erfordern einen bezahlten Tarif, und alle stehen in der Mac-App bereit. Team enthält alles aus Starter. Verbindungen zu allen unterstützten Systemen erfordern keine Lizenz, ebenso wenig der KI-Assistent, der MCP-Server oder der Safe Mode."
+        "lead": "Nur die hier aufgeführten Funktionen benötigen einen kostenpflichtigen Tarif, derzeit auf dem Mac. Team enthält Starter. Alle unterstützten Engines, der KI-Assistent, MCP und Safe Mode sind kostenlos."
     },
     "license": {
         "title": "So funktionieren Lizenzen",
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "Eine Starter-Lizenz gilt für eine Person auf bis zu {activations} Macs. Bei Team entspricht jeder Arbeitsplatz einem aktivierten Mac, einschließlich des Macs des Käufers. Wer auf zwei Macs arbeitet, benötigt also zwei Arbeitsplätze. Die iPhone- und iPad-App benötigt nie eine Lizenz oder einen Arbeitsplatz."
+                "body": "Starter gilt für eine Person auf bis zu {activations} Macs. Jeder Team-Arbeitsplatz gilt für einen aktivierten Mac, auch den des Käufers. Zwei Macs nutzen zwei Arbeitsplätze. Die App für iPhone und iPad benötigt weder Lizenz noch Arbeitsplatz."
             },
             "activate": {
                 "term": "Aktivierung",
-                "body": "Gib deinen Lizenzschlüssel in TablePro auf deinem Mac unter <ui>Settings > License</ui> ein. Um ihn auf einem anderen Mac zu nutzen, entferne den bisherigen auf der Seite „Macs“ in <account>deinem Konto</account>."
+                "body": "Gib deinen Schlüssel unter <ui>Settings > License</ui> ein. Um eine Aktivierung zu übertragen, entferne den alten Mac auf der Macs-Seite in <account>deinem Konto</account>."
             },
             "checks": {
                 "term": "Prüfungen",
-                "body": "TablePro prüft die Lizenzsignatur bei jedem Start und bestätigt die Lizenz alle {revalidateDays} Tage beim TablePro-Server. Wenn dein Mac den Server nicht erreicht, funktionieren die Bezahlfunktionen noch {graceDays} Tage. Zur Bestätigung werden der Lizenzschlüssel, eine gehashte Rechner-ID, der Name des Macs sowie App- und macOS-Version übermittelt."
+                "body": "TablePro prüft beim Start die Lizenzsignatur und fragt seinen Server alle {revalidateDays} Tage ab. Ist der Server nicht erreichbar, bleiben kostenpflichtige Funktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung nutzbar. Gesendet werden Schlüssel, gehashte Geräte-ID, Mac-Name sowie App- und macOS-Version."
             },
             "ends": {
                 "term": "Wenn ein Tarif endet",
-                "body": "Wenn ein monatlicher oder jährlicher Tarif endet, stehen die Bezahlfunktionen nicht mehr bereit; der Rest der App funktioniert weiter wie im kostenlosen Tarif."
+                "body": "Nach Aboende werden kostenpflichtige Funktionen deaktiviert. Alles in Free bleibt nutzbar."
             },
             "oneTime": {
                 "term": "Einmaliger Kauf",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Abrechnung",
-        "merchant": "{merchant} ist der Merchant of Record für TablePro. Er verkauft dir den Tarif, nimmt die Zahlung entgegen, berechnet die Verkaufs- oder Mehrwertsteuer anhand deiner Rechnungsadresse und sendet Beleg und Rechnung per E-Mail.",
-        "renewal": "Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie in <account>deinem Konto</account> oder im Kundenportal von {merchant} kündigst. Nach der Kündigung bleibt der Tarif bis zum Ende des bezahlten Zeitraums aktiv; vorher kannst du ihn wieder fortsetzen. Falls eine Verlängerungszahlung fehlschlägt, sendet {merchant} dir einen Link zur Aktualisierung deiner Karte und versucht die Zahlung etwa drei Wochen lang erneut.",
-        "portal": "Bei Käufen über {merchant} findest du Rechnungen, Belege, Zahlungsmethode und Kündigung im <portal>Kundenportal von {merchant}</portal>. Melde dich dort mit der beim Kauf verwendeten E-Mail-Adresse an. <account>Abrechnung und Rechnungen</account> in deinem Konto öffnet es ebenfalls."
+        "merchant": "{merchant} ist der Merchant of Record. Er wickelt die Zahlung ab, berechnet die Umsatzsteuer anhand deiner Rechnungsadresse und sendet Belege und Rechnungen per E-Mail.",
+        "renewal": "Abos verlängern sich, bis du in <account>deinem Konto</account> oder im Portal von {merchant} kündigst. Der Zugriff bleibt bis zum Ende des bezahlten Zeitraums bestehen; davor kannst du das Abo fortsetzen. Bei fehlgeschlagener Verlängerung erhältst du eine E-Mail zum Aktualisieren der Karte; Zahlungsversuche erfolgen etwa drei Wochen lang.",
+        "portal": "Verwalte Rechnungen, Belege, Zahlungsmethoden und Kündigungen im <portal>Kundenportal von {merchant}</portal>. Melde dich mit deiner Kauf-E-Mail an. <account>Abrechnung und Rechnungen</account> öffnet dasselbe Portal."
     },
     "refunds": {
         "title": "Erstattungen",
-        "body": "Jeder Tarif kann innerhalb von {refundDays} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {refundDays} Tagen nach ihrer Abbuchung. Die <link>Erstattungsrichtlinie</link> erklärt, wie du eine Erstattung beantragst und was mit der Lizenz geschieht."
+        "body": "Käufe und Aboverlängerungen sind innerhalb von {refundDays} Tagen nach jeder Abbuchung erstattbar. Die <link>Erstattungsrichtlinie</link> erklärt den Ablauf und die Folgen für deine Lizenz."
     },
     "team": {
         "title": "Team-Tarife",
         "seats": "Ein Team-Tarif wird pro Arbeitsplatz berechnet, mit {min} bis {max} Arbeitsplätzen.",
-        "invites": "Die Person, die den Tarif gekauft hat, verwaltet das Team in ihrem Konto. Sie lädt Teammitglieder per E-Mail ein. Jede Einladung ist ein einmal verwendbarer Code, der nach einer Woche abläuft und einen freien Arbeitsplatz benötigt.",
-        "changes": "Bei einem monatlichen oder jährlichen Team-Tarif änderst du die Anzahl der Arbeitsplätze in deinem Konto; die Differenz erscheint auf deiner nächsten Rechnung. Für zusätzliche Arbeitsplätze bei einem einmaligen Team-Kauf schreibe an <email>{email}</email>.",
+        "invites": "Der Käufer verwaltet Einladungen in seinem Konto. Jeder Code benötigt einen freien Arbeitsplatz, gilt einmal und läuft nach einer Woche ab.",
+        "changes": "Ändere Abo-Arbeitsplätze in deinem Konto; die Differenz erscheint auf der nächsten Rechnung. Für Einmalkäufe schreib an <email>{email}</email>, um Arbeitsplätze hinzuzufügen.",
         "account": "Team in deinem Konto verwalten"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "Im Vergleich mit anderen Clients",
-        "body": "Jeder Vergleich zeigt die Preise des anderen Clients neben denen von TablePro, mit dem Datum der Prüfung."
+        "body": "Vergleiche Preise und Funktionen mit anderen Clients. Jeder Vergleich nennt das Prüfdatum und die Quellen."
     },
     "faq": {
         "title": "Fragen zu den Tarifen",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Wo finde ich meinen Lizenzschlüssel?",
-                "answer": "Er steht in der E-Mail, die du nach dem Kauf erhalten hast. Du kannst dich auch mit der beim Kauf verwendeten E-Mail-Adresse in <account>deinem Konto</account> anmelden: Dort findest du den Schlüssel sowie alle Macs, auf denen er aktiviert ist."
+                "answer": "Deinen Schlüssel findest du in der Kauf-E-Mail oder in <account>deinem Konto</account>. Melde dich mit deiner Kauf-E-Mail an, um Schlüssel und aktivierte Macs zu sehen."
             }
         }
     }

@@ -17,7 +17,7 @@ return [
         'feature' => 'Tính năng',
     ],
 
-    'author' => 'Đội ngũ TablePro',
+    'author' => 'TablePro',
 
     'byline' => ':author · :date',
 ];

@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL và MariaDB",
     "header": {
-        "title": "Client MySQL và MariaDB cho {devices}",
-        "lead": "Viết SQL với autocomplete hiểu schema, sửa dữ liệu kèm bản xem trước của từng câu lệnh, và quản lý user, session cùng bản sao lưu. Cùng một driver còn dùng cho MariaDB, TiDB, OceanBase và Databend."
+        "title": "MySQL và MariaDB client",
+        "lead": "Query MySQL và sửa dòng với SQL preview. Quản lý user, session và backup từ cùng connection."
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host, port và user, hoặc dán một URL <code>mysql://</code>. Tài khoản MySQL 8 dùng <code>caching_sha2_password</code> kết nối được ngay lần đầu. Bạn có thể để trống cơ sở dữ liệu và chọn sau: việc đổi cơ sở dữ liệu diễn ra ngay trên connection đang dùng.",
+                "Nhập host, port và user, hoặc dán URL <code>mysql://</code>. Hỗ trợ tài khoản MySQL 8 <code>caching_sha2_password</code>. Cơ sở dữ liệu là tùy chọn; chuyển cơ sở dữ liệu giữ cùng connection.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred): thử TLS trước, và chỉ chuyển sang kết nối không mã hóa khi bắt tay TLS thất bại. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) cùng chứng chỉ của nhà cung cấp nếu cần kiểm tra chặt chẽ.",
-                "Với server trong mạng nội bộ, hãy kết nối qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command của riêng bạn</network>, chẳng hạn kubectl port-forward.",
-                "Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth>, với token mới được ký mỗi lần kết nối, và import instance trực tiếp từ tài khoản AWS. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
-                "Chuyển từ Sequel Ace sang? <importApps>Nhập từ ứng dụng khác (Import from Other App)</importApps> đọc danh sách favorites của nó và, sau khi bạn xác nhận, cả mật khẩu được lưu trong Keychain."
+                "Tới server riêng qua <network>SSH tunnel, jump host, proxy hoặc tunnel command</network>.",
+                "Đăng nhập Amazon RDS hoặc Aurora bằng <cloudAuth>AWS IAM</cloudAuth>, với token mới mỗi lần kết nối. Import instance từ AWS hoặc dùng Cloud SQL Auth Proxy cho Google Cloud SQL.",
+                "<importApps>Import from Other App</importApps> đọc favorite Sequel Ace. Import mật khẩu Keychain cần bạn xác nhận."
             ]
         },
         {
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "SQL editor gợi ý tên table và cột theo schema, kể cả alias và CTE, và chạy câu lệnh tại con trỏ hoặc cả script. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE và EXPLAIN ANALYZE</explain> được vẽ thành sơ đồ hoặc cây execution plan, còn EXPLAIN Compare cho thấy điều gì đã đổi giữa hai lần chạy.",
-                "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị đúng các câu lệnh sẽ chạy. Khi lưu, giá trị được gửi dưới dạng tham số bind, và việc lưu dừng lại nếu một câu lệnh sắp thay đổi số dòng khác với dự kiến. Table không có khóa chính vẫn sửa được: dòng được so khớp theo mọi cột.",
+                "Autocomplete gồm tên schema, alias và CTE. Chạy câu lệnh hiện tại hoặc cả script. Xem <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE và EXPLAIN ANALYZE</explain> dạng sơ đồ hoặc cây, và so sánh hai plan.",
+                "Chuẩn bị thay đổi và xem câu lệnh bằng <editing>Preview SQL</editing>. Lưu dùng bound parameter và dừng khi số dòng khác dự kiến. Không có khóa chính thì ghép mọi cột.",
                 "Mọi session đều dùng utf8mb4, nên emoji và chữ không phải Latin được giữ nguyên. Với cơ sở dữ liệu có chữ do một client cũ ghi qua Latin 1, bảng mã UTF-8 via Latin 1 đọc dữ liệu theo đúng cách client đó đã ghi.",
                 "Table có partition liệt kê từng partition kèm giới hạn, chẳng hạn <code>VALUES LESS THAN (2024)</code>, và comment của table và cột hiện trong sidebar và trên tiêu đề cột của data grid."
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại, ràng buộc CHECK và cột generated ở trạng thái chờ lưu, và hiển thị DDL trước khi chạy. Index có key là biểu thức, như <code>lower(email)</code>, cần MySQL 8.0.13 trở lên.",
+                "Chuẩn bị cột, index, khóa ngoại, ràng buộc CHECK và generated column trong <structure>tab Structure</structure>. Xem DDL trước lưu. Expression index key cần MySQL 8.0.13 trở lên.",
                 "Routine và trigger hiện trong sidebar kèm mã nguồn. <erDiagram>ER diagram</erDiagram> vẽ schema thành một hình chỉ đọc mà bạn có thể export ra PNG hoặc SQL.",
-                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema MySQL hoặc MariaDB, hoặc dữ liệu của chúng, rồi viết script đưa bên này về khớp với bên kia. Những thay đổi có thể làm mất dữ liệu được giữ lại cho tới khi bạn chọn đưa vào."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so sánh schema hoặc dữ liệu MySQL/MariaDB và tạo script đồng bộ. Thay đổi có thể xóa dữ liệu được giữ lại tới khi bạn chọn thêm."
             ]
         },
         {
             "id": "operate",
             "title": "Quản trị",
             "paragraphs": [
-                "<administer>Users & Roles</administer> hiển thị quyền của từng tài khoản tới tận từng cột, và giữ mọi câu GRANT và REVOKE dưới dạng SQL để bạn đọc trước khi chạy.",
+                "<administer>Users & Roles</administer> liệt kê quyền tới từng cột. Xem câu lệnh GRANT và REVOKE đã chuẩn bị trước khi áp dụng.",
                 "Server Dashboard liệt kê session, chỉ số của server và các query chậm, làm mới sau mỗi vài giây. Từ đây bạn hủy query đang chạy bằng <code>KILL QUERY</code> hoặc kết thúc session bằng <code>KILL</code>. Tài khoản không có quyền PROCESS chỉ thấy session của chính mình.",
                 "Phần bảo trì table chạy OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE và REPAIR TABLE, và hiển thị câu lệnh trước khi chạy.",
                 "<backup>Backup Dump</backup> chạy {dumpTool} còn Restore Dump chạy mysql client, cả hai đều qua SSH tunnel của connection; hãy cài bộ công cụ client của MySQL trên máy Mac trước. Khi khôi phục, các đối tượng có trong file dump sẽ được thay thế.",
-                "Để trả lại một slot kết nối cho server khi bạn không dùng, hãy đặt connection tự nhả sau một số phút không hoạt động; query tiếp theo sẽ mở connection mới. TablePro giữ connection lại nếu session đang có thứ sẽ mất khi kết nối lại, chẳng hạn một transaction đang mở hay một temporary table."
+                "Tự giải phóng connection idle và kết nối lại ở query tiếp theo. TablePro giữ session có trạng thái sẽ mất khi kết nối lại, như transaction đang mở hoặc table tạm."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "<importData>Import</importData> file {importFormats}, kèm ghép cột cho table nhận dữ liệu và lựa chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}.",
-                "<copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection khác, trên MySQL hay trên một engine khác, và liệt kê mọi kiểu cột phải chuyển gần đúng."
+                "<importData>Import</importData> file {importFormats} với column mapping và xử lý dòng lỗi. Export table hoặc kết quả ra {exportFormats}.",
+                "<copy>Copy To</copy> chuyển table, dữ liệu hoặc cả hai tới connection MySQL hay engine khác. Xem các kiểu cột phải chuyển đổi gần đúng."
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace tiếp nối Sequel Pro, là một ứng dụng Mac dành cho MySQL và MariaDB. Sequel Ace có MCP server, tắt theo mặc định và chỉ đọc trừ khi bạn đổi thiết lập, và không có AI chat. Sequel Ace phù hợp nếu bạn chỉ dùng MySQL và MariaDB."
+                "text": "Sequel Ace tập trung MySQL và MariaDB trên Mac. MCP server tắt theo mặc định và chỉ đọc trừ khi đổi. Không có AI chat."
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench là công cụ chính thức của Oracle cho MySQL. Phiên bản mới được viết lại trên MySQL Shell, có SQL notebook, và Oracle không còn bảo trì phiên bản trước. MySQL Workbench phù hợp nếu bạn chỉ dùng MySQL và muốn công cụ của chính nhà phát triển."
+                "text": "MySQL Workbench là công cụ MySQL của Oracle. Thế hệ hiện tại dùng MySQL Shell và SQL notebook; Oracle không còn duy trì thế hệ trước."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin chạy trên web server của bạn và dùng được trong mọi trình duyệt, và cPanel có sẵn nó. phpMyAdmin hợp với server mà bạn chỉ vào được qua bảng điều khiển hosting, nơi ứng dụng desktop không có đường kết nối tới cơ sở dữ liệu."
+                "text": "phpMyAdmin chạy trên web server và có trong cPanel. Truy cập được cơ sở dữ liệu qua hosting panel không cho phép kết nối desktop."
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL là client mã nguồn mở lâu năm trên Windows, nay có thêm ứng dụng cho macOS. HeidiSQL phù hợp nếu bạn đã quen dùng nó trên Windows và muốn dùng cùng client đó trên máy Mac."
+                "text": "HeidiSQL là database client mã nguồn mở với ứng dụng Windows và macOS."
             }
         ],
         "notes": {}

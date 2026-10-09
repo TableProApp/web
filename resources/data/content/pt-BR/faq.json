@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Perguntas frequentes",
-        "description": "Respostas sobre TablePro: o que é gratuito e o que uma licença adiciona, Macs, iPhones e bancos compatíveis, o que os apps enviam, equipes e reembolsos."
+        "description": "Respostas sobre aplicativos TablePro, bancos de dados suportados, planos pagos, licenças, privacidade e contas."
     },
     "og": {
         "kicker": "Perguntas frequentes",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Perguntas frequentes",
-        "lead": "Respostas curtas sobre apps, licenças, privacidade e contas, com links para a página que explica cada assunto por completo."
+        "lead": "Perguntas sobre aplicativos, licenças e privacidade."
     },
     "breadcrumb": "Perguntas frequentes",
     "jump": "Perguntas por assunto",
@@ -31,37 +31,37 @@
                     "id": "what-is-tablepro",
                     "question": "O que é TablePro?",
                     "answer": [
-                        "TablePro é um cliente de banco de dados nativo e de código aberto para desenvolvedores. No Mac, você se conecta a {featuredEngines} e outros, escreve e executa consultas, explora e edita dados e altera esquemas. O app para iPhone e iPad é separado e menor, para trabalhar com seus bancos longe da mesa.",
-                        "A <features>página de recursos</features> explica o que cada parte faz."
+                        "Um cliente de banco de dados nativo e de código aberto. No Mac, consulte e edite {featuredEngines} e outros bancos e trabalhe com esquemas. O app para iPhone e iPad oferece menos ferramentas de banco de dados.",
+                        "Veja todos os <features>recursos</features>."
                     ]
                 },
                 {
                     "id": "native",
                     "question": "O que “nativo” significa aqui?",
                     "answer": [
-                        "Cada app TablePro é escrito em Swift para sua plataforma. No Mac, usa AppKit e SwiftUI, as Chaves e o Touch ID. No iPhone e iPad, usa Face ID, widgets, Atalhos e Atividades ao Vivo. Os drivers de banco também são nativos, sem JDBC."
+                        "TablePro usa interfaces nativas e drivers de banco de dados, sem Electron ou JDBC. Os aplicativos atuais usam Swift: AppKit e SwiftUI no Mac e recursos do dispositivo como Face ID e atalhos no iPhone e iPad."
                     ]
                 },
                 {
                     "id": "is-it-free",
                     "question": "TablePro é gratuito?",
                     "answer": [
-                        "O app para Mac é gratuito para baixar e usar, sem período de avaliação nem limite de tempo. Uma licença Starter ou Team adiciona recursos opcionais ao app para Mac; a <pricing>página de preços</pricing> os lista. Conectar-se a qualquer mecanismo compatível não exige licença, assim como o assistente de IA, o servidor MCP e o Safe Mode.",
-                        "O app para iPhone e iPad é gratuito, sem compras no app, e não precisa de licença."
+                        "Sim. O app para Mac não tem período de teste ou limite de tempo. Todos os motores suportados, AI, MCP e Safe Mode são gratuitos. Starter e Team adicionam os recursos na <pricing>página de preços</pricing>.",
+                        "O aplicativo para iPhone e iPad é gratuito, sem licença ou compras no aplicativo."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro é de código aberto?",
                     "answer": [
-                        "Sim. Os dois apps são de código aberto sob a AGPLv3, incluindo o código dos recursos pagos, em um único <source>repositório no GitHub</source>. Uma compilação feita por você a partir do código-fonte verifica a licença da mesma forma que as versões publicadas por nós."
+                        "Sim. Ambos os aplicativos, incluindo o código de recurso pago, estão sob o AGPLv3 em um repositório <source>GitHub</source>. As compilações a partir da fonte ainda verificam as licenças de recursos pagos."
                     ]
                 },
                 {
                     "id": "work-use",
                     "question": "Posso usar TablePro no trabalho?",
                     "answer": [
-                        "Sim, em uma empresa de qualquer tamanho. A AGPL não impõe condições ao uso do TablePro. Elas se aplicam à distribuição e à oferta de uma versão modificada a outras pessoas pela rede. O <agpl>texto da licença</agpl> tem os detalhes."
+                        "Sim, em empresas de qualquer porte. A AGPL não impõe condições para executar o TablePro. As condições se aplicam à distribuição e à oferta de uma versão modificada a outras pessoas pela rede. Consulte o <agpl>texto da licença</agpl>."
                     ]
                 }
             ]
@@ -74,15 +74,15 @@
                     "id": "mac-requirements",
                     "question": "Em quais Macs TablePro funciona?",
                     "answer": [
-                        "TablePro para Mac exige {macRequirement}. Há versões separadas para Apple silicon e Intel; a <download>página de download</download> tem ambas, e o Homebrew instala a correta para você."
+                        "O app para Mac exige {macRequirement}. Escolha Apple silicon ou Intel na <download>página de download</download>, ou deixe o Homebrew selecionar a versão."
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "Existe um app para iPhone e iPad?",
                     "answer": [
-                        "Sim. TablePro para iPhone e iPad está na App Store, exige {iosRequirement} e é gratuito, sem compras no app. Conecta-se a {iosEngines}, com túneis SSH, Safe Mode e Face ID, e permite explorar e editar tabelas e executar consultas.",
-                        "É um app separado feito para celular e tablet, não uma cópia do app para Mac: por exemplo, não tem assistente de IA, servidor MCP nem consultas salvas. A <ios>página de iPhone e iPad</ios> lista o que faz e o que não inclui."
+                        "Sim. O aplicativo App Store gratuito requer {iosRequirement} e se conecta ao {iosEngines}. Suporta consultas, túneis SSH, Safe Mode e Face ID; a navegação e edição da tabela dependem do mecanismo.",
+                        "Não tem assistente de AI, servidor MCP nem consultas salvas. Veja os <ios>recursos e limites</ios>."
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                     "id": "languages",
                     "question": "Em quais idiomas os apps estão disponíveis?",
                     "answer": [
-                        "A interface do app para Mac está disponível em {macLanguages}. Em idiomas diferentes do inglês, algumas telas ainda mostram texto em inglês. O app para iPhone e iPad está disponível em {iosLanguages}.",
-                        "Este site e o portal da conta estão disponíveis em vários idiomas. A <docs>documentação</docs> está em inglês."
+                        "O app para Mac oferece suporte a {macLanguages}, embora algumas telas traduzidas ainda mostrem o inglês. O aplicativo para iPhone e iPad é compatível com {iosLanguages}.",
+                        "O site e o portal da conta oferecem suporte a vários idiomas. <docs>Documentação</docs> está em inglês."
                     ]
                 }
             ]
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "A quais bancos posso me conectar?",
                     "answer": [
-                        "No Mac: {featuredEngines} e outros, incluindo mecanismos de documentos, chave-valor, busca, streaming e análise. A <databases>página de bancos de dados</databases> lista cada mecanismo e o que TablePro permite nele.",
+                        "O app para Mac suporta {featuredEngines} e muito mais. Consulte <databases>bancos de dados suportados</databases> para obter os recursos de cada mecanismo.",
                         "O app para iPhone e iPad se conecta a {iosEngines}."
                     ]
                 },
@@ -118,31 +118,31 @@
                     "id": "drivers",
                     "question": "Preciso instalar drivers de banco?",
                     "answer": [
-                        "Não. Drivers para {bundledEngines} vêm com o app para Mac. Os demais são baixados na primeira vez que você escolhe o mecanismo, o que exige internet, e atualizados separadamente do app. Antes de carregar um driver, o app verifica sua soma de verificação publicada e assinatura de código.",
-                        "No iPhone e iPad, os drivers estão integrados ao app, portanto nada é baixado."
+                        "Os drivers para {bundledEngines} estão incluídos no Mac. Outros baixam na primeira utilização, exigem acesso à Internet e são atualizados de forma independente. TablePro verifica sua soma de verificação e assinatura de código.",
+                        "Todos os drivers do iPhone e iPad estão integrados."
                     ]
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "Posso me conectar por SSH ou com SSL?",
+                    "question": "Posso conectar através de SSH ou TLS?",
                     "answer": [
-                        "Sim. No Mac, túneis SSH autenticam com senha, chave ou agente SSH, incluindo o do 1Password, e podem passar por hosts intermediários. SSL/TLS pode verificar o certificado do servidor. Uma conexão também pode usar Cloudflare Access, Cloud SQL Auth Proxy, proxy SOCKS5 ou comando como kubectl port-forward. A <connections>página de conexões</connections> explica cada opção.",
-                        "No iPhone e iPad, túneis SSH autenticam com senha ou chave privada, e não há suporte a hosts intermediários."
+                        "Sim, onde o motor os suporta. O app para Mac suporta chaves SSH, senhas, agentes e hosts de salto, além de verificação de certificado TLS e túneis ou proxies externos. Consulte <connections>opções de conexão</connections>.",
+                        "No iPhone e iPad, SSH usa uma senha ou chave privada. Hosts de salto não são suportados."
                     ]
                 },
                 {
                     "id": "passwords",
                     "question": "Onde minhas senhas são armazenadas?",
                     "answer": [
-                        "No Mac, nas Chaves do macOS. Uma conexão pode ler a senha ao conectar a partir de arquivo, variável de ambiente, comando de shell, 1Password, HashiCorp Vault ou AWS Secrets Manager. No iPhone e iPad, as senhas são mantidas nas Chaves do dispositivo.",
-                        "Com o iCloud Sync ativado, senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad, usando as Chaves do iCloud."
+                        "As senhas salvas permanecem no Keychain. No Mac, você pode resolvê-los a partir de arquivos, variáveis de ambiente, comandos shell, 1Password, Vault ou AWS Secrets Manager.",
+                        "A sincronização de senha é uma opção separada: habilite <ui>Passwords</ui> no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad. Ele usa iCloud Keychain."
                     ]
                 },
                 {
                     "id": "import-connections",
                     "question": "Posso trazer minhas conexões de outro app?",
                     "answer": [
-                        "Sim. O app para Mac importa conexões de {importApps}, incluindo senhas salvas. A importação é gratuita."
+                        "Sim. O app para Mac importa conexões e senhas salvas de {importApps}. A importação é gratuita."
                     ]
                 }
             ]
@@ -155,45 +155,45 @@
                     "id": "what-a-license-adds",
                     "question": "O que uma licença adiciona?",
                     "answer": [
-                        "Uma licença Starter adiciona {starterFeatures} ao app para Mac. Team inclui tudo do Starter e adiciona {teamFeatures} para compartilhar conexões e consultas com sua equipe. A <pricing>página de preços</pricing> descreve cada recurso."
+                        "Starter adiciona {starterFeatures} ao app para Mac. Team também adiciona {teamFeatures}. Consulte <pricing>recursos pagos</pricing> para obter detalhes."
                     ]
                 },
                 {
                     "id": "cost",
                     "question": "Quanto custa uma licença?",
                     "answer": [
-                        "Starter e Team são vendidos com pagamento mensal, anual ou único, com preços em dólares americanos. Team é cobrado por vaga, com mínimo de {teamMinSeats} vagas. Os preços e totais atuais estão na <pricing>página de preços</pricing>."
+                        "Escolha cobrança mensal, anual ou única em dólares americanos. Team começa nos vagas {teamMinSeats}. Veja os preços e totais <pricing>atuais</pricing>."
                     ]
                 },
                 {
                     "id": "how-many-macs",
                     "question": "Quantos Macs uma licença cobre?",
                     "answer": [
-                        "Uma licença Starter é para uma pessoa, em até {starterActivations} Macs. Uma licença Team tem entre {teamMinSeats} e {teamMaxSeats} vagas, e cada uma corresponde a um Mac ativado. iPhone e iPad nunca usam uma: esse app não tem licença.",
-                        "Para mover uma licença para outro Mac, remova o antigo na <account>sua conta</account>."
+                        "Starter cobre uma pessoa em até {starterActivations} Macs. Team oferece {teamMinSeats}–{teamMaxSeats} vagas; cada vaga corresponde a um Mac ativado. iPhone e iPad não usam vagas.",
+                        "Para transferir uma ativação, remova o Mac antigo da <account>sua conta</account>."
                     ]
                 },
                 {
                     "id": "subscription-ends",
                     "question": "O que acontece quando minha assinatura termina?",
                     "answer": [
-                        "Os recursos pagos são bloqueados: por exemplo, o iCloud Sync é pausado e as conexões de Linked Folders ou da Team Library ficam ocultas. Todo o restante continua funcionando, e conexões, consultas e configurações ficam no Mac como estão. Renovar reativa os recursos pagos.",
-                        "Uma compra com pagamento único não tem data de expiração. Nada muda no iPhone nem no iPad."
+                        "Recursos pagos param: iCloud Sync pausa e conexões compartilhadas podem ser ocultadas. Suas conexões locais, consultas e configurações permanecem. Os recursos gratuitos continuam funcionando; a renovação restaura o acesso pago.",
+                        "As licenças compra única não têm data de validade. iPhone e iPad não são afetados."
                     ]
                 },
                 {
                     "id": "offline",
                     "question": "Uma licença funciona offline?",
                     "answer": [
-                        "Sim. O app para Mac verifica a assinatura da licença no Mac a cada início e consulta nosso servidor a cada {revalidateDays} dias. Se não conseguir acessar o servidor, os recursos pagos continuam funcionando por {graceDays} dias após a última verificação bem-sucedida.",
-                        "Algumas funções precisam de internet por natureza: baixar um driver pela primeira vez, atualizações e provedores de IA na nuvem."
+                        "Sim, dentro da janela offline. TablePro verifica a assinatura na inicialização e verifica o servidor a cada {revalidateDays} dias. Os recursos pagos funcionam por {graceDays} dias após a última verificação bem-sucedida se o servidor está inacessível.",
+                        "Downloads de driver, atualizações e nuvem AI ainda precisam de acesso à Internet."
                     ]
                 },
                 {
                     "id": "payment",
                     "question": "Quem processa o pagamento?",
                     "answer": [
-                        "{merchant} é nosso merchant of record: você compra a licença de {merchant}, que recebe o pagamento, calcula tributos sobre vendas ou IVA no checkout e envia o recibo por email. Faturas, forma de pagamento e assinatura ficam no <portal>portal do cliente de {merchant}</portal>, onde você entra com o email usado na compra."
+                        "{merchant} é o merchant of record e cuida dos pagamentos, impostos e recibos. Gerencie faturas e assinaturas no <portal>portal do cliente de {merchant}</portal> com o e-mail da compra."
                     ]
                 },
                 {
@@ -214,14 +214,14 @@
                     "id": "refunds",
                     "question": "Posso obter reembolso?",
                     "answer": [
-                        "Sim, em todos os planos, em até {refundDays} dias após a compra, e cada renovação mensal ou anual em até {refundDays} dias após a cobrança. A <refundPolicy>política de reembolso</refundPolicy> explica como solicitar e o que acontece com a licença."
+                        "Sim. Compras e renovações de assinatura são reembolsáveis dentro de {refundDays} dias após cada cobrança. Consulte a <refundPolicy>política de reembolso</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "Perdi minha chave de licença. Onde ela está?",
                     "answer": [
-                        "No email enviado após a compra e na <account>sua conta</account>: entre com o email usado na compra, e suas licenças serão listadas com as chaves."
+                        "Encontre-o em seu e-mail de compra ou <account>sua conta</account>. Faça login com seu e-mail de compra para ver suas chaves."
                     ]
                 },
                 {
@@ -241,30 +241,30 @@
                     "id": "what-is-sent",
                     "question": "O que os apps enviam ao TablePro?",
                     "answer": [
-                        "Sem licença ativada, a única solicitação do app para Mac ao TablePro é um relatório diário de uso, ativado por padrão e que pode ser desativado em <ui>Settings > General > Privacy</ui>. Ele contém um hash do ID da máquina e informações do app, como versão, idioma e tipos de banco conectados, nunca nomes de host, nomes de usuário, senhas, consultas nem linhas.",
-                        "Com uma licença, o app para Mac também a verifica a cada {revalidateDays} dias, enviando a chave, o mesmo ID de máquina, o nome do Mac e as versões do app e do macOS. No iPhone e iPad, nada é enviado ao TablePro, a menos que você ative Share Usage Data. A <privacy>política de privacidade</privacy> tem a lista completa, incluindo o que nosso servidor armazena."
+                        "O app para Mac envia um relatório de uso diário por padrão; desative-o em <ui>Settings > General > Privacy</ui>. Inclui um ID de máquina com hash, detalhes do aplicativo e tipos de banco de dados, nunca nomes de host, nomes de usuário, senhas, consultas ou linhas.",
+                        "A licença é verificada a cada {revalidateDays} dias, enviando chave, ID da máquina, nome do Mac e versões do app e do macOS. Os relatórios no iPhone e iPad são opcionais. Team Library recebe as configurações e o SQL salvo que você publica. Veja a <privacy>política de privacidade</privacy>, incluindo o registro de IP."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Preciso me cadastrar?",
                     "answer": [
-                        "Não é preciso se cadastrar para usar nenhum dos apps. Se comprar uma licença, a <account>sua conta</account> mostra licenças, Macs ativados e vagas da equipe; você entra por um link enviado ao email usado na compra."
+                        "Nenhuma inscrição é necessária para usar os aplicativos. Os compradores gerenciam licenças, Macs e licenças em <account>sua conta</account>, fazendo login por meio de um link enviado por e-mail para seu endereço de compra."
                     ]
                 },
                 {
                     "id": "ai-data",
                     "question": "O assistente de IA envia meus dados ao TablePro?",
                     "answer": [
-                        "Não. O assistente de IA está no app para Mac, e suas solicitações vão direto ao provedor adicionado, nunca pelo TablePro. Por padrão, a solicitação inclui tipo e nome do banco, definições de tabelas e colunas do esquema e a consulta atual; linhas de resultados só são enviadas se você ativar a opção. {localAiProviders} rodam no seu próprio Mac. A <aiMcp>página de IA e MCP</aiMcp> tem os detalhes."
+                        "Não. As solicitações vão diretamente para o provedor escolhido, não por meio de TablePro. Eles incluem o tipo e nome do banco de dados, esquema e consulta atual por padrão. As linhas de resultados precisam de uma aceitação separada. {localAiProviders} executado localmente. Os provedores podem cobrar pelo uso. Consulte <aiMcp>AI manipulação de dados</aiMcp>."
                     ]
                 },
                 {
                     "id": "icloud-data",
                     "question": "O que o iCloud Sync armazena e onde?",
                     "answer": [
-                        "O iCloud Sync fica desativado até você ativá-lo. Conexões sincronizadas e, no Mac, outras categorias escolhidas vão para um banco privado na sua conta do iCloud, que TablePro não pode ler. Senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad.",
-                        "No Mac, o iCloud Sync faz parte de uma licença Starter ou Team. No iPhone e iPad, é gratuito."
+                        "A sincronização está desativada por padrão e usa um banco de dados privado em sua conta iCloud, que TablePro não pode ler. As senhas exigem uma aceitação separada: <ui>Passwords</ui> no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad.",
+                        "iCloud Sync requer Starter ou Team no Mac e é gratuito no iPhone e iPad."
                     ]
                 }
             ]
@@ -277,28 +277,28 @@
                     "id": "sign-in",
                     "question": "Como entro na minha conta?",
                     "answer": [
-                        "Acesse <account>sua conta</account> e digite o email usado na compra. Enviamos um link de acesso de uso único que expira em pouco tempo. Só o endereço que comprou uma licença pode entrar; membros da equipe participam usando um código de convite no app para Mac."
+                        "Insira seu e-mail de compra em <account>sua conta</account>. O link enviado por e-mail funciona uma vez e expira em breve. Somente compradores acessam o portal; os membros da equipe usam um código de convite no app para Mac."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Como adiciono ou removo membros da equipe?",
                     "answer": [
-                        "Na <account>sua conta</account>, convide alguém por email. A pessoa recebe um código para inserir no TablePro do Mac, em <ui>Settings > License</ui>, e seu Mac ocupa uma vaga. Remover um membro libera a vaga, desconecta seus Macs e exclui o que publicou na Team Library."
+                        "Convide colegas por e-mail na <account>sua conta</account>. Eles inserem o código em <ui>Settings > License</ui>; cada Mac ativado usa um vaga. Remover um membro libera o vaga e exclui seus itens publicados na Team Library. Os Macs dele perdem o acesso pago na próxima verificação da licença, não imediatamente."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "Como altero o número de vagas?",
                     "answer": [
-                        "Em uma assinatura Team mensal ou anual, altere na <account>sua conta</account>; a mudança aparece na próxima fatura. Para uma licença Team com pagamento único, envie um email para <email>{email}</email>."
+                        "Alterar licenças de assinatura em <account>sua conta</account>; a diferença aparece na sua próxima fatura. Para licenças únicas, envie um e-mail para <email>{email}</email>."
                     ]
                 },
                 {
                     "id": "cancel",
                     "question": "Como cancelo uma assinatura?",
                     "answer": [
-                        "Cancele na <account>sua conta</account> ou no <portal>portal do cliente de {merchant}</portal>. Não haverá nova cobrança, e a licença continua funcionando até o fim do período pago. Você pode retomar antes dessa data."
+                        "Cancele na <account>sua conta</account> ou no <portal>portal de {merchant}</portal>. O acesso continua até o fim do período pago, sem nova renovação. Você pode retomar antes disso."
                     ]
                 }
             ]
@@ -311,23 +311,23 @@
                     "id": "switch-connections",
                     "question": "Preciso configurar minhas conexões novamente?",
                     "answer": [
-                        "Não. TablePro importa conexões de {importApps}, com senhas salvas, túneis SSH e configurações SSL."
+                        "Se o seu cliente atual for compatível, você pode importar conexões de {importApps}, incluindo senhas salvas, túneis SSH e configurações de TLS."
                     ]
                 },
                 {
                     "id": "compare",
                     "question": "Como TablePro se compara a outros clientes de banco?",
                     "answer": [
-                        "As <compare>comparações</compare> colocam TablePro ao lado de outros clientes, com a data de verificação de cada informação, e indicam onde cada um se encaixa melhor."
+                        "Veja <compare>comparações</compare> para diferenças, datas verificadas e fontes, incluindo onde outro cliente pode se encaixar melhor."
                     ]
                 }
             ]
         }
     ],
     "contact": {
-        "title": "Não encontrou sua resposta?",
+        "title": "Precisa de ajuda?",
         "body": "Envie um email para <email>{email}</email> ou relate um problema no <issues>GitHub</issues>.",
         "chat": "Iniciar chat ao vivo",
-        "chatNote": "O chat carrega em todas as páginas depois que a página termina de carregar."
+        "chatNote": "O chat ao vivo é carregado depois que a página termina de carregar."
     }
 }

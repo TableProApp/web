@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "Interface gráfica de etcd para {devices}",
-        "lead": "Navegue pelas chaves de um cluster por prefixo, altere valores e leases na grade e execute no editor comandos no estilo etcdctl, como <code>get --prefix</code>, <code>lease grant</code> e <code>member list</code>."
+        "title": "Interface gráfica de etcd",
+        "lead": "Navegue pelas chaves por prefixo, altere valores e gerencie concessões com comandos no estilo etcdctl."
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Informe um host e a porta do cliente ao TablePro. O etcd não tem bancos de dados, portanto o formulário não tem um campo Database. Use a porta do cliente: a porta dos peers não fornece um gateway JSON, e uma conexão direcionada a ela nunca abre. O formulário aceita um endpoint e não faz failover, portanto escolha um membro disponível.",
+                "Insira um host e uma porta de cliente. A porta peer não tem gateway JSON. Não há seleção de banco nem failover de endpoint.",
                 "Deixe <ui>Username</ui> e <ui>Password</ui> vazios em um cluster sem autenticação. Um usuário sem a função <code>root</code> se conecta e navega pelas chaves cobertas por suas funções, enquanto <code>endpoint status</code> e os comandos <code>user</code> e <code>role</code> respondem com permissão negada.",
                 "O TLS é definido por <ui>TLS Mode</ui> nos campos Advanced, não por uma seção SSL, e começa em Disabled. Required (skip verify) criptografa sem verificar, Verify CA verifica o certificado com o arquivo de CA indicado e Verify Identity acrescenta a verificação do nome do host. Um certificado e uma chave de cliente adicionam TLS mútuo.",
                 "Acesse um cluster protegido por um bastion usando um <network>túnel SSH</network>. URLs <code>etcd://</code> e <code>etcds://</code> podem ser importadas, e nenhuma ativa TLS por si só."
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Defina <ui>Key Prefix Root</ui>, como <code>/app</code>, para limitar uma conexão a uma subárvore. A barra lateral agrupa as chaves pelo primeiro segmento do caminho abaixo dela, e cada chave aparece como uma linha com seu valor, versão, revisões de modificação e criação, e lease.",
                 "Salvar uma edição envia comandos. Um novo valor ou lease grava novamente a chave, um lease NULL remove o lease, e renomear uma chave grava o novo nome e exclui o antigo. As colunas de revisão pertencem ao etcd, portanto editá-las interrompe o salvamento e informa o nome da coluna.",
-                "O editor aceita comandos no estilo etcdctl, com autocompletar para comandos e flags: <code>get</code> com <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> e ordenação, <code>put</code> com <code>--lease</code>, <code>del</code>, <code>watch</code>, os subcomandos de <code>lease</code>, <code>member list</code>, <code>endpoint status</code> e <code>health</code>, <code>compaction</code>, e os comandos <code>auth</code>, <code>user</code> e <code>role</code>. Qualquer outro é retornado como comando desconhecido sem chegar ao servidor.",
+                "Execute comandos no estilo etcdctl para chaves, watch, leases, membros, endpoints, compactação e controle de acesso, com preenchimento de comandos e flags. Comandos não suportados são rejeitados antes de chegar ao servidor.",
                 "O driver de etcd não pode abrir uma sessão somente leitura, portanto <safeMode>Safe Mode</safeMode> trata todos os comandos como gravações: nos níveis Alert e Safe Mode, cada um pede confirmação antes de executar, e Read-Only bloqueia todos."
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "Leases e o cluster",
             "paragraphs": [
-                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> com <code>--keys</code>, <code>list</code> e <code>keep-alive</code> gerenciam leases, e <code>compaction</code> reduz o histórico de revisões. <code>member list</code>, <code>endpoint status</code> e <code>endpoint health</code> informam sobre o cluster pelo editor, pois não há um Server Dashboard para etcd.",
+                "Gerencie leases e compactação de revisões no editor. Use comandos para consultar membros, status e saúde dos endpoints; etcd não tem Server Dashboard.",
                 "Executar <code>auth enable</code> no editor ativa a autenticação para todo o cluster. Uma conexão com nome de usuário e senha continua funcionando; uma sem ambos precisa ser reaberta com credenciais."
             ]
         },

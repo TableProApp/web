@@ -128,3 +128,14 @@ it('opens no section by describing the page layout', function (): void {
 
     expect($offences)->toBe([], "A lead says what the app does, not where things are on the page:\n  " . implode("\n  ", $offences));
 });
+
+it('opens feature pages with tasks rather than audience boilerplate', function (): void {
+    foreach (contentGuardFiles(resource_path('data/content/en/features'), 'json') as $file) {
+        $copy = contentGuardDecode($file);
+        $lead = $copy['header']['lead'];
+
+        expect($lead)->not->toMatch('/^For (anyone|developers|working|changing|moving|when)\b/i', "{$file}: name the task directly")
+            ->not->toContain('Everything here is in the Mac app')
+            ->not->toContain('does part of it');
+    }
+});

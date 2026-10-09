@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "适用于 {devices} 的 ClickHouse 客户端",
-        "lead": "通过 ClickHouse HTTP 接口运行分析 SQL，查看查询计划、pipeline 或行数估计，并在表的 Parts 标签页管理 MergeTree 数据部件和分区。长查询在运行时报告已读行数，Stop 会在服务器端终止。"
+        "title": "ClickHouse 客户端",
+        "lead": "运行分析查询，检查执行计划和流水线，并管理表的数据片段和分区。"
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供主机、HTTP 端口、用户，可选数据库。切换数据库原地完成，已打开标签页保持原数据库。<ui>视图 > 侧边栏显示为树状</ui>（View > Sidebar as Tree）将服务器数据库显示为可展开的树。",
+                "输入主机、HTTP 端口、用户和可选数据库。无需重新连接即可切换数据库；已有标签页保留原数据库。<ui>视图 > 侧边栏显示为树状</ui> (View > Sidebar as Tree) 在侧边栏就地展开数据库。",
                 "选择任意 SSL 模式切换为 HTTPS。443 或 ClickHouse Cloud 的 8443 端口会启用 Verify Identity，使用 CA 文件或系统信任库验证证书。Verify CA 需要 CA 文件，客户端证书和密钥可访问要求双向 TLS 的服务器。",
                 "未使用 TLS 时，请通过 <network>SSH 隧道</network>访问远程服务器，避免在网络上传输明文 HTTP。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "每个查询有独立 ID 并请求进度，长查询会持续报告读取行数。Stop 对该 ID 发送 <code>KILL QUERY</code>，连接的查询超时也传至服务器。",
+                "查询时跟踪已读取行数。Stop 发送 <code>KILL QUERY</code>，连接的查询超时设置也会传给服务器。",
                 "<explain>Explain 菜单</explain>提供 Plan、Pipeline、AST、Syntax、Estimate。缩进输出绘制为图或树，Estimate 显示查询预计读取的行、marks 和数据部件。",
-                "网格编辑先提供 <editing>Preview SQL</editing>，再发送 <code>INSERT</code>、<code>ALTER TABLE … UPDATE</code>、<code>ALTER TABLE … DELETE</code>。ClickHouse 以后台 mutation 执行更新删除，因此保存表示已接受而非已应用；<code>system.mutations</code> 显示进度。物化视图只读打开。",
+                "插入行或提交 UPDATE、DELETE 变更前，先检查 <editing>Preview SQL</editing>。保存成功表示已接受，并非已应用；进度可在 <code>system.mutations</code> 查看。物化视图只读。",
                 "含 ClickHouse point 或 ring 元组的结果可在 <map>地图视图</map>打开。自带 <code>FORMAT</code> 子句的查询将服务器原始输出显示在单列中，要获得网格请省略该子句。"
             ]
         },
@@ -48,7 +48,7 @@
             "title": "表、数据部件和分区",
             "paragraphs": [
                 "表提供 Structure、Indexes、DDL、Parts 标签页。Indexes 显示排序键和数据跳过索引，DDL 显示包含引擎和设置的完整 <code>CREATE TABLE</code>。",
-                "Parts 列出 <code>system.parts</code> 中每个数据部件及其分区、行数、磁盘大小、修改时间和 active 标志，可在此执行 Optimize、Drop Partition、Detach Partition。",
+                "从 <code>system.parts</code> 查看数据片段的分区、行数、大小和活动状态。在 Parts 标签页执行 Optimize、Drop Partition 或 Detach Partition。",
                 "<structure>Structure 标签页</structure>可添加、修改、删除列及删除数据跳过索引。排序键和主键在表创建时固定，新增数据跳过索引用 <code>ALTER TABLE … ADD INDEX</code>，其他修改需重建表。"
             ]
         },

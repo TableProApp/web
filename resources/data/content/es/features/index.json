@@ -1,60 +1,60 @@
 {
     "seo": {
-        "title": "Funciones para gestionar bases de datos",
-        "description": "Consultas, edición, esquemas, importación, exportación, IA, MCP, conexiones y sincronización en TablePro, con las funciones de pago indicadas."
+        "title": "Funciones del cliente de bases de datos",
+        "description": "Escribe consultas, edita datos, inspecciona esquemas y mueve datos entre archivos y bases. Descubre las funciones gratuitas y de pago de TablePro."
     },
     "og": {
         "kicker": "Funciones",
-        "title": "Qué puedes hacer en TablePro"
+        "title": "Funciones"
     },
     "header": {
-        "title": "Qué puedes hacer en TablePro",
-        "lead": "La app para Mac es el entorno de trabajo completo. La app para iPhone y iPad es una app nativa independiente con un alcance menor; cada página de funciones indica lo que ofrece en esos dispositivos."
+        "title": "Funciones",
+        "lead": "Consulta, edita y trabaja con datos en bases compatibles."
     },
     "areas": {
         "title": "Funciones por tarea",
-        "paid": "Plan {tier}: {features}",
+        "paid": "Funciones de pago opcionales: {features} ({tier})",
         "noPaid": "Sin funciones de pago",
         "items": [
             {
                 "slug": "querying",
-                "summary": "Autocompletado según el esquema, parámetros <code>:name</code>, historial con búsqueda, consultas guardadas, planes EXPLAIN comparables y resultados como gráficos o mapas."
+                "summary": "Escribe SQL con autocompletado, reutiliza consultas guardadas y busca en tu historial. Inspecciona planes en motores compatibles."
             },
             {
                 "slug": "data-editing",
-                "summary": "Filtros y reglas de resaltado, claves foráneas que puedes seguir, ediciones que esperan al guardado, nivel de Safe Mode por conexión y Data Rewind para valores sustituidos al guardar."
+                "summary": "Filtra filas, sigue claves foráneas y revisa cambios antes de guardar."
             },
             {
                 "slug": "schema",
-                "summary": "Cambios de estructura con vista previa DDL, diagrama ER de solo lectura, Compare & Sync entre bases, Copy To entre motores y Users & Roles."
+                "summary": "Inspecciona relaciones, cambia estructuras de tablas y compara bases compatibles."
             },
             {
                 "slug": "import-export",
-                "summary": "Importa archivos {importFormats}, exporta tablas y resultados, abre archivos de datos sin una conexión y haz copias de seguridad de los motores compatibles con sus propias herramientas de volcado."
+                "summary": "Importa archivos {importFormats} y exporta tablas o resultados. Abre archivos de datos sin conexión a una base."
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Asistente de IA opcional que usa el proveedor elegido y servidor MCP (Model Context Protocol) local que permite a clientes como Claude Code y Cursor usar tus conexiones guardadas."
+                "summary": "Usa tu proveedor de IA preferido o conecta un cliente externo mediante MCP (Model Context Protocol)."
             },
             {
                 "slug": "connections",
-                "summary": "Túneles SSH con hosts de salto, TLS, autenticación en la nube y comandos de túnel, contraseñas del Llavero o gestores de secretos y conexiones importadas de otras apps."
+                "summary": "Usa túneles SSH y acceso a la nube. Importa conexiones de otras apps."
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "iCloud Sync entre tus Mac, iPhone y iPad, archivos de conexión que puedes compartir y Team Catalog y Team Library para compartir con tu equipo."
+                "summary": "Sincroniza mediante iCloud o comparte conexiones y consultas con tu equipo."
             }
         ]
     },
     "ios": {
         "title": "iPhone y iPad",
-        "body": "TablePro para iPhone y iPad es una app independiente y gratuita, sin compras dentro de la app. Se conecta por SSH o TLS, explora y edita filas y ejecuta consultas, con Atajos, un widget para la pantalla de inicio y Actividades en directo para consultas en ejecución. No tiene asistente de IA, edición de esquemas, Data Rewind ni Compare & Sync.",
+        "body": "Explora tablas, edita filas y ejecuta consultas en iPhone y iPad. La app móvil independiente es gratis, sin compras dentro de la app. Cada página de detalle indica la disponibilidad.",
         "link": "TablePro para iPhone y iPad"
     },
     "paid": {
         "title": "Gratis y de pago",
-        "lead": "La app para Mac se puede usar gratis, sin periodo de prueba. Un plan Starter o Team añade las funciones siguientes a la app para Mac, y Team incluye todo lo de Starter. Conectarse a cualquier motor compatible, el asistente de IA, el servidor MCP y Safe Mode no requieren licencia; la app para iPhone y iPad es gratis, sin compras dentro de la app.",
-        "caption": "Funciones de pago de la app para Mac, plan necesario y página que las describe",
+        "lead": "Las funciones básicas son gratis, sin periodo de prueba. Starter añade funciones de pago a la app para Mac; Team incluye Starter. Todas las bases compatibles, el asistente de IA, MCP y Safe Mode están disponibles sin licencia.",
+        "caption": "Funciones de pago disponibles actualmente en el Mac",
         "columns": {
             "feature": "Función",
             "plan": "Plan",
@@ -64,7 +64,7 @@
     },
     "docs": {
         "title": "Documentación",
-        "body": "Cada función tiene una página en la documentación de TablePro con todos sus ajustes y atajos.",
+        "body": "Encuentra instrucciones de configuración, ajustes y atajos.",
         "link": "Leer la documentación",
         "path": "/features/overview"
     },
@@ -80,19 +80,19 @@
         },
         "paidBadge": "{name}: plan {tier}",
         "header": {
-            "paid": "Funciones de pago en esta página: {features}. Todo lo demás aquí es gratis.",
+            "paid": "De pago: {features}. Las demás funciones son gratis.",
             "paidItem": "{name} ({tier})",
             "allFree": "Todo en esta página es gratis.",
             "docs": "Leer la documentación"
         },
         "sections": {
             "availability": "Dónde funciona",
-            "limits": "Limitaciones que conviene conocer",
+            "limits": "Limitaciones",
             "docs": "Documentación",
             "related": "Relacionado"
         },
         "availability": {
-            "caption": "Cada capacidad de esta página, el plan necesario en el Mac y su disponibilidad en iPhone y iPad",
+            "caption": "Disponibilidad y planes en Mac, iPhone y iPad",
             "capability": "Capacidad",
             "free": "Gratis",
             "notAvailable": "No disponible",
@@ -100,7 +100,7 @@
         },
         "download": {
             "title": "Obtén TablePro",
-            "body": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales a la app para Mac.",
+            "body": "Gratis y de código abierto.",
             "pricing": "Ver precios"
         }
     }

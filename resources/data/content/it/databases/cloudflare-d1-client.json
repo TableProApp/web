@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Client Cloudflare D1 per {devices}",
-        "lead": "Raggiungi i database D1 del tuo account Cloudflare da un’unica connessione, interrogali nel dialetto SQLite tramite l’API di Cloudflare e gestisci tabelle, indici e trigger nella scheda Structure."
+        "title": "Client Cloudflare D1",
+        "lead": "Sfoglia i database D1 nel tuo account Cloudflare ed esegui query SQLite tramite la sua API."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connetti con un token API",
             "paragraphs": [
-                "Una connessione D1 richiede tre valori: nome o UUID del database, ID dell’account Cloudflare e un token API. Il token va nel campo <ui>API Token</ui> ed è conservato nel <credentials>Portachiavi di macOS</credentials>. Non ci sono host, porta, impostazioni SSL o tunnel SSH perché ogni richiesta raggiunge l’API di Cloudflare tramite HTTPS.",
-                "Crea il token dal modello Custom token con il permesso <ui>Account > D1 > Edit</ui> e copialo quando Cloudflare lo mostra, perché viene mostrato una sola volta. Quel token raggiunge ogni database D1 dell’account, non solo quello a cui ti connetti.",
+                "Inserisci il nome del database D1 o l'UUID, l'ID dell'account Cloudflare e <ui>API Token</ui>. Il token rimane nel <credentials>macOS Keychain</credentials>. Le richieste utilizzano HTTPS; non sono presenti host, porte, imposti TLS o tunnel SSH.",
+                "Crea un token con l'autorizzazione <ui>Account > D1 > Edit</ui> e copialo quando viene visualizzato. Concede l'accesso a ogni database D1 nell'account, non solo a quello selezionato.",
                 "Importare un URL <code>d1://account-id/database-name</code> compila account e database; il token non viene mai inserito nell’URL, quindi incollalo in seguito."
             ]
         },
@@ -36,9 +36,9 @@
             "id": "work",
             "title": "Passa tra database ed esegui query",
             "paragraphs": [
-                "Il selettore di database nella barra degli strumenti elenca i database D1 dell’account e permette di passare tra essi senza riconnettersi. Crea ed elimina anche database. Ogni scheda rimane sul database su cui è stata aperta.",
+                "Passa da un database D1 all'altro dell'account senza riconnetterti. Lo switcher crea ed elimina anche database. Le schede esistenti mantengono il database iniziale.",
                 "Le query usano il dialetto SQLite. <explain>EXPLAIN QUERY PLAN</explain> viene rappresentato come diagramma e le modifiche alle righe restano nella griglia fino al salvataggio, con <editing>Preview SQL</editing> che mostra prima le istruzioni.",
-                "Scrivi ogni istruzione in modo che sia autonoma: un’impostazione <code>PRAGMA</code> o una tabella temporanea creata da un’istruzione scompare alla successiva e ogni istruzione viene confermata all’esecuzione, senza possibilità di rollback. Quando Cloudflare limita una richiesta, l’errore indica il tempo di attesa richiesto prima di riprovare."
+                "Scrivi ogni istruzione in modo che sia autonoma: un’imposto <code>PRAGMA</code> o una tabella temporanea creata da un’istruzione scompare alla successiva e ogni istruzione viene confermata all’esecuzione, senza possibilità di rollback. Quando Cloudflare limita una richiesta, l’errore indica il tempo di attesa richiesto prima di riprovare."
             ]
         },
         {

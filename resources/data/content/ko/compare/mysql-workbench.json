@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MySQL Workbench: MySQL 전용 또는 여러 엔진",
+        "title": "TablePro vs MySQL Workbench: 기능 및 호환성",
         "description": "MySQL Workbench는 Oracle의 무료 MySQL 도구로 MySQL Shell 기반으로 새로 만들어졌습니다. TablePro는 Mac, iPhone, iPad에서 MySQL과 다른 엔진을 지원합니다."
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MySQL Workbench",
-        "lead": "MySQL Workbench는 Oracle이 만든 MySQL용 무료 오픈 소스 도구입니다. {status.version} 버전에서 MySQL Shell 기반으로 새로 만들어졌고, Oracle은 Workbench 8.0 유지 관리를 종료했습니다. TablePro는 MySQL, MariaDB와 다른 엔진을 지원하는 오픈 소스 클라이언트이며 별도 iPhone·iPad 앱과 Mac 선택 유료 기능이 있습니다."
+        "lead": "MySQL Workbench는 Oracle의 MySQL용 도구입니다. 버전 {status.version}에서 MySQL Shell을 기반으로 재구축되었습니다. MySQL, MariaDB 등 여러 데이터베이스를 지원하는 TablePro와 비교해 보세요."
     },
     "shortAnswer": {
         "tablepro": [
-            "MariaDB, PostgreSQL, SQL Server, SQLite, Redis도 사용하며 하나의 클라이언트로 모두 다루고 싶습니다.",
-            "아직 MySQL 8.0 서버를 운영합니다. TablePro는 여기에 연결하지만 새 Workbench는 MySQL {cells.databases.version} 이상을 지원합니다.",
-            "Intel Mac을 씁니다. TablePro는 Intel용과 Apple silicon용 빌드가 따로 있습니다.",
-            "원하는 AI 제공업체로 Mac 앱에서 무료 AI 도우미와 MCP 서버를 쓰고 싶습니다.",
-            "MySQL·MariaDB에 연결하는 무료 iPhone·iPad 앱을 원합니다."
+            "다른 데이터베이스 유형과 함께 MySQL 및 MariaDB.",
+            "MySQL 8.0 연결; 새로운 Workbench는 {cells.databases.version} 이상을 지원합니다.",
+            "Intel Mac 빌드 또는 무료 iPhone 및 iPad 앱."
         ],
         "competitor": [
-            "Oracle의 공식 MySQL 도구를 무료 오픈 소스로 쓰고 싶습니다.",
-            "쿼리, 결과, 메모를 한데 모으고 SQL 외에 JavaScript와 TypeScript도 쓰는 노트북을 좋아합니다.",
-            "MySQL Enterprise Backup을 사용하며 데스크톱 앱에서 백업 일정과 복원을 관리하고 싶습니다.",
-            "OCI의 MySQL HeatWave로 이전하는 중이며 단계별 마이그레이션 안내를 원합니다.",
-            "Windows나 Linux에서도 작업하며 각 환경에서 같은 도구를 쓰고 싶습니다."
+            "Oracle의 MySQL용 무료 도구입니다.",
+            "JavaScript 및 TypeScript를 사용하는 SQL 노트북입니다.",
+            "MySQL Enterprise Backup 통합 또는 안내식 HeatWave 마이그레이션."
         ]
     },
     "glance": {
@@ -57,31 +53,34 @@
         "items": [
             {
                 "text": "MySQL Workbench는 Oracle의 공식 MySQL 도구이며 GPL 라이선스의 무료 오픈 소스입니다.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "SQL 노트북은 쿼리, 결과, 메모를 한 문서에 담고 SQL 외에 JavaScript와 TypeScript도 실행합니다.",
-                "cite": ["cells.notebooks"],
+                "cite": [
+                    "cells.notebooks"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "MySQL Enterprise Backup과 함께 쓰면 전체 백업과 증분 백업을 만들고 일정을 잡고 복원합니다.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "HeatWave Migration Assistant가 OCI의 MySQL HeatWave로 이전하는 과정을 안내합니다.",
-                "cite": ["cells.migration"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Windows, macOS, Linux에서 실행합니다.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.migration"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,19 +97,25 @@
             },
             {
                 "text": "TablePro는 MySQL 8.0 서버에도 연결합니다. Oracle은 새 Workbench에서 MySQL {cells.databases.version} 이상을 지원하며 이전 버전도 작동할 수 있다고 합니다.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Apple silicon뿐 아니라 Intel Mac에서도 실행하며 각각 별도 빌드가 있습니다. 새 Workbench의 Mac 다운로드는 Apple silicon 전용입니다.",
-                "cite": ["mac"],
+                "cite": [
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "<link>Backup Dump</link>는 mysqldump를, Restore Dump는 mysql을 실행하므로 백업에 MySQL Enterprise Backup이 필요 없습니다. 둘 다 무료입니다.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
@@ -132,12 +137,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Windows·Linux용 TablePro 앱은 없습니다.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "노트북이 없고 MySQL 연결은 SQL만 실행하며 JavaScript나 TypeScript는 쓸 수 없습니다.",
                 "cite": [],
                 "feature": null,
@@ -157,7 +156,9 @@
             },
             {
                 "text": "일부 기능은 유료입니다. Starter는 {starterExamples} 등을 추가하며 MySQL Workbench는 무료입니다.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -191,12 +192,6 @@
             "question": "MySQL Workbench는 Intel Mac에서 실행되나요?",
             "answer": "{status.version} 버전의 Mac 다운로드는 Apple silicon 전용입니다. TablePro는 Intel Mac용 별도 빌드가 있습니다. <link>TablePro 다운로드</link>.",
             "href": "/download"
-        },
-        {
-            "id": "free",
-            "question": "TablePro도 MySQL Workbench처럼 무료인가요?",
-            "answer": "무료로 사용합니다. MySQL, MariaDB와 다른 지원 엔진, AI 도우미, MCP 서버는 무료이며 코드는 AGPLv3 오픈 소스입니다. Starter·Team 플랜은 Mac 앱에 {starterExamples} 등 선택 기능을 추가합니다. <link>가격 보기</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

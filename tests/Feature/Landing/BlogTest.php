@@ -147,7 +147,7 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('seo.canonical', 'https://localhost/blog')
             ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->where('content.header.title', 'Blog')
-            ->where('content.header.lead', fn(string $lead): bool => str_contains($lead, 'Not every release gets a post.'))
+            ->where('content.header.lead', fn(string $lead): bool => str_contains($lead, 'Posts about TablePro releases.') && str_contains($lead, '<changelog>'))
             ->missing('content.corrections')
             ->missing('content.newsletter')
             ->has('posts', count($expected))
@@ -173,14 +173,14 @@ it('describes the blog as guides and release posts in every language', function 
     $kinds = [
         'en' => ['guides', 'release'],
         'vi' => ['hướng dẫn', 'phát hành'],
-        'es' => ['guías', 'versiones'],
-        'de' => ['anleitungen', 'versionsankündigungen'],
-        'fr' => ['guides', 'versions'],
+        'es' => ['guías', 'versi'],
+        'de' => ['anleitungen', 'versionshinweise'],
+        'fr' => ['guides', 'version'],
         'ja' => ['ガイド', 'リリース'],
         'ko' => ['가이드', '릴리스'],
-        'zh-Hans' => ['指南', '版本发布'],
-        'zh-Hant' => ['指南', '版本發佈'],
-        'pt-BR' => ['guias', 'versões'],
+        'zh-Hans' => ['指南', '发行说明'],
+        'zh-Hant' => ['指南', '版本說明'],
+        'pt-BR' => ['guias', 'versão'],
         'it' => ['guide', 'rilascio'],
         'id' => ['panduan', 'rilis'],
     ];
@@ -640,7 +640,7 @@ describe('server-rendered', function (): void {
         }
 
         expect($html)
-            ->toContain('Published on October 2, 2026, this post describes TablePro 0.77 as it was then.')
+            ->toContain('Published October 2, 2026. This post covers TablePro 0.77 at release.')
             ->toContain('aria-label="Link to this section"')
             ->not->toContain('aria-label="">#</a>')
             ->toContain('Download for Mac')
@@ -654,7 +654,7 @@ describe('server-rendered', function (): void {
         $html = (string) $this->get('/blog/tablepro-0-77')->getContent();
         $header = Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelector('main > header');
 
-        expect($html)->not->toContain('as it was then');
+        expect($html)->not->toContain('This post covers TablePro 0.77 at release.');
         expect($header?->textContent)->toContain('October 2, 2026')->toContain(blogMatter('tablepro-0-77')['author']);
     });
 
@@ -706,8 +706,8 @@ describe('server-rendered', function (): void {
         expect($card?->querySelector('h2')?->textContent)->toBe($title);
         expect($card->textContent)->toContain($body);
     })->with([
-        ['/blog', 'Release notes by email', 'Occasional emails with release notes.'],
-        ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành.'],
+        ['/blog', 'Release notes by email', 'Occasional release notes. Unsubscribe in any email.'],
+        ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng gửi ghi chú phát hành bằng tiếng Anh. Hủy đăng ký trong bất kỳ email nào.'],
     ]);
 
     it('lists the guides, then the release posts under the line that says what they are', function (string $path, string $guides, string $releases, string $lead): void {
@@ -723,8 +723,8 @@ describe('server-rendered', function (): void {
             ->and($main->querySelectorAll('#guides ol > li')->length)->toBe(count(BLOG_GUIDES))
             ->and($main->querySelectorAll('#releases ol > li')->length)->toBe(count(BLOG_PUBLISHED));
     })->with([
-        ['/blog', 'Guides', 'Release notes', 'Not every release gets a post.'],
-        ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Không phải phiên bản nào cũng có bài viết.'],
+        ['/blog', 'Guides', 'Release notes', 'Full version notes are in the changelog'],
+        ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Ghi chú đầy đủ của từng phiên bản nằm trong changelog'],
     ]);
 
     it('separates an English-only label from the post title with a real space', function (): void {

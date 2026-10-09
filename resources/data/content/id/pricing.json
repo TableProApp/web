@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Harga",
-        "lead": "Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Paket Starter atau Team menambahkan fitur opsional. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
+        "lead": "Gunakan aplikasi Mac secara gratis, tanpa masa uji coba. Starter dan Team menambahkan fitur opsional. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
     },
     "plans": {
         "title": "Paket"
     },
     "features": {
         "title": "Tambahan dari paket berbayar",
-        "lead": "Hanya fitur berikut yang memerlukan paket berbayar, dan semuanya tersedia di aplikasi Mac. Team mencakup semua fitur Starter. Terhubung ke semua mesin yang didukung tidak memerlukan lisensi, begitu juga asisten AI, server MCP, dan Safe Mode."
+        "lead": "Hanya fitur yang tercantum di sini yang memerlukan paket berbayar, saat ini ada di Mac. Team mencakup Starter. Semua mesin yang didukung, asisten AI, MCP, dan Safe Mode gratis."
     },
     "license": {
         "title": "Cara kerja lisensi",
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Lisensi Starter berlaku untuk satu orang, di maksimal {activations} Mac. Di Team, setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli, sehingga orang yang bekerja di dua Mac menggunakan dua seat. Aplikasi iPhone dan iPad tidak pernah menggunakan lisensi atau seat."
+                "body": "Starter mencakup satu orang pada maksimal {activations} Mac. Setiap seat Team mencakup satu Mac yang diaktifkan, termasuk milik pembeli. Dua Mac menggunakan dua seat. App iPhone dan iPad tidak menggunakan lisensi atau seat."
             },
             "activate": {
                 "term": "Aktivasi",
-                "body": "Masukkan kunci lisensi di TablePro pada Mac Anda, melalui <ui>Settings > License</ui>. Untuk menggunakannya di Mac lain, hapus Mac lama di halaman Mac dalam <account>akun Anda</account>."
+                "body": "Masukkan kunci di <ui>Settings > License</ui>. Untuk memindahkan aktivasi, hapus Mac lama dari halaman Macs di <account>akun Anda</account>."
             },
             "checks": {
                 "term": "Pemeriksaan",
-                "body": "TablePro memeriksa tanda tangan lisensi setiap kali dibuka dan mengonfirmasi lisensi ke server TablePro setiap {revalidateDays} hari. Jika Mac tidak dapat mengakses server, fitur berbayar tetap berfungsi selama {graceDays} hari. Konfirmasi mengirim kunci lisensi, hash ID mesin, nama Mac, serta versi aplikasi dan macOS."
+                "body": "TablePro memverifikasi tanda tangan lisensi saat mulai dan memeriksa server setiap {revalidateDays} hari. Jika server tidak dapat dijangkau, fitur berbayar tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Pemeriksaan mengirimkan kunci, ID mesin yang di-hash, nama Mac, serta versi app dan macOS."
             },
             "ends": {
                 "term": "Saat paket berakhir",
-                "body": "Jika paket bulanan atau tahunan berakhir, fitur berbayar berhenti dan fitur aplikasi lainnya tetap berfungsi seperti dalam paket Gratis."
+                "body": "Ketika langganan berakhir, fitur berbayar berhenti. Segala sesuatu di Gratis tetap berfungsi."
             },
             "oneTime": {
                 "term": "Sekali bayar",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Penagihan",
-        "merchant": "{merchant} adalah merchant of record untuk TablePro. Penyedia ini menjual paket kepada Anda, menerima pembayaran, menghitung pajak penjualan atau PPN berdasarkan alamat penagihan, serta mengirim tanda terima dan faktur lewat email.",
-        "renewal": "Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya di <account>akun Anda</account> atau portal pelanggan {merchant}. Setelah dibatalkan, paket tetap berfungsi hingga akhir periode yang dibayar dan dapat dilanjutkan sebelum itu. Jika pembayaran perpanjangan gagal, {merchant} mengirim email berisi tautan untuk memperbarui kartu dan mencoba pembayaran kembali selama sekitar tiga minggu.",
-        "portal": "Untuk pembelian melalui {merchant}, faktur, tanda terima, metode pembayaran, dan pembatalan tersedia di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan alamat email yang digunakan saat checkout. <account>Penagihan dan faktur</account> dalam akun Anda juga membuka portal tersebut."
+        "merchant": "{merchant} adalah merchant of record. Menangani pembayaran, menghitung pajak penjualan atau PPN dari alamat penagihan, dan mengirim tanda terima serta faktur melalui email.",
+        "renewal": "Langganan diperpanjang hingga Anda membatalkan di <account>akun Anda</account> atau portal {merchant}. Akses berlanjut hingga periode berbayar; Anda dapat melanjutkan sebelum berakhir. Perpanjangan yang gagal memicu email untuk memperbarui kartu Anda dan percobaan pembayaran ulang selama sekitar tiga minggu.",
+        "portal": "Kelola faktur, kwitansi, metode pembayaran, dan pembatalan di portal pelanggan <portal>{merchant}</portal>. Masuk dengan email pembelian Anda. <account>Penagihan & faktur</account> membuka portal yang sama."
     },
     "refunds": {
         "title": "Pengembalian dana",
-        "body": "Setiap paket dapat dikembalikan dananya dalam {refundDays} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {refundDays} hari setelah penagihannya. <link>Kebijakan pengembalian dana</link> menjelaskan cara mengajukan dan dampaknya pada lisensi."
+        "body": "Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Baca <link>kebijakan pengembalian dana</link> untuk mengetahui proses dan dampaknya pada lisensi Anda."
     },
     "team": {
         "title": "Paket Team",
         "seats": "Paket Team dihargai per seat, dari {min} hingga {max} seat.",
-        "invites": "Pembeli paket mengelola tim dalam akunnya. Ia mengundang rekan tim lewat email; setiap undangan adalah kode sekali pakai, kedaluwarsa setelah satu minggu, dan memerlukan seat kosong.",
-        "changes": "Pada paket Team bulanan atau tahunan, Anda mengubah jumlah seat dalam akun dan selisihnya muncul di faktur berikutnya. Untuk menambah seat pada pembelian Team sekali bayar, kirim email ke <email>{email}</email>.",
+        "invites": "Pembeli mengelola undangan di akunnya. Setiap kode memerlukan seat yang tersedia, berlaku satu kali, dan kedaluwarsa setelah seminggu.",
+        "changes": "Ubah seat berlangganan di akun Anda; perbedaannya muncul di faktur Anda berikutnya. Untuk pembelian satu kali, kirim email ke <email>{email}</email> untuk menambahkan seat.",
         "account": "Kelola tim dalam akun Anda"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "Dibandingkan dengan klien lain",
-        "body": "Setiap perbandingan mencantumkan harga klien lain di samping harga TablePro, beserta tanggal pemeriksaannya."
+        "body": "Bandingkan harga dan fitur dengan klien lain. Setiap perbandingan mencakup tanggal dan sumber yang diperiksa."
     },
     "faq": {
         "title": "Pertanyaan tentang paket",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Di mana kunci lisensi saya?",
-                "answer": "Kunci ada dalam email yang Anda terima setelah checkout. Anda juga dapat masuk ke <account>akun Anda</account> dengan alamat email pembelian: kunci Anda ada di sana, beserta setiap Mac tempat lisensi diaktifkan."
+                "answer": "Temukan kunci Anda di email pembelian atau <account>akun Anda</account>. Masuk dengan email pembelian Anda untuk melihat kunci dan Mac yang diaktifkan."
             }
         }
     }

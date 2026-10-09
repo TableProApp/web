@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Unduh TablePro untuk Mac",
-        "description": "Unduh TablePro untuk Mac, dengan build terpisah untuk Apple silicon dan Intel, atau instal dengan Homebrew. Aplikasi iPhone dan iPad tersedia di App Store."
+        "title": "Unduh TablePro",
+        "description": "Unduh TablePro, dengan versi terpisah untuk Apple silicon dan Intel, atau instal dengan Homebrew. Aplikasi iPhone dan iPad ada di App Store."
     },
     "og": {
         "kicker": "Unduh",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Unduh TablePro",
-        "lead": "Unduh aplikasi Mac sesuai chip Mac Anda, atau instal dengan Homebrew. Aplikasi iPhone dan iPad tersedia di App Store."
+        "lead": "Pilih build untuk perangkat Anda."
     },
     "mac": {
         "otherWays": "Cara instalasi lainnya",
@@ -22,19 +22,19 @@
         "source": "Build dari kode sumber (AGPLv3)"
     },
     "ios": {
-        "body": "Aplikasi terpisah yang dibuat untuk {devices}, dengan fitur tersendiri.",
+        "body": "Aplikasi gratis untuk {devices}, dengan serangkaian fiturnya sendiri.",
         "link": "TablePro untuk {devices}"
     },
     "install": {
         "title": "Instalasi dan penggunaan pertama",
         "steps": [
-            "Buka file .dmg yang diunduh dari folder Unduhan.",
+            "Buka file .dmg yang diunduh.",
             "Seret TablePro ke folder Aplikasi.",
-            "Buka TablePro dari Aplikasi. Karena berasal dari internet, macOS meminta konfirmasi saat pertama dibuka. Pilih <ui>Open</ui>.",
-            "Tambahkan koneksi, atau pilih <ui>Help > Open Sample Database</ui> untuk mencoba terlebih dahulu. Perintah ini membuka Chinook, database SQLite kecil yang disertakan dalam aplikasi."
+            "Buka TablePro dari Aplikasi. Pilih <ui>Open</ui> ketika macOS meminta Anda untuk mengonfirmasi.",
+            "Tambahkan koneksi, atau coba paket database Chinook SQLite melalui <ui>Help > Open Sample Database</ui>."
         ],
         "signing": "Kedua build ditandatangani dengan Developer ID dan dinotarisasi Apple, sehingga Anda tidak perlu mengubah pengaturan keamanan untuk membuka TablePro.",
-        "drivers": "Driver database umum disertakan dalam aplikasi. Driver lainnya diunduh saat Anda pertama memilih database tersebut, yang memerlukan koneksi internet, dan diperbarui secara terpisah dari aplikasi.",
+        "drivers": "Driver umum dibundel. Yang lain memerlukan koneksi internet untuk mengunduh pada penggunaan pertama dan memperbarui secara terpisah dari aplikasi.",
         "databases": "Database yang didukung",
         "guide": {
             "label": "Baca panduan instalasi (bahasa Inggris)",

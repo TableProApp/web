@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Cliente de Teradata para {devices}",
-        "lead": "Entre com TD2 ou TDNEGO, navegue por bancos de dados e usuários com suas tabelas, views, procedimentos e macros, e consulte e edite com um driver nativo em Swift, sem instalar software cliente de Teradata."
+        "title": "Cliente de Teradata",
+        "lead": "Consulte e edite o Teradata sem instalar software cliente separado. Navegue por bancos de dados, usuários, procedimentos e macros."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conecte-se e entre",
             "paragraphs": [
-                "Informe o host, o nome de usuário e a senha. Qualquer sistema Vantage que aceite login TD2 funciona, sem verificação de versão. <ui>Logon Mechanism</ui> na seção Options aceita <code>TD2</code> ou <code>TDNEGO</code>, e <ui>Database</ui> só é necessário para usar um banco padrão diferente do da sua conta.",
+                "Digite um host, nome de usuário e senha. Escolha <code>TD2</code> ou <code>TDNEGO</code> em <ui>Logon Mechanism</ui>. <ui>Database</ui> substitui o padrão da conta. Os servidores Vantage que aceitam TD2 são suportados sem verificação de versão.",
                 "A porta padrão transporta uma sessão sem criptografia. Qualquer modo SSL transfere a sessão para o endpoint WebSocket do gateway na porta 443, que não pode ser alterada. Verify CA exige um certificado de CA, e Verify Identity verifica a cadeia e o nome do host com esse certificado ou, na ausência dele, com o repositório de confiança do sistema.",
                 "Deixe <ui>Transaction Mode</ui> em <code>DEFAULT</code>, a menos que um script precise das regras de commit e da diferenciação entre maiúsculas e minúsculas de ANSI ou TERA na sessão. Acesse um sistema protegido por um bastion usando um <network>túnel SSH</network>. <ui>Import from URL…</ui> aceita URLs <code>teradata://</code>, que o macOS não abre como links."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Consulte e edite",
             "paragraphs": [
-                "No Teradata, tanto um banco de dados quanto um usuário são namespaces, portanto ambos aparecem no topo da barra lateral com suas tabelas e views. Uma aba vinculada a um segundo banco de dados mantém a mesma sessão e executa <code>DATABASE</code> antes das instruções.",
+                "Procure bancos de dados e usuários como namespaces. As guias em outro banco de dados compartilham a sessão e executam <code>DATABASE</code> antes de suas instruções.",
                 "Os procedimentos armazenados são listados na barra lateral, e as macros ficam em Functions, cada um abrindo seu <objects>código-fonte em uma aba somente leitura</objects>.",
                 "Teradata não tem <code>LIMIT</code>, portanto a primeira página de uma tabela usa <code>TOP</code>, e as páginas seguintes usam <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> retorna o plano do Teradata como texto bruto. As edições de linhas aguardam o salvamento, e <editing>Preview SQL</editing> mostra cada instrução antes da execução."
             ]

@@ -10,8 +10,8 @@
     "engine": "dynamodb",
     "breadcrumb": "Amazon DynamoDB",
     "header": {
-        "title": "Interface gráfica de Amazon DynamoDB para {devices}",
-        "lead": "Explore tabelas por suas chaves e índices, veja a capacidade de leitura consumida em cada operação, edite itens sem perder seus tipos e execute PartiQL ou requisições de API do DynamoDB no editor."
+        "title": "Interface gráfica de Amazon DynamoDB",
+        "lead": "Navegue pelos itens, consulte por chave e veja a capacidade de leitura consumida. Edite valores tipados ou execute solicitações PartiQL."
     },
     "asset": "mac-db-dynamodb-planner",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Escolha um <ui>Auth Method</ui> e uma <ui>AWS Region</ui>, e a barra lateral lista as tabelas da região. Os métodos são uma chave de acesso com token de sessão opcional, um perfil de <code>~/.aws/config</code> e <code>~/.aws/credentials</code> lido como pela AWS CLI, ou um perfil <cloudAuth>AWS IAM Identity Center</cloudAuth>, que abre a solicitação de login quando a sessão expirou.",
+                "Escolha um <ui>Auth Method</ui> e <ui>AWS Region</ui>. Use uma chave de acesso com token de sessão opcional, um perfil AWS CLI ou <cloudAuth>AWS IAM Identity Center</cloudAuth>. Sessões expiradas do Identity Center solicitam login.",
                 "Os perfis resolvem auxiliares <code>credential_process</code> e cadeias <code>role_arn</code>, e credenciais temporárias expiradas são buscadas novamente, com uma repetição da requisição. Todas as requisições usam HTTPS com Signature Version 4, portanto não há configuração SSL ou túnel SSH. Uma região em outra partição AWS, como China ou European Sovereign Cloud, acessa o próprio endpoint sem exigir um endpoint personalizado.",
                 "Para DynamoDB Local, execute <code>docker run -p 8000:8000 amazon/dynamodb-local</code> e escolha <ui>DynamoDB Local (no credentials)</ui>; deixe <ui>Custom Endpoint</ui> vazio para usar a porta 8000. Um endpoint personalizado só pode usar HTTP sem criptografia neste Mac. O guia de configuração lista <permissions>as ações IAM exigidas por cada tarefa</permissions>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Leia, filtre e edite itens",
             "paragraphs": [
-                "Abrir, filtrar e paginar uma tabela usa o mesmo planejador. Fixe a chave de partição com = para executar Query em uma partição; filtros que correspondem às chaves de um índice executam Query nele; qualquer outro executa Scan, que lê a tabela inteira e cobra por cada item lido. A barra de status informa a operação escolhida, a quantidade de itens retornados, quantos itens DynamoDB leu para encontrá-los e as unidades de capacidade de leitura consumidas.",
-                "Um <filters>filtro</filters> na chave de ordenação integra a condição de chave quando usa =, <, <=, >, >=, BETWEEN ou STARTS WITH. Outros filtros viram FilterExpression, aplicado pelo DynamoDB depois da leitura, portanto restringem as linhas sem reduzir a cobrança. Filtre um atributo aninhado com um caminho como <code>address.city</code> ou <code>items[0].sku</code>.",
+                "Filtros por chave usam Query; os demais usam Scan. Scans leem a tabela inteira e cobram por cada item lido. A barra de status mostra a operação, os itens retornados e examinados e a capacidade de leitura consumida.",
+                "<filters>Filtros de chave de classificação</filters> usam condições de chave quando suportados. Outros filtros funcionam após a leitura e não reduzem a conta. Caminhos aninhados como <code>address.city</code> e <code>items[0].sku</code> são suportados.",
                 "Clicar no cabeçalho da chave de ordenação em uma Query de uma partição faz DynamoDB retornar os itens nessa ordem. Qualquer outra ordenação acontece na grade quando a leitura contém todos os itens correspondentes, e a barra de status informa quando não contém. A próxima página continua de onde a anterior parou. O total abaixo da grade é a contagem de itens do próprio DynamoDB; <ui>Count Exactly</ui> lê todos os itens que correspondem aos filtros, e essa leitura é cobrada integralmente.",
                 "Uma tabela declara apenas suas chaves, portanto as colunas vêm dos itens: os atributos de chave, os atributos encontrados em uma amostra dos primeiros itens e os da página atual. Maps, listas e conjuntos aparecem como JSON e abrem no editor JSON, e números mantêm todos os dígitos.",
-                "Cada linha alterada é salva como uma instrução PartiQL, e <editing>cada valor mantém seu tipo</editing>: Number permanece Number, uma String como <code>02134</code> permanece String, e um String Set editado como JSON volta como String Set. Uma atualização verifica cada atributo alterado contra o valor carregado pela grade, falhando em vez de sobrescrever uma alteração de outra pessoa. <ui>Set NULL</ui> remove o atributo.",
+                "Cada linha é salva como uma instrução PartiQL, com tipos <editing>preservados como</editing>. As atualizações verificam os atributos alterados em relação aos seus valores carregados e se recusam a substituir alterações simultâneas. <ui>Set NULL</ui> remove o atributo.",
                 "O editor aceita PartiQL, com aspas duplas nos nomes e aspas simples nas strings, ou o nome de uma ação DynamoDB seguido pelo JSON da requisição, como <code>Query</code>, <code>BatchWriteItem</code> ou <code>TransactWriteItems</code>. Qualquer outro nome de ação é recusado. Os itens retornam na grade e outras respostas como JSON. Requisições limitadas são repetidas com intervalos progressivos, e <code>⌘.</code> interrompe uma instrução em execução."
             ]
         },

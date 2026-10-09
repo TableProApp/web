@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Bases de datos compatibles",
-        "description": "Bases compatibles con TablePro por tipo, lenguaje de consulta, controlador integrado o descargado y disponibilidad en iPhone y iPad."
+        "description": "Encuentra tu base, revisa las funciones admitidas y compara lenguajes de consulta, instalación de controladores y disponibilidad en iPhone y iPad."
     },
     "og": {
         "kicker": "Bases de datos",
-        "title": "Bases de datos a las que se conecta TablePro"
+        "title": "Bases de datos compatibles"
     },
     "header": {
-        "title": "Bases de datos a las que se conecta TablePro",
-        "lead": "Controladores nativos para {count} bases de datos, entre ellas {featured}. Cada fila indica cómo consultar el motor, de dónde procede su controlador y si se abre en iPhone y iPad."
+        "title": "Bases de datos compatibles",
+        "lead": "Encuentra tu base y revisa las funciones admitidas. TablePro conecta con {count} motores, incluidos {featured}."
     },
     "jump": "Categorías",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Analíticas y almacenes de datos",
-            "intro": "Almacenes de datos, motores columnares y motores de consulta federada, donde un escaneo cuesta tiempo o dinero."
+            "intro": "Almacenes de datos, bases columnares y motores de consulta entre catálogos."
         },
         "cloud": {
             "title": "Nube y serverless",
-            "intro": "Servicios SQL accesibles por HTTP con un token de cuenta y archivos libSQL en tu Mac."
+            "intro": "Servicios SQL mediante HTTP y archivos libSQL locales."
         },
         "document": {
             "title": "Documentos",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Un registro en lugar de una tabla: lee y escribe mensajes con KafkaQL, el lenguaje de comandos propio de TablePro."
+            "intro": "Lee y produce mensajes con KafkaQL, el lenguaje de comandos de TablePro."
         },
         "coordination": {
             "title": "Coordinación",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "Archivos",
-            "intro": "Bases de datos guardadas en archivos que se abren directamente, sin ejecutar un servidor."
+            "intro": "Consulta archivos de bases y ledgers sin servidor de base de datos."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Cómo se distribuyen los controladores",
         "paragraphs": [
-            "Los controladores de {bundled} vienen con la app para Mac y permiten conectar sin instalar nada más.",
-            "Los demás controladores son plugins firmados que se descargan la primera vez que eliges su motor, antes de abrir el formulario de conexión. Esa primera descarga requiere conexión a internet.",
-            "Antes de instalar un controlador descargado, TablePro comprueba su suma SHA-256 en el registro de plugins y verifica su firma de código.",
-            "Los plugins tienen su propio calendario de actualizaciones, así que una corrección de un controlador puede llegar sin actualizar la app. Un controlador en uso se actualiza después de reiniciar la app.",
-            "La app para iPhone y iPad incluye sus controladores, por lo que allí no se descarga nada."
+            "Los controladores de {bundled} vienen con la app para Mac. No necesitas software cliente adicional para conectar.",
+            "Los demás controladores se descargan como plugins firmados al seleccionar la base por primera vez. Esa descarga necesita internet.",
+            "TablePro compara la suma SHA-256 de cada plugin con el registro y verifica su firma de código antes de instalarlo.",
+            "Los plugins de controladores se actualizan aparte de la app. Las actualizaciones de un controlador en uso se aplican tras reiniciar.",
+            "La app para iPhone y iPad incluye sus controladores y no descarga plugins."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro para iPhone y iPad"
     },
     "license": {
-        "title": "Ninguna base de datos requiere licencia",
-        "body": "Conectarse a cualquier motor de esta página es gratuito. Un plan Starter o Team añade funciones opcionales a la app para Mac, y ninguna está vinculada a una base de datos concreta.",
+        "title": "Incluido en Free",
+        "body": "Todas las conexiones a bases admitidas están incluidas en Free. Starter y Team añaden funciones opcionales a la app para Mac.",
         "link": "Ver precios"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Funciona en {devices}",
             "bundled": "El controlador viene con la app para Mac",
-            "registry": "El controlador se descarga la primera vez que eliges {name}",
-            "free": "Uso gratuito, con <pricing>planes de pago opcionales</pricing>"
+            "registry": "El controlador se descarga al usar {name} por primera vez",
+            "free": "Incluido en Free; <pricing>los planes de pago añaden funciones opcionales</pricing>"
         },
         "release": "Nuevo en {version}",
         "docs": "Guía de configuración de {name}",
@@ -147,7 +147,7 @@
             "related": "Relacionado"
         },
         "iphone": {
-            "picker": "{name} aparece al crear una conexión en la app para iPhone y iPad, y la app se conecta directamente.",
+            "picker": "{name} está disponible al crear una conexión en la app para iPhone y iPad.",
             "synced": "La app para iPhone y iPad solo abre conexiones de {name} cuando vienen de un Mac, mediante iCloud Sync o un archivo de conexión exportado. No puedes crear una allí.",
             "none": "La app para iPhone y iPad no tiene un controlador de {name}. Las conexiones de {name} sincronizadas desde un Mac aparecen en la lista, pero no se abren.",
             "link": "TablePro para iPhone y iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "Consigue TablePro",
-            "mac": "La app para Mac se descarga y usa gratis. Un plan Starter o Team añade funciones opcionales.",
+            "mac": "Descarga gratis la app para Mac. Starter y Team añaden funciones opcionales.",
             "ios": "La app para iPhone y iPad está en el App Store.",
             "pricing": "Ver precios"
         }

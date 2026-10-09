@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Client Snowflake cho {devices}",
-        "lead": "Đăng nhập theo cách tài khoản của bạn yêu cầu, chuyển session giữa các warehouse và role mà không cần kết nối lại, rồi query, sửa dữ liệu và unload table vào stage."
+        "title": "Snowflake client",
+        "lead": "Query và sửa table, chuyển warehouse và role, export tới stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Kết nối và đăng nhập",
             "paragraphs": [
-                "Nhập mã định danh tài khoản, như <code>myorg-myaccount</code> hoặc locator kiểu cũ <code>xy12345.us-east-1</code>: tức là phần đứng trước <code>.snowflakecomputing.com</code>. Mọi request đều đi qua HTTPS tới endpoint của tài khoản đó, nên form không có ô host, không có mục SSL và cũng không có phần SSH.",
-                "Chọn <ui>Phương thức xác thực (Auth Method)</ui> và form chỉ hiện những ô phương thức đó cần. Key pair ký mỗi lần kết nối bằng private key PKCS#8 của bạn, nên đồng hồ của máy Mac phải chính xác. SSO qua trình duyệt đưa bạn tới identity provider. OAuth token được dùng nguyên như khi dán vào và không bao giờ được làm mới. Mật khẩu đi kèm một mã còn hiệu lực trong ô <ui>Mã MFA (TOTP)</ui> (MFA Passcode) khi tài khoản bắt buộc MFA.",
+                "Nhập account identifier trước <code>.snowflakecomputing.com</code>, như <code>myorg-myaccount</code>. Request dùng HTTPS; không cần host, phần TLS hay SSH pane.",
+                "Chọn <ui>Auth Method</ui>: cặp key PKCS#8, SSO qua trình duyệt, OAuth token hoặc mật khẩu với <ui>MFA Passcode (TOTP)</ui>. Cặp key cần đồng hồ thiết bị chính xác. OAuth token dán vào không được refresh.",
                 "Khi tài khoản bật <code>ALLOW_CLIENT_MFA_CACHING</code>, bạn chỉ cần nhập passcode mới một lần: Snowflake trả về một MFA token và TablePro giữ nó trong <credentials>Keychain</credentials>. Khi bật <code>ALLOW_ID_TOKEN</code>, SSO qua trình duyệt cũng lưu một token đăng nhập ở đó, và những lần kết nối sau không cần mở trình duyệt cho tới khi Snowflake từ chối token.",
                 "Snowflake không có URL scheme. Thay vào đó, hãy nhập tên một section vào <ui>Tên kết nối CLI (CLI Connection Name)</ui>, và mọi ô bạn để trống sẽ được đọc từ <code>~/.snowflake/connections.toml</code> khi kết nối."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouse, role và query",
             "paragraphs": [
-                "<ui>Cơ sở dữ liệu > Session Context (Database > Session Context)</ui> chuyển session sang warehouse hoặc role khác bằng <code>USE WAREHOUSE</code> và <code>USE ROLE</code>, không cần kết nối lại. Mỗi connection trong TablePro là một session Snowflake, được giữ mở cả khi không hoạt động, và tab gắn với cơ sở dữ liệu thứ hai sẽ chạy <code>USE DATABASE</code> trước các câu lệnh của nó trên chính session đó.",
+                "Đổi warehouse và role bằng <ui>Database > Session Context</ui>. Connection giữ một session khi idle; tab ở cơ sở dữ liệu khác chạy <code>USE DATABASE</code> trước câu lệnh.",
                 "Sidebar nhóm các đối tượng theo cơ sở dữ liệu và schema. Danh sách đối tượng lấy từ các lệnh <code>SHOW</code>, chạy được khi chưa có warehouse; thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse. <explain>Explain</explain> trả về plan của Snowflake dưới dạng text thô.",
-                "<editing>Thay đổi trong data grid</editing> được bind giá trị phía server, ô VARIANT, OBJECT và ARRAY được gửi qua <code>PARSE_JSON</code>. Mỗi thay đổi dựa trên khóa chính đã khai báo, hoặc trên mọi cột nếu table không có khóa chính. Snowflake không bao giờ thực thi ràng buộc khóa, nên một giá trị khóa bị trùng nghĩa là thao tác sửa hay xóa sẽ chạm tới mọi dòng khớp với nó: hãy kiểm tra dữ liệu trùng trước khi sửa table."
+                "<editing>Sửa trong data grid</editing> bind giá trị trên server, ô VARIANT, OBJECT và ARRAY gửi qua <code>PARSE_JSON</code>. Thay đổi dựa vào khóa chính đã khai báo, hoặc mọi cột nếu không có. Table Snowflake standard không cưỡng chế ràng buộc key, nên key trùng khiến sửa hoặc xóa tác động mọi dòng khớp: kiểm tra dòng trùng trước khi sửa. Table hybrid cưỡng chế key."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
                 "<importData>Import</importData> file {importFormats} qua connection, và export table hoặc kết quả query về máy Mac ra {exportFormats}.",
-                "Muốn unload một table mà không kéo dữ liệu về máy Mac, hãy chọn <ui>Tệp > Server-Side Export…</ui> (File > Server-Side Export…) rồi nhập tên stage, có hoặc không có <code>@</code>. <backup>Server-Side Export</backup> chạy <code>COPY INTO</code> với quyền của chính bạn và ghi ra CSV nén gzip, Parquet hoặc JSON; hộp thoại chờ tới khi unload xong, và không có gì được ghi xuống máy Mac."
+                "Chọn <ui>File > Server-Side Export…</ui> và stage. <backup>Server-Side Export</backup> chạy <code>COPY INTO</code> với quyền của bạn, ghi CSV gzip, Parquet hoặc JSON. Chờ hoàn tất; file không đi qua máy Mac."
             ]
         }
     ],

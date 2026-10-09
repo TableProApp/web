@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs. MongoDB Compass: eine Datenbank oder viele",
+        "title": "TablePro vs MongoDB Compass: Shell oder visuelle Werkzeuge",
         "description": "MongoDB Compass ist die kostenlose GUI von MongoDB, mit Aggregationsstufen und Schemaanalyse. TablePro deckt MongoDB neben SQL und Redis auf dem Mac ab."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs. MongoDB Compass",
-        "lead": "MongoDB Compass ist die eigene kostenlose GUI von MongoDB, um Daten zu erkunden, Aggregation-Pipelines aufzubauen und das Schema einer Collection zu untersuchen. TablePro ist ein Open-Source-Client, der sich neben SQL-Datenbanken, Redis und weiteren Engines auch mit MongoDB verbindet, mit optionalen kostenpflichtigen Funktionen auf dem Mac."
+        "lead": "Compass ist MongoDBs eigene Oberfläche mit Aggregationseditor und Schemaanalyse. TablePro verbindet MongoDB mit deinen SQL-Datenbanken und weiteren Engines in einem Client."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB ist eine von mehreren Datenbanken, neben PostgreSQL, MySQL, SQL Server oder Redis, und du möchtest einen Client für alle.",
-            "Du magst eine Shell im Stil von mongosh, mit Variablen, Schleifen und Autovervollständigung für Collections, Feldpfade und Operatoren.",
-            "Du möchtest ein Feld in einer ganzen Collection umbenennen oder entfernen und jede Anweisung vor der Ausführung sehen.",
-            "Du möchtest einen KI-Assistenten mit einem Anbieter deiner Wahl, in der Cloud oder auf deinem Mac, und einen MCP-Server für externe KI-Clients."
+            "MongoDB neben PostgreSQL, MySQL, SQL Server oder Redis.",
+            "Eine Shell im Stil von mongosh mit Variablen, Schleifen und Autovervollständigung.",
+            "Feldänderungen in ganzen Collections; Anweisungen werden vor der Ausführung angezeigt."
         ],
         "competitor": [
-            "MongoDB ist deine einzige Datenbank, und du möchtest das kostenlose Tool von MongoDB selbst.",
-            "Du baust Aggregation-Pipelines Stufe für Stufe auf und möchtest nach jeder Stufe eine Vorschau.",
-            "Du untersuchst das Schema einer Collection oder modellierst Collections und ihre Beziehungen in einem Diagramm.",
-            "Du möchtest einen visuellen Explain-Plan und Live-Servermetriken für MongoDB.",
-            "Du arbeitest auch unter Windows oder Linux."
+            "Ein Aggregationseditor mit Vorschau für jede Stufe.",
+            "Schemaanalyse, Collection-Modellierung und Beziehungsdiagramme.",
+            "Visuelle Ausführungspläne und Live-Metriken des MongoDB-Servers."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass ist die eigene GUI von MongoDB und kostenlos.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Aggregation-Pipelines entstehen Stufe für Stufe, mit einer Datenvorschau nach jeder Stufe.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Es wertet eine Stichprobe der Dokumente einer Collection aus und zeigt Feldtypen, Datumsbereiche und häufige Werte, und es zeichnet ein Entity-Relationship-Diagramm der Collections einer Datenbank.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Explain-Pläne sind visuell, und Live-Servermetriken sind eingebaut.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Es läuft unter Windows, macOS und Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "Der <link>KI-Assistent</link> arbeitet mit einem KI-Anbieter deiner Wahl, in der Cloud oder auf deinem Mac, und mit dem MCP-Server nutzen externe KI-Clients deine gespeicherten Verbindungen. Beides ist kostenlos. Die KI-Funktionen von Compass nutzen Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Es gibt keine TablePro-App für Windows oder Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "Welche KI nutzen die beiden?",
             "answer": "Die Abfragen in natürlicher Sprache und der Assistent von Compass nutzen Azure OpenAI, und du kannst die KI-Funktionen in den Einstellungen abschalten. Der KI-Assistent von TablePro nutzt den Anbieter deiner Wahl, auch ein Modell auf deinem Mac, und ist in der Mac-App kostenlos. <link>Mehr zu KI in TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "Ist TablePro für MongoDB kostenlos?",
-            "answer": "Ja. MongoDB und die übrigen unterstützten Engines, der KI-Assistent und der MCP-Server sind in der Mac-App kostenlos. Kostenpflichtige Tarife ergänzen optionale Funktionen wie {starterExamples}. <link>Preise ansehen</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

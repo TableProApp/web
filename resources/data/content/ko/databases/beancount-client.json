@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "{devices}에서 Beancount 원장을 SQL로 쿼리",
+        "title": "{devices}용 Beancount 클라이언트",
         "description": "Beancount 원장을 거래, 분개, 잔액과 메타데이터의 읽기 전용 SQL 테이블로 열고 include를 따라가며 rledger로 BQL을 실행합니다."
     },
     "og": {
@@ -10,8 +10,8 @@
     "engine": "beancount",
     "breadcrumb": "Beancount",
     "header": {
-        "title": "{devices}에서 Beancount 원장을 SQL로 쿼리",
-        "lead": "<code>.beancount</code> 파일을 열어 거래, 분개, 잔액과 메타데이터를 SQL 테이블로 쿼리하거나 rledger에 BQL을 보냅니다. 원장은 본인의 편집기로 수정하는 텍스트 파일로 유지됩니다."
+        "title": "Beancount 클라이언트",
+        "lead": "원장을 SQL 테이블로 조회하거나 rledger로 BQL을 사용하세요. 원본 원장은 별도의 텍스트 편집기에서 편집합니다."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -24,8 +24,8 @@
             "id": "connect",
             "title": "원장 열기",
             "paragraphs": [
-                "TablePro는 <code>rledger</code>나 Python Beancount를 실행해 원장을 읽습니다. 선택한다면 rledger를 설치하세요. 둘 다 있으면 우선 사용하며 BQL 실행과 검증 결과를 <code>diagnostics</code> 테이블에 채우는 기능은 rledger만 제공합니다.",
-                "연결 양식의 <ui>찾아보기…</ui>(Browse…)로 파일을 선택합니다. 원장 경로가 연결의 전부이며 호스트, 포트, 비밀번호나 데이터베이스는 없습니다. <code>.beancount</code>는 Finder에서도 열리고 <code>beancount:///path/to/main.beancount</code> URL을 가져올 수 있습니다.",
+                "<code>rledger</code> 또는 Python Beancount를 설치하세요. 둘 다 있으면 rledger를 우선 사용합니다. BQL과 <code>diagnostics</code> 검증 결과는 rledger만 지원합니다.",
+                "<ui>찾아보기…</ui> (Browse…)로 원장을 선택하거나 Finder에서 <code>.beancount</code> 파일을 여세요. 경로만으로 연결됩니다. <code>beancount:///path/to/main.beancount</code> URL도 가져올 수 있습니다.",
                 "Finder에서 연 앱은 셸의 <code>PATH</code>를 상속하지 않습니다. Terminal에서만 백엔드가 작동한다면 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 또는 <code>TABLEPRO_BEANCOUNT_PYTHON</code>으로 지정하고 다시 실행하세요.",
                 "Python 백엔드는 Beancount에 포함된 플러그인을 실행하고 외부 코드인 다른 <code>plugin</code> 지시문은 연결에서 <ui>원장 플러그인 실행</ui>(Run Ledger Plugins)을 켜기 전까지 건너뜁니다. 건너뛴 플러그인은 <code>diagnostics</code>에 나열됩니다."
             ]
@@ -34,7 +34,7 @@
             "id": "work",
             "title": "원장 쿼리",
             "paragraphs": [
-                "테이블에는 거래와 분개, 계정, 잔액과 잔액 검증, 가격과 상품, 기타 모든 지시문, 메타데이터, 태그·링크와 원본 파일이 포함됩니다. 분개는 <code>transaction_id</code>로 거래와 조인하며 계정은 이름으로 조인합니다.",
+                "거래, 전기 항목, 계정, 잔액, 가격, 지시문, 메타데이터, 원본 파일을 테이블로 조회하세요. 전기 항목과 거래는 <code>transaction_id</code>로, 계정은 이름으로 조인합니다.",
                 "금액은 산술, 원가와 가격이 계산된 기장 값으로 전달되며 분개 원가와 인라인 가격은 별도 열에 있습니다. 거래, 분개와 일부 지시문 테이블에는 <code>main.beancount:42</code> 같은 <code>source_location</code>이 있어 원본 줄을 찾을 수 있습니다.",
                 "쿼리 앞에 <code>BQL:</code>을 붙이면 테이블 대신 rledger로 보냅니다. BQL 결과는 탐색, 행 수와 페이지 처리를 지원하지만 SQL 매개변수는 지원하지 않습니다.",
                 "<code>include</code>는 명시 경로와 glob 모두 따라가며 모든 원장 파일과 참조 문서를 감시합니다. 편집기에서 저장하면 재연결 없이 다음 쿼리가 읽습니다. 연결은 항상 <safeMode>Safe Mode</safeMode> Read-Only이며 INSERT, UPDATE, DELETE와 스키마 변경을 거부합니다."

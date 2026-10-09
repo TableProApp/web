@@ -68,6 +68,8 @@ export interface ComparePageContent {
     og: { kicker: string; title: string };
     header: { title: string; lead: string };
     shortAnswer: {
+        /** Replaces the shared lead when the alternative is a successor rather than the named product. */
+        lead?: string;
         tablepro: string[];
         competitor: string[];
         /** Replaces "Choose {name} if" where that heading would mislead (Sequel Pro: "Choose Sequel Ace if"). */

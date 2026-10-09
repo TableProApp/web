@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Bancos de dados compatíveis",
-        "description": "Veja os bancos compatíveis com TablePro, suas linguagens de consulta, drivers integrados ou baixados e disponibilidade no iPhone e iPad."
+        "description": "Encontre seu banco de dados, verifique os recursos suportados e compare idiomas de consulta, entrega de driver e disponibilidade de iPhone e iPad."
     },
     "og": {
         "kicker": "Bancos de dados",
-        "title": "Bancos de dados aos quais TablePro se conecta"
+        "title": "Bancos de dados compatíveis"
     },
     "header": {
-        "title": "Bancos de dados aos quais TablePro se conecta",
-        "lead": "Drivers nativos para {count} bancos de dados, incluindo {featured}. Cada linha informa a linguagem usada para consultar o mecanismo, a origem do driver e se ele abre no iPhone e iPad."
+        "title": "Bancos de dados compatíveis",
+        "lead": "Encontre seu banco de dados e verifique os recursos suportados. TablePro se conecta aos motores {count}, incluindo {featured}."
     },
     "jump": "Categorias",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Analíticos e data warehouses",
-            "intro": "Data warehouses, mecanismos colunares e mecanismos de consultas federadas, nos quais uma varredura custa tempo ou dinheiro."
+            "intro": "Data warehouses, bancos de dados colunares e mecanismos de consulta entre catálogos."
         },
         "cloud": {
             "title": "Nuvem e serverless",
-            "intro": "Serviços SQL acessados por HTTP com um token da conta e arquivos libSQL no Mac."
+            "intro": "Serviços SQL sobre HTTP, além de arquivos libSQL locais."
         },
         "document": {
             "title": "Documentos",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Um log em vez de uma tabela: leia e grave mensagens com KafkaQL, a linguagem de comandos própria do TablePro."
+            "intro": "Leia e produza mensagens com KafkaQL, a linguagem de comando do TablePro."
         },
         "coordination": {
             "title": "Coordenação",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "Arquivos",
-            "intro": "Bancos de dados mantidos em arquivos que abrem no local, sem precisar executar um servidor."
+            "intro": "Consulte arquivos de banco de dados e livros contábeis sem um servidor de banco de dados."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Como os drivers são distribuídos",
         "paragraphs": [
-            "Os drivers de {bundled} acompanham o app para Mac e se conectam sem instalar mais nada.",
-            "Todos os outros drivers são plugins assinados, baixados na primeira vez que você escolhe o mecanismo, antes de abrir o formulário de conexão. Esse primeiro download exige acesso à internet.",
-            "Antes de instalar um driver baixado, TablePro verifica sua soma de verificação SHA-256 no registro de plugins e confere sua assinatura de código.",
-            "Os plugins têm seu próprio cronograma de atualização, permitindo corrigir um driver sem atualizar o app. Um driver em uso é atualizado depois que você reinicia o app.",
-            "O app para iPhone e iPad tem drivers integrados, portanto não há downloads nele."
+            "Os drivers para {bundled} vêm com o app para Mac. Nenhum software cliente separado é necessário para conectar.",
+            "Outros drivers são baixados como plug-ins assinados quando você seleciona o banco de dados pela primeira vez. O primeiro download precisa de uma conexão com a internet.",
+            "TablePro verifica a soma de verificação SHA-256 de cada plugin no registro e verifica sua assinatura de código antes da instalação.",
+            "Os plug-ins do driver são atualizados separadamente do aplicativo. As atualizações de um driver em uso entram em vigor após a reinicialização.",
+            "O aplicativo para iPhone e iPad possui drivers integrados; ele não baixa plug-ins."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro para iPhone e iPad"
     },
     "license": {
-        "title": "Nenhum banco de dados exige uma licença",
-        "body": "A conexão a qualquer mecanismo desta página é gratuita. Um plano Starter ou Team adiciona recursos opcionais ao app para Mac, e nenhum deles está vinculado a um banco de dados específico.",
+        "title": "Incluído no Grátis",
+        "body": "Todas as conexões de banco de dados suportadas estão incluídas no Free. Starter e Team adicionam recursos opcionais ao app para Mac.",
         "link": "Ver preços"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Funciona em {devices}",
             "bundled": "O driver acompanha o app para Mac",
-            "registry": "O driver é baixado na primeira vez que você escolhe {name}",
-            "free": "Uso gratuito, com <pricing>planos pagos opcionais</pricing>"
+            "registry": "Downloads de driver no primeiro uso do {name}",
+            "free": "Incluído no Grátis; Planos pagos <pricing>adicionam recursos opcionais</pricing>"
         },
         "release": "Novo na versão {version}",
         "docs": "Guia de configuração de {name}",
@@ -147,7 +147,7 @@
             "related": "Relacionados"
         },
         "iphone": {
-            "picker": "{name} aparece ao criar uma conexão no app para iPhone e iPad, e o app se conecta diretamente a ele.",
+            "picker": "{name} é oferecido quando você cria uma conexão no aplicativo para iPhone e iPad.",
             "synced": "O app para iPhone e iPad só abre conexões {name} quando elas vêm de um Mac, pelo iCloud Sync ou por um arquivo de conexão exportado. Você não pode criá-las nele.",
             "none": "O app para iPhone e iPad não tem um driver de {name}. As conexões {name} sincronizadas de um Mac aparecem na lista, mas não abrem.",
             "link": "TablePro para iPhone e iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "Baixe TablePro",
-            "mac": "O app para Mac é gratuito para baixar e usar. Um plano Starter ou Team adiciona recursos opcionais.",
+            "mac": "Baixe o app para Mac gratuitamente. Starter e Team adicionam recursos opcionais.",
             "ios": "O app para iPhone e iPad está na App Store.",
             "pricing": "Ver preços"
         }

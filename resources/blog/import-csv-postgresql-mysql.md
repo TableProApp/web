@@ -1,14 +1,14 @@
 ---
 slug: import-csv-postgresql-mysql
-title: "How to import a CSV file into PostgreSQL or MySQL"
-description: Load a CSV into a table with psql's \copy or MySQL's LOAD DATA, or in TablePro with column mapping, a new table built from the file, and one transaction.
+title: "Import a CSV file into PostgreSQL or MySQL"
+description: Load CSV data with PostgreSQL’s \copy, MySQL’s LOAD DATA or TablePro. Map columns, create a table from a file and choose how to handle errors.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: \copy, LOAD DATA, or an import with column mapping.
 tags: [postgresql, mysql, import, data-files]
 ---
 
-Both servers have a bulk loader built in, and both want two things settled first: a table whose columns match the file, and a file the server or the client is allowed to read. This guide gives the plain commands, then the same import in TablePro.
+Use PostgreSQL’s `\copy`, MySQL’s `LOAD DATA` or TablePro to import CSV rows. The command-line loaders need a matching table first; TablePro can also create one from the file.
 
 ## PostgreSQL: \copy {#postgresql}
 
@@ -44,9 +44,9 @@ IGNORE 1 LINES
 
 `LOCAL` reads the file from your Mac. MySQL 8 turns it off on the server by default, so it needs `local_infile=ON` on the server and the client started with `mysql --local-infile=1`. Without `LOCAL`, the server reads its own disk and `secure_file_priv` limits where. A file saved on Windows ends its lines with `\r\n`; say so in `LINES TERMINATED BY`.
 
-## In TablePro {#in-tablepro}
+## Import in TablePro {#in-tablepro}
 
-TablePro's import reads the file on your Mac and inserts the rows over the connection you already have, so neither `local_infile` nor a file on the server comes into it.
+TablePro reads the local file and inserts rows through your database connection. It needs neither `local_infile` nor a copy on the server.
 
 1. Open the connection.
 2. Choose **File > Import > Import Data…** (`Cmd+Shift+I`) and pick the `.csv` or `.tsv` file. The extension picks the format. For a CSV saved as `.txt` or with no extension, use **File > Import > Import Data From** and name the format.
@@ -58,21 +58,21 @@ Changing a parsing option reads the file again, and a field that is still there 
 
 ### Map the fields {#mapping}
 
-Every field in the file gets a row with a checkbox and a column menu. A field named like a column, ignoring case, starts mapped to it. The rest start on **Skip**. **Match Columns** fills them all at once:
+Fields are matched to columns by name, ignoring case. Unmatched fields start on **Skip**. Use each field’s checkbox and column menu, or **Match Columns**:
 
 - **Match by Name**: each field to the column of the same name.
 - **Match by Position**: the first field to the first column, and so on.
 - **Use Saved Mapping**: the mapping you used for this table last time.
 
-TablePro saves every choice that differs from the name match, per table, when you click **Import**. The next file into that table starts from it, and the sheet says **Restored the mapping saved for** and the table name. Saved mappings stay on this Mac.
+Clicking **Import** saves custom mappings for that table on this Mac. The next import restores them and shows **Restored the mapping saved for** with the table name.
 
-### Or create the table from the file {#new-table}
+### Create a table from the file {#new-table}
 
-With **New table**, the name comes from the file name, lowercased, with spaces and punctuation turned into underscores. A name that is taken gets a numeric suffix, so a second `orders.csv` proposes `orders_2`. Under it, each column has a name, a type, a primary key flag, a nullable flag and a default, all editable before anything is created.
+**New table** uses the lowercase filename, replacing spaces and punctuation with underscores. Existing names get a suffix: a second `orders.csv` proposes `orders_2`. Edit each column’s name, type, primary key, nullable flag and default before creating the table.
 
-Types are inferred from every row in the file, not a sample. A column that holds numbers in every row but one is typed as text, which is usually the hint that one row is malformed.
+Types are inferred from every row, not a sample. One non-numeric value can make an otherwise numeric column text; check the file if the inferred type looks wrong.
 
-### When a row fails {#errors}
+### Choose error handling {#errors}
 
 | Option | Default |
 |---|---|
@@ -86,21 +86,21 @@ Quoted fields keep embedded commas and line breaks, and `""` inside quotes reads
 
 ## Clean the file first {#clean-first}
 
-If the file needs work, such as trimming whitespace, removing duplicate rows or splitting a column, open it first with **File > Open File…**. It opens in a window of its own, with a grid, filters and find and replace, without a database. When it looks right, choose **Edit > Data > Import into Table…** and pick the connection. The import sheet opens with the rows as they are in that window, unsaved edits included.
+To trim whitespace, remove duplicates or split a column, use **File > Open File…** first. The standalone window has a grid, filters and find and replace. Choose **Edit > Data > Import into Table…** and a connection to import those rows, including unsaved edits.
 
 That is also the route for a compressed `.csv.gz`, which **Import Data…** does not read.
 
-## Where it stops {#limits}
+## Limitations {#limits}
 
 - An Excel `.xlsx` workbook imports its first worksheet only.
 - On a connection at the **Read-Only** Safe Mode level, import is turned off. At the **Alert** and **Safe Mode** levels it asks before it writes.
 - MySQL's `LOAD DATA LOCAL INFILE` typed into the editor is refused by TablePro's driver. Use **Import Data…** instead.
 - Into an existing table, each field goes to a column the table already has, or is skipped.
 
-## If it does not import {#troubleshooting}
+## Troubleshooting {#troubleshooting}
 
 - **Every value lands in one column**: the delimiter was guessed wrong. Set **Delimiter** by hand.
 - **Accented or Japanese text arrives garbled**: the file is not in the encoding that was picked. Set **Encoding** to the one it was saved in, such as Windows-1252 or Shift JIS.
 - **A date or number column rejects rows**: the database could not read the value as that type. Import into a text column, or into a new table, and convert with SQL afterwards.
 
-All the options, including JSON and Excel imports, are in the [Import & Export](https://docs.tablepro.app/features/import-export) docs, and the window for cleaning files is in [Data Files](https://docs.tablepro.app/features/data-files). On this site, see [importing files into a table](/features/import-export#import) and the [PostgreSQL](/postgresql-client) and [MySQL](/mysql-client) pages.
+See [Import & Export](https://docs.tablepro.app/features/import-export) for JSON and Excel options, and [Data Files](https://docs.tablepro.app/features/data-files) for file editing. Feature overviews: [import](/features/import-export#import), [PostgreSQL](/postgresql-client) and [MySQL](/mysql-client).

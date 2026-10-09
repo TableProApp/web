@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs pgAdmin: PostgreSQL admin tool or a client",
+        "title": "TablePro vs pgAdmin: PostgreSQL tools and administration",
         "description": "pgAdmin is the free, open-source administration tool for PostgreSQL, on a desktop or a web server. TablePro covers PostgreSQL and other engines."
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs pgAdmin",
-        "lead": "pgAdmin 4 is the free, open-source administration and development tool for PostgreSQL. It runs as a desktop app on Windows, macOS and Linux, or on a web server that several people share. TablePro is an open-source client for PostgreSQL and other engines, with a separate iPhone and iPad app and optional paid features on the Mac."
+        "lead": "pgAdmin focuses on PostgreSQL administration, in a desktop app or on a shared web server. TablePro supports PostgreSQL alongside other database types."
     },
     "shortAnswer": {
         "tablepro": [
-            "You also work with MySQL, SQL Server, SQLite, Redis or MongoDB, not only PostgreSQL.",
-            "You want a native Mac app written in Swift, with passwords in the macOS Keychain.",
-            "You want each connection to have a Safe Mode level, such as Read-Only for production, or Touch ID before writes.",
-            "You want an MCP server, so AI clients such as Claude Code or Cursor can use your saved connections.",
-            "You want a free iPhone and iPad app that connects to PostgreSQL."
+            "PostgreSQL alongside MySQL, SQL Server, SQLite, Redis or MongoDB.",
+            "Per-connection Safe Mode, including Touch ID before writes.",
+            "Free MCP or a separate free iPhone and iPad app."
         ],
         "competitor": [
-            "PostgreSQL is all you use, and administration is most of the work.",
-            "You debug PL/pgSQL functions, or schedule jobs with pgAgent.",
-            "You want psql, pg_dump and pg_restore bundled, with nothing else to install.",
-            "You want one install on a web server that your team opens in a browser.",
-            "You also work on Windows or Linux."
+            "PostgreSQL administration, including a PL/pgSQL debugger and pgAgent jobs.",
+            "Bundled psql, pg_dump and pg_restore.",
+            "A shared web-server installation, or Windows and Linux support."
         ]
     },
     "glance": {
@@ -57,31 +53,43 @@
         "items": [
             {
                 "text": "pgAdmin is built for PostgreSQL, and for EDB Postgres Advanced Server.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Its debugger steps through PL/pgSQL functions, and its schema diff tool compares two schemas. Both are free.",
-                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "cite": [
+                    "cells.debugger",
+                    "cells.schemaDiff"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "The ERD tool designs and documents a schema.",
-                "cite": ["cells.diagram"],
+                "cite": [
+                    "cells.diagram"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "psql, pg_dump, pg_dumpall and pg_restore come with it, so backup and restore work with nothing else to install.",
-                "cite": ["cells.backupRestore"],
+                "cite": [
+                    "cells.backupRestore"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It runs on Windows, macOS and Linux, or on a web server for several users, and pgAgent schedules SQL, shell and batch jobs.",
-                "cite": ["platforms", "cells.jobScheduler"],
+                "cite": [
+                    "platforms",
+                    "cells.jobScheduler"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,7 +106,9 @@
             },
             {
                 "text": "TablePro is a Mac app written in Swift, with native database drivers. pgAdmin is a Python web application that runs in an {technology} desktop runtime or on a web server.",
-                "cite": ["technology"],
+                "cite": [
+                    "technology"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -132,7 +142,7 @@
         "intro": "",
         "items": [
             {
-                "text": "There is no TablePro app for Windows or Linux, and no web version to install on a server.",
+                "text": "There is no web version to install on a server.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -157,7 +167,9 @@
             },
             {
                 "text": "<link>Compare & Sync</link> is part of Starter, while pgAdmin’s schema diff is free.",
-                "cite": ["cells.schemaDiff"],
+                "cite": [
+                    "cells.schemaDiff"
+                ],
                 "feature": "compare-sync",
                 "href": null
             }
@@ -185,12 +197,6 @@
             "question": "Can my team share TablePro the way it shares a pgAdmin server?",
             "answer": "Not in a browser: TablePro runs on each Mac. People share connections through connection files, or through Team Catalog and Team Library on a Team plan. <link>Read about sharing</link>.",
             "href": "/features/sync-and-teams"
-        },
-        {
-            "id": "free",
-            "question": "Is TablePro free like pgAdmin?",
-            "answer": "Free to use. PostgreSQL and the other supported engines, the AI assistant and the MCP server cost nothing, and the code is open source under the AGPLv3. Unlike pgAdmin, TablePro also has paid plans: Starter and Team add optional features to the Mac app, such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "Client ClickHouse pour {devices}",
-        "lead": "Exécutez du SQL analytique via l’interface HTTP de ClickHouse, lisez le plan, le pipeline ou l’estimation de lignes d’une requête et gérez les parts et partitions MergeTree depuis l’onglet Parts. Les longues requêtes indiquent les lignes lues pendant l’exécution et Stop les termine sur le serveur."
+        "title": "Client ClickHouse",
+        "lead": "Exécutez des requêtes analytiques et inspectez plans, pipelines, parts et partitions des tables."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez l’hôte et le port HTTP, un utilisateur et, si vous le souhaitez, une base de données. Le changement de base s’effectue sur place et un onglet ouvert conserve sa base initiale. <ui>Présentation > Barre latérale en arborescence</ui> (View > Sidebar as Tree) affiche les bases du serveur dans une arborescence à développer sur place.",
+                "Saisissez l’hôte, le port HTTP, l’utilisateur et, si besoin, une base. Changez de base sans reconnexion. Les onglets gardent leur base initiale ; <ui>Présentation > Barre latérale en arborescence</ui> (View > Sidebar as Tree) développe les bases sur place.",
                 "Choisissez un mode SSL pour passer à HTTPS. Un port 443 ou 8443, ce dernier utilisé par ClickHouse Cloud, active Verify Identity, qui contrôle le certificat avec votre fichier d’AC ou le magasin de confiance du système. Verify CA nécessite un fichier d’AC ; un certificat client et sa clé permettent d’accéder aux serveurs exigeant TLS mutuel.",
                 "Sans TLS, accédez à un serveur distant via un <network>tunnel SSH</network> plutôt que d’envoyer du HTTP en clair sur le réseau."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Chaque requête porte son propre ID et demande des informations de progression ; une longue requête indique ainsi les lignes lues. Stop envoie <code>KILL QUERY</code> pour cet ID et le délai de requête de la connexion est transmis au serveur.",
+                "Suivez les lignes lues pendant une requête. Stop envoie <code>KILL QUERY</code> ; les délais sont transmis au serveur.",
                 "Le <explain>menu Explain</explain> propose Plan, Pipeline, AST, Syntax et Estimate. La sortie indentée est représentée en diagramme ou en arbre ; Estimate affiche les lignes, marks et parts que la requête lirait.",
-                "Les modifications de la grille partent comme <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> et <code>ALTER TABLE … DELETE</code>, précédées de <editing>Preview SQL</editing>. ClickHouse effectue mises à jour et suppressions comme mutations en arrière-plan : enregistrer signifie donc accepté, pas encore appliqué ; <code>system.mutations</code> montre la progression. Une vue matérialisée s’ouvre en lecture seule.",
+                "Consultez <editing>Preview SQL</editing> avant les insertions et les mutations UPDATE ou DELETE. Un enregistrement est accepté, pas encore appliqué ; suivez-le dans <code>system.mutations</code>. Les vues matérialisées sont en lecture seule.",
                 "Un résultat contenant des tuples de points ou d’anneaux ClickHouse s’ouvre dans la <map>vue Carte</map>. Une requête avec sa propre clause <code>FORMAT</code> affiche la sortie brute du serveur dans une colonne ; omettez cette clause pour obtenir une grille."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "Tables, parts et partitions",
             "paragraphs": [
                 "Une table s’ouvre avec les onglets Structure, Indexes, DDL et Parts. Indexes affiche la clé de tri et les index de saut de données ; DDL montre le <code>CREATE TABLE</code> complet, moteur et paramètres compris.",
-                "Parts répertorie chaque part de <code>system.parts</code> avec sa partition, ses lignes, sa taille sur disque, sa date de modification et son indicateur d’activité, puis permet d’exécuter Optimize, Drop Partition et Detach Partition.",
+                "Parts affiche partition, nombre de lignes, taille et état actif depuis <code>system.parts</code>. Lancez Run Optimize, Drop Partition ou Detach Partition dans l’onglet Parts.",
                 "L’<structure>onglet Structure</structure> ajoute, modifie et supprime des colonnes et supprime les index de saut de données. La clé de tri et la clé primaire sont fixées à la création ; ajoutez donc un index de saut avec <code>ALTER TABLE … ADD INDEX</code> et recréez la table pour les autres changements."
             ]
         },

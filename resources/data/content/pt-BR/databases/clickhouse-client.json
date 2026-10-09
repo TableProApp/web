@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "Cliente de ClickHouse para {devices}",
-        "lead": "Execute SQL analítico pela interface HTTP do ClickHouse, leia o plano, o pipeline ou a estimativa de linhas de uma consulta e gerencie partes e partições MergeTree pela aba Parts da tabela. Consultas longas informam as linhas lidas durante a execução, e Stop as encerra no servidor."
+        "title": "Cliente de ClickHouse",
+        "lead": "Execute consultas analíticas, inspecione planos e pipelines e gerencie partes e partições de tabelas."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Informe o host, a porta HTTP, um usuário e, se quiser, um banco. Alternar o banco acontece na mesma conexão, e uma aba aberta permanece no banco em que começou. <ui>View > Sidebar as Tree</ui> mostra os bancos do servidor como uma árvore que você expande no local.",
+                "Insira um host, porta HTTP, usuário e banco de dados opcional. Troque de banco de dados sem reconectar. As abas abertas mantêm seu banco de dados inicial; <ui>View > Sidebar as Tree</ui> expande os bancos de dados existentes.",
                 "Escolha qualquer modo SSL para usar HTTPS. As portas 443 ou 8443, usada pelo ClickHouse Cloud, ativam Verify Identity, que verifica o certificado com o arquivo CA ou o repositório de confiança do sistema. Verify CA exige um arquivo CA, e um certificado e uma chave de cliente acessam servidores que exigem TLS mútuo.",
                 "Sem TLS, acesse um servidor remoto por um <network>túnel SSH</network> em vez de enviar HTTP sem criptografia pela rede."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Consulte e edite",
             "paragraphs": [
-                "Cada consulta leva seu próprio ID e solicita progresso, portanto uma consulta longa informa as linhas lidas durante a execução. Stop envia <code>KILL QUERY</code> para esse ID, e o timeout de consulta da conexão chega ao servidor.",
+                "Acompanhe as linhas lidas durante a consulta. Stop envia <code>KILL QUERY</code>, e o tempo limite da consulta da conexão é enviado ao servidor.",
                 "O <explain>menu Explain</explain> oferece Plan, Pipeline, AST, Syntax e Estimate. A saída indentada é apresentada como diagrama ou árvore, e Estimate mostra as linhas, marcas e partes que uma consulta leria.",
-                "As edições na grade são enviadas como <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> e <code>ALTER TABLE … DELETE</code>, primeiro com <editing>Preview SQL</editing>. ClickHouse executa atualizações e exclusões como mutações em segundo plano, portanto salvar significa que foram aceitas, ainda não aplicadas; <code>system.mutations</code> mostra o progresso. Uma view materializada abre somente para leitura.",
+                "Revise <editing>Preview SQL</editing> antes de inserir linhas ou enviar mutações UPDATE e DELETE. Um salvamento bem-sucedido significa aceito, não aplicado; acompanhe o progresso em <code>system.mutations</code>. As visualizações materializadas são somente leitura.",
                 "Um resultado com tuplas de ponto ou anel do ClickHouse abre na <map>visualização Mapa</map>. Uma consulta com sua própria cláusula <code>FORMAT</code> mostra a saída bruta do servidor em uma coluna, portanto omita a cláusula para obter uma grade."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "Tabelas, partes e partições",
             "paragraphs": [
                 "Uma tabela abre com as abas Structure, Indexes, DDL e Parts. Indexes mostra a chave de ordenação e os índices data-skipping, e DDL mostra o <code>CREATE TABLE</code> completo, incluindo mecanismo e configurações.",
-                "Parts lista cada parte de <code>system.parts</code> com partição, linhas, tamanho no disco, data de modificação e indicação de atividade, e permite executar Optimize, Drop Partition e Detach Partition.",
+                "Inspecione peças do <code>system.parts</code>, incluindo partição, contagem de linhas, tamanho e status ativo. Execute Optimize, Eliminar partição ou Desanexar partição na guia Peças.",
                 "A <structure>aba Structure</structure> adiciona, modifica e remove colunas e remove índices data-skipping. A chave de ordenação e a chave primária são fixadas na criação da tabela, portanto adicione um índice data-skipping com <code>ALTER TABLE … ADD INDEX</code> e recrie a tabela para outras alterações."
             ]
         },

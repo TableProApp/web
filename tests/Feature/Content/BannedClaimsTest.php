@@ -220,16 +220,9 @@ function bannedClaimAllowlist(): array
         ],
         [
             'id' => 'A12',
-            'phrases' => ['a Pub/Sub workspace', 'không gian làm việc cho Pub/Sub'],
+            'phrases' => ['a Pub/Sub workspace', 'workspace Pub/Sub'],
             'sources' => ['resources/data/content/*/databases/redis-gui.json'],
             'evidence' => 'Redis Insight\'s own feature, on the page that concedes it (redis.io/insight)',
-            'spec' => false,
-        ],
-        [
-            'id' => 'A13',
-            'phrases' => ['không hoàn toàn miễn phí như HeidiSQL'],
-            'sources' => ['resources/data/content/vi/compare/heidisql.json'],
-            'evidence' => 'Denies the claim for TablePro and states it of HeidiSQL, which has no paid plan; English: "not entirely free the way HeidiSQL is" (heidisql.com)',
             'spec' => false,
         ],
     ];

@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "Amazon-Redshift-Client für {devices}",
-        "lead": "Frage einen bereitgestellten Cluster oder eine Serverless-Workgroup über den enthaltenen PostgreSQL-Treiber ab, lies Verteilungsart und Sortierschlüssel jeder Tabelle und durchsuche Spectrum- und Datashare-Schemas neben deinen eigenen."
+        "title": "Amazon-Redshift-Client",
+        "lead": "Frage bereitgestellte Cluster oder Serverless-Workgroups ab. Prüfe Sortierschlüssel, Verteilungsstile und externe Schemas."
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Nutze den Cluster-Endpunkt als Host oder den Workgroup-Endpunkt bei Redshift Serverless; beide nutzen denselben Port. Eine Datenbank ist erforderlich; jeder Cluster wird mit einer namens <code>dev</code> erstellt. Eine importierte <code>redshift://</code>-URL füllt das Formular.",
+                "Gib Endpunkt, Port und Datenbank eines Clusters oder Serverless-Workgroups ein. Cluster starten mit <code>dev</code>. Eine <code>redshift://</code>-URL füllt das Formular aus.",
                 "Neue Verbindungen nutzen SSL Preferred ohne Versionsprüfung; jeder noch von AWS betriebene Cluster verbindet. Das Passwort liegt im Schlüsselbund oder wird aus <code>~/.pgpass</code> gelesen, zwei <credentials>Zugangsdatenoptionen</credentials>. Ein nicht öffentlich erreichbarer Cluster wird per <network>SSH-Tunnel</network> zu einem Bastion-Host in seiner VPC erreicht."
             ]
         },
@@ -40,9 +40,9 @@
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
                 "Abfragen und <editing>vorgemerkte Zeilenänderungen mit Preview SQL</editing> funktionieren wie auf <postgresql>PostgreSQL</postgresql> über denselben Treiber. Ein an eine andere als die aktive Datenbank gebundener Tab öffnet dafür eine zweite Verbindung.",
-                "Tabelleninfo liest <code>svv_table_info</code> für Verteilungsart, Sortierschlüssel und Größe; DDL schreibt DISTKEY, SORTKEY, DISTSTYLE und ENCODE. Fremdschlüssel werden gelistet, aber von Redshift nicht erzwungen; nichts verhindert verletzende Zeilen.",
+                "Prüfe Verteilungsstil, Sortierschlüssel und Größe aus <code>svv_table_info</code>. Die DDL enthält DISTKEY, SORTKEY, DISTSTYLE und ENCODE. Fremdschlüssel werden angezeigt, aber von Redshift nicht erzwungen.",
                 "<explain>EXPLAIN und EXPLAIN VERBOSE</explain> liefern Redshifts Plan als Text statt Diagramm.",
-                "Schemas aus <code>CREATE EXTERNAL SCHEMA</code>, ob Spectrum über S3, föderierte Abfrage, datenbankübergreifender Verweis oder Datashare, stehen als Extern neben deinen eigenen. Ihre Tabellen lassen sich durchsuchen, filtern, sortieren und exportieren, sind aber schreibgeschützt: Redshift nimmt dort kein UPDATE oder DELETE. Sie zeigen keine Zeilenzahl; Spaltentypen stammen vom externen Katalog."
+                "Durchsuche externe Spectrum-, föderierte, datenbankübergreifende und Datashare-Schemas neben lokalen. Externe Tabellen unterstützen Filtern, Sortieren und Export, sind aber schreibgeschützt. Zeilenzahlen sind nicht verfügbar; Typen stammen aus dem externen Katalog."
             ]
         },
         {

@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "{devices}용 SQL Server 클라이언트",
-        "lead": "T-SQL 스크립트를 배치별로 실행하며 GO와 PRINT를 SQL Server Management Studio와 같은 방식으로 처리합니다. SQL Server 로그인, Kerberos 또는 Microsoft Entra ID 직장 계정으로 로그인합니다. Windows, Linux, Docker 서버와 Azure SQL Database도 같은 방식으로 연결합니다."
+        "title": "SQL Server 클라이언트",
+        "lead": "GO 배치와 PRINT 출력을 포함한 T-SQL 스크립트를 실행하세요. SQL Server 로그인, Kerberos, Microsoft Entra ID로 연결할 수 있습니다."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트와 TCP 포트를 입력한 뒤 <ui>인증</ui>(Authentication)을 선택하면 양식이 SQL Server 로그인·비밀번호, Kerberos를 통한 Windows 인증 또는 Microsoft Entra ID에 맞춰 바뀝니다. Azure SQL contained user처럼 한 데이터베이스에 속한 로그인은 Database도 입력하세요.",
+                "호스트와 TCP 포트를 입력하고 <ui>인증</ui> (Authentication)에서 SQL Server 로그인, Kerberos, Microsoft Entra ID를 선택하세요. Azure SQL 포함 사용자 등 데이터베이스 범위 로그인에는 Database 필드도 필요합니다.",
                 "Kerberos는 자격 증명 캐시의 기존 티켓을 쓰거나 입력한 보안 주체와 비밀번호로 요청합니다. 티켓은 서버의 등록된 SPN에 발급되므로 IP 대신 호스트 이름으로 연결하세요. TablePro는 <code>kinit</code>을 실행하거나 <code>/etc/krb5.conf</code>를 수정하지 않습니다.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth>는 다단계 인증과 Conditional Access를 따르는 장치 코드 흐름으로 로그인합니다. Azure에 앱을 등록하고 클라이언트 ID를 입력합니다. 토큰은 기기 전용으로 로그인 키체인에 저장되고 백그라운드에서 갱신됩니다.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth>는 다단계 인증과 Conditional Access를 지원하는 장치 코드 로그인을 사용합니다. Azure 애플리케이션을 등록하고 클라이언트 ID를 입력하세요. 토큰은 백그라운드에서 갱신되며 기기 전용 로그인 Keychain에 저장됩니다.",
                 "새 연결은 Preferred로 시작하며 SQL Server에서는 로그인만 암호화합니다. 전체 세션을 암호화하려면 Required 이상을 선택하세요. Verify CA와 Verify Identity는 macOS 시스템 루트로 인증서를 검사합니다. Google Cloud SQL의 Cloud SQL Auth Proxy도 실행할 수 있으며 사설 네트워크 서버는 <network>SSH 터널</network>로 연결합니다."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "스크립트, 배치 및 편집",
             "paragraphs": [
-                "스크립트는 sqlcmd처럼 <code>GO</code>만 있는 각 줄에서 나뉘어 배치별로 서버에 전달되며 <code>GO 5</code>는 앞의 배치를 다섯 번 실행합니다. 결과 집합은 각각 별도 탭에 열리고 <code>PRINT</code> 출력과 정보 메시지는 Output 보기에 표시됩니다.",
-                "실패 시 이전 배치도 되돌려야 한다면 스크립트에 <code>BEGIN TRAN</code>과 <code>COMMIT</code>을 넣으세요. 트랜잭션을 열린 채로 남기면 종료 시 알림을 표시합니다. 처음 실패한 배치에서 중단하며 오류는 편집기의 해당 줄을 알려 줍니다.",
+                "스크립트는 <code>GO</code> 행에서 나뉩니다. <code>GO 5</code>는 앞 배치를 다섯 번 반복합니다. 결과 집합마다 별도 탭이 열리며 Output에서 <code>PRINT</code> 출력과 정보 메시지를 읽을 수 있습니다.",
+                "배치를 트랜잭션으로 처리하려면 <code>BEGIN TRAN</code>과 <code>COMMIT</code>을 사용하세요. 열린 트랜잭션은 알림으로 표시됩니다. 실행은 첫 실패 배치에서 멈추며 오류에 편집기 행 번호를 표시합니다.",
                 "모든 세션은 필터링된 인덱스, 인덱싱된 뷰와 계산 열 인덱스에 필요한 SET 옵션으로 열리며 <code>ANSI_NULLS</code>와 <code>QUOTED_IDENTIFIER</code>가 켜집니다. 따라서 <code>col = NULL</code>은 어떤 행과도 일치하지 않으니 <code>IS NULL</code>로 비교하세요.",
                 "테이블은 사이드바의 스키마 아래에 표시되고 <code>⌘K</code>는 재연결 없이 데이터베이스를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 임시 저장되며 새 행의 IDENTITY 열은 서버에 맡기고 <code>nvarchar(max)</code> 값은 전체가 전달됩니다."
             ]
@@ -50,7 +50,7 @@
             "title": "스키마",
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 열, 인덱스, 외래 키와 제약 조건 변경을 임시 저장하고 실행 전에 T-SQL을 보여 줍니다. 사이드바에서 스키마를 삭제할 수 있지만 객체가 남으면 SQL Server가 거부합니다. 생성은 편집기에서 CREATE SCHEMA를 사용합니다.",
-                "{compareSyncTier} 플랜의 <compareSync>Compare & Sync</compareSync>는 두 SQL Server 스키마나 데이터를 비교하며 각 명령문 뒤에 <code>GO</code> 줄이 있는 스크립트를 저장해 sqlcmd나 SQL Server Management Studio에서 바로 사용합니다."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 SQL Server 스키마나 데이터를 비교합니다. 생성된 스크립트는 sqlcmd 또는 SQL Server Management Studio용 <code>GO</code>로 구문을 구분합니다."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "데이터 이동",
             "paragraphs": [
-                "{importFormats} 파일을 <importData>가져옵니다</importData>. <code>GO</code> 줄이 있는 <code>.sql</code> 파일은 sqlcmd처럼 배치별로 실행됩니다. 테이블이나 결과는 {exportFormats}로 내보내며 SQL 내보내기는 각 명령문을 <code>GO</code> 줄로 끝내 각각 별도 배치로 실행합니다."
+                "{importFormats} 파일을 <importData>가져오세요</importData>. SQL 파일은 <code>GO</code> 배치를 처리합니다. 테이블이나 결과를 {exportFormats} 형식으로 내보내며 SQL 내보내기도 <code>GO</code> 구분자를 사용합니다."
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio는 Microsoft의 SQL Server·Azure SQL 도구입니다. SQL Server Agent 작업, Always On 가용성 그룹, 실시간 쿼리 통계와 성능 조정처럼 TablePro가 제공하지 않는 관리 기능에 적합합니다.",
+                "text": "SQL Server Management Studio는 SQL Server Agent 작업, Always On 가용성 그룹, 실시간 쿼리 통계, 성능 조정 등 TablePro보다 넓은 관리 기능을 제공합니다.",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

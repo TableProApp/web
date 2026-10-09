@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "适用于 {devices} 的 DuckDB 客户端",
-        "lead": "打开 DuckDB 数据库文件，或指向 Parquet、CSV、JSON 文件，在原位置使用 SQL 查询。DuckDB 在驱动中运行，除非主动连接服务器，否则无需运行服务器。"
+        "title": "DuckDB 客户端",
+        "lead": "打开 DuckDB 数据库，或用 SQL 查询 Parquet、CSV 和 JSON 文件，无需本地数据库服务器。"
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "打开文件",
             "paragraphs": [
-                "选择 <code>.duckdb</code> 或 <code>.ddb</code> 文件，或输入尚不存在的路径来创建。输入 <code>:memory:</code> 可创建仅在会话期间存在的数据库。DuckDB 在文件开头字节中标识格式，因此无论文件名如何均可识别并打开。",
-                "选择 <code>.parquet</code>、<code>.csv</code>、<code>.tsv</code>、<code>.json</code> 或 <code>.ndjson</code>，会在内存数据库中作为只读视图打开，一个名为 <code>file</code>，另一个以文件名命名。磁盘文件保持逐字节不变；要修改内容，请在 <code>.duckdb</code> 数据库中从文件创建表。",
-                "在 Finder 双击 <code>.duckdb</code> 即可在此打开。Parquet 文件的“打开方式”列出 TablePro，通过<ui>文件 > 打开文件</ui>（File > Open File）选择 Parquet 会打开为 DuckDB 连接，而非进入 <dataFiles>Data Files 窗口</dataFiles>。",
-                "<ui>远程（Quack，实验性）</ui>（Remote (Quack, experimental)）连接由 <code>quack_serve</code> 启动的 DuckDB 服务器，并以 <code>remotedb</code> 等别名挂载，通过该别名访问表。首次远程连接从 DuckDB 下载 <code>quack</code> 扩展。"
+                "打开 <code>.duckdb</code> 或 <code>.ddb</code> 文件，输入新路径创建文件，或用 <code>:memory:</code> 创建临时数据库。文件按头部识别，而非扩展名。",
+                "将 Parquet、CSV、TSV、JSON 或 NDJSON 打开为名为 <code>file</code> 及文件名对应的只读视图。源文件不变。要编辑数据，请在 DuckDB 数据库中创建表。",
+                "从 Finder 打开 DuckDB 文件。Parquet 文件通过 <ui>文件 > 打开文件</ui> (File > Open File) 作为 DuckDB 连接打开，而不是在 <dataFiles>Data Files 窗口</dataFiles>中打开。",
+                "<ui>远程（Quack，实验性）</ui> (Remote (Quack, experimental)) 通过别名连接 <code>quack_serve</code> 服务器。首次连接会下载 DuckDB 的 <code>quack</code> 扩展。"
             ]
         },
         {
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "任何连接都可从 SQL 直接读取文件，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 文件会作为第二个数据库加入侧边栏，<code>⌘K</code> 无需重连即可切换。重新连接后 DuckDB 不保留任何挂载。",
+                "直接查询文件，例如 <code>SELECT * FROM 'data.csv'</code>。<code>ATTACH</code> 将另一个 DuckDB 文件加入侧边栏，<code>⌘K</code> 可切换文件。重新连接后不会保留附加文件。",
                 "<explain>EXPLAIN</explain> 绘制为计划图。编辑表中的行时，<editing>Preview SQL</editing> 先显示每条语句，数据文件上的视图保持只读。"
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "<structure>Structure 标签页</structure> 编辑表并在执行前显示 DDL。此处数据库为文件，因此不能从应用创建或删除数据库；访问第二个文件请用 <code>ATTACH</code>。"
+                "<structure>Structure 标签页</structure>可编辑表，并在执行前显示 DDL。侧边栏没有创建或删除数据库的操作。创建文件时在连接中输入新路径；访问另一个文件时使用 <code>ATTACH</code>。"
             ]
         },
         {

@@ -1,15 +1,15 @@
 ---
 slug: connect-postgresql-mysql-docker-mac
-title: "How to connect to PostgreSQL or MySQL in Docker from your Mac"
+title: "Connect to PostgreSQL or MySQL in Docker from your Mac"
 seoTitle: "Connect to PostgreSQL or MySQL in Docker on a Mac"
-description: Publish the container's port, connect to localhost with psql, mysql or a GUI, and let TablePro read the settings from docker-compose.yml.
+description: Publish a Docker database port and connect from your Mac with psql, mysql or TablePro. Import connection settings from a Compose file.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: Publish the port, connect to localhost, or read docker-compose.yml.
 tags: [postgresql, mysql, project-folder]
 ---
 
-A database in a container listens inside Docker's network. Your Mac reaches it only through a port you publish. Once that port is published, the database is at `localhost` like any other local server, and any client connects the usual way.
+Publish the container’s database port, then connect to `localhost` from your Mac. Use `psql`, `mysql` or TablePro; a Compose file can supply the connection settings.
 
 ## Publish the port {#publish-the-port}
 
@@ -49,11 +49,11 @@ Without a client installed, run the one inside the container: `docker exec -it p
 3. Fill in **Username** and **Password** from the table above. PostgreSQL also needs **Database**: `postgres` works on a fresh container. On MySQL you can leave **Database** empty and pick one later with `Cmd+K`.
 4. Click **Test Connection**, then **Save & Connect**.
 
-TablePro's MySQL driver connects over TCP only, so `localhost` works here where it fails in the `mysql` client. MySQL 8 accounts on `caching_sha2_password` connect without switching the auth plugin. On MySQL, an empty **Username** means your macOS login name, so type `root`.
+TablePro’s MySQL driver uses TCP, so `localhost` works here. MySQL 8’s `caching_sha2_password` needs no auth-plugin change. Enter `root` explicitly: an empty MySQL **Username** uses your macOS login name.
 
 If you already have a connection string, skip the fields. Click **Import from URL…** at the bottom of the database type sheet, paste the URL, check the preview and click **Import**. The form opens filled in. A password with `@`, `#` or `%` in it needs percent-encoding first: `p@ss` becomes `p%40ss`.
 
-## Read the settings from a Compose file {#compose}
+## Import settings from a Compose file {#compose}
 
 In a project, the same facts live in `docker-compose.yml`:
 
@@ -71,7 +71,7 @@ services:
 
 The service name `db` resolves only inside the Compose network. From your Mac the address is still `localhost` and the published port.
 
-TablePro can read this file instead of you retyping it:
+To import the settings:
 
 1. Choose **File > Import > Open Project Folder…** and pick the project folder.
 2. The sheet lists one row per set of credentials it found, with the database type, host, port, user and database, and the file and key behind it. A Compose service appears with host `127.0.0.1` and its published port.
@@ -84,7 +84,7 @@ Two notes on a row tell you it may not connect:
 - **No published port, may be unreachable**: the service has no `ports:` mapping.
 - **Container service name, may be unreachable**: the host came from a `.env` value such as `DB_HOST=db`, which only resolves inside Docker. Change **Host** to `localhost` in the form.
 
-## Where it stops {#limits}
+## Limitations {#limits}
 
 - One pass of **Open Project Folder…** imports one row. Run it again for the next service.
 - Nothing is matched against the connections you already have, so importing the same row twice gives you two connections.
@@ -92,12 +92,12 @@ Two notes on a row tell you it may not connect:
 - TablePro does not start, stop or list containers. It connects to whatever is listening on the port.
 - MySQL connections never use a Unix socket. Give the connection a host and a port.
 
-## If it does not connect {#troubleshooting}
+## Troubleshooting {#troubleshooting}
 
 - **Connection refused**: nothing is listening on that port. Check that the container is running and the port is published with `docker ps`.
 - **Password authentication failed** on PostgreSQL, or **Access denied** on MySQL, with the password from your `docker run` line: `POSTGRES_PASSWORD` and `MYSQL_ROOT_PASSWORD` apply only when the data directory is first created. A container started on an existing volume keeps the password that volume was created with.
 - **You connect, but to the wrong server**: another PostgreSQL or MySQL on your Mac holds the port. Publish the container on a different one.
 
-Field by field, the connection form is covered in the docs for [PostgreSQL](https://docs.tablepro.app/databases/postgresql) and [MySQL](https://docs.tablepro.app/databases/mysql), and the config files the scan reads are listed in [Open Project Folder](https://docs.tablepro.app/features/project-folder-import). On this site, see the [PostgreSQL](/postgresql-client) and [MySQL](/mysql-client) pages and [importing connections from a project](/features/connections#project-folder).
+See the [PostgreSQL](https://docs.tablepro.app/databases/postgresql) and [MySQL](https://docs.tablepro.app/databases/mysql) docs for connection fields. [Open Project Folder](https://docs.tablepro.app/features/project-folder-import) lists supported config files. The [PostgreSQL](/postgresql-client), [MySQL](/mysql-client) and [project import](/features/connections#project-folder) pages summarize TablePro’s features.
 
-With the container connected, the usual next step is loading data: see [how to import a CSV file into PostgreSQL or MySQL](/blog/import-csv-postgresql-mysql).
+To load data next, see [CSV import](/blog/import-csv-postgresql-mysql).

@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "適用於 {devices} 的 ClickHouse 用戶端",
-        "lead": "透過 ClickHouse HTTP 介面執行分析 SQL，查看查詢計畫、pipeline 或列數估計，並在資料表的 Parts 分頁管理 MergeTree 資料部件和分割區。長查詢在執行時報告已讀列數，Stop 會在伺服器端終止。"
+        "title": "ClickHouse 用戶端",
+        "lead": "執行分析查詢，檢查執行計畫和管線，並管理資料表的資料片段和分割區。"
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機、HTTP 連接埠、使用者，可選資料庫。切換資料庫原地完成，已開啟分頁保持原資料庫。<ui>檢視 > 側邊欄顯示為樹狀</ui>（View > Sidebar as Tree）將伺服器資料庫顯示為可展開的樹狀圖。",
+                "輸入主機、HTTP 連接埠、使用者和選用資料庫。無需重新連線即可切換資料庫；既有分頁保留原資料庫。<ui>檢視 > 側邊欄顯示為樹狀</ui> (View > Sidebar as Tree) 在側邊欄原地展開資料庫。",
                 "選擇任意 SSL 模式切換為 HTTPS。443 或 ClickHouse Cloud 的 8443 連接埠會啟用 Verify Identity，使用 CA 檔案或系統信任存放區驗證憑證。Verify CA 需要 CA 檔案，用戶端憑證和金鑰可存取要求雙向 TLS 的伺服器。",
                 "未使用 TLS 時，請透過 <network>SSH 通道</network>存取遠端伺服器，避免在網路上傳輸明文 HTTP。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "每個查詢有獨立 ID 並請求進度，長查詢會持續報告讀取列數。Stop 對該 ID 傳送 <code>KILL QUERY</code>，連線的查詢逾時也傳至伺服器。",
+                "查詢時追蹤已讀取列數。Stop 傳送 <code>KILL QUERY</code>，連線的查詢逾時設定也會傳給伺服器。",
                 "<explain>Explain 選單</explain>提供 Plan、Pipeline、AST、Syntax、Estimate。縮排輸出繪製為圖或樹狀圖，Estimate 顯示查詢預計讀取的列、marks 和資料部件。",
-                "格線編輯先提供 <editing>Preview SQL</editing>，再傳送 <code>INSERT</code>、<code>ALTER TABLE … UPDATE</code>、<code>ALTER TABLE … DELETE</code>。ClickHouse 以背景 mutation 執行更新刪除，因此儲存表示已接受而非已套用；<code>system.mutations</code> 顯示進度。具體化檢視表唯讀開啟。",
+                "插入列或提交 UPDATE、DELETE 變更前，先檢查 <editing>Preview SQL</editing>。儲存成功表示已接受，並非已套用；進度可在 <code>system.mutations</code> 查看。實體化檢視唯讀。",
                 "含 ClickHouse point 或 ring 元組的結果可在 <map>地圖檢視</map>開啟。自帶 <code>FORMAT</code> 子句的查詢將伺服器原始輸出顯示在單一欄位中，要取得格線請省略該子句。"
             ]
         },
@@ -48,7 +48,7 @@
             "title": "資料表、資料部件與分割區",
             "paragraphs": [
                 "資料表提供 Structure、Indexes、DDL、Parts 分頁。Indexes 顯示排序鍵和資料跳過索引，DDL 顯示包含引擎和設定的完整 <code>CREATE TABLE</code>。",
-                "Parts 列出 <code>system.parts</code> 中每個資料部件及其分割區、列數、磁碟大小、修改時間和 active 標記，可在此執行 Optimize、Drop Partition、Detach Partition。",
+                "從 <code>system.parts</code> 查看資料片段的分割區、列數、大小和作用狀態。在 Parts 分頁執行 Optimize、Drop Partition 或 Detach Partition。",
                 "<structure>Structure 分頁</structure>可新增、修改、刪除欄位及刪除資料跳過索引。排序鍵和主索引鍵在資料表建立時固定，新增資料跳過索引用 <code>ALTER TABLE … ADD INDEX</code>，其他修改需重建資料表。"
             ]
         },

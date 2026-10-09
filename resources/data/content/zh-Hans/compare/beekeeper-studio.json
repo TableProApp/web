@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Beekeeper Studio：原生或 Electron",
+        "title": "TablePro 与 Beekeeper Studio：免费和付费功能",
         "description": "Beekeeper Studio 是基于 Electron 的跨平台开源客户端。与原生 TablePro 比较方案、引擎、AI 和连接导入。"
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Beekeeper Studio",
-        "lead": "Beekeeper Studio 和 TablePro 都是开源数据库客户端。Beekeeper Studio 基于 {technology}，在 Windows、macOS 和 Linux 上以相同方式运行，免费 Community 版之上还有付费档位。TablePro 分别提供 Mac 和 iPhone、iPad 原生应用，并在 Mac 上提供可选付费功能。"
+        "lead": "Beekeeper Studio和TablePro是开源数据库客户端，具有不同的免费和付费功能。 Beekeeper Studio 使用 {technology}； TablePro 使用原生驱动程序。"
     },
     "shortAnswer": {
         "tablepro": [
-            "您希望免费使用 Oracle、Cassandra 或 Snowflake。TablePro 所有支持引擎均免费，Beekeeper Studio 则在付费档位中添加这些引擎。",
-            "您希望无需付费档位即可使用 AI 助手和 MCP 服务器。两者在 Mac 应用中均免费，可选择 AI 提供商。",
-            "您希望使用 Swift 编写的原生 Mac 应用，付费功能代码也开源。",
-            "您也希望有 iPhone 和 iPad 应用。"
+            "无需付费套餐即可连接 Oracle、Cassandra 和 Snowflake。",
+            "免费 AI 聊天和 MCP，您可以选择 AI 提供商。",
+            "具有单独的免费 iPhone 和 iPad 应用程序的原生应用程序。"
         ],
         "competitor": [
-            "您也在 Windows 或 Linux 上工作，希望各平台使用同一个客户端。",
-            "您连接 TablePro 不支持的 Firebird、SQL Anywhere 或 GreengageDB。",
-            "您希望从 {cells.sync.edition} 档位开始，通过云工作区同步和共享连接及查询。"
+            "Windows、 macOS 和 Linux 上的相同客户端。",
+            "Firebird、 SQL Anywhere 或 GreengageDB 连接。",
+            "从 {cells.sync.edition} 起提供用于共享连接和查询的云工作区。"
         ]
     },
     "glance": {
@@ -48,14 +47,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "Beekeeper Studio 在 Windows、macOS 和 Linux 上提供相同功能，一个客户端即可覆盖您使用的所有电脑。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "可连接 Firebird、SQL Anywhere 和 GreengageDB 等 TablePro 不支持的引擎。",
                 "cite": [
@@ -87,7 +78,7 @@
                 "href": null
             },
             {
-                "text": "TablePro 所有支持引擎均免费，包括 Oracle、Cassandra 和 Snowflake。Beekeeper Studio Community 版覆盖 PostgreSQL、MySQL、SQL Server 和 SQLite 等，付费档位添加 Oracle、Cassandra 和 Snowflake 等其他引擎。",
+                "text": "TablePro 免费包含所有支持的引擎。 Beekeeper Studio社区包括PostgreSQL、MySQL、SQL Server和SQLite； Oracle、 Cassandra 和 Snowflake 需要付费等级。",
                 "cite": [
                     "cells.databases"
                 ],
@@ -119,13 +110,13 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> 让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 上免费。",
+                "text": "<link>iCloud Sync</link> 同步 Mac、iPhone 和 iPad 之间的连接。它需要 Mac 上的 Starter，并且在 iPhone 和 iPad 上免费。",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "提供免费的 <link>iPhone 和 iPad 应用</link>，无应用内购买。Beekeeper Studio 没有移动应用。",
+                "text": "单独的 <link>iPhone 和 iPad 应用程序</link> 是免费的，没有应用内购买。 Beekeeper Studio没有移动应用程序。",
                 "cite": [
                     "platforms"
                 ],
@@ -138,13 +129,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 没有 Windows 或 Linux 应用。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro 只连接已有驱动的引擎。迁移前请检查<link>支持的数据库</link>。",
+                "text": "TablePro 需要受支持的驱动程序。在切换之前检查 <link>支持的数据库</link>。",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -156,7 +141,7 @@
                 "href": null
             },
             {
-                "text": "Beekeeper Studio 允许继续使用付费期间发布的版本，月付方案在 12 个月后获得此权利。TablePro 月付或年付方案不保留这类权利：结束后付费功能锁定，其余应用功能仍可使用。一次性购买无到期日。",
+                "text": "Beekeeper Studio 的许可证涵盖您付费时发布的版本；每月计划在 12 个月后符合资格。 TablePro 订阅结束时会锁定付费功能，而免费应用程序仍然可用。一次性购买的 TablePro 没有有效期。",
                 "cite": [
                     "cells.lifetimeLicense"
                 ],
@@ -166,7 +151,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 读取 Beekeeper Studio 在 Mac 本地工作区保存的连接。Beekeeper Studio 无需打开，文件也不会修改。",
+        "intro": "导入 Beekeeper Studio 的本地工作空间连接。该应用程序可以保持关闭状态，并且其文件不会更改。",
         "steps": [
             "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
             "选择 Beekeeper Studio 并开启<ui>包含密码</ui>（Include passwords）。TablePro 会解密 Beekeeper Studio 保存的密码，包括 SSH 密码和密钥口令，因此无需在钥匙串中批准。",
@@ -185,12 +170,6 @@
             "question": "TablePro 在 Apple silicon 上原生运行吗？",
             "answer": "是的。TablePro 分别提供 Apple silicon 和 Intel Mac 构建，<link>下载页面</link>包含两者。",
             "href": "/download"
-        },
-        {
-            "id": "free-engines",
-            "question": "哪些引擎可以免费使用？",
-            "answer": "TablePro 所有支持引擎均免费，AI 助手、MCP 服务器和 Safe Mode 也免费。Starter 或 Team 方案添加 {starterExamples} 等功能，而非引擎。Beekeeper Studio Community 版覆盖一组常见引擎，付费档位添加其他引擎。",
-            "href": null
         },
         {
             "id": "vim",

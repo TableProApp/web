@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Navicat：オープンソースの選択肢",
+        "title": "TablePro と Navicat: エディション、機能、価格",
         "description": "Navicat は永久ライセンス、サブスクリプション、無料の Lite 版を提供。TablePro は無料のオープンソースクライアント。価格、AI、各アプリを比較します。"
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Navicat",
-        "lead": "Navicat Premium は Windows、macOS、Linux 用のクライアントで、ユーザー単位の永久ライセンス、月額または年額のサブスクリプションとして販売され、無料の Premium Lite 版もあります。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントです。無料で利用でき、有料プランで Mac アプリにオプション機能を追加できます。"
+        "lead": "Navicat Premium、Premium Lite、および TablePro を機能、ライセンス、サポートされるデータベース別に比較します。 Navicat は、永久ライセンス、または月次または年次のサブスクリプションを提供します。 TablePro には、無料機能とオプションの有料機能があります。"
     },
     "shortAnswer": {
         "tablepro": [
-            "AI アシスタント、MCP サーバー、Safe Mode を含む無料アプリが欲しく、{starterExamples} などの機能にだけ有料プランを使いたい。",
-            "オープンソースのクライアントを使いたい。TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。",
-            "エンジンごとの有料アプリではなく、複数のエンジンに対応する無料の iPhone・iPad アプリを一つ使いたい。",
-            "ClickHouse、DuckDB、Cassandra など、Navicat Premium に記載されていないエンジンを使っている。"
+            "AI チャット、MCP および Safe Mode を備えた無料クライアント。有料プランには {starterExamples} が追加されます。",
+            "有料機能を含むオープンソース コード。",
+            "ClickHouse、 DuckDB または Cassandra 接続。"
         ],
         "competitor": [
-            "Mac に加え、Windows や Linux でも作業している。",
-            "データモデリングツールでスキーマを設計する。Navicat の Premium Enterprise にはそのツールが含まれる。",
-            "Navicat Cloud、または自社サーバー上の Navicat On-Prem Server で、接続、クエリ、モデルを同僚と同期したい。"
+            "Windows または Linux のサポート。",
+            "Premium Enterprise でのデータ モデリング。",
+            "Navicat Cloud または Navicat On-Prem Server (共有接続、クエリ、モデル)。"
         ]
     },
     "glance": {
@@ -44,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "Navicat Premium は Windows、macOS、Linux で動作します。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Premium Enterprise はデータモデリングツールを追加します。TablePro の ER 図は既存のスキーマを表示するだけです。",
                 "cite": [
@@ -96,7 +87,7 @@
                 "href": "/pricing"
             },
             {
-                "text": "両製品とも構造を同期します。TablePro の <link>Compare & Sync</link> は二つのデータベースの構造またはデータを比較し、差分のスクリプトを生成します。データを破壊する文は、許可するまで保留します。Starter に含まれます。",
+                "text": "TablePro の <link>Compare & Sync</link> は、構造またはデータを比較し、同期スクリプトを生成します。破壊的なステートメントは、許可するまで除外されたままになります。これは Starter の一部です。",
                 "cite": [
                     "cells.schemaSync"
                 ],
@@ -112,7 +103,7 @@
                 "href": "/ios"
             },
             {
-                "text": "どちらも MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Snowflake に接続します。TablePro はさらに、ClickHouse、DuckDB、Cassandra、Elasticsearch など、<link>Navicat Premium に記載されていないエンジン</link>にも接続します。一方、Premium Enterprise には KingbaseES や openGauss など、TablePro の対応一覧にないエンジンもあります。",
+                "text": "TablePro は、Navicat プレミアムのリスト エンジンに加えて、<link>ClickHouse、DuckDB、Cassandra および Elasticsearch</link> を追加します。 Premium Enterprise には、KingbaseES や openGauss など、TablePro に記載されていないいくつかのものがリストされています。表には、それらが共有するエンジンがリストされています。",
                 "cite": [
                     "cells.databases"
                 ],
@@ -124,12 +115,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "TablePro には Windows・Linux 用アプリがありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "データモデリングツールはありません。<link>ER 図</link>は既存のスキーマの読み取り専用ビューで、PNG または SQL に書き出せます。",
                 "cite": [],
@@ -143,13 +128,13 @@
                 "href": null
             },
             {
-                "text": "TablePro の iPhone・iPad アプリ一つで複数のエンジンに対応しますが、Mac アプリより機能は少なく、AI アシスタント、MCP サーバー、自動補完はありません。",
+                "text": "TablePro の iPhone および iPad アプリはいくつかのエンジンをカバーしていますが、AI アシスタント、MCP サーバー、オートコンプリートはありません。",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Navicat の永久ライセンスは 1 年のメンテナンス終了後も使え、TablePro の買い切りも同様です。TablePro の月額・年額プランでは、終了すると有料機能がロックされ、アプリのその他の機能は引き続き使えます。",
+                "text": "Navicat 永久ライセンスは、1 年間のメンテナンス後も機能し続けます。 TablePro 1 回限りの購入には有効期限がありません。 TablePro サブスクリプションは、終了時に有料機能をロックします。無料アプリは引き続き動作します。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -157,7 +142,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro は Navicat から書き出したファイルを使って接続をインポートするため、移行は Navicat で始めます。Navicat 自体の設定は読み取ったり変更したりしません。",
+        "intro": "接続ファイルを Navicat からエクスポートし、それを TablePro にインポートします。 Navicat の設定は変更されません。",
         "steps": [
             "Navicat で <ui>File > Export Connections…</ui> を選び、接続を選択して <ui>Export Password</ui> をオンにし、.ncx ファイルを保存します。",
             "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",

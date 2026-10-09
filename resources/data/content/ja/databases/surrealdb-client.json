@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "{devices} 用 SurrealDB クライアント",
-        "lead": "ユーザーが定義されたレベルでログインし、SurrealQL スクリプトを実行して、レコードをフィールド単位で編集します。レコードリンク、日時や小数は、それぞれの型を保ちます。"
+        "title": "SurrealDB クライアント",
+        "lead": "SurrealQL を実行し、型を保ってレコードのフィールドを編集できます。"
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "接続とログイン",
             "paragraphs": [
-                "SurrealDB は認証情報だけではユーザーが定義されたレベルを判別できないため、<ui>Auth Level</ui> で指定し、フォームで残りを入力します。Root はユーザー名とパスワード、Namespace はさらに名前空間、Database はさらにデータベースを必要とします。Record Access は名前空間、データベース、<code>DEFINE ACCESS</code> のアクセス方式とログイン用フィールドを使います。Token は SurrealDB Cloud 用を含む、手持ちの JWT を使います。",
+                "ユーザーの <ui>Auth Level</ui> を Root、Namespace、Database、Record Access、Token から選びます。Namespace と Database は名前が必須です。Record Access はアクセス方式とログインフィールドも必要で、Token は既存の JWT を使います。",
                 "ドライバーは HTTP RPC エンドポイントに CBOR で通信するため、レコードリンク、日時、期間、小数と UUID は型を保ちます。<code>surrealdb://</code> リンクは入力済みの接続フォームを開き、リモートサーバーには <network>SSH トンネル</network> で接続できます。",
                 "SSL の初期値 Disabled は平文 HTTP、それ以外は HTTPS です。Verify CA と Verify Identity はシステムの信頼ストアで証明書を検証し、SSL/TLS ペインの CA ファイルは無視するため、プライベート CA は先に macOS にインストールしてください。"
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL とレコード",
             "paragraphs": [
-                "エディターは二つのレコード間の <code>RELATE</code> を含む SurrealQL スクリプト全体を実行し、一般的な文を補完します。<explain>Explain と Explain Full</explain> は現在のクエリに <code>EXPLAIN</code> を付けて再実行し、解決方法やインデックスの使用状況を生のテキストプランで表示します。",
+                "<code>RELATE</code> を含む SurrealQL スクリプト全体を実行し、文を補完できます。<explain>Explain と Explain Full</explain> は <code>EXPLAIN</code> 付きでクエリを実行し、テキストのプランを返します。",
                 "サイドバーの最上位に名前空間、その中にデータベースを表示します。両方を各リクエストで送るため、切り替えても再接続しません。すべての名前空間が見えるのはルートユーザーだけです。",
-                "セルの変更は、変更したフィールドだけを型付きパラメーターで設定する <code>UPDATE</code> を実行します。<code>int</code> は <code>int</code> のままで、計算される <code>FUTURE</code> フィールドや他の書き込みは変えません。新しい行の <code>id</code> を空欄にすると生成し、または <code>table:id</code> を入力できます。<code>SCHEMALESS</code> テーブルは取得したレコードからカラムを決めます。",
+                "セル編集は変更したフィールドだけを型付きパラメーターで更新し、計算済み <code>FUTURE</code> フィールドや他の書き込み元の変更を保持します。ID を自動生成するには <code>id</code> を空にします。SCHEMALESS テーブルの列は取得したレコードから作られます。",
                 "<filters>フィルター</filters> は SurrealQL になり、Raw SQL 行はグラフ探索など一つの条件を受け付けます。書き込みを行う、<code>;</code> やコメントを含む、<code>fn::</code> や <code>http::</code> を呼ぶ条件は拒否するため、エディターで実行してください。"
             ]
         },

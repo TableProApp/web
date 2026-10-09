@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "Cliente de Trino para {devices}",
-        "lead": "Una tabelas de catálogos diferentes em uma consulta, leia o plano que Trino executará e pare uma consulta descontrolada no coordenador. O que uma gravação pode fazer depende do conector de cada catálogo."
+        "title": "Cliente de Trino",
+        "lead": "Consulte catálogos, inspecione planos e cancele consultas em execução. O suporte de gravação depende do conector de cada catálogo."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Conecte-se e entre",
             "paragraphs": [
-                "Informe o host e a porta do coordenador e um <ui>Username</ui>, o usuário usado para executar suas consultas. <ui>Catalog</ui> e <ui>Schema</ui> são pontos de partida opcionais; deixe Catalog vazio para explorar todos os catálogos. Um <ui>Time Zone</ui> da IANA na seção Options define o fuso da sessão.",
+                "Insira o host coordenador, porta e <ui>Username</ui>. <ui>Catalog</ui> e <ui>Schema</ui> opcionais definem o local inicial. Defina um IANA <ui>Time Zone</ui> para a sessão.",
                 "Entre com uma senha, enviada como HTTP Basic para autenticação LDAP ou por arquivo de senhas, ou com um token de acesso JWT enviado como credencial bearer. Ambos são enviados apenas por TLS: com SSL Disabled, uma conexão que contém um deles é recusada antes de enviar qualquer dado. Um certificado e uma chave de cliente no painel SSL adicionam TLS mútuo.",
                 "SSL começa em Disabled, que usa HTTP sem criptografia; todos os outros modos exigem TLS sem fallback para texto simples, e a porta 443 ativa Verify Identity. Um redirecionamento de um proxy à frente do coordenador nunca é seguido; o erro informa o destino. Acesse um coordenador protegido por um bastion por um <network>túnel SSH</network> e importe uma URL <code>trino://</code> por <ui>Import from URL…</ui>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Consulte vários catálogos",
             "paragraphs": [
-                "Uma conexão abre em um catálogo e esquema, e qualquer consulta ainda pode usar o nome completo <code>catalog.schema.table</code>, por exemplo para unir uma tabela Hive a uma PostgreSQL. A barra lateral expande cada catálogo em esquemas e tabelas, com views materializadas junto a tabelas e views e contagens de linhas de <code>SHOW STATS</code>.",
+                "Consulte nomes <code>catalog.schema.table</code> totalmente qualificados para unir em catálogos. Navegue por catálogos, esquemas, tabelas e visualizações materializadas; estimativas de contagem de linhas vêm de <code>SHOW STATS</code>.",
                 "<code>bigint</code> e <code>decimal</code> são lidos como texto exato, não como ponto flutuante. <code>varbinary</code> aparece em hexadecimal, <code>array</code>, <code>map</code> e <code>row</code> em JSON, e timestamps mantêm o valor retornado pelo servidor.",
                 "<explain>Explain</explain> oferece Logical, Distributed, IO, Validate e Analyze. Validate verifica uma consulta sem executá-la, Analyze a executa e informa os tempos reais, e todos os planos retornam como texto bruto.",
                 "<code>SET SESSION</code> permanece em vigor pelo restante da conexão. <ui>Query > Cancel Query</ui> pede ao coordenador para encerrar a consulta em execução, e essa é a forma de pará-la: o timeout de consulta da conexão não chega ao Trino.",
-                "As <editing>edições de células</editing> viram INSERT, UPDATE e DELETE, com cada valor levando seu tipo Trino. Trino não informa chaves primárias, portanto uma edição identifica a linha por todas as colunas como foram lidas, sem transação para revertê-la. Editar uma de duas linhas idênticas altera ambas; primeiro verifique se há duplicatas."
+                "<editing>As edições da célula</editing> usam instruções digitadas INSERT, UPDATE e DELETE. Trino não relata chaves primárias, portanto as edições correspondem a todas as colunas originais. Linhas idênticas mudam juntas, sem nenhuma transação para desfazê-las. Verifique se há duplicatas antes de editar."
             ]
         },
         {

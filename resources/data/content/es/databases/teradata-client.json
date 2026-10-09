@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Cliente Teradata para {devices}",
-        "lead": "Autentícate con TD2 o TDNEGO, explora bases y usuarios con sus tablas, vistas, procedimientos y macros y consulta y edita con un controlador Swift nativo, sin instalar software cliente Teradata."
+        "title": "Cliente Teradata",
+        "lead": "Consulta y edita Teradata sin instalar software cliente adicional. Explora bases, usuarios, procedimientos y macros."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "Introduce host, usuario y contraseña. Funciona cualquier sistema Vantage que acepte TD2; no se comprueba versión. <ui>Logon Mechanism</ui> en Options acepta <code>TD2</code> o <code>TDNEGO</code>; <ui>Database</ui> solo es necesaria si el valor predeterminado difiere del de tu cuenta.",
+                "Introduce host, usuario y contraseña. Elige <code>TD2</code> o <code>TDNEGO</code> en <ui>Logon Mechanism</ui>. <ui>Database</ui> sustituye la base predeterminada de la cuenta. Se admiten servidores Vantage que acepten TD2 sin comprobar la versión.",
                 "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL la mueve al endpoint WebSocket del gateway en 443, que no se puede cambiar. Verify CA necesita un certificado CA; Verify Identity comprueba cadena y host con él o, sin él, con el almacén de confianza del sistema.",
                 "Deja <ui>Transaction Mode</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Import from URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Consulta y edita",
             "paragraphs": [
-                "Una base y un usuario son espacios de nombres en Teradata; ambos aparecen arriba en la barra lateral con tablas y vistas. Una pestaña asociada a otra base mantiene la sesión y ejecuta <code>DATABASE</code> antes de sus sentencias.",
+                "Explora bases y usuarios como espacios de nombres. Las pestañas en otra base comparten la sesión y ejecutan <code>DATABASE</code> antes de sus instrucciones.",
                 "Los procedimientos almacenados aparecen en la barra lateral; las macros, en Funciones, abriendo su <objects>código en una pestaña de solo lectura</objects>.",
                 "Teradata no tiene <code>LIMIT</code>; la primera página usa <code>TOP</code> y las siguientes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> devuelve el plan como texto sin procesar. Las ediciones esperan a guardar; <editing>Preview SQL</editing> muestra antes cada sentencia."
             ]

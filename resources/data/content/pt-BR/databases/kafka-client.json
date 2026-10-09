@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Cliente de Apache Kafka para {devices}",
-        "lead": "Leia um tópico a partir da posição escolhida, veja o atraso de cada grupo de consumidores e produza uma mensagem de teste, tudo com KafkaQL, a linguagem de comandos própria do TablePro. Um tópico é um log, portanto a grade lê mensagens e nunca as edita."
+        "title": "Cliente de Apache Kafka",
+        "lead": "Inspecione mensagens de tópicos e consumer lag, ou produza uma mensagem de teste com KafkaQL, a linguagem de comandos do TablePro."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Informe o host e a porta de um broker; o restante do cluster é descoberto por ele, e <ui>Additional Bootstrap Servers</ui> lista brokers para tentar quando o primeiro não responde. Uma conexão representa um cluster, portanto não há campo Database, e a barra lateral mostra os tópicos diretamente.",
+                "Insira host e porta de um broker bootstrap. <ui>Additional Bootstrap Servers</ui> adiciona brokers de reserva. Cada conexão acessa um cluster; a barra lateral lista seus tópicos.",
                 "<ui>Security Protocol</ui> aceita PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL, e <ui>SASL Mechanism</ui> aceita PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN atende ao Confluent Cloud; SCRAM ao Amazon MSK e a brokers hospedados por você. Com SSL ou SASL_SSL e sem um modo SSL escolhido, a cadeia do certificado e o nome do host são verificados. Uma CA privada fica em <ui>CA Certificate</ui>, e um certificado e uma chave de cliente adicionam TLS mútuo.",
                 "Por um <network>túnel SSH</network>, a conexão permanece no broker de bootstrap, portanto lê apenas as partições lideradas por ele. <ui>Import from URL…</ui> aceita URLs <code>kafka://</code>, que o macOS não abre como links."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Leia, inspecione e produza",
             "paragraphs": [
-                "Abrir um tópico mostra suas mensagens mais recentes, com a mais nova no fim, incluindo partição, offset, timestamp, chave, valor, cabeçalhos e tamanhos. Mensagens de partições diferentes são intercaladas por timestamp para facilitar a leitura; partição e offset identificam a mensagem. Uma chave ou valor que não é UTF-8 aparece em hexadecimal, e um tombstone permanece distinto de uma mensagem vazia.",
-                "KafkaQL substitui ordenação e filtros por uma posição inicial: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> ou <code>FROM TIME</code> com um timestamp ISO 8601, opcionalmente limitado a algumas partições. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> e <code>DESCRIBE TOPIC</code> cobrem o restante do cluster.",
+                "Navegue por mensagens recentes com partição, offset, timestamp, chave, valor e cabeçalhos. Mensagens de várias partições são intercaladas por timestamp; partição e offset as identificam. Valores não UTF-8 aparecem em hexadecimal. Tombstones continuam distintos de mensagens vazias.",
+                "Use KafkaQL para consumir a partir do mais recente, do mais antigo, de um offset ou timestamp ISO 8601, com restrição opcional a partições. SHOW lista tópicos, brokers, grupos e detalhes do cluster; DESCRIBE TOPIC inspeciona um tópico.",
                 "<code>DESCRIBE GROUP</code> fornece o relatório de atraso: o offset confirmado, o offset final e a diferença, por partição. Uma partição em que o grupo nunca confirmou um offset não mostra atraso, em vez de um número contado do zero, e <code>SHOW GROUPS</code> marca a lista como truncada quando um broker não pode ser acessado.",
                 "<code>PRODUCE INTO</code> grava uma mensagem com chave, cabeçalhos e partição opcionais. Uma mensagem com chave e sem partição vai para onde o produtor do próprio Kafka a colocaria. Lotes gzip, snappy, lz4 e zstd são descomprimidos durante a leitura, sem configuração a escolher.",
-                "Células não podem ser editadas, linhas não podem ser excluídas e colunas não podem ser ordenadas, pois Kafka não tem atualização, exclusão por mensagem nem ordenação no servidor, e a grade desativa esses controles. Cada página continua de onde a anterior parou, portanto um tópico que recebe gravações nunca repete nem pula uma mensagem."
+                "As mensagens não podem ser editadas ou excluídas individualmente e as colunas não podem ser classificadas. A paginação continua a partir da posição anterior à medida que novas mensagens chegam."
             ]
         },
         {

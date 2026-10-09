@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "适用于 {devices} 的 Oracle Database 客户端",
-        "description": "无需 Instant Client 连接 Oracle Database，运行 PL/SQL、SQL*Plus 脚本，读取 DBMS_OUTPUT，在服务器启动 Data Pump 导出。"
+        "description": "无需 Instant Client 即可连接 Oracle Database，运行 SQL 和 PL/SQL 脚本、读取 DBMS_OUTPUT，并在服务器上启动 Data Pump 导出。"
     },
     "og": {
         "kicker": "数据库",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "适用于 {devices} 的 Oracle Database 客户端",
-        "lead": "驱动用 Swift 实现 Oracle TNS 协议，Mac 无需 Instant Client 或其他 Oracle 软件。运行 SQL、PL/SQL，包括为 SQL*Plus 编写的脚本，并在各结果旁读取 DBMS_OUTPUT 输出。"
+        "title": "Oracle Database 客户端",
+        "lead": "无需安装 Oracle Instant Client 即可运行 SQL 和 PL/SQL，同时查看查询结果和 DBMS_OUTPUT。"
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入主机、监听端口及 Service Name，无服务的实例将<ui>连接类型</ui>（Connection Type）切为 SID。用用户名密码以 Normal、SYSDBA 或 SYSOPER 角色登录。",
+                "输入主机、监听端口和 Service Name，或在 <ui>连接类型</ui> (Connection Type) 中选择 SID。密码登录支持 Normal、SYSDBA 和 SYSOPER 角色。",
                 "Native Network Encryption 无需设置：服务器要求时提供带 SHA-2 校验和的 AES，<ui>Network Encryption</ui> 改变 TablePro 提供的选项。TLS 选择用于 TCPS 的 Required，或带 CA 证书的 Verify CA、Verify Identity。新连接 SSL 关闭，Preferred 仍用明文 TCP。",
                 "Oracle Autonomous Database 请从 TLS 连接字符串（非 mTLS）复制主机、端口和服务名，SSL 设 Required 或 Verify CA。从不读取钱包文件，所以数据库必须接受不带双向 TLS 的 TLS。",
                 "RAC SCAN 监听器、共享服务器或数据库前的负载均衡器无需配置；私网监听器通过 <network>SSH 隧道</network>访问。"
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL、PL/SQL 和事务",
             "paragraphs": [
-                "PL/SQL 块或存储单元无论含多少分号都作为一个语句运行，光标置于其中即可。SQL*Plus 或 SQL Developer 脚本无需修改，单独 <code>/</code> 行结束上方单元。编译失败显示 Oracle 原始错误，每行附位置。",
+                "将 PL/SQL 块和存储单元作为单条语句运行。脚本中的 <code>/</code> 行结束一个单元。编译错误包含 Oracle 消息和源代码位置。不支持 SQL*Plus 客户端命令。",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> 行与打印它的语句结果一起显示，无需 <code>SET SERVEROUTPUT ON</code>。匿名块中的 <code>:name</code> 是在面板填写的<parameters>查询参数</parameters>。",
                 "各语句成功即提交。用 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 开始保留改动，其后包括网格保存均等待 <code>COMMIT</code> 或 <code>ROLLBACK</code>。",
                 "每个用户是一个 schema，<code>⌘K</code> 无需重连切换活动 schema。行编辑暂存并可 <editing>Preview SQL</editing>。执行 drop 或 truncate 的块即使通过 <code>EXECUTE IMMEDIATE</code>，也在运行前触发<safeMode>危险查询警告</safeMode>。"
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "结构",
             "paragraphs": [
-                "<structure>Structure 标签页</structure>用 <code>ALTER TABLE</code> 添加、重命名、修改、删除列及创建索引，对大小写敏感的名称加双引号。表信息还含主键、外键和 CREATE TABLE DDL。",
+                "在 <structure>Structure 标签页</structure>添加、重命名、修改或删除列，也可创建索引。区分大小写的名称会加引号。可查看主键、外键和 CREATE TABLE DDL。",
                 "分区表下列出各分区及位置，子分区嵌套在所属分区内。用 <code>SELECT * FROM orders PARTITION (p2024)</code> 查询一个分区。",
-                "{compareSyncTier} 方案的 <compareSync>Compare & Sync</compareSync> 比较两个 Oracle schema 或其数据，保存每个单元后带 <code>/</code> 行的脚本，可用于 SQL*Plus 或 SQLcl。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比较 Oracle 结构或数据。脚本使用适用于 SQL*Plus 或 SQLcl 的 <code>/</code> 分隔符。"
             ]
         },
         {

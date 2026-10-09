@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro frente a MongoDB Compass: una base o varias",
+        "title": "TablePro vs MongoDB Compass: shell o herramientas visuales",
         "description": "MongoDB Compass es la GUI gratuita de MongoDB, con agregaciones por etapas y análisis de esquemas. TablePro cubre MongoDB junto a bases SQL y Redis en Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro frente a MongoDB Compass",
-        "lead": "MongoDB Compass es la GUI oficial y gratuita de MongoDB para explorar datos, crear pipelines de agregación y estudiar el esquema de una colección. TablePro es un cliente de código abierto que se conecta a MongoDB junto a bases de datos SQL, Redis y otros motores, con funciones de pago opcionales en el Mac."
+        "lead": "Compass es la interfaz de MongoDB, con un editor de agregaciones y análisis de esquemas. TablePro reúne MongoDB, tus bases SQL y otros motores en un cliente."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB es una de varias bases de datos que usas, junto a PostgreSQL, MySQL, SQL Server o Redis, y quieres un solo cliente para todas.",
-            "Te gusta una shell al estilo de mongosh, con variables, bucles y autocompletado de colecciones, rutas de campos y operadores.",
-            "Quieres renombrar o eliminar un campo en toda una colección, viendo cada sentencia antes de que se ejecute.",
-            "Quieres un asistente de IA con el proveedor que elijas, en la nube o en tu Mac, y un servidor MCP para clientes de IA externos."
+            "MongoDB junto con PostgreSQL, MySQL, SQL Server o Redis.",
+            "Un shell al estilo de mongosh con variables, bucles y autocompletado.",
+            "Cambios de campos en toda una colección, con las instrucciones visibles antes de ejecutarlas."
         ],
         "competitor": [
-            "MongoDB es tu única base de datos y quieres la herramienta oficial de MongoDB, gratuita.",
-            "Creas pipelines de agregación etapa por etapa y quieres una vista previa después de cada etapa.",
-            "Estudias el esquema de una colección o modelas colecciones y sus relaciones en un diagrama.",
-            "Quieres un plan de ejecución visual y métricas del servidor en tiempo real para MongoDB.",
-            "También trabajas en Windows o Linux."
+            "Un editor de agregaciones por etapas, con previsualizaciones.",
+            "Análisis de esquemas, modelado de colecciones y diagramas de relaciones.",
+            "Planes de ejecución visuales y métricas del servidor MongoDB en directo."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass es la GUI oficial de MongoDB y es gratuita.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Los pipelines de agregación se crean etapa por etapa, con una vista previa de los datos después de cada etapa.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Toma una muestra de los documentos de una colección para mostrar tipos de campo, rangos de fechas y valores frecuentes, y dibuja un diagrama entidad-relación de las colecciones de una base de datos.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Los planes de ejecución son visuales, y las métricas del servidor en tiempo real vienen integradas.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Funciona en Windows, macOS y Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "El <link>asistente de IA</link> funciona con el proveedor de IA que elijas, en la nube o en tu Mac, y el servidor MCP permite que clientes de IA externos usen tus conexiones guardadas. Ambos son gratuitos. Las funciones de IA de Compass usan Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "No hay app de TablePro para Windows ni Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "¿Qué IA usa cada uno?",
             "answer": "Las consultas en lenguaje natural y el asistente de Compass usan Azure OpenAI, y puedes desactivar las funciones de IA en su configuración. El asistente de IA de TablePro usa el proveedor que elijas, incluido un modelo en tu Mac, y es gratuito en la app para Mac. <link>Consulta la IA en TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "¿TablePro es gratuito para MongoDB?",
-            "answer": "Sí. MongoDB y los demás motores compatibles, el asistente de IA y el servidor MCP son gratuitos en la app para Mac. Los planes de pago añaden funciones opcionales como {starterExamples}. <link>Consulta los precios</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

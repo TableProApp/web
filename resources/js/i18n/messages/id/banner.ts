@@ -2,8 +2,8 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "label": "Pengumuman",
-    "message": "Pakai TablePro tiap hari? Lisensi menambah fitur berbayar dan mendanai rilis berikutnya.",
-    "short": "Pakai tiap hari?",
-    "cta": "Beli lisensi",
+    "message": "Paket berbayar menambahkan fitur dan mendanai pengembangan TablePro.",
+    "short": "Paket opsional",
+    "cta": "Lihat paket",
     "licensed": "Punya lisensi? Sembunyikan"
 } satisfies Messages['banner'];

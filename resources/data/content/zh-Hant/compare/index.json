@@ -1,250 +1,249 @@
 {
-  "seo": {
-    "title": "比較 TablePro 與其他資料庫用戶端",
-    "description": "比較 TablePro 與 TablePlus、DBeaver、DataGrip、Navicat、Beekeeper Studio、Sequel Ace、Postico、HeidiSQL、phpMyAdmin，附確認日期和來源。"
-  },
-  "og": {
-    "kicker": "比較",
-    "title": "TablePro 與其他資料庫用戶端"
-  },
-  "header": {
-    "title": "比較 TablePro 與其他資料庫用戶端",
-    "lead": "每個比較說明其他用戶端更適合的情境、TablePro 的不同之處，以及 TablePro 不具備的功能。其他產品的事實來自官方來源，並附有查核日期。"
-  },
-  "bySituation": {
-    "title": "依情況選擇",
-    "lead": "每款一句，連結完整比較。",
-    "tablepro": "想要一款開放原始碼用戶端，既有原生 Mac App，又有獨立的 iPhone 與 iPad App，選擇 TablePro。AI 助理和 MCP 伺服器在 Mac App 中免費，還可從 {apps} 匯入已儲存連線。",
-    "items": {
-      "tableplus": "也在 Windows、Linux 工作，或連線 Vertica、Greenplum，選擇 TablePlus。",
-      "dbeaver": "需要 Windows、macOS、Linux 免費用戶端，連線任何有 JDBC 驅動程式的引擎，選擇 DBeaver。",
-      "datagrip": "需要內建版本控制的 JetBrains 資料庫 IDE，工作非商業或已付費使用 JetBrains 工具，選擇 DataGrip。",
-      "navicat": "需要資料建模或團隊使用 Navicat Cloud，且永久授權符合預算，選擇 Navicat。",
-      "beekeeper-studio": "需要在 Windows、macOS、Linux 以相同方式工作的開放原始碼用戶端，選擇 Beekeeper Studio。",
-      "sequel-ace": "僅用 MySQL、MariaDB，希望 Mac App Store 免費開放原始碼 Mac App，選擇 Sequel Ace。",
-      "sequel-pro": "還在用 Sequel Pro？最後版 {status.version} 發行於 {status.date}。Sequel Ace 延續開發，TablePro 可匯入 Sequel Ace 連線。",
-      "postico": "僅用 PostgreSQL，希望專注此工作的 Mac App 和一次性授權，選擇 Postico。",
-      "heidisql": "已在 Windows 使用 HeidiSQL，希望 Apple silicon Mac 使用相同免費用戶端，選擇 HeidiSQL。",
-      "phpmyadmin": "在瀏覽器中管理 MySQL、MariaDB，例如使用透過 cPanel 提供 phpMyAdmin 的主機代管服務，選擇 phpMyAdmin。",
-      "mysql-workbench": "需要 Oracle 官方的 MySQL 工具，搭配 SQL 筆記本和 MySQL Enterprise Backup 整合，選擇 MySQL Workbench。",
-      "pgadmin": "只用 PostgreSQL，需要偵錯工具、pgAgent 工作或多人共用的 Web 伺服器，選擇 pgAdmin。",
-      "dbgate": "需要可在 Windows、macOS、Linux 執行、也能作為 Web 應用程式使用的開放原始碼用戶端，選擇 DbGate。",
-      "mongodb-compass": "MongoDB 是唯一的資料庫，需要依階段建立彙總管道或研究集合 schema，選擇 MongoDB Compass。",
-      "ssms": "需要 SQL Server Agent 和 Always On 時，在 Windows 上選擇 SQL Server Management Studio。它沒有 Mac 版本，在 Mac 上 Microsoft 推薦搭配 MSSQL 延伸模組的 Visual Studio Code。"
-    }
-  },
-  "atAGlance": {
-    "title": "一覽",
-    "lead": "本頁所比較的各用戶端的平台、原始碼和價格。價格為稅前美元標價。",
-    "caption": "用戶端比較日期 {date}，來源列在頁末。"
-  },
-  "openSource": {
-    "title": "Mac 上的開放原始碼用戶端",
-    "lead": "這些用戶端依開放原始碼授權公開程式碼。Sequel Pro 已停止維護，phpMyAdmin 執行於 Web 伺服器，用瀏覽器開啟。",
-    "caption": "開放原始碼用戶端，確認於 {date}。"
-  },
-  "switching": {
-    "title": "移轉至 TablePro",
-    "body": "TablePro 從 {apps} 匯入已儲存連線及密碼。Navicat 連線來自其匯出檔案。",
-    "none": "無 {others} 匯入工具，請手動新增或貼上連線 URL。",
-    "link": "移轉連線",
-    "docs": "文件中的移轉指南"
-  },
-  "method": {
-    "title": "這些頁面如何編寫",
-    "paragraphs": [
-      "有關其他產品的所有事實均來自官方來源：自身網站、文件、儲存庫、發行說明、商店頁面，或散布它的套件管理工具和平台廠商。各頁列出來源和檢查日期。",
-      "TablePro 一欄與網站其餘部分使用相同資料，價格、平台和功能與價格及功能頁一致。",
-      "未找到可供他人重現的測量來引用，因此沒有速度、記憶體或啟動數據。",
-      "價格和功能會變，若資訊過時，請<issues>在 GitHub 提出議題</issues>。"
-    ]
-  },
-  "labels": {
-    "factsChecked": "事實確認於 {date}",
-    "orList": {
-      "separator": "、",
-      "last": "或"
+    "seo": {
+        "title": "比較資料庫用戶端",
+        "description": "依功能、支援的資料庫、平台與授權比較 TablePro 和其他資料庫用戶端。附有查核日期和官方來源。"
     },
-    "sourcesLink": "來源",
-    "shortAnswer": {
-      "title": "簡要選擇",
-      "lead": "在 Mac 上尋找 {name} 的替代方案？下面列出兩款用戶端各自適合的情況。",
-      "tablepro": "適合選擇 TablePro 的情況",
-      "competitor": "適合選擇 {name} 的情況"
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro 與其他資料庫用戶端"
     },
-    "glance": {
-      "title": "一覽",
-      "caption": "TablePro 與 {name}，比較於 {date}，來源列在頁末。",
-      "feature": "比較項目",
-      "more": "更多關於 {name}"
+    "header": {
+        "title": "比較資料庫用戶端",
+        "lead": "比較功能、支援的資料庫和授權。每次比較都包含官方來源和檢查日期。"
     },
-    "rows": {
-      "platforms": "平台",
-      "technology": "建置技術",
-      "price": "價格",
-      "licence": "開放原始碼",
-      "databases": "資料庫",
-      "ai": "AI 助理",
-      "mcp": "MCP 伺服器",
-      "ios": "iPhone 與 iPad",
-      "sync": "同步",
-      "import": "移轉至 TablePro"
+    "bySituation": {
+        "title": "哪個用戶端適合您的工作？",
+        "lead": "從您需要的工具開始。",
+        "tablepro": "TablePro 是適用於多種資料庫類型的原生開源用戶端。 AI 聊天和 MCP 在 Mac 應用程式中免費。它從 {apps} 匯入連線。",
+        "items": {
+            "tableplus": "Windows 或 Linux 支援，加上 Vertica 和 Greenplum。",
+            "dbeaver": "具有 JDBC 驅動程式支援的跨平台用戶端。",
+            "datagrip": "具有程式碼檢查和版本控制功能的資料庫 IDE。免費用於非商業工作。",
+            "navicat": "透過 Navicat Cloud 進行資料建模和共享專案。",
+            "beekeeper-studio": "一個開源用戶端，在 Windows、 macOS 和 Linux 中具有相同的功能。",
+            "sequel-ace": "一個免費的 Mac App Store 用戶端，專注於 MySQL 和 MariaDB。",
+            "sequel-pro": "從 Sequel Pro 轉移？它的最後一個版本是 {status.version}，在 {status.date} 上。比較 Sequel Ace 和 TablePro。",
+            "postico": "具有一次性授權的專注 PostgreSQL 用戶端。",
+            "heidisql": "Windows、Linux 和 Apple silicon Mac 的免費用戶端。",
+            "phpmyadmin": "MySQL 或 MariaDB 透過瀏覽器訪問，包括 cPanel 託管。",
+            "mysql-workbench": "Oracle 的 MySQL 工具，提供 SQL notebook 和 MySQL Enterprise Backup 整合。",
+            "pgadmin": "PostgreSQL 管理，附有偵錯器、pgAgent 作業和共用伺服器選項。",
+            "dbgate": "適用於桌面和 Web 的開源 SQL 和 NoSQL 用戶端。",
+            "mongodb-compass": "MongoDB 聚合管道、綱要分析和即時伺服器指標。",
+            "ssms": "SQL Server 對 Windows 進行管理，包括 Agent 和 Always On。"
+        }
     },
-    "cell": {
-      "yes": "有",
-      "no": "無",
-      "partial": "部分支援",
-      "edition": "在 {edition} 版本提供",
-      "since": "從版本 {version} 起",
-      "sinceDated": "從 {date} 的版本 {version} 起",
-      "source": "來源",
-      "none": "不適用"
+    "atAGlance": {
+        "title": "一覽",
+        "lead": "平台、開源授權和美國稅前標價。",
+        "caption": "用戶端比較日期 {date}，來源列在頁末。"
     },
-    "platforms": {
-      "mac": "Mac",
-      "windows": "Windows",
-      "linux": "Linux",
-      "ios": "iPhone 與 iPad",
-      "web": "伺服器上的 Web App"
-    },
-    "macRequirement": "macOS {version} 或更新版本",
-    "languages": {
-      "en": "英語",
-      "vi": "越南語",
-      "zh-Hans": "簡體中文",
-      "zh-Hant": "繁體中文",
-      "ko": "韓語",
-      "tr": "土耳其語",
-      "fr": "法語"
-    },
-    "builds": {
-      "both": "Apple silicon 和 Intel 版本",
-      "universal": "在 Apple silicon 和 Intel 原生執行",
-      "arm64": "僅 Apple silicon",
-      "x86_64": "僅 Intel"
-    },
-    "licence": {
-      "yes": "是：{licence}",
-      "yesEdition": "是：{edition} 版本為 {licence}",
-      "no": "否"
-    },
-    "currency": {
-      "pattern": "US${amount}",
-      "decimal": ".",
-      "group": ","
-    },
-    "price": {
-      "free": "免費",
-      "labelled": "{label}：{price}",
-      "amount": {
-        "once": "一次 {amount}",
-        "month": "每月 {amount}",
-        "year": "每年 {amount}",
-        "none": "{amount}"
-      },
-      "per": {
-        "device": "{price}/裝置",
-        "user": "{price}/使用者",
-        "seat": "{price}/席位",
-        "license": "{price}/授權",
-        "none": "{price}"
-      },
-      "units": {
-        "one": "{price}，限 1 台裝置",
-        "other": "{price}，最多 {count} 台裝置"
-      },
-      "minUnits": {
-        "one": "{price}，至少 1 個席位",
-        "other": "{price}，至少 {count} 個席位"
-      },
-      "renewal": "續費",
-      "ios": "iPhone、iPad App",
-      "macAppStore": "Mac App Store",
-      "audience": {
-        "individual": "個人",
-        "organization": "組織",
-        "personal": "個人使用",
-        "commercial": "商用",
-        "student": "學生",
-        "non-commercial": "非商業使用"
-      },
-      "continuity": {
-        "1": "第一年",
-        "2": "第二年",
-        "3": "第三年起"
-      },
-      "withContinuity": "{label}，{year}"
-    },
-    "tablepro": {
-      "technology": "Swift 與原生資料庫驅動程式",
-      "priceFree": "可免費使用，付費方案為 Mac App 加入選用功能。",
-      "starter": "每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
-      "team": "每席位每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席位",
-      "iosPrice": "iPhone、iPad App 免費，無 App 內購買。",
-      "licence": "是：{licence}，包括付費功能程式碼",
-      "databases": "{engines} 等",
-      "databasesLink": "支援的資料庫",
-      "ai": "Mac App 免費，自選雲端或本 Mac 的 AI 供應商",
-      "mcp": "Mac App 免費，僅在本 Mac 監聽，各連線決定外部 App 可做什麼",
-      "ios": "獨立免費 App，無 App 內購買",
-      "sync": "iCloud Sync：Mac 屬於 {tier}，iPhone、iPad 免費"
-    },
-    "import": {
-      "yes": "TablePro 匯入 {name} 連線及已儲存密碼。",
-      "yesFile": "TablePro 從 {name} 匯出的 {format} 檔案匯入 {name} 連線及已儲存密碼。",
-      "noPasswords": "TablePro 匯入 {name} 連線，密碼不移轉。",
-      "none": "TablePro 無 {name} 匯入工具。",
-      "link": "如何移轉"
-    },
-    "tiers": {
-      "starter": "Starter",
-      "team": "Team"
-    },
-    "tierBadge": "{tier} 方案",
-    "sections": {
-      "stronger": "{name} 的優勢",
-      "differs": "TablePro 有何不同",
-      "limits": "TablePro 不能做什麼",
-      "switching": "從 {name} 移轉",
-      "faq": "常見問題",
-      "sources": "來源",
-      "more": "更多比較",
-      "cta": "取得 TablePro"
+    "openSource": {
+        "title": "開源選項",
+        "lead": "這些用戶端根據開源授權發布原始程式碼。 Sequel Pro 未維護； phpMyAdmin 在 Web 伺服器上運作。",
+        "caption": "開放原始碼用戶端，確認於 {date}。"
     },
     "switching": {
-      "docs": "文件中的移轉指南"
+        "title": "移轉至 TablePro",
+        "body": "從 {apps} 匯入連線和儲存的密碼。 Navicat 需要匯出的連線檔。",
+        "none": "沒有適用於 {others} 的匯入工具。請手動新增連線或貼上連線 URL。",
+        "link": "匯入連線",
+        "docs": "切換指南"
     },
-    "sources": {
-      "intro": "{name} 的事實於 {date} 對照這些頁面檢查。價格為稅前美元標價。",
-      "retrieved": "確認於 {date}",
-      "latest": "當時最新 {name} 版本：{version}，發行於 {date}。",
-      "tablepro": "TablePro 一欄描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。",
-      "trademarks": "TablePro 是獨立的開放原始碼專案，與此處所比較產品的開發者沒有關聯，也未獲其背書。產品名稱是其各自擁有者的商標。"
+    "method": {
+        "title": "來源與範圍",
+        "paragraphs": [
+            "競爭對手資訊使用官方網站、文件、儲存庫、發行說明和商店列表，或分發它的套件管理器或平台供應商。來源包括檢查日期。",
+            "TablePro的價格、平台和功能使用本網站的分享產品資料。沒有引用可重複的基準測試，因此這些頁面沒有提出速度或記憶體聲明。",
+            "價格和功能可能變動。<issues>在 GitHub 回報過時的資訊</issues>。"
+        ]
     },
-    "cta": {
-      "body": "TablePro 可免費下載，付費方案為 Mac App 加入選用功能。",
-      "pricing": "查看價格",
-      "hub": "所有比較"
-    },
-    "status": {
-      "active": "維護中",
-      "discontinued": "已停止開發"
-    },
-    "hub": {
-      "client": "用戶端",
-      "platforms": "平台",
-      "openSource": "開放原始碼",
-      "free": "可免費使用",
-      "paid": "付費方案",
-      "paidFrom": "{price} 起",
-      "noPaid": "無",
-      "freeYes": "是",
-      "freeNo": "否",
-      "license": "授權",
-      "status": "狀態",
-      "latest": "最新發行",
-      "latestValue": "{version}，{date}",
-      "compareLink": "TablePro vs {name}"
+    "labels": {
+        "factsChecked": "事實確認於 {date}",
+        "orList": {
+            "separator": "、",
+            "last": "或"
+        },
+        "sourcesLink": "來源",
+        "shortAnswer": {
+            "title": "在它們之間做選擇",
+            "lead": "使用 TablePro 或 {name} 的原因。",
+            "tablepro": "適合使用 TablePro 的情況",
+            "competitor": "適合使用 {name} 的情況"
+        },
+        "glance": {
+            "title": "一覽",
+            "caption": "TablePro 與 {name}，比較於 {date}，來源列在頁末。",
+            "feature": "比較項目",
+            "more": "更多關於 {name}"
+        },
+        "rows": {
+            "platforms": "平台",
+            "technology": "建置技術",
+            "price": "價格",
+            "licence": "開放原始碼",
+            "databases": "資料庫",
+            "ai": "AI 助理",
+            "mcp": "MCP 伺服器",
+            "ios": "iPhone 與 iPad",
+            "sync": "同步",
+            "import": "移轉至 TablePro"
+        },
+        "cell": {
+            "yes": "有",
+            "no": "無",
+            "partial": "部分支援",
+            "edition": "在 {edition} 版本提供",
+            "since": "從版本 {version} 起",
+            "sinceDated": "從 {date} 的版本 {version} 起",
+            "source": "來源",
+            "none": "不適用"
+        },
+        "platforms": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone 與 iPad",
+            "web": "伺服器上的 Web App"
+        },
+        "macRequirement": "macOS {version} 或更新版本",
+        "languages": {
+            "en": "英語",
+            "vi": "越南語",
+            "zh-Hans": "簡體中文",
+            "zh-Hant": "繁體中文",
+            "ko": "韓語",
+            "tr": "土耳其語",
+            "fr": "法語"
+        },
+        "builds": {
+            "both": "Apple silicon 和 Intel 版本",
+            "universal": "在 Apple silicon 和 Intel 原生執行",
+            "arm64": "僅 Apple silicon",
+            "x86_64": "僅 Intel"
+        },
+        "licence": {
+            "yes": "是：{licence}",
+            "yesEdition": "是：{edition} 版本為 {licence}",
+            "no": "否"
+        },
+        "currency": {
+            "pattern": "US${amount}",
+            "decimal": ".",
+            "group": ","
+        },
+        "price": {
+            "free": "免費",
+            "labelled": "{label}：{price}",
+            "amount": {
+                "once": "一次 {amount}",
+                "month": "每月 {amount}",
+                "year": "每年 {amount}",
+                "none": "{amount}"
+            },
+            "per": {
+                "device": "{price}/裝置",
+                "user": "{price}/使用者",
+                "seat": "{price}/席位",
+                "license": "{price}/授權",
+                "none": "{price}"
+            },
+            "units": {
+                "one": "{price}，限 1 台裝置",
+                "other": "{price}，最多 {count} 台裝置"
+            },
+            "minUnits": {
+                "one": "{price}，至少 1 個席位",
+                "other": "{price}，至少 {count} 個席位"
+            },
+            "renewal": "續費",
+            "ios": "iPhone、iPad App",
+            "macAppStore": "Mac App Store",
+            "audience": {
+                "individual": "個人",
+                "organization": "組織",
+                "personal": "個人使用",
+                "commercial": "商用",
+                "student": "學生",
+                "non-commercial": "非商業使用"
+            },
+            "continuity": {
+                "1": "第一年",
+                "2": "第二年",
+                "3": "第三年起"
+            },
+            "withContinuity": "{label}，{year}"
+        },
+        "tablepro": {
+            "technology": "Swift 與原生資料庫驅動程式",
+            "priceFree": "可免費使用，付費方案為 Mac App 加入選用功能。",
+            "starter": "每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
+            "team": "每席位每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席位",
+            "iosPrice": "iPhone、iPad App 免費，無 App 內購買。",
+            "licence": "是：{licence}，包括付費功能程式碼",
+            "databases": "{engines} 等",
+            "databasesLink": "支援的資料庫",
+            "ai": "Mac 應用程式中免費。選擇雲端提供者或本地模型；可能會收取提供者費用。",
+            "mcp": "Mac 應用程式中免費。僅本地主機，具有每個連線的存取控制。",
+            "ios": "獨立免費 App，無 App 內購買",
+            "sync": "iCloud Sync：Mac 屬於 {tier}，iPhone、iPad 免費"
+        },
+        "import": {
+            "yes": "TablePro 匯入 {name} 連線及已儲存密碼。",
+            "yesFile": "TablePro 從 {name} 匯出的 {format} 檔案匯入 {name} 連線及已儲存密碼。",
+            "noPasswords": "TablePro 匯入 {name} 連線，密碼不移轉。",
+            "none": "TablePro 無 {name} 匯入工具。",
+            "link": "如何移轉"
+        },
+        "tiers": {
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "tierBadge": "{tier} 方案",
+        "sections": {
+            "stronger": "使用 {name} 的理由",
+            "differs": "重要的差異",
+            "limits": "TablePro 的限制",
+            "switching": "從 {name} 移轉",
+            "faq": "常見問題",
+            "sources": "來源",
+            "more": "更多比較",
+            "cta": "取得 TablePro"
+        },
+        "switching": {
+            "docs": "文件中的移轉指南"
+        },
+        "sources": {
+            "intro": "{name} 資訊查核日期：{date}。價格為美國稅前標價。",
+            "retrieved": "確認於 {date}",
+            "latest": "當時最新 {name} 版本：{version}，發行於 {date}。",
+            "tablepro": "TablePro 一欄描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。",
+            "trademarks": "TablePro 是獨立的開放原始碼專案，與此處所比較產品的開發者沒有關聯，也未獲其背書。產品名稱是其各自擁有者的商標。"
+        },
+        "cta": {
+            "body": "核心應用程式是免費的。付費方案添加了可選功能。",
+            "pricing": "查看價格",
+            "hub": "所有比較"
+        },
+        "status": {
+            "active": "維護中",
+            "discontinued": "已停止開發"
+        },
+        "hub": {
+            "client": "用戶端",
+            "platforms": "平台",
+            "openSource": "開放原始碼",
+            "free": "可免費使用",
+            "paid": "付費方案",
+            "paidFrom": "{price} 起",
+            "noPaid": "無",
+            "freeYes": "是",
+            "freeNo": "否",
+            "license": "授權",
+            "status": "狀態",
+            "latest": "最新發行",
+            "latestValue": "{version}，{date}",
+            "compareLink": "TablePro vs {name}"
+        }
     }
-  }
 }

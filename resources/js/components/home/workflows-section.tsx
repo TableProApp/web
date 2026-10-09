@@ -65,6 +65,7 @@ export default function WorkflowsSection({ content, engines }: WorkflowsSectionP
             id="features"
             flush
             title={content.title}
+            lead={m.platforms.app.mac}
             aside={
                 <LocaleLink href="/features" className={textLinkClasses('standalone')}>
                     {content.link}
@@ -94,7 +95,7 @@ export default function WorkflowsSection({ content, engines }: WorkflowsSectionP
                             <p className="type-body text-foreground">
                                 <RichText text={row.body} values={values} />
                             </p>
-                            {paidLines(config.paid, m, content.paid).map((line) => (
+                            {paidLines(row.id !== 'schema' ? [] : config.paid, m, content.paid).map((line) => (
                                 <p key={line} className="type-small mt-3 text-muted-foreground">
                                     {line}
                                 </p>

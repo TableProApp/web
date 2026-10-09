@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "Cliente Amazon Redshift para {devices}",
-        "lead": "Consulta un clúster provisionado o workgroup Serverless con el controlador PostgreSQL incluido, lee distribución y claves de ordenación de cada tabla y explora esquemas Spectrum y datashare junto a los tuyos."
+        "title": "Cliente Amazon Redshift",
+        "lead": "Consulta clústeres aprovisionados o workgroups Serverless. Inspecciona claves de ordenación, estilos de distribución y esquemas externos."
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Usa como host el endpoint del clúster o del workgroup en Redshift Serverless; ambos usan el mismo puerto. Se requiere una base, y todos los clústeres se crean con una llamada <code>dev</code>. Importar una URL <code>redshift://</code> rellena el formulario.",
+                "Introduce endpoint, puerto y base de un clúster o workgroup Serverless. Los clústeres empiezan con <code>dev</code>. Una URL <code>redshift://</code> rellena el formulario.",
                 "Las conexiones nuevas usan SSL en Preferred, sin comprobar versión, así que conecta cualquier clúster que AWS siga ejecutando. La contraseña se guarda en el Llavero o se lee de <code>~/.pgpass</code>, dos <credentials>opciones de credenciales</credentials>. Un clúster no público se alcanza con <network>túnel SSH</network> a un bastión de su VPC."
             ]
         },
@@ -40,9 +40,9 @@
             "title": "Consulta y edita",
             "paragraphs": [
                 "Las consultas y <editing>ediciones pendientes con Preview SQL</editing> funcionan como en <postgresql>PostgreSQL</postgresql>, con el mismo controlador. Una pestaña asociada a una base distinta de la activa abre una segunda conexión.",
-                "La información de tabla lee <code>svv_table_info</code> para distribución, claves de ordenación y tamaño; DDL escribe DISTKEY, SORTKEY, DISTSTYLE y ENCODE. Se enumeran claves foráneas, pero Redshift no las impone: nada detiene una fila que las incumpla.",
+                "Inspecciona estilo de distribución, claves de ordenación y tamaño desde <code>svv_table_info</code>. El DDL incluye DISTKEY, SORTKEY, DISTSTYLE y ENCODE. Las claves foráneas se muestran, pero Redshift no las impone.",
                 "<explain>EXPLAIN y EXPLAIN VERBOSE</explain> devuelven el plan Redshift como texto, sin diagrama.",
-                "Los esquemas de <code>CREATE EXTERNAL SCHEMA</code>, ya sean Spectrum sobre S3, consulta federada, referencia entre bases o datashare, aparecen junto a los tuyos marcados Externo. Sus tablas admiten explorar, filtrar, ordenar y exportar, pero son de solo lectura: Redshift no acepta UPDATE ni DELETE ahí. No muestran recuento; los tipos de columna proceden del catálogo externo."
+                "Explora esquemas externos Spectrum, federados, entre bases y datashare junto a los locales. Las tablas externas admiten filtros, ordenación y exportación, pero son de solo lectura. No hay recuentos de filas; los tipos vienen del catálogo externo."
             ]
         },
         {

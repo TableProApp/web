@@ -18,7 +18,7 @@ export default {
         badgeUndated: 'v{version}',
         notes: 'Ghi chú phát hành (tiếng Anh)',
         unavailable:
-            'Không tải được thông tin của bản phát hành hiện tại. Cả hai nút đều mở bản phát hành mới nhất trên GitHub; tại đó bạn có thể chọn file DMG phù hợp với máy Mac của mình.',
+            'Không tải được thông tin bản phát hành. Cả hai nút mở bản mới nhất trên GitHub; chọn bản build tại đó.',
     },
     file: {
         sized: '{name} · {size} MB',
@@ -32,7 +32,7 @@ export default {
     onAnotherDevice: 'Để cài ứng dụng Mac, hãy mở trang này trên máy Mac của bạn.',
     whichMac: {
         summary: 'Máy Mac của bạn dùng chip nào?',
-        body: 'Mở menu Apple và chọn Giới thiệu về máy Mac này (About This Mac). Máy Mac dùng Apple silicon có mục Chip, ví dụ Apple M2. Máy Mac dùng Intel có mục Bộ xử lý (Processor) ghi tên Intel.',
+        body: 'Chọn Giới thiệu về máy Mac này (About This Mac) trong menu Apple. Mục Chip nghĩa là Apple silicon; mục Bộ xử lý (Processor) ghi Intel nghĩa là Intel.',
     },
     checksum: {
         summary: 'Kiểm tra file đã tải về',

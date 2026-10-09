@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "版本說明（英文）",
-        "unavailable": "無法載入目前版本的詳細資訊。兩個按鈕都會開啟 GitHub 上的最新版本，您可在該處選擇適合 Mac 的磁碟映像檔。"
+        "unavailable": "無法取得版本資訊。兩個按鈕都會開啟 GitHub 上的最新版本，請在那裡選擇安裝套件。"
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "若要安裝 Mac App，請在 Mac 上開啟此頁面。",
     "whichMac": {
         "summary": "我的 Mac 是哪種型號？",
-        "body": "開啟 Apple 選單並選擇「關於這台 Mac」。Apple silicon Mac 會顯示「晶片」欄位，例如 Apple M2。Intel Mac 則顯示「處理器」欄位，其中標有 Intel。"
+        "body": "在 Apple 選單中選擇「關於這台 Mac」。顯示「晶片」欄位的是 Apple 晶片 Mac；「處理器」欄位顯示 Intel 的是 Intel Mac。"
     },
     "checksum": {
         "summary": "驗證下載的檔案",

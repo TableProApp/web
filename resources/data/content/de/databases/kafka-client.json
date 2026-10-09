@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Apache-Kafka-Client für {devices}",
-        "lead": "Lies ein Topic ab einer frei gewählten Startposition, sieh den Rückstand jeder Consumer-Gruppe und erzeuge eine Testnachricht, alles mit KafkaQL, der eigenen Befehlssprache von TablePro. Ein Topic ist ein Log: Das Raster liest Nachrichten und bearbeitet sie nie."
+        "title": "Apache-Kafka-Client",
+        "lead": "Prüfe Topic-Nachrichten und Consumer-Lag oder erzeuge eine Testnachricht mit KafkaQL, der eigenen Befehlssprache von TablePro."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und Port eines Brokers ein; darüber wird der restliche Cluster entdeckt. <ui>Additional Bootstrap Servers</ui> listet Broker, die versucht werden, wenn der erste nicht antwortet. Eine Verbindung entspricht einem Cluster; es gibt daher kein Datenbankfeld, und die Seitenleiste zeigt seine Topics direkt.",
+                "Gib Host und Port eines Bootstrap-Brokers ein. <ui>Additional Bootstrap Servers</ui> ergänzt Ausweich-Broker. Jede Verbindung erreicht einen Cluster; die Seitenleiste zeigt seine Topics.",
                 "<ui>Security Protocol</ui> ist PLAINTEXT, SSL, SASL_PLAINTEXT oder SASL_SSL; <ui>SASL Mechanism</ui> ist PLAIN, SCRAM-SHA-256 oder SCRAM-SHA-512. PLAIN eignet sich für Confluent Cloud, SCRAM für Amazon MSK und selbst betriebene Broker. Bei SSL oder SASL_SSL ohne gewählten SSL-Modus werden Zertifikatskette und Hostname geprüft. Eine private CA kommt in <ui>CA Certificate</ui>; Client-Zertifikat und Schlüssel ergänzen gegenseitiges TLS.",
                 "Über einen <network>SSH-Tunnel</network> bleibt die Verbindung beim Bootstrap-Broker und liest daher nur die Partitionen, deren Leader er ist. <ui>Import from URL…</ui> akzeptiert <code>kafka://</code>-URLs, die macOS nicht als Links öffnet."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Lesen, prüfen und erzeugen",
             "paragraphs": [
-                "Beim Öffnen eines Topics erscheinen die neuesten Nachrichten, die neueste zuletzt, mit Partition, Offset, Zeitstempel, Schlüssel, Wert, Headern und Größen. Nachrichten aus verschiedenen Partitionen werden als Lesehilfe nach Zeitstempel ineinander angeordnet; Partition und Offset identifizieren die Nachricht. Ein Schlüssel oder Wert ohne UTF-8 erscheint als Hex; ein Tombstone bleibt von einer leeren Nachricht unterscheidbar.",
-                "KafkaQL ersetzt Sortieren und Filtern durch eine Startposition: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> oder <code>FROM TIME</code> mit ISO-8601-Zeitstempel, optional auf bestimmte Partitionen begrenzt. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> und <code>DESCRIBE TOPIC</code> decken den restlichen Cluster ab.",
+                "Durchsuche aktuelle Nachrichten mit Partition, Offset, Zeitstempel, Schlüssel, Wert und Headern. Nachrichten verschiedener Partitionen werden nach Zeitstempel gemischt; Partition und Offset identifizieren sie. Nicht-UTF-8-Werte erscheinen als Hex. Tombstones bleiben von leeren Nachrichten unterscheidbar.",
+                "Lies mit KafkaQL ab der neuesten oder ältesten Nachricht, einem Offset oder einem ISO-8601-Zeitstempel, optional auf bestimmte Partitionen begrenzt. SHOW-Befehle listen Topics, Broker, Gruppen und Cluster-Details; DESCRIBE TOPIC prüft ein Topic.",
                 "<code>DESCRIBE GROUP</code> zeigt den Lag-Bericht: committeter Offset, End-Offset und Abstand pro Partition. Eine Partition, für die die Gruppe nie committet hat, zeigt keinen Lag statt eines ab null gezählten Werts. <code>SHOW GROUPS</code> markiert die Liste als gekürzt, wenn ein Broker nicht erreichbar ist.",
                 "<code>PRODUCE INTO</code> schreibt eine Nachricht mit optionalem Schlüssel, Headern und Partition. Eine Nachricht mit Schlüssel ohne Partition landet dort, wo Kafkas eigener Producer sie ablegen würde. gzip-, snappy-, lz4- und zstd-Batches werden beim Lesen ohne wählbare Einstellung dekomprimiert.",
-                "Zellen lassen sich nicht bearbeiten, Zeilen nicht löschen und Spalten nicht sortieren, da Kafka keine Updates, kein Löschen einzelner Nachrichten und keine serverseitige Sortierung bietet; das Raster blendet diese Bedienelemente ab. Jede Seite setzt am Ende der vorherigen fort, sodass ein beschriebenes Topic keine Nachricht wiederholt oder überspringt."
+                "Nachrichten können weder bearbeitet noch einzeln gelöscht werden; Spalten lassen sich nicht sortieren. Beim Blättern wird trotz neuer Nachrichten an der vorherigen Position fortgesetzt."
             ]
         },
         {

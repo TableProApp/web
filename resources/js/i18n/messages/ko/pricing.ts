@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "무료",
-            "description": "유료 기능을 제외한 Mac 앱과 iPhone 및 iPad 앱.",
+            "description": "체험 기간 없이 사용하는 기본 데이터베이스 도구.",
             "activation": "가입 없이 앱을 사용할 수 있습니다.",
             "includesTitle": "포함 기능",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Mac 앱에 {examples} 같은 기능을 추가합니다.",
             "activation": {
-                "one": "라이선스 하나를 한 사람이 Mac {count}대에서 사용합니다.",
-                "other": "라이선스 하나를 한 사람이 최대 {count}대의 Mac에서 사용합니다."
+                "one": "1명, Mac {count}대.",
+                "other": "1명, Mac 최대 {count}대."
             },
             "includesTitle": "무료 플랜의 모든 기능에 더해",
             "cta": "Starter 구매"
         },
         "team": {
             "name": "Team",
-            "description": "Starter 기능에 더해 팀과 연결 및 쿼리를 공유할 수 있습니다.",
-            "activation": "좌석 하나당 Mac 한 대를 활성화합니다.",
+            "description": "팀과 연결 및 저장된 쿼리를 공유하세요.",
+            "activation": "좌석당 활성화된 Mac 1대.",
             "includesTitle": "Starter의 모든 기능에 더해",
             "cta": "Team 구매"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요.",
         "other": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
     },
-    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
+    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 처리하고 결제 시 판매세 또는 VAT를 계산합니다.",
     "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "코드 확인 중…",
         "percent": "코드가 적용되었습니다. 결제 시 {amount}% 할인됩니다.",
         "fixed": "코드가 적용되었습니다. 결제 시 {amount} 할인됩니다.",
-        "invalid": "할인 코드가 유효하지 않거나 만료되었습니다."
+        "invalid": "이 코드는 유효하지 않거나 만료되었습니다."
     },
     "checkout": {
-        "failed": "결제를 시작하지 못했습니다. 다시 시도하세요."
+        "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요."
     },
     "offers": {
         "name": "{plan}, {cycle}",

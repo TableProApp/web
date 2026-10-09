@@ -124,7 +124,7 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
 
-Khi bạn chỉ đọc các trang, website không tự đặt cookie nào. Việc đăng ký nhận bản tin, hoặc bắt đầu thanh toán hay kiểm tra mã giảm giá, gửi một yêu cầu tới máy chủ của chúng tôi và yêu cầu đó đặt hai cookie của trang tài khoản là `tablepro-session` và `XSRF-TOKEN`. Mọi thứ website giữ trong trình duyệt của bạn được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
+Đọc website không đặt cookie riêng. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng chế độ omit credentials: không gửi cookie trang tài khoản và không nhận cookie từ response. Mở trang tài khoản là việc riêng, có đặt cookie liệt kê bên dưới. Mọi thứ website giữ trong trình duyệt được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
 
 ## Mua hàng {#purchases}
 
@@ -144,7 +144,7 @@ Nếu bạn đăng ký nhận ghi chú phát hành, chúng tôi lưu địa ch�
 
 ## Cookie và bộ nhớ trình duyệt {#cookies}
 
-Khi bạn chỉ đọc website công khai, website không tự đặt cookie nào; việc đăng ký nhận bản tin hoặc bắt đầu thanh toán sẽ đặt hai cookie thực sự cần thiết của trang tài khoản, được liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt của bạn. Cookie của Google Analytics không được đặt cho tới khi bạn cho phép. Crisp đặt cookie của mình trên mọi trang sau khi khung chat được tải. Không thứ nào dưới đây được dùng cho quảng cáo hay được bán.
+Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã giảm giá không đặt cookie riêng. Mở trang tài khoản đặt hai cookie thực sự cần thiết liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt. Cookie Google Analytics chỉ đặt khi bạn cho phép. Crisp đặt cookie trên mọi trang sau khi chat tải xong. Không thứ nào ở đây được dùng cho quảng cáo hay được bán.
 
 - **`_ga` và `_ga_<ID>`** (cookie của Google Analytics, tối đa 2 năm, chỉ khi bạn cho phép phân tích): một mã ngẫu nhiên cho trình duyệt của bạn và trạng thái của lượt truy cập hiện tại. Khi bạn từ chối, hoặc đổi câu trả lời sau đó, các cookie này bị xóa. Cơ sở pháp lý: sự đồng ý.
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
@@ -152,7 +152,7 @@ Khi bạn chỉ đọc website công khai, website không tự đặt cookie nà
 - **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống), và banner nào bạn đã đóng cùng thời hạn ẩn: 30 ngày, hoặc một năm nếu bạn cho biết đã có license hoặc vừa mua license. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, chỉ khi bạn cho phép Google Analytics ở đó): ID người xem được mô tả trong mục [Website](#website). Từ chối sẽ xóa nó. Trang tài liệu giữ câu trả lời `tablepro:analytics-consent` của riêng nó. Cơ sở pháp lý: sự đồng ý.
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
-- **`tablepro-session` và `XSRF-TOKEN`** (cookie của trang tài khoản, 2 giờ): giữ trạng thái đăng nhập và bảo vệ các biểu mẫu của trang tài khoản trước tấn công giả mạo yêu cầu liên trang (CSRF). Các trang khác của trang tài khoản, như trang xác nhận mua hàng và các trang bản tin, cũng đặt hai cookie này, và việc đăng ký nhận bản tin hay bắt đầu thanh toán hoặc kiểm tra mã giảm giá từ bất kỳ trang nào của website này cũng vậy. Cơ sở pháp lý: thực sự cần thiết.
+- **`tablepro-session` và `XSRF-TOKEN`** (cookie trang tài khoản, 2 giờ): giữ đăng nhập và bảo vệ form trước CSRF. Mở các trang khác của trang tài khoản, như xác nhận mua hàng và bản tin, cũng đặt cookie. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng omit credentials, không giữ cookie này. Cơ sở pháp lý: thực sự cần thiết.
 
 Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích bất cứ lúc nào bằng **Cài đặt cookie** ở chân mọi trang, hoặc tại đây:
 

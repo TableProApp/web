@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "Client Trino pour {devices}",
-        "lead": "Joignez des tables de différents catalogues dans une requête, lisez le plan prévu par Trino et arrêtez une requête incontrôlée sur le coordinateur. Les possibilités d’écriture dépendent du connecteur de chaque catalogue."
+        "title": "Client Trino",
+        "lead": "Interrogez plusieurs catalogues, inspectez les plans et annulez les requêtes en cours. L’écriture dépend du connecteur de chaque catalogue."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez hôte et port du coordinateur et un <ui>Nom d’utilisateur</ui> (Username), sous lequel tournent les requêtes. <ui>Catalog</ui> et <ui>Schéma</ui> (Schema) sont des points initiaux facultatifs ; laissez Catalogue vide pour tous les parcourir. Un <ui>Fuseau horaire</ui> (Time Zone) IANA dans Options définit celui de la session.",
+                "Saisissez hôte du coordinateur, port et <ui>Nom d’utilisateur</ui> (Username). <ui>Catalog</ui> et <ui>Schéma</ui> (Schema), facultatifs, définissent le point de départ. Choisissez une <ui>Fuseau horaire</ui> (Time Zone) IANA pour la session.",
                 "Authentifiez-vous par mot de passe en HTTP Basic pour LDAP ou fichier de mots de passe, ou jeton JWT comme identifiant bearer. Les deux ne passent que par TLS : avec SSL sur Disabled, une connexion qui en contient est refusée avant tout envoi. Certificat client et clé dans SSL ajoutent TLS mutuel.",
                 "SSL commence sur Disabled, soit HTTP en clair ; les autres modes imposent TLS sans repli en clair, et le port 443 active Verify Identity. Une redirection d’un proxy devant le coordinateur n’est jamais suivie ; l’erreur nomme sa destination. Accédez derrière un bastion par <network>tunnel SSH</network> et importez une URL <code>trino://</code> avec <ui>Importer depuis une URL…</ui> (Import from URL…)."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Interrogez entre catalogues",
             "paragraphs": [
-                "La connexion ouvre un catalogue et schéma ; toute requête peut toujours nommer <code>catalog.schema.table</code> en entier, comme une jointure Hive-PostgreSQL. La barre latérale développe les catalogues en schémas et tables, avec vues matérialisées près des tables et vues, et comptages issus de <code>SHOW STATS</code>.",
+                "Interrogez les noms complets <code>catalog.schema.table</code> pour joindre plusieurs catalogues. Parcourez catalogues, schémas, tables et vues matérialisées ; les estimations du nombre de lignes viennent de <code>SHOW STATS</code>.",
                 "<code>bigint</code> et <code>decimal</code> se lisent en texte exact, pas en flottant. <code>varbinary</code> s’affiche en hexadécimal, <code>array</code>, <code>map</code> et <code>row</code> en JSON ; les horodatages conservent la valeur du serveur.",
                 "<explain>Explain</explain> propose Logical, Distributed, IO, Validate et Analyze. Validate vérifie sans exécution, Analyze exécute et rapporte les temps réels ; tous les plans reviennent en texte brut.",
                 "<code>SET SESSION</code> dure le reste de la connexion. <ui>Requête > Annuler la requête</ui> (Query > Cancel Query) demande au coordinateur de terminer la requête ; c’est ainsi qu’on l’arrête, car le délai de connexion n’atteint pas Trino.",
-                "Les <editing>modifications de cellules</editing> deviennent INSERT, UPDATE et DELETE, chaque valeur portant son type Trino. Trino ne rapporte pas de clés primaires ; toutes les colonnes lues sont donc comparées, sans transaction pour annuler. Modifier une de deux lignes identiques change les deux ; vérifiez les doublons d’abord."
+                "Les <editing>modifications de cellules</editing> utilisent des instructions INSERT, UPDATE et DELETE typées. Trino ne signale aucune clé primaire : toutes les colonnes originales identifient donc la ligne. Les lignes identiques changent ensemble, sans transaction pour annuler. Vérifiez les doublons avant modification."
             ]
         },
         {

@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "Cliente Trino para {devices}",
-        "lead": "Une tablas de distintos catálogos en una consulta, lee el plan que ejecutará Trino y detén una consulta descontrolada en el coordinador. Las posibilidades de escritura dependen del conector de cada catálogo."
+        "title": "Cliente Trino",
+        "lead": "Consulta entre catálogos, inspecciona planes y cancela consultas en curso. La escritura depende del conector de cada catálogo."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "Introduce host y puerto del coordinador y un <ui>Username</ui>, bajo el cual se ejecutan las consultas. <ui>Catalog</ui> y <ui>Schema</ui> son puntos iniciales opcionales; deja Catálogo vacío para explorar todos. Una <ui>Time Zone</ui> IANA en Options fija la zona de la sesión.",
+                "Introduce host del coordinador, puerto y <ui>Username</ui>. <ui>Catalog</ui> y <ui>Schema</ui> opcionales definen el punto de partida. Elige una <ui>Time Zone</ui> IANA para la sesión.",
                 "Autentícate con contraseña enviada como HTTP Basic para LDAP o archivo de contraseñas, o token JWT enviado como credencial bearer. Ambos solo van por TLS: con SSL en Disabled, una conexión que los tenga se rechaza antes de enviar nada. Un certificado de cliente y clave en SSL añaden TLS mutuo.",
                 "SSL empieza en Disabled, es decir HTTP sin cifrar; los demás modos fuerzan TLS sin alternativa en claro, y 443 activa Verify Identity. Nunca se sigue una redirección de un proxy delante del coordinador; el error indica su destino. Accede detrás de un bastión con un <network>túnel SSH</network> e importa una URL <code>trino://</code> con <ui>Import from URL…</ui>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Consulta entre catálogos",
             "paragraphs": [
-                "La conexión abre un catálogo y esquema; cualquier consulta puede seguir usando el nombre completo <code>catalog.schema.table</code>, como una unión entre tablas Hive y PostgreSQL. La barra lateral despliega catálogos en esquemas y tablas, con vistas materializadas junto a tablas y vistas, y recuentos de <code>SHOW STATS</code>.",
+                "Consulta nombres completos <code>catalog.schema.table</code> para unir catálogos. Explora catálogos, esquemas, tablas y vistas materializadas; las estimaciones de filas vienen de <code>SHOW STATS</code>.",
                 "<code>bigint</code> y <code>decimal</code> se leen como texto exacto, no como coma flotante. <code>varbinary</code> aparece en hexadecimal; <code>array</code>, <code>map</code> y <code>row</code>, como JSON; las fechas conservan el valor del servidor.",
                 "<explain>Explain</explain> ofrece Logical, Distributed, IO, Validate y Analyze. Validate comprueba sin ejecutar; Analyze ejecuta y mide tiempos reales; todos los planes vuelven como texto sin procesar.",
                 "<code>SET SESSION</code> dura el resto de la conexión. <ui>Query > Cancel Query</ui> pide al coordinador terminar la consulta: así se detiene, porque el tiempo de espera de la conexión no llega a Trino.",
-                "Las <editing>ediciones de celda</editing> generan INSERT, UPDATE y DELETE con el tipo Trino de cada valor. Trino no informa de claves primarias, así que se compara cada columna original de la fila, sin transacción para revertir. Editar una de dos filas idénticas cambia ambas; comprueba duplicados antes."
+                "Las <editing>ediciones de celdas</editing> usan instrucciones INSERT, UPDATE y DELETE tipadas. Trino no informa de claves primarias, así que se comparan todas las columnas originales. Las filas idénticas cambian juntas, sin transacción para deshacerlo. Comprueba duplicados antes de editar."
             ]
         },
         {

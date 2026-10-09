@@ -2,8 +2,8 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "label": "Annonce",
-    "message": "Une licence ajoute les fonctions payantes et finance la prochaine version de TablePro.",
-    "short": "Au quotidien ?",
-    "cta": "Acheter une licence",
+    "message": "Les forfaits payants ajoutent des fonctions et financent le développement de TablePro.",
+    "short": "Forfaits payants",
+    "cta": "Voir les forfaits",
     "licensed": "Déjà une licence ? Masquer"
 } satisfies Messages['banner'];

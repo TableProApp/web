@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "Client Amazon Redshift cho {devices}",
-        "lead": "Query một cluster provisioned hoặc một Serverless workgroup qua driver PostgreSQL có sẵn trong ứng dụng, xem distribution style và sort key của từng table, và duyệt schema Spectrum hay datashare ngay cạnh schema của bạn."
+        "title": "Amazon Redshift client",
+        "lead": "Query cluster provisioned hoặc workgroup Serverless. Xem sort key, distribution style và schema bên ngoài."
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Dùng endpoint của cluster làm host, hoặc endpoint của workgroup trên Redshift Serverless; cả hai lắng nghe trên cùng một port. Cơ sở dữ liệu là bắt buộc, và cluster nào khi tạo cũng có sẵn một cơ sở dữ liệu tên <code>dev</code>. Import một URL <code>redshift://</code> sẽ điền sẵn form.",
+                "Nhập endpoint cluster hoặc workgroup Serverless, port và cơ sở dữ liệu. Cluster bắt đầu với <code>dev</code>. URL <code>redshift://</code> điền form.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred), và không có bước kiểm tra phiên bản, nên cluster nào AWS còn vận hành cũng kết nối được. Mật khẩu được lưu trong Keychain hoặc đọc từ <code>~/.pgpass</code>, hai trong số các <credentials>cách cung cấp thông tin đăng nhập</credentials> của một connection. Cluster không truy cập được từ internet thì kết nối qua <network>SSH tunnel</network> tới một bastion host trong VPC của nó."
             ]
         },
@@ -40,9 +40,9 @@
             "title": "Query và chỉnh sửa",
             "paragraphs": [
                 "Query và <editing>thay đổi dòng đang chờ lưu cùng Preview SQL</editing> hoạt động như trên <postgresql>PostgreSQL</postgresql>, qua cùng một driver. Tab gắn với một cơ sở dữ liệu khác cơ sở dữ liệu đang dùng sẽ mở một connection thứ hai cho nó.",
-                "Phần thông tin table đọc <code>svv_table_info</code> để lấy distribution style, sort key và dung lượng của từng table, còn tab DDL ghi ra DISTKEY, SORTKEY, DISTSTYLE và ENCODE. Khóa ngoại được liệt kê, nhưng Redshift không thực thi ràng buộc khóa ngoại, nên không có gì ngăn một dòng vi phạm chúng.",
+                "Xem distribution style, sort key và kích thước từ <code>svv_table_info</code>. DDL gồm DISTKEY, SORTKEY, DISTSTYLE và ENCODE. Khóa ngoại được liệt kê nhưng Redshift không cưỡng chế.",
                 "<explain>EXPLAIN và EXPLAIN VERBOSE</explain> trả về execution plan của Redshift dưới dạng văn bản, không vẽ thành sơ đồ.",
-                "Schema tạo bằng <code>CREATE EXTERNAL SCHEMA</code>, dù là Spectrum trên S3, federated query, tham chiếu chéo giữa các cơ sở dữ liệu hay datashare, đều được liệt kê cạnh schema của bạn và đánh dấu Bên ngoài (External). Table trong đó vẫn duyệt, lọc, sắp xếp và export như thường nhưng chỉ đọc, vì Redshift không nhận UPDATE hay DELETE trên chúng. Các table này không hiện số dòng, và kiểu cột hiển thị đúng như external catalog báo về."
+                "Xem schema Spectrum, federated, cross-database và datashare cạnh schema local. Table ngoài hỗ trợ lọc, sắp xếp và export nhưng chỉ đọc. Không có số dòng; kiểu lấy từ catalog ngoài."
             ]
         },
         {

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Sequel Ace：专注 MySQL 或支持多种引擎",
+        "title": "TablePro 与 Sequel Ace：MySQL 和其他数据库",
         "description": "对比两款免费开源原生 Mac 客户端：数据库、AI、MCP、Mac App Store，以及带密码导入 Sequel Ace 连接。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Sequel Ace",
-        "lead": "Sequel Ace、TablePro 是免费开源数据库客户端，均有原生 Mac 应用并积极维护。Sequel Ace 延续 Sequel Pro，仅支持 MySQL、MariaDB。TablePro 连接两者及其他引擎，有 iPhone、iPad 应用和 Mac 可选付费功能。"
+        "lead": "Sequel Ace 重点关注 MySQL 和 MariaDB。 TablePro还支持其他数据库类型。两者都是积极维护的、带有原生应用程序的开源客户端。"
     },
     "shortAnswer": {
         "tablepro": [
-            "也使用 PostgreSQL、SQL Server、Redis、MongoDB 等引擎，希望一个客户端处理全部。",
-            "希望应用内免费 AI 助手，自选 AI 提供商。",
-            "希望 EXPLAIN 图、只读 ER 图和编辑器 Vim 模式。",
-            "希望免费 iPhone、iPad 应用连接 MySQL、MariaDB。"
+            "MySQL 和 MariaDB 以及其他数据库类型。",
+            "与您选择的提供商免费 AI 聊天。",
+            "EXPLAIN 图、ER 图和 Vim 模式。"
         ],
         "competitor": [
-            "仅用 MySQL、MariaDB，希望专用客户端。",
-            "希望所有功能免费，无付费方案。",
-            "从 Mac App Store 安装应用。",
-            "来自 Sequel Pro，希望沿用熟悉界面。"
+            "专注于 MySQL 和 MariaDB 客户端。",
+            "所有功能都是免费的，没有付费计划。",
+            "熟悉的 Sequel Pro 界面，可在 Mac App Store 上使用。"
         ]
     },
     "glance": {
@@ -109,7 +107,7 @@
                 "href": "/mysql-client"
             },
             {
-                "text": "<link>Compare & Sync</link> 比较两个数据库的结构或数据，生成使一方与另一方一致的脚本，属于 Starter。",
+                "text": "<link>Compare & Sync</link> 比较两个数据库的结构或数据并生成同步脚本。它是 Starter 的一部分。",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -154,7 +152,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 读取 Sequel Ace 保存的收藏及其 macOS 钥匙串密码。Sequel Ace 无需打开，文件不被修改。",
+        "intro": "导入Sequel Ace的收藏夹和macOS Keychain密码。 Sequel Ace 可以保持关闭状态，并且其文件不会更改。",
         "steps": [
             "TablePro 选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
             "选 Sequel Ace，开启<ui>包含密码</ui>（Include passwords）读取 macOS 钥匙串的数据库和 SSH 密码。",
@@ -182,12 +180,6 @@
             "question": "两款都有 MCP 服务器，有何区别？",
             "answer": "Sequel Ace 在 {cells.mcp.version} 添加的服务器默认关闭、仅在本 Mac 监听、默认只读。TablePro 也仅在本 Mac 监听，各连接决定阻止外部应用、只读（默认）或允许写入。TablePro 还有应用内 AI 聊天。<link>了解 AI 和 MCP</link>。",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "TablePro 像 Sequel Ace 一样免费吗？",
-            "answer": "TablePro 免费使用，按 AGPLv3 开源，包括 MySQL、MariaDB、AI 助手、MCP 服务器。Starter 或 Team 为 Mac 添加 {starterExamples} 等可选功能。Sequel Ace 无付费方案。<link>查看价格</link>。",
-            "href": "/pricing"
         },
         {
             "id": "sequel-pro",

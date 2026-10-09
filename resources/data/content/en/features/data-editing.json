@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Data editing",
-        "title": "Browse and edit data safely"
+        "title": "Data editing"
     },
     "header": {
-        "title": "Browse and edit data safely",
-        "lead": "For working with rows directly: finding the ones you need, changing a few values, and doing it on a production database without surprises. Edits wait until you save, and each connection decides how careful TablePro is before a statement runs.",
+        "title": "Data editing",
+        "lead": "Filter rows, follow foreign keys and edit values in the grid. Changes wait until you save, with SQL available to review first.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filters and highlight rules",
                     "paragraphs": [
-                        "The filter bar (<kbd>⌘⇧F</kbd>) builds a WHERE clause from {filterOperatorCount} operators, from = and BETWEEN to REGEX, or takes a raw SQL condition. Save a filter for a table and bring it back later without running it. Highlight rules color rows or cells by their values, like conditional formatting in a spreadsheet, and stay on this Mac."
+                        "Build filters with {filterOperatorCount} operators or a SQL condition, then save them for reuse. Highlight rules color matching rows or cells and stay on this Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Foreign keys and JSON",
                     "paragraphs": [
-                        "Follow a foreign key to the row it points to in a new tab, or preview that row in a popover. When you edit a foreign key column, the value picker lists the referenced rows by the columns you choose, such as a customer’s last and first name. JSON values open in a viewer with a tree for finding your way and a text mode for editing."
+                        "Follow a foreign key to its referenced row or preview it in place. A value picker helps you choose from referenced rows. Open JSON values in a tree viewer or text editor."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -40,9 +40,9 @@
         },
         {
             "id": "edit",
-            "title": "Change data, then save once",
+            "title": "Review edits before saving",
             "paragraphs": [
-                "Cell edits, new rows and deletions wait in the tab, marked, until you press <kbd>⌘S</kbd>; nothing is sent before that. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) lists the statements with their values filled in. Saving sends them with bound parameters, in one transaction where the engine allows, and checks that each statement changed the number of rows it expected; if one did not, the save rolls back."
+                "Edits, new rows and deletions stay in the tab until you save with <kbd>⌘S</kbd>. <ui>Preview SQL</ui> shows the pending statements. Saving uses bound parameters and checks affected row counts, with a transaction and rollback where the engine supports them."
             ],
             "points": [
                 "Cell editors for the column’s type: a date and time picker, ENUM and SET lists, arrays, JSON, a hex editor for binary values, and an image viewer.",
@@ -54,10 +54,10 @@
         },
         {
             "id": "safe-mode",
-            "title": "Safe Mode for production connections",
+            "title": "Safe Mode",
             "paragraphs": [
-                "Each connection has a Safe Mode level: {macSafeModeLevels}. New connections start at {macSafeModeDefault}, where statements run as written. Alert asks before a write runs, the Safe Mode levels also ask for Touch ID or your Mac password, the Full levels ask before reads too, and Read-Only refuses writes and turns editing off. Safe Mode is free.",
-                "At every level, DROP, TRUNCATE and a DELETE without WHERE stop and ask first. Some things raise a connection’s level while they apply: an engine that only reads, Agent mode, which raises it to at least Alert, and a minimum level your organization sets through device management (MDM)."
+                "Choose a level per connection: {macSafeModeLevels}. The default is {macSafeModeDefault}, which runs statements without confirmation. Alert confirms writes; Safe Mode adds Touch ID or password approval. Full levels also confirm reads. Read-Only blocks writes and editing. Safe Mode is free.",
+                "DROP, TRUNCATE and DELETE without WHERE always require confirmation. Full-window Agent mode enforces at least Alert. Read-only engines and an organization's device-management policy can also raise the effective level."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -69,8 +69,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind keeps the values a save replaced, so <ui>Restore Previous Values</ui> can put them back. A review sheet first shows what will happen to each row, including rows that changed after your save, and the restore runs through Safe Mode, in one transaction where the engine allows. A restore can itself be restored.",
-                "The saved values stay on this Mac for {rewindDays} days, encrypted with a key kept in your Keychain, and are never synced. When a plan ends, TablePro stops recording saves and <ui>Restore Previous Values</ui> shows an alert instead."
+                "Review and restore values replaced by a save with <ui>Restore Previous Values</ui>. The review flags rows changed since that save. Restores follow Safe Mode, in one transaction where the engine allows.",
+                "Previous values stay encrypted on this Mac for {rewindDays} days and never sync. Recording and restoration stop when your paid plan ends."
             ],
             "paid": ["data-rewind"],
             "asset": "mac-data-rewind-review"
@@ -79,7 +79,7 @@
             "id": "documents-and-keys",
             "title": "Documents and keys",
             "paragraphs": [
-                "Not every engine stores rows. On MongoDB you insert and edit whole documents as Extended JSON, remove a field from a document, and rename or remove a field across a collection from the Structure tab. On Redis you rename keys, set TTLs and edit string values in the grid, add a string, hash, list, set or sorted-set key, and change the other types with commands in the editor."
+                "Edit MongoDB documents as Extended JSON, or rename and remove fields across a collection. On Redis, edit strings, rename keys and set TTLs in the grid, or add a string, hash, list, set or sorted-set key. Use editor commands to change other value types."
             ],
             "links": [
                 { "label": "MongoDB in TablePro", "href": "/mongodb-client" },
@@ -90,8 +90,8 @@
             "id": "iphone",
             "title": "On iPhone and iPad",
             "paragraphs": [
-                "In the iPhone and iPad app, rows show as cards you can sort, search and filter with AND and OR, and tapping a foreign key previews the row it points to. You can edit a row and set a value to NULL, insert rows and delete them with a swipe; editing and deleting need a primary key. In a new row, each field starts at its DEFAULT and can be set to NULL or an empty string instead.",
-                "Safe Mode there has its own levels, {iosSafeModeLevels}, with {iosSafeModeDefault} as the default for new connections. Staged edits, Preview SQL, highlight rules and Data Rewind are in the Mac app only."
+                "Browse rows as cards, sort and filter them, or tap a foreign key to preview its row. Edit values or set NULL; editing and deleting require a primary key. New rows start with DEFAULT values, with NULL and empty string available instead.",
+                "Mobile Safe Mode offers {iosSafeModeLevels}, defaulting to {iosSafeModeDefault}. Staged edits, Preview SQL, highlight rules and Data Rewind are currently Mac-only."
             ],
             "links": [
                 { "label": "Browsing and editing on iPhone and iPad", "href": "/ios#browse" },

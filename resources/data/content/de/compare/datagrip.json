@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DataGrip: IDE oder nativer Client",
+        "title": "TablePro vs DataGrip: Datenbankclient oder IDE",
         "description": "DataGrip ist eine IDE, kostenlos für nicht gewerbliche Nutzung. TablePro ist ein nativer Open-Source-Client. Vergleiche Preise, KI, MCP, Git und Import."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DataGrip",
-        "lead": "DataGrip ist die Datenbank-IDE von JetBrains für Windows, macOS und Linux auf Basis von {technology}. Für nicht gewerbliche Nutzung ist sie kostenlos; andere Arbeit erfordert ein jährliches oder monatliches Abo. TablePro ist ein Open-Source-Client mit einer nativen Mac-App und einer weiteren für iPhone und iPad. Die Nutzung ist für jede Arbeit kostenlos; kostenpflichtige Tarife ergänzen optionale Funktionen in der Mac-App."
+        "lead": "DataGrip ist JetBrains’ Datenbank-IDE auf Basis von {technology}. TablePro ist ein nativer Datenbankclient. Vergleiche Bearbeitungswerkzeuge, KI-Funktionen und kommerzielle Lizenzen."
     },
     "shortAnswer": {
         "tablepro": [
-            "Du möchtest einen Client für bezahlte Arbeit nutzen, ohne selbst zu zahlen. TablePro ist für jede Arbeit kostenlos; kostenpflichtige Tarife ergänzen Funktionen wie {starterExamples}.",
-            "Du möchtest einen KI-Assistenten, der Anfragen direkt an deinen hinzugefügten Anbieter sendet, ohne eigenen KI-Dienst oder eigene Credits von TablePro dazwischen. Er ist in der Mac-App kostenlos, ebenso der MCP-Server.",
-            "Du bevorzugst eine in Swift geschriebene Mac-App gegenüber einer vollständigen IDE.",
-            "Du möchtest auch eine iPhone- und iPad-App."
+            "Ein kostenloser Client für die berufliche Nutzung. Kostenpflichtige Tarife ergänzen {starterExamples}.",
+            "Ein nativer Client statt einer vollständigen IDE.",
+            "Kostenloser KI-Chat und MCP mit dem KI-Anbieter deiner Wahl."
         ],
         "competitor": [
-            "Du arbeitest neben dem Mac auch unter Windows oder Linux.",
-            "Du möchtest eine IDE mit Codeprüfungen und Versionsverwaltung im selben Fenster wie deine Abfragen.",
-            "Deine Arbeit ist nicht gewerblich, etwa Lernen, ein Hobbyprojekt oder Open-Source-Arbeit ohne kommerziellen Nutzen. Dafür ist DataGrip mit allen Funktionen kostenlos.",
-            "Du verbindest dich mit Engines, die TablePro nicht unterstützt, etwa Firebird, Informix oder Databricks."
+            "Codeprüfungen und Versionskontrolle neben Abfragen.",
+            "Eine vollständige IDE, kostenlos für nichtkommerzielle Nutzung.",
+            "Windows oder Linux oder JDBC-Engines wie Firebird, Informix und Databricks."
         ]
     },
     "glance": {
@@ -41,14 +39,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DataGrip läuft unter Windows, macOS und Linux, sodass du dieselbe IDE auf verschiedenen Computern nutzt.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Es ist eine IDE. Versionsverwaltung wie Git steht neben deinen Abfragen; vollständig unterstützte Engines bieten Codeprüfungen und Schnellkorrekturen.",
                 "cite": [
@@ -80,7 +70,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro ist für jede Arbeit kostenlos, auch gewerbliche, ohne Testzeitraum oder Zeitlimit. Die Mac-App sendet TablePro täglich einen <link>Nutzungsbericht</link>, standardmäßig aktiviert und in den Einstellungen abschaltbar. DataGrips kostenlose Lizenz gilt nur für nicht gewerbliche Nutzung; dabei werden Nutzungsstatistiken erfasst, die sich nicht abschalten lassen.",
+                "text": "TablePro ist kostenlos für die berufliche Nutzung. Der tägliche <link>Nutzungsbericht</link> der Mac-App ist standardmäßig aktiv und lässt sich in Settings abschalten. DataGrips kostenlose Lizenz erlaubt nur nichtkommerzielle Nutzung; Nutzungsstatistiken sind verpflichtend.",
                 "cite": [
                     "prices"
                 ],
@@ -96,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "Der <link>KI-Assistent</link> ist in der Mac-App kostenlos und arbeitet mit deinem gewählten Anbieter, in der Cloud oder auf deinem Mac. TablePro betreibt keinen KI-Dienst und verkauft keine KI-Credits. DataGrip nutzt JetBrains AI, das einen eigenen Dienst mit Credit-Kontingent bietet und auch deinen eigenen Anbieterschlüssel oder ein lokales Modell akzeptiert.",
+                "text": "TablePros <link>KI-Assistent</link> ist in der Mac-App kostenlos; du wählst einen Cloud-Anbieter oder ein lokales Modell. Anbietergebühren können anfallen. JetBrains AI hat ein Guthabenkontingent und akzeptiert deinen eigenen Anbieterschlüssel oder ein lokales Modell.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -112,13 +102,13 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
+                "text": "<link>Compare & Sync</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt ein Synchronisierungsskript. Die Funktion gehört zu Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
             },
             {
-                "text": "Es gibt eine kostenlose <link>App für iPhone und iPad</link>, ohne In-App-Käufe. DataGrip hat keine mobile App.",
+                "text": "Die separate <link>App für iPhone und iPad</link> ist kostenlos, ohne In-App-Käufe. DataGrip hat keine mobile App.",
                 "cite": [
                     "platforms"
                 ],
@@ -130,12 +120,6 @@
     "limits": {
         "intro": "",
         "items": [
-            {
-                "text": "Es gibt keine TablePro-App für Windows oder Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "TablePro ist ein Client, keine IDE. Ein <link>verknüpfter SQL-Ordner</link> zeigt Git-Status und Verlauf jeder Datei; Staging, Commits, Pushes und Branches erledigst du in deinem eigenen Git-Werkzeug.",
                 "cite": [],
@@ -151,7 +135,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro liest DataGrips globale Datenquellen und die deiner zuletzt verwendeten Projekte. DataGrip muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
+        "intro": "Importiere DataGrips globale Datenquellen und die Datenquellen zuletzt geöffneter Projekte. DataGrip kann geschlossen bleiben; seine Dateien werden nicht verändert.",
         "steps": [
             "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
             "Wähle DataGrip. Aktiviere <ui>Include passwords</ui>, um die von DataGrip im macOS-Schlüsselbund gespeicherten Passwörter zu lesen, einschließlich SSH-Passwörtern und Schlüssel-Passphrasen.",
@@ -167,15 +151,9 @@
     },
     "faq": [
         {
-            "id": "commercial-use",
-            "question": "Kann ich die kostenlose TablePro-App für bezahlte Arbeit nutzen?",
-            "answer": "Ja. Die Mac-App ist für jede Arbeit kostenlos, ohne Testzeitraum oder Zeitlimit. DataGrip ist nur für nicht gewerbliche Nutzung kostenlos; für die Entwicklung kommerzieller Produkte oder bezahlte Dienstleistungen ist ein Abo erforderlich.",
-            "href": null
-        },
-        {
             "id": "ai-provider",
             "question": "Braucht TablePros KI-Assistent einen Tarif wie JetBrains AI?",
-            "answer": "Nein. TablePro betreibt keinen eigenen KI-Dienst. Du fügst einen Anbieter hinzu: einen API-Schlüssel, ein vorhandenes Konto oder ein Modell auf deinem Mac. Vorher wird nichts gesendet. <link>So funktioniert der KI-Assistent</link>.",
+            "answer": "Du brauchst keinen KI-Tarif von TablePro. Hinterlege einen Anbieterschlüssel, ein unterstütztes Konto oder ein lokales Modell. Anbietergebühren können anfallen; vor der Einrichtung werden keine KI-Anfragen gesendet. <link>KI-Einrichtung und Datenverarbeitung</link>.",
             "href": "/features/ai-mcp"
         },
         {

@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Klien Teradata untuk {devices}",
-        "lead": "Masuk dengan TD2 atau TDNEGO, telusuri database dan pengguna beserta tabel, view, prosedur, dan makronya, serta jalankan kueri dan edit melalui driver native Swift tanpa memasang perangkat lunak klien Teradata."
+        "title": "Klien Teradata",
+        "lead": "Kueri dan edit Teradata tanpa menginstal perangkat lunak klien terpisah. Jelajahi database, pengguna, prosedur, dan makro."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Hubungkan dan masuk",
             "paragraphs": [
-                "Masukkan host, nama pengguna, dan kata sandi. Semua sistem Vantage yang menerima login TD2 dapat digunakan, tanpa pemeriksaan versi. <ui>Logon Mechanism</ui> pada bagian Options menerima <code>TD2</code> atau <code>TDNEGO</code>, dan <ui>Database</ui> hanya diperlukan untuk database default yang berbeda dari default akun Anda.",
+                "Masukkan host, nama pengguna dan kata sandi. Pilih <code>TD2</code> atau <code>TDNEGO</code> di <ui>Logon Mechanism</ui>. <ui>Database</ui> menggantikan default akun. Server Vantage yang menerima TD2 didukung tanpa pemeriksaan versi.",
                 "Port default menggunakan sesi tanpa enkripsi. Mode SSL apa pun memindahkan sesi ke endpoint WebSocket gateway pada port 443, yang tidak dapat diubah. Verify CA memerlukan sertifikat CA, dan Verify Identity memeriksa rantai serta nama host terhadap sertifikat tersebut atau, jika tidak ada, penyimpanan kepercayaan sistem.",
                 "Biarkan <ui>Transaction Mode</ui> pada <code>DEFAULT</code> kecuali skrip memerlukan aturan commit dan sensitivitas huruf besar-kecil ANSI atau TERA pada sesi. Akses sistem di balik bastion melalui <network>tunnel SSH</network>. <ui>Import from URL…</ui> menerima URL <code>teradata://</code>, yang tidak dibuka macOS sebagai tautan."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Database dan pengguna sama-sama merupakan namespace di Teradata, sehingga keduanya muncul di bagian atas sidebar dengan tabel dan view-nya. Tab yang terkait dengan database kedua tetap menggunakan sesi yang sama dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
+                "Jelajahi database dan pengguna sebagai namespace. Tab di database lain berbagi sesi dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
                 "Prosedur tersimpan tercantum di sidebar, dan makro berada di bawah Functions; masing-masing membuka <objects>kode sumbernya dalam tab hanya baca</objects>.",
                 "Teradata tidak memiliki <code>LIMIT</code>, sehingga halaman pertama tabel menggunakan <code>TOP</code> dan halaman berikutnya menggunakan <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> mengembalikan rencana Teradata sebagai teks mentah. Perubahan baris menunggu hingga Anda menyimpan, dan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu."
             ]

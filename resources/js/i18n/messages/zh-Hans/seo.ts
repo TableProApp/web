@@ -3,8 +3,8 @@ import type { Messages } from '../../types.ts';
 export default {
     "titleTemplate": "{title} – TablePro",
     "product": {
-        "short": "TablePro 是面向开发者的原生开源数据库客户端。",
-        "long": "TablePro 是面向开发者的原生开源数据库客户端。通过适用于 {deviceList} 的应用，在 {featuredEngines} 等数据库中运行查询、浏览和编辑数据。"
+        "short": "TablePro 是原生开源数据库客户端。",
+        "long": "TablePro 是原生开源数据库客户端。运行查询，浏览和编辑 {featuredEngines} 等数据库中的数据。可在 {deviceList} 上使用。"
     },
     "macApp": {
         "alternateName": "Mac 版 TablePro",

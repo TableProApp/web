@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "Client Cloudflare D1 pour {devices}",
-        "lead": "Accédez aux bases D1 de votre compte Cloudflare depuis une seule connexion, interrogez-les en dialecte SQLite via l’API Cloudflare et gérez leurs tables, index et déclencheurs dans l’onglet Structure."
+        "title": "Client Cloudflare D1",
+        "lead": "Parcourez les bases D1 de votre compte Cloudflare et exécutez des requêtes SQLite via l’API."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connectez-vous avec un jeton API",
             "paragraphs": [
-                "Une connexion D1 prend trois valeurs : le nom ou l’UUID de la base, votre ID de compte Cloudflare et un jeton API. Le jeton va dans le champ <ui>Jeton API</ui> (API Token) et reste dans le <credentials>Trousseau macOS</credentials>. Il n’y a ni hôte, ni port, ni réglage SSL, ni tunnel SSH, car chaque requête va à l’API Cloudflare via HTTPS.",
-                "Créez le jeton depuis le modèle de jeton personnalisé avec l’autorisation <ui>Account > D1 > Edit</ui>, puis copiez-le lorsque Cloudflare l’affiche, car il n’apparaît qu’une fois. Ce jeton donne accès à toutes les bases D1 du compte, pas seulement à celle que vous connectez.",
+                "Saisissez le nom D1, l’UUID, l’identifiant du compte et le <ui>Jeton API</ui> (API Token). Le token reste dans le <credentials>trousseau macOS</credentials>. La connexion utilise HTTPS, sans hôte, port, réglages TLS ni SSH.",
+                "Le token doit avoir le droit <ui>Account > D1 > Edit</ui>. Copiez-le tant qu’il est visible. Il donne accès à toutes les bases D1 du compte, pas seulement à celle choisie.",
                 "L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Changez de base et interrogez",
             "paragraphs": [
-                "Le sélecteur de bases dans la barre d’outils liste les bases D1 du compte et permet d’en changer sans reconnexion. Il crée et supprime aussi des bases. Chaque onglet conserve la base avec laquelle il a été ouvert.",
+                "Changez de base D1 sans reconnexion. Le sélecteur permet de créer et supprimer des bases. Les onglets gardent leur base initiale.",
                 "Les requêtes utilisent le dialecte SQLite. <explain>EXPLAIN QUERY PLAN</explain> est représenté en diagramme et les modifications de lignes attendent dans la grille jusqu’à l’enregistrement ; <editing>Preview SQL</editing> montre d’abord les instructions.",
                 "Écrivez chaque instruction pour qu’elle soit autonome : un réglage <code>PRAGMA</code> ou une table temporaire créés par une instruction disparaissent à la suivante, et chaque instruction est validée à son exécution, sans possibilité d’annulation. Lorsque Cloudflare limite le débit d’une requête, l’erreur indique l’attente demandée avant une nouvelle tentative."
             ]

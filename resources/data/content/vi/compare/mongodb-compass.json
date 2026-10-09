@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MongoDB Compass: một hay nhiều cơ sở dữ liệu",
+        "title": "TablePro và MongoDB Compass: shell hay công cụ trực quan",
         "description": "MongoDB Compass là GUI miễn phí của MongoDB, có aggregation theo từng stage và phân tích schema. TablePro hỗ trợ MongoDB cùng SQL và Redis trên Mac."
     },
     "og": {
@@ -9,21 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MongoDB Compass",
-        "lead": "MongoDB Compass là GUI miễn phí, chính thức của MongoDB, dùng để khám phá dữ liệu, xây dựng aggregation pipeline và tìm hiểu schema của một collection. TablePro là client mã nguồn mở kết nối tới MongoDB bên cạnh các cơ sở dữ liệu SQL, Redis và nhiều engine khác, cùng một số tính năng trả phí tùy chọn trên Mac."
+        "lead": "Compass là GUI của MongoDB, có aggregation builder và phân tích schema. TablePro đặt MongoDB cạnh cơ sở dữ liệu SQL và engine khác."
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB là một trong nhiều cơ sở dữ liệu bạn dùng, bên cạnh PostgreSQL, MySQL, SQL Server hay Redis, và bạn muốn một client cho tất cả.",
-            "Bạn thích shell kiểu mongosh, có biến, vòng lặp và autocomplete cho collection, đường dẫn field và toán tử.",
-            "Bạn muốn đổi tên hoặc xóa một field trên toàn bộ collection, với mọi câu lệnh hiện ra trước khi chạy.",
-            "Bạn muốn trợ lý AI với nhà cung cấp do bạn chọn, trên cloud hoặc ngay trên máy Mac, cùng MCP server cho các AI client bên ngoài."
+            "MongoDB cạnh PostgreSQL, MySQL, SQL Server hoặc Redis.",
+            "Shell kiểu mongosh với biến, vòng lặp và autocomplete.",
+            "Đổi field trên cả collection, xem câu lệnh trước chạy."
         ],
         "competitor": [
-            "MongoDB là cơ sở dữ liệu duy nhất bạn dùng, và bạn muốn công cụ miễn phí, chính thức của MongoDB.",
-            "Bạn xây dựng aggregation pipeline theo từng stage và muốn xem trước dữ liệu sau mỗi stage.",
-            "Bạn tìm hiểu schema của một collection, hoặc mô hình hóa các collection và quan hệ giữa chúng trên sơ đồ.",
-            "Bạn muốn explain plan trực quan và số liệu server theo thời gian thực cho MongoDB.",
-            "Bạn còn làm việc trên Windows hoặc Linux."
+            "Aggregation builder từng stage với preview.",
+            "Phân tích schema, modeling collection và sơ đồ quan hệ.",
+            "Explain plan trực quan và metric server MongoDB trực tiếp."
         ]
     },
     "glance": {
@@ -56,31 +53,35 @@
         "items": [
             {
                 "text": "Compass là GUI chính thức của MongoDB, và miễn phí.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Aggregation pipeline được xây dựng theo từng stage, xem trước dữ liệu sau mỗi stage.",
-                "cite": ["cells.pipelineBuilder"],
+                "cite": [
+                    "cells.pipelineBuilder"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Compass lấy mẫu document của một collection để hiện kiểu field, khoảng ngày và giá trị thường gặp, và vẽ sơ đồ quan hệ thực thể cho các collection của một cơ sở dữ liệu.",
-                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "cite": [
+                    "cells.schemaAnalysis",
+                    "cells.dataModeling"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Explain plan hiển thị trực quan, và có sẵn số liệu server theo thời gian thực.",
-                "cite": ["cells.explainPlan", "cells.serverStats"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Compass chạy trên Windows, macOS và Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.explainPlan",
+                    "cells.serverStats"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -109,7 +110,9 @@
             },
             {
                 "text": "<link>Trợ lý AI</link> làm việc với nhà cung cấp AI do bạn chọn, trên cloud hoặc ngay trên máy Mac, và MCP server cho phép các AI client bên ngoài dùng connection đã lưu của bạn. Cả hai đều miễn phí. Các tính năng AI của Compass dùng Azure OpenAI.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
@@ -147,12 +150,6 @@
                 "cite": [],
                 "feature": null,
                 "href": null
-            },
-            {
-                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
             }
         ]
     },
@@ -178,12 +175,6 @@
             "question": "Mỗi bên dùng AI nào?",
             "answer": "Truy vấn bằng ngôn ngữ tự nhiên và trợ lý của Compass dùng Azure OpenAI, và bạn có thể tắt các tính năng AI trong phần cài đặt. Trợ lý AI của TablePro dùng nhà cung cấp do bạn chọn, kể cả model chạy trên máy Mac, và miễn phí trong ứng dụng Mac. <link>Tìm hiểu AI trong TablePro</link>.",
             "href": "/features/ai-mcp"
-        },
-        {
-            "id": "free",
-            "question": "TablePro có miễn phí cho MongoDB không?",
-            "answer": "Có. MongoDB và các engine khác được hỗ trợ, trợ lý AI và MCP server đều miễn phí trong ứng dụng Mac. Gói trả phí bổ sung một số tính năng tùy chọn như {starterExamples}. <link>Xem bảng giá</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

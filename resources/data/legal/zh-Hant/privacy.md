@@ -124,7 +124,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 **文件**。位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
 
-僅閱讀網站不會設定網站自身的 Cookie。訂閱郵件、開始結帳或驗證折扣碼會向伺服器傳送請求，設定兩個帳戶入口網站 Cookie：`tablepro-session` 與 `XSRF-TOKEN`。網站在瀏覽器中保存的全部資訊列於 [Cookie 與瀏覽器儲存空間](#cookies)。
+僅閱讀網站不會設定網站自身的 Cookie。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，因此既不會傳送帳戶入口網站 Cookie，也不會接受回應中的 Cookie。開啟帳戶入口網站頁面是另一項操作，會設定以下入口網站 Cookie。網站在瀏覽器中保存的全部資訊列於 [Cookie 與瀏覽器儲存空間](#cookies)。
 
 ## 購買 {#purchases}
 
@@ -144,7 +144,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 ## Cookie 與瀏覽器儲存空間 {#cookies}
 
-僅閱讀公開網站不會設定網站自身的 Cookie；訂閱電子報或開始結帳會設定以下兩個絕對必要的入口網站 Cookie。Cloudflare Web Analytics 不設定 Cookie，也不在瀏覽器中儲存資訊。Google Analytics Cookie 在您允許之前不會設定。Crisp 在聊天載入後為每個網頁設定 Cookie。此處的資訊不用於廣告，也不會出售。
+僅閱讀公開網站不會設定網站自身的 Cookie。電子報訂閱、結帳和折扣碼請求不攜帶憑證，也不會設定入口網站 Cookie。開啟帳戶入口網站頁面會設定以下兩個絕對必要的 Cookie。Cloudflare Web Analytics 不設定 Cookie，也不在瀏覽器中儲存資訊。Google Analytics Cookie 在您允許之前不會設定。Crisp 在聊天載入後為每個網頁設定 Cookie。此處的資訊不用於廣告，也不會出售。
 
 - **`_ga` 和 `_ga_<ID>`**（Google Analytics Cookie，最長兩年，僅在允許分析時）：瀏覽器的隨機識別碼及目前造訪狀態。拒絕或之後變更回答時會刪除。合法依據：同意。
 - **`tablepro:analytics-consent`**（本機儲存空間，直至您清除）：保存對分析提問的回答，避免每個網頁重複詢問。網站和帳戶入口網站共用。合法依據：履行您的選擇所絕對必要。
@@ -152,7 +152,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **`theme`** 和 **`tablepro:banner-dismissed`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀，以及關閉的橫幅和隱藏期限：30 天；若您表示已有授權或購買授權，則為一年。合法依據：正當利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
-- **`tablepro-session` 和 `XSRF-TOKEN`**（帳戶入口網站 Cookie，兩小時）：保持登入並保護入口網站表單免受跨站請求偽造。購買確認和電子報等入口網站網頁也會設定；從本網站任意網頁訂閱電子報、開始結帳或驗證折扣碼也會設定。合法依據：絕對必要。
+- **`tablepro-session` 和 `XSRF-TOKEN`**（帳戶入口網站 Cookie，兩小時）：保持登入並保護入口網站表單免受跨站請求偽造。開啟購買確認和電子報等其他入口網站網頁也會設定。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，也不會保留這些 Cookie。合法依據：絕對必要。
 
 您可隨時透過每頁頁尾的 **Cookie 設定**或以下入口變更、撤回分析回答：
 

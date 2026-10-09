@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "适用于 {devices} 的 MongoDB 客户端",
-        "lead": "按 mongosh 语法写查询，在网格分页浏览集合，以 Extended JSON 插入或编辑整个文档。重命名或移除整个集合的字段，每条语句均在执行前显示。"
+        "title": "MongoDB 客户端",
+        "lead": "浏览集合，使用 mongosh 风格语法查询，并以 Extended JSON 编辑文档。"
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "列一个主机或副本集的多个 <code>host:port</code>，自动找到主节点。也可粘贴 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。以 SCRAM-SHA-1、SCRAM-SHA-256、X.509 或 AWS IAM 登录；用户定义在 <code>admin</code> 但浏览其他数据库时设置 <ui>Auth Database</ui>。",
+                "输入主机或副本集的 <code>host:port</code> 列表，或粘贴 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。支持 SCRAM-SHA-1、SCRAM-SHA-256、X.509 和 AWS IAM。将 <ui>Auth Database</ui> 设为定义用户的数据库。",
                 "以 <code>.mongodb.net</code> 结尾的主机自动开启 MongoDB Atlas 所需的 SRV 和 TLS。请先将 IP 加入集群访问列表：未列出地址的流量会超时，而非立即失败。",
                 "新连接 TLS 关闭，驱动无回退，所以 Preferred 等同 Required。Read Preference、Write Concern 按连接设置，写关注随 shell 或网格保存的每次插入、更新、删除发送。",
                 "通过 <network>SSH 隧道</network>连接时仅使用列表中的第一个主机，因此该会话不进行副本集发现和故障转移。"
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "查询和编辑文档",
             "paragraphs": [
-                "查询标签页是接受 mongosh 语法的 JavaScript shell：无引号键、正则字面量、<code>ISODate()</code>、变量、循环和 <code>forEach</code>。在 TablePro 内运行无需另装软件，定义的变量在断开前可用于连接的所有标签页。补全提供集合、方法、嵌套字段路径及光标处有效的 <code>$</code> 运算符。",
-                "集合以网格打开，顶层字段为列，嵌套对象为 Extended JSON。编辑单元格保留字段类型，日期仍为日期，ObjectId 仍为 ObjectId；嵌套对象编辑仅写入 <code>address.city</code> 等改动路径。",
-                "<editing>Insert Document 和 Edit Document</editing> 接受整个 Extended JSON 文档。Edit Document 重新从服务器读取；面板打开后若他人修改或删除，不保存任何内容并提示。单元格 <ui>Remove Field</ui> 发送 <code>$unset</code>。",
+                "在 Query 标签页使用 mongosh 风格 JavaScript，包括正则表达式、<code>ISODate()</code>、变量、循环和 <code>forEach</code>，无需安装独立 shell。变量在断开连接前跨连接标签页保留。自动补全涵盖集合、字段路径、方法和运算符。",
+                "顶层字段显示为列，嵌套对象显示为 Extended JSON。单元格编辑保留日期、ObjectId 等类型。嵌套编辑仅更新已更改路径，例如 <code>address.city</code>。",
+                "<editing>Insert Document 和 Edit Document</editing> 使用 Extended JSON。Edit Document 会重新读取服务器文档；若编辑期间文档已更改或消失，则拒绝保存。<ui>Remove Field</ui> 发送 <code>$unset</code>。",
                 "<filters>筛选栏</filters>可访问嵌套对象和对象数组，直接筛选 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 字段在<map>地图视图</map>打开。",
                 "驱动无法打开只读会话，所以 <safeMode>Safe Mode</safeMode> 将 MongoDB 连接的所有语句视为写入。Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。"
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "集合、索引和验证器",
             "paragraphs": [
-                "<structure>Structure 标签页</structure>按键顺序列出各索引字段及 hashed、text、2dsphere、wildcard 等类型。Show DDL 生成重建它们的 <code>createIndex</code> 调用，含服务器报告的所有选项。",
-                "在同一标签页重命名或移除整个集合的字段。每次修改为一个 <code>updateMany</code>，在 Preview SQL 显示，<code>$jsonSchema</code> 验证器声明的字段也同步修改。索引、搜索索引或视图仍使用该名称时，任何写入前即拒绝保存。",
+                "在 <structure>Structure 标签页</structure>检查索引字段、类型和选项。Show DDL 使用服务器报告的选项生成 <code>createIndex</code> 调用。",
+                "通过预览后的 <code>updateMany</code> 在整个集合中重命名或删除字段，验证器也会更新。若索引、搜索索引或视图仍使用该字段，则阻止保存。",
                 "<ui>新建表</ui>（New Table）创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧边栏，视图以只读打开。"
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass 是 MongoDB 官方 GUI，逐阶段构建聚合管道，每阶段后预览，从文档样本分析集合结构，并绘制执行计划。需要可视化构建管道或研究单一集合结构时选择它；MongoDB 是同一应用中使用的多种数据库之一时，TablePro 更合适。",
+                "text": "MongoDB Compass 提供可视化聚合流水线、抽样结构分析和执行计划。TablePro 可在同一 App 中查询 MongoDB 和其他数据库引擎。",
                 "notes": [
                     "compass-natural-language"
                 ]

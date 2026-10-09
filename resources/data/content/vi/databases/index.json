@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Cơ sở dữ liệu được hỗ trợ",
-        "description": "Các cơ sở dữ liệu TablePro kết nối được, theo loại: query bằng gì, driver có sẵn trong ứng dụng Mac hay được tải về, và engine nào mở được trên iPhone và iPad."
+        "description": "Tìm cơ sở dữ liệu, xem tính năng được hỗ trợ và so sánh ngôn ngữ query, cách tải driver, khả năng dùng trên iPhone và iPad."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
-        "title": "Các cơ sở dữ liệu TablePro kết nối được"
+        "title": "Cơ sở dữ liệu được hỗ trợ"
     },
     "header": {
-        "title": "Các cơ sở dữ liệu TablePro kết nối được",
-        "lead": "Driver native cho {count} cơ sở dữ liệu, trong đó có {featured}. Mỗi dòng cho biết bạn query engine đó bằng gì, driver đến từ đâu và engine có mở được trên iPhone và iPad hay không."
+        "title": "Cơ sở dữ liệu được hỗ trợ",
+        "lead": "Tìm cơ sở dữ liệu và xem tính năng được hỗ trợ. TablePro kết nối tới {count} engine, gồm {featured}."
     },
     "jump": "Nhóm",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Phân tích và kho dữ liệu",
-            "intro": "Kho dữ liệu, engine lưu theo cột và engine query liên kết, nơi mỗi lần quét tốn thời gian hoặc tiền."
+            "intro": "Data warehouse, cơ sở dữ liệu dạng cột và engine query xuyên catalog."
         },
         "cloud": {
             "title": "Cloud và serverless",
-            "intro": "Dịch vụ SQL kết nối qua HTTP bằng token của tài khoản, cùng file libSQL trên máy Mac của bạn."
+            "intro": "Dịch vụ SQL qua HTTP và file libSQL local."
         },
         "document": {
             "title": "Document",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Một log chứ không phải một table: đọc và ghi message bằng KafkaQL, ngôn ngữ lệnh riêng của TablePro."
+            "intro": "Đọc và gửi message với KafkaQL, ngôn ngữ command của TablePro."
         },
         "coordination": {
             "title": "Điều phối",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "File",
-            "intro": "Cơ sở dữ liệu nằm trong file, mở trực tiếp mà không cần chạy server."
+            "intro": "Query file cơ sở dữ liệu và sổ cái mà không cần server."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Driver được cung cấp thế nào",
         "paragraphs": [
-            "Driver cho {bundled} có sẵn trong ứng dụng Mac và kết nối được mà không cần cài thêm gì.",
-            "Mọi driver khác là plugin đã ký, được tải về ở lần đầu bạn chọn engine đó, trước khi form connection mở ra. Lần tải đầu tiên này cần kết nối internet.",
-            "Trước khi cài một driver vừa tải, TablePro đối chiếu checksum SHA-256 của nó với plugin registry và kiểm tra chữ ký mã.",
-            "Plugin được cập nhật theo lịch riêng, nên bản sửa lỗi driver có thể đến mà không cần cập nhật ứng dụng. Driver đang được dùng sẽ được cập nhật sau khi bạn khởi động lại ứng dụng.",
-            "Ứng dụng cho iPhone và iPad có sẵn driver bên trong, nên không có gì phải tải về trên đó."
+            "Ứng dụng Mac có sẵn driver cho {bundled}. Không cần phần mềm client riêng để kết nối.",
+            "Driver khác tải dạng plugin có chữ ký khi chọn cơ sở dữ liệu lần đầu. Lần tải đầu cần internet.",
+            "TablePro kiểm tra checksum SHA-256 của từng plugin với registry và xác minh chữ ký mã trước khi cài.",
+            "Plugin driver cập nhật riêng với ứng dụng. Cập nhật driver đang dùng có hiệu lực sau khi khởi động lại.",
+            "Ứng dụng iPhone và iPad có sẵn driver, không tải plugin."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro cho iPhone và iPad"
     },
     "license": {
-        "title": "Không cơ sở dữ liệu nào cần license",
-        "body": "Kết nối tới bất kỳ engine nào trên trang này đều miễn phí. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng Mac, và không tính năng nào gắn với một cơ sở dữ liệu cụ thể.",
+        "title": "Có trong Free",
+        "body": "Mọi connection cơ sở dữ liệu được hỗ trợ đều có trong Free. Starter và Team thêm tính năng tùy chọn cho Mac.",
         "link": "Xem bảng giá"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Dùng được trên {devices}",
             "bundled": "Driver có sẵn trong ứng dụng Mac",
-            "registry": "Driver được tải về ở lần đầu bạn chọn {name}",
-            "free": "Dùng miễn phí, có <pricing>gói trả phí tùy chọn</pricing>"
+            "registry": "Driver tải vào lần đầu dùng {name}",
+            "free": "Có trong Free; <pricing>gói trả phí thêm tính năng tùy chọn</pricing>"
         },
         "release": "Mới từ bản {version}",
         "docs": "Hướng dẫn thiết lập {name}",
@@ -147,7 +147,7 @@
             "related": "Liên quan"
         },
         "iphone": {
-            "picker": "Bạn tạo được connection {name} ngay trong ứng dụng cho iPhone và iPad, và ứng dụng kết nối trực tiếp tới nó.",
+            "picker": "Có thể chọn {name} khi tạo connection trong ứng dụng iPhone và iPad.",
             "synced": "Ứng dụng cho iPhone và iPad chỉ mở connection {name} khi connection đó đến từ máy Mac, qua iCloud Sync hoặc một file connection đã export. Bạn không tạo được connection {name} mới trên đó.",
             "none": "Ứng dụng cho iPhone và iPad không có driver {name}. Connection {name} đồng bộ từ máy Mac vẫn hiện trong danh sách nhưng không mở được.",
             "link": "TablePro cho iPhone và iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "Tải TablePro",
-            "mac": "Bạn tải về và dùng ứng dụng cho Mac miễn phí. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn.",
+            "mac": "Tải ứng dụng Mac miễn phí. Starter và Team thêm tính năng tùy chọn.",
             "ios": "Ứng dụng cho iPhone và iPad có trên App Store.",
             "pricing": "Xem bảng giá"
         }

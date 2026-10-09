@@ -4,7 +4,7 @@ export default {
     "status": "Fehler {status}",
     "notFound": {
         "title": "Seite nicht gefunden",
-        "body": "Die Adresse ist möglicherweise falsch geschrieben oder die Seite wurde verschoben. Diese Seiten bieten einen guten Ausgangspunkt."
+        "body": "Prüfe die Adresse oder nutze einen der folgenden Links."
     },
     "gone": {
         "title": "Diese Seite wurde entfernt",

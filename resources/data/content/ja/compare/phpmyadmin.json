@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs phpMyAdmin：Web ツールか Mac アプリか",
+        "title": "TablePro と phpMyAdmin: デスクトップまたはブラウザー",
         "description": "phpMyAdmin は Web サーバーで動きブラウザーで開きます。TablePro は Mac から直接か SSH で接続。対応データベース、設定とアクセスを比較します。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs phpMyAdmin",
-        "lead": "phpMyAdmin は MySQL と MariaDB 向けの無料オープンソース Web ツールで、Web サーバーにインストールし、cPanel に含まれます。TablePro は Mac 用のオープンソースアプリで、別の iPhone・iPad アプリがあり、データベースに直接か SSH トンネルで接続します。"
+        "lead": "phpMyAdmin は Web サーバー上で実行され、cPanel に含まれています。 TablePro は、ネイティブ アプリから直接または SSH 経由で接続します。ホスティング プランによって、どれを使用できるかが決まる場合があります。"
     },
     "shortAnswer": {
         "tablepro": [
-            "サーバーには何もインストールせず、Mac から直接か SSH で接続して作業したい。",
-            "PostgreSQL、SQL Server、SQLite、Redis なども使う。",
-            "本番接続を Read-Only にしたり、書き込み前に Touch ID を求めたり、接続ごとの Safe Mode が欲しい。",
-            "データを頻繁に出し入れする。CSV、JSON、XLSX や SQL のインポート・エクスポートは無料です。",
-            "Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。"
+            "サーバーに何もインストールせずに、直接または SSH 経由で接続するクライアント。",
+            "MySQL および MariaDB と他のデータベース タイプ。",
+            "接続ごとの Safe Mode、無料の AI チャット、および MCP。"
         ],
         "competitor": [
-            "ホストが cPanel で提供し、データベースへの SSH やリモートアクセスはない。",
-            "ブラウザーのあるどのコンピューターからも、何もインストールせず作業したい。",
-            "自分やチームが TablePro Mac アプリにはない言語のインターフェイスを必要とする。"
+            "ホストが SSH もリモート接続も許可していない場合、cPanel を介したデータベース アクセス。",
+            "ブラウザーを使用してどのコンピュータからでもアクセスできます。",
+            "TablePro では使用できないインターフェース言語。"
         ]
     },
     "glance": {
@@ -111,7 +109,7 @@
                 "href": "/features/connections#network"
             },
             {
-                "text": "保護・更新する Web インストールはありません。phpMyAdmin のドキュメントは HTTPS、アクセス規則と二要素ログインで保護する方法を説明します。",
+                "text": "phpMyAdmin には、独自の更新とアクセス制御を備えたサーバーのインストールが必要です。そのドキュメントでは、HTTPS、アクセス ルール、2 要素サインインについて説明します。",
                 "cite": [
                     "cells.hardening"
                 ],
@@ -197,12 +195,6 @@
             "question": "Adminer はどうですか？",
             "answer": "Adminer は単一 PHP ファイルの別のオープンソース Web ツールで、MySQL・MariaDB に加え PostgreSQL、SQLite、SQL Server と Oracle に接続します。phpMyAdmin と同じくサーバーで動くため、インストールは同様に保護する必要があります。",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro も phpMyAdmin のように無料ですか？",
-            "answer": "MySQL・MariaDB の作業は無料です。TablePro Mac アプリは全対応エンジン、AI アシスタントと MCP サーバーを含む AGPLv3 のオープンソースです。phpMyAdmin と違い有料プランもあり、Starter と Team は {starterExamples} などのオプション機能を追加します。<link>料金を見る</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

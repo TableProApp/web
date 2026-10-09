@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Kueri buku besar Beancount dengan SQL di {devices}",
+        "title": "Klien Beancount untuk {devices}",
         "description": "Buka transaksi, posting, saldo, dan metadata Beancount sebagai tabel SQL hanya baca. Ikuti file include dan jalankan BQL melalui rledger."
     },
     "og": {
@@ -10,8 +10,8 @@
     "engine": "beancount",
     "breadcrumb": "Beancount",
     "header": {
-        "title": "Kueri buku besar Beancount dengan SQL di {devices}",
-        "lead": "Buka file <code>.beancount</code> dan kueri transaksi, posting, saldo, dan metadatanya sebagai tabel SQL, atau kirim BQL ke rledger. Buku besar tetap berupa file teks yang Anda edit dalam editor sendiri."
+        "title": "Klien Beancount",
+        "lead": "Kueri buku besar sebagai tabel SQL atau gunakan BQL dengan rledger. Edit buku besar sumber di editor teks Anda sendiri."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -24,8 +24,8 @@
             "id": "connect",
             "title": "Buka buku besar",
             "paragraphs": [
-                "TablePro menjalankan <code>rledger</code> atau Python Beancount untuk membaca buku besar. Jika harus memilih, pasang rledger: rledger diprioritaskan jika keduanya tersedia, hanya rledger yang menjalankan BQL, dan hanya rledger yang mengisi tabel <code>diagnostics</code> dengan keluaran validasi.",
-                "Pilih file menggunakan <ui>Browse…</ui> pada formulir koneksi. Jalur buku besar menentukan seluruh koneksi, tanpa host, port, kata sandi, atau database. File <code>.beancount</code> juga dapat dibuka dari Finder, dan URL <code>beancount:///path/to/main.beancount</code> dapat diimpor.",
+                "Instal <code>rledger</code> atau Python Beancount. rledger diutamakan jika keduanya tersedia; hanya rledger yang mendukung BQL dan keluaran validasi di <code>diagnostics</code>.",
+                "Pilih buku besar dengan <ui>Browse…</ui> atau buka file <code>.beancount</code> dari Finder. Jalurnya adalah keseluruhan koneksi. URL <code>beancount:///path/to/main.beancount</code> juga dapat diimpor.",
                 "Aplikasi yang dibuka dari Finder tidak mewarisi <code>PATH</code> shell Anda. Jika backend berjalan di Terminal tetapi tidak di sini, tentukan lokasinya dengan <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> atau <code>TABLEPRO_BEANCOUNT_PYTHON</code>, lalu jalankan ulang aplikasi.",
                 "Backend Python menjalankan plugin bawaan Beancount dan melewati setiap direktif <code>plugin</code> lainnya, yang merupakan kode pihak ketiga, sampai Anda mengaktifkan <ui>Run Ledger Plugins</ui> untuk koneksi tersebut. Plugin yang dilewati tercantum di <code>diagnostics</code>."
             ]
@@ -34,7 +34,7 @@
             "id": "work",
             "title": "Kueri buku besar",
             "paragraphs": [
-                "Tabel mencakup transaksi dan posting, akun, saldo dan pernyataan saldo, harga dan komoditas, semua direktif lainnya, metadata, tag dan tautan, serta file sumber. Posting digabungkan dengan transaksi melalui <code>transaction_id</code>, dan akun digabungkan berdasarkan nama.",
+                "Kueri transaksi, postingan, akun, saldo, harga, arahan, metadata, dan file sumber sebagai tabel. Gabung postingan ke transaksi di <code>transaction_id</code>, dan akun berdasarkan nama.",
                 "Jumlah diterima setelah dibukukan, dengan aritmetika, biaya, dan harga yang sudah diselesaikan, serta biaya posting dan harga inline pada kolom tersendiri. Transaksi, posting, dan beberapa tabel direktif memiliki <code>source_location</code> seperti <code>main.beancount:42</code>, sehingga baris data dapat ditelusuri ke baris sumbernya.",
                 "Awali kueri dengan <code>BQL:</code> untuk mengirimnya ke rledger alih-alih tabel. Penelusuran, jumlah baris, dan paginasi berfungsi pada hasil BQL; parameter SQL tidak.",
                 "Direktif <code>include</code> diikuti, baik jalur literal maupun glob, dan setiap file buku besar serta dokumen yang dirujuk dipantau. Simpan perubahan di editor, dan kueri berikutnya membacanya tanpa menghubungkan ulang. Koneksi selalu berada pada level Read-Only dalam <safeMode>Safe Mode</safeMode>, sehingga INSERT, UPDATE, DELETE, dan perubahan skema ditolak."

@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "Client PostgreSQL cho {devices}",
-        "lead": "Làm việc với schema, array, jsonb và PostGIS, đọc execution plan dưới dạng sơ đồ, và quản lý role, session, bảo trì cùng sao lưu. Cùng một driver còn dùng cho Amazon Redshift, CockroachDB và PGlite."
+        "title": "PostgreSQL client",
+        "lead": "Query PostgreSQL, xem schema và sửa dòng với SQL preview. Xem EXPLAIN plan, jsonb, array và giá trị PostGIS."
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host, port, user và cơ sở dữ liệu, hoặc dán một URL <code>postgresql://</code> hay <code>postgres://</code>. PostgreSQL cần biết cơ sở dữ liệu thì mới kết nối được.",
+                "Nhập host, port, user và cơ sở dữ liệu, hoặc dán URL <code>postgresql://</code> hay <code>postgres://</code>. Cơ sở dữ liệu bắt buộc.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred), tức <code>sslmode=prefer</code> của libpq. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) để kiểm tra chứng chỉ của server.",
                 "Bật Sử dụng ~/.pgpass (Use ~/.pgpass) để đọc mật khẩu từ <code>~/.pgpass</code>. Form cho biết nó tìm thấy gì, kể cả trường hợp quyền truy cập của file khiến libpq bỏ qua file đó.",
-                "Kết nối tới server nội bộ qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command</network>, chẳng hạn kubectl port-forward. Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth> với một role được cấp <code>rds_iam</code>. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
+                "Tới server riêng qua <network>SSH tunnel, jump host, proxy hoặc tunnel command</network>. Amazon RDS và Aurora hỗ trợ <cloudAuth>AWS IAM</cloudAuth> cho role có <code>rds_iam</code>. Google Cloud SQL dùng Cloud SQL Auth Proxy.",
                 "Mọi tùy chọn kết nối mà libpq chấp nhận, như <code>-c application_name=reporting</code>, đều đặt được trong Tùy chọn kết nối (Connection Options)."
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "SQL editor gợi ý tên table và cột theo schema. <explain>EXPLAIN và EXPLAIN ANALYZE</explain> chạy với FORMAT JSON và được vẽ thành sơ đồ hoặc cây execution plan, còn EXPLAIN Compare cho biết plan có chậm đi sau một thay đổi hay không.",
-                "jsonb được định dạng gọn gàng, còn uuid, inet, timestamptz, interval và bytea hiển thị đúng kiểu của chúng. Cột array mở trong trình sửa dạng danh sách, nơi bạn thêm, xóa, đổi thứ tự hoặc đặt NULL cho từng phần tử, và cột enum cho chọn trong các nhãn của nó.",
+                "Viết SQL với autocomplete theo schema. Xem <explain>EXPLAIN và EXPLAIN ANALYZE</explain> dạng sơ đồ hoặc cây, so plan từ hai lần chạy.",
+                "Xem jsonb đã format và kiểu PostgreSQL, gồm uuid, inet, timestamptz, interval và bytea. Sửa phần tử array dạng danh sách; cột enum có các label để chọn.",
                 "Giá trị geometry và geography của PostGIS hiển thị dạng EWKT kèm SRID, và kết quả có geometry mở được trên <results>Map view</results>. Ô bản đồ do Apple cung cấp; các dòng dữ liệu của bạn vẫn ở trên máy Mac.",
                 "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, <editing>Preview SQL</editing> hiển thị trước từng câu lệnh, và khi lưu, giá trị được gửi dưới dạng tham số bind. Dữ liệu của materialized view chỉ đọc: hãy làm mới nó từ menu của view, và làm mới song song (concurrently) khi view có unique index mà PostgreSQL yêu cầu."
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "Schema và cấu trúc",
             "paragraphs": [
-                "Mọi schema bạn có quyền truy cập đều được liệt kê. Bạn tạo và sửa schema trong một bảng soạn sẵn câu CREATE SCHEMA, owner, comment và quyền USAGE, CREATE, rồi hiển thị chúng trước khi chạy.",
-                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại, ràng buộc CHECK và cột generated ở trạng thái chờ lưu. Table có partition liệt kê từng partition kèm giới hạn, lồng nhau khi một partition lại được chia tiếp. Enum, composite, domain và range nằm trong mục Types, và nhãn của enum thêm hoặc đổi tên được.",
+                "Xem schema truy cập được. Tạo hoặc sửa schema với owner, comment và grant, rồi xem SQL trước áp dụng.",
+                "Chuẩn bị thay đổi cột, index, khóa ngoại, CHECK và generated column trong <structure>tab Structure</structure>. Xem partition bound và PostgreSQL Types, gồm enum, composite, domain và range. Thêm hoặc đổi tên label enum.",
                 "Định nghĩa của view được dựng lại với mọi table ghi kèm tên schema, và index bị bỏ dở do một lần build concurrently thất bại được nêu tên trong tab Indexes.",
-                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema PostgreSQL, hoặc dữ liệu của chúng, rồi viết script đưa bên này về khớp với bên kia, giữ lại những thay đổi có thể làm mất dữ liệu."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so schema hoặc dữ liệu PostgreSQL và tạo script đồng bộ. Thay đổi có thể xóa dữ liệu được giữ lại để xem xét."
             ]
         },
         {
             "id": "operate",
             "title": "Quản trị",
             "paragraphs": [
-                "<administer>Users & Roles</administer> cho biết mỗi quyền đến từ đâu trước khi bạn cấp hay thu hồi, và giữ mọi câu lệnh dưới dạng SQL chờ chạy.",
+                "Xem nguồn từng quyền trong <administer>Users & Roles</administer>. Thay đổi grant và revoke được chuẩn bị dạng SQL.",
                 "Server Dashboard hiển thị session, số connection, tỷ lệ cache hit, dung lượng cơ sở dữ liệu và các query chậm. Từ đây bạn hủy query bằng <code>pg_cancel_backend</code> hoặc kết thúc session bằng <code>pg_terminate_backend</code>. Role không phải superuser và không thuộc <code>pg_monitor</code> sẽ thấy session của người khác nhưng không thấy query của họ.",
-                "Phần bảo trì table chạy VACUUM, với các tùy chọn FULL, ANALYZE và VERBOSE, cùng ANALYZE, REINDEX và CLUSTER, và hiển thị câu lệnh trước khi chạy.",
+                "Xem VACUUM, ANALYZE, REINDEX và CLUSTER trước khi bảo trì table.",
                 "<backup>Backup Dump và Restore Dump</backup> chạy {dumpTool} và pg_restore cài trên máy bạn, qua SSH tunnel của connection. Hãy cài chúng bằng Homebrew; để sao lưu server PostgreSQL 9.1, hãy dùng pg_dump 14 trở xuống."
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "<importData>Import</importData> file {importFormats}; file dữ liệu được nạp vào table sau khi bạn ghép từng cột, và bạn chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}; bản export SQL giữ lại comment của table, view và materialized view.",
-                "<copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection khác, trên PostgreSQL hay trên một engine khác, và liệt kê mọi kiểu cột phải chuyển gần đúng."
+                "<importData>Import</importData> file {importFormats} với column mapping và xử lý dòng lỗi. Export table hoặc kết quả ra {exportFormats}; SQL export giữ comment của table, view và materialized view.",
+                "<copy>Copy To</copy> chuyển table, dữ liệu hoặc cả hai tới connection PostgreSQL hay engine khác. Xem kiểu cột phải chuyển đổi gần đúng."
             ]
         },
         {
@@ -115,12 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin là công cụ quản trị PostgreSQL mã nguồn mở lâu năm, có debugger, so sánh schema, sao lưu và khôi phục. pgAdmin phù hợp nếu bạn chỉ dùng PostgreSQL và phần lớn công việc là quản trị.",
-                "notes": ["pgadmin-erd-design"]
+                "text": "pgAdmin tập trung quản trị PostgreSQL, gồm debugger, schema diff, backup và restore.",
+                "notes": [
+                    "pgadmin-erd-design"
+                ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 là ứng dụng Mac cho PostgreSQL, tập trung vào việc xem và sửa dữ liệu. Tài liệu của chính Postico không đề cập tới các việc quản trị như sao lưu và khôi phục, quản lý user hay theo dõi server. Postico phù hợp nếu bạn chỉ dùng PostgreSQL và muốn một ứng dụng Mac chuyên biệt."
+                "text": "Postico 2 tập trung xem và sửa PostgreSQL trên Mac. Tài liệu không bao gồm backup/restore, quản lý user và monitoring."
             }
         ],
         "notes": {

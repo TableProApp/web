@@ -8,7 +8,7 @@ export default {
     status: 'Error {status}',
     notFound: {
         title: 'Page not found',
-        body: 'The address may be mistyped, or the page may have moved. One of these pages is a good place to start.',
+        body: 'Check the address, or use one of the links below.',
     },
     gone: {
         title: 'This page was removed',

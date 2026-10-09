@@ -10,8 +10,8 @@
     "engine": "cloudflare-d1",
     "breadcrumb": "Cloudflare D1",
     "header": {
-        "title": "{devices}용 Cloudflare D1 클라이언트",
-        "lead": "하나의 연결로 Cloudflare 계정의 D1 데이터베이스에 접근하고 Cloudflare API를 통해 SQLite 문법으로 쿼리하며 Structure 탭에서 테이블, 인덱스와 트리거를 관리합니다."
+        "title": "Cloudflare D1 클라이언트",
+        "lead": "Cloudflare 계정의 D1 데이터베이스를 탐색하고 API로 SQLite 쿼리를 실행하세요."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "API 토큰으로 연결",
             "paragraphs": [
-                "D1 연결은 데이터베이스 이름이나 UUID, Cloudflare 계정 ID와 API 토큰 세 값이 필요합니다. 토큰은 <ui>API 토큰</ui>(API Token) 필드에 넣고 <credentials>macOS 키체인</credentials>에 보관합니다. 모든 요청이 HTTPS로 Cloudflare API에 전달되므로 호스트, 포트, SSL 설정이나 SSH 터널은 없습니다.",
-                "Custom token 템플릿에서 <ui>Account > D1 > Edit</ui> 권한으로 토큰을 만들고 한 번만 표시되므로 그때 복사하세요. 이 토큰은 연결한 하나뿐 아니라 계정의 모든 D1 데이터베이스에 접근합니다.",
+                "D1 데이터베이스 이름 또는 UUID, Cloudflare 계정 ID, <ui>API 토큰</ui> (API Token)을 입력하세요. 토큰은 <credentials>macOS Keychain</credentials>에 저장됩니다. 요청은 HTTPS를 사용하며 호스트, 포트, TLS 설정, SSH 터널은 없습니다.",
+                "<ui>Account > D1 > Edit</ui> 권한으로 토큰을 만들고 표시될 때 복사하세요. 선택한 데이터베이스뿐 아니라 계정의 모든 D1 데이터베이스에 접근할 수 있습니다.",
                 "<code>d1://account-id/database-name</code> URL을 가져오면 계정과 데이터베이스가 채워집니다. 토큰은 URL에 포함되지 않으므로 나중에 붙여넣으세요."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "데이터베이스 전환 및 쿼리",
             "paragraphs": [
-                "도구 막대의 전환기는 계정의 D1 데이터베이스를 나열하고 재연결 없이 전환하며 생성·삭제도 합니다. 각 탭은 열었던 데이터베이스에 남습니다.",
+                "재연결 없이 계정의 D1 데이터베이스를 전환하세요. 전환 메뉴에서 데이터베이스를 만들거나 삭제할 수도 있습니다. 기존 탭은 원래 데이터베이스를 유지합니다.",
                 "쿼리는 SQLite 문법을 사용합니다. <explain>EXPLAIN QUERY PLAN</explain>은 다이어그램으로 표시되고 행 편집은 저장까지 그리드에서 대기하며 <editing>Preview SQL</editing>이 명령문을 먼저 보여 줍니다.",
                 "각 명령문은 독립적으로 작성하세요. 한 명령문의 <code>PRAGMA</code> 설정이나 임시 테이블은 다음 명령문에서 사라지고 모든 명령문이 실행 시 커밋되어 롤백할 수 없습니다. Cloudflare가 요청 속도를 제한하면 오류에 재시도 전 대기 시간이 표시됩니다."
             ]

@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "Editor SQL dan rencana EXPLAIN",
-        "description": "Tulis SQL dengan pelengkapan berbasis skema dan parameter. Cari riwayat, simpan kueri, dan baca rencana EXPLAIN sebagai diagram."
+        "description": "Tulis SQL dengan pelengkapan otomatis sadar skema. Simpan kueri, cari riwayat lokal, dan periksa paket EXPLAIN di database yang didukung."
     },
     "og": {
         "kicker": "Kueri",
-        "title": "Tulis, jalankan, dan pahami kueri"
+        "title": "Editor SQL"
     },
     "header": {
-        "title": "Tulis, jalankan, dan pahami kueri",
-        "lead": "Untuk siapa pun yang menulis SQL pada database aktif: tulis dengan skema yang mudah diakses, jalankan satu pernyataan atau seluruh skrip, simpan kueri yang penting, dan cari tahu penyebab kueri melambat. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
+        "title": "Editor SQL",
+        "lead": "Tulis SQL dengan pelengkapan otomatis sadar skema. Simpan kueri yang Anda gunakan kembali, telusuri riwayat Anda, dan periksa paket di mesin yang didukung.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "Editor yang memahami skema Anda",
+            "title": "Pelengkapan otomatis sadar skema",
             "paragraphs": [
-                "Pelengkapan otomatis membaca skema koneksi saat Anda mengetik: tabel setelah FROM dan JOIN, kolom alias, serta kolom CTE atau subkueri yang didefinisikan sebelumnya dalam pernyataan. Sorotan sintaks memakai tree-sitter, dan <kbd>⌘⇧L</kbd> memformat pernyataan di kursor tanpa menghapus komentar.",
-                "<kbd>⌘⏎</kbd> menjalankan pernyataan di kursor atau seleksi, <kbd>⌘⇧⏎</kbd> menjalankan semuanya, <kbd>⌘⌥⏎</kbd> menjalankan tanpa batas baris, dan <kbd>⌘.</kbd> membatalkan. Sekumpulan pernyataan biasa berjalan dalam satu transaksi dan dibatalkan jika salah satunya gagal. Pengecualiannya adalah skrip yang mengelola transaksi sendiri, skrip SQL Server, dan pernyataan yang tidak dapat berada dalam transaksi seperti VACUUM. DDL pada MySQL, MariaDB, dan Oracle melakukan commit sendiri."
+                "Pelengkapan otomatis menyarankan tabel dan kolom, termasuk alias, CTE, dan subkueri. Format pernyataan saat ini dengan <kbd>⌘⇧L</kbd> sambil menyimpan komentarnya.",
+                "Jalankan pernyataan saat ini, pilihan atau keseluruhan skrip. Kumpulan pernyataan biasa menggunakan satu transaksi dan melakukan roll back jika terjadi kegagalan. Skrip SQL Server, transaksi eksplisit, dan pernyataan seperti VACUUM adalah pengecualian. DDL pada MySQL, MariaDB dan Oracle dilakukan secara independen."
             ],
             "points": [
                 "Penanda pernyataan di margin, masing-masing dengan tombol jalankan sendiri.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Parameter, riwayat, dan kueri tersimpan",
             "paragraphs": [
-                "Tulis <code>:customer_id</code> dalam kueri, lalu TablePro meminta nilai dan tipenya sebelum dijalankan, dengan pengikatan nilai secara native jika driver mendukungnya.",
-                "Setiap kueri yang dijalankan masuk ke riwayat lokal (<kbd>⌘Y</kbd>) dengan pencarian teks lengkap dan filter sumber, kegagalan, serta rentang waktu. Secara bawaan, riwayat menyimpan {historyEntries} entri selama {historyDays} hari dan tidak pernah disinkronkan.",
-                "Simpan kueri dengan kata kunci seperti <code>dau</code>, lalu ketik kata kunci itu di editor untuk menyisipkan kuerinya. Kueri tersimpan memiliki riwayat versi. Folder SQL tertaut menyinkronkan folder file <code>.sql</code> dengan sidebar dua arah, dengan huruf status Git untuk setiap file. Fitur ini gratis dan terpisah dari Linked Folders, fitur Starter untuk file koneksi bersama."
+                "Gunakan parameter seperti <code>:customer_id</code> untuk memasukkan nilai sebelum kueri dijalankan. Nilai terikat secara asli jika pengemudi mendukungnya.",
+                "Cari riwayat kueri lokal berdasarkan teks, sumber, kegagalan, atau rentang waktu. Itu menyimpan entri {historyEntries} selama {historyDays} hari secara default dan tidak pernah disinkronkan.",
+                "Simpan kueri dengan kata kunci dan riwayat versi yang dapat digunakan kembali. Tautkan folder file <code>.sql</code> ke sidebar dengan pembaruan dua arah dan status Git. Folder SQL yang ditautkan gratis, terpisah dari fitur Linked Folders berbayar untuk file koneksi."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly dan tab",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) menemukan tabel, view, dan tabel sistem di semua koneksi terbuka, beserta kueri tersimpan dan terbaru. Setiap tab menyimpan SQL, pengurutan, filter, dan lebar kolom sendiri; tab kembali saat Anda menutup lalu membuka aplikasi. <kbd>⌃Tab</kbd> berpindah antara tab yang terakhir digunakan."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) mencari tabel, tampilan, dan kueri di seluruh koneksi terbuka. Tab mempertahankan SQL dan pengaturan kisinya saat Anda membuka kembali aplikasi."
             ]
         },
         {
             "id": "performance",
-            "title": "Baca, bandingkan, dan pantau rencana",
+            "title": "Performa kueri",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN dan EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> menampilkan rencana kueri sebagai diagram, pohon dengan batang biaya, atau keluaran mentah mesin. Pilih eksekusi sebelumnya dari kueri yang sama sebagai acuan, lalu Compare menunjukkan apakah kueri melambat dan apakah rencana berubah; selisih di bawah {explainNoise}% dianggap sebagai noise. Keduanya gratis."
+                        "Lihat rencana kueri sebagai diagram, pohon biaya, atau keluaran mesin mentah. Bandingkan dengan proses sebelumnya untuk mengetahui waktu dan perubahan rencana; perbedaan di bawah {explainNoise}% dihitung sebagai kebisingan. Kedua fitur tersebut gratis."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights membaca riwayat kueri Mac ini dan mengurutkan temuannya: kueri yang paling sering dijalankan, paling lambat, gagal, dan melambat dibandingkan periode sebelumnya. Kueri dikelompokkan berdasarkan bentuk, sehingga satu pernyataan yang dijalankan dengan nilai berbeda dihitung satu kali. Angka dihitung di Mac Anda dan tidak pernah diunggah."
+                        "Temukan kueri yang lambat, gagal, dan sering dijalankan dalam riwayat lokal Mac ini. Pernyataan serupa dikelompokkan terlepas dari nilai parameternya. Query Insights membandingkan periode secara lokal; ini bukan pemantauan seluruh server dan tidak mengunggah metrik."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Tampilkan hasil sebagai diagram batang, garis, area, atau sebar, dengan sumbu waktu untuk tanggal dan satu seri untuk setiap nilai kolom yang Anda pilih. Diagram menampilkan hingga {chartPoints} titik dan {chartSeries} seri dari {chartInspectedRows} baris pertama; toolbar memberi tahu jika tampilan dibatasi."
+                        "Tampilkan hasil sebagai grafik batang, garis, area, atau sebar. Grafik menampilkan hingga {chartPoints} titik dan {chartSeries} seri dari {chartInspectedRows} baris pertama, dengan pemberitahuan jika terpotong."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Tampilan Peta",
                     "paragraphs": [
-                        "Jika kolom berisi geometri seperti WKT, WKB, GeoJSON, tuple ClickHouse, atau nilai geo_point Elasticsearch, Tampilan Peta menggambarnya di Apple Maps; memilih bentuk juga memilih barisnya. Baris Anda tetap di Mac; Apple menyediakan ubin peta. Tampilan Peta gratis."
+                        "Lihat kolom geometri yang didukung di Apple Maps dan pilih bentuk untuk menemukan barisnya. Baris tetap di Mac Anda; Apple memasok ubin peta. Tampilan peta gratis."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Mesin yang tidak menggunakan SQL",
+            "title": "Bahasa kueri lainnya",
             "paragraphs": [
-                "Pada koneksi yang tidak memakai SQL, editor menerima bahasa mesin itu sendiri, dan halaman setiap mesin menjelaskan dukungannya. Editor MongoDB adalah shell JavaScript bergaya mongosh yang berjalan di dalam TablePro, bukan mongosh itu sendiri."
+                "Gunakan bahasa kueri setiap mesin non-SQL di editor. MongoDB menggunakan shell JavaScript bergaya mongosh bawaan, bukan mongosh itu sendiri. Lihat halaman database untuk perintah yang didukung."
             ],
             "engines": [
                 {

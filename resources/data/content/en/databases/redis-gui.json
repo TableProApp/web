@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "Redis GUI for {macDevices}",
-        "lead": "Browse keys as a tree split on colons, read each key’s type, TTL and length at a glance, and run Redis commands quoted the way redis-cli quotes them, on a single server, a Sentinel-managed primary or a Redis Cluster."
+        "title": "Redis GUI",
+        "lead": "On Mac, browse keys and run commands on Standalone, Sentinel or Cluster deployments. iPhone and iPad support Standalone commands only."
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Pick a <ui>Connection Mode</ui>. Standalone takes a host and port. Sentinel takes one or more Sentinel nodes and the primary group name, follows the quorum to the primary and moves with it after a failover. Cluster takes any reachable member as a seed, reads the shard map and sends each command to the shard that owns its key.",
+                "Choose <ui>Connection Mode</ui>: Standalone, Sentinel or Cluster. Sentinel follows the primary after failover; Cluster discovers shards from a seed member and routes commands to the owning shard.",
                 "Sign in with a password, or fill in Username to sign in as a Redis 6 ACL user. On Amazon ElastiCache, choose an <cloudAuth>AWS IAM</cloudAuth> mode and a short-lived token becomes the password; ElastiCache IAM needs TLS turned on.",
                 "New connections start with TLS off. Upstash, Redis Cloud and similar services require it, and a pasted <code>rediss://</code> URL turns it on. There is no fallback to plain text, so Preferred behaves as Required. Valkey servers connect the same way as Redis.",
                 "The sidebar lists each numbered database from <code>db0</code> up, and clicking one browses it in place."
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "Keys and commands",
             "paragraphs": [
-                "Key names split into folders at every colon, or at the separator you set on the Options tab. Each key is a grid row with its Key, Type, TTL, Length and Value. A string shows whole; a hash, list, set, sorted set or stream shows its first entries, and Length says how many there are. A value that is not valid UTF-8, such as a gzip payload, opens in the hex editor.",
-                "<editing>In the grid</editing>, editing a key name runs <code>RENAME</code>, a TTL runs <code>EXPIRE</code> or <code>PERSIST</code>, and a string value runs <code>SET</code>. Add Row writes the type you pick with <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> or <code>SET</code>. The filter bar matches key names with Redis glob patterns and narrows by type, using <code>SCAN MATCH</code> and <code>SCAN TYPE</code> on the server.",
-                "The editor takes one command per statement, quoted as redis-cli quotes it, and sends commands it does not recognise as written. <code>DB 3 GET key</code> runs one command on another database without moving the session, and inside a <code>MULTI</code> block each command answers <code>QUEUED</code> until <code>EXEC</code> returns every reply in order.",
+                "Browse keys by colon-separated folders, or choose another separator. Each row shows the key’s type, TTL, length and value. Collections show their first entries; non-UTF-8 values open in the hex editor.",
+                "<editing>Edit key names, TTLs and string values</editing> in the grid. Add Row creates hashes, lists, sets, sorted sets or strings. Filter key names and types using server-side <code>SCAN MATCH</code> and <code>SCAN TYPE</code>.",
+                "Run commands with redis-cli-style quoting. Unknown commands are sent as written. <code>DB 3 GET key</code> targets another database without changing the session. In <code>MULTI</code>, replies stay queued until <code>EXEC</code>.",
                 "<safeMode>Safe Mode</safeMode> counts every Redis command as a write, <code>GET</code> included, so the Alert and Safe Mode levels confirm each one and Read-Only blocks them all. <code>FLUSHDB</code> and <code>FLUSHALL</code> ask before they run, even at Silent."
             ]
         },
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight is the official Redis tool. Beside a key browser and a command Workbench, it has a Pub/Sub workspace, a command profiler, slow log inspection and memory analysis. Choose it to watch and tune a Redis deployment; TablePro fits when Redis sits next to the SQL databases you work with every day.",
+                "text": "Choose Redis Insight for its key browser, command Workbench, a Pub/Sub workspace, profiler, slow logs and memory analysis. TablePro works with Redis alongside SQL databases.",
                 "notes": ["redis-insight-copilot"]
             }
         ],

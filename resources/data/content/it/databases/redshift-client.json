@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "Client Amazon Redshift per {devices}",
-        "lead": "Interroga un cluster provisionato o un workgroup Serverless tramite il driver PostgreSQL incluso nell’app, leggi stile di distribuzione e chiavi di ordinamento delle tabelle ed esplora schemi Spectrum e datashare accanto ai tuoi."
+        "title": "Client Amazon Redshift",
+        "lead": "Interroga cluster con provisioning o workgroup Serverless. Esamina sort key, stili di distribuzione e schemi esterni."
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "Connetti",
             "paragraphs": [
-                "Usa l’endpoint del cluster come host oppure l’endpoint del workgroup su Redshift Serverless; entrambi ascoltano sulla stessa porta. È necessario un database e ogni cluster ne include uno chiamato <code>dev</code>. Importare un URL <code>redshift://</code> compila il modulo.",
+                "Inserisci endpoint, porta e database di un cluster o workgroup Serverless. I cluster partono da <code>dev</code>. Un URL <code>redshift://</code> compila il modulo.",
                 "Le nuove connessioni impostano SSL su Preferred e non controllano la versione, quindi si connette qualsiasi cluster ancora gestito da AWS. La password viene conservata nel Portachiavi o letta da <code>~/.pgpass</code>, due delle <credentials>opzioni per le credenziali</credentials> della connessione. Un cluster non raggiungibile pubblicamente si raggiunge con un <network>tunnel SSH</network> verso un bastion host nella sua VPC."
             ]
         },
@@ -40,9 +40,9 @@
             "title": "Esegui query e modifica",
             "paragraphs": [
                 "Le query e le <editing>modifiche alle righe in attesa con Preview SQL</editing> funzionano come su <postgresql>PostgreSQL</postgresql>, tramite lo stesso driver. Una scheda associata a un database diverso da quello attivo apre una seconda connessione per quel database.",
-                "Le informazioni della tabella leggono <code>svv_table_info</code> per stile di distribuzione, chiavi di ordinamento e dimensione e la scheda DDL include DISTKEY, SORTKEY, DISTSTYLE ed ENCODE. Le chiavi esterne sono elencate, ma Redshift non le applica, quindi nulla impedisce una riga che le viola.",
+                "Esamina lo stile di distribuzione, le chiavi di ordinamento e le dimensioni da <code>svv_table_info</code>. DDL include DISTKEY, SORTKEY, DISTSTYLE e ENCODE. Le chiavi esterne sono elencate ma non applicate da Redshift.",
                 "<explain>EXPLAIN ed EXPLAIN VERBOSE</explain> restituiscono il piano Redshift come testo anziché diagramma.",
-                "Gli schemi creati con <code>CREATE EXTERNAL SCHEMA</code>, che siano Spectrum su S3, query federate, riferimenti tra database o datashare, compaiono accanto ai tuoi e sono contrassegnati External. Le tabelle si esplorano, filtrano, ordinano ed esportano normalmente ma sono in sola lettura, perché Redshift non accetta UPDATE o DELETE su di esse. Non mostrano il numero di righe e i tipi delle colonne vengono letti come riportati dal catalogo esterno."
+                "Sfoglia gli schemi Spectrum esterni, federati, tra database e di condivisione dei dati oltre a quelli locali. Le tabelle esterne supportano il filtraggio, l'ordinamento e l'esportazione ma sono di sola lettura. I conteggi delle righe non sono disponibili; i tipi provengono dal catalogo esterno."
             ]
         },
         {

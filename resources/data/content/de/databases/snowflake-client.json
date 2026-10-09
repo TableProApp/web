@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Snowflake-Client für {devices}",
-        "lead": "Melde dich wie von deinem Konto verlangt an, wechsle die Sitzung ohne Neuverbinden zwischen Warehouses und Rollen und frage Tabellen ab, bearbeite und exportiere sie in eine Stage."
+        "title": "Snowflake-Client",
+        "lead": "Frage Tabellen ab und bearbeite sie, wechsle Warehouses und Rollen und exportiere in eine Stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Verbinden und anmelden",
             "paragraphs": [
-                "Gib den Kontobezeichner wie <code>myorg-myaccount</code> oder einen alten Locator wie <code>xy12345.us-east-1</code> ein: alles vor <code>.snowflakecomputing.com</code>. Jede Anfrage läuft über HTTPS zum Konto-Endpunkt; es gibt daher keinen Host, SSL-Abschnitt oder SSH-Bereich.",
-                "Wähle eine <ui>Auth Method</ui>, und das Formular zeigt nur die nötigen Felder. Ein Schlüsselpaar signiert jede Verbindung mit deinem privaten PKCS#8-Schlüssel; die Mac-Uhr muss stimmen. Browser-SSO führt zum Identitätsanbieter. Ein OAuth-Token wird wie eingefügt genutzt und nie erneuert. Bei verpflichtendem MFA ergänzt ein aktueller Code unter <ui>MFA Passcode (TOTP)</ui> das Passwort.",
+                "Gib die Konto-ID vor <code>.snowflakecomputing.com</code> ein, etwa <code>myorg-myaccount</code>. Anfragen nutzen HTTPS; Host, TLS-Bereich und SSH-Bereich sind nicht erforderlich.",
+                "Wähle <ui>Auth Method</ui>: PKCS#8-Schlüsselpaar, Browser-SSO, OAuth-Token oder Passwort mit <ui>MFA Passcode (TOTP)</ui>. Schlüsselpaare brauchen eine genaue Geräteuhr. Eingefügte OAuth-Tokens werden nicht erneuert.",
                 "Mit <code>ALLOW_CLIENT_MFA_CACHING</code> im Konto reicht ein frischer Code: Snowflake liefert einen MFA-Token, den TablePro im <credentials>Schlüsselbund</credentials> speichert. Mit <code>ALLOW_ID_TOKEN</code> speichert Browser-SSO dort einen Anmeldetoken; spätere Verbindungen überspringen den Browser, bis Snowflake ihn ablehnt.",
                 "Snowflake hat kein URL-Schema. Nenne stattdessen einen Abschnitt unter <ui>CLI Connection Name</ui>; jedes leere Feld wird beim Verbinden aus <code>~/.snowflake/connections.toml</code> gelesen."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouses, Rollen und Abfragen",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> wechselt mit <code>USE WAREHOUSE</code> und <code>USE ROLE</code> Warehouse oder Rolle ohne Neuverbinden. Eine TablePro-Verbindung ist eine Snowflake-Sitzung, die auch bei Inaktivität offen bleibt. Ein an eine zweite Datenbank gebundener Tab führt vor seinen Anweisungen <code>USE DATABASE</code> auf derselben Sitzung aus.",
+                "Wechsle Warehouses und Rollen unter <ui>Database > Session Context</ui>. Die Verbindung hält im Leerlauf eine Sitzung; Tabs auf einer anderen Datenbank führen vor ihren Anweisungen <code>USE DATABASE</code> aus.",
                 "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Explain</explain> liefert Snowflakes Plan als Rohtext.",
-                "<editing>Rasteränderungen</editing> binden Werte auf dem Server; VARIANT-, OBJECT- und ARRAY-Zellen werden über <code>PARSE_JSON</code> gesendet. Identifiziert wird über den deklarierten Primärschlüssel oder ohne ihn über alle Spalten. Snowflake erzwingt Schlüsselbedingungen nie; ein doppelter Schlüssel bedeutet daher, dass Änderungen oder Löschungen alle passenden Zeilen treffen. Prüfe vor dem Bearbeiten auf Duplikate."
+                "<editing>Rasteränderungen</editing> binden Werte auf dem Server; VARIANT-, OBJECT- und ARRAY-Zellen nutzen <code>PARSE_JSON</code>. Änderungen werden über den deklarierten Primärschlüssel zugeordnet, sonst über alle Spalten. Standardtabellen in Snowflake erzwingen keine Schlüsselbedingungen: Bei doppelten Schlüsselwerten trifft eine Änderung oder Löschung alle passenden Zeilen. Prüfe deshalb vor dem Bearbeiten auf Duplikate. Hybridtabellen erzwingen ihre Schlüssel."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien über die Verbindung und exportiere Tabellen oder Ergebnisse als {exportFormats} auf deinen Mac.",
-                "Wähle zum Export ohne deinen Mac <ui>File > Server-Side Export…</ui> und nenne eine Stage mit oder ohne <code>@</code>. <backup>Server-Side Export</backup> führt <code>COPY INTO</code> mit deinen Rechten aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. Der Dialog wartet bis zum Abschluss; nichts landet auf dem Mac."
+                "Wähle <ui>File > Server-Side Export…</ui> und eine Stage. <backup>Server-Side Export</backup> führt <code>COPY INTO</code> mit deinen Berechtigungen aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. TablePro wartet auf den Abschluss; Dateien laufen nicht über deinen Mac."
             ]
         }
     ],

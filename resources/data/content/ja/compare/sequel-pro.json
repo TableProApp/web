@@ -9,21 +9,21 @@
     },
     "header": {
         "title": "Mac の Sequel Pro 代替",
-        "lead": "Sequel Pro の開発は終了しています。最終リリースは 2016 年の Intel ビルドで、Homebrew からは削除され、このページを確認した時点ではウェブサイトにもアクセスできませんでした。Sequel Ace が MySQL と MariaDB 向けに開発を引き継いでいます。より多くのデータベースを一つのクライアントで使いたい場合は TablePro も選択肢になり、Sequel Ace の接続をインポートできます。"
+        "lead": "Sequel Ace は、 Sequel Pro の保守された後継製品です。 TablePro は、より多くのデータベース タイプが必要な場合の別のオプションです。保存された接続を TablePro に移動すると、 Sequel Ace を経由します。"
     },
     "shortAnswer": {
+        "lead": "TablePro または Sequel Ace を使用する理由。",
         "tablepro": [
-            "MySQL と MariaDB だけでなく PostgreSQL、SQL Server、SQLite、Redis や MongoDB も使う。",
-            "選んだ AI プロバイダーを使う、Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
-            "MySQL と MariaDB に接続する無料の iPhone・iPad アプリが欲しい。",
-            "別のインターフェイスを学び、Sequel Ace の接続をパスワードとともに移したい。"
+            "MySQL および MariaDB と他のデータベース タイプ。",
+            "無料の AI チャットおよび MCP、または iPhone および iPad アプリ。",
+            "Sequel Ace を通じてインポートされた接続を備えた別のインターフェイス。"
         ],
         "competitor": [
-            "慣れた Sequel Pro のインターフェイスを無料で、継続保守される形で使いたい。",
-            "MySQL と MariaDB だけを使う。",
-            "アプリは Mac App Store からインストールする。"
+            "Sequel Pro の使い慣れたインターフェイス。 Sequel Ace で維持されます。",
+            "クライアントは MySQL と MariaDB に焦点を当てました。",
+            "Mac App Store のアプリ。"
         ],
-        "competitorTitle": "Sequel Ace が向く場合"
+        "competitorTitle": "Sequel Ace を検討してください"
     },
     "glance": {
         "intro": "Sequel Pro の最終リリースは {status.date} の {status.version} です。表は現在の状況を TablePro と並べています。継続保守される後継との比較は TablePro vs Sequel Ace をご覧ください。"

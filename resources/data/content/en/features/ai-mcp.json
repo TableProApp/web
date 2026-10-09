@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "AI & MCP",
-        "title": "AI assistant and MCP server"
+        "title": "AI assistant and MCP"
     },
     "header": {
-        "title": "AI assistant and MCP server",
-        "lead": "For developers who want help with SQL from a model they choose, or want an AI client to work with their databases. Ask about a schema, have a query reviewed or fixed, or let MCP (Model Context Protocol) clients such as Claude Code and Cursor use your saved connections. All of it is optional and in the Mac app only, and nothing reaches a model until you add a provider or connect a client.",
+        "title": "AI assistant and MCP",
+        "lead": "Explain or fix SQL with your preferred provider. Connect AI clients to saved connections through MCP (Model Context Protocol).",
         "docs": "/features/ai-assistant"
     },
     "sections": [
         {
             "id": "assistant",
-            "title": "Use the provider you choose",
+            "title": "Choose your AI provider",
             "paragraphs": [
-                "The assistant works with these providers: {aiProviders}. Depending on the provider, you paste an API key, sign in with an account you already have, or run a model on your Mac. TablePro runs no AI service of its own: requests go straight to the provider, and nothing is sent until you add one.",
-                "Each message carries the structure of the connection’s tables, up to a limit you set, and the query in the editor. Result rows go only if you turn that on in <ui>Settings > AI</ui>. Each connection also has an AI policy, and Never keeps both the assistant and MCP clients away from it."
+                "Supported providers: {aiProviders}. Use an API key, an existing account or a local model, depending on the provider. Requests go directly to your provider; TablePro runs no AI service. The feature is free, but provider charges may apply.",
+                "Messages include schema context and the query in the editor. Result rows are excluded unless enabled in <ui>Settings > AI</ui>. Set a connection's AI policy to Never to block both the assistant and MCP clients."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,26 +26,26 @@
             "id": "in-the-editor",
             "title": "Review, explain, optimize and fix",
             "paragraphs": [
-                "Put the cursor in a statement and choose Review with AI (<kbd>⌥⇧⌘L</kbd>) for its correctness, cost and safety, Explain (<kbd>⌘L</kbd>) for what it does step by step, or Optimize (<kbd>⌥⌘L</kbd>) for a rewrite or an index. When a query fails, Fix with AI sits on the error banner. The request carries the structure of the tables the statement names, and the statement itself does not run. <ui>Apply to Editor</ui> replaces your statement only after you confirm.",
-                "Inline suggestions show ghost text as you type and are off by default. AI Rules pin plain-text notes to a connection, such as which column must never be selected, and go with every message."
+                "Review a statement, explain it or request an optimization. Fix with AI is available when a query fails. These actions send relevant schema and SQL without running the statement. <ui>Apply to Editor</ui> requires confirmation.",
+                "Inline suggestions are off by default. Add connection-specific AI Rules to provide instructions with each message; they are model instructions, not enforced database permissions."
             ]
         },
         {
             "id": "agent-mode",
             "title": "Chat modes and Agent mode",
             "paragraphs": [
-                "The chat has three modes. Ask, the default, looks up the schema and runs nothing. Edit can also run queries, and Agent can also run DROP, TRUNCATE and other destructive statements. At {macSafeModeDefault}, the Safe Mode level new connections start at, writes in Edit and Agent run without asking; from Alert to Safe Mode (Full) each one waits for Run, and Read-Only refuses them. Destructive statements always wait for a click and can never be approved in advance.",
-                "Agent mode (<kbd>⌥⇧⌘A</kbd>) gives one session the whole window: the sessions on this connection, the conversation, and the SQL it proposed and ran. While it is on, the connection is held at Alert or stricter, so no write runs until you click Run. That is a reminder, not a lock: it is one keystroke from off. Sessions stay on this Mac."
+                "Ask is the default chat mode: it reads schema and runs no statements. Edit can run queries; Agent can also propose destructive statements. At the default {macSafeModeDefault} level, Edit and Agent writes can run without approval. Alert and stricter levels confirm writes; Read-Only refuses them. Destructive statements always require confirmation.",
+                "Full-window Agent mode is separate from the chat's Agent option. It keeps the connection at Alert or stricter, so writes wait for Run. Turning that mode off removes its minimum level. Sessions remain on this Mac."
             ],
             "asset": "mac-agent-mode",
             "links": [{ "label": "Safe Mode levels", "href": "/features/data-editing#safe-mode" }]
         },
         {
             "id": "mcp",
-            "title": "The MCP server",
+            "title": "Connect external AI clients",
             "paragraphs": [
-                "The built-in MCP server lets AI clients work through the connections you saved in TablePro, without ever seeing a password. It listens on {mcpHost} only, with no remote mode, and it is off until you turn it on or a client you set up starts it.",
-                "Its tools cover connections, schema discovery, reading and writing data, databases and objects, server administration and the app’s own tabs and history, with prompts and resources built from your live schema. Every call goes into an activity log on your Mac, with statements recorded as a digest rather than text, and queries a client runs also appear in your query history."
+                "The built-in MCP server gives clients access through saved connections without exposing their passwords. It is off by default and listens only on {mcpHost}. Enable it yourself or let a configured client start it.",
+                "Clients can inspect schemas and use permitted query, object and administration tools. Calls are logged locally with statement digests; executed queries also appear in query history."
             ],
             "asset": "mac-mcp-settings",
             "blocks": [
@@ -53,8 +53,8 @@
                     "id": "connect",
                     "title": "Connect a client",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> has setup steps and a snippet to copy for {mcpSetupClients}. The bundled <code>tablepro-mcp</code> bridge also works with {mcpBridgeClients}. It starts TablePro when needed and finds the server, so the client’s config holds no port or token. The official Raycast extension pairs with the app instead, and you approve the pairing on your Mac.",
-                        "A typical request: ask your client for users who share an email address. It can call <code>list_tables</code> and <code>describe_table</code>, see that the column is named <code>email_address</code>, and run one SELECT through your saved connection, without you pasting the schema into the chat."
+                        "Find setup instructions for {mcpSetupClients} in <ui>Settings > Integrations</ui>. The bundled <code>tablepro-mcp</code> bridge also supports {mcpBridgeClients} and starts the app when needed. Raycast uses a separate pairing flow that requires approval.",
+                        "For example, ask a client to find duplicate email addresses. It can inspect the schema, identify the column and run a permitted SELECT through your saved connection."
                     ]
                 },
                 {
@@ -62,25 +62,25 @@
                     "title": "What a client may do",
                     "paragraphs": ["Every call passes each of these checks, and the strictest one wins."],
                     "points": [
-                        "Token scope: Read Only, Read & Write or Full Access, optionally limited to named connections. The bridge receives a Read & Write token by itself, so clients that use it cannot run destructive statements.",
-                        "External Clients, set per connection: Blocked, Read Only (the default) or Read & Write. A blocked connection is not even listed.",
-                        "Connection approval: the first time a client reaches a connection, a dialog on your Mac asks. You choose whether it asks every time, once per connection or never.",
+                        "Token scope: Read Only, Read & Write or Full Access, optionally restricted to named connections. The bridge uses Read & Write, which excludes destructive statements.",
+                        "External Clients: Blocked, Read Only (default) or Read & Write per connection. Blocked connections are not listed.",
+                        "Connection approval: ask every time, once per connection or never.",
                         "AI policy: a connection set to Never refuses MCP clients too.",
-                        "Safe Mode: writes confirm at the connection’s level, and DROP or TRUNCATE needs a Full Access token and your approval every time. Statements that read or write files, or run code on the server, are refused."
+                        "Safe Mode: confirmation follows the connection's level. DROP and TRUNCATE require Full Access and approval every time. File access and server-side code execution statements are refused."
                     ]
                 }
             ]
         },
         {
             "id": "outside-servers",
-            "title": "Outside MCP servers",
+            "title": "Use external MCP tools",
             "paragraphs": [
-                "It also works the other way round: an AI session in TablePro can call tools on an MCP server you run, over Streamable HTTP, with HTTPS required unless the server is on this Mac. You choose the connections each server is offered on. Every call shows a card and waits for your click, and no standing approval covers them. The server’s address and token stay on this Mac."
+                "TablePro's assistant can also call an external MCP server over Streamable HTTP. HTTPS is required except for local servers. Choose which connections can use each server; every tool call requires a click. Server settings stay on this Mac."
             ]
         },
         {
             "id": "automation",
-            "title": "Automation outside the chat",
+            "title": "Automation",
             "paragraphs": [
                 "AppleScript can connect, run a query and open a table, within the connection’s External Clients level and Safe Mode. <code>tablepro://</code> links open a connection, a table or a query tab; a query in a link is filled in after you confirm and never runs by itself. Database URLs such as <code>postgresql://</code> open as connections.",
                 "The <code>tablepro</code> shell command opens those URLs and files in the app; it does not run queries from the terminal. The official Raycast extension searches your connections, tables and query history, and runs queries through the paired app."
@@ -90,16 +90,16 @@
             "id": "privacy",
             "title": "Where your data goes",
             "paragraphs": [
-                "Prompts, the schema context and anything you attach go to the provider you picked, under your own account’s terms with that provider. With Ollama, llama.cpp, MLX or an OpenAI-compatible server you run yourself, they stay on your machine. TablePro receives none of it, and the Mac app’s daily usage report carries nothing about AI or MCP.",
+                "Prompts, schema and attachments go directly to your provider under its terms. Local models keep them on your machine when served locally. TablePro receives none of this content. External MCP clients handle accessed data under their own settings and terms.",
                 "When you add GitHub Copilot, its option to send telemetry to GitHub starts switched on; turn it off where you set Copilot up."
             ],
             "links": [{ "label": "What the Mac app sends", "href": "/privacy#mac-app" }]
         },
         {
             "id": "iphone",
-            "title": "Not on iPhone or iPad",
+            "title": "Availability",
             "paragraphs": [
-                "The iPhone and iPad app has no AI assistant, Agent mode or MCP server. Everything on this page is in the Mac app."
+                "AI, MCP and the automation tools on this page are currently available on Mac only."
             ],
             "links": [{ "label": "What the iPhone and iPad app does", "href": "/ios" }]
         }

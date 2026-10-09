@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Postico: PostgreSQL dan mesin lain",
+        "title": "TablePro vs Postico: Alat dan lisensi PostgreSQL",
         "description": "Postico 2 adalah aplikasi Mac PostgreSQL dengan lisensi sekali bayar. TablePro mendukung mesin lain. Bandingkan harga, alat server, dan sinkronisasi."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Postico",
-        "lead": "Postico 2 adalah aplikasi Mac untuk PostgreSQL dan database yang menggunakan protokolnya, dijual dengan lisensi sekali bayar. TablePro adalah klien sumber terbuka untuk PostgreSQL dan mesin lain, dengan aplikasi iPhone dan iPad terpisah serta fitur berbayar opsional pada Mac."
+        "lead": "Postico berfokus pada PostgreSQL dan database yang menggunakan protokolnya. TablePro terhubung ke PostgreSQL dan tipe database lainnya. Bandingkan alat kueri, alat server, dan lisensinya."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda juga menggunakan MySQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya PostgreSQL.",
-            "Anda juga mengelola server. Users & Roles, Server Dashboard yang dapat menghentikan sesi, VACUUM, dan pencadangan pg_dump gratis dalam aplikasi Mac.",
-            "Anda mengoptimalkan kueri. EXPLAIN menampilkan rencana sebagai diagram, dan EXPLAIN Compare membandingkan rencana baru dengan acuan.",
-            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke PostgreSQL.",
-            "Anda menginginkan asisten AI dan server MCP tanpa biaya."
+            "PostgreSQL bersama tipe database lainnya.",
+            "Peran, sesi, VACUUM, dan alat pg_dump gratis.",
+            "Diagram EXPLAIN dan perbandingan dasar."
         ],
         "competitor": [
-            "Anda hanya menggunakan PostgreSQL, Redshift, CockroachDB, atau Greenplum dan menginginkan aplikasi khusus untuknya.",
-            "Anda menginginkan salinan Mac App Store atau harga lisensi untuk penggunaan pribadi, komersial, tim, maupun pelajar.",
-            "Anda ingin pengaturan server disinkronkan melalui iCloud atau Dropbox."
+            "Klien terfokus untuk database yang kompatibel dengan PostgreSQL, termasuk Greenplum.",
+            "Salinan Mac App Store atau lisensi satu kali.",
+            "Pengaturan server disinkronkan melalui iCloud atau Dropbox."
         ]
     },
     "glance": {
@@ -100,7 +98,7 @@
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad. Fitur termasuk Starter pada Mac dan gratis dalam aplikasi iPhone serta iPad.",
+                "text": "<link>iCloud Sync</link> menyinkronkan koneksi antar-Mac, iPhone, dan iPad. Starter diperlukan di Mac; di iPhone dan iPad fitur ini gratis.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -135,7 +133,7 @@
                 "href": null
             },
             {
-                "text": "Postico 2 hanya dijual sebagai lisensi sekali bayar. Paket TablePro bulanan atau tahunan mengunci fitur berbayar saat berakhir, tetapi aplikasi lainnya tetap berfungsi; Starter dan Team juga tersedia sebagai pembelian sekali bayar tanpa kedaluwarsa.",
+                "text": "Postico 2 hanya dijual sebagai lisensi satu kali. TablePro menawarkan langganan dan pembelian satu kali. Langganan mengunci fitur berbayar saat berakhir; aplikasi gratis tetap berfungsi. Pembelian pembelian satu kali tidak memiliki masa berlaku.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -170,12 +168,6 @@
             "question": "Apakah saya dapat mengelola peran dan sesi di TablePro?",
             "answer": "Ya, dalam aplikasi Mac secara gratis. Users & Roles memberi dan mencabut hak akses dengan SQL ditampilkan terlebih dahulu, dan Server Dashboard mencantumkan sesi serta dapat menghentikannya. <link>Baca tentang alat server</link>.",
             "href": "/features/schema#administer"
-        },
-        {
-            "id": "license",
-            "question": "Apakah saya perlu lisensi untuk menggunakan TablePro dengan PostgreSQL?",
-            "answer": "Tidak. PostgreSQL dan semua mesin lain yang didukung gratis, bersama asisten AI dan server MCP. Starter atau Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

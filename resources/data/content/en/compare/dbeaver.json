@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DBeaver: native or cross-platform Java client",
+        "title": "TablePro vs DBeaver: features and editions",
         "description": "DBeaver runs on Windows, macOS and Linux on Java and JDBC. TablePro is a native client for Mac, iPhone and iPad. Compare databases, AI, MCP and prices."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DBeaver",
-        "lead": "DBeaver is a client for Windows, macOS and Linux, built on Java. Its Community edition is free and open source, and its paid editions add more. TablePro is an open-source client with a native app for the Mac and another for iPhone and iPad, and optional paid features on the Mac."
+        "lead": "DBeaver Community is a free, open-source JDBC client. Its paid editions add NoSQL support and other tools. Compare those editions with TablePro’s supported databases and features."
     },
     "shortAnswer": {
         "tablepro": [
-            "You want MongoDB, Redis or Cassandra without paying. Every supported engine is free in TablePro, while DBeaver Community leaves out NoSQL databases.",
-            "You want a Mac app that needs no Java. TablePro is written in Swift, and its database drivers are native, with no JDBC.",
-            "You want an AI assistant with the provider of your choice, at no cost. DBeaver Community’s AI chat works with OpenAI and GitHub Copilot only.",
-            "You want an MCP server that AI clients can use with your connections, free in the Mac app.",
-            "You also want an app for iPhone and iPad."
+            "Free access to supported NoSQL engines, including MongoDB, Redis and Cassandra.",
+            "Native drivers, with no Java or JDBC requirement.",
+            "Free MCP and AI chat with your choice of provider."
         ],
         "competitor": [
-            "You work on Windows or Linux as well as the Mac.",
-            "You need an engine TablePro has no driver for. DBeaver Community connects to any engine that has a JDBC driver.",
-            "You need a visual query builder, an editable ER diagram or scheduled tasks. DBeaver’s paid editions have them."
+            "Windows or Linux support.",
+            "JDBC engines beyond TablePro’s supported drivers.",
+            "Paid tools such as a visual query builder, editable ER diagrams and scheduled tasks."
         ]
     },
     "glance": {
@@ -46,20 +44,21 @@
         "intro": "",
         "items": [
             {
-                "text": "DBeaver runs on Windows, macOS and Linux, so one client covers the computers you use.",
-                "cite": ["platforms"],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Community connects to any engine that has a JDBC driver, including engines TablePro has no driver for.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "The paid editions add a visual query builder, ER diagram editing, scheduled tasks and Git sync for projects.",
-                "cite": ["cells.queryBuilder", "cells.diagram", "cells.scheduler", "cells.sync"],
+                "cite": [
+                    "cells.queryBuilder",
+                    "cells.diagram",
+                    "cells.scheduler",
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -70,13 +69,17 @@
         "items": [
             {
                 "text": "Every supported engine is free, including MongoDB, Redis, Cassandra and other non-relational databases. DBeaver offers NoSQL databases only in its paid editions.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "TablePro is a Mac app written in Swift, with native database drivers. DBeaver is built on Java, and its download includes a Java runtime.",
-                "cite": ["technology"],
+                "cite": [
+                    "technology"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -93,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "There is a free <link>app for iPhone and iPad</link>, with no in-app purchases.",
+                "text": "The separate <link>iPhone and iPad app</link> is free, with no in-app purchases.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -104,13 +107,7 @@
         "intro": "",
         "items": [
             {
-                "text": "There is no TablePro app for Windows or Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro connects only to the engines it has drivers for. There is no generic JDBC connection, so check the <link>supported databases</link> first.",
+                "text": "TablePro requires a supported driver. There is no generic JDBC connection, so check the <link>supported databases</link> first.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -124,7 +121,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro reads the connections in your DBeaver workspace, from Community or any paid edition. DBeaver does not need to be open, and its files are not changed.",
+        "intro": "Import connections from a DBeaver workspace, from Community or a paid edition. DBeaver can stay closed, and its files are not changed.",
         "steps": [
             "In TablePro, choose <ui>File > Import > Import from Other App…</ui>",
             "Select DBeaver and turn on <ui>Include passwords</ui>. TablePro decrypts the passwords DBeaver saved, so there is nothing to approve in the Keychain.",
@@ -146,14 +143,8 @@
         {
             "id": "speed",
             "question": "How do speed and memory use compare with DBeaver?",
-            "answer": "This page makes no speed or memory claims, because neither project publishes a measurement others can reproduce. What you can check is that DBeaver’s download includes a Java runtime, and TablePro needs none.",
+            "answer": "There is no reproducible benchmark cited here, so this comparison makes no speed or memory claims. DBeaver bundles a Java runtime; TablePro does not require Java.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Is TablePro free like DBeaver Community?",
-            "answer": "Yes for every supported engine, the AI assistant and the MCP server: TablePro is free to use and open source under the AGPLv3. Where DBeaver sells its extra features as separate editions, TablePro offers them as Starter and Team plans for the Mac app, with features such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
         },
         {
             "id": "unsupported",

@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "Pricing",
-        "lead": "The Mac app is free to download and use, with no trial period or time limit. A Starter or Team plan adds optional features to it. The iPhone and iPad app is free, with no in-app purchases."
+        "lead": "Use the Mac app for free, with no trial period. Starter and Team add optional features. The iPhone and iPad app is free, with no in-app purchases."
     },
     "plans": {
         "title": "Plans"
     },
     "features": {
         "title": "What a paid plan adds",
-        "lead": "These are the only features that need a paid plan, and all of them are in the Mac app. Team includes everything in Starter. Connecting to any supported engine needs no license, and neither do the AI assistant, the MCP server or Safe Mode."
+        "lead": "Only the features listed here need a paid plan, currently on the Mac. Team includes Starter. All supported engines, the AI assistant, MCP and Safe Mode are free."
     },
     "license": {
         "title": "How licenses work",
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "A Starter license is for one person, on up to {activations} Macs. On Team, each seat is one activated Mac, the buyer’s own included, so someone who works on two Macs takes two seats. The iPhone and iPad app never uses a license or a seat."
+                "body": "Starter covers one person on up to {activations} Macs. Each Team seat covers one activated Mac, including the buyer’s. Two Macs use two seats. The iPhone and iPad app uses no license or seat."
             },
             "activate": {
                 "term": "Activating",
-                "body": "Enter your license key in TablePro on your Mac, in <ui>Settings > License</ui>. To use it on a different Mac, remove the old one on the Macs page of <account>your account</account>."
+                "body": "Enter your key in <ui>Settings > License</ui>. To move an activation, remove the old Mac from the Macs page in <account>your account</account>."
             },
             "checks": {
                 "term": "Checks",
-                "body": "TablePro checks the license’s signature each time it opens, and confirms the license with TablePro’s server every {revalidateDays} days. If your Mac can’t reach the server, the paid features keep working for {graceDays} days. Confirming it sends the license key, a hashed machine ID, the Mac’s name and the app and macOS versions."
+                "body": "TablePro verifies the license signature on launch and checks with its server every {revalidateDays} days. If the server is unreachable, paid features work for {graceDays} days after the last successful check. Checks send the key, a hashed machine ID, the Mac’s name and app and macOS versions."
             },
             "ends": {
                 "term": "When a plan ends",
-                "body": "If a monthly or yearly plan ends, the paid features stop and the rest of the app keeps working as it does on Free."
+                "body": "When a subscription ends, paid features stop. Everything in Free keeps working."
             },
             "oneTime": {
                 "term": "One-time",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "Billing",
-        "merchant": "{merchant} is the merchant of record for TablePro. It sells you the plan, takes the payment, calculates any sales tax or VAT from your billing address, and emails your receipt and invoice.",
-        "renewal": "Monthly and yearly plans renew automatically until you cancel them, in <account>your account</account> or in {merchant}’s customer portal. After you cancel, the plan keeps working until the end of the period you paid for, and you can resume it before then. If a renewal payment fails, {merchant} emails you a link to update your card and retries the payment for about three weeks.",
-        "portal": "For purchases made through {merchant}, your invoices, receipts, payment method and cancellation are in <portal>{merchant}’s customer portal</portal>, where you sign in with the email address you used at checkout. <account>Billing & invoices</account> in your account opens it too."
+        "merchant": "{merchant} is the merchant of record. It handles payment, calculates sales tax or VAT from your billing address, and emails receipts and invoices.",
+        "renewal": "Subscriptions renew until you cancel in <account>your account</account> or {merchant}’s portal. Access continues through the paid period; you can resume before it ends. Failed renewals trigger an email to update your card and payment retries for about three weeks.",
+        "portal": "Manage invoices, receipts, payment methods and cancellation in <portal>{merchant}’s customer portal</portal>. Sign in with your purchase email. <account>Billing & invoices</account> opens the same portal."
     },
     "refunds": {
         "title": "Refunds",
-        "body": "Every plan can be refunded within {refundDays} days of purchase, and each monthly or yearly renewal within {refundDays} days of its charge. <link>The refund policy</link> explains how to ask and what happens to the license."
+        "body": "Purchases and subscription renewals are refundable within {refundDays} days of each charge. Read the <link>refund policy</link> for the process and effect on your license."
     },
     "team": {
         "title": "Team plans",
         "seats": "A Team plan is priced per seat, from {min} to {max} seats.",
-        "invites": "The person who bought the plan manages the team in their account. They invite teammates by email, and each invite is a code that works once, expires after a week and needs a free seat.",
-        "changes": "On a monthly or yearly Team plan, you change the number of seats in your account, and the difference shows on your next invoice. To add seats to a one-time Team purchase, email <email>{email}</email>.",
+        "invites": "The buyer manages invitations in their account. Each code needs a free seat, works once and expires after a week.",
+        "changes": "Change subscription seats in your account; the difference appears on your next invoice. For one-time purchases, email <email>{email}</email> to add seats.",
         "account": "Manage your team in your account"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "Compared with other clients",
-        "body": "Each comparison lists the other client’s prices next to TablePro’s, with the date they were checked."
+        "body": "Compare prices and features with other clients. Each comparison includes a checked date and sources."
     },
     "faq": {
         "title": "Questions about plans",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Where do I find my license key?",
-                "answer": "It’s in the email you received after checkout. You can also sign in to <account>your account</account> with the email address you bought with: your key is there, with every Mac it’s activated on."
+                "answer": "Find your key in the purchase email or <account>your account</account>. Sign in with your purchase email to see keys and activated Macs."
             }
         }
     }

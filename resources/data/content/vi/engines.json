@@ -1,19 +1,19 @@
 {
     "postgresql": {
-        "tagline": "Giá trị array, jsonb và PostGIS, sơ đồ EXPLAIN, Users & Roles và sao lưu bằng pg_dump.",
+        "tagline": "jsonb, array và PostGIS; EXPLAIN diagram.",
         "limits": {
             "column-reorder-script-only": "Đổi thứ tự cột sẽ tạo một script dựng lại table. TablePro hiển thị script đó nhưng không bao giờ tự chạy."
         }
     },
     "mysql": {
-        "tagline": "MySQL qua TCP, có sơ đồ EXPLAIN, Users & Roles, đăng nhập bằng AWS IAM và sao lưu bằng mysqldump.",
+        "tagline": "EXPLAIN diagram, user và session; backup mysqldump.",
         "limits": {
             "tcp-only": "Connection dùng host và port qua TCP. Không hỗ trợ Unix socket cục bộ.",
             "load-data-local-refused": "Driver từ chối LOAD DATA LOCAL INFILE. Hãy nạp file bằng Import."
         }
     },
     "sqlserver": {
-        "tagline": "T-SQL với các batch GO và kết quả PRINT, đăng nhập bằng Kerberos hoặc Microsoft Entra ID, sao lưu ra .bacpac.",
+        "tagline": "T-SQL, batch GO và PRINT; Kerberos và Entra ID.",
         "limits": {
             "no-named-instances": "Không hỗ trợ named instance. Hãy kết nối tới port TCP của instance.",
             "no-ntlm": "Không hỗ trợ NTLM. Hãy đăng nhập bằng SQL Server login, Kerberos hoặc Microsoft Entra ID.",
@@ -23,7 +23,7 @@
         }
     },
     "sqlite": {
-        "tagline": "Mở trực tiếp file cơ sở dữ liệu, trên máy Mac này hoặc trên server SSH, kèm extension nạp thêm.",
+        "tagline": "File cơ sở dữ liệu local/qua SSH; extension tải được.",
         "limits": {
             "no-encryption": "Không mở được cơ sở dữ liệu đã mã hóa, chẳng hạn file SQLCipher hay SEE. Hãy giải mã file trước.",
             "no-primary-key-changes": "Không thể thêm, xóa hay di chuyển khóa chính.",
@@ -33,7 +33,7 @@
         }
     },
     "mongodb": {
-        "tagline": "Shell JavaScript theo kiểu mongosh, document dạng Extended JSON và cluster Atlas qua SRV.",
+        "tagline": "Query kiểu mongosh; sửa document Extended JSON.",
         "limits": {
             "no-transactions": "Không hỗ trợ transaction.",
             "no-gridfs-or-change-streams": "Không hỗ trợ GridFS và change stream.",
@@ -41,7 +41,7 @@
         }
     },
     "redis": {
-        "tagline": "Lệnh Redis, cây key phân theo dấu hai chấm, TTL và connection Sentinel hoặc Cluster.",
+        "tagline": "Key và TTL; Standalone, Sentinel và Cluster.",
         "limits": {
             "string-values-only": "Chỉ sửa được giá trị kiểu string trong data grid. List, set, hash, sorted set và stream được thay đổi bằng lệnh.",
             "no-pubsub": "Không có màn hình pub/sub. PUBLISH chạy như một lệnh, và không có gì subscribe.",
@@ -52,14 +52,14 @@
         }
     },
     "mariadb": {
-        "tagline": "Driver MySQL kèm sequence, cột virtual và persistent, cột JSON của MariaDB.",
+        "tagline": "Sequence, generated column và JSON MariaDB.",
         "limits": {
             "no-cloud-sql-proxy": "MariaDB không có Cloud SQL Auth Proxy. Hãy kết nối tới server nội bộ qua SSH tunnel.",
             "roles-listed-as-users": "Users & Roles liệt kê role của MariaDB như user. Hãy tạo và cấp role bằng SQL trong editor."
         }
     },
     "tidb": {
-        "tagline": "TiDB và TiDB Cloud qua driver MySQL, nút Stop gửi KILL TIDB QUERY.",
+        "tagline": "TiDB và TiDB Cloud qua driver MySQL.",
         "limits": {
             "no-triggers-or-routines": "Không có trigger, stored routine hay event.",
             "no-dashboard-or-dump": "Không có Server Dashboard và Backup Dump. Hãy export bằng Dumpling của TiDB.",
@@ -67,7 +67,7 @@
         }
     },
     "oceanbase": {
-        "tagline": "Tenant OceanBase ở chế độ MySQL, đăng nhập dạng user@tenant, kết nối trực tiếp hoặc qua OBProxy.",
+        "tagline": "Tenant MySQL-mode, trực tiếp hoặc qua OBProxy.",
         "limits": {
             "mysql-mode-only": "Chỉ tenant chế độ MySQL kết nối được. Tenant chế độ Oracle bị từ chối.",
             "no-dashboard-or-dump": "Không có Server Dashboard và Backup Dump.",
@@ -75,7 +75,7 @@
         }
     },
     "databend": {
-        "tagline": "Databend và Databend Cloud qua MySQL handler của Databend.",
+        "tagline": "Databend và Databend Cloud qua MySQL handler.",
         "limits": {
             "no-keys-or-indexes": "Databend không có index, khóa chính hay khóa ngoại, nên khi sửa một dòng, TablePro so khớp theo mọi cột, và từ chối lưu nếu thay đổi sẽ ảnh hưởng nhiều hơn một dòng.",
             "no-compare-sync": "Không có Compare & Sync.",
@@ -84,7 +84,7 @@
         }
     },
     "redshift": {
-        "tagline": "Amazon Redshift qua driver PostgreSQL, có DISTKEY và SORTKEY trong DDL.",
+        "tagline": "Cluster Redshift và Serverless; distribution/sort key.",
         "limits": {
             "no-aws-iam": "Redshift không có đăng nhập bằng AWS IAM. Hãy đăng nhập bằng user của cơ sở dữ liệu.",
             "structure-read-only": "Tab Structure ở chế độ chỉ đọc. Hãy chạy DDL trong editor.",
@@ -92,14 +92,14 @@
         }
     },
     "cockroachdb": {
-        "tagline": "CockroachDB và CockroachDB Cloud qua giao thức của PostgreSQL.",
+        "tagline": "CockroachDB và CockroachDB Cloud qua driver PostgreSQL.",
         "limits": {
             "structure-read-only": "Tab Structure ở chế độ chỉ đọc. Hãy thay đổi schema bằng SQL trong editor.",
             "no-dump-or-maintenance": "Không có Backup Dump, Restore Dump hay bảo trì table. Hãy dùng câu lệnh BACKUP và RESTORE của CockroachDB."
         }
     },
     "pglite": {
-        "tagline": "PGlite chạy qua socket server của nó, như một connection PostgreSQL thông thường.",
+        "tagline": "PGlite qua socket server khởi động riêng.",
         "limits": {
             "needs-socket-server": "PGlite cần được phục vụ qua @electric-sql/pglite-socket, do bạn tự khởi động và giữ chạy.",
             "single-client": "Socket server chỉ nhận một client tại một thời điểm.",
@@ -107,7 +107,7 @@
         }
     },
     "oracle": {
-        "tagline": "Driver viết hoàn toàn bằng Swift, không cần Instant Client, chạy script PL/SQL và đọc DBMS_OUTPUT.",
+        "tagline": "SQL và PL/SQL; không cần Oracle Instant Client.",
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Không hỗ trợ Oracle wallet, xác thực OS, Kerberos và LDAP. Hãy kết nối bằng service name hoặc SID cùng mật khẩu.",
             "no-explain": "Oracle không có EXPLAIN hay màn hình execution plan.",
@@ -116,7 +116,7 @@
         }
     },
     "clickhouse": {
-        "tagline": "ClickHouse qua HTTP hoặc HTTPS, có các biến thể EXPLAIN, mutation và tab Parts.",
+        "tagline": "Query HTTP, EXPLAIN plan và part MergeTree.",
         "limits": {
             "http-only": "Connection dùng giao diện HTTP của ClickHouse. Không dùng giao thức native (TCP).",
             "tls-off-by-default": "TLS tắt theo mặc định. Hãy chọn một chế độ SSL trong form connection để dùng HTTPS.",
@@ -125,7 +125,7 @@
         }
     },
     "duckdb": {
-        "tagline": "File DuckDB, file Parquet, CSV và JSON dưới dạng view, và cơ sở dữ liệu in-memory.",
+        "tagline": "Cơ sở dữ liệu DuckDB; SQL trên Parquet, CSV và JSON.",
         "limits": {
             "one-writer-per-file": "Mỗi lúc chỉ một tiến trình được ghi vào một file DuckDB, trong suốt thời gian connection mở.",
             "extensions-download-on-first-use": "Driver có sẵn các extension core functions, JSON, Parquet, ICU và autocomplete. Các extension khác, như httpfs, được tải từ DuckDB ở lần đầu một query cần tới.",
@@ -133,7 +133,7 @@
         }
     },
     "cassandra": {
-        "tagline": "CQL với contact point, TLS và đăng nhập Amazon Keyspaces bằng SigV4.",
+        "tagline": "Keyspace CQL; đăng nhập IAM Amazon Keyspaces.",
         "limits": {
             "scalar-edits-only": "Chỉ sửa được cột kiểu đơn trong data grid. Collection, tuple, user-defined type và duration cần câu UPDATE trong editor.",
             "no-consistency-level": "Không có thiết lập consistency level. Câu lệnh chạy ở mức mặc định của driver là LOCAL_ONE.",
@@ -142,50 +142,50 @@
         }
     },
     "scylladb": {
-        "tagline": "ScyllaDB qua driver Cassandra, cùng cách làm việc với CQL.",
+        "tagline": "CQL qua driver Cassandra.",
         "limits": {}
     },
     "dynamodb": {
-        "tagline": "PartiQL và JSON của DynamoDB API, có planner tự chọn Query hay Scan theo bộ lọc và cho biết lượng read capacity mà mỗi lần đọc đã dùng.",
+        "tagline": "PartiQL, đọc theo key và capacity đã dùng.",
         "limits": {
             "one-account-and-region": "Mỗi connection ứng với một tài khoản AWS trong một region.",
             "no-dax-or-truncate": "Không hỗ trợ endpoint DAX, và không có Truncate."
         }
     },
     "bigquery": {
-        "tagline": "GoogleSQL với Max Bytes Billed và Dry Run ước tính chi phí trước khi query chạy.",
+        "tagline": "GoogleSQL, ước tính dry run và giới hạn byte tính phí.",
         "limits": {
             "structure-read-only": "Tab Structure ở chế độ chỉ đọc. Hãy chạy DDL trong editor.",
             "no-transactions": "Không hỗ trợ transaction."
         }
     },
     "snowflake": {
-        "tagline": "Key pair, SSO qua trình duyệt, OAuth hoặc mật khẩu kèm passcode; warehouse và role đặt trong Session Context.",
+        "tagline": "Chuyển warehouse/role; đăng nhập SSO và cặp key.",
         "limits": {
             "duo-passcode-only": "Duo chỉ dùng được bằng passcode. Không hỗ trợ duyệt qua thông báo push."
         }
     },
     "cloudflare-d1": {
-        "tagline": "Toàn bộ cơ sở dữ liệu D1 của một tài khoản Cloudflare, kết nối qua D1 HTTP API.",
+        "tagline": "Cơ sở dữ liệu tài khoản Cloudflare qua D1 API.",
         "limits": {
             "no-session-state-or-transactions": "Mỗi câu lệnh là một request HTTP riêng: không giữ trạng thái session và không hỗ trợ transaction."
         }
     },
     "turso": {
-        "tagline": "Cơ sở dữ liệu Turso từ xa qua HTTP với token, dùng driver libSQL.",
+        "tagline": "Cơ sở dữ liệu Turso remote qua driver libSQL.",
         "limits": {
             "no-database-switching-or-branches": "Mỗi connection là một cơ sở dữ liệu. Không hỗ trợ đổi cơ sở dữ liệu và branch.",
             "no-embedded-replicas": "Không hỗ trợ embedded replica: file cục bộ được mở độc lập và không đồng bộ."
         }
     },
     "libsql": {
-        "tagline": "File libSQL trên máy Mac này, hoặc server sqld qua HTTP.",
+        "tagline": "File libSQL local và server sqld remote.",
         "limits": {
             "dump-local-file-only": "Backup Dump chỉ dùng được cho file libSQL cục bộ, không dùng cho cơ sở dữ liệu từ xa."
         }
     },
     "elasticsearch": {
-        "tagline": "Console Query DSL, index hiển thị như table và sửa document theo _id.",
+        "tagline": "Console Query DSL; sửa document theo _id.",
         "limits": {
             "no-opensearch": "Không hỗ trợ OpenSearch.",
             "aliases-not-listed": "Alias và data stream không được liệt kê trong sidebar. Hãy gọi chúng theo tên trong console.",
@@ -193,7 +193,7 @@
         }
     },
     "etcd": {
-        "tagline": "Một phần lệnh etcdctl qua JSON gateway v3: key theo prefix, lease và member.",
+        "tagline": "Key theo prefix, lease và command kiểu etcdctl.",
         "limits": {
             "no-txn": "Không hỗ trợ txn.",
             "json-gateway-only": "Connection dùng JSON gateway v3, không dùng gRPC.",
@@ -201,7 +201,7 @@
         }
     },
     "kafka": {
-        "tagline": "Consume và produce bằng KafkaQL, xem topic, partition và độ trễ của consumer group.",
+        "tagline": "Message topic, consumer lag và KafkaQL.",
         "limits": {
             "no-schema-registry": "Schema Registry không được đọc, nên giá trị Avro và Protobuf hiển thị dưới dạng byte thô.",
             "no-topic-create-or-offset-reset": "Không hỗ trợ tạo topic, sửa cấu hình topic và đặt lại offset của consumer group.",
@@ -209,53 +209,53 @@
         }
     },
     "surrealdb": {
-        "tagline": "SurrealQL qua HTTP RPC, đăng nhập bằng root, namespace, database, record hoặc token.",
+        "tagline": "Query SurrealQL và sửa record có kiểu.",
         "limits": {
             "no-syntax-highlighting": "SurrealQL không được tô sáng cú pháp trong editor.",
             "no-live-queries": "Không hỗ trợ live query. Hãy chạy lại query để thấy record mới."
         }
     },
     "teradata": {
-        "tagline": "Đăng nhập bằng TD2 hoặc TDNEGO, procedure và macro được liệt kê trong sidebar.",
+        "tagline": "Đăng nhập TD2/TDNEGO; procedure và macro.",
         "limits": {
             "ldap-kerberos-jwt-refused": "Đăng nhập bằng LDAP, Kerberos và JWT bị từ chối. Hãy dùng TD2 hoặc TDNEGO.",
             "foreign-keys-not-listed": "Khóa ngoại không được liệt kê. Hãy đọc chúng trong DDL của table."
         }
     },
     "trino": {
-        "tagline": "SQL xuyên catalog qua REST API của Trino, đăng nhập bằng mật khẩu hoặc JWT.",
+        "tagline": "SQL xuyên catalog qua REST API Trino.",
         "limits": {
             "no-presto": "Không hỗ trợ server Presto.",
             "no-kerberos-or-oauth": "Không hỗ trợ đăng nhập bằng Kerberos và OAuth."
         }
     },
     "beancount": {
-        "tagline": "Sổ cái Beancount được đọc thành các table SQL, kèm query BQL.",
+        "tagline": "Table SQL chỉ đọc từ sổ cái; BQL với rledger.",
         "limits": {
             "projected-tables": "Khi mở sổ cái, TablePro đọc nó thành {value} table SQL chỉ đọc. Không có gì được ghi ngược vào sổ cái.",
             "needs-ledger-tool": "Cần cài rledger hoặc Python beancount trên máy Mac này."
         }
     },
     "spanner": {
-        "tagline": "Dialect GoogleSQL hoặc PostgreSQL, tự nhận diện khi kết nối, và Spanner emulator.",
+        "tagline": "Dialect GoogleSQL/PostgreSQL; Spanner emulator.",
         "limits": {
             "structure-read-only": "Tab Structure ở chế độ chỉ đọc. Hãy thay đổi table bằng ALTER TABLE trong editor."
         }
     },
     "typesense": {
-        "tagline": "Console gửi request REST, collection hiển thị như table và dashboard số liệu.",
+        "tagline": "Console REST, collection và metric.",
         "limits": {
             "api-keys-as-users": "Typesense không có tài khoản người dùng, nên API key được liệt kê ở chỗ các engine khác liệt kê user."
         }
     },
     "weaviate": {
-        "tagline": "Collection hiển thị như table, đọc bằng GraphQL và ghi qua REST.",
+        "tagline": "Đọc GraphQL và sửa document REST.",
         "limits": {
             "graphql-reads-rest-writes": "GraphQL chỉ dùng để đọc. Duyệt dữ liệu và sửa dòng đi qua các endpoint REST của Weaviate."
         }
     },
     "cloudflare-r2-sql": {
-        "tagline": "SQL chỉ đọc trên các table Iceberg lưu trong Cloudflare R2.",
+        "tagline": "SQL chỉ đọc trên table Iceberg trong R2.",
         "limits": {
             "rows-per-query": "Mỗi query trả về tối đa {value} dòng.",
             "no-offset": "Không hỗ trợ OFFSET.",
@@ -263,13 +263,13 @@
         }
     },
     "dameng": {
-        "tagline": "Dameng DM8 qua giao thức native của nó, có execution plan và SSH tunnel.",
+        "tagline": "Query giao thức native DM8, EXPLAIN và SSH tunnel.",
         "limits": {
             "no-tls": "Không hỗ trợ TLS. Hãy kết nối tới server nằm ngoài mạng nội bộ qua SSH tunnel."
         }
     },
     "sap-hana": {
-        "tagline": "SAP HANA Cloud, HANA 2.0 và HANA Express, cấu trúc hiển thị ở chế độ chỉ đọc.",
+        "tagline": "HANA Cloud, HANA 2.0 và Express; cấu trúc chỉ đọc.",
         "limits": {
             "no-tunnels": "Không hỗ trợ SSH tunnel, SOCKS proxy, Cloudflare tunnel và tunnel command.",
             "unsupported-auth-methods": "Không hỗ trợ đăng nhập bằng chứng chỉ X.509, JWT, SAML, Kerberos và LDAP. Hãy đăng nhập bằng user của cơ sở dữ liệu cùng mật khẩu."

@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "MongoDB-Client für {devices}",
-        "lead": "Schreibe Abfragen in mongosh-Syntax, blättere durch Sammlungen im Raster und füge ganze Dokumente als Extended JSON ein oder bearbeite sie. Benenne ein Feld sammlungsweit um oder entferne es, wobei jede Anweisung vor der Ausführung angezeigt wird."
+        "title": "MongoDB-Client",
+        "lead": "Durchsuche Collections, nutze Syntax im mongosh-Stil und bearbeite Dokumente als Extended JSON."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib einen Host oder mehrere <code>host:port</code>-Paare für ein Replica Set an; der Primary wird automatisch gefunden. Du kannst auch eine <code>mongodb://</code>- oder <code>mongodb+srv://</code>-URL einfügen. Melde dich mit SCRAM-SHA-1, SCRAM-SHA-256, X.509 oder AWS IAM an und setze <ui>Auth Database</ui>, wenn dein Benutzer in <code>admin</code> definiert ist, du aber eine andere Datenbank durchsuchst.",
+                "Gib einen Host oder eine <code>host:port</code>-Liste für ein Replica Set ein, oder füge eine <code>mongodb://</code>- oder <code>mongodb+srv://</code>-URL ein. Die Anmeldung unterstützt SCRAM-SHA-1, SCRAM-SHA-256, X.509 und AWS IAM. Setze <ui>Auth Database</ui> auf die Datenbank, die deinen Benutzer definiert.",
                 "Ein Host mit der Endung <code>.mongodb.net</code> aktiviert SRV und TLS automatisch, wie MongoDB Atlas es verlangt. Füge zuerst deine IP zur Zugriffsliste des Clusters hinzu: Verkehr von einer nicht gelisteten Adresse läuft ins Zeitlimit, statt sofort fehlzuschlagen.",
                 "Neue Verbindungen beginnen ohne TLS; der Treiber bietet keinen Fallback, daher verhält sich Preferred wie Required. Read Preference und Write Concern werden pro Verbindung festgelegt; Write Concern wird bei jedem Einfügen, Ändern und Löschen aus der Shell oder beim Rasterspeichern mitgesendet.",
                 "Über einen <network>SSH-Tunnel</network> wird nur der erste Host der Liste genutzt; Replica-Set-Erkennung und Failover sind daher für diese Sitzung deaktiviert."
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "Dokumente abfragen und bearbeiten",
             "paragraphs": [
-                "Der Abfrage-Tab ist eine JavaScript-Shell mit mongosh-Syntax: unquotierte Schlüssel, Regex-Literale, <code>ISODate()</code>, Variablen, Schleifen und <code>forEach</code>. Sie läuft in TablePro ohne weitere Installation; eine definierte Variable bleibt in allen Tabs der Verbindung bis zum Trennen verfügbar. Die Vervollständigung bietet Sammlungen, Methoden, verschachtelte Feldpfade und die an der Cursorposition gültigen <code>$</code>-Operatoren.",
-                "Eine Sammlung öffnet sich als Raster, mit den Feldern der obersten Ebene als Spalten und verschachtelten Objekten als Extended JSON. Eine bearbeitete Zelle behält den Typ ihres Felds: Ein Datum bleibt ein Datum, eine ObjectId bleibt eine ObjectId. Eine Änderung in einem verschachtelten Objekt schreibt nur den geänderten Pfad, etwa <code>address.city</code>.",
-                "<editing>Insert Document und Edit Document</editing> nehmen ein ganzes Dokument als Extended JSON entgegen. Edit Document liest es erneut vom Server; hat jemand es nach dem Öffnen geändert oder gelöscht, wird nichts gespeichert und der Dialog meldet es. <ui>Remove Field</ui> auf einer Zelle sendet <code>$unset</code>.",
+                "Nutze JavaScript im mongosh-Stil im Query-Tab: Regex, <code>ISODate()</code>, Variablen, Schleifen und <code>forEach</code>. Eine separate Shell-Installation ist nicht nötig. Variablen bleiben bis zum Trennen in allen Tabs der Verbindung erhalten. Die Vervollständigung umfasst Collections, Feldpfade, Methoden und Operatoren.",
+                "Sieh Felder der obersten Ebene als Spalten und verschachtelte Objekte als Extended JSON. Zellenänderungen erhalten Typen wie Datumswerte und ObjectIds. Verschachtelte Änderungen aktualisieren nur den geänderten Pfad, etwa <code>address.city</code>.",
+                "<editing>Insert Document und Edit Document</editing> nutzen Extended JSON. Edit Document liest das Serverdokument erneut und verhindert das Speichern, wenn es inzwischen geändert wurde oder verschwunden ist. <ui>Remove Field</ui> sendet <code>$unset</code>.",
                 "Die <filters>Filterleiste</filters> reicht bis in verschachtelte Objekte und Arrays von Objekten, sodass du direkt nach <code>customer.country</code> und <code>items.sku</code> filtern kannst. Ein Feld mit GeoJSON öffnet sich in der <map>Kartenansicht</map>.",
                 "<safeMode>Safe Mode</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Die Stufen Alert und Safe Mode fragen bei jeder Anweisung nach; Read-Only blockiert alle."
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "Sammlungen, Indizes und Validatoren",
             "paragraphs": [
-                "Der <structure>Structure-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. Show DDL schreibt die <code>createIndex</code>-Aufrufe, die sie neu aufbauen, mit allen vom Server gemeldeten Optionen.",
-                "Benenne im selben Tab ein Feld in der ganzen Sammlung um oder entferne es. Jede Änderung ist ein in Preview SQL gezeigtes <code>updateMany</code>; ein vom <code>$jsonSchema</code>-Validator deklariertes Feld wird dort ebenfalls geändert. Solange ein Index, Suchindex oder eine Sicht den Namen nutzt, wird das Speichern vor jedem Schreibvorgang abgelehnt.",
+                "Prüfe Indexfelder, Typen und Optionen im <structure>Structure-Tab</structure>. Show DDL erzeugt <code>createIndex</code>-Aufrufe mit den vom Server gemeldeten Optionen.",
+                "Benenne ein Feld in einer Collection um oder entferne es mit einer Vorschau von <code>updateMany</code>. Der Validator wird ebenfalls angepasst. Das Speichern ist gesperrt, solange ein Index, Suchindex oder View das Feld noch nutzt.",
                 "<ui>New Table</ui> erstellt eine Sammlung, deren Felder zu einem <code>$jsonSchema</code>-Validator werden, und erstellt danach die aufgeführten Indizes. Sichten und Zeitreihensammlungen erscheinen in der Seitenleiste; Sichten öffnen sich schreibgeschützt."
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass ist die eigene grafische Oberfläche von MongoDB. Es baut Aggregationspipelines Stufe für Stufe mit Vorschau nach jeder Stufe, analysiert ein Sammlungsschema anhand einer Dokumentstichprobe und zeichnet Ausführungspläne. Wähle es für visuelles Pipeline-Design oder zum Untersuchen einer Sammlung; TablePro passt, wenn MongoDB eine von mehreren Datenbanken in derselben App ist.",
+                "text": "Wähle MongoDB Compass für visuelle Aggregationspipelines, Schemaanalyse anhand von Stichproben und Ausführungspläne. TablePro fragt MongoDB neben anderen Datenbank-Engines ab.",
                 "notes": [
                     "compass-natural-language"
                 ]

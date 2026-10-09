@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Teradata-Client für {devices}",
-        "lead": "Melde dich mit TD2 oder TDNEGO an, durchsuche Datenbanken und Benutzer mit Tabellen, Sichten, Prozeduren und Makros und frage und bearbeite über einen nativen Swift-Treiber ohne Teradata-Clientinstallation."
+        "title": "Teradata-Client",
+        "lead": "Frage Teradata ab und bearbeite Daten ohne separate Client-Software. Durchsuche Datenbanken, Benutzer, Prozeduren und Makros."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Verbinden und anmelden",
             "paragraphs": [
-                "Gib Host, Benutzername und Passwort ein. Jedes Vantage-System mit TD2-Anmeldung funktioniert, ohne Versionsprüfung. <ui>Logon Mechanism</ui> im Abschnitt Options nimmt <code>TD2</code> oder <code>TDNEGO</code>; <ui>Database</ui> ist nur für einen anderen Standard als den deines Kontos nötig.",
+                "Gib Host, Benutzername und Passwort ein. Wähle <code>TD2</code> oder <code>TDNEGO</code> unter <ui>Logon Mechanism</ui>. <ui>Database</ui> überschreibt den Kontostandard. Vantage-Server mit TD2 werden ohne Versionsprüfung unterstützt.",
                 "Der Standardport trägt eine Klartextsitzung. Jeder SSL-Modus verschiebt sie auf den WebSocket-Endpunkt des Gateways auf dem unveränderbaren Port 443. Verify CA braucht ein CA-Zertifikat; Verify Identity prüft Kette und Hostnamen dagegen oder ohne Zertifikat gegen den System-Vertrauensspeicher.",
                 "Lasse <ui>Transaction Mode</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung in der Sitzung braucht. Erreiche ein System hinter einem Bastion-Host per <network>SSH-Tunnel</network>. <ui>Import from URL…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Datenbank und Benutzer sind in Teradata beide Namensräume und erscheinen oben in der Seitenleiste mit ihren Tabellen und Sichten. Ein an eine zweite Datenbank gebundener Tab behält dieselbe Sitzung und führt vor seinen Anweisungen <code>DATABASE</code> aus.",
+                "Durchsuche Datenbanken und Benutzer als Namespaces. Tabs auf einer anderen Datenbank teilen die Sitzung und führen vor ihren Anweisungen <code>DATABASE</code> aus.",
                 "Gespeicherte Prozeduren stehen in der Seitenleiste, Makros unter Funktionen; beide öffnen ihren <objects>Quelltext in einem schreibgeschützten Tab</objects>.",
                 "Teradata hat kein <code>LIMIT</code>: Die erste Tabellenseite nutzt <code>TOP</code>, spätere <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> liefert den Plan als Rohtext. Zeilenänderungen warten bis zum Speichern; <editing>Preview SQL</editing> zeigt vorher jede Anweisung."
             ]

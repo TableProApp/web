@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs. TablePlus",
+        "title": "TablePro vs TablePlus: Funktionen und Lizenzen",
         "description": "Zwei native Clients für Mac, iPhone und iPad: Plattformen, Preise, KI und MCP vergleichen und TablePlus-Verbindungen in TablePro importieren."
     },
     "og": {
@@ -9,18 +9,18 @@
     },
     "header": {
         "title": "TablePro vs. TablePlus",
-        "lead": "TablePlus und TablePro sind Datenbankclients, die sich beide als nativ bezeichnen, mit Apps für Mac, iPhone und iPad. TablePlus läuft auch unter Windows und Linux. TablePro ist Open Source, und seine bezahlten Tarife ergänzen die Mac-App um optionale Funktionen. Trotz der ähnlichen Namen sind es eigenständige Produkte von Herstellern, die nichts miteinander zu tun haben."
+        "lead": "TablePlus und TablePro sind native Datenbankclients. Vergleiche kostenlose Funktionen, Lizenzen und unterstützte Plattformen. Es sind separate Produkte unabhängiger Hersteller."
     },
     "shortAnswer": {
         "tablepro": [
-            "Du willst einen Open-Source-Client. TablePro ist Open Source unter der AGPLv3, einschließlich des Codes der Bezahlfunktionen.",
-            "Du willst eine kostenlose iPhone- und iPad-App ohne In-App-Käufe.",
-            "Du zahlst lieber nur für die Funktionen, die du brauchst. Die kostenlose App begrenzt weder Tabs noch Fenster, und bezahlte Tarife ergänzen Funktionen wie {starterExamples}."
+            "Ein Open-Source-Client, auch mit dem Code der kostenpflichtigen Funktionen.",
+            "Eine kostenlose App ohne Tab- oder Fensterlimit. Kostenpflichtige Tarife ergänzen {starterExamples}.",
+            "Eine kostenlose App für iPhone und iPad ohne In-App-Käufe."
         ],
         "competitor": [
-            "Du arbeitest auch unter Windows oder Linux.",
-            "Du nutzt Vertica oder Greenplum, die TablePlus auflistet und TablePro nicht unterstützt.",
-            "Du beziehst deine Mac-Apps über Setapp."
+            "Unterstützung für Windows oder Linux.",
+            "Verbindungen zu Vertica oder Greenplum.",
+            "Ein Client, der über Setapp erhältlich ist."
         ]
     },
     "glance": {
@@ -47,14 +47,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "TablePlus läuft neben dem Mac auch unter Windows und Linux, sodass dich ein Client über verschiedene Rechner hinweg begleiten kann.",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Es führt Systeme auf, die TablePro nicht unterstützt, etwa Vertica und Greenplum.",
                 "cite": [
@@ -108,7 +100,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> hält Verbindungen zwischen Macs und iPhone oder iPad synchron. Auf dem Mac gehört es zu Starter, auf iPhone und iPad ist es kostenlos. TablePlus synchronisiert seine Verbindungen über einen Cloud-Ordner deiner Wahl, etwa Dropbox oder iCloud.",
+                "text": "<link>iCloud Sync</link> synchronisiert Verbindungen zwischen Macs, iPhones und iPads. Auf dem Mac ist Starter erforderlich; auf iPhone und iPad ist die Funktion kostenlos. TablePlus synchronisiert Verbindungen über einen Cloud-Ordner deiner Wahl, etwa Dropbox oder iCloud.",
                 "cite": [
                     "cells.sync"
                 ],
@@ -127,13 +119,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Es gibt keine TablePro-App für Windows oder Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Wie TablePlus hat TablePro eine separate <link>iPhone- und iPad-App</link>, die weniger kann als die Mac-App: Sie hat keinen KI-Assistenten, keinen MCP-Server und keine Autovervollständigung.",
+                "text": "TablePros separate <link>App für iPhone und iPad</link> hat weniger Funktionen als die Mac-App: keinen KI-Assistenten, MCP-Server und keine Autovervollständigung.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -145,7 +131,7 @@
                 "href": null
             },
             {
-                "text": "Eine TablePlus-Lizenz funktioniert nach ihrem Jahr mit Updates weiter, ebenso ein Einmalkauf von TablePro. Ein monatlicher oder jährlicher Tarif von TablePro nicht: Wenn er endet, werden seine Bezahlfunktionen gesperrt, und der Rest der App funktioniert weiter.",
+                "text": "TablePlus-Lizenzen bleiben nach dem Updatejahr nutzbar. Einmalkäufe von TablePro laufen nicht ab. TablePro-Abos sperren kostenpflichtige Funktionen nach ihrem Ende; die kostenlose App bleibt nutzbar.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -153,7 +139,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro liest deine TablePlus-Verbindungen dort, wo TablePlus sie speichert, auch die der Setapp-Ausgabe von TablePlus. TablePlus muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
+        "intro": "Importiere TablePlus-Verbindungen, auch aus der Setapp-Edition. TablePlus kann geschlossen bleiben; seine Dateien werden nicht verändert.",
         "steps": [
             "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
             "Wähle TablePlus und aktiviere <ui>Include passwords</ui>, um gespeicherte Passwörter aus dem macOS-Schlüsselbund zu lesen.",
@@ -177,19 +163,7 @@
         {
             "id": "speed",
             "question": "Wie schnell ist TablePro im Vergleich zu TablePlus?",
-            "answer": "Diese Seite macht keine Aussagen zu Geschwindigkeit oder Speicherverbrauch. Keine der beiden Apps veröffentlicht eine Messung, die andere nachvollziehen können, und das Ergebnis hängt von deinem Mac, deiner Datenbank und deinem Netzwerk ab.",
-            "href": null
-        },
-        {
-            "id": "license",
-            "question": "Brauche ich eine Lizenz für TablePro?",
-            "answer": "Nein. TablePro ist kostenlos nutzbar, mit allen unterstützten Systemen, dem KI-Assistenten, dem MCP-Server und Safe Mode. Ein Starter- oder Team-Tarif ergänzt die Mac-App um optionale Funktionen wie {starterExamples}. <link>Preise ansehen</link>.",
-            "href": "/pricing"
-        },
-        {
-            "id": "ios-license",
-            "question": "Braucht die iPhone- und iPad-App eine Lizenz?",
-            "answer": "Nein. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe. Um sie über iCloud mit einem Mac zu synchronisieren, braucht der Mac Starter.",
+            "answer": "Hier wird kein reproduzierbarer Benchmark angeführt. Die Leistung hängt von Abfrage, Datenbank, Netzwerk und Computer ab; eine native Architektur allein belegt keinen Geschwindigkeitsvorteil.",
             "href": null
         }
     ],

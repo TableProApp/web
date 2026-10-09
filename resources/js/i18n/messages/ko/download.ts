@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "릴리스 노트 (영어)",
-        "unavailable": "현재 릴리스 정보를 불러오지 못했습니다. 두 버튼 모두 GitHub의 최신 릴리스를 열며, 거기서 Mac에 맞는 디스크 이미지를 선택할 수 있습니다."
+        "unavailable": "릴리스 정보를 불러올 수 없습니다. 두 버튼 모두 GitHub의 최신 릴리스를 엽니다. 거기에서 빌드를 선택하세요."
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Mac 앱을 설치하려면 Mac에서 이 페이지를 여세요.",
     "whichMac": {
         "summary": "내 Mac은 어떤 모델인가요?",
-        "body": "Apple 메뉴에서 '이 Mac에 관하여'를 선택하세요. Apple silicon Mac에는 Apple M2와 같은 칩 항목이 표시됩니다. Intel Mac에는 Intel 이름이 표시된 프로세서 항목이 있습니다."
+        "body": "Apple 메뉴에서 '이 Mac에 관하여'를 선택하세요. 칩 항목이 있으면 Apple silicon Mac이며, 프로세서 항목에 Intel이 표시되면 Intel Mac입니다."
     },
     "checksum": {
         "summary": "다운로드 파일 확인",

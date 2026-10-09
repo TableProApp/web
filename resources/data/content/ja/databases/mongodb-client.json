@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "{devices} 用 MongoDB クライアント",
-        "lead": "mongosh の形式でクエリを書き、グリッドでコレクションをページ送りして、ドキュメント全体を Extended JSON で追加・編集します。コレクション全体のフィールド名の変更や削除も、実行前に各文を表示します。"
+        "title": "MongoDB クライアント",
+        "lead": "コレクションを参照し、mongosh 形式でクエリして、Extended JSON でドキュメントを編集できます。"
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "一つのホストかレプリカセットの複数の <code>host:port</code> を指定するとプライマリーを検出します。<code>mongodb://</code> や <code>mongodb+srv://</code> URL も貼り付けられます。SCRAM-SHA-1、SCRAM-SHA-256、X.509 や AWS IAM でログインし、ユーザーが <code>admin</code> で定義されていて別のデータベースを閲覧する場合は <ui>Auth Database</ui> を設定します。",
+                "ホストかレプリカセットの <code>host:port</code> 一覧を入力するか、<code>mongodb://</code>・<code>mongodb+srv://</code> URL を貼り付けます。SCRAM-SHA-1、SCRAM-SHA-256、X.509、AWS IAM に対応します。<ui>Auth Database</ui> にはユーザーが定義されたデータベースを設定します。",
                 "<code>.mongodb.net</code> で終わるホストは MongoDB Atlas が要求する SRV と TLS を自動で有効にします。先に IP アドレスをクラスターのアクセスリストに追加してください。未登録のアドレスからの通信は即時失敗ではなくタイムアウトします。",
                 "新規接続の TLS は無効で、ドライバーにフォールバックがないため Preferred は Required と同じ動作です。Read Preference と Write Concern は接続単位で設定し、書き込み保証はシェルやグリッド保存からのすべての追加、更新・削除に付けます。",
                 "<network>SSH トンネル</network> は一覧の最初のホストだけを使うため、そのセッションではレプリカセットの検出とフェイルオーバーを無効にします。"
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "ドキュメントのクエリと編集",
             "paragraphs": [
-                "クエリタブは mongosh 構文を受け付ける JavaScript シェルで、引用符なしのキー、正規表現リテラル、<code>ISODate()</code>、変数、ループと <code>forEach</code> に対応します。TablePro 内で実行するため追加インストールは不要です。定義した変数は切断までその接続の全タブで使えます。補完はコレクション、メソッド、入れ子のフィールドパスとカーソル位置で有効な <code>$</code> 演算子を提示します。",
-                "コレクションは最上位フィールドをカラム、入れ子オブジェクトを Extended JSON とするグリッドで開きます。編集セルは型を保持し、日付は日付、ObjectId は ObjectId のままです。入れ子の編集は <code>address.city</code> など変更したパスだけを書き込みます。",
-                "<editing>Insert Document と Edit Document</editing> はドキュメント全体を Extended JSON で受け付けます。Edit Document はサーバーから再取得し、シートを開いてから他の人が変更・削除していれば何も保存せず通知します。セルの <ui>Remove Field</ui> は <code>$unset</code> を送ります。",
+                "Query タブで正規表現、<code>ISODate()</code>、変数、ループ、<code>forEach</code> などの mongosh 形式 JavaScript を使えます。別のシェルは不要です。変数は切断まで接続のタブ間で保持されます。コレクション、フィールドパス、メソッド、演算子を補完します。",
+                "最上位フィールドは列、ネストしたオブジェクトは Extended JSON で表示します。セル編集は日付や ObjectId などの型を保持します。ネストした編集は <code>address.city</code> のように変更したパスだけを更新します。",
+                "<editing>Insert Document と Edit Document</editing> は Extended JSON を使います。Edit Document はサーバーのドキュメントを再読込し、編集中に変更や削除があれば保存を拒否します。<ui>Remove Field</ui> は <code>$unset</code> を送ります。",
                 "<filters>フィルターバー</filters> は入れ子オブジェクトやオブジェクトの配列に対応し、<code>customer.country</code> と <code>items.sku</code> を直接絞り込めます。GeoJSON のフィールドは <map>マップビュー</map> で開きます。",
                 "ドライバーが読み取り専用セッションを開けないため、<safeMode>Safe Mode</safeMode> は MongoDB のすべての文を書き込みとして扱います。Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。"
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "コレクション、インデックスとバリデーター",
             "paragraphs": [
-                "<structure>Structure タブ</structure> は各インデックスのフィールドをキー順に表示し、hashed、text、2dsphere や wildcard などの種類を示します。Show DDL はサーバーが返す全オプションを含む、再構築用の <code>createIndex</code> 呼び出しを生成します。",
-                "同じタブでコレクション全体のフィールド名を変更・削除します。各変更は一つの <code>updateMany</code> で Preview SQL に表示し、<code>$jsonSchema</code> バリデーターのフィールド宣言も変更します。インデックス、検索インデックスやビューがまだ名前を使っていれば、書き込み前に保存を拒否します。",
+                "<structure>Structure タブ</structure>でインデックスのフィールド、型、オプションを確認できます。Show DDL はサーバーが報告するオプションを使って <code>createIndex</code> 呼び出しを生成します。",
+                "<code>updateMany</code> のプレビューを確認して、コレクション全体のフィールド名変更や削除を行えます。バリデーターも更新します。インデックス、検索インデックス、ビューがそのフィールドを使っている場合は保存をブロックします。",
                 "<ui>New Table</ui> はフィールドを <code>$jsonSchema</code> バリデーターにしたコレクションを作成し、指定のインデックスを構築します。ビューと時系列コレクションはサイドバーに表示し、ビューは読み取り専用で開きます。"
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass は MongoDB 公式の GUI です。集約パイプラインを段階ごとに構築して各段階後にプレビューし、ドキュメントサンプルからコレクションのスキーマを分析して実行プランを描きます。パイプラインを視覚的に構成する、または一つのコレクションの構造を調べる時に向いています。TablePro は複数のデータベースとともに同じアプリで MongoDB を使う時に適しています。",
+                "text": "MongoDB Compass は集約パイプラインの視覚的な操作、サンプルによるスキーマ分析、実行プランに向いています。TablePro では MongoDB と他のデータベースエンジンを同じアプリでクエリできます。",
                 "notes": [
                     "compass-natural-language"
                 ]

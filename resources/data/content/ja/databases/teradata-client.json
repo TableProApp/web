@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "{devices} 用 Teradata クライアント",
-        "lead": "TD2 または TDNEGO でログオンし、データベースやユーザー配下のテーブル、ビュー、プロシージャとマクロを閲覧できます。ネイティブ Swift ドライバーでクエリと編集を行い、Teradata クライアントソフトのインストールは不要です。"
+        "title": "Teradata クライアント",
+        "lead": "別のクライアントを入れずに Teradata をクエリ・編集できます。データベース、ユーザー、プロシージャー、マクロを参照できます。"
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "接続とログオン",
             "paragraphs": [
-                "ホスト、ユーザー名とパスワードを入力します。TD2 ログオンを受け付ける Vantage なら動作し、バージョンは検査しません。Options の <ui>Logon Mechanism</ui> は <code>TD2</code> または <code>TDNEGO</code> を受け付けます。<ui>Database</ui> はアカウントの既定以外を使う場合のみ必要です。",
+                "ホスト、ユーザー名、パスワードを入力します。<ui>Logon Mechanism</ui> で <code>TD2</code>・<code>TDNEGO</code> を選びます。<ui>Database</ui> はアカウントの既定値を上書きします。TD2 を受け付ける Vantage サーバーはバージョン確認なしで接続できます。",
                 "既定ポートでは平文セッションを使います。SSL モードを選ぶと、変更できない 443 ポートのゲートウェイ WebSocket エンドポイントに移ります。Verify CA は CA 証明書が必要です。Verify Identity はその証明書、なければシステムの信頼ストアでチェーンとホスト名を検証します。",
                 "スクリプトが ANSI または TERA のコミット規則とセッションの大文字小文字区別を必要としない限り、<ui>Transaction Mode</ui> は <code>DEFAULT</code> のままにします。踏み台の背後には <network>SSH トンネル</network> で接続します。<ui>Import from URL…</ui> は <code>teradata://</code> に対応しますが、macOS はこの URL をリンクとして開きません。"
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "Teradata ではデータベースとユーザーがどちらも名前空間で、配下のテーブルとビューとともにサイドバーの最上位に表示します。別のデータベースに紐付くタブも同じセッションを使い、文の前に <code>DATABASE</code> を実行します。",
+                "データベースとユーザーを名前空間として参照できます。別のデータベースのタブもセッションを共有し、文の前に <code>DATABASE</code> を実行します。",
                 "ストアドプロシージャはサイドバー、マクロは Functions 配下に表示し、それぞれ <objects>ソースを読み取り専用タブ</objects> で開きます。",
                 "Teradata に <code>LIMIT</code> はないため、最初のページは <code>TOP</code>、後のページは <code>QUALIFY ROW_NUMBER()</code> で取得します。<explain>EXPLAIN</explain> は生のテキストを返します。行の編集は保存まで保留し、<editing>Preview SQL</editing> が各文を先に表示します。"
             ]

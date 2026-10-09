@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL dan MariaDB",
     "header": {
-        "title": "Klien MySQL dan MariaDB untuk {devices}",
-        "lead": "Tulis SQL dengan pelengkapan berbasis skema, edit baris dengan pratinjau setiap pernyataan, serta kelola pengguna, sesi, dan pencadangan. Driver yang sama juga mendukung MariaDB, TiDB, OceanBase, dan Databend."
+        "title": "Klien MySQL dan MariaDB",
+        "lead": "Kueri MySQL dan edit baris dengan pratinjau SQL. Kelola pengguna, sesi, dan cadangan dari koneksi yang sama."
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host, port, dan pengguna ke TablePro, atau tempel URL <code>mysql://</code>. Akun MySQL 8 yang menggunakan <code>caching_sha2_password</code> terhubung pada percobaan pertama. Kosongkan database lalu pilih nanti: perpindahan database berlangsung pada koneksi yang sama.",
+                "Masukkan host, port dan pengguna, atau tempel URL <code>mysql://</code>. MySQL 8 akun <code>caching_sha2_password</code> didukung. Basis data bersifat opsional; berpindah database menjaga koneksi yang sama.",
                 "Koneksi baru menggunakan SSL Preferred, yang mencoba TLS dahulu dan hanya beralih ke teks biasa setelah handshake TLS gagal. Pilih Verify CA atau Verify Identity dengan sertifikat penyedia untuk pemeriksaan ketat.",
-                "Untuk server pada jaringan pribadi, hubungkan melalui <network>tunnel SSH, dengan jump host jika diperlukan, proxy SOCKS5, tunnel Cloudflare Access, atau perintah tunnel Anda sendiri</network> seperti kubectl port-forward.",
-                "Pada Amazon RDS dan Aurora, masuk menggunakan <cloudAuth>AWS IAM</cloudAuth> yang menandatangani token baru setiap kali Anda terhubung, dan impor instance langsung dari akun AWS. Untuk Google Cloud SQL, TablePro mengunduh dan menjalankan Cloud SQL Auth Proxy untuk Anda.",
-                "Beralih dari Sequel Ace? <importApps>Import from Other App</importApps> membaca favorit dan, setelah Anda mengonfirmasi, kata sandi yang disimpan di Rantai Kunci."
+                "Jangkau server pribadi melalui terowongan <network>SSH, host lompat, proksi, atau perintah terowongan</network>.",
+                "Masuk ke Amazon RDS atau Aurora dengan <cloudAuth>AWS IAM</cloudAuth>, menggunakan token baru di setiap koneksi. Impor instance dari AWS, atau gunakan Cloud SQL Auth Proxy untuk Google Cloud SQL.",
+                "<importApps>Import from Other App</importApps> membaca favorit Sequel Ace. Impor kata sandi Rantai Kunci memerlukan konfirmasi Anda."
             ]
         },
         {
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Editor SQL melengkapi nama tabel dan kolom dari skema, termasuk alias dan CTE, lalu menjalankan pernyataan pada kursor atau seluruh skrip. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE, dan EXPLAIN ANALYZE</explain> digambar sebagai diagram atau pohon rencana, dan EXPLAIN Compare menunjukkan perubahan antara dua proses.",
-                "Perubahan baris ditampung hingga Anda menyimpan, dan <editing>Preview SQL</editing> menampilkan pernyataan persisnya terlebih dahulu. Penyimpanan menggunakan parameter terikat dan berhenti jika pernyataan akan mengubah jumlah baris yang berbeda dari perkiraan. Tabel tanpa primary key tetap dapat diedit: baris dicocokkan berdasarkan semua kolom.",
+                "Pelengkapan otomatis mencakup skema, alias, dan CTE. Jalankan pernyataan saat ini atau skrip lengkap. Lihat <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE dan EXPLAIN ANALYZE</explain> sebagai diagram atau pohon, lalu bandingkan dua rencana.",
+                "Siapkan perubahan dan tinjau pernyataannya dengan <editing>Preview SQL</editing>. Penyimpanan menggunakan parameter terikat dan berhenti jika jumlah baris tidak sesuai. Tanpa kunci utama, perubahan mencocokkan semua kolom.",
                 "Setiap sesi menggunakan utf8mb4, sehingga emoji dan teks non-Latin tetap utuh saat dibaca serta ditulis. Untuk database yang teksnya ditulis klien lama melalui Latin 1, pengodean UTF-8 via Latin 1 membacanya seperti klien tersebut.",
                 "Tabel berpartisi mencantumkan partisi dan batasnya, seperti <code>VALUES LESS THAN (2024)</code>, dan komentar tabel serta kolom muncul di sidebar dan header kolom grid."
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "Skema",
             "paragraphs": [
-                "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, constraint CHECK, dan kolom generated, serta menampilkan DDL sebelum berjalan. Indeks dengan key berupa ekspresi, seperti <code>lower(email)</code>, memerlukan MySQL 8.0.13 atau lebih baru.",
+                "Siapkan perubahan kolom, indeks, kunci asing, batasan CHECK, dan kolom hasil perhitungan di <structure>tab Structure</structure>. Tinjau DDL sebelum menyimpan. Kunci indeks berbasis ekspresi memerlukan MySQL 8.0.13 atau lebih baru.",
                 "Routine dan trigger muncul di sidebar dengan kode sumbernya. <erDiagram>Diagram ER</erDiagram> menggambar skema sebagai gambar hanya baca yang dapat diekspor ke PNG atau SQL.",
-                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema MySQL atau MariaDB atau datanya dan menulis skrip yang menyelaraskan keduanya. Perubahan yang akan menghilangkan data ditahan sampai Anda menyertakannya."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) membandingkan skema atau data MySQL atau MariaDB dan menghasilkan skrip sinkronisasi. Perubahan yang dapat menghapus data akan ditahan hingga Anda memasukkannya."
             ]
         },
         {
             "id": "operate",
             "title": "Administrasi",
             "paragraphs": [
-                "<administer>Users & Roles</administer> menampilkan hak akses setiap akun hingga kolom individual, serta menampung setiap GRANT dan REVOKE sebagai SQL yang Anda baca sebelum berjalan.",
+                "<administer>Users & Roles</administer> mencantumkan hak istimewa hingga ke kolom individual. Tinjau pernyataan GRANT dan REVOKE yang dipentaskan sebelum menerapkannya.",
                 "Server Dashboard mencantumkan sesi, metrik server, dan kueri lambat yang diperbarui setiap beberapa detik. Dashboard membatalkan kueri aktif dengan <code>KILL QUERY</code> atau menghentikan sesi dengan <code>KILL</code>. Akun tanpa hak PROCESS hanya melihat sesinya sendiri.",
                 "Pemeliharaan tabel menjalankan OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE, dan REPAIR TABLE, lalu menampilkan pernyataan sebelum berjalan.",
                 "<backup>Backup Dump</backup> menjalankan {dumpTool}, dan Restore Dump menjalankan klien mysql, keduanya melalui tunnel SSH koneksi; pasang alat klien MySQL pada Mac terlebih dahulu. Pemulihan mengganti objek yang disebutkan dump.",
-                "Untuk mengembalikan slot server saat Anda tidak menggunakannya, atur koneksi agar dilepas setelah beberapa menit tidak aktif; kueri berikutnya membuka koneksi baru. TablePro mempertahankan koneksi jika sesi memiliki sesuatu yang akan hilang saat dibuka ulang, seperti transaksi terbuka atau tabel sementara."
+                "Lepaskan koneksi menganggur secara otomatis dan sambungkan kembali pada permintaan berikutnya. TablePro menyimpan sesi dengan status koneksi ulang akan hilang, seperti transaksi terbuka atau tabel sementara."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> file {importFormats}, dengan pemetaan kolom untuk tabel tujuan dan pilihan tindakan jika baris gagal. Ekspor tabel atau hasil sebagai {exportFormats}.",
-                "<copy>Copy To</copy> mengirim tabel, datanya, atau keduanya ke koneksi MySQL lain atau mesin berbeda, serta mencantumkan setiap jenis kolom yang harus didekatkan ke jenis tujuan."
+                "File <importData>Import</importData> {importFormats} dengan pemetaan kolom dan penanganan kesalahan baris. Ekspor tabel atau hasil sebagai {exportFormats}.",
+                "<copy>Copy To</copy> mentransfer tabel, data, atau keduanya ke koneksi atau mesin MySQL lainnya. Tinjau semua jenis kolom yang harus diperkirakan."
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace melanjutkan Sequel Pro sebagai aplikasi Mac untuk MySQL dan MariaDB. Aplikasi memiliki server MCP yang nonaktif secara bawaan dan hanya baca kecuali Anda mengubahnya, tanpa chat AI. Cocok jika Anda hanya menggunakan MySQL dan MariaDB."
+                "text": "Sequel Ace berfokus pada MySQL dan MariaDB pada Mac. Server MCP-nya dinonaktifkan secara default dan hanya dapat dibaca kecuali diubah. Tidak ada chat AI."
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench adalah alat resmi Oracle untuk MySQL. Generasi barunya dibangun di atas MySQL Shell dengan notebook SQL, dan Oracle tidak lagi memelihara generasi sebelumnya. Cocok jika Anda hanya menggunakan MySQL dan menginginkan alat dari pembuatnya."
+                "text": "MySQL Workbench adalah alat Oracle MySQL. Generasi saat ini menggunakan notebook MySQL Shell dan SQL; Oracle tidak lagi mempertahankan generasi sebelumnya."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin berjalan di server web Anda dan dapat digunakan dalam peramban apa pun, serta disertakan dalam cPanel. Cocok untuk server yang hanya Anda akses melalui panel hosting, tempat aplikasi desktop tidak memiliki jalur ke database."
+                "text": "phpMyAdmin berjalan di server web dan disertakan dalam cPanel. Itu dapat menjangkau database yang tersedia melalui panel hosting yang tidak mengizinkan koneksi desktop."
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL adalah klien sumber terbuka yang sudah lama ada di Windows dan kini juga menyediakan aplikasi macOS. Cocok jika Anda sudah menggunakannya di Windows dan menginginkan klien yang sama di Mac Anda."
+                "text": "HeidiSQL adalah klien database sumber terbuka dengan aplikasi Windows dan macOS."
             }
         ],
         "notes": {}

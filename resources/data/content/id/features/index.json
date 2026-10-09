@@ -1,60 +1,60 @@
 {
     "seo": {
-        "title": "Fitur untuk kueri dan pengelolaan database",
-        "description": "Fitur TablePro menurut area: kueri, pengeditan data, skema, impor dan ekspor, AI dan MCP, koneksi dan sinkronisasi, dengan fitur berbayar ditandai."
+        "title": "Fitur klien database | TablePro",
+        "description": "Menulis kueri, mengedit data, memeriksa skema, dan memindahkan data antara file dan database. Jelajahi fitur gratis dan berbayar TablePro."
     },
     "og": {
         "kicker": "Fitur",
-        "title": "Yang dapat Anda lakukan di TablePro"
+        "title": "Fitur"
     },
     "header": {
-        "title": "Yang dapat Anda lakukan di TablePro",
-        "lead": "Aplikasi Mac adalah lingkungan kerja lengkap. Aplikasi iPhone dan iPad adalah aplikasi native terpisah dengan cakupan lebih kecil, dan setiap halaman fitur menyebutkan yang tersedia di sana."
+        "title": "Fitur",
+        "lead": "Membuat kueri, mengedit, dan bekerja dengan data di seluruh database yang didukung."
     },
     "areas": {
         "title": "Fitur menurut tugas",
-        "paid": "Paket {tier}: {features}",
+        "paid": "Fitur berbayar opsional: {features} ({tier})",
         "noPaid": "Tidak ada fitur berbayar",
         "items": [
             {
                 "slug": "querying",
-                "summary": "Pelengkapan otomatis berdasarkan skema, parameter <code>:name</code>, riwayat yang dapat dicari, kueri tersimpan, rencana EXPLAIN yang dapat dibandingkan, serta hasil sebagai diagram atau peta."
+                "summary": "Tulis SQL dengan pelengkapan otomatis, gunakan kembali kueri tersimpan, dan telusuri riwayat Anda. Periksa rencana kueri pada mesin yang didukung."
             },
             {
                 "slug": "data-editing",
-                "summary": "Filter dan aturan sorotan, foreign key yang dapat ditelusuri, perubahan yang menunggu hingga Anda menyimpan, level Safe Mode per koneksi, serta Data Rewind untuk nilai yang diganti saat menyimpan."
+                "summary": "Filter baris, ikuti kunci asing dan tinjau hasil edit sebelum menyimpan."
             },
             {
                 "slug": "schema",
-                "summary": "Perubahan struktur dengan pratinjau DDL, diagram ER hanya-baca, Compare & Sync antara dua database, Copy To lintas mesin, serta Users & Roles."
+                "summary": "Periksa hubungan, ubah struktur tabel, dan bandingkan database yang didukung."
             },
             {
                 "slug": "import-export",
-                "summary": "Impor file {importFormats}, ekspor tabel dan hasil, buka file data tanpa koneksi, serta cadangkan mesin yang didukung dengan alat dump masing-masing."
+                "summary": "Impor file {importFormats} dan ekspor tabel atau hasil. Buka file data tanpa koneksi database."
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Asisten AI opsional yang memakai penyedia pilihan Anda, serta server MCP (Model Context Protocol) lokal yang memungkinkan klien seperti Claude Code dan Cursor memakai koneksi tersimpan."
+                "summary": "Gunakan penyedia AI pilihan Anda, atau sambungkan klien eksternal melalui MCP (Model Context Protocol)."
             },
             {
                 "slug": "connections",
-                "summary": "Tunnel SSH dengan jump host, TLS, login cloud dan perintah tunnel, kata sandi dari Rantai Kunci atau pengelola rahasia, serta koneksi yang diimpor dari aplikasi lain."
+                "summary": "Gunakan terowongan SSH dan masuk cloud. Impor koneksi dari aplikasi lain."
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "iCloud Sync antara Mac, iPhone, dan iPad Anda, file koneksi yang dapat dibagikan, serta Team Catalog dan Team Library untuk berbagi dengan tim."
+                "summary": "Sinkronkan melalui iCloud atau bagikan koneksi dan kueri dengan tim Anda."
             }
         ]
     },
     "ios": {
         "title": "iPhone dan iPad",
-        "body": "TablePro untuk iPhone dan iPad adalah aplikasi terpisah yang gratis tanpa pembelian dalam aplikasi. Aplikasi terhubung lewat SSH atau TLS, menelusuri dan mengedit baris, serta menjalankan kueri, dengan Pintasan, widget Layar Utama, dan Aktivitas Langsung untuk kueri yang sedang berjalan. Tidak ada asisten AI, pengeditan skema, Data Rewind, atau Compare & Sync.",
+        "body": "Telusuri tabel, edit baris, dan jalankan kueri di iPhone dan iPad. Aplikasi seluler terpisah gratis, tanpa pembelian dalam aplikasi. Ketersediaan fitur tercantum pada setiap halaman detail.",
         "link": "TablePro untuk iPhone dan iPad"
     },
     "paid": {
         "title": "Gratis dan berbayar",
-        "lead": "Aplikasi Mac gratis digunakan, tanpa masa uji coba. Paket Starter atau Team menambahkan fitur di bawah ke aplikasi Mac, dan Team mencakup semua fitur Starter. Koneksi ke semua mesin yang didukung, asisten AI, server MCP, dan Safe Mode tidak memerlukan lisensi; aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.",
-        "caption": "Fitur berbayar aplikasi Mac, paket yang diperlukan setiap fitur, dan halaman penjelasannya",
+        "lead": "Aplikasi inti gratis, tanpa masa uji coba. Starter menambahkan fitur berbayar ke aplikasi Mac; Team mencakup Starter. Semua database yang didukung, asisten AI, MCP dan Safe Mode tersedia tanpa lisensi.",
+        "caption": "Fitur berbayar saat ini tersedia di Mac",
         "columns": {
             "feature": "Fitur",
             "plan": "Paket",
@@ -64,7 +64,7 @@
     },
     "docs": {
         "title": "Dokumentasi",
-        "body": "Setiap fitur memiliki halaman sendiri dalam dokumentasi TablePro, dengan semua pengaturan dan pintasan.",
+        "body": "Temukan petunjuk pengaturan, pengaturan dan pintasan.",
         "link": "Baca dokumentasi",
         "path": "/features/overview"
     },
@@ -80,19 +80,19 @@
         },
         "paidBadge": "{name}: paket {tier}",
         "header": {
-            "paid": "Fitur berbayar di halaman ini: {features}. Semua fitur lainnya gratis.",
+            "paid": "Berbayar: {features}. Fitur lainnya gratis.",
             "paidItem": "{name} ({tier})",
             "allFree": "Semua fitur di halaman ini gratis.",
             "docs": "Baca dokumentasi"
         },
         "sections": {
             "availability": "Ketersediaan",
-            "limits": "Batasan yang perlu diketahui",
+            "limits": "Keterbatasan",
             "docs": "Dokumentasi",
             "related": "Terkait"
         },
         "availability": {
-            "caption": "Setiap kemampuan pada halaman ini, paket yang diperlukan di Mac, dan fitur yang tersedia di iPhone dan iPad",
+            "caption": "Ketersediaan dan paket di Mac, iPhone dan iPad",
             "capability": "Kemampuan",
             "free": "Gratis",
             "notAvailable": "Tidak tersedia",
@@ -100,7 +100,7 @@
         },
         "download": {
             "title": "Unduh TablePro",
-            "body": "TablePro bersumber terbuka dan gratis digunakan. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",
+            "body": "Gratis untuk digunakan dan open source.",
             "pricing": "Lihat harga"
         }
     }

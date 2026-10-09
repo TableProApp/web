@@ -10,8 +10,8 @@
     "engine": "postgresql",
     "breadcrumb": "PostgreSQL",
     "header": {
-        "title": "適用於 {devices} 的 PostgreSQL 用戶端",
-        "lead": "處理 schema、陣列、jsonb 和 PostGIS，以圖形查看 EXPLAIN 計畫，並管理角色、工作階段、維護和備份。同一驅動程式也支援 Amazon Redshift、CockroachDB 和 PGlite。"
+        "title": "PostgreSQL 用戶端",
+        "lead": "查詢 PostgreSQL，瀏覽綱要，並透過 SQL 預覽編輯列。檢查 EXPLAIN 計畫、jsonb、陣列和 PostGIS 值。"
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -34,10 +34,10 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機、連接埠、使用者和資料庫，或貼上 <code>postgresql://</code>、<code>postgres://</code> URL。PostgreSQL 連線必須指定資料庫。",
+                "輸入主機、連接埠、使用者和資料庫，或貼上 <code>postgresql://</code>、<code>postgres://</code> URL。資料庫為必填項。",
                 "新連線的 SSL 預設為 Preferred，即 libpq 的 <code>sslmode=prefer</code>。要驗證伺服器憑證，請選 Verify CA 或 Verify Identity。",
                 "啟用 Use ~/.pgpass 從 <code>~/.pgpass</code> 讀取密碼。表單報告發現的情況，包括因權限而被 libpq 忽略的檔案。",
-                "可透過 <network>SSH 通道（依需使用跳板主機）、SOCKS5 代理、Cloudflare Access 通道或通道指令</network>（例如 kubectl port-forward）存取私有伺服器。在 Amazon RDS 和 Aurora 上，以獲授 <code>rds_iam</code> 的角色透過 <cloudAuth>AWS IAM</cloudAuth> 登入。對於 Google Cloud SQL，TablePro 會下載並執行 Cloud SQL Auth Proxy。",
+                "透過 <network>SSH 通道、跳板主機、代理或通道命令</network>存取私人伺服器。Amazon RDS 和 Aurora 對獲授 <code>rds_iam</code> 的角色支援 <cloudAuth>AWS IAM</cloudAuth>。Google Cloud SQL 使用 Cloud SQL Auth Proxy。",
                 "libpq 接受的任何連線選項，例如 <code>-c application_name=reporting</code>，均可填寫在 Connection Options 中。"
             ]
         },
@@ -45,8 +45,8 @@
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "SQL 編輯器從結構完成資料表和欄位名稱。<explain>EXPLAIN 與 EXPLAIN ANALYZE</explain> 使用 FORMAT JSON 執行，繪製為計畫圖或樹狀圖；EXPLAIN Compare 顯示計畫在修改後是否變慢。",
-                "jsonb 格式化顯示，uuid、inet、timestamptz、interval 和 bytea 依各自形式顯示。陣列欄位開啟清單編輯器，可新增、刪除、重排單一元素或設為 null，enum 欄位提供其標籤。",
+                "使用綱要感知的自動完成編寫 SQL。將 <explain>EXPLAIN 和 EXPLAIN ANALYZE</explain> 顯示為圖表或樹，並比較兩次執行的計畫。",
+                "查看格式化 jsonb 以及 uuid、inet、timestamptz、interval、bytea 等 PostgreSQL 型別。陣列元素可作為清單編輯；enum 欄位提供其標籤選項。",
                 "PostGIS geometry 和 geography 值以含 SRID 的 EWKT 讀取，含幾何資料的結果可在 <results>地圖檢視</results> 開啟。地圖圖磚來自 Apple，列資料保留在 Mac。",
                 "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示所有陳述式，儲存使用繫結參數。具體化檢視表的列唯讀，可從選單重新整理；若有 PostgreSQL 要求的唯一索引，可並行重新整理。"
             ],
@@ -56,19 +56,19 @@
             "id": "schema",
             "title": "Schema 與結構",
             "paragraphs": [
-                "列出所有可存取的 schema。可透過面板建立和編輯，產生 CREATE SCHEMA、擁有者、註解及 USAGE、CREATE 授權，並在執行前展示。",
-                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵、CHECK 條件約束和產生欄位的修改。分割資料表顯示分割區及界限，子分割區依巢狀排列。列舉、複合型別、定義域和範圍型別列在 Types 下，可新增和重新命名列舉標籤。",
+                "瀏覽有權存取的綱要。建立或編輯綱要的擁有者、註解和授權，並在套用前檢查 SQL。",
+                "在 <structure>Structure 分頁</structure>暫存欄位、索引、外部索引鍵、CHECK 和產生欄位變更。瀏覽分割區邊界以及 PostgreSQL Types，包括列舉、複合型別、定義域和範圍。可新增或重新命名列舉標籤。",
                 "檢視表定義重建時為每個資料表加上 schema 限定；並行建立失敗留下的無效索引會在 Indexes 分頁中標明名稱。",
-                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 PostgreSQL schema 或資料，產生使兩者一致的指令碼，並暫緩可能遺失資料的修改。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比較 PostgreSQL 綱要或資料，並產生同步腳本。可能刪除資料的變更會保留以供檢查。"
             ]
         },
         {
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> 在授權或撤銷前顯示每項權限來源，並將每個陳述式暫存為 SQL。",
+                "在 <administer>Users & Roles</administer> 中檢查每項權限的來源。授權和撤銷變更會暫存為 SQL。",
                 "Server Dashboard 顯示工作階段、連線、快取命中率、資料庫大小和慢查詢。使用 <code>pg_cancel_backend</code> 取消查詢，或 <code>pg_terminate_backend</code> 終止工作階段。既非超級使用者又非 <code>pg_monitor</code> 成員的角色，可看到其他工作階段但看不到其查詢。",
-                "資料表維護可執行含 FULL、ANALYZE、VERBOSE 選項的 VACUUM，以及 ANALYZE、REINDEX、CLUSTER，並先顯示陳述式。",
+                "執行資料表維護前，預覽 VACUUM、ANALYZE、REINDEX 和 CLUSTER。",
                 "<backup>Backup Dump 和 Restore Dump</backup> 透過連線的 SSH 通道執行您自行安裝的 {dumpTool} 和 pg_restore。使用 Homebrew 安裝；備份 PostgreSQL 9.1 伺服器需用 pg_dump 14 或更早版本。"
             ],
             "asset": "mac-server-dashboard-postgresql"
@@ -77,8 +77,8 @@
             "id": "move-data",
             "title": "移動資料",
             "paragraphs": [
-                "<importData>匯入</importData> {importFormats} 檔案；資料檔案載入逐欄對應的資料表，並可選擇列失敗時的處理。資料表或結果可匯出為 {exportFormats}，SQL 匯出保留資料表、檢視表和具體化檢視表的註解。",
-                "<copy>Copy To</copy> 將資料表、資料或兩者傳送至 PostgreSQL 或其他引擎的連線，並列出所有需要近似轉換的欄位型別。"
+                "<importData>匯入</importData> {importFormats} 檔案，支援欄位對應和列錯誤處理。將資料表或結果匯出為 {exportFormats}；SQL 匯出保留資料表、檢視和實體化檢視註解。",
+                "<copy>Copy To</copy> 將資料表、資料或兩者傳到另一個 PostgreSQL 連線或引擎。請檢查需要近似轉換的欄位型別。"
             ]
         },
         {
@@ -115,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin 是老牌 PostgreSQL 開放原始碼管理工具，提供偵錯工具、結構差異比較和備份還原。僅使用 PostgreSQL 且以管理工作為主時較合適。",
+                "text": "pgAdmin 專注於 PostgreSQL 管理，包括偵錯工具、綱要差異比較、備份和還原。",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 是以瀏覽和編輯為中心的 PostgreSQL Mac App。其官方文件將備份還原、使用者管理和監控等管理功能列為未涵蓋內容。僅使用 PostgreSQL、希望使用專注於它的 Mac App 時較合適。"
+                "text": "Postico 2 專注於 Mac 上的 PostgreSQL 瀏覽和編輯。其文件明確排除備份還原、使用者管理和監控。"
             }
         ],
         "notes": {

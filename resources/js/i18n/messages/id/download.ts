@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "Catatan rilis (bahasa Inggris)",
-        "unavailable": "Detail rilis saat ini tidak dapat dimuat. Kedua tombol membuka rilis terbaru di GitHub, tempat Anda dapat memilih disk image untuk Mac Anda."
+        "unavailable": "Detail rilis tidak tersedia. Kedua tombol membuka rilis terbaru di GitHub; pilih build di sana."
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Untuk menginstal aplikasi Mac, buka halaman ini di Mac Anda.",
     "whichMac": {
         "summary": "Mac apa yang saya miliki?",
-        "body": "Buka menu Apple lalu pilih Tentang Mac Ini. Mac dengan Apple silicon menampilkan baris Chip, misalnya Apple M2. Mac Intel menampilkan baris Prosesor yang menyebutkan Intel."
+        "body": "Pilih Mengenai Mac Ini di menu Apple. Baris Chip menunjukkan Apple silicon; baris Prosesor yang menyebut Intel menunjukkan Intel."
     },
     "checksum": {
         "summary": "Verifikasi unduhan Anda",

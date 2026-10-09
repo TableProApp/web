@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Sicurezza",
-        "lead": "Dove TablePro conserva le tue credenziali, cosa inviano le app, come vengono firmate e aggiornate e fin dove arriva ogni protezione."
+        "lead": "In che modo TablePro archivia le credenziali, invia dati e gestisce gli aggiornamenti e le protezioni del database."
     },
     "breadcrumb": "Sicurezza",
     "jump": "In questa pagina",
@@ -18,7 +18,7 @@
     "sections": [
         {
             "id": "credentials",
-            "title": "Dove sono conservate le credenziali",
+            "title": "Credenziali",
             "items": [
                 {
                     "id": "mac-keychain",
@@ -38,7 +38,7 @@
                 {
                     "id": "not-sent",
                     "title": "Cosa riceve TablePro",
-                    "text": "Le query che esegui, i loro risultati e le tue password non vengono inviati a TablePro. L’eccezione è una Team Library in cui scegli di pubblicare: riceve le impostazioni delle connessioni e le query salvate, mai le password."
+                    "text": "Le query che esegui, i loro risultati e le tue password non vengono inviati a TablePro. L’eccezione è una Team Library in cui scegli di pubblicare: riceve le imposti delle connessioni e le query salvate, mai le password."
                 }
             ],
             "limits": [
@@ -68,7 +68,7 @@
                 {
                     "id": "to-tablepro",
                     "title": "Verso TablePro",
-                    "text": "Senza licenza attivata, l’unica richiesta dell’app per Mac a TablePro è un rapporto giornaliero d’uso, attivo per impostazione predefinita e disattivabile nelle impostazioni. Su iPhone e iPad nulla va a TablePro finché non attivi Share Usage Data. Un rapporto non contiene mai nomi host, nomi utente, password, query o righe, e nessuna delle due app include un sistema di segnalazione dei crash o una libreria di analisi di terze parti."
+                    "text": "Senza licenza attivata, l’unica richiesta dell’app per Mac a TablePro è un rapporto giornaliero d’uso, attivo per imposto predefinita e disattivabile nelle imposti. Su iPhone e iPad nulla va a TablePro finché non attivi Share Usage Data. Un rapporto non contiene mai nomi host, nomi utente, password, query o righe, e nessuna delle due app include un sistema di segnalazione dei crash o una libreria di analisi di terze parti."
                 }
             ],
             "limits": [
@@ -91,7 +91,7 @@
         },
         {
             "id": "distribution",
-            "title": "Come ti arrivano le app",
+            "title": "Distribuzione dell'app",
             "items": [
                 {
                     "id": "signing",
@@ -101,7 +101,7 @@
                 {
                     "id": "updates",
                     "title": "Aggiornamenti",
-                    "text": "L’app per Mac si aggiorna con Sparkle e, prima di installare ogni aggiornamento, ne verifica la firma EdDSA con la chiave pubblica inclusa nell’app. Questa verifica non si può disattivare. Gli aggiornamenti automatici sì, nelle impostazioni o con un profilo di configurazione."
+                    "text": "L’app per Mac si aggiorna con Sparkle e, prima di installare ogni aggiornamento, ne verifica la firma EdDSA con la chiave pubblica inclusa nell’app. Questa verifica non si può disattivare. Gli aggiornamenti automatici sì, nelle imposti o con un profilo di configurazione."
                 },
                 {
                     "id": "plugins",
@@ -135,7 +135,7 @@
         },
         {
             "id": "safe-mode",
-            "title": "Cosa protegge un database da un errore",
+            "title": "Salvaguardie del database",
             "items": [
                 {
                     "id": "levels",
@@ -180,7 +180,7 @@
                 {
                     "id": "approval",
                     "title": "Come si approva un client",
-                    "text": "Per impostazione predefinita ogni richiesta richiede un token con un ambito (Read Only, Read & Write o Full Access), e una finestra sul Mac ti chiede conferma la prima volta che un client raggiunge una connessione."
+                    "text": "Per imposto predefinita ogni richiesta richiede un token con un ambito (Read Only, Read & Write o Full Access), e una finestra sul Mac ti chiede conferma la prima volta che un client raggiunge una connessione."
                 },
                 {
                     "id": "permissions",

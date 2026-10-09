@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso and libSQL",
     "header": {
-        "title": "Turso and libSQL client for {devices}",
-        "lead": "Connect to a Turso database with its URL and a token, query it in SQLite syntax, and change its tables, indexes and triggers. The same driver opens self-hosted sqld servers and libSQL files on your Mac."
+        "title": "Turso and libSQL client",
+        "lead": "Connect to a Turso database with its URL and token. Browse tables and run SQLite queries, or open a local libSQL file."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Connect to Turso",
             "paragraphs": [
-                "Pick Turso in the connection type list and leave <ui>Connection Mode</ui> on <ui>Remote (Turso)</ui>. Paste the database’s HTTPS URL, which ends in <code>.turso.io</code>, and put a token in the field labelled <ui>API Token</ui>, which is kept in the macOS Keychain. The Turso dashboard shows both, and so do <code>turso db show my-db --url</code> and <code>turso db tokens create my-db</code>.",
-                "A <code>libsql://</code> URL is rewritten to HTTPS, and importing one creates a remote connection. There is no host, port or database field, because the URL names one database. The connection is encrypted when its URL uses HTTPS rather than plain HTTP, and there is no SSH tunnel."
+                "Choose <ui>Remote (Turso)</ui> in <ui>Connection Mode</ui>. Paste the database’s HTTPS URL and an <ui>API Token</ui>, stored in the macOS Keychain. Get both from the Turso dashboard or CLI.",
+                "Imported <code>libsql://</code> URLs become HTTPS remote connections. Each URL names one database. Plain HTTP URLs are not encrypted; SSH tunnels are unavailable."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tables, indexes and triggers",
             "paragraphs": [
                 "The <structure>Structure tab</structure> creates tables, adds and drops columns and indexes, and creates, edits and drops triggers. Tables, but not views, can be renamed from the sidebar.",
-                "For a column reorder or a foreign key change on a remote database, TablePro writes the rebuild script for you to read and run yourself. It cannot run the script for you, because the rebuild would need one transaction across separate HTTP requests."
+                "Remote column reorders and foreign key changes produce a rebuild script for you to review and run. TablePro cannot run it as one transaction across separate HTTP requests."
             ]
         },
         {

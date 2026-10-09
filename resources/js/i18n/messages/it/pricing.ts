@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Gratuito",
-            "description": "L’app per Mac senza le funzionalità a pagamento e l’app per iPhone e iPad.",
+            "description": "Strumenti database essenziali, senza periodo di prova.",
             "activation": "Non serve registrarsi per usare l’app.",
             "includesTitle": "Include",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Aggiunge all’app per Mac funzionalità come {examples}.",
             "activation": {
-                "one": "Una licenza per una persona, su {count} Mac.",
-                "other": "Una licenza per una persona, su un massimo di {count} Mac."
+                "one": "Una persona, {count} Mac.",
+                "other": "Una persona, fino a {count} Mac."
             },
             "includesTitle": "Tutto il piano Gratuito, più",
             "cta": "Acquista Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Aggiunge connessioni e query condivise con il tuo team alle funzionalità Starter.",
-            "activation": "Ogni posto corrisponde a un Mac attivato.",
+            "description": "Condividi connessioni e query salvate con il team.",
+            "activation": "Un Mac attivato per posto.",
             "includesTitle": "Tutto il piano Starter, più",
             "cta": "Acquista Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Ogni piano a pagamento può essere rimborsato entro {count} giorno dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorno dal suo addebito. Consulta la <link>politica di rimborso</link>.",
         "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorni dal suo addebito. Consulta la <link>politica di rimborso</link>."
     },
-    "finePrint": "Prezzi in dollari statunitensi. {merchant} è il merchant of record: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
+    "finePrint": "Prezzi in dollari USA. {merchant} gestisce il pagamento e calcola imposte o IVA al checkout come merchant of record.",
     "finePrintCurrency": "Prezzi in dollari statunitensi.",
     "comparePlans": "Confronta i piani",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Verifica del codice…",
         "percent": "Codice accettato: {amount}% di sconto, applicato al checkout.",
         "fixed": "Codice accettato: {amount} di sconto, applicato al checkout.",
-        "invalid": "Il codice sconto non è valido o è scaduto."
+        "invalid": "Questo codice non è valido o è scaduto."
     },
     "checkout": {
-        "failed": "Impossibile avviare il checkout. Riprova."
+        "failed": "Impossibile aprire il checkout. Riprova."
     },
     "offers": {
         "name": "{plan}, {cycle}",

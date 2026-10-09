@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client Oracle Database cho {devices}",
-        "description": "Kết nối Oracle Database mà không cần Instant Client, chạy PL/SQL và script SQL*Plus, đọc DBMS_OUTPUT, và khởi chạy export bằng Data Pump ngay trên server."
+        "description": "Kết nối Oracle Database không cần Instant Client, chạy script SQL và PL/SQL, đọc DBMS_OUTPUT và bắt đầu export Data Pump trên server."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "Client Oracle Database cho {devices}",
-        "lead": "Driver giao tiếp bằng giao thức TNS của Oracle và được viết bằng Swift, nên máy Mac của bạn không cần Instant Client hay bất kỳ thành phần nào khác của Oracle. Chạy SQL và PL/SQL, kể cả script viết cho SQL*Plus, và đọc những gì DBMS_OUTPUT in ra ngay cạnh mỗi kết quả."
+        "title": "Oracle Database client",
+        "lead": "Chạy SQL và PL/SQL không cần cài Oracle Instant Client. Đọc DBMS_OUTPUT cạnh kết quả query."
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host, port của listener và Tên dịch vụ (Service Name), hoặc đổi <ui>Loại kết nối (Connection Type)</ui> sang SID cho instance không có service. Đăng nhập bằng username và mật khẩu, với vai trò Normal hoặc SYSDBA, SYSOPER.",
+                "Nhập host, listener port và Service Name, hoặc chọn SID trong <ui>Connection Type</ui>. Đăng nhập mật khẩu hỗ trợ vai trò Normal, SYSDBA và SYSOPER.",
                 "Native Network Encryption không cần thiết lập gì: khi server yêu cầu, AES kèm checksum SHA-2 sẽ được đề xuất, và thiết lập <ui>Network Encryption</ui> thay đổi những gì TablePro đề xuất. Với TLS, hãy chọn Required để dùng TCPS, hoặc Xác minh CA (Verify CA) hay Xác minh danh tính (Verify Identity) kèm chứng chỉ CA. Connection mới để SSL tắt, và Ưu tiên (Preferred) vẫn kết nối bằng TCP không mã hóa.",
                 "Với Oracle Autonomous Database, hãy chép host, port và service name từ chuỗi kết nối TLS, không phải chuỗi mTLS, rồi đặt SSL là Required hoặc Xác minh CA (Verify CA). File wallet không bao giờ được đọc, nên cơ sở dữ liệu phải chấp nhận TLS không có mutual TLS.",
                 "RAC SCAN listener, shared server hay load balancer đứng trước cơ sở dữ liệu đều không cần cấu hình thêm, và <network>SSH tunnel</network> đưa bạn tới listener trong mạng nội bộ."
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL, PL/SQL và transaction",
             "paragraphs": [
-                "Một khối PL/SQL hay một stored unit chạy như một câu lệnh duy nhất, dù bên trong có bao nhiêu dấu chấm phẩy: đặt con trỏ vào trong rồi chạy. Script viết cho SQL*Plus hay SQL Developer chạy nguyên văn, với dòng chỉ có <code>/</code> kết thúc unit phía trên nó. Unit không biên dịch được sẽ báo lỗi bằng chính thông báo của Oracle, mỗi lỗi một dòng kèm vị trí.",
+                "Chạy block PL/SQL và stored unit như câu lệnh riêng. Dòng <code>/</code> kết thúc unit trong script. Lỗi biên dịch có thông báo Oracle và vị trí mã nguồn. Không hỗ trợ command client SQL*Plus.",
                 "Các dòng <code>DBMS_OUTPUT.PUT_LINE</code> hiện cùng kết quả của câu lệnh đã in ra chúng, không cần <code>SET SERVEROUTPUT ON</code>. Trong một anonymous block, <code>:name</code> là một <parameters>tham số query</parameters> bạn điền từ một bảng nhập.",
                 "Mỗi câu lệnh được commit ngay khi chạy thành công. Hãy bắt đầu bằng <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> hoặc <code>LOCK TABLE</code> để giữ thay đổi lại, và mọi thứ sau đó chờ tới khi bạn <code>COMMIT</code> hoặc <code>ROLLBACK</code>, kể cả các lần lưu từ data grid.",
                 "Mỗi user là một schema, và <code>⌘K</code> đổi schema đang dùng mà không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>. Khối lệnh nào drop hay truncate, kể cả qua <code>EXECUTE IMMEDIATE</code>, đều bật <safeMode>cảnh báo câu lệnh nguy hiểm</safeMode> trước khi chạy."
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "<structure>Tab Structure</structure> viết câu <code>ALTER TABLE</code> để thêm, đổi tên, sửa và xóa cột, và để tạo index, với tên phân biệt hoa thường được đặt trong ngoặc kép. Thông tin table còn có khóa chính, khóa ngoại và DDL CREATE TABLE.",
+                "Thêm, đổi tên, sửa và drop cột hoặc tạo index trong <structure>tab Structure</structure>. Tên có phân biệt hoa thường được quote. Xem khóa chính, khóa ngoại và DDL CREATE TABLE.",
                 "Table có partition liệt kê các partition bên dưới, mỗi partition kèm vị trí của nó, và subpartition nằm lồng dưới partition của mình. Hãy query một partition bằng <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema Oracle, hoặc dữ liệu của chúng, rồi lưu một script có dòng <code>/</code> sau mỗi unit, sẵn sàng chạy trong SQL*Plus hoặc SQLcl."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so sánh schema hoặc dữ liệu Oracle. Script dùng dấu phân tách <code>/</code> cho SQL*Plus hoặc SQLcl."
             ]
         },
         {

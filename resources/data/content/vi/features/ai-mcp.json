@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "AI và MCP",
-        "title": "Trợ lý AI và MCP server"
+        "title": "Trợ lý AI và MCP"
     },
     "header": {
-        "title": "Trợ lý AI và MCP server",
-        "lead": "Dành cho lập trình viên muốn được hỗ trợ viết SQL bằng model do mình chọn, hoặc muốn một AI client làm việc với cơ sở dữ liệu của mình. Hỏi về schema, nhờ review hay sửa một query, hoặc cho các MCP (Model Context Protocol) client như Claude Code và Cursor dùng connection đã lưu. Tất cả đều là tùy chọn, chỉ có trong ứng dụng Mac, và không có gì đến được model cho tới khi bạn thêm nhà cung cấp AI hoặc kết nối một client.",
+        "title": "Trợ lý AI và MCP",
+        "lead": "Giải thích hoặc sửa SQL với nhà cung cấp bạn chọn. Kết nối AI client tới connection đã lưu qua MCP (Model Context Protocol).",
         "docs": "/features/ai-assistant"
     },
     "sections": [
         {
             "id": "assistant",
-            "title": "Dùng nhà cung cấp AI bạn chọn",
+            "title": "Chọn nhà cung cấp AI",
             "paragraphs": [
-                "Trợ lý AI làm việc với các nhà cung cấp sau: {aiProviders}. Tùy nhà cung cấp, bạn dán API key, đăng nhập bằng tài khoản bạn đang có, hoặc chạy model ngay trên máy Mac. TablePro không vận hành dịch vụ AI nào: yêu cầu được gửi thẳng tới nhà cung cấp, và không có gì được gửi đi cho tới khi bạn thêm một nhà cung cấp.",
-                "Mỗi tin nhắn mang theo cấu trúc các table của connection, trong giới hạn bạn đặt, cùng query đang có trong editor. Các dòng kết quả chỉ được gửi khi bạn bật tùy chọn đó trong <ui>Cài đặt > AI</ui> (Settings > AI). Mỗi connection còn có một chính sách AI, và mức Never chặn cả trợ lý AI lẫn MCP client dùng connection đó."
+                "Nhà cung cấp được hỗ trợ: {aiProviders}. Dùng API key, tài khoản sẵn có hoặc model trên máy, tùy nhà cung cấp. Request gửi thẳng tới nhà cung cấp; TablePro không vận hành dịch vụ AI. Tính năng miễn phí, nhưng nhà cung cấp có thể tính phí.",
+                "Tin nhắn gồm ngữ cảnh schema và query trong editor. Dòng kết quả không được gửi trừ khi bật trong <ui>Cài đặt > AI</ui> (Settings > AI). Đặt chính sách AI của connection thành Never để chặn cả trợ lý và MCP client."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,26 +26,31 @@
             "id": "in-the-editor",
             "title": "Review, giải thích, tối ưu và sửa lỗi",
             "paragraphs": [
-                "Đặt con trỏ vào một câu lệnh rồi chọn Review with AI (<kbd>⌥⇧⌘L</kbd>) để kiểm tra tính đúng đắn, chi phí và độ an toàn, Explain (<kbd>⌘L</kbd>) để xem câu lệnh làm gì từng bước, hoặc Optimize (<kbd>⌥⌘L</kbd>) để nhận một cách viết lại hay một index nên thêm. Khi query lỗi, Fix with AI nằm ngay trên thanh báo lỗi. Yêu cầu gửi kèm cấu trúc của các table mà câu lệnh nhắc tới, và bản thân câu lệnh không được chạy. <ui>Áp dụng vào trình soạn thảo</ui> (Apply to Editor) chỉ thay câu lệnh của bạn sau khi bạn xác nhận.",
-                "Gợi ý nội tuyến hiện phần gợi ý dạng chữ mờ ngay khi bạn gõ, và mặc định tắt. AI Rules gắn ghi chú dạng văn bản vào một connection, chẳng hạn cột nào không bao giờ được SELECT, và được gửi kèm mọi tin nhắn."
+                "Xem xét câu lệnh, giải thích hoặc yêu cầu tối ưu. Fix with AI dùng được khi query lỗi. Các thao tác này gửi schema và SQL liên quan mà không chạy câu lệnh. <ui>Apply to Editor</ui> cần xác nhận.",
+                "Gợi ý inline tắt theo mặc định. Thêm AI Rules riêng cho connection để gửi hướng dẫn trong mỗi tin nhắn; đây là hướng dẫn cho model, không phải quyền cơ sở dữ liệu được cưỡng chế."
             ]
         },
         {
             "id": "agent-mode",
             "title": "Chế độ chat và Agent mode",
             "paragraphs": [
-                "Chat có ba chế độ. Ask, chế độ mặc định, chỉ tra cứu schema và không chạy gì. Edit chạy được cả query, còn Agent chạy được cả DROP, TRUNCATE và các câu lệnh phá hủy khác. Ở mức {macSafeModeDefault}, mức Safe Mode của connection mới, câu lệnh ghi trong Edit và Agent chạy luôn mà không hỏi; từ mức Alert tới Safe Mode (Full), mỗi câu lệnh chờ bạn bấm Run, còn Read-Only từ chối luôn. Câu lệnh phá hủy luôn chờ bạn bấm xác nhận và không bao giờ được duyệt trước.",
-                "Agent mode (<kbd>⌥⇧⌘A</kbd>) dành cả cửa sổ cho một phiên làm việc: danh sách phiên trên connection này, cuộc hội thoại, và câu lệnh SQL mà phiên đó đã đề xuất và chạy. Khi Agent mode bật, connection được giữ ở mức Alert hoặc nghiêm ngặt hơn, nên không câu lệnh ghi nào chạy khi bạn chưa bấm Run. Đây chỉ là lời nhắc, không phải cơ chế khóa: chỉ một phím tắt là tắt được. Các phiên chỉ được lưu trên máy Mac này."
+                "Ask là chế độ chat mặc định: đọc schema và không chạy câu lệnh. Edit chạy được query; Agent còn có thể đề xuất câu lệnh phá hủy dữ liệu. Ở mức {macSafeModeDefault} mặc định, thao tác ghi của Edit và Agent có thể chạy mà không cần duyệt. Alert và các mức nghiêm ngặt hơn hỏi trước khi ghi; Read-Only từ chối ghi. Câu lệnh phá hủy dữ liệu luôn cần xác nhận.",
+                "Agent mode toàn cửa sổ tách biệt với lựa chọn Agent trong chat. Chế độ này giữ connection ở Alert hoặc nghiêm ngặt hơn, nên thao tác ghi chờ bạn bấm Run. Tắt chế độ sẽ bỏ mức tối thiểu đó. Session chỉ nằm trên máy Mac này."
             ],
             "asset": "mac-agent-mode",
-            "links": [{ "label": "Các mức Safe Mode", "href": "/features/data-editing#safe-mode" }]
+            "links": [
+                {
+                    "label": "Các mức Safe Mode",
+                    "href": "/features/data-editing#safe-mode"
+                }
+            ]
         },
         {
             "id": "mcp",
-            "title": "MCP server",
+            "title": "Kết nối AI client bên ngoài",
             "paragraphs": [
-                "MCP server tích hợp sẵn cho phép AI client làm việc qua các connection bạn đã lưu trong TablePro mà không bao giờ thấy mật khẩu. Server chỉ lắng nghe trên {mcpHost}, không có chế độ truy cập từ xa, và chỉ chạy khi bạn bật hoặc khi một client bạn đã cấu hình khởi động nó.",
-                "Các tool của server bao quát connection, khám phá schema, đọc và ghi dữ liệu, cơ sở dữ liệu và đối tượng, quản trị server, cùng tab và lịch sử của chính ứng dụng, kèm prompt và resource dựng từ schema thật. Mọi lệnh gọi được ghi vào nhật ký hoạt động trên máy Mac, câu lệnh được lưu dưới dạng mã băm thay vì văn bản, và query do client chạy cũng xuất hiện trong lịch sử query của bạn."
+                "MCP server tích hợp sẵn cho client truy cập qua connection đã lưu mà không lộ mật khẩu. Tắt theo mặc định và chỉ lắng nghe trên {mcpHost}. Bạn tự bật hoặc để client đã cấu hình khởi động server.",
+                "Client có thể xem schema và dùng công cụ query, object, quản trị được cho phép. Lời gọi được ghi trên máy kèm digest câu lệnh; query đã chạy cũng nằm trong lịch sử query."
             ],
             "asset": "mac-mcp-settings",
             "blocks": [
@@ -53,34 +58,36 @@
                     "id": "connect",
                     "title": "Kết nối một client",
                     "paragraphs": [
-                        "<ui>Cài đặt > Tích hợp</ui> (Settings > Integrations) có các bước thiết lập và đoạn cấu hình để sao chép cho {mcpSetupClients}. Bridge <code>tablepro-mcp</code> đi kèm ứng dụng còn dùng được với {mcpBridgeClients}. Bridge tự khởi động TablePro khi cần và tự tìm server, nên cấu hình của client không chứa port hay token. Extension Raycast chính thức thì ghép nối (pair) với ứng dụng, và bạn duyệt việc ghép nối ngay trên máy Mac.",
-                        "Một yêu cầu điển hình: bạn nhờ client tìm các user dùng chung một địa chỉ email. Client có thể gọi <code>list_tables</code> và <code>describe_table</code>, thấy cột có tên là <code>email_address</code>, rồi chạy một câu SELECT qua connection đã lưu, mà bạn không phải dán schema vào cuộc chat."
+                        "Xem hướng dẫn thiết lập {mcpSetupClients} trong <ui>Cài đặt > Tích hợp</ui> (Settings > Integrations). Bridge <code>tablepro-mcp</code> có sẵn cũng hỗ trợ {mcpBridgeClients} và mở ứng dụng khi cần. Raycast dùng luồng ghép đôi riêng, cần bạn duyệt.",
+                        "Ví dụ, nhờ client tìm địa chỉ email trùng. Client có thể xem schema, tìm cột và chạy SELECT được cho phép qua connection đã lưu."
                     ]
                 },
                 {
                     "id": "permissions",
                     "title": "Client được phép làm gì",
-                    "paragraphs": ["Mỗi lệnh gọi phải qua tất cả các lớp kiểm tra dưới đây, và lớp chặt nhất được áp dụng."],
+                    "paragraphs": [
+                        "Mỗi lệnh gọi phải qua tất cả các lớp kiểm tra dưới đây, và lớp chặt nhất được áp dụng."
+                    ],
                     "points": [
-                        "Phạm vi token: Read Only, Read & Write hoặc Full Access, có thể giới hạn trong một số connection. Bridge tự nhận một token Read & Write, nên client dùng bridge không chạy được câu lệnh phá hủy.",
-                        "External Clients, đặt cho từng connection: Blocked, Read Only (mặc định) hoặc Read & Write. Connection bị chặn thậm chí không xuất hiện trong danh sách.",
-                        "Duyệt connection: lần đầu một client truy cập một connection, một hộp thoại trên máy Mac sẽ hỏi bạn. Bạn chọn hỏi mỗi lần, hỏi một lần cho mỗi connection, hay không bao giờ hỏi.",
+                        "Phạm vi token: Read Only, Read & Write hoặc Full Access, có thể giới hạn theo tên connection. Bridge dùng Read & Write, không gồm câu lệnh phá hủy dữ liệu.",
+                        "External Clients: Blocked, Read Only (mặc định) hoặc Read & Write cho từng connection. Connection Blocked không được liệt kê.",
+                        "Duyệt connection: hỏi mỗi lần, một lần cho mỗi connection hoặc không hỏi.",
                         "Chính sách AI: connection đặt Never cũng từ chối MCP client.",
-                        "Safe Mode: câu lệnh ghi được xác nhận theo mức của connection, còn DROP hay TRUNCATE cần token Full Access và sự đồng ý của bạn mỗi lần. Câu lệnh đọc hoặc ghi file, hay chạy code trên server, đều bị từ chối."
+                        "Safe Mode: xác nhận theo mức của connection. DROP và TRUNCATE cần Full Access và duyệt mỗi lần. Từ chối câu lệnh truy cập file và thực thi mã phía server."
                     ]
                 }
             ]
         },
         {
             "id": "outside-servers",
-            "title": "MCP server bên ngoài",
+            "title": "Dùng công cụ MCP bên ngoài",
             "paragraphs": [
-                "Chiều ngược lại cũng được: một phiên AI trong TablePro có thể gọi tool trên MCP server do bạn chạy, qua Streamable HTTP, và bắt buộc dùng HTTPS trừ khi server chạy trên chính máy Mac này. Bạn chọn mỗi server được dùng trên những connection nào. Mỗi lệnh gọi hiện một thẻ và chờ bạn bấm; không có cách duyệt sẵn cho các lệnh gọi này. Địa chỉ và token của server chỉ nằm trên máy Mac này."
+                "Trợ lý TablePro cũng gọi được MCP server bên ngoài qua Streamable HTTP. Cần HTTPS trừ server trên máy. Chọn connection nào được dùng từng server; mỗi lời gọi công cụ cần một lần bấm. Cài đặt server chỉ nằm trên máy Mac này."
             ]
         },
         {
             "id": "automation",
-            "title": "Tự động hóa ngoài khung chat",
+            "title": "Tự động hóa",
             "paragraphs": [
                 "AppleScript có thể kết nối, chạy query và mở table, trong phạm vi mức External Clients và Safe Mode của connection. Liên kết <code>tablepro://</code> mở một connection, một table hoặc một tab query; query trong liên kết được điền sẵn sau khi bạn xác nhận và không bao giờ tự chạy. URL cơ sở dữ liệu như <code>postgresql://</code> mở thành connection.",
                 "Lệnh shell <code>tablepro</code> mở các URL và file đó trong ứng dụng; lệnh này không chạy query từ terminal. Extension Raycast chính thức tìm connection, table và lịch sử query của bạn, và chạy query qua ứng dụng đã ghép nối."
@@ -90,29 +97,63 @@
             "id": "privacy",
             "title": "Dữ liệu của bạn đi đâu",
             "paragraphs": [
-                "Prompt, ngữ cảnh schema và mọi thứ bạn đính kèm được gửi tới nhà cung cấp AI bạn chọn, theo điều khoản giữa tài khoản của bạn và nhà cung cấp đó. Với Ollama, llama.cpp, MLX hoặc một server tương thích OpenAI do bạn tự chạy, chúng nằm lại trên máy của bạn. TablePro không nhận được gì trong số đó, và báo cáo sử dụng hằng ngày của ứng dụng Mac không chứa thông tin nào về AI hay MCP.",
+                "Prompt, schema và file đính kèm gửi thẳng tới nhà cung cấp theo điều khoản của họ. Model được phục vụ trên máy giữ dữ liệu trên máy. TablePro không nhận nội dung này. MCP client bên ngoài xử lý dữ liệu truy cập được theo cài đặt và điều khoản riêng.",
                 "Khi bạn thêm GitHub Copilot, tùy chọn gửi dữ liệu telemetry cho GitHub được bật sẵn; hãy tắt nó ở chỗ bạn thiết lập Copilot."
             ],
-            "links": [{ "label": "Ứng dụng Mac gửi đi những gì", "href": "/privacy#mac-app" }]
+            "links": [
+                {
+                    "label": "Ứng dụng Mac gửi đi những gì",
+                    "href": "/privacy#mac-app"
+                }
+            ]
         },
         {
             "id": "iphone",
-            "title": "Không có trên iPhone và iPad",
+            "title": "Nền tảng",
             "paragraphs": [
-                "Ứng dụng cho iPhone và iPad không có trợ lý AI, Agent mode hay MCP server. Mọi thứ trên trang này đều nằm trong ứng dụng Mac."
+                "AI, MCP và các công cụ tự động hóa trên trang này hiện chỉ có trên Mac."
             ],
-            "links": [{ "label": "Ứng dụng cho iPhone và iPad làm được gì", "href": "/ios" }]
+            "links": [
+                {
+                    "label": "Ứng dụng cho iPhone và iPad làm được gì",
+                    "href": "/ios"
+                }
+            ]
         }
     ],
     "availability": [
-        { "label": "AI chat với nhà cung cấp AI của bạn", "ios": "no" },
-        { "label": "Review, Explain, Optimize và Fix with AI", "ios": "no" },
-        { "label": "Gợi ý nội tuyến và AI Rules", "ios": "no" },
-        { "label": "Agent mode", "ios": "no" },
-        { "label": "MCP server", "ios": "no" },
-        { "label": "MCP server bên ngoài", "ios": "no" },
-        { "label": "AppleScript và lệnh shell <code>tablepro</code>", "ios": "no" },
-        { "label": "Extension Raycast", "ios": "no" }
+        {
+            "label": "AI chat với nhà cung cấp AI của bạn",
+            "ios": "no"
+        },
+        {
+            "label": "Review, Explain, Optimize và Fix with AI",
+            "ios": "no"
+        },
+        {
+            "label": "Gợi ý nội tuyến và AI Rules",
+            "ios": "no"
+        },
+        {
+            "label": "Agent mode",
+            "ios": "no"
+        },
+        {
+            "label": "MCP server",
+            "ios": "no"
+        },
+        {
+            "label": "MCP server bên ngoài",
+            "ios": "no"
+        },
+        {
+            "label": "AppleScript và lệnh shell <code>tablepro</code>",
+            "ios": "no"
+        },
+        {
+            "label": "Extension Raycast",
+            "ios": "no"
+        }
     ],
     "limits": [
         "Cursor không gọi được tool của TablePro, nên khi dùng Cursor làm nhà cung cấp, Edit và Agent không chạy query nào. Model chạy trên máy chỉ gọi được tool nếu bản thân model hỗ trợ.",
@@ -122,19 +163,55 @@
         "Phiên Agent mode và MCP server bên ngoài chỉ nằm trên máy Mac nơi bạn thiết lập và không được đồng bộ."
     ],
     "docs": [
-        { "label": "Trợ lý AI", "docs": "/features/ai-assistant" },
-        { "label": "Agent mode", "docs": "/features/agent-mode" },
-        { "label": "MCP server", "docs": "/features/mcp" },
-        { "label": "MCP client", "docs": "/external-api/mcp-clients" },
-        { "label": "Token và phạm vi MCP", "docs": "/external-api/tokens" },
-        { "label": "MCP server bên ngoài", "docs": "/features/mcp-outside-servers" },
-        { "label": "AppleScript", "docs": "/external-api/applescript" },
-        { "label": "Extension Raycast", "docs": "/external-api/raycast" }
+        {
+            "label": "Trợ lý AI",
+            "docs": "/features/ai-assistant"
+        },
+        {
+            "label": "Agent mode",
+            "docs": "/features/agent-mode"
+        },
+        {
+            "label": "MCP server",
+            "docs": "/features/mcp"
+        },
+        {
+            "label": "MCP client",
+            "docs": "/external-api/mcp-clients"
+        },
+        {
+            "label": "Token và phạm vi MCP",
+            "docs": "/external-api/tokens"
+        },
+        {
+            "label": "MCP server bên ngoài",
+            "docs": "/features/mcp-outside-servers"
+        },
+        {
+            "label": "AppleScript",
+            "docs": "/external-api/applescript"
+        },
+        {
+            "label": "Extension Raycast",
+            "docs": "/external-api/raycast"
+        }
     ],
     "related": [
-        { "label": "Safe Mode", "href": "/features/data-editing#safe-mode" },
-        { "label": "Chính sách của connection", "href": "/features/connections#policies" },
-        { "label": "Ứng dụng Mac gửi đi những gì", "href": "/privacy#mac-app" },
-        { "label": "So sánh TablePro với các client khác", "href": "/compare" }
+        {
+            "label": "Safe Mode",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "Chính sách của connection",
+            "href": "/features/connections#policies"
+        },
+        {
+            "label": "Ứng dụng Mac gửi đi những gì",
+            "href": "/privacy#mac-app"
+        },
+        {
+            "label": "So sánh TablePro với các client khác",
+            "href": "/compare"
+        }
     ]
 }

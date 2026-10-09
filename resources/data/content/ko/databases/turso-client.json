@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso 및 libSQL",
     "header": {
-        "title": "{devices}용 Turso·libSQL 클라이언트",
-        "lead": "URL과 토큰으로 Turso 데이터베이스에 연결해 SQLite 문법으로 쿼리하고 테이블, 인덱스와 트리거를 변경합니다. 같은 드라이버는 자체 sqld 서버와 Mac의 libSQL 파일도 엽니다."
+        "title": "Turso 및 libSQL 클라이언트",
+        "lead": "URL과 토큰으로 Turso 데이터베이스에 연결하세요. 테이블을 탐색하고 SQLite 쿼리를 실행하거나 로컬 libSQL 파일을 열 수 있습니다."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Turso에 연결",
             "paragraphs": [
-                "연결 유형에서 Turso를 선택하고 <ui>연결 모드</ui>(Connection Mode)를 <ui>원격(Turso)</ui>(Remote (Turso))으로 유지합니다. <code>.turso.io</code>로 끝나는 HTTPS URL을 붙여넣고 <ui>API 토큰</ui>(API Token)에 토큰을 넣으면 macOS 키체인에 보관됩니다. Turso 대시보드나 <code>turso db show my-db --url</code>, <code>turso db tokens create my-db</code>로 둘 다 얻을 수 있습니다.",
-                "<code>libsql://</code> URL은 HTTPS로 변환되며 가져오면 원격 연결을 만듭니다. URL이 하나의 데이터베이스를 지정하므로 호스트, 포트나 데이터베이스 필드는 없습니다. 평문 HTTP 대신 HTTPS URL을 쓰면 암호화되며 SSH 터널은 없습니다."
+                "<ui>원격(Turso)</ui> (Remote (Turso))를 <ui>연결 모드</ui> (Connection Mode)에서 선택하세요. 데이터베이스의 HTTPS URL과 <ui>API 토큰</ui> (API Token)을 붙여 넣으며 토큰은 macOS Keychain에 저장됩니다. 둘 다 Turso 대시보드나 CLI에서 얻을 수 있습니다.",
+                "가져온 <code>libsql://</code> URL은 HTTPS 원격 연결로 바뀝니다. 각 URL은 하나의 데이터베이스를 지정합니다. 일반 HTTP URL은 암호화되지 않으며 SSH 터널은 지원하지 않습니다."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "테이블, 인덱스 및 트리거",
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 테이블 생성, 열·인덱스 추가·삭제와 트리거 생성·편집·삭제를 지원합니다. 사이드바에서 테이블 이름은 바꿀 수 있지만 뷰는 바꿀 수 없습니다.",
-                "원격 데이터베이스의 열 순서나 외래 키를 변경하면 TablePro가 재구성 스크립트를 작성해 직접 검토하고 실행하게 합니다. 별도 HTTP 요청에 걸친 하나의 트랜잭션이 필요하므로 앱이 대신 실행할 수 없습니다."
+                "원격 열 순서나 외래 키를 바꾸면 검토하고 실행할 재구축 스크립트가 만들어집니다. TablePro는 별도 HTTP 요청에 걸쳐 하나의 트랜잭션으로 실행할 수 없습니다."
             ]
         },
         {

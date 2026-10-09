@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "适用于 {devices} 的 SQL Server 客户端",
-        "lead": "逐批次运行 T-SQL 脚本，按 SQL Server Management Studio 的方式处理 GO 和 PRINT，并使用 SQL Server 登录、Kerberos 或 Microsoft Entra ID 工作账户认证。Windows、Linux、Docker 服务器及 Azure SQL Database 均以相同方式连接。"
+        "title": "SQL Server 客户端",
+        "lead": "运行包含 GO 批次和 PRINT 输出的 T-SQL 脚本。使用 SQL Server 登录、Kerberos 或 Microsoft Entra ID 连接。"
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供主机和 TCP 端口，再选择<ui>身份验证</ui>（Authentication），表单会随之调整：SQL Server 用户密码、Kerberos Windows Authentication 或 Microsoft Entra ID。属于单个数据库的登录，例如 Azure SQL contained user，还需填写 Database。",
+                "输入主机和 TCP 端口，然后在 <ui>身份验证</ui> (Authentication) 中选择 SQL Server 登录、Kerberos 或 Microsoft Entra ID。数据库范围登录（包括 Azure SQL 包含用户）还需要 Database 字段。",
                 "Kerberos 使用凭据缓存中的现有票据，或根据输入的主体和密码请求票据。票据为服务器注册的 SPN 签发，因此请用主机名而非 IP 连接。TablePro 从不运行 <code>kinit</code> 或编辑 <code>/etc/krb5.conf</code>。",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用设备代码流程登录，遵循多因素认证和 Conditional Access。需在 Azure 注册应用并填写客户端 ID；令牌保存在登录钥匙串中，标记为仅限此设备，并在后台刷新。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用设备代码登录，支持多重身份验证和 Conditional Access。注册 Azure 应用并输入客户端 ID。令牌在后台刷新，保存在仅限本设备的登录钥匙串中。",
                 "新连接默认为 Preferred，在 SQL Server 上仅加密登录。要加密整个会话，请选 Required 或更严格级别；Verify CA、Verify Identity 使用 macOS 系统根证书验证。TablePro 也可为 Google Cloud SQL 运行 Cloud SQL Auth Proxy，并通过 <network>SSH 隧道</network>访问私有网络服务器。"
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "脚本、批次和编辑",
             "paragraphs": [
-                "脚本按仅含 <code>GO</code> 的行分隔，像 sqlcmd 一样逐批次发送服务器；<code>GO 5</code> 将前一批次运行五次。每个结果集在独立标签页打开，<code>PRINT</code> 输出和信息消息显示在 Output 视图。",
-                "若失败需回滚之前的批次，请在脚本加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；脚本留下未结束事务时会在结尾提示。运行在首个失败批次停止，错误指出编辑器中的行号。",
+                "脚本在 <code>GO</code> 行处拆分；<code>GO 5</code> 将前一个批次重复五次。每个结果集在独立标签页打开。Output 显示 <code>PRINT</code> 输出和信息消息。",
+                "批次需要事务时使用 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>。未结束事务会显示提示。执行在首个失败批次停止，错误中包含编辑器行号。",
                 "每个会话以筛选索引、索引视图和计算列索引所需的 SET 选项打开，例如启用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不匹配任何记录，请用 <code>IS NULL</code> 比较。",
                 "表在侧边栏 schema 下嵌套显示，<code>⌘K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
             ]
@@ -50,7 +50,7 @@
             "title": "结构",
             "paragraphs": [
                 "<structure>Structure 标签页</structure> 暂存列、索引、外键和约束的修改，在执行前显示 T-SQL。可从侧边栏删除 schema，但 SQL Server 拒绝删除仍含对象的 schema；创建请在编辑器使用 CREATE SCHEMA。",
-                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 SQL Server schema 或数据，保存每条语句后附 <code>GO</code> 行的脚本，可直接用于 sqlcmd 或 SQL Server Management Studio。"
+                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比较 SQL Server 结构或数据。生成脚本用适用于 sqlcmd 或 SQL Server Management Studio 的 <code>GO</code> 分隔语句。"
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "移动数据",
             "paragraphs": [
-                "<importData>导入</importData> {importFormats} 文件。含 <code>GO</code> 行的 <code>.sql</code> 文件像 sqlcmd 一样逐批次运行。表或结果导出为 {exportFormats}；SQL 导出在每条语句后加 <code>GO</code> 行，使其各自作为独立批次运行。"
+                "<importData>导入</importData> {importFormats} 文件。SQL 文件识别 <code>GO</code> 批次。将表或结果导出为 {exportFormats}；SQL 导出同样使用 <code>GO</code> 分隔符。"
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio 是 Microsoft 自有 SQL Server、Azure SQL 工具。SQL Server Agent 作业、Always On 可用性组、实时查询统计及性能调优等 TablePro 未涵盖的管理任务可选用它。",
+                "text": "SQL Server Management Studio 提供超出 TablePro 的管理功能，包括 SQL Server Agent 作业、Always On 可用性组、实时查询统计和性能调优。",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

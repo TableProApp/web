@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs MySQL Workbench: hanya MySQL atau banyak mesin",
+        "title": "TablePro vs MySQL Workbench: fitur dan kompatibilitas",
         "description": "MySQL Workbench adalah alat MySQL gratis dari Oracle, kini dibangun ulang di atas MySQL Shell. TablePro mendukung MySQL dan mesin lain di Mac dan iPhone."
     },
     "og": {
@@ -9,22 +9,18 @@
     },
     "header": {
         "title": "TablePro vs MySQL Workbench",
-        "lead": "MySQL Workbench adalah alat gratis bersumber terbuka dari Oracle untuk MySQL. Versi {status.version} membangunnya ulang di atas MySQL Shell, dan Oracle tidak lagi memelihara Workbench 8.0. TablePro adalah klien sumber terbuka untuk MySQL, MariaDB, dan mesin lain, dengan aplikasi iPhone dan iPad terpisah serta fitur berbayar opsional pada Mac."
+        "lead": "MySQL Workbench adalah alat Oracle untuk MySQL. Versi {status.version} membangunnya kembali di MySQL Shell. Bandingkan dengan TablePro untuk MySQL, MariaDB dan database lainnya."
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda juga menggunakan MariaDB, PostgreSQL, SQL Server, SQLite, atau Redis, dan menginginkan satu klien untuk semuanya.",
-            "Anda masih menjalankan server MySQL 8.0. TablePro terhubung ke server tersebut, sedangkan Workbench baru mendukung MySQL {cells.databases.version} dan yang lebih baru.",
-            "Mac Anda menggunakan prosesor Intel. TablePro memiliki build untuk Intel dan satu lagi untuk Apple silicon.",
-            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda.",
-            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke MySQL dan MariaDB."
+            "MySQL dan MariaDB bersama tipe database lainnya.",
+            "koneksi MySQL 8.0; Workbench baru mendukung {cells.databases.version} dan yang lebih baru.",
+            "Versi Intel Mac atau aplikasi iPhone dan iPad gratis."
         ],
         "competitor": [
-            "Anda menginginkan alat resmi Oracle untuk MySQL, gratis dan bersumber terbuka.",
-            "Anda menyukai notebook yang menggabungkan kueri, hasil, dan catatan, dengan JavaScript dan TypeScript selain SQL.",
-            "Anda menggunakan MySQL Enterprise Backup dan ingin menjadwalkan serta memulihkan cadangan dari aplikasi desktop.",
-            "Anda sedang pindah ke MySQL HeatWave di OCI dan menginginkan migrasi terpandu.",
-            "Anda juga bekerja di Windows atau Linux dan menginginkan alat yang sama di masing-masing."
+            "Alat gratis milik Oracle untuk MySQL.",
+            "Notebook SQL dengan JavaScript dan TypeScript.",
+            "Integrasi MySQL Enterprise Backup atau migrasi HeatWave terpandu."
         ]
     },
     "glance": {
@@ -57,31 +53,34 @@
         "items": [
             {
                 "text": "MySQL Workbench adalah alat resmi Oracle untuk MySQL, gratis dan bersumber terbuka dengan GPL.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Notebook SQL-nya menggabungkan kueri, hasil, dan catatan dalam satu dokumen, serta menjalankan JavaScript dan TypeScript selain SQL.",
-                "cite": ["cells.notebooks"],
+                "cite": [
+                    "cells.notebooks"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Bersama MySQL Enterprise Backup, aplikasi ini membuat, menjadwalkan, dan memulihkan cadangan penuh maupun inkremental.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "HeatWave Migration Assistant memandu perpindahan ke MySQL HeatWave di OCI.",
-                "cite": ["cells.migration"],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "Aplikasi ini berjalan di Windows, macOS, dan Linux.",
-                "cite": ["platforms"],
+                "cite": [
+                    "cells.migration"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -98,19 +97,25 @@
             },
             {
                 "text": "TablePro juga terhubung ke server MySQL 8.0. Oracle mendukung MySQL {cells.databases.version} dan yang lebih baru di Workbench baru, dan menyatakan versi yang lebih lama mungkin berfungsi.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "TablePro berjalan di Mac Intel maupun Apple silicon, dengan build terpisah untuk masing-masing. Unduhan Mac untuk Workbench baru hanya untuk Apple silicon.",
-                "cite": ["mac"],
+                "cite": [
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "<link>Backup Dump</link> menjalankan mysqldump dan Restore Dump menjalankan mysql, jadi pencadangan tidak memerlukan MySQL Enterprise Backup. Keduanya gratis.",
-                "cite": ["cells.enterpriseBackup"],
+                "cite": [
+                    "cells.enterpriseBackup"
+                ],
                 "feature": null,
                 "href": "/features/import-export#backup"
             },
@@ -132,12 +137,6 @@
         "intro": "",
         "items": [
             {
-                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "Tidak ada notebook, dan koneksi MySQL menjalankan SQL, bukan JavaScript atau TypeScript.",
                 "cite": [],
                 "feature": null,
@@ -157,7 +156,9 @@
             },
             {
                 "text": "Beberapa fitur berbayar. Starter menambahkan fitur seperti {starterExamples}, sedangkan MySQL Workbench gratis.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -191,12 +192,6 @@
             "question": "Apakah MySQL Workbench berjalan di Mac Intel?",
             "answer": "Unduhan Mac untuk versi {status.version} hanya untuk Apple silicon. TablePro memiliki build terpisah untuk Mac Intel. <link>Unduh TablePro</link>.",
             "href": "/download"
-        },
-        {
-            "id": "free",
-            "question": "Apakah TablePro gratis seperti MySQL Workbench?",
-            "answer": "Gratis digunakan. MySQL, MariaDB, dan mesin lain yang didukung, asisten AI, serta server MCP tidak dikenai biaya, dan kodenya bersumber terbuka dengan AGPLv3. Paket Starter atau Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

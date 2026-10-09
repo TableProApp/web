@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client Oracle pour {devices}",
-        "description": "Connectez Oracle sans Instant Client, exécutez PL/SQL et scripts SQL*Plus, lisez DBMS_OUTPUT et lancez des exports Data Pump sur le serveur."
+        "description": "Connectez Oracle Database sans Instant Client, exécutez SQL et PL/SQL, lisez DBMS_OUTPUT et lancez des exports Data Pump sur le serveur."
     },
     "og": {
         "kicker": "Bases de données",
@@ -10,8 +10,8 @@
     "engine": "oracle",
     "breadcrumb": "Oracle",
     "header": {
-        "title": "Client Oracle Database pour {devices}",
-        "lead": "Le pilote parle le protocole TNS d’Oracle en Swift ; Instant Client et le reste de la pile Oracle restent donc hors de votre Mac. Exécutez SQL et PL/SQL, y compris les scripts SQL*Plus, et lisez la sortie DBMS_OUTPUT à côté de chaque résultat."
+        "title": "Client Oracle Database",
+        "lead": "Exécutez SQL et PL/SQL sans installer Oracle Instant Client. Lisez DBMS_OUTPUT à côté des résultats de requête."
     },
     "asset": "mac-db-oracle-plsql",
     "links": {
@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez hôte, port du listener et Service Name, ou passez le <ui>Type de connexion</ui> (Connection Type) à SID pour une instance sans service. Authentifiez-vous par utilisateur et mot de passe, en Normal ou avec le rôle SYSDBA ou SYSOPER.",
+                "Saisissez hôte, port du listener et Service Name, ou choisissez SID dans <ui>Type de connexion</ui> (Connection Type). La connexion par mot de passe prend en charge Normal, SYSDBA et SYSOPER.",
                 "Native Network Encryption ne nécessite aucun réglage : si le serveur la demande, AES avec somme SHA-2 est proposé ; <ui>Network Encryption</ui> change ce que TablePro offre. Pour TLS, choisissez Required pour TCPS, ou Verify CA ou Verify Identity avec un certificat d’AC. Les nouvelles connexions ont SSL désactivé ; Preferred reste en TCP en clair.",
                 "Sur Oracle Autonomous Database, copiez hôte, port et nom de service depuis la chaîne TLS, pas mTLS, et définissez SSL sur Required ou Verify CA. Les fichiers wallet ne sont jamais lus ; la base doit donc accepter TLS sans TLS mutuel.",
                 "Un listener RAC SCAN, serveur partagé ou répartiteur devant la base ne nécessite aucune configuration ; un <network>tunnel SSH</network> atteint un listener en réseau privé."
@@ -39,7 +39,7 @@
             "id": "work",
             "title": "SQL, PL/SQL et transactions",
             "paragraphs": [
-                "Un bloc PL/SQL ou une unité stockée s’exécute comme une instruction, quel que soit le nombre de points-virgules : placez-y le curseur et lancez-le. Les scripts SQL*Plus ou SQL Developer fonctionnent sans modification ; une ligne contenant seulement <code>/</code> termine l’unité précédente. Une unité non compilable échoue avec les erreurs Oracle, une par ligne avec leur position.",
+                "Exécutez les blocs PL/SQL et unités stockées comme instructions uniques. Dans les scripts, une ligne <code>/</code> termine une unité. Les erreurs de compilation incluent les messages Oracle et positions dans le source. Les commandes client SQL*Plus ne sont pas prises en charge.",
                 "Les lignes <code>DBMS_OUTPUT.PUT_LINE</code> apparaissent avec le résultat de l’instruction qui les a imprimées, sans <code>SET SERVEROUTPUT ON</code>. Dans un bloc anonyme, <code>:name</code> est un <parameters>paramètre de requête</parameters> à remplir dans un panneau.",
                 "Chaque instruction réussie est validée. Commencez par <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> pour retenir les changements ; tout ce qui suit attend votre <code>COMMIT</code> ou <code>ROLLBACK</code>, y compris les enregistrements de grille.",
                 "Chaque utilisateur est un schéma et <code>⌘K</code> change le schéma actif sans reconnexion. Les modifications de lignes sont préparées avec <editing>Preview SQL</editing>. Un bloc supprimant ou vidant, même par <code>EXECUTE IMMEDIATE</code>, déclenche l’<safeMode>avertissement de requête dangereuse</safeMode> avant exécution."
@@ -49,9 +49,9 @@
             "id": "schema",
             "title": "Schéma",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> écrit <code>ALTER TABLE</code> pour ajouter, renommer, modifier et supprimer des colonnes et créer des index, avec les noms sensibles à la casse entre guillemets doubles. Les informations de table incluent aussi clés primaires, étrangères et DDL CREATE TABLE.",
+                "Ajoutez, renommez, modifiez ou supprimez des colonnes, ou créez des index dans l’<structure>onglet Structure</structure>. Les noms sensibles à la casse sont cités. Inspectez clés primaires, clés étrangères et DDL CREATE TABLE.",
                 "Une table partitionnée liste ses partitions dessous, chacune avec sa position ; les sous-partitions sont imbriquées sous leur partition. Interrogez-en une avec <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync>, de l’offre {compareSyncTier}, compare deux schémas Oracle ou leurs données et enregistre un script avec une ligne <code>/</code> après chaque unité, prêt pour SQL*Plus ou SQLcl."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compare les schémas ou données Oracle. Les scripts utilisent des séparateurs <code>/</code> pour SQL*Plus ou SQLcl."
             ]
         },
         {

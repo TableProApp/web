@@ -4,7 +4,7 @@ export default {
     "status": "错误 {status}",
     "notFound": {
         "title": "找不到页面",
-        "body": "地址可能输入有误，或页面已移至其他位置。您可以从以下页面开始。"
+        "body": "请检查地址，或使用下方链接。"
     },
     "gone": {
         "title": "此页面已移除",

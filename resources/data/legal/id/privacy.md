@@ -124,7 +124,7 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Dokumentasi.** Dokumentasi di docs.tablepro.app dihosting oleh Mintlify, yang menerima alamat IP dan detail peramban Anda pada setiap halaman, dan halaman memuat fonnya dari Google Fonts. Dokumentasi mengajukan pertanyaan cookie sendiri, karena tidak dapat membaca jawaban Anda di situs ini. Sampai Anda memilih **Allow** di sana, dokumentasi tidak memasang cookie dan tidak menyimpan ID pengunjung. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda ke dokumentasi, dan Mintlify menyimpan ID pengunjung acak, `mintlify_anonymous_id`, di penyimpanan lokal untuk menghitungnya. **Cookie settings** di footer dokumentasi mengubah jawaban Anda, dan menolak menghapus keduanya. Dasar hukum: persetujuan Anda.
 
-Membaca situs tidak memasang cookie milik situs sendiri. Berlangganan buletin, memulai pembayaran, atau memeriksa kode diskon mengirim permintaan ke server kami yang memasang dua cookie portal akun, `tablepro-session` dan `XSRF-TOKEN`. Semua data yang disimpan situs di peramban Anda tercantum di [Cookie dan penyimpanan peramban](#cookies).
+Membaca situs tidak menetapkan cookie miliknya sendiri. Permintaan pendaftaran newsletter, checkout, dan kode diskon dari situs publik tidak menyertakan kredensial: permintaan tersebut tidak mengirim cookie portal akun maupun menerima cookie dari respons. Membuka halaman portal akun adalah tindakan terpisah yang menetapkan cookie portal di bawah ini. Semua yang disimpan situs di browser tercantum dalam [Cookie dan penyimpanan browser](#cookies).
 
 ## Pembelian {#purchases}
 
@@ -144,7 +144,7 @@ Jika Anda berlangganan catatan rilis, kami menyimpan alamat email dan bahasa hal
 
 ## Cookie dan penyimpanan peramban {#cookies}
 
-Membaca situs web publik tidak memasang cookie milik situs sendiri; berlangganan buletin atau memulai pembayaran memasang dua cookie portal yang benar-benar diperlukan dan tercantum di bawah ini. Cloudflare Web Analytics tidak memasang cookie atau menyimpan apa pun di peramban. Cookie Google Analytics tidak dipasang sampai Anda mengizinkannya. Crisp memasang cookie pada setiap halaman setelah chat dimuat. Tidak ada data di sini yang digunakan untuk iklan atau dijual.
+Membaca situs publik serta permintaan newsletter, checkout, dan kode diskonnya tidak menetapkan cookie miliknya sendiri. Membuka halaman portal akun menetapkan dua cookie portal yang benar-benar diperlukan di bawah ini. Cloudflare Web Analytics tidak menetapkan cookie atau menyimpan apa pun di browser. Cookie Google Analytics hanya ditetapkan dengan izin Anda. Crisp menetapkan cookie pada setiap halaman setelah chat dimuat. Tidak ada yang digunakan untuk iklan atau dijual.
 
 - **`_ga` dan `_ga_<ID>`** (cookie Google Analytics, hingga 2 tahun, hanya jika Anda mengizinkan analitik): pengenal acak untuk peramban dan status kunjungan saat ini. Menolak atau mengubah jawaban kemudian akan menghapusnya. Dasar hukum: persetujuan.
 - **`tablepro:analytics-consent`** (penyimpanan lokal, sampai Anda menghapusnya): jawaban Anda atas pertanyaan analitik, agar tidak ditanyakan pada setiap halaman. Situs web dan portal akun berbagi data ini. Dasar hukum: benar-benar diperlukan untuk menghormati pilihan Anda.
@@ -152,7 +152,7 @@ Membaca situs web publik tidak memasang cookie milik situs sendiri; berlangganan
 - **`theme`** dan **`tablepro:banner-dismissed`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem, serta banner yang Anda tutup dan batas waktunya: 30 hari, atau satu tahun jika Anda menyatakan sudah memiliki lisensi atau membelinya. Dasar hukum: kepentingan yang sah.
 - **`mintlify_anonymous_id`** (penyimpanan lokal di docs.tablepro.app, dipasang oleh Mintlify, hanya jika Anda mengizinkan Google Analytics di sana): ID pengunjung yang dijelaskan di [Situs web](#website). Menolak akan menghapusnya. Dokumentasi menyimpan jawaban `tablepro:analytics-consent` miliknya sendiri. Dasar hukum: persetujuan.
 - **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah chat dimuat): mempertahankan chat dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
-- **`tablepro-session` dan `XSRF-TOKEN`** (cookie portal akun, 2 jam): menjaga sesi masuk dan melindungi formulir portal dari pemalsuan permintaan lintas situs. Halaman portal lainnya, seperti konfirmasi pembelian dan halaman buletin, juga memasangnya, demikian pula berlangganan buletin atau memulai pembayaran maupun pemeriksaan kode diskon dari halaman mana pun di situs ini. Dasar hukum: benar-benar diperlukan.
+- **`tablepro-session` dan `XSRF-TOKEN`** (cookie portal akun, 2 jam): menjaga Anda tetap masuk dan melindungi formulir portal dari pemalsuan permintaan lintas situs (CSRF). Membuka halaman portal lainnya, seperti konfirmasi pembelian dan halaman newsletter, juga menetapkannya. Permintaan newsletter, checkout, dan kode diskon dari situs publik tidak menyertakan kredensial dan tidak menyimpan cookie ini. Dasar hukum: benar-benar diperlukan.
 
 Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengaturan cookie** di footer setiap halaman, atau di sini:
 

@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "适用于 {devices} 的 Snowflake 客户端",
-        "lead": "按账户要求的方式登录，无需重连切换会话的仓库和角色，再查询、编辑表并卸载到 stage。"
+        "title": "Snowflake 客户端",
+        "lead": "查询和编辑表，切换仓库与角色，并导出到暂存区。"
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "填写账户标识符，例如 <code>myorg-myaccount</code> 或旧式 <code>xy12345.us-east-1</code>，即 <code>.snowflakecomputing.com</code> 前的部分。所有请求经 HTTPS 发送至账户端点，因此无主机、SSL 区域或 SSH 面板。",
-                "选择<ui>认证方式</ui>（Auth Method）后仅显示所需字段。密钥对使用 PKCS#8 私钥为每次连接签名，因此 Mac 时钟必须准确。浏览器 SSO 前往身份提供商，OAuth 令牌按粘贴内容使用且从不刷新。账户强制 MFA 时，密码需配合 <ui>MFA 验证码（TOTP）</ui>（MFA Passcode (TOTP)）中的当前验证码。",
+                "输入 <code>.snowflakecomputing.com</code> 前的账户标识符，例如 <code>myorg-myaccount</code>。请求使用 HTTPS；无需主机、TLS 区域或 SSH 面板。",
+                "从 <ui>认证方式</ui> (Auth Method) 中选择 PKCS#8 密钥对、浏览器 SSO、OAuth 令牌，或密码加 <ui>MFA 验证码（TOTP）</ui> (MFA Passcode (TOTP))。密钥对要求设备时钟准确。粘贴的 OAuth 令牌不会刷新。",
                 "账户开启 <code>ALLOW_CLIENT_MFA_CACHING</code> 时，一次新验证码即可：Snowflake 返回 MFA 令牌，TablePro 保存在<credentials>钥匙串</credentials>。启用 <code>ALLOW_ID_TOKEN</code> 时，浏览器 SSO 保存登录令牌，后续连接跳过浏览器直到 Snowflake 拒绝。",
                 "Snowflake 无 URL scheme。可在 <ui>CLI连接名称</ui>（CLI Connection Name）指定配置节，连接时从 <code>~/.snowflake/connections.toml</code> 读取所有留空字段。"
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "仓库、角色和查询",
             "paragraphs": [
-                "<ui>数据库 > Session Context</ui>（Database > Session Context）用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 无需重连切换仓库或角色。一个 TablePro 连接对应一个 Snowflake 会话，空闲时仍保持。绑定第二个数据库的标签页在同一会话中先执行 <code>USE DATABASE</code>。",
+                "通过 <ui>数据库 > Session Context</ui> (Database > Session Context) 更改仓库和角色。连接在空闲时保留一个会话；其他数据库的标签页会在执行语句前运行 <code>USE DATABASE</code>。",
                 "侧边栏按数据库和 schema 分组对象。对象列表来自不需仓库的 <code>SHOW</code> 命令，列详情来自需要仓库的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 返回 Snowflake 原始文本计划。",
-                "<editing>网格编辑</editing>在服务器绑定值，VARIANT、OBJECT、ARRAY 单元格通过 <code>PARSE_JSON</code> 发送。编辑按声明主键定位，无主键则按所有列。Snowflake 从不强制键约束，重复键意味着编辑或删除影响所有匹配行，请先检查重复。"
+                "<editing>表格编辑</editing>在服务器端绑定值，VARIANT、OBJECT 和 ARRAY 单元格通过 <code>PARSE_JSON</code> 发送。编辑按已声明的主键定位，没有主键时匹配所有列。标准 Snowflake 表不强制键约束，因此重复键会让编辑或删除影响所有匹配行；编辑前请检查重复值。混合表会强制执行键约束。"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "移动数据",
             "paragraphs": [
                 "通过连接<importData>导入</importData> {importFormats}，将表或结果以 {exportFormats} 导出到 Mac。",
-                "要不经 Mac 卸载表，选择<ui>文件 > Server-Side Export…</ui>（File > Server-Side Export…），指定 stage，可带或不带 <code>@</code>。<backup>Server-Side Export</backup> 以自有权限运行 <code>COPY INTO</code>，写入 gzip 压缩 CSV、Parquet 或 JSON；面板等待完成，不写入 Mac。"
+                "选择 <ui>文件 > Server-Side Export…</ui> (File > Server-Side Export…) 和暂存区。<backup>Server-Side Export</backup> 使用您的权限运行 <code>COPY INTO</code>，写入 gzip 压缩 CSV、Parquet 或 JSON。操作会等待完成，文件不经过 Mac。"
             ]
         }
     ],

@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Lựa chọn thay thế SQL Server Management Studio trên Mac",
-        "lead": "SQL Server Management Studio là công cụ miễn phí của Microsoft cho SQL Server và Azure SQL, và chỉ chạy trên Windows. Microsoft đã ngừng Azure Data Studio vào ngày {cells.microsoftOnMac.date} và hướng người dùng sang Visual Studio Code với extension MSSQL, vốn chạy được cả trên macOS. TablePro là client native cho Mac, kết nối tới SQL Server và nhiều engine khác."
+        "lead": "SQL Server Management Studio là công cụ Microsoft chỉ cho Windows, dành cho SQL Server và Azure SQL. TablePro kết nối SQL Server từ ứng dụng native, không thay công cụ quản trị SSMS."
     },
     "shortAnswer": {
         "tablepro": [
-            "Bạn làm việc trên Mac và muốn một ứng dụng native cho SQL Server, nơi script T-SQL chạy theo từng batch tại mỗi dòng GO.",
-            "Bạn đăng nhập bằng SQL Server login, Kerberos hoặc Microsoft Entra ID.",
-            "Bạn còn làm việc với PostgreSQL, MySQL, SQLite hay Redis, và muốn một client cho tất cả.",
-            "Bạn muốn trợ lý AI và MCP server miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn.",
-            "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới SQL Server."
+            "Client native cho SQL Server, với batch T-SQL tách bằng GO.",
+            "Đăng nhập SQL Server login, Kerberos hoặc Microsoft Entra ID.",
+            "SQL Server cạnh PostgreSQL, MySQL, SQLite hoặc Redis."
         ],
         "competitor": [
-            "Bạn quản lý job của SQL Server Agent, Always On availability group hoặc Always Encrypted.",
-            "Bạn tối ưu hiệu năng bằng live query statistics, tuning advisor và dashboard.",
-            "Bạn quản lý login, người dùng và role, hoặc thiết kế table trong database diagram.",
-            "Bạn có một máy Windows để chạy SSMS."
+            "Quản trị SQL Server Agent, Always On hoặc Always Encrypted.",
+            "Thống kê query trực tiếp, tuning advisor và dashboard.",
+            "Quản trị login/role hoặc thiết kế sơ đồ cơ sở dữ liệu."
         ],
-        "competitorTitle": "Giữ SQL Server Management Studio trên Windows nếu"
+        "competitorTitle": "Giữ SQL Server Management Studio khi cần"
     },
     "glance": {
         "intro": "SQL Server Management Studio không có bản cho Mac. Lựa chọn chính thức của Microsoft trên Mac là Visual Studio Code với extension MSSQL: Microsoft đã ngừng Azure Data Studio vào ngày {cells.microsoftOnMac.date} và hướng người dùng sang đó."
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio là công cụ chính thức của Microsoft cho SQL Server, Azure SQL Database, Azure SQL Managed Instance và SQL database trong Fabric, và miễn phí.",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft gọi đây là nơi được hỗ trợ chính thức cho job của SQL Server Agent và công việc quản trị chung.",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "SSMS cấu hình, giám sát và xử lý sự cố Always On availability group, và quản lý login, người dùng, role và Always Encrypted.",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Live query statistics, client statistics, tuning advisor và dashboard hỗ trợ công việc tối ưu hiệu năng.",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "GitHub Copilot, cài thêm qua Visual Studio Installer, viết, sửa và tối ưu T-SQL.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro chạy native trên Mac, có bản build riêng cho Apple silicon và Intel. SQL Server Management Studio chỉ chạy trên Windows.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}, trong khi SQL Server Management Studio miễn phí.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

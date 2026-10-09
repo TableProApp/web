@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Postico: PostgreSQL 전용 또는 여러 엔진",
+        "title": "TablePro vs Postico: PostgreSQL 도구 및 라이선스",
         "description": "Postico 2는 일회 구매 PostgreSQL용 Mac 앱이고 TablePro는 PostgreSQL과 다른 엔진도 지원합니다. 가격·서버 도구·동기화·설정을 비교합니다."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Postico",
-        "lead": "Postico 2는 PostgreSQL과 같은 프로토콜을 쓰는 데이터베이스용 Mac 앱으로 일회 구매 라이선스입니다. TablePro는 PostgreSQL·다른 엔진용 오픈 소스 클라이언트이며 별도 iPhone·iPad 앱과 Mac 선택 유료 기능이 있습니다."
+        "lead": "Postico는 PostgreSQL와 해당 프로토콜을 사용하는 데이터베이스에 중점을 둡니다. TablePro는 PostgreSQL 및 기타 데이터베이스 유형에 연결됩니다. 쿼리 도구, 서버 도구 및 라이센스를 비교하십시오."
     },
     "shortAnswer": {
         "tablepro": [
-            "PostgreSQL뿐 아니라 MySQL, SQL Server, SQLite, Redis·MongoDB도 사용합니다.",
-            "서버도 관리합니다. Users & Roles, 세션 종료가 가능한 Server Dashboard, VACUUM·pg_dump 백업이 Mac 앱에서 무료입니다.",
-            "쿼리를 튜닝합니다. EXPLAIN은 계획을 다이어그램으로, EXPLAIN Compare는 새 계획을 기준과 비교합니다.",
-            "PostgreSQL에 연결하는 무료 iPhone·iPad 앱을 원합니다.",
-            "AI 어시스턴트·MCP 서버를 무료로 원합니다."
+            "다른 데이터베이스 유형과 함께 PostgreSQL.",
+            "무료 역할, 세션, VACUUM 및 pg_dump 도구.",
+            "EXPLAIN 다이어그램 및 기준선 비교."
         ],
         "competitor": [
-            "PostgreSQL, Redshift, CockroachDB·Greenplum만 사용하며 그 작업에 맞춘 앱을 원합니다.",
-            "Mac App Store 버전 또는 개인·상업·팀·학생용 가격의 라이선스를 원합니다.",
-            "서버 설정을 iCloud·Dropbox로 동기화하고 싶습니다."
+            "Greenplum를 포함한 PostgreSQL 호환 데이터베이스를 위한 집중 클라이언트입니다.",
+            "Mac App Store 사본 또는 일회성 라이센스.",
+            "iCloud 또는 Dropbox를 통해 동기화되는 서버 설정."
         ]
     },
     "glance": {
@@ -100,7 +98,7 @@
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>iCloud Sync</link>는 Mac과 iPhone·iPad의 연결을 맞춥니다. Mac은 Starter에 포함되고 iPhone·iPad 앱은 무료입니다.",
+                "text": "<link>iCloud Sync</link>는 Mac, iPhone 및 iPad의 연결을 동기화합니다. Mac에는 Starter가 필요하며 iPhone 및 iPad에서는 무료입니다.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -135,7 +133,7 @@
                 "href": null
             },
             {
-                "text": "Postico 2는 일회 구매만 있습니다. TablePro 월간·연간 플랜이 끝나면 유료 기능은 잠기지만 나머지는 계속 작동합니다. Starter·Team은 만료 없는 일회 구매도 있습니다.",
+                "text": "Postico 2는 일회성 라이선스로만 판매됩니다. TablePro는 구독 및 일회성 구매를 제공합니다. 구독이 종료되면 유료 기능이 잠깁니다. 무료 앱이 계속 작동합니다. One-time 구매는 만료되지 않습니다.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -170,12 +168,6 @@
             "question": "TablePro에서 역할·세션을 관리하나요?",
             "answer": "Mac 앱에서 무료입니다. Users & Roles는 SQL을 먼저 보여 주고 권한을 부여·회수하며 Server Dashboard는 세션을 나열하고 종료할 수 있습니다. <link>서버 도구 읽기</link>.",
             "href": "/features/schema#administer"
-        },
-        {
-            "id": "license",
-            "question": "PostgreSQL 사용에 TablePro 라이선스가 필요한가요?",
-            "answer": "아니요. PostgreSQL·모든 지원 엔진·AI 어시스턴트·MCP 서버는 무료입니다. Starter·Team은 Mac 앱에 {starterExamples} 등 선택 기능을 추가합니다. <link>요금 보기</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

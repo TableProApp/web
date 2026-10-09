@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Importación y exportación",
-        "title": "Importación, exportación y archivos de datos"
+        "title": "Importa y exporta"
     },
     "header": {
-        "title": "Importación, exportación y archivos de datos",
-        "lead": "Para mover datos entre archivos y bases: cargar una hoja de cálculo en una tabla, entregar un resultado como Excel, limpiar un CSV antes de usarlo o crear un volcado antes de un cambio arriesgado. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
+        "title": "Importa y exporta",
+        "lead": "Importa archivos a tablas compatibles y exporta tablas o resultados. Abre archivos CSV, JSON y Excel sin conexión a una base.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "Importa archivos a una tabla",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> importa archivos {importFormats}. Un archivo SQL se ejecuta como sentencias, incluidos volcados <code>.sql.gz</code> y scripts SQL Server separados por <code>GO</code>. Los demás formatos se cargan en una tabla existente o en una nueva, con el nombre del archivo y las columnas tomadas de él; de un libro de Excel se importa la primera hoja.",
-                "Cada campo se asigna a una columna y la importación se ejecuta en una transacción salvo que lo desactives. Si falla una fila, elige detener y revertir, detener y conservar lo importado u omitir la fila y continuar. Después puedes guardar un informe CSV de filas omitidas."
+                "Importa archivos {importFormats}. Los formatos de datos asignan columnas a tablas existentes o nuevas; Excel solo importa la primera hoja. Los archivos SQL se ejecutan como instrucciones, incluidos volcados <code>.sql.gz</code> y scripts de SQL Server con <code>GO</code>.",
+                "Las importaciones usan una transacción salvo que la desactives. Elige cómo tratar filas fallidas: revertir, conservar filas importadas u omitir errores. Exporta las filas omitidas como CSV para revisarlas."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Correspondencias guardadas y codificaciones",
                     "paragraphs": [
-                        "TablePro recuerda la correspondencia que elegiste para cada tabla en las importaciones de CSV, JSON y Excel. <ui>Match by Name</ui> o <ui>Match by Position</ui> asigna todos los campos con un clic. La asignación por posición funciona con CSV y Excel, donde el orden de los campos viene del archivo. Las importaciones de CSV y SQL leen UTF-16 y codificaciones japonesas, chinas y coreanas como Shift JIS, GB 18030, Big5 y EUC-KR."
+                        "Reutiliza asignaciones de columnas para CSV, JSON y Excel. <ui>Match by Name</ui> asigna campos por nombre; <ui>Match by Position</ui> funciona para CSV y Excel. CSV y SQL también admiten UTF-16 y algunas codificaciones japonesas, chinas y coreanas."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,22 +42,22 @@
             "id": "export",
             "title": "Exporta tablas y resultados",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exporta las tablas y vistas que selecciones a {exportFormats}. Cada una se transmite desde la base de datos a medida que se escribe, así que el límite de filas de la cuadrícula no se aplica. En los motores SQL, cada tabla admite su propia cláusula WHERE, un límite de filas y una selección de columnas. Las exportaciones SQL pueden incluir la estructura, comprimirse con gzip y dividirse en partes, y Excel pone cada tabla en su propia hoja. Las colecciones de MongoDB también se exportan como script de mongosh, y la exportación SQL no se ofrece para MongoDB ni Redis.",
-                "<ui>Export Results</ui> escribe lo devuelto por una consulta; si el límite recortó el resultado, se ejecuta otra vez y se transmite completo. La exportación {exportPluginFormats} procede de un plugin gratuito instalado en <ui>Settings > Plugins</ui> y escribe un archivo por tabla."
+                "Exporta tablas y vistas como {exportFormats}, en streaming más allá del límite de la cuadrícula. Los motores SQL admiten filtros, límites y selección de columnas por tabla. SQL puede incluir estructura; Excel usa una hoja por tabla. MongoDB exporta scripts mongosh, no SQL. Redis tampoco tiene exportación SQL.",
+                "<ui>Export Results</ui> vuelve a ejecutar consultas limitadas para exportar el resultado completo en streaming. Añade exportación {exportPluginFormats} con un plugin gratuito en <ui>Settings > Plugins</ui>, con un archivo por tabla."
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files: trabaja con archivos sin base de datos",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "Abre, busca y limpia",
+                    "title": "Editar archivos de datos",
                     "paragraphs": [
-                        "Abre un archivo CSV, TSV u otro texto delimitado, o JSON y JSON Lines, desde el Finder o con <kbd>⌘O</kbd>, y la ventana Data Files lo muestra como una tabla editable. Fíltralo con la barra de filtros de la cuadrícula, busca en todas las columnas, busca y reemplaza con expresiones regulares y límpialo con Fill Down, Trim Whitespace, Change Case y Remove Duplicate Rows. Los libros de Excel se abren con una pestaña por hoja y los archivos comprimidos como <code>.csv.gz</code> también se abren, ambos en solo lectura.",
-                        "La ventana trabaja con una copia privada y <kbd>⌘S</kbd> escribe el archivo en su formato original, sin modificar las filas intactas."
+                        "Abre y edita texto delimitado, JSON y JSON Lines como tablas. Filtra, busca, reemplaza texto o elimina duplicados. Las hojas Excel y archivos comprimidos como <code>.csv.gz</code> se abren en solo lectura.",
+                        "Los cambios permanecen en una copia privada hasta guardar. El guardado conserva el formato original y las filas sin modificar."
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "Estadísticas de columnas y luego exportar o importar",
                     "paragraphs": [
-                        "Las estadísticas muestran valores vacíos y distintos, rango y valores más comunes; haz clic en uno para filtrar el archivo. Cuando esté listo, exporta a otro formato o envíalo a una tabla de una conexión abierta con <ui>Import into Table</ui>."
+                        "Inspecciona recuentos de valores vacíos y distintos, rangos y valores frecuentes. Haz clic en un valor para filtrar, exporta el archivo o usa <ui>Import into Table</ui> en una conexión abierta."
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -73,10 +73,10 @@
         },
         {
             "id": "backup",
-            "title": "Crea copias con las herramientas de tu motor",
+            "title": "Copias de seguridad y restauración",
             "paragraphs": [
-                "Backup Dump y Restore Dump funcionan con {backupTools}, a través del túnel SSH de la conexión y con sus ajustes TLS, así que un servidor detrás de un bastión no necesita un segundo túnel. Todas salvo DuckDB son herramientas de línea de comandos que instalas tú; DuckDB escribe el volcado por sí mismo, como archivo de base de datos o como carpeta de archivos Parquet.",
-                "En {serverSideExport}, Server-Side Export hace que sea el servidor quien escriba la exportación: un trabajo de Oracle Data Pump, un stage de Snowflake o un bucket de Cloud Storage. Nada llega a tu Mac."
+                "Backup Dump y Restore Dump usan {backupTools} con los ajustes SSH y TLS de la conexión. Instala la herramienta CLI necesaria, salvo para DuckDB, que escribe sus propios volcados de base o Parquet.",
+                "Server-Side Export en {serverSideExport} escribe mediante Oracle Data Pump, un stage de Snowflake o Cloud Storage. La exportación no pasa por tu Mac."
             ],
             "engines": [
                 {
@@ -108,7 +108,7 @@
             "id": "between-databases",
             "title": "De una base de datos a otra",
             "paragraphs": [
-                "Mover tablas o filas entre conexiones no requiere archivos intermedios. Copy To y Transfer To lo hacen directamente, incluso entre motores, y muestran lo que escribirán antes de ejecutar."
+                "Copia o transfiere tablas entre conexiones compatibles sin archivo intermedio. Consulta Esquemas para detalles de conversión de tipos y revisión."
             ],
             "links": [
                 {
@@ -183,7 +183,7 @@
     ],
     "docs": [
         {
-            "label": "Importación y exportación",
+            "label": "Importa y exporta",
             "docs": "/features/import-export"
         },
         {

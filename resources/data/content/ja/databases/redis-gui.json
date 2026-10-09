@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "{macDevices} 用 Redis GUI",
-        "lead": "コロンで区切ったキーのツリーを閲覧し、型、TTL と長さを一目で確認。単独サーバー、Sentinel 管理のプライマリーや Redis Cluster で redis-cli と同じ引用符の Redis コマンドを実行できます。"
+        "title": "Redis GUI",
+        "lead": "Mac では Standalone、Sentinel、Cluster のキー参照とコマンド実行に対応します。iPhone・iPad は Standalone のコマンドのみ対応します。"
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "<ui>Connection Mode</ui> を選びます。Standalone はホストとポート、Sentinel は一つ以上の Sentinel ノードとプライマリーグループ名を指定し、クォーラムからプライマリーを見つけ、フェイルオーバー後も追従します。Cluster は接続可能なメンバーをシードとしてシャードマップを読み、各コマンドをそのキーの所有シャードに送ります。",
+                "<ui>Connection Mode</ui> で Standalone、Sentinel、Cluster を選びます。Sentinel はフェイルオーバー後のプライマリーに追従します。Cluster はシードメンバーからシャードを検出し、担当シャードにコマンドを送ります。",
                 "パスワードでログインするか、Username を入力して Redis 6 ACL ユーザーでログインします。Amazon ElastiCache は <cloudAuth>AWS IAM</cloudAuth> 方式を選ぶと短期トークンをパスワードにします。ElastiCache IAM には TLS が必要です。",
                 "新規接続の TLS は無効です。Upstash、Redis Cloud などは TLS が必要で、<code>rediss://</code> URL を貼り付けると TLS が有効になります。平文へのフォールバックがないため Preferred は Required と同じです。Valkey サーバーも Redis と同じ方法で接続します。",
                 "サイドバーは <code>db0</code> から番号付きデータベースを表示し、クリックするとその場で閲覧します。"
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "キーとコマンド",
             "paragraphs": [
-                "キー名はコロンか Options タブで指定した区切り文字でフォルダーに分けます。各グリッド行は Key、Type、TTL、Length と Value を持ちます。文字列は全体、hash、list、set、sorted set や stream は最初の項目を表示し、Length は件数を示します。gzip データなど有効な UTF-8 でない値は十六進エディターで開きます。",
-                "<editing>グリッド</editing> でキー名の編集は <code>RENAME</code>、TTL は <code>EXPIRE</code> または <code>PERSIST</code>、文字列値は <code>SET</code> を実行します。Add Row は選んだ型を <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> か <code>SET</code> で書きます。フィルターバーはサーバーの <code>SCAN MATCH</code> と <code>SCAN TYPE</code> で Redis の glob パターンでキー名を照合し、型で絞り込みます。",
-                "エディターは一文一コマンドを redis-cli の引用符形式で受け付け、認識しないものもそのまま送ります。<code>DB 3 GET key</code> はセッションを移さず別のデータベースで一つのコマンドを実行します。<code>MULTI</code> 内は各コマンドが <code>QUEUED</code> を返し、<code>EXEC</code> が全応答を順に返します。",
+                "コロン区切りのフォルダーでキーを参照でき、区切り文字も変更できます。各行に型、TTL、長さ、値を表示します。コレクションは先頭の項目を表示し、UTF-8 以外の値は 16 進エディターで開きます。",
+                "グリッドで<editing>キー名、TTL、文字列値を編集</editing>できます。Add Row はハッシュ、リスト、セット、ソート済みセット、文字列を作成します。<code>SCAN MATCH</code> と <code>SCAN TYPE</code> でサーバー側のキー名・型フィルターを使えます。",
+                "redis-cli 形式の引用規則でコマンドを実行します。未知のコマンドはそのまま送ります。<code>DB 3 GET key</code> はセッションを変えずに別のデータベースを対象にします。<code>MULTI</code> の応答は <code>EXEC</code> まで保留します。",
                 "<safeMode>Safe Mode</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
             ]
         },
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight は Redis 公式ツールです。キーのブラウザーとコマンド Workbench に加え、Pub/Sub ワークスペース、コマンドプロファイラー、スローログ調査とメモリー分析があります。Redis の運用を監視・調整する時に向いています。TablePro は日常使う SQL データベースとともに Redis を扱う時に適しています。",
+                "text": "Redis Insight はキーブラウザー、コマンド Workbench、Pub/Sub、プロファイラー、スローログ、メモリ分析を提供します。TablePro では Redis と SQL データベースを同じアプリで扱えます。",
                 "notes": [
                     "redis-insight-copilot"
                 ]

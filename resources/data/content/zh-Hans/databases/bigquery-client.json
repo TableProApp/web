@@ -10,8 +10,8 @@
     "engine": "bigquery",
     "breadcrumb": "Google BigQuery",
     "header": {
-        "title": "适用于 {devices} 的 Google BigQuery 客户端",
-        "lead": "对项目数据集编写 GoogleSQL，运行前查看扫描量，并限制作业计费。可在网格编辑行，将表卸载到 Cloud Storage 而不经 Mac。"
+        "title": "Google BigQuery 客户端",
+        "lead": "编写 GoogleSQL，估算查询费用，并设置计费字节上限。"
     },
     "asset": "mac-db-bigquery-dry-run",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "登录 Google Cloud",
             "paragraphs": [
-                "选择<ui>认证方式</ui>（Auth Method）并填写<ui>项目 ID</ui>（Project ID），需用 ID 而非项目名称或编号。<ui>Application Default Credentials</ui> 读取 <code>gcloud auth application-default login</code> 写入的文件，已配置 gcloud 时最方便。<ui>服务账号密钥</ui>（Service Account Key）接受 .json 密钥文件或粘贴 JSON。",
+                "选择 <ui>认证方式</ui> (Auth Method)，输入 <ui>项目 ID</ui> (Project ID)，而非项目名称或编号。<ui>Application Default Credentials</ui> 使用 gcloud 的登录文件；<ui>服务账号密钥</ui> (Service Account Key) 接受 JSON 文件或粘贴的密钥。",
                 "Google Account (OAuth) 使用在 Google Cloud Console 创建的桌面 OAuth 客户端通过浏览器登录。刷新令牌保存在钥匙串，每个客户端一个，后续连接无需浏览器。一个 OAuth 客户端登录一个 Google 账户，第二个账户需第二个客户端或自有刷新令牌。",
                 "全部通过 BigQuery REST API，无主机、端口、连接 URL 或 SSH 隧道。<ui>位置</ui>（Location）设置每个作业发送的处理位置。详见<cloudAuth>云账户登录</cloudAuth>。"
             ]
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "查询和成本控制",
             "paragraphs": [
-                "运行前在 <explain>Explain</explain> 菜单选择 <ui>Dry Run (Cost)</ui>，结果列出预计处理和计费字节数、缓存命中标志和美元估计成本，查询本身不执行。",
-                "运行后状态栏显示处理字节数、计费字节数和按需费率估算，并标记缓存命中。需硬上限时，在连接 Advanced 标签页设置<ui>最大计费字节数</ui>（Max Bytes Billed），BigQuery 会拒绝超出计费的作业而不执行。",
+                "在 <explain>Explain</explain> 中选择 <ui>Dry Run (Cost)</ui>，无需执行查询即可估算处理字节数、计费字节数和按需费用。结果也显示缓存状态。",
+                "查询后查看处理字节数、计费字节数、预计按需费用和缓存状态。设置 <ui>最大计费字节数</ui> (Max Bytes Billed) 可拒绝超出计费字节上限的作业。",
                 "补全、引用和格式化遵循 GoogleSQL，表名用反引号，STRUCT、ARRAY 列显示为 JSON。数据集代替数据库，列在侧边栏，<code>⌘K</code> 切换，每个标签页保持初始数据集。作业轮询至查询超时后取消，No limit 时等待完成。",
                 "单元格、插入和删除通过<editing>网格</editing>操作。UPDATE、DELETE 按声明主键匹配，无主键则匹配除 ARRAY、JSON、GEOGRAPHY 外所有列，因此相同行会一起修改。声明 <code>PRIMARY KEY (…) NOT ENFORCED</code> 可精确编辑一行。分区表请在编辑器写含分区筛选的 UPDATE、DELETE。"
             ]
@@ -53,7 +53,7 @@
             "title": "移动数据",
             "paragraphs": [
                 "TablePro 不提供 BigQuery 导入。可将表或查询结果以 {exportFormats} <export>导出</export>到 Mac。",
-                "<backup>Server-Side Export</backup> 用 <code>EXPORT DATA</code> 将表卸载到 <code>gs://</code> 前缀，以 CSV、Parquet 或换行分隔 JSON 分片存储。使用您的连接和权限运行，面板等待完成，不在 Mac 写入文件。"
+                "<backup>Server-Side Export</backup> 使用 <code>EXPORT DATA</code> 将 CSV、Parquet 或换行分隔的 JSON 写入 <code>gs://</code> 前缀。操作使用您的权限，并等待完成。文件不经过 Mac。"
             ]
         }
     ],

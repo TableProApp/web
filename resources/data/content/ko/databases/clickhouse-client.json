@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "{devices}용 ClickHouse 클라이언트",
-        "lead": "ClickHouse HTTP 인터페이스로 분석 SQL을 실행하고 쿼리 계획, 파이프라인과 예상 행 수를 확인하며 Parts 탭에서 MergeTree 파트와 파티션을 관리합니다. 긴 쿼리는 읽은 행 수를 보고하고 Stop은 서버에서 종료합니다."
+        "title": "ClickHouse 클라이언트",
+        "lead": "분석 쿼리를 실행하고 실행 계획과 파이프라인을 확인하며 테이블 파트와 파티션을 관리하세요."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트, HTTP 포트, 사용자와 선택적으로 데이터베이스를 입력합니다. 데이터베이스는 바로 전환되고 열린 탭은 시작한 데이터베이스에 남습니다. <ui>보기 > 트리형 사이드바</ui>(View > Sidebar as Tree)는 서버의 데이터베이스를 펼칠 수 있는 트리로 표시합니다.",
+                "호스트, HTTP 포트, 사용자, 선택적인 데이터베이스를 입력하세요. 재연결 없이 데이터베이스를 전환할 수 있습니다. 열린 탭은 원래 데이터베이스를 유지하며 <ui>보기 > 트리형 사이드바</ui> (View > Sidebar as Tree)는 사이드바에서 데이터베이스를 펼칩니다.",
                 "SSL 모드를 선택하면 HTTPS로 전환합니다. 443이나 ClickHouse Cloud의 8443 포트는 Verify Identity를 켜 CA 파일 또는 시스템 신뢰 저장소로 인증서를 검사합니다. Verify CA는 CA 파일이 필요하며 클라이언트 인증서와 키로 상호 TLS 서버에 접근합니다.",
                 "TLS 없이 원격 서버에 접근한다면 네트워크로 평문 HTTP를 보내는 대신 <network>SSH 터널</network>을 사용하세요."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "쿼리 및 편집",
             "paragraphs": [
-                "각 쿼리는 고유 ID와 진행 요청을 보내 긴 쿼리도 읽은 행 수를 보고합니다. Stop은 그 ID의 <code>KILL QUERY</code>를 보내며 연결의 쿼리 제한 시간도 서버에 전달됩니다.",
+                "쿼리 실행 중 읽은 행 수를 확인하세요. Stop은 <code>KILL QUERY</code>를 보내며 연결의 쿼리 제한 시간도 서버에 전달됩니다.",
                 "<explain>Explain 메뉴</explain>는 Plan, Pipeline, AST, Syntax와 Estimate를 제공합니다. 들여쓰기 출력은 다이어그램이나 트리로 표시되며 Estimate는 읽을 행, 마크와 파트를 보여 줍니다.",
-                "그리드 편집은 <editing>Preview SQL</editing> 확인 후 <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code>와 <code>ALTER TABLE … DELETE</code>로 전송됩니다. ClickHouse는 갱신·삭제를 백그라운드 뮤테이션으로 실행하므로 저장은 접수이지 적용 완료가 아닙니다. <code>system.mutations</code>에서 진행을 확인하며 구체화된 뷰는 읽기 전용입니다.",
+                "행 삽입이나 UPDATE 및 DELETE 변이 제출 전에 <editing>Preview SQL</editing>을 확인하세요. 저장 성공은 접수되었다는 뜻이며 적용 완료를 뜻하지 않습니다. <code>system.mutations</code>에서 진행 상황을 확인하세요. 구체화된 뷰는 읽기 전용입니다.",
                 "ClickHouse point나 ring 튜플 결과는 <map>지도 보기</map>로 열립니다. 자체 <code>FORMAT</code> 절을 가진 쿼리는 서버 원시 출력을 한 열에 보여 주므로 그리드를 보려면 해당 절을 빼세요."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "테이블, 파트 및 파티션",
             "paragraphs": [
                 "테이블에는 Structure, Indexes, DDL과 Parts 탭이 있습니다. Indexes는 정렬 키와 데이터 스킵 인덱스를, DDL은 엔진·설정을 포함한 전체 <code>CREATE TABLE</code>을 보여 줍니다.",
-                "Parts는 <code>system.parts</code>의 모든 파트를 파티션, 행 수, 디스크 크기, 수정 시간과 active 플래그와 함께 나열하고 Optimize, Drop Partition과 Detach Partition을 실행합니다.",
+                "<code>system.parts</code>에서 파티션, 행 수, 크기, 활성 상태 등 파트 정보를 확인하세요. Parts 탭에서 Optimize, Drop Partition, Detach Partition을 실행할 수 있습니다.",
                 "<structure>Structure 탭</structure>은 열 추가·수정·삭제와 데이터 스킵 인덱스 삭제를 지원합니다. 정렬 키와 기본 키는 생성 시 고정되므로 데이터 스킵 인덱스 추가는 <code>ALTER TABLE … ADD INDEX</code>를 쓰고 다른 변경은 테이블을 다시 만듭니다."
             ]
         },

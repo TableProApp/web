@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Mac の SQL Server Management Studio 代替",
-        "lead": "SQL Server Management Studio は SQL Server と Azure SQL 用の Microsoft の無料ツールで、Windows でのみ動きます。Microsoft は {cells.microsoftOnMac.date} に Azure Data Studio を廃止し、macOS でも動く Visual Studio Code と MSSQL 拡張機能を利用者に勧めています。TablePro は SQL Server と他のエンジンに接続するネイティブ Mac クライアントです。"
+        "lead": "SQL Server Management Studio は、 SQL Server および Azure SQL 用の Microsoft の Windows 専用ツールです。 TablePro はネイティブ アプリから SQL Server に接続しますが、 SSMS の管理ツールを置き換えるものではありません。"
     },
     "shortAnswer": {
         "tablepro": [
-            "Mac で作業し、T-SQL スクリプトを GO 行ごとのバッチで実行するネイティブの SQL Server アプリが欲しい。",
-            "SQL Server ログイン、Kerberos、Microsoft Entra ID でサインインする。",
-            "PostgreSQL、MySQL、SQLite や Redis も使い、一つのクライアントで扱いたい。",
-            "選んだ AI プロバイダーで使える、Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
-            "SQL Server に接続する無料の iPhone・iPad アプリが欲しい。"
+            "GO で区切られた T-SQL バッチを含む SQL Server のネイティブ クライアント。",
+            "SQL Server ログイン、Kerberos または Microsoft Entra ID サインイン。",
+            "SQL Server と PostgreSQL、 MySQL、 SQLite または Redis。"
         ],
         "competitor": [
-            "SQL Server エージェントのジョブ、Always On 可用性グループ、Always Encrypted を管理する。",
-            "ライブクエリ統計、チューニングアドバイザー、ダッシュボードでパフォーマンスを調整する。",
-            "ログイン、ユーザー、ロールを管理する、またはデータベースダイアグラムでテーブルを設計する。",
-            "実行できる Windows コンピューターがある。"
+            "SQL Server Agent、Always On または Always Encrypted 投与。",
+            "ライブクエリ統計、チューニングアドバイザー、ダッシュボード。",
+            "ログインとロールの管理、またはデータベース図の設計。"
         ],
-        "competitorTitle": "Windows で SQL Server Management Studio を使い続けるのが向く場合"
+        "competitorTitle": "SQL Server Management Studio が適している用途"
     },
     "glance": {
         "intro": "SQL Server Management Studio に Mac 版はありません。Mac での Microsoft の選択肢は Visual Studio Code と MSSQL 拡張機能です。Microsoft は {cells.microsoftOnMac.date} に Azure Data Studio を廃止し、利用者をそちらに案内しています。"
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio は SQL Server、Azure SQL Database、Azure SQL Managed Instance、Fabric の SQL データベース向けの Microsoft 公式ツールで、無料です。",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft は SQL Server エージェントのジョブと一般的な管理作業の正式な拠点としています。",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Always On 可用性グループの構成、監視、トラブルシューティングと、ログイン、ユーザー、ロール、Always Encrypted の管理ができます。",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "ライブクエリ統計、クライアント統計、チューニングアドバイザー、ダッシュボードがパフォーマンス作業を助けます。",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Visual Studio Installer で追加する GitHub Copilot が、T-SQL の作成、修正、最適化を手伝います。",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro は Mac でネイティブに動き、Apple silicon と Intel に別のビルドがあります。SQL Server Management Studio は Windows 専用です。",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "一部の機能は有料です。Starter は {starterExamples} などを追加しますが、SQL Server Management Studio は無料です。",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

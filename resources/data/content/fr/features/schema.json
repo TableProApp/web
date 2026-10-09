@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "Schéma",
-        "title": "Schéma, comparaison et synchronisation"
+        "title": "Schémas et comparaison de bases"
     },
     "header": {
-        "title": "Schéma, comparaison et synchronisation",
-        "lead": "Pour modifier la structure d’une base et garder deux bases synchronisées. Modifiez une table avec le DDL sous les yeux, voyez comment les tables sont liées, alignez la préproduction sur le développement ou copiez des tables vers un autre serveur ou moteur. Tout est disponible dans l’application Mac. L’application iPhone et iPad en couvre une partie.",
+        "title": "Schémas et comparaison de bases",
+        "lead": "Inspectez les relations entre tables, modifiez les structures compatibles et comparez les bases avant d’appliquer un script de synchronisation.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Modifiez la structure, lisez d’abord le DDL",
+            "title": "Modifier la structure des tables",
             "paragraphs": [
-                "L’onglet Structure modifie les colonnes, index, clés étrangères et contraintes CHECK d’une table dans une grille. Les changements attendent l’enregistrement ; <ui>Aperçu SQL</ui> (Preview SQL, <kbd>⌘⇧P</kbd>) affiche les instructions ALTER TABLE avant toute exécution. Une modification qui supprime quelque chose, change un type, ajoute NOT NULL ou modifie la clé primaire demande d’abord confirmation, même sur une connexion au niveau de Safe Mode {macSafeModeDefault}.",
-                "Les index acceptent des expressions comme <code>lower(email)</code>. New Table crée une table de la même manière, avec un aperçu SQL en direct. Sur SQLite, libSQL, Turso et Cloudflare D1, qui ne permettent pas de modifier une clé étrangère sur place, TablePro génère un script de reconstruction de la table à vérifier. Après confirmation, il l’exécute sur SQLite et sur un fichier libSQL local ; sur Turso, libSQL distant et D1, l’exécution vous revient."
+                "Modifiez colonnes, index, clés étrangères et contraintes CHECK dans l’onglet Structure. Vérifiez le DDL en attente avec <ui>Aperçu SQL</ui> (Preview SQL). Les changements destructifs, de type, de NOT NULL et de clé primaire nécessitent confirmation même avec {macSafeModeDefault}.",
+                "Créez des tables avec un aperçu SQL en direct. Modifier les clés étrangères sur les moteurs SQLite peut nécessiter une reconstruction. TablePro exécute les reconstructions confirmées sur SQLite et libSQL local ; sur Turso, libSQL distant et Cloudflare D1, vous exécutez le script généré vous-même."
             ],
             "engines": [
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "Voyez les relations entre tables",
+            "title": "Diagramme ER",
             "paragraphs": [
-                "<ui>Afficher le diagramme entité-relation</ui> (View ER Diagram) dessine les tables et les clés étrangères du schéma actuel, avec une cardinalité en patte d’oie calculée depuis les clés primaires et uniques. Les tables de jonction comme <code>product_tags</code> deviennent une ligne plusieurs-à-plusieurs. Exportez le diagramme en PNG, copiez-le comme image ou exportez-le en SQL : les instructions CREATE TABLE avec leurs clés étrangères.",
-                "Le diagramme est un instantané à lire et à partager. Les tables se modifient dans l’onglet Structure, pas sur le canevas."
+                "<ui>Afficher le diagramme entité-relation</ui> (View ER Diagram) affiche les tables et relations de clés étrangères en notation patte de corbeau. Exportez en PNG ou SQL, ou copiez le diagramme en image.",
+                "Le diagramme est en lecture seule, pas un outil de conception de schéma. Modifiez dans l’onglet Structure."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Routines, déclencheurs et dossiers dans la barre latérale",
+            "title": "Objets de base de données",
             "paragraphs": [
-                "Sous chaque schéma, la barre latérale liste les procédures, fonctions et déclencheurs lorsque le moteur en a, et ouvre leur code dans un onglet en lecture seule, que vous pouvez copier ou ouvrir dans l’éditeur. Redshift, CockroachDB, PGlite et SAP HANA n’en listent aucun. Les partitions PostgreSQL figurent sous leur table parente."
+                "Inspectez les routines et déclencheurs compatibles dans des onglets source en lecture seule, puis copiez leur SQL ou ouvrez-le dans l’éditeur. Les objets listés varient selon le moteur. Les partitions PostgreSQL apparaissent sous leur table parente."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Dossiers pour tables et vues",
                     "paragraphs": [
-                        "Regroupez les tables et les vues dans des dossiers, par glisser-déposer ou avec <ui>Déplacer vers</ui> (Move to), dans la liste ou l’arborescence de la barre latérale. Le champ de filtre cherche aussi dans les dossiers. Un dossier n’existe que dans TablePro et ne change rien au serveur ; avec iCloud Sync activé, les dossiers vous suivent sur vos autres Mac."
+                        "Regroupez tables et vues par glisser-déposer ou <ui>Déplacer vers</ui> (Move to). Les dossiers changent uniquement la barre latérale, pas la base, et se synchronisent entre Mac lorsque iCloud Sync est actif."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Choisissez une source et une cible, qui peuvent être deux serveurs ou deux bases d’un même serveur. Compare & Sync liste chaque table qui diffère, ainsi que les vues, routines et déclencheurs si vous les incluez. En mode données, il associe les lignes par clé et signale chaque valeur différente, avec un filtre et une limite de lignes par table pour comparer une partie d’une grande table.",
-                "Le script généré est ordonné par clés étrangères et écrit pour le client de la cible. Les instructions destructrices, comme supprimer une colonne, réduire un type ou effacer des lignes, sont retenues jusqu’à ce que vous les autorisiez pour cette exécution. Une connexion en Read-Only ne peut pas être choisie comme cible. Enregistrez une comparaison pour la relancer en un clic."
+                "Comparez le schéma ou les données entre une base source et cible. Incluez vues, routines et déclencheurs lorsque le moteur le permet. Les comparaisons de données associent les lignes par clé, avec filtres et limites par table.",
+                "Vérifiez le script de synchronisation ordonné selon les clés étrangères. Les changements destructifs restent exclus jusqu’à votre autorisation pour cette exécution. Les connexions Read-Only ne peuvent pas être des cibles. Enregistrez les comparaisons pour les réutiliser."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database et Transfer To",
+            "title": "Copier et transférer des tables",
             "paragraphs": [
-                "Copy To envoie des tables, vues, routines et déclencheurs, en structure, en données ou les deux, vers une autre base de n’importe quelle connexion enregistrée, même sur un autre moteur. Avant toute écriture, un récapitulatif liste le DDL, les lignes attendues pour chaque table et chaque type de colonne qui change en route. Par exemple, une colonne <code>ENUM</code> de MariaDB arrive dans PostgreSQL en <code>VARCHAR</code>, sans sa liste de valeurs autorisées. Une clause WHERE et une limite de lignes par table permettent de copier une partie d’une table.",
-                "Duplicate Database copie une base entière sous un nouveau nom sur la même connexion. Transfer To déplace les lignes directement dans une table existante d’une autre connexion ouverte, avec correspondance des colonnes et sans fichier intermédiaire. Les trois sont gratuits."
+                "Copy To transfère les objets et données compatibles entre bases, y compris entre moteurs. Vérifiez d’abord DDL, nombres de lignes et conversions de types. Les conversions peuvent perdre des contraintes : <code>ENUM</code> de MariaDB devient <code>VARCHAR</code> de PostgreSQL sans liste de valeurs autorisées.",
+                "Duplicate Database copie une base sur la même connexion. Transfer To associe les lignes à une table existante sur une autre connexion, sans fichier intermédiaire. Ces outils sont gratuits."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles affiche les privilèges de chaque utilisateur sous forme d’arbre, du serveur jusqu’à une colonne. Les attributions et révocations attendent comme modifications en attente et affichent leur SQL avant exécution : vous n’écrivez jamais de GRANT à la main."
+                        "Inspectez les privilèges du serveur jusqu’aux colonnes sur les moteurs compatibles. Préparez les attributions et révocations, puis vérifiez leur SQL avant de les appliquer."
                     ],
                     "engines": [
                         {

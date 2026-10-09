@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "Client MongoDB cho {devices}",
-        "lead": "Viết query đúng cú pháp mongosh, xem collection theo từng trang trong data grid, và insert hay sửa nguyên một document dạng Extended JSON. Đổi tên hoặc xóa một field trên cả collection, với mọi câu lệnh được hiển thị trước khi chạy."
+        "title": "MongoDB client",
+        "lead": "Xem collection, query bằng cú pháp kiểu mongosh và sửa document dạng Extended JSON."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập một host, hoặc nhiều cặp <code>host:port</code> cho replica set, và TablePro tự tìm ra primary. Bạn cũng có thể dán một URL <code>mongodb://</code> hay <code>mongodb+srv://</code>. Đăng nhập bằng SCRAM-SHA-1, SCRAM-SHA-256, X.509 hoặc AWS IAM, và điền <ui>Auth Database</ui> khi user của bạn được định nghĩa trong <code>admin</code> nhưng bạn lại xem một cơ sở dữ liệu khác.",
+                "Nhập host hoặc danh sách <code>host:port</code> của replica set, hoặc dán URL <code>mongodb://</code> hay <code>mongodb+srv://</code>. Xác thực hỗ trợ SCRAM-SHA-1, SCRAM-SHA-256, X.509 và AWS IAM. Đặt <ui>Auth Database</ui> thành cơ sở dữ liệu định nghĩa user.",
                 "Host có đuôi <code>.mongodb.net</code> được tự bật SRV và TLS, đúng như MongoDB Atlas yêu cầu. Hãy thêm địa chỉ IP của bạn vào danh sách truy cập của cluster trước: kết nối từ một địa chỉ không có trong danh sách sẽ bị timeout thay vì báo lỗi.",
                 "Connection mới để TLS tắt, và driver không có cơ chế dự phòng, nên Ưu tiên (Preferred) hoạt động như Required. Read Preference và Write Concern được đặt cho từng connection, và write concern đi kèm mọi lệnh insert, update và delete, dù chạy từ shell hay khi lưu trong data grid.",
                 "Khi đi qua <network>SSH tunnel</network>, chỉ host đầu tiên trong danh sách được dùng, nên việc tự phát hiện replica set và failover bị tắt trong phiên đó."
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "Query và sửa document",
             "paragraphs": [
-                "Tab query là một shell JavaScript nhận cú pháp mongosh: key không cần ngoặc kép, regex literal, <code>ISODate()</code>, biến, vòng lặp và <code>forEach</code>. Shell chạy ngay trong TablePro nên bạn không phải cài thêm gì, và biến bạn khai báo vẫn dùng được ở mọi tab trên connection đó cho tới khi ngắt kết nối. Autocomplete gợi ý collection, method, đường dẫn tới field lồng nhau và các toán tử <code>$</code> hợp lệ tại vị trí con trỏ.",
-                "Mỗi collection mở thành data grid, với các field cấp cao nhất là cột và object lồng nhau hiển thị dạng Extended JSON. Ô được sửa vẫn giữ kiểu của field, nên date vẫn là date và ObjectId vẫn là ObjectId; khi sửa bên trong một object lồng nhau, chỉ đường dẫn bị đổi, như <code>address.city</code>, được ghi lại.",
-                "<editing>Insert Document và Edit Document</editing> nhận nguyên một document dạng Extended JSON. Edit Document đọc lại document từ server, và nếu ai đó đã sửa hay xóa nó sau khi hộp thoại mở, sẽ không có gì được lưu và hộp thoại báo cho bạn biết. <ui>Remove Field</ui> trên một ô sẽ gửi <code>$unset</code>.",
+                "Dùng JavaScript kiểu mongosh trong tab Truy vấn (Query): regex, <code>ISODate()</code>, biến, vòng lặp và <code>forEach</code>. Không cần cài shell riêng. Biến giữ giữa tab connection tới khi ngắt kết nối. Autocomplete gồm collection, field path, method và toán tử.",
+                "Xem field cấp cao nhất dạng cột và object lồng dạng Extended JSON. Sửa ô giữ kiểu như date và ObjectId. Sửa lồng chỉ update path đã đổi, như <code>address.city</code>.",
+                "<editing>Insert Document và Edit Document</editing> dùng Extended JSON. Edit Document đọc lại document server và từ chối lưu nếu đã đổi hoặc biến mất khi đang mở. <ui>Remove Field</ui> gửi <code>$unset</code>.",
                 "<filters>Thanh lọc</filters> đi được vào object lồng nhau và mảng object, nên bạn lọc thẳng theo <code>customer.country</code> hay <code>items.sku</code>. Field chứa GeoJSON mở được trên <map>Map view</map>.",
                 "<safeMode>Safe Mode</safeMode> coi mọi câu lệnh trên connection MongoDB là thao tác ghi, vì driver không mở được session chỉ đọc. Các mức Alert và Safe Mode hỏi xác nhận từng câu, còn Read-Only chặn tất cả."
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "Collection, index và validator",
             "paragraphs": [
-                "<structure>Tab Structure</structure> liệt kê từng index cùng các field theo thứ tự key và loại index, như hashed, text, 2dsphere hay wildcard. Show DDL viết ra các lệnh <code>createIndex</code> để dựng lại chúng, kèm mọi tùy chọn mà server trả về.",
-                "Đổi tên hoặc xóa một field trên cả collection ngay trong tab đó. Mỗi thay đổi là một lệnh <code>updateMany</code>, hiển thị trong Preview SQL, và field nào được khai báo trong validator <code>$jsonSchema</code> cũng được đổi theo ở đó. Thao tác lưu bị từ chối trước khi ghi bất cứ thứ gì nếu một index, một search index hay một view vẫn dùng tên đó.",
+                "Xem field, kiểu và tùy chọn index trong <structure>tab Structure</structure>. Show DDL tạo lời gọi <code>createIndex</code> với tùy chọn server báo.",
+                "Đổi tên hoặc xóa field trên cả collection bằng <code>updateMany</code> được xem trước. Validator cũng cập nhật. Chặn lưu nếu index, search index hoặc view còn dùng field.",
                 "<ui>Bảng mới (New Table)</ui> tạo một collection mà các field trở thành validator <code>$jsonSchema</code>, rồi dựng các index bạn liệt kê. View và time-series collection hiện trong sidebar, và view mở ở chế độ chỉ đọc."
             ]
         },
@@ -78,8 +78,10 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass là GUI chính hãng của MongoDB. Compass dựng aggregation pipeline theo từng stage và cho xem trước dữ liệu sau mỗi stage, phân tích schema của một collection từ một mẫu document, và vẽ explain plan. Hãy chọn Compass khi bạn dựng pipeline một cách trực quan hoặc cần tìm hiểu cấu trúc của một collection; TablePro hợp hơn khi MongoDB chỉ là một trong nhiều cơ sở dữ liệu bạn làm việc cùng trong một ứng dụng.",
-                "notes": ["compass-natural-language"]
+                "text": "Chọn MongoDB Compass cho aggregation pipeline trực quan, phân tích schema theo mẫu và explain plan. TablePro query MongoDB cùng các engine cơ sở dữ liệu khác.",
+                "notes": [
+                    "compass-natural-language"
+                ]
             }
         ],
         "notes": {

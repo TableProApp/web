@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Client Snowflake per {devices}",
-        "lead": "Accedi come richiesto dal tuo account, sposta la sessione tra warehouse e ruoli senza riconnetterti, poi interroga, modifica ed esporta tabelle in uno stage."
+        "title": "Client Snowflake",
+        "lead": "Interroga e modifica tabelle, cambia warehouse e ruoli ed esporta in uno stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connetti e accedi",
             "paragraphs": [
-                "Inserisci l’identificatore dell’account, come <code>myorg-myaccount</code> o un locator precedente come <code>xy12345.us-east-1</code>: ciò che precede <code>.snowflakecomputing.com</code>. Ogni richiesta usa HTTPS verso l’endpoint dell’account, quindi non ci sono host, sezione SSL o pannello SSH.",
-                "Scegli un <ui>Auth Method</ui> e il modulo mostra solo i campi necessari. Una coppia di chiavi firma ogni connessione con la chiave privata PKCS#8, quindi l’orologio del Mac deve essere corretto. Browser SSO ti invia al fornitore di identità. Un token OAuth viene usato come incollato e non viene mai aggiornato. Una password si accompagna a un codice attuale in <ui>MFA Passcode (TOTP)</ui> quando l’account impone MFA.",
+                "Inserisci l'identificatore dell'account prima di <code>.snowflakecomputing.com</code>, ad esempio <code>myorg-myaccount</code>. Le richieste utilizzano HTTPS; non è necessario alcun host, sezione TLS o riquadro SSH.",
+                "Scegli un <ui>Auth Method</ui>: coppia di chiavi PKCS#8, SSO del browser, token OAuth o password con <ui>MFA Passcode (TOTP)</ui>. Le coppie di chiavi richiedono un orologio del dispositivo accurato. I token OAuth incollati non vengono aggiornati.",
                 "Con <code>ALLOW_CLIENT_MFA_CACHING</code> sull’account basta un codice nuovo: Snowflake restituisce un token MFA che TablePro conserva nel <credentials>Portachiavi</credentials>. Con <code>ALLOW_ID_TOKEN</code>, Browser SSO conserva lì un token di accesso e le connessioni successive saltano il browser finché Snowflake non lo rifiuta.",
                 "Snowflake non ha uno schema URL. Indica invece una sezione in <ui>CLI Connection Name</ui> e ogni campo lasciato vuoto viene letto da <code>~/.snowflake/connections.toml</code> alla connessione."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouse, ruoli e query",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> sposta la sessione su un altro warehouse o ruolo con <code>USE WAREHOUSE</code> e <code>USE ROLE</code>, senza riconnettersi. Una connessione TablePro è una sessione Snowflake, mantenuta aperta durante l’inattività; una scheda associata a un secondo database esegue <code>USE DATABASE</code> prima delle istruzioni sulla stessa sessione.",
+                "Cambia warehouse e ruoli con <ui>Database > Session Context</ui>. La connessione mantiene una sessione anche quando inattiva; le schede di un altro database eseguono <code>USE DATABASE</code> prima delle istruzioni.",
                 "La barra laterale raggruppa gli oggetti per database e schema. Gli elenchi degli oggetti provengono da comandi <code>SHOW</code>, che funzionano senza warehouse; i dettagli delle colonne provengono da <code>INFORMATION_SCHEMA</code>, che ne richiede uno. <explain>Explain</explain> restituisce il piano Snowflake come testo non elaborato.",
-                "Le <editing>modifiche nella griglia</editing> associano i valori sul server, con celle VARIANT, OBJECT e ARRAY inviate tramite <code>PARSE_JSON</code>. Una modifica usa la chiave primaria dichiarata oppure tutte le colonne quando non c’è una chiave. Snowflake non applica mai i vincoli di chiave, quindi un valore duplicato fa sì che una modifica o eliminazione interessi ogni riga corrispondente: controlla i duplicati prima di modificare una tabella."
+                "<editing>Le modifiche alla griglia</editing> associano i loro valori sul server, con celle VARIANT, OBJECT e ARRAY inviate tramite <code>PARSE_JSON</code>. Chiavi di modifica sulla chiave primaria dichiarata o su ogni colonna quando non ce n'è nessuna. Le tabelle Snowflake standard non applicano vincoli di chiave, quindi un valore di chiave duplicato significa che una modifica o un'eliminazione raggiunge ogni riga corrispondente: controlla la presenza di duplicati in una tabella prima di modificarla. Le tabelle ibride applicano le proprie chiavi."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Sposta i dati",
             "paragraphs": [
                 "<importData>Importa</importData> file {importFormats} tramite la connessione ed esporta una tabella o un risultato sul Mac in {exportFormats}.",
-                "Per esportare una tabella senza farla passare dal Mac, scegli <ui>File > Server-Side Export…</ui> e indica uno stage, con o senza <code>@</code>. <backup>Server-Side Export</backup> esegue <code>COPY INTO</code> con i tuoi privilegi e scrive CSV compresso con gzip, Parquet o JSON; la schermata attende la fine dell’esportazione e nulla viene salvato sul Mac."
+                "Scegli <ui>File > Server-Side Export…</ui> e uno stage. <backup>Server-Side Export</backup> esegue <code>COPY INTO</code> con i tuoi privilegi, scrivendo CSV gzip, Parquet o JSON. Attende il completamento; i file non passano dal Mac."
             ]
         }
     ],

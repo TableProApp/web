@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "{devices}용 SurrealDB 클라이언트",
-        "lead": "사용자가 정의된 수준으로 로그인하고 SurrealQL 스크립트를 실행하며 레코드를 필드별로 편집합니다. 레코드 링크, 날짜·시간과 소수는 고유 유형을 유지합니다."
+        "title": "SurrealDB 클라이언트",
+        "lead": "SurrealQL을 실행하고 타입을 유지하며 레코드 필드를 편집하세요."
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "연결 및 로그인",
             "paragraphs": [
-                "SurrealDB는 자격 증명만으로 사용자 정의 수준을 알 수 없어 <ui>인증 수준</ui>(Auth Level)에서 지정하고 폼에 나머지를 입력합니다. Root는 사용자 이름·비밀번호, Namespace는 네임스페이스를, Database는 데이터베이스도 받습니다. Record Access는 네임스페이스, 데이터베이스, <code>DEFINE ACCESS</code>의 접근 방식과 로그인 필드를 받습니다. Token은 SurrealDB Cloud용을 포함해 이미 보유한 JWT를 받습니다.",
+                "사용자의 <ui>인증 수준</ui> (Auth Level)을 Root, Namespace, Database, Record Access, Token 중에서 선택하세요. Namespace와 Database에는 이름이 필요합니다. Record Access에는 접근 방식과 로그인 필드도 필요하며 Token은 기존 JWT를 받습니다.",
                 "드라이버는 HTTP RPC 엔드포인트와 CBOR로 통신해 레코드 링크, 날짜·시간, 기간, 소수와 UUID 유형을 유지합니다. <code>surrealdb://</code> 링크는 값이 채워진 연결 폼을 열고 원격 서버에는 <network>SSH 터널</network>로 접근합니다.",
                 "SSL 초기값 Disabled는 평문 HTTP이고 다른 모든 모드는 HTTPS입니다. Verify CA와 Verify Identity는 시스템 신뢰 저장소로 인증서를 검사하고 SSL/TLS 패널의 CA 파일은 무시하니 사설 CA를 먼저 macOS에 설치하세요."
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL 및 레코드",
             "paragraphs": [
-                "편집기는 두 레코드 사이의 <code>RELATE</code>를 포함한 전체 SurrealQL 스크립트를 실행하며 일반 명령문을 완성합니다. <explain>Explain과 Explain Full</explain>은 현재 쿼리를 <code>EXPLAIN</code>으로 재실행해 해석 방식과 인덱스 사용 여부를 원시 텍스트 계획으로 보여 줍니다.",
+                "<code>RELATE</code>를 포함한 전체 SurrealQL 스크립트를 구문 자동 완성과 함께 실행하세요. <explain>Explain과 Explain Full</explain>은 <code>EXPLAIN</code>으로 쿼리를 실행하고 텍스트 계획을 반환합니다.",
                 "사이드바 최상위에 네임스페이스, 그 안에 데이터베이스가 있습니다. 각 요청에 둘 다 실려 전환해도 재연결하지 않습니다. 모든 네임스페이스는 루트 사용자만 볼 수 있습니다.",
-                "셀 변경은 건드린 필드만 유형 지정 매개변수로 설정하는 <code>UPDATE</code>를 실행합니다. <code>int</code>는 <code>int</code>로 유지하고 계산된 <code>FUTURE</code> 필드나 다른 작성자의 변경은 그대로 둡니다. 새 행의 <code>id</code>를 비우면 생성하며 <code>table:id</code>를 입력할 수도 있습니다. <code>SCHEMALESS</code> 테이블은 가져온 레코드에서 열을 구성합니다.",
+                "셀 편집은 변경된 필드만 타입이 지정된 매개변수로 갱신하며 계산된 <code>FUTURE</code> 필드와 다른 작성자의 변경을 유지합니다. 자동 ID를 쓰려면 <code>id</code>를 비워 두세요. SCHEMALESS 테이블 열은 가져온 레코드에서 결정됩니다.",
                 "<filters>필터</filters>는 SurrealQL로 변환되고 Raw SQL 행은 그래프 순회 등 조건 하나를 받습니다. 쓰기, <code>;</code>·주석 포함 또는 <code>fn::</code>·<code>http::</code> 호출 조건은 거부하니 편집기에서 실행하세요."
             ]
         },

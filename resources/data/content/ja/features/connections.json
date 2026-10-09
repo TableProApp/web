@@ -5,29 +5,29 @@
     },
     "og": {
         "kicker": "接続",
-        "title": "接続、トンネルと認証情報"
+        "title": "接続"
     },
     "header": {
-        "title": "接続、トンネルと認証情報",
-        "lead": "踏み台、クラスターやクラウド認証の先にあるデータベースを使う方へ。必要な経路とパスワード取得元を指定して接続を一度設定し、本番用には厳しいルールを適用できます。ここで紹介するのは Mac アプリの機能です。iPhone・iPad アプリではその一部を使えます。",
+        "title": "接続",
+        "lead": "接続を保存・整理し、SSH で非公開サーバーに接続して、対応するクラウドアカウントでログインできます。",
         "docs": "/connections"
     },
     "sections": [
         {
             "id": "organize",
-            "title": "接続ライブラリを整理する",
+            "title": "接続を整理",
             "paragraphs": [
-                "各接続は General、Network、Options、Appearance タブを備えた一つのフォームで編集します。<code>jdbc:</code> URL や SSH 経由の接続を含む <code>+ssh</code> URL などの接続 URL をインポートすると、フォームに自動入力されます。クリップボードに URL がある場合は <ui>Use clipboard URL</ui> を選べます。",
-                "接続に色と好きな数のタグを付け、入れ子のグループに整理できます。よく使う接続はスターでお気に入りに登録できます。環境もタグで表し、local、development、production、testing が組み込まれています。独自のタグも追加できます。空のライブラリでは、Chinook の SQLite 版を同梱した <ui>Open Sample Database</ui> を選べます。",
-                "一つのウィンドウで複数の接続を開けます。左端の接続バーで切り替えると、各接続で最後に使ったタブが再表示されます。<ui>Open in New Window</ui> で別の接続を横に並べられます。"
+                "<code>jdbc:</code> や <code>+ssh</code> を含む URL から接続設定を入力できます。コピーした URL は <ui>Use clipboard URL</ui> でインポートします。",
+                "接続を階層グループに整理し、タグや色、お気に入りを設定できます。<ui>Open Sample Database</ui> で同梱の SQLite サンプルを試せます。",
+                "一つのウィンドウで複数接続を使うか、<ui>Open in New Window</ui> で分けられます。各接続は最後に使ったタブを覚えています。"
             ],
             "asset": "mac-connection-library"
         },
         {
             "id": "import",
-            "title": "既存の接続を取り込む",
+            "title": "接続をインポート",
             "paragraphs": [
-                "接続をゼロから作る必要はほとんどありません。TablePro は、別のクライアント、プロジェクトの設定ファイルや AWS アカウントから接続を読み取れます。"
+                "他のデータベースクライアント、プロジェクト設定ファイル、AWS アカウントからインポートできます。"
             ],
             "links": [
                 {
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "別のデータベースクライアントから",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> は、TablePlus の Setapp 版を含む {connectionImportApps} に保存された接続を読み取り、そのアプリの保存先からパスワードも移行します。DBeaver と Navicat が保持する暗号化パスワードも対象です。Navicat の接続は <code>.ncx</code> エクスポートファイルから読み取ります。"
+                        "<ui>Import from Other App</ui> は TablePlus の Setapp 版を含む {connectionImportApps} を読み取ります。パスワードの取り込みは元アプリの保存方式によります。DBeaver・Navicat の暗号化パスワードに対応し、Navicat は <code>.ncx</code> 出力が必要です。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "プロジェクトの設定ファイルから",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> はプロジェクト内の <code>.env</code>、<code>wp-config.php</code>、Prisma スキーマ、Rails の <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring の <code>application.properties</code> または <code>application.yml</code>、<code>appsettings.json</code> からデータベース設定を探します。見つかった設定を元ファイルとともに一覧表示し、選ぶと接続フォームに入力します。パスワードは直接キーチェーンに保存します。ファイルパス、ホストやデータベース名に <code>prod</code>、<code>production</code> または <code>live</code> が独立した単語として含まれる場合、その接続の Safe Mode は Alert レベルで始まります。"
+                        "<ui>Open Project Folder</ui> は対応する環境、フレームワーク、Docker の設定ファイルからデータベース設定を探します。インポート前に各ソースを確認してください。パスワードは Keychain に保存します。本番環境と認識した名前は通常の Safe Mode 既定値ではなく Alert で始まります。"
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -63,15 +63,15 @@
         },
         {
             "id": "network",
-            "title": "踏み台、プロキシやクラスターの先に接続する",
+            "title": "SSH、TLS、トンネル",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "ssh",
                     "title": "SSH と TLS",
                     "paragraphs": [
-                        "SSH トンネルは、パスワード、秘密鍵、1Password などの SSH エージェント、またはキーボード対話式のプロンプトで認証します。踏み台ホストを順に経由することも、<code>~/.ssh/config</code> の <code>ProxyJump</code> に従うこともできます。ワンタイムコードはキーチェーン内のシークレットから生成するか、接続のたびに入力を求められます。未知のホスト鍵は、TablePro が信頼する前にフィンガープリントを表示します。トンネルを SSH プロファイルとして保存すれば再利用できます。",
-                        "TLS は Disabled、Preferred、Required、Verify CA、Verify Identity モードに対応し、独自の CA、クライアント証明書と鍵を使えます。Required はサーバー証明書を検証せずに暗号化し、Verify 系のモードは証明書を検証します。"
+                        "パスワード、キー、エージェント、対話的な入力で SSH 接続できます。踏み台ホストや <code>ProxyJump</code> を使い、SSH プロファイルでトンネルを再利用できます。未知のホストキーはフィンガープリントの承認が必要です。",
+                        "TLS モードを選び、CA 証明書やクライアント証明書を指定します。Required はサーバー証明書を検証せず暗号化します。Verify CA と Verify Identity は証明書の検証を追加します。"
                     ],
                     "engines": [
                         {
@@ -85,8 +85,8 @@
                     "id": "tunnels",
                     "title": "プロキシ、Cloudflare、Cloud SQL とトンネルコマンド",
                     "paragraphs": [
-                        "SSH を使わない場合、Network タブではリモート DNS に対応した SOCKS5 プロキシ、Cloudflare Access、Cloud SQL Auth Proxy 経由で接続できます。Cloudflare Access では TablePro が <code>cloudflared</code> を実行し、ブラウザーやサービストークンで認証します。Cloud SQL Auth Proxy は、TablePro が {cloudSqlProxy} 用にダウンロード、検証して実行します。",
-                        "Tunnel Command は <code>kubectl port-forward</code>、<code>aws ssm start-session</code> または独自のコマンドを起動し、それが開いたローカルポートに接続します。接続前にシェルスクリプトを実行し、そのセッションで初めて実行するときに確認を求めることもできます。接続直後に SQL 文を実行することも可能です。"
+                        "リモート DNS 付き SOCKS5 や <code>cloudflared</code> 経由の Cloudflare Access を使えます。{cloudSqlProxy} には、TablePro が Cloud SQL Auth Proxy をダウンロード・検証・実行します。",
+                        "Tunnel Command は <code>kubectl port-forward</code>、<code>aws ssm start-session</code>、独自コマンドで開いたローカルポートから接続します。接続前のシェルスクリプトはセッションごとに承認が必要です。"
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -118,10 +118,10 @@
         },
         {
             "id": "credentials",
-            "title": "パスワードを適切な場所に保存する",
+            "title": "認証情報とパスワードの取得元",
             "paragraphs": [
-                "パスワードは macOS キーチェーンに保存します。iCloud Sync を有効にすると、パスワード同期により iCloud キーチェーン経由で他のデバイスへ送られます。SSH 鍵は接続が参照するディスク上のファイルのままで、キーチェーンに入るのはパスフレーズだけです。",
-                "認証情報プロファイルで複数の接続に同じログイン情報を共有し、接続時に 1Password（<code>op</code>）、HashiCorp Vault、AWS Secrets Manager、シェルコマンド、ファイルや環境変数からパスワードを取得できます。これらのパスワード取得元は無料で、同期しません。各コマンドラインツールは <code>PATH</code>、<code>/usr/local/bin</code> または <code>/opt/homebrew/bin</code> に必要です。PostgreSQL、Amazon Redshift、CockroachDB では <code>~/.pgpass</code> も使用でき、接続のたびにパスワード入力を求める設定もあります。"
+                "パスワードと SSH キーのパスフレーズは macOS Keychain に保存します。iCloud Keychain のパスワード同期は別途有効化する設定です。SSH キーファイルはディスクに残ります。",
+                "無料の認証情報プロファイルでログイン情報を再利用し、1Password、Vault、AWS Secrets Manager、コマンド、ファイル、環境変数からパスワードを取得できます。必要な CLI ツールは事前にインストールしてください。取得元は同期しません。PostgreSQL 系は対応していれば <code>~/.pgpass</code> も使えます。"
             ],
             "links": [
                 {
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "接続のホスト、データベース、ユーザー名、SSH のホスト・ユーザー・鍵パス、TLS 証明書パス、起動コマンドやドライバーフィールドに <code>$DB_HOST</code> を記入すると、TablePro が接続時に自身の環境から値を補います。ポートとパスワードはこの方法では読み取りません。パスワードには取得元を指定してください。"
+                        "対応する接続フィールドに <code>$DB_HOST</code> などの参照を使えます。接続時にアプリの環境から値を取得します。ポートとパスワードは対象外です。パスワードには別の無料の取得元を使います。"
                     ],
                     "paid": [
                         "environment-variables"
@@ -144,9 +144,9 @@
         },
         {
             "id": "policies",
-            "title": "接続ごとのルール",
+            "title": "接続ポリシー",
             "paragraphs": [
-                "接続の Safe Mode レベルは、文をそのまま実行するか、事前確認するか、Touch ID またはパスワードを求めるか、拒否するかを決めます。External Clients の Blocked、Read Only、Read & Write レベルは MCP クライアントと AppleScript ができる操作を定め、この Mac にのみ保存します。AI ポリシーでは、AI アシスタントが確認なしに使えるか、確認後のみ使えるか、決して使えないかを設定します。Never は MCP クライアントも拒否します。",
+                "Safe Mode は文の実行確認を制御します。External Clients は MCP と AppleScript のアクセスを制御し、初期値は Read Only、設定はこの Mac に残ります。AI ポリシーはアシスタントへのアクセスを制御し、Never は MCP クライアントもブロックします。",
                 "組織は構成プロファイルを使い、すべての接続に Safe Mode の最低レベルを強制し、アップデートを管理できます。"
             ],
             "links": [

@@ -10,8 +10,8 @@
     "engine": "snowflake",
     "breadcrumb": "Snowflake",
     "header": {
-        "title": "Klien Snowflake untuk {devices}",
-        "lead": "Masuk sesuai persyaratan akun, berpindah warehouse dan peran dalam sesi tanpa membuka ulang koneksi, lalu jalankan kueri, edit, dan ekspor tabel ke stage."
+        "title": "Klien Snowflake",
+        "lead": "Kueri dan edit tabel, ganti warehouse dan peran, lalu ekspor ke stage."
     },
     "asset": "mac-db-snowflake-session",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Hubungkan dan masuk",
             "paragraphs": [
-                "Masukkan pengenal akun, seperti <code>myorg-myaccount</code> atau locator lama seperti <code>xy12345.us-east-1</code>: bagian sebelum <code>.snowflakecomputing.com</code>. Semua permintaan menggunakan HTTPS ke endpoint akun tersebut, sehingga tidak ada host, bagian SSL, atau panel SSH.",
-                "Pilih <ui>Auth Method</ui>, dan formulir hanya menampilkan bidang yang diperlukan. Pasangan kunci menandatangani setiap koneksi dengan kunci pribadi PKCS#8, sehingga jam Mac harus benar. Browser SSO mengarahkan Anda ke penyedia identitas. Token OAuth digunakan sebagaimana ditempel dan tidak pernah diperbarui. Kata sandi disertai kode terkini pada <ui>MFA Passcode (TOTP)</ui> jika akun mewajibkan MFA.",
+                "Masukkan pengidentifikasi akun sebelum <code>.snowflakecomputing.com</code>, seperti <code>myorg-myaccount</code>. Permintaan menggunakan HTTPS; tidak diperlukan host, bagian TLS atau panel SSH.",
+                "Pilih <ui>Auth Method</ui>: pasangan kunci PKCS#8, SSO browser, token OAuth, atau kata sandi dengan <ui>MFA Passcode (TOTP)</ui>. Pasangan kunci memerlukan jam perangkat yang akurat. Token OAuth yang ditempel tidak disegarkan.",
                 "Dengan <code>ALLOW_CLIENT_MFA_CACHING</code> pada akun, satu kode baru sudah cukup: Snowflake mengembalikan token MFA yang disimpan TablePro di <credentials>Rantai Kunci</credentials>. Dengan <code>ALLOW_ID_TOKEN</code>, Browser SSO menyimpan token masuk di sana, dan koneksi berikutnya melewati peramban sampai Snowflake menolaknya.",
                 "Snowflake tidak memiliki skema URL. Sebutkan bagian pada <ui>CLI Connection Name</ui>, dan setiap bidang yang Anda kosongkan dibaca dari <code>~/.snowflake/connections.toml</code> saat terhubung."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Warehouse, peran, dan kueri",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> memindahkan sesi ke warehouse atau peran lain menggunakan <code>USE WAREHOUSE</code> dan <code>USE ROLE</code>, tanpa membuka ulang koneksi. Satu koneksi TablePro adalah satu sesi Snowflake yang tetap terbuka saat tidak aktif, dan tab yang terkait dengan database kedua menjalankan <code>USE DATABASE</code> sebelum pernyataannya pada sesi yang sama.",
+                "Ganti warehouse dan peran melalui <ui>Database > Session Context</ui>. Koneksi mempertahankan satu sesi saat tidak aktif; tab pada database lain menjalankan <code>USE DATABASE</code> sebelum pernyataannya.",
                 "Sidebar mengelompokkan objek berdasarkan database dan skema. Daftar objek berasal dari perintah <code>SHOW</code>, yang berjalan tanpa warehouse; detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukannya. <explain>Explain</explain> mengembalikan rencana Snowflake sebagai teks mentah.",
-                "<editing>Perubahan grid</editing> mengikat nilai di server, dengan sel VARIANT, OBJECT, dan ARRAY dikirim melalui <code>PARSE_JSON</code>. Perubahan mencocokkan primary key yang dideklarasikan, atau semua kolom jika tidak ada. Snowflake tidak pernah menegakkan constraint kunci, sehingga nilai kunci duplikat membuat perubahan atau penghapusan memengaruhi setiap baris yang cocok: periksa duplikat sebelum mengedit tabel."
+                "<editing>Pengeditan grid</editing> mengikat nilainya di server, dengan sel VARIANT, OBJECT, dan ARRAY yang dikirim melalui <code>PARSE_JSON</code>. Kunci edit pada kunci utama yang dideklarasikan, atau pada setiap kolom jika tidak ada. Tabel Snowflake standar tidak menerapkan batasan kunci, jadi nilai kunci yang diduplikasi berarti pengeditan atau penghapusan menjangkau setiap baris yang cocok: periksa tabel apakah ada duplikat sebelum Anda mengeditnya. Tabel hibrid menerapkan kuncinya."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Pindahkan data",
             "paragraphs": [
                 "<importData>Impor</importData> file {importFormats} melalui koneksi, dan ekspor tabel atau hasil ke Mac sebagai {exportFormats}.",
-                "Untuk mengekspor tabel tanpa melewati Mac, pilih <ui>File > Server-Side Export…</ui> dan masukkan stage, dengan atau tanpa <code>@</code>. <backup>Server-Side Export</backup> menjalankan <code>COPY INTO</code> dengan hak akses Anda sendiri dan menulis CSV berkompresi gzip, Parquet, atau JSON; lembar menunggu hingga ekspor selesai, dan tidak ada data yang disimpan di Mac."
+                "Pilih <ui>File > Server-Side Export…</ui> dan stage. <backup>Server-Side Export</backup> menjalankan <code>COPY INTO</code> dengan hak akses Anda, menulis CSV gzip, Parquet, atau JSON. Menunggu hingga selesai; file tidak melewati Mac Anda."
             ]
         }
     ],

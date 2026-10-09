@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "适用于 {devices} 的 etcd GUI",
-        "lead": "按前缀浏览集群的键，在网格修改值和租约，在编辑器执行 <code>get --prefix</code>、<code>lease grant</code>、<code>member list</code> 等 etcdctl 风格命令。"
+        "title": "etcd GUI",
+        "lead": "按前缀浏览键、更改值，并使用 etcdctl 风格命令管理租约。"
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "填写主机和客户端端口。etcd 没有数据库，因此表单无 Database 字段。请使用客户端端口；对等端口不提供 JSON 网关，指向它的连接无法打开。表单仅接受一个端点且不故障转移，请选择在线成员。",
+                "输入一个主机和客户端端口。对等端口没有 JSON 网关。不提供数据库选择或端点故障转移。",
                 "无认证集群请留空<ui>用户名</ui>（Username）和<ui>密码</ui>（Password）。没有 <code>root</code> 角色的用户可连接并浏览其角色允许的键，但 <code>endpoint status</code>、<code>user</code> 和 <code>role</code> 命令返回权限拒绝。",
                 "TLS 在 Advanced 字段的 <ui>TLS 模式</ui>（TLS Mode）设置，非 SSL 区域，默认 Disabled。Required (skip verify) 加密但不验证，Verify CA 对照指定 CA 文件验证证书，Verify Identity 再检查主机名。客户端证书和密钥提供双向 TLS。",
                 "通过 <network>SSH 隧道</network>访问堡垒机后的集群。可导入 <code>etcd://</code>、<code>etcds://</code> URL，两者均不会自行开启 TLS。"
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "设置<ui>键前缀根</ui>（Key Prefix Root）（如 <code>/app</code>）将连接限制于一个子树。侧边栏按其下第一个路径段分组，每个键一行，显示值、版本、修改和创建修订号及租约。",
                 "保存编辑发送命令。新值或租约重新 put 键，NULL 租约移除租约，重命名先 put 新名再删除旧名。修订号列由 etcd 管理，编辑会停止保存并指出列名。",
-                "编辑器接受 etcdctl 风格命令，补全命令和标志：带 <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> 及排序的 <code>get</code>，带 <code>--lease</code> 的 <code>put</code>，<code>del</code>、<code>watch</code>、<code>lease</code> 子命令、<code>member list</code>、<code>endpoint status</code> 和 <code>health</code>、<code>compaction</code>，以及 <code>auth</code>、<code>user</code>、<code>role</code>。其他命令不发送服务器，直接返回未知命令。",
+                "运行 etcdctl 风格的键、watch、租约、成员、端点、压缩和访问控制命令，支持命令及标志补全。不支持的命令会在发送到服务器前被拒绝。",
                 "etcd 驱动无法打开只读会话，因此 <safeMode>Safe Mode</safeMode> 将所有命令视为写入：Alert、Safe Mode 级别每次先确认，Read-Only 全部阻止。"
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "租约和集群",
             "paragraphs": [
-                "<code>lease grant</code>、<code>revoke</code>、带 <code>--keys</code> 的 <code>timetolive</code>、<code>list</code>、<code>keep-alive</code> 管理租约，<code>compaction</code> 裁剪修订历史。etcd 无 Server Dashboard，请在编辑器用 <code>member list</code>、<code>endpoint status</code>、<code>endpoint health</code> 查看集群。",
+                "在编辑器中管理租约和修订压缩。通过命令查看成员、端点状态或健康情况；etcd 没有 Server Dashboard。",
                 "在编辑器运行 <code>auth enable</code> 开启整个集群的认证。保存用户名和密码的连接继续工作；两者均无的连接需带凭据重新打开。"
             ]
         },

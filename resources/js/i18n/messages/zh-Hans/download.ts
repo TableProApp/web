@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "发行说明（英语）",
-        "unavailable": "无法加载当前版本详情。两个按钮都会打开 GitHub 上的最新版本，您可在那里选择适合 Mac 的磁盘映像。"
+        "unavailable": "无法获取版本信息。两个按钮都会打开 GitHub 上的最新版本，请在那里选择安装包。"
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "要安装 Mac 应用，请在 Mac 上打开此页面。",
     "whichMac": {
         "summary": "我的 Mac 是哪种型号？",
-        "body": "打开 Apple 菜单并选择“关于本机”。Apple silicon Mac 会显示“芯片”一栏，如 Apple M2。Intel Mac 则显示“处理器”一栏，其中标有 Intel。"
+        "body": "在 Apple 菜单中选择“关于本机”。显示“芯片”一栏的是 Apple 芯片 Mac；“处理器”一栏显示 Intel 的是 Intel Mac。"
     },
     "checksum": {
         "summary": "验证下载的文件",

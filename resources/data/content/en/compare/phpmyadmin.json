@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs phpMyAdmin: web tool or app on your Mac",
+        "title": "TablePro vs phpMyAdmin: desktop or browser",
         "description": "phpMyAdmin runs on a web server and opens in a browser. TablePro runs on your Mac and connects directly or over SSH. Compare databases, setup and access."
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs phpMyAdmin",
-        "lead": "phpMyAdmin is a free, open-source web tool for MySQL and MariaDB. It is installed on a web server, and cPanel includes it. TablePro is an open-source app for your Mac, with a separate iPhone and iPad app, that connects to the database directly or through an SSH tunnel."
+        "lead": "phpMyAdmin runs on a web server and is included with cPanel. TablePro connects from a native app, directly or over SSH. Your hosting plan may determine which you can use."
     },
     "shortAnswer": {
         "tablepro": [
-            "You would rather install nothing on the server and work from your Mac, connecting directly or over SSH.",
-            "You also use PostgreSQL, SQL Server, SQLite, Redis or other engines.",
-            "You want each connection to have a Safe Mode level, such as Read-Only for production, or Touch ID before writes.",
-            "You move data in and out often. Importing CSV, JSON, XLSX or SQL files and exporting them is free.",
-            "You want an AI assistant and an MCP server, free in the Mac app."
+            "A client that connects directly or over SSH, with nothing installed on the server.",
+            "MySQL and MariaDB alongside other database types.",
+            "Per-connection Safe Mode and free AI chat and MCP."
         ],
         "competitor": [
-            "Your host provides it in cPanel, and you have no SSH or remote access to the database.",
-            "You want to work from any computer with a browser, with nothing to install on it.",
-            "You or your team need the interface in a language the TablePro Mac app does not offer."
+            "Database access through cPanel when your host allows neither SSH nor remote connections.",
+            "Access from any computer with a browser.",
+            "An interface language unavailable in TablePro."
         ]
     },
     "glance": {
@@ -59,31 +57,43 @@
         "items": [
             {
                 "text": "It runs in a browser, so you can reach it from any computer with nothing installed there.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "cPanel includes it, so a hosting account with cPanel has it ready to use.",
-                "cite": ["cells.cpanel"],
+                "cite": [
+                    "cells.cpanel"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Its interface is available in {cells.languages.value} languages.",
-                "cite": ["cells.languages"],
+                "cite": [
+                    "cells.languages"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It shows the database schema in several graphical formats, and its query-by-example (QBE) tool helps you build complex queries.",
-                "cite": ["cells.designer", "cells.queryByExample"],
+                "cite": [
+                    "cells.designer",
+                    "cells.queryByExample"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "It is free and open source under the GPL, with no paid plans.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -99,8 +109,10 @@
                 "href": "/features/connections#network"
             },
             {
-                "text": "There is no web install to secure and keep updated. phpMyAdmin’s documentation explains how to secure its own, with HTTPS, access rules and two-factor sign-in.",
-                "cite": ["cells.hardening"],
+                "text": "phpMyAdmin requires a server installation, with its own updates and access controls. Its docs cover HTTPS, access rules and two-factor sign-in.",
+                "cite": [
+                    "cells.hardening"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -147,7 +159,9 @@
             },
             {
                 "text": "Some features are paid. Starter adds features such as {starterExamples}, while phpMyAdmin has no paid plans.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -181,12 +195,6 @@
             "question": "What about Adminer?",
             "answer": "Adminer is another open-source web tool, delivered as a single PHP file. Besides MySQL and MariaDB, it connects to PostgreSQL, SQLite, SQL Server and Oracle. Like phpMyAdmin, it runs on your server, so its install needs the same care.",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "Is TablePro free like phpMyAdmin?",
-            "answer": "For MySQL and MariaDB work, yes: the TablePro Mac app is free to use and open source under the AGPLv3, with every supported engine, the AI assistant and the MCP server. Unlike phpMyAdmin, it also has paid plans: Starter and Team add optional features such as {starterExamples}. <link>See pricing</link>.",
-            "href": "/pricing"
         }
     ],
     "notes": {

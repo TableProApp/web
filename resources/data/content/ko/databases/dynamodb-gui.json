@@ -10,8 +10,8 @@
     "engine": "dynamodb",
     "breadcrumb": "Amazon DynamoDB",
     "header": {
-        "title": "{devices}용 Amazon DynamoDB GUI",
-        "lead": "키·인덱스로 테이블을 탐색하고 읽기별 소비 용량을 확인하며 유형을 잃지 않고 항목을 편집하고 편집기에서 PartiQL·DynamoDB API 요청을 실행합니다."
+        "title": "Amazon DynamoDB GUI",
+        "lead": "항목을 탐색하고 키로 조회하며 소비된 읽기 용량을 확인하세요. 타입을 유지해 값을 편집하거나 PartiQL 요청을 실행할 수 있습니다."
     },
     "asset": "mac-db-dynamodb-planner",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "<ui>인증 방식</ui>(Auth Method)·<ui>AWS 리전</ui>(AWS Region)을 고르면 해당 리전 테이블이 사이드바에 나옵니다. 방식은 선택 세션 토큰의 액세스 키, AWS CLI처럼 <code>~/.aws/config</code>·<code>~/.aws/credentials</code>에서 읽는 프로필 또는 세션 만료 시 로그인 창을 여는 <cloudAuth>AWS IAM Identity Center</cloudAuth> 프로필입니다.",
+                "<ui>인증 방식</ui> (Auth Method)와 <ui>AWS 리전</ui> (AWS Region)을 선택하세요. 액세스 키와 선택적인 세션 토큰, AWS CLI 프로필, <cloudAuth>AWS IAM Identity Center</cloudAuth>를 사용할 수 있습니다. Identity Center 세션이 만료되면 로그인을 요청합니다.",
                 "프로필은 <code>credential_process</code> 도우미·<code>role_arn</code> 체인을 해석하고 만료 임시 자격 증명을 다시 받아 요청을 한 번 재시도합니다. 모든 요청은 HTTPS·Signature Version 4 서명으로 보내 SSL 설정·SSH 터널은 없습니다. 중국·European Sovereign Cloud 등 다른 AWS 파티션 리전도 사용자 지정 없이 자체 엔드포인트로 연결합니다.",
                 "DynamoDB Local은 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>을 실행하고 <ui>DynamoDB Local (no credentials)</ui>를 고르세요. 8000 포트는 <ui>사용자 지정 엔드포인트</ui>(Custom Endpoint)를 비웁니다. 사용자 지정 엔드포인트의 평문 HTTP는 이 Mac에서만 허용합니다. 설정 가이드에 <permissions>작업별 필요한 IAM 작업</permissions>이 있습니다."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "항목 읽기, 필터 및 편집",
             "paragraphs": [
-                "테이블 열기·필터·페이지 이동은 플래너 하나를 거칩니다. 파티션 키를 =로 지정하면 한 파티션 Query, 인덱스 키에 맞는 필터는 해당 인덱스 Query, 나머지는 전체 테이블을 읽고 읽은 모든 항목에 과금하는 Scan입니다. 상태 표시줄은 선택한 읽기, 반환 항목 수, 찾기 위해 읽은 수와 소비 읽기 용량 단위를 표시합니다.",
-                "정렬 키의 <filters>필터</filters>가 =, <, <=, >, >=, BETWEEN·STARTS WITH면 키 조건에 합칩니다. 나머지는 DynamoDB가 읽은 뒤 적용하는 FilterExpression으로 행을 좁혀도 요금은 줄지 않습니다. 중첩 속성은 <code>address.city</code>·<code>items[0].sku</code> 같은 경로로 필터링합니다.",
+                "키 필터는 Query, 나머지 필터는 Scan을 사용합니다. Scan은 테이블 전체를 읽고 읽은 모든 항목에 비용이 청구됩니다. 상태 표시줄에 작업, 반환 및 스캔 항목 수, 소비된 읽기 용량이 표시됩니다.",
+                "지원되는 <filters>정렬 키 필터</filters>는 키 조건을 사용합니다. 나머지는 읽은 후에 필터링하므로 비용이 줄지 않습니다. <code>address.city</code>, <code>items[0].sku</code> 같은 중첩 경로를 지원합니다.",
                 "한 파티션 Query에서 정렬 키 헤더를 클릭하면 DynamoDB가 그 순서로 반환합니다. 다른 정렬은 일치 항목을 모두 읽었을 때 그리드에서 하며 아닐 때 상태 표시줄이 알립니다. 다음 페이지는 이전 끝에서 이어집니다. 아래 총계는 DynamoDB 자체 항목 수이며 <ui>정확히 계산</ui>(Count Exactly)은 필터에 맞는 모든 항목을 읽어 전액 과금됩니다.",
                 "테이블은 키만 선언해 열은 항목에서 가져옵니다. 키 속성, 테이블 첫 항목 표본에서 찾은 속성과 현재 페이지 속성입니다. 맵·리스트·세트는 JSON으로 표시해 JSON 편집기로 열고 숫자는 모든 자릿수를 유지합니다.",
-                "변경 행마다 PartiQL 문 하나로 저장하며 <editing>모든 값이 유형을 유지합니다</editing>. Number는 Number, <code>02134</code> 같은 String은 String, JSON으로 편집한 String Set은 String Set으로 돌아갑니다. 업데이트는 변경 속성마다 그리드가 읽은 값과 비교해 다른 사람의 변경을 덮어쓰지 않고 실패합니다. <ui>NULL로 설정</ui>(Set NULL)은 속성을 제거합니다.",
+                "각 행은 <editing>타입을 유지</editing>하며 하나의 PartiQL 구문으로 저장됩니다. 업데이트는 변경된 속성을 불러온 값과 비교하고 동시 변경을 덮어쓰지 않습니다. <ui>NULL로 설정</ui> (Set NULL)은 속성을 제거합니다.",
                 "편집기는 이름을 큰따옴표, 문자열을 작은따옴표로 감싼 PartiQL 또는 <code>Query</code>·<code>BatchWriteItem</code>·<code>TransactWriteItems</code> 같은 DynamoDB 작업명 뒤 요청 JSON을 받습니다. 다른 작업명은 거부합니다. 항목은 그리드, 다른 응답은 JSON입니다. 제한된 요청은 백오프로 재시도하고 <code>⌘.</code>가 실행 중인 명령문을 멈춥니다."
             ]
         },

@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "Import und Export",
-        "title": "Import, Export und Datendateien"
+        "title": "Import und Export"
     },
     "header": {
-        "title": "Import, Export und Datendateien",
-        "lead": "Um Daten zwischen Dateien und Datenbanken zu bewegen: eine Tabellenkalkulation in eine Tabelle laden, ein Abfrageergebnis als Excel-Datei weitergeben, eine CSV-Datei vor der Verwendung bereinigen oder vor einer riskanten Änderung einen Dump erstellen. Alles hier steht auf dem Mac bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
+        "title": "Import und Export",
+        "lead": "Importiere Dateien in unterstützte Tabellen und exportiere Tabellen oder Abfrageergebnisse. Öffne CSV-, JSON- und Excel-Dateien ohne Datenbankverbindung.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "Dateien in eine Tabelle importieren",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> importiert {importFormats}-Dateien. Eine SQL-Datei wird als Folge von Anweisungen ausgeführt, auch <code>.sql.gz</code>-Dumps und durch <code>GO</code> getrennte SQL-Server-Skripte. Die anderen Formate werden in eine bestehende Tabelle geladen oder in eine neue, die nach der Datei benannt ist und deren Spalten aus der Datei stammen; aus einer Excel-Arbeitsmappe wird das erste Blatt importiert.",
-                "Jedes Feld wird einer Spalte zugeordnet; der Import läuft in einer Transaktion, sofern du dies nicht deaktivierst. Schlägt eine Zeile fehl, wählst du, ob der Import anhält und zurückgerollt wird, ob er anhält und das bereits Importierte behält oder ob die Zeile übersprungen wird und der Import weiterläuft. Danach kannst du einen Bericht der übersprungenen Zeilen als CSV speichern."
+                "Importiere {importFormats}-Dateien. Datenformate nutzen Spaltenzuordnung in bestehende oder neue Tabellen; Excel importiert nur das erste Blatt. SQL-Dateien laufen als Anweisungen, auch <code>.sql.gz</code>-Dumps und SQL-Server-Skripte mit <code>GO</code>.",
+                "Importe nutzen eine Transaktion, sofern nicht deaktiviert. Wähle bei fehlerhaften Zeilen zwischen Rollback, Behalten importierter Zeilen oder Überspringen. Exportiere übersprungene Zeilen als CSV zur Prüfung."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Gespeicherte Zuordnungen und Kodierungen",
                     "paragraphs": [
-                        "TablePro merkt sich die Zuordnung je Tabelle für CSV-, JSON- und Excel-Importe. <ui>Match by Name</ui> oder <ui>Match by Position</ui> ordnet alle Felder mit einem Klick zu. Die Zuordnung nach Position funktioniert bei CSV und Excel, wo die Reihenfolge der Felder aus der Datei kommt. CSV- und SQL-Importe lesen UTF-16 sowie japanische, chinesische und koreanische Kodierungen wie Shift JIS, GB 18030, Big5 und EUC-KR."
+                        "Nutze gespeicherte Spaltenzuordnungen für CSV, JSON und Excel erneut. <ui>Match by Name</ui> ordnet benannte Felder zu; <ui>Match by Position</ui> funktioniert für CSV und Excel. CSV und SQL unterstützen auch UTF-16 und ausgewählte japanische, chinesische und koreanische Kodierungen."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,22 +42,22 @@
             "id": "export",
             "title": "Tabellen und Ergebnisse exportieren",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exportiert die ausgewählten Tabellen und Views nach {exportFormats}. Jede wird beim Schreiben direkt aus der Datenbank gestreamt, sodass das Zeilenlimit der Datentabelle nicht gilt. Auf SQL-Systemen kann jede Tabelle eine eigene WHERE-Klausel, ein eigenes Zeilenlimit und eine eigene Spaltenauswahl erhalten. SQL-Exporte können die Struktur enthalten, mit gzip komprimiert und in Teile aufgeteilt werden; Excel legt jede Tabelle auf ein eigenes Blatt. MongoDB-Sammlungen lassen sich auch als mongosh-Skript exportieren; einen SQL-Export gibt es für MongoDB und Redis nicht.",
-                "<ui>Export Results</ui> schreibt, was eine Abfrage zurückgegeben hat; wurde ein Ergebnis vom Zeilenlimit gekürzt, läuft die Abfrage erneut und wird vollständig gestreamt. Der Export nach {exportPluginFormats} stammt aus einem kostenlosen Plugin, das du unter <ui>Settings > Plugins</ui> installierst, und schreibt eine Datei je Tabelle."
+                "Exportiere Tabellen und Views als {exportFormats}, per Streaming über das Zeilenlimit des Rasters hinaus. SQL-Engines unterstützen Filter, Limits und Spaltenauswahl pro Tabelle. SQL-Exporte können die Struktur enthalten; Excel nutzt ein Blatt pro Tabelle. MongoDB exportiert mongosh-Skripte, kein SQL. Redis hat ebenfalls keinen SQL-Export.",
+                "<ui>Export Results</ui> führt begrenzte Abfragen erneut aus, um das vollständige Ergebnis zu streamen. Ergänze {exportPluginFormats}-Export mit einem kostenlosen Plugin unter <ui>Settings > Plugins</ui>, mit einer Datei pro Tabelle."
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files: an Dateien ohne Datenbank arbeiten",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "Öffnen, suchen und bereinigen",
+                    "title": "Datendateien bearbeiten",
                     "paragraphs": [
-                        "Öffne eine CSV-, TSV- oder andere Textdatei mit Trennzeichen oder eine JSON- oder JSON-Lines-Datei aus dem Finder oder mit <kbd>⌘O</kbd>; das Fenster Data Files zeigt sie als bearbeitbare Tabelle. Filtere sie mit der Filterleiste der Datentabelle, durchsuche alle Spalten, suche und ersetze mit regulären Ausdrücken und bereinige sie mit Fill Down, Trim Whitespace, Change Case und Remove Duplicate Rows. Excel-Arbeitsmappen öffnen sich mit einem Tab je Blatt, komprimierte Dateien wie <code>.csv.gz</code> ebenfalls, beide schreibgeschützt.",
-                        "Das Fenster arbeitet mit einer privaten Kopie; <kbd>⌘S</kbd> schreibt die Datei in ihrem Format zurück und lässt unberührte Zeilen unverändert."
+                        "Öffne und bearbeite getrennten Text, JSON und JSON Lines als Tabellen. Filtere, suche, ersetze Text oder entferne doppelte Zeilen. Excel-Blätter und komprimierte Dateien wie <code>.csv.gz</code> öffnen schreibgeschützt.",
+                        "Änderungen bleiben bis zum Speichern in einer privaten Kopie. Speichern schreibt das Originalformat und erhält unveränderte Zeilen."
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "Spaltenstatistik, dann exportieren oder importieren",
                     "paragraphs": [
-                        "Spaltenstatistiken zeigen die Anzahl leerer und unterschiedlicher Werte einer Spalte, ihren Wertebereich und ihre häufigsten Werte; ein Klick auf einen Wert filtert die Datei danach. Ist die Datei fertig, exportiere sie in ein anderes Format oder sende sie mit <ui>Import into Table</ui> an eine Tabelle einer offenen Verbindung."
+                        "Prüfe leere und unterschiedliche Werte, Bereiche und häufige Werte. Klicke auf einen Wert zum Filtern, exportiere dann die Datei oder nutze <ui>Import into Table</ui> auf einer offenen Verbindung."
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -73,10 +73,10 @@
         },
         {
             "id": "backup",
-            "title": "Mit den Werkzeugen deines Systems sichern",
+            "title": "Backup und Wiederherstellung",
             "paragraphs": [
-                "Backup Dump und Restore Dump arbeiten mit {backupTools}, über den SSH-Tunnel der Verbindung und mit ihren TLS-Einstellungen; ein Server hinter einem Bastion-Host benötigt daher keinen zweiten Tunnel. Bis auf DuckDB sind das Kommandozeilenwerkzeuge, die du selbst installierst; DuckDB schreibt den Dump selbst, als Datenbankdatei oder als Ordner mit Parquet-Dateien.",
-                "Auf {serverSideExport} lässt Server-Side Export stattdessen den Server den Export schreiben: als Oracle-Data-Pump-Job, in eine Snowflake-Stage oder einen Cloud-Storage-Bucket. Nichts landet auf deinem Mac."
+                "Backup Dump und Restore Dump nutzen {backupTools} mit den SSH- und TLS-Einstellungen der Verbindung. Installiere das benötigte CLI-Werkzeug selbst; DuckDB schreibt seine Datenbank- oder Parquet-Dumps ohne externes Werkzeug.",
+                "Server-Side Export auf {serverSideExport} schreibt über Oracle Data Pump, eine Snowflake-Stage oder Cloud Storage. Der Export läuft nicht über deinen Mac."
             ],
             "engines": [
                 {
@@ -108,7 +108,7 @@
             "id": "between-databases",
             "title": "Von einer Datenbank zur anderen",
             "paragraphs": [
-                "Um Tabellen oder Zeilen zwischen zwei Verbindungen zu verschieben, brauchst du keine Zwischendatei. Copy To und Transfer To erledigen das direkt, auch systemübergreifend, und zeigen vor der Ausführung, was sie schreiben werden."
+                "Kopiere oder übertrage Tabellen zwischen unterstützten Verbindungen ohne Zwischendatei. Unter Schema findest du Details zu Typkonvertierung und Prüfung."
             ],
             "links": [
                 {

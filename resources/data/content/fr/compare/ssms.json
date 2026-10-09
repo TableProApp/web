@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Alternatives à SQL Server Management Studio sur Mac",
-        "lead": "SQL Server Management Studio est l’outil gratuit de Microsoft pour SQL Server et Azure SQL, et il ne fonctionne que sous Windows. Microsoft a retiré Azure Data Studio le {cells.microsoftOnMac.date} et oriente ses utilisateurs vers Visual Studio Code avec l’extension MSSQL, qui fonctionne aussi sous macOS. TablePro est un client Mac natif qui se connecte à SQL Server et à d’autres moteurs."
+        "lead": "SQL Server Management Studio est l’outil de Microsoft pour SQL Server et Azure SQL, disponible uniquement sur Windows. TablePro se connecte à SQL Server depuis une app native, mais ne remplace pas les outils d’administration de SSMS."
     },
     "shortAnswer": {
         "tablepro": [
-            "Vous travaillez sur Mac et voulez une app native pour SQL Server, où un script T-SQL s’exécute lot par lot à chaque ligne GO.",
-            "Vous vous connectez avec un login SQL Server, Kerberos ou Microsoft Entra ID.",
-            "Vous travaillez aussi avec PostgreSQL, MySQL, SQLite ou Redis, et voulez un seul client pour tous.",
-            "Vous voulez un assistant IA et un serveur MCP, gratuits dans l’app Mac, avec le fournisseur d’IA de votre choix.",
-            "Vous voulez une app gratuite pour iPhone et iPad qui se connecte à SQL Server."
+            "Un client natif pour SQL Server, avec lots T-SQL séparés par GO.",
+            "La connexion par identifiant SQL Server, Kerberos ou Microsoft Entra ID.",
+            "SQL Server en plus de PostgreSQL, MySQL, SQLite ou Redis."
         ],
         "competitor": [
-            "Vous gérez des travaux SQL Server Agent, des groupes de disponibilité Always On ou Always Encrypted.",
-            "Vous optimisez les performances avec les statistiques de requêtes en direct, les assistants de paramétrage et les tableaux de bord.",
-            "Vous gérez des connexions, des utilisateurs et des rôles, ou concevez des tables dans des diagrammes de base de données.",
-            "Vous disposez d’un ordinateur Windows pour l’exécuter."
+            "L’administration de SQL Server Agent, Always On ou Always Encrypted.",
+            "Des statistiques de requêtes en direct, des conseillers d’optimisation et des tableaux de bord.",
+            "La gestion des identifiants et des rôles, ou la conception de diagrammes de bases."
         ],
-        "competitorTitle": "Gardez SQL Server Management Studio, sous Windows, si"
+        "competitorTitle": "Gardez SQL Server Management Studio pour"
     },
     "glance": {
         "intro": "SQL Server Management Studio n’a pas de version Mac. L’option de Microsoft sur Mac est Visual Studio Code avec l’extension MSSQL : Microsoft a retiré Azure Data Studio le {cells.microsoftOnMac.date} et y oriente ses utilisateurs."
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio est l’outil de Microsoft pour SQL Server, Azure SQL Database, Azure SQL Managed Instance et les bases SQL dans Fabric, et il est gratuit.",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft le présente comme l’outil pris en charge pour les travaux SQL Server Agent et l’administration générale.",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Il configure, surveille et dépanne les groupes de disponibilité Always On, et gère les connexions, utilisateurs, rôles et Always Encrypted.",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Les statistiques de requêtes en direct, les statistiques client, les assistants de paramétrage et les tableaux de bord aident à optimiser les performances.",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "GitHub Copilot, ajouté avec Visual Studio Installer, écrit, corrige et optimise le T-SQL.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro fonctionne nativement sur Mac, avec des versions distinctes pour Apple silicon et Intel. SQL Server Management Studio ne fonctionne que sous Windows.",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "Certaines fonctions sont payantes. Starter ajoute des fonctions comme {starterExamples}, tandis que SQL Server Management Studio est gratuit.",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

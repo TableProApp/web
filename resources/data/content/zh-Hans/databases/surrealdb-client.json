@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "适用于 {devices} 的 SurrealDB 客户端",
-        "lead": "以用户定义所在的级别登录，运行 SurrealQL 脚本，逐字段编辑记录；记录链接、日期时间及小数均保留各自类型。"
+        "title": "SurrealDB 客户端",
+        "lead": "运行 SurrealQL，编辑记录字段并保留类型。"
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "SurrealDB 无法从凭据判断用户定义在哪一级，所以由<ui>认证级别</ui>（Auth Level）指定，表单再要求其余信息。Root 使用用户名和密码，Namespace 增加命名空间，Database 再增加数据库。Record Access 需要命名空间、数据库、<code>DEFINE ACCESS</code> 定义的访问方式及登录字段。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的令牌。",
+                "从 Root、Namespace、Database、Record Access 或 Token 中选择用户的 <ui>认证级别</ui> (Auth Level)。Namespace 和 Database 需要名称；Record Access 还需访问方式和登录字段，Token 接受已有 JWT。",
                 "驱动通过 HTTP RPC 端点传输 CBOR，记录链接、日期时间、时长、小数和 UUID 保留类型。<code>surrealdb://</code> 链接打开已填好的连接表单，远程服务器可经 <network>SSH 隧道</network>访问。",
                 "SSL 默认 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 对照系统信任库验证证书，忽略 SSL/TLS 面板的 CA 文件，因此请先在 macOS 安装私有 CA。"
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL 和记录",
             "paragraphs": [
-                "编辑器运行整个 SurrealQL 脚本，包括两条记录间的 <code>RELATE</code>，并提供常用语句补全。<explain>Explain 和 Explain Full</explain> 添加 <code>EXPLAIN</code> 重新运行当前查询，显示其解析方式及是否使用索引；计划以原始文本返回。",
+                "运行完整 SurrealQL 脚本，包括 <code>RELATE</code>，支持语句补全。<explain>Explain 和 Explain Full</explain> 使用 <code>EXPLAIN</code> 运行查询，返回文本计划。",
                 "命名空间位于侧边栏顶层，内含数据库。两者随每次请求发送，切换均无需重连。只有根用户能看到所有命名空间。",
-                "修改单元格执行 <code>UPDATE</code>，仅用类型化参数设置改动的字段，让 <code>int</code> 仍为 <code>int</code>，不触碰计算的 <code>FUTURE</code> 字段或其他写入者的改动。新行留空 <code>id</code> 自动生成，或填写 <code>table:id</code>。<code>SCHEMALESS</code> 表从获取的记录确定列。",
+                "单元格编辑仅用带类型的参数更新已更改字段，保留计算的 <code>FUTURE</code> 字段和其他写入者的更改。将 <code>id</code> 留空可自动生成 ID。SCHEMALESS 表的列来自已获取记录。",
                 "<filters>筛选</filters>转换为 SurrealQL，Raw SQL 行接受单个条件，例如图遍历。写入、含 <code>;</code> 或注释、调用 <code>fn::</code> 或 <code>http::</code> 的条件被拒绝，请在编辑器运行。"
             ]
         },

@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "リリースノート（英語）",
-        "unavailable": "最新リリースの詳細を読み込めませんでした。どちらのボタンも GitHub の最新リリースを開きます。そこでお使いの Mac に合うディスクイメージを選べます。"
+        "unavailable": "リリース情報を取得できません。どちらのボタンも GitHub の最新リリースを開きます。そこでビルドを選んでください。"
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Mac アプリをインストールするには、Mac でこのページを開いてください。",
     "whichMac": {
         "summary": "自分の Mac の種類を確認する",
-        "body": "Apple メニューから「この Mac について」を開きます。Apple silicon 搭載 Mac には「チップ」欄があり、Apple M2 などと表示されます。Intel Mac には「プロセッサ」欄があり、Intel と表示されます。"
+        "body": "Apple メニューで「この Mac について」を選びます。「チップ」欄があれば Apple silicon Mac、「プロセッサ」欄に Intel とあれば Intel Mac です。"
     },
     "checksum": {
         "summary": "ダウンロードを検証する",

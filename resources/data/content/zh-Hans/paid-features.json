@@ -1,42 +1,42 @@
 {
     "compare-sync": {
-        "detail": "对比两个数据库的结构或数据，并在执行前审查同步脚本。",
+        "detail": "比较支持的数据库，并检查结构或数据同步脚本。",
         "lapse": "打开时会显示要求许可证的提示。"
     },
     "query-insights": {
-        "detail": "根据此 Mac 的历史记录，查看运行最多、最慢以及变慢的查询。",
+        "detail": "在这台 Mac 的本地历史中查找缓慢、失败和常用查询。",
         "lapse": "视图保留，但会被许可证提示覆盖。"
     },
     "result-charts": {
-        "detail": "根据结果集绘制柱状图、折线图、面积图和散点图。",
+        "detail": "将查询结果绘制为柱状图、折线图、面积图或散点图。",
         "lapse": "图表保留，但会被许可证提示覆盖。"
     },
     "data-rewind": {
-        "detail": "恢复保存修改前行中的值。",
+        "detail": "检查并恢复最近保存中符合条件的值。不是备份功能。",
         "lapse": "不再记录保存操作，恢复时会显示提示。"
     },
     "icloud-sync": {
-        "detail": "在多台 Mac 之间，以及与 iPhone 和 iPad 应用同步连接和设置。",
+        "detail": "在 Mac 之间同步选定数据，并与 iPhone 和 iPad 同步支持的连接数据。",
         "lapse": "同步暂停，Settings 会说明原因。"
     },
     "linked-folders": {
-        "detail": "从 Git 仓库或团队云盘等共享文件夹中的 .tablepro 文件读取连接。",
+        "detail": "从共享文件夹、Git 仓库或团队网盘读取连接文件。",
         "lapse": "Linked Folders 中的连接会从连接列表中移除。"
     },
     "encrypted-export": {
-        "detail": "在 .tablepro 导出文件中包含密码，并用口令加密。",
+        "detail": "导出 .tablepro 文件，用口令加密其中的密码。",
         "lapse": "导出时无法再选择包含密码。普通导出和导入加密文件仍可使用。"
     },
     "environment-variables": {
-        "detail": "在主机、用户等连接字段中使用 $VAR，TablePro 会在连接时填入其值。",
+        "detail": "连接时解析支持的连接字段中的 $VAR。",
         "lapse": "$VAR 不再替换，也不会提示；连接将使用原样文本。"
     },
     "team-catalog": {
-        "detail": "将不含密码的连接发布到共享文件夹，团队通过 Linked Folders 读取。",
+        "detail": "将不含密码的连接文件发布到共享文件夹。",
         "lapse": "发布命令会被隐藏。"
     },
     "team-library": {
-        "detail": "通过 TablePro 服务器与团队共享连接和已保存查询。密码从不上传。",
+        "detail": "通过 TablePro 服务器共享连接和已保存的查询，绝不上传密码。",
         "lapse": "团队连接和查询会被隐藏，直到 Team 方案重新生效。"
     }
 }

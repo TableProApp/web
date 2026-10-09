@@ -9,23 +9,20 @@
     },
     "header": {
         "title": "Mac 上的 SQL Server Management Studio 替代方案",
-        "lead": "SQL Server Management Studio 是 Microsoft 針對 SQL Server 和 Azure SQL 的免費工具，僅在 Windows 上執行。Microsoft 已於 {cells.microsoftOnMac.date} 淘汰 Azure Data Studio，並引導使用者改用搭配 MSSQL 延伸模組的 Visual Studio Code，後者也能在 macOS 上執行。TablePro 是原生 Mac 用戶端，可連線 SQL Server 和其他引擎。"
+        "lead": "SQL Server Management Studio 是 Microsoft 的 Windows 專用工具，適用於 SQL Server 和 Azure SQL。 TablePro 從原生應用程式連線到 SQL Server，但不會取代 SSMS 的管理工具。"
     },
     "shortAnswer": {
         "tablepro": [
-            "您在 Mac 上工作，希望有 SQL Server 的原生 App，T-SQL 指令碼在每個 GO 行處分批執行。",
-            "您以 SQL Server 登入、Kerberos 或 Microsoft Entra ID 登入。",
-            "您也使用 PostgreSQL、MySQL、SQLite 或 Redis，希望用一個用戶端處理這些資料庫。",
-            "您希望在 Mac App 中免費使用 AI 助手和 MCP 伺服器，並自選 AI 服務商。",
-            "您希望有免費的 iPhone 與 iPad App 連線 SQL Server。"
+            "SQL Server 的原生用戶端，具有 GO 分隔的 T-SQL 批次。",
+            "SQL Server 登入、Kerberos 或 Microsoft Entra ID 登入。",
+            "SQL Server 以及 PostgreSQL、MySQL、SQLite 或 Redis。"
         ],
         "competitor": [
-            "您管理 SQL Server Agent 作業、Always On 可用性群組或 Always Encrypted。",
-            "您使用即時查詢統計資料、調整建議程式和儀表板來調校效能。",
-            "您管理登入、使用者和角色，或在資料庫圖表中設計資料表。",
-            "您有可執行它的 Windows 電腦。"
+            "SQL Server Agent、Always On 或 Always Encrypted 管理。",
+            "即時查詢統計、調優顧問和儀表板。",
+            "登入和角色管理，或資料庫圖表設計。"
         ],
-        "competitorTitle": "適合在 Windows 上繼續使用 SQL Server Management Studio 的情況"
+        "competitorTitle": "繼續使用 SQL Server Management Studio 的情況"
     },
     "glance": {
         "intro": "SQL Server Management Studio 沒有 Mac 版本。Microsoft 在 Mac 上的官方選擇是搭配 MSSQL 延伸模組的 Visual Studio Code：Microsoft 已於 {cells.microsoftOnMac.date} 淘汰 Azure Data Studio，並引導使用者改用它。"
@@ -61,31 +58,43 @@
         "items": [
             {
                 "text": "SQL Server Management Studio 是 Microsoft 官方工具，適用於 SQL Server、Azure SQL Database、Azure SQL Managed Instance 和 Fabric 中的 SQL 資料庫，而且免費。",
-                "cite": ["cells.databases", "prices"],
+                "cite": [
+                    "cells.databases",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Microsoft 稱其為 SQL Server Agent 作業和一般管理工作的受支援工具。",
-                "cite": ["cells.sqlAgent"],
+                "cite": [
+                    "cells.sqlAgent"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "可設定、監控 Always On 可用性群組並進行疑難排解，也能管理登入、使用者、角色和 Always Encrypted。",
-                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "cite": [
+                    "cells.availabilityGroups",
+                    "cells.securityManagement"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "即時查詢統計資料、用戶端統計資料、調整建議程式和儀表板有助於效能調校。",
-                "cite": ["cells.queryStatistics"],
+                "cite": [
+                    "cells.queryStatistics"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "透過 Visual Studio Installer 加入的 GitHub Copilot 可撰寫、修正和最佳化 T-SQL。",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -96,7 +105,9 @@
         "items": [
             {
                 "text": "TablePro 在 Mac 上原生執行，分別提供 Apple silicon 與 Intel 版本。SQL Server Management Studio 僅在 Windows 上執行。",
-                "cite": ["platforms"],
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": null
             },
@@ -161,7 +172,9 @@
             },
             {
                 "text": "部分功能付費。Starter 加入 {starterExamples} 等功能，而 SQL Server Management Studio 免費。",
-                "cite": ["prices"],
+                "cite": [
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             }

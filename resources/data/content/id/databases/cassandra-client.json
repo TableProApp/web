@@ -10,8 +10,8 @@
     "engine": "cassandra",
     "breadcrumb": "Cassandra dan ScyllaDB",
     "header": {
-        "title": "Klien Cassandra dan ScyllaDB untuk {devices}",
-        "lead": "Telusuri keyspace dan tabel, jalankan CQL dalam editor, serta edit baris yang ditulis berdasarkan primary key lengkap. Driver yang sama terhubung ke ScyllaDB dan Amazon Keyspaces."
+        "title": "Klien Cassandra dan ScyllaDB",
+        "lead": "Jelajahi ruang kunci, jalankan CQL dan edit baris berdasarkan kunci utamanya. Hubungkan ke Cassandra, ScyllaDB atau Amazon Keyspaces."
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan contact point dan portnya ke TablePro, beserta nama pengguna dan kata sandi jika cluster memiliki autentikator. Tidak ada bidang keyspace: pilih di sidebar setelah terhubung, atau masukkan dalam jalur URL <code>cassandra://</code> maupun <code>cql://</code> lalu impor. Perpindahan keyspace berlangsung pada koneksi yang sama dan tidak menampilkan keyspace sistem, sementara tab yang sudah terbuka tetap pada keyspace masing-masing.",
+                "Masukkan titik kontak, port, dan kredensial apa pun yang diperlukan. Pilih keyspace setelah terhubung, atau impor URL <code>cassandra://</code> atau <code>cql://</code> dengan URL yang ada di jalurnya. Tab yang ada mempertahankan ruang kuncinya saat Anda beralih.",
                 "TLS nonaktif pada koneksi baru. Preferred dan Required mengenkripsi tanpa memeriksa sertifikat karena driver tidak memiliki TLS oportunistik. Verify CA dan Verify Identity memerlukan file sertifikat CA dan tidak pernah beralih ke root sistem. Untuk TLS timbal balik, tambahkan sertifikat klien, kuncinya, dan frasa sandi kunci. Cluster pada jaringan pribadi diakses melalui <network>tunnel SSH</network>.",
                 "Amazon Keyspaces masuk menggunakan SigV4, bukan kata sandi. Arahkan koneksi ke endpoint regional, seperti <code>cassandra.us-east-1.amazonaws.com</code> pada port 9142, atur Authentication ke <awsIam>mode AWS IAM</awsIam> (kunci akses, profil, atau AWS IAM Identity Center), kosongkan nama pengguna serta kata sandi, dan aktifkan TLS karena Keyspaces menolak teks biasa."
             ]
@@ -37,10 +37,10 @@
             "id": "work",
             "title": "Telusuri dan jalankan CQL",
             "paragraphs": [
-                "Buka tabel dari sidebar untuk membacanya di grid. List, set, map, dan tuple ditampilkan sebagai koleksi, jenis buatan pengguna sebagai bidangnya, <code>duration</code> sebagai <code>1d2h30m</code>, vektor sebagai daftar angka, dan blob sebagai heksadesimal. Hasil editor CQL hanya baca, sehingga baris diubah dari tabel yang dibuka di sidebar.",
+                "Telusuri nilai CQL di kisi tabel, termasuk koleksi, tipe yang ditentukan pengguna, durasi, vektor, dan gumpalan. Hasil editor hanya dapat dibaca; edit baris dalam tabel yang dibuka dari sidebar.",
                 "CQL tidak memiliki OFFSET, sehingga halaman dibaca maju dari baris pertama: Next dan Previous pada halaman yang sudah ditampilkan masing-masing memerlukan satu pembacaan, dan melompat ke halaman jauh membaca semua halaman sebelumnya. Baris diterima dalam urutan token, dan header kolom tidak mengurutkannya ulang karena CQL hanya mengurutkan berdasarkan kolom clustering dalam satu partisi. Tidak ada penghitungan saat tabel dibuka; <ui>Count Exactly</ui> menjalankan <code>SELECT COUNT(*)</code>, yang membaca semua partisi.",
                 "<filters>Filter</filters> menambahkan <code>ALLOW FILTERING</code>, sehingga server membaca setiap partisi kecuali filter menetapkan seluruh partition key. Mengandung, diawali, dan diakhiri dikirim sebagai LIKE, yang hanya diterima Cassandra pada kolom dengan indeks SASI atau SAI. Operator yang tidak dapat dinyatakan CQL, seperti tidak sama dengan atau is NULL, ditolak dengan menyebutkan namanya, dan kondisi hanya digabungkan dengan AND karena CQL tidak memiliki OR.",
-                "<editing>Nilai yang diedit</editing> dikirim menggunakan jenis CQL kolomnya, dan nilai yang tidak dapat diurai menghentikan seluruh penyimpanan. Setiap baris ditulis dengan pernyataan sendiri, diidentifikasi primary key lengkap. <ui>Add Row</ui> menulis <code>INSERT … IF NOT EXISTS</code>, sehingga baris baru tidak pernah menimpa baris dengan kunci yang sama. Kolom kunci tidak dapat diubah langsung: hapus baris lalu tambahkan lagi.",
+                "<editing>Edits</editing> divalidasi sebagai tipe CQL dan ditulis per baris dengan kunci utama lengkap. Nilai yang tidak valid menghentikan penyimpanan. <ui>Add Row</ui> menggunakan <code>INSERT … IF NOT EXISTS</code>. Untuk mengubah kunci, hapus dan masukkan kembali baris tersebut.",
                 "Kolom counter memerlukan <code>UPDATE … SET c = c + 1</code> dalam editor CQL; server menolak UPDATE biasa yang ditulis perubahan grid. Batas waktu koneksi berasal dari Options koneksi, sedangkan permintaan CQL tetap menggunakan batas waktu tetap driver yang tidak diubah batas waktu kueri aplikasi."
             ]
         },

@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "导入和导出",
-        "title": "导入、导出和数据文件"
+        "title": "导入和导出"
     },
     "header": {
-        "title": "导入、导出和数据文件",
-        "lead": "用于在文件与数据库间移动数据：将电子表格载入表，把查询结果以 Excel 交给他人，使用前清理 CSV，或在风险修改前做转储。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
+        "title": "导入和导出",
+        "lead": "将文件导入支持的表，并导出表或查询结果。无需数据库连接即可打开 CSV、JSON 和 Excel 文件。",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "将文件导入表",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> 导入 {importFormats} 文件。SQL 文件按语句执行，支持 <code>.sql.gz</code> 转储和以 <code>GO</code> 分隔的 SQL Server 脚本。其他格式载入现有表，或根据文件名创建新表并从文件获取列；Excel 工作簿导入第一个工作表。",
-                "每个字段映射到一列，除非关闭该选项，否则导入在同一事务中执行。某行失败时，可选择停止并回滚、停止但保留已导入内容，或跳过该行继续。之后可将跳过行的报告保存为 CSV。"
+                "导入 {importFormats} 文件。数据格式通过列映射写入已有或新表；Excel 仅导入首个工作表。SQL 文件作为语句运行，包括 <code>.sql.gz</code> 转储和使用 <code>GO</code> 的 SQL Server 脚本。",
+                "除非禁用，导入使用一个事务。可选择失败行处理方式：回滚、保留已导入行或跳过失败。跳过的行可导出为 CSV 供检查。"
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "已保存映射和编码",
                     "paragraphs": [
-                        "TablePro 记住每个表的 CSV、JSON 和 Excel 导入映射。<ui>Match by Name</ui> 或 <ui>Match by Position</ui> 可一键映射全部字段。按位置匹配适用于字段顺序来自文件的 CSV 和 Excel。CSV 和 SQL 导入支持 UTF-16，以及 Shift JIS、GB 18030、Big5、EUC-KR 等日文、中文和韩文编码。"
+                        "复用已保存的 CSV、JSON 和 Excel 列映射。<ui>Match by Name</ui> 按字段名映射；<ui>Match by Position</ui> 适用于 CSV 和 Excel。CSV 和 SQL 也支持 UTF-16 及部分日语、中文、韩语编码。"
                     ],
                     "since": "0.77.0"
                 }
@@ -42,22 +42,22 @@
             "id": "export",
             "title": "导出表和结果",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> 将勾选的表和视图导出为 {exportFormats}。每项在写入时从数据库流式读取，不受数据网格行数上限影响。SQL 引擎允许每表独立设置 WHERE 子句、行数限制和所选列。SQL 导出可包含结构、使用 gzip 压缩及分卷，Excel 为每表创建单独工作表。MongoDB 集合还可导出为 mongosh 脚本，MongoDB 和 Redis 不提供 SQL 导出。",
-                "<ui>导出结果</ui>（Export Results）写入查询结果；被行数上限截断的结果会重新运行并完整流式导出。{exportPluginFormats} 导出由<ui>设置 > 插件</ui>（Settings > Plugins）中安装的免费插件提供，每表写入一个文件。"
+                "将表和视图导出为 {exportFormats}，流式输出超过表格行数上限的数据。SQL 引擎支持逐表筛选、限制和列选择。SQL 导出可包含结构；Excel 每表一张工作表。MongoDB 支持 mongosh 脚本导出，不支持 SQL 导出；Redis 也没有 SQL 导出。",
+                "<ui>导出结果</ui> (Export Results) 重新运行受行数限制的查询，流式输出完整结果。通过 <ui>设置 > 插件</ui> (Settings > Plugins) 中的免费插件添加 {exportPluginFormats} 导出，每表一个文件。"
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files：无需数据库即可处理文件",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "打开、搜索和清理",
+                    "title": "编辑数据文件",
                     "paragraphs": [
-                        "从 Finder 或使用 <kbd>⌘O</kbd> 打开 CSV、TSV、其他分隔文本文件、JSON 或 JSON Lines，Data Files 窗口会将其显示为可编辑表。可使用数据网格筛选栏筛选、搜索所有列、使用正则表达式查找替换，并用 Fill Down、Trim Whitespace、Change Case 和 Remove Duplicate Rows 清理。Excel 工作簿按工作表分标签页打开，<code>.csv.gz</code> 等压缩文件也可打开，两者均只读。",
-                        "窗口在私有副本上操作，<kbd>⌘S</kbd> 以原格式写回文件，未修改的行保持原样。"
+                        "将分隔文本、JSON 和 JSON Lines 作为表打开并编辑。可筛选、搜索、替换文本或删除重复行。Excel 工作表和 <code>.csv.gz</code> 等压缩文件只读。",
+                        "更改在保存前保留在私有副本中。保存时写入原始格式，并保留未修改行。"
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "查看列统计后导出或导入",
                     "paragraphs": [
-                        "列统计显示空值数、不同值数、范围和最常见的值；点击某值可按该值筛选文件。文件准备好后，可导出为其他格式，或用 <ui>Import into Table</ui> 发送到已打开连接上的表。"
+                        "检查空值和不同值的数量、范围及常见值。点击值进行筛选，再导出文件，或在已打开连接上使用 <ui>Import into Table</ui>。"
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -73,10 +73,10 @@
         },
         {
             "id": "backup",
-            "title": "使用引擎自带工具备份",
+            "title": "备份和恢复",
             "paragraphs": [
-                "Backup Dump 和 Restore Dump 通过 {backupTools} 工作，使用连接的 SSH 隧道和 TLS 设置，因此堡垒机后的服务器无需第二条隧道。除 DuckDB 外，这些都是需自行安装的命令行工具；DuckDB 自行将转储写为数据库文件或 Parquet 文件夹。",
-                "在 {serverSideExport} 上，Server-Side Export 让服务器直接导出到 Oracle Data Pump 作业、Snowflake stage 或 Cloud Storage 存储桶，不会将数据下载到 Mac。"
+                "Backup Dump 和 Restore Dump 使用 {backupTools} 及连接的 SSH、TLS 设置。所需命令行工具须自行安装；DuckDB 除外，它自行写入数据库或 Parquet 转储。",
+                "{serverSideExport} 上的 Server-Side Export 通过 Oracle Data Pump、Snowflake 暂存区或 Cloud Storage 写入。导出数据不经过 Mac。"
             ],
             "engines": [
                 {
@@ -108,7 +108,7 @@
             "id": "between-databases",
             "title": "从一个数据库到另一个数据库",
             "paragraphs": [
-                "在两个连接之间移动表或行无需中间文件。Copy To 和 Transfer To 可直接操作，也支持跨引擎，并在执行前显示将写入的内容。"
+                "无需中间文件即可在支持的连接间复制或传输表。类型转换和检查详情见 Schema。"
             ],
             "links": [
                 {

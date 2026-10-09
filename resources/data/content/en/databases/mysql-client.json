@@ -10,8 +10,8 @@
     "engine": "mysql",
     "breadcrumb": "MySQL and MariaDB",
     "header": {
-        "title": "MySQL and MariaDB client for {devices}",
-        "lead": "Write SQL with schema-aware autocomplete, edit rows with a preview of every statement, and manage users, sessions and backups. The same driver also covers MariaDB, TiDB, OceanBase and Databend."
+        "title": "MySQL and MariaDB client",
+        "lead": "Query MySQL and edit rows with SQL previews. Manage users, sessions and backups from the same connection."
     },
     "asset": "mac-db-mysql-query",
     "links": {
@@ -33,19 +33,19 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give TablePro a host, a port and a user, or paste a <code>mysql://</code> URL. MySQL 8 accounts that use <code>caching_sha2_password</code> connect on the first try. Leave the database empty and choose one later: switching databases happens in place, on the same connection.",
+                "Enter a host, port and user, or paste a <code>mysql://</code> URL. MySQL 8 <code>caching_sha2_password</code> accounts are supported. The database is optional; switching databases keeps the same connection.",
                 "New connections start with SSL set to Preferred, which tries TLS first and falls back to plain text only after a failed TLS handshake. Choose Verify CA or Verify Identity with your provider’s certificate for strict checking.",
-                "For a server on a private network, connect through an <network>SSH tunnel, with jump hosts if you need them, a SOCKS5 proxy, a Cloudflare Access tunnel or your own tunnel command</network> such as kubectl port-forward.",
-                "On Amazon RDS and Aurora, sign in with <cloudAuth>AWS IAM</cloudAuth>, which signs a fresh token each time you connect, and import instances straight from your AWS account. For Google Cloud SQL, TablePro downloads and runs the Cloud SQL Auth Proxy for you.",
-                "Moving from Sequel Ace? <importApps>Import from Other App</importApps> reads its favorites and, after you confirm, the passwords it keeps in the Keychain."
+                "Reach private servers through <network>SSH tunnels, jump hosts, proxies or tunnel commands</network>.",
+                "Sign in to Amazon RDS or Aurora with <cloudAuth>AWS IAM</cloudAuth>, using a fresh token on each connection. Import instances from AWS, or use the Cloud SQL Auth Proxy for Google Cloud SQL.",
+                "<importApps>Import from Other App</importApps> reads Sequel Ace favorites. Importing Keychain passwords requires your confirmation."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit",
             "paragraphs": [
-                "The SQL editor completes table and column names from the schema, aliases and CTEs included, and runs either the statement under the cursor or the whole script. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE and EXPLAIN ANALYZE</explain> are drawn as a plan diagram or tree, and EXPLAIN Compare shows what changed between two runs.",
-                "Row edits are staged until you save, and <editing>Preview SQL</editing> shows the exact statements first. Saves run as bound parameters and stop if a statement would change a different number of rows than expected. A table without a primary key can still be edited: the row is matched on every column.",
+                "Autocomplete includes schema names, aliases and CTEs. Run the current statement or a whole script. View <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE and EXPLAIN ANALYZE</explain> as diagrams or trees, and compare two plans.",
+                "Stage edits and review statements with <editing>Preview SQL</editing>. Saves use bound parameters and stop on unexpected row counts. Without a primary key, edits match every column.",
                 "Every session uses utf8mb4, so emoji and non-Latin text round-trip. For a database whose text an old client wrote through Latin 1, the UTF-8 via Latin 1 encoding reads it the way that client did.",
                 "Partitioned tables list their partitions with their bounds, such as <code>VALUES LESS THAN (2024)</code>, and table and column comments show in the sidebar and in the grid’s column headers."
             ]
@@ -54,20 +54,20 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "The <structure>Structure tab</structure> stages changes to columns, indexes, foreign keys, CHECK constraints and generated columns, and shows the DDL before it runs. Index keys over an expression, such as <code>lower(email)</code>, need MySQL 8.0.13 or later.",
+                "Stage columns, indexes, foreign keys, CHECK constraints and generated columns in the <structure>Structure tab</structure>. Review DDL before saving. Expression index keys need MySQL 8.0.13 or later.",
                 "Routines and triggers appear in the sidebar with their source. The <erDiagram>ER diagram</erDiagram> draws the schema as a read-only picture you can export as PNG or SQL.",
-                "<compareSync>Compare & Sync</compareSync>, part of the {compareSyncTier} plan, compares two MySQL or MariaDB schemas, or their data, and writes the script that brings one in line with the other. Changes that would lose data are held back until you include them."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compares MySQL or MariaDB schemas or data and generates a sync script. Changes that could remove data are held back until you include them."
             ]
         },
         {
             "id": "operate",
             "title": "Administer",
             "paragraphs": [
-                "<administer>Users & Roles</administer> shows each account’s privileges down to single columns, and stages every GRANT and REVOKE as SQL you read before it runs.",
+                "<administer>Users & Roles</administer> lists privileges down to individual columns. Review staged GRANT and REVOKE statements before applying them.",
                 "The Server Dashboard lists sessions, server metrics and slow queries, refreshed every few seconds. It cancels a running query with <code>KILL QUERY</code> or ends a session with <code>KILL</code>. An account without the PROCESS privilege sees only its own sessions.",
                 "Table maintenance runs OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE and REPAIR TABLE, and shows the statement before it runs.",
                 "<backup>Backup Dump</backup> runs {dumpTool} and Restore Dump runs the mysql client, both through the connection’s SSH tunnel; install the MySQL client tools on your Mac first. A restore replaces the objects the dump names.",
-                "To give a server slot back while you are away, set a connection to release itself after some idle minutes; the next query opens a new one. TablePro keeps the connection when the session holds something a reconnect would lose, such as an open transaction or a temporary table."
+                "Release idle connections automatically and reconnect on the next query. TablePro keeps sessions with state a reconnect would lose, such as an open transaction or temporary table."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -75,8 +75,8 @@
             "id": "move-data",
             "title": "Move data",
             "paragraphs": [
-                "<importData>Import</importData> {importFormats} files, with column mapping for the table you load into and a choice of what happens when a row fails. Export a table or a result as {exportFormats}.",
-                "<copy>Copy To</copy> sends tables, their data or both to another connection, on MySQL or on a different engine, and lists every column type it has to approximate."
+                "<importData>Import</importData> {importFormats} files with column mapping and row-error handling. Export tables or results as {exportFormats}.",
+                "<copy>Copy To</copy> transfers tables, data or both to another MySQL connection or engine. Review any column types that must be approximated."
             ]
         },
         {
@@ -133,19 +133,19 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace continues Sequel Pro as a Mac app for MySQL and MariaDB. It has an MCP server that is off by default and read-only unless you change it, and no AI chat. It fits if MySQL and MariaDB are all you use."
+                "text": "Sequel Ace focuses on MySQL and MariaDB on Mac. Its MCP server is off by default and read-only unless changed. It has no AI chat."
             },
             {
                 "product": "mysql-workbench",
-                "text": "MySQL Workbench is Oracle’s own tool for MySQL. Its new generation is built on MySQL Shell, with SQL notebooks, and Oracle no longer maintains the previous one. It fits if MySQL is all you use and you want the vendor’s tool."
+                "text": "MySQL Workbench is Oracle’s MySQL tool. The current generation uses MySQL Shell and SQL notebooks; Oracle no longer maintains the previous generation."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin runs on your web server and works in any browser, and cPanel includes it. It fits a server you reach only through a hosting panel, where a desktop app has no route to the database."
+                "text": "phpMyAdmin runs on a web server and is included in cPanel. It can reach databases available through hosting panels that do not allow desktop connections."
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL is a long-standing open-source client from Windows that now also ships a macOS app. It fits if you already use it on Windows and want the same client on your Mac."
+                "text": "HeidiSQL is an open-source database client with Windows and macOS apps."
             }
         ],
         "notes": {}

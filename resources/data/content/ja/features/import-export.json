@@ -5,11 +5,11 @@
     },
     "og": {
         "kicker": "インポートとエクスポート",
-        "title": "インポート、エクスポートとデータファイル"
+        "title": "インポートとエクスポート"
     },
     "header": {
-        "title": "インポート、エクスポートとデータファイル",
-        "lead": "ファイルとデータベースの間でデータを移すための機能です。スプレッドシートをテーブルに読み込み、クエリ結果を Excel で渡し、CSV を使う前に整え、危険な変更の前にダンプを取得できます。ここで紹介するのは Mac アプリの機能です。iPhone・iPad アプリではその一部を使えます。",
+        "title": "インポートとエクスポート",
+        "lead": "対応テーブルにファイルをインポートし、テーブルやクエリ結果を出力できます。CSV、JSON、Excel はデータベース接続なしで開けます。",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "import",
             "title": "ファイルをテーブルにインポート",
             "paragraphs": [
-                "<kbd>⌘⇧I</kbd> で {importFormats} ファイルをインポートします。SQL ファイルは文として実行し、<code>.sql.gz</code> ダンプや <code>GO</code> で区切った SQL Server スクリプトにも対応します。他の形式は既存テーブル、またはファイル名で新規作成したテーブルに読み込み、カラムもファイルから取得します。Excel ブックは最初のシートをインポートします。",
-                "各フィールドをカラムに対応付け、無効にしない限りインポートを一つのトランザクションで実行します。行が失敗したときは、停止してロールバック、停止してインポート済みデータを保持、行をスキップして続行から選べます。スキップした行のレポートを CSV として保存できます。"
+                "{importFormats} ファイルをインポートできます。データ形式は列を対応付けて既存か新しいテーブルへ取り込み、Excel は最初のシートだけを使います。SQL ファイルは文として実行し、<code>.sql.gz</code> ダンプや <code>GO</code> を使う SQL Server スクリプトにも対応します。",
+                "無効にしない限り、インポートは一つのトランザクションを使います。行の失敗時はロールバック、取り込み済み行の保持、失敗行のスキップを選べます。スキップ行を CSV に出力して確認できます。"
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "対応付けの保存と文字コード",
                     "paragraphs": [
-                        "TablePro は CSV、JSON、Excel のインポートで選んだ対応付けをテーブルごとに記憶します。<ui>Match by Name</ui> と <ui>Match by Position</ui> で全フィールドをワンクリックで対応付けられます。位置による対応付けは、フィールド順をファイルから取得する CSV と Excel に対応します。CSV と SQL インポートは UTF-16 および Shift JIS、GB 18030、Big5、EUC-KR などの日本語、中国語、韓国語の文字コードを読み取れます。"
+                        "CSV、JSON、Excel の列対応を保存して再利用できます。<ui>Match by Name</ui> は名前、<ui>Match by Position</ui> は CSV・Excel の位置で対応付けます。CSV・SQL は UTF-16 と一部の日・中・韓の文字コードにも対応します。"
                     ],
                     "since": "0.77.0"
                 }
@@ -42,22 +42,22 @@
             "id": "export",
             "title": "テーブルと結果をエクスポート",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> はチェックしたテーブルとビューを {exportFormats} にエクスポートします。書き込みながらデータベースからストリーミングするため、グリッドの行数制限は適用しません。SQL エンジンではテーブルごとに WHERE 句、行数制限、カラムの選択を指定できます。SQL エクスポートは構造の追加、gzip 圧縮と分割に対応し、Excel はテーブルごとに別のシートを使います。MongoDB コレクションは mongosh スクリプトにもエクスポートできます。MongoDB と Redis は SQL エクスポート非対応です。",
-                "<ui>Export Results</ui> はクエリが返した結果を書き出します。行数上限で打ち切った結果は再実行して全件をストリーミングします。{exportPluginFormats} エクスポートは <ui>Settings > Plugins</ui> でインストールする無料プラグインが提供し、テーブルごとに一つのファイルを書き出します。"
+                "テーブルとビューを {exportFormats} で出力でき、グリッドの行数上限を超えてストリーミングします。SQL エンジンはテーブル別のフィルター、上限、列選択に対応します。SQL 出力に構造も含められ、Excel はテーブルごとに一シートを使います。MongoDB は mongosh スクリプト出力に対応し、SQL 出力はありません。Redis も SQL 出力はありません。",
+                "<ui>Export Results</ui> は上限付きクエリを再実行し、全結果をストリーミングします。<ui>Settings > Plugins</ui> の無料プラグインで {exportPluginFormats} 出力を追加でき、テーブルごとに一つのファイルを作ります。"
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "Data Files：データベースなしでファイルを操作",
+            "title": "Data Files",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
-                    "title": "開く、検索する、整える",
+                    "title": "データファイルを編集",
                     "paragraphs": [
-                        "Finder または <kbd>⌘O</kbd> から CSV、TSV や他の区切り文字付きテキスト、JSON、JSON Lines を開くと、Data Files ウィンドウが編集可能なテーブルとして表示します。グリッドのフィルターバーで絞り込み、すべてのカラムを検索し、正規表現で検索・置換し、Fill Down、Trim Whitespace、Change Case、Remove Duplicate Rows で整えられます。Excel ブックはシートごとにタブで開き、<code>.csv.gz</code> などの圧縮ファイルも開けます。この二つは読み取り専用です。",
-                        "ウィンドウは専用のコピーを操作します。<kbd>⌘S</kbd> は元の形式でファイルを書き戻し、変更していない行はそのまま残します。"
+                        "区切りテキスト、JSON、JSON Lines をテーブルとして開いて編集できます。フィルター、検索、テキスト置換、重複行の削除ができます。Excel シートや <code>.csv.gz</code> などの圧縮ファイルは読み取り専用です。",
+                        "保存するまで変更は非公開のコピーに留まります。保存は元の形式で書き込み、変更していない行を保持します。"
                     ],
                     "asset": "mac-data-files-window"
                 },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "カラムの統計を確認してエクスポートやインポート",
                     "paragraphs": [
-                        "カラム統計では空の値と異なる値の数、範囲、よく現れる値を確認できます。値をクリックすると、その値でファイルを絞り込みます。準備ができたファイルは別の形式にエクスポートするか、<ui>Import into Table</ui> で開いている接続のテーブルに送れます。"
+                        "空値数、一意の値の数、範囲、頻出値を確認できます。値をクリックしてフィルターし、ファイルを出力するか、開いている接続で <ui>Import into Table</ui> を使えます。"
                     ],
                     "asset": "mac-data-files-statistics"
                 }
@@ -73,10 +73,10 @@
         },
         {
             "id": "backup",
-            "title": "エンジン固有のツールでバックアップ",
+            "title": "バックアップと復元",
             "paragraphs": [
-                "Backup Dump と Restore Dump は、接続の SSH トンネルと TLS 設定を使って {backupTools} を実行します。踏み台の先のサーバーでも二つ目のトンネルは不要です。DuckDB 以外は別途インストールするコマンドラインツールです。DuckDB はデータベースファイルまたは Parquet ファイルのフォルダーとして自らダンプを書き込みます。",
-                "{serverSideExport} では、Server-Side Export がサーバーにエクスポートさせます。出力先は Oracle Data Pump ジョブ、Snowflake ステージや Cloud Storage バケットです。Mac には何も保存しません。"
+                "Backup Dump と Restore Dump は接続の SSH・TLS 設定を使って {backupTools} を実行します。必要な CLI ツールは自分でインストールします。DuckDB は例外で、独自にデータベースか Parquet ダンプを書き出します。",
+                "{serverSideExport} の Server-Side Export は Oracle Data Pump、Snowflake ステージ、Cloud Storage を使って書き出します。エクスポートは Mac を経由しません。"
             ],
             "engines": [
                 {
@@ -108,7 +108,7 @@
             "id": "between-databases",
             "title": "データベースから別のデータベースへ",
             "paragraphs": [
-                "二つの接続間でテーブルや行を移す場合、中間ファイルは不要です。Copy To と Transfer To は異なるエンジン間でも直接移し、実行前に書き込み内容を表示します。"
+                "中間ファイルなしで対応接続間のテーブルをコピー・転送できます。型変換と確認の詳細は Schema をご覧ください。"
             ],
             "links": [
                 {

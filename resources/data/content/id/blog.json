@@ -1,25 +1,25 @@
 {
-  "seo": {
-    "title": "Blog",
-    "description": "Panduan bekerja dengan database di Mac dan pengumuman rilis TablePro, dalam bahasa Inggris: tambahan dan perbaikan setiap versi.",
-    "indexable": false
-  },
-  "og": {
-    "kicker": "Blog",
-    "title": "Panduan dan pengumuman rilis TablePro"
-  },
-  "header": {
-    "title": "Blog",
-    "lead": "Pengumuman rilis, mulai dari yang terbaru. Tidak semua rilis memiliki artikel. Artikel hanya tersedia dalam bahasa Inggris. Catatan lengkap setiap versi ada di <changelog>catatan perubahan</changelog> (bahasa Inggris)."
-  },
-  "corrections": {
-    "tablepro-0-74": {
-      "date": "2026-10-02",
-      "text": "Tampilan Peta memuat ubin peta dari Apple, sehingga artikel ini melebihkan informasi yang tetap berada di Mac Anda. Baris data tetap di Mac; Apple menyediakan ubin peta untuk area yang tampil di layar."
+    "seo": {
+        "title": "Blog",
+        "description": "Panduan database dan catatan rilis TablePro. Langkah praktis untuk koneksi, SQL, impor, dan MCP.",
+        "indexable": false
     },
-    "tablepro-for-iphone": {
-      "date": "2026-10-02",
-      "text": "Versi 1.0 tidak menolak koneksi yang melalui jump host SSH, seperti yang disebutkan artikel ini. Jump host tidak didukung di iPhone dan iPad, jadi buka koneksi tersebut di Mac. Di Oracle, seperti di SQLite, DuckDB, dan SQL Server, hanya penyimpanan dengan lebih dari satu pernyataan yang berjalan dalam transaksi. Hanya DuckDB yang dapat berjalan di memori; file SQLite disalin ke dalam aplikasi."
+    "og": {
+        "kicker": "Blog",
+        "title": "Panduan database dan catatan rilis"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Artikel tentang rilis TablePro. Catatan versi lengkap ada di <changelog>changelog</changelog> (bahasa Inggris)."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "Tampilan Peta memuat ubin peta dari Apple, sehingga artikel ini melebihkan informasi yang tetap berada di Mac Anda. Baris data tetap di Mac; Apple menyediakan ubin peta untuk area yang tampil di layar."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "Versi 1.0 tidak menolak koneksi yang melalui jump host SSH, seperti yang disebutkan artikel ini. Jump host tidak didukung di iPhone dan iPad, jadi buka koneksi tersebut di Mac. Di Oracle, seperti di SQLite, DuckDB, dan SQL Server, hanya penyimpanan dengan lebih dari satu pernyataan yang berjalan dalam transaksi. Hanya DuckDB yang dapat berjalan di memori; file SQLite disalin ke dalam aplikasi."
+        }
     }
-  }
 }

@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "ClickHouse client for {devices}",
-        "lead": "Run analytical SQL over ClickHouse’s HTTP interface, read a query’s plan, pipeline or row estimate, and manage MergeTree parts and partitions from the table’s Parts tab. Long queries report rows read as they run, and Stop ends them on the server."
+        "title": "ClickHouse client",
+        "lead": "Run analytical queries, inspect plans and pipelines, and manage table parts and partitions."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give the host and the HTTP port, a user and, if you like, a database. Changing database happens in place, and an open tab stays on the database it started on. <ui>View > Sidebar as Tree</ui> shows the server’s databases as a tree you expand in place.",
+                "Enter a host, HTTP port, user and optional database. Switch databases without reconnecting. Open tabs keep their starting database; <ui>View > Sidebar as Tree</ui> expands databases in place.",
                 "Choose any SSL mode to switch to HTTPS. A port of 443 or 8443, the one ClickHouse Cloud uses, turns on Verify Identity, which checks the certificate against your CA file or the system trust store. Verify CA needs a CA file, and a client certificate and key reach servers that require mutual TLS.",
                 "Without TLS, reach a remote server through an <network>SSH tunnel</network> rather than sending plain HTTP across the network."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Query and edit",
             "paragraphs": [
-                "Each query carries its own id and asks for progress, so a long one reports rows read as it goes. Stop sends <code>KILL QUERY</code> for that id, and the connection’s query timeout reaches the server.",
+                "Track rows read during a query. Stop sends <code>KILL QUERY</code>, and the connection’s query timeout is passed to the server.",
                 "The <explain>Explain menu</explain> offers Plan, Pipeline, AST, Syntax and Estimate. The indented output is drawn as a diagram or a tree, and Estimate shows the rows, marks and parts a query would read.",
-                "Grid edits go out as <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> and <code>ALTER TABLE … DELETE</code>, with <editing>Preview SQL</editing> first. ClickHouse runs updates and deletes as background mutations, so a save means accepted, not yet applied; <code>system.mutations</code> shows the progress. A materialized view opens read-only.",
+                "Review <editing>Preview SQL</editing> before inserting rows or submitting UPDATE and DELETE mutations. A successful save means accepted, not applied; follow progress in <code>system.mutations</code>. Materialized views are read-only.",
                 "A result holding ClickHouse point or ring tuples opens on the <map>Map view</map>. A query with its own <code>FORMAT</code> clause shows the server’s raw output in one column, so leave the clause off to get a grid."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "Tables, parts and partitions",
             "paragraphs": [
                 "A table opens with Structure, Indexes, DDL and Parts tabs. Indexes shows the sorting key and the data-skipping indices, and DDL shows the full <code>CREATE TABLE</code>, engine and settings included.",
-                "Parts lists every part from <code>system.parts</code> with its partition, rows, size on disk, modification time and active flag, and runs Optimize, Drop Partition and Detach Partition from there.",
+                "Inspect parts from <code>system.parts</code>, including partition, row count, size and active status. Run Optimize, Drop Partition or Detach Partition from the Parts tab.",
                 "The <structure>Structure tab</structure> adds, modifies and drops columns and drops data-skipping indices. The sorting key and primary key are fixed when a table is created, so add a data-skipping index with <code>ALTER TABLE … ADD INDEX</code>, and recreate the table for other changes."
             ]
         },

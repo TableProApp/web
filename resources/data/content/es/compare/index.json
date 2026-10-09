@@ -1,62 +1,61 @@
 {
     "seo": {
-        "title": "Compara TablePro con otros clientes",
-        "description": "TablePro frente a TablePlus, DBeaver, DataGrip, Navicat, Beekeeper Studio, Sequel Ace, Postico, HeidiSQL y phpMyAdmin, con fechas y fuentes."
+        "title": "Compara clientes de bases de datos",
+        "description": "Compara TablePro con otros clientes por funciones, bases de datos, plataformas y licencias. Incluye datos fechados y fuentes oficiales."
     },
     "og": {
         "kicker": "Comparar",
         "title": "TablePro y otros clientes de bases de datos"
     },
     "header": {
-        "title": "Compara TablePro con otros clientes de bases de datos",
-        "lead": "Cada comparación indica dónde encaja mejor el otro cliente, en qué se diferencia TablePro y qué no hace TablePro. Los datos sobre otros productos proceden de fuentes oficiales y llevan la fecha en que se comprobaron."
+        "title": "Compara clientes de bases de datos",
+        "lead": "Compara funciones, bases de datos compatibles y licencias. Cada comparación incluye fuentes oficiales y una fecha de verificación."
     },
     "bySituation": {
-        "title": "Elige según tu situación",
-        "lead": "Una línea por cliente, con enlace a la comparación completa.",
-        "tablepro": "Elige TablePro si quieres un cliente de código abierto con una app nativa para Mac y otra independiente para iPhone y iPad. El asistente de IA y el servidor MCP son gratuitos en la app para Mac, y TablePro importa las conexiones guardadas de {apps}.",
+        "title": "¿Qué cliente se adapta a tu trabajo?",
+        "lead": "Empieza por las herramientas que necesitas.",
+        "tablepro": "TablePro es un cliente nativo y de código abierto para varios tipos de bases de datos. El chat de IA y MCP son gratis en la app para Mac. Importa conexiones de {apps}.",
         "items": {
-            "tableplus": "Elige TablePlus si también trabajas en Windows o Linux, o te conectas a Vertica o Greenplum.",
-            "dbeaver": "Elige DBeaver si quieres un cliente gratuito para Windows, macOS y Linux que se conecte a cualquier motor con controlador JDBC.",
-            "datagrip": "Elige DataGrip si quieres un IDE de bases de datos de JetBrains con control de versiones integrado, y tu trabajo no es comercial o ya pagas por herramientas de JetBrains.",
-            "navicat": "Elige Navicat si necesitas modelado de datos o Navicat Cloud para trabajar en equipo, y una licencia perpetua encaja en tu presupuesto.",
-            "beekeeper-studio": "Elige Beekeeper Studio si quieres un cliente de código abierto que funcione igual en Windows, macOS y Linux.",
-            "sequel-ace": "Elige Sequel Ace si solo usas MySQL y MariaDB y quieres una app Mac gratuita y de código abierto del Mac App Store.",
-            "sequel-pro": "¿Sigues con Sequel Pro? Su última versión, {status.version}, es del {status.date}. Sequel Ace lo continúa y TablePro importa conexiones de Sequel Ace.",
-            "postico": "Elige Postico si solo usas PostgreSQL y quieres una app Mac especializada con licencia de pago único.",
-            "heidisql": "Elige HeidiSQL si ya lo usas en Windows y quieres el mismo cliente gratuito en un Mac con Apple silicon.",
-            "phpmyadmin": "Elige phpMyAdmin si gestionas MySQL o MariaDB desde navegador, por ejemplo en un hosting que lo ofrece con cPanel.",
-            "mysql-workbench": "Elige MySQL Workbench si quieres la herramienta oficial de Oracle para MySQL, con notebooks SQL e integración con MySQL Enterprise Backup.",
-            "pgadmin": "Elige pgAdmin si solo usas PostgreSQL y quieres su depurador, las tareas de pgAgent o un servidor web compartido por varias personas.",
-            "dbgate": "Elige DbGate si quieres un cliente de código abierto para Windows, macOS y Linux que también funcione como app web.",
-            "mongodb-compass": "Elige MongoDB Compass si MongoDB es tu única base de datos y creas pipelines de agregación por etapas o estudias el esquema de una colección.",
-            "ssms": "Elige SQL Server Management Studio, en Windows, para SQL Server Agent y Always On. No tiene versión para Mac, y en un Mac Microsoft remite a Visual Studio Code con la extensión MSSQL."
+            "tableplus": "Windows o Linux, además de Vertica y Greenplum.",
+            "dbeaver": "Un cliente multiplataforma compatible con controladores JDBC.",
+            "datagrip": "Un IDE de bases de datos con inspecciones de código y control de versiones. Gratis para uso no comercial.",
+            "navicat": "Modelado de datos y proyectos compartidos mediante Navicat Cloud.",
+            "beekeeper-studio": "Un cliente de código abierto con las mismas funciones en Windows, macOS y Linux.",
+            "sequel-ace": "Un cliente gratuito de la Mac App Store centrado en MySQL y MariaDB.",
+            "sequel-pro": "¿Vas a dejar Sequel Pro? Su última versión fue {status.version}, del {status.date}. Compara Sequel Ace y TablePro.",
+            "postico": "Un cliente centrado en PostgreSQL con licencia de compra única.",
+            "heidisql": "Un cliente gratuito para Windows, Linux y Mac con Apple silicon.",
+            "phpmyadmin": "Acceso a MySQL o MariaDB desde el navegador, incluido el alojamiento con cPanel.",
+            "mysql-workbench": "La herramienta de Oracle para MySQL, con notebooks SQL e integración con MySQL Enterprise Backup.",
+            "pgadmin": "Administración de PostgreSQL con depurador, tareas pgAgent y opción de servidor compartido.",
+            "dbgate": "Un cliente SQL y NoSQL de código abierto para escritorio y web.",
+            "mongodb-compass": "Pipelines de agregación de MongoDB, análisis de esquemas y métricas del servidor en directo.",
+            "ssms": "Administración de SQL Server en Windows, con Agent y Always On."
         }
     },
     "atAGlance": {
         "title": "De un vistazo",
-        "lead": "Plataformas, código y precios de todos los clientes comparados. Son precios de lista en dólares estadounidenses, antes de impuestos.",
+        "lead": "Plataformas, licencias de código abierto y precios de catálogo de EE. UU. sin impuestos.",
         "caption": "Clientes comparados el {date}. Las fuentes están al final."
     },
     "openSource": {
-        "title": "Clientes de código abierto en Mac",
-        "lead": "Estos clientes publican su código con licencia de código abierto. Sequel Pro ya no se mantiene y phpMyAdmin se ejecuta en un servidor web accesible por navegador.",
+        "title": "Opciones de código abierto",
+        "lead": "Estos clientes publican su código con licencias de código abierto. Sequel Pro ya no se mantiene; phpMyAdmin funciona en un servidor web.",
         "caption": "Clientes de código abierto, verificados el {date}."
     },
     "switching": {
         "title": "Cambiar a TablePro",
-        "body": "TablePro importa conexiones guardadas de {apps}, incluidas las contraseñas guardadas. Las conexiones Navicat vienen de un archivo exportado en Navicat.",
-        "none": "No hay importador para {others}. Añade las conexiones a mano o pega una URL.",
-        "link": "Importa tus conexiones",
-        "docs": "Guía de cambio en la documentación"
+        "body": "Importa conexiones y contraseñas guardadas de {apps}. Navicat necesita un archivo de conexiones exportado.",
+        "none": "No hay importador para {others}. Añade las conexiones manualmente o pega una URL de conexión.",
+        "link": "Importar conexiones",
+        "docs": "Guía para cambiar"
     },
     "method": {
-        "title": "Cómo se escriben estas páginas",
+        "title": "Fuentes y alcance",
         "paragraphs": [
-            "Cada dato de otro producto procede de una fuente oficial: su web, documentación, repositorio, notas de versión o ficha de tienda, o el gestor de paquetes o proveedor de plataforma que lo distribuye. Cada página enumera sus fuentes con la fecha en que se comprobaron.",
-            "Los datos de TablePro son los mismos que en el resto del sitio; precios, plataformas y funciones coinciden con las páginas correspondientes.",
-            "No hay cifras de velocidad, memoria o inicio porque no se encontró ninguna medición reproducible de estos clientes que citar.",
-            "Los precios y funciones cambian. Si algo está desactualizado, <issues>abre una incidencia en GitHub</issues>."
+            "Los datos de otros clientes proceden de sitios, documentación, repositorios, notas de versión y fichas oficiales, o del gestor de paquetes o proveedor de plataforma que los distribuye. Las fuentes incluyen una fecha de verificación.",
+            "Los precios, plataformas y funciones de TablePro usan los datos de producto compartidos de este sitio. No se citan benchmarks reproducibles, por lo que estas páginas no hacen afirmaciones de velocidad o memoria.",
+            "Los precios y las funciones pueden cambiar. <issues>Informa de un dato desactualizado en GitHub</issues>."
         ]
     },
     "labels": {
@@ -67,10 +66,10 @@
         },
         "sourcesLink": "Fuentes",
         "shortAnswer": {
-            "title": "La respuesta breve",
-            "lead": "¿Buscas una alternativa a {name} en Mac? Aquí ves cuándo encaja cada cliente.",
-            "tablepro": "Elige TablePro si",
-            "competitor": "Elige {name} si"
+            "title": "Cómo elegir entre ambos",
+            "lead": "Razones para usar TablePro o {name}.",
+            "tablepro": "Considera TablePro para",
+            "competitor": "Considera {name} para"
         },
         "glance": {
             "title": "De un vistazo",
@@ -184,8 +183,8 @@
             "licence": "Sí: {licence}, incluido el código de las funciones de pago",
             "databases": "{engines} y más",
             "databasesLink": "Bases de datos compatibles",
-            "ai": "Gratis en la app para Mac, con el proveedor de IA que elijas, en la nube o en tu Mac",
-            "mcp": "Gratis en la app para Mac. Solo escucha en tu Mac, y cada conexión decide lo que pueden hacer las apps externas",
+            "ai": "Gratis en la app para Mac. Elige un proveedor en la nube o un modelo local; el proveedor puede cobrar.",
+            "mcp": "Gratis en la app para Mac. Solo localhost, con controles de acceso por conexión.",
             "ios": "App gratuita independiente, sin compras dentro de la app",
             "sync": "iCloud Sync: incluido en {tier} en Mac, gratis en iPhone y iPad"
         },
@@ -202,9 +201,9 @@
         },
         "tierBadge": "Plan {tier}",
         "sections": {
-            "stronger": "Dónde destaca {name}",
-            "differs": "Cómo difiere TablePro",
-            "limits": "Qué no hace TablePro",
+            "stronger": "Razones para usar {name}",
+            "differs": "Diferencias importantes",
+            "limits": "Limitaciones de TablePro",
             "switching": "Cambiar desde {name}",
             "faq": "Preguntas",
             "sources": "Fuentes",
@@ -215,14 +214,14 @@
             "docs": "Guía de cambio en la documentación"
         },
         "sources": {
-            "intro": "Datos de {name} verificados el {date} con estas páginas. Precios de lista en dólares estadounidenses, antes de impuestos.",
+            "intro": "Datos de {name} verificados el {date}. Los precios son de catálogo de EE. UU., sin impuestos.",
             "retrieved": "verificado el {date}",
             "latest": "Última versión de {name} entonces: {version}, publicada el {date}.",
             "tablepro": "La columna TablePro describe TablePro {macVersion} para Mac y {iosVersion} para iPhone y iPad.",
             "trademarks": "TablePro es un proyecto independiente de código abierto, sin afiliación con los creadores de los productos comparados aquí ni respaldo por su parte. Los nombres de producto son marcas de sus respectivos propietarios."
         },
         "cta": {
-            "body": "TablePro se descarga gratis. Los planes de pago añaden funciones opcionales a la app para Mac.",
+            "body": "Las funciones básicas son gratis. Los planes de pago añaden funciones opcionales.",
             "pricing": "Ver precios",
             "hub": "Todas las comparaciones"
         },

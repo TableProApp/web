@@ -10,8 +10,8 @@
     "engine": "sqlserver",
     "breadcrumb": "SQL Server",
     "header": {
-        "title": "Klien SQL Server untuk {devices}",
-        "lead": "Jalankan skrip T-SQL per batch, dengan GO dan PRINT ditangani seperti SQL Server Management Studio, lalu masuk dengan login SQL Server, Kerberos, atau akun kerja Microsoft Entra ID. Server pada Windows, Linux, Docker, dan Azure SQL Database terhubung dengan cara yang sama."
+        "title": "Klien SQL Server",
+        "lead": "Jalankan skrip T-SQL dengan batch GO dan output PRINT. Terhubung dengan login SQL Server, Kerberos atau Microsoft Entra ID."
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host dan port TCP, lalu pilih <ui>Authentication</ui>, dan formulir menyesuaikan: login serta kata sandi SQL Server, Windows Authentication melalui Kerberos, atau Microsoft Entra ID. Isi Database untuk login yang terkait dengan satu database, seperti contained user Azure SQL.",
+                "Masukkan host dan port TCP, lalu pilih <ui>Authentication</ui>: login SQL Server, Kerberos atau Microsoft Entra ID. Login cakupan database, termasuk pengguna yang berisi Azure SQL, juga memerlukan bidang Database.",
                 "Kerberos menggunakan tiket yang sudah ada dalam cache kredensial atau meminta tiket dengan principal dan kata sandi yang Anda masukkan. Hubungkan menggunakan nama host, bukan alamat IP, karena tiket diterbitkan untuk SPN terdaftar server. TablePro tidak pernah menjalankan <code>kinit</code> atau mengedit <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> masuk melalui alur kode perangkat yang mematuhi autentikasi multifaktor dan Conditional Access. Anda mendaftarkan aplikasi di Azure dan memasukkan client ID; token tetap di keychain login, ditandai khusus perangkat, dan diperbarui di latar belakang.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> menggunakan masuk kode perangkat dengan autentikasi multifaktor dan Akses Bersyarat. Daftarkan aplikasi Azure dan masukkan ID kliennya. Token disegarkan di latar belakang dan tetap berada di rantai kunci masuk khusus perangkat.",
                 "Koneksi baru menggunakan Preferred, yang pada SQL Server hanya mengenkripsi login. Pilih Required atau mode lebih ketat untuk mengenkripsi seluruh sesi; Verify CA dan Verify Identity memeriksa sertifikat terhadap root sistem macOS. TablePro juga dapat menjalankan Cloud SQL Auth Proxy untuk Google Cloud SQL, dan <network>tunnel SSH</network> mengakses server pada jaringan pribadi."
             ]
         },
@@ -39,8 +39,8 @@
             "id": "work",
             "title": "Skrip, batch, dan perubahan",
             "paragraphs": [
-                "Skrip dikirim ke server satu batch per waktu, dipisahkan pada setiap baris yang hanya berisi <code>GO</code>, seperti sqlcmd, dan <code>GO 5</code> menjalankan batch sebelumnya lima kali. Setiap kumpulan hasil dibuka dalam tab sendiri, dan keluaran <code>PRINT</code> serta pesan informasi ditampilkan pada tampilan Output.",
-                "Masukkan <code>BEGIN TRAN</code> dan <code>COMMIT</code> dalam skrip jika kegagalan harus membatalkan batch sebelumnya; skrip yang meninggalkan transaksi terbuka berakhir dengan pemberitahuan. Proses berhenti pada batch pertama yang gagal, dan kesalahan menyebutkan barisnya di editor.",
+                "Skrip dibagi menjadi baris <code>GO</code>; <code>GO 5</code> mengulangi batch sebelumnya sebanyak lima kali. Setiap kumpulan hasil terbuka di tab terpisah. Baca keluaran <code>PRINT</code> dan pesan informasi di Output.",
+                "Gunakan <code>BEGIN TRAN</code> dan <code>COMMIT</code> ketika batch harus bersifat transaksional. Transaksi terbuka menghasilkan pemberitahuan. Eksekusi berhenti pada batch pertama yang gagal, dengan baris editornya berada dalam kesalahan.",
                 "Setiap sesi dibuka dengan opsi SET yang diperlukan indeks berfilter, view berindeks, dan indeks pada kolom terhitung, seperti <code>ANSI_NULLS</code> dan <code>QUOTED_IDENTIFIER</code> aktif. Ini juga berarti <code>col = NULL</code> tidak cocok dengan apa pun: bandingkan dengan <code>IS NULL</code>.",
                 "Tabel berada di bawah skemanya di sidebar, dan <code>⌘K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
             ]
@@ -50,7 +50,7 @@
             "title": "Skema",
             "paragraphs": [
                 "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, dan constraint, serta menampilkan T-SQL sebelum berjalan. Skema dapat dihapus dari sidebar; SQL Server menolak menghapus skema yang masih berisi objek. Buat skema dengan CREATE SCHEMA dalam editor.",
-                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema SQL Server atau datanya, lalu menyimpan skrip dengan baris <code>GO</code> setelah setiap pernyataan, siap untuk sqlcmd atau SQL Server Management Studio."
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) membandingkan skema atau data SQL Server. Skrip yang dihasilkan memisahkan pernyataan dengan <code>GO</code> untuk sqlcmd atau SQL Server Management Studio."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> file {importFormats}. File <code>.sql</code> dengan baris <code>GO</code> berjalan per batch, seperti sqlcmd. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mengakhiri setiap pernyataan dengan baris <code>GO</code>, sehingga setiap pernyataan berjalan sebagai batch sendiri."
+                "<importData>Impor file</importData> {importFormats}. File SQL mengikuti batch <code>GO</code>. Ekspor tabel atau hasil sebagai {exportFormats}; Ekspor SQL juga menggunakan pemisah <code>GO</code>."
             ]
         },
         {
@@ -82,7 +82,7 @@
         "items": [
             {
                 "product": "ssms",
-                "text": "SQL Server Management Studio adalah alat resmi Microsoft untuk SQL Server dan Azure SQL. Pilih untuk administrasi yang tidak dicakup TablePro, seperti job SQL Server Agent, grup ketersediaan Always On, statistik kueri langsung, serta alat optimasi performanya.",
+                "text": "SQL Server Management Studio mencakup administrasi di luar TablePro, termasuk pekerjaan SQL Server Agent, grup ketersediaan Always On, statistik kueri langsung, dan penyetelan kinerja.",
                 "notes": [
                     "ssms-github-copilot-component"
                 ]

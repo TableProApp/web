@@ -1,24 +1,24 @@
 {
     "seo": {
         "title": "SQL-Editor mit Autovervollständigung und EXPLAIN",
-        "description": "SQL mit Schema-Vervollständigung und Parametern schreiben, Verlauf durchsuchen, Abfragen speichern und EXPLAIN-Diagramme in TablePro lesen."
+        "description": "Schreibe SQL mit Schema-Vervollständigung. Speichere Abfragen, durchsuche den lokalen Verlauf und prüfe EXPLAIN-Pläne unterstützter Datenbanken."
     },
     "og": {
         "kicker": "Abfragen",
-        "title": "Abfragen schreiben, ausführen und verstehen"
+        "title": "SQL-Editor"
     },
     "header": {
-        "title": "Abfragen schreiben, ausführen und verstehen",
-        "lead": "Für alle, die SQL gegen eine laufende Datenbank schreiben: Arbeite mit dem Schema zur Hand, führe eine Anweisung oder ein ganzes Skript aus, behalte nützliche Abfragen und finde heraus, warum eine langsamer wurde. Alles hier steht in der Mac-App bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
+        "title": "SQL-Editor",
+        "lead": "Schreibe SQL mit schemabasierter Autovervollständigung. Speichere wiederkehrende Abfragen, durchsuche deinen Verlauf und prüfe Pläne auf unterstützten Engines.",
         "docs": "/features/sql-editor"
     },
     "sections": [
         {
             "id": "editor",
-            "title": "Ein Editor, der dein Schema kennt",
+            "title": "Schemabasierte Autovervollständigung",
             "paragraphs": [
-                "Die Autovervollständigung liest beim Tippen das Verbindungsschema: Tabellen nach FROM und JOIN, Spalten eines Alias sowie Spalten einer zuvor definierten CTE oder Unterabfrage. Die Hervorhebung verwendet tree-sitter; <kbd>⌘⇧L</kbd> formatiert die Anweisung am Cursor, ohne Kommentare zu entfernen.",
-                "<kbd>⌘⏎</kbd> führt die Anweisung am Cursor oder die Auswahl aus, <kbd>⌘⇧⏎</kbd> alle, <kbd>⌘⌥⏎</kbd> ohne Zeilenlimit und <kbd>⌘.</kbd> bricht ab. Ein Batch gewöhnlicher Anweisungen läuft in einer Transaktion und wird bei einem Fehler zurückgerollt. Ausnahmen sind Skripte mit eigener Transaktionssteuerung, SQL-Server-Skripte und nicht transaktionsfähige Anweisungen wie VACUUM. DDL auf MySQL, MariaDB und Oracle committet implizit."
+                "Die Autovervollständigung schlägt Tabellen und Spalten vor, auch Aliase, CTEs und Unterabfragen. Formatiere die aktuelle Anweisung mit <kbd>⌘⇧L</kbd>; Kommentare bleiben erhalten.",
+                "Führe die aktuelle Anweisung, eine Auswahl oder ein ganzes Skript aus. Gewöhnliche Anweisungsfolgen nutzen eine Transaktion und werden bei Fehlern zurückgerollt. SQL-Server-Skripte, explizite Transaktionen und Anweisungen wie VACUUM sind Ausnahmen. DDL auf MySQL, MariaDB und Oracle bestätigt unabhängig."
             ],
             "points": [
                 "Anweisungsmarkierungen am Rand mit jeweils eigener Ausführungsschaltfläche.",
@@ -32,9 +32,9 @@
             "id": "history",
             "title": "Parameter, Verlauf und gespeicherte Abfragen",
             "paragraphs": [
-                "Schreibe <code>:customer_id</code> in eine Abfrage; TablePro fragt vor der Ausführung nach Wert und Typ und bindet den Wert nativ, sofern der Treiber dies unterstützt.",
-                "Jede ausgeführte Abfrage landet im lokalen Verlauf (<kbd>⌘Y</kbd>) mit Volltextsuche und Filtern für Quelle, Fehler und Zeitraum. Standardmäßig bleiben {historyEntries} Einträge für {historyDays} Tage erhalten; der Verlauf wird nie synchronisiert.",
-                "Speichere eine Abfrage mit einem Schlüsselwort wie <code>dau</code> und tippe dieses dann im Editor, um es zur Abfrage zu erweitern. Gespeicherte Abfragen behalten einen Versionsverlauf. Ein verknüpfter SQL-Ordner synchronisiert einen Ordner mit <code>.sql</code>-Dateien in beide Richtungen mit der Seitenleiste und zeigt für jede Datei den Git-Status als Buchstaben. Das ist kostenlos und etwas anderes als Linked Folders, die Starter-Funktion für gemeinsam genutzte Verbindungsdateien."
+                "Mit Parametern wie <code>:customer_id</code> gibst du Werte vor der Ausführung ein. Wenn der Treiber es unterstützt, werden die Werte nativ gebunden.",
+                "Durchsuche den lokalen Abfrageverlauf nach Text, Quelle, Fehlern oder Zeitraum. Standardmäßig speichert er {historyEntries} Einträge für {historyDays} Tage und wird nie synchronisiert.",
+                "Speichere Abfragen mit wiederverwendbaren Schlüsselwörtern und Versionsverlauf. Binde einen Ordner mit <code>.sql</code>-Dateien in die Seitenleiste ein, mit beidseitigen Updates und Git-Status. SQL-Ordner sind kostenlos und unabhängig von Linked Folders, der kostenpflichtigen Funktion für Verbindungsdateien."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,19 +42,19 @@
             "id": "open-quickly",
             "title": "Open Quickly und Tabs",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) findet Tabellen, Views und Systemtabellen aller offenen Verbindungen sowie gespeicherte und zuletzt verwendete Abfragen. Jeder Tab behält SQL, Sortierung, Filter und Spaltenbreiten. Nach dem Beenden und erneuten Öffnen der App sind die Tabs wieder da; <kbd>⌃Tab</kbd> wechselt zwischen den zuletzt verwendeten."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) sucht Tabellen, Views und Abfragen in offenen Verbindungen. Tabs behalten SQL und Rastereinstellungen beim erneuten Öffnen der App."
             ]
         },
         {
             "id": "performance",
-            "title": "Plan lesen, vergleichen und verfolgen",
+            "title": "Abfrageleistung",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "explain",
                     "title": "EXPLAIN und EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> zeigt den Abfrageplan als Diagramm, Baum mit Kostenbalken oder Rohdaten des Systems. Wähle einen früheren Lauf derselben Abfrage als Ausgangspunkt; Compare zeigt, ob sie langsamer geworden ist und ob sich der Plan geändert hat. Eine Differenz unter {explainNoise} % gilt als Rauschen. Beides ist kostenlos."
+                        "Zeige Abfragepläne als Diagramme, Kostenbäume oder rohe Engine-Ausgabe. Vergleiche einen früheren Lauf, um Änderungen an Zeiten und Plänen zu erkennen; Unterschiede unter {explainNoise}% zählen als Rauschen. Beide Funktionen sind kostenlos."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights liest den Abfrageverlauf dieses Macs und erstellt daraus Ranglisten: die am häufigsten ausgeführten Abfragen, die langsamsten, die fehlgeschlagenen und die, die gegenüber dem vorherigen Zeitraum langsamer geworden sind. Abfragen werden nach Form gruppiert; dieselbe Anweisung mit unterschiedlichen Werten zählt einmal. Die Zahlen werden auf deinem Mac berechnet und nie hochgeladen."
+                        "Finde langsame, fehlschlagende und häufig ausgeführte Abfragen im lokalen Verlauf dieses Macs. Ähnliche Anweisungen werden unabhängig von Parameterwerten gruppiert. Query Insights vergleicht Zeiträume lokal; es überwacht nicht den gesamten Server und lädt keine Metriken hoch."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Stelle Ergebnisse als Balken-, Linien-, Flächen- oder Streudiagramm dar, mit Zeitachse für Datumswerte und einer Reihe pro Wert einer gewählten Spalte. Ein Diagramm zeichnet bis zu {chartPoints} Punkte und {chartSeries} Reihen aus den ersten {chartInspectedRows} Zeilen; die Symbolleiste weist darauf hin, wenn nicht alles dargestellt wird."
+                        "Stelle Ergebnisse als Balken-, Linien-, Flächen- oder Streudiagramme dar. Diagramme zeigen bis zu {chartPoints} Punkte und {chartSeries} Reihen aus den ersten {chartInspectedRows} Zeilen, mit Hinweis bei Kürzung."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Kartenansicht",
                     "paragraphs": [
-                        "Wenn eine Spalte Geometrie als WKT, WKB, GeoJSON, ClickHouse-Tupel oder Elasticsearch-geo_point-Werte enthält, zeichnet die Kartenansicht sie auf Apple Maps. Wählst du eine Form aus, wird ihre Zeile ausgewählt. Deine Zeilen bleiben auf dem Mac; Apple liefert die Kartenkacheln. Die Kartenansicht ist kostenlos."
+                        "Zeige unterstützte Geometriespalten auf Apple Karten und wähle eine Form, um ihre Zeile zu finden. Zeilen bleiben auf deinem Mac; Apple liefert die Kartenkacheln. Die Kartenansicht ist kostenlos."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -119,9 +119,9 @@
         },
         {
             "id": "other-languages",
-            "title": "Systeme ohne SQL",
+            "title": "Weitere Abfragesprachen",
             "paragraphs": [
-                "Bei Verbindungen ohne SQL versteht der Editor die eigene Sprache des Systems; die Seite des jeweiligen Systems erklärt, was unterstützt wird. Der MongoDB-Editor ist eine JavaScript-Shell im mongosh-Stil innerhalb von TablePro, nicht mongosh selbst."
+                "Nutze im Editor die Abfragesprache jeder Nicht-SQL-Engine. MongoDB verwendet eine integrierte JavaScript-Shell im mongosh-Stil, nicht mongosh selbst. Unterstützte Befehle stehen auf den Datenbankseiten."
             ],
             "engines": [
                 {

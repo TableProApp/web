@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs DBeaver：ネイティブと Java",
+        "title": "TablePro と DBeaver: 機能とエディション",
         "description": "DBeaver は Java と JDBC で Windows、macOS、Linux に対応。TablePro は Mac、iPhone、iPad のネイティブクライアントです。エンジン、AI、MCP、料金を比較します。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs DBeaver",
-        "lead": "DBeaver は Java で作られた Windows、macOS、Linux 用のクライアントです。Community 版は無料のオープンソースで、有料版は追加機能を提供します。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントで、Mac ではオプションの有料機能を追加できます。"
+        "lead": "DBeaver コミュニティは、無料のオープンソース JDBC クライアントです。有料版には、NoSQL サポートとその他のツールが追加されます。これらのエディションを TablePro でサポートされているデータベースおよび機能と比較してください。"
     },
     "shortAnswer": {
         "tablepro": [
-            "MongoDB、Redis、Cassandra を無料で使いたい。TablePro はすべての対応エンジンが無料だが、DBeaver Community は NoSQL データベースに対応しない。",
-            "Java 不要の Mac アプリを使いたい。TablePro は Swift 製で、データベースドライバーもネイティブ。JDBC は使わない。",
-            "選んだプロバイダーで無料の AI アシスタントを使いたい。DBeaver Community の AI チャットは OpenAI と GitHub Copilot のみに対応する。",
-            "AI クライアントが自分の接続を利用できる MCP サーバーを、Mac アプリで無料で使いたい。",
-            "iPhone・iPad 用のアプリも欲しい。"
+            "MongoDB、 Redis、 Cassandra など、サポートされている NoSQL エンジンへの無料アクセス。",
+            "ネイティブ ドライバー。Java または JDBC 要件はありません。",
+            "MCP および AI は、選択したプロバイダーと無料でチャットできます。"
         ],
         "competitor": [
-            "Mac に加え、Windows や Linux でも作業している。",
-            "TablePro にドライバーのないエンジンが必要。DBeaver Community は JDBC ドライバーがあるどのエンジンにも接続できる。",
-            "ビジュアルクエリビルダー、編集可能な ER 図、タスクのスケジュール実行が必要。DBeaver の有料版はこれらを提供する。"
+            "Windows または Linux のサポート。",
+            "TablePro のサポートされているドライバーを超える JDBC エンジン。",
+            "ビジュアル クエリ ビルダー、編集可能な ER 図、スケジュールされたタスクなどの有料ツール。"
         ]
     },
     "glance": {
@@ -45,14 +43,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "DBeaver は Windows、macOS、Linux で動作するため、一つのクライアントで複数のコンピューターを扱えます。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Community は JDBC ドライバーがあるどのエンジンにも接続でき、TablePro にドライバーのないエンジンも対象です。",
                 "cite": [
@@ -106,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。",
+                "text": "個別の <link>iPhone および iPad アプリ</link> は無料で、アプリ内購入はありません。",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -117,13 +107,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro には Windows・Linux 用アプリがありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro はドライバーを持つエンジンにのみ接続します。汎用 JDBC 接続はないため、まず<link>対応データベース</link>を確認してください。",
+                "text": "TablePro には、サポートされているドライバーが必要です。汎用の JDBC 接続はないため、まず <link>がサポートするデータベース</link> を確認してください。",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,7 +121,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro は Community とすべての有料版の DBeaver ワークスペースから接続を読み取ります。DBeaver を開いておく必要はなく、ファイルも変更しません。",
+        "intro": "DBeaver ワークスペース、コミュニティ、または有料エディションから接続をインポートします。 DBeaver は閉じたままにすることができ、そのファイルは変更されません。",
         "steps": [
             "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
             "DBeaver を選び、<ui>Include passwords</ui> をオンにします。TablePro が DBeaver の保存したパスワードを復号するため、キーチェーンでの承認は不要です。",
@@ -159,14 +143,8 @@
         {
             "id": "speed",
             "question": "DBeaver と速度やメモリー使用量はどう違いますか？",
-            "answer": "どちらのプロジェクトも他者が再現できる測定結果を公開していないため、このページでは速度やメモリーについて主張しません。確認できるのは、DBeaver のダウンロードには Java ランタイムが含まれ、TablePro には不要という点です。",
+            "answer": "ここでは再現可能なベンチマークが引用されていないため、この比較は速度やメモリを主張するものではありません。 DBeaver には Java ランタイムがバンドルされています。 TablePro には Java は必要ありません。",
             "href": null
-        },
-        {
-            "id": "free",
-            "question": "TablePro も DBeaver Community のように無料ですか？",
-            "answer": "すべての対応エンジン、AI アシスタント、MCP サーバーは無料です。TablePro は AGPLv3 のオープンソースで無料利用できます。DBeaver が追加機能を別エディションとして販売するのに対し、TablePro は Mac アプリ向けの Starter・Team プランで {starterExamples} などの機能を提供します。<link>料金を見る</link>。",
-            "href": "/pricing"
         },
         {
             "id": "unsupported",

@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "Klien ClickHouse untuk {devices}",
-        "lead": "Jalankan SQL analitik melalui antarmuka HTTP ClickHouse, baca rencana, pipeline, atau estimasi baris kueri, serta kelola part dan partisi MergeTree dari tab Parts tabel. Kueri panjang melaporkan baris yang dibaca saat berjalan, dan Stop menghentikannya di server."
+        "title": "Klien ClickHouse",
+        "lead": "Jalankan kueri analitis, periksa rencana dan saluran pipa, serta kelola bagian dan partisi tabel."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host dan port HTTP, pengguna, dan jika diinginkan, database. Perpindahan database berlangsung pada koneksi yang sama, dan tab terbuka tetap pada database awalnya. <ui>View > Sidebar as Tree</ui> menampilkan database server sebagai pohon yang dapat diperluas di tempat.",
+                "Masukkan host, port HTTP, pengguna dan database opsional. Beralih database tanpa menghubungkan kembali. Tab yang terbuka menyimpan database awalnya; <ui>View > Sidebar as Tree</ui> memperluas database yang ada.",
                 "Pilih mode SSL apa pun untuk beralih ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity untuk memeriksa sertifikat terhadap file CA atau penyimpanan kepercayaan sistem. Verify CA memerlukan file CA, dan sertifikat serta kunci klien mengakses server yang mewajibkan TLS timbal balik.",
                 "Tanpa TLS, akses server jarak jauh melalui <network>tunnel SSH</network> alih-alih mengirim HTTP tanpa enkripsi melalui jaringan."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Setiap kueri memiliki ID sendiri dan meminta kemajuan, sehingga kueri panjang melaporkan baris yang dibaca selama berjalan. Stop mengirim <code>KILL QUERY</code> untuk ID tersebut, dan batas waktu kueri koneksi diteruskan ke server.",
+                "Pantau baris yang dibaca selama kueri. Stop mengirimkan <code>KILL QUERY</code>, dan batas waktu kueri koneksi diteruskan ke server.",
                 "<explain>Menu Explain</explain> menyediakan Plan, Pipeline, AST, Syntax, dan Estimate. Keluaran berindentasi digambar sebagai diagram atau pohon, dan Estimate menampilkan baris, mark, serta part yang akan dibaca kueri.",
-                "Perubahan grid dikirim sebagai <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code>, dan <code>ALTER TABLE … DELETE</code>, dengan <editing>Preview SQL</editing> terlebih dahulu. ClickHouse menjalankan pembaruan dan penghapusan sebagai mutasi latar belakang, sehingga menyimpan berarti diterima, belum diterapkan; <code>system.mutations</code> menampilkan kemajuannya. Materialized view dibuka hanya baca.",
+                "Tinjau <editing>Preview SQL</editing> sebelum menyisipkan baris atau mengirimkan mutasi UPDATE dan DELETE. Penyimpanan yang berhasil berarti diterima, tidak diterapkan; ikuti kemajuan di <code>system.mutations</code>. Pandangan yang terwujud bersifat hanya-baca.",
                 "Hasil yang berisi tuple titik atau ring ClickHouse dibuka pada <map>tampilan Map</map>. Kueri dengan klausa <code>FORMAT</code> sendiri menampilkan keluaran mentah server dalam satu kolom, jadi hilangkan klausa tersebut untuk mendapatkan grid."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "Tabel, part, dan partisi",
             "paragraphs": [
                 "Tabel dibuka dengan tab Structure, Indexes, DDL, dan Parts. Indexes menampilkan kunci pengurutan dan indeks data-skipping, sedangkan DDL menampilkan <code>CREATE TABLE</code> lengkap, termasuk mesin dan pengaturan.",
-                "Parts mencantumkan setiap part dari <code>system.parts</code> dengan partisi, baris, ukuran pada disk, waktu perubahan, dan flag aktif, serta menjalankan Optimize, Drop Partition, dan Detach Partition dari sana.",
+                "Periksa bagian dari <code>system.parts</code>, termasuk partisi, jumlah baris, ukuran dan status aktif. Jalankan Optimize, Drop Partition, atau Detach Partition dari tab Parts.",
                 "<structure>Tab Structure</structure> menambah, mengubah, dan menghapus kolom serta menghapus indeks data-skipping. Kunci pengurutan dan primary key ditetapkan saat tabel dibuat, jadi tambahkan indeks data-skipping menggunakan <code>ALTER TABLE … ADD INDEX</code>, dan buat ulang tabel untuk perubahan lainnya."
             ]
         },

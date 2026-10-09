@@ -1,42 +1,42 @@
 {
     "compare-sync": {
-        "detail": "Vergleiche Struktur oder Daten zweier Datenbanken und prüfe das Synchronisierungsskript vor der Ausführung.",
+        "detail": "Vergleiche unterstützte Datenbanken und prüfe ein Schema- oder Datensynchronisierungsskript.",
         "lapse": "Beim Öffnen erscheint ein Hinweis, der eine Lizenz verlangt."
     },
     "query-insights": {
-        "detail": "Sieh anhand des Verlaufs dieses Macs, welche Abfragen du am häufigsten ausführst, welche am langsamsten sind und welche langsamer geworden sind.",
+        "detail": "Finde langsame, fehlschlagende und häufig ausgeführte Abfragen im lokalen Verlauf dieses Macs.",
         "lapse": "Die Ansicht bleibt erhalten und wird von einer Lizenzaufforderung überdeckt."
     },
     "result-charts": {
-        "detail": "Erstelle Balken-, Linien-, Flächen- und Streudiagramme aus einer Ergebnismenge.",
+        "detail": "Stelle Abfrageergebnisse als Balken-, Linien-, Flächen- oder Streudiagramme dar.",
         "lapse": "Das Diagramm bleibt erhalten und wird von einer Lizenzaufforderung überdeckt."
     },
     "data-rewind": {
-        "detail": "Stelle die Werte wieder her, die Zeilen vor dem Speichern einer Änderung hatten.",
+        "detail": "Prüfe und stelle geeignete Werte einer kürzlich gespeicherten Änderung wieder her. Kein Backup.",
         "lapse": "Speichervorgänge werden nicht mehr aufgezeichnet; beim Wiederherstellen erscheint ein Hinweis."
     },
     "icloud-sync": {
-        "detail": "Synchronisiere Verbindungen und Einstellungen zwischen deinen Macs sowie mit der iPhone- und iPad-App.",
+        "detail": "Synchronisiere ausgewählte Daten zwischen Macs und unterstützte Verbindungsdaten mit iPhone und iPad.",
         "lapse": "Die Synchronisierung pausiert; in den Einstellungen steht der Grund."
     },
     "linked-folders": {
-        "detail": "Lies Verbindungen aus freigegebenen Ordnern mit .tablepro-Dateien, etwa einem Git-Repository oder einem Team-Laufwerk.",
+        "detail": "Lies Verbindungsdateien aus einem gemeinsamen Ordner, Git-Repository oder Team-Laufwerk.",
         "lapse": "Verbindungen aus Linked Folders werden aus deiner Verbindungsliste entfernt."
     },
     "encrypted-export": {
-        "detail": "Nimm Passwörter in einen .tablepro-Export auf, verschlüsselt mit einer Passphrase.",
+        "detail": "Exportiere .tablepro-Dateien mit per Passphrase verschlüsselten Passwörtern.",
         "lapse": "Die Option zum Einschließen von Passwörtern entfällt beim Export. Unverschlüsselte Exporte und der Import verschlüsselter Dateien funktionieren weiterhin."
     },
     "environment-variables": {
-        "detail": "Verwende $VAR in Verbindungsfeldern wie Host oder Benutzer; TablePro ersetzt die Variable beim Verbinden.",
+        "detail": "Löse $VAR beim Verbinden in unterstützten Verbindungsfeldern auf.",
         "lapse": "$VAR wird ohne Hinweis nicht mehr ersetzt: Die Verbindung verwendet den Text unverändert."
     },
     "team-catalog": {
-        "detail": "Veröffentliche Verbindungen ohne Passwörter in einem freigegebenen Ordner, den dein Team über Linked Folders einliest.",
+        "detail": "Veröffentliche Verbindungsdateien ohne Passwörter in einem gemeinsamen Ordner.",
         "lapse": "Die Befehle zum Veröffentlichen werden ausgeblendet."
     },
     "team-library": {
-        "detail": "Teile Verbindungen und gespeicherte Abfragen über den TablePro-Server mit deinem Team. Passwörter werden nie hochgeladen.",
+        "detail": "Teile Verbindungen und gespeicherte Abfragen über TablePros Server. Passwörter werden nie hochgeladen.",
         "lapse": "Team-Verbindungen und -Abfragen werden ausgeblendet, bis wieder ein aktiver Team-Tarif besteht."
     }
 }

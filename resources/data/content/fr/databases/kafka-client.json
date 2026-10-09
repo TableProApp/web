@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "Client Apache Kafka pour {devices}",
-        "lead": "Lisez un topic depuis la position choisie, voyez le retard de chaque groupe de consommateurs et produisez un message de test avec KafkaQL, le langage de commandes propre à TablePro. Un topic est un journal : la grille lit les messages sans jamais les modifier."
+        "title": "Client Apache Kafka",
+        "lead": "Inspectez les messages des topics et le retard des consommateurs, ou produisez un message de test avec KafkaQL, le langage de commandes propre à TablePro."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez l’hôte et le port d’un broker ; le reste du cluster est découvert à partir de lui. <ui>Serveurs bootstrap supplémentaires</ui> (Additional Bootstrap Servers) liste les brokers à essayer si le premier ne répond pas. Une connexion correspond à un cluster ; il n’y a donc pas de champ Base de données et la barre latérale affiche directement ses topics.",
+                "Saisissez l’hôte et le port d’un broker bootstrap. <ui>Serveurs bootstrap supplémentaires</ui> (Additional Bootstrap Servers) ajoute des brokers de secours. Chaque connexion atteint un cluster ; la barre latérale affiche ses topics.",
                 "Le <ui>Protocole de sécurité</ui> (Security Protocol) est PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL ; le <ui>Mécanisme SASL</ui> (SASL Mechanism) est PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN convient à Confluent Cloud, SCRAM à Amazon MSK et aux brokers autohébergés. Avec SSL ou SASL_SSL sans mode SSL choisi, la chaîne de certificats et le nom d’hôte sont vérifiés. Une AC privée va dans <ui>Certificat d’autorité (CA)</ui> (CA Certificate) ; certificat client et clé ajoutent TLS mutuel.",
                 "Avec un <network>tunnel SSH</network>, la connexion reste sur le broker bootstrap et ne lit donc que les partitions dont il est leader. <ui>Importer depuis une URL…</ui> (Import from URL…) accepte les URL <code>kafka://</code>, que macOS n’ouvre pas comme liens."
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "Lisez, inspectez et produisez",
             "paragraphs": [
-                "Ouvrir un topic affiche ses messages récents, le plus récent en dernier, avec partition, offset, horodatage, clé, valeur, en-têtes et tailles. Les messages de partitions différentes sont entrelacés par date pour faciliter la lecture ; partition et offset identifient le message. Une clé ou valeur non UTF-8 s’affiche en hexadécimal et un tombstone reste distinct d’un message vide.",
-                "KafkaQL remplace tri et filtrage par une position initiale : <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> ou <code>FROM TIME</code> avec un horodatage ISO 8601, éventuellement limité à certaines partitions. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> et <code>DESCRIBE TOPIC</code> couvrent le reste du cluster.",
+                "Parcourez les messages récents avec partition, offset, horodatage, clé, valeur et en-têtes. Les messages de partitions différentes sont intercalés par horodatage ; partition et offset les identifient. Les valeurs non UTF-8 s’affichent en hexadécimal. Les tombstones restent distincts des messages vides.",
+                "Avec KafkaQL, consommez depuis le message le plus récent, le plus ancien, un offset ou un horodatage ISO 8601, en limitant au besoin les partitions. Les commandes SHOW listent topics, brokers, groupes et détails du cluster ; DESCRIBE TOPIC inspecte un topic.",
                 "<code>DESCRIBE GROUP</code> donne le rapport de retard : offset validé, offset final et écart par partition. Une partition où le groupe n’a jamais validé d’offset n’affiche pas de retard plutôt qu’un nombre compté depuis zéro ; <code>SHOW GROUPS</code> marque sa liste comme tronquée si un broker est inaccessible.",
                 "<code>PRODUCE INTO</code> écrit un message avec clé, en-têtes et partition facultatifs. Un message avec clé sans partition arrive là où le producteur Kafka le placerait. Les lots gzip, snappy, lz4 et zstd sont décompressés à la lecture, sans réglage à choisir.",
-                "Les cellules ne se modifient pas, les lignes ne se suppriment pas et les colonnes ne se trient pas, car Kafka n’a ni mise à jour, ni suppression par message, ni tri côté serveur ; la grille grise ces commandes. Chaque page reprend où la précédente s’arrête, donc un topic recevant des messages n’en répète ni n’en saute aucun."
+                "Les messages ne peuvent être ni modifiés ni supprimés individuellement, et les colonnes ne se trient pas. La pagination reprend à la position précédente malgré l’arrivée de nouveaux messages."
             ]
         },
         {

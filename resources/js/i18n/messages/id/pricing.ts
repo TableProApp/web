@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Gratis",
-            "description": "Aplikasi Mac tanpa fitur berbayar, serta aplikasi iPhone dan iPad.",
+            "description": "Alat database inti, tanpa masa uji coba.",
             "activation": "Tidak perlu mendaftar untuk menggunakan aplikasi.",
             "includesTitle": "Termasuk",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Menambahkan fitur seperti {examples} ke aplikasi Mac.",
             "activation": {
-                "one": "Satu lisensi untuk satu orang, di {count} Mac.",
-                "other": "Satu lisensi untuk satu orang, di maksimal {count} Mac."
+                "one": "Satu orang, {count} Mac.",
+                "other": "Satu orang, hingga {count} Mac."
             },
             "includesTitle": "Semua fitur Gratis, ditambah",
             "cta": "Beli Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Menambahkan koneksi dan kueri yang dibagikan dengan tim Anda, di samping fitur Starter.",
-            "activation": "Setiap seat adalah satu Mac yang diaktifkan.",
+            "description": "Bagikan koneksi dan kueri tersimpan dengan tim Anda.",
+            "activation": "Satu Mac yang diaktifkan per seat.",
             "includesTitle": "Semua fitur Starter, ditambah",
             "cta": "Beli Team"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>.",
         "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>."
     },
-    "finePrint": "Harga dalam dolar AS. {merchant} adalah merchant of record: menerima pembayaran dan menghitung pajak penjualan atau PPN saat checkout.",
+    "finePrint": "Harga dalam dolar AS. {merchant} menangani pembayaran dan menghitung pajak penjualan atau PPN saat checkout sebagai merchant of record.",
     "finePrintCurrency": "Harga dalam dolar AS.",
     "comparePlans": "Bandingkan paket",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Memeriksa kode…",
         "percent": "Kode diterima: diskon {amount}%, diterapkan saat checkout.",
         "fixed": "Kode diterima: potongan {amount}, diterapkan saat checkout.",
-        "invalid": "Kode diskon tidak valid atau telah kedaluwarsa."
+        "invalid": "Kode ini tidak valid atau telah kedaluwarsa."
     },
     "checkout": {
-        "failed": "Tidak dapat memulai checkout. Coba lagi."
+        "failed": "Tidak dapat membuka checkout. Coba lagi."
     },
     "offers": {
         "name": "{plan}, {cycle}",

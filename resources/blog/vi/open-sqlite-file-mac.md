@@ -1,18 +1,18 @@
 ---
 slug: open-sqlite-file-mac
-title: "Cách mở và query file SQLite trên Mac"
-description: Mở file .db hoặc .sqlite bằng shell sqlite3 có sẵn trên macOS, hoặc trong TablePro, và cách xử lý khi macOS hay một lock không cho mở file.
+title: "Mở và query file SQLite trên Mac"
+description: Mở file SQLite bằng sqlite3 hoặc TablePro. Xem table, chạy query và xử lý file mã hóa, lock, quyền truy cập file trên macOS.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: sqlite3 trong Terminal, hoặc kéo file vào TablePro.
 tags: [sqlite, database-files, sql-editor]
 ---
 
-Một cơ sở dữ liệu SQLite là một file. Không có server nào để khởi động và không có user nào để đăng nhập, nên "kết nối" ở đây nghĩa là mở file. macOS có sẵn một shell dòng lệnh làm được việc đó, còn GUI thì thêm phần duyệt table và editor.
+Mở file SQLite bằng shell `sqlite3` có sẵn trên macOS, hoặc dùng TablePro để xem table và sửa dữ liệu. Không cần server cơ sở dữ liệu hay đăng nhập.
 
 ## Kiểm tra xem file có phải SQLite không {#check-the-file}
 
-Phần mở rộng không nói lên điều gì. Nhiều định dạng khác cũng dùng `.db`, và không ít file SQLite chẳng có phần mở rộng nào. Hãy hỏi chính file đó:
+Phần mở rộng không xác định định dạng: `.db` có thể là định dạng khác, file SQLite có thể không có phần mở rộng. Kiểm tra bằng:
 
 ```bash
 file ~/Downloads/app.db
@@ -53,7 +53,7 @@ Một vài cơ sở dữ liệu đáng biết trên máy Mac:
 
 Hai mục cuối nằm trong thư mục được macOS bảo vệ. Xem phần [Nếu không mở được](#troubleshooting).
 
-## Mở trong TablePro {#in-tablepro}
+## Mở file trong TablePro {#in-tablepro}
 
 Cách nào sau đây cũng mở được file:
 
@@ -61,7 +61,7 @@ Cách nào sau đây cũng mở được file:
 - Chọn **Tệp > Mở tệp…** (File > Open File…, `Cmd+O`) rồi chọn file.
 - Trong Finder, bấm chuột phải vào file và chọn **Mở bằng > TablePro** (Open With > TablePro). Các file có đuôi `.db`, `.db3`, `.s3db`, `.sl3`, `.sqlite`, `.sqlite3` và `.sqlitedb` có TablePro trong danh sách đó.
 
-Cơ sở dữ liệu lưu dưới tên khác cũng mở được, bằng cách kéo thả hoặc qua **Mở tệp…**. TablePro đọc những byte đầu tiên của file để quyết định, giống như lệnh `file`.
+Tên file khác dùng được bằng kéo thả hoặc **Mở tệp…** (Open File…). TablePro kiểm tra header file, không chỉ phần mở rộng.
 
 Để giữ file trong danh sách connection:
 
@@ -69,7 +69,7 @@ Cơ sở dữ liệu lưu dưới tên khác cũng mở được, bằng cách k
 2. Bấm **Duyệt…** (Browse…) và chọn file. Không có host, port hay mật khẩu nào cần điền.
 3. Bấm **Lưu & kết nối** (Save & Connect).
 
-Nút **New…** bên cạnh **Duyệt…** dùng để đặt tên cho một file chưa tồn tại. File được tạo khi bạn kết nối, và bạn có ngay một cơ sở dữ liệu trống để thử nghiệm.
+**New…** cạnh **Duyệt…** (Browse…) tạo cơ sở dữ liệu trống ở path bạn chọn khi kết nối.
 
 Chưa có file nào trong tay? **Trợ giúp > Mở cơ sở dữ liệu mẫu** (Help > Open Sample Database) mở một cơ sở dữ liệu SQLite đi kèm ứng dụng để bạn thử.
 
@@ -103,9 +103,9 @@ Các chỉnh sửa trong data grid là thay đổi đang chờ lưu. Chưa có g
 
 Nếu một chương trình khác thay đổi file, danh sách table tự nạp lại. Những dòng đã nạp trong một tab giữ nguyên cho tới khi bạn làm mới tab đó.
 
-## File nằm trên server {#remote-file}
+## Mở file remote qua SSH {#remote-file}
 
-File SQLite trên một máy bạn tới được qua SSH mở được mà không cần tự sao chép về. Trong form connection, mở tab **Mạng** (Network) và đặt **Connect via** thành **Tệp cơ sở dữ liệu từ xa** (Remote Database File), rồi điền **Đường dẫn** (Path) trên server cùng thông tin SSH. Menu **Mở** (Open) có hai lựa chọn:
+Để mở file qua SSH, đặt **Mạng > Connect via** (Network > Connect via) thành **Tệp cơ sở dữ liệu từ xa** (Remote Database File). Nhập **Đường dẫn** (Path) remote và thông tin SSH, rồi chọn chế độ **Mở** (Open):
 
 - **On the Server** chạy câu lệnh của bạn ngay trên server, trên file đang dùng. Server cần có `python3`.
 - **As a Read-Only Copy** sao chép file về máy Mac và mở bản sao ở chế độ chỉ đọc. File gốc không bao giờ bị ghi.
@@ -118,10 +118,10 @@ File SQLite trên một máy bạn tới được qua SSH mở được mà khô
 - Không thêm, bỏ hay di chuyển được khóa chính.
 - Cơ sở dữ liệu tạo bằng extension như sqlite-vec hay SpatiaLite không đọc được cho tới khi extension đó được thêm vào connection, trong tab **Tùy chọn** (Options).
 
-## Nếu không mở được {#troubleshooting}
+## Xử lý lỗi {#troubleshooting}
 
 - **unable to open database file**: đường dẫn sai, hoặc thư mục đó ứng dụng không được phép đọc. Các file dưới `~/Library`, như cơ sở dữ liệu của Safari và Tin nhắn, cần quyền Full Disk Access (Truy cập toàn bộ ổ đĩa): bật quyền này cho TablePro, hoặc cho Terminal nếu bạn dùng `sqlite3`, trong phần Quyền riêng tư & Bảo mật của Cài đặt hệ thống, rồi mở lại ứng dụng.
 - **database is locked**: một tiến trình khác đang giữ write lock. Hãy thoát ứng dụng sở hữu file đó.
 - **file is not a database**: file bị mã hóa hoặc không phải SQLite. Chạy lại lệnh `file` với nó.
 
-Tài liệu mô tả extension, file từ xa và mọi thông báo lỗi ở [trang SQLite](https://docs.tablepro.app/databases/sqlite) (tiếng Anh). Trên trang này, [trang client SQLite](/vi/sqlite-client) liệt kê những gì TablePro làm được với một cơ sở dữ liệu SQLite, còn mục [File cũng là cơ sở dữ liệu](/vi/features/import-export#files) nói về các loại file khác: DuckDB đọc file Parquet và CSV như các view chỉ đọc, còn file CSV, JSON và Excel mở trong một cửa sổ riêng.
+Xem [tài liệu SQLite](https://docs.tablepro.app/databases/sqlite) cho extension và lỗi file remote, hoặc [tổng quan SQLite](/vi/sqlite-client). Với định dạng khác, [hỗ trợ file](/vi/features/import-export#files) nói về view Parquet/CSV chỉ đọc của DuckDB và cửa sổ CSV, JSON, Excel riêng.

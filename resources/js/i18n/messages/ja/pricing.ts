@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "無料",
-            "description": "有料機能を除く Mac アプリと、iPhone・iPad アプリ。",
+            "description": "試用期間なしで使える基本のデータベースツール。",
             "activation": "登録なしでアプリを使えます。",
             "includesTitle": "含まれる機能",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Mac アプリに {examples} などの機能を追加します。",
             "activation": {
-                "one": "1 ライセンスは 1 人用で、Mac {count} 台で使えます。",
-                "other": "1 ライセンスは 1 人用で、最大 {count} 台の Mac で使えます。"
+                "one": "1 人、Mac {count} 台。",
+                "other": "1 人、Mac 最大 {count} 台。"
             },
             "includesTitle": "無料プランの全機能に加えて",
             "cta": "Starter を購入"
         },
         "team": {
             "name": "Team",
-            "description": "Starter に加え、接続とクエリをチームで共有できます。",
-            "activation": "1 シートにつき、1 台の Mac を有効化できます。",
+            "description": "接続と保存済みクエリをチームで共有。",
+            "activation": "1 シートにつき、認証済みの Mac 1 台。",
             "includesTitle": "Starter の全機能に加えて",
             "cta": "Team を購入"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。",
         "other": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
     },
-    "finePrint": "価格は米ドルです。{merchant} が merchant of record として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
+    "finePrint": "価格は米ドルです。{merchant} が販売者（merchant of record）として決済を処理し、購入時に売上税または VAT を計算します。",
     "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "コードを確認中…",
         "percent": "コードを確認しました。チェックアウト時に {amount}% 割引になります。",
         "fixed": "コードを確認しました。チェックアウト時に {amount} 割引になります。",
-        "invalid": "この割引コードは無効か、期限が切れています。"
+        "invalid": "このコードは無効か、有効期限が切れています。"
     },
     "checkout": {
-        "failed": "チェックアウトを開始できませんでした。もう一度お試しください。"
+        "failed": "購入手続きを開けませんでした。もう一度お試しください。"
     },
     "offers": {
         "name": "{plan}（{cycle}）",

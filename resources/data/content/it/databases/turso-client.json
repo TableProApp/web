@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso e libSQL",
     "header": {
-        "title": "Client Turso e libSQL per {devices}",
-        "lead": "Connettiti a un database Turso con URL e token, interrogalo con la sintassi SQLite e modifica tabelle, indici e trigger. Lo stesso driver apre server sqld gestiti da te e file libSQL sul Mac."
+        "title": "Client Turso e libSQL",
+        "lead": "Connettiti a un database Turso con il relativo URL e token. Sfoglia le tabelle ed esegui query SQLite oppure apri un file libSQL locale."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Connetti a Turso",
             "paragraphs": [
-                "Scegli Turso nell’elenco dei tipi di connessione e lascia <ui>Connection Mode</ui> su <ui>Remote (Turso)</ui>. Incolla l’URL HTTPS del database, che termina con <code>.turso.io</code>, e inserisci un token nel campo <ui>API Token</ui>, conservato nel Portachiavi di macOS. La dashboard di Turso mostra entrambi, così come <code>turso db show my-db --url</code> e <code>turso db tokens create my-db</code>.",
-                "Un URL <code>libsql://</code> viene convertito in HTTPS e importarlo crea una connessione remota. Non ci sono campi per host, porta o database perché l’URL identifica un database. La connessione è cifrata quando l’URL usa HTTPS anziché HTTP non cifrato e non è disponibile un tunnel SSH."
+                "Scegli <ui>Remote (Turso)</ui> in <ui>Connection Mode</ui>. Incolla l'URL HTTPS del database e un <ui>API Token</ui>, archiviato in macOS Keychain. Ottieni entrambi dal dashboard Turso o dalla CLI.",
+                "Gli URL <code>libsql://</code> importati diventano connessioni remote HTTPS. Ogni URL nomina un database. Gli URL HTTP semplici non sono crittografati; I tunnel SSH non sono disponibili."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tabelle, indici e trigger",
             "paragraphs": [
                 "La <structure>scheda Structure</structure> crea tabelle, aggiunge ed elimina colonne e indici e crea, modifica ed elimina trigger. Le tabelle, ma non le viste, possono essere rinominate dalla barra laterale.",
-                "Per riordinare colonne o modificare una chiave esterna su un database remoto, TablePro scrive lo script di ricostruzione che puoi leggere ed eseguire. Non può eseguirlo al tuo posto perché la ricostruzione richiederebbe una transazione tra richieste HTTP separate."
+                "I riordini remoti delle colonne e le modifiche delle chiavi esterne producono uno script di ricostruzione da rivedere ed eseguire. TablePro non può eseguirlo come un'unica transazione su richieste HTTP separate."
             ]
         },
         {
@@ -62,7 +62,7 @@
             "engine": "libsql",
             "title": "libSQL",
             "paragraphs": [
-                "Scegli libSQL per un server sqld gestito da te o un file su questo Mac. In modalità Remote raggiunge qualsiasi sqld che offra l’endpoint pipeline Hrana v2, incluso uno in esecuzione sul Mac, che ascolta sulla porta 8080 per impostazione predefinita. Lascia vuoto il token per un server avviato senza <code>--auth-jwt-key-file</code> oppure fornisci un JWT corrispondente alla chiave del server.",
+                "Scegli libSQL per un server sqld gestito da te o un file su questo Mac. In modalità Remote raggiunge qualsiasi sqld che offra l’endpoint pipeline Hrana v2, incluso uno in esecuzione sul Mac, che ascolta sulla porta 8080 per imposto predefinita. Lascia vuoto il token per un server avviato senza <code>--auth-jwt-key-file</code> oppure fornisci un JWT corrispondente alla chiave del server.",
                 "La modalità <ui>Local File</ui> apre un file libSQL con il motore SQLite incluso nel driver e crea un percorso non ancora esistente, cartelle comprese. Un file locale esegue transazioni, carica estensioni SQLite dall’elenco Extensions della connessione ed esegue la ricostruzione per riordinare colonne o modificare chiavi esterne dopo la tua conferma.",
                 "Le istruzioni comprese solo da libSQL, come <code>ALTER TABLE … ALTER COLUMN</code>, falliscono su un file locale perché vengono ricevute dal motore SQLite. I file libSQL cifrati non si aprono. Non aprire mai un file che un’app in esecuzione sta sincronizzando come replica incorporata di Turso: l’accesso simultaneo da due programmi può danneggiarlo.",
                 "<backup>Backup Dump e Restore Dump</backup> eseguono {dumpTool} su un file libSQL locale."

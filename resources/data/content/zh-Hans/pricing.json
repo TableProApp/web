@@ -9,33 +9,33 @@
     },
     "header": {
         "title": "定价",
-        "lead": "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 方案可增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。"
+        "lead": "Mac App 免费使用，没有试用期。Starter 和 Team 提供可选功能。iPhone 和 iPad App 免费，无 App 内购买。"
     },
     "plans": {
         "title": "方案"
     },
     "features": {
         "title": "付费方案增加哪些功能",
-        "lead": "只有以下功能需要付费方案，且全部位于 Mac 应用中。Team 包含 Starter 的全部功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或 Safe Mode，都无需许可证。"
+        "lead": "仅此处列出的功能需要付费方案，目前适用于 Mac。Team 包含 Starter。所有支持的引擎、AI 助手、MCP 和 Safe Mode 均免费。"
     },
     "license": {
         "title": "许可证如何运作",
         "items": {
             "macs": {
                 "term": "Mac 台数",
-                "body": "Starter 许可证供一人使用，最多可在 {activations} 台 Mac 上激活。Team 每个席位对应一台已激活的 Mac，也包括购买者自己的 Mac，因此使用两台 Mac 工作的人需要两个席位。iPhone 和 iPad 应用从不占用许可证或席位。"
+                "body": "Starter 供一人在最多 {activations} 台 Mac 上使用。每个 Team 席位对应一台已激活 Mac，包括购买者的 Mac；两台 Mac 占两个席位。iPhone 和 iPad App 不使用许可证或席位。"
             },
             "activate": {
                 "term": "激活",
-                "body": "在 Mac 上的 TablePro 中，进入<ui>设置 > 许可证</ui>（Settings > License）输入许可证密钥。若要在另一台 Mac 使用，请在<account>您的账户</account>的 Macs 页面移除旧设备。"
+                "body": "在 <ui>设置 > 许可证</ui> (Settings > License) 输入密钥。转移激活时，在<account>账户</account>的 Macs 页面移除旧 Mac。"
             },
             "checks": {
                 "term": "验证",
-                "body": "TablePro 每次启动都会验证许可证签名，并每隔 {revalidateDays} 天向 TablePro 服务器确认许可证。如果 Mac 无法连接服务器，付费功能仍可继续使用 {graceDays} 天。确认时会发送许可证密钥、经过哈希处理的机器 ID、Mac 名称，以及应用和 macOS 版本。"
+                "body": "TablePro 启动时验证许可证签名，每 {revalidateDays} 天检查服务器。若服务器无法访问，付费功能在上次成功检查后可继续使用 {graceDays} 天。检查发送密钥、哈希机器 ID、Mac 名称及 App 和 macOS 版本。"
             },
             "ends": {
                 "term": "方案结束时",
-                "body": "月付或年付方案结束后，付费功能会停止，其余应用功能仍按免费版的方式继续运作。"
+                "body": "订阅结束时，付费功能停止。Free 中所有功能继续可用。"
             },
             "oneTime": {
                 "term": "一次性购买",
@@ -50,19 +50,19 @@
     },
     "billing": {
         "title": "账单",
-        "merchant": "{merchant} 是 TablePro 的 merchant of record，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。",
-        "renewal": "月付和年付方案会自动续订，直到您在<account>您的账户</account>或 {merchant} 客户门户中取消。取消后，方案可继续使用至已付费期间结束，您也可在此之前恢复订阅。如果续费失败，{merchant} 会通过邮件发送更新银行卡的链接，并在约三周内重试扣款。",
-        "portal": "通过 {merchant} 购买的订单，其发票、收据、付款方式和取消订阅均可在 <portal>{merchant} 客户门户</portal>中管理，使用结账时的邮箱地址登录即可。您账户中的 <account>账单与发票</account> 也可打开该门户。"
+        "merchant": "{merchant} 是 merchant of record，处理付款，按账单地址计算销售税或 VAT，并通过邮件发送收据和发票。",
+        "renewal": "订阅持续续费，直到在<account>账户</account>或 {merchant} 门户取消。付费期内继续可用，到期前可恢复。续费失败会发送更新银行卡的邮件，并在约三周内重试付款。",
+        "portal": "在 <portal>{merchant} 客户门户</portal>管理发票、收据、付款方式和取消订阅。用购买邮箱登录。<account>Billing & invoices</account> 打开同一门户。"
     },
     "refunds": {
         "title": "退款",
-        "body": "所有方案均可在购买后 {refundDays} 天内申请退款；月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。<link>退款政策</link>说明了申请方法及许可证后续处理方式。"
+        "body": "购买和订阅续费可在每次扣款后 {refundDays} 天内退款。流程及对许可证的影响见<link>退款政策</link>。"
     },
     "team": {
         "title": "Team 方案",
         "seats": "Team 方案按席位定价，可选 {min} 至 {max} 个席位。",
-        "invites": "方案购买者在自己的账户中管理团队。他们通过邮件邀请成员，每个邀请都包含一次性代码，一周后过期，并需要一个空闲席位。",
-        "changes": "月付或年付 Team 方案可在账户中更改席位数，差额会反映在下一张账单中。若要为一次性购买的 Team 方案增加席位，请发送邮件至 <email>{email}</email>。",
+        "invites": "购买者在账户管理邀请。每个代码需要空闲席位，仅可使用一次，一周后失效。",
+        "changes": "在账户更改订阅席位，差额显示在下次账单。一次性购买如需添加席位，请邮件联系 <email>{email}</email>。",
         "account": "在账户中管理团队"
     },
     "openSource": {
@@ -73,7 +73,7 @@
     },
     "compare": {
         "title": "与其他客户端对比",
-        "body": "每个对比页面都将对方客户端的价格与 TablePro 的价格并列，并注明核实日期。"
+        "body": "比较其他客户端的价格和功能。每篇比较都包含核查日期和来源。"
     },
     "faq": {
         "title": "方案常见问题",
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "在哪里找到许可证密钥？",
-                "answer": "密钥在结账后收到的邮件中。您也可使用购买时的邮箱地址登录<account>您的账户</account>，其中会显示密钥和所有已激活的 Mac。"
+                "answer": "在购买邮件或<account>账户</account>中查找密钥。用购买邮箱登录，查看密钥和已激活 Mac。"
             }
         }
     }

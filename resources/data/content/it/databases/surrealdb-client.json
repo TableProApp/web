@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "Client SurrealDB per {devices}",
-        "lead": "Accedi al livello in cui è stato definito il tuo utente, esegui script SurrealQL e modifica i record campo per campo, mantenendo link ai record, date e ore e decimali nei rispettivi tipi."
+        "title": "Client SurrealDB",
+        "lead": "Esegui SurrealQL e modifica i campi dei record preservandone i tipi."
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Connetti e accedi",
             "paragraphs": [
-                "SurrealDB non può dedurre dalle credenziali il livello in cui è stato definito un utente, quindi <ui>Auth Level</ui> lo specifica e il modulo richiede gli altri dati. Root richiede nome utente e password, Namespace aggiunge il namespace e Database aggiunge anche il database. Record Access richiede namespace, database, metodo di accesso da <code>DEFINE ACCESS</code> e relativi campi di accesso. Token richiede un JWT già in tuo possesso, incluso uno per SurrealDB Cloud.",
+                "Scegli <ui>Auth Level</ui> per l'utente: Root, Namespace, Database, Record Access o Token. Lo spazio dei nomi e il database richiedono i loro nomi. L'accesso ai record richiede anche il metodo di accesso e i campi di accesso; Il token accetta un JWT esistente.",
                 "Il driver usa CBOR tramite l’endpoint HTTP RPC, quindi link ai record, date e ore, durate, decimali e UUID mantengono i propri tipi. Un link <code>surrealdb://</code> apre il modulo di connessione compilato e un server remoto è raggiungibile tramite un <network>tunnel SSH</network>.",
                 "SSL è inizialmente Disabled, cioè HTTP non cifrato; ogni altra modalità usa HTTPS. Verify CA e Verify Identity verificano il certificato rispetto all’archivio di certificati attendibili del sistema e un file CA impostato nel pannello SSL/TLS viene ignorato, quindi installa prima una CA privata in macOS."
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL e record",
             "paragraphs": [
-                "L’editor esegue interi script SurrealQL, incluso un <code>RELATE</code> tra due record, con completamento delle istruzioni comuni. <explain>Explain ed Explain Full</explain> eseguono di nuovo la query corrente con <code>EXPLAIN</code> per mostrarne la risoluzione e l’eventuale uso di un indice; il piano viene restituito come testo non elaborato.",
+                "Esegui script SurrealQL completi, incluso <code>RELATE</code>, con completamento delle istruzioni. <explain>Explain ed Explain Full</explain> eseguono la query con <code>EXPLAIN</code> e restituiscono un piano testuale.",
                 "I namespace sono in cima alla barra laterale con i database al loro interno. Passare da uno all’altro non riconnette mai, perché namespace e database accompagnano ogni richiesta. Solo un utente root vede tutti i namespace.",
-                "Modificare una cella esegue un <code>UPDATE</code> che imposta solo i campi toccati, come parametri tipizzati: un <code>int</code> rimane un <code>int</code> e i campi calcolati <code>FUTURE</code> e le modifiche di altri autori rimangono invariati. Lascia vuoto <code>id</code> in una nuova riga per generarne uno oppure digita <code>table:id</code>. Una tabella <code>SCHEMALESS</code> ricava le colonne dai record recuperati.",
+                "Le modifiche alle celle aggiornano solo i campi modificati come parametri digitati, preservando i campi <code>FUTURE</code> calcolati e le modifiche di altri autori. Lascia <code>id</code> vuoto per un ID generato automaticamente. Le colonne della tabella SCHEMALESS provengono da record recuperati.",
                 "I <filters>filtri</filters> diventano SurrealQL e una riga Raw SQL accetta una condizione, come un attraversamento del grafo. Una condizione che scrive, contiene <code>;</code> o un commento oppure richiama <code>fn::</code> o <code>http::</code> viene rifiutata: eseguila nell’editor."
             ]
         },

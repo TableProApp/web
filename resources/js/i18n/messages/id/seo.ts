@@ -3,8 +3,8 @@ import type { Messages } from '../../types.ts';
 export default {
     "titleTemplate": "{title} – TablePro",
     "product": {
-        "short": "TablePro adalah klien database native dan sumber terbuka untuk developer.",
-        "long": "TablePro adalah klien database native dan sumber terbuka untuk developer. Jalankan kueri, telusuri dan edit data di {featuredEngines} dan lainnya, dengan aplikasi untuk {deviceList}."
+        "short": "TablePro adalah klien database native dan open source.",
+        "long": "TablePro adalah klien database native dan open source. Jalankan kueri, telusuri dan edit data di {featuredEngines} dan lainnya. Tersedia untuk {deviceList}."
     },
     "macApp": {
         "alternateName": "TablePro untuk Mac",

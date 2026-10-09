@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Beekeeper Studio：ネイティブと Electron",
+        "title": "TablePro と Beekeeper Studio: 無料機能と有料機能",
         "description": "Beekeeper Studio は Windows、macOS、Linux 用の Electron 製オープンソースクライアント。ネイティブの TablePro と、プラン、エンジン、AI、移行を比較します。"
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Beekeeper Studio",
-        "lead": "Beekeeper Studio と TablePro はどちらもオープンソースのデータベースクライアントです。Beekeeper Studio は {technology} を基盤とし、Windows、macOS、Linux で同じように動作します。無料の Community 版に加えて有料の上位プランがあります。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持ち、Mac ではオプションの有料機能を追加できます。"
+        "lead": "Beekeeper Studio および TablePro は、さまざまな無料機能と有料機能を備えたオープンソース データベースクライアントです。 Beekeeper Studio は {technology} を使用します。 TablePro はネイティブ ドライバーを使用します。"
     },
     "shortAnswer": {
         "tablepro": [
-            "Oracle、Cassandra、Snowflake を無料で使いたい。TablePro はすべての対応エンジンが無料だが、Beekeeper Studio ではこれらは有料プランで追加される。",
-            "有料プランなしで AI アシスタントと MCP サーバーを使いたい。Mac アプリではどちらも無料で、AI プロバイダーを選べる。",
-            "Swift で書かれたネイティブ Mac アプリを使いたく、有料機能のコードもオープンソースであってほしい。",
-            "iPhone・iPad 用のアプリも欲しい。"
+            "Oracle、Cassandra、Snowflake への接続に有料プランは不要です。",
+            "無料の AI チャットと MCP、選択した AI プロバイダー。",
+            "独立した無料の iPhone および iPad アプリを備えたネイティブ アプリ。"
         ],
         "competitor": [
-            "Windows や Linux でも作業し、どの環境でも同じクライアントを使いたい。",
-            "TablePro 非対応の Firebird、SQL Anywhere、GreengageDB に接続する。",
-            "{cells.sync.edition} プランから使えるクラウドワークスペースで、接続とクエリを同期・共有したい。"
+            "Windows、 macOS、および Linux 上の同じクライアント。",
+            "Firebird、 SQL Anywhere または GreengageDB 接続。",
+            "{cells.sync.edition} 以上で、接続とクエリを共有するクラウドワークスペース。"
         ]
     },
     "glance": {
@@ -48,14 +47,6 @@
     "stronger": {
         "intro": "",
         "items": [
-            {
-                "text": "Beekeeper Studio は Windows、macOS、Linux で同じ機能を提供するため、使うすべてのコンピューターを一つのクライアントで扱えます。",
-                "cite": [
-                    "platforms"
-                ],
-                "feature": null,
-                "href": null
-            },
             {
                 "text": "Firebird、SQL Anywhere、GreengageDB など、TablePro 非対応のエンジンにも接続できます。",
                 "cite": [
@@ -87,7 +78,7 @@
                 "href": null
             },
             {
-                "text": "Oracle、Cassandra、Snowflake を含むすべての対応エンジンが TablePro では無料です。Beekeeper Studio の Community 版は PostgreSQL、MySQL、SQL Server、SQLite などに対応し、有料プランで Oracle、Cassandra、Snowflake などを追加します。",
+                "text": "TablePro には、サポートされているすべてのエンジンが無料で含まれています。 Beekeeper Studio コミュニティには、 PostgreSQL、 MySQL、 SQL Server および SQLite が含まれます。 Oracle、 Cassandra、および Snowflake には有料レベルが必要です。",
                 "cite": [
                     "cells.databases"
                 ],
@@ -119,13 +110,13 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> で Mac 間や iPhone・iPad と接続を同期します。Mac では Starter に含まれ、iPhone・iPad では無料です。",
+                "text": "<link>iCloud Sync</link> は、Mac、iPhone、iPad 間で接続を同期します。 Mac では Starter が必要ですが、iPhone と iPad では無料です。",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。Beekeeper Studio にはモバイルアプリがありません。",
+                "text": "個別の <link>iPhone および iPad アプリ</link> は無料で、アプリ内購入はありません。 Beekeeper Studio にはモバイル アプリがありません。",
                 "cite": [
                     "platforms"
                 ],
@@ -138,13 +129,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro には Windows・Linux 用アプリがありません。",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro はドライバーを持つエンジンにのみ接続します。移行前に<link>対応データベース</link>を確認してください。",
+                "text": "TablePro には、サポートされているドライバーが必要です。切り替える前に、<link>がサポートするデータベース</link> を確認してください。",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -156,7 +141,7 @@
                 "href": null
             },
             {
-                "text": "Beekeeper Studio は支払っていた期間に公開されたバージョンを継続利用でき、月額プランでは 12 か月後にその権利が得られます。TablePro の月額・年額プランにはそのような権利は残りません。終了すると有料機能がロックされ、その他の機能は使い続けられます。買い切りには有効期限がありません。",
+                "text": "Beekeeper Studio のライセンスは、支払い期間中にリリースされたバージョンをカバーします。月額プランでは 12 か月継続後にこの条件の対象になります。TablePro のサブスクリプションが終了すると有料機能はロックされますが、無料アプリは引き続き利用できます。TablePro の買い切り購入には有効期限がありません。",
                 "cite": [
                     "cells.lifetimeLicense"
                 ],
@@ -166,7 +151,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro は Beekeeper Studio が Mac のローカルワークスペースに保存した接続を読み取ります。Beekeeper Studio を開いておく必要はなく、ファイルも変更しません。",
+        "intro": "Beekeeper Studio のローカル ワークスペース接続をインポートします。アプリは閉じたままにすることができ、そのファイルは変更されません。",
         "steps": [
             "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
             "Beekeeper Studio を選び、<ui>Include passwords</ui> をオンにします。TablePro が保存されたパスワードを復号します。SSH パスワードや鍵のパスフレーズも含むため、キーチェーンでの承認は不要です。",
@@ -185,12 +170,6 @@
             "question": "TablePro は Apple silicon 上でネイティブ動作しますか？",
             "answer": "はい。TablePro は Apple silicon と Intel Mac 向けに別々のビルドを用意し、<link>ダウンロードページ</link>で両方を提供しています。",
             "href": "/download"
-        },
-        {
-            "id": "free-engines",
-            "question": "無料で使えるエンジンはどれですか？",
-            "answer": "TablePro はすべての対応エンジンに加え、AI アシスタント、MCP サーバー、Safe Mode が無料です。Starter・Team プランはエンジンではなく {starterExamples} などの機能を追加します。Beekeeper Studio の Community 版はいくつかの一般的なエンジンに対応し、有料プランでその他を追加します。",
-            "href": null
         },
         {
             "id": "vim",

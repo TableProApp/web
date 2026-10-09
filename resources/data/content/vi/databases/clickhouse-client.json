@@ -10,8 +10,8 @@
     "engine": "clickhouse",
     "breadcrumb": "ClickHouse",
     "header": {
-        "title": "Client ClickHouse cho {devices}",
-        "lead": "Chạy SQL phân tích qua giao diện HTTP của ClickHouse, đọc plan, pipeline hay ước lượng số dòng của một query, và quản lý part và partition của MergeTree từ tab Parts của table. Query chạy lâu báo số dòng đã đọc trong lúc chạy, và nút Dừng (Stop) kết thúc query ngay trên server."
+        "title": "ClickHouse client",
+        "lead": "Chạy query phân tích, xem plan và pipeline, quản lý part và partition của table."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host và port HTTP, user và, nếu muốn, một cơ sở dữ liệu. Việc đổi cơ sở dữ liệu diễn ra ngay tại chỗ, và tab đang mở vẫn ở cơ sở dữ liệu nó bắt đầu. <ui>Xem > Thanh bên dạng cây (View > Sidebar as Tree)</ui> hiển thị các cơ sở dữ liệu của server thành một cây mà bạn mở rộng ngay tại chỗ.",
+                "Nhập host, HTTP port, user và cơ sở dữ liệu tùy chọn. Chuyển cơ sở dữ liệu không cần kết nối lại. Tab đang mở giữ cơ sở dữ liệu ban đầu; <ui>View > Sidebar as Tree</ui> mở rộng cơ sở dữ liệu tại chỗ.",
                 "Chọn bất kỳ chế độ SSL nào thì kết nối sẽ chuyển sang HTTPS. Port 443 hoặc 8443, port mà ClickHouse Cloud dùng, sẽ bật Xác minh danh tính (Verify Identity), kiểm tra chứng chỉ theo file CA của bạn hoặc kho chứng chỉ tin cậy của hệ thống. Xác minh CA (Verify CA) cần một file CA, và chứng chỉ cùng key của client được gửi tới server yêu cầu mutual TLS.",
                 "Khi không dùng TLS, hãy kết nối tới server từ xa qua <network>SSH tunnel</network> thay vì gửi HTTP không mã hóa qua mạng."
             ]
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "Mỗi query mang một id riêng và yêu cầu báo tiến độ, nên query chạy lâu cho biết số dòng đã đọc trong lúc chạy. Nút Dừng (Stop) gửi <code>KILL QUERY</code> cho đúng id đó, và query timeout của connection được áp dụng ngay trên server.",
+                "Theo dõi số dòng đọc trong lúc query. Stop gửi <code>KILL QUERY</code>, và query timeout của connection được chuyển tới server.",
                 "<explain>Menu Giải thích (Explain)</explain> có Plan, Pipeline, AST, Syntax và Estimate. Kết quả dạng thụt lề được vẽ thành sơ đồ hoặc cây, còn Estimate cho biết số dòng, mark và part mà query sẽ đọc.",
-                "Thay đổi trong data grid được gửi đi dưới dạng <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> và <code>ALTER TABLE … DELETE</code>, với <editing>Preview SQL</editing> hiển thị trước. ClickHouse chạy update và delete thành mutation ở chế độ nền, nên lưu xong nghĩa là đã được chấp nhận, chưa chắc đã áp dụng; <code>system.mutations</code> cho biết tiến độ. Materialized view mở ở chế độ chỉ đọc.",
+                "Xem <editing>Preview SQL</editing> trước khi thêm dòng hoặc gửi mutation UPDATE và DELETE. Lưu thành công nghĩa là đã nhận, chưa phải đã áp dụng; theo dõi trong <code>system.mutations</code>. Materialized view chỉ đọc.",
                 "Kết quả chứa tuple point hoặc ring của ClickHouse mở được trên <map>Map view</map>. Query có mệnh đề <code>FORMAT</code> riêng sẽ hiện nguyên output của server trong một cột, nên hãy bỏ mệnh đề đó để có data grid."
             ]
         },
@@ -48,7 +48,7 @@
             "title": "Table, part và partition",
             "paragraphs": [
                 "Mỗi table mở với các tab Structure, Indexes, DDL và Parts. Indexes hiển thị sorting key và các data-skipping index, còn DDL hiển thị đầy đủ câu <code>CREATE TABLE</code>, kể cả engine và settings.",
-                "Parts liệt kê mọi part trong <code>system.parts</code> kèm partition, số dòng, dung lượng trên đĩa, thời điểm sửa đổi và trạng thái active, và chạy Optimize, Drop Partition và Detach Partition ngay từ đó.",
+                "Xem part từ <code>system.parts</code>, gồm partition, số dòng, kích thước và trạng thái hoạt động. Chạy Optimize, Drop Partition hoặc Detach Partition từ tab Parts.",
                 "<structure>Tab Structure</structure> thêm, sửa và xóa cột, và xóa data-skipping index. Sorting key và khóa chính được cố định khi tạo table, nên hãy thêm data-skipping index bằng <code>ALTER TABLE … ADD INDEX</code>, và tạo lại table cho các thay đổi khác."
             ]
         },

@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "Notas de versión (inglés)",
-        "unavailable": "No se pudieron cargar los detalles de la versión actual. Ambos botones abren la última versión en GitHub, donde puedes elegir la imagen de disco para tu Mac."
+        "unavailable": "Los detalles de la versión no están disponibles. Ambos botones abren la última versión en GitHub; elige allí una compilación."
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Para instalar la app para Mac, abre esta página en tu Mac.",
     "whichMac": {
         "summary": "¿Qué Mac tengo?",
-        "body": "Abre el menú Apple y selecciona Acerca de este Mac. Un Mac con Apple silicon muestra una línea Chip, por ejemplo Apple M2. Un Mac Intel muestra una línea Procesador que menciona Intel."
+        "body": "Elige «Acerca de este Mac» en el menú Apple. Una línea «Chip» indica Apple silicon; una línea «Procesador» que menciona Intel indica Intel."
     },
     "checksum": {
         "summary": "Verifica tu descarga",

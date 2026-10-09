@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "適用於 {devices} 的 SurrealDB 用戶端",
-        "lead": "以使用者定義所在的層級登入，執行 SurrealQL 指令碼，逐欄位編輯記錄；記錄連結、日期時間及小數均保留各自型別。"
+        "title": "SurrealDB 用戶端",
+        "lead": "執行 SurrealQL，編輯記錄欄位並保留型別。"
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "連線與登入",
             "paragraphs": [
-                "SurrealDB 無法從認證資訊判斷使用者定義在哪一級，所以由<ui>驗證層級</ui>（Auth Level）指定，表單再要求其餘資訊。Root 使用使用者名稱和密碼，Namespace 增加命名空間，Database 再增加資料庫。Record Access 需要命名空間、資料庫、<code>DEFINE ACCESS</code> 定義的存取方式及登入欄位。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的權杖。",
+                "從 Root、Namespace、Database、Record Access 或 Token 中選擇使用者的 <ui>驗證層級</ui> (Auth Level)。Namespace 和 Database 需要名稱；Record Access 還需存取方式和登入欄位，Token 接受既有 JWT。",
                 "驅動程式透過 HTTP RPC 端點傳輸 CBOR，記錄連結、日期時間、期間、小數和 UUID 保留型別。<code>surrealdb://</code> 連結開啟已填好的連線表單，遠端伺服器可經 <network>SSH 通道</network>存取。",
                 "SSL 預設 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 對照系統信任存放區驗證憑證，忽略 SSL/TLS 面板的 CA 檔案，因此請先在 macOS 安裝私有 CA。"
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL 與記錄",
             "paragraphs": [
-                "編輯器執行整個 SurrealQL 指令碼，包括兩筆記錄間的 <code>RELATE</code>，並提供常用陳述式補全。<explain>Explain 與 Explain Full</explain> 加上 <code>EXPLAIN</code> 重新執行目前查詢，顯示其解析方式及是否使用索引；計畫以原始文字傳回。",
+                "執行完整 SurrealQL 腳本，包括 <code>RELATE</code>，支援陳述式自動完成。<explain>Explain 和 Explain Full</explain> 使用 <code>EXPLAIN</code> 執行查詢，傳回文字計畫。",
                 "命名空間位於側邊欄頂層，內含資料庫。兩者隨每次請求傳送，切換均無須重新連線。只有根使用者能看到所有命名空間。",
-                "修改儲存格執行 <code>UPDATE</code>，僅用具型別參數設定改動的欄位，讓 <code>int</code> 仍為 <code>int</code>，不觸碰計算的 <code>FUTURE</code> 欄位或其他寫入者的改動。新列留空 <code>id</code> 自動產生，或填寫 <code>table:id</code>。<code>SCHEMALESS</code> 資料表從取得的記錄決定欄位。",
+                "儲存格編輯僅用帶型別的參數更新已變更欄位，保留計算的 <code>FUTURE</code> 欄位和其他寫入者的變更。將 <code>id</code> 留空可自動產生 ID。SCHEMALESS 資料表的欄位來自已取得記錄。",
                 "<filters>篩選</filters>轉換為 SurrealQL，Raw SQL 列接受單一條件，例如圖遍歷。寫入、含 <code>;</code> 或註解、呼叫 <code>fn::</code> 或 <code>http::</code> 的條件被拒絕，請在編輯器執行。"
             ]
         },

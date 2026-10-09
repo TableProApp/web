@@ -5,29 +5,29 @@
     },
     "og": {
         "kicker": "连接",
-        "title": "连接、隧道和凭据"
+        "title": "连接"
     },
     "header": {
-        "title": "连接、隧道和凭据",
-        "lead": "如果数据库位于堡垒机、集群或云账户登录之后，只需设置一次连接所需的访问路径和密码来源，并为生产连接制定更严格的规则。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
+        "title": "连接",
+        "lead": "保存和整理连接，通过 SSH 访问私有服务器，并使用支持的云端账户登录。",
         "docs": "/connections"
     },
     "sections": [
         {
             "id": "organize",
-            "title": "管理连接库",
+            "title": "整理连接",
             "paragraphs": [
-                "每个连接都在一个包含 General、Network、Options 和 Appearance 标签页的表单中编辑。导入连接 URL 后，表单会自动填充，包括 <code>jdbc:</code> URL 和包含 SSH 中转信息的 <code>+ssh</code> URL；如果剪贴板中已有 URL，表单会提供<ui>使用剪贴板中的 URL</ui>（Use clipboard URL）。",
-                "为连接设置颜色、任意数量的标签和嵌套分组，并将常用连接加星标为收藏。环境以标签表示，内置 local、development、production 和 testing，也可以添加自定义标签。空连接库会提供<ui>打开示例数据库</ui>（Open Sample Database），打开随应用附带的 Chinook SQLite 副本。",
-                "在同一窗口打开多个连接，通过左侧的连接栏切换；每个连接都会回到上次使用的标签页。<ui>在新窗口中打开</ui>（Open in New Window）可让两个连接并排显示。"
+                "通过 URL 填充连接设置，支持 <code>jdbc:</code> 和 <code>+ssh</code> URL。用 <ui>使用剪贴板中的 URL</ui> (Use clipboard URL) 导入已复制的 URL。",
+                "将连接整理为嵌套分组，添加标签和颜色，并标记收藏。通过 <ui>打开示例数据库</ui> (Open Sample Database) 试用内置 SQLite 示例。",
+                "在一个窗口保留多个连接，或使用 <ui>在新窗口中打开</ui> (Open in New Window)。每个连接记住上次使用的标签页。"
             ],
             "asset": "mac-connection-library"
         },
         {
             "id": "import",
-            "title": "导入已有连接",
+            "title": "导入连接",
             "paragraphs": [
-                "通常无需从空列表开始：TablePro 可以从其他客户端、项目配置文件或 AWS 账户读取连接。"
+                "从其他数据库客户端、项目配置文件或 AWS 账户导入。"
             ],
             "links": [
                 {
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "从其他数据库客户端导入",
                     "paragraphs": [
-                        "<ui>从其他应用导入</ui>（Import from Other App）读取 {connectionImportApps} 中保存的连接，包括 TablePlus 的 Setapp 版。它会从这些应用的存储位置导入密码，也支持 DBeaver 和 Navicat 保存的加密密码。Navicat 连接从 <code>.ncx</code> 导出文件读取。"
+                        "<ui>从其他应用导入</ui> (Import from Other App) 读取 {connectionImportApps}，包括 TablePlus 的 Setapp 版。密码导入取决于源 App 的存储方式。支持 DBeaver 和 Navicat 的加密密码；Navicat 需要 <code>.ncx</code> 导出文件。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "从项目配置文件导入",
                     "paragraphs": [
-                        "<ui>打开项目文件夹</ui>（Open Project Folder）在项目中扫描数据库配置，支持 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它会列出每组配置及其来源文件，选择后填入连接表单；密码直接存入钥匙串。如果文件路径、主机或数据库名称中出现独立单词 <code>prod</code>、<code>production</code> 或 <code>live</code>，该连接的 Safe Mode 默认设为 Alert 级别。"
+                        "<ui>打开项目文件夹</ui> (Open Project Folder) 从支持的环境、框架和 Docker 配置文件中查找数据库设置。导入前检查各来源；密码保存在 Keychain。识别为生产环境的名称从 Alert 开始，而非通常的 Safe Mode 默认级别。"
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -63,15 +63,15 @@
         },
         {
             "id": "network",
-            "title": "访问堡垒机、代理或集群后的数据库",
+            "title": "SSH、TLS 和隧道",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "ssh",
                     "title": "SSH 和 TLS",
                     "paragraphs": [
-                        "SSH 隧道支持密码、私钥、1Password 等 SSH agent 或键盘交互提示登录，可依次经过跳板机，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性验证码可以根据钥匙串中的密钥生成，或在每次连接时要求输入；未知主机密钥会在 TablePro 信任前显示指纹。将隧道保存为 SSH 配置文件即可复用。",
-                        "TLS 支持 Disabled、Preferred、Required、Verify CA 和 Verify Identity 模式，可使用自己的 CA、客户端证书和密钥。Required 仅加密，不检查服务器证书；Verify 模式会验证证书。"
+                        "使用密码、密钥、代理或交互式提示通过 SSH 连接。可用跳板主机或 <code>ProxyJump</code>，并将隧道保存为 SSH 配置供复用。未知主机密钥需要指纹批准。",
+                        "选择 TLS 模式并提供 CA 或客户端证书。Required 加密连接但不验证服务器证书；Verify CA 和 Verify Identity 增加证书检查。"
                     ],
                     "engines": [
                         {
@@ -85,8 +85,8 @@
                     "id": "tunnels",
                     "title": "代理、Cloudflare、Cloud SQL 和隧道命令",
                     "paragraphs": [
-                        "不通过 SSH 访问时，Network 标签页可通过支持远程 DNS 的 SOCKS5 代理连接。也可通过 Cloudflare Access 连接，此时 TablePro 运行 <code>cloudflared</code> 并通过浏览器或服务令牌登录。对于 {cloudSqlProxy}，可通过 Cloud SQL Auth Proxy 连接，TablePro 会下载、校验并运行该代理。",
-                        "Tunnel Command 启动 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自定义命令，再连接到它打开的本地端口。连接还可在建立前执行 shell 脚本，每个会话先征求确认，并在连接后立即执行 SQL 语句。"
+                        "使用远程 DNS 的 SOCKS5，或通过 <code>cloudflared</code> 使用 Cloudflare Access。对于 {cloudSqlProxy}，TablePro 会下载、验证并运行 Cloud SQL Auth Proxy。",
+                        "Tunnel Command 通过 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自定义命令打开的本地端口连接。连接前 shell 脚本每个会话都需批准。"
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -118,10 +118,10 @@
         },
         {
             "id": "credentials",
-            "title": "将密码保存在合适的位置",
+            "title": "凭据和密码来源",
             "paragraphs": [
-                "密码保存在 macOS 钥匙串中；启用 iCloud Sync 后，密码同步通过 iCloud 钥匙串将其传至其他设备。SSH 密钥始终是连接所引用的磁盘文件，只有口令会存入钥匙串。",
-                "凭据配置文件可让多个连接共用一组登录信息，并在连接时从 1Password（<code>op</code>）、HashiCorp Vault、AWS Secrets Manager、shell 命令、文件或环境变量读取密码。这些密码来源免费且从不同步；各命令行工具必须位于 <code>PATH</code>、<code>/usr/local/bin</code> 或 <code>/opt/homebrew/bin</code> 中。PostgreSQL、Amazon Redshift 和 CockroachDB 连接还可使用 <code>~/.pgpass</code>，或每次都要求输入密码。"
+                "密码和 SSH 密钥口令保存在 macOS Keychain。通过 iCloud Keychain 同步密码需单独开启。SSH 密钥文件保留在磁盘上。",
+                "免费的凭据配置可复用登录信息，并从 1Password、Vault、AWS Secrets Manager、命令、文件或环境变量读取密码。所需 CLI 工具须自行安装。来源不参与同步。支持的 PostgreSQL 系列连接也可使用 <code>~/.pgpass</code>。"
             ],
             "links": [
                 {
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "在连接的主机、数据库、用户名、SSH 主机、用户和密钥路径、TLS 证书路径、启动命令或驱动字段中填写 <code>$DB_HOST</code>，TablePro 会在连接时从自身环境填入其值。端口和密码不会通过这种方式读取，请为密码指定来源。"
+                        "在支持的连接字段中使用 <code>$DB_HOST</code> 等引用。连接时从 App 环境读取值。端口和密码字段不适用；密码使用单独的免费来源。"
                     ],
                     "paid": [
                         "environment-variables"
@@ -144,9 +144,9 @@
         },
         {
             "id": "policies",
-            "title": "每个连接的规则",
+            "title": "连接策略",
             "paragraphs": [
-                "连接的 Safe Mode 级别决定语句是直接执行、先询问、要求 Touch ID 或密码，还是被拒绝。External Clients 的 Blocked、Read Only 或 Read & Write 级别决定 MCP 客户端和 AppleScript 可执行的操作，设置仅保存在此 Mac 上。AI 策略决定 AI 助手可直接使用连接、仅在确认后使用，或永不使用；Never 也会阻止 MCP 客户端。",
+                "Safe Mode 控制语句确认。External Clients 控制 MCP 和 AppleScript 访问，默认为 Read Only，设置保留在这台 Mac。AI 策略控制助手访问；Never 也会阻止 MCP 客户端。",
                 "组织可通过配置描述文件强制所有连接的最低 Safe Mode 级别，并控制更新。"
             ],
             "links": [

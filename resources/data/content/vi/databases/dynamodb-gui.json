@@ -10,8 +10,8 @@
     "engine": "dynamodb",
     "breadcrumb": "Amazon DynamoDB",
     "header": {
-        "title": "GUI Amazon DynamoDB cho {devices}",
-        "lead": "Duyệt table theo key và index, xem lượng read capacity mà mỗi lần đọc đã dùng, sửa item mà không làm mất kiểu dữ liệu, và chạy PartiQL hoặc request DynamoDB API trong editor."
+        "title": "Amazon DynamoDB GUI",
+        "lead": "Xem item, query theo key và xem read capacity đã dùng. Sửa giá trị theo kiểu hoặc chạy request PartiQL."
     },
     "asset": "mac-db-dynamodb-planner",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Chọn <ui>Phương thức xác thực (Auth Method)</ui> và <ui>AWS Region</ui>, sidebar sẽ liệt kê các table của region đó. Các phương thức gồm access key kèm session token tùy chọn, profile trong <code>~/.aws/config</code> và <code>~/.aws/credentials</code> được đọc giống cách AWS CLI đọc, hoặc profile <cloudAuth>AWS IAM Identity Center</cloudAuth>, sẽ mở hộp đăng nhập khi phiên đăng nhập đã hết hạn.",
+                "Chọn <ui>Auth Method</ui> và <ui>AWS Region</ui>. Dùng access key với session token tùy chọn, AWS CLI profile hoặc <cloudAuth>AWS IAM Identity Center</cloudAuth>. Session Identity Center hết hạn sẽ yêu cầu đăng nhập.",
                 "Profile hỗ trợ helper <code>credential_process</code> và chuỗi <code>role_arn</code>, và credential tạm thời hết hạn sẽ được lấy lại rồi gửi lại request một lần. Mọi request đi qua HTTPS, được ký bằng Signature Version 4, nên không có thiết lập SSL và không có SSH tunnel. Region thuộc partition AWS khác, như Trung Quốc hay European Sovereign Cloud, tự tới đúng endpoint của nó mà không cần endpoint tùy chỉnh.",
                 "Với DynamoDB Local, hãy chạy <code>docker run -p 8000:8000 amazon/dynamodb-local</code> và chọn <ui>DynamoDB Local (no credentials)</ui>; để trống <ui>Endpoint tùy chỉnh (Custom Endpoint)</ui> nếu dùng port 8000. Endpoint tùy chỉnh chỉ được dùng HTTP thường khi nằm trên chính máy Mac này. Hướng dẫn thiết lập liệt kê <permissions>các IAM action mà từng thao tác cần</permissions>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Đọc, lọc và sửa item",
             "paragraphs": [
-                "Mở, lọc và chuyển trang một table đều đi qua cùng một planner. Cố định partition key bằng = thì planner chạy Query trên một partition; bộ lọc khớp với key của một index thì chạy Query trên index đó; còn lại thì chạy Scan, đọc toàn bộ table và bị tính phí cho từng item đã đọc. Thanh trạng thái ghi tên kiểu đọc đã chọn, rồi số item trả về, số item DynamoDB đã đọc để tìm ra chúng, và số read capacity unit mà lần đọc đã dùng.",
-                "<filters>Bộ lọc</filters> trên sort key được gộp vào key condition khi là =, <, <=, >, >=, BETWEEN hoặc STARTS WITH. Các bộ lọc khác trở thành FilterExpression, được DynamoDB áp dụng sau khi đọc, nên chúng thu hẹp số dòng mà không làm giảm chi phí. Lọc theo attribute lồng nhau bằng đường dẫn như <code>address.city</code> hay <code>items[0].sku</code>.",
+                "Bộ lọc key dùng Query; bộ lọc khác dùng Scan. Scan đọc cả table và tính phí mọi item đã đọc. Thanh trạng thái hiển thị thao tác, số item trả về và quét, read capacity đã dùng.",
+                "<filters>Bộ lọc sort key</filters> dùng key condition ở nơi hỗ trợ. Bộ lọc khác chạy sau khi đọc và không giảm phí. Hỗ trợ path lồng như <code>address.city</code> và <code>items[0].sku</code>.",
                 "Khi Query chỉ đọc một partition, bấm vào tiêu đề cột sort key để DynamoDB trả item theo thứ tự đó. Các kiểu sắp xếp khác được làm ngay trong data grid khi lần đọc đã có đủ mọi item khớp, và thanh trạng thái báo khi chưa đủ. Trang tiếp theo đọc tiếp từ chỗ trang trước dừng lại. Tổng số dưới data grid là số item do chính DynamoDB đếm; <ui>Đếm chính xác (Count Exactly)</ui> đọc mọi item khớp với bộ lọc, và lần đọc đó bị tính phí đầy đủ.",
                 "Table chỉ khai báo key, nên các cột được lấy từ chính các item: các key attribute, những attribute có trong một mẫu gồm các item đầu tiên của table, và những attribute trên trang đang xem. Map, list và set hiện dưới dạng JSON và mở trong JSON editor, còn số giữ nguyên mọi chữ số.",
-                "Mỗi dòng đã sửa được lưu bằng một câu lệnh PartiQL, và <editing>mỗi giá trị giữ nguyên kiểu</editing>: Number vẫn là Number, String như <code>02134</code> vẫn là String, và String Set sửa dưới dạng JSON vẫn được ghi lại là String Set. Câu cập nhật kiểm tra từng attribute nó thay đổi với giá trị mà data grid đã tải, nên sẽ thất bại thay vì ghi đè thay đổi của người khác. <ui>Đặt NULL (Set NULL)</ui> xóa attribute đó.",
+                "Mỗi dòng lưu bằng một câu lệnh PartiQL, <editing>giữ nguyên kiểu</editing>. Update so thuộc tính đã đổi với giá trị lúc tải và từ chối ghi đè thay đổi đồng thời. <ui>Set NULL</ui> xóa thuộc tính.",
                 "Editor nhận PartiQL, với dấu ngoặc kép quanh tên và dấu nháy đơn quanh chuỗi, hoặc tên một action của DynamoDB kèm JSON request của nó, như <code>Query</code>, <code>BatchWriteItem</code> hay <code>TransactWriteItems</code>. Tên action khác bị từ chối. Item được trả về trong data grid, còn các phản hồi khác ở dạng JSON. Request bị throttle được thử lại với backoff, và <code>⌘.</code> dừng câu lệnh đang chạy."
             ]
         },

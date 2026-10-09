@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso y libSQL",
     "header": {
-        "title": "Cliente Turso y libSQL para {devices}",
-        "lead": "Conéctate a una base de datos Turso con su URL y un token, consúltala con sintaxis de SQLite y modifica sus tablas, índices y triggers. El mismo controlador abre servidores sqld propios y archivos libSQL en tu Mac."
+        "title": "Cliente Turso y libSQL",
+        "lead": "Conecta una base Turso con su URL y token. Explora tablas, ejecuta consultas SQLite o abre un archivo libSQL local."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Conecta a Turso",
             "paragraphs": [
-                "Elige Turso en los tipos de conexión y deja <ui>Connection Mode</ui> en <ui>Remote (Turso)</ui>. Pega la URL HTTPS de la base terminada en <code>.turso.io</code> y un token en <ui>API Token</ui>, guardado en el Llavero de macOS. El panel Turso muestra ambos, igual que <code>turso db show my-db --url</code> y <code>turso db tokens create my-db</code>.",
-                "Una URL <code>libsql://</code> se reescribe como HTTPS e importarla crea una conexión remota. No hay campos de host, puerto ni base de datos, porque la URL identifica una única base de datos. La conexión está cifrada si usa HTTPS en lugar de HTTP sin cifrar; no hay túnel SSH."
+                "Elige <ui>Remote (Turso)</ui> en <ui>Connection Mode</ui>. Pega la URL HTTPS de la base y un <ui>API Token</ui>, guardado en el Llavero de macOS. Consigue ambos en el panel o la CLI de Turso.",
+                "Las URL <code>libsql://</code> importadas se convierten en conexiones remotas HTTPS. Cada URL identifica una base. Las URL HTTP simples no están cifradas; no hay túneles SSH."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tablas, índices y triggers",
             "paragraphs": [
                 "La <structure>pestaña Structure</structure> crea tablas, añade y elimina columnas e índices y crea, edita y elimina triggers. Se pueden renombrar tablas, pero no vistas, desde la barra lateral.",
-                "Para reordenar columnas o cambiar una clave foránea en una base remota, TablePro escribe el script de reconstrucción para que lo revises y ejecutes. No puede ejecutarlo: necesitaría una transacción entre solicitudes HTTP separadas."
+                "Los cambios de orden de columnas y claves foráneas en bases remotas generan un script de reconstrucción para revisar y ejecutar. TablePro no puede ejecutarlo como una única transacción entre peticiones HTTP separadas."
             ]
         },
         {

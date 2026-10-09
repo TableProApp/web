@@ -10,8 +10,8 @@
     "engine": "mongodb",
     "breadcrumb": "MongoDB",
     "header": {
-        "title": "{devices}용 MongoDB 클라이언트",
-        "lead": "mongosh 방식으로 쿼리를 쓰고 그리드에서 컬렉션을 페이지로 탐색하며 Extended JSON으로 전체 문서를 추가·편집합니다. 컬렉션 전체 필드 이름 변경·제거도 실행 전 모든 명령문을 표시합니다."
+        "title": "MongoDB 클라이언트",
+        "lead": "컬렉션을 탐색하고 mongosh 방식으로 조회하며 Extended JSON으로 문서를 편집하세요."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트 하나 또는 복제 세트의 여러 <code>host:port</code>를 나열하면 프라이머리를 찾습니다. <code>mongodb://</code>·<code>mongodb+srv://</code> URL도 붙여 넣습니다. SCRAM-SHA-1, SCRAM-SHA-256, X.509·AWS IAM으로 로그인하며 사용자가 <code>admin</code>에 정의됐지만 다른 데이터베이스를 탐색하면 <ui>Auth Database</ui>를 설정합니다.",
+                "호스트 또는 복제본 세트의 <code>host:port</code> 목록을 입력하거나 <code>mongodb://</code>, <code>mongodb+srv://</code> URL을 붙여 넣으세요. SCRAM-SHA-1, SCRAM-SHA-256, X.509, AWS IAM을 지원합니다. <ui>Auth Database</ui>에는 사용자가 정의된 데이터베이스를 지정합니다.",
                 "<code>.mongodb.net</code>으로 끝나는 호스트는 MongoDB Atlas가 요구하는 SRV·TLS를 자동으로 켭니다. 먼저 IP 주소를 클러스터 접근 목록에 추가하세요. 목록에 없는 주소의 트래픽은 즉시 실패 대신 시간 초과됩니다.",
                 "새 연결은 TLS가 꺼져 있고 드라이버에 대체(fallback) 동작이 없어 Preferred는 Required처럼 작동합니다. Read Preference·Write Concern은 연결별로 설정하고 쓰기 확인 수준은 셸·그리드 저장의 모든 삽입·업데이트·삭제에 전송됩니다.",
                 "<network>SSH 터널</network>은 목록의 첫 호스트만 사용해 해당 세션의 복제 세트 검색·장애 조치는 꺼집니다."
@@ -40,9 +40,9 @@
             "id": "work",
             "title": "문서 쿼리 및 편집",
             "paragraphs": [
-                "쿼리 탭은 mongosh 구문의 JavaScript 셸로 따옴표 없는 키, 정규식 리터럴, <code>ISODate()</code>, 변수·루프·<code>forEach</code>를 받습니다. TablePro 안에서 실행돼 추가 설치가 필요 없으며 정의한 변수는 연결을 끊을 때까지 해당 연결의 모든 탭에서 사용합니다. 자동 완성은 컬렉션, 메서드, 중첩 필드 경로와 커서 위치에 맞는 <code>$</code> 연산자를 제안합니다.",
-                "컬렉션은 최상위 필드를 열로, 중첩 객체를 Extended JSON으로 표시하는 그리드로 열립니다. 편집 셀은 필드 유형을 유지해 날짜·ObjectId가 그대로이며 중첩 객체 편집은 <code>address.city</code>처럼 바뀐 경로만 씁니다.",
-                "<editing>Insert Document와 Edit Document</editing>는 전체 문서를 Extended JSON으로 받습니다. Edit Document는 서버에서 다시 읽고 시트를 연 뒤 누군가 변경·삭제했으면 저장하지 않고 알려 줍니다. 셀의 <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
+                "Query 탭에서 정규식, <code>ISODate()</code>, 변수, 반복문, <code>forEach</code> 등 mongosh 방식의 JavaScript를 사용하세요. 별도 셸 설치는 필요하지 않습니다. 변수는 연결 해제 전까지 연결 탭 간에 유지됩니다. 컬렉션, 필드 경로, 메서드, 연산자를 자동 완성합니다.",
+                "최상위 필드는 열로, 중첩 객체는 Extended JSON으로 표시합니다. 셀 편집은 날짜, ObjectId 등 타입을 유지합니다. 중첩 편집은 <code>address.city</code>처럼 변경된 경로만 업데이트합니다.",
+                "<editing>Insert Document와 Edit Document</editing>는 Extended JSON을 사용합니다. Edit Document는 서버 문서를 다시 읽고 편집 중 변경되거나 삭제되었으면 저장을 거부합니다. <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
                 "<filters>필터 바</filters>는 중첩 객체·객체 배열 안에 접근해 <code>customer.country</code>·<code>items.sku</code>를 바로 필터링합니다. GeoJSON 필드는 <map>지도 보기</map>로 열립니다.",
                 "드라이버가 읽기 전용 세션을 열 수 없어 <safeMode>Safe Mode</safeMode>는 MongoDB 연결의 모든 명령문을 쓰기로 취급합니다. Alert와 Safe Mode 수준은 명령문마다 확인하고 Read-Only는 모두 차단합니다."
             ]
@@ -51,8 +51,8 @@
             "id": "schema",
             "title": "컬렉션, 인덱스 및 검증기",
             "paragraphs": [
-                "<structure>Structure 탭</structure>은 인덱스별 필드를 키 순서와 hashed·text·2dsphere·wildcard 같은 종류로 나열합니다. Show DDL은 서버가 보고한 모든 옵션을 담아 재구성할 <code>createIndex</code> 호출을 만듭니다.",
-                "같은 탭에서 컬렉션 전체 필드 이름을 바꾸거나 제거합니다. 변경마다 <code>updateMany</code> 하나를 Preview SQL에 표시하며 <code>$jsonSchema</code> 검증기가 선언한 필드도 바뀝니다. 인덱스·검색 인덱스·뷰가 이름을 계속 사용하면 쓰기 전에 저장을 거부합니다.",
+                "<structure>Structure 탭</structure>에서 인덱스 필드, 타입, 옵션을 확인하세요. Show DDL은 서버가 보고한 옵션으로 <code>createIndex</code> 호출을 생성합니다.",
+                "<code>updateMany</code>를 미리 확인하고 컬렉션 전체에서 필드 이름을 바꾸거나 제거하세요. 검증 규칙도 함께 갱신됩니다. 인덱스, 검색 인덱스, 뷰가 해당 필드를 사용하면 저장을 차단합니다.",
                 "<ui>새 테이블</ui>(New Table)은 필드를 <code>$jsonSchema</code> 검증기로 구성한 컬렉션을 만든 뒤 나열한 인덱스를 만듭니다. 뷰·시계열 컬렉션은 사이드바에 표시되며 뷰는 읽기 전용입니다."
             ]
         },
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass는 MongoDB 공식 GUI입니다. 집계 파이프라인을 단계별로 구성해 각 단계 후 미리 보고 문서 표본으로 컬렉션 스키마를 분석하며 실행 계획을 그립니다. 파이프라인을 시각적으로 만들거나 한 컬렉션 구조를 조사할 때 고르세요. TablePro는 MongoDB를 여러 데이터베이스와 같은 앱에서 다룰 때 맞습니다.",
+                "text": "MongoDB Compass는 시각적 집계 파이프라인, 표본 스키마 분석, 실행 계획에 적합합니다. TablePro는 MongoDB와 다른 데이터베이스 엔진을 함께 조회합니다.",
                 "notes": [
                     "compass-natural-language"
                 ]

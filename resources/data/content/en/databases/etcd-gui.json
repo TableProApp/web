@@ -10,8 +10,8 @@
     "engine": "etcd",
     "breadcrumb": "etcd",
     "header": {
-        "title": "etcd GUI for {devices}",
-        "lead": "Browse a cluster’s keys by prefix, change values and leases from a grid, and run etcdctl-style commands such as <code>get --prefix</code>, <code>lease grant</code> and <code>member list</code> in the editor."
+        "title": "etcd GUI",
+        "lead": "Browse keys by prefix, change values and manage leases with etcdctl-style commands."
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -24,7 +24,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give TablePro a host and the client port. etcd has no databases, so the form has no Database field. Aim at the client port: the peer port serves no JSON gateway, and a connection pointed there never opens. The form takes one endpoint and does not fail over, so pick a member that is up.",
+                "Enter one host and client port. The peer port has no JSON gateway. There is no database selection or endpoint failover.",
                 "Leave <ui>Username</ui> and <ui>Password</ui> empty on a cluster without authentication. A user without the <code>root</code> role connects and browses the keys its roles cover, while <code>endpoint status</code> and the <code>user</code> and <code>role</code> commands answer permission denied.",
                 "TLS is set by <ui>TLS Mode</ui> in the Advanced fields, not by an SSL section, and starts Disabled. Required (skip verify) encrypts without checking, Verify CA checks the certificate against the CA file you name, and Verify Identity adds the hostname. A client certificate and key add mutual TLS.",
                 "Reach a cluster behind a bastion through an <network>SSH tunnel</network>. <code>etcd://</code> and <code>etcds://</code> URLs import, and neither switches TLS on by itself."
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Set <ui>Key Prefix Root</ui>, such as <code>/app</code>, to scope a connection to one subtree. The sidebar groups keys by their first path segment under it, and each key is a row with its value, version, mod and create revisions, and lease.",
                 "Saving an edit sends commands. A new value or lease puts the key again, a NULL lease removes the lease, and renaming a key puts the new name and deletes the old one. The revision columns belong to etcd, so an edit to one stops the save and names the column.",
-                "The editor takes etcdctl-style commands, with completion for commands and flags: <code>get</code> with <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> and sorting, <code>put</code> with <code>--lease</code>, <code>del</code>, <code>watch</code>, the <code>lease</code> subcommands, <code>member list</code>, <code>endpoint status</code> and <code>health</code>, <code>compaction</code>, and the <code>auth</code>, <code>user</code> and <code>role</code> commands. Anything else comes back as an unknown command without reaching the server.",
+                "Run etcdctl-style key, watch, lease, member, endpoint, compaction and access-control commands with command and flag completion. Unsupported commands are rejected before reaching the server.",
                 "The etcd driver cannot open a read-only session, so <safeMode>Safe Mode</safeMode> treats every command as a write: at the Alert and Safe Mode levels each one asks first, and Read-Only blocks them all."
             ]
         },
@@ -44,7 +44,7 @@
             "id": "operate",
             "title": "Leases and the cluster",
             "paragraphs": [
-                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> with <code>--keys</code>, <code>list</code> and <code>keep-alive</code> manage leases, and <code>compaction</code> trims the revision history. <code>member list</code>, <code>endpoint status</code> and <code>endpoint health</code> report on the cluster from the editor, as there is no Server Dashboard for etcd.",
+                "Manage leases and revision compaction from the editor. Inspect members and endpoint status or health with commands; etcd has no Server Dashboard.",
                 "Running <code>auth enable</code> from the editor turns authentication on for the whole cluster. A connection that holds a username and password keeps working; one that holds neither has to be reopened with credentials."
             ]
         },

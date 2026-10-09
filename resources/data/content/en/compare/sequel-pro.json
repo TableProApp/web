@@ -9,21 +9,21 @@
     },
     "header": {
         "title": "Sequel Pro alternatives for Mac",
-        "lead": "Sequel Pro is no longer developed. Its last release is an Intel build from 2016, Homebrew has removed it, and its website was down when this page was checked. Sequel Ace continues it for MySQL and MariaDB. TablePro is another option if you want one client for more databases, and it imports Sequel Ace connections."
+        "lead": "Sequel Ace is the maintained successor to Sequel Pro. TablePro is another option when you need more database types. Moving saved connections to TablePro goes through Sequel Ace."
     },
     "shortAnswer": {
+        "lead": "Reasons to use TablePro or Sequel Ace.",
         "tablepro": [
-            "You also work with PostgreSQL, SQL Server, SQLite, Redis or MongoDB, not only MySQL and MariaDB.",
-            "You want an AI assistant and an MCP server, free in the Mac app, with the AI provider you choose.",
-            "You want a free iPhone and iPad app that connects to MySQL and MariaDB.",
-            "You are ready to learn a different interface, and want your Sequel Ace connections to come across with their passwords."
+            "MySQL and MariaDB alongside other database types.",
+            "Free AI chat and MCP, or an iPhone and iPad app.",
+            "A different interface, with connections imported through Sequel Ace."
         ],
         "competitor": [
-            "You want the Sequel Pro interface you know, free and maintained.",
-            "You only use MySQL and MariaDB.",
-            "You install your apps from the Mac App Store."
+            "Sequel Pro’s familiar interface, maintained in Sequel Ace.",
+            "A client focused on MySQL and MariaDB.",
+            "An app from the Mac App Store."
         ],
-        "competitorTitle": "Choose Sequel Ace if"
+        "competitorTitle": "Consider Sequel Ace for"
     },
     "glance": {
         "intro": "Sequel Pro’s last release is {status.version}, from {status.date}. The table shows where it stands today, next to TablePro. For a comparison with its maintained successor, read TablePro vs Sequel Ace."
@@ -51,13 +51,18 @@
         "items": [
             {
                 "text": "Sequel Pro is free and open source under the MIT license.",
-                "cite": ["licence", "prices"],
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "Its code lives on in Sequel Ace, a maintained successor that keeps its interface for MySQL and MariaDB.",
-                "cite": ["cells.successor"],
+                "cite": [
+                    "cells.successor"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -68,7 +73,10 @@
         "items": [
             {
                 "text": "TablePro is maintained and has separate builds for Apple silicon and Intel. Sequel Pro’s last release is an Intel build that needs Rosetta on Apple silicon.",
-                "cite": ["status", "cells.rosetta"],
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
                 "feature": null,
                 "href": null
             },

@@ -4,7 +4,7 @@ export default {
     status: 'Lỗi {status}',
     notFound: {
         title: 'Không tìm thấy trang',
-        body: 'Địa chỉ có thể bị gõ sai, hoặc trang đã được chuyển đi. Bạn có thể bắt đầu từ một trong các trang dưới đây.',
+        body: 'Kiểm tra địa chỉ hoặc dùng liên kết bên dưới.',
     },
     gone: {
         title: 'Trang này đã bị gỡ',

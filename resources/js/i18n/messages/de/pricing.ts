@@ -21,7 +21,7 @@ export default {
     "tiers": {
         "free": {
             "name": "Kostenlos",
-            "description": "Die Mac-App ohne Bezahlfunktionen sowie die iPhone- und iPad-App.",
+            "description": "Grundlegende Datenbankwerkzeuge ohne Testzeitraum.",
             "activation": "Die App lässt sich ohne Registrierung nutzen.",
             "includesTitle": "Enthält",
             "includes": [
@@ -36,16 +36,16 @@ export default {
             "name": "Starter",
             "description": "Ergänzt die Mac-App um Funktionen wie {examples}.",
             "activation": {
-                "one": "Eine Lizenz für eine Person auf {count} Mac.",
-                "other": "Eine Lizenz für eine Person auf bis zu {count} Macs."
+                "one": "Eine Person, {count} Mac.",
+                "other": "Eine Person, bis zu {count} Macs."
             },
             "includesTitle": "Alles aus Kostenlos, plus",
             "cta": "Starter kaufen"
         },
         "team": {
             "name": "Team",
-            "description": "Ergänzt Starter um Verbindungen und Abfragen, die du mit deinem Team teilst.",
-            "activation": "Jeder Arbeitsplatz entspricht einem aktivierten Mac.",
+            "description": "Teile Verbindungen und gespeicherte Abfragen mit deinem Team.",
+            "activation": "Ein aktivierter Mac pro Arbeitsplatz.",
             "includesTitle": "Alles aus Starter, plus",
             "cta": "Team kaufen"
         }
@@ -97,7 +97,7 @@ export default {
         "one": "Jeder bezahlte Tarif kann innerhalb von {count} Tag nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tag nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>.",
         "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tagen nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>."
     },
-    "finePrint": "Preise in US-Dollar. {merchant} ist der Merchant of Record: Er nimmt die Zahlung entgegen und berechnet beim Kauf die anfallende Verkaufs- oder Mehrwertsteuer.",
+    "finePrint": "Preise in US-Dollar. {merchant} wickelt als Merchant of Record die Zahlung ab und berechnet die Umsatzsteuer beim Checkout.",
     "finePrintCurrency": "Preise in US-Dollar.",
     "comparePlans": "Tarife vergleichen",
     "section": {
@@ -126,10 +126,10 @@ export default {
         "checking": "Code wird geprüft…",
         "percent": "Code akzeptiert: {amount} % Rabatt, wird beim Kauf abgezogen.",
         "fixed": "Code akzeptiert: {amount} Rabatt, wird beim Kauf abgezogen.",
-        "invalid": "Dieser Rabattcode ist ungültig oder abgelaufen."
+        "invalid": "Dieser Code ist ungültig oder abgelaufen."
     },
     "checkout": {
-        "failed": "Der Bezahlvorgang konnte nicht gestartet werden. Versuche es erneut."
+        "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut."
     },
     "offers": {
         "name": "{plan}, {cycle}",

@@ -10,8 +10,8 @@
     "engine": "kafka",
     "breadcrumb": "Apache Kafka",
     "header": {
-        "title": "適用於 {devices} 的 Apache Kafka 用戶端",
-        "lead": "用 TablePro 自有的指令語言 KafkaQL 從所選起點讀取主題，查看每個消費者群組的延遲，並產生測試訊息。主題是記錄，所以格線僅讀取訊息，從不編輯。"
+        "title": "Apache Kafka 用戶端",
+        "lead": "檢查主題訊息和消費者延遲，或使用 TablePro 的命令語言 KafkaQL 傳送測試訊息。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入一個代理的主機和連接埠，從它探索叢集其餘部分。<ui>額外的 Bootstrap 伺服器</ui>（Additional Bootstrap Servers）列出首個代理無回應時嘗試的代理。一個連線對應一個叢集，無 Database 欄位，側邊欄直接顯示主題。",
+                "輸入啟動代理的主機和連接埠。<ui>額外的 Bootstrap 伺服器</ui> (Additional Bootstrap Servers) 可加入備援代理。每個連線存取一個叢集，側邊欄顯示其主題。",
                 "<ui>安全性協定</ui>（Security Protocol）可選 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 機制</ui>（SASL Mechanism）可選 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管代理。SSL 或 SASL_SSL 未選擇 SSL 模式時驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA 憑證</ui>（CA Certificate），用戶端憑證和金鑰提供雙向 TLS。",
                 "透過 <network>SSH 通道</network>時連線停留在啟動代理，僅讀取該代理領導的分割區。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不將其作為連結開啟。"
             ]
@@ -32,11 +32,11 @@
             "id": "work",
             "title": "讀取、檢查與產生",
             "paragraphs": [
-                "開啟主題顯示最近訊息，最新在最後，含分割區、位移、時間戳記、索引鍵、值、標頭和大小。不同分割區的訊息依時間戳記交錯以方便閱讀；真正識別訊息的是分割區和位移。非 UTF-8 的索引鍵或值顯示為十六進位，tombstone 與空訊息保持區別。",
-                "KafkaQL 用起始位置取代排序和篩選：<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code>，或帶 ISO 8601 時間戳記的 <code>FROM TIME</code>，可限定部分分割區。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code>、<code>DESCRIBE TOPIC</code> 查看叢集其他資訊。",
+                "瀏覽近期訊息及其分割區、位移、時間戳記、鍵、值和標頭。跨分割區訊息依時間戳記交錯顯示，由分割區和位移識別。非 UTF-8 值顯示為十六進位；墓碑訊息與空訊息保持區分。",
+                "用 KafkaQL 從最新、最早、指定位移或 ISO 8601 時間戳記開始消費，也可限定分割區。SHOW 列出主題、代理、群組和叢集詳情；DESCRIBE TOPIC 檢查主題。",
                 "<code>DESCRIBE GROUP</code> 是延遲報告，逐分割區顯示已提交位移、末端位移和差值。群組從未提交過的分割區顯示無延遲，而非從零計算。代理無法連線時 <code>SHOW GROUPS</code> 標註清單已截斷。",
                 "<code>PRODUCE INTO</code> 寫入訊息，可選索引鍵、標頭和分割區。有索引鍵但未指定分割區的訊息落在 Kafka 自身生產者會選擇的位置。讀取時自動解壓縮 gzip、snappy、lz4、zstd 批次，無須選擇設定。",
-                "Kafka 無更新、逐訊息刪除或伺服器端排序，因此無法編輯儲存格、刪除列或依欄位排序，相應控制項顯示停用。每頁從上頁停止處繼續，因此持續寫入的主題也不重複或略過訊息。"
+                "不能編輯或單獨刪除訊息，也不能依欄位排序。新訊息到達時，分頁會從上次位置繼續。"
             ]
         },
         {

@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "Database yang didukung",
-        "description": "Lihat database yang didukung TablePro, bahasa kueri, driver bawaan atau unduhan, serta ketersediaannya di iPhone dan iPad."
+        "description": "Temukan database Anda, periksa fitur yang didukung dan bandingkan bahasa kueri, pengiriman driver, serta ketersediaan iPhone dan iPad."
     },
     "og": {
         "kicker": "Database",
-        "title": "Database yang dapat dihubungkan dengan TablePro"
+        "title": "Database yang didukung"
     },
     "header": {
-        "title": "Database yang dapat dihubungkan dengan TablePro",
-        "lead": "Driver native untuk {count} database, termasuk {featured}. Setiap baris menjelaskan bahasa kueri mesin, asal driver, dan apakah koneksinya dapat dibuka di iPhone dan iPad."
+        "title": "Database yang didukung",
+        "lead": "Temukan database Anda dan periksa fitur-fitur yang didukungnya. TablePro terhubung ke mesin {count}, termasuk {featured}."
     },
     "jump": "Kategori",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "Analitik dan data warehouse",
-            "intro": "Data warehouse, mesin kolumnar, dan mesin kueri terfederasi, tempat pemindaian membutuhkan waktu atau biaya."
+            "intro": "Data warehouse, database kolumnar, dan engine kueri lintas katalog."
         },
         "cloud": {
             "title": "Cloud dan serverless",
-            "intro": "Layanan SQL yang diakses melalui HTTP dengan token akun, serta file libSQL di Mac Anda."
+            "intro": "Layanan SQL melalui HTTP, ditambah file libSQL lokal."
         },
         "document": {
             "title": "Dokumen",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Log alih-alih tabel: baca dan tulis pesan menggunakan KafkaQL, bahasa perintah milik TablePro sendiri."
+            "intro": "Membaca dan menghasilkan pesan dengan KafkaQL, bahasa perintah TablePro."
         },
         "coordination": {
             "title": "Koordinasi",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "File",
-            "intro": "Database dalam file yang dibuka langsung, tanpa menjalankan server."
+            "intro": "Kueri file database dan buku besar tanpa server database."
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "Cara driver didistribusikan",
         "paragraphs": [
-            "Driver untuk {bundled} disertakan dalam aplikasi Mac dan dapat terhubung tanpa memasang apa pun lagi.",
-            "Setiap driver lainnya berupa plugin bertanda tangan yang diunduh saat Anda pertama kali memilih mesinnya, sebelum formulir koneksi terbuka. Unduhan pertama memerlukan koneksi internet.",
-            "Sebelum memasang driver yang diunduh, TablePro memeriksa checksum SHA-256 terhadap registri plugin dan memverifikasi tanda tangan kodenya.",
-            "Plugin memiliki jadwal pembaruan sendiri, sehingga perbaikan driver dapat tersedia tanpa pembaruan aplikasi. Driver yang sedang digunakan diperbarui setelah aplikasi dimulai ulang.",
-            "Aplikasi iPhone dan iPad memiliki driver bawaan, sehingga tidak ada unduhan di sana."
+            "Driver untuk {bundled} hadir dengan aplikasi Mac. Tidak diperlukan perangkat lunak klien terpisah untuk terhubung.",
+            "Driver lain diunduh sebagai plugin yang ditandatangani saat Anda pertama kali memilih database. Pengunduhan pertama memerlukan koneksi internet.",
+            "TablePro memeriksa checksum SHA-256 setiap plugin terhadap registri dan memverifikasi tanda tangan kodenya sebelum instalasi.",
+            "Plugin driver diperbarui secara terpisah dari aplikasi. Pembaruan pada driver yang digunakan akan berlaku setelah Anda memulai ulang.",
+            "Aplikasi iPhone dan iPad memiliki driver bawaan; itu tidak mengunduh plugin."
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "TablePro untuk iPhone dan iPad"
     },
     "license": {
-        "title": "Tidak ada database yang memerlukan lisensi",
-        "body": "Terhubung ke mesin mana pun pada halaman ini gratis. Paket Starter atau Team menambahkan fitur opsional pada aplikasi Mac, dan tidak ada fitur yang terikat pada database tertentu.",
+        "title": "Termasuk dalam Gratis",
+        "body": "Setiap koneksi database yang didukung disertakan dalam Gratis. Starter dan Team menambahkan fitur opsional ke aplikasi Mac.",
         "link": "Lihat harga"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "Berfungsi di {devices}",
             "bundled": "Driver disertakan dalam aplikasi Mac",
-            "registry": "Driver diunduh saat Anda pertama kali memilih {name}",
-            "free": "Gratis digunakan, dengan <pricing>paket berbayar opsional</pricing>"
+            "registry": "Pengunduhan driver pada penggunaan pertama {name}",
+            "free": "Termasuk dalam Gratis; <pricing>paket berbayar menambahkan fitur opsional</pricing>"
         },
         "release": "Baru pada {version}",
         "docs": "Panduan pengaturan {name}",
@@ -147,7 +147,7 @@
             "related": "Terkait"
         },
         "iphone": {
-            "picker": "{name} tersedia saat Anda membuat koneksi dalam aplikasi iPhone dan iPad, dan aplikasi terhubung langsung ke mesin tersebut.",
+            "picker": "{name} ditawarkan saat Anda membuat koneksi di aplikasi iPhone dan iPad.",
             "synced": "Aplikasi iPhone dan iPad hanya membuka koneksi {name} yang berasal dari Mac, melalui iCloud Sync atau file koneksi yang diekspor. Anda tidak dapat membuatnya di sana.",
             "none": "Aplikasi iPhone dan iPad tidak memiliki driver {name}. Koneksi {name} yang disinkronkan dari Mac muncul dalam daftar tetapi tidak dapat dibuka.",
             "link": "TablePro untuk iPhone dan iPad"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "Unduh TablePro",
-            "mac": "Aplikasi Mac gratis untuk diunduh dan digunakan. Paket Starter atau Team menambahkan fitur opsional.",
+            "mac": "Unduh aplikasi Mac secara gratis. Starter dan Team menambahkan fitur opsional.",
             "ios": "Aplikasi iPhone dan iPad tersedia di App Store.",
             "pricing": "Lihat harga"
         }

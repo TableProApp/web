@@ -10,8 +10,8 @@
     "engine": "trino",
     "breadcrumb": "Trino",
     "header": {
-        "title": "Klien Trino untuk {devices}",
-        "lead": "Gabungkan tabel dari katalog berbeda dalam satu kueri, baca rencana yang akan dijalankan Trino, dan hentikan kueri yang tidak terkendali pada koordinator. Kemampuan penulisan bergantung pada konektor di balik setiap katalog."
+        "title": "Klien Trino",
+        "lead": "Kueri di seluruh katalog, periksa rencana, dan batalkan kueri yang sedang berjalan. Dukungan penulisan bergantung pada konektor masing-masing katalog."
     },
     "asset": "mac-db-trino-catalogs",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Hubungkan dan masuk",
             "paragraphs": [
-                "Masukkan host dan port koordinator serta <ui>Username</ui>, pengguna yang menjalankan kueri Anda. <ui>Catalog</ui> dan <ui>Schema</ui> adalah titik awal opsional; kosongkan Catalog untuk menelusuri semua katalog. <ui>Time Zone</ui> IANA pada bagian Options menetapkan zona waktu sesi.",
+                "Masukkan host koordinator, port dan <ui>Username</ui>. <ui>Catalog</ui> dan <ui>Schema</ui> opsional mengatur lokasi awal. Tetapkan IANA <ui>Time Zone</ui> untuk sesi tersebut.",
                 "Masuk dengan kata sandi, yang dikirim sebagai HTTP Basic untuk autentikasi LDAP atau file kata sandi, atau token akses JWT yang dikirim sebagai kredensial bearer. Keduanya hanya dikirim melalui TLS: dengan SSL Disabled, koneksi yang memuat salah satunya ditolak sebelum data dikirim. Sertifikat dan kunci klien pada panel SSL menambahkan TLS timbal balik.",
                 "SSL awalnya Disabled, yaitu HTTP tanpa enkripsi; mode lainnya mewajibkan TLS tanpa peralihan ke teks biasa, dan port 443 mengaktifkan Verify Identity. Pengalihan dari proxy di depan koordinator tidak pernah diikuti; kesalahan menyebutkan tujuannya. Akses koordinator di balik bastion melalui <network>tunnel SSH</network>, lalu impor URL <code>trino://</code> menggunakan <ui>Import from URL…</ui>."
             ]
@@ -35,11 +35,11 @@
             "id": "work",
             "title": "Kueri lintas katalog",
             "paragraphs": [
-                "Koneksi dibuka pada katalog dan skema, dan setiap kueri tetap dapat menyebut <code>catalog.schema.table</code> secara lengkap, misalnya join antara tabel Hive dan PostgreSQL. Sidebar menguraikan setiap katalog menjadi skema dan tabel, dengan materialized view di samping tabel dan view, serta jumlah baris dari <code>SHOW STATS</code>.",
+                "Kueri nama <code>catalog.schema.table</code> yang sepenuhnya memenuhi syarat untuk digabungkan di seluruh katalog. Jelajahi katalog, skema, tabel, dan tampilan material; perkiraan jumlah baris berasal dari <code>SHOW STATS</code>.",
                 "<code>bigint</code> dan <code>decimal</code> dibaca sebagai teks presisi, bukan floating point. <code>varbinary</code> ditampilkan sebagai heksadesimal, <code>array</code>, <code>map</code>, dan <code>row</code> sebagai JSON, dan timestamp mempertahankan nilai yang dikembalikan server.",
                 "<explain>Explain</explain> menyediakan Logical, Distributed, IO, Validate, dan Analyze. Validate memeriksa kueri tanpa menjalankannya, Analyze menjalankan kueri dan melaporkan waktu aktual, dan setiap rencana dikembalikan sebagai teks mentah.",
                 "<code>SET SESSION</code> berlaku selama sisa koneksi. <ui>Query > Cancel Query</ui> meminta koordinator menghentikan kueri aktif, dan itulah cara menghentikannya: batas waktu kueri koneksi tidak diteruskan ke Trino.",
-                "<editing>Perubahan sel</editing> menjadi INSERT, UPDATE, dan DELETE, dengan setiap nilai membawa jenis Trino-nya. Trino tidak melaporkan primary key, sehingga perubahan mencocokkan semua kolom baris sesuai nilai saat dibaca, tanpa transaksi untuk membatalkannya. Mengedit satu dari dua baris identik mengubah keduanya; periksa duplikat terlebih dahulu."
+                "<editing>Pengeditan sel</editing> menggunakan pernyataan INSERT, UPDATE, dan DELETE yang diketik. Trino melaporkan tidak ada kunci utama, jadi hasil edit cocok dengan setiap kolom asli. Baris yang identik berubah secara bersamaan, tanpa ada transaksi yang dapat membatalkannya. Periksa duplikat sebelum mengedit."
             ]
         },
         {

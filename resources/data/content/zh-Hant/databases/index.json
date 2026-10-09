@@ -1,15 +1,15 @@
 {
     "seo": {
         "title": "支援的資料庫",
-        "description": "依類別查看 TablePro 支援的資料庫、查詢語言、Mac 驅動程式是否內建或需下載，以及 iPhone、iPad 是否可開啟。"
+        "description": "尋找資料庫，查看支援的功能，並比較查詢語言、驅動程式提供方式及 iPhone 和 iPad 支援情況。"
     },
     "og": {
         "kicker": "資料庫",
-        "title": "TablePro 可連線的資料庫"
+        "title": "支援的資料庫"
     },
     "header": {
-        "title": "TablePro 可連線的資料庫",
-        "lead": "為 {count} 種資料庫提供原生驅動程式，包括 {featured}。每列說明引擎的查詢語言、驅動程式來源，以及能否在 iPhone 與 iPad 上開啟。"
+        "title": "支援的資料庫",
+        "lead": "尋找您的資料庫並查看支援的功能。TablePro 可連線至 {count} 種引擎，包括 {featured}。"
     },
     "jump": "類別",
     "categories": {
@@ -19,11 +19,11 @@
         },
         "analytical": {
             "title": "分析與資料倉儲",
-            "intro": "掃描會消耗時間或費用的資料倉儲、直欄式引擎和聯邦查詢引擎。"
+            "intro": "資料倉儲、欄式資料庫和跨目錄查詢引擎。"
         },
         "cloud": {
             "title": "雲端與無伺服器",
-            "intro": "使用帳戶權杖透過 HTTP 存取的 SQL 服務，以及 Mac 上的 libSQL 檔案。"
+            "intro": "透過 HTTP 提供的 SQL 服務，以及本機 libSQL 檔案。"
         },
         "document": {
             "title": "文件",
@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "串流",
-            "intro": "以記錄而非資料表儲存，透過 TablePro 自有的指令語言 KafkaQL 讀寫訊息。"
+            "intro": "使用 TablePro 的命令語言 KafkaQL 讀取和傳送訊息。"
         },
         "coordination": {
             "title": "協調",
@@ -51,7 +51,7 @@
         },
         "files": {
             "title": "檔案",
-            "intro": "儲存在可直接開啟的檔案中的資料庫，無須執行伺服器。"
+            "intro": "無需資料庫伺服器，即可查詢資料庫檔案和帳本。"
         }
     },
     "table": {
@@ -65,11 +65,11 @@
     "drivers": {
         "title": "驅動程式的提供方式",
         "paragraphs": [
-            "{bundled} 的驅動程式隨 Mac App 內建，無須安裝其他軟體即可連線。",
-            "其餘驅動程式均為簽署的外掛程式，首次選擇引擎時在連線表單開啟前下載。首次下載需要連網。",
-            "安裝下載的驅動程式前，TablePro 將 SHA-256 檢查碼與外掛程式登錄表核對，並驗證程式碼簽章。",
-            "外掛程式依獨立週期更新，因此驅動程式修正無須 App 更新即可提供。正在使用的驅動程式會在重新啟動 App 後更新。",
-            "iPhone 與 iPad App 內建驅動程式，無須下載。"
+            "{bundled} 的驅動程式已隨 Mac App 提供，連線時無需安裝其他用戶端軟體。",
+            "其他驅動程式會在首次選取資料庫時以已簽署外掛的形式下載。首次下載需要網路連線。",
+            "安裝前，TablePro 會對照登錄表檢查每個外掛的 SHA-256 校驗值，並驗證程式碼簽章。",
+            "驅動程式外掛獨立於 App 更新。正在使用的驅動程式需要重新啟動後才會套用更新。",
+            "iPhone 和 iPad App 內建驅動程式，不下載外掛。"
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -85,8 +85,8 @@
         "link": "適用於 iPhone 與 iPad 的 TablePro"
     },
     "license": {
-        "title": "連線任何資料庫都無須授權",
-        "body": "連線本頁任何引擎都免費。Starter 或 Team 方案為 Mac App 新增選用功能，這些功能均不依賴特定資料庫。",
+        "title": "包含在 Free 中",
+        "body": "所有支援的資料庫連線均包含在 Free 中。Starter 和 Team 為 Mac App 加入選用功能。",
         "link": "查看價格"
     },
     "missing": {
@@ -134,8 +134,8 @@
         "availability": {
             "devices": "適用於 {devices}",
             "bundled": "Mac App 內建驅動程式",
-            "registry": "首次選擇 {name} 時下載驅動程式",
-            "free": "可免費使用，<pricing>付費方案</pricing>為選用"
+            "registry": "首次使用 {name} 時下載驅動程式",
+            "free": "包含在 Free 中；<pricing>付費方案提供選用功能</pricing>"
         },
         "release": "{version} 新增",
         "docs": "{name} 設定指南",
@@ -147,7 +147,7 @@
             "related": "相關內容"
         },
         "iphone": {
-            "picker": "iPhone 與 iPad App 建立連線時可選擇 {name}，App 直接連線。",
+            "picker": "在 iPhone 和 iPad App 中建立連線時，可選擇 {name}。",
             "synced": "iPhone 與 iPad App 僅開啟透過 iCloud Sync 或匯出的連線檔案從 Mac 匯入的 {name} 連線，無法在行動版建立。",
             "none": "iPhone 與 iPad App 沒有 {name} 驅動程式。從 Mac 同步的 {name} 連線會顯示在清單中，但無法開啟。",
             "link": "適用於 iPhone 與 iPad 的 TablePro"
@@ -182,7 +182,7 @@
         },
         "download": {
             "title": "取得 TablePro",
-            "mac": "Mac App 可免費下載和使用。Starter 或 Team 方案新增選用功能。",
+            "mac": "免費下載 Mac App。Starter 和 Team 提供選用功能。",
             "ios": "iPhone 與 iPad App 可在 App Store 取得。",
             "pricing": "查看價格"
         }

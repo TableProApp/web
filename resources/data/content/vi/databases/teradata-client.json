@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "Client Teradata cho {devices}",
-        "lead": "Đăng nhập bằng TD2 hoặc TDNEGO, duyệt cơ sở dữ liệu và user cùng table, view, procedure và macro của chúng, rồi query và sửa dữ liệu qua một driver Swift native, không cần cài phần mềm client nào của Teradata."
+        "title": "Teradata client",
+        "lead": "Query và sửa Teradata không cần phần mềm client riêng. Xem cơ sở dữ liệu, user, procedure và macro."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Kết nối và đăng nhập",
             "paragraphs": [
-                "Nhập host, tên người dùng và mật khẩu. Mọi hệ thống Vantage chấp nhận đăng nhập TD2 đều dùng được, và phiên bản không bị kiểm tra. <ui>Logon Mechanism</ui> trong phần Tùy chọn (Options) nhận <code>TD2</code> hoặc <code>TDNEGO</code>, còn ô <ui>Cơ sở dữ liệu (Database)</ui> chỉ cần điền khi bạn muốn một cơ sở dữ liệu mặc định khác với của tài khoản.",
+                "Nhập host, username và mật khẩu. Chọn <code>TD2</code> hoặc <code>TDNEGO</code> trong <ui>Logon Mechanism</ui>. <ui>Database</ui> ghi đè mặc định tài khoản. Hỗ trợ server Vantage nhận TD2, không kiểm tra phiên bản.",
                 "Port mặc định mang một session thường, không mã hóa. Chọn bất kỳ chế độ SSL nào cũng sẽ chuyển session sang endpoint WebSocket của gateway ở port 443, và port này không đổi được. Xác minh CA (Verify CA) cần một chứng chỉ CA, còn Xác minh danh tính (Verify Identity) kiểm tra chuỗi chứng chỉ và hostname theo chứng chỉ đó, hoặc theo kho tin cậy của hệ thống nếu bạn không đặt.",
                 "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA cho session. Với hệ thống nằm sau bastion, hãy kết nối qua <network>SSH tunnel</network>. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>teradata://</code>, nhưng macOS không mở các URL này như liên kết."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "Trong Teradata, cả cơ sở dữ liệu lẫn user đều là namespace, nên cả hai nằm ở tầng trên cùng của sidebar cùng table và view của chúng. Tab gắn với cơ sở dữ liệu thứ hai vẫn giữ nguyên session và chạy <code>DATABASE</code> trước các câu lệnh của nó.",
+                "Xem cơ sở dữ liệu và user dạng namespace. Tab ở cơ sở dữ liệu khác chia sẻ session và chạy <code>DATABASE</code> trước câu lệnh.",
                 "Stored procedure được liệt kê trong sidebar, còn macro nằm trong mục Functions, và mỗi mục đều mở <objects>mã nguồn trong một tab chỉ đọc</objects>.",
                 "Teradata không có <code>LIMIT</code>, nên trang đầu của table được lấy bằng <code>TOP</code>, các trang sau bằng <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> trả về plan của Teradata dưới dạng text thô. Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh."
             ]

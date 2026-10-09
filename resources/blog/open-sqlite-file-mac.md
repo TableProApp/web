@@ -1,18 +1,18 @@
 ---
 slug: open-sqlite-file-mac
-title: "How to open and query a SQLite file on a Mac"
-description: Open a .db or .sqlite file with the sqlite3 shell macOS already has, or in TablePro, and what to do when macOS or a lock keeps the file closed.
+title: "Open and query a SQLite file on a Mac"
+description: Open a SQLite file with sqlite3 or TablePro. Browse tables, run queries, and troubleshoot encrypted files, locks and macOS file permissions.
 date: 2026-10-08
-author: TablePro Team
+author: TablePro
 ogPunchline: sqlite3 in Terminal, or drag the file onto TablePro.
 tags: [sqlite, database-files, sql-editor]
 ---
 
-A SQLite database is one file. There is no server to start and no user to log in as, so "connecting" means opening the file. macOS ships with a command-line shell that does it, and a GUI adds a table browser and an editor on top.
+Open a SQLite file with the `sqlite3` shell included in macOS, or use TablePro to browse tables and edit data. No database server or login is needed.
 
 ## Check that the file is SQLite {#check-the-file}
 
-The extension proves nothing. `.db` is used by many formats, and plenty of SQLite files have no extension at all. Ask the file:
+The extension does not identify the format: `.db` can mean other formats, and SQLite files may have no extension. Check with:
 
 ```bash
 file ~/Downloads/app.db
@@ -53,7 +53,7 @@ Some databases worth knowing about on a Mac:
 
 The last two sit in folders macOS protects. See [If it does not open](#troubleshooting).
 
-## Open it in TablePro {#in-tablepro}
+## Open the file in TablePro {#in-tablepro}
 
 Any of these opens the file:
 
@@ -61,7 +61,7 @@ Any of these opens the file:
 - Choose **File > Open File…** (`Cmd+O`) and pick it.
 - In Finder, right-click it and choose **Open With > TablePro**. Files ending in `.db`, `.db3`, `.s3db`, `.sl3`, `.sqlite`, `.sqlite3` and `.sqlitedb` list TablePro there.
 
-A database saved under another name opens too, by dragging it or through **Open File…**. TablePro reads the first bytes of the file to decide, the same way `file` does.
+Other filenames work through drag and drop or **Open File…**. TablePro checks the file header, not just the extension.
 
 To keep the file in your connection list:
 
@@ -69,7 +69,7 @@ To keep the file in your connection list:
 2. Click **Browse…** and choose the file. There is no host, port or password to fill in.
 3. Click **Save & Connect**.
 
-**New…** beside **Browse…** names a file that does not exist yet. It is created when you connect, which gives you an empty scratch database.
+**New…** beside **Browse…** creates an empty database at the path you choose when you connect.
 
 No file at hand? **Help > Open Sample Database** opens a bundled SQLite database to try things on.
 
@@ -103,14 +103,14 @@ Edits in the grid are staged. Nothing is written until you save, and **Preview S
 
 If another program changes the file, the table list reloads on its own. Rows already loaded in a tab stay as they were until you refresh that tab.
 
-## A file on a server {#remote-file}
+## Open a remote file over SSH {#remote-file}
 
-A SQLite file on a machine you reach over SSH opens without copying it by hand. In the connection form, open the **Network** tab and set **Connect via** to **Remote Database File**, then fill in the **Path** on the server and the SSH details. The **Open** menu has two choices:
+To open a file over SSH, set **Network > Connect via** to **Remote Database File**. Enter the remote **Path** and SSH details, then choose an **Open** mode:
 
 - **On the Server** runs your statements on the server against the live file. The server needs `python3`.
 - **As a Read-Only Copy** copies the file to your Mac and opens the copy read-only. The original is never written to.
 
-## Where it stops {#limits}
+## Limitations {#limits}
 
 - Encrypted database files do not open. Decrypt the file with the tool that encrypted it first.
 - One connection is one file. An attached database can be queried as `alias.table`, but it does not appear in the sidebar.
@@ -118,10 +118,10 @@ A SQLite file on a machine you reach over SSH opens without copying it by hand. 
 - A primary key cannot be added, removed or moved.
 - A database built with an extension such as sqlite-vec or SpatiaLite cannot be read until that extension is added to the connection, under **Options**.
 
-## If it does not open {#troubleshooting}
+## Troubleshooting {#troubleshooting}
 
 - **unable to open database file**: the path is wrong, or the folder is one the app may not read. Files under `~/Library`, such as the Safari and Messages databases, need Full Disk Access: turn it on for TablePro, or for Terminal if you use `sqlite3`, in **System Settings > Privacy & Security > Full Disk Access**, then relaunch the app.
 - **database is locked**: another process holds a write lock. Quit the app that owns the file.
 - **file is not a database**: the file is encrypted or is not SQLite. Run `file` on it again.
 
-The docs cover extensions, remote files and every error message on the [SQLite page](https://docs.tablepro.app/databases/sqlite). On this site, the [SQLite client page](/sqlite-client) lists what TablePro does with a SQLite database, and [Files that are databases](/features/import-export#files) covers the other file types: DuckDB reads Parquet and CSV files as read-only views, and CSV, JSON and Excel files open in a window of their own.
+See the [SQLite docs](https://docs.tablepro.app/databases/sqlite) for extensions and remote-file errors, or the [SQLite feature overview](/sqlite-client). For other formats, [file support](/features/import-export#files) covers DuckDB’s read-only Parquet and CSV views and standalone CSV, JSON and Excel windows.

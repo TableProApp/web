@@ -10,8 +10,8 @@
     "engine": "surrealdb",
     "breadcrumb": "SurrealDB",
     "header": {
-        "title": "Client SurrealDB cho {devices}",
-        "lead": "Đăng nhập đúng cấp mà user của bạn được định nghĩa, chạy script SurrealQL, và sửa record theo từng field, với record link, datetime và decimal giữ nguyên kiểu của chúng."
+        "title": "SurrealDB client",
+        "lead": "Chạy SurrealQL và sửa field record mà giữ nguyên kiểu."
     },
     "asset": "mac-db-surrealdb-query",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Kết nối và đăng nhập",
             "paragraphs": [
-                "SurrealDB không đoán được từ thông tin đăng nhập rằng user được định nghĩa ở cấp nào, nên <ui>Cấp xác thực (Auth Level)</ui> phải nêu rõ cấp đó, và form sẽ hỏi phần còn lại. Root cần tên người dùng và mật khẩu, Namespace cần thêm namespace, Database cần thêm cả cơ sở dữ liệu. Record Access cần namespace, cơ sở dữ liệu, phương thức truy cập trong <code>DEFINE ACCESS</code> và các ô đăng nhập của nó. Token nhận một JWT bạn đã có, kể cả token của SurrealDB Cloud.",
+                "Chọn <ui>Auth Level</ui> cho user: Root, Namespace, Database, Record Access hoặc Token. Namespace và Database cần tên. Record Access còn cần access method và trường đăng nhập; Token nhận JWT có sẵn.",
                 "Driver trao đổi CBOR qua endpoint HTTP RPC, nên record link, datetime, duration, decimal và UUID giữ nguyên kiểu. Liên kết <code>surrealdb://</code> mở form connection đã điền sẵn, và server ở xa có thể kết nối qua <network>SSH tunnel</network>.",
                 "SSL mặc định là Đã tắt (Disabled), tức HTTP thường; mọi chế độ khác dùng HTTPS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo kho tin cậy của hệ thống, còn file CA đặt trong phần SSL/TLS sẽ bị bỏ qua, nên hãy cài CA riêng vào macOS trước."
             ]
@@ -34,9 +34,9 @@
             "id": "work",
             "title": "SurrealQL và record",
             "paragraphs": [
-                "Editor chạy nguyên cả script SurrealQL, kể cả lệnh <code>RELATE</code> giữa hai record, có autocomplete cho các câu lệnh thông dụng. <explain>Explain và Explain Full</explain> chạy lại query hiện tại với <code>EXPLAIN</code> để cho thấy query được xử lý thế nào và có dùng index hay không; plan trả về dưới dạng text thô.",
+                "Chạy script SurrealQL đầy đủ, gồm <code>RELATE</code>, có gợi ý câu lệnh. <explain>Explain và Explain Full</explain> chạy query với <code>EXPLAIN</code> và trả plan văn bản.",
                 "Namespace nằm ở tầng trên cùng của sidebar, cơ sở dữ liệu nằm bên trong. Đổi namespace hay cơ sở dữ liệu đều không phải kết nối lại, vì hai giá trị này đi kèm từng request. Chỉ user root mới thấy mọi namespace.",
-                "Sửa một ô sẽ chạy <code>UPDATE</code> chỉ đặt lại những field bạn đã chạm vào, dưới dạng tham số có kiểu, nên <code>int</code> vẫn là <code>int</code>, còn field tính toán <code>FUTURE</code> và thay đổi của người khác được giữ nguyên. Để trống <code>id</code> ở dòng mới để SurrealDB tự sinh, hoặc nhập <code>table:id</code>. Table <code>SCHEMALESS</code> lấy cột từ các record đã tải về.",
+                "Sửa ô chỉ cập nhật field đã đổi bằng tham số có kiểu, giữ field <code>FUTURE</code> tính toán và thay đổi từ người khác. Để trống <code>id</code> cho ID tự tạo. Cột table SCHEMALESS lấy từ record đã tải.",
                 "<filters>Bộ lọc</filters> được chuyển thành SurrealQL, và dòng SQL thô (Raw SQL) nhận một điều kiện, chẳng hạn một phép duyệt đồ thị. Điều kiện có thao tác ghi, có <code>;</code> hay comment, hoặc gọi vào <code>fn::</code> hay <code>http::</code> sẽ bị từ chối; hãy chạy nó trong editor."
             ]
         },

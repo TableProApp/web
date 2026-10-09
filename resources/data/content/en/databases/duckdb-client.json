@@ -10,8 +10,8 @@
     "engine": "duckdb",
     "breadcrumb": "DuckDB",
     "header": {
-        "title": "DuckDB client for {devices}",
-        "lead": "Open a DuckDB database file, or point at a Parquet, CSV or JSON file and query it with SQL where it sits. DuckDB runs inside the driver, so nothing runs as a server unless you connect to one."
+        "title": "DuckDB client",
+        "lead": "Open a DuckDB database or query Parquet, CSV and JSON files with SQL. No local database server is needed."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -30,17 +30,17 @@
             "id": "connect",
             "title": "Open a file",
             "paragraphs": [
-                "Choose a <code>.duckdb</code> or <code>.ddb</code> file, or type a path that does not exist yet to create one. Type <code>:memory:</code> instead for a database that lasts as long as the session. A database opens as DuckDB whatever its file name, because DuckDB marks its files in their first bytes.",
-                "Pick a <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> or <code>.ndjson</code> file and it opens as read-only views in an in-memory database, one named <code>file</code> and one named after the file. The file on disk stays byte for byte the same; to change its contents, create a table from it in a <code>.duckdb</code> database.",
-                "Double-click a <code>.duckdb</code> file in Finder to open it here. Parquet files list TablePro under Open With, and a Parquet file chosen with <ui>File > Open File</ui> opens as a DuckDB connection rather than in the <dataFiles>Data Files window</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> connects to a DuckDB server started with <code>quack_serve</code> and attaches it under an alias, such as <code>remotedb</code>; reach its tables by name through that alias. The first remote connect downloads the <code>quack</code> extension from DuckDB."
+                "Open a <code>.duckdb</code> or <code>.ddb</code> file, enter a new path to create one, or use <code>:memory:</code> for a temporary database. Files are identified by their header, not their extension.",
+                "Open Parquet, CSV, TSV, JSON or NDJSON as read-only views named <code>file</code> and after the filename. The source file is unchanged. Create a table in a DuckDB database to edit its data.",
+                "Open DuckDB files from Finder. Parquet files open as DuckDB connections with <ui>File > Open File</ui>, not in the <dataFiles>Data Files window</dataFiles>.",
+                "<ui>Remote (Quack, experimental)</ui> connects to a <code>quack_serve</code> server under an alias. The first connection downloads DuckDB’s <code>quack</code> extension."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit",
             "paragraphs": [
-                "Any connection can read a file straight from SQL, as in <code>SELECT * FROM 'data.csv'</code> or <code>read_parquet('events.parquet')</code>. <code>ATTACH</code> another DuckDB file and it joins the sidebar as a second database, and <code>⌘K</code> moves between them without reconnecting. DuckDB keeps no attachment after you reconnect.",
+                "Query files directly, such as <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> adds another DuckDB file to the sidebar; <code>⌘K</code> switches between them. Attachments do not survive reconnects.",
                 "<explain>EXPLAIN</explain> is drawn as a plan diagram. Rows in a table are edited with <editing>Preview SQL</editing> showing each statement first, while the views over a data file stay read-only."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "The <structure>Structure tab</structure> edits tables and shows the DDL before it runs. A database here is a file, so there is no creating or dropping one from the app; <code>ATTACH</code> is the way to reach a second file."
+                "The <structure>Structure tab</structure> edits tables and shows the DDL before it runs. There is no create or drop database action in the sidebar. To create a file, enter a new path when connecting; use <code>ATTACH</code> to reach a second file."
             ]
         },
         {

@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "Esquema",
-        "title": "Esquemas, comparación y sincronización"
+        "title": "Esquemas y comparación de bases de datos"
     },
     "header": {
-        "title": "Esquemas, comparación y sincronización",
-        "lead": "Para modificar estructuras y mantener dos bases alineadas. Edita tablas viendo el DDL, comprende sus relaciones, alinea staging con desarrollo o copia tablas a otro servidor o motor. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
+        "title": "Esquemas y comparación de bases de datos",
+        "lead": "Inspecciona relaciones entre tablas, cambia estructuras compatibles y compara bases antes de aplicar un script de sincronización.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Modifica la estructura; lee primero el DDL",
+            "title": "Editar la estructura de tablas",
             "paragraphs": [
-                "La pestaña Structure edita las columnas, los índices, las claves foráneas y las restricciones CHECK de una tabla en una cuadrícula. Los cambios esperan hasta que guardes, y <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) muestra las sentencias ALTER TABLE antes de ejecutar nada. Un cambio que elimina algo, cambia un tipo, añade NOT NULL o modifica la clave primaria pide confirmación primero, incluso en una conexión con el nivel de Safe Mode {macSafeModeDefault}.",
-                "Los índices pueden usar expresiones como <code>lower(email)</code>. New Table crea tablas del mismo modo, con vista previa SQL en directo. En SQLite, libSQL, Turso y Cloudflare D1, que no pueden modificar claves foráneas directamente, TablePro escribe una reconstrucción para revisar. La ejecuta al confirmar en SQLite y archivos libSQL locales, y la deja a tu cargo en Turso, libSQL remoto y D1."
+                "Edita columnas, índices, claves foráneas y restricciones CHECK en la pestaña Structure. Revisa el DDL pendiente con <ui>Preview SQL</ui>. Los cambios destructivos, de tipo, NOT NULL y de clave primaria requieren confirmación incluso en {macSafeModeDefault}.",
+                "Crea tablas con una previsualización SQL en directo. Cambiar claves foráneas en motores SQLite puede requerir reconstruir la tabla. TablePro ejecuta reconstrucciones confirmadas en SQLite y libSQL local; en Turso, libSQL remoto y Cloudflare D1 ejecutas tú el script generado."
             ],
             "engines": [
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "Comprende las relaciones entre tablas",
+            "title": "Diagrama ER",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> dibuja tablas y claves foráneas del esquema, con cardinalidad pata de gallo calculada según claves primarias y únicas. Tablas de unión como <code>product_tags</code> se reducen a una línea muchos-a-muchos. Exporta como PNG, copia como imagen o exporta SQL: sentencias CREATE TABLE con claves foráneas.",
-                "El diagrama es una instantánea para leer y compartir. Las tablas se modifican en la pestaña Structure, no en el lienzo."
+                "<ui>View ER Diagram</ui> muestra tablas y relaciones de claves foráneas con notación de pata de gallo. Exporta como PNG o SQL, o copia el diagrama como imagen.",
+                "El diagrama es de solo lectura, no un diseñador de esquemas. Haz los cambios en la pestaña Structure."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Rutinas, triggers y carpetas en la barra lateral",
+            "title": "Objetos de bases de datos",
             "paragraphs": [
-                "Bajo cada esquema se listan procedimientos, funciones y triggers si el motor los tiene; su código se abre en una pestaña de solo lectura para copiar o abrir en el editor. Redshift, CockroachDB, PGlite y SAP HANA no listan ninguno. Las particiones PostgreSQL aparecen bajo su tabla principal."
+                "Inspecciona rutinas y triggers compatibles en pestañas de código de solo lectura; copia su SQL o ábrelo en el editor. Las listas de objetos varían por motor. Las particiones PostgreSQL aparecen bajo la tabla padre."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Carpetas para tablas y vistas",
                     "paragraphs": [
-                        "Agrupa tablas y vistas arrastrándolas o mediante <ui>Move to</ui>, en la vista de lista o árbol de la barra lateral. El filtro busca dentro de carpetas. Una carpeta solo existe en TablePro y no cambia el servidor; con iCloud Sync activado, las carpetas te siguen a tus otros Mac."
+                        "Agrupa tablas y vistas arrastrando o con <ui>Move to</ui>. Las carpetas solo cambian la barra lateral, no la base, y se sincronizan entre Mac cuando iCloud Sync está activo."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Elige un origen y un destino, que pueden ser dos servidores o dos bases de datos de un mismo servidor. Compare & Sync enumera todas las tablas que difieren, con vistas, rutinas y triggers si los incluyes. En el modo de datos empareja las filas por clave y marca cada valor distinto, con un filtro y un límite de filas por tabla, para que puedas comparar una parte de una tabla grande.",
-                "El script generado se ordena por claves foráneas y se escribe para el cliente propio del destino. Las sentencias destructivas, como eliminar columnas, reducir tipos o borrar filas, se retienen hasta que las permitas para esa ejecución. Una conexión configurada como Read-Only no puede elegirse como destino. Guarda una comparación para repetirla con un clic."
+                "Compara esquemas o datos entre una base de origen y otra de destino. Incluye vistas, rutinas y triggers donde se admita. Las comparaciones de datos relacionan filas por clave, con filtros y límites por tabla.",
+                "Revisa el script de sincronización ordenado por claves foráneas. Los cambios destructivos se excluyen hasta que los permitas para esa ejecución. Las conexiones Read-Only no pueden ser destinos. Guarda comparaciones para reutilizarlas."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database y Transfer To",
+            "title": "Copiar y transferir tablas",
             "paragraphs": [
-                "Copy To envía tablas, vistas, rutinas y triggers, como estructura, datos o ambos, a otra base de datos de cualquier conexión guardada, incluso de otro motor. Antes de escribir nada, una revisión enumera el DDL, las filas que espera cada tabla y cada tipo de columna que cambia por el camino. Por ejemplo, una columna <code>ENUM</code> de MariaDB llega a PostgreSQL como <code>VARCHAR</code> sin su lista de valores permitidos. Una cláusula WHERE y un límite de filas por tabla permiten copiar solo una parte de una tabla.",
-                "Duplicate Database copia una base completa con nombre nuevo en la misma conexión. Transfer To mueve filas directamente a una tabla existente en otra conexión abierta, con correspondencia de columnas y sin archivo intermedio. Las tres son gratis."
+                "Copy To mueve objetos y datos compatibles entre bases, incluso entre motores. Revisa primero DDL, número de filas y conversiones de tipos. Las conversiones pueden perder restricciones: <code>ENUM</code> de MariaDB se convierte en <code>VARCHAR</code> de PostgreSQL sin su lista de valores permitidos.",
+                "Duplicate Database copia una base en la misma conexión. Transfer To asigna filas a una tabla existente en otra conexión sin un archivo intermedio. Estas herramientas son gratis."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles muestra los privilegios de cada usuario como árbol desde el servidor hasta una columna. Las concesiones y revocaciones esperan como cambios pendientes y muestran SQL antes de ejecutarse, sin escribir GRANT a mano."
+                        "Inspecciona privilegios desde el servidor hasta las columnas en motores compatibles. Prepara concesiones y revocaciones y revisa su SQL antes de aplicarlas."
                     ],
                     "engines": [
                         {

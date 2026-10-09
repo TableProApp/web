@@ -176,15 +176,18 @@ it('states the AGPL, the free core and priority support the way the rest of the 
     expect($en)->toContain('The AGPL places no conditions on running TablePro. They apply to distributing it, and to offering a modified version to others over a network.');
 
     // Positioning §9: the free core is scoped, and names what needs no license.
-    expect($en)->toContain('Connecting to any supported engine needs no license, and neither do the AI assistant, the MCP server or Safe Mode.');
+    expect($en)->toContain('All supported engines, AI, MCP and Safe Mode are free.')
+        ->toContain('The Mac app has no trial period or time limit.');
 
     // Spec §0: Team priority support, defined.
     expect($en)->toContain('emails from Team customers are answered first, within one business day');
     expect(json_decode((string) file_get_contents(resource_path('data/pricing.json')), true)['tiers']['team']['prioritySupport']['responseBusinessDays'])->toBe(1);
 
     // Privacy sentences positioning §12.1 allows, and nothing stronger.
-    expect($en)->toContain('With no license activated, the only request the Mac app makes to TablePro is a daily usage report');
-    expect($en)->toContain('nothing goes to TablePro unless you turn on Share Usage Data');
+    expect($en)->toContain('The Mac app sends a daily usage report by default; disable it in')
+        ->toContain('iPhone and iPad reports are opt-in.')
+        ->toContain('Team Library receives settings and saved SQL you publish.')
+        ->toContain('including IP logging.');
 });
 
 it('answers the Windows and Linux question without a promise', function (): void {

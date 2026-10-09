@@ -55,7 +55,7 @@ it('renders in English with the live release, the platform facts and the copy', 
             ->component('Download')
             ->where('locale', 'en')
             ->where('content.header.title', 'Download TablePro')
-            ->where('content.seo.title', 'Download TablePro for Mac')
+            ->where('content.seo.title', 'Download TablePro')
             ->where('release.source', 'github')
             ->where('release.version', '0.77.0')
             ->where('release.publishedAtFormatted', 'October 2, 2026')
@@ -134,7 +134,7 @@ it('server-renders the newest release post as a link that keeps its language', f
         ->querySelector('#older-versions a[href="/blog/' . $newest['slug'] . '"]');
 
     expect($link('/download')?->textContent)->toBe($newest['title']);
-    expect($link('/download')->parentElement->textContent)->toContain('The latest is ' . $newest['title'] . '.');
+    expect($link('/download')->parentElement->textContent)->toContain('Latest release post: ' . $newest['title'] . '.');
 
     // On a translated page the post is still English: marked, labelled, and at its own URL.
     $vietnamese = $link('/vi/download');
@@ -154,7 +154,7 @@ it('renders in Vietnamese with Vietnamese copy and a Vietnamese date', function 
             ->component('Download')
             ->where('locale', 'vi')
             ->where('content.header.title', 'Tải TablePro')
-            ->where('content.seo.title', 'Tải TablePro cho Mac')
+            ->where('content.seo.title', 'Tải TablePro')
             ->where('release.publishedAtFormatted', '2 tháng 10 năm 2026'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
@@ -437,7 +437,7 @@ it('server-renders no version and sends both buttons to the latest release when 
     $html = ssrHtml('/download');
 
     expect(substr_count($html, 'href="https://github.com/TableProApp/TablePro/releases/latest"'))->toBeGreaterThanOrEqual(2)
-        ->and($html)->toContain('The current release details could not be loaded.')
+        ->and($html)->toContain('Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.')
         ->not->toContain('softwareVersion')
         ->not->toContain('.dmg"');
 });

@@ -5,20 +5,20 @@
     },
     "og": {
         "kicker": "Schema",
-        "title": "Schema, confronto e sincronizzazione"
+        "title": "Confronto di schemi e database"
     },
     "header": {
-        "title": "Schema, confronto e sincronizzazione",
-        "lead": "Per cambiare la struttura di un database e mantenere allineati due database. Modifica una tabella con il DDL davanti a te, scopri le relazioni tra tabelle, allinea staging e sviluppo oppure copia tabelle su un altro server o motore. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
+        "title": "Confronto di schemi e database",
+        "lead": "Esamina le relazioni tra tabelle, modifica le strutture delle tabelle supportate e confronta i database prima di applicare uno script di sincronizzazione.",
         "docs": "/features/table-structure"
     },
     "sections": [
         {
             "id": "structure",
-            "title": "Modifica la struttura, leggi prima il DDL",
+            "title": "Modifica la struttura della tabella",
             "paragraphs": [
-                "La scheda Structure modifica colonne, indici, chiavi esterne e vincoli CHECK di una tabella in una griglia. Le modifiche attendono il salvataggio e <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) mostra le istruzioni ALTER TABLE prima di eseguire qualsiasi cosa. Una modifica che rimuove qualcosa, cambia un tipo, aggiunge NOT NULL o cambia la chiave primaria chiede prima conferma, anche su una connessione con livello Safe Mode {macSafeModeDefault}.",
-                "Gli indici possono usare chiavi basate su espressioni come <code>lower(email)</code>. New Table costruisce una tabella nello stesso modo, con anteprima SQL in tempo reale. Su SQLite, libSQL, Turso e Cloudflare D1, che non possono modificare direttamente una chiave esterna, TablePro prepara una ricostruzione della tabella da rivedere. Dopo la conferma la esegue su SQLite e su un file libSQL locale; su Turso, libSQL remoto e D1 lascia a te l’esecuzione."
+                "Modifica colonne, indici, chiavi esterne e vincoli CHECK nella scheda Structure. Controlla il DDL in attesa con <ui>Preview SQL</ui>. Modifiche distruttive, ai tipi, a NOT NULL e alle chiavi primarie richiedono conferma anche a {macSafeModeDefault}.",
+                "Crea tabelle con un'anteprima live SQL. Le modifiche alla chiave esterna sui motori della famiglia SQLite potrebbero richiedere la ricostruzione della tabella. TablePro esegue ricostruzioni confermate su SQLite e libSQL locale; su Turso, libSQL remoto e Cloudflare D1, esegui tu stesso lo script generato."
             ],
             "engines": [
                 {
@@ -34,25 +34,25 @@
         },
         {
             "id": "er-diagram",
-            "title": "Scopri le relazioni tra le tabelle",
+            "title": "Diagramma ER",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> disegna le tabelle e le chiavi esterne dello schema corrente, con cardinalità in notazione a zampa di gallina ricavata dalle chiavi primarie e univoche. Le tabelle di collegamento come <code>product_tags</code> diventano un’unica linea molti-a-molti. Esporta il diagramma come PNG, copialo come immagine oppure esportalo come SQL: le istruzioni CREATE TABLE con le relative chiavi esterne.",
-                "Il diagramma è un’istantanea da leggere e condividere. Le tabelle si modificano nella scheda Structure, non sulla tela."
+                "<ui>View ER Diagram</ui> mostra le tabelle e le relazioni di chiave esterna con la notazione a zampa di gallina. Esporta come PNG o SQL oppure copia il diagramma come immagine.",
+                "Il diagramma è di sola lettura, non è un progettista di schemi. Apporta modifiche nella scheda Structure."
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "Routine, trigger e cartelle nella barra laterale",
+            "title": "Oggetti del database",
             "paragraphs": [
-                "Sotto ogni schema, la barra laterale elenca procedure, funzioni e trigger quando il motore li prevede e apre il loro sorgente in una scheda in sola lettura da cui puoi copiare o aprire nell’editor. Redshift, CockroachDB, PGlite e SAP HANA non ne elencano. Le partizioni PostgreSQL si trovano sotto la tabella padre."
+                "Esamina le routine e i trigger supportati nelle schede sorgente di sola lettura, quindi copia i relativi SQL o aprili nell'editor. Gli elenchi degli oggetti variano in base al motore. Le partizioni PostgreSQL vengono visualizzate sotto la tabella principale."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Cartelle per tabelle e viste",
                     "paragraphs": [
-                        "Raggruppa tabelle e viste in cartelle trascinandole o usando <ui>Move to</ui>, nella vista a elenco o ad albero della barra laterale. Il campo filtro cerca anche nelle cartelle. Una cartella esiste solo in TablePro e non cambia nulla sul server; con iCloud Sync attivo, le cartelle ti seguono sugli altri Mac."
+                        "Raggruppa tabelle e viste con il trascinamento o <ui>Move to</ui>. Le cartelle modificano solo la barra laterale, non il database, e si sincronizzano tra Mac quando iCloud Sync è abilitato."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Scegli origine e destinazione, che possono essere due server o due database sullo stesso server. Compare & Sync elenca tutte le tabelle diverse, con viste, routine e trigger se li includi. In modalità dati abbina le righe per chiave e contrassegna ogni valore diverso, con un filtro e un limite di righe per tabella, così puoi confrontare una porzione di una grande tabella.",
-                "Lo script generato è ordinato per chiavi esterne e scritto per il client della destinazione. Le istruzioni che distruggono dati, come eliminare colonne, restringere tipi o cancellare righe, restano escluse finché non le autorizzi per quell’esecuzione. Una connessione impostata su Read-Only non può essere scelta come destinazione. Salva un confronto per rieseguirlo con un clic."
+                "Confrontare schema o dati tra un database di origine e di destinazione. Includi visualizzazioni, routine e trigger, ove supportato. I confronti dei dati abbinano le righe per chiave, con filtri e limiti di riga per ogni tabella.",
+                "Esamina uno script di sincronizzazione generato ordinato per chiavi esterne. Le modifiche distruttive rimangono escluse finché non le consenti per quell'esecuzione. Le connessioni Read-Only non possono essere destinazioni. Salva i confronti per il riutilizzo."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copy To, Duplicate Database e Transfer To",
+            "title": "Copia e trasferisci tabelle",
             "paragraphs": [
-                "Copy To invia tabelle, viste, routine e trigger, come struttura, dati o entrambi, a un altro database su qualsiasi connessione salvata, anche con un motore diverso. Prima di ogni scrittura, una revisione elenca il DDL, le righe previste per ogni tabella e tutti i tipi di colonna modificati durante il trasferimento. Una colonna <code>ENUM</code> di MariaDB, per esempio, arriva in PostgreSQL come <code>VARCHAR</code> senza l’elenco dei valori consentiti. Una clausola WHERE e un limite di righe per tabella permettono di copiarne solo una parte.",
-                "Duplicate Database copia un intero database con un nuovo nome sulla stessa connessione. Transfer To sposta le righe direttamente in una tabella esistente su un’altra connessione aperta, con una mappatura delle colonne e senza file intermedi. Tutti e tre sono gratuiti."
+                "Copy To sposta gli oggetti e i dati supportati tra database, anche tra motori. Esamina prima il DDL, il conteggio delle righe e le conversioni dei tipi. Le conversioni possono perdere i vincoli: MariaDB <code>ENUM</code> diventa PostgreSQL <code>VARCHAR</code> senza l'elenco dei valori consentiti.",
+                "Duplicate Database copia un database sulla stessa connessione. Transfer To associa le righe a una tabella esistente su un’altra connessione, senza file intermedi. Questi strumenti sono gratuiti."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -90,7 +90,7 @@
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles mostra i privilegi di ogni utente come un albero, dal server fino alla singola colonna. Concessioni e revoche restano come modifiche in attesa e mostrano l’SQL prima dell’esecuzione, quindi non devi scrivere GRANT a mano."
+                        "Esamina i privilegi dal server fino alle colonne sui motori supportati. Prepara le concessioni e le revoche, poi controlla il SQL prima di applicarle."
                     ],
                     "engines": [
                         {

@@ -10,8 +10,8 @@
     "engine": "redshift",
     "breadcrumb": "Amazon Redshift",
     "header": {
-        "title": "Klien Amazon Redshift untuk {devices}",
-        "lead": "Kueri cluster yang diprovisikan atau workgroup Serverless melalui driver PostgreSQL bawaan aplikasi, baca gaya distribusi dan kunci pengurutan tabel, serta telusuri skema Spectrum dan datashare di samping skema Anda."
+        "title": "Klien Amazon Redshift",
+        "lead": "Kueri cluster terprovisi atau workgroup Serverless. Periksa sort key, gaya distribusi, dan skema eksternal."
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Gunakan endpoint cluster sebagai host, atau endpoint workgroup pada Redshift Serverless; keduanya menggunakan port yang sama. Database wajib diisi, dan setiap cluster dibuat dengan database bernama <code>dev</code>. Mengimpor URL <code>redshift://</code> mengisi formulir.",
+                "Masukkan endpoint, port, dan database cluster atau workgroup Serverless. Cluster dimulai dengan <code>dev</code>. URL <code>redshift://</code> mengisi formulir.",
                 "Koneksi baru menetapkan SSL ke Preferred, dan tidak ada pemeriksaan versi, sehingga setiap cluster yang masih dijalankan AWS dapat terhubung. Kata sandi disimpan di Rantai Kunci atau dibaca dari <code>~/.pgpass</code>, dua dari <credentials>opsi kredensial</credentials> koneksi. Cluster yang tidak dapat diakses publik diakses melalui <network>tunnel SSH</network> ke bastion host di VPC-nya."
             ]
         },
@@ -40,9 +40,9 @@
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
                 "Kueri dan <editing>perubahan baris tertunda dengan Preview SQL</editing> bekerja seperti pada <postgresql>PostgreSQL</postgresql>, melalui driver yang sama. Tab yang terkait dengan database selain yang aktif membuka koneksi kedua untuk database itu.",
-                "Informasi tabel membaca <code>svv_table_info</code> untuk gaya distribusi, kunci pengurutan, dan ukuran setiap tabel, dan tab DDL menyertakan DISTKEY, SORTKEY, DISTSTYLE, serta ENCODE. Foreign key tercantum, tetapi Redshift tidak menegakkannya, sehingga tidak ada yang mencegah baris yang melanggar foreign key.",
+                "Periksa gaya distribusi, kunci pengurutan, dan ukuran dari <code>svv_table_info</code>. DDL mencakup DISTKEY, SORTKEY, DISTSTYLE dan ENCODE. Kunci asing terdaftar tetapi tidak diterapkan oleh Redshift.",
                 "<explain>EXPLAIN dan EXPLAIN VERBOSE</explain> mengembalikan rencana Redshift sebagai teks, bukan diagram.",
-                "Skema yang dibuat menggunakan <code>CREATE EXTERNAL SCHEMA</code>, baik Spectrum di atas S3, kueri terfederasi, referensi lintas database, maupun datashare, ditampilkan di samping skema Anda dan ditandai External. Tabelnya dapat ditelusuri, difilter, diurutkan, dan diekspor seperti biasa, tetapi hanya baca karena Redshift tidak menerima UPDATE atau DELETE pada tabel tersebut. Jumlah baris tidak ditampilkan, dan jenis kolom dibaca sesuai laporan katalog eksternal."
+                "Jelajahi skema Spectrum eksternal, federasi, lintas database, dan berbagi data di samping skema lokal. Tabel eksternal mendukung pemfilteran, pengurutan, dan ekspor tetapi bersifat hanya baca. Jumlah baris tidak tersedia; jenis berasal dari katalog eksternal."
             ]
         },
         {

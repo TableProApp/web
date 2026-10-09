@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Postico：專注 PostgreSQL 或支援多種引擎",
+        "title": "TablePro 與 Postico：PostgreSQL 工具與授權",
         "description": "Postico 2 是一次性授權的 PostgreSQL Mac App。TablePro 支援 PostgreSQL 及其他引擎。比較價格、伺服器工具、同步和設定。"
     },
     "og": {
@@ -9,20 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Postico",
-        "lead": "Postico 2 是面向 PostgreSQL 及使用其通訊協定資料庫的 Mac App，出售一次性授權。TablePro 是 PostgreSQL 及其他引擎的開放原始碼用戶端，有獨立 iPhone、iPad App 及 Mac 選用付費功能。"
+        "lead": "Postico 專注於 PostgreSQL 和使用其協定的資料庫。 TablePro 連線到 PostgreSQL 和其他資料庫類型。比較他們的查詢工具、伺服器工具和授權。"
     },
     "shortAnswer": {
         "tablepro": [
-            "除 PostgreSQL，也使用 MySQL、SQL Server、SQLite、Redis 或 MongoDB。",
-            "也管理伺服器。Users & Roles、可終止工作階段的 Server Dashboard、VACUUM、pg_dump 備份在 Mac App 免費。",
-            "調校查詢。EXPLAIN 圖示計畫，EXPLAIN Compare 對照基準檢查新計畫。",
-            "希望免費 iPhone、iPad App 連線 PostgreSQL。",
-            "希望免費使用 AI 助理和 MCP 伺服器。"
+            "PostgreSQL 以及其他資料庫類型。",
+            "免費角色、工作階段、VACUUM 和 pg_dump 工具。",
+            "EXPLAIN 圖與基準比較。"
         ],
         "competitor": [
-            "僅用 PostgreSQL、Redshift、CockroachDB 或 Greenplum，希望 App 專為此工作打造。",
-            "希望 Mac App Store 版本，或個人、商用、團隊、學生定價的授權。",
-            "希望透過 iCloud 或 Dropbox 同步伺服器設定。"
+            "PostgreSQL 相容資料庫的集中用戶端，包括 Greenplum。",
+            "Mac App Store 副本或一次性授權。",
+            "透過 iCloud 或 Dropbox 同步伺服器設定。"
         ]
     },
     "glance": {
@@ -100,7 +98,7 @@
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>iCloud Sync</link> 在 Mac、iPhone、iPad 間保持連線同步，Mac 屬於 Starter，iPhone、iPad App 免費。",
+                "text": "<link>iCloud Sync</link> 同步 Mac、iPhone 與 iPad 之間的連線。它需要 Mac 上的 Starter，並且在 iPhone 和 iPad 上免費。",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -135,7 +133,7 @@
                 "href": null
             },
             {
-                "text": "Postico 2 僅出售一次性授權。TablePro 月付、年付結束會鎖定付費功能，其餘 App 仍運作；Starter、Team 也有無到期日的一次性購買。",
+                "text": "Postico 2 僅作為一次性授權出售。 TablePro 提供訂閱和一次性購買。訂閱結束時會鎖定付費功能；免費應用程式繼續運作。 一次性 購買不會過期。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -170,12 +168,6 @@
             "question": "可以在 TablePro 管理角色和工作階段嗎？",
             "answer": "可以，Mac App 免費。Users & Roles 先顯示 SQL 再授予撤銷權限，Server Dashboard 列出工作階段並可終止。<link>了解伺服器工具</link>。",
             "href": "/features/schema#administer"
-        },
-        {
-            "id": "license",
-            "question": "用 TablePro 連線 PostgreSQL 需要授權嗎？",
-            "answer": "不需要。PostgreSQL 和所有支援引擎、AI 助理、MCP 伺服器免費。Starter 或 Team 為 Mac 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
-            "href": "/pricing"
         }
     ],
     "notes": {

@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "{devices}용 Teradata 클라이언트",
-        "lead": "TD2나 TDNEGO로 로그인하고 데이터베이스·사용자의 테이블, 뷰, 프로시저와 매크로를 탐색하며 네이티브 Swift 드라이버로 쿼리·편집합니다. Teradata 클라이언트 소프트웨어 설치는 필요 없습니다."
+        "title": "Teradata 클라이언트",
+        "lead": "별도의 클라이언트 소프트웨어 없이 Teradata를 조회하고 편집하세요. 데이터베이스, 사용자, 프로시저, 매크로를 살펴볼 수 있습니다."
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "연결 및 로그온",
             "paragraphs": [
-                "호스트, 사용자 이름과 비밀번호를 입력합니다. TD2 로그온을 받는 Vantage는 모두 작동하며 버전은 검사하지 않습니다. Options의 <ui>Logon Mechanism</ui>은 <code>TD2</code>나 <code>TDNEGO</code>를 받고 <ui>데이터베이스</ui>(Database)는 계정 기본값과 다를 때만 필요합니다.",
+                "호스트, 사용자 이름, 암호를 입력하세요. <ui>Logon Mechanism</ui>에서 <code>TD2</code> 또는 <code>TDNEGO</code>를 선택합니다. <ui>데이터베이스</ui> (Database)는 계정 기본값을 재정의합니다. TD2를 받는 Vantage 서버는 버전 확인 없이 지원합니다.",
                 "기본 포트는 평문 세션입니다. SSL 모드는 변경 불가능한 443 포트의 게이트웨이 WebSocket으로 이동합니다. Verify CA는 CA 인증서가 필요하며 Verify Identity는 해당 인증서나 없으면 시스템 신뢰 저장소로 체인·호스트 이름을 검사합니다.",
                 "스크립트에 ANSI·TERA 커밋 규칙과 세션 대소문자 구분이 필요하지 않으면 <ui>Transaction Mode</ui>를 <code>DEFAULT</code>로 두세요. 배스천 뒤는 <network>SSH 터널</network>로 연결합니다. <ui>URL에서 가져오기…</ui>(Import from URL…)는 <code>teradata://</code>를 받지만 macOS는 링크로 열지 않습니다."
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "쿼리 및 편집",
             "paragraphs": [
-                "Teradata에서 데이터베이스와 사용자 모두 네임스페이스이므로 사이드바 상단에 테이블·뷰와 함께 표시됩니다. 다른 데이터베이스 탭도 같은 세션을 유지하고 명령문 앞에 <code>DATABASE</code>를 실행합니다.",
+                "데이터베이스와 사용자를 네임스페이스로 살펴보세요. 다른 데이터베이스의 탭은 세션을 공유하며 구문 전에 <code>DATABASE</code>를 실행합니다.",
                 "저장 프로시저는 사이드바에, 매크로는 Functions 아래에 나열되고 각각 <objects>소스를 읽기 전용 탭</objects>으로 엽니다.",
                 "Teradata에는 <code>LIMIT</code>이 없어 첫 페이지는 <code>TOP</code>, 뒤 페이지는 <code>QUALIFY ROW_NUMBER()</code>를 씁니다. <explain>EXPLAIN</explain>은 원시 텍스트 계획을 반환합니다. 행 편집은 저장까지 대기하며 <editing>Preview SQL</editing>이 먼저 보여 줍니다."
             ]

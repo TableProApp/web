@@ -10,8 +10,8 @@
     "engine": "turso",
     "breadcrumb": "Turso e libSQL",
     "header": {
-        "title": "Cliente de Turso e libSQL para {devices}",
-        "lead": "Conecte a um banco Turso com sua URL e um token, consulte-o com sintaxe SQLite e altere tabelas, índices e triggers. O mesmo driver abre servidores sqld hospedados por você e arquivos libSQL no Mac."
+        "title": "Cliente de Turso e libSQL",
+        "lead": "Conecte-se a um banco de dados Turso com seu URL e token. Navegue pelas tabelas e execute consultas SQLite ou abra um arquivo libSQL local."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Conecte ao Turso",
             "paragraphs": [
-                "Escolha Turso na lista de tipos de conexão e deixe <ui>Connection Mode</ui> em <ui>Remote (Turso)</ui>. Cole a URL HTTPS do banco, que termina em <code>.turso.io</code>, e coloque um token no campo <ui>API Token</ui>, armazenado nas Chaves do macOS. O painel do Turso mostra ambos, assim como <code>turso db show my-db --url</code> e <code>turso db tokens create my-db</code>.",
-                "Uma URL <code>libsql://</code> é convertida para HTTPS, e importá-la cria uma conexão remota. Não há campos de host, porta ou banco, pois a URL identifica um banco. A conexão é criptografada quando a URL usa HTTPS em vez de HTTP sem criptografia, e não há túnel SSH."
+                "Escolha <ui>Remote (Turso)</ui> em <ui>Connection Mode</ui>. Cole o URL HTTPS do banco de dados e um <ui>API Token</ui>, armazenado no macOS Keychain. Obtenha ambos no painel Turso ou CLI.",
+                "URLs <code>libsql://</code> importados tornam-se conexões remotas HTTPS. Cada URL nomeia um banco de dados. URLs HTTP simples não são criptografados; Os túneis SSH não estão disponíveis."
             ]
         },
         {
@@ -46,7 +46,7 @@
             "title": "Tabelas, índices e triggers",
             "paragraphs": [
                 "A <structure>aba Structure</structure> cria tabelas, adiciona e remove colunas e índices, e cria, edita e remove triggers. Tabelas, mas não views, podem ser renomeadas pela barra lateral.",
-                "Para reordenar colunas ou alterar uma chave estrangeira em um banco remoto, TablePro escreve o script de reconstrução para você ler e executar. Ele não pode executá-lo por você, pois a reconstrução exigiria uma transação que abrangesse requisições HTTP separadas."
+                "Reordenações remotas de colunas e alterações de chave estrangeira produzem um script de reconstrução para você revisar e executar. TablePro não pode executá-lo como uma transação em solicitações HTTP separadas."
             ]
         },
         {

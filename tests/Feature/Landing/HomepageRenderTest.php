@@ -83,7 +83,7 @@ describe('props and copy', function (): void {
             ->assertInertia(fn(AssertableInertia $page) => $page
                 ->component('Home')
                 ->where('locale', 'en')
-                ->where('content.hero.title', 'A native database client for developers.')
+                ->where('content.hero.title', 'A native database client.')
                 ->where('content.seo.title', 'TablePro: native database client for {deviceList}')
                 ->where('checkout.provider', fn(string $provider): bool => in_array($provider, ['polar', 'lemonsqueezy'], true))
                 ->has('checkout.couponField')
@@ -104,7 +104,7 @@ describe('props and copy', function (): void {
             ->assertInertia(fn(AssertableInertia $page) => $page
                 ->component('Home')
                 ->where('locale', 'vi')
-                ->where('content.hero.title', 'Database client native dành cho lập trình viên.')
+                ->where('content.hero.title', 'Database client native.')
                 ->where('content.seo.title', 'TablePro: database client native cho {deviceList}'));
 
         expect($response->getContent())->toContain('<html lang="vi"');
@@ -258,16 +258,18 @@ describe('props and copy', function (): void {
         $vi = homeContent('vi');
 
         // Connection colours, Touch ID and the always-ask rule are Mac behaviour; iOS 1.0 at Off runs a DROP without asking.
-        expect($en['safety']['body'][0])->toStartWith('On the Mac,')->toContain('On iPhone and iPad, Confirm Writes');
-        expect($vi['safety']['body'][0])->toStartWith('Trên Mac,')->toContain('Trên iPhone và iPad, Confirm Writes');
+        expect($en['safety']['body'][0])->toContain('On the Mac, Alert', 'Silent is the default', 'DELETE without WHERE always ask');
+        expect($en['safety']['body'][1])->toContain('On iPhone and iPad, Confirm Writes');
+        expect($vi['safety']['body'][0])->toContain('Trên Mac, Alert');
+        expect($vi['safety']['body'][1])->toContain('Trên iPhone và iPad, Confirm Writes');
 
         // The Agent mode floor applies to the connection open in Agent mode, not to every connection.
-        expect($en['safety']['body'][1])->toContain('While a connection is open in Agent mode')->not->toContain('every connection');
+        expect($en['ai']['body'][1])->toContain('Full-window Agent mode uses Alert or stricter')->not->toContain('every connection');
         expect($vi['safety']['body'][1])->not->toContain('mọi connection');
 
         // Read-Only refuses AI writes instead of waiting for Run.
-        expect($en['ai']['body'][1])->toContain('Read-Only refuses');
-        expect($vi['ai']['body'][1])->toContain('Read-Only từ chối');
+        expect($en['safety']['body'][1])->toContain('Read-Only refuses writes');
+        expect($vi['safety']['body'][1])->toContain('Read-Only từ chối');
 
         expect($en['switch']['lead'])->toContain('{macApp} only');
         expect($vi['switch']['lead'])->toContain('chỉ có trong {macApp}');
@@ -277,7 +279,7 @@ describe('props and copy', function (): void {
         $en = homeContent('en')['hero'];
 
         // The app is Swift with AppKit and SwiftUI on the Mac; it ships no Electron shell and no Java runtime.
-        expect($en['native'])->toContain('written in Swift')->toContain('AppKit and SwiftUI on the Mac')->toContain('No Electron, no Java runtime');
+        expect($en['native'])->toContain('native interfaces', 'not Electron or a Java runtime');
         expect(preg_match('/\b(Windows|Linux)\b|\d/', $en['native']))->toBe(0, 'The native line names an unreleased platform or a number');
         // The subtitle stays one sentence about what the app does.
         expect(substr_count($en['subtitle'], '. '))->toBe(0, 'The subtitle grew a second sentence');
@@ -285,7 +287,7 @@ describe('props and copy', function (): void {
         foreach (Locales::codes() as $locale) {
             $hero = homeContent($locale)['hero'];
 
-            foreach (['Swift', 'AppKit', 'SwiftUI', 'Electron', 'Java'] as $name) {
+            foreach (['Electron', 'Java'] as $name) {
                 expect($hero['native'])->toContain($name);
             }
 
@@ -297,13 +299,13 @@ describe('props and copy', function (): void {
         $en = homeContent('en');
 
         // The level names are the app's; the sentence says what each kind does before any later section relies on them.
-        foreach (['Silent runs statements as written', 'Alert asks before a write', 'Read-Only refuses writes'] as $gloss) {
-            expect($en['safety']['body'][0])->toContain($gloss);
+        foreach (['Silent is the default', 'Alert asks before writes', 'Read-Only refuses writes'] as $gloss) {
+            expect(implode(' ', $en['safety']['body']))->toContain($gloss);
         }
 
-        $agent = $en['safety']['body'][1];
-        $explained = strpos($agent, 'In Agent mode the AI assistant can run statements');
-        $used = strpos($agent, 'While a connection is open in Agent mode');
+        $agent = $en['ai']['body'][1];
+        $explained = strpos($agent, 'Edit and Agent can run statements');
+        $used = strpos($agent, 'Full-window Agent mode uses Alert or stricter');
 
         expect($explained)->not->toBeFalse('Agent mode is used without saying what it is');
         expect($used)->not->toBeFalse();
@@ -324,11 +326,40 @@ describe('props and copy', function (): void {
             expect(preg_replace('/[.。]$/u', '', $home))->toBe($hub, "content/{$locale}: the homepage and the features hub mark paid features differently");
         }
 
-        expect(homeContent('en')['workflows']['paid'])->toBe('{tier} plan: {features}.');
+        expect(homeContent('en')['workflows']['paid'])->toBe('Optional paid features: {features} ({tier}).');
     });
+
+    it('does not add unrelated paid inventories to free workflows in any locale', function (string $locale): void {
+        $document = Dom\HTMLDocument::createFromString(ssrHome(LocalizedUrl::path('/', $locale)), LIBXML_NOERROR);
+
+        foreach (['query', 'connect'] as $id) {
+            $row = $document->getElementById('features-' . $id);
+            expect($row)->not->toBeNull();
+            foreach (['Optional paid features:', 'Query Insights', 'Result Charts', 'Environment Variables'] as $paidPhrase) {
+                expect($row->parentElement->textContent)->not->toContain($paidPhrase);
+            }
+        }
+
+        expect($document->getElementById('features-schema')->parentElement->textContent)->toContain('Compare & Sync');
+        expect($document->getElementById('safety')->textContent)->not->toContain('Data Rewind');
+    })->with(array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true, 512, JSON_THROW_ON_ERROR)['supported']));
 
     it('names the paid $VAR references next to the free password sources, and does not say every dump tool needs installing', function (string $locale): void {
         $rows = collect(homeContent($locale)['workflows']['rows'])->keyBy('id');
+
+        if (in_array($locale, ['en', 'vi'], true)) {
+            // English now links to the full feature descriptions rather than
+            // repeating every credential and backup option on the homepage.
+            $connections = json_encode(homeData("content/{$locale}/features/connections.json"), JSON_UNESCAPED_UNICODE);
+            $files = json_encode(homeData("content/{$locale}/features/import-export.json"), JSON_UNESCAPED_UNICODE);
+            expect($connections)->toContain('$DB_HOST', 'environment-variables');
+            expect($files)->toContain('DuckDB');
+            expect($connections)->toContain($locale === 'en' ? 'free sources' : 'mật khẩu có nguồn riêng, miễn phí');
+            expect($files)->toContain($locale === 'en' ? 'except for DuckDB' : 'trừ DuckDB');
+            expect($rows['files']['body'])->toContain('{importFormats}', '{exportFormats}');
+
+            return;
+        }
 
         // The `env` password source is free; only `$VAR` references are Starter (PasswordSourceResolver and EnvVarResolver at v0.77.0).
         expect($rows['connect']['body'])->toContain('<code>$VAR</code>');
@@ -445,13 +476,13 @@ describe('server-rendered', function (): void {
         'English' => ['/', 'en', [
             'and' => ' and ',
             'starter' => 'Adds features such as {examples} to the Mac app.',
-            'person' => 'One license for one person, on up to {macs} Macs.',
+            'person' => 'One person, up to {macs} Macs.',
             'refund' => 'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ], '$%s', '.'],
         'Vietnamese' => ['/vi', 'vi', [
             'and' => ' và ',
             'starter' => 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
-            'person' => 'Một license cho một người, dùng trên tối đa {macs} máy Mac.',
+            'person' => 'Một người, tối đa {macs} máy Mac.',
             'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.',
         ], "%s\u{a0}US$", ','],
     ]);
@@ -490,13 +521,13 @@ describe('server-rendered', function (): void {
         $text = static fn(string $path): string => str_replace("\u{00A0}", ' ', ssrHome($path));
 
         expect($text('/'))
-            ->toContain('A native database client for developers.')
+            ->toContain('A native database client.')
             ->toContain('macOS 13 Ventura or later · Apple silicon or Intel')
             ->toContain('iPhone and iPad · iOS and iPadOS 18 or later')
             ->toContain('Download for Mac');
 
         expect($text('/vi'))
-            ->toContain('Database client native dành cho lập trình viên.')
+            ->toContain('Database client native.')
             ->toContain('macOS 13 Ventura trở lên · Apple silicon hoặc Intel')
             ->toContain('iPhone và iPad · iOS và iPadOS 18 trở lên')
             ->toContain('Tải về cho Mac');
@@ -670,9 +701,8 @@ describe('server-rendered', function (): void {
         expect(strip_tags($section))->toContain((string) $engines->count());
     })->with([['/', 'en'], ['/vi', 'vi']]);
 
-    it('keeps a hyphenated compound of the databases heading on one line', function (): void {
-        // "key-" / "value" broke across two lines at 390px.
-        expect(ssrHome('/'))->toMatch('#<h2 id="databases-title"[^>]*>[^<]*<span class="whitespace-nowrap">key-value</span>#');
+    it('renders the concise supported-databases heading', function (): void {
+        expect(ssrHome('/'))->toMatch('#<h2 id="databases-title"[^>]*>Supported databases</h2>#');
     });
 
     it('puts what native means under the hero actions, outside the headline', function (string $path, string $locale): void {

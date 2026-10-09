@@ -7,6 +7,6 @@ return [
         'database' => '数据库',
         'feature' => '功能',
     ],
-    'author' => 'TablePro 团队',
+    'author' => 'TablePro',
     'byline' => ':author · :date',
 ];

@@ -81,6 +81,63 @@ function slotNames(string $text): array
     return $names;
 }
 
+/** [type, slots, inline code, tags], without pinning editorial wording. */
+function contentInlineContract(mixed $value, string $key = ''): array
+{
+    if (! is_string($value)) {
+        return [get_debug_type($value), [], [], []];
+    }
+
+    preg_match_all('/`[^`]*`/', $value, $code);
+    sort($code[0]);
+    preg_match_all('/<\/?[a-z]+>/', $value, $tags);
+    $names = array_values(array_unique($tags[0]));
+    sort($names);
+
+    $contract = ['string', slotNames($value), $code[0], $names];
+    $identifier = preg_match('/(^|\.)(id|asset|anchor|feature|cite|slug|icon|engine|product)(\.\d+)?$/', $key) === 1
+        && preg_match('/^[a-z][A-Za-z0-9._:\/#@+-]*$/', $value) === 1;
+    $link = preg_match('/(^|\.)(href|url|docs|src|path)(\.\d+)?$/', $key) === 1
+        && preg_match('~^(?:https?://|mailto:|/|#)~', $value) === 1;
+    $displayLabel = preg_match('/(^|\.)(labels|columns|headers)\./', $key) === 1;
+    if (! $displayLabel && ($identifier || $link)) {
+        $contract[] = preg_replace('/locale=[a-zA-Z-]+/', 'locale={locale}', $value);
+    }
+
+    return $contract;
+}
+
+it('keeps inline contracts sensitive to slots, markup and technical identifiers', function (): void {
+    expect(contentInlineContract('Use <ui>Open</ui> for {name}.'))
+        ->toBe(['string', ['name'], [], ['</ui>', '<ui>']]);
+    expect(contentInlineContract('cells.databases', 'sections.0.cite.0'))
+        ->not->toBe(contentInlineContract('prices', 'sections.0.cite.0'));
+    expect(contentInlineContract('/account?locale=vi', 'href'))
+        ->toBe(contentInlineContract('/account?locale=en', 'href'));
+    expect(contentInlineContract(null))->not->toBe(contentInlineContract([]));
+});
+
+it('keeps English inline markup balanced during its review', function (): void {
+    foreach (contentTree('en') as $file) {
+        foreach (comparableShape(contentJson('en', $file)) as $key => $value) {
+            if (! is_string($value)) {
+                continue;
+            }
+
+            preg_match_all('/<\/?[a-z]+>/', $value, $tags);
+            $stack = [];
+            foreach ($tags[0] as $tag) {
+                if (str_starts_with($tag, '</')) {
+                    expect(array_pop($stack))->toBe(str_replace('</', '<', $tag), "en/{$file}.{$key}: mismatched markup");
+                } else {
+                    $stack[] = $tag;
+                }
+            }
+            expect($stack)->toBe([], "en/{$file}.{$key}: unclosed markup");
+        }
+    }
+});
+
 /**
  * Every asset id a content file references, in document order.
  *
@@ -217,32 +274,17 @@ it('gives every translated content file the same keys, slots, markup and assets'
             $target = contentJson($locale, $file);
             $english = comparableShape($source);
             $translated = comparableShape($target);
-            expect(array_keys($translated))->toBe(array_keys($english), "{$locale}/{$file}: different keys");
+            $expectedKeys = array_keys($english);
+            $actualKeys = array_keys($translated);
+            sort($expectedKeys);
+            sort($actualKeys);
+            expect($actualKeys)->toBe($expectedKeys, "{$locale}/{$file}: different keys");
             foreach ($english as $key => $value) {
-                expect(get_debug_type($translated[$key]))->toBe(get_debug_type($value), "{$locale}/{$file}.{$key}: different type");
-                if (is_string($value)) {
-                    expect(slotNames($translated[$key]))->toBe(slotNames($value), "{$locale}/{$file}.{$key}: different slots");
-                    preg_match_all('/`[^`]*`/', $value, $sourceCode);
-                    preg_match_all('/`[^`]*`/', $translated[$key], $targetCode);
-                    sort($sourceCode[0]);
-                    sort($targetCode[0]);
-                    expect($targetCode[0])->toBe($sourceCode[0], "{$locale}/{$file}.{$key}: changed inline code");
-                    $displayLabel = preg_match('/(^|\.)(labels|columns|headers)\./', $key) === 1;
-                    $identifier = preg_match('/(^|\.)(id|asset|anchor|feature|cite|slug|icon|engine|product)(\.\d+)?$/', $key) === 1
-                        && preg_match('/^[a-z][a-z0-9-]*$/', $value) === 1;
-                    $link = preg_match('/(^|\.)(href|url|docs|src|path)(\.\d+)?$/', $key) === 1
-                        && preg_match('~^(?:https?://|mailto:|/|#)~', $value) === 1;
-                    if (! $displayLabel && ($identifier || $link)) {
-                        $expected = $value === '/account?locale=en' ? '/account?locale=' . $locale : $value;
-                        expect($translated[$key])->toBe($expected, "{$locale}/{$file}.{$key}: changed technical identifier or link");
-                    }
-                    preg_match_all('/<\/?[a-z]+>/', $value, $sourceTags);
+                $contract = contentInlineContract($value, $key);
+                expect(contentInlineContract($translated[$key], $key))->toBe($contract, "{$locale}/{$file}.{$key}: different type, slots, code, tags or identifier");
+                $value = $contract[4] ?? $value;
+                if (is_string($value) && $contract[0] === 'string') {
                     preg_match_all('/<\/?[a-z]+>/', $translated[$key], $targetTags);
-                    $sourceNames = array_values(array_unique($sourceTags[0]));
-                    $targetNames = array_values(array_unique($targetTags[0]));
-                    sort($sourceNames);
-                    sort($targetNames);
-                    expect($targetNames)->toBe($sourceNames, "{$locale}/{$file}.{$key}: different inline tags");
                     $stack = [];
                     foreach ($targetTags[0] as $tag) {
                         if (str_starts_with($tag, '</')) {
@@ -559,6 +601,7 @@ it('ships native prose and NFC source text in every added language', function (s
         $english = Arr::dot(contentJson('en', $file));
         $translated = Arr::dot(contentJson($locale, $file));
         foreach ($english as $key => $line) {
+            expect(array_key_exists($key, $translated))->toBeTrue("{$locale}/{$file}.{$key}: missing translation");
             if (! is_string($line) || untranslatedIsNeutral((string) $key, $line)) {
                 continue;
             }

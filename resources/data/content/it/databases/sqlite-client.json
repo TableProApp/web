@@ -10,8 +10,8 @@
     "engine": "sqlite",
     "breadcrumb": "SQLite",
     "header": {
-        "title": "Client SQLite per {devices}",
-        "lead": "Apri un file di database dal Finder, trascinandolo o da un server SSH, interrogalo con SQLite incluso nell’app e modificane la struttura tramite script di ricostruzione da verificare prima dell’esecuzione."
+        "title": "Client SQLite",
+        "lead": "Apri un file SQLite, esegui SQL e controlla le sue tabelle. Esamina le modifiche alla struttura prima di applicarle."
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -30,9 +30,9 @@
             "id": "connect",
             "title": "Apri un file di database",
             "paragraphs": [
-                "Scegli un file nel modulo di connessione oppure trascinalo su una finestra di TablePro o sull’icona nel Dock. Un percorso verso un file non ancora esistente lo crea alla connessione. Un file si apre come SQLite quando i primi byte indicano <code>SQLite format 3</code>, indipendentemente dal nome.",
-                "Il Finder elenca TablePro sotto Apri con per file .db, .sqlite, .sqlite3 e simili. Un database in una cartella protetta da macOS, come Messaggi o la cronologia di Safari, richiede prima Accesso completo al disco (Full Disk Access) e di solito è necessario chiudere l’app a cui appartiene.",
-                "Un database su un altro computer si apre dal <remoteFiles>pannello Remote File</remoteFiles>. On the Server esegue le istruzioni sul file attivo tramite SSH, senza installare nulla sull’host oltre a <code>python3</code>. As a Read-Only Copy scarica un’istantanea tramite SFTP e la apre in sola lettura.",
+                "Scegli un file o trascinalo su TablePro. Un nuovo percorso crea un database al momento della connessione. I file SQLite sono identificati dall'intestazione <code>SQLite format 3</code>, non dalla loro estensione.",
+                "Apri file .db, .sqlite e .sqlite3 dal Finder. Le cartelle protette, come Messaggi o Cronologia di Safari, necessitano dell'accesso completo al disco; potrebbe anche essere necessario chiudere l'app proprietaria.",
+                "Apri un database remoto nel <remoteFiles>pannello Remote File</remoteFiles>. On the Server interroga il file remoto via SSH e richiede <code>python3</code>. As a Read-Only Copy scarica un’istantanea tramite SFTP.",
                 "Per esplorare prima, scegli Help > Open Sample Database. Apre Chinook, un piccolo esempio di negozio di musica digitale incluso nell’app."
             ]
         },
@@ -40,8 +40,8 @@
             "id": "work",
             "title": "Esegui query e modifica",
             "paragraphs": [
-                "Il driver include una propria versione di SQLite, quindi l’SQL viene eseguito sulla stessa versione qualunque sia il tuo macOS. <explain>EXPLAIN QUERY PLAN</explain> viene rappresentato come diagramma.",
-                "Carica estensioni come sqlite-vec e SpatiaLite per ogni connessione, nell’ordine in cui le elenchi: le loro funzioni e tabelle virtuali funzionano nell’editor, nella barra laterale e nella scheda Structure. La funzione SQL <code>load_extension()</code> resta vietata e un elenco ricevuto tramite sincronizzazione, connessione importata o link non carica nulla finché non lo approvi.",
+                "Il driver include SQLite, indipendentemente dalla versione macOS. Visualizza <explain>EXPLAIN QUERY PLAN</explain> come diagramma.",
+                "Carica estensioni per connessione come sqlite-vec o SpatiaLite. Gli elenchi di estensioni importati, sincronizzati o collegati richiedono l'approvazione prima del caricamento. La funzione <code>load_extension()</code> SQL è bloccata.",
                 "Le modifiche alle righe restano in attesa del salvataggio e <editing>Preview SQL</editing> mostra prima ogni istruzione. Quando un altro programma modifica il file, la barra laterale si ricarica automaticamente."
             ]
         },
@@ -67,7 +67,7 @@
             "title": "Sposta i dati",
             "paragraphs": [
                 "<importData>Importa</importData> file {importFormats} oppure apri un file CSV, JSON o XLSX nella <dataFiles>finestra Data Files</dataFiles> e importalo da lì. Tabelle e risultati si esportano in {exportFormats}.",
-                "<copy>Copy To</copy> sposta tabelle e righe in un’altra connessione, per esempio un server PostgreSQL, ed elenca ogni tipo di colonna che deve approssimare. Vedi anche <files>come usare i file come database</files>."
+                "<copy>Copy To</copy> trasferisce tabelle e righe a un altro motore, con un elenco di approssimazioni di tipo. Vedere i file <files>come database</files>."
             ]
         },
         {

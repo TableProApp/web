@@ -10,8 +10,8 @@
     "engine": "bigquery",
     "breadcrumb": "Google BigQuery",
     "header": {
-        "title": "Klien Google BigQuery untuk {devices}",
-        "lead": "Tulis GoogleSQL untuk dataset proyek, lihat apa yang akan dipindai kueri sebelum dijalankan, dan batasi tagihan job. Baris dapat diedit di grid, dan tabel diekspor ke Cloud Storage tanpa melewati Mac."
+        "title": "Klien Google BigQuery",
+        "lead": "Tulis GoogleSQL, perkirakan biaya kueri, dan tetapkan batas byte yang ditagih."
     },
     "asset": "mac-db-bigquery-dry-run",
     "links": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Masuk ke Google Cloud",
             "paragraphs": [
-                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>: ID, bukan nama atau nomor proyek. <ui>Application Default Credentials</ui> membaca file yang ditulis <code>gcloud auth application-default login</code>, sehingga menjadi cara paling singkat jika gcloud sudah diatur. <ui>Service Account Key</ui> menerima file kunci .json atau JSON yang ditempel.",
+                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>, bukan nama atau nomornya. <ui>Application Default Credentials</ui> menggunakan file login gcloud; <ui>Service Account Key</ui> menerima file JSON atau kunci yang ditempel.",
                 "Google Account (OAuth) masuk melalui peramban dengan klien OAuth desktop yang Anda buat di Google Cloud Console. Refresh token disimpan di Rantai Kunci, satu per klien OAuth, sehingga koneksi berikutnya tidak membuka peramban. Satu klien OAuth masuk ke satu akun Google, jadi akun kedua memerlukan klien kedua atau refresh token sendiri.",
                 "Semua akses melalui REST API BigQuery, sehingga tidak ada host, port, URL koneksi, atau tunnel SSH. <ui>Location</ui> menetapkan lokasi pemrosesan yang dikirim bersama setiap job. Selengkapnya tentang <cloudAuth>autentikasi cloud</cloudAuth>."
             ]
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "Jalankan kueri dan kendalikan biaya",
             "paragraphs": [
-                "Sebelum menjalankan kueri, pilih <ui>Dry Run (Cost)</ui> dari menu <explain>Explain</explain>. Hasil mencantumkan byte yang akan diproses dan ditagih, flag cache hit, serta estimasi biaya dalam dolar AS, dan kueri itu sendiri tidak dijalankan.",
-                "Setelah dijalankan, bilah status menampilkan byte diproses, byte ditagih, dan estimasi berdasarkan tarif on-demand, serta menandai cache hit. Untuk batas tegas, atur <ui>Max Bytes Billed</ui> pada tab Advanced koneksi: BigQuery menolak job yang akan menagih lebih banyak alih-alih menjalankannya.",
+                "Pilih <ui>Dry Run (Cost)</ui> dari <explain>Explain</explain> untuk memperkirakan byte yang diproses, byte yang ditagih, dan biaya sesuai permintaan tanpa menjalankan kueri. Hasilnya juga melaporkan status cache.",
+                "Setelah melakukan kueri, periksa byte yang diproses, byte yang ditagih, perkiraan biaya sesuai permintaan, dan status cache. Atur <ui>Max Bytes Billed</ui> untuk menolak pekerjaan melebihi batas byte yang ditagih.",
                 "Pelengkapan, pembatasan nama, dan pemformatan mengikuti GoogleSQL, dengan backtick pada nama tabel, dan kolom STRUCT serta ARRAY ditampilkan sebagai JSON. Dataset berperan sebagai database: tercantum di sidebar, <code>⌘K</code> berpindah di antaranya, dan setiap tab tetap pada dataset awalnya. Job dipantau hingga batas waktu kueri lalu dibatalkan; jika batas waktu No limit, TablePro menunggu hingga selesai.",
                 "Sel, penyisipan, dan penghapusan dilakukan melalui <editing>grid</editing>. UPDATE dan DELETE mencocokkan baris berdasarkan primary key yang dideklarasikan; pada tabel tanpa primary key, keduanya mencocokkan semua kolom kecuali ARRAY, JSON, dan GEOGRAPHY, sehingga baris identik berubah bersama. Deklarasikan <code>PRIMARY KEY (…) NOT ENFORCED</code> untuk mengedit tepat satu baris. Pada tabel berpartisi, tulis UPDATE dan DELETE dengan filter partisi dalam editor."
             ]
@@ -53,7 +53,7 @@
             "title": "Pindahkan data",
             "paragraphs": [
                 "TablePro tidak menyediakan impor untuk BigQuery. <export>Ekspor</export> tabel atau hasil kueri ke Mac sebagai {exportFormats}.",
-                "<backup>Server-Side Export</backup> mengekspor tabel dengan <code>EXPORT DATA</code> ke prefiks <code>gs://</code> sebagai CSV, Parquet, atau JSON berbaris baru, dibagi menjadi beberapa file di bawah prefiks tersebut. Proses berjalan pada koneksi dengan izin Anda, lembar menunggu hingga selesai, dan tidak ada file yang ditulis ke Mac."
+                "<backup>Server-Side Export</backup> menggunakan <code>EXPORT DATA</code> untuk mengekspor CSV, Parquet, atau JSON per baris ke awalan <code>gs://</code>. Berjalan dengan izin Anda dan menunggu selesai. File tidak melewati Mac Anda."
             ]
         }
     ],

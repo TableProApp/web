@@ -1,60 +1,60 @@
 {
     "seo": {
-        "title": "Tính năng query và quản lý cơ sở dữ liệu",
-        "description": "TablePro làm được gì, theo từng nhóm: query, chỉnh sửa dữ liệu, schema, import và export, AI và MCP, kết nối và đồng bộ, kèm đánh dấu các tính năng trả phí."
+        "title": "Tính năng database client | TablePro",
+        "description": "Viết query, sửa dữ liệu, xem schema và chuyển dữ liệu giữa file và cơ sở dữ liệu. Tìm hiểu tính năng miễn phí và trả phí của TablePro."
     },
     "og": {
         "kicker": "Tính năng",
-        "title": "Những gì bạn làm được với TablePro"
+        "title": "Tính năng"
     },
     "header": {
-        "title": "Những gì bạn làm được với TablePro",
-        "lead": "Ứng dụng cho Mac là bộ công cụ đầy đủ. Ứng dụng cho iPhone và iPad là một ứng dụng native riêng với phạm vi hẹp hơn, và mỗi trang tính năng nói rõ những gì có trên iPhone và iPad."
+        "title": "Tính năng",
+        "lead": "Chạy query, chỉnh sửa và làm việc với dữ liệu trên cơ sở dữ liệu được hỗ trợ."
     },
     "areas": {
         "title": "Tính năng theo công việc",
-        "paid": "Gói {tier}: {features}",
+        "paid": "Tính năng trả phí tùy chọn: {features} ({tier})",
         "noPaid": "Không có tính năng trả phí",
         "items": [
             {
                 "slug": "querying",
-                "summary": "Autocomplete hiểu schema, tham số <code>:name</code>, lịch sử query có tìm kiếm, query đã lưu, plan EXPLAIN so sánh được với nhau, và kết quả xem dưới dạng biểu đồ hoặc bản đồ."
+                "summary": "Viết SQL với autocomplete, dùng lại query đã lưu và tìm lịch sử. Xem query plan trên engine được hỗ trợ."
             },
             {
                 "slug": "data-editing",
-                "summary": "Bộ lọc và highlight rules, đi theo khóa ngoại, thay đổi chỉ được gửi khi bạn lưu, mức Safe Mode cho từng connection, và Data Rewind để lấy lại giá trị mà một lần lưu đã ghi đè."
+                "summary": "Lọc dòng, theo khóa ngoại và xem thay đổi trước khi lưu."
             },
             {
                 "slug": "schema",
-                "summary": "Sửa cấu trúc với bản xem trước DDL, ER diagram chỉ đọc, Compare & Sync giữa hai cơ sở dữ liệu, Copy To sang engine khác, và Users & Roles."
+                "summary": "Xem quan hệ, sửa cấu trúc table và so sánh cơ sở dữ liệu được hỗ trợ."
             },
             {
                 "slug": "import-export",
-                "summary": "Import file {importFormats}, export table và kết quả query, mở file dữ liệu mà không cần connection, và sao lưu các engine được hỗ trợ bằng công cụ dump của chính engine đó."
+                "summary": "Import file {importFormats} và export table hoặc kết quả. Mở file dữ liệu mà không cần connection cơ sở dữ liệu."
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Trợ lý AI tùy chọn dùng nhà cung cấp AI do bạn chọn, và MCP (Model Context Protocol) server chạy trên máy cho phép các client như Claude Code và Cursor dùng connection đã lưu."
+                "summary": "Dùng nhà cung cấp AI bạn chọn hoặc kết nối client bên ngoài qua MCP (Model Context Protocol)."
             },
             {
                 "slug": "connections",
-                "summary": "SSH tunnel qua jump host, TLS, đăng nhập bằng tài khoản cloud và tunnel command; mật khẩu lấy từ Keychain hoặc trình quản lý secret; và connection import từ ứng dụng khác."
+                "summary": "Dùng SSH tunnel và đăng nhập cloud. Import connection từ ứng dụng khác."
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "iCloud Sync giữa các máy Mac, iPhone và iPad, file connection để chia sẻ, cùng Team Catalog và Team Library để chia sẻ trong nhóm."
+                "summary": "Sync qua iCloud hoặc chia sẻ connection và query với nhóm."
             }
         ]
     },
     "ios": {
         "title": "iPhone và iPad",
-        "body": "TablePro cho iPhone và iPad là một ứng dụng riêng, miễn phí và không có mua hàng trong ứng dụng. Ứng dụng kết nối qua SSH hoặc TLS, xem và sửa dòng, chạy query, kèm Phím tắt, tiện ích trên Màn hình chính và Hoạt động trực tiếp cho query đang chạy. Ứng dụng không có trợ lý AI, chỉnh sửa schema, Data Rewind hay Compare & Sync.",
+        "body": "Xem table, sửa dòng và chạy query trên iPhone và iPad. Ứng dụng mobile riêng miễn phí, không có mua hàng trong ứng dụng. Mỗi trang chi tiết liệt kê nền tảng hỗ trợ.",
         "link": "TablePro cho iPhone và iPad"
     },
     "paid": {
         "title": "Miễn phí và trả phí",
-        "lead": "Ứng dụng cho Mac dùng miễn phí, không phải bản dùng thử. Gói Starter hoặc Team bổ sung các tính năng dưới đây cho ứng dụng Mac, và gói Team gồm mọi thứ trong Starter. Kết nối tới bất kỳ engine nào được hỗ trợ, trợ lý AI, MCP server và Safe Mode đều không cần license. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.",
-        "caption": "Các tính năng trả phí của ứng dụng Mac, gói mà mỗi tính năng cần và trang mô tả tính năng đó",
+        "lead": "Ứng dụng cơ bản miễn phí, không có thời gian dùng thử. Starter thêm tính năng trả phí cho Mac; Team gồm Starter. Các engine được hỗ trợ, trợ lý AI, MCP và Safe Mode dùng được mà không cần license.",
+        "caption": "Tính năng trả phí hiện có trên Mac",
         "columns": {
             "feature": "Tính năng",
             "plan": "Gói",
@@ -64,7 +64,7 @@
     },
     "docs": {
         "title": "Tài liệu",
-        "body": "Mỗi tính năng có một trang riêng trong tài liệu của TablePro, ghi rõ từng tùy chọn và phím tắt.",
+        "body": "Xem hướng dẫn thiết lập, cài đặt và phím tắt.",
         "link": "Đọc tài liệu",
         "path": "/features/overview"
     },
@@ -80,19 +80,19 @@
         },
         "paidBadge": "{name}: gói {tier}",
         "header": {
-            "paid": "Tính năng trả phí trên trang này: {features}. Mọi thứ khác trên trang đều miễn phí.",
+            "paid": "Trả phí: {features}. Tính năng khác miễn phí.",
             "paidItem": "{name} (gói {tier})",
             "allFree": "Mọi tính năng trên trang này đều miễn phí.",
             "docs": "Đọc tài liệu"
         },
         "sections": {
             "availability": "Dùng được ở đâu",
-            "limits": "Giới hạn nên biết",
+            "limits": "Giới hạn",
             "docs": "Tài liệu",
             "related": "Trang liên quan"
         },
         "availability": {
-            "caption": "Từng tính năng trên trang này, gói cần có trên Mac và những gì có trên iPhone và iPad",
+            "caption": "Nền tảng và gói trên Mac, iPhone và iPad",
             "capability": "Tính năng",
             "free": "Miễn phí",
             "notAvailable": "Không có",
@@ -100,7 +100,7 @@
         },
         "download": {
             "title": "Tải TablePro",
-            "body": "TablePro là phần mềm mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung một số tính năng cho ứng dụng Mac.",
+            "body": "Mã nguồn mở, dùng miễn phí.",
             "pricing": "Xem bảng giá"
         }
     }

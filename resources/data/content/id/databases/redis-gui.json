@@ -10,8 +10,8 @@
     "engine": "redis",
     "breadcrumb": "Redis",
     "header": {
-        "title": "GUI Redis untuk {macDevices}",
-        "lead": "Telusuri kunci sebagai pohon yang dipisahkan titik dua, lihat jenis, TTL, dan panjang setiap kunci sekilas, serta jalankan perintah Redis dengan aturan kutip redis-cli pada server tunggal, primary yang dikelola Sentinel, atau Redis Cluster."
+        "title": "GUI Redis",
+        "lead": "Di Mac, telusuri kunci dan jalankan perintah pada penerapan Standalone, Sentinel, atau Cluster. iPhone dan iPad hanya mendukung perintah Standalone."
     },
     "asset": "mac-db-redis-keys",
     "links": {
@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Pilih <ui>Connection Mode</ui>. Standalone memerlukan host dan port. Sentinel memerlukan satu atau beberapa node Sentinel serta nama grup primary, mengikuti kuorum ke primary dan berpindah bersamanya setelah failover. Cluster menggunakan anggota yang dapat diakses sebagai titik awal, membaca peta shard, lalu mengirim setiap perintah ke shard pemilik kunci.",
+                "Pilih <ui>Connection Mode</ui>: Standalone, Sentinel, atau Cluster. Sentinel mengikuti primary setelah failover; Cluster menemukan shard dari anggota seed dan mengarahkan perintah ke shard pemilik.",
                 "Masuk dengan kata sandi, atau isi Username untuk masuk sebagai pengguna ACL Redis 6. Pada Amazon ElastiCache, pilih mode <cloudAuth>AWS IAM</cloudAuth>, dan token berumur pendek menjadi kata sandi; IAM ElastiCache memerlukan TLS aktif.",
                 "Koneksi baru menggunakan TLS nonaktif. Upstash, Redis Cloud, dan layanan serupa mewajibkannya, dan URL <code>rediss://</code> yang ditempel mengaktifkannya. Tidak ada peralihan ke teks biasa, sehingga Preferred berperilaku seperti Required. Server Valkey terhubung dengan cara yang sama seperti Redis.",
                 "Sidebar mencantumkan setiap database bernomor mulai <code>db0</code>, dan mengekliknya menelusuri database pada koneksi yang sama."
@@ -35,9 +35,9 @@
             "id": "work",
             "title": "Kunci dan perintah",
             "paragraphs": [
-                "Nama kunci dibagi menjadi folder pada setiap titik dua, atau pemisah yang Anda atur di tab Options. Setiap kunci adalah baris grid dengan Key, Type, TTL, Length, dan Value. String ditampilkan utuh; hash, list, set, sorted set, atau stream menampilkan entri awal, dan Length menunjukkan jumlah totalnya. Nilai yang bukan UTF-8 valid, seperti payload gzip, dibuka dalam editor heksadesimal.",
-                "<editing>Di grid</editing>, mengedit nama kunci menjalankan <code>RENAME</code>, TTL menjalankan <code>EXPIRE</code> atau <code>PERSIST</code>, dan nilai string menjalankan <code>SET</code>. Add Row menulis jenis yang dipilih menggunakan <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code>, atau <code>SET</code>. Bilah filter mencocokkan nama kunci dengan pola glob Redis dan membatasi berdasarkan jenis, menggunakan <code>SCAN MATCH</code> dan <code>SCAN TYPE</code> pada server.",
-                "Editor menerima satu perintah per pernyataan, dengan aturan kutip redis-cli, dan mengirim perintah yang tidak dikenali sebagaimana ditulis. <code>DB 3 GET key</code> menjalankan satu perintah pada database lain tanpa memindahkan sesi, dan dalam blok <code>MULTI</code> setiap perintah menjawab <code>QUEUED</code> sampai <code>EXEC</code> mengembalikan semua jawaban secara berurutan.",
+                "Telusuri kunci berdasarkan folder yang dipisahkan titik dua, atau pilih pemisah lain. Setiap baris menunjukkan jenis kunci, TTL, panjang dan nilai. Koleksi menampilkan entri pertamanya; nilai non-UTF-8 terbuka di hex editor.",
+                "<editing>Edit nama kunci, TTL dan nilai string</editing> di grid. Add Row membuat hash, daftar, set, set atau string yang diurutkan. Filter nama dan jenis kunci menggunakan <code>SCAN MATCH</code> dan <code>SCAN TYPE</code> sisi server.",
+                "Jalankan perintah dengan kutipan gaya redis-cli. Perintah yang tidak diketahui dikirim seperti yang tertulis. <code>DB 3 GET key</code> menargetkan database lain tanpa mengubah sesi. Di <code>MULTI</code>, balasan tetap dalam antrian hingga <code>EXEC</code>.",
                 "<safeMode>Safe Mode</safeMode> menganggap setiap perintah Redis sebagai penulisan, termasuk <code>GET</code>, sehingga level Alert dan Safe Mode mengonfirmasi setiap perintah, dan Read-Only memblokir semuanya. <code>FLUSHDB</code> dan <code>FLUSHALL</code> meminta konfirmasi sebelum berjalan, bahkan pada Silent."
             ]
         },
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight adalah alat resmi Redis. Selain peramban kunci dan Workbench perintah, tersedia ruang Pub/Sub, profiler perintah, pemeriksaan log lambat, dan analisis memori. Pilih Redis Insight untuk memantau dan mengoptimalkan instalasi Redis; TablePro cocok jika Redis berada di samping database SQL yang Anda gunakan setiap hari.",
+                "text": "Pilih Redis Insight untuk penjelajah kunci, Workbench perintah, workspace Pub/Sub, profiler, slow log, dan analisis memori. TablePro menggunakan Redis bersama database SQL.",
                 "notes": [
                     "redis-insight-copilot"
                 ]

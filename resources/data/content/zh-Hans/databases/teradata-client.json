@@ -10,8 +10,8 @@
     "engine": "teradata",
     "breadcrumb": "Teradata",
     "header": {
-        "title": "适用于 {devices} 的 Teradata 客户端",
-        "lead": "通过 TD2 或 TDNEGO 登录，浏览数据库、用户及其表、视图、存储过程和宏，以原生 Swift 驱动查询编辑，无需安装 Teradata 客户端软件。"
+        "title": "Teradata 客户端",
+        "lead": "无需安装其他客户端软件即可查询和编辑 Teradata。浏览数据库、用户、过程和宏。"
     },
     "asset": "mac-db-teradata-sidebar",
     "links": {
@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "填写主机、用户名和密码。任何接受 TD2 登录的 Vantage 均可，不检查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；仅需不同于账户默认数据库时填写<ui>数据库</ui>（Database）。",
+                "输入主机、用户名和密码。在 <ui>Logon Mechanism</ui> 中选择 <code>TD2</code> 或 <code>TDNEGO</code>。<ui>数据库</ui> (Database) 覆盖账户默认值。支持接受 TD2 的 Vantage 服务器，不进行版本检查。",
                 "默认端口使用明文会话。任意 SSL 模式将会话移至网关 WebSocket 端点的 443 端口，不可更改。Verify CA 需 CA 证书，Verify Identity 用该证书验证链和主机名，未提供时使用系统信任库。",
                 "除非脚本需要 ANSI 或 TERA 提交规则及会话大小写敏感性，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡垒机后的系统通过 <network>SSH 隧道</network>访问。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>teradata://</code>，macOS 不会将其作为链接打开。"
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "Teradata 中数据库和用户都是命名空间，均在侧边栏顶层显示其表和视图。绑定第二个数据库的标签页保持同一会话，在语句前执行 <code>DATABASE</code>。",
+                "将数据库和用户作为命名空间浏览。其他数据库的标签页共享会话，并在语句执行前运行 <code>DATABASE</code>。",
                 "存储过程列在侧边栏，宏位于 Functions 下，各自在<objects>只读标签页中打开源码</objects>。",
                 "Teradata 没有 <code>LIMIT</code>，表第一页使用 <code>TOP</code>，后续使用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 返回原始文本计划。行编辑暂存至保存，<editing>Preview SQL</editing> 先显示每条语句。"
             ]

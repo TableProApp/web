@@ -34,8 +34,8 @@ interface EngineHeaderProps {
 /**
  * The top of an engine page (sitemap §E.1 block 1, design-system §8.4).
  *
- * Columns 1-8: the breadcrumb, the engine's mark and the H1, whose device list
- * comes from data, the lead, an availability line (devices, where the driver
+ * Columns 1-8: the breadcrumb, the engine's mark and the H1 (platform-neutral
+ * in English), the lead, an availability line (devices, where the driver
  * comes from, and a version label while some channel still serves a Mac build
  * without the engine), what TablePro costs and its licence, from pricing.json
  * and facts.json, then the actions: Download for Mac, the App Store badge

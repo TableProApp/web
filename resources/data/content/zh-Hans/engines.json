@@ -1,19 +1,19 @@
 {
     "postgresql": {
-        "tagline": "数组、jsonb 和 PostGIS 值、EXPLAIN 图、Users & Roles 及 pg_dump 备份。",
+        "tagline": "jsonb、数组和 PostGIS；EXPLAIN 图。",
         "limits": {
             "column-reorder-script-only": "重排列会生成重建表的脚本。TablePro 仅显示脚本，从不执行。"
         }
     },
     "mysql": {
-        "tagline": "通过 TCP 连接 MySQL，支持 EXPLAIN 图、Users & Roles、AWS IAM 登录和 mysqldump 备份。",
+        "tagline": "EXPLAIN 图、用户和会话；mysqldump 备份。",
         "limits": {
             "tcp-only": "连接使用主机和端口，通过 TCP 建立。不支持本地 Unix 套接字。",
             "load-data-local-refused": "驱动拒绝 LOAD DATA LOCAL INFILE。请改用 Import 加载文件。"
         }
     },
     "sqlserver": {
-        "tagline": "支持 GO 批处理和 PRINT 输出的 T-SQL、Kerberos 或 Microsoft Entra ID 登录，以及 .bacpac 备份。",
+        "tagline": "T-SQL、GO 批次和 PRINT；Kerberos 与 Entra ID。",
         "limits": {
             "no-named-instances": "不支持命名实例。请连接实例的 TCP 端口。",
             "no-ntlm": "不支持 NTLM。请使用 SQL Server 登录、Kerberos 或 Microsoft Entra ID。",
@@ -23,7 +23,7 @@
         }
     },
     "sqlite": {
-        "tagline": "在此 Mac 或 SSH 服务器的原位置打开数据库文件，支持加载扩展。",
+        "tagline": "本地或通过 SSH 托管的数据库文件；可加载扩展。",
         "limits": {
             "no-encryption": "无法打开 SQLCipher、SEE 文件等加密数据库。请先解密文件。",
             "no-primary-key-changes": "无法添加、移除或移动主键。",
@@ -33,7 +33,7 @@
         }
     },
     "mongodb": {
-        "tagline": "mongosh 风格的 JavaScript Shell、Extended JSON 文档，以及通过 SRV 连接 Atlas 集群。",
+        "tagline": "mongosh 风格查询；Extended JSON 文档编辑。",
         "limits": {
             "no-transactions": "不支持事务。",
             "no-gridfs-or-change-streams": "不支持 GridFS 或变更流。",
@@ -41,7 +41,7 @@
         }
     },
     "redis": {
-        "tagline": "Redis 命令、按冒号分层的键树、TTL，以及 Sentinel 或 Cluster 连接。",
+        "tagline": "键和 TTL；Standalone、Sentinel 和 Cluster。",
         "limits": {
             "string-values-only": "网格中仅可编辑字符串值。列表、集合、哈希、有序集合和流请用命令修改。",
             "no-pubsub": "没有 pub/sub 视图。PUBLISH 可作为命令运行，不进行订阅。",
@@ -52,14 +52,14 @@
         }
     },
     "mariadb": {
-        "tagline": "通过 MySQL 驱动支持 MariaDB 序列、虚拟和持久列，以及 JSON 列。",
+        "tagline": "MariaDB 序列、生成列和 JSON。",
         "limits": {
             "no-cloud-sql-proxy": "MariaDB 不提供 Cloud SQL Auth Proxy。请通过 SSH 隧道访问私有服务器。",
             "roles-listed-as-users": "Users & Roles 将 MariaDB 角色列为用户。请在编辑器中用 SQL 创建和授予角色。"
         }
     },
     "tidb": {
-        "tagline": "通过 MySQL 驱动连接 TiDB 和 TiDB Cloud，Stop 发送 KILL TIDB QUERY。",
+        "tagline": "通过 MySQL 驱动连接 TiDB 和 TiDB Cloud。",
         "limits": {
             "no-triggers-or-routines": "没有触发器、存储例程或事件。",
             "no-dashboard-or-dump": "没有 Server Dashboard 和 Backup Dump。请改用 TiDB 的 Dumpling 导出。",
@@ -67,7 +67,7 @@
         }
     },
     "oceanbase": {
-        "tagline": "以 user@tenant 登录 MySQL 模式的 OceanBase 租户，可直连或通过 OBProxy。",
+        "tagline": "直接或通过 OBProxy 连接 MySQL 模式租户。",
         "limits": {
             "mysql-mode-only": "仅可连接 MySQL 模式租户，拒绝 Oracle 模式租户。",
             "no-dashboard-or-dump": "没有 Server Dashboard 和 Backup Dump。",
@@ -75,7 +75,7 @@
         }
     },
     "databend": {
-        "tagline": "通过 Databend 的 MySQL 处理程序连接 Databend 和 Databend Cloud。",
+        "tagline": "通过 MySQL 处理器连接 Databend 和 Databend Cloud。",
         "limits": {
             "no-keys-or-indexes": "Databend 没有索引、主键或外键，编辑行时会匹配所有列，拒绝可能修改多行的保存操作。",
             "no-compare-sync": "无法使用 Compare & Sync。",
@@ -84,7 +84,7 @@
         }
     },
     "redshift": {
-        "tagline": "通过 PostgreSQL 驱动连接 Amazon Redshift，DDL 中包含 DISTKEY 和 SORTKEY。",
+        "tagline": "Redshift 集群与 Serverless；分布键和排序键。",
         "limits": {
             "no-aws-iam": "Redshift 不支持 AWS IAM 登录。请使用数据库用户登录。",
             "structure-read-only": "Structure 标签页只读。请在编辑器中运行 DDL。",
@@ -92,14 +92,14 @@
         }
     },
     "cockroachdb": {
-        "tagline": "通过 PostgreSQL 线路协议连接 CockroachDB 和 CockroachDB Cloud。",
+        "tagline": "通过 PostgreSQL 驱动连接 CockroachDB 和 CockroachDB Cloud。",
         "limits": {
             "structure-read-only": "Structure 标签页只读。请在编辑器中用 SQL 修改结构。",
             "no-dump-or-maintenance": "没有 Backup Dump、Restore Dump 或表维护。请使用 CockroachDB 自带的 BACKUP 和 RESTORE 语句。"
         }
     },
     "pglite": {
-        "tagline": "通过其 Socket 服务器提供的 PGlite，作为普通 PostgreSQL 连接使用。",
+        "tagline": "通过单独启动的套接字服务器连接 PGlite。",
         "limits": {
             "needs-socket-server": "PGlite 必须通过 @electric-sql/pglite-socket 提供服务，需自行启动并保持运行。",
             "single-client": "Socket 服务器一次只接受一个客户端。",
@@ -107,7 +107,7 @@
         }
     },
     "oracle": {
-        "tagline": "无需 Instant Client 的纯 Swift 驱动，支持 PL/SQL 脚本和 DBMS_OUTPUT。",
+        "tagline": "SQL 和 PL/SQL；无需 Oracle Instant Client。",
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "不支持 Oracle Wallet、操作系统认证、Kerberos 或 LDAP。请使用服务名或 SID 及密码连接。",
             "no-explain": "Oracle 没有 EXPLAIN 或执行计划视图。",
@@ -116,7 +116,7 @@
         }
     },
     "clickhouse": {
-        "tagline": "通过 HTTP 或 HTTPS 连接 ClickHouse，支持各类 EXPLAIN、Mutation 和 Parts 标签页。",
+        "tagline": "HTTP 查询、EXPLAIN 计划和 MergeTree 数据片段。",
         "limits": {
             "http-only": "连接使用 ClickHouse 的 HTTP 接口，不使用原生 TCP 协议。",
             "tls-off-by-default": "TLS 默认关闭。请在连接表单中选择 SSL 模式以使用 HTTPS。",
@@ -125,7 +125,7 @@
         }
     },
     "duckdb": {
-        "tagline": "DuckDB 文件、将 Parquet、CSV 和 JSON 文件作为视图，以及内存数据库。",
+        "tagline": "DuckDB 数据库；用 SQL 查询 Parquet、CSV 和 JSON。",
         "limits": {
             "one-writer-per-file": "连接打开期间，一个 DuckDB 文件同时只允许一个进程写入。",
             "extensions-download-on-first-use": "驱动包含核心功能、JSON、Parquet、ICU 和自动补全扩展。httpfs 等其他扩展会在查询首次需要时从 DuckDB 下载。",
@@ -133,7 +133,7 @@
         }
     },
     "cassandra": {
-        "tagline": "支持接入节点、TLS 和 Amazon Keyspaces SigV4 登录的 CQL。",
+        "tagline": "CQL 键空间；Amazon Keyspaces IAM 登录。",
         "limits": {
             "scalar-edits-only": "网格中仅可编辑标量列。集合、元组、用户定义类型和时长类型需在编辑器中使用 UPDATE。",
             "no-consistency-level": "没有一致性级别设置。语句使用驱动默认值 LOCAL_ONE 运行。",
@@ -142,50 +142,50 @@
         }
     },
     "scylladb": {
-        "tagline": "通过 Cassandra 驱动连接 ScyllaDB，使用相同的 CQL 工作流。",
+        "tagline": "通过 Cassandra 驱动使用 CQL。",
         "limits": {}
     },
     "dynamodb": {
-        "tagline": "PartiQL 和 DynamoDB API JSON，规划器根据筛选条件选择 Query 或 Scan，并报告每次读取消耗的读容量。",
+        "tagline": "PartiQL、按键读取和消耗容量。",
         "limits": {
             "one-account-and-region": "每个连接对应一个区域中的一个 AWS 账户。",
             "no-dax-or-truncate": "不支持 DAX 端点，也不提供 Truncate。"
         }
     },
     "bigquery": {
-        "tagline": "GoogleSQL，支持 Max Bytes Billed 和查询执行前的 Dry Run 费用估算。",
+        "tagline": "GoogleSQL、试运行估算和计费字节上限。",
         "limits": {
             "structure-read-only": "Structure 标签页只读。请在编辑器中运行 DDL。",
             "no-transactions": "不支持事务。"
         }
     },
     "snowflake": {
-        "tagline": "支持密钥对、浏览器 SSO、OAuth 或带动态口令的密码登录，Session Context 提供仓库和角色。",
+        "tagline": "切换仓库和角色；SSO 与密钥对登录。",
         "limits": {
             "duo-passcode-only": "Duo 仅支持动态口令，不支持推送批准。"
         }
     },
     "cloudflare-d1": {
-        "tagline": "通过 D1 HTTP API 访问 Cloudflare 账户中的所有 D1 数据库。",
+        "tagline": "通过 D1 API 连接 Cloudflare 账户数据库。",
         "limits": {
             "no-session-state-or-transactions": "每条语句都是独立 HTTP 请求，不保留会话状态，也不支持事务。"
         }
     },
     "turso": {
-        "tagline": "通过 libSQL 驱动，使用令牌经 HTTP 连接远程 Turso 数据库。",
+        "tagline": "通过 libSQL 驱动连接远程 Turso 数据库。",
         "limits": {
             "no-database-switching-or-branches": "每个连接对应一个数据库，不支持切换数据库或分支。",
             "no-embedded-replicas": "不支持嵌入式副本。本地文件独立打开，不会同步。"
         }
     },
     "libsql": {
-        "tagline": "此 Mac 上的 libSQL 文件，或通过 HTTP 连接 sqld 服务器。",
+        "tagline": "本地 libSQL 文件和远程 sqld 服务器。",
         "limits": {
             "dump-local-file-only": "Backup Dump 仅支持本地 libSQL 文件，不支持远程数据库。"
         }
     },
     "elasticsearch": {
-        "tagline": "Query DSL 控制台、将索引作为表，以及按 _id 编辑文档。",
+        "tagline": "Query DSL 控制台；按 _id 编辑文档。",
         "limits": {
             "no-opensearch": "不支持 OpenSearch。",
             "aliases-not-listed": "侧边栏不列出别名和数据流。请在控制台通过名称访问。",
@@ -193,7 +193,7 @@
         }
     },
     "etcd": {
-        "tagline": "通过 v3 JSON 网关提供部分 etcdctl 功能：前缀下的键、租约和成员。",
+        "tagline": "按前缀浏览键、租约和 etcdctl 风格命令。",
         "limits": {
             "no-txn": "不支持 txn。",
             "json-gateway-only": "连接使用 v3 JSON 网关，不使用 gRPC。",
@@ -201,7 +201,7 @@
         }
     },
     "kafka": {
-        "tagline": "通过 KafkaQL 消费和生产消息，提供主题、分区和消费者组延迟。",
+        "tagline": "主题消息、消费者延迟和 KafkaQL。",
         "limits": {
             "no-schema-registry": "不读取 Schema Registry，因此 Avro 和 Protobuf 值显示为原始字节。",
             "no-topic-create-or-offset-reset": "不支持创建主题、编辑主题配置或重置消费者组偏移量。",
@@ -209,53 +209,53 @@
         }
     },
     "surrealdb": {
-        "tagline": "通过 HTTP RPC 使用 SurrealQL，支持 root、命名空间、数据库、记录或令牌登录。",
+        "tagline": "SurrealQL 查询和保留类型的记录编辑。",
         "limits": {
             "no-syntax-highlighting": "编辑器不对 SurrealQL 提供语法高亮。",
             "no-live-queries": "不支持实时查询。请重新运行查询查看新记录。"
         }
     },
     "teradata": {
-        "tagline": "TD2 或 TDNEGO 登录，在侧边栏列出过程和宏。",
+        "tagline": "TD2 和 TDNEGO 登录；过程和宏。",
         "limits": {
             "ldap-kerberos-jwt-refused": "拒绝 LDAP、Kerberos 和 JWT 登录。请使用 TD2 或 TDNEGO。",
             "foreign-keys-not-listed": "不列出外键。请查看表的 DDL。"
         }
     },
     "trino": {
-        "tagline": "通过 Trino REST API 执行跨目录 SQL，使用密码或 JWT 登录。",
+        "tagline": "通过 Trino REST API 跨目录运行 SQL。",
         "limits": {
             "no-presto": "不支持 Presto 服务器。",
             "no-kerberos-or-oauth": "不支持 Kerberos 或 OAuth 登录。"
         }
     },
     "beancount": {
-        "tagline": "将 Beancount 账本读取为 SQL 表，并支持 BQL 查询。",
+        "tagline": "账本的只读 SQL 表；通过 rledger 使用 BQL。",
         "limits": {
             "projected-tables": "TablePro 打开账本时，将其读取到 {value} 张只读 SQL 表中，不会写回账本。",
             "needs-ledger-tool": "需要在此 Mac 安装 rledger 或 Python beancount。"
         }
     },
     "spanner": {
-        "tagline": "连接时自动识别 GoogleSQL 或 PostgreSQL 方言，并支持 Spanner 模拟器。",
+        "tagline": "GoogleSQL 和 PostgreSQL 方言；Spanner 模拟器。",
         "limits": {
             "structure-read-only": "Structure 标签页只读。请在编辑器中用 ALTER TABLE 修改表。"
         }
     },
     "typesense": {
-        "tagline": "REST 请求控制台、将集合视为表，以及指标仪表盘。",
+        "tagline": "REST 控制台、集合和指标。",
         "limits": {
             "api-keys-as-users": "Typesense 没有用户账户，因此在其他引擎列出用户的位置列出 API 密钥。"
         }
     },
     "weaviate": {
-        "tagline": "集合视为表，通过 GraphQL 读取、REST 写入。",
+        "tagline": "GraphQL 读取和 REST 文档编辑。",
         "limits": {
             "graphql-reads-rest-writes": "GraphQL 仅读取。浏览和行编辑通过 Weaviate 的 REST 端点。"
         }
     },
     "cloudflare-r2-sql": {
-        "tagline": "对 Cloudflare R2 中存储的 Iceberg 表执行只读 SQL。",
+        "tagline": "对 R2 中的 Iceberg 表运行只读 SQL。",
         "limits": {
             "rows-per-query": "每次查询最多返回 {value} 行。",
             "no-offset": "不支持 OFFSET。",
@@ -263,13 +263,13 @@
         }
     },
     "dameng": {
-        "tagline": "通过原生协议连接 Dameng DM8，支持 EXPLAIN 计划和 SSH 隧道。",
+        "tagline": "原生协议 DM8 查询、EXPLAIN 和 SSH 隧道。",
         "limits": {
             "no-tls": "不支持 TLS。访问私有网络之外的服务器时，请使用 SSH 隧道。"
         }
     },
     "sap-hana": {
-        "tagline": "支持 SAP HANA Cloud、HANA 2.0 和 HANA Express，结构以只读方式显示。",
+        "tagline": "HANA Cloud、HANA 2.0 和 Express；只读 Structure。",
         "limits": {
             "no-tunnels": "不支持 SSH 隧道、SOCKS 代理、Cloudflare 隧道或隧道命令。",
             "unsupported-auth-methods": "不支持 X.509 证书、JWT、SAML、Kerberos 或 LDAP 登录。请使用数据库用户和密码。"

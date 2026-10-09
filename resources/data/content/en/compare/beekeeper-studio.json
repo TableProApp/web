@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs Beekeeper Studio: native or Electron",
+        "title": "TablePro vs Beekeeper Studio: free and paid features",
         "description": "Beekeeper Studio is an open-source Electron client for Windows, macOS and Linux. TablePro is open source and native. Compare tiers, engines, AI and import."
     },
     "og": {
@@ -9,19 +9,18 @@
     },
     "header": {
         "title": "TablePro vs Beekeeper Studio",
-        "lead": "Beekeeper Studio and TablePro are both open-source database clients. Beekeeper Studio is built on {technology} and works the same way on Windows, macOS and Linux, with paid tiers above its free Community edition. TablePro has a native app for the Mac and another for iPhone and iPad, and optional paid features on the Mac."
+        "lead": "Beekeeper Studio and TablePro are open-source database clients with different free and paid features. Beekeeper Studio uses {technology}; TablePro uses native drivers."
     },
     "shortAnswer": {
         "tablepro": [
-            "You want Oracle, Cassandra or Snowflake without paying. Every supported engine is free in TablePro, while Beekeeper Studio adds these in paid tiers.",
-            "You want an AI assistant and an MCP server without a paid tier. Both are free in the Mac app, with the AI provider you choose.",
-            "You want a native Mac app written in Swift, with the code of its paid features open source too.",
-            "You also want an app for iPhone and iPad."
+            "Oracle, Cassandra and Snowflake without a paid tier.",
+            "Free AI chat and MCP, with your choice of AI provider.",
+            "A native app with a separate free iPhone and iPad app."
         ],
         "competitor": [
-            "You work on Windows or Linux as well, and want the same client on each.",
-            "You connect to Firebird, SQL Anywhere or GreengageDB, which TablePro does not support.",
-            "You want to sync and share connections and queries through cloud workspaces, from the {cells.sync.edition} tier."
+            "The same client on Windows, macOS and Linux.",
+            "Firebird, SQL Anywhere or GreengageDB connections.",
+            "Cloud workspaces for sharing connections and queries, from {cells.sync.edition}."
         ]
     },
     "glance": {
@@ -49,20 +48,18 @@
         "intro": "",
         "items": [
             {
-                "text": "Beekeeper Studio has the same features on Windows, macOS and Linux, so one client covers every computer you use.",
-                "cite": ["platforms"],
-                "feature": null,
-                "href": null
-            },
-            {
                 "text": "It connects to engines TablePro does not support, such as Firebird, SQL Anywhere and GreengageDB.",
-                "cite": ["cells.databases"],
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "From the {cells.sync.edition} tier, cloud workspaces sync and share connections and queries with colleagues on any of its platforms.",
-                "cite": ["cells.sync"],
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": null,
                 "href": null
             }
@@ -73,43 +70,56 @@
         "items": [
             {
                 "text": "TablePro is a Mac app written in Swift, with native database drivers. Beekeeper Studio is built on {technology}. Both offer separate builds for Apple silicon and Intel Macs.",
-                "cite": ["technology", "mac"],
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Every supported engine is free in TablePro, including Oracle, Cassandra and Snowflake. Beekeeper Studio’s Community edition covers engines such as PostgreSQL, MySQL, SQL Server and SQLite, and its paid tiers add others, such as Oracle, Cassandra and Snowflake.",
-                "cite": ["cells.databases"],
+                "text": "TablePro includes every supported engine for free. Beekeeper Studio Community includes PostgreSQL, MySQL, SQL Server and SQLite; Oracle, Cassandra and Snowflake require paid tiers.",
+                "cite": [
+                    "cells.databases"
+                ],
                 "feature": null,
                 "href": null
             },
             {
                 "text": "The <link>AI assistant and the MCP server</link> are free in the Mac app, with the AI provider you choose. Beekeeper Studio’s AI Shell needs a paid tier.",
-                "cite": ["cells.ai"],
+                "cite": [
+                    "cells.ai"
+                ],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
                 "text": "<link>Importing and exporting data</link> is free in TablePro, and so are backups through an engine’s own dump tool where it has one. Beekeeper Studio lists Import/Export & Backup/Restore in its paid tiers, not in Community.",
-                "cite": ["cells.importExport"],
+                "cite": [
+                    "cells.importExport"
+                ],
                 "feature": null,
                 "href": "/features/import-export"
             },
             {
                 "text": "TablePro is open source under the AGPLv3, including the code of its paid features. Beekeeper Studio’s Community edition is open source under {licence}.",
-                "cite": ["licence"],
+                "cite": [
+                    "licence"
+                ],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> keeps connections in step between your Macs and your iPhone or iPad. It is part of Starter on the Mac, and free on iPhone and iPad.",
+                "text": "<link>iCloud Sync</link> syncs connections across Macs, iPhones and iPads. It requires Starter on the Mac and is free on iPhone and iPad.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "There is a free <link>app for iPhone and iPad</link>, with no in-app purchases. Beekeeper Studio has no mobile app.",
-                "cite": ["platforms"],
+                "text": "The separate <link>iPhone and iPad app</link> is free, with no in-app purchases. Beekeeper Studio has no mobile app.",
+                "cite": [
+                    "platforms"
+                ],
                 "feature": null,
                 "href": "/ios"
             }
@@ -119,13 +129,7 @@
         "intro": "",
         "items": [
             {
-                "text": "There is no TablePro app for Windows or Linux.",
-                "cite": [],
-                "feature": null,
-                "href": null
-            },
-            {
-                "text": "TablePro connects only to the engines it has drivers for. Check the <link>supported databases</link> before you switch.",
+                "text": "TablePro requires a supported driver. Check the <link>supported databases</link> before you switch.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,15 +141,17 @@
                 "href": null
             },
             {
-                "text": "Beekeeper Studio lets you keep using the versions released while you paid, on a monthly plan after 12 months. A monthly or yearly TablePro plan leaves nothing like that behind: when it ends, its paid features lock and the rest of the app keeps working. A one-time purchase has no expiry date.",
-                "cite": ["cells.lifetimeLicense"],
+                "text": "Beekeeper Studio’s license covers versions released while you paid; monthly plans qualify after 12 months. TablePro subscriptions lock paid features when they end, while the free app remains available. A one-time TablePro purchase has no expiry date.",
+                "cite": [
+                    "cells.lifetimeLicense"
+                ],
                 "feature": null,
                 "href": null
             }
         ]
     },
     "switching": {
-        "intro": "TablePro reads the connections Beekeeper Studio saves on your Mac, in its local workspace. Beekeeper Studio does not need to be open, and its files are not changed.",
+        "intro": "Import Beekeeper Studio’s local workspace connections. The app can stay closed, and its files are not changed.",
         "steps": [
             "In TablePro, choose <ui>File > Import > Import from Other App…</ui>",
             "Select Beekeeper Studio and turn on <ui>Include passwords</ui>. TablePro decrypts the passwords Beekeeper Studio saved, including SSH passwords and key passphrases, so there is nothing to approve in the Keychain.",
@@ -164,12 +170,6 @@
             "question": "Does TablePro run natively on Apple silicon?",
             "answer": "Yes. TablePro has separate builds for Apple silicon and for Intel Macs, and <link>the download page</link> offers both.",
             "href": "/download"
-        },
-        {
-            "id": "free-engines",
-            "question": "Which engines can I use without paying?",
-            "answer": "In TablePro, every supported engine is free, along with the AI assistant, the MCP server and Safe Mode. A Starter or Team plan adds features such as {starterExamples}, not engines. Beekeeper Studio’s Community edition covers a set of common engines, and its paid tiers add the others.",
-            "href": null
         },
         {
             "id": "vim",
