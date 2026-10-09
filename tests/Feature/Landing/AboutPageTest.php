@@ -126,6 +126,17 @@ it('links the security page from the policies, in every language', function (str
     expect($section[0])->toContain("href=\"{$prefix}/security\"");
 })->with(aboutLocales());
 
+it('says how the name and logo may be used, and where to ask about anything else, in every language', function (string $locale): void {
+    expect(aboutContent($locale)['brand']['usage'] ?? null)->toBeString()->toContain('TablePro')->toContain('<email>{email}</email>');
+
+    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
+
+    preg_match('#<section[^>]*id="brand".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
+
+    expect($section)->not->toBe([]);
+    expect($section[0])->toContain('href="mailto:hello@tablepro.app"');
+})->with(aboutLocales());
+
 it('types the publisher in facts.json only', function (): void {
     $publisher = aboutPublisher();
     $needles = [$publisher['name'], ...array_values($publisher['city'])];
