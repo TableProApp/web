@@ -3,30 +3,11 @@
 use Illuminate\Support\Facades\Process;
 use PHPUnit\Framework\Assert;
 
-/**
- * Google Analytics, and the consent it waits for.
- *
- * GA4 sets `_ga` and `_ga_<stream>`, which need permission first, so the tag
- * loads in Consent Mode and the order of four calls in the document head is
- * what keeps it lawful. None of that is visible to a typecheck, and a mistake
- * in it is invisible in the browser too: a `config` that runs before `consent
- * default` sets cookies for every visitor, and every page still looks the
- * same.
- *
- * The consent module's behaviour is covered by execution in
- * `tests/js/consent.test.ts`. This file holds the wiring around it: the head,
- * the shared key, the bar in the layout, the "Cookie settings" control in the
- * footer of every page in both languages, and the privacy policy's account of
- * it all.
- */
-
-/** A file's contents, relative to the repository root. */
 function consentSource(string $relative): string
 {
     return (string) file_get_contents(base_path($relative));
 }
 
-/** A page with the tag configured as `G-TEST123`, fetched once per path for the whole run. */
 function consentHtml(string $path, int $status = 200): string
 {
     static $html = [];
@@ -36,12 +17,7 @@ function consentHtml(string $path, int $status = 200): string
     return $html[$path] ??= (string) test()->get($path)->assertStatus($status)->getContent();
 }
 
-/*
- * Google's script is about 180 KB, and it was the heaviest request on every
- * page. The document requests nothing from Google; the head script adds the
- * tag after the load event, once the browser is idle, as the chat loader
- * does, and `gtag()` queues every call until it arrives.
- */
+// Google's script is about 180 KB, so the head script adds it after the load event, once the browser is idle.
 it('puts no Google script in the document, only the loader that adds it later', function (string $path, int $status): void {
     $html = consentHtml($path, $status);
 
@@ -54,10 +30,6 @@ it('puts no Google script in the document, only the loader that adds it later', 
 ]);
 
 /**
- * Runs the head's analytics script in node against a stand-in window, then
- * fires the load event and the idle callback, and reports what happened at
- * each step. Executed rather than grepped, like the LCP preload script.
- *
  * @return array{beforeLoad: list<string>, afterLoad: list<string>, afterIdle: list<string>, idleTimeout: int|null, timeoutDelay: int|null, listenedForLoad: bool, queue: list<list<mixed>>}
  */
 function runAnalyticsScript(string $html, bool $idleCallback, string $readyState = 'loading'): array
@@ -101,7 +73,6 @@ it('requests Google\'s script only after the load event and an idle moment, with
     // The idle callback waits at most four seconds; Safari, which has none, waits two after the load.
     expect($idleCallback ? $run['idleTimeout'] : $run['timeoutDelay'])->toBe($idleCallback ? 4000 : 2000);
 
-    // The calls the tag replays when it arrives, in the order the contract needs.
     expect(array_column($run['queue'], 0))->toBe(['consent', 'consent', 'js', 'config'])
         ->and($run['queue'][0][1])->toBe('default')
         ->and($run['queue'][1])->toBe(['consent', 'update', ['analytics_storage' => 'granted']])
@@ -125,12 +96,6 @@ it('renders no tag when no measurement id is configured', function (): void {
     expect($html)->not->toContain('gtag(');
 });
 
-/*
- * Position, not presence. Each call in the head only means what it should if
- * it runs before the next: storage denied, then a returning reader's stored
- * answer applied, then the tag configured, at which point it sends the first
- * page view with whatever consent state it has been given.
- */
 it('denies storage before the tag is configured, and applies a stored answer in between', function (string $path): void {
     $html = consentHtml($path);
 
@@ -159,12 +124,7 @@ it('never grants an advertising signal', function (): void {
     }
 });
 
-/*
- * The head script and the module read the same key, written in two languages.
- * Renamed on one side only, a reader who allowed analytics is asked again on
- * every load and counted as a stranger in between. The account app reads it
- * too, through its byte-identical copy of consent.ts (docs/shared-files.md).
- */
+// The account app reads the same key through its byte-identical copy of consent.ts.
 it('reads the answer under the key the consent module writes', function (): void {
     preg_match("/CONSENT_STORAGE_KEY = '([^']+)'/", consentSource('resources/js/lib/consent.ts'), $key);
 
@@ -190,11 +150,6 @@ it('leaves nothing of Plausible behind', function (): void {
     }
 });
 
-/*
- * The bar is in the layout, so it is on every page, the error pages included;
- * the shared component is rendered through this site's wrapper, which gives
- * it the page's words and the privacy link in the page's language.
- */
 it('asks on every page and lets the reader change their answer from any of them', function (): void {
     $layout = consentSource('resources/js/layouts/landing-layout.tsx');
     $wrapper = consentSource('resources/js/components/site/consent-bar.tsx');
@@ -216,9 +171,6 @@ it('asks on every page and lets the reader change their answer from any of them'
 });
 
 /**
- * Runs the head's analytics script in node with `$stored` under the consent key
- * and reports the classes it put on `<html>`. `$stored` false makes storage throw.
- *
  * @return list<string>
  */
 function htmlClassesAfterHead(string $html, string|false|null $stored): array
@@ -270,18 +222,13 @@ it('renders the bar on the server, hidden until the head script opens it', funct
         ->toContain('sticky');
 })->group('ssr');
 
-// 44px on a touch screen; the desktop sizes stay.
 it('gives the consent buttons a 44px target on a touch screen', function (): void {
     $bar = consentSource('resources/js/components/shared/consent-bar.tsx');
 
     expect(substr_count($bar, '<Button variant="secondary" size="sm" className="pointer-coarse:min-h-11"'))->toBe(2);
 });
 
-/*
- * Declining has to be as easy as allowing. The two buttons are the same
- * variant at the same size, in one equal-width row; a filled Allow beside an
- * outlined Decline is the nudge that makes consent not freely given.
- */
+// A filled Allow beside an outlined Decline is the nudge that makes consent not freely given.
 it('weighs Allow and Decline the same', function (): void {
     $bar = consentSource('resources/js/components/shared/consent-bar.tsx');
 
@@ -302,14 +249,7 @@ it('weighs Allow and Decline the same', function (): void {
     }
 });
 
-/*
- * Design-system §5.3.17: one line at 1440px (382px of text), so the bar stays
- * within 96px. The English question is measured to fit, with Inter's advance
- * widths at 14px; a Vietnamese one as long in characters is wider still,
- * because of its stacked marks. The old Vietnamese question took 466px and
- * wrapped. Characters stand in for pixels here, so the Vietnamese question
- * and its link may be no longer than the English ones.
- */
+// The English line is measured to fit 1440px; Vietnamese stacked marks run wider, so characters stand in for pixels.
 it('keeps the Vietnamese question within the English one\'s line', function (): void {
     $line = function (string $locale): string {
         $catalog = consentSource("resources/js/i18n/messages/{$locale}/consent.ts");
@@ -324,12 +264,7 @@ it('keeps the Vietnamese question within the English one\'s line', function (): 
     expect($line('vi'))->toContain('Google Analytics');
 });
 
-/*
- * The bar's buttons were the first secondary `Button`s to render as `<button>`
- * rather than `<a>`, and they showed an arrow cursor and no hover: Tailwind v4
- * leaves buttons on the default cursor, and the variant had no hover because a
- * link's pointer had always stood in for one.
- */
+// Tailwind v4 leaves a <button> on the default cursor, and the secondary variant had no hover of its own.
 it('makes the Allow and Decline buttons look clickable', function (): void {
     $button = consentSource('resources/js/components/ui/button.tsx');
 

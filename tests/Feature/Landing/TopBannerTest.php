@@ -5,23 +5,7 @@ use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
 
-/**
- * The license banner above the header.
- *
- * On by default, on every public page except Pricing, which is where it leads,
- * and off the iPhone and iPad page for a reader on one of those devices.
- * It is the one element almost every visitor meets, and almost everything
- * that can go wrong with it is invisible to a typecheck: a dismissal that
- * flashes the bar on every load, a page that reserves its height without
- * showing it, a sentence that wraps out of its 40px line in one language, a
- * bar that sticks over the content, or copy that pleads.
- *
- * Config holds the switch, the link and the dismissal version. The words live
- * in the `banner` UI catalog, once per language. How long a dismissal lasts is
- * `lib/banner.ts`, run against the head script by tests/js/banner.test.ts.
- */
-
-/** The `banner` catalog strings of one locale, parsed from its TypeScript source. @return array<string, string> */
+/** @return array<string, string> */
 function bannerCatalog(string $locale): array
 {
     $source = (string) file_get_contents(dirname(__DIR__, 3) . "/resources/js/i18n/messages/{$locale}/banner.ts");
@@ -38,19 +22,14 @@ function bannerCatalog(string $locale): array
     return $strings;
 }
 
-/** Every locale, read from disk: a dataset is built before the application boots. @return list<string> */
+/** @return list<string> */
 function bannerLocales(): array
 {
     return array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']);
 }
 
 it('is on unless it is switched off', function (): void {
-    /*
-     * Read from the file rather than from `config()`, which a test or a local
-     * `.env` may have changed: the default is what a fresh deploy ships. A
-     * default of off is how the banner once vanished from production with no
-     * one switching it off.
-     */
+    // The file, not config(): a default of off once took the banner off production with no one switching it off.
     $defaults = require base_path('config/banner.php');
 
     expect($defaults['enabled'])->toBeTrue();
@@ -63,10 +42,6 @@ it('leaves nothing behind when it is switched off', function (): void {
     $response = get('/download')->assertOk();
     $html = $response->getContent();
 
-    /*
-     * A disabled banner must not be a hidden banner: no class reserving its
-     * height, and no pre-paint script whose only job is to remove that class.
-     */
     Assert::assertStringNotContainsString('has-banner', $html, 'A disabled banner must reserve no height');
     Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, 'A disabled banner must not ship a dismissal script');
 
@@ -87,12 +62,6 @@ it('stays off the pricing page it leads to, in every language', function (string
     $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
 })->with(['English' => '', 'Vietnamese' => '/vi']);
 
-/*
- * The license is for the Mac app. The iPhone and iPad page says its app needs
- * none, so a reader on one of those devices gets no banner there. The device
- * is the `ios` class the root template sets before first paint
- * (tests/js/device.test.ts), so the bar never flashes.
- */
 it('stays off the iPhone and iPad page for a reader on one of those devices, in every language', function (string $prefix): void {
     config(['banner.enabled' => true]);
 
@@ -119,12 +88,7 @@ it('settles the dismissal before the first paint, per version, with an end date'
 
     $html = get('/download')->assertOk()->getContent();
 
-    /*
-     * The class is stamped server-side and removed by an inline script in the
-     * head, ahead of any stylesheet or bundle. Deciding it in React state would
-     * drop the header 40px on every load for every reader who had already
-     * closed the bar.
-     */
+    // Decided in React state, the bar would drop the header 40px on every load for a reader who had closed it.
     $read = strpos($html, "JSON.parse(localStorage.getItem('tablepro:banner-dismissed')");
 
     expect(str_contains($html, '<html lang="en" class="has-banner">'))->toBeTrue();
@@ -161,11 +125,7 @@ it('sits above the sticky header and scrolls away with the page', function (): v
     $css = (string) file_get_contents(resource_path('css/app.css'));
     $layout = (string) file_get_contents(resource_path('js/layouts/landing-layout.tsx'));
 
-    /*
-     * `--banner-h` is zero unless `html.has-banner` is set, so a disabled or
-     * dismissed banner changes no measurement. Only the header sticks, so
-     * anchors clear the header alone.
-     */
+    // Only the header sticks, so anchors clear the header alone.
     expect($css)->toContain('--banner-h: 0px;')
         ->toContain('html.has-banner {')
         ->toContain('scroll-padding-top: 5rem;')
@@ -180,26 +140,13 @@ it('keeps its wording to one line, in every language', function (string $locale)
 
     expect($copy)->toHaveKeys(['label', 'message', 'short', 'cta', 'licensed']);
 
-    /*
-     * One 40px line, never truncated (design-system §3.3). Lengths are display
-     * columns, so a CJK character counts as two. From 1024px the line is the
-     * sentence and its link, about 920px of room at 14px Inter. Below 1024px
-     * it is the short question and the same link: 248px beside the dismiss
-     * button on a 320px screen, where the widest today (French, Portuguese)
-     * measures 246px. "Have a license?" joins from 1280px, where the line has
-     * about 250px more.
-     */
+    // Display columns, a CJK character two: about 920px of room from 1024px, and 248px beside the dismiss button at 320px.
     Assert::assertLessThanOrEqual(110, mb_strwidth($copy['message']) + mb_strwidth($copy['cta']), "{$locale}: the sentence and its link will not fit one line at 1024px");
     Assert::assertLessThanOrEqual(20, mb_strwidth($copy['cta']), "{$locale}: the call to action is too long");
     Assert::assertLessThanOrEqual(34, mb_strwidth($copy['short']) + 1 + mb_strwidth($copy['cta']), "{$locale}: the short question and the link will not fit a 320px screen");
     Assert::assertLessThanOrEqual(26, mb_strwidth($copy['licensed']), "{$locale}: the license holder's link will not fit at 1280px");
 })->with(bannerLocales(...));
 
-/*
- * The line is addressed to a regular user, so the question that says so stays
- * at every width: a phone shows it before the link, in place of the sentence.
- * It is its own string, never a second call to action.
- */
 it('asks the phone reader whether they are a regular user, before the link', function (): void {
     foreach (bannerLocales() as $locale) {
         $copy = bannerCatalog($locale);
@@ -216,10 +163,6 @@ it('asks the phone reader whether they are a regular user, before the link', fun
     expect(substr_count($component, 'm.banner.short'))->toBe(1);
 });
 
-/*
- * The banner names paid features and development funding, with a verb-led
- * link. Both use a short optional-plan label, not a daily-use question.
- */
 it('names paid features and development funding, and leads the link with a verb', function (string $locale, string $license, string $adds, string $funds, string $verb, string $short): void {
     $copy = bannerCatalog($locale);
 

@@ -24,7 +24,7 @@ function blogFeedDocument(TestResponse $response): SimpleXMLElement
 }
 
 /**
- * @return array<string, string>  each `rel` of an element's links, with its href
+ * @return array<string, string>
  */
 function blogFeedLinks(SimpleXMLElement $element): array
 {

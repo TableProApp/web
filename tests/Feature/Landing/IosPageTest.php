@@ -16,21 +16,9 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The iPhone and iPad page, `/ios` and `/vi/ios` (sitemap §A.1, §E.5).
- *
- * The page describes the App Store release in platforms.json (1.0, build 22)
- * and nothing merged after it. What this file pins is the class of mistake
- * the page has actually shipped: a count where a list belongs ("Seven engines
- * on device"), a Mac sentence reused on the phone (six Safe Mode levels, jump
- * hosts), a feature only the unreleased source has (the iPad table list beside
- * the browser, Redis key browsing, "nothing connects before Face ID"), and the
- * TestFlight beta the App Store launch replaced.
- */
 beforeEach(function (): void {
     withoutVite();
-    // Every host but the SSR gateway: faking `*` would also answer the
-    // gateway, and the server-rendered cases would read the client-only shell.
+    // Every host but the SSR gateway: faking `*` would also answer it.
     Http::fake(['api.github.com/*' => Http::response([], 500), 'github.com/*' => Http::response([], 500), 'apps.apple.com/*' => Http::response([], 500), 'itunes.apple.com/*' => Http::response([], 500)]);
 });
 
@@ -52,7 +40,6 @@ function iosPagePlatform(): array
     return collect($platforms)->firstWhere('id', 'ios');
 }
 
-/** The server-rendered page, rendered once per path for the whole run. */
 function iosSsrHtml(string $path): string
 {
     static $html = [];
@@ -62,10 +49,6 @@ function iosSsrHtml(string $path): string
     return $html[$path] ??= ssrHtml($path);
 }
 
-/**
- * Every visible string of the page in one locale: its content file and the
- * page component's own source.
- */
 function iosPageText(string $locale): string
 {
     return implode("\n", array_filter(Arr::dot(iosPageContent($locale)), 'is_string'));
@@ -120,11 +103,7 @@ it('indexes every complete translation', function (): void {
 });
 
 it('never lets a slug list swallow /ios', function (): void {
-    /*
-     * `/{slug}` is the database catch-all. `ios` in its constraint would render
-     * a database page at /ios, and the compare and feature slugs must not learn
-     * it either. The constants are what routes/localized.php reads.
-     */
+    // `/{slug}` is the database catch-all: `ios` in a slug list would render a database page at /ios.
     expect(DatabaseSlugs::ALL)->not->toContain('ios');
     expect(CompareSlugs::ALL)->not->toContain('ios');
     expect(FeatureSlugs::ALL)->not->toContain('ios');
@@ -151,13 +130,7 @@ it('points to the App Store, never to the TestFlight beta it replaced', function
 });
 
 it('ships Apple\'s badge artwork unmodified, in both themes and both languages', function (string $suffix, string $language): void {
-    /*
-     * `-light` is the black badge shown on the light theme, `-dark` the white
-     * one. Apple's export names its language and colour in the title, so a
-     * swapped pair or the English file saved under the Vietnamese name shows
-     * here. A changed viewBox means someone has redrawn or cropped a
-     * trademarked badge.
-     */
+    // Apple's title names the language and colour; a changed viewBox means the trademarked badge was redrawn or cropped.
     foreach (['light' => 'blk', 'dark' => 'wht'] as $theme => $colour) {
         $svg = (string) file_get_contents(public_path("images/app-store-{$theme}{$suffix}.svg"));
 
@@ -205,13 +178,7 @@ it('describes App Store 1.0, not the Mac app or the unreleased source', function
     $text = iosPageText($locale);
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
 
-    /*
-     * True of the Mac or of source merged after build 22, and false of the
-     * App Store app: six Safe Mode levels and the Mac's level names; the iPad
-     * table list beside the browser (#3035); "nothing connects until Face ID"
-     * (#3014); a native visionOS app; "universal app" (positioning §12.1 says
-     * "one app for iPhone and iPad").
-     */
+    // Each is true of the Mac or of source merged after build 22, and false of App Store 1.0.
     foreach (['six', 'Silent', 'Alert (Full)', 'side by side', 'side-by-side', 'beside the browser', 'visionOS', 'Vision Pro', 'Optic ID', 'universal app', 'nothing connects', 'iPhone Duo'] as $needle) {
         Assert::assertStringNotContainsStringIgnoringCase($needle, $text, "content/{$locale}/ios.json says \"{$needle}\"");
         Assert::assertStringNotContainsStringIgnoringCase($needle, $source, "Ios.tsx says \"{$needle}\"");
@@ -226,21 +193,16 @@ it('states the limits a phone user would otherwise discover', function (): void 
     expect($limits)->toContain('jump hosts')->toContain('Redis keys')->toContain('AI assistant');
     expect($en['databases']['redis'])->toContain('Query tab');
 
-    // Editing needs a primary key; Read-Only changes nothing.
     expect(implode("\n", $en['browse']['paragraphs']))->toContain('primary key')->toContain('Read-Only');
 
-    // Safe Mode levels come from facts.json, through a slot.
     expect(implode("\n", $en['safeMode']['paragraphs']))->toContain('{levels}');
 
-    // The Mac side of iCloud Sync is paid, the phone side is not.
     expect(implode("\n", $en['mac']['paragraphs']))->toContain('Starter or Team')->toContain('free here');
 
-    // Share Usage Data is off until the reader turns it on.
     expect($en['privacy']['paragraphs'][0])->toStartWith('Usage reporting is off by default.')
         ->toContain('Enable Share Usage Data in <ui>Settings > Privacy</ui>')
         ->toContain('No hostnames, usernames, passwords, queries or rows.');
 
-    // The same limits are in the Vietnamese copy, with as many items.
     expect(iosPageContent('vi')['limits']['items'])->toHaveCount(count($en['limits']['items']));
 });
 
@@ -289,7 +251,7 @@ it('places every iPhone and iPad slot and only manifest ids', function (): void 
         expect($assets)->toHaveKey($id);
     }
 
-    /* A phone crop renders through the slot of the entry that names it. */
+    // A phone crop renders through the slot of the entry that names it.
     $placed = $matches[1];
 
     foreach ($matches[1] as $id) {

@@ -2,37 +2,9 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * Contrast, computed from the tokens `tokens.css` actually declares.
- *
- * Written after the second contrast defect in this project. The first was a
- * helper that applied the sRGB gamma transfer twice and reported
- * `--muted-foreground` at 14:1 when it was 4.73:1, caught only because
- * `--foreground` came out at 14:1 as well, which is impossible. The second was
- * a mark on the brand fill at 6.18:1: it cleared AA, so nothing complained, and
- * it still read flat because the mark and the fill share hue 55.
- *
- * Neither is visible in source. Both are arithmetic, so this file does the
- * arithmetic: it parses the light (`:root`) and dark (`.dark`) blocks of the
- * shared `resources/css/tokens.css`, renders each token to the 8-bit sRGB
- * colour a browser paints, and checks every pair the design system computed
- * (design-system §2.3, method in its Appendix A). The account app keeps a copy
- * of this test against the same, byte-identical file.
- *
- * Each pair is held twice: to its threshold (4.5:1 for text at every size, 3:1
- * for non-text UI and focus), and to the value the design system recorded. The
- * second catches a token that drifts while still passing, which is how a
- * documented ratio quietly stops being true.
- *
- * @see resources/css/tokens.css
- * @see docs/rebuild/design/design-system.md §2.2-§2.5, Appendix A
- */
+// The account app keeps a copy of this test against the same tokens.css.
 
 /**
- * The `--token: oklch(L C H)` declarations in one block of tokens.css, with
- * `var(--other)` aliases resolved within the same block. Alpha tokens (the
- * overlay) are skipped: they carry no text.
- *
  * @return array<string, array{float, float, float}>
  */
 function contrastTokens(string $selector): array
@@ -64,18 +36,12 @@ function contrastTokens(string $selector): array
 }
 
 /**
- * oklch to linear-light sRGB, unclipped, so the gamut check can see a channel
- * outside [0, 1].
- *
- * Linear, deliberately. Relative luminance is defined on linear values, and
- * running them through the gamma transfer first is precisely the bug that once
- * reported every colour on this site as high contrast.
- *
  * @param  array{float, float, float}  $oklch
  * @return array{float, float, float}
  */
 function contrastOklchToLinear(array $oklch): array
 {
+    // Linear and unclipped, deliberately: a gamma transfer here once reported every colour as high contrast.
     [$lightness, $chroma, $hue] = $oklch;
 
     $h = deg2rad($hue);
@@ -94,8 +60,6 @@ function contrastOklchToLinear(array $oklch): array
 }
 
 /**
- * The 8-bit sRGB colour a browser paints for a token: clip, encode, round.
- *
  * @param  array{float, float, float}  $oklch
  * @return array{int, int, int}
  */
@@ -109,13 +73,13 @@ function contrastSrgb8(array $oklch): array
     }, contrastOklchToLinear($oklch));
 }
 
-/** `#rrggbb` to its 8-bit channels. @return array{int, int, int} */
+/** @return array{int, int, int} */
 function contrastHex(string $hex): array
 {
     return array_map('hexdec', str_split(ltrim($hex, '#'), 2));
 }
 
-/** WCAG relative luminance of an 8-bit colour. @param  array{int, int, int}  $rgb */
+/** @param  array{int, int, int}  $rgb */
 function contrastLuminance(array $rgb): float
 {
     [$r, $g, $b] = array_map(static function (int $channel): float {
@@ -139,7 +103,6 @@ function contrastRatioOf(array $a, array $b): float
     return (max($la, $lb) + 0.05) / (min($la, $lb) + 0.05);
 }
 
-/** The ratio between two tokens of one theme block. */
 function contrastBetween(string $selector, string $foreground, string $background): float
 {
     $tokens = contrastTokens($selector);
@@ -151,25 +114,15 @@ function contrastBetween(string $selector, string $foreground, string $backgroun
 }
 
 it('measures ratios this project already knows the answer to', function (): void {
-    /*
-     * The helper is checked before anything is checked with it. Every
-     * assertion below is only as good as these: black on white is 21:1, and
-     * #777 on white is the textbook 4.48:1 that just fails AA.
-     */
     expect(round(contrastRatioOf([0, 0, 0], [255, 255, 255]), 2))->toBe(21.0);
     expect(round(contrastRatioOf(contrastHex('#777777'), contrastHex('#ffffff')), 2))->toBe(4.48);
 
-    // The old palette's values, reproduced from their oklch: muted at L 0.52
-    // was 5.49:1 and the old text accent at hue 45 was 5.86:1 (the old site's
-    // measured values; design-system §2.3, Appendix A).
+    // The old site's measured values: muted at L 0.52, and the old text accent at hue 45.
     expect(round(contrastRatioOf(contrastSrgb8([0.52, 0.0, 0.0]), [255, 255, 255]), 2))->toBe(5.49);
     expect(round(contrastRatioOf(contrastSrgb8([0.52, 0.148, 45.0]), [255, 255, 255]), 2))->toBe(5.86);
 });
 
-/*
- * Every row of design-system §2.3: foreground token, background token, the
- * threshold it must clear, and the ratio recorded for light and dark.
- */
+// Design-system §2.3: foreground, background, threshold, and the ratio recorded for light and dark.
 dataset('token pairs', [
     'body text' => ['foreground', 'background', 4.5, 19.80, 17.18],
     'text on a band' => ['foreground', 'surface', 4.5, 18.48, 16.29],
@@ -233,14 +186,7 @@ it('clears its threshold, in both themes, at the ratio the design system recorde
 })->with('token pairs');
 
 it('lifts the selected segment above its track in both themes', function (): void {
-    /*
-     * The checked segment of the billing cycle and theme controls is the only
-     * thing that says which option is on besides the label colour. In dark,
-     * `--raised` (0.235) is darker than the `--surface-strong` track (0.25),
-     * so a raised segment read as pressed in: 1.03:1, the wrong way round.
-     * `--segment-selected` has to be lighter than the track in both themes,
-     * by a step the eye separates without the hairline.
-     */
+    // In dark, `--raised` is darker than the `--surface-strong` track, so a raised segment once read as pressed in.
     foreach ([':root', '.dark'] as $selector) {
         $tokens = contrastTokens($selector);
 
@@ -259,21 +205,13 @@ it('lifts the selected segment above its track in both themes', function (): voi
 });
 
 it('never uses the brand fill as text in light', function (): void {
-    /*
-     * `--accent` is a fill. As text on white it is 2.62:1, which is why a
-     * separate `--accent-text` exists, and why a coloured mark that signals
-     * state alone uses `--accent-indicator` instead (design-system §2.3).
-     */
+    // Text uses `--accent-text`, and a mark that signals state alone `--accent-indicator`.
     expect(round(contrastBetween(':root', 'accent', 'background'), 2))->toBe(2.62);
     expect(contrastBetween(':root', 'accent', 'background'))->toBeLessThan(4.5);
 });
 
 it('keeps code legible on the ground code blocks use', function (): void {
-    /*
-     * Phiki's lowest-contrast colours, the comment greys of github-light and
-     * github-dark, against `--raised`. On `--surface` the light one fails at
-     * 4.24:1, which is why code blocks sit on `--raised`.
-     */
+    // Phiki's comment greys; the light one fails on `--surface`, which is why code blocks sit on `--raised`.
     $raisedLight = contrastSrgb8(contrastTokens(':root')['raised']);
     $raisedDark = contrastSrgb8(contrastTokens('.dark')['raised']);
     $surfaceLight = contrastSrgb8(contrastTokens(':root')['surface']);
@@ -287,13 +225,7 @@ it('keeps code legible on the ground code blocks use', function (): void {
 });
 
 it('keeps every colour token inside the sRGB gamut', function (): void {
-    /*
-     * A colour outside sRGB is clipped on an sRGB screen and drawn fuller on a
-     * P3 one, so the same token becomes two colours and the computed ratio
-     * holds for only one of them. The old `--primary-foreground`, oklch(0.16
-     * 0.04 55), was outside by a hair (design-system §2.5); the check proves it
-     * would be caught.
-     */
+    // The old `--primary-foreground` was outside by a hair; the check proves it would be caught.
     $outside = static fn(array $oklch): bool => collect(contrastOklchToLinear($oklch))
         ->contains(static fn(float $channel): bool => $channel < -1e-6 || $channel > 1 + 1e-6);
 
@@ -307,11 +239,7 @@ it('keeps every colour token inside the sRGB gamut', function (): void {
 });
 
 it('keeps every brand token on hue 55', function (): void {
-    /*
-     * The owner's decision (spec §0): keep brand hue 55; only contrast and
-     * gamut may be refined. The old text accent had drifted to 45 in light and
-     * 58 in dark.
-     */
+    // The owner's decision; the old text accent had drifted to 45 in light and 58 in dark.
     foreach ([':root', '.dark'] as $selector) {
         foreach (contrastTokens($selector) as $name => [$lightness, $chroma, $hue]) {
             if (str_starts_with($name, 'accent') || $name === 'focus') {
@@ -330,11 +258,7 @@ it('keeps the neutrals achromatic', function (): void {
 });
 
 it('paints theme-color with the page background of each theme', function (): void {
-    /*
-     * The head partial sets one `theme-color` meta to `#ffffff` or `#121212`,
-     * the two `--background` values. Changing the ground without the partial
-     * leaves the browser's toolbar a different colour from the page.
-     */
+    // Changing the ground without the head partial leaves the browser toolbar a different colour from the page.
     $partial = file_get_contents(base_path('resources/views/partials/head-theme.blade.php'));
 
     foreach ([':root' => 'light', '.dark' => 'dark'] as $selector => $theme) {

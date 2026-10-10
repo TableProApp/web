@@ -11,19 +11,11 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * `/about` in every locale, and the publisher wherever the site names it: the
- * about page, the homepage's open-source section, the footer and the
- * Organization node. The name, city and country are `facts.json` →
- * `publisher`; copy and catalogs hold `{maker}`, `{city}` and `{country}`.
- */
 beforeEach(function (): void {
     withoutVite();
 });
 
 /**
- * Every supported locale, read without the application, for the datasets.
- *
  * @return list<string>
  */
 function aboutLocales(): array
@@ -48,8 +40,6 @@ function aboutContent(string $locale): array
 }
 
 /**
- * The link tags `components/faq/content-links.tsx` resolves.
- *
  * @return list<string>
  */
 function aboutKnownTags(): array
@@ -63,9 +53,6 @@ function aboutKnownTags(): array
     return [...$keys[1], 'ui', 'account', 'email'];
 }
 
-/**
- * The text a reader sees in a server render, with the no-break spaces folded.
- */
 function aboutVisibleText(string $html): string
 {
     $html = (string) preg_replace('#<(script|style)\b[^>]*>.*?</\1>#s', '', str_replace('<!-- -->', '', $html));

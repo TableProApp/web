@@ -7,20 +7,9 @@ use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
 
-/**
- * The bar that offers a page in the reader's language (LanguageBar), and the
- * head script that decides it before first paint.
- *
- * The page's language stays its URL's: nothing here redirects, sets a cookie
- * or reads a header. The server only says which languages a page exists in
- * (`localization.suggestable`), the same for every reader, so the HTML can sit
- * in the edge cache; the reader's half is decided in their browser. Which
- * language that is, and the head script's parity with it, is
- * tests/js/language-suggestion.test.ts.
- */
 const SUGGESTION_MARKER = '/* language-suggestion:start */';
 
-/** The `language.suggest` strings of one locale's controls catalog. @return array<string, string> */
+/** @return array<string, string> */
 function suggestionCopy(string $locale): array
 {
     $source = (string) file_get_contents(dirname(__DIR__, 3) . "/resources/js/i18n/messages/{$locale}/controls.ts");

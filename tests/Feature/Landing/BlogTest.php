@@ -19,37 +19,11 @@ use function Pest\Laravel\withoutVite;
 require_once __DIR__ . '/../Seo/helpers.php';
 require_once __DIR__ . '/../Releases/ReleaseFixtures.php';
 
-/*
- * The blog (sitemap §A.5, §C.5, §E.6; architecture §1.1, §1.9, §1.17).
- *
- * - `/blog` lists exactly the posts on disk, newest first, the guides apart
- *   from the release posts. The four old guides merged into other pages are
- *   gone, and their URLs redirect.
- * - A guide is written in English and Vietnamese, with no archive note and no
- *   release notes, and relates to other guides only.
- * - Release posts are an English-only archive: the date and title as
- *   published, each figure a `blog-{slug}-{n}` slot whose
- *   manifest entry keeps the original image as its source, the `content-…`
- *   heading ids that links out in the world point at, and a dated correction
- *   only where a post said something that was never true.
- * - `/vi/blog` is indexed, paired with `/blog`, and lists the Vietnamese
- *   guides and the English posts as English, at their English URLs.
- *   `/vi/blog/{slug}` is a 404 that links the English post by its title, never
- *   an English body under Vietnamese chrome.
- * - Related posts stay in the post's language.
- * - The template adds what the archive cannot: the byline, the archive note
- *   once a newer release is out, the pages that cover the post's tags today,
- *   and the release's changelog entry and GitHub release.
- */
-
 beforeEach(function (): void {
     withoutVite();
 });
 
-/**
- * The published dates of the release posts. A post is dated as it was
- * published and never re-dated by an edit (sitemap §E.6).
- */
+// A post keeps the date it was published; an edit never re-dates it.
 const BLOG_PUBLISHED = [
     'tablepro-0-77' => '2026-10-02',
     'tablepro-0-76' => '2026-09-28',
@@ -63,7 +37,6 @@ const BLOG_PUBLISHED = [
     'tablepro-0-67' => '2026-08-21',
 ];
 
-/** The guides, each in English and Vietnamese, with their published dates. */
 const BLOG_GUIDES = [
     'claude-code-cursor-database-mcp' => '2026-10-08',
     'connect-amazon-rds-mac' => '2026-10-08',
@@ -73,7 +46,6 @@ const BLOG_GUIDES = [
     'postgresql-ssh-tunnel-mac' => '2026-10-08',
 ];
 
-/** The pages each guide links, from its tags, in order. */
 const BLOG_GUIDE_PAGES = [
     'postgresql-ssh-tunnel-mac' => ['/postgresql-client', '/features/connections#ssh'],
     'connect-postgresql-mysql-docker-mac' => ['/postgresql-client', '/mysql-client', '/features/connections#project-folder'],
@@ -83,10 +55,9 @@ const BLOG_GUIDE_PAGES = [
     'claude-code-cursor-database-mcp' => ['/features/ai-mcp#mcp', '/postgresql-client', '/mysql-client'],
 ];
 
-/** Tags no page covers: the one every release post carries, and a claim the site does not make. */
+// `release` is on every release post; `performance` is a claim the site does not make.
 const BLOG_TAGS_WITHOUT_A_PAGE = ['release', 'performance'];
 
-/** The guides merged into other pages (sitemap §C.5), with where each one went. */
 const BLOG_MERGED = [
     'mcp-database-claude' => '/features/ai-mcp#mcp',
     'cloudflare-d1-mac' => '/cloudflare-d1-client',
@@ -95,8 +66,6 @@ const BLOG_MERGED = [
 ];
 
 /**
- * The English posts on disk, by slug.
- *
  * @return list<string>
  */
 function blogFiles(): array
@@ -108,8 +77,6 @@ function blogFiles(): array
 }
 
 /**
- * A post's front matter, in English or in a translation.
- *
  * @return array<string, mixed>
  */
 function blogMatter(string $slug, string $locale = 'en'): array
@@ -118,8 +85,6 @@ function blogMatter(string $slug, string $locale = 'en'): array
 }
 
 /**
- * Every post's slug in index order: the newest first, a day's posts by slug.
- *
  * @return list<string>
  */
 function blogIndexOrder(): array
@@ -132,8 +97,6 @@ function blogIndexOrder(): array
 }
 
 /**
- * The asset ids a post's body places, in document order.
- *
  * @return list<string>
  */
 function blogSlotIds(string $html): array
@@ -589,9 +552,7 @@ describe('with posts that exist only for the test', function (): void {
 
 describe('server-rendered', function (): void {
     beforeEach(function (): void {
-        // No Http::fake() here: it would also answer the SSR gateway, and
-        // the page would arrive as the client-only shell. The blog makes no
-        // other request, and tests/Pest.php refuses any stray one.
+        // No Http::fake() here: it would also answer the SSR gateway.
         requireSsr();
     });
 
@@ -666,11 +627,7 @@ describe('server-rendered', function (): void {
         $sections = $main->querySelectorAll('section:has(input[type="email"])');
         $card = $sections->item($sections->length - 1);
 
-        /*
-         * The footer leaves its own copy out on this page, so both are read
-         * from the card. The body is the reviewed one: the list gets an
-         * occasional email, not one for each version.
-         */
+        // The footer leaves its own copy out on this page, so both are read from the card.
         expect($card?->querySelector('h2')?->textContent)->toBe($title);
         expect($card->textContent)->toContain($body);
     })->with([

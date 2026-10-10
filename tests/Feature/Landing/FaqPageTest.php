@@ -9,16 +9,6 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The FAQ, `/faq` and `/vi/faq` (sitemap §A.1, design-system §8.12).
- *
- * The FAQ answers the questions every other page answers at length, so it is
- * where a stale fact survives longest: "macOS 14", "Thirteen providers", "no
- * account", the AGPL sentence that was wrong twice. These cases hold the copy
- * to its contract: facts arrive through `{token}` slots the page fills from
- * the data files, links through tags the page resolves, and no answer types a
- * price, a count or a retired claim.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -31,18 +21,12 @@ function faqContent(string $locale): array
     return json_decode((string) file_get_contents(resource_path("data/content/{$locale}/faq.json")), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * Every answer and question string, joined.
- */
 function faqText(string $locale): string
 {
     return implode("\n", array_filter(Arr::dot(faqContent($locale)), 'is_string'));
 }
 
 /**
- * The slots `pages/Faq.tsx` fills, read from its `values` object so this list
- * cannot drift from the page.
- *
  * @return list<string>
  */
 function faqProvidedSlots(): array
@@ -59,8 +43,6 @@ function faqProvidedSlots(): array
 }
 
 /**
- * The link tags `components/faq/content-links.tsx` resolves.
- *
  * @return list<string>
  */
 function faqKnownTags(): array
@@ -168,11 +150,9 @@ it('states the AGPL, the free core and priority support the way the rest of the 
     // AGPLv3 §2, §4-§6 and §13: running has no conditions; distributing and network use of a modified version do.
     expect($en)->toContain('The AGPL places no conditions on running TablePro. They apply to distributing it, and to offering a modified version to others over a network.');
 
-    // Positioning §9: the free core is scoped, and names what needs no license.
     expect($en)->toContain('All supported engines, AI, MCP and Safe Mode are free.')
         ->toContain('The Mac app has no trial period or time limit.');
 
-    // Spec §0: Team priority support, defined.
     expect($en)->toContain('emails from Team customers are answered first, within one business day');
     expect(json_decode((string) file_get_contents(resource_path('data/pricing.json')), true)['tiers']['team']['prioritySupport']['responseBusinessDays'])->toBe(1);
 

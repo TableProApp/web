@@ -49,7 +49,6 @@ const LEGAL_RENEWAL_REFUND = [
 ];
 
 // The shorter marketing sentence still promises a new window for each charge.
-// Legal pages and UI catalogs retain the explicit monthly/yearly contract above.
 const MARKETING_RENEWAL_REFUND = [
     'en' => ['Purchases and subscription renewals', 'within {refundDays} days of each charge'],
     'vi' => ['Mỗi lần mua hoặc gia hạn subscription', 'trong {refundDays} ngày từ lần thu phí đó'],
@@ -103,8 +102,6 @@ function legalSection(string $document, string $locale, string $id): string
 }
 
 /**
- * What each line of a document is: a heading with its id, a list item, a paragraph or a blank, with the slots it fills.
- *
  * @return list<string>
  */
 function legalShape(string $document, string $locale): array
@@ -244,9 +241,7 @@ it('states what the Mac app and the server actually do', function (): void {
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
 
-    // Team Library uploads SQL text and connection settings, never passwords. The
-    // upload carries startup commands and the tunnel command too
-    // (ConnectionExportService.buildEnvelope at v0.77.0).
+    // The Team Library upload carries startup commands and the tunnel command too (ConnectionExportService.buildEnvelope at v0.77.0).
     expect($mac)->toContain('SQL text')->toContain('never passwords')->toContain('startup commands')->toContain('Tunnel Command');
 
     // Updates come from GitHub and can be turned off; the plugin catalog cannot.
@@ -280,13 +275,7 @@ it('sets no retention period the server does not keep', function (string $locale
 })->with(['en', 'vi']);
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
-    /*
-     * docs.tablepro.app set Google Analytics cookies on .tablepro.app with no
-     * consent, which made "Google Analytics cookies are not set until you
-     * allow them" false for anyone who had opened the docs. The docs now ask
-     * first. Their bar is English only, so every language names its two
-     * controls as they are printed there.
-     */
+    // The docs once set GA cookies on .tablepro.app with no consent; their bar is English only, so every language names its controls in English.
     $intro = strtok(YamlFrontMatter::parse(legalSource('privacy', $locale))->body(), "\n");
     $website = legalSection('privacy', $locale, 'website');
 
@@ -299,13 +288,7 @@ it('covers the documentation site and its own analytics question', function (str
 })->with(legalLocales());
 
 it('discloses Cloudflare Web Analytics and states Google\'s default retention', function (string $locale, string $twoMonths, string $sixMonths): void {
-    /*
-     * The owner confirmed (spec §0) that Cloudflare Web Analytics runs on
-     * tablepro.app, and that the GA4 property was never set to keep data for
-     * 14 months. Google's default for a property is 2 months for user-level
-     * and event-level data; the policy describes that default, which holds
-     * for as long as the setting is not changed.
-     */
+    // The GA4 property keeps Google's default of 2 months; it was never set to 14.
     $website = legalSection('privacy', $locale, 'website');
     $retention = legalSection('privacy', $locale, 'retention');
 

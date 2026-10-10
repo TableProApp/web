@@ -14,21 +14,6 @@ use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The homepage, `/` and `/vi` (sitemap §A.1, §D; positioning §1-§9;
- * architecture §1.17 "HomepageRenderTest").
- *
- * The first half runs on every machine: the controller's props, the copy in
- * both languages, and the facts the page derives from resources/data. The
- * second half asserts on the server-rendered DOM and needs a current SSR
- * bundle (`requireSsr()`): the section order with Sponsors third, the
- * `#pricing` section the Mac app opens, the old anchors, the structured data
- * and the title built from platforms.json.
- *
- * Expectations are read from the data files, never typed: the engines, the
- * iPhone engine picker, the sponsors and the prices are whatever
- * resources/data says today.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -49,7 +34,6 @@ function homeContent(string $locale): array
     return homeData("content/{$locale}/home.json");
 }
 
-/** The server-rendered homepage in one locale, rendered once per test run. */
 function ssrHome(string $path = '/'): string
 {
     static $html = [];
@@ -58,8 +42,6 @@ function ssrHome(string $path = '/'): string
 }
 
 /**
- * Every supported locale, read without the application, for the datasets.
- *
  * @return list<string>
  */
 function homeLocales(): array
@@ -68,8 +50,6 @@ function homeLocales(): array
 }
 
 /**
- * The ids of every `<section>` inside `<main>`, in document order.
- *
  * @return list<string>
  */
 function homeSectionIds(string $html): array
@@ -81,10 +61,10 @@ function homeSectionIds(string $html): array
     return $matches[1];
 }
 
-/** The ten homepage sections, in sitemap §D's order. Sponsors is third by the owner's decision (spec §0). */
+// Sponsors is third by the owner's decision.
 const HOME_SECTIONS = ['top', 'databases', 'sponsors', 'features', 'safety', 'ai', 'platforms', 'switch', 'testimonials', 'pricing', 'open-source'];
 
-/** Older ids that land inside the section that replaced them (sitemap §C.2). */
+// Older anchors, each inside the section that replaced it.
 const HOME_ALIASES = ['mcp' => 'ai', 'mobile' => 'platforms', 'compare' => 'switch', 'license' => 'pricing'];
 
 describe('props and copy', function (): void {
@@ -225,12 +205,7 @@ describe('props and copy', function (): void {
     });
 
     it('names Product Hunt as a plain text link from facts.json, with no badge', function (): void {
-        /*
-         * The owner's decision (spec §0): "TablePro on Product Hunt" as text,
-         * no badge image, no hotlink, no third-party request. The badge
-         * component design-system §5 removed stays removed, and the URL lives
-         * in facts.json like every other outbound link.
-         */
+        // The owner's decision: Product Hunt as a text link from facts.json, with no badge and no third-party request.
         expect(File::exists(resource_path('js/components/home/product-hunt-badge.tsx')))->toBeFalse();
         expect(homeData('facts.json')['links']['productHunt'])->toBe('https://www.producthunt.com/products/tablepro');
         expect(homeContent('en')['openSource']['productHunt'])->toBe('TablePro on Product Hunt');
@@ -283,7 +258,6 @@ describe('props and copy', function (): void {
         // The app is Swift with AppKit and SwiftUI on the Mac; it ships no Electron shell and no Java runtime.
         expect($en['native'])->toContain('native interfaces', 'not Electron or a Java runtime');
         expect(preg_match('/\b(Windows|Linux)\b|\d/', $en['native']))->toBe(0, 'The native line names an unreleased platform or a number');
-        // The subtitle stays one sentence about what the app does.
         expect(substr_count($en['subtitle'], '. '))->toBe(0, 'The subtitle grew a second sentence');
 
         foreach (Locales::codes() as $locale) {
@@ -359,11 +333,7 @@ describe('props and copy', function (): void {
     })->with(['en', 'vi']);
 
     it('keeps the identity copy free of platform names, versions and numbers', function (string $locale): void {
-        /*
-         * Positioning §13: the H1, the subtitle and the pillar headings hold
-         * when a platform ships. Platforms reach the page only through the
-         * captions and cards built from platforms.json.
-         */
+        // The identity copy has to hold when a platform ships; platforms reach the page only through data.
         $content = homeContent($locale);
         $identity = [
             'hero.title' => $content['hero']['title'],
@@ -410,10 +380,7 @@ describe('server-rendered', function (): void {
 
         expect($ids)->toBe(HOME_SECTIONS);
 
-        /*
-         * Third among every <section> in <main>, not only among the known
-         * ones: nothing may slip in between the databases and the sponsors.
-         */
+        // Third among every <section> in <main>: nothing may slip in between the databases and the sponsors.
         expect(homeSectionIds(ssrHome($path))[2] ?? null)->toBe('sponsors');
     })->with(['/', '/vi'])->group('ssr');
 
@@ -552,15 +519,7 @@ describe('server-rendered', function (): void {
         // No toast region: nothing calls toast(), and Sonner's English landmark name showed on /vi.
         expect($html)->not->toContain('aria-label="Notifications');
 
-        /*
-         * A wall of cells: two across below 768px, the 2 × 2 of design-system
-         * §8.1, and four across from 768 (§4.7). A wide wordmark once
-         * overflowed a fixed column at 375px, so each item may shrink
-         * (`min-w-0`) and each logo scales down (`max-w-full`). The logos load
-         * eagerly at low priority, so a late lazy load never leaves the white
-         * dark-mode tile empty, and React does not preload them ahead of the
-         * page's own images.
-         */
+        // A wide wordmark once overflowed at 375px, and a late lazy load left the white dark-mode tile empty.
         preg_match('#<section[^>]*id="sponsors".*?</section>#s', $html, $sponsors);
 
         expect($sponsors[0] ?? '')->toContain('cell-grid grid-cols-2 md:grid-cols-4')->toContain('min-w-0 max-w-full')
