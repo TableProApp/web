@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "集成",
+        "description": "与 TablePro 配合使用的应用和工具：AI 客户端、编辑器、自动化和命令行，由 TablePro 或其他开发者构建。"
+    },
+    "header": {
+        "title": "集成",
+        "lead": "与 TablePro 配合使用的应用和工具。",
+        "build": "构建集成"
+    },
+    "filters": {
+        "label": "筛选集成",
+        "search": "搜索",
+        "category": {
+            "label": "类别",
+            "all": "所有类别"
+        },
+        "platform": {
+            "label": "TablePro 应用",
+            "all": "全部"
+        },
+        "tier": {
+            "label": "类型",
+            "all": "所有类型"
+        },
+        "submit": "显示结果",
+        "count": {
+            "one": "{count} 个集成",
+            "other": "{count} 个集成"
+        },
+        "empty": "没有符合这些筛选条件的集成。",
+        "clear": "清除筛选"
+    },
+    "publish": {
+        "title": "提交您的集成",
+        "guide": "提交方法",
+        "policy": "收录政策"
+    },
+    "notice": "名称和标志归其所有者所有。只有官方集成由 TablePro 构建。",
+    "labels": {
+        "by": "由 {publisher} 提供",
+        "closedSource": "闭源",
+        "tiers": {
+            "official": "官方",
+            "partner": "合作伙伴",
+            "community": "社区"
+        },
+        "categories": {
+            "ai-clients": "AI 客户端",
+            "automation": "自动化",
+            "cloud-hosting": "云托管",
+            "command-line": "命令行",
+            "editors": "编辑器",
+            "launchers": "启动器",
+            "local-development": "本地开发",
+            "other": "其他"
+        }
+    },
+    "show": {
+        "seoTitle": "{name} 集成",
+        "install": {
+            "built-in": "在 TablePro 中设置",
+            "ships-with-host": "在 {host} 中设置",
+            "raycast-store": "从 Raycast Store 安装",
+            "vscode-marketplace": "从 Visual Studio Marketplace 安装",
+            "github-release": "从 GitHub 下载",
+            "homebrew": "使用 Homebrew 安装",
+            "app-store": "在 App Store 中查看",
+            "alfred-gallery": "从 Alfred Gallery 安装",
+            "page": "获取 {name}"
+        },
+        "source": "源代码",
+        "details": {
+            "title": "详细信息",
+            "publisher": "发布者",
+            "category": "类别",
+            "host": "适用于",
+            "hostVersion": "{host} {version} 或更新版本",
+            "apps": "TablePro 应用",
+            "appVersion": "{app} {version} 或更新版本",
+            "license": "许可证",
+            "added": "收录日期",
+            "verified": "最后检查"
+        },
+        "about": "简介",
+        "screenshots": "截图",
+        "uses": {
+            "title": "使用的功能和数据",
+            "surfaces": "TablePro 功能",
+            "reads": "读取",
+            "writes": "更改",
+            "none": "无",
+            "data": {
+                "connections": "连接列表",
+                "schema": "结构",
+                "data": "表数据"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "tablepro:// 链接",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "MCP 服务器",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "配对",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "数据库 URL",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "tablepro 命令",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "快捷指令操作",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "降低 Safe Mode 级别",
+            "safeModeLink": "Safe Mode 级别",
+            "internet": "通过互联网发送数据",
+            "account": "需要其他服务的账户",
+            "privacy": "隐私政策",
+            "payment": {
+                "optional": "免费，提供付费选项",
+                "paid": "付费"
+            }
+        },
+        "support": {
+            "title": "帮助",
+            "report": "报告此条目的问题",
+            "help": "向 {publisher} 获取帮助",
+            "docs": "文档"
+        },
+        "disclaimer": "{name} 由 {publisher} 构建，而非 TablePro。TablePro 在此收录它，但不提供支持。",
+        "archived": {
+            "badge": "已归档",
+            "since": "归档于 {date}。",
+            "reasons": {
+                "unmaintained": "已不再维护。",
+                "broken": "已无法与 TablePro 配合使用。",
+                "source-archived": "其源代码仓库已归档。",
+                "superseded": "已被 <link>{name}</link> 取代。",
+                "author-request": "应作者要求归档。",
+                "policy": "已不再符合收录政策。"
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "通过 TablePro 内置的 MCP 服务器，将 Claude Code 连接到您的数据库。",
+        "claude-desktop": "通过 TablePro 内置的 MCP 服务器，将 Claude Desktop 连接到您的数据库。",
+        "command-line": "在终端中使用 tablepro 命令，用 TablePro 打开数据库 URL 和 SQL 文件。",
+        "cursor": "通过 TablePro 内置的 MCP 服务器，将 Cursor 的智能体连接到您的数据库。",
+        "shortcuts": "在 iPhone 和 iPad 上通过快捷指令向表添加行、打开连接。",
+        "zed": "通过 TablePro 内置的 MCP 服务器，将 Zed 的智能体连接到您的数据库。"
+    }
+}

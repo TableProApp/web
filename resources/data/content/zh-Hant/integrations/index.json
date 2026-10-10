@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "整合",
+        "description": "與 TablePro 搭配使用的 App 和工具：AI 用戶端、編輯器、自動化和命令列，由 TablePro 或其他開發者打造。"
+    },
+    "header": {
+        "title": "整合",
+        "lead": "與 TablePro 搭配使用的 App 和工具。",
+        "build": "開發整合"
+    },
+    "filters": {
+        "label": "篩選整合",
+        "search": "搜尋",
+        "category": {
+            "label": "類別",
+            "all": "所有類別"
+        },
+        "platform": {
+            "label": "TablePro App",
+            "all": "全部"
+        },
+        "tier": {
+            "label": "類型",
+            "all": "所有類型"
+        },
+        "submit": "顯示結果",
+        "count": {
+            "one": "{count} 個整合",
+            "other": "{count} 個整合"
+        },
+        "empty": "沒有符合這些篩選條件的整合。",
+        "clear": "清除篩選條件"
+    },
+    "publish": {
+        "title": "提交您的整合",
+        "guide": "提交方式",
+        "policy": "收錄政策"
+    },
+    "notice": "名稱和標誌歸其所有者所有。只有官方整合由 TablePro 打造。",
+    "labels": {
+        "by": "由 {publisher} 提供",
+        "closedSource": "封閉原始碼",
+        "tiers": {
+            "official": "官方",
+            "partner": "合作夥伴",
+            "community": "社群"
+        },
+        "categories": {
+            "ai-clients": "AI 用戶端",
+            "automation": "自動化",
+            "cloud-hosting": "雲端代管",
+            "command-line": "命令列",
+            "editors": "編輯器",
+            "launchers": "啟動器",
+            "local-development": "本機開發",
+            "other": "其他"
+        }
+    },
+    "show": {
+        "seoTitle": "{name} 整合",
+        "install": {
+            "built-in": "在 TablePro 中設定",
+            "ships-with-host": "在 {host} 中設定",
+            "raycast-store": "從 Raycast Store 安裝",
+            "vscode-marketplace": "從 Visual Studio Marketplace 安裝",
+            "github-release": "從 GitHub 下載",
+            "homebrew": "使用 Homebrew 安裝",
+            "app-store": "在 App Store 查看",
+            "alfred-gallery": "從 Alfred Gallery 安裝",
+            "page": "取得 {name}"
+        },
+        "source": "原始碼",
+        "details": {
+            "title": "詳細資訊",
+            "publisher": "發佈者",
+            "category": "類別",
+            "host": "適用於",
+            "hostVersion": "{host} {version} 或更新版本",
+            "apps": "TablePro App",
+            "appVersion": "{app} {version} 或更新版本",
+            "license": "授權",
+            "added": "收錄日期",
+            "verified": "最後檢查"
+        },
+        "about": "簡介",
+        "screenshots": "螢幕截圖",
+        "uses": {
+            "title": "使用的功能與資料",
+            "surfaces": "TablePro 功能",
+            "reads": "讀取",
+            "writes": "變更",
+            "none": "無",
+            "data": {
+                "connections": "連線清單",
+                "schema": "綱要",
+                "data": "資料表資料"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "tablepro:// 連結",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "MCP 伺服器",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "配對",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "資料庫 URL",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "tablepro 指令",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "捷徑動作",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "降低 Safe Mode 等級",
+            "safeModeLink": "Safe Mode 等級",
+            "internet": "透過網際網路傳送資料",
+            "account": "需要其他服務的帳戶",
+            "privacy": "隱私權政策",
+            "payment": {
+                "optional": "免費，提供付費選項",
+                "paid": "付費"
+            }
+        },
+        "support": {
+            "title": "說明",
+            "report": "回報此項目的問題",
+            "help": "向 {publisher} 尋求協助",
+            "docs": "文件"
+        },
+        "disclaimer": "{name} 由 {publisher} 打造，而非 TablePro。TablePro 在此收錄，但不提供支援。",
+        "archived": {
+            "badge": "已封存",
+            "since": "封存於 {date}。",
+            "reasons": {
+                "unmaintained": "已不再維護。",
+                "broken": "已無法與 TablePro 搭配使用。",
+                "source-archived": "其原始碼儲存庫已封存。",
+                "superseded": "已由 <link>{name}</link> 取代。",
+                "author-request": "應作者要求封存。",
+                "policy": "已不再符合收錄政策。"
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "透過 TablePro 內建的 MCP 伺服器，將 Claude Code 連線到您的資料庫。",
+        "claude-desktop": "透過 TablePro 內建的 MCP 伺服器，將 Claude Desktop 連線到您的資料庫。",
+        "command-line": "在終端機使用 tablepro 指令，以 TablePro 開啟資料庫 URL 和 SQL 檔案。",
+        "cursor": "透過 TablePro 內建的 MCP 伺服器，將 Cursor 的 AI 代理連線到您的資料庫。",
+        "shortcuts": "在 iPhone 與 iPad 上透過捷徑將列新增至資料表，並開啟連線。",
+        "zed": "透過 TablePro 內建的 MCP 伺服器，將 Zed 的 AI 代理連線到您的資料庫。"
+    }
+}

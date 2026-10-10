@@ -36,6 +36,7 @@ final class LocaleSwitcher
         'compare' => 'landing.compare.index',
         'database' => 'landing.databases.index',
         'feature' => 'landing.features.index',
+        'integration' => 'landing.integrations.index',
     ];
 
     public function __construct(

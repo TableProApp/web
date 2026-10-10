@@ -17,6 +17,7 @@ export default {
         "features": "Funciones",
         "databases": "Bases de datos",
         "compare": "Comparar",
+        "integrations": "Integraciones",
         "blog": "Blog"
     }
 } satisfies Messages['seo'];

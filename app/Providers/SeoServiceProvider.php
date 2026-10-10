@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Support\Content\ContentRepository;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\ContentCollection;
+use App\Support\Seo\IntegrationPages;
 use App\Support\Seo\LastModified;
 use App\Support\Seo\LegalPages;
 use App\Support\Seo\OgFonts;
@@ -29,6 +30,7 @@ use Illuminate\Support\ServiceProvider;
  * 2. `ContentCollection`: features, databases and comparisons, with their hubs.
  * 3. `LegalPages`: privacy, terms, refund policy.
  * 4. `BlogPosts`: one page per post, per language it is written in.
+ * 5. `IntegrationPages`: one English page per entry in `integrations.json`.
  *
  * Every family is wrapped in `WithoutRetiredPaths`, so a URL the redirect map
  * answers is never a page, whichever family still lists it.
@@ -69,6 +71,7 @@ class SeoServiceProvider extends ServiceProvider
                 new ContentCollection($content),
                 $app->make(LegalPages::class),
                 $app->make(BlogPosts::class),
+                $app->make(IntegrationPages::class),
             ];
 
             return new PageRegistry(array_map(

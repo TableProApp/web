@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "Integrasi",
+        "description": "Aplikasi dan alat yang bekerja dengan TablePro: klien AI, editor, otomatisasi, dan baris perintah, dibuat oleh TablePro atau pihak lain."
+    },
+    "header": {
+        "title": "Integrasi",
+        "lead": "Aplikasi dan alat yang bekerja dengan TablePro.",
+        "build": "Buat integrasi"
+    },
+    "filters": {
+        "label": "Filter integrasi",
+        "search": "Cari",
+        "category": {
+            "label": "Kategori",
+            "all": "Semua kategori"
+        },
+        "platform": {
+            "label": "Aplikasi TablePro",
+            "all": "Semua"
+        },
+        "tier": {
+            "label": "Jenis",
+            "all": "Semua jenis"
+        },
+        "submit": "Tampilkan hasil",
+        "count": {
+            "one": "{count} integrasi",
+            "other": "{count} integrasi"
+        },
+        "empty": "Tidak ada integrasi yang cocok dengan filter ini.",
+        "clear": "Hapus filter"
+    },
+    "publish": {
+        "title": "Cantumkan integrasi Anda",
+        "guide": "Cara mengirim",
+        "policy": "Kebijakan pencantuman"
+    },
+    "notice": "Nama dan logo adalah milik pemiliknya masing-masing. Hanya integrasi Resmi yang dibuat oleh TablePro.",
+    "labels": {
+        "by": "Oleh {publisher}",
+        "closedSource": "Sumber tertutup",
+        "tiers": {
+            "official": "Resmi",
+            "partner": "Mitra",
+            "community": "Komunitas"
+        },
+        "categories": {
+            "ai-clients": "Klien AI",
+            "automation": "Otomatisasi",
+            "cloud-hosting": "Hosting cloud",
+            "command-line": "Baris perintah",
+            "editors": "Editor",
+            "launchers": "Peluncur",
+            "local-development": "Pengembangan lokal",
+            "other": "Lainnya"
+        }
+    },
+    "show": {
+        "seoTitle": "Integrasi {name}",
+        "install": {
+            "built-in": "Siapkan di TablePro",
+            "ships-with-host": "Siapkan dengan {host}",
+            "raycast-store": "Instal dari Raycast Store",
+            "vscode-marketplace": "Instal dari Visual Studio Marketplace",
+            "github-release": "Unduh dari GitHub",
+            "homebrew": "Instal dengan Homebrew",
+            "app-store": "Lihat di App Store",
+            "alfred-gallery": "Instal dari Alfred Gallery",
+            "page": "Dapatkan {name}"
+        },
+        "source": "Kode sumber",
+        "details": {
+            "title": "Detail",
+            "publisher": "Penerbit",
+            "category": "Kategori",
+            "host": "Berfungsi dengan",
+            "hostVersion": "{host} {version} atau lebih baru",
+            "apps": "Aplikasi TablePro",
+            "appVersion": "{app} {version} atau lebih baru",
+            "license": "Lisensi",
+            "added": "Dicantumkan",
+            "verified": "Terakhir diperiksa"
+        },
+        "about": "Tentang",
+        "screenshots": "Tangkapan layar",
+        "uses": {
+            "title": "Yang digunakan",
+            "surfaces": "Fitur TablePro",
+            "reads": "Membaca",
+            "writes": "Mengubah",
+            "none": "Tidak ada",
+            "data": {
+                "connections": "Daftar koneksi",
+                "schema": "Skema",
+                "data": "Data tabel"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "Tautan tablepro://",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "Server MCP",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "Pemasangan",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "URL database",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "Perintah tablepro",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "Tindakan Pintasan",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "Menurunkan Safe Mode",
+            "safeModeLink": "Level Safe Mode",
+            "internet": "Mengirim data lewat internet",
+            "account": "Memerlukan akun di layanan lain",
+            "privacy": "Kebijakan privasi",
+            "payment": {
+                "optional": "Gratis, dengan opsi berbayar",
+                "paid": "Berbayar"
+            }
+        },
+        "support": {
+            "title": "Bantuan",
+            "report": "Laporkan masalah pada entri ini",
+            "help": "Dapatkan bantuan dari {publisher}",
+            "docs": "Dokumentasi"
+        },
+        "disclaimer": "{name} dibuat oleh {publisher}, bukan oleh TablePro. TablePro mencantumkannya di sini tetapi tidak memberikan dukungan untuknya.",
+        "archived": {
+            "badge": "Diarsipkan",
+            "since": "Diarsipkan pada {date}.",
+            "reasons": {
+                "unmaintained": "Integrasi ini tidak lagi dikelola.",
+                "broken": "Integrasi ini tidak lagi berfungsi dengan TablePro.",
+                "source-archived": "Repositori sumbernya telah diarsipkan.",
+                "superseded": "Integrasi ini telah digantikan oleh <link>{name}</link>.",
+                "author-request": "Pembuatnya meminta agar integrasi ini diarsipkan.",
+                "policy": "Integrasi ini tidak lagi memenuhi kebijakan pencantuman."
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "Hubungkan Claude Code ke database Anda melalui server MCP bawaan TablePro.",
+        "claude-desktop": "Hubungkan Claude Desktop ke database Anda melalui server MCP bawaan TablePro.",
+        "command-line": "Buka URL database dan file SQL di TablePro dari Terminal dengan perintah tablepro.",
+        "cursor": "Hubungkan agen Cursor ke database Anda melalui server MCP bawaan TablePro.",
+        "shortcuts": "Tambahkan baris ke tabel dan buka koneksi dari Pintasan di iPhone dan iPad.",
+        "zed": "Hubungkan agen Zed ke database Anda melalui server MCP bawaan TablePro."
+    }
+}

@@ -17,6 +17,7 @@ export default {
         "features": "功能",
         "databases": "資料庫",
         "compare": "比較",
+        "integrations": "整合",
         "blog": "部落格"
     }
 } satisfies Messages['seo'];

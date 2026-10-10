@@ -30,6 +30,7 @@ export default {
         features: 'Features',
         databases: 'Databases',
         compare: 'Compare',
+        integrations: 'Integrations',
         blog: 'Blog',
     },
 };

@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Content\IntegrationCatalog;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
@@ -26,6 +27,12 @@ use function Pest\Laravel\withoutVite;
 beforeEach(function (): void {
     withoutVite();
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
+
+    // Integration pages exist once a registry sync lands entries; until then the fixture stands in.
+    if (app(IntegrationCatalog::class)->all() === []) {
+        app()->instance(IntegrationCatalog::class, new IntegrationCatalog(base_path('tests/Fixtures/integrations/index.json')));
+        app()->forgetInstance(PageRegistry::class);
+    }
 });
 
 /**
@@ -54,6 +61,8 @@ function landingFamilies(): array
         'landing.databaseClient' => ['Databases/Show', ['content', 'engine', 'slug', 'platforms']],
         'landing.compare.index' => ['Compare/Index', ['content', 'products.0', 'tablepro']],
         'landing.compare' => ['Compare/Show', ['content', 'product', 'slug', 'tablepro']],
+        'landing.integrations.index' => ['Integrations/Index', ['content', 'integrations', 'filters']],
+        'landing.integrations.show' => ['Integrations/Show', ['content.show', 'integration', 'dates']],
     ];
 }
 
@@ -98,10 +107,10 @@ it('renders every page of a family in each locale it renders in', function (stri
         }
     }
 
-    // Every family renders in English, and every family but the release posts in Vietnamese too.
+    // Every family renders in English, and every family but the release posts and integration pages in Vietnamese too.
     expect($rendered)->toHaveKey('en');
 
-    if ($route !== 'landing.blog.show') {
+    if (! in_array($route, ['landing.blog.show', 'landing.integrations.show'], true)) {
         expect($rendered)->toHaveKey('vi');
     }
 })->with(fn(): array => array_keys(landingFamilies()));

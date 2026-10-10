@@ -594,6 +594,8 @@ Repo key:
 | `ComparisonTable` | P | **Replace** | `landing/compare-table.tsx`, Compare page tables | One competitor per page, sourced and dated. Removed from the homepage |
 | `EngineTable` | P | **Replace** | `landing/database-grid.tsx` (tiles, filter, 2-D arrow keys) | Grouped table on the hub |
 | `EngineList` | P | **New** | — | Compact named list on the homepage |
+| `IntegrationFilters` | P | **New** | — | `/integrations` only: a `role="search"` GET form of native controls (search, category, TablePro app, type). Results update as you type once the page has hydrated |
+| `IntegrationList` | P | **New** | — | Integrations as ruled rows, rail to rail: mark, name, publisher, type, tagline. Not a card grid |
 | `DatabaseMark` | P | **Refactor** | `ui/database-mark.tsx` | Original colours, no `grayscale` / `opacity-40` / `invert`. Uses `iconDark` from data or a light tile |
 | `SponsorList` | P | **Refactor** | `landing/sponsor-row.tsx` | The 4 verified sponsors only. Each link named |
 | `ProseArticle` | P | **Refactor** | `.blog-article` CSS, `ui/prose-block.tsx` | Blog and legal. Body in `--foreground`. Permalink glyph kept out of the heading's accessible name |
@@ -658,6 +660,7 @@ Repo key:
   - Opens in the same tab by default and shows `↗` (`aria-hidden`).
   - Docs links on Vietnamese pages read "Tài liệu (tiếng Anh)" because the docs are English-only.
   - When `target="_blank"` is unavoidable, add an sr-only "(opens in a new tab)" / "(mở trong thẻ mới)".
+  - A link from a Community integration's data (install, source, publisher, help) carries `rel="ugc nofollow"`. Official and Partner links carry none.
 - **Cross-app** (public ↔ `/account`, `/checkout`, `/thank-you`):
   - Always a plain `<a>`, never an Inertia `<Link>`, because the other app answers with its own HTML and asset version.
   - Locale-aware: `/vi/...` public targets from Vietnamese account screens.
@@ -984,6 +987,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - In dark mode use `iconDark` from data when the vendor publishes an official variant. Otherwise render the mark on a 32px `#ffffff` tile with 6px radius.
 - Two-letter monogram fallback: `mono` 13 on `--surface`, 1px `--rule`.
 - Always next to the visible name; the mark is `alt=""`.
+- Integration icons follow the same rules, as PNG only: no third-party SVG is served from the site's origin.
 
 **SponsorList:**
 
@@ -1766,6 +1770,35 @@ Card (surface) Newsletter Checkbox consent · [Subscribe] secondary · inline re
 | Invalid or expired signature (403) | H1 "This link isn't valid" · "Use the unsubscribe link in your most recent newsletter, or email us." |
 
 None of these pages is indexed (`noindex`). The single robots tag comes from the page.
+
+### 8.21 Integrations hub (`/integrations`, every locale)
+
+```
+PageHeader       H1 · lead · Build an integration ↗ (docs)
+                 IntegrationFilters: Search · Category · TablePro app · Type · [Show results]
+p role=status    "{count} integrations"
+IntegrationList  one row per entry, Official first; or EmptyState "No integrations match" · Clear filters →
+#publish         How to submit ↗ · Listing policy ↗ (the registry on GitHub) · owners' names and logos line
+```
+
+- **The one page with search and filters**, by the owner's decision of 2026-10-10. §8.9's "no filter" rule still holds for the blog.
+- One filter function serves the server render and the browser. Without JavaScript the form reloads the page with the query; with it, results follow each change and the address bar is replaced, never pushed. The canonical stays `/integrations`.
+- Another language lists an entry only once its tagline there is translated from the current English summary. Each row links the English detail page with "(English)".
+
+### 8.22 Integration page (`/integrations/{slug}`, English only)
+
+```
+Breadcrumbs  Integrations / {name}
+cols 1-8     mark 40 · H1 {name} · lead {summary} · By {publisher} · type Badge · Closed source · Archived
+             Callout warning when archived · install action by type (button ↗, or a Homebrew CodeBlock) · Source code ↗
+cols 9-12    Card "Details": Publisher · Category · Works with · TablePro app · License · Listed · Last checked
+#about       description paragraphs, as text
+#screenshots CellGrid, 2 columns from 768
+#uses        "What it uses": TablePro features (docs ↗) · Reads · Changes · Callouts for lowered Safe Mode, internet, account, cost
+#support     Report a problem ↗ (registry issue form) · Get help from {publisher} ↗ · Documentation ↗ · Callout when not Official
+```
+
+`/vi/integrations/{slug}` and the other languages answer 404 with a link to the English page.
 
 ---
 

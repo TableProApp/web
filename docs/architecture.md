@@ -12,6 +12,7 @@ database and no credentials: every page is built from markdown in
 /features  /features/{slug}
 /databases /{database}-client  /{database}-gui
 /compare   /compare/{slug}
+/integrations  /integrations/{slug}   from resources/data/integrations.json; detail pages in English only
 /privacy  /terms  /refund-policy
 /blog  /blog/{slug}        markdown in resources/blog
 /blog/feed.xml             the English posts as Atom, linked from the head of blog pages
@@ -102,10 +103,11 @@ the two copies are compared by its `LanguageRegionsConfigTest`.
 ```
 resources/data/*.json                 locale-neutral facts: locales, platforms, engines,
                                       pricing, paid-features, facts, sponsors, comparisons,
-                                      assets, redirects
+                                      assets, redirects, integrations
 resources/data/content/{locale}/      page copy: home, download, ios, pricing, faq, blog,
-                                      legal, engines, paid-features, and one file per
-                                      page under features/, databases/, compare/
+                                      legal, engines, paid-features, one file per page
+                                      under features/, databases/, compare/, and
+                                      integrations/index.json
 resources/data/legal/{locale}/*.md    privacy, terms, refund policy
 resources/blog/*.md                   posts (English); resources/blog/vi/*.md their translations
 lang/{locale}/*.php                   OG card labels and the static error pages
@@ -123,6 +125,30 @@ removes every such label at once.
 A database, comparison or feature page exists when its slug is in the constant
 class in `app/Support/Content/Slugs/` (the route constraint) and its content
 file exists in a locale. `LocaleRoutingTest` holds the two lists together.
+
+An integration page is the exception: its route takes any slug-shaped value,
+and it exists when `resources/data/integrations.json` has that slug, so a sync
+adds or removes pages without a PHP change or a route cache rebuild.
+
+### Integrations
+
+`resources/data/integrations.json` and the PNGs in `public/images/integrations/`
+are a byte copy of a [TableProApp/integrations](https://github.com/TableProApp/integrations)
+release, brought in by the pull request `integrations-sync.yml` opens. Nothing
+here edits them. Icons and screenshots are PNG only, so no third-party SVG is
+served from this origin, and every text field renders as React text.
+
+- `/integrations` renders in every locale. English lists every active entry
+  with the registry's `summary`. Another locale lists an entry only while
+  `content/{locale}/integrations/index.json` → `taglines` has it and
+  `content/en/…` → `taglines` still equals the summary, so a changed summary
+  hides the old translation until it is updated.
+- `/integrations/{slug}` renders in English only (`IntegrationPages`), and
+  archived entries keep their page with `noindex`. Other locales answer 404
+  with a link to the English page.
+- The hub filters with one function in the server render and the browser
+  (`components/integrations/model.ts`), so the GET form works without
+  JavaScript and the canonical stays `/integrations`.
 
 ### Retired URLs
 

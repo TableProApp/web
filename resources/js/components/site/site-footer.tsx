@@ -195,6 +195,11 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                                 {groups.product.databases}
                             </LocaleLink>
                         </li>
+                        <li>
+                            <LocaleLink href="/integrations" className={LINK}>
+                                {groups.product.integrations}
+                            </LocaleLink>
+                        </li>
                         {PLATFORM_PAGES.map((page) => (
                             <li key={page.id}>
                                 <LocaleLink href={page.href} className={LINK}>

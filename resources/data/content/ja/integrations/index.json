@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "連携",
+        "description": "AI クライアント、エディター、自動化、コマンドラインなど、TablePro と連携するアプリとツール。TablePro が開発したものと、他の開発者によるものがあります。"
+    },
+    "header": {
+        "title": "連携",
+        "lead": "TablePro と連携するアプリとツール。",
+        "build": "連携を開発する"
+    },
+    "filters": {
+        "label": "連携を絞り込む",
+        "search": "検索",
+        "category": {
+            "label": "カテゴリ",
+            "all": "すべてのカテゴリ"
+        },
+        "platform": {
+            "label": "TablePro アプリ",
+            "all": "すべて"
+        },
+        "tier": {
+            "label": "種類",
+            "all": "すべての種類"
+        },
+        "submit": "結果を表示",
+        "count": {
+            "one": "{count} 件の連携",
+            "other": "{count} 件の連携"
+        },
+        "empty": "条件に一致する連携はありません。",
+        "clear": "絞り込みを解除"
+    },
+    "publish": {
+        "title": "連携を掲載する",
+        "guide": "申請方法",
+        "policy": "掲載ポリシー"
+    },
+    "notice": "名称とロゴは各権利者に帰属します。TablePro が開発しているのは公式の連携だけです。",
+    "labels": {
+        "by": "提供：{publisher}",
+        "closedSource": "クローズドソース",
+        "tiers": {
+            "official": "公式",
+            "partner": "パートナー",
+            "community": "コミュニティ"
+        },
+        "categories": {
+            "ai-clients": "AI クライアント",
+            "automation": "自動化",
+            "cloud-hosting": "クラウドホスティング",
+            "command-line": "コマンドライン",
+            "editors": "エディター",
+            "launchers": "ランチャー",
+            "local-development": "ローカル開発",
+            "other": "その他"
+        }
+    },
+    "show": {
+        "seoTitle": "{name} 連携",
+        "install": {
+            "built-in": "TablePro で設定",
+            "ships-with-host": "{host} で設定",
+            "raycast-store": "Raycast Store からインストール",
+            "vscode-marketplace": "Visual Studio Marketplace からインストール",
+            "github-release": "GitHub からダウンロード",
+            "homebrew": "Homebrew でインストール",
+            "app-store": "App Store で見る",
+            "alfred-gallery": "Alfred Gallery からインストール",
+            "page": "{name} を入手"
+        },
+        "source": "ソースコード",
+        "details": {
+            "title": "詳細",
+            "publisher": "提供元",
+            "category": "カテゴリ",
+            "host": "対応アプリ",
+            "hostVersion": "{host} {version} 以降",
+            "apps": "TablePro アプリ",
+            "appVersion": "{app} {version} 以降",
+            "license": "ライセンス",
+            "added": "掲載日",
+            "verified": "最終確認日"
+        },
+        "about": "概要",
+        "screenshots": "スクリーンショット",
+        "uses": {
+            "title": "利用する機能とデータ",
+            "surfaces": "TablePro の機能",
+            "reads": "読み取り",
+            "writes": "変更",
+            "none": "なし",
+            "data": {
+                "connections": "接続の一覧",
+                "schema": "スキーマ",
+                "data": "テーブルのデータ"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "tablepro:// リンク",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "MCP サーバー",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "ペアリング",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "データベース URL",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "tablepro コマンド",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "ショートカットのアクション",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "Safe Mode のレベルを下げる",
+            "safeModeLink": "Safe Mode のレベル",
+            "internet": "インターネット経由でデータを送信",
+            "account": "他のサービスのアカウントが必要",
+            "privacy": "プライバシーポリシー",
+            "payment": {
+                "optional": "無料（有料オプションあり）",
+                "paid": "有料"
+            }
+        },
+        "support": {
+            "title": "ヘルプ",
+            "report": "この掲載内容の問題を報告",
+            "help": "{publisher} のサポートを受ける",
+            "docs": "ドキュメント"
+        },
+        "disclaimer": "{name} は TablePro ではなく {publisher} が開発しています。TablePro はここに掲載していますが、サポートはしていません。",
+        "archived": {
+            "badge": "アーカイブ済み",
+            "since": "{date} にアーカイブされました。",
+            "reasons": {
+                "unmaintained": "メンテナンスが終了しています。",
+                "broken": "TablePro で動作しなくなりました。",
+                "source-archived": "ソースリポジトリがアーカイブされています。",
+                "superseded": "<link>{name}</link> に置き換えられました。",
+                "author-request": "作者の依頼によりアーカイブされました。",
+                "policy": "掲載ポリシーを満たさなくなりました。"
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "TablePro 内蔵の MCP サーバーを通じて、Claude Code をデータベースに接続します。",
+        "claude-desktop": "TablePro 内蔵の MCP サーバーを通じて、Claude Desktop をデータベースに接続します。",
+        "command-line": "ターミナルから tablepro コマンドで、データベース URL や SQL ファイルを TablePro で開きます。",
+        "cursor": "TablePro 内蔵の MCP サーバーを通じて、Cursor のエージェントをデータベースに接続します。",
+        "shortcuts": "iPhone と iPad のショートカットから、テーブルに行を追加したり接続を開いたりできます。",
+        "zed": "TablePro 内蔵の MCP サーバーを通じて、Zed のエージェントをデータベースに接続します。"
+    }
+}

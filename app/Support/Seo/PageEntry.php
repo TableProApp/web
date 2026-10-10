@@ -22,7 +22,7 @@ final readonly class PageEntry
      * @param  list<string>  $renderLocales  locales in which the URL answers 200
      * @param  list<string>  $indexableLocales  subset of $renderLocales: index, sitemap, hreflang
      * @param  list<string>  $sources  repository paths whose last change is the page's lastmod
-     * @param  string  $ogFamily  site | blog | database | compare | feature
+     * @param  string  $ogFamily  site | blog | database | compare | feature | integration
      */
     public function __construct(
         public string $route,

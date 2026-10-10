@@ -7,6 +7,7 @@ export default {
             "title": "产品",
             "features": "功能",
             "databases": "数据库",
+            "integrations": "集成",
             "pricing": "定价",
             "download": "下载",
             "compare": "对比"

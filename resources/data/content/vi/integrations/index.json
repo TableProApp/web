@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "Tích hợp",
+        "description": "Ứng dụng và công cụ dùng được với TablePro: AI client, editor, tự động hóa và dòng lệnh, do TablePro hoặc bên khác phát triển."
+    },
+    "header": {
+        "title": "Tích hợp",
+        "lead": "Ứng dụng và công cụ dùng được với TablePro.",
+        "build": "Tự xây dựng tích hợp"
+    },
+    "filters": {
+        "label": "Lọc tích hợp",
+        "search": "Tìm kiếm",
+        "category": {
+            "label": "Danh mục",
+            "all": "Mọi danh mục"
+        },
+        "platform": {
+            "label": "Ứng dụng TablePro",
+            "all": "Tất cả"
+        },
+        "tier": {
+            "label": "Loại",
+            "all": "Mọi loại"
+        },
+        "submit": "Xem kết quả",
+        "count": {
+            "one": "{count} tích hợp",
+            "other": "{count} tích hợp"
+        },
+        "empty": "Không có tích hợp nào khớp với bộ lọc này.",
+        "clear": "Xóa bộ lọc"
+    },
+    "publish": {
+        "title": "Đăng tích hợp của bạn",
+        "guide": "Cách gửi tích hợp",
+        "policy": "Chính sách đăng tích hợp"
+    },
+    "notice": "Tên và logo thuộc về chủ sở hữu của chúng. Chỉ tích hợp Chính thức do TablePro phát triển.",
+    "labels": {
+        "by": "Do {publisher} phát triển",
+        "closedSource": "Mã nguồn đóng",
+        "tiers": {
+            "official": "Chính thức",
+            "partner": "Đối tác",
+            "community": "Cộng đồng"
+        },
+        "categories": {
+            "ai-clients": "AI client",
+            "automation": "Tự động hóa",
+            "cloud-hosting": "Hosting trên cloud",
+            "command-line": "Dòng lệnh",
+            "editors": "Editor",
+            "launchers": "Trình khởi chạy",
+            "local-development": "Phát triển cục bộ",
+            "other": "Khác"
+        }
+    },
+    "show": {
+        "seoTitle": "Tích hợp {name}",
+        "install": {
+            "built-in": "Thiết lập trong TablePro",
+            "ships-with-host": "Thiết lập bằng {host}",
+            "raycast-store": "Cài từ Raycast Store",
+            "vscode-marketplace": "Cài từ Visual Studio Marketplace",
+            "github-release": "Tải về từ GitHub",
+            "homebrew": "Cài bằng Homebrew",
+            "app-store": "Xem trên App Store",
+            "alfred-gallery": "Cài từ Alfred Gallery",
+            "page": "Tải {name}"
+        },
+        "source": "Mã nguồn",
+        "details": {
+            "title": "Chi tiết",
+            "publisher": "Nhà phát hành",
+            "category": "Danh mục",
+            "host": "Dùng với",
+            "hostVersion": "{host} {version} trở lên",
+            "apps": "Ứng dụng TablePro",
+            "appVersion": "{app} {version} trở lên",
+            "license": "License",
+            "added": "Ngày đăng",
+            "verified": "Kiểm tra lần cuối"
+        },
+        "about": "Giới thiệu",
+        "screenshots": "Ảnh chụp màn hình",
+        "uses": {
+            "title": "Tích hợp dùng gì",
+            "surfaces": "Tính năng TablePro",
+            "reads": "Đọc",
+            "writes": "Thay đổi",
+            "none": "Không có",
+            "data": {
+                "connections": "Danh sách connection",
+                "schema": "Schema",
+                "data": "Dữ liệu table"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "Liên kết tablepro://",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "MCP server",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "Ghép nối",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "URL cơ sở dữ liệu",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "Lệnh tablepro",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "Tác vụ Phím tắt",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "Hạ mức Safe Mode",
+            "safeModeLink": "Các mức Safe Mode",
+            "internet": "Gửi dữ liệu qua internet",
+            "account": "Cần tài khoản ở một dịch vụ khác",
+            "privacy": "Chính sách quyền riêng tư",
+            "payment": {
+                "optional": "Miễn phí, có tùy chọn trả phí",
+                "paid": "Trả phí"
+            }
+        },
+        "support": {
+            "title": "Trợ giúp",
+            "report": "Báo vấn đề với mục này",
+            "help": "Nhờ {publisher} hỗ trợ",
+            "docs": "Tài liệu"
+        },
+        "disclaimer": "{name} do {publisher} phát triển, không phải TablePro. TablePro liệt kê tích hợp này ở đây nhưng không hỗ trợ nó.",
+        "archived": {
+            "badge": "Đã lưu trữ",
+            "since": "Đã lưu trữ ngày {date}.",
+            "reasons": {
+                "unmaintained": "Tích hợp này không còn được duy trì.",
+                "broken": "Tích hợp này không còn hoạt động với TablePro.",
+                "source-archived": "Repository mã nguồn của tích hợp này đã được lưu trữ.",
+                "superseded": "Tích hợp này đã được thay bằng <link>{name}</link>.",
+                "author-request": "Tác giả yêu cầu lưu trữ tích hợp này.",
+                "policy": "Tích hợp này không còn đáp ứng chính sách đăng tích hợp."
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "Kết nối Claude Code với cơ sở dữ liệu của bạn qua MCP server tích hợp sẵn trong TablePro.",
+        "claude-desktop": "Kết nối Claude Desktop với cơ sở dữ liệu của bạn qua MCP server tích hợp sẵn trong TablePro.",
+        "command-line": "Mở URL cơ sở dữ liệu và file SQL trong TablePro từ Terminal bằng lệnh tablepro.",
+        "cursor": "Kết nối agent của Cursor với cơ sở dữ liệu của bạn qua MCP server tích hợp sẵn trong TablePro.",
+        "shortcuts": "Thêm dòng vào table và mở connection từ Phím tắt trên iPhone và iPad.",
+        "zed": "Kết nối agent của Zed với cơ sở dữ liệu của bạn qua MCP server tích hợp sẵn trong TablePro."
+    }
+}

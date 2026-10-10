@@ -7,6 +7,7 @@ export default {
             "title": "產品",
             "features": "功能",
             "databases": "資料庫",
+            "integrations": "整合",
             "pricing": "價格方案",
             "download": "下載",
             "compare": "比較"

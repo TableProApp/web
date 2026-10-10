@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use App\Support\Content\IntegrationCatalog;
 use App\Support\Localization\Locales;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
@@ -178,4 +179,22 @@ it('gives no two pages of a locale the same title', function (): void {
         expect($seen[$key] ?? null)->toBeNull("{$path} ({$locale}) repeats the title of " . ($seen[$key] ?? ''));
         $seen[$key] = $path;
     }
+});
+
+it('fits integration page titles and descriptions, which come from the registry', function (): void {
+    $template = seoLengthsJson('content/en/integrations/index.json')['show']['seoTitle'];
+    $title = fn(string $name): string => str_replace('{name}', $name, $template) . ' – TablePro';
+    $titles = [];
+
+    // The registry caps a name at 32 characters.
+    expect(mb_strlen($title(str_repeat('M', 32))))->toBeLessThanOrEqual(60);
+
+    foreach (app(IntegrationCatalog::class)->all() as $integration) {
+        $titles[] = $title($integration['name']);
+
+        expect(mb_strlen(end($titles)))->toBeLessThanOrEqual(60, "integrations/{$integration['slug']} renders a title of " . mb_strlen(end($titles)) . ' characters');
+        expect(mb_strlen($integration['summary']))->toBeLessThanOrEqual(155, "integrations/{$integration['slug']} has a longer description than 155 characters");
+    }
+
+    expect($titles)->toBe(array_values(array_unique($titles)));
 });

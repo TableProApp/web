@@ -10,7 +10,7 @@ use App\Support\Localization\Locales;
 
 /**
  * The page families built from content collections: features, databases and
- * comparisons, each with its hub.
+ * comparisons, each with its hub, and the integrations hub.
  *
  * A page renders in a locale when `resources/data/content/{locale}/{family}/{slug}.json`
  * exists (`index.json` for a hub), and is indexable there unless that file
@@ -37,6 +37,7 @@ final class ContentCollection implements PageFamily
         'landing.features.index' => ['features', 'feature', ['resources/data/paid-features.json', 'resources/data/facts.json']],
         'landing.databases.index' => ['databases', 'database', ['resources/data/engines.json']],
         'landing.compare.index' => ['compare', 'compare', ['resources/data/comparisons.json']],
+        'landing.integrations.index' => ['integrations', 'integration', ['resources/data/integrations.json']],
     ];
 
     /**
