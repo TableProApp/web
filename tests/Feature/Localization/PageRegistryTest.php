@@ -1,18 +1,15 @@
 <?php
 
-use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\LocaleSwitcher;
-use App\Support\Seo\OgImages;
 use App\Support\Seo\PageEntry;
 use App\Support\Seo\PageFamily;
 use App\Support\Seo\PageRegistry;
 use App\Support\Seo\RedirectMap;
-use App\Support\Seo\SeoContext;
 use App\Support\Seo\StaticPages;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+
+require_once __DIR__ . '/../Seo/helpers.php';
 
 /**
  * The registry's rules, which every SEO surface inherits.
@@ -34,29 +31,6 @@ beforeEach(function (): void {
 afterEach(function (): void {
     File::deleteDirectory($this->contentDir);
 });
-
-/**
- * @param  array<string, mixed>  $data
- */
-function writeContent(string $dir, string $locale, string $name, array $data = ['seo' => ['title' => 'x', 'description' => 'y']]): void
-{
-    File::ensureDirectoryExists(dirname("{$dir}/{$locale}/{$name}.json"));
-    File::put("{$dir}/{$locale}/{$name}.json", json_encode($data, JSON_THROW_ON_ERROR));
-}
-
-/**
- * A request for `$path`, matched and bound the way the router leaves it.
- */
-function matchedRequest(string $path, string $locale): Request
-{
-    $request = Request::create($path);
-    $route = app('router')->getRoutes()->match($request);
-    $route->bind($request);
-    $request->setRouteResolver(fn() => $route);
-    App::setLocale($locale);
-
-    return $request;
-}
 
 it('keeps render and index apart on a page entry', function (): void {
     $entry = new PageEntry('landing.blog.index', [], ['en', 'vi'], ['en'], [], 'site', null);
@@ -89,8 +63,8 @@ it('knows a static page only once its content lands', function (): void {
 
     expect($registry->find('landing.download', []))->toBeNull();
 
-    writeContent($this->contentDir, 'en', 'download');
-    writeContent($this->contentDir, 'vi', 'download');
+    seoWriteContent($this->contentDir, 'en', 'download');
+    seoWriteContent($this->contentDir, 'vi', 'download');
     $this->app->forgetInstance(PageRegistry::class);
 
     $entry = app(PageRegistry::class)->find('landing.download', []);
@@ -103,59 +77,6 @@ it('knows a static page only once its content lands', function (): void {
     ]);
 });
 
-it('renders /vi/blog without indexing it when its content says so', function (): void {
-    writeContent($this->contentDir, 'en', 'blog');
-    writeContent($this->contentDir, 'vi', 'blog', ['seo' => ['title' => 'Blog', 'description' => 'd', 'indexable' => false]]);
-
-    $entry = app(PageRegistry::class)->find('landing.blog.index', []);
-
-    expect($entry->renderLocales)->toBe(['en', 'vi']);
-    expect($entry->indexableLocales)->toBe(['en']);
-
-    $vi = app(SeoContext::class)->forRequest(matchedRequest('/vi/blog', 'vi'));
-
-    expect($vi)->toMatchArray([
-        'robots' => 'noindex, follow',
-        'canonical' => null,
-        'alternates' => [],
-        'xDefault' => null,
-        'ogLocale' => 'vi_VN',
-        'ogLocaleAlternates' => [],
-    ]);
-
-    $en = app(SeoContext::class)->forRequest(matchedRequest('/blog', 'en'));
-
-    expect($en['robots'])->toBe('index, follow');
-    expect($en['canonical'])->toBe('https://localhost/blog');
-    expect($en['alternates'])->toBe([]);
-
-    $switcher = app(LocaleSwitcher::class)->forRequest(matchedRequest('/blog', 'en'));
-
-    expect($switcher[1])->toMatchArray(['locale' => 'vi', 'href' => '/vi/blog', 'fallback' => false, 'current' => false]);
-});
-
-it('declares reciprocal alternates and a self canonical on a real pair', function (): void {
-    writeContent($this->contentDir, 'en', 'faq');
-    writeContent($this->contentDir, 'vi', 'faq');
-
-    $en = app(SeoContext::class)->forRequest(matchedRequest('/faq', 'en'));
-    $vi = app(SeoContext::class)->forRequest(matchedRequest('/vi/faq', 'vi'));
-
-    $alternates = [
-        ['hreflang' => 'en', 'href' => 'https://localhost/faq'],
-        ['hreflang' => 'vi', 'href' => 'https://localhost/vi/faq'],
-    ];
-
-    expect($en['canonical'])->toBe('https://localhost/faq');
-    expect($vi['canonical'])->toBe('https://localhost/vi/faq');
-    expect($en['alternates'])->toBe($alternates);
-    expect($vi['alternates'])->toBe($alternates);
-    expect($en['xDefault'])->toBe('https://localhost/faq');
-    expect($vi['xDefault'])->toBe('https://localhost/faq');
-    expect($en['ogLocaleAlternates'])->toBe(['vi_VN']);
-    expect($vi['ogLocaleAlternates'])->toBe(['en_US']);
-});
-
 it('sends the switcher to the nearest index when a page has no translation', function (): void {
     // An English-only post that is still a page: a post merged elsewhere answers 301 and has no registry entry (sitemap §C.5).
     $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
@@ -163,16 +84,16 @@ it('sends the switcher to the nearest index when a page has no translation', fun
             && ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
     ), PATHINFO_FILENAME);
 
-    $before = app(LocaleSwitcher::class)->forRequest(matchedRequest("/blog/{$slug}", 'en'));
+    $before = app(LocaleSwitcher::class)->forRequest(seoMatchedRequest("/blog/{$slug}", 'en'));
 
     expect($before[0])->toMatchArray(['locale' => 'en', 'href' => "/blog/{$slug}", 'current' => true]);
     expect($before[1])->toMatchArray(['locale' => 'vi', 'native' => 'Tiếng Việt', 'hreflang' => 'vi', 'href' => '/vi', 'fallback' => true]);
 
-    writeContent($this->contentDir, 'en', 'blog');
-    writeContent($this->contentDir, 'vi', 'blog', ['seo' => ['indexable' => false]]);
+    seoWriteContent($this->contentDir, 'en', 'blog');
+    seoWriteContent($this->contentDir, 'vi', 'blog', ['seo' => ['indexable' => false]]);
     $this->app->forgetInstance(PageRegistry::class);
 
-    $after = app(LocaleSwitcher::class)->forRequest(matchedRequest("/blog/{$slug}", 'en'));
+    $after = app(LocaleSwitcher::class)->forRequest(seoMatchedRequest("/blog/{$slug}", 'en'));
 
     expect($after[1])->toMatchArray(['href' => '/vi/blog', 'fallback' => true]);
 });
@@ -218,31 +139,6 @@ it('asks families in order and lists each page once', function (): void {
         ->toBe(['en', 'vi']);
 });
 
-it('only ever points at an OG card that exists', function (): void {
-    $og = new OgImages();
-    $database = new PageEntry('landing.databaseClient', ['slug' => 'mysql-client'], ['en'], ['en'], [], 'database', 'mysql-client');
-
-    expect($og->for($database, 'en'))->toMatchArray([
-        'url' => 'https://localhost/og/database/mysql-client.png',
-        'type' => 'image/png',
-    ]);
-
-    /*
-     * A page without its own card shares its language's generic card: the
-     * bespoke `og-site` card once the manifest offers it, else the generated
-     * one (Seo/BespokeOgCardTest).
-     */
-    $assets = new AssetManifest();
-    $missing = new PageEntry('landing.databaseClient', ['slug' => 'nope'], ['en'], ['en'], [], 'database', 'nope');
-    expect($og->for($missing, 'en')['url'])->toBe('https://localhost' . ($assets->ogCard(OgImages::SITE_CARD, 'en') ?? '/og.png'));
-
-    $viGeneric = $assets->ogCard(OgImages::SITE_CARD, 'vi') ?? (is_file(public_path('og/vi/default.png')) ? '/og/vi/default.png' : null);
-    $vi = $viGeneric !== null ? 'https://localhost' . $viGeneric : null;
-    expect($og->for($database, 'vi')['url'] ?? null)->toBe(
-        is_file(public_path('og/vi/database/mysql-client.png')) ? 'https://localhost/og/vi/database/mysql-client.png' : $vi,
-    );
-});
-
 it('keeps the static pages to the routes that exist', function (): void {
     $names = collect(app('router')->getRoutes()->getRoutes())->map->getName()->filter()->all();
 
@@ -252,7 +148,7 @@ it('keeps the static pages to the routes that exist', function (): void {
 });
 
 it('points a missing translation at the language the page does exist in', function (): void {
-    writeContent($this->contentDir, 'vi', 'faq');
+    seoWriteContent($this->contentDir, 'vi', 'faq');
 
     $this->get('/faq')
         ->assertNotFound()

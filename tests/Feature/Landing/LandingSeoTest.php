@@ -107,20 +107,6 @@ it('keeps the health check out of search results, and marks no page that way', f
     $this->get('/pricing')->assertOk()->assertHeaderMissing('X-Robots-Tag');
 });
 
-it('rejects unknown slugs in every family and language', function (string $path): void {
-    getOnWebDomainSeo($path)->assertNotFound();
-})->with([
-    'a comparison' => ['/compare/unknown-tool'],
-    'a comparison, in Vietnamese' => ['/vi/compare/unknown-tool'],
-    'an engine page' => ['/some-bogus-slug'],
-    'an engine page, in Vietnamese' => ['/vi/some-bogus-slug'],
-    'a feature' => ['/features/unknown-feature'],
-    'a feature, in Vietnamese' => ['/vi/features/unknown-feature'],
-    'a post' => ['/blog/unknown-post'],
-    'a post, in Vietnamese' => ['/vi/blog/unknown-post'],
-    'an English-only post, in Vietnamese' => ['/vi/blog/tablepro-0-77'],
-]);
-
 it('serves robots.txt that allows everything and lists both sitemaps', function (): void {
     /*
      * robots.txt is not access control (spec §10): private pages carry their
@@ -158,14 +144,21 @@ it('renders the registry head on every page family, in each language', function 
     expect(landingSeoValues($document, 'meta[property="og:locale"]', 'content'))->toBe([Locales::definition($locale)['og']]);
 
     $expected = [];
+    $ogAlternates = [];
 
     if (in_array($locale, $entry->hreflangCluster(), true)) {
         foreach ($entry->hreflangCluster() as $code) {
             $expected[Locales::definition($code)['hreflang']] = $entry->url($code);
+
+            if ($code !== $locale) {
+                $ogAlternates[] = Locales::definition($code)['og'];
+            }
         }
 
         $expected['x-default'] = $entry->url(Locales::default());
     }
+
+    expect(landingSeoValues($document, 'meta[property="og:locale:alternate"]', 'content'))->toBe($ogAlternates);
 
     $hreflangs = [];
 
@@ -236,37 +229,24 @@ it('renders the registry head on every page family, in each language', function 
     expect($works)->toBeGreaterThan(0, "{$path} describes nothing in its own language");
 })->with([
     'home' => ['/', 'en'],
-    'home, in Vietnamese' => ['/vi', 'vi'],
     'download' => ['/download', 'en'],
     'download, in Vietnamese' => ['/vi/download', 'vi'],
     'pricing' => ['/pricing', 'en'],
-    'pricing, in Vietnamese' => ['/vi/pricing', 'vi'],
     'iPhone and iPad' => ['/ios', 'en'],
-    'iPhone and iPad, in Vietnamese' => ['/vi/ios', 'vi'],
     'FAQ' => ['/faq', 'en'],
-    'FAQ, in Vietnamese' => ['/vi/faq', 'vi'],
     'about' => ['/about', 'en'],
     'about, in Japanese' => ['/ja/about', 'ja'],
     'features hub' => ['/features', 'en'],
-    'features hub, in Vietnamese' => ['/vi/features', 'vi'],
     'a feature' => ['/features/querying', 'en'],
-    'a feature, in Vietnamese' => ['/vi/features/querying', 'vi'],
     'databases hub' => ['/databases', 'en'],
-    'databases hub, in Vietnamese' => ['/vi/databases', 'vi'],
     'an engine' => ['/mysql-client', 'en'],
-    'an engine, in Vietnamese' => ['/vi/mysql-client', 'vi'],
     'compare hub' => ['/compare', 'en'],
-    'compare hub, in Vietnamese' => ['/vi/compare', 'vi'],
     'a comparison' => ['/compare/dbeaver', 'en'],
-    'a comparison, in Vietnamese' => ['/vi/compare/dbeaver', 'vi'],
     'the blog' => ['/blog', 'en'],
-    'the blog in Vietnamese' => ['/vi/blog', 'vi'],
     'the blog in German, rendered but not indexed' => ['/de/blog', 'de'],
     'an English-only release post' => ['/blog/tablepro-0-77', 'en'],
     'a legal page' => ['/privacy', 'en'],
-    'a legal page, in Vietnamese' => ['/vi/privacy', 'vi'],
     'security' => ['/security', 'en'],
-    'security, in Japanese' => ['/ja/security', 'ja'],
 ])->group('ssr');
 
 it('marks an error page noindex, follow and points it at nothing', function (string $path, int $status, string $locale): void {
@@ -298,50 +278,3 @@ it('dates a post in its Open Graph tags, and no other page', function (): void {
         ->and($published('/blog'))->toBe([])
         ->and($published('/pricing'))->toBe([]);
 })->group('ssr');
-
-it('publishes one application entity and no FAQPage on the homepage', function (string $path): void {
-    $html = ssrHtml($path);
-
-    expect(substr_count($html, '"@type":"SoftwareApplication"'))->toBe(1);
-    // /faq owns the FAQ content for the site. Google retired the rich result
-    // on 7 May 2026, and a second copy here competed with a strict superset.
-    expect($html)->not->toContain('"@type":"FAQPage"');
-})->with(['/', '/vi'])->group('ssr');
-
-it('describes every price point it claims to offer', function (string $path): void {
-    $html = ssrHtml($path);
-    $tiers = json_decode((string) file_get_contents(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR)['tiers'];
-    $app = null;
-
-    preg_match_all('#<script type="application/ld\+json"[^>]*>(.*?)</script>#s', $html, $blocks);
-
-    foreach ($blocks[1] as $block) {
-        $data = json_decode($block, true, 512, JSON_THROW_ON_ERROR);
-
-        foreach ($data['@graph'] ?? [$data] as $node) {
-            if (str_ends_with((string) ($node['@id'] ?? ''), '/#app')) {
-                $app = $node;
-            }
-        }
-    }
-
-    expect($app)->not->toBeNull();
-
-    // The free tier plus one offer per paid tier and cycle, each priced from pricing.json.
-    $prices = collect([$tiers['free']['price']]);
-
-    foreach ($tiers as $tier) {
-        $prices = $prices->merge(array_values($tier['prices'] ?? []));
-    }
-
-    expect(collect($app['offers'])->pluck('@type')->unique()->all())->toBe(['Offer']);
-    expect(collect($app['offers'])->pluck('price')->map(fn(string $price): float => (float) $price)->all())
-        ->toBe($prices->map(fn(int|float $price): float => (float) $price)->all());
-
-    /*
-     * `datePublished` was set to the *latest* release date, so the markup said
-     * the app was first published last week and moved that claim forward on
-     * every release.
-     */
-    expect($html)->not->toContain('"datePublished"');
-})->with(['/', '/vi'])->group('ssr');

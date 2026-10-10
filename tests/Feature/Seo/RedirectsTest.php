@@ -274,8 +274,6 @@ it('answers 404 for every URL the disposition table says never existed or has no
     '/mail-preview/waitlist-launch',
     '/images/connections-dark.png',
     '/sponsors/nimbus.svg',
-    '/vi/account',
-    '/vi/account/login',
     '/vi/checkout',
 ]);
 

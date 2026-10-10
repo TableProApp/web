@@ -2,12 +2,15 @@
 
 use App\Support\Content\ContentRepository;
 use App\Support\Content\IntegrationCatalog;
+use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\LegalPages;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Assert;
 
 /*
 |--------------------------------------------------------------------------
@@ -204,6 +207,89 @@ function seoGenerateSitemap(): array
     }
 
     return $urls;
+}
+
+/**
+ * `seoGenerateSitemap()` on the committed site, generated once per process.
+ *
+ * @return array<string, array{alternates: array<string, string>, lastmod: string|null, elements: list<string>}>
+ */
+function seoCommittedSitemap(): array
+{
+    static $urls = null;
+
+    return $urls ??= seoGenerateSitemap();
+}
+
+/**
+ * Every registry page in every locale, rendered and 404 alike, requested once
+ * per process with SSR off. Only for tests that leave the content sources alone.
+ *
+ * @return array<string, array{status: int, lang: string|null, component: string|null, props: array<string, mixed>}>
+ */
+function seoCrawlProps(): array
+{
+    static $pages = null;
+
+    if ($pages !== null) {
+        return $pages;
+    }
+
+    Http::fake(['api.github.com/*' => Http::response([], 200)]);
+    $crawl = [];
+
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach (Locales::codes() as $locale) {
+            $path = $entry->url($locale, false);
+            $response = test()->get($path);
+            $page = $response->viewData('page');
+
+            preg_match('/<html lang="([^"]*)"/', (string) $response->getContent(), $lang);
+
+            $crawl[$path] = [
+                'status' => $response->getStatusCode(),
+                'lang' => $lang[1] ?? null,
+                'component' => $page['component'] ?? null,
+                'props' => $page['props'] ?? [],
+            ];
+        }
+    }
+
+    return $pages = $crawl;
+}
+
+/**
+ * The server-rendered HTML of every registry page in each locale it renders
+ * in, requested once per process. Only for tests that leave the content
+ * sources alone.
+ *
+ * @return array<string, string>
+ */
+function seoCrawlHtml(): array
+{
+    requireSsr();
+
+    static $pages = null;
+
+    if ($pages !== null) {
+        return $pages;
+    }
+
+    Http::fake(['api.github.com/*' => Http::response([], 200)]);
+    $crawl = [];
+
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach ($entry->renderLocales as $locale) {
+            $path = $entry->url($locale, false);
+            $response = test()->get($path);
+
+            Assert::assertSame(200, $response->getStatusCode(), "{$path} does not render");
+
+            $crawl[$path] = (string) $response->getContent();
+        }
+    }
+
+    return $pages = $crawl;
 }
 
 /**

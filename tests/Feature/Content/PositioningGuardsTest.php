@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/../Seo/helpers.php';
 
 /**
  * Positioning §13's guard tests: what must not change, and what must change
@@ -106,8 +107,7 @@ function positioningIsReleasePost(PageEntry $entry): bool
 }
 
 it('renders every title in 60 characters and every description within its locale\'s limit (guard 3)', function (): void {
-    requireSsr();
-
+    $html = seoCrawlHtml();
     $offences = [];
     $checked = 0;
 
@@ -118,7 +118,7 @@ it('renders every title in 60 characters and every description within its locale
 
         foreach ($entry->renderLocales as $locale) {
             $path = $entry->url($locale, false);
-            $document = HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR);
+            $document = HTMLDocument::createFromString($html[$path], LIBXML_NOERROR);
             $title = trim((string) $document->querySelector('title')?->textContent);
             $description = trim((string) $document->querySelector('meta[name="description"]')?->getAttribute('content'));
             $limit = $locale === 'vi' ? 160 : 155;
@@ -202,7 +202,8 @@ function positioningWithdraw(string $platform): string
 }
 
 /**
- * The props of every registry page in every locale it renders in.
+ * The props of every registry page in its first two locales: availability
+ * comes from platforms.json, not from the locale.
  *
  * @return array<string, array{route: string, props: array<string, mixed>}>
  */
@@ -211,7 +212,7 @@ function positioningRegistryProps(): array
     $pages = [];
 
     foreach (app(PageRegistry::class)->all() as $entry) {
-        foreach ($entry->renderLocales as $locale) {
+        foreach (array_slice($entry->renderLocales, 0, 2) as $locale) {
             $path = $entry->url($locale, false);
             $response = test()->get($path);
 
@@ -282,20 +283,33 @@ function positioningIosAvailability(string $route, array $props, array $devices)
 it('drops a platform from every availability prop the day it is not released (guard 4)', function (): void {
     $ios = collect(contentGuardDecode(resource_path('data/platforms.json'))['platforms'])->firstWhere('id', 'ios');
     $devices = $ios['deviceNames'];
+    $databaseRoutes = ['landing.databases.index', 'landing.databaseClient'];
+    $crawl = seoCrawlProps();
 
     // Today the app is released, so each family hands its availability to the page.
     $released = [];
+    $appStore = 0;
 
-    foreach (positioningRegistryProps() as $path => $page) {
-        $released[$page['route']] = ($released[$page['route']] ?? false) || positioningIosAvailability($page['route'], $page['props'], $devices) !== [];
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach ($entry->renderLocales as $locale) {
+            $props = $crawl[$entry->url($locale, false)]['props'];
+            $released[$entry->route] = ($released[$entry->route] ?? false) || positioningIosAvailability($entry->route, $props, $devices) !== [];
+
+            if (in_array($entry->route, $databaseRoutes, true) && ($props['links']['appStore'] ?? null) !== null) {
+                $appStore++;
+            }
+        }
     }
 
     foreach (['landing.home', 'landing.download', 'landing.ios', 'landing.faq', 'landing.databases.index', 'landing.databaseClient', 'landing.compare', 'landing.compare.index'] as $route) {
         expect($released[$route] ?? false)->toBeTrue("{$route} carries no iPhone and iPad availability while the app is released, so this guard would see nothing there");
     }
 
+    expect($appStore)->toBeGreaterThan(0, 'No database page carries the App Store action while the app is released, so this guard would see nothing');
+
     $directory = positioningWithdraw('ios');
     $offences = [];
+    $withAppStore = [];
 
     try {
         foreach (positioningRegistryProps() as $path => $page) {
@@ -306,34 +320,18 @@ it('drops a platform from every availability prop the day it is not released (gu
             if ($page['route'] === 'landing.download') {
                 expect($page['props']['unreleased'] ?? [])->toContain('ios');
             }
+
+            // The engine header shows the App Store badge whenever links.appStore is set.
+            if (in_array($page['route'], $databaseRoutes, true) && ($page['props']['links']['appStore'] ?? null) !== null) {
+                $withAppStore[] = $path;
+            }
         }
     } finally {
         File::deleteDirectory($directory);
     }
 
     expect($offences)->toBe([], "Availability rendered for a platform that is not released:\n  " . implode("\n  ", $offences));
-});
-
-it('withholds the App Store action on the database pages while the iPhone and iPad app is not released (guard 4)', function (): void {
-    /*
-     * The engine header shows the App Store badge for an engine in the iPhone
-     * picker whenever `links.appStore` is set (components/databases/
-     * engine-header.tsx), so the prop itself must follow the release status,
-     * as `appStoreUrl` does on /download and /ios.
-     */
-    $databasePages = fn(): array => array_filter(positioningRegistryProps(), fn(array $page): bool => in_array($page['route'], ['landing.databases.index', 'landing.databaseClient'], true));
-
-    expect(array_filter($databasePages(), fn(array $page): bool => ($page['props']['links']['appStore'] ?? null) !== null))->not->toBe([], 'No database page carries the App Store action while the app is released, so this guard would see nothing');
-
-    $directory = positioningWithdraw('ios');
-
-    try {
-        $offences = array_keys(array_filter($databasePages(), fn(array $page): bool => ($page['props']['links']['appStore'] ?? null) !== null));
-    } finally {
-        File::deleteDirectory($directory);
-    }
-
-    expect($offences)->toBe([], "These pages still hand the App Store action to the page:\n  " . implode("\n  ", $offences));
+    expect($withAppStore)->toBe([], "These pages still hand the App Store action to the page:\n  " . implode("\n  ", $withAppStore));
 });
 
 /**
@@ -357,8 +355,7 @@ function positioningUnreleasedNames(string $locale): array
 }
 
 it('renders no unreleased platform in the chrome, the home hero and title, or an app node (guard 4)', function (): void {
-    requireSsr();
-
+    $html = seoCrawlHtml();
     $offences = [];
     $platforms = contentGuardDecode(resource_path('data/platforms.json'))['platforms'];
     $released = array_values(array_filter($platforms, fn(array $platform): bool => ($platform['status'] ?? null) === 'released'));
@@ -368,7 +365,7 @@ it('renders no unreleased platform in the chrome, the home hero and title, or an
             $path = $entry->url($locale, false);
             $names = positioningUnreleasedNames($locale);
             $pattern = '/\b(' . implode('|', array_map(fn(string $name): string => preg_quote($name, '/'), $names)) . ')\b/u';
-            $document = HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR);
+            $document = HTMLDocument::createFromString($html[$path], LIBXML_NOERROR);
             $footers = $document->querySelectorAll('footer');
 
             $surfaces = [

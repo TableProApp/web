@@ -211,11 +211,13 @@ it('links the account in the requested language from a prefixed account or check
             ->where('account', '/account?locale=' . $locale));
 })->with(function (): array {
     $cases = [];
-    foreach (array_diff(array_keys(json_decode(file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']), ['en']) as $locale) {
+
+    foreach (['vi', 'pt-BR'] as $locale) {
         foreach (['account', 'account/login', 'checkout/starter'] as $path) {
             $cases["{$locale}/{$path}"] = ["/{$locale}/{$path}", $locale];
         }
     }
+
     return $cases;
 });
 

@@ -55,7 +55,7 @@ it('lists exactly the indexable pages of the registry, once each', function (): 
         }
     }
 
-    $urls = array_keys(seoGenerateSitemap());
+    $urls = array_keys(seoCommittedSitemap());
 
     sort($expected);
     sort($urls);
@@ -65,7 +65,7 @@ it('lists exactly the indexable pages of the registry, once each', function (): 
 });
 
 it('lists the English and Vietnamese blog indexes as each other\'s alternates, and no other language of it', function (): void {
-    $urls = seoGenerateSitemap();
+    $urls = seoCommittedSitemap();
     $base = LocalizedUrl::base();
 
     foreach (['/blog', '/vi/blog'] as $path) {
@@ -79,7 +79,7 @@ it('lists the English and Vietnamese blog indexes as each other\'s alternates, a
 });
 
 it('lists absolute, clean, canonical URLs only', function (): void {
-    foreach (seoGenerateSitemap() as $loc => $url) {
+    foreach (seoCommittedSitemap() as $loc => $url) {
         expect($loc)->toStartWith(LocalizedUrl::base() . '/');
         expect(parse_url($loc, PHP_URL_QUERY))->toBeNull();
         expect(parse_url($loc, PHP_URL_FRAGMENT))->toBeNull();
@@ -92,7 +92,7 @@ it('lists absolute, clean, canonical URLs only', function (): void {
 });
 
 it('leaves out redirect and 410 sources, platform paths and system files', function (): void {
-    $paths = array_map(fn(string $loc): string => seoPathOf($loc), array_keys(seoGenerateSitemap()));
+    $paths = array_map(fn(string $loc): string => seoPathOf($loc), array_keys(seoCommittedSitemap()));
 
     foreach (seoRedirectEntries() as $entry) {
         expect(in_array($entry['from'], $paths, true))->toBeFalse("{$entry['from']} is retired");
@@ -106,7 +106,7 @@ it('leaves out redirect and 410 sources, platform paths and system files', funct
 });
 
 it('dates each URL and drops changefreq and priority', function (): void {
-    foreach (seoGenerateSitemap() as $loc => $url) {
+    foreach (seoCommittedSitemap() as $loc => $url) {
         expect($url['lastmod'])->not->toBeNull("{$loc} has no lastmod");
         expect(strtotime((string) $url['lastmod']))->toBeInt();
         expect(in_array('changefreq', $url['elements'], true))->toBeFalse();

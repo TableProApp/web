@@ -1,13 +1,15 @@
 <?php
 
-use App\Support\Content\IntegrationCatalog;
 use App\Support\Seo\PageRegistry;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
+
+require_once __DIR__ . '/../Seo/helpers.php';
 
 /**
  * Every page family renders, in each locale its registry entries render in
@@ -27,12 +29,6 @@ use function Pest\Laravel\withoutVite;
 beforeEach(function (): void {
     withoutVite();
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
-
-    // Integration pages exist once a registry sync lands entries; until then the fixture stands in.
-    if (app(IntegrationCatalog::class)->all() === []) {
-        app()->instance(IntegrationCatalog::class, new IntegrationCatalog(base_path('tests/Fixtures/integrations/index.json')));
-        app()->forgetInstance(PageRegistry::class);
-    }
 });
 
 /**
@@ -78,43 +74,43 @@ it('knows every page family the registry lists', function (): void {
     sort($known);
 
     expect($routes)->toBe($known, 'A page family was added or retired; update landingFamilies()');
+
+    foreach (landingFamilies() as [$component]) {
+        Assert::assertFileExists(resource_path("js/pages/{$component}.tsx"), "{$component} is not a page component");
+    }
 });
 
-it('renders every page of a family in each locale it renders in', function (string $route): void {
-    [$component, $props] = landingFamilies()[$route];
+it('renders every page of a family with its component and the props it needs', function (): void {
+    $crawl = seoCrawlProps();
+    $families = landingFamilies();
     $rendered = [];
 
     foreach (app(PageRegistry::class)->all() as $entry) {
-        if ($entry->route !== $route) {
-            continue;
-        }
+        [$component, $props] = $families[$entry->route] ?? [null, []];
 
         foreach ($entry->renderLocales as $locale) {
             $path = $entry->url($locale, false);
-            $response = get($path);
+            $page = $crawl[$path];
 
-            Assert::assertSame(200, $response->getStatusCode(), "{$path} does not render");
-            Assert::assertStringContainsString("<html lang=\"{$locale}\"", (string) $response->getContent(), "{$path} has the wrong document language");
+            Assert::assertSame($component, $page['component'], "{$path} renders the wrong component");
 
-            $response->assertInertia(function (AssertableInertia $page) use ($component, $props, $locale): void {
-                $page->component($component)->where('locale', $locale);
+            foreach ($props as $prop) {
+                Assert::assertTrue(Arr::has($page['props'], $prop), "{$path} has no {$prop} prop");
+            }
 
-                foreach ($props as $prop) {
-                    $page->has($prop);
-                }
-            });
-
-            $rendered[$locale] = true;
+            $rendered[$entry->route][$locale] = true;
         }
     }
 
     // Every family renders in English, and every family but the release posts, the brand guidelines and integration pages in Vietnamese too.
-    expect($rendered)->toHaveKey('en');
+    foreach (array_keys($families) as $route) {
+        expect($rendered[$route] ?? [])->toHaveKey('en', "{$route} renders nowhere in English");
 
-    if (! in_array($route, ['landing.blog.show', 'landing.brand', 'landing.integrations.show'], true)) {
-        expect($rendered)->toHaveKey('vi');
+        if (! in_array($route, ['landing.blog.show', 'landing.brand', 'landing.integrations.show'], true)) {
+            expect($rendered[$route] ?? [])->toHaveKey('vi', "{$route} renders nowhere in Vietnamese");
+        }
     }
-})->with(fn(): array => array_keys(landingFamilies()));
+});
 
 it('renders and indexes the Vietnamese blog listing', function (): void {
     get('/vi/blog')

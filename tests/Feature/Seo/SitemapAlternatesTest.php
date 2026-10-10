@@ -51,7 +51,7 @@ function sitemapAlternatesFromHead(string $loc): array
 }
 
 it('lists the same alternates as the head, for every real URL', function (): void {
-    $urls = seoGenerateSitemap();
+    $urls = seoCommittedSitemap();
 
     expect($urls)->not->toBeEmpty();
 

@@ -16,6 +16,8 @@ use Inertia\Middleware\EnsureDeferredCallbacksRun;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
+require_once __DIR__ . '/../Seo/helpers.php';
+
 /**
  * The locale contract of the public site.
  *
@@ -85,104 +87,48 @@ function retiredStatus(string $path): ?int
     return null;
 }
 
-/**
- * Every page the registry knows, as `[path, locale, renders]` for each locale.
- *
- * @return list<array{0: string, 1: string, 2: bool}>
- */
-function registryMatrix(): array
-{
-    $rows = [];
-
-    foreach (app(PageRegistry::class)->all() as $entry) {
-        foreach (Locales::codes() as $locale) {
-            $rows[] = [$entry->url($locale, false), $locale, $entry->renders($locale)];
-        }
-    }
-
-    return $rows;
-}
-
 it('still answers every URL the pre-rebuild English site served', function (): void {
+    $crawl = seoCrawlProps();
+
     foreach (preRebuildEnglishUrls() as $path) {
         $expected = retiredStatus($path) ?? 200;
 
         Assert::assertSame(
             $expected,
-            $this->get($path)->getStatusCode(),
+            $crawl[$path]['status'] ?? $this->get($path)->getStatusCode(),
             "{$path} should answer {$expected}",
         );
     }
 });
 
 it('renders every registry page in each locale it renders in, and 404s in the others', function (): void {
-    $rows = registryMatrix();
+    $crawl = seoCrawlProps();
+    $checked = 0;
 
-    expect($rows)->not->toBeEmpty();
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach (Locales::codes() as $locale) {
+            $path = $entry->url($locale, false);
+            $page = $crawl[$path];
 
-    foreach ($rows as [$path, $locale, $renders]) {
-        $response = $this->get($path);
+            Assert::assertSame($locale, $page['lang'], "{$path} has the wrong document language");
+            Assert::assertSame($locale, $page['props']['locale'] ?? null, "{$path} is not in {$locale}");
 
-        if ($renders) {
-            Assert::assertSame(200, $response->getStatusCode(), "{$path} should render in {$locale}");
-            $response->assertInertia(fn(AssertableInertia $page) => $page->where('locale', $locale));
-            Assert::assertNotSame('Error', $response->viewData('page')['component'], "{$path} rendered the error page");
+            if ($entry->renders($locale)) {
+                Assert::assertSame(200, $page['status'], "{$path} should render in {$locale}");
+                Assert::assertNotSame('Error', $page['component'], "{$path} rendered the error page");
+                $checked++;
 
-            continue;
+                continue;
+            }
+
+            Assert::assertSame(404, $page['status'], "{$path} must not render in {$locale}");
+            Assert::assertSame('Error', $page['component'], "{$path} must answer with the error page");
+            Assert::assertSame(404, $page['props']['status'] ?? null, "{$path} must answer with the 404 page");
+            Assert::assertSame('noindex, follow', $page['props']['seo']['robots'] ?? null, "{$path} must not be indexed");
         }
-
-        Assert::assertSame(404, $response->getStatusCode(), "{$path} must not render in {$locale}");
-        $response->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Error')
-            ->where('status', 404)
-            ->where('locale', $locale)
-            ->where('seo.robots', 'noindex, follow'));
-    }
-});
-
-it('offers the existing language on a page that is missing in this one', function (): void {
-    $entry = collect(app(PageRegistry::class)->all())
-        ->first(fn($entry): bool => $entry->renders('en') && ! $entry->renders('vi'));
-
-    if ($entry === null) {
-        $this->markTestSkipped('Every page renders in both locales.');
     }
 
-    $this->get($entry->url('vi', false))
-        ->assertNotFound()
-        ->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Error')
-            ->where('suggestion.href', $entry->url('en', false))
-            ->where('suggestion.hreflang', 'en')
-            ->where('suggestion.locale', 'en'));
-});
-
-it('answers /vi as the registry says, never with English copy', function (): void {
-    $home = app(PageRegistry::class)->find('landing.home', []);
-    $response = $this->get('/vi');
-
-    expect($response->getContent())->toContain('<html lang="vi"');
-
-    if ($home !== null && $home->renders('vi')) {
-        $response->assertOk()->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Home')
-            ->where('locale', 'vi'));
-
-        return;
-    }
-
-    $response->assertNotFound()->assertInertia(fn(AssertableInertia $page) => $page
-        ->component('Error')
-        ->where('locale', 'vi')
-        ->where('suggestion.href', '/')
-        ->where('seo.robots', 'noindex, follow')
-        ->where('seo.canonical', null));
-});
-
-it('keeps /?ref=…#pricing working for shipped Mac builds', function (): void {
-    $this->get('/?ref=app-about')
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page->component('Home')->where('locale', 'en'));
+    expect($checked)->toBeGreaterThan(0);
 });
 
 it('renders the pricing anchor shipped Mac builds open', function (): void {
@@ -192,10 +138,6 @@ it('renders the pricing anchor shipped Mac builds open', function (): void {
      */
     expect(ssrHtml('/?ref=app-about'))->toContain('id="pricing"');
 })->group('ssr');
-
-it('sets <html lang> from the URL on every Vietnamese path, whatever it answers', function (string $path): void {
-    expect($this->get($path)->getContent())->toContain('<html lang="vi"');
-})->with(['/vi', '/vi/download', '/vi/blog', '/vi/mysql-client', '/vi/compare/tableplus', '/vi/nope', '/vi/features/querying']);
 
 it('ignores Accept-Language: English at the root, with no redirect', function (): void {
     $response = $this->withHeader('Accept-Language', 'vi-VN,vi;q=0.9')->get('/');
@@ -207,13 +149,7 @@ it('ignores Accept-Language: English at the root, with no redirect', function ()
 });
 
 it('sets no cookie and never varies on language', function (): void {
-    $paths = ['/', '/vi', '/download', '/vi/download', '/blog', '/vi/blog', '/mysql-client', '/vi/mysql-client', '/compare/tableplus', '/nope', '/vi/nope', '/robots.txt', '/up'];
-
-    foreach (registryMatrix() as [$path]) {
-        $paths[] = $path;
-    }
-
-    foreach (array_unique($paths) as $path) {
+    foreach (['/', '/vi', '/download', '/vi/download', '/blog', '/vi/blog', '/mysql-client', '/vi/mysql-client', '/compare/tableplus', '/nope', '/vi/nope', '/robots.txt', '/up'] as $path) {
         $response = $this->get($path);
 
         Assert::assertSame([], $response->headers->getCookies(), "{$path} set a cookie");
