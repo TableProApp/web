@@ -1,7 +1,7 @@
 ---
 title: 服务条款
 description: TablePro 网站、账户门户、许可证服务器和 Team Library 的条款，以及购买 Starter 或 Team 许可证的条款。
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-10"
 ---
 
 本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro 和 iPhone、iPad 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
@@ -22,6 +22,10 @@ updatedAt: "2026-10-08"
 AGPL 对在任何规模的公司中运行 TablePro 不设条件。其条件适用于向他人提供软件副本（无论是否修改），以及修改 TablePro 后让他人通过网络使用您的修改版。本条款不限制 AGPLv3 授予您的任何权利。
 
 Mac 应用可免费下载使用，无需注册。许可证为 Mac 应用增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。
+
+## 商标 {#trademarks}
+
+TablePro™、TablePro 徽标和 TablePro 应用图标是 {publisherName} 的商标。本条款和 AGPLv3 均未授予您使用它们的权利。使用方式请参阅[品牌指南](/brand)（英语）。网站上的其他产品名称和徽标归其各自所有者所有。
 
 ## 购买许可证 {#purchases}
 

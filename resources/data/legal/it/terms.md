@@ -1,7 +1,7 @@
 ---
 title: Termini di servizio
 description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Starter o Team.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-10"
 ---
 
 Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
@@ -22,6 +22,10 @@ Il codice sorgente dell’Applicazione, incluso il codice delle funzionalità a 
 La AGPL non impone condizioni sull’esecuzione di TablePro in un’azienda di qualsiasi dimensione. Le condizioni si applicano quando fornisci copie ad altri, modificate o meno, e quando modifichi TablePro e consenti ad altri di usare la versione modificata tramite rete. Nulla in questi termini limita i diritti concessi dalla AGPLv3.
 
 L’app per Mac si scarica e si usa gratuitamente senza registrazione. Una Licenza aggiunge funzionalità opzionali all’app per Mac. L’app per iPhone e iPad è gratuita, senza acquisti in-app.
+
+## Marchi {#trademarks}
+
+TablePro™, il logo di TablePro e l’icona dell’app TablePro sono marchi di {publisherName}. Né questi termini né la AGPLv3 ti danno il diritto di usarli. Come puoi usarli è spiegato nelle [linee guida del marchio](/brand) (in inglese). Gli altri nomi di prodotti e loghi presenti sul Sito appartengono ai rispettivi titolari.
 
 ## Acquisto di una licenza {#purchases}
 

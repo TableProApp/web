@@ -1,7 +1,7 @@
 ---
 title: 服務條款
 description: TablePro 網站、帳戶入口網站、授權伺服器與 Team Library 的條款，以及購買 Starter 或 Team 授權的條款。
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-10"
 ---
 
 本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro 與 iPhone、iPad 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
@@ -22,6 +22,10 @@ updatedAt: "2026-10-08"
 AGPL 對在任何規模的公司中執行 TablePro 不設條件。其條件適用於向他人提供軟體副本（無論是否修改），以及修改 TablePro 後讓他人透過網路使用您的修改版。本條款不限制 AGPLv3 授予您的任何權利。
 
 Mac App 可免費下載使用，無需註冊。授權為 Mac App 增加選用功能。iPhone 與 iPad App 免費，且無 App 內購買。
+
+## 商標 {#trademarks}
+
+TablePro™、TablePro 標誌和 TablePro App 圖示是 {publisherName} 的商標。本條款與 AGPLv3 均未授予您使用它們的權利。使用方式請參閱[品牌指南](/brand)（英文）。網站上的其他產品名稱與標誌歸其各自所有者所有。
 
 ## 購買授權 {#purchases}
 

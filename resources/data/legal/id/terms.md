@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Starter atau Team.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-10"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -22,6 +22,10 @@ Kode sumber Aplikasi, termasuk kode fitur berbayar, diterbitkan di bawah [GNU Af
 AGPL tidak memberikan syarat untuk menjalankan TablePro di perusahaan sebesar apa pun. Syaratnya berlaku saat Anda memberikan salinan kepada pihak lain, dimodifikasi atau tidak, serta saat Anda memodifikasi TablePro dan mengizinkan pihak lain memakai versi modifikasi melalui jaringan. Tidak ada dalam ketentuan ini yang membatasi hak yang diberikan AGPLv3 kepada Anda.
 
 Aplikasi Mac gratis diunduh dan digunakan tanpa pendaftaran. Lisensi menambahkan fitur opsional ke aplikasi Mac. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.
+
+## Merek dagang {#trademarks}
+
+TablePro™, logo TablePro, dan ikon aplikasi TablePro adalah merek dagang milik {publisherName}. Baik ketentuan ini maupun AGPLv3 tidak memberi Anda hak untuk menggunakannya. Cara Anda boleh menggunakannya dijelaskan dalam [panduan merek](/brand) (bahasa Inggris). Nama produk dan logo lain di Situs Web adalah milik pemiliknya masing-masing.
 
 ## Pembelian lisensi {#purchases}
 
