@@ -83,7 +83,7 @@ Với **Read & Write** và **Silent**, thao tác ghi thông thường chạy đ�
 
 Một số câu lệnh luôn bị từ chối bất kể thiết lập: mọi thứ đọc hoặc ghi file trên server hay chạy code phía server, và nhiều hơn một câu lệnh trong một lần gọi, trừ script SQL Server.
 
-Nếu cần token hẹp hơn token của `tablepro-mcp`, ví dụ **Read Only** và chỉ cho vài connection, hãy tạo một token trong **Cài đặt > Tích hợp > Xác thực** (Settings > Integrations > Authentication) rồi cho client kết nối qua HTTP. Tài liệu [MCP Clients](https://docs.tablepro.app/external-api/mcp-clients#http-transport) có cấu hình cho cách này.
+Nếu cần token hẹp hơn token của `tablepro-mcp`, ví dụ **Read Only** và chỉ cho vài connection, hãy tạo một token trong **Cài đặt > Tích hợp > Xác thực** (Settings > Integrations > Authentication) rồi cho client kết nối qua HTTP. Tài liệu [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) có cấu hình cho cách này.
 
 ## Xem hoạt động {#activity}
 
@@ -102,4 +102,4 @@ Nếu cần token hẹp hơn token của `tablepro-mcp`, ví dụ **Read Only** 
 - **This connection is read only for external clients**: câu lệnh có ghi dữ liệu trong khi **Client bên ngoài** đang là **Read Only**. Đổi thiết lập đó, hoặc tự chạy câu lệnh trong TablePro.
 - **Connection không có trong `list_connections`**: connection đang ở **Blocked**, hoặc chính sách AI của nó đặt là **Never**.
 
-Xem [MCP Tools](https://docs.tablepro.app/external-api/mcp-tools) cho danh sách tool và [MCP Server](https://docs.tablepro.app/features/mcp) cho cài đặt. Tổng quan: [MCP](/vi/features/ai-mcp#mcp) và [Safe Mode](/vi/features/data-editing#safe-mode). Nếu TablePro không kết nối được cơ sở dữ liệu, kiểm tra [SSH tunnel](/vi/blog/postgresql-ssh-tunnel-mac) hoặc [publish port Docker](/vi/blog/connect-postgresql-mysql-docker-mac).
+Xem [MCP Tools](https://docs.tablepro.app/developers/mcp-tools) cho danh sách tool và [MCP Server](https://docs.tablepro.app/features/mcp) cho cài đặt. Tổng quan: [MCP](/vi/features/ai-mcp#mcp) và [Safe Mode](/vi/features/data-editing#safe-mode). Nếu TablePro không kết nối được cơ sở dữ liệu, kiểm tra [SSH tunnel](/vi/blog/postgresql-ssh-tunnel-mac) hoặc [publish port Docker](/vi/blog/connect-postgresql-mysql-docker-mac).
