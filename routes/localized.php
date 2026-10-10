@@ -36,8 +36,8 @@ use Illuminate\Support\Facades\Route;
 |    `route:cache` rebuilds only when PHP changes, so a slug that existed only
 |    as a file would ship without a route.
 | 2. No root-level path may equal a locale prefix (`vi`), and `ios`, `features`,
-|    `databases`, `compare`, `integrations` and `pricing` must never join the
-|    database slugs. LocaleRoutingTest and LocalesDataTest guard both.
+|    `databases`, `compare`, `integrations`, `pricing` and `brand` must never
+|    join the database slugs. LocaleRoutingTest and LocalesDataTest guard both.
 | 3. The blog and integration slugs stay patterns: whether a post or an
 |    integration exists in the requested locale is the registry's and the
 |    controller's decision. Integrations come from resources/data/integrations.json,
@@ -59,6 +59,7 @@ Route::get('/security', SecurityController::class)->name('landing.security');
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('landing.privacy');
 Route::get('/terms', [LegalController::class, 'terms'])->name('landing.terms');
 Route::get('/refund-policy', [LegalController::class, 'refundPolicy'])->name('landing.refundPolicy');
+Route::get('/brand', [LegalController::class, 'brand'])->name('landing.brand');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('landing.blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])

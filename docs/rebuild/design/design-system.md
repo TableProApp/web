@@ -1635,7 +1635,7 @@ End                  three blocks after the article, each behind a join (§4.7):
 
 Release posts keep their original dates and meaning. They have no `/vi` URL: `/vi/blog/{slug}` is a 404 that links the English post (sitemap §A.7).
 
-### 8.11 Legal (`/privacy`, `/terms`, `/refund-policy`, and `/vi/…`)
+### 8.11 Legal (`/privacy`, `/terms`, `/refund-policy`, and `/vi/…`; `/brand`, English only)
 
 ```
 PageHeader (utility)  H1 · meta "Last updated {date}"
@@ -1643,6 +1643,8 @@ PageHeader (utility)  H1 · meta "Last updated {date}"
 ≥ 1280                TableOfContents cols 1–3 (sticky) │ ProseArticle cols 4–10
 < 1280                Disclosure "On this page" above the article
 Privacy               "Cookie settings" secondary button inside the cookies section
+Brand                 the logo files inside #assets: per asset an h3, a preview on a fixed light or dark ground
+                      (rule border), standalone download links; then the colors as a DescriptionList with CopyButton
 End                   Contact line (hello@tablepro.app)
 ```
 

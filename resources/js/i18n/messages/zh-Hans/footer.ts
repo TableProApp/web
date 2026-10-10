@@ -19,6 +19,7 @@ export default {
             "blog": "博客",
             "faq": "常见问题",
             "about": "关于",
+            "brand": "品牌（英语）",
             "source": "源代码",
             "reportBug": "报告问题"
         },

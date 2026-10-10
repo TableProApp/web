@@ -19,6 +19,7 @@ export default {
             "blog": "Blog",
             "faq": "Häufige Fragen",
             "about": "Über TablePro",
+            "brand": "Marke (Englisch)",
             "source": "Quellcode",
             "reportBug": "Fehler melden"
         },

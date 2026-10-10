@@ -116,8 +116,8 @@ it('names the publisher once, with the city and country in every supported langu
     $publisher = factsJson()['publisher'];
     $locales = array_keys(json_decode(File::get(resource_path('data/locales.json')), true)['supported']);
 
-    // The seller on the App Store listing and the account behind GitHub Sponsors.
-    expect($publisher['name'])->toBe('Dat Ngo Quoc');
+    // The owner's name as he writes it. The App Store keeps the seller name Apple has.
+    expect($publisher['name'])->toBe('Ngo Quoc Dat');
     expect($publisher['countryCode'])->toBe('VN');
     expect($publisher['evidence'])->toBeString()->not->toBe('');
     expect(array_keys($publisher))->toBe(['name', 'countryCode', 'city', 'country', 'evidence']);
@@ -132,7 +132,7 @@ it('names the publisher once, with the city and country in every supported langu
     }
 
     expect(app(SiteFacts::class)->publisher('vi'))->toBe([
-        'name' => 'Dat Ngo Quoc',
+        'name' => 'Ngo Quoc Dat',
         'city' => $publisher['city']['vi'],
         'country' => $publisher['country']['vi'],
         'countryCode' => 'VN',

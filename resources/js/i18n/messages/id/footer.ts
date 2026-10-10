@@ -19,6 +19,7 @@ export default {
             "blog": "Blog",
             "faq": "Pertanyaan umum",
             "about": "Tentang",
+            "brand": "Merek (bahasa Inggris)",
             "source": "Kode sumber",
             "reportBug": "Laporkan bug"
         },

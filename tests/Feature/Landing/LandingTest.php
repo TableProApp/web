@@ -53,6 +53,7 @@ function landingFamilies(): array
         'landing.privacy' => ['Privacy', ['document.title', 'document.html', 'document.toc']],
         'landing.terms' => ['Terms', ['document.title', 'document.html', 'document.toc']],
         'landing.refundPolicy' => ['RefundPolicy', ['document.title', 'document.html', 'document.toc']],
+        'landing.brand' => ['Brand', ['document.title', 'document.html', 'document.toc']],
         'landing.blog.index' => ['Blog/Index', ['content', 'posts.0']],
         'landing.blog.show' => ['Blog/Post', ['post', 'related']],
         'landing.features.index' => ['Features/Index', ['content', 'pages.0', 'facts']],
@@ -107,10 +108,10 @@ it('renders every page of a family in each locale it renders in', function (stri
         }
     }
 
-    // Every family renders in English, and every family but the release posts and integration pages in Vietnamese too.
+    // Every family renders in English, and every family but the release posts, the brand guidelines and integration pages in Vietnamese too.
     expect($rendered)->toHaveKey('en');
 
-    if (! in_array($route, ['landing.blog.show', 'landing.integrations.show'], true)) {
+    if (! in_array($route, ['landing.blog.show', 'landing.brand', 'landing.integrations.show'], true)) {
         expect($rendered)->toHaveKey('vi');
     }
 })->with(fn(): array => array_keys(landingFamilies()));

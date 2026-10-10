@@ -12,7 +12,7 @@ use RuntimeException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /**
- * The privacy policy, terms and refund policy, read from
+ * The privacy policy, terms, refund policy and brand guidelines, read from
  * `resources/data/legal/{locale}/{document}.md`.
  *
  * Each file has front matter (`title`, `description`, `updatedAt`) and a
@@ -28,7 +28,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
  * is not rendered half filled.
  *
  * `<cookie-settings></cookie-settings>` on a line of its own marks where the
- * privacy page puts its "Cookie settings" button; the page splits the HTML on
+ * privacy page puts its "Cookie settings" button, and `<brand-assets></brand-assets>`
+ * where the brand guidelines put the logo files; the page splits the HTML on
  * it, as the blog does on `<asset-slot>`.
  */
 class LegalDocuments
@@ -36,12 +37,17 @@ class LegalDocuments
     /**
      * Route-independent document names.
      */
-    public const DOCUMENTS = ['privacy', 'terms', 'refund-policy'];
+    public const DOCUMENTS = ['privacy', 'terms', 'refund-policy', 'brand'];
+
+    // Published in English alone, as most open-source trademark policies are.
+    public const ENGLISH_ONLY = ['brand'];
 
     /**
      * The marker the privacy page replaces with its consent control.
      */
     public const COOKIE_SETTINGS_MARKER = '<cookie-settings></cookie-settings>';
+
+    public const BRAND_ASSETS_MARKER = '<brand-assets></brand-assets>';
 
     private const TOKEN = '/\{([a-zA-Z][a-zA-Z0-9]*)\}/';
 
@@ -84,7 +90,10 @@ class LegalDocuments
         $updatedAt = $this->date($parsed->matter('updatedAt'), $path);
 
         $html = $this->renderer->render($this->fill($parsed->body(), $path, $locale), $permalinkLabel);
-        $html = (string) preg_replace('#<p>\s*' . preg_quote(self::COOKIE_SETTINGS_MARKER, '#') . '\s*</p>#', self::COOKIE_SETTINGS_MARKER, $html);
+
+        foreach ([self::COOKIE_SETTINGS_MARKER, self::BRAND_ASSETS_MARKER] as $marker) {
+            $html = (string) preg_replace('#<p>\s*' . preg_quote($marker, '#') . '\s*</p>#', $marker, $html);
+        }
 
         return [
             'title' => $this->fill((string) $parsed->matter('title'), $path, $locale),

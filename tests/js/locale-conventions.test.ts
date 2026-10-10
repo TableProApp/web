@@ -28,6 +28,7 @@ test('links to English-only pages say so in every other language', () => {
         const labels = {
             'footer.groups.resources.docs': m.footer.groups.resources.docs,
             'footer.groups.resources.changelog': m.footer.groups.resources.changelog,
+            'footer.groups.resources.brand': m.footer.groups.resources.brand,
             'nav.docsLabel': m.nav.docsLabel,
             'download.release.notes': m.download.release.notes,
             'download.json install.guide.label': download.install.guide.label,

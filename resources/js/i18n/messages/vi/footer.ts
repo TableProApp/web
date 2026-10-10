@@ -19,6 +19,7 @@ export default {
             blog: 'Blog',
             faq: 'Câu hỏi thường gặp',
             about: 'Giới thiệu',
+            brand: 'Thương hiệu (tiếng Anh)',
             source: 'Mã nguồn',
             reportBug: 'Báo lỗi',
         },

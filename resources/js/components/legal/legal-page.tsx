@@ -18,7 +18,7 @@ export type LegalChrome = typeof import('@data/content/en/legal.json');
 
 /** One document, rendered on the server by `App\Services\Legal\LegalDocuments`. */
 export interface LegalDocument {
-    /** `privacy`, `terms` or `refund-policy`. */
+    /** `privacy`, `terms`, `refund-policy` or `brand`. */
     name: string;
     /** The English base path, `/privacy`. */
     path: string;
@@ -46,10 +46,11 @@ const MARKER = '<cookie-settings></cookie-settings>';
 interface LegalPageLayoutProps extends LegalPageProps {
     /** What replaces the document's control marker, if it has one. */
     control?: ReactNode;
+    marker?: string;
 }
 
 /**
- * The privacy policy, terms and refund policy (design-system §8.11).
+ * The privacy policy, terms, refund policy and brand guidelines (design-system §8.11).
  *
  * The utility header with the "Last updated" line, then the document at
  * reading width with its sections listed beside it from 1280px (a sticky
@@ -60,10 +61,10 @@ interface LegalPageLayoutProps extends LegalPageProps {
  *
  * The HTML comes from repository markdown only, rendered on the server.
  */
-export default function LegalPage({ document, chrome, links, organizationProfiles, control }: LegalPageLayoutProps) {
+export default function LegalPage({ document, chrome, links, organizationProfiles, control, marker = MARKER }: LegalPageLayoutProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
-    const chunks = document.html.split(MARKER);
+    const chunks = document.html.split(marker);
 
     const crumbs = [
         { name: m.common.home, path: path('/') },

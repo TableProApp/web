@@ -19,6 +19,7 @@ export default {
             "blog": "Blog",
             "faq": "Perguntas frequentes",
             "about": "Sobre",
+            "brand": "Marca (inglês)",
             "source": "Código-fonte",
             "reportBug": "Relatar um erro"
         },
