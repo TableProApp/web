@@ -178,7 +178,7 @@ it('server-renders the hub with the sections other pages link to, and no rating 
             expect($html)->toContain('/compare/' . $product['slug'] . '"');
         }
     }
-});
+})->group('ssr');
 
 it('server-renders TablePro’s own case on the hub, with a way to download it', function (): void {
     $copy = json_decode(File::get(resource_path('data/content/en/compare/index.json')), true);
@@ -202,7 +202,7 @@ it('server-renders TablePro’s own case on the hub, with a way to download it',
     $vietnamese = HTMLDocument::createFromString(ssrHtml('/vi/compare'), LIBXML_NOERROR)->querySelector('main');
 
     expect($vietnamese->querySelector('#get-started a[href="/vi/download"]'))->not->toBeNull();
-});
+})->group('ssr');
 
 it('server-renders Navicat’s subscription as its entry price, and DBeaver’s MCP server with both sources', function (): void {
     $navicat = comparedProduct('navicat');
@@ -218,7 +218,7 @@ it('server-renders Navicat’s subscription as its entry price, and DBeaver’s 
 
     expect($row->textContent)->toContain('version ' . $dbeaver['cells']['mcp']['version'])->not->toContain('does not run an MCP server');
     expect($row->querySelectorAll('sup a')->length)->toBe(count($dbeaver['cells']['mcp']['source']));
-});
+})->group('ssr');
 
 it('server-renders each comparison with a jump list, the word a searcher types, the trademark notice and the other comparisons', function (): void {
     $labels = json_decode(File::get(resource_path('data/content/en/compare/index.json')), true)['labels'];
@@ -232,7 +232,7 @@ it('server-renders each comparison with a jump list, the word a searcher types, 
         expect($main->querySelectorAll('#more a[href^="/compare/"]')->length)->toBe(count(CompareSlugs::ALL) - 1);
         expect($main->querySelector('#more a[href="/compare/' . $slug . '"]'))->toBeNull();
     }
-});
+})->group('ssr');
 
 it('server-renders the added comparisons with the facts they turn on', function (): void {
     $workbench = comparedProduct('mysql-workbench');
@@ -257,7 +257,7 @@ it('server-renders the added comparisons with the facts they turn on', function 
     $monthly = collect(comparedProduct('dbgate')['prices'])->where('period', 'month')->whereNull('minUnits')->min('amount');
 
     expect(html_entity_decode(ssrHtml('/compare'), ENT_QUOTES | ENT_HTML5))->toContain('From $' . $monthly . ' a month per user');
-});
+})->group('ssr');
 
 it('server-renders TablePro’s device limit beside a competitor’s, and yes or no where a cell has no words', function (): void {
     $activations = json_decode(File::get(resource_path('data/pricing.json')), true)['tiers']['starter']['activations'];
@@ -266,7 +266,7 @@ it('server-renders TablePro’s device limit beside a competitor’s, and yes or
     expect($document->querySelector('#row-price td')->textContent)->toContain("once, for up to {$activations} devices");
     expect(trim($document->querySelector('#row-setapp td:last-child')->textContent))->toStartWith('Yes')->not->toContain('Supported');
     expect($document->querySelector('#row-sync td:last-child')->textContent)->toContain('Dropbox');
-});
+})->group('ssr');
 
 it('server-renders a comparison with prices from data, its sources and the switching steps', function (): void {
     $product = comparedProduct('tableplus');
@@ -302,7 +302,7 @@ it('server-renders a comparison with prices from data, its sources and the switc
         ->toContain($basic['amount'] . "\u{a0}US$ mua một lần")
         ->toContain('Tệp &gt; Nhập &gt; Nhập từ ứng dụng khác…')
         ->toContain('(tiếng Anh)');
-});
+})->group('ssr');
 
 it('fills every {token} of a comparison, the header lead included', function (string $path): void {
     $main = HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)->querySelector('main');
@@ -318,7 +318,7 @@ it('fills every {token} of a comparison, the header lead included', function (st
     }
 
     return $paths;
-});
+})->group('ssr');
 
 it('names the Mac app’s interface languages from platforms.json', function (string $path, string $locale): void {
     $names = json_decode(File::get(resource_path("data/content/{$locale}/compare/index.json")), true)['labels']['languages'];
@@ -336,4 +336,4 @@ it('names the Mac app’s interface languages from platforms.json', function (st
 })->with([
     ['/compare/phpmyadmin', 'en'],
     ['/vi/compare/phpmyadmin', 'vi'],
-]);
+])->group('ssr');

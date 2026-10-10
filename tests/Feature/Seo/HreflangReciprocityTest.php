@@ -292,4 +292,4 @@ it('renders exactly the registry head tags, server-side', function (string $path
     'a pair, English side' => ['/download', 'en'],
     'a pair, Vietnamese side' => ['/vi/download', 'vi'],
     'an English-only post' => ['/blog/tablepro-0-77', 'en'],
-]);
+])->group('ssr');

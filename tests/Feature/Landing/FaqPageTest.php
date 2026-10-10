@@ -209,4 +209,4 @@ it('server-renders every group, with no FAQPage markup', function (string $path)
 
     // Every slot was filled: an unfilled one stays visible as written.
     Assert::assertDoesNotMatchRegularExpression('/\{[a-zA-Z]+\}/', strip_tags(preg_replace('#<script\b[^>]*>.*?</script>#s', '', $html)));
-})->with(['/faq', '/vi/faq']);
+})->with(['/faq', '/vi/faq'])->group('ssr');

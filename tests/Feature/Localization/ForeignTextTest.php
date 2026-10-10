@@ -43,10 +43,10 @@ it('marks every cited source title as English on a page in another language', fu
     foreach ($links as $link) {
         expect($link)->toBe(['hreflang' => 'en', 'lang' => 'en']);
     }
-})->with(['/de/compare/datagrip', '/ja/compare', '/vi/postgresql-client']);
+})->with(['/de/compare/datagrip', '/ja/compare', '/vi/postgresql-client'])->group('ssr');
 
 it('leaves the source titles unmarked on an English page, where they are in the page language', function (): void {
     foreach (sourceLinks('/compare/datagrip') as $link) {
         expect($link)->toBe(['hreflang' => 'en', 'lang' => null]);
     }
-});
+})->group('ssr');

@@ -78,7 +78,7 @@ it('loads no third-party script from the document template', function (): void {
 it('serves documents that load no external script, the analytics tag included', function (string $path): void {
     config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id']);
 
-    $html = $this->get($path)->assertOk()->getContent();
+    $html = ssrHtml($path);
 
     preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
 
@@ -95,7 +95,7 @@ it('serves documents that load no external script, the analytics tag included', 
 
     // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
     Assert::assertStringContainsString('crisp-test-id', $html);
-})->with(['/download', '/vi/download']);
+})->with(['/download', '/vi/download'])->group('ssr');
 
 it('loads chat only from an effect, and opens it only from a click', function (): void {
     /*
@@ -140,7 +140,7 @@ it('renders no third-party request into any page it serves', function (): void {
             Assert::assertStringNotContainsString($host, $html, "{$path} renders {$host}");
         }
     }
-});
+})->group('ssr');
 
 it('exempts only a plain anchor to an allowed outbound link', function (): void {
     $anchor = '<a class="x" href="https://www.producthunt.com/products/tablepro">TablePro on Product Hunt</a>';

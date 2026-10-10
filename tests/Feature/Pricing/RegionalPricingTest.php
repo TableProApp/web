@@ -63,4 +63,4 @@ it('serves the list prices to every reader, with nothing struck through', functi
 
     Assert::assertStringNotContainsString('<s ', $html, "{$path} strikes a price in the server render");
     Assert::assertStringNotContainsString('<s>', $html, "{$path} strikes a price in the server render");
-})->with(['/pricing', '/', '/vi/pricing']);
+})->with(['/pricing', '/', '/vi/pricing'])->group('ssr');

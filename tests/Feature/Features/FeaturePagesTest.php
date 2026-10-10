@@ -226,7 +226,7 @@ it('server-renders every section, slot and fact of a feature page', function (st
     }
 
     return $cases;
-});
+})->group('ssr');
 
 it('renders every paid feature anchor the pricing page links to', function (): void {
     foreach (featurePagesData('paid-features.json') as $feature) {
@@ -240,7 +240,7 @@ it('renders every paid feature anchor the pricing page links to', function (): v
 
         expect($document->getElementById($feature['page']['anchor']))->not->toBeNull("{$feature['page']['path']}#{$feature['page']['anchor']}");
     }
-});
+})->group('ssr');
 
 it('labels the English-only docs on Vietnamese pages', function (): void {
     $document = HTMLDocument::createFromString(ssrHtml('/vi/features/querying'), LIBXML_NOERROR);
@@ -253,7 +253,7 @@ it('labels the English-only docs on Vietnamese pages', function (): void {
         expect($link->getAttribute('href'))->toStartWith(featurePagesData('facts.json')['links']['docs'] . '/');
         expect($link->textContent)->toContain('(tiếng Anh)');
     }
-});
+})->group('ssr');
 
 it('describes the page in structured data with breadcrumbs that match the visible ones', function (): void {
     $document = HTMLDocument::createFromString(ssrHtml('/features/data-editing'), LIBXML_NOERROR);
@@ -279,4 +279,4 @@ it('describes the page in structured data with breadcrumbs that match the visibl
     $crumbs = collect($graph)->firstWhere('@type', 'BreadcrumbList')['itemListElement'];
     expect(array_column($crumbs, 'name'))->toBe(['Features', 'Data editing']);
     expect(end($crumbs)['item'])->toEndWith('/features/data-editing');
-});
+})->group('ssr');

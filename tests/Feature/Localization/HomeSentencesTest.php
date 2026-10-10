@@ -93,4 +93,4 @@ it('fits the app names into the homepage sentences', function (string $locale, a
         'Gunakan aplikasi Mac secara gratis, tanpa masa uji coba.',
         'Untuk aplikasi iPhone dan iPad, tidak ada biaya atau pembelian dalam aplikasi.',
     ]],
-]);
+])->group('ssr');

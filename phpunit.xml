@@ -18,6 +18,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="CACHE_STORE" value="array"/>
+        <env name="INERTIA_SSR_ENABLED" value="false" force="true"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="WEB_DOMAIN" value="localhost"/>

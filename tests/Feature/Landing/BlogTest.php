@@ -646,7 +646,7 @@ describe('server-rendered', function (): void {
             ->toContain('Download for Mac')
             ->toContain('"@type":"BlogPosting"')
             ->toContain('"datePublished":"2026-10-02"');
-    });
+    })->group('ssr');
 
     it('opens the post about the current release without the archive note, under its byline', function (): void {
         bindReleaseFixturePlatforms();
@@ -656,7 +656,7 @@ describe('server-rendered', function (): void {
 
         expect($html)->not->toContain('This post covers TablePro 0.77 at release.');
         expect($header?->textContent)->toContain('October 2, 2026')->toContain(blogMatter('tablepro-0-77')['author']);
-    });
+    })->group('ssr');
 
     it('links each figure to its widest file, the pages that cover the post and the release’s own notes', function (): void {
         $main = Dom\HTMLDocument::createFromString((string) $this->get('/blog/tablepro-0-77')->getContent(), LIBXML_NOERROR)->querySelector('main');
@@ -678,7 +678,7 @@ describe('server-rendered', function (): void {
         expect($main->querySelector('#pages a[href="/features/schema#table-folders"]'))->not->toBeNull();
         expect($main->querySelector('#notes a[href="https://docs.tablepro.app/changelog#v0-77-0"][hreflang="en"]')?->textContent)->toContain('TablePro 0.77 in the changelog');
         expect($main->querySelector('#notes a[href="https://github.com/TableProApp/TablePro/releases/tag/v0.77.0"]')?->textContent)->toContain('TablePro 0.77 on GitHub');
-    });
+    })->group('ssr');
 
     it('titles a post without the brand twice, and never as the /ios page is titled', function (): void {
         expect((string) $this->get('/blog/tablepro-0-77')->getContent())
@@ -690,7 +690,7 @@ describe('server-rendered', function (): void {
             ->toMatch('#<h1[^>]*>(<span[^>]*>)?TablePro for iPhone and iPad(</span>)?</h1>#')
             ->toContain('Correction, October 2, 2026')
             ->toContain('Jump hosts are not supported on iPhone and iPad');
-    });
+    })->group('ssr');
 
     it('offers the newsletter on the index in the footer’s words', function (string $path, string $title, string $body): void {
         $main = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR)->querySelector('main');
@@ -708,7 +708,7 @@ describe('server-rendered', function (): void {
     })->with([
         ['/blog', 'Release notes by email', 'Occasional release notes. Unsubscribe in any email.'],
         ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng gửi ghi chú phát hành bằng tiếng Anh. Hủy đăng ký trong bất kỳ email nào.'],
-    ]);
+    ])->group('ssr');
 
     it('lists the guides, then the release posts under the line that says what they are', function (string $path, string $guides, string $releases, string $lead): void {
         $document = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR);
@@ -725,20 +725,20 @@ describe('server-rendered', function (): void {
     })->with([
         ['/blog', 'Guides', 'Release notes', 'Full version notes are in the changelog'],
         ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Ghi chú đầy đủ của từng phiên bản nằm trong changelog'],
-    ]);
+    ])->group('ssr');
 
     it('separates an English-only label from the post title with a real space', function (): void {
         $html = (string) $this->get('/vi/blog')->getContent();
 
         // Without the space the heading's text reads "…Sidebar(tiếng Anh)".
         expect(preg_match('#</a>(<!-- -->)? <span[^>]*>\(tiếng Anh\)</span>#u', $html))->toBe(1);
-    });
+    })->group('ssr');
 
     it('shows the dated correction on the 0.74 post', function (): void {
         expect((string) $this->get('/blog/tablepro-0-74')->getContent())
             ->toContain('Correction, October 2, 2026')
             ->toContain('Apple serves the map tiles');
-    });
+    })->group('ssr');
 
     it('marks every English post on /vi/blog as English, on a page indexed with /blog as its alternate', function (): void {
         $html = (string) $this->get('/vi/blog')->getContent();
@@ -753,5 +753,5 @@ describe('server-rendered', function (): void {
             ->toContain('(tiếng Anh)')
             ->not->toContain('href="/vi/blog/tablepro-0-77"');
         expect(substr_count($html, '(tiếng Anh)'))->toBeGreaterThanOrEqual(count(BLOG_PUBLISHED));
-    });
+    })->group('ssr');
 });

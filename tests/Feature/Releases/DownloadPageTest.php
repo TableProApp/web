@@ -142,7 +142,7 @@ it('server-renders the newest release post as a link that keeps its language', f
     expect($vietnamese?->getAttribute('hreflang'))->toBe('en');
     expect($vietnamese->getAttribute('lang'))->toBe('en');
     expect($vietnamese->parentElement->textContent)->toContain($newest['title'] . ' (tiếng Anh).');
-});
+})->group('ssr');
 
 it('renders in Vietnamese with Vietnamese copy and a Vietnamese date', function (): void {
     fakeLiveRelease();
@@ -381,7 +381,7 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('Yêu cầu iOS và iPadOS 18 trở lên')
         ->toContain('Miễn phí, không có mua hàng trong ứng dụng')
         ->toContain('cho Linux hoặc Windows');
-});
+})->group('ssr');
 
 it('sends each DMG’s SHA-256 to the page when the release carries one', function (): void {
     $arm64 = str_repeat('a1', 32);
@@ -420,13 +420,13 @@ it('server-renders each build’s SHA-256 with the command that checks it, in ev
     foreach (array_diff(Locales::codes(), ['en']) as $locale) {
         expect(ssrHtml("/{$locale}/download"))->toContain($arm64, $x86_64, 'shasum -a 256')->not->toContain('Verify your download');
     }
-});
+})->group('ssr');
 
 it('server-renders no checksum block when the release carries none', function (): void {
     fakeLiveRelease();
 
     expect(ssrHtml('/download'))->toContain('Which Mac do I have?')->not->toContain('Verify your download')->not->toContain('shasum');
-});
+})->group('ssr');
 
 it('server-renders no version and sends both buttons to the latest release when no source answers', function (): void {
     Http::fake([
@@ -440,7 +440,7 @@ it('server-renders no version and sends both buttons to the latest release when 
         ->and($html)->toContain('Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.')
         ->not->toContain('softwareVersion')
         ->not->toContain('.dmg"');
-});
+})->group('ssr');
 
 it('opens "Which Mac do I have?" by itself only for a Mac whose browser names no chip', function (): void {
     /*
@@ -462,4 +462,4 @@ it('opens "Which Mac do I have?" by itself only for a Mac whose browser names no
     fakeLiveRelease();
 
     expect(ssrHtml('/download'))->toMatch('/<details class="group mt-1"><summary/');
-});
+})->group('ssr');

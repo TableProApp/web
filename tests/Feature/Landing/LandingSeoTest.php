@@ -267,7 +267,7 @@ it('renders the registry head on every page family, in each language', function 
     'a legal page, in Vietnamese' => ['/vi/privacy', 'vi'],
     'security' => ['/security', 'en'],
     'security, in Japanese' => ['/ja/security', 'ja'],
-]);
+])->group('ssr');
 
 it('marks an error page noindex, follow and points it at nothing', function (string $path, int $status, string $locale): void {
     /*
@@ -289,7 +289,7 @@ it('marks an error page noindex, follow and points it at nothing', function (str
     'a 404, in Vietnamese' => ['/vi/no-such-page', 404, 'vi'],
     'an English-only post asked for in Vietnamese' => ['/vi/blog/tablepro-0-77', 404, 'vi'],
     'a removed comparison' => ['/compare/azimutt', 410, 'en'],
-]);
+])->group('ssr');
 
 it('dates a post in its Open Graph tags, and no other page', function (): void {
     $published = fn(string $path): array => landingSeoValues(landingSeoDocument($path), 'meta[property="article:published_time"]', 'content');
@@ -297,7 +297,7 @@ it('dates a post in its Open Graph tags, and no other page', function (): void {
     expect($published('/blog/tablepro-0-77'))->toBe(['2026-10-02'])
         ->and($published('/blog'))->toBe([])
         ->and($published('/pricing'))->toBe([]);
-});
+})->group('ssr');
 
 it('publishes one application entity and no FAQPage on the homepage', function (string $path): void {
     $html = ssrHtml($path);
@@ -306,7 +306,7 @@ it('publishes one application entity and no FAQPage on the homepage', function (
     // /faq owns the FAQ content for the site. Google retired the rich result
     // on 7 May 2026, and a second copy here competed with a strict superset.
     expect($html)->not->toContain('"@type":"FAQPage"');
-})->with(['/', '/vi']);
+})->with(['/', '/vi'])->group('ssr');
 
 it('describes every price point it claims to offer', function (string $path): void {
     $html = ssrHtml($path);
@@ -344,4 +344,4 @@ it('describes every price point it claims to offer', function (string $path): vo
      * every release.
      */
     expect($html)->not->toContain('"datePublished"');
-})->with(['/', '/vi']);
+})->with(['/', '/vi'])->group('ssr');

@@ -203,7 +203,7 @@ it('shows the App Store badge in the page\'s language, labelled with its visible
 })->with([
     'English' => ['/ios', '', 'Download on the App Store'],
     'Vietnamese' => ['/vi/ios', '-vi', 'Tải về trên App Store'],
-]);
+])->group('ssr');
 
 it('names the engines and never counts them', function (string $locale): void {
     $text = iosPageText($locale);
@@ -296,7 +296,7 @@ it('server-renders the known issues under the App Store version, after the Mac-o
     expect($privacy)->not->toBeFalse();
     expect($issues)->toBeGreaterThan($limits)->toBeLessThan($privacy);
     expect($html)->toMatch('#<h2 id="known-issues-title"[^>]*>Known issues in version ' . preg_quote($version, '#') . '</h2>#');
-});
+})->group('ssr');
 
 it('places every iPhone and iPad slot and only manifest ids', function (): void {
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
@@ -336,7 +336,7 @@ it('emits one iPhone and iPad application node, with no rating and no FAQ markup
     foreach (['aggregateRating', 'ratingValue'] as $needle) {
         Assert::assertStringNotContainsString($needle, $html, '/ios published a rating nobody gave');
     }
-});
+})->group('ssr');
 
 it('server-renders the engine names from the data, in picker order', function (): void {
     $html = ssrHtml('/ios');
@@ -352,4 +352,4 @@ it('server-renders the engine names from the data, in picker order', function ()
     preg_match_all('#<li class="type-body font-medium text-foreground">(?:<a [^>]*>)?([^<]+)#', $section, $cells);
 
     expect($cells[1])->toBe(collect(iosPagePlatform()['iosEngines'])->map(fn(string $id): string => $engines[$id]['name'])->all());
-});
+})->group('ssr');

@@ -355,7 +355,7 @@ it('links only live pages and real anchors from every server-rendered page', fun
 
     expect($checked)->toBeGreaterThan(1000)
         ->and(array_values($problems))->toBe([], "Broken internal links in the rendered pages:\n  " . implode("\n  ", $problems));
-});
+})->group('ssr');
 
 it('judges each kind of link the way the crawl needs', function (string $href, string $locale, ?string $problem): void {
     $statuses = ['/pricing' => 200, '/vi/pricing' => 200, '/nowhere' => 404];

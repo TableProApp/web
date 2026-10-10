@@ -275,7 +275,7 @@ it('renders the bar on the server, hidden until the head script opens it', funct
         ->toContain('max-sm:order-first')
         ->toContain('max-sm:static')
         ->toContain('sticky');
-});
+})->group('ssr');
 
 // 44px on a touch screen; the desktop sizes stay.
 it('gives the consent buttons a 44px target on a touch screen', function (): void {
@@ -293,7 +293,7 @@ it('names the cookie settings control in the reader\'s language', function (stri
 })->with([
     'English' => ['/download', 'Cookie settings'],
     'Vietnamese' => ['/vi/download', 'Cài đặt cookie'],
-]);
+])->group('ssr');
 
 /*
  * Declining has to be as easy as allowing. The two buttons are the same

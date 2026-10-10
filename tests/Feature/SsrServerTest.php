@@ -37,4 +37,4 @@ it('cannot be reached on this machine\'s network address', function (): void {
     }
 
     expect($socket)->toBeFalse("The SSR server answers on {$address}:{$port}");
-});
+})->group('ssr');

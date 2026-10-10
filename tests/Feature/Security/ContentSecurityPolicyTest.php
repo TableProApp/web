@@ -74,6 +74,8 @@ beforeEach(function (): void {
 });
 
 it('admits every inline script a document runs by its hash, and no other inline script', function (string $path, int $status): void {
+    requireSsr();
+
     $response = $this->get($path)->assertStatus($status);
     $scriptSrc = cspDirectives($response)['script-src'];
     $scripts = cspInlineScripts((string) $response->getContent());
@@ -94,7 +96,7 @@ it('admits every inline script a document runs by its hash, and no other inline 
     'a post' => ['/blog/tablepro-0-77', 200],
     'no route' => ['/no-such-page', 404],
     'retired' => ['/compare/azimutt', 410],
-]);
+])->group('ssr');
 
 it('covers the static error page a failed render falls back to', function (): void {
     config(['app.debug' => false]);

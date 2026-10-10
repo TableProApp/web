@@ -48,6 +48,7 @@ it('includes the shared theme partial verbatim from the design system', function
 });
 
 it('loads no third-party script until it is asked for', function (): void {
+    requireSsr();
     config(['services.crisp.website_id' => 'test-crisp-id', 'payment.provider' => 'polar']);
 
     $html = $this->get('/')->getContent();
@@ -68,7 +69,7 @@ it('loads no third-party script until it is asked for', function (): void {
     config(['payment.provider' => 'lemonsqueezy']);
 
     expect($this->get('/')->getContent())->not->toContain('lemon.js');
-});
+})->group('ssr');
 
 it('keeps overflow clipping off the document', function (): void {
     $html = $this->get('/')->getContent();

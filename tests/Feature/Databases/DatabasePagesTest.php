@@ -521,7 +521,7 @@ it('calls a tool with published code under a non-open licence source available, 
     expect($otherTools('/mongodb-client'))->toContain('Platforms: Mac, Windows and Linux');
     expect($otherTools('/postgresql-client'))->toContain('Open source (PostgreSQL License)');
     expect($otherTools('/sql-server-client'))->toContain('Closed source');
-});
+})->group('ssr');
 
 it('renders every anchor a redirect or a link aims at, in both languages', function (): void {
     requireSsr();
@@ -565,7 +565,7 @@ it('renders every anchor a redirect or a link aims at, in both languages', funct
             }
         }
     }
-});
+})->group('ssr');
 
 it('describes an engine reached through its service API with no host or port', function (): void {
     requireSsr();
@@ -585,7 +585,7 @@ it('describes an engine reached through its service API with no host or port', f
             Assert::assertStringNotContainsString('>' . $labels['facts']['defaultPort'] . '<', $html, "{$prefix}/{$engine['slug']} shows a port the form does not have");
         }
     }
-});
+})->group('ssr');
 
 it('titles each engine page with the platforms its heading names, and keeps the iPhone app out of the Redis title', function (): void {
     requireSsr();
@@ -599,7 +599,7 @@ it('titles each engine page with the platforms its heading names, and keeps the 
     // Key browsing is Mac-only in iOS 1.0 (positioning §12), so the heading and title promise only the Mac.
     expect($html('/redis-gui'))->toMatch($title('Redis GUI for Mac – TablePro'))->toMatch('#>Redis GUI</h1>#');
     expect($html('/vi/redis-gui'))->toMatch($title('GUI Redis cho Mac – TablePro'));
-});
+})->group('ssr');
 
 it('shows AWS IAM on the facts card wherever the engine has an AWS sign-in, not only RDS IAM', function (): void {
     requireSsr();
@@ -620,7 +620,7 @@ it('shows AWS IAM on the facts card wherever the engine has an AWS sign-in, not 
     }
 
     expect($connectRow('redshift-client'))->not->toContain($labels['connect']['awsIam']);
-});
+})->group('ssr');
 
 it('writes the iPhone status line without an article in front of the engine name', function (): void {
     requireSsr();
@@ -629,7 +629,7 @@ it('writes the iPhone status line without an article in front of the engine name
         expect(html_entity_decode((string) get($path)->getContent(), ENT_QUOTES | ENT_HTML5))
             ->not->toMatch('/\b[Aa] (Apache Kafka|Amazon DynamoDB|Elasticsearch|etcd|Amazon Redshift) connection/');
     }
-});
+})->group('ssr');
 
 /**
  * The hub file's `labels` in one locale.
@@ -700,7 +700,7 @@ it('says under the availability line that TablePro is free to use and open sourc
                 ->toContain('href="' . $facts['links']['github'] . '"');
         }
     }
-});
+})->group('ssr');
 
 it('links pricing from the closing band and from every plan a page names', function (): void {
     requireSsr();
@@ -721,7 +721,7 @@ it('links pricing from the closing band and from every plan a page names', funct
     $main = databasePagesMain('/vi/mongodb-client');
 
     expect(substr($main, (int) strpos($main, 'id="get-tablepro"')))->toContain('href="/vi/pricing"', databasePagesLabels('vi')['download']['pricing']);
-});
+})->group('ssr');
 
 it('states the minimum version plainly: the bare version, the refusal where the app enforces it, or none', function (): void {
     requireSsr();
@@ -755,7 +755,7 @@ it('states the minimum version plainly: the bare version, the refusal where the 
     expect(strip_tags(databasePagesMain('/mysql-client')))
         ->toContain("{$facts['minimumVersion']}: 10.x")
         ->toContain("{$facts['minimumVersion']}: {$facts['noMinimum']}");
-});
+})->group('ssr');
 
 it('names export formats through the token wherever an engine exports, in every language', function (): void {
     $engines = collect(databasePagesEngines())->keyBy('id');
@@ -858,4 +858,4 @@ it('renders the iPhone section’s capture', function (): void {
 
         expect(substr($main, (int) strpos($main, 'id="iphone"')))->toContain("/images/ios/{$slot}-light-");
     }
-});
+})->group('ssr');

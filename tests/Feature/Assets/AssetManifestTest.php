@@ -884,4 +884,4 @@ it('serves no image request inside a placeholder on any page', function (): void
 
     /* Under REQUIRE_SSR a skip here would be green; finding nothing means the selector or the markup changed. */
     Assert::assertGreaterThan(0, $found, 'No page renders an AssetSlot placeholder');
-});
+})->group('ssr');

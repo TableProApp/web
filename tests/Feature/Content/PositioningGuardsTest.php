@@ -137,7 +137,7 @@ it('renders every title in 60 characters and every description within its locale
 
     expect($checked)->toBeGreaterThan(50)
         ->and($offences)->toBe([], "Search titles and descriptions out of bounds:\n  " . implode("\n  ", $offences));
-});
+})->group('ssr');
 
 it('keeps the legal pages\' titles and descriptions within the same bounds (guard 3)', function (string $locale): void {
     /*
@@ -411,4 +411,4 @@ it('renders no unreleased platform in the chrome, the home hero and title, or an
     }
 
     expect($offences)->toBe([], "An unreleased platform rendered as available:\n  " . implode("\n  ", $offences));
-});
+})->group('ssr');

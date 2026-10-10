@@ -188,7 +188,7 @@ it('server-renders the plan matrix with all four columns and no phone minimum wi
 
     expect($section[0] ?? '')->toContain('class="relative overflow-x-auto')
         ->not->toContain('min-w-[36rem]');
-});
+})->group('ssr');
 
 it('does not repeat the contact line under a document that has its own Contact section', function (string $path, bool $repeats): void {
     // The markup only: the catalog line also travels in the page props.
@@ -200,7 +200,7 @@ it('does not repeat the contact line under a document that has its own Contact s
     ['/vi/privacy', false],
     ['/terms', false],
     ['/refund-policy', true],
-]);
+])->group('ssr');
 
 it('keeps a busy button focusable, so the reader who pressed it keeps their place', function (): void {
     /*

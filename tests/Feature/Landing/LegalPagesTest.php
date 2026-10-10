@@ -548,4 +548,4 @@ it('server-renders the cookie settings button inside the cookies section', funct
     // The marker stays in the page props (the JSON payload); the markup must not carry it.
     $markup = (string) preg_replace('#<script data-page="app" type="application/json">.*?</script>#s', '', $html);
     expect($markup)->not->toContain('<cookie-settings>');
-})->with(['/privacy', '/vi/privacy']);
+})->with(['/privacy', '/vi/privacy'])->group('ssr');

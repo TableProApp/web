@@ -162,7 +162,7 @@ describe('the rendered pages', function (): void {
         expect($html)->toContain('name="q"')->toContain('value="acme"');
         expect($html)->toContain('href="/integrations/acme-cli"');
         expect($html)->not->toContain('href="/integrations/command-line"');
-    });
+    })->group('ssr');
 
     it('links Community entries with rel="ugc nofollow" and states who supports them', function (): void {
         $community = ssrHtml('/integrations/acme-cli');
@@ -174,5 +174,5 @@ describe('the rendered pages', function (): void {
         expect($official)->not->toContain('ugc nofollow');
         expect($official)->not->toContain('is built by TablePro, not by TablePro');
         expect($official)->toContain('href="https://github.com/TableProApp/integrations/issues/new?template=report-integration.yml&amp;slug=command-line"');
-    });
+    })->group('ssr');
 });

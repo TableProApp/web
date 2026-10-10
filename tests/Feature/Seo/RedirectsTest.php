@@ -310,7 +310,7 @@ it('lands every redirect on an element its fragment names', function (): void {
 
         expect($documents[$path]->getElementById($fragment))->not->toBeNull("{$from} → {$target}: {$path} has no element with id=\"{$fragment}\"");
     }
-});
+})->group('ssr');
 
 it('leaves double slashes alone, so they stay 404', function (string $uri): void {
     $response = redirectsThroughMiddleware($uri);

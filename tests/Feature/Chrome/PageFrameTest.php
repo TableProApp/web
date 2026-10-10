@@ -68,7 +68,7 @@ it('draws the rails once over the page and once in the header, as decoration onl
      */
     expect((string) file_get_contents(resource_path('js/components/shared/frame-rails.tsx')))->toContain('max-w-[80rem]');
     expect((string) file_get_contents(resource_path('js/components/ui/container.tsx')))->toContain("wide: 'max-w-[76rem]'")->toContain('lg:px-8');
-});
+})->group('ssr');
 
 it('joins every two blocks of main with one full-bleed rule', function (string $path): void {
     $xpath = frameXPath(ssrHtml($path));
@@ -90,7 +90,7 @@ it('joins every two blocks of main with one full-bleed rule', function (string $
             Assert::assertDoesNotMatchRegularExpression('/^(?:[a-z]+:)*border-[tby](?:-|$)/', $class, "{$path}: {$name} draws its own rule beside the frame's join");
         }
     }
-})->with(frameTemplates());
+})->with(frameTemplates())->group('ssr');
 
 it('draws the join in CSS, by position, and lands anchors behind the header\'s rule', function (): void {
     expect(frameCss())->toMatch('/main > \* \+ \* \{\s*border-top: 1px solid var\(--rule\);/')
@@ -109,7 +109,7 @@ it('marks every join by position, so no page picks which joins get one', functio
 
     expect($xpath->query('//footer[@data-join-mark]')->length)->toBe(1, "{$path}: the footer's rule is the last join and is marked like the others");
     expect($xpath->query('//main//*[@data-join-mark]')->length)->toBe(0, "{$path}: joins in <main> are marked by position, not by a switch");
-})->with(frameTemplates());
+})->with(frameTemplates())->group('ssr');
 
 it('shows marks only where a 1280px frame leaves them room, and never in forced colours or print', function (): void {
     $css = frameCss();
@@ -141,7 +141,7 @@ it('puts cell grids only where their lines can reach the rails', function (strin
     }
 
     expect(true)->toBeTrue();
-})->with(frameTemplates());
+})->with(frameTemplates())->group('ssr');
 
 it('draws cells with one shared line, reaching the rails from 1280px and the screen edge below', function (): void {
     $css = frameCss();
@@ -168,7 +168,7 @@ it('gives the homepage its cells and leaves its prose sections unlined', functio
     foreach (['sponsors', 'features', 'safety', 'platforms', 'open-source'] as $id) {
         expect(frameClasses($xpath->query("//section[@id=\"{$id}\"]")->item(0)))->toContain('pb-0', 'md:pb-0', 'xl:pb-0');
     }
-})->with(['/', '/vi']);
+})->with(['/', '/vi'])->group('ssr');
 
 it('lets the join close a list that ends a block, but never one inside a card', function (): void {
     expect(frameCss())->toContain('main > * > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child')
@@ -221,7 +221,7 @@ it('ends every inner rule on the frame: rail to rail, wall to wall, or inside a 
     }
 
     expect(true)->toBeTrue();
-})->with(frameTemplates());
+})->with(frameTemplates())->group('ssr');
 
 it('reaches the rails from any measure with container units, and keeps the text where it was', function (): void {
     $css = frameCss();
@@ -248,7 +248,7 @@ it('separates the pricing and download topics with joins, not with rules inside 
     'download' => ['/download', ['install', 'updates', 'older-versions']],
     'post' => ['/blog/tablepro-0-77', ['related']],
     'blog' => ['/blog', ['guides', 'releases']],
-]);
+])->group('ssr');
 
 it('sets each FAQ topic beside its questions, as two cells', function (): void {
     $xpath = frameXPath(ssrHtml('/faq'));
@@ -260,7 +260,7 @@ it('sets each FAQ topic beside its questions, as two cells', function (): void {
         expect($xpath->query('./*', $grid)->length)->toBe(2, 'A topic is its heading cell and its questions cell');
         expect($xpath->query('.//*[@data-rule-list]', $grid)->item(0)?->getAttribute('class'))->toContain('cell-rows');
     }
-});
+})->group('ssr');
 
 it('runs each blog index list from rail to rail', function (): void {
     $xpath = frameXPath(ssrHtml('/blog'));
@@ -271,4 +271,4 @@ it('runs each blog index list from rail to rail', function (): void {
         expect($list)->not->toBeNull("#{$id} has no ruled list");
         expect(frameClasses($list))->toContain('frame-rows');
     }
-});
+})->group('ssr');

@@ -104,4 +104,4 @@ it('leaves no trace of a slot with no image on a production page', function (): 
     }
 
     expect($checked)->toBeGreaterThanOrEqual(count(emptySlotPages()));
-});
+})->group('ssr');

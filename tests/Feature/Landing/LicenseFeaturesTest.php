@@ -131,4 +131,4 @@ it('names every paid feature once in the plan table, with its line, in both lang
 })->with([
     'English' => ['/pricing', 'en'],
     'Vietnamese' => ['/vi/pricing', 'vi'],
-]);
+])->group('ssr');

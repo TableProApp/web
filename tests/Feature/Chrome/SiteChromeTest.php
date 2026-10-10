@@ -145,7 +145,7 @@ it('frames the page with a skip link, one header, one main and one footer', func
 
     // Nothing bleeds past the viewport: the ledger's 200vw rules are gone.
     expect($html)->not->toContain('w-[200vw]');
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('links the header to the sections in the reader\'s language', function (string $path, string $locale, string $prefix): void {
     $header = chromeRegion(ssrHtml($path), 'header');
@@ -171,7 +171,7 @@ it('links the header to the sections in the reader\'s language', function (strin
     }
 
     Assert::assertNotNull(chromeLink($header, "{$prefix}/ios", $vi ? 'iPhone và iPad' : 'iPhone & iPad'), 'The platform page is missing from the Features menu');
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('links GitHub with its star count, in the header row and in the menu', function (string $path, string $locale): void {
     Storage::fake(StarCount::DISK);
@@ -194,7 +194,7 @@ it('links GitHub with its star count, in the header row and in the menu', functi
         ->and($bar['attrs'])->not->toHaveKey('target')
         ->and($menu['text'])->toBe('GitHub↗6.2k')
         ->and($menu['attrs']['aria-label'])->toBe($name);
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('names the GitHub link by its word until a count is stored', function (string $path): void {
     Storage::fake(StarCount::DISK);
@@ -209,7 +209,7 @@ it('names the GitHub link by its word until a count is stored', function (string
         ->and($links[0]['attrs'])->not->toHaveKey('aria-label')
         ->and($links[1]['text'])->toBe('GitHub↗')
         ->and($links[1]['attrs'])->not->toHaveKey('aria-label');
-})->with(['/download', '/vi/download']);
+})->with(['/download', '/vi/download'])->group('ssr');
 
 it('shows the desktop row only where it fits, in every language', function (string $code, string $prefix): void {
     /*
@@ -238,7 +238,7 @@ it('shows the desktop row only where it fits, in every language', function (stri
     expect($header)->toMatch('/<nav aria-label="[^"]+" class="hidden ' . preg_quote($from, '/') . ':block">/')
         ->toContain("class=\"hidden items-center gap-2 {$from}:flex\"")
         ->toMatch('/<button type="button" aria-expanded="false" aria-controls="site-menu" class="[^"]* ' . preg_quote($from, '/') . ':hidden">/');
-})->with(chromeLocales(...));
+})->with(chromeLocales(...))->group('ssr');
 
 it('closes the open menu at the width its language shows the desktop row', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
@@ -283,7 +283,7 @@ it('keeps the phone header on one row at 320px, with Download on one line, in ev
 
     expect($header)->toContain(' flex h-16 items-center gap-4 sm:gap-8"')
         ->toMatch('/<a[^>]*class="[^"]*whitespace-nowrap[^"]*"[^>]*href="' . preg_quote($prefix, '/') . '\/download"/');
-})->with(chromeLocales(...));
+})->with(chromeLocales(...))->group('ssr');
 
 it('puts the download actions above a closed language list in the menu', function (string $path, string $locale, string $prefix): void {
     /*
@@ -319,7 +319,7 @@ it('puts the download actions above a closed language list in the menu', functio
         Assert::assertNotNull($link, "The menu's language list has no {$definition['native']} link");
         Assert::assertSame($code === $locale ? 'true' : null, $link['attrs']['aria-current'] ?? null);
     }
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('sends Docs to the English documentation, and says so in Vietnamese', function (string $path, string $locale): void {
     $docs = chromeLink(chromeRegion(ssrHtml($path), 'header'), 'https://docs.tablepro.app');
@@ -327,7 +327,7 @@ it('sends Docs to the English documentation, and says so in Vietnamese', functio
     Assert::assertNotNull($docs);
     Assert::assertSame('en', $docs['attrs']['hreflang'] ?? null);
     Assert::assertSame($locale === 'vi' ? 'Tài liệu (tiếng Anh)' : 'Docs', $docs['attrs']['aria-label'] ?? null);
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('reaches the account app unprefixed, as a full page load, in the reader\'s language', function (string $path, string $locale): void {
     $html = ssrHtml($path);
@@ -340,7 +340,7 @@ it('reaches the account app unprefixed, as a full page load, in the reader\'s la
         Assert::assertStringStartsNotWith('/vi/account', $anchor['attrs']['href'] ?? '', 'The account is never under a locale prefix');
         Assert::assertStringStartsNotWith('/vi/checkout', $anchor['attrs']['href'] ?? '');
     }
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('switches language with plain links to the same page, named in their own language', function (string $path, string $locale): void {
     $header = chromeRegion(ssrHtml($path), 'header');
@@ -359,7 +359,7 @@ it('switches language with plain links to the same page, named in their own lang
 
     // A globe named by what it does and the current language, in the page language.
     expect($header)->toContain('aria-label="' . ($locale === 'vi' ? 'Ngôn ngữ: Tiếng Việt' : 'Language: English') . '"');
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('opens the header language menu without JavaScript', function (string $path, string $locale): void {
     /*
@@ -376,7 +376,7 @@ it('opens the header language menu without JavaScript', function (string $path, 
 
     expect($menu)->toContain('data-menu-panel')->not->toContain(' hidden');
     expect(chromeLink($menu, $locale === 'vi' ? '/download' : '/vi/download'))->not->toBeNull();
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('groups the footer links under a hidden heading, in five groups', function (string $path, string $locale, string $prefix): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
@@ -418,7 +418,7 @@ it('groups the footer links under a hidden heading, in five groups', function (s
         : "/© \\d{4} TablePro, made by {$publisher['name']} in {$publisher['city']['en']}\\. Source code under the AGPLv3\\./";
 
     expect($footer)->toMatch($line);
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('lists the community channels a reader of that language can use', function (string $path, string $locale): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
@@ -443,7 +443,7 @@ it('lists the community channels a reader of that language can use', function (s
     'English' => ['/download', 'en'],
     'Vietnamese' => ['/vi/download', 'vi'],
     'German' => ['/de/download', 'de'],
-]);
+])->group('ssr');
 
 it('offers the newsletter without a subscriber count', function (string $path, string $locale): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
@@ -456,7 +456,7 @@ it('offers the newsletter without a subscriber count', function (string $path, s
 
     expect($footer)->toContain('>' . ($locale === 'vi' ? 'Đăng ký nhận tin' : 'Subscribe') . '</button>')
         ->not->toMatch('/\d[\d,.]*\s+(developers|subscribers|lập trình viên|người đăng ký)/u');
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('ends the footer on a language menu that opens without JavaScript, one link per language', function (string $path, string $locale): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
@@ -478,7 +478,7 @@ it('ends the footer on a language menu that opens without JavaScript, one link p
 
     // The old inline list ("Language: English · Tiếng Việt · …") is gone.
     expect($footer)->not->toContain($locale === 'vi' ? 'Ngôn ngữ:</span>' : 'Language:</span>');
-})->with('chrome locales');
+})->with('chrome locales')->group('ssr');
 
 it('gives the footer bar\'s controls a 44px target on a touch screen', function (): void {
     $bar = (string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx'));
@@ -529,7 +529,7 @@ it('gives the error pages the same chrome, in the language of their path', funct
 })->with([
     'English' => ['/no-such-page', 'en'],
     'Vietnamese' => ['/vi/no-such-page', 'vi'],
-]);
+])->group('ssr');
 
 it('offers Pricing and Docs on the 404 page, beside the pages it already listed', function (string $path, string $locale, string $prefix): void {
     requireSsr();
@@ -552,7 +552,7 @@ it('offers Pricing and Docs on the 404 page, beside the pages it already listed'
 })->with([
     'English' => ['/no-such-page', 'en', ''],
     'Vietnamese' => ['/vi/no-such-page', 'vi', '/vi'],
-]);
+])->group('ssr');
 
 it('keeps the site chrome to its own link tables and catalogs', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));

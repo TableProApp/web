@@ -47,12 +47,10 @@ it('loads Plex Mono at 400 only, and no script the site does not use', function 
 });
 
 it('points every face at a font file that is installed', function (): void {
-    if (! is_dir(base_path('node_modules'))) {
-        if (getenv('REQUIRE_SSR')) {
-            $this->fail('node_modules is missing; run npm ci before the SSR suite.');
-        }
+    requireSsrJob();
 
-        $this->markTestSkipped('Needs npm ci. The CI ssr job installs node_modules and runs this case.');
+    if (! is_dir(base_path('node_modules'))) {
+        ssrUnavailable('node_modules is missing. Run: npm ci');
     }
 
     preg_match_all('#url\("\.\./\.\./(node_modules/[^"]+)"\)#', stylesheet('fonts.css'), $matches);
@@ -62,7 +60,7 @@ it('points every face at a font file that is installed', function (): void {
     foreach ($matches[1] as $path) {
         expect(is_file(base_path($path)))->toBeTrue("{$path} is not installed");
     }
-});
+})->group('ssr');
 
 it('gives Vietnamese headings room for stacked marks, after the English values', function (): void {
     $css = stylesheet('tokens.css');
@@ -135,7 +133,7 @@ it('hyphenates the fact terms of an engine page, a third of a narrow card', func
      * 27px into the value beside them, "Puerto predeterminado" 31px.
      */
     expect(ssrHtml('/de/postgresql-client'))->toMatch('/<dl class="[^"]*\[&amp;_dt\]:hyphens-auto[^"]*">/');
-});
+})->group('ssr');
 
 it('hyphenates long German words in headings, keyed on the language of a German page', function (): void {
     /*

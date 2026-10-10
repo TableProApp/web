@@ -191,7 +191,7 @@ it('renders the pricing anchor shipped Mac builds open', function (): void {
      * hold: the page those links open still has the section they scroll to.
      */
     expect(ssrHtml('/?ref=app-about'))->toContain('id="pricing"');
-});
+})->group('ssr');
 
 it('sets <html lang> from the URL on every Vietnamese path, whatever it answers', function (string $path): void {
     expect($this->get($path)->getContent())->toContain('<html lang="vi"');

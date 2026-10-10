@@ -24,6 +24,8 @@ use PHPUnit\Framework\Assert;
  */
 function clientManifest(): array
 {
+    requireSsrJob();
+
     $path = public_path('build/manifest.json');
 
     if (! is_file($path)) {
@@ -68,7 +70,7 @@ it('keeps every other language\'s catalog out of the entry chunk', function (): 
         Assert::assertContains($catalog, $entry['dynamicImports'] ?? [], "app.tsx does not load {$catalog} on demand");
         Assert::assertNotContains($catalog, $entry['imports'] ?? [], "app.tsx imports {$catalog} statically");
     }
-});
+})->group('ssr');
 
 it('sends a translated page its own language\'s catalog with the document, and no other', function (string $path, string $locale): void {
     $manifest = clientManifest();
@@ -87,7 +89,7 @@ it('sends a translated page its own language\'s catalog with the document, and n
     ['/vi/download', 'vi'],
     ['/pt-BR/pricing', 'pt-BR'],
     ['/zh-Hans', 'zh-Hans'],
-]);
+])->group('ssr');
 
 it('renders the error page from a file that exists', function (): void {
     $this->get('/no-such-page')->assertNotFound();
@@ -108,7 +110,7 @@ it('has a manifest key for every page file', function (): void {
     foreach ($pages as $page) {
         Assert::assertArrayHasKey($page, $manifest, "{$page} has no entry in public/build/manifest.json");
     }
-});
+})->group('ssr');
 
 it('sends the page chunk and its imports with the document', function (string $path, string $component): void {
     $manifest = clientManifest();
@@ -137,7 +139,7 @@ it('sends the page chunk and its imports with the document', function (string $p
     ['/pricing', 'Pricing'],
     ['/vi/download', 'Download'],
     ['/blog/tablepro-0-77', 'Blog/Post'],
-]);
+])->group('ssr');
 
 it('renders a component with no file without asking the manifest for it', function (): void {
     clientManifest();
@@ -150,4 +152,4 @@ it('renders a component with no file without asking the manifest for it', functi
 
     expect($html)->not->toContain('Nope/Missing.tsx')
         ->toContain('"component":"Nope\/Missing"');
-});
+})->group('ssr');

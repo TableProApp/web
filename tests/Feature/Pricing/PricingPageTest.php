@@ -226,7 +226,7 @@ it('server-renders the plans, the table and every section, with prices written f
 })->with([
     'English' => ['/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year']],
     'Vietnamese' => ['/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"]],
-]);
+])->group('ssr');
 
 it('carries every cycle\'s price in the server HTML and hides all but the yearly one', function (string $path, string $pattern, string $decimal): void {
     config(['payment.provider' => 'polar']);
@@ -247,7 +247,7 @@ it('carries every cycle\'s price in the server HTML and hides all but the yearly
     'English' => ['/pricing', '$%s', '.'],
     'Vietnamese' => ['/vi/pricing', "%s\u{a0}US$", ','],
     'Traditional Chinese' => ['/zh-Hant/pricing', 'US$%s', '.'],
-]);
+])->group('ssr');
 
 it('states the refund window under the buy buttons, with the policy linked', function (string $path, string $sentence, string $href): void {
     $html = html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5);
@@ -260,7 +260,7 @@ it('states the refund window under the buy buttons, with the policy linked', fun
 })->with([
     'English' => ['/pricing', 'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.', '/refund-policy'],
     'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.', '/vi/refund-policy'],
-]);
+])->group('ssr');
 
 it('keeps licensing facts visible and the short FAQ focused on account tasks', function (): void {
     $html = html_entity_decode(ssrHtml('/pricing'), ENT_QUOTES | ENT_HTML5);
@@ -283,7 +283,7 @@ it('keeps licensing facts visible and the short FAQ focused on account tasks', f
             expect($item['answer'])->not->toContain($duplicate);
         }
     }
-});
+})->group('ssr');
 
 it('says who a Starter license is for wherever it says how many Macs', function (string $locale, string $person, ?string $cardPerson = null, ?string $detailPerson = null): void {
     // The rule is the terms' own: "Using a license".
@@ -374,7 +374,7 @@ it('states the availability of every plan in words, not only in an icon', functi
 })->with([
     'English' => ['/pricing', 'Included', 'Not included'],
     'Vietnamese' => ['/vi/pricing', 'Có', 'Không có'],
-]);
+])->group('ssr');
 
 it('states one offer per price in pricing.json, in its structured data', function (string $path): void {
     $html = ssrHtml($path);
@@ -410,4 +410,4 @@ it('states one offer per price in pricing.json, in its structured data', functio
         expect($offer['priceCurrency'])->toBe($pricing['currency']);
         expect($offer)->not->toHaveKey('aggregateRating');
     }
-})->with(['/pricing', '/vi/pricing']);
+})->with(['/pricing', '/vi/pricing'])->group('ssr');

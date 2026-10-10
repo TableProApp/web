@@ -134,7 +134,7 @@ it('renders the same markup whatever the theme, named in the page language', fun
 })->with([
     'English' => ['/download', 'en'],
     'Vietnamese' => ['/vi/download', 'vi'],
-]);
+])->group('ssr');
 
 it('follows the menu button keyboard pattern: Enter and Space open into the menu, and Escape closes it from the button too', function (): void {
     /*

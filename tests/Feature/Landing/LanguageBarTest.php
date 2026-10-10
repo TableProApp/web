@@ -104,7 +104,7 @@ it('renders an empty slot for the bar after the license banner and above the hea
     preg_match('/<div[^>]*class="language-bar[^"]*"[^>]*>(.*?)<\/div>/s', $html, $element);
 
     expect(trim($element[1] ?? 'missing'))->toBe('', 'The server cannot know the reader\'s language, so the bar is empty until the browser decides');
-});
+})->group('ssr');
 
 it('shares the license banner\'s slot and hides it while it shows', function (): void {
     $css = (string) file_get_contents(resource_path('css/app.css'));

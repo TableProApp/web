@@ -136,4 +136,4 @@ it('server-renders every section with its slots filled and plain page markup', f
     expect($html)->not->toContain('"FAQPage"');
 
     Assert::assertDoesNotMatchRegularExpression('/\{[a-zA-Z]+\}/', strip_tags((string) preg_replace('#<script\b[^>]*>.*?</script>#s', '', $html)));
-})->with(['/security', '/vi/security', '/fr/security']);
+})->with(['/security', '/vi/security', '/fr/security'])->group('ssr');

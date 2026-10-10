@@ -121,4 +121,4 @@ it('advertises the feed in the head of blog pages only', function (): void {
     expect(ssrHtml('/blog'))->toContain($link)
         ->and(ssrHtml('/blog/tablepro-0-77'))->toContain($link)
         ->and(ssrHtml('/pricing'))->not->toContain('application/atom+xml');
-});
+})->group('ssr');

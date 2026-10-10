@@ -124,7 +124,7 @@ it('links the security page from the policies, in every language', function (str
 
     expect($section)->not->toBe([]);
     expect($section[0])->toContain("href=\"{$prefix}/security\"");
-})->with(aboutLocales());
+})->with(aboutLocales())->group('ssr');
 
 it('says how the name and logo may be used, and where to ask about anything else, in every language', function (string $locale): void {
     expect(aboutContent($locale)['brand']['usage'] ?? null)->toBeString()->toContain('TablePro')->toContain('<email>{email}</email>');
@@ -135,7 +135,7 @@ it('says how the name and logo may be used, and where to ask about anything else
 
     expect($section)->not->toBe([]);
     expect($section[0])->toContain('href="mailto:hello@tablepro.app"');
-})->with(aboutLocales());
+})->with(aboutLocales())->group('ssr');
 
 it('types the publisher in facts.json only', function (): void {
     $publisher = aboutPublisher();
@@ -201,7 +201,7 @@ it('server-renders the publisher, the page sections and an AboutPage about the o
     ['/vi/about', 'vi'],
     ['/ja/about', 'ja'],
     ['/de/about', 'de'],
-]);
+])->group('ssr');
 
 it('says who builds TablePro in the homepage open-source section, and links the about page', function (string $locale): void {
     $publisher = aboutPublisher();
@@ -213,7 +213,7 @@ it('says who builds TablePro in the homepage open-source section, and links the 
     expect($section)->not->toBe([]);
     expect(aboutVisibleText($section[0]))->toContain($publisher['name'])->toContain($publisher['city'][$locale]);
     expect($section[0])->toContain("href=\"{$prefix}/about\"");
-})->with(aboutLocales());
+})->with(aboutLocales())->group('ssr');
 
 it('names the publisher in the footer of every language', function (string $locale): void {
     $publisher = aboutPublisher();
@@ -224,7 +224,7 @@ it('names the publisher in the footer of every language', function (string $loca
     expect(aboutVisibleText($footer[0]))->toContain($publisher['name'])
         ->toContain($publisher['city'][$locale])
         ->toContain('AGPLv3');
-})->with(aboutLocales());
+})->with(aboutLocales())->group('ssr');
 
 it('keeps the footer line short enough for one row beside the controls at 1280px', function (string $locale): void {
     $publisher = aboutPublisher();

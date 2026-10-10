@@ -271,10 +271,10 @@ it('renders above the header, in the page language, on every kind of page', func
         Assert::assertStringContainsString(htmlspecialchars($copy['cta'], ENT_QUOTES), $link, "{$path}: the link must read the call to action");
         Assert::assertStringNotContainsString(htmlspecialchars($copy['short'], ENT_QUOTES), $link, "{$path}: the question belongs beside the link, not in it");
     }
-});
+})->group('ssr');
 
 it('renders no banner element when it is switched off', function (): void {
     config(['banner.enabled' => false]);
 
     Assert::assertStringNotContainsString('support-banner', ssrHtml('/download'), 'A disabled banner must leave no element');
-});
+})->group('ssr');
