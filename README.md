@@ -139,7 +139,8 @@ Neither licence covers:
   [TableProApp/integrations](https://github.com/TableProApp/integrations);
 - the TablePro name, logo and app icon (`public/images/brand` and the site
   icons), which are trademarks of Ngo Quoc Dat: the
-  [brand guidelines](https://tablepro.app/brand) say how to use them. The text
-  of the brand guidelines is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+  [brand guidelines](https://tablepro.app/brand) say how to use them;
+- the text of the brand guidelines, which is
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).
