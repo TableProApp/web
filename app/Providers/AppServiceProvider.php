@@ -6,6 +6,7 @@ use App\Services\Blog\BlogService;
 use App\Services\Og\BrowsershotOgImageRenderer;
 use App\Services\Og\OgImageRenderer;
 use App\Support\Content\ContentRepository;
+use App\Support\Content\IntegrationCatalog;
 use App\Support\Content\MarkdownRenderer;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +32,9 @@ class AppServiceProvider extends ServiceProvider
         ));
 
         $this->app->singleton(MarkdownRenderer::class);
+
+        $this->app->singleton(IntegrationCatalog::class, fn(): IntegrationCatalog => new IntegrationCatalog(
+            path: resource_path('data/integrations.json'),
+        ));
     }
 }

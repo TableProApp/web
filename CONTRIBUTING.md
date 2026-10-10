@@ -70,3 +70,7 @@ TablePro logo files under `public/images/brand/`, which are trademarks, or the
 brand guidelines text, which is CC BY 4.0. After the app icon changes,
 regenerate the PNG files there with `scripts/brand-kit.sh` (macOS, needs
 `rsvg-convert` from librsvg).
+
+`resources/data/integrations.json` and `public/images/integrations/` are copied
+from [TableProApp/integrations](https://github.com/TableProApp/integrations)
+under its terms, and the next sync replaces them. Change an entry there.

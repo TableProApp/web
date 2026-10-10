@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://integrations.tablepro.app/schema/v1/index.schema.json",
+  "title": "TablePro integrations index, v1",
+  "description": "The published index, at https://integrations.tablepro.app/v1/index.json and as the index.json asset of each release. A release holds index.json, SHA256SUMS and every image this file names, each as a flat asset listed in SHA256SUMS. Consumers ignore unknown properties and treat unknown enum-like values (tier, category, surface, install type, platform) as absent or as other. New optional properties and new values do not change v1. A removed or renamed property, a new required property or a type change ships as v2 beside v1.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "commit",
+    "contentSha256",
+    "integrations",
+    "removed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "release": {
+      "description": "Release tag this file was attached to. Absent on Pages builds made before the release exists.",
+      "type": "string",
+      "pattern": "^v1\\.[0-9]{8}\\.[0-9]+$"
+    },
+    "contentSha256": {
+      "description": "SHA-256 over everything except generatedAt, commit and release. Equal values mean the same data.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "removed": {
+      "description": "Tombstones. A consumer answers 410 Gone for these slugs.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "removedAt",
+          "reason"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "removedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "image": {
+      "type": "object",
+      "required": [
+        "file",
+        "width",
+        "height",
+        "sha256"
+      ],
+      "properties": {
+        "file": {
+          "description": "Flat file name ending in the first 12 hex digits of its SHA-256, for example raycast-icon-512-0123456789ab.png. It resolves relative to index.json: a release asset of the same name, or the file beside index.json on Pages. Safe to cache forever.",
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9a-f]{12}\\.png$"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "slug",
+        "name",
+        "summary",
+        "summarySha256",
+        "description",
+        "tier",
+        "status",
+        "publisher",
+        "source",
+        "closedSource",
+        "install",
+        "platforms",
+        "categories",
+        "surfaces",
+        "disclosures",
+        "links",
+        "icon",
+        "screenshots",
+        "addedAt",
+        "lastVerifiedAt"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "summarySha256": {
+          "description": "SHA-256 of summary. A consumer that stores translations keeps this beside each one to spot a changed English source.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "status": {
+          "type": "object",
+          "required": [
+            "state"
+          ],
+          "properties": {
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "publisher": {
+          "type": "object",
+          "required": [
+            "name",
+            "github",
+            "githubId"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "description": "Browsable source URL, derived from repo and path.",
+              "type": "string"
+            }
+          }
+        },
+        "closedSource": {
+          "type": "boolean"
+        },
+        "license": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "install": {
+          "type": "object",
+          "required": [
+            "type",
+            "url"
+          ],
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "description": "Resolved destination for the install button, for every install type.",
+              "type": "string"
+            }
+          }
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "surfaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclosures": {
+          "type": "object"
+        },
+        "links": {
+          "type": "object",
+          "required": [
+            "homepage"
+          ]
+        },
+        "icon": {
+          "type": "object",
+          "required": [
+            "512",
+            "128"
+          ],
+          "properties": {
+            "512": {
+              "$ref": "#/$defs/image"
+            },
+            "128": {
+              "$ref": "#/$defs/image"
+            }
+          }
+        },
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/image"
+              }
+            ],
+            "required": [
+              "alt"
+            ],
+            "properties": {
+              "alt": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "lastVerifiedAt": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
