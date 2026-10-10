@@ -350,7 +350,7 @@ access control).
 
 ```json
 [
-  { "from": "/docs/raycast", "to": "https://docs.tablepro.app/external-api/raycast", "status": 301,
+  { "from": "/docs/raycast", "to": "https://docs.tablepro.app/integrations/raycast", "status": 301,
     "reason": "Raycast extension pair.tsx:187 links here" },
   { "from": "/mariadb-client", "to": "/mysql-client#mariadb", "status": 301, "reason": "merged into the family page (sitemap §A.3)" },
   { "from": "/compare/azimutt", "status": 410, "reason": "no genuine replacement (sitemap objection 1)" }
