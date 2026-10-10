@@ -462,6 +462,13 @@ function contentGuardText(string $text): string
  */
 function contentGuardPhrasePattern(string $phrase): string
 {
+    static $patterns = [];
+
+    return $patterns[$phrase] ??= contentGuardBuildPhrasePattern($phrase);
+}
+
+function contentGuardBuildPhrasePattern(string $phrase): string
+{
     $phrase = contentGuardText($phrase);
     $body = preg_quote($phrase, '/');
     $body = (string) preg_replace('/\s+/', '\s+', $body);

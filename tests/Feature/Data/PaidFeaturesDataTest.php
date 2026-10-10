@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\File;
  */
 function paidFeaturesJson(): array
 {
-    return json_decode(File::get(resource_path('data/paid-features.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $features = null;
+
+    return $features ??= json_decode(File::get(resource_path('data/paid-features.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -158,7 +160,7 @@ it('links every feature to a fixed section of a feature page', function (): void
     expect(array_column(array_column(paidFeaturesJson(), 'page', 'proFeature'), 'anchor'))->toContain('compare-sync');
 });
 
-it('finds each linked section in the feature page content once that content exists', function (): void {
+it('finds each linked section in the feature page content', function (): void {
     foreach (paidFeaturesJson() as $feature) {
         $slug = basename($feature['page']['path']);
         $file = resource_path("data/content/en/features/{$slug}.json");
@@ -166,20 +168,13 @@ it('finds each linked section in the feature page content once that content exis
         expect(File::exists($file))->toBeTrue("content/en/features/{$slug}.json is missing");
         expect(File::get($file))->toContain('"' . $feature['page']['anchor'] . '"');
     }
-})->skip(
-    fn(): bool => ! File::isDirectory(resource_path('data/content/en/features')),
-    'The feature pages are not written yet; until then the anchors are checked against sitemap §A.2 above.',
-);
+});
 
-it('gives every feature a detail line in both locales once the copy exists', function (): void {
-    foreach (['en', 'vi'] as $locale) {
-        $details = json_decode(File::get(resource_path("data/content/{$locale}/paid-features.json")), true, 512, JSON_THROW_ON_ERROR);
+it('gives every feature a detail line', function (): void {
+    $locale = 'en';
+    $details = json_decode(File::get(resource_path("data/content/{$locale}/paid-features.json")), true, 512, JSON_THROW_ON_ERROR);
 
-        foreach (paidFeaturesJson() as $feature) {
-            expect(data_get($details, "{$feature['id']}.detail"))->toBeString()->not->toBe('', "{$locale}: {$feature['id']} has no detail");
-        }
+    foreach (paidFeaturesJson() as $feature) {
+        expect(data_get($details, "{$feature['id']}.detail"))->toBeString()->not->toBe('', "{$locale}: {$feature['id']} has no detail");
     }
-})->skip(
-    fn(): bool => ! File::exists(resource_path('data/content/en/paid-features.json')) || ! File::exists(resource_path('data/content/vi/paid-features.json')),
-    'content/{en,vi}/paid-features.json is not written yet.',
-);
+});

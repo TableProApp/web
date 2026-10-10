@@ -17,6 +17,12 @@ require_once __DIR__ . '/helpers.php';
  */
 function copyStyleStrings(bool $withIos = true): array
 {
+    static $memo = [];
+
+    if (isset($memo[$withIos])) {
+        return $memo[$withIos];
+    }
+
     $root = resource_path('data/content/en');
     $files = ["{$root}/home.json", ...contentGuardFiles("{$root}/features", 'json')];
 
@@ -32,7 +38,7 @@ function copyStyleStrings(bool $withIos = true): array
         }
     }
 
-    return $strings;
+    return $memo[$withIos] = $strings;
 }
 
 /**

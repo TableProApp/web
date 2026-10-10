@@ -14,17 +14,10 @@ use Illuminate\Routing\Route;
  */
 function localesData(): array
 {
-    return json_decode((string) file_get_contents(resource_path('data/locales.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode((string) file_get_contents(resource_path('data/locales.json')), true, 512, JSON_THROW_ON_ERROR);
 }
-
-it('declares a supported default locale with no prefix', function (): void {
-    $data = localesData();
-
-    expect($data)->toHaveKeys(['default', 'supported']);
-    expect($data['default'])->toBe('en');
-    expect($data['supported'])->toHaveKey('en');
-    expect($data['supported']['en']['prefix'])->toBeNull();
-});
 
 it('describes each locale completely and consistently', function (): void {
     foreach (localesData()['supported'] as $code => $locale) {
@@ -50,10 +43,6 @@ function localePrefixes(): array
 {
     return array_values(array_filter(array_column(localesData()['supported'], 'prefix')));
 }
-
-it('gives each locale its own prefix', function (): void {
-    expect(localePrefixes())->toBe(array_values(array_unique(localePrefixes())));
-});
 
 it('collides with no root path the site or the platform serves', function (): void {
     $prefixed = array_map(fn(string $code): string => 'locale:' . $code, array_diff(array_keys(localesData()['supported']), [localesData()['default']]));

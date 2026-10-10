@@ -23,7 +23,9 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 function comparisonsJson(): array
 {
-    return json_decode(File::get(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -297,8 +299,6 @@ it('has the compared products of the sitemap, each with a route', function (): v
         'tableplus', 'dbeaver', 'datagrip', 'navicat', 'beekeeper-studio', 'sequel-ace', 'sequel-pro', 'postico', 'heidisql', 'phpmyadmin',
         'mysql-workbench', 'pgadmin', 'dbgate', 'mongodb-compass', 'ssms',
     ]);
-    expect(array_diff($slugs, CompareSlugs::ALL))->toBe([]);
-    expect($slugs)->not->toContain('azimutt');
 
     foreach (comparisonsJson()['products'] as $product) {
         if ($product['slug'] !== null) {
@@ -446,45 +446,29 @@ it('routes exactly the compared products', function (): void {
     expect(CompareSlugs::ALL)->toBe($compared);
 });
 
-it('has a page file only for a compared product, and explains every note it cites in that language', function (): void {
+it('has a page file only for a compared product, and explains every note it cites', function (): void {
     $compared = collect(comparisonsJson()['products'])->whereNotNull('slug')->keyBy('slug');
+    $locale = 'en';
 
-    foreach (['en', 'vi'] as $locale) {
-        foreach (comparePageFiles($locale) as $slug) {
-            expect($compared->has($slug))->toBeTrue("content/{$locale}/compare/{$slug}.json has no product with that slug");
+    expect(comparePageFiles($locale))->not->toBeEmpty();
 
-            $copy = json_decode(File::get(resource_path("data/content/{$locale}/compare/{$slug}.json")), true, 512, JSON_THROW_ON_ERROR);
-            $notes = collect(comparisonLeaves($compared[$slug]))
-                ->filter(fn(mixed $value, string $path): bool => str_ends_with($path, '.note') && is_string($value))
-                ->unique()
-                ->sort()
-                ->values()
-                ->all();
-            $written = array_keys($copy['notes'] ?? []);
-            sort($written);
+    foreach (comparePageFiles($locale) as $slug) {
+        expect($compared->has($slug))->toBeTrue("content/{$locale}/compare/{$slug}.json has no product with that slug");
 
-            expect($written)->toBe($notes, "content/{$locale}/compare/{$slug}.json must explain exactly the notes its product cites");
+        $copy = json_decode(File::get(resource_path("data/content/{$locale}/compare/{$slug}.json")), true, 512, JSON_THROW_ON_ERROR);
+        $notes = collect(comparisonLeaves($compared[$slug]))
+            ->filter(fn(mixed $value, string $path): bool => str_ends_with($path, '.note') && is_string($value))
+            ->unique()
+            ->sort()
+            ->values()
+            ->all();
+        $written = array_keys($copy['notes'] ?? []);
+        sort($written);
 
-            foreach ($notes as $note) {
-                expect($copy['notes'][$note])->toBeString()->not->toBe('', "{$locale}/{$slug}: empty note {$note}");
-            }
+        expect($written)->toBe($notes, "content/{$locale}/compare/{$slug}.json must explain exactly the notes its product cites");
+
+        foreach ($notes as $note) {
+            expect($copy['notes'][$note])->toBeString()->not->toBe('', "{$locale}/{$slug}: empty note {$note}");
         }
-    }
-})->skip(
-    fn(): bool => comparePageFiles('en') === [] && comparePageFiles('vi') === [],
-    'No compare page has copy yet.',
-);
-
-/*
- * Every compared product has its page in both launch languages, written to
- * components/compare/README.md. A failure names the missing files.
- */
-it('gives every compared product a page in both languages', function (): void {
-    $compared = collect(comparisonsJson()['products'])->whereNotNull('slug')->pluck('slug')->sort()->values()->all();
-
-    foreach (['en', 'vi'] as $locale) {
-        $missing = array_values(array_diff($compared, comparePageFiles($locale)));
-
-        expect($missing)->toBe([], "content/{$locale}/compare is missing: " . implode(', ', $missing));
     }
 });

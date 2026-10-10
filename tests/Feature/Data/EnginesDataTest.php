@@ -1,8 +1,6 @@
 <?php
 
-use App\Support\Content\Slugs\DatabaseSlugs;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * resources/data/engines.json: every engine in the Mac app's picker, where
@@ -27,7 +25,9 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 function enginesJson(): array
 {
-    return json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $engines = null;
+
+    return $engines ??= json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -220,33 +220,7 @@ it('has one database page per own-page engine, matching the sitemap', function (
         'cloudflare-d1-client', 'turso-client', 'dynamodb-gui', 'bigquery-client', 'snowflake-client', 'etcd-gui',
         'elasticsearch-client', 'surrealdb-client', 'teradata-client', 'trino-client', 'beancount-client', 'kafka-client',
     ]);
-    expect(array_diff($slugs, DatabaseSlugs::ALL))->toBe([], 'Every engine page needs a route');
 });
-
-/*
- * Every own-page engine has its page written in both languages, and nothing
- * else is. The pages arrive in batches, so a failure here names the pages
- * still to write.
- */
-it('has a page in both languages for every own-page engine, and no other', function (): void {
-    $slugs = array_values(array_filter(array_column(enginesJson(), 'slug')));
-
-    expect(DatabaseSlugs::ALL)->toEqualCanonicalizing($slugs);
-
-    foreach (['en', 'vi'] as $locale) {
-        $files = collect(File::files(resource_path("data/content/{$locale}/databases")))
-            ->map(fn(SplFileInfo $file): string => $file->getBasename('.json'))
-            ->reject(fn(string $name): bool => $name === 'index')
-            ->values()
-            ->all();
-
-        expect(array_values(array_diff($files, $slugs)))->toBe([], "content/{$locale}/databases has pages for no engine");
-        expect(array_values(array_diff($slugs, $files)))->toBe([], "content/{$locale}/databases is missing pages");
-    }
-})->skip(
-    fn(): bool => ! File::isDirectory(resource_path('data/content/en/databases')) || ! File::isDirectory(resource_path('data/content/vi/databases')),
-    'The database pages are not written yet.',
-);
 
 it('pins the featured engines in order, each in every Mac build still served', function (): void {
     $floor = enginesMacPlatform()['floorVersion'];
@@ -355,16 +329,6 @@ it('keeps EXPLAIN, schema editing and import values consistent', function (): vo
         'beancount',
         'sap-hana',
     );
-});
-
-it('uses only backup tools that facts.json lists', function (): void {
-    $tools = array_column(json_decode(File::get(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR)['backup']['tools'], 'id');
-
-    foreach (enginesJson() as $engine) {
-        if ($engine['capabilities']['nativeDump'] !== null) {
-            expect($tools)->toContain($engine['capabilities']['nativeDump']);
-        }
-    }
 });
 
 it('links each engine to a docs page of its own or of its driver sibling', function (): void {

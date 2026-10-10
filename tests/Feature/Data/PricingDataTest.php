@@ -37,7 +37,9 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 function pricingJson(): array
 {
-    return json_decode(File::get(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**

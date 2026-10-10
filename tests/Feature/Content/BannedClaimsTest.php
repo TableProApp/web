@@ -233,7 +233,10 @@ function bannedClaimAllowlist(): array
  */
 function bannedClaimStripAllowed(string $text, string $path, string $key): string
 {
-    foreach (bannedClaimAllowlist() as $entry) {
+    static $allowlist = null;
+    $allowlist ??= bannedClaimAllowlist();
+
+    foreach ($allowlist as $entry) {
         if (! contentGuardInScope($entry['sources'], $path, $key)) {
             continue;
         }
@@ -253,19 +256,19 @@ function bannedClaimStripAllowed(string $text, string $path, string $key): strin
  */
 function bannedClaimMatches(string $text, bool $legal = false, bool $sizesAllowed = false): array
 {
+    static $rows = null;
+    $rows ??= array_map(fn(array $row): array => [...$row, 'regexes' => [
+        ...array_map('contentGuardPhrasePattern', $row['phrases']),
+        ...array_map(fn(string $pattern): string => "/{$pattern}/iu", $row['patterns'] ?? []),
+    ]], bannedClaimRows());
     $found = [];
 
-    foreach (bannedClaimRows() as $row) {
+    foreach ($rows as $row) {
         if (($legal && ($row['legalExempt'] ?? false)) || ($sizesAllowed && ($row['sizes'] ?? false))) {
             continue;
         }
 
-        $patterns = [
-            ...array_map('contentGuardPhrasePattern', $row['phrases']),
-            ...array_map(fn(string $pattern): string => "/{$pattern}/iu", $row['patterns'] ?? []),
-        ];
-
-        foreach ($patterns as $pattern) {
+        foreach ($row['regexes'] as $pattern) {
             if (preg_match_all($pattern, $text, $matches) > 0) {
                 foreach ($matches[0] as $match) {
                     $found[] = "{$row['class']}: \"{$match}\"";

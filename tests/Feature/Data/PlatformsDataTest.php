@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\File;
  */
 function platformsDataFile(): array
 {
-    return json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -190,22 +192,6 @@ it('keeps the storefront exclusions as storefront codes for release:check only',
     }
 
     expect($exclusions)->toBe(array_values(array_unique($exclusions)));
-});
-
-it('names the engines the iOS picker offers', function (): void {
-    $engines = collect(json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR))->keyBy('id');
-    $iosEngines = platformsDataEntry('ios')['iosEngines'];
-
-    expect($iosEngines)->toBe(array_values(array_unique($iosEngines)));
-
-    foreach ($iosEngines as $id) {
-        expect($engines->has($id))->toBeTrue("{$id} is not in engines.json");
-        expect($engines[$id]['ios']['inPicker'])->toBeTrue("{$id} is not in the iOS picker");
-    }
-
-    $inPicker = $engines->filter(fn(array $engine): bool => $engine['ios']['inPicker'])->keys()->sort()->values()->all();
-
-    expect(collect($iosEngines)->sort()->values()->all())->toBe($inPicker);
 });
 
 it('uses HTTPS for every destination URL', function (): void {

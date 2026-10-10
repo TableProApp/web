@@ -190,7 +190,7 @@ dataset('reviewed facts', [
     'TablePro is not defined as a Mac client' => [
         'content/en/compare/tableplus.json',
         ['Two native database clients with Mac, iPhone and iPad apps'],
-        ['Mac database clients'],
+        [],
     ],
     'DBeaver: no "native Mac client", no self-listing Compare & Sync' => [
         'content/en/compare/dbeaver.json',

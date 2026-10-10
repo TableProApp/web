@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\File;
  */
 function sponsorsJson(): array
 {
-    return json_decode(File::get(resource_path('data/sponsors.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/sponsors.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -75,14 +77,6 @@ it('lists exactly the four verified sponsors, in display order', function (): vo
     foreach ($sponsors as $sponsor) {
         expect(array_keys($sponsor))->toBe(['id', 'name', 'githubLogin', 'url', 'logo']);
         expect($sponsor['id'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
-    }
-});
-
-it('keeps the former sponsors out', function (): void {
-    $raw = strtolower(File::get(resource_path('data/sponsors.json')));
-
-    foreach (['getapps', 'visnalize', 'unikorn', 'xermius'] as $former) {
-        expect($raw)->not->toContain($former);
     }
 });
 

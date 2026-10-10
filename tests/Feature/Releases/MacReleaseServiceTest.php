@@ -108,8 +108,10 @@ it('states no checksum for a digest that is not a SHA-256', function (mixed $dig
         githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
     ]))]);
 
-    expect(macRelease())->source->toBe(MacRelease::SOURCE_GITHUB)
-        ->and(macRelease()->assets['arm64']['sha256'])->toBeNull();
+    $release = macRelease();
+
+    expect($release->source)->toBe(MacRelease::SOURCE_GITHUB)
+        ->and($release->assets['arm64']['sha256'])->toBeNull();
 })->with([
     'another algorithm' => ['sha512:' . str_repeat('ab', 64)],
     'too short' => ['sha256:abc123'],

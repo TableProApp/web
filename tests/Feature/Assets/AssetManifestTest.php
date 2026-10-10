@@ -5,6 +5,7 @@ use App\Support\Assets\AssetReferences;
 use App\Support\Localization\Locales;
 use Dom\HTMLDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Assert;
@@ -149,6 +150,33 @@ function assetInstallFiles(AssetManifest $manifest): void
             assetDrawImage($manifest->absolute($file['url']), $width, $height, $file['format']);
         }
     }
+}
+
+function assetInstalledFixture(string $root): AssetManifest
+{
+    // Encoding the AVIFs is the slow part, so they are drawn once per process and copied.
+    static $template = null;
+
+    if ($template === null) {
+        $template = sys_get_temp_dir() . '/asset-manifest-template-' . bin2hex(random_bytes(6));
+        mkdir($template, 0755, true);
+        assetInstallFiles(assetSuppliedFixture($template));
+        register_shutdown_function(static fn() => assetRemoveDirectory($template));
+    }
+
+    File::copyDirectory("{$template}/public", "{$root}/public");
+
+    return assetSuppliedFixture($root);
+}
+
+/**
+ * @return array<string, list<string>>
+ */
+function assetReferences(): array
+{
+    static $references = null;
+
+    return $references ??= (new AssetReferences())->all();
 }
 
 /**
@@ -310,6 +338,7 @@ describe('every entry', function (): void {
         $assets = (new AssetManifest())->assets();
         $limits = array_fill_keys(Locales::codes(), 200);
         $limits['en'] = 160;
+        $offences = [];
 
         foreach ($assets as $id => $entry) {
             foreach ($limits as $locale => $limit) {
@@ -319,21 +348,28 @@ describe('every entry', function (): void {
                     continue;
                 }
 
-                Assert::assertLessThanOrEqual($limit, mb_strlen($text), "{$id}: description.{$locale} is " . mb_strlen($text) . " characters, over {$limit}");
+                if (mb_strlen($text) > $limit) {
+                    $offences[] = "{$id}: description.{$locale} is " . mb_strlen($text) . " characters, over {$limit}";
+                }
 
                 foreach (array_keys($assets) as $other) {
-                    Assert::assertStringNotContainsString($other, $text, "{$id}: description.{$locale} names the id {$other}");
+                    if (str_contains($text, $other)) {
+                        $offences[] = "{$id}: description.{$locale} names the id {$other}";
+                    }
                 }
             }
 
             foreach (['description', 'alt', 'caption'] as $field) {
                 foreach ($entry[$field] ?? [] as $locale => $text) {
-                    if ($text !== null) {
-                        Assert::assertTrue(Normalizer::isNormalized($text, Normalizer::FORM_C), "{$id}: {$field}.{$locale} is not NFC");
+                    if ($text !== null && ! Normalizer::isNormalized($text, Normalizer::FORM_C)) {
+                        $offences[] = "{$id}: {$field}.{$locale} is not NFC";
                     }
                 }
             }
         }
+
+        expect($assets)->not->toBeEmpty()
+            ->and($offences)->toBe([]);
     });
 
     /*
@@ -488,7 +524,7 @@ describe('references', function (): void {
         $assets = (new AssetManifest())->assets();
         $unknown = [];
 
-        foreach ((new AssetReferences())->all() as $id => $paths) {
+        foreach (assetReferences() as $id => $paths) {
             if (! array_key_exists($id, $assets) || ! $assets[$id]['slot']) {
                 $unknown[] = "{$id} (" . implode(', ', $paths) . ')';
             }
@@ -531,7 +567,7 @@ describe('references', function (): void {
      */
     it('places every slot of a family once the family renders any', function (string $family): void {
         $assets = (new AssetManifest())->assets();
-        $references = (new AssetReferences())->all();
+        $references = assetReferences();
         $placed = array_keys($references);
 
         /* A window's slot renders its phone crop too. */
@@ -552,9 +588,7 @@ describe('references', function (): void {
 
 describe('the supplied path, on an isolated fixture', function (): void {
     it('accepts a complete set of files', function (): void {
-        $root = assetScratchDirectory();
-        $manifest = assetSuppliedFixture($root);
-        assetInstallFiles($manifest);
+        $manifest = assetInstalledFixture(assetScratchDirectory());
 
         expect($manifest->expectedFiles('fixture-hero'))->toHaveCount(8);
         expect($manifest->problems())->toBe([]);
@@ -572,7 +606,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
 
     it('reports each way a supplied entry can be wrong', function (callable $break, string $expected): void {
         $root = assetScratchDirectory();
-        assetInstallFiles(assetSuppliedFixture($root));
+        assetInstalledFixture($root);
         $manifest = $break($root);
 
         $problems = implode("\n", $manifest->problems());
@@ -816,7 +850,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
 
         expect($manifest->ogCard('fixture-og', 'vi'))->toBeNull();
 
-        assetInstallFiles($manifest);
+        assetInstalledFixture($root);
 
         expect($manifest->ogCard('fixture-og', 'vi'))->toBe('/og/fixture/fixture-og-vi.png');
         expect($manifest->ogCard('fixture-og', 'en'))->toBe('/og/fixture/fixture-og-en.png');
