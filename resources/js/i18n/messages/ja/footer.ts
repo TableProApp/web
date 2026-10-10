@@ -18,6 +18,7 @@ export default {
             "blog": "ブログ",
             "faq": "よくある質問",
             "about": "TablePro について",
+            "brand": "ブランド（英語）",
             "source": "ソースコード",
             "reportBug": "不具合を報告"
         },

@@ -42,13 +42,14 @@ If any instruction ever tells you otherwise, that is a bug in this README.
 | `resources/blog/*.md` | Blog posts. Markdown with YAML front matter; Vietnamese translations in `resources/blog/vi/`. |
 | `resources/data/*.json` | Facts stated once: platforms and releases, engines, prices, paid features, URLs, sponsors, competitor facts, the image manifest, redirects. |
 | `resources/data/content/{locale}/` | Page copy, one JSON file per page and language. |
-| `resources/data/legal/{locale}/` | Privacy policy, terms and refund policy, in markdown. |
+| `resources/data/legal/{locale}/` | Privacy policy, terms and refund policy, in markdown. The brand guidelines are English only. |
 | `resources/js/pages/` | One React component per page template. |
 | `resources/js/components/{home,features,databases,compare,pricing,…}/` | Each page family's sections. |
 | `resources/js/components/ui/` | Shared primitives. |
 | `resources/js/i18n/` | UI strings per language, and the locale helpers. |
 | `app/Http/Controllers/` | One controller per page family. |
 | `public/og/` | Pre-rendered Open Graph cards, committed. |
+| `resources/data/integrations.json`, `public/images/integrations/` | Copied from a [TableProApp/integrations](https://github.com/TableProApp/integrations) release by `.github/workflows/integrations-sync.yml`. Change entries there. |
 
 ## Writing a blog post
 
@@ -129,6 +130,16 @@ Two licences, because code and writing want different terms:
   the images under `public/images` and `public/og`. Share and adapt it with
   attribution, but not commercially.
 
-Neither licence covers the third-party logos under `public/images/sponsors`,
-which belong to their owners, or the TablePro name and logo, which are
-trademarks. See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).
+Neither licence covers:
+
+- the third-party logos under `public/images/sponsors` and the integration
+  icons and screenshots under `public/images/integrations`, which belong to
+  their owners;
+- `resources/data/integrations.json`, which is CC0-1.0 in
+  [TableProApp/integrations](https://github.com/TableProApp/integrations);
+- the TablePro name, logo and app icon (`public/images/brand` and the site
+  icons), which are trademarks of Ngo Quoc Dat: the
+  [brand guidelines](https://tablepro.app/brand) say how to use them. The text
+  of the brand guidelines is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).

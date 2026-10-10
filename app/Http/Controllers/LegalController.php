@@ -10,8 +10,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * The privacy policy, terms and refund policy, in each locale (sitemap §A.6,
- * §E.7; design-system §8.11).
+ * The privacy policy, terms and refund policy in each locale, and the brand
+ * guidelines in English (sitemap §A.6, §E.7; design-system §8.11).
  *
  * The documents are markdown in `resources/data/legal/{locale}/`. English is
  * authoritative; each Vietnamese file is a full translation, and the page
@@ -19,8 +19,9 @@ use Inertia\Response;
  * the registry, so a document is only rendered in a locale it exists in.
  *
  * Each document keeps its own component name (`Privacy`, `Terms`,
- * `RefundPolicy`) over one shared template, so a document can grow its own
- * controls, such as the privacy page's "Cookie settings" button.
+ * `RefundPolicy`, `Brand`) over one shared template, so a document can grow
+ * its own controls, such as the privacy page's "Cookie settings" button and
+ * the brand guidelines' logo files.
  */
 class LegalController extends Controller
 {
@@ -37,6 +38,11 @@ class LegalController extends Controller
     public function refundPolicy(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
     {
         return $this->document('RefundPolicy', 'refund-policy', '/refund-policy', $documents, $content, $facts);
+    }
+
+    public function brand(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
+    {
+        return $this->document('Brand', 'brand', '/brand', $documents, $content, $facts);
     }
 
     private function document(string $component, string $name, string $path, LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response

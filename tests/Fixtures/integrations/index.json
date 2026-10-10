@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-10T10:19:30Z",
+  "commit": "416ffad0c54749fed4de3ab60ca61bb3061349c7",
+  "release": "v1.20261010.1",
+  "contentSha256": "9a643efdd4d011bbaad102e8fdcacc1608de24691c7627e4eae6f9d2e8f32d1a",
+  "integrations": [
+    {
+      "slug": "command-line",
+      "name": "Command line",
+      "summary": "Open database URLs and SQL files in TablePro from Terminal with the tablepro command.",
+      "description": "The tablepro command opens a connection URL, a database file or a SQL file in TablePro from Terminal or a script. tablepro \"postgresql://user@127.0.0.1:5432/app\" opens that database, and tablepro schema.sql opens the file in a query tab.\n\nA URL that matches a saved connection uses it. Any other URL opens a temporary session that is not saved. Scripts can also run open -b com.TablePro with the same URL.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/Services/Infrastructure",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/Services/Infrastructure"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/terminal",
+        "url": "https://docs.tablepro.app/integrations/terminal"
+      },
+      "minTableProVersion": {
+        "macos": "0.57.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "command-line"
+      ],
+      "surfaces": [
+        "cli",
+        "database-url"
+      ],
+      "disclosures": {
+        "reads": [],
+        "writes": [],
+        "lowersSafeMode": false,
+        "network": "none",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/terminal",
+        "docs": "https://docs.tablepro.app/connections/urls",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "command-line-icon-512-ee2ee8eecb33.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "ee2ee8eecb33b49d9fa995e8a3faed66a140dbab7313713e4961a3bb6cdd7dc0"
+        },
+        "128": {
+          "file": "command-line-icon-128-c39d875c6357.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "c39d875c6357430c83de5685d6d58da6ae44dd87a1d3f4852b5f73d7f39b6c7a"
+        }
+      },
+      "keywords": [
+        "terminal",
+        "shell",
+        "cli",
+        "database url"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "b9a57ebb1c91b32cb7be94df126462c870c388e590398cdf0993119db0305b2f",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "shortcuts",
+      "name": "Shortcuts",
+      "summary": "Add rows to a table and open a connection from Shortcuts on iPhone and iPad.",
+      "description": "The TablePro app for iPhone and iPad adds three actions to Shortcuts, Siri and the Share Sheet: Add Row to Table, Add Rows to Table and Open Connection.\n\nThe two insert actions take JSON or CSV, insert up to 10,000 rows per run, and run in the background without opening the app.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TableProMobile/TableProMobile/Intents",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TableProMobile/TableProMobile/Intents"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/ios-shortcuts",
+        "url": "https://docs.tablepro.app/integrations/ios-shortcuts"
+      },
+      "host": {
+        "name": "Shortcuts",
+        "url": "https://support.apple.com/guide/shortcuts/welcome/ios"
+      },
+      "minTableProVersion": {
+        "ios": "1.0",
+        "ipados": "1.0"
+      },
+      "platforms": [
+        "ios",
+        "ipados"
+      ],
+      "categories": [
+        "automation"
+      ],
+      "surfaces": [
+        "shortcuts"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema"
+        ],
+        "writes": [
+          "data"
+        ],
+        "lowersSafeMode": false,
+        "network": "none",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/ios-shortcuts",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "shortcuts-icon-512-4e4cc25aa23d.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "4e4cc25aa23d475eeec1315ab0099c21cc64cacce796cc92e31314c596482ebe"
+        },
+        "128": {
+          "file": "shortcuts-icon-128-005e96c58ac1.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "005e96c58ac156191391d3e3e25c014e00c5e0efa4a67322b36a43cec4b950c8"
+        }
+      },
+      "keywords": [
+        "ios",
+        "ipad",
+        "siri",
+        "app intents",
+        "automation"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "9208fcf6688e6cec5ad0dbaaeb1b4510590ce02416855aecca7aa8bed6ef3b49",
+      "closedSource": false,
+      "screenshots": []
+    }
+  ],
+  "removed": []
+}
