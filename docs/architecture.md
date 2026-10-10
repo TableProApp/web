@@ -168,7 +168,7 @@ page: the registry drops every path the map answers.
 
 ## What it does not serve
 
-Buying a licence, signing in to an account and subscribing to the newsletter are
+Buying a license, signing in to an account and subscribing to the newsletter are
 handled by the TablePro backend, which is a separate application and not part of
 this repository. Requests to those paths never reach this code.
 
