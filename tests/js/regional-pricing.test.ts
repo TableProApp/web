@@ -7,10 +7,11 @@ import { discountedAmount, discountedCents, parseRegional } from '../../resource
  * What the pricing cards show under the platform's regional discount. Run
  * with `npm run test:js`.
  *
- * The cases with a half-cent discount are the ones a rounding rule decides:
- * Starter monthly ($2.99) and Team monthly by the seat ($1.25) and for five
- * seats ($6.25), rounded half up. When a checkout observed at the provider
- * disagrees, change `discountedCents` and these together.
+ * The cases with a half-cent discount are the ones a rounding rule decides,
+ * rounded half up. At the 30% the platform applies today they are Team
+ * monthly, by the seat ($1.25 → $0.87) and for five seats ($6.25 → $4.37);
+ * at 50%, Starter monthly ($2.99 → $1.49) too. When a checkout observed at
+ * the provider disagrees, change `discountedCents` and these together.
  */
 
 test('the platform\'s answer is read strictly', () => {
@@ -32,6 +33,11 @@ test('the discount is rounded to the cent, a half cent up, then taken off', () =
         [1000, 50, 500],
         [2500, 50, 1250],
         [1000, 30, 700],
+        [299, 30, 209],
+        [125, 30, 87],
+        [625, 30, 437],
+        [2400, 30, 1680],
+        [5900, 30, 4130],
         [299, 50, 149],
         [125, 50, 62],
         [625, 50, 312],
