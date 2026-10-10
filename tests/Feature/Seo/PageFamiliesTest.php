@@ -22,14 +22,6 @@ use Symfony\Component\Process\Process;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * The page families, and the parts every surface shares.
- *
- * A family decides the locales a page **renders** in from the files that
- * exist, and the locales it is **indexed** in from a flag (architecture §1.6).
- * These run against scratch directories, so each rule is proven on pages that
- * exist only for the test and keeps holding as real content lands.
- */
 beforeEach(function (): void {
     $this->dirs = seoScratch();
 });
@@ -38,10 +30,6 @@ afterEach(function (): void {
     File::deleteDirectory($this->dirs['root']);
 });
 
-/**
- * The registry over the committed content rather than the scratch
- * directories, for the rules every real page must keep.
- */
 function committedPageRegistry(): PageRegistry
 {
     foreach ([ContentRepository::class, BlogPosts::class, LegalPages::class, IntegrationCatalog::class, PageRegistry::class] as $abstract) {
@@ -96,10 +84,6 @@ describe('ContentCollection', function (): void {
     });
 
     it('ignores a content file whose slug no route accepts', function (): void {
-        /*
-         * A file with no slug behind it in the route constant would be a
-         * sitemap URL that answers 404.
-         */
         seoWriteContent($this->dirs['content'], 'en', 'features/not-a-feature');
         seoWriteContent($this->dirs['content'], 'en', 'databases/ios');
 
@@ -279,11 +263,6 @@ describe('IntegrationPages', function (): void {
 
 describe('the registry the provider builds', function (): void {
     it('knows a page only in the locales its content exists in', function (): void {
-        /*
-         * Every family builds its pages from content files. Before a page's
-         * file exists it is no page at all (the route answers 404); the moment
-         * it exists, the page renders in every locale it was written in.
-         */
         expect(app(PageRegistry::class)->find('landing.privacy', []))->toBeNull();
 
         seoWriteMarkdown($this->dirs['legal'] . '/en/privacy.md');
@@ -493,11 +472,7 @@ describe('OgImages', function (): void {
         expect((new OgImages())->for($home, 'en')['url'])->toBe('https://localhost/og.png');
     });
 
-    /*
-     * Spec §9.1: one manifest update plus the files activates the final art.
-     * The fixture manifest's `fixture-og` entry is already `supplied`, so only
-     * the files decide, one locale at a time.
-     */
+    // The fixture's fixture-og entry is already supplied, so only the files decide.
     it('puts a supplied bespoke site card in place of the generated one, per locale', function (): void {
         $images = new OgImages(new AssetManifest(base_path('tests/Fixtures/assets/manifest.json')), 'fixture-og');
         $home = new PageEntry('landing.home', [], ['en', 'vi'], ['en', 'vi'], [], 'site', null);
@@ -526,12 +501,6 @@ describe('OgImages', function (): void {
         expect($images->for($compare, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png');
     });
 
-    /*
-     * The committed entry, against the committed card files copied into the
-     * scratch public directory one locale at a time: a placeholder never
-     * displaces the generated card, and a supplied entry does so only in a
-     * locale whose file is in place.
-     */
     it('reads the real bespoke site card, which takes over a locale only when supplied and on disk', function (): void {
         $manifest = new AssetManifest();
 

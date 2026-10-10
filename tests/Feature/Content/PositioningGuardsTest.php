@@ -14,34 +14,11 @@ use PHPUnit\Framework\Assert;
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * Positioning §13's guard tests: what must not change, and what must change
- * only through data, when a platform ships.
- *
- * 1. Identity keys name no platform, version or digit (here).
- * 2. The banned list and allowlist: `Content/BannedClaimsTest`.
- * 3. Title and description lengths after interpolation, in both locales.
- *    `Seo/SeoLengthsTest` checks every content file's `seo` block with the
- *    tokens filled the way the pages fill them; the legal pages' front matter
- *    is checked here; both run on every machine. A third case measures what
- *    the server actually renders, on every registry page, behind the SSR gate.
- * 4. Availability renders no platform whose `status` is not released (here):
- *    the PHP props with the iPhone and iPad app switched off, including the
- *    App Store action the database pages hand to their header, on every
- *    machine; and the rendered chrome, home hero, title and JSON-LD app
- *    nodes behind the SSR gate.
- *
- * Guard 5 is `Data/EnginesDataTest`; guard 6 is `Chrome/SiteChromeTest`.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * The identity keys of positioning §13, in one locale, keyed by where they
- * live. The homepage keys are the pillar headings P1-P5 (hero, databases,
- * safety and the workflow rows); the rest are catalog namespaces.
- *
  * @return array<string, string>
  */
 function identityKeys(string $locale): array
@@ -91,10 +68,6 @@ it('keeps platform names, versions and digits out of every identity key (guard 1
         ->and($offences)->toBe([], "Identity keys must stay true when a platform ships (positioning §13):\n  " . implode("\n  ", $offences));
 })->with(['en', 'vi']);
 
-/**
- * A registry page that is a release post: an archive whose title and
- * description are kept as published (sitemap §E.6).
- */
 function positioningIsReleasePost(PageEntry $entry): bool
 {
     if ($entry->route !== 'landing.blog.show') {
@@ -140,12 +113,7 @@ it('renders every title in 60 characters and every description within its locale
 })->group('ssr');
 
 it('keeps the legal pages\' titles and descriptions within the same bounds (guard 3)', function (string $locale): void {
-    /*
-     * `Seo/SeoLengthsTest` reads the `seo` blocks of the content files. The
-     * legal pages take theirs from the markdown front matter, so they are
-     * measured here, on every machine, as LegalDocuments fills them and with
-     * the site's title template.
-     */
+    // Legal pages take their seo copy from front matter, which Seo/SeoLengthsTest does not read.
     $template = contentGuardCatalogStrings(resource_path("js/i18n/messages/{$locale}/seo.ts"))['titleTemplate'];
     $limit = $locale === 'vi' ? 160 : 155;
     $offences = [];
@@ -169,11 +137,6 @@ it('keeps the legal pages\' titles and descriptions within the same bounds (guar
         ->and($offences)->toBe([], "legal/{$locale}:\n  " . implode("\n  ", $offences));
 })->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
 
-/**
- * Points the platform catalog and the fact services at a copy of
- * `resources/data` in which one platform is not released, as it would read
- * the day an app is withdrawn. Returns the copy's directory.
- */
 function positioningWithdraw(string $platform): string
 {
     $directory = storage_path('framework/testing/data-' . uniqid());
@@ -202,9 +165,6 @@ function positioningWithdraw(string $platform): string
 }
 
 /**
- * The props of every registry page in its first two locales: availability
- * comes from platforms.json, not from the locale.
- *
  * @return array<string, array{route: string, props: array<string, mixed>}>
  */
 function positioningRegistryProps(): array
@@ -226,10 +186,6 @@ function positioningRegistryProps(): array
 }
 
 /**
- * Every availability fact a page's props carry for the iPhone and iPad app:
- * a device list naming its devices, an App Store URL handed to a page as an
- * action, and the per-page platform summaries. Null-valued facts are absent.
- *
  * @param  array<string, mixed>  $props
  * @param  list<string>  $devices
  * @return list<string>
@@ -335,9 +291,6 @@ it('drops a platform from every availability prop the day it is not released (gu
 });
 
 /**
- * The names a page would use for each platform that is not released, in one
- * locale, from the `platforms` catalog (`names.{id}`).
- *
  * @return list<string>
  */
 function positioningUnreleasedNames(string $locale): array

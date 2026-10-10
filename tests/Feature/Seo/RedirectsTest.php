@@ -12,21 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * Retired URLs and URL normalisation (architecture §1.7, sitemap §C).
- *
- * `CanonicalizeRequest` runs first in the global stack, before routing, and
- * answers in one hop: a 301 that keeps the query string and the target's
- * fragment, or the branded 410. It never chains, never invents a destination
- * and never touches anything but `GET` and `HEAD`.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-/**
- * Where a 301 for `$target` must point, with the request's query appended.
- */
 function redirectsExpectedLocation(string $target, string $query = ''): string
 {
     $fragmentAt = strpos($target, '#');
@@ -43,10 +32,6 @@ function redirectsExpectedLocation(string $target, string $query = ''): string
     return $base . ($merged === '' ? '' : '?' . $merged) . $fragment;
 }
 
-/**
- * Runs the middleware alone on a raw request URI, for the shapes the test
- * client cannot send (`Request::create('//blog')` reads `blog` as a host).
- */
 function redirectsThroughMiddleware(string $requestUri, string $method = 'GET'): Response
 {
     $request = new Request(server: ['REQUEST_URI' => $requestUri, 'REQUEST_METHOD' => $method, 'HTTP_HOST' => 'localhost']);
@@ -88,10 +73,7 @@ it('answers each retired path with one 301 that keeps the query', function (stri
 it('folds the slash and /index.php variants of a retired path into the same hop', function (string $from, string $to): void {
     $location = redirectsExpectedLocation($to, 'ref=x');
 
-    /*
-     * Absolute URLs with a query: the test client sends those verbatim, while
-     * it strips the trailing slash from a relative path before sending it.
-     */
+    // The test client strips a relative path's trailing slash but sends an absolute URL verbatim.
     $this->get("http://localhost{$from}/?ref=x")->assertStatus(301)->assertHeader('Location', $location);
     $this->get("/index.php{$from}?ref=x")->assertStatus(301)->assertHeader('Location', $location);
     $this->call('HEAD', "http://localhost{$from}/?ref=x")->assertStatus(301)->assertHeader('Location', $location);
@@ -125,12 +107,7 @@ it('answers a gone path with the branded 410, in any of its forms', function (st
     }
 })->with('410 entries');
 
-/*
- * Through the middleware alone, on the raw request URI. The test client trims
- * a trailing slash before it sends anything (`prepareUrlForRequest`), so
- * `$this->get('/blog/')` would request `/blog`; production sends the URI as
- * the visitor typed it.
- */
+// The test client trims a trailing slash before sending, so these run the middleware on the raw URI.
 it('normalises the trailing slash and /index.php of any path in one hop', function (string $uri, string $location): void {
     $response = redirectsThroughMiddleware($uri);
 
@@ -148,10 +125,6 @@ it('normalises the trailing slash and /index.php of any path in one hop', functi
     'the query exactly as sent' => ['/blog/?q=a%20b&tag=x&tag=y', 'https://localhost/blog?q=a%20b&tag=x&tag=y'],
 ]);
 
-/*
- * A shared link loses its capitals easily, and `/en` is the first guess for
- * English. The language is fixed, the rest of the path is not touched.
- */
 it('sends a language prefix in another case, or the default language spelled out, to the canonical URL in one hop', function (string $uri, string $location): void {
     $response = redirectsThroughMiddleware($uri);
 
@@ -202,10 +175,6 @@ it('builds the Location from the canonical origin, never from the request host',
 it('sends the docs-style database paths to the engine they name', function (string $path, string $location): void {
     $this->get($path)->assertStatus(301)->assertHeader('Location', $location);
 })->with([
-    /*
-     * The four evidenced inbound paths (sitemap §C.6): the plugin registry
-     * linked the first two for months, CI the other two.
-     */
     'oracle' => ['/databases/oracle', 'https://localhost/oracle-client'],
     'clickhouse' => ['/databases/clickhouse', 'https://localhost/clickhouse-client'],
     'sqlite' => ['/databases/sqlite', 'https://localhost/sqlite-client'],
@@ -243,13 +212,6 @@ it('never guesses: unknown paths stay 404 and nothing goes to the homepage', fun
 ]);
 
 it('answers 404 for every URL the disposition table says never existed or has no replacement', function (string $path): void {
-    /*
-     * Sitemap §C lists these with their evidence: probed slugs that were
-     * never routed, release numbers with no post, feeds that never existed,
-     * one-day README assets, the platform's old mail previews, and platform
-     * paths under `/vi`. None gets a guessed redirect, and none may quietly
-     * start answering.
-     */
     $this->get($path)->assertNotFound()->assertHeaderMissing('Location');
 })->with([
     '/libsql-client',
@@ -278,11 +240,6 @@ it('answers 404 for every URL the disposition table says never existed or has no
 ]);
 
 it('lands every redirect on an element its fragment names', function (): void {
-    /*
-     * A 301 to `/mysql-client#mariadb` is only a genuine replacement if the
-     * page has that section: a missing id drops the reader at the top of a
-     * long page with no sign of what they came for.
-     */
     $targets = [];
 
     foreach (seoRedirectEntries() as $entry) {

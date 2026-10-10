@@ -18,32 +18,16 @@ use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * The locale contract of the public site.
- *
- * The locale is a function of the URL and nothing else: English at the root,
- * Vietnamese under `/vi`, the same declaration mounted once per locale. No
- * cookie, no session, no `Accept-Language`, no redirect between languages. And
- * a route existing in a locale is never enough for a page to answer there: the
- * registry decides, so a Vietnamese URL can never wrap English copy in
- * Vietnamese chrome.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * Every URL the pre-rebuild site served, and what it must answer today.
- *
- * Written down rather than derived, because deriving it from the routes would
- * let a route that disappeared take its URL out of the list with it. A URL
- * the disposition table retires moves to `resources/data/redirects.json` and
- * is expected to answer with that map's 301 or 410 instead.
- *
  * @return list<string>
  */
 function preRebuildEnglishUrls(): array
 {
+    // Written down, not derived from the routes: a route that disappears must not take its URL with it.
     $urls = ['/', '/download', '/ios', '/faq', '/privacy', '/terms', '/refund-policy', '/blog'];
 
     foreach (glob(resource_path('blog/*.md')) ?: [] as $post) {
@@ -67,9 +51,6 @@ function preRebuildEnglishUrls(): array
     return $urls;
 }
 
-/**
- * The status the redirect map gives a path, or null when it does not list it.
- */
 function retiredStatus(string $path): ?int
 {
     $map = resource_path('data/redirects.json');
@@ -132,10 +113,6 @@ it('renders every registry page in each locale it renders in, and 404s in the ot
 });
 
 it('renders the pricing anchor shipped Mac builds open', function (): void {
-    /*
-     * The fragment never reaches the server, so this is the half a test can
-     * hold: the page those links open still has the section they scroll to.
-     */
     expect(ssrHtml('/?ref=app-about'))->toContain('id="pricing"');
 })->group('ssr');
 
@@ -241,18 +218,12 @@ it('pins each slug constant to its content files once the family has them', func
         return;
     }
 
-    /*
-     * Before the family's content lands, a slug either renders through its
-     * pre-rebuild component or answers 404. It never renders a component that
-     * has no data for it.
-     */
     foreach ($slugs as $slug) {
         $path = route($route, ['slug' => $slug], false);
         $entry = app(PageRegistry::class)->find($route, ['slug' => $slug]);
         $response = $this->get($path);
 
         if ($entry === null) {
-            // A slug the redirect map retires answers its 301 or 410 (sitemap §C.3, §C.4) until its family drops it.
             $expected = retiredStatus($path) ?? 404;
 
             Assert::assertSame($expected, $response->getStatusCode(), "{$path} has no page yet and must answer {$expected}");
@@ -276,19 +247,7 @@ it('refuses a locale outside the allowlist even if a route asks for it', functio
 });
 
 it('canonicalises every request before routing, matched or not', function (): void {
-    /*
-     * First in the global stack, not in the `web` group: a retired path such
-     * as `/mariadb-client` matches no route, so group middleware never sees it.
-     * Its position is the contract.
-     *
-     * inertia-laravel 3.4 prepends `EnsureDeferredCallbacksRun` once the kernel
-     * resolves, ahead of anything the app prepends. It reads only the response
-     * (a 409 client redirect) and passes the request through untouched, so it
-     * is left out: nothing that looks at the request runs before this one.
-     *
-     * `SecurityHeaders` sits outside it for the same reason, so the redirects
-     * and 410s answered here carry its headers.
-     */
+    // A retired path matches no route, so this cannot be group middleware. The two left out only touch the response.
     $global = array_values(array_diff(
         app(Kernel::class)->getGlobalMiddleware(),
         [EnsureDeferredCallbacksRun::class, SecurityHeaders::class],

@@ -8,17 +8,6 @@ use Illuminate\Support\Facades\File;
 require_once __DIR__ . '/helpers.php';
 
 /**
- * The sitemap and the head say the same thing about every URL (sitemap §F.1).
- *
- * Both are built from the registry, the head by `SeoContext` and the sitemap
- * by `sitemap:generate`. This compares the two outputs directly, so a change
- * to either side that breaks the agreement fails here even if each side still
- * passes its own tests.
- */
-
-/**
- * The head's alternates for a sitemap URL, keyed by hreflang, `x-default` last.
- *
  * @return array<string, string>
  */
 function sitemapAlternatesFromHead(string $loc): array

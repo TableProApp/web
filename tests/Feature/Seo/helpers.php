@@ -12,25 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Assert;
 
-/*
-|--------------------------------------------------------------------------
-| SEO test helpers
-|--------------------------------------------------------------------------
-|
-| Shared by the tests under tests/Feature/Seo, the sitemap and OG command
-| tests and RedirectsDataTest. Not a test file: the suffix is not `Test.php`,
-| so PHPUnit never collects it, and each file that needs it requires it once.
-|
-| The scratch helpers point the registry's families at temporary directories,
-| so a rule can be proven on pages that exist only for the test: a real pair,
-| an English-only post, a page that renders without being indexed. Real
-| content lands family by family, and these tests hold before and after it.
-|
-*/
-
 /**
- * Points the content, blog, legal and integration families at empty scratch sources.
- *
  * @return array{root: string, content: string, blog: string, legal: string}
  */
 function seoScratch(): array
@@ -56,9 +38,6 @@ function seoScratch(): array
 }
 
 /**
- * Binds the integration catalog to a scratch index: each entry is the fixture's
- * command-line entry with the given fields replaced.
- *
  * @param  list<array<string, mixed>>  $entries
  */
 function seoWriteIntegrations(string $root, array $entries): void
@@ -73,8 +52,6 @@ function seoWriteIntegrations(string $root, array $entries): void
 }
 
 /**
- * Writes one content file, such as `seoWriteContent($dir, 'vi', 'features/querying')`.
- *
  * @param  array<string, mixed>  $data
  */
 function seoWriteContent(string $dir, string $locale, string $name, array $data = []): void
@@ -87,8 +64,6 @@ function seoWriteContent(string $dir, string $locale, string $name, array $data 
 }
 
 /**
- * Writes a markdown file with front matter.
- *
  * @param  array<string, string>  $matter
  */
 function seoWriteMarkdown(string $path, array $matter = ['title' => 'A post', 'date' => '2026-10-02']): void
@@ -103,10 +78,6 @@ function seoWriteMarkdown(string $path, array $matter = ['title' => 'A post', 'd
     File::put($path, "---\n{$yaml}---\n\nBody.\n");
 }
 
-/**
- * A request for a path, matched and bound the way the router leaves it, with
- * the locale its route group would set.
- */
 function seoMatchedRequest(string $path, string $locale): Request
 {
     $request = Request::create($path);
@@ -118,9 +89,6 @@ function seoMatchedRequest(string $path, string $locale): Request
     return $request;
 }
 
-/**
- * The root-relative path of an absolute URL on the canonical origin.
- */
 function seoPathOf(string $url): string
 {
     $path = (string) parse_url($url, PHP_URL_PATH);
@@ -128,10 +96,6 @@ function seoPathOf(string $url): string
     return $path === '' ? '/' : $path;
 }
 
-/**
- * Swaps `public_path()` for a scratch directory holding a copy of the logo, so
- * a command under test never writes over the committed cards or `/og.png`.
- */
 function seoScratchPublic(): string
 {
     $public = storage_path('framework/testing/public-' . uniqid());
@@ -144,25 +108,15 @@ function seoScratchPublic(): string
 }
 
 /**
- * The entries of `resources/data/redirects.json`, as written.
- *
- * Read by path rather than through `resource_path()`, because datasets call
- * this before the application exists.
- *
  * @return list<array<string, mixed>>
  */
 function seoRedirectEntries(): array
 {
+    // Datasets call this before the application exists, so no resource_path().
     return json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/redirects.json'), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
- * Runs `sitemap:generate` into a scratch public directory and parses it.
- *
- * Keyed by `<loc>`, in document order. `alternates` maps each `xhtml:link`'s
- * hreflang to its href; `elements` lists every child element's local name, so
- * a test can see what else the entry carries.
- *
  * @return array<string, array{alternates: array<string, string>, lastmod: string|null, elements: list<string>}>
  */
 function seoGenerateSitemap(): array
@@ -210,8 +164,6 @@ function seoGenerateSitemap(): array
 }
 
 /**
- * `seoGenerateSitemap()` on the committed site, generated once per process.
- *
  * @return array<string, array{alternates: array<string, string>, lastmod: string|null, elements: list<string>}>
  */
 function seoCommittedSitemap(): array
@@ -222,13 +174,11 @@ function seoCommittedSitemap(): array
 }
 
 /**
- * Every registry page in every locale, rendered and 404 alike, requested once
- * per process with SSR off. Only for tests that leave the content sources alone.
- *
  * @return array<string, array{status: int, lang: string|null, component: string|null, props: array<string, mixed>}>
  */
 function seoCrawlProps(): array
 {
+    // Once per process, so only call it from a test that leaves the content sources alone.
     static $pages = null;
 
     if ($pages !== null) {
@@ -259,16 +209,13 @@ function seoCrawlProps(): array
 }
 
 /**
- * The server-rendered HTML of every registry page in each locale it renders
- * in, requested once per process. Only for tests that leave the content
- * sources alone.
- *
  * @return array<string, string>
  */
 function seoCrawlHtml(): array
 {
     requireSsr();
 
+    // Once per process, so only call it from a test that leaves the content sources alone.
     static $pages = null;
 
     if ($pages !== null) {
@@ -292,9 +239,6 @@ function seoCrawlHtml(): array
     return $pages = $crawl;
 }
 
-/**
- * The smallest valid PNG: one transparent pixel.
- */
 function seoPngBytes(): string
 {
     return (string) base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');

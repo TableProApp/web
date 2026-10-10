@@ -17,17 +17,6 @@ use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * `resources/data/redirects.json`: every retired public URL and what answers
- * it (architecture §1.7, §1.8; sitemap §C).
- *
- * The map is read per request by `CanonicalizeRequest`, so nothing but these
- * rules stands between a typo in it and a live page answering 301, a redirect
- * chain, or a 410 on a URL that still has a replacement.
- */
-/**
- * The route a root-relative path matches for GET, if any.
- */
 function redirectsDataRouteFor(string $path): ?Route
 {
     try {
@@ -41,9 +30,6 @@ function redirectsDataRouteFor(string $path): ?Route
     }
 }
 
-/**
- * The path part of a target, without its query or fragment.
- */
 function redirectsDataPathOf(string $target): string
 {
     return substr($target, 0, strcspn($target, '?#'));
@@ -71,14 +57,7 @@ it('is a list of entries, each with a reason', function (): void {
 });
 
 it('retires exactly the URLs the disposition table retires', function (): void {
-    /*
-     * Sitemap §C.2-§C.6 decide every retired URL from evidence: a 301 only
-     * where a genuine replacement exists, a 410 where none does, and nothing
-     * for a URL that never existed. This map is that table as data, so an
-     * entry added or dropped without the table changing is a decision nobody
-     * recorded. The docs-style `/databases/{docsSlug}` paths are derived from
-     * engines.json and are not listed (see below).
-     */
+    // Sitemap §C's disposition table as data: change one only with the other.
     $table = [
         '/blog/cloudflare-d1-mac' => [301, '/cloudflare-d1-client'],
         '/blog/mcp-database-claude' => [301, '/features/ai-mcp#mcp'],
@@ -115,11 +94,7 @@ it('lists each retired path once, in its clean form', function (): void {
     expect($froms)->toBe(array_values(array_unique($froms)));
 
     foreach ($froms as $from) {
-        /*
-         * `CanonicalizeRequest` looks the path up after it strips a trailing
-         * slash and `/index.php`, with the case and the query as sent. An entry
-         * written any other way could never match.
-         */
+        // CanonicalizeRequest strips a trailing slash and /index.php before the lookup, so other spellings never match.
         expect($from)->toMatch('#^/[a-z0-9][a-z0-9./-]*$#', "{$from} is not a clean, lowercase path");
         expect($from)->not->toEndWith('/');
         expect($from)->not->toContain('//');
@@ -128,10 +103,7 @@ it('lists each retired path once, in its clean form', function (): void {
 });
 
 it('retires no Vietnamese and no platform URL', function (): void {
-    /*
-     * No `/vi/…` URL existed before the rebuild, so none can be retired. The
-     * platform paths never reach this app: nginx routes them first.
-     */
+    // No /vi URL existed before the rebuild, and nginx routes the platform paths first.
     $prefixes = array_filter(array_map(fn(string $code): ?string => Locales::prefixFor($code), Locales::codes()));
 
     foreach (array_column(seoRedirectEntries(), 'from') as $from) {
@@ -143,12 +115,7 @@ it('retires no Vietnamese and no platform URL', function (): void {
 });
 
 it('never retires a page that exists', function (): void {
-    /*
-     * A path with a route of its own (`/pricing`, `/compare`, `/vi/blog`) is a
-     * page; a slug route is a page once its family has content for that slug.
-     * The families are asked directly, not through the registry: the registry
-     * already hides whatever the map retires, which is the point of this test.
-     */
+    // Asks the families directly: the registry already hides whatever the map retires.
     $content = app(ContentRepository::class);
     $families = [new StaticPages($content), new ContentCollection($content), app(LegalPages::class)];
     $blog = app(BlogPosts::class);
@@ -177,10 +144,7 @@ it('never retires a page that exists', function (): void {
             expect($family->find($name, $params))->toBeNull("{$from} has content of its own and would stop answering");
         }
 
-        /*
-         * A merged guide's English markdown may still be on disk until cleanup;
-         * the map shadows it. A translation would mean the guide was kept.
-         */
+        // A merged guide's markdown may linger until cleanup; a translation would mean it was kept.
         $post = $blog->find($name, $params);
 
         expect($post === null || $post->renderLocales === [Locales::default()])
@@ -212,10 +176,7 @@ it('points internal targets at clean paths and external ones off this site', fun
         expect($to)->toStartWith('https://');
         expect($host)->not->toBe('');
 
-        /*
-         * The canonical origin is prepended at request time, so a target on this
-         * site is written as a path. A full URL to it would pin one host forever.
-         */
+        // The origin is prepended at request time; a full URL to this site would pin one host.
         expect(in_array($host, ['tablepro.app', 'www.tablepro.app', (string) config('app.web_domain')], true))
             ->toBeFalse("{$to} is on this site; write it as a path");
     }
@@ -240,11 +201,6 @@ it('has no chains: no target is itself retired', function (): void {
 });
 
 it('leaves the docs-style database paths to the engines.json rule', function (): void {
-    /*
-     * `/databases/{docsSlug}` is derived from `engines.json`, so a renamed or
-     * merged engine moves its redirect with it. Listing one here as well would
-     * pin a target the data no longer agrees with.
-     */
     foreach (array_column(seoRedirectEntries(), 'from') as $from) {
         expect(str_starts_with($from, '/databases/'))->toBeFalse("{$from} is covered by the docsSlug rule");
     }
@@ -300,13 +256,7 @@ it('sends every internal target to a page that renders', function (): void {
         $entry = $registry->find($name, $params);
 
         if ($entry === null) {
-            /*
-             * A target whose page is in the sitemap but whose copy has not
-             * landed yet (the AI & MCP feature page, the compare hub). Pending
-             * is allowed only while its whole family is still unwritten; once
-             * the family has content, a missing target page is a broken
-             * redirect.
-             */
+            // A target whose copy has not landed yet passes only while its whole family is unwritten.
             $name = ContentCollection::contentName(new PageEntry($name, $params, [], [], [], 'site', null))
                 ?? StaticPages::PAGES[$name]
                 ?? null;

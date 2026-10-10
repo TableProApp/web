@@ -5,14 +5,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
 
-/**
- * The branded error page, in the language of the path.
- *
- * A 404 for an unknown URL matched no route, so `SetLocale` never ran for it.
- * The renderer takes the locale from the path instead, which is what makes
- * `/vi/nope` fail in Vietnamese. Every error page is `noindex, follow` with no
- * canonical, so a crawler can follow its links home without indexing it.
- */
 beforeEach(function (): void {
     Route::middleware('web')->group(function (): void {
         Route::get('/_test/gone', fn() => abort(410));
@@ -189,10 +181,7 @@ it('falls back to static Blade pages that need no build, in both languages', fun
 it('serves the static page for 503 while debugging, in the locale of the path', function (): void {
     config(['app.debug' => true]);
 
-    /*
-     * Registered without the locale middleware, like a request no route
-     * matched: the locale can only come from the path.
-     */
+    // No locale middleware, like a request no route matched: the locale can only come from the path.
     Route::middleware('web')->get('/vi/_test/maintenance', fn() => abort(503));
 
     $response = $this->get('/vi/_test/maintenance');
@@ -202,7 +191,6 @@ it('serves the static page for 503 while debugging, in the locale of the path', 
 });
 
 it('links the account in the requested language from a prefixed account or checkout 404', function (string $path, string $locale): void {
-    /* The account has no locale prefix (spec §0); a reader who guessed one is sent to the real address (sitemap §A.7, §C.6). */
     $this->get($path)
         ->assertNotFound()
         ->assertInertia(fn(AssertableInertia $page) => $page

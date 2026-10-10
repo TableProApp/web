@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\File;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * The registry's rules, which every SEO surface inherits.
- *
- * A page renders in the locales it has content for and is indexed in a subset
- * of them. hreflang lists only real translations, canonicals are always
- * self-referencing, and a page that renders but is not indexed (`/vi/blog`)
- * gets `noindex, follow` and nothing else. These run against a scratch content
- * tree, so they hold before any real content exists and keep holding after.
- */
 beforeEach(function (): void {
     $this->contentDir = storage_path('framework/testing/content-' . uniqid());
     File::ensureDirectoryExists($this->contentDir);

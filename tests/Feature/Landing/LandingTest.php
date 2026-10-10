@@ -11,29 +11,12 @@ use function Pest\Laravel\withoutVite;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * Every page family renders, in each locale its registry entries render in
- * (architecture §1.17 "LandingTest").
- *
- * The families are the registry's routes, so a family nobody lists here
- * fails the first case instead of going unchecked. Each family names the
- * component it renders and the props that component cannot do without, and
- * every one of its pages is requested in English and in Vietnamese where it
- * renders, `/vi/blog` included. No request leaves the machine: the download
- * page's GitHub calls are faked.
- *
- * `Seo/SeoSmokeTest` holds the registry-wide status and robots rule; the
- * family tests (HomepageRenderTest, BlogTest, FeaturePagesTest and the rest)
- * hold what each page says.
- */
 beforeEach(function (): void {
     withoutVite();
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * Base route name => [component, the props it needs].
- *
  * @return array<string, array{0: string, 1: list<string>}>
  */
 function landingFamilies(): array

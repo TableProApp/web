@@ -10,51 +10,15 @@ use Illuminate\Support\Facades\Http;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * No page links to a page that is not there (architecture §1.17
- * "InternalLinksTest"; spec §10 "remove obsolete internal links").
- *
- * Every registry URL is crawled in each locale it renders in, and every
- * internal link it carries must:
- *
- * - answer 200, so a link never lands on a 404, a 410 or a redirect, including
- *   the normalising ones (`/blog/` → `/blog`);
- * - not be a source in the redirect map, so the site never sends its own
- *   readers through a 301 it keeps only for old inbound links;
- * - for a fragment, land on an element with that id on the target page;
- * - reach the account app (sitemap §B.5, §C.8) at `/account`, never under a
- *   locale prefix, and carry `?locale=` with the page's own locale. The other
- *   paths the license app owns on this domain are not requested: this app
- *   does not serve them;
- * - on a page in a language other than the default, stay in that language:
- *   a link to a page that renders in it uses its URL there, so a component
- *   that drops `<LocaleLink>` cannot send every Vietnamese reader to English
- *   pages. A link that declares its language (`hreflang`, which the language
- *   switcher sets) and a link to a page that exists only in English, such as
- *   a release post, are exempt.
- *
- * Two layers. The first reads the links the server hands each page (every
- * `href` prop and every link inside rendered markdown) and runs on every
- * machine. The second crawls the server-rendered HTML, header, footer and
- * all, and needs a current SSR bundle: it skips without one and fails under
- * `REQUIRE_SSR`, like every SSR-gated test. The language rule runs only in the
- * second layer: content stores unprefixed paths, and `<LocaleLink>` adds the
- * prefix when it renders.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-/** The first path segments the license app answers on this domain (sitemap §C.8). */
 const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'api', 'beta', 'discount', 'webhooks', 'platform-build'];
 
-/** Paths this app serves that are not pages: crawler files. */
 const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt'];
 
 /**
- * An internal href as path, query and fragment, or null for an external or
- * non-HTTP link. A fragment-only href resolves against the page it is on.
- *
  * @return array{path: string, query: string, fragment: string}|null
  */
 function internalLinkTarget(string $href, string $page): ?array
@@ -91,10 +55,6 @@ function internalLinkTarget(string $href, string $page): ?array
 }
 
 /**
- * What is wrong with one link from a page, or null. `$status` answers a path
- * (with its query) with its HTTP status; `$ids` answers a path with the ids
- * its document holds, or null when the layer cannot see them.
- *
  * @param  array{path: string, query: string, fragment: string}  $target
  * @param  callable(string): int  $status
  * @param  callable(string): (list<string>|null)  $ids
@@ -155,8 +115,6 @@ function internalLinkProblem(array $target, string $locale, callable $status, ca
 }
 
 /**
- * Every registry page by its URL in the default locale.
- *
  * @return array<string, PageEntry>
  */
 function internalLinkDefaultUrls(): array
@@ -173,12 +131,6 @@ function internalLinkDefaultUrls(): array
 }
 
 /**
- * Why a link on a page in `$locale` leaves the reader's language, or null.
- *
- * Only a link to a page that also renders in `$locale` can be wrong: a
- * release post exists in English alone, so linking it in English is right.
- * A link that declares its own language (`hreflang`) is a deliberate switch.
- *
  * @param  array{path: string, query: string, fragment: string}  $target
  * @param  array<string, PageEntry>  $defaultUrls
  */
@@ -200,8 +152,6 @@ function internalLinkLocaleProblem(array $target, string $locale, bool $declares
 }
 
 /**
- * Every registry URL with the locale it renders in.
- *
  * @return array<string, string>
  */
 function internalLinkPages(): array
@@ -218,9 +168,6 @@ function internalLinkPages(): array
 }
 
 /**
- * The hrefs the server hands a page: every `href` prop that is a path or a
- * fragment, and every link inside an HTML or markdown string.
- *
  * @param  array<string, mixed>  $props
  * @return list<string>
  */
@@ -250,9 +197,6 @@ function internalLinkPropHrefs(array $props): array
 }
 
 /**
- * A status lookup that remembers each answer, seeded with the pages already
- * fetched.
- *
  * @param  array<string, int>  $known
  * @return callable(string): int
  */
@@ -338,6 +282,7 @@ it('links only live pages and real anchors from every server-rendered page', fun
             }
 
             $checked++;
+            // The language rule needs the rendered HTML: content stores unprefixed paths and <LocaleLink> adds the prefix.
             $problem = internalLinkProblem($target, $locale, internalLinkStatuses($statuses), $idsOf)
                 ?? internalLinkLocaleProblem($target, $locale, $declaresLanguage, $defaultUrls);
 

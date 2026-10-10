@@ -13,32 +13,12 @@ use function Pest\Laravel\withoutVite;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * The head every public page server-renders, one page per family, in each
- * language (architecture §1.6, §1.17; sitemap §F.2).
- *
- * The registry decides every value, and `Seo/HreflangReciprocityTest` proves
- * the shared `seo` prop equals it on every page. These cases check what
- * reaches the HTML: one robots meta, a self canonical only where the page is
- * indexed, hreflang only for real pairs, `og:locale`, an `og:image` that is a
- * file on disk, and JSON-LD that states the page's language.
- *
- * Head tags come from a React component, so the cases that read them are
- * gated on the SSR service (`requireSsr()`, through `ssrHtml()` or
- * `landingSeoDocument()`). Without it the response is the Blade shell: an
- * ungated first version of the robots check counted zero tags on every page
- * and failed for a reason that had nothing to do with robots.
- */
 beforeEach(function (): void {
     withoutVite();
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * The schema.org types that are CreativeWorks and so carry the page's
- * `inLanguage` (lib/structured-data.ts). `WebSite` lists every language
- * instead; `Organization`, `BreadcrumbList`, `ItemList` and `Offer` take none.
- *
  * @return list<string>
  */
 function landingSeoCreativeWorks(): array
@@ -46,17 +26,11 @@ function landingSeoCreativeWorks(): array
     return ['WebPage', 'CollectionPage', 'ItemPage', 'AboutPage', 'BlogPosting', 'Article', 'SoftwareApplication', 'MobileApplication', 'WebApplication'];
 }
 
-/**
- * A GET on the public site's own host.
- */
 function getOnWebDomainSeo(string $path): TestResponse
 {
     return test()->get('http://' . config('app.web_domain') . $path);
 }
 
-/**
- * The server-rendered document for a path, after checking its status.
- */
 function landingSeoDocument(string $path, int $status = 200): Dom\HTMLDocument
 {
     requireSsr();
@@ -68,8 +42,6 @@ function landingSeoDocument(string $path, int $status = 200): Dom\HTMLDocument
 }
 
 /**
- * One attribute of every element a selector matches, in document order.
- *
  * @return list<string>
  */
 function landingSeoValues(Dom\HTMLDocument $document, string $selector, string $attribute): array
@@ -81,8 +53,6 @@ function landingSeoValues(Dom\HTMLDocument $document, string $selector, string $
 }
 
 /**
- * Every top-level JSON-LD node on the page, taken out of its `@graph`.
- *
  * @return list<array<string, mixed>>
  */
 function landingSeoJsonLdNodes(Dom\HTMLDocument $document): array
@@ -108,10 +78,7 @@ it('keeps the health check out of search results, and marks no page that way', f
 });
 
 it('serves robots.txt that allows everything and lists both sitemaps', function (): void {
-    /*
-     * robots.txt is not access control (spec §10): private pages carry their
-     * own noindex, and nothing here may hide a public one.
-     */
+    // robots.txt is not access control: private pages carry their own noindex.
     $response = get(route('web.robots'));
 
     $response->assertOk()
@@ -129,12 +96,7 @@ it('renders the registry head on every page family, in each language', function 
 
     Assert::assertNotNull($entry, "{$path} is not a registry page");
 
-    /*
-     * One robots meta, with the registry's value. `app.blade.php` once
-     * hard-coded `index,follow` while the head added `noindex, nofollow`, so
-     * every page shipped two, and a noindex page two that contradicted each
-     * other.
-     */
+    // app.blade.php once hard-coded a second robots meta that contradicted the head's.
     $canonical = $entry->isIndexable($locale) ? [$entry->url($locale)] : [];
 
     expect($document->documentElement->getAttribute('lang'))->toBe($locale);
@@ -172,11 +134,6 @@ it('renders the registry head on every page family, in each language', function 
     expect($hreflangs)->toBe($expected);
     expect(count($document->querySelectorAll('link[rel="alternate"][hreflang]')))->toBe(count($expected), "{$path} repeats an alternate");
 
-    /*
-     * The card a share preview fetches: the page's own card where it has
-     * one, its language's generic card otherwise, and always a file that
-     * exists, with size tags that match it.
-     */
     $images = landingSeoValues($document, 'meta[property="og:image"]', 'content');
 
     expect($images)->toHaveCount(1, "{$path} shares no card, or more than one");
@@ -198,10 +155,6 @@ it('renders the registry head on every page family, in each language', function 
     expect(landingSeoValues($document, 'meta[property="og:image:alt"]', 'content'))->toBe([$alt]);
     expect(landingSeoValues($document, 'meta[name="twitter:image:alt"]', 'content'))->toBe([$alt]);
 
-    /*
-     * Structured data in the page's language, describing visible content
-     * only: no ratings, no reviews, no FAQPage or HowTo anywhere.
-     */
     $works = 0;
 
     foreach (landingSeoJsonLdNodes($document) as $node) {
@@ -250,11 +203,6 @@ it('renders the registry head on every page family, in each language', function 
 ])->group('ssr');
 
 it('marks an error page noindex, follow and points it at nothing', function (string $path, int $status, string $locale): void {
-    /*
-     * A crawler that lands on a dead link can follow the page's links home,
-     * but nothing on the page claims a URL: no canonical, no alternates, no
-     * card and no structured data.
-     */
     $document = landingSeoDocument($path, $status);
 
     expect($document->documentElement->getAttribute('lang'))->toBe($locale);

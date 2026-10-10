@@ -6,21 +6,6 @@ use App\Support\Localization\Locales;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /**
- * Search titles and descriptions fit the lengths the design documents set: a
- * rendered `<title>` of 60 characters or fewer (positioning §5), and a
- * description of 155 or fewer in English (about the desktop snippet length)
- * and 160 or fewer in Vietnamese (positioning §5), so results pages do not
- * cut them off.
- *
- * The title is checked as the page renders it: with the site template where
- * the page applies it, and with `{devices}`, `{macDevices}` and `{deviceList}`
- * filled from platforms.json and engines.json the way the pages fill them.
- * Every content file with a `seo` block is covered, so a new page is too.
- * So is every post, by its front matter: `seoTitle` where the title is too
- * long or is another page's, and the description its index row also prints.
- */
-
-/**
  * @return array<string, mixed>
  */
 function seoLengthsJson(string $path): array
@@ -41,8 +26,6 @@ function seoLengthsJoin(array $names, string $locale): string
 }
 
 /**
- * Every content file with a `seo` block, as [locale, relative path, decoded copy].
- *
  * @return list<array{string, string, array<string, mixed>}>
  */
 function seoLengthsPages(): array
@@ -69,10 +52,6 @@ function seoLengthsPages(): array
 }
 
 /**
- * The `<title>` a page renders: compare pages, the homepage, the iPhone page and
- * the about page lead with the brand and skip the template; every other page gets
- * "{title} – TablePro".
- *
  * @param  array<string, mixed>  $copy
  */
 function seoLengthsRenderedTitle(string $locale, string $path, array $copy): string
@@ -104,10 +83,6 @@ function seoLengthsRenderedTitle(string $locale, string $path, array $copy): str
 }
 
 /**
- * Every post as [locale, relative path, rendered `<title>`, description].
- * Blog/Post.tsx renders `seoTitle` in place of the title, and adds the site
- * template only to a title that does not name the brand.
- *
  * @return list<array{string, string, string, string}>
  */
 function seoLengthsPosts(): array

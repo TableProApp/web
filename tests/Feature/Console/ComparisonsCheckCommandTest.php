@@ -8,14 +8,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Testing\PendingCommand;
 
 /**
- * `php artisan comparisons:check`: the age of each product's check, and its
- * last release against GitHub. GitHub is faked from the data file itself, so
- * a re-check of a competitor's release never needs an edit here.
- */
-
-/**
- * `owner/repo` => the product whose last release cites that repository's releases page.
- *
  * @return array<string, array<string, mixed>>
  */
 function comparisonsOnGitHub(): array
@@ -35,8 +27,6 @@ function comparisonsOnGitHub(): array
 }
 
 /**
- * Fakes GitHub's latest release for every such product as the data records it.
- *
  * @param  array<string, array{tag_name: string, published_at: string}|int>  $overrides  by product id: a payload, or a status code
  */
 function fakeComparisonReleases(array $overrides = []): void
@@ -60,8 +50,6 @@ function fakeComparisonReleases(array $overrides = []): void
 }
 
 /**
- * The oldest and newest product check in the data, and the days between them.
- *
  * @return array{oldest: string, newest: string, spread: int}
  */
 function comparisonCheckDates(): array
@@ -75,10 +63,6 @@ function comparisonCheckDates(): array
     ];
 }
 
-/**
- * Runs the command on the day of the newest check, with a limit that covers
- * the oldest one, so only what a test fakes can fail it.
- */
 function runComparisonsCheckWhileFresh(): PendingCommand
 {
     $dates = comparisonCheckDates();

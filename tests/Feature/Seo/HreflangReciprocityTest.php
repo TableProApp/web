@@ -11,25 +11,11 @@ use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * hreflang, canonicals and `og:locale`, which must agree from every side
- * (architecture §1.6, sitemap §F.2).
- *
- * - A page declares alternates only when it is a real translation of another
- *   indexable page, and then every member of the pair declares the same set,
- *   itself included, plus `x-default` pointing at English.
- * - The canonical is always the page itself, absolute, in its own locale. A
- *   page that renders but is not indexed (`/vi/blog`) has none, no alternates
- *   and `noindex, follow`.
- * - Nothing points at a translation that does not exist.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * What the head must say for a page in a locale, from the registry alone.
- *
  * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>}
  */
 function hreflangExpected(PageEntry $entry, string $locale): array
@@ -60,8 +46,6 @@ function hreflangExpected(PageEntry $entry, string $locale): array
 }
 
 /**
- * The head fields of `SeoContext` for a URL, without the OG image.
- *
  * @return array<string, mixed>
  */
 function hreflangContextFor(string $path, string $locale): array
@@ -73,8 +57,6 @@ function hreflangContextFor(string $path, string $locale): array
 }
 
 /**
- * Writes a scratch site with every case the rules distinguish.
- *
  * @param  array{content: string, blog: string, legal: string}  $dirs
  */
 function hreflangScratchSite(array $dirs): void
@@ -181,10 +163,6 @@ describe('on a scratch site with every kind of page', function (): void {
             'ogLocaleAlternates' => [],
         ]);
 
-        /*
-         * Not paired for search engines, still linked for people: the switcher
-         * goes straight between the two.
-         */
         $switcher = app(LocaleSwitcher::class)->forRequest(seoMatchedRequest('/vi/blog', 'vi'));
 
         expect($switcher[0])->toMatchArray(['locale' => 'en', 'href' => '/blog', 'fallback' => false]);
