@@ -306,7 +306,7 @@ The footer replaces the 11 comparison links and 26 database links with hubs, and
 
 | Group (EN / VI) | Links |
 |---|---|
-| Product / Sản phẩm | Features · Databases · iPhone & iPad · Pricing · Download · Compare |
+| Product / Sản phẩm | Features · Databases · Integrations · iPhone & iPad · Pricing · Download · Compare |
 | Resources / Tài nguyên | Documentation ↗ (VI: "Tài liệu (tiếng Anh)") · Changelog ↗ (docs `/changelog`) · Blog · FAQ · About · Brand (`/brand` in every language; VI: "Thương hiệu (tiếng Anh)") · Source code ↗ (GitHub) · Report a bug ↗ (GitHub issues) |
 | Support / Hỗ trợ | Account (`/account?locale=`) · Troubleshooting ↗ (docs `/troubleshooting`) · Email (`hello@tablepro.app`) · Live chat (a button that loads Crisp only on click) |
 | Community / Cộng đồng | GitHub Discussions · Discord · X · Telegram (Vietnamese pages only: the group is in Vietnamese) · Sponsor TablePro (GitHub Sponsors). The repository is linked once, as "Source code" under Resources |

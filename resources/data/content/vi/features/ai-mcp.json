@@ -91,6 +91,12 @@
             "paragraphs": [
                 "AppleScript có thể kết nối, chạy query và mở table, trong phạm vi mức External Clients và Safe Mode của connection. Liên kết <code>tablepro://</code> mở một connection, một table hoặc một tab query; query trong liên kết được điền sẵn sau khi bạn xác nhận và không bao giờ tự chạy. URL cơ sở dữ liệu như <code>postgresql://</code> mở thành connection.",
                 "Lệnh shell <code>tablepro</code> mở các URL và file đó trong ứng dụng; lệnh này không chạy query từ terminal. Extension Raycast chính thức tìm connection, table và lịch sử query của bạn, và chạy query qua ứng dụng đã ghép nối."
+            ],
+            "links": [
+                {
+                    "label": "Tích hợp",
+                    "href": "/integrations"
+                }
             ]
         },
         {

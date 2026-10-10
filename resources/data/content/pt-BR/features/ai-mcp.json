@@ -91,6 +91,12 @@
             "paragraphs": [
                 "AppleScript pode conectar, executar consultas e abrir tabelas, respeitando o nível de External Clients e o Safe Mode da conexão. Links <code>tablepro://</code> abrem uma conexão, tabela ou aba de consulta; uma consulta em um link é preenchida após sua confirmação e nunca é executada sozinha. URLs de banco como <code>postgresql://</code> abrem como conexões.",
                 "O comando de shell <code>tablepro</code> abre essas URLs e arquivos no app; não executa consultas pelo terminal. A extensão oficial Raycast pesquisa conexões, tabelas e histórico de consultas e executa consultas pelo app pareado."
+            ],
+            "links": [
+                {
+                    "label": "Integrações",
+                    "href": "/integrations"
+                }
             ]
         },
         {

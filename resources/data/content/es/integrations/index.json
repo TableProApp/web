@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "Integraciones",
+        "description": "Apps y herramientas que funcionan con TablePro: clientes de IA, editores, automatización y línea de comandos, de TablePro o de terceros."
+    },
+    "header": {
+        "title": "Integraciones",
+        "lead": "Apps y herramientas que funcionan con TablePro.",
+        "build": "Crear una integración"
+    },
+    "filters": {
+        "label": "Filtrar integraciones",
+        "search": "Buscar",
+        "category": {
+            "label": "Categoría",
+            "all": "Todas las categorías"
+        },
+        "platform": {
+            "label": "App de TablePro",
+            "all": "Cualquiera"
+        },
+        "tier": {
+            "label": "Tipo",
+            "all": "Todos los tipos"
+        },
+        "submit": "Mostrar resultados",
+        "count": {
+            "one": "{count} integración",
+            "other": "{count} integraciones"
+        },
+        "empty": "Ninguna integración coincide con estos filtros.",
+        "clear": "Borrar filtros"
+    },
+    "publish": {
+        "title": "Añade tu integración",
+        "guide": "Cómo enviarla",
+        "policy": "Política del directorio"
+    },
+    "notice": "Los nombres y logotipos pertenecen a sus propietarios. TablePro solo desarrolla las integraciones de tipo Oficial.",
+    "labels": {
+        "by": "Por {publisher}",
+        "closedSource": "Código cerrado",
+        "tiers": {
+            "official": "Oficial",
+            "partner": "Socio",
+            "community": "Comunidad"
+        },
+        "categories": {
+            "ai-clients": "Clientes de IA",
+            "automation": "Automatización",
+            "cloud-hosting": "Alojamiento en la nube",
+            "command-line": "Línea de comandos",
+            "editors": "Editores",
+            "launchers": "Lanzadores",
+            "local-development": "Desarrollo local",
+            "other": "Otros"
+        }
+    },
+    "show": {
+        "seoTitle": "Integración con {name}",
+        "install": {
+            "built-in": "Configurar en TablePro",
+            "ships-with-host": "Configurar con {host}",
+            "raycast-store": "Instalar desde la Raycast Store",
+            "vscode-marketplace": "Instalar desde Visual Studio Marketplace",
+            "github-release": "Descargar desde GitHub",
+            "homebrew": "Instalar con Homebrew",
+            "app-store": "Ver en la App Store",
+            "alfred-gallery": "Instalar desde la Alfred Gallery",
+            "page": "Obtener {name}"
+        },
+        "source": "Código fuente",
+        "details": {
+            "title": "Detalles",
+            "publisher": "Desarrollador",
+            "category": "Categoría",
+            "host": "Funciona con",
+            "hostVersion": "{host} {version} o posterior",
+            "apps": "App de TablePro",
+            "appVersion": "{app} {version} o posterior",
+            "license": "Licencia",
+            "added": "Añadida",
+            "verified": "Última comprobación"
+        },
+        "about": "Acerca de",
+        "screenshots": "Capturas de pantalla",
+        "uses": {
+            "title": "Qué usa",
+            "surfaces": "Funciones de TablePro",
+            "reads": "Lee",
+            "writes": "Modifica",
+            "none": "Nada",
+            "data": {
+                "connections": "Lista de conexiones",
+                "schema": "Esquemas",
+                "data": "Datos de tablas"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "Enlaces tablepro://",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "Servidor MCP",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "Emparejamiento",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "URL de bases de datos",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "Comando tablepro",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "Acciones de Atajos",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "Baja el nivel de Safe Mode",
+            "safeModeLink": "Niveles de Safe Mode",
+            "internet": "Envía datos por internet",
+            "account": "Requiere una cuenta en otro servicio",
+            "privacy": "Política de privacidad",
+            "payment": {
+                "optional": "Gratis, con opciones de pago",
+                "paid": "De pago"
+            }
+        },
+        "support": {
+            "title": "Ayuda",
+            "report": "Informar de un problema con esta ficha",
+            "help": "Obtener ayuda de {publisher}",
+            "docs": "Documentación"
+        },
+        "disclaimer": "{name} lo desarrolla {publisher}, no TablePro. TablePro lo incluye en el directorio, pero no ofrece soporte para él.",
+        "archived": {
+            "badge": "Archivada",
+            "since": "Archivada el {date}.",
+            "reasons": {
+                "unmaintained": "Ya no tiene mantenimiento.",
+                "broken": "Ya no funciona con TablePro.",
+                "source-archived": "Su repositorio de código está archivado.",
+                "superseded": "La sustituye <link>{name}</link>.",
+                "author-request": "Su autor pidió archivarla.",
+                "policy": "Ya no cumple la política del directorio."
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "Conecta Claude Code a tus bases de datos mediante el servidor MCP integrado en TablePro.",
+        "claude-desktop": "Conecta Claude Desktop a tus bases de datos mediante el servidor MCP integrado en TablePro.",
+        "command-line": "Abre URL de bases de datos y archivos SQL en TablePro desde Terminal con el comando tablepro.",
+        "cursor": "Conecta el agente de Cursor a tus bases de datos mediante el servidor MCP integrado en TablePro.",
+        "shortcuts": "Añade filas a una tabla y abre una conexión desde Atajos en iPhone y iPad.",
+        "zed": "Conecta el agente de Zed a tus bases de datos mediante el servidor MCP integrado en TablePro."
+    }
+}

@@ -2,9 +2,11 @@
 
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
+use App\Support\Content\IntegrationCatalog;
 use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\ContentCollection;
+use App\Support\Seo\IntegrationPages;
 use App\Support\Seo\LastModified;
 use App\Support\Seo\LegalPages;
 use App\Support\Seo\OgFonts;
@@ -42,7 +44,7 @@ afterEach(function (): void {
  */
 function committedPageRegistry(): PageRegistry
 {
-    foreach ([ContentRepository::class, BlogPosts::class, LegalPages::class, PageRegistry::class] as $abstract) {
+    foreach ([ContentRepository::class, BlogPosts::class, LegalPages::class, IntegrationCatalog::class, PageRegistry::class] as $abstract) {
         app()->forgetInstance($abstract);
     }
 
@@ -228,6 +230,50 @@ describe('LegalPages', function (): void {
         expect($family->find('landing.refundPolicy', []))->toBeNull();
         expect($family->find('landing.privacy', [])->ogFamily)->toBe('site');
         expect(array_map(fn(PageEntry $entry): string => $entry->route, $family->entries()))->toBe(['landing.privacy', 'landing.terms']);
+    });
+});
+
+describe('IntegrationPages', function (): void {
+    it('renders an entry in English only, indexed while it is active, on the generic card', function (): void {
+        seoWriteIntegrations($this->dirs['root'], [
+            ['slug' => 'command-line'],
+            ['slug' => 'old-tool', 'status' => ['state' => 'archived', 'since' => '2026-09-01', 'reason' => 'unmaintained']],
+        ]);
+
+        $family = app(IntegrationPages::class);
+        $active = $family->find(IntegrationPages::ROUTE, ['slug' => 'command-line']);
+        $archived = $family->find(IntegrationPages::ROUTE, ['slug' => 'old-tool']);
+
+        expect($active->renderLocales)->toBe(['en']);
+        expect($active->indexableLocales)->toBe(['en']);
+        expect($active->hreflangCluster())->toBe([]);
+        expect([$active->ogFamily, $active->ogSlug])->toBe(['integration', null]);
+        expect($active->sources)->toBe(['resources/data/integrations.json', 'resources/data/content/en/integrations/index.json']);
+        expect($archived->renderLocales)->toBe(['en']);
+        expect($archived->robots('en'))->toBe('noindex, follow');
+        expect(array_map(fn(PageEntry $entry): string => $entry->params['slug'], $family->entries()))->toBe(['command-line', 'old-tool']);
+    });
+
+    it('answers only for the integration route and a slug the registry has', function (): void {
+        seoWriteIntegrations($this->dirs['root'], [['slug' => 'command-line']]);
+
+        $family = app(IntegrationPages::class);
+
+        expect($family->find(IntegrationPages::ROUTE, ['slug' => 'raycast']))->toBeNull();
+        expect($family->find(IntegrationPages::ROUTE, ['slug' => '../command-line']))->toBeNull();
+        expect($family->find(IntegrationPages::ROUTE, ['slug' => 'command-line', 'extra' => 'x']))->toBeNull();
+        expect($family->find('landing.blog.show', ['slug' => 'command-line']))->toBeNull();
+    });
+
+    it('gives the integrations hub no card of its own', function (): void {
+        seoWriteContent($this->dirs['content'], 'en', 'integrations/index');
+        seoWriteContent($this->dirs['content'], 'vi', 'integrations/index');
+
+        $hub = (new ContentCollection(app(ContentRepository::class)))->find('landing.integrations.index', []);
+
+        expect($hub->renderLocales)->toBe(['en', 'vi']);
+        expect([$hub->ogFamily, $hub->ogSlug])->toBe(['integration', null]);
+        expect($hub->sources)->toContain('resources/data/integrations.json');
     });
 });
 

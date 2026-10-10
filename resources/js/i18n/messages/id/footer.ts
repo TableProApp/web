@@ -7,6 +7,7 @@ export default {
             "title": "Produk",
             "features": "Fitur",
             "databases": "Database",
+            "integrations": "Integrasi",
             "pricing": "Harga",
             "download": "Unduh",
             "compare": "Bandingkan"

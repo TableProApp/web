@@ -91,7 +91,8 @@
             "paragraphs": [
                 "AppleScript は、接続の External Clients レベルと Safe Mode に従って接続、クエリ実行、テーブル表示を行えます。<code>tablepro://</code> リンクは接続、テーブルやクエリタブを開きます。リンク内のクエリは確認後に入力され、自動実行しません。<code>postgresql://</code> などのデータベース URL は接続として開きます。",
                 "シェルコマンド <code>tablepro</code> はそれらの URL やファイルをアプリで開き、ターミナルからクエリは実行しません。公式 Raycast 拡張は接続、テーブルとクエリ履歴を検索し、ペアリングしたアプリ経由でクエリを実行します。"
-            ]
+            ],
+            "links": [{ "label": "連携", "href": "/integrations" }]
         },
         {
             "id": "privacy",

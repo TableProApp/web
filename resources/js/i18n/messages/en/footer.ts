@@ -13,6 +13,7 @@ export default {
             title: 'Product',
             features: 'Features',
             databases: 'Databases',
+            integrations: 'Integrations',
             pricing: 'Pricing',
             download: 'Download',
             compare: 'Compare',

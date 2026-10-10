@@ -58,6 +58,7 @@ export interface FactsData {
         issues: string;
         discussions: string;
         license: string;
+        integrations: string;
         appStore: string;
         sponsorsProgram: string;
         discord: string;

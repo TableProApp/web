@@ -1,0 +1,166 @@
+{
+    "seo": {
+        "title": "통합",
+        "description": "AI 클라이언트, 편집기, 자동화, 명령줄 등 TablePro와 함께 작동하는 앱과 도구입니다. TablePro가 만든 것과 다른 개발자가 만든 것이 있습니다."
+    },
+    "header": {
+        "title": "통합",
+        "lead": "TablePro와 함께 작동하는 앱과 도구입니다.",
+        "build": "통합 만들기"
+    },
+    "filters": {
+        "label": "통합 필터",
+        "search": "검색",
+        "category": {
+            "label": "카테고리",
+            "all": "모든 카테고리"
+        },
+        "platform": {
+            "label": "TablePro 앱",
+            "all": "전체"
+        },
+        "tier": {
+            "label": "유형",
+            "all": "모든 유형"
+        },
+        "submit": "결과 보기",
+        "count": {
+            "one": "통합 {count}개",
+            "other": "통합 {count}개"
+        },
+        "empty": "필터에 맞는 통합이 없습니다.",
+        "clear": "필터 지우기"
+    },
+    "publish": {
+        "title": "통합 등록하기",
+        "guide": "제출 방법",
+        "policy": "등록 정책"
+    },
+    "notice": "이름과 로고의 권리는 각 소유자에게 있습니다. TablePro가 만드는 통합은 공식 통합뿐입니다.",
+    "labels": {
+        "by": "{publisher} 제공",
+        "closedSource": "비공개 소스",
+        "tiers": {
+            "official": "공식",
+            "partner": "파트너",
+            "community": "커뮤니티"
+        },
+        "categories": {
+            "ai-clients": "AI 클라이언트",
+            "automation": "자동화",
+            "cloud-hosting": "클라우드 호스팅",
+            "command-line": "명령줄",
+            "editors": "편집기",
+            "launchers": "런처",
+            "local-development": "로컬 개발",
+            "other": "기타"
+        }
+    },
+    "show": {
+        "seoTitle": "{name} 통합",
+        "install": {
+            "built-in": "TablePro에서 설정",
+            "ships-with-host": "{host}에서 설정",
+            "raycast-store": "Raycast Store에서 설치",
+            "vscode-marketplace": "Visual Studio Marketplace에서 설치",
+            "github-release": "GitHub에서 다운로드",
+            "homebrew": "Homebrew로 설치",
+            "app-store": "App Store에서 보기",
+            "alfred-gallery": "Alfred Gallery에서 설치",
+            "page": "{name} 받기"
+        },
+        "source": "소스 코드",
+        "details": {
+            "title": "세부 정보",
+            "publisher": "게시자",
+            "category": "카테고리",
+            "host": "호환 앱",
+            "hostVersion": "{host} {version} 이상",
+            "apps": "TablePro 앱",
+            "appVersion": "{app} {version} 이상",
+            "license": "라이선스",
+            "added": "등록일",
+            "verified": "마지막 확인"
+        },
+        "about": "소개",
+        "screenshots": "스크린샷",
+        "uses": {
+            "title": "사용하는 기능과 데이터",
+            "surfaces": "TablePro 기능",
+            "reads": "읽기",
+            "writes": "변경",
+            "none": "없음",
+            "data": {
+                "connections": "연결 목록",
+                "schema": "스키마",
+                "data": "테이블 데이터"
+            },
+            "surface": {
+                "url-scheme": {
+                    "label": "tablepro:// 링크",
+                    "docs": "/developers/url-scheme"
+                },
+                "mcp": {
+                    "label": "MCP 서버",
+                    "docs": "/features/mcp"
+                },
+                "pairing": {
+                    "label": "페어링",
+                    "docs": "/developers/pairing"
+                },
+                "applescript": {
+                    "label": "AppleScript",
+                    "docs": "/developers/applescript"
+                },
+                "database-url": {
+                    "label": "데이터베이스 URL",
+                    "docs": "/connections/urls"
+                },
+                "cli": {
+                    "label": "tablepro 명령",
+                    "docs": "/integrations/terminal"
+                },
+                "shortcuts": {
+                    "label": "단축어 동작",
+                    "docs": "/integrations/ios-shortcuts"
+                }
+            },
+            "safeMode": "Safe Mode 수준을 낮춤",
+            "safeModeLink": "Safe Mode 수준",
+            "internet": "인터넷으로 데이터 전송",
+            "account": "다른 서비스 계정 필요",
+            "privacy": "개인정보 처리방침",
+            "payment": {
+                "optional": "무료, 유료 옵션 있음",
+                "paid": "유료"
+            }
+        },
+        "support": {
+            "title": "도움말",
+            "report": "이 등록 정보의 문제 신고",
+            "help": "{publisher}에 도움 요청",
+            "docs": "문서"
+        },
+        "disclaimer": "{name}의 제작자는 TablePro가 아닌 {publisher}입니다. TablePro는 이 목록에 올려 두지만 지원하지는 않습니다.",
+        "archived": {
+            "badge": "보관됨",
+            "since": "{date}에 보관되었습니다.",
+            "reasons": {
+                "unmaintained": "더 이상 유지 관리되지 않습니다.",
+                "broken": "더 이상 TablePro에서 작동하지 않습니다.",
+                "source-archived": "소스 저장소가 보관되었습니다.",
+                "superseded": "다음으로 대체되었습니다: <link>{name}</link>.",
+                "author-request": "작성자의 요청으로 보관되었습니다.",
+                "policy": "더 이상 등록 정책을 충족하지 않습니다."
+            }
+        }
+    },
+    "taglines": {
+        "claude-code": "TablePro에 내장된 MCP 서버를 통해 Claude Code를 데이터베이스에 연결합니다.",
+        "claude-desktop": "TablePro에 내장된 MCP 서버를 통해 Claude Desktop을 데이터베이스에 연결합니다.",
+        "command-line": "터미널에서 tablepro 명령으로 데이터베이스 URL과 SQL 파일을 TablePro에서 엽니다.",
+        "cursor": "TablePro에 내장된 MCP 서버를 통해 Cursor의 에이전트를 데이터베이스에 연결합니다.",
+        "shortcuts": "iPhone과 iPad의 단축어에서 테이블에 행을 추가하고 연결을 엽니다.",
+        "zed": "TablePro에 내장된 MCP 서버를 통해 Zed의 에이전트를 데이터베이스에 연결합니다."
+    }
+}

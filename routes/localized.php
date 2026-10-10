@@ -8,6 +8,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IntegrationController;
 use App\Http\Controllers\IosController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\PricingController;
@@ -35,10 +36,12 @@ use Illuminate\Support\Facades\Route;
 |    `route:cache` rebuilds only when PHP changes, so a slug that existed only
 |    as a file would ship without a route.
 | 2. No root-level path may equal a locale prefix (`vi`), and `ios`, `features`,
-|    `databases`, `compare`, `pricing` and `brand` must never join the database
-|    slugs. LocaleRoutingTest and LocalesDataTest guard both.
-| 3. The blog slug stays a pattern: whether a post exists in the requested
-|    locale is the registry's and the controller's decision.
+|    `databases`, `compare`, `integrations`, `pricing` and `brand` must never
+|    join the database slugs. LocaleRoutingTest and LocalesDataTest guard both.
+| 3. The blog and integration slugs stay patterns: whether a post or an
+|    integration exists in the requested locale is the registry's and the
+|    controller's decision. Integrations come from resources/data/integrations.json,
+|    which the sync replaces without a PHP change.
 |
 | `/` and `/vi` both render a section with id="pricing", because shipped Mac
 | builds open `/?ref=…#pricing`.
@@ -74,6 +77,11 @@ Route::get('/compare', [CompareController::class, 'index'])->name('landing.compa
 Route::get('/compare/{slug}', [CompareController::class, 'show'])
     ->whereIn('slug', CompareSlugs::ALL)
     ->name('landing.compare');
+
+Route::get('/integrations', [IntegrationController::class, 'index'])->name('landing.integrations.index');
+Route::get('/integrations/{slug}', [IntegrationController::class, 'show'])
+    ->where('slug', '[a-z0-9]+(?:-[a-z0-9]+)*')
+    ->name('landing.integrations.show');
 
 Route::get('/{slug}', [DatabaseController::class, 'show'])
     ->whereIn('slug', DatabaseSlugs::ALL)

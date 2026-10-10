@@ -17,6 +17,7 @@ export default {
         "features": "功能",
         "databases": "数据库",
         "compare": "对比",
+        "integrations": "集成",
         "blog": "博客"
     }
 } satisfies Messages['seo'];

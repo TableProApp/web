@@ -531,7 +531,7 @@ move to their hubs, so no page becomes undiscoverable. There is no footer blurb.
 
 | Group EN / VI | Links EN | Links VI | Targets |
 |---|---|---|---|
-| Product / Sản phẩm | Features · Databases · iPhone & iPad · Pricing · Download · Compare | Tính năng · Cơ sở dữ liệu · iPhone và iPad · Bảng giá · Tải về · So sánh | `/features`, `/databases`, the platform link (§10.1), `/pricing`, `/download`, `/compare` |
+| Product / Sản phẩm | Features · Databases · Integrations · iPhone & iPad · Pricing · Download · Compare | Tính năng · Cơ sở dữ liệu · Tích hợp · iPhone và iPad · Bảng giá · Tải về · So sánh | `/features`, `/databases`, `/integrations`, the platform link (§10.1), `/pricing`, `/download`, `/compare` |
 | Resources / Tài nguyên | Documentation ↗ · Changelog ↗ · Blog · FAQ · About · Source code ↗ · Report a bug ↗ | Tài liệu (tiếng Anh) ↗ · Changelog (tiếng Anh) ↗ · Blog · Câu hỏi thường gặp · Giới thiệu · Mã nguồn ↗ · Báo lỗi ↗ | Docs, docs `/changelog`, `/blog`, `/faq`, `/about`, the GitHub repository, GitHub issues |
 | Support / Hỗ trợ | Account · Troubleshooting ↗ · Email support · Live chat | Tài khoản · Khắc phục sự cố (tiếng Anh) ↗ · Gửi email hỗ trợ · Chat trực tuyến | `/account?locale=`; the docs troubleshooting page; `mailto:` the support address in `facts.json`; a button that loads Crisp only when clicked |
 | Community / Cộng đồng | GitHub Discussions · Discord · X · Sponsor TablePro ↗ | GitHub Discussions · Discord · X · Telegram · Tài trợ TablePro ↗ | `facts.json` `links`. Brand names stay as they are. Telegram is a Vietnamese group, so only Vietnamese pages link it. "Sponsor TablePro" goes to GitHub Sponsors |
@@ -643,6 +643,7 @@ toàn" appear. Prose keeps "Safe Mode".
 |---|---|
 | Features · Databases · Pricing · Docs · Documentation · Blog · Account · Download | Tính năng · Cơ sở dữ liệu · Bảng giá · Tài liệu · Tài liệu · Blog · Tài khoản · Tải về |
 | FAQ · Comparisons · Support · Changelog | Câu hỏi thường gặp · So sánh · Hỗ trợ · Changelog |
+| Integrations | Tích hợp |
 | Language · Theme · Light · Dark · System | Ngôn ngữ · Giao diện · Sáng · Tối · Theo hệ thống |
 | Privacy · Terms · Refund policy · Cookie settings | Quyền riêng tư · Điều khoản sử dụng · Chính sách hoàn tiền · Cài đặt cookie |
 | (English) label for English-only content | (tiếng Anh) |

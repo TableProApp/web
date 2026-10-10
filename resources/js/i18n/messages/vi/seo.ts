@@ -17,6 +17,7 @@ export default {
         features: 'Tính năng',
         databases: 'Cơ sở dữ liệu',
         compare: 'So sánh',
+        integrations: 'Tích hợp',
         blog: 'Blog',
     },
 } satisfies Messages['seo'];

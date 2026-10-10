@@ -1,6 +1,7 @@
 <?php
 
 use App\Support\Content\ContentRepository;
+use App\Support\Content\IntegrationCatalog;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\LegalPages;
 use App\Support\Seo\PageRegistry;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\File;
 */
 
 /**
- * Points the content, blog and legal families at empty scratch directories.
+ * Points the content, blog, legal and integration families at empty scratch sources.
  *
  * @return array{root: string, content: string, blog: string, legal: string}
  */
@@ -46,9 +47,26 @@ function seoScratch(): array
     app()->instance(ContentRepository::class, new ContentRepository($dirs['content']));
     app()->instance(BlogPosts::class, new BlogPosts($dirs['blog']));
     app()->instance(LegalPages::class, new LegalPages($dirs['legal']));
-    app()->forgetInstance(PageRegistry::class);
+    seoWriteIntegrations($root, []);
 
     return $dirs;
+}
+
+/**
+ * Binds the integration catalog to a scratch index: each entry is the fixture's
+ * command-line entry with the given fields replaced.
+ *
+ * @param  list<array<string, mixed>>  $entries
+ */
+function seoWriteIntegrations(string $root, array $entries): void
+{
+    $index = json_decode(File::get(base_path('tests/Fixtures/integrations/index.json')), true, 512, JSON_THROW_ON_ERROR);
+    $template = $index['integrations'][0];
+    $index['integrations'] = array_map(fn(array $entry): array => array_replace($template, $entry), $entries);
+
+    File::put($root . '/integrations.json', json_encode($index, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+    app()->instance(IntegrationCatalog::class, new IntegrationCatalog($root . '/integrations.json'));
+    app()->forgetInstance(PageRegistry::class);
 }
 
 /**

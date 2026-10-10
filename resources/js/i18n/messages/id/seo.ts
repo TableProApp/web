@@ -17,6 +17,7 @@ export default {
         "features": "Fitur",
         "databases": "Database",
         "compare": "Bandingkan",
+        "integrations": "Integrasi",
         "blog": "Blog"
     }
 } satisfies Messages['seo'];

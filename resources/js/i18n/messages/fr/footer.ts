@@ -7,6 +7,7 @@ export default {
             "title": "Produit",
             "features": "Fonctionnalités",
             "databases": "Bases de données",
+            "integrations": "Intégrations",
             "pricing": "Tarifs",
             "download": "Télécharger",
             "compare": "Comparer"

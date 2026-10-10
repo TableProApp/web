@@ -503,11 +503,11 @@ function untranslatedSameWords(): array
 {
     return [
         'es' => ['Blog', 'General', 'No', 'Personal', 'Plan', 'Plugins', 'Streaming', 'Web'],
-        'de' => ['Blog', 'Client', 'Download', 'FAQ', 'in', 'Macs', 'Plugins', 'Relational', 'Schema', 'Status', 'Streaming', 'Updates', 'Web', 'Website'],
-        'fr' => ['Blog', 'Client', 'Contact', 'Coordination', 'Documentation', 'FAQ', 'Notes', 'Open source', 'Plugins', 'Questions', 'Source', 'Sources', 'Sponsors', 'Streaming', 'Web'],
+        'de' => ['Blog', 'Client', 'Community', 'Download', 'FAQ', 'in', 'Macs', 'Partner', 'Plugins', 'Relational', 'Schema', 'Schemas', 'Status', 'Streaming', 'Updates', 'Web', 'Website'],
+        'fr' => ['Blog', 'Client', 'Contact', 'Coordination', 'Documentation', 'FAQ', 'Notes', 'Open source', 'Plugins', 'Questions', 'Source', 'Sources', 'Sponsors', 'Streaming', 'Type', 'Web'],
         'ja' => ['Web'],
         'pt-BR' => ['Backups', 'Blog', 'Download', 'Driver', 'Macs', 'Plugins', 'Status', 'Streaming', 'Web'],
-        'it' => ['Blog', 'Client', 'Database', 'Download', 'Driver', 'Email', 'in', 'No', 'Open source', 'Privacy', 'Schema', 'Streaming', 'Web'],
+        'it' => ['Blog', 'Client', 'Community', 'Database', 'Download', 'Driver', 'Email', 'in', 'No', 'Open source', 'Partner', 'Privacy', 'Schema', 'Streaming', 'Web'],
         'id' => ['Blog', 'Database', 'Driver', 'Email', 'Key-value', 'per', 'seat', 'Status', 'Streaming', 'Web'],
     ];
 }

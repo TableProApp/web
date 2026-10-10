@@ -7,6 +7,7 @@ export default {
             "title": "제품",
             "features": "기능",
             "databases": "데이터베이스",
+            "integrations": "통합",
             "pricing": "요금",
             "download": "다운로드",
             "compare": "비교"
