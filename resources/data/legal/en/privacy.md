@@ -122,7 +122,7 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 **Purchase attribution.** When you arrive at the site, your browser keeps a first-visit record called `tablepro:attribution` in its local storage for 90 days: the source of the visit (the `ref` or `utm_*` tags on the link you followed, or the site that linked to you), the page you landed on and when. If you start a purchase, the record is sent with the checkout request. Our server discards it: it is not validated, read or stored, and it is not passed to {merchant}.
 
-**Documentation.** The documentation at docs.tablepro.app is hosted by Mintlify, which receives your IP address and your browser's details with each page, and the pages load their fonts from Google Fonts. The documentation asks its own cookie question, because it cannot read the answer you gave on this site. Until you choose **Allow** there, it sets no cookies and keeps no visitor ID. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits to the documentation, and Mintlify keeps a random visitor ID, `mintlify_anonymous_id`, in local storage to count them. **Cookie settings** in the documentation's footer changes your answer, and declining removes both. Lawful basis: your consent.
+**Documentation.** The documentation at docs.tablepro.app is hosted by Mintlify, which receives your IP address and your browser's details with each page, and the pages load their fonts from Google Fonts. The navigation bar shows the repository's star count, which your browser fetches from GitHub's API, so GitHub receives your IP address and your browser's details too. That request sets no cookies. The documentation asks its own cookie question, because it cannot read the answer you gave on this site. Until you choose **Allow** there, it sets no cookies and keeps no visitor ID. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits to the documentation, and Mintlify keeps a random visitor ID, `mintlify_anonymous_id`, in local storage to count them. **Cookie settings** in the documentation's footer changes your answer, and declining removes both. Lawful basis: your consent.
 
 **Language and regional discount.** To suggest the page in your language when your browser names none the site offers, and to show the regional discount checkout would apply, the site asks Cloudflare (`/cdn-cgi/trace`) and our server for the country your connection comes from, and may read your device's time zone. Neither request carries cookies, and the page keeps nothing from the answers. Lawful basis: legitimate interest.
 
@@ -182,7 +182,7 @@ We share personal data only with the services needed to run TablePro:
 - **jsDelivr**, which serves {merchant}'s checkout script to your browser when you point at a Buy button.
 - **Mintlify**, which hosts the documentation at docs.tablepro.app.
 - **ip-api.com, ipinfo.io and geoplugin.net**, which receive IP addresses from usage reports for the country lookup.
-- **GitHub**, which hosts the update feed, the plugin catalog and the downloads.
+- **GitHub**, which hosts the update feed, the plugin catalog and the downloads, and serves the star count the documentation shows.
 
 We do not sell personal data and do not share it with advertisers.
 
