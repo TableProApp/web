@@ -379,14 +379,21 @@ it('binds only the services, never the use of the apps, which the AGPLv3 alone l
     expect(legalSection('terms', 'en', 'liability'))->toContain('section 16 of the AGPLv3');
 });
 
-it('points every language at the AGPL for the apps, dated with the scope change', function (string $locale): void {
+it('points every language at the AGPL for the apps', function (string $locale): void {
     $intro = strtok(YamlFrontMatter::parse(legalSource('terms', $locale))->body(), "\n");
 
-    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-08');
     expect($intro)->toContain('AGPLv3');
     expect(legalSection('terms', $locale, 'acceptable-use'))->not->toContain('AGPL');
     expect(legalSection('terms', $locale, 'warranty'))->toContain('AGPLv3')->toMatch('/(?<!\d)15(?!\d)/');
     expect(legalSection('terms', $locale, 'liability'))->toContain('AGPLv3')->toMatch('/(?<!\d)16(?!\d)/');
+})->with(legalLocales());
+
+it('names the trademark owner and links the English brand guidelines in every language, dated with the change', function (string $locale): void {
+    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-10');
+    expect(legalSection('terms', $locale, 'trademarks'))
+        ->toContain('TablePro™')
+        ->toContain('{publisherName}')
+        ->toContain('](/brand)');
 })->with(legalLocales());
 
 it('keeps the refund window from pricing.json and tells a subscriber how to stop renewals', function (string $locale): void {
@@ -501,6 +508,11 @@ it('links each document to pages in its own language', function (string $locale)
         foreach ($links[1] as $href) {
             // The platform's paths carry the language in `?locale=`, never a prefix.
             if (preg_match('#^/account(\?|$)#', $href) === 1) {
+                continue;
+            }
+
+            // The brand guidelines are published in English alone.
+            if ($href === '/brand') {
                 continue;
             }
 

@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Starter hoặc Team.
-updatedAt: "2026-10-08"
+updatedAt: "2026-10-10"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -22,6 +22,10 @@ Mã nguồn của Ứng dụng, kể cả phần mã của các tính năng tr�
 Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, trong công ty ở bất kỳ quy mô nào. Các điều kiện của giấy phép AGPL áp dụng khi bạn đưa bản sao cho người khác, dù đã sửa đổi hay chưa, và khi bạn sửa đổi TablePro rồi cho người khác dùng phiên bản đã sửa đổi đó qua mạng. Không điều nào trong các điều khoản này giới hạn những quyền mà giấy phép AGPLv3 trao cho bạn.
 
 Bạn có thể tải về và dùng ứng dụng cho Mac miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn cho ứng dụng cho Mac. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
+
+## Nhãn hiệu {#trademarks}
+
+TablePro™, logo TablePro và icon ứng dụng TablePro là nhãn hiệu của {publisherName}. Cả các điều khoản này lẫn giấy phép AGPLv3 đều không trao cho bạn quyền sử dụng chúng. Cách bạn được phép sử dụng chúng được nêu trong [hướng dẫn thương hiệu](/brand) (tiếng Anh). Tên sản phẩm và logo khác trên Website thuộc về chủ sở hữu của chúng.
 
 ## Mua license {#purchases}
 
