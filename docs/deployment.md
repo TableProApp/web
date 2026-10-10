@@ -268,9 +268,11 @@ in front of it anyone could stop it. Check with
 
 ## The scheduler
 
-Two jobs run on the server's schedule (`routes/console.php`): `release:refresh`
+Three jobs run on the server's schedule (`routes/console.php`): `release:refresh`
 every 15 minutes, which fetches the current Mac release from GitHub (or the
-Sparkle appcast) for the download buttons, and `sitemap:generate` daily.
+Sparkle appcast) for the download buttons, `stars:refresh` hourly, which
+fetches the star count the header shows into
+`storage/app/private/github/stars.json`, and `sitemap:generate` daily.
 
 A page never calls GitHub: `/download` reads what the last refresh stored, so
 no reader waits on a slow or failing API. If the stored copy is missing (after
@@ -288,6 +290,8 @@ It needs one cron entry, as `www-data`, in `/etc/cron.d/tablepro-web`:
 
 Check it with `sudo -u www-data php artisan schedule:list`, and that
 `sudo -u www-data php artisan release:refresh` prints the current version.
+Run `sudo -u www-data php artisan stars:refresh` once after the first deploy
+of the star count, or the header reads "GitHub" until the next full hour.
 
 ## The deploy key
 

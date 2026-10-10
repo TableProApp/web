@@ -275,7 +275,7 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 
 ### B.1 Header (desktop, ≥1024px)
 
-`[Logo → / or /vi]` · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · **Language** · **Theme** · Account · **[Download]**
+`[Logo → / or /vi]` · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · **Language** · **Theme** · GitHub · Account · **[Download]**
 
 | Item | EN | VI | Target | Notes |
 |---|---|---|---|---|
@@ -286,6 +286,7 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 | Blog | Blog | Blog | /blog or /vi/blog | |
 | Language | current name ▾ | current name ▾ | §B.4 | A disclosure of two `<a>` links, "English" and "Tiếng Việt", with `lang`, `hreflang` and `aria-current`. No flags and no codes |
 | Theme | icon button ▾ | same | Light / Dark / System | Visible labels in the menu: Light, Dark, System (VI: Sáng, Tối, Theo hệ thống). Writes localStorage `theme`; light is the default when nothing is stored |
+| GitHub | [GitHub mark] 6.2k | same | the repository (`facts.json` → `links.github`) | From 1280px only: the row has no room for it below that in every language. Accessible name "GitHub, 6.2k stars" / "GitHub, 6.2k star". The count is GitHub's own style (truncated, never rounded up), from `stars:refresh`; before the first refresh the link reads "GitHub". Same tab, like every external link (decided 2026-10-10) |
 | Account | Account | Tài khoản | `/account?locale={pageLocale}` | A plain `<a>` (cross-app) |
 | Download | Download | Tải về | /download or /vi/download | Primary button; fires `download_click{location:'header', platform:'mac'}`. "Tải về" everywhere, matching Apple's Vietnamese (positioning §2, §4); the `/download` architecture buttons read "Tải bản cho Apple silicon" and "Tải bản cho Intel" |
 
@@ -293,7 +294,7 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 
 Collapsed bar: logo · [Download] (compact) · menu button (36×36 minimum target, `aria-expanded`, `aria-controls`).
 
-The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, Account. Then "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`; on an iPhone or iPad the badge is drawn first. Last come **Language**, one row that opens the list of languages (a `<details>`; twelve rows pushed the download actions 1,273px down an 844px screen), and **Theme** as a 3-option segmented control.
+The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, GitHub ↗ (with the mark and the star count at the end of the row), Account. Then "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`; on an iPhone or iPad the badge is drawn first. Last come **Language**, one row that opens the list of languages (a `<details>`; twelve rows pushed the download actions 1,273px down an 844px screen), and **Theme** as a 3-option segmented control.
 
 In French, Portuguese, Spanish, German and Italian the desktop row is wider than a 1024px window, so those languages keep this bar and menu to 1152px (design-system §5.3.17).
 
@@ -509,7 +510,7 @@ The same structure serves `/` and `/vi`. The ids are locale-neutral.
 **Not on the homepage:**
 
 - Performance numbers.
-- Download totals and star counts.
+- Download totals, and a star count in any section (the header carries one from 1280px).
 - Comparison matrices (they live on /compare).
 - Windows and Linux (they are on /download#other-platforms and in the FAQ).
 - Integration configuration (it is on /features/ai-mcp).

@@ -47,6 +47,19 @@ export function formatUsd(amount: number, style: CurrencyStyle): string {
     return interpolate(style.pattern.replace(/ /g, '\u00a0'), { amount: formatNumber(amount, style, digits) });
 }
 
+// GitHub's own style for a count, the same in every language: 6224 is "6.2k".
+// Truncated rather than rounded, so 6,250 never reads as 6.3k.
+export function compactCount(value: number): string {
+    if (value < 1000) {
+        return String(value);
+    }
+
+    const [divisor, unit] = value < 1_000_000 ? [1000, 'k'] : [1_000_000, 'M'];
+    const tenths = Math.floor((value * 10) / divisor);
+
+    return `${tenths % 10 === 0 ? tenths / 10 : (tenths / 10).toFixed(1)}${unit}`;
+}
+
 export interface ListStyle {
     /** Between items: `, `. */
     separator: string;

@@ -27,6 +27,11 @@ export default {
     blog: 'Blog',
     faq: 'FAQ',
     account: 'Account',
+    github: 'GitHub',
+    githubStars: {
+        one: 'GitHub, {count} star',
+        other: 'GitHub, {count} stars',
+    },
     download: 'Download',
     menu: 'Menu',
     closeMenu: 'Close menu',

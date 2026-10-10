@@ -122,7 +122,7 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Atribusi pembelian.** Saat Anda tiba di situs, peramban menyimpan catatan kunjungan pertama bernama `tablepro:attribution` dalam penyimpanan lokal selama 90 hari: sumber kunjungan (tag `ref` atau `utm_*` pada tautan yang Anda ikuti, atau situs yang menautkan ke sini), halaman tujuan, dan waktunya. Jika Anda memulai pembelian, catatan dikirim bersama permintaan pembayaran. Server kami membuangnya: catatan tidak divalidasi, dibaca, atau disimpan, dan tidak diteruskan ke {merchant}.
 
-**Dokumentasi.** Dokumentasi di docs.tablepro.app dihosting oleh Mintlify, yang menerima alamat IP dan detail peramban Anda pada setiap halaman, dan halaman memuat fonnya dari Google Fonts. Dokumentasi mengajukan pertanyaan cookie sendiri, karena tidak dapat membaca jawaban Anda di situs ini. Sampai Anda memilih **Allow** di sana, dokumentasi tidak memasang cookie dan tidak menyimpan ID pengunjung. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda ke dokumentasi, dan Mintlify menyimpan ID pengunjung acak, `mintlify_anonymous_id`, di penyimpanan lokal untuk menghitungnya. **Cookie settings** di footer dokumentasi mengubah jawaban Anda, dan menolak menghapus keduanya. Dasar hukum: persetujuan Anda.
+**Dokumentasi.** Dokumentasi di docs.tablepro.app dihosting oleh Mintlify, yang menerima alamat IP dan detail peramban Anda pada setiap halaman, dan halaman memuat fonnya dari Google Fonts. Bilah navigasi menampilkan jumlah bintang repositori, yang diambil peramban Anda dari API GitHub, sehingga GitHub juga menerima alamat IP dan detail peramban Anda. Permintaan itu tidak memasang cookie. Dokumentasi mengajukan pertanyaan cookie sendiri, karena tidak dapat membaca jawaban Anda di situs ini. Sampai Anda memilih **Allow** di sana, dokumentasi tidak memasang cookie dan tidak menyimpan ID pengunjung. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda ke dokumentasi, dan Mintlify menyimpan ID pengunjung acak, `mintlify_anonymous_id`, di penyimpanan lokal untuk menghitungnya. **Cookie settings** di footer dokumentasi mengubah jawaban Anda, dan menolak menghapus keduanya. Dasar hukum: persetujuan Anda.
 
 **Bahasa dan diskon regional.** Untuk menyarankan halaman dalam bahasa Anda saat browser tidak menyebut satu pun bahasa yang tersedia di situs, dan untuk menampilkan diskon regional yang akan diterapkan saat checkout, situs menanyakan kepada Cloudflare (`/cdn-cgi/trace`) dan server kami dari negara mana koneksi Anda berasal, dan dapat membaca zona waktu perangkat Anda. Kedua permintaan tersebut tidak membawa cookie, dan halaman tidak menyimpan apa pun dari jawabannya. Dasar hukum: kepentingan yang sah.
 
@@ -182,7 +182,7 @@ Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalan
 - **jsDelivr**, yang menyajikan skrip pembayaran {merchant} ke peramban saat Anda mengarahkan penunjuk ke tombol Beli.
 - **Mintlify**, yang menghosting dokumentasi di docs.tablepro.app.
 - **ip-api.com, ipinfo.io, dan geoplugin.net**, yang menerima alamat IP dari laporan penggunaan untuk pencarian negara.
-- **GitHub**, yang menghosting feed pembaruan, katalog plugin, dan unduhan.
+- **GitHub**, yang menghosting feed pembaruan, katalog plugin, dan unduhan, serta menyediakan jumlah bintang yang ditampilkan dokumentasi.
 
 Kami tidak menjual data pribadi atau membagikannya kepada pengiklan.
 

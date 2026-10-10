@@ -20,6 +20,10 @@ export default {
     "blog": "블로그",
     "faq": "자주 묻는 질문",
     "account": "계정",
+    "github": "GitHub",
+    "githubStars": {
+        "other": "GitHub 별 {count}개"
+    },
     "download": "다운로드",
     "menu": "메뉴",
     "closeMenu": "메뉴 닫기"

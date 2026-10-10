@@ -122,7 +122,7 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Nguồn truy cập khi mua hàng.** Khi bạn vào website, trình duyệt giữ một bản ghi về lần truy cập đầu tiên, tên là `tablepro:attribution`, trong local storage trong 90 ngày: nguồn của lượt truy cập (các tag `ref` hoặc `utm_*` trên liên kết bạn đã theo, hoặc trang web đã dẫn bạn tới), trang bạn vào đầu tiên và thời điểm đó. Nếu bạn bắt đầu mua hàng, bản ghi này được gửi kèm yêu cầu thanh toán. Máy chủ của chúng tôi bỏ nó đi: bản ghi không được kiểm tra, đọc hay lưu lại, và không được chuyển cho {merchant}.
 
-**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
+**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Thanh điều hướng hiển thị số star của repository, do trình duyệt của bạn lấy từ API của GitHub, nên GitHub cũng nhận địa chỉ IP và thông tin trình duyệt của bạn. Yêu cầu đó không đặt cookie. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
 
 **Ngôn ngữ và giảm giá theo khu vực.** Để gợi ý trang bằng ngôn ngữ của bạn khi trình duyệt không nêu ngôn ngữ nào website có, và để hiển thị mức giảm giá theo khu vực mà bước thanh toán sẽ áp dụng, website hỏi Cloudflare (`/cdn-cgi/trace`) và máy chủ của chúng tôi về quốc gia mà kết nối của bạn đến từ đó, và có thể đọc múi giờ của thiết bị. Cả hai request đều không mang cookie, và trang không giữ lại gì từ các câu trả lời. Cơ sở pháp lý: lợi ích hợp pháp.
 
@@ -182,7 +182,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
 - **Mintlify**, nơi lưu trữ trang tài liệu docs.tablepro.app.
 - **ip-api.com, ipinfo.io và geoplugin.net**, nhận địa chỉ IP từ các báo cáo sử dụng để tra quốc gia.
-- **GitHub**, nơi lưu nguồn cập nhật, danh mục plugin và các bản tải về.
+- **GitHub**, nơi lưu nguồn cập nhật, danh mục plugin và các bản tải về, đồng thời cung cấp số star mà trang tài liệu hiển thị.
 
 Chúng tôi không bán dữ liệu cá nhân và không chia sẻ dữ liệu đó với bên quảng cáo.
 

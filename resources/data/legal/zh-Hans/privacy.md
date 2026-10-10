@@ -122,7 +122,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 **购买归因**。首次到访网站时，浏览器在本地存储中保存名为 `tablepro:attribution` 的首访记录，期限为 90 天：访问来源（所点击链接中的 `ref` 或 `utm_*` 标签，或来源网站）、进入的页面和时间。开始购买时，该记录随结账请求发送。我们的服务器会丢弃它：不会验证、读取或存储，也不会传给 {merchant}。
 
-**文档**。位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
+**文档**。位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。导航栏显示仓库的星标数，由您的浏览器从 GitHub 的 API 获取，因此 GitHub 也会收到您的 IP 地址和浏览器信息。该请求不设置 Cookie。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
 
 **语言与地区折扣**。当您的浏览器语言中没有本网站提供的语言时，为向您推荐相应语言的页面，并显示结账时将适用的地区折扣，网站会向 Cloudflare（`/cdn-cgi/trace`）和我们的服务器询问您的连接来自哪个国家或地区，并可能读取设备的时区。这两项请求都不携带 Cookie，页面也不会保存任何应答内容。合法依据：合法利益。
 
@@ -182,7 +182,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **jsDelivr**：在指针移至购买按钮时向浏览器提供 {merchant} 的结账脚本。
 - **Mintlify**：托管位于 docs.tablepro.app 的文档。
 - **ip-api.com、ipinfo.io 和 geoplugin.net**：接收使用报告的 IP 地址以查询国家。
-- **GitHub**：托管更新源、插件目录和下载内容。
+- **GitHub**：托管更新源、插件目录和下载内容，并提供文档显示的星标数。
 
 我们不出售个人数据，也不与广告商共享。
 

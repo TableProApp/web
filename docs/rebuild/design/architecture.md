@@ -143,8 +143,8 @@ does not call `/api/newsletter/stats` at all (§1.14). A Pest guard scans `resou
 Controllers pass page data only. `paymentProvider` goes only to pages that render checkout. `teamMinSeats` is
 dropped: `pricing.json` is the single public source, and `config/pricing.php` is deleted (the platform keeps its own
 `TEAM_MIN_SEATS` for enforcement, synced by hand as before). `downloadUrls` and `githubStars` stop being threaded
-through every page for the header: the header reads no release data, and the star count, if the design keeps it,
-becomes a cached shared closure `github: {stars: ?int}`.
+through every page for the header: the header reads no release data. The star count is a once prop,
+`shareOnce()` → `github: {stars: ?int}`: the first page brings it and a client-side visit keeps it (§1.13).
 
 ### 1.4 Strings: UI catalogs, content files and long-form prose
 
@@ -1041,8 +1041,12 @@ The values are design-system §3.1-3.3. This section only places the files.
 | Rate | At most 4 GitHub calls per hour (today the worst case is 61 per hour against the unauthenticated limit of 60) |
 | Dropped | `countLast30Days` and the windowed download total (it reported floors of a shrinking window). Any stats come back only with a stated method |
 
-`App\Services\Releases\GitHubRepoService::stars(): ?int` was built to the same pattern (6-hour fresh cache, last-good
-copy, 10-minute negative cache) and removed during integration: no page shows a star count, so it had no caller.
+**`App\Services\GitHub\StarCount`** (2026-10-10) holds the repository's `stargazers_count` for the header.
+`stars:refresh`, scheduled hourly, is the only caller of `GET /repos/{services.github.repo}` and writes the count to
+`storage/app/private/github/stars.json`. A page reads that file and never calls GitHub. It is a file and not a cache
+entry, because the deploy's `optimize:clear` empties the cache store. A failed refresh keeps the stored count. Before
+the first one there is no count and the header link reads "GitHub". Unauthenticated conditional requests still count
+against the limit, so ETags would save nothing; the cost is one call an hour beside the release refresh's four.
 
 **`php artisan release:check`** (new command, `make:command`, run by hand). It compares the GitHub latest release,
 the appcast top item, `formulae.brew.sh/api/cask/tablepro.json` and the iTunes lookup against `platforms.json`

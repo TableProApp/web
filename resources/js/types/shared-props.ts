@@ -53,4 +53,6 @@ export interface SharedProps extends Record<string, unknown> {
     crispWebsiteId: string | null;
     /** False in production, where an asset slot with no image renders nothing. */
     assetPlaceholders: boolean;
+    // Null until the scheduled refresh has stored a count.
+    github: { stars: number | null };
 }

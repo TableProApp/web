@@ -4,7 +4,9 @@ import { Menu } from 'lucide-react';
 import ThemeControl from '@/components/shared/theme-control';
 import Button, { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
+import { GitHubGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
+import { useGitHubStars } from '@/hooks/use-github-stars';
 import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
@@ -38,10 +40,12 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
  * design-system §5.3.17).
  *
  * From 1024px: the logo, Features ▾ · Databases · Pricing · Docs ↗ · Blog,
- * then the language, the theme, Account and Download. Below 1024px: the logo,
- * a compact Download and the Menu button; everything else moves into the menu.
- * The row does not fit 1024px in every language, so the ones it is too wide
- * for switch at 1152px instead (`headerLayout`, site-links.ts).
+ * then the language, the theme, GitHub with its star count, Account and
+ * Download. Below 1024px: the logo, a compact Download and the Menu button;
+ * everything else moves into the menu. The row does not fit 1024px in every
+ * language, so the ones it is too wide for switch at 1152px instead
+ * (`headerLayout`, site-links.ts). GitHub joins the row only from 1280px,
+ * the first width where every language has room for it.
  *
  * The current section takes the text colour and a 2px indicator bar, never
  * colour alone. Internal links go through `LocaleLink`, so they stay in the
@@ -60,6 +64,7 @@ export default function SiteHeader() {
     const [menuOpen, setMenuOpen] = useState(false);
     const closeMenu = useCallback(() => setMenuOpen(false), []);
     const layout = headerLayout(locale);
+    const stars = useGitHubStars();
 
     return (
         <header className="relative border-b border-rule bg-background print:hidden">
@@ -104,6 +109,16 @@ export default function SiteHeader() {
                     <div className={layout.controls}>
                         <LanguageSwitcher variant="menu" />
                         <ThemeControl variant="menu" labels={m.controls.theme} />
+                        <Button
+                            variant="quiet"
+                            size="sm"
+                            href={EXTERNAL.github}
+                            icon={<GitHubGlyph />}
+                            aria-label={stars?.label}
+                            className="hidden tabular-nums xl:inline-flex"
+                        >
+                            {stars?.count ?? m.nav.github}
+                        </Button>
                         <Button variant="quiet" size="sm" href={accountHref(locale)}>
                             {m.nav.account}
                         </Button>

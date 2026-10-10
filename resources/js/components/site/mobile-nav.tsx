@@ -5,7 +5,9 @@ import AppStoreBadge from '@/components/download/app-store-badge';
 import { requirementLine } from '@/components/download/format';
 import ThemeControl from '@/components/shared/theme-control';
 import { buttonClasses } from '@/components/ui/button';
+import { GitHubGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
+import { useGitHubStars } from '@/hooks/use-github-stars';
 import { joinList } from '@/i18n/format';
 import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
@@ -45,7 +47,8 @@ interface MobileNavProps {
  * tablet never keeps a scroll-locked page with no visible control.
  *
  * Order: Features (expanding in place to the same links as the desktop menu),
- * Databases, Pricing, the platform pages, Docs, Blog, FAQ, Account; then
+ * Databases, Pricing, the platform pages, Docs, Blog, FAQ, GitHub with its star
+ * count, Account; then
  * Download for Mac and the App Store badge, each with the system it needs, so
  * both are on the first screen of a phone; last, the language, one row that
  * opens the list, and the theme control. On an iPhone or iPad the badge comes
@@ -60,6 +63,7 @@ export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps
     const opener = useRef<HTMLElement | null>(null);
     const [featuresOpen, setFeaturesOpen] = useState(false);
     const featuresId = useId();
+    const stars = useGitHubStars();
 
     useEffect(() => {
         const node = dialog.current;
@@ -228,6 +232,18 @@ export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps
                         <LocaleLink href="/faq" onClick={onClose} {...link('/faq')}>
                             {m.nav.faq}
                         </LocaleLink>
+                    </li>
+                    <li>
+                        <a href={EXTERNAL.github} aria-label={stars?.label} className={row}>
+                            {m.nav.github}
+                            <span aria-hidden="true">↗</span>
+                            {stars && (
+                                <span className="ml-auto inline-flex items-center gap-2 text-base font-normal text-muted-foreground tabular-nums">
+                                    <GitHubGlyph />
+                                    {stars.count}
+                                </span>
+                            )}
+                        </a>
                     </li>
                     <li>
                         <a href={accountHref(locale)} className={row}>

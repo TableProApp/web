@@ -122,7 +122,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 **購買歸因**。首次造訪網站時，瀏覽器在本機儲存空間保存名為 `tablepro:attribution` 的首次造訪紀錄，期限為 90 天：造訪來源（所點按連結中的 `ref` 或 `utm_*` 標籤，或來源網站）、進入的網頁和時間。開始購買時，該紀錄隨結帳請求傳送。我們的伺服器會捨棄它：不會驗證、讀取或儲存，也不會傳給 {merchant}。
 
-**文件**。位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
+**文件**。位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。導覽列顯示儲存庫的星標數，由您的瀏覽器從 GitHub 的 API 取得，因此 GitHub 也會收到您的 IP 位址和瀏覽器資訊。這項要求不會設定 Cookie。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
 
 **語言與地區折扣**。當您的瀏覽器語言中沒有本網站提供的語言時，為向您建議相應語言的網頁，並顯示結帳時將適用的地區折扣，網站會向 Cloudflare（`/cdn-cgi/trace`）和我們的伺服器詢問您的連線來自哪個國家或地區，並可能讀取裝置的時區。這兩項請求都不攜帶 Cookie，網頁也不會保存任何回應內容。合法依據：正當利益。
 
@@ -182,7 +182,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **jsDelivr**：在指標移至購買按鈕時向瀏覽器提供 {merchant} 的結帳指令碼。
 - **Mintlify**：代管位於 docs.tablepro.app 的文件。
 - **ip-api.com、ipinfo.io 和 geoplugin.net**：接收使用報告的 IP 位址以查詢國家。
-- **GitHub**：託管更新摘要、外掛程式目錄和下載內容。
+- **GitHub**：託管更新摘要、外掛程式目錄和下載內容，並提供文件顯示的星標數。
 
 我們不出售個人資料，也不與廣告商分享。
 

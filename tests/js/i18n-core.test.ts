@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { interpolate, placeholders, plural, splitTags } from '../../resources/js/i18n/core.ts';
-import { formatNumber, formatUsd, joinList } from '../../resources/js/i18n/format.ts';
+import { compactCount, formatNumber, formatUsd, joinList } from '../../resources/js/i18n/format.ts';
 
 /*
  * The string machinery behind useI18n(). Run with `npm run test:js`.
@@ -91,6 +91,18 @@ test('formatUsd keeps the amount and the currency on one line in every pattern',
         assert.ok(!price.includes(' '), price);
         assert.ok(price.includes('\u00a0'), price);
     }
+});
+
+test('compactCount writes a count as GitHub does, never rounding it up', () => {
+    assert.equal(compactCount(0), '0');
+    assert.equal(compactCount(999), '999');
+    assert.equal(compactCount(1000), '1k');
+    assert.equal(compactCount(6224), '6.2k');
+    assert.equal(compactCount(6250), '6.2k');
+    assert.equal(compactCount(6999), '6.9k');
+    assert.equal(compactCount(12_000), '12k');
+    assert.equal(compactCount(999_999), '999.9k');
+    assert.equal(compactCount(1_250_000), '1.2M');
 });
 
 test('formatNumber groups thousands and keeps the requested decimals', () => {

@@ -20,6 +20,10 @@ export default {
     "blog": "ブログ",
     "faq": "よくある質問",
     "account": "アカウント",
+    "github": "GitHub",
+    "githubStars": {
+        "other": "GitHub の Star {count}"
+    },
     "download": "ダウンロード",
     "menu": "メニュー",
     "closeMenu": "メニューを閉じる"

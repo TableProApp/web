@@ -20,6 +20,10 @@ export default {
     "blog": "Blog",
     "faq": "Pertanyaan umum",
     "account": "Akun",
+    "github": "GitHub",
+    "githubStars": {
+        "other": "GitHub, {count} bintang"
+    },
     "download": "Unduh",
     "menu": "Menu",
     "closeMenu": "Tutup menu"

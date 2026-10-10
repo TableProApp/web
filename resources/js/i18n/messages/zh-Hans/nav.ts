@@ -20,6 +20,10 @@ export default {
     "blog": "博客",
     "faq": "常见问题",
     "account": "账户",
+    "github": "GitHub",
+    "githubStars": {
+        "other": "GitHub 星标 {count}"
+    },
     "download": "下载",
     "menu": "菜单",
     "closeMenu": "关闭菜单"

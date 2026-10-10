@@ -20,6 +20,10 @@ export default {
     blog: 'Blog',
     faq: 'Câu hỏi thường gặp',
     account: 'Tài khoản',
+    github: 'GitHub',
+    githubStars: {
+        other: 'GitHub, {count} star',
+    },
     download: 'Tải về',
     menu: 'Menu',
     closeMenu: 'Đóng menu',

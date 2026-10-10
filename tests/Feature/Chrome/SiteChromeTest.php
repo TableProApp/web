@@ -1,6 +1,8 @@
 <?php
 
+use App\Services\GitHub\StarCount;
 use App\Support\Localization\Locales;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -103,23 +105,25 @@ function chromeLocales(): array
 
 /**
  * The header's desktop row with every label on one line, measured in Chromium
- * at 14px Inter: its width in px, and the display columns of its eight labels
- * at the time (a CJK character is two). The row has 960px at 1024 and 1088px
- * at 1152.
+ * at 14px Inter: its width in px, the display columns of its eight labels at
+ * the time (a CJK character is two), and its width from 1280px, where the
+ * GitHub link joins it, with that link at its widest (the word "GitHub",
+ * before any count is stored). The row has 960px at 1024, 1088px at 1152 and
+ * 1216px from 1280.
  */
 const HEADER_ROW_MEASURED = [
-    'en' => [893, 54],
-    'vi' => [944, 67],
-    'es' => [1008, 69],
-    'de' => [980, 64],
-    'fr' => [1065, 79],
-    'ja' => [943, 66],
-    'pt-BR' => [1040, 74],
-    'zh-Hans' => [754, 38],
-    'ko' => [773, 48],
-    'zh-Hant' => [797, 44],
-    'it' => [965, 66],
-    'id' => [930, 58],
+    'en' => [893, 54, 997],
+    'vi' => [944, 67, 1047],
+    'es' => [1008, 69, 1112],
+    'de' => [980, 64, 1083],
+    'fr' => [1065, 79, 1169],
+    'ja' => [943, 66, 1048],
+    'pt-BR' => [1040, 74, 1143],
+    'zh-Hans' => [754, 38, 861],
+    'ko' => [773, 48, 877],
+    'zh-Hant' => [797, 44, 904],
+    'it' => [965, 66, 1069],
+    'id' => [930, 58, 1034],
 ];
 
 it('frames the page with a skip link, one header, one main and one footer', function (string $path, string $locale): void {
@@ -169,6 +173,44 @@ it('links the header to the sections in the reader\'s language', function (strin
     Assert::assertNotNull(chromeLink($header, "{$prefix}/ios", $vi ? 'iPhone và iPad' : 'iPhone & iPad'), 'The platform page is missing from the Features menu');
 })->with('chrome locales');
 
+it('links GitHub with its star count, from 1280px in the header and always in the menu', function (string $path, string $locale): void {
+    Storage::fake(StarCount::DISK);
+    Storage::disk(StarCount::DISK)->put(StarCount::FILE, '6224');
+
+    $name = $locale === 'vi' ? 'GitHub, 6.2k star' : 'GitHub, 6.2k stars';
+    $links = array_values(array_filter(
+        chromeAnchors(chromeRegion(ssrHtml($path), 'header')),
+        fn(array $anchor): bool => ($anchor['attrs']['href'] ?? null) === 'https://github.com/TableProApp/TablePro',
+    ));
+
+    expect($links)->toHaveCount(2);
+
+    [$bar, $menu] = $links;
+
+    // The visible count is part of the name (WCAG 2.5.3), and the link opens in the same tab like every other.
+    expect($bar['text'])->toBe('6.2k')
+        ->and($bar['attrs']['aria-label'])->toBe($name)
+        ->and($bar['attrs']['class'])->toEndWith('hidden tabular-nums xl:inline-flex')
+        ->and($bar['attrs'])->not->toHaveKey('target')
+        ->and($menu['text'])->toBe('GitHub↗6.2k')
+        ->and($menu['attrs']['aria-label'])->toBe($name);
+})->with('chrome locales');
+
+it('names the GitHub link by its word until a count is stored', function (string $path): void {
+    Storage::fake(StarCount::DISK);
+
+    $links = array_values(array_filter(
+        chromeAnchors(chromeRegion(ssrHtml($path), 'header')),
+        fn(array $anchor): bool => ($anchor['attrs']['href'] ?? null) === 'https://github.com/TableProApp/TablePro',
+    ));
+
+    expect($links)->toHaveCount(2)
+        ->and($links[0]['text'])->toBe('GitHub')
+        ->and($links[0]['attrs'])->not->toHaveKey('aria-label')
+        ->and($links[1]['text'])->toBe('GitHub↗')
+        ->and($links[1]['attrs'])->not->toHaveKey('aria-label');
+})->with(['/download', '/vi/download']);
+
 it('shows the desktop row only where it fits, in every language', function (string $code, string $prefix, string $native): void {
     /*
      * At 1024px the row wrapped to three lines in Spanish and French, pushed
@@ -176,10 +218,11 @@ it('shows the desktop row only where it fits, in every language', function (stri
      * button in Portuguese. A language whose row is wider than 960px keeps
      * the menu button to 1152px instead.
      */
-    [$width, $columns] = HEADER_ROW_MEASURED[$code];
+    [$width, $columns, $withGitHub] = HEADER_ROW_MEASURED[$code];
     $wide = $width > 960;
 
-    expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960);
+    expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960)
+        ->and($withGitHub)->toBeLessThanOrEqual(1216);
 
     /*
      * No browser runs here, so the widths above are only as good as the

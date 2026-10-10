@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\GitHub\StarCount;
 use App\Support\Banner;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Localization\LocalizedUrl;
@@ -70,6 +71,13 @@ class HandleInertiaRequests extends Middleware
             'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
             'assetPlaceholders' => ! App::isProduction(),
+        ];
+    }
+
+    public function shareOnce(Request $request): array
+    {
+        return [
+            'github' => fn(): array => ['stars' => app(StarCount::class)->current()],
         ];
     }
 }

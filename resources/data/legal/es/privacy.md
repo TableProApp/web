@@ -122,7 +122,7 @@ Handoff transmite el identificador de la conexión abierta y el nombre de la tab
 
 **Atribución de compras.** Al llegar al sitio, tu navegador conserva durante 90 días un registro de primera visita llamado `tablepro:attribution` en su almacenamiento local: el origen de la visita (las etiquetas `ref` o `utm_*` del enlace seguido, o el sitio que te enlazó), la página de llegada y la fecha. Si inicias una compra, el registro se envía con la solicitud de compra. Nuestro servidor lo descarta: no lo valida, lee ni almacena, ni lo transmite a {merchant}.
 
-**Documentación.** La documentación en docs.tablepro.app está alojada en Mintlify, que recibe tu dirección IP y los datos de tu navegador con cada página, y las páginas cargan sus fuentes desde Google Fonts. La documentación hace su propia pregunta sobre cookies, porque no puede leer la respuesta que diste en este sitio. Hasta que selecciones **Allow** allí, no establece cookies ni guarda ningún ID de visitante. Si lo permites, Google Analytics establece las cookies `_ga` y `_ga_<ID>` y mide tus visitas a la documentación, y Mintlify guarda un ID de visitante aleatorio, `mintlify_anonymous_id`, en el almacenamiento local para contarlas. **Cookie settings**, en el pie de la documentación, cambia tu respuesta, y al rechazar se eliminan ambos. Base jurídica: tu consentimiento.
+**Documentación.** La documentación en docs.tablepro.app está alojada en Mintlify, que recibe tu dirección IP y los datos de tu navegador con cada página, y las páginas cargan sus fuentes desde Google Fonts. La barra de navegación muestra el número de estrellas del repositorio, que tu navegador obtiene de la API de GitHub, por lo que GitHub también recibe tu dirección IP y los datos de tu navegador. Esa solicitud no establece cookies. La documentación hace su propia pregunta sobre cookies, porque no puede leer la respuesta que diste en este sitio. Hasta que selecciones **Allow** allí, no establece cookies ni guarda ningún ID de visitante. Si lo permites, Google Analytics establece las cookies `_ga` y `_ga_<ID>` y mide tus visitas a la documentación, y Mintlify guarda un ID de visitante aleatorio, `mintlify_anonymous_id`, en el almacenamiento local para contarlas. **Cookie settings**, en el pie de la documentación, cambia tu respuesta, y al rechazar se eliminan ambos. Base jurídica: tu consentimiento.
 
 **Idioma y descuento regional.** Para sugerirte la página en tu idioma cuando tu navegador no indica ninguno de los que ofrece el sitio, y para mostrar el descuento regional que aplicaría la compra, el sitio pregunta a Cloudflare (`/cdn-cgi/trace`) y a nuestro servidor de qué país procede tu conexión, y puede leer la zona horaria de tu dispositivo. Ninguna de las dos solicitudes lleva cookies, y la página no guarda nada de las respuestas. Base jurídica: interés legítimo.
 
@@ -182,7 +182,7 @@ Solo compartimos datos personales con los servicios necesarios para operar Table
 - **jsDelivr**, que proporciona al navegador el script de compra de {merchant} cuando apuntas a un botón Comprar.
 - **Mintlify**, que aloja la documentación en docs.tablepro.app.
 - **ip-api.com, ipinfo.io y geoplugin.net**, que reciben direcciones IP de los informes de uso para buscar el país.
-- **GitHub**, que aloja el canal de actualizaciones, el catálogo de plugins y las descargas.
+- **GitHub**, que aloja el canal de actualizaciones, el catálogo de plugins y las descargas, y sirve el número de estrellas que muestra la documentación.
 
 No vendemos datos personales ni los compartimos con anunciantes.
 
