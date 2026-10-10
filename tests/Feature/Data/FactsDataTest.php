@@ -5,22 +5,6 @@ use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * resources/data/facts.json: the product facts that repeat across pages
- * (links, AI providers, MCP, Safe Mode, import and export formats, backup
- * tools, sync categories, grid and editor limits).
- *
- * Names, never counts: a number the site shows is a list length or a `limits`
- * value. The facts that drifted on the old site are pinned against the app at
- * v0.77.0 (Mac) and 232e8dae6 (iOS App Store 1.0): 14 AI provider types, MCP
- * on 127.0.0.1 only and off by default, six Mac Safe Mode levels with Silent
- * as the default, three on iOS with Off as the default.
- *
- * It also holds the "external URLs live only in data files" guard
- * (architecture §1.8), which closes the gap the old FundingModelTest left:
- * it scans single, double and backtick literals.
- */
-
-/**
  * @return array<string, mixed>
  */
 function factsJson(): array
@@ -31,8 +15,6 @@ function factsJson(): array
 }
 
 /**
- * Engine ids from engines.json.
- *
  * @return list<string>
  */
 function factsEngineIds(): array
@@ -41,8 +23,6 @@ function factsEngineIds(): array
 }
 
 /**
- * The released platforms from platforms.json, keyed by id.
- *
  * @return array<string, array<string, mixed>>
  */
 function factsReleasedPlatforms(): array
@@ -118,7 +98,7 @@ it('names the publisher once, with the city and country in every supported langu
     $publisher = factsJson()['publisher'];
     $locales = array_keys(json_decode(File::get(resource_path('data/locales.json')), true)['supported']);
 
-    // The owner's name as he writes it. The App Store keeps the seller name Apple has.
+    // The owner's name as he writes it; the App Store keeps the seller name Apple has.
     expect($publisher['name'])->toBe('Ngo Quoc Dat');
     expect($publisher['countryCode'])->toBe('VN');
     expect($publisher['evidence'])->toBeString()->not->toBe('');
@@ -345,16 +325,10 @@ it('gives every limit a number, a unit, a platform and evidence', function (): v
 });
 
 it('keeps external URLs in data files, not in components, catalogs or content', function (): void {
-    /*
-     * Not links: the schema.org vocabulary in JSON-LD, the site's own origin,
-     * and XML namespaces in inline SVG.
-     */
+    // Not links: the JSON-LD vocabulary, the site's own origin and SVG namespaces.
     $ignoredHosts = ['schema.org', 'tablepro.app', 'www.w3.org'];
 
-    /*
-     * Each entry is one file and the exact URLs it may hold, so an edit that
-     * keeps the file name still cannot add a new one.
-     */
+    // Exact URLs per file, so an edit that keeps the file name still cannot add one.
     $allowed = [
         // A script source, not a link: the chat loader every page adds once it is idle.
         'js/lib/crisp.ts' => ['https://client.crisp.chat/l.js'],

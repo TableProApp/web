@@ -3,24 +3,6 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/engines.json: every engine in the Mac app's picker, where
- * the site describes it, and what it can do.
- *
- * Values come from the TablePro app at v0.77.0 (its picker, plugin code and
- * docs, with code winning where they disagree) and the plugin registry at
- * 05:03Z on 2026-10-02. Engine lists on feature pages are derived from the
- * capability fields, and every count the site shows is a length of a filtered
- * list, so the facts that went wrong on the old site are pinned here by id
- * rather than by number: the engine set, the bundled drivers, the iOS picker,
- * the dashboard, Users & Roles and AWS IAM engines, and the engines without
- * EXPLAIN.
- *
- * Positioning guard 5 lives here too: the featured engines are PostgreSQL,
- * MySQL, SQL Server, SQLite, MongoDB and Redis, in that order, and each one is
- * in every Mac build a channel still serves.
- */
-
-/**
  * @return list<array<string, mixed>>
  */
 function enginesJson(): array
@@ -39,8 +21,6 @@ function enginesById(): array
 }
 
 /**
- * The Mac entry of platforms.json.
- *
  * @return array<string, mixed>
  */
 function enginesMacPlatform(): array
@@ -50,8 +30,6 @@ function enginesMacPlatform(): array
 }
 
 /**
- * Ids of the engines for which `$test` holds, in data order.
- *
  * @param  Closure(array<string, mixed>): bool  $test
  * @return list<string>
  */
@@ -193,16 +171,7 @@ it('keeps hub anchors clear of the category anchors on /databases', function ():
 
 });
 
-/*
- * Two hub-only engines whose group was in doubt, pinned so the call is not
- * made twice. Both are relational, which is where the app files them
- * (`PluginMetadataRegistry+HanaDefaults.swift` and
- * `PluginMetadataRegistry+CloudDefaults.swift`, `category: .relational`). The
- * "cloud and serverless SQL" group stresses stateless HTTP with no session
- * state or transactions (sitemap §E.2), which describes neither: SAP HANA
- * also runs on premises and holds SQL sessions, and Spanner is a transactional
- * relational service. That group keeps D1, Turso, libSQL and R2 SQL.
- */
+// The app files both as relational (PluginMetadataRegistry+HanaDefaults.swift and +CloudDefaults.swift).
 it('groups SAP HANA and Spanner with the relational engines', function (): void {
     expect(enginesById()['sap-hana']['category'])->toBe('relational');
     expect(enginesById()['spanner']['category'])->toBe('relational');
@@ -404,12 +373,7 @@ it('records version floors, embedded versions and limits with evidence', functio
     expect(array_column($engines['mongodb']['limits'], 'id'))->toContain('no-pipeline-builder');
 });
 
-/*
- * A floor whose `text` is null is the docs saying there is no minimum version
- * (docs/databases/{redis,clickhouse,redshift,teradata,cockroachdb,databend,tidb,oceanbase}.mdx
- * at v0.78.0), which the page shows as "None". An engine whose docs say
- * nothing, such as Trino, has no floor at all and shows no row.
- */
+// A null text is the docs saying there is no minimum (docs/databases/*.mdx at v0.78.0); Trino's docs say nothing.
 it('says there is no minimum version only where the docs say so', function (): void {
     expect(enginesWhere(fn(array $engine): bool => $engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null))->toEqualCanonicalizing([
         'redis', 'clickhouse', 'redshift', 'teradata', 'cockroachdb', 'databend', 'tidb', 'oceanbase',
@@ -428,13 +392,7 @@ it('gives every engine with its own page a mark for the page header', function (
     expect(enginesWhere(fn(array $engine): bool => $engine['page'] === 'own' && $engine['icon'] === null))->toBe([]);
 });
 
-/*
- * `content/{locale}/engines.json` is keyed by engine id: each engine's tagline
- * (the hub's Notes column) and one sentence per limit in engines.json. The
- * same limit id can need different words on two engines (Redshift's
- * read-only structure is not BigQuery's), so the sentences are per engine,
- * and no sentence exists without a limit behind it.
- */
+// The same limit id can need different words on two engines, so the sentences are per engine.
 it('has a tagline and a sentence for every limit in both locales, and nothing else', function (): void {
     foreach (['en', 'vi'] as $locale) {
         $copy = json_decode(File::get(resource_path("data/content/{$locale}/engines.json")), true, 512, JSON_THROW_ON_ERROR);
@@ -459,12 +417,7 @@ it('has a tagline and a sentence for every limit in both locales, and nothing el
     }
 });
 
-/*
- * The EXPLAIN variants of the MySQL-protocol engines that do not use the MySQL
- * plugin's own, read from `PluginMetadataRegistry+MySQLVariantDefaults.swift`
- * at v0.77.0: TiDB and Databend take EXPLAIN and EXPLAIN ANALYZE, OceanBase
- * EXPLAIN alone, all shown as text. The docs pages for all three agree.
- */
+// PluginMetadataRegistry+MySQLVariantDefaults.swift at v0.77.0; the docs pages for all three agree.
 it('gives the MySQL-protocol variants their text EXPLAIN', function (): void {
     $engines = enginesById();
 
@@ -477,13 +430,7 @@ it('gives the MySQL-protocol variants their text EXPLAIN', function (): void {
     }
 });
 
-/*
- * `capabilities.ssl` means "a connection can use TLS", which the facts card
- * lists under "Connect with". etcd's plugin sets `supportsSSL = false`, so the
- * generic SSL pane is hidden, but its own TLS Mode field (Disabled, Required,
- * Verify CA, Verify Identity, with client certificates) does the same job
- * (EtcdHttpClient.swift at v0.77.0; docs/databases/etcd.mdx).
- */
+// etcd's plugin hides the generic SSL pane, but its own TLS Mode field does the same job (EtcdHttpClient.swift at v0.77.0).
 it('marks an engine with its own TLS setting as able to use TLS', function (): void {
     expect(enginesById()['etcd']['capabilities']['ssl'])->toBeTrue();
 });

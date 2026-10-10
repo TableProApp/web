@@ -3,15 +3,6 @@
 use App\Support\Content\Slugs\DatabaseSlugs;
 use Illuminate\Routing\Route;
 
-/**
- * resources/data/locales.json, the one list of public locales.
- *
- * It decides which route groups exist, which `lang` a page carries, the
- * hreflang and `og:locale` values, and what TypeScript accepts as a `Locale`.
- * A malformed entry would fail in all of those places at once, so its shape is
- * pinned here. The file is read by route registration too, which is why
- * scripts/deploy.sh rebuilds the route cache when it changes.
- */
 function localesData(): array
 {
     static $data = null;

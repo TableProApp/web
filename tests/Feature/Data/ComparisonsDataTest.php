@@ -5,20 +5,6 @@ use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * resources/data/comparisons.json: dated, sourced facts about other database
- * tools, for the compare pages, the compare hub and the engine pages' "Other
- * tools" paragraphs.
- *
- * Every competitor price, date, platform, licence and capability is typed once
- * here, each with a source and a retrieval date (the vendors' own pages, and
- * Microsoft Learn for SSMS and Azure Data Studio).
- * TablePro's own column is derived from the other data files and never
- * stored here. A fact nobody verified has no cell, and the page leaves that
- * row out. There are no benchmarks: the old pages' RAM, startup and size
- * figures had no method and must not come back.
- */
-
-/**
  * @return array{checkedAt: string, rows: list<string>, products: list<array<string, mixed>>}
  */
 function comparisonsJson(): array
@@ -29,8 +15,6 @@ function comparisonsJson(): array
 }
 
 /**
- * Every `source` value anywhere inside a product, with where it was found.
- *
  * @param  array<string, mixed>  $node
  * @return list<array{0: string, 1: string}>
  */
@@ -42,7 +26,6 @@ function comparisonSourceRefs(array $node, string $path = ''): array
         $here = $path === '' ? (string) $key : "{$path}.{$key}";
 
         if ($key === 'source' || $key === 'platformsSource') {
-            // A cell may cite several sources: one ref for each.
             foreach ((array) $value as $id) {
                 $refs[] = [$here, $id];
             }
@@ -59,8 +42,6 @@ function comparisonSourceRefs(array $node, string $path = ''): array
 }
 
 /**
- * Every leaf of a JSON tree as "path" => value.
- *
  * @param  array<array-key, mixed>  $node
  * @return array<string, mixed>
  */
@@ -339,13 +320,7 @@ it('pins the facts the pages lean on', function (): void {
 
     expect($products['dbeaver']['licence'])->toMatchArray(['name' => 'Apache-2.0', 'openSource' => true, 'edition' => 'Community']);
 
-    /*
-     * Added later from the vendors' own pages (tableplus.com/pricing,
-     * Navicat's store; dbeaver.com/edition re-read 2026-10-02): the free
-     * tier's limit the TablePlus note carries as {value}, the audience that
-     * keeps Navicat's non-commercial price out of the hub's "From" column,
-     * and the two DBeaver paid-edition features the compare page names.
-     */
+    // Read on tableplus.com/pricing, Navicat's store and dbeaver.com/edition on 2026-10-02.
     expect(collect($products['tableplus']['prices'])->firstWhere('amount', 0))->toMatchArray(['value' => 2, 'note' => 'tableplus-free-limits']);
     expect(collect($products['navicat']['prices'])->firstWhere('edition', 'Premium Non-Commercial'))->toMatchArray(['audience' => 'non-commercial']);
     expect($products['dbeaver']['cells']['queryBuilder'])->toMatchArray(['state' => 'qualified', 'source' => 's3']);
@@ -355,25 +330,13 @@ it('pins the facts the pages lean on', function (): void {
     expect($products['tableplus']['cells']['mcp'])->toMatchArray(['state' => 'yes', 'version' => '7.1.8']);
     expect($products['ssms']['platforms'])->toBe(['windows']);
 
-    /*
-     * pgAdmin ships desktop builds for all three systems and runs as a web
-     * server (pgadmin.org/download/), not only the macOS build its Mac page
-     * describes. The PostgreSQL page's "Other tools" paragraph reads this.
-     */
+    // pgAdmin ships for all three systems and as a web server (pgadmin.org/download/), not only for the Mac.
     expect($products['pgadmin']['platforms'])->toBe(['mac', 'windows', 'linux', 'web']);
     expect($products['pgadmin']['platformsSource'])->toBe('s2');
     expect($products['azure-data-studio']['status']['state'])->toBe('discontinued');
     expect($products['azure-data-studio']['cells']['successor']['date'])->toBe('2026-02-28');
 
-    /*
-     * Re-read on the vendors' pages on 2026-10-08. Navicat sells monthly and
-     * yearly subscriptions beside the perpetual licenses, so the hub's "From"
-     * is a monthly price like its neighbours'; the non-commercial ones keep
-     * their audience, which keeps them out of that column. DBeaver's paid
-     * editions get an MCP server in 26.3. TablePlus syncs through a cloud
-     * folder. Compass and Redis Insight publish their code under the SSPL,
-     * which is neither open source nor closed.
-     */
+    // Re-read on the vendors' pages on 2026-10-08.
     expect($prices('navicat'))->toContain(['Premium Standard', 74.99, 'month'], ['Premium Standard', 749.99, 'year'], ['Premium Enterprise', 99.99, 'month']);
     expect(collect($products['navicat']['prices'])->where('edition', 'Premium Non-Commercial')->pluck('audience')->unique()->all())->toBe(['non-commercial']);
     expect(collect($products['navicat']['prices'])->firstWhere('amount', 0))->toMatchArray(['value' => 5, 'note' => 'navicat-lite-commercial-use']);
@@ -387,13 +350,7 @@ it('pins the facts the pages lean on', function (): void {
     expect($products['redis-insight']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
     expect($products['mongodb-compass']['platforms'])->toBe(['mac', 'windows', 'linux']);
 
-    /*
-     * Read on the vendors' pages on 2026-10-08 for the five comparisons added
-     * then. MySQL Workbench 26.7 replaced Workbench 8.0, whose last release is
-     * 8.0.47, and its Mac download is for Apple silicon only. Compass's
-     * install guide and its download page disagree on the macOS floor, so the
-     * data names none. SQL Server Management Studio has no Mac version.
-     */
+    // Compass's install guide and download page disagree on the macOS floor, so the data names none (2026-10-08).
     expect($products['mysql-workbench']['mac'])->toMatchArray(['minVersion' => null, 'architectures' => ['arm64']]);
     expect($products['mysql-workbench']['cells']['workbench8'])->toMatchArray(['version' => '8.0.47', 'date' => '2026-04-23']);
     expect($products['mysql-workbench']['cells']['databases'])->toMatchArray(['version' => '8.4']);
@@ -420,8 +377,6 @@ it('never names TablePro and never stores a benchmark', function (): void {
 });
 
 /**
- * The compare page files present in one locale, without the hub.
- *
  * @return list<string>
  */
 function comparePageFiles(string $locale): array

@@ -3,18 +3,6 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/sponsors.json: the sponsors the homepage thanks, third
- * section down, each linked with `rel="sponsored noopener"`.
- *
- * Owner answer (spec §0): show only sponsors verified as current. On
- * 2026-10-02 GitHub's `sponsorshipsAsMaintainer(activeOnly: true)` for
- * `datlechin` listed CodeRabbit, SimpleLocalize, Nimbus and Dwarves Foundation
- * among the organisations, and the `TableProApp` organisation had none.
- * getapps.cafe, Visnalize, Unikorn and Xermius are no longer sponsors and must
- * not come back by accident from the old sponsor row.
- */
-
-/**
  * @return array{
  *     verifiedAt: string,
  *     verification: array{method: string, program: string},
@@ -29,9 +17,6 @@ function sponsorsJson(): array
 }
 
 /**
- * The intrinsic size of a logo file: the root `width`/`height` of an SVG, or
- * the pixel size of a raster image.
- *
  * @return array{0: int, 1: int}|null
  */
 function sponsorLogoSize(string $path): ?array

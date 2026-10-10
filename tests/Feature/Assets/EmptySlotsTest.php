@@ -17,7 +17,7 @@ beforeEach(function (): void {
 });
 
 /**
- * @return array<string, list<string>> page path => the slots it places that have no image
+ * @return array<string, list<string>>
  */
 function emptySlotPages(): array
 {

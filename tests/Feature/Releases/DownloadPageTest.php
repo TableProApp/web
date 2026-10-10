@@ -15,15 +15,6 @@ use function Pest\Laravel\withoutVite;
 
 require_once __DIR__ . '/ReleaseFixtures.php';
 
-/**
- * `/download` and `/vi/download` (sitemap §A.1, §E.5; architecture §1.13).
- *
- * The props carry everything the page states and links to: the live release,
- * the platform facts from platforms.json and the outbound links. The rules the
- * page must keep: both builds are server-rendered links, nothing starts a
- * download on its own, no copy claims one started, and a failed release source
- * degrades to GitHub's latest-release page with no version shown.
- */
 beforeEach(function (): void {
     withoutVite();
     Cache::flush();
@@ -31,10 +22,6 @@ beforeEach(function (): void {
     bindReleaseFixturePlatforms();
 });
 
-/**
- * A live release, fetched the way the server fetches it: by the scheduled
- * `release:refresh`. Pages only read what it stored.
- */
 function fakeLiveRelease(): void
 {
     Http::fake([
@@ -78,11 +65,6 @@ it('renders in English with the live release, the platform facts and the copy', 
 });
 
 it('names the featured, published engines from engines.json for the structured data, in data order', function (): void {
-    /*
-     * The names are read from the live engines.json, so the expectation is
-     * derived from that file rather than typed: what the page states can never
-     * be a list someone wrote down once.
-     */
     fakeLiveRelease();
 
     $expected = collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))
@@ -97,9 +79,6 @@ it('names the featured, published engines from engines.json for the structured d
 });
 
 /**
- * The newest post that announced a release, read from the posts themselves,
- * so the next release post moves the link without an edit here.
- *
  * @return array<string, mixed>
  */
 function downloadNewestReleasePost(): array
@@ -177,12 +156,6 @@ it('is a translated pair, indexed in both locales', function (): void {
         ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === collect(Locales::codes())->sort()->values()->all()));
 });
 
-/*
- * A page never waits on GitHub. With nothing stored yet (a fresh server, or
- * the cache just cleared and no last good copy), the page answers at once
- * without a version, and the refresh it leaves for after its response gives
- * the next reader the release.
- */
 it('answers without waiting on GitHub when nothing is stored, and the next page has the release', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload()),
@@ -259,12 +232,7 @@ it('keeps both page copies free of auto-start claims and URLs', function (): voi
     }
 });
 
-/*
- * Positioning §11.2: a Vietnamese click path gives the English path in full
- * after it, "**Cài đặt > Tích hợp** (Settings > Integrations)", so a reader
- * whose app is in English can follow it. And "chậm hơn" reads as "slower
- * than", a speed comparison, where the copy means that Homebrew lags.
- */
+// "chậm hơn" reads as "slower than", a speed comparison, where the copy means that Homebrew lags.
 it('writes Vietnamese click paths with their full English path, and no speed comparison', function (): void {
     $text = (string) file_get_contents(resource_path('data/content/vi/download.json'))
         . (string) file_get_contents(resource_path('js/i18n/messages/vi/download.ts'));

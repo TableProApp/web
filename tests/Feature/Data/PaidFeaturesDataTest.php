@@ -3,22 +3,6 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/paid-features.json: the features a Starter or Team license
- * adds to the Mac app.
- *
- * The list is the app's `ProFeature` enum, unchanged from v0.76.1 to v0.77.0
- * (TablePro/Models/Settings/ProFeature.swift @ v0.77.0, `displayName` and
- * `requiredTier`). The names are pinned byte for byte, because pricing, the
- * FAQ, feature pages and structured data all print them and the reader then
- * looks for the same words in the app. Everything not listed is free, and the
- * iPhone and iPad app gates nothing, so `platforms` only ever names the Mac.
- *
- * Lapse behaviour (each `ProFeature` call site at v0.77.0): only Result
- * Charts and Query Insights show an overlay; the others alert, hide, disable or
- * stop silently.
- */
-
-/**
  * @return list<array{id: string, proFeature: string, name: string, tier: string, platforms: list<string>, sinceAppVersion: string, lapse: list<string>, highlight: bool, page: array{path: string, anchor: string}}>
  */
 function paidFeaturesJson(): array
@@ -29,13 +13,11 @@ function paidFeaturesJson(): array
 }
 
 /**
- * The section ids each feature page keeps (sitemap §A.2). Redirects and
- * cross-links target them, so a paid feature may only point at one of these.
- *
  * @return array<string, list<string>>
  */
 function paidFeaturePageAnchors(): array
 {
+    // Redirects and cross-links target these section ids (sitemap §A.2).
     return [
         '/features/querying' => ['editor', 'history', 'performance', 'results', 'other-languages', 'iphone'],
         '/features/data-editing' => ['browse', 'edit', 'safe-mode', 'data-rewind', 'documents-and-keys', 'iphone'],
