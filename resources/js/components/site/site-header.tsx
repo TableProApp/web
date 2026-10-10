@@ -1,7 +1,6 @@
 import { useCallback, useState, type ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Menu } from 'lucide-react';
-import ThemeControl from '@/components/shared/theme-control';
 import Button, { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { GitHubGlyph } from '@/components/ui/glyph';
@@ -40,12 +39,12 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
  * design-system §5.3.17).
  *
  * From 1024px: the logo, Features ▾ · Databases · Pricing · Docs ↗ · Blog,
- * then the language, the theme, GitHub with its star count, Account and
+ * then the language (a globe), GitHub with its star count, Account and
  * Download. Below 1024px: the logo, a compact Download and the Menu button;
  * everything else moves into the menu. The row does not fit 1024px in every
  * language, so the ones it is too wide for switch at 1152px instead
- * (`headerLayout`, site-links.ts). GitHub joins the row only from 1280px,
- * the first width where every language has room for it.
+ * (`headerLayout`, site-links.ts). The theme is in the footer and the menu
+ * only: it follows the system until the reader picks one.
  *
  * The current section takes the text colour and a 2px indicator bar, never
  * colour alone. Internal links go through `LocaleLink`, so they stay in the
@@ -108,14 +107,13 @@ export default function SiteHeader() {
                 <div className="ml-auto flex items-center gap-2">
                     <div className={layout.controls}>
                         <LanguageSwitcher variant="menu" />
-                        <ThemeControl variant="menu" labels={m.controls.theme} />
                         <Button
                             variant="quiet"
                             size="sm"
                             href={EXTERNAL.github}
                             icon={<GitHubGlyph />}
                             aria-label={stars?.label}
-                            className="hidden tabular-nums xl:inline-flex"
+                            className="tabular-nums"
                         >
                             {stars?.count ?? m.nav.github}
                         </Button>

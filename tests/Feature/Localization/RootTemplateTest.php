@@ -19,14 +19,14 @@ function headOf(string $html): string
     return substr($html, 0, (int) strpos($html, '</head>'));
 }
 
-it('paints the theme before anything else, light unless chosen', function (): void {
+it('paints the theme before anything else, the system\'s unless chosen', function (): void {
     $head = headOf($this->get('/download')->getContent());
 
     $theme = strpos($head, "localStorage.getItem('theme')");
 
     expect($theme)->not->toBeFalse();
     expect($theme)->toBeLessThan(strpos($head, '<link rel="icon"'));
-    expect($head)->toContain("var choice = 'light';");
+    expect($head)->toContain("var choice = 'system';");
     expect(substr_count($head, '<meta name="theme-color"'))->toBe(1);
     expect($head)->not->toContain('prefers-color-scheme: light');
     expect($head)->not->toContain('media="(prefers-color-scheme');

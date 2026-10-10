@@ -11,8 +11,9 @@ import { cn } from '@/lib/utils';
 
 interface LanguageSwitcherProps {
     /**
-     * - `menu`: the header control, the current language's own name, opening
-     *   the choices below it. A `<details>`, so it needs no JavaScript.
+     * - `menu`: the header control, a globe named for the current language
+     *   ("Language: English"), opening the choices below it. A `<details>`,
+     *   so it needs no JavaScript.
      * - `footer`: the same choices in the shared FooterMenu, which opens upward
      *   and works without JavaScript.
      * - `stack`: one row naming the current language that opens the choices,
@@ -172,6 +173,7 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
     const { m, fmt } = useI18n();
     const root = useRef<HTMLDetailsElement>(null);
     const current = items.find((item) => item.current) ?? items[0];
+    const label = fmt(m.controls.language.current, { language: current.native });
 
     useEffect(() => {
         const details = root.current;
@@ -255,12 +257,11 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
             className={cn('group relative', className)}
         >
             <summary
-                aria-label={fmt(m.controls.language.current, { language: current.native })}
-                className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-control px-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:bg-surface active:bg-surface-strong [&::-webkit-details-marker]:hidden"
+                aria-label={label}
+                title={label}
+                className="inline-flex size-10 cursor-pointer list-none items-center justify-center rounded-control text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:bg-surface active:bg-surface-strong [&::-webkit-details-marker]:hidden"
             >
-                <Globe className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-                <span lang={current.locale}>{current.native}</span>
-                <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) group-open:rotate-180" aria-hidden="true" />
+                <Globe className="size-4 shrink-0" aria-hidden="true" />
             </summary>
             <div
                 data-menu-panel

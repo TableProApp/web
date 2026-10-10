@@ -105,25 +105,25 @@ function chromeLocales(): array
 
 /**
  * The header's desktop row with every label on one line, measured in Chromium
- * at 14px Inter: its width in px, the display columns of its eight labels at
- * the time (a CJK character is two), and its width from 1280px, where the
- * GitHub link joins it, with that link at its widest (the word "GitHub",
- * before any count is stored). The row has 960px at 1024, 1088px at 1152 and
- * 1216px from 1280.
+ * at 14px Inter: its width in px with the GitHub link at its widest (the word
+ * "GitHub", before any count is stored), and the display columns of its seven
+ * labels at the time (a CJK character is two). The language is a globe and the
+ * theme lives in the footer, so neither adds a label. The row has 960px at
+ * 1024 and 1088px at 1152.
  */
 const HEADER_ROW_MEASURED = [
-    'en' => [893, 54, 997],
-    'vi' => [944, 67, 1047],
-    'es' => [1008, 69, 1112],
-    'de' => [980, 64, 1083],
-    'fr' => [1065, 79, 1169],
-    'ja' => [943, 66, 1048],
-    'pt-BR' => [1040, 74, 1143],
-    'zh-Hans' => [754, 38, 861],
-    'ko' => [773, 48, 877],
-    'zh-Hant' => [797, 44, 904],
-    'it' => [965, 66, 1069],
-    'id' => [930, 58, 1034],
+    'en' => [880, 47],
+    'vi' => [911, 57],
+    'es' => [991, 62],
+    'de' => [960, 57],
+    'fr' => [1044, 71],
+    'ja' => [938, 60],
+    'pt-BR' => [955, 56],
+    'zh-Hans' => [736, 30],
+    'ko' => [772, 42],
+    'zh-Hant' => [779, 36],
+    'it' => [952, 58],
+    'id' => [848, 42],
 ];
 
 it('frames the page with a skip link, one header, one main and one footer', function (string $path, string $locale): void {
@@ -173,7 +173,7 @@ it('links the header to the sections in the reader\'s language', function (strin
     Assert::assertNotNull(chromeLink($header, "{$prefix}/ios", $vi ? 'iPhone và iPad' : 'iPhone & iPad'), 'The platform page is missing from the Features menu');
 })->with('chrome locales');
 
-it('links GitHub with its star count, from 1280px in the header and always in the menu', function (string $path, string $locale): void {
+it('links GitHub with its star count, in the header row and in the menu', function (string $path, string $locale): void {
     Storage::fake(StarCount::DISK);
     Storage::disk(StarCount::DISK)->put(StarCount::FILE, '6224');
 
@@ -190,7 +190,7 @@ it('links GitHub with its star count, from 1280px in the header and always in th
     // The visible count is part of the name (WCAG 2.5.3), and the link opens in the same tab like every other.
     expect($bar['text'])->toBe('6.2k')
         ->and($bar['attrs']['aria-label'])->toBe($name)
-        ->and($bar['attrs']['class'])->toEndWith('hidden tabular-nums xl:inline-flex')
+        ->and($bar['attrs']['class'])->toEndWith(' tabular-nums')
         ->and($bar['attrs'])->not->toHaveKey('target')
         ->and($menu['text'])->toBe('GitHub↗6.2k')
         ->and($menu['attrs']['aria-label'])->toBe($name);
@@ -211,25 +211,24 @@ it('names the GitHub link by its word until a count is stored', function (string
         ->and($links[1]['attrs'])->not->toHaveKey('aria-label');
 })->with(['/download', '/vi/download']);
 
-it('shows the desktop row only where it fits, in every language', function (string $code, string $prefix, string $native): void {
+it('shows the desktop row only where it fits, in every language', function (string $code, string $prefix): void {
     /*
      * At 1024px the row wrapped to three lines in Spanish and French, pushed
      * the French Download button 8px off the page, and wrapped the language
      * button in Portuguese. A language whose row is wider than 960px keeps
      * the menu button to 1152px instead.
      */
-    [$width, $columns, $withGitHub] = HEADER_ROW_MEASURED[$code];
+    [$width, $columns] = HEADER_ROW_MEASURED[$code];
     $wide = $width > 960;
 
-    expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960)
-        ->and($withGitHub)->toBeLessThanOrEqual(1216);
+    expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960);
 
     /*
      * No browser runs here, so the widths above are only as good as the
      * labels they were measured for. A longer label means measuring again.
      */
     $nav = chromeCatalog($code, 'nav');
-    $labels = [$nav['features'], $nav['databases'], $nav['pricing'], $nav['docs'], $nav['blog'], $native, $nav['account'], $nav['download']];
+    $labels = [$nav['features'], $nav['databases'], $nav['pricing'], $nav['docs'], $nav['blog'], $nav['account'], $nav['download']];
 
     Assert::assertLessThanOrEqual($columns, array_sum(array_map(mb_strwidth(...), $labels)), "{$code}: a header label grew. Measure the row again and update HEADER_ROW_MEASURED.");
 
@@ -358,7 +357,7 @@ it('switches language with plain links to the same page, named in their own lang
         Assert::assertSame($code === $locale ? 'true' : null, $link['attrs']['aria-current'] ?? null);
     }
 
-    // Named by what it does, in the page language, with the current language visible.
+    // A globe named by what it does and the current language, in the page language.
     expect($header)->toContain('aria-label="' . ($locale === 'vi' ? 'Ngôn ngữ: Tiếng Việt' : 'Language: English') . '"');
 })->with('chrome locales');
 

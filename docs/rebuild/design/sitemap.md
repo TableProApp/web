@@ -275,7 +275,7 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 
 ### B.1 Header (desktop, ≥1024px)
 
-`[Logo → / or /vi]` · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · **Language** · **Theme** · GitHub · Account · **[Download]**
+`[Logo → / or /vi]` · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · **Language** (globe) · GitHub · Account · **[Download]**
 
 | Item | EN | VI | Target | Notes |
 |---|---|---|---|---|
@@ -284,9 +284,8 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 | Pricing | Pricing | Bảng giá | /pricing | |
 | Docs | Docs ↗ | Tài liệu ↗ | https://docs.tablepro.app | External. On VI the link has `hreflang="en"` and the accessible name "Tài liệu (tiếng Anh)" |
 | Blog | Blog | Blog | /blog or /vi/blog | |
-| Language | current name ▾ | current name ▾ | §B.4 | A disclosure of two `<a>` links, "English" and "Tiếng Việt", with `lang`, `hreflang` and `aria-current`. No flags and no codes |
-| Theme | icon button ▾ | same | Light / Dark / System | Visible labels in the menu: Light, Dark, System (VI: Sáng, Tối, Theo hệ thống). Writes localStorage `theme`; light is the default when nothing is stored |
-| GitHub | [GitHub mark] 6.2k | same | the repository (`facts.json` → `links.github`) | From 1280px only: the row has no room for it below that in every language. Accessible name "GitHub, 6.2k stars" / "GitHub, 6.2k star". The count is GitHub's own style (truncated, never rounded up), from `stars:refresh`; before the first refresh the link reads "GitHub". Same tab, like every external link (decided 2026-10-10) |
+| Language | globe icon | globe icon | §B.4 | Named "Language: English" / "Ngôn ngữ: Tiếng Việt". A disclosure of one `<a>` per language, with `lang`, `hreflang` and `aria-current`. No flags and no codes |
+| GitHub | [GitHub mark] 6.2k | same | the repository (`facts.json` → `links.github`) | Accessible name "GitHub, 6.2k stars" / "GitHub, 6.2k star". The count is GitHub's own style (truncated, never rounded up), from `stars:refresh`; before the first refresh the link reads "GitHub". Same tab, like every external link (decided 2026-10-10) |
 | Account | Account | Tài khoản | `/account?locale={pageLocale}` | A plain `<a>` (cross-app) |
 | Download | Download | Tải về | /download or /vi/download | Primary button; fires `download_click{location:'header', platform:'mac'}`. "Tải về" everywhere, matching Apple's Vietnamese (positioning §2, §4); the `/download` architecture buttons read "Tải bản cho Apple silicon" and "Tải bản cho Intel" |
 
@@ -296,7 +295,9 @@ Collapsed bar: logo · [Download] (compact) · menu button (36×36 minimum targe
 
 The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, GitHub ↗ (with the mark and the star count at the end of the row), Account. Then "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`; on an iPhone or iPad the badge is drawn first. Last come **Language**, one row that opens the list of languages (a `<details>`; twelve rows pushed the download actions 1,273px down an 844px screen), and **Theme** as a 3-option segmented control.
 
-In French, Portuguese, Spanish, German and Italian the desktop row is wider than a 1024px window, so those languages keep this bar and menu to 1152px (design-system §5.3.17).
+In French and Spanish the desktop row is wider than a 1024px window, so those languages keep this bar and menu to 1152px (design-system §5.3.17).
+
+The theme control is in the footer bar and this menu only. Until the reader picks one, the theme follows the system (decided 2026-10-10).
 
 ### B.3 Footer (every public page)
 
@@ -348,7 +349,7 @@ Two lists drive this. **`alternates`** (for hreflang) holds real translations on
 | Platform `/thank-you`, `/newsletter/confirmed` | Download, Account, Blog, Home | Locale-aware public links; `noindex` |
 | "Billing & invoices" (account) | https://polar.sh/tablepro/portal | Shown only for licenses bought through Polar (spec §0) |
 
-**Theme across both apps.** Both use the same localStorage `theme` key on the same origin. Both head scripts default to light when nothing is stored, guard storage access with try/catch, and set the class before first paint. Screenshot variants follow the site's theme class, not `prefers-color-scheme`.
+**Theme across both apps.** Both use the same localStorage `theme` key on the same origin. Both head scripts default to `system` when nothing is stored, guard storage access with try/catch, and set the class before first paint. Screenshot variants follow the site's theme class, not `prefers-color-scheme`.
 
 **License banner.** `config/banner.php` is on by default (owner decision, 2026-10-05), on every public page except /pricing in every language, and links to /pricing or to a release post. On /ios a reader on an iPhone or iPad does not get it: the license is for the Mac app. It asks a regular user to buy a license and says what a license adds and pays for; it never pleads. Its dismiss key `tablepro:banner-dismissed` holds the closed version and an end date: 30 days after closing, a year for a license holder or a buyer. The copy "The whole app is free" stays deleted.
 
