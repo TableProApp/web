@@ -25,7 +25,7 @@ The Mac app is free to download and use without registering. A License adds opti
 
 ## Trademarks {#trademarks}
 
-TablePro™, the TablePro logo and the TablePro app icon are trademarks of {publisherName}. Neither these terms nor the AGPLv3 give you a right to use them. How you may use them is set out in the [brand guidelines](/brand). Other product names and logos on the Website belong to their owners.
+TablePro™, the TablePro logo and the TablePro app icon are trademarks of {publisherName}. These terms and the AGPLv3 give you no right to use them. The [brand guidelines](/brand) say how you may use them. Other product names and logos on the Website belong to their owners.
 
 ## Buying a license {#purchases}
 
