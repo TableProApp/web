@@ -36,7 +36,8 @@ function requireSsr(): void
         Assert::fail($problem['fail']);
     }
 
-    config(['inertia.ssr.enabled' => true]);
+    // A failed render must not fall back to the client shell, where every absence check passes.
+    config(['inertia.ssr.enabled' => true, 'inertia.ssr.throw_on_error' => true]);
 }
 
 /**

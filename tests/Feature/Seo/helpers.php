@@ -208,8 +208,14 @@ function seoCrawlProps(): array
     return $pages = $crawl;
 }
 
+// Deflated: 749 rendered pages held for the whole run would take about 100 MB.
+function seoCrawledHtml(string $path): string
+{
+    return (string) gzinflate(seoCrawlHtml()[$path]);
+}
+
 /**
- * @return array<string, string>
+ * @return array<string, string> path => deflated HTML
  */
 function seoCrawlHtml(): array
 {
@@ -232,7 +238,7 @@ function seoCrawlHtml(): array
 
             Assert::assertSame(200, $response->getStatusCode(), "{$path} does not render");
 
-            $crawl[$path] = (string) $response->getContent();
+            $crawl[$path] = (string) gzdeflate((string) $response->getContent());
         }
     }
 

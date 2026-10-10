@@ -492,6 +492,13 @@ describe('server-rendered', function (): void {
             ->toContain('macOS 13 Ventura trở lên · Apple silicon hoặc Intel')
             ->toContain('iPhone và iPad · iOS và iPadOS 18 trở lên')
             ->toContain('Tải về cho Mac');
+
+        // Catches retired copy hardcoded in a component, which the content guards don't read.
+        foreach (['/', '/vi'] as $path) {
+            foreach (['Every database', 'every database', 'macOS 14', 'Sonoma', 'Universal', 'unlock', 'free forever', 'GitHub Trending'] as $retired) {
+                expect(ssrHome($path))->not->toContain($retired);
+            }
+        }
     })->group('ssr');
 
     it('thanks only the verified sponsors, each as a sponsored link', function (): void {
@@ -499,6 +506,10 @@ describe('server-rendered', function (): void {
 
         foreach (homeData('sponsors.json')['sponsors'] as $sponsor) {
             expect($html)->toMatch('#<a[^>]*href="' . preg_quote(htmlspecialchars($sponsor['url'], ENT_QUOTES), '#') . '"[^>]*rel="sponsored noopener"#');
+        }
+
+        foreach (['getapps', 'Visnalize', 'Unikorn', 'Xermius'] as $former) {
+            expect($html)->not->toContain($former);
         }
     })->group('ssr');
 

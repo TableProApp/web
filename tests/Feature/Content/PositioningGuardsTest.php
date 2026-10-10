@@ -80,7 +80,7 @@ function positioningIsReleasePost(PageEntry $entry): bool
 }
 
 it('renders every title in 60 characters and every description within its locale\'s limit (guard 3)', function (): void {
-    $html = seoCrawlHtml();
+    seoCrawlHtml();
     $offences = [];
     $checked = 0;
 
@@ -91,7 +91,7 @@ it('renders every title in 60 characters and every description within its locale
 
         foreach ($entry->renderLocales as $locale) {
             $path = $entry->url($locale, false);
-            $document = HTMLDocument::createFromString($html[$path], LIBXML_NOERROR);
+            $document = HTMLDocument::createFromString(seoCrawledHtml($path), LIBXML_NOERROR);
             $title = trim((string) $document->querySelector('title')?->textContent);
             $description = trim((string) $document->querySelector('meta[name="description"]')?->getAttribute('content'));
             $limit = $locale === 'vi' ? 160 : 155;
@@ -308,7 +308,7 @@ function positioningUnreleasedNames(string $locale): array
 }
 
 it('renders no unreleased platform in the chrome, the home hero and title, or an app node (guard 4)', function (): void {
-    $html = seoCrawlHtml();
+    seoCrawlHtml();
     $offences = [];
     $platforms = contentGuardDecode(resource_path('data/platforms.json'))['platforms'];
     $released = array_values(array_filter($platforms, fn(array $platform): bool => ($platform['status'] ?? null) === 'released'));
@@ -318,7 +318,7 @@ it('renders no unreleased platform in the chrome, the home hero and title, or an
             $path = $entry->url($locale, false);
             $names = positioningUnreleasedNames($locale);
             $pattern = '/\b(' . implode('|', array_map(fn(string $name): string => preg_quote($name, '/'), $names)) . ')\b/u';
-            $document = HTMLDocument::createFromString($html[$path], LIBXML_NOERROR);
+            $document = HTMLDocument::createFromString(seoCrawledHtml($path), LIBXML_NOERROR);
             $footers = $document->querySelectorAll('footer');
 
             $surfaces = [

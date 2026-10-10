@@ -236,7 +236,7 @@ it('links only live pages from what the server hands every page', function (): v
 
 it('links only live pages and real anchors from every server-rendered page', function (): void {
     $pages = internalLinkPages();
-    $html = seoCrawlHtml();
+    seoCrawlHtml();
     $statuses = [];
     $ids = [];
     $links = [];
@@ -247,7 +247,7 @@ it('links only live pages and real anchors from every server-rendered page', fun
     );
 
     foreach ($pages as $path => $locale) {
-        $document = HTMLDocument::createFromString($html[$path], LIBXML_NOERROR);
+        $document = HTMLDocument::createFromString(seoCrawledHtml($path), LIBXML_NOERROR);
         $statuses[$path] = 200;
         $ids[$path] = $idsIn($document);
         $links[$path] = [];

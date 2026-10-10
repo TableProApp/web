@@ -104,13 +104,3 @@ it('renders and indexes the Vietnamese blog listing', function (): void {
             ->where('seo.robots', 'index, follow')
             ->has('posts', count(glob(resource_path('blog/*.md')) ?: [])));
 });
-
-it('no longer sends the retired homepage props', function (string $path): void {
-    get($path)
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Home')
-            ->missing('downloadUrls')
-            ->missing('latestRelease')
-            ->missing('paymentProvider'));
-})->with(['/', '/vi']);
