@@ -74,6 +74,14 @@ function legalLocales(): array
     return array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']);
 }
 
+/**
+ * @return list<string>
+ */
+function legalDocumentsIn(string $locale): array
+{
+    return $locale === 'en' ? LegalDocuments::DOCUMENTS : array_values(array_diff(LegalDocuments::DOCUMENTS, LegalDocuments::ENGLISH_ONLY));
+}
+
 function legalSource(string $document, string $locale): string
 {
     return (string) file_get_contents(dirname(__DIR__, 3) . "/resources/data/legal/{$locale}/{$document}.md");
@@ -135,6 +143,7 @@ it('renders each document in both languages under its own component', function (
     ['/vi/terms', 'Terms', 'Điều khoản sử dụng'],
     ['/refund-policy', 'RefundPolicy', 'Refund policy'],
     ['/vi/refund-policy', 'RefundPolicy', 'Chính sách hoàn tiền'],
+    ['/brand', 'Brand', 'Brand guidelines'],
 ]);
 
 it('formats the update date in each language on the server', function (): void {
@@ -150,7 +159,7 @@ it('indexes each document in every supported language', function (string $route)
 })->with(['landing.privacy', 'landing.terms', 'landing.refundPolicy']);
 
 it('gives every heading an explicit id', function (string $locale): void {
-    foreach (LegalDocuments::DOCUMENTS as $document) {
+    foreach (legalDocumentsIn($locale) as $document) {
         preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, $locale))->body(), $headings);
 
         foreach ($headings[0] as $heading) {
@@ -160,7 +169,7 @@ it('gives every heading an explicit id', function (string $locale): void {
 })->with(legalLocales());
 
 it('keeps every translation in step with the English page: headings, ids, list items, paragraphs, slots and the update date', function (string $locale): void {
-    foreach (LegalDocuments::DOCUMENTS as $document) {
+    foreach (legalDocumentsIn($locale) as $document) {
         expect(legalShape($document, $locale))->toBe(legalShape($document, 'en'));
         expect(YamlFrontMatter::parse(legalSource($document, $locale))->matter('updatedAt'))
             ->toBe(YamlFrontMatter::parse(legalSource($document, 'en'))->matter('updatedAt'));
@@ -170,7 +179,7 @@ it('keeps every translation in step with the English page: headings, ids, list i
 it('takes every number and address from the data files, the same ones in every language', function (string $locale): void {
     $documents = app(LegalDocuments::class);
 
-    foreach (LegalDocuments::DOCUMENTS as $document) {
+    foreach (legalDocumentsIn($locale) as $document) {
         expect($documents->tokenNames($document, $locale))->toBe($documents->tokenNames($document, 'en'));
         expect(array_diff($documents->tokenNames($document, $locale), array_keys($documents->tokens($locale))))->toBe([]);
 
@@ -185,7 +194,7 @@ it('takes every number and address from the data files, the same ones in every l
 
 it('closes every bold span on the rendered page', function (string $locale): void {
     // CommonMark leaves ** in the text when the mark sits between punctuation and a letter, as in 。**后.
-    foreach (LegalDocuments::DOCUMENTS as $document) {
+    foreach (legalDocumentsIn($locale) as $document) {
         expect(app(LegalDocuments::class)->render($document, $locale)['html'])->not->toContain('**');
     }
 })->with(legalLocales());

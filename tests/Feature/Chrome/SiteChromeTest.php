@@ -400,6 +400,11 @@ it('groups the footer links under a hidden heading, in five groups', function (s
         Assert::assertNotNull(chromeLink($footer, $href), "The footer has no link to {$href}");
     }
 
+    // The brand guidelines are English only, so every language links the English page.
+    $brand = chromeLink($footer, '/brand', $vi ? 'Thương hiệu (tiếng Anh)' : 'Brand');
+    Assert::assertNotNull($brand, 'The footer has no link to /brand');
+    Assert::assertSame($vi ? 'en' : null, $brand['attrs']['hreflang'] ?? null);
+
     // The repository is linked once, as "Source code"; Community no longer repeats it.
     expect(substr_count($footer, 'href="https://github.com/TableProApp/TablePro"'))->toBe(1);
 

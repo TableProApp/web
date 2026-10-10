@@ -1,0 +1,104 @@
+{
+    "labels": {
+        "light": "For light backgrounds",
+        "dark": "For dark backgrounds",
+        "colors": "Colors"
+    },
+    "assets": [
+        {
+            "id": "icon",
+            "name": "App icon",
+            "description": "The icon of the Mac app.",
+            "variants": [
+                {
+                    "ground": "light",
+                    "preview": "/images/brand/tablepro-icon-128.png",
+                    "files": [
+                        { "src": "/images/brand/tablepro-icon-1024.png", "width": 1024, "height": 1024 },
+                        { "src": "/images/brand/tablepro-icon-512.png", "width": 512, "height": 512 },
+                        { "src": "/images/brand/tablepro-icon-256.png", "width": 256, "height": 256 },
+                        { "src": "/images/brand/tablepro-icon-128.png", "width": 128, "height": 128 },
+                        { "src": "/images/brand/tablepro-icon-64.png", "width": 64, "height": 64 }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "iconFlat",
+            "name": "Flat icon",
+            "description": "The app icon without its glass effects, for print and for places that need a vector file.",
+            "variants": [
+                {
+                    "ground": "light",
+                    "preview": "/images/brand/tablepro-icon-flat.svg",
+                    "files": [
+                        { "src": "/images/brand/tablepro-icon-flat.svg", "width": 1024, "height": 1024 },
+                        { "src": "/images/brand/tablepro-icon-flat-512.png", "width": 512, "height": 512 }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "logo",
+            "name": "Logo",
+            "description": "The flat icon next to the name.",
+            "variants": [
+                {
+                    "ground": "light",
+                    "preview": "/images/brand/tablepro-logo-black.svg",
+                    "files": [
+                        { "src": "/images/brand/tablepro-logo-black.svg", "width": 329, "height": 72 },
+                        { "src": "/images/brand/tablepro-logo-black-256.png", "width": 1169, "height": 256 }
+                    ]
+                },
+                {
+                    "ground": "dark",
+                    "preview": "/images/brand/tablepro-logo-white.svg",
+                    "files": [
+                        { "src": "/images/brand/tablepro-logo-white.svg", "width": 329, "height": 72 },
+                        { "src": "/images/brand/tablepro-logo-white-256.png", "width": 1169, "height": 256 }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "wordmark",
+            "name": "Wordmark",
+            "description": "The name on its own.",
+            "variants": [
+                {
+                    "ground": "light",
+                    "preview": "/images/brand/tablepro-wordmark-black.svg",
+                    "files": [{ "src": "/images/brand/tablepro-wordmark-black.svg", "width": 562, "height": 102 }]
+                },
+                {
+                    "ground": "dark",
+                    "preview": "/images/brand/tablepro-wordmark-white.svg",
+                    "files": [{ "src": "/images/brand/tablepro-wordmark-white.svg", "width": 562, "height": 102 }]
+                }
+            ]
+        },
+        {
+            "id": "glyph",
+            "name": "Glyph",
+            "description": "The database shape from the icon, in one color, for places where only one color is possible.",
+            "variants": [
+                {
+                    "ground": "light",
+                    "preview": "/images/brand/tablepro-glyph-black.svg",
+                    "files": [{ "src": "/images/brand/tablepro-glyph-black.svg", "width": 492, "height": 603 }]
+                },
+                {
+                    "ground": "dark",
+                    "preview": "/images/brand/tablepro-glyph-white.svg",
+                    "files": [{ "src": "/images/brand/tablepro-glyph-white.svg", "width": 492, "height": 603 }]
+                }
+            ]
+        }
+    ],
+    "colors": [
+        { "id": "orange", "name": "Orange", "hex": "#FF9300" },
+        { "id": "ink", "name": "Ink", "hex": "#1F1B16" },
+        { "id": "paper", "name": "Paper", "hex": "#F5F1EA" }
+    ]
+}

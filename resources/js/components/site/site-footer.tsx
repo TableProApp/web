@@ -245,6 +245,18 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </LocaleLink>
                         </li>
                         <li>
+                            {/* English only, so other languages link the English page and say so in the label. */}
+                            {locale === 'en' ? (
+                                <LocaleLink href="/brand" className={LINK}>
+                                    {groups.resources.brand}
+                                </LocaleLink>
+                            ) : (
+                                <a href="/brand" hrefLang="en" className={LINK}>
+                                    {groups.resources.brand}
+                                </a>
+                            )}
+                        </li>
+                        <li>
                             <External href={EXTERNAL.github}>{groups.resources.source}</External>
                         </li>
                         <li>

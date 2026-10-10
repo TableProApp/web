@@ -65,4 +65,8 @@ screenshots and stand up a competing commercial site with them.
 
 Do not commit images you do not have the rights to. Third-party logos under
 `public/images/sponsors/` belong to their owners and are used with permission;
-neither licence above extends to them.
+neither licence above extends to them. Nor does either licence cover the
+TablePro logo files under `public/images/brand/`, which are trademarks, or the
+brand guidelines text, which is CC BY 4.0. After the app icon changes,
+regenerate the PNG files there with `scripts/brand-kit.sh` (macOS, needs
+`rsvg-convert` from librsvg).

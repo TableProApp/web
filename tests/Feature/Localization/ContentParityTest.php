@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Legal\LegalDocuments;
 use App\Support\Content\MarkdownRenderer;
 use App\Support\Localization\Locales;
 use Illuminate\Support\Arr;
@@ -305,9 +306,17 @@ it('gives every translated content file the same keys, slots, markup and assets'
 });
 
 it('gives every legal translation the same heading ids', function (): void {
-    expect(glob(resource_path('data/legal/en/*.md')))->toHaveCount(3);
+    expect(glob(resource_path('data/legal/en/*.md')))->toHaveCount(4);
     foreach (array_diff(Locales::codes(), ['en']) as $locale) {
+        foreach (LegalDocuments::ENGLISH_ONLY as $document) {
+            expect(is_file(resource_path("data/legal/{$locale}/{$document}.md")))->toBeFalse("{$locale}/{$document}.md exists, but the document is English only");
+        }
+
         foreach (glob(resource_path('data/legal/en/*.md')) as $english) {
+            if (in_array(basename($english, '.md'), LegalDocuments::ENGLISH_ONLY, true)) {
+                continue;
+            }
+
             $translated = resource_path("data/legal/{$locale}/" . basename($english));
             expect(is_file($translated))->toBeTrue("{$locale}/" . basename($english) . ' is missing');
             expect(headingIds($translated))->toBe(headingIds($english), "{$locale}/" . basename($english) . ': heading ids differ');
