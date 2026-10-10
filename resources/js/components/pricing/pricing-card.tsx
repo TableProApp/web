@@ -10,6 +10,7 @@ import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { examplesText, highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
 import { PRICING, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
+import { discountedAmount, type Regional } from '@/lib/regional-pricing';
 import { cn } from '@/lib/utils';
 import { typedSeats, type SeatBound } from './seats';
 import type { Checkout } from './use-checkout';
@@ -29,6 +30,8 @@ interface PricingCardProps {
     onSeatsChange: (seats: number) => void;
     /** A previewed, valid discount code, sent with checkout. */
     discountCode: string | null;
+    /** The regional discount checkout will apply to this reader, once the platform has said so. */
+    regional: Regional | null;
 }
 
 /**
@@ -55,7 +58,7 @@ interface PricingCardProps {
  * column with its button at a readable width. Below 768px each card is one
  * column.
  */
-export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode }: PricingCardProps) {
+export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode, regional }: PricingCardProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
     const Title = headingLevel;
@@ -78,7 +81,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             </div>
 
             <div className="grid content-start gap-4 md:max-lg:col-start-1">
-                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} />}</div>
+                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} regional={regional} />}</div>
 
                 <p className="type-small text-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
@@ -116,11 +119,22 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
     );
 }
 
-function Price({ amount, unit, hidden = false }: { amount: number; unit?: string; hidden?: boolean }) {
-    const { m } = useI18n();
+/**
+ * An amount and its unit. With `listAmount`, the amount is what a regional
+ * discount brings it to, and the list price stands struck through before it,
+ * named for a screen reader, which reads no strikethrough.
+ */
+function Price({ amount, listAmount, unit, hidden = false }: { amount: number; listAmount?: number; unit?: string; hidden?: boolean }) {
+    const { m, fmt } = useI18n();
 
     return (
         <p hidden={hidden} className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            {listAmount !== undefined && (
+                <s className="type-body text-muted-foreground tabular-nums">
+                    <span className="sr-only">{fmt(m.pricing.regional.listPrice, { price: formatUsd(listAmount, m.pricing.currency) })}</span>
+                    <span aria-hidden="true">{formatUsd(listAmount, m.pricing.currency)}</span>
+                </s>
+            )}
             <span className="type-h1 text-foreground tabular-nums">{formatUsd(amount, m.pricing.currency)}</span>
             {unit && <span className="type-small text-muted-foreground">{unit}</span>}
         </p>
@@ -132,6 +146,7 @@ interface PaidPriceProps {
     cycle: BillingCycle;
     seats: number;
     onSeatsChange: (seats: number) => void;
+    regional: Regional | null;
 }
 
 /**
@@ -140,13 +155,26 @@ interface PaidPriceProps {
  * seat stepper, its bounds from pricing.json and the total for the seats
  * chosen, announced as it changes. The total line keeps its height, so
  * stepping moves nothing.
+ *
+ * Under a regional discount every amount is what checkout will charge. Team's
+ * total is discounted as a whole, as checkout discounts the order, so it can
+ * differ by a cent from the seat price times the seats.
  */
-function PaidPrice({ tier, cycle, seats, onSeatsChange }: PaidPriceProps) {
+function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
 
-    const prices = PRICING.cycles.map((each) => <Price key={each} amount={tierPrice(tier, each)} unit={m.pricing.units[tier][each]} hidden={each !== cycle} />);
+    const charged = (amount: number): number => (regional ? discountedAmount(amount, regional.percent) : amount);
+    const prices = PRICING.cycles.map((each) => (
+        <Price
+            key={each}
+            amount={charged(tierPrice(tier, each))}
+            listAmount={regional ? tierPrice(tier, each) : undefined}
+            unit={m.pricing.units[tier][each]}
+            hidden={each !== cycle}
+        />
+    ));
 
     if (tier === 'starter') {
         return <>{prices}</>;
@@ -154,7 +182,7 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange }: PaidPriceProps) {
 
     const { min, max } = PRICING.tiers.team.seats;
     const boundsId = `${id}-bounds`;
-    const total = formatUsd(teamTotal(seats, cycle), m.pricing.currency);
+    const total = formatUsd(charged(teamTotal(seats, cycle)), m.pricing.currency);
 
     function change(next: number): void {
         setBound(null);

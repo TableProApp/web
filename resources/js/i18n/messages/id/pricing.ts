@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",
         "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
     },
+    "regional": {
+        "note": "Harga untuk negara Anda ({country}): diskon {percent}%, diterapkan saat checkout.",
+        "listPrice": "Harga normal {price}"
+    },
     "discount": {
         "atCheckout": "Punya kode diskon? Masukkan saat checkout.",
         "summary": "Punya kode diskon?",

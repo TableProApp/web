@@ -1,7 +1,7 @@
 ---
 title: Política de privacidad
 description: Qué recopilan las apps, el sitio web y el portal de cuentas de TablePro, adónde se envía, cuánto tiempo se conserva y cómo modificarlo o eliminarlo.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
@@ -124,6 +124,8 @@ Handoff transmite el identificador de la conexión abierta y el nombre de la tab
 
 **Documentación.** La documentación en docs.tablepro.app está alojada en Mintlify, que recibe tu dirección IP y los datos de tu navegador con cada página, y las páginas cargan sus fuentes desde Google Fonts. La documentación hace su propia pregunta sobre cookies, porque no puede leer la respuesta que diste en este sitio. Hasta que selecciones **Allow** allí, no establece cookies ni guarda ningún ID de visitante. Si lo permites, Google Analytics establece las cookies `_ga` y `_ga_<ID>` y mide tus visitas a la documentación, y Mintlify guarda un ID de visitante aleatorio, `mintlify_anonymous_id`, en el almacenamiento local para contarlas. **Cookie settings**, en el pie de la documentación, cambia tu respuesta, y al rechazar se eliminan ambos. Base jurídica: tu consentimiento.
 
+**Idioma y descuento regional.** Para sugerirte la página en tu idioma cuando tu navegador no indica ninguno de los que ofrece el sitio, y para mostrar el descuento regional que aplicaría la compra, el sitio pregunta a Cloudflare (`/cdn-cgi/trace`) y a nuestro servidor de qué país procede tu conexión, y puede leer la zona horaria de tu dispositivo. Ninguna de las dos solicitudes lleva cookies, y la página no guarda nada de las respuestas. Base jurídica: interés legítimo.
+
 Leer el sitio no establece cookies propias. Las solicitudes de suscripción al boletín, compra y comprobación de códigos de descuento desde el sitio público omiten las credenciales: no envían cookies del portal de cuentas ni aceptan cookies de la respuesta. Abrir páginas del portal es una acción separada que establece las cookies del portal indicadas abajo. Todo lo que el sitio conserva en tu navegador aparece en [Cookies y almacenamiento del navegador](#cookies).
 
 ## Compras {#purchases}
@@ -150,6 +152,7 @@ Leer el sitio público y sus solicitudes de boletín, compra y códigos de descu
 - **`tablepro:analytics-consent`** (almacenamiento local, hasta que lo borres): tu respuesta a la pregunta sobre análisis, para no preguntarte en todas las páginas. El sitio web y el portal de cuentas lo comparten. Base jurídica: estrictamente necesario para respetar tu elección.
 - **`tablepro:attribution`** (almacenamiento local, 90 días): el registro de primera visita descrito en [Sitio web](#website). No contiene un identificador tuyo y solo se envía con una solicitud de compra, donde nuestro servidor lo descarta. Base jurídica: interés legítimo.
 - **`theme`** y **`tablepro:banner-dismissed`** (almacenamiento local, hasta que lo borres): si elegiste apariencia clara, oscura o del sistema, y qué aviso cerraste y hasta cuándo: 30 días, o un año si indicas que tienes licencia o compras una. Base jurídica: interés legítimo.
+- **`tablepro:language`** (almacenamiento local, hasta que lo borres): el idioma que elegiste en el menú de idiomas o en la barra de idioma, y cada idioma cuya sugerencia cerraste, para no volver a ofrecerlo. Base jurídica: interés legítimo.
 - **`mintlify_anonymous_id`** (almacenamiento local en docs.tablepro.app, lo guarda Mintlify, solo si permites Google Analytics allí): el ID de visitante descrito en [Sitio web](#website). Al rechazar se elimina. La documentación guarda su propia respuesta `tablepro:analytics-consent`. Base jurídica: consentimiento.
 - **Cookies que comienzan por `crisp-client/`** (Crisp, por ejemplo `crisp-client/session/…`; 6 meses, renovados cuando vuelves; establecidas en todas las páginas al cargar el chat): mantienen el chat y tu conversación entre páginas y visitas. Base jurídica: interés legítimo, para ofrecer soporte en todas las páginas.
 - **`tablepro-session` y `XSRF-TOKEN`** (cookies del portal de cuentas, 2 horas): mantienen tu sesión iniciada y protegen los formularios del portal contra falsificación de solicitudes entre sitios. Abrir otras páginas del portal, como la confirmación de compra y las páginas del boletín, también las establece. Las solicitudes de boletín, compra y códigos de descuento desde el sitio público omiten las credenciales y no conservan estas cookies. Base jurídica: estrictamente necesarias.
@@ -163,7 +166,7 @@ Puedes cambiar o retirar tu respuesta sobre análisis en cualquier momento desde
 Para lectores del Espacio Económico Europeo y del Reino Unido, las bases jurídicas según el RGPD y el RGPD del Reino Unido son:
 
 - **Contrato** (art. 6.1.b): venta y provisión de licencias, comprobaciones de licencia, portal de cuentas y Team Library.
-- **Interés legítimo** (art. 6.1.f): informe de uso de la app para Mac y búsqueda de país, registros de solicitudes de licencia, seguridad y prevención de abusos, registros del servidor web, Cloudflare Web Analytics, registro de atribución de compras y chat en directo en todas las páginas.
+- **Interés legítimo** (art. 6.1.f): informe de uso de la app para Mac y búsqueda de país, registros de solicitudes de licencia, seguridad y prevención de abusos, registros del servidor web, Cloudflare Web Analytics, registro de atribución de compras, consulta de país para el idioma y el descuento regional, y chat en directo en todas las páginas.
 - **Consentimiento** (art. 6.1.a): cookies de Google Analytics, informe de uso de la app para iPhone y iPad, boletín y conversaciones que inicias en el chat en directo.
 - **Obligación legal** (art. 6.1.c): registros fiscales y contables y respuestas a solicitudes legítimas.
 

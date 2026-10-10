@@ -140,6 +140,70 @@
             })();
         </script>
     @endif
+    @php($suggestable = $page['props']['localization']['suggestable'] ?? [])
+    @if(is_array($suggestable) && $suggestable !== [])
+        {{--
+            The language suggestion, before first paint.
+
+            `has-language-bar` shows the bar offering this page in the reader's
+            language, in the slot above the header and in place of the license
+            banner (app.css), so nothing moves when it fills in. The rule is
+            `suggestionFor` in resources/js/lib/language-suggestion.ts, which
+            this mirrors and tests/js/language-suggestion.test.ts runs it
+            against: the language the reader picked, else their first
+            supported browser language, offered when it is not this page's,
+            this page exists in it, and they have not closed the bar for it.
+
+            The per-page half comes from PHP and is the same for every reader,
+            so the cached HTML stays the same for everyone. The reader's half
+            is read here, in their browser. A reader with no supported browser
+            language may still get the bar after load, from their country
+            (LanguageBar); that is the one case that moves the page.
+
+            Emitted only where the page exists in another language, never on
+            an error page.
+        --}}
+        <script>
+            (function () {
+                var config = @json(\App\Support\Localization\LanguageDetection::headConfig(app()->getLocale(), array_values($suggestable)));
+                try {
+                    /* language-suggestion:start */
+                    var has = function (table, key) {
+                        return Object.prototype.hasOwnProperty.call(table, key);
+                    };
+                    var isSupported = function (code) {
+                        return typeof code === 'string' && has(config.supported, code.toLowerCase()) && config.supported[code.toLowerCase()] === code;
+                    };
+                    var match = function (tag) {
+                        var candidate = String(tag).replace(/^\s+|\s+$/g, '').toLowerCase().replace(/_/g, '-');
+                        while (candidate !== '') {
+                            var found = has(config.tags, candidate) ? config.tags[candidate] : has(config.supported, candidate) ? config.supported[candidate] : null;
+                            if (found !== null) {
+                                return isSupported(found) ? found : null;
+                            }
+                            candidate = candidate.slice(0, Math.max(0, candidate.lastIndexOf('-')));
+                        }
+                        return null;
+                    };
+                    var saved = null;
+                    try {
+                        saved = JSON.parse(localStorage.getItem('tablepro:language') || 'null');
+                    } catch (e) {}
+                    var chosen = saved && typeof saved === 'object' && isSupported(saved.chosen) ? saved.chosen : null;
+                    var dismissed = saved && typeof saved === 'object' && Array.isArray(saved.dismissed) ? saved.dismissed : [];
+                    var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+                    var wanted = chosen;
+                    for (var i = 0; wanted === null && i < languages.length; i++) {
+                        wanted = match(languages[i]);
+                    }
+                    if (wanted !== null && wanted !== config.page && config.suggestable.indexOf(wanted) !== -1 && dismissed.indexOf(wanted) === -1) {
+                        document.documentElement.classList.add('has-language-bar');
+                    }
+                    /* language-suggestion:end */
+                } catch (e) {}
+            })();
+        </script>
+    @endif
     {{--
         No third-party script is in this template. Crisp's chat loader is added
         by the page once it has loaded and the browser is idle

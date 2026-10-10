@@ -6,7 +6,12 @@ export default {
         "current": "Bahasa: {language}",
         "fallback": "Halaman ini tidak tersedia dalam bahasa Indonesia",
         "fallbackPost": "Artikel ini tidak tersedia dalam bahasa Indonesia",
-        "fallbackBlog": "Lihat daftar artikel blog"
+        "fallbackBlog": "Lihat daftar artikel blog",
+        "suggest": {
+            "label": "Saran bahasa",
+            "action": "Baca dalam bahasa Indonesia",
+            "dismiss": "Jangan sarankan bahasa Indonesia lagi"
+        }
     },
     "theme": {
         "label": "Tema",

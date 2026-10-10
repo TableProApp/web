@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "Todos los motores compatibles, el editor SQL, el asistente de IA, el servidor MCP y Safe Mode",
         "iphoneNote": "La app para iPhone y iPad no tiene funciones de pago. iCloud Sync es gratis en ella; para sincronizar con un Mac, este necesita Starter o Team."
     },
+    "regional": {
+        "note": "Precios para tu país ({country}): {percent}% de descuento, aplicado al finalizar la compra.",
+        "listPrice": "Precio de lista {price}"
+    },
     "discount": {
         "atCheckout": "¿Tienes un código de descuento? Introdúcelo al finalizar la compra.",
         "summary": "¿Tienes un código de descuento?",

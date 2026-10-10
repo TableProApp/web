@@ -103,6 +103,10 @@ export default {
         everythingElseDetail: 'Mọi engine được hỗ trợ, SQL editor, trợ lý AI, MCP server và Safe Mode',
         iphoneNote: 'Ứng dụng cho iPhone và iPad không có tính năng trả phí. Trên iPhone và iPad, iCloud Sync miễn phí; muốn đồng bộ với máy Mac thì máy Mac cần gói Starter hoặc Team.',
     },
+    regional: {
+        note: 'Giá cho quốc gia của bạn ({country}): giảm {percent}%, áp dụng khi thanh toán.',
+        listPrice: 'Giá gốc {price}',
+    },
     discount: {
         atCheckout: 'Có mã giảm giá? Bạn nhập mã ở bước thanh toán.',
         summary: 'Có mã giảm giá?',

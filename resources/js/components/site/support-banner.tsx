@@ -32,6 +32,9 @@ import { dismissBanner } from '@/lib/banner';
  * fit. The link and the dismiss button take the band's height as their
  * target, and the 32px button 44px of its width.
  *
+ * It shares its slot with the language bar, which takes it over when it
+ * applies (TopBanner, app.css).
+ *
  * It reports `license_banner_view`, `_click` and `_dismiss` to Google
  * Analytics, which applies the reader's consent choice itself.
  */
@@ -41,7 +44,10 @@ export default function SupportBanner() {
     const version = banner?.version ?? '';
 
     useEffect(() => {
-        if (version !== '' && document.documentElement.classList.contains('has-banner')) {
+        const root = document.documentElement.classList;
+
+        // Seen only while it holds the slot: the language bar takes it over (TopBanner).
+        if (version !== '' && root.contains('has-banner') && !root.contains('has-language-bar')) {
             trackEvent('license_banner_view', { version });
         }
     }, [version]);

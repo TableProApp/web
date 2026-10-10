@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",
         "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
     },
+    "regional": {
+        "note": "アクセス元の国（{country}）向けの価格：チェックアウト時に {percent}% 割引になります。",
+        "listPrice": "通常価格 {price}"
+    },
     "discount": {
         "atCheckout": "割引コードをお持ちですか？チェックアウト時に入力してください。",
         "summary": "割引コードをお持ちですか？",

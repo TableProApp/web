@@ -28,7 +28,9 @@ See `docs/architecture.md` before touching anything that posts data.
 English lives at the root; every other supported language uses its prefix in
 `resources/data/locales.json`, with the same slugs. The
 locale is a function of the URL and nothing else: no cookie, no session, no
-`Accept-Language`, no IP, no redirect between languages.
+`Accept-Language`, no IP, no redirect between languages. The language bar only
+suggests another language, decided in the reader's browser, never on the
+server (`docs/architecture.md`, "The language bar").
 
 - `resources/data/locales.json` is the one list of locales. PHP reads it through
   `App\Support\Localization\Locales`, TypeScript through `@data/locales.json`.
@@ -78,8 +80,8 @@ locale is a function of the URL and nothing else: no cookie, no session, no
 - The language crosses to the account app only explicitly: link
   `/account?locale={locale}` (never `/vi/account`), and post to `/checkout` and
   `/newsletter/subscribe` with `locale` in the body (`/discount/preview` takes
-  `{code}` only), every call with `credentials: 'omit'`, so no platform cookie
-  lands on a public page.
+  `{code}` only, `GET /discount/region` nothing), every call with
+  `credentials: 'omit'`, so no platform cookie lands on a public page.
 - Light theme by default; `localStorage.theme` holds an explicit choice, shared
   with the account app on the same origin.
 

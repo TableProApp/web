@@ -6,7 +6,12 @@ export default {
         "current": "Idioma: {language}",
         "fallback": "Esta página no está disponible en español",
         "fallbackPost": "Esta publicación no está en español",
-        "fallbackBlog": "Ver la lista de publicaciones"
+        "fallbackBlog": "Ver la lista de publicaciones",
+        "suggest": {
+            "label": "Sugerencia de idioma",
+            "action": "Leer esta página en español",
+            "dismiss": "No volver a sugerir español"
+        }
     },
     "theme": {
         "label": "Tema",

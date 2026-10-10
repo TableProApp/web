@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
@@ -124,6 +124,8 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 **文件**。位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
 
+**語言與地區折扣**。當您的瀏覽器語言中沒有本網站提供的語言時，為向您建議相應語言的網頁，並顯示結帳時將適用的地區折扣，網站會向 Cloudflare（`/cdn-cgi/trace`）和我們的伺服器詢問您的連線來自哪個國家或地區，並可能讀取裝置的時區。這兩項請求都不攜帶 Cookie，網頁也不會保存任何回應內容。合法依據：正當利益。
+
 僅閱讀網站不會設定網站自身的 Cookie。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，因此既不會傳送帳戶入口網站 Cookie，也不會接受回應中的 Cookie。開啟帳戶入口網站頁面是另一項操作，會設定以下入口網站 Cookie。網站在瀏覽器中保存的全部資訊列於 [Cookie 與瀏覽器儲存空間](#cookies)。
 
 ## 購買 {#purchases}
@@ -150,6 +152,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **`tablepro:analytics-consent`**（本機儲存空間，直至您清除）：保存對分析提問的回答，避免每個網頁重複詢問。網站和帳戶入口網站共用。合法依據：履行您的選擇所絕對必要。
 - **`tablepro:attribution`**（本機儲存空間，90 天）：[網站](#website)一節所述的首次造訪紀錄。不包含您的識別碼，僅隨結帳請求傳送，伺服器之後捨棄。合法依據：正當利益。
 - **`theme`** 和 **`tablepro:banner-dismissed`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀，以及關閉的橫幅和隱藏期限：30 天；若您表示已有授權或購買授權，則為一年。合法依據：正當利益。
+- **`tablepro:language`**（本機儲存空間，直至您清除）：保存您在語言選單或語言列中選擇的語言，以及您關閉過建議的語言，以免再次建議。合法依據：正當利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
 - **`tablepro-session` 和 `XSRF-TOKEN`**（帳戶入口網站 Cookie，兩小時）：保持登入並保護入口網站表單免受跨站請求偽造。開啟購買確認和電子報等其他入口網站網頁也會設定。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，也不會保留這些 Cookie。合法依據：絕對必要。
@@ -163,7 +166,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 對於歐洲經濟區和英國的讀者，GDPR 與 UK GDPR 下的合法依據為：
 
 - **契約**（第 6 條第 1 款 (b)）：授權銷售和提供、授權驗證、帳戶入口網站和 Team Library。
-- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用報告及國家查詢、授權請求日誌、安全和濫用防範、網頁伺服器日誌、Cloudflare Web Analytics、購買歸因紀錄和每個網頁的線上聊天。
+- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用報告及國家查詢、授權請求日誌、安全和濫用防範、網頁伺服器日誌、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
 - **同意**（第 6 條第 1 款 (a)）：Google Analytics Cookie、iPhone 與 iPad App 使用報告、電子報和您主動發起的線上聊天。
 - **法律義務**（第 6 條第 1 款 (c)）：稅務與會計紀錄，以及對合法請求的回應。
 

@@ -174,7 +174,8 @@ it('sits above the sticky header and scrolls away with the page', function (): v
         ->toContain('scroll-padding-top: 5rem;')
         ->not->toContain('calc(5rem + var(--banner-h))');
 
-    expect($layout)->toMatch('/<SupportBanner \/>\s*<div className="sticky top-0 z-40">\s*<SiteHeader \/>\s*<\/div>/');
+    expect($layout)->toMatch('/<TopBanner \/>\s*<div className="sticky top-0 z-40">\s*<SiteHeader \/>\s*<\/div>/');
+    expect((string) file_get_contents(resource_path('js/components/site/top-banner.tsx')))->toMatch('/<SupportBanner \/>\s*<LanguageBar \/>/');
 });
 
 it('keeps its wording to one line, in every language', function (string $locale): void {

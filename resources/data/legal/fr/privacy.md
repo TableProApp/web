@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes tablepro.app/account. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
@@ -124,6 +124,8 @@ Handoff transmet l’identifiant de la connexion ouverte et le nom de la table o
 
 **Documentation.** La documentation sur docs.tablepro.app est hébergée par Mintlify, qui reçoit votre adresse IP et les informations de votre navigateur à chaque page, et les pages chargent leurs polices depuis Google Fonts. La documentation pose sa propre question sur les cookies, car elle ne peut pas lire la réponse que vous avez donnée sur ce site. Tant que vous n’y choisissez pas **Allow**, elle ne dépose aucun cookie et ne conserve aucun identifiant de visiteur. Si vous l’autorisez, Google Analytics dépose les cookies `_ga` et `_ga_<ID>` et mesure vos visites de la documentation, et Mintlify conserve un identifiant de visiteur aléatoire, `mintlify_anonymous_id`, dans le stockage local pour les compter. **Cookie settings**, dans le pied de page de la documentation, modifie votre réponse, et un refus supprime les deux. Base légale : votre consentement.
 
+**Langue et réduction régionale.** Pour vous proposer la page dans votre langue lorsque votre navigateur n’en indique aucune de celles du site, et pour afficher la réduction régionale que le règlement appliquerait, le site demande à Cloudflare (`/cdn-cgi/trace`) et à notre serveur de quel pays provient votre connexion, et peut lire le fuseau horaire de votre appareil. Aucune de ces deux requêtes ne transporte de cookie, et la page ne conserve rien des réponses. Base légale : intérêt légitime.
+
 Consulter le site ne dépose aucun cookie propre. Les demandes d’abonnement à la newsletter, de règlement et de vérification de code de réduction depuis le site public omettent les identifiants : elles n’envoient pas les cookies du portail et n’acceptent pas les cookies de la réponse. L’ouverture des pages du portail est distincte et dépose les cookies du portail ci-dessous. Tout ce que le site conserve dans votre navigateur figure dans [Cookies et stockage du navigateur](#cookies).
 
 ## Achats {#purchases}
@@ -150,6 +152,7 @@ Consulter le site public et ses demandes de newsletter, de règlement et de code
 - **`tablepro:analytics-consent`** (stockage local, jusqu’à suppression) : votre réponse à la question sur l’analyse, pour éviter de la reposer sur chaque page. Le site et le portail de comptes la partagent. Base légale : strictement nécessaire pour respecter votre choix.
 - **`tablepro:attribution`** (stockage local, 90 jours) : enregistrement de première visite décrit dans [Site web](#website). Il ne contient aucun identifiant personnel et n’accompagne qu’une demande de règlement, où notre serveur l’écarte. Base légale : intérêt légitime.
 - **`theme`** et **`tablepro:banner-dismissed`** (stockage local, jusqu’à suppression) : votre choix d’apparence claire, sombre ou système, et le bandeau fermé et sa durée de masquage : 30 jours, ou un an si vous indiquez posséder une licence ou en achetez une. Base légale : intérêt légitime.
+- **`tablepro:language`** (stockage local, jusqu’à suppression) : la langue que vous avez choisie dans le menu des langues ou dans la barre de langue, et chaque langue dont vous avez fermé la suggestion, pour qu’elle ne soit plus proposée. Base légale : intérêt légitime.
 - **`mintlify_anonymous_id`** (stockage local sur docs.tablepro.app, déposé par Mintlify, uniquement si vous y autorisez Google Analytics) : l’identifiant de visiteur décrit dans [Site web](#website). Un refus le supprime. La documentation conserve sa propre réponse `tablepro:analytics-consent`. Base légale : consentement.
 - **Cookies commençant par `crisp-client/`** (Crisp, par exemple `crisp-client/session/…` ; 6 mois, renouvelés à votre retour ; déposés sur chaque page après le chargement du chat) : maintiennent le chat et votre conversation entre pages et visites. Base légale : intérêt légitime, pour proposer une assistance sur chaque page.
 - **`tablepro-session` et `XSRF-TOKEN`** (cookies du portail, 2 heures) : maintiennent votre connexion et protègent les formulaires contre la falsification de requêtes intersites. L’ouverture d’autres pages du portail, comme la confirmation d’achat et les pages de newsletter, les dépose aussi. Les demandes de newsletter, de règlement et de code de réduction depuis le site public omettent les identifiants et ne conservent pas ces cookies. Base légale : strictement nécessaires.
@@ -163,7 +166,7 @@ Vous pouvez modifier ou retirer votre réponse sur l’analyse à tout moment vi
 Pour les lecteurs de l’Espace économique européen et du Royaume-Uni, les bases légales au titre du RGPD et du UK GDPR sont :
 
 - **Contrat** (art. 6(1)(b)) : vente et fourniture d’une licence, vérifications de licence, portail de comptes et Team Library.
-- **Intérêt légitime** (art. 6(1)(f)) : rapport d’utilisation Mac et recherche du pays, journaux des demandes de licence, sécurité et prévention des abus, journaux du serveur web, Cloudflare Web Analytics, enregistrement d’attribution des achats et chat sur chaque page.
+- **Intérêt légitime** (art. 6(1)(f)) : rapport d’utilisation Mac et recherche du pays, journaux des demandes de licence, sécurité et prévention des abus, journaux du serveur web, Cloudflare Web Analytics, enregistrement d’attribution des achats, recherche du pays pour la langue et la réduction régionale, et chat sur chaque page.
 - **Consentement** (art. 6(1)(a)) : cookies Google Analytics, rapport d’utilisation iPhone et iPad, newsletter et conversations initiées dans le chat.
 - **Obligation légale** (art. 6(1)(c)) : documents fiscaux et comptables et réponses aux demandes légales.
 

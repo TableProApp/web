@@ -10,7 +10,8 @@
  *
  * Words the commerce rules keep out (positioning §12): no "most popular", no
  * typed saving, no "unlock", no promise of future updates for a one-time
- * purchase, nothing about regional prices or other ways to pay.
+ * purchase, nothing about other ways to pay. A regional discount is named only
+ * in `regional`, and only once the platform says it applies to the reader.
  */
 export default {
     /** `formatUsd()` style: the amount after a dollar sign, a point before the cents, commas between thousands. */
@@ -133,6 +134,18 @@ export default {
         everythingElse: 'Everything else in the app',
         everythingElseDetail: 'Every supported engine, the SQL editor, the AI assistant, the MCP server and Safe Mode',
         iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Starter or Team.',
+    },
+    /**
+     * The regional discount checkout applies in some countries, shown with the
+     * plans once the platform has said it applies to this reader
+     * (`GET /discount/region`). `{country}` is the country's name in the page's
+     * language, in parentheses so no language needs an article for it;
+     * `{percent}` comes from the platform. `listPrice` names the struck price
+     * for a screen reader.
+     */
+    regional: {
+        note: 'Prices for your country ({country}): {percent}% off, applied at checkout.',
+        listPrice: 'List price {price}',
     },
     discount: {
         /** Under Polar, whose checkout takes the code itself. */

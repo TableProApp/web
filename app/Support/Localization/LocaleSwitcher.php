@@ -72,6 +72,35 @@ final class LocaleSwitcher
     }
 
     /**
+     * The locales a language suggestion may offer from this page: those whose
+     * switcher option is this page's own equivalent, not a fallback to an
+     * index, and not the current locale.
+     *
+     * None on an error page. A 404 for a page that exists in another locale
+     * already says so itself (RenderErrorPage), and any other error page has
+     * nothing to translate.
+     *
+     * @param  list<array{locale: string, native: string, hreflang: string, href: string, current: bool, fallback: bool}>  $items  `forRequest()`'s answer for the same request
+     * @return list<string>
+     */
+    public function suggestable(Request $request, array $items): array
+    {
+        if ($this->seo->isErrorPage($request)) {
+            return [];
+        }
+
+        $locales = [];
+
+        foreach ($items as $item) {
+            if (! $item['current'] && ! $item['fallback']) {
+                $locales[] = $item['locale'];
+            }
+        }
+
+        return $locales;
+    }
+
+    /**
      * The page the switcher translates. An error page has none, except the
      * 404 for a page missing in this locale: that page still exists in the
      * others, so `/vi/blog/{slug}` switches like the post itself.

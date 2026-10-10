@@ -2,12 +2,14 @@ import { useState } from 'react';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
+import { useRegionalPricing } from '@/hooks/use-regional-pricing';
 import { Trans, useI18n } from '@/i18n';
 import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
 import BillingCycleControl from './billing-cycle-control';
 import DiscountField from './discount-field';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
+import RegionalNote from './regional-note';
 import type { CheckoutProp } from './types';
 import { useCheckout } from './use-checkout';
 
@@ -32,6 +34,12 @@ interface PricingPlansProps {
  * minimum seats. Both render on the server, so the block reads the same
  * before and after hydration.
  *
+ * Where checkout applies a regional discount, the platform says so after the
+ * block has rendered (`useRegionalPricing`): the paid prices then show what
+ * checkout will charge beside the struck list price, and a line above the
+ * notes names the country. The server render, and so the cached page and its
+ * structured data, always carries the list prices.
+ *
  * The cards are joined cells of the page grid (design-system §4.7), so the
  * block belongs in a wide section.
  */
@@ -41,6 +49,12 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
     const [seats, setSeats] = useState<number>(PRICING.tiers.team.seats.min);
     const [discountCode, setDiscountCode] = useState<string | null>(null);
     const flow = useCheckout(checkout.provider);
+    /*
+     * A typed code replaces the regional discount at checkout; the two never
+     * stack. So while one is applied, the cards show the list prices again.
+     */
+    const regionalDiscount = useRegionalPricing();
+    const regional = discountCode === null ? regionalDiscount : null;
 
     /*
      * pricing.json names the merchant of record (Polar). Only its own checkout
@@ -65,11 +79,13 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         seats={seats}
                         onSeatsChange={setSeats}
                         discountCode={discountCode}
+                        regional={regional}
                     />
                 ))}
             </CellGrid>
 
             <div className="mt-6 grid gap-3">
+                {regional && <RegionalNote regional={regional} />}
                 <p className="type-small text-muted-foreground">
                     <Trans
                         text={plural(m.pricing.refund, PRICING.refund.days)}

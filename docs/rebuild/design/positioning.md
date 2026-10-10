@@ -455,7 +455,12 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 **Deliberately absent:**
 - "the whole app", "no feature gating", "free forever";
 - lifetime updates, savings badges or "most popular";
-- regional prices, PPP, bank transfer, VND or named local payment gateways.
+- regional prices, PPP, bank transfer, VND or named local payment gateways, with one exception: the plan block
+  (`/pricing` and the homepage's `#pricing`) shows the regional discount checkout applies in some countries, once the
+  platform says it applies to the reader (`GET /discount/region`). It is a struck list price, the price checkout will
+  charge, and one line naming the country and the percentage (`pricing.regional`). It is never marketed elsewhere:
+  no FAQ answer, banner, meta description, OG card or JSON-LD mentions it, and the words "PPP", "purchasing power",
+  "regional pricing" and "regional prices" stay banned (§12.1). The privacy policy discloses the country lookup.
 
 ---
 
@@ -620,11 +625,12 @@ toàn" appear. Prose keeps "Safe Mode".
 | per seat / seat / minimum {n} seats | mỗi seat / seat / tối thiểu {n} seat | Explain on first use: "mỗi seat là một máy Mac được kích hoạt" |
 | activated Macs | máy Mac đã kích hoạt | |
 | subscription | gói thuê bao | Avoid "đăng ký", which also means sign up |
-| Prices in USD | Giá tính bằng USD | A VI page never implies VND or a regional price |
+| Prices in USD | Giá tính bằng USD | A VI page never implies VND. A regional price appears only as the plan block's regional discount (§9, "Deliberately absent") |
 | merchant of record | merchant of record | "Polar là merchant of record: Polar nhận thanh toán, xử lý thuế và gửi hóa đơn" |
 | refund / refund policy | hoàn tiền / chính sách hoàn tiền | |
 | priority support | hỗ trợ ưu tiên | Always with its definition: emails answered first, within one business day / "email được trả lời trước, trong vòng một ngày làm việc" |
 | discount code | mã giảm giá | |
+| regional discount / list price | giảm giá theo khu vực / giá gốc | Only in the plan block's regional line and its struck price (§9), and in the privacy policy |
 | in-app purchases | mua hàng trong ứng dụng | Apple's term |
 | billing & invoices | thanh toán và hóa đơn | |
 | sign in / sign out / sign-in link | đăng nhập / đăng xuất / liên kết đăng nhập | |
@@ -698,7 +704,7 @@ Structured data and OG cards take their text from those sources, so they need no
 | Hype | Any (legal pages exempt) | powerful, seamless, effortless, revolutionary, supercharge, game-changing, ultimate, best-in-class, next-generation, cutting-edge, magic, AI-powered | mạnh mẽ, liền mạch, đột phá, vượt trội, tuyệt vời, hàng đầu, tốt nhất, thế hệ mới | Plain verbs and names |
 | Typed counts | TablePro | numerals for engines, MCP tools, AI providers, Safe Mode levels, sync record types, paid features, UI languages | same | Data-driven values, or names instead of counts. A competitor's count appears only in a comparison cell with a source (§12.2, A6) |
 | Stale facts | TablePro | macOS 14, Sonoma, 16 MCP tools, 13 AI providers, remote MCP / MCP over TLS, CSV inspector, Quick Switcher, Redis pub/sub, Mongo pipeline builder, SQLCipher, "#1 on GitHub Trending" (unqualified), bring your own key | same terms | The current fact from the app at the copy floor. A competitor's OS floor is written as a version number ("macOS 14 or later", §12.2, A2), never as a release name |
-| Commerce | Any | most popular, best value, save N% (typed), lifetime updates, all future updates, money-back guarantee, PPP, regional pricing, bank transfer, VND, named local payment gateways, LemonSqueezy | phổ biến nhất, tiết kiệm N%, cập nhật trọn đời, chuyển khoản ngân hàng | "Refunds within 7 days of purchase" (policy wording owned by the refund page); "Paid once, no expiry date" |
+| Commerce | Any | most popular, best value, save N% (typed), lifetime updates, all future updates, money-back guarantee, PPP, regional pricing, bank transfer, VND, named local payment gateways, LemonSqueezy | phổ biến nhất, tiết kiệm N%, cập nhật trọn đời, chuyển khoản ngân hàng | "Refunds within 7 days of purchase" (policy wording owned by the refund page); "Paid once, no expiry date"; the plan block's regional discount line, worded without the banned phrases (§9) |
 | iOS 1.0 specifics | TablePro | jump hosts on iPhone, Redis key browsing on iPhone, side-by-side iPad layout, editing long values on iPhone, nothing connects until you unlock, feature parity | same | Describe App Store 1.0 only; rows that exist only on the app's main branch are gated in data |
 
 ### 12.2 Exemptions and allowlist

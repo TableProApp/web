@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "所有受支持的引擎、SQL 编辑器、AI 助手、MCP 服务器和 Safe Mode",
         "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud Sync 在该应用中免费。若要与 Mac 同步，Mac 需要 Starter 或 Team。"
     },
+    "regional": {
+        "note": "您所在国家或地区（{country}）的价格：结账时享受 {percent}% 折扣。",
+        "listPrice": "原价 {price}"
+    },
     "discount": {
         "atCheckout": "有优惠码？请在结账时输入。",
         "summary": "有优惠码？",
