@@ -1,8 +1,552 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T07:41:01Z",
-  "commit": "f6c6d0ffd22190ac19e148d86ba1b26058851de7",
-  "contentSha256": "9230f56066af08026e1500e27f6e2ccc4ab6a26e6fa2b5040c8412dc77411b4a",
-  "integrations": [],
+  "generatedAt": "2026-10-10T10:03:35Z",
+  "commit": "83b5a7dc4f1b7acc6db78112aa09759ea079bd64",
+  "release": "v1.20261010.1",
+  "contentSha256": "63fad7f270599c0d78ecfcdd1c2cc54b30c1018c3e5ce1bf0ac0b12c9a1e46f2",
+  "integrations": [
+    {
+      "slug": "claude-code",
+      "name": "Claude Code",
+      "summary": "Connect Claude Code to your databases through the MCP server built into TablePro.",
+      "description": "Claude Code runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Claude Code can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one claude mcp add command.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/MCP",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/MCP"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/mcp-clients#claude-code",
+        "url": "https://docs.tablepro.app/integrations/mcp-clients#claude-code"
+      },
+      "host": {
+        "name": "Claude Code",
+        "url": "https://claude.com/product/claude-code"
+      },
+      "minTableProVersion": {
+        "macos": "0.37.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "ai-clients",
+        "command-line"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema",
+          "data"
+        ],
+        "writes": [
+          "data",
+          "schema"
+        ],
+        "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
+        "lowersSafeMode": false,
+        "network": "internet",
+        "networkNote": "Claude Code sends query results to the model provider it is set up with.",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/mcp-clients#claude-code",
+        "docs": "https://docs.tablepro.app/developers/mcp-tools",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "claude-code-icon-512-167a3fc0cdf5.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "167a3fc0cdf58d80f908b53158ecff1c4e8f46ca8fc797461cb88236ea3ddfaf"
+        },
+        "128": {
+          "file": "claude-code-icon-128-ef26f09ef678.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "ef26f09ef6786ee5e06947b76f6ca40ea2b64c76ccf241c187b1c99877710d45"
+        }
+      },
+      "keywords": [
+        "mcp",
+        "claude",
+        "anthropic",
+        "terminal",
+        "ai"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "e50b52a1e380694c21f48aa9430e7d042821133904d5544f93246c40fea75b1c",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "claude-desktop",
+      "name": "Claude Desktop",
+      "summary": "Connect Claude Desktop to your databases through the MCP server built into TablePro.",
+      "description": "Claude Desktop runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Claude can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry in Claude Desktop's MCP config file.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/MCP",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/MCP"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above",
+        "url": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above"
+      },
+      "host": {
+        "name": "Claude Desktop",
+        "url": "https://claude.com/download"
+      },
+      "minTableProVersion": {
+        "macos": "0.37.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "ai-clients"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema",
+          "data"
+        ],
+        "writes": [
+          "data",
+          "schema"
+        ],
+        "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
+        "lowersSafeMode": false,
+        "network": "internet",
+        "networkNote": "Claude Desktop sends query results to Anthropic to answer you.",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above",
+        "docs": "https://docs.tablepro.app/developers/mcp-tools",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "claude-desktop-icon-512-167a3fc0cdf5.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "167a3fc0cdf58d80f908b53158ecff1c4e8f46ca8fc797461cb88236ea3ddfaf"
+        },
+        "128": {
+          "file": "claude-desktop-icon-128-ef26f09ef678.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "ef26f09ef6786ee5e06947b76f6ca40ea2b64c76ccf241c187b1c99877710d45"
+        }
+      },
+      "keywords": [
+        "mcp",
+        "claude",
+        "anthropic",
+        "ai"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "c0a273461b065e2a49cbdf5c1b6fa1be63b027f29784f8165eedae9105e91810",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "command-line",
+      "name": "Command line",
+      "summary": "Open database URLs and SQL files in TablePro from Terminal with the tablepro command.",
+      "description": "The tablepro command opens a connection URL, a database file or a SQL file in TablePro from Terminal or a script. tablepro \"postgresql://user@127.0.0.1:5432/app\" opens that database, and tablepro schema.sql opens the file in a query tab.\n\nA URL that matches a saved connection uses it. Any other URL opens a temporary session that is not saved. Scripts can also run open -b com.TablePro with the same URL.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/Services/Infrastructure",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/Services/Infrastructure"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/terminal",
+        "url": "https://docs.tablepro.app/integrations/terminal"
+      },
+      "minTableProVersion": {
+        "macos": "0.57.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "command-line"
+      ],
+      "surfaces": [
+        "cli",
+        "database-url"
+      ],
+      "disclosures": {
+        "reads": [],
+        "writes": [],
+        "lowersSafeMode": false,
+        "network": "none",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/terminal",
+        "docs": "https://docs.tablepro.app/connections/urls",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "command-line-icon-512-edee49a2d95b.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "edee49a2d95bb07a71c0dc540eea5e8f27ac2e24fba341a4e271521c31001ace"
+        },
+        "128": {
+          "file": "command-line-icon-128-f79b75114e13.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "f79b75114e13f0abb96789a42dd2c20dba3da7626bff5e01b111f0f298ec9221"
+        }
+      },
+      "keywords": [
+        "terminal",
+        "shell",
+        "cli",
+        "database url"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "b9a57ebb1c91b32cb7be94df126462c870c388e590398cdf0993119db0305b2f",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "cursor",
+      "name": "Cursor",
+      "summary": "Connect Cursor's agent to your databases through the MCP server built into TablePro.",
+      "description": "Cursor runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Cursor's agent can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry in Cursor's global or project MCP config file.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/MCP",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/MCP"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above",
+        "url": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above"
+      },
+      "host": {
+        "name": "Cursor",
+        "url": "https://cursor.com"
+      },
+      "minTableProVersion": {
+        "macos": "0.37.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "ai-clients",
+        "editors"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema",
+          "data"
+        ],
+        "writes": [
+          "data",
+          "schema"
+        ],
+        "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
+        "lowersSafeMode": false,
+        "network": "internet",
+        "networkNote": "Cursor sends query results to the model provider it uses.",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/mcp-clients#clients-that-take-the-json-above",
+        "docs": "https://docs.tablepro.app/developers/mcp-tools",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "cursor-icon-512-167a3fc0cdf5.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "167a3fc0cdf58d80f908b53158ecff1c4e8f46ca8fc797461cb88236ea3ddfaf"
+        },
+        "128": {
+          "file": "cursor-icon-128-ef26f09ef678.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "ef26f09ef6786ee5e06947b76f6ca40ea2b64c76ccf241c187b1c99877710d45"
+        }
+      },
+      "keywords": [
+        "mcp",
+        "agent",
+        "editor",
+        "ai"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "4a39116adba29ee5f2f8e92caf00fad1728bbb0efecc6047cf1947173ffc806b",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "shortcuts",
+      "name": "Shortcuts",
+      "summary": "Add rows to a table and open a connection from Shortcuts on iPhone and iPad.",
+      "description": "The TablePro app for iPhone and iPad adds three actions to Shortcuts, Siri and the Share Sheet: Add Row to Table, Add Rows to Table and Open Connection.\n\nThe two insert actions take JSON or CSV, insert up to 10,000 rows per run, and run in the background without opening the app.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TableProMobile/TableProMobile/Intents",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TableProMobile/TableProMobile/Intents"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/ios-shortcuts",
+        "url": "https://docs.tablepro.app/integrations/ios-shortcuts"
+      },
+      "host": {
+        "name": "Shortcuts",
+        "url": "https://support.apple.com/guide/shortcuts/welcome/ios"
+      },
+      "minTableProVersion": {
+        "ios": "1.0",
+        "ipados": "1.0"
+      },
+      "platforms": [
+        "ios",
+        "ipados"
+      ],
+      "categories": [
+        "automation"
+      ],
+      "surfaces": [
+        "shortcuts"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema"
+        ],
+        "writes": [
+          "data"
+        ],
+        "lowersSafeMode": false,
+        "network": "none",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/ios-shortcuts",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "shortcuts-icon-512-c55fca85a08b.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "c55fca85a08bd186e21e31de1cc65580fb8a32c795702760b7197bd440d6f76d"
+        },
+        "128": {
+          "file": "shortcuts-icon-128-9b3a07dfea29.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "9b3a07dfea29beb60da3d6f0a03eaee9138ddc0b151041596a344c15d2b53b20"
+        }
+      },
+      "keywords": [
+        "ios",
+        "ipad",
+        "siri",
+        "app intents",
+        "automation"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "9208fcf6688e6cec5ad0dbaaeb1b4510590ce02416855aecca7aa8bed6ef3b49",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "zed",
+      "name": "Zed",
+      "summary": "Connect Zed's agent to your databases through the MCP server built into TablePro.",
+      "description": "Zed runs tablepro-mcp, a bridge that ships inside TablePro, as a context server. Through it Zed's agent can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry under context_servers in Zed's settings file.",
+      "tier": "official",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "TablePro",
+        "github": "TableProApp",
+        "githubId": 260450047,
+        "url": "https://tablepro.app"
+      },
+      "source": {
+        "type": "github",
+        "repo": "TableProApp/TablePro",
+        "repoId": 1117891044,
+        "path": "TablePro/Core/MCP",
+        "url": "https://github.com/TableProApp/TablePro/tree/HEAD/TablePro/Core/MCP"
+      },
+      "license": "AGPL-3.0-only",
+      "install": {
+        "type": "built-in",
+        "docs": "https://docs.tablepro.app/integrations/mcp-clients#zed",
+        "url": "https://docs.tablepro.app/integrations/mcp-clients#zed"
+      },
+      "host": {
+        "name": "Zed",
+        "url": "https://zed.dev"
+      },
+      "minTableProVersion": {
+        "macos": "0.37.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "ai-clients",
+        "editors"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "disclosures": {
+        "reads": [
+          "connections",
+          "schema",
+          "data"
+        ],
+        "writes": [
+          "data",
+          "schema"
+        ],
+        "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
+        "lowersSafeMode": false,
+        "network": "internet",
+        "networkNote": "Zed sends query results to the language model provider you set up.",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://docs.tablepro.app/integrations/mcp-clients#zed",
+        "docs": "https://docs.tablepro.app/developers/mcp-tools",
+        "issues": "https://github.com/TableProApp/TablePro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "zed-icon-512-167a3fc0cdf5.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "167a3fc0cdf58d80f908b53158ecff1c4e8f46ca8fc797461cb88236ea3ddfaf"
+        },
+        "128": {
+          "file": "zed-icon-128-ef26f09ef678.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "ef26f09ef6786ee5e06947b76f6ca40ea2b64c76ccf241c187b1c99877710d45"
+        }
+      },
+      "keywords": [
+        "mcp",
+        "agent",
+        "editor",
+        "ai"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "summarySha256": "4d0b96a6d76f1366b2094fcc1d06199f971c6ef4490070bd4a21256c0dbfc247",
+      "closedSource": false,
+      "screenshots": []
+    }
+  ],
   "removed": []
 }
