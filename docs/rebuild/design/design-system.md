@@ -36,7 +36,7 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 |---|---|
 | Grounds | Achromatic neutrals. Light: white page, `#f7f7f7` bands. Dark: `#121212` page, lighter surfaces for elevation |
 | Accent | One brand hue, 55. The fill `#f68001` is unchanged. Every derived brand token returns to hue 55; the old text accent had drifted to 45 in light and 58 in dark |
-| Theme | Light by default. Light / Dark / System control in both apps. Shared `localStorage.theme`. Driven by the theme class, never by the OS media query, and painted with no flash |
+| Theme | System by default (decided 2026-10-10; it was light). Light / Dark / System control in both apps. Shared `localStorage.theme`. Driven by the theme class, which the head script sets from the choice or the OS, and painted with no flash |
 | Type | Inter Variable for everything except code and identifiers, which use IBM Plex Mono 400. Running copy is 16px. Tables and cards use 14px. Nothing is smaller than 12px. Vietnamese headings get line-height 1.3. Labels are never uppercase or tracked |
 | Width | Content column 1216px (Container 1280 minus 32px gutters), reading column 704px, narrow 576px. Gutters 16 / 24 / 32 |
 | Rhythm | Section spacing 64 / 80 / 96px, replacing the old stacked spacers of up to 184px between sections. The frame's join sits in the middle of it (§4.3) |
@@ -69,7 +69,7 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 - **Neutrals carry no hue** (chroma 0). Screenshots of a Mac app read true on a neutral ground, while a warm-tinted page would colour-cast the captures. The orange accent then has no competition.
 - **Brand hue 55, unchanged.** Only lightness and chroma vary between brand tokens, and every one sits inside sRGB (checked; Appendix A). The light text accent moves from `oklch(0.52 0.148 45)` (`#ab4501`) to `oklch(0.52 0.125 55)` (`#9e5209`), and the dark one from hue 58 to 55. That brings them back to the brand hue, as spec §0 asks.
 - **Tokens are opaque.** The old `--rule` was an alpha value, so its contrast depended on whatever sat behind it. Opaque tokens have one defined ratio, and the contrast test can parse them.
-- **Light is the default.** The `.dark` class (set before paint, §2.8) swaps every token.
+- **The system decides by default.** The `.dark` class (set before paint, §2.8) swaps every token.
 
 ### 2.2 Tokens
 
@@ -253,7 +253,7 @@ Every row of the §2.3 table becomes an assertion. Add a gamut assertion: no tok
 
 ### 2.8 Theme mechanics (identical in both apps)
 
-**Storage.** `localStorage.theme` holds `'light'`, `'dark'` or `'system'`. If the key is absent, unreadable, or holds any other value, the page is light. The key is shared, because both apps live on `tablepro.app`.
+**Storage.** `localStorage.theme` holds `'light'`, `'dark'` or `'system'`. If the key is absent, unreadable, or holds any other value, the choice is `system` and the page follows the OS (decided 2026-10-10: every surveyed site with a theme control follows the OS until the reader picks, as NN/g and web.dev advise). The key is shared, because both apps live on `tablepro.app`.
 
 **Head script.** It runs before CSS paints and replaces the inline theme script in each app's `app.blade.php`. This script is the whole content of the shared partial `resources/views/partials/head-theme.blade.php` (architecture §1.10 copies it verbatim; a byte-identical file under architecture §3). It knows nothing about assets: a supplied LCP image is preloaded by a separate block in `app.blade.php` (architecture §1.9), so the partial stays identical in the license repo.
 
@@ -261,7 +261,7 @@ Every row of the §2.3 table becomes an assertion. Add a gamut assertion: no tok
 <meta name="theme-color" content="#ffffff">
 <script>
 (function () {
-  var choice = 'light';
+  var choice = 'system';
   try {
     var t = localStorage.getItem('theme');
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }
@@ -802,7 +802,7 @@ Repo key:
 #### 5.3.15 LanguageSwitcher
 
 - **Header:**
-  - A `quiet` `sm` button: globe icon + the *current* endonym ("English" / "Tiếng Việt"), accessible name "Language: English" / "Ngôn ngữ: Tiếng Việt" (it contains the visible text, WCAG 2.5.3).
+  - A 40 × 40 globe icon button, named and titled "Language: English" / "Ngôn ngữ: Tiếng Việt" (decided 2026-10-10: the header kept a visible control at the top, as W3C and NN/g ask, at the width of one icon). The footer menu still shows the endonym.
   - It opens a menu (`--raised`, `--shadow-overlay`, 12px radius, 4px padding).
   - Items are `<a href hreflang lang>` links to the **equivalent page**, labelled with endonyms. The current item gets a check and `aria-current="true"`.
   - Keyboard: arrow keys and Escape, and focus returns to the button.
@@ -817,7 +817,7 @@ Repo key:
 
 One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and §3), with three variants. Each app passes its labels as props, so the file stays byte-identical.
 
-- **`variant="menu"` (header):**
+- **`variant="menu"` (the account app's header; the public header has no theme control since 2026-10-10):**
   - A 40 × 40 `quiet` icon button. Its icon reflects the *choice* (sun / moon / monitor), selected by CSS from `[data-theme-choice]`.
   - Accessible name: "Theme: Light" / "Giao diện: Sáng" (Dark / Tối; System / Theo hệ thống).
   - Opens a menu (`--raised`, `--shadow-overlay`, 12px radius) of three `menuitemradio` items with icon and label, `aria-checked` on the current one. Arrow keys move; Escape closes and returns focus to the button.
@@ -834,10 +834,11 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Left: the logo (`/images/logo.png` at 28px + "TablePro" at 18/600), linking to `/` or `/vi`.
 - ≥ 1024 (items and order from sitemap §B.1):
   - Nav: **Features ▾** · Databases · Pricing · Docs ↗ · Blog. Features is a `<button aria-expanded>` that opens a disclosure panel (`--raised`, `--shadow-overlay`, 12px radius) listing All features, the seven feature pages (Querying, Data editing, Schema, Import & export, AI & MCP, Connections, Sync & teams) and iPhone & iPad. Escape closes it and returns focus. With a mouse it also opens on hover, 80ms after the pointer rests on the button, and closes 150ms after it leaves the button and the panel; a click on a panel that hover opened pins it open. Touch and pen keep the click (decided 2026-10-06).
-  - Right: LanguageSwitcher, ThemeControl, GitHub (`quiet` `sm`, GitHub's mark and the star count, from 1280px only), Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
-  - GitHub's link is 79px with a count and 96px with the word "GitHub". From 1280 the row has 1216px, and the widest language (French) needs 1169 with the word. Below 1280 the row has no room for it in every language, so it shows only in the menu there.
+  - Right: LanguageSwitcher (a globe), GitHub (`quiet` `sm`, GitHub's mark and the star count), Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
+  - No theme control: the theme follows the system until the reader picks one in the footer or the menu (decided 2026-10-10, after a 40-site survey: every site with a theme control follows the OS by default, and most keep it out of the header).
+  - GitHub's link is 79px with a count and 96px with the word "GitHub".
 - < 1024: logo, Download (`primary` `sm`, in a 44px target), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
-- The desktop row needs more than the 960px a 1024px window gives it in French (1065px), Portuguese (1040), Spanish (1008), German (980) and Italian (965), so those languages switch at 1152px instead (`headerLayout`, `site-links.ts`). `SiteChromeTest` holds the measured widths and fails when a header label grows.
+- The desktop row needs more than the 960px a 1024px window gives it in French (1044px) and Spanish (991), measured with GitHub at its widest, so those languages switch at 1152px instead (`headerLayout`, `site-links.ts`). `SiteChromeTest` holds the measured widths and fails when a header label grows.
 - Internal hrefs go through `LocaleLink`, which is why this component never moves to the license repo (§9).
 - `scroll-padding-top: 80px`, so anchors and focused elements clear the header (WCAG 2.4.11). The banner scrolls away, so it adds nothing.
 
@@ -1894,7 +1895,7 @@ Confirm no mark touches the line above. Also check:
 2. **"Save 33%".** The spec forbids *inventing* savings. This one is arithmetic on published prices (33.1% Starter, 33.3% Team), so it stays, as a computed caption rather than a badge (§2.4). If the saving statement is ever dropped, the caption shows only "Billed once a year".
 3. **Equal pricing emphasis.** All plan purchase buttons are `secondary`, and no card is highlighted. That follows from "no invented 'most popular'" and "do not optimize for aggressive conversion". The homepage still has exactly one primary button per region.
 4. **Sponsors third.** Kept, as a compact strip between Databases and the workflow sections, so the explanation is interrupted as little as possible.
-5. **Light default for OS-dark visitors.** This is a product decision (spec §0). It changes what dark-OS visitors see on first load, which is why the theme control sits in the header rather than only in the footer.
+5. **The theme default.** Light by default (spec §0) is why the theme control once sat in the header: a dark-OS visitor needed a way out on first load. On 2026-10-10 the default became the system's theme and the control moved to the footer and the menu, as on every surveyed site that has one.
 6. **Footer newsletter stats.** The design does not need `/api/newsletter/stats`. Sitemap §B.3 settles it: the footer shows no subscriber count and does not call the endpoint, whose contract stays unchanged.
 7. **Grid lines and a quiet page.** The owner asked for the grid-line look (§4.7) on 2026-10-06. It stays compatible with "the page stays quiet" by being neutral, static and at `--rule` weight, by drawing structure that already exists (the column, the block boundaries, sets of like items) and by leaving prose sections unlined. A frame that needed hatching, graph paper or accent marks to be seen would break §1.1 and §1.4.
 

@@ -19,8 +19,8 @@ import {
  * The theme choice, executed against a fake browser. Run with `npm run test:js`.
  *
  * The head script decides the theme before paint; this module decides it after
- * load. Both must agree, and both must fall back to light whenever storage is
- * missing, unreadable or holds something unexpected. The head script is run
+ * load. Both must agree, and both must fall back to the system whenever storage
+ * is missing, unreadable or holds something unexpected. The head script is run
  * here too, from the shared partial, so the two cannot drift apart unnoticed.
  */
 
@@ -143,27 +143,28 @@ beforeEach(() => {
     delete (globalThis as Record<string, unknown>).document;
 });
 
-test('reads only the three known choices, and anything else as light', () => {
+test('reads only the three known choices, and anything else as system', () => {
     assert.equal(parseTheme('light'), 'light');
     assert.equal(parseTheme('dark'), 'dark');
     assert.equal(parseTheme('system'), 'system');
-    assert.equal(parseTheme(null), 'light');
-    assert.equal(parseTheme(''), 'light');
-    assert.equal(parseTheme('Dark'), 'light');
-    assert.equal(parseTheme('auto'), 'light');
+    assert.equal(parseTheme(null), 'system');
+    assert.equal(parseTheme(''), 'system');
+    assert.equal(parseTheme('Dark'), 'system');
+    assert.equal(parseTheme('auto'), 'system');
 });
 
-test('is light for a visitor who never chose, even on a dark system', () => {
+test('follows the system for a visitor who never chose', () => {
     installBrowser({ systemDark: true });
 
-    assert.equal(readTheme(), 'light');
-    assert.equal(resolveDark(readTheme(), true), false);
+    assert.equal(readTheme(), 'system');
+    assert.equal(resolveDark(readTheme(), true), true);
+    assert.equal(resolveDark(readTheme(), false), false);
 });
 
-test('is light when storage throws', () => {
+test('follows the system when storage throws', () => {
     installBrowser({ storageThrows: true, stored: 'dark' });
 
-    assert.equal(readTheme(), 'light');
+    assert.equal(readTheme(), 'system');
 });
 
 test('follows the system only when the reader chose system', () => {

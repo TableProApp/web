@@ -10,9 +10,10 @@
  * `resolveDark()` below before anything is drawn; this module takes over once
  * the page is interactive.
  *
- * Light is the default. A missing key, an unreadable key (storage throws in a
- * private window) and any value other than the three below all mean light, so
- * a visitor whose system is dark still sees light until they choose otherwise.
+ * The system decides by default. A missing key, an unreadable key (storage
+ * throws in a private window) and any value other than the three below all
+ * mean `system`, so a visitor whose system is dark sees dark until they choose
+ * otherwise.
  *
  * Pure apart from the browser globals it touches at call time, and with
  * relative imports only, so `node --test` loads it directly.
@@ -32,17 +33,17 @@ export const THEME_COLORS = { light: '#ffffff', dark: '#121212' } as const;
 
 const SYSTEM_DARK_QUERY = '(prefers-color-scheme: dark)';
 
-/** Anything but a known choice reads as light, matching the head script. */
+/** Anything but a known choice reads as `system`, matching the head script. */
 export function parseTheme(value: unknown): ThemeChoice {
-    return value === 'dark' || value === 'system' || value === 'light' ? value : 'light';
+    return value === 'dark' || value === 'system' || value === 'light' ? value : 'system';
 }
 
-/** The stored choice, or light when there is none or storage refuses. */
+/** The stored choice, or `system` when there is none or storage refuses. */
 export function readTheme(): ThemeChoice {
     try {
         return parseTheme(window.localStorage.getItem(THEME_STORAGE_KEY));
     } catch {
-        return 'light';
+        return 'system';
     }
 }
 
@@ -100,8 +101,8 @@ export function renderTheme(choice: ThemeChoice): void {
  * The reader chose a theme: store it, paint it, and tell every control.
  *
  * A storage failure is not an error. The choice holds for this page and the
- * next load falls back to light, which is the honest outcome for a browser
- * that cannot remember anything.
+ * next load falls back to the system's theme, which is the honest outcome for
+ * a browser that cannot remember anything.
  */
 export function applyTheme(choice: ThemeChoice): void {
     try {

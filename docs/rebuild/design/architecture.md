@@ -26,7 +26,7 @@ both repos under the contract in §3.
 | SEO | A single PHP `PageRegistry` drives the canonical URL, the robots value, hreflang (with `x-default` set to English), `og:locale`, the sitemap with alternates, the OG card choice and the language switcher. Each page lists the locales it **renders** in and the locales it is **indexed** in, which can differ (`/vi/blog` renders but is `noindex, follow`). React renders the head from one shared `seo` prop. JSON-LD is built per page type in TypeScript with `inLanguage`. There is no FAQPage, HowTo or rating markup. |
 | Errors | `Inertia::handleExceptionsUsing` renders a branded `Error` page for 404 and 410 (and 500/503 when debug is off) in the locale taken from the path. Static Blade fallbacks cover 500/503. One global middleware normalises trailing slashes and `/index.php`, and applies `resources/data/redirects.json` (301 and 410) in a single hop that keeps the query string. |
 | Assets | One manifest per owning app (`resources/data/assets.json` here) feeds an `<AssetSlot id>` component and carries every handoff field the spec requires. Placeholder or supplied mode depends only on the manifest's `status`. A placeholder never makes an `<img>` request, and in production it renders nothing. `docs/visual-assets.md` is generated from the manifest plus per-family prose fragments. |
-| Theme | One shared head partial, as specified in design-system §2.8. The default is light, storage access is guarded, the script sets `color-scheme`, `data-theme-choice` and a single `theme-color` (`#ffffff` / `#121212`), and the stored values are `light`, `dark` and `system`. A shared `ThemeControl` offers Light, Dark and System. Images switch on the `.dark` class, never on `prefers-color-scheme`. |
+| Theme | One shared head partial, as specified in design-system §2.8. The default is `system` (it was light until 2026-10-10), storage access is guarded, the script sets `color-scheme`, `data-theme-choice` and a single `theme-color` (`#ffffff` / `#121212`), and the stored values are `light`, `dark` and `system`. A shared `ThemeControl` offers Light, Dark and System. Images switch on the `.dark` class, never on `prefers-color-scheme`. |
 | Third parties | Crisp loads only on click. The Polar/LemonSqueezy SDK loads lazily at checkout intent instead of on every page. The Product Hunt hotlink goes. GA Consent Mode stays as it is. |
 | Download | Server: GitHub `releases/latest`, falling back to the appcast, with a fresh cache, a last-good copy and a negative cache. Client: nothing starts automatically. iPhone and iPad get the App Store card. A Chromium `architecture` hint only highlights a button. |
 | Platform locale | The account app takes `locale` from the query, a form field or the JSON body. Signed URLs ignore it, and platform URLs stay unprefixed (§2). |
@@ -945,7 +945,7 @@ design-system §2.8, verbatim:
 <meta name="theme-color" content="#ffffff">
 <script>
 (function () {
-  var choice = 'light';                                         // light by default
+  var choice = 'system';                                        // the OS decides by default
   try {
     var t = localStorage.getItem('theme');
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }

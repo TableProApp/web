@@ -2,7 +2,7 @@
 <meta name="theme-color" content="#ffffff">
 <script>
 (function () {
-  var choice = 'light';
+  var choice = 'system';
   try {
     var t = localStorage.getItem('theme');
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }

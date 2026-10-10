@@ -148,8 +148,8 @@ const HEADER_FROM_1152: HeaderLayout = {
 };
 
 // The desktop row is wider than the 960px a 1024px window gives it in these languages
-// (fr 1065px, pt-BR 1040, es 1008, de 980, it 965), so they keep the menu button to 1152px.
-export const WIDE_HEADER_LOCALES: readonly string[] = ['de', 'es', 'fr', 'it', 'pt-BR'];
+// (fr 1044px, es 991), so they keep the menu button to 1152px.
+export const WIDE_HEADER_LOCALES: readonly string[] = ['es', 'fr'];
 
 export function headerLayout(locale: string): HeaderLayout {
     return WIDE_HEADER_LOCALES.includes(locale) ? HEADER_FROM_1152 : HEADER_FROM_1024;

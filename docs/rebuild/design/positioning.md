@@ -473,10 +473,10 @@ and §11 win.
 
 ### 10.1 Header and mobile menu
 
-**Desktop** (sitemap §B.1): logo · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · Language ·
-Theme · GitHub · Account · **Download** (button). GitHub is GitHub's mark and the star count ("6.2k"), from 1280px
-only (decided 2026-10-10). It is also linked from the footer's Resources and Community groups and from the homepage
-open-source section.
+**Desktop** (sitemap §B.1): logo · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · Language (a
+globe) · GitHub · Account · **Download** (button). GitHub is GitHub's mark and the star count ("6.2k"). It is also
+linked from the footer's Resources and Community groups and from the homepage open-source section. The theme control is
+in the footer and the mobile menu only (decided 2026-10-10).
 
 | Slot | English | Tiếng Việt | Notes |
 |---|---|---|---|
@@ -485,8 +485,8 @@ open-source section.
 | Pricing | Pricing | Bảng giá | `/pricing` |
 | Docs | Docs ↗ | Tài liệu ↗ | External, English only. VI accessible name "Tài liệu (tiếng Anh)", `hreflang="en"` |
 | Blog | Blog | Blog | The VI listing labels English-only posts "(tiếng Anh)" |
-| Language | {current language name} ▾, then English · Tiếng Việt | same | Accessible name "Language" / "Ngôn ngữ". Endonyms, no flags or codes. Each option links to the equivalent page, with `aria-current` on the active one |
-| Theme | Icon button ▾, then Light · Dark · System | Sáng · Tối · Theo hệ thống | Accessible name "Theme" / "Giao diện". Stored in `localStorage` key `theme`; light when nothing is stored |
+| Language | Globe icon, then English · Tiếng Việt | same | Accessible name "Language: English" / "Ngôn ngữ: Tiếng Việt". Endonyms, no flags or codes. Each option links to the equivalent page, with `aria-current` on the active one |
+| Theme (footer and mobile menu) | Light · Dark · System | Sáng · Tối · Theo hệ thống | Accessible name "Theme" / "Giao diện". Stored in `localStorage` key `theme`; the system's theme when nothing is stored |
 | Account | Account | Tài khoản | `/account?locale={locale}`, unprefixed |
 | Download button | Download | Tải về | `/download` · `/vi/download`; `download_click{location:'header', platform:'mac'}`. The label stays neutral when a platform ships |
 | Skip link | Skip to content | Chuyển đến nội dung chính | |

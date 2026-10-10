@@ -82,7 +82,7 @@ server (`docs/architecture.md`, "The language bar").
   `/newsletter/subscribe` with `locale` in the body (`/discount/preview` takes
   `{code}` only, `GET /discount/region` nothing), every call with
   `credentials: 'omit'`, so no platform cookie lands on a public page.
-- Light theme by default; `localStorage.theme` holds an explicit choice, shared
+- The theme follows the OS by default; `localStorage.theme` holds an explicit choice, shared
   with the account app on the same origin.
 
 ## Conventions

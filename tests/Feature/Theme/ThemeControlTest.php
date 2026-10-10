@@ -3,9 +3,11 @@
 use PHPUnit\Framework\Assert;
 
 /**
- * The theme control: Light, Dark and System, in the header as a menu, in the
- * mobile menu as a segmented control and in the footer as the same control
- * drawn with icons (design-system §5.3.16).
+ * The theme control: Light, Dark and System, in the mobile menu as a
+ * segmented control and in the footer as the same control drawn with icons
+ * (design-system §5.3.16). The public header has none: the theme follows the
+ * system until the reader picks one. The `menu` variant is the account app's
+ * header.
  *
  * The control is one file shared byte for byte with the account app, so it
  * takes its words as props and imports nothing app-specific. Its server markup
@@ -88,10 +90,10 @@ it('draws the current choice from the head script\'s attribute, so the first pai
     expect($tokens)->toContain(':root:not([data-theme-choice]) .theme-choice-icon[data-choice="light"]');
 });
 
-it('puts the menu in the header, the segmented form in the mobile menu and the icons in the footer bar', function (): void {
+it('leaves the header to the footer bar and the mobile menu', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
-    expect($read('site-header.tsx'))->toContain('<ThemeControl variant="menu" labels={m.controls.theme} />');
+    expect($read('site-header.tsx'))->not->toContain('ThemeControl');
     expect($read('mobile-nav.tsx'))->toContain('<ThemeControl variant="segmented" labels={m.controls.theme} />');
 
     // The footer hands its labels to the shared bar, which draws the control.
@@ -110,22 +112,14 @@ it('renders the same markup whatever the theme, named in the page language', fun
     $html = ssrHtml($path);
     $labels = themeLabels($locale);
 
-    // The header button: named "Theme" until the choice is known after mount, with all three icons present.
-    Assert::assertMatchesRegularExpression(
-        '/<button[^>]*aria-label="' . preg_quote($labels['label'], '/') . '"[^>]*aria-haspopup="menu"/u',
-        $html,
-        "{$path}: the header theme button must be named in the page language",
-    );
-
     foreach (['light', 'dark', 'system'] as $choice) {
-        Assert::assertStringContainsString("data-choice=\"{$choice}\"", $html);
         Assert::assertStringContainsString("data-theme-option=\"{$choice}\"", $html);
         Assert::assertStringContainsString('>' . $labels[$choice] . '</label>', $html, "{$path}: the {$choice} segment must be labelled in the page language");
         Assert::assertStringContainsString('title="' . $labels[$choice] . '"', $html, "{$path}: the footer's {$choice} icon must carry its word as a tooltip");
         Assert::assertStringContainsString('<span class="sr-only">' . $labels[$choice] . '</span></label>', $html, "{$path}: the footer's {$choice} icon must be named for assistive tech");
     }
 
-    // The server cannot know the stored theme, so it renders light as checked, like the head script's default.
+    // The server cannot know the stored theme, so it renders light as checked: the theme a page gets without scripts.
     // Each radio is read whole, because React places `checked` before `value`.
     preg_match_all('/<input type="radio"[^>]*>/', $html, $radios);
 

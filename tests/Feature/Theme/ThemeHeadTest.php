@@ -54,21 +54,21 @@ it('is the design system\'s script, verbatim, behind the shared header', functio
     Assert::assertSame($block[1] ?? null, themePartialBody(), 'The partial must be design-system §2.8, byte for byte');
 });
 
-it('is light unless the reader chose otherwise, and survives storage that throws', function (): void {
+it('follows the system unless the reader chose otherwise, and survives storage that throws', function (): void {
     $script = themePartialBody();
 
-    $default = strpos($script, "var choice = 'light';");
+    $default = strpos($script, "var choice = 'system';");
     $try = strpos($script, 'try {');
     $read = strpos($script, "localStorage.getItem('theme')");
     $catch = strpos($script, '} catch (e) {}');
 
-    Assert::assertNotFalse($default, 'Light must be the starting choice');
+    Assert::assertNotFalse($default, 'System must be the starting choice');
     Assert::assertNotFalse($try);
     Assert::assertNotFalse($read, 'The choice is read from the shared `theme` key');
     Assert::assertNotFalse($catch);
-    Assert::assertTrue($default < $try && $try < $read && $read < $catch, 'Storage must be read inside try, after light is set');
+    Assert::assertTrue($default < $try && $try < $read && $read < $catch, 'Storage must be read inside try, after the default is set');
 
-    // Only the three known values are accepted; anything else stays light.
+    // Only the three known values are accepted; anything else stays system.
     expect($script)->toContain("if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }");
 });
 
