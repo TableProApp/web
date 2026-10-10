@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T10:03:35Z",
-  "commit": "83b5a7dc4f1b7acc6db78112aa09759ea079bd64",
-  "release": "v1.20261010.1",
-  "contentSha256": "63fad7f270599c0d78ecfcdd1c2cc54b30c1018c3e5ce1bf0ac0b12c9a1e46f2",
+  "generatedAt": "2026-10-10T15:04:27Z",
+  "commit": "df4330ba8ab7cfef9373a4763521f54031961031",
+  "release": "v1.20261010.2",
+  "contentSha256": "d48b1016008d440a8f3b1b0074b64ea0d585c90dd149dd0e627af67b2a71f87d",
   "integrations": [
     {
       "slug": "claude-code",
@@ -361,6 +361,99 @@
       "addedAt": "2026-10-10",
       "lastVerifiedAt": "2026-10-10",
       "summarySha256": "4a39116adba29ee5f2f8e92caf00fad1728bbb0efecc6047cf1947173ffc806b",
+      "closedSource": false,
+      "screenshots": []
+    },
+    {
+      "slug": "localwp",
+      "name": "Local",
+      "summary": "Open the MySQL database of a running Local WordPress site in TablePro.",
+      "description": "A Local add-on that adds a button to the Database tab of a running site. It reads the site's database name, user and password from Local, forwards a port on 127.0.0.1 to the site's MySQL socket, and opens a mysql:// URL for that port in TablePro.\n\nInstall the .tgz from the latest release in Local under Add-ons, Installed, Install from Disk. Needs Local 10 or later.",
+      "tier": "community",
+      "status": {
+        "state": "active"
+      },
+      "publisher": {
+        "name": "Mario Peischl",
+        "github": "electricarts",
+        "githubId": 625286,
+        "url": "https://electricarts.de"
+      },
+      "source": {
+        "type": "github",
+        "repo": "electricarts/local-tablepro",
+        "repoId": 1309032022,
+        "url": "https://github.com/electricarts/local-tablepro"
+      },
+      "license": "MIT",
+      "install": {
+        "type": "github-release",
+        "url": "https://github.com/electricarts/local-tablepro/releases/latest"
+      },
+      "host": {
+        "name": "Local",
+        "url": "https://localwp.com",
+        "minVersion": "10.0"
+      },
+      "minTableProVersion": {
+        "macos": "0.37.0"
+      },
+      "platforms": [
+        "macos"
+      ],
+      "categories": [
+        "local-development"
+      ],
+      "surfaces": [
+        "database-url"
+      ],
+      "disclosures": {
+        "reads": [],
+        "writes": [],
+        "lowersSafeMode": true,
+        "safeModeNote": "Opens site databases with safeModeLevel=0 (Silent), so no query asks for confirmation.",
+        "network": "local",
+        "networkNote": "Opens a port on 127.0.0.1 until the site stops.",
+        "account": false,
+        "payment": "free"
+      },
+      "links": {
+        "homepage": "https://github.com/electricarts/local-tablepro",
+        "issues": "https://github.com/electricarts/local-tablepro/issues"
+      },
+      "icon": {
+        "512": {
+          "file": "localwp-icon-512-b9e21bc93851.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "b9e21bc93851ed98ec7e29e3679706cb3deac7afa6dc750173b4ed5870a0e7e0"
+        },
+        "128": {
+          "file": "localwp-icon-128-6364ca244ccc.png",
+          "width": 128,
+          "height": 128,
+          "sha256": "6364ca244ccc18b4d4f70aa8afef3c267767076fd77d8819ab10b8f9518ed684"
+        }
+      },
+      "keywords": [
+        "wordpress",
+        "mysql",
+        "localwp"
+      ],
+      "addedAt": "2026-10-10",
+      "lastVerifiedAt": "2026-10-10",
+      "compliance": {
+        "grace": {
+          "startedAt": "2026-10-10",
+          "endsAt": "2026-12-09",
+          "items": [
+            "brand-name",
+            "brand-icon"
+          ],
+          "tracking": "https://github.com/electricarts/local-tablepro/issues/10"
+        }
+      },
+      "summarySha256": "ba9f8cb1cd739c3990b3c21df36763e70981656902905eb50520c5b99918f7df",
       "closedSource": false,
       "screenshots": []
     },
