@@ -96,7 +96,7 @@ it('retires exactly the URLs the disposition table retires', function (): void {
         '/cockroachdb-client' => [301, '/postgresql-client#cockroachdb'],
         '/compare/azimutt' => [410, null],
         '/docs' => [301, 'https://docs.tablepro.app/'],
-        '/docs/raycast' => [301, 'https://docs.tablepro.app/external-api/raycast'],
+        '/docs/raycast' => [301, 'https://docs.tablepro.app/integrations/raycast'],
         '/mariadb-client' => [301, '/mysql-client#mariadb'],
         '/og/bespoke/og-site-en.png' => [301, '/og.png'],
         '/pglite-client' => [301, '/postgresql-client#pglite'],

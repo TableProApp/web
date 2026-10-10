@@ -83,7 +83,7 @@ With **Read & Write** and **Silent**, ordinary writes can run without a prompt. 
 
 Some statements are refused whatever the settings: anything that reads or writes files on the server or runs server-side code, and more than one statement in a single call, except a SQL Server script.
 
-For a narrower token than the one `tablepro-mcp` carries, such as **Read Only** limited to a few connections, generate one under **Settings > Integrations > Authentication** and connect the client over HTTP instead. The [MCP Clients](https://docs.tablepro.app/external-api/mcp-clients#http-transport) docs show that config.
+For a narrower token than the one `tablepro-mcp` carries, such as **Read Only** limited to a few connections, generate one under **Settings > Integrations > Authentication** and connect the client over HTTP instead. The [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) docs show that config.
 
 ## Review activity {#activity}
 
@@ -102,4 +102,4 @@ For a narrower token than the one `tablepro-mcp` carries, such as **Read Only** 
 - **This connection is read only for external clients**: the statement writes and **External Clients** is **Read Only**. Change it, or run the statement in TablePro yourself.
 - **The connection is missing from `list_connections`**: it is **Blocked**, or its AI policy is set to **Never**.
 
-See [MCP Tools](https://docs.tablepro.app/external-api/mcp-tools) for the tool list and [MCP Server](https://docs.tablepro.app/features/mcp) for settings. Feature overviews: [MCP](/features/ai-mcp#mcp) and [Safe Mode](/features/data-editing#safe-mode). If TablePro cannot reach the database, check [SSH tunneling](/blog/postgresql-ssh-tunnel-mac) or [Docker port publishing](/blog/connect-postgresql-mysql-docker-mac).
+See [MCP Tools](https://docs.tablepro.app/developers/mcp-tools) for the tool list and [MCP Server](https://docs.tablepro.app/features/mcp) for settings. Feature overviews: [MCP](/features/ai-mcp#mcp) and [Safe Mode](/features/data-editing#safe-mode). If TablePro cannot reach the database, check [SSH tunneling](/blog/postgresql-ssh-tunnel-mac) or [Docker port publishing](/blog/connect-postgresql-mysql-docker-mac).
