@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T15:41:52Z",
-  "commit": "c99e6a8cdebf2256886fddfbab42f6606e03cd33",
-  "release": "v1.20261010.3",
-  "contentSha256": "06022c15e1d8963eec78b4892e98b54d68220b98b3d36cf6bb798c09fcf9649b",
+  "generatedAt": "2026-10-10T15:54:18Z",
+  "commit": "fffab9aff14cc7398b1c1f884fbc79ac66be962f",
+  "release": "v1.20261010.4",
+  "contentSha256": "552642680fabb82251d0068c449c079569ca16dd6f8689a5687f22c6c7b2a432",
   "integrations": [
     {
       "slug": "claude-code",
@@ -63,7 +63,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Claude Code sends query results to its model provider.",
+        "networkNote": "Claude Code sends tool results, such as connection names, schemas and rows, to its model provider.",
         "account": false,
         "payment": "free"
       },
@@ -156,7 +156,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Claude Desktop sends query results to Anthropic.",
+        "networkNote": "Claude Desktop sends tool results, such as connection names, schemas and rows, to Anthropic.",
         "account": false,
         "payment": "free"
       },
@@ -329,7 +329,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Cursor sends query results to its model provider.",
+        "networkNote": "Cursor sends tool results, such as connection names, schemas and rows, to Cursor's servers and its model provider.",
         "account": false,
         "payment": "free"
       },
@@ -605,7 +605,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Zed sends query results to its model provider.",
+        "networkNote": "Zed sends tool results, such as connection names, schemas and rows, to its model provider.",
         "account": false,
         "payment": "free"
       },
