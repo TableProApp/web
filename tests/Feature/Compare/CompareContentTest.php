@@ -5,22 +5,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
-/**
- * The compare pages' copy follows the schema in
- * resources/js/components/compare/README.md, so the one template can render
- * every comparison and every fact on it stays in resources/data.
- *
- * - The sections are the blueprint's (sitemap §E.3), in a fixed shape, with
- *   3-5 reasons on each side of the short answer and 2-4 questions.
- * - Every product-specific fact in `comparisons.json` has a row label, and
- *   nothing else does.
- * - A sentence cites only facts its product's data has, links only to this
- *   site's own paths, and names only paid features that exist.
- * - Switching steps appear only where TablePro has an importer for the
- *   product (`facts.json` → `connectionImport`).
- * - Copy uses only the tokens the template fills, and types no price, URL or
- *   benchmark: those come from data.
- */
 const COMPARE_PAGE_KEYS = ['seo', 'og', 'header', 'shortAnswer', 'glance', 'rows', 'stronger', 'differs', 'limits', 'switching', 'faq', 'notes'];
 
 const COMPARE_STANDARD_ROWS = ['platforms', 'price', 'licence', 'databases', 'ai', 'mcp', 'ios', 'sync', 'import'];
@@ -38,14 +22,13 @@ function comparedProductsBySlug(): Collection
 }
 
 /**
- * Every English compare page file: [locale, slug, copy]. ContentParityTest holds each translation to its keys, tokens, tags and ids.
- *
  * @return list<array{0: string, 1: string, 2: array<string, mixed>}>
  */
 function comparePageCopies(): array
 {
     $pages = [];
 
+    // English only: ContentParityTest holds each translation to its keys, tokens, tags and ids.
     foreach (File::glob(resource_path('data/content/en/compare/*.json')) ?: [] as $path) {
         $slug = pathinfo($path, PATHINFO_FILENAME);
 
@@ -66,14 +49,12 @@ function compareHubCopy(string $locale): array
 }
 
 /**
- * The `{tokens}` a page's prose may use, from its product's data: the
- * template fills these and nothing else (components/compare/model.ts).
- *
  * @param  array<string, mixed>  $product
  * @return list<string>
  */
 function compareProseTokens(array $product): array
 {
+    // What components/compare/model.ts fills, and nothing else.
     $tokens = ['name', 'status.version', 'status.date', 'starterExamples', 'teamExamples', 'macLanguages'];
 
     if (($product['mac']['minVersion'] ?? null) !== null) {
@@ -110,8 +91,6 @@ function compareTokensIn(string $text): array
 }
 
 /**
- * Whether a `cite` entry names a fact the product's data has.
- *
  * @param  array<string, mixed>  $product
  */
 function compareCitable(array $product, string $entry): bool
@@ -312,7 +291,6 @@ it('gives the hub TablePro’s own line, and every comparison a trademark notice
 it('does not sell free AI and MCP as a difference from a product that includes both', function (): void {
     $tableplus = comparedProductsBySlug()['tableplus'];
 
-    // The premise: TablePlus's sourced cells say it has both, and none names a paid edition for them.
     expect($tableplus['cells']['ai']['state'])->toBe('yes');
     expect($tableplus['cells']['mcp']['state'])->toBe('yes');
 

@@ -9,11 +9,6 @@ use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The feature hub and the feature pages (sitemap §A.2, §E.4, §E.8;
- * design-system §8.2): what the controller sends, the facts it computes from
- * the data files, and what a reader receives once the page is rendered.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -27,9 +22,6 @@ function featurePagesData(string $file): array
 }
 
 /**
- * Engine names from engines.json for which `$test` holds, in data order: the
- * expectation is derived from the file, never typed.
- *
  * @param  callable(array<string, mixed>): bool  $test
  * @return list<string>
  */

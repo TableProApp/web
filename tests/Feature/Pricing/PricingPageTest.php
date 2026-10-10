@@ -10,17 +10,6 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * `/pricing` and `/vi/pricing` (sitemap §A.1, §E.5; design-system §8.6).
- *
- * What the page may and may not say is the commerce part of positioning §12:
- * prices, seats and timings only from resources/data/pricing.json, the paid
- * features only from paid-features.json, no "most popular", no typed saving,
- * no "unlock", no update promise for a one-time purchase, and nothing about
- * other ways to pay. The one regional price is the plan block's discount line,
- * never named with the banned words (RegionalPricingTest). The props carry the copy and the
- * checkout provider; the server-rendered checks need the SSR bundle.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -34,8 +23,6 @@ function pricingPageJson(string $file): array
 }
 
 /**
- * The source files whose words this page owns, in both languages.
- *
  * @return list<string>
  */
 function pricingCopySources(): array
@@ -50,12 +37,9 @@ function pricingCopySources(): array
     ];
 }
 
-/**
- * A source's text with comments removed, so a docblock that explains a rule
- * does not count as breaking it.
- */
 function pricingVisibleText(string $path): string
 {
+    // Without comments, so a docblock that explains a rule does not count as breaking it.
     $text = (string) file_get_contents($path);
 
     if (str_ends_with($path, '.ts')) {
@@ -66,8 +50,6 @@ function pricingVisibleText(string $path): string
 }
 
 /**
- * The plan cards' prices in document order. `hidden` marks a cycle that is not the chosen one.
- *
  * @return list<array{price: string, hidden: bool}>
  */
 function pricingPricePoints(string $html): array
@@ -78,8 +60,6 @@ function pricingPricePoints(string $html): array
 }
 
 /**
- * The plan cards' prices from pricing.json in document order, every cycle but the yearly one hidden.
- *
  * @return list<array{price: string, hidden: bool}>
  */
 function pricingExpectedPricePoints(string $pattern, string $decimal): array
@@ -275,7 +255,6 @@ it('server-renders the plans, the table and every section, with prices written f
         }
     }
 
-    // One offer per price in pricing.json, in the order the cards show them.
     expect(array_column($offers, 'price'))->toBe($expected);
 
     foreach ($offers as $offer) {

@@ -10,23 +10,9 @@ use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * `/compare`, `/compare/{slug}` and their Vietnamese twins (sitemap §A.4,
- * §C.4, §E.3, §E.8).
- *
- * The props carry the product's dated, sourced entry from comparisons.json,
- * the page's copy and the hub's template labels, and every date already
- * formatted for the page's language. Expectations are read from the data
- * files rather than typed, so a re-check of a competitor's price never needs a
- * test edit. The server-rendered cases (behind `requireSsr()`) check what a
- * reader and a crawler actually get: the section ids other pages link to, the
- * prices formatted from data, the sources, and no review or rating markup.
- */
 beforeEach(function (): void {
     withoutVite();
-    // Only GitHub: a bare Http::fake() would also answer the SSR gateway's
-    // request with an empty body, and every server-rendered case would read
-    // the client-only shell.
+    // Only GitHub: a bare Http::fake() would also answer the SSR gateway with an empty body.
     Http::fake(['api.github.com/*' => Http::response([], 503)]);
 });
 
@@ -267,7 +253,7 @@ it('names the Mac app’s interface languages from platforms.json', function (st
     $names = json_decode(File::get(resource_path("data/content/{$locale}/compare/index.json")), true)['labels']['languages'];
     $codes = collect(json_decode(File::get(resource_path('data/platforms.json')), true)['platforms'])->firstWhere('id', 'mac')['appLanguages'];
     $html = html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5);
-    // The page props carry the template; the rendered page must not.
+    // The props carry the template; only <main> must not.
     $html = substr($html, (int) strpos($html, '<main'), (int) strrpos($html, '</main>') - (int) strpos($html, '<main'));
 
     expect($html)->not->toContain('{macLanguages}');

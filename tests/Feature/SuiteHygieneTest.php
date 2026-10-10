@@ -1,21 +1,6 @@
 <?php
 
 /**
- * Mistakes in the suite itself that make a guard pass whatever it checks.
- *
- * Pest's `toContain(...$needles)` reads every argument as a needle; it has no
- * message parameter. Under `->not`, a second argument turns the check into
- * "not every needle is present", and since the message is never in the
- * subject, that always holds. Three guards here (a token-leak check, a
- * contested-claim check and a handoff check) could not fail for that reason
- * until a review caught them. Write `->not->toContain($a)->not->toContain($b)`, or
- * `->not->toMatch($pattern, $message)`, whose second parameter is a message.
- */
-
-/**
- * Every `->not->toContain(` call with more than one top-level argument, as
- * "file:line".
- *
  * @return list<string>
  */
 function suiteNegatedMultiNeedleCalls(string $code, string $file): array
@@ -79,9 +64,6 @@ function suiteNegatedMultiNeedleCalls(string $code, string $file): array
 }
 
 /**
- * The index of the next non-whitespace, non-comment token from `$from` in
- * `$step` direction, or null.
- *
  * @param  list<PhpToken>  $tokens
  */
 function suiteHygieneSkip(array $tokens, int $from, int $step): ?int
@@ -95,6 +77,7 @@ function suiteHygieneSkip(array $tokens, int $from, int $step): ?int
     return null;
 }
 
+// Under ->not, a message passed as a second needle always holds: three guards once could not fail.
 it('never passes a second argument to a negated toContain', function (): void {
     $found = [];
     $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(base_path('tests'), FilesystemIterator::SKIP_DOTS));

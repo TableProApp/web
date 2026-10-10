@@ -16,18 +16,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The database hub and the engine pages (sitemap §A.3, §E.1, §E.2, §E.8).
- *
- * Every page file is held to the schema in
- * `resources/js/components/databases/README.md`, so a batch of pages written
- * by different hands still renders through one template: the facts come from
- * engines.json and the other data files, and the copy only adds what data
- * cannot say. The guards here are the ones a wrong page would slip past the
- * shared tests with: a family section missing its anchor, a slot borrowed
- * from another engine, a link to a URL, a fact typed into copy, a SQL
- * narrative on an engine iOS cannot open.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -41,8 +29,6 @@ function databasePagesEngines(): array
 }
 
 /**
- * The page files of one locale, slug => decoded copy.
- *
  * @return array<string, array<string, mixed>>
  */
 function databasePagesFiles(string $locale): array
@@ -63,8 +49,6 @@ function databasePagesFiles(string $locale): array
 }
 
 /**
- * Every string leaf of a decoded file, keyed by its dotted path.
- *
  * @param  array<array-key, mixed>  $data
  * @return array<string, string>
  */
@@ -85,9 +69,6 @@ function databasePagesStrings(array $data, string $prefix = ''): array
     return $strings;
 }
 
-/**
- * The route a site path answers on, or null.
- */
 function databasePagesRoute(string $path): ?string
 {
     try {
@@ -142,11 +123,6 @@ it('holds every page file to the schema in components/databases/README.md', func
                 expect($text)->toBeString()->not->toBe('')->not->toContain('{');
             }
 
-            /*
-             * The search title names the platforms the way the H1 does, from
-             * platforms.json (sitemap §A.3, spec §5 "keep Mac-specific search
-             * titles"), and the two never disagree.
-             */
             expect(preg_match('/\{(devices|macDevices)\}/', $copy['seo']['title']))->toBe(1, "{$where}: search titles name current availability from data");
 
             expect(array_keys($copy['header']))->toBe(['title', 'lead']);
@@ -552,7 +528,6 @@ it('shows AWS IAM on the facts card wherever the engine has an AWS sign-in, not 
 
     $labels = json_decode((string) file_get_contents(resource_path('data/content/en/databases/index.json')), true)['labels'];
 
-    // The facts card's "Connect with" row, as rendered.
     $connectRow = static function (string $slug) use ($labels): string {
         $html = html_entity_decode((string) get("/{$slug}")->getContent(), ENT_QUOTES | ENT_HTML5);
         $main = substr($html, (int) strpos($html, '<main'));
@@ -578,8 +553,6 @@ it('writes the iPhone status line without an article in front of the engine name
 })->group('ssr');
 
 /**
- * The hub file's `labels` in one locale.
- *
  * @return array<string, mixed>
  */
 function databasePagesLabels(string $locale): array
@@ -587,9 +560,6 @@ function databasePagesLabels(string $locale): array
     return json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true, 512, JSON_THROW_ON_ERROR)['labels'];
 }
 
-/**
- * A server-rendered engine page's `<main>`, entities decoded.
- */
 function databasePagesMain(string $path): string
 {
     $html = html_entity_decode((string) get($path)->assertOk()->getContent(), ENT_QUOTES | ENT_HTML5);
@@ -598,8 +568,6 @@ function databasePagesMain(string $path): string
 }
 
 /**
- * The facts card of a rendered engine page, term => value.
- *
  * @return array<string, string>
  */
 function databasePagesFacts(string $path): array

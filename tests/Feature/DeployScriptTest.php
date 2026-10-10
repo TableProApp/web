@@ -5,26 +5,9 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
 
-/**
- * scripts/deploy.sh decides what work a release needs by matching the changed
- * paths against four patterns. Getting one of those patterns wrong does not
- * fail the deploy — it produces a deploy that reports success while skipping a
- * step, which is how a rewritten root template once reached production and was
- * served to nobody.
- *
- * These tests read the patterns straight out of the script and check them
- * against representative paths, so the classification cannot drift from what
- * the script actually runs.
- */
-
 // The plain www-data run; its smoke URL also serves the bare-URL smoke test.
 const DEPLOY_DEFAULT_RUN = ['env' => ['SMOKE_URL' => 'https://tablepro.example']];
 
-/**
- * Pulls the extended regular expression the script tests before setting a flag.
- *
- * @param  string  $flag  the shell variable assigned on the following line, e.g. PHP_CHANGED
- */
 function deployPattern(string $flag): string
 {
     $script = file_get_contents(base_path('scripts/deploy.sh'));
@@ -42,31 +25,19 @@ function deployPattern(string $flag): string
     return $matches['pattern'];
 }
 
-/**
- * The script pipes the file list through `grep -qE`, so the pattern is an ERE.
- * Every construct used in these four — anchors, alternation, groups, escaped
- * dots, `?` and `$` — means the same thing in PCRE, so matching here matches
- * there.
- */
+// The script matches with grep -E; ERE and PCRE agree on every construct these patterns use.
 function deployMatches(string $flag, string $path): bool
 {
     return preg_match('#' . deployPattern($flag) . '#', $path) === 1;
 }
 
-/**
- * Runs the script's own `changed` function, under the script's shell options,
- * against a list of changed paths, and reports whether it matched.
- */
 function runChanged(string $paths, string $pattern): bool
 {
     $matched = preg_match('/^changed\(\) \{.*\}$/m', (string) file_get_contents(base_path('scripts/deploy.sh')), $definition);
 
     expect($matched)->toBe(1, 'scripts/deploy.sh has no one-line changed() function');
 
-    /*
-     * The list goes in on stdin: Linux caps a single environment string at
-     * 128 KB, and the list has to be larger than a pipe buffer to mean anything.
-     */
+    // On stdin: Linux caps one environment string at 128 KB.
     $process = new Process(
         ['bash', '-c', "set -euo pipefail\nCHANGED_FILES=\"\$(cat)\"\n{$definition[0]}\nchanged \"\$PATTERN\""],
         null,
@@ -79,20 +50,11 @@ function runChanged(string $paths, string $pattern): bool
 }
 
 /**
- * Stand-ins for every tool scripts/deploy.sh would use to reach the system or
- * the network. Each records how it was called in $STUB_CALLS; composer and npm
- * also record, in $STUB_ENV, where they would keep their caches. `identity`
- * holds `id` and `getent`, put on PATH only by a run that pretends to be
- * another user.
- *
- * Written once per run of the suite and parameterised through the environment,
- * because macOS checks every new executable the first time it runs, and stubs
- * written afresh for each test cost about two seconds a test.
- *
  * @return array{tools: string, identity: string}
  */
 function deployStubs(): array
 {
+    // Once per suite: macOS checks each new executable on its first run, about two seconds a test.
     static $stubs = null;
 
     if ($stubs !== null) {
@@ -109,7 +71,6 @@ function deployStubs(): array
         'tools/sudo' => $record('sudo') . "if [ -n \"\${STUB_SUDO_REFUSES:-}\" ]; then\n    echo 'sudo: a password is required' >&2\n    exit 1\nfi\n",
         'tools/composer' => $record('composer') . "printf 'composer HOME=%s COMPOSER_HOME=%s COMPOSER_CACHE_DIR=%s\\n' \"\$HOME\" \"\${COMPOSER_HOME:-}\" \"\${COMPOSER_CACHE_DIR:-}\" >> \"\$STUB_ENV\"\n",
         'tools/npm' => $record('npm') . "printf 'npm HOME=%s npm_config_cache=%s\\n' \"\$HOME\" \"\${npm_config_cache:-}\" >> \"\$STUB_ENV\"\n",
-        // `npx vite build [--ssr] --outDir <dir>`: leave what a good build leaves.
         'tools/npx' => $record('npx') . <<<'BASH'
             out=""; ssr=false
             while [ $# -gt 0 ]; do
@@ -129,7 +90,6 @@ function deployStubs(): array
             fi
 
             BASH,
-        // `curl -s -o <file> -w '%{http_code}' <url>`, the smoke test: a page this release rendered.
         'tools/curl' => $record('curl') . <<<'BASH'
             out=""
             while [ $# -gt 0 ]; do
@@ -142,7 +102,7 @@ function deployStubs(): array
             printf '200'
 
             BASH,
-        // The script reads the PHP version with `php -r`; that is the real PHP.
+        // `php -r` is the real PHP: the script derives the FPM unit from its version.
         'tools/php' => "#!/usr/bin/env bash\nif [ \"\$1\" = -r ]; then\n    exec '" . PHP_BINARY . "' \"\$@\"\nfi\n" . substr($record('php'), strlen("#!/usr/bin/env bash\n")),
         'identity/id' => "#!/usr/bin/env bash\ncase \"\$*\" in\n    -u) echo \"\$STUB_UID\" ;;\n    -un|-gn) echo \"\$STUB_USER\" ;;\n    *) exec /usr/bin/id \"\$@\" ;;\nesac\n",
         'identity/getent' => "#!/usr/bin/env bash\necho \"\$STUB_USER:x:\$STUB_UID:\$STUB_UID::\$STUB_HOME:/bin/bash\"\n",
@@ -160,17 +120,6 @@ function deployStubs(): array
 }
 
 /**
- * Runs the real scripts/deploy.sh end to end against a throwaway checkout, from
- * `/` and under `env -i`, as the forced command starts it, with deployStubs()
- * first on PATH.
- *
- * `origin` is one commit ahead of the checkout, changing a component, a PHP file
- * and composer.lock, so a single run takes both steps that need root: the SSR
- * restart after the bundle swap, and the PHP-FPM reload.
- *
- * `previousAssets` seeds the live `public/build/assets`: each file's age in
- * hours, its content, and whether the live manifest names it.
- *
  * @param  array{git?: bool, root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
  * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
  */
@@ -192,6 +141,7 @@ function runDeployInSandbox(array $options = []): array
     // www-data's home, /var/www, which it cannot write.
     mkdir("{$sandbox}/home", 0555);
 
+    // origin is one commit ahead (a component, a PHP file, composer.lock), so a run takes both steps that need root.
     if ($options['git'] ?? true) {
         $git = function (string $cwd, string ...$arguments): void {
             (new Process(['git', '-c', 'user.name=Deploy Test', '-c', 'user.email=deploy@example.test', '-c', 'commit.gpgsign=false', ...$arguments], $cwd))->mustRun();
@@ -291,8 +241,6 @@ function runDeployInSandbox(array $options = []): array
 }
 
 /**
- * One sandbox per set of options, kept until the suite exits.
- *
  * @param  array{git?: bool, root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
  * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
  */
@@ -312,18 +260,12 @@ function deployRun(array $options = DEPLOY_DEFAULT_RUN): array
     return $runs[$key];
 }
 
-/**
- * The FPM unit the script derives from the CLI that runs it: the PHP running
- * this suite, since the sandbox's `php -r` is the real one.
- */
 function expectedFpmService(): string
 {
     return 'php' . PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '-fpm';
 }
 
 /**
- * The commands the server's sudoers drop-in lets www-data run, as documented.
- *
  * @return list<string>
  */
 function documentedSudoersCommands(): array
@@ -335,10 +277,6 @@ function documentedSudoersCommands(): array
     return explode(', ', $rule[1]);
 }
 
-/**
- * Whether the suite itself runs as root, where the script would take its root
- * path whatever the test meant to exercise.
- */
 function suiteRunsAsRoot(): bool
 {
     return function_exists('posix_geteuid') && posix_geteuid() === 0;
@@ -372,24 +310,9 @@ it('does not rebuild the bundles for prose, templates, translations or PHP', fun
 ]);
 
 it('rebuilds the bundles for every data file the front end imports', function (): void {
-    /*
-     * `resources/data/*.json` reads like content and is not. Vite inlines each
-     * of these into the bundle at build time, so editing one without rebuilding
-     * leaves the previous copy being served — which is exactly what happened:
-     * corrected prices and database counts merged, deployed green, and never
-     * reached the site, because the deploy classified the change as content.
-     *
-     * Derived from the imports rather than hardcoded, so a new data file cannot
-     * be added to the bundle and quietly miss the rebuild.
-     */
+    // Vite inlines these: corrected prices once deployed green and never reached the site.
     $imported = [];
-
-    /*
-     * Recursive, both ways. PHP's glob() reads `**` as `*`, so the first version
-     * of this scan looked one directory deep and never saw a component; and the
-     * import pattern has to accept the `@data/` alias and nested paths such as
-     * `content/en/home.json`.
-     */
+    // Not glob(): it reads ** as *, and the first scan never saw a component.
     $sources = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(base_path('resources/js'), FilesystemIterator::SKIP_DOTS));
 
     foreach ($sources as $file) {
@@ -412,8 +335,6 @@ it('rebuilds the bundles for every data file the front end imports', function ()
         );
     }
 
-    // And every file in that tree, so an unimported one still rebuilds rather
-    // than depending on someone noticing it became bundled.
     $data = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(resource_path('data'), FilesystemIterator::SKIP_DOTS));
 
     foreach ($data as $file) {
@@ -431,12 +352,7 @@ it('downloads dependencies only when the lock file moves', function () {
     expect(deployMatches('COMPOSER_CHANGED', 'resources/views/app.blade.php'))->toBeFalse();
 });
 
-/*
- * The regression this file exists for. A Blade template compiles to a PHP file
- * named after its path, so editing one leaves the compiled name unchanged and
- * opcache — which this host runs with validate_timestamps=0 — goes on serving
- * the previous compilation until FPM is reloaded.
- */
+// Opcache runs with validate_timestamps=0, so an edited template serves its old compilation until FPM reloads.
 it('treats a Blade template as PHP, so the caches drop and FPM reloads', function (string $path) {
     expect(deployMatches('PHP_CHANGED', $path))->toBeTrue();
 })->with([
@@ -450,11 +366,7 @@ it('treats a Blade template as PHP, so the caches drop and FPM reloads', functio
     'routes/localized.php',
     'bootstrap/app.php',
     'composer.lock',
-    /*
-     * lang/ files are PHP arrays held by opcache like any other PHP file, and
-     * locales.json decides which route groups routes/web.php mounts, so a new
-     * locale has to rebuild the route cache.
-     */
+    // lang/ is opcached PHP, and locales.json decides which route groups mount.
     'lang/vi/og.php',
     'lang/en/errors.php',
     'resources/data/locales.json',
@@ -487,13 +399,7 @@ it('regenerates the sitemap when the pages it enumerates change', function (stri
 ]);
 
 it('reloads the FPM of the PHP version that ran the release, not a hard-coded one', function (): void {
-    /*
-     * The default used to be php8.4-fpm. Ubuntu 26.04 ships PHP 8.5 only, so
-     * there `systemctl reload php8.4-fpm` fails after the bundles are swapped,
-     * and the EXIT trap rolls a good release back. The CLI runs composer and
-     * artisan for the same release, so its version names the right unit
-     * whichever PHP the host runs.
-     */
+    // A hard-coded php8.4-fpm failed to reload on a PHP 8.5 host and rolled a good release back.
     $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
 
     expect($script)
@@ -503,12 +409,7 @@ it('reloads the FPM of the PHP version that ran the release, not a hard-coded on
 });
 
 it('refuses a relative APP_PATH before it touches anything', function (): void {
-    /*
-     * Every relative path in the script hangs off the `cd "$APP_PATH"`, so a
-     * relative APP_PATH would make the deploy depend on the caller's
-     * directory. The check runs before git, composer or npm is called, so
-     * running the real script here is safe.
-     */
+    // The check comes before git, composer or npm, so the real script is safe to run here.
     $process = new Process(['bash', base_path('scripts/deploy.sh')], sys_get_temp_dir(), ['APP_PATH' => 'var/www/tablepro.app']);
     $process->run();
 
@@ -516,14 +417,6 @@ it('refuses a relative APP_PATH before it touches anything', function (): void {
         ->and($process->getErrorOutput())->toContain('APP_PATH must be an absolute path');
 });
 
-/*
- * The deploy key logs in as `ubuntu`, and its forced command runs the script as
- * www-data: `sudo -n -u www-data .../deploy.sh`. It used to run as root, from a
- * tree www-data can write, so anything that could write as www-data — which
- * PHP-FPM serves every request as — could edit the script and have the next
- * deploy run it as root. Now everything runs as www-data except two commands,
- * which go through `sudo -n` exactly as the sudoers drop-in names them.
- */
 describe('run as www-data, by the deploy key', function (): void {
     beforeEach(function (): void {
         if (suiteRunsAsRoot()) {
@@ -542,13 +435,6 @@ describe('run as www-data, by the deploy key', function (): void {
     });
 
     it('asks sudo for nothing the documented sudoers drop-in does not allow', function (): void {
-        /*
-         * sudo matches the command line literally, so a script that called
-         * `systemctl restart`, or systemctl by another path, would be refused
-         * on the server while every test here still passed. The rule on the
-         * server is the one docs/deployment.md spells out; production's unit
-         * is php8.5-fpm.
-         */
         $run = deployRun();
 
         expect($run['exit'])->toBe(0, $run['errors'])
@@ -556,7 +442,7 @@ describe('run as www-data, by the deploy key', function (): void {
 
         foreach ($run['privileged'] as $call) {
             expect($call)->toStartWith('sudo -n /');
-            // The rule names production's unit; this run reloads the one of the PHP running the suite.
+            // sudo matches literally; the rule names production's php8.5-fpm, this run the suite's PHP.
             expect(documentedSudoersCommands())->toContain(str_replace(expectedFpmService(), 'php8.5-fpm', substr($call, strlen('sudo -n '))));
         }
     });
@@ -603,10 +489,7 @@ describe('run as www-data, by the deploy key', function (): void {
     })->with(['missing', 'read-only']);
 
     it('refuses a checkout it does not own, rather than fail halfway through npm ci', function (): void {
-        /*
-         * A root run that stops before "Restoring ownership" leaves root-owned
-         * files in the checkout. Simulated here by a user id that owns none of it.
-         */
+        // What a root run that stopped before "Restoring ownership" leaves: 4242 owns none of the checkout.
         $run = deployRun(['git' => false, 'owner' => 4242]);
 
         expect($run['exit'])->toBe(1)
@@ -629,17 +512,10 @@ describe('run as www-data, by the deploy key', function (): void {
             ->and("{$app}/public/build-old")->not->toBeDirectory()
             ->and("{$app}/bootstrap/ssr-old")->not->toBeDirectory();
 
-        // It stopped at the refusal: no FPM reload was attempted after it.
         expect(preg_grep('/systemctl/', $run['calls']))->toBeEmpty();
     });
 });
 
-/*
- * A human can still run the script as root, from `sudo -i`. Then it does what
- * it always did: the two privileged commands directly, and the whole checkout
- * handed back to www-data at the end, so the next unprivileged deploy can
- * write to it.
- */
 describe('run as root, by a human', function (): void {
     it('runs the privileged steps itself and hands the checkout back to the web user', function (): void {
         $run = deployRun(['root' => true]);
@@ -665,13 +541,7 @@ describe('run as root, by a human', function (): void {
     });
 
     it('trusts the checkout for git itself, before the first git command', function (): void {
-        /*
-         * The checkout belongs to www-data. git running as root rejects it as
-         * "dubious ownership", and under sudo compares the owner with the calling
-         * user instead, which does not match either. Without this a root deploy
-         * would depend on a safe.directory line in some user's ~/.gitconfig.
-         * www-data owns the checkout, so its deploys need none.
-         */
+        // git as root rejects a checkout www-data owns as "dubious ownership".
         $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
         $code = (string) preg_replace('/^\s*#.*$/m', '', $script);
 
@@ -686,11 +556,7 @@ describe('run as root, by a human', function (): void {
     });
 
     it('prints a rollback for a root shell that hands the checkout back too', function (): void {
-        /*
-         * Run from `sudo -i`, the rollback writes vendor/, node_modules/ and the
-         * bundles as root. Left that way, the next www-data deploy could not
-         * rewrite them.
-         */
+        // Run from sudo -i, the rollback writes as root, and the next www-data deploy could not rewrite those files.
         expect((string) file_get_contents(base_path('scripts/deploy.sh')))
             ->toMatch('/^rollback_command\(\) \{\n.*chown -R %s:%s %s.*\n\s+"\$APP_PATH" "\$PREV_COMMIT" "\$WEB_USER" "\$WEB_USER" "\$APP_PATH"/m');
     });
@@ -705,17 +571,7 @@ it('verifies the new bundles before it moves them into place', function (string 
 ]);
 
 it('ignores every directory it leaves in the working tree', function (): void {
-    /*
-     * The script refuses to deploy when `git status --porcelain` reports
-     * anything, which is right: a dirty tree means someone edited files on the
-     * server, and merging over that silently is how those edits vanish.
-     *
-     * But the script also builds into `*-next` and keeps the bundles it
-     * replaced at `*-old`, so a successful deploy ends with two untracked
-     * directories in the tree it just checked. Unignored, the first deploy
-     * created them and every deploy after it refused to run — which is exactly
-     * what happened after the CD workflow landed.
-     */
+    // Unignored, the first deploy's -next and -old directories made every later deploy refuse a dirty tree.
     $script = file_get_contents(base_path('scripts/deploy.sh'));
     $ignored = file_get_contents(base_path('.gitignore'));
 
@@ -725,8 +581,7 @@ it('ignores every directory it leaves in the working tree', function (): void {
 
     expect($created)->not->toBeEmpty('Expected the script to name its scratch directories');
 
-    // `Assert::` because Pest's toContain() is `(mixed ...$needles)` and would
-    // read the message as a second needle, failing for the wrong reason.
+    // Assert::, since toContain() would read the message as another needle.
     foreach ($created as $path) {
         PHPUnit\Framework\Assert::assertStringContainsString(
             "/{$path}",
@@ -737,11 +592,6 @@ it('ignores every directory it leaves in the working tree', function (): void {
 });
 
 it('lets its own scratch directories past the cleanliness check, and nothing else', function (string $line, bool $blocks): void {
-    /*
-     * The filter runs before the pull, so a server already holding the
-     * artifacts can reach the commit that ignores them. Exercised against the
-     * real expression rather than a copy, so the two cannot drift.
-     */
     $script = file_get_contents(base_path('scripts/deploy.sh'));
 
     preg_match("#git status --porcelain \| grep -vE '([^']+)'#", $script, $m);
@@ -764,26 +614,14 @@ it('lets its own scratch directories past the cleanliness check, and nothing els
 ]);
 
 it('explains a diverged branch instead of dumping git hints', function (): void {
-    /*
-     * `git pull --ff-only` is the right call — a deploy must never merge or
-     * rebase on its own — but on a force-pushed branch it fails with a wall of
-     * git advice ending in "aborting", which reads as a broken script rather
-     * than as a checkout one command from fine. That cost a round trip the
-     * first time it happened.
-     */
+    // On a force-pushed branch, --ff-only fails with git advice that reads as a broken script.
     $script = file_get_contents(base_path('scripts/deploy.sh'));
 
     expect($script)->toContain('git merge-base --is-ancestor HEAD');
 
-    // And it has to name the recovery, not just the diagnosis.
     expect($script)->toContain('git reset --hard origin/');
 
-    /*
-     * The check has to come before the pull, or the raw git failure wins the
-     * race. Compared on the executable lines only — the comment above the check
-     * names `git pull --ff-only` too, and matching that instead put the guard
-     * "after" the pull it precedes by twelve lines.
-     */
+    // Code lines only: a comment above the check names git pull --ff-only too.
     $code = preg_replace('/^\s*#.*$/m', '', $script);
 
     expect(strpos($code, 'git merge-base --is-ancestor HEAD'))
@@ -791,17 +629,7 @@ it('explains a diverged branch instead of dumping git hints', function (): void 
 });
 
 it('does not trust the commit alone to mean the bundles are current', function (): void {
-    /*
-     * `public/build` and `bootstrap/ssr` are gitignored, so a `git reset --hard`
-     * — which the runbook prescribes after a force-push — moves the sources and
-     * leaves the built output untouched. The next deploy then sees an unchanged
-     * commit, skips the build, reports success, and leaves the site serving the
-     * previous release.
-     *
-     * That is not hypothetical: a deploy went green while the live homepage was
-     * still the pre-rewrite page, and the smoke test passed because a stale
-     * bundle renders a perfectly valid old site.
-     */
+    // After a git reset --hard, an unchanged commit once skipped the build and went green on the previous release.
     $script = file_get_contents(base_path('scripts/deploy.sh'));
 
     expect($script)->toContain('bundles_are_stale');
@@ -809,52 +637,26 @@ it('does not trust the commit alone to mean the bundles are current', function (
     // The skip branch must consult it, not just define it.
     expect($script)->toMatch('/PREV_COMMIT.+CURR_COMMIT.+FORCE.+bundles_are_stale/s');
 
-    // And it has to look at both halves of the build, not only the assets.
     expect($script)
         ->toContain('public/build/manifest.json')
         ->toContain('bootstrap/ssr/ssr.js');
 });
 
 it('proves the smoke test hit this release and not merely a live one', function (): void {
-    /*
-     * An `<h1>` proves SSR is alive. It does not prove the bundle behind it is
-     * the one just built — which is the exact failure above, where every check
-     * passed against the previous release.
-     *
-     * Vite hashes the entry filename per build, so the manifest's entry appears
-     * in the served HTML only when the served app is this build.
-     */
+    // An <h1> proves SSR is up, not that it serves this build; the hashed entry name does.
     $script = file_get_contents(base_path('scripts/deploy.sh'));
 
     expect($script)->toContain('BUILT_ENTRY');
     expect($script)->toContain('serving a different build than the one just deployed');
 
-    // The assertion has to run after the <h1> check, inside the same block.
     expect(strpos($script, 'no server-rendered <h1>'))
         ->toBeLessThan(strpos($script, 'serving a different build'));
 });
 
 it('rebuilds when the artifacts are older than the sources, whatever the diff says', function (): void {
-    /*
-     * The changed-paths pattern classifies a diff. This asks the question the
-     * diff is only a proxy for: is what we built older than what we built it
-     * from?
-     *
-     * They disagree whenever a release is skipped, and a skipped rebuild does
-     * not retry itself — the next deploy diffs against the commit that skipped
-     * it, sees nothing front-end in that range, and leaves the stale bundle in
-     * place indefinitely. One misclassified path strands the site until someone
-     * runs FORCE=1 by hand.
-     *
-     * That is not hypothetical. `resources/data/*.json` was classified as
-     * content, so corrected prices deployed green and never reached the page —
-     * and the deploy that fixed the classifier could not undo its own backlog,
-     * because by then the data change was behind it.
-     */
+    // A skipped rebuild never retries itself: one misclassified path once stranded stale prices until FORCE=1.
     $script = file_get_contents(base_path('scripts/deploy.sh'));
 
-    // The staleness check must be consulted for the front-end decision, not
-    // only inside the unchanged-commit branch.
     expect(substr_count($script, 'bundles_are_stale'))->toBeGreaterThanOrEqual(
         3,
         'bundles_are_stale should be defined and consulted in both the skip branch and the front-end decision',
@@ -862,7 +664,7 @@ it('rebuilds when the artifacts are older than the sources, whatever the diff sa
 
     expect($script)->toMatch('/FRONTEND_CHANGED"?\s*=\s*false.*bundles_are_stale/s');
 
-    // And it has to be defined before both uses, or the shell sees an empty command.
+    // Defined before both uses, or the shell sees an empty command.
     $definedAt = strpos($script, 'bundles_are_stale() {');
     expect($definedAt)->not->toBeFalse();
     expect($definedAt)->toBeLessThan(strrpos($script, 'bundles_are_stale;'));
@@ -880,13 +682,7 @@ it('still sees a PHP change in a release whose path list outgrows a pipe buffer'
         ->and(runChanged($paths, deployPattern('CONTENT_CHANGED')))->toBeFalse();
 });
 
-/*
- * Pages are cached at the edge, and an open tab or a page cached before the
- * purge still names the previous release's hashed JS and CSS. Moving the old
- * build out of `public/build` made every one of those a 404. The outgoing
- * release's files are copied into the new build; files carried by earlier
- * deploys follow until ASSET_RETENTION_HOURS have passed since they retired.
- */
+// Cached pages and open tabs still name the previous release's hashed assets; moving them out made each a 404.
 describe('keeping the previous release\'s assets', function (): void {
     it('keeps the outgoing assets servable, and lets carried ones go after the retention', function (): void {
         $run = deployRun(['previousAssets' => [
@@ -912,7 +708,6 @@ describe('keeping the previous release\'s assets', function (): void {
         expect(filemtime("{$assets}/app-old.js"))->toBeGreaterThan(time() - 120)
             ->and(abs(filemtime("{$assets}/Pricing-retired.js") - (time() - 5 * 3600)))->toBeLessThan(120);
 
-        // The live manifest is the new build's, and the old build is still there to roll back to.
         expect((string) file_get_contents("{$run['app']}/public/build/manifest.json"))->toContain('assets/app-new.js')->not->toContain('app-old.js')
             ->and("{$run['app']}/public/build-old/assets/app-old.js")->toBeFile();
     });
@@ -941,13 +736,7 @@ describe('keeping the previous release\'s assets', function (): void {
     })->with(['three', '-1', '1.5', '72h']);
 });
 
-/*
- * The smoke test goes through Cloudflare like a reader. Pages are cached
- * there, and the workflow purges only after this script returns, so the bare
- * URL could answer with the previous release and fail a good deploy, which
- * the EXIT trap would then roll back. A query string no reader sends is a
- * cache key nothing has filled.
- */
+// The workflow purges the edge only after this script, so a cached bare URL could fail a good deploy.
 it('smoke-tests a URL the edge has never cached', function (string $url, string $expected): void {
     $run = deployRun(['env' => ['SMOKE_URL' => $url]]);
     $requests = array_values(preg_grep('/^curl /', $run['calls']));
@@ -962,8 +751,6 @@ it('smoke-tests a URL the edge has never cached', function (string $url, string 
 ]);
 
 /**
- * The deploy workflow's steps, by name.
- *
  * @return array<string, array<string, mixed>>
  */
 function deployWorkflowSteps(): array
@@ -979,8 +766,6 @@ function deployWorkflowSteps(): array
 }
 
 /**
- * Runs the purge step's script on this machine, with `curl` answering `$body`.
- *
  * @param  array<string, string>  $env
  * @return array{exit: int, output: string, errors: string, calls: list<string>}
  */

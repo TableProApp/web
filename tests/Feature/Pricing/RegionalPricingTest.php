@@ -2,18 +2,7 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * The regional discount on the plan cards: the one place the site names a
- * regional price (positioning §9, "Deliberately absent").
- *
- * The platform decides it (`GET /discount/region`, the same answer checkout
- * acts on), and the cards show it only after the page has rendered. So the
- * cached HTML, the structured data and every reader's first paint carry the
- * list prices, and nothing outside the plan block ever mentions a discount
- * by country. What the cards compute is tests/js/regional-pricing.test.ts.
- */
-
-/** Every TypeScript source under resources/js, keyed by its path from there. @return array<string, string> */
+/** @return array<string, string> */
 function regionalSources(): array
 {
     $sources = [];
@@ -30,6 +19,7 @@ function regionalSources(): array
     return $sources;
 }
 
+// The plan block is the one place the site names a regional price (positioning §9).
 it('asks for the regional discount from the plan block only', function (): void {
     $asks = [];
     $names = [];
@@ -48,6 +38,7 @@ it('asks for the regional discount from the plan block only', function (): void 
         ->and($names)->toBe(['components/pricing/pricing-card.tsx', 'components/pricing/regional-note.tsx']);
 });
 
+// The cards ask for the discount after rendering, so cached HTML and first paint carry the list prices.
 it('serves the list prices to every reader, with nothing struck through', function (string $path): void {
     config(['payment.provider' => 'polar']);
 
