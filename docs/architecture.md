@@ -13,6 +13,7 @@ database and no credentials: every page is built from markdown in
 /databases /{database}-client  /{database}-gui
 /compare   /compare/{slug}
 /privacy  /terms  /refund-policy
+/brand                     English only: resources/data/legal/en/brand.md, files in public/images/brand
 /blog  /blog/{slug}        markdown in resources/blog
 /blog/feed.xml             the English posts as Atom, linked from the head of blog pages
 /vi/…                      every page above, in Vietnamese, where it exists
@@ -102,11 +103,12 @@ the two copies are compared by its `LanguageRegionsConfigTest`.
 ```
 resources/data/*.json                 locale-neutral facts: locales, platforms, engines,
                                       pricing, paid-features, facts, sponsors, comparisons,
-                                      assets, redirects
+                                      assets, redirects; brand (the logo files, with the
+                                      English labels of the English-only /brand)
 resources/data/content/{locale}/      page copy: home, download, ios, pricing, faq, blog,
                                       legal, engines, paid-features, and one file per
                                       page under features/, databases/, compare/
-resources/data/legal/{locale}/*.md    privacy, terms, refund policy
+resources/data/legal/{locale}/*.md    privacy, terms, refund policy; brand guidelines (en only)
 resources/blog/*.md                   posts (English); resources/blog/vi/*.md their translations
 lang/{locale}/*.php                   OG card labels and the static error pages
 resources/js/i18n/messages/{locale}/  UI chrome catalogs, typed

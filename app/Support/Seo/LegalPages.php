@@ -6,12 +6,13 @@ use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\File;
 
 /**
- * Privacy, terms and the refund policy.
+ * Privacy, terms, the refund policy and the brand guidelines.
  *
  * Each renders in a locale when `resources/data/legal/{locale}/{document}.md`
  * exists, and is indexed wherever it renders. A Vietnamese legal page is a
  * full translation (spec §0, with the English version prevailing), so it is a
- * real pair with the English page, not a duplicate.
+ * real pair with the English page, not a duplicate. The brand guidelines exist
+ * in English only, so `/vi/brand` is a 404 that offers `/brand`.
  *
  * A document with no markdown in any locale is not a page: `find()` returns
  * null, the registry knows no such page, and the route answers 404.
@@ -25,6 +26,7 @@ final class LegalPages implements PageFamily
         'landing.privacy' => 'privacy',
         'landing.terms' => 'terms',
         'landing.refundPolicy' => 'refund-policy',
+        'landing.brand' => 'brand',
     ];
 
     public function __construct(

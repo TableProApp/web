@@ -24,6 +24,7 @@ export default {
             blog: 'Blog',
             faq: 'FAQ',
             about: 'About',
+            brand: 'Brand',
             source: 'Source code',
             reportBug: 'Report a bug',
         },

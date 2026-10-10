@@ -27,7 +27,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
  *
  * `redirects.json` and `locales.json` hold paths and codes only.
  */
-const CONTENT_GUARD_DATA_FILES = ['assets', 'comparisons', 'engines', 'facts', 'paid-features', 'platforms', 'pricing', 'sponsors'];
+const CONTENT_GUARD_DATA_FILES = ['assets', 'brand', 'comparisons', 'engines', 'facts', 'paid-features', 'platforms', 'pricing', 'sponsors'];
 
 /**
  * Keys whose values are usually identifiers, paths or citations rather than
