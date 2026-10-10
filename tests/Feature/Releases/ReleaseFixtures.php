@@ -3,35 +3,17 @@
 use App\Services\Releases\PlatformCatalog;
 use Illuminate\Support\Arr;
 
-/*
-|--------------------------------------------------------------------------
-| Release fixtures
-|--------------------------------------------------------------------------
-|
-| Shared by the release, download-page and `release:check` tests. Not a test
-| file itself (Pest loads only `*Test.php`), so each test file requires it.
-|
-| The tests never read the live resources/data/platforms.json: its values move
-| with every release, and a test pinned to them would fail for a reason that
-| has nothing to do with the code. `Data/PlatformsDataTest` guards that file.
-| They bind a fixture with the same schema (architecture §1.8) instead.
-|
-*/
-
 const RELEASES_FAKE_GITHUB_LATEST = 'api.github.com/repos/TableProApp/TablePro/releases/latest';
 
 const RELEASES_FAKE_APPCAST = 'raw.githubusercontent.com/TableProApp/TablePro/main/appcast.xml';
 
 /**
- * A platforms.json with the architecture §1.8 schema, merged with `$overrides`
- * (dot keys on the `mac`/`ios` entries, e.g. `['mac.floorVersion' => '0.77.0']`),
- * bound as the `PlatformCatalog` every service resolves.
- *
  * @param  array<string, mixed>  $overrides
  * @return array<string, mixed>
  */
 function bindReleaseFixturePlatforms(array $overrides = []): array
 {
+    // The live platforms.json moves with every release, so these tests bind a fixture with its schema.
     $platforms = [
         'mac' => [
             'id' => 'mac',
@@ -81,8 +63,6 @@ function bindReleaseFixturePlatforms(array $overrides = []): array
 }
 
 /**
- * A GitHub `releases/latest` payload for an app release with both DMGs.
- *
  * @param  array<string, mixed>  $overrides
  * @param  list<array<string, mixed>>|null  $assets
  * @return array<string, mixed>
@@ -109,9 +89,6 @@ function githubReleasePayload(string $tag = 'v0.77.0', array $overrides = [], ?a
 }
 
 /**
- * `$digest` is the API's `digest` field, `sha256:…` on a current upload and
- * null on an asset uploaded before GitHub computed one.
- *
  * @return array{name: string, size: int, state: string, browser_download_url: string, digest: string|null}
  */
 function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $digest = null): array
@@ -126,8 +103,6 @@ function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $
 }
 
 /**
- * A release whose two DMGs carry the given SHA-256 digests.
- *
  * @return array<string, mixed>
  */
 function githubReleasePayloadWithDigests(string $arm64, string $x86_64): array
@@ -138,9 +113,6 @@ function githubReleasePayloadWithDigests(string $arm64, string $x86_64): array
     ]);
 }
 
-/**
- * A Sparkle feed whose top items are `$version`, the way the release job writes it.
- */
 function appcastXml(string $version = '0.77.0', string $pubDate = 'Fri, 02 Oct 2026 04:15:25 +0000', string $minimum = '13.0'): string
 {
     return <<<XML

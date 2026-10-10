@@ -1,13 +1,6 @@
 <?php
 
-/*
- * A client-sent `X-Forwarded-Host` or `X-Forwarded-Port` must never reach the
- * request's origin. The proxies are trusted at `*`, so trusting either header
- * would let a request pick the origin of the page's script, stylesheet and
- * font preload URLs, which a shared cache could then serve to everyone (cache
- * poisoning). Checked on the request the configured `TrustProxies` hands on,
- * because the page tests fake Vite and render no asset URLs to look at.
- */
+// Proxies are trusted at *, so a forwarded host or port would let one request poison cached asset URLs.
 it('takes the client address and scheme from the proxy, but never the host or port', function (): void {
     $request = Illuminate\Http\Request::create('http://localhost/', 'GET', server: [
         'REMOTE_ADDR' => '10.0.0.1',

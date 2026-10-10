@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 require_once __DIR__ . '/../Releases/ReleaseFixtures.php';
 
-/**
- * `php artisan release:check` (architecture §1.13): the live channels against
- * platforms.json. Every channel is faked; nothing reaches the network.
- */
 beforeEach(function (): void {
     Cache::flush();
     Storage::fake('local');
@@ -18,10 +14,6 @@ beforeEach(function (): void {
 });
 
 /**
- * Fakes every channel `release:check` reads, as they stood on 2026-10-02:
- * GitHub and Sparkle at 0.77.0, Homebrew at 0.76.1, iOS 1.0 in the US and
- * missing from the German storefront.
- *
  * @param  array<string, mixed>  $overrides  `github`, `appcast`, `homebrew`, `us`, `de` responses
  */
 function fakeReleaseChannels(array $overrides = []): void

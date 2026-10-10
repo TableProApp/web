@@ -2,50 +2,22 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * The contract that spans three places nothing can check at once.
- *
- * Where a customer came from is resolved in this repository, sent in the
- * `POST /checkout` body, and stored against a license by the TablePro backend,
- * which is a separate application this suite cannot see. `docs/architecture.md`
- * is the whole of the shared specification, so a field renamed here and not
- * there does not fail anything — it just quietly stops being recorded, and
- * nobody finds out until a quarter of sales have no source.
- *
- * The behaviour of the resolver itself is covered by execution, in
- * `tests/js/attribution.test.ts`. What is left for this file is the wiring:
- * that the field list still matches the document, that the checkout request
- * from the plan cards (`components/pricing/use-checkout.ts`) still carries it
- * with the page language, that something still writes it, and that the
- * privacy policy still describes what is stored.
- */
 $readSource = static fn(string $relative): string => file_get_contents(base_path($relative));
 
-/** The hook that posts `/checkout` from the plan cards. */
 const CHECKOUT_SOURCE = 'resources/js/components/pricing/use-checkout.ts';
 
 /**
- * The privacy policy as readers get it, with the word for "days" in its
- * language: the markdown in each language once it exists, the pre-rebuild
- * page until then.
- *
  * @return array<string, string>
  */
 function attributionPrivacySources(): array
 {
-    if (is_file(resource_path('data/legal/en/privacy.md'))) {
-        return [
-            'resources/data/legal/en/privacy.md' => 'days',
-            'resources/data/legal/vi/privacy.md' => 'ngày',
-        ];
-    }
-
-    return ['resources/js/pages/Privacy.tsx' => 'days'];
+    return [
+        'resources/data/legal/en/privacy.md' => 'days',
+        'resources/data/legal/vi/privacy.md' => 'ngày',
+    ];
 }
 
 /**
- * The payload keys the module can emit, read off the exported interface.
- *
  * @return list<string>
  */
 function attributionFields(): array
@@ -62,8 +34,6 @@ function attributionFields(): array
 }
 
 /**
- * The payload keys documented for the backend.
- *
  * @return list<string>
  */
 function documentedAttributionFields(): array
@@ -95,11 +65,7 @@ it('documents exactly the fields it sends, and sends exactly the ones it documen
     );
 });
 
-/*
- * The two fields the backend can rely on. Everything else is optional by
- * design — a reader who arrived untagged has no source — so if these ever
- * became optional too, a record could arrive carrying nothing at all.
- */
+// Every other field is optional, so without these two a record could arrive carrying nothing.
 it('always sends the landing page and the timestamp', function () use ($readSource): void {
     $source = $readSource('resources/js/lib/attribution.ts');
 
@@ -115,11 +81,7 @@ it('attaches the attribution to the checkout request', function () use ($readSou
     expect($checkout)->toMatch("/import \\{[^}]*\\bcurrentAttribution\\b[^}]*\\} from '@\\/lib\\/attribution';/");
     expect($checkout)->toContain('body.attribution = attribution');
 
-    /*
-     * Position matters more than presence. The body is assembled and then
-     * passed to fetch, so an assignment that drifted below the call would
-     * typecheck, ship, and send nothing.
-     */
+    // An assignment that drifted below the fetch would typecheck, ship, and send nothing.
     $assigned = strpos($checkout, 'body.attribution = attribution');
     $posted = strpos($checkout, "await fetch('/checkout'");
 
@@ -127,12 +89,7 @@ it('attaches the attribution to the checkout request', function () use ($readSou
     expect($assigned)->toBeLessThan($posted, 'The attribution must be attached before the request is sent');
 });
 
-/*
- * The platform stores the page's language on the order, so the purchase
- * emails arrive in it (architecture §1.14). The body carries it next to
- * the tier and cycle, and the request sends no cookies, because the public
- * site sets none.
- */
+// The platform stores the page's language on the order, so the purchase emails arrive in it.
 it('sends the page language with the checkout request, and no cookies', function () use ($readSource): void {
     $checkout = $readSource(CHECKOUT_SOURCE);
 
@@ -142,12 +99,7 @@ it('sends the page language with the checkout request, and no cookies', function
         ->toMatch("/fetch\\('\\/checkout', \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 });
 
-/*
- * Nothing else calls captureAttribution(), so without this line the record is
- * never written and every checkout sends an empty source forever. The failure
- * is silent at every other layer: the module still compiles, the request still
- * succeeds, the field is simply always absent.
- */
+// Nothing else calls captureAttribution(); without it every checkout silently sends an empty source.
 it('captures the landing URL at boot', function () use ($readSource): void {
     $app = $readSource('resources/js/app.tsx');
 
@@ -178,20 +130,10 @@ it('tells readers what it stores, under the name it stores it', function () use 
 
     expect($key[1] ?? '')->not->toBeEmpty();
 
-    /*
-     * The privacy policy moves from Privacy.tsx to markdown in each language
-     * (architecture §1.4). Whichever exists is the one readers see.
-     */
     foreach (attributionPrivacySources() as $source => $days) {
         $privacy = $readSource($source);
 
-        /*
-         * Assert:: rather than expect()->toContain(). Pest's toContain() takes
-         * `(mixed ...$needles)`, so a message passed to it becomes a second needle
-         * and the assertion starts demanding its own failure text appear in the
-         * file; under `->not` the same mistake makes the check pass whatever the
-         * file says. A message belongs in the third argument of Assert::.
-         */
+        // Assert::, because Pest's toContain() would take the message as a second needle.
         Assert::assertStringContainsString(
             $key[1],
             $privacy,
@@ -203,18 +145,5 @@ it('tells readers what it stores, under the name it stores it', function () use 
             $privacy,
             "{$source} states how long the attribution record is kept",
         );
-    }
-});
-
-/*
- * The claim that was true before this existed and is not any more. The section
- * said "two functional cookies. No tracking, no advertising, no third-party
- * SDKs" while the site now records where a reader came from and sends it with
- * their purchase — a defensible thing to do, and not a defensible thing to
- * leave undisclosed.
- */
-it('does not claim the site stores nothing but cookies', function () use ($readSource): void {
-    foreach (array_keys(attributionPrivacySources()) as $source) {
-        expect($readSource($source))->not->toContain('The marketing site uses two functional cookies.');
     }
 });

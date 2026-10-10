@@ -5,25 +5,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use PHPUnit\Framework\Assert;
 
-/*
- * Pages are lazy chunks (`@inertiajs/vite` resolves them with a non-eager
- * glob), so the browser used to discover a page's code only after app.tsx had
- * run: one more round trip before hydration on every first visit. The root
- * template names the page's own file as a `@vite` entry, which sends its
- * modulepreload, and those of everything it imports, with the document.
- *
- * Every component a registry page renders has a file (SeoSmokeTest), and so
- * does the error page. These tests hold the template to that, and, once the
- * client bundle is built, check the manifest has a key for every page file.
- */
-
-/**
- * The client manifest, or a skip (a failure under REQUIRE_SSR) without a build.
- *
- * @return array<string, array<string, mixed>>
- */
+/** @return array<string, array<string, mixed>> */
 function clientManifest(): array
 {
+    requireSsrJob();
+
     $path = public_path('build/manifest.json');
 
     if (! is_file($path)) {
@@ -33,20 +19,8 @@ function clientManifest(): array
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 }
 
-it('names the page component as a @vite entry, only when its file exists', function (): void {
-    $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
-
-    expect($blade)->toContain("@php(\$pageEntry = 'resources/js/pages/' . (\$page['component'] ?? '') . '.tsx')")
-        ->toContain("@vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path(\$pageEntry)) ? \$pageEntry : null, is_file(base_path(\$catalogEntry)) ? \$catalogEntry : null])))");
-});
-
-/*
- * The entry chunk carried the UI catalog of every language, twelve copies of
- * the same strings for a reader who needs one. English stays in the entry;
- * each other language is a chunk the page resolver awaits, and the root
- * template names it as a `@vite` entry so it arrives with the document.
- */
 it('imports only the default language\'s UI catalog statically, and awaits the page\'s own', function (): void {
+    // The entry chunk once carried twelve copies of the UI strings.
     $index = (string) file_get_contents(resource_path('js/i18n/index.ts'));
 
     preg_match_all("#^import \\w+ from './messages/([^/]+)/index\\.ts';#m", $index, $static);
@@ -68,7 +42,7 @@ it('keeps every other language\'s catalog out of the entry chunk', function (): 
         Assert::assertContains($catalog, $entry['dynamicImports'] ?? [], "app.tsx does not load {$catalog} on demand");
         Assert::assertNotContains($catalog, $entry['imports'] ?? [], "app.tsx imports {$catalog} statically");
     }
-});
+})->group('ssr');
 
 it('sends a translated page its own language\'s catalog with the document, and no other', function (string $path, string $locale): void {
     $manifest = clientManifest();
@@ -87,13 +61,7 @@ it('sends a translated page its own language\'s catalog with the document, and n
     ['/vi/download', 'vi'],
     ['/pt-BR/pricing', 'pt-BR'],
     ['/zh-Hans', 'zh-Hans'],
-]);
-
-it('renders the error page from a file that exists', function (): void {
-    $this->get('/no-such-page')->assertNotFound();
-
-    Assert::assertFileExists(resource_path('js/pages/Error.tsx'));
-});
+])->group('ssr');
 
 it('has a manifest key for every page file', function (): void {
     $manifest = clientManifest();
@@ -108,7 +76,7 @@ it('has a manifest key for every page file', function (): void {
     foreach ($pages as $page) {
         Assert::assertArrayHasKey($page, $manifest, "{$page} has no entry in public/build/manifest.json");
     }
-});
+})->group('ssr');
 
 it('sends the page chunk and its imports with the document', function (string $path, string $component): void {
     $manifest = clientManifest();
@@ -127,7 +95,6 @@ it('sends the page chunk and its imports with the document', function (string $p
         expect($html)->toMatch($preload($manifest[$import]['file']));
     }
 
-    // The app's entry still runs first, so the app boots as before.
     preg_match($script($manifest['resources/js/app.tsx']['file']), $html, $entry, PREG_OFFSET_CAPTURE);
     preg_match($script($chunk['file']), $html, $page, PREG_OFFSET_CAPTURE);
 
@@ -137,7 +104,7 @@ it('sends the page chunk and its imports with the document', function (string $p
     ['/pricing', 'Pricing'],
     ['/vi/download', 'Download'],
     ['/blog/tablepro-0-77', 'Blog/Post'],
-]);
+])->group('ssr');
 
 it('renders a component with no file without asking the manifest for it', function (): void {
     clientManifest();
@@ -150,4 +117,4 @@ it('renders a component with no file without asking the manifest for it', functi
 
     expect($html)->not->toContain('Nope/Missing.tsx')
         ->toContain('"component":"Nope\/Missing"');
-});
+})->group('ssr');

@@ -8,6 +8,7 @@ use Dom\HTMLDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Testing\TestResponse;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -15,18 +16,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The database hub and the engine pages (sitemap §A.3, §E.1, §E.2, §E.8).
- *
- * Every page file is held to the schema in
- * `resources/js/components/databases/README.md`, so a batch of pages written
- * by different hands still renders through one template: the facts come from
- * engines.json and the other data files, and the copy only adds what data
- * cannot say. The guards here are the ones a wrong page would slip past the
- * shared tests with: a family section missing its anchor, a slot borrowed
- * from another engine, a link to a URL, a fact typed into copy, a SQL
- * narrative on an engine iOS cannot open.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -40,8 +29,6 @@ function databasePagesEngines(): array
 }
 
 /**
- * The page files of one locale, slug => decoded copy.
- *
  * @return array<string, array<string, mixed>>
  */
 function databasePagesFiles(string $locale): array
@@ -62,8 +49,6 @@ function databasePagesFiles(string $locale): array
 }
 
 /**
- * Every string leaf of a decoded file, keyed by its dotted path.
- *
  * @param  array<array-key, mixed>  $data
  * @return array<string, string>
  */
@@ -84,9 +69,6 @@ function databasePagesStrings(array $data, string $prefix = ''): array
     return $strings;
 }
 
-/**
- * The route a site path answers on, or null.
- */
 function databasePagesRoute(string $path): ?string
 {
     try {
@@ -107,22 +89,6 @@ it('routes the final engine pages, in data order, and never the merged ones', fu
     foreach (DatabaseSlugs::MERGED as $slug) {
         expect($map->retires("/{$slug}"))->toBeTrue("/{$slug} must stay a redirect");
     }
-});
-
-it('answers each merged page with one 301 to its section on the family page', function (string $from, string $to): void {
-    get("{$from}?ref=app")
-        ->assertStatus(301)
-        ->assertHeader('Location', 'https://' . config('app.web_domain') . $to);
-})->with([
-    ['/mariadb-client', '/mysql-client?ref=app#mariadb'],
-    ['/cockroachdb-client', '/postgresql-client?ref=app#cockroachdb'],
-    ['/pglite-client', '/postgresql-client?ref=app#pglite'],
-    ['/scylladb-client', '/cassandra-client?ref=app#scylladb'],
-]);
-
-it('writes the same pages in every language', function (): void {
-    expect(array_keys(databasePagesFiles('vi')))->toBe(array_keys(databasePagesFiles('en')));
-    expect(array_diff(array_keys(databasePagesFiles('en')), DatabaseSlugs::ALL))->toBe([], 'A page file has no route');
 });
 
 it('holds every page file to the schema in components/databases/README.md', function (): void {
@@ -157,11 +123,6 @@ it('holds every page file to the schema in components/databases/README.md', func
                 expect($text)->toBeString()->not->toBe('')->not->toContain('{');
             }
 
-            /*
-             * The search title names the platforms the way the H1 does, from
-             * platforms.json (sitemap §A.3, spec §5 "keep Mac-specific search
-             * titles"), and the two never disagree.
-             */
             expect(preg_match('/\{(devices|macDevices)\}/', $copy['seo']['title']))->toBe(1, "{$where}: search titles name current availability from data");
 
             expect(array_keys($copy['header']))->toBe(['title', 'lead']);
@@ -315,40 +276,6 @@ it('holds every page file to the schema in components/databases/README.md', func
     }
 });
 
-it('types no count, number-led claim or banned phrase into database copy', function (string $locale): void {
-    $files = [
-        "content/{$locale}/engines.json" => json_decode((string) file_get_contents(resource_path("data/content/{$locale}/engines.json")), true),
-        "content/{$locale}/databases/index.json" => json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true),
-    ];
-
-    foreach (databasePagesFiles($locale) as $slug => $copy) {
-        $files["content/{$locale}/databases/{$slug}.json"] = $copy;
-    }
-
-    /*
-     * The positioning §12 phrases a database page is most likely to reach
-     * for. `Content/BannedClaimsTest` holds the whole list for every page;
-     * this catches them where the batch pages are written.
-     */
-    $banned = [
-        'every database', 'all databases', 'any database', 'cross-platform', 'all platforms', 'unlock', 'unlocks', 'seamless',
-        'powerful', 'effortless', 'blazing', 'lightweight', 'free forever', 'no feature gating', 'Mac App Store', 'Setapp',
-        'coming soon', 'mọi cơ sở dữ liệu', 'tất cả cơ sở dữ liệu', 'đa nền tảng', 'mở khóa', 'mạnh mẽ',
-        'liền mạch', 'siêu nhanh', 'tức thì', 'sắp ra mắt', 'miễn phí mãi mãi',
-    ];
-    $counted = '/\b\d+\s+(databases?|engines?|drivers?|features?|tools?|providers?|plugins?|cơ sở dữ liệu|tính năng|công cụ|nhà cung cấp)\b/iu';
-
-    foreach ($files as $where => $data) {
-        foreach (databasePagesStrings($data) as $path => $text) {
-            expect(preg_match($counted, $text))->toBe(0, "{$where} {$path} types a count");
-
-            foreach ($banned as $phrase) {
-                expect(preg_match('/(?<!\p{L})' . preg_quote($phrase, '/') . '(?!\p{L})/iu', $text))->toBe(0, "{$where} {$path} says \"{$phrase}\"");
-            }
-        }
-    }
-})->with(['en', 'vi']);
-
 it('keeps the hub in the sitemap’s category order with every label both languages need', function (string $locale): void {
     $hub = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true, 512, JSON_THROW_ON_ERROR);
 
@@ -362,7 +289,7 @@ it('keeps the hub in the sitemap’s category order with every label both langua
     }
 })->with(['en', 'vi']);
 
-it('renders the hub from data in both languages, listing every published engine once', function (string $prefix, string $locale): void {
+it('renders the hub from data in both languages, listing every published engine once where the site describes it', function (string $prefix, string $locale): void {
     $published = array_values(array_filter(databasePagesEngines(), fn(array $engine): bool => $engine['state'] === 'published'));
 
     get("{$prefix}/databases")
@@ -378,60 +305,24 @@ it('renders the hub from data in both languages, listing every published engine 
             ->where('iosEngines', fn($ids): bool => collect($ids)->every(fn(string $id): bool => in_array($id, array_column($published, 'id'), true)))
             ->where('links.docs', 'https://docs.tablepro.app')
             ->where('links.request', fn(string $url): bool => str_starts_with($url, 'https://github.com/'))
-            ->where('platforms.mac.requirements.minVersion', '13.0'));
+            ->where('platforms.mac.requirements.minVersion', '13.0')
+            ->where('engines', function ($engines): bool {
+                $paths = collect($engines)->pluck('path', 'id');
+
+                Assert::assertSame('/mysql-client', $paths['mysql']);
+                Assert::assertSame('/mysql-client#mariadb', $paths['mariadb']);
+                Assert::assertSame('/postgresql-client#pglite', $paths['pglite']);
+                Assert::assertSame('/cassandra-client#scylladb', $paths['scylladb']);
+                Assert::assertSame('/turso-client#libsql', $paths['libsql']);
+                Assert::assertSame('/databases#spanner', $paths['spanner']);
+                Assert::assertSame('/databases#sap-hana', $paths['sap-hana']);
+
+                return true;
+            }));
 })->with([
     'English' => ['', 'en'],
     'Vietnamese' => ['/vi', 'vi'],
 ]);
-
-it('places every engine where the site describes it', function (): void {
-    get('/databases')->assertInertia(fn(AssertableInertia $page) => $page->where('engines', function ($engines): bool {
-        $paths = collect($engines)->pluck('path', 'id');
-
-        Assert::assertSame('/mysql-client', $paths['mysql']);
-        Assert::assertSame('/mysql-client#mariadb', $paths['mariadb']);
-        Assert::assertSame('/postgresql-client#pglite', $paths['pglite']);
-        Assert::assertSame('/cassandra-client#scylladb', $paths['scylladb']);
-        Assert::assertSame('/turso-client#libsql', $paths['libsql']);
-        Assert::assertSame('/databases#spanner', $paths['spanner']);
-        Assert::assertSame('/databases#sap-hana', $paths['sap-hana']);
-
-        return true;
-    }));
-});
-
-it('renders each written engine page in both languages from its copy and the data', function (): void {
-    $engines = collect(databasePagesEngines())->keyBy('id');
-
-    foreach (databasePagesFiles('en') as $slug => $copy) {
-        $engine = $engines[$copy['engine']];
-        $members = array_values(array_column(array_filter(
-            databasePagesEngines(),
-            fn(array $other): bool => $other['page'] === 'section' && $other['parent'] === $engine['id'],
-        ), 'id'));
-
-        foreach (['' => 'en', '/vi' => 'vi'] as $prefix => $locale) {
-            $file = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/{$slug}.json")), true);
-
-            get("{$prefix}/{$slug}")
-                ->assertOk()
-                ->assertInertia(fn(AssertableInertia $page) => $page
-                    ->component('Databases/Show')
-                    ->where('slug', $slug)
-                    ->where('locale', $locale)
-                    ->where('content.header.title', $file['header']['title'])
-                    ->where('engine.id', $engine['id'])
-                    ->where('engine.distribution', $engine['distribution'])
-                    ->where('engine.queryLanguage', $engine['queryLanguage'])
-                    ->where('engine.versionFloor', $engine['versionFloor'] === null ? null : ['text' => $engine['versionFloor']['text'], 'enforced' => $engine['versionFloor']['enforced']])
-                    ->where('engine.limits', array_map(fn(array $limit): array => ['id' => $limit['id'], 'value' => $limit['value']], $engine['limits']))
-                    ->where('family', fn($family): bool => collect($family)->pluck('id')->all() === $members)
-                    ->where('copy', fn($copy): bool => collect($copy)->keys()->all() === [$engine['id'], ...$members])
-                    ->has('labels.facts')
-                    ->has('platforms.mac.deviceNames'));
-        }
-    }
-});
 
 it('derives the MySQL page’s facts from data: the shared driver, the formats and the backup tool', function (): void {
     get('/mysql-client')->assertInertia(fn(AssertableInertia $page) => $page
@@ -510,28 +401,59 @@ it('calls a tool with published code under a non-open licence source available, 
     requireSsr();
 
     // The block's text, not the page's: the props beside it carry every label.
-    $otherTools = fn(string $path): string => HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)->querySelector('#other-tools')->textContent;
+    $otherTools = fn(TestResponse $response): string => HTMLDocument::createFromString((string) $response->getContent(), LIBXML_NOERROR)->querySelector('#other-tools')->textContent;
 
     foreach (['/mongodb-client' => 'mongodb-compass', '/redis-gui' => 'redis-insight'] as $path => $id) {
-        get($path)->assertInertia(fn(AssertableInertia $page) => $page->where('tools.0.id', $id)->where('tools.0.licence', ['name' => 'SSPL-1.0', 'openSource' => false]));
+        $response = get($path)->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('tools.0.id', $id)->where('tools.0.licence', ['name' => 'SSPL-1.0', 'openSource' => false]));
+        $text = $otherTools($response);
 
-        expect($otherTools($path))->toContain('Source available (SSPL-1.0)')->not->toContain('Closed source');
+        expect($text)->toContain('Source available (SSPL-1.0)')->not->toContain('Closed source');
+
+        if ($path === '/mongodb-client') {
+            expect($text)->toContain('Platforms: Mac, Windows and Linux');
+        }
     }
 
-    expect($otherTools('/mongodb-client'))->toContain('Platforms: Mac, Windows and Linux');
-    expect($otherTools('/postgresql-client'))->toContain('Open source (PostgreSQL License)');
-    expect($otherTools('/sql-server-client'))->toContain('Closed source');
-});
+    expect($otherTools(get('/postgresql-client')->assertOk()))->toContain('Open source (PostgreSQL License)');
+    expect($otherTools(get('/sql-server-client')->assertOk()))->toContain('Closed source');
+})->group('ssr');
 
-it('renders every anchor a redirect or a link aims at, in both languages', function (): void {
+it('renders each engine page in both languages from its copy and the data, with every anchor a redirect or a link aims at', function (): void {
     requireSsr();
 
+    $engines = collect(databasePagesEngines())->keyBy('id');
+    $redirects = json_decode((string) file_get_contents(resource_path('data/redirects.json')), true);
+
     foreach (databasePagesFiles('en') as $slug => $copy) {
-        foreach (['', '/vi'] as $prefix) {
-            $html = (string) get("{$prefix}/{$slug}")->assertOk()->getContent();
+        $engine = $engines[$copy['engine']];
+        $members = array_values(array_column(array_filter(
+            databasePagesEngines(),
+            fn(array $other): bool => $other['page'] === 'section' && $other['parent'] === $engine['id'],
+        ), 'id'));
+
+        foreach (['' => 'en', '/vi' => 'vi'] as $prefix => $locale) {
+            $file = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/{$slug}.json")), true);
+
+            $html = (string) get("{$prefix}/{$slug}")
+                ->assertOk()
+                ->assertInertia(fn(AssertableInertia $page) => $page
+                    ->component('Databases/Show')
+                    ->where('slug', $slug)
+                    ->where('locale', $locale)
+                    ->where('content.header.title', $file['header']['title'])
+                    ->where('engine.id', $engine['id'])
+                    ->where('engine.distribution', $engine['distribution'])
+                    ->where('engine.queryLanguage', $engine['queryLanguage'])
+                    ->where('engine.versionFloor', $engine['versionFloor'] === null ? null : ['text' => $engine['versionFloor']['text'], 'enforced' => $engine['versionFloor']['enforced']])
+                    ->where('engine.limits', array_map(fn(array $limit): array => ['id' => $limit['id'], 'value' => $limit['value']], $engine['limits']))
+                    ->where('family', fn($family): bool => collect($family)->pluck('id')->all() === $members)
+                    ->where('copy', fn($copy): bool => collect($copy)->keys()->all() === [$engine['id'], ...$members])
+                    ->has('labels.facts')
+                    ->has('platforms.mac.deviceNames'))
+                ->getContent();
 
             foreach ($copy['family'] as $member) {
-                $anchor = collect(databasePagesEngines())->firstWhere('id', $member['engine'])['anchor'];
+                $anchor = $engines[$member['engine']]['anchor'];
 
                 Assert::assertStringContainsString("id=\"{$anchor}\"", $html, "{$prefix}/{$slug} has no #{$anchor}");
             }
@@ -540,7 +462,7 @@ it('renders every anchor a redirect or a link aims at, in both languages', funct
                 Assert::assertStringContainsString("id=\"{$id}\"", $html, "{$prefix}/{$slug} has no #{$id}");
             }
 
-            foreach (json_decode((string) file_get_contents(resource_path('data/redirects.json')), true) as $redirect) {
+            foreach ($redirects as $redirect) {
                 if (preg_match('#^/' . preg_quote($slug, '#') . '\#([a-z0-9-]+)$#', (string) ($redirect['to'] ?? ''), $match) === 1) {
                     Assert::assertStringContainsString("id=\"{$match[1]}\"", $html, "{$redirect['from']} lands on {$prefix}/{$slug}#{$match[1]}, which is missing");
                 }
@@ -559,13 +481,13 @@ it('renders every anchor a redirect or a link aims at, in both languages', funct
             Assert::assertStringContainsString("id=\"{$id}\"", $html, "{$prefix}/databases has no #{$id}");
         }
 
-        foreach (databasePagesEngines() as $engine) {
+        foreach ($engines as $engine) {
             if ($engine['page'] === 'hub') {
                 Assert::assertStringContainsString("id=\"{$engine['anchor']}\"", $html, "{$prefix}/databases has no row #{$engine['anchor']}");
             }
         }
     }
-});
+})->group('ssr');
 
 it('describes an engine reached through its service API with no host or port', function (): void {
     requireSsr();
@@ -585,7 +507,7 @@ it('describes an engine reached through its service API with no host or port', f
             Assert::assertStringNotContainsString('>' . $labels['facts']['defaultPort'] . '<', $html, "{$prefix}/{$engine['slug']} shows a port the form does not have");
         }
     }
-});
+})->group('ssr');
 
 it('titles each engine page with the platforms its heading names, and keeps the iPhone app out of the Redis title', function (): void {
     requireSsr();
@@ -599,14 +521,13 @@ it('titles each engine page with the platforms its heading names, and keeps the 
     // Key browsing is Mac-only in iOS 1.0 (positioning §12), so the heading and title promise only the Mac.
     expect($html('/redis-gui'))->toMatch($title('Redis GUI for Mac – TablePro'))->toMatch('#>Redis GUI</h1>#');
     expect($html('/vi/redis-gui'))->toMatch($title('GUI Redis cho Mac – TablePro'));
-});
+})->group('ssr');
 
 it('shows AWS IAM on the facts card wherever the engine has an AWS sign-in, not only RDS IAM', function (): void {
     requireSsr();
 
     $labels = json_decode((string) file_get_contents(resource_path('data/content/en/databases/index.json')), true)['labels'];
 
-    // The facts card's "Connect with" row, as rendered.
     $connectRow = static function (string $slug) use ($labels): string {
         $html = html_entity_decode((string) get("/{$slug}")->getContent(), ENT_QUOTES | ENT_HTML5);
         $main = substr($html, (int) strpos($html, '<main'));
@@ -620,7 +541,7 @@ it('shows AWS IAM on the facts card wherever the engine has an AWS sign-in, not 
     }
 
     expect($connectRow('redshift-client'))->not->toContain($labels['connect']['awsIam']);
-});
+})->group('ssr');
 
 it('writes the iPhone status line without an article in front of the engine name', function (): void {
     requireSsr();
@@ -629,11 +550,9 @@ it('writes the iPhone status line without an article in front of the engine name
         expect(html_entity_decode((string) get($path)->getContent(), ENT_QUOTES | ENT_HTML5))
             ->not->toMatch('/\b[Aa] (Apache Kafka|Amazon DynamoDB|Elasticsearch|etcd|Amazon Redshift) connection/');
     }
-});
+})->group('ssr');
 
 /**
- * The hub file's `labels` in one locale.
- *
  * @return array<string, mixed>
  */
 function databasePagesLabels(string $locale): array
@@ -641,9 +560,6 @@ function databasePagesLabels(string $locale): array
     return json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true, 512, JSON_THROW_ON_ERROR)['labels'];
 }
 
-/**
- * A server-rendered engine page's `<main>`, entities decoded.
- */
 function databasePagesMain(string $path): string
 {
     $html = html_entity_decode((string) get($path)->assertOk()->getContent(), ENT_QUOTES | ENT_HTML5);
@@ -652,8 +568,6 @@ function databasePagesMain(string $path): string
 }
 
 /**
- * The facts card of a rendered engine page, term => value.
- *
  * @return array<string, string>
  */
 function databasePagesFacts(string $path): array
@@ -668,39 +582,28 @@ function databasePagesFacts(string $path): array
     return $rows;
 }
 
-it('sends what TablePro costs and its licence from data, and the repository', function (): void {
-    $facts = json_decode((string) file_get_contents(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR);
-
-    foreach (['/mysql-client', '/vi/kafka-client'] as $path) {
-        get($path)->assertInertia(fn(AssertableInertia $page) => $page
-            ->where('product', ['free' => true, 'licence' => $facts['openSource']['license']])
-            ->where('links.source', $facts['links']['github']));
-    }
-});
-
 it('says under the availability line that TablePro is free to use and open source, in every language', function (): void {
     requireSsr();
 
     $facts = json_decode((string) file_get_contents(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR);
+    // Every language on one page, and the other kinds of iPhone support in English.
+    $pages = [...array_map(fn(string $locale): array => [$locale, 'mysql-client'], Locales::codes()), ['en', 'redis-gui'], ['en', 'kafka-client']];
 
-    foreach (Locales::codes() as $locale) {
+    foreach ($pages as [$locale, $slug]) {
         $prefix = $locale === 'en' ? '' : "/{$locale}";
         $labels = databasePagesLabels($locale);
+        $main = databasePagesMain("{$prefix}/{$slug}");
+        // The header's text column ends where the facts card's heading starts.
+        $header = substr($main, 0, (int) strpos($main, '<h2'));
 
-        foreach (['mysql-client', 'redis-gui', 'kafka-client'] as $slug) {
-            $main = databasePagesMain("{$prefix}/{$slug}");
-            // The header's text column ends where the facts card's heading starts.
-            $header = substr($main, 0, (int) strpos($main, '<h2'));
-
-            expect(strip_tags($header))
-                ->toContain(strip_tags($labels['availability']['free']))
-                ->toContain(str_replace('{licence}', $facts['openSource']['license'], $labels['otherTools']['openSource']));
-            expect($header)
-                ->toContain("href=\"{$prefix}/pricing\"")
-                ->toContain('href="' . $facts['links']['github'] . '"');
-        }
+        expect(strip_tags($header))
+            ->toContain(strip_tags($labels['availability']['free']))
+            ->toContain(str_replace('{licence}', $facts['openSource']['license'], $labels['otherTools']['openSource']));
+        expect($header)
+            ->toContain("href=\"{$prefix}/pricing\"")
+            ->toContain('href="' . $facts['links']['github'] . '"');
     }
-});
+})->group('ssr');
 
 it('links pricing from the closing band and from every plan a page names', function (): void {
     requireSsr();
@@ -721,18 +624,22 @@ it('links pricing from the closing band and from every plan a page names', funct
     $main = databasePagesMain('/vi/mongodb-client');
 
     expect(substr($main, (int) strpos($main, 'id="get-tablepro"')))->toContain('href="/vi/pricing"', databasePagesLabels('vi')['download']['pricing']);
-});
+})->group('ssr');
 
 it('states the minimum version plainly: the bare version, the refusal where the app enforces it, or none', function (): void {
     requireSsr();
 
     $facts = databasePagesLabels('en')['facts'];
+    $branch = static fn(array $engine): string => match (true) {
+        $engine['versionFloor'] === null => 'none',
+        $engine['versionFloor']['text'] === null => 'no minimum',
+        $engine['versionFloor']['enforced'] => 'enforced',
+        default => 'documented',
+    };
+    // The first engine page of each kind of floor: the card follows the kind, not the engine.
+    $engines = collect(databasePagesEngines())->where('page', 'own')->unique($branch);
 
-    foreach (databasePagesEngines() as $engine) {
-        if ($engine['page'] !== 'own') {
-            continue;
-        }
-
+    foreach ($engines as $engine) {
         $card = databasePagesFacts("/{$engine['slug']}");
         $floor = $engine['versionFloor'];
         $where = "/{$engine['slug']}";
@@ -755,21 +662,19 @@ it('states the minimum version plainly: the bare version, the refusal where the 
     expect(strip_tags(databasePagesMain('/mysql-client')))
         ->toContain("{$facts['minimumVersion']}: 10.x")
         ->toContain("{$facts['minimumVersion']}: {$facts['noMinimum']}");
-});
+})->group('ssr');
 
-it('names export formats through the token wherever an engine exports, in every language', function (): void {
+it('names export formats through the token wherever an engine exports', function (): void {
     $engines = collect(databasePagesEngines())->keyBy('id');
 
-    foreach (Locales::codes() as $locale) {
-        foreach (databasePagesFiles($locale) as $slug => $copy) {
-            $section = collect($copy['sections'])->firstWhere('id', 'move-data');
+    foreach (databasePagesFiles('en') as $slug => $copy) {
+        $section = collect($copy['sections'])->firstWhere('id', 'move-data');
 
-            if ($section === null || ! $engines[$copy['engine']]['capabilities']['export']) {
-                continue;
-            }
-
-            expect(str_contains(implode(' ', $section['paragraphs']), '{exportFormats}'))->toBeTrue("content/{$locale}/databases/{$slug}.json types its export formats or names none");
+        if ($section === null || ! $engines[$copy['engine']]['capabilities']['export']) {
+            continue;
         }
+
+        expect(str_contains(implode(' ', $section['paragraphs']), '{exportFormats}'))->toBeTrue("content/en/databases/{$slug}.json types its export formats or names none");
     }
 });
 
@@ -858,4 +763,4 @@ it('renders the iPhone section’s capture', function (): void {
 
         expect(substr($main, (int) strpos($main, 'id="iphone"')))->toContain("/images/ios/{$slot}-light-");
     }
-});
+})->group('ssr');

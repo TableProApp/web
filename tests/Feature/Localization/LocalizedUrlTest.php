@@ -3,10 +3,7 @@
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 
-/**
- * The PHP half of locale-aware URLs. The TypeScript half, with the same edge
- * cases, is tests/js/paths.test.ts.
- */
+// tests/js/paths.test.ts holds the same edge cases for the TypeScript helper.
 it('reads the allowlist from resources/data/locales.json', function (): void {
     expect(Locales::default())->toBe('en');
     expect(Locales::codes())->toBe(['en', 'vi', 'es', 'de', 'fr', 'ja', 'pt-BR', 'zh-Hans', 'ko', 'zh-Hant', 'it', 'id']);

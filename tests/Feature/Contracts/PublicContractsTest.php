@@ -2,19 +2,7 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * The contracts between this site and the platform app on the same origin,
- * and the analytics they share (architecture §1.14).
- *
- * nginx routes `/checkout`, `/discount/*`, `/newsletter/*` and `/account`
- * to the platform by their unprefixed paths, so a request to `/vi/checkout`
- * would never reach it. `/cdn-cgi/trace` is answered by Cloudflare's edge
- * itself, for the language suggestion. Both apps read the same `localStorage` keys. And GA
- * reports are only comparable across a redesign if the event names and their
- * parameters stay put. None of this is visible to a typecheck.
- */
-
-/** Every TypeScript source under resources/js, keyed by its path from there. @return array<string, string> */
+/** @return array<string, string> */
 function contractSources(): array
 {
     $sources = [];
@@ -31,6 +19,7 @@ function contractSources(): array
     return $sources;
 }
 
+// nginx sends only the unprefixed paths to the platform: /vi/checkout would never reach it.
 it('posts only to the platform\'s unprefixed endpoints', function (): void {
     $targets = [];
 
@@ -77,24 +66,13 @@ it('sends the newsletter form as JSON with the page locale', function (): void {
         ->toContain('body: JSON.stringify({ email, locale })')
         ->toContain('emailFormOutcome(res.status, data, m.forms)');
 
-    /*
-     * The platform's subscribe route is in its `web` group, so its answer sets
-     * `tablepro-session` and `XSRF-TOKEN`. A same-origin fetch would keep both
-     * on public pages (docs/architecture.md); `omit` neither sends nor stores
-     * cookies.
-     */
     expect($hook)->toMatch("/fetch\\(endpoint, \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 
     // The platform's 429 text is shared with the license API and stays English, so the page uses its own.
     expect($outcome)->toMatch('/status === 429\) \{\s*return \{ kind: \'flash\', flash: \{ type: \'error\', message: strings\.tooMany \}/');
 });
 
-/*
- * The public site sets no cookies (docs/architecture.md), and every
- * platform endpoint it calls answers from the platform's `web` group, which
- * sets `tablepro-session` and `XSRF-TOKEN`. Only `credentials: 'omit'` keeps
- * those off public pages.
- */
+// The platform's web group sets tablepro-session and XSRF-TOKEN; only credentials: 'omit' keeps them off public pages.
 it('sends no cookies with any request to the platform', function (): void {
     foreach (contractSources() as $file => $text) {
         if (! preg_match_all('/fetch\(([^;]*?)\{(.*?)\}\s*\)/s', $text, $calls, PREG_SET_ORDER)) {
@@ -109,6 +87,7 @@ it('sends no cookies with any request to the platform', function (): void {
     }
 });
 
+// GA reports stay comparable across a redesign only while these names and parameters stay put.
 it('keeps the analytics event names and their parameters', function (): void {
     $names = [];
 
@@ -155,7 +134,6 @@ it('keeps the analytics event names and their parameters', function (): void {
         ->toContain("trackEvent('download_click', { location, platform });")
         ->toContain("platform: 'mac' | 'ios' = 'mac'");
 
-    // The site chrome reports where a download started.
     expect((string) file_get_contents(resource_path('js/components/site/site-header.tsx')))->toContain("trackDownload('header', 'mac')");
     expect((string) file_get_contents(resource_path('js/components/site/mobile-nav.tsx')))->toContain("trackDownload('mobile-nav', 'mac')");
 

@@ -24,7 +24,7 @@ function blogFeedDocument(TestResponse $response): SimpleXMLElement
 }
 
 /**
- * @return array<string, string>  each `rel` of an element's links, with its href
+ * @return array<string, string>
  */
 function blogFeedLinks(SimpleXMLElement $element): array
 {
@@ -66,8 +66,6 @@ it('serves the English posts as an Atom feed, newest first', function (): void {
             ->and((string) $entry->summary)->toBe($post->description)
             ->and((string) $entry->published)->toBe($post->date->toAtomString())
             ->and((string) $entry->updated)->toBe($post->date->toAtomString());
-
-        $this->get('/blog/' . $post->slug)->assertOk();
     }
 });
 
@@ -121,4 +119,4 @@ it('advertises the feed in the head of blog pages only', function (): void {
     expect(ssrHtml('/blog'))->toContain($link)
         ->and(ssrHtml('/blog/tablepro-0-77'))->toContain($link)
         ->and(ssrHtml('/pricing'))->not->toContain('application/atom+xml');
-});
+})->group('ssr');

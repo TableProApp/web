@@ -2,20 +2,6 @@
 
 use Illuminate\Support\Facades\File;
 
-/**
- * Facts the content review found wrong or overstated, pinned in both
- * languages so a later edit cannot bring the old sentence back.
- *
- * Each case names the file, the phrases the corrected copy must keep and the
- * phrases the wrong version used. The evidence for each correction is the
- * v0.77.0 / iOS build 22 source the review cited; the case's label says what
- * was wrong.
- */
-
-/**
- * The text of a content or legal file, decoded JSON flattened to one string
- * so a phrase is found wherever the file keeps it.
- */
 function reviewedText(string $file): string
 {
     $raw = File::get(resource_path("data/{$file}"));
@@ -160,12 +146,7 @@ dataset('reviewed facts', [
         ['your own provider key or a local model', 'each file’s commit history with a side-by-side diff'],
         ['More use needs a paid JetBrains AI plan', 'No commit, branch or diff view'],
     ],
-    /*
-     * Beekeeper Studio's two official pages disagree (2026-10-03): the AI
-     * Shell guide says every paid version includes it, the pricing table
-     * ticks it for Professional and Business only. The page states what both
-     * agree on.
-     */
+    // Beekeeper Studio's AI Shell guide and pricing table disagree on the tier (2026-10-03).
     'Beekeeper Studio’s AI Shell needs a paid tier, which tier is disputed' => [
         'content/en/compare/beekeeper-studio.json',
         ['AI Shell needs a paid tier', 'AI Shell, in paid tiers only, not in Community', 'Import/Export & Backup/Restore, in every paid tier'],
@@ -190,7 +171,7 @@ dataset('reviewed facts', [
     'TablePro is not defined as a Mac client' => [
         'content/en/compare/tableplus.json',
         ['Two native database clients with Mac, iPhone and iPad apps'],
-        ['Mac database clients'],
+        [],
     ],
     'DBeaver: no "native Mac client", no self-listing Compare & Sync' => [
         'content/en/compare/dbeaver.json',
@@ -349,7 +330,7 @@ dataset('reviewed facts', [
         ['Compass can also write a query from a question in plain language.'],
         ['It can also write a query'],
     ],
-    // docs/databases/index.mdx:76 and docs/connections/ssl.mdx:6 at v0.78.0 name these three. A provider the app's docs do not name stays out.
+    // The app's docs name these three (docs/databases/index.mdx:76, docs/connections/ssl.mdx:6 at v0.78.0).
     'hosted PostgreSQL names the services the app’s docs name' => [
         'content/en/databases/postgresql-client.json',
         ['such as Amazon RDS, Neon or Supabase?', 'Neon, Supabase and Heroku connect with the host they give you.'],

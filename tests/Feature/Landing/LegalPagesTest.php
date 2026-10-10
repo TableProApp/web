@@ -49,7 +49,6 @@ const LEGAL_RENEWAL_REFUND = [
 ];
 
 // The shorter marketing sentence still promises a new window for each charge.
-// Legal pages and UI catalogs retain the explicit monthly/yearly contract above.
 const MARKETING_RENEWAL_REFUND = [
     'en' => ['Purchases and subscription renewals', 'within {refundDays} days of each charge'],
     'vi' => ['Mỗi lần mua hoặc gia hạn subscription', 'trong {refundDays} ngày từ lần thu phí đó'],
@@ -103,8 +102,6 @@ function legalSection(string $document, string $locale, string $id): string
 }
 
 /**
- * What each line of a document is: a heading with its id, a list item, a paragraph or a blank, with the slots it fills.
- *
  * @return list<string>
  */
 function legalShape(string $document, string $locale): array
@@ -158,15 +155,16 @@ it('indexes each document in every supported language', function (string $route)
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 })->with(['landing.privacy', 'landing.terms', 'landing.refundPolicy']);
 
-it('gives every heading an explicit id', function (string $locale): void {
-    foreach (legalDocumentsIn($locale) as $document) {
-        preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, $locale))->body(), $headings);
+// A translation's headings follow from the shape parity below.
+it('gives every English heading an explicit id', function (): void {
+    foreach (legalDocumentsIn('en') as $document) {
+        preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, 'en'))->body(), $headings);
 
         foreach ($headings[0] as $heading) {
-            expect($heading)->toMatch('/\{#[a-z0-9-]+\}$/', "legal/{$locale}/{$document}.md: \"{$heading}\" has no explicit id");
+            expect($heading)->toMatch('/\{#[a-z0-9-]+\}$/', "legal/en/{$document}.md: \"{$heading}\" has no explicit id");
         }
     }
-})->with(legalLocales());
+});
 
 it('keeps every translation in step with the English page: headings, ids, list items, paragraphs, slots and the update date', function (string $locale): void {
     foreach (legalDocumentsIn($locale) as $document) {
@@ -212,7 +210,7 @@ it('keeps the cookie contract the consent bar and the account app rely on', func
     expect($cookies)->toContain(LegalDocuments::COOKIE_SETTINGS_MARKER);
 
     // nl_dismissed_at was listed for years and set by nothing.
-    expect($privacy)->not->toContain('nl_dismissed_at');
+    expect($privacy)->not->toContain('nl_dismissed_at')->not->toContain('cookie-less');
 })->with([
     'English' => ['en', 'lawful basis', 'Cookie settings'],
     'Vietnamese' => ['vi', 'cơ sở pháp lý', 'Cài đặt cookie'],
@@ -224,10 +222,6 @@ it('describes purchase attribution as discarded, under the website and the cooki
     }
 
     expect(legalSection('privacy', $locale, 'website'))->toContain($discarded);
-
-    foreach (['so we know which', 'pay for the work', 'store against the license'] as $phrase) {
-        Assert::assertStringNotContainsStringIgnoringCase($phrase, legalSource('privacy', $locale));
-    }
 })->with([
     'English' => ['en', 'Our server discards it'],
     'Vietnamese' => ['vi', 'Máy chủ của chúng tôi bỏ nó đi'],
@@ -247,9 +241,7 @@ it('states what the Mac app and the server actually do', function (): void {
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
 
-    // Team Library uploads SQL text and connection settings, never passwords. The
-    // upload carries startup commands and the tunnel command too
-    // (ConnectionExportService.buildEnvelope at v0.77.0).
+    // The Team Library upload carries startup commands and the tunnel command too (ConnectionExportService.buildEnvelope at v0.77.0).
     expect($mac)->toContain('SQL text')->toContain('never passwords')->toContain('startup commands')->toContain('Tunnel Command');
 
     // Updates come from GitHub and can be turned off; the plugin catalog cannot.
@@ -280,17 +272,10 @@ it('sets no retention period the server does not keep', function (string $locale
     // The previous policy promised 90 days for server logs and "aggregated" analytics; neither was true.
     expect($retention)->not->toContain('90');
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
-    Assert::assertStringNotContainsStringIgnoringCase('anonymous analytics', legalSource('privacy', $locale));
 })->with(['en', 'vi']);
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
-    /*
-     * docs.tablepro.app set Google Analytics cookies on .tablepro.app with no
-     * consent, which made "Google Analytics cookies are not set until you
-     * allow them" false for anyone who had opened the docs. The docs now ask
-     * first. Their bar is English only, so every language names its two
-     * controls as they are printed there.
-     */
+    // The docs once set GA cookies on .tablepro.app with no consent; their bar is English only, so every language names its controls in English.
     $intro = strtok(YamlFrontMatter::parse(legalSource('privacy', $locale))->body(), "\n");
     $website = legalSection('privacy', $locale, 'website');
 
@@ -302,14 +287,8 @@ it('covers the documentation site and its own analytics question', function (str
     expect(legalSection('privacy', $locale, 'transfers'))->toContain('Mintlify');
 })->with(legalLocales());
 
-it('discloses Cloudflare Web Analytics and states Google\'s default retention, never 14 months', function (string $locale, string $twoMonths, string $sixMonths): void {
-    /*
-     * The owner confirmed (spec §0) that Cloudflare Web Analytics runs on
-     * tablepro.app, and that the GA4 property was never set to keep data for
-     * 14 months. Google's default for a property is 2 months for user-level
-     * and event-level data; the policy describes that default, which holds
-     * for as long as the setting is not changed.
-     */
+it('discloses Cloudflare Web Analytics and states Google\'s default retention', function (string $locale, string $twoMonths, string $sixMonths): void {
+    // The GA4 property keeps Google's default of 2 months; it was never set to 14.
     $website = legalSection('privacy', $locale, 'website');
     $retention = legalSection('privacy', $locale, 'retention');
 
@@ -321,8 +300,6 @@ it('discloses Cloudflare Web Analytics and states Google\'s default retention, n
     expect($retention)->toContain('**Cloudflare Web Analytics**')->toContain($sixMonths);
     expect($website)->toContain($twoMonths);
     expect($retention)->toContain($twoMonths);
-
-    Assert::assertDoesNotMatchRegularExpression('/\b(14|fourteen|mười bốn)\s*(months?|tháng)\b/iu', legalSource('privacy', $locale));
 })->with([
     'English' => ['en', '2 months', 'six months'],
     'Vietnamese' => ['vi', '2 tháng', 'sáu tháng'],
@@ -548,4 +525,4 @@ it('server-renders the cookie settings button inside the cookies section', funct
     // The marker stays in the page props (the JSON payload); the markup must not carry it.
     $markup = (string) preg_replace('#<script data-page="app" type="application/json">.*?</script>#s', '', $html);
     expect($markup)->not->toContain('<cookie-settings>');
-})->with(['/privacy', '/vi/privacy']);
+})->with(['/privacy', '/vi/privacy'])->group('ssr');

@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\Localization\Locales;
-use App\Support\Localization\LocalizedUrl;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
 
@@ -140,18 +139,6 @@ it('answers an unknown integration with a plain 404', function (string $path): v
     get($path)->assertNotFound()->assertInertia(fn(AssertableInertia $page) => $page->component('Error')->missing('suggestion'));
 })->with(['/integrations/raycast', '/vi/integrations/raycast', '/integrations/Command-Line']);
 
-it('lists detail pages in the sitemap in English only, without archived ones', function (): void {
-    $urls = array_keys(seoGenerateSitemap());
-    $url = fn(string $route, array $params, string $locale): string => LocalizedUrl::route($route, $params, $locale);
-
-    expect($urls)->toContain($url('landing.integrations.index', [], 'en'), $url('landing.integrations.index', [], 'vi'));
-    expect(array_values(array_filter($urls, fn(string $candidate): bool => str_contains($candidate, '/integrations/'))))->toEqualCanonicalizing([
-        $url('landing.integrations.show', ['slug' => 'command-line'], 'en'),
-        $url('landing.integrations.show', ['slug' => 'acme-cli'], 'en'),
-        $url('landing.integrations.show', ['slug' => 'shortcuts'], 'en'),
-    ]);
-});
-
 describe('the rendered pages', function (): void {
     it('filters on the server from the query, with a GET form that works without JavaScript', function (): void {
         $html = ssrHtml('/integrations?q=acme');
@@ -162,7 +149,7 @@ describe('the rendered pages', function (): void {
         expect($html)->toContain('name="q"')->toContain('value="acme"');
         expect($html)->toContain('href="/integrations/acme-cli"');
         expect($html)->not->toContain('href="/integrations/command-line"');
-    });
+    })->group('ssr');
 
     it('links Community entries with rel="ugc nofollow" and states who supports them', function (): void {
         $community = ssrHtml('/integrations/acme-cli');
@@ -174,5 +161,5 @@ describe('the rendered pages', function (): void {
         expect($official)->not->toContain('ugc nofollow');
         expect($official)->not->toContain('is built by TablePro, not by TablePro');
         expect($official)->toContain('href="https://github.com/TableProApp/integrations/issues/new?template=report-integration.yml&amp;slug=command-line"');
-    });
+    })->group('ssr');
 });

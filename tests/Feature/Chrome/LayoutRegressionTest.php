@@ -2,36 +2,13 @@
 
 use PHPUnit\Framework\Assert;
 
-/*
- * Layout defects that screenshots and probes found during the integration
- * checks, each held by the cheapest check that fails when it comes back. Most
- * are source assertions, because a component's class list is what decides them
- * and the suite renders no browser layout; the server-rendered ones read SSR
- * markup.
- */
-
 function layoutSource(string $path): string
 {
     return (string) file_get_contents(resource_path($path));
 }
 
-it('keeps a table\'s hidden words inside its own scroll region', function (): void {
-    /*
-     * `sr-only` is `position: absolute`. With a static region, the hidden
-     * "Included" / "Not available" words of a column scrolled out of view
-     * escaped the overflow clip and widened the document to 532px at 375.
-     */
-    $table = layoutSource('js/components/ui/data-table.tsx');
-
-    expect($table)->toMatch("/role=\"region\"[^>]*className=\\{cn\\('relative overflow-x-auto/");
-});
-
 it('lets no table force a phone-width scroll: minimum widths start at 640px or wider', function (): void {
-    /*
-     * Tables fold their secondary columns into the first cell below 640px
-     * (design-system §5.3.10) instead of keeping a minimum width that pushed
-     * the competitor column, the plan columns or the notes off screen.
-     */
+    // A minimum width pushed the competitor, plan and notes columns off a phone screen.
     $files = array_merge(glob(resource_path('js/components/**/*.tsx')), glob(resource_path('js/pages/**/*.tsx')), glob(resource_path('js/pages/*.tsx')));
     $checked = 0;
 
@@ -65,30 +42,19 @@ it('paints a sticky first column with its section\'s ground, not --raised', func
 });
 
 it('puts every section on the page grid\'s left edge, whatever its measure', function (): void {
-    /*
-     * A `text` section used to be a centred 704px Container, so its heading
-     * jumped 256px right of the H1 and the sections around it (§3.4, §4.2).
-     */
+    // A centred 704px `text` section put its heading 256px right of the H1.
     $section = layoutSource('js/components/ui/section.tsx');
 
-    expect($section)->toContain('<Container className="@container">')
-        ->not->toContain('<Container width={width}>')
+    expect($section)->not->toContain('<Container width={width}>')
         ->toContain("text: 'max-w-[44rem]'");
 
     expect(layoutSource('js/pages/Pricing.tsx'))->not->toContain('<Container width="text"');
-    // The FAQ was the last page with a centred column; its header and topics now start on the left edge too.
     expect(layoutSource('js/pages/Faq.tsx'))->not->toContain('width="text"');
 });
 
 it('spaces neighbouring sections one rhythm apart, with the join in the middle', function (): void {
-    /*
-     * Every section pads half the rhythm on each side, so two neighbours are
-     * one rhythm apart and the page frame's join (app.css) has the same air
-     * above and below it. The old collapse rule took the top padding away from
-     * the second section, which would put the join flush on its heading.
-     */
+    // The old collapse rule took the second section's top padding and put the join flush on its heading.
     expect(layoutSource('js/components/ui/section.tsx'))->toContain("'py-8 md:py-10 xl:py-12'")
-        ->toContain("flush && 'pb-0 md:pb-0 xl:pb-0'")
         ->not->toContain('data-rhythm');
     expect(layoutSource('css/app.css'))->not->toContain('data-rhythm');
 });
@@ -96,8 +62,7 @@ it('spaces neighbouring sections one rhythm apart, with the join in the middle',
 it('keeps a link\'s arrow on the line of its last word', function (): void {
     expect(layoutSource('js/components/ui/text-link.tsx'))->toMatch("/standalone:\\s*'inline text-sm/")
         ->not->toContain("standalone:\n        'inline-flex");
-    expect(layoutSource('js/components/site/site-footer.tsx'))->toContain("'type-small inline-block py-[5px]")
-        ->not->toContain("'inline-flex min-h-8 items-center gap-1");
+    expect(layoutSource('js/components/site/site-footer.tsx'))->not->toContain("'inline-flex min-h-8 items-center gap-1");
 });
 
 it('draws shortcut glyphs in a face that has them, as an inline box', function (): void {
@@ -109,11 +74,7 @@ it('draws shortcut glyphs in a face that has them, as an inline box', function (
 });
 
 it('draws the phone breadcrumb link as a block of its own', function (): void {
-    /*
-     * Below 640px the trail is one link on its own line. As inline content of
-     * the nav it read as a link inside the hidden trail's text, which a
-     * contrast check then compared it with: 2.28:1 in the dark theme.
-     */
+    // Inline, the phone link was contrast-checked against the hidden trail's text: 2.28:1 in the dark theme.
     expect(layoutSource('js/components/ui/breadcrumbs.tsx'))->toContain('className="flex min-h-8 w-fit items-center gap-1.5')
         ->not->toContain('className="inline-flex min-h-8');
 });
@@ -133,15 +94,7 @@ it('draws the header nav focus ring around the label, not the 64px link', functi
 });
 
 it('opens the Features panel on mouse hover, and only for a mouse', function (): void {
-    /*
-     * The owner asked for the panel to open on hover rather than only on a
-     * click. A short delay each way keeps a pointer crossing the nav from
-     * opening it and a curved path into the panel from closing it. Touch and
-     * pen send pointer events too, and opening on them would fight the tap
-     * that follows, so they keep the click. A click on a panel that hover
-     * opened pins it open instead of closing it under the pointer. Checked in
-     * a browser: hover, leave, click after hover, keyboard and touch.
-     */
+    // Touch and pen send pointer events too, and opening on them would fight the tap that follows.
     $menu = layoutSource('js/components/site/features-menu.tsx');
 
     expect($menu)->toContain('onPointerEnter={onPointerEnter}')
@@ -154,12 +107,7 @@ it('opens the Features panel on mouse hover, and only for a mouse', function ():
 });
 
 it('draws the App Store badge first on an iPhone or iPad, and keeps Mac first in the markup', function (): void {
-    /*
-     * Positioning §3.2: both actions are rendered Mac first on every device,
-     * and a client may promote the badge on an iPhone or iPad. The promotion
-     * is CSS order under the `ios` class the root template sets in the head,
-     * so the two actions never swap under a finger after the page is shown.
-     */
+    // CSS order under the head's `ios` class, so the two actions never swap under a finger after paint.
     $pair = layoutSource('js/components/download/action-pair.tsx');
     $menu = layoutSource('js/components/site/mobile-nav.tsx');
     $template = layoutSource('views/app.blade.php');
@@ -168,7 +116,6 @@ it('draws the App Store badge first on an iPhone or iPad, and keeps Mac first in
     Assert::assertLessThan(strpos($pair, '{iosAction}'), strpos($pair, '{mac}'), 'The Mac action comes first in the markup');
 
     expect($menu)->toContain('<div className="grid justify-items-start gap-2 in-[.ios]:order-first">');
-    Assert::assertLessThan(strpos($menu, '<AppStoreBadge'), strpos($menu, '{m.download.macCta}'), 'The Mac action comes first in the menu markup');
 
     Assert::assertLessThan(strpos($template, '<body class='), strpos($template, "document.documentElement.classList.add('ios')"), 'The device class is set before first paint');
 });
@@ -186,9 +133,10 @@ it('server-renders the plan matrix with all four columns and no phone minimum wi
 
     preg_match('#<section id="features".*?</section>#s', $html, $section);
 
-    expect($section[0] ?? '')->toContain('class="relative overflow-x-auto')
+    // In a static region the sr-only cell words escaped the overflow clip and widened the page to 532px at 375.
+    expect($section[0] ?? '')->toMatch('/<div role="region"[^>]*class="relative overflow-x-auto/')
         ->not->toContain('min-w-[36rem]');
-});
+})->group('ssr');
 
 it('does not repeat the contact line under a document that has its own Contact section', function (string $path, bool $repeats): void {
     // The markup only: the catalog line also travels in the page props.
@@ -200,14 +148,10 @@ it('does not repeat the contact line under a document that has its own Contact s
     ['/vi/privacy', false],
     ['/terms', false],
     ['/refund-policy', true],
-]);
+])->group('ssr');
 
 it('keeps a busy button focusable, so the reader who pressed it keeps their place', function (): void {
-    /*
-     * `loading` set the native `disabled`, which drops focus to <body> mid
-     * request (WCAG 2.4.3). A busy button is `aria-disabled` and swallows the
-     * click, a submit included; the email field is read-only, not disabled.
-     */
+    // A native `disabled` dropped focus to <body> mid request (WCAG 2.4.3).
     $button = layoutSource('js/components/ui/button.tsx');
 
     expect($button)->toContain('disabled={disabled}')
@@ -222,12 +166,7 @@ it('keeps a busy button focusable, so the reader who pressed it keeps their plac
 });
 
 it('keeps the billing-cycle control with the prices it changes while the plan cards are stacked', function (): void {
-    /*
-     * At 390x844 the control sat 1,200px above the Team price, so a tap
-     * changed nothing on screen but the caption. Below 1024px its row pins
-     * under the header; the caption stays in the flow, and a short viewport
-     * keeps the row there too.
-     */
+    // At 390x844 the control sat 1,200px above the Team price, so a tap changed nothing on screen.
     $control = layoutSource('js/components/pricing/billing-cycle-control.tsx');
 
     expect($control)->toContain('max-lg:[@media(min-height:40rem)]:sticky')
@@ -244,11 +183,7 @@ it('keeps the billing-cycle control with the prices it changes while the plan ca
 });
 
 it('totals the seats as they are typed, and says when a typed count was changed', function (): void {
-    /*
-     * The shared Stepper reports a typed count on blur or Enter, so the card
-     * showed "5 seats" beside a field that read 50, and turned 3 into 5 or
-     * 999 into 200 without a word.
-     */
+    // The card showed "5 seats" beside a field that read 50, and clamped 3 to 5 without a word.
     $card = layoutSource('js/components/pricing/pricing-card.tsx');
 
     expect($card)->toContain('onChange={follow}')

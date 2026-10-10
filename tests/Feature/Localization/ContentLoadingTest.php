@@ -11,10 +11,6 @@ use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-/**
- * Loading page copy and rendering markdown, the two readers every localized
- * page goes through.
- */
 beforeEach(function (): void {
     $this->contentDir = storage_path('framework/testing/content-' . uniqid());
     File::ensureDirectoryExists("{$this->contentDir}/en/databases");
@@ -117,16 +113,10 @@ it('prefixes generated ids for the blog and leaves explicit ones as written', fu
         ->toContain('<h2 id="cookies">Cookies</h2>');
 });
 
-/**
- * The fragment ids the blog's renderer produced before MarkdownRenderer, in
- * document order: `BlogService::renderMarkdown()` as it stood, CommonMark's
- * HeadingPermalink extension with its default `content` prefix. Links to
- * `/blog/{slug}#content-…` are out in the world and must keep resolving.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function legacyBlogFragmentIds(string $markdown): array
 {
+    // The old blog renderer's ids: links to /blog/{slug}#content-… are out in the world.
     $environment = new Environment([
         'html_input' => 'allow',
         'allow_unsafe_links' => false,

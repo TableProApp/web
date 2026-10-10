@@ -58,11 +58,7 @@ function appLabelsOffences(array $source, string $text, array $known, string $lo
     return $offences;
 }
 
-/**
- * Each <ui> label of a string with the text that follows its closing tag.
- *
- * @return list<array{label: string, after: string}>
- */
+/** @return list<array{label: string, after: string}> */
 function appLabelsIn(string $text): array
 {
     preg_match_all('#<ui>(.*?)</ui>#u', $text, $matches, PREG_OFFSET_CAPTURE);
@@ -74,9 +70,6 @@ function appLabelsIn(string $text): array
     );
 }
 
-/**
- * Whether the English label follows in parentheses: "(Settings > License)", or "(Preview SQL, ⌘⇧P)".
- */
 function appLabelsGlossed(string $after, string $english): bool
 {
     return preg_match('/^\s?[(（]' . preg_quote($english, '/') . '[)）,，]/u', $after) === 1;
@@ -103,11 +96,7 @@ function appLabelsLegalLines(string $locale, string $document): array
     return explode("\n", (string) file_get_contents(__DIR__ . "/../../../resources/data/legal/{$locale}/{$document}.md"));
 }
 
-/**
- * The bold spans of a legal line.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function appLabelsLegalBold(string $line): array
 {
     preg_match_all('/\*\*(.+?)\*\*/u', $line, $matches);
@@ -116,8 +105,6 @@ function appLabelsLegalBold(string $line): array
 }
 
 /**
- * The app labels an English legal line names.
- *
  * @param  array<string, array<string, string>>  $known
  * @return list<string>
  */

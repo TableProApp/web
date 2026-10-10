@@ -6,17 +6,6 @@ use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 
-/*
- * Every page is the same for every reader, so its HTML may sit in Cloudflare's
- * cache (`CacheHtmlAtEdge`). What must never be shared: an Inertia visit's
- * JSON (Cloudflare ignores `Vary`, so the cache rule bypasses requests that
- * carry `X-Inertia`), a redirect that echoes the visitor's query string, a
- * 500, and anything that sets a cookie.
- */
-
-/**
- * Asserts the response may be kept by a shared cache, exactly as the edge expects.
- */
 function expectSharedAtEdge(TestResponse $response): void
 {
     $headers = $response->baseResponse->headers;
@@ -32,11 +21,6 @@ function expectSharedAtEdge(TestResponse $response): void
         ->and($headers->getCookies())->toBe([]);
 }
 
-/**
- * Asserts the response keeps whatever the framework gave it: Laravel's
- * `no-cache, private`, or for a 301 no `Cache-Control` at all, as Symfony
- * sends it.
- */
 function expectNotSharedAtEdge(TestResponse $response): void
 {
     $headers = $response->baseResponse->headers;
@@ -46,9 +30,6 @@ function expectNotSharedAtEdge(TestResponse $response): void
         ->and($headers->hasCacheControlDirective('stale-while-revalidate'))->toBeFalse();
 }
 
-/**
- * The asset version a page reports, so an Inertia visit is not answered with a 409.
- */
 function edgeCacheInertiaVersion(): string
 {
     $html = (string) test()->get('/pricing')->getContent();
@@ -87,6 +68,7 @@ it('lets the edge keep the 404 and 410 pages, whether or not a route matched', f
     'retired' => ['/compare/azimutt', 410],
 ]);
 
+// Cloudflare ignores Vary, so its cache rule bypasses any request carrying X-Inertia.
 it('never shares an Inertia visit, which is JSON at the same URL', function (string $path, int $status): void {
     $response = $this->withHeaders([
         'X-Inertia' => 'true',

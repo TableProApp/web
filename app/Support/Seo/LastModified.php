@@ -7,32 +7,16 @@ use Carbon\CarbonImmutable;
 use Symfony\Component\Process\Process;
 use Throwable;
 
-/**
- * When the files behind a page last changed, for the sitemap's `lastmod`.
- *
- * Git first: `git log -1 --format=%cI -- <paths>` is the last commit that
- * touched any of them. File mtimes are no good on their own, because every
- * `git pull` on the server resets them to the pull time, and a sitemap whose
- * every `lastmod` moves on each deploy teaches crawlers to ignore the field.
- * The newest mtime is the fallback for a checkout without history or files not
- * committed yet, and a page with neither gets no `lastmod` at all rather than
- * a made-up "now".
- *
- * A page's sources can include other locales' copy. `forEntry()` keeps only
- * what drives the page in the locale asked for: the shared data files plus
- * that locale's own content, legal or blog file.
- */
+// The sitemap's lastmod: the last commit touching a page's sources. Mtimes are
+// only a fallback, since every `git pull` on the server resets them.
 final class LastModified
 {
-    /**
-     * Seconds `git log` may take before the mtime fallback is used.
-     */
-    private const GIT_TIMEOUT = 2.0;
+    private const GIT_TIMEOUT = 10.0;
 
     /**
-     * @var array<string, CarbonImmutable|null>
+     * @var array<string, array{0: int, 1: string}>|null path => [unix time, ISO 8601] of its last commit
      */
-    private array $memo = [];
+    private ?array $commits = null;
 
     public function __construct(
         private readonly string $root,
@@ -48,29 +32,28 @@ final class LastModified
      */
     public function forPaths(array $paths): ?CarbonImmutable
     {
-        $paths = array_values(array_unique($paths));
-        sort($paths);
-
         if ($paths === []) {
             return null;
         }
 
-        $key = implode("\0", $paths);
+        $this->commits ??= $this->readGitLog();
+        $newest = null;
 
-        if (array_key_exists($key, $this->memo)) {
-            return $this->memo[$key];
+        foreach (array_unique($paths) as $path) {
+            $commit = $this->commits[$path] ?? null;
+
+            if ($commit !== null && ($newest === null || $commit[0] > $newest[0])) {
+                $newest = $commit;
+            }
         }
 
-        return $this->memo[$key] = $this->fromGit($paths) ?? $this->fromMtime($paths);
+        return $newest !== null ? CarbonImmutable::parse($newest[1]) : $this->fromMtime($paths);
     }
 
     /**
-     * The sources that drive a page in one locale.
-     *
-     * A source belongs to a locale when one of its directories is named after
-     * that locale (`content/vi/…`, `legal/en/…`, `blog/vi/…`). A post directly
-     * under `resources/blog/` belongs to the default locale. Anything else is
-     * shared data and drives every locale.
+     * The sources that drive a page in one locale: shared data, plus the files
+     * under a directory named after that locale. A post directly under
+     * `resources/blog/` belongs to the default locale.
      *
      * @param  list<string>  $sources
      * @return list<string>
@@ -97,20 +80,40 @@ final class LastModified
     }
 
     /**
-     * @param  list<string>  $paths
+     * @return array<string, array{0: int, 1: string}>
      */
-    private function fromGit(array $paths): ?CarbonImmutable
+    private function readGitLog(): array
     {
         try {
-            $process = new Process(['git', 'log', '-1', '--format=%cI', '--', ...$paths], $this->root, null, null, self::GIT_TIMEOUT);
+            $process = new Process(
+                ['git', '-c', 'core.quotePath=false', 'log', '--format=%x00%ct %cI', '--name-only', '--relative'],
+                $this->root,
+                null,
+                null,
+                self::GIT_TIMEOUT,
+            );
             $process->run();
-
-            $output = trim($process->getOutput());
-
-            return $process->isSuccessful() && $output !== '' ? CarbonImmutable::parse($output) : null;
         } catch (Throwable) {
-            return null;
+            return [];
         }
+
+        if (! $process->isSuccessful()) {
+            return [];
+        }
+
+        $commits = [];
+        $commit = null;
+
+        foreach (explode("\n", $process->getOutput()) as $line) {
+            if (str_starts_with($line, "\0")) {
+                [$time, $iso] = explode(' ', substr($line, 1), 2);
+                $commit = [(int) $time, $iso];
+            } elseif ($line !== '' && $commit !== null && (! isset($commits[$line]) || $commit[0] > $commits[$line][0])) {
+                $commits[$line] = $commit;
+            }
+        }
+
+        return $commits;
     }
 
     /**

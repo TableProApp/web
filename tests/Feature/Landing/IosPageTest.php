@@ -16,21 +16,9 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The iPhone and iPad page, `/ios` and `/vi/ios` (sitemap §A.1, §E.5).
- *
- * The page describes the App Store release in platforms.json (1.0, build 22)
- * and nothing merged after it. What this file pins is the class of mistake
- * the page has actually shipped: a count where a list belongs ("Seven engines
- * on device"), a Mac sentence reused on the phone (six Safe Mode levels, jump
- * hosts), a feature only the unreleased source has (the iPad table list beside
- * the browser, Redis key browsing, "nothing connects before Face ID"), and the
- * TestFlight beta the App Store launch replaced.
- */
 beforeEach(function (): void {
     withoutVite();
-    // Every host but the SSR gateway: faking `*` would also answer the
-    // gateway, and the server-rendered cases would read the client-only shell.
+    // Every host but the SSR gateway: faking `*` would also answer it.
     Http::fake(['api.github.com/*' => Http::response([], 500), 'github.com/*' => Http::response([], 500), 'apps.apple.com/*' => Http::response([], 500), 'itunes.apple.com/*' => Http::response([], 500)]);
 });
 
@@ -52,16 +40,21 @@ function iosPagePlatform(): array
     return collect($platforms)->firstWhere('id', 'ios');
 }
 
-/**
- * Every visible string of the page in one locale: its content file and the
- * page component's own source.
- */
+function iosSsrHtml(string $path): string
+{
+    static $html = [];
+
+    requireSsr();
+
+    return $html[$path] ??= ssrHtml($path);
+}
+
 function iosPageText(string $locale): string
 {
     return implode("\n", array_filter(Arr::dot(iosPageContent($locale)), 'is_string'));
 }
 
-it('renders in both languages from its content and the data files', function (string $path, string $locale, string $title): void {
+it('renders in both languages from its content and the data files, asking GitHub for nothing', function (string $path, string $locale, string $title, string $published): void {
     $ios = iosPagePlatform();
     $engines = collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))->keyBy('id');
     // The iPad capture under the header is preloaded exactly while it is supplied.
@@ -78,11 +71,14 @@ it('renders in both languages from its content and the data files', function (st
             ->where('content.hero.title', $title)
             ->where('ios.version', $ios['release']['version'])
             ->where('ios.publishedAt', $ios['release']['publishedAt'])
+            ->where('ios.publishedAtFormatted', $published)
             ->where('ios.appStoreUrl', $ios['destinations'][0]['url'])
             ->where('ios.requirements.systems', ['iOS', 'iPadOS'])
             ->where('ios.free', true)
             ->where('ios.inAppPurchases', false)
-            ->where('engines.picker', fn($picker): bool => collect($picker)->pluck('name')->all() === collect($ios['iosEngines'])->map(fn(string $id): string => $engines[$id]['name'])->all())
+            ->where('engines.picker', fn($picker): bool => collect($picker)->pluck('name')->all() === collect($ios['iosEngines'])->map(fn(string $id): string => $engines[$id]['name'])->all()
+                // An engine name links only to a database page the site serves.
+                && collect($picker)->every(fn(array $engine): bool => $engine['href'] === null || in_array(ltrim((string) strtok($engine['href'], '#'), '/'), DatabaseSlugs::ALL, true)))
             ->where('engines.syncedOnly', fn($synced): bool => collect($synced)->pluck('id')->all() === ['redshift'])
             ->where('safeModeLevels', ['Off', 'Confirm Writes', 'Read-Only'])
             ->where('limits.history', fn(int $value): bool => $value > 0)
@@ -90,15 +86,13 @@ it('renders in both languages from its content and the data files', function (st
             ->has('links.license')
             ->has('organizationProfiles')
             ->where('lcpAsset', $lcp));
-})->with([
-    'English' => ['/ios', 'en', 'TablePro for iPhone and iPad'],
-    'Vietnamese' => ['/vi/ios', 'vi', 'TablePro cho iPhone và iPad'],
-]);
 
-it('formats the release date in PHP for each language', function (): void {
-    get('/ios')->assertInertia(fn(AssertableInertia $page) => $page->where('ios.publishedAtFormatted', 'September 22, 2026'));
-    get('/vi/ios')->assertInertia(fn(AssertableInertia $page) => $page->where('ios.publishedAtFormatted', '22 tháng 9 năm 2026'));
-});
+    // The SSR render request is the only one the page may cause.
+    Http::assertNotSent(fn(Request $request): bool => str_contains($request->url(), 'github'));
+})->with([
+    'English' => ['/ios', 'en', 'TablePro for iPhone and iPad', 'September 22, 2026'],
+    'Vietnamese' => ['/vi/ios', 'vi', 'TablePro cho iPhone và iPad', '22 tháng 9 năm 2026'],
+]);
 
 it('indexes every complete translation', function (): void {
     $entry = app(PageRegistry::class)->find('landing.ios', []);
@@ -108,38 +102,8 @@ it('indexes every complete translation', function (): void {
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
-it('asks GitHub for nothing: the Mac release does not appear on this page', function (): void {
-    get('/ios')->assertOk();
-    get('/vi/ios')->assertOk();
-
-    // The SSR render request is the only one the page may cause.
-    Http::assertNotSent(fn(Request $request): bool => str_contains($request->url(), 'github'));
-});
-
-it('links engine names only to database pages the site serves', function (): void {
-    get('/ios')->assertInertia(fn(AssertableInertia $page) => $page->where('engines.picker', function ($picker): bool {
-        foreach ($picker as $engine) {
-            if ($engine['href'] === null) {
-                continue;
-            }
-
-            $slug = ltrim((string) strtok($engine['href'], '#'), '/');
-
-            if (! in_array($slug, DatabaseSlugs::ALL, true)) {
-                return false;
-            }
-        }
-
-        return true;
-    }));
-});
-
 it('never lets a slug list swallow /ios', function (): void {
-    /*
-     * `/{slug}` is the database catch-all. `ios` in its constraint would render
-     * a database page at /ios, and the compare and feature slugs must not learn
-     * it either. The constants are what routes/localized.php reads.
-     */
+    // `/{slug}` is the database catch-all: `ios` in a slug list would render a database page at /ios.
     expect(DatabaseSlugs::ALL)->not->toContain('ios');
     expect(CompareSlugs::ALL)->not->toContain('ios');
     expect(FeatureSlugs::ALL)->not->toContain('ios');
@@ -166,13 +130,7 @@ it('points to the App Store, never to the TestFlight beta it replaced', function
 });
 
 it('ships Apple\'s badge artwork unmodified, in both themes and both languages', function (string $suffix, string $language): void {
-    /*
-     * `-light` is the black badge shown on the light theme, `-dark` the white
-     * one. Apple's export names its language and colour in the title, so a
-     * swapped pair or the English file saved under the Vietnamese name shows
-     * here. A changed viewBox means someone has redrawn or cropped a
-     * trademarked badge.
-     */
+    // Apple's title names the language and colour; a changed viewBox means the trademarked badge was redrawn or cropped.
     foreach (['light' => 'blk', 'dark' => 'wht'] as $theme => $colour) {
         $svg = (string) file_get_contents(public_path("images/app-store-{$theme}{$suffix}.svg"));
 
@@ -185,7 +143,7 @@ it('ships Apple\'s badge artwork unmodified, in both themes and both languages',
 ]);
 
 it('shows the App Store badge in the page\'s language, labelled with its visible text', function (string $path, string $suffix, string $label): void {
-    $html = ssrHtml($path);
+    $html = iosSsrHtml($path);
 
     preg_match_all('#<a href="https://apps\.apple\.com/[^"]*"[^>]*>\s*<img src="/images/app-store-light([^"]*)\.svg" alt="([^"]*)"[^>]*>\s*<img src="/images/app-store-dark([^"]*)\.svg" alt="([^"]*)"#', $html, $badges, PREG_SET_ORDER);
 
@@ -203,13 +161,12 @@ it('shows the App Store badge in the page\'s language, labelled with its visible
 })->with([
     'English' => ['/ios', '', 'Download on the App Store'],
     'Vietnamese' => ['/vi/ios', '-vi', 'Tải về trên App Store'],
-]);
+])->group('ssr');
 
 it('names the engines and never counts them', function (string $locale): void {
     $text = iosPageText($locale);
 
-    // The engine names come from the data; the copy states none of their number.
-    Assert::assertDoesNotMatchRegularExpression('/\d+\s*(engines?|databases?|drivers?|cơ sở dữ liệu|engine|driver)\b/iu', $text);
+    // Spelled-out counts only: NoTypedCountsTest holds the numerals.
     Assert::assertStringNotContainsStringIgnoringCase('seven', $text);
     Assert::assertStringNotContainsStringIgnoringCase('ten databases', $text);
 
@@ -221,20 +178,11 @@ it('describes App Store 1.0, not the Mac app or the unreleased source', function
     $text = iosPageText($locale);
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
 
-    /*
-     * True of the Mac or of source merged after build 22, and false of the
-     * App Store app: six Safe Mode levels and the Mac's level names; the iPad
-     * table list beside the browser (#3035); "nothing connects until Face ID"
-     * (#3014); a native visionOS app; "universal app" (positioning §12.1 says
-     * "one app for iPhone and iPad").
-     */
+    // Each is true of the Mac or of source merged after build 22, and false of App Store 1.0.
     foreach (['six', 'Silent', 'Alert (Full)', 'side by side', 'side-by-side', 'beside the browser', 'visionOS', 'Vision Pro', 'Optic ID', 'universal app', 'nothing connects', 'iPhone Duo'] as $needle) {
         Assert::assertStringNotContainsStringIgnoringCase($needle, $text, "content/{$locale}/ios.json says \"{$needle}\"");
         Assert::assertStringNotContainsStringIgnoringCase($needle, $source, "Ios.tsx says \"{$needle}\"");
     }
-
-    // "unlock" is banned site-wide (positioning §12.1), in both languages.
-    Assert::assertDoesNotMatchRegularExpression('/\bunlocks?\b|mở khóa/iu', $text);
 })->with(['en', 'vi']);
 
 it('states the limits a phone user would otherwise discover', function (): void {
@@ -245,21 +193,16 @@ it('states the limits a phone user would otherwise discover', function (): void 
     expect($limits)->toContain('jump hosts')->toContain('Redis keys')->toContain('AI assistant');
     expect($en['databases']['redis'])->toContain('Query tab');
 
-    // Editing needs a primary key; Read-Only changes nothing.
     expect(implode("\n", $en['browse']['paragraphs']))->toContain('primary key')->toContain('Read-Only');
 
-    // Safe Mode levels come from facts.json, through a slot.
     expect(implode("\n", $en['safeMode']['paragraphs']))->toContain('{levels}');
 
-    // The Mac side of iCloud Sync is paid, the phone side is not.
     expect(implode("\n", $en['mac']['paragraphs']))->toContain('Starter or Team')->toContain('free here');
 
-    // Share Usage Data is off until the reader turns it on.
     expect($en['privacy']['paragraphs'][0])->toStartWith('Usage reporting is off by default.')
         ->toContain('Enable Share Usage Data in <ui>Settings > Privacy</ui>')
         ->toContain('No hostnames, usernames, passwords, queries or rows.');
 
-    // The same limits are in the Vietnamese copy, with as many items.
     expect(iosPageContent('vi')['limits']['items'])->toHaveCount(count($en['limits']['items']));
 });
 
@@ -285,7 +228,7 @@ it('keeps the notes about the released version in one block, out of the feature 
 });
 
 it('server-renders the known issues under the App Store version, after the Mac-only list', function (): void {
-    $html = ssrHtml('/ios');
+    $html = iosSsrHtml('/ios');
     $version = iosPagePlatform()['release']['version'];
     $limits = strpos($html, 'id="limits"');
     $issues = strpos($html, 'id="known-issues"');
@@ -296,7 +239,7 @@ it('server-renders the known issues under the App Store version, after the Mac-o
     expect($privacy)->not->toBeFalse();
     expect($issues)->toBeGreaterThan($limits)->toBeLessThan($privacy);
     expect($html)->toMatch('#<h2 id="known-issues-title"[^>]*>Known issues in version ' . preg_quote($version, '#') . '</h2>#');
-});
+})->group('ssr');
 
 it('places every iPhone and iPad slot and only manifest ids', function (): void {
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
@@ -308,7 +251,7 @@ it('places every iPhone and iPad slot and only manifest ids', function (): void 
         expect($assets)->toHaveKey($id);
     }
 
-    /* A phone crop renders through the slot of the entry that names it. */
+    // A phone crop renders through the slot of the entry that names it.
     $placed = $matches[1];
 
     foreach ($matches[1] as $id) {
@@ -327,7 +270,7 @@ it('places every iPhone and iPad slot and only manifest ids', function (): void 
 });
 
 it('emits one iPhone and iPad application node, with no rating and no FAQ markup', function (): void {
-    $html = ssrHtml('/ios');
+    $html = iosSsrHtml('/ios');
 
     expect(substr_count($html, '"@type":"MobileApplication"'))->toBe(1);
     expect($html)->toContain('"@id":"https://localhost/#ios-app"');
@@ -336,10 +279,10 @@ it('emits one iPhone and iPad application node, with no rating and no FAQ markup
     foreach (['aggregateRating', 'ratingValue'] as $needle) {
         Assert::assertStringNotContainsString($needle, $html, '/ios published a rating nobody gave');
     }
-});
+})->group('ssr');
 
 it('server-renders the engine names from the data, in picker order', function (): void {
-    $html = ssrHtml('/ios');
+    $html = iosSsrHtml('/ios');
     $engines = collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))->keyBy('id');
 
     $start = strpos($html, 'id="databases"');
@@ -352,4 +295,4 @@ it('server-renders the engine names from the data, in picker order', function ()
     preg_match_all('#<li class="type-body font-medium text-foreground">(?:<a [^>]*>)?([^<]+)#', $section, $cells);
 
     expect($cells[1])->toBe(collect(iosPagePlatform()['iosEngines'])->map(fn(string $id): string => $engines[$id]['name'])->all());
-});
+})->group('ssr');

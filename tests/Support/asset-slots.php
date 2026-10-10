@@ -2,25 +2,9 @@
 
 use App\Support\Assets\AssetManifest;
 
-/*
-|--------------------------------------------------------------------------
-| Rendered asset slots
-|--------------------------------------------------------------------------
-|
-| A placeholder slot carries its id in `data-asset-id`; a supplied one never
-| renders the id (spec §9.1, `asset-slot-view.ts`). A test that checks a page
-| renders a slot has to look for whichever form the manifest is in, or it
-| fails the moment the owner supplies the file.
-|
-*/
-
-/**
- * A CSS selector for the slot `$id` as the page renders it in `$locale`: the
- * placeholder's `data-asset-id`, or once supplied, the `<img>` or `<source>`
- * that names the light variant's largest file in its last format. That is the
- * file `largestUrl()` in `asset-model.ts` puts in `src`, and a window's
- * `<source>` lists it when a phone crop takes the `<img>`.
- */
+// A placeholder renders its id in data-asset-id; a supplied slot renders only its
+// file. Selects whichever form the manifest is in, so a test survives the owner
+// supplying the file.
 function renderedSlotSelector(string $id, string $locale = 'en'): string
 {
     $manifest = new AssetManifest();

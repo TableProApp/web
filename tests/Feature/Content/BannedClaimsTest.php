@@ -6,54 +6,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 require_once __DIR__ . '/helpers.php';
 
 /**
- * The words and claims positioning §12 bans site-wide, in English and
- * Vietnamese, over every source a page prints from (helpers.php).
- *
- * This is the only test that applies §12 (positioning §12, "One
- * implementation"). Its data is §12.1's table and its exemptions are §12.2:
- *
- * - Release posts are exempt from every row, and never read.
- * - The legal pages are exempt from the Hype row only.
- * - An allowlisted phrase is removed before matching, and only in the sources
- *   its entry names. A6 (sourced counts) is NoTypedCountsTest's; A7 (dated,
- *   sourced download sizes) is applied here to the size patterns.
- *
- * Matching is whole words and whole phrases, case-insensitive, after NFC and
- * with curly apostrophes folded (contentGuardPhrasePattern()). The "About"
- * column cannot be tested: a TablePro row bans the phrase whoever it is
- * about, and a competitor fact that needs the words passes only through an
- * allowlist entry, as §12 intends.
- *
- * Rows the test cannot see are the reviewer's (§12.2): safety paraphrases,
- * TablePro's Windows and Linux status, "fast" as a claim, "for Mac" as the
- * identity outside the identity keys, and spelled-out counts.
- *
- * Folded in from the retired guards: `Seo/StaleClaimsTest` (the stale facts,
- * "iOS 17", "free forever", the ratings rule and the removed Terminal
- * screenshots), `Landing/FundingModelTest` (the plea vocabulary) and sitemap
- * §E.7 (the attribution wording). StaleClaimsTest's other live rule, that
- * every routed comparison slug has a page and every page a route, is
- * `Localization/LocaleRoutingTest`'s "pins each slug constant" case; its
- * typed counts are `Content/NoTypedCountsTest`'s.
- */
-
-/**
- * Positioning §12.1, one entry per row. `phrases` are literal and matched as
- * whole phrases; `patterns` are regex bodies for figures. `legalExempt` rows
- * skip the legal pages; `sizes` marks the patterns A7 may allow.
- *
- * Narrowed from the table, so ordinary prose does not trip them (§12.2 drops
- * single ordinary words for the same reason): "all of it" is matched as the
- * claim it was ("free, all of it", "all of it is free"), "security boundary"
- * and "sandbox" as assertions ("is a security boundary", "is a sandbox"),
- * "Redis pub/sub" and "Mongo pipeline builder" are widened to "pub/sub" and
- * "pipeline builder" so the claim is caught in any word order, with the
- * limit sentences that deny them allowlisted (A11).
- *
  * @return list<array{class: string, about: string, phrases: list<string>, patterns?: list<string>, legalExempt?: bool, sizes?: bool}>
  */
 function bannedClaimRows(): array
 {
+    // Phrases are narrowed from the §12.1 table so ordinary prose does not trip them.
     return [
         [
             'class' => 'Universals',
@@ -86,10 +43,7 @@ function bannedClaimRows(): array
             'phrases' => ['nothing leaves your device', 'nothing leaves your Mac', 'nothing leaves your computer', 'nothing leaving your device', 'nothing leaving your Mac', 'nothing leaving your computer', 'fully offline', 'no account', 'nothing to sign up for', 'anonymous analytics', 'anonymous usage data', 'no tracking', 'only the license key is sent', 'no other data is sent', 'không có dữ liệu nào rời khỏi máy', 'hoàn toàn offline', 'không cần tài khoản', 'ẩn danh'],
         ],
         [
-            /*
-             * The GA4 property uses Google's default retention (2 months), as
-             * the privacy policy states, so no source may claim 14 months.
-             */
+            // GA4 keeps Google's default 2 months, as the privacy policy states.
             'class' => 'Analytics retention',
             'about' => 'Any',
             'phrases' => ['14 months', '14 tháng', 'fourteen months', 'mười bốn tháng'],
@@ -155,13 +109,6 @@ function bannedClaimRows(): array
 }
 
 /**
- * Positioning §12.2's allowlist, plus the entries the content review added.
- *
- * Each entry names exact phrases, the sources they may stay in (scopes, see
- * contentGuardInScope()) and the evidence. `spec` marks positioning's own
- * entries; every other entry must still be in use (the last case below), so
- * the list cannot grow stale.
- *
  * @return list<array{id: string, phrases: list<string>, sources: list<string>, evidence: string, spec: bool}>
  */
 function bannedClaimAllowlist(): array
@@ -183,11 +130,7 @@ function bannedClaimAllowlist(): array
             'spec' => false,
         ],
         [
-            /*
-             * The edition list only, never the bare word: "the ultimate
-             * DBeaver alternative" in the same file is still hype (§12.2: no
-             * entry widens to any phrase in the compare files).
-             */
+            // The edition list only: "the ultimate DBeaver alternative" in the same file is still hype.
             'id' => 'A10',
             'phrases' => ['Enterprise, Ultimate and Team', 'Enterprise, Ultimate và Team', 'Lite, Enterprise and Ultimate', 'Lite, Enterprise và Ultimate'],
             'sources' => ['resources/data/content/*/compare/dbeaver.json'],
@@ -228,12 +171,12 @@ function bannedClaimAllowlist(): array
     ];
 }
 
-/**
- * A string with every allowlisted phrase that applies to its source removed.
- */
 function bannedClaimStripAllowed(string $text, string $path, string $key): string
 {
-    foreach (bannedClaimAllowlist() as $entry) {
+    static $allowlist = null;
+    $allowlist ??= bannedClaimAllowlist();
+
+    foreach ($allowlist as $entry) {
         if (! contentGuardInScope($entry['sources'], $path, $key)) {
             continue;
         }
@@ -247,25 +190,23 @@ function bannedClaimStripAllowed(string $text, string $path, string $key): strin
 }
 
 /**
- * Every banned phrase or figure in one prepared string, as "class: match".
- *
  * @return list<string>
  */
 function bannedClaimMatches(string $text, bool $legal = false, bool $sizesAllowed = false): array
 {
+    static $rows = null;
+    $rows ??= array_map(fn(array $row): array => [...$row, 'regexes' => [
+        ...array_map('contentGuardPhrasePattern', $row['phrases']),
+        ...array_map(fn(string $pattern): string => "/{$pattern}/iu", $row['patterns'] ?? []),
+    ]], bannedClaimRows());
     $found = [];
 
-    foreach (bannedClaimRows() as $row) {
+    foreach ($rows as $row) {
         if (($legal && ($row['legalExempt'] ?? false)) || ($sizesAllowed && ($row['sizes'] ?? false))) {
             continue;
         }
 
-        $patterns = [
-            ...array_map('contentGuardPhrasePattern', $row['phrases']),
-            ...array_map(fn(string $pattern): string => "/{$pattern}/iu", $row['patterns'] ?? []),
-        ];
-
-        foreach ($patterns as $pattern) {
+        foreach ($row['regexes'] as $pattern) {
             if (preg_match_all($pattern, $text, $matches) > 0) {
                 foreach ($matches[0] as $match) {
                     $found[] = "{$row['class']}: \"{$match}\"";
@@ -288,8 +229,7 @@ it('reads every source positioning §12 names, and leaves the release posts out'
         expect($paths)->toContain("resources/data/legal/{$locale}/privacy.md", "lang/{$locale}/errors.php", "resources/js/i18n/messages/{$locale}/nav.ts");
     }
 
-    // Each catalog was parsed into strings, so a parser that silently read
-    // nothing could not pass every catalog through.
+    // A parser that silently read nothing would pass every catalog through.
     foreach ($sources->where('kind', 'catalog') as $source) {
         Assert::assertNotEmpty($source['strings'], "{$source['path']} yielded no strings");
     }
@@ -304,13 +244,7 @@ it('reads every source positioning §12 names, and leaves the release posts out'
 });
 
 it('holds a release post’s description and punchline to the privacy row', function (): void {
-    /*
-     * A release post is an archive and exempt from §12, but its description
-     * is also its row on every locale's /blog, its meta and OG description
-     * and its JSON-LD, and its punchline is its OG card. A correction printed
-     * on the post does not reach any of those, so a claim it retracts would
-     * keep running there.
-     */
+    // The description and punchline also feed /blog, the meta tags, JSON-LD and the OG card, which a correction on the post never reaches.
     $privacy = collect(bannedClaimRows())->firstWhere('class', 'Privacy');
     $offences = [];
 
@@ -336,11 +270,7 @@ it('holds a release post’s description and punchline to the privacy row', func
 });
 
 it('reads a sentence under a key that usually holds an identifier', function (string $path, string $key): void {
-    /*
-     * The key name alone once decided visibility, which hid 58 printed
-     * strings (`workflows.paid` among them) from every guard. A structural
-     * key now hides only an identifier-shaped value (helpers.php).
-     */
+    // The key name alone once hid 58 printed strings, workflows.paid among them, from every guard.
     $source = collect(contentGuardSources())->firstWhere('path', $path);
 
     expect($source)->not->toBeNull("{$path} is not read");
@@ -467,12 +397,7 @@ it('keeps every allowlist entry it added in use, with evidence', function (): vo
 });
 
 it('never publishes a rating nobody gave', function (): void {
-    /*
-     * From Seo/StaleClaimsTest. A rating derived from GitHub stars, or a
-     * constant score for every competitor, is an invention (spec §10). Every
-     * structured-data builder, page and data file is scanned, with comments
-     * stripped: a docblock may explain why there is no rating.
-     */
+    // Comments are stripped: a docblock may explain why there is no rating.
     $offences = [];
     $files = [
         ...contentGuardFiles(resource_path('js'), 'ts'),

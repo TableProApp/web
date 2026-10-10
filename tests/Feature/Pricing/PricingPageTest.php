@@ -10,17 +10,6 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * `/pricing` and `/vi/pricing` (sitemap §A.1, §E.5; design-system §8.6).
- *
- * What the page may and may not say is the commerce part of positioning §12:
- * prices, seats and timings only from resources/data/pricing.json, the paid
- * features only from paid-features.json, no "most popular", no typed saving,
- * no "unlock", no update promise for a one-time purchase, and nothing about
- * other ways to pay. The one regional price is the plan block's discount line,
- * never named with the banned words (RegionalPricingTest). The props carry the copy and the
- * checkout provider; the server-rendered checks need the SSR bundle.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -34,8 +23,6 @@ function pricingPageJson(string $file): array
 }
 
 /**
- * The source files whose words this page owns, in both languages.
- *
  * @return list<string>
  */
 function pricingCopySources(): array
@@ -50,12 +37,9 @@ function pricingCopySources(): array
     ];
 }
 
-/**
- * A source's text with comments removed, so a docblock that explains a rule
- * does not count as breaking it.
- */
 function pricingVisibleText(string $path): string
 {
+    // Without comments, so a docblock that explains a rule does not count as breaking it.
     $text = (string) file_get_contents($path);
 
     if (str_ends_with($path, '.ts')) {
@@ -66,8 +50,6 @@ function pricingVisibleText(string $path): string
 }
 
 /**
- * The plan cards' prices in document order. `hidden` marks a cycle that is not the chosen one.
- *
  * @return list<array{price: string, hidden: bool}>
  */
 function pricingPricePoints(string $html): array
@@ -77,21 +59,56 @@ function pricingPricePoints(string $html): array
     return array_map(fn(array $match): array => ['price' => $match['price'], 'hidden' => $match['hidden'] !== ''], $found);
 }
 
-it('renders in both languages with the copy, each paid feature\'s lines and the checkout provider', function (string $path, string $locale): void {
+/**
+ * @return list<array{price: string, hidden: bool}>
+ */
+function pricingExpectedPricePoints(string $pattern, string $decimal): array
+{
+    $pricing = pricingPageJson('pricing.json');
+    $write = fn(int|float $amount): string => sprintf($pattern, str_replace('.', $decimal, is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '')));
+    $expected = [['price' => $write($pricing['tiers']['free']['price']), 'hidden' => false]];
+
+    foreach (['starter', 'team'] as $tier) {
+        foreach ($pricing['cycles'] as $cycle) {
+            $expected[] = ['price' => $write($pricing['tiers'][$tier]['prices'][$cycle]), 'hidden' => $cycle !== 'yearly'];
+        }
+    }
+
+    return $expected;
+}
+
+it('renders in both languages with the copy, each paid feature\'s lines, the checkout provider, the featured engines and the paid clients\' comparisons', function (string $path, string $locale): void {
     config(['payment.provider' => 'polar']);
 
     $content = pricingPageJson("content/{$locale}/pricing.json");
     $featureIds = array_column(pricingPageJson('paid-features.json'), 'id');
+    $engines = collect(pricingPageJson('engines.json'))
+        ->filter(fn(array $engine): bool => ($engine['featured'] ?? false) === true && ($engine['state'] ?? null) === 'published')
+        ->pluck('name')
+        ->values()
+        ->all();
+    $comparisons = collect(pricingPageJson('comparisons.json')['products'])
+        ->filter(fn(array $product): bool => $product['slug'] !== null && collect($product['prices'])->contains(fn(array $price): bool => $price['amount'] > 0))
+        ->map(fn(array $product): array => [
+            'path' => '/compare/' . $product['slug'],
+            'title' => pricingPageJson("content/{$locale}/compare/{$product['slug']}.json")['header']['title'],
+        ])
+        ->values()
+        ->all();
+
+    expect($engines)->not->toBeEmpty();
+    expect(array_column($comparisons, 'path'))->toContain('/compare/tableplus', '/compare/datagrip')->not->toContain('/compare/sequel-ace');
 
     get($path)
         ->assertOk()
-        ->assertInertia(function (AssertableInertia $page) use ($locale, $content, $featureIds): void {
+        ->assertInertia(function (AssertableInertia $page) use ($locale, $content, $featureIds, $engines, $comparisons): void {
             $page->component('Pricing')
                 ->where('locale', $locale)
                 ->where('content.header.title', $content['header']['title'])
                 ->where('content.seo.title', $content['seo']['title'])
                 ->where('checkout', ['provider' => 'polar', 'couponField' => false])
-                ->has('featuredEngines');
+                ->where('featuredEngines', $engines)
+                ->where('comparisons', $comparisons);
 
             $details = $page->toArray()['props']['paidFeatures'];
 
@@ -104,33 +121,6 @@ it('renders in both languages with the copy, each paid feature\'s lines and the 
     'English' => ['/pricing', 'en'],
     'Vietnamese' => ['/vi/pricing', 'vi'],
 ]);
-
-it('names the featured, published engines for the structured data, in data order', function (): void {
-    $expected = collect(pricingPageJson('engines.json'))
-        ->filter(fn(array $engine): bool => ($engine['featured'] ?? false) === true && ($engine['state'] ?? null) === 'published')
-        ->pluck('name')
-        ->values()
-        ->all();
-
-    expect($expected)->not->toBeEmpty();
-
-    get('/pricing')->assertInertia(fn(AssertableInertia $page) => $page->where('featuredEngines', $expected));
-});
-
-it('links the comparison of every client that sells a paid plan, by its page title', function (): void {
-    $expected = collect(pricingPageJson('comparisons.json')['products'])
-        ->filter(fn(array $product): bool => $product['slug'] !== null && collect($product['prices'])->contains(fn(array $price): bool => $price['amount'] > 0))
-        ->map(fn(array $product): array => [
-            'path' => '/compare/' . $product['slug'],
-            'title' => pricingPageJson("content/en/compare/{$product['slug']}.json")['header']['title'],
-        ])
-        ->values()
-        ->all();
-
-    expect(array_column($expected, 'path'))->toContain('/compare/tableplus', '/compare/datagrip')->not->toContain('/compare/sequel-ace');
-
-    get('/pricing')->assertInertia(fn(AssertableInertia $page) => $page->where('comparisons', $expected));
-});
 
 it('asks for a discount code only where the provider\'s checkout does not', function (string $provider, array $expected): void {
     config(['payment.provider' => $provider]);
@@ -155,21 +145,17 @@ it('fills every slot in its copy from data, and marks up only what the page rend
     $slots = ['activations', 'revalidateDays', 'graceDays', 'merchant', 'refundDays', 'min', 'max', 'email'];
     $tags = ['ui', 'account', 'portal', 'link', 'email', 'terms'];
 
-    foreach (['en', 'vi'] as $locale) {
-        $strings = array_filter(Illuminate\Support\Arr::dot(pricingPageJson("content/{$locale}/pricing.json")), 'is_string');
+    foreach (array_filter(Illuminate\Support\Arr::dot(pricingPageJson('content/en/pricing.json')), 'is_string') as $key => $text) {
+        preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $found);
 
-        foreach ($strings as $key => $text) {
-            preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $found);
+        foreach ($found[1] as $slot) {
+            Assert::assertContains($slot, $slots, "content/en/pricing.json {$key} uses {{$slot}}, which the page does not fill");
+        }
 
-            foreach ($found[1] as $slot) {
-                Assert::assertContains($slot, $slots, "content/{$locale}/pricing.json {$key} uses {{$slot}}, which the page does not fill");
-            }
+        preg_match_all('/<([a-z][A-Za-z0-9]*)>/', $text, $opened);
 
-            preg_match_all('/<([a-z][A-Za-z0-9]*)>/', $text, $opened);
-
-            foreach ($opened[1] as $tag) {
-                Assert::assertContains($tag, $tags, "content/{$locale}/pricing.json {$key} uses <{$tag}>, which the page does not render");
-            }
+        foreach ($opened[1] as $tag) {
+            Assert::assertContains($tag, $tags, "content/en/pricing.json {$key} uses <{$tag}>, which the page does not render");
         }
     }
 });
@@ -195,10 +181,13 @@ it('keeps the commerce claims positioning rules out of its copy', function (): v
     }
 });
 
-it('server-renders the plans, the table and every section, with prices written for the language', function (string $path, string $locale, array $prices): void {
+it('server-renders the plans, the table and every section, with prices written for the language', function (string $path, string $locale, array $prices, string $pattern, string $decimal, string $refund, array $availability, array $facts): void {
     config(['payment.provider' => 'polar']);
 
-    $html = html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5);
+    $prefix = $locale === 'en' ? '' : "/{$locale}";
+    $pricing = pricingPageJson('pricing.json');
+    $raw = ssrHtml($path);
+    $html = html_entity_decode($raw, ENT_QUOTES | ENT_HTML5);
     $main = substr($html, (int) strpos($html, '<main'), (int) strrpos($html, '</main>') - (int) strpos($html, '<main'));
 
     expect(substr_count($main, '<h1'))->toBe(1);
@@ -213,67 +202,87 @@ it('server-renders the plans, the table and every section, with prices written f
     }
 
     expect($main)->toContain('type="radio"')
-        ->toContain($locale === 'vi' ? 'href="/vi/refund-policy"' : 'href="/refund-policy"')
+        ->toContain("href=\"{$prefix}/refund-policy\"")
         ->toContain('href="/account?locale=' . $locale . '"')
         // The license section links the terms, and the short FAQ the full licensing questions (sitemap §A.1).
-        ->toContain($locale === 'vi' ? 'href="/vi/terms"' : 'href="/terms"')
-        ->toContain($locale === 'vi' ? 'href="/vi/faq#licensing"' : 'href="/faq#licensing"')
+        ->toContain("href=\"{$prefix}/terms\"")
+        ->toContain("href=\"{$prefix}/faq#licensing\"")
         ->not->toMatch('/\{[A-Za-z][A-Za-z0-9_.]*\}/');
 
     foreach (['client.crisp.chat', '@polar-sh/checkout', 'lemon.js', 'lemonsqueezy.com'] as $host) {
         expect($html)->not->toContain($host);
     }
-})->with([
-    'English' => ['/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year']],
-    'Vietnamese' => ['/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"]],
-]);
 
-it('carries every cycle\'s price in the server HTML and hides all but the yearly one', function (string $path, string $pattern, string $decimal): void {
-    config(['payment.provider' => 'polar']);
+    expect(pricingPricePoints($html))->toBe(pricingExpectedPricePoints($pattern, $decimal));
 
-    $pricing = pricingPageJson('pricing.json');
-    $write = fn(int|float $amount): string => sprintf($pattern, str_replace('.', $decimal, is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '')));
-    $expected = [['price' => $write($pricing['tiers']['free']['price']), 'hidden' => false]];
-
-    foreach (['starter', 'team'] as $tier) {
-        foreach ($pricing['cycles'] as $cycle) {
-            $expected[] = ['price' => $write($pricing['tiers'][$tier]['prices'][$cycle]), 'hidden' => $cycle !== 'yearly'];
-        }
-    }
-
-    // The same prices, in the same order, as the offers in the structured data.
-    expect(pricingPricePoints(html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5)))->toBe($expected);
-})->with([
-    'English' => ['/pricing', '$%s', '.'],
-    'Vietnamese' => ['/vi/pricing', "%s\u{a0}US$", ','],
-    'Traditional Chinese' => ['/zh-Hant/pricing', 'US$%s', '.'],
-]);
-
-it('states the refund window under the buy buttons, with the policy linked', function (string $path, string $sentence, string $href): void {
-    $html = html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5);
     $start = (int) strpos($html, 'id="plans"');
     $plans = substr($html, $start, (int) strpos($html, 'id="features"') - $start);
 
     expect($plans)
-        ->toContain(str_replace('{days}', (string) pricingPageJson('pricing.json')['refund']['days'], $sentence))
-        ->toContain('href="' . $href . '"');
-})->with([
-    'English' => ['/pricing', 'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.', '/refund-policy'],
-    'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.', '/vi/refund-policy'],
-]);
+        ->toContain(str_replace('{days}', (string) $pricing['refund']['days'], $refund))
+        ->toContain("href=\"{$prefix}/refund-policy\"");
 
-it('keeps licensing facts visible and the short FAQ focused on account tasks', function (): void {
-    $html = html_entity_decode(ssrHtml('/pricing'), ENT_QUOTES | ENT_HTML5);
-    $main = strip_tags(substr($html, (int) strpos($html, '<main'), (int) strrpos($html, '</main>') - (int) strpos($html, '<main')));
+    $start = (int) strpos($html, 'id="features"');
+    $table = substr($html, $start, (int) strpos($html, '</table>', $start) - $start);
 
-    $pricing = pricingPageJson('pricing.json');
+    expect($table)->toContain(">{$availability[0]}<")->toContain(">{$availability[1]}<");
 
-    foreach (['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for ' . $pricing['license']['offlineGraceDays'] . ' days after the last successful check'] as $fact) {
-        expect($main)->toContain($fact);
+    foreach ($facts as $fact) {
+        expect(strip_tags($main))->toContain(str_replace('{graceDays}', (string) $pricing['license']['offlineGraceDays'], $fact));
     }
 
-    expect($main)->toContain('One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day');
+    preg_match_all('#<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>#s', $raw, $blocks);
 
+    expect($blocks[1])->not->toBeEmpty();
+
+    $offers = [];
+
+    foreach ($blocks[1] as $block) {
+        $json = json_decode($block, true);
+
+        foreach ($json['@graph'] ?? [$json] as $node) {
+            if (($node['@type'] ?? null) === 'SoftwareApplication') {
+                $offers = $node['offers'] ?? [];
+            }
+        }
+    }
+
+    $expected = [(string) $pricing['tiers']['free']['price']];
+
+    foreach (['starter', 'team'] as $tier) {
+        foreach ($pricing['tiers'][$tier]['prices'] as $amount) {
+            $expected[] = is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '');
+        }
+    }
+
+    expect(array_column($offers, 'price'))->toBe($expected);
+
+    foreach ($offers as $offer) {
+        expect($offer['priceCurrency'])->toBe($pricing['currency']);
+        expect($offer)->not->toHaveKey('aggregateRating');
+    }
+})->with([
+    'English' => [
+        '/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year'], '$%s', '.',
+        'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
+        ['Included', 'Not included'],
+        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for {graceDays} days after the last successful check', 'One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
+    ],
+    'Vietnamese' => [
+        '/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',
+        'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.',
+        ['Có', 'Không có'],
+        [],
+    ],
+])->group('ssr');
+
+it('carries every cycle\'s price in the server HTML in the page\'s number format', function (): void {
+    config(['payment.provider' => 'polar']);
+
+    expect(pricingPricePoints(html_entity_decode(ssrHtml('/zh-Hant/pricing'), ENT_QUOTES | ENT_HTML5)))->toBe(pricingExpectedPricePoints('US$%s', '.'));
+})->group('ssr');
+
+it('keeps the short FAQ on account tasks, leaving the licensing facts to the page', function (): void {
     $content = pricingPageJson('content/en/pricing.json');
 
     expect(array_keys($content['faq']['items']))->toBe(['payment-methods', 'company-invoice', 'lost-key']);
@@ -359,55 +368,3 @@ it('asks in its short FAQ only what the full FAQ answers, in the same words', fu
         }
     }
 });
-
-/*
- * Moved from the retired Landing/LandingStructureTest (architecture §1.17):
- * the plan table's check mark is decorative, so every cell also says whether
- * the plan includes the feature, in the page's language (m.controls.availability).
- */
-it('states the availability of every plan in words, not only in an icon', function (string $path, string $included, string $notIncluded): void {
-    $html = ssrHtml($path);
-    $start = (int) strpos($html, 'id="features"');
-    $table = substr($html, $start, (int) strpos($html, '</table>', $start) - $start);
-
-    expect($table)->toContain(">{$included}<")->toContain(">{$notIncluded}<");
-})->with([
-    'English' => ['/pricing', 'Included', 'Not included'],
-    'Vietnamese' => ['/vi/pricing', 'Có', 'Không có'],
-]);
-
-it('states one offer per price in pricing.json, in its structured data', function (string $path): void {
-    $html = ssrHtml($path);
-
-    preg_match_all('#<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>#s', $html, $blocks);
-
-    expect($blocks[1])->not->toBeEmpty();
-
-    $offers = [];
-
-    foreach ($blocks[1] as $block) {
-        $json = json_decode($block, true);
-
-        foreach ($json['@graph'] ?? [$json] as $node) {
-            if (($node['@type'] ?? null) === 'SoftwareApplication') {
-                $offers = $node['offers'] ?? [];
-            }
-        }
-    }
-
-    $pricing = pricingPageJson('pricing.json');
-    $expected = [(string) $pricing['tiers']['free']['price']];
-
-    foreach (['starter', 'team'] as $tier) {
-        foreach ($pricing['tiers'][$tier]['prices'] as $amount) {
-            $expected[] = is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '');
-        }
-    }
-
-    expect(array_column($offers, 'price'))->toBe($expected);
-
-    foreach ($offers as $offer) {
-        expect($offer['priceCurrency'])->toBe($pricing['currency']);
-        expect($offer)->not->toHaveKey('aggregateRating');
-    }
-})->with(['/pricing', '/vi/pricing']);

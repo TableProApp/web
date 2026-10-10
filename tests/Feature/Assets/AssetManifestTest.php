@@ -5,31 +5,18 @@ use App\Support\Assets\AssetReferences;
 use App\Support\Localization\Locales;
 use Dom\HTMLDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-/**
- * resources/data/assets.json, the public site's one image manifest
- * (architecture §1.9, design-system §6).
- *
- * Every editorial image is a placeholder until the owner supplies it, and the
- * only switch is an entry's `status`. So the manifest has to be right on its
- * own: every handoff field the spec asks for (§9.1), the geometry the visual
- * contract pins, short NFC descriptions, real pages, and, once an entry is
- * supplied, every promised file on disk at its true size and within budget.
- *
- * The supplied path has no real art yet, so it runs against an isolated
- * fixture, tests/Fixtures/assets/manifest.json, with tiny images drawn into a
- * temporary directory. The same fixture holds the JavaScript renderer to the
- * same file names (tests/js/asset-slot.test.ts).
- */
 function assetManifestPath(): string
 {
     return dirname(__DIR__, 3) . '/resources/data/assets.json';
 }
 
+// Shared with tests/js/asset-slot.test.ts, which holds the renderer to the same file names.
 function assetFixturePath(): string
 {
     return dirname(__DIR__, 2) . '/Fixtures/assets/manifest.json';
@@ -43,9 +30,6 @@ function assetManifestData(string $path): array
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * A scratch directory for one test, removed again at teardown.
- */
 function assetScratchDirectory(): string
 {
     $dir = sys_get_temp_dir() . '/asset-manifest-' . bin2hex(random_bytes(6));
@@ -56,9 +40,6 @@ function assetScratchDirectory(): string
 }
 
 /**
- * Remembers a scratch directory, or with no argument hands back every one
- * remembered so far and forgets them.
- *
  * @return list<string>
  */
 function assetScratchDirectories(?string $add = null): array
@@ -94,9 +75,6 @@ function assetRemoveDirectory(string $dir): void
     rmdir($dir);
 }
 
-/**
- * Draws one real image file of the given size and format.
- */
 function assetDrawImage(string $path, int $width, int $height, string $format): void
 {
     if (! is_dir(dirname($path))) {
@@ -119,10 +97,6 @@ function assetDrawImage(string $path, int $width, int $height, string $format): 
     };
 }
 
-/**
- * Installs every file the supplied fixture entries promise into `$root/public`,
- * then returns a manifest that reads them.
- */
 function assetSuppliedFixture(string $root, ?callable $mutate = null): AssetManifest
 {
     $data = assetManifestData(assetFixturePath());
@@ -149,6 +123,33 @@ function assetInstallFiles(AssetManifest $manifest): void
             assetDrawImage($manifest->absolute($file['url']), $width, $height, $file['format']);
         }
     }
+}
+
+function assetInstalledFixture(string $root): AssetManifest
+{
+    // Encoding the AVIFs is the slow part, so they are drawn once per process and copied.
+    static $template = null;
+
+    if ($template === null) {
+        $template = sys_get_temp_dir() . '/asset-manifest-template-' . bin2hex(random_bytes(6));
+        mkdir($template, 0755, true);
+        assetInstallFiles(assetSuppliedFixture($template));
+        register_shutdown_function(static fn() => assetRemoveDirectory($template));
+    }
+
+    File::copyDirectory("{$template}/public", "{$root}/public");
+
+    return assetSuppliedFixture($root);
+}
+
+/**
+ * @return array<string, list<string>>
+ */
+function assetReferences(): array
+{
+    static $references = null;
+
+    return $references ??= (new AssetReferences())->all();
 }
 
 /**
@@ -204,10 +205,7 @@ describe('the visual contract', function (): void {
         }
     });
 
-    /*
-     * Pinned on purpose. These numbers are the visual contract: changing one
-     * means editing design-system §6.3 and this test in the same change.
-     */
+    // The visual contract: a change here changes design-system §6.3 too.
     it('pins the geometry of the screenshot kinds', function (): void {
         $kinds = (new AssetManifest())->kinds();
         $pick = fn(string $kind): array => [
@@ -310,6 +308,7 @@ describe('every entry', function (): void {
         $assets = (new AssetManifest())->assets();
         $limits = array_fill_keys(Locales::codes(), 200);
         $limits['en'] = 160;
+        $offences = [];
 
         foreach ($assets as $id => $entry) {
             foreach ($limits as $locale => $limit) {
@@ -319,31 +318,31 @@ describe('every entry', function (): void {
                     continue;
                 }
 
-                Assert::assertLessThanOrEqual($limit, mb_strlen($text), "{$id}: description.{$locale} is " . mb_strlen($text) . " characters, over {$limit}");
+                if (mb_strlen($text) > $limit) {
+                    $offences[] = "{$id}: description.{$locale} is " . mb_strlen($text) . " characters, over {$limit}";
+                }
 
                 foreach (array_keys($assets) as $other) {
-                    Assert::assertStringNotContainsString($other, $text, "{$id}: description.{$locale} names the id {$other}");
+                    if (str_contains($text, $other)) {
+                        $offences[] = "{$id}: description.{$locale} names the id {$other}";
+                    }
                 }
             }
 
             foreach (['description', 'alt', 'caption'] as $field) {
                 foreach ($entry[$field] ?? [] as $locale => $text) {
-                    if ($text !== null) {
-                        Assert::assertTrue(Normalizer::isNormalized($text, Normalizer::FORM_C), "{$id}: {$field}.{$locale} is not NFC");
+                    if ($text !== null && ! Normalizer::isNormalized($text, Normalizer::FORM_C)) {
+                        $offences[] = "{$id}: {$field}.{$locale} is not NFC";
                     }
                 }
             }
         }
+
+        expect($assets)->not->toBeEmpty()
+            ->and($offences)->toBe([]);
     });
 
-    /*
-     * The Vietnamese briefs and alt text are read by Vietnamese developers,
-     * who read "bảng" as a database table: the glossary keeps "table" in
-     * English for that reason (positioning §11.2), so a sheet is a "hộp
-     * thoại" and a panel a "khung". "Được giữ lại" means "kept", the opposite
-     * of a statement held back from a script, and "của nó" / "cho chúng" are
-     * English possessives carried over word for word.
-     */
+    // A Vietnamese developer reads "bảng" as a database table (positioning §11.2).
     it('keeps the Vietnamese text clear of the misreadings found in review', function (): void {
         $misreadings = [
             '/\bbảng\b/iu' => '"bảng" for a sheet or panel',
@@ -396,13 +395,6 @@ describe('every entry', function (): void {
         }
     });
 
-    /*
-     * A window always has a phone crop (design-system §6.3). A detail, an iPad
-     * capture or an illustration may have one too: at 343 px wide a detail is
-     * about half size and an iPad capture about a quarter, so one whose focal
-     * text must read on a phone names a crop (found in review). Other kinds
-     * already render at a legible size on a phone, or are the crop itself.
-     */
     it('gives every window a phone crop, and any other crop to a kind that shrinks on a phone', function (): void {
         $assets = (new AssetManifest())->assets();
         $crops = [];
@@ -416,7 +408,7 @@ describe('every entry', function (): void {
 
             $crop = $entry['mobile'];
 
-            /* A page's lead or section image (P1, P2) is the one a reader must be able to read. */
+            // At 343 px a detail is about half size and an iPad capture a quarter (found in review).
             if (in_array($entry['kind'], ['detail', 'ipad'], true) && in_array($entry['handoffPriority'], ['P1', 'P2'], true)) {
                 Assert::assertIsString($crop, "{$id}: a {$entry['handoffPriority']} {$entry['kind']} shrinks to 343 px on a phone and needs a phone crop");
             }
@@ -488,7 +480,7 @@ describe('references', function (): void {
         $assets = (new AssetManifest())->assets();
         $unknown = [];
 
-        foreach ((new AssetReferences())->all() as $id => $paths) {
+        foreach (assetReferences() as $id => $paths) {
             if (! array_key_exists($id, $assets) || ! $assets[$id]['slot']) {
                 $unknown[] = "{$id} (" . implode(', ', $paths) . ')';
             }
@@ -524,17 +516,12 @@ describe('references', function (): void {
         ]);
     });
 
-    /*
-     * Every family places its slots now, so a family that places none is a
-     * failure, not a skip: a renamed key or a moved page would otherwise turn
-     * this check into a silent green.
-     */
     it('places every slot of a family once the family renders any', function (string $family): void {
         $assets = (new AssetManifest())->assets();
-        $references = (new AssetReferences())->all();
+        $references = assetReferences();
         $placed = array_keys($references);
 
-        /* A window's slot renders its phone crop too. */
+        // A window's slot renders its phone crop too.
         foreach ($assets as $id => $entry) {
             if ($entry['mobile'] !== null && in_array($id, $placed, true)) {
                 $placed[] = $entry['mobile'];
@@ -552,9 +539,7 @@ describe('references', function (): void {
 
 describe('the supplied path, on an isolated fixture', function (): void {
     it('accepts a complete set of files', function (): void {
-        $root = assetScratchDirectory();
-        $manifest = assetSuppliedFixture($root);
-        assetInstallFiles($manifest);
+        $manifest = assetInstalledFixture(assetScratchDirectory());
 
         expect($manifest->expectedFiles('fixture-hero'))->toHaveCount(8);
         expect($manifest->problems())->toBe([]);
@@ -572,7 +557,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
 
     it('reports each way a supplied entry can be wrong', function (callable $break, string $expected): void {
         $root = assetScratchDirectory();
-        assetInstallFiles(assetSuppliedFixture($root));
+        assetInstalledFixture($root);
         $manifest = $break($root);
 
         $problems = implode("\n", $manifest->problems());
@@ -662,12 +647,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
         ],
     ]);
 
-    /*
-     * A window and its phone crop render as one art-directed <picture>: the
-     * window behind `<source media="(min-width: 768px)">`, the crop as the
-     * <img> below it. The preload has to follow the same split, or a phone
-     * downloads the window it never paints and loads the crop it shows late.
-     */
+    // Otherwise a phone downloads the window it never paints and loads its crop late.
     it('preloads the window above 768px and its phone crop below, per theme', function (): void {
         $manifest = new AssetManifest(assetFixturePath());
 
@@ -714,13 +694,6 @@ describe('the supplied path, on an isolated fixture', function (): void {
         ]);
     });
 
-    /*
-     * The bundle imports geometry and selected text, excluding the owner's
-     * handoff fields (architecture §1.4 asks a shared-chunk addition to stay
-     * near 10 KB gzipped). A manifest edit without `php artisan assets:generate`
-     * would leave the site rendering the old state, so a stale slice fails
-     * here.
-     */
     it('bundles a current slice of the manifest, with only what rendering needs', function (): void {
         $manifest = new AssetManifest();
         $committed = resource_path('js/lib/data/asset-slots.json');
@@ -737,11 +710,6 @@ describe('the supplied path, on an isolated fixture', function (): void {
             expect(array_keys($entry))->toBe(['kind', 'type', 'slot', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'status', 'src', 'replacement'], $id);
         }
 
-        /*
-         * Each page downloads shared geometry and only its active language's
-         * rendering text. Keep the existing ceiling as languages are added,
-         * including supplied alt text and captions; owner fields stay out.
-         */
         $minified = json_encode($projection, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
 
         $metadataBytes = strlen((string) gzencode($minified, 9));
@@ -795,11 +763,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
     });
 
     it('preloads a supplied image that a page places with priority, never a placeholder', function (): void {
-        /*
-         * The /ios header renders `ipad-table-browse` with `<AssetSlot priority>`
-         * although its entry loads lazily elsewhere; its controller asks for the
-         * preload the same way.
-         */
+        // /ios places ipad-table-browse with <AssetSlot priority> although its entry loads lazily elsewhere.
         $fixture = new AssetManifest(assetFixturePath());
         $detail = $fixture->lcpDescriptor('fixture-detail', 'en', priority: true);
 
@@ -816,17 +780,13 @@ describe('the supplied path, on an isolated fixture', function (): void {
 
         expect($manifest->ogCard('fixture-og', 'vi'))->toBeNull();
 
-        assetInstallFiles($manifest);
+        assetInstalledFixture($root);
 
         expect($manifest->ogCard('fixture-og', 'vi'))->toBe('/og/fixture/fixture-og-vi.png');
         expect($manifest->ogCard('fixture-og', 'en'))->toBe('/og/fixture/fixture-og-en.png');
         expect($manifest->ogCard('fixture-hero', 'en'))->toBeNull();
 
-        /*
-         * The real card: offered exactly when the committed entry is
-         * supplied, since its files are committed with it
-         * (Seo/BespokeOgCardTest).
-         */
+        // The real card's files are committed with its entry (Seo/BespokeOgCardTest).
         $real = new AssetManifest();
 
         foreach (['en', 'vi'] as $locale) {
@@ -836,11 +796,6 @@ describe('the supplied path, on an isolated fixture', function (): void {
     });
 });
 
-/*
- * End to end: what a visitor's browser receives. The component tests prove
- * the renderer never emits an image request for a placeholder; this proves
- * no page wraps one around it.
- */
 it('serves no image request inside a placeholder on any page', function (): void {
     requireSsr();
     Http::fake([
@@ -882,6 +837,6 @@ it('serves no image request inside a placeholder on any page', function (): void
         }
     }
 
-    /* Under REQUIRE_SSR a skip here would be green; finding nothing means the selector or the markup changed. */
+    // Finding nothing means the selector or the markup changed.
     Assert::assertGreaterThan(0, $found, 'No page renders an AssetSlot placeholder');
-});
+})->group('ssr');

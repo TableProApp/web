@@ -58,10 +58,10 @@ it('shares the stored count with every page once, and never calls GitHub during 
     Http::fake([STARS_FAKE_REPO => Http::response(['stargazers_count' => 9999])]);
     Storage::disk(StarCount::DISK)->put(StarCount::FILE, '6224');
 
-    $this->get('/')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('github.stars', 6224));
+    $home = $this->get('/')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('github.stars', 6224));
     $this->get('/vi/pricing')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('github.stars', 6224));
 
-    $version = json_decode(html_entity_decode((string) preg_replace('/.*<script data-page="app" type="application\/json">(.*?)<\/script>.*/s', '$1', (string) $this->get('/pricing')->getContent())), true)['version'] ?? '';
+    $version = json_decode(html_entity_decode((string) preg_replace('/.*<script data-page="app" type="application\/json">(.*?)<\/script>.*/s', '$1', (string) $home->getContent())), true)['version'] ?? '';
 
     $visit = $this->withHeaders([
         'X-Inertia' => 'true',

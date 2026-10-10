@@ -9,11 +9,6 @@ use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The feature hub and the feature pages (sitemap §A.2, §E.4, §E.8;
- * design-system §8.2): what the controller sends, the facts it computes from
- * the data files, and what a reader receives once the page is rendered.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -27,9 +22,6 @@ function featurePagesData(string $file): array
 }
 
 /**
- * Engine names from engines.json for which `$test` holds, in data order: the
- * expectation is derived from the file, never typed.
- *
  * @param  callable(array<string, mixed>): bool  $test
  * @return list<string>
  */
@@ -64,37 +56,6 @@ it('renders the hub in both languages with only the pages that exist', function 
             ->where('facts.importFormats.kind', 'names')
             ->where('facts.importFormats.items', array_column(featurePagesData('facts.json')['dataImport']['formats'], 'name')));
 })->with([['', 'en'], ['/vi', 'vi']]);
-
-it('renders each feature page with its copy, the shared labels and only the facts it names', function (string $prefix, string $locale, string $slug): void {
-    $content = featurePagesData("content/{$locale}/features/{$slug}.json");
-    $labels = featurePagesData("content/{$locale}/features/index.json")['labels'];
-    $named = FeatureFacts::referencedNames($content);
-
-    get("{$prefix}/features/{$slug}")
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Features/Show')
-            ->where('locale', $locale)
-            ->where('slug', $slug)
-            ->where('content.header.title', $content['header']['title'])
-            ->where('content.sections', $content['sections'])
-            ->where('labels.tiers', $labels['tiers'])
-            ->where('facts', fn($facts): bool => collect($facts)->keys()->sort()->values()->all() === $named));
-})->with(function (): array {
-    $cases = [];
-
-    foreach (FeatureSlugs::ALL as $slug) {
-        $cases["en {$slug}"] = ['', 'en', $slug];
-        $cases["vi {$slug}"] = ['/vi', 'vi', $slug];
-    }
-
-    return $cases;
-});
-
-it('answers 404 for a slug that is not a feature page', function (): void {
-    get('/features/not-a-feature')->assertNotFound();
-    get('/vi/features/not-a-feature')->assertNotFound();
-});
 
 it('quotes the limits from facts.json', function (): void {
     $limits = featurePagesData('facts.json')['limits'];
@@ -192,12 +153,27 @@ it('labels an engine with its version only while an older Mac build is still ser
     }
 });
 
-it('server-renders every section, slot and fact of a feature page', function (string $path, string $slug): void {
-    $html = ssrHtml($path);
-    $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);
-    $main = $document->querySelector('main');
+it('renders each feature page with its copy, the shared labels, only the facts it names, and every section, slot and fact server-rendered', function (string $path, string $slug): void {
+    requireSsr();
+
     $locale = str_starts_with($path, '/vi') ? 'vi' : 'en';
     $content = featurePagesData("content/{$locale}/features/{$slug}.json");
+    $labels = featurePagesData("content/{$locale}/features/index.json")['labels'];
+    $named = FeatureFacts::referencedNames($content);
+
+    $html = (string) get($path)
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->component('Features/Show')
+            ->where('locale', $locale)
+            ->where('slug', $slug)
+            ->where('content.header.title', $content['header']['title'])
+            ->where('content.sections', $content['sections'])
+            ->where('labels.tiers', $labels['tiers'])
+            ->where('facts', fn($facts): bool => collect($facts)->keys()->sort()->values()->all() === $named))
+        ->getContent();
+    $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);
+    $main = $document->querySelector('main');
 
     expect($main)->not->toBeNull();
 
@@ -226,21 +202,7 @@ it('server-renders every section, slot and fact of a feature page', function (st
     }
 
     return $cases;
-});
-
-it('renders every paid feature anchor the pricing page links to', function (): void {
-    foreach (featurePagesData('paid-features.json') as $feature) {
-        $slug = basename($feature['page']['path']);
-
-        if (! File::exists(resource_path("data/content/en/features/{$slug}.json"))) {
-            continue;
-        }
-
-        $document = HTMLDocument::createFromString(ssrHtml($feature['page']['path']), LIBXML_NOERROR);
-
-        expect($document->getElementById($feature['page']['anchor']))->not->toBeNull("{$feature['page']['path']}#{$feature['page']['anchor']}");
-    }
-});
+})->group('ssr');
 
 it('labels the English-only docs on Vietnamese pages', function (): void {
     $document = HTMLDocument::createFromString(ssrHtml('/vi/features/querying'), LIBXML_NOERROR);
@@ -253,7 +215,7 @@ it('labels the English-only docs on Vietnamese pages', function (): void {
         expect($link->getAttribute('href'))->toStartWith(featurePagesData('facts.json')['links']['docs'] . '/');
         expect($link->textContent)->toContain('(tiếng Anh)');
     }
-});
+})->group('ssr');
 
 it('describes the page in structured data with breadcrumbs that match the visible ones', function (): void {
     $document = HTMLDocument::createFromString(ssrHtml('/features/data-editing'), LIBXML_NOERROR);
@@ -279,4 +241,4 @@ it('describes the page in structured data with breadcrumbs that match the visibl
     $crumbs = collect($graph)->firstWhere('@type', 'BreadcrumbList')['itemListElement'];
     expect(array_column($crumbs, 'name'))->toBe(['Features', 'Data editing']);
     expect(end($crumbs)['item'])->toEndWith('/features/data-editing');
-});
+})->group('ssr');

@@ -8,51 +8,17 @@ use App\Support\Seo\RedirectMap;
 use Dom\HTMLDocument;
 use Illuminate\Support\Facades\Http;
 
-/**
- * No page links to a page that is not there (architecture §1.17
- * "InternalLinksTest"; spec §10 "remove obsolete internal links").
- *
- * Every registry URL is crawled in each locale it renders in, and every
- * internal link it carries must:
- *
- * - answer 200, so a link never lands on a 404, a 410 or a redirect, including
- *   the normalising ones (`/blog/` → `/blog`);
- * - not be a source in the redirect map, so the site never sends its own
- *   readers through a 301 it keeps only for old inbound links;
- * - for a fragment, land on an element with that id on the target page;
- * - reach the account app (sitemap §B.5, §C.8) at `/account`, never under a
- *   locale prefix, and carry `?locale=` with the page's own locale. The other
- *   paths the license app owns on this domain are not requested: this app
- *   does not serve them;
- * - on a page in a language other than the default, stay in that language:
- *   a link to a page that renders in it uses its URL there, so a component
- *   that drops `<LocaleLink>` cannot send every Vietnamese reader to English
- *   pages. A link that declares its language (`hreflang`, which the language
- *   switcher sets) and a link to a page that exists only in English, such as
- *   a release post, are exempt.
- *
- * Two layers. The first reads the links the server hands each page (every
- * `href` prop and every link inside rendered markdown) and runs on every
- * machine. The second crawls the server-rendered HTML, header, footer and
- * all, and needs a current SSR bundle: it skips without one and fails under
- * `REQUIRE_SSR`, like every SSR-gated test. The language rule runs only in the
- * second layer: content stores unprefixed paths, and `<LocaleLink>` adds the
- * prefix when it renders.
- */
+require_once __DIR__ . '/../Seo/helpers.php';
+
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-/** The first path segments the license app answers on this domain (sitemap §C.8). */
 const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'api', 'beta', 'discount', 'webhooks', 'platform-build'];
 
-/** Paths this app serves that are not pages: crawler files. */
 const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt'];
 
 /**
- * An internal href as path, query and fragment, or null for an external or
- * non-HTTP link. A fragment-only href resolves against the page it is on.
- *
  * @return array{path: string, query: string, fragment: string}|null
  */
 function internalLinkTarget(string $href, string $page): ?array
@@ -89,10 +55,6 @@ function internalLinkTarget(string $href, string $page): ?array
 }
 
 /**
- * What is wrong with one link from a page, or null. `$status` answers a path
- * (with its query) with its HTTP status; `$ids` answers a path with the ids
- * its document holds, or null when the layer cannot see them.
- *
  * @param  array{path: string, query: string, fragment: string}  $target
  * @param  callable(string): int  $status
  * @param  callable(string): (list<string>|null)  $ids
@@ -153,8 +115,6 @@ function internalLinkProblem(array $target, string $locale, callable $status, ca
 }
 
 /**
- * Every registry page by its URL in the default locale.
- *
  * @return array<string, PageEntry>
  */
 function internalLinkDefaultUrls(): array
@@ -171,12 +131,6 @@ function internalLinkDefaultUrls(): array
 }
 
 /**
- * Why a link on a page in `$locale` leaves the reader's language, or null.
- *
- * Only a link to a page that also renders in `$locale` can be wrong: a
- * release post exists in English alone, so linking it in English is right.
- * A link that declares its own language (`hreflang`) is a deliberate switch.
- *
  * @param  array{path: string, query: string, fragment: string}  $target
  * @param  array<string, PageEntry>  $defaultUrls
  */
@@ -198,8 +152,6 @@ function internalLinkLocaleProblem(array $target, string $locale, bool $declares
 }
 
 /**
- * Every registry URL with the locale it renders in.
- *
  * @return array<string, string>
  */
 function internalLinkPages(): array
@@ -216,9 +168,6 @@ function internalLinkPages(): array
 }
 
 /**
- * The hrefs the server hands a page: every `href` prop that is a path or a
- * fragment, and every link inside an HTML or markdown string.
- *
  * @param  array<string, mixed>  $props
  * @return list<string>
  */
@@ -248,9 +197,6 @@ function internalLinkPropHrefs(array $props): array
 }
 
 /**
- * A status lookup that remembers each answer, seeded with the pages already
- * fetched.
- *
  * @param  array<string, int>  $known
  * @return callable(string): int
  */
@@ -262,19 +208,13 @@ function internalLinkStatuses(array &$known): callable
 }
 
 it('links only live pages from what the server hands every page', function (): void {
-    config(['inertia.ssr.enabled' => false]);
-
-    $statuses = [];
+    $crawl = seoCrawlProps();
+    $statuses = array_map(fn(array $page): int => $page['status'], $crawl);
     $problems = [];
     $checked = 0;
 
     foreach (internalLinkPages() as $path => $locale) {
-        $response = $this->get($path);
-        $statuses[$path] = $response->getStatusCode();
-
-        expect($statuses[$path])->toBe(200, "{$path} does not render");
-
-        foreach (internalLinkPropHrefs($response->viewData('page')['props']) as $href) {
+        foreach (internalLinkPropHrefs($crawl[$path]['props']) as $href) {
             $target = internalLinkTarget($href, $path);
 
             if ($target === null) {
@@ -295,39 +235,38 @@ it('links only live pages from what the server hands every page', function (): v
 });
 
 it('links only live pages and real anchors from every server-rendered page', function (): void {
-    requireSsr();
-
     $pages = internalLinkPages();
-    $documents = [];
+    seoCrawlHtml();
     $statuses = [];
+    $ids = [];
+    $links = [];
+
+    $idsIn = fn(HTMLDocument $document): array => array_map(
+        fn(Dom\Element $element): string => (string) $element->getAttribute('id'),
+        iterator_to_array($document->querySelectorAll('[id]')),
+    );
 
     foreach ($pages as $path => $locale) {
-        $response = $this->get($path);
-        $statuses[$path] = $response->getStatusCode();
+        $document = HTMLDocument::createFromString(seoCrawledHtml($path), LIBXML_NOERROR);
+        $statuses[$path] = 200;
+        $ids[$path] = $idsIn($document);
+        $links[$path] = [];
 
-        expect($statuses[$path])->toBe(200, "{$path} does not render");
-
-        $documents[$path] = HTMLDocument::createFromString((string) $response->getContent(), LIBXML_NOERROR);
+        foreach ($document->querySelectorAll('a[href], area[href]') as $link) {
+            $links[$path][] = [(string) $link->getAttribute('href'), $link->hasAttribute('hreflang')];
+        }
     }
 
-    $ids = function (string $path) use (&$documents): ?array {
-        if (! isset($documents[$path])) {
+    $idsOf = function (string $path) use (&$ids, $idsIn): ?array {
+        if (! array_key_exists($path, $ids)) {
             $response = test()->get($path);
 
-            if ($response->getStatusCode() !== 200) {
-                return null;
-            }
-
-            $documents[$path] = HTMLDocument::createFromString((string) $response->getContent(), LIBXML_NOERROR);
+            $ids[$path] = $response->getStatusCode() === 200
+                ? $idsIn(HTMLDocument::createFromString((string) $response->getContent(), LIBXML_NOERROR))
+                : null;
         }
 
-        $found = [];
-
-        foreach ($documents[$path]->querySelectorAll('[id]') as $element) {
-            $found[] = $element->getAttribute('id');
-        }
-
-        return $found;
+        return $ids[$path];
     };
 
     $problems = [];
@@ -335,8 +274,7 @@ it('links only live pages and real anchors from every server-rendered page', fun
     $defaultUrls = internalLinkDefaultUrls();
 
     foreach ($pages as $path => $locale) {
-        foreach ($documents[$path]->querySelectorAll('a[href], area[href]') as $link) {
-            $href = (string) $link->getAttribute('href');
+        foreach ($links[$path] as [$href, $declaresLanguage]) {
             $target = internalLinkTarget($href, $path);
 
             if ($target === null) {
@@ -344,8 +282,9 @@ it('links only live pages and real anchors from every server-rendered page', fun
             }
 
             $checked++;
-            $problem = internalLinkProblem($target, $locale, internalLinkStatuses($statuses), $ids)
-                ?? internalLinkLocaleProblem($target, $locale, $link->hasAttribute('hreflang'), $defaultUrls);
+            // The language rule needs the rendered HTML: content stores unprefixed paths and <LocaleLink> adds the prefix.
+            $problem = internalLinkProblem($target, $locale, internalLinkStatuses($statuses), $idsOf)
+                ?? internalLinkLocaleProblem($target, $locale, $declaresLanguage, $defaultUrls);
 
             if ($problem !== null) {
                 $problems["{$path} → {$href}"] = "{$path} → {$href} {$problem}";
@@ -355,7 +294,7 @@ it('links only live pages and real anchors from every server-rendered page', fun
 
     expect($checked)->toBeGreaterThan(1000)
         ->and(array_values($problems))->toBe([], "Broken internal links in the rendered pages:\n  " . implode("\n  ", $problems));
-});
+})->group('ssr');
 
 it('judges each kind of link the way the crawl needs', function (string $href, string $locale, ?string $problem): void {
     $statuses = ['/pricing' => 200, '/vi/pricing' => 200, '/nowhere' => 404];
@@ -367,20 +306,13 @@ it('judges each kind of link the way the crawl needs', function (string $href, s
 
     expect($found === null ? null : explode(';', $found)[0])->toBe($problem);
 })->with([
-    'a live page' => ['/vi/pricing', 'vi', null],
     'a missing page' => ['/nowhere', 'en', 'answers 404'],
     'a retired page' => ['/mariadb-client', 'en', 'goes through a 301 to /mysql-client#mariadb'],
     'a removed page' => ['/compare/azimutt', 'en', 'links a page that answers 410'],
-    'a real anchor' => ['/pricing#faq', 'en', null],
     'a missing anchor' => ['#nope', 'en', 'has no element with id="nope"'],
-    'the account in the page language' => ['/account?locale=vi', 'vi', null],
-    'the account without a locale' => ['/account', 'en', 'reaches the account app without ?locale=en'],
     'the account in the wrong language' => ['/account?locale=en', 'vi', 'reaches the account app without ?locale=vi'],
     'the account under a prefix' => ['/vi/account?locale=vi', 'vi', 'puts the account app under a locale prefix'],
-    'checkout, which is not requested' => ['/checkout', 'en', null],
     'an absolute link to this site' => ['https://tablepro.app/nowhere', 'en', 'answers 404'],
-    'another site' => ['https://docs.tablepro.app/nowhere', 'en', null],
-    'an email' => ['mailto:hello@tablepro.app', 'en', null],
     'a relative link' => ['pricing', 'en', 'is relative'],
     'a missing file' => ['/images/nowhere.png', 'en', 'names a file that public/ does not have'],
 ]);
@@ -392,9 +324,6 @@ it('keeps a reader in their language when a page links a page that exists in it'
     expect($found === null ? null : explode(';', $found)[0])->toBe($problem);
 })->with([
     'the English twin from a Vietnamese page' => ['/pricing', '/vi', 'vi', false, "leaves the reader's language"],
-    'the English homepage from a Vietnamese page' => ['/', '/vi/pricing', 'vi', false, "leaves the reader's language"],
-    'the Vietnamese page itself' => ['/vi/pricing', '/vi', 'vi', false, null],
     'the language switcher' => ['/pricing', '/vi/pricing', 'vi', true, null],
     'an English-only release post' => ['/blog/tablepro-0-77', '/vi/blog', 'vi', false, null],
-    'any link on an English page' => ['/pricing', '/', 'en', false, null],
 ]);

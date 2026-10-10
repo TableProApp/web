@@ -5,33 +5,6 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 require_once __DIR__ . '/helpers.php';
 
 /**
- * No source types a count of what TablePro has: engines, drivers, plugins,
- * MCP tools, AI providers, Safe Mode levels, sync record types, paid
- * features, UI languages or themes (positioning §12.1 "Typed counts";
- * architecture §1.17).
- *
- * Every such number has gone stale on this site at least once: 16 MCP tools
- * against 47 in code, 13 AI providers against 14, "29 engines" against 37,
- * "ten" record types against 12, "9 built-in themes" against 4. Each was right
- * on the day it was typed. A count is derived from data (`{engineCount}` and
- * its kin), or the things are named instead.
- *
- * Generalises `Landing/EngineCountTest` to every content, catalog, legal and
- * data source in both languages (helpers.php), with release posts exempt as
- * archives. A competitor's count may stand only in a comparison cell that
- * cites a source (allowlist A6, positioning §12.2). Spelled-out counts
- * ("nine drivers") are the reviewer's: "two databases" is a workflow, not a
- * count, and no pattern tells them apart.
- */
-
-/**
- * A numeral, or "N+", before a counted noun, with up to three words between
- * ("16 MCP tools", "29 database engines", "47 SQL & NoSQL databases", "47
- * công cụ MCP", "6 mức Safe Mode", "30 hệ cơ sở dữ liệu"). Sync record types
- * are counted under the app's own label too ("Sync Categories", "danh mục").
- * A numeral that is part of a version, a decimal or a name such as
- * "SHA-256" is not a count.
- *
  * @return list<string>
  */
 function typedCountPatterns(): array
@@ -59,6 +32,7 @@ function typedCounts(string $text): array
 }
 
 it('types no count of engines, tools, providers, levels, record types, paid features or languages', function (): void {
+    // Every such count went stale here at least once: 16 MCP tools against 47 in code, "29 engines" against 37.
     $offences = [];
     $read = 0;
 
@@ -129,12 +103,7 @@ it('allows a competitor count only in a comparison cell that cites a source (A6)
 });
 
 it('counts no engines on any post’s OG card', function (): void {
-    /*
-     * A release post is exempt as an archive, but its punchline is its OG
-     * card, shared long after the count goes stale: the iPhone post's "Ten
-     * engines on the phone" left out Redshift, which opens there once synced.
-     * Engines only: "Diff two databases" is a workflow.
-     */
+    // The iPhone post's "Ten engines on the phone" card left out Redshift, which opens there once synced.
     $offences = [];
 
     foreach ([...(glob(resource_path('blog/*.md')) ?: []), ...(glob(resource_path('blog/vi/*.md')) ?: [])] as $post) {

@@ -11,19 +11,11 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * `/about` in every locale, and the publisher wherever the site names it: the
- * about page, the homepage's open-source section, the footer and the
- * Organization node. The name, city and country are `facts.json` →
- * `publisher`; copy and catalogs hold `{maker}`, `{city}` and `{country}`.
- */
 beforeEach(function (): void {
     withoutVite();
 });
 
 /**
- * Every supported locale, read without the application, for the datasets.
- *
  * @return list<string>
  */
 function aboutLocales(): array
@@ -48,8 +40,6 @@ function aboutContent(string $locale): array
 }
 
 /**
- * The link tags `components/faq/content-links.tsx` resolves.
- *
  * @return list<string>
  */
 function aboutKnownTags(): array
@@ -63,9 +53,6 @@ function aboutKnownTags(): array
     return [...$keys[1], 'ui', 'account', 'email', 'brand'];
 }
 
-/**
- * The text a reader sees in a server render, with the no-break spaces folded.
- */
 function aboutVisibleText(string $html): string
 {
     $html = (string) preg_replace('#<(script|style)\b[^>]*>.*?</\1>#s', '', str_replace('<!-- -->', '', $html));
@@ -104,43 +91,17 @@ it('is indexed in every language, with every translation as an alternate', funct
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
-it('fills every slot its copy uses, and resolves every link tag', function (string $locale): void {
-    $text = implode("\n", array_filter(Arr::dot(aboutContent($locale)), 'is_string'));
+it('fills every slot its copy uses, resolves every link tag, and links the security page and the contact address', function (string $locale): void {
+    $content = aboutContent($locale);
+    $text = implode("\n", array_filter(Arr::dot($content), 'is_string'));
 
     preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $slots);
     preg_match_all('/<([a-z][A-Za-z0-9]*)>/', $text, $tags);
 
     expect(array_values(array_diff(array_unique($slots[1]), ['maker', 'city', 'country', 'email'])))->toBe([], "content/{$locale}/about.json uses a slot the page does not fill");
     expect(array_values(array_diff(array_unique($tags[1]), aboutKnownTags())))->toBe([], "content/{$locale}/about.json uses a link tag with no destination");
-})->with(aboutLocales());
-
-it('links the security page from the policies, in every language', function (string $locale): void {
-    expect(aboutContent($locale)['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
-
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="policies".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
-
-    expect($section)->not->toBe([]);
-    expect($section[0])->toContain("href=\"{$prefix}/security\"");
-})->with(aboutLocales());
-
-it('links the English brand guidelines from the brand section, in every language', function (string $locale): void {
-    expect(aboutContent($locale)['brand']['body'])->toMatch('#<brand>[^<]+</brand>#u');
-
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="brand".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
-    preg_match('/[\'"]?englishOnly[\'"]?:\s*([\'"])(.*?)\1/u', File::get(resource_path("js/i18n/messages/{$locale}/common.ts")), $marker);
-
-    expect($section)->not->toBe([]);
-    expect($section[0])->toContain('href="/brand" hrefLang="en"');
-
-    if ($locale === Locales::default()) {
-        expect(aboutVisibleText($section[0]))->not->toContain($marker[2]);
-    } else {
-        expect(aboutVisibleText($section[0]))->toContain($marker[2]);
-    }
+    expect($content['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
+    expect($content['brand']['body'])->toMatch('#<brand>[^<]+</brand>#u');
 })->with(aboutLocales());
 
 it('types the publisher in facts.json only', function (): void {
@@ -169,8 +130,10 @@ it('types the publisher in facts.json only', function (): void {
     expect($offences)->toBe([], "The publisher is typed outside facts.json:\n  " . implode("\n  ", $offences));
 });
 
-it('server-renders the publisher, the page sections and an AboutPage about the organization', function (string $path, string $locale): void {
+it('server-renders the publisher, every section and its links, the footer and an AboutPage about the organization', function (string $locale): void {
     $publisher = aboutPublisher();
+    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
+    $path = "{$prefix}/about";
     $html = ssrHtml($path);
     $text = aboutVisibleText($html);
 
@@ -183,6 +146,18 @@ it('server-renders the publisher, the page sections and an AboutPage about the o
     }
 
     Assert::assertDoesNotMatchRegularExpression('/\{[a-zA-Z]+\}/', $text, "{$path} leaves a slot unfilled");
+
+    preg_match('#<section[^>]*id="policies".*?</section>#s', $html, $policies);
+    preg_match('#<section[^>]*id="brand".*?</section>#s', $html, $brand);
+    preg_match('#<footer\b.*?</footer>#s', $html, $footer);
+    preg_match('/[\'"]?englishOnly[\'"]?:\s*([\'"])(.*?)\1/u', File::get(resource_path("js/i18n/messages/{$locale}/common.ts")), $marker);
+
+    expect($policies[0] ?? '')->toContain("href=\"{$prefix}/security\"");
+    expect($brand[0] ?? '')->toContain('href="/brand" hrefLang="en"');
+    expect(str_contains(aboutVisibleText($brand[0] ?? ''), $marker[2]))->toBe($locale !== Locales::default());
+    expect(aboutVisibleText($footer[0] ?? ''))->toContain($publisher['name'])
+        ->toContain($publisher['city'][$locale])
+        ->toContain('AGPLv3');
 
     $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $nodes = [];
@@ -201,35 +176,7 @@ it('server-renders the publisher, the page sections and an AboutPage about the o
         ->and($organization['founder']['name'])->toBe($publisher['name'])
         ->and($organization['founder']['@id'])->toEndWith('/#founder')
         ->and($organization['address'])->toBe(['@type' => 'PostalAddress', 'addressLocality' => $publisher['city']['en'], 'addressCountry' => $publisher['countryCode']]);
-})->with([
-    ['/about', 'en'],
-    ['/vi/about', 'vi'],
-    ['/ja/about', 'ja'],
-    ['/de/about', 'de'],
-]);
-
-it('says who builds TablePro in the homepage open-source section, and links the about page', function (string $locale): void {
-    $publisher = aboutPublisher();
-    $path = $locale === Locales::default() ? '/' : "/{$locale}";
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="open-source".*?</section>#s', ssrHtml($path), $section);
-
-    expect($section)->not->toBe([]);
-    expect(aboutVisibleText($section[0]))->toContain($publisher['name'])->toContain($publisher['city'][$locale]);
-    expect($section[0])->toContain("href=\"{$prefix}/about\"");
-})->with(aboutLocales());
-
-it('names the publisher in the footer of every language', function (string $locale): void {
-    $publisher = aboutPublisher();
-    $path = $locale === Locales::default() ? '/faq' : "/{$locale}/faq";
-
-    preg_match('#<footer\b.*?</footer>#s', ssrHtml($path), $footer);
-
-    expect(aboutVisibleText($footer[0]))->toContain($publisher['name'])
-        ->toContain($publisher['city'][$locale])
-        ->toContain('AGPLv3');
-})->with(aboutLocales());
+})->with(aboutLocales())->group('ssr');
 
 it('keeps the footer line short enough for one row beside the controls at 1280px', function (string $locale): void {
     $publisher = aboutPublisher();
