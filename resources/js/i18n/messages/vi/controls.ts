@@ -7,6 +7,11 @@ export default {
         fallback: 'Trang này không có bản tiếng Việt',
         fallbackPost: 'Bài viết này chỉ có bằng tiếng Anh',
         fallbackBlog: 'Xem danh sách Blog',
+        suggest: {
+            label: 'Gợi ý ngôn ngữ',
+            action: 'Đọc trang này bằng tiếng Việt',
+            dismiss: 'Không gợi ý tiếng Việt nữa',
+        },
     },
     theme: {
         label: 'Giao diện',

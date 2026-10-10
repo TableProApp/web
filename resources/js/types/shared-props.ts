@@ -42,7 +42,11 @@ export interface BannerProp {
 export interface SharedProps extends Record<string, unknown> {
     canonicalBaseUrl: string;
     locale: Locale;
-    localization: { switcher: SwitcherItem[] };
+    localization: {
+        switcher: SwitcherItem[];
+        /** The locales a language suggestion may offer here: equivalent pages only, never the current one. Empty on error pages. */
+        suggestable: Locale[];
+    };
     seo: SeoProp;
     banner: BannerProp | null;
     /** Public website ID, read only by the click-to-load chat helper. */

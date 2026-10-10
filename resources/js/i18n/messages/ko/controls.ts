@@ -6,7 +6,12 @@ export default {
         "current": "언어: {language}",
         "fallback": "이 페이지의 한국어 버전이 없습니다",
         "fallbackPost": "이 글은 한국어로 제공되지 않습니다",
-        "fallbackBlog": "블로그 목록 보기"
+        "fallbackBlog": "블로그 목록 보기",
+        "suggest": {
+            "label": "언어 제안",
+            "action": "이 페이지를 한국어로 보기",
+            "dismiss": "한국어를 다시 제안하지 않기"
+        }
     },
     "theme": {
         "label": "테마",

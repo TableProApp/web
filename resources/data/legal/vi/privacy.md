@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -124,6 +124,8 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
 
+**Ngôn ngữ và giảm giá theo khu vực.** Để gợi ý trang bằng ngôn ngữ của bạn khi trình duyệt không nêu ngôn ngữ nào website có, và để hiển thị mức giảm giá theo khu vực mà bước thanh toán sẽ áp dụng, website hỏi Cloudflare (`/cdn-cgi/trace`) và máy chủ của chúng tôi về quốc gia mà kết nối của bạn đến từ đó, và có thể đọc múi giờ của thiết bị. Cả hai request đều không mang cookie, và trang không giữ lại gì từ các câu trả lời. Cơ sở pháp lý: lợi ích hợp pháp.
+
 Đọc website không đặt cookie riêng. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng chế độ omit credentials: không gửi cookie trang tài khoản và không nhận cookie từ response. Mở trang tài khoản là việc riêng, có đặt cookie liệt kê bên dưới. Mọi thứ website giữ trong trình duyệt được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
 
 ## Mua hàng {#purchases}
@@ -150,6 +152,7 @@ Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
 - **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, nơi máy chủ của chúng tôi bỏ nó đi. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống), và banner nào bạn đã đóng cùng thời hạn ẩn: 30 ngày, hoặc một năm nếu bạn cho biết đã có license hoặc vừa mua license. Cơ sở pháp lý: lợi ích hợp pháp.
+- **`tablepro:language`** (local storage, cho tới khi bạn xóa): ngôn ngữ bạn chọn trong menu ngôn ngữ hoặc thanh gợi ý ngôn ngữ, và từng ngôn ngữ có gợi ý bạn đã đóng, để website không gợi ý lại. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, chỉ khi bạn cho phép Google Analytics ở đó): ID người xem được mô tả trong mục [Website](#website). Từ chối sẽ xóa nó. Trang tài liệu giữ câu trả lời `tablepro:analytics-consent` của riêng nó. Cơ sở pháp lý: sự đồng ý.
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
 - **`tablepro-session` và `XSRF-TOKEN`** (cookie trang tài khoản, 2 giờ): giữ đăng nhập và bảo vệ form trước CSRF. Mở các trang khác của trang tài khoản, như xác nhận mua hàng và bản tin, cũng đặt cookie. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng omit credentials, không giữ cookie này. Cơ sở pháp lý: thực sự cần thiết.
@@ -163,7 +166,7 @@ Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích 
 Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng và khung chat trực tuyến trên mọi trang.
+- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
 - **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 

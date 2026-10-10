@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -124,6 +124,8 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 **Documentation.** The documentation at docs.tablepro.app is hosted by Mintlify, which receives your IP address and your browser's details with each page, and the pages load their fonts from Google Fonts. The documentation asks its own cookie question, because it cannot read the answer you gave on this site. Until you choose **Allow** there, it sets no cookies and keeps no visitor ID. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits to the documentation, and Mintlify keeps a random visitor ID, `mintlify_anonymous_id`, in local storage to count them. **Cookie settings** in the documentation's footer changes your answer, and declining removes both. Lawful basis: your consent.
 
+**Language and regional discount.** To suggest the page in your language when your browser names none the site offers, and to show the regional discount checkout would apply, the site asks Cloudflare (`/cdn-cgi/trace`) and our server for the country your connection comes from, and may read your device's time zone. Neither request carries cookies, and the page keeps nothing from the answers. Lawful basis: legitimate interest.
+
 Reading the site sets no cookies of its own. Newsletter signup, checkout and discount-code requests from the public site omit credentials: they neither send account-portal cookies nor accept cookies from the response. Opening account-portal pages is separate and sets the portal cookies below. Everything the site keeps in your browser is listed under [Cookies and browser storage](#cookies).
 
 ## Purchases {#purchases}
@@ -150,6 +152,7 @@ Reading the public website and its newsletter, checkout and discount-code reques
 - **`tablepro:analytics-consent`** (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. The website and the account portal share it. Lawful basis: strictly necessary to honor your choice.
 - **`tablepro:attribution`** (local storage, 90 days): the first-visit record described under [Website](#website). It holds no identifier of you and is sent only with a checkout request, where our server discards it. Lawful basis: legitimate interest.
 - **`theme`** and **`tablepro:banner-dismissed`** (local storage, until you clear it): whether you chose a light, dark or system appearance, and which banner you closed and until when: 30 days, or a year if you say you have a license or buy one. Lawful basis: legitimate interest.
+- **`tablepro:language`** (local storage, until you clear it): the language you picked in the language menu or the language bar, and each language whose suggestion you closed, so it is not offered again. Lawful basis: legitimate interest.
 - **`mintlify_anonymous_id`** (local storage on docs.tablepro.app, set by Mintlify, only if you allow analytics there): the visitor ID described under [Website](#website). Declining removes it. The documentation keeps its own `tablepro:analytics-consent` answer. Lawful basis: consent.
 - **Cookies starting with `crisp-client/`** (Crisp, for example `crisp-client/session/…`; 6 months, renewed when you return; set on every page once the chat has loaded): keep the chat and your conversation across pages and visits. Lawful basis: legitimate interest, to offer support on every page.
 - **`tablepro-session` and `XSRF-TOKEN`** (account portal cookies, 2 hours): keep you signed in and protect the portal's forms against cross-site request forgery. Opening the portal's other pages, such as purchase confirmation and newsletter pages, sets them too. Public-site newsletter, checkout and discount-code requests omit credentials and do not retain these cookies. Lawful basis: strictly necessary.
@@ -163,7 +166,7 @@ You can change or withdraw your analytics answer at any time with **Cookie setti
 For readers in the European Economic Area and the United Kingdom, the lawful bases under the GDPR and the UK GDPR are:
 
 - **Contract** (Art. 6(1)(b)): selling and providing a license, license checks, the account portal and the Team Library.
-- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage report and its country lookup, the logs of license requests, security and abuse prevention, web server logs, Cloudflare Web Analytics, the purchase attribution record and the live chat on every page.
+- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage report and its country lookup, the logs of license requests, security and abuse prevention, web server logs, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
 - **Consent** (Art. 6(1)(a)): Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and the conversations you start in live chat.
 - **Legal obligation** (Art. 6(1)(c)): tax and accounting records, and answers to lawful requests.
 

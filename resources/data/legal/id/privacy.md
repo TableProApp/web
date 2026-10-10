@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -124,6 +124,8 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Dokumentasi.** Dokumentasi di docs.tablepro.app dihosting oleh Mintlify, yang menerima alamat IP dan detail peramban Anda pada setiap halaman, dan halaman memuat fonnya dari Google Fonts. Dokumentasi mengajukan pertanyaan cookie sendiri, karena tidak dapat membaca jawaban Anda di situs ini. Sampai Anda memilih **Allow** di sana, dokumentasi tidak memasang cookie dan tidak menyimpan ID pengunjung. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda ke dokumentasi, dan Mintlify menyimpan ID pengunjung acak, `mintlify_anonymous_id`, di penyimpanan lokal untuk menghitungnya. **Cookie settings** di footer dokumentasi mengubah jawaban Anda, dan menolak menghapus keduanya. Dasar hukum: persetujuan Anda.
 
+**Bahasa dan diskon regional.** Untuk menyarankan halaman dalam bahasa Anda saat browser tidak menyebut satu pun bahasa yang tersedia di situs, dan untuk menampilkan diskon regional yang akan diterapkan saat checkout, situs menanyakan kepada Cloudflare (`/cdn-cgi/trace`) dan server kami dari negara mana koneksi Anda berasal, dan dapat membaca zona waktu perangkat Anda. Kedua permintaan tersebut tidak membawa cookie, dan halaman tidak menyimpan apa pun dari jawabannya. Dasar hukum: kepentingan yang sah.
+
 Membaca situs tidak menetapkan cookie miliknya sendiri. Permintaan pendaftaran newsletter, checkout, dan kode diskon dari situs publik tidak menyertakan kredensial: permintaan tersebut tidak mengirim cookie portal akun maupun menerima cookie dari respons. Membuka halaman portal akun adalah tindakan terpisah yang menetapkan cookie portal di bawah ini. Semua yang disimpan situs di browser tercantum dalam [Cookie dan penyimpanan browser](#cookies).
 
 ## Pembelian {#purchases}
@@ -150,6 +152,7 @@ Membaca situs publik serta permintaan newsletter, checkout, dan kode diskonnya t
 - **`tablepro:analytics-consent`** (penyimpanan lokal, sampai Anda menghapusnya): jawaban Anda atas pertanyaan analitik, agar tidak ditanyakan pada setiap halaman. Situs web dan portal akun berbagi data ini. Dasar hukum: benar-benar diperlukan untuk menghormati pilihan Anda.
 - **`tablepro:attribution`** (penyimpanan lokal, 90 hari): catatan kunjungan pertama yang dijelaskan di [Situs web](#website). Catatan ini tidak berisi pengenal Anda dan hanya dikirim bersama permintaan pembayaran, lalu dibuang oleh server kami. Dasar hukum: kepentingan yang sah.
 - **`theme`** dan **`tablepro:banner-dismissed`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem, serta banner yang Anda tutup dan batas waktunya: 30 hari, atau satu tahun jika Anda menyatakan sudah memiliki lisensi atau membelinya. Dasar hukum: kepentingan yang sah.
+- **`tablepro:language`** (penyimpanan lokal, sampai Anda menghapusnya): bahasa yang Anda pilih di menu bahasa atau bilah bahasa, dan setiap bahasa yang sarannya Anda tutup, agar tidak ditawarkan lagi. Dasar hukum: kepentingan yang sah.
 - **`mintlify_anonymous_id`** (penyimpanan lokal di docs.tablepro.app, dipasang oleh Mintlify, hanya jika Anda mengizinkan Google Analytics di sana): ID pengunjung yang dijelaskan di [Situs web](#website). Menolak akan menghapusnya. Dokumentasi menyimpan jawaban `tablepro:analytics-consent` miliknya sendiri. Dasar hukum: persetujuan.
 - **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah chat dimuat): mempertahankan chat dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
 - **`tablepro-session` dan `XSRF-TOKEN`** (cookie portal akun, 2 jam): menjaga Anda tetap masuk dan melindungi formulir portal dari pemalsuan permintaan lintas situs (CSRF). Membuka halaman portal lainnya, seperti konfirmasi pembelian dan halaman newsletter, juga menetapkannya. Permintaan newsletter, checkout, dan kode diskon dari situs publik tidak menyertakan kredensial dan tidak menyimpan cookie ini. Dasar hukum: benar-benar diperlukan.
@@ -163,7 +166,7 @@ Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengatura
 Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan GDPR dan UK GDPR adalah:
 
 - **Kontrak** (Art. 6(1)(b)): penjualan dan penyediaan lisensi, pemeriksaan lisensi, portal akun, dan Team Library.
-- **Kepentingan yang sah** (Art. 6(1)(f)): laporan penggunaan aplikasi Mac dan pencarian negaranya, log permintaan lisensi, keamanan dan pencegahan penyalahgunaan, log server web, Cloudflare Web Analytics, catatan atribusi pembelian, dan chat langsung di setiap halaman.
+- **Kepentingan yang sah** (Art. 6(1)(f)): laporan penggunaan aplikasi Mac dan pencarian negaranya, log permintaan lisensi, keamanan dan pencegahan penyalahgunaan, log server web, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
 - **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
 - **Kewajiban hukum** (Art. 6(1)(c)): catatan pajak dan akuntansi, serta jawaban atas permintaan yang sah menurut hukum.
 

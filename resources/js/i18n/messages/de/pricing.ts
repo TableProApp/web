@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und Safe Mode",
         "iphoneNote": "Die iPhone- und iPad-App hat keine Bezahlfunktionen. iCloud Sync ist dort kostenlos; für die Synchronisierung mit einem Mac benötigt der Mac Starter oder Team."
     },
+    "regional": {
+        "note": "Preise für dein Land ({country}): {percent} % Rabatt, wird beim Kauf abgezogen.",
+        "listPrice": "Listenpreis {price}"
+    },
     "discount": {
         "atCheckout": "Hast du einen Rabattcode? Gib ihn beim Kauf ein.",
         "summary": "Hast du einen Rabattcode?",

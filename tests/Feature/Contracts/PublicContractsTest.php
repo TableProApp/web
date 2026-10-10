@@ -6,9 +6,10 @@ use PHPUnit\Framework\Assert;
  * The contracts between this site and the platform app on the same origin,
  * and the analytics they share (architecture §1.14).
  *
- * nginx routes `/checkout`, `/discount/preview`, `/newsletter/*` and `/account`
+ * nginx routes `/checkout`, `/discount/*`, `/newsletter/*` and `/account`
  * to the platform by their unprefixed paths, so a request to `/vi/checkout`
- * would never reach it. Both apps read the same `localStorage` keys. And GA
+ * would never reach it. `/cdn-cgi/trace` is answered by Cloudflare's edge
+ * itself, for the language suggestion. Both apps read the same `localStorage` keys. And GA
  * reports are only comparable across a redesign if the event names and their
  * parameters stay put. None of this is visible to a typecheck.
  */
@@ -45,7 +46,7 @@ it('posts only to the platform\'s unprefixed endpoints', function (): void {
 
     foreach ($targets as [$file, $target]) {
         // A literal root path from the allowlist, or the email hook's `endpoint` parameter (checked below).
-        Assert::assertContains($target, ["'/checkout'", "'/discount/preview'", 'endpoint'], "{$file} fetches {$target}");
+        Assert::assertContains($target, ["'/checkout'", "'/discount/preview'", "'/discount/region'", "'/cdn-cgi/trace'", 'endpoint'], "{$file} fetches {$target}");
     }
 
     foreach (contractSources() as $file => $text) {
@@ -101,7 +102,7 @@ it('sends no cookies with any request to the platform', function (): void {
         }
 
         foreach ($calls as [$call]) {
-            if (preg_match("#['\"`](/checkout|/discount/preview|/newsletter/)#", $call) || str_contains($call, 'endpoint')) {
+            if (preg_match("#['\"`](/checkout|/discount/|/newsletter/|/cdn-cgi/)#", $call) || str_contains($call, 'endpoint')) {
                 Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} calls the platform with cookies: {$call}");
             }
         }

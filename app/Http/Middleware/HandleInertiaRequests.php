@@ -57,9 +57,15 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'canonicalBaseUrl' => LocalizedUrl::base(),
             'locale' => fn(): string => App::getLocale(),
-            'localization' => fn(): array => [
-                'switcher' => app(LocaleSwitcher::class)->forRequest($request),
-            ],
+            'localization' => function () use ($request): array {
+                $switcher = app(LocaleSwitcher::class);
+                $items = $switcher->forRequest($request);
+
+                return [
+                    'switcher' => $items,
+                    'suggestable' => $switcher->suggestable($request, $items),
+                ];
+            },
             'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
             'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,

@@ -6,7 +6,12 @@ export default {
         "current": "言語：{language}",
         "fallback": "このページの日本語版はありません",
         "fallbackPost": "この記事の日本語訳はありません",
-        "fallbackBlog": "ブログ一覧を見る"
+        "fallbackBlog": "ブログ一覧を見る",
+        "suggest": {
+            "label": "言語の提案",
+            "action": "このページを日本語で読む",
+            "dismiss": "日本語を今後提案しない"
+        }
     },
     "theme": {
         "label": "テーマ",

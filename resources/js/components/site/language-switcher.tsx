@@ -4,6 +4,8 @@ import { Check, ChevronDown, Globe } from 'lucide-react';
 import { FOOTER_MENU_ITEM, FooterMenu } from '@/components/shared/footer-bar';
 import DotList from '@/components/ui/dot-list';
 import { languageCopy, useI18n } from '@/i18n';
+import { LANGUAGE_TABLES } from '@/lib/data/language-detection';
+import { chooseLanguage } from '@/lib/language-suggestion';
 import type { SwitcherItem } from '@/types/shared-props';
 import { cn } from '@/lib/utils';
 
@@ -34,6 +36,10 @@ interface LanguageSwitcherProps {
  * `fallback` and labelled as such in the target language. Section ids are the
  * same in every language, so on an equivalent page the current `#fragment` is
  * carried across on click. Names are endonyms. No flags, no codes.
+ *
+ * A click is the reader saying which language they read, so it is remembered
+ * in this browser and outranks what the browser says (`lib/language-suggestion.ts`):
+ * no language bar then offers another language over their pick.
  */
 export default function LanguageSwitcher({ variant, className }: LanguageSwitcherProps) {
     const items = usePage().props.localization?.switcher ?? [];
@@ -53,9 +59,15 @@ export default function LanguageSwitcher({ variant, className }: LanguageSwitche
     return <LanguageStack items={items} className={className} />;
 }
 
-/** Carries the reader's place (`#section`) across to the same page in another language. */
-function keepFragment(item: SwitcherItem) {
+/**
+ * A click on a language, in the switcher or the language bar: remembers it as
+ * the reader's pick, and carries their place (`#section`) across to the same
+ * page in that language.
+ */
+export function pickLanguage(item: SwitcherItem) {
     return (event: MouseEvent<HTMLAnchorElement>): void => {
+        chooseLanguage(item.locale, LANGUAGE_TABLES);
+
         if (item.current || item.fallback || window.location.hash === '') {
             return;
         }
@@ -109,7 +121,7 @@ function LanguageStack({ items, className }: { items: SwitcherItem[]; className?
                             hrefLang={item.hreflang}
                             lang={item.locale}
                             aria-current={item.current ? 'true' : undefined}
-                            onClick={keepFragment(item)}
+                            onClick={pickLanguage(item)}
                             className="flex min-h-11 items-center gap-3 rounded-control text-base leading-[1.3] text-foreground hover:text-accent-text aria-[current=true]:font-semibold"
                         >
                             {item.native}
@@ -140,7 +152,7 @@ function LanguageFooterMenu({ items }: { items: SwitcherItem[] }) {
                             hrefLang={item.hreflang}
                             lang={item.locale}
                             aria-current={item.current ? 'true' : undefined}
-                            onClick={keepFragment(item)}
+                            onClick={pickLanguage(item)}
                             className={FOOTER_MENU_ITEM}
                         >
                             <span className="flex-1">
@@ -262,7 +274,7 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
                                 hrefLang={item.hreflang}
                                 lang={item.locale}
                                 aria-current={item.current ? 'true' : undefined}
-                                onClick={keepFragment(item)}
+                                onClick={pickLanguage(item)}
                                 className="flex min-h-10 items-start gap-3 rounded-control px-3 py-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface focus-visible:-outline-offset-2 aria-[current=true]:bg-accent-subtle"
                             >
                                 <span className="flex-1">

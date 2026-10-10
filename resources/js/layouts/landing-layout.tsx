@@ -4,7 +4,7 @@ import ConsentBar from '@/components/site/consent-bar';
 import FrameRails from '@/components/shared/frame-rails';
 import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
-import SupportBanner from '@/components/site/support-banner';
+import TopBanner from '@/components/site/top-banner';
 import { useI18n } from '@/i18n';
 import { syncTheme } from '@/lib/theme';
 
@@ -22,7 +22,8 @@ interface Props {
  * (design-system §4.6, §4.7, §7.2).
  *
  * 1. The skip link, first in the document.
- * 2. The license banner, which scrolls away with the page, then the sticky
+ * 2. The top banner, which scrolls away with the page: the license banner,
+ *    or the bar offering this page in the reader's language. Then the sticky
  *    header. The header is a real `banner` landmark because it sits outside
  *    `<main>`.
  * 3. `<main id="main-content" tabIndex={-1}>`, so the skip link moves focus
@@ -71,7 +72,7 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
             >
                 {m.a11y.skipToContent}
             </a>
-            <SupportBanner />
+            <TopBanner />
             <div className="sticky top-0 z-40">
                 <SiteHeader />
             </div>

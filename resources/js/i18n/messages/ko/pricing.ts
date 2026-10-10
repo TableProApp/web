@@ -118,6 +118,10 @@ export default {
         "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",
         "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."
     },
+    "regional": {
+        "note": "접속 국가({country}) 기준 가격: 결제 시 {percent}% 할인됩니다.",
+        "listPrice": "정가 {price}"
+    },
     "discount": {
         "atCheckout": "할인 코드가 있나요? 결제 시 입력하세요.",
         "summary": "할인 코드가 있나요?",

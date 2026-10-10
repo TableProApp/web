@@ -68,6 +68,35 @@ UI strings are typed catalogs in `resources/js/i18n/messages/{locale}/`; page
 copy is per-locale JSON; server-rendered strings are in `lang/{locale}/`. The
 CLAUDE.md "Languages" section has the rules for writing them.
 
+#### The language bar
+
+A reader who likely reads another language this page exists in gets one bar
+above the header offering it, in that language ("Đọc trang này bằng tiếng
+Việt →"), in place of the license banner (`TopBanner`). It is a suggestion,
+never a redirect, and it changes nothing about the rule above: the page's
+language is still its URL's.
+
+The server only says which locales the page exists in, as
+`localization.suggestable` (`LocaleSwitcher::suggestable()`: the switcher's
+equivalent pages, never a fallback, empty on error pages). That is the same for
+every reader, so the HTML stays edge-cacheable. The reader's half is decided in
+their browser (`resources/js/lib/language-suggestion.ts`):
+
+1. a language they picked in the switcher or the bar, kept in `localStorage`
+   under `tablepro:language` as `{chosen, dismissed}`;
+2. else the first `navigator.languages` entry that maps to a supported locale
+   (`resources/data/language-detection.json`: `zh-TW` → `zh-Hant`, `pt-PT` →
+   `pt-BR`, …);
+3. only when neither exists, the country Cloudflare names at `/cdn-cgi/trace`,
+   or the time zone's country, for countries with one dominant language.
+
+Steps 1 and 2 run in a head script in `app.blade.php` before first paint, so
+the bar takes the slot without moving anything; step 3, the one network call,
+runs after load. ✕ stops that language for good in this browser. No analytics.
+The account app runs the same tag and country tables, on the server, for a
+reader with no explicit, session or stored language (its `LocaleResolver`);
+the two copies are compared by its `LanguageRegionsConfigTest`.
+
 ### Where the content lives
 
 ```
@@ -139,6 +168,7 @@ language travels in the body instead.
 | --- | --- | --- |
 | `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?, locale}` | `{url}` — passed to the checkout SDK |
 | `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
+| `GET /discount/region` | — | `{country, percent}`, or `{}` when no regional discount applies |
 | `POST /newsletter/subscribe` | `{email, locale}` | `{type, message}` |
 
 Every call is a plain `fetch` with `credentials: 'omit'`. The platform answers
@@ -149,6 +179,15 @@ would send and store `tablepro-session` and `XSRF-TOKEN` on public pages;
 `locale` lets the platform send the buyer's or subscriber's emails in the
 language of the page they came from. It is never inferred from anything else,
 and it says nothing about currency or region: prices are USD everywhere.
+
+`GET /discount/region` is the platform's regional (PPP) discount for the
+country Cloudflare names for the request, the same answer `POST /checkout` acts
+on when no code is typed. The plan cards ask once per page, after rendering
+(`useRegionalPricing`), and then show what checkout will charge beside the
+struck list price, with one line naming the country. The cached HTML, the
+structured data and the first paint keep the list prices. The route starts no
+session and answers `Cache-Control: no-store, private`. It is the one place the
+site names a regional price (positioning §9).
 
 The plan cards on `/pricing` and the homepage's `#pricing` section receive a
 `checkout` page prop from `App\Support\Pricing\Checkout`:

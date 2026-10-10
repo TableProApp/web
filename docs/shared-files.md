@@ -130,6 +130,10 @@ which are updated in the same change as the copies:
 - The locale allowlist. This repository reads `resources/data/locales.json`; the
   account app mirrors it in its own config and pins the two together with a test
   fixture holding this file's content.
+- The browser-language and country tables. This repository reads
+  `resources/data/language-detection.json` for the language bar; the account
+  app mirrors its `tags` and `countries` in `config/language-regions.php` for
+  its last-resort language, pinned the same way (`LanguageRegionsConfigTest`).
 - The Google Analytics head block. The account app adds `page_location`
   redaction for its signed URLs. Each repository pins the same consent order in
   its own test.

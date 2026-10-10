@@ -14,6 +14,17 @@ export default {
         /** The same, when the option leads to the blog list instead: what is missing, then where it goes (sitemap §B.4). */
         fallbackPost: 'This post is not in English',
         fallbackBlog: 'See the blog list',
+        /**
+         * The bar that offers this page in the reader's language (LanguageBar),
+         * written in that language and naming it, since the reader may not
+         * read the page's: `action` is the link, `dismiss` the close button's
+         * name. One line on a 320px screen (LanguageBarTest).
+         */
+        suggest: {
+            label: 'Language suggestion',
+            action: 'Read this page in English',
+            dismiss: "Don't suggest English again",
+        },
     },
     theme: {
         label: 'Theme',

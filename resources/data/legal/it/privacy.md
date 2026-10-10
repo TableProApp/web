@@ -1,7 +1,7 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
@@ -124,6 +124,8 @@ Handoff passa l'ID della connessione aperta e il nome della tabella aperta tra i
 
 **Documentazione.** La documentazione su docs.tablepro.app è ospitata da Mintlify, che riceve il tuo indirizzo IP e i dati del tuo browser a ogni pagina, e le pagine caricano i caratteri da Google Fonts. La documentazione pone la propria domanda sui cookie, perché non può leggere la risposta che hai dato su questo sito. Finché lì non scegli **Allow**, non imposta cookie e non conserva alcun ID visitatore. Se lo autorizzi, Google Analytics imposta i cookie `_ga` e `_ga_<ID>` e misura le tue visite alla documentazione, e Mintlify conserva un ID visitatore casuale, `mintlify_anonymous_id`, nell'archiviazione locale per contarle. **Cookie settings**, nel piè di pagina della documentazione, cambia la tua risposta, e il rifiuto rimuove entrambi. Base giuridica: il tuo consenso.
 
+**Lingua e sconto regionale.** Per suggerirti la pagina nella tua lingua quando il browser non ne indica nessuna tra quelle del sito, e per mostrare lo sconto regionale che il checkout applicherebbe, il sito chiede a Cloudflare (`/cdn-cgi/trace`) e al nostro server da quale paese proviene la tua connessione, e può leggere il fuso orario del tuo dispositivo. Nessuna delle due richieste porta cookie, e la pagina non conserva nulla delle risposte. Base giuridica: legittimo interesse.
+
 Leggere il sito non imposta cookie propri. Le richieste di iscrizione alla newsletter, checkout e verifica dei codici sconto dal sito pubblico omettono le credenziali: non inviano i cookie del portale account né accettano cookie dalla risposta. Aprire le pagine del portale account è un’operazione distinta che imposta i cookie del portale elencati sotto. Tutto ciò che il sito conserva nel browser è indicato in [Cookie e archiviazione del browser](#cookies).
 
 ## Acquisti {#purchases}
@@ -150,6 +152,7 @@ La lettura del sito pubblico e le sue richieste per newsletter, checkout e codic
 - **`tablepro:analytics-consent`** (archiviazione locale, finché non la cancelli): la risposta alla richiesta sulle analisi, per non riproporla su ogni pagina. Il sito web e il portale account la condividono. Base giuridica: strettamente necessaria per rispettare la tua scelta.
 - **`tablepro:attribution`** (archiviazione locale, 90 giorni): il record della prima visita descritto in [Sito web](#website). Non contiene un tuo identificatore e viene inviato solo con una richiesta di pagamento, dove il nostro server lo scarta. Base giuridica: legittimo interesse.
 - **`theme`** e **`tablepro:banner-dismissed`** (archiviazione locale, finché non la cancelli): la scelta di un aspetto chiaro, scuro o di sistema e il banner che hai chiuso e fino a quando: 30 giorni oppure un anno se dichiari di avere una licenza o ne acquisti una. Base giuridica: legittimo interesse.
+- **`tablepro:language`** (archiviazione locale, finché non la cancelli): la lingua che hai scelto nel menu delle lingue o nella barra della lingua, e ogni lingua di cui hai chiuso il suggerimento, perché non venga più proposta. Base giuridica: legittimo interesse.
 - **`mintlify_anonymous_id`** (archiviazione locale su docs.tablepro.app, impostato da Mintlify, solo se lì autorizzi Google Analytics): l'ID visitatore descritto in [Sito web](#website). Il rifiuto lo rimuove. La documentazione conserva la propria risposta `tablepro:analytics-consent`. Base giuridica: consenso.
 - **Cookie che iniziano con `crisp-client/`** (Crisp, per esempio `crisp-client/session/…`; 6 mesi, rinnovati quando ritorni; impostati su ogni pagina dopo il caricamento della chat): mantengono la chat e la conversazione tra pagine e visite. Base giuridica: legittimo interesse, per offrire supporto su ogni pagina.
 - **`tablepro-session` e `XSRF-TOKEN`** (cookie del portale account, 2 ore): mantengono l’accesso e proteggono i moduli del portale dalle richieste contraffatte tra siti (CSRF). Anche aprire altre pagine del portale, come la conferma d’acquisto e le pagine della newsletter, li imposta. Le richieste per newsletter, checkout e codici sconto dal sito pubblico omettono le credenziali e non conservano questi cookie. Base giuridica: strettamente necessari.
@@ -163,7 +166,7 @@ Puoi modificare o revocare la risposta sulle analisi in qualsiasi momento tramit
 Per i lettori dello Spazio economico europeo e del Regno Unito, le basi giuridiche ai sensi del GDPR e del GDPR del Regno Unito sono:
 
 - **Contratto** (Art. 6(1)(b)): vendita e fornitura della licenza, verifiche della licenza, portale account e Team Library.
-- **Legittimo interesse** (Art. 6(1)(f)): rapporto sull'utilizzo dell'app per Mac e relativa ricerca del paese, registri delle richieste di licenza, sicurezza e prevenzione degli abusi, registri del server web, Cloudflare Web Analytics, record di attribuzione degli acquisti e chat dal vivo su ogni pagina.
+- **Legittimo interesse** (Art. 6(1)(f)): rapporto sull'utilizzo dell'app per Mac e relativa ricerca del paese, registri delle richieste di licenza, sicurezza e prevenzione degli abusi, registri del server web, Cloudflare Web Analytics, record di attribuzione degli acquisti, ricerca del paese per la lingua e lo sconto regionale, e chat dal vivo su ogni pagina.
 - **Consenso** (Art. 6(1)(a)): cookie di Google Analytics, rapporto sull'utilizzo dell'app per iPhone e iPad, newsletter e conversazioni che avvii nella chat dal vivo.
 - **Obbligo legale** (Art. 6(1)(c)): registri fiscali e contabili e risposte a richieste legittime.
 

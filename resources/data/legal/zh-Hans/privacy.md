@@ -1,7 +1,7 @@
 ---
 title: 隐私政策
 description: TablePro 应用、网站和账户门户收集什么信息、发送到哪里、保存多久，以及如何更改或删除。
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 tablepro.app/account 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
@@ -124,6 +124,8 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 **文档**。位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
 
+**语言与地区折扣**。当您的浏览器语言中没有本网站提供的语言时，为向您推荐相应语言的页面，并显示结账时将适用的地区折扣，网站会向 Cloudflare（`/cdn-cgi/trace`）和我们的服务器询问您的连接来自哪个国家或地区，并可能读取设备的时区。这两项请求都不携带 Cookie，页面也不会保存任何应答内容。合法依据：合法利益。
+
 仅阅读网站不会设置网站自身的 Cookie。公开网站的邮件订阅、结账和优惠码请求不携带凭据，因此既不会发送账户门户 Cookie，也不会接受响应中的 Cookie。打开账户门户页面属于另一项操作，会设置以下门户 Cookie。网站在浏览器中保存的全部信息列于 [Cookie 和浏览器存储](#cookies)。
 
 ## 购买 {#purchases}
@@ -150,6 +152,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **`tablepro:analytics-consent`**（本地存储，直至您清除）：保存对分析提问的回答，避免每个页面重复询问。网站和账户门户共用。合法依据：履行您的选择所严格必要。
 - **`tablepro:attribution`**（本地存储，90 天）：[网站](#website)一节所述的首访记录。不包含您的标识符，仅随结账请求发送，服务器随后丢弃。合法依据：合法利益。
 - **`theme`** 和 **`tablepro:banner-dismissed`**（本地存储，直至您清除）：保存所选浅色、深色或系统主题，以及关闭的横幅和隐藏期限：30 天；若您表示已持有许可证或购买许可证，则为一年。合法依据：合法利益。
+- **`tablepro:language`**（本地存储，直至您清除）：保存您在语言菜单或语言栏中选择的语言，以及您关闭过推荐的语言，以免再次推荐。合法依据：合法利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本地存储，由 Mintlify 设置，仅在您于文档中允许 Google Analytics 时）：[网站](#website)一节所述的访客 ID。拒绝后即删除。文档单独保存自己的 `tablepro:analytics-consent` 回答。合法依据：同意。
 - **以 `crisp-client/` 开头的 Cookie**（Crisp，如 `crisp-client/session/…`；六个月，再次访问时续期；聊天加载后每个页面都会设置）：在页面和访问之间保持聊天及对话。合法依据：为每个页面提供支持的合法利益。
 - **`tablepro-session` 和 `XSRF-TOKEN`**（账户门户 Cookie，两小时）：保持登录并保护门户表单免受跨站请求伪造。打开购买确认和邮件订阅等其他门户页面也会设置。公开网站的邮件订阅、结账和优惠码请求不携带凭据，也不会保留这些 Cookie。合法依据：严格必要。
@@ -163,7 +166,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 对于欧洲经济区和英国的读者，GDPR 与 UK GDPR 下的合法依据为：
 
 - **合同**（第 6 条第 1 款 (b)）：许可证销售和提供、许可证验证、账户门户和 Team Library。
-- **合法利益**（第 6 条第 1 款 (f)）：Mac 应用使用报告及国家查询、许可证请求日志、安全和滥用防范、网络服务器日志、Cloudflare Web Analytics、购买归因记录和每个页面的在线聊天。
+- **合法利益**（第 6 条第 1 款 (f)）：Mac 应用使用报告及国家查询、许可证请求日志、安全和滥用防范、网络服务器日志、Cloudflare Web Analytics、购买归因记录、为语言与地区折扣进行的国家查询，以及每个页面的在线聊天。
 - **同意**（第 6 条第 1 款 (a)）：Google Analytics Cookie、iPhone 和 iPad 应用使用报告、邮件订阅和您主动发起的在线聊天。
 - **法律义务**（第 6 条第 1 款 (c)）：税务与会计记录，以及对合法请求的回应。
 

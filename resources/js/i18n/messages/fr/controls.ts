@@ -6,7 +6,12 @@ export default {
         "current": "Langue : {language}",
         "fallback": "Cette page n’est pas disponible en français",
         "fallbackPost": "Cet article n’est pas en français",
-        "fallbackBlog": "Voir la liste des articles"
+        "fallbackBlog": "Voir la liste des articles",
+        "suggest": {
+            "label": "Suggestion de langue",
+            "action": "Lire cette page en français",
+            "dismiss": "Ne plus proposer le français"
+        }
     },
     "theme": {
         "label": "Thème",

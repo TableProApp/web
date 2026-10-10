@@ -9,6 +9,8 @@ for (const file of [
     'hooks/use-email-form.ts',
     'components/pricing/use-checkout.ts',
     'components/pricing/discount-field.tsx',
+    'hooks/use-regional-pricing.ts',
+    'hooks/use-language-suggestion.ts',
 ]) {
     test(`${file} explicitly omits account credentials`, () => {
         const source = readFileSync(new URL(`../../resources/js/${file}`, import.meta.url), 'utf8');

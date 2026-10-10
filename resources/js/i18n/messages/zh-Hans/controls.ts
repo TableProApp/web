@@ -6,7 +6,12 @@ export default {
         "current": "语言：{language}",
         "fallback": "此页面没有简体中文版",
         "fallbackPost": "此文章没有简体中文译文",
-        "fallbackBlog": "查看博客列表"
+        "fallbackBlog": "查看博客列表",
+        "suggest": {
+            "label": "语言建议",
+            "action": "用简体中文阅读本页",
+            "dismiss": "不再推荐简体中文"
+        }
     },
     "theme": {
         "label": "主题",

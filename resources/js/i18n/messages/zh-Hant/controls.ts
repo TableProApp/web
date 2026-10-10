@@ -6,7 +6,12 @@ export default {
         "current": "語言：{language}",
         "fallback": "此頁面沒有繁體中文版",
         "fallbackPost": "此文章沒有繁體中文譯文",
-        "fallbackBlog": "查看部落格列表"
+        "fallbackBlog": "查看部落格列表",
+        "suggest": {
+            "label": "語言建議",
+            "action": "以繁體中文閱讀本頁",
+            "dismiss": "不再建議繁體中文"
+        }
     },
     "theme": {
         "label": "佈景主題",

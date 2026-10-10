@@ -17,7 +17,8 @@ use function Pest\Laravel\withoutVite;
  * prices, seats and timings only from resources/data/pricing.json, the paid
  * features only from paid-features.json, no "most popular", no typed saving,
  * no "unlock", no update promise for a one-time purchase, and nothing about
- * regional prices or other ways to pay. The props carry the copy and the
+ * other ways to pay. The one regional price is the plan block's discount line,
+ * never named with the banned words (RegionalPricingTest). The props carry the copy and the
  * checkout provider; the server-rendered checks need the SSR bundle.
  */
 beforeEach(function (): void {

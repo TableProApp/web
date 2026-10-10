@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
-updatedAt: "2026-10-09"
+updatedAt: "2026-10-10"
 ---
 
 Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
@@ -124,6 +124,8 @@ Handoff übermittelt über Apple die ID der offenen Verbindung und den Namen der
 
 **Dokumentation.** Die Dokumentation unter docs.tablepro.app wird von Mintlify gehostet. Mintlify erhält mit jeder Seite deine IP-Adresse und Angaben zu deinem Browser, und die Seiten laden ihre Schriften von Google Fonts. Die Dokumentation stellt ihre eigene Cookie-Frage, weil sie deine Antwort auf dieser Website nicht lesen kann. Bis du dort **Allow** wählst, setzt sie keine Cookies und speichert keine Besucher-ID. Mit deiner Erlaubnis setzt Google Analytics die Cookies `_ga` und `_ga_<ID>` und misst deine Besuche der Dokumentation, und Mintlify speichert eine zufällige Besucher-ID, `mintlify_anonymous_id`, im lokalen Speicher, um sie zu zählen. Mit **Cookie settings** in der Fußzeile der Dokumentation änderst du deine Antwort; lehnst du ab, wird beides gelöscht. Rechtsgrundlage: deine Einwilligung.
 
+**Sprache und regionaler Rabatt.** Um dir die Seite in deiner Sprache vorzuschlagen, wenn dein Browser keine der angebotenen Sprachen nennt, und um den regionalen Rabatt zu zeigen, der beim Kauf abgezogen würde, fragt die Website Cloudflare (`/cdn-cgi/trace`) und unseren Server, aus welchem Land deine Verbindung kommt, und liest gegebenenfalls die Zeitzone deines Geräts. Keine der beiden Anfragen enthält Cookies, und die Seite behält nichts von den Antworten. Rechtsgrundlage: berechtigtes Interesse.
+
 Das Lesen der Website setzt keine eigenen Cookies. Anfragen zur Newsletter-Anmeldung, zum Checkout und zur Rabattcodeprüfung von der öffentlichen Website lassen Zugangsdaten aus: Sie senden weder Kontoportal-Cookies noch übernehmen sie Cookies aus der Antwort. Das Öffnen von Kontoportalseiten ist davon getrennt und setzt die unten genannten Portal-Cookies. Alles, was die Website in deinem Browser aufbewahrt, steht unter [Cookies und Browserspeicher](#cookies).
 
 ## Käufe {#purchases}
@@ -150,6 +152,7 @@ Das Lesen der öffentlichen Website und ihre Anfragen zu Newsletter, Checkout un
 - **`tablepro:analytics-consent`** (lokaler Speicher, bis du ihn löschst): deine Antwort auf die Analysefrage, damit sie nicht auf jeder Seite erscheint. Website und Kontoportal teilen diesen Eintrag. Rechtsgrundlage: unbedingt erforderlich, um deine Wahl zu beachten.
 - **`tablepro:attribution`** (lokaler Speicher, 90 Tage): der unter [Website](#website) beschriebene Erstbesuchsdatensatz. Er enthält keine persönliche Kennung und wird nur mit einer Checkout-Anfrage gesendet, bei der unser Server ihn verwirft. Rechtsgrundlage: berechtigtes Interesse.
 - **`theme`** und **`tablepro:banner-dismissed`** (lokaler Speicher, bis du ihn löschst): deine Wahl zwischen heller, dunkler oder Systemdarstellung sowie ausgeblendetes Banner und Ausblendungsdauer: 30 Tage oder ein Jahr, wenn du angibst, eine Lizenz zu haben, oder eine kaufst. Rechtsgrundlage: berechtigtes Interesse.
+- **`tablepro:language`** (lokaler Speicher, bis du ihn löschst): die Sprache, die du im Sprachmenü oder in der Sprachleiste gewählt hast, und jede Sprache, deren Vorschlag du geschlossen hast, damit sie nicht erneut angeboten wird. Rechtsgrundlage: berechtigtes Interesse.
 - **`mintlify_anonymous_id`** (lokaler Speicher auf docs.tablepro.app, von Mintlify gesetzt, nur wenn du dort Google Analytics zulässt): die unter [Website](#website) beschriebene Besucher-ID. Beim Ablehnen wird sie gelöscht. Die Dokumentation speichert ihre eigene Antwort `tablepro:analytics-consent`. Rechtsgrundlage: Einwilligung.
 - **Cookies beginnend mit `crisp-client/`** (Crisp, etwa `crisp-client/session/…`; 6 Monate, bei Rückkehr erneuert; auf jeder Seite nach dem Laden des Chats gesetzt): halten Chat und Gespräch über Seiten und Besuche hinweg verfügbar. Rechtsgrundlage: berechtigtes Interesse, um auf jeder Seite Support anzubieten.
 - **`tablepro-session` und `XSRF-TOKEN`** (Kontoportal-Cookies, 2 Stunden): halten dich angemeldet und schützen Portalformulare vor Cross-Site-Request-Forgery. Das Öffnen anderer Portalseiten wie Kaufbestätigung und Newsletterseiten setzt sie ebenfalls. Anfragen zu Newsletter, Checkout und Rabattcodes von der öffentlichen Website lassen Zugangsdaten aus und speichern diese Cookies nicht. Rechtsgrundlage: unbedingt erforderlich.
@@ -163,7 +166,7 @@ Du kannst deine Analyseantwort jederzeit über **Cookie-Einstellungen** im Fußb
 Für Leser im Europäischen Wirtschaftsraum und im Vereinigten Königreich sind die Rechtsgrundlagen nach DSGVO und UK GDPR:
 
 - **Vertrag** (Art. 6 Abs. 1 lit. b): Verkauf und Bereitstellung einer Lizenz, Lizenzprüfungen, Kontoportal und Team Library.
-- **Berechtigtes Interesse** (Art. 6 Abs. 1 lit. f): Nutzungsbericht der Mac-App und Länderermittlung, Protokolle der Lizenzanfragen, Sicherheit und Missbrauchsprävention, Webserverprotokolle, Cloudflare Web Analytics, Kaufzuordnungsdatensatz und Live-Chat auf jeder Seite.
+- **Berechtigtes Interesse** (Art. 6 Abs. 1 lit. f): Nutzungsbericht der Mac-App und Länderermittlung, Protokolle der Lizenzanfragen, Sicherheit und Missbrauchsprävention, Webserverprotokolle, Cloudflare Web Analytics, Kaufzuordnungsdatensatz, Länderabfrage für Sprache und regionalen Rabatt sowie Live-Chat auf jeder Seite.
 - **Einwilligung** (Art. 6 Abs. 1 lit. a): Google-Analytics-Cookies, Nutzungsbericht der iPhone- und iPad-App, Newsletter und von dir begonnene Live-Chat-Gespräche.
 - **Gesetzliche Verpflichtung** (Art. 6 Abs. 1 lit. c): Steuer- und Buchhaltungsunterlagen sowie Antworten auf rechtmäßige Anfragen.
 

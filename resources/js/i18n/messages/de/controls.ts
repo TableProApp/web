@@ -6,7 +6,12 @@ export default {
         "current": "Sprache: {language}",
         "fallback": "Diese Seite ist nicht auf Deutsch verfügbar",
         "fallbackPost": "Dieser Beitrag ist nicht auf Deutsch",
-        "fallbackBlog": "Zur Blogübersicht"
+        "fallbackBlog": "Zur Blogübersicht",
+        "suggest": {
+            "label": "Sprachvorschlag",
+            "action": "Diese Seite auf Deutsch lesen",
+            "dismiss": "Deutsch nicht mehr vorschlagen"
+        }
     },
     "theme": {
         "label": "Darstellung",

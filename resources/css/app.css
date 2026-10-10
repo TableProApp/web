@@ -143,12 +143,19 @@ html {
  * lasts (lib/banner.ts), so a dismissed banner never flashes and a disabled one
  * reserves nothing. Visibility lives here rather than in React state for the
  * same reason: state would resolve one paint too late.
+ *
+ * The slot holds one bar at a time (TopBanner). The language bar, which offers
+ * this page in the reader's language, takes the same height and hides the
+ * license banner while it shows. `html.has-language-bar` is only ever added in
+ * the reader's browser (the head script, then LanguageBar), so the cached HTML
+ * stays the same for every reader.
  */
 :root {
   --banner-h: 0px;
 }
 
-.support-banner {
+.support-banner,
+.language-bar {
   display: none;
 }
 
@@ -156,9 +163,22 @@ html.has-banner {
   --banner-h: 2.5rem;
 }
 
+html.has-language-bar {
+  --banner-h: 2.5rem;
+}
+
 html.has-banner .support-banner {
   display: block;
   height: var(--banner-h);
+}
+
+html.has-language-bar .language-bar {
+  display: block;
+  height: var(--banner-h);
+}
+
+html.has-language-bar .support-banner {
+  display: none;
 }
 
 html {
@@ -511,6 +531,7 @@ html {
  */
 @media print {
   .support-banner,
+  .language-bar,
   .blog-article .heading-permalink {
     display: none !important;
   }
