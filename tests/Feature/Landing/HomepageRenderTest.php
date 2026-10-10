@@ -58,6 +58,16 @@ function ssrHome(string $path = '/'): string
 }
 
 /**
+ * Every supported locale, read without the application, for the datasets.
+ *
+ * @return list<string>
+ */
+function homeLocales(): array
+{
+    return array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true, 512, JSON_THROW_ON_ERROR)['supported']);
+}
+
+/**
  * The ids of every `<section>` inside `<main>`, in document order.
  *
  * @return list<string>
@@ -94,6 +104,8 @@ describe('props and copy', function (): void {
                 ->has('iosEngines.syncedOnly')
                 ->missing('productHunt')
                 ->missing('downloadUrls')
+                ->missing('latestRelease')
+                ->missing('paymentProvider')
                 ->missing('githubStars')
                 ->missing('teamMinSeats'));
     });
@@ -106,7 +118,10 @@ describe('props and copy', function (): void {
                 ->component('Home')
                 ->where('locale', 'vi')
                 ->where('content.hero.title', 'Database client native.')
-                ->where('content.seo.title', 'TablePro: database client native cho {deviceList}'));
+                ->where('content.seo.title', 'TablePro: database client native cho {deviceList}')
+                ->missing('downloadUrls')
+                ->missing('latestRelease')
+                ->missing('paymentProvider'));
 
         expect($response->getContent())->toContain('<html lang="vi"');
     });
@@ -128,18 +143,9 @@ describe('props and copy', function (): void {
     it('preloads the hero only once it is supplied', function (): void {
         $expected = app(AssetManifest::class)->lcpDescriptor('mac-hero-window', 'en');
 
+        expect($expected === null)->toBe(! app(AssetManifest::class)->isSupplied('mac-hero-window'));
+
         get('/')->assertInertia(fn(AssertableInertia $page) => $page->where('lcpAsset', $expected));
-
-        if (! app(AssetManifest::class)->isSupplied('mac-hero-window')) {
-            $html = (string) get('/')->getContent();
-            preg_match_all('#<link rel="preload" as="image" href="([^"]+)"#', $html, $preloads);
-
-            expect($expected)->toBeNull();
-            // The Blade block that preloads the hero writes `imagesrcset`.
-            expect($html)->not->toContain('imagesrcset');
-            // React preloads the header logo it renders on every page; nothing else may be preloaded.
-            expect(array_values(array_diff($preloads[1], ['/images/logo.png'])))->toBe([]);
-        }
     });
 
     it('sends every published engine once, linked to where the site describes it', function (): void {
@@ -157,6 +163,8 @@ describe('props and copy', function (): void {
             'featured' => $engine['featured'],
         ])->all();
 
+        expect($engines->where('featured', true))->not->toBeEmpty();
+
         get('/')->assertInertia(fn(AssertableInertia $page) => $page->where('engines', function ($engines) use ($expected): bool {
             $actual = collect($engines)->map(fn($engine): array => [
                 'id' => $engine['id'],
@@ -169,21 +177,6 @@ describe('props and copy', function (): void {
 
             return true;
         }));
-    });
-
-    it('names the featured engines in data order, and only published ones', function (): void {
-        $featured = collect(homeData('engines.json'))
-            ->filter(fn(array $engine): bool => $engine['featured'] === true && $engine['state'] === 'published')
-            ->pluck('name')
-            ->values()
-            ->all();
-
-        expect($featured)->not->toBeEmpty();
-
-        get('/')->assertInertia(fn(AssertableInertia $page) => $page->where(
-            'engines',
-            fn($engines): bool => collect($engines)->where('featured', true)->pluck('name')->values()->all() === $featured,
-        ));
     });
 
     it('names the database categories as /databases does, in its order, in every language', function (): void {
@@ -351,31 +344,18 @@ describe('props and copy', function (): void {
 
         expect($document->getElementById('features-schema')->parentElement->textContent)->toContain('Compare & Sync');
         expect($document->getElementById('safety')->textContent)->not->toContain('Data Rewind');
-    })->with(array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true, 512, JSON_THROW_ON_ERROR)['supported']))->group('ssr');
+    })->with(homeLocales())->group('ssr');
 
-    it('names the paid $VAR references next to the free password sources, and does not say every dump tool needs installing', function (string $locale): void {
+    it('names the paid $VAR references next to the free password sources, and the DuckDB exception, on the feature pages', function (string $locale): void {
         $rows = collect(homeContent($locale)['workflows']['rows'])->keyBy('id');
+        $connections = json_encode(homeData("content/{$locale}/features/connections.json"), JSON_UNESCAPED_UNICODE);
+        $files = json_encode(homeData("content/{$locale}/features/import-export.json"), JSON_UNESCAPED_UNICODE);
 
-        if (in_array($locale, ['en', 'vi'], true)) {
-            // English now links to the full feature descriptions rather than
-            // repeating every credential and backup option on the homepage.
-            $connections = json_encode(homeData("content/{$locale}/features/connections.json"), JSON_UNESCAPED_UNICODE);
-            $files = json_encode(homeData("content/{$locale}/features/import-export.json"), JSON_UNESCAPED_UNICODE);
-            expect($connections)->toContain('$DB_HOST', 'environment-variables');
-            expect($files)->toContain('DuckDB');
-            expect($connections)->toContain($locale === 'en' ? 'free sources' : 'mật khẩu có nguồn riêng, miễn phí');
-            expect($files)->toContain($locale === 'en' ? 'except for DuckDB' : 'trừ DuckDB');
-            expect($rows['files']['body'])->toContain('{importFormats}', '{exportFormats}');
-
-            return;
-        }
-
-        // The `env` password source is free; only `$VAR` references are Starter (PasswordSourceResolver and EnvVarResolver at v0.77.0).
-        expect($rows['connect']['body'])->toContain('<code>$VAR</code>');
-        // macOS ships sqlite3, so "which you install yourself" was false for SQLite.
-        expect($rows['files']['body'])->toContain('{dumpTools}')->not->toContain($locale === 'vi' ? 'bạn tự cài các công cụ này' : 'which you install yourself');
-        // SQL files run as statements; they are not imported "into a table".
-        expect($rows['files']['body'])->not->toContain($locale === 'vi' ? 'Import {importFormats} vào table' : 'Import {importFormats} into a table');
+        expect($connections)->toContain('$DB_HOST', 'environment-variables');
+        expect($files)->toContain('DuckDB');
+        expect($connections)->toContain($locale === 'en' ? 'free sources' : 'mật khẩu có nguồn riêng, miễn phí');
+        expect($files)->toContain($locale === 'en' ? 'except for DuckDB' : 'trừ DuckDB');
+        expect($rows['files']['body'])->toContain('{importFormats}', '{exportFormats}');
     })->with(['en', 'vi']);
 
     it('keeps the identity copy free of platform names, versions and numbers', function (string $locale): void {
@@ -518,11 +498,16 @@ describe('server-rendered', function (): void {
         $prices = collect($pricing['tiers'])->flatMap(fn(array $tier): array => isset($tier['price']) ? [$tier['price']] : array_values($tier['prices']))->map(fn($amount): string => is_int($amount) || floor($amount) === (float) $amount ? (string) (int) $amount : number_format($amount, 2, '.', ''));
 
         expect(collect($nodes['SoftwareApplication']['offers'])->pluck('price')->all())->toBe($prices->all());
+        expect(collect($nodes['SoftwareApplication']['offers'])->pluck('@type')->unique()->all())->toBe(['Offer']);
+        // keyBy() above keeps one node per type, so count the duplicates in the markup.
+        expect(substr_count($html, '"@type":"SoftwareApplication"'))->toBe(1);
 
         expect($html)
             ->not->toContain('aggregateRating')
             ->not->toContain('ratingValue')
-            ->not->toContain('"@type":"FAQPage"');
+            ->not->toContain('"@type":"FAQPage"')
+            // It once held the latest release date, so the app looked first published last week.
+            ->not->toContain('"datePublished"');
     })->with(['/', '/vi'])->group('ssr');
 
     it('names the platforms only in the availability lines, from data', function (): void {
@@ -540,12 +525,6 @@ describe('server-rendered', function (): void {
             ->toContain('macOS 13 Ventura trở lên · Apple silicon hoặc Intel')
             ->toContain('iPhone và iPad · iOS và iPadOS 18 trở lên')
             ->toContain('Tải về cho Mac');
-
-        foreach (['/', '/vi'] as $path) {
-            foreach (['Every database', 'every database', 'macOS 14', 'Sonoma', 'Universal', 'unlock', 'free forever', 'GitHub Trending'] as $retired) {
-                expect(ssrHome($path))->not->toContain($retired);
-            }
-        }
     })->group('ssr');
 
     it('thanks only the verified sponsors, each as a sponsored link', function (): void {
@@ -553,10 +532,6 @@ describe('server-rendered', function (): void {
 
         foreach (homeData('sponsors.json')['sponsors'] as $sponsor) {
             expect($html)->toMatch('#<a[^>]*href="' . preg_quote(htmlspecialchars($sponsor['url'], ENT_QUOTES), '#') . '"[^>]*rel="sponsored noopener"#');
-        }
-
-        foreach (['getapps', 'Visnalize', 'Unikorn', 'Xermius'] as $former) {
-            expect($html)->not->toContain($former);
         }
     })->group('ssr');
 
@@ -733,15 +708,22 @@ describe('server-rendered', function (): void {
         expect($native)->toBeGreaterThan($pricing);
     })->with([['/', 'en'], ['/vi', 'vi']])->group('ssr');
 
-    it('shows the hero window as a labelled placeholder until it is supplied', function (): void {
+    it('shows the hero window as a labelled placeholder, and preloads no image but the logo, until it is supplied', function (): void {
         if (app(AssetManifest::class)->isSupplied('mac-hero-window')) {
             $this->markTestSkipped('The hero is supplied.');
         }
 
-        expect(ssrHome('/'))
+        $html = ssrHome('/');
+        preg_match_all('#<link rel="preload" as="image" href="([^"]+)"#', $html, $preloads);
+
+        expect($html)
             ->toContain('data-asset-id="mac-hero-window"')
             ->toContain('data-asset-id="mac-hero-window-mobile"');
-    });
+        // The Blade block that preloads the hero writes `imagesrcset`.
+        expect($html)->not->toContain('imagesrcset');
+        // React preloads the header logo it renders on every page; nothing else may be preloaded.
+        expect(array_values(array_diff($preloads[1], ['/images/logo.png'])))->toBe([]);
+    })->group('ssr');
 
     it('shows each post in the reader\'s language, with the original behind a labelled disclosure, the author\'s photo and a link to the post', function (string $path, string $locale): void {
         $section = HTMLDocument::createFromString(ssrHome($path), LIBXML_NOERROR)->querySelector('#testimonials');
@@ -783,6 +765,17 @@ describe('server-rendered', function (): void {
         ['/vi', 'vi'],
         ['/zh-Hant', 'zh-Hant'],
     ])->group('ssr');
+
+    it('says who builds TablePro in the open-source section, and links the about page, in every language', function (string $locale): void {
+        $publisher = homeData('facts.json')['publisher'];
+
+        preg_match('#<section[^>]*id="open-source".*?</section>#s', ssrHome(LocalizedUrl::path('/', $locale)), $section);
+
+        $text = (string) preg_replace('/[\x{00A0}\x{202F}]/u', ' ', html_entity_decode(strip_tags(str_replace('<!-- -->', '', $section[0] ?? '')), ENT_QUOTES | ENT_HTML5));
+
+        expect($text)->toContain($publisher['name'])->toContain($publisher['city'][$locale]);
+        expect($section[0] ?? '')->toContain('href="' . LocalizedUrl::path('/about', $locale) . '"');
+    })->with(homeLocales())->group('ssr');
 
     it('marks up no quote as a review or a rating', function (): void {
         expect(ssrHome('/'))->toContain('id="testimonials"')->not->toContain('"Review"')->not->toContain('aggregateRating');

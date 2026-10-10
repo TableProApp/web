@@ -38,16 +38,10 @@ function bannerCatalog(string $locale): array
     return $strings;
 }
 
-/** Every locale and its URL prefix, read from disk: a dataset is built before the application boots. @return array<string, array{string, string}> */
+/** Every locale, read from disk: a dataset is built before the application boots. @return list<string> */
 function bannerLocales(): array
 {
-    $rows = [];
-
-    foreach (json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported'] as $code => $locale) {
-        $rows[$code] = [$code, $locale['prefix'] === null ? '' : "/{$locale['prefix']}"];
-    }
-
-    return $rows;
+    return array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']);
 }
 
 it('is on unless it is switched off', function (): void {
@@ -66,7 +60,8 @@ it('is on unless it is switched off', function (): void {
 it('leaves nothing behind when it is switched off', function (): void {
     config(['banner.enabled' => false]);
 
-    $html = get('/download')->assertOk()->getContent();
+    $response = get('/download')->assertOk();
+    $html = $response->getContent();
 
     /*
      * A disabled banner must not be a hidden banner: no class reserving its
@@ -75,20 +70,22 @@ it('leaves nothing behind when it is switched off', function (): void {
     Assert::assertStringNotContainsString('has-banner', $html, 'A disabled banner must reserve no height');
     Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, 'A disabled banner must not ship a dismissal script');
 
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
+    $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
 });
 
-it('stays off the pricing page it leads to, in every language', function (string $locale, string $prefix): void {
+// Banner keys off the base route name, so English and one prefixed locale stand for every language.
+it('stays off the pricing page it leads to, in every language', function (string $prefix): void {
     config(['banner.enabled' => true]);
 
     $path = "{$prefix}/pricing";
-    $html = get($path)->assertOk()->getContent();
+    $response = get($path)->assertOk();
+    $html = $response->getContent();
 
     Assert::assertStringNotContainsString('has-banner', $html, "{$path} must reserve no banner height");
     Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, "{$path} must not ship a dismissal script");
 
-    get($path)->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
-})->with(bannerLocales(...));
+    $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
+})->with(['English' => '', 'Vietnamese' => '/vi']);
 
 /*
  * The license is for the Mac app. The iPhone and iPad page says its app needs
@@ -96,7 +93,7 @@ it('stays off the pricing page it leads to, in every language', function (string
  * is the `ios` class the root template sets before first paint
  * (tests/js/device.test.ts), so the bar never flashes.
  */
-it('stays off the iPhone and iPad page for a reader on one of those devices, in every language', function (string $locale, string $prefix): void {
+it('stays off the iPhone and iPad page for a reader on one of those devices, in every language', function (string $prefix): void {
     config(['banner.enabled' => true]);
 
     $rule = "if (document.documentElement.classList.contains('ios')) {\n                    document.documentElement.classList.remove('has-banner');";
@@ -109,7 +106,7 @@ it('stays off the iPhone and iPad page for a reader on one of those devices, in 
     // Everyone else still gets it there, and an iPhone still gets it on every other page.
     expect(str_contains($ios, 'class="has-banner">'))->toBeTrue();
     Assert::assertStringNotContainsString($rule, get("{$prefix}/download")->assertOk()->getContent());
-})->with(bannerLocales(...));
+})->with(['English' => '', 'Vietnamese' => '/vi']);
 
 it('sends only its link and version to the page, so the words come from the catalog', function (): void {
     config(['banner.enabled' => true, 'banner.href' => '/pricing', 'banner.version' => '7']);
@@ -196,25 +193,28 @@ it('keeps its wording to one line, in every language', function (string $locale)
     Assert::assertLessThanOrEqual(20, mb_strwidth($copy['cta']), "{$locale}: the call to action is too long");
     Assert::assertLessThanOrEqual(34, mb_strwidth($copy['short']) + 1 + mb_strwidth($copy['cta']), "{$locale}: the short question and the link will not fit a 320px screen");
     Assert::assertLessThanOrEqual(26, mb_strwidth($copy['licensed']), "{$locale}: the license holder's link will not fit at 1280px");
-})->with(fn(): array => array_keys(bannerLocales()));
+})->with(bannerLocales(...));
 
 /*
  * The line is addressed to a regular user, so the question that says so stays
  * at every width: a phone shows it before the link, in place of the sentence.
  * It is its own string, never a second call to action.
  */
-it('asks the phone reader whether they are a regular user, before the link', function (string $locale): void {
-    $copy = bannerCatalog($locale);
-    $component = (string) file_get_contents(resource_path('js/components/site/support-banner.tsx'));
+it('asks the phone reader whether they are a regular user, before the link', function (): void {
+    foreach (bannerLocales() as $locale) {
+        $copy = bannerCatalog($locale);
 
-    Assert::assertNotSame($copy['cta'], $copy['short'], "{$locale}: the phone line repeats the link instead of asking the question");
-    Assert::assertStringNotContainsString($copy['cta'], $copy['short'], "{$locale}: the question holds the call to action");
+        Assert::assertNotSame($copy['cta'], $copy['short'], "{$locale}: the phone line repeats the link instead of asking the question");
+        Assert::assertStringNotContainsString($copy['cta'], $copy['short'], "{$locale}: the question holds the call to action");
+    }
+
+    $component = (string) file_get_contents(resource_path('js/components/site/support-banner.tsx'));
 
     // The question is text beside the link, and the link reads the same at every width.
     expect($component)->toContain('<span className="lg:hidden">{m.banner.short} </span>')
         ->toContain("{m.banner.cta}\n                        <span aria-hidden=\"true\">→</span>");
     expect(substr_count($component, 'm.banner.short'))->toBe(1);
-})->with(fn(): array => array_keys(bannerLocales()));
+});
 
 /*
  * The banner names paid features and development funding, with a verb-led
@@ -234,7 +234,8 @@ it('names paid features and development funding, and leads the link with a verb'
 it('states a fact rather than pleading, and never says the whole app is free', function (string $locale): void {
     $copy = mb_strtolower(implode(' ', bannerCatalog($locale)));
 
-    foreach (['whole app is free', 'free forever', 'support us', 'help us', 'need your help', 'donate', 'keep it free', 'struggling', 'unlock', 'hoàn toàn miễn phí', 'miễn phí mãi mãi', 'giúp chúng tôi', 'quyên góp', 'mở khóa'] as $phrase) {
+    // The free-app, unlock and plea phrases of positioning §12.1 are BannedClaimsTest's.
+    foreach (['support us', 'help us', 'donate', 'keep it free', 'giúp chúng tôi', 'quyên góp'] as $phrase) {
         Assert::assertStringNotContainsString($phrase, $copy, "{$locale}: the banner says \"{$phrase}\"");
     }
 })->with(['en', 'vi']);

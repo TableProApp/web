@@ -73,6 +73,16 @@ const BLOG_GUIDES = [
     'postgresql-ssh-tunnel-mac' => '2026-10-08',
 ];
 
+/** The pages each guide links, from its tags, in order. */
+const BLOG_GUIDE_PAGES = [
+    'postgresql-ssh-tunnel-mac' => ['/postgresql-client', '/features/connections#ssh'],
+    'connect-postgresql-mysql-docker-mac' => ['/postgresql-client', '/mysql-client', '/features/connections#project-folder'],
+    'open-sqlite-file-mac' => ['/sqlite-client', '/features/import-export#files', '/features/querying#editor'],
+    'connect-amazon-rds-mac' => ['/postgresql-client', '/mysql-client', '/features/connections#cloud-auth', '/features/connections#ssh'],
+    'import-csv-postgresql-mysql' => ['/postgresql-client', '/mysql-client', '/features/import-export#import', '/features/import-export#data-files'],
+    'claude-code-cursor-database-mcp' => ['/features/ai-mcp#mcp', '/postgresql-client', '/mysql-client'],
+];
+
 /** Tags no page covers: the one every release post carries, and a claim the site does not make. */
 const BLOG_TAGS_WITHOUT_A_PAGE = ['release', 'performance'];
 
@@ -198,7 +208,7 @@ it('describes the blog as guides and release posts in every language', function 
     }
 });
 
-it('renders each guide in English and Vietnamese, as a guide', function (string $slug, string $locale): void {
+it('renders each guide in English and Vietnamese, as a guide linking the pages it is about', function (string $slug, string $locale): void {
     $prefix = $locale === 'en' ? '' : "/{$locale}";
     $matter = blogMatter($slug, $locale);
 
@@ -219,7 +229,7 @@ it('renders each guide in English and Vietnamese, as a guide', function (string 
             ->where('archived', false)
             ->where('correction', null)
             ->where('notes', null)
-            ->where('pages', fn($pages): bool => count($pages) > 0)
+            ->where('pages', fn($pages): bool => collect($pages)->pluck('href')->all() === BLOG_GUIDE_PAGES[$slug])
             ->has('related', 3)
             ->where('related', fn($related): bool => collect($related)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === $locale && $post['slug'] !== $slug,
@@ -235,27 +245,6 @@ it('gives each guide a Vietnamese version under the same slug and tags', functio
     expect(glob(resource_path('blog/vi/*.md')))->toHaveCount(count(BLOG_GUIDES));
 });
 
-it('links each guide to the database and feature pages it is about', function (string $slug, array $hrefs): void {
-    $this->get("/blog/{$slug}")
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('pages', fn($pages): bool => collect($pages)->pluck('href')->all() === $hrefs));
-})->with([
-    'SSH tunnel' => ['postgresql-ssh-tunnel-mac', ['/postgresql-client', '/features/connections#ssh']],
-    'Docker' => ['connect-postgresql-mysql-docker-mac', ['/postgresql-client', '/mysql-client', '/features/connections#project-folder']],
-    'SQLite' => ['open-sqlite-file-mac', ['/sqlite-client', '/features/import-export#files', '/features/querying#editor']],
-    'Amazon RDS' => ['connect-amazon-rds-mac', ['/postgresql-client', '/mysql-client', '/features/connections#cloud-auth', '/features/connections#ssh']],
-    'CSV import' => ['import-csv-postgresql-mysql', ['/postgresql-client', '/mysql-client', '/features/import-export#import', '/features/import-export#data-files']],
-    'MCP' => ['claude-code-cursor-database-mcp', ['/features/ai-mcp#mcp', '/postgresql-client', '/mysql-client']],
-]);
-
-it('relates a release post to other release posts only', function (string $slug): void {
-    $this->get("/blog/{$slug}")
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('related', fn($related): bool => collect($related)->every(
-            fn(array $post): bool => $post['kind'] === 'release',
-        )));
-})->with(array_keys(BLOG_PUBLISHED));
-
 it('removes the merged guides, whose URLs now redirect', function (string $slug, string $target): void {
     expect(File::exists(resource_path("blog/{$slug}.md")))->toBeFalse();
 
@@ -264,11 +253,12 @@ it('removes the merged guides, whose URLs now redirect', function (string $slug,
         ->assertHeader('Location', 'https://localhost' . $target);
 })->with(fn(): array => collect(BLOG_MERGED)->map(fn(string $target, string $slug): array => [$slug, $target])->values()->all());
 
-it('renders each release post as the archive it is', function (string $slug): void {
+it('renders each release post as the archive it is, with its notes, any correction, and related release posts newest first', function (string $slug): void {
     $matter = blogMatter($slug);
     $manifest = (new AssetManifest())->assets();
     $slots = array_values(array_filter(array_keys($manifest), fn(string $id): bool => preg_match('/^blog-' . preg_quote($slug, '/') . '-\d+$/', $id) === 1));
     natsort($slots);
+    $version = preg_match('/^tablepro-(\d+)-(\d+)$/', $slug, $match) === 1 ? "{$match[1]}.{$match[2]}.0" : null;
 
     $this->get("/blog/{$slug}")
         ->assertOk()
@@ -297,9 +287,37 @@ it('renders each release post as the archive it is', function (string $slug): vo
                 return true;
             })
             ->has('related', 3)
-            ->where('related', fn($related): bool => collect($related)->every(
-                fn(array $post): bool => $post['slug'] !== $slug && $post['locale'] === 'en' && str_starts_with($post['url'], '/blog/'),
-            )));
+            ->where('related', function ($related) use ($slug): bool {
+                $dates = collect($related)->pluck('date')->all();
+                $sorted = $dates;
+                rsort($sorted);
+
+                // A dated list out of order reads as a sorting bug (0.74 listed Sep 9, Sep 22, Sep 4 in ranking order).
+                expect($dates)->toBe($sorted);
+
+                return collect($related)->every(
+                    fn(array $post): bool => $post['kind'] === 'release' && $post['slug'] !== $slug && $post['locale'] === 'en' && str_starts_with($post['url'], '/blog/'),
+                );
+            })
+            ->when($version === null, fn(AssertableInertia $page) => $page->where('notes', null))
+            ->when($version !== null, fn(AssertableInertia $page) => $page
+                ->where('notes.changelog', 'https://docs.tablepro.app/changelog#v' . str_replace('.', '-', (string) $version))
+                ->where('notes.github', "https://github.com/TableProApp/TablePro/releases/tag/v{$version}"))
+            ->tap(fn(AssertableInertia $page) => match ($slug) {
+                'tablepro-0-74' => $page
+                    ->where('correction.date', '2026-10-02')
+                    ->where('correction.dateFormatted', 'October 2, 2026')
+                    ->where('correction.text', fn(string $text): bool => str_contains($text, 'Apple serves the map tiles')
+                        && ! str_contains(strtolower($text), 'nothing leav')),
+                // App Store 1.0 (build 22) never refused a jump host, wraps only multi-statement saves on Oracle, and runs only DuckDB in memory.
+                'tablepro-for-iphone' => $page
+                    ->where('correction.date', '2026-10-02')
+                    ->where('correction.text', fn(string $text): bool => str_contains($text, 'Jump hosts are not supported on iPhone and iPad')
+                        && str_contains($text, 'On Oracle')
+                        && str_contains($text, 'Only DuckDB can run in memory')
+                        && ! str_contains($text, 'final host')),
+                default => $page->where('correction', null),
+            }));
 })->with(array_keys(BLOG_PUBLISHED));
 
 it('gives every figure a placeholder that keeps the original image as its source', function (): void {
@@ -341,30 +359,6 @@ it('keeps the fragment ids links out in the world point at, with a permalink aft
         }));
 });
 
-it('dates a correction on each post that said something never true, and on no other', function (string $slug): void {
-    $this->get("/blog/{$slug}")
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => match ($slug) {
-            'tablepro-0-74' => $page
-                ->where('correction.date', '2026-10-02')
-                ->where('correction.dateFormatted', 'October 2, 2026')
-                ->where('correction.text', fn(string $text): bool => str_contains($text, 'Apple serves the map tiles')
-                    && ! str_contains(strtolower($text), 'nothing leav')),
-            /*
-             * App Store 1.0 (build 22) never refused a jump host, wraps only
-             * multi-statement saves on Oracle, and runs only DuckDB in memory.
-             * The correction says "not supported" and never how 1.0 dials.
-             */
-            'tablepro-for-iphone' => $page
-                ->where('correction.date', '2026-10-02')
-                ->where('correction.text', fn(string $text): bool => str_contains($text, 'Jump hosts are not supported on iPhone and iPad')
-                    && str_contains($text, 'On Oracle')
-                    && str_contains($text, 'Only DuckDB can run in memory')
-                    && ! str_contains($text, 'final host')),
-            default => $page->where('correction', null),
-        });
-})->with(array_keys(BLOG_PUBLISHED));
-
 it('marks a post as an archive only once a newer release than its own is out', function (array $platforms, string $slug, bool $archived): void {
     bindReleaseFixturePlatforms($platforms);
 
@@ -395,18 +389,6 @@ it('links a Mac release to its changelog entry and its GitHub release, from the 
     'a release with no version' => ['TablePro', null],
     'a guide' => [null, null],
 ]);
-
-it('hands each release post its notes links', function (string $slug): void {
-    $version = preg_match('/^tablepro-(\d+)-(\d+)$/', $slug, $match) === 1 ? "{$match[1]}.{$match[2]}.0" : null;
-
-    $this->get("/blog/{$slug}")
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $version === null
-            ? $page->where('notes', null)
-            : $page
-                ->where('notes.changelog', 'https://docs.tablepro.app/changelog#v' . str_replace('.', '-', $version))
-                ->where('notes.github', "https://github.com/TableProApp/TablePro/releases/tag/v{$version}"));
-})->with(array_keys(BLOG_PUBLISHED));
 
 it('links the pages that cover a post today, from its tags', function (): void {
     $this->get('/blog/tablepro-0-77')
@@ -474,27 +456,13 @@ it('resolves every tag of every post to a page in every language, or to none on 
     expect(array_diff(BLOG_TAGS_WITHOUT_A_PAGE, $seen))->toBe([]);
 });
 
-it('chooses related posts by shared topic first, then by closeness in time, and lists them newest first', function (): void {
+it('chooses related posts by shared topic first, then by closeness in time', function (): void {
     $this->get('/blog/tablepro-0-76')
         ->assertOk()
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->where('related.0.slug', 'tablepro-0-77')
             ->where('related.1.slug', 'tablepro-0-70')
             ->where('related.2.slug', 'tablepro-0-67'));
-
-    /*
-     * A dated list out of order reads as a sorting bug (0.74 listed Sep 9,
-     * Sep 22, Sep 4 in ranking order).
-     */
-    foreach (array_keys(BLOG_PUBLISHED) as $slug) {
-        $this->get("/blog/{$slug}")->assertInertia(function (AssertableInertia $page): void {
-            $dates = array_column($page->toArray()['props']['related'], 'date');
-            $sorted = $dates;
-            rsort($sorted);
-
-            expect($dates)->toBe($sorted);
-        });
-    }
 });
 
 it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese and the release posts as English', function (): void {
@@ -727,20 +695,13 @@ describe('server-rendered', function (): void {
         ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Ghi chú đầy đủ của từng phiên bản nằm trong changelog'],
     ])->group('ssr');
 
-    it('separates an English-only label from the post title with a real space', function (): void {
-        $html = (string) $this->get('/vi/blog')->getContent();
-
-        // Without the space the heading's text reads "…Sidebar(tiếng Anh)".
-        expect(preg_match('#</a>(<!-- -->)? <span[^>]*>\(tiếng Anh\)</span>#u', $html))->toBe(1);
-    })->group('ssr');
-
     it('shows the dated correction on the 0.74 post', function (): void {
         expect((string) $this->get('/blog/tablepro-0-74')->getContent())
             ->toContain('Correction, October 2, 2026')
             ->toContain('Apple serves the map tiles');
     })->group('ssr');
 
-    it('marks every English post on /vi/blog as English, on a page indexed with /blog as its alternate', function (): void {
+    it('marks every English post on /vi/blog as English, after a real space, on a page indexed with /blog as its alternate', function (): void {
         $html = (string) $this->get('/vi/blog')->getContent();
 
         expect($html)
@@ -753,5 +714,7 @@ describe('server-rendered', function (): void {
             ->toContain('(tiếng Anh)')
             ->not->toContain('href="/vi/blog/tablepro-0-77"');
         expect(substr_count($html, '(tiếng Anh)'))->toBeGreaterThanOrEqual(count(BLOG_PUBLISHED));
+        // Without the space the heading's text reads "…Sidebar(tiếng Anh)".
+        expect(preg_match('#</a>(<!-- -->)? <span[^>]*>\(tiếng Anh\)</span>#u', $html))->toBe(1);
     })->group('ssr');
 });

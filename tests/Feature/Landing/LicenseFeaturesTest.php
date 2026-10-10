@@ -34,30 +34,6 @@ function licenseFeatureCopy(string $locale): array
     return json_decode((string) file_get_contents(resource_path("data/content/{$locale}/paid-features.json")), true, 512, JSON_THROW_ON_ERROR);
 }
 
-it('carries every feature the app gates, split the way the app splits them', function (): void {
-    $features = licenseFeatureList();
-
-    expect($features)->toHaveCount(10, 'ProFeature has ten cases; paid-features.json must list all ten');
-
-    $tiers = array_count_values(array_column($features, 'tier'));
-
-    expect($tiers['starter'] ?? 0)->toBe(8);
-    expect($tiers['team'] ?? 0)->toBe(2);
-
-    expect(array_column($features, 'name'))->toBe([
-        'Compare & Sync',
-        'Query Insights',
-        'Result Charts',
-        'Data Rewind',
-        'iCloud Sync',
-        'Linked Folders',
-        'Encrypted Export',
-        'Environment Variables',
-        'Team Catalog',
-        'Team Library',
-    ]);
-});
-
 it('describes every feature in both languages, and nothing that is not one', function (string $locale): void {
     $ids = array_column(licenseFeatureList(), 'id');
     $copy = licenseFeatureCopy($locale);

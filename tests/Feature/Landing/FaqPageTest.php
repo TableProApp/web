@@ -156,15 +156,8 @@ it('types no price, count or retired claim into an answer', function (string $lo
     // Prices come from pricing.json on the pricing page; the FAQ links there.
     Assert::assertDoesNotMatchRegularExpression('/\$\s?\d|\d\s?US\$|\bUSD\s?\d/u', $text);
 
-    // Counts are derived, never typed (positioning §12.1, "Typed counts").
-    Assert::assertDoesNotMatchRegularExpression('/\d+\s*(databases?|engines?|drivers?|features?|tools?|providers?|plugins?|tính năng|cơ sở dữ liệu)\b/iu', $text);
-
-    foreach ([
-        'macOS 14', 'Sonoma', 'Thirteen', 'Sixteen', 'free forever', 'no feature gating', 'Universal', 'coming soon',
-        'not to using it', 'nothing leaves', 'no account', 'anonymous', 'LemonSqueezy', 'Lemon Squeezy', 'SePay',
-        'bank transfer', 'PPP', 'VND', 'unlock', 'by one person', 'full time', 'Mac App Store', 'Setapp', 'TestFlight',
-        'mở khóa', 'chuyển khoản', 'ẩn danh', 'không cần tài khoản', 'sắp ra mắt',
-    ] as $needle) {
+    // Typed counts and the site-wide banned phrases are NoTypedCountsTest's and BannedClaimsTest's.
+    foreach (['Thirteen', 'Sixteen', 'not to using it', 'nothing leaves', 'anonymous', 'by one person', 'full time', 'TestFlight'] as $needle) {
         Assert::assertStringNotContainsStringIgnoringCase($needle, $text, "content/{$locale}/faq.json says \"{$needle}\"");
     }
 })->with(['en', 'vi']);

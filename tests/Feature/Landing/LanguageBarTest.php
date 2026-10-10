@@ -55,11 +55,6 @@ it('decides before first paint wherever the page exists in another language, the
 
     expect($html)->toContain(SUGGESTION_MARKER)
         ->toContain("localStorage.getItem('tablepro:language')");
-
-    // Only the license banner's own pages carry its class; the language bar has its own.
-    if ($path === '/pricing') {
-        Assert::assertStringNotContainsString('has-banner', $html, '/pricing must still reserve no license banner height');
-    }
 })->with(['/', '/vi/download', '/pricing']);
 
 it('ships no script where the page has no other language, nor on an error page', function (string $path, int $status): void {

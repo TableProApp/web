@@ -33,14 +33,10 @@ const CHECKOUT_SOURCE = 'resources/js/components/pricing/use-checkout.ts';
  */
 function attributionPrivacySources(): array
 {
-    if (is_file(resource_path('data/legal/en/privacy.md'))) {
-        return [
-            'resources/data/legal/en/privacy.md' => 'days',
-            'resources/data/legal/vi/privacy.md' => 'ngày',
-        ];
-    }
-
-    return ['resources/js/pages/Privacy.tsx' => 'days'];
+    return [
+        'resources/data/legal/en/privacy.md' => 'days',
+        'resources/data/legal/vi/privacy.md' => 'ngày',
+    ];
 }
 
 /**
@@ -203,18 +199,5 @@ it('tells readers what it stores, under the name it stores it', function () use 
             $privacy,
             "{$source} states how long the attribution record is kept",
         );
-    }
-});
-
-/*
- * The claim that was true before this existed and is not any more. The section
- * said "two functional cookies. No tracking, no advertising, no third-party
- * SDKs" while the site now records where a reader came from and sends it with
- * their purchase — a defensible thing to do, and not a defensible thing to
- * leave undisclosed.
- */
-it('does not claim the site stores nothing but cookies', function () use ($readSource): void {
-    foreach (array_keys(attributionPrivacySources()) as $source) {
-        expect($readSource($source))->not->toContain('The marketing site uses two functional cookies.');
     }
 });

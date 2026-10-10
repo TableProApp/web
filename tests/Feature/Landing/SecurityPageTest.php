@@ -9,8 +9,6 @@ use PHPUnit\Framework\Assert;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-require_once __DIR__ . '/../Seo/helpers.php';
-
 beforeEach(function (): void {
     withoutVite();
 });
@@ -46,8 +44,8 @@ function securityStrings(string $locale): array
     return array_filter(Arr::dot(securityContent($locale)), 'is_string');
 }
 
-it('renders in every language with the facts and links its copy names', function (string $locale): void {
-    get(securityPath($locale))
+it('renders in every language with the facts and links its copy names, and fills every slot, tag and link it uses', function (string $locale): void {
+    $response = get(securityPath($locale))
         ->assertOk()
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Security')
@@ -61,26 +59,8 @@ it('renders in every language with the facts and links its copy names', function
             ->where('links.securityPolicy', 'https://github.com/TableProApp/TablePro/security/policy')
             ->where('links.securityAdvisory', 'https://github.com/TableProApp/TablePro/security/advisories/new')
             ->where('links.securityTxt', '/.well-known/security.txt'));
-})->with(securityLocales());
 
-it('is indexed in every language, with each translation as an alternate in the sitemap', function (): void {
-    $entry = app(PageRegistry::class)->find('landing.security', []);
-
-    expect($entry->renderLocales)->toBe(Locales::codes())
-        ->and($entry->hreflangCluster())->toBe(Locales::codes());
-
-    $sitemap = seoGenerateSitemap();
-
-    foreach (Locales::codes() as $locale) {
-        $url = $entry->url($locale);
-
-        Assert::assertArrayHasKey($url, $sitemap, "{$url} is not in the sitemap");
-        expect(array_values($sitemap[$url]['alternates']))->toContain(...array_map(fn(string $code): string => $entry->url($code), Locales::codes()));
-    }
-});
-
-it('fills every slot and resolves every tag and link its copy uses', function (string $locale): void {
-    $props = get(securityPath($locale))->viewData('page')['props'];
+    $props = $response->viewData('page')['props'];
     $text = implode("\n", securityStrings($locale));
 
     preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $slots);
@@ -103,6 +83,13 @@ it('fills every slot and resolves every tag and link its copy uses', function (s
         }
     }
 })->with(securityLocales());
+
+it('is indexed in every language, with each translation as an alternate', function (): void {
+    $entry = app(PageRegistry::class)->find('landing.security', []);
+
+    expect($entry->renderLocales)->toBe(Locales::codes())
+        ->and($entry->hreflangCluster())->toBe(Locales::codes());
+});
 
 it('states its limits and makes no absolute safety or privacy claim', function (): void {
     $english = implode("\n", securityStrings('en'));

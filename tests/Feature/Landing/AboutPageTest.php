@@ -105,37 +105,18 @@ it('is indexed in every language, with every translation as an alternate', funct
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
-it('fills every slot its copy uses, and resolves every link tag', function (string $locale): void {
-    $text = implode("\n", array_filter(Arr::dot(aboutContent($locale)), 'is_string'));
+it('fills every slot its copy uses, resolves every link tag, and links the security page and the contact address', function (string $locale): void {
+    $content = aboutContent($locale);
+    $text = implode("\n", array_filter(Arr::dot($content), 'is_string'));
 
     preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $slots);
     preg_match_all('/<([a-z][A-Za-z0-9]*)>/', $text, $tags);
 
     expect(array_values(array_diff(array_unique($slots[1]), ['maker', 'city', 'country', 'email', 'width', 'height'])))->toBe([], "content/{$locale}/about.json uses a slot the page does not fill");
     expect(array_values(array_diff(array_unique($tags[1]), aboutKnownTags())))->toBe([], "content/{$locale}/about.json uses a link tag with no destination");
+    expect($content['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
+    expect($content['brand']['usage'] ?? null)->toBeString()->toContain('TablePro')->toContain('<email>{email}</email>');
 })->with(aboutLocales());
-
-it('links the security page from the policies, in every language', function (string $locale): void {
-    expect(aboutContent($locale)['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
-
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="policies".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
-
-    expect($section)->not->toBe([]);
-    expect($section[0])->toContain("href=\"{$prefix}/security\"");
-})->with(aboutLocales())->group('ssr');
-
-it('says how the name and logo may be used, and where to ask about anything else, in every language', function (string $locale): void {
-    expect(aboutContent($locale)['brand']['usage'] ?? null)->toBeString()->toContain('TablePro')->toContain('<email>{email}</email>');
-
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="brand".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
-
-    expect($section)->not->toBe([]);
-    expect($section[0])->toContain('href="mailto:hello@tablepro.app"');
-})->with(aboutLocales())->group('ssr');
 
 it('types the publisher in facts.json only', function (): void {
     $publisher = aboutPublisher();
@@ -163,8 +144,10 @@ it('types the publisher in facts.json only', function (): void {
     expect($offences)->toBe([], "The publisher is typed outside facts.json:\n  " . implode("\n  ", $offences));
 });
 
-it('server-renders the publisher, the page sections and an AboutPage about the organization', function (string $path, string $locale): void {
+it('server-renders the publisher, every section and its links, the footer and an AboutPage about the organization', function (string $locale): void {
     $publisher = aboutPublisher();
+    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
+    $path = "{$prefix}/about";
     $html = ssrHtml($path);
     $text = aboutVisibleText($html);
 
@@ -178,6 +161,16 @@ it('server-renders the publisher, the page sections and an AboutPage about the o
 
     Assert::assertDoesNotMatchRegularExpression('/\{[a-zA-Z]+\}/', $text, "{$path} leaves a slot unfilled");
     expect($html)->toContain('href="/logo.png" download=""');
+
+    preg_match('#<section[^>]*id="policies".*?</section>#s', $html, $policies);
+    preg_match('#<section[^>]*id="brand".*?</section>#s', $html, $brand);
+    preg_match('#<footer\b.*?</footer>#s', $html, $footer);
+
+    expect($policies[0] ?? '')->toContain("href=\"{$prefix}/security\"");
+    expect($brand[0] ?? '')->toContain('href="mailto:hello@tablepro.app"');
+    expect(aboutVisibleText($footer[0] ?? ''))->toContain($publisher['name'])
+        ->toContain($publisher['city'][$locale])
+        ->toContain('AGPLv3');
 
     $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $nodes = [];
@@ -196,34 +189,6 @@ it('server-renders the publisher, the page sections and an AboutPage about the o
         ->and($organization['founder']['name'])->toBe($publisher['name'])
         ->and($organization['founder']['@id'])->toEndWith('/#founder')
         ->and($organization['address'])->toBe(['@type' => 'PostalAddress', 'addressLocality' => $publisher['city']['en'], 'addressCountry' => $publisher['countryCode']]);
-})->with([
-    ['/about', 'en'],
-    ['/vi/about', 'vi'],
-    ['/ja/about', 'ja'],
-    ['/de/about', 'de'],
-])->group('ssr');
-
-it('says who builds TablePro in the homepage open-source section, and links the about page', function (string $locale): void {
-    $publisher = aboutPublisher();
-    $path = $locale === Locales::default() ? '/' : "/{$locale}";
-    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
-
-    preg_match('#<section[^>]*id="open-source".*?</section>#s', ssrHtml($path), $section);
-
-    expect($section)->not->toBe([]);
-    expect(aboutVisibleText($section[0]))->toContain($publisher['name'])->toContain($publisher['city'][$locale]);
-    expect($section[0])->toContain("href=\"{$prefix}/about\"");
-})->with(aboutLocales())->group('ssr');
-
-it('names the publisher in the footer of every language', function (string $locale): void {
-    $publisher = aboutPublisher();
-    $path = $locale === Locales::default() ? '/faq' : "/{$locale}/faq";
-
-    preg_match('#<footer\b.*?</footer>#s', ssrHtml($path), $footer);
-
-    expect(aboutVisibleText($footer[0]))->toContain($publisher['name'])
-        ->toContain($publisher['city'][$locale])
-        ->toContain('AGPLv3');
 })->with(aboutLocales())->group('ssr');
 
 it('keeps the footer line short enough for one row beside the controls at 1280px', function (string $locale): void {

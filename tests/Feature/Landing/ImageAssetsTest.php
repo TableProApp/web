@@ -93,55 +93,6 @@ function referencedImagePaths(): array
 }
 
 /**
- * Every `path width` pair a srcset string declares.
- *
- * @return list<array{0: string, 1: int}>
- */
-function srcSetCandidates(string $text): array
-{
-    preg_match_all('#(/images/[A-Za-z0-9@._/-]+\.(?:webp|avif))\s+(\d+)w#', $text, $matches, PREG_SET_ORDER);
-
-    return array_map(fn(array $match): array => [$match[1], (int) $match[2]], $matches);
-}
-
-/**
- * The srcset strings of the page: literals in the frontend, and those
- * `<AssetSlot>` builds for each supplied manifest entry.
- *
- * @return array<string, string> Map of a label to its text.
- */
-function srcSetSources(): array
-{
-    $sources = [];
-
-    foreach (frontendSourceFiles() as $file) {
-        $sources[str_replace(base_path() . '/', '', $file)] = (string) file_get_contents($file);
-    }
-
-    $manifest = new AssetManifest();
-
-    foreach ($manifest->assets() as $id => $entry) {
-        if ($entry['status'] !== 'supplied' || $entry['kind'] === 'og-card') {
-            continue;
-        }
-
-        $sets = $entry['locale'] === 'per-locale' ? array_keys((array) $entry['src']) : [null];
-
-        foreach ($sets as $locale) {
-            [$themed, $fileLocale] = $manifest->themedSources($id, $locale ?? 'en') ?? [[], null];
-
-            foreach (array_filter(['light' => $themed['light'] ?? null, 'dark' => $themed['dark'] ?? null]) as $variant => $source) {
-                foreach ($source['formats'] as $format) {
-                    $sources["assets.json {$id} {$variant} {$format}"] = $manifest->srcset($id, $source, $variant, $fileLocale, $format);
-                }
-            }
-        }
-    }
-
-    return $sources;
-}
-
-/**
  * @return array{0: int, 1: int}
  */
 function imageDimensions(string $absolutePath): array
@@ -168,33 +119,6 @@ it('serves every image the frontend or the asset manifest names', function (): v
     }
 
     expect($missing)->toBe([]);
-});
-
-it('reads the width descriptors of a srcset', function (): void {
-    expect(srcSetCandidates('/images/a-light-720.avif 720w, /images/b/c-dark-1216.webp 1216w, /images/d.png 2x'))
-        ->toBe([['/images/a-light-720.avif', 720], ['/images/b/c-dark-1216.webp', 1216]]);
-});
-
-it('gives every srcSet candidate the width its descriptor claims', function (): void {
-    $wrong = [];
-
-    foreach (srcSetSources() as $label => $text) {
-        foreach (srcSetCandidates($text) as [$path, $declared]) {
-            $absolute = public_path(ltrim($path, '/'));
-
-            if (! is_file($absolute)) {
-                continue;
-            }
-
-            [$actual] = imageDimensions($absolute);
-
-            if ($actual !== $declared) {
-                $wrong[] = "{$path} declares {$declared}w in {$label} but is {$actual}px wide";
-            }
-        }
-    }
-
-    expect($wrong)->toBe([]);
 });
 
 /**

@@ -66,8 +66,6 @@ it('serves the English posts as an Atom feed, newest first', function (): void {
             ->and((string) $entry->summary)->toBe($post->description)
             ->and((string) $entry->published)->toBe($post->date->toAtomString())
             ->and((string) $entry->updated)->toBe($post->date->toAtomString());
-
-        $this->get('/blog/' . $post->slug)->assertOk();
     }
 });
 

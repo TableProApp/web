@@ -26,14 +26,15 @@ function consentSource(string $relative): string
     return (string) file_get_contents(base_path($relative));
 }
 
-it('loads the tag with the configured measurement id', function (): void {
+/** A page with the tag configured as `G-TEST123`, fetched once per path for the whole run. */
+function consentHtml(string $path, int $status = 200): string
+{
+    static $html = [];
+
     config(['analytics.google.measurement_id' => 'G-TEST123']);
 
-    $html = $this->get('/download')->assertOk()->getContent();
-
-    expect($html)->toContain('https://www.googletagmanager.com/gtag/js?id=G-TEST123');
-    expect($html)->toContain("gtag('config', \"G-TEST123\")");
-});
+    return $html[$path] ??= (string) test()->get($path)->assertStatus($status)->getContent();
+}
 
 /*
  * Google's script is about 180 KB, and it was the heaviest request on every
@@ -42,9 +43,7 @@ it('loads the tag with the configured measurement id', function (): void {
  * does, and `gtag()` queues every call until it arrives.
  */
 it('puts no Google script in the document, only the loader that adds it later', function (string $path, int $status): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123']);
-
-    $html = $this->get($path)->assertStatus($status)->getContent();
+    $html = consentHtml($path, $status);
 
     expect($html)->not->toMatch('#<script[^>]*\ssrc="https://www\.googletagmanager\.com#')
         ->and(strpos($html, 'var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"'))->toBeGreaterThan(strpos($html, "gtag('config'"));
@@ -91,9 +90,7 @@ function runAnalyticsScript(string $html, bool $idleCallback, string $readyState
 }
 
 it('requests Google\'s script only after the load event and an idle moment, with every call queued', function (bool $idleCallback): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123']);
-
-    $run = runAnalyticsScript($this->get('/download')->getContent(), $idleCallback);
+    $run = runAnalyticsScript(consentHtml('/download'), $idleCallback);
     $tag = 'https://www.googletagmanager.com/gtag/js?id=G-TEST123';
 
     expect($run['listenedForLoad'])->toBeTrue()
@@ -112,9 +109,7 @@ it('requests Google\'s script only after the load event and an idle moment, with
 })->with(['with an idle callback' => true, 'without one (Safari)' => false]);
 
 it('waits only for idle when the page has already loaded', function (): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123']);
-
-    $run = runAnalyticsScript($this->get('/download')->getContent(), true, 'complete');
+    $run = runAnalyticsScript(consentHtml('/download'), true, 'complete');
 
     expect($run['listenedForLoad'])->toBeFalse()
         ->and($run['beforeLoad'])->toBe([])
@@ -137,9 +132,7 @@ it('renders no tag when no measurement id is configured', function (): void {
  * page view with whatever consent state it has been given.
  */
 it('denies storage before the tag is configured, and applies a stored answer in between', function (string $path): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123']);
-
-    $html = $this->get($path)->assertOk()->getContent();
+    $html = consentHtml($path);
 
     $default = strpos($html, "gtag('consent', 'default'");
     $stored = strpos($html, "gtag('consent', 'update', { analytics_storage: 'granted' })");
@@ -190,8 +183,10 @@ it('leaves nothing of Plausible behind', function (): void {
 
     expect(consentSource('resources/js/lib/analytics.ts'))->not->toMatch('/plausible\s*\(|\.plausible\b/');
 
-    foreach (privacySources() as $file => $text) {
-        Assert::assertFalse(stripos($text, 'plausible'), "{$file} still mentions Plausible");
+    foreach (['en', 'vi'] as $locale) {
+        $file = "resources/data/legal/{$locale}/privacy.md";
+
+        Assert::assertFalse(stripos(consentSource($file), 'plausible'), "{$file} still mentions Plausible");
     }
 });
 
@@ -249,9 +244,7 @@ function htmlClassesAfterHead(string $html, string|false|null $stored): array
 
 // The class shows the server-rendered bar before first paint, so it never pops in or pushes the page after hydration.
 it('opens the bar before first paint for a reader who has not answered', function (string|false|null $stored, bool $open): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123']);
-
-    $classes = htmlClassesAfterHead($this->get('/download')->getContent(), $stored);
+    $classes = htmlClassesAfterHead(consentHtml('/download'), $stored);
 
     expect(in_array('consent-open', $classes, true))->toBe($open);
 })->with([
@@ -283,17 +276,6 @@ it('gives the consent buttons a 44px target on a touch screen', function (): voi
 
     expect(substr_count($bar, '<Button variant="secondary" size="sm" className="pointer-coarse:min-h-11"'))->toBe(2);
 });
-
-it('names the cookie settings control in the reader\'s language', function (string $path, string $label): void {
-    $html = ssrHtml($path);
-
-    preg_match_all('#<button type="button" class="[^"]*">([^<]+)</button>#', $html, $buttons);
-
-    expect($buttons[1])->toContain($label);
-})->with([
-    'English' => ['/download', 'Cookie settings'],
-    'Vietnamese' => ['/vi/download', 'Cài đặt cookie'],
-])->group('ssr');
 
 /*
  * Declining has to be as easy as allowing. The two buttons are the same
@@ -356,57 +338,3 @@ it('makes the Allow and Decline buttons look clickable', function (): void {
     expect($button)->toMatch("/'inline-flex cursor-pointer /");
     expect($secondary[1] ?? '')->toContain('hover:bg-');
 });
-
-it('tells readers which cookies analytics sets and how to take consent back', function (): void {
-    $sources = privacySources();
-
-    expect($sources)->not->toBeEmpty();
-
-    foreach ($sources as $file => $text) {
-        $vietnamese = str_contains($file, '/vi/');
-
-        foreach (['_ga', 'tablepro:analytics-consent', 'Google Analytics'] as $needle) {
-            Assert::assertStringContainsString($needle, $text, "{$file} must mention {$needle}");
-        }
-
-        // Analytics runs on consent, and the policy says so.
-        Assert::assertMatchesRegularExpression($vietnamese ? '/cơ sở pháp lý/iu' : '/lawful basis/i', $text, "{$file} must state the lawful basis");
-
-        // The reopen control, by the name the footer gives it.
-        Assert::assertStringContainsString($vietnamese ? 'Cài đặt cookie' : 'Cookie settings', $text, "{$file} must say where to change the answer");
-
-        // `/privacy#cookies` is linked from the consent bar and from the account app.
-        Assert::assertMatchesRegularExpression('/\{#cookies\}|id="cookies"/', $text, "{$file} must keep the #cookies anchor");
-
-        Assert::assertStringNotContainsString('cookie-less', $text);
-    }
-});
-
-/**
- * The privacy policy's sources: the markdown in both languages once it exists
- * (resources/data/legal/{en,vi}/privacy.md), and until then the pre-rebuild
- * page. The legal pages' owner replaces one with the other; this test follows
- * without an edit, and fails if neither is there.
- *
- * @return array<string, string>
- */
-function privacySources(): array
-{
-    $markdown = [];
-
-    foreach (['en', 'vi'] as $locale) {
-        $file = "resources/data/legal/{$locale}/privacy.md";
-
-        if (is_file(base_path($file))) {
-            $markdown[$file] = consentSource($file);
-        }
-    }
-
-    if ($markdown !== []) {
-        return $markdown;
-    }
-
-    $legacy = 'resources/js/pages/Privacy.tsx';
-
-    return is_file(base_path($legacy)) ? [$legacy => consentSource($legacy)] : [];
-}

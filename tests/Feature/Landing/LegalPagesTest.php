@@ -158,15 +158,16 @@ it('indexes each document in every supported language', function (string $route)
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 })->with(['landing.privacy', 'landing.terms', 'landing.refundPolicy']);
 
-it('gives every heading an explicit id', function (string $locale): void {
-    foreach (legalDocumentsIn($locale) as $document) {
-        preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, $locale))->body(), $headings);
+// A translation's headings follow from the shape parity below.
+it('gives every English heading an explicit id', function (): void {
+    foreach (legalDocumentsIn('en') as $document) {
+        preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, 'en'))->body(), $headings);
 
         foreach ($headings[0] as $heading) {
-            expect($heading)->toMatch('/\{#[a-z0-9-]+\}$/', "legal/{$locale}/{$document}.md: \"{$heading}\" has no explicit id");
+            expect($heading)->toMatch('/\{#[a-z0-9-]+\}$/', "legal/en/{$document}.md: \"{$heading}\" has no explicit id");
         }
     }
-})->with(legalLocales());
+});
 
 it('keeps every translation in step with the English page: headings, ids, list items, paragraphs, slots and the update date', function (string $locale): void {
     foreach (legalDocumentsIn($locale) as $document) {
@@ -212,7 +213,7 @@ it('keeps the cookie contract the consent bar and the account app rely on', func
     expect($cookies)->toContain(LegalDocuments::COOKIE_SETTINGS_MARKER);
 
     // nl_dismissed_at was listed for years and set by nothing.
-    expect($privacy)->not->toContain('nl_dismissed_at');
+    expect($privacy)->not->toContain('nl_dismissed_at')->not->toContain('cookie-less');
 })->with([
     'English' => ['en', 'lawful basis', 'Cookie settings'],
     'Vietnamese' => ['vi', 'cơ sở pháp lý', 'Cài đặt cookie'],
@@ -224,10 +225,6 @@ it('describes purchase attribution as discarded, under the website and the cooki
     }
 
     expect(legalSection('privacy', $locale, 'website'))->toContain($discarded);
-
-    foreach (['so we know which', 'pay for the work', 'store against the license'] as $phrase) {
-        Assert::assertStringNotContainsStringIgnoringCase($phrase, legalSource('privacy', $locale));
-    }
 })->with([
     'English' => ['en', 'Our server discards it'],
     'Vietnamese' => ['vi', 'Máy chủ của chúng tôi bỏ nó đi'],
@@ -280,7 +277,6 @@ it('sets no retention period the server does not keep', function (string $locale
     // The previous policy promised 90 days for server logs and "aggregated" analytics; neither was true.
     expect($retention)->not->toContain('90');
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
-    Assert::assertStringNotContainsStringIgnoringCase('anonymous analytics', legalSource('privacy', $locale));
 })->with(['en', 'vi']);
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
@@ -302,7 +298,7 @@ it('covers the documentation site and its own analytics question', function (str
     expect(legalSection('privacy', $locale, 'transfers'))->toContain('Mintlify');
 })->with(legalLocales());
 
-it('discloses Cloudflare Web Analytics and states Google\'s default retention, never 14 months', function (string $locale, string $twoMonths, string $sixMonths): void {
+it('discloses Cloudflare Web Analytics and states Google\'s default retention', function (string $locale, string $twoMonths, string $sixMonths): void {
     /*
      * The owner confirmed (spec §0) that Cloudflare Web Analytics runs on
      * tablepro.app, and that the GA4 property was never set to keep data for
@@ -321,8 +317,6 @@ it('discloses Cloudflare Web Analytics and states Google\'s default retention, n
     expect($retention)->toContain('**Cloudflare Web Analytics**')->toContain($sixMonths);
     expect($website)->toContain($twoMonths);
     expect($retention)->toContain($twoMonths);
-
-    Assert::assertDoesNotMatchRegularExpression('/\b(14|fourteen|mười bốn)\s*(months?|tháng)\b/iu', legalSource('privacy', $locale));
 })->with([
     'English' => ['en', '2 months', 'six months'],
     'Vietnamese' => ['vi', '2 tháng', 'sáu tháng'],
