@@ -20,6 +20,10 @@ export default {
     "blog": "部落格",
     "faq": "常見問題",
     "account": "帳戶",
+    "github": "GitHub",
+    "githubStars": {
+        "other": "GitHub 星標 {count}"
+    },
     "download": "下載",
     "menu": "選單",
     "closeMenu": "關閉選單"

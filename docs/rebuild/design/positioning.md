@@ -146,8 +146,8 @@ promote the badge on an iPhone or iPad. The labels do not change, nothing auto-d
 - A star count or "#1 trending".
 - "No account".
 - Any Linux or Windows line.
-- "View source". Open source is in the line under both actions. GitHub is linked from the footer and the homepage
-  open-source section (sitemap §B.3, §D).
+- "View source". Open source is in the line under both actions. GitHub is linked from the header, the footer and the
+  homepage open-source section (sitemap §B.1, §B.3, §D).
 
 ### 3.3 Availability summary (closing CTA, blog CTA)
 
@@ -474,8 +474,9 @@ and §11 win.
 ### 10.1 Header and mobile menu
 
 **Desktop** (sitemap §B.1): logo · **Features ▾** · Databases · Pricing · Docs ↗ · Blog · (spacer) · Language ·
-Theme · Account · **Download** (button). The header has no GitHub icon. GitHub is linked from the footer's Resources
-and Community groups and from the homepage open-source section.
+Theme · GitHub · Account · **Download** (button). GitHub is GitHub's mark and the star count ("6.2k"), from 1280px
+only (decided 2026-10-10). It is also linked from the footer's Resources and Community groups and from the homepage
+open-source section.
 
 | Slot | English | Tiếng Việt | Notes |
 |---|---|---|---|

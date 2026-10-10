@@ -20,6 +20,11 @@ export default {
     "blog": "Blog",
     "faq": "Questions fréquentes",
     "account": "Compte",
+    "github": "GitHub",
+    "githubStars": {
+        "one": "GitHub, {count} étoile",
+        "other": "GitHub, {count} étoiles"
+    },
     "download": "Télécharger",
     "menu": "Menu",
     "closeMenu": "Fermer le menu"
