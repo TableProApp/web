@@ -17,9 +17,9 @@ generated, not drawn, so they are not part of your work.
   generated generic card for the page's language, and otherwise no `og:image` at all. A page never points at a card
   file that does not exist, and no placeholder box is ever published as a card.
 - The cards are rendered with `php artisan og:generate --type=all --locale=all` (Chromium is required; locally set
-  `PUPPETEER_EXECUTABLE_PATH`), or by the `og cards` workflow (`.github/workflows/og.yml`), which commits them.
-  Before launch, check that every card under `public/og/` comes from the current templates: a card rendered before
-  the rebuild still shows the old design and its claims.
+  `PUPPETEER_EXECUTABLE_PATH`), or by the `og cards` workflow (`.github/workflows/og.yml`), which opens a pull
+  request with them. Before launch, check that every card under `public/og/` comes from the current templates: a
+  card rendered before the rebuild still shows the old design and its claims.
 
 The one bespoke card is `og-site` below. To redesign it, replace its two files with new ones of the same name and
 size, and update its `alt` in `resources/data/assets.json` if the words change.

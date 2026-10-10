@@ -111,9 +111,12 @@ deploy that commit. When Homebrew serves the current Mac release, bump
 The suite never runs this command, because tests do not touch the network.
 
 **Social cards.** `public/og/` is committed, never generated on the server. After
-a content change that alters a page's `og` block, run the `og cards` workflow
-(or `php artisan og:generate --type=… --locale=…` locally, with Chromium) and
-deploy the commit it makes.
+a content change that alters a page's `og` block, run the `og cards` workflow,
+which opens a pull request from `bot/og-cards` (see "The web bot"), or run
+`php artisan og:generate --type=… --locale=…` locally, with Chromium, and open
+the pull request yourself. Merging it deploys the cards. Each run rebuilds
+`bot/og-cards` from `main` with only that run's cards, so merge an open card
+pull request before running the workflow for another set.
 
 **Server environment.** `APP_ENV` must be `production`: any other value shows
 visitors the placeholder of every image slot that has no file yet.
@@ -408,6 +411,35 @@ out of a fork's reach:
 
 The Cloudflare token is the other secret here. It can only purge the zone's
 cache, it is used on the runner, and it is never sent to the server.
+
+## The web bot
+
+`main` takes changes only through a pull request with green checks (the
+repository rulesets), so `og.yml` cannot push to it. It opens a pull request
+as the GitHub App `tablepro-web-bot` instead.
+
+- **What it can do.** The App is installed on this repository only, with
+  Contents and Pull requests read and write, and no Workflows permission. A run
+  mints a token for this repository that expires within the hour and is revoked
+  when the job ends. Its pull requests run the tests; one opened with
+  `GITHUB_TOKEN` would trigger no workflow.
+- **Where its credentials live.** The `web-bot` environment, whose only
+  deployment branch is `main`: the variable `WEB_BOT_CLIENT_ID` and the secret
+  `WEB_BOT_PRIVATE_KEY`. A job reads them only by naming that environment on a
+  run from `main`.
+- **Rotation.** Generate a new private key in the App's settings (organization
+  Settings > Developer settings > GitHub Apps) and store it:
+
+  ```bash
+  gh secret set WEB_BOT_PRIVATE_KEY --env web-bot --repo TableProApp/web < key.pem
+  ```
+
+  Delete the `.pem`, run the `og cards` workflow once, then delete the old key
+  in the App's settings. That deletion is also how a leaked key is revoked:
+  deleting the GitHub secret alone leaves a working key in circulation.
+- **Never a ruleset bypass actor.** `main` deploys itself, so a key that could
+  skip the rulesets could put code on the server. Without a bypass, the worst a
+  leaked key does is open a pull request that a maintainer still has to merge.
 
 ## Caching
 

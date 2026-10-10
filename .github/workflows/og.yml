@@ -2,10 +2,10 @@ name: og cards
 
 # Manual only, and deliberately so.
 #
-# Regenerating cards writes to public/og, which is tracked, so this job needs
-# write access. A workflow with write access must never run against code from a
-# fork, which rules out `pull_request`. A maintainer runs this after merging a
-# content change instead.
+# Regenerating cards writes to public/og, which is tracked, so this job opens a
+# pull request as the web bot (docs/deployment.md, "The web bot"). Its key
+# must never reach code from a fork, which rules out `pull_request`. A
+# maintainer runs this after merging a content change instead.
 on:
   workflow_dispatch:
     inputs:
@@ -27,14 +27,17 @@ on:
         type: string
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   generate:
     runs-on: ubuntu-26.04
+    environment: web-bot
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -96,9 +99,25 @@ jobs:
           if [ -n "$OG_SLUG" ]; then ARGS+=(--slug="$OG_SLUG"); fi
           php artisan og:generate "${ARGS[@]}"
 
-      - name: Commit
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Mint a web bot token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          commit_message: "chore(og): regenerate social cards"
+          client-id: ${{ vars.WEB_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.WEB_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          sign-commits: true
+          branch: bot/og-cards
+          delete-branch: true
+          commit-message: "chore(og): regenerate social cards"
+          title: "chore(og): regenerate social cards"
           # public/og.png is the English generic card, written in place by --type=site.
-          file_pattern: public/og/** public/og.png
+          add-paths: |
+            public/og/**
+            public/og.png
