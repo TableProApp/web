@@ -20,7 +20,7 @@ the most valuable contributions to it are usually not code.
 The site claims things about a real product that real people pay for, so:
 
 - Do not claim a feature TablePro does not have.
-- Do not describe a competitor inaccurately. If you are comparing, be fair —
+- Do not describe a competitor inaccurately. If you are comparing, be fair:
   a comparison page that oversells us is worse than no page.
 - Cite a version when a claim depends on one.
 
@@ -46,8 +46,8 @@ CI runs the same three. It will not fix style for you.
 
 ## What does not belong here
 
-Anything touching licences, payments, customer accounts or personal data is
-handled by a separate application — see [docs/architecture.md](docs/architecture.md).
+Anything touching licenses, payments, customer accounts or personal data is
+handled by a separate application. See [docs/architecture.md](docs/architecture.md).
 If your change needs one of those, open an issue describing what you need
 rather than working around it.
 
@@ -55,8 +55,8 @@ rather than working around it.
 
 By contributing you agree that:
 
-- **Code** you contribute is licensed under the [MIT licence](LICENSE).
-- **Content** you contribute — prose, blog posts, page copy — is licensed under
+- **Code** you contribute is licensed under the [MIT license](LICENSE).
+- **Content** you contribute (prose, blog posts, page copy) is licensed under
   [CC BY-NC 4.0](LICENSE-CONTENT).
 
 Practically: anyone may reuse the code freely, and may share the writing with
@@ -65,8 +65,10 @@ screenshots and stand up a competing commercial site with them.
 
 Do not commit images you do not have the rights to. Third-party logos under
 `public/images/sponsors/` belong to their owners and are used with permission;
-neither licence above extends to them. The TablePro logo files under
-`public/images/brand/` are trademarks, not covered by either licence. The brand
+neither license above extends to them. The TablePro logo files under
+`public/images/brand/` and the site icons (`public/logo.png`,
+`public/images/logo.png`, `public/apple-touch-icon.png` and
+`public/favicon.ico`) are trademarks, not covered by either license. The brand
 guidelines text is CC BY 4.0. After the app icon changes, regenerate the PNG
 files in `public/images/brand/` with
 `scripts/brand-kit.sh <path to a TablePro app checkout>` (macOS, needs

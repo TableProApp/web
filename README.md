@@ -109,28 +109,28 @@ tests skip unless the SSR bundle is built; that is expected locally.
 
 ## What is not here
 
-Buying a licence, signing in to an account and subscribing to the newsletter
+Buying a license, signing in to an account and subscribing to the newsletter
 are handled by the TablePro backend, which is a separate application. Forms on these pages `POST` to those endpoints and get JSON back.
 
-If you are working on one of those forms, stub the response or proxy it — see
+If you are working on one of those forms, stub the response or proxy it. See
 [docs/architecture.md](docs/architecture.md) for the contract and the options.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Content contributions — a blog post, a
-comparison page, a typo fix, better copy — are as welcome as code.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Content contributions (a blog post, a
+comparison page, a typo fix, better copy) are as welcome as code.
 
-## Licence
+## License
 
-Two licences, because code and writing want different terms:
+Two licenses, because code and writing want different terms:
 
-- **Code** — [MIT](LICENSE). Use it however you like.
-- **Content** — [CC BY-NC 4.0](LICENSE-CONTENT). Covers the prose in
+- **Code**: [MIT](LICENSE). Use it however you like.
+- **Content**: [CC BY-NC 4.0](LICENSE-CONTENT). Covers the prose in
   `resources/blog`, the page copy in `resources/data` and `resources/js`, and
   the images under `public/images` and `public/og`. Share and adapt it with
   attribution, but not commercially.
 
-Neither licence covers:
+Neither license covers:
 
 - the third-party logos under `public/images/sponsors` and the integration
   icons and screenshots under `public/images/integrations`, which belong to
