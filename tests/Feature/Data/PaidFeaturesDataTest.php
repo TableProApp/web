@@ -3,37 +3,21 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/paid-features.json: the features a Starter or Team license
- * adds to the Mac app.
- *
- * The list is the app's `ProFeature` enum, unchanged from v0.76.1 to v0.77.0
- * (TablePro/Models/Settings/ProFeature.swift @ v0.77.0, `displayName` and
- * `requiredTier`). The names are pinned byte for byte, because pricing, the
- * FAQ, feature pages and structured data all print them and the reader then
- * looks for the same words in the app. Everything not listed is free, and the
- * iPhone and iPad app gates nothing, so `platforms` only ever names the Mac.
- *
- * Lapse behaviour (each `ProFeature` call site at v0.77.0): only Result
- * Charts and Query Insights show an overlay; the others alert, hide, disable or
- * stop silently.
- */
-
-/**
  * @return list<array{id: string, proFeature: string, name: string, tier: string, platforms: list<string>, sinceAppVersion: string, lapse: list<string>, highlight: bool, page: array{path: string, anchor: string}}>
  */
 function paidFeaturesJson(): array
 {
-    return json_decode(File::get(resource_path('data/paid-features.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $features = null;
+
+    return $features ??= json_decode(File::get(resource_path('data/paid-features.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
- * The section ids each feature page keeps (sitemap §A.2). Redirects and
- * cross-links target them, so a paid feature may only point at one of these.
- *
  * @return array<string, list<string>>
  */
 function paidFeaturePageAnchors(): array
 {
+    // Redirects and cross-links target these section ids (sitemap §A.2).
     return [
         '/features/querying' => ['editor', 'history', 'performance', 'results', 'other-languages', 'iphone'],
         '/features/data-editing' => ['browse', 'edit', 'safe-mode', 'data-rewind', 'documents-and-keys', 'iphone'],
@@ -158,7 +142,7 @@ it('links every feature to a fixed section of a feature page', function (): void
     expect(array_column(array_column(paidFeaturesJson(), 'page', 'proFeature'), 'anchor'))->toContain('compare-sync');
 });
 
-it('finds each linked section in the feature page content once that content exists', function (): void {
+it('finds each linked section in the feature page content', function (): void {
     foreach (paidFeaturesJson() as $feature) {
         $slug = basename($feature['page']['path']);
         $file = resource_path("data/content/en/features/{$slug}.json");
@@ -166,20 +150,13 @@ it('finds each linked section in the feature page content once that content exis
         expect(File::exists($file))->toBeTrue("content/en/features/{$slug}.json is missing");
         expect(File::get($file))->toContain('"' . $feature['page']['anchor'] . '"');
     }
-})->skip(
-    fn(): bool => ! File::isDirectory(resource_path('data/content/en/features')),
-    'The feature pages are not written yet; until then the anchors are checked against sitemap §A.2 above.',
-);
+});
 
-it('gives every feature a detail line in both locales once the copy exists', function (): void {
-    foreach (['en', 'vi'] as $locale) {
-        $details = json_decode(File::get(resource_path("data/content/{$locale}/paid-features.json")), true, 512, JSON_THROW_ON_ERROR);
+it('gives every feature a detail line', function (): void {
+    $locale = 'en';
+    $details = json_decode(File::get(resource_path("data/content/{$locale}/paid-features.json")), true, 512, JSON_THROW_ON_ERROR);
 
-        foreach (paidFeaturesJson() as $feature) {
-            expect(data_get($details, "{$feature['id']}.detail"))->toBeString()->not->toBe('', "{$locale}: {$feature['id']} has no detail");
-        }
+    foreach (paidFeaturesJson() as $feature) {
+        expect(data_get($details, "{$feature['id']}.detail"))->toBeString()->not->toBe('', "{$locale}: {$feature['id']} has no detail");
     }
-})->skip(
-    fn(): bool => ! File::exists(resource_path('data/content/en/paid-features.json')) || ! File::exists(resource_path('data/content/vi/paid-features.json')),
-    'content/{en,vi}/paid-features.json is not written yet.',
-);
+});

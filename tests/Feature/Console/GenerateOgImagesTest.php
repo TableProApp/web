@@ -9,16 +9,6 @@ use Illuminate\Support\Facades\File;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * `og:generate` (architecture §1.15, sitemap §C.7).
- *
- * The cards come from the page registry, so a card exists for exactly the
- * pages and locales that render, at the paths `OgImages` reads. Everything
- * runs against scratch content and a scratch public directory, with a fake
- * renderer: the committed cards and `/og.png` are never touched, and no
- * Chromium is needed. The committed cards themselves, against the committed
- * content, are checked in tests/Feature/Seo/OgCardsTest.php.
- */
 beforeEach(function (): void {
     $this->dirs = seoScratch();
     $this->public = seoScratchPublic();
@@ -89,12 +79,7 @@ it('renders every card in both languages by default', function (): void {
         expect([$card['width'], $card['height']])->toBe([1200, 630]);
     }
 
-    /*
-     * The list above is relative to the scratch public directory, so a card
-     * written into the real one would keep its absolute path and fail it. The
-     * real `public/og/vi` holds the committed Vietnamese cards, so whether it
-     * exists says nothing about this run.
-     */
+    // A card written into the real public/ would keep its absolute path and fail the list above.
     expect(public_path())->toBe($this->public);
 });
 
@@ -137,10 +122,6 @@ it('renders nothing and says so when no page has the slug', function (): void {
 });
 
 it('skips a page with no card copy and keeps its existing card', function (): void {
-    /*
-     * A page whose content has no `og` block keeps the card it has, rather
-     * than having it replaced by a blank one.
-     */
     seoWriteContent($this->dirs['content'], 'en', 'databases/mysql-client', ['seo' => ['title' => 't', 'description' => 'd']]);
     $this->app->forgetInstance(PageRegistry::class);
 
@@ -236,11 +217,6 @@ it('reports a card that fails to render and still renders the rest', function ()
 });
 
 it('gives every page a card that exists once the cards are generated', function (): void {
-    /*
-     * What the head references is checked against the disk, so a share never
-     * points at a 404. Pages with copy get their own card; every other page in
-     * the registry gets its language's generic card.
-     */
     $this->artisan('og:generate')->assertSuccessful();
 
     $images = app(OgImages::class);

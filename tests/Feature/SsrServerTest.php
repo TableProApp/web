@@ -1,12 +1,6 @@
 <?php
 
-/*
- * Inertia's SSR server listens on every interface unless told otherwise, and
- * answers `/render` and `/shutdown` to anyone who reaches its port. Only PHP on
- * the same host talks to it (INERTIA_SSR_URL is a 127.0.0.1 address), so the
- * entry binds loopback.
- */
-
+// Unbound, the SSR server answers /render and /shutdown to anyone who reaches its port.
 it('binds the SSR server to loopback unless INERTIA_SSR_HOST says otherwise', function (): void {
     $entry = (string) file_get_contents(resource_path('js/ssr.tsx'));
 
@@ -37,4 +31,4 @@ it('cannot be reached on this machine\'s network address', function (): void {
     }
 
     expect($socket)->toBeFalse("The SSR server answers on {$address}:{$port}");
-});
+})->group('ssr');

@@ -4,21 +4,6 @@ use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * resources/data/pricing.json: every price, seat rule, refund window and
- * license timing the public site states.
- *
- * The values are synced by hand with what checkout charges (the platform's
- * `config/pricing.php`, in cents there, and the Polar products), so this test
- * pins each one. A change here without the matching change in checkout would
- * advertise a price nobody is charged; the failing assertion is the prompt to
- * confirm the other side first.
- *
- * Owner answers (spec §0): prices unchanged, USD, Polar as merchant of record,
- * a 7-day refund on every paid plan, and Team "Priority support" defined as
- * Team emails answered first, within one business day.
- */
-
-/**
  * @return array{
  *     currency: string,
  *     merchantOfRecord: array{name: string},
@@ -37,12 +22,11 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 function pricingJson(): array
 {
-    return json_decode(File::get(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * A dollar amount as whole cents, the unit checkout's config uses.
- */
 function pricingCents(int|float $amount): int
 {
     return (int) round($amount * 100);
@@ -73,6 +57,7 @@ it('bills in US dollars through Polar', function (): void {
     expect($pricing['syncedWith'])->toBeString()->not->toBe('');
 });
 
+// Synced by hand with checkout: a failure here is the prompt to confirm the platform's pricing config first.
 it('keeps every price unchanged', function (): void {
     $tiers = pricingJson()['tiers'];
 
@@ -116,14 +101,7 @@ it('pins the refund window, the license timings and Priority support', function 
     expect($pricing['tiers']['team']['prioritySupport'])->toBe(['responseBusinessDays' => 1]);
 });
 
-/*
- * The checkout overlay's script, which `resources/js/lib/checkout-sdk.ts`
- * injects at checkout intent and never with the page (architecture §1.12;
- * ThirdParty/ScriptsTest checks the documents). It lives here rather than in
- * the module because external URLs belong in data (Data/FactsDataTest), and
- * the Polar build stays pinned: the embed is third-party code running on
- * this origin, so a new version is a reviewed change, not a silent one.
- */
+// Pinned: the embed is third-party code running on this origin, so a new version is a reviewed change.
 it('pins the checkout overlay scripts, one per provider, over HTTPS', function (): void {
     $sdk = pricingJson()['checkoutSdk'];
 

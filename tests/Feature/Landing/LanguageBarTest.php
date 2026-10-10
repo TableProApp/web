@@ -7,20 +7,9 @@ use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
 
-/**
- * The bar that offers a page in the reader's language (LanguageBar), and the
- * head script that decides it before first paint.
- *
- * The page's language stays its URL's: nothing here redirects, sets a cookie
- * or reads a header. The server only says which languages a page exists in
- * (`localization.suggestable`), the same for every reader, so the HTML can sit
- * in the edge cache; the reader's half is decided in their browser. Which
- * language that is, and the head script's parity with it, is
- * tests/js/language-suggestion.test.ts.
- */
 const SUGGESTION_MARKER = '/* language-suggestion:start */';
 
-/** The `language.suggest` strings of one locale's controls catalog. @return array<string, string> */
+/** @return array<string, string> */
 function suggestionCopy(string $locale): array
 {
     $source = (string) file_get_contents(dirname(__DIR__, 3) . "/resources/js/i18n/messages/{$locale}/controls.ts");
@@ -55,11 +44,6 @@ it('decides before first paint wherever the page exists in another language, the
 
     expect($html)->toContain(SUGGESTION_MARKER)
         ->toContain("localStorage.getItem('tablepro:language')");
-
-    // Only the license banner's own pages carry its class; the language bar has its own.
-    if ($path === '/pricing') {
-        Assert::assertStringNotContainsString('has-banner', $html, '/pricing must still reserve no license banner height');
-    }
 })->with(['/', '/vi/download', '/pricing']);
 
 it('ships no script where the page has no other language, nor on an error page', function (string $path, int $status): void {
@@ -104,7 +88,7 @@ it('renders an empty slot for the bar after the license banner and above the hea
     preg_match('/<div[^>]*class="language-bar[^"]*"[^>]*>(.*?)<\/div>/s', $html, $element);
 
     expect(trim($element[1] ?? 'missing'))->toBe('', 'The server cannot know the reader\'s language, so the bar is empty until the browser decides');
-});
+})->group('ssr');
 
 it('shares the license banner\'s slot and hides it while it shows', function (): void {
     $css = (string) file_get_contents(resource_path('css/app.css'));

@@ -63,7 +63,7 @@ jobs:
         run: php artisan assets:generate --check
 
       - name: Tests
-        run: ./vendor/bin/pest
+        run: ./vendor/bin/pest --exclude-group=ssr
 
   frontend:
     runs-on: ubuntu-26.04
@@ -95,11 +95,8 @@ jobs:
       - name: Build
         run: npm run build
 
-  # Every case behind `requireSsr()` (tests/Support/ssr.php) needs a built SSR
-  # bundle and a running SSR service, and skips itself when either is missing.
-  # The `php` job above provides neither, so those cases skip there. This job
-  # is the one place they execute; REQUIRE_SSR turns those skips into failures
-  # so they cannot go quiet again.
+  # The ssr group: tests that need the built bundles, node_modules or a live SSR
+  # service. REQUIRE_SSR turns their skips into failures here.
   ssr:
     runs-on: ubuntu-26.04
 
@@ -168,18 +165,10 @@ jobs:
           cat /tmp/ssr.log >&2 || true
           exit 1
 
-      # The whole suite, not one file.
-      #
-      # This once ran only HomepageRenderTest.php, which left every other
-      # SSR-rendered assertion skipping on every push: the `php` job above
-      # builds no bundles, so every `ssrHtml()` / `requireSsr()` assertion
-      # short-circuits there, and this job is the one place they execute.
-      #
-      # REQUIRE_SSR turns a skip into a failure, so this cannot go quiet again.
       - name: SSR render tests
         env:
           REQUIRE_SSR: 1
-        run: ./vendor/bin/pest
+        run: ./vendor/bin/pest --group=ssr
 
       - name: SSR service log
         if: always()

@@ -7,22 +7,8 @@ use Illuminate\Support\Facades\File;
 
 require_once __DIR__ . '/../Seo/helpers.php';
 
-/**
- * `sitemap:generate` (architecture §1.6, sitemap §F.3).
- *
- * The sitemap is the registry's indexable pages and nothing else: one `<url>`
- * per page and indexable locale, each translated page with every translation
- * and `x-default` as `xhtml:link` alternates. It is written to a scratch
- * public directory, so a run never leaves a file in `public/`.
- */
 it('writes public/sitemap.xml and nothing else', function (): void {
-    /*
-     * The real public/sitemap.xml is gitignored, and every deploy that touches
-     * content regenerates it, so the production checkout always has one.
-     * Asserting it is absent made the suite fail there. What this test means is
-     * that the run leaves it alone: still absent if it was absent, the same
-     * bytes and modification time if it was there.
-     */
+    // Production keeps a real public/sitemap.xml, so assert the run leaves it alone, not that it is absent.
     $fingerprint = function (string $path): ?array {
         clearstatcache(true, $path);
 
@@ -55,7 +41,7 @@ it('lists exactly the indexable pages of the registry, once each', function (): 
         }
     }
 
-    $urls = array_keys(seoGenerateSitemap());
+    $urls = array_keys(seoCommittedSitemap());
 
     sort($expected);
     sort($urls);
@@ -65,7 +51,7 @@ it('lists exactly the indexable pages of the registry, once each', function (): 
 });
 
 it('lists the English and Vietnamese blog indexes as each other\'s alternates, and no other language of it', function (): void {
-    $urls = seoGenerateSitemap();
+    $urls = seoCommittedSitemap();
     $base = LocalizedUrl::base();
 
     foreach (['/blog', '/vi/blog'] as $path) {
@@ -79,7 +65,7 @@ it('lists the English and Vietnamese blog indexes as each other\'s alternates, a
 });
 
 it('lists absolute, clean, canonical URLs only', function (): void {
-    foreach (seoGenerateSitemap() as $loc => $url) {
+    foreach (seoCommittedSitemap() as $loc => $url) {
         expect($loc)->toStartWith(LocalizedUrl::base() . '/');
         expect(parse_url($loc, PHP_URL_QUERY))->toBeNull();
         expect(parse_url($loc, PHP_URL_FRAGMENT))->toBeNull();
@@ -92,7 +78,7 @@ it('lists absolute, clean, canonical URLs only', function (): void {
 });
 
 it('leaves out redirect and 410 sources, platform paths and system files', function (): void {
-    $paths = array_map(fn(string $loc): string => seoPathOf($loc), array_keys(seoGenerateSitemap()));
+    $paths = array_map(fn(string $loc): string => seoPathOf($loc), array_keys(seoCommittedSitemap()));
 
     foreach (seoRedirectEntries() as $entry) {
         expect(in_array($entry['from'], $paths, true))->toBeFalse("{$entry['from']} is retired");
@@ -106,7 +92,7 @@ it('leaves out redirect and 410 sources, platform paths and system files', funct
 });
 
 it('dates each URL and drops changefreq and priority', function (): void {
-    foreach (seoGenerateSitemap() as $loc => $url) {
+    foreach (seoCommittedSitemap() as $loc => $url) {
         expect($url['lastmod'])->not->toBeNull("{$loc} has no lastmod");
         expect(strtotime((string) $url['lastmod']))->toBeInt();
         expect(in_array('changefreq', $url['elements'], true))->toBeFalse();

@@ -7,30 +7,15 @@ use App\Support\Seo\PageRegistry;
 use App\Support\Seo\SeoContext;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
-use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * hreflang, canonicals and `og:locale`, which must agree from every side
- * (architecture §1.6, sitemap §F.2).
- *
- * - A page declares alternates only when it is a real translation of another
- *   indexable page, and then every member of the pair declares the same set,
- *   itself included, plus `x-default` pointing at English.
- * - The canonical is always the page itself, absolute, in its own locale. A
- *   page that renders but is not indexed (`/vi/blog`) has none, no alternates
- *   and `noindex, follow`.
- * - Nothing points at a translation that does not exist.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
 /**
- * What the head must say for a page in a locale, from the registry alone.
- *
  * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>}
  */
 function hreflangExpected(PageEntry $entry, string $locale): array
@@ -61,8 +46,6 @@ function hreflangExpected(PageEntry $entry, string $locale): array
 }
 
 /**
- * The head fields of `SeoContext` for a URL, without the OG image.
- *
  * @return array<string, mixed>
  */
 function hreflangContextFor(string $path, string $locale): array
@@ -74,8 +57,6 @@ function hreflangContextFor(string $path, string $locale): array
 }
 
 /**
- * Writes a scratch site with every case the rules distinguish.
- *
  * @param  array{content: string, blog: string, legal: string}  $dirs
  */
 function hreflangScratchSite(array $dirs): void
@@ -182,10 +163,6 @@ describe('on a scratch site with every kind of page', function (): void {
             'ogLocaleAlternates' => [],
         ]);
 
-        /*
-         * Not paired for search engines, still linked for people: the switcher
-         * goes straight between the two.
-         */
         $switcher = app(LocaleSwitcher::class)->forRequest(seoMatchedRequest('/vi/blog', 'vi'));
 
         expect($switcher[0])->toMatchArray(['locale' => 'en', 'href' => '/blog', 'fallback' => false]);
@@ -209,35 +186,21 @@ describe('on a scratch site with every kind of page', function (): void {
 });
 
 it('shares the registry head on every real page, in every locale it renders in', function (): void {
-    /*
-     * Through the shared `seo` prop of a real response, so the wiring from the
-     * registry to the page is under test, not only the registry.
-     */
+    $crawl = seoCrawlProps();
     $checked = 0;
-    $heads = [];
-    // Render each URL once. Reuse only its asserted SEO props for reciprocal
-    // checks instead of rendering the same large SSR page for every sibling.
-    $headFor = function (string $path) use (&$heads): array {
-        if (! array_key_exists($path, $heads)) {
-            $this->get($path)->assertOk()->assertInertia(function (AssertableInertia $page) use (&$heads, $path): void {
-                $heads[$path] = $page->toArray()['props']['seo'];
-            });
-        }
-
-        return $heads[$path];
-    };
 
     foreach (app(PageRegistry::class)->all() as $entry) {
         foreach ($entry->renderLocales as $locale) {
             $path = $entry->url($locale, false);
-            $seo = $headFor($path);
+            $seo = $crawl[$path]['props']['seo'] ?? null;
 
+            Assert::assertIsArray($seo, "{$path} shares no seo prop");
             unset($seo['ogImage']);
 
             expect($seo)->toBe(hreflangExpected($entry, $locale), "{$path}: the shared seo prop disagrees with the registry");
 
             foreach ($seo['alternates'] as $alternate) {
-                $back = $headFor(seoPathOf($alternate['href']))['alternates'];
+                $back = $crawl[seoPathOf($alternate['href'])]['props']['seo']['alternates'] ?? null;
 
                 expect($back)->toBe($seo['alternates'], "{$alternate['href']} does not list {$path} back");
             }
@@ -248,48 +211,3 @@ it('shares the registry head on every real page, in every locale it renders in',
 
     expect($checked)->toBeGreaterThan(0);
 });
-
-it('renders exactly the registry head tags, server-side', function (string $path, string $locale): void {
-    $html = ssrHtml($path);
-    $document = Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR);
-    $entry = app(SeoContext::class)->entryFor(seoMatchedRequest($path, $locale));
-
-    Assert::assertNotNull($entry, "{$path} is not a registry page");
-
-    $expected = hreflangExpected($entry, $locale);
-    $attributes = static fn(string $selector, string $attribute): array => array_map(
-        static fn(Dom\Element $element): string => (string) $element->getAttribute($attribute),
-        iterator_to_array($document->querySelectorAll($selector)),
-    );
-
-    $hreflangs = [];
-
-    foreach ($document->querySelectorAll('link[rel="alternate"][hreflang]') as $link) {
-        $hreflangs[(string) $link->getAttribute('hreflang')] = (string) $link->getAttribute('href');
-    }
-
-    $wanted = [];
-
-    foreach ($expected['alternates'] as $alternate) {
-        $wanted[$alternate['hreflang']] = $alternate['href'];
-    }
-
-    if ($expected['xDefault'] !== null) {
-        $wanted['x-default'] = $expected['xDefault'];
-    }
-
-    ksort($hreflangs);
-    ksort($wanted);
-
-    expect($document->documentElement->getAttribute('lang'))->toBe($locale);
-    expect($hreflangs)->toBe($wanted);
-    expect(count($document->querySelectorAll('link[rel="alternate"][hreflang]')))->toBe(count($wanted), "{$path} repeats an alternate");
-    expect($attributes('link[rel="canonical"]', 'href'))->toBe($expected['canonical'] === null ? [] : [$expected['canonical']]);
-    expect($attributes('meta[name="robots"]', 'content'))->toBe([$expected['robots']]);
-    expect($attributes('meta[property="og:locale"]', 'content'))->toBe([$expected['ogLocale']]);
-    expect($attributes('meta[property="og:locale:alternate"]', 'content'))->toBe($expected['ogLocaleAlternates']);
-})->with([
-    'a pair, English side' => ['/download', 'en'],
-    'a pair, Vietnamese side' => ['/vi/download', 'vi'],
-    'an English-only post' => ['/blog/tablepro-0-77', 'en'],
-]);

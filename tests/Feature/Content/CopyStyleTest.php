@@ -3,20 +3,16 @@
 require_once __DIR__ . '/helpers.php';
 
 /**
- * House style for the English homepage, feature and iPhone copy: sentences a
- * reader can hold, American spelling as the app, the pricing page and the
- * legal pages use, one name for TLS, and leads that say what the app does
- * rather than how the page is laid out.
- */
-
-/**
- * The visible strings of the English files this style covers, keyed by
- * "file key".
- *
  * @return array<string, string>
  */
 function copyStyleStrings(bool $withIos = true): array
 {
+    static $memo = [];
+
+    if (isset($memo[$withIos])) {
+        return $memo[$withIos];
+    }
+
     $root = resource_path('data/content/en');
     $files = ["{$root}/home.json", ...contentGuardFiles("{$root}/features", 'json')];
 
@@ -32,14 +28,10 @@ function copyStyleStrings(bool $withIos = true): array
         }
     }
 
-    return $strings;
+    return $memo[$withIos] = $strings;
 }
 
 /**
- * A string as sentences, with its inline tags removed. A `{slot}` counts as
- * one word, so a sentence that names a list from data is measured by what is
- * typed.
- *
  * @return list<string>
  */
 function copyStyleSentences(string $text): array
@@ -66,10 +58,7 @@ it('keeps every sentence of the homepage and feature copy under 40 words', funct
         ->and($long)->toBe([], "Split these sentences and keep every fact:\n  " . implode("\n  ", $long));
 });
 
-/**
- * British forms of words this copy uses or is likely to. A verb in -ise is
- * matched by its endings, so "precise" and "otherwise" pass.
- */
+// A verb in -ise is matched by its endings, so "precise" and "otherwise" pass.
 const COPY_STYLE_BRITISH = '/\b(colou(?:r|rs|red|ring)|favou(?:r|rs|rite|rites)|behaviours?|honou(?:r|rs|red)|neighbours?|(?:organ|recogn|custom|optim|synchron|author|initial|normal|summar|categor|priorit)is(?:e|es|ed|ing|ation|ations)|analys(?:e|ed|ing)|labell(?:ed|ing)|cancell(?:ed|ing)|modell(?:ed|ing)|travell(?:ed|ing)|licences?|centres?|grey|whilst|catalogues?|dialogues?|programmes?|untick(?:s|ed|ing)?|tick(?:s|ed|ing)?)\b/iu';
 
 it('writes American English', function (): void {

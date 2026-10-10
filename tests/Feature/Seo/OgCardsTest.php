@@ -15,36 +15,15 @@ use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * The Open Graph cards committed under `public/og`, checked against the pages
- * that share them (architecture §1.15, sitemap §C.7).
- *
- * Cards are rendered on a developer machine and committed; production never
- * generates one. So nothing but these cases stands between a new page and a
- * share preview that 404s, or between a retired page and a card that still
- * carries its old claims. Five database pages once shipped a missing card on
- * a green suite, because the only coverage check walked scratch content.
- *
- * Every case here reads the committed content and the real `public`
- * directory. Regenerate with `php artisan og:generate` (see CLAUDE.md).
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-/**
- * The committed file behind a URL on the canonical origin.
- */
 function ogCardsFile(string $url): string
 {
     return base_path('public' . seoPathOf($url));
 }
 
-/**
- * Whether a page has card copy of its own in a locale: a post, or an `og`
- * title in the content file of a feature, database or comparison page. Every
- * other page shares its language's generic card.
- */
 function ogCardsHasOwnCopy(PageEntry $entry, string $locale): bool
 {
     if ($entry->ogSlug === null || $entry->ogFamily === 'site') {
@@ -68,9 +47,6 @@ function ogCardsHasOwnCopy(PageEntry $entry, string $locale): bool
 }
 
 /**
- * Every card `og:generate` writes for the committed content, as public paths:
- * each locale's generic card and each page's own card.
- *
  * @return list<string>
  */
 function ogCardsExpected(): array
@@ -92,10 +68,6 @@ function ogCardsExpected(): array
 }
 
 it('points every page, in every language it renders in, at a card that is on disk', function (): void {
-    /*
-     * Through `SeoContext`, which is the shared `seo` prop the head renders,
-     * so this is the URL a share preview actually fetches.
-     */
     $checked = 0;
 
     foreach (app(PageRegistry::class)->all() as $entry) {
@@ -126,10 +98,7 @@ it('points every page, in every language it renders in, at a card that is on dis
 });
 
 it('gives each page with card copy its own card, in its own language', function (): void {
-    /*
-     * A page whose card is missing falls back to the generic card without a
-     * sound, so the fallback alone cannot show that a card was forgotten.
-     */
+    // Five database pages once shipped without a card: the silent fallback hid it.
     $images = app(OgImages::class);
     $own = 0;
 
@@ -156,11 +125,6 @@ it('gives each page with card copy its own card, in its own language', function 
 });
 
 it('says what each card shows, in the language of the page that shares it', function (): void {
-    /*
-     * A card is text set in an image, so its `alt` is that text: the title
-     * `og:generate` printed on a page's own card, or what the manifest says
-     * the designed site card shows.
-     */
     $site = app(AssetManifest::class)->entry(OgImages::SITE_CARD)['alt'];
     $blog = app(BlogService::class);
     $content = app(ContentRepository::class);
@@ -199,16 +163,7 @@ it('has a generic card for every language', function (): void {
 });
 
 it('keeps no card that no page shares', function (): void {
-    /*
-     * A retired page's card stays reachable at its old URL for as long as the
-     * file exists, with whatever the page used to claim baked into the image
-     * ("10x LESS RAM" on the pre-rebuild comparison cards). Merged and removed
-     * pages lose their cards (sitemap §C.7).
-     *
-     * The bespoke generic card the owner may supply (`og-site` in
-     * resources/data/assets.json) is the one file allowed beside the generated
-     * ones.
-     */
+    // A retired page's card stays public with its old claims baked in ("10x LESS RAM").
     $assets = app(AssetManifest::class);
     $bespoke = array_map(
         fn(string $locale): string => $assets->fileUrl(OgImages::SITE_CARD, 'light', $locale, 1200, 'png'),
@@ -225,10 +180,7 @@ it('keeps no card that no page shares', function (): void {
         }
     }
 
-    /*
-     * Beside `/og.png` at the root: the pre-rebuild `/og@2x.png` sat there,
-     * unreferenced but public, still saying "Native speed.".
-     */
+    // The pre-rebuild /og@2x.png sat at the root, unreferenced but public.
     foreach (File::glob(base_path('public/og*.png')) as $file) {
         $onDisk[] = '/' . basename($file);
     }
@@ -239,14 +191,7 @@ it('keeps no card that no page shares', function (): void {
 });
 
 it('draws every generated card on the current template', function (): void {
-    /*
-     * A card rendered by an older template still says whatever that template
-     * printed: the pre-rebuild cards were dark and carried "Native speed.",
-     * "29 databases" and benchmark claims. The ground colour of
-     * resources/views/og/layout.blade.php is the cheapest proof that a card
-     * was drawn by the current one. If the template's ground changes, every
-     * card has to be regenerated, and this case fails until it is.
-     */
+    // The template's ground colour is the cheapest proof a card was not drawn by the dark pre-rebuild one.
     $layout = (string) file_get_contents(resource_path('views/og/layout.blade.php'));
 
     expect(preg_match('/html,\s*body\s*\{[^}]*?background:\s*#([0-9a-f]{6})\s*;/i', $layout, $match))->toBe(1);
@@ -254,8 +199,7 @@ it('draws every generated card on the current template', function (): void {
     $ground = array_map(hexdec(...), str_split(strtolower($match[1]), 2));
 
     foreach (ogCardsExpected() as $path) {
-        // Supplied artwork occupies the canonical English default URL.
-        // Its geometry, opacity and budget are checked in BespokeOgCardTest.
+        // Supplied artwork at /og.png is checked in BespokeOgCardTest.
         if ($path === '/og.png' && app(AssetManifest::class)->ogCard(OgImages::SITE_CARD, Locales::default()) === $path) {
             continue;
         }

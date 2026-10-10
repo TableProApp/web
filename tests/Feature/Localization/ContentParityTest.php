@@ -6,26 +6,6 @@ use App\Support\Localization\Locales;
 use Illuminate\Support\Arr;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-/**
- * Every translation has the same shape as its English original.
- *
- * - `resources/data/content/{locale}`: the same files, the same keys, the same
- *   `{token}` slots and the same asset ids. `seo.indexable` is the one key
- *   allowed to differ, because it is how `/vi/blog` renders without being
- *   indexed.
- * - `resources/data/legal/{locale}`: the same documents with the same heading
- *   ids, so `/privacy#cookies` and `/vi/privacy#cookies` land on the same
- *   section.
- * - `resources/blog/vi`: a translated post has an English original and keeps
- *   its publication date.
- * - The glossary's forbidden variants (tests/Support/vi-forbidden-variants.php)
- *   appear in no Vietnamese string, and the English-only rows in no English one.
- * - No Vietnamese value is its English original left untranslated, unless
- *   it has nothing to translate: an identifier, a token template, or terms
- *   the glossary keeps in English (the untranslated-value heuristic below).
- *
- * Until a family's content exists, its part of this file has nothing to check.
- */
 const CONTENT_ROOT = 'data/content';
 
 /**
@@ -67,6 +47,7 @@ function contentJson(string $locale, string $file): array
  */
 function comparableShape(array $data): array
 {
+    // seo.indexable is how a translated blog index renders without being indexed.
     return Arr::except(Arr::dot($data), ['seo.indexable']);
 }
 
@@ -82,7 +63,7 @@ function slotNames(string $text): array
     return $names;
 }
 
-/** [type, slots, inline code, tags], without pinning editorial wording. */
+/** @return array{0: string, 1: list<string>, 2: list<string>, 3: list<string>, 4?: string} */
 function contentInlineContract(mixed $value, string $key = ''): array
 {
     if (! is_string($value)) {
@@ -140,8 +121,6 @@ it('keeps English inline markup balanced during its review', function (): void {
 });
 
 /**
- * Every asset id a content file references, in document order.
- *
  * @param  array<string, mixed>  $data
  * @return list<string>
  */
@@ -171,31 +150,16 @@ function headingIds(string $markdownPath): array
     return $ids;
 }
 
-/**
- * Keys whose JSON values are identifiers the pages never print: section and
- * block ids, paid-feature ids, asset ids, anchors, engine and feature ids and
- * source citations. They stay the same in every locale, so the glossary does
- * not apply to them.
- */
+// Keys whose values are identifiers the pages never print, so the glossary does not apply to them.
 const STRUCTURAL_JSON_KEY = '/(^|\.)(id|paid|asset|anchor|feature|engine|cite)(\.\d+)?$/';
 
-/**
- * Whether a value is an identifier under one of the given structural keys.
- *
- * The key name alone is not enough: `workflows.paid` ("Requires a {tier}
- * plan: {features}.") and `labels.header.paid` are sentences under keys that
- * usually hold ids. Only an identifier-shaped value (`cells.importExport`,
- * `alertFull`, `mac-team-library`) is skipped, so the same rule as
- * `contentGuardIsVisible()` in Content/helpers.php applies here.
- */
 function structuralIdentifier(string $key, string $value, string $keyPattern): bool
 {
+    // The key alone is not enough: `workflows.paid` holds a sentence. Same rule as contentGuardIsVisible().
     return preg_match($keyPattern, $key) === 1 && preg_match('/^[a-z0-9][A-Za-z0-9._:\/#@+-]*$/', $value) === 1;
 }
 
 /**
- * Visible strings in a source file, for the wording checks.
- *
  * @return list<string>
  */
 function visibleStrings(string $path): array
@@ -226,8 +190,6 @@ function visibleStrings(string $path): array
 }
 
 /**
- * The source files whose strings are in one locale.
- *
  * @return list<string>
  */
 function localeSources(string $locale): array
@@ -257,10 +219,6 @@ function localeSources(string $locale): array
 }
 
 it('gives every locale the same content files', function (): void {
-    /*
-     * Every page's content exists now, so an empty tree means CONTENT_ROOT
-     * moved and every parity check below would compare nothing.
-     */
     expect(count(contentTree('en')))->toBeGreaterThan(40, 'content/en is (nearly) empty; is CONTENT_ROOT right?');
 
     foreach (array_diff(Locales::codes(), ['en']) as $locale) {
@@ -327,12 +285,7 @@ it('gives every legal translation the same heading ids', function (): void {
 it('keeps a translated post tied to its English original and its date', function (): void {
     $translations = glob(resource_path('blog/vi/*.md')) ?: [];
 
-    /*
-     * Dormant on purpose while there is no translated post: release posts stay
-     * English-only (spec §0), and no guide has a Vietnamese version yet. It
-     * runs rather than skips, so it starts checking the moment the first
-     * translation lands instead of waiting for someone to remove a guard.
-     */
+    // Runs rather than skips while no post is translated, so it checks the first one that lands.
     if ($translations === []) {
         expect(glob(resource_path('blog/*.md')))->not->toBe([]);
 
@@ -415,32 +368,9 @@ it('catches the variants it lists', function (string $text, bool $flagged): void
     ['(tiếng Anh)', false],
 ]);
 
-/*
-|--------------------------------------------------------------------------
-| Untranslated values
-|--------------------------------------------------------------------------
-|
-| A Vietnamese value identical to its English original is usually a string
-| nobody translated. It is legitimate only when there is nothing to
-| translate: an identifier, a token template, or words the glossary keeps in
-| English (positioning §11: developer terms, and product, feature, tier, mode,
-| engine and command names). The heuristic removes those and fails on any
-| letter left over.
-|
-*/
-
-/**
- * Keys whose values are identifiers in every locale: ContentParityTest's
- * structural keys plus links, docs paths and the product and note ids of a
- * database page's other tools.
- */
 const UNTRANSLATED_NEUTRAL_KEY = '/(^|\.)(id|paid|asset|anchor|feature|engine|cite|href|url|docs|slug|src|icon|product|notes)(\.\d+)?$/';
 
 /**
- * Words positioning §11 keeps in English, beyond the names the data files
- * already hold (untranslatedNames()) and those every language keeps
- * (untranslatedKeptNames()). Each group says why.
- *
  * @return list<string>
  */
 function untranslatedGlossaryTerms(): array
@@ -464,9 +394,6 @@ function untranslatedGlossaryTerms(): array
 }
 
 /**
- * Names every language keeps in English, as the app, Apple or their owner
- * writes them.
- *
  * @return list<string>
  */
 function untranslatedKeptNames(): array
@@ -481,11 +408,8 @@ function untranslatedKeptNames(): array
         // Apple's names that are not translated.
         'Face ID', 'Touch ID', 'Optic ID', 'Handoff', 'Siri', 'Dynamic Island', 'AppleScript', 'App Store', 'Mac App Store',
         'Apple silicon', 'Intel',
-        // The plans and the merchant of record.
         'Starter', 'Team', 'merchant of record',
-        // Acronyms.
         'SQL', 'SSH', 'SSL', 'TLS', 'MCP', 'GUI',
-        // Product and service names.
         'TablePro', 'GitHub', 'Homebrew', 'Setapp', 'Microsoft Entra ID', 'AWS IAM', 'Cloud SQL Auth Proxy', 'Windows', 'Linux',
         'BigQuery',
         // An engine's objects and a competitor's feature, as their owners write them.
@@ -494,9 +418,6 @@ function untranslatedKeptNames(): array
 }
 
 /**
- * Words each added language writes as English does. A label made only of
- * these, names and slots is already translated.
- *
  * @return array<string, list<string>>
  */
 function untranslatedSameWords(): array
@@ -513,9 +434,6 @@ function untranslatedSameWords(): array
 }
 
 /**
- * The names the data files hold: engines, compared products and their
- * brands, paid features, and each platform's devices and systems.
- *
  * @return list<string>
  */
 function untranslatedNames(): array
@@ -539,10 +457,6 @@ function untranslatedNames(): array
     return array_values(array_unique(array_filter($names, fn(mixed $name): bool => is_string($name) && $name !== '')));
 }
 
-/**
- * Whether a value has nothing to translate: in Vietnamese by the glossary, in
- * another language by the names every language keeps and its own same words.
- */
 function untranslatedIsNeutral(string $key, string $value, string $locale = 'vi'): bool
 {
     if (structuralIdentifier($key, $value, UNTRANSLATED_NEUTRAL_KEY) || preg_match('#^(/|\#|https?:|mailto:)#', $value) === 1) {
@@ -601,23 +515,41 @@ it('translates every Vietnamese value that has words to translate', function ():
         ->and($untranslated)->toBe([], "Vietnamese values left in English (translate them, or add a kept term with its glossary reason):\n  " . implode("\n  ", $untranslated));
 });
 
+/**
+ * @return array<string, array<string, string>>
+ */
+function untranslatedEnglishProse(): array
+{
+    // The same for every language, so it is worked out once.
+    static $prose = null;
+
+    if ($prose !== null) {
+        return $prose;
+    }
+
+    $prose = [];
+
+    foreach (contentTree('en') as $file) {
+        foreach (Arr::dot(contentJson('en', $file)) as $key => $line) {
+            if (is_string($line) && ! untranslatedIsNeutral((string) $key, $line) && preg_match_all('/\b[A-Za-z]{2,}\b/', $line) >= 5) {
+                $prose[$file][(string) $key] = $line;
+            }
+        }
+    }
+
+    return $prose;
+}
+
 it('ships native prose and NFC source text in every added language', function (string $locale): void {
     foreach (localeSources($locale) as $path) {
         expect(Normalizer::isNormalized((string) file_get_contents($path), Normalizer::FORM_C))->toBeTrue("{$path} is not NFC");
     }
 
-    foreach (contentTree('en') as $file) {
-        $english = Arr::dot(contentJson('en', $file));
+    foreach (untranslatedEnglishProse() as $file => $lines) {
         $translated = Arr::dot(contentJson($locale, $file));
-        foreach ($english as $key => $line) {
-            expect(array_key_exists($key, $translated))->toBeTrue("{$locale}/{$file}.{$key}: missing translation");
-            if (! is_string($line) || untranslatedIsNeutral((string) $key, $line)) {
-                continue;
-            }
-            preg_match_all('/\b[A-Za-z]{2,}\b/', $line, $words);
-            if (count($words[0]) >= 5) {
-                expect($translated[$key])->not->toBe($line, "{$locale}/{$file}.{$key}: visible English prose left untranslated");
-            }
+
+        foreach ($lines as $key => $line) {
+            expect($translated[$key] ?? null)->not->toBe($line, "{$locale}/{$file}.{$key}: visible English prose left untranslated");
         }
     }
 })->with(array_values(array_diff(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']), ['en', 'vi'])));

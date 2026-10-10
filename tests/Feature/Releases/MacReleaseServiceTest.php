@@ -14,17 +14,6 @@ use Illuminate\Support\Facades\Storage;
 
 require_once __DIR__ . '/ReleaseFixtures.php';
 
-/**
- * Where the download buttons point (architecture §1.13).
- *
- * GitHub `releases/latest` first, the Sparkle appcast second, never the first
- * entry of the full releases list (plugin releases crowd it). The scheduled
- * `release:refresh` calls them every 15 minutes; a page only reads what it
- * stored, a last-good copy on disk that outlives `cache:clear`, or an honest
- * `unavailable` when nothing ever answered. A missing copy is refreshed after
- * the response, never during it. Every response is faked; nothing here reaches
- * the network, and the disk is a fake.
- */
 beforeEach(function (): void {
     Cache::flush();
     Storage::fake(MacReleaseService::LAST_GOOD_DISK);
@@ -36,9 +25,6 @@ function releases(): MacReleaseService
     return app(MacReleaseService::class);
 }
 
-/**
- * What a page shows after one scheduled refresh.
- */
 function macRelease(): MacRelease
 {
     releases()->refresh();
@@ -46,9 +32,6 @@ function macRelease(): MacRelease
     return releases()->latest();
 }
 
-/**
- * One page request: what it shows, then the work it left for after its response.
- */
 function servePage(): MacRelease
 {
     $release = releases()->latest();
@@ -108,8 +91,10 @@ it('states no checksum for a digest that is not a SHA-256', function (mixed $dig
         githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
     ]))]);
 
-    expect(macRelease())->source->toBe(MacRelease::SOURCE_GITHUB)
-        ->and(macRelease()->assets['arm64']['sha256'])->toBeNull();
+    $release = macRelease();
+
+    expect($release->source)->toBe(MacRelease::SOURCE_GITHUB)
+        ->and($release->assets['arm64']['sha256'])->toBeNull();
 })->with([
     'another algorithm' => ['sha512:' . str_repeat('ab', 64)],
     'too short' => ['sha256:abc123'],
@@ -238,12 +223,7 @@ it('answers a page from what the last refresh stored, without calling anything',
         ->and(app(DeferredCallbackCollection::class)->count())->toBe(0);
 });
 
-/*
- * A page used to call GitHub, then the appcast, with 5-second timeouts,
- * whenever its copy had expired: one reader every 15 minutes waited up to ten
- * seconds. Now a page serves the last good copy at once and leaves one refresh
- * for after its response.
- */
+// A page used to call both sources with 5-second timeouts whenever its copy expired, so one reader waited up to ten seconds.
 it('never calls a source while answering a page, even with no copy at all', function (): void {
     Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload())]);
 
@@ -282,13 +262,7 @@ it('serves the last good copy while the stored one is missing, and refreshes aft
         ->and(releases()->latest()->version)->toBe('0.77.0');
 });
 
-/*
- * Architecture §1.13 "Rate": at most four calls an hour against an
- * unauthenticated limit of 60 per IP, on a host shared with other sites. It
- * has to hold while GitHub is down too, which is when a retry loop would
- * spend the limit fastest. Simulated as the server runs it: the scheduler
- * every 15 minutes, and a page every minute.
- */
+// The unauthenticated limit is 60 an hour per IP, on a host shared with other sites.
 it('calls the GitHub API at most four times an hour, healthy or not', function (callable $fake): void {
     $fake();
 
@@ -350,11 +324,6 @@ it('serves the last good copy when both sources fail, and pages stop asking for 
     expect(githubApiCalls())->toBe($calls + 1);
 });
 
-/*
- * Concurrent requests that find no copy each leave a refresh behind; the
- * scheduler may be running at the same moment. One refresh runs at a time,
- * under a lock, and any other finds the lock taken and calls nothing.
- */
 it('refreshes once at a time: a refresh that finds the lock taken calls nothing', function (): void {
     Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload())]);
 
@@ -373,12 +342,7 @@ it('refreshes once at a time: a refresh that finds the lock taken calls nothing'
         ->and(Cache::lock(MacReleaseService::REFRESH_LOCK, 1)->get())->toBeTrue();
 });
 
-/*
- * The deploy runs `optimize:clear` on every PHP change, and that runs
- * `cache:clear`. A last good copy kept in the cache store was gone after
- * every such deploy, so a GitHub outage on the first request afterwards
- * left both buttons without a version.
- */
+// The deploy runs optimize:clear on every PHP change; a copy kept in the cache store was lost every time.
 it('keeps the last good copy through cache:clear', function (): void {
     Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
         ->push(githubReleasePayload())

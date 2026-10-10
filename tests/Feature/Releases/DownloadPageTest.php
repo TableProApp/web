@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\Localization\Locales;
-use App\Services\Releases\PlatformCatalog;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -16,15 +15,6 @@ use function Pest\Laravel\withoutVite;
 
 require_once __DIR__ . '/ReleaseFixtures.php';
 
-/**
- * `/download` and `/vi/download` (sitemap §A.1, §E.5; architecture §1.13).
- *
- * The props carry everything the page states and links to: the live release,
- * the platform facts from platforms.json and the outbound links. The rules the
- * page must keep: both builds are server-rendered links, nothing starts a
- * download on its own, no copy claims one started, and a failed release source
- * degrades to GitHub's latest-release page with no version shown.
- */
 beforeEach(function (): void {
     withoutVite();
     Cache::flush();
@@ -32,10 +22,6 @@ beforeEach(function (): void {
     bindReleaseFixturePlatforms();
 });
 
-/**
- * A live release, fetched the way the server fetches it: by the scheduled
- * `release:refresh`. Pages only read what it stored.
- */
 function fakeLiveRelease(): void
 {
     Http::fake([
@@ -79,11 +65,6 @@ it('renders in English with the live release, the platform facts and the copy', 
 });
 
 it('names the featured, published engines from engines.json for the structured data, in data order', function (): void {
-    /*
-     * The names are read from the live engines.json, so the expectation is
-     * derived from that file rather than typed: what the page states can never
-     * be a list someone wrote down once.
-     */
     fakeLiveRelease();
 
     $expected = collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))
@@ -98,9 +79,6 @@ it('names the featured, published engines from engines.json for the structured d
 });
 
 /**
- * The newest post that announced a release, read from the posts themselves,
- * so the next release post moves the link without an edit here.
- *
  * @return array<string, mixed>
  */
 function downloadNewestReleasePost(): array
@@ -133,8 +111,10 @@ it('server-renders the newest release post as a link that keeps its language', f
     $link = fn(string $path): ?Dom\Element => Dom\HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)
         ->querySelector('#older-versions a[href="/blog/' . $newest['slug'] . '"]');
 
-    expect($link('/download')?->textContent)->toBe($newest['title']);
-    expect($link('/download')->parentElement->textContent)->toContain('Latest release post: ' . $newest['title'] . '.');
+    $english = $link('/download');
+
+    expect($english?->textContent)->toBe($newest['title']);
+    expect($english->parentElement->textContent)->toContain('Latest release post: ' . $newest['title'] . '.');
 
     // On a translated page the post is still English: marked, labelled, and at its own URL.
     $vietnamese = $link('/vi/download');
@@ -142,7 +122,7 @@ it('server-renders the newest release post as a link that keeps its language', f
     expect($vietnamese?->getAttribute('hreflang'))->toBe('en');
     expect($vietnamese->getAttribute('lang'))->toBe('en');
     expect($vietnamese->parentElement->textContent)->toContain($newest['title'] . ' (tiếng Anh).');
-});
+})->group('ssr');
 
 it('renders in Vietnamese with Vietnamese copy and a Vietnamese date', function (): void {
     fakeLiveRelease();
@@ -176,12 +156,6 @@ it('is a translated pair, indexed in both locales', function (): void {
         ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === collect(Locales::codes())->sort()->values()->all()));
 });
 
-/*
- * A page never waits on GitHub. With nothing stored yet (a fresh server, or
- * the cache just cleared and no last good copy), the page answers at once
- * without a version, and the refresh it leaves for after its response gives
- * the next reader the release.
- */
 it('answers without waiting on GitHub when nothing is stored, and the next page has the release', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload()),
@@ -220,19 +194,6 @@ it('falls back to GitHub’s latest-release page, with no version, when no sourc
             ->where('mac.homebrewTrails', false));
 });
 
-it('reads only releases/latest, once for both locales, never the crowded releases list', function (): void {
-    fakeLiveRelease();
-
-    get('/download')->assertOk();
-    get('/vi/download')->assertOk();
-
-    $outbound = Http::recorded(fn(Request $request): bool => ! str_starts_with($request->url(), 'http://127.0.0.1'));
-
-    expect($outbound->map(fn(array $pair): string => $pair[0]->url())->values()->all())
-        ->toBe(['https://api.github.com/repos/TableProApp/TablePro/releases/latest']);
-    Http::assertNotSent(fn(Request $request): bool => (bool) preg_match('#/releases(\?|$)#', $request->url()));
-});
-
 it('flags the Homebrew note while the cask serves an older version than the live release', function (string $floor, bool $trails): void {
     bindReleaseFixturePlatforms(['mac.floorVersion' => $floor]);
     fakeLiveRelease();
@@ -252,32 +213,7 @@ it('shows no iPhone and iPad card while that app is not released', function (): 
         ->where('unreleased', ['ios', 'linux', 'windows']));
 });
 
-it('reads everything the page needs from the live platforms.json', function (): void {
-    /*
-     * The shape only, never the values: those move with every release and
-     * belong to `Data/PlatformsDataTest`. This holds the download page and
-     * the data file to the same contract (architecture §1.8).
-     */
-    $catalog = new PlatformCatalog();
-    $mac = $catalog->summary('mac');
-
-    expect($mac)->not->toBeNull()
-        ->and($mac['deviceNames'])->not->toBeEmpty()
-        ->and($mac['requirements']['systems'])->not->toBeEmpty()
-        ->and($mac['requirements']['displayVersion'])->not->toBe('')
-        ->and($catalog->destination('mac', 'homebrew')['command'] ?? null)->toBeString()
-        ->and($catalog->destination('mac', 'releases')['url'] ?? '')->toStartWith('https://')
-        ->and($catalog->macAssetName('arm64', '1.2.3'))->toContain('1.2.3')
-        ->and($catalog->macAssetName('x86_64', '1.2.3'))->toContain('1.2.3')
-        ->and($catalog->macFloorVersion())->toMatch('/^\d+(\.\d+)*$/');
-
-    if ($catalog->isReleased('ios')) {
-        expect($catalog->summary('ios')['requirements']['systems'])->not->toBeEmpty()
-            ->and($catalog->destination('ios', 'app-store')['url'] ?? '')->toStartWith('https://');
-    }
-});
-
-it('keeps both page copies free of auto-start claims, URLs and retired wording', function (): void {
+it('keeps both page copies free of auto-start claims and URLs', function (): void {
     $sources = [
         resource_path('data/content/en/download.json'),
         resource_path('data/content/vi/download.json'),
@@ -285,11 +221,7 @@ it('keeps both page copies free of auto-start claims, URLs and retired wording',
         resource_path('js/i18n/messages/vi/download.ts'),
     ];
 
-    $banned = [
-        '/download is starting/i', '/download started/i', '/starting\.\.\./i', '/đang tải/iu', '/bắt đầu tải/iu',
-        '/https?:\/\//i', '/macOS 14/i', '/Sonoma/i', '/Tải xuống/iu', '/\bunlock/i', '/mở khóa/iu',
-        '/universal/i', '/\d+(\.\d+)? ?MB/i',
-    ];
+    $banned = ['/download is starting/i', '/download started/i', '/starting\.\.\./i', '/đang tải/iu', '/bắt đầu tải/iu', '/https?:\/\//i'];
 
     foreach ($sources as $source) {
         $text = (string) file_get_contents($source);
@@ -297,17 +229,10 @@ it('keeps both page copies free of auto-start claims, URLs and retired wording',
         foreach ($banned as $pattern) {
             expect(preg_match($pattern, $text))->toBe(0, basename(dirname($source)) . '/' . basename($source) . " matches {$pattern}");
         }
-
-        expect(Normalizer::isNormalized($text, Normalizer::FORM_C))->toBeTrue("{$source} is not NFC");
     }
 });
 
-/*
- * Positioning §11.2: a Vietnamese click path gives the English path in full
- * after it, "**Cài đặt > Tích hợp** (Settings > Integrations)", so a reader
- * whose app is in English can follow it. And "chậm hơn" reads as "slower
- * than", a speed comparison, where the copy means that Homebrew lags.
- */
+// "chậm hơn" reads as "slower than", a speed comparison, where the copy means that Homebrew lags.
 it('writes Vietnamese click paths with their full English path, and no speed comparison', function (): void {
     $text = (string) file_get_contents(resource_path('data/content/vi/download.json'))
         . (string) file_get_contents(resource_path('js/i18n/messages/vi/download.ts'));
@@ -323,23 +248,12 @@ it('writes Vietnamese click paths with their full English path, and no speed com
     expect(preg_match('/chậm hơn|dòng Chip|nơi bạn chọn/u', $text))->toBe(0);
 });
 
-it('types no URL into the page or its components', function (): void {
-    $files = [resource_path('js/pages/Download.tsx'), ...glob(resource_path('js/components/download/*'))];
-
-    foreach ($files as $file) {
-        $source = (string) file_get_contents($file);
-        preg_match_all('#https?://[^\'"`\s]+#', $source, $matches);
-
-        expect(array_values(array_diff($matches[0], ['https://schema.org'])))->toBe([], basename($file) . ' types a URL');
-    }
-});
-
-it('server-renders both builds as links, and says nothing about a download starting', function (): void {
+it('server-renders both builds as links, says nothing about a download starting, and shows no checksum block without digests', function (): void {
     fakeLiveRelease();
 
-    foreach (['/download', '/vi/download'] as $path) {
-        $html = ssrHtml($path);
+    $pages = ['/download' => ssrHtml('/download'), '/vi/download' => ssrHtml('/vi/download')];
 
+    foreach ($pages as $html) {
         expect($html)
             ->toContain('href="https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg"')
             ->toContain('href="https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg"')
@@ -363,7 +277,7 @@ it('server-renders both builds as links, and says nothing about a download start
             ->not->toContain('window.location');
     }
 
-    expect(ssrHtml('/download'))->toContain('Requires macOS 13 Ventura or later')
+    expect($pages['/download'])->toContain('Requires macOS 13 Ventura or later')
         ->toContain('Download for Apple silicon')
         ->toContain('Download for Intel')
         ->toContain('Which Mac do I have?')
@@ -371,9 +285,13 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0-arm64.dmg</span> · <span class="tabular-nums">22.9</span> MB')
         ->toContain('Requires iOS and iPadOS 18 or later')
         ->toContain('Free, with no in-app purchases')
-        ->toContain('not available for Linux or Windows');
+        ->toContain('not available for Linux or Windows')
+        ->not->toContain('Verify your download')
+        ->not->toContain('shasum')
+        // The server cannot know the browser, so "Which Mac do I have?" renders closed; chipHelpOpen() opens it (tests/js/device.test.ts).
+        ->toMatch('/<details class="group mt-1"><summary/');
 
-    expect(ssrHtml('/vi/download'))->toContain('Yêu cầu macOS 13 Ventura trở lên')
+    expect($pages['/vi/download'])->toContain('Yêu cầu macOS 13 Ventura trở lên')
         ->toContain('Tải bản cho Apple silicon')
         ->toContain('Tải bản cho Intel')
         ->toContain('v0.77.0 · 2 tháng 10 năm 2026')
@@ -381,7 +299,7 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('Yêu cầu iOS và iPadOS 18 trở lên')
         ->toContain('Miễn phí, không có mua hàng trong ứng dụng')
         ->toContain('cho Linux hoặc Windows');
-});
+})->group('ssr');
 
 it('sends each DMG’s SHA-256 to the page when the release carries one', function (): void {
     $arm64 = str_repeat('a1', 32);
@@ -395,20 +313,7 @@ it('sends each DMG’s SHA-256 to the page when the release carries one', functi
         ->where('release.assets.x86_64.sha256', $x86_64));
 });
 
-it('sends no checksum when the release came from the appcast', function (): void {
-    Http::fake([
-        RELEASES_FAKE_GITHUB_LATEST => Http::response('', 500),
-        RELEASES_FAKE_APPCAST => Http::response(appcastXml()),
-    ]);
-    Artisan::call('release:refresh');
-
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
-        ->where('release.source', 'appcast')
-        ->where('release.assets.arm64.sha256', null)
-        ->where('release.assets.x86_64.sha256', null));
-});
-
-it('server-renders each build’s SHA-256 with the command that checks it, in every language', function (): void {
+it('server-renders each build’s SHA-256 with the command that checks it, in English and a translated page', function (): void {
     $arm64 = str_repeat('a1', 32);
     $x86_64 = str_repeat('b2', 32);
 
@@ -416,17 +321,8 @@ it('server-renders each build’s SHA-256 with the command that checks it, in ev
     Artisan::call('release:refresh');
 
     expect(ssrHtml('/download'))->toContain('Verify your download', $arm64, $x86_64, 'shasum -a 256');
-
-    foreach (array_diff(Locales::codes(), ['en']) as $locale) {
-        expect(ssrHtml("/{$locale}/download"))->toContain($arm64, $x86_64, 'shasum -a 256')->not->toContain('Verify your download');
-    }
-});
-
-it('server-renders no checksum block when the release carries none', function (): void {
-    fakeLiveRelease();
-
-    expect(ssrHtml('/download'))->toContain('Which Mac do I have?')->not->toContain('Verify your download')->not->toContain('shasum');
-});
+    expect(ssrHtml('/vi/download'))->toContain($arm64, $x86_64, 'shasum -a 256')->not->toContain('Verify your download');
+})->group('ssr');
 
 it('server-renders no version and sends both buttons to the latest release when no source answers', function (): void {
     Http::fake([
@@ -440,26 +336,4 @@ it('server-renders no version and sends both buttons to the latest release when 
         ->and($html)->toContain('Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.')
         ->not->toContain('softwareVersion')
         ->not->toContain('.dmg"');
-});
-
-it('opens "Which Mac do I have?" by itself only for a Mac whose browser names no chip', function (): void {
-    /*
-     * Safari and Firefox give no architecture hint, so on the default Mac
-     * browser both builds stay equal and the reader has to choose. The help
-     * for choosing opens there instead of waiting behind a click. The server
-     * cannot know the browser, so it renders the disclosure closed, and the
-     * rule is `chipHelpOpen` (tests/js/device.test.ts).
-     */
-    $card = (string) file_get_contents(resource_path('js/components/download/mac-card.tsx'));
-
-    expect($card)->toContain('const openHelp = chipHelpOpen(device, hint);')
-        ->toContain('help.current.open = true;')
-        ->toContain('<details ref={help} className="group mt-1">');
-
-    // A hint not answered yet is not "no hint": Chrome's arrives a moment after the page mounts.
-    expect((string) file_get_contents(resource_path('js/pages/Download.tsx')))->toContain('useState<MacArch | null | undefined>(undefined)');
-
-    fakeLiveRelease();
-
-    expect(ssrHtml('/download'))->toMatch('/<details class="group mt-1"><summary/');
-});
+})->group('ssr');

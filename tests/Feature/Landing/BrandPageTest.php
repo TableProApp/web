@@ -106,4 +106,4 @@ it('server-renders every file as a download, with the preview sizes and colors',
     // The marker stays in the page props (the JSON payload); the markup must not carry it.
     $markup = (string) preg_replace('#<script data-page="app" type="application/json">.*?</script>#s', '', $html);
     expect($markup)->not->toContain('<brand-assets>');
-});
+})->group('ssr');

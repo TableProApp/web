@@ -2,60 +2,15 @@
 
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-/*
-|--------------------------------------------------------------------------
-| Content guard helpers
-|--------------------------------------------------------------------------
-|
-| Shared by the guards in tests/Feature/Content. Not a test file: the suffix
-| is not `Test.php`, so PHPUnit never collects it, and each file that needs
-| it requires it once.
-|
-| Every guard reads the same sources, the ones positioning §12 names: the
-| content files, the UI and server catalogs, the legal markdown and the
-| translated posts. The data files whose strings reach a page (comparison
-| cells and their source titles, engine and platform names, asset
-| descriptions) are read too, because a claim is no truer for living in a
-| data file. Release posts are archives and are never read (positioning
-| §12.2, sitemap §E.6): a post with a `release` key in its front matter is
-| one. A post without that key is a guide, and a guide is read.
-|
-*/
-
-/**
- * The data files under `resources/data` whose strings reach a page.
- *
- * `redirects.json` and `locales.json` hold paths and codes only.
- */
+// redirects.json and locales.json hold paths and codes only.
 const CONTENT_GUARD_DATA_FILES = ['assets', 'brand', 'comparisons', 'engines', 'facts', 'integrations', 'paid-features', 'platforms', 'pricing', 'sponsors'];
 
-/**
- * Keys whose values are usually identifiers, paths or citations rather than
- * words a page prints. ContentParityTest's `STRUCTURAL_JSON_KEY`, plus the
- * link and source keys of the data files.
- *
- * A key name alone never hides a value: `workflows.paid` and
- * `labels.header.paid` are sentences the page prints. A value under one of
- * these keys is skipped only when it is also identifier-shaped
- * (`CONTENT_GUARD_IDENTIFIER`).
- */
+// A key alone never hides a value: `workflows.paid` is a sentence, so the value must also be identifier-shaped.
 const CONTENT_GUARD_STRUCTURAL_KEY = '/(^|\.)(id|paid|asset|anchor|feature|engine|cite|href|url|docs|slug|source|src|icon)(\.\d+)?$/';
 
-/**
- * An identifier, a key path or a slug: `cells.importExport`, `alertFull`,
- * `mac-team-library`. Words a reader sees (`Compared`, `Paid plans`,
- * `{tier}: {features}`) do not match.
- */
 const CONTENT_GUARD_IDENTIFIER = '/^[a-z0-9][A-Za-z0-9._:\/#@+-]*$/';
 
 /**
- * Every source the content guards read, with the visible strings it holds.
- *
- * `path` is relative to the repository root; `kind` is one of `content`,
- * `data`, `catalog`, `legal` or `post`; `strings` maps a key (a dotted JSON
- * or catalog path, `matter.{field}` or `paragraph.{n}` for markdown) to its
- * text.
- *
  * @return list<array{path: string, kind: string, strings: array<string, string>}>
  */
 function contentGuardSources(): array
@@ -104,10 +59,7 @@ function contentGuardSources(): array
     return $sources;
 }
 
-/**
- * A release post: an English post whose front matter names its release.
- * Translated posts are never archives, whatever their front matter says.
- */
+// Translated posts are never archives, whatever their front matter says.
 function contentGuardIsReleasePost(string $file): bool
 {
     if (basename(dirname($file)) !== 'blog') {
@@ -157,12 +109,6 @@ function contentGuardDecode(string $file): array
 }
 
 /**
- * The visible strings of a decoded JSON file, keyed by dotted path.
- *
- * A list item that carries a string `id` is keyed by that id rather than its
- * index, so `products.tableplus.sources.s7.title` stays the same key when the
- * list is reordered, and an allowlist entry can be scoped to one product.
- *
  * @param  array<array-key, mixed>  $data
  * @return array<string, string>
  */
@@ -172,6 +118,7 @@ function contentGuardJsonStrings(array $data, string $prefix = ''): array
     $isList = array_is_list($data);
 
     foreach ($data as $key => $value) {
+        // Keyed by a list item's id, so an allowlist scope survives a reorder.
         $segment = $isList && is_array($value) && is_string($value['id'] ?? null) ? $value['id'] : (string) $key;
         $path = $prefix === '' ? $segment : "{$prefix}.{$segment}";
 
@@ -191,10 +138,6 @@ function contentGuardJsonStrings(array $data, string $prefix = ''): array
     return $strings;
 }
 
-/**
- * Whether a string value is words a page can print, rather than an
- * identifier, a path, a URL or a citation.
- */
 function contentGuardIsVisible(string $key, string $value): bool
 {
     if (trim($value) === '') {
@@ -213,8 +156,6 @@ function contentGuardIsVisible(string $key, string $value): bool
 }
 
 /**
- * Every string leaf of a nested array, keyed by dotted path.
- *
  * @param  array<array-key, mixed>  $data
  * @return array<string, string>
  */
@@ -238,9 +179,6 @@ function contentGuardFlatten(array $data, string $prefix = ''): array
 }
 
 /**
- * The front matter and the paragraphs of a markdown file. Fenced and inline
- * code is removed: a command or a keyword is not a claim.
- *
  * @return array<string, string>
  */
 function contentGuardMarkdownStrings(string $file): array
@@ -254,6 +192,7 @@ function contentGuardMarkdownStrings(string $file): array
         }
     }
 
+    // A command or a keyword is not a claim.
     $body = (string) preg_replace(['/```.*?```/s', '/`[^`\n]*`/'], ' ', $document->body());
 
     foreach (preg_split('/\n\s*\n/', $body) ?: [] as $index => $paragraph) {
@@ -266,19 +205,11 @@ function contentGuardMarkdownStrings(string $file): array
 }
 
 /**
- * The strings of a UI catalog, keyed by their dotted path.
- *
- * The catalogs are TypeScript modules whose default export is an object
- * literal of strings, nested objects and arrays. They are parsed here rather
- * than run in Node, because the PHP job has no Node with type stripping. The
- * parser accepts that subset and nothing else: an unsupported construct
- * throws, so a catalog the guards cannot read fails loudly instead of being
- * read as empty.
- *
  * @return array<string, string>
  */
 function contentGuardCatalogStrings(string $file): array
 {
+    // Parsed, not run: the PHP job has no Node with type stripping. Anything unsupported throws.
     $source = (string) file_get_contents($file);
 
     if (preg_match('/export\s+default\s+\{/', $source, $match, PREG_OFFSET_CAPTURE) !== 1) {
@@ -291,9 +222,6 @@ function contentGuardCatalogStrings(string $file): array
     return is_array($value) ? contentGuardFlatten($value) : [];
 }
 
-/**
- * One TypeScript literal value at `$offset`, which is left after it.
- */
 function contentGuardTsValue(string $source, int &$offset, string $file): mixed
 {
     contentGuardTsSkip($source, $offset);
@@ -317,8 +245,6 @@ function contentGuardTsValue(string $source, int &$offset, string $file): mixed
 }
 
 /**
- * An object or array literal.
- *
  * @return array<array-key, mixed>
  */
 function contentGuardTsCollection(string $source, int &$offset, string $file): array
@@ -367,9 +293,6 @@ function contentGuardTsCollection(string $source, int &$offset, string $file): a
     }
 }
 
-/**
- * A quoted string or a template literal without substitutions.
- */
 function contentGuardTsString(string $source, int &$offset, string $file): string
 {
     $quote = $source[$offset];
@@ -419,9 +342,6 @@ function contentGuardTsString(string $source, int &$offset, string $file): strin
     throw new RuntimeException("{$file}: an unterminated string.");
 }
 
-/**
- * Skips whitespace and comments.
- */
 function contentGuardTsSkip(string $source, int &$offset): void
 {
     while (preg_match('#\G(?:\s+|//[^\n]*|/\*.*?\*/)#s', $source, $match, 0, $offset) === 1 && $match[0] !== '') {
@@ -429,11 +349,6 @@ function contentGuardTsSkip(string $source, int &$offset): void
     }
 }
 
-/**
- * A string as the guards match it: NFC, curly apostrophes and non-breaking
- * spaces and hyphens folded to their plain forms, and everything that is not
- * prose (URLs, link targets, attributes, code, heading ids) blanked out.
- */
 function contentGuardText(string $text): string
 {
     $text = (string) Normalizer::normalize($text, Normalizer::FORM_C);
@@ -451,22 +366,21 @@ function contentGuardText(string $text): string
     ], [' ', ' ', '] ', ' ', ' ', ' '], $text);
 }
 
-/**
- * The regex for a literal phrase, matched as whole words and case-insensitively.
- *
- * A side that starts or ends with a letter or digit must not continue into
- * another one, so "đột phá" does not match inside "xung đột pháp luật" and
- * "unlock" does not match "unlocked". The test is on Unicode letters, marks
- * and digits, not PCRE's ASCII `\b`. Spaces match any run of whitespace, and
- * a hyphen also matches a space or nothing ("cross platform").
- */
 function contentGuardPhrasePattern(string $phrase): string
+{
+    static $patterns = [];
+
+    return $patterns[$phrase] ??= contentGuardBuildPhrasePattern($phrase);
+}
+
+function contentGuardBuildPhrasePattern(string $phrase): string
 {
     $phrase = contentGuardText($phrase);
     $body = preg_quote($phrase, '/');
     $body = (string) preg_replace('/\s+/', '\s+', $body);
     $body = str_replace('\-', '[-\s]?', $body);
 
+    // Unicode boundaries, not PCRE's ASCII \b: "đột phá" must not match inside "xung đột pháp luật".
     $before = preg_match('/^[\p{L}\p{N}]/u', $phrase) === 1 ? '(?<![\p{L}\p{M}\p{N}_])' : '';
     $after = preg_match('/[\p{L}\p{N}]$/u', $phrase) === 1 ? '(?![\p{L}\p{M}\p{N}_])' : '';
 
@@ -474,16 +388,11 @@ function contentGuardPhrasePattern(string $phrase): string
 }
 
 /**
- * Whether a source path, and a key inside it, falls under one of the scopes.
- *
- * A scope is a glob relative to the repository root, optionally followed by
- * `#` and a key prefix: `resources/data/comparisons.json#products.tableplus.`
- * covers only that product's strings. `*` covers every source.
- *
  * @param  list<string>  $scopes
  */
 function contentGuardInScope(array $scopes, string $path, string $key): bool
 {
+    // A scope is a glob, optionally followed by `#` and a key prefix; `*` covers every source.
     foreach ($scopes as $scope) {
         [$glob, $prefix] = array_pad(explode('#', $scope, 2), 2, '');
 
@@ -495,12 +404,7 @@ function contentGuardInScope(array $scopes, string $path, string $key): bool
     return false;
 }
 
-/**
- * Whether a compare file's `notes.{note}` string belongs to a comparison cell
- * or price that cites a source (and, when `$dated`, whose product carries a
- * `checkedAt` date). Positioning §12.2 allows a competitor's count (A6) and a
- * download size (A7) only there.
- */
+// Positioning §12.2 allows a competitor's count (A6) and a download size (A7) only in a sourced note.
 function contentGuardIsSourcedNote(string $path, string $key, bool $dated): bool
 {
     if (! fnmatch('resources/data/content/*/compare/*.json', $path) || preg_match('/^notes\.(.+)$/', $key, $match) !== 1) {

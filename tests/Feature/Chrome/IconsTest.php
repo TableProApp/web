@@ -2,18 +2,9 @@
 
 use PHPUnit\Framework\Assert;
 
-/*
- * The tab icon, the home-screen icon and the web manifest's icon are fetched on
- * a reader's first visit, ahead of anything they came to read. The logo was a
- * 156 KB, 16-bit PNG serving all three; each is now an 8-bit PNG well under
- * 25 KB, at the size the page declares for it.
- */
-
+// The logo was one 156 KB, 16-bit PNG serving the tab, home-screen and manifest icons.
 const ICON_BUDGET_BYTES = 25 * 1024;
 
-/**
- * Asserts a public PNG exists at the declared size and within the budget.
- */
 function expectSmallIcon(string $href, int $size): void
 {
     $file = public_path(ltrim($href, '/'));

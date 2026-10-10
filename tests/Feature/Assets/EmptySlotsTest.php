@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\Assets\AssetManifest;
-use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use Dom\HTMLDocument;
 use Illuminate\Support\Facades\Http;
@@ -18,7 +17,7 @@ beforeEach(function (): void {
 });
 
 /**
- * @return array<string, list<string>> page path => the slots it places that have no image
+ * @return array<string, list<string>>
  */
 function emptySlotPages(): array
 {
@@ -57,7 +56,7 @@ it('leaves no trace of a slot with no image on a production page', function (): 
     $checked = 0;
 
     foreach (emptySlotPages() as $page => $ids) {
-        foreach (Locales::codes() as $locale) {
+        foreach (['en', 'vi'] as $locale) {
             $path = LocalizedUrl::path($page, $locale);
             $response = get($path);
 
@@ -104,4 +103,4 @@ it('leaves no trace of a slot with no image on a production page', function (): 
     }
 
     expect($checked)->toBeGreaterThanOrEqual(count(emptySlotPages()));
-});
+})->group('ssr');

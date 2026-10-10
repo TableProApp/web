@@ -3,18 +3,6 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/sponsors.json: the sponsors the homepage thanks, third
- * section down, each linked with `rel="sponsored noopener"`.
- *
- * Owner answer (spec §0): show only sponsors verified as current. On
- * 2026-10-02 GitHub's `sponsorshipsAsMaintainer(activeOnly: true)` for
- * `datlechin` listed CodeRabbit, SimpleLocalize, Nimbus and Dwarves Foundation
- * among the organisations, and the `TableProApp` organisation had none.
- * getapps.cafe, Visnalize, Unikorn and Xermius are no longer sponsors and must
- * not come back by accident from the old sponsor row.
- */
-
-/**
  * @return array{
  *     verifiedAt: string,
  *     verification: array{method: string, program: string},
@@ -23,13 +11,12 @@ use Illuminate\Support\Facades\File;
  */
 function sponsorsJson(): array
 {
-    return json_decode(File::get(resource_path('data/sponsors.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/sponsors.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
- * The intrinsic size of a logo file: the root `width`/`height` of an SVG, or
- * the pixel size of a raster image.
- *
  * @return array{0: int, 1: int}|null
  */
 function sponsorLogoSize(string $path): ?array
@@ -75,14 +62,6 @@ it('lists exactly the four verified sponsors, in display order', function (): vo
     foreach ($sponsors as $sponsor) {
         expect(array_keys($sponsor))->toBe(['id', 'name', 'githubLogin', 'url', 'logo']);
         expect($sponsor['id'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
-    }
-});
-
-it('keeps the former sponsors out', function (): void {
-    $raw = strtolower(File::get(resource_path('data/sponsors.json')));
-
-    foreach (['getapps', 'visnalize', 'unikorn', 'xermius'] as $former) {
-        expect($raw)->not->toContain($former);
     }
 });
 

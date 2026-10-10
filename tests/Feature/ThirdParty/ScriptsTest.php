@@ -2,43 +2,11 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * No third-party script is in a document this app serves (architecture §1.12).
- *
- * - Crisp's chat loader is added by the page itself, once it has loaded and
- *   the browser is idle (`lib/crisp.ts`), so it is never in the server render
- *   and never delays the first paint. Its launcher is then on every page.
- * - The Polar or Lemon Squeezy checkout SDK loaded on every page; it now loads
- *   at checkout intent, from a module, never from the document.
- * - The Product Hunt badge was a hotlink that set `__cf_bm` before consent.
- *   The homepage now names Product Hunt in a plain text link (spec §0): an
- *   anchor the reader follows, which makes no request until it is clicked.
- *
- * Google Analytics runs in Consent Mode, and its script is added by the head
- * after the load event, once the browser is idle, so the served document
- * loads no external script at all (AnalyticsConsentTest). In production
- * Cloudflare also injects its Web Analytics beacon
- * (`static.cloudflareinsights.com`) at the edge; it is a Cloudflare setting,
- * not in this repository, so no test here can see it, and the privacy policy
- * discloses it (docs/architecture.md, Third-party scripts). Executing the
- * chat's timing is `tests/js/crisp.test.ts`; this file holds the documents.
- */
-
 const THIRD_PARTY_HOSTS = ['client.crisp.chat', '@polar-sh/checkout', 'lemon.js', 'lemonsqueezy.com', 'producthunt.com'];
 
-/**
- * Outbound links a page may carry to one of those hosts. Only a plain `<a>`
- * with exactly this `href` is exempt; the same URL in `src`, `srcset`, a
- * `<link>` or a script still fails.
- *
- * @var list<string>
- */
+/** @var list<string> */
 const ALLOWED_OUTBOUND_LINKS = ['https://www.producthunt.com/products/tablepro'];
 
-/**
- * The page with each allowed outbound anchor's opening tag blanked, so what
- * remains is checked for requests to third-party hosts.
- */
 function withoutAllowedLinks(string $html): string
 {
     foreach (ALLOWED_OUTBOUND_LINKS as $url) {
@@ -48,14 +16,7 @@ function withoutAllowedLinks(string $html): string
     return $html;
 }
 
-/**
- * Pages whose rendered HTML is checked: the homepage (rebuilt without the
- * Product Hunt hotlink, with a plain text link instead), the download page and
- * the pricing page, whose buy buttons load the checkout SDK only at checkout
- * intent.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function thirdPartyPages(): array
 {
     return ['/', '/vi', '/download', '/vi/download', '/pricing', '/vi/pricing'];
@@ -75,34 +36,8 @@ it('loads no third-party script from the document template', function (): void {
     }
 });
 
-it('serves documents that load no external script, the analytics tag included', function (string $path): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id']);
-
-    $html = $this->get($path)->assertOk()->getContent();
-
-    preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
-
-    foreach ($sources[1] as $source) {
-        Assert::assertFalse(str_starts_with($source, 'http') || str_starts_with($source, '//'), "{$path} loads {$source} from the document");
-    }
-
-    // The tag's URL is in the head's loader, which adds it after the load event.
-    Assert::assertStringContainsString('var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"', $html);
-
-    foreach (THIRD_PARTY_HOSTS as $host) {
-        Assert::assertStringNotContainsString($host, $html, "{$path} mentions {$host} before anyone asked for it");
-    }
-
-    // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
-    Assert::assertStringContainsString('crisp-test-id', $html);
-})->with(['/download', '/vi/download']);
-
 it('loads chat only from an effect, and opens it only from a click', function (): void {
-    /*
-     * Every module that imports the chat helper opens the chat from a click
-     * handler and nowhere else, and loads it only inside an effect, so the
-     * loader never runs during the server render or at import time.
-     */
+    // The loader must never run during the server render or at import time.
     $importers = [];
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(resource_path('js'), FilesystemIterator::SKIP_DOTS));
 
@@ -131,16 +66,39 @@ it('loads chat only from an effect, and opens it only from a click', function ()
 });
 
 it('renders no third-party request into any page it serves', function (): void {
-    config(['services.crisp.website_id' => 'crisp-test-id']);
+    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id', 'payment.provider' => 'polar']);
 
     foreach (thirdPartyPages() as $path) {
-        $html = withoutAllowedLinks(ssrHtml($path));
+        $html = ssrHtml($path);
+
+        preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
+
+        foreach ($sources[1] as $source) {
+            Assert::assertFalse(str_starts_with($source, 'http') || str_starts_with($source, '//'), "{$path} loads {$source} from the document");
+        }
+
+        // The tag's URL is in the head's loader, which adds it after the load event.
+        Assert::assertStringContainsString('var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"', $html);
+
+        // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
+        Assert::assertStringContainsString('crisp-test-id', $html);
+        Assert::assertStringNotContainsString('CRISP_WEBSITE_ID', $html);
+
+        $html = withoutAllowedLinks($html);
 
         foreach (THIRD_PARTY_HOSTS as $host) {
             Assert::assertStringNotContainsString($host, $html, "{$path} renders {$host}");
         }
     }
-});
+
+    config(['payment.provider' => 'lemonsqueezy']);
+
+    $html = withoutAllowedLinks(ssrHtml('/pricing'));
+
+    foreach (THIRD_PARTY_HOSTS as $host) {
+        Assert::assertStringNotContainsString($host, $html, "/pricing renders {$host}");
+    }
+})->group('ssr');
 
 it('exempts only a plain anchor to an allowed outbound link', function (): void {
     $anchor = '<a class="x" href="https://www.producthunt.com/products/tablepro">TablePro on Product Hunt</a>';

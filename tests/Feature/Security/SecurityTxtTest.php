@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Carbon;
 
-/**
- * @return array<string, string>
- */
+/** @return array<string, string> */
 function securityTxtFields(): array
 {
     $response = test()->get('/.well-known/security.txt')->assertOk();
@@ -42,10 +40,7 @@ it('builds the canonical from the configured origin, never from the request host
     expect($body)->toContain('Canonical: https://tablepro.app/.well-known/security.txt')->not->toContain('evil.example');
 });
 
-/*
- * Fails a month before the file goes stale. Check the contact still reaches
- * someone, then move SecurityTxtController::EXPIRES forward.
- */
+// When this fails, check the contact still reaches someone, then move SecurityTxtController::EXPIRES forward.
 it('expires more than 30 days from now and less than a year ahead', function (): void {
     $expires = Carbon::parse(securityTxtFields()['Expires']);
 

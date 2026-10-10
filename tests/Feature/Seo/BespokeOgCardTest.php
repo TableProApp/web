@@ -12,21 +12,6 @@ use PHPUnit\Framework\Assert;
 
 require_once __DIR__ . '/helpers.php';
 
-/**
- * The bespoke default social card: `og-site` in resources/data/assets.json,
- * delivered as `public/og.png` in English and
- * `public/og/bespoke/og-site-{locale}.png` otherwise.
- *
- * Once the entry is supplied, every page without a card of its own shares it
- * at the canonical `/og.png` in English or in place of another locale's
- * generated generic card, each locale
- * on its own file. `OgImages::fallback()` asks `AssetManifest::ogCard()` first.
- *
- * These cases read the committed card files and the real page registry. The
- * switch is proven on a copy of the real manifest with the entry marked
- * supplied, so it holds before and after that one manifest edit;
- * `AssetManifestTest` and `PageFamiliesTest` hold the committed state itself.
- */
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 
@@ -38,10 +23,6 @@ afterEach(function (): void {
     File::deleteDirectory($this->scratch);
 });
 
-/**
- * The real manifest with `og-site` supplied, as the owner's edit leaves it,
- * written to `$dir` and bound in the container for `OgImages` to resolve.
- */
 function bespokeSuppliedManifest(string $dir): AssetManifest
 {
     $data = json_decode((string) file_get_contents(resource_path('data/assets.json')), true, 512, JSON_THROW_ON_ERROR);
@@ -66,8 +47,6 @@ function bespokeSuppliedManifest(string $dir): AssetManifest
 }
 
 /**
- * The PNG chunk types of a file, in order.
- *
  * @return list<string>
  */
 function bespokePngChunks(string $bytes): array
@@ -85,11 +64,7 @@ function bespokePngChunks(string $bytes): array
 }
 
 it('ships the card as an opaque 1200 × 630 PNG within budget, one per locale', function (): void {
-    /*
-     * A link preview has no theme and sits on the host app's own
-     * background, so the card may not rely on transparency: no alpha
-     * channel (IHDR colour types 4 and 6) and no tRNS chunk.
-     */
+    // A link preview has no theme, so no alpha channel (IHDR colour types 4 and 6) and no tRNS chunk.
     $manifest = new AssetManifest();
     $budget = $manifest->kindOf(OgImages::SITE_CARD)['maxBytes'];
     $hashes = [];
@@ -151,9 +126,6 @@ it('puts the card on every page without its own, in its language, instead of the
         }
     }
 
-    /*
-     * The pages the brief names, in every language they render in.
-     */
     $registry = app(PageRegistry::class);
     $named = 0;
 

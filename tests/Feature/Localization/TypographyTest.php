@@ -1,28 +1,11 @@
 <?php
 
-/**
- * The two shared stylesheets that make Vietnamese render well and cheaply.
- *
- * fonts.css: when two faces of a family cover a character, the browser uses the
- * one declared last. Declaring `vietnamese` after `latin-ext` sends the letters
- * they share to the 15 KB Vietnamese face instead of the 133 KB one. Reordering
- * the blocks would still render, just at twice the font weight per page, which
- * no visual check would catch.
- *
- * tokens.css: Vietnamese stacks a tone mark over a vowel mark, so headings need
- * more line height than English, and the override has to come after the
- * English values to win.
- */
 function stylesheet(string $name): string
 {
     return (string) file_get_contents(resource_path("css/{$name}"));
 }
 
-/**
- * The subsets of a family's faces, in declaration order.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function subsetOrder(string $css, string $fileStem): array
 {
     preg_match_all('#/' . preg_quote($fileStem, '#') . '-([a-z-]+?)-(?:opsz|400)-normal\.woff2#', $css, $matches);
@@ -31,6 +14,7 @@ function subsetOrder(string $css, string $fileStem): array
 }
 
 it('declares latin-ext, then vietnamese, then latin, for both families', function (): void {
+    // The last declared face wins, so shared letters load from the 15 KB Vietnamese face, not the 133 KB one.
     $css = stylesheet('fonts.css');
 
     expect(subsetOrder($css, 'inter'))->toBe(['latin-ext', 'vietnamese', 'latin']);
@@ -47,12 +31,10 @@ it('loads Plex Mono at 400 only, and no script the site does not use', function 
 });
 
 it('points every face at a font file that is installed', function (): void {
-    if (! is_dir(base_path('node_modules'))) {
-        if (getenv('REQUIRE_SSR')) {
-            $this->fail('node_modules is missing; run npm ci before the SSR suite.');
-        }
+    requireSsrJob();
 
-        $this->markTestSkipped('Needs npm ci. The CI ssr job installs node_modules and runs this case.');
+    if (! is_dir(base_path('node_modules'))) {
+        ssrUnavailable('node_modules is missing. Run: npm ci');
     }
 
     preg_match_all('#url\("\.\./\.\./(node_modules/[^"]+)"\)#', stylesheet('fonts.css'), $matches);
@@ -62,7 +44,7 @@ it('points every face at a font file that is installed', function (): void {
     foreach ($matches[1] as $path) {
         expect(is_file(base_path($path)))->toBeTrue("{$path} is not installed");
     }
-});
+})->group('ssr');
 
 it('gives Vietnamese headings room for stacked marks, after the English values', function (): void {
     $css = stylesheet('tokens.css');
@@ -128,20 +110,12 @@ it('breaks a word wider than its box instead of letting it cross the page edge',
 });
 
 it('hyphenates the fact terms of an engine page, a third of a narrow card', function (): void {
-    requireSsr();
-
-    /*
-     * Measured at 1024px: "Abfragesprache" and "Mindestversion" ran 32px and
-     * 27px into the value beside them, "Puerto predeterminado" 31px.
-     */
+    // At 1024px "Abfragesprache" ran 32px into the value beside it.
     expect(ssrHtml('/de/postgresql-client'))->toMatch('/<dl class="[^"]*\[&amp;_dt\]:hyphens-auto[^"]*">/');
-});
+})->group('ssr');
 
 it('hyphenates long German words in headings, keyed on the language of a German page', function (): void {
-    /*
-     * Measured at 320px before: "Datenschutzerklärun|g", "Nutzungsbedingunge|n"
-     * and "Gewährleistungsausschlu|ss" broke with no hyphen.
-     */
+    // At 320px "Datenschutzerklärun|g" broke with no hyphen.
     expect(stylesheet('app.css'))->toMatch('/\n:is\(h1, h2, h3, h4, h5, h6\):lang\(de\) \{\s*hyphens: auto;\s*hyphenate-limit-chars: 12 4 4;\s*\}/');
 
     $this->withoutVite();

@@ -3,13 +3,6 @@
 use App\Support\Content\EnginePaths;
 use App\Support\Content\Slugs\DatabaseSlugs;
 
-/*
- * Where an engine's link goes: its own page, its section on its family's page,
- * or its row on /databases, decided once by `EnginePaths` for every page that
- * links an engine. The rule was written five times and the copies disagreed on
- * a section whose parent had no page (`/#anchor`, the hub, or nothing).
- */
-
 /** @return list<array<string, mixed>> */
 function enginePathsEngines(): array
 {
@@ -42,6 +35,7 @@ it('links nothing it cannot resolve, rather than guessing', function (): void {
         ->and(EnginePaths::pathFor(['page' => 'unknown'], []))->toBeNull();
 });
 
+// The rule was once written five times, and the copies disagreed on a section whose parent had no page.
 it('is the only copy of the rule', function (string $file): void {
     $source = (string) file_get_contents(base_path($file));
 

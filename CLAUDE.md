@@ -137,8 +137,9 @@ Every change needs a test. Feature tests live in `tests/Feature`; there is no
 `RefreshDatabase` anywhere and there must not be — there is no database.
 
 No test reaches the network: `tests/Pest.php` prevents stray HTTP requests, so
-fake GitHub with `Http::fake()`. Tests that assert on rendered markup go behind
-`requireSsr()` and skip locally without a built SSR bundle.
+fake GitHub with `Http::fake()`. SSR is off in tests: a test that asserts on
+rendered markup calls `requireSsr()` and sits in `->group('ssr')`, which CI runs
+in the job with a live SSR service. It skips locally without one.
 
 ## Content
 

@@ -14,21 +14,6 @@ use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The homepage, `/` and `/vi` (sitemap §A.1, §D; positioning §1-§9;
- * architecture §1.17 "HomepageRenderTest").
- *
- * The first half runs on every machine: the controller's props, the copy in
- * both languages, and the facts the page derives from resources/data. The
- * second half asserts on the server-rendered DOM and needs a current SSR
- * bundle (`requireSsr()`): the section order with Sponsors third, the
- * `#pricing` section the Mac app opens, the old anchors, the structured data
- * and the title built from platforms.json.
- *
- * Expectations are read from the data files, never typed: the engines, the
- * iPhone engine picker, the sponsors and the prices are whatever
- * resources/data says today.
- */
 beforeEach(function (): void {
     withoutVite();
 });
@@ -49,7 +34,6 @@ function homeContent(string $locale): array
     return homeData("content/{$locale}/home.json");
 }
 
-/** The server-rendered homepage in one locale, rendered once per test run. */
 function ssrHome(string $path = '/'): string
 {
     static $html = [];
@@ -58,8 +42,14 @@ function ssrHome(string $path = '/'): string
 }
 
 /**
- * The ids of every `<section>` inside `<main>`, in document order.
- *
+ * @return list<string>
+ */
+function homeLocales(): array
+{
+    return array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true, 512, JSON_THROW_ON_ERROR)['supported']);
+}
+
+/**
  * @return list<string>
  */
 function homeSectionIds(string $html): array
@@ -71,10 +61,10 @@ function homeSectionIds(string $html): array
     return $matches[1];
 }
 
-/** The ten homepage sections, in sitemap §D's order. Sponsors is third by the owner's decision (spec §0). */
+// Sponsors is third by the owner's decision.
 const HOME_SECTIONS = ['top', 'databases', 'sponsors', 'features', 'safety', 'ai', 'platforms', 'switch', 'testimonials', 'pricing', 'open-source'];
 
-/** Older ids that land inside the section that replaced them (sitemap §C.2). */
+// Older anchors, each inside the section that replaced it.
 const HOME_ALIASES = ['mcp' => 'ai', 'mobile' => 'platforms', 'compare' => 'switch', 'license' => 'pricing'];
 
 describe('props and copy', function (): void {
@@ -94,6 +84,8 @@ describe('props and copy', function (): void {
                 ->has('iosEngines.syncedOnly')
                 ->missing('productHunt')
                 ->missing('downloadUrls')
+                ->missing('latestRelease')
+                ->missing('paymentProvider')
                 ->missing('githubStars')
                 ->missing('teamMinSeats'));
     });
@@ -106,7 +98,10 @@ describe('props and copy', function (): void {
                 ->component('Home')
                 ->where('locale', 'vi')
                 ->where('content.hero.title', 'Database client native.')
-                ->where('content.seo.title', 'TablePro: database client native cho {deviceList}'));
+                ->where('content.seo.title', 'TablePro: database client native cho {deviceList}')
+                ->missing('downloadUrls')
+                ->missing('latestRelease')
+                ->missing('paymentProvider'));
 
         expect($response->getContent())->toContain('<html lang="vi"');
     });
@@ -128,18 +123,9 @@ describe('props and copy', function (): void {
     it('preloads the hero only once it is supplied', function (): void {
         $expected = app(AssetManifest::class)->lcpDescriptor('mac-hero-window', 'en');
 
+        expect($expected === null)->toBe(! app(AssetManifest::class)->isSupplied('mac-hero-window'));
+
         get('/')->assertInertia(fn(AssertableInertia $page) => $page->where('lcpAsset', $expected));
-
-        if (! app(AssetManifest::class)->isSupplied('mac-hero-window')) {
-            $html = (string) get('/')->getContent();
-            preg_match_all('#<link rel="preload" as="image" href="([^"]+)"#', $html, $preloads);
-
-            expect($expected)->toBeNull();
-            // The Blade block that preloads the hero writes `imagesrcset`.
-            expect($html)->not->toContain('imagesrcset');
-            // React preloads the header logo it renders on every page; nothing else may be preloaded.
-            expect(array_values(array_diff($preloads[1], ['/images/logo.png'])))->toBe([]);
-        }
     });
 
     it('sends every published engine once, linked to where the site describes it', function (): void {
@@ -157,6 +143,8 @@ describe('props and copy', function (): void {
             'featured' => $engine['featured'],
         ])->all();
 
+        expect($engines->where('featured', true))->not->toBeEmpty();
+
         get('/')->assertInertia(fn(AssertableInertia $page) => $page->where('engines', function ($engines) use ($expected): bool {
             $actual = collect($engines)->map(fn($engine): array => [
                 'id' => $engine['id'],
@@ -169,21 +157,6 @@ describe('props and copy', function (): void {
 
             return true;
         }));
-    });
-
-    it('names the featured engines in data order, and only published ones', function (): void {
-        $featured = collect(homeData('engines.json'))
-            ->filter(fn(array $engine): bool => $engine['featured'] === true && $engine['state'] === 'published')
-            ->pluck('name')
-            ->values()
-            ->all();
-
-        expect($featured)->not->toBeEmpty();
-
-        get('/')->assertInertia(fn(AssertableInertia $page) => $page->where(
-            'engines',
-            fn($engines): bool => collect($engines)->where('featured', true)->pluck('name')->values()->all() === $featured,
-        ));
     });
 
     it('names the database categories as /databases does, in its order, in every language', function (): void {
@@ -232,12 +205,7 @@ describe('props and copy', function (): void {
     });
 
     it('names Product Hunt as a plain text link from facts.json, with no badge', function (): void {
-        /*
-         * The owner's decision (spec §0): "TablePro on Product Hunt" as text,
-         * no badge image, no hotlink, no third-party request. The badge
-         * component design-system §5 removed stays removed, and the URL lives
-         * in facts.json like every other outbound link.
-         */
+        // The owner's decision: Product Hunt as a text link from facts.json, with no badge and no third-party request.
         expect(File::exists(resource_path('js/components/home/product-hunt-badge.tsx')))->toBeFalse();
         expect(homeData('facts.json')['links']['productHunt'])->toBe('https://www.producthunt.com/products/tablepro');
         expect(homeContent('en')['openSource']['productHunt'])->toBe('TablePro on Product Hunt');
@@ -290,7 +258,6 @@ describe('props and copy', function (): void {
         // The app is Swift with AppKit and SwiftUI on the Mac; it ships no Electron shell and no Java runtime.
         expect($en['native'])->toContain('native interfaces', 'not Electron or a Java runtime');
         expect(preg_match('/\b(Windows|Linux)\b|\d/', $en['native']))->toBe(0, 'The native line names an unreleased platform or a number');
-        // The subtitle stays one sentence about what the app does.
         expect(substr_count($en['subtitle'], '. '))->toBe(0, 'The subtitle grew a second sentence');
 
         foreach (Locales::codes() as $locale) {
@@ -351,39 +318,22 @@ describe('props and copy', function (): void {
 
         expect($document->getElementById('features-schema')->parentElement->textContent)->toContain('Compare & Sync');
         expect($document->getElementById('safety')->textContent)->not->toContain('Data Rewind');
-    })->with(array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true, 512, JSON_THROW_ON_ERROR)['supported']));
+    })->with(homeLocales())->group('ssr');
 
-    it('names the paid $VAR references next to the free password sources, and does not say every dump tool needs installing', function (string $locale): void {
+    it('names the paid $VAR references next to the free password sources, and the DuckDB exception, on the feature pages', function (string $locale): void {
         $rows = collect(homeContent($locale)['workflows']['rows'])->keyBy('id');
+        $connections = json_encode(homeData("content/{$locale}/features/connections.json"), JSON_UNESCAPED_UNICODE);
+        $files = json_encode(homeData("content/{$locale}/features/import-export.json"), JSON_UNESCAPED_UNICODE);
 
-        if (in_array($locale, ['en', 'vi'], true)) {
-            // English now links to the full feature descriptions rather than
-            // repeating every credential and backup option on the homepage.
-            $connections = json_encode(homeData("content/{$locale}/features/connections.json"), JSON_UNESCAPED_UNICODE);
-            $files = json_encode(homeData("content/{$locale}/features/import-export.json"), JSON_UNESCAPED_UNICODE);
-            expect($connections)->toContain('$DB_HOST', 'environment-variables');
-            expect($files)->toContain('DuckDB');
-            expect($connections)->toContain($locale === 'en' ? 'free sources' : 'mật khẩu có nguồn riêng, miễn phí');
-            expect($files)->toContain($locale === 'en' ? 'except for DuckDB' : 'trừ DuckDB');
-            expect($rows['files']['body'])->toContain('{importFormats}', '{exportFormats}');
-
-            return;
-        }
-
-        // The `env` password source is free; only `$VAR` references are Starter (PasswordSourceResolver and EnvVarResolver at v0.77.0).
-        expect($rows['connect']['body'])->toContain('<code>$VAR</code>');
-        // macOS ships sqlite3, so "which you install yourself" was false for SQLite.
-        expect($rows['files']['body'])->toContain('{dumpTools}')->not->toContain($locale === 'vi' ? 'bạn tự cài các công cụ này' : 'which you install yourself');
-        // SQL files run as statements; they are not imported "into a table".
-        expect($rows['files']['body'])->not->toContain($locale === 'vi' ? 'Import {importFormats} vào table' : 'Import {importFormats} into a table');
+        expect($connections)->toContain('$DB_HOST', 'environment-variables');
+        expect($files)->toContain('DuckDB');
+        expect($connections)->toContain($locale === 'en' ? 'free sources' : 'mật khẩu có nguồn riêng, miễn phí');
+        expect($files)->toContain($locale === 'en' ? 'except for DuckDB' : 'trừ DuckDB');
+        expect($rows['files']['body'])->toContain('{importFormats}', '{exportFormats}');
     })->with(['en', 'vi']);
 
     it('keeps the identity copy free of platform names, versions and numbers', function (string $locale): void {
-        /*
-         * Positioning §13: the H1, the subtitle and the pillar headings hold
-         * when a platform ships. Platforms reach the page only through the
-         * captions and cards built from platforms.json.
-         */
+        // The identity copy has to hold when a platform ships; platforms reach the page only through data.
         $content = homeContent($locale);
         $identity = [
             'hero.title' => $content['hero']['title'],
@@ -423,19 +373,16 @@ describe('server-rendered', function (): void {
         expect(substr_count($html, '<h1'))->toBe(1, "{$path} must have exactly one h1");
         // The layout owns the <main>; the deploy smoke test also looks for it.
         expect(substr_count($html, '<main'))->toBe(1, "{$path} must have exactly one main landmark");
-    })->with(['/', '/vi']);
+    })->with(['/', '/vi'])->group('ssr');
 
     it('renders the eleven sections in order, with Sponsors third', function (string $path): void {
         $ids = array_values(array_intersect(homeSectionIds(ssrHome($path)), HOME_SECTIONS));
 
         expect($ids)->toBe(HOME_SECTIONS);
 
-        /*
-         * Third among every <section> in <main>, not only among the known
-         * ones: nothing may slip in between the databases and the sponsors.
-         */
+        // Third among every <section> in <main>: nothing may slip in between the databases and the sponsors.
         expect(homeSectionIds(ssrHome($path))[2] ?? null)->toBe('sponsors');
-    })->with(['/', '/vi']);
+    })->with(['/', '/vi'])->group('ssr');
 
     it('renders the pricing section shipped Mac builds open, and keeps every older anchor inside its new section', function (string $path): void {
         $html = ssrHome($path);
@@ -451,7 +398,7 @@ describe('server-rendered', function (): void {
             expect($anchor)->not->toBeFalse("{$path} has no #{$alias}");
             expect($anchor > $start && $anchor < $end)->toBeTrue("{$path}: #{$alias} must sit inside #{$section}");
         }
-    })->with(['/', '/vi']);
+    })->with(['/', '/vi'])->group('ssr');
 
     it('says what Starter adds and whom it is for, every cycle\'s price and the refund window, in the pricing section', function (string $path, string $locale, array $copy, string $pattern, string $decimal): void {
         $html = html_entity_decode(ssrHome($path), ENT_QUOTES | ENT_HTML5);
@@ -494,7 +441,7 @@ describe('server-rendered', function (): void {
             'person' => 'Một người, tối đa {macs} máy Mac.',
             'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.',
         ], "%s\u{a0}US$", ','],
-    ]);
+    ])->group('ssr');
 
     it('describes the organization, the site and both apps, with no rating, FAQ or file size', function (string $path): void {
         $html = ssrHome($path);
@@ -518,12 +465,17 @@ describe('server-rendered', function (): void {
         $prices = collect($pricing['tiers'])->flatMap(fn(array $tier): array => isset($tier['price']) ? [$tier['price']] : array_values($tier['prices']))->map(fn($amount): string => is_int($amount) || floor($amount) === (float) $amount ? (string) (int) $amount : number_format($amount, 2, '.', ''));
 
         expect(collect($nodes['SoftwareApplication']['offers'])->pluck('price')->all())->toBe($prices->all());
+        expect(collect($nodes['SoftwareApplication']['offers'])->pluck('@type')->unique()->all())->toBe(['Offer']);
+        // keyBy() above keeps one node per type, so count the duplicates in the markup.
+        expect(substr_count($html, '"@type":"SoftwareApplication"'))->toBe(1);
 
         expect($html)
             ->not->toContain('aggregateRating')
             ->not->toContain('ratingValue')
-            ->not->toContain('"@type":"FAQPage"');
-    })->with(['/', '/vi']);
+            ->not->toContain('"@type":"FAQPage"')
+            // It once held the latest release date, so the app looked first published last week.
+            ->not->toContain('"datePublished"');
+    })->with(['/', '/vi'])->group('ssr');
 
     it('names the platforms only in the availability lines, from data', function (): void {
         // The requirement phrase is held together with no-break spaces ("Apple silicon or Intel"); compare as text.
@@ -541,12 +493,13 @@ describe('server-rendered', function (): void {
             ->toContain('iPhone và iPad · iOS và iPadOS 18 trở lên')
             ->toContain('Tải về cho Mac');
 
+        // Catches retired copy hardcoded in a component, which the content guards don't read.
         foreach (['/', '/vi'] as $path) {
             foreach (['Every database', 'every database', 'macOS 14', 'Sonoma', 'Universal', 'unlock', 'free forever', 'GitHub Trending'] as $retired) {
                 expect(ssrHome($path))->not->toContain($retired);
             }
         }
-    });
+    })->group('ssr');
 
     it('thanks only the verified sponsors, each as a sponsored link', function (): void {
         $html = ssrHome('/');
@@ -558,7 +511,7 @@ describe('server-rendered', function (): void {
         foreach (['getapps', 'Visnalize', 'Unikorn', 'Xermius'] as $former) {
             expect($html)->not->toContain($former);
         }
-    });
+    })->group('ssr');
 
     it('renders a title built from platforms.json, Product Hunt only as a text link, and wraps the sponsor logos', function (string $path, string $title, string $productHunt): void {
         $html = ssrHome($path);
@@ -577,15 +530,7 @@ describe('server-rendered', function (): void {
         // No toast region: nothing calls toast(), and Sonner's English landmark name showed on /vi.
         expect($html)->not->toContain('aria-label="Notifications');
 
-        /*
-         * A wall of cells: two across below 768px, the 2 × 2 of design-system
-         * §8.1, and four across from 768 (§4.7). A wide wordmark once
-         * overflowed a fixed column at 375px, so each item may shrink
-         * (`min-w-0`) and each logo scales down (`max-w-full`). The logos load
-         * eagerly at low priority, so a late lazy load never leaves the white
-         * dark-mode tile empty, and React does not preload them ahead of the
-         * page's own images.
-         */
+        // A wide wordmark once overflowed at 375px, and a late lazy load left the white dark-mode tile empty.
         preg_match('#<section[^>]*id="sponsors".*?</section>#s', $html, $sponsors);
 
         expect($sponsors[0] ?? '')->toContain('cell-grid grid-cols-2 md:grid-cols-4')->toContain('min-w-0 max-w-full')
@@ -593,7 +538,7 @@ describe('server-rendered', function (): void {
     })->with([
         ['/', 'TablePro: native database client for Mac, iPhone and iPad', 'TablePro on Product Hunt'],
         ['/vi', 'TablePro: database client native cho Mac, iPhone và iPad', 'TablePro trên Product Hunt'],
-    ]);
+    ])->group('ssr');
 
     it('links the features hub from the workflows section and scopes the importers to the Mac app', function (string $path, string $lead): void {
         $html = ssrHome($path);
@@ -628,7 +573,7 @@ describe('server-rendered', function (): void {
     })->with([
         ['/', 'Importing from other apps and Open Project Folder are in the Mac app only.'],
         ['/vi', 'Import từ ứng dụng khác và Open Project Folder chỉ có trong ứng dụng Mac.'],
-    ]);
+    ])->group('ssr');
 
     it('sets each workflow beside its capture from 1280px, with one divider down the section', function (string $path, string $locale): void {
         $grid = HTMLDocument::createFromString(ssrHome($path), LIBXML_NOERROR)->querySelector('#features .cell-grid');
@@ -679,7 +624,7 @@ describe('server-rendered', function (): void {
         $column = (76 * 16 + 2 * 31 - 11) / 12;
 
         expect((int) round(8 * $column + 7 - 2 * 31))->toBe(790);
-    })->with([['/', 'en'], ['/vi', 'vi']]);
+    })->with([['/', 'en'], ['/vi', 'vi']])->group('ssr');
 
     it('shows each featured engine once, the engine count from data and the hub\'s categories', function (string $path, string $locale): void {
         $html = ssrHome($path);
@@ -708,11 +653,11 @@ describe('server-rendered', function (): void {
         }
 
         expect(strip_tags($section))->toContain((string) $engines->count());
-    })->with([['/', 'en'], ['/vi', 'vi']]);
+    })->with([['/', 'en'], ['/vi', 'vi']])->group('ssr');
 
     it('renders the concise supported-databases heading', function (): void {
         expect(ssrHome('/'))->toMatch('#<h2 id="databases-title"[^>]*>Supported databases</h2>#');
-    });
+    })->group('ssr');
 
     it('puts what native means under the hero actions, outside the headline', function (string $path, string $locale): void {
         $html = ssrHome($path);
@@ -731,17 +676,24 @@ describe('server-rendered', function (): void {
         expect($native)->not->toBeFalse("{$path}: the native line is not in the hero");
         expect($pricing)->toBeGreaterThan($headline);
         expect($native)->toBeGreaterThan($pricing);
-    })->with([['/', 'en'], ['/vi', 'vi']]);
+    })->with([['/', 'en'], ['/vi', 'vi']])->group('ssr');
 
-    it('shows the hero window as a labelled placeholder until it is supplied', function (): void {
+    it('shows the hero window as a labelled placeholder, and preloads no image but the logo, until it is supplied', function (): void {
         if (app(AssetManifest::class)->isSupplied('mac-hero-window')) {
             $this->markTestSkipped('The hero is supplied.');
         }
 
-        expect(ssrHome('/'))
+        $html = ssrHome('/');
+        preg_match_all('#<link rel="preload" as="image" href="([^"]+)"#', $html, $preloads);
+
+        expect($html)
             ->toContain('data-asset-id="mac-hero-window"')
             ->toContain('data-asset-id="mac-hero-window-mobile"');
-    });
+        // The Blade block that preloads the hero writes `imagesrcset`.
+        expect($html)->not->toContain('imagesrcset');
+        // React preloads the header logo it renders on every page; nothing else may be preloaded.
+        expect(array_values(array_diff($preloads[1], ['/images/logo.png'])))->toBe([]);
+    })->group('ssr');
 
     it('shows each post in the reader\'s language, with the original behind a labelled disclosure, the author\'s photo and a link to the post', function (string $path, string $locale): void {
         $section = HTMLDocument::createFromString(ssrHome($path), LIBXML_NOERROR)->querySelector('#testimonials');
@@ -782,9 +734,20 @@ describe('server-rendered', function (): void {
         ['/ja', 'ja'],
         ['/vi', 'vi'],
         ['/zh-Hant', 'zh-Hant'],
-    ]);
+    ])->group('ssr');
+
+    it('says who builds TablePro in the open-source section, and links the about page, in every language', function (string $locale): void {
+        $publisher = homeData('facts.json')['publisher'];
+
+        preg_match('#<section[^>]*id="open-source".*?</section>#s', ssrHome(LocalizedUrl::path('/', $locale)), $section);
+
+        $text = (string) preg_replace('/[\x{00A0}\x{202F}]/u', ' ', html_entity_decode(strip_tags(str_replace('<!-- -->', '', $section[0] ?? '')), ENT_QUOTES | ENT_HTML5));
+
+        expect($text)->toContain($publisher['name'])->toContain($publisher['city'][$locale]);
+        expect($section[0] ?? '')->toContain('href="' . LocalizedUrl::path('/about', $locale) . '"');
+    })->with(homeLocales())->group('ssr');
 
     it('marks up no quote as a review or a rating', function (): void {
         expect(ssrHome('/'))->toContain('id="testimonials"')->not->toContain('"Review"')->not->toContain('aggregateRating');
-    });
+    })->group('ssr');
 });

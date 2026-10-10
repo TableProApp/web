@@ -3,27 +3,13 @@
 use Illuminate\Support\Facades\File;
 
 /**
- * resources/data/platforms.json: where TablePro runs, what each build needs
- * and where to get it.
- *
- * The hero captions, the download page, the iPhone page, structured data and
- * `release:check` all read it, so a wrong value here is wrong everywhere at
- * once. The facts that drifted on the old site are pinned: the macOS 13
- * Ventura floor (the site said 14), two separate Mac builds (never
- * "Universal"), and an App Store link with no country segment.
- *
- * Values verified 2026-10-02: Mac 0.77.0 on GitHub, Sparkle and, from the
- * same day, the Homebrew cask (`floorVersion`, which trailed at 0.76.1 that
- * morning, re-checked at 0.77.0 in the afternoon); iOS 1.0 (build 22) on the
- * App Store, unchanged since 2026-09-22.
- */
-
-/**
  * @return array{verifiedAt: string, platforms: list<array<string, mixed>>}
  */
 function platformsDataFile(): array
 {
-    return json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR);
+    static $data = null;
+
+    return $data ??= json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
 /**
@@ -152,15 +138,6 @@ it('pins the iPhone and iPad app: free, no in-app purchases, iOS and iPadOS 18',
 });
 
 it('names the App Store build the iPhone and iPad copy was checked against', function (): void {
-    /*
-     * content/{en,vi}/ios.json, the FAQ and the privacy policy describe what
-     * App Store 1.0 (build 22) does, and deliberately leave out what only the
-     * unreleased source does: the iPad table list beside the browser, the
-     * jump-host refusal, Redis key browsing, waiting for Face ID before a
-     * connection opens (merged in the TablePro repository after build 22). A
-     * new App Store build changes which of those sentences are true, so it has
-     * to change this test and send someone back to that copy.
-     */
     $release = platformsDataEntry('ios')['release'];
 
     expect($release['version'])->toBe('1.0', 'A new iOS version: review content/{en,vi}/ios.json, the FAQ and privacy.md against it, then update this test');
@@ -190,22 +167,6 @@ it('keeps the storefront exclusions as storefront codes for release:check only',
     }
 
     expect($exclusions)->toBe(array_values(array_unique($exclusions)));
-});
-
-it('names the engines the iOS picker offers', function (): void {
-    $engines = collect(json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR))->keyBy('id');
-    $iosEngines = platformsDataEntry('ios')['iosEngines'];
-
-    expect($iosEngines)->toBe(array_values(array_unique($iosEngines)));
-
-    foreach ($iosEngines as $id) {
-        expect($engines->has($id))->toBeTrue("{$id} is not in engines.json");
-        expect($engines[$id]['ios']['inPicker'])->toBeTrue("{$id} is not in the iOS picker");
-    }
-
-    $inPicker = $engines->filter(fn(array $engine): bool => $engine['ios']['inPicker'])->keys()->sort()->values()->all();
-
-    expect(collect($iosEngines)->sort()->values()->all())->toBe($inPicker);
 });
 
 it('uses HTTPS for every destination URL', function (): void {

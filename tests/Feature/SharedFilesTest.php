@@ -2,24 +2,10 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * The files this repository keeps byte-identical with the account app
- * (architecture §3; docs/shared-files.md).
- *
- * The two applications share one origin, one theme key, one consent key and
- * one visual system. Nothing links the two repositories at build time, so the
- * only thing that keeps a copy from drifting is this: the list records each
- * file's sha256, and an edit fails here until the list is updated, which is
- * the reminder to make the same edit in the other repository. The account app
- * runs the same test against the same list.
- */
-
 const SHARED_HEADER = 'Shared with TableProApp/web and TableProApp/license at %s. Change both in the same release. See docs/shared-files.md.';
 
 /**
- * The table rows of docs/shared-files.md whose first cell is a path.
- *
- * @return array<string, string> path => the sha256 cell as written
+ * @return array<string, string>
  */
 function sharedFileRows(): array
 {
@@ -36,7 +22,7 @@ function sharedFileRows(): array
     return $listed;
 }
 
-/** Every file under the given directories that carries the shared header. @return list<string> */
+/** @return list<string> */
 function filesCarryingSharedHeader(): array
 {
     $found = [];
@@ -81,6 +67,7 @@ it('lists every file architecture §3 requires, each with a real hash', function
     }
 });
 
+// Nothing links the two repositories at build time: a failing hash is the reminder to edit the account app too.
 it('keeps every listed file present, headed and unchanged', function (): void {
     foreach (sharedFileRows() as $path => $hash) {
         $file = base_path($path);
@@ -151,7 +138,6 @@ it('keeps the diff script reading the same list', function (): void {
 
     expect($script)->toContain('docs/shared-files.md');
 
-    // The script's row pattern, applied here, finds the same paths the test checks.
     preg_match_all('/^\| `([^`]+)` \|/m', (string) file_get_contents(base_path('docs/shared-files.md')), $rows);
 
     expect($rows[1])->toEqualCanonicalizing(array_keys(sharedFileRows()));

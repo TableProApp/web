@@ -6,7 +6,7 @@ beforeEach(function (): void {
     withoutVite();
 });
 
-// The homepage sentences that take an app name from the platforms catalog, as a reader sees them.
+// Each sentence takes its app name from the platforms catalog, so only the render shows it.
 it('fits the app names into the homepage sentences', function (string $locale, array $sentences): void {
     $html = ssrHtml("/{$locale}");
     $text = html_entity_decode(strip_tags(str_replace('<!-- -->', '', $html)), ENT_QUOTES | ENT_HTML5);
@@ -93,4 +93,4 @@ it('fits the app names into the homepage sentences', function (string $locale, a
         'Gunakan aplikasi Mac secara gratis, tanpa masa uji coba.',
         'Untuk aplikasi iPhone dan iPad, tidak ada biaya atau pembelian dalam aplikasi.',
     ]],
-]);
+])->group('ssr');
