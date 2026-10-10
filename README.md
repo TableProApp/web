@@ -49,6 +49,7 @@ If any instruction ever tells you otherwise, that is a bug in this README.
 | `resources/js/i18n/` | UI strings per language, and the locale helpers. |
 | `app/Http/Controllers/` | One controller per page family. |
 | `public/og/` | Pre-rendered Open Graph cards, committed. |
+| `resources/data/integrations.json`, `public/images/integrations/` | Copied from a [TableProApp/integrations](https://github.com/TableProApp/integrations) release by `.github/workflows/integrations-sync.yml`. Change entries there. |
 
 ## Writing a blog post
 
@@ -129,6 +130,13 @@ Two licences, because code and writing want different terms:
   the images under `public/images` and `public/og`. Share and adapt it with
   attribution, but not commercially.
 
-Neither licence covers the third-party logos under `public/images/sponsors`,
-which belong to their owners, or the TablePro name and logo, which are
-trademarks. See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).
+Neither licence covers:
+
+- the third-party logos under `public/images/sponsors` and the integration
+  icons and screenshots under `public/images/integrations`, which belong to
+  their owners;
+- `resources/data/integrations.json`, which is CC0-1.0 in
+  [TableProApp/integrations](https://github.com/TableProApp/integrations);
+- the TablePro name and logo, which are trademarks.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).

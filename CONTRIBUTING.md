@@ -66,3 +66,7 @@ screenshots and stand up a competing commercial site with them.
 Do not commit images you do not have the rights to. Third-party logos under
 `public/images/sponsors/` belong to their owners and are used with permission;
 neither licence above extends to them.
+
+`resources/data/integrations.json` and `public/images/integrations/` are copied
+from [TableProApp/integrations](https://github.com/TableProApp/integrations)
+under its terms, and the next sync replaces them. Change an entry there.
