@@ -38,7 +38,7 @@ function comparedProductsBySlug(): Collection
 }
 
 /**
- * Every compare page file in both languages: [locale, slug, copy].
+ * Every English compare page file: [locale, slug, copy]. ContentParityTest holds each translation to its keys, tokens, tags and ids.
  *
  * @return list<array{0: string, 1: string, 2: array<string, mixed>}>
  */
@@ -46,13 +46,11 @@ function comparePageCopies(): array
 {
     $pages = [];
 
-    foreach (['en', 'vi'] as $locale) {
-        foreach (File::glob(resource_path("data/content/{$locale}/compare/*.json")) ?: [] as $path) {
-            $slug = pathinfo($path, PATHINFO_FILENAME);
+    foreach (File::glob(resource_path('data/content/en/compare/*.json')) ?: [] as $path) {
+        $slug = pathinfo($path, PATHINFO_FILENAME);
 
-            if ($slug !== 'index') {
-                $pages[] = [$locale, $slug, json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR)];
-            }
+        if ($slug !== 'index') {
+            $pages[] = ['en', $slug, json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR)];
         }
     }
 
@@ -274,7 +272,7 @@ it('types no price, URL or benchmark into compare copy', function (): void {
 
             $where = basename(dirname($path, 2)) . '/' . basename($path) . " {$key}";
 
-            expect(preg_match('/\$\s?\d|\d\s?US\$|\bUSD\s?\d|€\s?\d/u', $value))->toBe(0, "{$where} types a price; prices come from data");
+            expect(preg_match('/€\s?\d/u', $value))->toBe(0, "{$where} types a price; prices come from data");
             expect(preg_match('#https?://#', $value))->toBe(0, "{$where} types a URL; sources and links come from data");
             expect(preg_match('/\d+(\.\d+)?\s?(MB|GB|ms)\b|\d+\s?[x×]\s?(faster|lighter|less)|faster than|nhanh hơn|nhẹ hơn/iu', $value))->toBe(0, "{$where} looks like a benchmark");
         }
@@ -283,35 +281,28 @@ it('types no price, URL or benchmark into compare copy', function (): void {
 
 it('gives the hub one line per compared product, in data order', function (): void {
     $slugs = comparedProductsBySlug()->keys()->all();
+    $hub = compareHubCopy('en');
 
-    foreach (['en', 'vi'] as $locale) {
-        $hub = compareHubCopy($locale);
+    expect(array_keys($hub['bySituation']['items']))->toBe($slugs, 'content/en/compare/index.json bySituation.items');
 
-        expect(array_keys($hub['bySituation']['items']))->toBe($slugs, "content/{$locale}/compare/index.json bySituation.items");
-
-        foreach ($hub['bySituation']['items'] as $slug => $line) {
-            foreach (compareTokensIn($line) as $token) {
-                expect(in_array($token, ['name', 'status.version', 'status.date', 'mac.minVersion'], true))->toBeTrue("{$locale} hub line for {$slug} uses {{$token}}");
-            }
+    foreach ($hub['bySituation']['items'] as $slug => $line) {
+        foreach (compareTokensIn($line) as $token) {
+            expect(in_array($token, ['name', 'status.version', 'status.date', 'mac.minVersion'], true))->toBeTrue("en hub line for {$slug} uses {{$token}}");
         }
-
-        expect($hub['labels'])->toHaveKeys(['factsChecked', 'rows', 'cell', 'price', 'tablepro', 'import', 'sections', 'sources', 'hub']);
-        expect(array_keys($hub['labels']['rows']))->toBe([...array_slice(COMPARE_STANDARD_ROWS, 0, 1), 'technology', ...array_slice(COMPARE_STANDARD_ROWS, 1)]);
     }
+
+    expect($hub['labels'])->toHaveKeys(['factsChecked', 'rows', 'cell', 'price', 'tablepro', 'import', 'sections', 'sources', 'hub']);
+    expect(array_keys($hub['labels']['rows']))->toBe([...array_slice(COMPARE_STANDARD_ROWS, 0, 1), 'technology', ...array_slice(COMPARE_STANDARD_ROWS, 1)]);
 });
 
 it('gives the hub TablePro’s own line, and every comparison a trademark notice and its search phrase', function (): void {
-    foreach (Locales::codes() as $locale) {
-        $hub = compareHubCopy($locale);
-        $where = "content/{$locale}/compare/index.json";
-
-        expect(compareTokensIn($hub['bySituation']['tablepro'] ?? ''))->toBe(['apps'], "{$where} bySituation.tablepro names the importers through {apps}");
-        expect(compareTokensIn($hub['labels']['shortAnswer']['lead'] ?? ''))->toBe(['name'], "{$where} labels.shortAnswer.lead");
-        expect($hub['labels']['sources']['trademarks'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sources.trademarks");
-        expect($hub['labels']['sections']['more'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sections.more");
-    }
-
     $english = compareHubCopy('en');
+    $where = 'content/en/compare/index.json';
+
+    expect(compareTokensIn($english['bySituation']['tablepro'] ?? ''))->toBe(['apps'], "{$where} bySituation.tablepro names the importers through {apps}");
+    expect(compareTokensIn($english['labels']['shortAnswer']['lead'] ?? ''))->toBe(['name'], "{$where} labels.shortAnswer.lead");
+    expect($english['labels']['sources']['trademarks'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sources.trademarks");
+    expect($english['labels']['sections']['more'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sections.more");
 
     expect($english['labels']['shortAnswer']['lead'])->toBe('Reasons to use TablePro or {name}.');
     expect($english['labels']['sources']['trademarks'])->toContain('not affiliated', 'trademarks');

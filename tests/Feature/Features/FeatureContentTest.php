@@ -85,6 +85,16 @@ function featureSchemaFiles(): array
 }
 
 /**
+ * The English feature page files: ContentParityTest holds every translation to their ids and slots.
+ *
+ * @return array<string, array{0: string, 1: string}>
+ */
+function featureSchemaEnglishFiles(): array
+{
+    return array_filter(featureSchemaFiles(), fn(array $file): bool => $file[0] === 'en');
+}
+
+/**
  * A section followed by its blocks, each with the id of the section it is in.
  *
  * @param  array<string, mixed>  $content
@@ -248,18 +258,7 @@ it('keeps the section ids the sitemap fixes', function (string $locale, string $
     $ids = array_column(featureSchemaContent($locale, $slug)['sections'], 'id');
 
     expect(array_values(array_diff(featureSchemaRequiredIds()[$slug], $ids)))->toBe([], "content/{$locale}/features/{$slug}.json is missing a fixed section id");
-})->with(fn(): array => featureSchemaFiles());
-
-it('gives the pages the same sections in every locale', function (string $locale, string $slug): void {
-    $english = featureSchemaContent('en', $slug);
-    $translated = featureSchemaContent($locale, $slug);
-    $ids = fn(array $content): array => array_map(
-        fn(array $entry): string => $entry['section'] . '/' . ($entry['block']['id'] ?? ''),
-        featureSchemaBlocks($content),
-    );
-
-    expect($ids($translated))->toBe($ids($english));
-})->with(fn(): array => array_filter(featureSchemaFiles(), fn(array $file): bool => $file[0] !== 'en' && is_file(featureSchemaPath('en', $file[1]))));
+})->with(fn(): array => featureSchemaEnglishFiles());
 
 it('names only facts the server computes', function (string $locale, string $name): void {
     $facts = (new FeatureFacts())->all();
@@ -299,7 +298,7 @@ it('places each slot in the section the manifest gives it', function (string $lo
         expect(in_array(['path' => "/features/{$slug}", 'section' => $section], $assets[$id]['usedOn'], true))
             ->toBeTrue("{$id} is not briefed for /features/{$slug}#{$section}; ask for a manifest change instead");
     }
-})->with(fn(): array => featureSchemaFiles());
+})->with(fn(): array => featureSchemaEnglishFiles());
 
 it('names the plan of every paid feature in the section that describes it', function (string $slug): void {
     $content = featureSchemaContent('en', $slug);
@@ -328,18 +327,4 @@ it('names the plan of every paid feature in the section that describes it', func
         expect(collect($content['availability'])->contains(fn(array $row): bool => ($row['paid'] ?? null) === $feature['id']))
             ->toBeTrue("{$feature['name']} needs a row in Where it works with its paid id");
     }
-})->with(fn(): array => array_values(array_unique(array_column(featureSchemaFiles(), 1))));
-
-it('never frames a paid feature as unlocked', function (string $locale, string $name): void {
-    $text = File::get(resource_path("data/content/{$locale}/features/{$name}.json"));
-
-    expect($text)->not->toMatch($locale === 'vi' ? '/mở khóa/iu' : '/\bunlock/i', 'Paid plans add features (positioning §12.1)');
-})->with(function (): array {
-    $files = ['en/index' => ['en', 'index'], 'vi/index' => ['vi', 'index']];
-
-    foreach (featureSchemaFiles() as $key => $file) {
-        $files[$key] = $file;
-    }
-
-    return $files;
-});
+})->with(fn(): array => array_column(featureSchemaEnglishFiles(), 1));

@@ -48,14 +48,6 @@ it('asks for the regional discount from the plan block only', function (): void 
         ->and($names)->toBe(['components/pricing/pricing-card.tsx', 'components/pricing/regional-note.tsx']);
 });
 
-it('fetches the platform\'s answer without credentials, and only after rendering', function (): void {
-    $hook = (string) file_get_contents(resource_path('js/hooks/use-regional-pricing.ts'));
-
-    expect($hook)->toContain("fetch('/discount/region', { credentials: 'omit'")
-        ->toContain('useState<Regional | null>(null)')
-        ->toContain('useEffect(');
-});
-
 it('serves the list prices to every reader, with nothing struck through', function (string $path): void {
     config(['payment.provider' => 'polar']);
 

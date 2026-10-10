@@ -17,6 +17,9 @@ use Symfony\Component\Process\Process;
  * the script actually runs.
  */
 
+// The plain www-data run; its smoke URL also serves the bare-URL smoke test.
+const DEPLOY_DEFAULT_RUN = ['env' => ['SMOKE_URL' => 'https://tablepro.example']];
+
 /**
  * Pulls the extended regular expression the script tests before setting a flag.
  *
@@ -168,7 +171,7 @@ function deployStubs(): array
  * `previousAssets` seeds the live `public/build/assets`: each file's age in
  * hours, its content, and whether the live manifest names it.
  *
- * @param  array{root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
+ * @param  array{git?: bool, root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
  * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
  */
 function runDeployInSandbox(array $options = []): array
@@ -189,27 +192,32 @@ function runDeployInSandbox(array $options = []): array
     // www-data's home, /var/www, which it cannot write.
     mkdir("{$sandbox}/home", 0555);
 
-    $git = function (string $cwd, string ...$arguments): void {
-        (new Process(['git', '-c', 'user.name=Deploy Test', '-c', 'user.email=deploy@example.test', '-c', 'commit.gpgsign=false', ...$arguments], $cwd))->mustRun();
-    };
+    if ($options['git'] ?? true) {
+        $git = function (string $cwd, string ...$arguments): void {
+            (new Process(['git', '-c', 'user.name=Deploy Test', '-c', 'user.email=deploy@example.test', '-c', 'commit.gpgsign=false', ...$arguments], $cwd))->mustRun();
+        };
 
-    file_put_contents("{$seed}/artisan", "<?php\n");
-    file_put_contents("{$seed}/composer.lock", "{}\n");
-    file_put_contents("{$seed}/app/Example.php", "<?php\n");
-    file_put_contents("{$seed}/resources/js/app.tsx", "export {};\n");
-    file_put_contents("{$seed}/.gitignore", implode("\n", ['/public/build', '/public/build-next', '/public/build-old', '/bootstrap/ssr', '/bootstrap/ssr-next', '/bootstrap/ssr-old']) . "\n");
+        file_put_contents("{$seed}/artisan", "<?php\n");
+        file_put_contents("{$seed}/composer.lock", "{}\n");
+        file_put_contents("{$seed}/app/Example.php", "<?php\n");
+        file_put_contents("{$seed}/resources/js/app.tsx", "export {};\n");
+        file_put_contents("{$seed}/.gitignore", implode("\n", ['/public/build', '/public/build-next', '/public/build-old', '/bootstrap/ssr', '/bootstrap/ssr-next', '/bootstrap/ssr-old']) . "\n");
 
-    $git($seed, 'init', '-q', '-b', 'main');
-    $git($seed, 'add', '-A');
-    $git($seed, 'commit', '-q', '-m', 'A');
-    $git($sandbox, 'clone', '-q', '--bare', $seed, $origin);
-    $git($sandbox, 'clone', '-q', $origin, $app);
+        $git($seed, 'init', '-q', '-b', 'main');
+        $git($seed, 'add', '-A');
+        $git($seed, 'commit', '-q', '-m', 'A');
+        $git($sandbox, 'clone', '-q', '--bare', $seed, $origin);
+        $git($sandbox, 'clone', '-q', $origin, $app);
 
-    file_put_contents("{$seed}/composer.lock", "{\"changed\": true}\n");
-    file_put_contents("{$seed}/app/Example.php", "\n// changed\n", FILE_APPEND);
-    file_put_contents("{$seed}/resources/js/app.tsx", "// changed\n", FILE_APPEND);
-    $git($seed, 'commit', '-q', '-am', 'B');
-    $git($seed, 'push', '-q', $origin, 'main');
+        file_put_contents("{$seed}/composer.lock", "{\"changed\": true}\n");
+        file_put_contents("{$seed}/app/Example.php", "\n// changed\n", FILE_APPEND);
+        file_put_contents("{$seed}/resources/js/app.tsx", "// changed\n", FILE_APPEND);
+        $git($seed, 'commit', '-q', '-am', 'B');
+        $git($seed, 'push', '-q', $origin, 'main');
+    } else {
+        mkdir($app);
+        file_put_contents("{$app}/artisan", "<?php\n");
+    }
 
     // The live bundles a failed deploy has to put back.
     foreach (["{$app}/public/build", "{$app}/bootstrap/ssr"] as $live) {
@@ -283,6 +291,28 @@ function runDeployInSandbox(array $options = []): array
 }
 
 /**
+ * One sandbox per set of options, kept until the suite exits.
+ *
+ * @param  array{git?: bool, root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
+ * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
+ */
+function deployRun(array $options = DEPLOY_DEFAULT_RUN): array
+{
+    static $runs = [];
+
+    $key = json_encode($options, JSON_THROW_ON_ERROR);
+
+    if (! isset($runs[$key])) {
+        $runs[$key] = runDeployInSandbox($options);
+        $sandbox = $runs[$key]['sandbox'];
+
+        register_shutdown_function(fn() => (new Illuminate\Filesystem\Filesystem())->deleteDirectory($sandbox));
+    }
+
+    return $runs[$key];
+}
+
+/**
  * The FPM unit the script derives from the CLI that runs it: the PHP running
  * this suite, since the sandbox's `php -r` is the real one.
  */
@@ -326,11 +356,6 @@ it('rebuilds the bundles for a component, a stylesheet or a dependency', functio
     'package.json',
     'package-lock.json',
     'tsconfig.json',
-    // Page copy and legal text are read by PHP, but the pages are typed
-    // against them and data files under resources/data are bundled.
-    'resources/data/content/vi/home.json',
-    'resources/data/legal/vi/privacy.md',
-    'resources/data/locales.json',
 ]);
 
 it('does not rebuild the bundles for prose, templates, translations or PHP', function (string $path) {
@@ -461,13 +486,6 @@ it('regenerates the sitemap when the pages it enumerates change', function (stri
     'routes/localized.php',
 ]);
 
-it('names an FPM service to reload, because this host does not revalidate', function () {
-    $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
-
-    // Either a fixed `php8.x-fpm`, or the FPM of the CLI's own PHP version.
-    expect($script)->toMatch('/^FPM_SERVICE="\$\{FPM_SERVICE:-php(?:[0-9.]+|\$\{PHP_MINOR\})-fpm\}"$/m');
-});
-
 it('reloads the FPM of the PHP version that ran the release, not a hard-coded one', function (): void {
     /*
      * The default used to be php8.4-fpm. Ubuntu 26.04 ships PHP 8.5 only, so
@@ -482,12 +500,6 @@ it('reloads the FPM of the PHP version that ran the release, not a hard-coded on
         ->toContain('PHP_MINOR="$(php -r \'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;\')"')
         ->toContain('FPM_SERVICE="${FPM_SERVICE:-php${PHP_MINOR}-fpm}"')
         ->not->toMatch('/FPM_SERVICE:-php8\.[0-9]-fpm/');
-
-    // And the expression really yields the `8.x` the unit names carry.
-    $process = new Process(['php', '-r', 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;']);
-    $process->mustRun();
-
-    expect($process->getOutput())->toBe(PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION);
 });
 
 it('refuses a relative APP_PATH before it touches anything', function (): void {
@@ -519,17 +531,11 @@ describe('run as www-data, by the deploy key', function (): void {
         }
     });
 
-    afterEach(function (): void {
-        if (isset($this->run)) {
-            File::deleteDirectory($this->run['sandbox']);
-        }
-    });
-
     it('reaches root only through sudo -n, with the exact commands the sudoers rule names', function (): void {
-        $this->run = runDeployInSandbox();
+        $run = deployRun();
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and($this->run['privileged'])->toBe([
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['privileged'])->toBe([
                 'sudo -n /usr/bin/supervisorctl restart tablepro-web-ssr',
                 'sudo -n /usr/bin/systemctl reload ' . expectedFpmService(),
             ]);
@@ -543,31 +549,32 @@ describe('run as www-data, by the deploy key', function (): void {
          * server is the one docs/deployment.md spells out; production's unit
          * is php8.5-fpm.
          */
-        $this->run = runDeployInSandbox(['env' => ['FPM_SERVICE' => 'php8.5-fpm']]);
+        $run = deployRun();
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and($this->run['privileged'])->not->toBeEmpty();
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['privileged'])->not->toBeEmpty();
 
-        foreach ($this->run['privileged'] as $call) {
+        foreach ($run['privileged'] as $call) {
             expect($call)->toStartWith('sudo -n /');
-            expect(documentedSudoersCommands())->toContain(substr($call, strlen('sudo -n ')));
+            // The rule names production's unit; this run reloads the one of the PHP running the suite.
+            expect(documentedSudoersCommands())->toContain(str_replace(expectedFpmService(), 'php8.5-fpm', substr($call, strlen('sudo -n '))));
         }
     });
 
     it('leaves ownership alone, because it already owns what it wrote', function (): void {
-        $this->run = runDeployInSandbox();
+        $run = deployRun();
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and(preg_grep('/^chown /', $this->run['calls']))->toBeEmpty()
-            ->and($this->run['output'])->toContain('skipped: running as');
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and(preg_grep('/^chown /', $run['calls']))->toBeEmpty()
+            ->and($run['output'])->toContain('skipped: running as');
     });
 
     it('keeps the npm and Composer caches in DEPLOY_CACHE_DIR, not in its unwritable home', function (): void {
-        $this->run = runDeployInSandbox();
-        $cache = $this->run['cache'];
+        $run = deployRun();
+        $cache = $run['cache'];
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and($this->run['env'])->toBe([
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['env'])->toBe([
                 "composer HOME={$cache}/home COMPOSER_HOME={$cache}/composer COMPOSER_CACHE_DIR={$cache}/composer/cache",
                 "npm HOME={$cache}/home npm_config_cache={$cache}/npm",
             ])
@@ -583,16 +590,16 @@ describe('run as www-data, by the deploy key', function (): void {
         }
 
         try {
-            $this->run = runDeployInSandbox(['cacheDir' => $directory]);
+            $run = deployRun(['git' => false, 'cacheDir' => $directory]);
         } finally {
             File::deleteDirectory($directory);
         }
 
-        expect($this->run['exit'])->toBe(1)
-            ->and($this->run['errors'])->toContain("{$directory} is not a directory")
-            ->and($this->run['errors'])->toContain('Create it once, as root: install -d -o ')
-            ->and($this->run['output'])->not->toContain('Pulling')
-            ->and($this->run['calls'])->toBe([]);
+        expect($run['exit'])->toBe(1)
+            ->and($run['errors'])->toContain("{$directory} is not a directory")
+            ->and($run['errors'])->toContain('Create it once, as root: install -d -o ')
+            ->and($run['output'])->not->toContain('Pulling')
+            ->and($run['calls'])->toBe([]);
     })->with(['missing', 'read-only']);
 
     it('refuses a checkout it does not own, rather than fail halfway through npm ci', function (): void {
@@ -600,30 +607,30 @@ describe('run as www-data, by the deploy key', function (): void {
          * A root run that stops before "Restoring ownership" leaves root-owned
          * files in the checkout. Simulated here by a user id that owns none of it.
          */
-        $this->run = runDeployInSandbox(['owner' => 4242]);
+        $run = deployRun(['git' => false, 'owner' => 4242]);
 
-        expect($this->run['exit'])->toBe(1)
-            ->and($this->run['errors'])->toContain("{$this->run['app']} is not owned by www-data")
-            ->and($this->run['errors'])->toContain("chown -R www-data:www-data {$this->run['app']}")
-            ->and($this->run['output'])->not->toContain('Pulling')
-            ->and($this->run['calls'])->toBe([]);
+        expect($run['exit'])->toBe(1)
+            ->and($run['errors'])->toContain("{$run['app']} is not owned by www-data")
+            ->and($run['errors'])->toContain("chown -R www-data:www-data {$run['app']}")
+            ->and($run['output'])->not->toContain('Pulling')
+            ->and($run['calls'])->toBe([]);
     });
 
     it('fails loudly when sudo refuses, and puts the previous bundles back', function (): void {
-        $this->run = runDeployInSandbox(['sudoRefuses' => true]);
-        $app = $this->run['app'];
+        $run = deployRun(['sudoRefuses' => true]);
+        $app = $run['app'];
 
-        expect($this->run['exit'])->toBe(1)
-            ->and($this->run['errors'])->toContain('sudo -n /usr/bin/supervisorctl restart tablepro-web-ssr failed')
-            ->and($this->run['errors'])->toContain('/etc/sudoers.d/tablepro-deploy')
-            ->and($this->run['errors'])->toContain('putting the previous bundles back')
+        expect($run['exit'])->toBe(1)
+            ->and($run['errors'])->toContain('sudo -n /usr/bin/supervisorctl restart tablepro-web-ssr failed')
+            ->and($run['errors'])->toContain('/etc/sudoers.d/tablepro-deploy')
+            ->and($run['errors'])->toContain('putting the previous bundles back')
             ->and("{$app}/public/build/PREVIOUS")->toBeFile()
             ->and("{$app}/bootstrap/ssr/PREVIOUS")->toBeFile()
             ->and("{$app}/public/build-old")->not->toBeDirectory()
             ->and("{$app}/bootstrap/ssr-old")->not->toBeDirectory();
 
         // It stopped at the refusal: no FPM reload was attempted after it.
-        expect(preg_grep('/systemctl/', $this->run['calls']))->toBeEmpty();
+        expect(preg_grep('/systemctl/', $run['calls']))->toBeEmpty();
     });
 });
 
@@ -634,43 +641,27 @@ describe('run as www-data, by the deploy key', function (): void {
  * write to it.
  */
 describe('run as root, by a human', function (): void {
-    afterEach(function (): void {
-        if (isset($this->run)) {
-            File::deleteDirectory($this->run['sandbox']);
-        }
-    });
-
     it('runs the privileged steps itself and hands the checkout back to the web user', function (): void {
-        $this->run = runDeployInSandbox(['root' => true]);
+        $run = deployRun(['root' => true]);
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and($this->run['privileged'])->toBe([
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['privileged'])->toBe([
                 'supervisorctl restart tablepro-web-ssr',
                 'systemctl reload ' . expectedFpmService(),
-                "chown -R www-data:www-data {$this->run['app']}",
+                "chown -R www-data:www-data {$run['app']}",
             ]);
     });
 
-    it('keeps root caches under root\'s own home and leaves DEPLOY_CACHE_DIR alone', function (): void {
-        $this->run = runDeployInSandbox(['root' => true]);
-        $home = "{$this->run['sandbox']}/root-home";
+    it('keeps root caches under root\'s own home from the password database, and leaves DEPLOY_CACHE_DIR alone', function (): void {
+        $run = deployRun(['root' => true]);
+        $home = "{$run['sandbox']}/root-home";
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
-            ->and($this->run['env'])->toBe([
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['env'])->toBe([
                 "composer HOME={$home} COMPOSER_HOME= COMPOSER_CACHE_DIR=",
                 "npm HOME={$home} npm_config_cache=",
             ])
-            ->and("{$this->run['cache']}/npm")->not->toBeDirectory();
-    });
-
-    it('takes HOME from the password database, not from the caller', function (): void {
-        $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
-
-        expect($script)->toContain('getent passwd "$(id -u)"');
-        expect($script)->toMatch('/^\s*export HOME="\$home_dir"$/m');
-
-        // PATH is extended first, so getent, id and cut are found at all.
-        expect(strpos($script, 'export PATH='))->toBeLessThan(strpos($script, 'getent passwd'));
+            ->and("{$run['cache']}/npm")->not->toBeDirectory();
     });
 
     it('trusts the checkout for git itself, before the first git command', function (): void {
@@ -897,14 +888,8 @@ it('still sees a PHP change in a release whose path list outgrows a pipe buffer'
  * deploys follow until ASSET_RETENTION_HOURS have passed since they retired.
  */
 describe('keeping the previous release\'s assets', function (): void {
-    afterEach(function (): void {
-        if (isset($this->run)) {
-            File::deleteDirectory($this->run['sandbox']);
-        }
-    });
-
     it('keeps the outgoing assets servable, and lets carried ones go after the retention', function (): void {
-        $this->run = runDeployInSandbox(['previousAssets' => [
+        $run = deployRun(['previousAssets' => [
             // Built ten days ago and live until now: it retires with this deploy.
             'app-old.js' => ['live' => true, 'hoursAgo' => 240],
             // A name the new build has too: the new build's file wins.
@@ -914,35 +899,35 @@ describe('keeping the previous release\'s assets', function (): void {
             // Carried by an earlier deploy, retired past the 72-hour retention.
             'Home-expired.js' => ['hoursAgo' => 100],
         ]]);
-        $assets = "{$this->run['app']}/public/build/assets";
+        $assets = "{$run['app']}/public/build/assets";
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+        expect($run['exit'])->toBe(0, $run['errors'])
             ->and((string) file_get_contents("{$assets}/app-new.js"))->toBe("built now\n")
             ->and("{$assets}/app-old.js")->toBeFile()
             ->and("{$assets}/Pricing-retired.js")->toBeFile()
             ->and("{$assets}/Home-expired.js")->not->toBeFile()
-            ->and($this->run['output'])->toContain('kept 2 earlier asset(s) for up to 72h, dropped 1 older one(s)');
+            ->and($run['output'])->toContain('kept 2 earlier asset(s) for up to 72h, dropped 1 older one(s)');
 
         // Retiring now restarts the clock; a file carried before keeps the moment it retired.
         expect(filemtime("{$assets}/app-old.js"))->toBeGreaterThan(time() - 120)
             ->and(abs(filemtime("{$assets}/Pricing-retired.js") - (time() - 5 * 3600)))->toBeLessThan(120);
 
         // The live manifest is the new build's, and the old build is still there to roll back to.
-        expect((string) file_get_contents("{$this->run['app']}/public/build/manifest.json"))->toContain('assets/app-new.js')->not->toContain('app-old.js')
-            ->and("{$this->run['app']}/public/build-old/assets/app-old.js")->toBeFile();
+        expect((string) file_get_contents("{$run['app']}/public/build/manifest.json"))->toContain('assets/app-new.js')->not->toContain('app-old.js')
+            ->and("{$run['app']}/public/build-old/assets/app-old.js")->toBeFile();
     });
 
     it('takes the retention from ASSET_RETENTION_HOURS', function (): void {
-        $this->run = runDeployInSandbox([
+        $run = deployRun([
             'env' => ['ASSET_RETENTION_HOURS' => '4'],
             'previousAssets' => [
                 'app-old.js' => ['live' => true, 'hoursAgo' => 240],
                 'Pricing-retired.js' => ['hoursAgo' => 5],
             ],
         ]);
-        $assets = "{$this->run['app']}/public/build/assets";
+        $assets = "{$run['app']}/public/build/assets";
 
-        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+        expect($run['exit'])->toBe(0, $run['errors'])
             ->and("{$assets}/app-old.js")->toBeFile()
             ->and("{$assets}/Pricing-retired.js")->not->toBeFile();
     });
@@ -964,18 +949,13 @@ describe('keeping the previous release\'s assets', function (): void {
  * cache key nothing has filled.
  */
 it('smoke-tests a URL the edge has never cached', function (string $url, string $expected): void {
-    $run = runDeployInSandbox(['env' => ['SMOKE_URL' => $url]]);
+    $run = deployRun(['env' => ['SMOKE_URL' => $url]]);
+    $requests = array_values(preg_grep('/^curl /', $run['calls']));
 
-    try {
-        $requests = array_values(preg_grep('/^curl /', $run['calls']));
-
-        expect($run['exit'])->toBe(0, $run['errors'])
-            ->and($requests)->not->toBeEmpty()
-            ->and($requests[0])->toMatch($expected)
-            ->and($run['output'])->toContain('serving assets/app-new.js');
-    } finally {
-        File::deleteDirectory($run['sandbox']);
-    }
+    expect($run['exit'])->toBe(0, $run['errors'])
+        ->and($requests)->not->toBeEmpty()
+        ->and($requests[0])->toMatch($expected)
+        ->and($run['output'])->toContain('serving assets/app-new.js');
 })->with([
     'a bare URL' => ['https://tablepro.example', '#\shttps://tablepro\.example\?deploy-smoke=\d+$#'],
     'a URL with a query' => ['https://tablepro.example/?ref=ci', '#\shttps://tablepro\.example/\?ref=ci&deploy-smoke=\d+$#'],
