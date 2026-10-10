@@ -126,8 +126,6 @@ it('breaks a word wider than its box instead of letting it cross the page edge',
 });
 
 it('hyphenates the fact terms of an engine page, a third of a narrow card', function (): void {
-    requireSsr();
-
     /*
      * Measured at 1024px: "Abfragesprache" and "Mindestversion" ran 32px and
      * 27px into the value beside them, "Puerto predeterminado" 31px.

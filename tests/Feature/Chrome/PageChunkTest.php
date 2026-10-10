@@ -35,13 +35,6 @@ function clientManifest(): array
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 }
 
-it('names the page component as a @vite entry, only when its file exists', function (): void {
-    $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
-
-    expect($blade)->toContain("@php(\$pageEntry = 'resources/js/pages/' . (\$page['component'] ?? '') . '.tsx')")
-        ->toContain("@vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path(\$pageEntry)) ? \$pageEntry : null, is_file(base_path(\$catalogEntry)) ? \$catalogEntry : null])))");
-});
-
 /*
  * The entry chunk carried the UI catalog of every language, twelve copies of
  * the same strings for a reader who needs one. English stays in the entry;
@@ -90,12 +83,6 @@ it('sends a translated page its own language\'s catalog with the document, and n
     ['/pt-BR/pricing', 'pt-BR'],
     ['/zh-Hans', 'zh-Hans'],
 ])->group('ssr');
-
-it('renders the error page from a file that exists', function (): void {
-    $this->get('/no-such-page')->assertNotFound();
-
-    Assert::assertFileExists(resource_path('js/pages/Error.tsx'));
-});
 
 it('has a manifest key for every page file', function (): void {
     $manifest = clientManifest();

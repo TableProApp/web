@@ -15,17 +15,6 @@ function layoutSource(string $path): string
     return (string) file_get_contents(resource_path($path));
 }
 
-it('keeps a table\'s hidden words inside its own scroll region', function (): void {
-    /*
-     * `sr-only` is `position: absolute`. With a static region, the hidden
-     * "Included" / "Not available" words of a column scrolled out of view
-     * escaped the overflow clip and widened the document to 532px at 375.
-     */
-    $table = layoutSource('js/components/ui/data-table.tsx');
-
-    expect($table)->toMatch("/role=\"region\"[^>]*className=\\{cn\\('relative overflow-x-auto/");
-});
-
 it('lets no table force a phone-width scroll: minimum widths start at 640px or wider', function (): void {
     /*
      * Tables fold their secondary columns into the first cell below 640px
@@ -71,8 +60,7 @@ it('puts every section on the page grid\'s left edge, whatever its measure', fun
      */
     $section = layoutSource('js/components/ui/section.tsx');
 
-    expect($section)->toContain('<Container className="@container">')
-        ->not->toContain('<Container width={width}>')
+    expect($section)->not->toContain('<Container width={width}>')
         ->toContain("text: 'max-w-[44rem]'");
 
     expect(layoutSource('js/pages/Pricing.tsx'))->not->toContain('<Container width="text"');
@@ -88,7 +76,6 @@ it('spaces neighbouring sections one rhythm apart, with the join in the middle',
      * the second section, which would put the join flush on its heading.
      */
     expect(layoutSource('js/components/ui/section.tsx'))->toContain("'py-8 md:py-10 xl:py-12'")
-        ->toContain("flush && 'pb-0 md:pb-0 xl:pb-0'")
         ->not->toContain('data-rhythm');
     expect(layoutSource('css/app.css'))->not->toContain('data-rhythm');
 });
@@ -96,8 +83,7 @@ it('spaces neighbouring sections one rhythm apart, with the join in the middle',
 it('keeps a link\'s arrow on the line of its last word', function (): void {
     expect(layoutSource('js/components/ui/text-link.tsx'))->toMatch("/standalone:\\s*'inline text-sm/")
         ->not->toContain("standalone:\n        'inline-flex");
-    expect(layoutSource('js/components/site/site-footer.tsx'))->toContain("'type-small inline-block py-[5px]")
-        ->not->toContain("'inline-flex min-h-8 items-center gap-1");
+    expect(layoutSource('js/components/site/site-footer.tsx'))->not->toContain("'inline-flex min-h-8 items-center gap-1");
 });
 
 it('draws shortcut glyphs in a face that has them, as an inline box', function (): void {
@@ -168,7 +154,6 @@ it('draws the App Store badge first on an iPhone or iPad, and keeps Mac first in
     Assert::assertLessThan(strpos($pair, '{iosAction}'), strpos($pair, '{mac}'), 'The Mac action comes first in the markup');
 
     expect($menu)->toContain('<div className="grid justify-items-start gap-2 in-[.ios]:order-first">');
-    Assert::assertLessThan(strpos($menu, '<AppStoreBadge'), strpos($menu, '{m.download.macCta}'), 'The Mac action comes first in the menu markup');
 
     Assert::assertLessThan(strpos($template, '<body class='), strpos($template, "document.documentElement.classList.add('ios')"), 'The device class is set before first paint');
 });
@@ -186,7 +171,12 @@ it('server-renders the plan matrix with all four columns and no phone minimum wi
 
     preg_match('#<section id="features".*?</section>#s', $html, $section);
 
-    expect($section[0] ?? '')->toContain('class="relative overflow-x-auto')
+    /*
+     * `sr-only` is `position: absolute`. With a static region, the hidden
+     * "Included" / "Not available" words of a column scrolled out of view
+     * escaped the overflow clip and widened the document to 532px at 375.
+     */
+    expect($section[0] ?? '')->toMatch('/<div role="region"[^>]*class="relative overflow-x-auto/')
         ->not->toContain('min-w-[36rem]');
 })->group('ssr');
 

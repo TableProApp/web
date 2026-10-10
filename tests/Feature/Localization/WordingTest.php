@@ -158,10 +158,11 @@ function wordingRuledOut(): array
 }
 
 it('uses none of the wording ruled out for the language', function (string $locale): void {
+    $rules = wordingRuledOut()[$locale];
     $offences = [];
 
     foreach (wordingStrings($locale) as $where => $text) {
-        foreach (wordingRuledOut()[$locale] as [$pattern, $use]) {
+        foreach ($rules as [$pattern, $use]) {
             if (preg_match($pattern, $text, $match) === 1) {
                 $offences[] = "{$where}: \"{$match[0]}\" (use {$use})";
             }

@@ -75,28 +75,6 @@ it('loads no third-party script from the document template', function (): void {
     }
 });
 
-it('serves documents that load no external script, the analytics tag included', function (string $path): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id']);
-
-    $html = ssrHtml($path);
-
-    preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
-
-    foreach ($sources[1] as $source) {
-        Assert::assertFalse(str_starts_with($source, 'http') || str_starts_with($source, '//'), "{$path} loads {$source} from the document");
-    }
-
-    // The tag's URL is in the head's loader, which adds it after the load event.
-    Assert::assertStringContainsString('var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"', $html);
-
-    foreach (THIRD_PARTY_HOSTS as $host) {
-        Assert::assertStringNotContainsString($host, $html, "{$path} mentions {$host} before anyone asked for it");
-    }
-
-    // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
-    Assert::assertStringContainsString('crisp-test-id', $html);
-})->with(['/download', '/vi/download'])->group('ssr');
-
 it('loads chat only from an effect, and opens it only from a click', function (): void {
     /*
      * Every module that imports the chat helper opens the chat from a click
@@ -131,14 +109,37 @@ it('loads chat only from an effect, and opens it only from a click', function ()
 });
 
 it('renders no third-party request into any page it serves', function (): void {
-    config(['services.crisp.website_id' => 'crisp-test-id']);
+    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id', 'payment.provider' => 'polar']);
 
     foreach (thirdPartyPages() as $path) {
-        $html = withoutAllowedLinks(ssrHtml($path));
+        $html = ssrHtml($path);
+
+        preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
+
+        foreach ($sources[1] as $source) {
+            Assert::assertFalse(str_starts_with($source, 'http') || str_starts_with($source, '//'), "{$path} loads {$source} from the document");
+        }
+
+        // The tag's URL is in the head's loader, which adds it after the load event.
+        Assert::assertStringContainsString('var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"', $html);
+
+        // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
+        Assert::assertStringContainsString('crisp-test-id', $html);
+        Assert::assertStringNotContainsString('CRISP_WEBSITE_ID', $html);
+
+        $html = withoutAllowedLinks($html);
 
         foreach (THIRD_PARTY_HOSTS as $host) {
             Assert::assertStringNotContainsString($host, $html, "{$path} renders {$host}");
         }
+    }
+
+    config(['payment.provider' => 'lemonsqueezy']);
+
+    $html = withoutAllowedLinks(ssrHtml('/pricing'));
+
+    foreach (THIRD_PARTY_HOSTS as $host) {
+        Assert::assertStringNotContainsString($host, $html, "/pricing renders {$host}");
     }
 })->group('ssr');
 

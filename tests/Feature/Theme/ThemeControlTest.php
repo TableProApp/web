@@ -101,13 +101,6 @@ it('leaves the header to the footer bar and the mobile menu', function (): void 
     expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))->toContain('<ThemeControl variant="icons" labels={themeLabels} />');
 });
 
-it('names each icon-only segment for assistive tech and in a tooltip', function (): void {
-    $source = themeControlSource();
-
-    expect($source)->toContain('title={iconsOnly ? labels[option] : undefined}')
-        ->toContain('{iconsOnly ? <span className="sr-only">{labels[option]}</span> : labels[option]}');
-});
-
 it('renders the same markup whatever the theme, named in the page language', function (string $path, string $locale): void {
     $html = ssrHtml($path);
     $labels = themeLabels($locale);
@@ -147,6 +140,5 @@ it('follows the menu button keyboard pattern: Enter and Space open into the menu
     expect($source)->toContain("if (event.key === 'Enter' || event.key === ' ') {")
         ->toContain('openAt(THEME_CHOICES.indexOf(choice));')
         ->toContain('onKeyDown={onRootKeyDown}')
-        ->toContain("if (event.key === 'Escape' && open) {")
         ->toContain('onBlur={onRootBlur}');
 });

@@ -601,23 +601,43 @@ it('translates every Vietnamese value that has words to translate', function ():
         ->and($untranslated)->toBe([], "Vietnamese values left in English (translate them, or add a kept term with its glossary reason):\n  " . implode("\n  ", $untranslated));
 });
 
+/**
+ * English values of five words or more with something to translate. The same
+ * for every language, so it is worked out once.
+ *
+ * @return array<string, array<string, string>>
+ */
+function untranslatedEnglishProse(): array
+{
+    static $prose = null;
+
+    if ($prose !== null) {
+        return $prose;
+    }
+
+    $prose = [];
+
+    foreach (contentTree('en') as $file) {
+        foreach (Arr::dot(contentJson('en', $file)) as $key => $line) {
+            if (is_string($line) && ! untranslatedIsNeutral((string) $key, $line) && preg_match_all('/\b[A-Za-z]{2,}\b/', $line) >= 5) {
+                $prose[$file][(string) $key] = $line;
+            }
+        }
+    }
+
+    return $prose;
+}
+
 it('ships native prose and NFC source text in every added language', function (string $locale): void {
     foreach (localeSources($locale) as $path) {
         expect(Normalizer::isNormalized((string) file_get_contents($path), Normalizer::FORM_C))->toBeTrue("{$path} is not NFC");
     }
 
-    foreach (contentTree('en') as $file) {
-        $english = Arr::dot(contentJson('en', $file));
+    foreach (untranslatedEnglishProse() as $file => $lines) {
         $translated = Arr::dot(contentJson($locale, $file));
-        foreach ($english as $key => $line) {
-            expect(array_key_exists($key, $translated))->toBeTrue("{$locale}/{$file}.{$key}: missing translation");
-            if (! is_string($line) || untranslatedIsNeutral((string) $key, $line)) {
-                continue;
-            }
-            preg_match_all('/\b[A-Za-z]{2,}\b/', $line, $words);
-            if (count($words[0]) >= 5) {
-                expect($translated[$key])->not->toBe($line, "{$locale}/{$file}.{$key}: visible English prose left untranslated");
-            }
+
+        foreach ($lines as $key => $line) {
+            expect($translated[$key] ?? null)->not->toBe($line, "{$locale}/{$file}.{$key}: visible English prose left untranslated");
         }
     }
 })->with(array_values(array_diff(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']), ['en', 'vi'])));

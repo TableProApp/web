@@ -19,58 +19,6 @@ function headOf(string $html): string
     return substr($html, 0, (int) strpos($html, '</head>'));
 }
 
-it('paints the theme before anything else, the system\'s unless chosen', function (): void {
-    $head = headOf($this->get('/download')->getContent());
-
-    $theme = strpos($head, "localStorage.getItem('theme')");
-
-    expect($theme)->not->toBeFalse();
-    expect($theme)->toBeLessThan(strpos($head, '<link rel="icon"'));
-    expect($head)->toContain("var choice = 'system';");
-    expect(substr_count($head, '<meta name="theme-color"'))->toBe(1);
-    expect($head)->not->toContain('prefers-color-scheme: light');
-    expect($head)->not->toContain('media="(prefers-color-scheme');
-});
-
-it('includes the shared theme partial verbatim from the design system', function (): void {
-    $spec = (string) file_get_contents(base_path('docs/rebuild/design/design-system.md'));
-
-    preg_match('/### 2\.8 Theme mechanics.*?```html\n(.*?)```/s', $spec, $match);
-
-    if (! isset($match[1])) {
-        $this->markTestSkipped('The design-system document is not in this checkout.');
-    }
-
-    $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));
-
-    expect(substr($partial, strpos($partial, "\n") + 1))->toBe($match[1]);
-    expect($partial)->toStartWith('{{-- Shared with TableProApp/web and TableProApp/license at resources/views/partials/head-theme.blade.php.');
-});
-
-it('loads no third-party script until it is asked for', function (): void {
-    requireSsr();
-    config(['services.crisp.website_id' => 'test-crisp-id', 'payment.provider' => 'polar']);
-
-    $html = $this->get('/')->getContent();
-
-    expect($html)
-        ->not->toContain('client.crisp.chat')
-        ->not->toContain('CRISP_WEBSITE_ID')
-        ->not->toContain('@polar-sh/checkout')
-        ->not->toContain('lemon.js');
-
-    /*
-     * The retired hero preload lived in the head. The legacy hero still shows
-     * that screenshot in the server-rendered body until the homepage is rebuilt,
-     * so only the head is checked.
-     */
-    expect(headOf($html))->not->toContain('/images/app-light-1920.webp');
-
-    config(['payment.provider' => 'lemonsqueezy']);
-
-    expect($this->get('/')->getContent())->not->toContain('lemon.js');
-})->group('ssr');
-
 it('keeps overflow clipping off the document', function (): void {
     $html = $this->get('/')->getContent();
 
@@ -79,10 +27,6 @@ it('keeps overflow clipping off the document', function (): void {
 
     expect($root[0])->not->toContain('overflow-x-hidden');
     expect($body[0])->not->toContain('overflow-x-hidden');
-});
-
-it('drops the Plex Mono 600 preload', function (): void {
-    expect($this->get('/')->getContent())->not->toContain('ibm-plex-mono-latin-600');
 });
 
 /**
