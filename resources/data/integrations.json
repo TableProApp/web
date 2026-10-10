@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T15:04:27Z",
-  "commit": "df4330ba8ab7cfef9373a4763521f54031961031",
-  "release": "v1.20261010.2",
-  "contentSha256": "d48b1016008d440a8f3b1b0074b64ea0d585c90dd149dd0e627af67b2a71f87d",
+  "generatedAt": "2026-10-10T15:41:52Z",
+  "commit": "c99e6a8cdebf2256886fddfbab42f6606e03cd33",
+  "release": "v1.20261010.3",
+  "contentSha256": "06022c15e1d8963eec78b4892e98b54d68220b98b3d36cf6bb798c09fcf9649b",
   "integrations": [
     {
       "slug": "claude-code",
       "name": "Claude Code",
       "summary": "Connect Claude Code to your databases through the MCP server built into TablePro.",
-      "description": "Claude Code runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Claude Code can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one claude mcp add command.",
+      "description": "Claude Code runs the bundled tablepro-mcp bridge as a local MCP server. Setup is one claude mcp add command.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -63,7 +63,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Claude Code sends query results to the model provider it is set up with.",
+        "networkNote": "Claude Code sends query results to its model provider.",
         "account": false,
         "payment": "free"
       },
@@ -103,7 +103,7 @@
       "slug": "claude-desktop",
       "name": "Claude Desktop",
       "summary": "Connect Claude Desktop to your databases through the MCP server built into TablePro.",
-      "description": "Claude Desktop runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Claude can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry in Claude Desktop's MCP config file.",
+      "description": "Claude Desktop runs the bundled tablepro-mcp bridge as a local MCP server. Setup is one entry in Claude Desktop's MCP config file.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -156,7 +156,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Claude Desktop sends query results to Anthropic to answer you.",
+        "networkNote": "Claude Desktop sends query results to Anthropic.",
         "account": false,
         "payment": "free"
       },
@@ -195,7 +195,7 @@
       "slug": "command-line",
       "name": "Command line",
       "summary": "Open database URLs and SQL files in TablePro from Terminal with the tablepro command.",
-      "description": "The tablepro command opens a connection URL, a database file or a SQL file in TablePro from Terminal or a script. tablepro \"postgresql://user@127.0.0.1:5432/app\" opens that database, and tablepro schema.sql opens the file in a query tab.\n\nA URL that matches a saved connection uses it. Any other URL opens a temporary session that is not saved. Scripts can also run open -b com.TablePro with the same URL.",
+      "description": "The tablepro command opens a connection URL, a database file or a SQL file in TablePro. A SQL file opens in a query tab.\n\nA URL that matches a saved connection uses it. Any other URL opens a temporary session that is not saved. Scripts can also run open -b com.TablePro with the same URL.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -275,7 +275,7 @@
       "slug": "cursor",
       "name": "Cursor",
       "summary": "Connect Cursor's agent to your databases through the MCP server built into TablePro.",
-      "description": "Cursor runs tablepro-mcp, a bridge that ships inside TablePro, as a local MCP server. Through it Cursor's agent can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry in Cursor's global or project MCP config file.",
+      "description": "Cursor runs the bundled tablepro-mcp bridge as a local MCP server. Setup is one entry in Cursor's global or project MCP config file.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -329,7 +329,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Cursor sends query results to the model provider it uses.",
+        "networkNote": "Cursor sends query results to its model provider.",
         "account": false,
         "payment": "free"
       },
@@ -461,7 +461,7 @@
       "slug": "shortcuts",
       "name": "Shortcuts",
       "summary": "Add rows to a table and open a connection from Shortcuts on iPhone and iPad.",
-      "description": "The TablePro app for iPhone and iPad adds three actions to Shortcuts, Siri and the Share Sheet: Add Row to Table, Add Rows to Table and Open Connection.\n\nThe two insert actions take JSON or CSV, insert up to 10,000 rows per run, and run in the background without opening the app.",
+      "description": "TablePro for iPhone and iPad adds three actions to Shortcuts, Siri and the Share Sheet: Add Row to Table, Add Rows to Table and Open Connection.\n\nThe two insert actions take JSON or CSV and insert up to 10,000 rows per run. They run without opening the app.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -551,7 +551,7 @@
       "slug": "zed",
       "name": "Zed",
       "summary": "Connect Zed's agent to your databases through the MCP server built into TablePro.",
-      "description": "Zed runs tablepro-mcp, a bridge that ships inside TablePro, as a context server. Through it Zed's agent can list your connections, read schemas, run queries, and change data and schema.\n\nSetup is one entry under context_servers in Zed's settings file.",
+      "description": "Zed runs the bundled tablepro-mcp bridge as a local MCP server. Setup is one entry under context_servers in Zed's settings file.",
       "tier": "official",
       "status": {
         "state": "active"
@@ -605,7 +605,7 @@
         "accessNote": "Uses the Read & Write token of the bundled bridge. Each connection's External Clients level and Safe Mode still apply.",
         "lowersSafeMode": false,
         "network": "internet",
-        "networkNote": "Zed sends query results to the language model provider you set up.",
+        "networkNote": "Zed sends query results to its model provider.",
         "account": false,
         "payment": "free"
       },
