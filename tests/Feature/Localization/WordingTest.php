@@ -35,11 +35,7 @@ function wordingPlainName(string $text): string
     return (string) preg_replace('/[-\x{2011}\x{00A0}\x{202F}]/u', ' ', $text);
 }
 
-/**
- * The exact proper-name requirements of one source string, independent of its prose.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function wordingNameContract(string $text): array
 {
     static $names = null;
@@ -66,11 +62,7 @@ function wordingMissingNames(string $text, array $required): array
         : ! str_contains(wordingPlainName($text), wordingPlainName($name))));
 }
 
-/**
- * The strings of a UI catalog file, in source order.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function wordingCatalogStrings(string $path): array
 {
     $code = preg_replace(['#/\*.*?\*/#s', '/^import .*;$/m'], '', (string) file_get_contents($path));
@@ -89,11 +81,7 @@ function wordingCatalogStrings(string $path): array
     return $strings;
 }
 
-/**
- * The lines of each legal page in one language.
- *
- * @return array<string, list<string>>
- */
+/** @return array<string, list<string>> */
 function wordingLegal(string $locale): array
 {
     $documents = [];
@@ -105,11 +93,7 @@ function wordingLegal(string $locale): array
     return $documents;
 }
 
-/**
- * Every string a reader sees in one language, keyed by where it is, without app labels, code and URLs.
- *
- * @return array<string, string>
- */
+/** @return array<string, string> */
 function wordingStrings(string $locale): array
 {
     $strings = [];
@@ -234,7 +218,7 @@ it('keeps the names of paid features, Safe Mode and the merchant of record where
         }
     }
 
-    // The legal pages also name the plans and two parts of the Mac app. A translation has the same lines as its original.
+    // Legal pages also name the plans and two app parts, and a translation keeps its original's line numbers.
     $legalNames = [...$names, 'Tunnel Command', 'Starter', 'Team', 'Favorites', 'Sync Categories'];
     $legal = wordingLegal($locale);
 

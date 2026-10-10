@@ -2,13 +2,6 @@
 
 use Dom\HTMLDocument;
 
-/**
- * English text on a page in another language says it is English, so a screen
- * reader switches voice and a browser hyphenates and translates it as English.
- *
- * The comparison sources are quoted by their English titles, on every page
- * that cites them.
- */
 function sourceLinks(string $path): array
 {
     $document = HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR);

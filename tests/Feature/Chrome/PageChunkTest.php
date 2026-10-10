@@ -5,23 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use PHPUnit\Framework\Assert;
 
-/*
- * Pages are lazy chunks (`@inertiajs/vite` resolves them with a non-eager
- * glob), so the browser used to discover a page's code only after app.tsx had
- * run: one more round trip before hydration on every first visit. The root
- * template names the page's own file as a `@vite` entry, which sends its
- * modulepreload, and those of everything it imports, with the document.
- *
- * Every component a registry page renders has a file (SeoSmokeTest), and so
- * does the error page. These tests hold the template to that, and, once the
- * client bundle is built, check the manifest has a key for every page file.
- */
-
-/**
- * The client manifest, or a skip (a failure under REQUIRE_SSR) without a build.
- *
- * @return array<string, array<string, mixed>>
- */
+/** @return array<string, array<string, mixed>> */
 function clientManifest(): array
 {
     requireSsrJob();
@@ -35,13 +19,8 @@ function clientManifest(): array
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/*
- * The entry chunk carried the UI catalog of every language, twelve copies of
- * the same strings for a reader who needs one. English stays in the entry;
- * each other language is a chunk the page resolver awaits, and the root
- * template names it as a `@vite` entry so it arrives with the document.
- */
 it('imports only the default language\'s UI catalog statically, and awaits the page\'s own', function (): void {
+    // The entry chunk once carried twelve copies of the UI strings.
     $index = (string) file_get_contents(resource_path('js/i18n/index.ts'));
 
     preg_match_all("#^import \\w+ from './messages/([^/]+)/index\\.ts';#m", $index, $static);
@@ -116,7 +95,6 @@ it('sends the page chunk and its imports with the document', function (string $p
         expect($html)->toMatch($preload($manifest[$import]['file']));
     }
 
-    // The app's entry still runs first, so the app boots as before.
     preg_match($script($manifest['resources/js/app.tsx']['file']), $html, $entry, PREG_OFFSET_CAPTURE);
     preg_match($script($chunk['file']), $html, $page, PREG_OFFSET_CAPTURE);
 

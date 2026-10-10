@@ -6,14 +6,6 @@ use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/**
- * resources/views/app.blade.php, the one template every page is served in.
- *
- * Its head runs before any stylesheet or bundle, so mistakes here are
- * invisible to the React tests: a flash of the wrong theme, a preload for a
- * placeholder that never loads, a chat widget setting cookies before anyone
- * asked for it.
- */
 function headOf(string $html): string
 {
     return substr($html, 0, (int) strpos($html, '</head>'));
@@ -29,18 +21,10 @@ it('keeps overflow clipping off the document', function (): void {
     expect($body[0])->not->toContain('overflow-x-hidden');
 });
 
-/**
- * Runs the head's LCP script in node against a stand-in document, with or
- * without `.dark` on the root, and returns the `<link>` attributes it created.
- *
- * The script is executed, not grepped: an earlier version read
- * `variant.srcset` from what had become a list, which every source assertion
- * passed while a real browser requested `/undefined` on each load.
- *
- * @return list<array<string, string>>
- */
+/** @return list<array<string, string>> */
 function runLcpScript(string $head, bool $dark): array
 {
+    // Executed, not grepped: every source assertion once passed while browsers requested /undefined.
     preg_match_all('#<script>(.*?)</script>#s', $head, $scripts);
     $script = collect($scripts[1])->first(fn(string $body): bool => str_contains($body, 'imagesrcset'));
 
@@ -70,10 +54,7 @@ it('preloads a supplied LCP image for the resolved theme, one link per image, an
 
     $head = headOf($this->get('/_test/lcp')->getContent());
 
-    /*
-     * After the theme script, so `.dark` is already decided when it picks a
-     * theme's list.
-     */
+    // After the theme script, so `.dark` is decided when it picks a theme's list.
     expect(strpos($head, 'fixture-hero-light-32.avif'))->toBeGreaterThan(strpos($head, "localStorage.getItem('theme')"));
 
     foreach ([false => 'light', true => 'dark'] as $dark => $theme) {

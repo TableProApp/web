@@ -2,17 +2,6 @@
 
 use PHPUnit\Framework\Assert;
 
-/**
- * The theme, before anything paints (design-system §2.8; architecture §1.10).
- *
- * The site is light for anyone who has not chosen, dark or "system" for those
- * who have, and the choice lives in `localStorage.theme`, which the account app
- * on the same origin reads too. The decision has to be made by an inline script
- * in the head, before the stylesheet paints, or every dark reader sees a white
- * flash on every load. Everything here is invisible to a typecheck.
- */
-
-/** The shared head partial, without its header comment. */
 function themePartialBody(): string
 {
     $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));
@@ -20,7 +9,7 @@ function themePartialBody(): string
     return (string) preg_replace('/^\{\{--.*?--\}\}\n/s', '', $partial);
 }
 
-/** Every file under resources/ whose text a rule below scans. @return array<string, string> */
+/** @return array<string, string> */
 function themeScannedSources(): array
 {
     $files = [];
@@ -68,7 +57,6 @@ it('follows the system unless the reader chose otherwise, and survives storage t
     Assert::assertNotFalse($catch);
     Assert::assertTrue($default < $try && $try < $read && $read < $catch, 'Storage must be read inside try, after the default is set');
 
-    // Only the three known values are accepted; anything else stays system.
     expect($script)->toContain("if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }");
 });
 
@@ -107,12 +95,7 @@ it('reads and writes the same key in the head script and the theme module', func
 });
 
 it('never chooses an image or a colour by the operating system\'s preference', function (): void {
-    /*
-     * The theme class decides, never `prefers-color-scheme`: a light page is
-     * the default for a reader whose system is dark, so a media-switched image
-     * would put a dark screenshot on it (design-system §7.3). The head script
-     * and theme.ts may ask the media query, but only to resolve "system".
-     */
+    // A media-switched image would put a dark screenshot on a light page for a reader whose system is dark.
     $offenders = [];
 
     foreach (themeScannedSources() as $file => $text) {

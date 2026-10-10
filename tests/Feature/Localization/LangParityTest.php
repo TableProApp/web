@@ -2,13 +2,6 @@
 
 use Illuminate\Support\Arr;
 
-/**
- * The PHP strings in lang/ (OG card labels, the static error pages).
- *
- * Every locale has the same files, the same keys and the same `:placeholders`
- * as English, and its text is NFC, so a Vietnamese string never ships with a
- * decomposed diacritic that renders as two glyphs.
- */
 function langFiles(string $locale): array
 {
     $files = array_map('basename', glob(lang_path("{$locale}/*.php")) ?: []);
@@ -65,6 +58,7 @@ it('has the same keys and placeholders in every locale', function (): void {
 });
 
 it('stores every translation in NFC', function (): void {
+    // A decomposed diacritic renders as two glyphs.
     foreach (glob(lang_path('*/*.php')) ?: [] as $path) {
         $source = (string) file_get_contents($path);
 

@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
 
-/**
- * @return array<string, list<string>>
- */
+/** @return array<string, list<string>> */
 function cspDirectives(TestResponse $response): array
 {
     $directives = [];
@@ -20,14 +18,10 @@ function cspDirectives(TestResponse $response): array
     return $directives;
 }
 
-/**
- * The scripts a browser would run from the markup, read with the HTML parser
- * rather than the pattern the policy is built with.
- *
- * @return list<string>
- */
+/** @return list<string> */
 function cspInlineScripts(string $html): array
 {
+    // Read with the HTML parser, independently of the pattern the policy is built with.
     $scripts = [];
 
     foreach (Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelectorAll('script:not([src])') as $script) {
@@ -39,12 +33,7 @@ function cspInlineScripts(string $html): array
     return $scripts;
 }
 
-/**
- * Whether a source list lets a URL load: scheme and host, a `*.` wildcard, and
- * a path that must match exactly unless it ends in a slash.
- *
- * @param  list<string>  $sources
- */
+/** @param  list<string>  $sources */
 function cspAdmits(array $sources, string $url): bool
 {
     $target = parse_url($url);

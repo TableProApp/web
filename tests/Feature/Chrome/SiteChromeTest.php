@@ -5,25 +5,7 @@ use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\Assert;
 
-/**
- * The header, footer and frame every public page renders, in both languages
- * (sitemap §B; positioning §10; design-system §5.3.17).
- *
- * The chrome is rendered by `LandingLayout` itself, so every page gets it,
- * the branded error pages included. What matters is invisible to a typecheck:
- * that each link keeps the reader's language, that the account link reaches
- * the other application unprefixed, that a cross-language link forces a full
- * page load, and that the landmarks a screen reader navigates by exist once.
- */
-
-/**
- * Every anchor in a fragment, with its attributes and visible text.
- *
- * Attribute names are lowercased, as an HTML parser does: React writes the
- * `hrefLang` prop as `hrefLang="en"`, which a browser reads as `hreflang`.
- *
- * @return list<array{attrs: array<string, string>, text: string}>
- */
+/** @return list<array{attrs: array<string, string>, text: string}> */
 function chromeAnchors(string $html): array
 {
     preg_match_all('#<a\s([^>]*)>(.*?)</a>#s', $html, $matches, PREG_SET_ORDER);
@@ -34,6 +16,7 @@ function chromeAnchors(string $html): array
         $attrs = [];
 
         foreach ($pairs as $pair) {
+            // React writes hrefLang="en", which a browser reads as hreflang.
             $attrs[strtolower($pair[1])] = html_entity_decode($pair[2], ENT_QUOTES);
         }
 
@@ -41,7 +24,7 @@ function chromeAnchors(string $html): array
     }, $matches);
 }
 
-/** The first anchor whose href is `$href` and, when given, whose text contains `$text`. @return array{attrs: array<string, string>, text: string}|null */
+/** @return array{attrs: array<string, string>, text: string}|null */
 function chromeLink(string $html, string $href, ?string $text = null): ?array
 {
     foreach (chromeAnchors($html) as $anchor) {
@@ -53,14 +36,9 @@ function chromeLink(string $html, string $href, ?string $text = null): ?array
     return null;
 }
 
-/**
- * The first `<{$tag}>` element: the site header or footer, which come before
- * and after `<main>`. Neither nests another of its own kind, so the first
- * closing tag after it is its own; a page's `<header>` inside `<main>` is left
- * out.
- */
 function chromeRegion(string $html, string $tag): string
 {
+    // The site header and footer nest none of their kind and come before any <header> inside <main>.
     $start = strpos($html, "<{$tag}");
     $end = $start === false ? false : strpos($html, "</{$tag}>", $start);
 
@@ -75,9 +53,10 @@ dataset('chrome locales', [
     'Vietnamese' => ['/vi/download', 'vi', '/vi'],
 ]);
 
-/** One catalog's strings by key, parsed from its TypeScript source: `key: '…'` in English and Vietnamese, `"key": "…"` elsewhere. @return array<string, string> */
+/** @return array<string, string> */
 function chromeCatalog(string $locale, string $namespace): array
 {
+    // English and Vietnamese write key: '…', the other catalogs "key": "…".
     $source = (string) file_get_contents(dirname(__DIR__, 3) . "/resources/js/i18n/messages/{$locale}/{$namespace}.ts");
 
     preg_match_all('/^\s+"?(\w+)"?: ([\'"])((?:(?!\2)[^\\\\]|\\\\.)*)\2,?$/m', $source, $matches, PREG_SET_ORDER);
@@ -91,9 +70,10 @@ function chromeCatalog(string $locale, string $namespace): array
     return $strings;
 }
 
-/** Every locale with its URL prefix and endonym, read from disk: a dataset is built before the application boots. @return array<string, array{string, string, string}> */
+/** @return array<string, array{string, string, string}> */
 function chromeLocales(): array
 {
+    // From disk: a dataset is built before the application boots.
     $rows = [];
 
     foreach (json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported'] as $code => $locale) {
@@ -103,14 +83,7 @@ function chromeLocales(): array
     return $rows;
 }
 
-/**
- * The header's desktop row with every label on one line, measured in Chromium
- * at 14px Inter: its width in px with the GitHub link at its widest (the word
- * "GitHub", before any count is stored), and the display columns of its seven
- * labels at the time (a CJK character is two). The language is a globe and the
- * theme lives in the footer, so neither adds a label. The row has 960px at
- * 1024 and 1088px at 1152.
- */
+// [desktop row width in px, display columns of its seven labels], measured in Chromium; the row has 960px at 1024 and 1088px at 1152.
 const HEADER_ROW_MEASURED = [
     'en' => [880, 47],
     'vi' => [911, 57],
@@ -165,7 +138,6 @@ it('renders the header, its menu and the footer in the reader\'s language', func
         Assert::assertNotNull(chromeLink($header, $href, $text), "The header has no \"{$text}\" link to {$href}");
     }
 
-    // Features is a disclosure button over ordinary links, including the platform page from data.
     expect($header)->toMatch('/<button type="button" aria-expanded="false" aria-controls="[^"]+"[^>]*>' . ($vi ? 'Tính năng' : 'Features') . '/u');
 
     foreach (['/features', '/features/querying', '/features/data-editing', '/features/schema', '/features/import-export', '/features/ai-mcp', '/features/connections', '/features/sync-and-teams'] as $feature) {
@@ -213,12 +185,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
         Assert::assertSame($code === $locale ? 'true' : null, $link['attrs']['aria-current'] ?? null);
     }
 
-    /*
-     * The menu was a button whose panel React unhid, so with no script, or
-     * before hydration, the header offered no other language. A <details>
-     * opens on its own, as the footer's does. Its globe is named by what it
-     * does and the current language, in the page language.
-     */
+    // The menu used to be a panel React unhid, so before hydration the header offered no other language.
     $start = strpos($header, '<details class="group relative"><summary aria-label="' . $languageLabel . '"');
 
     expect($start)->not->toBeFalse();
@@ -228,11 +195,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     expect($languages)->toContain('data-menu-panel')->not->toContain(' hidden');
     expect(chromeLink($languages, $vi ? '/download' : '/vi/download'))->not->toBeNull();
 
-    /*
-     * Twelve language rows used to sit between the links and the two download
-     * actions, which put "Download for Mac" 1,273px down a 844px screen. The
-     * languages are one row that opens, and the actions come before it.
-     */
+    // Twelve language rows once put "Download for Mac" 1,273px down an 844px screen.
     $menu = substr($header, (int) strpos($header, '<dialog'));
 
     $menuAccount = strpos($menu, "href=\"/account?locale={$locale}\"");
@@ -248,7 +211,6 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     Assert::assertLessThan($menuBadge, $menuDownload, 'Mac comes first in the markup on every device');
     Assert::assertLessThan($menuLanguages, $menuBadge, 'The language list comes after the download actions');
 
-    // A native disclosure, closed on load, named with the current language.
     expect($menu)->toMatch('/<details class="group"><summary aria-label="' . $languageLabel . '"/u')
         ->not->toMatch('/<details[^>]*\sopen[\s=>]/');
 
@@ -292,7 +254,6 @@ it('renders the header, its menu and the footer in the reader\'s language', func
 
     $facts = json_decode((string) file_get_contents(resource_path('data/facts.json')), true);
 
-    // The copyright names the maker and the licence, with the year and facts.json's publisher filled in.
     $publisher = $facts['publisher'];
     $line = $vi
         ? "/© \\d{4} TablePro, do {$publisher['name']} phát triển tại {$publisher['city']['vi']}\\. Mã nguồn theo giấy phép AGPLv3\\./u"
@@ -318,7 +279,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     Assert::assertSame('en', $troubleshooting['attrs']['hreflang'] ?? null);
     Assert::assertLessThan(strpos($footer, 'href="mailto:'), strpos($footer, $links['troubleshooting']));
 
-    // One email field, required and named for the form; React decides the attribute order.
+    // React decides the attribute order.
     preg_match('/<input[^>]*type="email"[^>]*>/', $footer, $email);
 
     Assert::assertNotEmpty($email, 'The footer has no email field');
@@ -327,7 +288,6 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     expect($footer)->toContain('>' . ($vi ? 'Đăng ký nhận tin' : 'Subscribe') . '</button>')
         ->not->toMatch('/\d[\d,.]*\s+(developers|subscribers|lập trình viên|người đăng ký)/u');
 
-    // A native disclosure, closed on load and named with the current language.
     expect($footer)->toMatch('/<details[^>]*><summary[^>]*aria-label="' . $languageLabel . '"/u')
         ->not->toMatch('/<details[^>]*\sopen[\s=>]/');
 
@@ -370,33 +330,18 @@ it('links GitHub with its star count, in the header row and in the menu', functi
 })->with('chrome locales')->group('ssr');
 
 it('shows the desktop row only where it fits, and keeps the phone row on one line, in every language', function (string $code, string $prefix): void {
-    /*
-     * At 1024px the row wrapped to three lines in Spanish and French, pushed
-     * the French Download button 8px off the page, and wrapped the language
-     * button in Portuguese. A language whose row is wider than 960px keeps
-     * the menu button to 1152px instead.
-     */
+    // At 1024px the row wrapped in Spanish and French and pushed the French Download 8px off the page.
     [$width, $columns] = HEADER_ROW_MEASURED[$code];
     $wide = $width > 960;
 
     expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960);
 
-    /*
-     * No browser runs here, so the widths above are only as good as the
-     * labels they were measured for. A longer label means measuring again.
-     */
     $nav = chromeCatalog($code, 'nav');
     $labels = [$nav['features'], $nav['databases'], $nav['pricing'], $nav['docs'], $nav['blog'], $nav['account'], $nav['download']];
 
     Assert::assertLessThanOrEqual($columns, array_sum(array_map(mb_strwidth(...), $labels)), "{$code}: a header label grew. Measure the row again and update HEADER_ROW_MEASURED.");
 
-    /*
-     * Measured in Chromium at 320px: Japanese ダウンロード broke into two lines
-     * in a 46px-tall button. The row has 288px: the logo 112, the gap 16 below
-     * 640px, the menu button 36 (44 less its -8px margin) and the gap before
-     * it 8, which leaves 116 for Download. ダウンロード, 12 display columns,
-     * is 108 with its padding, the widest of the labels.
-     */
+    // At 320px Japanese ダウンロード broke onto two lines; the phone row leaves Download 116px, which fits 12 columns.
     Assert::assertLessThanOrEqual(12, mb_strwidth($nav['download']), "{$code}: the header Download label grew. Measure the phone header again.");
 
     $from = $wide ? 'min-[72rem]' : 'lg';
@@ -425,12 +370,7 @@ it('closes the open menu at the width its language shows the desktop row', funct
 it('gives the small controls of the header and the banner a finger-sized target', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
-    /*
-     * Measured by hit-testing at 390px: the header Download was 92 by 32 and
-     * the banner's dismiss 32 by 32. Each keeps its drawing and gains an
-     * invisible box around it: 44px for Download, and for the banner's two
-     * controls 44px wide and as tall as its 40px band lets them be.
-     */
+    // Hit-tested at 390px, the header Download was 92 by 32 and the banner's dismiss 32 by 32.
     expect($read('site-header.tsx'))->toContain("buttonClasses('primary', 'sm', 'relative whitespace-nowrap after:absolute after:inset-x-0 after:-inset-y-[7px]')");
     expect($read('support-banner.tsx'))->toContain('after:absolute after:-inset-x-1 after:-inset-y-3')
         ->toContain('after:absolute after:-inset-1.5');
@@ -451,7 +391,6 @@ it('gives the footer bar\'s controls a 44px target on a touch screen', function 
 it('draws the footer as cells that close on the bar shared with the account app', function (): void {
     $footer = (string) file_get_contents(resource_path('js/components/site/site-footer.tsx'));
 
-    // The newsletter is a full row; the groups are two, three, then five to a row.
     expect($footer)->toContain('<CellGrid')
         ->toContain("'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5'")
         ->toContain('<div className="@container col-span-full">')
@@ -469,7 +408,6 @@ it('draws the footer as cells that close on the bar shared with the account app'
     expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))
         ->toContain('style={chat ? { paddingRight: `max(0px, calc(${LAUNCHER_REACH}px - max(var(--cell-bleed), (100vw - 76rem) / 2)))` } : undefined}');
 
-    // The switcher's footer form is the shared menu, on a <details>.
     expect((string) file_get_contents(resource_path('js/components/site/language-switcher.tsx')))->toContain('<FooterMenu')->not->toContain("'list'");
     expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))->toContain('<details')->toContain('<summary');
 });
@@ -513,7 +451,6 @@ it('keeps the site chrome to its own link tables and catalogs', function (): voi
     expect($read('site-links.ts'))->toContain("import facts from '@data/facts.json';")
         ->toContain("import platformData from '@data/platforms.json';");
 
-    // The layout renders the new chrome and nothing of the old.
     $layout = (string) file_get_contents(resource_path('js/layouts/landing-layout.tsx'));
 
     expect($layout)->toContain('<SiteHeader />')->toContain('<SiteFooter newsletter={footerNewsletter} />')->not->toContain('components/landing/');

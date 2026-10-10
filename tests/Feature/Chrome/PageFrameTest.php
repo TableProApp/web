@@ -2,22 +2,6 @@
 
 use PHPUnit\Framework\Assert;
 
-/*
- * The page frame (design-system §4.7): two rails on the wide Container's outer
- * edge from 1280px, a full-bleed join between every two blocks of `<main>`,
- * a mark wherever a join meets a rail, and cell grids whose outer lines land
- * on the rails.
- *
- * The geometry was measured in a browser when the frame landed (390 to
- * 1920px, every template): rails on the Container edge, cell lines on the
- * rails, no horizontal scroll. The suite renders no layout, so these tests
- * hold the markup and the CSS those measurements depend on. The ways it can
- * go wrong without a typecheck noticing: a template whose block is a narrow
- * Container, so its join stops short of the screen edge; a block that brings
- * its own rule and doubles the join; a cell grid inside a narrow column,
- * whose right edge then draws a line through the middle of the page.
- */
-
 /** @return array<string, array{string}> */
 function frameTemplates(): array
 {
@@ -60,12 +44,7 @@ function frameAssertRails(DOMXPath $xpath): void
         expect(frameClasses($rail))->toContain('hidden', 'xl:block', 'print:hidden', 'forced-colors:hidden', 'pointer-events-none');
     }
 
-    /*
-     * The rails sit on the box `Container` fills from 1280px: 76rem of content
-     * and a 2rem gutter on each side. If either number moves alone, the rails
-     * detach from the content, which is how the previous frame failed above
-     * about 1616px.
-     */
+    // 80rem is the 76rem Container plus its 2rem gutters; the previous frame drifted off the content above 1616px.
     expect((string) file_get_contents(resource_path('js/components/shared/frame-rails.tsx')))->toContain('max-w-[80rem]');
     expect((string) file_get_contents(resource_path('js/components/ui/container.tsx')))->toContain("wide: 'max-w-[76rem]'")->toContain('lg:px-8');
 }
@@ -119,11 +98,6 @@ it('frames every template: one join per block, each marked, and every grid and r
     foreach ($blocks as $index => $block) {
         $name = $block->nodeName . ($block->getAttribute('id') !== '' ? '#' . $block->getAttribute('id') : '') . " (block {$index})";
 
-        /*
-         * The join is the block's top border, so a block narrower than the
-         * page draws a join that stops short of the screen edge. A narrow
-         * Container goes inside a full-width block, never at the top level.
-         */
         foreach (frameClasses($block) as $class) {
             Assert::assertStringStartsNotWith('max-w-', $class, "{$path}: {$name} is narrower than the page, so its join stops short");
             Assert::assertNotSame('mx-auto', $class, "{$path}: {$name} is a centred box, so its join stops short");
@@ -131,12 +105,7 @@ it('frames every template: one join per block, each marked, and every grid and r
         }
     }
 
-    /*
-     * The rule a reader can see: a line that crosses the whole page is marked
-     * where it crosses the frame, and a line inside the frame never is. A
-     * per-section switch once marked one join out of nine, which read as an
-     * omission everywhere else.
-     */
+    // A per-section switch once marked one join out of nine.
     expect($xpath->query('//footer[@data-join-mark]')->length)->toBe(1, "{$path}: the footer's rule is the last join and is marked like the others");
     expect($xpath->query('//main//*[@data-join-mark]')->length)->toBe(0, "{$path}: joins in <main> are marked by position, not by a switch");
 
@@ -150,15 +119,7 @@ it('frames every template: one join per block, each marked, and every grid and r
         }
     }
 
-    /*
-     * The owner's complaint after the first frame: list and table rules that
-     * stopped 32px short of the rails, or at the 704px reading measure, read
-     * as loose lines in open space. Every ruled list and every table in
-     * <main> now reaches the rails (`frame-rows`, `frame-rows-text`,
-     * `frame-table`), or the walls of the cell it sits in (`cell-rows`), or
-     * lives inside a card whose edge closes it. A blog article's own tables
-     * are typography inside the reading column and stay as they are.
-     */
+    // Rules that stopped 32px short of the rails read as loose lines in open space.
     $reaches = ['frame-rows', 'frame-rows-text', 'cell-rows', 'frame-table'];
     $ruled = $xpath->query('//main//dl | //main//*[@data-rule-list] | //main//*[@role="region"][table]');
 
@@ -246,11 +207,7 @@ it('lets the join close a list that ends a block, but never one inside a card', 
 });
 
 it('keeps the frame from clipping or widening the page', function (string $file): void {
-    /*
-     * The previous frame drew 200vw rules and hid the overflow on an ancestor,
-     * which masked horizontal-scroll regressions and broke the sticky header.
-     * Comments may still say so; the code may not.
-     */
+    // The previous frame's 200vw rules and hidden overflow masked scroll regressions and broke the sticky header.
     $code = (string) preg_replace('#/\*.*?\*/#s', '', (string) file_get_contents(resource_path($file)));
 
     expect($code)->not->toMatch('/\d+vw\b|w-screen|overflow-x:\s*(?:hidden|clip)|overflow-x-(?:hidden|clip)/');
