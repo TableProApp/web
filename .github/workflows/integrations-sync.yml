@@ -1,0 +1,237 @@
+name: integrations sync
+
+# Copies a TableProApp/integrations release into resources/data/integrations.json
+# and public/images/integrations, then opens a pull request as the web bot
+# (docs/deployment.md, "The web bot").
+#
+# `fetch` parses the download and holds no secret. `pull-request` holds the
+# App token, runs nothing from the release and copies only those two paths.
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Registry release, v1.YYYYMMDD.N (empty for the latest)"
+        required: false
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: integrations-sync
+  cancel-in-progress: false
+
+env:
+  REGISTRY: TableProApp/integrations
+
+jobs:
+  fetch:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.place.outputs.changed }}
+      tag: ${{ steps.release.outputs.tag }}
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Resolve the release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          if [ -z "$TAG" ]; then
+            TAG=$(gh release list --repo "$REGISTRY" --json tagName,isLatest --jq '.[] | select(.isLatest) | .tagName')
+          fi
+          if [ -z "$TAG" ]; then
+            echo "The registry has no release yet." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if ! [[ "$TAG" =~ ^v1\.[0-9]{8}\.[0-9]+$ ]]; then
+            echo "::error::The tag is not a v1 registry release (v1.YYYYMMDD.N)."
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Download and verify the release
+        if: steps.release.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+          RELEASE: ${{ runner.temp }}/release
+        run: |
+          gh release download "$TAG" --repo "$REGISTRY" --dir "$RELEASE" \
+            --pattern index.json --pattern SHA256SUMS --pattern '*.png'
+          cd "$RELEASE"
+          for file in *; do
+            if ! [[ "$file" =~ ^(index\.json|SHA256SUMS|[a-z0-9]+(-[a-z0-9]+)*-[0-9a-f]{12}\.png)$ ]]; then
+              echo "::error::The release has an asset name outside the index contract."
+              exit 1
+            fi
+          done
+          gh release verify "$TAG" --repo "$REGISTRY"
+          for file in *; do
+            gh release verify-asset "$TAG" "./$file" --repo "$REGISTRY"
+          done
+          sha256sum --check --strict SHA256SUMS
+          listed=$(awk '{ print $2 }' SHA256SUMS | sort)
+          downloaded=$(find . -maxdepth 1 -type f ! -name SHA256SUMS | sed 's|^\./||' | sort)
+          if [ "$listed" != "$downloaded" ]; then
+            echo "::error::SHA256SUMS and the downloaded assets differ."
+            exit 1
+          fi
+
+      - name: Place the files
+        id: place
+        if: steps.release.outputs.tag != ''
+        env:
+          RELEASE: ${{ runner.temp }}/release
+        run: |
+          cp "$RELEASE/index.json" resources/data/integrations.json
+          rm -rf public/images/integrations
+          mkdir -p public/images/integrations
+          find "$RELEASE" -maxdepth 1 -type f -name '*.png' -exec cp {} public/images/integrations/ \;
+          if [ -n "$(git status --porcelain -- resources/data/integrations.json public/images/integrations)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "The site already has this release." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Setup PHP
+        if: steps.place.outputs.changed == 'true'
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: "8.5"
+          tools: composer:v2
+          coverage: none
+
+      - name: Resolve the Composer cache directory
+        id: composer-cache
+        if: steps.place.outputs.changed == 'true'
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        if: steps.place.outputs.changed == 'true'
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ runner.os }}-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Test the data
+        if: steps.place.outputs.changed == 'true'
+        run: |
+          composer install --no-interaction --prefer-dist
+          cp .env.example .env
+          php artisan key:generate
+          php artisan test --compact tests/Feature/Data/IntegrationsDataTest.php
+
+      # A non-English hub lists an active entry once every locale has its
+      # tagline and the English tagline still equals the registry summary.
+      - name: Write the pull request body
+        if: steps.place.outputs.changed == 'true'
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+          SYNC: ${{ runner.temp }}/sync
+        run: |
+          mkdir -p "$SYNC/images"
+          git show HEAD:resources/data/integrations.json > "$RUNNER_TEMP/before.json" 2>/dev/null \
+            || echo '{"integrations": []}' > "$RUNNER_TEMP/before.json"
+          for locale in $(jq -r '.supported | keys[]' resources/data/locales.json); do
+            file="resources/data/content/$locale/integrations/index.json"
+            if [ -f "$file" ]; then
+              jq -c --arg locale "$locale" '{($locale): (.taglines // {})}' "$file"
+            else
+              jq -nc --arg locale "$locale" '{($locale): {}}'
+            fi
+          done | jq -s 'add' > "$RUNNER_TEMP/taglines.json"
+          jq -nr --arg tag "$TAG" --arg registry "$REGISTRY" \
+            --slurpfile before "$RUNNER_TEMP/before.json" \
+            --slurpfile after resources/data/integrations.json \
+            --slurpfile taglines "$RUNNER_TEMP/taglines.json" '
+            def bySlug: .integrations | map({key: .slug, value: .}) | from_entries;
+            def list: if length == 0 then "- None" else map("- `\(.)`") | join("\n") end;
+            ($before[0] | bySlug) as $old
+            | ($after[0] | bySlug) as $new
+            | $taglines[0] as $t
+            | [$new | keys[] | select($old[.] == null)] as $added
+            | [$old | keys[] | select($new[.] == null)] as $removed
+            | [$new | keys[] | select($old[.] != null and $old[.] != $new[.])] as $changed
+            | [$new[] | select(.status.state == "active") | . as $entry
+                | select($t.en[$entry.slug] != $entry.summary
+                    or any($t | to_entries[] | select(.key != "en"); .value[$entry.slug] == null))
+                | $entry.slug] as $untranslated
+            | "Registry release [\($tag)](https://github.com/\($registry)/releases/tag/\($tag)), copied by `integrations-sync.yml`.",
+              "", "**Added**", ($added | list),
+              "", "**Changed**", ($changed | list),
+              "", "**Removed**", ($removed | list),
+              "", "**English only until the tagline is translated**", ($untranslated | list)
+          ' > "$SYNC/pr-body.md"
+          cp resources/data/integrations.json "$SYNC/integrations.json"
+          find public/images/integrations -maxdepth 1 -type f -name '*.png' -exec cp {} "$SYNC/images/" \;
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.place.outputs.changed == 'true'
+        with:
+          name: integrations-sync
+          path: ${{ runner.temp }}/sync/
+          if-no-files-found: error
+          retention-days: 1
+
+  pull-request:
+    needs: fetch
+    if: needs.fetch.outputs.changed == 'true'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    environment: web-bot
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: integrations-sync
+          path: ${{ runner.temp }}/sync
+
+      - name: Place the files
+        env:
+          SYNC: ${{ runner.temp }}/sync
+        run: |
+          cp "$SYNC/integrations.json" resources/data/integrations.json
+          rm -rf public/images/integrations
+          mkdir -p public/images/integrations
+          find "$SYNC/images" -maxdepth 1 -type f -name '*.png' -exec cp {} public/images/integrations/ \;
+
+      - name: Mint a web bot token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.WEB_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.WEB_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          sign-commits: true
+          branch: bot/integrations-sync
+          delete-branch: true
+          commit-message: "chore(integrations): sync registry ${{ needs.fetch.outputs.tag }}"
+          title: "chore(integrations): sync registry ${{ needs.fetch.outputs.tag }}"
+          body-path: ${{ runner.temp }}/sync/pr-body.md
+          # A directory, not a glob: git add accepts it when a release has no images.
+          add-paths: |
+            resources/data/integrations.json
+            public/images/integrations

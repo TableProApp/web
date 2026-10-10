@@ -415,8 +415,8 @@ cache, it is used on the runner, and it is never sent to the server.
 ## The web bot
 
 `main` takes changes only through a pull request with green checks (the
-repository rulesets), so `og.yml` cannot push to it. It opens a pull request
-as the GitHub App `tablepro-web-bot` instead.
+repository rulesets), so `og.yml` and `integrations-sync.yml` cannot push to
+it. They open pull requests as the GitHub App `tablepro-web-bot` instead.
 
 - **What it can do.** The App is installed on this repository only, with
   Contents and Pull requests read and write, and no Workflows permission. A run
