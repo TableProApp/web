@@ -10697,6 +10697,218 @@
         "/images/blog/connection-timeouts.png"
       ]
     },
+    "blog-tablepro-0-80-1": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-80",
+          "section": "figure-1"
+        }
+      ],
+      "aspect": "3024:1722",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A places table with one row selected and the row inspector drawing its point and polygon columns on maps.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro connection window on a places table with two rows, the first one selected, and the row inspector on the right showing the location field as a pin on a map of Ben Thanh and the boundary field as a blue polygon around Ben Thanh Market, each under Text and Map segments",
+        "vi": null
+      },
+      "caption": {
+        "en": "The selected row's point and polygon, each drawn in its own field.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-80-1"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 802
+        }
+      },
+      "legacySource": [
+        "/images/blog/inspector-geometry-map.png"
+      ]
+    },
+    "blog-tablepro-0-80-2": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-80",
+          "section": "figure-2"
+        }
+      ],
+      "aspect": "2464:928",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A query result with six cells selected, the totals popover open and the status bar showing Sum, Average and Count.",
+        "vi": null
+      },
+      "alt": {
+        "en": "Data grid of a query on the Chinook Track table with six Milliseconds cells selected, a popover listing Count 6, Numbers 6, Empty 0, Sum 1,750,031, Average 291,671.8333, Minimum 205,662 and Maximum 375,418 with a copy button on each line, and the status bar below reading Sum 1,750,031, Average 291,671.8333, Count 6",
+        "vi": null
+      },
+      "caption": {
+        "en": "Six selected cells: the status bar has the totals, and the popover adds minimum and maximum.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-80-2"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 530
+        }
+      },
+      "legacySource": [
+        "/images/blog/selection-totals-popover.png"
+      ]
+    },
+    "blog-tablepro-0-80-3": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-80",
+          "section": "figure-3"
+        }
+      ],
+      "aspect": "920:623",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Export Options sheet for two connections, with Include Saved Queries selected.",
+        "vi": null
+      },
+      "alt": {
+        "en": "Export Options sheet for 2 connections with Include Saved Queries selected above the note 3 saved queries that belong to these connections, with their folders and keywords, an unselected Also include global saved queries, a dimmed Include Credentials with a Starter badge, and Cancel and Export buttons",
+        "vi": null
+      },
+      "caption": {
+        "en": "Saved queries are included by default. Global ones are opt-in.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-80-3"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            920
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 920,
+          "height": 623
+        }
+      },
+      "legacySource": [
+        "/images/blog/connection-export-saved-queries.png"
+      ]
+    },
+    "blog-tablepro-0-80-4": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-80",
+          "section": "figure-4"
+        }
+      ],
+      "aspect": "1280:860",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The welcome window's connection list with custom icons on groups and connections.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro welcome window connection list with a Clients group holding an Acme subgroup of three connections that carry a flame, a hammer and a bar chart icon, and an Internal group of three connections that carry a card icon, a documents icon and a database logo",
+        "vi": null
+      },
+      "caption": {
+        "en": "Three connections to the same server, told apart by their icons.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-80-4"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1280
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1280,
+          "height": 860
+        }
+      },
+      "legacySource": [
+        "/images/blog/connection-custom-icons.png"
+      ]
+    },
     "blog-tablepro-for-iphone-1": {
       "kind": "phone",
       "type": "screenshot-phone",

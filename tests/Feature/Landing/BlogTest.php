@@ -25,6 +25,7 @@ beforeEach(function (): void {
 
 // A post keeps the date it was published; an edit never re-dates it.
 const BLOG_PUBLISHED = [
+    'tablepro-0-80' => '2026-10-11',
     'tablepro-0-77' => '2026-10-02',
     'tablepro-0-76' => '2026-09-28',
     'tablepro-for-iphone' => '2026-09-22',
@@ -127,8 +128,8 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts', fn($posts): bool => collect($posts)->pluck('slug')->all() === $expected)
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
-            ->where('posts.0.date', BLOG_GUIDES[$expected[0]])
-            ->where('posts.0.dateFormatted', 'October 8, 2026')
+            ->where('posts.0.date', BLOG_PUBLISHED[$expected[0]])
+            ->where('posts.0.dateFormatted', 'October 11, 2026')
             ->where('posts', fn($posts): bool => collect($posts)->every(
                 fn(array $post): bool => $post['kind'] === (array_key_exists($post['slug'], BLOG_GUIDES) ? 'guide' : 'release'),
             )));
@@ -430,7 +431,7 @@ it('chooses related posts by shared topic first, then by closeness in time', fun
 
 it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese and the release posts as English', function (): void {
     $response = $this->get('/vi/blog');
-    $first = count(BLOG_GUIDES);
+    $guides = count(BLOG_GUIDES);
 
     $response
         ->assertOk()
@@ -442,14 +443,14 @@ it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese
             ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->missing('content.seo.indexable')
             ->has('posts', count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
-            ->where('posts', fn($posts): bool => collect($posts)->take($first)->every(
+            ->where('posts', fn($posts): bool => collect($posts)->slice(1, $guides)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
             ))
-            ->where("posts.{$first}.slug", 'tablepro-0-77')
-            ->where("posts.{$first}.locale", 'en')
-            ->where("posts.{$first}.url", '/blog/tablepro-0-77')
-            ->where("posts.{$first}.title", blogMatter('tablepro-0-77')['title'])
-            ->where("posts.{$first}.dateFormatted", '2 tháng 10 năm 2026')
+            ->where('posts.0.slug', 'tablepro-0-80')
+            ->where('posts.0.locale', 'en')
+            ->where('posts.0.url', '/blog/tablepro-0-80')
+            ->where('posts.0.title', blogMatter('tablepro-0-80')['title'])
+            ->where('posts.0.dateFormatted', '11 tháng 10 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
