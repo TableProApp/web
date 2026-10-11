@@ -83,7 +83,7 @@ gates nothing, so it has no plan column. Device names come from `platforms.json`
 Exactly one of `href` (a page on this site: root-relative, English form, it is localized for you) or `docs` (a
 docs.tablepro.app path; on Vietnamese pages the label gets "(tiếng Anh)" and `hreflang="en"` automatically). Never an
 `https://` URL: external URLs live only in data files (`FactsDataTest`). `docs` entries take `docs`, `related`
-entries take `href`. Pick docs destinations from docs.tablepro.app's own page list (`docs/` in the TablePro app
+entries take `href`. Pick docs destinations from docs.tablepro.app's own page list (the TableProApp/docs
 repository), and only pages that describe released behaviour.
 
 ## Section ids the sitemap fixes
