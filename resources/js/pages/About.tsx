@@ -20,8 +20,6 @@ interface AboutProps {
     repositoryCreated: { date: string; formatted: string } | null;
     links: SiteLinks;
     organizationProfiles: string[];
-    /** The logo file under public/, or null when there is none to offer. */
-    logo: { src: string; width: number; height: number } | null;
 }
 
 interface JsonLdInput {
@@ -57,12 +55,12 @@ function aboutJsonLd({ baseUrl, inLanguage, pageUrl, content, crumbs, descriptio
 
 /**
  * `/about` in every locale: who makes TablePro and where, how it is funded,
- * where the code is, how to reach the maker, and the brand files.
+ * where the code is, how to reach the maker, and where the brand guidelines are.
  *
  * The name, city and country fill `{maker}`, `{city}` and `{country}` from
  * the `publisher` prop; no sentence holds them.
  */
-export default function About({ content, publisher, repositoryCreated, links, organizationProfiles, logo }: AboutProps) {
+export default function About({ content, publisher, repositoryCreated, links, organizationProfiles }: AboutProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const tags = useContentTags(links);
@@ -72,7 +70,6 @@ export default function About({ content, publisher, repositoryCreated, links, or
         ...(publisher?.city && { city: publisher.city }),
         ...(publisher?.country && { country: publisher.country }),
         ...(links.email !== null && { email: links.email }),
-        ...(logo !== null && { width: logo.width, height: logo.height }),
     };
 
     const rich = (text: string): ReactNode => <Trans text={text} tags={tags} values={values} />;
@@ -160,22 +157,11 @@ export default function About({ content, publisher, repositoryCreated, links, or
                 </div>
             </Section>
 
-            {logo !== null && (
-                <Section id="brand" title={content.brand.title} width="text">
-                    <div className="type-body space-y-6 text-foreground">
-                        <div className="space-y-4">
-                            <p>{content.brand.name}</p>
-                            <p>{rich(content.brand.usage)}</p>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-                            <img src={logo.src} alt={content.brand.alt} width={64} height={64} loading="lazy" decoding="async" className="size-16" />
-                            <a href={logo.src} download className={textLinkClasses('standalone')}>
-                                {fmt(content.brand.logo, values)}
-                            </a>
-                        </div>
-                    </div>
-                </Section>
-            )}
+            <Section id="brand" title={content.brand.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{rich(content.brand.body)}</p>
+                </div>
+            </Section>
         </LandingLayout>
     );
 }

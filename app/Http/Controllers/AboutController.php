@@ -18,8 +18,6 @@ use Inertia\Response;
  */
 class AboutController extends Controller
 {
-    public const LOGO = '/logo.png';
-
     public function __invoke(ContentRepository $content, SiteFacts $facts): Response
     {
         $locale = App::getLocale();
@@ -34,23 +32,6 @@ class AboutController extends Controller
             ],
             'links' => $facts->links(),
             'organizationProfiles' => $facts->organizationProfiles(),
-            'logo' => $this->logo(),
         ]);
-    }
-
-    /**
-     * The logo file the brand block offers, or null when `public/` has none.
-     *
-     * @return array{src: string, width: int, height: int}|null
-     */
-    private function logo(): ?array
-    {
-        $size = @getimagesize(public_path(ltrim(self::LOGO, '/')));
-
-        if (! is_array($size)) {
-            return null;
-        }
-
-        return ['src' => self::LOGO, 'width' => $size[0], 'height' => $size[1]];
     }
 }

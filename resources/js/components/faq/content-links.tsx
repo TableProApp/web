@@ -75,8 +75,9 @@ const EXTERNAL: Record<string, { key: ExternalKey; englishOnly: boolean }> = {
 /**
  * Renderers for every tag FAQ, iPhone-page and about-page copy may use, for `<Trans>`:
  * the link tags above, `<account>` (the account app, in the reader's
- * language), `<email>` (the support address; its text is the address unless
- * the copy gives other words) and `<ui>` (an app label in a click path).
+ * language), `<brand>` (the brand guidelines, in English only), `<email>`
+ * (the support address; its text is the address unless the copy gives other
+ * words) and `<ui>` (an app label in a click path).
  *
  * A tag whose destination the data does not name renders its words as plain
  * text, so a missing URL never becomes a broken link. A link to the English
@@ -99,6 +100,14 @@ export function useContentTags(links: SiteLinks): Record<string, (text: string) 
             ) : (
                 text
             ),
+        brand: (text) => (
+            <>
+                <a href="/brand" hrefLang="en" className={textLinkClasses('inline')}>
+                    {text}
+                </a>
+                {locale !== 'en' && ` ${m.common.englishOnly}`}
+            </>
+        ),
     };
 
     for (const [name, path] of Object.entries(INTERNAL)) {

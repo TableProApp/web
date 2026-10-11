@@ -50,7 +50,7 @@ function aboutKnownTags(): array
     preg_match('/const EXTERNAL: Record<string, \{[^}]*\}> = \{(.*?)\n\};/s', $source, $external);
     preg_match_all('/^\s+([a-zA-Z]+):/m', ($internal[1] ?? '') . "\n" . ($external[1] ?? ''), $keys);
 
-    return [...$keys[1], 'ui', 'account', 'email'];
+    return [...$keys[1], 'ui', 'account', 'email', 'brand'];
 }
 
 function aboutVisibleText(string $html): string
@@ -81,7 +81,6 @@ it('renders in every locale with the publisher from facts.json', function (strin
             ->where('links.issues', fn(string $url): bool => str_starts_with($url, 'https://github.com/'))
             ->where('links.discussions', fn(string $url): bool => str_starts_with($url, 'https://github.com/'))
             ->where('links.sponsorsProgram', 'https://github.com/sponsors/datlechin')
-            ->where('logo', ['src' => '/logo.png', 'width' => 256, 'height' => 256])
             ->where('seo.robots', 'index, follow'));
 })->with(aboutLocales());
 
@@ -99,10 +98,10 @@ it('fills every slot its copy uses, resolves every link tag, and links the secur
     preg_match_all('/\{([A-Za-z][A-Za-z0-9_.]*)\}/', $text, $slots);
     preg_match_all('/<([a-z][A-Za-z0-9]*)>/', $text, $tags);
 
-    expect(array_values(array_diff(array_unique($slots[1]), ['maker', 'city', 'country', 'email', 'width', 'height'])))->toBe([], "content/{$locale}/about.json uses a slot the page does not fill");
+    expect(array_values(array_diff(array_unique($slots[1]), ['maker', 'city', 'country', 'email'])))->toBe([], "content/{$locale}/about.json uses a slot the page does not fill");
     expect(array_values(array_diff(array_unique($tags[1]), aboutKnownTags())))->toBe([], "content/{$locale}/about.json uses a link tag with no destination");
     expect($content['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
-    expect($content['brand']['usage'] ?? null)->toBeString()->toContain('TablePro')->toContain('<email>{email}</email>');
+    expect($content['brand']['body'])->toMatch('#<brand>[^<]+</brand>#u');
 })->with(aboutLocales());
 
 it('types the publisher in facts.json only', function (): void {
@@ -147,14 +146,15 @@ it('server-renders the publisher, every section and its links, the footer and an
     }
 
     Assert::assertDoesNotMatchRegularExpression('/\{[a-zA-Z]+\}/', $text, "{$path} leaves a slot unfilled");
-    expect($html)->toContain('href="/logo.png" download=""');
 
     preg_match('#<section[^>]*id="policies".*?</section>#s', $html, $policies);
     preg_match('#<section[^>]*id="brand".*?</section>#s', $html, $brand);
     preg_match('#<footer\b.*?</footer>#s', $html, $footer);
+    preg_match('/[\'"]?englishOnly[\'"]?:\s*([\'"])(.*?)\1/u', File::get(resource_path("js/i18n/messages/{$locale}/common.ts")), $marker);
 
     expect($policies[0] ?? '')->toContain("href=\"{$prefix}/security\"");
-    expect($brand[0] ?? '')->toContain('href="mailto:hello@tablepro.app"');
+    expect($brand[0] ?? '')->toContain('href="/brand" hrefLang="en"');
+    expect(str_contains(aboutVisibleText($brand[0] ?? ''), $marker[2]))->toBe($locale !== Locales::default());
     expect(aboutVisibleText($footer[0] ?? ''))->toContain($publisher['name'])
         ->toContain($publisher['city'][$locale])
         ->toContain('AGPLv3');
