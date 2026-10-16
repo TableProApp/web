@@ -67,7 +67,7 @@ That's why 0.81 is marked critical: the update alert comes up right away, withou
 
 ## Also new
 
-- Updates download as a delta from any of the last five releases. From 0.80 that's 14 MB on Apple silicon instead of a 32 MB zip
+- Updates are smaller: 20 MB on Apple silicon instead of 32 MB
 - The `tablepro` command ships inside the app, and **Settings > General** shows the Terminal line that links it. No administrator prompt
 - The MCP server runs only while **Enable MCP Server** is on
 - A setting in **Settings > General** hides the version and **Check for Updates** on the Welcome window, by [@RaffeYang](https://github.com/RaffeYang)
