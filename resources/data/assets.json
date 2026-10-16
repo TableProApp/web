@@ -10909,6 +10909,165 @@
         "/images/blog/connection-custom-icons.png"
       ]
     },
+    "blog-tablepro-0-81-1": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-81",
+          "section": "figure-1"
+        }
+      ],
+      "aspect": "2400:1600",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A MySQL connection with two databases in the connections strip, tenant_b selected, and only its orders and customers tabs in the tab bar.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro main window with the connections strip on the left listing Tenants tenant_a and Tenants tenant_b, tenant_b selected, the toolbar showing the Tenants connection and the tenant_b database, a tab bar with orders and customers tabs, and the orders table open with two rows for Umbrella and Hooli",
+        "vi": null
+      },
+      "caption": {
+        "en": "The tab bar shows only tenant_b's tabs. tenant_a keeps its own until you switch back.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-81-1"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 938
+        }
+      },
+      "legacySource": [
+        "/images/blog/connections-strip-database-tabs.png"
+      ]
+    },
+    "blog-tablepro-0-81-2": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-81",
+          "section": "figure-2"
+        }
+      ],
+      "aspect": "3024:1722",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A query tab under the Dracula theme, with the editor, tab bar and result grid in the theme's colors.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro main window in dark mode under the Dracula theme, with a SELECT on the Chinook Track table highlighted in pink, cyan and yellow, the editor and result grid in the theme's dark purple-grey, and the sidebar listing the sample database's tables",
+        "vi": null
+      },
+      "caption": {
+        "en": "Dracula colors the editor and the result grid. The sidebar, toolbar and controls keep the system look.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-81-2"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 801
+        }
+      },
+      "legacySource": [
+        "/images/blog/theme-dracula-content.png"
+      ]
+    },
+    "blog-tablepro-0-81-3": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-81",
+          "section": "figure-3"
+        }
+      ],
+      "aspect": "2200:1240",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "An Oracle connection open with a yellow banner showing the server's password expiry warning.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro main window connected to an Oracle 23ai database, with a yellow banner reading Connected with a warning and ORA-28098 saying the password will expire within 7 days, the schema list in the sidebar, and No tabs open in the main area",
+        "vi": null
+      },
+      "caption": {
+        "en": "An Oracle password in its grace period connects, and the server's warning shows above the tabs.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-81-3"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 793
+        }
+      },
+      "legacySource": [
+        "/images/blog/connection-login-warning.png"
+      ]
+    },
     "blog-tablepro-for-iphone-1": {
       "kind": "phone",
       "type": "screenshot-phone",
