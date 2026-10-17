@@ -146,6 +146,8 @@ in the job with a live SSR service. It skips locally without one.
 - A blog post is a markdown file in `resources/blog/`; the filename is the slug.
   A Vietnamese version of a guide is `resources/blog/vi/{same slug}.md` and keeps
   the original `date`. Release posts stay English-only.
+- A release post, its newsletter and its X posts follow the `announce` skill
+  (`.claude/skills/announce/SKILL.md`).
 - Database, comparison and feature pages need a slug in the matching constant
   class in `app/Support/Content/Slugs/` (never in `routes/`) and a content file
   in **every** locale. A slug with content in only one locale renders only
