@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Services\Content\SiteFacts;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Content\ContentRepository;
+use App\Support\Content\MarkdownExport;
+use App\Support\Localization\Locales;
+use App\Support\Seo\LegalPages;
+use App\Support\Seo\SeoContext;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -43,6 +49,34 @@ class LegalController extends Controller
     public function brand(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
     {
         return $this->document('Brand', 'brand', '/brand', $documents, $content, $facts);
+    }
+
+    public function markdown(Request $request, SeoContext $seo, LegalDocuments $documents, ContentRepository $content, MarkdownExport $export): HttpResponse
+    {
+        $locale = App::getLocale();
+        $entry = $seo->entryFor($request);
+        $name = $entry === null ? null : (LegalPages::DOCUMENTS[$entry->route] ?? null);
+
+        if ($entry === null || $name === null) {
+            abort(404);
+        }
+
+        $source = $documents->source($name, $locale);
+        $chrome = $content->page('legal', $locale);
+        $notes = [str_replace('{date}', $source['updatedAt']->locale($locale)->isoFormat('LL'), $chrome['updated'])];
+
+        if ($locale !== Locales::default()) {
+            $english = (string) $entry->markdownUrl(Locales::default());
+            $notes[] = $export->callout(
+                $chrome['notice']['title'],
+                (string) preg_replace('#<english>(.*?)</english>#', '[$1](' . $english . ')', $chrome['notice']['body']),
+            );
+        }
+
+        return $this->markdownResponse(
+            $export->document($source['title'], $source['description'], $notes, $export->body($source['body'], $locale, LegalDocuments::MARKERS)),
+            $entry->url($locale),
+        );
     }
 
     private function document(string $component, string $name, string $path, LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response

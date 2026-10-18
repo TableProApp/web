@@ -18,6 +18,8 @@ export interface SeoProp {
     ogLocaleAlternates: string[];
     /** `alt` says what the card shows, in the page's language. */
     ogImage: { url: string; width: number; height: number; type: string; alt: string | null } | null;
+    /** The page as markdown (llmstxt.org), on blog posts and legal pages. */
+    markdown: string | null;
 }
 
 /** One option of the language switcher. */

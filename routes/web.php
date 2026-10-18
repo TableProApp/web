@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LlmsTxtController;
 use App\Http\Controllers\SecurityTxtController;
 use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,5 @@ Route::get('/robots.txt', function () {
 })->name('web.robots');
 
 Route::get(SecurityTxtController::PATH, SecurityTxtController::class)->name('web.security');
+
+Route::get(LlmsTxtController::PATH, LlmsTxtController::class)->name('web.llms');

@@ -9,6 +9,7 @@ use App\Services\Blog\Post;
 use App\Services\Blog\PostRelease;
 use App\Services\Blog\PostTopics;
 use App\Support\Content\ContentRepository;
+use App\Support\Content\MarkdownExport;
 use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageRegistry;
@@ -93,6 +94,30 @@ class BlogController extends Controller
                 $this->related($post),
             ),
         ]);
+    }
+
+    public function markdown(MarkdownExport $export, ContentRepository $content, string $slug): HttpResponse
+    {
+        $locale = App::getLocale();
+        $post = $this->blog->find($slug, $locale);
+        $entry = $this->registry->find(BlogPosts::ROUTE, ['slug' => $slug]);
+
+        if ($post === null || $entry === null || ! $this->isPublished($post)) {
+            abort(404);
+        }
+
+        $copy = $content->has('blog', $locale) ? $content->page('blog', $locale) : [];
+        $correction = $this->correction($copy, $post, $locale);
+        $notes = [implode(' · ', array_filter([$post->dateFormatted($locale), $post->author]))];
+
+        if ($correction !== null) {
+            $notes[] = $export->callout(trans('blog.correction', ['date' => $correction['dateFormatted']], $locale), $correction['text']);
+        }
+
+        return $this->markdownResponse(
+            $export->document($post->title, $post->description, $notes, $export->body($this->blog->source($post), $locale)),
+            $entry->url($locale),
+        );
     }
 
     /**

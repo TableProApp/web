@@ -39,7 +39,7 @@ final class SeoContext
     ) {}
 
     /**
-     * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: array{url: string, width: int, height: int, type: string, alt: string|null}|null}
+     * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: array{url: string, width: int, height: int, type: string, alt: string|null}|null, markdown: string|null}
      */
     public function forRequest(Request $request): array
     {
@@ -77,11 +77,13 @@ final class SeoContext
             'ogLocale' => Locales::definition($locale)['og'],
             'ogLocaleAlternates' => $ogAlternates,
             'ogImage' => $this->ogImages->for($entry, $locale),
+            'markdown' => $entry->markdownUrl($locale),
         ];
     }
 
     /**
-     * The registry entry for the route the request matched, if it has one.
+     * The registry entry for the route the request matched, if it has one. A
+     * page's markdown route resolves to the page.
      */
     public function entryFor(Request $request): ?PageEntry
     {
@@ -93,10 +95,17 @@ final class SeoContext
         $route = $request->route();
 
         if ($route instanceof Route && $route->getName() !== null) {
+            $name = (string) LocalizedUrl::baseName($route->getName());
+            $markdown = str_ends_with($name, PageEntry::MARKDOWN);
+
             $entry = $this->registry->find(
-                (string) LocalizedUrl::baseName($route->getName()),
+                $markdown ? substr($name, 0, -strlen(PageEntry::MARKDOWN)) : $name,
                 $this->parameters($route),
             );
+
+            if ($markdown && $entry?->markdown !== true) {
+                $entry = null;
+            }
         }
 
         $request->attributes->set(self::ENTRY_ATTRIBUTE, $entry);
@@ -110,7 +119,7 @@ final class SeoContext
     }
 
     /**
-     * @return array{robots: string, canonical: null, alternates: list<array{hreflang: string, href: string}>, xDefault: null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: null}
+     * @return array{robots: string, canonical: null, alternates: list<array{hreflang: string, href: string}>, xDefault: null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: null, markdown: null}
      */
     private function unlisted(string $locale): array
     {
@@ -122,6 +131,7 @@ final class SeoContext
             'ogLocale' => Locales::definition(Locales::isSupported($locale) ? $locale : Locales::default())['og'],
             'ogLocaleAlternates' => [],
             'ogImage' => null,
+            'markdown' => null,
         ];
     }
 

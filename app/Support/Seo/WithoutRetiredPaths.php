@@ -73,6 +73,7 @@ final class WithoutRetiredPaths implements PageFamily
             sources: $entry->sources,
             ogFamily: $entry->ogFamily,
             ogSlug: $entry->ogSlug,
+            markdown: $entry->markdown,
         );
     }
 }

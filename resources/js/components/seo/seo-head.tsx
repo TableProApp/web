@@ -30,7 +30,8 @@ function escapeJsonLd(payload: object | object[]): string {
  *
  * In order: title and description; exactly one robots meta; the canonical when
  * the page is indexed in this locale; one alternate per real translation plus
- * `x-default`; Open Graph and Twitter tags; JSON-LD with `</script` escaped.
+ * `x-default`; the feed and the markdown version where the page has them; Open
+ * Graph and Twitter tags; JSON-LD with `</script` escaped.
  * Every tag that can repeat carries a unique `head-key`.
  */
 export default function SEOHead({
@@ -82,6 +83,7 @@ export default function SEOHead({
             )}
 
             {feed && <link head-key="feed" rel="alternate" type="application/atom+xml" title={feed.title} href={feed.url} />}
+            {seo.markdown && <link head-key="markdown" rel="alternate" type="text/markdown" href={seo.markdown} />}
 
             <meta head-key="og:type" property="og:type" content={ogType} />
             {publishedTime && (

@@ -16,9 +16,12 @@ database and no credentials: every page is built from markdown in
 /privacy  /terms  /refund-policy
 /brand                     English only: resources/data/legal/en/brand.md, files in public/images/brand
 /blog  /blog/{slug}        markdown in resources/blog
+/blog/{slug}.md  /privacy.md  /terms.md  /refund-policy.md  /brand.md
+                           the same page as markdown, in every language it renders in
 /blog/feed.xml             the English posts as Atom, linked from the head of blog pages
 /vi/…                      every page above, in Vietnamese, where it exists
 /robots.txt  /sitemap.xml
+/llms.txt                  llmstxt.org, English, built from the page registry
 /.well-known/security.txt  RFC 9116; `SecurityTxtController::EXPIRES` is moved by hand
 ```
 
@@ -165,6 +168,27 @@ the query string, so `/mariadb-client/?ref=x` goes straight to
 `/mysql-client?ref=x#mariadb`; a 410 renders the branded Error page. An unknown
 path is a 404, never a redirect to the homepage. A retired URL is never also a
 page: the registry drops every path the map answers.
+
+### For AI agents
+
+- `/llms.txt` follows llmstxt.org: the H1, the homepage description as the
+  summary, then link lists. It links the docs site's own `llms.txt`, every
+  indexed English page with its meta description, guides apart from release
+  posts, and release posts and legal pages under `Optional`.
+- Blog posts and legal pages, whose source is markdown, also answer at
+  `{page}.md`: the authored markdown with the title, the description and the
+  notes the page shows above the body (date, correction, last updated,
+  translation notice). `{#id}` heading attributes and controls are dropped, and
+  an image slot becomes the image production shows, or nothing. The route is
+  named `{page route}.md`, so the registry gates it as that page.
+- A `.md` response carries `Link: <page>; rel="canonical"`, and the page's head
+  links it with `rel="alternate" type="text/markdown"` (the `seo.markdown` prop).
+- No `Accept: text/markdown` negotiation: Cloudflare caches HTML and ignores
+  `Vary`, so one URL with two bodies would hand the cached one to both. Its
+  Markdown for Agents feature, which converts at the edge, needs a paid plan.
+- `robots.txt` allows every crawler and carries no AI preference line.
+  Cloudflare's `Content-Signal` is a vendor policy and the IETF aipref
+  `Content-Usage` is still a draft; add `Content-Usage` once it is an RFC.
 
 ## What it does not serve
 

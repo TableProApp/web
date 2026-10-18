@@ -148,6 +148,11 @@ class BlogService
         return $this->renderer->render($body, '', MarkdownRenderer::BLOG_ID_PREFIX);
     }
 
+    public function source(Post $post): string
+    {
+        return $this->bodies[$post->locale . '/' . $post->slug] ?? '';
+    }
+
     private function parse(string $slug, string $locale): ?Post
     {
         $path = $this->localeDirectory($locale) . '/' . $slug . '.md';
