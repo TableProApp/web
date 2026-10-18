@@ -16,6 +16,9 @@ use App\Support\Localization\LocalizedUrl;
  */
 final readonly class PageEntry
 {
+    // `landing.privacy.md` serves `/privacy.md`, the markdown of `landing.privacy`.
+    public const MARKDOWN = '.md';
+
     /**
      * @param  string  $route  base route name, e.g. `landing.compare`
      * @param  array<string, string>  $params
@@ -32,7 +35,13 @@ final readonly class PageEntry
         public array $sources,
         public string $ogFamily,
         public ?string $ogSlug,
+        public bool $markdown = false,
     ) {}
+
+    public function markdownUrl(string $locale, bool $absolute = true): ?string
+    {
+        return $this->markdown ? LocalizedUrl::route($this->route . self::MARKDOWN, $this->params, $locale, $absolute) : null;
+    }
 
     public function renders(string $locale): bool
     {

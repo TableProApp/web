@@ -46,6 +46,9 @@ use Illuminate\Support\Facades\Route;
 | `/` and `/vi` both render a section with id="pricing", because shipped Mac
 | builds open `/?ref=…#pricing`.
 |
+| A route named `{page}.md` serves that page's markdown, and the registry
+| gates it as that page (`PageEntry::MARKDOWN`).
+|
 */
 
 Route::get('/', HomeController::class)->name('landing.home');
@@ -61,10 +64,18 @@ Route::get('/terms', [LegalController::class, 'terms'])->name('landing.terms');
 Route::get('/refund-policy', [LegalController::class, 'refundPolicy'])->name('landing.refundPolicy');
 Route::get('/brand', [LegalController::class, 'brand'])->name('landing.brand');
 
+Route::get('/privacy.md', [LegalController::class, 'markdown'])->name('landing.privacy.md');
+Route::get('/terms.md', [LegalController::class, 'markdown'])->name('landing.terms.md');
+Route::get('/refund-policy.md', [LegalController::class, 'markdown'])->name('landing.refundPolicy.md');
+Route::get('/brand.md', [LegalController::class, 'markdown'])->name('landing.brand.md');
+
 Route::get('/blog', [BlogController::class, 'index'])->name('landing.blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])
     ->where('slug', '[a-z0-9-]+')
     ->name('landing.blog.show');
+Route::get('/blog/{slug}.md', [BlogController::class, 'markdown'])
+    ->where('slug', '[a-z0-9-]+')
+    ->name('landing.blog.show.md');
 
 Route::get('/features', [FeatureController::class, 'index'])->name('landing.features.index');
 Route::get('/features/{slug}', [FeatureController::class, 'show'])

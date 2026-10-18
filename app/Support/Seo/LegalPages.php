@@ -86,6 +86,7 @@ final class LegalPages implements PageFamily
             sources: $sources,
             ogFamily: 'site',
             ogSlug: null,
+            markdown: true,
         );
     }
 

@@ -16,7 +16,7 @@ beforeEach(function (): void {
 });
 
 /**
- * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>}
+ * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>, markdown: string|null}
  */
 function hreflangExpected(PageEntry $entry, string $locale): array
 {
@@ -42,6 +42,7 @@ function hreflangExpected(PageEntry $entry, string $locale): array
         'xDefault' => $paired ? $entry->url(Locales::default()) : null,
         'ogLocale' => Locales::definition($locale)['og'],
         'ogLocaleAlternates' => $ogAlternates,
+        'markdown' => $entry->markdownUrl($locale),
     ];
 }
 
@@ -161,6 +162,7 @@ describe('on a scratch site with every kind of page', function (): void {
             'xDefault' => null,
             'ogLocale' => 'vi_VN',
             'ogLocaleAlternates' => [],
+            'markdown' => null,
         ]);
 
         $switcher = app(LocaleSwitcher::class)->forRequest(seoMatchedRequest('/vi/blog', 'vi'));

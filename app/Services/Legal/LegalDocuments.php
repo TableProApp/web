@@ -49,6 +49,8 @@ class LegalDocuments
 
     public const BRAND_ASSETS_MARKER = '<brand-assets></brand-assets>';
 
+    public const MARKERS = [self::COOKIE_SETTINGS_MARKER, self::BRAND_ASSETS_MARKER];
+
     private const TOKEN = '/\{([a-zA-Z][a-zA-Z0-9]*)\}/';
 
     public function __construct(
@@ -80,6 +82,32 @@ class LegalDocuments
      */
     public function render(string $document, string $locale, ?string $permalinkLabel = null): array
     {
+        $source = $this->source($document, $locale);
+        $html = $this->renderer->render($source['body'], $permalinkLabel);
+
+        foreach (self::MARKERS as $marker) {
+            $html = (string) preg_replace('#<p>\s*' . preg_quote($marker, '#') . '\s*</p>#', $marker, $html);
+        }
+
+        return [
+            'title' => $source['title'],
+            'description' => $source['description'],
+            'updatedAt' => $source['updatedAt']->toDateString(),
+            'updatedAtFormatted' => $source['updatedAt']->locale($locale)->isoFormat('LL'),
+            'html' => $html,
+            'toc' => $this->toc($html),
+        ];
+    }
+
+    /**
+     * One document in one locale as markdown, its `{token}` slots filled.
+     *
+     * @return array{title: string, description: string, updatedAt: CarbonImmutable, body: string}
+     *
+     * @throws ContentMissingException
+     */
+    public function source(string $document, string $locale): array
+    {
         $path = $this->path($document, $locale);
 
         if (! File::isFile($path)) {
@@ -87,21 +115,12 @@ class LegalDocuments
         }
 
         $parsed = YamlFrontMatter::parse((string) File::get($path));
-        $updatedAt = $this->date($parsed->matter('updatedAt'), $path);
-
-        $html = $this->renderer->render($this->fill($parsed->body(), $path, $locale), $permalinkLabel);
-
-        foreach ([self::COOKIE_SETTINGS_MARKER, self::BRAND_ASSETS_MARKER] as $marker) {
-            $html = (string) preg_replace('#<p>\s*' . preg_quote($marker, '#') . '\s*</p>#', $marker, $html);
-        }
 
         return [
             'title' => $this->fill((string) $parsed->matter('title'), $path, $locale),
             'description' => $this->fill((string) $parsed->matter('description'), $path, $locale),
-            'updatedAt' => $updatedAt->toDateString(),
-            'updatedAtFormatted' => $updatedAt->locale($locale)->isoFormat('LL'),
-            'html' => $html,
-            'toc' => $this->toc($html),
+            'updatedAt' => $this->date($parsed->matter('updatedAt'), $path),
+            'body' => $this->fill($parsed->body(), $path, $locale),
         ];
     }
 

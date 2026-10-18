@@ -90,6 +90,7 @@ final class BlogPosts implements PageFamily
             sources: $sources,
             ogFamily: 'blog',
             ogSlug: $slug,
+            markdown: true,
         );
     }
 
