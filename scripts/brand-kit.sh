@@ -9,7 +9,7 @@
 set -euo pipefail
 
 app="${1:?usage: scripts/brand-kit.sh <path to a TablePro app checkout>}"
-icon="$app/TablePro/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png"
+icon="$app/apple/TablePro/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png"
 out="$(cd "$(dirname "$0")/.." && pwd)/public/images/brand"
 srgb='/System/Library/ColorSync/Profiles/sRGB Profile.icc'
 
