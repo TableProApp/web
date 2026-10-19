@@ -21,17 +21,18 @@ diff and confirm each one changed. A summary easily drops the changelog's scope.
 
 ## 3. A plugin feature needs a published binary
 
-It is not installable until its tag exists, the tag contains the commit, and the registry lists it:
+Plugins ship as assets of the app release. One is not installable until the release tag contains
+the commit, the release carries its zip, and `plugins/v3.json` lists that version:
 
 ```bash
-git -C ../TablePro tag -l "plugin-<slug>-*" | tail -3
-git -C ../TablePro merge-base --is-ancestor <feature-commit> plugin-<slug>-v<latest> && echo included || echo NOT included
-curl -s https://raw.githubusercontent.com/TableProApp/plugins/main/plugins.json | python3 -c \
-  'import json,sys; [print(p["id"], p["version"]) for p in json.load(sys.stdin)["plugins"] if "<Name>" in p["id"]]'
+git -C ../TablePro merge-base --is-ancestor <feature-commit> v<version> && echo included || echo NOT included
+gh release view v<version> -R TableProApp/TablePro --json assets --jq '.assets[].name' | grep '^<Target>-'
+curl -s https://updates.tablepro.app/plugins/v3.json | python3 -c \
+  'import json,sys; [print(p["id"], [r["version"] for r in p["releases"]]) for p in json.load(sys.stdin)["plugins"] if "<Target>" in p["id"]]'
 ```
 
-The registry `id` is the `bundleId` in `../TablePro/.github/plugin-registry.json`. If a check fails,
-the plugin ships first or the section goes.
+`<Target>` is the plugin's key in `../TablePro/.github/plugin-registry.json`. If a check fails, the
+plugin ships first or the section goes.
 
 ## 4. Images are real and current
 
