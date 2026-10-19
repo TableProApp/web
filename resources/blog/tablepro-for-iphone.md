@@ -64,6 +64,6 @@ SQLite and DuckDB read files on the device or in memory. Remote DuckDB is Mac-on
 
 It is on the [App Store](https://apps.apple.com/app/tablepro/id6761621829), free, for iPhone and iPad on iOS or iPadOS 18 or later.
 
-The source is in the [same repository](https://github.com/TableProApp/TablePro) as the Mac app, under AGPLv3, in `TableProMobile/`. The two version separately: the Mac app is on 0.75 and this one starts at 1.0.
+The source is in the [same repository](https://github.com/TableProApp/TablePro) as the Mac app, under AGPLv3, in `apple/TableProMobile/`. The two version separately: the Mac app is on 0.75 and this one starts at 1.0.
 
 Usage data is off until you turn it on, and it never carries hostnames, usernames, passwords, queries or rows.
