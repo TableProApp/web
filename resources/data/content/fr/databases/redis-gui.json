@@ -38,7 +38,7 @@
                 "Parcourez les clés en dossiers séparés par des deux-points, ou choisissez un autre séparateur. Chaque ligne affiche type, TTL, longueur et valeur. Les collections montrent leurs premières entrées ; les valeurs non UTF-8 s’ouvrent dans l’éditeur hexadécimal.",
                 "<editing>Modifiez noms de clés, TTL et valeurs de chaînes</editing> dans la grille. Add Row crée hashes, listes, sets, sorted sets ou chaînes. Filtrez noms et types côté serveur avec <code>SCAN MATCH</code> et <code>SCAN TYPE</code>.",
                 "Exécutez les commandes avec les règles de guillemets de redis-cli. Les commandes inconnues sont envoyées telles quelles. <code>DB 3 GET key</code> cible une autre base sans changer la session. Dans <code>MULTI</code>, les réponses restent en attente jusqu’à <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> compte toute commande Redis, même <code>GET</code>, comme écriture ; les niveaux Alert et Safe Mode demandent confirmation pour chacune, et Read-Only les bloque toutes. <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent confirmation même au niveau Silent."
+                "<safeMode>Safe Mode</safeMode> exécute comme lecture les commandes de sa liste de lecture, comme <code>GET</code>, et compte toute autre commande comme écriture. <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent confirmation même au niveau Silent."
             ]
         },
         {

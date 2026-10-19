@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Bảo trì và sao lưu",
             "paragraphs": [
-                "Phần bảo trì table chạy VACUUM, ANALYZE, REINDEX và kiểm tra tính toàn vẹn, mỗi thao tác đều hiển thị SQL trước khi chạy. Server Dashboard hiển thị dung lượng file, số page, kích thước page, journal mode và kích thước cache.",
+                "Phần bảo trì table chạy VACUUM, ANALYZE, REINDEX và kiểm tra tính toàn vẹn, mỗi thao tác đều hiển thị SQL trước khi chạy.",
                 "<backup>Backup Dump</backup> ghi cơ sở dữ liệu ra một file .sql bằng {dumpTool}, và Restore Dump chạy một file như vậy vào cơ sở dữ liệu."
             ]
         },

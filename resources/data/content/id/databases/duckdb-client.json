@@ -22,8 +22,7 @@
         "backup": "/features/import-export#backup",
         "explain": "/features/querying#performance",
         "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard"
+        "structure": "/features/schema#structure"
     },
     "sections": [
         {
@@ -56,7 +55,6 @@
             "title": "Bagikan file dan cadangkan",
             "paragraphs": [
                 "Selama TablePro memegang file, CLI <code>duckdb</code>, notebook, atau proses dbt tidak dapat membukanya. Atur <ui>Release the File Lock After</ui> agar file dilepas setelah beberapa menit tidak aktif dan diambil kembali pada kueri berikutnya, atau <ui>Open the File Read-Only</ui> agar beberapa pembaca dapat mengaksesnya. <ui>Database > Release File Lock</ui> langsung melepaskannya sambil mempertahankan tab. Pelepasan ditolak dengan alasannya selama sesi memiliki transaksi terbuka, tabel sementara, database terlampir, atau pengaturan yang diubah.",
-                "<dashboard>Server Dashboard</dashboard> menampilkan ukuran database, ukuran blok, total blok, batas memori, dan thread.",
                 "<backup>Backup Dump</backup> tidak memerlukan pemasangan karena {dumpTool} menulis melalui koneksi terbuka. Pilih file <code>.duckdb</code> untuk dipulihkan di TablePro nanti, atau folder berisi <code>schema.sql</code>, <code>load.sql</code>, dan satu file Parquet per tabel yang dapat dibaca langsung oleh pandas, Spark, dan BigQuery. Restore Dump berhenti pada objek pertama yang namanya sudah digunakan."
             ]
         },

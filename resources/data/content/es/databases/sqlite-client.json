@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Mantén y haz copias de seguridad",
             "paragraphs": [
-                "El mantenimiento ejecuta VACUUM, ANALYZE, REINDEX y una comprobación de integridad, mostrando antes el SQL. El Server Dashboard muestra el tamaño del archivo, el número y el tamaño de las páginas, el modo de journal y el tamaño de la caché.",
+                "El mantenimiento ejecuta VACUUM, ANALYZE, REINDEX y una comprobación de integridad, mostrando antes el SQL.",
                 "<backup>Backup Dump</backup> escribe la base en un archivo .sql con {dumpTool}; Restore Dump ejecuta ese archivo sobre una base."
             ]
         },

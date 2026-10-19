@@ -38,7 +38,7 @@
                 "Durchsuche Schlüssel in durch Doppelpunkte getrennten Ordnern oder wähle ein anderes Trennzeichen. Jede Zeile zeigt Typ, TTL, Länge und Wert. Collections zeigen ihre ersten Einträge; Nicht-UTF-8-Werte öffnen sich im Hex-Editor.",
                 "<editing>Bearbeite Schlüsselnamen, TTLs und String-Werte</editing> im Raster. Add Row erstellt Hashes, Listen, Sets, Sorted Sets oder Strings. Filtere Namen und Typen serverseitig mit <code>SCAN MATCH</code> und <code>SCAN TYPE</code>.",
                 "Führe Befehle mit Anführungszeichen im redis-cli-Stil aus. Unbekannte Befehle werden unverändert gesendet. <code>DB 3 GET key</code> adressiert eine andere Datenbank, ohne die Sitzung zu ändern. In <code>MULTI</code> bleiben Antworten bis <code>EXEC</code> in der Warteschlange.",
-                "<safeMode>Safe Mode</safeMode> zählt jeden Redis-Befehl einschließlich <code>GET</code> als Schreibzugriff; die Stufen Alert und Safe Mode fragen bei jedem nach, Read-Only blockiert alle. <code>FLUSHDB</code> und <code>FLUSHALL</code> fragen auch bei Silent nach."
+                "<safeMode>Safe Mode</safeMode> führt Befehle aus seiner Liste der Lesebefehle, etwa <code>GET</code>, als Lesezugriff aus und zählt jeden anderen Befehl als Schreibzugriff. <code>FLUSHDB</code> und <code>FLUSHALL</code> fragen auch bei Silent nach."
             ]
         },
         {

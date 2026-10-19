@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "維護與備份",
             "paragraphs": [
-                "資料表維護執行 VACUUM、ANALYZE、REINDEX 和完整性檢查，每項執行前均顯示 SQL。Server Dashboard 顯示檔案大小、頁數、頁大小、日誌模式和快取大小。",
+                "資料表維護執行 VACUUM、ANALYZE、REINDEX 和完整性檢查，每項執行前均顯示 SQL。",
                 "<backup>Backup Dump</backup> 使用 {dumpTool} 將資料庫寫入 .sql 檔案，Restore Dump 對資料庫執行此類檔案。"
             ]
         },

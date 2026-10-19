@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "Apakah TablePro dapat terhubung melalui socket MySQL lokal?",
-            "answer": "Tidak. Koneksi menggunakan TCP, sehingga jaringan server harus aktif. Untuk mengakses socket pada server jarak jauh, teruskan melalui tunnel SSH."
+            "answer": "Ya, untuk server di Mac ini. Setel <ui>Connect Using</ui> ke <ui>Socket</ui> lalu masukkan path file socket-nya. Host dan port hilang dari formulir, dan tunnel SSH tidak dapat menjangkau file socket."
         },
         {
             "id": "mysqldump",

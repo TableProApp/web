@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN diagram, user và session; backup mysqldump.",
         "limits": {
-            "tcp-only": "Connection dùng host và port qua TCP. Không hỗ trợ Unix socket cục bộ.",
             "load-data-local-refused": "Driver từ chối LOAD DATA LOCAL INFILE. Hãy nạp file bằng Import."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Console Query DSL; sửa document theo _id.",
         "limits": {
             "no-opensearch": "Không hỗ trợ OpenSearch.",
-            "aliases-not-listed": "Alias và data stream không được liệt kê trong sidebar. Hãy gọi chúng theo tên trong console.",
-            "no-ssh": "Không hỗ trợ SSH tunnel."
+            "aliases-not-listed": "Alias và data stream không được liệt kê trong sidebar. Hãy gọi chúng theo tên trong console."
         }
     },
     "etcd": {

@@ -128,5 +128,5 @@ export interface Engine {
     bundledVersion: string | null;
     limits: EngineLimit[];
     ios: EngineIos;
-    verified: { macTag: string; iosCommit: string; date: string };
+    verified: { macTag: string; iosCommit: string; docsCommit: string; date: string };
 }

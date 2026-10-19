@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "diagram EXPLAIN, pengguna dan sesi; cadangan mysqldump.",
         "limits": {
-            "tcp-only": "Koneksi memakai host dan port melalui TCP. Socket Unix lokal tidak didukung.",
             "load-data-local-refused": "Driver menolak LOAD DATA LOCAL INFILE. Muat file melalui Impor."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Konsol Query DSL; edit dokumen berdasarkan _id.",
         "limits": {
             "no-opensearch": "OpenSearch tidak didukung.",
-            "aliases-not-listed": "Alias dan data stream tidak tercantum di sidebar. Akses dengan namanya di konsol.",
-            "no-ssh": "Tunnel SSH tidak didukung."
+            "aliases-not-listed": "Alias dan data stream tidak tercantum di sidebar. Akses dengan namanya di konsol."
         }
     },
     "etcd": {

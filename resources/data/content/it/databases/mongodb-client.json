@@ -44,7 +44,7 @@
                 "Sfoglia i campi di livello superiore come colonne e gli oggetti nidificati come JSON esteso. Le modifiche alle celle preservano tipi come date e ObjectId. Le modifiche nidificate aggiornano solo il percorso modificato, ad esempio <code>address.city</code>.",
                 "<editing>Insert Document ed Edit Document</editing> usano Extended JSON. Edit Document rilegge il documento sul server e rifiuta il salvataggio se nel frattempo è cambiato o scomparso. <ui>Remove Field</ui> invia <code>$unset</code>.",
                 "La <filters>barra dei filtri</filters> accede a oggetti annidati e array di oggetti, quindi <code>customer.country</code> e <code>items.sku</code> filtrano direttamente. Un campo contenente GeoJSON si apre nella <map>vista Mappa</map>.",
-                "<safeMode>Safe Mode</safeMode> considera ogni istruzione su una connessione MongoDB una scrittura, perché il driver non può aprire una sessione in sola lettura. I livelli Alert e Safe Mode confermano ciascuna e Read-Only le blocca tutte."
+                "<safeMode>Safe Mode</safeMode> esegue un’istruzione come lettura quando è una sola chiamata che legge soltanto, come <code>find</code>, <code>countDocuments</code> o un <code>aggregate</code> senza <code>$out</code> né <code>$merge</code>. Qualsiasi altro JavaScript conta come scrittura."
             ]
         },
         {

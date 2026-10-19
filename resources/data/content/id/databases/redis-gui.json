@@ -38,7 +38,7 @@
                 "Telusuri kunci berdasarkan folder yang dipisahkan titik dua, atau pilih pemisah lain. Setiap baris menunjukkan jenis kunci, TTL, panjang dan nilai. Koleksi menampilkan entri pertamanya; nilai non-UTF-8 terbuka di hex editor.",
                 "<editing>Edit nama kunci, TTL dan nilai string</editing> di grid. Add Row membuat hash, daftar, set, set atau string yang diurutkan. Filter nama dan jenis kunci menggunakan <code>SCAN MATCH</code> dan <code>SCAN TYPE</code> sisi server.",
                 "Jalankan perintah dengan kutipan gaya redis-cli. Perintah yang tidak diketahui dikirim seperti yang tertulis. <code>DB 3 GET key</code> menargetkan database lain tanpa mengubah sesi. Di <code>MULTI</code>, balasan tetap dalam antrian hingga <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> menganggap setiap perintah Redis sebagai penulisan, termasuk <code>GET</code>, sehingga level Alert dan Safe Mode mengonfirmasi setiap perintah, dan Read-Only memblokir semuanya. <code>FLUSHDB</code> dan <code>FLUSHALL</code> meminta konfirmasi sebelum berjalan, bahkan pada Silent."
+                "<safeMode>Safe Mode</safeMode> menjalankan perintah dalam daftar perintah bacanya, seperti <code>GET</code>, sebagai pembacaan, dan menganggap perintah lain sebagai penulisan. <code>FLUSHDB</code> dan <code>FLUSHALL</code> meminta konfirmasi sebelum berjalan, bahkan pada Silent."
             ]
         },
         {

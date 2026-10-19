@@ -37,7 +37,7 @@
                 "设置<ui>键前缀根</ui>（Key Prefix Root）（如 <code>/app</code>）将连接限制于一个子树。侧边栏按其下第一个路径段分组，每个键一行，显示值、版本、修改和创建修订号及租约。",
                 "保存编辑发送命令。新值或租约重新 put 键，NULL 租约移除租约，重命名先 put 新名再删除旧名。修订号列由 etcd 管理，编辑会停止保存并指出列名。",
                 "运行 etcdctl 风格的键、watch、租约、成员、端点、压缩和访问控制命令，支持命令及标志补全。不支持的命令会在发送到服务器前被拒绝。",
-                "etcd 驱动无法打开只读会话，因此 <safeMode>Safe Mode</safeMode> 将所有命令视为写入：Alert、Safe Mode 级别每次先确认，Read-Only 全部阻止。"
+                "<safeMode>Safe Mode</safeMode> 将 <code>get</code>、<code>watch</code> 以及只列出或报告状态的命令作为读取运行，其他命令均视为写入。"
             ]
         },
         {

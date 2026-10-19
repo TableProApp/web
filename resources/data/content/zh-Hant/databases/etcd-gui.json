@@ -37,7 +37,7 @@
                 "設定<ui>索引鍵前綴根目錄</ui>（Key Prefix Root）（如 <code>/app</code>）將連線限制於一個子樹。側邊欄依其下第一個路徑區段分組，每個索引鍵一列，顯示值、版本、修改和建立修訂號及租約。",
                 "儲存編輯傳送指令。新值或租約重新 put 索引鍵，NULL 租約移除租約，重新命名先 put 新名稱再刪除舊名稱。修訂號欄由 etcd 管理，編輯會停止儲存並指出欄名。",
                 "執行 etcdctl 風格的鍵、watch、租約、成員、端點、壓縮和存取控制命令，支援命令及旗標自動完成。不支援的命令會在傳送到伺服器前被拒絕。",
-                "etcd 驅動程式無法開啟唯讀工作階段，因此 <safeMode>Safe Mode</safeMode> 將所有指令視為寫入：Alert、Safe Mode 等級每次先確認，Read-Only 全部阻擋。"
+                "<safeMode>Safe Mode</safeMode> 將 <code>get</code>、<code>watch</code> 以及只列出或回報狀態的指令作為讀取執行，其他指令均視為寫入。"
             ]
         },
         {

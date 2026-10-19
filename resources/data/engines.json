@@ -38,17 +38,17 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "9.1", "enforced": false, "evidence": "docs/databases/postgresql.mdx:21" },
+        "versionFloor": { "text": "9.1", "enforced": false, "evidence": "TableProApp/docs:databases/postgresql.mdx:21" },
         "bundledVersion": null,
         "limits": [
             {
                 "id": "column-reorder-script-only",
                 "value": null,
-                "evidence": "Plugins/PostgreSQLDriverPlugin/PostgreSQLPluginDriver+ColumnReorder.swift:13-43"
+                "evidence": "Plugins/PostgreSQLDriverPlugin/PostgreSQLPluginDriver+ColumnReorder.swift:14-44"
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "mysql",
@@ -89,22 +89,17 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "5.7", "enforced": false, "evidence": "docs/databases/mysql.mdx:3" },
+        "versionFloor": { "text": "4.1", "enforced": false, "evidence": "TableProApp/docs:databases/mysql.mdx:6,130" },
         "bundledVersion": null,
         "limits": [
             {
-                "id": "tcp-only",
-                "value": null,
-                "evidence": "Plugins/MySQLDriverPlugin/MariaDBPluginConnection.swift:336-337"
-            },
-            {
                 "id": "load-data-local-refused",
                 "value": null,
-                "evidence": "Plugins/MySQLDriverPlugin/MariaDBPluginConnection.swift:339-340"
+                "evidence": "Plugins/MySQLDriverPlugin/MariaDBPluginConnection.swift:418-419"
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "sqlserver",
@@ -120,7 +115,7 @@
         "distribution": "registry",
         "driverPlugin": "mssql",
         "sinceAppVersion": "0.14.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 1433,
@@ -145,13 +140,13 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "2012", "enforced": false, "evidence": "docs/databases/mssql.mdx:8" },
+        "versionFloor": { "text": "2012", "enforced": false, "evidence": "TableProApp/docs:databases/mssql.mdx:8" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-named-instances", "value": null, "evidence": "docs/databases/mssql.mdx:8" },
-            { "id": "no-ntlm", "value": null, "evidence": "docs/databases/mssql.mdx:147" },
-            { "id": "no-explain", "value": null, "evidence": "docs/features/explain-visualization.mdx:134-155" },
-            { "id": "scripts-not-in-transaction", "value": null, "evidence": "CHANGELOG.md:485 [0.76.0]" },
+            { "id": "no-named-instances", "value": null, "evidence": "TableProApp/docs:databases/mssql.mdx:8" },
+            { "id": "no-ntlm", "value": null, "evidence": "TableProApp/docs:databases/mssql.mdx:150" },
+            { "id": "no-explain", "value": null, "evidence": "TableProApp/docs:features/explain-visualization.mdx:136-155" },
+            { "id": "scripts-not-in-transaction", "value": null, "evidence": "TableProApp/docs:databases/mssql.mdx:124" },
             {
                 "id": "ios-tls-not-verified",
                 "value": null,
@@ -159,7 +154,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "sqlite",
@@ -191,7 +186,7 @@
             "schemaEditing": "full",
             "explain": ["Query Plan"],
             "explainView": "diagram",
-            "dashboard": true,
+            "dashboard": false,
             "usersRoles": false,
             "awsIam": false,
             "awsSignIn": false,
@@ -203,22 +198,22 @@
         "versionFloor": null,
         "bundledVersion": "3.53.4",
         "limits": [
-            { "id": "no-encryption", "value": null, "evidence": "docs/databases/sqlite.mdx:119" },
+            { "id": "no-encryption", "value": null, "evidence": "TableProApp/docs:databases/sqlite.mdx:119" },
             {
                 "id": "no-primary-key-changes",
                 "value": null,
-                "evidence": "TablePro/Core/Plugins/PluginMetadataRegistry+CuratedDefaults.swift:682 @v0.76.1"
+                "evidence": "TablePro/Core/Plugins/PluginMetadataRegistry+CuratedDefaults.swift:694"
             },
             {
                 "id": "ios-file-copied",
                 "value": null,
                 "evidence": "TableProMobile/TableProMobile/Platform/IOSDriverFactory.swift:80-127 @232e8dae6"
             },
-            { "id": "extensions-local-file-only", "value": null, "evidence": "docs/databases/sqlite.mdx:120 @v0.77.0" },
-            { "id": "attached-files-not-listed", "value": null, "evidence": "docs/databases/sqlite.mdx:52 @v0.77.0" }
+            { "id": "extensions-local-file-only", "value": null, "evidence": "TableProApp/docs:databases/sqlite.mdx:120" },
+            { "id": "attached-files-not-listed", "value": null, "evidence": "TableProApp/docs:databases/sqlite.mdx:52" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "mongodb",
@@ -234,7 +229,7 @@
         "distribution": "registry",
         "driverPlugin": "mongodb",
         "sinceAppVersion": "0.10.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "MQL",
         "defaultPort": 27017,
@@ -256,18 +251,18 @@
             "awsSignIn": true,
             "cloudSqlProxy": false,
             "nativeDump": "mongodump",
-            "readOnlyMode": false,
+            "readOnlyMode": true,
             "alwaysReadOnly": false
         },
         "versionFloor": { "text": "4.0", "enforced": true, "evidence": "Plugins/MongoDBDriverPlugin/MongoFieldDataProbe.swift:15" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-transactions", "value": null, "evidence": "docs/databases/mongodb.mdx:385" },
-            { "id": "no-gridfs-or-change-streams", "value": null, "evidence": "docs/databases/mongodb.mdx:391" },
-            { "id": "no-pipeline-builder", "value": null, "evidence": "docs/databases/mongodb.mdx:237" }
+            { "id": "no-transactions", "value": null, "evidence": "TableProApp/docs:databases/mongodb.mdx:385" },
+            { "id": "no-gridfs-or-change-streams", "value": null, "evidence": "TableProApp/docs:databases/mongodb.mdx:391" },
+            { "id": "no-pipeline-builder", "value": null, "evidence": "TableProApp/docs:databases/mongodb.mdx:237" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "redis",
@@ -305,19 +300,19 @@
             "awsSignIn": true,
             "cloudSqlProxy": false,
             "nativeDump": null,
-            "readOnlyMode": false,
+            "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/redis.mdx:31" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/redis.mdx:31" },
         "bundledVersion": null,
         "limits": [
-            { "id": "string-values-only", "value": null, "evidence": "docs/databases/redis.mdx:113-115" },
-            { "id": "no-pubsub", "value": null, "evidence": "docs/databases/redis.mdx:168" },
+            { "id": "string-values-only", "value": null, "evidence": "TableProApp/docs:databases/redis.mdx:113,115" },
+            { "id": "no-pubsub", "value": null, "evidence": "TableProApp/docs:databases/redis.mdx:168" },
             { "id": "key-tree-cap", "value": 50000, "evidence": "TablePro/ViewModels/RedisKeyTreeViewModel.swift:19" },
             {
                 "id": "filter-match-cap",
                 "value": 10000,
-                "evidence": "Plugins/RedisDriverPlugin/RedisPluginDriver.swift:37"
+                "evidence": "Plugins/RedisDriverPlugin/RedisPluginDriver.swift:38"
             },
             {
                 "id": "cluster-db0-only",
@@ -331,7 +326,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "mariadb",
@@ -372,14 +367,14 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "10.x", "enforced": false, "evidence": "docs/databases/mariadb.mdx:6" },
+        "versionFloor": { "text": "10.x", "enforced": false, "evidence": "TableProApp/docs:databases/mariadb.mdx:6" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-cloud-sql-proxy", "value": null, "evidence": "docs/databases/mariadb.mdx:36" },
-            { "id": "roles-listed-as-users", "value": null, "evidence": "docs/databases/mariadb.mdx:37" }
+            { "id": "no-cloud-sql-proxy", "value": null, "evidence": "TableProApp/docs:databases/mariadb.mdx:37" },
+            { "id": "roles-listed-as-users", "value": null, "evidence": "TableProApp/docs:databases/mariadb.mdx:38" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "tidb",
@@ -420,15 +415,15 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/tidb.mdx:6" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/tidb.mdx:6" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-triggers-or-routines", "value": null, "evidence": "docs/databases/tidb.mdx:41" },
-            { "id": "no-dashboard-or-dump", "value": null, "evidence": "docs/databases/tidb.mdx:42" },
-            { "id": "structure-sync-same-engine", "value": null, "evidence": "docs/databases/tidb.mdx:44 @v0.77.0" }
+            { "id": "no-triggers-or-routines", "value": null, "evidence": "TableProApp/docs:databases/tidb.mdx:41" },
+            { "id": "no-dashboard-or-dump", "value": null, "evidence": "TableProApp/docs:databases/tidb.mdx:42" },
+            { "id": "structure-sync-same-engine", "value": null, "evidence": "TableProApp/docs:databases/tidb.mdx:44" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "oceanbase",
@@ -469,15 +464,15 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/oceanbase.mdx:6" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/oceanbase.mdx:6" },
         "bundledVersion": null,
         "limits": [
-            { "id": "mysql-mode-only", "value": null, "evidence": "docs/databases/oceanbase.mdx:6,47" },
-            { "id": "no-dashboard-or-dump", "value": null, "evidence": "docs/databases/oceanbase.mdx:48" },
-            { "id": "structure-sync-same-engine", "value": null, "evidence": "docs/databases/oceanbase.mdx:49 @v0.77.0" }
+            { "id": "mysql-mode-only", "value": null, "evidence": "TableProApp/docs:databases/oceanbase.mdx:6,47" },
+            { "id": "no-dashboard-or-dump", "value": null, "evidence": "TableProApp/docs:databases/oceanbase.mdx:48" },
+            { "id": "structure-sync-same-engine", "value": null, "evidence": "TableProApp/docs:databases/oceanbase.mdx:49" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "databend",
@@ -518,16 +513,16 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/databend.mdx:26" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/databend.mdx:26" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-keys-or-indexes", "value": null, "evidence": "docs/databases/databend.mdx:44-51" },
-            { "id": "no-compare-sync", "value": null, "evidence": "docs/databases/databend.mdx:44-51" },
-            { "id": "no-url-scheme", "value": null, "evidence": "docs/databases/databend.mdx:30" },
-            { "id": "not-on-ios", "value": null, "evidence": "docs/databases/databend.mdx:51" }
+            { "id": "no-keys-or-indexes", "value": null, "evidence": "TableProApp/docs:databases/databend.mdx:38,45" },
+            { "id": "no-compare-sync", "value": null, "evidence": "TableProApp/docs:databases/databend.mdx:49" },
+            { "id": "no-url-scheme", "value": null, "evidence": "TableProApp/docs:databases/databend.mdx:30" },
+            { "id": "not-on-ios", "value": null, "evidence": "TableProApp/docs:databases/databend.mdx:51" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "redshift",
@@ -568,15 +563,15 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/redshift.mdx:16" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/redshift.mdx:16" },
         "bundledVersion": null,
         "limits": [
             {
                 "id": "no-aws-iam",
                 "value": null,
-                "evidence": "TablePro/Core/Plugins/PluginMetadataRegistry+CuratedDefaults.swift:498 @v0.76.1"
+                "evidence": "TablePro/Core/Plugins/PluginMetadataRegistry+CuratedDefaults.swift:509"
             },
-            { "id": "structure-read-only", "value": null, "evidence": "docs/databases/redshift.mdx:53" },
+            { "id": "structure-read-only", "value": null, "evidence": "TableProApp/docs:databases/redshift.mdx:53" },
             {
                 "id": "ios-synced-only",
                 "value": null,
@@ -584,7 +579,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "cockroachdb",
@@ -625,18 +620,18 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/cockroachdb.mdx:6" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/cockroachdb.mdx:6" },
         "bundledVersion": null,
         "limits": [
-            { "id": "structure-read-only", "value": null, "evidence": "docs/databases/cockroachdb.mdx:52" },
+            { "id": "structure-read-only", "value": null, "evidence": "TableProApp/docs:databases/cockroachdb.mdx:52" },
             {
                 "id": "no-dump-or-maintenance",
                 "value": null,
-                "evidence": "TablePro/Core/Database/NativeDumpRegistry.swift:36-53"
+                "evidence": "TableProApp/docs:databases/cockroachdb.mdx:53-54"
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "pglite",
@@ -680,12 +675,12 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "needs-socket-server", "value": null, "evidence": "docs/databases/pglite.mdx:6,19" },
-            { "id": "single-client", "value": null, "evidence": "docs/databases/pglite.mdx:50-53" },
-            { "id": "cancel-has-no-effect", "value": null, "evidence": "docs/databases/pglite.mdx:52 @v0.77.0" }
+            { "id": "needs-socket-server", "value": null, "evidence": "TableProApp/docs:databases/pglite.mdx:6,19" },
+            { "id": "single-client", "value": null, "evidence": "TableProApp/docs:databases/pglite.mdx:50" },
+            { "id": "cancel-has-no-effect", "value": null, "evidence": "TableProApp/docs:databases/pglite.mdx:52" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "oracle",
@@ -701,7 +696,7 @@
         "distribution": "registry",
         "driverPlugin": "oracle",
         "sinceAppVersion": "0.15.0",
-        "minAppVersion": "0.76.1",
+        "minAppVersion": "0.79.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 1521,
@@ -733,17 +728,17 @@
         },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-wallet-os-auth-kerberos-ldap", "value": null, "evidence": "docs/databases/oracle.mdx:68,162" },
-            { "id": "no-explain", "value": null, "evidence": "docs/features/explain-visualization.mdx:134-155" },
-            { "id": "no-users-roles", "value": null, "evidence": "docs/databases/oracle.mdx:165" },
+            { "id": "no-wallet-os-auth-kerberos-ldap", "value": null, "evidence": "TableProApp/docs:databases/oracle.mdx:68,164" },
+            { "id": "no-explain", "value": null, "evidence": "TableProApp/docs:features/explain-visualization.mdx:136-155" },
+            { "id": "no-users-roles", "value": null, "evidence": "TableProApp/docs:databases/oracle.mdx:167" },
             {
                 "id": "no-packages",
                 "value": null,
-                "evidence": "Plugins/OracleDriverPlugin/OracleObjectQueries.swift:25-26"
+                "evidence": "Plugins/OracleDriverPlugin/OracleObjectQueries.swift:47-49,64"
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "clickhouse",
@@ -784,24 +779,24 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/clickhouse.mdx:6" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/clickhouse.mdx:6" },
         "bundledVersion": null,
         "limits": [
-            { "id": "http-only", "value": null, "evidence": "docs/databases/clickhouse.mdx:6" },
-            { "id": "tls-off-by-default", "value": null, "evidence": "docs/databases/clickhouse.mdx:73" },
+            { "id": "http-only", "value": null, "evidence": "TableProApp/docs:databases/clickhouse.mdx:6" },
+            { "id": "tls-off-by-default", "value": null, "evidence": "TableProApp/docs:databases/clickhouse.mdx:73" },
             {
                 "id": "no-foreign-keys-or-transactions",
                 "value": null,
-                "evidence": "Plugins/ClickHouseDriverPlugin/ClickHousePlugin.swift:182"
+                "evidence": "Plugins/ClickHouseDriverPlugin/ClickHousePlugin.swift:35,203"
             },
             {
                 "id": "set-does-not-persist",
                 "value": null,
-                "evidence": "Plugins/ClickHouseDriverPlugin/ClickHousePluginDriver+Http.swift:14-71"
+                "evidence": "TableProApp/docs:databases/clickhouse.mdx:88"
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "duckdb",
@@ -817,7 +812,7 @@
         "distribution": "registry",
         "driverPlugin": "duckdb",
         "sinceAppVersion": "0.17.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": null,
@@ -833,7 +828,7 @@
             "schemaEditing": "full",
             "explain": ["Explain"],
             "explainView": "diagram",
-            "dashboard": true,
+            "dashboard": false,
             "usersRoles": false,
             "awsIam": false,
             "awsSignIn": false,
@@ -845,16 +840,16 @@
         "versionFloor": null,
         "bundledVersion": "1.5.2",
         "limits": [
-            { "id": "one-writer-per-file", "value": null, "evidence": "docs/databases/duckdb.mdx:90" },
+            { "id": "one-writer-per-file", "value": null, "evidence": "TableProApp/docs:databases/duckdb.mdx:90" },
             {
                 "id": "extensions-download-on-first-use",
                 "value": null,
-                "evidence": "scripts/duckdb-macos-extensions.cmake @v0.77.0"
+                "evidence": "scripts/duckdb-macos-extensions.cmake:12-23"
             },
-            { "id": "remote-quack-experimental", "value": null, "evidence": "docs/databases/duckdb.mdx:47" }
+            { "id": "remote-quack-experimental", "value": null, "evidence": "TableProApp/docs:databases/duckdb.mdx:47" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "cassandra",
@@ -870,7 +865,7 @@
         "distribution": "registry",
         "driverPlugin": "cassandra",
         "sinceAppVersion": "0.18.0",
-        "minAppVersion": "0.76.1",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "CQL",
         "defaultPort": 9042,
@@ -895,16 +890,16 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "3.0", "enforced": false, "evidence": "docs/databases/cassandra.mdx:8" },
+        "versionFloor": { "text": "3.0", "enforced": false, "evidence": "TableProApp/docs:databases/cassandra.mdx:8" },
         "bundledVersion": null,
         "limits": [
-            { "id": "scalar-edits-only", "value": null, "evidence": "docs/databases/cassandra.mdx:81" },
-            { "id": "no-consistency-level", "value": null, "evidence": "docs/databases/cassandra.mdx:27" },
-            { "id": "no-astra-bundle", "value": null, "evidence": "docs/databases/cassandra.mdx:105" },
-            { "id": "no-views-or-types-in-sidebar", "value": null, "evidence": "docs/databases/cassandra.mdx:103" }
+            { "id": "scalar-edits-only", "value": null, "evidence": "TableProApp/docs:databases/cassandra.mdx:81" },
+            { "id": "no-consistency-level", "value": null, "evidence": "TableProApp/docs:databases/cassandra.mdx:27" },
+            { "id": "no-astra-bundle", "value": null, "evidence": "TableProApp/docs:databases/cassandra.mdx:105" },
+            { "id": "no-views-or-types-in-sidebar", "value": null, "evidence": "TableProApp/docs:databases/cassandra.mdx:103" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "scylladb",
@@ -920,7 +915,7 @@
         "distribution": "registry",
         "driverPlugin": "cassandra",
         "sinceAppVersion": "0.18.0",
-        "minAppVersion": "0.76.1",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "CQL",
         "defaultPort": 9042,
@@ -949,7 +944,7 @@
         "bundledVersion": null,
         "limits": [],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "dynamodb",
@@ -993,11 +988,11 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "one-account-and-region", "value": null, "evidence": "docs/databases/dynamodb.mdx:23" },
-            { "id": "no-dax-or-truncate", "value": null, "evidence": "docs/databases/dynamodb.mdx:185,188" }
+            { "id": "one-account-and-region", "value": null, "evidence": "TableProApp/docs:databases/dynamodb.mdx:23" },
+            { "id": "no-dax-or-truncate", "value": null, "evidence": "TableProApp/docs:databases/dynamodb.mdx:185,188" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "bigquery",
@@ -1041,11 +1036,11 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "structure-read-only", "value": null, "evidence": "docs/databases/bigquery.mdx:77" },
-            { "id": "no-transactions", "value": null, "evidence": "docs/databases/bigquery.mdx:85" }
+            { "id": "structure-read-only", "value": null, "evidence": "TableProApp/docs:databases/bigquery.mdx:77" },
+            { "id": "no-transactions", "value": null, "evidence": "TableProApp/docs:databases/bigquery.mdx:85" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "snowflake",
@@ -1092,11 +1087,11 @@
             {
                 "id": "duo-passcode-only",
                 "value": null,
-                "evidence": "Plugins/SnowflakeDriverPlugin/SnowflakeConnection.swift:204"
+                "evidence": "Plugins/SnowflakeDriverPlugin/SnowflakeConnection.swift:203-205"
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "cloudflare-d1",
@@ -1143,11 +1138,11 @@
             {
                 "id": "no-session-state-or-transactions",
                 "value": null,
-                "evidence": "docs/databases/cloudflare-d1.mdx:70"
+                "evidence": "TableProApp/docs:databases/cloudflare-d1.mdx:70-71"
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "turso",
@@ -1191,11 +1186,11 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "no-database-switching-or-branches", "value": null, "evidence": "docs/databases/libsql.mdx:80" },
-            { "id": "no-embedded-replicas", "value": null, "evidence": "docs/databases/libsql.mdx:75" }
+            { "id": "no-database-switching-or-branches", "value": null, "evidence": "TableProApp/docs:databases/libsql.mdx:80" },
+            { "id": "no-embedded-replicas", "value": null, "evidence": "TableProApp/docs:databases/libsql.mdx:75" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "libsql",
@@ -1242,11 +1237,11 @@
             {
                 "id": "dump-local-file-only",
                 "value": null,
-                "evidence": "TablePro/Core/Database/NativeDumpRegistry.swift:60-67"
+                "evidence": "TablePro/Core/Database/NativeDumpRegistry.swift:60-71"
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "elasticsearch",
@@ -1262,7 +1257,7 @@
         "distribution": "registry",
         "driverPlugin": "elasticsearch",
         "sinceAppVersion": "0.53.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "Query DSL",
         "defaultPort": 9200,
@@ -1271,7 +1266,7 @@
         "monogram": "ES",
         "docsSlug": "elasticsearch",
         "capabilities": {
-            "ssh": false,
+            "ssh": true,
             "ssl": true,
             "import": false,
             "export": true,
@@ -1287,15 +1282,14 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "7.x", "enforced": false, "evidence": "docs/databases/elasticsearch.mdx:8" },
+        "versionFloor": { "text": "7.x", "enforced": false, "evidence": "TableProApp/docs:databases/elasticsearch.mdx:8" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-opensearch", "value": null, "evidence": "docs/databases/elasticsearch.mdx:83" },
-            { "id": "aliases-not-listed", "value": null, "evidence": "docs/databases/elasticsearch.mdx:77" },
-            { "id": "no-ssh", "value": null, "evidence": "docs/databases/elasticsearch.mdx:82" }
+            { "id": "no-opensearch", "value": null, "evidence": "TableProApp/docs:databases/elasticsearch.mdx:95" },
+            { "id": "aliases-not-listed", "value": null, "evidence": "TableProApp/docs:databases/elasticsearch.mdx:89" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "etcd",
@@ -1333,18 +1327,18 @@
             "awsSignIn": false,
             "cloudSqlProxy": false,
             "nativeDump": null,
-            "readOnlyMode": false,
+            "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "3.2", "enforced": false, "evidence": "docs/databases/etcd.mdx:8" },
+        "versionFloor": { "text": "3.2", "enforced": false, "evidence": "TableProApp/docs:databases/etcd.mdx:8" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-txn", "value": null, "evidence": "docs/databases/etcd.mdx:74" },
-            { "id": "json-gateway-only", "value": null, "evidence": "docs/databases/etcd.mdx:8" },
-            { "id": "watch-collects-until-timeout", "value": null, "evidence": "docs/databases/etcd.mdx:81" }
+            { "id": "no-txn", "value": null, "evidence": "TableProApp/docs:databases/etcd.mdx:74" },
+            { "id": "json-gateway-only", "value": null, "evidence": "TableProApp/docs:databases/etcd.mdx:8" },
+            { "id": "watch-collects-until-timeout", "value": null, "evidence": "TableProApp/docs:databases/etcd.mdx:81" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "kafka",
@@ -1385,15 +1379,15 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "0.11", "enforced": false, "evidence": "docs/databases/kafka.mdx:17" },
+        "versionFloor": { "text": "0.11", "enforced": false, "evidence": "TableProApp/docs:databases/kafka.mdx:17" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-schema-registry", "value": null, "evidence": "docs/databases/kafka.mdx:152" },
-            { "id": "no-topic-create-or-offset-reset", "value": null, "evidence": "docs/databases/kafka.mdx:155" },
-            { "id": "approximate-counts", "value": null, "evidence": "docs/databases/kafka.mdx:149" }
+            { "id": "no-schema-registry", "value": null, "evidence": "TableProApp/docs:databases/kafka.mdx:151" },
+            { "id": "no-topic-create-or-offset-reset", "value": null, "evidence": "TableProApp/docs:databases/kafka.mdx:154" },
+            { "id": "approximate-counts", "value": null, "evidence": "TableProApp/docs:databases/kafka.mdx:148" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "surrealdb",
@@ -1434,14 +1428,14 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "2.0", "enforced": true, "evidence": "Plugins/SurrealDBDriverPlugin/SurrealDBError.swift:31 @v0.77.0" },
+        "versionFloor": { "text": "2.0", "enforced": true, "evidence": "Plugins/SurrealDBDriverPlugin/SurrealDBError.swift:31" },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-syntax-highlighting", "value": null, "evidence": "docs/databases/surrealdb.mdx:109" },
-            { "id": "no-live-queries", "value": null, "evidence": "docs/databases/surrealdb.mdx:105" }
+            { "id": "no-syntax-highlighting", "value": null, "evidence": "TableProApp/docs:databases/surrealdb.mdx:109" },
+            { "id": "no-live-queries", "value": null, "evidence": "TableProApp/docs:databases/surrealdb.mdx:105" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "teradata",
@@ -1457,7 +1451,7 @@
         "distribution": "registry",
         "driverPlugin": "teradata",
         "sinceAppVersion": "0.58.0",
-        "minAppVersion": "0.76.1",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 1025,
@@ -1482,14 +1476,14 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/teradata.mdx:17" },
+        "versionFloor": { "text": null, "enforced": false, "evidence": "TableProApp/docs:databases/teradata.mdx:17" },
         "bundledVersion": null,
         "limits": [
-            { "id": "ldap-kerberos-jwt-refused", "value": null, "evidence": "docs/databases/teradata.mdx:67" },
-            { "id": "foreign-keys-not-listed", "value": null, "evidence": "docs/databases/teradata.mdx:65" }
+            { "id": "ldap-kerberos-jwt-refused", "value": null, "evidence": "TableProApp/docs:databases/teradata.mdx:67" },
+            { "id": "foreign-keys-not-listed", "value": null, "evidence": "TableProApp/docs:databases/teradata.mdx:65" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "trino",
@@ -1505,7 +1499,7 @@
         "distribution": "registry",
         "driverPlugin": "trino",
         "sinceAppVersion": "0.59.0",
-        "minAppVersion": "0.76.1",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 8080,
@@ -1533,11 +1527,11 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "no-presto", "value": null, "evidence": "docs/databases/trino.mdx:116" },
-            { "id": "no-kerberos-or-oauth", "value": null, "evidence": "docs/databases/trino.mdx:112" }
+            { "id": "no-presto", "value": null, "evidence": "TableProApp/docs:databases/trino.mdx:116" },
+            { "id": "no-kerberos-or-oauth", "value": null, "evidence": "TableProApp/docs:databases/trino.mdx:112" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "beancount",
@@ -1584,12 +1578,12 @@
             {
                 "id": "projected-tables",
                 "value": 23,
-                "evidence": "Plugins/BeancountDriverPlugin/BeancountPluginDriver+Projection.swift:127-306 @v0.76.1"
+                "evidence": "Plugins/BeancountDriverPlugin/BeancountPluginDriver+Projection.swift:127-306"
             },
-            { "id": "needs-ledger-tool", "value": null, "evidence": "docs/databases/beancount.mdx:8" }
+            { "id": "needs-ledger-tool", "value": null, "evidence": "TableProApp/docs:databases/beancount.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "spanner",
@@ -1605,7 +1599,7 @@
         "distribution": "registry",
         "driverPlugin": "spanner",
         "sinceAppVersion": "0.74.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": null,
@@ -1633,10 +1627,10 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "structure-read-only", "value": null, "evidence": "docs/databases/spanner.mdx:101" }
+            { "id": "structure-read-only", "value": null, "evidence": "TableProApp/docs:databases/spanner.mdx:101" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "typesense",
@@ -1652,7 +1646,7 @@
         "distribution": "registry",
         "driverPlugin": "typesense",
         "sinceAppVersion": "0.73.0",
-        "minAppVersion": "0.75.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "Typesense API",
         "defaultPort": 8108,
@@ -1661,7 +1655,7 @@
         "monogram": "TS",
         "docsSlug": "typesense",
         "capabilities": {
-            "ssh": false,
+            "ssh": true,
             "ssl": true,
             "import": false,
             "export": true,
@@ -1677,13 +1671,13 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": { "text": "26.0", "enforced": false, "evidence": "docs/databases/typesense.mdx:8" },
+        "versionFloor": { "text": "26.0", "enforced": false, "evidence": "TableProApp/docs:databases/typesense.mdx:8" },
         "bundledVersion": null,
         "limits": [
-            { "id": "api-keys-as-users", "value": null, "evidence": "docs/databases/typesense.mdx:33,93" }
+            { "id": "api-keys-as-users", "value": null, "evidence": "TableProApp/docs:databases/typesense.mdx:35,95" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "weaviate",
@@ -1708,7 +1702,7 @@
         "monogram": "WV",
         "docsSlug": "weaviate",
         "capabilities": {
-            "ssh": false,
+            "ssh": true,
             "ssl": true,
             "import": false,
             "export": true,
@@ -1727,10 +1721,10 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "graphql-reads-rest-writes", "value": null, "evidence": "docs/databases/weaviate.mdx:8" }
+            { "id": "graphql-reads-rest-writes", "value": null, "evidence": "TableProApp/docs:databases/weaviate.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "cloudflare-r2-sql",
@@ -1774,12 +1768,12 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "rows-per-query", "value": 10000, "evidence": "docs/databases/cloudflare-r2-sql.mdx:62" },
-            { "id": "no-offset", "value": null, "evidence": "docs/databases/cloudflare-r2-sql.mdx:62" },
-            { "id": "billed-per-scan", "value": null, "evidence": "docs/databases/cloudflare-r2-sql.mdx:62" }
+            { "id": "rows-per-query", "value": 10000, "evidence": "TableProApp/docs:databases/cloudflare-r2-sql.mdx:86" },
+            { "id": "no-offset", "value": null, "evidence": "TableProApp/docs:databases/cloudflare-r2-sql.mdx:87" },
+            { "id": "billed-per-scan", "value": null, "evidence": "TableProApp/docs:databases/cloudflare-r2-sql.mdx:8,81" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "dameng",
@@ -1795,7 +1789,7 @@
         "distribution": "registry",
         "driverPlugin": "dameng",
         "sinceAppVersion": "0.66.0",
-        "minAppVersion": "0.76.0",
+        "minAppVersion": "0.77.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 5236,
@@ -1823,10 +1817,10 @@
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "no-tls", "value": null, "evidence": "docs/databases/dameng.mdx:47" }
+            { "id": "no-tls", "value": null, "evidence": "TableProApp/docs:databases/dameng.mdx:47" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
         "id": "sap-hana",
@@ -1842,7 +1836,7 @@
         "distribution": "registry",
         "driverPlugin": "hana",
         "sinceAppVersion": "0.77.0",
-        "minAppVersion": "0.77.0",
+        "minAppVersion": "0.79.0",
         "state": "published",
         "queryLanguage": "SQL",
         "defaultPort": 443,
@@ -1864,16 +1858,16 @@
             "awsSignIn": false,
             "cloudSqlProxy": false,
             "nativeDump": null,
-            "readOnlyMode": false,
+            "readOnlyMode": true,
             "alwaysReadOnly": false
         },
         "versionFloor": null,
         "bundledVersion": null,
         "limits": [
-            { "id": "no-tunnels", "value": null, "evidence": "docs/databases/sap-hana.mdx:113" },
-            { "id": "unsupported-auth-methods", "value": null, "evidence": "docs/databases/sap-hana.mdx:56" }
+            { "id": "no-tunnels", "value": null, "evidence": "TableProApp/docs:databases/sap-hana.mdx:113" },
+            { "id": "unsupported-auth-methods", "value": null, "evidence": "TableProApp/docs:databases/sap-hana.mdx:56" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
+        "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     }
 ]

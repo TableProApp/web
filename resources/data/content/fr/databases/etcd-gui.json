@@ -37,7 +37,7 @@
                 "Définissez <ui>Racine du préfixe de clé</ui> (Key Prefix Root), par exemple <code>/app</code>, pour limiter une connexion à un sous-arbre. La barre latérale regroupe les clés par leur premier segment de chemin sous cette racine ; chaque clé est une ligne avec valeur, version, révisions de modification et de création, et bail.",
                 "Enregistrer une modification envoie des commandes. Une nouvelle valeur ou un nouveau bail réécrit la clé, un bail NULL retire le bail, et renommer une clé écrit le nouveau nom et supprime l’ancien. Les colonnes de révision appartiennent à etcd ; les modifier bloque donc l’enregistrement et nomme la colonne.",
                 "Utilisez les commandes de type etcdctl pour clés, watches, baux, membres, endpoints, compactage et droits d’accès, avec complétion des options. Les commandes non prises en charge sont rejetées avant envoi.",
-                "Le pilote etcd ne peut pas ouvrir de session en lecture seule ; <safeMode>Safe Mode</safeMode> traite donc chaque commande comme une écriture : aux niveaux Alert et Safe Mode, chacune demande confirmation, tandis que Read-Only les bloque toutes."
+                "<safeMode>Safe Mode</safeMode> exécute comme lectures <code>get</code>, <code>watch</code> et les commandes qui ne font que lister ou rendre compte, et compte toute autre commande comme écriture."
             ]
         },
         {

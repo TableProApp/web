@@ -37,7 +37,7 @@
                 "Tetapkan <ui>Key Prefix Root</ui>, seperti <code>/app</code>, untuk membatasi koneksi pada satu subpohon. Sidebar mengelompokkan kunci berdasarkan segmen jalur pertama di bawahnya, dan setiap kunci berupa baris dengan nilai, versi, revisi perubahan dan pembuatan, serta lease.",
                 "Menyimpan perubahan mengirim perintah. Nilai atau lease baru menulis ulang kunci, lease NULL menghapus lease, dan mengganti nama kunci menulis nama baru serta menghapus nama lama. Kolom revisi dikelola etcd, sehingga mengeditnya menghentikan penyimpanan dan menyebutkan kolom tersebut.",
                 "Jalankan perintah bergaya etcdctl untuk kunci, watch, lease, member, endpoint, pemadatan, dan kontrol akses, dengan pelengkapan perintah dan flag. Perintah yang tidak didukung ditolak sebelum mencapai server.",
-                "Driver etcd tidak dapat membuka sesi hanya baca, sehingga <safeMode>Safe Mode</safeMode> menganggap setiap perintah sebagai penulisan: pada level Alert dan Safe Mode, setiap perintah meminta konfirmasi terlebih dahulu, dan Read-Only memblokir semuanya."
+                "<safeMode>Safe Mode</safeMode> menjalankan <code>get</code>, <code>watch</code>, dan perintah yang hanya menampilkan daftar atau laporan sebagai pembacaan, serta menganggap perintah lain sebagai penulisan."
             ]
         },
         {

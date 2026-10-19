@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "TablePro có kết nối được qua socket MySQL cục bộ không?",
-            "answer": "Không. Connection dùng TCP, nên server cần bật networking. Để truy cập một socket trên server từ xa, hãy chuyển tiếp nó qua SSH tunnel."
+            "answer": "Có, với server trên chính máy Mac này. Đặt <ui>Connect Using</ui> thành <ui>Socket</ui> rồi nhập đường dẫn tới file socket. Host và port không còn trong form, và SSH tunnel không đi tới được file socket."
         },
         {
             "id": "mysqldump",

@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "Diagramas EXPLAIN, usuários e sessões; backups do mysqldump.",
         "limits": {
-            "tcp-only": "As conexões usam host e porta por TCP. Sockets Unix locais não são compatíveis.",
             "load-data-local-refused": "O driver recusa LOAD DATA LOCAL INFILE. Carregue um arquivo pela Importação."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Console Query DSL; edição de documentos por _id.",
         "limits": {
             "no-opensearch": "OpenSearch não é compatível.",
-            "aliases-not-listed": "Aliases e data streams não aparecem na barra lateral. Use seus nomes no console.",
-            "no-ssh": "Túneis SSH não são compatíveis."
+            "aliases-not-listed": "Aliases e data streams não aparecem na barra lateral. Use seus nomes no console."
         }
     },
     "etcd": {

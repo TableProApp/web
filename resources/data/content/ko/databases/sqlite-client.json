@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "유지 관리 및 백업",
             "paragraphs": [
-                "테이블 유지 관리는 VACUUM, ANALYZE, REINDEX와 무결성 검사를 실행하며 각각 먼저 SQL을 보여 줍니다. Server Dashboard는 파일 크기, 페이지 수·크기, 저널 모드와 캐시 크기를 표시합니다.",
+                "테이블 유지 관리는 VACUUM, ANALYZE, REINDEX와 무결성 검사를 실행하며 각각 먼저 SQL을 보여 줍니다.",
                 "<backup>Backup Dump</backup>는 {dumpTool}로 데이터베이스를 .sql 파일에 기록하고 Restore Dump는 해당 파일을 데이터베이스에서 실행합니다."
             ]
         },

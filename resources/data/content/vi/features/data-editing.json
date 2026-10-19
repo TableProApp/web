@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind không phải là bản sao lưu. Tính năng này không hoàn tác trigger, cascade hay thay đổi từ bên ngoài TablePro, và không khôi phục được dòng không có khóa chính, giá trị lớn hơn {rewindMaxValue} MB hay giá trị do server tính ra.",
         "UPDATE không có WHERE là một câu lệnh ghi bình thường: chỉ được hỏi lại từ mức Alert trở lên.",
-        "Trên {everyStatementWrites}, Safe Mode coi mọi câu lệnh là câu lệnh ghi, nên Alert hỏi cả trước khi đọc và Read-Only chặn luôn việc đọc.",
         "Kết quả của query có JOIN, CTE hay UNION chỉ đọc trong data grid; hãy mở chính table đó để sửa."
     ],
     "docs": [

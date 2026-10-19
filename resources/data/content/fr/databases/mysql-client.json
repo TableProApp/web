@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "TablePro peut-il se connecter par socket MySQL local ?",
-            "answer": "Non. Les connexions utilisent TCP ; le réseau doit donc être activé sur le serveur. Pour atteindre un socket sur un serveur distant, redirigez-le via un tunnel SSH."
+            "answer": "Oui, pour un serveur sur ce Mac. Réglez <ui>Connect Using</ui> sur <ui>Socket</ui> et indiquez le chemin de son fichier socket. L’hôte et le port quittent le formulaire, et un tunnel SSH ne peut pas atteindre un fichier socket."
         },
         {
             "id": "mysqldump",

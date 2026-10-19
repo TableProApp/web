@@ -44,7 +44,7 @@
                 "Consulta campos de primer nivel como columnas y objetos anidados como Extended JSON. Las ediciones conservan tipos como fechas y ObjectIds. Los cambios anidados solo actualizan la ruta modificada, como <code>address.city</code>.",
                 "<editing>Insert Document y Edit Document</editing> usan Extended JSON. Edit Document vuelve a leer el documento del servidor y rechaza guardar si cambió o desapareció mientras estaba abierto. <ui>Remove Field</ui> envía <code>$unset</code>.",
                 "La <filters>barra de filtros</filters> llega a objetos anidados y a arrays de objetos, así que <code>customer.country</code> e <code>items.sku</code> filtran directamente. Un campo con GeoJSON se abre en la <map>vista de mapa</map>.",
-                "<safeMode>Safe Mode</safeMode> trata todas las sentencias de una conexión MongoDB como escrituras porque el controlador no puede abrir una sesión de solo lectura. Los niveles Alert y Safe Mode confirman cada una; Read-Only las bloquea todas."
+                "<safeMode>Safe Mode</safeMode> ejecuta una sentencia como lectura cuando es una sola llamada que solo lee, como <code>find</code>, <code>countDocuments</code> o un <code>aggregate</code> sin <code>$out</code> ni <code>$merge</code>. Cualquier otro JavaScript cuenta como escritura."
             ]
         },
         {

@@ -126,7 +126,7 @@ it('never dates an engine after the current Mac release', function (): void {
     }
 
     expect(enginesById()['sap-hana']['sinceAppVersion'])->toBe('0.77.0');
-    expect(enginesById()['sap-hana']['minAppVersion'])->toBe('0.77.0');
+    expect(enginesById()['sap-hana']['minAppVersion'])->toBe('0.79.0');
 });
 
 it('places every engine on its own page, a family section or the hub', function (): void {
@@ -228,7 +228,7 @@ it('names the engines iOS opens, in the order platforms.json gives', function ()
 
 it('pins the capability lists the feature pages derive', function (): void {
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['dashboard']))->toEqualCanonicalizing([
-        'postgresql', 'redshift', 'cockroachdb', 'mysql', 'mariadb', 'sqlserver', 'clickhouse', 'duckdb', 'sqlite', 'typesense',
+        'postgresql', 'redshift', 'cockroachdb', 'mysql', 'mariadb', 'sqlserver', 'clickhouse', 'typesense',
     ]);
     // TiDB: MySQLPluginDriver.swift:116-129 gives every flavor but Databend `.userManagement`, and docs/databases/tidb.mdx:34 says it works (v0.78.0).
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['usersRoles']))->toEqualCanonicalizing([
@@ -250,9 +250,7 @@ it('pins the capability lists the feature pages derive', function (): void {
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['cloudSqlProxy']))->toEqualCanonicalizing([
         'mysql', 'postgresql', 'sqlserver',
     ]);
-    expect(enginesWhere(fn(array $engine): bool => ! $engine['capabilities']['readOnlyMode']))->toEqualCanonicalizing([
-        'redis', 'mongodb', 'etcd', 'sap-hana',
-    ]);
+    expect(enginesWhere(fn(array $engine): bool => ! $engine['capabilities']['readOnlyMode']))->toBe([]);
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['alwaysReadOnly']))->toEqualCanonicalizing([
         'beancount', 'cloudflare-r2-sql',
     ]);
@@ -373,7 +371,7 @@ it('records version floors, embedded versions and limits with evidence', functio
     expect(array_column($engines['mongodb']['limits'], 'id'))->toContain('no-pipeline-builder');
 });
 
-// A null text is the docs saying there is no minimum (docs/databases/*.mdx at v0.78.0); Trino's docs say nothing.
+// A null text is the docs saying there is no minimum (databases/*.mdx in TableProApp/docs); Trino's docs say nothing.
 it('says there is no minimum version only where the docs say so', function (): void {
     expect(enginesWhere(fn(array $engine): bool => $engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null))->toEqualCanonicalizing([
         'redis', 'clickhouse', 'redshift', 'teradata', 'cockroachdb', 'databend', 'tidb', 'oceanbase',
@@ -381,11 +379,30 @@ it('says there is no minimum version only where the docs say so', function (): v
 
     foreach (enginesJson() as $engine) {
         if ($engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null) {
-            expect($engine['versionFloor']['evidence'])->toMatch('#^docs/databases/[a-z0-9-]+\.mdx:\d+$#', "{$engine['id']}: no minimum needs the docs line that says so");
+            expect($engine['versionFloor']['evidence'])->toMatch('#^TableProApp/docs:databases/[a-z0-9-]+\.mdx:\d+$#', "{$engine['id']}: no minimum needs the docs line that says so");
         }
     }
 
     expect(enginesById()['trino']['versionFloor'])->toBeNull();
+});
+
+// The docs left the app repository before v0.81.0, so a docs page is cited in TableProApp/docs at verified.docsCommit.
+it('cites every piece of evidence as an app path or a TableProApp/docs page, with its lines', function (): void {
+    foreach (enginesJson() as $engine) {
+        expect(array_keys($engine['verified']))->toBe(['macTag', 'iosCommit', 'docsCommit', 'date']);
+        expect($engine['verified']['docsCommit'])->toMatch('/^[0-9a-f]{7,40}$/');
+
+        $references = array_column($engine['limits'], 'evidence');
+
+        if ($engine['versionFloor'] !== null) {
+            $references[] = $engine['versionFloor']['evidence'];
+        }
+
+        foreach ($references as $reference) {
+            expect($reference)->toMatch('#^(TableProApp/docs:)?[\w./+-]+:\d+(-\d+)?(,\d+(-\d+)?)*( @[0-9a-f]{7,40})?$#', "{$engine['id']}: {$reference}");
+            expect($reference)->not->toStartWith('docs/', "{$engine['id']}: {$reference} is an app path that no longer exists");
+        }
+    }
 });
 
 it('gives every engine with its own page a mark for the page header', function (): void {

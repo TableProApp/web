@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind はバックアップではありません。トリガー、カスケードや TablePro 外の変更は戻せず、主キーのない行、{rewindMaxValue} MB を超える値やサーバーが計算した値は復元できません。",
         "WHERE のない UPDATE は通常の書き込みです。Alert 以上のレベルの場合にだけ事前確認します。",
-        "{everyStatementWrites} では Safe Mode がすべての文を書き込みとみなすため、Alert は読み取り前も確認し、Read-Only は読み取りも拒否します。",
         "JOIN、CTE、UNION の結果はグリッドで読み取り専用です。編集するにはテーブルを開いてください。"
     ],
     "docs": [

@@ -44,7 +44,7 @@
                 "Sieh Felder der obersten Ebene als Spalten und verschachtelte Objekte als Extended JSON. Zellenänderungen erhalten Typen wie Datumswerte und ObjectIds. Verschachtelte Änderungen aktualisieren nur den geänderten Pfad, etwa <code>address.city</code>.",
                 "<editing>Insert Document und Edit Document</editing> nutzen Extended JSON. Edit Document liest das Serverdokument erneut und verhindert das Speichern, wenn es inzwischen geändert wurde oder verschwunden ist. <ui>Remove Field</ui> sendet <code>$unset</code>.",
                 "Die <filters>Filterleiste</filters> reicht bis in verschachtelte Objekte und Arrays von Objekten, sodass du direkt nach <code>customer.country</code> und <code>items.sku</code> filtern kannst. Ein Feld mit GeoJSON öffnet sich in der <map>Kartenansicht</map>.",
-                "<safeMode>Safe Mode</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Die Stufen Alert und Safe Mode fragen bei jeder Anweisung nach; Read-Only blockiert alle."
+                "<safeMode>Safe Mode</safeMode> führt eine Anweisung als Lesezugriff aus, wenn sie ein einzelner lesender Aufruf ist, etwa <code>find</code>, <code>countDocuments</code> oder ein <code>aggregate</code> ohne <code>$out</code> oder <code>$merge</code>. Jedes andere JavaScript zählt als Schreibzugriff."
             ]
         },
         {

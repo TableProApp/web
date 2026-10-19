@@ -37,7 +37,7 @@
                 "Configura <ui>Key Prefix Root</ui>, como <code>/app</code>, para limitar una conexión a un subárbol. La barra lateral agrupa las claves por el primer segmento de ruta bajo esa raíz, y cada clave es una fila con valor, versión, revisiones de modificación y creación, y arrendamiento.",
                 "Guardar una edición envía comandos. Un valor o arrendamiento nuevo vuelve a escribir la clave; un arrendamiento NULL lo elimina; renombrar una clave escribe el nombre nuevo y borra el antiguo. Las columnas de revisión pertenecen a etcd, así que editarlas detiene el guardado e indica la columna.",
                 "Usa comandos al estilo etcdctl para claves, watches, leases, miembros, endpoints, compactación y permisos, con autocompletado de opciones. Los comandos no admitidos se rechazan antes de enviarlos.",
-                "El controlador etcd no puede abrir una sesión de solo lectura, así que <safeMode>Safe Mode</safeMode> considera todo comando una escritura: en los niveles Alert y Safe Mode pide permiso cada vez, y Read-Only los bloquea todos."
+                "<safeMode>Safe Mode</safeMode> ejecuta como lecturas <code>get</code>, <code>watch</code> y los comandos que solo listan o informan, y considera escritura cualquier otro comando."
             ]
         },
         {

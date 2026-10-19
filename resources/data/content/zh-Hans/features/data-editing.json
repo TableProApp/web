@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind 不是备份。它不能撤销触发器、级联操作或 TablePro 外部的修改，也无法还原无主键的行、超过 {rewindMaxValue} MB 的值或服务器计算的值。",
         "无 WHERE 的 UPDATE 属于普通写入，仅在 Alert 或更严格级别下先询问。",
-        "在 {everyStatementWrites} 上，Safe Mode 将每条语句视为写入，因此 Alert 在读取前也询问，Read-Only 则阻止读取。",
         "JOIN、CTE 或 UNION 的结果在网格中只读；请打开表进行编辑。"
     ],
     "docs": [

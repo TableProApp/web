@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Warten und sichern",
             "paragraphs": [
-                "Die Tabellenwartung führt VACUUM, ANALYZE, REINDEX und eine Integritätsprüfung aus und zeigt jede davon vorher als SQL. Das Server-Dashboard zeigt Dateigröße, Seitenzahl, Seitengröße, Journal-Modus und Cachegröße.",
+                "Die Tabellenwartung führt VACUUM, ANALYZE, REINDEX und eine Integritätsprüfung aus und zeigt jede davon vorher als SQL.",
                 "<backup>Backup Dump</backup> schreibt die Datenbank mit {dumpTool} in eine .sql-Datei; Restore Dump führt eine solche Datei auf einer Datenbank aus."
             ]
         },

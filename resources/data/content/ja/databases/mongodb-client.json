@@ -44,7 +44,7 @@
                 "最上位フィールドは列、ネストしたオブジェクトは Extended JSON で表示します。セル編集は日付や ObjectId などの型を保持します。ネストした編集は <code>address.city</code> のように変更したパスだけを更新します。",
                 "<editing>Insert Document と Edit Document</editing> は Extended JSON を使います。Edit Document はサーバーのドキュメントを再読込し、編集中に変更や削除があれば保存を拒否します。<ui>Remove Field</ui> は <code>$unset</code> を送ります。",
                 "<filters>フィルターバー</filters> は入れ子オブジェクトやオブジェクトの配列に対応し、<code>customer.country</code> と <code>items.sku</code> を直接絞り込めます。GeoJSON のフィールドは <map>マップビュー</map> で開きます。",
-                "ドライバーが読み取り専用セッションを開けないため、<safeMode>Safe Mode</safeMode> は MongoDB のすべての文を書き込みとして扱います。Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。"
+                "<safeMode>Safe Mode</safeMode> は、<code>find</code>、<code>countDocuments</code>、<code>$out</code> も <code>$merge</code> も含まない <code>aggregate</code> のように、読み取るだけの 1 回の呼び出しを読み取りとして実行します。それ以外の JavaScript は書き込みとみなします。"
             ]
         },
         {

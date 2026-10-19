@@ -113,7 +113,6 @@
     "limits": [
         "Data Rewind is not a backup. It does not undo triggers, cascades or changes made outside TablePro, and it cannot restore rows without a primary key, values over {rewindMaxValue} MB or values the server computed.",
         "An UPDATE without WHERE is an ordinary write: it asks first only at Alert or a stricter level.",
-        "On {everyStatementWrites}, Safe Mode counts every statement as a write, so Alert asks before reads too and Read-Only blocks them.",
         "The result of a join, a CTE or a UNION is read-only in the grid; open the table to edit it."
     ],
     "docs": [

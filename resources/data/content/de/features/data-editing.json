@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind ist kein Backup. Es macht weder Trigger noch Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
         "Ein UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Nachgefragt wird nur auf Alert oder einer strengeren Stufe.",
-        "Auf {everyStatementWrites} zählt der Safe Mode jede Anweisung als Schreibvorgang; Alert fragt daher auch vor Lesevorgängen und Read-Only blockiert sie.",
         "Das Ergebnis eines Joins, einer CTE oder UNION ist in der Datentabelle schreibgeschützt; öffne zum Bearbeiten die Tabelle."
     ],
     "docs": [

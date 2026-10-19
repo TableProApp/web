@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Faça manutenção e backups",
             "paragraphs": [
-                "A manutenção de tabelas executa VACUUM, ANALYZE, REINDEX e uma verificação de integridade, cada um mostrado como SQL antes da execução. O Server Dashboard mostra o tamanho do arquivo, a quantidade e o tamanho das páginas, o modo de journal e o tamanho do cache.",
+                "A manutenção de tabelas executa VACUUM, ANALYZE, REINDEX e uma verificação de integridade, cada um mostrado como SQL antes da execução.",
                 "<backup>Backup Dump</backup> grava o banco em um arquivo .sql com {dumpTool}, e Restore Dump executa um arquivo desse tipo em um banco de dados."
             ]
         },

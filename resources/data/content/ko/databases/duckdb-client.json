@@ -22,8 +22,7 @@
         "backup": "/features/import-export#backup",
         "explain": "/features/querying#performance",
         "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard"
+        "structure": "/features/schema#structure"
     },
     "sections": [
         {
@@ -56,7 +55,6 @@
             "title": "파일 공유 및 백업",
             "paragraphs": [
                 "TablePro가 파일을 잡고 있으면 <code>duckdb</code> CLI, 노트북이나 dbt 실행이 열 수 없습니다. <ui>Release the File Lock After</ui>로 몇 분간 유휴 상태 후 파일을 반환하고 다음 쿼리에서 다시 잡거나 <ui>Open the File Read-Only</ui>로 여러 읽기 프로세스가 공유하게 합니다. <ui>데이터베이스 > Release File Lock</ui>(Database > Release File Lock)은 탭을 유지하며 즉시 반환합니다. 열린 트랜잭션, 임시 테이블, 연결된 데이터베이스 또는 변경 설정을 세션이 보유하면 이유를 표시하며 해제를 거부합니다.",
-                "<dashboard>Server Dashboard</dashboard>는 데이터베이스 크기, 블록 크기, 총 블록 수, 메모리 제한과 스레드를 보여 줍니다.",
                 "<backup>Backup Dump</backup>는 {dumpTool}이 열린 연결로 기록하므로 설치가 필요 없습니다. 나중에 TablePro에서 복원할 <code>.duckdb</code> 파일이나 <code>schema.sql</code>, <code>load.sql</code>과 테이블별 Parquet 파일 폴더를 선택하며 pandas, Spark와 BigQuery가 직접 읽습니다. Restore Dump는 이름이 이미 사용 중인 첫 객체에서 중단합니다."
             ]
         },

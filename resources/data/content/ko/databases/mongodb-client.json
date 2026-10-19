@@ -44,7 +44,7 @@
                 "최상위 필드는 열로, 중첩 객체는 Extended JSON으로 표시합니다. 셀 편집은 날짜, ObjectId 등 타입을 유지합니다. 중첩 편집은 <code>address.city</code>처럼 변경된 경로만 업데이트합니다.",
                 "<editing>Insert Document와 Edit Document</editing>는 Extended JSON을 사용합니다. Edit Document는 서버 문서를 다시 읽고 편집 중 변경되거나 삭제되었으면 저장을 거부합니다. <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
                 "<filters>필터 바</filters>는 중첩 객체·객체 배열 안에 접근해 <code>customer.country</code>·<code>items.sku</code>를 바로 필터링합니다. GeoJSON 필드는 <map>지도 보기</map>로 열립니다.",
-                "드라이버가 읽기 전용 세션을 열 수 없어 <safeMode>Safe Mode</safeMode>는 MongoDB 연결의 모든 명령문을 쓰기로 취급합니다. Alert와 Safe Mode 수준은 명령문마다 확인하고 Read-Only는 모두 차단합니다."
+                "<safeMode>Safe Mode</safeMode>는 <code>find</code>, <code>countDocuments</code>, <code>$out</code>이나 <code>$merge</code>가 없는 <code>aggregate</code>처럼 읽기만 하는 호출 하나를 읽기로 실행합니다. 그 밖의 JavaScript는 쓰기로 취급합니다."
             ]
         },
         {

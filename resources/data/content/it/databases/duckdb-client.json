@@ -22,8 +22,7 @@
         "backup": "/features/import-export#backup",
         "explain": "/features/querying#performance",
         "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard"
+        "structure": "/features/schema#structure"
     },
     "sections": [
         {
@@ -56,7 +55,6 @@
             "title": "Condividi il file e crea un backup",
             "paragraphs": [
                 "Mentre TablePro mantiene aperto un file, la CLI <code>duckdb</code>, un notebook o un’esecuzione di dbt non possono aprirlo. Imposta <ui>Release the File Lock After</ui> per liberare il file dopo qualche minuto di inattività e riprenderlo alla query successiva, oppure <ui>Open the File Read-Only</ui> per consentire più lettori. <ui>Database > Release File Lock</ui> lo libera subito e mantiene le schede. Il rilascio viene rifiutato, con il motivo, se la sessione mantiene una transazione aperta, una tabella temporanea, un database collegato o un’imposto modificata.",
-                "Il <dashboard>Server Dashboard</dashboard> mostra dimensione del database, dimensione dei blocchi, numero totale di blocchi, limite di memoria e thread.",
                 "<backup>Backup Dump</backup> non richiede installazioni, perché {dumpTool} scrive tramite la connessione aperta. Scegli un file <code>.duckdb</code> da ripristinare successivamente in TablePro oppure una cartella con <code>schema.sql</code>, <code>load.sql</code> e un file Parquet per tabella, leggibili direttamente da pandas, Spark e BigQuery. Restore Dump si ferma al primo oggetto il cui nome è già usato."
             ]
         },

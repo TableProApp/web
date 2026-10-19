@@ -44,7 +44,7 @@
                 "Procure campos de nível superior como colunas e objetos aninhados como JSON estendido. As edições de células preservam tipos como datas e ObjectIds. As edições aninhadas atualizam apenas o caminho alterado, como <code>address.city</code>.",
                 "<editing>Insert Document e Edit Document</editing> usam Extended JSON. Edit Document relê o documento no servidor e recusa o salvamento se ele mudou ou foi removido enquanto estava aberto. <ui>Remove Field</ui> envia <code>$unset</code>.",
                 "A <filters>barra de filtros</filters> acessa objetos aninhados e arrays de objetos, portanto <code>customer.country</code> e <code>items.sku</code> filtram diretamente. Um campo com GeoJSON abre na <map>visualização Mapa</map>.",
-                "<safeMode>Safe Mode</safeMode> trata todas as instruções de uma conexão MongoDB como gravação, pois o driver não pode abrir uma sessão somente leitura. Os níveis Alert e Safe Mode confirmam cada uma, e Read-Only bloqueia todas."
+                "<safeMode>Safe Mode</safeMode> executa uma instrução como leitura quando ela é uma única chamada que só lê, como <code>find</code>, <code>countDocuments</code> ou um <code>aggregate</code> sem <code>$out</code> nem <code>$merge</code>. Qualquer outro JavaScript conta como gravação."
             ]
         },
         {

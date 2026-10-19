@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN-Diagramme, Benutzer und Sitzungen; Backups mit mysqldump.",
         "limits": {
-            "tcp-only": "Verbindungen verwenden Host und Port über TCP. Lokale Unix-Sockets werden nicht unterstützt.",
             "load-data-local-refused": "Der Treiber verweigert LOAD DATA LOCAL INFILE. Lade Dateien stattdessen über „Importieren“."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Query-DSL-Konsole; Dokumentbearbeitung anhand von _id.",
         "limits": {
             "no-opensearch": "OpenSearch wird nicht unterstützt.",
-            "aliases-not-listed": "Aliasse und Datenstreams werden nicht in der Seitenleiste angezeigt. Sprich sie in der Konsole mit ihrem Namen an.",
-            "no-ssh": "SSH-Tunnel werden nicht unterstützt."
+            "aliases-not-listed": "Aliasse und Datenstreams werden nicht in der Seitenleiste angezeigt. Sprich sie in der Konsole mit ihrem Namen an."
         }
     },
     "etcd": {

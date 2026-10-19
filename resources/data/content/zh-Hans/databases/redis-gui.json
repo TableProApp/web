@@ -38,7 +38,7 @@
                 "按冒号分隔的文件夹浏览键，也可选择其他分隔符。每行显示键类型、TTL、长度和值。集合显示前几个条目；非 UTF-8 值在十六进制编辑器中打开。",
                 "在表格中<editing>编辑键名、TTL 和字符串值</editing>。Add Row 可创建哈希、列表、集合、有序集合或字符串。通过服务器端 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 筛选键名和类型。",
                 "使用 redis-cli 风格引号规则运行命令。未知命令按原样发送。<code>DB 3 GET key</code> 可访问另一个数据库而不改变会话。<code>MULTI</code> 中的响应会排队，直到 <code>EXEC</code>。",
-                "<safeMode>Safe Mode</safeMode> 将包括 <code>GET</code> 的所有 Redis 命令视为写入，Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
+                "<safeMode>Safe Mode</safeMode> 将读取命令列表中的命令（如 <code>GET</code>）作为读取运行，其他命令均视为写入。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
             ]
         },
         {

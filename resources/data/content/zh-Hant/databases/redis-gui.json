@@ -38,7 +38,7 @@
                 "依冒號分隔的資料夾瀏覽鍵，也可選擇其他分隔符。每列顯示鍵型別、TTL、長度和值。集合顯示前幾個項目；非 UTF-8 值在十六進位編輯器中開啟。",
                 "在表格中<editing>編輯鍵名、TTL 和字串值</editing>。Add Row 可建立雜湊、清單、集合、有序集合或字串。透過伺服器端 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 篩選鍵名和型別。",
                 "使用 redis-cli 風格引號規則執行命令。未知命令依原樣傳送。<code>DB 3 GET key</code> 可存取另一個資料庫而不改變工作階段。<code>MULTI</code> 中的回應會排隊，直到 <code>EXEC</code>。",
-                "<safeMode>Safe Mode</safeMode> 將包括 <code>GET</code> 的所有 Redis 指令視為寫入，Alert、Safe Mode 等級逐一確認，Read-Only 全部阻擋。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
+                "<safeMode>Safe Mode</safeMode> 將讀取指令清單中的指令（如 <code>GET</code>）作為讀取執行，其他指令均視為寫入。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
             ]
         },
         {

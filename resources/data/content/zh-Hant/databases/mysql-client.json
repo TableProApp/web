@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "能透過本機 MySQL socket 連線嗎？",
-            "answer": "不能。連線使用 TCP，伺服器需開啟網路功能。要存取遠端伺服器上的 socket，請透過 SSH 通道轉送。"
+            "answer": "可以，限本機上的伺服器。將 <ui>Connect Using</ui> 設為 <ui>Socket</ui>，然後輸入其 socket 檔案路徑。主機和連接埠會從表單中消失，SSH 通道也無法到達 socket 檔案。"
         },
         {
             "id": "mysqldump",

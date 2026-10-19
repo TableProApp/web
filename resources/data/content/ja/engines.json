@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN 図、ユーザーとセッション。mysqldump バックアップ。",
         "limits": {
-            "tcp-only": "ホストとポートを指定して TCP で接続します。ローカル Unix ソケットは非対応です。",
             "load-data-local-refused": "ドライバーは LOAD DATA LOCAL INFILE を拒否します。代わりに Import でファイルを取り込んでください。"
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Query DSL コンソール。_id でドキュメント編集。",
         "limits": {
             "no-opensearch": "OpenSearch は非対応です。",
-            "aliases-not-listed": "エイリアスとデータストリームはサイドバーに表示しません。コンソールで名前を指定してください。",
-            "no-ssh": "SSH トンネルは非対応です。"
+            "aliases-not-listed": "エイリアスとデータストリームはサイドバーに表示しません。コンソールで名前を指定してください。"
         }
     },
     "etcd": {

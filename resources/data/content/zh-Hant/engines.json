@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN 圖、使用者和工作階段；mysqldump 備份。",
         "limits": {
-            "tcp-only": "連線使用主機和連接埠，透過 TCP 建立。不支援本機 Unix Socket。",
             "load-data-local-refused": "驅動程式拒絕 LOAD DATA LOCAL INFILE。請改用 Import 載入檔案。"
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Query DSL 主控台；依 _id 編輯文件。",
         "limits": {
             "no-opensearch": "不支援 OpenSearch。",
-            "aliases-not-listed": "側邊欄不列出別名和資料串流。請在主控台透過名稱存取。",
-            "no-ssh": "不支援 SSH 通道。"
+            "aliases-not-listed": "側邊欄不列出別名和資料串流。請在主控台透過名稱存取。"
         }
     },
     "etcd": {
