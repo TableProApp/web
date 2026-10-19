@@ -38,7 +38,7 @@
                 "Browse keys by colon-separated folders, or choose another separator. Each row shows the key’s type, TTL, length and value. Collections show their first entries; non-UTF-8 values open in the hex editor.",
                 "<editing>Edit key names, TTLs and string values</editing> in the grid. Add Row creates hashes, lists, sets, sorted sets or strings. Filter key names and types using server-side <code>SCAN MATCH</code> and <code>SCAN TYPE</code>.",
                 "Run commands with redis-cli-style quoting. Unknown commands are sent as written. <code>DB 3 GET key</code> targets another database without changing the session. In <code>MULTI</code>, replies stay queued until <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> counts every Redis command as a write, <code>GET</code> included, so the Alert and Safe Mode levels confirm each one and Read-Only blocks them all. <code>FLUSHDB</code> and <code>FLUSHALL</code> ask before they run, even at Silent."
+                "<safeMode>Safe Mode</safeMode> runs a command on its list of read commands, such as <code>GET</code>, as a read, and counts any other command as a write. <code>FLUSHDB</code> and <code>FLUSHALL</code> ask before they run, even at Silent."
             ]
         },
         {

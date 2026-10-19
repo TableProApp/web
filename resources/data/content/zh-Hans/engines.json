@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN 图、用户和会话；mysqldump 备份。",
         "limits": {
-            "tcp-only": "连接使用主机和端口，通过 TCP 建立。不支持本地 Unix 套接字。",
             "load-data-local-refused": "驱动拒绝 LOAD DATA LOCAL INFILE。请改用 Import 加载文件。"
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Query DSL 控制台；按 _id 编辑文档。",
         "limits": {
             "no-opensearch": "不支持 OpenSearch。",
-            "aliases-not-listed": "侧边栏不列出别名和数据流。请在控制台通过名称访问。",
-            "no-ssh": "不支持 SSH 隧道。"
+            "aliases-not-listed": "侧边栏不列出别名和数据流。请在控制台通过名称访问。"
         }
     },
     "etcd": {

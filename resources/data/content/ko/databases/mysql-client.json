@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "로컬 MySQL 소켓으로 연결할 수 있나요?",
-            "answer": "아니요. 연결은 TCP를 사용하므로 서버의 네트워킹을 켜야 합니다. 원격 서버의 소켓에 접근하려면 SSH 터널로 전달하세요."
+            "answer": "이 Mac의 서버라면 가능합니다. <ui>Connect Using</ui>을 <ui>Socket</ui>으로 설정하고 소켓 파일 경로를 입력하세요. 호스트와 포트는 폼에서 사라지며, SSH 터널로는 소켓 파일에 닿을 수 없습니다."
         },
         {
             "id": "mysqldump",

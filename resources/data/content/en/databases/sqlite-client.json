@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Maintain and back up",
             "paragraphs": [
-                "Table maintenance runs VACUUM, ANALYZE, REINDEX and an integrity check, each shown as SQL before it runs. The Server Dashboard shows the file’s size, page count, page size, journal mode and cache size.",
+                "Table maintenance runs VACUUM, ANALYZE, REINDEX and an integrity check, each shown as SQL before it runs.",
                 "<backup>Backup Dump</backup> writes the database to a .sql file with {dumpTool}, and Restore Dump runs such a file against a database."
             ]
         },

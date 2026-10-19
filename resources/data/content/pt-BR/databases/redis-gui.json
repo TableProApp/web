@@ -38,7 +38,7 @@
                 "Navegue pelas chaves por pastas separadas por dois pontos ou escolha outro separador. Cada linha mostra o tipo, TTL, comprimento e valor da chave. As coleções mostram suas primeiras entradas; valores não UTF-8 abertos no editor hexadecimal.",
                 "<editing>Edite nomes de chaves, TTLs e valores de string</editing> na grade. Add Row cria hashes, listas, conjuntos, conjuntos classificados ou strings. Filtre nomes e tipos de chaves usando <code>SCAN MATCH</code> e <code>SCAN TYPE</code> do lado do servidor.",
                 "Execute comandos com aspas no estilo redis-cli. Comandos desconhecidos são enviados conforme escritos. <code>DB 3 GET key</code> tem como alvo outro banco de dados sem alterar a sessão. Em <code>MULTI</code>, as respostas permanecem na fila até <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> considera todos os comandos Redis como gravação, inclusive <code>GET</code>, portanto os níveis Alert e Safe Mode confirmam cada um, e Read-Only bloqueia todos. <code>FLUSHDB</code> e <code>FLUSHALL</code> pedem confirmação antes de executar, mesmo em Silent."
+                "<safeMode>Safe Mode</safeMode> executa como leitura os comandos da sua lista de leitura, como <code>GET</code>, e considera gravação qualquer outro comando. <code>FLUSHDB</code> e <code>FLUSHALL</code> pedem confirmação antes de executar, mesmo em Silent."
             ]
         },
         {

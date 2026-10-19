@@ -44,7 +44,7 @@
                 "Xem field cấp cao nhất dạng cột và object lồng dạng Extended JSON. Sửa ô giữ kiểu như date và ObjectId. Sửa lồng chỉ update path đã đổi, như <code>address.city</code>.",
                 "<editing>Insert Document và Edit Document</editing> dùng Extended JSON. Edit Document đọc lại document server và từ chối lưu nếu đã đổi hoặc biến mất khi đang mở. <ui>Remove Field</ui> gửi <code>$unset</code>.",
                 "<filters>Thanh lọc</filters> đi được vào object lồng nhau và mảng object, nên bạn lọc thẳng theo <code>customer.country</code> hay <code>items.sku</code>. Field chứa GeoJSON mở được trên <map>Map view</map>.",
-                "<safeMode>Safe Mode</safeMode> coi mọi câu lệnh trên connection MongoDB là thao tác ghi, vì driver không mở được session chỉ đọc. Các mức Alert và Safe Mode hỏi xác nhận từng câu, còn Read-Only chặn tất cả."
+                "<safeMode>Safe Mode</safeMode> coi một câu lệnh là thao tác đọc khi nó chỉ là một lời gọi đọc dữ liệu, như <code>find</code>, <code>countDocuments</code> hoặc <code>aggregate</code> không có <code>$out</code> hay <code>$merge</code>. Mọi đoạn JavaScript khác được coi là thao tác ghi."
             ]
         },
         {

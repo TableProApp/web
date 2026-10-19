@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "Kann TablePro über einen lokalen MySQL-Socket verbinden?",
-            "answer": "Nein. Verbindungen nutzen TCP, daher muss auf dem Server der Netzwerkzugriff aktiviert sein. Um einen Socket auf einem entfernten Server zu erreichen, leite ihn über einen SSH-Tunnel weiter."
+            "answer": "Ja, für einen Server auf diesem Mac. Stelle <ui>Connect Using</ui> auf <ui>Socket</ui> und gib den Pfad seiner Socket-Datei ein. Host und Port verschwinden aus dem Formular, und ein SSH-Tunnel erreicht keine Socket-Datei."
         },
         {
             "id": "mysqldump",

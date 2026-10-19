@@ -44,7 +44,7 @@
                 "Telusuri bidang tingkat atas sebagai kolom dan objek bertumpuk sebagai Extended JSON. Pengeditan sel mempertahankan tipe seperti tanggal dan ObjectIds. Pengeditan bertingkat hanya memperbarui jalur yang diubah, seperti <code>address.city</code>.",
                 "<editing>Insert Document dan Edit Document</editing> menggunakan Extended JSON. Edit Document membaca ulang dokumen server dan menolak menyimpan jika dokumen berubah atau hilang saat terbuka. <ui>Remove Field</ui> mengirimkan <code>$unset</code>.",
                 "<filters>Bilah filter</filters> mengakses objek bertingkat dan array objek, sehingga <code>customer.country</code> serta <code>items.sku</code> dapat difilter langsung. Bidang yang berisi GeoJSON dibuka pada <map>Tampilan Peta</map>.",
-                "<safeMode>Safe Mode</safeMode> menganggap setiap pernyataan pada koneksi MongoDB sebagai penulisan karena driver tidak dapat membuka sesi hanya baca. Level Alert dan Safe Mode mengonfirmasi masing-masing, dan Read-Only memblokir semuanya."
+                "<safeMode>Safe Mode</safeMode> menjalankan pernyataan sebagai pembacaan jika pernyataan itu satu panggilan yang hanya membaca, seperti <code>find</code>, <code>countDocuments</code>, atau <code>aggregate</code> tanpa <code>$out</code> atau <code>$merge</code>. JavaScript lainnya dianggap penulisan."
             ]
         },
         {

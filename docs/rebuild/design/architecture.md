@@ -526,9 +526,9 @@ the fields the IA and positioning read.
   },
   "versionFloor": { "text": "…", "enforced": false, "evidence": "…" },   // or null
   "bundledVersion": null,                // the embedded library version (SQLite, DuckDB), else null
-  "limits": [{ "id": "…", "value": null, "evidence": "file:line" }],
+  "limits": [{ "id": "…", "value": null, "evidence": "file:line" }],   // an app path at macTag, or "TableProApp/docs:page.mdx:line" at docsCommit
   "ios": { "inPicker": false, "openable": false, "appearsAfterSync": false },
-  "verified": { "macTag": "v0.77.0", "iosCommit": "…", "date": "2026-10-02" }
+  "verified": { "macTag": "v0.82.0", "iosCommit": "…", "docsCommit": "…", "date": "2026-10-19" }
 }]
 ```
 

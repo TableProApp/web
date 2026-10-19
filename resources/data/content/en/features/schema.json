@@ -91,7 +91,7 @@
                     "id": "server-dashboard",
                     "title": "Server Dashboard",
                     "paragraphs": [
-                        "The Server Dashboard shows live sessions, server metrics and slow queries, refreshed at the interval you pick. Where the engine allows it, cancel a running query or terminate a session from its row; both go through the connection’s Safe Mode. On SQLite, DuckDB and Typesense it shows metrics only."
+                        "The Server Dashboard shows live sessions, server metrics and slow queries, refreshed at the interval you pick. Where the engine allows it, cancel a running query or terminate a session from its row; both go through the connection’s Safe Mode. On Typesense it shows metrics only."
                     ],
                     "engines": [{ "label": "Server Dashboard", "list": "dashboard" }],
                     "asset": "mac-server-dashboard-postgresql"

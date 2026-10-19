@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "EXPLAIN 다이어그램, 사용자, 세션; mysqldump 백업.",
         "limits": {
-            "tcp-only": "호스트와 포트를 통해 TCP로 연결합니다. 로컬 Unix 소켓은 지원하지 않습니다.",
             "load-data-local-refused": "드라이버는 LOAD DATA LOCAL INFILE을 거부합니다. 대신 Import로 파일을 가져오세요."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Query DSL 콘솔; _id로 문서 편집.",
         "limits": {
             "no-opensearch": "OpenSearch는 지원하지 않습니다.",
-            "aliases-not-listed": "별칭과 데이터 스트림은 사이드바에 표시되지 않습니다. 콘솔에서 이름으로 지정하세요.",
-            "no-ssh": "SSH 터널은 지원하지 않습니다."
+            "aliases-not-listed": "별칭과 데이터 스트림은 사이드바에 표시되지 않습니다. 콘솔에서 이름으로 지정하세요."
         }
     },
     "etcd": {

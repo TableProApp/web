@@ -8,7 +8,6 @@
     "mysql": {
         "tagline": "Diagrammes EXPLAIN, utilisateurs et sessions ; sauvegardes avec mysqldump.",
         "limits": {
-            "tcp-only": "Les connexions utilisent un hôte et un port via TCP. Les sockets Unix locaux ne sont pas pris en charge.",
             "load-data-local-refused": "Le pilote refuse LOAD DATA LOCAL INFILE. Chargez un fichier via Importer."
         }
     },
@@ -188,8 +187,7 @@
         "tagline": "Console Query DSL ; édition de documents par _id.",
         "limits": {
             "no-opensearch": "OpenSearch n’est pas pris en charge.",
-            "aliases-not-listed": "Les alias et flux de données ne sont pas listés dans la barre latérale. Adressez-les par nom dans la console.",
-            "no-ssh": "Les tunnels SSH ne sont pas pris en charge."
+            "aliases-not-listed": "Les alias et flux de données ne sont pas listés dans la barre latérale. Adressez-les par nom dans la console."
         }
     },
     "etcd": {

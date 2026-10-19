@@ -44,7 +44,7 @@
                 "Consultez les champs de premier niveau en colonnes et les objets imbriqués en Extended JSON. Les modifications de cellules préservent les types comme les dates et ObjectIds. Les modifications imbriquées ne changent que le chemin concerné, comme <code>address.city</code>.",
                 "<editing>Insert Document et Edit Document</editing> utilisent Extended JSON. Edit Document relit le document du serveur et refuse l’enregistrement s’il a changé ou disparu pendant son ouverture. <ui>Supprimer le champ</ui> (Remove Field) envoie <code>$unset</code>.",
                 "La <filters>barre de filtres</filters> descend dans les objets imbriqués et les tableaux d’objets : vous pouvez filtrer directement sur <code>customer.country</code> et <code>items.sku</code>. Un champ contenant du GeoJSON s’ouvre dans la <map>vue Carte</map>.",
-                "<safeMode>Safe Mode</safeMode> traite toute instruction MongoDB comme une écriture, car le pilote ne peut pas ouvrir de session en lecture seule. Les niveaux Alert et Safe Mode demandent confirmation pour chaque instruction ; Read-Only les bloque toutes."
+                "<safeMode>Safe Mode</safeMode> exécute une instruction comme lecture quand c’est un seul appel qui ne fait que lire, comme <code>find</code>, <code>countDocuments</code> ou un <code>aggregate</code> sans <code>$out</code> ni <code>$merge</code>. Tout autre JavaScript compte comme écriture."
             ]
         },
         {

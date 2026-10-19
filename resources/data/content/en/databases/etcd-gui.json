@@ -37,7 +37,7 @@
                 "Set <ui>Key Prefix Root</ui>, such as <code>/app</code>, to scope a connection to one subtree. The sidebar groups keys by their first path segment under it, and each key is a row with its value, version, mod and create revisions, and lease.",
                 "Saving an edit sends commands. A new value or lease puts the key again, a NULL lease removes the lease, and renaming a key puts the new name and deletes the old one. The revision columns belong to etcd, so an edit to one stops the save and names the column.",
                 "Run etcdctl-style key, watch, lease, member, endpoint, compaction and access-control commands with command and flag completion. Unsupported commands are rejected before reaching the server.",
-                "The etcd driver cannot open a read-only session, so <safeMode>Safe Mode</safeMode> treats every command as a write: at the Alert and Safe Mode levels each one asks first, and Read-Only blocks them all."
+                "<safeMode>Safe Mode</safeMode> runs <code>get</code>, <code>watch</code> and the commands that only list or report as reads, and counts every other command as a write."
             ]
         },
         {

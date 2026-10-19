@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Entretenez et sauvegardez",
             "paragraphs": [
-                "La maintenance des tables exécute VACUUM, ANALYZE, REINDEX et un contrôle d’intégrité, chacun affiché en SQL avant de s’exécuter. Server Dashboard affiche la taille du fichier, le nombre et la taille des pages, le mode de journal et la taille du cache.",
+                "La maintenance des tables exécute VACUUM, ANALYZE, REINDEX et un contrôle d’intégrité, chacun affiché en SQL avant de s’exécuter.",
                 "<backup>Backup Dump</backup> écrit la base dans un fichier .sql avec {dumpTool}, et Restore Dump exécute un tel fichier sur une base."
             ]
         },

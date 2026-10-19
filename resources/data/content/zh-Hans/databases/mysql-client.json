@@ -154,7 +154,7 @@
         {
             "id": "socket",
             "question": "能通过本地 MySQL socket 连接吗？",
-            "answer": "不能。连接使用 TCP，服务器需开启网络功能。要访问远程服务器上的 socket，请通过 SSH 隧道转发。"
+            "answer": "可以，限本机上的服务器。将 <ui>Connect Using</ui> 设为 <ui>Socket</ui>，然后输入其 socket 文件路径。主机和端口会从表单中消失，SSH 隧道也无法到达 socket 文件。"
         },
         {
             "id": "mysqldump",

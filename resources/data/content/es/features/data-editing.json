@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind no es una copia de seguridad. No deshace triggers, cascadas ni cambios fuera de TablePro y no restaura filas sin clave primaria, valores superiores a {rewindMaxValue} MB ni valores calculados por el servidor.",
         "UPDATE sin WHERE es una escritura normal: solo pregunta primero en Alert o niveles más estrictos.",
-        "En {everyStatementWrites}, Safe Mode cuenta cada sentencia como escritura; Alert pregunta también antes de lecturas y Read-Only las bloquea.",
         "El resultado de join, CTE o UNION es de solo lectura en la cuadrícula; abre la tabla para editar."
     ],
     "docs": [

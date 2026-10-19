@@ -44,7 +44,7 @@
                 "Browse top-level fields as columns and nested objects as Extended JSON. Cell edits preserve types such as dates and ObjectIds. Nested edits update only the changed path, such as <code>address.city</code>.",
                 "<editing>Insert Document and Edit Document</editing> use Extended JSON. Edit Document re-reads the server document and refuses to save if it changed or disappeared while open. <ui>Remove Field</ui> sends <code>$unset</code>.",
                 "The <filters>filter bar</filters> reaches into nested objects and arrays of objects, so <code>customer.country</code> and <code>items.sku</code> filter directly. A field holding GeoJSON opens on the <map>Map view</map>.",
-                "<safeMode>Safe Mode</safeMode> treats every statement on a MongoDB connection as a write, because the driver cannot open a read-only session. The Alert and Safe Mode levels confirm each one, and Read-Only blocks them all."
+                "<safeMode>Safe Mode</safeMode> runs a statement as a read when it is one call that only reads, such as <code>find</code>, <code>countDocuments</code> or an <code>aggregate</code> without <code>$out</code> or <code>$merge</code>. Any other JavaScript counts as a write."
             ]
         },
         {

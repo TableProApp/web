@@ -37,7 +37,7 @@
                 "Đặt <ui>Tiền tố gốc (Key Prefix Root)</ui>, chẳng hạn <code>/app</code>, để giới hạn connection trong một nhánh key. Sidebar nhóm key theo đoạn đường dẫn đầu tiên bên dưới tiền tố đó, và mỗi key là một dòng gồm value, version, mod revision, create revision và lease.",
                 "Khi lưu, mỗi thay đổi được gửi đi dưới dạng lệnh. Value hoặc lease mới sẽ put lại key, đặt lease thành NULL sẽ gỡ lease, còn đổi tên key sẽ put tên mới rồi xóa key cũ. Các cột revision do etcd quản lý, nên sửa một cột trong số đó sẽ chặn thao tác lưu và nêu tên cột.",
                 "Chạy command kiểu etcdctl cho key, watch, lease, member, endpoint, compaction và quyền truy cập, có gợi ý command và flag. Command không hỗ trợ bị từ chối trước khi tới server.",
-                "Driver etcd không mở được session chỉ đọc, nên <safeMode>Safe Mode</safeMode> coi mọi lệnh là thao tác ghi: ở mức Alert và Safe Mode, lệnh nào cũng hỏi trước, còn mức Read-Only chặn tất cả."
+                "<safeMode>Safe Mode</safeMode> coi <code>get</code>, <code>watch</code> và các lệnh chỉ liệt kê hay báo cáo trạng thái là thao tác đọc, còn mọi lệnh khác là thao tác ghi."
             ]
         },
         {

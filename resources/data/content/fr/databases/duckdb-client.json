@@ -22,8 +22,7 @@
         "backup": "/features/import-export#backup",
         "explain": "/features/querying#performance",
         "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard"
+        "structure": "/features/schema#structure"
     },
     "sections": [
         {
@@ -56,7 +55,6 @@
             "title": "Partagez le fichier et sauvegardez-le",
             "paragraphs": [
                 "Tant que TablePro verrouille un fichier, la CLI <code>duckdb</code>, un notebook ou une exécution dbt ne peuvent pas l’ouvrir. Définissez <ui>Libérer le verrou du fichier après</ui> (Release the File Lock After) pour le rendre après quelques minutes d’inactivité et le reprendre à la prochaine requête, ou <ui>Ouvrir le fichier en lecture seule</ui> (Open the File Read-Only) pour permettre plusieurs lecteurs. <ui>Base de données > Libérer le verrou du fichier</ui> (Database > Release File Lock) le rend immédiatement et conserve vos onglets. La libération est refusée, avec sa raison, si la session conserve une transaction ouverte, une table temporaire, une base attachée ou un paramètre modifié.",
-                "<dashboard>Server Dashboard</dashboard> affiche la taille de la base, la taille des blocs, le nombre total de blocs, la limite mémoire et les threads.",
                 "<backup>Backup Dump</backup> ne nécessite aucune installation, car {dumpTool} l’écrit via la connexion ouverte. Choisissez un fichier <code>.duckdb</code> à restaurer plus tard dans TablePro, ou un dossier contenant <code>schema.sql</code>, <code>load.sql</code> et un fichier Parquet par table, lisible directement par pandas, Spark et BigQuery. Restore Dump s’arrête au premier objet dont le nom est déjà pris."
             ]
         },

@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "Pemeliharaan dan pencadangan",
             "paragraphs": [
-                "Pemeliharaan tabel menjalankan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas, masing-masing ditampilkan sebagai SQL sebelum dijalankan. Server Dashboard menampilkan ukuran file, jumlah halaman, ukuran halaman, mode journal, dan ukuran cache.",
+                "Pemeliharaan tabel menjalankan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas, masing-masing ditampilkan sebagai SQL sebelum dijalankan.",
                 "<backup>Backup Dump</backup> menulis database ke file .sql menggunakan {dumpTool}, dan Restore Dump menjalankan file tersebut pada database."
             ]
         },

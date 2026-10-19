@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind는 백업이 아닙니다. 트리거, 연쇄 작업 또는 TablePro 외부의 변경을 되돌리지 않으며 기본 키 없는 행, {rewindMaxValue} MB를 넘는 값 또는 서버가 계산한 값을 복원할 수 없습니다.",
         "WHERE 없는 UPDATE는 일반 쓰기 작업으로 Alert 이상의 수준에서만 먼저 확인합니다.",
-        "{everyStatementWrites}에서는 Safe Mode가 모든 명령문을 쓰기로 간주하므로 Alert가 읽기 전에도 확인하고 Read-Only는 읽기도 차단합니다.",
         "조인, CTE 또는 UNION의 결과는 그리드에서 읽기 전용입니다. 편집하려면 테이블을 여세요."
     ],
     "docs": [

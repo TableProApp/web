@@ -37,7 +37,7 @@
                 "Defina <ui>Key Prefix Root</ui>, como <code>/app</code>, para limitar uma conexão a uma subárvore. A barra lateral agrupa as chaves pelo primeiro segmento do caminho abaixo dela, e cada chave aparece como uma linha com seu valor, versão, revisões de modificação e criação, e lease.",
                 "Salvar uma edição envia comandos. Um novo valor ou lease grava novamente a chave, um lease NULL remove o lease, e renomear uma chave grava o novo nome e exclui o antigo. As colunas de revisão pertencem ao etcd, portanto editá-las interrompe o salvamento e informa o nome da coluna.",
                 "Execute comandos no estilo etcdctl para chaves, watch, leases, membros, endpoints, compactação e controle de acesso, com preenchimento de comandos e flags. Comandos não suportados são rejeitados antes de chegar ao servidor.",
-                "O driver de etcd não pode abrir uma sessão somente leitura, portanto <safeMode>Safe Mode</safeMode> trata todos os comandos como gravações: nos níveis Alert e Safe Mode, cada um pede confirmação antes de executar, e Read-Only bloqueia todos."
+                "<safeMode>Safe Mode</safeMode> executa como leitura <code>get</code>, <code>watch</code> e os comandos que apenas listam ou informam, e considera gravação qualquer outro comando."
             ]
         },
         {

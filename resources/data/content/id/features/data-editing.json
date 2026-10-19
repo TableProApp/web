@@ -164,7 +164,6 @@
     "limits": [
         "Data Rewind bukan cadangan. Fitur ini tidak mengurungkan trigger, perubahan berantai, atau perubahan di luar TablePro, dan tidak dapat memulihkan baris tanpa primary key, nilai di atas {rewindMaxValue} MB, atau nilai yang dihitung server.",
         "UPDATE tanpa WHERE adalah penulisan biasa: konfirmasi hanya diminta pada level Alert atau lebih ketat.",
-        "Pada {everyStatementWrites}, Safe Mode menganggap setiap pernyataan sebagai penulisan, sehingga Alert juga meminta konfirmasi sebelum membaca dan Read-Only memblokirnya.",
         "Hasil join, CTE, atau UNION hanya-baca di grid; buka tabel untuk mengeditnya."
     ],
     "docs": [

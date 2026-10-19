@@ -58,7 +58,7 @@
             "id": "operate",
             "title": "维护和备份",
             "paragraphs": [
-                "表维护运行 VACUUM、ANALYZE、REINDEX 和完整性检查，每项执行前均显示 SQL。Server Dashboard 显示文件大小、页数、页大小、日志模式和缓存大小。",
+                "表维护运行 VACUUM、ANALYZE、REINDEX 和完整性检查，每项执行前均显示 SQL。",
                 "<backup>Backup Dump</backup> 使用 {dumpTool} 将数据库写入 .sql 文件，Restore Dump 对数据库运行此类文件。"
             ]
         },
