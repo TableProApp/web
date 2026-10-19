@@ -46,7 +46,7 @@ function githubApiCalls(): int
     return Http::recorded(fn(Request $request): bool => str_contains($request->url(), 'api.github.com'))->count();
 }
 
-it('reads the app release from releases/latest, with both DMGs and their sizes', function (): void {
+it('reads the app release from releases/latest, with the universal DMG and its size', function (): void {
     Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload())]);
 
     $release = macRelease();
@@ -54,14 +54,12 @@ it('reads the app release from releases/latest, with both DMGs and their sizes',
     expect($release->source)->toBe(MacRelease::SOURCE_GITHUB)
         ->and($release->version)->toBe('0.77.0')
         ->and($release->publishedAt)->toBe('2026-10-02')
-        ->and($release->assets['arm64'])->toBe([
-            'name' => 'TablePro-0.77.0-arm64.dmg',
-            'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg',
-            'bytes' => 22_943_352,
+        ->and($release->asset)->toBe([
+            'name' => 'TablePro-0.77.0.dmg',
+            'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg',
+            'bytes' => 65_432_179,
             'sha256' => null,
         ])
-        ->and($release->assets['x86_64']['name'])->toBe('TablePro-0.77.0-x86_64.dmg')
-        ->and($release->assets['x86_64']['bytes'])->toBe(26_202_607)
         ->and($release->releaseUrl)->toBe('https://github.com/TableProApp/TablePro/releases/tag/v0.77.0')
         ->and($release->releasesUrl)->toBe('https://github.com/TableProApp/TablePro/releases');
 
@@ -69,32 +67,27 @@ it('reads the app release from releases/latest, with both DMGs and their sizes',
     Http::assertNotSent(fn(Request $request): bool => str_contains($request->url(), '/releases?') || str_ends_with($request->url(), '/releases'));
 });
 
-it('keeps each DMG’s SHA-256 when the releases API reports one, in the cache and in the last good copy', function (): void {
-    $arm64 = str_repeat('a1', 32);
+it('keeps the DMG’s SHA-256 when the releases API reports one, in the cache and in the last good copy', function (): void {
+    $sha256 = str_repeat('a1', 32);
 
-    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: [
-        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352, digest: "sha256:{$arm64}"),
-        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
-    ]))]);
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigest($sha256))]);
 
     $release = macRelease();
 
-    expect($release->assets['arm64']['sha256'])->toBe($arm64)
-        ->and($release->assets['x86_64']['sha256'])->toBeNull()
-        ->and($release->toProps('en')['assets']['arm64']['sha256'])->toBe($arm64)
-        ->and(releases()->lastGood()?->assets['arm64']['sha256'])->toBe($arm64);
+    expect($release->asset['sha256'])->toBe($sha256)
+        ->and($release->toProps('en')['asset']['sha256'])->toBe($sha256)
+        ->and(releases()->lastGood()?->asset['sha256'])->toBe($sha256);
 });
 
 it('states no checksum for a digest that is not a SHA-256', function (mixed $digest): void {
     Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: [
-        [...githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352), 'digest' => $digest],
-        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
+        [...githubAsset('TablePro-0.77.0.dmg', 65_432_179), 'digest' => $digest],
     ]))]);
 
     $release = macRelease();
 
     expect($release->source)->toBe(MacRelease::SOURCE_GITHUB)
-        ->and($release->assets['arm64']['sha256'])->toBeNull();
+        ->and($release->asset['sha256'])->toBeNull();
 })->with([
     'another algorithm' => ['sha512:' . str_repeat('ab', 64)],
     'too short' => ['sha256:abc123'],
@@ -103,19 +96,31 @@ it('states no checksum for a digest that is not a SHA-256', function (mixed $dig
     'not a string' => [42],
 ]);
 
-it('reads a copy stored before checksums were kept', function (): void {
-    $asset = ['name' => 'TablePro-0.77.0-arm64.dmg', 'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg', 'bytes' => 1];
-
+it('reads a copy stored without a checksum', function (): void {
     $release = MacRelease::fromArray([
         'version' => '0.77.0',
         'publishedAt' => '2026-10-02',
-        'assets' => ['arm64' => $asset, 'x86_64' => $asset],
+        'asset' => ['name' => 'TablePro-0.77.0.dmg', 'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg', 'bytes' => 1],
         'releaseUrl' => 'https://github.com/TableProApp/TablePro/releases/tag/v0.77.0',
         'releasesUrl' => 'https://github.com/TableProApp/TablePro/releases',
         'source' => MacRelease::SOURCE_GITHUB,
     ]);
 
-    expect($release?->assets['arm64']['sha256'])->toBeNull();
+    expect($release?->asset['sha256'])->toBeNull();
+});
+
+// The copy stored before 0.82.0 pointed at a DMG per architecture; it is refreshed, never served.
+it('ignores a copy stored with a DMG per architecture', function (): void {
+    $asset = ['name' => 'TablePro-0.81.0-arm64.dmg', 'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.81.0/TablePro-0.81.0-arm64.dmg', 'bytes' => 1, 'sha256' => null];
+
+    expect(MacRelease::fromArray([
+        'version' => '0.81.0',
+        'publishedAt' => '2026-10-16',
+        'assets' => ['arm64' => $asset, 'x86_64' => $asset],
+        'releaseUrl' => 'https://github.com/TableProApp/TablePro/releases/tag/v0.81.0',
+        'releasesUrl' => 'https://github.com/TableProApp/TablePro/releases',
+        'source' => MacRelease::SOURCE_GITHUB,
+    ]))->toBeNull();
 });
 
 it('formats the release date for the reader in PHP, in each locale', function (): void {
@@ -142,16 +147,20 @@ it('rejects a plugin release reported as latest and falls back to the appcast', 
         ->and($release->version)->toBe('0.77.0');
 });
 
-it('rejects an app release missing one architecture', function (): void {
+it('rejects an app release without the universal DMG', function (array $assets): void {
     Http::fake([
-        RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: [
-            githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352),
-        ])),
+        RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: $assets)),
         RELEASES_FAKE_APPCAST => Http::response(appcastXml('0.76.1')),
     ]);
 
     expect(macRelease())->source->toBe(MacRelease::SOURCE_APPCAST)->version->toBe('0.76.1');
-});
+})->with([
+    'a DMG per architecture' => [[
+        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352),
+        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
+    ]],
+    'only the update archive' => [[githubAsset('TablePro-0.77.0.tar.xz', 41_754_460)]],
+]);
 
 it('rejects an asset still uploading, a draft and a prerelease', function (array $payload): void {
     Http::fake([
@@ -162,15 +171,14 @@ it('rejects an asset still uploading, a draft and a prerelease', function (array
     expect(macRelease()->source)->toBe(MacRelease::SOURCE_APPCAST);
 })->with([
     'uploading' => [githubReleasePayload(assets: [
-        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352),
-        [...githubAsset('TablePro-0.77.0-x86_64.dmg', 0), 'state' => 'new'],
+        [...githubAsset('TablePro-0.77.0.dmg', 0), 'state' => 'new'],
     ])],
     'draft' => [githubReleasePayload(overrides: ['draft' => true])],
     'prerelease' => [githubReleasePayload(overrides: ['prerelease' => true])],
     'not a version tag' => [githubReleasePayload('nightly')],
 ]);
 
-it('builds the DMG links from platforms.json when it falls back to the appcast', function (): void {
+it('builds the DMG link from platforms.json when it falls back to the appcast', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response(['message' => 'API rate limit exceeded'], 403),
         RELEASES_FAKE_APPCAST => Http::response(appcastXml('0.77.0', 'Fri, 02 Oct 2026 04:15:25 +0000')),
@@ -179,20 +187,20 @@ it('builds the DMG links from platforms.json when it falls back to the appcast',
     $release = macRelease();
 
     expect($release->source)->toBe(MacRelease::SOURCE_APPCAST)
+        ->and($release->version)->toBe('0.77.0')
         ->and($release->publishedAt)->toBe('2026-10-02')
-        ->and($release->assets['arm64'])->toBe([
-            'name' => 'TablePro-0.77.0-arm64.dmg',
-            'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg',
+        ->and($release->asset)->toBe([
+            'name' => 'TablePro-0.77.0.dmg',
+            'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg',
             'bytes' => null,
             'sha256' => null,
         ])
-        ->and($release->assets['x86_64']['url'])->toBe('https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg')
         ->and($release->releaseUrl)->toBe('https://github.com/TableProApp/TablePro/releases/tag/v0.77.0');
 });
 
-it('takes the fallback DMG links from the dmg destination’s urlTemplate when platforms.json has one', function (): void {
+it('takes the fallback DMG link from the dmg destination’s urlTemplate when platforms.json has one', function (): void {
     bindReleaseFixturePlatforms(['mac.destinations' => [
-        ['kind' => 'dmg', 'urlTemplate' => 'https://mirror.example/tablepro/v{version}/TablePro-{version}-{arch}.dmg'],
+        ['kind' => 'dmg', 'urlTemplate' => 'https://mirror.example/tablepro/v{version}/TablePro-{version}.dmg'],
         ['kind' => 'releases', 'url' => 'https://github.com/TableProApp/TablePro/releases'],
     ]]);
     Http::fake([
@@ -203,8 +211,7 @@ it('takes the fallback DMG links from the dmg destination’s urlTemplate when p
     $release = macRelease();
 
     expect($release->source)->toBe(MacRelease::SOURCE_APPCAST)
-        ->and($release->assets['arm64']['url'])->toBe('https://mirror.example/tablepro/v0.77.0/TablePro-0.77.0-arm64.dmg')
-        ->and($release->assets['x86_64']['url'])->toBe('https://mirror.example/tablepro/v0.77.0/TablePro-0.77.0-x86_64.dmg');
+        ->and($release->asset['url'])->toBe('https://mirror.example/tablepro/v0.77.0/TablePro-0.77.0.dmg');
 });
 
 it('answers a page from what the last refresh stored, without calling anything', function (): void {
@@ -246,10 +253,7 @@ it('never calls a source while answering a page, even with no copy at all', func
 
 it('serves the last good copy while the stored one is missing, and refreshes after the response', function (): void {
     Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
-        ->push(githubReleasePayload('v0.76.1', assets: [
-            githubAsset('TablePro-0.76.1-arm64.dmg', 1, 'v0.76.1'),
-            githubAsset('TablePro-0.76.1-x86_64.dmg', 2, 'v0.76.1'),
-        ]))
+        ->push(githubReleasePayload('v0.76.1'))
         ->push(githubReleasePayload());
 
     expect(macRelease()->version)->toBe('0.76.1');
@@ -294,10 +298,7 @@ it('calls the GitHub API at most four times an hour, healthy or not', function (
 
 it('serves the last good copy when both sources fail, and pages stop asking for 15 minutes', function (): void {
     Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
-        ->push(githubReleasePayload('v0.76.1', assets: [
-            githubAsset('TablePro-0.76.1-arm64.dmg', 1, 'v0.76.1'),
-            githubAsset('TablePro-0.76.1-x86_64.dmg', 2, 'v0.76.1'),
-        ]))
+        ->push(githubReleasePayload('v0.76.1'))
         ->whenEmpty(Http::response('', 502));
     Http::fake([RELEASES_FAKE_APPCAST => Http::response('', 503)]);
 
@@ -308,7 +309,7 @@ it('serves the last good copy when both sources fail, and pages stop asking for 
     $stale = servePage();
 
     expect($stale->version)->toBe('0.76.1')
-        ->and($stale->assets['arm64']['url'])->toEndWith('/TablePro-0.76.1-arm64.dmg')
+        ->and($stale->asset['url'])->toEndWith('/TablePro-0.76.1.dmg')
         ->and(releases()->failing())->toBeTrue();
 
     $calls = githubApiCalls();
@@ -357,7 +358,7 @@ it('keeps the last good copy through cache:clear', function (): void {
 
     expect($release->source)->toBe(MacRelease::SOURCE_GITHUB)
         ->and($release->version)->toBe('0.77.0')
-        ->and($release->assets['arm64']['url'])->toEndWith('/TablePro-0.77.0-arm64.dmg')
+        ->and($release->asset['url'])->toEndWith('/TablePro-0.77.0.dmg')
         ->and(Storage::disk(MacReleaseService::LAST_GOOD_DISK)->exists(MacReleaseService::LAST_GOOD_FILE))->toBeTrue();
 });
 
@@ -371,7 +372,7 @@ it('ignores a last good copy it cannot read', function (): void {
     expect(macRelease()->source)->toBe(MacRelease::SOURCE_UNAVAILABLE);
 });
 
-it('is unavailable when nothing ever answered: no version, and both buttons open the latest release page', function (): void {
+it('is unavailable when nothing ever answered: no version, and the button opens the latest release page', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::failedConnection(),
         RELEASES_FAKE_APPCAST => Http::failedConnection(),
@@ -383,8 +384,7 @@ it('is unavailable when nothing ever answered: no version, and both buttons open
         ->and($release->isAvailable())->toBeFalse()
         ->and($release->version)->toBeNull()
         ->and($release->publishedAt)->toBeNull()
-        ->and($release->assets['arm64'])->toBe(['name' => null, 'url' => 'https://github.com/TableProApp/TablePro/releases/latest', 'bytes' => null, 'sha256' => null])
-        ->and($release->assets['x86_64']['url'])->toBe('https://github.com/TableProApp/TablePro/releases/latest')
+        ->and($release->asset)->toBe(['name' => null, 'url' => 'https://github.com/TableProApp/TablePro/releases/latest', 'bytes' => null, 'sha256' => null])
         ->and($release->toProps('en')['publishedAtFormatted'])->toBeNull();
 });
 
@@ -422,10 +422,7 @@ it('reports what the scheduled refresh found', function (): void {
 
 it('fails the scheduled refresh when no source answers, and keeps serving the last good copy', function (): void {
     Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
-        ->push(githubReleasePayload('v0.76.1', assets: [
-            githubAsset('TablePro-0.76.1-arm64.dmg', 1, 'v0.76.1'),
-            githubAsset('TablePro-0.76.1-x86_64.dmg', 2, 'v0.76.1'),
-        ]))
+        ->push(githubReleasePayload('v0.76.1'))
         ->whenEmpty(Http::response('', 502));
     Http::fake([RELEASES_FAKE_APPCAST => Http::response('', 503)]);
 
@@ -461,7 +458,7 @@ it('skips quietly when another refresh holds the lock', function (): void {
     expect(githubApiCalls())->toBe(0);
 });
 
-it('reads only the top appcast item, and ignores a feed it cannot parse', function (): void {
+it('reads the stable appcast item, skipping a newer beta above it, and ignores a feed it cannot parse', function (): void {
     expect(SparkleAppcast::parse(appcastXml('0.77.0', 'Fri, 02 Oct 2026 04:15:25 +0000', '13.0')))->toBe([
         'version' => '0.77.0',
         'publishedAt' => '2026-10-02',
@@ -474,7 +471,17 @@ it('reads only the top appcast item, and ignores a feed it cannot parse', functi
         ->and(SparkleAppcast::parse('<rss><channel><item><title>latest</title></item></channel></rss>'))->toBeNull();
 });
 
+it('picks the stable item with the highest build, wherever it sits in the feed', function (): void {
+    $item = fn(string $version, int $build, string $extra = ''): string => "<item><title>{$version}</title><sparkle:version>{$build}</sparkle:version><sparkle:shortVersionString>{$version}</sparkle:shortVersionString>{$extra}</item>";
+    $feed = fn(string ...$items): string => '<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"><channel>' . implode('', $items) . '</channel></rss>';
+
+    // A patch on an older line can be published after the newer stable, and lands above it.
+    expect(SparkleAppcast::parse($feed($item('0.81.1', 810199), $item('0.82.0', 820099), $item('0.81.0', 810099)))['version'] ?? null)->toBe('0.82.0')
+        ->and(SparkleAppcast::parse($feed($item('0.83.0-beta.1', 830001, '<sparkle:channel>beta</sparkle:channel>'), $item('0.82.0', 820099)))['version'] ?? null)->toBe('0.82.0')
+        ->and(SparkleAppcast::parse($feed($item('0.83.0', 830099, '<sparkle:channel>beta</sparkle:channel>'))))->toBeNull()
+        ->and(SparkleAppcast::parse($feed($item('0.82.0', 820099), "<item><title>0.83.0</title><sparkle:shortVersionString>0.83.0</sparkle:shortVersionString></item>"))['version'] ?? null)->toBe('0.82.0');
+});
+
 it('reads the appcast from the feed the app itself uses', function (): void {
-    expect(app(SparkleAppcast::class)->feedUrl())
-        ->toBe('https://raw.githubusercontent.com/TableProApp/TablePro/main/appcast.xml');
+    expect(app(SparkleAppcast::class)->feedUrl())->toBe('https://updates.tablepro.app/appcast.xml');
 });

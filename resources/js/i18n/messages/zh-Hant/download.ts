@@ -2,17 +2,13 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "macCta": "下載 Mac 版",
-    "builds": {
-        "arm64": "下載 Apple silicon 版",
-        "x86_64": "下載 Intel 版"
-    },
     "release": {
         "dated": "版本 {version}，發佈於 {date}",
         "undated": "版本 {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "版本說明（英文）",
-        "unavailable": "無法取得版本資訊。兩個按鈕都會開啟 GitHub 上的最新版本，請在那裡選擇安裝套件。"
+        "unavailable": "無法取得版本資訊。按鈕會開啟 GitHub 上的最新版本。"
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -22,12 +18,7 @@ export default {
             "group": ","
         }
     },
-    "detected": "瀏覽器顯示您的 Mac 使用 {chip}。",
     "onAnotherDevice": "若要安裝 Mac App，請在 Mac 上開啟此頁面。",
-    "whichMac": {
-        "summary": "我的 Mac 是哪種型號？",
-        "body": "在 Apple 選單中選擇「關於這台 Mac」。顯示「晶片」欄位的是 Apple 晶片 Mac；「處理器」欄位顯示 Intel 的是 Intel Mac。"
-    },
     "checksum": {
         "summary": "驗證下載的檔案",
         "body": "在終端機中對該檔案執行 <code>shasum -a 256</code>，結果應與下方的 SHA-256 檢查碼一致。"

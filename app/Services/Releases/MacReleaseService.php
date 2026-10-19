@@ -12,17 +12,17 @@ use function Illuminate\Support\defer;
 /**
  * The current Mac release, for the download buttons (architecture §1.13).
  *
- * Primary source: GitHub's `releases/latest` for the app repository. Plugin
- * releases share that repository but are published with `--latest=false`
- * (`build-plugin.yml:325`), so "latest" is the app; a release is still
- * accepted only when it is neither a draft nor a prerelease and carries both
- * DMGs, named for its own version. That rejects a plugin release that slipped
- * through, and an app release caught halfway through its upload.
+ * Primary source: GitHub's `releases/latest` for the app repository. Older
+ * plugin releases share that repository but were published with
+ * `--latest=false`, so "latest" is the app; a release is still accepted only
+ * when it is neither a draft nor a prerelease and carries the DMG, named for
+ * its own version. That rejects a plugin release that slipped through, and an
+ * app release caught halfway through its upload.
  *
- * Fallback: the top item of the Sparkle appcast, with the DMG names and URLs
- * built from `platforms.json` (`assetTemplate`, and the `dmg` destination's
- * `urlTemplate`). Never the first item of the full releases list, which plugin
- * releases crowd.
+ * Fallback: the current stable item of the Sparkle appcast, with the DMG name
+ * and URL built from `platforms.json` (`assetTemplate`, and the `dmg`
+ * destination's `urlTemplate`). Never the first item of the full releases
+ * list, which plugin releases crowd.
  *
  * **A request never waits for GitHub.** `release:refresh`, scheduled every 15
  * minutes (routes/console.php), calls the sources; a page only reads what it
@@ -40,7 +40,7 @@ use function Illuminate\Support\defer;
  *   good copy keeps being served.
  * - When `releases:mac` is missing (after `cache:clear`, or if the scheduler
  *   has stopped), a request serves the last good copy, or `unavailable` if
- *   there never was one (both buttons open GitHub's latest-release page and no
+ *   there never was one (the button opens GitHub's latest-release page and no
  *   version is shown), and asks for one refresh after its response has been
  *   sent (`defer()`): never while the failure marker stands, and under a lock,
  *   so concurrent requests start one refresh between them.
@@ -227,16 +227,10 @@ class MacReleaseService
             return null;
         }
 
-        $assets = [];
+        $asset = $this->findAsset($release['assets'] ?? [], $this->platforms->macAssetName($version));
 
-        foreach (PlatformCatalog::MAC_ARCHITECTURES as $arch) {
-            $asset = $this->findAsset($release['assets'] ?? [], $this->platforms->macAssetName($arch, $version));
-
-            if ($asset === null) {
-                return null;
-            }
-
-            $assets[$arch] = $asset;
+        if ($asset === null) {
+            return null;
         }
 
         $htmlUrl = $release['html_url'] ?? null;
@@ -244,7 +238,7 @@ class MacReleaseService
         return new MacRelease(
             version: $version,
             publishedAt: $this->date($release['published_at'] ?? null),
-            assets: $assets,
+            asset: $asset,
             releaseUrl: is_string($htmlUrl) && str_starts_with($htmlUrl, 'https://') ? $htmlUrl : $this->tagUrl($version),
             releasesUrl: $this->releasesUrl(),
             source: MacRelease::SOURCE_GITHUB,
@@ -252,9 +246,9 @@ class MacReleaseService
     }
 
     /**
-     * The release from the Sparkle appcast's top item, or null. Sizes and
-     * checksums are not in the feed (its enclosures are the update zips), so
-     * they stay null.
+     * The release from the Sparkle appcast's current stable item, or null.
+     * Sizes and checksums are not in the feed (its enclosures are the update
+     * archives), so they stay null.
      */
     public function fromAppcast(): ?MacRelease
     {
@@ -265,24 +259,18 @@ class MacReleaseService
         }
 
         $version = $item['version'];
-        $assets = [];
-
-        foreach (PlatformCatalog::MAC_ARCHITECTURES as $arch) {
-            $name = $this->platforms->macAssetName($arch, $version);
-
-            $assets[$arch] = [
-                'name' => $name,
-                'url' => $this->platforms->macAssetUrl($arch, $version)
-                    ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
-                'bytes' => null,
-                'sha256' => null,
-            ];
-        }
+        $name = $this->platforms->macAssetName($version);
 
         return new MacRelease(
             version: $version,
             publishedAt: $item['publishedAt'],
-            assets: $assets,
+            asset: [
+                'name' => $name,
+                'url' => $this->platforms->macAssetUrl($version)
+                    ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
+                'bytes' => null,
+                'sha256' => null,
+            ],
             releaseUrl: $this->tagUrl($version),
             releasesUrl: $this->releasesUrl(),
             source: MacRelease::SOURCE_APPCAST,

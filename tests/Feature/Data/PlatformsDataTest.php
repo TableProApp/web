@@ -95,20 +95,19 @@ it('pins the Mac requirement to macOS 13 Ventura and never says 14 or Sonoma', f
     expect(preg_match('/macOS\s*14|"minVersion":\s*"14/', $raw))->toBe(0);
 });
 
-it('ships separate Apple silicon and Intel builds, never a universal binary', function (): void {
+it('ships one universal DMG for Apple silicon and Intel', function (): void {
     $mac = platformsDataEntry('mac');
 
-    expect($mac['universalBinary'])->toBeFalse();
-    expect(array_column($mac['architectures'], 'id'))->toBe(['arm64', 'x86_64']);
-
-    foreach ($mac['architectures'] as $architecture) {
-        expect($architecture['assetTemplate'])->toBe("TablePro-{version}-{$architecture['id']}.dmg");
-    }
+    expect($mac['universalBinary'])->toBeTrue();
+    expect($mac['architectures'])->toBe(['arm64', 'x86_64']);
+    expect($mac['assetTemplate'])->toBe('TablePro-{version}.dmg');
 
     $destinations = collect($mac['destinations'])->keyBy('kind');
 
     expect($destinations->keys()->all())->toBe(['dmg', 'homebrew', 'releases']);
-    expect($destinations['dmg']['urlTemplate'])->toContain('{version}')->toContain('{arch}');
+    expect($destinations['dmg']['urlTemplate'])
+        ->toBe('https://github.com/TableProApp/TablePro/releases/download/v{version}/' . $mac['assetTemplate'])
+        ->not->toContain('{arch}');
     expect($destinations['homebrew']['command'])->toBe('brew install --cask tablepro');
     expect($destinations['releases']['url'])->toBe('https://github.com/TableProApp/TablePro/releases');
 });

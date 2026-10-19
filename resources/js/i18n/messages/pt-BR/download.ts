@@ -2,17 +2,13 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "macCta": "Baixar para Mac",
-    "builds": {
-        "arm64": "Baixar para Apple silicon",
-        "x86_64": "Baixar para Intel"
-    },
     "release": {
         "dated": "Versão {version}, lançada em {date}",
         "undated": "Versão {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "Notas de versão (inglês)",
-        "unavailable": "Detalhes do lançamento indisponíveis. Os dois botões abrem a última versão no GitHub; escolha a versão lá."
+        "unavailable": "Detalhes do lançamento indisponíveis. O botão abre a última versão no GitHub."
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -22,12 +18,7 @@ export default {
             "group": "."
         }
     },
-    "detected": "Seu navegador informa que seu Mac usa {chip}.",
     "onAnotherDevice": "Para instalar o app para Mac, abra esta página no seu Mac.",
-    "whichMac": {
-        "summary": "Qual é o meu Mac?",
-        "body": "Escolha Sobre Este Mac no menu Apple. A linha Chip indica Apple silicon; a linha Processador com Intel indica Intel."
-    },
     "checksum": {
         "summary": "Verifique seu download",
         "body": "Execute <code>shasum -a 256</code> no arquivo pelo Terminal. O resultado deve ser igual à soma de verificação SHA-256 abaixo."

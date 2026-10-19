@@ -11,8 +11,8 @@ use JsonException;
  * The file is edited by hand (architecture §1.8); this class only reads it,
  * for the release service, `release:check` and the download page. It never
  * types a fact of its own except the DMG naming pattern, which is a fallback
- * for a file that names none: `TablePro-{version}-{arch}.dmg` has held from
- * 0.73 to 0.77 and is enforced by the app's release job (`build.yml:254-270`).
+ * for a file that names none: since 0.82.0 the app's release workflow uploads
+ * one universal `TablePro-{version}.dmg`.
  *
  * A missing or unreadable file reads as empty rather than throwing, so a
  * broken data file degrades the download page to its GitHub fallback instead
@@ -20,16 +20,11 @@ use JsonException;
  *
  * @phpstan-type Requirements array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}
  * @phpstan-type Destination array{kind: string, url?: string, command?: string}
- * @phpstan-type Platform array{id: string, status: string, deviceNames?: list<string>, requirements?: Requirements, architectures?: list<array{id: string, assetTemplate?: string}>, destinations?: list<Destination>, release?: array{version?: string, build?: string, publishedAt?: string}, floorVersion?: string, price?: array{amount?: int|float, inAppPurchases?: bool}, storefrontExclusions?: list<string>}
+ * @phpstan-type Platform array{id: string, status: string, deviceNames?: list<string>, requirements?: Requirements, architectures?: list<string>, universalBinary?: bool, assetTemplate?: string, destinations?: list<Destination>, release?: array{version?: string, build?: string, publishedAt?: string}, floorVersion?: string, price?: array{amount?: int|float, inAppPurchases?: bool}, storefrontExclusions?: list<string>}
  */
 class PlatformCatalog
 {
-    /**
-     * The two architectures the Mac app ships as separate builds, in display order.
-     */
-    public const MAC_ARCHITECTURES = ['arm64', 'x86_64'];
-
-    private const DEFAULT_ASSET_TEMPLATE = 'TablePro-{version}-{arch}.dmg';
+    private const DEFAULT_ASSET_TEMPLATE = 'TablePro-{version}.dmg';
 
     /**
      * @var list<array<string, mixed>>|null
@@ -127,26 +122,20 @@ class PlatformCatalog
     }
 
     /**
-     * The DMG file name for one Mac architecture and version.
+     * The DMG file name for one Mac version.
      */
-    public function macAssetName(string $arch, string $version): string
+    public function macAssetName(string $version): string
     {
-        $template = self::DEFAULT_ASSET_TEMPLATE;
+        $template = $this->find('mac')['assetTemplate'] ?? null;
 
-        foreach ($this->find('mac')['architectures'] ?? [] as $architecture) {
-            if (is_array($architecture) && ($architecture['id'] ?? null) === $arch && is_string($architecture['assetTemplate'] ?? null)) {
-                $template = $architecture['assetTemplate'];
-            }
-        }
-
-        return strtr($template, ['{version}' => $version, '{arch}' => $arch]);
+        return strtr(is_string($template) && $template !== '' ? $template : self::DEFAULT_ASSET_TEMPLATE, ['{version}' => $version]);
     }
 
     /**
-     * The DMG's download URL for one Mac architecture and version, from the
-     * `dmg` destination's `urlTemplate`, or null when the file names none.
+     * The DMG's download URL for one Mac version, from the `dmg` destination's
+     * `urlTemplate`, or null when the file names none.
      */
-    public function macAssetUrl(string $arch, string $version): ?string
+    public function macAssetUrl(string $version): ?string
     {
         $template = $this->destination('mac', 'dmg')['urlTemplate'] ?? null;
 
@@ -154,7 +143,7 @@ class PlatformCatalog
             return null;
         }
 
-        return strtr($template, ['{version}' => $version, '{arch}' => $arch]);
+        return strtr($template, ['{version}' => $version]);
     }
 
     /**

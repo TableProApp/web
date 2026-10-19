@@ -12,15 +12,13 @@
                 "displayVersion": "13",
                 "releaseName": "Ventura"
             },
-            "architectures": [
-                { "id": "arm64", "assetTemplate": "TablePro-{version}-arm64.dmg" },
-                { "id": "x86_64", "assetTemplate": "TablePro-{version}-x86_64.dmg" }
-            ],
-            "universalBinary": false,
+            "architectures": ["arm64", "x86_64"],
+            "universalBinary": true,
+            "assetTemplate": "TablePro-{version}.dmg",
             "destinations": [
                 {
                     "kind": "dmg",
-                    "urlTemplate": "https://github.com/TableProApp/TablePro/releases/download/v{version}/TablePro-{version}-{arch}.dmg"
+                    "urlTemplate": "https://github.com/TableProApp/TablePro/releases/download/v{version}/TablePro-{version}.dmg"
                 },
                 {
                     "kind": "homebrew",

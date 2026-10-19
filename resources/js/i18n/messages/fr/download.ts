@@ -2,17 +2,13 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "macCta": "Télécharger pour Mac",
-    "builds": {
-        "arm64": "Télécharger pour Apple silicon",
-        "x86_64": "Télécharger pour Intel"
-    },
     "release": {
         "dated": "Version {version}, publiée le {date}",
         "undated": "Version {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "Notes de version (anglais)",
-        "unavailable": "Les détails de version sont indisponibles. Les deux boutons ouvrent la dernière version sur GitHub ; choisissez-y une version de l’app."
+        "unavailable": "Les détails de version sont indisponibles. Le bouton ouvre la dernière version sur GitHub."
     },
     "file": {
         "sized": "{name} · {size} Mo",
@@ -22,12 +18,7 @@ export default {
             "group": " "
         }
     },
-    "detected": "Votre navigateur indique un Mac avec {chip}.",
     "onAnotherDevice": "Pour installer l’application Mac, ouvrez cette page sur votre Mac.",
-    "whichMac": {
-        "summary": "Quel Mac ai-je ?",
-        "body": "Choisissez « À propos de ce Mac » dans le menu Apple. La ligne « Puce » indique Apple silicon ; la ligne « Processeur » mentionnant Intel indique Intel."
-    },
     "checksum": {
         "summary": "Vérifier votre téléchargement",
         "body": "Exécutez <code>shasum -a 256</code> sur le fichier dans Terminal. Le résultat doit correspondre à la somme de contrôle SHA-256 ci-dessous."

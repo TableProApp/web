@@ -6,32 +6,25 @@
  * purchases", "Linux") are the `platforms` namespace's.
  *
  * - `macCta` is the availability-layer Mac action (positioning §4), for the
- *   hero, the closing band, the mobile menu and the Free plan.
- * - `builds` are the two architecture buttons; the browser may highlight one,
- *   never choose (resources/js/lib/device.ts).
+ *   hero, the closing band, the mobile menu, the Free plan and the DMG button.
  * - `release.badge` is the version badge on the Mac card; `{date}` arrives
  *   formatted by the server for the page's locale.
  * - `otherPlatforms.joiner` joins the platform names in a negative sentence,
  *   so the last one takes "or": "not available for Linux or Windows".
- * - `checksum` is the disclosure under the builds. It renders only when the
- *   release data carries a SHA-256 for a build.
+ * - `checksum` is the disclosure under the DMG button. It renders only when
+ *   the release data carries the DMG's SHA-256.
  * - Nothing here says a download has started. `afterClick` appears only after
- *   the reader clicked a build, and says what to do if nothing arrived.
+ *   the reader clicked the DMG button, and says what to do if nothing arrived.
  */
 export default {
     macCta: 'Download for Mac',
-    builds: {
-        arm64: 'Download for Apple silicon',
-        x86_64: 'Download for Intel',
-    },
     release: {
         dated: 'Version {version}, released {date}',
         undated: 'Version {version}',
         badge: 'v{version} · {date}',
         badgeUndated: 'v{version}',
         notes: 'Release notes',
-        unavailable:
-            'Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.',
+        unavailable: 'Release details are unavailable. The button opens the latest release on GitHub.',
     },
     file: {
         sized: '{name} · {size} MB',
@@ -41,12 +34,7 @@ export default {
             group: ',',
         },
     },
-    detected: 'Your browser reports a Mac with {chip}.',
     onAnotherDevice: 'To install the Mac app, open this page on your Mac.',
-    whichMac: {
-        summary: 'Which Mac do I have?',
-        body: 'Choose About This Mac in the Apple menu. A Chip line means Apple silicon; a Processor line naming Intel means Intel.',
-    },
     checksum: {
         summary: 'Verify your download',
         body: 'Run <code>shasum -a 256</code> on the file in Terminal. The result should match the SHA-256 checksum below.',

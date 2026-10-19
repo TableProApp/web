@@ -81,11 +81,11 @@ export function availability(m: Messages, captions: { mac: string; ios: string }
     };
 }
 
-/** The Mac build architectures as a plain list: "Apple silicon and Intel". */
+/** The Mac architectures as a plain list: "Apple silicon and Intel". */
 export function macArchitectureList(m: Messages): string {
     return keepTogether(
         joinList(
-            macPlatform().architectures.map((architecture) => m.platforms.architectures[architecture.id]),
+            macPlatform().architectures.map((architecture) => m.platforms.architectures[architecture]),
             m.common.list,
         ),
     );

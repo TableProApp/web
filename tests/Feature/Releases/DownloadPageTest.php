@@ -45,9 +45,9 @@ it('renders in English with the live release, the platform facts and the copy', 
             ->where('release.source', 'github')
             ->where('release.version', '0.77.0')
             ->where('release.publishedAtFormatted', 'October 2, 2026')
-            ->where('release.assets.arm64.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg')
-            ->where('release.assets.arm64.bytes', 22_943_352)
-            ->where('release.assets.x86_64.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg')
+            ->where('release.asset.name', 'TablePro-0.77.0.dmg')
+            ->where('release.asset.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg')
+            ->where('release.asset.bytes', 65_432_179)
             ->where('mac.requirements.minVersion', '13.0')
             ->where('mac.requirements.releaseName', 'Ventura')
             ->where('mac.homebrewCommand', 'brew install --cask tablepro')
@@ -188,9 +188,8 @@ it('falls back to GitHub’s latest-release page, with no version, when no sourc
             ->where('release.source', 'unavailable')
             ->where('release.version', null)
             ->where('release.publishedAtFormatted', null)
-            ->where('release.assets.arm64.url', 'https://github.com/TableProApp/TablePro/releases/latest')
-            ->where('release.assets.x86_64.url', 'https://github.com/TableProApp/TablePro/releases/latest')
-            ->where('release.assets.arm64.name', null)
+            ->where('release.asset.url', 'https://github.com/TableProApp/TablePro/releases/latest')
+            ->where('release.asset.name', null)
             ->where('mac.homebrewTrails', false));
 });
 
@@ -248,15 +247,16 @@ it('writes Vietnamese click paths with their full English path, and no speed com
     expect(preg_match('/chậm hơn|dòng Chip|nơi bạn chọn/u', $text))->toBe(0);
 });
 
-it('server-renders both builds as links, says nothing about a download starting, and shows no checksum block without digests', function (): void {
+it('server-renders the universal DMG as a link, says nothing about a download starting, and shows no checksum block without a digest', function (): void {
     fakeLiveRelease();
 
     $pages = ['/download' => ssrHtml('/download'), '/vi/download' => ssrHtml('/vi/download')];
 
     foreach ($pages as $html) {
         expect($html)
-            ->toContain('href="https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg"')
-            ->toContain('href="https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg"')
+            ->toContain('href="https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg"')
+            ->not->toContain('arm64.dmg')
+            ->not->toContain('x86_64.dmg')
             ->toContain('href="https://apps.apple.com/app/tablepro/id6761621829"')
             ->toContain('brew install --cask tablepro')
             ->toContain('id="mac"')
@@ -278,53 +278,46 @@ it('server-renders both builds as links, says nothing about a download starting,
     }
 
     expect($pages['/download'])->toContain('Requires macOS 13 Ventura or later')
-        ->toContain('Download for Apple silicon')
-        ->toContain('Download for Intel')
-        ->toContain('Which Mac do I have?')
+        ->toContain('Download for Mac')
+        ->not->toContain('Download for Apple silicon')
+        ->not->toContain('Which Mac do I have?')
         ->toContain('v0.77.0 · October 2, 2026')
-        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0-arm64.dmg</span> · <span class="tabular-nums">22.9</span> MB')
+        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0.dmg</span> · <span class="tabular-nums">65.4</span> MB')
         ->toContain('Requires iOS and iPadOS 18 or later')
         ->toContain('Free, with no in-app purchases')
         ->toContain('not available for Linux or Windows')
         ->not->toContain('Verify your download')
-        ->not->toContain('shasum')
-        // The server cannot know the browser, so "Which Mac do I have?" renders closed; chipHelpOpen() opens it (tests/js/device.test.ts).
-        ->toMatch('/<details class="group mt-1"><summary/');
+        ->not->toContain('shasum');
 
     expect($pages['/vi/download'])->toContain('Yêu cầu macOS 13 Ventura trở lên')
-        ->toContain('Tải bản cho Apple silicon')
-        ->toContain('Tải bản cho Intel')
+        ->toContain('Tải về cho Mac')
         ->toContain('v0.77.0 · 2 tháng 10 năm 2026')
-        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0-arm64.dmg</span> · <span class="tabular-nums">22,9</span> MB')
+        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0.dmg</span> · <span class="tabular-nums">65,4</span> MB')
         ->toContain('Yêu cầu iOS và iPadOS 18 trở lên')
         ->toContain('Miễn phí, không có mua hàng trong ứng dụng')
         ->toContain('cho Linux hoặc Windows');
 })->group('ssr');
 
-it('sends each DMG’s SHA-256 to the page when the release carries one', function (): void {
-    $arm64 = str_repeat('a1', 32);
-    $x86_64 = str_repeat('b2', 32);
+it('sends the DMG’s SHA-256 to the page when the release carries one', function (): void {
+    $sha256 = str_repeat('a1', 32);
 
-    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigests($arm64, $x86_64))]);
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigest($sha256))]);
     Artisan::call('release:refresh');
 
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
-        ->where('release.assets.arm64.sha256', $arm64)
-        ->where('release.assets.x86_64.sha256', $x86_64));
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('release.asset.sha256', $sha256));
 });
 
-it('server-renders each build’s SHA-256 with the command that checks it, in English and a translated page', function (): void {
-    $arm64 = str_repeat('a1', 32);
-    $x86_64 = str_repeat('b2', 32);
+it('server-renders the DMG’s SHA-256 with the command that checks it, in English and a translated page', function (): void {
+    $sha256 = str_repeat('a1', 32);
 
-    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigests($arm64, $x86_64))]);
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigest($sha256))]);
     Artisan::call('release:refresh');
 
-    expect(ssrHtml('/download'))->toContain('Verify your download', $arm64, $x86_64, 'shasum -a 256');
-    expect(ssrHtml('/vi/download'))->toContain($arm64, $x86_64, 'shasum -a 256')->not->toContain('Verify your download');
+    expect(ssrHtml('/download'))->toContain('Verify your download', 'TablePro-0.77.0.dmg', $sha256, 'shasum -a 256');
+    expect(ssrHtml('/vi/download'))->toContain($sha256, 'shasum -a 256')->not->toContain('Verify your download');
 })->group('ssr');
 
-it('server-renders no version and sends both buttons to the latest release when no source answers', function (): void {
+it('server-renders no version and sends the button to the latest release when no source answers', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response('', 500),
         RELEASES_FAKE_APPCAST => Http::response('', 500),
@@ -332,8 +325,8 @@ it('server-renders no version and sends both buttons to the latest release when 
 
     $html = ssrHtml('/download');
 
-    expect(substr_count($html, 'href="https://github.com/TableProApp/TablePro/releases/latest"'))->toBeGreaterThanOrEqual(2)
-        ->and($html)->toContain('Release details are unavailable. Both buttons open the latest release on GitHub; choose a build there.')
+    expect(substr_count($html, 'href="https://github.com/TableProApp/TablePro/releases/latest"'))->toBeGreaterThanOrEqual(1)
+        ->and($html)->toContain('Release details are unavailable. The button opens the latest release on GitHub.')
         ->not->toContain('softwareVersion')
         ->not->toContain('.dmg"');
 })->group('ssr');

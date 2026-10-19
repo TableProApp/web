@@ -33,12 +33,6 @@ export interface Requirements {
     releaseName: string | null;
 }
 
-export interface Architecture {
-    id: MacArchitecture;
-    /** The DMG file name, with `{version}` for the release version. */
-    assetTemplate: string;
-}
-
 export type Destination =
     | { kind: 'dmg'; urlTemplate: string }
     | { kind: 'homebrew'; command: string; url: string }
@@ -70,9 +64,12 @@ interface ReleasedPlatformBase {
 
 export interface MacPlatform extends ReleasedPlatformBase {
     id: 'mac';
-    architectures: Architecture[];
-    /** Two separate builds. Never "Universal". */
-    universalBinary: false;
+    /** The chips the app runs on natively, in display order. */
+    architectures: MacArchitecture[];
+    /** One DMG runs on every architecture. */
+    universalBinary: boolean;
+    /** The DMG file name, with `{version}` for the release version. */
+    assetTemplate: string;
     /** The oldest version any channel still serves. */
     floorVersion: string;
 }
@@ -167,10 +164,10 @@ export function requirementText(platform: ReleasedPlatform, strings: PlatformStr
     return interpolate(releaseName === null ? strings.requirement.unnamed : strings.requirement.named, values);
 }
 
-/** `Apple silicon or Intel`, in the Mac build order. */
+/** `Apple silicon or Intel`, in the data order. */
 export function architecturesText(strings: PlatformStrings): string {
     return joinList(
-        macPlatform().architectures.map((architecture) => strings.architectures[architecture.id]),
+        macPlatform().architectures.map((architecture) => strings.architectures[architecture]),
         { separator: ', ', last: strings.architectures.joiner },
     );
 }

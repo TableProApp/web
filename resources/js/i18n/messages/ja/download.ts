@@ -2,17 +2,13 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "macCta": "Mac 版をダウンロード",
-    "builds": {
-        "arm64": "Apple silicon 版をダウンロード",
-        "x86_64": "Intel 版をダウンロード"
-    },
     "release": {
         "dated": "バージョン {version}、{date} リリース",
         "undated": "バージョン {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "リリースノート（英語）",
-        "unavailable": "リリース情報を取得できません。どちらのボタンも GitHub の最新リリースを開きます。そこでビルドを選んでください。"
+        "unavailable": "リリース情報を取得できません。ボタンは GitHub の最新リリースを開きます。"
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -22,12 +18,7 @@ export default {
             "group": ","
         }
     },
-    "detected": "ブラウザーによると、お使いの Mac は {chip} 搭載です。",
     "onAnotherDevice": "Mac アプリをインストールするには、Mac でこのページを開いてください。",
-    "whichMac": {
-        "summary": "自分の Mac の種類を確認する",
-        "body": "Apple メニューで「この Mac について」を選びます。「チップ」欄があれば Apple silicon Mac、「プロセッサ」欄に Intel とあれば Intel Mac です。"
-    },
     "checksum": {
         "summary": "ダウンロードを検証する",
         "body": "ターミナルでファイルに対して <code>shasum -a 256</code> を実行します。結果が下の SHA-256 チェックサムと一致することを確認してください。"

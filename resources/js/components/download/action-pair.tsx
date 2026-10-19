@@ -34,7 +34,7 @@ interface ActionPairProps {
  * had drifted apart in button size, glyph and caption spacing.
  *
  * "Download for Mac" is the large primary button with the Apple glyph and
- * goes to /download, which offers both builds; it never starts a download.
+ * goes to /download, which offers the DMG; it never starts a download.
  * The App Store badge (40px, Apple's minimum) sits centred in a 48px row, the
  * button's height, so the two captions start on one line. Side by side from
  * 640px, stacked below, each caption under its own action.
