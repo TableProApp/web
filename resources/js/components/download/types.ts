@@ -4,7 +4,6 @@
  * holds every other locale to the same keys.
  */
 import type { PostSummary } from '@/components/blog/post-list';
-import type { MacArch } from '@/lib/device';
 import type { Requirements } from '@/lib/data/platforms';
 
 export type { Requirements };
@@ -12,7 +11,7 @@ export type { Requirements };
 export type DownloadContent = typeof import('@data/content/en/download.json');
 
 export interface ReleaseAsset {
-    /** The DMG's file name, or null when the release is unavailable. */
+    /** The universal DMG's file name, or null when the release is unavailable. */
     name: string | null;
     /** The DMG, or GitHub's latest-release page when the release is unavailable. */
     url: string;
@@ -27,7 +26,7 @@ export interface ReleaseProp {
     publishedAt: string | null;
     /** Formatted in PHP for the page's locale, so SSR and the browser agree. */
     publishedAtFormatted: string | null;
-    assets: Record<MacArch, ReleaseAsset>;
+    asset: ReleaseAsset;
     releaseUrl: string;
     releasesUrl: string;
     source: 'github' | 'appcast' | 'unavailable';

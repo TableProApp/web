@@ -52,6 +52,7 @@ const facts: TableProFacts = {
     macRequirement: 'macOS 13 Ventura or later',
     iosRequirement: 'iOS and iPadOS 18 or later',
     macArchitectures: ['arm64', 'x86_64'],
+    macUniversal: true,
     starter: { ...pricing.tiers.starter.prices, activations: pricing.tiers.starter.activations },
     team: { ...pricing.tiers.team.prices, minSeats: pricing.tiers.team.seats.min },
     iosFree: true,
@@ -228,5 +229,14 @@ test('calls a single app for both architectures universal, and keeps "separate b
     }
 
     assert.ok(lines('dbeaver').includes(hub.en.labels.builds.both), 'DBeaver ships a DMG per architecture');
+
+    const ours = (macUniversal: boolean) =>
+        glanceRows(product('dbeaver'), comparisons.rows, { ...facts, macUniversal }, context('en'))
+            .find((row) => row.key === 'platforms')
+            ?.tablepro?.lines.map((line) => line.text) ?? [];
+
+    assert.ok(ours(true).includes(hub.en.labels.builds.universal), 'TablePro ships one universal DMG');
+    assert.ok(!ours(true).includes(hub.en.labels.builds.both));
+    assert.ok(ours(false).includes(hub.en.labels.builds.both));
 });
 

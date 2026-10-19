@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ChevronRight, Download } from 'lucide-react';
 import Badge from '@/components/ui/badge';
 import Button from '@/components/ui/button';
@@ -7,13 +7,11 @@ import { InlineCode } from '@/components/ui/code';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { Trans, useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
-import { buildVariant, chipHelpOpen, type DeviceKind, type MacArch } from '@/lib/device';
+import type { DeviceKind } from '@/lib/device';
 import { cn } from '@/lib/utils';
 import CommandBlock from './command-block';
 import { megabytes, requirementLine } from './format';
-import type { DownloadContent, LinksProp, MacProp, ReleaseAsset, ReleaseProp } from './types';
-
-const BUILDS: readonly MacArch[] = ['arm64', 'x86_64'];
+import type { DownloadContent, LinksProp, MacProp, ReleaseProp } from './types';
 
 /** `<ui>…</ui>` in the copy marks an app label or menu path. */
 export const UI_TAGS = { ui: (text: string) => <span className="font-medium">{text}</span> };
@@ -25,42 +23,27 @@ interface MacCardProps {
     links: LinksProp;
     /** Null until mounted: the server renders the same markup for every device. */
     device: DeviceKind | null;
-    /** Chromium's architecture hint, null when the browser gave none (Safari, Firefox), undefined until it has answered. */
-    hint: MacArch | null | undefined;
     className?: string;
 }
 
 /**
- * The Mac card (`#mac`): the release badge, both builds, the help for choosing
- * one, each build's SHA-256 when the release data carries it, and the other
- * ways to install (design-system §5.3.18 `PlatformCard`,
- * §8.7). It is a cell of the download page's `CellGrid`, so it draws no box of
- * its own, and its inner rule runs from wall to wall (§4.7).
+ * The Mac card (`#mac`): the release badge, the universal DMG, its SHA-256
+ * when the release data carries it, and the other ways to install
+ * (design-system §5.3.18 `PlatformCard`, §8.7). It is a cell of the download
+ * page's `CellGrid`, so it draws no box of its own, and its inner rule runs
+ * from wall to wall (§4.7).
  *
- * Both DMG links are rendered on the server with their real URLs. The
- * browser's hint can only make one of them primary; with no hint both stay
- * equal and "Which Mac do I have?" opens. Nothing navigates on its own, and
- * nothing claims a download started:
- * the "Next, install it" panel appears only after the reader clicked a build,
- * and offers the same file again in case nothing arrived.
+ * The DMG link is rendered on the server with its real URL. Nothing navigates
+ * on its own, and nothing claims a download started: the "Next, install it"
+ * panel appears only after the reader clicked the button, and offers the same
+ * file again in case nothing arrived.
  */
-export default function MacCard({ content, release, mac, links, device, hint, className }: MacCardProps) {
+export default function MacCard({ content, release, mac, links, device, className }: MacCardProps) {
     const { m, fmt } = useI18n();
-    const [clicked, setClicked] = useState<MacArch | null>(null);
-    const help = useRef<HTMLDetailsElement>(null);
-    const openHelp = chipHelpOpen(device, hint);
-
-    useEffect(() => {
-        if (openHelp && help.current) {
-            help.current.open = true;
-        }
-    }, [openHelp]);
+    const [clicked, setClicked] = useState(false);
 
     const available = release.source !== 'unavailable';
-    const chosen = clicked !== null ? release.assets[clicked] : null;
-    const checksums = BUILDS.map((build) => release.assets[build]).filter(
-        (asset): asset is ReleaseAsset & { name: string; sha256: string } => asset.name !== null && asset.sha256 !== null,
-    );
+    const { asset } = release;
 
     let badge: string | null = null;
 
@@ -74,9 +57,9 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
     /**
      * The file name in Plex Mono, as identifiers are (design-system §3.1), and
      * only the size in tabular figures: tabular figures in Inter spaced the
-     * name's hyphens out ("TablePro - 0.77.0 - arm64.dmg").
+     * name's hyphen out ("TablePro - 0.82.0.dmg").
      */
-    function fileLabel(asset: ReleaseAsset): ReactNode {
+    function fileLabel(): ReactNode {
         if (asset.name === null) {
             return null;
         }
@@ -95,13 +78,8 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
         );
     }
 
-    let status = '';
-
-    if (device === 'ios' || device === 'other') {
-        status = m.download.onAnotherDevice;
-    } else if (device === 'mac' && hint) {
-        status = fmt(m.download.detected, { chip: m.platforms.architectures[hint] });
-    }
+    const file = fileLabel();
+    const status = device === 'ios' || device === 'other' ? m.download.onAnotherDevice : '';
 
     return (
         <section id="mac" aria-labelledby="mac-title" className={cn('scroll-mt-24', className)}>
@@ -117,39 +95,32 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                 </p>
             )}
 
-            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-                {BUILDS.map((build) => {
-                    const asset = release.assets[build];
-                    const file = fileLabel(asset);
+            <div className="mt-6 grid sm:grid-cols-2">
+                <div>
+                    <Button
+                        href={asset.url}
+                        variant="primary"
+                        size="lg"
+                        fullWidth
+                        icon={<Download aria-hidden="true" />}
+                        onClick={() => {
+                            trackDownload('download-page', 'mac');
 
-                    return (
-                        <li key={build}>
-                            <Button
-                                href={asset.url}
-                                variant={buildVariant(build, device ?? 'other', hint ?? null)}
-                                size="lg"
-                                fullWidth
-                                icon={<Download aria-hidden="true" />}
-                                onClick={() => {
-                                    trackDownload('download-page', 'mac');
-
-                                    if (available) {
-                                        setClicked(build);
-                                    }
-                                }}
-                            >
-                                {m.download.builds[build]}
-                            </Button>
-                            {file !== null && <p className="type-caption mt-2 text-muted-foreground">{file}</p>}
-                        </li>
-                    );
-                })}
-            </ul>
+                            if (available) {
+                                setClicked(true);
+                            }
+                        }}
+                    >
+                        {m.download.macCta}
+                    </Button>
+                    {file !== null && <p className="type-caption mt-2 text-muted-foreground">{file}</p>}
+                </div>
+            </div>
 
             {/*
-              * Room reserved on the server, so the detected chip appears
-              * without moving anything below it: two lines below 640px, where
-              * either sentence wraps in a phone-width card, one above. Not a
+              * Room reserved on the server, so the sentence for another device
+              * appears without moving anything below it: two lines below
+              * 640px, where it wraps in a phone-width card, one above. Not a
               * live region: it changes on load, not in answer to anything the
               * reader did.
               */}
@@ -157,18 +128,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                 {status}
             </p>
 
-            <details ref={help} className="group mt-1">
-                <summary className="type-label inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-chip text-foreground [&::-webkit-details-marker]:hidden">
-                    <ChevronRight
-                        aria-hidden="true"
-                        className="size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) group-open:rotate-90"
-                    />
-                    {m.download.whichMac.summary}
-                </summary>
-                <p className="type-small mt-2 pl-6 text-foreground">{m.download.whichMac.body}</p>
-            </details>
-
-            {checksums.length > 0 && (
+            {asset.name !== null && asset.sha256 !== null && (
                 <details className="group mt-1">
                     <summary className="type-label inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-chip text-foreground [&::-webkit-details-marker]:hidden">
                         <ChevronRight
@@ -181,28 +141,24 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                         <p className="type-small text-foreground">
                             <Trans text={m.download.checksum.body} tags={{ code: (text) => <InlineCode>{text}</InlineCode> }} />
                         </p>
-                        <ul className="space-y-2 font-mono text-[0.75rem] [overflow-wrap:anywhere]">
-                            {checksums.map((asset) => (
-                                <li key={asset.name}>
-                                    <span className="block text-muted-foreground">{asset.name}</span>
-                                    <span className="block text-foreground">{asset.sha256}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <p className="font-mono text-[0.75rem] [overflow-wrap:anywhere]">
+                            <span className="block text-muted-foreground">{asset.name}</span>
+                            <span className="block text-foreground">{asset.sha256}</span>
+                        </p>
                     </div>
                 </details>
             )}
 
-            {chosen !== null && chosen.name !== null && (
+            {clicked && asset.name !== null && (
                 <Callout role="status" title={m.download.afterClick.title} className="mt-6">
-                    <p>{fmt(m.download.afterClick.body, { file: chosen.name })}</p>
+                    <p>{fmt(m.download.afterClick.body, { file: asset.name })}</p>
                     <p>
                         <Trans
                             text={m.download.afterClick.retry}
-                            values={{ file: chosen.name }}
+                            values={{ file: asset.name }}
                             tags={{
                                 link: (text) => (
-                                    <a href={chosen.url} onClick={() => trackDownload('download-retry', 'mac')} className={textLinkClasses('inline')}>
+                                    <a href={asset.url} onClick={() => trackDownload('download-retry', 'mac')} className={textLinkClasses('inline')}>
                                         {text}
                                     </a>
                                 ),

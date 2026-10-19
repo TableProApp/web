@@ -5,7 +5,7 @@ use Illuminate\Support\Arr;
 
 const RELEASES_FAKE_GITHUB_LATEST = 'api.github.com/repos/TableProApp/TablePro/releases/latest';
 
-const RELEASES_FAKE_APPCAST = 'raw.githubusercontent.com/TableProApp/TablePro/main/appcast.xml';
+const RELEASES_FAKE_APPCAST = 'updates.tablepro.app/appcast.xml';
 
 /**
  * @param  array<string, mixed>  $overrides
@@ -20,11 +20,9 @@ function bindReleaseFixturePlatforms(array $overrides = []): array
             'status' => 'released',
             'deviceNames' => ['Mac'],
             'requirements' => ['systems' => ['macOS'], 'minVersion' => '13.0', 'displayVersion' => '13', 'releaseName' => 'Ventura'],
-            'architectures' => [
-                ['id' => 'arm64', 'assetTemplate' => 'TablePro-{version}-arm64.dmg'],
-                ['id' => 'x86_64', 'assetTemplate' => 'TablePro-{version}-x86_64.dmg'],
-            ],
-            'universalBinary' => false,
+            'architectures' => ['arm64', 'x86_64'],
+            'universalBinary' => true,
+            'assetTemplate' => 'TablePro-{version}.dmg',
             'destinations' => [
                 ['kind' => 'dmg'],
                 ['kind' => 'homebrew', 'command' => 'brew install --cask tablepro'],
@@ -79,10 +77,10 @@ function githubReleasePayload(string $tag = 'v0.77.0', array $overrides = [], ?a
         'html_url' => "https://github.com/TableProApp/TablePro/releases/tag/{$tag}",
         'published_at' => '2026-10-02T04:15:45Z',
         'assets' => $assets ?? [
-            githubAsset("TablePro-{$version}-arm64.dmg", 22_943_352),
-            githubAsset("TablePro-{$version}-x86_64.dmg", 26_202_607),
-            githubAsset("TablePro-{$version}-arm64.zip", 31_475_263),
-            githubAsset("TablePro-{$version}-x86_64.zip", 33_766_590),
+            githubAsset("OracleDriver-{$version}.zip", 10_224_221, $tag),
+            githubAsset("TablePro-{$version}-dSYMs.zip", 182_735_436, $tag),
+            githubAsset("TablePro-{$version}.dmg", 65_432_179, $tag),
+            githubAsset("TablePro-{$version}.tar.xz", 41_754_460, $tag),
         ],
         ...$overrides,
     ];
@@ -105,42 +103,57 @@ function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $
 /**
  * @return array<string, mixed>
  */
-function githubReleasePayloadWithDigests(string $arm64, string $x86_64): array
+function githubReleasePayloadWithDigest(string $sha256): array
 {
     return githubReleasePayload(assets: [
-        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352, digest: "sha256:{$arm64}"),
-        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607, digest: "sha256:{$x86_64}"),
+        githubAsset('TablePro-0.77.0.dmg', 65_432_179, digest: "sha256:{$sha256}"),
     ]);
 }
 
+/**
+ * The app's build number for a stable version: `0.82.0` is 820099.
+ */
+function appcastBuild(string $version): int
+{
+    [$major, $minor, $patch] = array_map('intval', explode('.', $version . '.0.0'));
+
+    return (($major * 1000 + $minor) * 100 + $patch) * 100 + 99;
+}
+
+/**
+ * The feed as the release workflow writes it: a newer beta on top, then the
+ * stable `$version`, then an older stable.
+ */
 function appcastXml(string $version = '0.77.0', string $pubDate = 'Fri, 02 Oct 2026 04:15:25 +0000', string $minimum = '13.0'): string
 {
+    $build = appcastBuild($version);
+
     return <<<XML
         <?xml version="1.0" standalone="yes"?>
         <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
             <channel>
                 <title>TablePro</title>
                 <item>
-                    <title>{$version}</title>
-                    <pubDate>{$pubDate}</pubDate>
-                    <sparkle:version>134</sparkle:version>
-                    <sparkle:shortVersionString>{$version}</sparkle:shortVersionString>
-                    <sparkle:minimumSystemVersion>{$minimum}</sparkle:minimumSystemVersion>
-                    <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v{$version}/TablePro-{$version}-arm64.zip" length="32493803" type="application/octet-stream"/>
+                    <title>0.99.0-beta.1</title>
+                    <pubDate>Sat, 03 Oct 2026 04:15:25 +0000</pubDate>
+                    <sparkle:channel>beta</sparkle:channel>
+                    <sparkle:version>990001</sparkle:version>
+                    <sparkle:shortVersionString>0.99.0-beta.1</sparkle:shortVersionString>
+                    <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v0.99.0-beta.1/TablePro-0.99.0-beta.1.tar.xz" length="41754460" type="application/octet-stream"/>
                 </item>
                 <item>
                     <title>{$version}</title>
                     <pubDate>{$pubDate}</pubDate>
-                    <sparkle:version>134</sparkle:version>
+                    <sparkle:version>{$build}</sparkle:version>
                     <sparkle:shortVersionString>{$version}</sparkle:shortVersionString>
                     <sparkle:minimumSystemVersion>{$minimum}</sparkle:minimumSystemVersion>
-                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v{$version}/TablePro-{$version}-x86_64.zip" length="34904573" type="application/octet-stream"/>
+                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v{$version}/TablePro-{$version}.tar.xz" length="41754460" type="application/octet-stream"/>
                 </item>
                 <item>
                     <title>0.76.1</title>
                     <pubDate>Mon, 28 Sep 2026 22:46:49 +0000</pubDate>
-                    <sparkle:version>133</sparkle:version>
+                    <sparkle:version>760199</sparkle:version>
                     <sparkle:shortVersionString>0.76.1</sparkle:shortVersionString>
                     <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
                 </item>

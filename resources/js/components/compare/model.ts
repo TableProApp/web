@@ -65,6 +65,8 @@ export interface TableProFacts {
     /** `iOS and iPadOS 18 or later`, or null while there is no iPhone and iPad app. */
     iosRequirement: string | null;
     macArchitectures: ('arm64' | 'x86_64')[];
+    /** One app for both architectures, from `platforms.json`'s `universalBinary`. */
+    macUniversal: boolean;
     /** `activations`: the Macs one Starter license covers. */
     starter: { monthly: number; yearly: number; lifetime: number; activations: number };
     team: { monthly: number; yearly: number; lifetime: number; minSeats: number };
@@ -508,7 +510,7 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
     switch (row) {
         case 'platforms': {
             const lines: CellLine[] = [{ text: facts.devices }, { text: facts.macRequirement, muted: true }];
-            const builds = buildsLabel(facts.macArchitectures, labels);
+            const builds = buildsLabel(facts.macArchitectures, labels, facts.macUniversal);
 
             if (builds !== null) {
                 lines.push({ text: builds, muted: true });

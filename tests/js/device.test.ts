@@ -2,15 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-import {
-    appStoreFirst,
-    archFromHint,
-    archHint,
-    buildVariant,
-    chipHelpOpen,
-    classifyDevice,
-    type ArchitectureHintSource,
-} from '../../resources/js/lib/device.ts';
+import { appStoreFirst, classifyDevice } from '../../resources/js/lib/device.ts';
 
 /*
  * The download page's device rules (architecture §1.13). Nothing here may make
@@ -29,10 +21,6 @@ const UA = {
     android: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36',
     linux: 'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0',
 };
-
-function hints(architecture: string | undefined): ArchitectureHintSource {
-    return { getHighEntropyValues: async () => ({ architecture }) };
-}
 
 test('an iPhone is never a Mac, although its user agent says "like Mac OS X"', () => {
     assert.equal(classifyDevice(UA.iPhone, 5), 'ios');
@@ -60,71 +48,10 @@ test('Windows, Linux and Android are neither', () => {
     assert.equal(classifyDevice('', 0), 'other');
 });
 
-test('the Chromium architecture hint maps to a build, and nothing else does', () => {
-    assert.equal(archFromHint('arm'), 'arm64');
-    assert.equal(archFromHint('x86'), 'x86_64');
-    assert.equal(archFromHint(''), null);
-    assert.equal(archFromHint('ARM'), null);
-    assert.equal(archFromHint(undefined), null);
-    assert.equal(archFromHint(null), null);
-});
-
-test('Intel Chrome reports x86 and Apple silicon Chrome reports arm', async () => {
-    assert.equal(await archHint(hints('x86')), 'x86_64');
-    assert.equal(await archHint(hints('arm')), 'arm64');
-});
-
-test('Safari and Firefox have no hint, so the page does not guess', async () => {
-    assert.equal(await archHint(undefined), null);
-    assert.equal(await archHint(null), null);
-    assert.equal(await archHint({} as ArchitectureHintSource), null);
-    assert.equal(await archHint(hints(undefined)), null);
-});
-
-test('a refused or failing hint is no hint', async () => {
-    const failing: ArchitectureHintSource = {
-        getHighEntropyValues: async () => {
-            throw new Error('NotAllowedError');
-        },
-    };
-
-    assert.equal(await archHint(failing), null);
-});
-
-test('only the build a Mac hint names becomes primary', () => {
-    assert.equal(buildVariant('x86_64', 'mac', 'x86_64'), 'primary');
-    assert.equal(buildVariant('arm64', 'mac', 'x86_64'), 'secondary');
-    assert.equal(buildVariant('arm64', 'mac', 'arm64'), 'primary');
-    assert.equal(buildVariant('x86_64', 'mac', 'arm64'), 'secondary');
-});
-
-test('with no hint, both builds stay equal: Safari on an Intel Mac is not pointed at Apple silicon', () => {
-    assert.equal(buildVariant('arm64', 'mac', null), 'secondary');
-    assert.equal(buildVariant('x86_64', 'mac', null), 'secondary');
-});
-
-test('on an iPhone, an iPad or another system, neither Mac build is primary', () => {
-    for (const device of ['ios', 'other'] as const) {
-        assert.equal(buildVariant('arm64', device, 'arm64'), 'secondary');
-        assert.equal(buildVariant('x86_64', device, 'x86_64'), 'secondary');
-        assert.equal(buildVariant('arm64', device, null), 'secondary');
-    }
-});
-
 test('the App Store card leads only on an iPhone or iPad', () => {
     assert.equal(appStoreFirst('ios'), true);
     assert.equal(appStoreFirst('mac'), false);
     assert.equal(appStoreFirst('other'), false);
-});
-
-test('with no hint on a Mac, "Which Mac do I have?" opens; a pending or answered hint leaves it closed', () => {
-    assert.equal(chipHelpOpen('mac', null), true);
-    assert.equal(chipHelpOpen('mac', undefined), false);
-    assert.equal(chipHelpOpen('mac', 'arm64'), false);
-    assert.equal(chipHelpOpen('mac', 'x86_64'), false);
-    assert.equal(chipHelpOpen('ios', null), false);
-    assert.equal(chipHelpOpen('other', null), false);
-    assert.equal(chipHelpOpen(null, null), false);
 });
 
 /*

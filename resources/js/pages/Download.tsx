@@ -15,8 +15,9 @@ import MacCard, { UI_TAGS } from '@/components/download/mac-card';
 import type { DownloadPageProps } from '@/components/download/types';
 import { LOCALES, Trans, useI18n, type Messages } from '@/i18n';
 import { joinList, keepTogether } from '@/i18n/format';
+import { architecturesText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
-import { appStoreFirst, archHint, classifyDevice, type DeviceKind, type MacArch } from '@/lib/device';
+import { appStoreFirst, classifyDevice, type DeviceKind } from '@/lib/device';
 import { absoluteUrl, graph, iosAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
@@ -46,10 +47,6 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
     const pageUrl = absoluteUrl(baseUrl, path('/download'));
     const deviceNames = [...mac.deviceNames, ...(ios?.deviceNames ?? [])];
     const live = release.source !== 'unavailable' && release.version !== null;
-    const architectures = joinList(
-        (Object.keys(release.assets) as MacArch[]).map((arch) => m.platforms.architectures[arch]),
-        { separator: ', ', last: m.platforms.architectures.joiner },
-    );
 
     return graph([
         webPageNode(context, {
@@ -69,7 +66,7 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
                 alternateName: m.seo.macApp.alternateName,
                 subCategory: m.seo.macApp.subCategory,
                 operatingSystem: mac.requirements.systems.join(', '),
-                requirements: `${requirementLine(mac.requirements, m.platforms)}, ${architectures}`,
+                requirements: `${requirementLine(mac.requirements, m.platforms)}, ${architecturesText(m.platforms)}`,
                 licenseUrl: links.license,
                 version: live ? release.version : null,
                 downloadUrl: pageUrl,
@@ -91,41 +88,22 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
 /**
  * `/download` and `/vi/download` (sitemap §A.1, design-system §8.7).
  *
- * The server renders everything a reader needs: both Mac builds with their
- * real DMG URLs, the Homebrew command and the App Store card. After mount the
- * page reads the device only to adjust emphasis (resources/js/lib/device.ts):
- * on an iPhone or iPad the App Store card comes first and neither Mac build is
- * highlighted; on a Mac whose Chromium browser reports its architecture, that
- * build's button becomes primary. Nothing starts a download on its own, and no
- * copy says a download started.
+ * The server renders everything a reader needs: the universal DMG with its
+ * real URL, the Homebrew command and the App Store card. After mount the page
+ * reads the device only to adjust emphasis (resources/js/lib/device.ts): on an
+ * iPhone or iPad the App Store card comes first. Nothing starts a download on
+ * its own, and no copy says a download started.
  *
- * If no release source has ever answered, both buttons open GitHub's latest
+ * If no release source has ever answered, the button opens GitHub's latest
  * release, no version is shown, and the Mac card says why.
  */
 export default function Download({ content, release, mac, ios, unreleased, links, featuredEngines, latestPost }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const [device, setDevice] = useState<DeviceKind | null>(null);
-    // Undefined until the browser has answered; only a Mac is asked.
-    const [hint, setHint] = useState<MacArch | null | undefined>(undefined);
 
     useEffect(() => {
-        let cancelled = false;
-        const kind = classifyDevice(navigator.userAgent, navigator.maxTouchPoints ?? 0);
-
-        setDevice(kind);
-
-        if (kind === 'mac') {
-            void archHint(navigator.userAgentData).then((arch) => {
-                if (!cancelled) {
-                    setHint(arch);
-                }
-            });
-        }
-
-        return () => {
-            cancelled = true;
-        };
+        setDevice(classifyDevice(navigator.userAgent, navigator.maxTouchPoints ?? 0));
     }, []);
 
     const available = release.source !== 'unavailable' && release.version !== null;
@@ -136,7 +114,7 @@ export default function Download({ content, release, mac, ios, unreleased, links
         .map((id) => m.platforms.names[id]);
 
     const macCard = (
-        <MacCard content={content} release={release} mac={mac} links={links} device={device} hint={hint} className="lg:col-span-7" />
+        <MacCard content={content} release={release} mac={mac} links={links} device={device} className="lg:col-span-7" />
     );
     const iosCard = ios !== null ? <IosCard content={content} ios={ios} className="lg:col-span-5" /> : null;
 

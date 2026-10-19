@@ -18,14 +18,13 @@ use Inertia\Response;
  * The download page, `/download` and `/vi/download` (sitemap §A.1, §E.5).
  *
  * Everything the page links to outside this site arrives here, as props: the
- * DMG URLs and sizes from the release service, the App Store and GitHub
+ * DMG URL and size from the release service, the App Store and GitHub
  * Releases URLs from `platforms.json`, and the docs, source and licence links
  * from `facts.json`. No URL is typed into the page or its copy, so the
  * external-URL guard in `Data/FactsDataTest` holds by construction.
  *
- * Both DMG links are in the server-rendered HTML. The browser only ever
- * highlights one of them (resources/js/lib/device.ts); nothing starts a
- * download on its own.
+ * The DMG link is in the server-rendered HTML; nothing starts a download on
+ * its own.
  */
 class DownloadController extends Controller
 {

@@ -7,31 +7,34 @@ use Illuminate\Support\Facades\Http;
 use SimpleXMLElement;
 
 /**
- * The Sparkle feed the installed Mac app updates from.
+ * The Sparkle feed the installed Mac app updates from, at `updates.tablepro.app`.
  *
- * Read as the fallback when the GitHub releases API fails. It is served from
- * `raw.githubusercontent.com`, which is not subject to the API's
- * unauthenticated limit of 60 calls an hour, and the release job writes it only
- * after the release's assets are uploaded (`build.yml:330-405`), so a version
- * here always has its DMGs.
+ * Read as the fallback when the GitHub releases API fails. It is a GitHub
+ * Pages site, which is not subject to the API's unauthenticated limit of 60
+ * calls an hour, and the app's release workflow writes an item only after the
+ * release's assets are uploaded, so a version here always has its DMG.
  *
- * Only the top item is read. Items come in per-architecture pairs for the same
- * version, newest first; the feed carries the update zips, never the DMGs, so
- * the DMG names come from `platforms.json` rather than from the enclosure.
+ * Stable and beta share the feed; a beta item carries `sparkle:channel`. The
+ * current release is the item with no channel and the highest
+ * `sparkle:version` (the build number), wherever it sits in the feed. The
+ * enclosures are the update archives, never the DMG, so the DMG name comes
+ * from `platforms.json` rather than from the feed.
  */
 class SparkleAppcast
 {
+    public const FEED_URL = 'https://updates.tablepro.app/appcast.xml';
+
     private const SPARKLE_NAMESPACE = 'http://www.andymatuschak.org/xml-namespaces/sparkle';
 
     private const TIMEOUT_SECONDS = 5;
 
     public function feedUrl(): string
     {
-        return 'https://raw.githubusercontent.com/' . config('services.github.repo') . '/main/appcast.xml';
+        return self::FEED_URL;
     }
 
     /**
-     * The newest item of the live feed, or null when it cannot be read.
+     * The current stable item of the live feed, or null when it cannot be read.
      *
      * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null}|null
      */
@@ -51,7 +54,8 @@ class SparkleAppcast
     }
 
     /**
-     * The top item of a feed document, or null when it holds no usable item.
+     * The stable item with the highest build in a feed document, or null when
+     * it holds none.
      *
      * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null}|null
      */
@@ -70,30 +74,41 @@ class SparkleAppcast
             libxml_use_internal_errors($previous);
         }
 
-        if ($document === false || ! isset($document->channel->item[0])) {
+        if ($document === false || ! isset($document->channel->item)) {
             return null;
         }
 
-        $item = $document->channel->item[0];
-        $sparkle = $item->children(self::SPARKLE_NAMESPACE);
+        $latest = null;
+        $latestBuild = -1;
 
-        $version = trim((string) $sparkle->shortVersionString);
+        foreach ($document->channel->item as $item) {
+            $sparkle = $item->children(self::SPARKLE_NAMESPACE);
 
-        if ($version === '') {
-            $version = trim((string) $item->title);
+            if (trim((string) $sparkle->channel) !== '') {
+                continue;
+            }
+
+            $build = trim((string) $sparkle->version);
+            $version = trim((string) $sparkle->shortVersionString);
+
+            if ($version === '') {
+                $version = trim((string) $item->title);
+            }
+
+            if (preg_match('/^\d+$/', $build) !== 1 || preg_match('/^\d+(\.\d+)*$/', $version) !== 1 || (int) $build <= $latestBuild) {
+                continue;
+            }
+
+            $minimum = trim((string) $sparkle->minimumSystemVersion);
+            $latestBuild = (int) $build;
+            $latest = [
+                'version' => $version,
+                'publishedAt' => self::date(trim((string) $item->pubDate)),
+                'minimumSystemVersion' => $minimum !== '' ? $minimum : null,
+            ];
         }
 
-        if (preg_match('/^\d+(\.\d+)*$/', $version) !== 1) {
-            return null;
-        }
-
-        $minimum = trim((string) $sparkle->minimumSystemVersion);
-
-        return [
-            'version' => $version,
-            'publishedAt' => self::date(trim((string) $item->pubDate)),
-            'minimumSystemVersion' => $minimum !== '' ? $minimum : null,
-        ];
+        return $latest;
     }
 
     /**
