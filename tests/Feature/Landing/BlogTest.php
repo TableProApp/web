@@ -25,6 +25,7 @@ beforeEach(function (): void {
 
 // A post keeps the date it was published; an edit never re-dates it.
 const BLOG_PUBLISHED = [
+    'tablepro-0-82' => '2026-10-20',
     'tablepro-0-81' => '2026-10-16',
     'tablepro-0-80' => '2026-10-11',
     'tablepro-0-77' => '2026-10-02',
@@ -130,7 +131,7 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
             ->where('posts.0.date', BLOG_PUBLISHED[$expected[0]])
-            ->where('posts.0.dateFormatted', 'October 16, 2026')
+            ->where('posts.0.dateFormatted', 'October 20, 2026')
             ->where('posts', fn($posts): bool => collect($posts)->every(
                 fn(array $post): bool => $post['kind'] === (array_key_exists($post['slug'], BLOG_GUIDES) ? 'guide' : 'release'),
             )));
@@ -444,14 +445,14 @@ it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese
             ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->missing('content.seo.indexable')
             ->has('posts', count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
-            ->where('posts', fn($posts): bool => collect($posts)->slice(2, $guides)->every(
+            ->where('posts', fn($posts): bool => collect($posts)->slice(3, $guides)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
             ))
-            ->where('posts.0.slug', 'tablepro-0-81')
+            ->where('posts.0.slug', 'tablepro-0-82')
             ->where('posts.0.locale', 'en')
-            ->where('posts.0.url', '/blog/tablepro-0-81')
-            ->where('posts.0.title', blogMatter('tablepro-0-81')['title'])
-            ->where('posts.0.dateFormatted', '16 tháng 10 năm 2026')
+            ->where('posts.0.url', '/blog/tablepro-0-82')
+            ->where('posts.0.title', blogMatter('tablepro-0-82')['title'])
+            ->where('posts.0.dateFormatted', '20 tháng 10 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
