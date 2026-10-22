@@ -66,7 +66,7 @@ test('the head script marks exactly the devices classifyDevice calls ios', () =>
     const end = blade.indexOf('})();', start);
 
     assert.ok(start > 0 && end > start, 'the device script is in app.blade.php');
-    assert.ok(start < blade.indexOf("localStorage.getItem('tablepro:banner-dismissed')"), 'the device is known before the banner script reads it');
+    assert.ok(start < blade.indexOf("document.documentElement.classList.remove('has-banner')"), 'the device is known before the banner rule reads it');
 
     const run = new Function('navigator', 'document', blade.slice(start, end));
 

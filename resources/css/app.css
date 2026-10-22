@@ -137,12 +137,12 @@ html {
  * (landing-layout.tsx), so an anchor only has to clear the header: 64px plus
  * 16px of air.
  *
- * Zero by default, so a disabled or dismissed banner leaves nothing behind.
- * `html.has-banner` is stamped server-side in app.blade.php on every page that
- * shows it, and removed there before first paint while the reader's dismissal
- * lasts (lib/banner.ts), so a dismissed banner never flashes and a disabled one
- * reserves nothing. Visibility lives here rather than in React state for the
- * same reason: state would resolve one paint too late.
+ * Zero by default, so a disabled banner leaves nothing behind. `html.has-banner`
+ * is stamped server-side in app.blade.php on every page that shows it. The
+ * banner cannot be closed, so the class stays for the whole visit; the one
+ * place it comes off in the browser is the iPhone and iPad page, for a reader
+ * on one of those devices, before first paint. Visibility lives here rather
+ * than in React state so that the first frame is already right.
  *
  * The slot holds one bar at a time (TopBanner). The language bar, which offers
  * this page in the reader's language, takes the same height and hides the
@@ -179,6 +179,33 @@ html.has-language-bar .language-bar {
 
 html.has-language-bar .support-banner {
   display: none;
+}
+
+/*
+ * The license banner's ground: a wash of the brand hue over the page colour,
+ * strongest at the left and thinning to the right, under a rule in the same
+ * hue. A tint, not a fill: the text stays `--foreground` and the link
+ * `--accent-text`, which measure 17.5:1 and 5.1:1 on the strongest stop in
+ * light and 14.5:1 and 8.2:1 in dark, within the design system's text pairs
+ * (its lowest is 5.15:1). Mixed in oklab, not oklch: the neutral tokens
+ * write their hue as 0, and a polar mix would swing the tint from the brand's
+ * 55 towards red. `bg-surface` on the element is the ground where
+ * `color-mix()` is unknown, and in forced colours the band is Canvas like
+ * every other band.
+ */
+.support-banner {
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--accent) 14%, var(--background)),
+    color-mix(in oklab, var(--accent) 6%, var(--background))
+  );
+  border-color: color-mix(in oklab, var(--accent) 30%, var(--rule));
+}
+
+@media (forced-colors: active) {
+  .support-banner {
+    background-image: none;
+  }
 }
 
 html {

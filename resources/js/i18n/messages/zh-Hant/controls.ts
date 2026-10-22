@@ -34,6 +34,5 @@ export default {
         "included": "包含",
         "notIncluded": "不包含"
     },
-    "dismiss": "隱藏",
     "close": "關閉"
 } satisfies Messages['controls'];

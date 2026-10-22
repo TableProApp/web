@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
@@ -151,7 +151,7 @@ Das Lesen der öffentlichen Website und ihre Anfragen zu Newsletter, Checkout un
 - **`_ga` und `_ga_<ID>`** (Google-Analytics-Cookies, bis zu 2 Jahre, nur mit deiner Erlaubnis): eine zufällige Browserkennung und der Status deines aktuellen Besuchs. Ablehnen oder späteres Ändern deiner Antwort löscht sie. Rechtsgrundlage: Einwilligung.
 - **`tablepro:analytics-consent`** (lokaler Speicher, bis du ihn löschst): deine Antwort auf die Analysefrage, damit sie nicht auf jeder Seite erscheint. Website und Kontoportal teilen diesen Eintrag. Rechtsgrundlage: unbedingt erforderlich, um deine Wahl zu beachten.
 - **`tablepro:attribution`** (lokaler Speicher, 90 Tage): der unter [Website](#website) beschriebene Erstbesuchsdatensatz. Er enthält keine persönliche Kennung und wird nur mit einer Checkout-Anfrage gesendet, bei der unser Server ihn verwirft. Rechtsgrundlage: berechtigtes Interesse.
-- **`theme`** und **`tablepro:banner-dismissed`** (lokaler Speicher, bis du ihn löschst): deine Wahl zwischen heller, dunkler oder Systemdarstellung sowie ausgeblendetes Banner und Ausblendungsdauer: 30 Tage oder ein Jahr, wenn du angibst, eine Lizenz zu haben, oder eine kaufst. Rechtsgrundlage: berechtigtes Interesse.
+- **`theme`** (lokaler Speicher, bis du ihn löschst): deine Wahl zwischen heller, dunkler oder Systemdarstellung. Rechtsgrundlage: berechtigtes Interesse.
 - **`tablepro:language`** (lokaler Speicher, bis du ihn löschst): die Sprache, die du im Sprachmenü oder in der Sprachleiste gewählt hast, und jede Sprache, deren Vorschlag du geschlossen hast, damit sie nicht erneut angeboten wird. Rechtsgrundlage: berechtigtes Interesse.
 - **`mintlify_anonymous_id`** (lokaler Speicher auf docs.tablepro.app, von Mintlify gesetzt, nur wenn du dort Google Analytics zulässt): die unter [Website](#website) beschriebene Besucher-ID. Beim Ablehnen wird sie gelöscht. Die Dokumentation speichert ihre eigene Antwort `tablepro:analytics-consent`. Rechtsgrundlage: Einwilligung.
 - **Cookies beginnend mit `crisp-client/`** (Crisp, etwa `crisp-client/session/…`; 6 Monate, bei Rückkehr erneuert; auf jeder Seite nach dem Laden des Chats gesetzt): halten Chat und Gespräch über Seiten und Besuche hinweg verfügbar. Rechtsgrundlage: berechtigtes Interesse, um auf jeder Seite Support anzubieten.

@@ -92,13 +92,14 @@ it('keeps the analytics event names and their parameters', function (): void {
     $names = [];
 
     foreach (contractSources() as $file => $text) {
-        preg_match_all("/trackEvent\('([a-z_]+)', \{([^}]*)\}/", $text, $events, PREG_SET_ORDER);
+        // `trackEvent('name')` carries no parameters; `trackEvent('name', { … })` carries the keys inside the braces.
+        preg_match_all("/trackEvent\('([a-z_]+)'(?:, \{([^}]*)\})?\)/", $text, $events, PREG_SET_ORDER | PREG_UNMATCHED_AS_NULL);
 
         foreach ($events as [, $name, $params]) {
             // `{ tier: tier.key, cycle }`: a key before a colon, or a shorthand property.
             $keys = array_values(array_filter(array_map(
                 static fn(string $pair): string => preg_match('/^\s*(\w+)/', $pair, $key) ? $key[1] : '',
-                explode(',', $params),
+                explode(',', $params ?? ''),
             )));
 
             $names[$name][] = $keys;
@@ -117,9 +118,9 @@ it('keeps the analytics event names and their parameters', function (): void {
         'download_click' => ['location', 'platform'],
         'checkout_started' => ['tier', 'cycle'],
         'newsletter_signup_clicked' => ['source'],
-        'license_banner_view' => ['version'],
-        'license_banner_click' => ['version'],
-        'license_banner_dismiss' => ['version', 'reason'],
+        // The banner cannot be closed, so there is no dismiss event, and it has no version to report.
+        'license_banner_view' => [],
+        'license_banner_click' => [],
     ];
 
     foreach ($names as $name => $sets) {
@@ -144,7 +145,7 @@ it('keeps the analytics event names and their parameters', function (): void {
     expect((string) file_get_contents(resource_path('js/components/databases/download-band.tsx')))->toContain('<ActionPair')->toContain('location={location}');
 });
 
-it('keeps the four storage keys both apps read', function (): void {
+it('keeps the three storage keys both apps read', function (): void {
     $key = static function (string $file, string $constant): ?string {
         preg_match("/{$constant} = '([^']+)'/", (string) file_get_contents(resource_path("js/{$file}")), $match);
 
@@ -154,13 +155,13 @@ it('keeps the four storage keys both apps read', function (): void {
     Assert::assertSame('tablepro:analytics-consent', $key('lib/consent.ts', 'CONSENT_STORAGE_KEY'));
     Assert::assertSame('theme', $key('lib/theme.ts', 'THEME_STORAGE_KEY'));
     Assert::assertSame('tablepro:attribution', $key('lib/attribution.ts', 'ATTRIBUTION_STORAGE_KEY'));
-    Assert::assertSame('tablepro:banner-dismissed', $key('lib/banner.ts', 'BANNER_STORAGE_KEY'));
 
     $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
     $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));
 
+    // The banner cannot be closed, so the template reads no record of one.
     expect($blade)->toContain("localStorage.getItem('tablepro:analytics-consent')")
-        ->toContain("localStorage.getItem('tablepro:banner-dismissed')");
+        ->not->toContain('banner-dismissed');
     expect($partial)->toContain("localStorage.getItem('theme')");
 });
 

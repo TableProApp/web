@@ -1,7 +1,7 @@
 ---
 title: 隐私政策
 description: TablePro 应用、网站和账户门户收集什么信息、发送到哪里、保存多久，以及如何更改或删除。
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 tablepro.app/account 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
@@ -151,7 +151,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **`_ga` 和 `_ga_<ID>`**（Google Analytics Cookie，最长两年，仅在允许分析时）：浏览器的随机标识符及当前访问状态。拒绝或之后更改回答时会删除。合法依据：同意。
 - **`tablepro:analytics-consent`**（本地存储，直至您清除）：保存对分析提问的回答，避免每个页面重复询问。网站和账户门户共用。合法依据：履行您的选择所严格必要。
 - **`tablepro:attribution`**（本地存储，90 天）：[网站](#website)一节所述的首访记录。不包含您的标识符，仅随结账请求发送，服务器随后丢弃。合法依据：合法利益。
-- **`theme`** 和 **`tablepro:banner-dismissed`**（本地存储，直至您清除）：保存所选浅色、深色或系统主题，以及关闭的横幅和隐藏期限：30 天；若您表示已持有许可证或购买许可证，则为一年。合法依据：合法利益。
+- **`theme`**（本地存储，直至您清除）：保存所选浅色、深色或系统主题。合法依据：合法利益。
 - **`tablepro:language`**（本地存储，直至您清除）：保存您在语言菜单或语言栏中选择的语言，以及您关闭过推荐的语言，以免再次推荐。合法依据：合法利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本地存储，由 Mintlify 设置，仅在您于文档中允许 Google Analytics 时）：[网站](#website)一节所述的访客 ID。拒绝后即删除。文档单独保存自己的 `tablepro:analytics-consent` 回答。合法依据：同意。
 - **以 `crisp-client/` 开头的 Cookie**（Crisp，如 `crisp-client/session/…`；六个月，再次访问时续期；聊天加载后每个页面都会设置）：在页面和访问之间保持聊天及对话。合法依据：为每个页面提供支持的合法利益。

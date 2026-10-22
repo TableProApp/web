@@ -1,7 +1,7 @@
 ---
 title: Política de privacidad
 description: Qué recopilan las apps, el sitio web y el portal de cuentas de TablePro, adónde se envía, cuánto tiempo se conserva y cómo modificarlo o eliminarlo.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
@@ -151,7 +151,7 @@ Leer el sitio público y sus solicitudes de boletín, compra y códigos de descu
 - **`_ga` y `_ga_<ID>`** (cookies de Google Analytics, hasta 2 años, solo si permites el análisis): un identificador aleatorio del navegador y el estado de tu visita actual. Rechazarlas, o cambiar tu respuesta después, las elimina. Base jurídica: consentimiento.
 - **`tablepro:analytics-consent`** (almacenamiento local, hasta que lo borres): tu respuesta a la pregunta sobre análisis, para no preguntarte en todas las páginas. El sitio web y el portal de cuentas lo comparten. Base jurídica: estrictamente necesario para respetar tu elección.
 - **`tablepro:attribution`** (almacenamiento local, 90 días): el registro de primera visita descrito en [Sitio web](#website). No contiene un identificador tuyo y solo se envía con una solicitud de compra, donde nuestro servidor lo descarta. Base jurídica: interés legítimo.
-- **`theme`** y **`tablepro:banner-dismissed`** (almacenamiento local, hasta que lo borres): si elegiste apariencia clara, oscura o del sistema, y qué aviso cerraste y hasta cuándo: 30 días, o un año si indicas que tienes licencia o compras una. Base jurídica: interés legítimo.
+- **`theme`** (almacenamiento local, hasta que lo borres): si elegiste apariencia clara, oscura o del sistema. Base jurídica: interés legítimo.
 - **`tablepro:language`** (almacenamiento local, hasta que lo borres): el idioma que elegiste en el menú de idiomas o en la barra de idioma, y cada idioma cuya sugerencia cerraste, para no volver a ofrecerlo. Base jurídica: interés legítimo.
 - **`mintlify_anonymous_id`** (almacenamiento local en docs.tablepro.app, lo guarda Mintlify, solo si permites Google Analytics allí): el ID de visitante descrito en [Sitio web](#website). Al rechazar se elimina. La documentación guarda su propia respuesta `tablepro:analytics-consent`. Base jurídica: consentimiento.
 - **Cookies que comienzan por `crisp-client/`** (Crisp, por ejemplo `crisp-client/session/…`; 6 meses, renovados cuando vuelves; establecidas en todas las páginas al cargar el chat): mantienen el chat y tu conversación entre páginas y visitas. Base jurídica: interés legítimo, para ofrecer soporte en todas las páginas.

@@ -53,7 +53,7 @@ for (const [state, answer] of [
     test(`sends nothing while analytics is ${state}`, () => {
         const calls = installBrowser(answer);
 
-        trackEvent('license_banner_view', { version: '3' });
+        trackEvent('license_banner_view');
         trackDownload('hero');
 
         assert.deepEqual(calls, []);

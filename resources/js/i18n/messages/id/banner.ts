@@ -5,5 +5,4 @@ export default {
     "message": "Paket berbayar menambahkan fitur dan mendanai pengembangan TablePro.",
     "short": "Paket opsional",
     "cta": "Lihat paket",
-    "licensed": "Punya lisensi? Sembunyikan"
 } satisfies Messages['banner'];

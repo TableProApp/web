@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
@@ -151,7 +151,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **`_ga` 和 `_ga_<ID>`**（Google Analytics Cookie，最長兩年，僅在允許分析時）：瀏覽器的隨機識別碼及目前造訪狀態。拒絕或之後變更回答時會刪除。合法依據：同意。
 - **`tablepro:analytics-consent`**（本機儲存空間，直至您清除）：保存對分析提問的回答，避免每個網頁重複詢問。網站和帳戶入口網站共用。合法依據：履行您的選擇所絕對必要。
 - **`tablepro:attribution`**（本機儲存空間，90 天）：[網站](#website)一節所述的首次造訪紀錄。不包含您的識別碼，僅隨結帳請求傳送，伺服器之後捨棄。合法依據：正當利益。
-- **`theme`** 和 **`tablepro:banner-dismissed`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀，以及關閉的橫幅和隱藏期限：30 天；若您表示已有授權或購買授權，則為一年。合法依據：正當利益。
+- **`theme`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀。合法依據：正當利益。
 - **`tablepro:language`**（本機儲存空間，直至您清除）：保存您在語言選單或語言列中選擇的語言，以及您關閉過建議的語言，以免再次建議。合法依據：正當利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。

@@ -8,9 +8,9 @@
     banner is seen and how much room it takes above the header. It is set here
     rather than in React because `--banner-h` has to be settled by the time the
     first frame renders: resolving it in state would drop the header 40px on
-    every load for every reader who had already closed the bar. It is set only
-    on pages that show the banner (App\Support\Banner), and the script further
-    down removes it again while this browser's dismissal lasts.
+    the first frame of every load. It is set only on pages that show the banner
+    (App\Support\Banner). The banner cannot be closed, so nothing in the
+    reader's browser removes it, except the iPhone and iPad rule further down.
 
     No `overflow-x: hidden` on <html> or <body>: it masked horizontal-scroll
     regressions instead of preventing them. Anything wide scrolls inside its
@@ -105,38 +105,22 @@
     @endif
 
     @inertiaHead
-    @if(\App\Support\Banner::shownOn(request()))
+    @if(\App\Support\Banner::shownOn(request()) && \App\Support\Banner::hiddenOnIosDevices(request()))
         {{--
-            The banner dismissal, before first paint.
-
-            The record is `{"version", "until"}` (resources/js/lib/banner.ts,
-            `isBannerDismissed`, which this mirrors and tests/js/banner.test.ts
-            runs against). It hides the bar until `until` for the version the
-            reader closed, or for every version when it is "*": a reader who
-            has a license, or just bought one. Bumping `banner.version` brings
-            the bar back for a new message. Wrapped, because localStorage
-            throws outright in a private window rather than returning null —
-            and a banner is not worth a blank page.
-
-            Emitted only where the banner is shown, so elsewhere there is no
-            element, no class, no reserved height and no dead script.
-
             The license is for the Mac app, so on the iPhone and iPad page a
-            reader on one of those devices gets no banner either.
+            reader on one of those devices gets no banner, decided before first
+            paint from the `ios` class the script above set. It is the only
+            thing that ever removes `has-banner` in the browser: the banner
+            cannot be closed, so there is no stored record, no version and no
+            script reading one.
+
+            Emitted only on that page, so elsewhere there is no dead script.
         --}}
         <script>
             (function () {
-                @if(\App\Support\Banner::hiddenOnIosDevices(request()))
                 if (document.documentElement.classList.contains('ios')) {
                     document.documentElement.classList.remove('has-banner');
                 }
-                @endif
-                try {
-                    var record = JSON.parse(localStorage.getItem('tablepro:banner-dismissed') || 'null');
-                    if (record && typeof record.until === 'number' && record.until > Date.now() && (record.version === '*' || record.version === @json((string) config('banner.version')))) {
-                        document.documentElement.classList.remove('has-banner');
-                    }
-                } catch (e) {}
             })();
         </script>
     @endif

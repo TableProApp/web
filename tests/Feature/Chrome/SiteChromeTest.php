@@ -370,10 +370,9 @@ it('closes the open menu at the width its language shows the desktop row', funct
 it('gives the small controls of the header and the banner a finger-sized target', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
-    // Hit-tested at 390px, the header Download was 92 by 32 and the banner's dismiss 32 by 32.
+    // Hit-tested at 390px, the header Download was 92 by 32 and the banner's link one line of small text.
     expect($read('site-header.tsx'))->toContain("buttonClasses('primary', 'sm', 'relative whitespace-nowrap after:absolute after:inset-x-0 after:-inset-y-[7px]')");
-    expect($read('support-banner.tsx'))->toContain('after:absolute after:-inset-x-1 after:-inset-y-3')
-        ->toContain('after:absolute after:-inset-1.5');
+    expect($read('support-banner.tsx'))->toContain('after:absolute after:-inset-x-1 after:-inset-y-3');
 });
 
 it('gives the footer bar\'s controls a 44px target on a touch screen', function (): void {

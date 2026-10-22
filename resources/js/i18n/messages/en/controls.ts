@@ -47,6 +47,5 @@ export default {
         included: 'Included',
         notIncluded: 'Not included',
     },
-    dismiss: 'Dismiss',
     close: 'Close',
 };

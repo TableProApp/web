@@ -35,10 +35,9 @@ export interface SwitcherItem {
     fallback: boolean;
 }
 
-/** The banner's switch, link and dismissal version; its words are the `banner` catalog's. */
+/** The banner's link; its words are the `banner` catalog's. It cannot be closed, so it has no version. */
 export interface BannerProp {
     href: string;
-    version: string;
 }
 
 export interface SharedProps extends Record<string, unknown> {

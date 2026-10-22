@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -151,7 +151,7 @@ Membaca situs publik serta permintaan newsletter, checkout, dan kode diskonnya t
 - **`_ga` dan `_ga_<ID>`** (cookie Google Analytics, hingga 2 tahun, hanya jika Anda mengizinkan analitik): pengenal acak untuk peramban dan status kunjungan saat ini. Menolak atau mengubah jawaban kemudian akan menghapusnya. Dasar hukum: persetujuan.
 - **`tablepro:analytics-consent`** (penyimpanan lokal, sampai Anda menghapusnya): jawaban Anda atas pertanyaan analitik, agar tidak ditanyakan pada setiap halaman. Situs web dan portal akun berbagi data ini. Dasar hukum: benar-benar diperlukan untuk menghormati pilihan Anda.
 - **`tablepro:attribution`** (penyimpanan lokal, 90 hari): catatan kunjungan pertama yang dijelaskan di [Situs web](#website). Catatan ini tidak berisi pengenal Anda dan hanya dikirim bersama permintaan pembayaran, lalu dibuang oleh server kami. Dasar hukum: kepentingan yang sah.
-- **`theme`** dan **`tablepro:banner-dismissed`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem, serta banner yang Anda tutup dan batas waktunya: 30 hari, atau satu tahun jika Anda menyatakan sudah memiliki lisensi atau membelinya. Dasar hukum: kepentingan yang sah.
+- **`theme`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem. Dasar hukum: kepentingan yang sah.
 - **`tablepro:language`** (penyimpanan lokal, sampai Anda menghapusnya): bahasa yang Anda pilih di menu bahasa atau bilah bahasa, dan setiap bahasa yang sarannya Anda tutup, agar tidak ditawarkan lagi. Dasar hukum: kepentingan yang sah.
 - **`mintlify_anonymous_id`** (penyimpanan lokal di docs.tablepro.app, dipasang oleh Mintlify, hanya jika Anda mengizinkan Google Analytics di sana): ID pengunjung yang dijelaskan di [Situs web](#website). Menolak akan menghapusnya. Dokumentasi menyimpan jawaban `tablepro:analytics-consent` miliknya sendiri. Dasar hukum: persetujuan.
 - **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah chat dimuat): mempertahankan chat dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
