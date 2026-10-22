@@ -136,7 +136,7 @@ does not call `/api/newsletter/stats` at all (§1.14). A Pest guard scans `resou
 | `localization` | closure → `{ switcher: [{locale, native, hreflang, href, current, fallback}] }` | `href` is the alternate for that locale when one exists. Otherwise it is that locale's section index (for example `/vi/blog`) with `fallback: true`, and the switcher shows a short note ("Trang này chưa có bản tiếng Việt") |
 | `seo` | closure → `{ robots: 'index, follow' \| 'noindex, follow', canonical: string \| null, alternates: [{hreflang, href}], xDefault, ogLocale, ogLocaleAlternates[], ogImage: {url, width, height, type} \| null }` | Built by `App\Support\Seo\SeoContext::forRequest()` from the `PageRegistry` (§1.6). For a page that renders but is not indexed in this locale (`/vi/blog`), and for an unmatched route or error page, the value is `robots: 'noindex, follow'`, `canonical: null` and no alternates |
 | `lcpAsset` | `{light, dark} \| null` (page prop, not shared) | Set by a controller only for a **supplied** asset with `priority: true`, through `AssetManifest::lcpDescriptor()` (§1.9). `app.blade.php` reads it to emit one preload for the active theme |
-| `banner` | `{href, version} \| null` | The **copy** moves to the `banner` catalog namespace. Config keeps only `enabled`, `href` and `version` (`config/banner.php` is trimmed) |
+| `banner` | `{href} \| null` | The **copy** moves to the `banner` catalog namespace. Config keeps only `enabled` and `href` (`config/banner.php` is trimmed); the banner cannot be closed, so there is no version (2026-10-22) |
 | `crispWebsiteId` | `config('services.crisp.website_id')` | Public value, used only by the click-to-load helper (§1.12) |
 | `assetPlaceholders` | `! App::isProduction()` | False in production, where an asset slot with no image renders nothing (§1.9) |
 
@@ -1080,7 +1080,7 @@ Windows or Linux buttons appear.
 | `POST /newsletter/subscribe {email}` | Adds `locale`. Fallback strings in `use-email-form.ts:40-56` move to the `forms` namespace. 429 always uses the catalog, because the platform's 429 text is shared with the license API and stays English |
 | `GET /api/newsletter/stats` | **The public site no longer calls it.** The new footer shows no subscriber count (sitemap §B.3, design-system §11.1, item 6), so `footer.tsx:122`'s lazy fetch goes. The endpoint stays as a platform contract. `Contracts/PublicContractsTest` asserts that no file in `resources/js` fetches it |
 | GA events `download_click{location, platform}`, `checkout_started{tier, cycle}`, `newsletter_signup_clicked{source}` | Names and parameters unchanged. The new layout may add new `location` values; `platform` stays `mac\|ios` |
-| Storage keys `tablepro:analytics-consent`, `theme`, `tablepro:attribution`, `tablepro:banner-dismissed` | Unchanged. `theme` now has writers (§1.10) |
+| Storage keys `tablepro:analytics-consent`, `theme`, `tablepro:attribution` | Unchanged. `theme` now has writers (§1.10). `tablepro:banner-dismissed` is retired: the banner cannot be closed (2026-10-22) |
 | Consent head order | Unchanged (pinned) |
 | Inbound URLs `/?ref=…#pricing`, `/download`, `/account`, `/privacy` | Unchanged (§1.1) |
 | Assets the platform pulls from this app: `/logo.png`, `/images/logo.png`, `/site.webmanifest`, `/privacy#cookies` | **Do not move.** `#cookies` stays an explicit heading id in both locales' privacy markdown |
@@ -1167,7 +1167,7 @@ cases call live `api.github.com` today.
 | `Landing/LicenseFeaturesTest.php` | **Rewrite** | Run it against `paid-features.json` (10, 8/2, order, names) and the `en`/`vi` detail files; each feature named once in the plan table (SSR). Drop the reading-budget pin |
 | `Landing/ProductHuntBadgeTest.php` | **Delete** | The hotlink is removed. If the design keeps a local badge, assert it is a local file |
 | `Landing/PurchaseAttributionTest.php` | **Keep, update paths** | Add: `locale` is present in the checkout body, and attribution is still attached before `fetch('/checkout')` |
-| `Landing/TopBannerTest.php` | **Keep semantics, rewrite** | Keep the pre-paint dismissal script, "disabled leaves no trace" and the href. The length limits move to `banner` catalog values in both locales |
+| `Landing/TopBannerTest.php` | **Keep semantics, rewrite** | Keep "disabled leaves no trace" and the href; the banner cannot be closed, so there is no dismissal script to keep (2026-10-22). The length limits move to `banner` catalog values in both locales |
 | `Seo/SeoSmokeTest.php` | **Rewrite** | Iterate the registry for both locales: the component name and a 200 |
 | `Seo/StaleClaimsTest.php` | **Delete → `Content/BannedClaimsTest`** | It keeps the slugs-equal-routes rule and the no-ratings rule, and adds the missing guards (MCP tool count, AI provider count, macOS floor) |
 | `tests/js/consent.test.ts`, `tests/js/attribution.test.ts` | **Keep** | Paths unchanged (the shared `consent.ts` keeps its location) |

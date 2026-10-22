@@ -5,5 +5,4 @@ export default {
     "message": "I piani a pagamento aggiungono funzionalità e finanziano lo sviluppo di TablePro.",
     "short": "Piani facoltativi",
     "cta": "Vedi i piani",
-    "licensed": "Hai la licenza? Nascondi"
 } satisfies Messages['banner'];

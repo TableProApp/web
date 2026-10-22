@@ -33,17 +33,15 @@ it('is on unless it is switched off', function (): void {
     $defaults = require base_path('config/banner.php');
 
     expect($defaults['enabled'])->toBeTrue();
-    expect(array_keys($defaults))->toEqualCanonicalizing(['enabled', 'href', 'version']);
+    expect(array_keys($defaults))->toEqualCanonicalizing(['enabled', 'href']);
 });
 
 it('leaves nothing behind when it is switched off', function (): void {
     config(['banner.enabled' => false]);
 
     $response = get('/download')->assertOk();
-    $html = $response->getContent();
 
-    Assert::assertStringNotContainsString('has-banner', $html, 'A disabled banner must reserve no height');
-    Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, 'A disabled banner must not ship a dismissal script');
+    Assert::assertStringNotContainsString('has-banner', $response->getContent(), 'A disabled banner must reserve no height');
 
     $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
 });
@@ -54,10 +52,8 @@ it('stays off the pricing page it leads to, in every language', function (string
 
     $path = "{$prefix}/pricing";
     $response = get($path)->assertOk();
-    $html = $response->getContent();
 
-    Assert::assertStringNotContainsString('has-banner', $html, "{$path} must reserve no banner height");
-    Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, "{$path} must not ship a dismissal script");
+    Assert::assertStringNotContainsString('has-banner', $response->getContent(), "{$path} must reserve no banner height");
 
     $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
 })->with(['English' => '', 'Vietnamese' => '/vi']);
@@ -77,48 +73,49 @@ it('stays off the iPhone and iPad page for a reader on one of those devices, in 
     Assert::assertStringNotContainsString($rule, get("{$prefix}/download")->assertOk()->getContent());
 })->with(['English' => '', 'Vietnamese' => '/vi']);
 
-it('sends only its link and version to the page, so the words come from the catalog', function (): void {
-    config(['banner.enabled' => true, 'banner.href' => '/pricing', 'banner.version' => '7']);
+it('sends only its link to the page, so the words come from the catalog', function (): void {
+    config(['banner.enabled' => true, 'banner.href' => '/pricing']);
 
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['href' => '/pricing', 'version' => '7']));
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['href' => '/pricing']));
 });
 
-it('settles the dismissal before the first paint, per version, with an end date', function (): void {
-    config(['banner.enabled' => true, 'banner.version' => '7']);
+it('cannot be closed: no close button, no stored record, no head script reading one', function (): void {
+    config(['banner.enabled' => true]);
 
     $html = get('/download')->assertOk()->getContent();
-
-    // Decided in React state, the bar would drop the header 40px on every load for a reader who had closed it.
-    $read = strpos($html, "JSON.parse(localStorage.getItem('tablepro:banner-dismissed')");
-
-    expect(str_contains($html, '<html lang="en" class="has-banner">'))->toBeTrue();
-    Assert::assertNotFalse($read, 'The dismissal must be settled by an inline script reading the stored record');
-    Assert::assertLessThan(strpos($html, '<body'), $read, 'The dismissal script belongs in the head, before first paint');
-
-    $script = substr($html, $read, (int) strpos($html, '</script>', $read) - $read);
-
-    expect($script)->toContain('record.until > Date.now()')
-        ->toContain("record.version === '*'")
-        ->toContain('record.version === "7"');
-
-    // Wrapped, because localStorage throws in a private window, and a banner is not worth a broken head.
-    $guard = strrpos(substr($html, 0, $read), 'try {');
-    Assert::assertNotFalse($guard, 'The dismissal read must be wrapped in try');
-    Assert::assertLessThan(80, $read - $guard, 'The dismissal read must be the first thing inside its try');
-});
-
-it('dismisses under the key the head script reads', function (): void {
-    $lib = (string) file_get_contents(resource_path('js/lib/banner.ts'));
     $component = (string) file_get_contents(resource_path('js/components/site/support-banner.tsx'));
     $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
 
-    preg_match("/BANNER_STORAGE_KEY = '([^']+)'/", $lib, $key);
+    // Stamped by the server and, off /ios, touched by nothing in the head: every reader has the band on every load.
+    expect(str_contains($html, '<html lang="en" class="has-banner">'))->toBeTrue();
+    Assert::assertStringNotContainsString('banner-dismissed', $html);
+    Assert::assertStringNotContainsString("classList.remove('has-banner')", $html);
 
-    Assert::assertSame('tablepro:banner-dismissed', $key[1] ?? null);
-    Assert::assertStringContainsString("localStorage.getItem('{$key[1]}')", $blade);
-    expect($component)->toContain("import { dismissBanner } from '@/lib/banner';")
-        ->toContain('dismiss(true)')
-        ->toContain('dismiss(false)');
+    expect($component)->not->toContain('dismiss')
+        ->not->toContain('<button')
+        ->not->toContain('localStorage')
+        ->not->toContain("from '@/lib/banner'");
+    expect($blade)->not->toContain('banner-dismissed')->not->toContain('banner.version');
+    expect(file_exists(resource_path('js/lib/banner.ts')))->toBeFalse('The dismissal library went with the dismissal');
+
+    foreach (bannerLocales() as $locale) {
+        expect(bannerCatalog($locale))->not->toHaveKey('licensed');
+    }
+});
+
+it('is a tint of the brand hue under text the design system rates, never an accent fill', function (): void {
+    $css = (string) file_get_contents(resource_path('css/app.css'));
+    $component = (string) file_get_contents(resource_path('js/components/site/support-banner.tsx'));
+
+    // 14% of --accent over the page colour measures 5.1:1 under --accent-text in light; an accent fill would not.
+    // In oklab: the neutral tokens write their hue as 0, so an oklch mix would turn the brand's 55 towards red.
+    expect($css)->toContain("color-mix(in oklab, var(--accent) 14%, var(--background))")
+        ->toContain("color-mix(in oklab, var(--accent) 6%, var(--background))")
+        ->toContain('border-color: color-mix(in oklab, var(--accent) 30%, var(--rule));')
+        ->toContain("@media (forced-colors: active) {\n  .support-banner {\n    background-image: none;");
+    expect($component)->toContain('className="support-banner border-b bg-surface"')
+        ->toContain('text-foreground')
+        ->not->toContain('bg-accent');
 });
 
 it('sits above the sticky header and scrolls away with the page', function (): void {
@@ -138,13 +135,12 @@ it('sits above the sticky header and scrolls away with the page', function (): v
 it('keeps its wording to one line, in every language', function (string $locale): void {
     $copy = bannerCatalog($locale);
 
-    expect($copy)->toHaveKeys(['label', 'message', 'short', 'cta', 'licensed']);
+    expect($copy)->toHaveKeys(['label', 'message', 'short', 'cta']);
 
-    // Display columns, a CJK character two: about 920px of room from 1024px, and 248px beside the dismiss button at 320px.
+    // Display columns, a CJK character two: about 920px of room from 1024px, and 248px on a 320px screen.
     Assert::assertLessThanOrEqual(110, mb_strwidth($copy['message']) + mb_strwidth($copy['cta']), "{$locale}: the sentence and its link will not fit one line at 1024px");
     Assert::assertLessThanOrEqual(20, mb_strwidth($copy['cta']), "{$locale}: the call to action is too long");
     Assert::assertLessThanOrEqual(34, mb_strwidth($copy['short']) + 1 + mb_strwidth($copy['cta']), "{$locale}: the short question and the link will not fit a 320px screen");
-    Assert::assertLessThanOrEqual(26, mb_strwidth($copy['licensed']), "{$locale}: the license holder's link will not fit at 1280px");
 })->with(bannerLocales(...));
 
 it('asks the phone reader whether they are a regular user, before the link', function (): void {
@@ -206,7 +202,7 @@ it('renders above the header, in the page language, on every kind of page', func
 
         Assert::assertStringContainsString(htmlspecialchars($copy['message'], ENT_QUOTES), $banner, "{$path} shows the banner in the wrong language");
         Assert::assertStringContainsString($locale === 'vi' ? 'href="/vi/pricing"' : 'href="/pricing"', $banner, "{$path}: the banner link must stay in the page language");
-        Assert::assertStringContainsString(htmlspecialchars($copy['licensed'], ENT_QUOTES), $banner, "{$path}: the license holder's link is missing");
+        Assert::assertStringNotContainsString('<button', $banner, "{$path}: the banner has nothing to close it with");
 
         // Below 1024px the question stands in for the sentence, outside the link.
         $link = substr($banner, (int) strpos($banner, '<a '), (int) strpos($banner, '</a>') - (int) strpos($banner, '<a '));

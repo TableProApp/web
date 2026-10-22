@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes tablepro.app/account. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
@@ -151,7 +151,7 @@ Consulter le site public et ses demandes de newsletter, de règlement et de code
 - **`_ga` et `_ga_<ID>`** (cookies Google Analytics, jusqu’à 2 ans, uniquement si vous autorisez l’analyse) : identifiant aléatoire de votre navigateur et état de votre visite actuelle. Refuser, ou modifier votre réponse plus tard, les supprime. Base légale : consentement.
 - **`tablepro:analytics-consent`** (stockage local, jusqu’à suppression) : votre réponse à la question sur l’analyse, pour éviter de la reposer sur chaque page. Le site et le portail de comptes la partagent. Base légale : strictement nécessaire pour respecter votre choix.
 - **`tablepro:attribution`** (stockage local, 90 jours) : enregistrement de première visite décrit dans [Site web](#website). Il ne contient aucun identifiant personnel et n’accompagne qu’une demande de règlement, où notre serveur l’écarte. Base légale : intérêt légitime.
-- **`theme`** et **`tablepro:banner-dismissed`** (stockage local, jusqu’à suppression) : votre choix d’apparence claire, sombre ou système, et le bandeau fermé et sa durée de masquage : 30 jours, ou un an si vous indiquez posséder une licence ou en achetez une. Base légale : intérêt légitime.
+- **`theme`** (stockage local, jusqu’à suppression) : votre choix d’apparence claire, sombre ou système. Base légale : intérêt légitime.
 - **`tablepro:language`** (stockage local, jusqu’à suppression) : la langue que vous avez choisie dans le menu des langues ou dans la barre de langue, et chaque langue dont vous avez fermé la suggestion, pour qu’elle ne soit plus proposée. Base légale : intérêt légitime.
 - **`mintlify_anonymous_id`** (stockage local sur docs.tablepro.app, déposé par Mintlify, uniquement si vous y autorisez Google Analytics) : l’identifiant de visiteur décrit dans [Site web](#website). Un refus le supprime. La documentation conserve sa propre réponse `tablepro:analytics-consent`. Base légale : consentement.
 - **Cookies commençant par `crisp-client/`** (Crisp, par exemple `crisp-client/session/…` ; 6 mois, renouvelés à votre retour ; déposés sur chaque page après le chargement du chat) : maintiennent le chat et votre conversation entre pages et visites. Base légale : intérêt légitime, pour proposer une assistance sur chaque page.

@@ -43,8 +43,10 @@ final class Banner
     /**
      * The shared `banner` prop, or null where the banner is off or not on this
      * page. Null rather than a flag, so the component renders nothing at all.
+     * Only the link: the words are the `banner` catalog's, and the banner
+     * cannot be closed, so there is no version to close it at.
      *
-     * @return array{href: string, version: string}|null
+     * @return array{href: string}|null
      */
     public static function forRequest(Request $request): ?array
     {
@@ -54,7 +56,6 @@ final class Banner
 
         return [
             'href' => (string) config('banner.href'),
-            'version' => (string) config('banner.version'),
         ];
     }
 

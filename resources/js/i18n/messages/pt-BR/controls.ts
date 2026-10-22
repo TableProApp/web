@@ -34,6 +34,5 @@ export default {
         "included": "Incluído",
         "notIncluded": "Não incluído"
     },
-    "dismiss": "Dispensar",
     "close": "Fechar"
 } satisfies Messages['controls'];

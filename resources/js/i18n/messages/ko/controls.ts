@@ -34,6 +34,5 @@ export default {
         "included": "포함됨",
         "notIncluded": "포함되지 않음"
     },
-    "dismiss": "숨기기",
     "close": "닫기"
 } satisfies Messages['controls'];

@@ -34,6 +34,5 @@ export default {
         "included": "含まれます",
         "notIncluded": "含まれません"
     },
-    "dismiss": "非表示",
     "close": "閉じる"
 } satisfies Messages['controls'];

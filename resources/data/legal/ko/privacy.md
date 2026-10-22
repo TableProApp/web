@@ -1,7 +1,7 @@
 ---
 title: 개인정보 처리방침
 description: TablePro 앱, 웹사이트 및 계정 포털이 수집하는 정보, 전송 대상, 보관 기간과 변경 또는 삭제 방법을 설명합니다.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 tablepro.app/account 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
@@ -151,7 +151,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 - **`_ga` 및 `_ga_<ID>`**(Google Analytics 쿠키, 최대 2년, 분석 허용 시에만): 브라우저의 임의 식별자와 현재 방문 상태입니다. 거부하거나 나중에 응답을 변경하면 삭제됩니다. 법적 근거: 동의.
 - **`tablepro:analytics-consent`**(로컬 저장소, 사용자가 지울 때까지): 분석 질문에 대한 응답을 저장해 페이지마다 다시 묻지 않게 합니다. 웹사이트와 계정 포털이 공유합니다. 법적 근거: 선택을 존중하기 위해 반드시 필요.
 - **`tablepro:attribution`**(로컬 저장소, 90일): [웹사이트](#website)에 설명된 첫 방문 기록입니다. 사용자 식별자는 없으며 결제 요청과 함께만 전송되고 서버에서 폐기됩니다. 법적 근거: 정당한 이익.
-- **`theme`** 및 **`tablepro:banner-dismissed`**(로컬 저장소, 사용자가 지울 때까지): 선택한 라이트, 다크 또는 시스템 화면 모드, 닫은 배너와 숨김 기한을 저장합니다. 기한은 30일이며 라이선스 보유를 표시하거나 구매하면 1년입니다. 법적 근거: 정당한 이익.
+- **`theme`**(로컬 저장소, 사용자가 지울 때까지): 선택한 라이트, 다크 또는 시스템 화면 모드를 저장합니다. 법적 근거: 정당한 이익.
 - **`tablepro:language`**(로컬 저장소, 사용자가 지울 때까지): 언어 메뉴나 언어 표시줄에서 선택한 언어와 제안을 닫은 언어를 저장하여 다시 제안하지 않습니다. 법적 근거: 정당한 이익.
 - **`mintlify_anonymous_id`**(docs.tablepro.app의 로컬 저장소, Mintlify가 설정, 문서에서 Google Analytics를 허용한 경우에만): [웹사이트](#website)에 설명된 방문자 ID입니다. 거부하면 삭제됩니다. 문서는 자체 `tablepro:analytics-consent` 답변을 따로 저장합니다. 법적 근거: 동의.
 - **`crisp-client/`로 시작하는 쿠키**(Crisp, 예: `crisp-client/session/…`, 6개월, 재방문 시 갱신, 채팅 로딩 후 모든 페이지에 설정): 페이지와 방문 간에 채팅과 대화를 유지합니다. 법적 근거: 모든 페이지에서 지원을 제공하기 위한 정당한 이익.

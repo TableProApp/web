@@ -577,7 +577,7 @@ Repo key:
 | `ThemeControl` | Shared | **New** | — (none rendered on the old site) | `components/shared/theme-control.tsx`: `variant="menu"` (header `menuitemradio` menu), `variant="segmented"` (mobile menu) and `variant="icons"` (footer bar); labels as props |
 | `SiteHeader` | P | **Replace** | `landing/header.tsx` (both) | Nav per sitemap §B.1 (Features menu, Databases, Pricing, Docs, Blog) plus language, theme, Account and Download. **No Download dropdown**: Download goes to `/download`. The license repo's copy is deleted; it gets its own slim headers (§5.4) |
 | `MobileNav` | P | **Refactor** | `landing/mobile-nav.tsx` (both) | Full-height sheet dialog. Toggle gets `aria-expanded`, which the old one lacked. The license repo's copy is deleted |
-| `SupportBanner` | P | **Refactor** | `landing/support-banner.tsx` | Neutral `--surface` band, not an orange fill. Key `tablepro:banner-dismissed` unchanged |
+| `SupportBanner` | P | **Refactor** | `landing/support-banner.tsx` | A tint of the brand hue over the page colour, not an orange fill. It cannot be closed: no dismiss, no stored key (2026-10-22) |
 | `SiteFooter` | P | **Replace** | `landing/footer.tsx` (both) | Groups and links per sitemap §B.3 with positioning §10.2's labels, newsletter form and cookie settings, as cells, closed by the shared FooterBar (language menu, theme). No giant wordmark. The license repo's copy is replaced by its own slim footer (§5.4), which ends on the same FooterBar |
 | `ConsentBar` | Shared | **Refactor** | `landing/consent-bar.tsx` (both) | Moves to `components/shared/consent-bar.tsx` with `lib/consent.ts`. Compact. Equal-weight Allow and Decline. Storage key and head order unchanged |
 | `Field`, `Input`, `Select`, `Checkbox`, `Stepper` | Shared\* | **Keep/refactor** | A `ui/field.tsx`, `select.tsx`, `stepper.tsx` | Shared form styling. Native controls with `accent-color` |
@@ -857,9 +857,9 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 **SupportBanner:**
 
 - The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page. Off on `/ios` for a reader on an iPhone or iPad, whose app has no license.
-- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short question ("Use TablePro daily?") and the same link, within 248px so it fits a 320px screen; from 1280px also "Have a license? Hide this".
-- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo", in a 44px-wide target. Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
-- Mechanics: `--banner-h`, `has-banner` stamped server-side on the pages that show it, and the dismissal record settled before first paint.
+- 40px band on a wash of the brand hue, left to right: `linear-gradient(90deg, color-mix(in oklab, --accent 14%, --background), color-mix(in oklab, --accent 6%, --background))` (oklab, since the neutrals write hue 0 and a polar mix would swing towards red), under a 1px rule of `--accent` 30% in `--rule` (app.css). A tint, not a fill: text `small` `--foreground` (17.5:1 light, 14.5:1 dark on the strongest stop); link `standalone` `--accent-text` (5.1:1 light, 8.2:1 dark). Forced colours drop the gradient. From 1024px the sentence and "See plans"; below, the short question ("Optional paid plans") and the same link, within 248px so it fits a 320px screen.
+- It cannot be closed (decided 2026-10-22): no dismiss button, no "Have a license?" link, no stored record, no version. Every reader sees it on every page it belongs on.
+- Mechanics: `--banner-h`, `has-banner` stamped server-side on the pages that show it; the one browser-side removal is the `/ios` device rule, before first paint.
 
 **SiteFooter:**
 

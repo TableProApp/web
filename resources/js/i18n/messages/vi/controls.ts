@@ -34,6 +34,5 @@ export default {
         included: 'Có',
         notIncluded: 'Không có',
     },
-    dismiss: 'Ẩn thông báo',
     close: 'Đóng',
 } satisfies Messages['controls'];

@@ -370,12 +370,11 @@ nothing else. An event before the answer is dropped, not queued.
 Events keep the names the Plausible goals had: `download_click` (`location`,
 `platform`), `checkout_started` (`tier`, `cycle`) and
 `newsletter_signup_clicked` (`source`). The license banner adds
-`license_banner_view` and `license_banner_click` (`version`) and
-`license_banner_dismiss` (`version`, `reason`: `closed` or `licensed`), so a
-banner's clicks can be compared with its views, and with `checkout_started`,
-per message. GA4 stores those parameters from the
-first hit but only shows them in reports once each is registered as an
-event-scoped custom dimension under Admin → Custom definitions. Page changes
+`license_banner_view` and `license_banner_click`, without parameters, so a
+banner's clicks can be compared with its views and with `checkout_started`.
+It cannot be closed, so there is no dismiss event. GA4 stores the parameters
+from the first hit but only shows them in reports once each is registered as
+an event-scoped custom dimension under Admin → Custom definitions. Page changes
 between Inertia visits are counted by enhanced measurement's "page changes
 based on browser history events", which must stay on in the web stream.
 

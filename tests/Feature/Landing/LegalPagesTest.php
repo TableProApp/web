@@ -144,8 +144,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 10, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '10 tháng 10 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 22, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '22 tháng 10 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -201,9 +201,12 @@ it('keeps the cookie contract the consent bar and the account app rely on', func
     $privacy = legalSource('privacy', $locale);
     $cookies = legalSection('privacy', $locale, 'cookies');
 
-    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', 'tablepro-session', 'XSRF-TOKEN', 'theme', 'tablepro:banner-dismissed'] as $name) {
+    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', 'tablepro-session', 'XSRF-TOKEN', 'theme'] as $name) {
         expect($cookies)->toContain($name);
     }
+
+    // The banner cannot be closed, so nothing is stored about it and the policy must not say otherwise.
+    expect($cookies)->not->toContain('banner');
 
     expect($privacy)->toContain('{#cookies}')->toContain('Google Analytics')->toContain($settings);
     expect(mb_strtolower($privacy))->toContain($basis);

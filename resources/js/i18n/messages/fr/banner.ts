@@ -5,5 +5,4 @@ export default {
     "message": "Les forfaits payants ajoutent des fonctions et financent le développement de TablePro.",
     "short": "Forfaits payants",
     "cta": "Voir les forfaits",
-    "licensed": "Déjà une licence ? Masquer"
 } satisfies Messages['banner'];

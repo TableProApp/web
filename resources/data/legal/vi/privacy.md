@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -151,7 +151,7 @@ Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã
 - **`_ga` và `_ga_<ID>`** (cookie của Google Analytics, tối đa 2 năm, chỉ khi bạn cho phép phân tích): một mã ngẫu nhiên cho trình duyệt của bạn và trạng thái của lượt truy cập hiện tại. Khi bạn từ chối, hoặc đổi câu trả lời sau đó, các cookie này bị xóa. Cơ sở pháp lý: sự đồng ý.
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
 - **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, nơi máy chủ của chúng tôi bỏ nó đi. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống), và banner nào bạn đã đóng cùng thời hạn ẩn: 30 ngày, hoặc một năm nếu bạn cho biết đã có license hoặc vừa mua license. Cơ sở pháp lý: lợi ích hợp pháp.
+- **`theme`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống). Cơ sở pháp lý: lợi ích hợp pháp.
 - **`tablepro:language`** (local storage, cho tới khi bạn xóa): ngôn ngữ bạn chọn trong menu ngôn ngữ hoặc thanh gợi ý ngôn ngữ, và từng ngôn ngữ có gợi ý bạn đã đóng, để website không gợi ý lại. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, chỉ khi bạn cho phép Google Analytics ở đó): ID người xem được mô tả trong mục [Website](#website). Từ chối sẽ xóa nó. Trang tài liệu giữ câu trả lời `tablepro:analytics-consent` của riêng nó. Cơ sở pháp lý: sự đồng ý.
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.

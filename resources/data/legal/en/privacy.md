@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-22"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -151,7 +151,7 @@ Reading the public website and its newsletter, checkout and discount-code reques
 - **`_ga` and `_ga_<ID>`** (Google Analytics cookies, up to 2 years, only if you allow analytics): a random identifier for your browser and the state of your current visit. Declining, or changing your answer later, deletes them. Lawful basis: consent.
 - **`tablepro:analytics-consent`** (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. The website and the account portal share it. Lawful basis: strictly necessary to honor your choice.
 - **`tablepro:attribution`** (local storage, 90 days): the first-visit record described under [Website](#website). It holds no identifier of you and is sent only with a checkout request, where our server discards it. Lawful basis: legitimate interest.
-- **`theme`** and **`tablepro:banner-dismissed`** (local storage, until you clear it): whether you chose a light, dark or system appearance, and which banner you closed and until when: 30 days, or a year if you say you have a license or buy one. Lawful basis: legitimate interest.
+- **`theme`** (local storage, until you clear it): whether you chose a light, dark or system appearance. Lawful basis: legitimate interest.
 - **`tablepro:language`** (local storage, until you clear it): the language you picked in the language menu or the language bar, and each language whose suggestion you closed, so it is not offered again. Lawful basis: legitimate interest.
 - **`mintlify_anonymous_id`** (local storage on docs.tablepro.app, set by Mintlify, only if you allow analytics there): the visitor ID described under [Website](#website). Declining removes it. The documentation keeps its own `tablepro:analytics-consent` answer. Lawful basis: consent.
 - **Cookies starting with `crisp-client/`** (Crisp, for example `crisp-client/session/…`; 6 months, renewed when you return; set on every page once the chat has loaded): keep the chat and your conversation across pages and visits. Lawful basis: legitimate interest, to offer support on every page.
