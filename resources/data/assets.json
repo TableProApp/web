@@ -11227,6 +11227,112 @@
         "/images/blog/set-value-generate-uuid.png"
       ]
     },
+    "blog-tablepro-0-83-beta-1": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-83-beta",
+          "section": "figure-1"
+        }
+      ],
+      "aspect": "722:521",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Search Database sheet after a search for the letter e in a sample SQLite database, listing six tables with their matching columns and row counts.",
+        "vi": null
+      },
+      "alt": {
+        "en": "Search Database sheet for the Fixture connection’s seeded-0.sqlite, reading Searched 6 tables. 6 tables hold “e” above six results with their matching columns and row counts: album by title with 2 rows, artist by name with 2 rows, document by label and payload with 2 rows, genre by name with 1 row, note by tag with 1 row and track by name with 9 rows, and Edit Search, Done and Open buttons at the bottom",
+        "vi": null
+      },
+      "caption": {
+        "en": "Each table that holds the value names the columns that matched and how many rows match.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-83-beta-1"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            722
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 722,
+          "height": 521
+        }
+      },
+      "legacySource": [
+        "/images/blog/search-database-results.png"
+      ]
+    },
+    "blog-tablepro-0-83-beta-2": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-83-beta",
+          "section": "figure-2"
+        }
+      ],
+      "aspect": "1640:1122",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Generate Rows sheet set to 100,000 rows with seed 4271, the total column’s Decimal Range generator selected, and a preview of six generated rows.",
+        "vi": null
+      },
+      "alt": {
+        "en": "Generate Rows sheet with Rows set to 100,000 and Seed 4271, a column list of id as Server Default, customer_id as Referenced Value, customer_email as Email, status as List of Values, total as Decimal Range, note as Text and created_at as Date and Time, the selected total column of type numeric(10,2) with a Decimal Range from 1 to 1000 at 2 decimal places, and a preview of six rows with example.com, example.net and example.org addresses, statuses such as paid, cancelled and shipped, totals, lorem ipsum notes and timestamps",
+        "vi": null
+      },
+      "caption": {
+        "en": "Each column starts from a generator picked by its type and name, and the preview shows the rows before anything is written.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-83-beta-2"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 963
+        }
+      },
+      "legacySource": [
+        "/images/blog/generate-rows-sheet.png"
+      ]
+    },
     "blog-tablepro-for-iphone-1": {
       "kind": "phone",
       "type": "screenshot-phone",
