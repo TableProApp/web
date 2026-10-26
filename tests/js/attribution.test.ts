@@ -127,6 +127,24 @@ test('keeps the first touch when the reader returns direct', () => {
     assert.equal(resolveAttribution(first, visit('https://tablepro.app/')), first);
 });
 
+test('lets a link from the Mac app replace the first touch', () => {
+    const first: Attribution = { source: 'hn', landing_page: '/blog/tablepro-0-69', first_seen_at: daysBefore(NOW, 14) };
+
+    const resolved = resolveAttribution(first, visit('https://tablepro.app/?ref=app-gate-compare-sync#pricing', 'https://www.google.com/'));
+
+    assert.equal(resolved?.source, 'app-gate-compare-sync');
+    assert.equal(resolved?.landing_page, '/');
+    assert.equal(resolved?.first_seen_at, NOW.toISOString());
+});
+
+test('keeps the first touch for a ref that only looks like the app', () => {
+    const first: Attribution = { source: 'hn', landing_page: '/', first_seen_at: daysBefore(NOW, 1) };
+
+    assert.equal(resolveAttribution(first, visit('https://tablepro.app/?ref=getapps.cafe')), first);
+    assert.equal(resolveAttribution(first, visit('https://tablepro.app/?ref=app')), first);
+    assert.equal(resolveAttribution(first, visit('https://tablepro.app/?ref=APP-SUPPORT')), first);
+});
+
 test('lets a lapsed first touch give way to the current visit', () => {
     const stale: Attribution = { source: 'hn', landing_page: '/', first_seen_at: daysBefore(NOW, ATTRIBUTION_TTL_DAYS + 1) };
 
