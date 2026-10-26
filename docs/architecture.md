@@ -301,13 +301,17 @@ through a comparison page and buys a fortnight later after typing the domain is
 credited to the comparison page rather than to "direct". A visit with neither is
 not recorded at all, precisely so it cannot take that slot.
 
+The one exception is a link from the Mac app (`?ref=app-…`). That reader was
+acquired when they installed the app, and the screen they clicked from, such as
+a paid feature's gate, is what brought them to buy, so it replaces the record.
+
 The record lives in `localStorage` under `tablepro:attribution`, because this
 app has no session and sets no cookies. It is disclosed on `/privacy`.
 
-What the backend does with it today is **nothing**: the platform ignores the
-field and passes none of it to Polar or Lemon Squeezy. The privacy policy says
-exactly that. The `checkout_started`
-analytics event is the only part of this that reports anything.
+The backend passes `source`, `medium`, `campaign`, `term`, `content` and
+`referrer` to the payment provider as checkout metadata (`utm_source` and so on,
+the keys tablepro-cloud reads), so they come back on the order webhook and stay
+with the order. `landing_page` and `first_seen_at` are not kept.
 
 If the backend ever starts keeping it, three things hold, and the privacy
 policy changes first:

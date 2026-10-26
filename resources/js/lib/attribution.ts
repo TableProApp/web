@@ -189,14 +189,30 @@ function hasExpired(attribution: Attribution, now: Date): boolean {
 }
 
 /**
+ * The `ref` the Mac app puts on its links: `app-support`, `app-about`,
+ * `app-gate-compare-sync` and the like (`SupportLinks.swift`).
+ */
+const APP_REF = /^app-[a-z0-9-]+$/;
+
+/**
  * First-touch resolution: a stored record inside the window is returned
  * unchanged, and only a lapsed or absent one gives way to this visit.
+ *
+ * The one exception is a link from the Mac app. Its reader was acquired when
+ * they installed the app; the screen they clicked from, such as a paid
+ * feature's gate, is what brought them to buy, so it replaces the stored record.
  *
  * Returns the same object reference it was given when nothing changed, which is
  * what lets the caller skip a pointless write on every page load.
  */
 export function resolveAttribution(stored: Attribution | null, visit: Visit): Attribution | null {
     if (stored !== null && ! hasExpired(stored, visit.now)) {
+        const current = readVisit(visit);
+
+        if (current?.source !== undefined && APP_REF.test(current.source)) {
+            return current;
+        }
+
         return stored;
     }
 
