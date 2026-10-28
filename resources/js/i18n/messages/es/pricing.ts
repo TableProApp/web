@@ -136,7 +136,7 @@ export default {
         "failed": "No se pudo abrir el pago. Inténtalo de nuevo.",
         "planUnavailable": "Este plan no está a la venta ahora mismo. Elige otro ciclo de facturación o inténtalo más tarde.",
         "seats": "Elige entre {min} y {max} puestos e inténtalo de nuevo.",
-        "seatsMinimum": "Elige al menos {min} puestos e inténtalo de nuevo."
+        "seatsFewer": "Elige menos puestos e inténtalo de nuevo."
     },
     "offers": {
         "name": "{plan}, {cycle}",

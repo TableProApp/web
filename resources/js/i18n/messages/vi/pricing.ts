@@ -121,7 +121,7 @@ export default {
         failed: 'Không mở được trang thanh toán. Hãy thử lại.',
         planUnavailable: 'Gói này hiện chưa mở bán. Hãy chọn chu kỳ thanh toán khác hoặc thử lại sau.',
         seats: 'Hãy chọn từ {min} đến {max} seat rồi thử lại.',
-        seatsMinimum: 'Hãy chọn ít nhất {min} seat rồi thử lại.',
+        seatsFewer: 'Hãy chọn ít seat hơn rồi thử lại.',
     },
     offers: {
         name: '{plan}, {cycle}',

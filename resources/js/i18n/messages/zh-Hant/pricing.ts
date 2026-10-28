@@ -136,7 +136,7 @@ export default {
         "failed": "無法開啟結帳頁面。請再試一次。",
         "planUnavailable": "此方案暫未開售。請選擇其他計費週期，或稍後再試一次。",
         "seats": "請選擇 {min} 到 {max} 個席位，然後再試一次。",
-        "seatsMinimum": "請至少選擇 {min} 個席位，然後再試一次。"
+        "seatsFewer": "請減少席位數量，然後再試一次。"
     },
     "offers": {
         "name": "{plan}，{cycle}",

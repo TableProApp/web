@@ -136,7 +136,7 @@ export default {
         "failed": "Impossibile aprire il checkout. Riprova.",
         "planUnavailable": "Questo piano al momento non è in vendita. Scegli un altro periodo di fatturazione o riprova più tardi.",
         "seats": "Scegli tra {min} e {max} posti, poi riprova.",
-        "seatsMinimum": "Scegli almeno {min} posti, poi riprova."
+        "seatsFewer": "Scegli meno posti, poi riprova."
     },
     "offers": {
         "name": "{plan}, {cycle}",

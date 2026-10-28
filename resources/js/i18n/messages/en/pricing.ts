@@ -133,7 +133,7 @@ export default {
         planUnavailable: "This plan isn't for sale right now. Choose another billing cycle, or try again later.",
         seats: 'Choose between {min} and {max} seats, then try again.',
         // A 422 on body.seats while no maximum is known.
-        seatsMinimum: 'Choose at least {min} seats, then try again.',
+        seatsFewer: 'Choose fewer seats, then try again.',
     },
     offers: {
         name: '{plan}, {cycle}',

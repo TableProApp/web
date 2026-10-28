@@ -6,7 +6,7 @@ import { trackEvent } from '@/lib/analytics';
 import { currentAttribution, type Attribution } from '@/lib/attribution';
 import { loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '@/lib/checkout-sdk';
 import { PRICING, type BillingCycle, type PaidTierId } from '@/lib/data/pricing';
-import { checkoutOutcome } from './checkout-response';
+import { checkoutOutcome, seatsMessage } from './checkout-response';
 
 const SDK_SOURCE: string = pricingData.checkoutSdk;
 
@@ -91,10 +91,11 @@ export function useCheckout() {
                 failed: m.pricing.checkout.failed,
                 tooMany: m.forms.tooMany,
                 planUnavailable: m.pricing.checkout.planUnavailable,
-                seats:
-                    options.maxSeats === undefined || options.maxSeats === null
-                        ? fmt(m.pricing.checkout.seatsMinimum, { min: PRICING.tiers.team.seats.min })
-                        : fmt(m.pricing.checkout.seats, { min: PRICING.tiers.team.seats.min, max: options.maxSeats }),
+                seats: seatsMessage(
+                    options.maxSeats,
+                    (max) => fmt(m.pricing.checkout.seats, { min: PRICING.tiers.team.seats.min, max }),
+                    m.pricing.checkout.seatsFewer,
+                ),
             });
 
             if (outcome.kind === 'error') {

@@ -136,7 +136,7 @@ export default {
         "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요.",
         "planUnavailable": "이 플랜은 지금 판매하지 않습니다. 다른 결제 주기를 선택하거나 나중에 다시 시도하세요.",
         "seats": "{min}~{max}좌석 사이로 선택한 후 다시 시도하세요.",
-        "seatsMinimum": "{min}좌석 이상을 선택한 후 다시 시도하세요."
+        "seatsFewer": "좌석 수를 줄인 후 다시 시도하세요."
     },
     "offers": {
         "name": "{plan}, {cycle}",

@@ -136,7 +136,7 @@ export default {
         "failed": "Impossible d’ouvrir le paiement. Réessayez.",
         "planUnavailable": "Cette offre n’est pas en vente pour le moment. Choisissez une autre périodicité de facturation ou réessayez plus tard.",
         "seats": "Choisissez entre {min} et {max} postes, puis réessayez.",
-        "seatsMinimum": "Choisissez au moins {min} postes, puis réessayez."
+        "seatsFewer": "Choisissez moins de postes, puis réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

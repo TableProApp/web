@@ -136,7 +136,7 @@ export default {
         "failed": "Não foi possível abrir o checkout. Tente novamente.",
         "planUnavailable": "Este plano não está à venda no momento. Escolha outro ciclo de cobrança ou tente novamente mais tarde.",
         "seats": "Escolha entre {min} e {max} vagas e tente novamente.",
-        "seatsMinimum": "Escolha pelo menos {min} vagas e tente novamente."
+        "seatsFewer": "Escolha menos vagas e tente novamente."
     },
     "offers": {
         "name": "{plan}, {cycle}",

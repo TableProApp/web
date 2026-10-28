@@ -136,7 +136,7 @@ export default {
         "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut.",
         "planUnavailable": "Dieser Tarif ist gerade nicht erhältlich. Wähle einen anderen Abrechnungszeitraum oder versuche es später erneut.",
         "seats": "Wähle zwischen {min} und {max} Arbeitsplätzen und versuche es erneut.",
-        "seatsMinimum": "Wähle mindestens {min} Arbeitsplätze und versuche es erneut."
+        "seatsFewer": "Wähle weniger Arbeitsplätze und versuche es erneut."
     },
     "offers": {
         "name": "{plan}, {cycle}",

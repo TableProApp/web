@@ -2,7 +2,9 @@ import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-import { checkoutOutcome, discountOutcome } from '../../resources/js/components/pricing/checkout-response.ts';
+import { checkoutOutcome, discountOutcome, seatsMessage } from '../../resources/js/components/pricing/checkout-response.ts';
+import { placeholders } from '../../resources/js/i18n/core.ts';
+import en from '../../resources/js/i18n/messages/en/pricing.ts';
 import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '../../resources/js/lib/checkout-sdk.ts';
 
 // Checkout from the plan cards: what they say for each answer of tablepro-cloud's /v2, and Polar's overlay script,
@@ -45,6 +47,18 @@ test('each problem code api.md lists for POST /v2/checkouts has its own message,
     // A gateway's own page, or no body at all.
     assert.deepEqual(checkoutOutcome(502, {}, strings), { kind: 'error', message: strings.failed });
     assert.deepEqual(checkoutOutcome(422, null, strings), { kind: 'error', message: strings.failed });
+});
+
+test('a 422 on seats names the range only once /v2/pricing gave a maximum, and otherwise asks for fewer', () => {
+    const range = (max: number) => `Choose between 5 and ${max} seats.`;
+
+    assert.equal(seatsMessage(1000, range, 'Choose fewer seats.'), 'Choose between 5 and 1000 seats.');
+
+    // Before /v2/pricing answers, after it failed, or when Polar sets no maximum: the seat field already keeps the
+    // minimum, so the count was over a maximum the page does not know (MaxCheckoutSeats in tablepro-cloud).
+    assert.equal(seatsMessage(undefined, range, 'Choose fewer seats.'), 'Choose fewer seats.');
+    assert.equal(seatsMessage(null, range, 'Choose fewer seats.'), 'Choose fewer seats.');
+    assert.deepEqual(placeholders(en.checkout.seatsFewer), []);
 });
 
 test('a discount preview reports a percentage, a fixed amount in cents, or a code that does not apply', () => {

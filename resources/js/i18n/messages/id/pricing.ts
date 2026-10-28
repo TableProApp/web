@@ -136,7 +136,7 @@ export default {
         "failed": "Tidak dapat membuka checkout. Coba lagi.",
         "planUnavailable": "Paket ini sedang tidak dijual. Pilih siklus penagihan lain atau coba lagi nanti.",
         "seats": "Pilih antara {min} dan {max} seat, lalu coba lagi.",
-        "seatsMinimum": "Pilih setidaknya {min} seat, lalu coba lagi."
+        "seatsFewer": "Pilih lebih sedikit seat, lalu coba lagi."
     },
     "offers": {
         "name": "{plan}, {cycle}",

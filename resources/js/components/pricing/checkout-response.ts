@@ -35,6 +35,11 @@ export function checkoutOutcome(status: number, data: unknown, strings: Checkout
     return { kind: 'error', message: strings.failed };
 }
 
+// The seat field never sends fewer than the minimum, so without a known maximum a 422 on body.seats means too many.
+export function seatsMessage(maxSeats: number | null | undefined, range: (max: number) => string, fewer: string): string {
+    return typeof maxSeats === 'number' ? range(maxSeats) : fewer;
+}
+
 export type DiscountOutcome =
     | { kind: 'percent'; amount: number }
     | { kind: 'fixed'; cents: number }
