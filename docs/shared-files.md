@@ -64,3 +64,23 @@ on both sides at once. tablepro-cloud's CI compares its copies with this
 repository's `main`, so either side merged alone turns the other's CI red. Make
 its comparison skip line 1 first, change the headers on both sides, then
 restore the full comparison.
+
+The full comparison in tablepro-cloud's `web` job (working directory `web`):
+
+```yaml
+- name: Shared files match TableProApp/web
+  run: |
+    while read -r path theirs; do
+      curl -fsSL --retry 3 "https://raw.githubusercontent.com/TableProApp/web/main/$path" -o "$RUNNER_TEMP/shared" || exit 1
+      diff "$RUNNER_TEMP/shared" "$theirs" || exit 1
+    done <<'PAIRS'
+    resources/css/tokens.css packages/ui/src/styles/tokens.css
+    resources/css/international.css packages/ui/src/styles/international.css
+    resources/js/lib/crisp.ts apps/portal/src/lib/crisp.ts
+    PAIRS
+```
+
+Each command ends in `|| exit 1`: under `bash -e`, a `curl` followed by `&&`
+does not stop the script when it fails, so one failed fetch would pass the step
+without comparing that file. To skip line 1, the `diff` line becomes
+`diff <(tail -n +2 "$RUNNER_TEMP/shared") <(tail -n +2 "$theirs") || exit 1`.
