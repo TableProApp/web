@@ -12,7 +12,7 @@ Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs
 - Jika Anda masuk ke akun TablePro atau mengaktifkan kunci lisensi, aplikasi Mac mendaftarkan Mac Anda di server kami, termasuk namanya, dan memeriksa paket Anda secara berkala.
 - Kueri yang Anda jalankan, hasilnya, dan kata sandi Anda tidak dikirim ke TablePro. Pengecualiannya adalah data yang Anda pilih untuk dipublikasikan ke Team Library: pengaturan koneksi (tanpa kata sandi) dan kueri tersimpan.
 - Permintaan AI dikirim langsung dari aplikasi Mac ke penyedia AI yang Anda konfigurasikan, bukan kepada kami.
-- Server kami meneruskan laporan penggunaan ke PostHog, layanan analitik produk kami di UE, tanpa alamat IP-nya. Akun Anda menyimpan log perubahan yang dibuat padanya, seperti proses masuk dan perangkat baru, beserta alamat IP dan browser dari permintaan yang membuat setiap perubahan.
+- Server kami meneruskan laporan penggunaan ke PostHog, layanan analitik produk kami di UE, tanpa alamat IP-nya. Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirimnya langsung ke PostHog, yang kemudian menerima alamat IP Mac Anda. Akun Anda menyimpan log perubahan yang dibuat padanya, seperti proses masuk dan perangkat baru, beserta alamat IP dan browser dari permintaan yang membuat setiap perubahan.
 - Situs web menghitung tampilan halaman menggunakan Cloudflare Web Analytics, yang tidak memasang cookie. Situs juga memuat Google Analytics, yang hanya memasang cookie jika Anda mengizinkannya. Setiap halaman juga memuat layanan chat langsung kami, Crisp, yang memasang cookie sendiri.
 - Portal akun di account.tablepro.app tidak memuat skrip analitik apa pun. Portal menetapkan satu cookie agar Anda tetap masuk, dan di Pengaturannya Anda dapat mengunduh data akun atau menghapus akun.
 - Pembelian dijual oleh {merchant}, merchant of record kami.
@@ -40,7 +40,7 @@ Laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau ba
 
 Server kami tidak menyimpan laporan maupun alamat IP asalnya. Server meneruskan laporan ke PostHog sebagai peristiwa tentang ID mesin, beserta negara yang diberikan Cloudflare untuk koneksi Anda, tanpa kunci lisensi atau alamat IP Anda, dan PostHog tidak membuat profil orang darinya. Karena akun Anda mencatat perangkatnya dengan ID mesin yang sama, laporan dari Mac tempat Anda masuk atau mengaktifkan lisensi dapat dihubungkan ke akun Anda.
 
-Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data penggunaannya langsung ke PostHog, dengan pengaturan yang sama. Setelah Anda masuk, aplikasi menghubungkan data itu ke ID akun Anda, yang mengaitkan instalasi Anda dengan proses masuk dan pembelian Anda. Mematikan pengaturan itu menghentikan keduanya.
+Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data penggunaannya langsung ke PostHog, dengan pengaturan yang sama. PostHog kemudian menerima alamat IP Mac Anda. Setelah Anda masuk, aplikasi menghubungkan data itu ke ID akun Anda, yang mengaitkan instalasi Anda dengan proses masuk dan pembelian Anda. Mematikan pengaturan itu menghentikan keduanya.
 
 ### Pemeriksaan lisensi {#mac-license}
 
@@ -165,6 +165,8 @@ Pembelian tanpa masuk tercatat di akun TablePro milik alamat email yang Anda gun
 
 Jika Anda berlangganan catatan rilis, kami terlebih dahulu mengirim tautan konfirmasi dalam bahasa halaman tempat Anda berlangganan. Tautan berlaku 7 hari, dan satu alamat menerima paling banyak 3 per hari. Setelah Anda mengonfirmasi, alamat Anda masuk ke daftar buletin kami di Resend, layanan yang mengirim email kami. Setiap buletin memiliki tautan berhenti berlangganan, yang ditangani Resend. Setelah Anda berhenti berlangganan, kami tidak mengirim buletin lagi; untuk sekaligus menghapus alamat email, hubungi kami melalui email. Cloudflare Turnstile memeriksa formulir, seperti dijelaskan di [Situs web](#website).
 
+Saat kami pindah dari server sebelumnya, setiap alamat di milis server itu yang belum berhenti berlangganan masuk ke daftar ini sebagai pelanggan, baik sudah dikonfirmasi maupun belum: server itu juga menambahkan alamat pembeli, pemegang lisensi, dan pendaftar beta, lalu mengirimi mereka email. Alamat yang sudah berhenti berlangganan dipindahkan dengan status berhenti berlangganan, dan alamat yang emailnya terpental atau ditandai sebagai spam justru dimasukkan ke daftar penahanan (suppression list) Resend, sehingga tidak ada buletin yang sampai kepadanya.
+
 ## Cookie dan penyimpanan peramban {#cookies}
 
 Membaca situs publik serta permintaan newsletter, checkout, dan kode diskonnya tidak menetapkan cookie miliknya sendiri. Masuk ke portal akun, atau mulai masuk, menetapkan satu cookie portal yang benar-benar diperlukan di bawah ini. Cloudflare Web Analytics tidak menetapkan cookie atau menyimpan apa pun di browser. Cookie Google Analytics hanya ditetapkan dengan izin Anda. Crisp menetapkan cookie pada setiap halaman setelah chat dimuat. Tidak ada yang digunakan untuk iklan atau dijual.
@@ -202,7 +204,7 @@ Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalan
 - **Penyedia hosting kami dan Cloudflare**, untuk situs web, portal akun, dan server yang berkomunikasi dengan aplikasi. Cloudflare juga menghitung tampilan halaman menggunakan Cloudflare Web Analytics dan memeriksa formulir buletin dengan Turnstile.
 - **Google**, untuk Google Analytics di situs web dan dokumentasi.
 - **Crisp**, untuk chat langsung pada setiap halaman situs web dan portal akun.
-- **PostHog** (EU Cloud), layanan analitik produk kami, yang menerima laporan penggunaan aplikasi dan peristiwa server kami tentang proses masuk, pembelian, perangkat, dan tim, dengan ID akun Anda tetapi tidak pernah alamat email atau nama Anda.
+- **PostHog** (EU Cloud), layanan analitik produk kami, yang menerima laporan penggunaan aplikasi dan peristiwa server kami tentang proses masuk, pembelian, perangkat, dan tim, dengan ID akun Anda tetapi tidak pernah alamat email atau nama Anda. Data penggunaan yang dikirim aplikasi Mac secara langsung sampai ke PostHog beserta alamat IP Mac Anda.
 - **Grafana Labs** (Grafana Cloud), yang menerima log dan trace server kami serta laporan error portal akun.
 - **Apple, GitHub, dan Google**, saat Anda masuk ke akun dengan layanan tersebut.
 - **jsDelivr**, yang menyajikan skrip pembayaran {merchant} ke peramban saat Anda mengarahkan penunjuk ke tombol Beli.
@@ -218,15 +220,15 @@ Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses
 ## Lama penyimpanan data {#retention}
 
 - **Laporan penggunaan dan peristiwa analitik**: server kami tidak menyimpan salinan setelah meneruskannya ke PostHog. Kami belum menetapkan batas waktu untuknya di PostHog. Menghapus akun Anda akan menghapus profil dan peristiwa PostHog-nya satu jam kemudian.
-- **Catatan dari server kami sebelumnya**: laporan penggunaan dan log permintaan lisensi yang disimpannya, beserta alamat IP-nya, ada dalam arsip terenkripsi. Kami belum menetapkan batas waktu untuk arsip itu.
+- **Catatan dari server kami sebelumnya**: salinan seluruh basis datanya disimpan tanpa batas waktu dalam sebuah arsip. Arsip itu mencakup lisensi, pesanan, dan anggota tim beserta alamat email dan namanya; Mac yang diaktifkan dengan lisensi, beserta namanya; pelanggan buletin dan pendaftar beta; catatan email yang dikirimnya; serta laporan penggunaan dan log permintaan lisensi yang disimpannya, beserta alamat IP-nya.
 - **Perangkat**: disimpan selama digunakan. Perangkat yang tidak menghubungi server selama 180 hari dihapus, kecuali file offline untuknya masih berlaku, dan perangkat yang dihapus dihilangkan setahun kemudian.
 - **Log audit akun Anda**: disimpan selama akun ada, beserta alamat IP dan browser setiap perubahan yang Anda buat. Menghapus akun menghilangkan alamat email Anda dari log itu serta alamat IP dan browser tindakan Anda; catatan setiap perubahan tetap ada.
 - **Pesanan**: disimpan untuk pajak dan akuntansi. Menghapus akun Anda menghilangkan alamat email dan akun Anda dari pesanan.
 - **Notifikasi dari {merchant}, Resend, dan Apple**: 180 hari. Notifikasi {merchant} berisi nama, alamat email, dan alamat penagihan Anda; menghapus akun Anda menghilangkan data itu lebih awal dari notifikasi tentang pembelian Anda.
 - **Team Library**: sampai item diubah atau dihapus; item yang dihapus disimpan selama 90 hari. Pustaka dihapus bersama timnya dan tetap ada setelah lisensi berakhir.
 - **Tautan dan kode masuk**: kedaluwarsa setelah 15 menit dan dihapus 7 hari kemudian. Sesi portal berlangsung selama 30 hari. Token yang membuat aplikasi tetap masuk kedaluwarsa 90 hari setelah terakhir dipakai aplikasi, dan dihapus 30 hari setelahnya.
-- **Akun yang dihapus**: akun, metode masuk, perangkat, lisensi, dan keanggotaan timnya langsung dihapus. Pesanan dan log audit tetap seperti dijelaskan di atas.
-- **Buletin**: tautan konfirmasi dan alamat tujuannya dihapus 7 hari setelah tautan kedaluwarsa. Alamat yang sudah dikonfirmasi tetap ada di daftar kami di Resend sampai kami menghapusnya atas permintaan Anda; setelah Anda berhenti berlangganan, alamat itu disimpan sebagai berhenti berlangganan agar tidak ada buletin yang sampai kepadanya.
+- **Akun yang dihapus**: akun, metode masuk, perangkat, lisensi, dan keanggotaan timnya langsung dihapus. Pesanan dan log audit tetap seperti dijelaskan di atas. Data tentang Anda yang disimpan server kami sebelumnya tetap ada dalam arsipnya, seperti dijelaskan di atas.
+- **Buletin**: tautan konfirmasi dan alamat tujuannya dihapus 7 hari setelah tautan kedaluwarsa. Alamat yang sudah dikonfirmasi, atau yang dipindahkan dari server kami sebelumnya, tetap ada di daftar kami di Resend sampai kami menghapusnya atas permintaan Anda; setelah Anda berhenti berlangganan, alamat itu disimpan sebagai berhenti berlangganan agar tidak ada buletin yang sampai kepadanya.
 - **Google Analytics**: data tingkat pengguna dan tingkat peristiwa selama 2 bulan, masa retensi bawaan Google yang digunakan properti kami. Cookie bertahan hingga 2 tahun atau dihapus saat Anda menolak.
 - **Cloudflare Web Analytics**: Cloudflare menampilkan jumlah tampilan halaman selama enam bulan terakhir kepada kami. Tidak ada data yang disimpan di peramban.
 - **Chat langsung dan email dukungan**: disimpan oleh Crisp dan di kotak email kami sampai dihapus. Mintalah kepada kami untuk menghapus percakapan dan email Anda.
@@ -254,7 +256,7 @@ TablePro tidak ditujukan kepada anak di bawah 16 tahun, dan kami tidak dengan se
 
 ## Keamanan {#security}
 
-Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Akun TablePro tidak memiliki kata sandi. Tautan dan kode masuk, token yang membuat aplikasi tetap masuk, dan token API tim hanya disimpan sebagai hash, dan akses ke sistem kami dibatasi untuk {publisherName} dan penyedia layanan yang tercantum di [Penerima data](#sharing). Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
+Lalu lintas antara aplikasi, situs web, portal akun, dan server kami menggunakan HTTPS. Akun TablePro tidak memiliki kata sandi. Tautan dan kode masuk, token yang membuat aplikasi tetap masuk, dan token API tim disimpan sebagai hash. Tugas yang mengirim tautan dan kode masuk lewat email menyimpan keduanya sebagai teks biasa sampai tugas itu dihapus: sehari setelah email terkirim, atau 7 hari setelah kami berhenti mencoba mengirimnya. Keduanya tidak berlaku lagi 15 menit setelah Anda memintanya. Akses ke sistem kami dibatasi untuk {publisherName} dan penyedia layanan yang tercantum di [Penerima data](#sharing). Tidak ada sistem yang sepenuhnya aman. Untuk melaporkan kerentanan, lihat [halaman Keamanan](/id/security#report) atau kirim email ke [{email}](mailto:{email}).
 
 ## Perubahan kebijakan ini {#changes}
 

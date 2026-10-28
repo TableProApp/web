@@ -12,7 +12,7 @@ Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die
 - Wenn du dich bei einem TablePro-Konto anmeldest oder einen Lizenzschlüssel aktivierst, registriert die Mac-App deinen Mac samt Namen auf unserem Server und prüft dort regelmäßig deinen Tarif.
 - Deine Abfragen, Ergebnisse und Passwörter werden nicht an TablePro gesendet. Ausgenommen ist, was du in der Team Library veröffentlichst: Verbindungseinstellungen (niemals Passwörter) und gespeicherte Abfragen.
 - KI-Anfragen gehen von der Mac-App direkt an den von dir eingerichteten KI-Anbieter, nicht an uns.
-- Unser Server leitet Nutzungsberichte ohne IP-Adresse an PostHog weiter, unseren Dienst für Produktanalysen in der EU. Dein Konto führt ein Protokoll der Änderungen daran, etwa Anmeldungen und neue Geräte, mit IP-Adresse und Browser der jeweiligen Anfrage.
+- Unser Server leitet Nutzungsberichte ohne IP-Adresse an PostHog weiter, unseren Dienst für Produktanalysen in der EU. Ab der Version, die TablePro-Konten einführt, sendet die Mac-App sie direkt an PostHog, das dann die IP-Adresse deines Macs erhält. Dein Konto führt ein Protokoll der Änderungen daran, etwa Anmeldungen und neue Geräte, mit IP-Adresse und Browser der jeweiligen Anfrage.
 - Die Website zählt Seitenaufrufe mit Cloudflare Web Analytics, das keine Cookies setzt. Sie lädt auch Google Analytics, das nur mit deiner Erlaubnis Cookies setzt. Jede Seite lädt außerdem unseren Live-Chat Crisp, der eigene Cookies setzt.
 - Das Kontoportal unter account.tablepro.app lädt kein Analyse-Skript. Es setzt ein Cookie, das dich angemeldet hält, und in seinen Einstellungen kannst du die Daten deines Kontos herunterladen oder das Konto löschen.
 - Käufe werden von {merchant}, unserem Merchant of Record, abgewickelt.
@@ -40,7 +40,7 @@ Er enthält niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen.
 
 Unser Server speichert weder den Bericht noch die IP-Adresse, von der er kam. Er leitet den Bericht als Ereignis zur Rechner-ID an PostHog weiter, mit dem Land, das Cloudflare für deine Verbindung angibt, ohne deinen Lizenzschlüssel und ohne deine IP-Adresse; PostHog legt daraus kein Personenprofil an. Da dein Konto seine Geräte unter derselben Rechner-ID führt, lassen sich Berichte eines Macs, auf dem du dich angemeldet oder eine Lizenz aktiviert hast, deinem Konto zuordnen.
 
-Ab der Version, die TablePro-Konten einführt, sendet die Mac-App ihre Nutzungsdaten stattdessen direkt an PostHog, unter derselben Einstellung. Sobald du dich anmeldest, verknüpft sie diese Daten mit deiner Konto-ID, die deine Installationen mit deinen Anmeldungen und Käufen verbindet. Schaltest du die Einstellung aus, endet beides.
+Ab der Version, die TablePro-Konten einführt, sendet die Mac-App ihre Nutzungsdaten stattdessen direkt an PostHog, unter derselben Einstellung. PostHog erhält dabei die IP-Adresse deines Macs. Sobald du dich anmeldest, verknüpft sie diese Daten mit deiner Konto-ID, die deine Installationen mit deinen Anmeldungen und Käufen verbindet. Schaltest du die Einstellung aus, endet beides.
 
 ### Lizenzprüfungen {#mac-license}
 
@@ -165,6 +165,8 @@ Im [Kontoportal]({account}) unter account.tablepro.app verwaltest du dein TableP
 
 Wenn du Versionshinweise abonnierst, senden wir dir zuerst einen Bestätigungslink in der Sprache der Anmeldeseite. Der Link gilt 7 Tage, und eine Adresse erhält höchstens 3 pro Tag. Nach deiner Bestätigung kommt deine Adresse in unsere Newsletter-Liste bei Resend, dem Dienst, der unsere E-Mails versendet. Jeder Newsletter enthält einen Abmeldelink, den Resend verarbeitet. Nach der Abmeldung senden wir keine weiteren Newsletter. Wenn auch die Adresse gelöscht werden soll, schreibe uns. Cloudflare Turnstile prüft das Formular, wie unter [Website](#website) beschrieben.
 
+Beim Umzug von unserem früheren Server kam jede Adresse seiner Mailingliste, die sich nicht abgemeldet hatte, als abonniert in diese Liste, ob bestätigt oder nicht: Dieser Server hatte auch die Adressen von Käufern, Lizenzinhabern und Beta-Anmeldungen aufgenommen und ihnen E-Mails gesendet. Abgemeldete Adressen kamen als abgemeldet herüber, und Adressen, deren E-Mails unzustellbar waren oder als Spam markiert wurden, kamen stattdessen auf die Sperrliste von Resend, sodass sie kein Newsletter erreicht.
+
 ## Cookies und Browserspeicher {#cookies}
 
 Das Lesen der öffentlichen Website und ihre Anfragen zu Newsletter, Checkout und Rabattcodes setzen keine eigenen Cookies. Die Anmeldung im Kontoportal, auch eine erst begonnene, setzt das eine unten genannte unbedingt erforderliche Portal-Cookie. Cloudflare Web Analytics setzt keine Cookies und speichert nichts im Browser. Google-Analytics-Cookies werden erst mit deiner Erlaubnis gesetzt. Crisp setzt seine Cookies auf jeder Seite, sobald der Chat geladen ist. Nichts davon wird für Werbung verwendet oder verkauft.
@@ -202,7 +204,7 @@ Wir teilen personenbezogene Daten nur mit den Diensten, die für den Betrieb von
 - **Unserem Hostinganbieter und Cloudflare**, für Website, Kontoportal und den Server, mit dem die Apps kommunizieren. Cloudflare zählt auch Seitenaufrufe mit Cloudflare Web Analytics und prüft das Newsletter-Formular mit Turnstile.
 - **Google**, für Google Analytics auf Website und Dokumentation.
 - **Crisp**, für den Live-Chat auf jeder Seite von Website und Kontoportal.
-- **PostHog** (EU Cloud), unserem Dienst für Produktanalysen, der die Nutzungsberichte der Apps und die Ereignisse unseres Servers zu Anmeldungen, Käufen, Geräten und Teams erhält, mit deiner Konto-ID, aber nie mit deiner E-Mail-Adresse oder deinem Namen.
+- **PostHog** (EU Cloud), unserem Dienst für Produktanalysen, der die Nutzungsberichte der Apps und die Ereignisse unseres Servers zu Anmeldungen, Käufen, Geräten und Teams erhält, mit deiner Konto-ID, aber nie mit deiner E-Mail-Adresse oder deinem Namen. Nutzungsdaten, die die Mac-App direkt sendet, erreichen PostHog mit der IP-Adresse deines Macs.
 - **Grafana Labs** (Grafana Cloud), das die Protokolle und Traces unseres Servers und die Fehlerberichte des Kontoportals erhält.
 - **Apple, GitHub und Google**, wenn du dich mit ihnen bei deinem Konto anmeldest.
 - **jsDelivr**, das deinem Browser das Checkout-Skript von {merchant} liefert, wenn du auf eine Kaufen-Schaltfläche zeigst.
@@ -218,15 +220,15 @@ Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können dahe
 ## Wie lange wir Daten aufbewahren {#retention}
 
 - **Nutzungsberichte und Analyseereignisse**: Unser Server bewahrt keine Kopie auf, sobald er sie an PostHog weitergegeben hat. Für PostHog haben wir keine Frist festgelegt. Wenn du dein Konto löschst, werden sein PostHog-Profil und seine Ereignisse eine Stunde später gelöscht.
-- **Datensätze unseres früheren Servers**: Die dort gespeicherten Nutzungsberichte und Protokolle der Lizenzanfragen mit ihren IP-Adressen liegen in einem verschlüsselten Archiv. Wir haben dafür keine Frist festgelegt.
+- **Datensätze unseres früheren Servers**: Eine Kopie seiner gesamten Datenbank wird unbefristet in einem Archiv aufbewahrt. Sie enthält Lizenzen, Bestellungen und Teammitglieder mit E-Mail-Adressen und Namen; die mit einer Lizenz aktivierten Macs mit ihren Namen; Newsletter-Abonnenten und Beta-Anmeldungen; Aufzeichnungen über die versendeten E-Mails; sowie die dort gespeicherten Nutzungsberichte und Protokolle der Lizenzanfragen mit ihren IP-Adressen.
 - **Geräte**: werden aufbewahrt, solange sie genutzt werden. Ein Gerät, das sich 180 Tage nicht gemeldet hat, wird entfernt, sofern keine Offline-Datei dafür mehr gilt, und ein entferntes Gerät wird ein Jahr später gelöscht.
 - **Audit-Log deines Kontos**: wird aufbewahrt, solange das Konto besteht, mit IP-Adresse und Browser jeder Änderung, die du vorgenommen hast. Das Löschen des Kontos entfernt daraus deine E-Mail-Adressen sowie IP-Adresse und Browser deiner Aktionen; der Eintrag jeder Änderung bleibt.
 - **Bestellungen**: werden für Steuern und Buchhaltung aufbewahrt. Das Löschen deines Kontos entfernt daraus deine E-Mail-Adresse und dein Konto.
 - **Benachrichtigungen von {merchant}, Resend und Apple**: 180 Tage. Die von {merchant} enthalten Name, E-Mail-Adresse und Rechnungsadresse; das Löschen deines Kontos entfernt sie früher aus denen zu deinen Käufen.
 - **Team Library**: bis ein Eintrag geändert oder gelöscht wird; ein gelöschter Eintrag wird 90 Tage aufbewahrt. Die Bibliothek wird mit ihrem Team gelöscht und bleibt nach dem Ende einer Lizenz bestehen.
 - **Anmeldelinks und -codes**: laufen nach 15 Minuten ab und werden 7 Tage später gelöscht. Portalsitzungen dauern 30 Tage. Das Token, das eine App angemeldet hält, läuft 90 Tage nach ihrer letzten Nutzung ab und wird 30 Tage danach gelöscht.
-- **Gelöschte Konten**: Konto, Anmeldemethoden, Geräte, Lizenzen und Teammitgliedschaften werden sofort gelöscht. Bestellungen und Audit-Log bleiben wie oben beschrieben.
-- **Newsletter**: Ein Bestätigungslink und die Adresse, an die er ging, werden 7 Tage nach Ablauf des Links gelöscht. Eine bestätigte Adresse bleibt in unserer Liste bei Resend, bis wir sie auf deine Anfrage löschen; nach der Abmeldung bleibt sie als abgemeldet gespeichert, damit sie keinen Newsletter mehr erhält.
+- **Gelöschte Konten**: Konto, Anmeldemethoden, Geräte, Lizenzen und Teammitgliedschaften werden sofort gelöscht. Bestellungen und Audit-Log bleiben wie oben beschrieben. Was unser früherer Server über dich gespeichert hat, bleibt in seinem oben beschriebenen Archiv.
+- **Newsletter**: Ein Bestätigungslink und die Adresse, an die er ging, werden 7 Tage nach Ablauf des Links gelöscht. Eine bestätigte oder von unserem früheren Server übernommene Adresse bleibt in unserer Liste bei Resend, bis wir sie auf deine Anfrage löschen; nach der Abmeldung bleibt sie als abgemeldet gespeichert, damit sie keinen Newsletter mehr erhält.
 - **Google Analytics**: Nutzer- und Ereignisdaten für 2 Monate, Googles Standardfrist, die unsere Property verwendet. Cookies bleiben bis zu 2 Jahre oder werden beim Ablehnen gelöscht.
 - **Cloudflare Web Analytics**: Cloudflare zeigt uns die Seitenaufrufsummen der letzten sechs Monate. Im Browser wird nichts gespeichert.
 - **Live-Chat und Support-E-Mails**: werden bei Crisp und in unserem Postfach bis zur Löschung aufbewahrt. Bitte uns, deine Gespräche und E-Mails zu löschen.
@@ -254,7 +256,7 @@ TablePro richtet sich nicht an Kinder unter 16 Jahren. Wir erfassen ihre persone
 
 ## Sicherheit {#security}
 
-Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. TablePro-Konten haben keine Passwörter. Anmeldelinks und -codes, die Tokens, die die Apps angemeldet halten, und Team-API-Tokens werden nur als Hashes gespeichert; Zugang zu unseren Systemen haben nur {publisherName} und die unter [Wer Daten erhält](#sharing) genannten Dienstleister. Kein System ist vollkommen sicher. Sicherheitslücken meldest du wie auf der [Sicherheitsseite](/de/security#report) beschrieben oder per E-Mail an [{email}](mailto:{email}).
+Der Datenverkehr zwischen Apps, Website, Kontoportal und unserem Server nutzt HTTPS. TablePro-Konten haben keine Passwörter. Anmeldelinks und -codes, die Tokens, die die Apps angemeldet halten, und Team-API-Tokens werden als Hashes gespeichert. Der Auftrag, der einen Anmeldelink und -code per E-Mail versendet, hält beide im Klartext, bis er gelöscht wird: einen Tag nach dem Versand der E-Mail oder 7 Tage, nachdem wir den Versand aufgegeben haben. Beide funktionieren 15 Minuten nach deiner Anfrage nicht mehr. Zugang zu unseren Systemen haben nur {publisherName} und die unter [Wer Daten erhält](#sharing) genannten Dienstleister. Kein System ist vollkommen sicher. Sicherheitslücken meldest du wie auf der [Sicherheitsseite](/de/security#report) beschrieben oder per E-Mail an [{email}](mailto:{email}).
 
 ## Änderungen dieser Erklärung {#changes}
 

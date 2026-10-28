@@ -12,7 +12,7 @@ This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website a
 - If you sign in to a TablePro account or activate a license key, the Mac app registers your Mac with our server, including its name, and checks your plan with it regularly.
 - The queries you run, your results and your passwords are not sent to TablePro. The exception is what you choose to publish to a Team Library: connection settings (never passwords) and saved queries.
 - AI requests go from the Mac app directly to the AI provider you set up, not to us.
-- Our server passes usage reports on to PostHog, our product analytics service in the EU, without their IP addresses. Your account keeps a log of the changes made to it, such as sign-ins and new devices, with the IP address and browser each came from.
+- Our server passes usage reports on to PostHog, our product analytics service in the EU, without their IP addresses. From the version that adds TablePro accounts, the Mac app sends them to PostHog directly, which then receives your Mac's IP address. Your account keeps a log of the changes made to it, such as sign-ins and new devices, with the IP address and browser each came from.
 - The website counts page views with Cloudflare Web Analytics, which sets no cookies. It also loads Google Analytics, which sets cookies only if you allow them. Every page also loads our live chat, Crisp, which sets cookies of its own.
 - The account portal at account.tablepro.app runs no analytics script. It sets one cookie to keep you signed in, and in its Settings you can download your account's data or delete the account.
 - Purchases are sold by {merchant}, our merchant of record.
@@ -40,7 +40,7 @@ It never contains hostnames, usernames, passwords, queries or rows.
 
 Our server does not store the report or the IP address it came from. It passes the report on to PostHog as an event about the machine ID, with the country Cloudflare gives for your connection and without your license key or IP address, and PostHog makes no profile of a person from it. Because your account lists its devices by the same machine ID, reports from a Mac you signed in on, or activated a license on, can be linked to your account.
 
-From the version that adds TablePro accounts, the Mac app sends its usage data to PostHog directly instead, under the same setting. Once you sign in, it links that data to your account ID, which connects your installs with your sign-ins and purchases. Turning the setting off stops both.
+From the version that adds TablePro accounts, the Mac app sends its usage data to PostHog directly instead, under the same setting. PostHog then receives your Mac's IP address with it. Once you sign in, it links that data to your account ID, which connects your installs with your sign-ins and purchases. Turning the setting off stops both.
 
 ### License checks {#mac-license}
 
@@ -165,6 +165,8 @@ The [account portal]({account}) at account.tablepro.app is where you manage your
 
 If you subscribe to release notes, we email you a confirmation link first, in the language of the page you subscribed from. The link works for 7 days, and one address gets at most 3 a day. Once you confirm, your address joins our newsletter list at Resend, the service that sends our emails. Every newsletter has an unsubscribe link, which Resend handles. After you unsubscribe we send no more newsletters; to have the address deleted as well, email us. Cloudflare Turnstile checks the form, as described under [Website](#website).
 
+When we moved from our previous server, every address on its mailing list that had not unsubscribed joined this list as subscribed, confirmed or not: that server had also added the addresses of buyers, license holders and beta signups, and emailed them. Addresses that had unsubscribed moved over as unsubscribed, and those whose emails had bounced or been marked as spam went onto Resend's suppression list instead, so no newsletter reaches them.
+
 ## Cookies and browser storage {#cookies}
 
 Reading the public website and its newsletter, checkout and discount-code requests set no cookies of their own. Signing in to the account portal, or starting to, sets the one strictly necessary portal cookie listed below. Cloudflare Web Analytics sets no cookies and stores nothing in your browser. The Google Analytics cookies are not set until you allow them. Crisp sets its cookies on every page once the chat has loaded. Nothing here is used for advertising or sold.
@@ -202,7 +204,7 @@ We share personal data only with the services needed to run TablePro:
 - **Our hosting provider and Cloudflare**, for the website, the account portal and the server the apps talk to. Cloudflare also counts page views with Cloudflare Web Analytics and checks the newsletter form with Turnstile.
 - **Google**, for Google Analytics on the website and the documentation.
 - **Crisp**, for the live chat on every page of the website and the account portal.
-- **PostHog** (EU Cloud), our product analytics service, which receives the apps' usage reports and our server's events about sign-ins, purchases, devices and teams, with your account ID but never your email address or name.
+- **PostHog** (EU Cloud), our product analytics service, which receives the apps' usage reports and our server's events about sign-ins, purchases, devices and teams, with your account ID but never your email address or name. Usage data the Mac app sends directly reaches PostHog with your Mac's IP address.
 - **Grafana Labs** (Grafana Cloud), which receives our server's logs and traces and the account portal's error reports.
 - **Apple, GitHub and Google**, when you sign in to your account with them.
 - **jsDelivr**, which serves {merchant}'s checkout script to your browser when you point at a Buy button.
@@ -218,15 +220,15 @@ The services above operate in several countries, so your data may be processed o
 ## How long we keep data {#retention}
 
 - **Usage reports and analytics events**: our server keeps no copy once it has passed them to PostHog. We have not set a time limit for them in PostHog. Deleting your account deletes its PostHog profile and events an hour later.
-- **Records from our previous server**: the usage reports and license request logs it kept, with their IP addresses, are in an encrypted archive. We have not set a time limit for it.
+- **Records from our previous server**: a copy of its whole database is kept indefinitely in an archive. It includes licenses, orders and team members with their email addresses and names; the Macs activated on a license, with their names; newsletter subscribers and beta signups; records of the emails it sent; and the usage reports and license request logs it kept, with their IP addresses.
 - **Devices**: kept while in use. A device that has not checked in for 180 days is removed, unless an offline file for it is still valid, and a removed device is deleted a year later.
 - **Your account's audit log**: kept while the account exists, with the IP address and browser of each change you made. Deleting the account removes your email addresses from it and the IP address and browser of what you did; the record of each change stays.
 - **Orders**: kept for tax and accounting. Deleting your account removes your email address and your account from them.
 - **Notifications from {merchant}, Resend and Apple**: 180 days. {merchant}'s hold your name, email address and billing address; deleting your account removes them sooner from those about your purchases.
 - **Team Library**: until an item is changed or deleted; a deleted item is kept for 90 days. The library is deleted with its team, and stays after a license ends.
 - **Sign-in links and codes**: they expire after 15 minutes and are deleted 7 days later. Portal sessions last 30 days. The token that keeps an app signed in expires 90 days after the app last used it, and is deleted 30 days after that.
-- **Deleted accounts**: the account, its sign-in methods, devices, licenses and team memberships are deleted at once. Orders and the audit log stay as described above.
-- **Newsletter**: a confirmation link and the address it went to are deleted 7 days after the link expires. A confirmed address stays in our list at Resend until we delete it at your request; after you unsubscribe it is kept as unsubscribed, so no newsletter reaches it.
+- **Deleted accounts**: the account, its sign-in methods, devices, licenses and team memberships are deleted at once. Orders and the audit log stay as described above. What our previous server held about you stays in its archive, described above.
+- **Newsletter**: a confirmation link and the address it went to are deleted 7 days after the link expires. A confirmed address, or one carried over from our previous server, stays in our list at Resend until we delete it at your request; after you unsubscribe it is kept as unsubscribed, so no newsletter reaches it.
 - **Google Analytics**: user-level and event-level data for 2 months, Google's default retention period, which our property uses. Its cookies last up to 2 years, or are deleted when you decline.
 - **Cloudflare Web Analytics**: Cloudflare shows us the last six months of page-view totals. Nothing is stored in your browser.
 - **Live chat and support emails**: kept by Crisp and in our mailbox until deleted. Ask us to delete your conversations and emails.
@@ -254,7 +256,7 @@ TablePro is not directed at children under 16, and we do not knowingly collect t
 
 ## Security {#security}
 
-Traffic between the apps, the website, the account portal and our server uses HTTPS. TablePro accounts have no passwords. Sign-in links and codes, the tokens that keep the apps signed in, and team API tokens are stored only as hashes, and access to our systems is limited to {publisherName} and the service providers listed under [Who receives data](#sharing). No system is perfectly secure. To report a vulnerability, see the [security page](/security#report) or email [{email}](mailto:{email}).
+Traffic between the apps, the website, the account portal and our server uses HTTPS. TablePro accounts have no passwords. Sign-in links and codes, the tokens that keep the apps signed in, and team API tokens are stored as hashes. The job that emails a sign-in link and code keeps them in plain text until it is deleted: a day after the email is sent, or 7 days after we give up sending it. Both stop working 15 minutes after you ask for them. Access to our systems is limited to {publisherName} and the service providers listed under [Who receives data](#sharing). No system is perfectly secure. To report a vulnerability, see the [security page](/security#report) or email [{email}](mailto:{email}).
 
 ## Changes to this policy {#changes}
 

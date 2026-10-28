@@ -12,7 +12,7 @@ Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sit
 - Se accedi a un account TablePro o attivi una chiave di licenza, l'app per Mac registra il tuo Mac sul nostro server, con il suo nome, e verifica regolarmente il tuo piano.
 - Le query che esegui, i risultati e le password non vengono inviati a TablePro. Fa eccezione ciò che scegli di pubblicare nella Team Library: impostazioni delle connessioni (mai le password) e query salvate.
 - Le richieste di IA vengono inviate direttamente dall'app per Mac al fornitore di IA che configuri, non a noi.
-- Il nostro server inoltra i rapporti sull'utilizzo a PostHog, il nostro servizio di analisi del prodotto nell'UE, senza i loro indirizzi IP. Il tuo account tiene un registro delle modifiche apportate, come accessi e nuovi dispositivi, con l'indirizzo IP e il browser della richiesta che ha fatto ciascuna.
+- Il nostro server inoltra i rapporti sull'utilizzo a PostHog, il nostro servizio di analisi del prodotto nell'UE, senza i loro indirizzi IP. Dalla versione che introduce gli account TablePro, l'app per Mac li invia direttamente a PostHog, che riceve quindi l'indirizzo IP del tuo Mac. Il tuo account tiene un registro delle modifiche apportate, come accessi e nuovi dispositivi, con l'indirizzo IP e il browser della richiesta che ha fatto ciascuna.
 - Il sito web conta le visualizzazioni con Cloudflare Web Analytics, che non imposta cookie. Carica inoltre Google Analytics, che imposta cookie solo se li autorizzi. Ogni pagina carica anche la nostra chat dal vivo, Crisp, che imposta i propri cookie.
 - Il portale account su account.tablepro.app non carica alcuno script di analisi. Imposta un cookie per mantenere l'accesso, e nelle sue impostazioni puoi scaricare i dati del tuo account o eliminarlo.
 - Gli acquisti sono venduti da {merchant}, il nostro merchant of record.
@@ -40,7 +40,7 @@ Non contiene mai nomi host, nomi utente, password, query o righe.
 
 Il nostro server non conserva il rapporto né l'indirizzo IP da cui proviene. Lo inoltra a PostHog come evento relativo all'ID del dispositivo, con il paese che Cloudflare indica per la tua connessione e senza la chiave di licenza né l'indirizzo IP, e PostHog non ne ricava un profilo di persona. Poiché il tuo account elenca i propri dispositivi con lo stesso ID, i rapporti di un Mac su cui hai effettuato l'accesso o attivato una licenza possono essere collegati al tuo account.
 
-Dalla versione che introduce gli account TablePro, l'app per Mac invia i dati di utilizzo direttamente a PostHog, con la stessa impostazione. Quando accedi, collega quei dati all'ID del tuo account, che mette in relazione le tue installazioni con i tuoi accessi e acquisti. Disattivare l'impostazione interrompe entrambe le cose.
+Dalla versione che introduce gli account TablePro, l'app per Mac invia i dati di utilizzo direttamente a PostHog, con la stessa impostazione. PostHog riceve quindi l'indirizzo IP del tuo Mac. Quando accedi, collega quei dati all'ID del tuo account, che mette in relazione le tue installazioni con i tuoi accessi e acquisti. Disattivare l'impostazione interrompe entrambe le cose.
 
 ### Verifiche della licenza {#mac-license}
 
@@ -165,6 +165,8 @@ Il [portale account]({account}) su account.tablepro.app è dove gestisci il tuo 
 
 Se ti iscrivi alle note di rilascio, prima ti inviamo un link di conferma nella lingua della pagina da cui ti iscrivi. Il link vale 7 giorni e un indirizzo ne riceve al massimo 3 al giorno. Dopo la conferma, il tuo indirizzo entra nella nostra lista della newsletter su Resend, il servizio che invia le nostre email. Ogni newsletter contiene un link per annullare l'iscrizione, gestito da Resend. Dopo l'annullamento non inviamo altre newsletter; per eliminare anche l'indirizzo, scrivici. Cloudflare Turnstile verifica il modulo, come descritto in [Sito web](#website).
 
+Nel passaggio dal nostro server precedente, ogni indirizzo della sua mailing list che non aveva annullato l'iscrizione è entrato in questa lista come iscritto, confermato o no: quel server aveva aggiunto anche gli indirizzi di acquirenti, titolari di licenza e iscritti alla beta, e inviava loro email. Gli indirizzi che avevano annullato l'iscrizione sono stati trasferiti come disiscritti, e quelli le cui email non erano state recapitate o erano state segnalate come spam sono finiti invece nella lista di soppressione di Resend, così nessuna newsletter li raggiunge.
+
 ## Cookie e archiviazione nel browser {#cookies}
 
 La lettura del sito pubblico e le sue richieste per newsletter, checkout e codici sconto non impostano cookie propri. Accedere al portale account, o iniziare a farlo, imposta l'unico cookie strettamente necessario elencato sotto. Cloudflare Web Analytics non imposta cookie e non conserva nulla nel browser. I cookie di Google Analytics vengono impostati solo con il tuo consenso. Crisp imposta i propri cookie su ogni pagina dopo il caricamento della chat. Nulla viene usato per pubblicità o venduto.
@@ -202,7 +204,7 @@ Condividiamo dati personali solo con i servizi necessari al funzionamento di Tab
 - **Il nostro fornitore di hosting e Cloudflare**, per il sito web, il portale account e il server con cui comunicano le app. Cloudflare conta anche le visualizzazioni con Cloudflare Web Analytics e verifica il modulo della newsletter con Turnstile.
 - **Google**, per Google Analytics sul sito web e sulla documentazione.
 - **Crisp**, per la chat dal vivo su ogni pagina del sito web e del portale account.
-- **PostHog** (EU Cloud), il nostro servizio di analisi del prodotto, che riceve i rapporti sull'utilizzo delle app e gli eventi del nostro server su accessi, acquisti, dispositivi e team, con l'ID del tuo account ma mai il tuo indirizzo email o il tuo nome.
+- **PostHog** (EU Cloud), il nostro servizio di analisi del prodotto, che riceve i rapporti sull'utilizzo delle app e gli eventi del nostro server su accessi, acquisti, dispositivi e team, con l'ID del tuo account ma mai il tuo indirizzo email o il tuo nome. I dati di utilizzo che l'app per Mac invia direttamente arrivano a PostHog con l'indirizzo IP del tuo Mac.
 - **Grafana Labs** (Grafana Cloud), che riceve i log e le tracce del nostro server e i rapporti sugli errori del portale account.
 - **Apple, GitHub e Google**, quando accedi al tuo account con loro.
 - **jsDelivr**, che serve al browser lo script di acquisto di {merchant} quando punti un pulsante Acquista.
@@ -218,15 +220,15 @@ I servizi elencati operano in diversi paesi, quindi i tuoi dati possono essere t
 ## Per quanto tempo conserviamo i dati {#retention}
 
 - **Rapporti sull'utilizzo ed eventi di analisi**: il nostro server non ne conserva copia dopo averli inoltrati a PostHog. Non abbiamo stabilito un limite di tempo per essi in PostHog. Eliminare l'account elimina il suo profilo e i suoi eventi in PostHog un'ora dopo.
-- **Dati del nostro server precedente**: i rapporti sull'utilizzo e i registri delle richieste di licenza che conservava, con i loro indirizzi IP, si trovano in un archivio cifrato. Non abbiamo stabilito un limite di tempo per l'archivio.
+- **Dati del nostro server precedente**: una copia di tutto il suo database è conservata a tempo indeterminato in un archivio. Comprende licenze, ordini e membri dei team con i loro indirizzi email e nomi; i Mac attivati con una licenza, con i loro nomi; gli iscritti alla newsletter e alla beta; i registri delle email inviate; e i rapporti sull'utilizzo e i registri delle richieste di licenza che conservava, con i loro indirizzi IP.
 - **Dispositivi**: conservati finché sono in uso. Un dispositivo che non si collega da 180 giorni viene rimosso, a meno che un file offline per esso sia ancora valido, e un dispositivo rimosso viene eliminato un anno dopo.
 - **Registro di audit del tuo account**: conservato finché l'account esiste, con l'indirizzo IP e il browser di ogni modifica che hai fatto. Eliminare l'account rimuove dal registro i tuoi indirizzi email e l'indirizzo IP e il browser delle tue azioni; la traccia di ogni modifica resta.
 - **Ordini**: conservati per finalità fiscali e contabili. Eliminare l'account rimuove da essi il tuo indirizzo email e il tuo account.
 - **Notifiche di {merchant}, Resend e Apple**: 180 giorni. Quelle di {merchant} contengono nome, indirizzo email e indirizzo di fatturazione; eliminare l'account li rimuove prima da quelle sui tuoi acquisti.
 - **Team Library**: finché un elemento non viene modificato o eliminato; un elemento eliminato viene conservato per 90 giorni. La libreria viene eliminata con il suo team e rimane dopo la fine di una licenza.
 - **Link e codici di accesso**: scadono dopo 15 minuti e vengono eliminati 7 giorni dopo. Le sessioni del portale durano 30 giorni. Il token che mantiene l'accesso di un'app scade 90 giorni dopo l'ultimo uso da parte dell'app e viene eliminato 30 giorni dopo.
-- **Account eliminati**: l'account, i suoi metodi di accesso, dispositivi, licenze e appartenenze ai team vengono eliminati subito. Gli ordini e il registro di audit restano come descritto sopra.
-- **Newsletter**: un link di conferma e l'indirizzo a cui è stato inviato vengono eliminati 7 giorni dopo la scadenza del link. Un indirizzo confermato resta nella nostra lista su Resend finché non lo eliminiamo su tua richiesta; dopo l'annullamento dell'iscrizione resta segnato come disiscritto, così non riceve alcuna newsletter.
+- **Account eliminati**: l'account, i suoi metodi di accesso, dispositivi, licenze e appartenenze ai team vengono eliminati subito. Gli ordini e il registro di audit restano come descritto sopra. Ciò che il nostro server precedente conservava su di te resta nel suo archivio, descritto sopra.
+- **Newsletter**: un link di conferma e l'indirizzo a cui è stato inviato vengono eliminati 7 giorni dopo la scadenza del link. Un indirizzo confermato, o trasferito dal nostro server precedente, resta nella nostra lista su Resend finché non lo eliminiamo su tua richiesta; dopo l'annullamento dell'iscrizione resta segnato come disiscritto, così non riceve alcuna newsletter.
 - **Google Analytics**: dati a livello di utente e di evento per 2 mesi, il periodo di conservazione predefinito di Google usato dalla nostra proprietà. I cookie durano fino a 2 anni oppure vengono eliminati quando li rifiuti.
 - **Cloudflare Web Analytics**: Cloudflare ci mostra i totali delle visualizzazioni degli ultimi sei mesi. Nulla viene conservato nel browser.
 - **Chat dal vivo ed email di supporto**: conservate da Crisp e nella nostra casella email finché non vengono eliminate. Chiedici di eliminare le tue conversazioni e le tue email.
@@ -254,7 +256,7 @@ TablePro non è rivolto ai minori di 16 anni e non raccogliamo consapevolmente i
 
 ## Sicurezza {#security}
 
-Il traffico tra le app, il sito web, il portale account e il nostro server usa HTTPS. Gli account TablePro non hanno password. I link e i codici di accesso, i token che mantengono l'accesso delle app e i token API dei team vengono conservati solo come hash e l'accesso ai nostri sistemi è limitato a {publisherName} e ai fornitori di servizi elencati in [Chi riceve i dati](#sharing). Nessun sistema è perfettamente sicuro. Per segnalare una vulnerabilità, consulta la [pagina Sicurezza](/it/security#report) o scrivi a [{email}](mailto:{email}).
+Il traffico tra le app, il sito web, il portale account e il nostro server usa HTTPS. Gli account TablePro non hanno password. I link e i codici di accesso, i token che mantengono l'accesso delle app e i token API dei team vengono conservati come hash. L'attività che invia via email un link e un codice di accesso li conserva in chiaro finché non viene eliminata: un giorno dopo l'invio dell'email, o 7 giorni dopo che abbiamo smesso di tentare l'invio. Entrambi smettono di funzionare 15 minuti dopo la tua richiesta. L'accesso ai nostri sistemi è limitato a {publisherName} e ai fornitori di servizi elencati in [Chi riceve i dati](#sharing). Nessun sistema è perfettamente sicuro. Per segnalare una vulnerabilità, consulta la [pagina Sicurezza](/it/security#report) o scrivi a [{email}](mailto:{email}).
 
 ## Modifiche a questa informativa {#changes}
 

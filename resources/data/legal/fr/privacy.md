@@ -12,7 +12,7 @@ Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site 
 - Si vous vous connectez à un compte TablePro ou activez une clé de licence, l’application Mac enregistre votre Mac sur notre serveur, avec son nom, et y vérifie régulièrement votre offre.
 - Vos requêtes, résultats et mots de passe ne sont pas envoyés à TablePro. L’exception concerne ce que vous choisissez de publier dans Team Library : paramètres de connexion (jamais les mots de passe) et requêtes enregistrées.
 - Les demandes IA vont directement de l’application Mac au fournisseur IA que vous avez configuré, pas à nous.
-- Notre serveur transmet les rapports d’utilisation à PostHog, notre service d’analyse produit dans l’UE, sans leurs adresses IP. Votre compte conserve un journal des modifications qui y sont faites, comme les connexions et les nouveaux appareils, avec l’adresse IP et le navigateur de la requête à l’origine de chacune.
+- Notre serveur transmet les rapports d’utilisation à PostHog, notre service d’analyse produit dans l’UE, sans leurs adresses IP. À partir de la version qui ajoute les comptes TablePro, l’application Mac les envoie directement à PostHog, qui reçoit alors l’adresse IP de votre Mac. Votre compte conserve un journal des modifications qui y sont faites, comme les connexions et les nouveaux appareils, avec l’adresse IP et le navigateur de la requête à l’origine de chacune.
 - Le site compte les pages vues avec Cloudflare Web Analytics, qui ne dépose aucun cookie. Il charge aussi Google Analytics, qui ne dépose des cookies que si vous l’autorisez. Chaque page charge également notre chat en direct Crisp, qui dépose ses propres cookies.
 - Le portail de comptes sur account.tablepro.app ne charge aucun script d’analyse. Il dépose un cookie pour maintenir votre connexion, et ses réglages vous permettent de télécharger les données de votre compte ou de supprimer le compte.
 - Les achats sont vendus par {merchant}, notre merchant of record.
@@ -40,7 +40,7 @@ Il ne contient jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, 
 
 Notre serveur ne stocke ni le rapport ni l’adresse IP d’où il provient. Il transmet le rapport à PostHog comme un événement lié à l’identifiant de machine, avec le pays que Cloudflare indique pour votre connexion, sans votre clé de licence ni votre adresse IP, et PostHog n’en tire aucun profil de personne. Comme votre compte répertorie ses appareils sous le même identifiant de machine, les rapports d’un Mac sur lequel vous vous êtes connecté ou avez activé une licence peuvent être reliés à votre compte.
 
-À partir de la version qui ajoute les comptes TablePro, l’application Mac envoie ses données d’utilisation directement à PostHog, avec le même réglage. Dès que vous vous connectez, elle relie ces données à l’identifiant de votre compte, ce qui rapproche vos installations de vos connexions et de vos achats. Désactiver le réglage arrête l’un et l’autre.
+À partir de la version qui ajoute les comptes TablePro, l’application Mac envoie ses données d’utilisation directement à PostHog, avec le même réglage. PostHog reçoit alors l’adresse IP de votre Mac. Dès que vous vous connectez, elle relie ces données à l’identifiant de votre compte, ce qui rapproche vos installations de vos connexions et de vos achats. Désactiver le réglage arrête l’un et l’autre.
 
 ### Vérifications de licence {#mac-license}
 
@@ -165,6 +165,8 @@ Le [portail de comptes]({account}) sur account.tablepro.app vous permet de gére
 
 Si vous vous abonnez aux notes de version, nous vous envoyons d’abord un lien de confirmation dans la langue de la page d’inscription. Le lien est valable 7 jours, et une adresse en reçoit au maximum 3 par jour. Une fois confirmée, votre adresse rejoint notre liste de newsletter chez Resend, le service qui envoie nos e-mails. Chaque newsletter contient un lien de désinscription, que Resend traite. Après désinscription, nous n’envoyons plus de newsletters ; pour supprimer aussi l’adresse, écrivez-nous. Cloudflare Turnstile vérifie le formulaire, comme décrit dans [Site web](#website).
 
+Lors du passage depuis notre ancien serveur, chaque adresse de sa liste de diffusion qui ne s’était pas désinscrite a rejoint cette liste comme abonnée, confirmée ou non : ce serveur avait aussi ajouté les adresses des acheteurs, des titulaires de licence et des inscrits à la bêta, et leur envoyait des e-mails. Les adresses désinscrites ont été reprises comme désinscrites, et celles dont les e-mails avaient été rejetés ou signalés comme spam ont été placées à la place sur la liste de suppression de Resend, si bien qu’aucune newsletter ne les atteint.
+
 ## Cookies et stockage du navigateur {#cookies}
 
 Consulter le site public et ses demandes de newsletter, de règlement et de code de réduction ne déposent aucun cookie propre. La connexion au portail de comptes, même seulement commencée, dépose le seul cookie strictement nécessaire listé ci-dessous. Cloudflare Web Analytics ne dépose aucun cookie et ne stocke rien dans votre navigateur. Les cookies Google Analytics ne sont déposés qu’après votre autorisation. Crisp dépose ses cookies sur chaque page une fois le chat chargé. Rien de tout cela n’est utilisé pour la publicité ou vendu.
@@ -202,7 +204,7 @@ Nous partageons les données personnelles uniquement avec les services nécessai
 - **Notre hébergeur et Cloudflare**, pour le site, le portail de comptes et le serveur avec lequel les applications communiquent. Cloudflare compte aussi les pages vues avec Cloudflare Web Analytics et vérifie le formulaire de newsletter avec Turnstile.
 - **Google**, pour Google Analytics sur le site et la documentation.
 - **Crisp**, pour le chat sur chaque page du site et du portail de comptes.
-- **PostHog** (EU Cloud), notre service d’analyse produit, qui reçoit les rapports d’utilisation des applications et les événements de notre serveur sur les connexions, achats, appareils et équipes, avec l’identifiant de votre compte mais jamais votre adresse e-mail ni votre nom.
+- **PostHog** (EU Cloud), notre service d’analyse produit, qui reçoit les rapports d’utilisation des applications et les événements de notre serveur sur les connexions, achats, appareils et équipes, avec l’identifiant de votre compte mais jamais votre adresse e-mail ni votre nom. Les données d’utilisation que l’application Mac envoie directement parviennent à PostHog avec l’adresse IP de votre Mac.
 - **Grafana Labs** (Grafana Cloud), qui reçoit les journaux et traces de notre serveur et les rapports d’erreurs du portail de comptes.
 - **Apple, GitHub et Google**, lorsque vous vous connectez à votre compte avec eux.
 - **jsDelivr**, qui fournit au navigateur le script de règlement de {merchant} lorsque vous pointez un bouton Acheter.
@@ -218,15 +220,15 @@ Les services ci-dessus opèrent dans plusieurs pays ; vos données peuvent don
 ## Durée de conservation des données {#retention}
 
 - **Rapports d’utilisation et événements d’analyse** : notre serveur n’en garde aucune copie une fois transmis à PostHog. Nous n’avons pas fixé de durée pour eux dans PostHog. La suppression de votre compte supprime son profil et ses événements PostHog une heure plus tard.
-- **Données de notre ancien serveur** : les rapports d’utilisation et les journaux de demandes de licence qu’il conservait, avec leurs adresses IP, sont dans une archive chiffrée. Nous n’avons pas fixé de durée pour celle-ci.
+- **Données de notre ancien serveur** : une copie de toute sa base de données est conservée sans limite de durée dans une archive. Elle comprend les licences, commandes et membres d’équipe avec leurs adresses e-mail et leurs noms ; les Mac activés sur une licence, avec leurs noms ; les abonnés à la newsletter et les inscriptions à la bêta ; la trace des e-mails qu’il a envoyés ; et les rapports d’utilisation et journaux de demandes de licence qu’il conservait, avec leurs adresses IP.
 - **Appareils** : conservés tant qu’ils servent. Un appareil sans contact depuis 180 jours est retiré, sauf si un fichier hors ligne le concernant est encore valide, et un appareil retiré est supprimé un an plus tard.
 - **Journal d’audit de votre compte** : conservé tant que le compte existe, avec l’adresse IP et le navigateur de chaque modification que vous avez faite. La suppression du compte en retire vos adresses e-mail ainsi que l’adresse IP et le navigateur de vos actions ; la trace de chaque modification demeure.
 - **Commandes** : conservées à des fins fiscales et comptables. La suppression de votre compte en retire votre adresse e-mail et votre compte.
 - **Notifications de {merchant}, Resend et Apple** : 180 jours. Celles de {merchant} contiennent votre nom, votre adresse e-mail et votre adresse de facturation ; la suppression de votre compte les retire plus tôt de celles qui concernent vos achats.
 - **Team Library** : jusqu’à la modification ou la suppression d’un élément ; un élément supprimé est conservé 90 jours. La bibliothèque est supprimée avec son équipe et reste après la fin d’une licence.
 - **Liens et codes de connexion** : expirent après 15 minutes et sont supprimés 7 jours plus tard. Les sessions du portail durent 30 jours. Le jeton qui maintient la connexion d’une application expire 90 jours après sa dernière utilisation par l’application, et est supprimé 30 jours plus tard.
-- **Comptes supprimés** : le compte, ses méthodes de connexion, appareils, licences et appartenances aux équipes sont supprimés immédiatement. Les commandes et le journal d’audit restent comme indiqué ci-dessus.
-- **Newsletter** : un lien de confirmation et l’adresse à laquelle il a été envoyé sont supprimés 7 jours après l’expiration du lien. Une adresse confirmée reste dans notre liste chez Resend jusqu’à ce que nous la supprimions à votre demande ; après désinscription, elle est conservée comme désinscrite afin qu’aucune newsletter ne lui parvienne.
+- **Comptes supprimés** : le compte, ses méthodes de connexion, appareils, licences et appartenances aux équipes sont supprimés immédiatement. Les commandes et le journal d’audit restent comme indiqué ci-dessus. Ce que notre ancien serveur détenait à votre sujet reste dans son archive, décrite ci-dessus.
+- **Newsletter** : un lien de confirmation et l’adresse à laquelle il a été envoyé sont supprimés 7 jours après l’expiration du lien. Une adresse confirmée, ou reprise de notre ancien serveur, reste dans notre liste chez Resend jusqu’à ce que nous la supprimions à votre demande ; après désinscription, elle est conservée comme désinscrite afin qu’aucune newsletter ne lui parvienne.
 - **Google Analytics** : données d’utilisateurs et d’événements pendant 2 mois, durée par défaut de Google utilisée par notre propriété. Les cookies durent jusqu’à 2 ans ou sont supprimés au refus.
 - **Cloudflare Web Analytics** : Cloudflare nous montre les totaux de pages vues des six derniers mois. Rien n’est stocké dans votre navigateur.
 - **Chat et e-mails d’assistance** : conservés par Crisp et dans notre messagerie jusqu’à suppression. Demandez-nous de supprimer vos conversations et e-mails.
@@ -254,7 +256,7 @@ TablePro ne s’adresse pas aux enfants de moins de 16 ans et nous ne collectons
 
 ## Sécurité {#security}
 
-Le trafic entre applications, site, portail de comptes et serveur utilise HTTPS. Les comptes TablePro n’ont pas de mot de passe. Les liens et codes de connexion, les jetons qui maintiennent la connexion des applications et les jetons d’API d’équipe ne sont stockés que sous forme de hachages et l’accès à nos systèmes est limité à {publisherName} et aux prestataires indiqués dans [Qui reçoit les données](#sharing). Aucun système n’est parfaitement sécurisé. Pour signaler une vulnérabilité, consultez la [page Sécurité](/fr/security#report) ou écrivez à [{email}](mailto:{email}).
+Le trafic entre applications, site, portail de comptes et serveur utilise HTTPS. Les comptes TablePro n’ont pas de mot de passe. Les liens et codes de connexion, les jetons qui maintiennent la connexion des applications et les jetons d’API d’équipe sont stockés sous forme de hachages. La tâche qui envoie par e-mail un lien et un code de connexion les garde en clair jusqu’à sa suppression : un jour après l’envoi de l’e-mail, ou 7 jours après l’abandon de l’envoi. Tous deux cessent de fonctionner 15 minutes après votre demande. L’accès à nos systèmes est limité à {publisherName} et aux prestataires indiqués dans [Qui reçoit les données](#sharing). Aucun système n’est parfaitement sécurisé. Pour signaler une vulnérabilité, consultez la [page Sécurité](/fr/security#report) ou écrivez à [{email}](mailto:{email}).
 
 ## Modification de cette politique {#changes}
 

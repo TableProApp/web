@@ -12,7 +12,7 @@ Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad,
 - Nếu bạn đăng nhập tài khoản TablePro hoặc kích hoạt license key, ứng dụng cho Mac đăng ký máy Mac của bạn với máy chủ của chúng tôi, kèm tên máy, và định kỳ kiểm tra gói của bạn với máy chủ.
 - Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
 - Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
-- Máy chủ của chúng tôi chuyển báo cáo sử dụng sang PostHog, dịch vụ phân tích sản phẩm của chúng tôi đặt tại EU, không kèm địa chỉ IP. Tài khoản của bạn giữ nhật ký các thay đổi trên tài khoản, như các lần đăng nhập và thiết bị mới, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi.
+- Máy chủ của chúng tôi chuyển báo cáo sử dụng sang PostHog, dịch vụ phân tích sản phẩm của chúng tôi đặt tại EU, không kèm địa chỉ IP. Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi báo cáo thẳng tới PostHog, nên PostHog nhận được địa chỉ IP của máy Mac của bạn. Tài khoản của bạn giữ nhật ký các thay đổi trên tài khoản, như các lần đăng nhập và thiết bị mới, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi.
 - Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép. Mọi trang cũng tải chat trực tuyến của chúng tôi, Crisp, và Crisp đặt cookie riêng của mình.
 - Trang tài khoản tại account.tablepro.app không tải script phân tích nào. Trang này đặt một cookie để giữ đăng nhập, và trong phần Cài đặt bạn có thể tải về dữ liệu tài khoản hoặc xóa tài khoản.
 - Việc mua license do {merchant}, merchant of record của chúng tôi, thực hiện.
@@ -40,7 +40,7 @@ Báo cáo không bao giờ chứa hostname, username, mật khẩu, query hay d�
 
 Máy chủ của chúng tôi không lưu báo cáo, cũng không lưu địa chỉ IP gửi báo cáo. Máy chủ chuyển báo cáo sang PostHog dưới dạng một sự kiện về mã máy, kèm quốc gia mà Cloudflare cho biết cho kết nối của bạn, không kèm license key hay địa chỉ IP của bạn, và PostHog không tạo hồ sơ cá nhân nào từ đó. Vì tài khoản của bạn ghi các thiết bị theo cùng mã máy, báo cáo từ một máy Mac mà bạn đã đăng nhập hoặc kích hoạt license có thể được liên kết với tài khoản của bạn.
 
-Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, theo cùng tùy chọn. Khi bạn đăng nhập, ứng dụng liên kết dữ liệu đó với mã tài khoản của bạn, qua đó nối các lần cài đặt với các lần đăng nhập và mua hàng của bạn. Tắt tùy chọn này sẽ dừng cả hai.
+Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, theo cùng tùy chọn. Khi đó PostHog nhận được địa chỉ IP của máy Mac của bạn. Khi bạn đăng nhập, ứng dụng liên kết dữ liệu đó với mã tài khoản của bạn, qua đó nối các lần cài đặt với các lần đăng nhập và mua hàng của bạn. Tắt tùy chọn này sẽ dừng cả hai.
 
 ### Kiểm tra license {#mac-license}
 
@@ -165,6 +165,8 @@ Một lần mua không đăng nhập sẽ thuộc về tài khoản TablePro c�
 
 Nếu bạn đăng ký nhận ghi chú phát hành, trước tiên chúng tôi gửi cho bạn một liên kết xác nhận bằng ngôn ngữ của trang bạn dùng để đăng ký. Liên kết có hiệu lực 7 ngày, và mỗi địa chỉ nhận tối đa 3 liên kết mỗi ngày. Khi bạn xác nhận, địa chỉ của bạn vào danh sách bản tin của chúng tôi tại Resend, dịch vụ gửi email của chúng tôi. Mọi bản tin đều có liên kết hủy đăng ký, do Resend xử lý. Sau khi bạn hủy đăng ký, chúng tôi không gửi bản tin nào nữa; nếu muốn xóa luôn địa chỉ email, hãy gửi email cho chúng tôi. Cloudflare Turnstile kiểm tra form đăng ký, như mô tả trong mục [Website](#website).
 
+Khi chuyển từ máy chủ trước đây, mọi địa chỉ chưa hủy đăng ký trong danh sách email của máy chủ đó đều được đưa vào danh sách này ở trạng thái đã đăng ký, dù đã xác nhận hay chưa: máy chủ đó cũng đã thêm địa chỉ của người mua, người giữ license và người đăng ký dùng thử bản beta, và gửi email cho họ. Các địa chỉ đã hủy đăng ký được chuyển sang ở trạng thái đã hủy, còn các địa chỉ có email bị trả về hoặc bị đánh dấu là spam được đưa vào danh sách chặn của Resend thay vào đó, nên không bản tin nào tới được các địa chỉ này.
+
 ## Cookie và bộ nhớ trình duyệt {#cookies}
 
 Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã giảm giá không đặt cookie riêng. Đăng nhập trang tài khoản, hoặc bắt đầu đăng nhập, đặt cookie thực sự cần thiết duy nhất liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt. Cookie Google Analytics chỉ đặt khi bạn cho phép. Crisp đặt cookie trên mọi trang sau khi chat tải xong. Không thứ nào ở đây được dùng cho quảng cáo hay được bán.
@@ -202,7 +204,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics và kiểm tra form đăng ký bản tin bằng Turnstile.
 - **Google**, cho Google Analytics trên website và tài liệu.
 - **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
-- **PostHog** (EU Cloud), dịch vụ phân tích sản phẩm của chúng tôi, nhận báo cáo sử dụng của các ứng dụng và các sự kiện từ máy chủ của chúng tôi về đăng nhập, mua hàng, thiết bị và nhóm, kèm mã tài khoản của bạn nhưng không bao giờ kèm địa chỉ email hay tên.
+- **PostHog** (EU Cloud), dịch vụ phân tích sản phẩm của chúng tôi, nhận báo cáo sử dụng của các ứng dụng và các sự kiện từ máy chủ của chúng tôi về đăng nhập, mua hàng, thiết bị và nhóm, kèm mã tài khoản của bạn nhưng không bao giờ kèm địa chỉ email hay tên. Dữ liệu sử dụng mà ứng dụng cho Mac gửi thẳng tới PostHog đến kèm địa chỉ IP của máy Mac của bạn.
 - **Grafana Labs** (Grafana Cloud), nhận log và trace của máy chủ chúng tôi và báo cáo lỗi của trang tài khoản.
 - **Apple, GitHub và Google**, khi bạn đăng nhập tài khoản bằng các dịch vụ này.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
@@ -218,15 +220,15 @@ Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ li�
 ## Thời gian lưu dữ liệu {#retention}
 
 - **Báo cáo sử dụng và sự kiện phân tích**: máy chủ của chúng tôi không giữ bản sao nào sau khi đã chuyển chúng sang PostHog. Chúng tôi chưa đặt thời hạn cho chúng trong PostHog. Xóa tài khoản sẽ xóa hồ sơ và các sự kiện của tài khoản trong PostHog một giờ sau đó.
-- **Dữ liệu từ máy chủ trước đây của chúng tôi**: các báo cáo sử dụng và nhật ký yêu cầu liên quan đến license mà máy chủ đó giữ, cùng địa chỉ IP, nằm trong một kho lưu trữ đã mã hóa. Chúng tôi chưa đặt thời hạn cho kho này.
+- **Dữ liệu từ máy chủ trước đây của chúng tôi**: một bản sao toàn bộ cơ sở dữ liệu của máy chủ đó được giữ vô thời hạn trong một kho lưu trữ. Bản sao gồm license, đơn hàng và thành viên nhóm kèm địa chỉ email và tên; các máy Mac đã kích hoạt license, kèm tên máy; người đăng ký bản tin và người đăng ký dùng thử bản beta; bản ghi các email máy chủ đó đã gửi; và các báo cáo sử dụng cùng nhật ký yêu cầu liên quan đến license mà máy chủ đó giữ, kèm địa chỉ IP.
 - **Thiết bị**: được giữ khi còn dùng. Thiết bị không liên lạc trong 180 ngày sẽ bị gỡ, trừ khi một tệp offline cho thiết bị đó vẫn còn hiệu lực, và thiết bị đã gỡ bị xóa một năm sau.
 - **Nhật ký kiểm tra của tài khoản**: được giữ khi tài khoản còn tồn tại, kèm địa chỉ IP và trình duyệt của từng thay đổi bạn thực hiện. Xóa tài khoản sẽ gỡ khỏi nhật ký các địa chỉ email của bạn cùng địa chỉ IP và trình duyệt của những việc bạn đã làm; bản ghi về từng thay đổi vẫn còn.
 - **Đơn hàng**: được giữ cho mục đích thuế và kế toán. Xóa tài khoản sẽ gỡ địa chỉ email và tài khoản của bạn khỏi đơn hàng.
 - **Thông báo từ {merchant}, Resend và Apple**: 180 ngày. Thông báo của {merchant} chứa tên, địa chỉ email và địa chỉ thanh toán của bạn; xóa tài khoản sẽ gỡ các thông tin đó sớm hơn khỏi những thông báo về các lần mua của bạn.
 - **Team Library**: cho tới khi một mục được sửa hoặc xóa; mục đã xóa được giữ 90 ngày. Thư viện bị xóa cùng nhóm, và vẫn còn sau khi license kết thúc.
 - **Liên kết và mã đăng nhập**: hết hạn sau 15 phút và bị xóa 7 ngày sau đó. Mỗi phiên đăng nhập trang tài khoản kéo dài 30 ngày. Token giữ một ứng dụng ở trạng thái đăng nhập hết hạn 90 ngày sau lần cuối ứng dụng dùng nó, và bị xóa 30 ngày sau đó.
-- **Tài khoản đã xóa**: tài khoản, các cách đăng nhập, thiết bị, license và tư cách thành viên nhóm bị xóa ngay. Đơn hàng và nhật ký kiểm tra được giữ như mô tả ở trên.
-- **Bản tin**: liên kết xác nhận và địa chỉ đã nhận liên kết bị xóa 7 ngày sau khi liên kết hết hạn. Địa chỉ đã xác nhận nằm trong danh sách của chúng tôi tại Resend cho tới khi chúng tôi xóa theo yêu cầu của bạn; sau khi bạn hủy đăng ký, địa chỉ được giữ ở trạng thái đã hủy đăng ký để không bản tin nào tới được địa chỉ đó.
+- **Tài khoản đã xóa**: tài khoản, các cách đăng nhập, thiết bị, license và tư cách thành viên nhóm bị xóa ngay. Đơn hàng và nhật ký kiểm tra được giữ như mô tả ở trên. Những gì máy chủ trước đây lưu về bạn vẫn nằm trong kho lưu trữ của máy chủ đó, như mô tả ở trên.
+- **Bản tin**: liên kết xác nhận và địa chỉ đã nhận liên kết bị xóa 7 ngày sau khi liên kết hết hạn. Địa chỉ đã xác nhận, hoặc được chuyển từ máy chủ trước đây, nằm trong danh sách của chúng tôi tại Resend cho tới khi chúng tôi xóa theo yêu cầu của bạn; sau khi bạn hủy đăng ký, địa chỉ được giữ ở trạng thái đã hủy đăng ký để không bản tin nào tới được địa chỉ đó.
 - **Google Analytics**: dữ liệu ở cấp người dùng và cấp sự kiện được giữ 2 tháng, thời hạn lưu mặc định của Google mà property của chúng tôi đang dùng. Cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
 - **Cloudflare Web Analytics**: Cloudflare cho chúng tôi xem số liệu tổng về lượt xem trang trong sáu tháng gần nhất. Không có gì được lưu trong trình duyệt của bạn.
 - **Chat trực tuyến và email hỗ trợ**: được Crisp và hộp thư của chúng tôi giữ cho tới khi bị xóa. Bạn có thể yêu cầu chúng tôi xóa các cuộc chat và email của bạn.
@@ -254,7 +256,7 @@ TablePro không hướng tới trẻ em dưới 16 tuổi, và chúng tôi khôn
 
 ## Bảo mật {#security}
 
-Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Tài khoản TablePro không có mật khẩu. Liên kết và mã đăng nhập, các token giữ ứng dụng ở trạng thái đăng nhập, và token API của nhóm chỉ được lưu dưới dạng giá trị băm, và quyền truy cập vào hệ thống của chúng tôi chỉ dành cho {publisherName} và các nhà cung cấp dịch vụ được liệt kê trong mục [Bên nhận dữ liệu](#sharing). Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
+Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Tài khoản TablePro không có mật khẩu. Liên kết và mã đăng nhập, các token giữ ứng dụng ở trạng thái đăng nhập, và token API của nhóm được lưu dưới dạng giá trị băm. Tác vụ gửi email chứa liên kết và mã đăng nhập giữ nguyên văn hai giá trị này cho tới khi tác vụ bị xóa: một ngày sau khi email được gửi, hoặc 7 ngày sau khi chúng tôi ngừng thử gửi. Cả hai hết hiệu lực 15 phút sau khi bạn yêu cầu. Quyền truy cập vào hệ thống của chúng tôi chỉ dành cho {publisherName} và các nhà cung cấp dịch vụ được liệt kê trong mục [Bên nhận dữ liệu](#sharing). Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
 
 ## Thay đổi chính sách {#changes}
 

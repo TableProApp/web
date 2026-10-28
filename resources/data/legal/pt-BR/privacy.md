@@ -12,7 +12,7 @@ Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site ta
 - Se você entrar em uma conta TablePro ou ativar uma chave de licença, o app para Mac registra seu Mac em nosso servidor, com o nome dele, e verifica seu plano com ele regularmente.
 - Consultas, resultados e senhas não são enviados ao TablePro. A exceção é o que você escolhe publicar na Team Library: configurações de conexão (nunca senhas) e consultas salvas.
 - Solicitações de IA vão do app para Mac diretamente ao provedor configurado por você, não a nós.
-- Nosso servidor repassa os relatórios de uso ao PostHog, nosso serviço de análise de produto na UE, sem os endereços IP. Sua conta mantém um registro das mudanças feitas nela, como acessos e novos dispositivos, com o endereço IP e o navegador da solicitação que fez cada uma.
+- Nosso servidor repassa os relatórios de uso ao PostHog, nosso serviço de análise de produto na UE, sem os endereços IP. A partir da versão que traz as contas TablePro, o app para Mac os envia diretamente ao PostHog, que então recebe o endereço IP do seu Mac. Sua conta mantém um registro das mudanças feitas nela, como acessos e novos dispositivos, com o endereço IP e o navegador da solicitação que fez cada uma.
 - O site conta visualizações de página com Cloudflare Web Analytics, que não define cookies. Também carrega Google Analytics, que só define cookies se você permitir. Todas as páginas carregam nosso chat ao vivo, Crisp, que define seus próprios cookies.
 - O portal da conta em account.tablepro.app não carrega nenhum script de análise. Ele define um cookie para manter você conectado, e nas configurações dele você pode baixar os dados da sua conta ou excluí-la.
 - As compras são vendidas por {merchant}, nosso merchant of record.
@@ -40,7 +40,7 @@ Nunca contém nomes de host, nomes de usuário, senhas, consultas nem linhas.
 
 Nosso servidor não armazena o relatório nem o endereço IP de origem. Ele repassa o relatório ao PostHog como um evento sobre o ID de máquina, com o país que o Cloudflare informa para sua conexão e sem sua chave de licença nem seu IP, e o PostHog não cria com ele um perfil de pessoa. Como sua conta lista os dispositivos pelo mesmo ID de máquina, relatórios de um Mac em que você entrou ou ativou uma licença podem ser associados à sua conta.
 
-A partir da versão que traz as contas TablePro, o app para Mac envia seus dados de uso diretamente ao PostHog, com a mesma configuração. Quando você entra, ele associa esses dados ao ID da sua conta, o que liga suas instalações aos seus acessos e compras. Desativar a configuração interrompe as duas coisas.
+A partir da versão que traz as contas TablePro, o app para Mac envia seus dados de uso diretamente ao PostHog, com a mesma configuração. O PostHog então recebe o endereço IP do seu Mac. Quando você entra, ele associa esses dados ao ID da sua conta, o que liga suas instalações aos seus acessos e compras. Desativar a configuração interrompe as duas coisas.
 
 ### Verificações de licença {#mac-license}
 
@@ -165,6 +165,8 @@ O [portal da conta]({account}) em account.tablepro.app é onde você gerencia su
 
 Se você se inscrever nas notas de versão, primeiro enviamos um link de confirmação no idioma da página de inscrição. O link vale por 7 dias, e um endereço recebe no máximo 3 por dia. Depois que você confirma, seu endereço entra na nossa lista da newsletter no Resend, o serviço que envia nossos emails. Toda newsletter tem um link para cancelar a inscrição, tratado pelo Resend. Após cancelar, não enviamos mais newsletters; para excluir também o endereço, envie um email. O Cloudflare Turnstile verifica o formulário, como descrito em [Site](#website).
 
+Na mudança do nosso servidor anterior, todo endereço da lista de emails dele que não tinha cancelado a inscrição entrou nesta lista como inscrito, confirmado ou não: aquele servidor também adicionava os endereços de compradores, titulares de licença e inscritos no beta, e enviava emails a eles. Os endereços que tinham cancelado a inscrição vieram como cancelados, e aqueles cujos emails tinham voltado ou sido marcados como spam foram para a lista de supressão do Resend, para que nenhuma newsletter chegue a eles.
+
 ## Cookies e armazenamento do navegador {#cookies}
 
 Ler o site público e suas solicitações de newsletter, checkout e códigos de desconto não define cookies próprios. Entrar no portal da conta, ou começar a entrar, define o único cookie estritamente necessário listado abaixo. Cloudflare Web Analytics não define cookies nem armazena nada no navegador. Os cookies do Google Analytics só são definidos com seu consentimento. Crisp define seus cookies em cada página após a chat carregar. Nada aqui é usado para publicidade ou vendido.
@@ -202,7 +204,7 @@ Compartilhamos dados pessoais apenas com os serviços necessários para operar T
 - **Nosso provedor de hospedagem e Cloudflare**, para site, portal da conta e servidor dos apps. Cloudflare também conta visualizações com Cloudflare Web Analytics e verifica o formulário da newsletter com o Turnstile.
 - **Google**, para Google Analytics no site e na documentação.
 - **Crisp**, para chat ao vivo em todas as páginas do site e portal da conta.
-- **PostHog** (EU Cloud), nosso serviço de análise de produto, que recebe os relatórios de uso dos apps e os eventos do nosso servidor sobre acessos, compras, dispositivos e equipes, com o ID da sua conta, mas nunca seu email ou nome.
+- **PostHog** (EU Cloud), nosso serviço de análise de produto, que recebe os relatórios de uso dos apps e os eventos do nosso servidor sobre acessos, compras, dispositivos e equipes, com o ID da sua conta, mas nunca seu email ou nome. Os dados de uso que o app para Mac envia diretamente chegam ao PostHog com o endereço IP do seu Mac.
 - **Grafana Labs** (Grafana Cloud), que recebe os logs e traces do nosso servidor e os relatórios de erros do portal da conta.
 - **Apple, GitHub e Google**, quando você entra na sua conta com eles.
 - **jsDelivr**, que fornece o script de checkout de {merchant} ao navegador ao apontar para um botão Comprar.
@@ -218,15 +220,15 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 ## Por quanto tempo mantemos dados {#retention}
 
 - **Relatórios de uso e eventos de análise**: nosso servidor não guarda cópia depois de repassá-los ao PostHog. Não definimos prazo para eles no PostHog. Excluir sua conta exclui o perfil e os eventos dela no PostHog uma hora depois.
-- **Registros do nosso servidor anterior**: os relatórios de uso e os registros de solicitações de licença que ele mantinha, com seus IPs, estão em um arquivo criptografado. Não definimos prazo para ele.
+- **Registros do nosso servidor anterior**: uma cópia de todo o banco de dados dele é mantida por tempo indeterminado em um arquivo. Ela inclui licenças, pedidos e membros de equipe com seus emails e nomes; os Macs ativados com uma licença, com seus nomes; inscritos na newsletter e no beta; registros dos emails que ele enviou; e os relatórios de uso e os registros de solicitações de licença que ele mantinha, com seus IPs.
 - **Dispositivos**: mantidos enquanto estão em uso. Um dispositivo que não se comunica por 180 dias é removido, a menos que um arquivo offline dele ainda seja válido, e um dispositivo removido é excluído um ano depois.
 - **Registro de auditoria da sua conta**: mantido enquanto a conta existir, com o endereço IP e o navegador de cada mudança que você fez. Excluir a conta remove dele seus emails e o endereço IP e o navegador do que você fez; o registro de cada mudança permanece.
 - **Pedidos**: mantidos para fins fiscais e contábeis. Excluir sua conta remove deles seu email e sua conta.
 - **Notificações de {merchant}, Resend e Apple**: 180 dias. As de {merchant} contêm nome, email e endereço de cobrança; excluir sua conta remove esses dados mais cedo das notificações sobre suas compras.
 - **Team Library**: até um item ser alterado ou excluído; um item excluído é mantido por 90 dias. A biblioteca é excluída junto com a equipe e permanece após o fim de uma licença.
 - **Links e códigos de acesso**: expiram após 15 minutos e são excluídos 7 dias depois. Sessões do portal duram 30 dias. O token que mantém um app conectado expira 90 dias após o último uso pelo app e é excluído 30 dias depois.
-- **Contas excluídas**: a conta, seus métodos de acesso, dispositivos, licenças e participações em equipes são excluídos imediatamente. Pedidos e o registro de auditoria ficam como descrito acima.
-- **Newsletter**: um link de confirmação e o endereço para onde foi enviado são excluídos 7 dias após o link expirar. Um endereço confirmado fica em nossa lista no Resend até o excluirmos a seu pedido; após cancelar a inscrição, ele fica marcado como cancelado, para que nenhuma newsletter chegue a ele.
+- **Contas excluídas**: a conta, seus métodos de acesso, dispositivos, licenças e participações em equipes são excluídos imediatamente. Pedidos e o registro de auditoria ficam como descrito acima. O que nosso servidor anterior guardava sobre você continua no arquivo dele, descrito acima.
+- **Newsletter**: um link de confirmação e o endereço para onde foi enviado são excluídos 7 dias após o link expirar. Um endereço confirmado, ou trazido do nosso servidor anterior, fica em nossa lista no Resend até o excluirmos a seu pedido; após cancelar a inscrição, ele fica marcado como cancelado, para que nenhuma newsletter chegue a ele.
 - **Google Analytics**: dados no nível de usuário e evento por 2 meses, o período padrão usado por nossa propriedade. Cookies duram até 2 anos ou são excluídos quando você recusa.
 - **Cloudflare Web Analytics**: Cloudflare nos mostra totais de visualizações dos últimos seis meses. Nada é armazenado no navegador.
 - **Chat ao vivo e emails de suporte**: mantidos pelo Crisp e em nossa caixa de email até serem excluídos. Solicite a exclusão das conversas e emails.
@@ -254,7 +256,7 @@ TablePro não é dirigido a menores de 16 anos, e não coletamos seus dados pess
 
 ## Segurança {#security}
 
-O tráfego entre apps, site, portal da conta e nosso servidor usa HTTPS. Contas TablePro não têm senha. Links e códigos de acesso, os tokens que mantêm os apps conectados e os tokens de API de equipe são armazenados apenas como hashes, e o acesso aos sistemas é limitado a {publisherName} e aos prestadores de serviço listados em [Quem recebe dados](#sharing). Nenhum sistema é perfeitamente seguro. Para relatar uma vulnerabilidade, consulte a [página de Segurança](/pt-BR/security#report) ou envie um email para [{email}](mailto:{email}).
+O tráfego entre apps, site, portal da conta e nosso servidor usa HTTPS. Contas TablePro não têm senha. Links e códigos de acesso, os tokens que mantêm os apps conectados e os tokens de API de equipe são armazenados como hashes. A tarefa que envia por email um link e um código de acesso os guarda em texto simples até ser excluída: um dia depois do envio do email, ou 7 dias depois de desistirmos de enviá-lo. Os dois deixam de funcionar 15 minutos depois do seu pedido. O acesso aos sistemas é limitado a {publisherName} e aos prestadores de serviço listados em [Quem recebe dados](#sharing). Nenhum sistema é perfeitamente seguro. Para relatar uma vulnerabilidade, consulte a [página de Segurança](/pt-BR/security#report) ou envie um email para [{email}](mailto:{email}).
 
 ## Alterações desta política {#changes}
 

@@ -304,6 +304,25 @@ it('keeps the retention periods tablepro-cloud states', function (): void {
         ->toContain('14 days, in Grafana Cloud');
 });
 
+it('states what tablepro-cloud keeps outside its own tables', function (): void {
+    // migration.md: a pg_dump of the whole Laravel database to R2, kept indefinitely; no document says it is encrypted.
+    $retention = legalSection('privacy', 'en', 'retention');
+    expect($retention)->toContain('a copy of its whole database is kept indefinitely')
+        ->toContain('What our previous server held about you stays in its archive')
+        ->not->toContain('encrypted archive');
+
+    // data-model.md, Retention: a sign-in email job holds the raw link and code until River cleans it.
+    expect(legalSection('privacy', 'en', 'security'))->not->toContain('only as hashes')
+        ->toContain('a day after the email is sent, or 7 days after we give up sending it');
+
+    // migration.md: every Laravel subscriber not unsubscribed is imported subscribed, confirmed or not.
+    expect(legalSection('privacy', 'en', 'newsletter'))->toContain('confirmed or not');
+
+    // clients.md: the Mac app sends usage data to PostHog itself, so PostHog gets the request's IP address.
+    expect(legalSection('privacy', 'en', 'mac-usage-report'))->toContain('PostHog then receives your Mac\'s IP address');
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('reaches PostHog with your Mac\'s IP address');
+});
+
 it('describes the account portal tablepro-cloud runs, its sign-in and what it loads', function (): void {
     $account = legalSection('privacy', 'en', 'account');
 
