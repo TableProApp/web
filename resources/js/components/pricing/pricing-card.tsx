@@ -30,7 +30,7 @@ interface PricingCardProps {
     onSeatsChange: (seats: number) => void;
     /** A previewed, valid discount code, sent with checkout. */
     discountCode: string | null;
-    /** The regional discount checkout will apply to this reader, once the platform has said so. */
+    /** The regional discount checkout will apply to this reader, once tablepro-cloud has said so. */
     regional: Regional | null;
 }
 

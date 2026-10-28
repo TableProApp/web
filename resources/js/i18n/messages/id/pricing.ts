@@ -98,7 +98,6 @@ export default {
         "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>."
     },
     "finePrint": "Harga dalam dolar AS. {merchant} menangani pembayaran dan menghitung pajak penjualan atau PPN saat checkout sebagai merchant of record.",
-    "finePrintCurrency": "Harga dalam dolar AS.",
     "comparePlans": "Bandingkan paket",
     "section": {
         "title": "Harga",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "Harga normal {price}"
     },
     "discount": {
-        "atCheckout": "Punya kode diskon? Masukkan saat checkout.",
         "summary": "Punya kode diskon?",
         "label": "Kode diskon",
         "apply": "Terapkan kode",
         "checking": "Memeriksa kode…",
         "percent": "Kode diterima: diskon {amount}%, diterapkan saat checkout.",
         "fixed": "Kode diterima: potongan {amount}, diterapkan saat checkout.",
+        "accepted": "Kode diterima, diterapkan saat checkout.",
         "invalid": "Kode ini tidak valid atau telah kedaluwarsa."
     },
     "checkout": {
-        "failed": "Tidak dapat membuka checkout. Coba lagi."
+        "failed": "Tidak dapat membuka checkout. Coba lagi.",
+        "planUnavailable": "Paket ini sedang tidak dijual. Pilih siklus penagihan lain atau coba lagi nanti.",
+        "seats": "Pilih antara {min} dan {max} seat, lalu coba lagi."
     },
     "offers": {
         "name": "{plan}, {cycle}",

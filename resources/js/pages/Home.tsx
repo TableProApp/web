@@ -38,7 +38,7 @@ import LandingLayout from '@/layouts/landing-layout';
 /** Positioning §5: a homepage title longer than this falls back to the "for developers" form. */
 const TITLE_LIMIT = 60;
 
-export default function Home({ content, engines, categories, iosEngines, testimonials, checkout }: HomePageProps) {
+export default function Home({ content, engines, categories, iosEngines, testimonials }: HomePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
 
@@ -83,7 +83,6 @@ export default function Home({ content, engines, categories, iosEngines, testimo
             <SwitchSection content={content.switch} macApp={macApp} />
             <TestimonialsSection content={content.testimonials} quotes={testimonials} />
             <PricingSection
-                checkout={checkout}
                 title={content.pricing.title}
                 lead={fmt(content.pricing.lead, {
                     macApp,

@@ -14,7 +14,7 @@ function countryName(country: string, intl: string): string {
  * The line that says why the plan prices are struck through: the reader's
  * country and its discount, which checkout applies by itself.
  *
- * Rendered only after the platform has answered, in the browser, so the
+ * Rendered only after tablepro-cloud has answered, in the browser, so the
  * country name is formatted there and never meets the server render.
  */
 export default function RegionalNote({ regional }: { regional: Regional }) {

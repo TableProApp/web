@@ -98,7 +98,6 @@ export default {
         "other": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
     },
     "finePrint": "価格は米ドルです。{merchant} が販売者（merchant of record）として決済を処理し、購入時に売上税または VAT を計算します。",
-    "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",
     "section": {
         "title": "料金",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "通常価格 {price}"
     },
     "discount": {
-        "atCheckout": "割引コードをお持ちですか？チェックアウト時に入力してください。",
         "summary": "割引コードをお持ちですか？",
         "label": "割引コード",
         "apply": "コードを適用",
         "checking": "コードを確認中…",
         "percent": "コードを確認しました。チェックアウト時に {amount}% 割引になります。",
         "fixed": "コードを確認しました。チェックアウト時に {amount} 割引になります。",
+        "accepted": "コードを確認しました。チェックアウト時に適用されます。",
         "invalid": "このコードは無効か、有効期限が切れています。"
     },
     "checkout": {
-        "failed": "購入手続きを開けませんでした。もう一度お試しください。"
+        "failed": "購入手続きを開けませんでした。もう一度お試しください。",
+        "planUnavailable": "このプランは現在販売していません。別の請求サイクルを選ぶか、しばらくしてからもう一度お試しください。",
+        "seats": "{min}〜{max} シートの範囲で選び、もう一度お試しください。"
     },
     "offers": {
         "name": "{plan}（{cycle}）",

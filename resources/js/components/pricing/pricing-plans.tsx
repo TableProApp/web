@@ -10,13 +10,11 @@ import BillingCycleControl from './billing-cycle-control';
 import DiscountField from './discount-field';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
 import RegionalNote from './regional-note';
-import type { CheckoutProp } from './types';
 import { useCheckout } from './use-checkout';
 
 const TIERS: readonly TierId[] = ['free', 'starter', 'team'];
 
 interface PricingPlansProps {
-    checkout: CheckoutProp;
     /** `full` on `/pricing`; `compact` (no Includes lists) in the homepage section. */
     variant?: PricingCardVariant;
     /** The cards' heading element: `h3` under a section heading (default), `h2` directly under the page's `h1`. */
@@ -34,7 +32,7 @@ interface PricingPlansProps {
  * minimum seats. Both render on the server, so the block reads the same
  * before and after hydration.
  *
- * Where checkout applies a regional discount, the platform says so after the
+ * Where checkout applies a regional discount, tablepro-cloud says so after the
  * block has rendered (`useRegionalPricing`): the paid prices then show what
  * checkout will charge beside the struck list price, and a line above the
  * notes names the country. The server render, and so the cached page and its
@@ -43,24 +41,18 @@ interface PricingPlansProps {
  * The cards are joined cells of the page grid (design-system §4.7), so the
  * block belongs in a wide section.
  */
-export default function PricingPlans({ checkout, variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
+export default function PricingPlans({ variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
     const { m, fmt, plural } = useI18n();
     const [cycle, setCycle] = useState<BillingCycle>('yearly');
     const [seats, setSeats] = useState<number>(PRICING.tiers.team.seats.min);
     const [discountCode, setDiscountCode] = useState<string | null>(null);
-    const flow = useCheckout(checkout.provider);
+    const flow = useCheckout();
     /*
      * A typed code replaces the regional discount at checkout; the two never
      * stack. So while one is applied, the cards show the list prices again.
      */
     const regionalDiscount = useRegionalPricing();
     const regional = discountCode === null ? regionalDiscount : null;
-
-    /*
-     * pricing.json names the merchant of record (Polar). Only its own checkout
-     * may be described as such; another provider's gets the currency alone.
-     */
-    const merchantCheckout = checkout.provider === PRICING.merchantOfRecord.name.toLowerCase();
 
     return (
         // While the cycle control is pinned, a focused control must not scroll in under it.
@@ -98,14 +90,8 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         }}
                     />
                 </p>
-                {checkout.couponField ? (
-                    <DiscountField onApplied={setDiscountCode} />
-                ) : (
-                    <p className="type-small text-muted-foreground">{m.pricing.discount.atCheckout}</p>
-                )}
-                <p className="type-small text-muted-foreground">
-                    {merchantCheckout ? fmt(m.pricing.finePrint, { merchant: PRICING.merchantOfRecord.name }) : m.pricing.finePrintCurrency}
-                </p>
+                <DiscountField onApplied={setDiscountCode} />
+                <p className="type-small text-muted-foreground">{fmt(m.pricing.finePrint, { merchant: PRICING.merchantOfRecord.name })}</p>
             </div>
         </div>
     );

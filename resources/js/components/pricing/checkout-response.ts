@@ -1,65 +1,45 @@
-/**
- * What the plan cards show for the platform's answers to `POST /checkout` and
- * `POST /discount/preview` (architecture §1.14).
- *
- * Pure and free of React and path aliases, so `node --test` loads it directly
- * (tests/js/checkout.test.ts). `useCheckout` and `DiscountField` do the
- * requests and hold the result in state.
- *
- * The platform writes a 422's message in the request's language (the body
- * carries `locale`), so that text is shown as it comes. Everything else is
- * framework text in English, or the throttle's message shared with the
- * license API, so the page's own catalog speaks instead:
- *
- * - 200 with an `https` URL: open it;
- * - 422: the server's `message`, else the catalog's `failed`;
- * - 429: the catalog's `tooMany`;
- * - anything else: the catalog's `failed`.
- */
+// What the plan cards show for each answer of POST /v2/checkouts and POST /v2/discounts/preview.
+// No path aliases, so `node --test` loads it directly (tests/js/checkout.test.ts).
+import { problemOf } from '../../lib/problem.ts';
 
 export interface CheckoutStrings {
     failed: string;
     tooMany: string;
+    planUnavailable: string;
+    seats: string;
 }
 
 export type CheckoutOutcome = { kind: 'open'; url: string } | { kind: 'error'; message: string };
 
-function record(data: unknown): Record<string, unknown> {
-    return typeof data === 'object' && data !== null ? (data as Record<string, unknown>) : {};
-}
-
-function text(value: unknown): string | null {
-    return typeof value === 'string' && value.trim() !== '' ? value : null;
-}
-
 export function checkoutOutcome(status: number, data: unknown, strings: CheckoutStrings): CheckoutOutcome {
-    const body = record(data);
-
     if (status >= 200 && status < 300) {
-        const url = text(body.url);
+        const url = typeof data === 'object' && data !== null ? (data as Record<string, unknown>).url : null;
 
-        return url !== null && url.startsWith('https://') ? { kind: 'open', url } : { kind: 'error', message: strings.failed };
-    }
-
-    if (status === 422) {
-        return { kind: 'error', message: text(body.message) ?? strings.failed };
+        return typeof url === 'string' && url.startsWith('https://') ? { kind: 'open', url } : { kind: 'error', message: strings.failed };
     }
 
     if (status === 429) {
         return { kind: 'error', message: strings.tooMany };
     }
 
+    const problem = problemOf(data);
+
+    if (status === 422 && problem.code === 'plan_unavailable') {
+        return { kind: 'error', message: strings.planUnavailable };
+    }
+
+    if (status === 422 && problem.code === 'validation_failed' && problem.locations.includes('body.seats')) {
+        return { kind: 'error', message: strings.seats };
+    }
+
     return { kind: 'error', message: strings.failed };
 }
 
-/**
- * A discount code's preview: `{valid: false}`, or `{valid: true, amount_type,
- * amount}` where a `fixed` amount is in cents and a `percent` one is a whole
- * percentage.
- */
 export type DiscountOutcome =
     | { kind: 'percent'; amount: number }
     | { kind: 'fixed'; cents: number }
+    // A fixed amount in a currency other than the site's USD: accepted, but not restated.
+    | { kind: 'accepted' }
     | { kind: 'invalid' }
     | { kind: 'tooMany' }
     | { kind: 'failed' };
@@ -69,6 +49,7 @@ export function discountOutcome(status: number, data: unknown): DiscountOutcome 
         return { kind: 'tooMany' };
     }
 
+    // A malformed code, such as one over 64 characters, is a code checkout would not apply.
     if (status === 422) {
         return { kind: 'invalid' };
     }
@@ -77,7 +58,7 @@ export function discountOutcome(status: number, data: unknown): DiscountOutcome 
         return { kind: 'failed' };
     }
 
-    const body = record(data);
+    const body = typeof data === 'object' && data !== null ? (data as Record<string, unknown>) : {};
     const amount = typeof body.amount === 'number' && Number.isFinite(body.amount) && body.amount > 0 ? body.amount : null;
 
     if (body.valid !== true || amount === null) {
@@ -89,7 +70,9 @@ export function discountOutcome(status: number, data: unknown): DiscountOutcome 
     }
 
     if (body.amount_type === 'fixed') {
-        return { kind: 'fixed', cents: amount };
+        const currency = typeof body.currency === 'string' ? body.currency.toUpperCase() : 'USD';
+
+        return currency === 'USD' ? { kind: 'fixed', cents: amount } : { kind: 'accepted' };
     }
 
     return { kind: 'invalid' };

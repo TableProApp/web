@@ -16,7 +16,7 @@ use Symfony\Component\Finder\SplFileInfo;
  *     refund: array{days: int, scope: string},
  *     license: array{revalidateDays: int, offlineGraceDays: int, perpetualFallback: bool},
  *     billingPortalUrl: string,
- *     checkoutSdk: array{polar: string, lemonsqueezy: string},
+ *     checkoutSdk: string,
  *     syncedWith: string
  * }
  */
@@ -102,12 +102,8 @@ it('pins the refund window, the license timings and Priority support', function 
 });
 
 // Pinned: the embed is third-party code running on this origin, so a new version is a reviewed change.
-it('pins the checkout overlay scripts, one per provider, over HTTPS', function (): void {
-    $sdk = pricingJson()['checkoutSdk'];
-
-    expect(array_keys($sdk))->toBe(['polar', 'lemonsqueezy']);
-    expect($sdk['polar'])->toBe('https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js');
-    expect($sdk['lemonsqueezy'])->toBe('https://app.lemonsqueezy.com/js/lemon.js');
+it('pins Polar\'s checkout overlay script over HTTPS', function (): void {
+    expect(pricingJson()['checkoutSdk'])->toBe('https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js');
 });
 
 it('keeps paid features out of the pricing file', function (): void {

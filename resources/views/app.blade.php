@@ -191,8 +191,8 @@
     {{--
         No third-party script is in this template. Crisp's chat loader is added
         by the page once it has loaded and the browser is idle
-        (resources/js/lib/crisp.ts), so it never delays the first render. The
-        Polar or Lemon Squeezy checkout SDK loads at checkout intent
+        (resources/js/lib/crisp.ts), so it never delays the first render.
+        Polar's checkout script loads at checkout intent
         (resources/js/lib/checkout-sdk.ts), not on every page. Google's tag is
         added the same way as the chat, by the script below.
     --}}

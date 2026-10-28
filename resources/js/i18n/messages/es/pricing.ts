@@ -98,7 +98,6 @@ export default {
         "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra, y cada renovación mensual o anual en los {count} días siguientes a su cobro. Consulta la <link>política de reembolso</link>."
     },
     "finePrint": "Precios en dólares estadounidenses. {merchant} gestiona el pago y calcula el impuesto sobre ventas o el IVA al pagar, como merchant of record.",
-    "finePrintCurrency": "Precios en dólares estadounidenses.",
     "comparePlans": "Comparar planes",
     "section": {
         "title": "Precios",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "Precio de lista {price}"
     },
     "discount": {
-        "atCheckout": "¿Tienes un código de descuento? Introdúcelo al finalizar la compra.",
         "summary": "¿Tienes un código de descuento?",
         "label": "Código de descuento",
         "apply": "Aplicar código",
         "checking": "Comprobando el código…",
         "percent": "Código aceptado: {amount}% de descuento, aplicado al finalizar la compra.",
         "fixed": "Código aceptado: {amount} de descuento, aplicado al finalizar la compra.",
+        "accepted": "Código aceptado, aplicado al finalizar la compra.",
         "invalid": "Este código no es válido o ha caducado."
     },
     "checkout": {
-        "failed": "No se pudo abrir el pago. Inténtalo de nuevo."
+        "failed": "No se pudo abrir el pago. Inténtalo de nuevo.",
+        "planUnavailable": "Este plan no está a la venta ahora mismo. Elige otro ciclo de facturación o inténtalo más tarde.",
+        "seats": "Elige entre {min} y {max} puestos e inténtalo de nuevo."
     },
     "offers": {
         "name": "{plan}, {cycle}",

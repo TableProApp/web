@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Support\Content\ContentRepository;
-use App\Support\Pricing\Checkout;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
@@ -16,19 +15,18 @@ use Inertia\Response;
  * locale whose `content/{locale}/pricing.json` exists. Prices, seats and
  * timings are not props: the page reads them from resources/data/pricing.json,
  * the same file the homepage's `#pricing` section and the structured data read,
- * so the two cannot disagree. The props are the copy, the paid features' lines,
- * the checkout provider and the engine names the Mac app's description needs.
+ * so the two cannot disagree. The props are the copy, the paid features' lines
+ * and the engine names the Mac app's description needs.
  */
 class PricingController extends Controller
 {
-    public function __invoke(ContentRepository $content, Checkout $checkout): Response
+    public function __invoke(ContentRepository $content): Response
     {
         $locale = App::getLocale();
 
         return Inertia::render('Pricing', [
             'content' => $content->page('pricing', $locale),
             'paidFeatures' => $content->page('paid-features', $locale),
-            'checkout' => $checkout->props(),
             'featuredEngines' => $this->featuredEngines(),
             'comparisons' => $this->paidComparisons($content, $locale),
         ]);

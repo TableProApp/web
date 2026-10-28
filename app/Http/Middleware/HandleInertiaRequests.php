@@ -7,6 +7,7 @@ use App\Support\Banner;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Seo\SeoContext;
+use App\Support\TableProApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
@@ -70,6 +71,7 @@ class HandleInertiaRequests extends Middleware
             'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
             'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
+            'apiOrigin' => TableProApi::origin(),
             'assetPlaceholders' => ! App::isProduction(),
         ];
     }

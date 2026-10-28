@@ -1,23 +1,18 @@
 import { useState } from 'react';
 import pricingData from '@data/pricing.json';
+import { useApi } from '@/hooks/use-api';
 import { useI18n } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
 import { currentAttribution, type Attribution } from '@/lib/attribution';
-import { loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout, type CheckoutProvider } from '@/lib/checkout-sdk';
-import type { BillingCycle, PaidTierId } from '@/lib/data/pricing';
+import { loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '@/lib/checkout-sdk';
+import { PRICING, type BillingCycle, type PaidTierId } from '@/lib/data/pricing';
 import { checkoutOutcome } from './checkout-response';
 
-/** The provider scripts, pinned in resources/data/pricing.json. */
-const SDK_SOURCES: Record<CheckoutProvider, string> = pricingData.checkoutSdk;
+const SDK_SOURCE: string = pricingData.checkoutSdk;
 
-/**
- * `POST /checkout`'s body. The tier and cycle, never a provider product id:
- * the platform resolves the product, so no provider identifier exists in this
- * repository. `locale` is the page's, so the purchase emails arrive in the
- * reader's language; it changes nothing about the price.
- */
+// A plan and cycle, never a Polar product ID: tablepro-cloud resolves the product and never trusts a price from here.
 interface CheckoutBody {
-    tier: PaidTierId;
+    plan: PaidTierId;
     cycle: BillingCycle;
     locale: string;
     seats?: number;
@@ -31,9 +26,7 @@ export interface CheckoutError {
 }
 
 export interface StartOptions {
-    /** Team only: the seats chosen on the card. */
     seats?: number;
-    /** A code this page has already previewed as valid. */
     discountCode?: string | null;
 }
 
@@ -41,33 +34,15 @@ function overlayTheme(): 'light' | 'dark' {
     return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
 
-/**
- * Starting a purchase from a plan card.
- *
- * Checkout belongs to the platform app on this origin, so this is a plain JSON
- * request held in React state, like `useEmailForm`: this app has no session
- * and no CSRF token. `credentials: 'omit'` keeps the platform's session
- * cookies off public pages; checkout needs none.
- *
- * The endpoint is the root path in every language, because nginx routes
- * `/checkout` to the platform by its unprefixed path.
- *
- * `checkout_started` fires on intent, not success: success happens inside the
- * provider's overlay, where nothing here can see it. Read against the
- * platform's own completion count, it is the overlay's abandonment rate.
- *
- * The overlay's script starts loading with the request, or earlier through
- * `warm()`. If it cannot load or open, the reader goes to the provider's
- * checkout page itself, which is the same purchase without the overlay.
- */
-export function useCheckout(provider: CheckoutProvider) {
-    const { locale, m } = useI18n();
+// `checkout_started` fires on intent: the sale completes inside Polar's overlay, where nothing here can see it.
+export function useCheckout() {
+    const { locale, m, fmt } = useI18n();
+    const api = useApi();
     const [pending, setPending] = useState<PaidTierId | null>(null);
     const [error, setError] = useState<CheckoutError | null>(null);
 
-    /** Starts fetching the overlay's script on the first sign of intent: a pointer or focus on a buy button. */
     function warm(): void {
-        loadCheckoutSdk(provider, SDK_SOURCES[provider]).catch(() => undefined);
+        loadCheckoutSdk(SDK_SOURCE).catch(() => undefined);
     }
 
     async function start(tier: PaidTierId, cycle: BillingCycle, options: StartOptions = {}): Promise<void> {
@@ -80,13 +55,13 @@ export function useCheckout(provider: CheckoutProvider) {
 
         trackEvent('checkout_started', { tier, cycle });
 
-        const sdk = loadCheckoutSdk(provider, SDK_SOURCES[provider]);
+        const sdk = loadCheckoutSdk(SDK_SOURCE);
 
         // Awaited below only once a URL exists; until then a failed load must not surface as unhandled.
         sdk.catch(() => undefined);
 
         try {
-            const body: CheckoutBody = { tier, cycle, locale };
+            const body: CheckoutBody = { plan: tier, cycle, locale };
 
             if (tier === 'team' && options.seats !== undefined) {
                 body.seats = options.seats;
@@ -96,25 +71,26 @@ export function useCheckout(provider: CheckoutProvider) {
                 body.discount_code = options.discountCode;
             }
 
-            /*
-             * Where the reader first came from, attached last, so nothing
-             * between here and the request can drop it. Absent for an untagged
-             * first visit or a browser that refuses storage.
-             */
+            // Attached last, so nothing between here and the request can drop it.
             const attribution = currentAttribution();
 
             if (attribution !== null) {
                 body.attribution = attribution;
             }
 
-            const res = await fetch('/checkout', {
+            const res = await fetch(api('/v2/checkouts'), {
                 method: 'POST',
                 credentials: 'omit',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                 body: JSON.stringify(body),
             });
             const data: unknown = await res.json().catch(() => ({}));
-            const outcome = checkoutOutcome(res.status, data, { failed: m.pricing.checkout.failed, tooMany: m.forms.tooMany });
+            const outcome = checkoutOutcome(res.status, data, {
+                failed: m.pricing.checkout.failed,
+                tooMany: m.forms.tooMany,
+                planUnavailable: m.pricing.checkout.planUnavailable,
+                seats: fmt(m.pricing.checkout.seats, PRICING.tiers.team.seats),
+            });
 
             if (outcome.kind === 'error') {
                 setError({ tier, message: outcome.message });
@@ -124,7 +100,7 @@ export function useCheckout(provider: CheckoutProvider) {
 
             try {
                 await withTimeout(sdk, SDK_WAIT_MS);
-                await openCheckoutOverlay(provider, outcome.url, overlayTheme());
+                await openCheckoutOverlay(outcome.url, overlayTheme());
             } catch {
                 window.location.assign(outcome.url);
             }

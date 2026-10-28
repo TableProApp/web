@@ -98,7 +98,6 @@ export default {
         "other": "所有付费方案均可在购买后 {count} 天内退款，月付或年付方案的每次续订也可在扣款后 {count} 天内退款。详见<link>退款政策</link>。"
     },
     "finePrint": "价格以美元计。{merchant} 作为 merchant of record 处理付款，并在结账时计算销售税或增值税。",
-    "finePrintCurrency": "价格以美元计。",
     "comparePlans": "对比方案",
     "section": {
         "title": "定价",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "原价 {price}"
     },
     "discount": {
-        "atCheckout": "有优惠码？请在结账时输入。",
         "summary": "有优惠码？",
         "label": "优惠码",
         "apply": "应用优惠码",
         "checking": "正在验证优惠码…",
         "percent": "优惠码有效：结账时享受 {amount}% 折扣。",
         "fixed": "优惠码有效：结账时减免 {amount}。",
+        "accepted": "优惠码有效，结账时生效。",
         "invalid": "此优惠码无效或已过期。"
     },
     "checkout": {
-        "failed": "无法打开结账页面，请重试。"
+        "failed": "无法打开结账页面，请重试。",
+        "planUnavailable": "此方案暂未开售。请选择其他计费周期，或稍后重试。",
+        "seats": "请选择 {min} 到 {max} 个席位，然后重试。"
     },
     "offers": {
         "name": "{plan}，{cycle}",

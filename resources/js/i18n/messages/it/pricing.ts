@@ -98,7 +98,6 @@ export default {
         "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorni dal suo addebito. Consulta la <link>politica di rimborso</link>."
     },
     "finePrint": "Prezzi in dollari USA. {merchant} gestisce il pagamento e calcola imposte o IVA al checkout come merchant of record.",
-    "finePrintCurrency": "Prezzi in dollari statunitensi.",
     "comparePlans": "Confronta i piani",
     "section": {
         "title": "Prezzi",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "Prezzo di listino {price}"
     },
     "discount": {
-        "atCheckout": "Hai un codice sconto? Inseriscilo al checkout.",
         "summary": "Hai un codice sconto?",
         "label": "Codice sconto",
         "apply": "Applica codice",
         "checking": "Verifica del codice…",
         "percent": "Codice accettato: {amount}% di sconto, applicato al checkout.",
         "fixed": "Codice accettato: {amount} di sconto, applicato al checkout.",
+        "accepted": "Codice accettato, applicato al checkout.",
         "invalid": "Questo codice non è valido o è scaduto."
     },
     "checkout": {
-        "failed": "Impossibile aprire il checkout. Riprova."
+        "failed": "Impossibile aprire il checkout. Riprova.",
+        "planUnavailable": "Questo piano al momento non è in vendita. Scegli un altro periodo di fatturazione o riprova più tardi.",
+        "seats": "Scegli tra {min} e {max} posti, poi riprova."
     },
     "offers": {
         "name": "{plan}, {cycle}",

@@ -86,7 +86,6 @@ export default {
         other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {count} ngày kể từ ngày tính phí. Xem <link>chính sách hoàn tiền</link>.',
     },
     finePrint: 'Giá tính bằng USD. {merchant} xử lý thanh toán và tính thuế bán hàng hoặc VAT tại checkout với vai trò merchant of record.',
-    finePrintCurrency: 'Giá tính bằng USD.',
     comparePlans: 'So sánh các gói',
     section: {
         title: 'Bảng giá',
@@ -108,17 +107,19 @@ export default {
         listPrice: 'Giá gốc {price}',
     },
     discount: {
-        atCheckout: 'Có mã giảm giá? Bạn nhập mã ở bước thanh toán.',
         summary: 'Có mã giảm giá?',
         label: 'Mã giảm giá',
         apply: 'Áp dụng mã',
         checking: 'Đang kiểm tra mã…',
         percent: 'Mã hợp lệ: giảm {amount}%, áp dụng khi thanh toán.',
         fixed: 'Mã hợp lệ: giảm {amount}, áp dụng khi thanh toán.',
+        accepted: 'Mã hợp lệ, áp dụng khi thanh toán.',
         invalid: 'Mã giảm giá không hợp lệ hoặc đã hết hạn.',
     },
     checkout: {
         failed: 'Không mở được trang thanh toán. Hãy thử lại.',
+        planUnavailable: 'Gói này hiện chưa mở bán. Hãy chọn chu kỳ thanh toán khác hoặc thử lại sau.',
+        seats: 'Hãy chọn từ {min} đến {max} seat rồi thử lại.',
     },
     offers: {
         name: '{plan}, {cycle}',

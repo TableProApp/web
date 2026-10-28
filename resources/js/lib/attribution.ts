@@ -7,7 +7,7 @@
  * click, and the license is written by the TablePro backend — none of which
  * this app can see.
  *
- * `POST /checkout` is the one moment the two halves touch. So the acquisition
+ * `POST /v2/checkouts` is the one moment the two halves touch. So the acquisition
  * source is resolved here, in the browser, and handed over in that request
  * body for the backend to store against the license. See "Purchase
  * attribution" in docs/architecture.md for the other end of that contract.

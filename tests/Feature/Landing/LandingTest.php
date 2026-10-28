@@ -22,10 +22,10 @@ beforeEach(function (): void {
 function landingFamilies(): array
 {
     return [
-        'landing.home' => ['Home', ['content.hero.title', 'engines.0.path', 'checkout', 'iosEngines']],
+        'landing.home' => ['Home', ['content.hero.title', 'engines.0.path', 'apiOrigin', 'iosEngines']],
         'landing.download' => ['Download', ['content', 'mac', 'release', 'unreleased']],
         'landing.ios' => ['Ios', ['content', 'ios', 'engines']],
-        'landing.pricing' => ['Pricing', ['content', 'checkout', 'paidFeatures']],
+        'landing.pricing' => ['Pricing', ['content', 'apiOrigin', 'paidFeatures']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
         'landing.about' => ['About', ['content', 'publisher.name', 'repositoryCreated', 'links']],
         'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],

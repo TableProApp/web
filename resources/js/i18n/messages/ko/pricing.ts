@@ -98,7 +98,6 @@ export default {
         "other": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
     },
     "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 처리하고 결제 시 판매세 또는 VAT를 계산합니다.",
-    "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",
     "section": {
         "title": "요금",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "정가 {price}"
     },
     "discount": {
-        "atCheckout": "할인 코드가 있나요? 결제 시 입력하세요.",
         "summary": "할인 코드가 있나요?",
         "label": "할인 코드",
         "apply": "코드 적용",
         "checking": "코드 확인 중…",
         "percent": "코드가 적용되었습니다. 결제 시 {amount}% 할인됩니다.",
         "fixed": "코드가 적용되었습니다. 결제 시 {amount} 할인됩니다.",
+        "accepted": "코드가 적용되었습니다. 결제 시 반영됩니다.",
         "invalid": "이 코드는 유효하지 않거나 만료되었습니다."
     },
     "checkout": {
-        "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요."
+        "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요.",
+        "planUnavailable": "이 플랜은 지금 판매하지 않습니다. 다른 결제 주기를 선택하거나 나중에 다시 시도하세요.",
+        "seats": "{min}~{max}좌석 사이로 선택한 후 다시 시도하세요."
     },
     "offers": {
         "name": "{plan}, {cycle}",

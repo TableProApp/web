@@ -1,29 +1,85 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { discountedAmount, discountedCents, parseRegional } from '../../resources/js/lib/regional-pricing.ts';
+import { readFileSync } from 'node:fs';
 
-/*
- * What the pricing cards show under the platform's regional discount. Run
- * with `npm run test:js`.
- *
- * The cases with a half-cent discount are the ones a rounding rule decides,
- * rounded half up. At the 30% the platform applies today they are Team
- * monthly, by the seat ($1.25 → $0.87) and for five seats ($6.25 → $4.37);
- * at 50%, Starter monthly ($2.99 → $1.49) too. When a checkout observed at
- * the provider disagrees, change `discountedCents` and these together.
- */
+import { discountedAmount, discountedCents, parseRegional, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
 
-test('the platform\'s answer is read strictly', () => {
-    assert.deepEqual(parseRegional({ country: 'VN', percent: 50 }), { country: 'VN', percent: 50 });
-    assert.equal(parseRegional({}), null);
-    assert.equal(parseRegional(null), null);
-    assert.equal(parseRegional('{"country":"VN","percent":50}'), null);
-    assert.equal(parseRegional({ country: 'vn', percent: 50 }), null);
-    assert.equal(parseRegional({ country: 'VN', percent: '50' }), null);
-    assert.equal(parseRegional({ country: 'VN', percent: 0 }), null);
-    assert.equal(parseRegional({ country: 'VN', percent: 100 }), null);
-    assert.equal(parseRegional({ country: 'VN', percent: 12.5 }), null);
+// What the pricing cards show under a regional discount. The cases with a half-cent discount are the ones the
+// rounding rule decides, rounded half up as Polar does: at 30% Team monthly by the seat ($1.25 → $0.87) and for five
+// seats ($6.25 → $4.37), at 50% Starter monthly ($2.99 → $1.49) too. api.md gives the 30% case.
+
+const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as {
+    tiers: Record<'starter' | 'team', { prices: Record<string, number> }>;
+};
+
+const list: ListCents = {
+    starter: Object.fromEntries(Object.entries(pricing.tiers.starter.prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)])),
+    team: Object.fromEntries(Object.entries(pricing.tiers.team.prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)])),
+};
+
+// GET /v2/pricing as tablepro-cloud answers it: its mock fixtures hold product.md's prices, the same as pricing.json.
+function answer(percent: number, country = 'VN') {
+    const plan = (name: 'starter' | 'team', cycle: string, amount: number) => ({
+        plan: name,
+        cycle,
+        currency: 'USD',
+        amount,
+        per_seat: name === 'team',
+        min_seats: name === 'team' ? 5 : 1,
+        features: [],
+        discount_percent: percent,
+        discounted_amount: discountedCents(amount, percent),
+        discounted_total: discountedCents(amount * (name === 'team' ? 5 : 1), percent),
+    });
+
+    return {
+        country,
+        plans: [
+            plan('starter', 'monthly', 299),
+            plan('starter', 'yearly', 2400),
+            plan('starter', 'lifetime', 5900),
+            plan('team', 'monthly', 125),
+            plan('team', 'yearly', 1000),
+            plan('team', 'lifetime', 2500),
+        ],
+    };
+}
+
+test('pricing.json holds the prices tablepro-cloud sells at', () => {
+    assert.deepEqual(list, { starter: { monthly: 299, yearly: 2400, lifetime: 5900 }, team: { monthly: 125, yearly: 1000, lifetime: 2500 } });
+});
+
+test('the answer is read strictly, so the cards never show a price checkout would not charge', () => {
+    assert.deepEqual(parseRegional(answer(30), list), { country: 'VN', percent: 30 });
+    assert.deepEqual(parseRegional(answer(50, 'IN'), list), { country: 'IN', percent: 50 });
+
+    // No regional discount here: the list prices stand.
+    assert.equal(parseRegional(answer(0), list), null);
+    assert.equal(parseRegional(answer(0, 'XX'), list), null);
+    assert.equal(parseRegional(answer(30, 'T1'), list), null);
+
+    assert.equal(parseRegional({}, list), null);
+    assert.equal(parseRegional(null, list), null);
+    assert.equal(parseRegional(JSON.stringify(answer(30)), list), null);
+    assert.equal(parseRegional({ ...answer(30), country: 'vn' }, list), null);
+
+    const changed = (edit: (plans: ReturnType<typeof answer>['plans']) => void) => {
+        const body = answer(30);
+
+        edit(body.plans);
+
+        return parseRegional(body, list);
+    };
+
+    // A price Polar charges that pricing.json does not state: the page cannot strike the right list price.
+    assert.equal(changed((plans) => (plans[0].amount = 349)), null);
+    // A plan not for sale, a second percentage, or a discounted price the cards would compute otherwise.
+    assert.equal(changed((plans) => plans.splice(5, 1)), null);
+    assert.equal(changed((plans) => (plans[3].discount_percent = 20)), null);
+    assert.equal(changed((plans) => (plans[3].discounted_amount = 88)), null);
+    assert.equal(changed((plans) => (plans[1].currency = 'EUR')), null);
+    assert.equal(changed((plans) => (plans[2].discount_percent = 12.5)), null);
 });
 
 test('the discount is rounded to the cent, a half cent up, then taken off', () => {

@@ -19,12 +19,11 @@ function contractSources(): array
     return $sources;
 }
 
-// nginx sends only the unprefixed paths to the platform: /vi/checkout would never reach it.
-it('posts only to the platform\'s unprefixed endpoints', function (): void {
+it('calls only tablepro-cloud\'s public /v2 endpoints and Cloudflare\'s trace', function (): void {
     $targets = [];
 
     foreach (contractSources() as $file => $text) {
-        preg_match_all('/\bfetch\(\s*([^,)]+)/', $text, $calls);
+        preg_match_all("/\\bfetch\\(\\s*(api\\('[^']*'\\)|[^,)]+)/", $text, $calls);
 
         foreach ($calls[1] as $target) {
             $targets[] = [$file, trim($target)];
@@ -34,8 +33,8 @@ it('posts only to the platform\'s unprefixed endpoints', function (): void {
     expect($targets)->not->toBeEmpty();
 
     foreach ($targets as [$file, $target]) {
-        // A literal root path from the allowlist, or the email hook's `endpoint` parameter (checked below).
-        Assert::assertContains($target, ["'/checkout'", "'/discount/preview'", "'/discount/region'", "'/cdn-cgi/trace'", 'endpoint'], "{$file} fetches {$target}");
+        // The email hook's `endpoint` parameter is checked below.
+        Assert::assertContains($target, ["api('/v2/checkouts')", "api('/v2/discounts/preview')", "api('/v2/pricing')", "'/cdn-cgi/trace'", 'endpoint'], "{$file} fetches {$target}");
     }
 
     foreach (contractSources() as $file => $text) {
@@ -72,16 +71,16 @@ it('sends the newsletter form as JSON with the page locale', function (): void {
     expect($outcome)->toMatch('/status === 429\) \{\s*return \{ kind: \'flash\', flash: \{ type: \'error\', message: strings\.tooMany \}/');
 });
 
-// The platform's web group sets tablepro-session and XSRF-TOKEN; only credentials: 'omit' keeps them off public pages.
-it('sends no cookies with any request to the platform', function (): void {
+// The public site sets no cookies and sends none: a call that carried them would need a privacy-policy review first.
+it('sends no cookies with any request it makes', function (): void {
     foreach (contractSources() as $file => $text) {
         if (! preg_match_all('/fetch\(([^;]*?)\{(.*?)\}\s*\)/s', $text, $calls, PREG_SET_ORDER)) {
             continue;
         }
 
         foreach ($calls as [$call]) {
-            if (preg_match("#['\"`](/checkout|/discount/|/newsletter/|/cdn-cgi/)#", $call) || str_contains($call, 'endpoint')) {
-                Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} calls the platform with cookies: {$call}");
+            if (preg_match("#api\\('/v2/|['\"`](/newsletter/|/cdn-cgi/)#", $call) || str_contains($call, 'endpoint')) {
+                Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} sends cookies: {$call}");
             }
         }
     }

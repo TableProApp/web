@@ -1,138 +1,79 @@
-/**
- * The checkout overlay's script, loaded when a reader shows they mean to buy
- * and never with the page (architecture §1.12).
- *
- * Polar's embed, or Lemon Squeezy's `lemon.js`, used to load in the document
- * head of every page. Now a buy button warms it on its first pointer or focus,
- * and checkout waits for it before opening the overlay. A page nobody buys
- * from requests nothing from either provider.
- *
- * The script sources are data (`checkoutSdk` in resources/data/pricing.json,
- * the Polar build pinned), passed in by the caller. Pure apart from the browser
- * globals it touches at call time, and with no imports, so `node --test` loads
- * it directly (tests/js/checkout.test.ts).
- */
-
-export type CheckoutProvider = 'polar' | 'lemonsqueezy';
+// Polar's embed loads at checkout intent, never with the page. No imports, so `node --test` loads it directly.
 
 export type CheckoutTheme = 'light' | 'dark';
 
-interface ProviderWindow {
+interface PolarWindow {
     Polar?: { EmbedCheckout?: { create?: (url: string, options?: { theme?: CheckoutTheme }) => Promise<unknown> } };
-    LemonSqueezy?: { Url?: { Open?: (url: string) => void } };
-    createLemonSqueezy?: () => void;
 }
 
-function providerWindow(): ProviderWindow {
-    return window as unknown as ProviderWindow;
+function polarWindow(): PolarWindow {
+    return window as unknown as PolarWindow;
 }
 
-/** One load per provider per page: a second warm-up or click reuses it. */
-const loads = new Map<CheckoutProvider, Promise<void>>();
+// Keyed by the window it was started in, which a test replaces between cases.
+let load: { window: unknown; promise: Promise<void> } | null = null;
 
-/** Whether the provider's overlay API is on the page. */
-export function checkoutSdkReady(provider: CheckoutProvider): boolean {
-    if (typeof window === 'undefined') {
-        return false;
-    }
-
-    const w = providerWindow();
-
-    return provider === 'polar' ? typeof w.Polar?.EmbedCheckout?.create === 'function' : typeof w.LemonSqueezy?.Url?.Open === 'function';
+export function checkoutSdkReady(): boolean {
+    return typeof window !== 'undefined' && typeof polarWindow().Polar?.EmbedCheckout?.create === 'function';
 }
 
-/**
- * Injects the provider's script once and resolves when its overlay API exists.
- *
- * `lemon.js` sets itself up on the page's load event, which has long passed
- * when it is injected late, so it is started here by hand. A failed load (an
- * ad blocker, no network) rejects and forgets itself, so the next attempt
- * tries again; the caller falls back to the provider's own checkout page.
- */
-export function loadCheckoutSdk(provider: CheckoutProvider, src: string): Promise<void> {
+// A failed load forgets itself, so the next click tries again; the caller falls back to Polar's own page.
+export function loadCheckoutSdk(src: string): Promise<void> {
     if (typeof window === 'undefined' || typeof document === 'undefined') {
         return Promise.reject(new Error('The checkout script loads only in a browser.'));
     }
 
-    if (checkoutSdkReady(provider)) {
+    if (checkoutSdkReady()) {
         return Promise.resolve();
     }
 
-    const pending = loads.get(provider);
-
-    if (pending) {
-        return pending;
+    if (load !== null && load.window === window) {
+        return load.promise;
     }
 
-    const load = new Promise<void>((resolve, reject) => {
+    const promise = new Promise<void>((resolve, reject) => {
         const script = document.createElement('script');
 
         script.src = src;
         script.async = true;
 
         script.onload = () => {
-            const w = providerWindow();
-
-            if (provider === 'lemonsqueezy' && !checkoutSdkReady(provider) && typeof w.createLemonSqueezy === 'function') {
-                w.createLemonSqueezy();
-            }
-
-            if (checkoutSdkReady(provider)) {
+            if (checkoutSdkReady()) {
                 resolve();
 
                 return;
             }
 
-            loads.delete(provider);
-            reject(new Error(`The ${provider} checkout script loaded without its overlay.`));
+            load = null;
+            reject(new Error('The checkout script loaded without its overlay.'));
         };
 
         script.onerror = () => {
-            loads.delete(provider);
+            load = null;
             script.remove();
-            reject(new Error(`The ${provider} checkout script did not load.`));
+            reject(new Error('The checkout script did not load.'));
         };
 
         document.head.appendChild(script);
     });
 
-    loads.set(provider, load);
+    load = { window, promise };
 
-    return load;
+    return promise;
 }
 
-/**
- * Opens the provider's overlay on a checkout URL from `POST /checkout`.
- * Rejects when the overlay API is missing, so the caller can send the reader
- * to the checkout page itself instead.
- */
-export async function openCheckoutOverlay(provider: CheckoutProvider, url: string, theme: CheckoutTheme): Promise<void> {
-    if (!checkoutSdkReady(provider)) {
-        throw new Error(`The ${provider} checkout overlay is not loaded.`);
+export async function openCheckoutOverlay(url: string, theme: CheckoutTheme): Promise<void> {
+    if (!checkoutSdkReady()) {
+        throw new Error('The checkout overlay is not loaded.');
     }
 
-    const w = providerWindow();
-
-    // Called on their objects, not detached: either API may rely on `this`.
-    if (provider === 'polar') {
-        await w.Polar!.EmbedCheckout!.create!(url, { theme });
-
-        return;
-    }
-
-    w.LemonSqueezy!.Url!.Open!(url);
+    // Called on its object, not detached: the embed may rely on `this`.
+    await polarWindow().Polar!.EmbedCheckout!.create!(url, { theme });
 }
 
-/** How long checkout waits for the overlay script before sending the reader to the provider's own page. */
 export const SDK_WAIT_MS = 4000;
 
-/**
- * `promise`, or a rejection after `ms`. The overlay script resolves or rejects
- * only from its `load` and `error` events, and a connection that stalls (or a
- * blocker that holds the request) fires neither: the Buy button spun forever
- * with a valid checkout URL already in hand. A rejection here takes the
- * caller's fallback to that URL instead.
- */
+// The script settles only on load or error, and a stalled request fires neither: without this the Buy button spun forever.
 export function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
     return new Promise<T>((resolve, reject) => {
         const timer = setTimeout(() => reject(new Error(`Timed out after ${ms}ms.`)), ms);

@@ -98,7 +98,6 @@ export default {
         "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {count} jours suivant son paiement. Voir la <link>politique de remboursement</link>."
     },
     "finePrint": "Prix en dollars américains. {merchant} gère le paiement et calcule la taxe de vente ou la TVA au paiement en tant que merchant of record.",
-    "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",
     "section": {
         "title": "Tarifs",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "Prix catalogue {price}"
     },
     "discount": {
-        "atCheckout": "Vous avez un code de réduction ? Saisissez-le lors du règlement.",
         "summary": "Vous avez un code de réduction ?",
         "label": "Code de réduction",
         "apply": "Appliquer le code",
         "checking": "Vérification du code…",
         "percent": "Code accepté : {amount} % de réduction, appliquée lors du règlement.",
         "fixed": "Code accepté : {amount} de réduction, appliquée lors du règlement.",
+        "accepted": "Code accepté, appliqué lors du règlement.",
         "invalid": "Ce code est invalide ou a expiré."
     },
     "checkout": {
-        "failed": "Impossible d’ouvrir le paiement. Réessayez."
+        "failed": "Impossible d’ouvrir le paiement. Réessayez.",
+        "planUnavailable": "Cette offre n’est pas en vente pour le moment. Choisissez une autre périodicité de facturation ou réessayez plus tard.",
+        "seats": "Choisissez entre {min} et {max} postes, puis réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

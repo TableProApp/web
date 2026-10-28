@@ -120,11 +120,10 @@ pull request before running the workflow for another set.
 
 **Server environment.** `APP_ENV` must be `production`: any other value shows
 visitors the placeholder of every image slot that has no file yet.
-`PAYMENT_PROVIDER` must match the platform app's setting,
-because the plan cards open the overlay of whichever provider's URL
-`POST /checkout` returns. This app does not read `TEAM_MIN_SEATS`: the minimum
-seat count it shows comes from `resources/data/pricing.json`, synced by hand
-with the platform, which enforces its own value.
+`TABLEPRO_API_ORIGIN` stays unset, so the pages call `https://api.tablepro.app`.
+`PAYMENT_PROVIDER` is no longer read: Polar is the only checkout. The minimum
+seat count the site shows comes from `resources/data/pricing.json`, synced by
+hand with tablepro-cloud, which enforces its own value.
 
 The generated asset files (`docs/visual-assets.md` and
 `resources/js/lib/data/asset-slots.json`) need no step here: CI fails when

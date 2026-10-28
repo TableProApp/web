@@ -5,44 +5,60 @@ import { readFileSync } from 'node:fs';
 import { checkoutOutcome, discountOutcome } from '../../resources/js/components/pricing/checkout-response.ts';
 import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '../../resources/js/lib/checkout-sdk.ts';
 
-/*
- * Checkout from the plan cards. Run with `npm run test:js`.
- *
- * Two halves: what the cards say for each answer from the platform, and the
- * provider's overlay script, which loads at checkout intent and never with the
- * page, once however many buttons are hovered.
- */
+// Checkout from the plan cards: what they say for each answer of tablepro-cloud's /v2, and Polar's overlay script,
+// which loads at checkout intent and never with the page, once however many buttons are hovered.
 
-const strings = { failed: 'Couldn’t start checkout.', tooMany: 'Too many attempts.' };
+const strings = {
+    failed: 'Couldn’t start checkout.',
+    tooMany: 'Too many attempts.',
+    planUnavailable: 'This plan isn’t for sale right now.',
+    seats: 'Choose between 5 and 200 seats.',
+};
+
+const problem = (status: number, code: string, extra: Record<string, unknown> = {}) => ({
+    type: `https://api.tablepro.app/problems/${code}`,
+    title: 'Problem',
+    status,
+    code,
+    detail: 'English text the reader never sees.',
+    ...extra,
+});
 
 test('a checkout URL opens; anything else is a message the reader can act on', () => {
-    assert.deepEqual(checkoutOutcome(200, { url: 'https://polar.sh/checkout/abc' }, strings), { kind: 'open', url: 'https://polar.sh/checkout/abc' });
+    assert.deepEqual(checkoutOutcome(201, { url: 'https://polar.sh/checkout/abc' }, strings), { kind: 'open', url: 'https://polar.sh/checkout/abc' });
 
     // No URL, or one that is not https, is not something to open.
-    assert.deepEqual(checkoutOutcome(200, {}, strings), { kind: 'error', message: strings.failed });
-    assert.deepEqual(checkoutOutcome(200, { url: 'javascript:alert(1)' }, strings), { kind: 'error', message: strings.failed });
+    assert.deepEqual(checkoutOutcome(201, {}, strings), { kind: 'error', message: strings.failed });
+    assert.deepEqual(checkoutOutcome(201, { url: 'javascript:alert(1)' }, strings), { kind: 'error', message: strings.failed });
+});
 
-    // The platform writes a 422 in the request's language, so it is shown as it comes.
-    assert.deepEqual(checkoutOutcome(422, { message: 'Gói Team cần tối thiểu 5 seat.' }, strings), { kind: 'error', message: 'Gói Team cần tối thiểu 5 seat.' });
-    assert.deepEqual(checkoutOutcome(422, {}, strings), { kind: 'error', message: strings.failed });
+test('each problem code api.md lists for POST /v2/checkouts has its own message, in the page\'s language', () => {
+    assert.deepEqual(checkoutOutcome(422, problem(422, 'plan_unavailable'), strings), { kind: 'error', message: strings.planUnavailable });
+    assert.deepEqual(
+        checkoutOutcome(422, problem(422, 'validation_failed', { errors: [{ location: 'body.seats', message: 'seats out of range', value: 900 }] }), strings),
+        { kind: 'error', message: strings.seats },
+    );
+    assert.deepEqual(checkoutOutcome(422, problem(422, 'validation_failed', { errors: [{ location: 'body', message: 'invalid' }] }), strings), { kind: 'error', message: strings.failed });
+    assert.deepEqual(checkoutOutcome(429, problem(429, 'rate_limited'), strings), { kind: 'error', message: strings.tooMany });
+    assert.deepEqual(checkoutOutcome(500, problem(500, 'internal_error'), strings), { kind: 'error', message: strings.failed });
 
-    // The throttle's text is shared with the license API and stays English: the catalog speaks instead.
-    assert.deepEqual(checkoutOutcome(429, { message: 'Too Many Attempts.' }, strings), { kind: 'error', message: strings.tooMany });
-
-    // Framework errors never reach the reader.
-    assert.deepEqual(checkoutOutcome(500, { message: 'Server Error' }, strings), { kind: 'error', message: strings.failed });
-    assert.deepEqual(checkoutOutcome(419, { message: 'CSRF token mismatch.' }, strings), { kind: 'error', message: strings.failed });
+    // A gateway's own page, or no body at all.
+    assert.deepEqual(checkoutOutcome(502, {}, strings), { kind: 'error', message: strings.failed });
+    assert.deepEqual(checkoutOutcome(422, null, strings), { kind: 'error', message: strings.failed });
 });
 
 test('a discount preview reports a percentage, a fixed amount in cents, or a code that does not apply', () => {
     assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'percent', amount: 20 }), { kind: 'percent', amount: 20 });
-    assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'fixed', amount: 500 }), { kind: 'fixed', cents: 500 });
+    assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'fixed', amount: 500, currency: 'USD' }), { kind: 'fixed', cents: 500 });
+    assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'fixed', amount: 500, currency: 'usd' }), { kind: 'fixed', cents: 500 });
+    // The page prices in US dollars, so an amount in another currency is accepted without being restated.
+    assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'fixed', amount: 500, currency: 'EUR' }), { kind: 'accepted' });
     assert.deepEqual(discountOutcome(200, { valid: false }), { kind: 'invalid' });
     assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'percent' }), { kind: 'invalid' });
     assert.deepEqual(discountOutcome(200, { valid: true, amount_type: 'free', amount: 1 }), { kind: 'invalid' });
-    assert.deepEqual(discountOutcome(422, { message: 'The code field is required.' }), { kind: 'invalid' });
-    assert.deepEqual(discountOutcome(429, {}), { kind: 'tooMany' });
-    assert.deepEqual(discountOutcome(500, {}), { kind: 'failed' });
+    assert.deepEqual(discountOutcome(422, problem(422, 'validation_failed', { errors: [{ location: 'body.code' }] })), { kind: 'invalid' });
+    assert.deepEqual(discountOutcome(429, problem(429, 'rate_limited')), { kind: 'tooMany' });
+    assert.deepEqual(discountOutcome(500, problem(500, 'internal_error')), { kind: 'failed' });
 });
 
 interface FakeScript {
@@ -55,8 +71,6 @@ interface FakeScript {
 
 interface ProviderGlobals {
     Polar?: { EmbedCheckout: { create: (url: string, options?: { theme?: string }) => Promise<unknown> } };
-    LemonSqueezy?: { Url: { Open: (url: string) => void } };
-    createLemonSqueezy?: () => void;
 }
 
 function installBrowser(): { scripts: FakeScript[]; window: ProviderGlobals } {
@@ -84,9 +98,7 @@ function installBrowser(): { scripts: FakeScript[]; window: ProviderGlobals } {
     return { scripts, window: win };
 }
 
-const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as {
-    checkoutSdk: { polar: string; lemonsqueezy: string };
-};
+const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as { checkoutSdk: string };
 
 beforeEach(() => {
     delete (globalThis as Record<string, unknown>).window;
@@ -97,14 +109,14 @@ test('nothing loads until checkout is wanted, and then the Polar embed loads onc
     const browser = installBrowser();
 
     assert.equal(browser.scripts.length, 0);
-    assert.equal(checkoutSdkReady('polar'), false);
+    assert.equal(checkoutSdkReady(), false);
 
-    const first = loadCheckoutSdk('polar', pricing.checkoutSdk.polar);
-    const second = loadCheckoutSdk('polar', pricing.checkoutSdk.polar);
+    const first = loadCheckoutSdk(pricing.checkoutSdk);
+    const second = loadCheckoutSdk(pricing.checkoutSdk);
 
     assert.equal(first, second);
     assert.equal(browser.scripts.length, 1);
-    assert.equal(browser.scripts[0].src, pricing.checkoutSdk.polar);
+    assert.equal(browser.scripts[0].src, pricing.checkoutSdk);
     assert.equal(browser.scripts[0].async, true);
 
     const opened: { url: string; theme?: string }[] = [];
@@ -119,47 +131,44 @@ test('nothing loads until checkout is wanted, and then the Polar embed loads onc
     browser.scripts[0].onload?.();
     await first;
 
-    assert.equal(checkoutSdkReady('polar'), true);
+    assert.equal(checkoutSdkReady(), true);
 
     // Ready now: no second script, however often it is asked for.
-    await loadCheckoutSdk('polar', pricing.checkoutSdk.polar);
+    await loadCheckoutSdk(pricing.checkoutSdk);
     assert.equal(browser.scripts.length, 1);
 
-    await openCheckoutOverlay('polar', 'https://polar.sh/checkout/abc', 'dark');
+    await openCheckoutOverlay('https://polar.sh/checkout/abc', 'dark');
     assert.deepEqual(opened, [{ url: 'https://polar.sh/checkout/abc', theme: 'dark' }]);
 });
 
 test('a script that fails to load is forgotten, so the next click tries again', async () => {
     const browser = installBrowser();
 
-    const failing = loadCheckoutSdk('lemonsqueezy', pricing.checkoutSdk.lemonsqueezy);
+    const failing = loadCheckoutSdk(pricing.checkoutSdk);
 
     browser.scripts[0].onerror?.();
     await assert.rejects(failing);
     assert.equal(browser.scripts.length, 0);
 
-    const retry = loadCheckoutSdk('lemonsqueezy', pricing.checkoutSdk.lemonsqueezy);
+    const retry = loadCheckoutSdk(pricing.checkoutSdk);
 
     assert.equal(browser.scripts.length, 1);
 
-    // lemon.js loaded after the page did: it is started by hand.
-    const urls: string[] = [];
-
-    browser.window.createLemonSqueezy = () => {
-        browser.window.LemonSqueezy = { Url: { Open: (url: string) => urls.push(url) } };
-    };
+    // A script that loads without the overlay is a failure too.
     browser.scripts[0].onload?.();
-    await retry;
+    await assert.rejects(retry);
 
-    await openCheckoutOverlay('lemonsqueezy', 'https://tablepro.lemonsqueezy.com/checkout/x', 'light');
-    assert.deepEqual(urls, ['https://tablepro.lemonsqueezy.com/checkout/x']);
+    const third = loadCheckoutSdk(pricing.checkoutSdk);
+
+    browser.window.Polar = { EmbedCheckout: { create: async () => undefined } };
+    browser.scripts.at(-1)?.onload?.();
+    await third;
 });
 
 test('opening an overlay that is not there rejects, so the reader is sent to the checkout page instead', async () => {
     installBrowser();
 
-    await assert.rejects(openCheckoutOverlay('polar', 'https://polar.sh/checkout/abc', 'light'));
-    await assert.rejects(openCheckoutOverlay('lemonsqueezy', 'https://tablepro.lemonsqueezy.com/checkout/x', 'light'));
+    await assert.rejects(openCheckoutOverlay('https://polar.sh/checkout/abc', 'light'));
 });
 
 test('a stalled overlay script times out, so checkout falls back to the provider page instead of spinning', async () => {

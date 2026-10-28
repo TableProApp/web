@@ -1,51 +1,62 @@
-/**
- * The regional discount the platform applies at checkout in some countries,
- * as the pricing cards show it once `GET /discount/region` says it applies to
- * the reader.
- *
- * The price charged is the provider's: the platform attaches its percentage
- * code to the checkout (license `RegionalPricing`). These functions only work
- * out what that checkout will show, in cents: the discount is rounded to the
- * nearest cent, a half cent up, then taken off. The cases a half cent decides
- * are pinned in tests/js/regional-pricing.test.ts; if a checkout observed at
- * the provider rounds them otherwise, change `discountedCents` and those
- * cases together.
- *
- * Pure and with no imports, so `node --test` loads it directly.
- */
+// The regional discount checkout applies in some countries, as GET /v2/pricing answers it for the reader.
+// No imports, so `node --test` loads it directly.
 
 export interface Regional {
     /** ISO 3166-1 alpha-2, such as `VN`. */
     country: string;
-    /** Whole percent off, 1 to 99. */
     percent: number;
 }
 
-/** The platform's answer, or null for `{}`, anything malformed, or a percentage outside 1–99. */
-export function parseRegional(body: unknown): Regional | null {
-    if (body === null || typeof body !== 'object') {
-        return null;
-    }
+export type ListCents = Record<string, Record<string, number>>;
 
-    const { country, percent } = body as Partial<Record<keyof Regional, unknown>>;
-
-    if (typeof country !== 'string' || !/^[A-Z]{2}$/.test(country)) {
-        return null;
-    }
-
-    if (typeof percent !== 'number' || !Number.isInteger(percent) || percent < 1 || percent > 99) {
-        return null;
-    }
-
-    return { country, percent };
+function record(value: unknown): Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value) ? (value as Record<string, unknown>) : {};
 }
 
-/** What a whole number of cents costs after a whole `percent` off. Integer arithmetic, so a half cent is exact. */
+// Rounded half up once, as Polar rounds: tests/js/regional-pricing.test.ts pins the cases a half cent decides.
 export function discountedCents(listCents: number, percent: number): number {
     return listCents - Math.floor((listCents * percent + 50) / 100);
 }
 
-/** The same for a USD amount (`2.99`), the unit `formatUsd()` takes. */
 export function discountedAmount(listUsd: number, percent: number): number {
     return discountedCents(Math.round(listUsd * 100), percent) / 100;
+}
+
+/**
+ * Null unless the answer prices every plan and cycle in `list` (pricing.json, in cents) at that list price, with
+ * one percentage off all of them and the discounted price the cards would work out. Anything else keeps the list
+ * prices on the page, so the cards never show a price checkout would not charge.
+ */
+export function parseRegional(body: unknown, list: ListCents): Regional | null {
+    const { country, plans } = record(body);
+
+    if (typeof country !== 'string' || !/^[A-Z]{2}$/.test(country) || !Array.isArray(plans)) {
+        return null;
+    }
+
+    let percent: number | null = null;
+
+    for (const [plan, cycles] of Object.entries(list)) {
+        for (const [cycle, cents] of Object.entries(cycles)) {
+            const answer = plans.map(record).find((each) => each.plan === plan && each.cycle === cycle);
+
+            if (answer === undefined || answer.currency !== 'USD' || answer.amount !== cents) {
+                return null;
+            }
+
+            const off = answer.discount_percent;
+
+            if (typeof off !== 'number' || !Number.isInteger(off) || off < 1 || off > 99 || (percent !== null && off !== percent)) {
+                return null;
+            }
+
+            if (answer.discounted_amount !== discountedCents(cents, off)) {
+                return null;
+            }
+
+            percent = off;
+        }
+    }
+
+    return percent === null ? null : { country, percent };
 }

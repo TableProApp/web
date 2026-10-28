@@ -78,10 +78,10 @@ server (`docs/architecture.md`, "The language bar").
   helpers leave them alone (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`),
   and `<LocaleLink>` renders them as a plain `<a>`.
 - The language crosses to the account app only explicitly: link
-  `/account?locale={locale}` (never `/vi/account`), and post to `/checkout` and
-  `/newsletter/subscribe` with `locale` in the body (`/discount/preview` takes
-  `{code}` only, `GET /discount/region` nothing), every call with
-  `credentials: 'omit'`, so no platform cookie lands on a public page.
+  `/account?locale={locale}` (never `/vi/account`), post to tablepro-cloud's
+  `/v2/checkouts` and to `/newsletter/subscribe` with `locale` in the body
+  (`/v2/discounts/preview` takes `{code}` only, `GET /v2/pricing` nothing),
+  every call with `credentials: 'omit'`, so no cookie lands on a public page.
 - The theme follows the OS by default; `localStorage.theme` holds an explicit choice, shared
   with the account app on the same origin.
 
@@ -154,10 +154,10 @@ in the job with a live SSR service. It skips locally without one.
   there.
 - Prices live in `resources/data/pricing.json`, and every price on the site
   (pricing, FAQ, structured data) reads from it. The values must match what
-  checkout actually charges: they are synced by hand with the platform's
-  pricing configuration and the Polar products. Never change them here alone —
-  flag it instead. The same file pins the checkout SDK script URLs
-  (`checkoutSdk`), which load only when a reader shows intent to buy.
+  checkout actually charges: they are synced by hand with tablepro-cloud's
+  `GET /v2/pricing` and the Polar products. Never change them here alone —
+  flag it instead. The same file pins Polar's checkout script URL
+  (`checkoutSdk`), which loads only when a reader shows intent to buy.
 - Other facts are data too, stated once: `platforms.json` (releases,
   requirements, the App Store), `engines.json`, `paid-features.json`,
   `facts.json` (URLs, limits), `sponsors.json`, `comparisons.json` (dated and

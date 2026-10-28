@@ -11,7 +11,7 @@
  * Words the commerce rules keep out (positioning §12): no "most popular", no
  * typed saving, no "unlock", no promise of future updates for a one-time
  * purchase, nothing about other ways to pay. A regional discount is named only
- * in `regional`, and only once the platform says it applies to the reader.
+ * in `regional`, and only once tablepro-cloud says it applies to the reader.
  */
 export default {
     /** `formatUsd()` style: the amount after a dollar sign, a point before the cents, commas between thousands. */
@@ -115,8 +115,6 @@ export default {
     },
     /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
     finePrint: 'Prices in US dollars. {merchant} handles payment and calculates sales tax or VAT at checkout as merchant of record.',
-    /** The line under the cards when checkout is another provider's, so no merchant is named. */
-    finePrintCurrency: 'Prices in US dollars.',
     comparePlans: 'Compare plans',
     /** The homepage section (`#pricing`). Its page may pass its own heading and lead instead. */
     section: {
@@ -137,10 +135,10 @@ export default {
     },
     /**
      * The regional discount checkout applies in some countries, shown with the
-     * plans once the platform has said it applies to this reader
-     * (`GET /discount/region`). `{country}` is the country's name in the page's
+     * plans once tablepro-cloud has said it applies to this reader
+     * (`GET /v2/pricing`). `{country}` is the country's name in the page's
      * language, in parentheses so no language needs an article for it;
-     * `{percent}` comes from the platform. `listPrice` names the struck price
+     * `{percent}` comes from tablepro-cloud. `listPrice` names the struck price
      * for a screen reader.
      */
     regional: {
@@ -148,18 +146,19 @@ export default {
         listPrice: 'List price {price}',
     },
     discount: {
-        /** Under Polar, whose checkout takes the code itself. */
-        atCheckout: 'Have a discount code? Enter it at checkout.',
         summary: 'Have a discount code?',
         label: 'Discount code',
         apply: 'Apply code',
         checking: 'Checking the code…',
         percent: 'Code accepted: {amount}% off, applied at checkout.',
         fixed: 'Code accepted: {amount} off, applied at checkout.',
+        accepted: 'Code accepted, applied at checkout.',
         invalid: 'This code is invalid or has expired.',
     },
     checkout: {
         failed: "Couldn't open checkout. Try again.",
+        planUnavailable: "This plan isn't for sale right now. Choose another billing cycle, or try again later.",
+        seats: 'Choose between {min} and {max} seats, then try again.',
     },
     /** Structured data: one offer per visible price. */
     offers: {

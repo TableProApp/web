@@ -211,43 +211,51 @@ Two consequences worth knowing before you write code here:
 
 ## The endpoints the pages call
 
-All anonymous, all rate limited, none needs a token. They are the platform's
-paths, so they are always called at the root, never under `/vi`: nginx routes
-them by prefix, and `/vi/checkout` would never reach the platform. The page's
-language travels in the body instead.
+All anonymous and rate limited, none needs a token. Pricing calls
+tablepro-cloud's public API, another origin (`TABLEPRO_API_ORIGIN`,
+`https://api.tablepro.app` in production, shared with every page as the
+`apiOrigin` prop and read through `useApi()`); the newsletter form still posts
+to the platform's root path. The page's language travels in the body.
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?, locale}` | `{url}` — passed to the checkout SDK |
-| `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
-| `GET /discount/region` | — | `{country, percent}`, or `{}` when no regional discount applies |
+| `GET /v2/pricing` | — | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
+| `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
+| `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
 | `POST /newsletter/subscribe` | `{email, locale}` | `{type, message}` |
 
-Every call is a plain `fetch` with `credentials: 'omit'`. The platform answers
-from its session-backed `web` group, so a same-origin request with credentials
-would send and store `tablepro-session` and `XSRF-TOKEN` on public pages;
-`omit` does neither. `PublicContractsTest` holds every call to it.
+Every call is a plain `fetch` with `credentials: 'omit'`, so no cookie is sent
+or kept. tablepro-cloud answers CORS for `https://tablepro.app` only, without
+credentials. `ContentSecurityPolicy` adds the API origin to `connect-src`.
+`PublicContractsTest` holds every call.
 
-`locale` lets the platform send the buyer's or subscriber's emails in the
-language of the page they came from. It is never inferred from anything else,
-and it says nothing about currency or region: prices are USD everywhere.
+Errors are RFC 9457 problems whose `title` and `detail` are English, so the
+cards show their own catalog's words for each `code`
+(`components/pricing/checkout-response.ts`): `plan_unavailable`, and
+`validation_failed` on `body.seats`, have their own message, `rate_limited`
+(429) is `forms.tooMany`, anything else `pricing.checkout.failed`.
 
-`GET /discount/region` is the platform's regional (PPP) discount for the
-country Cloudflare names for the request, the same answer `POST /checkout` acts
-on when no code is typed. The plan cards ask once per page, after rendering
-(`useRegionalPricing`), and then show what checkout will charge beside the
-struck list price, with one line naming the country. The cached HTML, the
-structured data and the first paint keep the list prices. The route starts no
-session and answers `Cache-Control: no-store, private`. It is the one place the
-site names a regional price (positioning §9).
+`locale` lets Polar's checkout and the purchase emails follow the page's
+language. It is never inferred from anything else, and it says nothing about
+currency or region: prices are USD everywhere.
 
-The plan cards on `/pricing` and the homepage's `#pricing` section receive a
-`checkout` page prop from `App\Support\Pricing\Checkout`:
-`{provider, couponField}`. `provider` is `PAYMENT_PROVIDER` (`polar` or
-`lemonsqueezy`), which must match the platform's own setting, because the cards
-open the overlay of whichever provider's URL `POST /checkout` returns. Polar's
-checkout takes a discount code itself, so under Polar the cards show no code
-field and never call `/discount/preview`.
+`GET /v2/pricing` answers for the country Cloudflare names for the request,
+with the regional (PPP) discount `POST /v2/checkouts` applies when no code is
+typed. The plan cards ask once per page, after rendering
+(`useRegionalPricing`), and show what checkout will charge beside the struck
+list price, with one line naming the country, only while every plan's `amount`
+equals its price in `pricing.json` and one percentage applies to all of them;
+otherwise the list prices stand. The cached HTML, the structured data and the
+first paint keep the list prices. It is the one place the site names a regional
+price (positioning §9).
+
+The code field under the cards is always there: with a regional discount
+tablepro-cloud hands Polar that discount, and Polar's checkout then takes no
+code of its own. A code is checked with `POST /v2/discounts/preview`, and only
+one it accepted travels with checkout, replacing the regional discount.
+
+Checkout takes a plan and billing cycle rather than a product identifier, which
+is why no payment-provider identifier appears anywhere in this repository.
 
 `GET /api/newsletter/stats` is no longer called. The old footer fetched it for a
 subscriber count, and the footer no longer shows one. The endpoint stays on the
@@ -278,7 +286,7 @@ license is written by the backend. The backend sees the sale and never saw the
 arrival. Google Analytics measures visits on this domain only, so it can report
 the source of a *visit* and not the source of a *sale*.
 
-`POST /checkout` is the one request in which both are in scope, so the
+`POST /v2/checkouts` is the one request in which both are in scope, so the
 acquisition source is resolved in the browser and sent in that body as an
 optional `attribution` object:
 
@@ -400,12 +408,12 @@ added after the page has loaded, and Cloudflare Web Analytics.
   widget. While the consent bar covers the bottom-right corner (on a phone,
   reopened from "Cookie settings"), the launcher is hidden. Crisp sets its `crisp-client/`
   cookies as soon as it loads; the privacy policy describes them.
-- **The Polar or Lemon Squeezy checkout SDK** loads at checkout intent, not on
+- **Polar's checkout script** loads at checkout intent, not on
   every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the
   first `pointerenter` or focus of a buy button (or on the click itself), and
   the click awaits it before opening the overlay; if it cannot load, the reader
-  goes to the provider's checkout page instead. The script URLs, version
-  pinned, are `checkoutSdk` in `resources/data/pricing.json`.
+  goes to Polar's checkout page instead. The script URL, version pinned, is
+  `checkoutSdk` in `resources/data/pricing.json`.
 - **Product Hunt** is a plain text link ("TablePro on Product Hunt", URL in
   `facts.json` → `links.productHunt`): no badge image, no hotlink, no request.
 

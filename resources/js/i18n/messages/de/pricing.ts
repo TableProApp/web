@@ -98,7 +98,6 @@ export default {
         "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tagen nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>."
     },
     "finePrint": "Preise in US-Dollar. {merchant} wickelt als Merchant of Record die Zahlung ab und berechnet die Umsatzsteuer beim Checkout.",
-    "finePrintCurrency": "Preise in US-Dollar.",
     "comparePlans": "Tarife vergleichen",
     "section": {
         "title": "Preise",
@@ -123,17 +122,19 @@ export default {
         "listPrice": "Listenpreis {price}"
     },
     "discount": {
-        "atCheckout": "Hast du einen Rabattcode? Gib ihn beim Kauf ein.",
         "summary": "Hast du einen Rabattcode?",
         "label": "Rabattcode",
         "apply": "Code einlösen",
         "checking": "Code wird geprüft…",
         "percent": "Code akzeptiert: {amount} % Rabatt, wird beim Kauf abgezogen.",
         "fixed": "Code akzeptiert: {amount} Rabatt, wird beim Kauf abgezogen.",
+        "accepted": "Code akzeptiert, wird beim Kauf abgezogen.",
         "invalid": "Dieser Code ist ungültig oder abgelaufen."
     },
     "checkout": {
-        "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut."
+        "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut.",
+        "planUnavailable": "Dieser Tarif ist gerade nicht erhältlich. Wähle einen anderen Abrechnungszeitraum oder versuche es später erneut.",
+        "seats": "Wähle zwischen {min} und {max} Arbeitsplätzen und versuche es erneut."
     },
     "offers": {
         "name": "{plan}, {cycle}",

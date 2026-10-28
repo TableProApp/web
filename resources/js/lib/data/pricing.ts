@@ -2,8 +2,8 @@
  * resources/data/pricing.json, typed: the one place the public site states a
  * price, a seat rule, the refund window or a license timing.
  *
- * The values must match what checkout charges. They are synced by hand with
- * the platform's `config/pricing.php` (in cents there) and the Polar products,
+ * The values must match what checkout charges: tablepro-cloud's
+ * `GET /v2/pricing`, which reads the Polar products. They are synced by hand,
  * so never change one here alone. Pricing, the FAQ and structured data all
  * read this module; none of them retypes a number.
  *

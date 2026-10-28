@@ -90,7 +90,7 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
  * features and their tiers from paid-features.json. Nothing here is
  * conversion furniture: no "most popular", no typed saving, no countdown.
  */
-export default function Pricing({ content, paidFeatures, checkout, featuredEngines, comparisons }: PricingPageProps) {
+export default function Pricing({ content, paidFeatures, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const values = copyValues();
@@ -150,7 +150,7 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                     <h2 id="plans-title" className="sr-only">
                         {content.plans.title}
                     </h2>
-                    <PricingPlans checkout={checkout} variant="full" />
+                    <PricingPlans variant="full" />
                 </Container>
             </section>
 

@@ -40,8 +40,6 @@ it('asks for the regional discount from the plan block only', function (): void 
 
 // The cards ask for the discount after rendering, so cached HTML and first paint carry the list prices.
 it('serves the list prices to every reader, with nothing struck through', function (string $path): void {
-    config(['payment.provider' => 'polar']);
-
     $html = ssrHtml($path);
 
     Assert::assertStringNotContainsString('<s ', $html, "{$path} strikes a price in the server render");

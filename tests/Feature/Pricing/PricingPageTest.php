@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\Localization\Locales;
-use App\Support\Pricing\Checkout;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
@@ -77,9 +76,7 @@ function pricingExpectedPricePoints(string $pattern, string $decimal): array
     return $expected;
 }
 
-it('renders in both languages with the copy, each paid feature\'s lines, the checkout provider, the featured engines and the paid clients\' comparisons', function (string $path, string $locale): void {
-    config(['payment.provider' => 'polar']);
-
+it('renders in both languages with the copy, each paid feature\'s lines, the API origin, the featured engines and the paid clients\' comparisons', function (string $path, string $locale): void {
     $content = pricingPageJson("content/{$locale}/pricing.json");
     $featureIds = array_column(pricingPageJson('paid-features.json'), 'id');
     $engines = collect(pricingPageJson('engines.json'))
@@ -106,7 +103,8 @@ it('renders in both languages with the copy, each paid feature\'s lines, the che
                 ->where('locale', $locale)
                 ->where('content.header.title', $content['header']['title'])
                 ->where('content.seo.title', $content['seo']['title'])
-                ->where('checkout', ['provider' => 'polar', 'couponField' => false])
+                ->where('apiOrigin', 'https://api.tablepro.app')
+                ->missing('checkout')
                 ->where('featuredEngines', $engines)
                 ->where('comparisons', $comparisons);
 
@@ -120,16 +118,6 @@ it('renders in both languages with the copy, each paid feature\'s lines, the che
 })->with([
     'English' => ['/pricing', 'en'],
     'Vietnamese' => ['/vi/pricing', 'vi'],
-]);
-
-it('asks for a discount code only where the provider\'s checkout does not', function (string $provider, array $expected): void {
-    config(['payment.provider' => $provider]);
-
-    expect(app(Checkout::class)->props())->toBe($expected);
-})->with([
-    'Polar takes the code in its own checkout' => ['polar', ['provider' => 'polar', 'couponField' => false]],
-    'Lemon Squeezy takes it from this site' => ['lemonsqueezy', ['provider' => 'lemonsqueezy', 'couponField' => true]],
-    'an unknown value falls back to the configuration default' => ['stripe', ['provider' => 'lemonsqueezy', 'couponField' => true]],
 ]);
 
 it('indexes every complete translation', function (): void {
@@ -182,8 +170,6 @@ it('keeps the commerce claims positioning rules out of its copy', function (): v
 });
 
 it('server-renders the plans, the table and every section, with prices written for the language', function (string $path, string $locale, array $prices, string $pattern, string $decimal, string $refund, array $availability, array $facts): void {
-    config(['payment.provider' => 'polar']);
-
     $prefix = $locale === 'en' ? '' : "/{$locale}";
     $pricing = pricingPageJson('pricing.json');
     $raw = ssrHtml($path);
@@ -277,8 +263,6 @@ it('server-renders the plans, the table and every section, with prices written f
 ])->group('ssr');
 
 it('carries every cycle\'s price in the server HTML in the page\'s number format', function (): void {
-    config(['payment.provider' => 'polar']);
-
     expect(pricingPricePoints(html_entity_decode(ssrHtml('/zh-Hant/pricing'), ENT_QUOTES | ENT_HTML5)))->toBe(pricingExpectedPricePoints('US$%s', '.'));
 })->group('ssr');
 
