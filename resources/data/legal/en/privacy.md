@@ -57,7 +57,7 @@ Our server keeps each activated Mac as a device of the account that holds the li
 
 ### TablePro account {#mac-account}
 
-From the version that adds TablePro accounts, you sign in to the Mac app with a [TablePro account](#account) instead of a license key. The app opens the sign-in page in a browser sheet, where you can type the code from the sign-in email. After you sign in, it registers your Mac as a device of your account: the machine ID described above, your Mac's name, the platform, and the app and macOS versions. It then fetches your plan from our server as a signed file once a day while it runs, and that file keeps the paid features working for up to 14 days without our server. The token that keeps the app signed in is kept in the macOS Keychain.
+From the version that adds TablePro accounts, you sign in to the Mac app with a [TablePro account](#account) instead of a license key. The app opens the sign-in page in a browser sheet, where you can type the code from the sign-in email. After you sign in, it registers your Mac as a device of your account: the machine ID described above, your Mac's name, the platform, and the app and macOS versions. It then fetches your plan from our server as a signed file once a day while it runs, and that file keeps the paid features working for up to {offlineDays} days without our server. The token that keeps the app signed in is kept in the macOS Keychain.
 
 A license key already on your Mac is exchanged once for a sign-in to the account that holds it, then deleted from the Mac. A device that has not checked in for 180 days is removed. You can remove devices in the app or in the account portal, and the first time a Mac uses your license, we email you about it.
 
@@ -93,7 +93,7 @@ The Mac app sends data to these services only when you set them up, and directly
 
 ### Data that stays on your Mac {#mac-local}
 
-Passwords are kept in the macOS Keychain. Your connection list, query history, Query Insights, Data Rewind snapshots, settings and open tabs are stored on your Mac. The app references SSH keys where they are on disk and does not copy them. The app contains no crash reporter and no third-party analytics library.
+Passwords are kept in the macOS Keychain. Your connection list, query history, Query Insights, Data Rewind snapshots, settings and open tabs are stored on your Mac. The app references SSH keys where they are on disk and does not copy them. Versions before TablePro accounts contain no crash reporter and no third-party analytics library. From the version that adds TablePro accounts, the app includes PostHog's library, which sends the usage data described above.
 
 ## TablePro for iPhone and iPad {#ios-app}
 

@@ -292,6 +292,8 @@ dataset('reviewed facts', [
             'account portal]({account}) at account.tablepro.app',
             '](/refund-policy)',
             '](/terms)',
+            'keeps the paid features working for up to {offlineDays} days without our server',
+            'Versions before TablePro accounts contain no crash reporter and no third-party analytics library.',
         ],
         ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.'],
     ],

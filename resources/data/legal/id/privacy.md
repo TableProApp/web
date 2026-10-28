@@ -57,7 +57,7 @@ Server kami menyimpan setiap Mac yang diaktifkan sebagai perangkat dari akun pem
 
 ### Akun TablePro {#mac-account}
 
-Mulai versi yang menghadirkan akun TablePro, Anda masuk ke aplikasi Mac dengan [akun TablePro](#account), bukan kunci lisensi. Aplikasi membuka halaman masuk di jendela browser, tempat Anda dapat mengetik kode dari email masuk. Setelah Anda masuk, aplikasi mendaftarkan Mac Anda sebagai perangkat akun Anda: ID mesin yang dijelaskan di atas, nama Mac Anda, platform, serta versi aplikasi dan macOS. Lalu aplikasi mengambil paket Anda dari server kami sebagai file bertanda tangan sekali sehari selama berjalan, dan file itu membuat fitur berbayar tetap berfungsi hingga 14 hari tanpa server kami. Token yang membuat aplikasi tetap masuk disimpan di Rantai Kunci macOS.
+Mulai versi yang menghadirkan akun TablePro, Anda masuk ke aplikasi Mac dengan [akun TablePro](#account), bukan kunci lisensi. Aplikasi membuka halaman masuk di jendela browser, tempat Anda dapat mengetik kode dari email masuk. Setelah Anda masuk, aplikasi mendaftarkan Mac Anda sebagai perangkat akun Anda: ID mesin yang dijelaskan di atas, nama Mac Anda, platform, serta versi aplikasi dan macOS. Lalu aplikasi mengambil paket Anda dari server kami sebagai file bertanda tangan sekali sehari selama berjalan, dan file itu membuat fitur berbayar tetap berfungsi hingga {offlineDays} hari tanpa server kami. Token yang membuat aplikasi tetap masuk disimpan di Rantai Kunci macOS.
 
 Kunci lisensi yang sudah ada di Mac Anda ditukar satu kali dengan proses masuk ke akun pemiliknya, lalu dihapus dari Mac. Perangkat yang tidak menghubungi server selama 180 hari akan dihapus. Anda dapat menghapus perangkat di aplikasi atau di portal akun, dan saat sebuah Mac pertama kali memakai lisensi Anda, kami memberi tahu Anda melalui email.
 
@@ -93,7 +93,7 @@ Aplikasi Mac hanya mengirim data ke layanan berikut saat Anda mengonfigurasikann
 
 ### Data yang tetap berada di Mac Anda {#mac-local}
 
-Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Aplikasi tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga.
+Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Versi sebelum akun TablePro tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga. Mulai versi yang menghadirkan akun TablePro, aplikasi menyertakan pustaka PostHog, yang mengirim data penggunaan yang dijelaskan di atas.
 
 ## TablePro untuk iPhone dan iPad {#ios-app}
 

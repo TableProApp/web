@@ -57,7 +57,7 @@ Nuestro servidor guarda cada Mac activado como un dispositivo de la cuenta titul
 
 ### Cuenta de TablePro {#mac-account}
 
-A partir de la versión que añade las cuentas de TablePro, inicias sesión en la app para Mac con una [cuenta de TablePro](#account) en lugar de una clave de licencia. La app abre la página de inicio de sesión en una ventana del navegador, donde puedes escribir el código del correo de inicio de sesión. Después registra tu Mac como dispositivo de tu cuenta: el identificador de máquina descrito arriba, el nombre de tu Mac, la plataforma y las versiones de la app y de macOS. A continuación obtiene tu plan de nuestro servidor como un archivo firmado una vez al día mientras se ejecuta, y ese archivo mantiene las funciones de pago hasta 14 días sin nuestro servidor. El token que mantiene la sesión de la app se guarda en el Llavero de macOS.
+A partir de la versión que añade las cuentas de TablePro, inicias sesión en la app para Mac con una [cuenta de TablePro](#account) en lugar de una clave de licencia. La app abre la página de inicio de sesión en una ventana del navegador, donde puedes escribir el código del correo de inicio de sesión. Después registra tu Mac como dispositivo de tu cuenta: el identificador de máquina descrito arriba, el nombre de tu Mac, la plataforma y las versiones de la app y de macOS. A continuación obtiene tu plan de nuestro servidor como un archivo firmado una vez al día mientras se ejecuta, y ese archivo mantiene las funciones de pago hasta {offlineDays} días sin nuestro servidor. El token que mantiene la sesión de la app se guarda en el Llavero de macOS.
 
 Una clave de licencia que ya esté en tu Mac se canjea una sola vez por un inicio de sesión en la cuenta titular y después se elimina del Mac. Un dispositivo que no se comunica en 180 días se quita. Puedes quitar dispositivos en la app o en el portal de cuentas, y la primera vez que un Mac usa tu licencia te avisamos por correo.
 
@@ -93,7 +93,7 @@ La app para Mac solo envía datos a estos servicios cuando los configuras, direc
 
 ### Datos que permanecen en tu Mac {#mac-local}
 
-Las contraseñas se guardan en el Llavero de macOS. La lista de conexiones, el historial de consultas, Query Insights, las instantáneas de Data Rewind, los ajustes y las pestañas abiertas se almacenan en tu Mac. La app referencia las claves SSH donde están en el disco y no las copia. No contiene un sistema de informes de fallos ni una biblioteca de análisis de terceros.
+Las contraseñas se guardan en el Llavero de macOS. La lista de conexiones, el historial de consultas, Query Insights, las instantáneas de Data Rewind, los ajustes y las pestañas abiertas se almacenan en tu Mac. La app referencia las claves SSH donde están en el disco y no las copia. Las versiones anteriores a las cuentas de TablePro no contienen un sistema de informes de fallos ni una biblioteca de análisis de terceros. A partir de la versión que añade las cuentas de TablePro, la app incluye la biblioteca de PostHog, que envía los datos de uso descritos arriba.
 
 ## TablePro para iPhone y iPad {#ios-app}
 

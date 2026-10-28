@@ -57,7 +57,7 @@ Máy chủ của chúng tôi giữ mỗi máy Mac đã kích hoạt như một t
 
 ### Tài khoản TablePro {#mac-account}
 
-Từ phiên bản có tài khoản TablePro, bạn đăng nhập ứng dụng cho Mac bằng [tài khoản TablePro](#account) thay cho license key. Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn có thể gõ mã trong email đăng nhập. Sau khi bạn đăng nhập, ứng dụng đăng ký máy Mac làm thiết bị của tài khoản: mã máy nêu ở trên, tên máy Mac của bạn, nền tảng, và phiên bản ứng dụng và macOS. Sau đó, mỗi ngày một lần khi đang chạy, ứng dụng lấy gói của bạn từ máy chủ dưới dạng một tệp có chữ ký, và tệp này giữ các tính năng trả phí hoạt động tới 14 ngày mà không cần máy chủ. Token giữ ứng dụng ở trạng thái đăng nhập được lưu trong Keychain của macOS.
+Từ phiên bản có tài khoản TablePro, bạn đăng nhập ứng dụng cho Mac bằng [tài khoản TablePro](#account) thay cho license key. Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn có thể gõ mã trong email đăng nhập. Sau khi bạn đăng nhập, ứng dụng đăng ký máy Mac làm thiết bị của tài khoản: mã máy nêu ở trên, tên máy Mac của bạn, nền tảng, và phiên bản ứng dụng và macOS. Sau đó, mỗi ngày một lần khi đang chạy, ứng dụng lấy gói của bạn từ máy chủ dưới dạng một tệp có chữ ký, và tệp này giữ các tính năng trả phí hoạt động tới {offlineDays} ngày mà không cần máy chủ. Token giữ ứng dụng ở trạng thái đăng nhập được lưu trong Keychain của macOS.
 
 License key đã có trên máy Mac được đổi một lần lấy phiên đăng nhập vào tài khoản sở hữu key đó, rồi bị xóa khỏi máy. Thiết bị không liên lạc trong 180 ngày sẽ bị gỡ. Bạn có thể gỡ thiết bị trong ứng dụng hoặc trên trang tài khoản, và lần đầu một máy Mac dùng license của bạn, chúng tôi sẽ báo cho bạn qua email.
 
@@ -93,7 +93,7 @@ GitHub nhận địa chỉ IP của bạn qua các yêu cầu này. Tuyên bố 
 
 ### Dữ liệu nằm lại trên máy Mac {#mac-local}
 
-Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Ứng dụng không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba.
+Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Các phiên bản trước khi có tài khoản TablePro không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba. Từ phiên bản có tài khoản TablePro, ứng dụng có thư viện của PostHog, dùng để gửi dữ liệu sử dụng nêu ở trên.
 
 ## TablePro cho iPhone và iPad {#ios-app}
 

@@ -57,7 +57,7 @@ Unser Server führt jeden aktivierten Mac als Gerät des Kontos, zu dem die Lize
 
 ### TablePro-Konto {#mac-account}
 
-Ab der Version, die TablePro-Konten einführt, meldest du dich in der Mac-App mit einem [TablePro-Konto](#account) statt mit einem Lizenzschlüssel an. Die App öffnet die Anmeldeseite in einem Browserfenster, in das du auch den Code aus der Anmelde-E-Mail eingeben kannst. Nach der Anmeldung registriert sie deinen Mac als Gerät deines Kontos: die oben beschriebene Rechner-ID, den Namen deines Macs, die Plattform sowie App- und macOS-Version. Danach ruft sie deinen Tarif einmal täglich, solange sie läuft, als signierte Datei von unserem Server ab; diese Datei hält die Bezahlfunktionen bis zu 14 Tage ohne unseren Server in Betrieb. Das Token, das die App angemeldet hält, liegt im macOS-Schlüsselbund.
+Ab der Version, die TablePro-Konten einführt, meldest du dich in der Mac-App mit einem [TablePro-Konto](#account) statt mit einem Lizenzschlüssel an. Die App öffnet die Anmeldeseite in einem Browserfenster, in das du auch den Code aus der Anmelde-E-Mail eingeben kannst. Nach der Anmeldung registriert sie deinen Mac als Gerät deines Kontos: die oben beschriebene Rechner-ID, den Namen deines Macs, die Plattform sowie App- und macOS-Version. Danach ruft sie deinen Tarif einmal täglich, solange sie läuft, als signierte Datei von unserem Server ab; diese Datei hält die Bezahlfunktionen bis zu {offlineDays} Tage ohne unseren Server in Betrieb. Das Token, das die App angemeldet hält, liegt im macOS-Schlüsselbund.
 
 Ein bereits auf deinem Mac gespeicherter Lizenzschlüssel wird einmalig gegen eine Anmeldung bei dem Konto eingetauscht, zu dem er gehört, und dann vom Mac gelöscht. Ein Gerät, das sich 180 Tage nicht gemeldet hat, wird entfernt. Geräte kannst du in der App oder im Kontoportal entfernen, und wenn ein Mac deine Lizenz zum ersten Mal nutzt, schicken wir dir eine E-Mail.
 
@@ -93,7 +93,7 @@ Die Mac-App sendet Daten an diese Dienste nur, wenn du sie einrichtest, und dire
 
 ### Daten, die auf deinem Mac bleiben {#mac-local}
 
-Passwörter werden im macOS-Schlüsselbund aufbewahrt. Deine Verbindungsliste, dein Abfrageverlauf, Query Insights, Data-Rewind-Snapshots, Einstellungen und offene Tabs werden auf deinem Mac gespeichert. Die App verweist auf SSH-Schlüssel an ihrem Speicherort und kopiert sie nicht. Die App enthält weder einen Absturzmelder noch eine Analysebibliothek eines Drittanbieters.
+Passwörter werden im macOS-Schlüsselbund aufbewahrt. Deine Verbindungsliste, dein Abfrageverlauf, Query Insights, Data-Rewind-Snapshots, Einstellungen und offene Tabs werden auf deinem Mac gespeichert. Die App verweist auf SSH-Schlüssel an ihrem Speicherort und kopiert sie nicht. Versionen vor den TablePro-Konten enthalten weder einen Absturzmelder noch eine Analysebibliothek eines Drittanbieters. Ab der Version, die TablePro-Konten einführt, enthält die App die Bibliothek von PostHog, die die oben beschriebenen Nutzungsdaten sendet.
 
 ## TablePro für iPhone und iPad {#ios-app}
 

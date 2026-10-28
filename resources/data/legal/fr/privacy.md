@@ -57,7 +57,7 @@ Notre serveur conserve chaque Mac activé comme appareil du compte titulaire de 
 
 ### Compte TablePro {#mac-account}
 
-À partir de la version qui ajoute les comptes TablePro, vous vous connectez à l’application Mac avec un [compte TablePro](#account) au lieu d’une clé de licence. L’application ouvre la page de connexion dans une fenêtre de navigateur, où vous pouvez saisir le code de l’e-mail de connexion. Une fois connecté, elle enregistre votre Mac comme appareil de votre compte : l’identifiant de machine décrit ci-dessus, le nom de votre Mac, la plateforme et les versions de l’application et de macOS. Elle récupère ensuite votre offre auprès de notre serveur sous forme de fichier signé une fois par jour tant qu’elle tourne, et ce fichier maintient les fonctionnalités payantes jusqu’à 14 jours sans notre serveur. Le jeton qui maintient la connexion de l’application est conservé dans le Trousseau macOS.
+À partir de la version qui ajoute les comptes TablePro, vous vous connectez à l’application Mac avec un [compte TablePro](#account) au lieu d’une clé de licence. L’application ouvre la page de connexion dans une fenêtre de navigateur, où vous pouvez saisir le code de l’e-mail de connexion. Une fois connecté, elle enregistre votre Mac comme appareil de votre compte : l’identifiant de machine décrit ci-dessus, le nom de votre Mac, la plateforme et les versions de l’application et de macOS. Elle récupère ensuite votre offre auprès de notre serveur sous forme de fichier signé une fois par jour tant qu’elle tourne, et ce fichier maintient les fonctionnalités payantes jusqu’à {offlineDays} jours sans notre serveur. Le jeton qui maintient la connexion de l’application est conservé dans le Trousseau macOS.
 
 Une clé de licence déjà présente sur votre Mac est échangée une seule fois contre une connexion au compte titulaire, puis supprimée du Mac. Un appareil sans contact depuis 180 jours est retiré. Vous pouvez retirer des appareils dans l’application ou dans le portail de comptes, et la première fois qu’un Mac utilise votre licence, nous vous prévenons par e-mail.
 
@@ -93,7 +93,7 @@ L’application Mac n’envoie des données à ces services que lorsque vous les
 
 ### Données qui restent sur votre Mac {#mac-local}
 
-Les mots de passe sont conservés dans le Trousseau macOS. Votre liste de connexions, l’historique des requêtes, Query Insights, les instantanés Data Rewind, les réglages et les onglets ouverts sont stockés sur votre Mac. L’application référence les clés SSH à leur emplacement sur le disque sans les copier. Elle ne contient aucun outil de rapport de plantage ni bibliothèque d’analyse tierce.
+Les mots de passe sont conservés dans le Trousseau macOS. Votre liste de connexions, l’historique des requêtes, Query Insights, les instantanés Data Rewind, les réglages et les onglets ouverts sont stockés sur votre Mac. L’application référence les clés SSH à leur emplacement sur le disque sans les copier. Les versions antérieures aux comptes TablePro ne contiennent aucun outil de rapport de plantage ni bibliothèque d’analyse tierce. À partir de la version qui ajoute les comptes TablePro, l’application inclut la bibliothèque de PostHog, qui envoie les données d’utilisation décrites ci-dessus.
 
 ## TablePro pour iPhone et iPad {#ios-app}
 

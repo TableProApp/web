@@ -57,7 +57,7 @@ Mac App 僅在您輸入授權金鑰後連線至授權伺服器。它會在啟用
 
 ### TablePro 帳戶 {#mac-account}
 
-從支援 TablePro 帳戶的版本起，您使用 [TablePro 帳戶](#account)而不是授權金鑰登入 Mac App。App 會在瀏覽器視窗中開啟登入頁面，您也可以在那裡輸入登入郵件中的代碼。登入後，App 將您的 Mac 登記為帳戶的裝置：上文所述的機器 ID、Mac 名稱、平台，以及 App 和 macOS 版本。之後，App 在執行期間每天從我們的伺服器取得一次以簽署檔案形式提供的方案；有了該檔案，付費功能在無法連線至伺服器時最多可繼續使用 14 天。保持 App 登入的權杖保存在 macOS 鑰匙圈中。
+從支援 TablePro 帳戶的版本起，您使用 [TablePro 帳戶](#account)而不是授權金鑰登入 Mac App。App 會在瀏覽器視窗中開啟登入頁面，您也可以在那裡輸入登入郵件中的代碼。登入後，App 將您的 Mac 登記為帳戶的裝置：上文所述的機器 ID、Mac 名稱、平台，以及 App 和 macOS 版本。之後，App 在執行期間每天從我們的伺服器取得一次以簽署檔案形式提供的方案；有了該檔案，付費功能在無法連線至伺服器時最多可繼續使用 {offlineDays} 天。保持 App 登入的權杖保存在 macOS 鑰匙圈中。
 
 Mac 上已有的授權金鑰會一次性換成持有該金鑰的帳戶的登入，然後從 Mac 上刪除。180 天未聯絡伺服器的裝置會被移除。您可以在 App 或帳戶入口網站中移除裝置；某台 Mac 首次使用您的授權時，我們會寄送郵件通知您。
 
@@ -93,7 +93,7 @@ GitHub 會隨這些請求收到您的 IP 位址，這些請求適用 GitHub 自�
 
 ### 留在 Mac 上的資料 {#mac-local}
 
-密碼保存在 macOS 鑰匙圈中。連線清單、查詢歷史、Query Insights、Data Rewind 快照、設定與開啟的分頁儲存在 Mac 上。App 參照磁碟上的 SSH 金鑰，不會複製它們。App 不包含當機報告工具或第三方分析程式庫。
+密碼保存在 macOS 鑰匙圈中。連線清單、查詢歷史、Query Insights、Data Rewind 快照、設定與開啟的分頁儲存在 Mac 上。App 參照磁碟上的 SSH 金鑰，不會複製它們。支援 TablePro 帳戶之前的版本不包含當機報告工具或第三方分析程式庫。從支援 TablePro 帳戶的版本起，App 包含 PostHog 的程式庫，用於傳送上文所述的使用資料。
 
 ## iPhone 與 iPad 版 TablePro {#ios-app}
 
