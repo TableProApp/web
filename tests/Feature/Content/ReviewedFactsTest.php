@@ -38,12 +38,12 @@ dataset('reviewed facts', [
     ],
     'Handoff also passes the connection name' => [
         'content/en/features/sync-and-teams.json',
-        ['With no table open, it passes the connection’s name instead', 'at the next license check, within {licenseCheckDays} days', '<ui>Publish Saved Queries to Team…</ui>'],
-        ['Only the connection’s ID and the table’s name pass', 'signs their Macs out'],
+        ['With no table open, it passes the connection’s name instead', 'the next time TablePro checks in, within {offlineDays} days', 'A Team seat covers one person on up to {deviceLimit} Macs', '<ui>Publish Saved Queries to Team…</ui>'],
+        ['Only the connection’s ID and the table’s name pass', 'signs their Macs out', 'activated Mac', 'Settings > License', 'deletes their Team Library'],
     ],
     'Handoff, seats and publishing (vi)' => [
         'content/vi/features/sync-and-teams.json',
-        ['Nếu không mở table, nó gửi tên connection', 'trong {licenseCheckDays} ngày', 'Một seat Team là một máy Mac đã kích hoạt, không phải một người.'],
+        ['Nếu không mở table, nó gửi tên connection', 'trong vòng {offlineDays} ngày', 'Một seat Team dành cho một người trên tối đa {deviceLimit} máy Mac.'],
         ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên'],
     ],
     'Redis Add Row covers five types; restores are transactional only where the engine allows' => [

@@ -71,12 +71,6 @@ it('quotes the limits from facts.json', function (): void {
     expect($facts['filterOperatorCount']['value'])->toBe(count(featurePagesData('facts.json')['filterOperators']['mac']));
 });
 
-it('quotes how often a Mac confirms its license from pricing.json', function (): void {
-    // A removed Team member's Mac keeps the paid features until this check (docs/features/team.mdx @v0.77.0).
-    expect((new FeatureFacts())->all()['licenseCheckDays'])
-        ->toBe(['kind' => 'number', 'value' => featurePagesData('pricing.json')['license']['legacy']['revalidateDays']]);
-});
-
 it('quotes the device limit and how long a signed plan lasts offline from pricing.json', function (): void {
     // A removed Team member's Mac keeps Team's features until its plan copy expires (tablepro-cloud product.md, Entitlement).
     $license = featurePagesData('pricing.json')['license'];

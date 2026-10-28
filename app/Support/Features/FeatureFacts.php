@@ -143,8 +143,9 @@ final class FeatureFacts
     }
 
     /**
-     * The limits in `facts.json`, plus how often a Mac confirms its license
-     * (`pricing.json`), which bounds when a removed Team member's Mac stops.
+     * The limits in `facts.json`, plus the device limit and how long a signed
+     * plan lasts offline (`pricing.json`), which bounds when a removed Team
+     * member's Mac loses Team's features.
      *
      * @param  array<string, mixed>  $facts
      * @param  array<string, mixed>  $pricing
@@ -173,7 +174,6 @@ final class FeatureFacts
             'explainNoise' => $limit('explainNoise'),
             'filterOperatorCount' => ['kind' => 'number', 'value' => count($facts['filterOperators']['mac'] ?? [])],
             'filterOperatorCountIos' => ['kind' => 'number', 'value' => count($facts['filterOperators']['ios'] ?? [])],
-            'licenseCheckDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['legacy']['revalidateDays'] ?? 0)],
             'deviceLimit' => ['kind' => 'number', 'value' => (int) ($pricing['license']['deviceLimit'] ?? 0)],
             'offlineDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['offlineDays'] ?? 0)],
         ];
