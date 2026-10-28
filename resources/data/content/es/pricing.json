@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Starter cubre a una persona en hasta {activations} Mac. Cada puesto de Team cubre un Mac activado, incluido el del comprador. Dos Mac usan dos puestos. La app para iPhone y iPad no usa licencia ni puesto."
+                "body": "Starter cubre a una persona en hasta {deviceLimit} Mac. Cada puesto de Team cubre a una persona en hasta {deviceLimit} Mac, y el comprador empieza con uno. El límite es por cuenta, sumando Starter y Team. La app para iPhone y iPad no usa licencia ni puesto."
             },
             "activate": {
-                "term": "Activación",
-                "body": "Introduce tu clave en <ui>Settings > License</ui>. Para trasladar una activación, elimina el Mac anterior en la página de Mac de <account>tu cuenta</account>."
+                "term": "Inicio de sesión",
+                "body": "Inicia sesión en la app para Mac con el correo de compra; registra el ID de máquina con hash, el nombre del Mac y las versiones de la app y de macOS. Para usar tu licencia en otro Mac, elimina uno en <ui>Settings > Account</ui> o en la página Dispositivos de <account>tu cuenta</account>. Las versiones anteriores a las cuentas de TablePro usan una clave de licencia en <ui>Settings > License</ui>."
             },
             "checks": {
                 "term": "Comprobaciones",
-                "body": "TablePro verifica la firma de la licencia al iniciar y consulta su servidor cada {revalidateDays} días. Si el servidor no está disponible, las funciones de pago siguen activas durante {graceDays} días desde la última verificación correcta. Las verificaciones envían la clave, un ID de máquina con hash, el nombre del Mac y las versiones de la app y de macOS."
+                "body": "TablePro renueva una copia firmada de tu plan al iniciar y una vez al día. Si el servidor no está disponible, las funciones de pago siguen activas hasta que caduca esa copia, como máximo {offlineDays} días después de la última renovación. Para un Mac que nunca se conecta, crea un archivo sin conexión en <account>tu cuenta</account>. Las versiones anteriores a las cuentas de TablePro comprueban cada {revalidateDays} días y mantienen las funciones de pago {graceDays} días desde la última verificación correcta."
             },
             "ends": {
                 "term": "Cuando termina un plan",
@@ -52,17 +52,17 @@
         "title": "Facturación",
         "merchant": "{merchant} es el merchant of record. Gestiona el pago, calcula el impuesto sobre ventas o el IVA según tu dirección de facturación y envía recibos y facturas por correo.",
         "renewal": "Las suscripciones se renuevan hasta que canceles en <account>tu cuenta</account> o en el portal de {merchant}. Conservas el acceso hasta el final del periodo pagado; puedes reanudar antes de que termine. Si falla una renovación, recibirás un correo para actualizar tu tarjeta y se reintentará el pago durante unas tres semanas.",
-        "portal": "Gestiona facturas, recibos, métodos de pago y cancelación en el <portal>portal de clientes de {merchant}</portal>. Accede con el correo de compra. <account>Facturación y facturas</account> abre el mismo portal."
+        "portal": "Gestiona facturas, recibos y métodos de pago en el <portal>portal de clientes de {merchant}</portal>. Accede allí con el correo de compra, o ábrelo desde <account>Facturación</account> en tu cuenta."
     },
     "refunds": {
         "title": "Reembolsos",
-        "body": "Las compras y renovaciones de suscripciones se pueden reembolsar dentro de los {refundDays} días siguientes a cada cobro. Consulta la <link>política de reembolso</link> para conocer el proceso y sus efectos sobre tu licencia."
+        "body": "Las compras y renovaciones de suscripciones se pueden reembolsar dentro de los {refundDays} días siguientes a cada cobro. Puedes reembolsarlas tú mismo en Facturación, en <account>tu cuenta</account>. Consulta la <link>política de reembolso</link> para conocer las excepciones y qué pasa con tu licencia."
     },
     "team": {
         "title": "Planes Team",
         "seats": "El precio de un plan Team es por puesto, con un mínimo de {min} puestos.",
-        "invites": "El comprador gestiona las invitaciones en su cuenta. Cada código necesita un puesto libre, sirve una vez y caduca tras una semana.",
-        "changes": "Cambia los puestos de la suscripción en tu cuenta; la diferencia aparece en la próxima factura. Para añadir puestos a una compra única, escribe a <email>{email}</email>.",
+        "invites": "Los propietarios y administradores invitan por correo desde la página Miembros de su cuenta, con o sin puesto. Una invitación con puesto lo reserva hasta que se acepta o se revoca; su enlace sirve 7 días y se puede reenviar.",
+        "changes": "El propietario cambia los puestos de una suscripción en Facturación, en tu cuenta, y {merchant} cobra o abona la diferencia prorrateada al momento. Un equipo sin suscripción compra allí más puestos de pago único.",
         "account": "Gestiona tu equipo en tu cuenta"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "¿Dónde encuentro mi clave de licencia?",
-                "answer": "Encuentra tu clave en el correo de compra o en <account>tu cuenta</account>. Accede con el correo de compra para ver las claves y los Mac activados."
+                "answer": "Ya no la necesitas: inicia sesión en la app para Mac con tu correo de compra y tu compra estará en esa cuenta. Las versiones anteriores a las cuentas de TablePro siguen usando la clave de tu correo de compra."
             }
         }
     }

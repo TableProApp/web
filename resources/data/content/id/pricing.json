@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Starter mencakup satu orang pada maksimal {activations} Mac. Setiap seat Team mencakup satu Mac yang diaktifkan, termasuk milik pembeli. Dua Mac menggunakan dua seat. App iPhone dan iPad tidak menggunakan lisensi atau seat."
+                "body": "Starter mencakup satu orang pada maksimal {deviceLimit} Mac. Setiap seat Team mencakup satu orang pada maksimal {deviceLimit} Mac, dan pembeli langsung mendapat satu seat. Batas ini berlaku per akun, gabungan Starter dan Team. App iPhone dan iPad tidak menggunakan lisensi atau seat."
             },
             "activate": {
-                "term": "Aktivasi",
-                "body": "Masukkan kunci di <ui>Settings > License</ui>. Untuk memindahkan aktivasi, hapus Mac lama dari halaman Macs di <account>akun Anda</account>."
+                "term": "Masuk",
+                "body": "Masuk ke aplikasi Mac dengan email pembelian; aplikasi mendaftarkan ID mesin yang di-hash, nama Mac, serta versi app dan macOS. Untuk memakai lisensi di Mac lain, hapus satu Mac di <ui>Settings > Account</ui> atau di halaman Perangkat pada <account>akun Anda</account>. Versi sebelum akun TablePro memakai kunci lisensi di <ui>Settings > License</ui>."
             },
             "checks": {
                 "term": "Pemeriksaan",
-                "body": "TablePro memverifikasi tanda tangan lisensi saat mulai dan memeriksa server setiap {revalidateDays} hari. Jika server tidak dapat dijangkau, fitur berbayar tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Pemeriksaan mengirimkan kunci, ID mesin yang di-hash, nama Mac, serta versi app dan macOS."
+                "body": "TablePro memperbarui salinan paket Anda yang ditandatangani saat mulai dan sekali sehari. Jika server tidak dapat dijangkau, fitur berbayar tetap berfungsi hingga salinan itu kedaluwarsa, paling lama {offlineDays} hari setelah pembaruan terakhir. Untuk Mac yang tidak pernah online, buat file offline di <account>akun Anda</account>. Versi sebelum akun TablePro memeriksa setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil."
             },
             "ends": {
                 "term": "Saat paket berakhir",
@@ -52,17 +52,17 @@
         "title": "Penagihan",
         "merchant": "{merchant} adalah merchant of record. Menangani pembayaran, menghitung pajak penjualan atau PPN dari alamat penagihan, dan mengirim tanda terima serta faktur melalui email.",
         "renewal": "Langganan diperpanjang hingga Anda membatalkan di <account>akun Anda</account> atau portal {merchant}. Akses berlanjut hingga periode berbayar; Anda dapat melanjutkan sebelum berakhir. Perpanjangan yang gagal memicu email untuk memperbarui kartu Anda dan percobaan pembayaran ulang selama sekitar tiga minggu.",
-        "portal": "Kelola faktur, kwitansi, metode pembayaran, dan pembatalan di portal pelanggan <portal>{merchant}</portal>. Masuk dengan email pembelian Anda. <account>Penagihan & faktur</account> membuka portal yang sama."
+        "portal": "Kelola faktur, kwitansi, dan metode pembayaran di portal pelanggan <portal>{merchant}</portal>. Masuk dengan email pembelian Anda, atau buka dari <account>Penagihan</account> di akun Anda."
     },
     "refunds": {
         "title": "Pengembalian dana",
-        "body": "Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Baca <link>kebijakan pengembalian dana</link> untuk mengetahui proses dan dampaknya pada lisensi Anda."
+        "body": "Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Kembalikan dananya sendiri di Penagihan pada <account>akun Anda</account>. Baca <link>kebijakan pengembalian dana</link> untuk pengecualian dan dampaknya pada lisensi Anda."
     },
     "team": {
         "title": "Paket Team",
         "seats": "Paket Team dihargai per seat, minimal {min} seat.",
-        "invites": "Pembeli mengelola undangan di akunnya. Setiap kode memerlukan seat yang tersedia, berlaku satu kali, dan kedaluwarsa setelah seminggu.",
-        "changes": "Ubah seat berlangganan di akun Anda; perbedaannya muncul di faktur Anda berikutnya. Untuk pembelian satu kali, kirim email ke <email>{email}</email> untuk menambahkan seat.",
+        "invites": "Pemilik dan admin mengundang lewat email dari halaman Anggota di akun mereka, dengan atau tanpa seat. Undangan dengan seat menyimpan seat itu sampai diterima atau dicabut; tautannya berlaku 7 hari dan dapat dikirim ulang.",
+        "changes": "Pemilik mengubah seat langganan di Penagihan pada akun Anda, dan {merchant} menagih atau mengkreditkan selisih prorata saat itu juga. Tim tanpa langganan membeli seat satu kali tambahan di sana.",
         "account": "Kelola tim dalam akun Anda"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Di mana kunci lisensi saya?",
-                "answer": "Temukan kunci Anda di email pembelian atau <account>akun Anda</account>. Masuk dengan email pembelian Anda untuk melihat kunci dan Mac yang diaktifkan."
+                "answer": "Anda tidak memerlukannya lagi: masuk ke aplikasi Mac dengan email pembelian, dan pembelian Anda ada di akun tersebut. Versi sebelum akun TablePro tetap memakai kunci dari email pembelian Anda."
             }
         }
     }

@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Mac 수",
-                "body": "Starter는 한 사람이 최대 {activations}대의 Mac에서 사용합니다. Team은 구매자의 Mac을 포함해 활성화된 Mac 한 대당 한 석입니다. Mac 두 대는 두 석을 사용합니다. iPhone 및 iPad에는 라이선스나 좌석이 필요하지 않습니다."
+                "body": "Starter는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. Team은 좌석 하나로 한 사람이 최대 {deviceLimit}대의 Mac에서 사용하며, 구매자는 좌석 하나를 갖고 시작합니다. 대수 제한은 Starter와 Team을 합쳐 계정 단위로 적용됩니다. iPhone 및 iPad에는 라이선스나 좌석이 필요하지 않습니다."
             },
             "activate": {
-                "term": "활성화",
-                "body": "<ui>설정 > 라이선스</ui> (Settings > License)에 키를 입력하세요. 활성화를 옮기려면 <account>계정</account>의 Macs 페이지에서 기존 Mac을 제거합니다."
+                "term": "로그인",
+                "body": "구매 이메일로 Mac 앱에 로그인하세요. 이때 해시된 기기 ID, Mac 이름, 앱 및 macOS 버전이 등록됩니다. 다른 Mac에서 라이선스를 사용하려면 <ui>설정 > 계정</ui> (Settings > Account) 또는 <account>계정</account>의 기기 페이지에서 Mac 한 대를 제거합니다. TablePro 계정을 지원하기 전 버전에서는 <ui>설정 > 라이선스</ui> (Settings > License)에 라이선스 키를 입력합니다."
             },
             "checks": {
                 "term": "검증",
-                "body": "시작 시 라이선스 서명을 검증하고 {revalidateDays}일마다 서버를 확인합니다. 서버에 연결할 수 없으면 마지막 확인 성공 후 {graceDays}일 동안 유료 기능을 사용할 수 있습니다. 확인 시 키, 해시된 기기 ID, Mac 이름, 앱 및 macOS 버전을 보냅니다."
+                "body": "TablePro는 시작할 때와 하루에 한 번 서명된 플랜 사본을 갱신합니다. 서버에 연결할 수 없으면 유료 기능은 그 사본이 만료될 때까지, 마지막 갱신 후 최대 {offlineDays}일 동안 작동합니다. 인터넷에 연결하지 않는 Mac에는 <account>계정</account>에서 오프라인 파일을 만드세요. TablePro 계정을 지원하기 전 버전은 {revalidateDays}일마다 확인하며 마지막 확인 성공 후 {graceDays}일 동안 유료 기능을 사용할 수 있습니다."
             },
             "ends": {
                 "term": "플랜 종료 시",
@@ -52,17 +52,17 @@
         "title": "결제",
         "merchant": "{merchant}가 merchant of record입니다. 결제를 처리하고 청구 주소로 판매세나 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다.",
         "renewal": "<account>계정</account> 또는 {merchant} 포털에서 취소할 때까지 구독은 갱신됩니다. 결제한 기간까지 이용할 수 있고 끝나기 전에 다시 시작할 수 있습니다. 갱신 실패 시 카드 업데이트 이메일을 보내고 약 3주 동안 결제를 재시도합니다.",
-        "portal": "<portal>{merchant} 고객 포털</portal>에서 청구서, 영수증, 결제 수단, 취소를 관리하세요. 구매 이메일로 로그인합니다. <account>Billing & invoices</account>도 같은 포털을 엽니다."
+        "portal": "<portal>{merchant} 고객 포털</portal>에서 청구서, 영수증, 결제 수단을 관리하세요. 구매 이메일로 로그인하거나 계정의 <account>결제</account> 페이지에서 엽니다."
     },
     "refunds": {
         "title": "환불",
-        "body": "구매와 구독 갱신은 각 결제 후 {refundDays}일 이내에 환불할 수 있습니다. 절차와 라이선스에 미치는 영향은 <link>환불 정책</link>을 확인하세요."
+        "body": "구매와 구독 갱신은 각 결제 후 {refundDays}일 이내에 환불할 수 있습니다. <account>계정</account>의 결제 페이지에서 직접 환불하세요. 예외와 라이선스에 미치는 영향은 <link>환불 정책</link>을 확인하세요."
     },
     "team": {
         "title": "Team 플랜",
         "seats": "Team 플랜은 좌석당 요금이며 최소 {min}좌석부터 제공합니다.",
-        "invites": "구매자가 계정에서 초대를 관리합니다. 코드마다 빈 좌석이 필요하며 한 번만 사용할 수 있고 일주일 후 만료됩니다.",
-        "changes": "계정에서 구독 좌석을 바꾸면 차액은 다음 청구서에 반영됩니다. 일회성 구매의 좌석을 추가하려면 <email>{email}</email>로 연락하세요.",
+        "invites": "소유자와 관리자가 계정의 구성원 페이지에서 이메일로 초대하며 좌석 포함 여부를 정합니다. 좌석이 포함된 초대는 수락되거나 취소될 때까지 그 좌석을 확보하며, 링크는 7일 동안 유효하고 다시 보낼 수 있습니다.",
+        "changes": "소유자가 계정의 결제 페이지에서 구독 좌석을 변경하면 {merchant}가 일할 계산한 차액을 즉시 청구하거나 환급합니다. 구독이 없는 팀은 그곳에서 일회성 좌석을 추가로 구매합니다.",
         "account": "계정에서 팀 관리"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "라이선스 키는 어디에서 찾나요?",
-                "answer": "구매 이메일이나 <account>계정</account>에서 키를 찾으세요. 구매 이메일로 로그인하면 키와 활성화된 Mac을 볼 수 있습니다."
+                "answer": "더 이상 필요하지 않습니다. 구매 이메일로 Mac 앱에 로그인하면 구매 내역이 그 계정에 있습니다. TablePro 계정을 지원하기 전 버전은 계속 구매 이메일의 키를 사용합니다."
             }
         }
     }

@@ -130,7 +130,7 @@ it('indexes every complete translation', function (): void {
 });
 
 it('fills every slot in its copy from data, and marks up only what the page renders', function (): void {
-    $slots = ['activations', 'revalidateDays', 'graceDays', 'merchant', 'refundDays', 'min', 'max', 'email'];
+    $slots = ['deviceLimit', 'offlineDays', 'revalidateDays', 'graceDays', 'merchant', 'refundDays', 'min', 'max', 'email'];
     $tags = ['ui', 'account', 'portal', 'link', 'email', 'terms'];
 
     foreach (array_filter(Illuminate\Support\Arr::dot(pricingPageJson('content/en/pricing.json')), 'is_string') as $key => $text) {
@@ -256,7 +256,7 @@ it('server-renders the plans, the table and every section, with prices written f
         '/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year'], '$%s', '.',
         'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ['Included', 'Not included'],
-        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for {graceDays} days after the last successful check', 'One person per seat, on up to {deviceLimit} Macs.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
+        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features keep working until that copy expires, at most {offlineDays} days after the last renewal', 'One person per seat, on up to {deviceLimit} Macs.', 'Each Team seat covers one person on up to {deviceLimit} Macs', 'answered first, within one business day'],
     ],
     'Vietnamese' => [
         '/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',
@@ -276,7 +276,7 @@ it('keeps the short FAQ on account tasks, leaving the licensing facts to the pag
     expect(array_keys($content['faq']['items']))->toBe(['payment-methods', 'company-invoice', 'lost-key']);
 
     foreach ($content['faq']['items'] as $item) {
-        foreach (['{graceDays}', '{activations}', 'no trial period', 'one activated Mac'] as $duplicate) {
+        foreach (['{graceDays}', '{offlineDays}', '{deviceLimit}', 'no trial period', 'one person on'] as $duplicate) {
             expect($item['answer'])->not->toContain($duplicate);
         }
     }
@@ -315,28 +315,29 @@ it('says who a Starter license is for wherever it says how many Macs', function 
     ['id', 'satu orang'],
 ]);
 
-it('names the plans and the account\'s pages as checkout and the account app do', function (string $locale, string $macsPage, string $billing): void {
+it('names the plans as checkout does and the portal\'s pages as the portal does', function (string $locale, string $devicesPage, string $billing): void {
     $content = pricingPageJson("content/{$locale}/pricing.json");
 
     // Plan names stay English everywhere, as on the buy buttons.
     expect($content['seo']['title'])->not->toBe($content['header']['title'])->toContain('Starter')->toContain('Team');
     expect($content['seo']['description'])->toContain('Starter')->toContain('Team');
 
-    expect($content['license']['items']['activate']['body'])->toContain($macsPage);
+    // nav.devices and nav.billing in tablepro-cloud's web/packages/i18n catalogs.
+    expect($content['license']['items']['activate']['body'])->toContain($devicesPage);
     expect($content['billing']['portal'])->toContain("<account>{$billing}</account>");
 })->with([
-    ['en', 'the Macs page', 'Billing & invoices'],
-    ['vi', 'trang Macs', 'Billing & invoices'],
-    ['es', 'la página de Mac', 'Facturación y facturas'],
-    ['de', 'Macs-Seite', 'Abrechnung und Rechnungen'],
-    ['fr', 'la page Mac', 'Facturation et factures'],
-    ['ja', 'Macs ページ', 'Billing & invoices'],
-    ['pt-BR', 'página Macs', 'Faturamento e faturas'],
-    ['zh-Hans', 'Macs 页面', 'Billing & invoices'],
-    ['zh-Hant', 'Macs 頁面', 'Billing & invoices'],
-    ['ko', 'Macs 페이지', 'Billing & invoices'],
-    ['it', 'pagina Macs', 'Fatturazione e fatture'],
-    ['id', 'halaman Macs', 'Penagihan & faktur'],
+    ['en', 'the Devices page', 'Billing'],
+    ['vi', 'trang Thiết bị', 'Thanh toán'],
+    ['es', 'la página Dispositivos', 'Facturación'],
+    ['de', 'Geräte-Seite', 'Abrechnung'],
+    ['fr', 'la page Appareils', 'Facturation'],
+    ['ja', 'デバイスページ', '請求'],
+    ['pt-BR', 'página Dispositivos', 'Cobrança'],
+    ['zh-Hans', '设备页面', '账单'],
+    ['zh-Hant', '裝置頁面', '帳單'],
+    ['ko', '기기 페이지', '결제'],
+    ['it', 'pagina Dispositivi', 'Fatturazione'],
+    ['id', 'halaman Perangkat', 'Penagihan'],
 ]);
 
 it('asks in its short FAQ only what the full FAQ answers, in the same words', function (): void {

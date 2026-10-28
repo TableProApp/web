@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "Starter cobre uma pessoa em até {activations} Macs. Cada vaga Team cobre um Mac ativado, incluindo o do comprador. Dois Macs usam duas vagas. O app para iPhone e iPad não usa licença nem vaga."
+                "body": "Starter cobre uma pessoa em até {deviceLimit} Macs. Cada vaga Team cobre uma pessoa em até {deviceLimit} Macs, e o comprador já começa com uma. O limite é por conta, somando Starter e Team. O app para iPhone e iPad não usa licença nem vaga."
             },
             "activate": {
-                "term": "Ativação",
-                "body": "Insira sua chave em <ui>Settings > License</ui>. Para transferir uma ativação, remova o Mac antigo da página Macs na <account>sua conta</account>."
+                "term": "Acesso",
+                "body": "Entre no app para Mac com o e-mail da compra; ele registra o ID da máquina com hash, o nome do Mac e as versões do app e do macOS. Para usar sua licença em outro Mac, remova um em <ui>Settings > Account</ui> ou na página Dispositivos da <account>sua conta</account>. As versões anteriores às contas TablePro usam uma chave de licença em <ui>Settings > License</ui>."
             },
             "checks": {
                 "term": "Verificações",
-                "body": "TablePro verifica a assinatura da licença ao iniciar e consulta o servidor a cada {revalidateDays} dias. Se o servidor estiver inacessível, os recursos pagos continuam por {graceDays} dias após a última verificação bem-sucedida. As verificações enviam chave, ID da máquina com hash, nome do Mac e versões do app e do macOS."
+                "body": "TablePro renova uma cópia assinada do seu plano ao iniciar e uma vez por dia. Se o servidor estiver inacessível, os recursos pagos continuam até essa cópia expirar, no máximo {offlineDays} dias após a última renovação. Para um Mac que nunca fica online, crie um arquivo offline na <account>sua conta</account>. As versões anteriores às contas TablePro verificam a cada {revalidateDays} dias e mantêm os recursos pagos por {graceDays} dias após a última verificação bem-sucedida."
             },
             "ends": {
                 "term": "Quando um plano termina",
@@ -52,17 +52,17 @@
         "title": "Cobrança",
         "merchant": "{merchant} é o merchant of record. Processa pagamentos, calcula impostos ou IVA pelo endereço de cobrança e envia recibos e faturas por e-mail.",
         "renewal": "As assinaturas são renovadas até que você cancele em <account>sua conta</account> ou portal de {merchant}. O acesso continua durante o período pago; você pode retomar antes que termine. As renovações malsucedidas acionam um e-mail para atualizar seu cartão e novas tentativas de pagamento por cerca de três semanas.",
-        "portal": "Gerencie faturas, recibos, formas de pagamento e cancelamento no portal do cliente <portal>{merchant}</portal>. Faça login com seu e-mail de compra. <account>Faturamento e faturas</account> abre o mesmo portal."
+        "portal": "Gerencie faturas, recibos e formas de pagamento no portal do cliente <portal>{merchant}</portal>. Entre nele com o e-mail da compra, ou abra-o em <account>Cobrança</account> na sua conta."
     },
     "refunds": {
         "title": "Reembolsos",
-        "body": "Compras e renovações de assinatura são reembolsáveis dentro de {refundDays} dias após cada cobrança. Leia a <link>política de reembolso</link> para o processo e efeito em sua licença."
+        "body": "Compras e renovações de assinatura são reembolsáveis dentro de {refundDays} dias após cada cobrança. Reembolse você mesmo em Cobrança, na <account>sua conta</account>. Leia a <link>política de reembolso</link> para as exceções e o efeito na sua licença."
     },
     "team": {
         "title": "Planos Team",
         "seats": "Um plano Team é cobrado por vaga, com no mínimo {min} vagas.",
-        "invites": "O comprador gerencia convites na sua conta. Cada código exige um vaga disponível, funciona uma vez e expira após uma semana.",
-        "changes": "Alterar licenças de assinatura em sua conta; a diferença aparece na sua próxima fatura. Para compras únicas, envie um e-mail para <email>{email}</email> para adicionar vagas.",
+        "invites": "Proprietários e administradores convidam por e-mail na página Membros da conta, com ou sem vaga. Um convite com vaga a reserva até ser aceito ou revogado; o link vale por 7 dias e pode ser reenviado.",
+        "changes": "O proprietário altera as vagas de uma assinatura em Cobrança, na sua conta, e {merchant} cobra ou credita a diferença proporcional na hora. Uma equipe sem assinatura compra mais vagas de pagamento único ali.",
         "account": "Gerenciar sua equipe na sua conta"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Onde encontro minha chave de licença?",
-                "answer": "Encontre sua chave no e-mail de compra ou <account>sua conta</account>. Faça login com seu e-mail de compra para ver as chaves e os Macs ativados."
+                "answer": "Você não precisa mais dela: entre no app para Mac com o e-mail da compra, e sua compra estará nessa conta. As versões anteriores às contas TablePro ainda usam a chave do e-mail da compra."
             }
         }
     }

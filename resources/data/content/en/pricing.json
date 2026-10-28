@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "Starter covers one person on up to {activations} Macs. Each Team seat covers one activated Mac, including the buyer’s. Two Macs use two seats. The iPhone and iPad app uses no license or seat."
+                "body": "Starter covers one person on up to {deviceLimit} Macs. Each Team seat covers one person on up to {deviceLimit} Macs, and the buyer starts with one. The limit is per account, across Starter and Team. The iPhone and iPad app uses no license or seat."
             },
             "activate": {
-                "term": "Activating",
-                "body": "Enter your key in <ui>Settings > License</ui>. To move an activation, remove the old Mac from the Macs page in <account>your account</account>."
+                "term": "Signing in",
+                "body": "Sign in to the Mac app with the email you bought with; it registers the Mac’s hashed machine ID, name and app and macOS versions. To use your license on another Mac, remove one in <ui>Settings > Account</ui> or on the Devices page in <account>your account</account>. Versions before TablePro accounts take a license key in <ui>Settings > License</ui> instead."
             },
             "checks": {
                 "term": "Checks",
-                "body": "TablePro verifies the license signature on launch and checks with its server every {revalidateDays} days. If the server is unreachable, paid features work for {graceDays} days after the last successful check. Checks send the key, a hashed machine ID, the Mac’s name and app and macOS versions."
+                "body": "TablePro renews a signed copy of your plan when it starts and once a day. If our server is unreachable, paid features keep working until that copy expires, at most {offlineDays} days after the last renewal. For a Mac that never goes online, create an offline file in <account>your account</account>. Versions before TablePro accounts check every {revalidateDays} days and keep paid features for {graceDays} days after the last successful check."
             },
             "ends": {
                 "term": "When a plan ends",
@@ -52,17 +52,17 @@
         "title": "Billing",
         "merchant": "{merchant} is the merchant of record. It handles payment, calculates sales tax or VAT from your billing address, and emails receipts and invoices.",
         "renewal": "Subscriptions renew until you cancel in <account>your account</account> or {merchant}’s portal. Access continues through the paid period; you can resume before it ends. Failed renewals trigger an email to update your card and payment retries for about three weeks.",
-        "portal": "Manage invoices, receipts, payment methods and cancellation in <portal>{merchant}’s customer portal</portal>. Sign in with your purchase email. <account>Billing & invoices</account> opens the same portal."
+        "portal": "Manage invoices, receipts and payment methods in <portal>{merchant}’s customer portal</portal>. Sign in there with your purchase email, or open it from <account>Billing</account> in your account."
     },
     "refunds": {
         "title": "Refunds",
-        "body": "Purchases and subscription renewals are refundable within {refundDays} days of each charge. Read the <link>refund policy</link> for the process and effect on your license."
+        "body": "Purchases and subscription renewals are refundable within {refundDays} days of each charge. Refund one yourself in Billing in <account>your account</account>. Read the <link>refund policy</link> for the exceptions and what happens to your license."
     },
     "team": {
         "title": "Team plans",
         "seats": "A Team plan is priced per seat, with at least {min} seats.",
-        "invites": "The buyer manages invitations in their account. Each code needs a free seat, works once and expires after a week.",
-        "changes": "Change subscription seats in your account; the difference appears on your next invoice. For one-time purchases, email <email>{email}</email> to add seats.",
+        "invites": "Owners and admins invite people by email from the Members page in their account, with or without a seat. An invitation with a seat holds it until it is accepted or revoked, and its link works for 7 days and can be resent.",
+        "changes": "The owner changes a subscription’s seats in Billing in your account, and {merchant} charges or credits the prorated difference at once. A team without a subscription buys more one-time seats there.",
         "account": "Manage your team in your account"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Where do I find my license key?",
-                "answer": "Find your key in the purchase email or <account>your account</account>. Sign in with your purchase email to see keys and activated Macs."
+                "answer": "You no longer need one: sign in to the Mac app with your purchase email, and your purchase is in that account. Versions before TablePro accounts still take the key from your purchase email."
             }
         }
     }

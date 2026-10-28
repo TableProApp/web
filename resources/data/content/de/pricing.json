@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "Starter gilt für eine Person auf bis zu {activations} Macs. Jeder Team-Arbeitsplatz gilt für einen aktivierten Mac, auch den des Käufers. Zwei Macs nutzen zwei Arbeitsplätze. Die App für iPhone und iPad benötigt weder Lizenz noch Arbeitsplatz."
+                "body": "Starter gilt für eine Person auf bis zu {deviceLimit} Macs. Jeder Team-Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs, und der Käufer erhält einen davon. Das Limit gilt pro Konto, über Starter und Team hinweg. Die App für iPhone und iPad benötigt weder Lizenz noch Arbeitsplatz."
             },
             "activate": {
-                "term": "Aktivierung",
-                "body": "Gib deinen Schlüssel unter <ui>Settings > License</ui> ein. Um eine Aktivierung zu übertragen, entferne den alten Mac auf der Macs-Seite in <account>deinem Konto</account>."
+                "term": "Anmelden",
+                "body": "Melde dich in der Mac-App mit der E-Mail an, mit der du gekauft hast; dabei werden gehashte Geräte-ID, Mac-Name sowie App- und macOS-Version registriert. Um deine Lizenz auf einem anderen Mac zu nutzen, entferne einen unter <ui>Settings > Account</ui> oder auf der Geräte-Seite in <account>deinem Konto</account>. Versionen vor den TablePro-Konten nutzen stattdessen einen Lizenzschlüssel unter <ui>Settings > License</ui>."
             },
             "checks": {
                 "term": "Prüfungen",
-                "body": "TablePro prüft beim Start die Lizenzsignatur und fragt seinen Server alle {revalidateDays} Tage ab. Ist der Server nicht erreichbar, bleiben kostenpflichtige Funktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung nutzbar. Gesendet werden Schlüssel, gehashte Geräte-ID, Mac-Name sowie App- und macOS-Version."
+                "body": "TablePro erneuert beim Start und einmal täglich eine signierte Kopie deines Tarifs. Ist der Server nicht erreichbar, bleiben kostenpflichtige Funktionen nutzbar, bis diese Kopie abläuft, höchstens {offlineDays} Tage nach der letzten Erneuerung. Für einen Mac, der nie online ist, erstellst du eine Offline-Datei in <account>deinem Konto</account>. Versionen vor den TablePro-Konten prüfen alle {revalidateDays} Tage und behalten kostenpflichtige Funktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung."
             },
             "ends": {
                 "term": "Wenn ein Tarif endet",
@@ -52,17 +52,17 @@
         "title": "Abrechnung",
         "merchant": "{merchant} ist der Merchant of Record. Er wickelt die Zahlung ab, berechnet die Umsatzsteuer anhand deiner Rechnungsadresse und sendet Belege und Rechnungen per E-Mail.",
         "renewal": "Abos verlängern sich, bis du in <account>deinem Konto</account> oder im Portal von {merchant} kündigst. Der Zugriff bleibt bis zum Ende des bezahlten Zeitraums bestehen; davor kannst du das Abo fortsetzen. Bei fehlgeschlagener Verlängerung erhältst du eine E-Mail zum Aktualisieren der Karte; Zahlungsversuche erfolgen etwa drei Wochen lang.",
-        "portal": "Verwalte Rechnungen, Belege, Zahlungsmethoden und Kündigungen im <portal>Kundenportal von {merchant}</portal>. Melde dich mit deiner Kauf-E-Mail an. <account>Abrechnung und Rechnungen</account> öffnet dasselbe Portal."
+        "portal": "Verwalte Rechnungen, Belege und Zahlungsmethoden im <portal>Kundenportal von {merchant}</portal>. Melde dich dort mit deiner Kauf-E-Mail an oder öffne es unter <account>Abrechnung</account> in deinem Konto."
     },
     "refunds": {
         "title": "Erstattungen",
-        "body": "Käufe und Aboverlängerungen sind innerhalb von {refundDays} Tagen nach jeder Abbuchung erstattbar. Die <link>Erstattungsrichtlinie</link> erklärt den Ablauf und die Folgen für deine Lizenz."
+        "body": "Käufe und Aboverlängerungen sind innerhalb von {refundDays} Tagen nach jeder Abbuchung erstattbar. Du erstattest sie selbst unter Abrechnung in <account>deinem Konto</account>. Die <link>Erstattungsrichtlinie</link> nennt die Ausnahmen und die Folgen für deine Lizenz."
     },
     "team": {
         "title": "Team-Tarife",
         "seats": "Ein Team-Tarif wird pro Arbeitsplatz berechnet, mit mindestens {min} Arbeitsplätzen.",
-        "invites": "Der Käufer verwaltet Einladungen in seinem Konto. Jeder Code benötigt einen freien Arbeitsplatz, gilt einmal und läuft nach einer Woche ab.",
-        "changes": "Ändere Abo-Arbeitsplätze in deinem Konto; die Differenz erscheint auf der nächsten Rechnung. Für Einmalkäufe schreib an <email>{email}</email>, um Arbeitsplätze hinzuzufügen.",
+        "invites": "Inhaber und Admins laden auf der Seite Mitglieder in ihrem Konto per E-Mail ein, mit oder ohne Arbeitsplatz. Eine Einladung mit Arbeitsplatz hält ihn frei, bis sie angenommen oder widerrufen wird; ihr Link gilt 7 Tage und lässt sich erneut senden.",
+        "changes": "Der Inhaber ändert die Arbeitsplätze eines Abos unter Abrechnung in deinem Konto, und {merchant} berechnet oder erstattet die anteilige Differenz sofort. Ein Team ohne Abo kauft dort weitere Arbeitsplätze per Einmalkauf.",
         "account": "Team in deinem Konto verwalten"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "Wo finde ich meinen Lizenzschlüssel?",
-                "answer": "Deinen Schlüssel findest du in der Kauf-E-Mail oder in <account>deinem Konto</account>. Melde dich mit deiner Kauf-E-Mail an, um Schlüssel und aktivierte Macs zu sehen."
+                "answer": "Du brauchst ihn nicht mehr: Melde dich in der Mac-App mit deiner Kauf-E-Mail an, dann liegt dein Kauf in diesem Konto. Versionen vor den TablePro-Konten nutzen weiterhin den Schlüssel aus deiner Kauf-E-Mail."
             }
         }
     }

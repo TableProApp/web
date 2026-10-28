@@ -92,6 +92,7 @@ return [
     'Service Account Key' => ['fr' => 'Clé du compte de service', 'ko' => '서비스 계정 키', 'zh-Hans' => '服务账号密钥', 'zh-Hant' => '服務帳戶金鑰'],
     'Set NULL' => ['fr' => 'Définir sur NULL', 'ko' => 'NULL로 설정', 'zh-Hans' => '设为 NULL', 'zh-Hant' => '設為 NULL'],
     'Settings > AI' => ['fr' => 'Réglages > IA', 'ko' => '설정 > AI', 'zh-Hans' => '设置 > AI', 'zh-Hant' => '設定 > AI'],
+    'Settings > Account' => ['fr' => 'Réglages > Compte', 'ko' => '설정 > 계정', 'zh-Hans' => '设置 > 账户', 'zh-Hant' => '設定 > 帳號'],
     'Settings > Editor > Vim mode' => ['fr' => 'Réglages > Éditeur > Mode Vim', 'ko' => '설정 > 편집기 > Vim 모드', 'zh-Hans' => '设置 > 编辑器 > Vim 模式', 'zh-Hant' => '設定 > 編輯器 > Vim 模式'],
     'Settings > General' => ['fr' => 'Réglages > Général', 'ko' => '설정 > 일반', 'zh-Hans' => '设置 > 通用', 'zh-Hant' => '設定 > 一般'],
     'Settings > General > Privacy' => ['fr' => 'Réglages > Général > Confidentialité', 'ko' => '설정 > 일반 > 개인정보 보호', 'zh-Hans' => '设置 > 通用 > 隐私', 'zh-Hant' => '設定 > 一般 > 隱私'],

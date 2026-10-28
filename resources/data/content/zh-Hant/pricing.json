@@ -23,15 +23,15 @@
         "items": {
             "macs": {
                 "term": "Mac 台數",
-                "body": "Starter 供一人在最多 {activations} 台 Mac 上使用。每個 Team 席位對應一台已啟用 Mac，包括購買者的 Mac；兩台 Mac 占兩個席位。iPhone 和 iPad App 不使用授權或席位。"
+                "body": "Starter 供一人在最多 {deviceLimit} 台 Mac 上使用。每個 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用，購買者自帶一個席位。台數上限按帳戶計算，Starter 和 Team 合併計算。iPhone 和 iPad App 不使用授權或席位。"
             },
             "activate": {
-                "term": "啟用",
-                "body": "在 <ui>設定 > 授權</ui> (Settings > License) 輸入金鑰。移轉啟用時，在<account>帳戶</account>的 Macs 頁面移除舊 Mac。"
+                "term": "登入",
+                "body": "用購買信箱登入 Mac App，App 會登記雜湊機器 ID、Mac 名稱及 App 和 macOS 版本。要在另一台 Mac 上使用授權，請在 <ui>設定 > 帳號</ui> (Settings > Account) 或<account>帳戶</account>的裝置頁面移除一台 Mac。支援 TablePro 帳戶之前的版本則在 <ui>設定 > 授權</ui> (Settings > License) 輸入授權金鑰。"
             },
             "checks": {
                 "term": "驗證",
-                "body": "TablePro 啟動時驗證授權簽章，每 {revalidateDays} 天檢查伺服器。若伺服器無法存取，付費功能在上次成功檢查後可繼續使用 {graceDays} 天。檢查傳送金鑰、雜湊機器 ID、Mac 名稱及 App 和 macOS 版本。"
+                "body": "TablePro 在啟動時和每天更新一次帶簽章的方案副本。若伺服器無法存取，付費功能可繼續使用到該副本過期，最長為上次更新後 {offlineDays} 天。對於從不連網的 Mac，請在<account>帳戶</account>中建立離線檔案。支援 TablePro 帳戶之前的版本每 {revalidateDays} 天檢查一次，並在上次成功檢查後繼續提供付費功能 {graceDays} 天。"
             },
             "ends": {
                 "term": "方案結束時",
@@ -52,17 +52,17 @@
         "title": "帳務",
         "merchant": "{merchant} 是 merchant of record，處理付款，依帳單地址計算銷售稅或 VAT，並透過郵件傳送收據和發票。",
         "renewal": "訂閱持續續費，直到在<account>帳戶</account>或 {merchant} 入口網站取消。付費期間內繼續可用，到期前可恢復。續費失敗會傳送更新信用卡的郵件，並在約三週內重試付款。",
-        "portal": "在 <portal>{merchant} 客戶入口網站</portal>管理發票、收據、付款方式和取消訂閱。用購買信箱登入。<account>Billing & invoices</account> 開啟同一入口網站。"
+        "portal": "在 <portal>{merchant} 客戶入口網站</portal>管理發票、收據和付款方式。用購買信箱登入，或從帳戶的<account>帳單</account>頁面開啟。"
     },
     "refunds": {
         "title": "退款",
-        "body": "購買和訂閱續費可在每次扣款後 {refundDays} 天內退款。流程及對授權的影響請見<link>退款政策</link>。"
+        "body": "購買和訂閱續費可在每次扣款後 {refundDays} 天內退款。您可以在<account>帳戶</account>的帳單頁面自行退款。例外情況及對授權的影響請見<link>退款政策</link>。"
     },
     "team": {
         "title": "Team 方案",
         "seats": "Team 方案按席位定價，至少 {min} 個席位。",
-        "invites": "購買者在帳戶管理邀請。每個代碼需要空閒席位，僅可使用一次，一週後失效。",
-        "changes": "在帳戶變更訂閱席位，差額顯示在下次帳單。一次性購買如需加入席位，請郵件聯絡 <email>{email}</email>。",
+        "invites": "擁有者和管理員在帳戶的成員頁面透過郵件邀請他人，可附帶或不附帶席位。附帶席位的邀請會保留該席位，直到被接受或撤銷；連結 7 天內有效，可重新傳送。",
+        "changes": "擁有者在帳戶的帳單頁面變更訂閱席位，{merchant} 會立即按比例收取或退還差額。沒有訂閱的團隊可在那裡購買更多一次性席位。",
         "account": "在帳戶中管理團隊"
     },
     "openSource": {
@@ -89,7 +89,7 @@
             },
             "lost-key": {
                 "question": "在哪裡找到授權金鑰？",
-                "answer": "在購買郵件或<account>帳戶</account>中尋找金鑰。用購買信箱登入，查看金鑰和已啟用 Mac。"
+                "answer": "您不再需要它：用購買信箱登入 Mac App，您的購買就在該帳戶中。支援 TablePro 帳戶之前的版本仍使用購買郵件中的金鑰。"
             }
         }
     }
