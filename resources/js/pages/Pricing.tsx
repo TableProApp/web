@@ -26,9 +26,11 @@ type Interpolate = (template: string, values: Record<string, string | number>) =
 
 function copyValues(): Record<string, string | number> {
     return {
-        activations: PRICING.tiers.starter.activations,
-        revalidateDays: PRICING.license.revalidateDays,
-        graceDays: PRICING.license.offlineGraceDays,
+        activations: PRICING.license.deviceLimit,
+        deviceLimit: PRICING.license.deviceLimit,
+        offlineDays: PRICING.license.offlineDays,
+        revalidateDays: PRICING.license.legacy.revalidateDays,
+        graceDays: PRICING.license.legacy.offlineGraceDays,
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
         min: PRICING.tiers.team.seats.min,

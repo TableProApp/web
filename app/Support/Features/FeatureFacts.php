@@ -173,7 +173,9 @@ final class FeatureFacts
             'explainNoise' => $limit('explainNoise'),
             'filterOperatorCount' => ['kind' => 'number', 'value' => count($facts['filterOperators']['mac'] ?? [])],
             'filterOperatorCountIos' => ['kind' => 'number', 'value' => count($facts['filterOperators']['ios'] ?? [])],
-            'licenseCheckDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['revalidateDays'] ?? 0)],
+            'licenseCheckDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['legacy']['revalidateDays'] ?? 0)],
+            'deviceLimit' => ['kind' => 'number', 'value' => (int) ($pricing['license']['deviceLimit'] ?? 0)],
+            'offlineDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['offlineDays'] ?? 0)],
         ];
     }
 

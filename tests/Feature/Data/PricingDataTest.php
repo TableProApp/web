@@ -10,11 +10,11 @@ use Symfony\Component\Finder\SplFileInfo;
  *     cycles: list<string>,
  *     tiers: array{
  *         free: array{price: int|float},
- *         starter: array{unit: string, prices: array<string, int|float>, activations: int},
- *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int}, activationsPerSeat: int, prioritySupport: array{responseBusinessDays: int}}
+ *         starter: array{unit: string, prices: array<string, int|float>},
+ *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int}, prioritySupport: array{responseBusinessDays: int}}
  *     },
  *     refund: array{days: int, scope: string},
- *     license: array{revalidateDays: int, offlineGraceDays: int, perpetualFallback: bool},
+ *     license: array{deviceLimit: int, offlineDays: int, perpetualFallback: bool, legacy: array{revalidateDays: int, offlineGraceDays: int}},
  *     billingPortalUrl: string,
  *     checkoutSdk: string,
  *     syncedWith: string
@@ -39,8 +39,9 @@ it('has exactly the documented shape', function (): void {
         'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'billingPortalUrl', 'checkoutSdk', 'syncedWith',
     ]);
     expect(array_keys($pricing['tiers']))->toBe(['free', 'starter', 'team']);
-    expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices', 'activations']);
-    expect(array_keys($pricing['tiers']['team']))->toBe(['unit', 'prices', 'seats', 'activationsPerSeat', 'prioritySupport']);
+    expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices']);
+    expect(array_keys($pricing['tiers']['team']))->toBe(['unit', 'prices', 'seats', 'prioritySupport']);
+    expect(array_keys($pricing['license']))->toBe(['deviceLimit', 'offlineDays', 'perpetualFallback', 'legacy']);
 
     foreach (['starter', 'team'] as $tier) {
         expect(array_keys($pricing['tiers'][$tier]['prices']))->toBe($pricing['cycles'], "{$tier} must price every cycle, in cycle order");
@@ -63,16 +64,14 @@ it('keeps every price unchanged', function (): void {
 
     expect($tiers['free'])->toBe(['price' => 0]);
 
-    // Starter: one license on up to two Macs.
+    // Starter: one person's license.
     expect($tiers['starter']['unit'])->toBe('license');
     expect(array_map(pricingCents(...), $tiers['starter']['prices']))->toBe(['monthly' => 299, 'yearly' => 2400, 'lifetime' => 5900]);
-    expect($tiers['starter']['activations'])->toBe(2);
 
-    // Team: priced per seat, a seat being one activated Mac, at least 5; the most a checkout sells comes from GET /v2/pricing.
+    // Team: priced per seat, a seat being one person, at least 5; the most a checkout sells comes from GET /v2/pricing.
     expect($tiers['team']['unit'])->toBe('seat');
     expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 125, 'yearly' => 1000, 'lifetime' => 2500]);
     expect($tiers['team']['seats'])->toBe(['min' => 5]);
-    expect($tiers['team']['activationsPerSeat'])->toBe(1);
 });
 
 it('stores prices as dollar amounts that need no rounding', function (): void {
@@ -97,7 +96,15 @@ it('pins the refund window, the license timings and Priority support', function 
     $pricing = pricingJson();
 
     expect($pricing['refund'])->toBe(['days' => 7, 'scope' => 'all-paid-plans']);
-    expect($pricing['license'])->toBe(['revalidateDays' => 7, 'offlineGraceDays' => 30, 'perpetualFallback' => false]);
+
+    // tablepro-cloud product.md: 3 devices per account, an entitlement valid 14 days at most.
+    // legacy: what released builds do over /v1 until its sunset (TablePro's LicenseManager: 7-day revalidation, 30-day grace).
+    expect($pricing['license'])->toBe([
+        'deviceLimit' => 3,
+        'offlineDays' => 14,
+        'perpetualFallback' => false,
+        'legacy' => ['revalidateDays' => 7, 'offlineGraceDays' => 30],
+    ]);
     expect($pricing['tiers']['team']['prioritySupport'])->toBe(['responseBusinessDays' => 1]);
 });
 

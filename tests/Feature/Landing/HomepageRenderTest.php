@@ -411,7 +411,7 @@ describe('server-rendered', function (): void {
 
         $fill = fn(string $line): string => strtr($line, [
             '{examples}' => $examples,
-            '{macs}' => (string) $pricing['tiers']['starter']['activations'],
+            '{macs}' => (string) $pricing['license']['deviceLimit'],
             '{days}' => (string) $pricing['refund']['days'],
         ]);
 

@@ -29,7 +29,7 @@ export function tableproFacts(productId: string | null, featuredEngines: string[
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
         macArchitectures: mac.architectures,
         macUniversal: mac.universalBinary,
-        starter: { ...PRICING.tiers.starter.prices, activations: PRICING.tiers.starter.activations },
+        starter: { ...PRICING.tiers.starter.prices, activations: PRICING.license.deviceLimit },
         team: { ...PRICING.tiers.team.prices, minSeats: PRICING.tiers.team.seats.min },
         iosFree: ios !== null && ios.price.amount === 0 && !ios.price.inAppPurchases,
         licence: FACTS.openSource.license,

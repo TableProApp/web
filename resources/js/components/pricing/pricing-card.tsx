@@ -62,7 +62,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
 
                 <p className="type-small text-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
-                    {tier === 'starter' && plural(m.pricing.tiers.starter.activation, PRICING.tiers.starter.activations)}
+                    {tier === 'starter' && plural(m.pricing.tiers.starter.activation, PRICING.license.deviceLimit)}
                     {tier === 'team' && m.pricing.tiers.team.activation}
                 </p>
             </div>

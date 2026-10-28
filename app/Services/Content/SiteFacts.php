@@ -210,7 +210,7 @@ class SiteFacts
     }
 
     /**
-     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, revalidateDays: int|null, graceDays: int|null, starterActivations: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
+     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, deviceLimit: int|null, offlineDays: int|null, starterActivations: int|null, revalidateDays: int|null, graceDays: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
      */
     public function commerce(): array
     {
@@ -220,9 +220,12 @@ class SiteFacts
             'merchant' => is_string($pricing['merchantOfRecord']['name'] ?? null) ? $pricing['merchantOfRecord']['name'] : null,
             'currency' => is_string($pricing['currency'] ?? null) ? $pricing['currency'] : null,
             'refundDays' => $this->int($pricing['refund']['days'] ?? null),
-            'revalidateDays' => $this->int($pricing['license']['revalidateDays'] ?? null),
-            'graceDays' => $this->int($pricing['license']['offlineGraceDays'] ?? null),
-            'starterActivations' => $this->int($pricing['tiers']['starter']['activations'] ?? null),
+            'deviceLimit' => $this->int($pricing['license']['deviceLimit'] ?? null),
+            'offlineDays' => $this->int($pricing['license']['offlineDays'] ?? null),
+            'starterActivations' => $this->int($pricing['license']['deviceLimit'] ?? null),
+            // Versions before TablePro accounts, which keep talking to /v1 until its sunset.
+            'revalidateDays' => $this->int($pricing['license']['legacy']['revalidateDays'] ?? null),
+            'graceDays' => $this->int($pricing['license']['legacy']['offlineGraceDays'] ?? null),
             'teamMinSeats' => $this->int($pricing['tiers']['team']['seats']['min'] ?? null),
             'supportBusinessDays' => $this->int($pricing['tiers']['team']['prioritySupport']['responseBusinessDays'] ?? null),
         ];

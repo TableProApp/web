@@ -214,7 +214,11 @@ it('server-renders the plans, the table and every section, with prices written f
     expect($table)->toContain(">{$availability[0]}<")->toContain(">{$availability[1]}<");
 
     foreach ($facts as $fact) {
-        expect(strip_tags($main))->toContain(str_replace('{graceDays}', (string) $pricing['license']['offlineGraceDays'], $fact));
+        expect(strip_tags($main))->toContain(strtr($fact, [
+            '{deviceLimit}' => (string) $pricing['license']['deviceLimit'],
+            '{offlineDays}' => (string) $pricing['license']['offlineDays'],
+            '{graceDays}' => (string) $pricing['license']['legacy']['offlineGraceDays'],
+        ]));
     }
 
     preg_match_all('#<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>#s', $raw, $blocks);

@@ -128,7 +128,8 @@ it to `FeatureFacts` and, if the fact is not in a data file yet, to `facts.json`
 **Numbers** (`facts.json` → `limits`, or a list length): `rowCap`, `rowCapMax`, `countEstimate`, `chartPoints`,
 `chartSeries`, `chartInspectedRows`, `historyEntries`, `historyDays` (Mac), `historyEntriesIos`, `resultBufferIos`,
 `rewindDays`, `rewindMaxValue` (MB), `explainNoise` (%), `filterOperatorCount`, `filterOperatorCountIos`, and
-`licenseCheckDays` (`pricing.json` → `license.revalidateDays`).
+`licenseCheckDays` (`pricing.json` → `license.legacy.revalidateDays`), `deviceLimit` (`license.deviceLimit`) and
+`offlineDays` (`license.offlineDays`).
 
 **Single values**: `macSafeModeDefault`, `iosSafeModeDefault`, `mcpHost`, `mcpPort`.
 

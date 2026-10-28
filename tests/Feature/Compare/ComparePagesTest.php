@@ -212,7 +212,7 @@ it('server-renders a comparison with prices from data, its sources, the switchin
     $basic = collect($product['prices'])->firstWhere('edition', 'Basic');
     $pricing = json_decode(File::get(resource_path('data/pricing.json')), true);
     $starterMonthly = $pricing['tiers']['starter']['prices']['monthly'];
-    $activations = $pricing['tiers']['starter']['activations'];
+    $activations = $pricing['license']['deviceLimit'];
 
     $html = ssrHtml('/compare/tableplus');
     $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);

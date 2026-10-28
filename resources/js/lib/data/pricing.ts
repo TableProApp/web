@@ -13,14 +13,12 @@ export type CyclePrices = Record<BillingCycle, number>;
 export interface StarterTier {
     unit: 'license';
     prices: CyclePrices;
-    activations: number;
 }
 
 export interface TeamTier {
     unit: 'seat';
     prices: CyclePrices;
     seats: { min: number };
-    activationsPerSeat: number;
     prioritySupport: { responseBusinessDays: number };
 }
 
@@ -34,7 +32,13 @@ export interface PricingData {
         team: TeamTier;
     };
     refund: { days: number; scope: 'all-paid-plans' };
-    license: { revalidateDays: number; offlineGraceDays: number; perpetualFallback: false };
+    // deviceLimit is per account, across Starter and Team; legacy is for builds that still use /v1.
+    license: {
+        deviceLimit: number;
+        offlineDays: number;
+        perpetualFallback: false;
+        legacy: { revalidateDays: number; offlineGraceDays: number };
+    };
     billingPortalUrl: string;
     syncedWith: string;
 }

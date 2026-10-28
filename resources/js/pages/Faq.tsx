@@ -43,9 +43,11 @@ interface FaqProps {
             merchant: string | null;
             currency: string | null;
             refundDays: number | null;
+            deviceLimit: number | null;
+            offlineDays: number | null;
+            starterActivations: number | null;
             revalidateDays: number | null;
             graceDays: number | null;
-            starterActivations: number | null;
             teamMinSeats: number | null;
             supportBusinessDays: number | null;
         };
