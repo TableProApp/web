@@ -1,7 +1,7 @@
 ---
 title: Conditions d’utilisation
 description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Starter ou Team.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
@@ -40,7 +40,7 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 Une Licence vous accorde un droit non exclusif et non transférable d’activer les fonctionnalités payantes de l’application Mac avec sa Clé de licence, sur le nombre de Mac et pendant la période prévus par votre offre :
 
 - Une Licence **Starter** est destinée à une personne, sur un maximum de {starterActivations} Mac.
-- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste correspond à un Mac activé. L’acheteur invite les membres de l’équipe, qui la rejoignent avec un code d’invitation.
+- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste correspond à un Mac activé. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
 
 Vous ne pouvez pas partager une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni la sous-licencier, vendre, louer ou transférer autrement sans notre autorisation écrite.
 
@@ -48,7 +48,7 @@ L’application Mac vérifie votre Licence auprès de notre serveur tous les {re
 
 ## Portail de comptes {#account}
 
-Vous gérez vos Licences dans le portail de comptes, auquel vous vous connectez via un lien envoyé à l’adresse e-mail utilisée pour l’achat. Protégez ce compte e-mail : nous ne sommes pas responsables de l’accès à votre compte via une messagerie compromise.
+Vous gérez vos Licences dans le [portail de comptes]({account}), auquel vous vous connectez avec un lien ou un code envoyé à votre adresse e-mail, avec une clé d’accès, ou avec Apple, GitHub ou Google. Protégez-les : nous ne sommes pas responsables de l’accès à votre compte via une messagerie, un appareil ou un compte de fournisseur compromis.
 
 ## Utilisation acceptable {#acceptable-use}
 

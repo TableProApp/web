@@ -1,7 +1,7 @@
 ---
 title: 服務條款
 description: TablePro 網站、帳戶入口網站、授權伺服器與 Team Library 的條款，以及購買 Starter 或 Team 授權的條款。
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro 與 iPhone、iPad 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
@@ -40,7 +40,7 @@ TablePro™、TablePro 標誌和 TablePro App 圖示是 {publisherName} 的商�
 授權授予您非專屬、不可轉讓的權利，允許在方案規定的 Mac 台數和期限內，以授權金鑰啟用 Mac App 的付費功能：
 
 - **Starter** 授權供一人使用，最多可用於 {starterActivations} 台 Mac。
-- **Team** 授權按席位定價，最少 {teamMinSeats} 個席位。每個席位對應一台已啟用的 Mac。購買者邀請團隊成員，成員使用邀請代碼加入。
+- **Team** 授權按席位定價，最少 {teamMinSeats} 個席位。每個席位對應一台已啟用的 Mac。團隊擁有者和管理員邀請團隊成員，成員透過郵件中的邀請連結加入。
 
 未經我們書面許可，您不得在方案所涵蓋的人員與 Mac 範圍之外共用授權金鑰，也不得再授權、出售、出租或以其他方式轉讓金鑰。
 
@@ -48,7 +48,7 @@ Mac App 每隔 {revalidateDays} 天向我們的伺服器驗證授權。若無法
 
 ## 帳戶入口網站 {#account}
 
-您可在帳戶入口網站中管理授權，透過寄送至購買時電子郵件地址的連結登入。請確保該電子郵件帳戶安全：對於他人透過遭入侵的電子郵件帳戶存取您的帳戶，我們不承擔責任。
+您可在[帳戶入口網站]({account})中管理授權，透過寄送至您電子郵件地址的連結或代碼、通行密鑰，或 Apple、GitHub、Google 登入。請確保這些方式安全：對於他人透過遭入侵的電子郵件帳戶、裝置或提供者帳戶存取您的帳戶，我們不承擔責任。
 
 ## 可接受的使用 {#acceptable-use}
 

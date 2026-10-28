@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Starter hoặc Team.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -40,7 +40,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 Một License cho bạn quyền không độc quyền, không chuyển nhượng, để kích hoạt các tính năng trả phí của ứng dụng cho Mac bằng License Key của nó, trên số máy Mac và trong thời hạn của gói bạn mua:
 
 - License **Starter** dành cho một người, trên tối đa {starterActivations} máy Mac.
-- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Người mua mời các thành viên nhóm, và họ tham gia bằng một mã mời.
+- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
 
 Bạn không được chia sẻ License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
 
@@ -48,7 +48,7 @@ Bạn không được chia sẻ License Key ra ngoài phạm vi những người
 
 ## Trang tài khoản {#account}
 
-Bạn quản lý các License của mình trong trang tài khoản, nơi bạn đăng nhập bằng một liên kết được gửi tới địa chỉ email đã dùng để mua. Hãy giữ an toàn cho tài khoản email đó: chúng tôi không chịu trách nhiệm về việc tài khoản của bạn bị truy cập thông qua một tài khoản email bị xâm phạm.
+Bạn quản lý các License của mình trong [trang tài khoản]({account}), nơi bạn đăng nhập bằng liên kết hoặc mã được gửi tới địa chỉ email của bạn, bằng passkey, hoặc bằng Apple, GitHub hay Google. Hãy giữ an toàn cho các cách đăng nhập đó: chúng tôi không chịu trách nhiệm về việc tài khoản của bạn bị truy cập thông qua một tài khoản email, thiết bị hoặc tài khoản nhà cung cấp bị xâm phạm.
 
 ## Sử dụng được chấp nhận {#acceptable-use}
 

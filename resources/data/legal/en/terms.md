@@ -1,7 +1,7 @@
 ---
 title: Terms of service
 description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Starter or Team license.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
@@ -40,7 +40,7 @@ Refunds are described in the [refund policy](/refund-policy).
 A License gives you a non-exclusive, non-transferable right to activate the paid features of the Mac app with its License Key, on the number of Macs, and for the period, of your plan:
 
 - A **Starter** License is for one person, on up to {starterActivations} Macs.
-- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is one activated Mac. The buyer invites team members, who join with an invitation code.
+- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is one activated Mac. The team's owner and admins invite its members, who join from an emailed invitation link.
 
 You may not share a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer it, without our written permission.
 
@@ -48,7 +48,7 @@ The Mac app checks your License with our server every {revalidateDays} days. If 
 
 ## Account portal {#account}
 
-You manage your Licenses in the account portal, which you sign in to with a link sent to the email address you bought with. Keep that email account secure: we are not responsible for access to your account through a compromised email account.
+You manage your Licenses in the [account portal]({account}), which you sign in to with a link or code sent to your email address, with a passkey, or with Apple, GitHub or Google. Keep these secure: we are not responsible for access to your account through a compromised email account, device or sign-in provider account.
 
 ## Acceptable use {#acceptable-use}
 

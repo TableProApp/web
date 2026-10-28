@@ -1,7 +1,7 @@
 ---
 title: Nutzungsbedingungen
 description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Starter- oder Team-Lizenz.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac und TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
@@ -40,7 +40,7 @@ Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App mit ihrem Lizenzschlüssel zu aktivieren, auf der Anzahl von Macs und für den Zeitraum deines Tarifs:
 
 - Eine **Starter**-Lizenz gilt für eine Person auf bis zu {starterActivations} Macs.
-- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz entspricht einem aktivierten Mac. Der Käufer lädt Teammitglieder ein, die über einen Einladungscode beitreten.
+- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz entspricht einem aktivierten Mac. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.
 
 Ohne unsere schriftliche Erlaubnis darfst du einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Macs hinaus teilen oder unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
 
@@ -48,7 +48,7 @@ Die Mac-App prüft deine Lizenz alle {revalidateDays} Tage bei unserem Server. I
 
 ## Kontoportal {#account}
 
-Du verwaltest deine Lizenzen im Kontoportal. Die Anmeldung erfolgt über einen Link, der an die beim Kauf verwendete E-Mail-Adresse gesendet wird. Schütze dieses E-Mail-Konto: Wir sind nicht für Zugriffe auf dein Konto über ein kompromittiertes E-Mail-Konto verantwortlich.
+Du verwaltest deine Lizenzen im [Kontoportal]({account}). Du meldest dich dort mit einem Link oder Code an, der an deine E-Mail-Adresse gesendet wird, mit einem Passkey oder mit Apple, GitHub oder Google. Schütze diese Zugänge: Wir sind nicht für Zugriffe auf dein Konto über ein kompromittiertes E-Mail-Konto, Gerät oder Anbieterkonto verantwortlich.
 
 ## Zulässige Nutzung {#acceptable-use}
 

@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Starter atau Team.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -40,7 +40,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk mengaktifkan fitur berbayar aplikasi Mac dengan Kunci Lisensinya, pada jumlah Mac dan selama periode paket Anda:
 
 - Lisensi **Starter** untuk satu orang, di maksimal {starterActivations} Mac.
-- Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat adalah satu Mac yang diaktifkan. Pembeli mengundang anggota tim, yang bergabung dengan kode undangan.
+- Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat adalah satu Mac yang diaktifkan. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.
 
 Anda tidak boleh membagikan Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankannya tanpa izin tertulis kami.
 
@@ -48,7 +48,7 @@ Aplikasi Mac memeriksa Lisensi ke server kami setiap {revalidateDays} hari. Jika
 
 ## Portal akun {#account}
 
-Anda mengelola Lisensi dalam portal akun dengan masuk melalui tautan yang dikirim ke email pembelian. Amankan akun email tersebut: kami tidak bertanggung jawab atas akses ke akun Anda melalui akun email yang disusupi.
+Anda mengelola Lisensi dalam [portal akun]({account}), tempat Anda masuk dengan tautan atau kode yang dikirim ke email Anda, dengan passkey, atau dengan Apple, GitHub, atau Google. Amankan semuanya: kami tidak bertanggung jawab atas akses ke akun Anda melalui akun email, perangkat, atau akun penyedia yang disusupi.
 
 ## Penggunaan yang dapat diterima {#acceptable-use}
 

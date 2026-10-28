@@ -371,7 +371,7 @@ it('binds only the services, never the use of the apps, which the AGPLv3 alone l
 it('points every language at the AGPL for the apps', function (string $locale): void {
     $intro = strtok(YamlFrontMatter::parse(legalSource('terms', $locale))->body(), "\n");
 
-    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-10');
+    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-28');
     expect($intro)->toContain('AGPLv3');
     expect(legalSection('terms', $locale, 'acceptable-use'))->not->toContain('AGPL');
     expect(legalSection('terms', $locale, 'warranty'))->toContain('AGPLv3')->toMatch('/(?<!\d)15(?!\d)/');

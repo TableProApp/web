@@ -1,7 +1,7 @@
 ---
 title: Termini di servizio
 description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Starter o Team.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
@@ -40,7 +40,7 @@ I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy).
 Una Licenza concede un diritto non esclusivo e non trasferibile di attivare le funzionalità a pagamento dell’app per Mac con la sua Chiave di licenza, sul numero di Mac e per il periodo previsti dal piano:
 
 - Una Licenza **Starter** è per una persona, su un massimo di {starterActivations} Mac.
-- Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} posti. Ogni posto è un Mac attivato. L’acquirente invita i membri del team, che partecipano tramite un codice di invito.
+- Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} posti. Ogni posto è un Mac attivato. Il proprietario e gli amministratori del team invitano i membri, che partecipano tramite un link di invito ricevuto via email.
 
 Non puoi condividere una Chiave di licenza oltre le persone e i Mac coperti dal piano, né concederla in sublicenza, venderla, noleggiarla o trasferirla altrimenti senza la nostra autorizzazione scritta.
 
@@ -48,7 +48,7 @@ L’app per Mac verifica la Licenza con il nostro server ogni {revalidateDays} g
 
 ## Portale dell’account {#account}
 
-Gestisci le Licenze nel portale dell’account, a cui accedi tramite un link inviato all’indirizzo email usato per l’acquisto. Proteggi quell’account email: non siamo responsabili dell’accesso al tuo account tramite un’email compromessa.
+Gestisci le Licenze nel [portale dell’account]({account}), a cui accedi con un link o un codice inviato al tuo indirizzo email, con una passkey oppure con Apple, GitHub o Google. Proteggili: non siamo responsabili dell’accesso al tuo account tramite un’email, un dispositivo o un account del fornitore compromessi.
 
 ## Uso accettabile {#acceptable-use}
 

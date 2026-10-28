@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Starter o Team.
-updatedAt: "2026-10-10"
+updatedAt: "2026-10-28"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
@@ -40,7 +40,7 @@ Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 Una Licencia te concede un derecho no exclusivo e intransferible a activar las funciones de pago de la app para Mac con su Clave de licencia, en el número de Mac y durante el periodo que contempla tu plan:
 
 - Una Licencia **Starter** es para una persona, en hasta {starterActivations} Mac.
-- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto corresponde a un Mac activado. El comprador invita a los miembros del equipo, que se unen mediante un código de invitación.
+- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto corresponde a un Mac activado. El propietario y los administradores del equipo invitan a sus miembros, que se unen mediante un enlace de invitación enviado por correo.
 
 No puedes compartir una Clave de licencia fuera de las personas y los Mac que cubre tu plan, ni sublicenciarla, venderla, alquilarla o transferirla de otro modo sin nuestro permiso por escrito.
 
@@ -48,7 +48,7 @@ La app para Mac comprueba tu Licencia con nuestro servidor cada {revalidateDays}
 
 ## Portal de cuentas {#account}
 
-Gestionas tus Licencias en el portal de cuentas, al que accedes mediante un enlace enviado al correo usado para la compra. Mantén segura esa cuenta de correo: no somos responsables del acceso a tu cuenta mediante una cuenta de correo comprometida.
+Gestionas tus Licencias en el [portal de cuentas]({account}), al que accedes con un enlace o un código enviado a tu correo, con una llave de acceso o con Apple, GitHub o Google. Mantenlos seguros: no somos responsables del acceso a tu cuenta mediante una cuenta de correo, un dispositivo o una cuenta de proveedor comprometidos.
 
 ## Uso aceptable {#acceptable-use}
 
