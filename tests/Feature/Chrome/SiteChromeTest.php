@@ -237,7 +237,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
         Assert::assertNotNull(chromeLink($footer, $prefix . $page), "The footer has no link to {$prefix}{$page}");
     }
 
-    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'https://github.com/sponsors/datlechin', 'mailto:hello@tablepro.app', "/account?locale={$locale}"] as $href) {
+    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'https://github.com/sponsors/datlechin', 'mailto:hello@tablepro.app', "https://account.tablepro.app/?locale={$locale}"] as $href) {
         Assert::assertNotNull(chromeLink($footer, $href), "The footer has no link to {$href}");
     }
 
