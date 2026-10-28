@@ -4,7 +4,7 @@ description: Qué recopilan las apps, el sitio web y el portal de cuentas de Tab
 updatedAt: "2026-10-28"
 ---
 
-Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
+Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas account.tablepro.app. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
 
 ## Resumen {#summary}
 
@@ -136,7 +136,7 @@ De {merchant} recibimos tu correo, tu nombre y dirección de facturación tal co
 
 ## Portal de cuentas {#account}
 
-El [portal de cuentas](/account?locale=es) en tablepro.app/account es para la persona que compró una licencia. Accedes mediante un enlace que enviamos a ese correo; es de un solo uso y caduca a los 15 minutos. El portal muestra tus licencias, los Mac activados en ellas (por nombre) y, para una licencia Team, los miembros, las invitaciones, los puestos y Team Library.
+El [portal de cuentas]({account}) en account.tablepro.app es para la persona que compró una licencia. Accedes mediante un enlace que enviamos a ese correo; es de un solo uso y caduca a los 15 minutos. El portal muestra tus licencias, los Mac activados en ellas (por nombre) y, para una licencia Team, los miembros, las invitaciones, los puestos y Team Library.
 
 Almacenamos tu correo junto con tus licencias y pedidos, y el idioma que usas con nosotros para enviarte los correos en él. Cuando invitas a alguien a un equipo, almacenamos su correo y rol y le enviamos un código de invitación.
 

@@ -5,6 +5,7 @@ namespace App\Services\Legal;
 use App\Services\Content\SiteFacts;
 use App\Support\Content\ContentMissingException;
 use App\Support\Content\MarkdownRenderer;
+use App\Support\Localization\LocalizedUrl;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\File;
 use InvalidArgumentException;
@@ -142,6 +143,7 @@ class LegalDocuments
             'license' => $links['license'],
             'docs' => $links['docs'],
             'portal' => $links['portal'],
+            'account' => LocalizedUrl::account($locale),
             'merchant' => $commerce['merchant'],
             'currency' => $commerce['currency'],
             'refundDays' => $commerce['refundDays'],

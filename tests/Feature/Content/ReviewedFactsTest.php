@@ -268,7 +268,7 @@ dataset('reviewed facts', [
             'looks up a country for each usage report',
             'the Mac that publishes downloads it again right after',
             'With no table open, it passes the connection\'s name instead',
-            '](/account?locale=en)',
+            'account portal]({account}) at account.tablepro.app',
             '](/refund-policy)',
             '](/terms)',
         ],
@@ -276,7 +276,7 @@ dataset('reviewed facts', [
     ],
     'the privacy policy (vi)' => [
         'legal/vi/privacy.md',
-        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'xóa các cuộc chat và email của bạn', '](/account?locale=vi)', '](/vi/terms)'],
+        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'xóa các cuộc chat và email của bạn', ']({account}) tại account.tablepro.app', '](/vi/terms)'],
         ['trò chuyện', 'Client MCP', 'sau mỗi lần có người xuất bản', 'xóa của bạn.', 'cấp độ Safe Mode'],
     ],
     'the terms use the legal word for indemnify (vi)' => [

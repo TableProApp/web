@@ -18,7 +18,7 @@ Nach einer Erstattung wird der Lizenzschlüssel gesperrt. Jeder Mac stellt die N
 
 ## Abonnements {#subscriptions}
 
-Eine Erstattung betrifft die Zahlung, die du angibst. Um die Verlängerung eines monatlichen oder jährlichen Tarifs zu stoppen, kündige ihn in [deinem Konto](/account?locale=de) oder im [Kundenportal von {merchant}]({portal}). Ein gekündigter Tarif wird nicht erneut berechnet.
+Eine Erstattung betrifft die Zahlung, die du angibst. Um die Verlängerung eines monatlichen oder jährlichen Tarifs zu stoppen, kündige ihn in [deinem Konto]({account}) oder im [Kundenportal von {merchant}]({portal}). Ein gekündigter Tarif wird nicht erneut berechnet.
 
 Nach Ablauf der {refundDays} Tage verhindert die Kündigung die nächste Verlängerung; die Lizenz funktioniert bis zum Ende des bezahlten Zeitraums weiter. Bereits bezahlte Zeit wird nicht erstattet.
 

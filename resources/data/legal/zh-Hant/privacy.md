@@ -4,7 +4,7 @@ description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳�
 updatedAt: "2026-10-28"
 ---
 
-本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
+本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 account.tablepro.app 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
 
 ## 概要 {#summary}
 
@@ -136,7 +136,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 ## 帳戶入口網站 {#account}
 
-位於 tablepro.app/account 的[帳戶入口網站](/account?locale=zh-Hant)供授權購買者使用。我們向購買時的電子郵件地址寄送登入連結；連結僅可使用一次，15 分鐘後到期。入口網站顯示授權、已啟用的 Mac（依名稱列出），以及 Team 授權的成員、邀請、席位和 Team Library。
+位於 account.tablepro.app 的[帳戶入口網站]({account})供授權購買者使用。我們向購買時的電子郵件地址寄送登入連結；連結僅可使用一次，15 分鐘後到期。入口網站顯示授權、已啟用的 Mac（依名稱列出），以及 Team 授權的成員、邀請、席位和 Team Library。
 
 我們將電子郵件地址與授權、訂單一起保存，並保存您使用的語言，以便以該語言寄送郵件。邀請他人加入團隊時，我們保存其電子郵件地址和角色，並寄送包含邀請代碼的郵件。
 

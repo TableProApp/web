@@ -4,7 +4,7 @@ description: TablePro 앱, 웹사이트 및 계정 포털이 수집하는 정보
 updatedAt: "2026-10-28"
 ---
 
-이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 tablepro.app/account 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
+이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 account.tablepro.app 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
 
 ## 요약 {#summary}
 
@@ -136,7 +136,7 @@ Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID
 
 ## 계정 포털 {#account}
 
-tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구매자용입니다. 해당 이메일 주소로 보내는 링크로 로그인하며, 링크는 한 번만 사용할 수 있고 15분 후 만료됩니다. 포털에는 라이선스, 활성화된 Mac(이름으로 표시), Team 라이선스의 구성원, 초대, 좌석 및 Team Library가 표시됩니다.
+account.tablepro.app의 [계정 포털]({account})은 라이선스 구매자용입니다. 해당 이메일 주소로 보내는 링크로 로그인하며, 링크는 한 번만 사용할 수 있고 15분 후 만료됩니다. 포털에는 라이선스, 활성화된 Mac(이름으로 표시), Team 라이선스의 구성원, 초대, 좌석 및 Team Library가 표시됩니다.
 
 운영자는 이메일 주소를 라이선스 및 주문과 함께 저장하며, 사용 언어도 저장해 해당 언어로 이메일을 보냅니다. 팀에 사람을 초대하면 해당 사람의 이메일 주소와 역할을 저장하고 초대 코드를 이메일로 보냅니다.
 

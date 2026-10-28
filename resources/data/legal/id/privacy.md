@@ -4,7 +4,7 @@ description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro
 updatedAt: "2026-10-28"
 ---
 
-Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
+Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
 
 ## Ringkasan {#summary}
 
@@ -136,7 +136,7 @@ Dari {merchant}, kami menerima alamat email, nama dan alamat penagihan sesuai ya
 
 ## Portal akun {#account}
 
-[Portal akun](/account?locale=id) di tablepro.app/account diperuntukkan bagi pembeli lisensi. Anda masuk melalui tautan yang kami kirim ke alamat email tersebut; tautan hanya dapat digunakan sekali dan kedaluwarsa setelah 15 menit. Portal menampilkan lisensi Anda, Mac yang diaktifkan dengannya (berdasarkan nama), serta untuk lisensi Team, anggota, undangan, seat, dan Team Library.
+[Portal akun]({account}) di account.tablepro.app diperuntukkan bagi pembeli lisensi. Anda masuk melalui tautan yang kami kirim ke alamat email tersebut; tautan hanya dapat digunakan sekali dan kedaluwarsa setelah 15 menit. Portal menampilkan lisensi Anda, Mac yang diaktifkan dengannya (berdasarkan nama), serta untuk lisensi Team, anggota, undangan, seat, dan Team Library.
 
 Kami menyimpan alamat email bersama lisensi dan pesanan Anda, serta bahasa yang Anda gunakan dengan kami agar email dikirim dalam bahasa tersebut. Saat Anda mengundang seseorang ke tim, kami menyimpan alamat email dan perannya, lalu mengirim kode undangan melalui email.
 

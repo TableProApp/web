@@ -4,7 +4,7 @@ description: TablePro 应用、网站和账户门户收集什么信息、发送�
 updatedAt: "2026-10-28"
 ---
 
-本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 tablepro.app/account 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
+本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 account.tablepro.app 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
 
 ## 概要 {#summary}
 
@@ -136,7 +136,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 ## 账户门户 {#account}
 
-位于 tablepro.app/account 的[账户门户](/account?locale=zh-Hans)供许可证购买者使用。我们向购买时的邮箱地址发送登录链接；链接仅可使用一次，15 分钟后到期。门户显示许可证、已激活的 Mac（按名称列出），以及 Team 许可证的成员、邀请、席位和 Team Library。
+位于 account.tablepro.app 的[账户门户]({account})供许可证购买者使用。我们向购买时的邮箱地址发送登录链接；链接仅可使用一次，15 分钟后到期。门户显示许可证、已激活的 Mac（按名称列出），以及 Team 许可证的成员、邀请、席位和 Team Library。
 
 我们将邮箱地址与许可证、订单一起保存，并保存您使用的语言，以便以该语言发送邮件。邀请他人加入团队时，我们保存其邮箱地址和角色，并发送包含邀请代码的邮件。
 

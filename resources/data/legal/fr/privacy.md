@@ -4,7 +4,7 @@ description: Ce que collectent les apps, le site et le portail de comptes TableP
 updatedAt: "2026-10-28"
 ---
 
-Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes tablepro.app/account. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
+Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes account.tablepro.app. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
 
 ## Résumé {#summary}
 
@@ -136,7 +136,7 @@ De {merchant}, nous recevons votre adresse e-mail, votre nom et adresse de factu
 
 ## Portail de comptes {#account}
 
-Le [portail de comptes](/account?locale=fr) sur tablepro.app/account est destiné à la personne ayant acheté une licence. Vous vous connectez via un lien envoyé à cette adresse e-mail ; il est à usage unique et expire après 15 minutes. Le portail affiche vos licences, les Mac activés sur celles-ci par nom et, pour une licence Team, membres, invitations, postes et Team Library.
+Le [portail de comptes]({account}) sur account.tablepro.app est destiné à la personne ayant acheté une licence. Vous vous connectez via un lien envoyé à cette adresse e-mail ; il est à usage unique et expire après 15 minutes. Le portail affiche vos licences, les Mac activés sur celles-ci par nom et, pour une licence Team, membres, invitations, postes et Team Library.
 
 Nous stockons votre adresse e-mail avec vos licences et commandes, ainsi que la langue utilisée avec nous pour vous envoyer les e-mails dans celle-ci. Lorsque vous invitez quelqu’un à une équipe, nous stockons son adresse e-mail et son rôle et lui envoyons un code d’invitation.
 

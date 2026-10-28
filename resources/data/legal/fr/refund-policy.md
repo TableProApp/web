@@ -18,7 +18,7 @@ Après un remboursement, la clé de licence est suspendue. Chaque Mac cesse d’
 
 ## Abonnements {#subscriptions}
 
-Un remboursement couvre le paiement concerné par votre demande. Pour arrêter le renouvellement d’une offre mensuelle ou annuelle, résiliez-la dans [votre compte](/account?locale=fr) ou le [portail client de {merchant}]({portal}) ; une offre résiliée n’est plus facturée.
+Un remboursement couvre le paiement concerné par votre demande. Pour arrêter le renouvellement d’une offre mensuelle ou annuelle, résiliez-la dans [votre compte]({account}) ou le [portail client de {merchant}]({portal}) ; une offre résiliée n’est plus facturée.
 
 Après les {refundDays} jours, la résiliation arrête le prochain renouvellement et la licence reste active jusqu’à la fin de la période payée. Le temps déjà payé n’est pas remboursé.
 

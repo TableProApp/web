@@ -4,7 +4,7 @@ description: Ứng dụng, website và trang tài khoản của TablePro thu th�
 updatedAt: "2026-10-28"
 ---
 
-Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
+Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
 
 ## Tóm tắt {#summary}
 
@@ -136,7 +136,7 @@ Từ {merchant}, chúng tôi nhận địa chỉ email, tên và địa chỉ th
 
 ## Trang tài khoản {#account}
 
-[Trang tài khoản](/account?locale=vi) tại tablepro.app/account dành cho người đã mua license. Bạn đăng nhập bằng một liên kết mà chúng tôi gửi tới địa chỉ email đó; liên kết chỉ dùng được một lần và hết hạn sau 15 phút. Trang tài khoản hiển thị các license của bạn, các máy Mac đã kích hoạt trên từng license (theo tên), và với license Team là thành viên, lời mời, số seat và Team Library.
+[Trang tài khoản]({account}) tại account.tablepro.app dành cho người đã mua license. Bạn đăng nhập bằng một liên kết mà chúng tôi gửi tới địa chỉ email đó; liên kết chỉ dùng được một lần và hết hạn sau 15 phút. Trang tài khoản hiển thị các license của bạn, các máy Mac đã kích hoạt trên từng license (theo tên), và với license Team là thành viên, lời mời, số seat và Team Library.
 
 Chúng tôi lưu địa chỉ email của bạn cùng các license và đơn hàng, và ngôn ngữ bạn dùng với chúng tôi, để email của chúng tôi tới bạn bằng ngôn ngữ đó. Khi bạn mời một người vào nhóm, chúng tôi lưu địa chỉ email và vai trò của người đó và gửi cho họ một mã mời qua email.
 

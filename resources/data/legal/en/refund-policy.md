@@ -18,7 +18,7 @@ After a refund, the license key is suspended. Each Mac stops using the paid feat
 
 ## Subscriptions {#subscriptions}
 
-A refund covers the payment you ask about. To stop a monthly or yearly plan renewing, cancel it in [your account](/account?locale=en) or in [{merchant}'s customer portal]({portal}); a cancelled plan is not charged again.
+A refund covers the payment you ask about. To stop a monthly or yearly plan renewing, cancel it in [your account]({account}) or in [{merchant}'s customer portal]({portal}); a cancelled plan is not charged again.
 
 After the {refundDays} days, cancelling stops the next renewal, and the license keeps working until the end of the period you have paid for. Time already paid for is not refunded.
 

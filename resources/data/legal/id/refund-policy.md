@@ -18,7 +18,7 @@ Setelah pengembalian dana, kunci lisensi ditangguhkan. Setiap Mac berhenti memak
 
 ## Langganan {#subscriptions}
 
-Pengembalian dana mencakup pembayaran yang Anda ajukan. Untuk menghentikan perpanjangan paket bulanan atau tahunan, batalkan dalam [akun Anda](/account?locale=id) atau [portal pelanggan {merchant}]({portal}); paket yang dibatalkan tidak ditagih lagi.
+Pengembalian dana mencakup pembayaran yang Anda ajukan. Untuk menghentikan perpanjangan paket bulanan atau tahunan, batalkan dalam [akun Anda]({account}) atau [portal pelanggan {merchant}]({portal}); paket yang dibatalkan tidak ditagih lagi.
 
 Setelah {refundDays} hari, pembatalan menghentikan perpanjangan berikutnya, dan lisensi tetap berfungsi hingga akhir periode yang dibayar. Waktu yang sudah dibayar tidak dikembalikan dananya.
 

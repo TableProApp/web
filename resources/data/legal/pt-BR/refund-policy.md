@@ -18,7 +18,7 @@ Após um reembolso, a chave de licença é suspensa. Cada Mac deixa de usar os r
 
 ## Assinaturas {#subscriptions}
 
-Um reembolso cobre o pagamento solicitado. Para impedir a renovação de um plano mensal ou anual, cancele na [sua conta](/account?locale=pt-BR) ou no [portal do cliente de {merchant}]({portal}); um plano cancelado não é cobrado novamente.
+Um reembolso cobre o pagamento solicitado. Para impedir a renovação de um plano mensal ou anual, cancele na [sua conta]({account}) ou no [portal do cliente de {merchant}]({portal}); um plano cancelado não é cobrado novamente.
 
 Após os {refundDays} dias, cancelar impede a próxima renovação, e a licença continua funcionando até o fim do período pago. O tempo já pago não é reembolsado.
 

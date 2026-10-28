@@ -272,6 +272,8 @@ count and shows it once known; a failure leaves it unsaid.
 Links to the account go to tablepro-cloud's portal, another origin:
 `https://account.tablepro.app/?locale={locale}` (`accountHref()`, the origin
 from `facts.json` → `links.account`), a plain `<a>`, never an Inertia `<Link>`.
+The legal pages link it through their `{account}` slot, the same URL from PHP
+(`LocalizedUrl::account()`).
 The page's language crosses in `?locale=`, for the portal to use when the
 reader has made no choice of their own there; signed in, the portal shows the
 account's language.

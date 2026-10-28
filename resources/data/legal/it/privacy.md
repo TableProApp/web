@@ -4,7 +4,7 @@ description: Quali dati raccolgono le app, il sito web e il portale account di T
 updatedAt: "2026-10-28"
 ---
 
-Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
+Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account account.tablepro.app. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
 
 ## Riepilogo {#summary}
 
@@ -136,7 +136,7 @@ Da {merchant} riceviamo il tuo indirizzo email, il nome e l'indirizzo di fattura
 
 ## Portale account {#account}
 
-Il [portale account](/account?locale=it) su tablepro.app/account è destinato a chi ha acquistato una licenza. Accedi tramite un link che inviamo a quell'indirizzo email; il link è utilizzabile una sola volta e scade dopo 15 minuti. Il portale mostra le licenze, i Mac attivati su di esse (per nome) e, per una licenza Team, membri, inviti, posti e Team Library.
+Il [portale account]({account}) su account.tablepro.app è destinato a chi ha acquistato una licenza. Accedi tramite un link che inviamo a quell'indirizzo email; il link è utilizzabile una sola volta e scade dopo 15 minuti. Il portale mostra le licenze, i Mac attivati su di esse (per nome) e, per una licenza Team, membri, inviti, posti e Team Library.
 
 Conserviamo il tuo indirizzo email insieme a licenze e ordini e la lingua che usi con noi, affinché le nostre email ti arrivino in quella lingua. Quando inviti qualcuno a un team, conserviamo il suo indirizzo email e ruolo e gli inviamo un codice di invito.
 

@@ -4,7 +4,7 @@ description: O que os apps, site e portal da conta TablePro coletam, para onde o
 updatedAt: "2026-10-28"
 ---
 
-Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site tablepro.app, a documentação em docs.tablepro.app e o portal da conta tablepro.app/account. Descreve o que cada um realmente envia e armazena hoje. Os dois apps são de código aberto sob a AGPLv3, portanto você pode ler o código que envia os dados abaixo no [repositório TablePro]({github}).
+Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site tablepro.app, a documentação em docs.tablepro.app e o portal da conta account.tablepro.app. Descreve o que cada um realmente envia e armazena hoje. Os dois apps são de código aberto sob a AGPLv3, portanto você pode ler o código que envia os dados abaixo no [repositório TablePro]({github}).
 
 ## Resumo {#summary}
 
@@ -136,7 +136,7 @@ De {merchant}, recebemos email, nome e endereço de cobrança conforme inseridos
 
 ## Portal da conta {#account}
 
-O [portal da conta](/account?locale=pt-BR) em tablepro.app/account é para quem comprou uma licença. Você entra por um link enviado a esse email; o link funciona uma vez e expira após 15 minutos. O portal mostra licenças, Macs ativados (pelo nome) e, em licenças Team, membros, convites, vagas e Team Library.
+O [portal da conta]({account}) em account.tablepro.app é para quem comprou uma licença. Você entra por um link enviado a esse email; o link funciona uma vez e expira após 15 minutos. O portal mostra licenças, Macs ativados (pelo nome) e, em licenças Team, membros, convites, vagas e Team Library.
 
 Armazenamos seu email com licenças e pedidos e o idioma usado conosco, para enviar emails nele. Ao convidar alguém para uma equipe, armazenamos seu email e função e enviamos um código de convite.
 

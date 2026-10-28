@@ -79,7 +79,8 @@ server (`docs/architecture.md`, "The language bar").
   (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`), and `<LocaleLink>`
   renders them as a plain `<a>`.
 - The language crosses to tablepro-cloud only explicitly: link the portal with
-  `accountHref(locale)` (`https://account.tablepro.app/?locale={locale}`), and
+  `accountHref(locale)` (`https://account.tablepro.app/?locale={locale}`; in
+  legal markdown, the `{account}` slot), and
   post to `/v2/checkouts` and `/v2/newsletter/subscriptions` with `locale` in
   the body (`/v2/discounts/preview` takes `{code}` only, the `GET`s nothing),
   every call through `useApi()` with `credentials: 'omit'`, so no cookie lands

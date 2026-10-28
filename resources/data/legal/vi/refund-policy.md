@@ -18,7 +18,7 @@ Sau khi hoàn tiền, license key bị tạm ngưng. Mỗi máy Mac ngừng dùn
 
 ## Gói thuê bao {#subscriptions}
 
-Một khoản hoàn tiền chỉ áp dụng cho lần thanh toán bạn yêu cầu. Để gói theo tháng hoặc theo năm không tự gia hạn nữa, hãy hủy gói trong [tài khoản của bạn](/account?locale=vi) hoặc trong [cổng khách hàng của {merchant}]({portal}); gói đã hủy không bị tính phí lần nào nữa.
+Một khoản hoàn tiền chỉ áp dụng cho lần thanh toán bạn yêu cầu. Để gói theo tháng hoặc theo năm không tự gia hạn nữa, hãy hủy gói trong [tài khoản của bạn]({account}) hoặc trong [cổng khách hàng của {merchant}]({portal}); gói đã hủy không bị tính phí lần nào nữa.
 
 Sau {refundDays} ngày, việc hủy gói sẽ dừng lần gia hạn tiếp theo, và license vẫn hoạt động tới hết kỳ bạn đã trả tiền. Khoảng thời gian đã trả tiền không được hoàn lại.
 

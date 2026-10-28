@@ -18,7 +18,7 @@ Dopo un rimborso, la chiave di licenza viene sospesa. Ogni Mac smette di usare l
 
 ## Abbonamenti {#subscriptions}
 
-Un rimborso copre il pagamento per cui lo richiedi. Per interrompere il rinnovo di un piano mensile o annuale, annullalo nel [tuo account](/account?locale=it) o nel [portale clienti di {merchant}]({portal}); un piano annullato non riceve ulteriori addebiti.
+Un rimborso copre il pagamento per cui lo richiedi. Per interrompere il rinnovo di un piano mensile o annuale, annullalo nel [tuo account]({account}) o nel [portale clienti di {merchant}]({portal}); un piano annullato non riceve ulteriori addebiti.
 
 Dopo i {refundDays} giorni, la disdetta interrompe il rinnovo successivo e la licenza continua a funzionare fino alla fine del periodo pagato. Il tempo già pagato non viene rimborsato.
 

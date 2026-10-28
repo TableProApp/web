@@ -4,7 +4,7 @@ description: What TablePro's apps, website and account portal collect, where it 
 updatedAt: "2026-10-28"
 ---
 
-This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
+This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
 
 ## Summary {#summary}
 
@@ -136,7 +136,7 @@ From {merchant} we receive your email address, your name and billing address as 
 
 ## Account portal {#account}
 
-The [account portal](/account?locale=en) at tablepro.app/account is for the person who bought a license. You sign in with a link we email to that address; the link works once and expires after 15 minutes. The portal shows your licenses, the Macs activated on them (by name), and, for a Team license, its members, invitations, seats and Team Library.
+The [account portal]({account}) at account.tablepro.app is for the person who bought a license. You sign in with a link we email to that address; the link works once and expires after 15 minutes. The portal shows your licenses, the Macs activated on them (by name), and, for a Team license, its members, invitations, seats and Team Library.
 
 We store your email address with your licenses and orders, and the language you use with us, so that our emails reach you in it. When you invite someone to a team, we store their email address and role and email them an invitation code.
 

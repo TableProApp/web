@@ -383,7 +383,8 @@ it('keeps the refund window from pricing.json and tells a subscriber how to stop
 
     expect($source)->toContain('{refundDays}');
     Assert::assertDoesNotMatchRegularExpression('/\b7[\s-](days?|ngày)/u', $source);
-    expect($source)->toContain('{portal}')->toContain("/account?locale={$locale}");
+    expect($source)->toContain('{portal}')->toContain('({account})')->not->toContain('/account?locale=');
+    expect(app(LegalDocuments::class)->render('refund-policy', $locale)['html'])->toContain("href=\"https://account.tablepro.app/?locale={$locale}\"");
 
     // A refund suspends the key at the next check, not "immediately".
     expect($source)->toContain('{revalidateDays}');

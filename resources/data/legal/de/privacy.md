@@ -4,7 +4,7 @@ description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erf
 updatedAt: "2026-10-28"
 ---
 
-Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
+Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal account.tablepro.app. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
 
 ## Überblick {#summary}
 
@@ -136,7 +136,7 @@ Von {merchant} erhalten wir deine E-Mail-Adresse, Name und Rechnungsadresse wie 
 
 ## Kontoportal {#account}
 
-Das [Kontoportal](/account?locale=de) unter tablepro.app/account ist für die Person bestimmt, die eine Lizenz gekauft hat. Du meldest dich über einen Link an, den wir an diese E-Mail-Adresse senden; er funktioniert einmal und läuft nach 15 Minuten ab. Das Portal zeigt deine Lizenzen, die darauf aktivierten Macs nach Namen und bei einer Team-Lizenz Mitglieder, Einladungen, Arbeitsplätze und Team Library.
+Das [Kontoportal]({account}) unter account.tablepro.app ist für die Person bestimmt, die eine Lizenz gekauft hat. Du meldest dich über einen Link an, den wir an diese E-Mail-Adresse senden; er funktioniert einmal und läuft nach 15 Minuten ab. Das Portal zeigt deine Lizenzen, die darauf aktivierten Macs nach Namen und bei einer Team-Lizenz Mitglieder, Einladungen, Arbeitsplätze und Team Library.
 
 Wir speichern deine E-Mail-Adresse bei Lizenzen und Bestellungen und deine bei uns verwendete Sprache, damit unsere E-Mails dich darin erreichen. Wenn du jemanden in ein Team einlädst, speichern wir E-Mail-Adresse und Rolle dieser Person und senden ihr einen Einladungscode.
 

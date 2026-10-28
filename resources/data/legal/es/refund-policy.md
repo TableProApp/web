@@ -18,7 +18,7 @@ Tras un reembolso, la clave de licencia se suspende. Cada Mac deja de usar las f
 
 ## Suscripciones {#subscriptions}
 
-El reembolso cubre el pago que solicitas. Para detener la renovación de un plan mensual o anual, cancélalo en [tu cuenta](/account?locale=es) o en el [portal de clientes de {merchant}]({portal}); un plan cancelado no vuelve a cobrarse.
+El reembolso cubre el pago que solicitas. Para detener la renovación de un plan mensual o anual, cancélalo en [tu cuenta]({account}) o en el [portal de clientes de {merchant}]({portal}); un plan cancelado no vuelve a cobrarse.
 
 Pasados los {refundDays} días, la cancelación detiene la próxima renovación y la licencia sigue funcionando hasta el final del periodo pagado. No se reembolsa el tiempo ya pagado.
 

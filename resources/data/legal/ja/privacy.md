@@ -4,7 +4,7 @@ description: TablePro のアプリ、ウェブサイト、アカウントポー�
 updatedAt: "2026-10-28"
 ---
 
-このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、docs.tablepro.app のドキュメント、tablepro.app/account のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。
+このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、docs.tablepro.app のドキュメント、account.tablepro.app のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。
 
 ## 概要 {#summary}
 
@@ -136,7 +136,7 @@ Handoff は Apple を通じて、お客様自身のデバイス間で、開い�
 
 ## アカウントポータル {#account}
 
-tablepro.app/account の[アカウントポータル](/account?locale=ja)は、ライセンス購入者向けです。購入時のメールアドレスへ送るリンクでログインします。リンクは一度だけ使え、15 分で失効します。ライセンス、有効化した Mac（名前で表示）、Team ライセンスの場合はメンバー、招待、シート、Team Library を表示します。
+account.tablepro.app の[アカウントポータル]({account})は、ライセンス購入者向けです。購入時のメールアドレスへ送るリンクでログインします。リンクは一度だけ使え、15 分で失効します。ライセンス、有効化した Mac（名前で表示）、Team ライセンスの場合はメンバー、招待、シート、Team Library を表示します。
 
 運営者はライセンスと注文にメールアドレスを紐付けて保存し、お客様が使用する言語も保存して、その言語でメールを送ります。チームに誰かを招待する場合、その人のメールアドレスと役割を保存し、招待コードをメールで送ります。
 
