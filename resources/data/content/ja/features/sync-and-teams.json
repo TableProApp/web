@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。同じライセンスの Mac が取得します。起動・トンネルコマンドは無視し、再公開は前の投稿を置き換えます。"
+                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。席のあるメンバーが取得します。起動・トンネルコマンドは無視し、再公開は前の投稿を置き換えます。"
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Team の席",
             "paragraphs": [
                 "Team の 1 席は、一人が最大 {deviceLimit} 台の Mac で使えます。オーナーと管理者がアカウントポータルからメールで招待し、席を付けるかどうかを選びます。招待された人はメールのリンクから参加します。",
-                "サブスクリプションの席数はオーナーが「請求」で変更し、サブスクリプションのないチームはそこで買い切りの席を追加購入します。メンバーを削除すると席が空き、その Mac は次に TablePro がサーバーと通信したとき、{offlineDays} 日以内に Team の機能を使えなくなります。"
+                "サブスクリプションの席数はオーナーが「請求」で変更し、サブスクリプションのないチームはそこで買い切りの席を追加購入します。メンバーを削除すると席が空き、その Mac は次に TablePro がサーバーと通信したときに Team の機能を使えなくなります。"
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Mac のプランが終了すると、iCloud Sync は一時停止して理由を表示し、Linked Folders と Team Library の接続は一覧から消えます。チーム公開コマンドは非表示になり、Encrypted Export のパスワードオプションもなくなります。",
         "iPhone や iPad で同期した接続を編集すると、そのアプリにない設定が変わることがあります。Safe Mode (Full) などの厳しい Mac の Safe Mode レベルは Alert として戻り、SSH 踏み台ホストも維持されない場合があります。これらの接続は Mac で変更してください。",
-        "Team ライセンスが終了または停止しても、Team Library に公開した内容は削除を依頼するまで TablePro のサーバーに残ります。"
+        "Team ライセンスが終了または取り消されても、Team Library に公開した内容は削除を依頼するまで TablePro のサーバーに残ります。"
     ],
     "docs": [
         {

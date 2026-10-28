@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>分享 > 发布到团队库…</ui> (Share > Publish to Team Library…) 和 <ui>将已保存的查询发布到团队…</ui> (Publish Saved Queries to Team…) 将连接设置和已保存查询 SQL 上传至 TablePro 服务器，绝不上传密码。同一许可证下的 Mac 可下载。忽略启动和隧道命令；重新发布会替换之前的内容。"
+                        "<ui>分享 > 发布到团队库…</ui> (Share > Publish to Team Library…) 和 <ui>将已保存的查询发布到团队…</ui> (Publish Saved Queries to Team…) 将连接设置和已保存查询 SQL 上传至 TablePro 服务器，绝不上传密码。拥有席位的成员可下载。忽略启动和隧道命令；重新发布会替换之前的内容。"
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Team 席位",
             "paragraphs": [
                 "一个 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用。所有者和管理员在账户门户通过邮件邀请他人，可附带或不附带席位，受邀者通过邮件中的链接加入。",
-                "所有者在账单页面更改订阅席位，没有订阅的团队可在那里购买更多一次性席位。移除成员会释放其席位，其 Mac 会在 TablePro 下次联系服务器时失去 Team 功能，最长 {offlineDays} 天。"
+                "所有者在账单页面更改订阅席位，没有订阅的团队可在那里购买更多一次性席位。移除成员会释放其席位，其 Mac 会在 TablePro 下次联系服务器时失去 Team 功能。"
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Mac 方案结束后，iCloud Sync 暂停并说明原因，Linked Folders 和 Team Library 的连接从列表消失。团队发布命令隐藏，Encrypted Export 不再提供密码选项。",
         "在 iPhone 或 iPad 编辑同步连接可能改变该应用没有的设置。Safe Mode (Full) 等更严格的 Mac Safe Mode 级别会回传为 Alert，SSH 跳板机设置也可能丢失。请在 Mac 上修改这些连接。",
-        "Team 许可证结束或暂停后，发布到 Team Library 的内容仍保留在 TablePro 服务器上，直到您要求删除。"
+        "Team 许可证结束或被撤销后，发布到 Team Library 的内容仍保留在 TablePro 服务器上，直到您要求删除。"
     ],
     "docs": [
         {

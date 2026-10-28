@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> (Share > Publish to Team Library…) et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> (Publish Saved Queries to Team…) envoient les réglages de connexion et le SQL enregistré au serveur de TablePro, jamais les mots de passe. Les Mac de la licence les téléchargent. Les commandes de démarrage et de tunnel sont ignorées. Republier remplace votre contribution précédente."
+                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> (Share > Publish to Team Library…) et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> (Publish Saved Queries to Team…) envoient les réglages de connexion et le SQL enregistré au serveur de TablePro, jamais les mots de passe. Les membres qui ont un poste les téléchargent. Les commandes de démarrage et de tunnel sont ignorées. Republier remplace votre contribution précédente."
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Postes Team",
             "paragraphs": [
                 "Un poste Team couvre une personne sur {deviceLimit} Mac au maximum. Les propriétaires et administrateurs invitent par e-mail depuis le portail du compte, avec ou sans poste, et chaque invité rejoint l’équipe par le lien reçu.",
-                "Le propriétaire modifie les postes d’un abonnement dans Facturation, et une équipe sans abonnement y achète des postes supplémentaires en achat unique. Retirer un membre libère son poste, et ses Mac perdent les fonctions de Team la prochaine fois que TablePro contacte le serveur, sous {offlineDays} jours."
+                "Le propriétaire modifie les postes d’un abonnement dans Facturation, et une équipe sans abonnement y achète des postes supplémentaires en achat unique. Retirer un membre libère son poste, et ses Mac perdent les fonctions de Team la prochaine fois que TablePro contacte le serveur."
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Lorsqu’une offre prend fin sur Mac, iCloud Sync se met en pause et indique pourquoi, et les connexions de Linked Folders et de Team Library disparaissent de la liste. Les commandes de publication Team sont masquées et Encrypted Export perd son option de mot de passe.",
         "Modifier une connexion synchronisée sur iPhone ou iPad peut changer des paramètres absents de cette app. Un niveau de Safe Mode plus strict sur Mac, comme Safe Mode (Full), revient au niveau Alert, et les hôtes de rebond SSH peuvent être perdus. Modifiez ces connexions sur Mac.",
-        "Si une licence Team expire ou est suspendue, les publications de Team Library restent sur le serveur de TablePro jusqu’à ce que vous demandiez leur suppression."
+        "Si une licence Team expire ou est révoquée, les publications de Team Library restent sur le serveur de TablePro jusqu’à ce que vous demandiez leur suppression."
     ],
     "docs": [
         {

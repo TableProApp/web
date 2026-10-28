@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>공유 > 팀 라이브러리에 게시…</ui> (Share > Publish to Team Library…)와 <ui>저장된 쿼리를 팀에 게시…</ui> (Publish Saved Queries to Team…)는 연결 설정과 저장된 쿼리 SQL을 TablePro 서버에 업로드하며 암호는 보내지 않습니다. 같은 라이선스의 Mac이 다운로드합니다. 시작 및 터널 명령은 무시하고 다시 게시하면 이전 게시물을 대체합니다."
+                        "<ui>공유 > 팀 라이브러리에 게시…</ui> (Share > Publish to Team Library…)와 <ui>저장된 쿼리를 팀에 게시…</ui> (Publish Saved Queries to Team…)는 연결 설정과 저장된 쿼리 SQL을 TablePro 서버에 업로드하며 암호는 보내지 않습니다. 좌석이 있는 구성원이 다운로드합니다. 시작 및 터널 명령은 무시하고 다시 게시하면 이전 게시물을 대체합니다."
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Team 좌석",
             "paragraphs": [
                 "Team 좌석 하나로 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. 소유자와 관리자가 계정 포털에서 이메일로 초대하며 좌석 포함 여부를 정하고, 초대받은 사람은 이메일의 링크로 참여합니다.",
-                "구독 좌석은 소유자가 결제 페이지에서 변경하고, 구독이 없는 팀은 그곳에서 일회성 좌석을 추가로 구매합니다. 구성원을 제거하면 좌석이 반환되고, 그 구성원의 Mac은 다음에 TablePro가 서버와 통신할 때 {offlineDays}일 이내에 Team 기능을 잃습니다."
+                "구독 좌석은 소유자가 결제 페이지에서 변경하고, 구독이 없는 팀은 그곳에서 일회성 좌석을 추가로 구매합니다. 구성원을 제거하면 좌석이 반환되고, 그 구성원의 Mac은 다음에 TablePro가 서버와 통신할 때 Team 기능을 잃습니다."
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Mac에서 플랜이 종료되면 iCloud Sync가 일시 중지되고 이유를 표시하며 Linked Folders와 Team Library의 연결이 목록에서 사라집니다. 팀 게시 명령이 숨겨지고 Encrypted Export의 비밀번호 옵션도 없어집니다.",
         "iPhone이나 iPad에서 동기화된 연결을 편집하면 해당 앱에 없는 설정이 바뀔 수 있습니다. Safe Mode (Full) 같은 엄격한 Mac Safe Mode 수준이 Alert로 돌아오고 SSH 점프 호스트 설정도 유지되지 않을 수 있습니다. 이런 연결은 Mac에서 변경하세요.",
-        "Team 라이선스가 종료되거나 정지되어도 Team Library에 게시한 내용은 삭제를 요청할 때까지 TablePro 서버에 남습니다."
+        "Team 라이선스가 종료되거나 철회되어도 Team Library에 게시한 내용은 삭제를 요청할 때까지 TablePro 서버에 남습니다."
     ],
     "docs": [
         {

@@ -103,7 +103,6 @@ final class FeatureFacts
         return $names;
     }
 
-    // offlineDays bounds when a removed Team member's Mac loses Team's features.
     /**
      * @param  array<string, mixed>  $facts
      * @param  array<string, mixed>  $pricing
@@ -133,7 +132,6 @@ final class FeatureFacts
             'filterOperatorCount' => ['kind' => 'number', 'value' => count($facts['filterOperators']['mac'] ?? [])],
             'filterOperatorCountIos' => ['kind' => 'number', 'value' => count($facts['filterOperators']['ios'] ?? [])],
             'deviceLimit' => ['kind' => 'number', 'value' => (int) ($pricing['license']['deviceLimit'] ?? 0)],
-            'offlineDays' => ['kind' => 'number', 'value' => (int) ($pricing['license']['offlineDays'] ?? 0)],
         ];
     }
 

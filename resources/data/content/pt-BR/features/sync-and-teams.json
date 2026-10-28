@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> e <ui>Publish Saved Queries to Team…</ui> carregam configurações de conexão e consulta salva SQL para o servidor de TablePro, nunca senhas. Macs licenciados baixam-nos. Os comandos de inicialização e túnel são ignorados. A republicação substitui sua contribuição anterior."
+                        "<ui>Share > Publish to Team Library…</ui> e <ui>Publish Saved Queries to Team…</ui> carregam configurações de conexão e consulta salva SQL para o servidor de TablePro, nunca senhas. Membros com vaga os baixam. Os comandos de inicialização e túnel são ignorados. A republicação substitui sua contribuição anterior."
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Assentos Team",
             "paragraphs": [
                 "Uma vaga Team cobre uma pessoa em até {deviceLimit} Macs. Proprietários e administradores convidam por e-mail pelo portal da conta, com ou sem vaga, e cada convidado entra pelo link do e-mail.",
-                "O proprietário altera as vagas de uma assinatura em Cobrança, e uma equipe sem assinatura compra mais vagas de pagamento único ali. Remover um membro libera a vaga dele, e os Macs dele perdem os recursos do Team na próxima vez que o TablePro se comunicar com o servidor, em até {offlineDays} dias."
+                "O proprietário altera as vagas de uma assinatura em Cobrança, e uma equipe sem assinatura compra mais vagas de pagamento único ali. Remover um membro libera a vaga dele, e os Macs dele perdem os recursos do Team na próxima vez que o TablePro se comunicar com o servidor."
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Quando um plano termina no Mac, o iCloud Sync é pausado e informa o motivo, e conexões de Linked Folders e da Team Library desaparecem da lista. Comandos de publicação Team ficam ocultos e Encrypted Export perde a opção de senhas.",
         "Editar uma conexão sincronizada no iPhone ou iPad pode alterar configurações que o app desses dispositivos não possui. Um nível mais rigoroso do Safe Mode no Mac, como Safe Mode (Full), volta como Alert, e hosts intermediários SSH podem não ser preservados. Altere essas conexões no Mac.",
-        "Se uma licença Team termina ou é suspensa, o que foi publicado na Team Library fica no servidor do TablePro até você solicitar a exclusão."
+        "Se uma licença Team termina ou é revogada, o que foi publicado na Team Library fica no servidor do TablePro até você solicitar a exclusão."
     ],
     "docs": [
         {

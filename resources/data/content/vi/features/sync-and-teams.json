@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> và <ui>Publish Saved Queries to Team…</ui> upload cài đặt connection và SQL query đã lưu lên server TablePro, không có mật khẩu. Các máy Mac dùng license tải chúng về. Bỏ qua startup command và tunnel command. Chia sẻ lại thay phần đóng góp trước của bạn."
+                        "<ui>Share > Publish to Team Library…</ui> và <ui>Publish Saved Queries to Team…</ui> upload cài đặt connection và SQL query đã lưu lên server TablePro, không có mật khẩu. Thành viên có seat tải chúng về. Bỏ qua startup command và tunnel command. Chia sẻ lại thay phần đóng góp trước của bạn."
                     ],
                     "paid": [
                         "team-library"
@@ -117,7 +117,7 @@
             "title": "Seat Team",
             "paragraphs": [
                 "Một seat Team dành cho một người trên tối đa {deviceLimit} máy Mac. Chủ sở hữu và quản trị viên mời người khác qua email từ trang tài khoản, kèm hoặc không kèm seat, và người được mời tham gia bằng liên kết trong email.",
-                "Chủ sở hữu đổi số seat của subscription trong mục Thanh toán, và nhóm không có subscription mua thêm seat mua một lần ở đó. Gỡ một thành viên sẽ giải phóng seat của họ, và máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server, trong vòng {offlineDays} ngày."
+                "Chủ sở hữu đổi số seat của subscription trong mục Thanh toán, và nhóm không có subscription mua thêm seat mua một lần ở đó. Gỡ một thành viên sẽ giải phóng seat của họ, và máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server."
             ],
             "links": [
                 {
@@ -194,7 +194,7 @@
     "limits": [
         "Khi gói trả phí trên Mac kết thúc, iCloud Sync tạm dừng và cho biết lý do, còn connection từ Linked Folders và Team Library biến mất khỏi danh sách. Các lệnh xuất bản lên Team Catalog và Team Library bị ẩn, và Encrypted Export mất tùy chọn kèm mật khẩu.",
         "Sửa một connection đã đồng bộ trên iPhone hoặc iPad có thể thay đổi những thiết lập mà ứng dụng ở đó không có. Một mức Safe Mode chặt hơn trên Mac, như Safe Mode (Full), quay về thành Alert, và SSH jump host có thể bị mất qua lần đồng bộ đó. Hãy sửa các connection này trên Mac.",
-        "Nếu license Team kết thúc hoặc bị tạm ngưng, những gì đã xuất bản lên Team Library vẫn nằm trên server của TablePro cho tới khi bạn yêu cầu xóa."
+        "Nếu license Team kết thúc hoặc bị thu hồi, những gì đã xuất bản lên Team Library vẫn nằm trên server của TablePro cho tới khi bạn yêu cầu xóa."
     ],
     "docs": [
         {

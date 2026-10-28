@@ -71,12 +71,10 @@ it('quotes the limits from facts.json', function (): void {
     expect($facts['filterOperatorCount']['value'])->toBe(count(featurePagesData('facts.json')['filterOperators']['mac']));
 });
 
-it('quotes the device limit and how long a signed plan lasts offline from pricing.json', function (): void {
-    // A removed Team member's Mac keeps Team's features until its plan copy expires (tablepro-cloud product.md, Entitlement).
+it('quotes the device limit from pricing.json', function (): void {
     $license = featurePagesData('pricing.json')['license'];
 
     expect((new FeatureFacts())->all()['deviceLimit'])->toBe(['kind' => 'number', 'value' => $license['deviceLimit']]);
-    expect((new FeatureFacts())->all()['offlineDays'])->toBe(['kind' => 'number', 'value' => $license['offlineDays']]);
 });
 
 it('names the Safe Mode levels and defaults from facts.json', function (): void {
