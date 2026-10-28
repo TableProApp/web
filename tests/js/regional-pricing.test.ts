@@ -18,17 +18,23 @@ const list: ListCents = {
     team: Object.fromEntries(Object.entries(pricing.tiers.team.prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)])),
 };
 
+type TeamMax = Record<'monthly' | 'yearly' | 'lifetime', number | null>;
+
+// tablepro-cloud's mock fixtures (web/packages/api/src/mock/fixtures.ts): only Team lifetime's Polar seat tiers set a maximum.
+const CLOUD_TEAM_MAX: TeamMax = { monthly: null, yearly: null, lifetime: 1000 };
+const NO_TEAM_MAX: TeamMax = { monthly: null, yearly: null, lifetime: null };
+
 // GET /v2/pricing as tablepro-cloud answers it: its mock fixtures hold product.md's prices, the same as pricing.json.
 // `max_seats` is 1 unless per_seat, and for a per-seat plan the top of Polar's seat tiers, or null without one.
-function answer(percent: number, country = 'VN', teamMax: number | null = 200) {
-    const plan = (name: 'starter' | 'team', cycle: string, amount: number) => ({
+function answer(percent: number, country = 'VN', teamMax: TeamMax = CLOUD_TEAM_MAX) {
+    const plan = (name: 'starter' | 'team', cycle: keyof TeamMax, amount: number) => ({
         plan: name,
         cycle,
         currency: 'USD',
         amount,
         per_seat: name === 'team',
         min_seats: name === 'team' ? 5 : 1,
-        max_seats: name === 'team' ? teamMax : 1,
+        max_seats: name === 'team' ? teamMax[cycle] : 1,
         features: [],
         discount_percent: percent,
         discounted_amount: discountedCents(amount, percent),
@@ -54,8 +60,8 @@ test('pricing.json holds the prices and the seat minimum tablepro-cloud sells at
 });
 
 test('the Team seat maximum is read per cycle from the answer, and only a whole number from the minimum up counts', () => {
-    assert.deepEqual(parseSeatMaximums(answer(0), 'team', 5), { monthly: 200, yearly: 200, lifetime: 200 });
-    assert.deepEqual(parseSeatMaximums(answer(30, 'VN', null), 'team', 5), {});
+    assert.deepEqual(parseSeatMaximums(answer(0), 'team', 5), { lifetime: 1000 });
+    assert.deepEqual(parseSeatMaximums(answer(30, 'VN', NO_TEAM_MAX), 'team', 5), {});
 
     const body = answer(0);
     body.plans[3].max_seats = 50;
@@ -73,7 +79,7 @@ test('the Team seat maximum is read per cycle from the answer, and only a whole 
 test('the answer is read strictly, so the cards never show a price checkout would not charge', () => {
     assert.deepEqual(parseRegional(answer(30), list), { country: 'VN', percent: 30 });
     assert.deepEqual(parseRegional(answer(50, 'IN'), list), { country: 'IN', percent: 50 });
-    assert.deepEqual(parseRegional(answer(30, 'VN', null), list), { country: 'VN', percent: 30 });
+    assert.deepEqual(parseRegional(answer(30, 'VN', NO_TEAM_MAX), list), { country: 'VN', percent: 30 });
 
     // No regional discount here: the list prices stand.
     assert.equal(parseRegional(answer(0), list), null);
