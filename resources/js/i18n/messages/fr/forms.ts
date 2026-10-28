@@ -10,5 +10,6 @@ export default {
     "tooMany": "Trop de tentatives. Attendez une minute et réessayez.",
     "failed": "Une erreur s’est produite. Réessayez.",
     "network": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
-    "subscribed": "Consultez votre boîte de réception pour trouver le lien de confirmation."
+    "subscribed": "Consultez votre boîte de réception pour trouver le lien de confirmation.",
+    "verification": "La vérification antispam n’a pas abouti. Rechargez la page et réessayez."
 } satisfies Messages['forms'];

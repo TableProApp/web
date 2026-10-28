@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "Notas de versão por email",
         "body": "Notas de lançamento ocasionais, em inglês. Cancele a inscrição em qualquer e-mail.",
-        "note": "Confirme a inscrição por e-mail. <link>Política de privacidade</link>"
+        "note": "Confirme a inscrição por e-mail. <link>Política de privacidade</link>",
+        "subscribers": {
+            "one": "{count} pessoa inscrita",
+            "other": "{count} pessoas inscritas"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro, feito por {maker} em {city}. Código-fonte sob a AGPLv3."

@@ -54,6 +54,8 @@ export interface SharedProps extends Record<string, unknown> {
     crispWebsiteId: string | null;
     // tablepro-cloud's API origin, without a trailing slash: https://api.tablepro.app in production.
     apiOrigin: string;
+    // Cloudflare Turnstile's public site key for the newsletter form; null where none is configured.
+    turnstileSiteKey: string | null;
     /** False in production, where an asset slot with no image renders nothing. */
     assetPlaceholders: boolean;
     // Null until the scheduled refresh has stored a count.

@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "Versionshinweise per E-Mail",
         "body": "Gelegentliche Versionshinweise auf Englisch. Abmelden ist in jeder E-Mail möglich.",
-        "note": "Bestätige dein Abonnement per E-Mail. <link>Datenschutzerklärung</link>"
+        "note": "Bestätige dein Abonnement per E-Mail. <link>Datenschutzerklärung</link>",
+        "subscribers": {
+            "one": "{count} Person hat abonniert",
+            "other": "{count} Personen haben abonniert"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro, entwickelt von {maker} in {city}. Quellcode unter der AGPLv3."

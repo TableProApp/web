@@ -32,43 +32,46 @@ it('calls only tablepro-cloud\'s public /v2 endpoints and Cloudflare\'s trace', 
 
     expect($targets)->not->toBeEmpty();
 
+    $allowed = [
+        "api('/v2/checkouts')",
+        "api('/v2/discounts/preview')",
+        "api('/v2/pricing')",
+        "api('/v2/newsletter/subscriptions')",
+        "api('/v2/newsletter/stats')",
+        "'/cdn-cgi/trace'",
+    ];
+
     foreach ($targets as [$file, $target]) {
-        // The email hook's `endpoint` parameter is checked below.
-        Assert::assertContains($target, ["api('/v2/checkouts')", "api('/v2/discounts/preview')", "api('/v2/pricing')", "'/cdn-cgi/trace'", 'endpoint'], "{$file} fetches {$target}");
+        Assert::assertContains($target, $allowed, "{$file} fetches {$target}");
     }
 
-    foreach (contractSources() as $file => $text) {
-        preg_match_all('/useEmailForm\(([^)]*)\)/', $text, $uses);
+    // Each endpoint has one caller, so its contract has one place to change.
+    expect(array_count_values(array_column($targets, 1)))->each->toBe(1);
 
-        foreach ($uses[1] as $argument) {
-            if ($file === 'hooks/use-email-form.ts') {
-                continue;
-            }
+    $api = (string) file_get_contents(resource_path('js/hooks/use-api.ts'));
 
-            Assert::assertSame("'/newsletter/subscribe'", trim($argument), "{$file} sends the newsletter form somewhere else");
-        }
-    }
+    expect($api)->toContain('usePage().props.apiOrigin')->toContain('`${origin}${path}`');
 });
 
-it('never calls the subscriber count, whose session cookie would land on public pages', function (): void {
-    foreach (contractSources() as $file => $text) {
-        Assert::assertStringNotContainsString('/api/newsletter/stats', preg_replace('#^\s*(\*|//).*$#m', '', $text), "{$file} calls /api/newsletter/stats");
-    }
-});
-
-it('sends the newsletter form as JSON with the page locale', function (): void {
+it('sends the newsletter form as JSON with the page locale and a Turnstile token', function (): void {
     $hook = (string) file_get_contents(resource_path('js/hooks/use-email-form.ts'));
-    $outcome = (string) file_get_contents(resource_path('js/hooks/email-form-response.ts'));
+    $turnstile = (string) file_get_contents(resource_path('js/lib/turnstile.ts'));
 
     expect($hook)->toContain("method: 'POST'")
         ->toContain("headers: { 'Content-Type': 'application/json', Accept: 'application/json' }")
-        ->toContain('body: JSON.stringify({ email, locale })')
-        ->toContain('emailFormOutcome(res.status, data, m.forms)');
+        ->toContain('body: JSON.stringify({ email, locale, turnstile_token: token })')
+        ->toContain('emailFormOutcome(res.status, data, m.forms)')
+        ->toContain('usePage().props.turnstileSiteKey');
 
-    expect($hook)->toMatch("/fetch\\(endpoint, \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
+    expect($hook)->toMatch("/fetch\\(api\\('\\/v2\\/newsletter\\/subscriptions'\\), \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 
-    // The platform's 429 text is shared with the license API and stays English, so the page uses its own.
-    expect($outcome)->toMatch('/status === 429\) \{\s*return \{ kind: \'flash\', flash: \{ type: \'error\', message: strings\.tooMany \}/');
+    // tablepro-cloud checks the action, so the widget must name it.
+    expect($turnstile)->toContain("TURNSTILE_ACTION = 'newsletter'")->toContain('action: TURNSTILE_ACTION');
+
+    // Both forms send the same hook; neither posts anywhere of its own.
+    foreach (['components/site/site-footer.tsx', 'components/blog/newsletter-signup.tsx'] as $file) {
+        expect((string) file_get_contents(resource_path("js/{$file}")))->toContain('useEmailForm()')->toContain('ref={form.widget}');
+    }
 });
 
 // The public site sets no cookies and sends none: a call that carried them would need a privacy-policy review first.
@@ -79,7 +82,7 @@ it('sends no cookies with any request it makes', function (): void {
         }
 
         foreach ($calls as [$call]) {
-            if (preg_match("#api\\('/v2/|['\"`](/newsletter/|/cdn-cgi/)#", $call) || str_contains($call, 'endpoint')) {
+            if (preg_match("#api\\('/v2/|['\"`]/cdn-cgi/#", $call)) {
                 Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} sends cookies: {$call}");
             }
         }

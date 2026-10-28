@@ -72,6 +72,7 @@ class HandleInertiaRequests extends Middleware
             'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
             'apiOrigin' => TableProApi::origin(),
+            'turnstileSiteKey' => TableProApi::turnstileSiteKey(),
             'assetPlaceholders' => ! App::isProduction(),
         ];
     }

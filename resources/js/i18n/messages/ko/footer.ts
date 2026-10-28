@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "이메일로 받는 릴리스 노트",
         "body": "영어 릴리스 노트를 가끔 보내드립니다. 모든 이메일에서 구독을 취소할 수 있습니다.",
-        "note": "이메일로 구독을 확인하세요. <link>개인정보 처리방침</link>"
+        "note": "이메일로 구독을 확인하세요. <link>개인정보 처리방침</link>",
+        "subscribers": {
+            "one": "구독자 {count}명",
+            "other": "구독자 {count}명"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro. {city}의 {maker} 제작. 소스 코드는 AGPLv3로 배포됩니다."

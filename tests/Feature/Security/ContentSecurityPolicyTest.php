@@ -157,6 +157,24 @@ it('names analytics and chat only where they are configured', function (): void 
         ->not->toContain('crisp');
 });
 
+it('admits Turnstile\'s script and frame only where a site key is configured', function (): void {
+    config(['services.turnstile.site_key' => null]);
+
+    expect($this->get('/pricing')->headers->get('Content-Security-Policy'))->not->toContain('challenges.cloudflare.com');
+
+    config(['services.turnstile.site_key' => '1x00000000000000000000AA']);
+
+    $directives = cspDirectives($this->get('/blog'));
+
+    expect(cspAdmits($directives['script-src'], 'https://challenges.cloudflare.com/turnstile/v0/api.js'))->toBeTrue()
+        ->and(cspAdmits($directives['frame-src'], 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/turnstile/if/ov2/av0/rcv/x'))->toBeTrue()
+        ->and(cspAdmits($directives['connect-src'], 'https://challenges.cloudflare.com/x'))->toBeFalse();
+
+    preg_match("/TURNSTILE_SCRIPT_URL = '([^']+)'/", File::get(resource_path('js/lib/turnstile.ts')), $script);
+
+    expect(cspAdmits($directives['script-src'], (string) strtok($script[1], '?')))->toBeTrue();
+});
+
 it('gives every page the same sources, because an Inertia visit keeps the first document\'s policy', function (): void {
     $withoutHashes = fn(string $path): string => (string) preg_replace("/ 'sha256-[^']+'/", '', (string) $this->get($path)->headers->get('Content-Security-Policy'));
 

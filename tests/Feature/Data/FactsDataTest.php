@@ -332,6 +332,8 @@ it('keeps external URLs in data files, not in components, catalogs or content', 
     $allowed = [
         // A script source, not a link: the chat loader every page adds once it is idle.
         'js/lib/crisp.ts' => ['https://client.crisp.chat/l.js'],
+        // The same for Turnstile, which the newsletter forms add on intent.
+        'js/lib/turnstile.ts' => ['https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'],
     ];
 
     $files = collect([resource_path('js'), resource_path('data/content')])

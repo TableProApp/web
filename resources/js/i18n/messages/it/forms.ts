@@ -10,5 +10,6 @@ export default {
     "tooMany": "Troppi tentativi. Attendi un minuto e riprova.",
     "failed": "Qualcosa è andato storto. Riprova.",
     "network": "Impossibile raggiungere il server. Controlla la connessione e riprova.",
-    "subscribed": "Controlla la posta in arrivo per il link di conferma."
+    "subscribed": "Controlla la posta in arrivo per il link di conferma.",
+    "verification": "Il controllo antispam non è stato completato. Ricarica la pagina e riprova."
 } satisfies Messages['forms'];

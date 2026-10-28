@@ -57,6 +57,10 @@ export default {
         title: 'Release notes by email',
         body: 'Occasional release notes. Unsubscribe in any email.',
         note: 'Confirm your subscription by email. <link>Privacy policy</link>',
+        subscribers: {
+            one: '{count} subscriber',
+            other: '{count} subscribers',
+        },
     },
     bottom: {
         copyright: '© {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3.',

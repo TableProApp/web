@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "Note di rilascio via email",
         "body": "Note di rilascio occasionali, in inglese. Puoi annullare l’iscrizione da qualsiasi e-mail.",
-        "note": "Conferma l’iscrizione via e-mail. <link>Informativa sulla privacy</link>"
+        "note": "Conferma l’iscrizione via e-mail. <link>Informativa sulla privacy</link>",
+        "subscribers": {
+            "one": "{count} persona iscritta",
+            "other": "{count} persone iscritte"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro, creato da {maker} a {city}. Codice sorgente sotto licenza AGPLv3."

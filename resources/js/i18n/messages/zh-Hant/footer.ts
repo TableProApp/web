@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "透過電子郵件接收版本說明",
         "body": "不定期寄送英文版本說明。可在任意郵件中取消訂閱。",
-        "note": "請透過郵件確認訂閱。<link>隱私權政策</link>"
+        "note": "請透過郵件確認訂閱。<link>隱私權政策</link>",
+        "subscribers": {
+            "one": "{count} 位訂閱者",
+            "other": "{count} 位訂閱者"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro，由{city}的 {maker} 開發。原始碼採用 AGPLv3 授權。"

@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "リリースノートをメールで受け取る",
         "body": "英語のリリースノートを不定期でお送りします。どのメールからでも配信を停止できます。",
-        "note": "メールで購読を確認してください。<link>プライバシーポリシー</link>"
+        "note": "メールで購読を確認してください。<link>プライバシーポリシー</link>",
+        "subscribers": {
+            "one": "購読者 {count} 人",
+            "other": "購読者 {count} 人"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro。{city}の {maker} が開発しています。ソースコードは AGPLv3 で公開しています。"

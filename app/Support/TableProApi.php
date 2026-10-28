@@ -19,4 +19,11 @@ final class TableProApi
 
         return preg_match('#^https?://[a-z0-9.-]+(:\d{1,5})?$#i', $origin) === 1 ? $origin : self::PRODUCTION_ORIGIN;
     }
+
+    public static function turnstileSiteKey(): ?string
+    {
+        $key = config('services.turnstile.site_key');
+
+        return is_string($key) && preg_match('/^[A-Za-z0-9_-]+$/', $key) === 1 ? $key : null;
+    }
 }

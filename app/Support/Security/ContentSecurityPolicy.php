@@ -47,6 +47,14 @@ final class ContentSecurityPolicy
     ];
 
     /**
+     * Cloudflare Turnstile, which the newsletter form loads on intent.
+     */
+    private const TURNSTILE = [
+        'script-src' => ['https://challenges.cloudflare.com'],
+        'frame-src' => ['https://challenges.cloudflare.com'],
+    ];
+
+    /**
      * What Polar's checkout overlay needs besides its script in pricing.json.
      */
     private const CHECKOUT = [
@@ -75,6 +83,7 @@ final class ContentSecurityPolicy
             self::CLOUDFLARE,
             config('analytics.google.measurement_id') ? self::GOOGLE : [],
             config('services.crisp.website_id') ? self::CRISP : [],
+            TableProApi::turnstileSiteKey() !== null ? self::TURNSTILE : [],
             ['script-src' => array_filter([$this->checkoutScript()])],
             self::CHECKOUT,
             ['connect-src' => [TableProApi::origin()]],

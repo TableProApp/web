@@ -4,6 +4,7 @@ import Button from '@/components/ui/button';
 import { describedBy, FieldError, FieldLabel, Input } from '@/components/ui/field';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
+import SubscriberCount from '@/components/site/subscriber-count';
 import { useEmailForm } from '@/hooks/use-email-form';
 import { Trans, useI18n } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
@@ -13,18 +14,10 @@ interface NewsletterSignupProps {
     className?: string;
 }
 
-/**
- * The blog index's email signup (sitemap §A.5): the same list as the footer's
- * form, offered where a reader of release posts is, under the footer's own
- * title and body so the offer has one name.
- *
- * It posts `{ email, locale }` to the platform's `/newsletter/subscribe`
- * through `useEmailForm` (plain `fetch`, no cookies kept), counts the click as
- * `newsletter_signup_clicked{source:'blog'}`, and shows the answer in place.
- */
+// The blog index's signup (sitemap §A.5): the footer's list under the footer's own title and body, so the offer has one name.
 export default function NewsletterSignup({ className }: NewsletterSignupProps) {
     const { m } = useI18n();
-    const form = useEmailForm('/newsletter/subscribe');
+    const form = useEmailForm();
     const id = useId();
     const inputId = `${id}-email`;
     const resultId = `${id}-result`;
@@ -41,7 +34,8 @@ export default function NewsletterSignup({ className }: NewsletterSignupProps) {
                 {m.footer.newsletter.title}
             </h2>
             <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
-            <form onSubmit={submit} className="mt-4 grid gap-1.5">
+            <SubscriberCount className="mt-1" />
+            <form onSubmit={submit} onFocus={form.warm} onPointerEnter={form.warm} className="mt-3 grid gap-1.5">
                 <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
                 <div className="flex flex-col gap-2 sm:flex-row">
                     <Input
@@ -62,6 +56,7 @@ export default function NewsletterSignup({ className }: NewsletterSignupProps) {
                         {m.forms.subscribe}
                     </Button>
                 </div>
+                <div ref={form.widget} className="empty:hidden" />
                 {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
                 <p
                     id={resultId}

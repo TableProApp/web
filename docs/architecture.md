@@ -211,18 +211,18 @@ Two consequences worth knowing before you write code here:
 
 ## The endpoints the pages call
 
-All anonymous and rate limited, none needs a token. Pricing calls
-tablepro-cloud's public API, another origin (`TABLEPRO_API_ORIGIN`,
-`https://api.tablepro.app` in production, shared with every page as the
-`apiOrigin` prop and read through `useApi()`); the newsletter form still posts
-to the platform's root path. The page's language travels in the body.
+All anonymous and rate limited, none needs a token. They are tablepro-cloud's
+public API, another origin (`TABLEPRO_API_ORIGIN`, `https://api.tablepro.app`
+in production, shared with every page as the `apiOrigin` prop and read through
+`useApi()`). The page's language travels in the body.
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
 | `GET /v2/pricing` | — | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
 | `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
 | `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
-| `POST /newsletter/subscribe` | `{email, locale}` | `{type, message}` |
+| `POST /v2/newsletter/subscriptions` | `{email, locale, turnstile_token}` | 202, whether or not the address was new |
+| `GET /v2/newsletter/stats` | — | `{subscribers}` |
 
 Every call is a plain `fetch` with `credentials: 'omit'`, so no cookie is sent
 or kept. tablepro-cloud answers CORS for `https://tablepro.app` only, without
@@ -257,9 +257,16 @@ one it accepted travels with checkout, replacing the regional discount.
 Checkout takes a plan and billing cycle rather than a product identifier, which
 is why no payment-provider identifier appears anywhere in this repository.
 
-`GET /api/newsletter/stats` is no longer called. The old footer fetched it for a
-subscriber count, and the footer no longer shows one. The endpoint stays on the
-platform as a contract for anyone else.
+The newsletter forms (footer and blog index, `useEmailForm`) send a Cloudflare
+Turnstile token with the address. The widget (`resources/js/lib/turnstile.ts`,
+action `newsletter`) is rendered on the reader's first focus or pointer on the
+form, runs its check on submit, and shows itself only when it needs an answer.
+Its site key is public configuration, `TURNSTILE_SITE_KEY`, shared as the
+`turnstileSiteKey` prop; without one the form says the check did not finish
+and posts nothing. tablepro-cloud answers 202 whatever happened, so the form
+says to check the inbox, and only a 422 on `body.email` is about the address.
+Under each form, `useNewsletterStats` asks once per page for the subscriber
+count and shows it once known; a failure leaves it unsaid.
 
 Links to the account are plain `<a href="/account?locale={locale}">`: a
 different application, so never an Inertia `<Link>`, and never prefixed.
@@ -408,6 +415,9 @@ added after the page has loaded, and Cloudflare Web Analytics.
   widget. While the consent bar covers the bottom-right corner (on a phone,
   reopened from "Cookie settings"), the launcher is hidden. Crisp sets its `crisp-client/`
   cookies as soon as it loads; the privacy policy describes them.
+- **Cloudflare Turnstile** (`challenges.cloudflare.com`) loads on the first
+  focus or pointer on a newsletter form, with its script and its frame in the
+  policy only while `TURNSTILE_SITE_KEY` is set.
 - **Polar's checkout script** loads at checkout intent, not on
   every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the
   first `pointerenter` or focus of a buy button (or on the click itself), and

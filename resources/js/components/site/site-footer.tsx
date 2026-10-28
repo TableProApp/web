@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import ChatButton, { useChatAvailable } from './chat-button';
 import LanguageSwitcher from './language-switcher';
 import { EXTERNAL, PLATFORM_PAGES, SUPPORT_EMAIL, accountHref } from './site-links';
+import SubscriberCount from './subscriber-count';
 
 /**
  * A footer link: inline text in a block that is 32px tall for one line (the
@@ -61,19 +62,10 @@ function Group({ title, children }: { title: string; children: ReactNode }) {
     );
 }
 
-/**
- * The newsletter: one email field, a Subscribe button and the result in place
- * (sitemap §B.3). It posts to the platform's `/newsletter/subscribe` with the
- * page's locale, through `useEmailForm`, and shows no subscriber count: the
- * footer never calls `/api/newsletter/stats`, whose session cookie would
- * otherwise land on public pages.
- *
- * It lays itself out by its cell's width: the field and button side by side
- * from 20rem, the words beside the form from 48rem.
- */
+// Lays itself out by its cell's width: the field and button side by side from 20rem, the words beside the form from 48rem.
 function Newsletter() {
     const { m } = useI18n();
-    const form = useEmailForm('/newsletter/subscribe');
+    const form = useEmailForm();
     const id = useId();
     const inputId = `${id}-email`;
     const resultId = `${id}-result`;
@@ -91,9 +83,10 @@ function Newsletter() {
                     {m.footer.newsletter.title}
                 </h3>
                 <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
+                <SubscriberCount className="mt-1" />
             </div>
             <div className="max-w-md">
-                <form onSubmit={submit} className="grid gap-1.5">
+                <form onSubmit={submit} onFocus={form.warm} onPointerEnter={form.warm} className="grid gap-1.5">
                     <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
                     <div className="flex flex-col gap-2 @xs:flex-row">
                         <Input
@@ -115,6 +108,8 @@ function Newsletter() {
                             {m.forms.subscribe}
                         </Button>
                     </div>
+                    {/* Turnstile shows here only when it needs the reader to answer a challenge. */}
+                    <div ref={form.widget} className="empty:hidden" />
                     {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
                     {/* Reserved height, so the answer moves nothing. An error is the one coloured status text, with an icon beside it. */}
                     <p

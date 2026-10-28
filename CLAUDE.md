@@ -78,10 +78,10 @@ server (`docs/architecture.md`, "The language bar").
   helpers leave them alone (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`),
   and `<LocaleLink>` renders them as a plain `<a>`.
 - The language crosses to the account app only explicitly: link
-  `/account?locale={locale}` (never `/vi/account`), post to tablepro-cloud's
-  `/v2/checkouts` and to `/newsletter/subscribe` with `locale` in the body
-  (`/v2/discounts/preview` takes `{code}` only, `GET /v2/pricing` nothing),
-  every call with `credentials: 'omit'`, so no cookie lands on a public page.
+  `/account?locale={locale}` (never `/vi/account`), and post to tablepro-cloud's
+  `/v2/checkouts` and `/v2/newsletter/subscriptions` with `locale` in the body
+  (`/v2/discounts/preview` takes `{code}` only, the `GET`s nothing), every call
+  with `credentials: 'omit'`, so no cookie lands on a public page.
 - The theme follows the OS by default; `localStorage.theme` holds an explicit choice, shared
   with the account app on the same origin.
 

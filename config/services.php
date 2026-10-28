@@ -27,6 +27,11 @@ return [
         'origin' => env('TABLEPRO_API_ORIGIN', 'https://api.tablepro.app'),
     ],
 
+    // Public by design: the widget sends it from every reader's browser.
+    'turnstile' => [
+        'site_key' => env('TURNSTILE_SITE_KEY'),
+    ],
+
     'crisp' => [
         'website_id' => env('CRISP_WEBSITE_ID'),
     ],

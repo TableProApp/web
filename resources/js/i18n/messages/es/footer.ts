@@ -50,7 +50,11 @@ export default {
     "newsletter": {
         "title": "Notas de versión por correo",
         "body": "Notas de versión ocasionales, en inglés. Puedes darte de baja desde cualquier correo.",
-        "note": "Confirma tu suscripción por correo. <link>Política de privacidad</link>"
+        "note": "Confirma tu suscripción por correo. <link>Política de privacidad</link>",
+        "subscribers": {
+            "one": "{count} persona suscrita",
+            "other": "{count} personas suscritas"
+        }
     },
     "bottom": {
         "copyright": "© {year} TablePro, creado por {maker} en {city}. Código fuente bajo AGPLv3."

@@ -121,6 +121,8 @@ pull request before running the workflow for another set.
 **Server environment.** `APP_ENV` must be `production`: any other value shows
 visitors the placeholder of every image slot that has no file yet.
 `TABLEPRO_API_ORIGIN` stays unset, so the pages call `https://api.tablepro.app`.
+`TURNSTILE_SITE_KEY` is the Turnstile widget's site key (public; its secret is
+tablepro-cloud's): without it the newsletter forms cannot subscribe anyone.
 `PAYMENT_PROVIDER` is no longer read: Polar is the only checkout. The minimum
 seat count the site shows comes from `resources/data/pricing.json`, synced by
 hand with tablepro-cloud, which enforces its own value.
