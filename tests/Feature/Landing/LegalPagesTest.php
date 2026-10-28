@@ -401,8 +401,10 @@ it('makes the terms agree with priority support, the AGPL and the merchant of re
     // AGPLv3 §2, §4-§6 and §13: running carries no conditions; conveying and network use of a modified version do.
     expect($terms)->toContain('The AGPL places no conditions on running TablePro')->not->toContain('not to using it');
 
-    // A seat is a Mac, and the update feed is not ours.
-    expect($terms)->toContain('Each seat is one activated Mac')->not->toContain('update server');
+    // A seat is a person on the account's devices (tablepro-cloud product.md, Devices), and the update feed is not ours.
+    expect($terms)->toContain('Each seat is for one person, on up to {deviceLimit} Macs')
+        ->not->toContain('activated Mac')
+        ->not->toContain('update server');
 
     // The buyer pays Polar, not us.
     expect($terms)->not->toContain('paid us');

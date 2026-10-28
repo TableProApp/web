@@ -12,7 +12,7 @@ These terms govern the website at tablepro.app, the account portal, our license 
 - **"Application"** means TablePro for Mac and TablePro for iPhone and iPad, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
 - **"Services"** means the Website, the account portal, and the server the Mac app contacts for license checks and the Team Library.
-- **"License"** means a paid Starter or Team plan, and **"License Key"** the credential that activates its features in the Mac app.
+- **"License"** means a paid Starter or Team plan, and **"License Key"** the credential that versions of the Mac app before TablePro accounts use to activate a License.
 - **"You"** means the person or organization using the Services or holding a License.
 
 ## Open-source license {#open-source}
@@ -37,14 +37,14 @@ Refunds are described in the [refund policy](/refund-policy).
 
 ## Using a license {#license}
 
-A License gives you a non-exclusive, non-transferable right to activate the paid features of the Mac app with its License Key, on the number of Macs, and for the period, of your plan:
+A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the Macs signed in to your TablePro account, up to the number, and for the period, of your plan:
 
-- A **Starter** License is for one person, on up to {starterActivations} Macs.
-- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is one activated Mac. The team's owner and admins invite its members, who join from an emailed invitation link.
+- A **Starter** License is for one person, on up to {deviceLimit} Macs.
+- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} Macs. The team's owner and admins invite its members, who join from an emailed invitation link.
 
-You may not share a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer it, without our written permission.
+The limit of {deviceLimit} Macs applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.
 
-The Mac app checks your License with our server every {revalidateDays} days. If our server cannot be reached, the paid features keep working for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the rest of the Mac app keeps working.
+The Mac app renews your plan with our server once a day. If our server cannot be reached, the paid features keep working for up to {offlineDays} days after the last renewal, or, on a Mac that uses an offline file from the account portal, until the file expires. Versions before TablePro accounts check a License Key every {revalidateDays} days instead, and keep the paid features for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the rest of the Mac app keeps working.
 
 ## Account portal {#account}
 
@@ -97,7 +97,7 @@ You agree to indemnify and hold harmless TablePro and its contributors against a
 
 We release updates, fixes and new features at our discretion. Apart from the priority support above, we have no obligation to maintain, update or provide support for any version of the Application, and older versions may stop receiving security fixes.
 
-Some Services, such as license checks and the Team Library, need network access. We do not guarantee that they are always available, and we may discontinue them with reasonable notice. The paid features of the Mac app need our license server: if it cannot be reached, they keep working for {graceDays} days after the last successful check.
+Some Services, such as license checks and the Team Library, need network access. We do not guarantee that they are always available, and we may discontinue them with reasonable notice. The paid features of the Mac app need our license server: if it cannot be reached, they keep working for the time set out under [Using a license](#license).
 
 ## Termination {#termination}
 

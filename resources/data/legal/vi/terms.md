@@ -12,7 +12,7 @@ Các điều khoản này điều chỉnh website tablepro.app, trang tài kho�
 - **"Ứng dụng"** là TablePro cho Mac và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
 - **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac liên lạc để kiểm tra license và dùng Team Library.
-- **"License"** là một gói trả phí Starter hoặc Team, và **"License Key"** là thông tin dùng để kích hoạt các tính năng của gói đó trong ứng dụng cho Mac.
+- **"License"** là một gói trả phí Starter hoặc Team, và **"License Key"** là thông tin mà các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro dùng để kích hoạt một License.
 - **"Bạn"** là cá nhân hoặc tổ chức sử dụng Dịch vụ hoặc sở hữu một License.
 
 ## Giấy phép mã nguồn mở {#open-source}
@@ -37,14 +37,14 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 ## Sử dụng license {#license}
 
-Một License cho bạn quyền không độc quyền, không chuyển nhượng, để kích hoạt các tính năng trả phí của ứng dụng cho Mac bằng License Key của nó, trên số máy Mac và trong thời hạn của gói bạn mua:
+Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên những máy Mac đã đăng nhập tài khoản TablePro của bạn, trong giới hạn số máy và thời hạn của gói bạn mua:
 
-- License **Starter** dành cho một người, trên tối đa {starterActivations} máy Mac.
-- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
+- License **Starter** dành cho một người, trên tối đa {deviceLimit} máy Mac.
+- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy Mac. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
 
-Bạn không được chia sẻ License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
+Giới hạn {deviceLimit} máy Mac tính theo tài khoản, chung cho mọi License mà tài khoản đó dùng. Bạn không được chia sẻ tài khoản hoặc License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License hay License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
 
-Ứng dụng cho Mac kiểm tra License của bạn với máy chủ của chúng tôi mỗi {revalidateDays} ngày. Nếu không liên lạc được với máy chủ, các tính năng trả phí vẫn hoạt động trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất. Khi một gói theo tháng hoặc theo năm kết thúc, các tính năng của gói đó ngừng hoạt động, phần còn lại của ứng dụng cho Mac vẫn hoạt động bình thường.
+Ứng dụng cho Mac làm mới gói của bạn với máy chủ của chúng tôi mỗi ngày một lần. Nếu không liên lạc được với máy chủ, các tính năng trả phí vẫn hoạt động tối đa {offlineDays} ngày kể từ lần làm mới gần nhất, hoặc, trên máy Mac dùng tệp offline từ trang tài khoản, tới khi tệp đó hết hạn. Các phiên bản trước khi có tài khoản TablePro thì kiểm tra License Key mỗi {revalidateDays} ngày, và giữ các tính năng trả phí trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất. Khi một gói theo tháng hoặc theo năm kết thúc, các tính năng của gói đó ngừng hoạt động, phần còn lại của ứng dụng cho Mac vẫn hoạt động bình thường.
 
 ## Trang tài khoản {#account}
 
@@ -97,7 +97,7 @@ Bạn đồng ý bồi thường và bảo vệ TablePro cùng những người 
 
 Chúng tôi phát hành bản cập nhật, bản sửa lỗi và tính năng mới theo quyết định của mình. Ngoài hỗ trợ ưu tiên nêu trên, chúng tôi không có nghĩa vụ duy trì, cập nhật hoặc hỗ trợ bất kỳ phiên bản nào của Ứng dụng, và các phiên bản cũ có thể không còn nhận bản sửa lỗi bảo mật.
 
-Một số Dịch vụ, chẳng hạn kiểm tra license và Team Library, cần kết nối mạng. Chúng tôi không bảo đảm rằng các Dịch vụ này luôn sẵn sàng, và có thể ngừng cung cấp chúng sau khi thông báo trước trong thời gian hợp lý. Các tính năng trả phí của ứng dụng cho Mac cần máy chủ license của chúng tôi: nếu không liên lạc được với máy chủ, các tính năng này vẫn hoạt động trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất.
+Một số Dịch vụ, chẳng hạn kiểm tra license và Team Library, cần kết nối mạng. Chúng tôi không bảo đảm rằng các Dịch vụ này luôn sẵn sàng, và có thể ngừng cung cấp chúng sau khi thông báo trước trong thời gian hợp lý. Các tính năng trả phí của ứng dụng cho Mac cần máy chủ license của chúng tôi: nếu không liên lạc được với máy chủ, các tính năng này vẫn hoạt động trong khoảng thời gian nêu tại [Sử dụng license](#license).
 
 ## Chấm dứt {#termination}
 

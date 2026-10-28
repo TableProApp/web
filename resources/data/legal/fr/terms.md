@@ -12,7 +12,7 @@ Ces conditions régissent le site web tablepro.app, le portail de comptes, notre
 - **« Application »** désigne TablePro pour Mac et TablePro pour iPhone et iPad, y compris leurs mises à jour et plugins.
 - **« Site web »** désigne tablepro.app, docs.tablepro.app et les autres domaines que nous exploitons.
 - **« Services »** désigne le Site web, le portail de comptes et le serveur que l’application Mac contacte pour les vérifications de licence et Team Library.
-- **« Licence »** désigne une offre payante Starter ou Team, et **« Clé de licence »** l’identifiant qui active ses fonctionnalités dans l’application Mac.
+- **« Licence »** désigne une offre payante Starter ou Team, et **« Clé de licence »** l’identifiant avec lequel les versions de l’application Mac antérieures aux comptes TablePro activent une Licence.
 - **« Vous »** désigne la personne ou l’organisation utilisant les Services ou titulaire d’une Licence.
 
 ## Licence open source {#open-source}
@@ -37,14 +37,14 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 
 ## Utiliser une licence {#license}
 
-Une Licence vous accorde un droit non exclusif et non transférable d’activer les fonctionnalités payantes de l’application Mac avec sa Clé de licence, sur le nombre de Mac et pendant la période prévus par votre offre :
+Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les Mac connectés à votre compte TablePro, dans la limite du nombre et de la période prévus par votre offre :
 
-- Une Licence **Starter** est destinée à une personne, sur un maximum de {starterActivations} Mac.
-- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste correspond à un Mac activé. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
+- Une Licence **Starter** est destinée à une personne, sur un maximum de {deviceLimit} Mac.
+- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} Mac. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
 
-Vous ne pouvez pas partager une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni la sous-licencier, vendre, louer ou transférer autrement sans notre autorisation écrite.
+La limite de {deviceLimit} Mac s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.
 
-L’application Mac vérifie votre Licence auprès de notre serveur tous les {revalidateDays} jours. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et le reste de l’application Mac continue de fonctionner.
+L’application Mac renouvelle votre offre auprès de notre serveur une fois par jour. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner jusqu’à {offlineDays} jours après le dernier renouvellement ou, sur un Mac qui utilise un fichier hors ligne du portail du compte, jusqu’à l’expiration de ce fichier. Les versions antérieures aux comptes TablePro vérifient plutôt une Clé de licence tous les {revalidateDays} jours et gardent les fonctionnalités payantes pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et le reste de l’application Mac continue de fonctionner.
 
 ## Portail de comptes {#account}
 
@@ -97,7 +97,7 @@ Vous acceptez d’indemniser TablePro et ses contributeurs et de les dégager de
 
 Nous publions mises à jour, corrections et nouvelles fonctionnalités à notre discrétion. Hormis l’assistance prioritaire ci-dessus, nous n’avons aucune obligation de maintenir, mettre à jour ou assister une version de l’Application ; les anciennes versions peuvent cesser de recevoir des correctifs de sécurité.
 
-Certains Services, comme les vérifications de licence et Team Library, nécessitent un accès réseau. Nous ne garantissons pas leur disponibilité permanente et pouvons les arrêter avec un préavis raisonnable. Les fonctionnalités payantes de l’application Mac nécessitent notre serveur de licences : s’il est inaccessible, elles continuent de fonctionner pendant {graceDays} jours après la dernière vérification réussie.
+Certains Services, comme les vérifications de licence et Team Library, nécessitent un accès réseau. Nous ne garantissons pas leur disponibilité permanente et pouvons les arrêter avec un préavis raisonnable. Les fonctionnalités payantes de l’application Mac nécessitent notre serveur de licences : s’il est inaccessible, elles continuent de fonctionner pendant la durée indiquée dans [Utiliser une licence](#license).
 
 ## Résiliation {#termination}
 

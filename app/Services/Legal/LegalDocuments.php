@@ -115,7 +115,6 @@ class LegalDocuments
             'refundDays' => $commerce['refundDays'],
             'deviceLimit' => $commerce['deviceLimit'],
             'offlineDays' => $commerce['offlineDays'],
-            'starterActivations' => $commerce['starterActivations'],
             'revalidateDays' => $commerce['revalidateDays'],
             'graceDays' => $commerce['graceDays'],
             'teamMinSeats' => $commerce['teamMinSeats'],

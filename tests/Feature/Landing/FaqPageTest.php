@@ -37,7 +37,7 @@ function faqProvidedSlots(): array
     preg_match_all('/^\s+(?:\.\.\.\(.*?\{ )?([a-zA-Z]+):/m', $block[1] ?? '', $keys);
 
     // The commerce values are spread in by name from the server's `commerce` prop.
-    $commerce = ['merchant', 'currency', 'refundDays', 'deviceLimit', 'offlineDays', 'revalidateDays', 'graceDays', 'starterActivations', 'teamMinSeats', 'supportBusinessDays'];
+    $commerce = ['merchant', 'currency', 'refundDays', 'deviceLimit', 'offlineDays', 'revalidateDays', 'graceDays', 'teamMinSeats', 'supportBusinessDays'];
 
     return array_values(array_unique([...$keys[1], ...$commerce]));
 }

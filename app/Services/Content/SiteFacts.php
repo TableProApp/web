@@ -210,7 +210,7 @@ class SiteFacts
     }
 
     /**
-     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, deviceLimit: int|null, offlineDays: int|null, starterActivations: int|null, revalidateDays: int|null, graceDays: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
+     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, deviceLimit: int|null, offlineDays: int|null, revalidateDays: int|null, graceDays: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
      */
     public function commerce(): array
     {
@@ -222,7 +222,6 @@ class SiteFacts
             'refundDays' => $this->int($pricing['refund']['days'] ?? null),
             'deviceLimit' => $this->int($pricing['license']['deviceLimit'] ?? null),
             'offlineDays' => $this->int($pricing['license']['offlineDays'] ?? null),
-            'starterActivations' => $this->int($pricing['license']['deviceLimit'] ?? null),
             // Versions before TablePro accounts, which keep talking to /v1 until its sunset.
             'revalidateDays' => $this->int($pricing['license']['legacy']['revalidateDays'] ?? null),
             'graceDays' => $this->int($pricing['license']['legacy']['offlineGraceDays'] ?? null),

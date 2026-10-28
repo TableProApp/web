@@ -45,7 +45,6 @@ interface FaqProps {
             refundDays: number | null;
             deviceLimit: number | null;
             offlineDays: number | null;
-            starterActivations: number | null;
             revalidateDays: number | null;
             graceDays: number | null;
             teamMinSeats: number | null;

@@ -12,7 +12,7 @@ Questi termini regolano il sito tablepro.app, il portale dell’account, il nost
 - **"Applicazione"** indica TablePro per Mac e TablePro per iPhone e iPad, inclusi aggiornamenti e plugin.
 - **"Sito"** indica tablepro.app, docs.tablepro.app e gli altri domini che gestiamo.
 - **"Servizi"** indica il Sito, il portale dell’account e il server che l’app per Mac contatta per le verifiche delle licenze e la Team Library.
-- **"Licenza"** indica un piano Starter o Team a pagamento e **"Chiave di licenza"** la credenziale che ne attiva le funzionalità nell’app per Mac.
+- **"Licenza"** indica un piano Starter o Team a pagamento e **"Chiave di licenza"** la credenziale con cui le versioni dell’app per Mac precedenti agli account TablePro attivano una Licenza.
 - **"Tu"** indica la persona o l’organizzazione che usa i Servizi o è titolare di una Licenza.
 
 ## Licenza open source {#open-source}
@@ -37,14 +37,14 @@ I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy).
 
 ## Uso di una licenza {#license}
 
-Una Licenza concede un diritto non esclusivo e non trasferibile di attivare le funzionalità a pagamento dell’app per Mac con la sua Chiave di licenza, sul numero di Mac e per il periodo previsti dal piano:
+Una Licenza concede un diritto non esclusivo e non trasferibile di usare le funzionalità a pagamento dell’app per Mac sui Mac collegati al tuo account TablePro, entro il numero e per il periodo previsti dal piano:
 
-- Una Licenza **Starter** è per una persona, su un massimo di {starterActivations} Mac.
-- Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} posti. Ogni posto è un Mac attivato. Il proprietario e gli amministratori del team invitano i membri, che partecipano tramite un link di invito ricevuto via email.
+- Una Licenza **Starter** è per una persona, su un massimo di {deviceLimit} Mac.
+- Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} posti. Ogni posto è per una persona, su un massimo di {deviceLimit} Mac. Il proprietario e gli amministratori del team invitano i membri, che partecipano tramite un link di invito ricevuto via email.
 
-Non puoi condividere una Chiave di licenza oltre le persone e i Mac coperti dal piano, né concederla in sublicenza, venderla, noleggiarla o trasferirla altrimenti senza la nostra autorizzazione scritta.
+Il limite di {deviceLimit} Mac vale per account, sommando tutte le Licenze che usa. Non puoi condividere il tuo account o una Chiave di licenza oltre le persone e i Mac coperti dal piano, né concedere in sublicenza, vendere, noleggiare o trasferire altrimenti una Licenza o una Chiave di licenza senza la nostra autorizzazione scritta.
 
-L’app per Mac verifica la Licenza con il nostro server ogni {revalidateDays} giorni. Se il server non è raggiungibile, le funzionalità a pagamento continuano a funzionare per {graceDays} giorni dall’ultima verifica riuscita. Quando termina un piano mensile o annuale, le sue funzionalità smettono di funzionare e il resto dell’app per Mac continua a funzionare.
+L’app per Mac rinnova il piano con il nostro server una volta al giorno. Se il server non è raggiungibile, le funzionalità a pagamento continuano a funzionare fino a {offlineDays} giorni dall’ultimo rinnovo o, su un Mac che usa un file offline del portale dell’account, finché il file non scade. Le versioni precedenti agli account TablePro verificano invece una Chiave di licenza ogni {revalidateDays} giorni e mantengono le funzionalità a pagamento per {graceDays} giorni dall’ultima verifica riuscita. Quando termina un piano mensile o annuale, le sue funzionalità smettono di funzionare e il resto dell’app per Mac continua a funzionare.
 
 ## Portale dell’account {#account}
 
@@ -97,7 +97,7 @@ Accetti di indennizzare e tenere indenni TablePro e i suoi collaboratori da qual
 
 Pubblichiamo aggiornamenti, correzioni e nuove funzionalità a nostra discrezione. Oltre all’assistenza prioritaria sopra, non siamo obbligati a mantenere, aggiornare o fornire assistenza per alcuna versione dell’Applicazione; le versioni precedenti possono smettere di ricevere correzioni di sicurezza.
 
-Alcuni Servizi, come verifiche delle licenze e Team Library, richiedono accesso alla rete. Non garantiamo che siano sempre disponibili e possiamo interromperli con un ragionevole preavviso. Le funzionalità a pagamento dell’app per Mac richiedono il nostro server delle licenze: se non è raggiungibile, continuano a funzionare per {graceDays} giorni dall’ultima verifica riuscita.
+Alcuni Servizi, come verifiche delle licenze e Team Library, richiedono accesso alla rete. Non garantiamo che siano sempre disponibili e possiamo interromperli con un ragionevole preavviso. Le funzionalità a pagamento dell’app per Mac richiedono il nostro server delle licenze: se non è raggiungibile, continuano a funzionare per il tempo indicato in [Uso di una licenza](#license).
 
 ## Cessazione {#termination}
 
