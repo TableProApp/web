@@ -37,7 +37,7 @@ TablePro™、TablePro 標誌和 TablePro App 圖示是 {publisherName} 的商�
 
 ## 使用授權 {#license}
 
-授權授予您非專屬、不可轉讓的權利，允許在方案規定的台數和期限內，在登入您的 TablePro 帳戶的 Mac 上使用 Mac App 的付費功能：
+授權授予您非專屬、不可轉讓的權利，允許在方案規定的台數和期限內，在登入您的 TablePro 帳戶的 Mac 上，或在支援 TablePro 帳戶之前的版本中以其授權金鑰啟用的 Mac 上，使用 Mac App 的付費功能：
 
 - **Starter** 授權供一人使用，最多可用於 {deviceLimit} 台 Mac。
 - **Team** 授權按席位定價，最少 {teamMinSeats} 個席位。每個席位供一人使用，最多可用於 {deviceLimit} 台 Mac。團隊擁有者和管理員邀請團隊成員，成員透過郵件中的邀請連結加入。

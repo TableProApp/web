@@ -37,7 +37,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 ## Sử dụng license {#license}
 
-Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên những máy Mac đã đăng nhập tài khoản TablePro của bạn, trong giới hạn số máy và thời hạn của gói bạn mua:
+Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên những máy Mac đã đăng nhập tài khoản TablePro của bạn hoặc, ở các phiên bản trước khi có tài khoản TablePro, đã kích hoạt bằng License Key của License đó, trong giới hạn số máy và thời hạn của gói bạn mua:
 
 - License **Starter** dành cho một người, trên tối đa {deviceLimit} máy Mac.
 - License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy Mac. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.

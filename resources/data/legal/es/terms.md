@@ -37,7 +37,7 @@ Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 
 ## Usar una licencia {#license}
 
-Una Licencia te concede un derecho no exclusivo e intransferible a usar las funciones de pago de la app para Mac en los Mac con sesión iniciada en tu cuenta de TablePro, hasta el número y durante el periodo que contempla tu plan:
+Una Licencia te concede un derecho no exclusivo e intransferible a usar las funciones de pago de la app para Mac en los Mac con sesión iniciada en tu cuenta de TablePro o, en las versiones anteriores a las cuentas de TablePro, activados con su Clave de licencia, hasta el número y durante el periodo que contempla tu plan:
 
 - Una Licencia **Starter** es para una persona, en hasta {deviceLimit} Mac.
 - Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto es para una persona, en hasta {deviceLimit} Mac. El propietario y los administradores del equipo invitan a sus miembros, que se unen mediante un enlace de invitación enviado por correo.

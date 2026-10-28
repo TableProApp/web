@@ -37,7 +37,7 @@ Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 
 ## Eine Lizenz nutzen {#license}
 
-Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App auf den Macs zu nutzen, die bei deinem TablePro-Konto angemeldet sind, bis zur Anzahl und für den Zeitraum deines Tarifs:
+Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App auf den Macs zu nutzen, die bei deinem TablePro-Konto angemeldet sind oder, in Versionen vor den TablePro-Konten, mit ihrem Lizenzschlüssel aktiviert wurden, bis zur Anzahl und für den Zeitraum deines Tarifs:
 
 - Eine **Starter**-Lizenz gilt für eine Person auf bis zu {deviceLimit} Macs.
 - Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.

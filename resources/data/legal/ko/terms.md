@@ -37,7 +37,7 @@ TablePro™, TablePro 로고 및 TablePro 앱 아이콘은 {publisherName}의 �
 
 ## 라이선스 사용 {#license}
 
-라이선스는 플랜에서 정한 대수와 기간 내에서 TablePro 계정에 로그인한 Mac에서 Mac 앱의 유료 기능을 사용할 수 있는 비독점적이며 양도 불가능한 권리를 부여합니다.
+라이선스는 플랜에서 정한 대수와 기간 내에서 TablePro 계정에 로그인한 Mac 또는 TablePro 계정을 지원하기 전 버전에서 해당 라이선스 키로 활성화한 Mac에서 Mac 앱의 유료 기능을 사용할 수 있는 비독점적이며 양도 불가능한 권리를 부여합니다.
 
 - **Starter** 라이선스는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용할 수 있습니다.
 - **Team** 라이선스는 좌석당 요금이며 최소 {teamMinSeats}좌석입니다. 좌석 하나는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. 팀 소유자와 관리자가 팀원을 초대하고 팀원은 이메일로 받은 초대 링크로 참여합니다.

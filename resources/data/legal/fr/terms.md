@@ -37,7 +37,7 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 
 ## Utiliser une licence {#license}
 
-Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les Mac connectés à votre compte TablePro, dans la limite du nombre et de la période prévus par votre offre :
+Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les Mac connectés à votre compte TablePro ou, dans les versions antérieures aux comptes TablePro, activés avec sa Clé de licence, dans la limite du nombre et de la période prévus par votre offre :
 
 - Une Licence **Starter** est destinée à une personne, sur un maximum de {deviceLimit} Mac.
 - Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} Mac. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.

@@ -37,7 +37,7 @@ Refunds are described in the [refund policy](/refund-policy).
 
 ## Using a license {#license}
 
-A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the Macs signed in to your TablePro account, up to the number, and for the period, of your plan:
+A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the Macs signed in to your TablePro account or, in versions before TablePro accounts, activated with its License Key, up to the number, and for the period, of your plan:
 
 - A **Starter** License is for one person, on up to {deviceLimit} Macs.
 - A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} Macs. The team's owner and admins invite its members, who join from an emailed invitation link.

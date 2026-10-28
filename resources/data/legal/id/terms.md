@@ -37,7 +37,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 ## Penggunaan lisensi {#license}
 
-Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar aplikasi Mac pada Mac yang masuk ke akun TablePro Anda, hingga jumlah dan selama periode paket Anda:
+Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar aplikasi Mac pada Mac yang masuk ke akun TablePro Anda atau, pada versi sebelum akun TablePro, yang diaktifkan dengan Kunci Lisensinya, hingga jumlah dan selama periode paket Anda:
 
 - Lisensi **Starter** untuk satu orang, di maksimal {deviceLimit} Mac.
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat untuk satu orang, di maksimal {deviceLimit} Mac. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.

@@ -402,7 +402,9 @@ it('makes the terms agree with priority support, the AGPL and the merchant of re
     expect($terms)->toContain('The AGPL places no conditions on running TablePro')->not->toContain('not to using it');
 
     // A seat is a person on the account's devices (tablepro-cloud product.md, Devices), and the update feed is not ours.
+    // Old builds activate with a License Key over /v1 until its sunset (tablepro-cloud api.md, /v1).
     expect($terms)->toContain('Each seat is for one person, on up to {deviceLimit} Macs')
+        ->toContain('signed in to your TablePro account or, in versions before TablePro accounts, activated with its License Key')
         ->not->toContain('activated Mac')
         ->not->toContain('update server');
 
