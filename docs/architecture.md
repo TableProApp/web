@@ -460,13 +460,25 @@ HTML also carries a `Content-Security-Policy`, built by
 
 The forms call tablepro-cloud from the browser. Run its `make dev` (the API at
 `http://api.localhost:8080`) and set `TABLEPRO_API_ORIGIN=http://api.localhost:8080`
-here, with Polar in its sandbox and mail on its fake. tablepro-cloud answers
+here, with Polar in its sandbox; without its `RESEND_API_KEY` it sends no
+email. tablepro-cloud answers
 CORS for one origin, its `PUBLIC_SITE_URL` (`https://tablepro.app` by default),
 and checks a Turnstile token's hostname against the same URL. `make dev` sets it
 to `http://localhost:8000`, where `php artisan serve` and `composer dev` put
 this site, so open the pages at exactly that address: `http://127.0.0.1:8000`
-is another origin and its calls fail CORS. Set `TURNSTILE_SITE_KEY` to
-Cloudflare's test site key `1x00000000000000000000AA`, which always passes.
+is another origin and its calls fail CORS.
+
+- Checkout opens Polar's overlay on `http://localhost:8000` only once the
+  sandbox organization's Settings > Embedding lists that origin.
+- The newsletter's Turnstile check runs against Cloudflare as in production.
+  With Cloudflare's test keys (`TURNSTILE_SITE_KEY=1x00000000000000000000AA`
+  here) a signup answers 202 and sends nothing: the token's action is `test`,
+  not `newsletter`. A confirmation email needs a Turnstile widget of your own
+  that lists `localhost`, its site key here, and its secret and
+  `RESEND_API_KEY` in tablepro-cloud.
+
+tablepro-cloud's `docs/design/testing.md`, "The public site against make dev",
+has the details.
 
 For styling or copy work, stub the `/v2` answers in the browser instead, or
 ignore them.
