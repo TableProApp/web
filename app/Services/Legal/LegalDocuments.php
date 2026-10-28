@@ -12,40 +12,14 @@ use InvalidArgumentException;
 use RuntimeException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-/**
- * The privacy policy, terms, refund policy and brand guidelines, read from
- * `resources/data/legal/{locale}/{document}.md`.
- *
- * Each file has front matter (`title`, `description`, `updatedAt`) and a
- * markdown body whose headings all carry an explicit id (`## Cookies
- * {#cookies}`), so a link to `/privacy#cookies` lands on the same section in
- * both languages.
- *
- * Facts enter the prose only through `{token}` slots filled from
- * `resources/data` (the refund window from `pricing.json`, the support
- * address, the licence URL and the publisher from `facts.json`, …), so a
- * number, address or name in a policy cannot drift from the data the rest of
- * the site states. A token with no value is an error, not a gap: the document
- * is not rendered half filled.
- *
- * `<cookie-settings></cookie-settings>` on a line of its own marks where the
- * privacy page puts its "Cookie settings" button, and `<brand-assets></brand-assets>`
- * where the brand guidelines put the logo files; the page splits the HTML on
- * it, as the blog does on `<asset-slot>`.
- */
+// A token with no value is an error, so a document never renders half filled.
 class LegalDocuments
 {
-    /**
-     * Route-independent document names.
-     */
     public const DOCUMENTS = ['privacy', 'terms', 'refund-policy', 'brand'];
 
     // Published in English alone, as most open-source trademark policies are.
     public const ENGLISH_ONLY = ['brand'];
 
-    /**
-     * The marker the privacy page replaces with its consent control.
-     */
     public const COOKIE_SETTINGS_MARKER = '<cookie-settings></cookie-settings>';
 
     public const BRAND_ASSETS_MARKER = '<brand-assets></brand-assets>';
@@ -75,10 +49,7 @@ class LegalDocuments
     }
 
     /**
-     * One document in one locale, rendered.
-     *
      * @return array{title: string, description: string, updatedAt: string, updatedAtFormatted: string, html: string, toc: list<array{id: string, title: string}>}
-     *
      * @throws ContentMissingException
      */
     public function render(string $document, string $locale, ?string $permalinkLabel = null): array
@@ -101,10 +72,7 @@ class LegalDocuments
     }
 
     /**
-     * One document in one locale as markdown, its `{token}` slots filled.
-     *
      * @return array{title: string, description: string, updatedAt: CarbonImmutable, body: string}
-     *
      * @throws ContentMissingException
      */
     public function source(string $document, string $locale): array
@@ -126,8 +94,6 @@ class LegalDocuments
     }
 
     /**
-     * The values a document's `{token}` slots take in a locale.
-     *
      * @return array<string, string>
      */
     public function tokens(string $locale): array
@@ -160,8 +126,6 @@ class LegalDocuments
     }
 
     /**
-     * The `{token}` names a document uses in its title, description and body, sorted.
-     *
      * @return list<string>
      */
     public function tokenNames(string $document, string $locale): array
@@ -191,8 +155,6 @@ class LegalDocuments
     }
 
     /**
-     * The document's sections, from its `h2` headings.
-     *
      * @return list<array{id: string, title: string}>
      */
     private function toc(string $html): array

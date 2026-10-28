@@ -24,7 +24,6 @@ import LandingLayout from '@/layouts/landing-layout';
 
 type Interpolate = (template: string, values: Record<string, string | number>) => string;
 
-/** The `{slots}` the page copy uses, every one from pricing.json or facts.json. */
 function copyValues(): Record<string, string | number> {
     return {
         activations: PRICING.tiers.starter.activations,
@@ -47,12 +46,7 @@ interface JsonLdInput {
     fmt: Interpolate;
 }
 
-/**
- * The page's structured data (architecture §1.6): a `WebPage` about the Mac
- * app, and the Mac app with one `Offer` per price the plan cards show, built
- * by the same `macAppNode()` as `/download` so `#app` says the same thing on
- * both pages. No rating, no FAQPage.
- */
+// The same macAppNode() as /download, so #app says the same thing on both pages.
 function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines, m, fmt }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
     const mac = macPlatform();
@@ -80,15 +74,7 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
     ]);
 }
 
-/**
- * `/pricing` and `/vi/pricing` (sitemap §A.1, §E.5; design-system §8.6).
- *
- * The plans with a working checkout, then what a paid plan adds, how a license
- * behaves, billing, refunds, Team, open source and a short FAQ. Every price,
- * seat bound, day count and the merchant's name comes from pricing.json; the
- * features and their tiers from paid-features.json. Nothing here is
- * conversion furniture: no "most popular", no typed saving, no countdown.
- */
+// No conversion furniture: no "most popular", no typed saving, no countdown.
 export default function Pricing({ content, paidFeatures, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();

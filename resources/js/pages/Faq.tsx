@@ -34,7 +34,6 @@ interface FaqProps {
     };
     facts: {
         featuredEngines: string[];
-        /** The engines whose driver comes inside the Mac app. */
         bundledEngines: string[];
         iosEngines: string[];
         importApps: string[];
@@ -55,18 +54,7 @@ interface FaqProps {
     organizationProfiles: string[];
 }
 
-/**
- * `/faq` and `/vi/faq` (sitemap §A.1, design-system §8.12).
- *
- * Seven groups in the sitemap's order, each an `h2` with its questions under
- * it as `h3`s and every answer visible. Answers are copy with `{token}` slots
- * and link tags; this page fills the slots from the data the server read
- * (requirements, names, seat and refund numbers), so an answer never states a
- * fact another page contradicts. A slot whose data is missing stays visible
- * as written, which a test catches, rather than vanishing.
- *
- * No `FAQPage` markup: one `WebPage` with its breadcrumbs.
- */
+// A slot whose data is missing stays visible as written, which a test catches. No FAQPage markup.
 export default function Faq({ content, platforms, facts, links, organizationProfiles }: FaqProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, path } = useI18n();

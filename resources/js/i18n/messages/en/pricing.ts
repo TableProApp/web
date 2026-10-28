@@ -1,20 +1,7 @@
-/**
- * The `pricing` namespace: the plan cards, the billing-cycle control, the plan
- * table and checkout, wherever they render (`/pricing` and the homepage's
- * `#pricing` section).
- *
- * No price, seat bound, day count or percentage is typed here. Each arrives
- * through a `{slot}` from resources/data/pricing.json, and amounts are written
- * by `formatUsd()` with `currency` below. The currency style changes how a
- * number is written, never what is billed: every locale pays in US dollars.
- *
- * Words the commerce rules keep out (positioning §12): no "most popular", no
- * typed saving, no "unlock", no promise of future updates for a one-time
- * purchase, nothing about other ways to pay. A regional discount is named only
- * in `regional`, and only once tablepro-cloud says it applies to the reader.
- */
+// No price, seat bound, day count or percentage is typed here: each comes through a {slot} from resources/data/pricing.json.
+// Commerce rules (positioning §12): no "most popular", typed saving, "unlock", promise of future updates or other ways to pay.
 export default {
-    /** `formatUsd()` style: the amount after a dollar sign, a point before the cents, commas between thousands. */
+    // How formatUsd() writes an amount; every locale is billed in US dollars.
     currency: {
         pattern: '${amount}',
         decimal: '.',
@@ -26,11 +13,7 @@ export default {
         yearly: 'Yearly',
         lifetime: 'One-time',
     },
-    /**
-     * The line under the cycle control. `{percent}` is computed from
-     * pricing.json (twelve monthly payments against one yearly payment,
-     * rounded down), never typed.
-     */
+    // {percent}: twelve monthly payments against one yearly payment, from pricing.json, rounded down.
     captions: {
         monthly: 'Renews every month until you cancel.',
         yearly: 'Renews every year until you cancel. {percent}% less than twelve monthly payments.',
@@ -70,7 +53,6 @@ export default {
             cta: 'Get Team',
         },
     },
-    /** The unit beside a price. */
     units: {
         starter: {
             monthly: 'per month',
@@ -84,9 +66,8 @@ export default {
         },
     },
     seats: {
-        /** The stepper's visible label and accessible name. */
         label: 'Seats',
-        /** Fills `controls.stepper.decrease` / `increase`: "Decrease seats". */
+        // Fills controls.stepper.decrease and increase: "Decrease seats".
         noun: 'seats',
         // Until GET /v2/pricing names a maximum, and when Polar sets none.
         minimum: 'Minimum {min} seats.',
@@ -109,21 +90,18 @@ export default {
             other: 'Emails from Team customers are answered first, within {count} business days.',
         },
     },
-    /** A link to the plan table, after a card's highlighted features. */
+    // A link to the plan table, after a card's highlighted features.
     allFeatures: 'Every paid feature',
     refund: {
         one: 'Every paid plan can be refunded within {count} day of purchase, and each monthly or yearly renewal within {count} day of its charge. See the <link>refund policy</link>.',
         other: 'Every paid plan can be refunded within {count} days of purchase, and each monthly or yearly renewal within {count} days of its charge. See the <link>refund policy</link>.',
     },
-    /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
     finePrint: 'Prices in US dollars. {merchant} handles payment and calculates sales tax or VAT at checkout as merchant of record.',
     comparePlans: 'Compare plans',
-    /** The homepage section (`#pricing`). Its page may pass its own heading and lead instead. */
     section: {
         title: 'Pricing',
         lead: 'TablePro is open source and free to use. Paid plans add optional features to the Mac app.',
     },
-    /** The plan table on /pricing. Its rows are the paid features from paid-features.json. */
     matrix: {
         caption: 'What each plan includes in the Mac app',
         feature: 'Feature',
@@ -135,14 +113,7 @@ export default {
         everythingElseDetail: 'Every supported engine, the SQL editor, the AI assistant, the MCP server and Safe Mode',
         iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Starter or Team.',
     },
-    /**
-     * The regional discount checkout applies in some countries, shown with the
-     * plans once tablepro-cloud has said it applies to this reader
-     * (`GET /v2/pricing`). `{country}` is the country's name in the page's
-     * language, in parentheses so no language needs an article for it;
-     * `{percent}` comes from tablepro-cloud. `listPrice` names the struck price
-     * for a screen reader.
-     */
+    // {country} is in parentheses so no language needs an article for it; listPrice names the struck price for a screen reader.
     regional: {
         note: 'Prices for your country ({country}): {percent}% off, applied at checkout.',
         listPrice: 'List price {price}',
@@ -164,7 +135,6 @@ export default {
         // A 422 on body.seats while no maximum is known.
         seatsMinimum: 'Choose at least {min} seats, then try again.',
     },
-    /** Structured data: one offer per visible price. */
     offers: {
         name: '{plan}, {cycle}',
         seat: 'seat',

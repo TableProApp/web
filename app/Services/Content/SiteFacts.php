@@ -6,24 +6,10 @@ use App\Support\Content\EnginePaths;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\File;
 
-/**
- * The product facts the FAQ, the iPhone and iPad page and the legal pages
- * state, read from `resources/data` on the server.
- *
- * Each of those pages sends the values it states as props, so the page bundle
- * never imports `engines.json` for a handful of names, and no number, name or
- * outbound URL is typed into a content file: the content holds `{token}`
- * slots and symbolic link references, and these values fill them.
- *
- * Every reader degrades rather than throws. A missing or malformed file gives
- * an empty list or null, and the file's own `Data` test is what keeps it
- * valid.
- */
+// Every reader degrades rather than throws: a missing or malformed file gives an empty list or null, and its Data test keeps it valid.
 class SiteFacts
 {
     /**
-     * Decoded files, per instance.
-     *
      * @var array<string, array<array-key, mixed>>
      */
     private array $files = [];
@@ -33,10 +19,6 @@ class SiteFacts
     ) {}
 
     /**
-     * Outbound links from `facts.json` → `links` and `support`, plus the
-     * billing portal from `pricing.json`. Each value is an HTTPS URL or null;
-     * `email` is a bare address or null.
-     *
      * @return array{docs: string|null, changelog: string|null, github: string|null, issues: string|null, discussions: string|null, sponsorsProgram: string|null, license: string|null, appStore: string|null, portal: string|null, email: string|null}
      */
     public function links(): array
@@ -60,9 +42,6 @@ class SiteFacts
     }
 
     /**
-     * Who makes and publishes TablePro, from `facts.json` → `publisher`, with
-     * the city and country as the locale writes them. Null without a name.
-     *
      * @return array{name: string, city: string|null, country: string|null, countryCode: string|null}|null
      */
     public function publisher(string $locale): ?array
@@ -85,10 +64,6 @@ class SiteFacts
         ];
     }
 
-    /**
-     * The day the source repository was created, from `facts.json` →
-     * `openSource.repositoryCreatedAt`, or null.
-     */
     public function repositoryCreatedAt(): ?CarbonImmutable
     {
         $date = $this->json('facts.json')['openSource']['repositoryCreatedAt'] ?? null;
@@ -100,10 +75,8 @@ class SiteFacts
         return CarbonImmutable::createFromFormat('!Y-m-d', $date) ?: null;
     }
 
+    // In the order organizationProfiles() in lib/structured-data.ts uses.
     /**
-     * The organization's own profiles for `sameAs`, in the order
-     * `organizationProfiles()` in lib/structured-data.ts uses.
-     *
      * @return list<string>
      */
     public function organizationProfiles(): array
@@ -123,8 +96,6 @@ class SiteFacts
     }
 
     /**
-     * The featured, published engines' names, in data order.
-     *
      * @return list<string>
      */
     public function featuredEngineNames(): array
@@ -141,10 +112,6 @@ class SiteFacts
     }
 
     /**
-     * The published engines whose driver comes inside the Mac app
-     * (`engines.json` → `distribution: bundled`), in data order. Every other
-     * driver downloads the first time its engine is picked.
-     *
      * @return list<string>
      */
     public function bundledEngineNames(): array
@@ -161,14 +128,6 @@ class SiteFacts
     }
 
     /**
-     * The engines the iPhone and iPad app works with: those its connection
-     * picker offers, in the picker's order (`platforms.json` → `iosEngines`),
-     * and those it opens only when the connection arrives from a Mac.
-     *
-     * Each carries the path of the page that describes it, when that page is a
-     * route this site serves, so a link never points at a page that is not
-     * there.
-     *
      * @param  list<string>  $pickerOrder
      * @return array{picker: list<array{id: string, name: string, href: string|null}>, syncedOnly: list<array{id: string, name: string, href: string|null}>}
      */
@@ -204,8 +163,6 @@ class SiteFacts
     }
 
     /**
-     * The apps TablePro imports connections from, by name, in data order.
-     *
      * @return list<string>
      */
     public function connectionImportApps(): array
@@ -222,8 +179,6 @@ class SiteFacts
     }
 
     /**
-     * The AI providers that run on the Mac itself, by name.
-     *
      * @return list<string>
      */
     public function localAiProviders(): array
@@ -237,8 +192,6 @@ class SiteFacts
     }
 
     /**
-     * The paid features' names per tier, in data order.
-     *
      * @return array{starter: list<string>, team: list<string>}
      */
     public function paidFeatureNames(): array
@@ -257,9 +210,6 @@ class SiteFacts
     }
 
     /**
-     * The commercial numbers the FAQ and the legal pages state, from
-     * `pricing.json`. A value the file does not hold is null.
-     *
      * @return array{merchant: string|null, currency: string|null, refundDays: int|null, revalidateDays: int|null, graceDays: int|null, starterActivations: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
      */
     public function commerce(): array
@@ -278,17 +228,12 @@ class SiteFacts
         ];
     }
 
-    /**
-     * A numeric limit from `facts.json` → `limits`, or null.
-     */
     public function limit(string $id): ?int
     {
         return $this->int($this->json('facts.json')['limits'][$id]['value'] ?? null);
     }
 
     /**
-     * The names of the iPhone and iPad app's Safe Mode levels, in order.
-     *
      * @return list<string>
      */
     public function iosSafeModeLevels(): array
@@ -328,8 +273,6 @@ class SiteFacts
     }
 
     /**
-     * A file in `resources/data`, decoded, or an empty array.
-     *
      * @return array<array-key, mixed>
      */
     private function json(string $file): array
