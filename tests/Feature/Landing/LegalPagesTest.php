@@ -201,9 +201,12 @@ it('keeps the cookie contract the consent bar relies on', function (string $loca
     $privacy = legalSource('privacy', $locale);
     $cookies = legalSection('privacy', $locale, 'cookies');
 
-    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', 'tablepro-session', 'XSRF-TOKEN', 'theme'] as $name) {
+    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', '__Host-tp_session', 'theme', 'sign-in-return-to', 'com.grafana.faro.session'] as $name) {
         expect($cookies)->toContain($name);
     }
+
+    // tablepro-cloud's portal sets one cookie and no CSRF cookie: the Laravel portal's two are gone.
+    expect($cookies)->not->toContain('tablepro-session')->not->toContain('XSRF-TOKEN');
 
     // The banner cannot be closed, so nothing is stored about it and the policy must not say otherwise.
     expect($cookies)->not->toContain('banner');
@@ -219,15 +222,17 @@ it('keeps the cookie contract the consent bar relies on', function (string $loca
     'Vietnamese' => ['vi', 'cơ sở pháp lý', 'Cài đặt cookie'],
 ]);
 
-it('describes purchase attribution as discarded, under the website and the cookies', function (string $locale, string $discarded): void {
+it('describes purchase attribution as checkout metadata kept with the order, under the website and the cookies', function (string $locale, string $kept): void {
     foreach (['website', 'cookies'] as $section) {
         expect(legalSection('privacy', $locale, $section))->toContain('tablepro:attribution');
     }
 
-    expect(legalSection('privacy', $locale, 'website'))->toContain($discarded);
+    // tablepro-cloud stores the utm_* tags and the referrer as Polar checkout metadata and on the order (data-model.md, orders.attribution).
+    expect(legalSection('privacy', $locale, 'website'))->toContain($kept);
+    expect(legalSource('privacy', $locale))->not->toContain('discards it')->not->toContain('bỏ nó đi');
 })->with([
-    'English' => ['en', 'Our server discards it'],
-    'Vietnamese' => ['vi', 'Máy chủ của chúng tôi bỏ nó đi'],
+    'English' => ['en', 'Our server passes the source of the visit to {merchant} as metadata of the checkout'],
+    'Vietnamese' => ['vi', 'Máy chủ của chúng tôi chuyển nguồn của lượt truy cập cho {merchant}'],
 ]);
 
 it('states what the Mac app and the server actually do', function (): void {
@@ -237,9 +242,15 @@ it('states what the Mac app and the server actually do', function (): void {
     expect($mac)
         ->toContain('It is on by default, and the app does not ask before sending the first one.')
         ->toContain('**Settings > General > Privacy**')
-        ->toContain('Share anonymous usage data')
-        ->toContain('ip-api.com')->toContain('ipinfo.io')->toContain('geoplugin.net')
-        ->toContain('unencrypted HTTP');
+        ->toContain('Share anonymous usage data');
+
+    // tablepro-cloud's /v1 heartbeat goes to PostHog with Cloudflare's country, never the key or the IP; no lookup service, no HTTP.
+    expect($mac)->toContain('Our server does not store the report or the IP address it came from.')
+        ->toContain('the country Cloudflare gives for your connection');
+    expect(legalSource('privacy', 'en'))->not->toContain('ip-api.com')->not->toContain('geoplugin.net')->not->toContain('unencrypted HTTP');
+
+    // Devices belong to accounts, and their changes are audited with the request's IP and user agent.
+    expect($mac)->toContain('{#mac-account}')->toContain('macOS Keychain')->toContain('audit log');
 
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
@@ -269,13 +280,44 @@ it('lists the date of the first query for the iPhone report only', function (str
     expect(legalSection('privacy', $locale, 'ios-app'))->toContain(LEGAL_FIRST_QUERY[$locale]);
 })->with(legalLocales());
 
-it('sets no retention period the server does not keep', function (string $locale): void {
+it('sets no retention period the server does not keep', function (string $locale, string $serverLogs): void {
     $retention = legalSection('privacy', $locale, 'retention');
 
     // The previous policy promised 90 days for server logs and "aggregated" analytics; neither was true.
-    expect($retention)->not->toContain('90');
+    preg_match('/^- \*\*' . preg_quote($serverLogs, '/') . '\*\*.*$/m', $retention, $logs);
+    expect($logs[0] ?? '')->not->toBe('')->not->toMatch('/\d/');
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
-})->with(['en', 'vi']);
+})->with([
+    'English' => ['en', 'Web server logs'],
+    'Vietnamese' => ['vi', 'Nhật ký máy chủ web'],
+]);
+
+it('keeps the retention periods tablepro-cloud states', function (): void {
+    $retention = legalSection('privacy', 'en', 'retention');
+
+    // data-model.md, Retention, and operations.md, Observability.
+    expect($retention)->toContain('a deleted item is kept for 90 days')
+        ->toContain('are deleted 7 days later. Portal sessions last 30 days.')
+        ->toContain('**Notifications from {merchant}, Resend and Apple**: 180 days.')
+        ->toContain('A device that has not checked in for 180 days is removed')
+        ->toContain('deletes its PostHog profile and events an hour later')
+        ->toContain('14 days, in Grafana Cloud');
+});
+
+it('describes the account portal tablepro-cloud runs, its sign-in and what it loads', function (): void {
+    $account = legalSection('privacy', 'en', 'account');
+
+    expect($account)->toContain('Apple, GitHub or Google')->toContain('passkeys')->toContain('6-digit code')
+        ->toContain('both expire after 15 minutes')
+        ->toContain('download your account\'s data as a JSON file')
+        ->toContain('no Google Analytics, no Cloudflare Web Analytics')
+        ->toContain('Grafana Faro');
+
+    expect(legalSection('privacy', 'en', 'website'))->toContain('**Newsletter check.**')->toContain('`challenges.cloudflare.com`');
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Resend**')->toContain('**PostHog** (EU Cloud)')->toContain('**Grafana Labs**')
+        ->not->toContain('An email delivery provider');
+    expect(legalSection('privacy', 'en', 'transfers'))->toContain('PostHog processes it in the European Union.');
+});
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
     // The docs once set GA cookies on .tablepro.app with no consent; their bar is English only, so every language names its controls in English.

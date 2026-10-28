@@ -265,7 +265,7 @@ dataset('reviewed facts', [
             'credential profiles (their name and username, never the password)',
             'expanded Dynamic Island',
             'the processor architecture',
-            'looks up a country for each usage report',
+            'without your license key or IP address',
             'the Mac that publishes downloads it again right after',
             'With no table open, it passes the connection\'s name instead',
             'account portal]({account}) at account.tablepro.app',

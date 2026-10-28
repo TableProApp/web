@@ -337,10 +337,9 @@ app has no session and sets no cookies. It is disclosed on `/privacy`.
 The backend passes `source`, `medium`, `campaign`, `term`, `content` and
 `referrer` to the payment provider as checkout metadata (`utm_source` and so on,
 the keys tablepro-cloud reads), so they come back on the order webhook and stay
-with the order. `landing_page` and `first_seen_at` are not kept.
-
-If the backend ever starts keeping it, three things hold, and the privacy
-policy changes first:
+with the order, and sends them to PostHog with `checkout_started` and
+`order_paid`. `landing_page` and `first_seen_at` are not kept. The privacy
+policy says so (Website, Purchase attribution). Three things hold:
 
 1. **Tolerate its absence.** It is missing for every reader who arrived
    untagged, and for every browser that refuses storage. It is not a validation
@@ -407,9 +406,10 @@ added after the page has loaded, and Cloudflare Web Analytics.
 
 - **Cloudflare Web Analytics** is a Cloudflare dashboard setting for
   tablepro.app. Cloudflare injects its beacon (`static.cloudflareinsights.com`)
-  at the edge into every page here and in the account portal; this repository
-  never adds it, so no test here sees it. It sets no cookies, and the privacy
-  policy discloses it (Website, retention and recipients sections).
+  at the edge into every page here; this repository never adds it, so no test
+  here sees it. The account portal's policy (tablepro-cloud) admits no such
+  script, so it does not run there. It sets no cookies, and the privacy policy
+  discloses it (Website, retention and recipients sections).
 
 - **Crisp** is on every page here and in the account portal. Each layout calls
   `loadChatWhenIdle()` (`resources/js/lib/crisp.ts`), which adds the loader
