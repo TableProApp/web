@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/stepper.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useState } from 'react';
 import { Minus, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';

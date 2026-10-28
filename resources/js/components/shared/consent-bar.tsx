@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/consent-bar.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useRef, useState } from 'react';
 import Button from '@/components/ui/button';
 import { textLinkClasses } from '@/components/ui/text-link';

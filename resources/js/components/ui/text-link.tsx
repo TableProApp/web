@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/text-link.tsx. Change both in the same release. See docs/shared-files.md. */
 import type { AriaAttributes, MouseEvent, ReactNode, Ref } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -57,10 +56,8 @@ interface TextLinkProps extends AriaAttributes {
 /**
  * A plain `<a>`.
  *
- * Always plain, never a client-side visit: links between the public site and
- * the account app cross applications, and each answers with its own HTML and
- * asset version. The public site renders its own internal links through
- * `LocaleLink` with `textLinkClasses()` instead.
+ * Always plain, never a client-side visit. The public site renders its own
+ * internal links through `LocaleLink` with `textLinkClasses()` instead.
  *
  * The link text names its destination. "Learn more" and "Click here" are not
  * link text.

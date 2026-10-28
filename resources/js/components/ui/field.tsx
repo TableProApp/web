@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/field.tsx. Change both in the same release. See docs/shared-files.md. */
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { CircleAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';

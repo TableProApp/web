@@ -1,4 +1,4 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/lib/crisp.ts. Change both in the same release. See docs/shared-files.md. */
+/* Shared by TableProApp/web at resources/js/lib/crisp.ts and TableProApp/cloud at web/apps/portal/src/lib/crisp.ts. Change both in the same release. See docs/shared-files.md in TableProApp/web. */
 
 /**
  * Live chat on every page.

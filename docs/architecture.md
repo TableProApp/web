@@ -98,9 +98,6 @@ their browser (`resources/js/lib/language-suggestion.ts`):
 Steps 1 and 2 run in a head script in `app.blade.php` before first paint, so
 the bar takes the slot without moving anything; step 3, the one network call,
 runs after load. ✕ stops that language for good in this browser. No analytics.
-The account app runs the same tag and country tables, on the server, for a
-reader with no explicit, session or stored language (its `LocaleResolver`);
-the two copies are compared by its `LanguageRegionsConfigTest`.
 
 ### Where the content lives
 
@@ -371,16 +368,8 @@ Mode**, and nothing about it is optional:
 The advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`)
 are denied for everyone, always. Nothing here advertises, and `/privacy` says so.
 
-**The account portal is the other half.** `/account`, `/checkout`, `/thank-you`
-and the newsletter pages are the platform app, on this same origin. It carries a
-copy of the tag, the bar and `consent.ts`, reads the same storage key, and so
-shares one answer with this site. Change the key, the consent defaults or the
-measurement ID in one repository and the other has to follow in the same
-release, or a reader is asked twice and counted as two users.
-
-The platform app also redacts what it sends: its pages are reached through
-signed links and order IDs, and GA — unlike Plausible — records the full URL.
-See `App\Support\AnalyticsLocation` there.
+The account portal, `account.tablepro.app`, is another origin: it reads none
+of this site's storage and runs no Google Analytics.
 
 Events are sent only once the reader has chosen Allow: `trackEvent`
 (`resources/js/lib/analytics.ts`) reads the stored answer and drops the event
@@ -528,6 +517,6 @@ checked more than 30 days ago (`--max-age`) and compares every last release
 that cites a GitHub releases page with GitHub. Prices and features have no feed,
 so a stale row means re-reading that product's sources. Also run by hand.
 
-A few files are byte-identical with the platform app: the design tokens, the
-fonts, the theme partial and the consent and theme modules.
-`docs/shared-files.md` lists them and how to change them.
+A few files are byte-identical with tablepro-cloud's portal: the design tokens,
+the CJK font stacks and the chat loader. `docs/shared-files.md` lists them and
+how to change them.

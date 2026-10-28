@@ -387,7 +387,7 @@ it('gives the footer bar\'s controls a 44px target on a touch screen', function 
         ->toContain("iconsOnly ? 'size-9 justify-center sm:size-8 pointer-coarse:size-11'");
 });
 
-it('draws the footer as cells that close on the bar shared with the account app', function (): void {
+it('draws the footer as cells that close on the footer bar', function (): void {
     $footer = (string) file_get_contents(resource_path('js/components/site/site-footer.tsx'));
 
     expect($footer)->toContain('<CellGrid')

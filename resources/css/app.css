@@ -1,8 +1,8 @@
 @import "tailwindcss";
 /*
- * The shared foundation first: the hand-ordered font faces, the design tokens
- * and the page frame, all byte-identical in the account app
- * (docs/shared-files.md). Everything below is this site's own.
+ * The foundation first: the hand-ordered font faces, the design tokens, the
+ * page frame and the CJK font stacks. The tokens and the font stacks are
+ * shared with tablepro-cloud's portal (docs/shared-files.md).
  */
 @import "./fonts.css";
 @import "./tokens.css";

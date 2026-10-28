@@ -197,7 +197,7 @@ it('closes every bold span on the rendered page', function (string $locale): voi
     }
 })->with(legalLocales());
 
-it('keeps the cookie contract the consent bar and the account app rely on', function (string $locale, string $basis, string $settings): void {
+it('keeps the cookie contract the consent bar relies on', function (string $locale, string $basis, string $settings): void {
     $privacy = legalSource('privacy', $locale);
     $cookies = legalSection('privacy', $locale, 'cookies');
 

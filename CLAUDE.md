@@ -98,8 +98,9 @@ server (`docs/architecture.md`, "The language bar").
 - Every page sends a Content-Security-Policy. A new third-party host (script,
   frame, fetch, image, font) needs a source in
   `App\Support\Security\ContentSecurityPolicy`, or the browser blocks it.
-- A few files are byte-identical with the account app (tokens, fonts, the theme
-  partial, …). Change them in both repositories at once: `docs/shared-files.md`.
+- A few files are byte-identical with tablepro-cloud's portal (`tokens.css`,
+  `international.css`, `crisp.ts`). Change them in both repositories at once:
+  `docs/shared-files.md`.
 
 ## Commands
 
@@ -110,7 +111,7 @@ php artisan test --compact --filter=BlogTest
 npm run typecheck               # includes the catalog parity between locales
 npm run test:js
 vendor/bin/pint                 # fix code style before finishing
-npm run check:shared -- ../license   # diff the files shared with the account app
+npm run check:shared -- ../tablepro-cloud   # diff the files shared with tablepro-cloud's portal
 php artisan sitemap:generate
 WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=my-post   # needs Chromium (PUPPETEER_EXECUTABLE_PATH); cards print WEB_DOMAIN
 php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: a supported locale code or all

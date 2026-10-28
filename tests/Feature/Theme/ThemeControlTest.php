@@ -44,7 +44,7 @@ it('takes every word as a prop and imports only shared modules', function (): vo
     expect($imports[1])->toEqualCanonicalizing(['react', 'lucide-react', '@/lib/theme', '@/lib/utils']);
     expect($source)->not->toContain('useI18n')->not->toContain('usePage');
 
-    // The file is shared with the account app, so every word arrives through `labels`.
+    // Every word arrives through `labels`, so each language passes its own.
     foreach (['Light', 'Dark', 'System', 'Theme'] as $word) {
         expect($source)->not->toMatch("/>\s*{$word}\s*</");
     }

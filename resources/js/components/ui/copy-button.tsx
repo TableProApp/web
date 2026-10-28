@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/copy-button.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { cn } from '@/lib/utils';

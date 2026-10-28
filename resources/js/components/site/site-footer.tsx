@@ -154,8 +154,7 @@ function Newsletter() {
  * design-system §4.7). Below it the newsletter and the five groups are cells
  * of one CellGrid: the newsletter a full-width row, then the groups in two
  * columns on a phone, three from 640px and five from 1024px. A phone sees
- * only the horizontals. The shared FooterBar closes it, the same row as in the
- * account app.
+ * only the horizontals. FooterBar closes it.
  */
 export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();

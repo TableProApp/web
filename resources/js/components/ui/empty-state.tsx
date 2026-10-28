@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/empty-state.tsx. Change both in the same release. See docs/shared-files.md. */
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 

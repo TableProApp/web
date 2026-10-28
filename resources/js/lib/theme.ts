@@ -1,11 +1,6 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/lib/theme.ts. Change both in the same release. See docs/shared-files.md. */
-
 /**
- * The reader's theme: reading it, applying it, and keeping every open tab of
- * both applications on this origin in step.
- *
- * The public site and the account app both live on `tablepro.app`, so they
- * share one `localStorage` and one `theme` key. The pre-paint script in
+ * The reader's theme: reading it, applying it, and keeping every open tab in
+ * step. The pre-paint script in
  * `resources/views/partials/head-theme.blade.php` makes the same decision as
  * `resolveDark()` below before anything is drawn; this module takes over once
  * the page is interactive.

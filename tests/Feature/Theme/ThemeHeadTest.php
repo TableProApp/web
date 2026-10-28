@@ -27,10 +27,10 @@ function themeScannedSources(): array
     return $files;
 }
 
-it('is the design system\'s script, verbatim, behind the shared header', function (): void {
+it('is the design system\'s script, verbatim', function (): void {
     $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));
 
-    expect(strtok($partial, "\n"))->toBe('{{-- Shared with TableProApp/web and TableProApp/license at resources/views/partials/head-theme.blade.php. Change both in the same release. See docs/shared-files.md. --}}');
+    expect($partial)->toStartWith('<meta name="theme-color"');
 
     $spec = base_path('docs/rebuild/design/design-system.md');
 

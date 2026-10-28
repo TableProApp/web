@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\Assert;
 
-// The account app keeps a copy of this test against the same tokens.css.
+// tablepro-cloud's portal paints with the same tokens.css (docs/shared-files.md).
 
 /**
  * @return array<string, array{float, float, float}>

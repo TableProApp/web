@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/frame-rails.tsx. Change both in the same release. See docs/shared-files.md. */
 /**
  * The page frame's two rails: 1px `--rule` verticals on the wide Container's
  * outer edge, from 1280px (design-system §4.7).
