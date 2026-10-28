@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "Seat",
         "noun": "seat",
+        "minimum": "Minimum {min} seat.",
         "bounds": "Minimum {min} seat, maksimum {max}.",
         "clamped": {
             "min": "Diubah ke minimum, {min} seat.",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "Tidak dapat membuka checkout. Coba lagi.",
         "planUnavailable": "Paket ini sedang tidak dijual. Pilih siklus penagihan lain atau coba lagi nanti.",
-        "seats": "Pilih antara {min} dan {max} seat, lalu coba lagi."
+        "seats": "Pilih antara {min} dan {max} seat, lalu coba lagi.",
+        "seatsMinimum": "Pilih setidaknya {min} seat, lalu coba lagi."
     },
     "offers": {
         "name": "{plan}, {cycle}",

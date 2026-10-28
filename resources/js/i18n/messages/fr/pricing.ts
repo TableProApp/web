@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "Postes",
         "noun": "postes",
+        "minimum": "Minimum {min} postes.",
         "bounds": "Minimum {min} postes, maximum {max}.",
         "clamped": {
             "min": "Nombre ajusté au minimum de {min} postes.",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "Impossible d’ouvrir le paiement. Réessayez.",
         "planUnavailable": "Cette offre n’est pas en vente pour le moment. Choisissez une autre périodicité de facturation ou réessayez plus tard.",
-        "seats": "Choisissez entre {min} et {max} postes, puis réessayez."
+        "seats": "Choisissez entre {min} et {max} postes, puis réessayez.",
+        "seatsMinimum": "Choisissez au moins {min} postes, puis réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

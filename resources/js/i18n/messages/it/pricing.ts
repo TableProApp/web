@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "Posti",
         "noun": "posti",
+        "minimum": "Minimo {min} posti.",
         "bounds": "Minimo {min} posti, massimo {max}.",
         "clamped": {
             "min": "Modificato al minimo di {min} posti.",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "Impossibile aprire il checkout. Riprova.",
         "planUnavailable": "Questo piano al momento non è in vendita. Scegli un altro periodo di fatturazione o riprova più tardi.",
-        "seats": "Scegli tra {min} e {max} posti, poi riprova."
+        "seats": "Scegli tra {min} e {max} posti, poi riprova.",
+        "seatsMinimum": "Scegli almeno {min} posti, poi riprova."
     },
     "offers": {
         "name": "{plan}, {cycle}",

@@ -40,7 +40,7 @@ Os reembolsos são descritos na [política de reembolso](/pt-BR/refund-policy).
 Uma Licença concede um direito não exclusivo e intransferível de ativar os recursos pagos do app para Mac com sua Chave de Licença, no número de Macs e pelo período previstos no plano:
 
 - Uma Licença **Starter** é para uma pessoa, em até {starterActivations} Macs.
-- Uma Licença **Team** é cobrada por vaga, com no mínimo {teamMinSeats} e no máximo {teamMaxSeats} vagas. Cada vaga corresponde a um Mac ativado. O comprador convida membros da equipe, que participam com um código de convite.
+- Uma Licença **Team** é cobrada por vaga, com no mínimo {teamMinSeats} vagas. Cada vaga corresponde a um Mac ativado. O comprador convida membros da equipe, que participam com um código de convite.
 
 Você não pode compartilhar uma Chave de Licença além das pessoas e Macs cobertos pelo plano, nem sublicenciá-la, vendê-la, alugá-la ou transferi-la de outra forma sem nossa autorização por escrito.
 

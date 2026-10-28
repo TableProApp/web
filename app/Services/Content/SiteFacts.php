@@ -260,7 +260,7 @@ class SiteFacts
      * The commercial numbers the FAQ and the legal pages state, from
      * `pricing.json`. A value the file does not hold is null.
      *
-     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, revalidateDays: int|null, graceDays: int|null, starterActivations: int|null, teamMinSeats: int|null, teamMaxSeats: int|null, supportBusinessDays: int|null}
+     * @return array{merchant: string|null, currency: string|null, refundDays: int|null, revalidateDays: int|null, graceDays: int|null, starterActivations: int|null, teamMinSeats: int|null, supportBusinessDays: int|null}
      */
     public function commerce(): array
     {
@@ -274,7 +274,6 @@ class SiteFacts
             'graceDays' => $this->int($pricing['license']['offlineGraceDays'] ?? null),
             'starterActivations' => $this->int($pricing['tiers']['starter']['activations'] ?? null),
             'teamMinSeats' => $this->int($pricing['tiers']['team']['seats']['min'] ?? null),
-            'teamMaxSeats' => $this->int($pricing['tiers']['team']['seats']['max'] ?? null),
             'supportBusinessDays' => $this->int($pricing['tiers']['team']['prioritySupport']['responseBusinessDays'] ?? null),
         ];
     }

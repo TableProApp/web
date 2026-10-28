@@ -151,7 +151,6 @@ class LegalDocuments
             'graceDays' => $commerce['graceDays'],
             'starterActivations' => $commerce['starterActivations'],
             'teamMinSeats' => $commerce['teamMinSeats'],
-            'teamMaxSeats' => $commerce['teamMaxSeats'],
             'publisherName' => $publisher['name'] ?? null,
             'publisherCity' => $publisher['city'] ?? null,
             'publisherCountry' => $publisher['country'] ?? null,

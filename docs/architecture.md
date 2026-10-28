@@ -216,7 +216,7 @@ in production, shared with every page as the `apiOrigin` prop and read through
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
+| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, max_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
 | `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
 | `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
 | `POST /v2/newsletter/subscriptions` | `{email, locale, turnstile_token}` | 202, whether or not the address was new |
@@ -246,6 +246,13 @@ equals its price in `pricing.json` and one percentage applies to all of them;
 otherwise the list prices stand. The cached HTML, the structured data and the
 first paint keep the list prices. It is the one place the site names a regional
 price (positioning §9).
+
+The same answer gives the Team seat field its maximum: `max_seats` of the Team
+plan for the chosen cycle (`useTeamMaxSeats`), the top of Polar's seat tiers.
+`pricing.json` holds only the minimum. Before the answer, after a failed one,
+and for a cycle whose `max_seats` is null, the field has no maximum and says
+only the minimum; checkout's 422 on `body.seats` then asks for at least the
+minimum, and names the maximum once it is known.
 
 The code field under the cards is always there: with a regional discount
 tablepro-cloud hands Polar that discount, and Polar's checkout then takes no

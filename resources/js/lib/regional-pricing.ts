@@ -56,3 +56,23 @@ export function parseRegional(body: unknown, list: ListCents): Regional | null {
 
     return percent === null ? null : { country, percent };
 }
+
+// Per cycle, the most seats a checkout of the per-seat plan sells; a cycle Polar sets no limit for is left out.
+export function parseSeatMaximums(body: unknown, plan: string, min: number): Record<string, number> {
+    const { plans } = record(body);
+    const maximums: Record<string, number> = {};
+
+    if (!Array.isArray(plans)) {
+        return maximums;
+    }
+
+    for (const answer of plans.map(record)) {
+        const max = answer.max_seats;
+
+        if (answer.plan === plan && answer.per_seat === true && typeof answer.cycle === 'string' && typeof max === 'number' && Number.isInteger(max) && max >= min) {
+            maximums[answer.cycle] = max;
+        }
+    }
+
+    return maximums;
+}

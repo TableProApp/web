@@ -11,7 +11,7 @@ use Symfony\Component\Finder\SplFileInfo;
  *     tiers: array{
  *         free: array{price: int|float},
  *         starter: array{unit: string, prices: array<string, int|float>, activations: int},
- *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int, max: int}, activationsPerSeat: int, prioritySupport: array{responseBusinessDays: int}}
+ *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int}, activationsPerSeat: int, prioritySupport: array{responseBusinessDays: int}}
  *     },
  *     refund: array{days: int, scope: string},
  *     license: array{revalidateDays: int, offlineGraceDays: int, perpetualFallback: bool},
@@ -68,10 +68,10 @@ it('keeps every price unchanged', function (): void {
     expect(array_map(pricingCents(...), $tiers['starter']['prices']))->toBe(['monthly' => 299, 'yearly' => 2400, 'lifetime' => 5900]);
     expect($tiers['starter']['activations'])->toBe(2);
 
-    // Team: priced per seat, a seat being one activated Mac, 5 to 200 seats.
+    // Team: priced per seat, a seat being one activated Mac, at least 5; the most a checkout sells comes from GET /v2/pricing.
     expect($tiers['team']['unit'])->toBe('seat');
     expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 125, 'yearly' => 1000, 'lifetime' => 2500]);
-    expect($tiers['team']['seats'])->toBe(['min' => 5, 'max' => 200]);
+    expect($tiers['team']['seats'])->toBe(['min' => 5]);
     expect($tiers['team']['activationsPerSeat'])->toBe(1);
 });
 

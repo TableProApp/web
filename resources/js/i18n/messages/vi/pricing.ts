@@ -64,6 +64,7 @@ export default {
     seats: {
         label: 'Số seat',
         noun: 'số seat',
+        minimum: 'Tối thiểu {min} seat.',
         bounds: 'Tối thiểu {min} seat, tối đa {max} seat.',
         clamped: {
             min: 'Đã đổi thành mức tối thiểu là {min} seat.',
@@ -120,6 +121,7 @@ export default {
         failed: 'Không mở được trang thanh toán. Hãy thử lại.',
         planUnavailable: 'Gói này hiện chưa mở bán. Hãy chọn chu kỳ thanh toán khác hoặc thử lại sau.',
         seats: 'Hãy chọn từ {min} đến {max} seat rồi thử lại.',
+        seatsMinimum: 'Hãy chọn ít nhất {min} seat rồi thử lại.',
     },
     offers: {
         name: '{plan}, {cycle}',

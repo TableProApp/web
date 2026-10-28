@@ -71,14 +71,14 @@ export interface OfferInput {
     cycle?: BillingCycle;
     /** What one unit of the price buys, such as "seat"; omitted for a whole license. */
     unitText?: string;
-    /** How many units one purchase can hold, where the page states it: a Team plan's seat bounds. */
-    quantity?: { min: number; max: number };
+    // A Team plan's seat minimum; the maximum comes from GET /v2/pricing after rendering, so the HTML states none.
+    quantity?: { min: number; max?: number };
 }
 
 /** The parts of `resources/data/pricing.json` the offers are built from. */
 export interface PricingFacts {
     currency: string;
-    tiers: Record<string, { price?: number; unit?: string; prices?: Partial<Record<BillingCycle, number>>; seats?: { min: number; max: number } }>;
+    tiers: Record<string, { price?: number; unit?: string; prices?: Partial<Record<BillingCycle, number>>; seats?: { min: number; max?: number } }>;
 }
 
 const BILLING_DURATION: Record<Exclude<BillingCycle, 'lifetime'>, string> = {
@@ -228,7 +228,7 @@ export function offerNode(input: OfferInput): JsonLdNode {
                   eligibleQuantity: {
                       '@type': 'QuantitativeValue',
                       minValue: input.quantity.min,
-                      maxValue: input.quantity.max,
+                      ...(input.quantity.max !== undefined ? { maxValue: input.quantity.max } : {}),
                       ...(input.unitText !== undefined ? { unitText: input.unitText } : {}),
                   },
               }

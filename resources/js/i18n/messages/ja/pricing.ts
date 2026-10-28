@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "シート数",
         "noun": "シート数",
+        "minimum": "最小 {min} シート。",
         "bounds": "最小 {min} シート、最大 {max} シート。",
         "clamped": {
             "min": "最小の {min} シートに変更しました。",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "購入手続きを開けませんでした。もう一度お試しください。",
         "planUnavailable": "このプランは現在販売していません。別の請求サイクルを選ぶか、しばらくしてからもう一度お試しください。",
-        "seats": "{min}〜{max} シートの範囲で選び、もう一度お試しください。"
+        "seats": "{min}〜{max} シートの範囲で選び、もう一度お試しください。",
+        "seatsMinimum": "{min} シート以上を選び、もう一度お試しください。"
     },
     "offers": {
         "name": "{plan}（{cycle}）",

@@ -40,7 +40,7 @@ Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 Una Licencia te concede un derecho no exclusivo e intransferible a activar las funciones de pago de la app para Mac con su Clave de licencia, en el número de Mac y durante el periodo que contempla tu plan:
 
 - Una Licencia **Starter** es para una persona, en hasta {starterActivations} Mac.
-- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} y un máximo de {teamMaxSeats} puestos. Cada puesto corresponde a un Mac activado. El comprador invita a los miembros del equipo, que se unen mediante un código de invitación.
+- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto corresponde a un Mac activado. El comprador invita a los miembros del equipo, que se unen mediante un código de invitación.
 
 No puedes compartir una Clave de licencia fuera de las personas y los Mac que cubre tu plan, ni sublicenciarla, venderla, alquilarla o transferirla de otro modo sin nuestro permiso por escrito.
 

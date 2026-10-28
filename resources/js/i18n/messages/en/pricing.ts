@@ -88,6 +88,8 @@ export default {
         label: 'Seats',
         /** Fills `controls.stepper.decrease` / `increase`: "Decrease seats". */
         noun: 'seats',
+        // Until GET /v2/pricing names a maximum, and when Polar sets none.
+        minimum: 'Minimum {min} seats.',
         bounds: 'Minimum {min} seats, maximum {max}.',
         // Replaces `bounds` after a typed count was out of range.
         clamped: {
@@ -159,6 +161,8 @@ export default {
         failed: "Couldn't open checkout. Try again.",
         planUnavailable: "This plan isn't for sale right now. Choose another billing cycle, or try again later.",
         seats: 'Choose between {min} and {max} seats, then try again.',
+        // A 422 on body.seats while no maximum is known.
+        seatsMinimum: 'Choose at least {min} seats, then try again.',
     },
     /** Structured data: one offer per visible price. */
     offers: {

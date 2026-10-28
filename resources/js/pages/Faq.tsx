@@ -48,7 +48,6 @@ interface FaqProps {
             graceDays: number | null;
             starterActivations: number | null;
             teamMinSeats: number | null;
-            teamMaxSeats: number | null;
             supportBusinessDays: number | null;
         };
     };

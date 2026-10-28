@@ -33,7 +33,6 @@ function copyValues(): Record<string, string | number> {
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
         min: PRICING.tiers.team.seats.min,
-        max: PRICING.tiers.team.seats.max,
         email: SUPPORT_EMAIL,
     };
 }

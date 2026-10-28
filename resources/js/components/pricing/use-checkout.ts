@@ -27,6 +27,8 @@ export interface CheckoutError {
 
 export interface StartOptions {
     seats?: number;
+    // From GET /v2/pricing; null before it answers, or when Polar sets no limit.
+    maxSeats?: number | null;
     discountCode?: string | null;
 }
 
@@ -89,7 +91,10 @@ export function useCheckout() {
                 failed: m.pricing.checkout.failed,
                 tooMany: m.forms.tooMany,
                 planUnavailable: m.pricing.checkout.planUnavailable,
-                seats: fmt(m.pricing.checkout.seats, PRICING.tiers.team.seats),
+                seats:
+                    options.maxSeats === undefined || options.maxSeats === null
+                        ? fmt(m.pricing.checkout.seatsMinimum, { min: PRICING.tiers.team.seats.min })
+                        : fmt(m.pricing.checkout.seats, { min: PRICING.tiers.team.seats.min, max: options.maxSeats }),
             });
 
             if (outcome.kind === 'error') {

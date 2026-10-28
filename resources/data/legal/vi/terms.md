@@ -40,7 +40,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 Một License cho bạn quyền không độc quyền, không chuyển nhượng, để kích hoạt các tính năng trả phí của ứng dụng cho Mac bằng License Key của nó, trên số máy Mac và trong thời hạn của gói bạn mua:
 
 - License **Starter** dành cho một người, trên tối đa {starterActivations} máy Mac.
-- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} và tối đa {teamMaxSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Người mua mời các thành viên nhóm, và họ tham gia bằng một mã mời.
+- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Người mua mời các thành viên nhóm, và họ tham gia bằng một mã mời.
 
 Bạn không được chia sẻ License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
 

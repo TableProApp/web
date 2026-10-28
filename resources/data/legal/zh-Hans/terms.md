@@ -40,7 +40,7 @@ TablePro™、TablePro 徽标和 TablePro 应用图标是 {publisherName} 的商
 许可证授予您非独占、不可转让的权利，允许在方案规定的 Mac 台数和期限内，用许可证密钥激活 Mac 应用的付费功能：
 
 - **Starter** 许可证供一人使用，最多可用于 {starterActivations} 台 Mac。
-- **Team** 许可证按席位定价，最少 {teamMinSeats} 个席位，最多 {teamMaxSeats} 个席位。每个席位对应一台已激活的 Mac。购买者邀请团队成员，成员使用邀请代码加入。
+- **Team** 许可证按席位定价，最少 {teamMinSeats} 个席位。每个席位对应一台已激活的 Mac。购买者邀请团队成员，成员使用邀请代码加入。
 
 未经我们书面许可，您不得在方案所涵盖的人员和 Mac 范围之外共享许可证密钥，也不得再许可、出售、出租或以其他方式转让密钥。
 

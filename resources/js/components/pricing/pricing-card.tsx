@@ -20,45 +20,22 @@ export type PricingCardVariant = 'full' | 'compact';
 interface PricingCardProps {
     tier: TierId;
     cycle: BillingCycle;
-    /** `compact` (the homepage) leaves out the Includes list. */
+    // `compact` (the homepage) leaves out the Includes list.
     variant: PricingCardVariant;
-    /** The title's element: `h3` under a section's `h2`, `h2` when the cards sit directly under the page's `h1`. */
     headingLevel: 'h2' | 'h3';
     checkout: Checkout;
-    /** Team only. */
     seats: number;
+    // Null until GET /v2/pricing names one for this cycle, and when Polar sets none.
+    maxSeats: number | null;
     onSeatsChange: (seats: number) => void;
-    /** A previewed, valid discount code, sent with checkout. */
     discountCode: string | null;
     // Null until GET /v2/pricing says checkout applies one to this reader.
     regional: Regional | null;
 }
 
-/**
- * One plan (design-system §5.3.18 `PricingCard`): the name and one line, the
- * price with its unit, Team's seat stepper and live total, what one license
- * covers, the action, and (on `/pricing`) what the plan includes.
- *
- * The three cards are equal: same width, same `secondary` buttons, no badge
- * and no highlighted card. Each is a cell of the plans' `CellGrid`, so it has
- * no border, corner or fill of its own (design-system §4.7). No plan is "most popular", and the price is the
- * focal point.
- *
- * From 1024px the parent grid lays the cards' rows on shared tracks
- * (`grid-rows-subgrid`), so the prices, the actions and the lists line up
- * across the three cards whatever each one holds. The price and what one
- * license covers share one track: Team's seat stepper makes that track tall,
- * and the spare height in Free and Starter then falls under their activation
- * line, above the button, instead of between the price and the line that
- * explains it.
- *
- * From 768 to 1023px the cards stack full width, so a full card has two
- * columns inside (design-system §5.3.18): the price, activation and action on
- * the left, what the plan includes on the right. A compact card keeps one
- * column with its button at a readable width. Below 768px each card is one
- * column.
- */
-export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode, regional }: PricingCardProps) {
+// From 1024px the rows sit on the parent's subgrid tracks, so prices, actions and lists line up across the cards, and
+// the spare height in Free and Starter falls under the activation line rather than between the price and that line.
+export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, maxSeats, onSeatsChange, discountCode, regional }: PricingCardProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
     const Title = headingLevel;
@@ -81,7 +58,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             </div>
 
             <div className="grid content-start gap-4 md:max-lg:col-start-1">
-                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} regional={regional} />}</div>
+                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} maxSeats={maxSeats} onSeatsChange={onSeatsChange} regional={regional} />}</div>
 
                 <p className="type-small text-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
@@ -102,7 +79,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                         loading={checkout.pending === tier}
                         onPointerEnter={checkout.warm}
                         onFocus={checkout.warm}
-                        onClick={() => void checkout.start(tier, cycle, { seats: tier === 'team' ? seats : undefined, discountCode })}
+                        onClick={() => void checkout.start(tier, cycle, { seats: tier === 'team' ? seats : undefined, maxSeats, discountCode })}
                     >
                         {m.pricing.tiers[tier].cta}
                     </Button>
@@ -119,11 +96,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
     );
 }
 
-/**
- * An amount and its unit. With `listAmount`, the amount is what a regional
- * discount brings it to, and the list price stands struck through before it,
- * named for a screen reader, which reads no strikethrough.
- */
+// A screen reader reads no strikethrough, so the struck list price is named in words too.
 function Price({ amount, listAmount, unit, hidden = false }: { amount: number; listAmount?: number; unit?: string; hidden?: boolean }) {
     const { m, fmt } = useI18n();
 
@@ -145,22 +118,14 @@ interface PaidPriceProps {
     tier: PaidTierId;
     cycle: BillingCycle;
     seats: number;
+    maxSeats: number | null;
     onSeatsChange: (seats: number) => void;
     regional: Regional | null;
 }
 
-/**
- * A paid plan's price in every cycle, so the page's HTML states each price
- * its structured data offers; only the chosen cycle's is shown. Team adds the
- * seat stepper, its bounds from pricing.json and the total for the seats
- * chosen, announced as it changes. The total line keeps its height, so
- * stepping moves nothing.
- *
- * Under a regional discount every amount is what checkout will charge. Team's
- * total is discounted as a whole, as checkout discounts the order, so it can
- * differ by a cent from the seat price times the seats.
- */
-function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPriceProps) {
+// Every cycle's price is in the HTML, so the page states each price its structured data offers. Team's total is
+// discounted as a whole, as checkout discounts the order, so it can differ by a cent from the seat price times the seats.
+function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
@@ -180,9 +145,17 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPricePro
         return <>{prices}</>;
     }
 
-    const { min, max } = PRICING.tiers.team.seats;
+    const { min } = PRICING.tiers.team.seats;
+    const max = maxSeats;
     const boundsId = `${id}-bounds`;
     const total = formatUsd(charged(teamTotal(seats, cycle)), m.pricing.currency);
+    // A cycle without a maximum can follow one that had it, so a stale `max` bound reads as the plain caption.
+    const caption =
+        bound === 'min'
+            ? fmt(m.pricing.seats.clamped.min, { min })
+            : max === null
+              ? fmt(m.pricing.seats.minimum, { min })
+              : fmt(bound === 'max' ? m.pricing.seats.clamped.max : m.pricing.seats.bounds, { min, max });
 
     function change(next: number): void {
         setBound(null);
@@ -238,8 +211,8 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPricePro
             <p aria-live="polite" className="type-small min-h-[1.6em] font-medium text-foreground tabular-nums">
                 {plural(m.pricing.seats.total[cycle], seats, { total })}
             </p>
-            <p id={boundsId} aria-live="polite" className={cn('type-caption tabular-nums', bound ? 'text-foreground' : 'text-muted-foreground')}>
-                {fmt(bound ? m.pricing.seats.clamped[bound] : m.pricing.seats.bounds, { min, max })}
+            <p id={boundsId} aria-live="polite" className={cn('type-caption tabular-nums', bound === 'min' || (bound === 'max' && max !== null) ? 'text-foreground' : 'text-muted-foreground')}>
+                {caption}
             </p>
         </div>
     );
@@ -254,11 +227,6 @@ function IncludesItem({ children }: { children: ReactNode }) {
     );
 }
 
-/**
- * What a plan adds, on `/pricing` only. Free lists what needs no license;
- * Starter and Team name their highlighted features from paid-features.json
- * and point to the full table below, which names every one of them.
- */
 function Includes({ tier, className }: { tier: TierId; className?: string }) {
     const { m, plural } = useI18n();
     const copy = m.pricing.tiers[tier];

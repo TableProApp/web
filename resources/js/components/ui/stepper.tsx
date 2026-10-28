@@ -5,36 +5,23 @@ import { cn } from '@/lib/utils';
 interface StepperProps {
     id: string;
     value: number;
-    /** Bounds come from data (seats: the minimum and maximum in pricing). */
     min: number;
-    max: number;
+    // Null is no upper bound.
+    max: number | null;
     onChange: (value: number) => void;
-    /** Names the quantity, for the input and the group. */
     label: string;
-    /** "Decrease seats", already in the page's language. */
     decreaseLabel: string;
     increaseLabel: string;
     disabled?: boolean;
-    /** Points at the help or the error, so a bound's reason is read with the control. */
     'aria-describedby'?: string;
     className?: string;
 }
 
-function clamp(value: number, min: number, max: number): number {
-    return Math.min(max, Math.max(min, value));
+function clamp(value: number, min: number, max: number | null): number {
+    return Math.max(min, max === null ? value : Math.min(max, value));
 }
 
-/**
- * Minus, a number field, plus (design-system §5.3.20).
- *
- * The middle is a real input with `inputmode="numeric"`, so 50 seats is typed
- * rather than clicked 45 times. What is typed is clamped to the bounds when the
- * field loses focus. A button is disabled at its bound, and the caller says why
- * in the help text.
- *
- * Buttons are 44px on touch screens and 40px elsewhere. The number is set in
- * tabular figures so the control does not change width between 9 and 10.
- */
+// A typed count is clamped on blur or Enter; a button at its bound is disabled, and the caller's help text says why.
 export default function Stepper({ id, value, min, max, onChange, label, decreaseLabel, increaseLabel, disabled = false, className, ...rest }: StepperProps) {
     const [draft, setDraft] = useState(String(value));
 
@@ -96,7 +83,7 @@ export default function Stepper({ id, value, min, max, onChange, label, decrease
                 type="button"
                 className={cn(button, 'border-l border-rule')}
                 onClick={() => onChange(clamp(value + 1, min, max))}
-                disabled={disabled || value >= max}
+                disabled={disabled || (max !== null && value >= max)}
                 aria-label={increaseLabel}
                 aria-controls={id}
             >

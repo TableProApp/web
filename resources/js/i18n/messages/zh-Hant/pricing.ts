@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "席位數",
         "noun": "席位數",
+        "minimum": "最少 {min} 個席位。",
         "bounds": "最少 {min} 個席位，最多 {max} 個。",
         "clamped": {
             "min": "已調整為最少的 {min} 個席位。",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "無法開啟結帳頁面。請再試一次。",
         "planUnavailable": "此方案暫未開售。請選擇其他計費週期，或稍後再試一次。",
-        "seats": "請選擇 {min} 到 {max} 個席位，然後再試一次。"
+        "seats": "請選擇 {min} 到 {max} 個席位，然後再試一次。",
+        "seatsMinimum": "請至少選擇 {min} 個席位，然後再試一次。"
     },
     "offers": {
         "name": "{plan}，{cycle}",

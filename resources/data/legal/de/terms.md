@@ -40,7 +40,7 @@ Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App mit ihrem Lizenzschlüssel zu aktivieren, auf der Anzahl von Macs und für den Zeitraum deines Tarifs:
 
 - Eine **Starter**-Lizenz gilt für eine Person auf bis zu {starterActivations} Macs.
-- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} und höchstens {teamMaxSeats} Arbeitsplätzen. Jeder Arbeitsplatz entspricht einem aktivierten Mac. Der Käufer lädt Teammitglieder ein, die über einen Einladungscode beitreten.
+- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz entspricht einem aktivierten Mac. Der Käufer lädt Teammitglieder ein, die über einen Einladungscode beitreten.
 
 Ohne unsere schriftliche Erlaubnis darfst du einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Macs hinaus teilen oder unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
 

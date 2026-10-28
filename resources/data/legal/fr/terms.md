@@ -40,7 +40,7 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 Une Licence vous accorde un droit non exclusif et non transférable d’activer les fonctionnalités payantes de l’application Mac avec sa Clé de licence, sur le nombre de Mac et pendant la période prévus par votre offre :
 
 - Une Licence **Starter** est destinée à une personne, sur un maximum de {starterActivations} Mac.
-- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} et au maximum {teamMaxSeats} postes. Chaque poste correspond à un Mac activé. L’acheteur invite les membres de l’équipe, qui la rejoignent avec un code d’invitation.
+- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste correspond à un Mac activé. L’acheteur invite les membres de l’équipe, qui la rejoignent avec un code d’invitation.
 
 Vous ne pouvez pas partager une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni la sous-licencier, vendre, louer ou transférer autrement sans notre autorisation écrite.
 

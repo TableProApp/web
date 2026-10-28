@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "좌석 수",
         "noun": "좌석 수",
+        "minimum": "최소 {min}좌석.",
         "bounds": "최소 {min}좌석, 최대 {max}좌석.",
         "clamped": {
             "min": "최소인 {min}좌석으로 변경했습니다.",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요.",
         "planUnavailable": "이 플랜은 지금 판매하지 않습니다. 다른 결제 주기를 선택하거나 나중에 다시 시도하세요.",
-        "seats": "{min}~{max}좌석 사이로 선택한 후 다시 시도하세요."
+        "seats": "{min}~{max}좌석 사이로 선택한 후 다시 시도하세요.",
+        "seatsMinimum": "{min}좌석 이상을 선택한 후 다시 시도하세요."
     },
     "offers": {
         "name": "{plan}, {cycle}",

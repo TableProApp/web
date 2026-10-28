@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 
 import { readFileSync } from 'node:fs';
 
-import { discountedAmount, discountedCents, parseRegional, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
+import { discountedAmount, discountedCents, parseRegional, parseSeatMaximums, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
 
 // What the pricing cards show under a regional discount. The cases with a half-cent discount are the ones the
 // rounding rule decides, rounded half up as Polar does: at 30% Team monthly by the seat ($1.25 → $0.87) and for five
 // seats ($6.25 → $4.37), at 50% Starter monthly ($2.99 → $1.49) too. api.md gives the 30% case.
 
 const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as {
-    tiers: Record<'starter' | 'team', { prices: Record<string, number> }>;
+    tiers: Record<'starter' | 'team', { prices: Record<string, number>; seats?: Record<string, number> }>;
 };
 
 const list: ListCents = {
@@ -19,7 +19,8 @@ const list: ListCents = {
 };
 
 // GET /v2/pricing as tablepro-cloud answers it: its mock fixtures hold product.md's prices, the same as pricing.json.
-function answer(percent: number, country = 'VN') {
+// `max_seats` is 1 unless per_seat, and for a per-seat plan the top of Polar's seat tiers, or null without one.
+function answer(percent: number, country = 'VN', teamMax: number | null = 200) {
     const plan = (name: 'starter' | 'team', cycle: string, amount: number) => ({
         plan: name,
         cycle,
@@ -27,6 +28,7 @@ function answer(percent: number, country = 'VN') {
         amount,
         per_seat: name === 'team',
         min_seats: name === 'team' ? 5 : 1,
+        max_seats: name === 'team' ? teamMax : 1,
         features: [],
         discount_percent: percent,
         discounted_amount: discountedCents(amount, percent),
@@ -46,13 +48,32 @@ function answer(percent: number, country = 'VN') {
     };
 }
 
-test('pricing.json holds the prices tablepro-cloud sells at', () => {
+test('pricing.json holds the prices and the seat minimum tablepro-cloud sells at, and no seat maximum', () => {
     assert.deepEqual(list, { starter: { monthly: 299, yearly: 2400, lifetime: 5900 }, team: { monthly: 125, yearly: 1000, lifetime: 2500 } });
+    assert.deepEqual(pricing.tiers.team.seats, { min: answer(0).plans[3].min_seats });
+});
+
+test('the Team seat maximum is read per cycle from the answer, and only a whole number from the minimum up counts', () => {
+    assert.deepEqual(parseSeatMaximums(answer(0), 'team', 5), { monthly: 200, yearly: 200, lifetime: 200 });
+    assert.deepEqual(parseSeatMaximums(answer(30, 'VN', null), 'team', 5), {});
+
+    const body = answer(0);
+    body.plans[3].max_seats = 50;
+    body.plans[4].max_seats = 4;
+    (body.plans[5] as Record<string, unknown>).max_seats = 12.5;
+    assert.deepEqual(parseSeatMaximums(body, 'team', 5), { monthly: 50 });
+
+    // Starter's max_seats of 1 is not a seat field's limit.
+    assert.deepEqual(parseSeatMaximums(answer(0), 'starter', 1), {});
+
+    assert.deepEqual(parseSeatMaximums(null, 'team', 5), {});
+    assert.deepEqual(parseSeatMaximums({ country: 'US' }, 'team', 5), {});
 });
 
 test('the answer is read strictly, so the cards never show a price checkout would not charge', () => {
     assert.deepEqual(parseRegional(answer(30), list), { country: 'VN', percent: 30 });
     assert.deepEqual(parseRegional(answer(50, 'IN'), list), { country: 'IN', percent: 50 });
+    assert.deepEqual(parseRegional(answer(30, 'VN', null), list), { country: 'VN', percent: 30 });
 
     // No regional discount here: the list prices stand.
     assert.equal(parseRegional(answer(0), list), null);

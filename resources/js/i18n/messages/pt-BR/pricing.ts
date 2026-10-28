@@ -65,6 +65,7 @@ export default {
     "seats": {
         "label": "Vagas",
         "noun": "vagas",
+        "minimum": "Mínimo de {min} vagas.",
         "bounds": "Mínimo de {min} vagas, máximo de {max}.",
         "clamped": {
             "min": "Alterado para o mínimo de {min} vagas.",
@@ -134,7 +135,8 @@ export default {
     "checkout": {
         "failed": "Não foi possível abrir o checkout. Tente novamente.",
         "planUnavailable": "Este plano não está à venda no momento. Escolha outro ciclo de cobrança ou tente novamente mais tarde.",
-        "seats": "Escolha entre {min} e {max} vagas e tente novamente."
+        "seats": "Escolha entre {min} e {max} vagas e tente novamente.",
+        "seatsMinimum": "Escolha pelo menos {min} vagas e tente novamente."
     },
     "offers": {
         "name": "{plan}, {cycle}",

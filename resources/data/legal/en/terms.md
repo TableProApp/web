@@ -40,7 +40,7 @@ Refunds are described in the [refund policy](/refund-policy).
 A License gives you a non-exclusive, non-transferable right to activate the paid features of the Mac app with its License Key, on the number of Macs, and for the period, of your plan:
 
 - A **Starter** License is for one person, on up to {starterActivations} Macs.
-- A **Team** License is priced per seat, with at least {teamMinSeats} and at most {teamMaxSeats} seats. Each seat is one activated Mac. The buyer invites team members, who join with an invitation code.
+- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is one activated Mac. The buyer invites team members, who join with an invitation code.
 
 You may not share a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer it, without our written permission.
 

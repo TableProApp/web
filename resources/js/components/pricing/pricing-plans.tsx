@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
-import { useRegionalPricing } from '@/hooks/use-regional-pricing';
+import { useRegionalPricing, useTeamMaxSeats } from '@/hooks/use-regional-pricing';
 import { Trans, useI18n } from '@/i18n';
 import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
@@ -15,44 +15,25 @@ import { useCheckout } from './use-checkout';
 const TIERS: readonly TierId[] = ['free', 'starter', 'team'];
 
 interface PricingPlansProps {
-    /** `full` on `/pricing`; `compact` (no Includes lists) in the homepage section. */
+    // `compact` (no Includes lists) in the homepage section.
     variant?: PricingCardVariant;
-    /** The cards' heading element: `h3` under a section heading (default), `h2` directly under the page's `h1`. */
     headingLevel?: 'h2' | 'h3';
     className?: string;
 }
 
-/**
- * The working plan block, the same on `/pricing` and on the homepage: the
- * billing-cycle control and its caption, the Free, Starter and Team cards,
- * the refund window from pricing.json, the discount code where this site
- * takes one, and the line on currency and the merchant of record.
- *
- * Yearly is selected first, as before the rebuild, and Team starts at its
- * minimum seats. Both render on the server, so the block reads the same
- * before and after hydration.
- *
- * Where checkout applies a regional discount, tablepro-cloud says so after the
- * block has rendered (`useRegionalPricing`): the paid prices then show what
- * checkout will charge beside the struck list price, and a line above the
- * notes names the country. The server render, and so the cached page and its
- * structured data, always carries the list prices.
- *
- * The cards are joined cells of the page grid (design-system §4.7), so the
- * block belongs in a wide section.
- */
+// The regional price and the seat maximum arrive after the first render, so the cached page and its structured data
+// carry the list prices and no maximum.
 export default function PricingPlans({ variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
     const { m, fmt, plural } = useI18n();
     const [cycle, setCycle] = useState<BillingCycle>('yearly');
     const [seats, setSeats] = useState<number>(PRICING.tiers.team.seats.min);
     const [discountCode, setDiscountCode] = useState<string | null>(null);
     const flow = useCheckout();
-    /*
-     * A typed code replaces the regional discount at checkout; the two never
-     * stack. So while one is applied, the cards show the list prices again.
-     */
+    // A typed code replaces the regional discount at checkout; the two never stack.
     const regionalDiscount = useRegionalPricing();
     const regional = discountCode === null ? regionalDiscount : null;
+    const maxSeats = useTeamMaxSeats()[cycle] ?? null;
+    const teamSeats = maxSeats === null ? seats : Math.min(seats, maxSeats);
 
     return (
         // While the cycle control is pinned, a focused control must not scroll in under it.
@@ -68,7 +49,8 @@ export default function PricingPlans({ variant = 'full', headingLevel = 'h3', cl
                         variant={variant}
                         headingLevel={headingLevel}
                         checkout={flow}
-                        seats={seats}
+                        seats={teamSeats}
+                        maxSeats={maxSeats}
                         onSeatsChange={setSeats}
                         discountCode={discountCode}
                         regional={regional}
