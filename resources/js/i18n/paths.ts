@@ -6,28 +6,17 @@
  * `useI18n().path`) or `<LocaleLink>`, never these directly.
  *
  * Only root-relative paths of this app are touched. External URLs,
- * `#fragments`, `mailto:`, relative paths and the platform's paths come back
+ * `#fragments`, `mailto:`, relative paths and `PLATFORM_PATHS` come back
  * unchanged.
  */
 import type { LocaleTable } from './types.ts';
 
-/**
- * The paths nginx sends to the platform (account) app instead of this one.
- *
- * nginx matches them at the root only, so they never take a locale prefix:
- * `/vi/account` would reach this app and answer 404. The platform reads the
- * reader's language from `?locale=`, which the caller adds; nothing here
- * appends it, because a signed URL (`/thank-you?order=…`) must reach the
- * platform exactly as it was signed.
- *
- * The same pattern as `scripts/dev-proxy.mjs` (tests/js/paths.test.ts holds
- * them equal) and as the production nginx routing.
- * nginx matches the path alone, so it needs no `?` or `#` alternative; an
- * href carries both.
- */
-export const PLATFORM_PATHS = /^\/(account|checkout|webhooks|newsletter|beta|discount|thank-you|api\/newsletter|platform-build)(\/|\?|#|$)/;
+// The paths nginx answers on this origin without this app: the account app's old paths redirect to
+// account.tablepro.app, and old unsubscribe links and Polar's webhook reach tablepro-cloud for 90 days
+// (docs/deploy/tablepro.app.nginx.conf). nginx matches them at the root only, so they never take a locale prefix.
+// LocalizedUrlTest holds this equal to LocalizedUrl::PLATFORM_PATHS.
+export const PLATFORM_PATHS = /^\/(account|checkout|thank-you|newsletter\/unsubscribe|webhooks\/polar)(\/|\?|#|$)/;
 
-/** `/account?locale=vi` and `/checkout` are the platform's; `/accounting` is not. */
 export function isPlatformPath(path: string): boolean {
     return PLATFORM_PATHS.test(path);
 }

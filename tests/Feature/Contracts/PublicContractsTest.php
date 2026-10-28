@@ -180,10 +180,15 @@ it('keeps the consent calls in the head in their contract order', function (): v
     Assert::assertTrue($default < $stored && $stored < $configured, 'consent default, then the stored answer, then config');
 });
 
-it('links the account without a locale prefix, carrying the language in the query', function (): void {
+it('links the account portal at its own origin, carrying the language in the query', function (): void {
     $links = (string) file_get_contents(resource_path('js/components/site/site-links.ts'));
 
-    expect($links)->toContain('return `/account?locale=${locale}`;');
+    expect($links)->toContain('return `${facts.links.account}/?locale=${encodeURIComponent(locale)}`;');
+    expect(json_decode((string) file_get_contents(resource_path('data/facts.json')), true)['links']['account'])->toBe('https://account.tablepro.app');
+
+    foreach (['js/components/faq/content-links.tsx', 'js/components/features/feature-links.tsx', 'js/pages/Pricing.tsx'] as $file) {
+        expect((string) file_get_contents(resource_path($file)))->toContain('accountHref(locale)')->not->toContain('/account?locale=');
+    }
 
     // Cross-app links are plain anchors, never client-side visits.
     foreach (['site-header.tsx', 'site-footer.tsx', 'mobile-nav.tsx'] as $file) {

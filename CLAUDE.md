@@ -74,16 +74,18 @@ server (`docs/architecture.md`, "The language bar").
 - French takes a no-break space before `; : ! ?` and inside `« »`. Japanese and
   Chinese put a space between Latin and CJK text, list joiners included.
 - Internal links go through `<LocaleLink>` or `useI18n().path()`, so they stay
-  in the reader's language. The platform's paths are never prefixed; both
-  helpers leave them alone (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`),
-  and `<LocaleLink>` renders them as a plain `<a>`.
-- The language crosses to the account app only explicitly: link
-  `/account?locale={locale}` (never `/vi/account`), and post to tablepro-cloud's
-  `/v2/checkouts` and `/v2/newsletter/subscriptions` with `locale` in the body
-  (`/v2/discounts/preview` takes `{code}` only, the `GET`s nothing), every call
-  with `credentials: 'omit'`, so no cookie lands on a public page.
-- The theme follows the OS by default; `localStorage.theme` holds an explicit choice, shared
-  with the account app on the same origin.
+  in the reader's language. The few paths nginx answers without this app
+  (`/account`, `/checkout`, …) are never prefixed; both helpers leave them alone
+  (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`), and `<LocaleLink>`
+  renders them as a plain `<a>`.
+- The language crosses to tablepro-cloud only explicitly: link the portal with
+  `accountHref(locale)` (`https://account.tablepro.app/?locale={locale}`), and
+  post to `/v2/checkouts` and `/v2/newsletter/subscriptions` with `locale` in
+  the body (`/v2/discounts/preview` takes `{code}` only, the `GET`s nothing),
+  every call through `useApi()` with `credentials: 'omit'`, so no cookie lands
+  on a public page.
+- The theme follows the OS by default; `localStorage.theme` holds an explicit
+  choice. The portal is another origin and keeps its own.
 
 ## Conventions
 
@@ -103,7 +105,6 @@ server (`docs/architecture.md`, "The language bar").
 
 ```bash
 composer dev                    # serve + vite
-npm run dev:proxy               # one origin for this app (:8000) and the platform (:8001) on :8080
 php artisan test --compact      # full suite
 php artisan test --compact --filter=BlogTest
 npm run typecheck               # includes the catalog parity between locales
@@ -127,8 +128,8 @@ Run `vendor/bin/pint --dirty --format agent` after editing any PHP file.
 which runs `scripts/deploy.sh` on the server. Never build straight into the live
 `public/build` — Vite empties it first and the site 500s until it is rewritten.
 Read `docs/deployment.md` before changing anything about the server; the host is
-shared with a dozen other sites and with the private platform app that answers
-`/account`, `/checkout` and `/newsletter` on this same domain.
+shared with a dozen other sites and with tablepro-cloud, which this domain's
+nginx still reaches for old account, unsubscribe and webhook paths.
 
 ## Testing
 

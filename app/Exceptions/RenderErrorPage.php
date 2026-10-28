@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Http\Middleware\CacheHtmlAtEdge;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocaleSwitcher;
+use App\Support\Localization\LocalizedUrl;
 use App\Support\Seo\SeoContext;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -26,9 +27,9 @@ use Throwable;
  * - If rendering the page fails, the default response stands, which for 500
  *   and 503 is the static `resources/views/errors/{status}.blade.php`.
  * - A 404 under a prefixed locale for an account or checkout path
- *   (`/vi/account…`, `/vi/checkout…`) links the account in that language,
- *   `/account?locale=vi`: the account has no locale prefix (spec §0), so a
- *   reader who guessed one is sent to the real address (sitemap §A.7, §C.6).
+ *   (`/vi/account…`, `/vi/checkout…`) links the account portal in that
+ *   language: it has no locale prefix, so a reader who guessed one is sent to
+ *   the real address (sitemap §A.7, §C.6).
  * - A 404 or 410 page is as public as any other page, so it carries the same
  *   shared-cache header (`CacheHtmlAtEdge`). A URL that matches no route never
  *   reaches the `web` group that sets it, so it is applied here too.
@@ -93,7 +94,7 @@ final class RenderErrorPage
         }
 
         if ($status === 404 && preg_match(self::ACCOUNT_PATH, $request->path(), $matches) === 1 && Locales::isSupported($matches[1])) {
-            $props['account'] = '/account?locale=' . $matches[1];
+            $props['account'] = LocalizedUrl::account($matches[1]);
         }
 
         $request->attributes->set(SeoContext::ERROR_ATTRIBUTE, true);

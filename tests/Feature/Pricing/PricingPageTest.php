@@ -189,7 +189,7 @@ it('server-renders the plans, the table and every section, with prices written f
 
     expect($main)->toContain('type="radio"')
         ->toContain("href=\"{$prefix}/refund-policy\"")
-        ->toContain('href="/account?locale=' . $locale . '"')
+        ->toContain('href="https://account.tablepro.app/?locale=' . $locale . '"')
         // The license section links the terms, and the short FAQ the full licensing questions (sitemap §A.1).
         ->toContain("href=\"{$prefix}/terms\"")
         ->toContain("href=\"{$prefix}/faq#licensing\"")

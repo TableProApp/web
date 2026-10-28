@@ -193,8 +193,9 @@ page: the registry drops every path the map answers.
 ## What it does not serve
 
 Buying a license, signing in to an account and subscribing to the newsletter are
-handled by the TablePro backend, which is a separate application and not part of
-this repository. Requests to those paths never reach this code.
+handled by tablepro-cloud (TableProApp/cloud), a separate application on
+`api.tablepro.app` and `account.tablepro.app`, which the pages call from the
+browser.
 
 That is why this app runs **without a session**: it has nothing to keep state
 for. `StartSession`, `PreventRequestForgery`, `ShareErrorsFromSession` and
@@ -268,21 +269,22 @@ says to check the inbox, and only a 422 on `body.email` is about the address.
 Under each form, `useNewsletterStats` asks once per page for the subscriber
 count and shows it once known; a failure leaves it unsaid.
 
-Links to the account are plain `<a href="/account?locale={locale}">`: a
-different application, so never an Inertia `<Link>`, and never prefixed.
-`<LocaleLink>` and `localePath()` treat every platform path that way
-(`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`, the same pattern as
-`scripts/dev-proxy.mjs`), and never append `locale` themselves, because a
-signed `/thank-you?order=…` URL must arrive exactly as it was signed.
+Links to the account go to tablepro-cloud's portal, another origin:
+`https://account.tablepro.app/?locale={locale}` (`accountHref()`, the origin
+from `facts.json` → `links.account`), a plain `<a>`, never an Inertia `<Link>`.
+The page's language crosses in `?locale=`, for the portal to use when the
+reader has made no choice of their own there; signed in, the portal shows the
+account's language.
 
-Checkout takes a tier and billing cycle rather than a product identifier, which
-is why no payment-provider identifier appears anywhere in this repository.
+nginx still answers a few old paths on this origin without this app: `/account`
+and below, `/checkout` and `/thank-you` redirect to the portal, and
+`/newsletter/unsubscribe/*` and `/webhooks/polar` reach tablepro-cloud for 90
+days after the cutover (`docs/deploy/tablepro.app.nginx.conf`). `<LocaleLink>`
+and `localePath()` never prefix them (`PLATFORM_PATHS` in
+`resources/js/i18n/paths.ts`), and a locale must never take one of those names.
 
-`POST /beta/signup` was the fifth row here until 2026-09-22. The endpoint still
-exists on the backend and nginx still proxies `/beta`, but nothing on this site
-calls it: the iPhone app shipped on the App Store, so the TestFlight invite form
-in the closing call to action became a link. Do not add a caller back without
-checking the endpoint is still wired.
+The beta signup is gone: the iPhone app shipped on the App Store on
+2026-09-22, and the account app that answered `POST /beta/signup` is retired.
 
 ## Purchase attribution
 
@@ -453,26 +455,15 @@ HTML also carries a `Content-Security-Policy`, built by
 
 ## Working on these forms locally
 
-`php artisan serve` runs only this app, so the platform's paths return 404 on
-your machine. To exercise a journey that crosses between the two apps, run both
-behind one origin, the way nginx does in production:
+The forms call tablepro-cloud from the browser. Run its `make dev` (the API at
+`http://api.localhost:8080`) and set `TABLEPRO_API_ORIGIN=http://api.localhost:8080`
+here, with Polar in its sandbox and mail on its fake. tablepro-cloud answers
+CORS for `https://tablepro.app` only, so a page served from `localhost` needs
+tablepro-cloud to allow that origin in development first. Cloudflare's test
+site key `1x00000000000000000000AA` always passes Turnstile.
 
-```bash
-php artisan serve --port=8000                      # this repository
-(cd ../license && php artisan serve --port=8001)   # the platform
-npm run dev:proxy                                  # http://localhost:8080
-```
-
-`scripts/dev-proxy.mjs` sends `/account`, `/checkout`, `/webhooks`,
-`/newsletter`, `/beta`, `/discount`, `/thank-you`, `/api/newsletter` and
-`/platform-build` to the platform and everything else here, with
-`X-Forwarded-*` headers. Set `WEB_DOMAIN=localhost` in both `.env` files (the
-platform's routes are domain-scoped and domain matching ignores the port) and
-use built assets in both. Keep payments mocked and mail on the `log` driver: no
-real checkout, message or customer data.
-
-For styling or copy work that does not touch a form, stub the fetch instead, or
-ignore it.
+For styling or copy work, stub the `/v2` answers in the browser instead, or
+ignore them.
 
 ## Images
 

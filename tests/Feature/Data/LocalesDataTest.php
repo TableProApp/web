@@ -44,8 +44,8 @@ it('collides with no root path the site or the platform serves', function (): vo
         ->filter(fn(string $segment): bool => $segment !== '' && ! str_starts_with($segment, '{'))
         ->merge(DatabaseSlugs::ALL)
         ->merge([
-            // The platform's paths on this origin (nginx sends them to the account app).
-            'account', 'checkout', 'webhooks', 'newsletter', 'beta', 'discount', 'thank-you', 'api', 'platform-build',
+            // The paths nginx answers on this origin without this app.
+            'account', 'checkout', 'thank-you', 'newsletter', 'webhooks',
             // Static directories under public/.
             'build', 'og', 'images', 'sponsors',
         ])

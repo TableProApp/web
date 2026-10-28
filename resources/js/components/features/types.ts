@@ -36,6 +36,8 @@ export interface FeatureLink {
     label: string;
     href?: string;
     docs?: string;
+    // The account portal, in the page's language.
+    account?: boolean;
 }
 
 /** A linked engine list from `facts`, shown as a labelled row. */

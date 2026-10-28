@@ -2,6 +2,8 @@
 
 namespace App\Support\Localization;
 
+use Illuminate\Support\Facades\File;
+
 /**
  * Builds public URLs in a given locale.
  *
@@ -17,14 +19,11 @@ namespace App\Support\Localization;
 final class LocalizedUrl
 {
     /**
-     * The paths nginx sends to the platform (account) app, which are never
-     * prefixed: nginx matches them at the root only, so `/vi/account` would
-     * reach this app and answer 404.
-     *
-     * The same pattern as `PLATFORM_PATHS` in resources/js/i18n/paths.ts and
-     * scripts/dev-proxy.mjs (LocalizedUrlTest holds them equal).
+     * The paths nginx answers on this origin without this app, never prefixed
+     * (docs/deploy/tablepro.app.nginx.conf). The same pattern as
+     * `PLATFORM_PATHS` in resources/js/i18n/paths.ts.
      */
-    public const PLATFORM_PATHS = '~^/(account|checkout|webhooks|newsletter|beta|discount|thank-you|api/newsletter|platform-build)(/|\?|#|$)~';
+    public const PLATFORM_PATHS = '~^/(account|checkout|thank-you|newsletter/unsubscribe|webhooks/polar)(/|\?|#|$)~';
 
     /**
      * The canonical origin, with no trailing slash.
@@ -59,7 +58,19 @@ final class LocalizedUrl
     }
 
     /**
-     * Whether a path belongs to the platform app rather than this one.
+     * The account portal in a locale, which it takes from the query: it has no
+     * locale prefix.
+     */
+    public static function account(string $locale): string
+    {
+        $facts = json_decode((string) File::get(resource_path('data/facts.json')), true);
+        $origin = $facts['links']['account'] ?? 'https://account.tablepro.app';
+
+        return rtrim((string) $origin, '/') . '/?locale=' . rawurlencode($locale);
+    }
+
+    /**
+     * Whether nginx answers a path without this app.
      */
     public static function isPlatformPath(string $path): bool
     {

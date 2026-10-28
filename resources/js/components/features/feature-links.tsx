@@ -1,3 +1,4 @@
+import { accountHref } from '@/components/site/site-links';
 import { FACTS } from '@/lib/data/facts';
 import LocaleLink from '@/components/ui/locale-link';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
@@ -19,6 +20,15 @@ interface FeatureLinkItemProps {
  */
 export function FeatureLinkItem({ link }: FeatureLinkItemProps) {
     const { locale, m } = useI18n();
+
+    if (link.account === true) {
+        return (
+            <a href={accountHref(locale)} className={textLinkClasses('standalone')}>
+                {link.label}
+                <span aria-hidden="true">→</span>
+            </a>
+        );
+    }
 
     if (link.docs !== undefined) {
         return (
@@ -51,7 +61,7 @@ export default function FeatureLinkList({ links, direction = 'row', className }:
     return (
         <ul className={cn(direction === 'row' ? 'flex flex-wrap gap-x-6 gap-y-2' : 'space-y-3', className)}>
             {links.map((link) => (
-                <li key={`${link.href ?? link.docs}-${link.label}`}>
+                <li key={`${link.href ?? link.docs ?? 'account'}-${link.label}`}>
                     <FeatureLinkItem link={link} />
                 </li>
             ))}

@@ -83,12 +83,9 @@ export const EXTERNAL = {
 
 export const SUPPORT_EMAIL: string = facts.support.email;
 
-/**
- * The account app, which takes the reader's language from the query and never
- * from a path prefix: nginx sends only the unprefixed `/account` to it.
- */
+// tablepro-cloud's portal, another origin with no locale prefix: the page's language crosses in the query.
 export function accountHref(locale: string): string {
-    return `/account?locale=${locale}`;
+    return `${facts.links.account}/?locale=${encodeURIComponent(locale)}`;
 }
 
 export type Section = 'features' | 'databases' | 'pricing' | 'blog' | null;
