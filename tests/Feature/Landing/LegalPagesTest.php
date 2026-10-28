@@ -449,8 +449,8 @@ it('keeps the refund window from pricing.json and tells a subscriber how to stop
     expect($source)->toContain('{portal}')->toContain('({account})')->not->toContain('/account?locale=');
     expect(app(LegalDocuments::class)->render('refund-policy', $locale)['html'])->toContain("href=\"https://account.tablepro.app/?locale={$locale}\"");
 
-    // A refund suspends the key at the next check, not "immediately".
-    expect($source)->toContain('{revalidateDays}');
+    // A full refund ends the license at once; a Mac stops at its next check, an old build within {revalidateDays}.
+    expect($source)->toContain('{offlineDays}')->toContain('{revalidateDays}');
     Assert::assertStringNotContainsStringIgnoringCase('machines deactivate', $source);
 })->with(['en', 'vi']);
 

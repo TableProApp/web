@@ -248,6 +248,11 @@ dataset('reviewed facts', [
         ['on the Devices page in <account>your account</account>', 'at most {offlineDays} days after the last renewal', 'holds it until it is accepted or revoked', 'buys more one-time seats there'],
         ['Each code needs a free seat', 'Two Macs use two seats', 'the Macs page', 'to add seats', 'activated Mac'],
     ],
+    'the refund policy refunds in the account portal' => [
+        'legal/en/refund-policy.md',
+        ['Refund an order yourself in Billing in [your account]({account})', 'After a full refund, the license ends at once.', 'whose license is in an offline file'],
+        ['license key is suspended', 'include your license key', 'license key being suspended'],
+    ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',
         ['Mac có sẵn driver cho {bundledEngines}', 'Bắt đầu chat', 'SSH dùng mật khẩu hoặc private key', '<connections>tùy chọn kết nối</connections>'],
