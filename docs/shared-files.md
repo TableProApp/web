@@ -42,7 +42,7 @@ strings arrive as arguments. `SharedFilesTest` checks the imports.
 | --- | --- | --- | --- |
 | `resources/css/tokens.css` | `web/packages/ui/src/styles/tokens.css` | `e8ddbd024105bb4c8dcd3a71f474191272412d7e0459f3761453930c1d0f96ed` | Colour tokens for light and dark, `color-scheme`, the type roles and their `--lh-*` line heights per language, radii, motion, the default border colour, the focus ring, forced colours, the ThemeControl icon and segment states, reduced motion (design-system §2–§4, §7) |
 | `resources/css/international.css` | `web/packages/ui/src/styles/international.css` | `cce4879c96db53596d9cf1d243b816fec77c648f356c735849c36abf14ed5cef` | Native Japanese, Korean, simplified and traditional Chinese font stacks |
-| `resources/js/lib/crisp.ts` | `web/apps/portal/src/lib/crisp.ts` | `703da5d18900cc199e9a2d4b97c97839a189e3ed912a436232c6fe16c01c5a03` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while a consent bar covers its corner |
+| `resources/js/lib/crisp.ts` | `web/apps/portal/src/lib/crisp.ts` | `5d86e190b119e05008aadce726b2eab3cae42f36ee3378865604f61c3411c2ac` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while a consent bar covers its corner |
 
 ## Kept to one specification, not copied
 

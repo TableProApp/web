@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -116,7 +116,7 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Google Analytics.** Website tải Google Analytics trên mọi trang ở chế độ Consent Mode. Cho tới khi bạn chọn **Cho phép** trong câu hỏi về cookie, công cụ này không đặt cookie nào và chỉ gửi cho Google một tín hiệu không dùng cookie cho mỗi trang, không lưu mã định danh nào trên thiết bị của bạn. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt truy cập của bạn, chẳng hạn những trang bạn xem, các lượt bấm tải về và việc bắt đầu thanh toán. Lưu trữ cho quảng cáo, cá nhân hóa quảng cáo và dữ liệu người dùng cho quảng cáo luôn bị từ chối. Google cho biết Google Analytics 4 không ghi lại và không lưu địa chỉ IP. Property Google Analytics của chúng tôi dùng thời hạn lưu mặc định của Google: Google xóa dữ liệu ở cấp người dùng và cấp sự kiện sau 2 tháng. Các báo cáo tiêu chuẩn của Google, vốn chứa số liệu tổng chứ không chứa mã định danh, không bị ảnh hưởng. Cơ sở pháp lý: sự đồng ý của bạn đối với cookie.
 
-**Chat trực tuyến.** Mọi trang của website và trang tài khoản đều có nút chat của nhà cung cấp dịch vụ chat của chúng tôi, Crisp. Sau khi trang tải xong, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt, địa chỉ các trang bạn xem và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi chỉ cho Crisp biết ngôn ngữ của trang, ngoài ra không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
+**Chat trực tuyến.** Mọi trang của website và trang tài khoản đều có nút chat của nhà cung cấp dịch vụ chat của chúng tôi, Crisp. Sau khi trang tải xong, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt, địa chỉ các trang bạn xem và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi cho Crisp biết ngôn ngữ của trang. Khi bạn đã đăng nhập trang tài khoản, chúng tôi cũng cung cấp cho Crisp địa chỉ email và ID tài khoản của bạn, để gắn cuộc chat với tài khoản đó. Ngoài ra chúng tôi không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
 
 **Script thanh toán.** Khi bạn trỏ chuột hoặc dùng phím Tab tới một nút Mua, trình duyệt tải script thanh toán của {merchant} từ jsDelivr (`cdn.jsdelivr.net`), và jsDelivr nhận địa chỉ IP cùng thông tin trình duyệt của bạn. Bản thân trang thanh toán của {merchant} chỉ mở khi bạn bấm.
 

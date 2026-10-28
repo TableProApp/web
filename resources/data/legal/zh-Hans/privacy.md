@@ -1,7 +1,7 @@
 ---
 title: 隐私政策
 description: TablePro 应用、网站和账户门户收集什么信息、发送到哪里、保存多久，以及如何更改或删除。
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 tablepro.app/account 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
@@ -116,7 +116,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 **Google Analytics**。网站在每个页面以 Consent Mode 加载 Google Analytics。在您于 Cookie 提问中选择**允许**之前，它不设置 Cookie，仅为每个页面向 Google 发送无 Cookie 信号，不在设备上存储标识符。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie，统计页面浏览、下载点击和开始结账等访问行为。广告存储、广告个性化和广告用户数据始终被拒绝。Google 声明 Google Analytics 4 不记录或存储 IP 地址。我们的 Google Analytics 媒体资源使用 Google 默认保留期：用户级和事件级数据收集后两个月由 Google 删除。保存汇总而非标识符的标准报告不受影响。合法依据：您对 Cookie 的同意。
 
-**在线聊天**。网站和账户门户的每个页面都显示聊天提供商 Crisp 的按钮。页面加载完成后，浏览器从 `client.crisp.chat` 加载 Crisp 脚本，Crisp 会设置 [Cookie 和浏览器存储](#cookies)中所述的 Cookie。Crisp 收到 IP 地址、浏览器信息、浏览的页面地址和您撰写的消息，并在您开始对话后保留 IP 地址。我们只向 Crisp 提供页面语言，不提供您的其他信息。Crisp 位于法国。
+**在线聊天**。网站和账户门户的每个页面都显示聊天提供商 Crisp 的按钮。页面加载完成后，浏览器从 `client.crisp.chat` 加载 Crisp 脚本，Crisp 会设置 [Cookie 和浏览器存储](#cookies)中所述的 Cookie。Crisp 收到 IP 地址、浏览器信息、浏览的页面地址和您撰写的消息，并在您开始对话后保留 IP 地址。我们向 Crisp 提供页面语言。您登录账户门户时，我们还会向 Crisp 提供您账户的邮箱地址和账户 ID，以便将对话与您的账户关联。我们不向 Crisp 提供您的其他信息。Crisp 位于法国。
 
 **结账脚本**。当您将指针移至购买按钮或用 Tab 键聚焦时，浏览器从 jsDelivr（`cdn.jsdelivr.net`）加载 {merchant} 的结账脚本。jsDelivr 会收到 IP 地址和浏览器信息。只有点击后，结账页面才从 {merchant} 打开。
 

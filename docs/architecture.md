@@ -405,7 +405,9 @@ added after the page has loaded, and Cloudflare Web Analytics.
   render and never delays the first paint. A "Live chat" button opens the same
   widget. While the consent bar covers the bottom-right corner (on a phone,
   reopened from "Cookie settings"), the launcher is hidden. Crisp sets its `crisp-client/`
-  cookies as soon as it loads; the privacy policy describes them.
+  cookies as soon as it loads; the privacy policy describes them. This site
+  gives Crisp the page's language only; the portal also gives it a signed-in
+  account's email address and TypeID, which the policy says too.
 - **Cloudflare Turnstile** (`challenges.cloudflare.com`) loads on the first
   focus or pointer on a newsletter form, with its script and its frame in the
   policy only while `TURNSTILE_SITE_KEY` is set.

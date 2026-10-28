@@ -1,7 +1,7 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
@@ -116,7 +116,7 @@ Handoff passa l'ID della connessione aperta e il nome della tabella aperta tra i
 
 **Google Analytics.** Il sito carica Google Analytics su ogni pagina in Consent Mode. Finché non scegli **Consenti** nella richiesta sui cookie, non imposta cookie e invia a Google solo un segnale senza cookie per ogni pagina, senza identificatori conservati sul dispositivo. Se lo autorizzi, Google Analytics imposta i cookie `_ga` e `_ga_<ID>` e misura le visite, come le pagine visualizzate, i clic sui download e l'avvio di un acquisto. L'archiviazione per la pubblicità, la personalizzazione degli annunci e i dati utente per la pubblicità sono sempre negati. Google dichiara che Google Analytics 4 non registra né conserva gli indirizzi IP. La nostra proprietà Google Analytics usa il periodo di conservazione predefinito di Google: Google elimina i dati a livello di utente e di evento raccolti dopo 2 mesi. I rapporti standard di Google, che contengono dati complessivi anziché identificatori, non sono interessati. Base giuridica: il tuo consenso per i cookie.
 
-**Chat dal vivo.** Ogni pagina del sito web e del portale account mostra un pulsante di chat del nostro fornitore, Crisp. Dopo il caricamento della pagina, il browser carica lo script di Crisp da `client.crisp.chat` e Crisp imposta i cookie descritti in [Cookie e archiviazione nel browser](#cookies). Crisp riceve il tuo indirizzo IP, i dettagli del browser, gli indirizzi delle pagine visualizzate e i messaggi che scrivi e conserva l'indirizzo IP se avvii una conversazione. Comunichiamo a Crisp la lingua della pagina e nessun'altra informazione su di te. Crisp ha sede in Francia.
+**Chat dal vivo.** Ogni pagina del sito web e del portale account mostra un pulsante di chat del nostro fornitore, Crisp. Dopo il caricamento della pagina, il browser carica lo script di Crisp da `client.crisp.chat` e Crisp imposta i cookie descritti in [Cookie e archiviazione nel browser](#cookies). Crisp riceve il tuo indirizzo IP, i dettagli del browser, gli indirizzi delle pagine visualizzate e i messaggi che scrivi e conserva l'indirizzo IP se avvii una conversazione. Comunichiamo a Crisp la lingua della pagina. Quando hai effettuato l'accesso al portale account, gli comunichiamo anche l'indirizzo email e l'ID del tuo account, che collegano la conversazione al tuo account. Non gli comunichiamo nessun'altra informazione su di te. Crisp ha sede in Francia.
 
 **Script di acquisto.** Quando punti il mouse su un pulsante Acquista o lo raggiungi con il tasto Tab, il browser carica lo script di acquisto di {merchant} da jsDelivr (`cdn.jsdelivr.net`), che riceve il tuo indirizzo IP e i dettagli del browser. Il pagamento stesso si apre su {merchant} solo quando fai clic.
 

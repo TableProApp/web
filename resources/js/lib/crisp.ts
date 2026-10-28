@@ -12,8 +12,9 @@
  * Crisp's loader sets its `crisp-client/` cookies on `.tablepro.app` as soon as
  * it runs. The privacy policy describes them and what Crisp receives.
  *
- * Crisp is given the page's language and nothing else: no email, no license,
- * no account details, on either application.
+ * This file gives Crisp the page's language and nothing else. In the portal,
+ * a signed-in session also gives Crisp the account's email address and its
+ * TypeID (`acct_…`), from the portal's own code; the public site never does.
  *
  * The launcher never covers the consent bar. While the bar reaches the
  * bottom-right corner (on a phone, reopened from "Cookie settings"), the

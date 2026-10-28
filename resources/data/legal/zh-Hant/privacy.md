@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
@@ -116,7 +116,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 **Google Analytics**。網站在每個網頁以 Consent Mode 載入 Google Analytics。在您於 Cookie 提問中選擇**允許**之前，它不設定 Cookie，僅為每個網頁向 Google 傳送無 Cookie 訊號，不在裝置上儲存識別碼。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie，統計網頁瀏覽、下載點擊和開始結帳等造訪行為。廣告儲存、廣告個人化和廣告使用者資料始終被拒絕。Google 聲明 Google Analytics 4 不記錄或儲存 IP 位址。我們的 Google Analytics 資源使用 Google 預設保留期：使用者層級與事件層級資料收集後兩個月由 Google 刪除。保存彙總而非識別碼的標準報表不受影響。合法依據：您對 Cookie 的同意。
 
-**線上聊天**。網站和帳戶入口網站的每個網頁都顯示聊天供應商 Crisp 的按鈕。網頁載入完成後，瀏覽器從 `client.crisp.chat` 載入 Crisp 指令碼，Crisp 會設定 [Cookie 與瀏覽器儲存空間](#cookies)中所述的 Cookie。Crisp 收到 IP 位址、瀏覽器資訊、瀏覽的網頁網址和您撰寫的訊息，並在您開始對話後保留 IP 位址。我們只向 Crisp 提供網頁語言，不提供您的其他資訊。Crisp 位於法國。
+**線上聊天**。網站和帳戶入口網站的每個網頁都顯示聊天供應商 Crisp 的按鈕。網頁載入完成後，瀏覽器從 `client.crisp.chat` 載入 Crisp 指令碼，Crisp 會設定 [Cookie 與瀏覽器儲存空間](#cookies)中所述的 Cookie。Crisp 收到 IP 位址、瀏覽器資訊、瀏覽的網頁網址和您撰寫的訊息，並在您開始對話後保留 IP 位址。我們向 Crisp 提供網頁語言。您登入帳戶入口網站時，我們也會向 Crisp 提供您帳戶的電子郵件地址和帳戶 ID，以便將對話與您的帳戶關聯。我們不向 Crisp 提供您的其他資訊。Crisp 位於法國。
 
 **結帳指令碼**。當您將指標移至購買按鈕或用 Tab 鍵聚焦時，瀏覽器從 jsDelivr（`cdn.jsdelivr.net`）載入 {merchant} 的結帳指令碼。jsDelivr 會收到 IP 位址和瀏覽器資訊。只有點按後，結帳頁面才從 {merchant} 開啟。
 

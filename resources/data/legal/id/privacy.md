@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -116,7 +116,7 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Google Analytics.** Situs memuat Google Analytics pada setiap halaman dalam Consent Mode. Sampai Anda memilih **Izinkan** pada pertanyaan cookie, Google Analytics tidak memasang cookie dan hanya mengirim sinyal tanpa cookie ke Google untuk setiap halaman, tanpa pengenal yang disimpan di perangkat Anda. Jika diizinkan, Google Analytics memasang cookie `_ga` dan `_ga_<ID>` serta mengukur kunjungan Anda, seperti halaman yang dilihat, klik unduhan, dan awal proses pembelian. Penyimpanan iklan, personalisasi iklan, dan data pengguna iklan selalu ditolak. Google menyatakan bahwa Google Analytics 4 tidak mencatat atau menyimpan alamat IP. Properti Google Analytics kami menggunakan masa retensi bawaan Google: Google menghapus data tingkat pengguna dan tingkat peristiwa yang dikumpulkannya setelah 2 bulan. Laporan standar Google, yang berisi jumlah keseluruhan alih-alih pengenal, tidak terpengaruh. Dasar hukum: persetujuan Anda untuk cookie.
 
-**Chat langsung.** Setiap halaman situs web dan portal akun menampilkan tombol chat dari penyedia kami, Crisp. Setelah halaman selesai dimuat, peramban memuat skrip Crisp dari `client.crisp.chat`, dan Crisp memasang cookie yang dijelaskan di [Cookie dan penyimpanan peramban](#cookies). Crisp menerima alamat IP Anda, detail peramban, alamat halaman yang Anda lihat, dan pesan yang Anda tulis, serta menyimpan alamat IP jika Anda memulai percakapan. Kami hanya memberi tahu Crisp bahasa halaman, tanpa informasi lain tentang Anda. Crisp berbasis di Prancis.
+**Chat langsung.** Setiap halaman situs web dan portal akun menampilkan tombol chat dari penyedia kami, Crisp. Setelah halaman selesai dimuat, peramban memuat skrip Crisp dari `client.crisp.chat`, dan Crisp memasang cookie yang dijelaskan di [Cookie dan penyimpanan peramban](#cookies). Crisp menerima alamat IP Anda, detail peramban, alamat halaman yang Anda lihat, dan pesan yang Anda tulis, serta menyimpan alamat IP jika Anda memulai percakapan. Kami memberi tahu Crisp bahasa halaman. Saat Anda masuk ke portal akun, kami juga memberikan alamat email dan ID akun Anda kepada Crisp, yang menautkan percakapan ke akun Anda. Kami tidak memberikan informasi lain tentang Anda kepada Crisp. Crisp berbasis di Prancis.
 
 **Skrip pembayaran.** Saat Anda mengarahkan penunjuk atau berpindah dengan tombol Tab ke tombol Beli, peramban memuat skrip pembayaran {merchant} dari jsDelivr (`cdn.jsdelivr.net`), yang menerima alamat IP dan detail peramban Anda. Halaman pembayaran itu sendiri baru dibuka dari {merchant} saat Anda mengeklik.
 

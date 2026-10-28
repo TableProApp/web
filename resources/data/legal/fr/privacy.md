@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes tablepro.app/account. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
@@ -116,7 +116,7 @@ Handoff transmet l’identifiant de la connexion ouverte et le nom de la table o
 
 **Google Analytics.** Le site charge Google Analytics sur chaque page en mode Consentement. Tant que vous ne choisissez pas **Autoriser** à la question sur les cookies, il ne dépose aucun cookie et n’envoie à Google qu’un signal sans cookie par page, sans identifiant stocké sur votre appareil. Si vous l’autorisez, Google Analytics dépose les cookies `_ga` et `_ga_<ID>` et mesure vos visites, notamment pages consultées, clics de téléchargement et début de règlement. Le stockage publicitaire, la personnalisation des annonces et les données utilisateur publicitaires sont toujours refusés. Google indique que Google Analytics 4 ne journalise ni ne stocke les adresses IP. Notre propriété Google Analytics utilise la durée de conservation par défaut de Google : les données d’utilisateurs et d’événements collectées sont supprimées après 2 mois. Les rapports standards de Google, contenant des totaux plutôt que des identifiants, ne sont pas affectés. Base légale : votre consentement pour les cookies.
 
-**Chat en direct.** Chaque page du site et du portail de comptes affiche un bouton de chat de notre fournisseur Crisp. Une fois la page chargée, votre navigateur charge le script Crisp depuis `client.crisp.chat`, et Crisp dépose les cookies décrits dans [Cookies et stockage du navigateur](#cookies). Crisp reçoit votre adresse IP, les détails du navigateur, les adresses des pages consultées et les messages écrits, et conserve votre adresse IP si vous commencez une conversation. Nous ne lui communiquons que la langue de la page, rien d’autre sur vous. Crisp est établi en France.
+**Chat en direct.** Chaque page du site et du portail de comptes affiche un bouton de chat de notre fournisseur Crisp. Une fois la page chargée, votre navigateur charge le script Crisp depuis `client.crisp.chat`, et Crisp dépose les cookies décrits dans [Cookies et stockage du navigateur](#cookies). Crisp reçoit votre adresse IP, les détails du navigateur, les adresses des pages consultées et les messages écrits, et conserve votre adresse IP si vous commencez une conversation. Nous lui communiquons la langue de la page. Lorsque vous êtes connecté au portail de comptes, nous lui transmettons aussi l’adresse e-mail et l’identifiant de votre compte, qui relient la conversation à votre compte. Nous ne lui communiquons rien d’autre sur vous. Crisp est établi en France.
 
 **Script de règlement.** Lorsque vous pointez un bouton Acheter ou y accédez avec Tab, votre navigateur charge le script de règlement de {merchant} depuis jsDelivr (`cdn.jsdelivr.net`), qui reçoit votre adresse IP et les détails du navigateur. Le règlement lui-même ne s’ouvre depuis {merchant} qu’au clic.
 

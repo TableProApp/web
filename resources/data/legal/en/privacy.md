@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-22"
+updatedAt: "2026-10-28"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -116,7 +116,7 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 **Google Analytics.** The site loads Google Analytics on every page in Consent Mode. Until you choose **Allow** in the cookie question, it sets no cookies and sends Google only a cookieless signal for each page, with no identifier stored on your device. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits, such as the pages you view, download clicks and the start of a checkout. Advertising storage, ad personalization and ad user data are always denied. Google states that Google Analytics 4 does not log or store IP addresses. Our Google Analytics property uses Google's default retention period: Google deletes the user-level and event-level data it collected after 2 months. Google's standard reports, which hold totals rather than identifiers, are not affected. Lawful basis: your consent for the cookies.
 
-**Live chat.** Every page of the website and the account portal shows a chat button from our chat provider, Crisp. Once a page has loaded, your browser loads Crisp's script from `client.crisp.chat`, and Crisp sets the cookies described under [Cookies and browser storage](#cookies). Crisp receives your IP address, your browser's details, the addresses of the pages you view and the messages you write, and it keeps your IP address if you start a conversation. We tell Crisp the language of the page and nothing else about you. Crisp is based in France.
+**Live chat.** Every page of the website and the account portal shows a chat button from our chat provider, Crisp. Once a page has loaded, your browser loads Crisp's script from `client.crisp.chat`, and Crisp sets the cookies described under [Cookies and browser storage](#cookies). Crisp receives your IP address, your browser's details, the addresses of the pages you view and the messages you write, and it keeps your IP address if you start a conversation. We tell Crisp the language of the page. When you are signed in to the account portal, we also give Crisp your account's email address and account ID, which link a conversation to your account. We tell Crisp nothing else about you. Crisp is based in France.
 
 **Checkout script.** When you point at or tab to a Buy button, your browser loads {merchant}'s checkout script from jsDelivr (`cdn.jsdelivr.net`), which receives your IP address and your browser's details. The checkout itself opens from {merchant} only when you click.
 
