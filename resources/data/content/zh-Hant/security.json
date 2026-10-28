@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "傳到 TablePro",
-                    "text": "未啟用授權時，Mac App 向 TablePro 發出的唯一請求是每日使用報告，預設開啟，可在設定中關閉。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。報告從不包含主機名稱、使用者名稱、密碼、查詢或列資料，兩款 App 也都不含當機回報工具或第三方分析程式庫。"
+                    "text": "在您登入或啟用授權之前，Mac App 向 TablePro 傳送的唯一資料是每日使用報告，預設開啟，可在設定中關閉。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。報告從不包含主機名稱、使用者名稱、密碼、查詢或列資料，兩款 App 也都不含當機回報工具或第三方分析程式庫。"
                 }
             ],
             "limits": [
-                "Mac App 傳送第一份使用報告前不會詢問，我們的伺服器會保存每份報告和每次授權驗證的 IP 位址。"
+                "Mac App 傳送第一份使用報告前不會詢問。從支援 TablePro 帳戶的版本起，PostHog 會隨報告收到您的 Mac 的 IP 位址，帳戶的稽核記錄會保存每次登入和每台新裝置的 IP 位址。"
             ],
             "links": [
                 {

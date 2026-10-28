@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Para o TablePro",
-                    "text": "Sem licença ativada, a única solicitação do app para Mac ao TablePro é um relatório diário de uso, ativado por padrão e que pode ser desativado nos ajustes. No iPhone e iPad, nada vai ao TablePro a menos que você ative Share Usage Data. Um relatório nunca contém nomes de host, nomes de usuário, senhas, consultas nem linhas, e nenhum dos dois apps contém relator de falhas nem biblioteca de análise de terceiros."
+                    "text": "Até você entrar em uma conta ou ativar uma licença, o único dado que o app para Mac envia ao TablePro é um relatório diário de uso, ativado por padrão e que pode ser desativado nos ajustes. No iPhone e iPad, nada vai ao TablePro a menos que você ative Share Usage Data. Um relatório nunca contém nomes de host, nomes de usuário, senhas, consultas nem linhas, e nenhum dos dois apps contém relator de falhas nem biblioteca de análise de terceiros."
                 }
             ],
             "limits": [
-                "O app para Mac envia o primeiro relatório de uso sem perguntar, e nosso servidor guarda o endereço IP de cada relatório e de cada verificação de licença."
+                "O app para Mac envia o primeiro relatório de uso sem perguntar. A partir da versão que traz as contas TablePro, o PostHog recebe o endereço IP do seu Mac com ele, e o registro de auditoria da sua conta guarda o endereço IP de cada acesso e de cada dispositivo novo."
             ],
             "links": [
                 {

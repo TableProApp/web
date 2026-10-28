@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "To TablePro",
-                    "text": "With no license activated, the only request the Mac app makes to TablePro is a daily usage report, on by default and switchable in Settings. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. A report never carries hostnames, usernames, passwords, queries or rows, and neither app contains a crash reporter or a third-party analytics library."
+                    "text": "Until you sign in or activate a license, the only data the Mac app sends TablePro is a daily usage report, on by default and switchable in Settings. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. A report never carries hostnames, usernames, passwords, queries or rows, and neither app contains a crash reporter or a third-party analytics library."
                 }
             ],
             "limits": [
-                "The Mac app sends its first usage report without asking, and our server stores the IP address of every report and license check."
+                "The Mac app sends its first usage report without asking. From the version that adds TablePro accounts, PostHog receives your Mac’s IP address with it, and your account’s audit log keeps the IP address of each sign-in and new device."
             ],
             "links": [
                 {

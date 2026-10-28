@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Vers TablePro",
-                    "text": "Sans licence activée, la seule demande envoyée à TablePro par l’application Mac est un rapport quotidien d’utilisation, activé par défaut et désactivable dans les réglages. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Share Usage Data. Un rapport ne contient jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes, et aucune des deux applications ne contient de rapporteur de plantages ni de bibliothèque d’analyse tierce."
+                    "text": "Tant que vous ne vous connectez pas et n’activez pas de licence, la seule donnée envoyée à TablePro par l’application Mac est un rapport quotidien d’utilisation, activé par défaut et désactivable dans les réglages. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Share Usage Data. Un rapport ne contient jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes, et aucune des deux applications ne contient de rapporteur de plantages ni de bibliothèque d’analyse tierce."
                 }
             ],
             "limits": [
-                "L’application Mac envoie son premier rapport d’utilisation sans demander, et notre serveur conserve l’adresse IP de chaque rapport et de chaque vérification de licence."
+                "L’application Mac envoie son premier rapport d’utilisation sans demander. À partir de la version qui ajoute les comptes TablePro, PostHog reçoit l’adresse IP de votre Mac avec ce rapport, et le journal d’audit de votre compte conserve l’adresse IP de chaque connexion et de chaque nouvel appareil."
             ],
             "links": [
                 {

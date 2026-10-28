@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "An TablePro",
-                    "text": "Ohne aktivierte Lizenz sendet die Mac-App an TablePro nur einen täglichen Nutzungsbericht, standardmäßig aktiv und in den Einstellungen abschaltbar. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Ein Bericht enthält niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen, und keine der beiden Apps enthält einen Absturzmelder oder eine Analysebibliothek von Dritten."
+                    "text": "Bis du dich anmeldest oder eine Lizenz aktivierst, sendet die Mac-App an TablePro nur einen täglichen Nutzungsbericht, standardmäßig aktiv und in den Einstellungen abschaltbar. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Ein Bericht enthält niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen, und keine der beiden Apps enthält einen Absturzmelder oder eine Analysebibliothek von Dritten."
                 }
             ],
             "limits": [
-                "Die Mac-App sendet ihren ersten Nutzungsbericht ohne Nachfrage, und unser Server speichert die IP-Adresse jedes Berichts und jeder Lizenzprüfung."
+                "Die Mac-App sendet ihren ersten Nutzungsbericht ohne Nachfrage. Ab der Version, die TablePro-Konten einführt, erhält PostHog dabei die IP-Adresse deines Macs, und das Audit-Log deines Kontos speichert die IP-Adresse jeder Anmeldung und jedes neuen Geräts."
             ],
             "links": [
                 {

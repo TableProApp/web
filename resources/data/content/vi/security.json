@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Tới TablePro",
-                    "text": "Khi chưa kích hoạt license, yêu cầu duy nhất mà ứng dụng cho Mac gửi tới TablePro là một báo cáo sử dụng mỗi ngày, bật sẵn và có thể tắt trong Cài đặt. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Báo cáo không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng, và cả hai ứng dụng đều không chứa công cụ báo lỗi (crash reporter) hay thư viện phân tích của bên thứ ba."
+                    "text": "Cho tới khi bạn đăng nhập hoặc kích hoạt license, dữ liệu duy nhất mà ứng dụng cho Mac gửi tới TablePro là một báo cáo sử dụng mỗi ngày, bật sẵn và có thể tắt trong Cài đặt. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Báo cáo không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng, và cả hai ứng dụng đều không chứa công cụ báo lỗi (crash reporter) hay thư viện phân tích của bên thứ ba."
                 }
             ],
             "limits": [
-                "Ứng dụng cho Mac gửi báo cáo sử dụng đầu tiên mà không hỏi trước, và máy chủ của chúng tôi lưu địa chỉ IP của mọi báo cáo và mọi lần kiểm tra license."
+                "Ứng dụng cho Mac gửi báo cáo sử dụng đầu tiên mà không hỏi trước. Từ phiên bản có tài khoản TablePro, PostHog nhận địa chỉ IP của máy Mac cùng báo cáo đó, và nhật ký kiểm tra (audit log) của tài khoản lưu địa chỉ IP của mỗi lần đăng nhập và mỗi thiết bị mới."
             ],
             "links": [
                 {

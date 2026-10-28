@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Ke TablePro",
-                    "text": "Tanpa lisensi aktif, satu-satunya permintaan aplikasi Mac ke TablePro adalah laporan penggunaan harian, aktif secara bawaan dan dapat dinonaktifkan di pengaturan. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data. Laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris, dan kedua aplikasi tidak memuat pelapor crash maupun pustaka analitik pihak ketiga."
+                    "text": "Sebelum Anda masuk atau mengaktifkan lisensi, satu-satunya data yang dikirim aplikasi Mac ke TablePro adalah laporan penggunaan harian, aktif secara bawaan dan dapat dinonaktifkan di pengaturan. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data. Laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris, dan kedua aplikasi tidak memuat pelapor crash maupun pustaka analitik pihak ketiga."
                 }
             ],
             "limits": [
-                "Aplikasi Mac mengirim laporan penggunaan pertamanya tanpa bertanya, dan server kami menyimpan alamat IP setiap laporan dan setiap pemeriksaan lisensi."
+                "Aplikasi Mac mengirim laporan penggunaan pertamanya tanpa bertanya. Mulai versi yang menghadirkan akun TablePro, PostHog menerima alamat IP Mac Anda bersama laporan itu, dan log audit akun Anda menyimpan alamat IP setiap proses masuk dan setiap perangkat baru."
             ],
             "links": [
                 {
