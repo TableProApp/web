@@ -10,12 +10,10 @@ import type { PaidFeatureCopy } from './types';
 
 const TIERS: readonly TierId[] = ['free', 'starter', 'team'];
 
-/** The feature column: a little less padding on a phone, where every pixel goes to the plan columns. */
+// Less padding on a phone, where every pixel goes to the plan columns.
 const FEATURE_CELL = 'max-sm:pr-2 max-sm:pl-3';
-/** A plan column: 64px on a phone (6px padding), 18% from 640px; the mark or word centred. */
 const PLAN_CELL = 'w-16 text-center max-sm:px-1.5 sm:w-[18%]';
 
-/** A cell's content: a plain yes or no, or a short visible word. */
 type Value = boolean | string;
 
 interface Row {
@@ -26,27 +24,11 @@ interface Row {
 }
 
 interface PlanMatrixProps {
-    /** `content/{locale}/paid-features.json`: each feature's one-line detail. */
     details: PaidFeatureCopy;
     className?: string;
 }
 
-/**
- * Every paid feature against Free, Starter and Team (design-system §5.3.18
- * `PlanMatrix`), from paid-features.json in its display order, then the Macs a
- * license covers, Priority support and everything else in the app.
- *
- * Each feature is named here once and links to the section of its feature
- * page that describes it. A cell carries its meaning in words as well as a
- * mark (`Availability`), so a screen reader never meets an empty cell.
- *
- * All four columns fit a 343px phone (design-system §8.6): below 640px each
- * plan column is 64px with 6px of padding and its glyph centred, the feature's
- * one-line detail is already a caption under its name, and the Macs row's
- * words wrap inside their column. Nothing scrolls, so no plan is ever off
- * screen. The first column stays sticky for the rare narrow window where it
- * would.
- */
+// All four columns fit a 343px phone with nothing scrolling (design-system §8.6); each cell says its meaning in words too, for screen readers.
 export default function PlanMatrix({ details, className }: PlanMatrixProps) {
     const { m, plural } = useI18n();
 

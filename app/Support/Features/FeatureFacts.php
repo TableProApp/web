@@ -6,43 +6,15 @@ use App\Support\Content\EnginePaths;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
+// What each {token} and engines list in feature copy means, so the copy stays true when the data changes; FeatureContentTest fails on a name it does not know.
 /**
- * The facts the feature pages quote, read from the data files and handed to
- * the page as values, never typed into the copy.
- *
- * A content string names a fact with a `{token}`; a section names a linked
- * engine list with `"engines": [{ "list": "explainDiagram", … }]`. This class
- * is the one table of what those names mean, so the copy can say "{rowCap}
- * rows" or list the EXPLAIN engines and stay true when `facts.json`,
- * `engines.json` or `platforms.json` change. Numbers arrive unformatted: the
- * page writes them with the locale's separators.
- *
- * Four kinds of value:
- *
- * - `number`: a limit or a list length from `facts.json` (`rowCap`,
- *   `filterOperatorCount`).
- * - `text`: one proper noun or literal from data (`macSafeModeDefault`).
- * - `names`: names from data, joined by the page with the locale's list style
- *   (`macSafeModeLevels`, `aiProviders`).
- * - `engines`: published engines from `engines.json` chosen by a capability,
- *   each with the path of the page that describes it, an optional detail (the
- *   query language, the dump tool) and the version that added it while some
- *   channel still serves an older app.
- *
- * `components/features/README.md` documents every name for whoever writes the
- * content files, and `Features/FeatureContentTest` fails on a token this class
- * does not know.
- *
  * @phpstan-type EngineItem array{name: string, href: string|null, detail: string|null, since: string|null}
  * @phpstan-type Fact array{kind: 'number', value: int}|array{kind: 'text', value: string}|array{kind: 'names', items: list<string>}|array{kind: 'engines', items: list<EngineItem>}
  */
 final class FeatureFacts
 {
+    // Hub keys whose slots the page fills from the paid features and plan names, not from facts.
     /**
-     * Hub keys whose `{slots}` are filled by the page from the paid features
-     * and the plan names, not from facts: the shared `labels` and the area
-     * plan line.
-     *
      * @var list<string>
      */
     public const TEMPLATE_PATHS = ['labels', 'areas.paid'];
@@ -52,10 +24,8 @@ final class FeatureFacts
      */
     private ?array $all = null;
 
+    // engineItem() asks for the Mac floor once per engine.
     /**
-     * Decoded data files, by file name: `engineItem()` asks for the Mac floor
-     * once per engine.
-     *
      * @var array<string, array<array-key, mixed>>
      */
     private array $decoded = [];
@@ -68,8 +38,6 @@ final class FeatureFacts
     ) {}
 
     /**
-     * Every fact, by token name.
-     *
      * @return array<string, Fact>
      */
     public function all(): array
@@ -88,10 +56,8 @@ final class FeatureFacts
         ];
     }
 
+    // Only what a page renders goes into its props.
     /**
-     * Only the facts a content file names, so a page's props carry what it
-     * renders and nothing else.
-     *
      * @param  array<array-key, mixed>  ...$contents  decoded content files
      * @return array<string, Fact>
      */
@@ -107,11 +73,6 @@ final class FeatureFacts
     }
 
     /**
-     * The fact names a decoded content file refers to: every `{token}` in a
-     * string, and every `list` of an `engines` entry. The hub's templates
-     * (`TEMPLATE_PATHS`) carry slots the page fills itself, such as `{tier}`,
-     * so they are not read.
-     *
      * @param  array<array-key, mixed>  $content
      * @return list<string>
      */
@@ -142,11 +103,8 @@ final class FeatureFacts
         return $names;
     }
 
+    // offlineDays bounds when a removed Team member's Mac loses Team's features.
     /**
-     * The limits in `facts.json`, plus the device limit and how long a signed
-     * plan lasts offline (`pricing.json`), which bounds when a removed Team
-     * member's Mac loses Team's features.
-     *
      * @param  array<string, mixed>  $facts
      * @param  array<string, mixed>  $pricing
      * @return array<string, Fact>
@@ -267,11 +225,6 @@ final class FeatureFacts
     }
 
     /**
-     * One engine as a list item: its name, the path of the page that
-     * describes it (its own page, a section of its family page, or its row on
-     * `/databases`), an optional detail, and the version that added it while
-     * an older app is still being served.
-     *
      * @param  array<string, mixed>  $engine
      * @param  list<array<string, mixed>>  $engines
      * @return EngineItem
@@ -286,10 +239,7 @@ final class FeatureFacts
         ];
     }
 
-    /**
-     * The version, when it is newer than the oldest Mac build any channel
-     * still serves (`platforms.json` → `mac.floorVersion`), else null.
-     */
+    // Only a version newer than the oldest Mac build any channel still serves is worth naming.
     private function releaseLabel(string $since): ?string
     {
         $floor = $this->macFloorVersion();
@@ -313,8 +263,6 @@ final class FeatureFacts
     }
 
     /**
-     * The engine ids the iPhone and iPad picker offers, in its order.
-     *
      * @return list<string>
      */
     private function iosEngineOrder(): array
@@ -329,8 +277,6 @@ final class FeatureFacts
     }
 
     /**
-     * The published engines from `engines.json`, in data order.
-     *
      * @return list<array<string, mixed>>
      */
     private function publishedEngines(): array
@@ -341,10 +287,8 @@ final class FeatureFacts
         ));
     }
 
+    // Each file's Data test keeps it valid, so a missing or malformed file degrades to an empty array.
     /**
-     * A data file, decoded. Each file's `Data` test keeps it valid, so a
-     * missing or malformed file degrades to an empty array here.
-     *
      * @return array<array-key, mixed>
      */
     private function json(string $file): array

@@ -1,13 +1,4 @@
-/**
- * TablePro's column, read from the site's own data files: prices from
- * `pricing.json`, platforms and requirements from `platforms.json`, the plan
- * that includes iCloud Sync from `paid-features.json`, the license and the
- * connection importers from `facts.json`. Nothing about TablePro is typed into
- * a compare page or stored in `comparisons.json` (architecture §1.8).
- *
- * The featured engine names come from the server (`tablepro.featuredEngines`),
- * so the page bundle does not carry all of `engines.json` for six names.
- */
+// Nothing about TablePro is typed into a compare page or comparisons.json (architecture §1.8). The featured engines come from the server so the bundle skips engines.json.
 import type { Messages } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { connectionImportFor, FACTS } from '@/lib/data/facts';
@@ -23,7 +14,7 @@ export function tableproFacts(productId: string | null, featuredEngines: string[
     const importer = productId === null ? null : connectionImportFor(productId);
 
     return {
-        /* "Mac, iPhone and iPad": each released platform's device names, as the homepage and JSON-LD join them. */
+        // Joined as the homepage and JSON-LD join them.
         devices: deviceList(m.common.list),
         macRequirement: requirementText(mac, m.platforms),
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
@@ -39,11 +30,7 @@ export function tableproFacts(productId: string | null, featuredEngines: string[
     };
 }
 
-/**
- * `{macLanguages}`: the Mac app's interface languages from `platforms.json`,
- * named in the page's language by the hub's `labels.languages`, so a language
- * the app adds reaches every compare page without a copy edit.
- */
+// A language the app adds reaches every compare page without a copy edit.
 export function macLanguages(names: Record<string, string>, m: Messages): string {
     return joinList(
         macPlatform().appLanguages.map((code) => names[code] ?? code),
@@ -51,7 +38,6 @@ export function macLanguages(names: Record<string, string>, m: Messages): string
     );
 }
 
-/** `{starterExamples}` and `{teamExamples}`: the highlighted paid features' names, joined for the page's language. */
 export function paidExamples(m: Messages): { starterExamples: string; teamExamples: string } {
     return {
         starterExamples: examplesText('starter', m.common.list),
