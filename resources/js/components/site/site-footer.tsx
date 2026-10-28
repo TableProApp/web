@@ -108,8 +108,8 @@ function Newsletter() {
                             {m.forms.subscribe}
                         </Button>
                     </div>
-                    {/* Turnstile shows here only when it needs the reader to answer a challenge. */}
-                    <div ref={form.widget} className="empty:hidden" />
+                    {/* Turnstile's hidden iframe would still take a grid row, so the container shows only during a challenge. */}
+                    <div ref={form.widget} hidden={!form.challenge} />
                     {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
                     {/* Reserved height, so the answer moves nothing. An error is the one coloured status text, with an icon beside it. */}
                     <p

@@ -56,7 +56,8 @@ export default function NewsletterSignup({ className }: NewsletterSignupProps) {
                         {m.forms.subscribe}
                     </Button>
                 </div>
-                <div ref={form.widget} className="empty:hidden" />
+                {/* Turnstile's hidden iframe would still take a grid row, so the container shows only during a challenge. */}
+                <div ref={form.widget} hidden={!form.challenge} />
                 {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
                 <p
                     id={resultId}

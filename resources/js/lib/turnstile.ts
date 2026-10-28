@@ -91,6 +91,7 @@ export interface HumanCheckOptions {
     siteKey: string;
     language: string;
     theme: 'light' | 'dark';
+    onInteractive: (interactive: boolean) => void;
 }
 
 export interface HumanCheck {
@@ -125,6 +126,8 @@ export function renderHumanCheck(turnstile: TurnstileApi, container: HTMLElement
         theme: options.theme,
         language: options.language,
         callback: (token: string) => settle(token),
+        'before-interactive-callback': () => options.onInteractive(true),
+        'after-interactive-callback': () => options.onInteractive(false),
         'error-callback': () => {
             settle(new Error('Turnstile could not run its check.'));
 
@@ -153,6 +156,7 @@ export function renderHumanCheck(turnstile: TurnstileApi, container: HTMLElement
                 };
 
                 if (used && typeof widgetId === 'string') {
+                    options.onInteractive(false);
                     turnstile.reset(widgetId);
                 }
 

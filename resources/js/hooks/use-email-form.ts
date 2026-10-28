@@ -18,6 +18,7 @@ export function useEmailForm() {
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [flash, setFlash] = useState<FlashMessage | null>(null);
+    const [challenge, setChallenge] = useState(false);
 
     function humanCheck(): Promise<HumanCheck> {
         const container = widget.current;
@@ -32,6 +33,7 @@ export function useEmailForm() {
                     siteKey,
                     language: turnstileLanguage(locale),
                     theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+                    onInteractive: setChallenge,
                 }),
             )
             .catch((reason: unknown) => {
@@ -95,5 +97,5 @@ export function useEmailForm() {
         }
     }
 
-    return { email, setEmail, processing, error, flash, submit, warm, widget };
+    return { email, setEmail, processing, error, flash, submit, warm, widget, challenge };
 }

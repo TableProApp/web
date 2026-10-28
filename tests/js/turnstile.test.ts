@@ -103,7 +103,7 @@ test('the widget names the newsletter action, follows the page, and shows itself
     const { api, widgets } = fakeTurnstile();
     const container = {} as HTMLElement;
 
-    renderHumanCheck(api, container, { siteKey: '1x00000000000000000000AA', language: turnstileLanguage('zh-Hant'), theme: 'dark' });
+    renderHumanCheck(api, container, { siteKey: '1x00000000000000000000AA', language: turnstileLanguage('zh-Hant'), theme: 'dark', onInteractive: () => undefined });
 
     assert.equal(widgets.length, 1);
     assert.equal(widgets[0].container, container);
@@ -126,7 +126,7 @@ test('the widget names the newsletter action, follows the page, and shows itself
 
 test('each submit runs the check again and waits for its own token', async () => {
     const { api, widgets } = fakeTurnstile();
-    const check = renderHumanCheck(api, {} as HTMLElement, { siteKey: 'key', language: 'en', theme: 'light' });
+    const check = renderHumanCheck(api, {} as HTMLElement, { siteKey: 'key', language: 'en', theme: 'light', onInteractive: () => undefined });
     const options = widgets[0].options as { callback: (token: string) => void };
 
     const first = check.token();
@@ -147,7 +147,7 @@ test('each submit runs the check again and waits for its own token', async () =>
 
 test('an error, a timed-out challenge or an expired token rejects, so the form says to reload', async () => {
     const { api, widgets } = fakeTurnstile();
-    const check = renderHumanCheck(api, {} as HTMLElement, { siteKey: 'key', language: 'en', theme: 'light' });
+    const check = renderHumanCheck(api, {} as HTMLElement, { siteKey: 'key', language: 'en', theme: 'light', onInteractive: () => undefined });
     const options = widgets[0].options as Record<string, () => unknown>;
 
     for (const callback of ['error-callback', 'timeout-callback', 'expired-callback']) {
@@ -160,4 +160,42 @@ test('an error, a timed-out challenge or an expired token rejects, so the form s
             assert.equal(handled, true, 'the error is handled here, not retried behind the reader');
         }
     }
+});
+
+test('the container shows only while Turnstile asks for an answer, and a reset hides it again', async () => {
+    const { api, widgets } = fakeTurnstile();
+    let shown = false;
+    const check = renderHumanCheck(api, {} as HTMLElement, {
+        siteKey: 'key',
+        language: 'en',
+        theme: 'light',
+        onInteractive: (interactive) => {
+            shown = interactive;
+        },
+    });
+    const options = widgets[0].options as Record<string, (token?: string) => unknown>;
+
+    const first = check.token();
+
+    assert.equal(shown, false, 'a check that needs no answer never shows the container');
+    options['before-interactive-callback']();
+    assert.equal(shown, true);
+    options['after-interactive-callback']();
+    assert.equal(shown, false);
+    options.callback('token-1');
+    await first;
+
+    // A challenge left open (timed out, then submitted again) is cleared before the widget restarts.
+    const second = check.token();
+
+    options['before-interactive-callback']();
+    options['timeout-callback']();
+    await assert.rejects(second);
+    assert.equal(shown, true);
+
+    const third = check.token();
+
+    assert.equal(shown, false);
+    options.callback('token-3');
+    assert.equal(await third, 'token-3');
 });

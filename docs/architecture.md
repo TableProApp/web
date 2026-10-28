@@ -259,6 +259,9 @@ The newsletter forms (footer and blog index, `useEmailForm`) send a Cloudflare
 Turnstile token with the address. The widget (`resources/js/lib/turnstile.ts`,
 action `newsletter`) is rendered on the reader's first focus or pointer on the
 form, runs its check on submit, and shows itself only when it needs an answer.
+Its container stays `hidden` outside a challenge (Turnstile's
+`before-interactive-callback` and `after-interactive-callback`): the invisible
+widget would still take a row in the form's grid and move the result line.
 Its site key is public configuration, `TURNSTILE_SITE_KEY`, shared as the
 `turnstileSiteKey` prop; without one the form says the check did not finish
 and posts nothing. tablepro-cloud answers 202 whatever happened, so the form
