@@ -169,8 +169,8 @@
                     "id": "how-many-macs",
                     "question": "Một license dùng được trên bao nhiêu máy Mac?",
                     "answer": [
-                        "Starter dành cho một người trên tối đa {starterActivations} máy Mac. Team có tối thiểu {teamMinSeats} seat; mỗi seat là một máy Mac đã kích hoạt. iPhone và iPad không dùng seat.",
-                        "Để chuyển lượt kích hoạt, gỡ máy Mac cũ trong <account>tài khoản của bạn</account>."
+                        "Starter dành cho một người trên tối đa {deviceLimit} máy Mac. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy Mac. Giới hạn này tính theo tài khoản, chung cho Starter và Team. iPhone và iPad không dùng seat.",
+                        "Để dùng license trên một máy Mac khác, gỡ một máy trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) hoặc trên trang Thiết bị trong <account>tài khoản của bạn</account>. Trong lúc đó, máy Mac kia vẫn dùng được các tính năng miễn phí."
                     ]
                 },
                 {
@@ -185,7 +185,9 @@
                     "id": "offline",
                     "question": "License có hoạt động khi không có mạng không?",
                     "answer": [
-                        "Có, trong thời gian cho phép offline. TablePro kiểm tra chữ ký khi mở ứng dụng và kiểm tra server mỗi {revalidateDays} ngày. Nếu không liên lạc được với server, tính năng trả phí hoạt động thêm {graceDays} ngày từ lần kiểm tra thành công gần nhất.",
+                        "Có. TablePro giữ một bản sao có chữ ký của gói bạn dùng và làm mới nó khi mở ứng dụng và mỗi ngày một lần. Nếu không liên lạc được với server, tính năng trả phí vẫn hoạt động tới khi bản sao đó hết hạn, tối đa {offlineDays} ngày sau lần làm mới gần nhất.",
+                        "Với máy Mac không bao giờ kết nối mạng, hãy tạo file offline trong <account>tài khoản của bạn</account> rồi nhập file đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). File dùng được tới hết kỳ đã trả, hoặc một năm với gói mua một lần.",
+                        "Các phiên bản trước khi có tài khoản TablePro thì kiểm tra license mỗi {revalidateDays} ngày, và giữ tính năng trả phí thêm {graceDays} ngày từ lần kiểm tra thành công gần nhất.",
                         "Tải driver, cập nhật và AI cloud vẫn cần internet."
                     ]
                 },
@@ -193,7 +195,7 @@
                     "id": "payment",
                     "question": "Ai xử lý thanh toán?",
                     "answer": [
-                        "{merchant} là merchant of record, xử lý thanh toán, thuế và biên lai. Quản lý hóa đơn và subscription trong <portal>trang khách hàng của {merchant}</portal> bằng email đã mua."
+                        "{merchant} là merchant of record, xử lý thanh toán, thuế và biên lai. Thẻ và hóa đơn của bạn nằm trong <portal>trang khách hàng của {merchant}</portal>, nơi bạn đăng nhập bằng email đã mua. Đổi hoặc hủy subscription trong <account>tài khoản của bạn</account>."
                     ]
                 },
                 {
@@ -214,14 +216,15 @@
                     "id": "refunds",
                     "question": "Tôi có được hoàn tiền không?",
                     "answer": [
-                        "Có. Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó. Xem <refundPolicy>chính sách hoàn tiền</refundPolicy>."
+                        "Có. Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó. Bạn tự hoàn tiền trong mục Thanh toán của <account>tài khoản của bạn</account>, hoặc xem <refundPolicy>chính sách hoàn tiền</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "Tôi làm mất license key. Tìm lại ở đâu?",
                     "answer": [
-                        "Xem trong email mua hàng hoặc <account>tài khoản của bạn</account>. Đăng nhập bằng email đã mua để xem các key."
+                        "Bạn không cần key nữa. Đăng nhập ứng dụng cho Mac bằng email đã mua: giao dịch của bạn nằm trong tài khoản đó. Khi cập nhật TablePro, key đã có trên máy Mac sẽ tự đăng nhập cho bạn.",
+                        "Chỉ các phiên bản trước khi có tài khoản TablePro mới còn hỏi key, nằm trong email mua hàng. Các giao dịch mua sau đó không có key."
                     ]
                 },
                 {
@@ -242,14 +245,14 @@
                     "question": "Ứng dụng gửi gì cho TablePro?",
                     "answer": [
                         "Mac gửi báo cáo sử dụng hằng ngày theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Báo cáo gồm ID máy đã hash, thông tin ứng dụng và loại cơ sở dữ liệu, không có hostname, username, mật khẩu, query hay dòng dữ liệu.",
-                        "Kiểm tra license mỗi {revalidateDays} ngày, gửi key, ID máy, tên máy Mac, phiên bản ứng dụng và macOS. Báo cáo iPhone và iPad chỉ gửi khi bạn bật. Team Library nhận cài đặt và SQL đã lưu mà bạn chia sẻ. Xem <privacy>chính sách quyền riêng tư</privacy>, gồm việc ghi IP."
+                        "Khi bạn đăng nhập, ứng dụng cho Mac đăng ký máy Mac với tài khoản của bạn, gửi ID máy, tên máy, phiên bản ứng dụng và macOS, rồi làm mới gói mỗi ngày một lần. Các phiên bản trước khi có tài khoản TablePro gửi license key cùng các thông tin đó mỗi {revalidateDays} ngày. Báo cáo iPhone và iPad chỉ gửi khi bạn bật. Team Library nhận cài đặt và SQL đã lưu mà bạn chia sẻ. Xem <privacy>chính sách quyền riêng tư</privacy>, gồm việc ghi IP."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Tôi có cần đăng ký không?",
                     "answer": [
-                        "Không cần đăng ký để dùng ứng dụng. Người mua quản lý license, máy Mac và seat trong <account>tài khoản</account>, đăng nhập qua link gửi tới email đã mua."
+                        "Không cần đăng ký để dùng ứng dụng. Tính năng trả phí hoạt động khi bạn đăng nhập tài khoản TablePro: giao dịch mua thuộc về tài khoản của email đã mua, được tạo nếu chưa có, và mỗi thành viên nhóm đăng nhập bằng tài khoản riêng."
                     ]
                 },
                 {
@@ -277,21 +280,23 @@
                     "id": "sign-in",
                     "question": "Làm sao để đăng nhập vào tài khoản?",
                     "answer": [
-                        "Nhập email đã mua trong <account>tài khoản của bạn</account>. Link gửi qua email dùng một lần và sớm hết hạn. Chỉ người mua đăng nhập trang tài khoản; thành viên nhóm dùng mã mời trong ứng dụng Mac."
+                        "Trong <account>tài khoản của bạn</account>, nhập email để nhận liên kết đăng nhập và mã 6 chữ số, hoặc dùng passkey, Apple, GitHub hay Google. Không có mật khẩu. Liên kết chỉ dùng được một lần, và cả hai hết hạn sau 15 phút.",
+                        "Ứng dụng cho Mac mời bạn đăng nhập khi mở lần đầu, và sau đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn gõ mã trong email."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Làm sao để thêm hoặc xóa thành viên nhóm?",
                     "answer": [
-                        "Mời thành viên qua email trong <account>tài khoản của bạn</account>. Họ nhập mã trong <ui>Cài đặt > License</ui> (Settings > License); mỗi máy Mac đã kích hoạt dùng một seat. Gỡ thành viên giải phóng seat và xóa mục họ chia sẻ trong Team Library. Máy Mac của họ mất quyền trả phí ở lần kiểm tra license tiếp theo, không phải ngay lập tức."
+                        "Chủ sở hữu và quản trị viên mời người khác qua email trên trang Thành viên trong <account>tài khoản của bạn</account>, kèm vai trò và, nếu muốn, một seat. Liên kết trong email dùng được 7 ngày, và tài khoản TablePro nào cũng chấp nhận được. Thành viên dùng seat trong phiên bản TablePro có tài khoản.",
+                        "Gỡ một thành viên sẽ giải phóng seat của họ. Máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "Làm sao để thay đổi số seat?",
                     "answer": [
-                        "Đổi số seat của subscription trong <account>tài khoản của bạn</account>; chênh lệch nằm trên hóa đơn tiếp theo. Với license thanh toán một lần, gửi email tới <email>{email}</email>."
+                        "Chủ sở hữu nhóm đổi số seat trong mục Thanh toán của <account>tài khoản của bạn</account>. Với subscription, {merchant} thu hoặc hoàn phần chênh lệch theo tỷ lệ ngay khi đổi. Nhóm không có subscription mua thêm seat mua một lần ở đó."
                     ]
                 },
                 {

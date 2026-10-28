@@ -104,7 +104,7 @@ it('groups the questions in the sitemap order, with stable ids in both languages
 
     expect($ids('vi'))->toBe($ids('en'));
     expect($ids('en'))->toBe(array_values(array_unique($ids('en'))));
-    // `/faq#lost-license-key` is linked from the pricing page's licensing questions.
+    // Kept so a link to `/faq#lost-license-key` from before TablePro accounts still lands on an answer.
     expect($ids('en'))->toContain('lost-license-key');
 });
 

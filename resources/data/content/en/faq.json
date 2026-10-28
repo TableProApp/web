@@ -169,8 +169,8 @@
                     "id": "how-many-macs",
                     "question": "How many Macs does a license cover?",
                     "answer": [
-                        "Starter covers one person on up to {starterActivations} Macs. Team has at least {teamMinSeats} seats; each seat is one activated Mac. iPhone and iPad use no seat.",
-                        "To move an activation, remove the old Mac in <account>your account</account>."
+                        "Starter covers one person on up to {deviceLimit} Macs. Team has at least {teamMinSeats} seats, and each seat covers one person on up to {deviceLimit} Macs. The limit is per account, across Starter and Team. iPhone and iPad use no seat.",
+                        "To use your license on another Mac, remove one in <ui>Settings > Account</ui> or on the Devices page in <account>your account</account>. Until then, the other Mac keeps the free features."
                     ]
                 },
                 {
@@ -185,7 +185,9 @@
                     "id": "offline",
                     "question": "Does a license work offline?",
                     "answer": [
-                        "Yes, within the offline window. TablePro verifies the signature on launch and checks the server every {revalidateDays} days. Paid features work for {graceDays} days after the last successful check if the server is unreachable.",
+                        "Yes. TablePro keeps a signed copy of your plan and renews it when it starts and once a day. If our server cannot be reached, paid features keep working until that copy expires, at most {offlineDays} days after the last renewal.",
+                        "For a Mac that never goes online, create an offline file in <account>your account</account> and import it in <ui>Settings > Account</ui>. It lasts until the end of the paid period, or a year for a one-time purchase.",
+                        "Versions before TablePro accounts check the license every {revalidateDays} days instead, and keep paid features for {graceDays} days after the last successful check.",
                         "Driver downloads, updates and cloud AI still need internet access."
                     ]
                 },
@@ -193,7 +195,7 @@
                     "id": "payment",
                     "question": "Who handles the payment?",
                     "answer": [
-                        "{merchant} is the merchant of record and handles payment, tax and receipts. Manage invoices and subscriptions in <portal>{merchant}’s customer portal</portal> using your purchase email."
+                        "{merchant} is the merchant of record and handles payment, tax and receipts. Your card and invoices are in <portal>{merchant}’s customer portal</portal>, which you sign in to with your purchase email. Change or cancel a subscription in <account>your account</account>."
                     ]
                 },
                 {
@@ -214,14 +216,15 @@
                     "id": "refunds",
                     "question": "Can I get a refund?",
                     "answer": [
-                        "Yes. Purchases and subscription renewals are refundable within {refundDays} days of each charge. See the <refundPolicy>refund policy</refundPolicy>."
+                        "Yes. Purchases and subscription renewals are refundable within {refundDays} days of each charge. Refund one yourself in Billing in <account>your account</account>, or see the <refundPolicy>refund policy</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "I lost my license key. Where is it?",
                     "answer": [
-                        "Find it in your purchase email or <account>your account</account>. Sign in with your purchase email to see your keys."
+                        "You no longer need it. Sign in to the Mac app with the email you bought with: your purchase is in that account. Updating TablePro signs you in with a key already on your Mac.",
+                        "Only versions before TablePro accounts still ask for the key, which is in your purchase email. Purchases made since then come without one."
                     ]
                 },
                 {
@@ -242,14 +245,14 @@
                     "question": "What do the apps send to TablePro?",
                     "answer": [
                         "The Mac app sends a daily usage report by default; disable it in <ui>Settings > General > Privacy</ui>. It includes a hashed machine ID, app details and database types, never hostnames, usernames, passwords, queries or rows.",
-                        "License checks run every {revalidateDays} days and send the key, machine ID, Mac name and app and macOS versions. iPhone and iPad reports are opt-in. Team Library receives settings and saved SQL you publish. See the <privacy>privacy policy</privacy>, including IP logging."
+                        "Once you sign in, the Mac app registers your Mac with your account, sending its machine ID, name and app and macOS versions, and renews your plan once a day. Versions before TablePro accounts send the license key with those details every {revalidateDays} days. iPhone and iPad reports are opt-in. Team Library receives settings and saved SQL you publish. See the <privacy>privacy policy</privacy>, including IP logging."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Do I need to sign up?",
                     "answer": [
-                        "No sign-up is needed to use the apps. Buyers manage licenses, Macs and seats in <account>their account</account>, signing in through a link emailed to their purchase address."
+                        "No sign-up is needed to use the apps. Paid features work once you sign in to a TablePro account: a purchase goes to the account of the email you bought with, created if there is none, and each team member signs in with their own."
                     ]
                 },
                 {
@@ -277,21 +280,23 @@
                     "id": "sign-in",
                     "question": "How do I sign in to my account?",
                     "answer": [
-                        "Enter your purchase email in <account>your account</account>. The emailed link works once and expires shortly. Only buyers sign in to the portal; team members use an invitation code in the Mac app."
+                        "In <account>your account</account>, enter your email to get a sign-in link and a 6-digit code, or use a passkey, Apple, GitHub or Google. There is no password. The link works once, and both expire after 15 minutes.",
+                        "The Mac app offers to sign you in when it first starts, and later in <ui>Settings > Account</ui>. It opens the sign-in page in a browser sheet, where you type the code from the email."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "How do I add or remove team members?",
                     "answer": [
-                        "Invite teammates by email in <account>your account</account>. They enter the code in <ui>Settings > License</ui>; each activated Mac takes a seat. Removing a member frees the seat and deletes their published Team Library items. Their Macs lose paid access at the next license check, not immediately."
+                        "Owners and admins invite people by email from the Members page in <account>your account</account>, with a role and, if they choose, a seat. The emailed link works for 7 days, and any TablePro account can accept it. Members use their seat in the version of TablePro that adds accounts.",
+                        "Removing a member frees their seat. Their Macs lose Team’s features the next time TablePro checks in."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "How do I change the number of seats?",
                     "answer": [
-                        "Change subscription seats in <account>your account</account>; the difference appears on your next invoice. For one-time licenses, email <email>{email}</email>."
+                        "The team’s owner changes seats in Billing in <account>your account</account>. For a subscription, {merchant} charges or credits the prorated difference at once. A team without a subscription buys more one-time seats there."
                     ]
                 },
                 {

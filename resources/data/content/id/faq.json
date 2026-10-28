@@ -169,8 +169,8 @@
                     "id": "how-many-macs",
                     "question": "Berapa Mac yang dicakup lisensi?",
                     "answer": [
-                        "Starter mencakup satu orang pada maksimal {starterActivations} Mac. Team menyediakan minimal {teamMinSeats} seat; setiap seat adalah satu Mac yang diaktifkan. iPhone dan iPad tidak menggunakan seat.",
-                        "Untuk memindahkan aktivasi, hapus Mac lama dari <account>akun Anda</account>."
+                        "Starter mencakup satu orang pada maksimal {deviceLimit} Mac. Team menyediakan minimal {teamMinSeats} seat, dan setiap seat mencakup satu orang pada maksimal {deviceLimit} Mac. Batas ini berlaku per akun, gabungan Starter dan Team. iPhone dan iPad tidak menggunakan seat.",
+                        "Untuk memakai lisensi di Mac lain, hapus satu Mac di <ui>Settings > Account</ui> atau di halaman Perangkat pada <account>akun Anda</account>. Sementara itu, Mac lain tersebut tetap memakai fitur gratis."
                     ]
                 },
                 {
@@ -185,7 +185,9 @@
                     "id": "offline",
                     "question": "Apakah lisensi bekerja offline?",
                     "answer": [
-                        "Ya, dalam jendela offline. TablePro memverifikasi tanda tangan saat peluncuran dan memeriksa server setiap hari {revalidateDays}. Fitur berbayar berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil apakah server tidak dapat dijangkau.",
+                        "Ya. TablePro menyimpan salinan paket Anda yang ditandatangani dan memperbaruinya saat aplikasi dibuka dan sekali sehari. Jika server kami tidak dapat dijangkau, fitur berbayar tetap berfungsi hingga salinan itu kedaluwarsa, paling lama {offlineDays} hari setelah pembaruan terakhir.",
+                        "Untuk Mac yang tidak pernah online, buat file offline di <account>akun Anda</account> lalu impor di <ui>Settings > Account</ui>. File berlaku hingga akhir periode berbayar, atau satu tahun untuk pembelian satu kali.",
+                        "Versi sebelum akun TablePro memeriksa lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.",
                         "Pengunduhan driver, pembaruan, dan cloud AI masih memerlukan akses internet."
                     ]
                 },
@@ -193,7 +195,7 @@
                     "id": "payment",
                     "question": "Siapa yang menangani pembayaran?",
                     "answer": [
-                        "{merchant} adalah merchant of record yang menangani pembayaran, pajak, dan tanda terima. Kelola faktur dan langganan di <portal>portal pelanggan {merchant}</portal> dengan email pembelian Anda."
+                        "{merchant} adalah merchant of record yang menangani pembayaran, pajak, dan tanda terima. Kartu dan faktur Anda ada di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan email pembelian. Ubah atau batalkan langganan di <account>akun Anda</account>."
                     ]
                 },
                 {
@@ -214,14 +216,15 @@
                     "id": "refunds",
                     "question": "Bisakah meminta pengembalian dana?",
                     "answer": [
-                        "Ya. Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Lihat <refundPolicy>kebijakan pengembalian dana</refundPolicy>."
+                        "Ya. Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Kembalikan dananya sendiri di Penagihan pada <account>akun Anda</account>, atau lihat <refundPolicy>kebijakan pengembalian dana</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "Kunci lisensi hilang. Di mana kuncinya?",
                     "answer": [
-                        "Temukan di email pembelian Anda atau <account>akun Anda</account>. Masuk dengan email pembelian Anda untuk melihat kunci Anda."
+                        "Anda tidak memerlukannya lagi. Masuk ke aplikasi Mac dengan email pembelian: pembelian Anda ada di akun tersebut. Setelah TablePro diperbarui, kunci yang sudah ada di Mac akan memasukkan Anda secara otomatis.",
+                        "Hanya versi sebelum akun TablePro yang masih meminta kunci, yang ada di email pembelian Anda. Pembelian setelahnya tidak memiliki kunci."
                     ]
                 },
                 {
@@ -242,14 +245,14 @@
                     "question": "Apa yang dikirim aplikasi ke TablePro?",
                     "answer": [
                         "Aplikasi Mac mengirimkan laporan penggunaan harian secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Ini mencakup ID mesin yang di-hash, detail aplikasi dan jenis database, tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
-                        "Pemeriksaan lisensi berjalan setiap {revalidateDays} hari dan mengirimkan kunci, ID mesin, nama Mac, serta versi app dan macOS. Laporan iPhone dan iPad bersifat opsional. Team Library menerima pengaturan dan SQL tersimpan yang Anda publikasikan. Lihat <privacy>kebijakan privasi</privacy>, termasuk pencatatan IP."
+                        "Setelah Anda masuk, aplikasi Mac mendaftarkan Mac ke akun Anda dengan ID mesin, nama, serta versi app dan macOS, lalu memperbarui paket Anda sekali sehari. Versi sebelum akun TablePro mengirimkan kunci lisensi beserta data tersebut setiap {revalidateDays} hari. Laporan iPhone dan iPad bersifat opsional. Team Library menerima pengaturan dan SQL tersimpan yang Anda publikasikan. Lihat <privacy>kebijakan privasi</privacy>, termasuk pencatatan IP."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Apakah harus mendaftar?",
                     "answer": [
-                        "Tidak diperlukan pendaftaran untuk menggunakan aplikasi. Pembeli mengelola lisensi, Mac, dan seat di <account>akun mereka</account>, masuk melalui tautan yang dikirim melalui email ke alamat pembelian mereka."
+                        "Tidak diperlukan pendaftaran untuk menggunakan aplikasi. Fitur berbayar berfungsi setelah Anda masuk ke akun TablePro: pembelian masuk ke akun email yang dipakai untuk membeli, yang dibuat jika belum ada, dan setiap anggota tim masuk dengan akunnya sendiri."
                     ]
                 },
                 {
@@ -277,21 +280,23 @@
                     "id": "sign-in",
                     "question": "Bagaimana masuk ke akun?",
                     "answer": [
-                        "Masukkan email pembelian Anda di <account>akun Anda</account>. Tautan yang dikirim melalui email berfungsi satu kali dan akan segera habis masa berlakunya. Hanya pembeli yang masuk ke portal; anggota tim menggunakan kode undangan di aplikasi Mac."
+                        "Di <account>akun Anda</account>, masukkan email untuk menerima tautan masuk dan kode 6 digit, atau gunakan passkey, Apple, GitHub, atau Google. Tidak ada kata sandi. Tautan berlaku satu kali, dan keduanya kedaluwarsa setelah 15 menit.",
+                        "Aplikasi Mac menawarkan untuk masuk saat pertama kali dibuka, dan setelahnya di <ui>Settings > Account</ui>. Aplikasi membuka halaman masuk di jendela browser, tempat Anda mengetik kode dari email."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Bagaimana menambah atau menghapus anggota tim?",
                     "answer": [
-                        "Undang rekan tim melalui email di <account>akun Anda</account>. Mereka memasukkan kode di <ui>Settings > License</ui>; setiap Mac yang diaktifkan memakai satu seat. Menghapus anggota membebaskan seat dan menghapus kontribusinya di Team Library. Mac mereka kehilangan akses berbayar saat pemeriksaan lisensi berikutnya, bukan langsung."
+                        "Pemilik dan admin mengundang lewat email dari halaman Anggota di <account>akun Anda</account>, dengan peran dan, jika diinginkan, seat. Tautan dalam email berlaku 7 hari, dan akun TablePro mana pun dapat menerimanya. Anggota memakai seat di versi TablePro yang menghadirkan akun.",
+                        "Menghapus anggota membebaskan seat-nya. Mac miliknya kehilangan fitur Team saat TablePro berikutnya menghubungi server."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "Bagaimana mengubah jumlah seat?",
                     "answer": [
-                        "Ubah seat berlangganan di <account>akun Anda</account>; perbedaannya muncul di faktur Anda berikutnya. Untuk lisensi satu kali, kirim email ke <email>{email}</email>."
+                        "Pemilik tim mengubah jumlah seat di Penagihan pada <account>akun Anda</account>. Untuk langganan, {merchant} menagih atau mengkreditkan selisih prorata saat itu juga. Tim tanpa langganan membeli seat satu kali tambahan di sana."
                     ]
                 },
                 {

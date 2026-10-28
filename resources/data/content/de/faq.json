@@ -169,8 +169,8 @@
                     "id": "how-many-macs",
                     "question": "Wie viele Macs deckt eine Lizenz ab?",
                     "answer": [
-                        "Starter gilt für eine Person auf bis zu {starterActivations} Macs. Team hat mindestens {teamMinSeats} Arbeitsplätze; jeder gilt für einen aktivierten Mac. iPhone und iPad benötigen keinen Arbeitsplatz.",
-                        "Um eine Aktivierung zu übertragen, entferne den alten Mac in <account>deinem Konto</account>."
+                        "Starter gilt für eine Person auf bis zu {deviceLimit} Macs. Team hat mindestens {teamMinSeats} Arbeitsplätze, und jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs. Das Limit gilt pro Konto, über Starter und Team hinweg. iPhone und iPad benötigen keinen Arbeitsplatz.",
+                        "Um deine Lizenz auf einem anderen Mac zu nutzen, entferne einen unter <ui>Settings > Account</ui> oder auf der Geräte-Seite in <account>deinem Konto</account>. Bis dahin behält der andere Mac die kostenlosen Funktionen."
                     ]
                 },
                 {
@@ -185,7 +185,9 @@
                     "id": "offline",
                     "question": "Funktioniert eine Lizenz offline?",
                     "answer": [
-                        "Ja, innerhalb des Offline-Zeitraums. TablePro prüft beim Start die Signatur und kontaktiert den Server alle {revalidateDays} Tage. Ist er nicht erreichbar, funktionieren kostenpflichtige Funktionen noch {graceDays} Tage nach der letzten erfolgreichen Prüfung.",
+                        "Ja. TablePro speichert eine signierte Kopie deines Tarifs und erneuert sie beim Start und einmal täglich. Ist unser Server nicht erreichbar, funktionieren kostenpflichtige Funktionen, bis diese Kopie abläuft, höchstens {offlineDays} Tage nach der letzten Erneuerung.",
+                        "Für einen Mac, der nie online ist, erstellst du in <account>deinem Konto</account> eine Offline-Datei und importierst sie unter <ui>Settings > Account</ui>. Sie gilt bis zum Ende des bezahlten Zeitraums, bei einem Einmalkauf ein Jahr.",
+                        "Versionen vor den TablePro-Konten prüfen die Lizenz stattdessen alle {revalidateDays} Tage und behalten kostenpflichtige Funktionen noch {graceDays} Tage nach der letzten erfolgreichen Prüfung.",
                         "Treiberdownloads, Updates und Cloud-KI benötigen weiterhin Internet."
                     ]
                 },
@@ -193,7 +195,7 @@
                     "id": "payment",
                     "question": "Wer wickelt die Zahlung ab?",
                     "answer": [
-                        "{merchant} ist der Merchant of Record und übernimmt Zahlung, Steuern und Belege. Verwalte Rechnungen und Abos im <portal>Kundenportal von {merchant}</portal> mit deiner Kauf-E-Mail."
+                        "{merchant} ist der Merchant of Record und übernimmt Zahlung, Steuern und Belege. Karte und Rechnungen findest du im <portal>Kundenportal von {merchant}</portal>, bei dem du dich mit deiner Kauf-E-Mail anmeldest. Abos änderst oder kündigst du in <account>deinem Konto</account>."
                     ]
                 },
                 {
@@ -214,14 +216,15 @@
                     "id": "refunds",
                     "question": "Kann ich eine Erstattung erhalten?",
                     "answer": [
-                        "Ja. Käufe und Aboverlängerungen sind innerhalb von {refundDays} Tagen nach jeder Abbuchung erstattbar. Siehe die <refundPolicy>Erstattungsrichtlinie</refundPolicy>."
+                        "Ja. Käufe und Aboverlängerungen sind innerhalb von {refundDays} Tagen nach jeder Abbuchung erstattbar. Du erstattest sie selbst unter Abrechnung in <account>deinem Konto</account>; Details stehen in der <refundPolicy>Erstattungsrichtlinie</refundPolicy>."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "Ich habe meinen Lizenzschlüssel verloren. Wo ist er?",
                     "answer": [
-                        "Du findest ihn in der Kauf-E-Mail oder in <account>deinem Konto</account>. Melde dich mit deiner Kauf-E-Mail an, um deine Schlüssel zu sehen."
+                        "Du brauchst ihn nicht mehr. Melde dich in der Mac-App mit der E-Mail an, mit der du gekauft hast: Dein Kauf liegt in diesem Konto. Nach einem Update von TablePro meldet dich ein bereits gespeicherter Schlüssel automatisch an.",
+                        "Nur Versionen vor den TablePro-Konten fragen noch nach dem Schlüssel, der in deiner Kauf-E-Mail steht. Spätere Käufe haben keinen Schlüssel."
                     ]
                 },
                 {
@@ -242,14 +245,14 @@
                     "question": "Was senden die Apps an TablePro?",
                     "answer": [
                         "Die Mac-App sendet standardmäßig einen täglichen Nutzungsbericht; deaktiviere ihn unter <ui>Settings > General > Privacy</ui>. Er enthält eine gehashte Geräte-ID, App-Angaben und Datenbanktypen, nie Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen.",
-                        "Lizenzprüfungen erfolgen alle {revalidateDays} Tage und senden Schlüssel, Geräte-ID, Mac-Name sowie App- und macOS-Version. Berichte auf iPhone und iPad sind optional. Team Library erhält veröffentlichte Einstellungen und gespeichertes SQL. Siehe die <privacy>Datenschutzerklärung</privacy>, einschließlich IP-Protokollierung."
+                        "Sobald du dich anmeldest, registriert die Mac-App deinen Mac mit Geräte-ID, Name sowie App- und macOS-Version in deinem Konto und erneuert deinen Tarif einmal täglich. Versionen vor den TablePro-Konten senden den Lizenzschlüssel mit diesen Angaben alle {revalidateDays} Tage. Berichte auf iPhone und iPad sind optional. Team Library erhält veröffentlichte Einstellungen und gespeichertes SQL. Siehe die <privacy>Datenschutzerklärung</privacy>, einschließlich IP-Protokollierung."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "Muss ich mich registrieren?",
                     "answer": [
-                        "Für die Apps ist keine Anmeldung nötig. Käufer verwalten Lizenzen, Macs und Arbeitsplätze in <account>ihrem Konto</account> und melden sich über einen Link an, der an ihre Kauf-E-Mail gesendet wird."
+                        "Für die Apps ist keine Registrierung nötig. Kostenpflichtige Funktionen gibt es, sobald du dich bei einem TablePro-Konto anmeldest: Ein Kauf landet im Konto der E-Mail, mit der du gekauft hast, das bei Bedarf angelegt wird, und jedes Teammitglied meldet sich mit seinem eigenen an."
                     ]
                 },
                 {
@@ -277,21 +280,23 @@
                     "id": "sign-in",
                     "question": "Wie melde ich mich bei meinem Konto an?",
                     "answer": [
-                        "Gib deine Kauf-E-Mail in <account>deinem Konto</account> ein. Der zugesendete Link gilt einmal und läuft bald ab. Nur Käufer melden sich im Portal an; Teammitglieder nutzen einen Einladungscode in der Mac-App."
+                        "Gib in <account>deinem Konto</account> deine E-Mail ein, um einen Anmeldelink und einen 6-stelligen Code zu erhalten, oder nutze einen Passkey, Apple, GitHub oder Google. Ein Passwort gibt es nicht. Der Link gilt einmal, und beide laufen nach 15 Minuten ab.",
+                        "Die Mac-App bietet die Anmeldung beim ersten Start an, später unter <ui>Settings > Account</ui>. Sie öffnet die Anmeldeseite in einem Browserfenster, in das du den Code aus der E-Mail eingibst."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Wie füge ich Teammitglieder hinzu oder entferne sie?",
                     "answer": [
-                        "Lade Teammitglieder per E-Mail in <account>deinem Konto</account> ein. Sie geben den Code unter <ui>Settings > License</ui> ein; jeder aktivierte Mac belegt einen Arbeitsplatz. Das Entfernen eines Mitglieds gibt den Arbeitsplatz frei und löscht seine veröffentlichten Team-Library-Einträge. Seine Macs verlieren den bezahlten Zugriff bei der nächsten Lizenzprüfung, nicht sofort."
+                        "Inhaber und Admins laden auf der Seite Mitglieder in <account>deinem Konto</account> per E-Mail ein, mit einer Rolle und auf Wunsch einem Arbeitsplatz. Der Link in der E-Mail gilt 7 Tage, und jedes TablePro-Konto kann ihn annehmen. Mitglieder nutzen ihren Arbeitsplatz in der TablePro-Version mit Konten.",
+                        "Das Entfernen eines Mitglieds gibt seinen Arbeitsplatz frei. Seine Macs verlieren die Funktionen von Team, sobald TablePro sich das nächste Mal beim Server meldet."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "Wie ändere ich die Anzahl der Arbeitsplätze?",
                     "answer": [
-                        "Ändere Abo-Arbeitsplätze in <account>deinem Konto</account>; die Differenz erscheint auf der nächsten Rechnung. Für Einmalkauf-Lizenzen schreib an <email>{email}</email>."
+                        "Der Inhaber des Teams ändert die Arbeitsplätze unter Abrechnung in <account>deinem Konto</account>. Bei einem Abo berechnet oder erstattet {merchant} die anteilige Differenz sofort. Ein Team ohne Abo kauft dort weitere Arbeitsplätze per Einmalkauf."
                     ]
                 },
                 {

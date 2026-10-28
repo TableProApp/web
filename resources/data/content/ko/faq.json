@@ -169,8 +169,8 @@
                     "id": "how-many-macs",
                     "question": "라이선스 하나로 Mac 몇 대를 사용할 수 있나요?",
                     "answer": [
-                        "Starter는 한 사람이 최대 {starterActivations}대의 Mac에서 사용합니다. Team은 최소 {teamMinSeats}석이며 활성화된 Mac 한 대당 한 석을 사용합니다. iPhone 및 iPad는 좌석을 사용하지 않습니다.",
-                        "활성화를 옮기려면 <account>계정</account>에서 기존 Mac을 제거하세요."
+                        "Starter는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. Team은 최소 {teamMinSeats}석이며, 좌석 하나로 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. 대수 제한은 Starter와 Team을 합쳐 계정 단위로 적용됩니다. iPhone 및 iPad는 좌석을 사용하지 않습니다.",
+                        "다른 Mac에서 라이선스를 사용하려면 <ui>설정 > 계정</ui> (Settings > Account) 또는 <account>계정</account>의 기기 페이지에서 Mac 한 대를 제거하세요. 그동안 다른 Mac은 무료 기능을 계속 사용할 수 있습니다."
                     ]
                 },
                 {
@@ -185,7 +185,9 @@
                     "id": "offline",
                     "question": "라이선스는 오프라인에서 작동하나요?",
                     "answer": [
-                        "네. 오프라인 허용 기간 내에 사용할 수 있습니다. 시작 시 서명을 검증하고 {revalidateDays}일마다 서버를 확인합니다. 서버에 연결할 수 없으면 마지막 확인 성공 후 {graceDays}일 동안 유료 기능을 사용할 수 있습니다.",
+                        "네. TablePro는 서명된 플랜 사본을 보관하고 시작할 때와 하루에 한 번 갱신합니다. 서버에 연결할 수 없으면 유료 기능은 그 사본이 만료될 때까지, 마지막 갱신 후 최대 {offlineDays}일 동안 작동합니다.",
+                        "인터넷에 연결하지 않는 Mac이라면 <account>계정</account>에서 오프라인 파일을 만들고 <ui>설정 > 계정</ui> (Settings > Account)에서 가져오세요. 파일은 결제한 기간이 끝날 때까지, 일회성 구매는 1년 동안 유효합니다.",
+                        "TablePro 계정을 지원하기 전 버전은 대신 {revalidateDays}일마다 라이선스를 확인하며, 마지막 확인 성공 후 {graceDays}일 동안 유료 기능을 사용할 수 있습니다.",
                         "드라이버 다운로드, 업데이트, 클라우드 AI에는 인터넷 연결이 필요합니다."
                     ]
                 },
@@ -193,7 +195,7 @@
                     "id": "payment",
                     "question": "누가 결제를 처리하나요?",
                     "answer": [
-                        "{merchant}가 merchant of record로 결제, 세금, 영수증을 처리합니다. 구매 이메일로 <portal>{merchant} 고객 포털</portal>에 로그인해 청구서와 구독을 관리하세요."
+                        "{merchant}가 merchant of record로 결제, 세금, 영수증을 처리합니다. 카드와 청구서는 <portal>{merchant} 고객 포털</portal>에 있으며 구매 이메일로 로그인합니다. 구독 변경이나 취소는 <account>계정</account>에서 하세요."
                     ]
                 },
                 {
@@ -214,14 +216,15 @@
                     "id": "refunds",
                     "question": "환불받을 수 있나요?",
                     "answer": [
-                        "네. 구매와 구독 갱신은 각 결제 후 {refundDays}일 이내에 환불할 수 있습니다. <refundPolicy>환불 정책</refundPolicy>을 확인하세요."
+                        "네. 구매와 구독 갱신은 각 결제 후 {refundDays}일 이내에 환불할 수 있습니다. <account>계정</account>의 결제 페이지에서 직접 환불하거나 <refundPolicy>환불 정책</refundPolicy>을 확인하세요."
                     ]
                 },
                 {
                     "id": "lost-license-key",
                     "question": "라이선스 키를 잃어버렸습니다. 어디에서 찾나요?",
                     "answer": [
-                        "구매 이메일이나 <account>계정</account>에서 찾을 수 있습니다. 구매 이메일로 로그인하면 키를 확인할 수 있습니다."
+                        "더 이상 필요하지 않습니다. 구매 이메일로 Mac 앱에 로그인하면 구매 내역이 그 계정에 있습니다. TablePro를 업데이트하면 Mac에 있는 키로 자동 로그인됩니다.",
+                        "키를 요구하는 것은 TablePro 계정을 지원하기 전 버전뿐이며, 키는 구매 이메일에 있습니다. 그 이후의 구매에는 키가 없습니다."
                     ]
                 },
                 {
@@ -242,14 +245,14 @@
                     "question": "앱은 TablePro에 무엇을 전송하나요?",
                     "answer": [
                         "Mac 앱은 기본적으로 일일 사용 보고서를 보냅니다. <ui>설정 > 일반 > 개인정보 보호</ui> (Settings > General > Privacy)에서 끌 수 있습니다. 해시된 기기 ID, 앱 정보, 데이터베이스 유형을 포함하지만 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다.",
-                        "라이선스 확인은 {revalidateDays}일마다 실행되며 키, 기기 ID, Mac 이름, 앱 및 macOS 버전을 보냅니다. iPhone 및 iPad 보고는 선택 사항입니다. Team Library는 게시한 설정과 저장된 SQL을 받습니다. IP 기록을 포함한 <privacy>개인정보 처리방침</privacy>을 확인하세요."
+                        "로그인하면 Mac 앱은 기기 ID, Mac 이름, 앱 및 macOS 버전을 보내 Mac을 계정에 등록하고 하루에 한 번 플랜을 갱신합니다. TablePro 계정을 지원하기 전 버전은 {revalidateDays}일마다 라이선스 키와 이 정보를 보냅니다. iPhone 및 iPad 보고는 선택 사항입니다. Team Library는 게시한 설정과 저장된 SQL을 받습니다. IP 기록을 포함한 <privacy>개인정보 처리방침</privacy>을 확인하세요."
                     ]
                 },
                 {
                     "id": "sign-up",
                     "question": "가입해야 하나요?",
                     "answer": [
-                        "앱 사용에는 가입이 필요하지 않습니다. 구매자는 구매 주소로 받은 이메일 링크로 <account>계정</account>에 로그인해 라이선스, Mac, 좌석을 관리합니다."
+                        "앱 사용에는 가입이 필요하지 않습니다. 유료 기능은 TablePro 계정에 로그인하면 사용할 수 있습니다. 구매는 구매한 이메일의 계정으로 들어가며 계정이 없으면 만들어지고, 팀원은 각자 자신의 계정으로 로그인합니다."
                     ]
                 },
                 {
@@ -277,21 +280,23 @@
                     "id": "sign-in",
                     "question": "계정에 어떻게 로그인하나요?",
                     "answer": [
-                        "<account>계정</account>에 구매 이메일을 입력하세요. 이메일 링크는 한 번만 사용할 수 있고 곧 만료됩니다. 포털에는 구매자만 로그인하며 팀원은 Mac 앱에서 초대 코드를 사용합니다."
+                        "<account>계정</account>에서 이메일을 입력해 로그인 링크와 6자리 코드를 받거나 패스키, Apple, GitHub, Google을 사용하세요. 비밀번호는 없습니다. 링크는 한 번만 사용할 수 있으며 둘 다 15분 후 만료됩니다.",
+                        "Mac 앱은 처음 시작할 때 로그인을 안내하며, 이후에는 <ui>설정 > 계정</ui> (Settings > Account)에서 로그인할 수 있습니다. 로그인 페이지는 브라우저 창에서 열리며, 그곳에 이메일의 코드를 입력합니다."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "팀원을 어떻게 추가하거나 제거하나요?",
                     "answer": [
-                        "<account>계정</account>에서 이메일로 팀원을 초대하세요. 팀원은 <ui>설정 > 라이선스</ui> (Settings > License)에 코드를 입력하며 활성화된 Mac마다 한 석을 사용합니다. 멤버를 제거하면 좌석이 반환되고 게시한 Team Library 항목이 삭제됩니다. 유료 이용 권한은 즉시가 아닌 다음 라이선스 확인 때 중단됩니다."
+                        "소유자와 관리자는 <account>계정</account>의 구성원 페이지에서 이메일로 초대하며 역할과, 원하면 좌석을 지정합니다. 이메일 링크는 7일 동안 유효하고 어떤 TablePro 계정으로도 수락할 수 있습니다. 구성원은 계정을 지원하는 TablePro 버전에서 좌석을 사용합니다.",
+                        "구성원을 제거하면 좌석이 반환됩니다. 그 구성원의 Mac은 다음에 TablePro가 서버와 통신할 때 Team 기능을 잃습니다."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "좌석 수를 어떻게 변경하나요?",
                     "answer": [
-                        "<account>계정</account>에서 구독 좌석 수를 바꾸세요. 차액은 다음 청구서에 반영됩니다. 일회성 라이선스는 <email>{email}</email>로 연락하세요."
+                        "팀 소유자가 <account>계정</account>의 결제 페이지에서 좌석 수를 변경합니다. 구독의 경우 {merchant}가 일할 계산한 차액을 즉시 청구하거나 환급합니다. 구독이 없는 팀은 그곳에서 일회성 좌석을 추가로 구매합니다."
                     ]
                 },
                 {

@@ -238,6 +238,11 @@ dataset('reviewed facts', [
         ['Drivers for {bundledEngines} are bundled on the Mac', 'Others download on first use', 'Password sync is a separate opt-in', '<ui>Passwords</ui> on the Mac', 'Purchases and subscription renewals are refundable within {refundDays} days of each charge'],
         ['the most common engines', 'every driver is built into the app', 'days of buying', 'for a yearly plan'],
     ],
+    'the FAQ describes TablePro accounts, and old builds once' => [
+        'content/en/faq.json',
+        ['<ui>Settings > Account</ui>', 'at most {offlineDays} days after the last renewal', 'Versions before TablePro accounts check the license every {revalidateDays} days', 'any TablePro account can accept it', 'Purchases made since then come without one.'],
+        ['invitation code', 'Settings > License', 'activated Mac', 'to see your keys', 'Only buyers sign in', 'deletes their published Team Library items'],
+    ],
     'the pricing page describes TablePro accounts' => [
         'content/en/pricing.json',
         ['on the Devices page in <account>your account</account>', 'at most {offlineDays} days after the last renewal', 'holds it until it is accepted or revoked', 'buys more one-time seats there'],
