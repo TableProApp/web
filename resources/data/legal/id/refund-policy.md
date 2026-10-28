@@ -16,7 +16,7 @@ Lisensi dijual oleh {merchant}, merchant of record kami, sehingga pengembalian d
 
 ## Dampaknya pada lisensi {#license}
 
-Setelah pengembalian dana penuh, lisensi langsung berakhir. Setiap Mac berhenti memakai fitur berbayar saat TablePro berikutnya menghubungi server kami; Mac yang tetap offline berhenti paling lambat {offlineDays} hari kemudian, atau saat file offline-nya kedaluwarsa. Versi sebelum akun TablePro berhenti pada pemeriksaan lisensi berikutnya, paling lambat {revalidateDays} hari kemudian. Fitur aplikasi Mac lainnya tetap berjalan seperti sebelumnya, dan data di Mac tidak disentuh.
+Setelah pengembalian dana penuh, lisensi langsung berakhir. Setiap Mac berhenti memakai fitur berbayar saat TablePro berikutnya menghubungi server kami; Mac yang tetap offline berhenti paling lambat {offlineDays} hari kemudian, atau saat file offline-nya kedaluwarsa. Versi sebelum akun TablePro berhenti pada pemeriksaan lisensi berikutnya, paling lambat {revalidateDays} hari kemudian, atau, jika tetap offline, {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Fitur aplikasi Mac lainnya tetap berjalan seperti sebelumnya, dan data di Mac tidak disentuh.
 
 ## Langganan {#subscriptions}
 

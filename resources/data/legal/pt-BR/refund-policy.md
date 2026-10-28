@@ -16,7 +16,7 @@ As licenças são vendidas por {merchant}, nosso merchant of record, portanto o 
 
 ## O que acontece com a licença {#license}
 
-Após um reembolso total, a licença termina na hora. Cada Mac deixa de usar os recursos pagos na próxima vez que o TablePro se comunica com nosso servidor; um Mac que continua offline para em no máximo {offlineDays} dias, ou quando o arquivo offline dele expira. As versões anteriores às contas TablePro param na próxima verificação da licença, em no máximo {revalidateDays} dias. O restante do app para Mac continua funcionando como antes, e os dados no Mac não são alterados.
+Após um reembolso total, a licença termina na hora. Cada Mac deixa de usar os recursos pagos na próxima vez que o TablePro se comunica com nosso servidor; um Mac que continua offline para em no máximo {offlineDays} dias, ou quando o arquivo offline dele expira. As versões anteriores às contas TablePro param na próxima verificação da licença, em no máximo {revalidateDays} dias, ou, se continuarem offline, {graceDays} dias após a última verificação bem-sucedida. O restante do app para Mac continua funcionando como antes, e os dados no Mac não são alterados.
 
 ## Assinaturas {#subscriptions}
 

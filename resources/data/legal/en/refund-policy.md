@@ -16,7 +16,7 @@ Licenses are sold by {merchant}, our merchant of record, so the refund is issued
 
 ## What happens to the license {#license}
 
-After a full refund, the license ends at once. Each Mac stops using the paid features the next time TablePro checks in with our server; one that stays offline stops at most {offlineDays} days later, or when its offline file expires. Versions before TablePro accounts stop at their next license check, at most {revalidateDays} days later. The rest of the Mac app keeps working as before, and the data on your Mac is not touched.
+After a full refund, the license ends at once. Each Mac stops using the paid features the next time TablePro checks in with our server; one that stays offline stops at most {offlineDays} days later, or when its offline file expires. Versions before TablePro accounts stop at their next license check, at most {revalidateDays} days later, or, if they stay offline, {graceDays} days after their last successful check. The rest of the Mac app keeps working as before, and the data on your Mac is not touched.
 
 ## Subscriptions {#subscriptions}
 

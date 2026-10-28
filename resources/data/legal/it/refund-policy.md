@@ -16,7 +16,7 @@ Le licenze sono vendute da {merchant}, il nostro merchant of record, quindi il r
 
 ## Cosa succede alla licenza {#license}
 
-Dopo un rimborso completo, la licenza termina subito. Ogni Mac smette di usare le funzionalità a pagamento la prossima volta che TablePro contatta il nostro server; un Mac che resta offline smette al massimo {offlineDays} giorni dopo, o quando scade il suo file offline. Le versioni precedenti agli account TablePro smettono alla successiva verifica della licenza, al massimo entro {revalidateDays} giorni. Il resto dell’app per Mac continua a funzionare come prima e i dati sul Mac non vengono toccati.
+Dopo un rimborso completo, la licenza termina subito. Ogni Mac smette di usare le funzionalità a pagamento la prossima volta che TablePro contatta il nostro server; un Mac che resta offline smette al massimo {offlineDays} giorni dopo, o quando scade il suo file offline. Le versioni precedenti agli account TablePro smettono alla successiva verifica della licenza, al massimo entro {revalidateDays} giorni, oppure, se restano offline, {graceDays} giorni dopo l’ultima verifica riuscita. Il resto dell’app per Mac continua a funzionare come prima e i dati sul Mac non vengono toccati.
 
 ## Abbonamenti {#subscriptions}
 

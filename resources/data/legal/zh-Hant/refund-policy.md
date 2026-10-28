@@ -16,7 +16,7 @@ updatedAt: "2026-10-28"
 
 ## 授權如何處理 {#license}
 
-全額退款後，授權立即終止。每台 Mac 在 TablePro 下次聯絡我們的伺服器時停止使用付費功能；保持離線的 Mac 最遲在 {offlineDays} 天後或其離線檔案過期時停止。支援 TablePro 帳戶之前的版本在下次驗證授權時停止，最遲不超過 {revalidateDays} 天。Mac App 的其他功能仍照常運作，Mac 上的資料不會被改動。
+全額退款後，授權立即終止。每台 Mac 在 TablePro 下次聯絡我們的伺服器時停止使用付費功能；保持離線的 Mac 最遲在 {offlineDays} 天後或其離線檔案過期時停止。支援 TablePro 帳戶之前的版本在下次驗證授權時停止，最遲不超過 {revalidateDays} 天；若一直離線，則在最後一次驗證成功後 {graceDays} 天停止。Mac App 的其他功能仍照常運作，Mac 上的資料不會被改動。
 
 ## 訂閱 {#subscriptions}
 

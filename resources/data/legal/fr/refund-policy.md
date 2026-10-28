@@ -16,7 +16,7 @@ Les licences sont vendues par {merchant}, notre merchant of record ; le rembou
 
 ## Conséquences pour la licence {#license}
 
-Après un remboursement intégral, la licence prend fin aussitôt. Chaque Mac cesse d’utiliser les fonctionnalités payantes la prochaine fois que TablePro contacte notre serveur ; un Mac qui reste hors ligne cesse au plus tard {offlineDays} jours après, ou à l’expiration de son fichier hors ligne. Les versions antérieures aux comptes TablePro cessent à leur prochaine vérification de licence, au plus tard {revalidateDays} jours après. Le reste de l’application Mac continue de fonctionner comme auparavant et les données de votre Mac restent intactes.
+Après un remboursement intégral, la licence prend fin aussitôt. Chaque Mac cesse d’utiliser les fonctionnalités payantes la prochaine fois que TablePro contacte notre serveur ; un Mac qui reste hors ligne cesse au plus tard {offlineDays} jours après, ou à l’expiration de son fichier hors ligne. Les versions antérieures aux comptes TablePro cessent à leur prochaine vérification de licence, au plus tard {revalidateDays} jours après, ou, si elles restent hors ligne, {graceDays} jours après leur dernière vérification réussie. Le reste de l’application Mac continue de fonctionner comme auparavant et les données de votre Mac restent intactes.
 
 ## Abonnements {#subscriptions}
 

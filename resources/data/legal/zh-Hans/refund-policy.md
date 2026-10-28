@@ -16,7 +16,7 @@ updatedAt: "2026-10-28"
 
 ## 许可证如何处理 {#license}
 
-全额退款后，许可证立即终止。每台 Mac 在 TablePro 下次联系我们的服务器时停止使用付费功能；保持离线的 Mac 最迟在 {offlineDays} 天后或其离线文件过期时停止。支持 TablePro 账户之前的版本在下次验证许可证时停止，最迟不超过 {revalidateDays} 天。Mac 应用的其他功能仍照常运行，Mac 上的数据不会被改动。
+全额退款后，许可证立即终止。每台 Mac 在 TablePro 下次联系我们的服务器时停止使用付费功能；保持离线的 Mac 最迟在 {offlineDays} 天后或其离线文件过期时停止。支持 TablePro 账户之前的版本在下次验证许可证时停止，最迟不超过 {revalidateDays} 天；若一直离线，则在最后一次验证成功后 {graceDays} 天停止。Mac 应用的其他功能仍照常运行，Mac 上的数据不会被改动。
 
 ## 订阅 {#subscriptions}
 

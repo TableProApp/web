@@ -16,7 +16,7 @@ Die Lizenzen werden von {merchant}, unserem Merchant of Record, verkauft. Die Er
 
 ## Was mit der Lizenz passiert {#license}
 
-Nach einer vollständigen Erstattung endet die Lizenz sofort. Jeder Mac stellt die Nutzung der Bezahlfunktionen ein, sobald TablePro sich das nächste Mal bei unserem Server meldet; ein Mac, der offline bleibt, spätestens {offlineDays} Tage später oder wenn seine Offline-Datei abläuft. Versionen vor den TablePro-Konten stellen sie bei der nächsten Lizenzprüfung ein, spätestens {revalidateDays} Tage später. Der Rest der Mac-App funktioniert weiter wie zuvor; die Daten auf deinem Mac bleiben unberührt.
+Nach einer vollständigen Erstattung endet die Lizenz sofort. Jeder Mac stellt die Nutzung der Bezahlfunktionen ein, sobald TablePro sich das nächste Mal bei unserem Server meldet; ein Mac, der offline bleibt, spätestens {offlineDays} Tage später oder wenn seine Offline-Datei abläuft. Versionen vor den TablePro-Konten stellen sie bei der nächsten Lizenzprüfung ein, spätestens {revalidateDays} Tage später, oder, wenn sie offline bleiben, {graceDays} Tage nach ihrer letzten erfolgreichen Prüfung. Der Rest der Mac-App funktioniert weiter wie zuvor; die Daten auf deinem Mac bleiben unberührt.
 
 ## Abonnements {#subscriptions}
 

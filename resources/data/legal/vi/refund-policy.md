@@ -16,7 +16,7 @@ License được bán bởi {merchant}, merchant of record của chúng tôi, n�
 
 ## Điều gì xảy ra với license {#license}
 
-Sau khi hoàn tiền toàn bộ, license kết thúc ngay. Mỗi máy Mac ngừng dùng các tính năng trả phí vào lần tiếp theo TablePro liên lạc với máy chủ của chúng tôi; máy không kết nối mạng ngừng chậm nhất {offlineDays} ngày sau đó, hoặc khi tệp offline của nó hết hạn. Các phiên bản trước khi có tài khoản TablePro ngừng ở lần kiểm tra license tiếp theo, chậm nhất là {revalidateDays} ngày sau đó. Phần còn lại của ứng dụng cho Mac vẫn hoạt động như trước, và dữ liệu trên máy Mac của bạn không bị động tới.
+Sau khi hoàn tiền toàn bộ, license kết thúc ngay. Mỗi máy Mac ngừng dùng các tính năng trả phí vào lần tiếp theo TablePro liên lạc với máy chủ của chúng tôi; máy không kết nối mạng ngừng chậm nhất {offlineDays} ngày sau đó, hoặc khi tệp offline của nó hết hạn. Các phiên bản trước khi có tài khoản TablePro ngừng ở lần kiểm tra license tiếp theo, chậm nhất là {revalidateDays} ngày sau đó, hoặc nếu vẫn không kết nối mạng thì {graceDays} ngày sau lần kiểm tra thành công gần nhất. Phần còn lại của ứng dụng cho Mac vẫn hoạt động như trước, và dữ liệu trên máy Mac của bạn không bị động tới.
 
 ## Gói thuê bao {#subscriptions}
 

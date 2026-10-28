@@ -250,7 +250,7 @@ dataset('reviewed facts', [
     ],
     'the refund policy refunds in the account portal' => [
         'legal/en/refund-policy.md',
-        ['Refund an order yourself in Billing in [your account]({account})', 'After a full refund, the license ends at once.', 'whose license is in an offline file'],
+        ['Refund an order yourself in Billing in [your account]({account})', 'After a full refund, the license ends at once.', 'whose license is in an offline file', 'if they stay offline, {graceDays} days after their last successful check'],
         ['license key is suspended', 'include your license key', 'license key being suspended'],
     ],
     // From cutover the Mac app ships posthog-ios (tablepro-cloud clients.md, macOS dependencies).
