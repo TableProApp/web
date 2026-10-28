@@ -461,9 +461,12 @@ HTML also carries a `Content-Security-Policy`, built by
 The forms call tablepro-cloud from the browser. Run its `make dev` (the API at
 `http://api.localhost:8080`) and set `TABLEPRO_API_ORIGIN=http://api.localhost:8080`
 here, with Polar in its sandbox and mail on its fake. tablepro-cloud answers
-CORS for `https://tablepro.app` only, so a page served from `localhost` needs
-tablepro-cloud to allow that origin in development first. Cloudflare's test
-site key `1x00000000000000000000AA` always passes Turnstile.
+CORS for one origin, its `PUBLIC_SITE_URL` (`https://tablepro.app` by default),
+and checks a Turnstile token's hostname against the same URL. `make dev` sets it
+to `http://localhost:8000`, where `php artisan serve` and `composer dev` put
+this site, so open the pages at exactly that address: `http://127.0.0.1:8000`
+is another origin and its calls fail CORS. Set `TURNSTILE_SITE_KEY` to
+Cloudflare's test site key `1x00000000000000000000AA`, which always passes.
 
 For styling or copy work, stub the `/v2` answers in the browser instead, or
 ignore them.

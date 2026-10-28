@@ -35,6 +35,11 @@ composer dev      # serves on http://localhost:8000 with Vite
 There is no database step, no migration, no seeding, and no API key to obtain.
 If any instruction ever tells you otherwise, that is a bug in this README.
 
+The pricing and newsletter forms call tablepro-cloud's API. To try them against
+its `make dev`, set `TABLEPRO_API_ORIGIN=http://api.localhost:8080` in `.env`
+and open the site at `http://localhost:8000`, the origin `make dev` allows
+(docs/architecture.md, "Working on these forms locally").
+
 ## What lives where
 
 | Path | What it holds |
