@@ -253,6 +253,12 @@ dataset('reviewed facts', [
         ['Refund an order yourself in Billing in [your account]({account})', 'After a full refund, the license ends at once.', 'whose license is in an offline file'],
         ['license key is suspended', 'include your license key', 'license key being suspended'],
     ],
+    // From cutover the Mac app ships posthog-ios (tablepro-cloud clients.md, macOS dependencies).
+    'the security page claims no analytics library' => [
+        'content/en/security.json',
+        ['the only data the Mac app sends TablePro is usage data', 'Usage data never carries hostnames'],
+        ['analytics library', 'daily usage report'],
+    ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',
         ['Mac có sẵn driver cho {bundledEngines}', 'Bắt đầu chat', 'SSH dùng mật khẩu hoặc private key', '<connections>tùy chọn kết nối</connections>'],
