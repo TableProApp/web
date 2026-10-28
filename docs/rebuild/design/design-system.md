@@ -933,7 +933,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - a seat `Stepper`: min and max from data, 44px buttons, `inputmode="numeric"`
   - a live total line "{seats} seats · ${total} / year" (`aria-live="polite"`, height reserved), which follows the digits as they are typed
   - "Minimum {min} seats"; after a typed count outside the bounds was changed, this line says which bound it was changed to
-- Activation line: "One license for one person, on up to 2 Macs" or "1 seat = 1 activated Mac".
+- Activation line: "One person, up to 3 Macs." or "One person per seat, on up to 3 Macs.", the count from `license.deviceLimit`.
 - **Full-width `secondary` `md` purchase button.** Free gets "Download for Mac".
 - `Includes`: a `small` list of paid features from data, with the check in `--accent-text`.
 
@@ -1532,8 +1532,8 @@ PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid pl
               Note        The iPhone and iPad app has no paid features.
               Each topic below is a Section of its own at `text` width, separated by the frame's joins (§4.7);
               its DescriptionList and FaqList rows run from rail to rail.
-#license      How licenses work (prose from licensing facts: Starter is for one person, 1 seat = 1 activated Mac,
-              what happens when a subscription ends)
+#license      How licenses work (prose from licensing facts: Starter is for one person, a seat is one person, each
+              on up to `deviceLimit` Macs; what happens when a subscription ends)
 #billing      Polar, USD, tax and receipts; "Billing & invoices" in Account for Polar purchases
 #refunds      7 days on every plan → Refund policy
 #team         Seats (min and max from data), invites, changing the number of seats
