@@ -252,7 +252,7 @@
                     "id": "sign-up",
                     "question": "Tôi có cần đăng ký không?",
                     "answer": [
-                        "Không cần đăng ký để dùng ứng dụng. Tính năng trả phí hoạt động khi bạn đăng nhập tài khoản TablePro: giao dịch mua thuộc về tài khoản của email đã mua, được tạo nếu chưa có, và mỗi thành viên nhóm đăng nhập bằng tài khoản riêng."
+                        "Không cần đăng ký để dùng ứng dụng. Tính năng trả phí hoạt động khi bạn đăng nhập tài khoản TablePro: giao dịch mua thuộc về tài khoản của email đã mua, được tạo nếu chưa có, và mỗi thành viên nhóm đăng nhập bằng tài khoản riêng. Các phiên bản trước khi có tài khoản TablePro thì dùng license key."
                     ]
                 },
                 {
@@ -281,14 +281,14 @@
                     "question": "Làm sao để đăng nhập vào tài khoản?",
                     "answer": [
                         "Trong <account>tài khoản của bạn</account>, nhập email để nhận liên kết đăng nhập và mã 6 chữ số, hoặc dùng passkey, Apple, GitHub hay Google. Không có mật khẩu. Liên kết chỉ dùng được một lần, và cả hai hết hạn sau 15 phút.",
-                        "Ứng dụng cho Mac mời bạn đăng nhập khi mở lần đầu, và sau đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn gõ mã trong email."
+                        "Ứng dụng cho Mac mời bạn đăng nhập khi mở lần đầu, và sau đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn gõ mã trong email. Các phiên bản trước khi có tài khoản TablePro không có chức năng đăng nhập."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Làm sao để thêm hoặc xóa thành viên nhóm?",
                     "answer": [
-                        "Chủ sở hữu và quản trị viên mời người khác qua email trên trang Thành viên trong <account>tài khoản của bạn</account>, kèm vai trò và, nếu muốn, một seat. Liên kết trong email dùng được 7 ngày, và tài khoản TablePro nào cũng chấp nhận được. Thành viên dùng seat trong phiên bản TablePro có tài khoản.",
+                        "Chủ sở hữu và quản trị viên mời người khác qua email trên trang Thành viên trong <account>tài khoản của bạn</account>, kèm vai trò và, nếu muốn, một seat. Liên kết trong email dùng được 7 ngày, và tài khoản TablePro nào cũng chấp nhận được. Thành viên mới dùng seat trong phiên bản TablePro có tài khoản.",
                         "Gỡ một thành viên sẽ giải phóng seat của họ. Máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server."
                     ]
                 },

@@ -252,7 +252,7 @@
                     "id": "sign-up",
                     "question": "¿Necesito registrarme?",
                     "answer": [
-                        "No necesitas registrarte para usar las apps. Las funciones de pago se activan al iniciar sesión en una cuenta de TablePro: una compra va a la cuenta del correo con el que compraste, que se crea si no existe, y cada miembro del equipo entra con la suya."
+                        "No necesitas registrarte para usar las apps. Las funciones de pago se activan al iniciar sesión en una cuenta de TablePro: una compra va a la cuenta del correo con el que compraste, que se crea si no existe, y cada miembro del equipo entra con la suya. Las versiones anteriores a las cuentas de TablePro usan una clave de licencia en su lugar."
                     ]
                 },
                 {
@@ -281,14 +281,14 @@
                     "question": "¿Cómo entro en mi cuenta?",
                     "answer": [
                         "En <account>tu cuenta</account>, introduce tu correo para recibir un enlace de inicio de sesión y un código de 6 dígitos, o usa una llave de acceso, Apple, GitHub o Google. No hay contraseña. El enlace sirve una vez, y ambos caducan a los 15 minutos.",
-                        "La app para Mac te ofrece iniciar sesión la primera vez que se abre, y después en <ui>Settings > Account</ui>. Abre la página de inicio de sesión en una ventana del navegador, donde escribes el código del correo."
+                        "La app para Mac te ofrece iniciar sesión la primera vez que se abre, y después en <ui>Settings > Account</ui>. Abre la página de inicio de sesión en una ventana del navegador, donde escribes el código del correo. Las versiones anteriores a las cuentas de TablePro no tienen inicio de sesión."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "¿Cómo añado o elimino miembros del equipo?",
                     "answer": [
-                        "Los propietarios y administradores invitan por correo desde la página Miembros de <account>tu cuenta</account>, con un rol y, si quieren, un puesto. El enlace enviado sirve 7 días y cualquier cuenta de TablePro puede aceptarlo. Los miembros usan su puesto en la versión de TablePro que añade las cuentas.",
+                        "Los propietarios y administradores invitan por correo desde la página Miembros de <account>tu cuenta</account>, con un rol y, si quieren, un puesto. El enlace enviado sirve 7 días y cualquier cuenta de TablePro puede aceptarlo. Los miembros nuevos usan su puesto en la versión de TablePro que añade las cuentas.",
                         "Eliminar a un miembro libera su puesto. Sus Mac pierden las funciones de Team la próxima vez que TablePro se comunica con el servidor."
                     ]
                 },

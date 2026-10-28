@@ -252,7 +252,7 @@
                     "id": "sign-up",
                     "question": "Do I need to sign up?",
                     "answer": [
-                        "No sign-up is needed to use the apps. Paid features work once you sign in to a TablePro account: a purchase goes to the account of the email you bought with, created if there is none, and each team member signs in with their own."
+                        "No sign-up is needed to use the apps. Paid features work once you sign in to a TablePro account: a purchase goes to the account of the email you bought with, created if there is none, and each team member signs in with their own. Versions before TablePro accounts take a license key instead."
                     ]
                 },
                 {
@@ -281,14 +281,14 @@
                     "question": "How do I sign in to my account?",
                     "answer": [
                         "In <account>your account</account>, enter your email to get a sign-in link and a 6-digit code, or use a passkey, Apple, GitHub or Google. There is no password. The link works once, and both expire after 15 minutes.",
-                        "The Mac app offers to sign you in when it first starts, and later in <ui>Settings > Account</ui>. It opens the sign-in page in a browser sheet, where you type the code from the email."
+                        "The Mac app offers to sign you in when it first starts, and later in <ui>Settings > Account</ui>. It opens the sign-in page in a browser sheet, where you type the code from the email. Versions before TablePro accounts have no sign-in."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "How do I add or remove team members?",
                     "answer": [
-                        "Owners and admins invite people by email from the Members page in <account>your account</account>, with a role and, if they choose, a seat. The emailed link works for 7 days, and any TablePro account can accept it. Members use their seat in the version of TablePro that adds accounts.",
+                        "Owners and admins invite people by email from the Members page in <account>your account</account>, with a role and, if they choose, a seat. The emailed link works for 7 days, and any TablePro account can accept it. New members use their seat in the version of TablePro that adds accounts.",
                         "Removing a member frees their seat. Their Macs lose Team’s features the next time TablePro checks in."
                     ]
                 },

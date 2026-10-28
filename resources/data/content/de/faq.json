@@ -252,7 +252,7 @@
                     "id": "sign-up",
                     "question": "Muss ich mich registrieren?",
                     "answer": [
-                        "Für die Apps ist keine Registrierung nötig. Kostenpflichtige Funktionen gibt es, sobald du dich bei einem TablePro-Konto anmeldest: Ein Kauf landet im Konto der E-Mail, mit der du gekauft hast, das bei Bedarf angelegt wird, und jedes Teammitglied meldet sich mit seinem eigenen an."
+                        "Für die Apps ist keine Registrierung nötig. Kostenpflichtige Funktionen gibt es, sobald du dich bei einem TablePro-Konto anmeldest: Ein Kauf landet im Konto der E-Mail, mit der du gekauft hast, das bei Bedarf angelegt wird, und jedes Teammitglied meldet sich mit seinem eigenen an. Versionen vor den TablePro-Konten nutzen stattdessen einen Lizenzschlüssel."
                     ]
                 },
                 {
@@ -281,14 +281,14 @@
                     "question": "Wie melde ich mich bei meinem Konto an?",
                     "answer": [
                         "Gib in <account>deinem Konto</account> deine E-Mail ein, um einen Anmeldelink und einen 6-stelligen Code zu erhalten, oder nutze einen Passkey, Apple, GitHub oder Google. Ein Passwort gibt es nicht. Der Link gilt einmal, und beide laufen nach 15 Minuten ab.",
-                        "Die Mac-App bietet die Anmeldung beim ersten Start an, später unter <ui>Settings > Account</ui>. Sie öffnet die Anmeldeseite in einem Browserfenster, in das du den Code aus der E-Mail eingibst."
+                        "Die Mac-App bietet die Anmeldung beim ersten Start an, später unter <ui>Settings > Account</ui>. Sie öffnet die Anmeldeseite in einem Browserfenster, in das du den Code aus der E-Mail eingibst. Versionen vor den TablePro-Konten haben keine Anmeldung."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Wie füge ich Teammitglieder hinzu oder entferne sie?",
                     "answer": [
-                        "Inhaber und Admins laden auf der Seite Mitglieder in <account>deinem Konto</account> per E-Mail ein, mit einer Rolle und auf Wunsch einem Arbeitsplatz. Der Link in der E-Mail gilt 7 Tage, und jedes TablePro-Konto kann ihn annehmen. Mitglieder nutzen ihren Arbeitsplatz in der TablePro-Version mit Konten.",
+                        "Inhaber und Admins laden auf der Seite Mitglieder in <account>deinem Konto</account> per E-Mail ein, mit einer Rolle und auf Wunsch einem Arbeitsplatz. Der Link in der E-Mail gilt 7 Tage, und jedes TablePro-Konto kann ihn annehmen. Neue Mitglieder nutzen ihren Arbeitsplatz in der TablePro-Version mit Konten.",
                         "Das Entfernen eines Mitglieds gibt seinen Arbeitsplatz frei. Seine Macs verlieren die Funktionen von Team, sobald TablePro sich das nächste Mal beim Server meldet."
                     ]
                 },

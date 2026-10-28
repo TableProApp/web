@@ -240,7 +240,7 @@ dataset('reviewed facts', [
     ],
     'the FAQ describes TablePro accounts, and old builds once' => [
         'content/en/faq.json',
-        ['<ui>Settings > Account</ui>', 'at most {offlineDays} days after the last renewal', 'Versions before TablePro accounts check the license every {revalidateDays} days', 'any TablePro account can accept it', 'Purchases made since then come without one.'],
+        ['<ui>Settings > Account</ui>', 'at most {offlineDays} days after the last renewal', 'Versions before TablePro accounts check the license every {revalidateDays} days', 'any TablePro account can accept it', 'Purchases made since then come without one.', 'New members use their seat', 'Versions before TablePro accounts have no sign-in.', 'Versions before TablePro accounts take a license key instead.'],
         ['invitation code', 'Settings > License', 'activated Mac', 'to see your keys', 'Only buyers sign in', 'deletes their published Team Library items'],
     ],
     'the pricing page describes TablePro accounts' => [

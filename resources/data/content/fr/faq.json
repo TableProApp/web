@@ -252,7 +252,7 @@
                     "id": "sign-up",
                     "question": "Dois-je m’inscrire ?",
                     "answer": [
-                        "Aucune inscription n’est nécessaire pour utiliser les apps. Les fonctions payantes demandent de vous connecter à un compte TablePro : un achat va au compte de l’e-mail utilisé, créé s’il n’existe pas, et chaque membre d’une équipe se connecte avec le sien."
+                        "Aucune inscription n’est nécessaire pour utiliser les apps. Les fonctions payantes demandent de vous connecter à un compte TablePro : un achat va au compte de l’e-mail utilisé, créé s’il n’existe pas, et chaque membre d’une équipe se connecte avec le sien. Les versions antérieures aux comptes TablePro utilisent plutôt une clé de licence."
                     ]
                 },
                 {
@@ -281,14 +281,14 @@
                     "question": "Comment me connecter à mon compte ?",
                     "answer": [
                         "Dans <account>votre compte</account>, saisissez votre e-mail pour recevoir un lien de connexion et un code à 6 chiffres, ou utilisez une clé d’accès, Apple, GitHub ou Google. Il n’y a pas de mot de passe. Le lien s’utilise une seule fois, et tous deux expirent au bout de 15 minutes.",
-                        "L’app Mac propose de vous connecter à son premier lancement, puis dans <ui>Réglages > Compte</ui> (Settings > Account). Elle ouvre la page de connexion dans une fenêtre de navigateur, où vous saisissez le code reçu par e-mail."
+                        "L’app Mac propose de vous connecter à son premier lancement, puis dans <ui>Réglages > Compte</ui> (Settings > Account). Elle ouvre la page de connexion dans une fenêtre de navigateur, où vous saisissez le code reçu par e-mail. Les versions antérieures aux comptes TablePro ne proposent pas de connexion."
                     ]
                 },
                 {
                     "id": "members",
                     "question": "Comment ajouter ou retirer des membres de l’équipe ?",
                     "answer": [
-                        "Les propriétaires et administrateurs invitent par e-mail depuis la page Membres de <account>votre compte</account>, avec un rôle et, s’ils le souhaitent, un poste. Le lien reçu est valable 7 jours, et n’importe quel compte TablePro peut l’accepter. Les membres utilisent leur poste dans la version de TablePro qui ajoute les comptes.",
+                        "Les propriétaires et administrateurs invitent par e-mail depuis la page Membres de <account>votre compte</account>, avec un rôle et, s’ils le souhaitent, un poste. Le lien reçu est valable 7 jours, et n’importe quel compte TablePro peut l’accepter. Les nouveaux membres utilisent leur poste dans la version de TablePro qui ajoute les comptes.",
                         "Retirer un membre libère son poste. Ses Mac perdent les fonctions de Team la prochaine fois que TablePro contacte le serveur."
                     ]
                 },
