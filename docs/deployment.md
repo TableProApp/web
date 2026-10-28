@@ -9,26 +9,29 @@ Everything below exists because that sentence hides three things worth knowing.
 
 ## The server is shared
 
-`tablepro.app` is answered by **two** applications:
+`tablepro.app` is this repository, at `/var/www/tablepro.app`, with a few old
+paths answered by nginx alone. The account, checkout and newsletter forms call
+tablepro-cloud (`api.tablepro.app`, `account.tablepro.app`, its own vhost on the
+same host) from the browser, which is why nothing in this repository needs a
+database or a session.
 
-```
-/var/www/tablepro.app          this repository, the public marketing site
-/var/www/license.tablepro.app  the private platform app
-```
+The vhost is `docs/deploy/tablepro.app.nginx.conf`, the version step 9 of the
+cutover applies (tablepro-cloud's `docs/design/migration.md`); keep it equal to
+the host's. On this origin:
 
-nginx sends `/account`, `/checkout`, `/webhooks`, `/newsletter`, `/beta`,
-`/discount`, `/thank-you`, `/api/newsletter` and `/platform-build` to the
-platform app, and everything else here. The footer's email form posts to
-`/newsletter/subscribe`, so it leaves this codebase entirely — which is why
-nothing in this repository needs a database or a session.
+| Path | Answer |
+| --- | --- |
+| `/account`, `/account/*` | 301 to `https://account.tablepro.app/`, `/account` with its query |
+| `/checkout` | 301 to `https://account.tablepro.app/checkout`, with its query |
+| `/thank-you` | 301 to `https://account.tablepro.app/` |
+| `/newsletter/unsubscribe/*`, `/webhooks/polar` | proxied to tablepro-cloud with `Host: api.tablepro.app`, for 90 days after the cutover |
+| everything else | this app |
 
-nginx matches those prefixes at the root only. `/vi/account` or `/vi/checkout`
-would come here, not to the platform, and answer 404: the public site never
-links or posts to a prefixed platform path. The Vietnamese pages under `/vi`
-are this app's, and need no nginx change.
-
-`scripts/dev-proxy.mjs` reproduces this split on a developer machine
-(docs/architecture.md, "Working on these forms locally").
+nginx matches those paths at the root only, so `/vi/account` comes here and
+answers 404 with a link to the portal. `PLATFORM_PATHS` keeps the site from
+prefixing them, and `LocalizedUrlTest` holds it to the file. Ninety days after
+the cutover, remove the two proxied locations from the host and from the file;
+the redirects stay.
 
 A dozen other sites share the same host and the same PHP-FPM master, so a reload
 is not free — but it is required, and this is the trap on this host:
@@ -485,11 +488,7 @@ Rules, for the tablepro.app zone, in this order:
     and not starts_with(http.request.uri.path, "/checkout")
     and not starts_with(http.request.uri.path, "/webhooks")
     and not starts_with(http.request.uri.path, "/newsletter")
-    and not starts_with(http.request.uri.path, "/beta")
-    and not starts_with(http.request.uri.path, "/discount")
     and not starts_with(http.request.uri.path, "/thank-you")
-    and not starts_with(http.request.uri.path, "/api/newsletter")
-    and not starts_with(http.request.uri.path, "/platform-build")
     and http.request.uri.path ne "/up")
    ```
 
@@ -498,9 +497,11 @@ Rules, for the tablepro.app zone, in this order:
    *Respect origin*. Leave the cache key alone: the query string stays in it,
    so `?ref=` links keep their own copy and the page's own URL.
 
-The platform paths are the ones nginx sends to the account app (the same list
-as `LocalizedUrl::PLATFORM_PATHS`); they hold sessions and must never be
-shared. `starts_with` is used rather than a regular expression because regex
+The excluded paths are the ones nginx answers without this app (the same list
+as `LocalizedUrl::PLATFORM_PATHS`): redirects and tablepro-cloud answers that
+must never be shared. The rule before the cutover also excluded `/beta`,
+`/discount`, `/api/newsletter` and `/platform-build`; excluding them still is
+harmless, so trimming the rule is optional. `starts_with` is used rather than a regular expression because regex
 matching in rules needs a Business plan.
 
 **After a deploy**, `.github/workflows/deploy.yml` purges the zone from the

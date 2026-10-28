@@ -100,6 +100,32 @@ it('matches the platform paths the TypeScript helper uses', function (): void {
     expect(file_get_contents(resource_path('js/i18n/paths.ts')))->toContain('export const PLATFORM_PATHS = ' . $javascript);
 });
 
+it('reserves exactly the paths the cutover nginx config answers without this app', function (): void {
+    $config = (string) file_get_contents(base_path('docs/deploy/tablepro.app.nginx.conf'));
+
+    $elsewhere = substr($config, 0, (int) strpos($config, 'Everything else: the public site.'));
+
+    preg_match_all('/^\s*location (=|\^~) (\/[^ ]*) \{/m', $elsewhere, $locations);
+
+    expect($locations[2])->toBe(['/account', '/account/', '/checkout', '/thank-you', '/newsletter/unsubscribe/', '/webhooks/polar']);
+
+    foreach ($locations[2] as $path) {
+        expect(LocalizedUrl::isPlatformPath(rtrim($path, '/') . '/x'))->toBeTrue($path);
+    }
+
+    preg_match('/~\^\/\(([^)]+)\)/', LocalizedUrl::PLATFORM_PATHS, $alternatives);
+
+    expect(explode('|', $alternatives[1]))->toBe(['account', 'checkout', 'thank-you', 'newsletter/unsubscribe', 'webhooks/polar']);
+
+    // The unsubscribe signature covers the raw URI, so proxy_pass names no URI of its own.
+    expect(substr_count($config, 'proxy_pass http://tablepro_cloud;'))->toBe(2)
+        ->and(substr_count($config, 'proxy_set_header Host api.tablepro.app;'))->toBe(2)
+        ->and(substr_count($config, 'include /etc/nginx/snippets/cloudflare-allow.conf;'))->toBe(2)
+        ->and($config)->not->toContain('license.tablepro.app/public')
+        ->not->toContain('location @platform')
+        ->not->toContain('location ^~ /platform-build');
+});
+
 it('links the account portal with the language in the query', function (): void {
     expect(LocalizedUrl::account('vi'))->toBe('https://account.tablepro.app/?locale=vi')
         ->and(LocalizedUrl::account('zh-Hant'))->toBe('https://account.tablepro.app/?locale=zh-Hant');
