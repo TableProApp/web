@@ -157,7 +157,7 @@ in the job with a live SSR service. It skips locally without one.
 - Prices live in `resources/data/pricing.json`, and every price on the site
   (pricing, FAQ, structured data) reads from it. The values must match what
   checkout actually charges: they are synced by hand with tablepro-cloud's
-  `GET /v2/pricing` and the Polar products. Never change them here alone —
+  `GET /v2/pricing` and the Polar products. Never change them here alone:
   flag it instead. The same file pins Polar's checkout script URL
   (`checkoutSdk`), which loads only when a reader shows intent to buy.
 - Other facts are data too, stated once: `platforms.json` (releases,

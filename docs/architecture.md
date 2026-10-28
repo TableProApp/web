@@ -216,11 +216,11 @@ in production, shared with every page as the `apiOrigin` prop and read through
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `GET /v2/pricing` | — | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
+| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
 | `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
 | `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
 | `POST /v2/newsletter/subscriptions` | `{email, locale, turnstile_token}` | 202, whether or not the address was new |
-| `GET /v2/newsletter/stats` | — | `{subscribers}` |
+| `GET /v2/newsletter/stats` | nothing | `{subscribers}` |
 
 Every call is a plain `fetch` with `credentials: 'omit'`, so no cookie is sent
 or kept. tablepro-cloud answers CORS for `https://tablepro.app` only, without
