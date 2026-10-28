@@ -46,17 +46,12 @@ final class ContentSecurityPolicy
         'worker-src' => ['blob:'],
     ];
 
-    /**
-     * Cloudflare Turnstile, which the newsletter form loads on intent.
-     */
     private const TURNSTILE = [
         'script-src' => ['https://challenges.cloudflare.com'],
         'frame-src' => ['https://challenges.cloudflare.com'],
     ];
 
-    /**
-     * What Polar's checkout overlay needs besides its script in pricing.json.
-     */
+    // Polar's overlay frame. Its script source is the one file pricing.json pins, from checkoutScript().
     private const CHECKOUT = [
         'frame-src' => ['https://polar.sh', 'https://*.polar.sh'],
     ];
@@ -136,9 +131,6 @@ final class ContentSecurityPolicy
         return array_values(array_unique($hashes));
     }
 
-    /**
-     * The one file Polar's overlay script is pinned to in pricing.json.
-     */
     private function checkoutScript(): ?string
     {
         $pricing = json_decode((string) File::get(resource_path('data/pricing.json')), true);

@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\File;
  */
 final class LocalizedUrl
 {
-    /**
-     * The paths nginx answers on this origin without this app, never prefixed
-     * (docs/deploy/tablepro.app.nginx.conf). The same pattern as
-     * `PLATFORM_PATHS` in resources/js/i18n/paths.ts.
-     */
+    // nginx answers these at the root without this app (docs/deploy/tablepro.app.nginx.conf), so they are never prefixed.
     public const PLATFORM_PATHS = '~^/(account|checkout|thank-you|newsletter/unsubscribe|webhooks/polar)(/|\?|#|$)~';
 
     /**
@@ -57,10 +53,6 @@ final class LocalizedUrl
         return $absolute ? self::base() . $path : $path;
     }
 
-    /**
-     * The account portal in a locale, which it takes from the query: it has no
-     * locale prefix.
-     */
     public static function account(string $locale): string
     {
         $facts = json_decode((string) File::get(resource_path('data/facts.json')), true);
@@ -69,9 +61,6 @@ final class LocalizedUrl
         return rtrim((string) $origin, '/') . '/?locale=' . rawurlencode($locale);
     }
 
-    /**
-     * Whether nginx answers a path without this app.
-     */
     public static function isPlatformPath(string $path): bool
     {
         return preg_match(self::PLATFORM_PATHS, $path) === 1;

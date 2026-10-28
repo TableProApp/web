@@ -2,7 +2,7 @@
 // No imports, so `node --test` loads it directly.
 
 export interface Regional {
-    /** ISO 3166-1 alpha-2, such as `VN`. */
+    // ISO 3166-1 alpha-2, such as `VN`.
     country: string;
     percent: number;
 }
@@ -22,11 +22,7 @@ export function discountedAmount(listUsd: number, percent: number): number {
     return discountedCents(Math.round(listUsd * 100), percent) / 100;
 }
 
-/**
- * Null unless the answer prices every plan and cycle in `list` (pricing.json, in cents) at that list price, with
- * one percentage off all of them and the discounted price the cards would work out. Anything else keeps the list
- * prices on the page, so the cards never show a price checkout would not charge.
- */
+// Any plan off its pricing.json price, a second percentage or other rounding keeps the list prices: a card never shows a price checkout would not charge.
 export function parseRegional(body: unknown, list: ListCents): Regional | null {
     const { country, plans } = record(body);
 
