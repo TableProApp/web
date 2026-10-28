@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Bagikan koneksi dan kueri tersimpan dengan tim Anda.",
-            "activation": "Satu Mac yang diaktifkan per seat.",
+            "activation": {
+                "one": "Satu orang per seat, {count} Mac.",
+                "other": "Satu orang per seat, hingga {count} Mac."
+            },
             "includesTitle": "Semua fitur Starter, ditambah",
             "cta": "Beli Team"
         }
@@ -113,7 +116,10 @@ export default {
             "one": "{count}",
             "other": "Hingga {count}"
         },
-        "macsTeam": "Satu per seat",
+        "macsTeam": {
+            "one": "{count} per seat",
+            "other": "Hingga {count} per seat"
+        },
         "everythingElse": "Semua fitur lain dalam aplikasi",
         "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",
         "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."

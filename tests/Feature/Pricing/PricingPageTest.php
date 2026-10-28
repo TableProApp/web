@@ -256,7 +256,7 @@ it('server-renders the plans, the table and every section, with prices written f
         '/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year'], '$%s', '.',
         'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ['Included', 'Not included'],
-        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for {graceDays} days after the last successful check', 'One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
+        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for {graceDays} days after the last successful check', 'One person per seat, on up to {deviceLimit} Macs.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
     ],
     'Vietnamese' => [
         '/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',

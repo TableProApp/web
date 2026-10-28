@@ -48,7 +48,10 @@ export default {
         team: {
             name: 'Team',
             description: 'Share connections and saved queries with your team.',
-            activation: 'One activated Mac per seat.',
+            activation: {
+                one: 'One person per seat, on {count} Mac.',
+                other: 'One person per seat, on up to {count} Macs.',
+            },
             includesTitle: 'Everything in Starter, plus',
             cta: 'Get Team',
         },
@@ -108,7 +111,7 @@ export default {
         macs: 'Macs',
         macsFree: 'No license',
         macsStarter: { one: '{count}', other: 'Up to {count}' },
-        macsTeam: 'One per seat',
+        macsTeam: { one: '{count} per seat', other: 'Up to {count} per seat' },
         everythingElse: 'Everything else in the app',
         everythingElseDetail: 'Every supported engine, the SQL editor, the AI assistant, the MCP server and Safe Mode',
         iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Starter or Team.',

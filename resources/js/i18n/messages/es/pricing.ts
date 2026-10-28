@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Comparte conexiones y consultas guardadas con tu equipo.",
-            "activation": "Un Mac activado por puesto.",
+            "activation": {
+                "one": "Una persona por puesto, en {count} Mac.",
+                "other": "Una persona por puesto, en hasta {count} Mac."
+            },
             "includesTitle": "Todo lo de Starter, más",
             "cta": "Comprar Team"
         }
@@ -113,7 +116,10 @@ export default {
             "one": "{count}",
             "other": "Hasta {count}"
         },
-        "macsTeam": "Uno por puesto",
+        "macsTeam": {
+            "one": "{count} por puesto",
+            "other": "Hasta {count} por puesto"
+        },
         "everythingElse": "Todo lo demás en la app",
         "everythingElseDetail": "Todos los motores compatibles, el editor SQL, el asistente de IA, el servidor MCP y Safe Mode",
         "iphoneNote": "La app para iPhone y iPad no tiene funciones de pago. iCloud Sync es gratis en ella; para sincronizar con un Mac, este necesita Starter o Team."

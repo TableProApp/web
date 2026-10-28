@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "接続と保存済みクエリをチームで共有。",
-            "activation": "1 シートにつき、認証済みの Mac 1 台。",
+            "activation": {
+                "one": "1 シートにつき 1 人、Mac {count} 台。",
+                "other": "1 シートにつき 1 人、Mac 最大 {count} 台。"
+            },
             "includesTitle": "Starter の全機能に加えて",
             "cta": "Team を購入"
         }
@@ -113,7 +116,10 @@ export default {
             "one": "{count}",
             "other": "最大 {count}"
         },
-        "macsTeam": "1 シートにつき 1 台",
+        "macsTeam": {
+            "one": "1 シートにつき {count} 台",
+            "other": "1 シートにつき最大 {count} 台"
+        },
         "everythingElse": "アプリのその他すべての機能",
         "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",
         "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"

@@ -44,7 +44,9 @@ export default {
         team: {
             name: 'Team',
             description: 'Chia sẻ connection và query đã lưu với nhóm.',
-            activation: 'Một máy Mac đã kích hoạt cho mỗi seat.',
+            activation: {
+                other: 'Một người mỗi seat, tối đa {count} máy Mac.',
+            },
             includesTitle: 'Mọi thứ trong gói Starter, cộng thêm',
             cta: 'Mua gói Team',
         },
@@ -98,7 +100,7 @@ export default {
         macs: 'Số máy Mac',
         macsFree: 'Không cần license',
         macsStarter: { other: 'Tối đa {count}' },
-        macsTeam: 'Một máy mỗi seat',
+        macsTeam: { other: 'Tối đa {count} mỗi seat' },
         everythingElse: 'Mọi phần còn lại của ứng dụng',
         everythingElseDetail: 'Mọi engine được hỗ trợ, SQL editor, trợ lý AI, MCP server và Safe Mode',
         iphoneNote: 'Ứng dụng cho iPhone và iPad không có tính năng trả phí. Trên iPhone và iPad, iCloud Sync miễn phí; muốn đồng bộ với máy Mac thì máy Mac cần gói Starter hoặc Team.',

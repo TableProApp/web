@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "팀과 연결 및 저장된 쿼리를 공유하세요.",
-            "activation": "좌석당 활성화된 Mac 1대.",
+            "activation": {
+                "one": "좌석당 1명, Mac {count}대.",
+                "other": "좌석당 1명, Mac 최대 {count}대."
+            },
             "includesTitle": "Starter의 모든 기능에 더해",
             "cta": "Team 구매"
         }
@@ -113,7 +116,10 @@ export default {
             "one": "{count}",
             "other": "최대 {count}"
         },
-        "macsTeam": "좌석당 한 대",
+        "macsTeam": {
+            "one": "좌석당 {count}대",
+            "other": "좌석당 최대 {count}대"
+        },
         "everythingElse": "앱의 나머지 모든 기능",
         "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",
         "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."

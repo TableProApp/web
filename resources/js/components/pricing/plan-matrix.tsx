@@ -69,7 +69,7 @@ export default function PlanMatrix({ details, className }: PlanMatrixProps) {
             values: {
                 free: m.pricing.matrix.macsFree,
                 starter: plural(m.pricing.matrix.macsStarter, PRICING.license.deviceLimit),
-                team: m.pricing.matrix.macsTeam,
+                team: plural(m.pricing.matrix.macsTeam, PRICING.license.deviceLimit),
             },
         },
         {

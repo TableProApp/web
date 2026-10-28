@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "与团队共享连接和已保存的查询。",
-            "activation": "每个席位对应 1 台已激活的 Mac。",
+            "activation": {
+                "one": "每个席位 1 人，{count} 台 Mac。",
+                "other": "每个席位 1 人，最多 {count} 台 Mac。"
+            },
             "includesTitle": "Starter 的全部功能，外加",
             "cta": "购买 Team"
         }
@@ -113,7 +116,10 @@ export default {
             "one": "{count}",
             "other": "最多 {count}"
         },
-        "macsTeam": "每席位一台",
+        "macsTeam": {
+            "one": "每席位 {count} 台",
+            "other": "每席位最多 {count} 台"
+        },
         "everythingElse": "应用中的其他所有功能",
         "everythingElseDetail": "所有受支持的引擎、SQL 编辑器、AI 助手、MCP 服务器和 Safe Mode",
         "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud Sync 在该应用中免费。若要与 Mac 同步，Mac 需要 Starter 或 Team。"
