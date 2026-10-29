@@ -30,7 +30,7 @@ From the version that adds TablePro accounts, the Mac app sends usage data strai
 The app sends an event:
 
 - once a day while it runs, with the names of the database types of your open connections (for example "PostgreSQL") and how many connections are open;
-- for your first connection attempt and your first successful connection, each with its database type, and for your first query;
+- for your first connection attempt, your first successful connection and your first query, each with its database type;
 - when it shows you that a paid feature is not available, once per feature each time the app runs, with the feature and the reason, such as not being signed in;
 - when you click to upgrade, with where in the app you clicked;
 - when you sign in, with how (in the app, with a license key, or by exchanging the key already on your Mac), and when you sign out.

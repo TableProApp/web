@@ -30,7 +30,7 @@ A partir da versão que traz as contas TablePro, o app para Mac envia dados de u
 O app envia um evento:
 
 - uma vez por dia enquanto está em execução, com os nomes dos tipos de banco das conexões abertas (por exemplo, "PostgreSQL") e quantas conexões estão abertas;
-- na sua primeira tentativa de conexão e na primeira conexão bem-sucedida, cada uma com o tipo de banco, e na sua primeira consulta;
+- na sua primeira tentativa de conexão, na primeira conexão bem-sucedida e na sua primeira consulta, cada uma com o tipo de banco;
 - quando mostra que um recurso pago não está disponível, uma vez por recurso a cada execução do app, com o recurso e o motivo, como não ter entrado na conta;
 - quando você clica para fazer upgrade, com o lugar do app onde clicou;
 - quando você entra, com a forma (no app, com uma chave de licença ou pela troca da chave que já estava no Mac), e quando você sai.

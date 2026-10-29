@@ -30,7 +30,7 @@ Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data pengguna
 Aplikasi mengirim peristiwa:
 
 - sekali sehari selama aplikasi berjalan, beserta nama jenis database dari koneksi yang sedang terbuka (misalnya "PostgreSQL") dan jumlah koneksi yang terbuka;
-- untuk percobaan koneksi pertama dan koneksi pertama yang berhasil, masing-masing beserta jenis database-nya, dan untuk kueri pertama Anda;
+- untuk percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama Anda, masing-masing beserta jenis database-nya;
 - saat aplikasi menunjukkan bahwa fitur berbayar tidak tersedia, sekali per fitur setiap kali aplikasi dijalankan, beserta fitur dan alasannya, misalnya Anda belum masuk;
 - saat Anda mengklik untuk upgrade, beserta tempat di aplikasi yang Anda klik;
 - saat Anda masuk, beserta caranya (di aplikasi, dengan kunci lisensi, atau dengan menukar kunci yang sudah ada di Mac Anda), dan saat Anda keluar.

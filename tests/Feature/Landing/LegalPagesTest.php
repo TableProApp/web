@@ -252,6 +252,7 @@ it('states what the Mac app and the server actually do', function (): void {
         ->toContain('screen size, time zone and language, whether it is on Wi-Fi')
         ->toContain('works out an approximate location from it')
         ->toContain('(`/config` and `/flags`)')
+        ->toContain('your first successful connection and your first query, each with its database type;')
         ->toContain('Before you sign in, the events carry a random ID')
         ->toContain('The app no longer sends a machine ID, whether a license is activated, or your update settings.')
         ->toContain('PostHog\'s crash reporter, which the app leaves turned off')
@@ -292,7 +293,7 @@ it('states what the Mac app and the server actually do', function (): void {
 
 it('lists the first query for the accounts build and the iPhone report, never for the old Mac report', function (string $locale): void {
     // Old Mac builds never record it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The accounts build sends
-    // first_query_executed (tablepro-cloud clients.md, macOS Telemetry), and the iPhone app reports it.
+    // first_query_executed with database_type (TablePro m16/accounts 4399ab89c), and the iPhone app reports it.
     expect(LEGAL_FIRST_QUERY)->toHaveKey($locale);
     $usage = legalSection('privacy', $locale, 'mac-usage-report');
     $old = strstr($usage, '`api.tablepro.app`');

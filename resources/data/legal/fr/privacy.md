@@ -30,7 +30,7 @@ Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site 
 L’application envoie un événement :
 
 - une fois par jour tant qu’elle fonctionne, avec les noms des types de bases de données de vos connexions ouvertes (par exemple « PostgreSQL ») et le nombre de connexions ouvertes ;
-- lors de votre première tentative de connexion et de votre première connexion réussie, chacune avec son type de base de données, et lors de votre première requête ;
+- lors de votre première tentative de connexion, de votre première connexion réussie et de votre première requête, chacune avec son type de base de données ;
 - quand elle vous montre qu’une fonction payante n’est pas disponible, une fois par fonction à chaque lancement de l’application, avec la fonction et la raison, par exemple que vous n’êtes pas connecté ;
 - quand vous cliquez pour passer à une offre supérieure, avec l’endroit de l’application où vous avez cliqué ;
 - quand vous vous connectez, avec la manière (dans l’application, avec une clé de licence, ou par l’échange de la clé déjà présente sur votre Mac), et quand vous vous déconnectez.

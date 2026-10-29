@@ -30,7 +30,7 @@ Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ li�
 Ứng dụng gửi một sự kiện:
 
 - mỗi ngày một lần khi đang chạy, kèm tên các loại cơ sở dữ liệu của những connection bạn đang mở (ví dụ "PostgreSQL") và số connection đang mở;
-- khi bạn thử kết nối lần đầu và khi kết nối thành công lần đầu, mỗi sự kiện kèm loại cơ sở dữ liệu, và khi bạn chạy query đầu tiên;
+- khi bạn thử kết nối lần đầu, khi kết nối thành công lần đầu và khi bạn chạy query đầu tiên, mỗi sự kiện kèm loại cơ sở dữ liệu;
 - khi ứng dụng báo một tính năng trả phí không dùng được, mỗi tính năng một lần trong mỗi lần chạy ứng dụng, kèm tên tính năng và lý do, chẳng hạn bạn chưa đăng nhập;
 - khi bạn bấm nâng cấp, kèm nơi trong ứng dụng mà bạn bấm;
 - khi bạn đăng nhập, kèm cách đăng nhập (trong ứng dụng, bằng license key, hoặc bằng việc đổi key đã có trên máy Mac), và khi bạn đăng xuất.

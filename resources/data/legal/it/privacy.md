@@ -30,7 +30,7 @@ Dalla versione che introduce gli account TablePro, l'app per Mac invia i dati di
 L'app invia un evento:
 
 - una volta al giorno mentre è in esecuzione, con i nomi dei tipi di database delle connessioni aperte (per esempio "PostgreSQL") e il numero di connessioni aperte;
-- al tuo primo tentativo di connessione e alla tua prima connessione riuscita, ciascuno con il tipo di database, e alla tua prima query;
+- al tuo primo tentativo di connessione, alla tua prima connessione riuscita e alla tua prima query, ciascuno con il tipo di database;
 - quando ti mostra che una funzione a pagamento non è disponibile, una volta per funzione a ogni avvio dell'app, con la funzione e il motivo, per esempio che non hai effettuato l'accesso;
 - quando fai clic per passare a un piano superiore, con il punto dell'app in cui hai fatto clic;
 - quando accedi, con il modo (nell'app, con una chiave di licenza o con lo scambio della chiave già presente sul Mac), e quando esci.

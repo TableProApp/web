@@ -30,7 +30,7 @@ A partir de la versión que añade las cuentas de TablePro, la app para Mac env�
 La app envía un evento:
 
 - una vez al día mientras está en ejecución, con los nombres de los tipos de bases de datos de tus conexiones abiertas (por ejemplo, «PostgreSQL») y cuántas conexiones hay abiertas;
-- en tu primer intento de conexión y en tu primera conexión correcta, cada uno con su tipo de base de datos, y en tu primera consulta;
+- en tu primer intento de conexión, en tu primera conexión correcta y en tu primera consulta, cada uno con su tipo de base de datos;
 - cuando te muestra que una función de pago no está disponible, una vez por función cada vez que se ejecuta la app, con la función y el motivo, como no haber iniciado sesión;
 - cuando haces clic para mejorar tu plan, con el lugar de la app donde lo hiciste;
 - cuando inicias sesión, con la forma (en la app, con una clave de licencia o canjeando la clave que ya estaba en tu Mac), y cuando cierras sesión.

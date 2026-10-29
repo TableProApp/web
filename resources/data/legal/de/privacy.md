@@ -30,7 +30,7 @@ Ab der Version, die TablePro-Konten einführt, sendet die Mac-App Nutzungsdaten 
 Die App sendet ein Ereignis:
 
 - einmal täglich während des Betriebs, mit den Namen der Datenbanktypen deiner geöffneten Verbindungen (zum Beispiel „PostgreSQL“) und der Anzahl geöffneter Verbindungen;
-- bei deinem ersten Verbindungsversuch und deiner ersten erfolgreichen Verbindung, jeweils mit dem Datenbanktyp, und bei deiner ersten Abfrage;
+- bei deinem ersten Verbindungsversuch, deiner ersten erfolgreichen Verbindung und deiner ersten Abfrage, jeweils mit dem Datenbanktyp;
 - wenn sie dir zeigt, dass eine kostenpflichtige Funktion nicht verfügbar ist, einmal pro Funktion und App-Start, mit der Funktion und dem Grund, etwa dass du nicht angemeldet bist;
 - wenn du auf ein Upgrade klickst, mit der Stelle in der App, an der du geklickt hast;
 - wenn du dich anmeldest, mit der Art (in der App, mit einem Lizenzschlüssel oder durch Einlösen des Schlüssels, der schon auf deinem Mac war), und wenn du dich abmeldest.
