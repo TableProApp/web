@@ -295,12 +295,15 @@ dataset('reviewed facts', [
             'keeps the paid features working for up to {offlineDays} days without our server',
             'Versions before TablePro accounts contain no crash reporter and no third-party analytics library.',
             'Versions before TablePro accounts send a usage report to `api.tablepro.app` instead, under the same setting',
+            'downloads the library\'s changes when it starts, every 15 minutes and after each publish',
+            'the app asks which copy to keep, and it shows who last changed each team query',
+            'Versions before TablePro accounts download the library when they start, at most once a week',
         ],
         ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.', 'sends TablePro a usage report once a day', 'Turning the setting off stops both.', 'the same server as the Mac app'],
     ],
     'the privacy policy (vi)' => [
         'legal/vi/privacy.md',
-        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'xóa các cuộc chat và email của bạn', ']({account}) tại account.tablepro.app', '](/vi/terms)'],
+        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'cứ 15 phút một lần và sau mỗi lần xuất bản', 'xóa các cuộc chat và email của bạn', ']({account}) tại account.tablepro.app', '](/vi/terms)'],
         ['trò chuyện', 'Client MCP', 'sau mỗi lần có người xuất bản', 'xóa của bạn.', 'cấp độ Safe Mode'],
     ],
     'the terms use the legal word for indemnify (vi)' => [
