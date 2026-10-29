@@ -220,7 +220,7 @@ These are the proposed asset IDs. `docs/visual-assets.md` owns the full brief fo
 | mac-backup-dump | crop | 3:2 | /features/import-export | Backup Dump of shop through pg_dump over the connection's SSH tunnel. | Backup Dump cơ sở dữ liệu shop bằng pg_dump qua SSH tunnel của connection. |
 | mac-ai-chat | screenshot | 16:10 | /#ai, /features/ai-mcp | AI chat on shop answering "top 5 customers by revenue last month" with a query ready to apply. | AI chat trên shop trả lời "5 khách hàng có doanh thu cao nhất tháng trước" kèm query sẵn sàng đưa vào editor. |
 | mac-agent-mode | screenshot | 16:10 | /features/ai-mcp | Agent mode session "Find orders with no items": three statements, one write waiting for Run. | Phiên Agent mode "Find orders with no items": ba câu lệnh, một lệnh ghi đang chờ bấm Run. |
-| mac-mcp-settings | crop | 3:2 | /features/ai-mcp | Settings > Integrations: the MCP server running and the Claude Code setup snippet. | Cài đặt > Tích hợp (Settings > Integrations): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code. |
+| mac-mcp-settings | crop | 3:2 | /features/ai-mcp | Settings > MCP: the MCP server running and the Claude Code setup snippet. | Cài đặt > Tích hợp (Settings > Integrations): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code. |
 | mac-connection-ssh-form | crop | 4:3 | /#features, /features/connections | Connection form, Network tab: SSH through bastion.acme.internal with one jump host. | Form connection, tab Network: SSH qua bastion.acme.internal với một jump host. |
 | mac-connection-library | screenshot | 16:10 | /features/connections | Welcome window: Production and Staging groups, coloured tags and the Chinook sample. | Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook. |
 | mac-import-other-app | crop | 4:3 | /features/connections | Import from Other App listing three DataGrip connections with their passwords found. | Import from Other App liệt kê ba connection từ DataGrip kèm mật khẩu đã tìm thấy. |
@@ -676,7 +676,7 @@ Matching runs on NFC text and on visible strings only. Values that are URLs or p
 | Bỏ qua đến nội dung | Chuyển đến nội dung chính | §10.1 |
 | Bài viết tiếng Anh, or a label whose whole value is "Tiếng Anh" | (tiếng Anh) | §11.4 |
 | team as a lowercase word | nhóm, thành viên nhóm | §11.3. The tier "Team" and feature names such as Team Library keep their capital |
-| An English click path that is not in parentheses: `(?<!\()\bSettings\s*[›>→]` | Cài đặt > Tích hợp (Settings > Integrations); Cài đặt > Giấy phép (Settings > License) | §11.2 click-path rule; the app's own labels come from its Vietnamese string catalog |
+| An English click path that is not in parentheses: `(?<!\()\bSettings\s*[›>→]` | Cài đặt > MCP (Settings > MCP); Cài đặt > Giấy phép (Settings > License) | §11.2 click-path rule; the app's own labels come from its Vietnamese string catalog |
 | giấy phép, except before "AGPL" (the capitalised app label "Giấy phép" in a click path is allowed) | license | §11.1, §11.3 |
 | Billing and invoices (English strings) | Billing & invoices (VI: Thanh toán và hóa đơn) | §4; spec §0 |
 

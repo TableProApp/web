@@ -170,7 +170,7 @@ in a block's `engines`: `{ "label": "Plan as text", "list": "explainText" }`. Ro
   key, never "giấy phép" except the AGPLv3. Spelling: khóa, xóa, hóa, tùy, hủy. NFC.
 - Same keys, same array lengths, same section and block ids, same `asset` ids and the same `{tokens}` as English
   (`ContentParityTest`). Feature, tier, mode and engine names stay English.
-- Click paths show the Vietnamese app label first: **Cài đặt > Tích hợp** (Settings > Integrations).
+- Click paths show the Vietnamese app label first: **Cài đặt > MCP** (Settings > MCP).
 
 ## Writing rules (sitemap §E.4, positioning §12)
 
