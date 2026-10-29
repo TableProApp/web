@@ -128,8 +128,7 @@ it('renders each document in both languages under its own component', function (
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component($component)
             ->where('document.title', $title)
-            // Dated on the publisher's calendar in Vietnam, up to 7 hours ahead of UTC.
-            ->where('document.updatedAt', fn(string $date): bool => preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) === 1 && $date <= now('Asia/Ho_Chi_Minh')->toDateString())
+            ->where('document.updatedAt', fn(string $date): bool => preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) === 1 && $date <= now()->toDateString())
             ->where('document.html', fn(string $html): bool => str_contains($html, '<h2 id="') && ! preg_match('/\{[a-zA-Z]+\}/', $html))
             ->where('document.toc', fn($toc): bool => count($toc) > 1)
             ->has('chrome.notice.body')
