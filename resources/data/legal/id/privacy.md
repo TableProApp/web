@@ -67,7 +67,7 @@ Server kami menyimpan setiap Mac yang diaktifkan sebagai perangkat dari akun pem
 
 ### Akun TablePro {#mac-account}
 
-Mulai versi yang menghadirkan akun TablePro, Anda masuk ke aplikasi Mac dengan [akun TablePro](#account), bukan kunci lisensi. Aplikasi membuka halaman masuk di jendela browser, tempat Anda dapat mengetik kode dari email masuk. Setelah Anda masuk, aplikasi mendaftarkan Mac Anda sebagai perangkat akun Anda: ID mesin yang dijelaskan di atas, nama Mac Anda, platform, serta versi aplikasi dan macOS. Lalu aplikasi mengambil paket Anda dari server kami sebagai file bertanda tangan sekali sehari selama berjalan, dan file itu membuat fitur berbayar tetap berfungsi hingga {offlineDays} hari tanpa server kami. Token yang membuat aplikasi tetap masuk disimpan di Rantai Kunci macOS.
+Mulai versi yang menghadirkan akun TablePro, Anda masuk ke aplikasi Mac dengan [akun TablePro](#account), bukan kunci lisensi. Aplikasi membuka halaman masuk di jendela browser, tempat Anda dapat mengetik kode dari email masuk. Setelah Anda masuk, aplikasi mendaftarkan Mac Anda sebagai perangkat akun Anda: ID mesin yang dijelaskan di atas, nama Mac Anda, platform, serta versi aplikasi dan macOS. Lalu aplikasi mengambil paket Anda dari server kami sebagai file bertanda tangan sekali sehari selama berjalan, dan file itu membuat fitur berbayar tetap berfungsi hingga {offlineDays} hari tanpa server kami. Token yang membuat aplikasi tetap masuk hanya disimpan di Rantai Kunci macOS pada Mac itu dan tidak pernah disinkronkan lewat iCloud Keychain, meskipun sinkronisasi kata sandi aktif.
 
 Kunci lisensi yang sudah ada di Mac Anda ditukar satu kali dengan proses masuk ke akun pemiliknya, lalu dihapus dari Mac. Perangkat yang tidak menghubungi server selama 180 hari akan dihapus. Anda dapat menghapus perangkat di aplikasi atau di portal akun, dan saat sebuah Mac pertama kali memakai lisensi Anda, kami memberi tahu Anda melalui email.
 
@@ -121,7 +121,7 @@ iCloud Sync nonaktif sampai Anda mengaktifkannya, baik di Mac maupun iPhone dan 
 
 - Di Mac, Anda memilih data yang disinkronkan: koneksi, grup dan tag, pengaturan, profil SSH, profil kredensial (nama dan nama penggunanya, tanpa kata sandi), tabel dan database favorit, kueri tersimpan (termasuk teks SQL), serta folder tabel. Data koneksi mencakup host, port, nama pengguna, nama database, pengaturan SSH dan SSL, perintah awal, skrip sebelum koneksi, dan aturan AI. Riwayat kueri, snapshot Data Rewind, dan sumber kata sandi tidak pernah disinkronkan.
 - iPhone dan iPad menyinkronkan koneksi, grup, dan tag.
-- Kata sandi hanya disinkronkan jika Anda juga mengaktifkan **Passwords** di Sync Categories pada Mac atau **Sync Passwords** pada iPhone dan iPad, menggunakan iCloud Keychain. Di Mac, opsi ini juga menyinkronkan rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi.
+- Kata sandi hanya disinkronkan jika Anda juga mengaktifkan **Passwords** di Sync Categories pada Mac atau **Sync Passwords** pada iPhone dan iPad, menggunakan iCloud Keychain. Di Mac, opsi ini juga menyinkronkan rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Mulai versi yang menghadirkan akun TablePro, kunci lisensi dihapus begitu ditukar dengan sesi masuk, dan token yang membuat aplikasi tetap masuk tidak pernah disinkronkan.
 
 Di Mac, iCloud Sync merupakan bagian dari lisensi Starter atau Team. Di iPhone dan iPad, fitur ini gratis.
 

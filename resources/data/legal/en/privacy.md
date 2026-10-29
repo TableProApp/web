@@ -67,7 +67,7 @@ Our server keeps each activated Mac as a device of the account that holds the li
 
 ### TablePro account {#mac-account}
 
-From the version that adds TablePro accounts, you sign in to the Mac app with a [TablePro account](#account) instead of a license key. The app opens the sign-in page in a browser sheet, where you can type the code from the sign-in email. After you sign in, it registers your Mac as a device of your account: the machine ID described above, your Mac's name, the platform, and the app and macOS versions. It then fetches your plan from our server as a signed file once a day while it runs, and that file keeps the paid features working for up to {offlineDays} days without our server. The token that keeps the app signed in is kept in the macOS Keychain.
+From the version that adds TablePro accounts, you sign in to the Mac app with a [TablePro account](#account) instead of a license key. The app opens the sign-in page in a browser sheet, where you can type the code from the sign-in email. After you sign in, it registers your Mac as a device of your account: the machine ID described above, your Mac's name, the platform, and the app and macOS versions. It then fetches your plan from our server as a signed file once a day while it runs, and that file keeps the paid features working for up to {offlineDays} days without our server. The token that keeps the app signed in is kept in the macOS Keychain of that Mac only and never syncs through iCloud Keychain, even with password sync on.
 
 A license key already on your Mac is exchanged once for a sign-in to the account that holds it, then deleted from the Mac. A device that has not checked in for 180 days is removed. You can remove devices in the app or in the account portal, and the first time a Mac uses your license, we email you about it.
 
@@ -121,7 +121,7 @@ iCloud Sync is off until you turn it on, on the Mac and on iPhone and iPad. When
 
 - On the Mac you choose what syncs: connections, groups and tags, settings, SSH profiles, credential profiles (their name and username, never the password), table and database favorites, saved queries (including their SQL text) and table folders. A connection record includes the host, port, username, database name, SSH and SSL settings, startup commands, the pre-connect script and AI rules. Query history, Data Rewind snapshots and password sources never sync.
 - iPhone and iPad sync connections, groups and tags.
-- Passwords sync only if you also turn on **Passwords** under Sync Categories on the Mac, or **Sync Passwords** on iPhone and iPad, which uses iCloud Keychain. On the Mac this also syncs the other secrets TablePro keeps in the Keychain, such as AI provider keys and the license key.
+- Passwords sync only if you also turn on **Passwords** under Sync Categories on the Mac, or **Sync Passwords** on iPhone and iPad, which uses iCloud Keychain. On the Mac this also syncs the other secrets TablePro keeps in the Keychain, such as AI provider keys and the license key. From the version that adds TablePro accounts, the license key is deleted once it is exchanged for a sign-in, and the token that keeps the app signed in never syncs.
 
 On the Mac, iCloud Sync is part of a Starter or Team license. On iPhone and iPad it is free.
 

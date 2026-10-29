@@ -265,6 +265,10 @@ it('states what the Mac app and the server actually do', function (): void {
     // Devices belong to accounts, and their changes are audited with the request's IP and user agent.
     expect($mac)->toContain('{#mac-account}')->toContain('macOS Keychain')->toContain('audit log');
 
+    // The accounts build keeps its refresh token in a Keychain item that never syncs (deviceOnlyKeychain in AccountServices+Live).
+    expect($mac)->toContain('kept in the macOS Keychain of that Mac only and never syncs through iCloud Keychain');
+    expect(legalSection('privacy', 'en', 'icloud'))->toContain('the license key is deleted once it is exchanged for a sign-in, and the token that keeps the app signed in never syncs');
+
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
 

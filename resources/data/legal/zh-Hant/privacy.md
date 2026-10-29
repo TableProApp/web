@@ -67,7 +67,7 @@ Mac App 僅在您輸入授權金鑰後連線至授權伺服器。它會在啟用
 
 ### TablePro 帳戶 {#mac-account}
 
-從支援 TablePro 帳戶的版本起，您使用 [TablePro 帳戶](#account)而不是授權金鑰登入 Mac App。App 會在瀏覽器視窗中開啟登入頁面，您也可以在那裡輸入登入郵件中的代碼。登入後，App 將您的 Mac 登記為帳戶的裝置：上文所述的機器 ID、Mac 名稱、平台，以及 App 和 macOS 版本。之後，App 在執行期間每天從我們的伺服器取得一次以簽署檔案形式提供的方案；有了該檔案，付費功能在無法連線至伺服器時最多可繼續使用 {offlineDays} 天。保持 App 登入的權杖保存在 macOS 鑰匙圈中。
+從支援 TablePro 帳戶的版本起，您使用 [TablePro 帳戶](#account)而不是授權金鑰登入 Mac App。App 會在瀏覽器視窗中開啟登入頁面，您也可以在那裡輸入登入郵件中的代碼。登入後，App 將您的 Mac 登記為帳戶的裝置：上文所述的機器 ID、Mac 名稱、平台，以及 App 和 macOS 版本。之後，App 在執行期間每天從我們的伺服器取得一次以簽署檔案形式提供的方案；有了該檔案，付費功能在無法連線至伺服器時最多可繼續使用 {offlineDays} 天。保持 App 登入的權杖僅保存在該 Mac 的 macOS 鑰匙圈中，即使開啟了密碼同步，也不會透過 iCloud 鑰匙圈同步。
 
 Mac 上已有的授權金鑰會一次性換成持有該金鑰的帳戶的登入，然後從 Mac 上刪除。180 天未聯絡伺服器的裝置會被移除。您可以在 App 或帳戶入口網站中移除裝置；某台 Mac 首次使用您的授權時，我們會寄送郵件通知您。
 
@@ -121,7 +121,7 @@ iCloud Sync 在 Mac、iPhone 與 iPad 上均預設關閉，直到您開啟。開
 
 - 在 Mac 上，您可選擇同步連線、群組與標籤、設定、SSH 設定檔、認證資料設定檔（名稱和使用者名稱，從不包含密碼）、資料表和資料庫喜好項目、已儲存查詢（包括 SQL 文字）以及資料表檔案夾。連線紀錄包含主機、連接埠、使用者名稱、資料庫名稱、SSH 和 SSL 設定、啟動指令、連線前指令碼與 AI 規則。查詢歷史、Data Rewind 快照和密碼來源從不同步。
 - iPhone 與 iPad 同步連線、群組和標籤。
-- 密碼僅在您同時開啟 Mac 上 Sync Categories 中的**密碼**（Passwords），或 iPhone 與 iPad 上的**同步密碼**（Sync Passwords）後同步，使用 iCloud 鑰匙圈。在 Mac 上，這也會同步 TablePro 保存在鑰匙圈中的其他機密資訊，例如 AI 供應商金鑰和授權金鑰。
+- 密碼僅在您同時開啟 Mac 上 Sync Categories 中的**密碼**（Passwords），或 iPhone 與 iPad 上的**同步密碼**（Sync Passwords）後同步，使用 iCloud 鑰匙圈。在 Mac 上，這也會同步 TablePro 保存在鑰匙圈中的其他機密資訊，例如 AI 供應商金鑰和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，保持 App 登入的權杖也從不同步。
 
 Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPad 上免費。
 

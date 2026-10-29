@@ -67,7 +67,7 @@ Máy chủ của chúng tôi giữ mỗi máy Mac đã kích hoạt như một t
 
 ### Tài khoản TablePro {#mac-account}
 
-Từ phiên bản có tài khoản TablePro, bạn đăng nhập ứng dụng cho Mac bằng [tài khoản TablePro](#account) thay cho license key. Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn có thể gõ mã trong email đăng nhập. Sau khi bạn đăng nhập, ứng dụng đăng ký máy Mac làm thiết bị của tài khoản: mã máy nêu ở trên, tên máy Mac của bạn, nền tảng, và phiên bản ứng dụng và macOS. Sau đó, mỗi ngày một lần khi đang chạy, ứng dụng lấy gói của bạn từ máy chủ dưới dạng một tệp có chữ ký, và tệp này giữ các tính năng trả phí hoạt động tới {offlineDays} ngày mà không cần máy chủ. Token giữ ứng dụng ở trạng thái đăng nhập được lưu trong Keychain của macOS.
+Từ phiên bản có tài khoản TablePro, bạn đăng nhập ứng dụng cho Mac bằng [tài khoản TablePro](#account) thay cho license key. Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn có thể gõ mã trong email đăng nhập. Sau khi bạn đăng nhập, ứng dụng đăng ký máy Mac làm thiết bị của tài khoản: mã máy nêu ở trên, tên máy Mac của bạn, nền tảng, và phiên bản ứng dụng và macOS. Sau đó, mỗi ngày một lần khi đang chạy, ứng dụng lấy gói của bạn từ máy chủ dưới dạng một tệp có chữ ký, và tệp này giữ các tính năng trả phí hoạt động tới {offlineDays} ngày mà không cần máy chủ. Token giữ ứng dụng ở trạng thái đăng nhập chỉ được lưu trong Keychain của chính máy Mac đó và không bao giờ đồng bộ qua iCloud Keychain, kể cả khi bạn bật đồng bộ mật khẩu.
 
 License key đã có trên máy Mac được đổi một lần lấy phiên đăng nhập vào tài khoản sở hữu key đó, rồi bị xóa khỏi máy. Thiết bị không liên lạc trong 180 ngày sẽ bị gỡ. Bạn có thể gỡ thiết bị trong ứng dụng hoặc trên trang tài khoản, và lần đầu một máy Mac dùng license của bạn, chúng tôi sẽ báo cho bạn qua email.
 
@@ -121,7 +121,7 @@ iCloud Sync tắt cho tới khi bạn bật, trên Mac cũng như trên iPhone v
 
 - Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm và tag, cài đặt, SSH profile, credential profile (tên và username, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu (kể cả nội dung SQL) và thư mục table. Một bản ghi connection gồm host, port, username, tên cơ sở dữ liệu, cài đặt SSH và SSL, lệnh khởi động, script chạy trước khi kết nối và quy tắc AI. Lịch sử query, các bản chụp của Data Rewind và nguồn mật khẩu không bao giờ được đồng bộ.
 - iPhone và iPad đồng bộ connection, nhóm và tag.
-- Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ (Sync Categories) trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key.
+- Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ (Sync Categories) trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key. Từ phiên bản có tài khoản TablePro, license key bị xóa ngay khi được đổi lấy phiên đăng nhập, và token giữ ứng dụng ở trạng thái đăng nhập không bao giờ được đồng bộ.
 
 Trên Mac, iCloud Sync thuộc license Starter hoặc Team. Trên iPhone và iPad, tính năng này miễn phí.
 

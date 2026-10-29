@@ -67,7 +67,7 @@ Nosso servidor mantém cada Mac ativado como dispositivo da conta dona da licen�
 
 ### Conta TablePro {#mac-account}
 
-A partir da versão que traz as contas TablePro, você entra no app para Mac com uma [conta TablePro](#account) em vez de uma chave de licença. O app abre a página de acesso em uma janela do navegador, onde você pode digitar o código do email de acesso. Depois de entrar, ele registra seu Mac como dispositivo da sua conta: o ID de máquina descrito acima, o nome do seu Mac, a plataforma e as versões do app e do macOS. Em seguida busca seu plano em nosso servidor como um arquivo assinado uma vez por dia enquanto está aberto, e esse arquivo mantém os recursos pagos funcionando por até {offlineDays} dias sem nosso servidor. O token que mantém o app conectado fica nas Chaves do macOS.
+A partir da versão que traz as contas TablePro, você entra no app para Mac com uma [conta TablePro](#account) em vez de uma chave de licença. O app abre a página de acesso em uma janela do navegador, onde você pode digitar o código do email de acesso. Depois de entrar, ele registra seu Mac como dispositivo da sua conta: o ID de máquina descrito acima, o nome do seu Mac, a plataforma e as versões do app e do macOS. Em seguida busca seu plano em nosso servidor como um arquivo assinado uma vez por dia enquanto está aberto, e esse arquivo mantém os recursos pagos funcionando por até {offlineDays} dias sem nosso servidor. O token que mantém o app conectado fica só nas Chaves do macOS daquele Mac e nunca é sincronizado pelas Chaves do iCloud, mesmo com a sincronização de senhas ativada.
 
 Uma chave de licença que já esteja no seu Mac é trocada uma única vez por um acesso à conta dona dela e depois excluída do Mac. Um dispositivo que não se comunica por 180 dias é removido. Você pode remover dispositivos no app ou no portal da conta, e na primeira vez que um Mac usa sua licença avisamos você por email.
 
@@ -121,7 +121,7 @@ O iCloud Sync fica desativado até você ativá-lo, no Mac e no iPhone e iPad. Q
 
 - No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca senha), tabelas e bancos favoritos, consultas salvas (incluindo SQL) e pastas de tabelas. Um registro de conexão inclui host, porta, nome de usuário, nome do banco, configurações SSH e SSL, comandos de inicialização, script de pré-conexão e regras de IA. Histórico de consultas, snapshots de Data Rewind e fontes de senha nunca são sincronizados.
 - iPhone e iPad sincronizam conexões, grupos e etiquetas.
-- Senhas só são sincronizadas se você também ativar **Passwords** em Sync Categories no Mac ou **Sync Passwords** no iPhone e iPad, usando as Chaves do iCloud. No Mac, isso também sincroniza outros segredos guardados pelo TablePro nas Chaves, como chaves de provedores de IA e a chave de licença.
+- Senhas só são sincronizadas se você também ativar **Passwords** em Sync Categories no Mac ou **Sync Passwords** no iPhone e iPad, usando as Chaves do iCloud. No Mac, isso também sincroniza outros segredos guardados pelo TablePro nas Chaves, como chaves de provedores de IA e a chave de licença. A partir da versão que traz as contas TablePro, a chave de licença é excluída assim que é trocada por um acesso, e o token que mantém o app conectado nunca é sincronizado.
 
 No Mac, o iCloud Sync faz parte de uma licença Starter ou Team. No iPhone e iPad é gratuito.
 
