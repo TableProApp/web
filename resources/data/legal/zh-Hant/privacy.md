@@ -35,7 +35,7 @@ App 會在以下情況傳送事件：
 - 點按升級時，附帶您在 App 中點按的位置；
 - 登入時，附帶登入方式（在 App 中登入、使用授權金鑰，或兌換 Mac 上已有的金鑰），以及登出時。
 
-PostHog 的程式庫會為每個事件加入 Mac 的機型、螢幕尺寸、時區與語言、是否使用 Wi-Fi、App 的版本、建置編號與 Bundle ID、macOS 版本、程式庫的版本以及隨機的工作階段 ID。PostHog 會隨每個請求收到您的 Mac 的 IP 位址，並據此推算大致位置，例如國家和城市。該設定開啟期間，程式庫也會從 PostHog 取得其設定與功能旗標（`/config` 和 `/flags`）。
+PostHog 的程式庫會為每個事件加入 Mac 的機型、螢幕尺寸、時區與語言、是否使用 Wi-Fi、App 的版本、建置編號與 Bundle ID、macOS 版本、程式庫的版本以及隨機的工作階段 ID。PostHog 會隨每個請求收到您的 Mac 的 IP 位址，並據此推算大致位置，例如國家和城市。該設定開啟期間，程式庫也會從 PostHog 取得其設定與功能旗標（`eu-assets.i.posthog.com` 上的 `/config` 和 `eu.i.posthog.com` 上的 `/flags`）。
 
 登入之前，事件攜帶程式庫在您的 Mac 上產生的隨機 ID，PostHog 不會為其建立個人檔案。登入後，事件改為攜帶您的帳戶 ID，PostHog 中該帳戶的檔案保存 App 和 macOS 版本、處理器架構、App 語言以及 PostHog 根據 IP 位址推算的大致位置，藉此把您的安裝與登入和購買連結起來。登出後會改用新的隨機 ID。App 的使用資料不再包含機器 ID、授權啟用狀態或更新設定。
 

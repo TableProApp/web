@@ -251,7 +251,7 @@ it('states what the Mac app and the server actually do', function (): void {
         ->toContain('if the app starts with it off, it does not start PostHog\'s library at all')
         ->toContain('screen size, time zone and language, whether it is on Wi-Fi')
         ->toContain('works out an approximate location from it')
-        ->toContain('(`/config` and `/flags`)')
+        ->toContain('(`/config` from `eu-assets.i.posthog.com` and `/flags` from `eu.i.posthog.com`)')
         ->toContain('your first successful connection and your first query, each with its database type;')
         ->toContain('Before you sign in, the events carry a random ID')
         // GeoIP is on, so PostHog also sets the derived location on the identified person.
@@ -293,6 +293,11 @@ it('states what the Mac app and the server actually do', function (): void {
     expect($mac)->toContain('of your open connections')->toContain('how many connections are open');
     expect($ios)->toContain('of your open connections')->toContain('always reports that no license is activated');
 });
+
+it('names both PostHog hosts the accounts build contacts', function (string $locale): void {
+    // posthog-ios 3.92.7 fetches /config from the assets host of eu.i.posthog.com (PostHogApi.getRemoteConfigRequest).
+    expect(legalSection('privacy', $locale, 'mac-usage-report'))->toContain('`eu.i.posthog.com`')->toContain('`eu-assets.i.posthog.com`');
+})->with(legalLocales());
 
 it('lists the first query for the accounts build and the iPhone report, never for the old Mac report', function (string $locale): void {
     // Old Mac builds never record it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The accounts build sends
