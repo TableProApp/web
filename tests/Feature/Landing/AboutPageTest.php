@@ -152,6 +152,9 @@ it('server-renders the publisher, every section and its links, the footer and an
     preg_match('#<footer\b.*?</footer>#s', $html, $footer);
     preg_match('/[\'"]?englishOnly[\'"]?:\s*([\'"])(.*?)\1/u', File::get(resource_path("js/i18n/messages/{$locale}/common.ts")), $marker);
 
+    preg_match('#<section[^>]*id="funding".*?</section>#s', $html, $funding);
+
+    expect($funding[0] ?? '')->toContain("href=\"{$prefix}/sponsors\"")->not->toContain('github.com/sponsors');
     expect($policies[0] ?? '')->toContain("href=\"{$prefix}/security\"");
     expect($brand[0] ?? '')->toContain('href="/brand" hrefLang="en"');
     expect(str_contains(aboutVisibleText($brand[0] ?? ''), $marker[2]))->toBe($locale !== Locales::default());

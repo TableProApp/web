@@ -233,11 +233,11 @@ it('renders the header, its menu and the footer in the reader\'s language', func
         expect($titles[1])->toContain($group);
     }
 
-    foreach (['/features', '/databases', '/integrations', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/about', '/security', '/privacy', '/terms', '/refund-policy'] as $page) {
+    foreach (['/features', '/databases', '/integrations', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/about', '/sponsors', '/security', '/privacy', '/terms', '/refund-policy'] as $page) {
         Assert::assertNotNull(chromeLink($footer, $prefix . $page), "The footer has no link to {$prefix}{$page}");
     }
 
-    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'https://github.com/sponsors/datlechin', 'mailto:hello@tablepro.app', "/account?locale={$locale}"] as $href) {
+    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'mailto:hello@tablepro.app', "/account?locale={$locale}"] as $href) {
         Assert::assertNotNull(chromeLink($footer, $href), "The footer has no link to {$href}");
     }
 
@@ -245,6 +245,9 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     $brand = chromeLink($footer, '/brand', $vi ? 'Thương hiệu (tiếng Anh)' : 'Brand');
     Assert::assertNotNull($brand, 'The footer has no link to /brand');
     Assert::assertSame($vi ? 'en' : null, $brand['attrs']['hreflang'] ?? null);
+
+    // Sponsoring starts on the sponsors page, which shows the tiers before GitHub does.
+    expect($footer)->not->toContain('github.com/sponsors');
 
     // The repository is linked once, as "Source code"; Community no longer repeats it.
     expect(substr_count($footer, 'href="https://github.com/TableProApp/TablePro"'))->toBe(1);

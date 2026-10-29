@@ -6,7 +6,7 @@ use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
 
 /**
- * The one-off pages: home, download, iOS, pricing, FAQ, about, security and the blog index.
+ * The one-off pages: home, download, iOS, pricing, FAQ, about, security, sponsors and the blog index.
  *
  * Each renders in a locale when `resources/data/content/{locale}/{page}.json`
  * exists, and is indexable there unless that file sets `seo.indexable` to
@@ -29,6 +29,7 @@ final class StaticPages implements PageFamily
         'landing.faq' => 'faq',
         'landing.about' => 'about',
         'landing.security' => 'security',
+        'landing.sponsors' => 'sponsors',
         'landing.blog.index' => 'blog',
     ];
 

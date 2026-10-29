@@ -47,7 +47,7 @@ it('collides with no root path the site or the platform serves', function (): vo
             // The platform's paths on this origin (nginx sends them to the account app).
             'account', 'checkout', 'webhooks', 'newsletter', 'beta', 'discount', 'thank-you', 'api', 'platform-build',
             // Static directories under public/.
-            'build', 'og', 'images', 'sponsors',
+            'build', 'og', 'images',
         ])
         ->unique();
 

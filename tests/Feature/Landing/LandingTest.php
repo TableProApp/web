@@ -29,6 +29,7 @@ function landingFamilies(): array
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
         'landing.about' => ['About', ['content', 'publisher.name', 'repositoryCreated', 'links']],
         'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],
+        'landing.sponsors' => ['Sponsors', ['content.header.title', 'content.tiers.benefit.name', 'organizationProfiles']],
         'landing.privacy' => ['Privacy', ['document.title', 'document.html', 'document.toc']],
         'landing.terms' => ['Terms', ['document.title', 'document.html', 'document.toc']],
         'landing.refundPolicy' => ['RefundPolicy', ['document.title', 'document.html', 'document.toc']],

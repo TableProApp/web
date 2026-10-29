@@ -163,6 +163,10 @@ in the job with a live SSR service. It skips locally without one.
   `facts.json` (URLs, limits), `sponsors.json`, `comparisons.json` (dated and
   sourced). Copy refers to them through `{token}` slots; counts are derived,
   never typed. After an app release, run `php artisan release:check`.
+- `sponsors.json` holds each sponsor's placement and the tier prices, never
+  what a sponsor pays. The `sponsors` skill checks it against GitHub Sponsors
+  with the maintainer's `gh` login; the tier prices on GitHub and in the file
+  change together.
 - Content images are slots in `resources/data/assets.json`, rendered by
   `<AssetSlot id>` (or `<asset-slot id>` in markdown). Until the owner supplies
   the file, a slot is a described placeholder outside production and renders
