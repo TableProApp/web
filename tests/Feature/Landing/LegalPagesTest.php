@@ -254,6 +254,8 @@ it('states what the Mac app and the server actually do', function (): void {
         ->toContain('(`/config` and `/flags`)')
         ->toContain('your first successful connection and your first query, each with its database type;')
         ->toContain('Before you sign in, the events carry a random ID')
+        // GeoIP is on, so PostHog also sets the derived location on the identified person.
+        ->toContain('the app\'s language and the approximate location PostHog works out from the IP address.')
         ->toContain('The app\'s usage data no longer carries a machine ID, whether a license is activated, or your update settings.')
         ->not->toContain('The app no longer sends a machine ID')
         ->toContain('PostHog\'s crash reporter, which the app leaves turned off')
