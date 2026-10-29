@@ -121,7 +121,7 @@
     "limits": [
         "When a plan ends on the Mac, iCloud Sync pauses and says why, and connections from Linked Folders and the Team Library disappear from the list. The Team publishing commands are hidden, and Encrypted Export loses its password option.",
         "Editing a synced connection on iPhone or iPad can change settings the app there does not have. A stricter Mac Safe Mode level, such as Safe Mode (Full), comes back as Alert, and SSH jump hosts may not survive the trip. Make changes to those connections on the Mac.",
-        "If a Team license ends or is revoked, what was published to the Team Library stays on TablePro’s server until you ask for it to be deleted."
+        "If a Team license ends or is revoked, what was published to the Team Library stays on TablePro’s server until the team’s owner deletes the team, which deletes the library with it."
     ],
     "docs": [
         { "label": "iCloud Sync", "docs": "/features/icloud-sync" },

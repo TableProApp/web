@@ -38,13 +38,13 @@ dataset('reviewed facts', [
     ],
     'Handoff also passes the connection name' => [
         'content/en/features/sync-and-teams.json',
-        ['With no table open, it passes the connection’s name instead', 'their Macs lose Team’s features the next time TablePro checks in.', 'A Team seat covers one person on up to {deviceLimit} Macs', '<ui>Publish Saved Queries to Team…</ui>', 'Members with a seat download them.', 'ends or is revoked', 'the app pulls changes at launch, every 15 minutes and after each publish', 'Versions before TablePro accounts download the library at most once a week', 'the license key is deleted once exchanged for a sign-in, and the sign-in never syncs.'],
-        ['Republishing replaces your previous contribution.', 'Only the connection’s ID and the table’s name pass', 'signs their Macs out', 'activated Mac', 'Settings > License', 'deletes their Team Library', 'within {offlineDays} days', 'Macs on the license', 'is suspended'],
+        ['With no table open, it passes the connection’s name instead', 'their Macs lose Team’s features the next time TablePro checks in.', 'A Team seat covers one person on up to {deviceLimit} Macs', '<ui>Publish Saved Queries to Team…</ui>', 'Members with a seat download them.', 'ends or is revoked', 'until the team’s owner deletes the team, which deletes the library with it.', 'the app pulls changes at launch, every 15 minutes and after each publish', 'Versions before TablePro accounts download the library at most once a week', 'the license key is deleted once exchanged for a sign-in, and the sign-in never syncs.'],
+        ['Republishing replaces your previous contribution.', 'Only the connection’s ID and the table’s name pass', 'signs their Macs out', 'activated Mac', 'Settings > License', 'deletes their Team Library', 'until you ask for it to be deleted', 'within {offlineDays} days', 'Macs on the license', 'is suspended'],
     ],
     'Handoff, seats and publishing (vi)' => [
         'content/vi/features/sync-and-teams.json',
-        ['Nếu không mở table, nó gửi tên connection', 'vào lần tiếp theo TablePro liên lạc với server.', 'Thành viên có seat tải chúng về.', 'Một seat Team dành cho một người trên tối đa {deviceLimit} máy Mac.', 'cứ 15 phút một lần và sau mỗi lần chia sẻ'],
-        ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên'],
+        ['Nếu không mở table, nó gửi tên connection', 'vào lần tiếp theo TablePro liên lạc với server.', 'Thành viên có seat tải chúng về.', 'Một seat Team dành cho một người trên tối đa {deviceLimit} máy Mac.', 'cứ 15 phút một lần và sau mỗi lần chia sẻ', 'cho tới khi chủ sở hữu nhóm xóa nhóm'],
+        ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên', 'cho tới khi bạn yêu cầu xóa'],
     ],
     'Redis Add Row covers five types; restores are transactional only where the engine allows' => [
         'content/en/features/data-editing.json',
