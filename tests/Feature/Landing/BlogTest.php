@@ -211,6 +211,15 @@ it('gives each guide a Vietnamese version under the same slug and tags', functio
     expect(glob(resource_path('blog/vi/*.md')))->toHaveCount(count(BLOG_GUIDES));
 });
 
+it('gives each Vietnamese guide the same sections as the original, in the same order', function (): void {
+    $anchors = fn(string $path): array => preg_match_all('/^#{2,6} .*\{#([\w-]+)\}\s*$/m', File::get($path), $matches) > 0 ? $matches[1] : [];
+
+    foreach (array_keys(BLOG_GUIDES) as $slug) {
+        expect($anchors(resource_path("blog/vi/{$slug}.md")))
+            ->toBe($anchors(resource_path("blog/{$slug}.md")), "{$slug}: a section of the original is missing or out of place in the translation");
+    }
+});
+
 it('removes the merged guides, whose URLs now redirect', function (string $slug, string $target): void {
     expect(File::exists(resource_path("blog/{$slug}.md")))->toBeFalse();
 
