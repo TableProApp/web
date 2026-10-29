@@ -1,38 +1,40 @@
-/**
- * resources/data/sponsors.json, typed: the sponsors verified as current on
- * `verifiedAt`, in display order.
- *
- * The homepage renders them third, each linked with `rel="sponsored noopener"`.
- * A sponsor stays listed only while its sponsorship is active; the file
- * records how that was checked.
- */
 import data from '@data/sponsors.json';
 
+export type Placement = 'lead' | 'homepage' | 'name';
+
 export interface SponsorLogo {
-    /** A file under public/, used in both themes unless `dark` is set. */
+    // A file under public/, used in both themes unless `dark` is set.
     light: string;
     dark: string | null;
-    /** Intrinsic size, so the row does not reflow while the image loads. */
     width: number;
     height: number;
 }
 
-export interface Sponsor {
+interface SponsorBase {
     id: string;
     name: string;
     githubLogin: string;
     url: string;
-    logo: SponsorLogo;
+}
+
+export type Sponsor = SponsorBase & ({ placement: 'name'; logo: null } | { placement: Exclude<Placement, 'name'>; logo: SponsorLogo });
+
+export type LogoSponsor = Extract<Sponsor, { logo: SponsorLogo }>;
+
+export interface SponsorTier {
+    placement: Placement;
+    monthly: number;
 }
 
 export interface SponsorsData {
     verifiedAt: string;
     verification: { method: string; program: string };
+    homepageSlots: number;
+    leadSlots: number;
+    oneTime: { multiplier: number; months: number };
+    tiers: SponsorTier[];
     sponsors: Sponsor[];
 }
 
-/**
- * The single cast from the JSON import. `tests/Feature/Data/SponsorsDataTest.php`
- * validates the file.
- */
+// tests/Feature/Data/SponsorsDataTest.php validates the file this casts.
 export const SPONSORS = data as SponsorsData;

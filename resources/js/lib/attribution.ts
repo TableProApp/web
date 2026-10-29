@@ -144,7 +144,7 @@ export function readVisit(visit: Visit): Attribution | null {
 
     /*
      * `ref` as a fallback for `utm_source`, because that is the shape the
-     * neighbourhood uses: every link in `sponsor-row.tsx` goes out as
+     * neighbourhood uses: the sponsor links in `sponsors.json` go out as
      * `?ref=tablepro`, and the sites carrying a link back send it the same way.
      * Only consulted when there is no utm_source, so a properly tagged link is
      * never second-guessed.
