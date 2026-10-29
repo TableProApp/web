@@ -3631,9 +3631,10 @@ None. Source: `resources/data/facts.json` → `sync` (iPhone and iPad sync conne
 
 ##### `mac-team-library`
 
-> **Tóm tắt:** Chụp cận cảnh sidebar Favorites của TablePro 0.77.0 (license Team) với mục Team Library mở ra, có ba query đã lưu do
-> các thành viên nhóm giả đưa lên, mỗi query ghi tên người đưa lên. Bạn cần một license Team thử nghiệm với vài máy đã
-> kích hoạt, dữ liệu mẫu `shop` trên PostgreSQL, và mở lại ứng dụng trước khi chụp để thư viện được tải về.
+> **Tóm tắt:** Chụp cận cảnh sidebar Favorites của phiên bản TablePro có tài khoản, đăng nhập một tài khoản có seat Team, với mục Team
+> Library mở ra, có ba query đã lưu do các thành viên nhóm giả đưa lên, mỗi query ghi tên người sửa gần nhất. Bạn cần một
+> Team thử nghiệm với vài thành viên có seat đăng nhập trên các máy thử, dữ liệu mẫu `shop` trên PostgreSQL, và mở lại
+> ứng dụng trước khi chụp để thư viện được tải về.
 
 | Field | Value |
 |---|---|
@@ -3647,47 +3648,47 @@ None. Source: `resources/data/facts.json` → `sync` (iPhone and iPad sync conne
 | Locale | One file for both sites |
 | Replace with | `public/images/features/mac-team-library-{light,dark}-{696,1392}.{avif,webp}` |
 
-- Placeholder text (en): Favorites sidebar with a Team Library section: three saved queries labelled by who published them.
-- Placeholder text (vi): Sidebar Favorites có mục Team Library: ba query đã lưu, ghi tên người chia sẻ.
-- Placeholder text (es): Barra lateral de favoritos con sección Biblioteca del equipo: tres consultas guardadas con el nombre de quien las publicó.
-- Placeholder text (de): Favoriten-Seitenleiste mit Teambibliothek: drei gespeicherte Abfragen mit dem Namen ihres Veröffentlichers.
-- Placeholder text (fr): Barre latérale des favoris avec section Bibliothèque d’équipe : trois requêtes enregistrées portant le nom de leur auteur.
-- Placeholder text (ja): Favorites サイドバーの Team Library セクション。公開者が示された三つの保存済みクエリ。
-- Placeholder text (pt-BR): Barra lateral Favorites com uma seção Team Library: três consultas salvas identificadas por quem as publicou.
-- Placeholder text (zh-Hans): Favorites 侧边栏的 Team Library 区域：三条已保存的查询，各自标注发布者。
-- Placeholder text (ko): Favorites 사이드바의 Team Library 섹션. 게시자가 표시된 저장된 쿼리 세 개입니다.
-- Placeholder text (zh-Hant): Favorites 側邊欄的 Team Library 區域：三項已儲存的查詢，各自標註發佈者。
-- Placeholder text (it): Barra laterale Favorites con una sezione Team Library: tre query salvate etichettate con chi le ha pubblicate.
-- Placeholder text (id): Sidebar Favorites dengan bagian Team Library: tiga kueri tersimpan diberi label penerbitnya.
-- Proposed alt text (en): The Favorites sidebar with a Team Library section listing three saved queries, each labelled with the teammate who published it.
-- Proposed alt text (vi): Sidebar Favorites có mục Team Library liệt kê ba query đã lưu, mỗi query ghi tên thành viên nhóm đã chia sẻ.
-- Proposed alt text (es): Barra lateral de favoritos con una sección Biblioteca del equipo que lista tres consultas guardadas, cada una etiquetada con el compañero que la publicó.
-- Proposed alt text (de): Favoriten-Seitenleiste mit einer Teambibliothek, die drei gespeicherte Abfragen jeweils mit dem Teammitglied auflistet, das sie veröffentlicht hat.
-- Proposed alt text (fr): Barre latérale des favoris avec une section Bibliothèque d’équipe listant trois requêtes enregistrées, chacune étiquetée avec le collègue qui l’a publiée.
-- Proposed alt text (ja): Favorites サイドバーの Team Library セクション。三つの保存済みクエリが並び、それぞれ公開したチームメンバーの名前が表示されています。
-- Proposed alt text (pt-BR): A barra lateral Favorites com uma seção Team Library listando três consultas salvas, cada uma identificada pelo colega de equipe que a publicou.
-- Proposed alt text (zh-Hans): Favorites 侧边栏的 Team Library 区域列出三条已保存的查询，每条都标注了发布该查询的队友。
-- Proposed alt text (ko): Favorites 사이드바의 Team Library 섹션. 저장된 쿼리 세 개에 각각 게시한 팀원의 이름이 표시됩니다.
-- Proposed alt text (zh-Hant): Favorites 側邊欄的 Team Library 區域列出三項已儲存的查詢，每項都標註了發佈該查詢的隊友。
-- Proposed alt text (it): La barra laterale Favorites con una sezione Team Library che elenca tre query salvate, ciascuna etichettata con il membro del team che l’ha pubblicata.
-- Proposed alt text (id): Sidebar Favorites dengan bagian Team Library yang mencantumkan tiga kueri tersimpan, masing-masing diberi label rekan tim yang menerbitkannya.
+- Placeholder text (en): Favorites sidebar with a Team Library section: three saved queries labelled by who last changed them.
+- Placeholder text (vi): Sidebar Favorites có mục Team Library: ba query đã lưu, ghi tên người sửa gần nhất.
+- Placeholder text (es): Barra lateral de favoritos con sección Biblioteca del equipo: tres consultas guardadas con el nombre de quien las cambió por última vez.
+- Placeholder text (de): Favoriten-Seitenleiste mit Teambibliothek: drei gespeicherte Abfragen mit dem Namen der Person, die sie zuletzt geändert hat.
+- Placeholder text (fr): Barre latérale des favoris avec section Bibliothèque d’équipe : trois requêtes enregistrées portant le nom de la personne qui les a modifiées en dernier.
+- Placeholder text (ja): Favorites サイドバーの Team Library セクション。最後に変更した人が示された三つの保存済みクエリ。
+- Placeholder text (pt-BR): Barra lateral Favorites com uma seção Team Library: três consultas salvas identificadas por quem as alterou por último.
+- Placeholder text (zh-Hans): Favorites 侧边栏的 Team Library 区域：三条已保存的查询，各自标注最后修改者。
+- Placeholder text (ko): Favorites 사이드바의 Team Library 섹션. 마지막으로 변경한 사람이 표시된 저장된 쿼리 세 개입니다.
+- Placeholder text (zh-Hant): Favorites 側邊欄的 Team Library 區域：三項已儲存的查詢，各自標註最後修改者。
+- Placeholder text (it): Barra laterale Favorites con una sezione Team Library: tre query salvate etichettate con chi le ha modificate per ultimo.
+- Placeholder text (id): Sidebar Favorites dengan bagian Team Library: tiga kueri tersimpan diberi label orang yang terakhir mengubahnya.
+- Proposed alt text (en): The Favorites sidebar with a Team Library section listing three saved queries, each labelled with the teammate who last changed it.
+- Proposed alt text (vi): Sidebar Favorites có mục Team Library liệt kê ba query đã lưu, mỗi query ghi tên thành viên nhóm sửa gần nhất.
+- Proposed alt text (es): Barra lateral de favoritos con una sección Biblioteca del equipo que lista tres consultas guardadas, cada una etiquetada con el compañero que la cambió por última vez.
+- Proposed alt text (de): Favoriten-Seitenleiste mit einer Teambibliothek, die drei gespeicherte Abfragen jeweils mit dem Teammitglied auflistet, das sie zuletzt geändert hat.
+- Proposed alt text (fr): Barre latérale des favoris avec une section Bibliothèque d’équipe listant trois requêtes enregistrées, chacune étiquetée avec le collègue qui l’a modifiée en dernier.
+- Proposed alt text (ja): Favorites サイドバーの Team Library セクション。三つの保存済みクエリが並び、それぞれ最後に変更したチームメンバーの名前が表示されています。
+- Proposed alt text (pt-BR): A barra lateral Favorites com uma seção Team Library listando três consultas salvas, cada uma identificada pelo colega de equipe que a alterou por último.
+- Proposed alt text (zh-Hans): Favorites 侧边栏的 Team Library 区域列出三条已保存的查询，每条都标注了最后修改该查询的队友。
+- Proposed alt text (ko): Favorites 사이드바의 Team Library 섹션. 저장된 쿼리 세 개에 각각 마지막으로 변경한 팀원의 이름이 표시됩니다.
+- Proposed alt text (zh-Hant): Favorites 側邊欄的 Team Library 區域列出三項已儲存的查詢，每項都標註了最後修改該查詢的隊友。
+- Proposed alt text (it): La barra laterale Favorites con una sezione Team Library che elenca tre query salvate, ciascuna etichettata con il membro del team che l’ha modificata per ultimo.
+- Proposed alt text (id): Sidebar Favorites dengan bagian Team Library yang mencantumkan tiga kueri tersimpan, masing-masing diberi label rekan tim yang terakhir mengubahnya.
 
 **Purpose**
 
-Shows Team Library in use: saved queries a team shares, each labelled with the teammate who published it.
+Shows Team Library in use: saved queries a team shares, each labelled with the teammate who last changed it.
 
 **Scene**
 
-- Platform and release: Mac, TablePro 0.77.0, activated with a Team license.
+- Platform and release: Mac, the version that adds TablePro accounts, signed in to an account with a seat in a Team.
 - Screen: a connection window on `orders-db (primary)` (PostgreSQL, `shop` sample, `orders-db.acme.internal`), sidebar
   on **Favorites**, with the **Team Library** section expanded.
 - Team Library content: three saved queries published by two fictional teammates and you, for example "Daily active
-  users", "Orders by status this week" and "Refund rate by month", each showing its publisher label.
+  users", "Orders by status this week" and "Refund rate by month", each labelled with who last changed it.
 - The editor beside the sidebar shows one of those queries opened from the library.
 
 **Framing**
 
-Detail crop, 4:3: the Favorites sidebar with the Team Library section and the publisher labels, plus the left edge of
+Detail crop, 4:3: the Favorites sidebar with the Team Library section and the last-changed-by labels, plus the left edge of
 the editor. The labels must be readable at 696 px wide.
 
 **Light and dark**
@@ -3700,9 +3701,9 @@ One English capture serves both sites.
 
 **Open evidence**
 
-- Needs a Team license with at least two other seats activated on test Macs whose members published the queries. Use
-  fictional member identities; whatever the server returns as the publisher (`publishedBy`) is what the label shows,
-  so confirm its format before capturing.
+- Needs a Team with at least two other members holding a seat, signed in on test Macs, who last changed the queries.
+  Use fictional member names: the label is the name the server gives as the query's last writer (`updated_by_name`),
+  and a query whose last writer has no name shows its folder instead, so give every test account a name.
 - Load the `shop` schema into a local PostgreSQL.
 - Relaunch TablePro after publishing from the other Macs so the library is pulled before capture.
 
