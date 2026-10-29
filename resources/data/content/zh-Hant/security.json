@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "Mac 上",
-                    "text": "密碼、金鑰的通關密語、AI 供應商的 API 金鑰和授權金鑰都儲存在 macOS 鑰匙圈中。磁碟上的連線清單不含密碼，SSH 金鑰仍是磁碟上的檔案。"
+                    "text": "密碼、金鑰的通關密語、AI 供應商的 API 金鑰和授權金鑰都儲存在 macOS 鑰匙圈中；從支援 TablePro 帳戶的版本起，保持您登入的權杖也儲存在這裡。磁碟上的連線清單不含密碼，SSH 金鑰仍是磁碟上的檔案。"
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "在 Mac 上，密碼同步也會同步 AI 供應商的 API 金鑰和授權金鑰。",
+                "在 Mac 上，密碼同步也會同步 AI 供應商的 API 金鑰和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，登入狀態從不同步。",
                 "1Password 或 Shell 指令等密碼來源會在每次連線時於您的 Mac 上執行一個程式。"
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "傳到 TablePro",
-                    "text": "在您登入或啟用授權之前，Mac App 向 TablePro 傳送的唯一資料是使用資料，預設開啟，可在設定中關閉。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。使用資料從不包含主機名稱、使用者名稱、密碼、查詢或列資料。"
+                    "text": "在您登入或啟用授權之前，Mac App 向 TablePro 傳送的唯一資料是使用資料，預設開啟，可在設定中關閉。從支援 TablePro 帳戶的版本起，這些資料不再經過 TablePro 的伺服器，而是直接傳送給我們位於歐盟的分析服務 PostHog。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。使用資料從不包含主機名稱、使用者名稱、密碼、查詢或列資料。"
                 }
             ],
             "limits": [
-                "Mac App 傳送第一份使用報告前不會詢問。從支援 TablePro 帳戶的版本起，PostHog 會隨報告收到您的 Mac 的 IP 位址，帳戶的稽核記錄會保存每次登入和每台新裝置的 IP 位址。"
+                "Mac App 開始傳送使用資料前不會詢問。從支援 TablePro 帳戶的版本起，PostHog 會隨每個事件收到您的 Mac 的 IP 位址並據此推算大致位置，帳戶的稽核記錄會保存每次登入和每台新裝置的 IP 位址。"
             ],
             "links": [
                 {

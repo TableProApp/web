@@ -256,8 +256,14 @@ dataset('reviewed facts', [
     // From cutover the Mac app ships posthog-ios (tablepro-cloud clients.md, macOS dependencies).
     'the security page claims no analytics library' => [
         'content/en/security.json',
-        ['the only data the Mac app sends TablePro is usage data', 'Usage data never carries hostnames'],
-        ['analytics library', 'daily usage report'],
+        ['the only data the Mac app sends TablePro is usage data', 'Usage data never carries hostnames', 'it goes straight to PostHog, our analytics service in the EU', 'works out an approximate location from it'],
+        ['analytics library', 'daily usage report', 'first usage report'],
+    ],
+    // The accounts build keeps its refresh token in deviceOnlyKeychain and deletes the license key once exchanged (TablePro m16/accounts).
+    'the security page keeps the sign-in out of password sync' => [
+        'content/en/security.json',
+        ['so is the token that keeps you signed in', 'the license key is deleted once it is exchanged for a sign-in, and the sign-in never syncs.'],
+        [],
     ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',

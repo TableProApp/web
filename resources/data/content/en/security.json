@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "On the Mac",
-                    "text": "Passwords, key passphrases, AI provider keys and the license key are stored in the macOS Keychain. The connection list on disk holds no passwords, and an SSH key stays a file on disk."
+                    "text": "Passwords, key passphrases, AI provider keys and the license key are stored in the macOS Keychain, and from the version that adds TablePro accounts, so is the token that keeps you signed in. The connection list on disk holds no passwords, and an SSH key stays a file on disk."
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "On the Mac, password sync also carries AI provider keys and the license key.",
+                "On the Mac, password sync also carries AI provider keys and the license key. From the version that adds TablePro accounts, the license key is deleted once it is exchanged for a sign-in, and the sign-in never syncs.",
                 "A password source such as 1Password or a shell command runs a program on your Mac each time you connect."
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "To TablePro",
-                    "text": "Until you sign in or activate a license, the only data the Mac app sends TablePro is usage data, on by default and switchable in Settings. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. Usage data never carries hostnames, usernames, passwords, queries or rows."
+                    "text": "Until you sign in or activate a license, the only data the Mac app sends TablePro is usage data, on by default and switchable in Settings. From the version that adds TablePro accounts, it goes straight to PostHog, our analytics service in the EU, instead of through TablePro’s server. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. Usage data never carries hostnames, usernames, passwords, queries or rows."
                 }
             ],
             "limits": [
-                "The Mac app sends its first usage report without asking. From the version that adds TablePro accounts, PostHog receives your Mac’s IP address with it, and your account’s audit log keeps the IP address of each sign-in and new device."
+                "The Mac app starts sending usage data without asking. From the version that adds TablePro accounts, PostHog receives your Mac’s IP address with each event and works out an approximate location from it, and your account’s audit log keeps the IP address of each sign-in and new device."
             ],
             "links": [
                 {

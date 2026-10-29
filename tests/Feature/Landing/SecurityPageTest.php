@@ -100,7 +100,7 @@ it('states its limits and makes no absolute safety or privacy claim', function (
         'which is a reminder, not a lock',
         'its writes run without asking',
         'says where the server listens, not who can reach it',
-        'sends its first usage report without asking',
+        'starts sending usage data without asking',
     ] as $limit) {
         expect($english)->toContain($limit);
     }

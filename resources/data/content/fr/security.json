@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "Sur Mac",
-                    "text": "Les mots de passe, les phrases secrètes des clés, les clés API des fournisseurs d’IA et la clé de licence sont enregistrés dans le Trousseau macOS. La liste des connexions sur disque ne contient aucun mot de passe, et une clé SSH reste un fichier sur disque."
+                    "text": "Les mots de passe, les phrases secrètes des clés, les clés API des fournisseurs d’IA et la clé de licence sont enregistrés dans le Trousseau macOS, ainsi que, à partir de la version qui ajoute les comptes TablePro, le jeton qui vous garde connecté. La liste des connexions sur disque ne contient aucun mot de passe, et une clé SSH reste un fichier sur disque."
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "Sur Mac, la synchronisation des mots de passe transmet aussi les clés API des fournisseurs d’IA et la clé de licence.",
+                "Sur Mac, la synchronisation des mots de passe transmet aussi les clés API des fournisseurs d’IA et la clé de licence. À partir de la version qui ajoute les comptes TablePro, la clé de licence est supprimée dès qu’elle est échangée contre une connexion, et la connexion n’est jamais synchronisée.",
                 "Une source de mot de passe comme 1Password ou une commande shell exécute un programme sur votre Mac à chaque connexion."
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Vers TablePro",
-                    "text": "Tant que vous ne vous connectez pas et n’activez pas de licence, les seules données envoyées à TablePro par l’application Mac sont des données d’utilisation, activées par défaut et désactivables dans les réglages. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Share Usage Data. Les données d’utilisation ne contiennent jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes."
+                    "text": "Tant que vous ne vous connectez pas et n’activez pas de licence, les seules données envoyées à TablePro par l’application Mac sont des données d’utilisation, activées par défaut et désactivables dans les réglages. À partir de la version qui ajoute les comptes TablePro, elles vont directement à PostHog, notre service d’analyse dans l’UE, au lieu de passer par le serveur de TablePro. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Share Usage Data. Les données d’utilisation ne contiennent jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes."
                 }
             ],
             "limits": [
-                "L’application Mac envoie son premier rapport d’utilisation sans demander. À partir de la version qui ajoute les comptes TablePro, PostHog reçoit l’adresse IP de votre Mac avec ce rapport, et le journal d’audit de votre compte conserve l’adresse IP de chaque connexion et de chaque nouvel appareil."
+                "L’application Mac commence à envoyer des données d’utilisation sans demander. À partir de la version qui ajoute les comptes TablePro, PostHog reçoit l’adresse IP de votre Mac avec chaque événement et en déduit une localisation approximative, et le journal d’audit de votre compte conserve l’adresse IP de chaque connexion et de chaque nouvel appareil."
             ],
             "links": [
                 {

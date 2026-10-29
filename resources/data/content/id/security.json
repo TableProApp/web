@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "Di Mac",
-                    "text": "Kata sandi, frasa sandi key, API key penyedia AI, dan kunci lisensi disimpan dalam Rantai Kunci macOS. Daftar koneksi di disk tidak berisi kata sandi, dan key SSH tetap berupa file di disk."
+                    "text": "Kata sandi, frasa sandi key, API key penyedia AI, dan kunci lisensi disimpan dalam Rantai Kunci macOS, begitu pula, mulai versi yang menghadirkan akun TablePro, token yang membuat Anda tetap masuk. Daftar koneksi di disk tidak berisi kata sandi, dan key SSH tetap berupa file di disk."
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "Di Mac, sinkronisasi kata sandi juga membawa API key penyedia AI dan kunci lisensi.",
+                "Di Mac, sinkronisasi kata sandi juga membawa API key penyedia AI dan kunci lisensi. Mulai versi yang menghadirkan akun TablePro, kunci lisensi dihapus begitu ditukar dengan sesi masuk, dan sesi masuk itu tidak pernah disinkronkan.",
                 "Sumber kata sandi seperti 1Password atau perintah shell menjalankan program di Mac Anda setiap kali Anda terhubung."
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Ke TablePro",
-                    "text": "Sebelum Anda masuk atau mengaktifkan lisensi, satu-satunya data yang dikirim aplikasi Mac ke TablePro adalah data penggunaan, aktif secara bawaan dan dapat dinonaktifkan di pengaturan. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data. Data penggunaan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris."
+                    "text": "Sebelum Anda masuk atau mengaktifkan lisensi, satu-satunya data yang dikirim aplikasi Mac ke TablePro adalah data penggunaan, aktif secara bawaan dan dapat dinonaktifkan di pengaturan. Mulai versi yang menghadirkan akun TablePro, data itu langsung dikirim ke PostHog, layanan analitik kami di UE, tanpa melalui server TablePro. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data. Data penggunaan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris."
                 }
             ],
             "limits": [
-                "Aplikasi Mac mengirim laporan penggunaan pertamanya tanpa bertanya. Mulai versi yang menghadirkan akun TablePro, PostHog menerima alamat IP Mac Anda bersama laporan itu, dan log audit akun Anda menyimpan alamat IP setiap proses masuk dan setiap perangkat baru."
+                "Aplikasi Mac mulai mengirim data penggunaan tanpa bertanya. Mulai versi yang menghadirkan akun TablePro, PostHog menerima alamat IP Mac Anda bersama setiap peristiwa dan memperkirakan lokasi kasar darinya, dan log audit akun Anda menyimpan alamat IP setiap proses masuk dan setiap perangkat baru."
             ],
             "links": [
                 {

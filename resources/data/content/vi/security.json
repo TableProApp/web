@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "Trên Mac",
-                    "text": "Mật khẩu, passphrase của key, API key của nhà cung cấp AI và license key được lưu trong Keychain của macOS. Danh sách connection trên đĩa không chứa mật khẩu, còn SSH key vẫn là một file trên đĩa."
+                    "text": "Mật khẩu, passphrase của key, API key của nhà cung cấp AI và license key được lưu trong Keychain của macOS, và từ phiên bản có tài khoản TablePro, token giữ bạn ở trạng thái đăng nhập cũng vậy. Danh sách connection trên đĩa không chứa mật khẩu, còn SSH key vẫn là một file trên đĩa."
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "Trên Mac, tính năng đồng bộ mật khẩu còn mang theo API key của nhà cung cấp AI và license key.",
+                "Trên Mac, tính năng đồng bộ mật khẩu còn mang theo API key của nhà cung cấp AI và license key. Từ phiên bản có tài khoản TablePro, license key bị xóa ngay khi được đổi lấy phiên đăng nhập, và phiên đăng nhập không bao giờ được đồng bộ.",
                 "Nguồn mật khẩu như 1Password hay một lệnh shell sẽ chạy một chương trình trên máy Mac mỗi lần bạn kết nối."
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Tới TablePro",
-                    "text": "Cho tới khi bạn đăng nhập hoặc kích hoạt license, dữ liệu duy nhất mà ứng dụng cho Mac gửi tới TablePro là dữ liệu sử dụng, bật sẵn và có thể tắt trong Cài đặt. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Dữ liệu sử dụng không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng."
+                    "text": "Cho tới khi bạn đăng nhập hoặc kích hoạt license, dữ liệu duy nhất mà ứng dụng cho Mac gửi tới TablePro là dữ liệu sử dụng, bật sẵn và có thể tắt trong Cài đặt. Từ phiên bản có tài khoản TablePro, dữ liệu này đi thẳng tới PostHog, dịch vụ phân tích của chúng tôi đặt tại EU, thay vì qua máy chủ của TablePro. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Dữ liệu sử dụng không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng."
                 }
             ],
             "limits": [
-                "Ứng dụng cho Mac gửi báo cáo sử dụng đầu tiên mà không hỏi trước. Từ phiên bản có tài khoản TablePro, PostHog nhận địa chỉ IP của máy Mac cùng báo cáo đó, và nhật ký kiểm tra (audit log) của tài khoản lưu địa chỉ IP của mỗi lần đăng nhập và mỗi thiết bị mới."
+                "Ứng dụng cho Mac bắt đầu gửi dữ liệu sử dụng mà không hỏi trước. Từ phiên bản có tài khoản TablePro, PostHog nhận địa chỉ IP của máy Mac cùng mỗi sự kiện và suy ra vị trí gần đúng từ địa chỉ đó, còn nhật ký kiểm tra (audit log) của tài khoản lưu địa chỉ IP của mỗi lần đăng nhập và mỗi thiết bị mới."
             ],
             "links": [
                 {

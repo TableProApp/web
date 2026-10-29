@@ -23,7 +23,7 @@
                 {
                     "id": "mac-keychain",
                     "title": "Auf dem Mac",
-                    "text": "Passwörter, Passphrasen von Schlüsseln, API-Schlüssel von KI-Anbietern und der Lizenzschlüssel liegen im macOS-Schlüsselbund. Die Verbindungsliste auf dem Datenträger enthält keine Passwörter, und ein SSH-Schlüssel bleibt eine Datei auf dem Datenträger."
+                    "text": "Passwörter, Passphrasen von Schlüsseln, API-Schlüssel von KI-Anbietern und der Lizenzschlüssel liegen im macOS-Schlüsselbund, ab der Version, die TablePro-Konten einführt, auch das Token, das dich angemeldet hält. Die Verbindungsliste auf dem Datenträger enthält keine Passwörter, und ein SSH-Schlüssel bleibt eine Datei auf dem Datenträger."
                 },
                 {
                     "id": "ios-keychain",
@@ -42,7 +42,7 @@
                 }
             ],
             "limits": [
-                "Auf dem Mac überträgt die Passwortsynchronisierung auch die API-Schlüssel von KI-Anbietern und den Lizenzschlüssel.",
+                "Auf dem Mac überträgt die Passwortsynchronisierung auch die API-Schlüssel von KI-Anbietern und den Lizenzschlüssel. Ab der Version, die TablePro-Konten einführt, wird der Lizenzschlüssel gelöscht, sobald er gegen eine Anmeldung eingelöst ist, und die Anmeldung wird nie synchronisiert.",
                 "Eine Passwortquelle wie 1Password oder ein Shell-Befehl führt bei jedem Verbinden ein Programm auf deinem Mac aus."
             ],
             "links": [
@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "An TablePro",
-                    "text": "Bis du dich anmeldest oder eine Lizenz aktivierst, sendet die Mac-App an TablePro nur Nutzungsdaten, standardmäßig aktiv und in den Einstellungen abschaltbar. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Nutzungsdaten enthalten niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen."
+                    "text": "Bis du dich anmeldest oder eine Lizenz aktivierst, sendet die Mac-App an TablePro nur Nutzungsdaten, standardmäßig aktiv und in den Einstellungen abschaltbar. Ab der Version, die TablePro-Konten einführt, gehen sie direkt an PostHog, unseren Analysedienst in der EU, statt über den Server von TablePro. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Nutzungsdaten enthalten niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen."
                 }
             ],
             "limits": [
-                "Die Mac-App sendet ihren ersten Nutzungsbericht ohne Nachfrage. Ab der Version, die TablePro-Konten einführt, erhält PostHog dabei die IP-Adresse deines Macs, und das Audit-Log deines Kontos speichert die IP-Adresse jeder Anmeldung und jedes neuen Geräts."
+                "Die Mac-App beginnt ohne Nachfrage, Nutzungsdaten zu senden. Ab der Version, die TablePro-Konten einführt, erhält PostHog mit jedem Ereignis die IP-Adresse deines Macs und leitet daraus einen ungefähren Standort ab, und das Audit-Log deines Kontos speichert die IP-Adresse jeder Anmeldung und jedes neuen Geräts."
             ],
             "links": [
                 {
