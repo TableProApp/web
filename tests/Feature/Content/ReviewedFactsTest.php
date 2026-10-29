@@ -146,6 +146,17 @@ dataset('reviewed facts', [
         ['your own provider key or a local model', 'each file’s commit history with a side-by-side diff'],
         ['More use needs a paid JetBrains AI plan', 'No commit, branch or diff view'],
     ],
+    // The accounts build sends PostHog events, not a daily report (tablepro-cloud clients.md, macOS Telemetry).
+    'DataGrip’s page holds for old builds’ report and the accounts build’s events' => [
+        'content/en/compare/datagrip.json',
+        ['Usage data, on by default, which you can turn off in Settings', 'Its Mac app shares <link>usage data</link> by default, and you can turn that off in Settings.'],
+        ['daily usage report', 'daily Mac', 'usage report</link>'],
+    ],
+    'DataGrip’s page (vi)' => [
+        'content/vi/compare/datagrip.json',
+        ['Dữ liệu sử dụng, bật sẵn theo mặc định', 'Ứng dụng cho Mac gửi <link>dữ liệu sử dụng</link> theo mặc định'],
+        ['Báo cáo sử dụng', 'báo cáo sử dụng mỗi ngày'],
+    ],
     // Beekeeper Studio's AI Shell guide and pricing table disagree on the tier (2026-10-03).
     'Beekeeper Studio’s AI Shell needs a paid tier, which tier is disputed' => [
         'content/en/compare/beekeeper-studio.json',
