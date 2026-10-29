@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "비공개 iCloud 데이터베이스로 Mac, iPhone, iPad 간에 동기화합니다. 각 기기에서 별도로 켜세요. iCloud Sync는 Mac에서 Starter 또는 Team이 필요하며 iPhone 및 iPad에서는 무료입니다.",
-                "Mac의 <ui>암호</ui> (Passwords) 또는 모바일의 <ui>암호 동기화</ui> (Sync Passwords)를 켜면 암호는 iCloud Keychain으로 별도 동기화됩니다. Mac 스위치는 저장된 AI 키와 라이선스 키도 동기화합니다. 연결을 Local only로 지정하면 해당 연결과 저장된 쿼리를 동기화에서 제외합니다."
+                "Mac의 <ui>암호</ui> (Passwords) 또는 모바일의 <ui>암호 동기화</ui> (Sync Passwords)를 켜면 암호는 iCloud Keychain으로 별도 동기화됩니다. Mac 스위치는 저장된 AI 키와 라이선스 키도 동기화합니다. TablePro 계정을 지원하는 버전부터는 라이선스 키를 로그인으로 교환하는 즉시 삭제하며, 로그인 상태는 동기화하지 않습니다. 연결을 Local only로 지정하면 해당 연결과 저장된 쿼리를 동기화에서 제외합니다."
             ],
             "points": [
                 "Mac에서는 연결, 그룹과 태그, 설정, SSH 프로필, 자격 증명 프로필(이름과 사용자 이름만, 비밀번호 제외), 테이블·데이터베이스 즐겨찾기, SQL이 포함된 저장된 쿼리 및 테이블 폴더 중 동기화할 항목을 선택합니다.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>공유 > 팀 라이브러리에 게시…</ui> (Share > Publish to Team Library…)와 <ui>저장된 쿼리를 팀에 게시…</ui> (Publish Saved Queries to Team…)는 연결 설정과 저장된 쿼리 SQL을 TablePro 서버에 업로드하며 암호는 보내지 않습니다. 좌석이 있는 구성원이 다운로드합니다. 시작 및 터널 명령은 무시하고 다시 게시하면 이전 게시물을 대체합니다."
+                        "<ui>공유 > 팀 라이브러리에 게시…</ui> (Share > Publish to Team Library…)와 <ui>저장된 쿼리를 팀에 게시…</ui> (Publish Saved Queries to Team…)는 연결 설정과 저장된 쿼리 SQL을 TablePro 서버에 업로드하며 암호는 보내지 않습니다. 좌석이 있는 구성원이 다운로드합니다. 시작 및 터널 명령은 무시합니다.",
+                        "TablePro 계정을 지원하는 버전부터 앱은 시작할 때, 15분마다, 그리고 게시할 때마다 변경 사항을 가져오고, 바뀐 부분만 게시하며, 각 팀 쿼리를 마지막으로 변경한 사람을 보여 주고, 다른 구성원이 먼저 변경했다면 어느 쪽을 남길지 묻습니다. TablePro 계정을 지원하기 전 버전은 라이브러리를 최대 일주일에 한 번 다운로드하며, 이 버전에서 다시 게시하면 이전 게시물을 대체합니다."
                     ],
                     "paid": [
                         "team-library"

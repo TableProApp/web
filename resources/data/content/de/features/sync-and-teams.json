@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Synchronisiere über eine private iCloud-Datenbank zwischen deinen Macs, iPhone und iPad. Aktiviere es auf jedem Gerät separat. iCloud Sync benötigt Starter oder Team auf dem Mac und ist auf iPhone und iPad kostenlos.",
-                "Passwörter synchronisieren separat über den iCloud-Schlüsselbund, wenn du <ui>Passwords</ui> auf dem Mac oder <ui>Sync Passwords</ui> mobil aktivierst. Der Mac-Schalter synchronisiert auch gespeicherte KI- und Lizenzschlüssel. Markiere Verbindungen als Local only, um sie und ihre gespeicherten Abfragen auszuschließen."
+                "Passwörter synchronisieren separat über den iCloud-Schlüsselbund, wenn du <ui>Passwords</ui> auf dem Mac oder <ui>Sync Passwords</ui> mobil aktivierst. Der Mac-Schalter synchronisiert auch gespeicherte KI- und Lizenzschlüssel. Ab der Version, die TablePro-Konten einführt, wird der Lizenzschlüssel gelöscht, sobald er gegen eine Anmeldung eingelöst ist, und die Anmeldung wird nie synchronisiert. Markiere Verbindungen als Local only, um sie und ihre gespeicherten Abfragen auszuschließen."
             ],
             "points": [
                 "Auf dem Mac wählst du, was synchronisiert wird: Verbindungen, Gruppen und Tags, Einstellungen, SSH-Profile, Zugangsdatenprofile (Name und Benutzername, niemals das Passwort), Tabellen- und Datenbankfavoriten, gespeicherte Abfragen mit ihrem SQL und Tabellenordner.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> und <ui>Publish Saved Queries to Team…</ui> laden Verbindungseinstellungen und gespeichertes SQL auf TablePros Server hoch, nie Passwörter. Mitglieder mit Arbeitsplatz laden sie herunter. Start- und Tunnelbefehle werden ignoriert. Erneutes Veröffentlichen ersetzt deinen bisherigen Beitrag."
+                        "<ui>Share > Publish to Team Library…</ui> und <ui>Publish Saved Queries to Team…</ui> laden Verbindungseinstellungen und gespeichertes SQL auf TablePros Server hoch, nie Passwörter. Mitglieder mit Arbeitsplatz laden sie herunter. Start- und Tunnelbefehle werden ignoriert.",
+                        "Ab der Version, die TablePro-Konten einführt, lädt die App Änderungen beim Start, alle 15 Minuten und nach jeder Veröffentlichung, veröffentlicht nur, was sich geändert hat, zeigt, wer jede Team-Abfrage zuletzt geändert hat, und fragt, welche Fassung bleiben soll, wenn ein anderes Mitglied sie zuerst geändert hat. Versionen vor den TablePro-Konten laden die Bibliothek höchstens einmal pro Woche, und erneutes Veröffentlichen dort ersetzt deinen bisherigen Beitrag."
                     ],
                     "paid": [
                         "team-library"

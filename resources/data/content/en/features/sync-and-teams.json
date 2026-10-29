@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Sync through a private iCloud database across your Macs, iPhone and iPad. Enable it separately on each device. iCloud Sync requires Starter or Team on Mac and is free on iPhone and iPad.",
-                "Passwords sync separately through iCloud Keychain when you enable <ui>Passwords</ui> on Mac or <ui>Sync Passwords</ui> on mobile. The Mac switch also syncs stored AI and license keys. Mark connections Local only to exclude them and their saved queries from sync."
+                "Passwords sync separately through iCloud Keychain when you enable <ui>Passwords</ui> on Mac or <ui>Sync Passwords</ui> on mobile. The Mac switch also syncs stored AI and license keys. From the version that adds TablePro accounts, the license key is deleted once exchanged for a sign-in, and the sign-in never syncs. Mark connections Local only to exclude them and their saved queries from sync."
             ],
             "points": [
                 "On the Mac you choose what syncs: connections, groups and tags, settings, SSH profiles, credential profiles (their name and username, never the password), table and database favorites, saved queries with their SQL, and table folders.",
@@ -77,7 +77,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> and <ui>Publish Saved Queries to Team…</ui> upload connection settings and saved-query SQL to TablePro's server, never passwords. Members with a seat download them. Startup and tunnel commands are ignored. Republishing replaces your previous contribution."
+                        "<ui>Share > Publish to Team Library…</ui> and <ui>Publish Saved Queries to Team…</ui> upload connection settings and saved-query SQL to TablePro's server, never passwords. Members with a seat download them. Startup and tunnel commands are ignored.",
+                        "From the version that adds TablePro accounts, the app pulls changes at launch, every 15 minutes and after each publish, and publishes only what changed. It shows who last changed each team query, and asks which copy to keep when a teammate changed it first. Versions before TablePro accounts download the library at most once a week, and republishing there replaces your previous contribution."
                     ],
                     "paid": ["team-library"],
                     "asset": "mac-team-library",

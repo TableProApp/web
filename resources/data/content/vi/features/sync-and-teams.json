@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Sync qua cơ sở dữ liệu iCloud riêng giữa máy Mac, iPhone và iPad. Bật riêng trên từng thiết bị. iCloud Sync cần Starter hoặc Team trên Mac và miễn phí trên iPhone và iPad.",
-                "Mật khẩu sync riêng qua iCloud Keychain khi bật <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên mobile. Công tắc Mac còn sync AI key và license key đã lưu. Đánh dấu Local only để loại connection và query đã lưu của nó khỏi sync."
+                "Mật khẩu sync riêng qua iCloud Keychain khi bật <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên mobile. Công tắc Mac còn sync AI key và license key đã lưu. Từ phiên bản có tài khoản TablePro, license key bị xóa ngay khi được đổi lấy phiên đăng nhập, và phiên đăng nhập không bao giờ được sync. Đánh dấu Local only để loại connection và query đã lưu của nó khỏi sync."
             ],
             "points": [
                 "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, credential profile (tên profile và tên người dùng, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> và <ui>Publish Saved Queries to Team…</ui> upload cài đặt connection và SQL query đã lưu lên server TablePro, không có mật khẩu. Thành viên có seat tải chúng về. Bỏ qua startup command và tunnel command. Chia sẻ lại thay phần đóng góp trước của bạn."
+                        "<ui>Share > Publish to Team Library…</ui> và <ui>Publish Saved Queries to Team…</ui> upload cài đặt connection và SQL query đã lưu lên server TablePro, không có mật khẩu. Thành viên có seat tải chúng về. Bỏ qua startup command và tunnel command.",
+                        "Từ phiên bản có tài khoản TablePro, ứng dụng tải các thay đổi về khi khởi động, cứ 15 phút một lần và sau mỗi lần chia sẻ, chỉ gửi phần đã thay đổi, hiển thị người sửa gần nhất của từng query của nhóm, và hỏi bạn giữ bản nào khi một thành viên khác đã sửa trước. Các phiên bản trước khi có tài khoản TablePro tải thư viện tối đa mỗi tuần một lần, và chia sẻ lại từ các phiên bản đó sẽ thay phần đóng góp trước của bạn."
                     ],
                     "paid": [
                         "team-library"

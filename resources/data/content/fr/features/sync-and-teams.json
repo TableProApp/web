@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Synchronisez via une base iCloud privée entre vos Mac, iPhone et iPad. Activez-la séparément sur chaque appareil. iCloud Sync nécessite Starter ou Team sur Mac et est gratuit sur iPhone et iPad.",
-                "Les mots de passe se synchronisent séparément via le trousseau iCloud si vous activez <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur mobile. Le réglage Mac synchronise aussi les clés IA et de licence enregistrées. Marquez les connexions Local only pour les exclure, ainsi que leurs requêtes enregistrées."
+                "Les mots de passe se synchronisent séparément via le trousseau iCloud si vous activez <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur mobile. Le réglage Mac synchronise aussi les clés IA et de licence enregistrées. À partir de la version qui ajoute les comptes TablePro, la clé de licence est supprimée dès qu’elle est échangée contre une connexion, et la connexion n’est jamais synchronisée. Marquez les connexions Local only pour les exclure, ainsi que leurs requêtes enregistrées."
             ],
             "points": [
                 "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et tags, réglages, profils SSH, profils d’identifiants (nom et nom d’utilisateur, jamais le mot de passe), favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> (Share > Publish to Team Library…) et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> (Publish Saved Queries to Team…) envoient les réglages de connexion et le SQL enregistré au serveur de TablePro, jamais les mots de passe. Les membres qui ont un poste les téléchargent. Les commandes de démarrage et de tunnel sont ignorées. Republier remplace votre contribution précédente."
+                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> (Share > Publish to Team Library…) et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> (Publish Saved Queries to Team…) envoient les réglages de connexion et le SQL enregistré au serveur de TablePro, jamais les mots de passe. Les membres qui ont un poste les téléchargent. Les commandes de démarrage et de tunnel sont ignorées.",
+                        "À partir de la version qui ajoute les comptes TablePro, l’app récupère les modifications au démarrage, toutes les 15 minutes et après chaque publication, ne publie que ce qui a changé, indique qui a modifié en dernier chaque requête de l’équipe et demande quelle copie garder quand un autre membre l’a modifiée avant vous. Les versions antérieures aux comptes TablePro téléchargent la bibliothèque au maximum une fois par semaine, et y republier remplace votre contribution précédente."
                     ],
                     "paid": [
                         "team-library"

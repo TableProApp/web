@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "透過私人 iCloud 資料庫在 Mac、iPhone 和 iPad 間同步，需在各裝置單獨開啟。iCloud Sync 在 Mac 上需要 Starter 或 Team，在 iPhone 和 iPad 上免費。",
-                "在 Mac 開啟 <ui>密碼</ui> (Passwords) 或行動版開啟 <ui>同步密碼</ui> (Sync Passwords) 後，密碼單獨透過 iCloud Keychain 同步。Mac 開關也同步已儲存 AI 和授權金鑰。將連線標記為 Local only，可將其及已儲存查詢排除在同步外。"
+                "在 Mac 開啟 <ui>密碼</ui> (Passwords) 或行動版開啟 <ui>同步密碼</ui> (Sync Passwords) 後，密碼單獨透過 iCloud Keychain 同步。Mac 開關也同步已儲存 AI 和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，登入狀態從不同步。將連線標記為 Local only，可將其及已儲存查詢排除在同步外。"
             ],
             "points": [
                 "Mac 可選擇同步內容：連線、群組和標籤、設定、SSH 設定檔、認證資訊設定檔（名稱和使用者名稱，從不包含密碼）、資料表和資料庫喜好項目、包含 SQL 的已儲存查詢，以及資料表資料夾。",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>分享 > 發佈到團隊庫…</ui> (Share > Publish to Team Library…) 和 <ui>將已儲存的查詢發佈到團隊…</ui> (Publish Saved Queries to Team…) 將連線設定和已儲存查詢 SQL 上傳至 TablePro 伺服器，絕不上傳密碼。擁有席位的成員可下載。忽略啟動和通道命令；重新發佈會取代之前的內容。"
+                        "<ui>分享 > 發佈到團隊庫…</ui> (Share > Publish to Team Library…) 和 <ui>將已儲存的查詢發佈到團隊…</ui> (Publish Saved Queries to Team…) 將連線設定和已儲存查詢 SQL 上傳至 TablePro 伺服器，絕不上傳密碼。擁有席位的成員可下載。忽略啟動和通道命令。",
+                        "從支援 TablePro 帳戶的版本起，App 會在啟動時、每 15 分鐘以及每次發佈後取得變更，只發佈有變動的內容，顯示每項團隊查詢的最後修改者，並在其他成員先修改時詢問要保留哪一份。支援 TablePro 帳戶之前的版本最多每週下載一次資源庫，從這些版本重新發佈會取代之前的內容。"
                     ],
                     "paid": [
                         "team-library"

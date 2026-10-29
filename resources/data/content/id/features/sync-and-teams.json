@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Sinkronkan melalui database iCloud pribadi di Mac, iPhone, dan iPad Anda. Aktifkan secara terpisah di setiap perangkat. iCloud Sync memerlukan Starter atau Team di Mac dan gratis di iPhone dan iPad.",
-                "Kata sandi disinkronkan terpisah melalui iCloud Keychain saat Anda mengaktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di mobile. Opsi Mac juga menyinkronkan kunci AI dan lisensi tersimpan. Tandai koneksi sebagai Local only untuk mengecualikannya dan kueri tersimpannya dari sinkronisasi."
+                "Kata sandi disinkronkan terpisah melalui iCloud Keychain saat Anda mengaktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di mobile. Opsi Mac juga menyinkronkan kunci AI dan lisensi tersimpan. Mulai versi yang menghadirkan akun TablePro, kunci lisensi dihapus begitu ditukar dengan sesi masuk, dan sesi masuk itu tidak pernah disinkronkan. Tandai koneksi sebagai Local only untuk mengecualikannya dan kueri tersimpannya dari sinkronisasi."
             ],
             "points": [
                 "Di Mac Anda memilih yang disinkronkan: koneksi, grup dan tag, pengaturan, profil SSH, profil kredensial (nama dan nama pengguna, tanpa kata sandi), tabel dan database favorit, kueri tersimpan beserta SQL-nya, dan folder tabel.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> dan <ui>Publish Saved Queries to Team…</ui> mengunggah pengaturan koneksi dan permintaan tersimpan SQL ke server TablePro, tidak pernah kata sandi. Anggota yang memiliki seat mengunduhnya. Perintah startup dan terowongan diabaikan. Penerbitan ulang menggantikan kontribusi Anda sebelumnya."
+                        "<ui>Share > Publish to Team Library…</ui> dan <ui>Publish Saved Queries to Team…</ui> mengunggah pengaturan koneksi dan SQL kueri tersimpan ke server TablePro, tidak pernah kata sandi. Anggota yang memiliki seat mengunduhnya. Perintah startup dan terowongan diabaikan.",
+                        "Mulai versi yang menghadirkan akun TablePro, aplikasi mengambil perubahan saat dimulai, setiap 15 menit, dan setelah setiap publikasi, hanya memublikasikan yang berubah, menampilkan siapa yang terakhir mengubah setiap kueri tim, dan menanyakan salinan mana yang disimpan jika anggota lain mengubahnya lebih dulu. Versi sebelum akun TablePro mengunduh pustaka paling sering sekali seminggu, dan penerbitan ulang dari versi tersebut menggantikan kontribusi Anda sebelumnya."
                     ],
                     "paid": [
                         "team-library"

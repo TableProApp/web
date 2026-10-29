@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "Sincronize através de um banco de dados iCloud privado em seus Macs, iPhone e iPad. Ative-o separadamente em cada dispositivo. iCloud Sync requer Starter ou Team no Mac e é gratuito no iPhone e iPad.",
-                "As senhas sincronizam separadamente pelo iCloud Keychain ao ativar <ui>Passwords</ui> no Mac ou <ui>Sync Passwords</ui> no mobile. A opção do Mac também sincroniza as chaves de AI e de licença salvas. Marque conexões como Local only para excluí-las da sincronização junto com suas consultas salvas."
+                "As senhas sincronizam separadamente pelo iCloud Keychain ao ativar <ui>Passwords</ui> no Mac ou <ui>Sync Passwords</ui> no mobile. A opção do Mac também sincroniza as chaves de AI e de licença salvas. A partir da versão que traz as contas TablePro, a chave de licença é excluída assim que é trocada por um acesso, e o acesso nunca é sincronizado. Marque conexões como Local only para excluí-las da sincronização junto com suas consultas salvas."
             ],
             "points": [
                 "No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca a senha), tabelas e bancos favoritos, consultas salvas com seu SQL e pastas de tabelas.",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> e <ui>Publish Saved Queries to Team…</ui> carregam configurações de conexão e consulta salva SQL para o servidor de TablePro, nunca senhas. Membros com vaga os baixam. Os comandos de inicialização e túnel são ignorados. A republicação substitui sua contribuição anterior."
+                        "<ui>Share > Publish to Team Library…</ui> e <ui>Publish Saved Queries to Team…</ui> enviam configurações de conexão e o SQL das consultas salvas ao servidor do TablePro, nunca senhas. Membros com vaga os baixam. Os comandos de inicialização e túnel são ignorados.",
+                        "A partir da versão que traz as contas TablePro, o app baixa as mudanças ao iniciar, a cada 15 minutos e depois de cada publicação, publica só o que mudou, mostra quem alterou por último cada consulta da equipe e pergunta qual cópia manter quando outro membro a alterou antes. As versões anteriores às contas TablePro baixam a biblioteca no máximo uma vez por semana, e a republicação a partir delas substitui sua contribuição anterior."
                     ],
                     "paid": [
                         "team-library"

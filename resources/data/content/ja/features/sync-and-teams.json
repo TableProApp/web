@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "非公開の iCloud データベースで Mac、iPhone、iPad 間を同期します。デバイスごとに有効にします。iCloud Sync は Mac では Starter・Team が必要で、iPhone・iPad では無料です。",
-                "Mac の <ui>Passwords</ui> かモバイルの <ui>Sync Passwords</ui> で有効にすると、iCloud Keychain でパスワードを別途同期します。Mac のスイッチは AI キーとライセンスキーも同期します。Local only にした接続と保存済みクエリは同期から除外します。"
+                "Mac の <ui>Passwords</ui> かモバイルの <ui>Sync Passwords</ui> で有効にすると、iCloud Keychain でパスワードを別途同期します。Mac のスイッチは AI キーとライセンスキーも同期します。TablePro アカウントに対応したバージョン以降、ライセンスキーはサインインと交換された時点で削除され、サインイン状態は同期されません。Local only にした接続と保存済みクエリは同期から除外します。"
             ],
             "points": [
                 "Mac では同期対象を選択：接続、グループとタグ、設定、SSH プロファイル、認証情報プロファイル（名前とユーザー名のみで、パスワードは含みません）、テーブルとデータベースのお気に入り、SQL を含む保存済みクエリ、テーブルフォルダー。",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。席のあるメンバーが取得します。起動・トンネルコマンドは無視し、再公開は前の投稿を置き換えます。"
+                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。席のあるメンバーが取得します。起動・トンネルコマンドは無視します。",
+                        "TablePro アカウントに対応したバージョン以降、アプリは起動時、15 分ごと、公開のたびに変更を取得し、変更した分だけを公開します。各チームクエリを最後に変更した人を表示し、ほかのメンバーが先に変更していた場合はどちらを残すかを尋ねます。TablePro アカウントに対応する前のバージョンは最大でも週に 1 回ライブラリを取得し、そこから再公開すると前の投稿を置き換えます。"
                     ],
                     "paid": [
                         "team-library"
