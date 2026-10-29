@@ -244,7 +244,7 @@
                     "id": "what-is-sent",
                     "question": "Ứng dụng gửi gì cho TablePro?",
                     "answer": [
-                        "Mac gửi báo cáo sử dụng hằng ngày theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Báo cáo gồm ID máy đã hash, thông tin ứng dụng và loại cơ sở dữ liệu, không có hostname, username, mật khẩu, query hay dòng dữ liệu.",
+                        "Mac gửi dữ liệu sử dụng theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Từ phiên bản có tài khoản TablePro, dữ liệu đi thẳng tới PostHog: các sự kiện của ứng dụng kèm model máy Mac, phiên bản ứng dụng và macOS, loại cơ sở dữ liệu, gắn với một mã ngẫu nhiên trước khi bạn đăng nhập và mã tài khoản sau khi đăng nhập. Các phiên bản trước khi có tài khoản TablePro gửi báo cáo hằng ngày kèm ID máy đã hash qua máy chủ của chúng tôi. Cả hai đều không có hostname, username, mật khẩu, query hay dòng dữ liệu.",
                         "Khi bạn đăng nhập, ứng dụng cho Mac đăng ký máy Mac với tài khoản của bạn, gửi ID máy, tên máy, phiên bản ứng dụng và macOS, rồi làm mới gói mỗi ngày một lần. Các phiên bản trước khi có tài khoản TablePro gửi license key cùng các thông tin đó mỗi {revalidateDays} ngày. Báo cáo iPhone và iPad chỉ gửi khi bạn bật. Team Library nhận cài đặt và SQL đã lưu mà bạn chia sẻ. Xem <privacy>chính sách quyền riêng tư</privacy>, gồm việc ghi IP."
                     ]
                 },

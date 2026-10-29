@@ -157,10 +157,15 @@ it('states the AGPL, the free core and priority support the way the rest of the 
     expect(json_decode((string) file_get_contents(resource_path('data/pricing.json')), true)['tiers']['team']['prioritySupport']['responseBusinessDays'])->toBe(1);
 
     // Privacy sentences positioning §12.1 allows, and nothing stronger.
-    expect($en)->toContain('The Mac app sends a daily usage report by default; disable it in')
+    expect($en)->toContain('The Mac app shares usage data by default; disable it in')
         ->toContain('iPhone and iPad reports are opt-in.')
         ->toContain('Team Library receives settings and saved SQL you publish.')
         ->toContain('including IP logging.');
+
+    // The accounts build sends PostHog its events under the SDK's random ID, then the account ID (tablepro-cloud clients.md, macOS Telemetry).
+    expect($en)->toContain('under a random ID before you sign in and your account ID after.')
+        ->toContain('Versions before TablePro accounts send a daily report with a hashed machine ID through our server instead.')
+        ->not->toContain('daily usage report');
 });
 
 it('answers the Windows and Linux question without a promise', function (): void {

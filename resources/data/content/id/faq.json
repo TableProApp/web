@@ -244,7 +244,7 @@
                     "id": "what-is-sent",
                     "question": "Apa yang dikirim aplikasi ke TablePro?",
                     "answer": [
-                        "Aplikasi Mac mengirimkan laporan penggunaan harian secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Ini mencakup ID mesin yang di-hash, detail aplikasi dan jenis database, tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
+                        "Aplikasi Mac membagikan data penggunaan secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Mulai versi yang menghadirkan akun TablePro, data itu langsung dikirim ke PostHog: peristiwa aplikasi beserta model Mac, versi aplikasi dan macOS, dan jenis database, dengan ID acak sebelum Anda masuk dan ID akun Anda setelahnya. Versi sebelum akun TablePro mengirim laporan harian dengan ID mesin yang di-hash melalui server kami sebagai gantinya. Keduanya tidak pernah mencakup nama host, nama pengguna, kata sandi, kueri, atau baris.",
                         "Setelah Anda masuk, aplikasi Mac mendaftarkan Mac ke akun Anda dengan ID mesin, nama, serta versi app dan macOS, lalu memperbarui paket Anda sekali sehari. Versi sebelum akun TablePro mengirimkan kunci lisensi beserta data tersebut setiap {revalidateDays} hari. Laporan iPhone dan iPad bersifat opsional. Team Library menerima pengaturan dan SQL tersimpan yang Anda publikasikan. Lihat <privacy>kebijakan privasi</privacy>, termasuk pencatatan IP."
                     ]
                 },

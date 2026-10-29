@@ -244,7 +244,7 @@
                     "id": "what-is-sent",
                     "question": "应用会向 TablePro 发送什么？",
                     "answer": [
-                        "Mac App 默认每天发送使用报告，可在 <ui>设置 > 通用 > 隐私</ui> (Settings > General > Privacy) 关闭。报告包含哈希机器 ID、App 信息和数据库类型，绝不包含主机名、用户名、密码、查询或行数据。",
+                        "Mac App 默认共享使用数据，可在 <ui>设置 > 通用 > 隐私</ui> (Settings > General > Privacy) 关闭。从支持 TablePro 账户的版本起，数据直接发送给 PostHog：附带 Mac 型号、App 和 macOS 版本及数据库类型的 App 事件，登录前使用随机 ID，登录后使用账户 ID。支持 TablePro 账户之前的版本则通过我们的服务器发送包含哈希机器 ID 的每日报告。两者都绝不包含主机名、用户名、密码、查询或行数据。",
                         "登录后，Mac App 会将您的 Mac 登记到账户，发送机器 ID、Mac 名称及 App 和 macOS 版本，并每天更新一次方案。支持 TablePro 账户之前的版本每 {revalidateDays} 天发送许可证密钥及上述信息。iPhone 和 iPad 报告需主动开启。Team Library 接收您发布的设置和已保存 SQL。查看<privacy>隐私政策</privacy>，其中包括 IP 日志说明。"
                     ]
                 },

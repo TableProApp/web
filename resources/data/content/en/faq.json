@@ -244,7 +244,7 @@
                     "id": "what-is-sent",
                     "question": "What do the apps send to TablePro?",
                     "answer": [
-                        "The Mac app sends a daily usage report by default; disable it in <ui>Settings > General > Privacy</ui>. It includes a hashed machine ID, app details and database types, never hostnames, usernames, passwords, queries or rows.",
+                        "The Mac app shares usage data by default; disable it in <ui>Settings > General > Privacy</ui>. From the version that adds TablePro accounts, it goes straight to PostHog: app events with your Mac’s model, the app and macOS versions and database types, under a random ID before you sign in and your account ID after. Versions before TablePro accounts send a daily report with a hashed machine ID through our server instead. Neither includes hostnames, usernames, passwords, queries or rows.",
                         "Once you sign in, the Mac app registers your Mac with your account, sending its machine ID, name and app and macOS versions, and renews your plan once a day. Versions before TablePro accounts send the license key with those details every {revalidateDays} days. iPhone and iPad reports are opt-in. Team Library receives settings and saved SQL you publish. See the <privacy>privacy policy</privacy>, including IP logging."
                     ]
                 },

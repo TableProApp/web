@@ -244,7 +244,7 @@
                     "id": "what-is-sent",
                     "question": "앱은 TablePro에 무엇을 전송하나요?",
                     "answer": [
-                        "Mac 앱은 기본적으로 일일 사용 보고서를 보냅니다. <ui>설정 > 일반 > 개인정보 보호</ui> (Settings > General > Privacy)에서 끌 수 있습니다. 해시된 기기 ID, 앱 정보, 데이터베이스 유형을 포함하지만 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다.",
+                        "Mac 앱은 기본적으로 사용 데이터를 공유합니다. <ui>설정 > 일반 > 개인정보 보호</ui> (Settings > General > Privacy)에서 끌 수 있습니다. TablePro 계정을 지원하는 버전부터는 PostHog로 직접 전송되며, Mac 모델, 앱 및 macOS 버전, 데이터베이스 유형이 담긴 앱 이벤트에 로그인 전에는 무작위 ID가, 로그인 후에는 계정 ID가 붙습니다. TablePro 계정을 지원하기 전 버전은 대신 해시된 기기 ID가 담긴 일일 보고서를 운영자의 서버를 거쳐 보냅니다. 어느 쪽도 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다.",
                         "로그인하면 Mac 앱은 기기 ID, Mac 이름, 앱 및 macOS 버전을 보내 Mac을 계정에 등록하고 하루에 한 번 플랜을 갱신합니다. TablePro 계정을 지원하기 전 버전은 {revalidateDays}일마다 라이선스 키와 이 정보를 보냅니다. iPhone 및 iPad 보고는 선택 사항입니다. Team Library는 게시한 설정과 저장된 SQL을 받습니다. IP 기록을 포함한 <privacy>개인정보 처리방침</privacy>을 확인하세요."
                     ]
                 },
