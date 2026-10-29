@@ -54,10 +54,10 @@ Nosso servidor não armazena o relatório nem o endereço IP de origem. Ele repa
 
 ### Verificações de licença {#mac-license}
 
-O app para Mac só contata nosso servidor de licenças após você digitar uma chave de licença. Isso ocorre ao ativar a licença, ao iniciar se houverem passado {revalidateDays} dias ou mais desde a última verificação e a cada {revalidateDays} dias depois disso. Cada verificação envia:
+As versões anteriores às contas TablePro só contatam nosso servidor de licenças após você digitar uma chave de licença. Isso ocorre ao ativar a licença, ao iniciar se houverem passado {revalidateDays} dias ou mais desde a última verificação e a cada {revalidateDays} dias depois disso. Cada verificação envia:
 
 - sua chave de licença;
-- o ID de máquina descrito acima;
+- o ID de máquina descrito em [Dados de uso](#mac-usage-report);
 - o nome do Mac definido no macOS (que frequentemente inclui seu próprio nome);
 - a versão do app e a versão do macOS.
 

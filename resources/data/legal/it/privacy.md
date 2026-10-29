@@ -54,10 +54,10 @@ Il nostro server non conserva il rapporto né l'indirizzo IP da cui proviene. Lo
 
 ### Verifiche della licenza {#mac-license}
 
-L'app per Mac contatta il nostro server delle licenze solo dopo che inserisci una chiave di licenza. Lo fa quando attivi la licenza, all'avvio se sono trascorsi almeno {revalidateDays} giorni dall'ultima verifica e ogni {revalidateDays} giorni successivamente. Ogni verifica invia:
+Le versioni precedenti agli account TablePro contattano il nostro server delle licenze solo dopo che inserisci una chiave di licenza. Lo fanno quando attivi la licenza, all'avvio se sono trascorsi almeno {revalidateDays} giorni dall'ultima verifica e ogni {revalidateDays} giorni successivamente. Ogni verifica invia:
 
 - la chiave di licenza;
-- l'ID del dispositivo descritto sopra;
+- l'ID del dispositivo descritto in [Dati di utilizzo](#mac-usage-report);
 - il nome del Mac, come impostato in macOS (spesso include il tuo nome);
 - la versione dell'app e di macOS.
 

@@ -54,10 +54,10 @@ Máy chủ của chúng tôi không lưu báo cáo, cũng không lưu địa ch�
 
 ### Kiểm tra license {#mac-license}
 
-Ứng dụng cho Mac chỉ liên hệ máy chủ license của chúng tôi sau khi bạn nhập license key. Ứng dụng làm việc này khi bạn kích hoạt license, khi khởi động nếu đã qua {revalidateDays} ngày trở lên kể từ lần kiểm tra trước, và sau đó cứ mỗi {revalidateDays} ngày. Mỗi lần kiểm tra gửi:
+Các phiên bản trước khi có tài khoản TablePro chỉ liên hệ máy chủ license của chúng tôi sau khi bạn nhập license key. Các phiên bản này làm việc đó khi bạn kích hoạt license, khi khởi động nếu đã qua {revalidateDays} ngày trở lên kể từ lần kiểm tra trước, và sau đó cứ mỗi {revalidateDays} ngày. Mỗi lần kiểm tra gửi:
 
 - license key của bạn;
-- mã máy nêu ở trên;
+- mã máy nêu ở mục [Dữ liệu sử dụng](#mac-usage-report);
 - tên máy Mac của bạn, theo cài đặt trong macOS (thường có chứa tên của bạn);
 - phiên bản ứng dụng và phiên bản macOS.
 

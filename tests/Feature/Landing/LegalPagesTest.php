@@ -274,6 +274,9 @@ it('states what the Mac app and the server actually do', function (): void {
 
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
+    expect(legalSection('privacy', 'en', 'mac-license'))->toContain('Versions before TablePro accounts contact our license server only after you enter a license key.')
+        ->toContain('the machine ID described under [Usage data](#mac-usage-report)')
+        ->not->toContain('described above');
 
     // The Team Library upload carries startup commands and the tunnel command too (ConnectionExportService.buildEnvelope at v0.77.0).
     expect($mac)->toContain('SQL text')->toContain('never passwords')->toContain('startup commands')->toContain('Tunnel Command');
@@ -292,6 +295,12 @@ it('states what the Mac app and the server actually do', function (): void {
     expect($mac)->toContain('of your open connections')->toContain('how many connections are open');
     expect($ios)->toContain('of your open connections')->toContain('always reports that no license is activated');
 });
+
+it('scopes the license checks to old builds, whose usage report describes the machine ID', function (string $locale): void {
+    // The accounts build drops LicenseAPIClient (tablepro-cloud clients.md, macOS Code); its sign-in is #mac-account.
+    expect(legalSection('privacy', $locale, 'mac-license'))->toContain('](#mac-usage-report)');
+    expect(strstr(legalSection('privacy', $locale, 'mac-usage-report'), '`api.tablepro.app`'))->toContain('SHA-256');
+})->with(legalLocales());
 
 it('names both PostHog hosts the accounts build contacts', function (string $locale): void {
     // posthog-ios 3.92.7 fetches /config from the assets host of eu.i.posthog.com (PostHogApi.getRemoteConfigRequest).

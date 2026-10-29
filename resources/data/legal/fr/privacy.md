@@ -54,10 +54,10 @@ Notre serveur ne stocke ni le rapport ni l’adresse IP d’où il provient. Il 
 
 ### Vérifications de licence {#mac-license}
 
-L’application Mac ne contacte notre serveur de licences qu’après la saisie d’une clé de licence. Elle le fait lors de l’activation, au démarrage si au moins {revalidateDays} jours se sont écoulés depuis la dernière vérification, puis tous les {revalidateDays} jours. Chaque vérification envoie :
+Les versions antérieures aux comptes TablePro ne contactent notre serveur de licences qu’après la saisie d’une clé de licence. Elles le font lors de l’activation, au démarrage si au moins {revalidateDays} jours se sont écoulés depuis la dernière vérification, puis tous les {revalidateDays} jours. Chaque vérification envoie :
 
 - votre clé de licence ;
-- l’identifiant de machine décrit ci-dessus ;
+- l’identifiant de machine décrit dans [Données d’utilisation](#mac-usage-report) ;
 - le nom de votre Mac défini dans macOS (il inclut souvent votre propre nom) ;
 - la version de l’application et celle de macOS.
 

@@ -54,10 +54,10 @@ Unser Server speichert weder den Bericht noch die IP-Adresse, von der er kam. Er
 
 ### Lizenzprüfungen {#mac-license}
 
-Die Mac-App kontaktiert unseren Lizenzserver erst, nachdem du einen Lizenzschlüssel eingegeben hast. Dies geschieht bei der Aktivierung, beim Start, wenn seit der letzten Prüfung mindestens {revalidateDays} Tage vergangen sind, und danach alle {revalidateDays} Tage. Jede Prüfung sendet:
+Versionen vor den TablePro-Konten kontaktieren unseren Lizenzserver erst, nachdem du einen Lizenzschlüssel eingegeben hast. Dies geschieht bei der Aktivierung, beim Start, wenn seit der letzten Prüfung mindestens {revalidateDays} Tage vergangen sind, und danach alle {revalidateDays} Tage. Jede Prüfung sendet:
 
 - deinen Lizenzschlüssel;
-- die oben beschriebene Rechner-ID;
+- die unter [Nutzungsdaten](#mac-usage-report) beschriebene Rechner-ID;
 - den in macOS festgelegten Namen deines Macs (er enthält oft deinen eigenen Namen);
 - die App-Version und die macOS-Version.
 

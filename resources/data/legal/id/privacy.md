@@ -54,10 +54,10 @@ Server kami tidak menyimpan laporan maupun alamat IP asalnya. Server meneruskan 
 
 ### Pemeriksaan lisensi {#mac-license}
 
-Aplikasi Mac hanya menghubungi server lisensi kami setelah Anda memasukkan kunci lisensi. Aplikasi melakukannya saat lisensi diaktifkan, saat dimulai jika sudah berlalu {revalidateDays} hari atau lebih sejak pemeriksaan terakhir, dan setiap {revalidateDays} hari setelahnya. Setiap pemeriksaan mengirim:
+Versi sebelum akun TablePro hanya menghubungi server lisensi kami setelah Anda memasukkan kunci lisensi. Versi tersebut melakukannya saat lisensi diaktifkan, saat dimulai jika sudah berlalu {revalidateDays} hari atau lebih sejak pemeriksaan terakhir, dan setiap {revalidateDays} hari setelahnya. Setiap pemeriksaan mengirim:
 
 - kunci lisensi Anda;
-- ID mesin yang dijelaskan di atas;
+- ID mesin yang dijelaskan di [Data penggunaan](#mac-usage-report);
 - nama Mac Anda, sebagaimana diatur di macOS (sering kali memuat nama Anda sendiri);
 - versi aplikasi dan versi macOS.
 

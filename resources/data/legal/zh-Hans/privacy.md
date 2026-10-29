@@ -54,10 +54,10 @@ PostHog 的库会为每个事件添加 Mac 的型号、屏幕尺寸、时区和�
 
 ### 许可证验证 {#mac-license}
 
-Mac 应用仅在您输入许可证密钥后联系许可证服务器。它会在激活时、距上次验证至少 {revalidateDays} 天后的启动时，以及此后每隔 {revalidateDays} 天验证。每次验证发送：
+支持 TablePro 账户之前的版本仅在您输入许可证密钥后联系许可证服务器。它们会在激活时、距上次验证至少 {revalidateDays} 天后的启动时，以及此后每隔 {revalidateDays} 天验证。每次验证发送：
 
 - 许可证密钥；
-- 上述机器 ID；
+- [使用数据](#mac-usage-report)中所述的机器 ID；
 - macOS 中设置的 Mac 名称（其中经常包含您的姓名）；
 - 应用版本和 macOS 版本。
 

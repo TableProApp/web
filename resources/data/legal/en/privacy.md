@@ -54,10 +54,10 @@ Our server does not store the report or the IP address it came from. It passes t
 
 ### License checks {#mac-license}
 
-The Mac app contacts our license server only after you enter a license key. It does so when you activate the license, when it starts if {revalidateDays} days or more have passed since the last check, and every {revalidateDays} days after that. Each check sends:
+Versions before TablePro accounts contact our license server only after you enter a license key. They do so when you activate the license, when they start if {revalidateDays} days or more have passed since the last check, and every {revalidateDays} days after that. Each check sends:
 
 - your license key;
-- the machine ID described above;
+- the machine ID described under [Usage data](#mac-usage-report);
 - your Mac's name, as set in macOS (it often includes your own name);
 - the app version and the macOS version.
 

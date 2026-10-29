@@ -54,10 +54,10 @@ PostHog 的程式庫會為每個事件加入 Mac 的機型、螢幕尺寸、時�
 
 ### 授權驗證 {#mac-license}
 
-Mac App 僅在您輸入授權金鑰後連線至授權伺服器。它會在啟用時、距上次驗證至少 {revalidateDays} 天後的啟動時，以及此後每隔 {revalidateDays} 天驗證。每次驗證傳送：
+支援 TablePro 帳戶之前的版本僅在您輸入授權金鑰後連線至授權伺服器。它們會在啟用時、距上次驗證至少 {revalidateDays} 天後的啟動時，以及此後每隔 {revalidateDays} 天驗證。每次驗證傳送：
 
 - 授權金鑰；
-- 上述機器 ID；
+- [使用資料](#mac-usage-report)中所述的機器 ID；
 - macOS 中設定的 Mac 名稱（其中經常包含您的姓名）；
 - App 版本與 macOS 版本。
 

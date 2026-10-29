@@ -54,10 +54,10 @@ Nuestro servidor no almacena el informe ni la dirección IP de la que llegó. Lo
 
 ### Comprobaciones de licencia {#mac-license}
 
-La app para Mac solo contacta con nuestro servidor de licencias después de que introduzcas una clave de licencia. Lo hace al activar la licencia, al iniciarse si han pasado {revalidateDays} días o más desde la última comprobación y cada {revalidateDays} días a partir de entonces. Cada comprobación envía:
+Las versiones anteriores a las cuentas de TablePro solo contactan con nuestro servidor de licencias después de que introduzcas una clave de licencia. Lo hacen al activar la licencia, al iniciarse si han pasado {revalidateDays} días o más desde la última comprobación y cada {revalidateDays} días a partir de entonces. Cada comprobación envía:
 
 - tu clave de licencia;
-- el identificador de máquina descrito arriba;
+- el identificador de máquina descrito en [Datos de uso](#mac-usage-report);
 - el nombre de tu Mac configurado en macOS (a menudo incluye tu propio nombre);
 - la versión de la app y la de macOS.
 
