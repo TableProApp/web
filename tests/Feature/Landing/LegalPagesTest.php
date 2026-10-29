@@ -128,7 +128,8 @@ it('renders each document in both languages under its own component', function (
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component($component)
             ->where('document.title', $title)
-            ->where('document.updatedAt', fn(string $date): bool => preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) === 1 && $date <= now()->toDateString())
+            // Dated on the publisher's calendar in Vietnam, up to 7 hours ahead of UTC.
+            ->where('document.updatedAt', fn(string $date): bool => preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) === 1 && $date <= now('Asia/Ho_Chi_Minh')->toDateString())
             ->where('document.html', fn(string $html): bool => str_contains($html, '<h2 id="') && ! preg_match('/\{[a-zA-Z]+\}/', $html))
             ->where('document.toc', fn($toc): bool => count($toc) > 1)
             ->has('chrome.notice.body')
@@ -144,8 +145,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 28, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '28 tháng 10 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 30, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '30 tháng 10 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -238,11 +239,23 @@ it('describes purchase attribution as checkout metadata kept with the order, und
 it('states what the Mac app and the server actually do', function (): void {
     $mac = legalSection('privacy', 'en', 'mac-app');
 
-    // The usage report: on by default, where to turn it off, and what the server adds.
+    // Usage data: on by default, where to turn it off, and what the server adds.
     expect($mac)
-        ->toContain('It is on by default, and the app does not ask before sending the first one.')
+        ->toContain('It is on by default, and the app does not ask before sending the first event.')
         ->toContain('**Settings > General > Privacy**')
-        ->toContain('Share anonymous usage data');
+        ->toContain('**Share usage data**')
+        ->not->toContain('Share anonymous usage data');
+
+    // The accounts build sends PostHog its events itself, with posthog-ios's own properties (tablepro-cloud clients.md, macOS Telemetry).
+    expect($mac)->toContain('`eu.i.posthog.com`')
+        ->toContain('if the app starts with it off, it does not start PostHog\'s library at all')
+        ->toContain('screen size, time zone and language, whether it is on Wi-Fi')
+        ->toContain('works out an approximate location from it')
+        ->toContain('(`/config` and `/flags`)')
+        ->toContain('Before you sign in, the events carry a random ID')
+        ->toContain('The app no longer sends a machine ID, whether a license is activated, or your update settings.')
+        ->toContain('PostHog\'s crash reporter, which the app leaves turned off')
+        ->toContain('`~/Library/Application Support/com.TablePro`');
 
     // tablepro-cloud's /v1 heartbeat goes to PostHog with Cloudflare's country, never the key or the IP; no lookup service, no HTTP.
     expect($mac)->toContain('Our server does not store the report or the IP address it came from.')
@@ -273,10 +286,15 @@ it('states what the Mac app and the server actually do', function (): void {
     expect($ios)->toContain('of your open connections')->toContain('always reports that no license is activated');
 });
 
-it('lists the date of the first query for the iPhone report only', function (string $locale): void {
-    // The Mac app never records it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The iPhone app does.
+it('lists the first query for the accounts build and the iPhone report, never for the old Mac report', function (string $locale): void {
+    // Old Mac builds never record it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The accounts build sends
+    // first_query_executed (tablepro-cloud clients.md, macOS Telemetry), and the iPhone app reports it.
     expect(LEGAL_FIRST_QUERY)->toHaveKey($locale);
-    expect(legalSection('privacy', $locale, 'mac-usage-report'))->not->toBe('')->not->toContain(LEGAL_FIRST_QUERY[$locale]);
+    $usage = legalSection('privacy', $locale, 'mac-usage-report');
+    $old = strstr($usage, '`api.tablepro.app`');
+
+    expect($old)->not->toBeFalse()->not->toContain(LEGAL_FIRST_QUERY[$locale]);
+    expect(strstr($usage, '`api.tablepro.app`', true))->toContain(LEGAL_FIRST_QUERY[$locale]);
     expect(legalSection('privacy', $locale, 'ios-app'))->toContain(LEGAL_FIRST_QUERY[$locale]);
 })->with(legalLocales());
 
@@ -319,7 +337,7 @@ it('states what tablepro-cloud keeps outside its own tables', function (): void 
     expect(legalSection('privacy', 'en', 'newsletter'))->toContain('confirmed or not');
 
     // clients.md: the Mac app sends usage data to PostHog itself, so PostHog gets the request's IP address.
-    expect(legalSection('privacy', 'en', 'mac-usage-report'))->toContain('PostHog then receives your Mac\'s IP address');
+    expect(legalSection('privacy', 'en', 'mac-usage-report'))->toContain('PostHog receives your Mac\'s IP address with each request');
     expect(legalSection('privacy', 'en', 'sharing'))->toContain('reaches PostHog with your Mac\'s IP address');
 });
 

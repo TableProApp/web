@@ -106,6 +106,7 @@ return [
     'Share > Publish to Team Catalog…' => ['fr' => 'Partager > Publier dans le catalogue d’équipe…', 'ko' => '공유 > 팀 카탈로그에 게시…', 'zh-Hans' => '分享 > 发布到团队目录…', 'zh-Hant' => '分享 > 發佈到團隊目錄…'],
     'Share > Publish to Team Library…' => ['fr' => 'Partager > Publier dans la bibliothèque d’équipe…', 'ko' => '공유 > 팀 라이브러리에 게시…', 'zh-Hans' => '分享 > 发布到团队库…', 'zh-Hant' => '分享 > 發佈到團隊庫…'],
     'Share anonymous usage data' => ['fr' => 'Partager des données d’utilisation anonymes', 'ko' => '익명 사용 데이터 공유', 'zh-Hans' => '共享匿名使用数据', 'zh-Hant' => '分享匿名使用資料'],
+    'Share usage data' => ['fr' => 'Partager des données d’utilisation', 'ko' => '사용 데이터 공유', 'zh-Hans' => '共享使用数据', 'zh-Hant' => '分享使用資料'],
     'Share Usage Data' => ['ko' => '사용 데이터 공유', 'zh-Hans' => '共享使用数据', 'zh-Hant' => '分享使用資料'],
     'Socket' => [],
     'Sync Passwords' => ['ko' => '암호 동기화', 'zh-Hans' => '同步密码', 'zh-Hant' => '同步密碼'],

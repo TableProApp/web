@@ -1,18 +1,18 @@
 ---
 title: Política de privacidade
 description: O que os apps, site e portal da conta TablePro coletam, para onde os dados vão, por quanto tempo são mantidos e como alterá-los ou excluí-los.
-updatedAt: "2026-10-28"
+updatedAt: "2026-10-30"
 ---
 
 Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site tablepro.app, a documentação em docs.tablepro.app e o portal da conta account.tablepro.app. Descreve o que cada um realmente envia e armazena hoje. Os dois apps são de código aberto sob a AGPLv3, portanto você pode ler o código que envia os dados abaixo no [repositório TablePro]({github}).
 
 ## Resumo {#summary}
 
-- O app para Mac envia um relatório de uso ao TablePro uma vez por dia. Está ativado por padrão e pode ser desativado. O app para iPhone e iPad só envia se você ativar.
+- O app para Mac envia dados de uso. Está ativado por padrão e pode ser desativado. O app para iPhone e iPad só envia um relatório de uso se você ativar.
 - Se você entrar em uma conta TablePro ou ativar uma chave de licença, o app para Mac registra seu Mac em nosso servidor, com o nome dele, e verifica seu plano com ele regularmente.
 - Consultas, resultados e senhas não são enviados ao TablePro. A exceção é o que você escolhe publicar na Team Library: configurações de conexão (nunca senhas) e consultas salvas.
 - Solicitações de IA vão do app para Mac diretamente ao provedor configurado por você, não a nós.
-- Nosso servidor repassa os relatórios de uso ao PostHog, nosso serviço de análise de produto na UE, sem os endereços IP. A partir da versão que traz as contas TablePro, o app para Mac os envia diretamente ao PostHog, que então recebe o endereço IP do seu Mac. Sua conta mantém um registro das mudanças feitas nela, como acessos e novos dispositivos, com o endereço IP e o navegador da solicitação que fez cada uma.
+- A partir da versão que traz as contas TablePro, o app para Mac envia seus dados de uso diretamente ao PostHog, nosso serviço de análise de produto na UE, que então recebe o endereço IP do seu Mac e deduz dele uma localização aproximada. As versões anteriores e o app para iPhone e iPad enviam relatórios de uso ao nosso servidor, que os repassa ao PostHog sem os endereços IP. Sua conta mantém um registro das mudanças feitas nela, como acessos e novos dispositivos, com o endereço IP e o navegador da solicitação que fez cada uma.
 - O site conta visualizações de página com Cloudflare Web Analytics, que não define cookies. Também carrega Google Analytics, que só define cookies se você permitir. Todas as páginas carregam nosso chat ao vivo, Crisp, que define seus próprios cookies.
 - O portal da conta em account.tablepro.app não carrega nenhum script de análise. Ele define um cookie para manter você conectado, e nas configurações dele você pode baixar os dados da sua conta ou excluí-la.
 - As compras são vendidas por {merchant}, nosso merchant of record.
@@ -23,11 +23,23 @@ Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site ta
 
 ## TablePro para Mac {#mac-app}
 
-### Relatório de uso {#mac-usage-report}
+### Dados de uso {#mac-usage-report}
 
-O app para Mac envia um relatório de uso para `api.tablepro.app` cerca de dez segundos após iniciar e depois uma vez por dia enquanto está em execução. **Está ativado por padrão, e o app não pede confirmação antes de enviar o primeiro relatório.** Para desativar, abra **Settings > General > Privacy** e desmarque **Share anonymous usage data**.
+A partir da versão que traz as contas TablePro, o app para Mac envia dados de uso diretamente ao PostHog, nosso serviço de análise de produto, em `eu.i.posthog.com`, na UE. **Está ativado por padrão, e o app não pede confirmação antes de enviar o primeiro evento.** Para desativar, abra **Settings > General > Privacy** e desmarque **Share usage data**. Enquanto a configuração está desativada, o app não envia nada ao PostHog, e se o app iniciar com ela desativada, nem chega a iniciar a biblioteca do PostHog.
 
-Um relatório contém:
+O app envia um evento:
+
+- uma vez por dia enquanto está em execução, com os nomes dos tipos de banco das conexões abertas (por exemplo, "PostgreSQL") e quantas conexões estão abertas;
+- na sua primeira tentativa de conexão e na primeira conexão bem-sucedida, cada uma com o tipo de banco, e na sua primeira consulta;
+- quando mostra que um recurso pago não está disponível, uma vez por recurso a cada execução do app, com o recurso e o motivo, como não ter entrado na conta;
+- quando você clica para fazer upgrade, com o lugar do app onde clicou;
+- quando você entra, com a forma (no app, com uma chave de licença ou pela troca da chave que já estava no Mac), e quando você sai.
+
+A biblioteca do PostHog adiciona a cada evento o modelo do Mac, o tamanho da tela, o fuso horário e o idioma, se ele está no Wi-Fi, a versão, o build e o bundle ID do app, a versão do macOS, a versão da biblioteca e um ID de sessão aleatório. O PostHog recebe o endereço IP do Mac a cada solicitação e deduz dele uma localização aproximada, como o país e a cidade. Enquanto a configuração está ativada, a biblioteca também busca no PostHog suas configurações e feature flags (`/config` e `/flags`).
+
+Antes de você entrar, os eventos levam um ID aleatório que a biblioteca cria no Mac, e o PostHog não cria um perfil de pessoa para ele. Quando você entra, eles passam a levar o ID da sua conta, e o perfil dessa conta no PostHog guarda as versões do app e do macOS, a arquitetura do processador e o idioma do app. Isso liga suas instalações aos seus acessos e compras. Sair da conta inicia um novo ID aleatório. O app não envia mais o ID de máquina, se há uma licença ativada nem as configurações de atualização.
+
+As versões anteriores às contas TablePro enviam, em vez disso, um relatório de uso para `api.tablepro.app`, com a mesma configuração, cerca de dez segundos após iniciar e depois uma vez por dia enquanto estão em execução. Um relatório contém:
 
 - um ID de máquina: hash SHA-256 do UUID de hardware do Mac (o UUID em si nunca é enviado);
 - plataforma, versão do app, versão do macOS, arquitetura do processador e idioma do app;
@@ -36,11 +48,9 @@ Um relatório contém:
 - a data e a hora da primeira tentativa de conexão e da primeira conexão bem-sucedida;
 - configurações de atualização (como as atualizações são instaladas e a frequência das verificações). Nosso servidor as descarta quando o relatório chega.
 
-Nunca contém nomes de host, nomes de usuário, senhas, consultas nem linhas.
+Nem os eventos nem os relatórios contêm nomes de host, nomes de usuário, senhas, consultas ou linhas.
 
 Nosso servidor não armazena o relatório nem o endereço IP de origem. Ele repassa o relatório ao PostHog como um evento sobre o ID de máquina, com o país que o Cloudflare informa para sua conexão e sem sua chave de licença nem seu IP, e o PostHog não cria com ele um perfil de pessoa. Como sua conta lista os dispositivos pelo mesmo ID de máquina, relatórios de um Mac em que você entrou ou ativou uma licença podem ser associados à sua conta.
-
-A partir da versão que traz as contas TablePro, o app para Mac envia seus dados de uso diretamente ao PostHog, com a mesma configuração. O PostHog então recebe o endereço IP do seu Mac. Quando você entra, ele associa esses dados ao ID da sua conta, o que liga suas instalações aos seus acessos e compras. Desativar a configuração interrompe as duas coisas.
 
 ### Verificações de licença {#mac-license}
 
@@ -93,11 +103,11 @@ O app para Mac só envia dados a estes serviços quando você os configura, dire
 
 ### Dados que ficam no seu Mac {#mac-local}
 
-As senhas ficam nas Chaves do macOS. Lista de conexões, histórico de consultas, Query Insights, snapshots de Data Rewind, configurações e abas abertas são armazenados no Mac. O app referencia as chaves SSH onde estão no disco e não as copia. As versões anteriores às contas TablePro não contêm relator de falhas nem biblioteca de análise de terceiros. A partir da versão que traz as contas TablePro, o app inclui a biblioteca do PostHog, que envia os dados de uso descritos acima.
+As senhas ficam nas Chaves do macOS. Lista de conexões, histórico de consultas, Query Insights, snapshots de Data Rewind, configurações e abas abertas são armazenados no Mac. O app referencia as chaves SSH onde estão no disco e não as copia. As versões anteriores às contas TablePro não contêm relator de falhas nem biblioteca de análise de terceiros. A partir da versão que traz as contas TablePro, o app inclui a biblioteca do PostHog, que envia os dados de uso descritos acima. A biblioteca contém o relator de falhas do PostHog, que o app mantém desativado, então nenhum relatório de falha é enviado. Ela guarda seu ID aleatório, suas configurações e os eventos ainda não enviados em arquivos em `~/Library/Application Support/com.TablePro`.
 
 ## TablePro para iPhone e iPad {#ios-app}
 
-**Nada vai ao TablePro, a menos que você ative Share Usage Data**, na primeira inicialização ou depois em **Settings > Privacy**. Nesse caso, o app envia um relatório diário ao mesmo servidor do app para Mac, e nosso servidor o repassa ao PostHog da mesma forma, sem o IP. O relatório contém um hash SHA-256 do identificador atribuído pela Apple ao app no dispositivo, plataforma, versões do app e iOS, arquitetura do processador, idioma, nomes dos tipos de banco das conexões abertas, quantas estão abertas, e a data e a hora da primeira tentativa de conexão, da primeira conexão bem-sucedida e da primeira consulta. Não inclui configurações de atualização e sempre informa que não há licença ativada, pois o app não tem nenhuma das duas coisas.
+**Nada vai ao TablePro, a menos que você ative Share Usage Data**, na primeira inicialização ou depois em **Settings > Privacy**. Nesse caso, o app envia um relatório diário ao mesmo servidor das versões do app para Mac anteriores às contas TablePro, e nosso servidor o repassa ao PostHog da mesma forma, sem o IP. O relatório contém um hash SHA-256 do identificador atribuído pela Apple ao app no dispositivo, plataforma, versões do app e iOS, arquitetura do processador, idioma, nomes dos tipos de banco das conexões abertas, quantas estão abertas, e a data e a hora da primeira tentativa de conexão, da primeira conexão bem-sucedida e da primeira consulta. Não inclui configurações de atualização e sempre informa que não há licença ativada, pois o app não tem nenhuma das duas coisas.
 
 O app não verifica licenças, não verifica atualizações e não solicita plugins. Além do relatório opcional, conecta apenas aos seus bancos e servidores SSH, ao iCloud da Apple se você ativar o iCloud Sync e à Microsoft quando uma conexão SQL Server autentica com Microsoft Entra ID.
 
@@ -191,7 +201,7 @@ Você pode alterar ou retirar a resposta sobre análises a qualquer momento em *
 Para leitores no Espaço Econômico Europeu e Reino Unido, as bases legais sob o GDPR e UK GDPR são:
 
 - **Contrato** (Art. 6(1)(b)): vender e fornecer licenças, sua conta com seus métodos de acesso e dispositivos, verificações de licença, portal da conta e Team Library.
-- **Interesse legítimo** (Art. 6(1)(f)): relatório de uso do app para Mac e sua análise no PostHog, eventos sobre acessos, compras, dispositivos e equipes que nosso servidor envia ao PostHog, registro de auditoria da conta, segurança e prevenção de abuso, incluindo o Cloudflare Turnstile no formulário da newsletter, logs do servidor web e relatórios de erros do portal da conta, Cloudflare Web Analytics, registro de atribuição de compras, consulta de país para o idioma e o desconto regional, e chat ao vivo em todas as páginas.
+- **Interesse legítimo** (Art. 6(1)(f)): dados de uso do app para Mac e sua análise no PostHog, eventos sobre acessos, compras, dispositivos e equipes que nosso servidor envia ao PostHog, registro de auditoria da conta, segurança e prevenção de abuso, incluindo o Cloudflare Turnstile no formulário da newsletter, logs do servidor web e relatórios de erros do portal da conta, Cloudflare Web Analytics, registro de atribuição de compras, consulta de país para o idioma e o desconto regional, e chat ao vivo em todas as páginas.
 - **Consentimento** (Art. 6(1)(a)): cookies Google Analytics, relatório de uso do app para iPhone e iPad, newsletter e conversas iniciadas no chat ao vivo.
 - **Obrigação legal** (Art. 6(1)(c)): registros fiscais e contábeis e respostas a solicitações legais.
 

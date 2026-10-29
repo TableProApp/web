@@ -294,8 +294,9 @@ dataset('reviewed facts', [
             '](/terms)',
             'keeps the paid features working for up to {offlineDays} days without our server',
             'Versions before TablePro accounts contain no crash reporter and no third-party analytics library.',
+            'Versions before TablePro accounts send a usage report to `api.tablepro.app` instead, under the same setting',
         ],
-        ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.'],
+        ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.', 'sends TablePro a usage report once a day', 'Turning the setting off stops both.', 'the same server as the Mac app'],
     ],
     'the privacy policy (vi)' => [
         'legal/vi/privacy.md',

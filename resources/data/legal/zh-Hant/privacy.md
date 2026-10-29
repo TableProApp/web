@@ -1,18 +1,18 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-28"
+updatedAt: "2026-10-30"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 account.tablepro.app 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
 
 ## 概要 {#summary}
 
-- Mac App 每天向 TablePro 傳送一次使用情況報告。此功能預設開啟，可以關閉。iPhone 與 iPad App 僅在您開啟後傳送。
+- Mac App 會傳送使用資料。此功能預設開啟，可以關閉。iPhone 與 iPad App 僅在您開啟後傳送使用情況報告。
 - 登入 TablePro 帳戶或啟用授權金鑰後，Mac App 會將您的 Mac 連同名稱登記到我們的伺服器，並定期向伺服器核對您的方案。
 - 您執行的查詢、結果與密碼不會傳送給 TablePro。例外是您自行選擇發佈至 Team Library 的連線設定（從不包含密碼）與已儲存查詢。
 - AI 請求從 Mac App 直接傳送至您設定的 AI 供應商，不經過我們。
-- 我們的伺服器將使用報告轉送給我們位於歐盟的產品分析服務 PostHog，不附帶 IP 位址。從支援 TablePro 帳戶的版本起，Mac App 直接向 PostHog 傳送使用報告，PostHog 因此會收到您的 Mac 的 IP 位址。您的帳戶會保存對帳戶所做變更的日誌，例如登入和新裝置，並附有發起每項變更的請求的 IP 位址和瀏覽器。
+- 從支援 TablePro 帳戶的版本起，Mac App 直接向我們位於歐盟的產品分析服務 PostHog 傳送使用資料，PostHog 因此會收到您的 Mac 的 IP 位址，並據此推算大致位置。更早的版本以及 iPhone 與 iPad App 將使用報告傳送到我們的伺服器，由伺服器轉送給 PostHog，不附帶 IP 位址。您的帳戶會保存對帳戶所做變更的日誌，例如登入和新裝置，並附有發起每項變更的請求的 IP 位址和瀏覽器。
 - 網站使用不設定 Cookie 的 Cloudflare Web Analytics 統計網頁瀏覽量。網站也載入 Google Analytics，但只有獲得您的允許才設定 Cookie。每個網頁還會載入線上聊天服務 Crisp，它會設定自己的 Cookie。
 - account.tablepro.app 上的帳戶入口網站不載入任何分析指令碼。它設定一個保持登入的 Cookie，您可以在其設定中下載帳戶資料或刪除帳戶。
 - 購買由我們的 merchant of record {merchant} 負責銷售。
@@ -23,11 +23,23 @@ updatedAt: "2026-10-28"
 
 ## Mac 版 TablePro {#mac-app}
 
-### 使用情況報告 {#mac-usage-report}
+### 使用資料 {#mac-usage-report}
 
-Mac App 啟動約十秒後向 `api.tablepro.app` 傳送使用情況報告，之後在執行期間每天傳送一次。**此功能預設開啟，首次傳送前不會徵求同意**。若要關閉，請進入**設定 > 一般 > 隱私**（Settings > General > Privacy）並取消勾選**分享匿名使用資料**（Share anonymous usage data）。
+從支援 TablePro 帳戶的版本起，Mac App 直接向我們位於歐盟的產品分析服務 PostHog（`eu.i.posthog.com`）傳送使用資料。**此功能預設開啟，傳送第一個事件前不會徵求同意**。若要關閉，請進入**設定 > 一般 > 隱私**（Settings > General > Privacy）並取消勾選**分享使用資料**（Share usage data）。關閉期間，App 不向 PostHog 傳送任何內容；如果 App 啟動時該設定已關閉，則完全不會啟動 PostHog 的程式庫。
 
-報告包含：
+App 會在以下情況傳送事件：
+
+- 執行期間每天一次，附帶已開啟連線的資料庫類型名稱（如 PostgreSQL）與已開啟的連線數量；
+- 首次嘗試連線與首次成功連線時（各附帶資料庫類型），以及首次執行查詢時；
+- App 提示某項付費功能無法使用時，每次執行 App 每項功能一次，附帶該功能與原因（例如未登入）；
+- 點按升級時，附帶您在 App 中點按的位置；
+- 登入時，附帶登入方式（在 App 中登入、使用授權金鑰，或兌換 Mac 上已有的金鑰），以及登出時。
+
+PostHog 的程式庫會為每個事件加入 Mac 的機型、螢幕尺寸、時區與語言、是否使用 Wi-Fi、App 的版本、建置編號與 Bundle ID、macOS 版本、程式庫的版本以及隨機的工作階段 ID。PostHog 會隨每個請求收到您的 Mac 的 IP 位址，並據此推算大致位置，例如國家和城市。該設定開啟期間，程式庫也會從 PostHog 取得其設定與功能旗標（`/config` 和 `/flags`）。
+
+登入之前，事件攜帶程式庫在您的 Mac 上產生的隨機 ID，PostHog 不會為其建立個人檔案。登入後，事件改為攜帶您的帳戶 ID，PostHog 中該帳戶的檔案保存 App 和 macOS 版本、處理器架構與 App 語言，藉此把您的安裝與登入和購買連結起來。登出後會改用新的隨機 ID。App 不再傳送機器 ID、授權啟用狀態或更新設定。
+
+支援 TablePro 帳戶之前的版本則在同一設定下，於啟動約十秒後向 `api.tablepro.app` 傳送使用情況報告，之後在執行期間每天傳送一次。報告包含：
 
 - 機器 ID：Mac 硬體 UUID 的 SHA-256 雜湊值（UUID 本身從不傳送）；
 - 平台、App 版本、macOS 版本、處理器架構與 App 語言；
@@ -36,11 +48,9 @@ Mac App 啟動約十秒後向 `api.tablepro.app` 傳送使用情況報告，之�
 - 首次嘗試連線與首次成功連線的日期和時間；
 - 更新設定（安裝方式及檢查頻率）。報告抵達時，我們的伺服器會捨棄這些設定。
 
-報告從不包含主機名稱、使用者名稱、密碼、查詢或列資料。
+事件和報告都從不包含主機名稱、使用者名稱、密碼、查詢或列資料。
 
 我們的伺服器既不保存報告，也不保存傳送報告的 IP 位址。伺服器將報告作為關於機器 ID 的事件轉送給 PostHog，附上 Cloudflare 為您的連線提供的國家，不附帶授權金鑰或 IP 位址；PostHog 不會據此建立個人檔案。由於您的帳戶以相同的機器 ID 記錄裝置，來自您登入過或啟用過授權的 Mac 的報告可與您的帳戶關聯。
-
-從支援 TablePro 帳戶的版本起，Mac App 改為在同一設定下直接向 PostHog 傳送使用資料。PostHog 因此會收到您的 Mac 的 IP 位址。您登入後，App 會將這些資料與您的帳戶 ID 關聯，藉此把您的安裝與登入和購買連結起來。關閉該設定會同時停止這兩項。
 
 ### 授權驗證 {#mac-license}
 
@@ -93,11 +103,11 @@ GitHub 會隨這些請求收到您的 IP 位址，這些請求適用 GitHub 自�
 
 ### 留在 Mac 上的資料 {#mac-local}
 
-密碼保存在 macOS 鑰匙圈中。連線清單、查詢歷史、Query Insights、Data Rewind 快照、設定與開啟的分頁儲存在 Mac 上。App 參照磁碟上的 SSH 金鑰，不會複製它們。支援 TablePro 帳戶之前的版本不包含當機報告工具或第三方分析程式庫。從支援 TablePro 帳戶的版本起，App 包含 PostHog 的程式庫，用於傳送上文所述的使用資料。
+密碼保存在 macOS 鑰匙圈中。連線清單、查詢歷史、Query Insights、Data Rewind 快照、設定與開啟的分頁儲存在 Mac 上。App 參照磁碟上的 SSH 金鑰，不會複製它們。支援 TablePro 帳戶之前的版本不包含當機報告工具或第三方分析程式庫。從支援 TablePro 帳戶的版本起，App 包含 PostHog 的程式庫，用於傳送上文所述的使用資料。該程式庫包含 PostHog 的當機報告工具，但 App 讓它保持關閉，因此不會傳送當機報告。程式庫將其隨機 ID、設定與尚未傳送的事件儲存在 `~/Library/Application Support/com.TablePro` 下的檔案中。
 
 ## iPhone 與 iPad 版 TablePro {#ios-app}
 
-**除非您開啟分享使用資料（Share Usage Data），否則不會向 TablePro 傳送任何資訊**。您可在首次啟動時或之後的**設定 > 隱私權**（Settings > Privacy）中開啟。開啟後，App 每天向與 Mac App 相同的伺服器傳送一次報告，伺服器以相同方式將報告轉送給 PostHog，不附帶其 IP 位址。報告包含 Apple 為裝置上的 App 分配的識別碼的 SHA-256 雜湊值、平台、App 和 iOS 版本、處理器架構、App 語言、已開啟連線的資料庫類型名稱、已開啟的連線數量，以及首次嘗試連線、首次成功連線與首次執行查詢的日期和時間。不包含更新設定，並一律回報未啟用授權，因為 App 沒有這兩項內容。
+**除非您開啟分享使用資料（Share Usage Data），否則不會向 TablePro 傳送任何資訊**。您可在首次啟動時或之後的**設定 > 隱私權**（Settings > Privacy）中開啟。開啟後，App 每天向與支援 TablePro 帳戶之前的 Mac App 版本相同的伺服器傳送一次報告，伺服器以相同方式將報告轉送給 PostHog，不附帶其 IP 位址。報告包含 Apple 為裝置上的 App 分配的識別碼的 SHA-256 雜湊值、平台、App 和 iOS 版本、處理器架構、App 語言、已開啟連線的資料庫類型名稱、已開啟的連線數量，以及首次嘗試連線、首次成功連線與首次執行查詢的日期和時間。不包含更新設定，並一律回報未啟用授權，因為 App 沒有這兩項內容。
 
 App 不會發起授權驗證、更新檢查或外掛程式請求。除選用報告外，它僅連線至您的資料庫和 SSH 伺服器、開啟 iCloud Sync 時的 Apple iCloud，以及 SQL Server 連線使用 Microsoft Entra ID 登入時的 Microsoft。
 
@@ -191,7 +201,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 對於歐洲經濟區和英國的讀者，GDPR 與 UK GDPR 下的合法依據為：
 
 - **契約**（第 6 條第 1 款 (b)）：授權銷售和提供、您的帳戶及其登入方式和裝置、授權驗證、帳戶入口網站和 Team Library。
-- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用報告及其在 PostHog 中的分析、我們的伺服器傳送給 PostHog 的關於登入、購買、裝置和團隊的事件、帳戶稽核日誌、安全和濫用防範（包括電子報表單上的 Cloudflare Turnstile）、網頁伺服器日誌和帳戶入口網站錯誤報告、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
+- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用資料及其在 PostHog 中的分析、我們的伺服器傳送給 PostHog 的關於登入、購買、裝置和團隊的事件、帳戶稽核日誌、安全和濫用防範（包括電子報表單上的 Cloudflare Turnstile）、網頁伺服器日誌和帳戶入口網站錯誤報告、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
 - **同意**（第 6 條第 1 款 (a)）：Google Analytics Cookie、iPhone 與 iPad App 使用報告、電子報和您主動發起的線上聊天。
 - **法律義務**（第 6 條第 1 款 (c)）：稅務與會計紀錄，以及對合法請求的回應。
 

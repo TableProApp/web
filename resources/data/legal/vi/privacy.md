@@ -1,18 +1,18 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-28"
+updatedAt: "2026-10-30"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
 
 ## Tóm tắt {#summary}
 
-- Ứng dụng cho Mac gửi cho TablePro một báo cáo sử dụng mỗi ngày một lần. Tính năng này bật sẵn và bạn có thể tắt. Ứng dụng cho iPhone và iPad chỉ gửi khi bạn bật nó lên.
+- Ứng dụng cho Mac gửi dữ liệu sử dụng. Tính năng này bật sẵn và bạn có thể tắt. Ứng dụng cho iPhone và iPad chỉ gửi báo cáo sử dụng khi bạn bật nó lên.
 - Nếu bạn đăng nhập tài khoản TablePro hoặc kích hoạt license key, ứng dụng cho Mac đăng ký máy Mac của bạn với máy chủ của chúng tôi, kèm tên máy, và định kỳ kiểm tra gói của bạn với máy chủ.
 - Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
 - Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
-- Máy chủ của chúng tôi chuyển báo cáo sử dụng sang PostHog, dịch vụ phân tích sản phẩm của chúng tôi đặt tại EU, không kèm địa chỉ IP. Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi báo cáo thẳng tới PostHog, nên PostHog nhận được địa chỉ IP của máy Mac của bạn. Tài khoản của bạn giữ nhật ký các thay đổi trên tài khoản, như các lần đăng nhập và thiết bị mới, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi.
+- Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, dịch vụ phân tích sản phẩm của chúng tôi đặt tại EU, nên PostHog nhận được địa chỉ IP của máy Mac của bạn và suy ra vị trí gần đúng từ địa chỉ đó. Các phiên bản trước đó và ứng dụng cho iPhone và iPad gửi báo cáo sử dụng tới máy chủ của chúng tôi, và máy chủ chuyển báo cáo sang PostHog, không kèm địa chỉ IP. Tài khoản của bạn giữ nhật ký các thay đổi trên tài khoản, như các lần đăng nhập và thiết bị mới, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi.
 - Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép. Mọi trang cũng tải chat trực tuyến của chúng tôi, Crisp, và Crisp đặt cookie riêng của mình.
 - Trang tài khoản tại account.tablepro.app không tải script phân tích nào. Trang này đặt một cookie để giữ đăng nhập, và trong phần Cài đặt bạn có thể tải về dữ liệu tài khoản hoặc xóa tài khoản.
 - Việc mua license do {merchant}, merchant of record của chúng tôi, thực hiện.
@@ -23,11 +23,23 @@ Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad,
 
 ## TablePro cho Mac {#mac-app}
 
-### Báo cáo sử dụng {#mac-usage-report}
+### Dữ liệu sử dụng {#mac-usage-report}
 
-Ứng dụng cho Mac gửi một báo cáo sử dụng tới `api.tablepro.app` khoảng mười giây sau khi khởi động, rồi mỗi ngày một lần khi ứng dụng đang chạy. **Tính năng này bật sẵn, và ứng dụng không hỏi bạn trước khi gửi báo cáo đầu tiên.** Để tắt, mở **Cài đặt > Tổng quát > Quyền riêng tư** (Settings > General > Privacy) và bỏ chọn **Chia sẻ dữ liệu sử dụng ẩn danh** (Share anonymous usage data).
+Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, dịch vụ phân tích sản phẩm của chúng tôi, tại `eu.i.posthog.com` ở EU. **Tính năng này bật sẵn, và ứng dụng không hỏi bạn trước khi gửi sự kiện đầu tiên.** Để tắt, mở **Cài đặt > Tổng quát > Quyền riêng tư** (Settings > General > Privacy) và bỏ chọn **Chia sẻ dữ liệu sử dụng** (Share usage data). Khi tùy chọn này tắt, ứng dụng không gửi gì cho PostHog, và nếu ứng dụng khởi động lúc tùy chọn đang tắt, thư viện của PostHog hoàn toàn không được khởi chạy.
 
-Một báo cáo gồm:
+Ứng dụng gửi một sự kiện:
+
+- mỗi ngày một lần khi đang chạy, kèm tên các loại cơ sở dữ liệu của những connection bạn đang mở (ví dụ "PostgreSQL") và số connection đang mở;
+- khi bạn thử kết nối lần đầu và khi kết nối thành công lần đầu, mỗi sự kiện kèm loại cơ sở dữ liệu, và khi bạn chạy query đầu tiên;
+- khi ứng dụng báo một tính năng trả phí không dùng được, mỗi tính năng một lần trong mỗi lần chạy ứng dụng, kèm tên tính năng và lý do, chẳng hạn bạn chưa đăng nhập;
+- khi bạn bấm nâng cấp, kèm nơi trong ứng dụng mà bạn bấm;
+- khi bạn đăng nhập, kèm cách đăng nhập (trong ứng dụng, bằng license key, hoặc bằng việc đổi key đã có trên máy Mac), và khi bạn đăng xuất.
+
+Thư viện của PostHog thêm vào mọi sự kiện model máy Mac, kích thước màn hình, múi giờ và ngôn ngữ của máy, máy có đang dùng Wi-Fi hay không, phiên bản, số build và bundle ID của ứng dụng, phiên bản macOS, phiên bản của thư viện và một mã phiên ngẫu nhiên. PostHog nhận địa chỉ IP của máy Mac của bạn trong mỗi request và suy ra vị trí gần đúng từ địa chỉ đó, chẳng hạn quốc gia và thành phố. Khi tùy chọn này bật, thư viện còn lấy cấu hình và feature flag từ PostHog (`/config` và `/flags`).
+
+Trước khi bạn đăng nhập, các sự kiện mang một mã ngẫu nhiên do thư viện tạo trên máy Mac của bạn, và PostHog không tạo hồ sơ cá nhân nào cho mã đó. Khi bạn đăng nhập, các sự kiện mang mã tài khoản của bạn, và hồ sơ của tài khoản đó trên PostHog lưu phiên bản ứng dụng và macOS, kiến trúc bộ xử lý và ngôn ngữ của ứng dụng. Nhờ đó các lần cài đặt được nối với các lần đăng nhập và mua hàng của bạn. Đăng xuất sẽ tạo một mã ngẫu nhiên mới. Ứng dụng không còn gửi mã máy, trạng thái kích hoạt license hay cài đặt cập nhật của bạn.
+
+Các phiên bản trước khi có tài khoản TablePro thì gửi báo cáo sử dụng tới `api.tablepro.app`, theo cùng tùy chọn, khoảng mười giây sau khi khởi động, rồi mỗi ngày một lần khi đang chạy. Một báo cáo gồm:
 
 - mã máy (machine ID): giá trị băm SHA-256 của UUID phần cứng máy Mac (bản thân UUID không bao giờ được gửi đi);
 - nền tảng, phiên bản ứng dụng, phiên bản macOS, kiến trúc bộ xử lý và ngôn ngữ của ứng dụng;
@@ -36,11 +48,9 @@ Một báo cáo gồm:
 - ngày giờ bạn thử kết nối lần đầu và ngày giờ kết nối thành công lần đầu;
 - cài đặt cập nhật của bạn (cách cài bản cập nhật và tần suất kiểm tra). Máy chủ của chúng tôi bỏ các thông tin này ngay khi nhận báo cáo.
 
-Báo cáo không bao giờ chứa hostname, username, mật khẩu, query hay dữ liệu trong các dòng.
+Cả sự kiện lẫn báo cáo đều không bao giờ chứa hostname, username, mật khẩu, query hay dữ liệu trong các dòng.
 
 Máy chủ của chúng tôi không lưu báo cáo, cũng không lưu địa chỉ IP gửi báo cáo. Máy chủ chuyển báo cáo sang PostHog dưới dạng một sự kiện về mã máy, kèm quốc gia mà Cloudflare cho biết cho kết nối của bạn, không kèm license key hay địa chỉ IP của bạn, và PostHog không tạo hồ sơ cá nhân nào từ đó. Vì tài khoản của bạn ghi các thiết bị theo cùng mã máy, báo cáo từ một máy Mac mà bạn đã đăng nhập hoặc kích hoạt license có thể được liên kết với tài khoản của bạn.
-
-Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, theo cùng tùy chọn. Khi đó PostHog nhận được địa chỉ IP của máy Mac của bạn. Khi bạn đăng nhập, ứng dụng liên kết dữ liệu đó với mã tài khoản của bạn, qua đó nối các lần cài đặt với các lần đăng nhập và mua hàng của bạn. Tắt tùy chọn này sẽ dừng cả hai.
 
 ### Kiểm tra license {#mac-license}
 
@@ -93,11 +103,11 @@ GitHub nhận địa chỉ IP của bạn qua các yêu cầu này. Tuyên bố 
 
 ### Dữ liệu nằm lại trên máy Mac {#mac-local}
 
-Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Các phiên bản trước khi có tài khoản TablePro không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba. Từ phiên bản có tài khoản TablePro, ứng dụng có thư viện của PostHog, dùng để gửi dữ liệu sử dụng nêu ở trên.
+Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Các phiên bản trước khi có tài khoản TablePro không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba. Từ phiên bản có tài khoản TablePro, ứng dụng có thư viện của PostHog, dùng để gửi dữ liệu sử dụng nêu ở trên. Thư viện này có công cụ báo lỗi (crash reporter) của PostHog, nhưng ứng dụng luôn để nó tắt, nên không gửi báo cáo lỗi nào. Thư viện lưu mã ngẫu nhiên, cấu hình và các sự kiện chưa gửi của nó trong các tệp dưới `~/Library/Application Support/com.TablePro`.
 
 ## TablePro cho iPhone và iPad {#ios-app}
 
-**Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng** (Share Usage Data), khi ứng dụng khởi động lần đầu hoặc sau đó trong **Cài đặt > Quyền riêng tư** (Settings > Privacy). Nếu bạn bật, ứng dụng gửi một báo cáo mỗi ngày tới cùng máy chủ với ứng dụng cho Mac, và máy chủ của chúng tôi chuyển báo cáo sang PostHog theo cùng cách, không kèm địa chỉ IP. Báo cáo gồm giá trị băm SHA-256 của mã định danh mà Apple cấp cho ứng dụng trên thiết bị của bạn, nền tảng, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, tên các loại cơ sở dữ liệu của những connection bạn đang mở, số connection đang mở, và ngày giờ bạn thử kết nối lần đầu, kết nối thành công lần đầu và chạy query đầu tiên. Báo cáo không có cài đặt cập nhật và luôn ghi là chưa kích hoạt license nào, vì ứng dụng không có cả hai.
+**Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng** (Share Usage Data), khi ứng dụng khởi động lần đầu hoặc sau đó trong **Cài đặt > Quyền riêng tư** (Settings > Privacy). Nếu bạn bật, ứng dụng gửi một báo cáo mỗi ngày tới cùng máy chủ với các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro, và máy chủ của chúng tôi chuyển báo cáo sang PostHog theo cùng cách, không kèm địa chỉ IP. Báo cáo gồm giá trị băm SHA-256 của mã định danh mà Apple cấp cho ứng dụng trên thiết bị của bạn, nền tảng, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, tên các loại cơ sở dữ liệu của những connection bạn đang mở, số connection đang mở, và ngày giờ bạn thử kết nối lần đầu, kết nối thành công lần đầu và chạy query đầu tiên. Báo cáo không có cài đặt cập nhật và luôn ghi là chưa kích hoạt license nào, vì ứng dụng không có cả hai.
 
 Ứng dụng không kiểm tra license, không kiểm tra cập nhật và không gửi yêu cầu nào về plugin. Ngoài báo cáo tùy chọn nói trên, ứng dụng chỉ kết nối tới cơ sở dữ liệu và máy chủ SSH của bạn, tới iCloud của Apple nếu bạn bật iCloud Sync, và tới Microsoft khi một connection SQL Server đăng nhập bằng Microsoft Entra ID.
 
@@ -191,7 +201,7 @@ Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích 
 Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, tài khoản của bạn cùng các cách đăng nhập và thiết bị, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc phân tích báo cáo trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ web và báo cáo lỗi của trang tài khoản, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
+- **Lợi ích hợp pháp** (Điều 6(1)(f)): dữ liệu sử dụng của ứng dụng cho Mac và việc phân tích dữ liệu đó trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ web và báo cáo lỗi của trang tài khoản, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
 - **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 

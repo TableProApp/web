@@ -1,18 +1,18 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-28"
+updatedAt: "2026-10-30"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
 
 ## Ringkasan {#summary}
 
-- Aplikasi Mac mengirim laporan penggunaan ke TablePro sekali sehari. Fitur ini aktif secara bawaan dan dapat Anda nonaktifkan. Aplikasi iPhone dan iPad hanya mengirim laporan jika Anda mengaktifkannya.
+- Aplikasi Mac mengirim data penggunaan. Fitur ini aktif secara bawaan dan dapat Anda nonaktifkan. Aplikasi iPhone dan iPad hanya mengirim laporan penggunaan jika Anda mengaktifkannya.
 - Jika Anda masuk ke akun TablePro atau mengaktifkan kunci lisensi, aplikasi Mac mendaftarkan Mac Anda di server kami, termasuk namanya, dan memeriksa paket Anda secara berkala.
 - Kueri yang Anda jalankan, hasilnya, dan kata sandi Anda tidak dikirim ke TablePro. Pengecualiannya adalah data yang Anda pilih untuk dipublikasikan ke Team Library: pengaturan koneksi (tanpa kata sandi) dan kueri tersimpan.
 - Permintaan AI dikirim langsung dari aplikasi Mac ke penyedia AI yang Anda konfigurasikan, bukan kepada kami.
-- Server kami meneruskan laporan penggunaan ke PostHog, layanan analitik produk kami di UE, tanpa alamat IP-nya. Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirimnya langsung ke PostHog, yang kemudian menerima alamat IP Mac Anda. Akun Anda menyimpan log perubahan yang dibuat padanya, seperti proses masuk dan perangkat baru, beserta alamat IP dan browser dari permintaan yang membuat setiap perubahan.
+- Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data penggunaannya langsung ke PostHog, layanan analitik produk kami di UE, yang kemudian menerima alamat IP Mac Anda dan memperkirakan lokasi kasar darinya. Versi sebelumnya serta aplikasi iPhone dan iPad mengirim laporan penggunaan ke server kami, yang meneruskannya ke PostHog tanpa alamat IP-nya. Akun Anda menyimpan log perubahan yang dibuat padanya, seperti proses masuk dan perangkat baru, beserta alamat IP dan browser dari permintaan yang membuat setiap perubahan.
 - Situs web menghitung tampilan halaman menggunakan Cloudflare Web Analytics, yang tidak memasang cookie. Situs juga memuat Google Analytics, yang hanya memasang cookie jika Anda mengizinkannya. Setiap halaman juga memuat layanan chat langsung kami, Crisp, yang memasang cookie sendiri.
 - Portal akun di account.tablepro.app tidak memuat skrip analitik apa pun. Portal menetapkan satu cookie agar Anda tetap masuk, dan di Pengaturannya Anda dapat mengunduh data akun atau menghapus akun.
 - Pembelian dijual oleh {merchant}, merchant of record kami.
@@ -23,11 +23,23 @@ Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs
 
 ## TablePro untuk Mac {#mac-app}
 
-### Laporan penggunaan {#mac-usage-report}
+### Data penggunaan {#mac-usage-report}
 
-Aplikasi Mac mengirim laporan penggunaan ke `api.tablepro.app` sekitar sepuluh detik setelah dimulai, lalu sekali sehari selama aplikasi berjalan. **Fitur ini aktif secara bawaan, dan aplikasi tidak meminta izin sebelum mengirim laporan pertama.** Untuk menonaktifkannya, buka **Settings > General > Privacy** dan hapus centang **Share anonymous usage data**.
+Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data penggunaan langsung ke PostHog, layanan analitik produk kami, di `eu.i.posthog.com` di UE. **Fitur ini aktif secara bawaan, dan aplikasi tidak meminta izin sebelum mengirim peristiwa pertama.** Untuk menonaktifkannya, buka **Settings > General > Privacy** dan hapus centang **Share usage data**. Selama pengaturan itu nonaktif, aplikasi tidak mengirim apa pun ke PostHog, dan jika aplikasi dimulai saat pengaturan itu nonaktif, pustaka PostHog sama sekali tidak dijalankan.
 
-Laporan berisi:
+Aplikasi mengirim peristiwa:
+
+- sekali sehari selama aplikasi berjalan, beserta nama jenis database dari koneksi yang sedang terbuka (misalnya "PostgreSQL") dan jumlah koneksi yang terbuka;
+- untuk percobaan koneksi pertama dan koneksi pertama yang berhasil, masing-masing beserta jenis database-nya, dan untuk kueri pertama Anda;
+- saat aplikasi menunjukkan bahwa fitur berbayar tidak tersedia, sekali per fitur setiap kali aplikasi dijalankan, beserta fitur dan alasannya, misalnya Anda belum masuk;
+- saat Anda mengklik untuk upgrade, beserta tempat di aplikasi yang Anda klik;
+- saat Anda masuk, beserta caranya (di aplikasi, dengan kunci lisensi, atau dengan menukar kunci yang sudah ada di Mac Anda), dan saat Anda keluar.
+
+Pustaka PostHog menambahkan ke setiap peristiwa model Mac Anda, ukuran layar, zona waktu dan bahasa, apakah Mac terhubung lewat Wi-Fi, versi, build, dan bundle ID aplikasi, versi macOS, versi pustaka, serta ID sesi acak. PostHog menerima alamat IP Mac Anda pada setiap permintaan dan memperkirakan lokasi kasar darinya, seperti negara dan kota. Selama pengaturan itu aktif, pustaka juga mengambil pengaturan dan feature flag-nya dari PostHog (`/config` dan `/flags`).
+
+Sebelum Anda masuk, peristiwa membawa ID acak yang dibuat pustaka di Mac Anda, dan PostHog tidak membuat profil orang untuk ID itu. Setelah Anda masuk, peristiwa membawa ID akun Anda, dan profil akun itu di PostHog menyimpan versi aplikasi dan macOS, arsitektur prosesor, dan bahasa aplikasi. Ini mengaitkan instalasi Anda dengan proses masuk dan pembelian Anda. Keluar dari akun memulai ID acak baru. Aplikasi tidak lagi mengirim ID mesin, status aktivasi lisensi, atau pengaturan pembaruan Anda.
+
+Versi sebelum akun TablePro mengirim laporan penggunaan ke `api.tablepro.app` sebagai gantinya, dengan pengaturan yang sama, sekitar sepuluh detik setelah dimulai, lalu sekali sehari selama aplikasi berjalan. Laporan berisi:
 
 - ID mesin: hash SHA-256 dari UUID perangkat keras Mac Anda (UUID itu sendiri tidak pernah dikirim);
 - platform, versi aplikasi, versi macOS, arsitektur prosesor, dan bahasa aplikasi;
@@ -36,11 +48,9 @@ Laporan berisi:
 - tanggal dan waktu percobaan koneksi pertama serta koneksi pertama yang berhasil;
 - pengaturan pembaruan Anda (cara pembaruan dipasang dan frekuensi pemeriksaan aplikasi). Server kami membuang data ini saat laporan diterima.
 
-Laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris data.
+Baik peristiwa maupun laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris data.
 
 Server kami tidak menyimpan laporan maupun alamat IP asalnya. Server meneruskan laporan ke PostHog sebagai peristiwa tentang ID mesin, beserta negara yang diberikan Cloudflare untuk koneksi Anda, tanpa kunci lisensi atau alamat IP Anda, dan PostHog tidak membuat profil orang darinya. Karena akun Anda mencatat perangkatnya dengan ID mesin yang sama, laporan dari Mac tempat Anda masuk atau mengaktifkan lisensi dapat dihubungkan ke akun Anda.
-
-Mulai versi yang menghadirkan akun TablePro, aplikasi Mac mengirim data penggunaannya langsung ke PostHog, dengan pengaturan yang sama. PostHog kemudian menerima alamat IP Mac Anda. Setelah Anda masuk, aplikasi menghubungkan data itu ke ID akun Anda, yang mengaitkan instalasi Anda dengan proses masuk dan pembelian Anda. Mematikan pengaturan itu menghentikan keduanya.
 
 ### Pemeriksaan lisensi {#mac-license}
 
@@ -93,11 +103,11 @@ Aplikasi Mac hanya mengirim data ke layanan berikut saat Anda mengonfigurasikann
 
 ### Data yang tetap berada di Mac Anda {#mac-local}
 
-Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Versi sebelum akun TablePro tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga. Mulai versi yang menghadirkan akun TablePro, aplikasi menyertakan pustaka PostHog, yang mengirim data penggunaan yang dijelaskan di atas.
+Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Versi sebelum akun TablePro tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga. Mulai versi yang menghadirkan akun TablePro, aplikasi menyertakan pustaka PostHog, yang mengirim data penggunaan yang dijelaskan di atas. Pustaka itu berisi pelapor kerusakan PostHog, yang dibiarkan nonaktif oleh aplikasi, sehingga tidak ada laporan kerusakan yang dikirim. Pustaka menyimpan ID acaknya, pengaturannya, dan peristiwa yang belum terkirim dalam file di bawah `~/Library/Application Support/com.TablePro`.
 
 ## TablePro untuk iPhone dan iPad {#ios-app}
 
-**Tidak ada data yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data**, saat aplikasi pertama kali dimulai atau kemudian di **Settings > Privacy**. Jika diaktifkan, aplikasi mengirim laporan sekali sehari ke server yang sama dengan aplikasi Mac, dan server kami meneruskannya ke PostHog dengan cara yang sama, tanpa alamat IP-nya. Laporan berisi hash SHA-256 dari pengenal yang diberikan Apple kepada aplikasi di perangkat Anda, platform, versi aplikasi dan iOS, arsitektur prosesor, bahasa aplikasi, nama jenis database dari koneksi yang sedang terbuka, jumlah koneksi yang terbuka, serta tanggal dan waktu percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama. Laporan tidak berisi pengaturan pembaruan dan selalu menyatakan tidak ada lisensi yang diaktifkan karena aplikasi tidak memiliki keduanya.
+**Tidak ada data yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data**, saat aplikasi pertama kali dimulai atau kemudian di **Settings > Privacy**. Jika diaktifkan, aplikasi mengirim laporan sekali sehari ke server yang sama dengan versi aplikasi Mac sebelum akun TablePro, dan server kami meneruskannya ke PostHog dengan cara yang sama, tanpa alamat IP-nya. Laporan berisi hash SHA-256 dari pengenal yang diberikan Apple kepada aplikasi di perangkat Anda, platform, versi aplikasi dan iOS, arsitektur prosesor, bahasa aplikasi, nama jenis database dari koneksi yang sedang terbuka, jumlah koneksi yang terbuka, serta tanggal dan waktu percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama. Laporan tidak berisi pengaturan pembaruan dan selalu menyatakan tidak ada lisensi yang diaktifkan karena aplikasi tidak memiliki keduanya.
 
 Aplikasi tidak melakukan pemeriksaan lisensi, pemeriksaan pembaruan, atau permintaan plugin. Selain laporan opsional tersebut, aplikasi hanya terhubung ke database dan server SSH Anda, iCloud Apple jika Anda mengaktifkan iCloud Sync, serta Microsoft saat koneksi SQL Server masuk menggunakan Microsoft Entra ID.
 
@@ -191,7 +201,7 @@ Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengatura
 Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan GDPR dan UK GDPR adalah:
 
 - **Kontrak** (Art. 6(1)(b)): penjualan dan penyediaan lisensi, akun Anda beserta metode masuk dan perangkatnya, pemeriksaan lisensi, portal akun, dan Team Library.
-- **Kepentingan yang sah** (Art. 6(1)(f)): laporan penggunaan aplikasi Mac dan analisisnya di PostHog, peristiwa tentang proses masuk, pembelian, perangkat, dan tim yang dikirim server kami ke PostHog, log audit akun, keamanan dan pencegahan penyalahgunaan, termasuk Cloudflare Turnstile pada formulir buletin, log server web dan laporan error portal akun, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
+- **Kepentingan yang sah** (Art. 6(1)(f)): data penggunaan aplikasi Mac dan analisisnya di PostHog, peristiwa tentang proses masuk, pembelian, perangkat, dan tim yang dikirim server kami ke PostHog, log audit akun, keamanan dan pencegahan penyalahgunaan, termasuk Cloudflare Turnstile pada formulir buletin, log server web dan laporan error portal akun, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
 - **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
 - **Kewajiban hukum** (Art. 6(1)(c)): catatan pajak dan akuntansi, serta jawaban atas permintaan yang sah menurut hukum.
 

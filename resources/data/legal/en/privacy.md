@@ -1,18 +1,18 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-28"
+updatedAt: "2026-10-30"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
 
 ## Summary {#summary}
 
-- The Mac app sends TablePro a usage report once a day. It is on by default and you can turn it off. The iPhone and iPad app sends one only if you turn it on.
+- The Mac app sends usage data. It is on by default and you can turn it off. The iPhone and iPad app sends a usage report only if you turn it on.
 - If you sign in to a TablePro account or activate a license key, the Mac app registers your Mac with our server, including its name, and checks your plan with it regularly.
 - The queries you run, your results and your passwords are not sent to TablePro. The exception is what you choose to publish to a Team Library: connection settings (never passwords) and saved queries.
 - AI requests go from the Mac app directly to the AI provider you set up, not to us.
-- Our server passes usage reports on to PostHog, our product analytics service in the EU, without their IP addresses. From the version that adds TablePro accounts, the Mac app sends them to PostHog directly, which then receives your Mac's IP address. Your account keeps a log of the changes made to it, such as sign-ins and new devices, with the IP address and browser each came from.
+- From the version that adds TablePro accounts, the Mac app sends its usage data straight to PostHog, our product analytics service in the EU, which then receives your Mac's IP address and works out an approximate location from it. Earlier versions and the iPhone and iPad app send usage reports to our server, which passes them on to PostHog without their IP addresses. Your account keeps a log of the changes made to it, such as sign-ins and new devices, with the IP address and browser each came from.
 - The website counts page views with Cloudflare Web Analytics, which sets no cookies. It also loads Google Analytics, which sets cookies only if you allow them. Every page also loads our live chat, Crisp, which sets cookies of its own.
 - The account portal at account.tablepro.app runs no analytics script. It sets one cookie to keep you signed in, and in its Settings you can download your account's data or delete the account.
 - Purchases are sold by {merchant}, our merchant of record.
@@ -23,11 +23,23 @@ This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website a
 
 ## TablePro for Mac {#mac-app}
 
-### Usage report {#mac-usage-report}
+### Usage data {#mac-usage-report}
 
-The Mac app sends a usage report to `api.tablepro.app` about ten seconds after it starts and then once a day while it runs. **It is on by default, and the app does not ask before sending the first one.** To turn it off, open **Settings > General > Privacy** and clear **Share anonymous usage data**.
+From the version that adds TablePro accounts, the Mac app sends usage data straight to PostHog, our product analytics service, at `eu.i.posthog.com` in the EU. **It is on by default, and the app does not ask before sending the first event.** To turn it off, open **Settings > General > Privacy** and clear **Share usage data**. While it is off, the app sends PostHog nothing, and if the app starts with it off, it does not start PostHog's library at all.
 
-A report contains:
+The app sends an event:
+
+- once a day while it runs, with the names of the database types of your open connections (for example "PostgreSQL") and how many connections are open;
+- for your first connection attempt and your first successful connection, each with its database type, and for your first query;
+- when it shows you that a paid feature is not available, once per feature each time the app runs, with the feature and the reason, such as not being signed in;
+- when you click to upgrade, with where in the app you clicked;
+- when you sign in, with how (in the app, with a license key, or by exchanging the key already on your Mac), and when you sign out.
+
+PostHog's library adds to every event your Mac's model, screen size, time zone and language, whether it is on Wi-Fi, the app's version, build and bundle ID, the macOS version, the library's version and a random session ID. PostHog receives your Mac's IP address with each request and works out an approximate location from it, such as the country and city. While the setting is on, the library also fetches its settings and feature flags from PostHog (`/config` and `/flags`).
+
+Before you sign in, the events carry a random ID that the library makes on your Mac, and PostHog makes no profile of a person for it. Once you sign in, they carry your account ID instead, and PostHog's profile of that account holds the app and macOS versions, the processor architecture and the app's language. This links your installs with your sign-ins and purchases. Signing out starts a new random ID. The app no longer sends a machine ID, whether a license is activated, or your update settings.
+
+Versions before TablePro accounts send a usage report to `api.tablepro.app` instead, under the same setting, about ten seconds after they start and then once a day while they run. A report contains:
 
 - a machine ID: a SHA-256 hash of your Mac's hardware UUID (the UUID itself is never sent);
 - the platform, the app version, the macOS version, the processor architecture and the app's language;
@@ -36,11 +48,9 @@ A report contains:
 - the date and time of your first connection attempt and of your first successful connection;
 - your update settings (how updates install and how often the app checks). Our server discards these when the report arrives.
 
-It never contains hostnames, usernames, passwords, queries or rows.
+Neither the events nor the reports contain hostnames, usernames, passwords, queries or rows.
 
 Our server does not store the report or the IP address it came from. It passes the report on to PostHog as an event about the machine ID, with the country Cloudflare gives for your connection and without your license key or IP address, and PostHog makes no profile of a person from it. Because your account lists its devices by the same machine ID, reports from a Mac you signed in on, or activated a license on, can be linked to your account.
-
-From the version that adds TablePro accounts, the Mac app sends its usage data to PostHog directly instead, under the same setting. PostHog then receives your Mac's IP address with it. Once you sign in, it links that data to your account ID, which connects your installs with your sign-ins and purchases. Turning the setting off stops both.
 
 ### License checks {#mac-license}
 
@@ -93,11 +103,11 @@ The Mac app sends data to these services only when you set them up, and directly
 
 ### Data that stays on your Mac {#mac-local}
 
-Passwords are kept in the macOS Keychain. Your connection list, query history, Query Insights, Data Rewind snapshots, settings and open tabs are stored on your Mac. The app references SSH keys where they are on disk and does not copy them. Versions before TablePro accounts contain no crash reporter and no third-party analytics library. From the version that adds TablePro accounts, the app includes PostHog's library, which sends the usage data described above.
+Passwords are kept in the macOS Keychain. Your connection list, query history, Query Insights, Data Rewind snapshots, settings and open tabs are stored on your Mac. The app references SSH keys where they are on disk and does not copy them. Versions before TablePro accounts contain no crash reporter and no third-party analytics library. From the version that adds TablePro accounts, the app includes PostHog's library, which sends the usage data described above. The library contains PostHog's crash reporter, which the app leaves turned off, so it sends no crash reports. The library keeps its random ID, its settings and any events not sent yet in files under `~/Library/Application Support/com.TablePro`.
 
 ## TablePro for iPhone and iPad {#ios-app}
 
-**Nothing goes to TablePro unless you turn on Share Usage Data**, when the app first starts or later in **Settings > Privacy**. If you do, the app sends a report once a day to the same server as the Mac app, which passes it on to PostHog in the same way, without its IP address. The report contains a SHA-256 hash of the identifier Apple gives the app on your device, the platform, the app and iOS versions, the processor architecture, the app's language, the names of the database types of your open connections, how many are open, and the date and time of your first connection attempt, your first successful connection and your first query. It carries no update settings and always reports that no license is activated, because the app has neither.
+**Nothing goes to TablePro unless you turn on Share Usage Data**, when the app first starts or later in **Settings > Privacy**. If you do, the app sends a report once a day to the same server as Mac versions before TablePro accounts, which passes it on to PostHog in the same way, without its IP address. The report contains a SHA-256 hash of the identifier Apple gives the app on your device, the platform, the app and iOS versions, the processor architecture, the app's language, the names of the database types of your open connections, how many are open, and the date and time of your first connection attempt, your first successful connection and your first query. It carries no update settings and always reports that no license is activated, because the app has neither.
 
 The app makes no license check, no update check and no plugin request. Apart from the optional report, it connects only to your databases and SSH servers, to Apple's iCloud if you turn on iCloud Sync, and to Microsoft when a SQL Server connection signs in with Microsoft Entra ID.
 
@@ -191,7 +201,7 @@ You can change or withdraw your analytics answer at any time with **Cookie setti
 For readers in the European Economic Area and the United Kingdom, the lawful bases under the GDPR and the UK GDPR are:
 
 - **Contract** (Art. 6(1)(b)): selling and providing a license, your account with its sign-in methods and devices, license checks, the account portal and the Team Library.
-- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage report and its analysis in PostHog, the events about sign-ins, purchases, devices and teams our server sends to PostHog, the account's audit log, security and abuse prevention, including Cloudflare Turnstile on the newsletter form, web server logs and the account portal's error reports, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
+- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage data and its analysis in PostHog, the events about sign-ins, purchases, devices and teams our server sends to PostHog, the account's audit log, security and abuse prevention, including Cloudflare Turnstile on the newsletter form, web server logs and the account portal's error reports, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
 - **Consent** (Art. 6(1)(a)): Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and the conversations you start in live chat.
 - **Legal obligation** (Art. 6(1)(c)): tax and accounting records, and answers to lawful requests.
 
