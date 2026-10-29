@@ -55,7 +55,17 @@ tracks them.
 Never write an amount, a tier per sponsor, a private sponsor or the report itself into the
 repository: it is public. The report stays in the session.
 
-## 3. Ship
+## 3. The README
+
+TablePro's README (TableProApp/TablePro) shows the same sponsors from `.github/assets/sponsors/`.
+Regenerate those files from `public/images/sponsors` and update the README's Sponsors section in a
+PR there, after this one deploys:
+
+```bash
+python3 .claude/skills/sponsors/scripts/readme_tiles.py ../TablePro/.github/assets/sponsors
+```
+
+## 4. Ship
 
 ```bash
 php artisan test --compact --filter='Sponsors|HomepageRender'
