@@ -169,7 +169,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 **您的資料**。在設定中，您可以變更姓名、電子郵件地址和語言，新增和移除登入方式，以 JSON 檔案下載帳戶資料，以及刪除帳戶。當您是仍有其他成員的團隊的擁有者時，無法刪除帳戶。刪除帳戶會移除您的登入方式、裝置、授權、團隊成員身分以及只有您一人的團隊，並終止您的訂閱且不退款。刪除後保留的內容請參閱[資料保留期限](#retention)。
 
-**入口網站載入的內容**。入口網站不載入 Google Analytics、Cloudflare Web Analytics 或任何其他分析指令碼，也不詢問 Cookie 設定。入口網站顯示[網站](#website)一節所述的 Crisp 線上聊天；在入口網站中購買時，{merchant} 的結帳頁面會在網頁上方開啟。入口網站透過 Grafana Faro 向 Grafana Cloud 回報錯誤和載入時間：錯誤本身、出錯的畫面（從不傳送完整網址，因為其中可能包含連結的權杖）、您的瀏覽器和作業系統，以及您此次造訪的隨機 ID。
+**入口網站載入的內容**。入口網站不載入 Google Analytics、Cloudflare Web Analytics 或任何其他分析指令碼，也不詢問 Cookie 設定。入口網站顯示[網站](#website)一節所述的 Crisp 線上聊天；在入口網站中購買時，{merchant} 的結帳頁面會在網頁上方開啟。
 
 ## 電子報 {#newsletter}
 
@@ -190,7 +190,6 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
 - **`__Host-tp_session`**（帳戶入口網站 Cookie，自登入起 30 天）：保持登入狀態。登入前，僅在透過通行密鑰、Apple、GitHub、Google 或 App 登入的過程中設定，最長 10 分鐘。登出會刪除它。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，也從不會收到它。合法依據：絕對必要。
 - **`locale`、`context` 和 `sign-in-return-to`**（帳戶入口網站本機儲存空間）：登入前在入口網站中選擇的語言、最近開啟的是個人還是某個團隊（兩者均保存至您清除為止），以及開啟郵件中的登入連結後要返回的頁面（15 分鐘）。合法依據：正當利益。
-- **`com.grafana.faro.session`**（帳戶入口網站工作階段儲存空間，直至您關閉分頁）：入口網站錯誤報告所用的隨機造訪 ID。合法依據：正當利益。
 
 您可隨時透過每頁頁尾的 **Cookie 設定**或以下入口變更、撤回分析回答：
 
@@ -201,7 +200,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 對於歐洲經濟區和英國的讀者，GDPR 與 UK GDPR 下的合法依據為：
 
 - **契約**（第 6 條第 1 款 (b)）：授權銷售和提供、您的帳戶及其登入方式和裝置、授權驗證、帳戶入口網站和 Team Library。
-- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用資料及其在 PostHog 中的分析、我們的伺服器傳送給 PostHog 的關於登入、購買、裝置和團隊的事件、帳戶稽核日誌、安全和濫用防範（包括電子報表單上的 Cloudflare Turnstile）、網頁伺服器日誌和帳戶入口網站錯誤報告、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
+- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用資料及其在 PostHog 中的分析、我們的伺服器傳送給 PostHog 的關於登入、購買、裝置和團隊的事件、帳戶稽核日誌、安全和濫用防範（包括電子報表單上的 Cloudflare Turnstile）、伺服器日誌、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
 - **同意**（第 6 條第 1 款 (a)）：Google Analytics Cookie、iPhone 與 iPad App 使用報告、電子報和您主動發起的線上聊天。
 - **法律義務**（第 6 條第 1 款 (c)）：稅務與會計紀錄，以及對合法請求的回應。
 
@@ -215,7 +214,6 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **Google**：網站和文件中的 Google Analytics。
 - **Crisp**：網站和帳戶入口網站每個網頁的線上聊天。
 - **PostHog**（EU Cloud）：我們的產品分析服務，接收 App 的使用報告，以及我們的伺服器關於登入、購買、裝置和團隊的事件，附帶您的帳戶 ID，但從不包含您的電子郵件地址或姓名。Mac App 直接傳送的使用資料抵達 PostHog 時附帶您的 Mac 的 IP 位址。
-- **Grafana Labs**（Grafana Cloud）：接收我們伺服器的日誌和追蹤資料，以及帳戶入口網站的錯誤報告。
 - **Apple、GitHub 和 Google**：在您使用它們登入帳戶時。
 - **jsDelivr**：在指標移至購買按鈕時向瀏覽器提供 {merchant} 的結帳指令碼。
 - **Mintlify**：代管位於 docs.tablepro.app 的文件。
@@ -242,8 +240,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 - **Google Analytics**：使用者層級與事件層級資料保留兩個月，即我們資源所用的 Google 預設期限。Cookie 最長保留兩年，或在拒絕時刪除。
 - **Cloudflare Web Analytics**：向我們顯示最近六個月的網頁瀏覽彙總，不在瀏覽器中保存資訊。
 - **線上聊天與支援郵件**：在 Crisp 和我們的信箱中保留至刪除。您可要求刪除對話和郵件。
-- **網頁伺服器日誌**：為安全和問題排查保留，尚未設定固定期限。
-- **我們伺服器的日誌和追蹤資料，以及入口網站錯誤報告**：在 Grafana Cloud 中保留 14 天。
+- **伺服器日誌**：我們的網頁伺服器和伺服器的日誌，為安全和問題排查保留在我們的伺服器上，尚未設定固定期限。
 
 ## 您的權利 {#rights}
 

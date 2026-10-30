@@ -169,7 +169,7 @@ Pembelian tanpa masuk tercatat di akun TablePro milik alamat email yang Anda gun
 
 **Data Anda.** Di Pengaturan Anda dapat mengubah nama, alamat email, dan bahasa, menambahkan dan menghapus metode masuk, mengunduh data akun sebagai file JSON, dan menghapus akun. Akun tidak dapat dihapus selama Anda memiliki tim yang punya anggota lain. Menghapusnya akan menghapus metode masuk, perangkat, lisensi, keanggotaan tim, dan tim yang hanya beranggotakan Anda, serta mengakhiri langganan Anda tanpa pengembalian dana. Apa yang kami simpan setelahnya dijelaskan di [Lama penyimpanan data](#retention).
 
-**Yang dimuat portal.** Portal tidak memuat Google Analytics, Cloudflare Web Analytics, atau skrip analitik lain, dan tidak mengajukan pertanyaan cookie. Portal menampilkan chat langsung dari Crisp yang dijelaskan di [Situs web](#website), dan pembelian di sana membuka pembayaran {merchant} di atas halaman. Portal melaporkan error dan waktu pemuatan ke Grafana Cloud dengan Grafana Faro: error-nya, layar tempat error terjadi (tidak pernah alamat lengkapnya, yang dapat berisi token sebuah tautan), browser dan sistem operasi Anda, serta ID acak untuk kunjungan Anda.
+**Yang dimuat portal.** Portal tidak memuat Google Analytics, Cloudflare Web Analytics, atau skrip analitik lain, dan tidak mengajukan pertanyaan cookie. Portal menampilkan chat langsung dari Crisp yang dijelaskan di [Situs web](#website), dan pembelian di sana membuka pembayaran {merchant} di atas halaman.
 
 ## Buletin {#newsletter}
 
@@ -190,7 +190,6 @@ Membaca situs publik serta permintaan newsletter, checkout, dan kode diskonnya t
 - **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah chat dimuat): mempertahankan chat dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
 - **`__Host-tp_session`** (cookie portal akun, 30 hari sejak Anda masuk): menjaga Anda tetap masuk. Sebelum Anda masuk, cookie ini hanya ditetapkan saat proses masuk dengan passkey, Apple, GitHub, Google, atau dari aplikasi sedang berlangsung, paling lama 10 menit. Keluar akan menghapusnya. Permintaan newsletter, checkout, dan kode diskon dari situs publik tidak menyertakan kredensial dan tidak pernah menerimanya. Dasar hukum: benar-benar diperlukan.
 - **`locale`, `context`, dan `sign-in-return-to`** (penyimpanan lokal portal akun): bahasa yang Anda pilih di sana sebelum masuk dan apakah terakhir Anda membuka Pribadi atau sebuah tim, keduanya sampai Anda menghapusnya, serta selama 15 menit halaman tujuan setelah Anda membuka tautan masuk dari email. Dasar hukum: kepentingan yang sah.
-- **`com.grafana.faro.session`** (penyimpanan sesi portal akun, sampai Anda menutup tab): ID kunjungan acak dalam laporan error portal. Dasar hukum: kepentingan yang sah.
 
 Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengaturan cookie** di footer setiap halaman, atau di sini:
 
@@ -201,7 +200,7 @@ Anda dapat mengubah atau menarik jawaban analitik kapan saja melalui **Pengatura
 Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan GDPR dan UK GDPR adalah:
 
 - **Kontrak** (Art. 6(1)(b)): penjualan dan penyediaan lisensi, akun Anda beserta metode masuk dan perangkatnya, pemeriksaan lisensi, portal akun, dan Team Library.
-- **Kepentingan yang sah** (Art. 6(1)(f)): data penggunaan aplikasi Mac dan analisisnya di PostHog, peristiwa tentang proses masuk, pembelian, perangkat, dan tim yang dikirim server kami ke PostHog, log audit akun, keamanan dan pencegahan penyalahgunaan, termasuk Cloudflare Turnstile pada formulir buletin, log server web dan laporan error portal akun, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
+- **Kepentingan yang sah** (Art. 6(1)(f)): data penggunaan aplikasi Mac dan analisisnya di PostHog, peristiwa tentang proses masuk, pembelian, perangkat, dan tim yang dikirim server kami ke PostHog, log audit akun, keamanan dan pencegahan penyalahgunaan, termasuk Cloudflare Turnstile pada formulir buletin, log server, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
 - **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
 - **Kewajiban hukum** (Art. 6(1)(c)): catatan pajak dan akuntansi, serta jawaban atas permintaan yang sah menurut hukum.
 
@@ -215,7 +214,6 @@ Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalan
 - **Google**, untuk Google Analytics di situs web dan dokumentasi.
 - **Crisp**, untuk chat langsung pada setiap halaman situs web dan portal akun.
 - **PostHog** (EU Cloud), layanan analitik produk kami, yang menerima laporan penggunaan aplikasi dan peristiwa server kami tentang proses masuk, pembelian, perangkat, dan tim, dengan ID akun Anda tetapi tidak pernah alamat email atau nama Anda. Data penggunaan yang dikirim aplikasi Mac secara langsung sampai ke PostHog beserta alamat IP Mac Anda.
-- **Grafana Labs** (Grafana Cloud), yang menerima log dan trace server kami serta laporan error portal akun.
 - **Apple, GitHub, dan Google**, saat Anda masuk ke akun dengan layanan tersebut.
 - **jsDelivr**, yang menyajikan skrip pembayaran {merchant} ke peramban saat Anda mengarahkan penunjuk ke tombol Beli.
 - **Mintlify**, yang menghosting dokumentasi di docs.tablepro.app.
@@ -242,8 +240,7 @@ Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses
 - **Google Analytics**: data tingkat pengguna dan tingkat peristiwa selama 2 bulan, masa retensi bawaan Google yang digunakan properti kami. Cookie bertahan hingga 2 tahun atau dihapus saat Anda menolak.
 - **Cloudflare Web Analytics**: Cloudflare menampilkan jumlah tampilan halaman selama enam bulan terakhir kepada kami. Tidak ada data yang disimpan di peramban.
 - **Chat langsung dan email dukungan**: disimpan oleh Crisp dan di kotak email kami sampai dihapus. Mintalah kepada kami untuk menghapus percakapan dan email Anda.
-- **Log server web**: disimpan untuk keamanan dan pemecahan masalah. Kami belum menetapkan masa penyimpanan tetap.
-- **Log dan trace server kami, serta laporan error portal**: 14 hari, di Grafana Cloud.
+- **Log server**: log server web kami dan log server kami, disimpan di server kami untuk keamanan dan pemecahan masalah. Kami belum menetapkan masa penyimpanan tetap.
 
 ## Hak Anda {#rights}
 

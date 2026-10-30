@@ -169,7 +169,7 @@ O [portal da conta]({account}) em account.tablepro.app é onde você gerencia su
 
 **Seus dados.** Nas configurações você pode mudar nome, email e idioma, adicionar e remover métodos de acesso, baixar os dados da sua conta em um arquivo JSON e excluir sua conta. Não é possível excluí-la enquanto você for proprietário de uma equipe com outros membros. A exclusão remove seus métodos de acesso, dispositivos, licenças, participações em equipes e as equipes que só têm você, e encerra suas assinaturas sem reembolso. O que guardamos depois está em [Por quanto tempo mantemos dados](#retention).
 
-**O que o portal carrega.** O portal não carrega Google Analytics, Cloudflare Web Analytics nem nenhum outro script de análise, e não faz pergunta sobre cookies. Ele mostra o chat ao vivo do Crisp descrito em [Site](#website), e uma compra feita nele abre o checkout de {merchant} sobre a página. Ele informa erros e tempos de carregamento ao Grafana Cloud com o Grafana Faro: o erro, a tela onde ocorreu (nunca o endereço completo, que pode conter o token de um link), seu navegador e sistema operacional, e um ID aleatório da sua visita.
+**O que o portal carrega.** O portal não carrega Google Analytics, Cloudflare Web Analytics nem nenhum outro script de análise, e não faz pergunta sobre cookies. Ele mostra o chat ao vivo do Crisp descrito em [Site](#website), e uma compra feita nele abre o checkout de {merchant} sobre a página.
 
 ## Newsletter {#newsletter}
 
@@ -190,7 +190,6 @@ Ler o site público e suas solicitações de newsletter, checkout e códigos de 
 - **Cookies que começam com `crisp-client/`** (Crisp, por exemplo `crisp-client/session/…`; 6 meses, renovados quando você volta; definidos em todas as páginas quando o chat carrega): mantêm o chat e sua conversa entre páginas e visitas. Base legal: interesse legítimo, para oferecer suporte em todas as páginas.
 - **`__Host-tp_session`** (cookie do portal da conta, 30 dias a partir do acesso): mantém sua sessão. Antes de entrar, ele só é definido enquanto um acesso por chave de acesso, Apple, GitHub, Google ou por um app está em andamento, por no máximo 10 minutos. Sair o exclui. As solicitações de newsletter, checkout e códigos de desconto do site público omitem credenciais e nunca o recebem. Base legal: estritamente necessário.
 - **`locale`, `context` e `sign-in-return-to`** (armazenamento local do portal da conta): o idioma escolhido ali antes de entrar e se você abriu por último Pessoal ou uma equipe, ambos até você limpar, e por 15 minutos a página para onde voltar depois de abrir um link de acesso recebido por email. Base legal: interesse legítimo.
-- **`com.grafana.faro.session`** (armazenamento de sessão do portal da conta, até você fechar a aba): o ID aleatório da visita nos relatórios de erros do portal. Base legal: interesse legítimo.
 
 Você pode alterar ou retirar a resposta sobre análises a qualquer momento em **Configurações de cookies**, no rodapé de todas as páginas, ou aqui:
 
@@ -201,7 +200,7 @@ Você pode alterar ou retirar a resposta sobre análises a qualquer momento em *
 Para leitores no Espaço Econômico Europeu e Reino Unido, as bases legais sob o GDPR e UK GDPR são:
 
 - **Contrato** (Art. 6(1)(b)): vender e fornecer licenças, sua conta com seus métodos de acesso e dispositivos, verificações de licença, portal da conta e Team Library.
-- **Interesse legítimo** (Art. 6(1)(f)): dados de uso do app para Mac e sua análise no PostHog, eventos sobre acessos, compras, dispositivos e equipes que nosso servidor envia ao PostHog, registro de auditoria da conta, segurança e prevenção de abuso, incluindo o Cloudflare Turnstile no formulário da newsletter, logs do servidor web e relatórios de erros do portal da conta, Cloudflare Web Analytics, registro de atribuição de compras, consulta de país para o idioma e o desconto regional, e chat ao vivo em todas as páginas.
+- **Interesse legítimo** (Art. 6(1)(f)): dados de uso do app para Mac e sua análise no PostHog, eventos sobre acessos, compras, dispositivos e equipes que nosso servidor envia ao PostHog, registro de auditoria da conta, segurança e prevenção de abuso, incluindo o Cloudflare Turnstile no formulário da newsletter, logs do servidor, Cloudflare Web Analytics, registro de atribuição de compras, consulta de país para o idioma e o desconto regional, e chat ao vivo em todas as páginas.
 - **Consentimento** (Art. 6(1)(a)): cookies Google Analytics, relatório de uso do app para iPhone e iPad, newsletter e conversas iniciadas no chat ao vivo.
 - **Obrigação legal** (Art. 6(1)(c)): registros fiscais e contábeis e respostas a solicitações legais.
 
@@ -215,7 +214,6 @@ Compartilhamos dados pessoais apenas com os serviços necessários para operar T
 - **Google**, para Google Analytics no site e na documentação.
 - **Crisp**, para chat ao vivo em todas as páginas do site e portal da conta.
 - **PostHog** (EU Cloud), nosso serviço de análise de produto, que recebe os relatórios de uso dos apps e os eventos do nosso servidor sobre acessos, compras, dispositivos e equipes, com o ID da sua conta, mas nunca seu email ou nome. Os dados de uso que o app para Mac envia diretamente chegam ao PostHog com o endereço IP do seu Mac.
-- **Grafana Labs** (Grafana Cloud), que recebe os logs e traces do nosso servidor e os relatórios de erros do portal da conta.
 - **Apple, GitHub e Google**, quando você entra na sua conta com eles.
 - **jsDelivr**, que fornece o script de checkout de {merchant} ao navegador ao apontar para um botão Comprar.
 - **Mintlify**, que hospeda a documentação em docs.tablepro.app.
@@ -242,8 +240,7 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 - **Google Analytics**: dados no nível de usuário e evento por 2 meses, o período padrão usado por nossa propriedade. Cookies duram até 2 anos ou são excluídos quando você recusa.
 - **Cloudflare Web Analytics**: Cloudflare nos mostra totais de visualizações dos últimos seis meses. Nada é armazenado no navegador.
 - **Chat ao vivo e emails de suporte**: mantidos pelo Crisp e em nossa caixa de email até serem excluídos. Solicite a exclusão das conversas e emails.
-- **Logs do servidor web**: mantidos para segurança e diagnóstico de problemas. Ainda não definimos um prazo fixo.
-- **Logs e traces do nosso servidor e relatórios de erros do portal**: 14 dias, no Grafana Cloud.
+- **Logs do servidor**: os logs do nosso servidor web e do nosso servidor, mantidos no nosso servidor para segurança e diagnóstico de problemas. Ainda não definimos um prazo fixo.
 
 ## Seus direitos {#rights}
 

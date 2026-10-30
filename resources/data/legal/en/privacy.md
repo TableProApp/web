@@ -169,7 +169,7 @@ The [account portal]({account}) at account.tablepro.app is where you manage your
 
 **Your data.** In Settings you can change your name, email address and language, add and remove sign-in methods, download your account's data as a JSON file, and delete your account. You cannot delete it while you own a team that has other members. Deleting it removes your sign-in methods, devices, licenses, team memberships and the teams you own alone, and ends your subscriptions without a refund. What we keep afterwards is under [How long we keep data](#retention).
 
-**What the portal loads.** The portal runs no Google Analytics, no Cloudflare Web Analytics and no other analytics script, and asks no cookie question. It shows the live chat from Crisp described under [Website](#website), and a purchase made there opens {merchant}'s checkout over the page. It reports errors and page-load times to Grafana Cloud with Grafana Faro: the error, which screen it happened on (never the full address, which can hold a link's token), your browser and operating system, and a random ID for your visit.
+**What the portal loads.** The portal runs no Google Analytics, no Cloudflare Web Analytics and no other analytics script, and asks no cookie question. It shows the live chat from Crisp described under [Website](#website), and a purchase made there opens {merchant}'s checkout over the page.
 
 ## Newsletter {#newsletter}
 
@@ -190,7 +190,6 @@ Reading the public website and its newsletter, checkout and discount-code reques
 - **Cookies starting with `crisp-client/`** (Crisp, for example `crisp-client/session/…`; 6 months, renewed when you return; set on every page once the chat has loaded): keep the chat and your conversation across pages and visits. Lawful basis: legitimate interest, to offer support on every page.
 - **`__Host-tp_session`** (account portal cookie, 30 days from when you sign in): keeps you signed in. Before you sign in it is set only while a passkey, Apple, GitHub, Google or app sign-in is under way, for at most 10 minutes. Signing out deletes it. Public-site newsletter, checkout and discount-code requests omit credentials and never receive it. Lawful basis: strictly necessary.
 - **`locale`, `context` and `sign-in-return-to`** (account portal local storage): the language you picked there before signing in and whether you last opened Personal or a team, both until you clear them, and for 15 minutes the page to go back to after you open an emailed sign-in link. Lawful basis: legitimate interest.
-- **`com.grafana.faro.session`** (account portal session storage, until you close the tab): the random visit ID of the portal's error reports. Lawful basis: legitimate interest.
 
 You can change or withdraw your analytics answer at any time with **Cookie settings** in the footer of every page, or here:
 
@@ -201,7 +200,7 @@ You can change or withdraw your analytics answer at any time with **Cookie setti
 For readers in the European Economic Area and the United Kingdom, the lawful bases under the GDPR and the UK GDPR are:
 
 - **Contract** (Art. 6(1)(b)): selling and providing a license, your account with its sign-in methods and devices, license checks, the account portal and the Team Library.
-- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage data and its analysis in PostHog, the events about sign-ins, purchases, devices and teams our server sends to PostHog, the account's audit log, security and abuse prevention, including Cloudflare Turnstile on the newsletter form, web server logs and the account portal's error reports, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
+- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage data and its analysis in PostHog, the events about sign-ins, purchases, devices and teams our server sends to PostHog, the account's audit log, security and abuse prevention, including Cloudflare Turnstile on the newsletter form, server logs, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
 - **Consent** (Art. 6(1)(a)): Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and the conversations you start in live chat.
 - **Legal obligation** (Art. 6(1)(c)): tax and accounting records, and answers to lawful requests.
 
@@ -215,7 +214,6 @@ We share personal data only with the services needed to run TablePro:
 - **Google**, for Google Analytics on the website and the documentation.
 - **Crisp**, for the live chat on every page of the website and the account portal.
 - **PostHog** (EU Cloud), our product analytics service, which receives the apps' usage reports and our server's events about sign-ins, purchases, devices and teams, with your account ID but never your email address or name. Usage data the Mac app sends directly reaches PostHog with your Mac's IP address.
-- **Grafana Labs** (Grafana Cloud), which receives our server's logs and traces and the account portal's error reports.
 - **Apple, GitHub and Google**, when you sign in to your account with them.
 - **jsDelivr**, which serves {merchant}'s checkout script to your browser when you point at a Buy button.
 - **Mintlify**, which hosts the documentation at docs.tablepro.app.
@@ -242,8 +240,7 @@ The services above operate in several countries, so your data may be processed o
 - **Google Analytics**: user-level and event-level data for 2 months, Google's default retention period, which our property uses. Its cookies last up to 2 years, or are deleted when you decline.
 - **Cloudflare Web Analytics**: Cloudflare shows us the last six months of page-view totals. Nothing is stored in your browser.
 - **Live chat and support emails**: kept by Crisp and in our mailbox until deleted. Ask us to delete your conversations and emails.
-- **Web server logs**: kept for security and troubleshooting. We have not set a fixed period for them yet.
-- **Our server's logs and traces, and the portal's error reports**: 14 days, in Grafana Cloud.
+- **Server logs**: our web server's and our server's logs, kept on our server for security and troubleshooting. We have not set a fixed period for them yet.
 
 ## Your rights {#rights}
 

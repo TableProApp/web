@@ -169,7 +169,7 @@ Il [portale account]({account}) su account.tablepro.app è dove gestisci il tuo 
 
 **I tuoi dati.** Nelle impostazioni puoi cambiare nome, indirizzo email e lingua, aggiungere e rimuovere metodi di accesso, scaricare i dati del tuo account come file JSON ed eliminare l'account. Non puoi eliminarlo finché sei proprietario di un team con altri membri. L'eliminazione rimuove i tuoi metodi di accesso, dispositivi, licenze, appartenenze ai team e i team di cui sei l'unico membro, e termina i tuoi abbonamenti senza rimborso. Ciò che conserviamo dopo è indicato in [Per quanto tempo conserviamo i dati](#retention).
 
-**Cosa carica il portale.** Il portale non carica Google Analytics, Cloudflare Web Analytics né altri script di analisi, e non pone alcuna domanda sui cookie. Mostra la chat dal vivo di Crisp descritta in [Sito web](#website), e un acquisto fatto lì apre il pagamento di {merchant} sopra la pagina. Segnala errori e tempi di caricamento a Grafana Cloud con Grafana Faro: l'errore, la schermata in cui si è verificato (mai l'indirizzo completo, che può contenere il token di un link), browser e sistema operativo, e un ID casuale della tua visita.
+**Cosa carica il portale.** Il portale non carica Google Analytics, Cloudflare Web Analytics né altri script di analisi, e non pone alcuna domanda sui cookie. Mostra la chat dal vivo di Crisp descritta in [Sito web](#website), e un acquisto fatto lì apre il pagamento di {merchant} sopra la pagina.
 
 ## Newsletter {#newsletter}
 
@@ -190,7 +190,6 @@ La lettura del sito pubblico e le sue richieste per newsletter, checkout e codic
 - **Cookie che iniziano con `crisp-client/`** (Crisp, per esempio `crisp-client/session/…`; 6 mesi, rinnovati quando ritorni; impostati su ogni pagina dopo il caricamento della chat): mantengono la chat e la conversazione tra pagine e visite. Base giuridica: legittimo interesse, per offrire supporto su ogni pagina.
 - **`__Host-tp_session`** (cookie del portale account, 30 giorni dall'accesso): mantiene l'accesso. Prima dell'accesso viene impostato solo mentre è in corso un accesso con passkey, Apple, GitHub, Google o da un'app, per al massimo 10 minuti. L'uscita lo elimina. Le richieste per newsletter, checkout e codici sconto dal sito pubblico omettono le credenziali e non lo ricevono mai. Base giuridica: strettamente necessario.
 - **`locale`, `context` e `sign-in-return-to`** (archiviazione locale del portale account): la lingua scelta lì prima dell'accesso e se hai aperto per ultimo Personale o un team, entrambe finché non le cancelli, e per 15 minuti la pagina a cui tornare dopo aver aperto un link di accesso ricevuto via email. Base giuridica: legittimo interesse.
-- **`com.grafana.faro.session`** (archiviazione di sessione del portale account, finché non chiudi la scheda): l'ID casuale della visita nei rapporti sugli errori del portale. Base giuridica: legittimo interesse.
 
 Puoi modificare o revocare la risposta sulle analisi in qualsiasi momento tramite **Impostazioni cookie** nel piè di pagina di ogni pagina oppure qui:
 
@@ -201,7 +200,7 @@ Puoi modificare o revocare la risposta sulle analisi in qualsiasi momento tramit
 Per i lettori dello Spazio economico europeo e del Regno Unito, le basi giuridiche ai sensi del GDPR e del GDPR del Regno Unito sono:
 
 - **Contratto** (Art. 6(1)(b)): vendita e fornitura della licenza, il tuo account con i suoi metodi di accesso e dispositivi, verifiche della licenza, portale account e Team Library.
-- **Legittimo interesse** (Art. 6(1)(f)): dati di utilizzo dell'app per Mac e relativa analisi in PostHog, eventi su accessi, acquisti, dispositivi e team che il nostro server invia a PostHog, registro di audit dell'account, sicurezza e prevenzione degli abusi, compreso Cloudflare Turnstile nel modulo della newsletter, registri del server web e rapporti sugli errori del portale account, Cloudflare Web Analytics, record di attribuzione degli acquisti, ricerca del paese per la lingua e lo sconto regionale, e chat dal vivo su ogni pagina.
+- **Legittimo interesse** (Art. 6(1)(f)): dati di utilizzo dell'app per Mac e relativa analisi in PostHog, eventi su accessi, acquisti, dispositivi e team che il nostro server invia a PostHog, registro di audit dell'account, sicurezza e prevenzione degli abusi, compreso Cloudflare Turnstile nel modulo della newsletter, registri del server, Cloudflare Web Analytics, record di attribuzione degli acquisti, ricerca del paese per la lingua e lo sconto regionale, e chat dal vivo su ogni pagina.
 - **Consenso** (Art. 6(1)(a)): cookie di Google Analytics, rapporto sull'utilizzo dell'app per iPhone e iPad, newsletter e conversazioni che avvii nella chat dal vivo.
 - **Obbligo legale** (Art. 6(1)(c)): registri fiscali e contabili e risposte a richieste legittime.
 
@@ -215,7 +214,6 @@ Condividiamo dati personali solo con i servizi necessari al funzionamento di Tab
 - **Google**, per Google Analytics sul sito web e sulla documentazione.
 - **Crisp**, per la chat dal vivo su ogni pagina del sito web e del portale account.
 - **PostHog** (EU Cloud), il nostro servizio di analisi del prodotto, che riceve i rapporti sull'utilizzo delle app e gli eventi del nostro server su accessi, acquisti, dispositivi e team, con l'ID del tuo account ma mai il tuo indirizzo email o il tuo nome. I dati di utilizzo che l'app per Mac invia direttamente arrivano a PostHog con l'indirizzo IP del tuo Mac.
-- **Grafana Labs** (Grafana Cloud), che riceve i log e le tracce del nostro server e i rapporti sugli errori del portale account.
 - **Apple, GitHub e Google**, quando accedi al tuo account con loro.
 - **jsDelivr**, che serve al browser lo script di acquisto di {merchant} quando punti un pulsante Acquista.
 - **Mintlify**, che ospita la documentazione su docs.tablepro.app.
@@ -242,8 +240,7 @@ I servizi elencati operano in diversi paesi, quindi i tuoi dati possono essere t
 - **Google Analytics**: dati a livello di utente e di evento per 2 mesi, il periodo di conservazione predefinito di Google usato dalla nostra proprietà. I cookie durano fino a 2 anni oppure vengono eliminati quando li rifiuti.
 - **Cloudflare Web Analytics**: Cloudflare ci mostra i totali delle visualizzazioni degli ultimi sei mesi. Nulla viene conservato nel browser.
 - **Chat dal vivo ed email di supporto**: conservate da Crisp e nella nostra casella email finché non vengono eliminate. Chiedici di eliminare le tue conversazioni e le tue email.
-- **Registri del server web**: conservati per sicurezza e risoluzione dei problemi. Non abbiamo ancora stabilito un periodo fisso.
-- **Log e tracce del nostro server e rapporti sugli errori del portale**: 14 giorni, in Grafana Cloud.
+- **Registri del server**: i registri del nostro server web e del nostro server, conservati sul nostro server per sicurezza e risoluzione dei problemi. Non abbiamo ancora stabilito un periodo fisso.
 
 ## I tuoi diritti {#rights}
 

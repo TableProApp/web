@@ -201,7 +201,7 @@ it('keeps the cookie contract the consent bar relies on', function (string $loca
     $privacy = legalSource('privacy', $locale);
     $cookies = legalSection('privacy', $locale, 'cookies');
 
-    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', '__Host-tp_session', 'theme', 'sign-in-return-to', 'com.grafana.faro.session'] as $name) {
+    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', '__Host-tp_session', 'theme', 'sign-in-return-to'] as $name) {
         expect($cookies)->toContain($name);
     }
 
@@ -327,20 +327,20 @@ it('sets no retention period the server does not keep', function (string $locale
     expect($logs[0] ?? '')->not->toBe('')->not->toMatch('/\d/');
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
 })->with([
-    'English' => ['en', 'Web server logs'],
-    'Vietnamese' => ['vi', 'Nhật ký máy chủ web'],
+    'English' => ['en', 'Server logs'],
+    'Vietnamese' => ['vi', 'Nhật ký máy chủ'],
 ]);
 
 it('keeps the retention periods tablepro-cloud states', function (): void {
     $retention = legalSection('privacy', 'en', 'retention');
 
-    // data-model.md, Retention, and operations.md, Observability.
+    // data-model.md, Retention.
     expect($retention)->toContain('a deleted item is kept for 90 days')
         ->toContain('are deleted 7 days later. Portal sessions last 30 days.')
         ->toContain('**Notifications from {merchant}, Resend and Apple**: 180 days.')
         ->toContain('A device that has not checked in for 180 days is removed')
-        ->toContain('deletes its PostHog profile and events an hour later')
-        ->toContain('14 days, in Grafana Cloud');
+        ->toContain('We have not set a time limit for them in PostHog.')
+        ->toContain("**Server logs**: our web server's and our server's logs, kept on our server for security and troubleshooting.");
 });
 
 it('states what tablepro-cloud keeps outside its own tables', function (): void {
@@ -369,10 +369,10 @@ it('describes the account portal tablepro-cloud runs, its sign-in and what it lo
         ->toContain('both expire after 15 minutes')
         ->toContain('download your account\'s data as a JSON file')
         ->toContain('no Google Analytics, no Cloudflare Web Analytics')
-        ->toContain('Grafana Faro');
+        ->toContain('a purchase made there opens {merchant}\'s checkout over the page.');
 
     expect(legalSection('privacy', 'en', 'website'))->toContain('**Newsletter check.**')->toContain('`challenges.cloudflare.com`');
-    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Resend**')->toContain('**PostHog** (EU Cloud)')->toContain('**Grafana Labs**')
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Resend**')->toContain('**PostHog** (EU Cloud)')
         ->not->toContain('An email delivery provider');
     expect(legalSection('privacy', 'en', 'transfers'))->toContain('PostHog processes it in the European Union.');
 });

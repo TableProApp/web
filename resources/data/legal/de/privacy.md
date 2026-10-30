@@ -169,7 +169,7 @@ Im [Kontoportal]({account}) unter account.tablepro.app verwaltest du dein TableP
 
 **Deine Daten.** In den Einstellungen kannst du Namen, E-Mail-Adresse und Sprache ändern, Anmeldemethoden hinzufügen und entfernen, die Daten deines Kontos als JSON-Datei herunterladen und dein Konto löschen. Solange dir ein Team mit weiteren Mitgliedern gehört, lässt es sich nicht löschen. Das Löschen entfernt deine Anmeldemethoden, Geräte, Lizenzen, Teammitgliedschaften und die Teams, die nur aus dir bestehen, und beendet deine Abonnements ohne Erstattung. Was wir danach aufbewahren, steht unter [Wie lange wir Daten aufbewahren](#retention).
 
-**Was das Portal lädt.** Das Portal lädt weder Google Analytics noch Cloudflare Web Analytics noch ein anderes Analyse-Skript und stellt keine Cookie-Frage. Es zeigt den unter [Website](#website) beschriebenen Live-Chat von Crisp, und ein Kauf dort öffnet den Checkout von {merchant} über der Seite. Fehler und Ladezeiten meldet es mit Grafana Faro an Grafana Cloud: den Fehler, die Ansicht, in der er auftrat (nie die vollständige Adresse, die das Token eines Links enthalten kann), Browser und Betriebssystem sowie eine zufällige ID für deinen Besuch.
+**Was das Portal lädt.** Das Portal lädt weder Google Analytics noch Cloudflare Web Analytics noch ein anderes Analyse-Skript und stellt keine Cookie-Frage. Es zeigt den unter [Website](#website) beschriebenen Live-Chat von Crisp, und ein Kauf dort öffnet den Checkout von {merchant} über der Seite.
 
 ## Newsletter {#newsletter}
 
@@ -190,7 +190,6 @@ Das Lesen der öffentlichen Website und ihre Anfragen zu Newsletter, Checkout un
 - **Cookies beginnend mit `crisp-client/`** (Crisp, etwa `crisp-client/session/…`; 6 Monate, bei Rückkehr erneuert; auf jeder Seite nach dem Laden des Chats gesetzt): halten Chat und Gespräch über Seiten und Besuche hinweg verfügbar. Rechtsgrundlage: berechtigtes Interesse, um auf jeder Seite Support anzubieten.
 - **`__Host-tp_session`** (Kontoportal-Cookie, 30 Tage ab der Anmeldung): hält dich angemeldet. Vor der Anmeldung wird es nur gesetzt, während eine Anmeldung per Passkey, Apple, GitHub, Google oder aus einer App läuft, für höchstens 10 Minuten. Die Abmeldung löscht es. Anfragen zu Newsletter, Checkout und Rabattcodes von der öffentlichen Website lassen Zugangsdaten aus und erhalten es nie. Rechtsgrundlage: unbedingt erforderlich.
 - **`locale`, `context` und `sign-in-return-to`** (lokaler Speicher des Kontoportals): die Sprache, die du dort vor der Anmeldung gewählt hast, und ob du zuletzt Persönlich oder ein Team geöffnet hast, beides bis du es löschst, sowie für 15 Minuten die Seite, zu der du nach dem Öffnen eines Anmeldelinks aus einer E-Mail zurückkehrst. Rechtsgrundlage: berechtigtes Interesse.
-- **`com.grafana.faro.session`** (Sitzungsspeicher des Kontoportals, bis du den Tab schließt): die zufällige Besuchs-ID der Fehlerberichte des Portals. Rechtsgrundlage: berechtigtes Interesse.
 
 Du kannst deine Analyseantwort jederzeit über **Cookie-Einstellungen** im Fußbereich jeder Seite ändern oder widerrufen, oder hier:
 
@@ -201,7 +200,7 @@ Du kannst deine Analyseantwort jederzeit über **Cookie-Einstellungen** im Fußb
 Für Leser im Europäischen Wirtschaftsraum und im Vereinigten Königreich sind die Rechtsgrundlagen nach DSGVO und UK GDPR:
 
 - **Vertrag** (Art. 6 Abs. 1 lit. b): Verkauf und Bereitstellung einer Lizenz, dein Konto mit Anmeldemethoden und Geräten, Lizenzprüfungen, Kontoportal und Team Library.
-- **Berechtigtes Interesse** (Art. 6 Abs. 1 lit. f): Nutzungsdaten der Mac-App und ihre Auswertung in PostHog, die Ereignisse zu Anmeldungen, Käufen, Geräten und Teams, die unser Server an PostHog sendet, Audit-Log des Kontos, Sicherheit und Missbrauchsprävention einschließlich Cloudflare Turnstile im Newsletter-Formular, Webserverprotokolle und Fehlerberichte des Kontoportals, Cloudflare Web Analytics, Kaufzuordnungsdatensatz, Länderabfrage für Sprache und regionalen Rabatt sowie Live-Chat auf jeder Seite.
+- **Berechtigtes Interesse** (Art. 6 Abs. 1 lit. f): Nutzungsdaten der Mac-App und ihre Auswertung in PostHog, die Ereignisse zu Anmeldungen, Käufen, Geräten und Teams, die unser Server an PostHog sendet, Audit-Log des Kontos, Sicherheit und Missbrauchsprävention einschließlich Cloudflare Turnstile im Newsletter-Formular, Serverprotokolle, Cloudflare Web Analytics, Kaufzuordnungsdatensatz, Länderabfrage für Sprache und regionalen Rabatt sowie Live-Chat auf jeder Seite.
 - **Einwilligung** (Art. 6 Abs. 1 lit. a): Google-Analytics-Cookies, Nutzungsbericht der iPhone- und iPad-App, Newsletter und von dir begonnene Live-Chat-Gespräche.
 - **Gesetzliche Verpflichtung** (Art. 6 Abs. 1 lit. c): Steuer- und Buchhaltungsunterlagen sowie Antworten auf rechtmäßige Anfragen.
 
@@ -215,7 +214,6 @@ Wir teilen personenbezogene Daten nur mit den Diensten, die für den Betrieb von
 - **Google**, für Google Analytics auf Website und Dokumentation.
 - **Crisp**, für den Live-Chat auf jeder Seite von Website und Kontoportal.
 - **PostHog** (EU Cloud), unserem Dienst für Produktanalysen, der die Nutzungsberichte der Apps und die Ereignisse unseres Servers zu Anmeldungen, Käufen, Geräten und Teams erhält, mit deiner Konto-ID, aber nie mit deiner E-Mail-Adresse oder deinem Namen. Nutzungsdaten, die die Mac-App direkt sendet, erreichen PostHog mit der IP-Adresse deines Macs.
-- **Grafana Labs** (Grafana Cloud), das die Protokolle und Traces unseres Servers und die Fehlerberichte des Kontoportals erhält.
 - **Apple, GitHub und Google**, wenn du dich mit ihnen bei deinem Konto anmeldest.
 - **jsDelivr**, das deinem Browser das Checkout-Skript von {merchant} liefert, wenn du auf eine Kaufen-Schaltfläche zeigst.
 - **Mintlify**, das die Dokumentation unter docs.tablepro.app hostet.
@@ -242,8 +240,7 @@ Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können dahe
 - **Google Analytics**: Nutzer- und Ereignisdaten für 2 Monate, Googles Standardfrist, die unsere Property verwendet. Cookies bleiben bis zu 2 Jahre oder werden beim Ablehnen gelöscht.
 - **Cloudflare Web Analytics**: Cloudflare zeigt uns die Seitenaufrufsummen der letzten sechs Monate. Im Browser wird nichts gespeichert.
 - **Live-Chat und Support-E-Mails**: werden bei Crisp und in unserem Postfach bis zur Löschung aufbewahrt. Bitte uns, deine Gespräche und E-Mails zu löschen.
-- **Webserverprotokolle**: werden für Sicherheit und Fehlerbehebung aufbewahrt. Wir haben dafür noch keine feste Frist bestimmt.
-- **Protokolle und Traces unseres Servers sowie Fehlerberichte des Portals**: 14 Tage, in Grafana Cloud.
+- **Serverprotokolle**: die Protokolle unseres Webservers und unseres Servers, die wir für Sicherheit und Fehlerbehebung auf unserem Server aufbewahren. Wir haben dafür noch keine feste Frist bestimmt.
 
 ## Deine Rechte {#rights}
 

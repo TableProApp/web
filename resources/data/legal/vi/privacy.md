@@ -169,7 +169,7 @@ Một lần mua không đăng nhập sẽ thuộc về tài khoản TablePro c�
 
 **Dữ liệu của bạn.** Trong phần Cài đặt, bạn có thể đổi tên, địa chỉ email và ngôn ngữ, thêm và gỡ cách đăng nhập, tải về dữ liệu tài khoản dưới dạng tệp JSON, và xóa tài khoản. Bạn không thể xóa tài khoản khi đang là chủ sở hữu một nhóm còn thành viên khác. Xóa tài khoản sẽ gỡ các cách đăng nhập, thiết bị, license, tư cách thành viên nhóm và các nhóm chỉ có mình bạn, và kết thúc các gói thuê bao của bạn mà không hoàn tiền. Những gì chúng tôi giữ sau đó được nêu trong mục [Thời gian lưu dữ liệu](#retention).
 
-**Những gì trang tài khoản tải.** Trang tài khoản không tải Google Analytics, Cloudflare Web Analytics hay script phân tích nào khác, và không hỏi về cookie. Trang hiển thị khung chat trực tuyến của Crisp được mô tả trong mục [Website](#website), và một lần mua trên trang sẽ mở trang thanh toán của {merchant} phía trên trang. Trang báo lỗi và thời gian tải trang tới Grafana Cloud bằng Grafana Faro: lỗi, màn hình nơi lỗi xảy ra (không bao giờ là địa chỉ đầy đủ, vốn có thể chứa token của một liên kết), trình duyệt và hệ điều hành của bạn, và một mã ngẫu nhiên cho lượt truy cập của bạn.
+**Những gì trang tài khoản tải.** Trang tài khoản không tải Google Analytics, Cloudflare Web Analytics hay script phân tích nào khác, và không hỏi về cookie. Trang hiển thị khung chat trực tuyến của Crisp được mô tả trong mục [Website](#website), và một lần mua trên trang sẽ mở trang thanh toán của {merchant} phía trên trang.
 
 ## Bản tin {#newsletter}
 
@@ -190,7 +190,6 @@ Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
 - **`__Host-tp_session`** (cookie trang tài khoản, 30 ngày kể từ khi bạn đăng nhập): giữ đăng nhập. Trước khi bạn đăng nhập, cookie chỉ được đặt khi đang đăng nhập bằng passkey, Apple, GitHub, Google hoặc từ một ứng dụng, tối đa 10 phút. Đăng xuất sẽ xóa cookie. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng omit credentials, không bao giờ nhận cookie này. Cơ sở pháp lý: thực sự cần thiết.
 - **`locale`, `context` và `sign-in-return-to`** (local storage của trang tài khoản): ngôn ngữ bạn chọn ở đó trước khi đăng nhập và việc bạn mở Cá nhân hay một nhóm gần nhất, cả hai cho tới khi bạn xóa, và trong 15 phút là trang cần quay lại sau khi bạn mở liên kết đăng nhập trong email. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`com.grafana.faro.session`** (session storage của trang tài khoản, cho tới khi bạn đóng tab): mã ngẫu nhiên của lượt truy cập trong báo cáo lỗi của trang tài khoản. Cơ sở pháp lý: lợi ích hợp pháp.
 
 Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích bất cứ lúc nào bằng **Cài đặt cookie** ở chân mọi trang, hoặc tại đây:
 
@@ -201,7 +200,7 @@ Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích 
 Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, tài khoản của bạn cùng các cách đăng nhập và thiết bị, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): dữ liệu sử dụng của ứng dụng cho Mac và việc phân tích dữ liệu đó trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ web và báo cáo lỗi của trang tài khoản, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
+- **Lợi ích hợp pháp** (Điều 6(1)(f)): dữ liệu sử dụng của ứng dụng cho Mac và việc phân tích dữ liệu đó trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
 - **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 
@@ -215,7 +214,6 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **Google**, cho Google Analytics trên website và tài liệu.
 - **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
 - **PostHog** (EU Cloud), dịch vụ phân tích sản phẩm của chúng tôi, nhận báo cáo sử dụng của các ứng dụng và các sự kiện từ máy chủ của chúng tôi về đăng nhập, mua hàng, thiết bị và nhóm, kèm mã tài khoản của bạn nhưng không bao giờ kèm địa chỉ email hay tên. Dữ liệu sử dụng mà ứng dụng cho Mac gửi thẳng tới PostHog đến kèm địa chỉ IP của máy Mac của bạn.
-- **Grafana Labs** (Grafana Cloud), nhận log và trace của máy chủ chúng tôi và báo cáo lỗi của trang tài khoản.
 - **Apple, GitHub và Google**, khi bạn đăng nhập tài khoản bằng các dịch vụ này.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
 - **Mintlify**, nơi lưu trữ trang tài liệu docs.tablepro.app.
@@ -242,8 +240,7 @@ Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ li�
 - **Google Analytics**: dữ liệu ở cấp người dùng và cấp sự kiện được giữ 2 tháng, thời hạn lưu mặc định của Google mà property của chúng tôi đang dùng. Cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
 - **Cloudflare Web Analytics**: Cloudflare cho chúng tôi xem số liệu tổng về lượt xem trang trong sáu tháng gần nhất. Không có gì được lưu trong trình duyệt của bạn.
 - **Chat trực tuyến và email hỗ trợ**: được Crisp và hộp thư của chúng tôi giữ cho tới khi bị xóa. Bạn có thể yêu cầu chúng tôi xóa các cuộc chat và email của bạn.
-- **Nhật ký máy chủ web**: được giữ cho mục đích bảo mật và khắc phục sự cố. Chúng tôi chưa đặt thời hạn cố định cho các nhật ký này.
-- **Log và trace của máy chủ, và báo cáo lỗi của trang tài khoản**: 14 ngày, trong Grafana Cloud.
+- **Nhật ký máy chủ**: nhật ký của máy chủ web và của máy chủ chúng tôi, được giữ trên máy chủ của chúng tôi cho mục đích bảo mật và khắc phục sự cố. Chúng tôi chưa đặt thời hạn cố định cho các nhật ký này.
 
 ## Quyền của bạn {#rights}
 
