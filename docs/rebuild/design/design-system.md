@@ -1134,7 +1134,7 @@ Rail labels, their order and the footer links belong to the license repository; 
 | The visual values the manifest's `kinds` pin (aspect, rendered sizes, export pixels), the type vocabulary and its visible labels, the description limits and the placeholder's look | **this section** |
 | Production briefs: scene, dataset, framing, light and dark, a Vietnamese summary | `docs/visual-assets.md`, generated from the manifest and the per-family fragments (architecture §1.9) |
 
-Sitemap §A.8's Aspect and Type columns are superseded by §6.2 and §6.3, as architecture §1.9 already states.
+Sitemap §A.8's Aspect and Type columns follow §6.2, §6.3 and `resources/data/assets.json`, as architecture §1.9 states.
 
 ### 6.1 Data
 
@@ -1261,7 +1261,7 @@ These are the values that architecture's `kinds` pin:
 
 - Every `window` that renders below 768px names a `mobile` crop: a 4:5 cut of its focal area, with its own ID and brief.
 - The crop is cut from the same 2× capture, so it needs no new scene. A 686px-wide cut is a 343pt region of the window, so the Mac's own text shows at its real size on a 375 phone.
-- Sitemap §A.8 defines one crop today, `mac-hero-window-mobile`. The other window rows need `{id}-mobile` entries, each a manifest edit plus its brief (architecture §1.9).
+- Sitemap §A.8 lists each crop under the entry that names it. A new crop is an `{id}-mobile` row there, a manifest entry and a brief (architecture §1.9).
 - Until a crop exists, the **placeholder** may render the 16:9 box at 343 × 193, and its text still fits (§6.2). A window **must not** reach `supplied` without its crop.
 - The same holds for a `detail` and an `ipad` capture (found in review): below 768 a detail renders at 343 × 257, about half its size, and an iPad capture at about a quarter, so the focal text cannot be read. Every P1 or P2 `detail` or `ipad` entry (a page's lead or section image) names a `mobile` crop, cut the same way from its own capture; a P3 one may. An `illustration` may name one too, recomposed from the same captures. `AssetManifestTest` holds the rule.
 - A crop renders at its 343px design width, centred in a wider column (a 430 phone, an iPad mini in portrait), so the Mac or iPad text keeps its real size; `kinds.mobile-crop.sizes` is `343px`.
