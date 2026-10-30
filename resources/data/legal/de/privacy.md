@@ -229,7 +229,7 @@ Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können dahe
 
 ## Wie lange wir Daten aufbewahren {#retention}
 
-- **Nutzungsberichte und Analyseereignisse**: Unser Server bewahrt keine Kopie auf, sobald er sie an PostHog weitergegeben hat. Für PostHog haben wir keine Frist festgelegt. Wenn du dein Konto löschst, werden sein PostHog-Profil und seine Ereignisse eine Stunde später gelöscht.
+- **Nutzungsberichte und Analyseereignisse**: Unser Server bewahrt keine Kopie auf, sobald er sie an PostHog weitergegeben hat. Für PostHog haben wir keine Frist festgelegt.
 - **Datensätze unseres früheren Servers**: Eine Kopie seiner gesamten Datenbank wird unbefristet in einem Archiv aufbewahrt. Sie enthält Lizenzen, Bestellungen und Teammitglieder mit E-Mail-Adressen und Namen; die mit einer Lizenz aktivierten Macs mit ihren Namen; Newsletter-Abonnenten und Beta-Anmeldungen; Aufzeichnungen über die versendeten E-Mails; sowie die dort gespeicherten Nutzungsberichte und Protokolle der Lizenzanfragen mit ihren IP-Adressen.
 - **Geräte**: werden aufbewahrt, solange sie genutzt werden. Ein Gerät, das sich 180 Tage nicht gemeldet hat, wird entfernt, sofern keine Offline-Datei dafür mehr gilt, und ein entferntes Gerät wird ein Jahr später gelöscht.
 - **Audit-Log deines Kontos**: wird aufbewahrt, solange das Konto besteht, mit IP-Adresse und Browser jeder Änderung, die du vorgenommen hast. Das Löschen des Kontos entfernt daraus deine E-Mail-Adressen sowie IP-Adresse und Browser deiner Aktionen; der Eintrag jeder Änderung bleibt.

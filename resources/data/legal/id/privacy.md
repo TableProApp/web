@@ -229,7 +229,7 @@ Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses
 
 ## Lama penyimpanan data {#retention}
 
-- **Laporan penggunaan dan peristiwa analitik**: server kami tidak menyimpan salinan setelah meneruskannya ke PostHog. Kami belum menetapkan batas waktu untuknya di PostHog. Menghapus akun Anda akan menghapus profil dan peristiwa PostHog-nya satu jam kemudian.
+- **Laporan penggunaan dan peristiwa analitik**: server kami tidak menyimpan salinan setelah meneruskannya ke PostHog. Kami belum menetapkan batas waktu untuknya di PostHog.
 - **Catatan dari server kami sebelumnya**: salinan seluruh basis datanya disimpan tanpa batas waktu dalam sebuah arsip. Arsip itu mencakup lisensi, pesanan, dan anggota tim beserta alamat email dan namanya; Mac yang diaktifkan dengan lisensi, beserta namanya; pelanggan buletin dan pendaftar beta; catatan email yang dikirimnya; serta laporan penggunaan dan log permintaan lisensi yang disimpannya, beserta alamat IP-nya.
 - **Perangkat**: disimpan selama digunakan. Perangkat yang tidak menghubungi server selama 180 hari dihapus, kecuali file offline untuknya masih berlaku, dan perangkat yang dihapus dihilangkan setahun kemudian.
 - **Log audit akun Anda**: disimpan selama akun ada, beserta alamat IP dan browser setiap perubahan yang Anda buat. Menghapus akun menghilangkan alamat email Anda dari log itu serta alamat IP dan browser tindakan Anda; catatan setiap perubahan tetap ada.

@@ -229,7 +229,7 @@ Les services ci-dessus opèrent dans plusieurs pays ; vos données peuvent don
 
 ## Durée de conservation des données {#retention}
 
-- **Rapports d’utilisation et événements d’analyse** : notre serveur n’en garde aucune copie une fois transmis à PostHog. Nous n’avons pas fixé de durée pour eux dans PostHog. La suppression de votre compte supprime son profil et ses événements PostHog une heure plus tard.
+- **Rapports d’utilisation et événements d’analyse** : notre serveur n’en garde aucune copie une fois transmis à PostHog. Nous n’avons pas fixé de durée pour eux dans PostHog.
 - **Données de notre ancien serveur** : une copie de toute sa base de données est conservée sans limite de durée dans une archive. Elle comprend les licences, commandes et membres d’équipe avec leurs adresses e-mail et leurs noms ; les Mac activés sur une licence, avec leurs noms ; les abonnés à la newsletter et les inscriptions à la bêta ; la trace des e-mails qu’il a envoyés ; et les rapports d’utilisation et journaux de demandes de licence qu’il conservait, avec leurs adresses IP.
 - **Appareils** : conservés tant qu’ils servent. Un appareil sans contact depuis 180 jours est retiré, sauf si un fichier hors ligne le concernant est encore valide, et un appareil retiré est supprimé un an plus tard.
 - **Journal d’audit de votre compte** : conservé tant que le compte existe, avec l’adresse IP et le navigateur de chaque modification que vous avez faite. La suppression du compte en retire vos adresses e-mail ainsi que l’adresse IP et le navigateur de vos actions ; la trace de chaque modification demeure.

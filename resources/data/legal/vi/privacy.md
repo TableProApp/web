@@ -229,7 +229,7 @@ Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ li�
 
 ## Thời gian lưu dữ liệu {#retention}
 
-- **Báo cáo sử dụng và sự kiện phân tích**: máy chủ của chúng tôi không giữ bản sao nào sau khi đã chuyển chúng sang PostHog. Chúng tôi chưa đặt thời hạn cho chúng trong PostHog. Xóa tài khoản sẽ xóa hồ sơ và các sự kiện của tài khoản trong PostHog một giờ sau đó.
+- **Báo cáo sử dụng và sự kiện phân tích**: máy chủ của chúng tôi không giữ bản sao nào sau khi đã chuyển chúng sang PostHog. Chúng tôi chưa đặt thời hạn cho chúng trong PostHog.
 - **Dữ liệu từ máy chủ trước đây của chúng tôi**: một bản sao toàn bộ cơ sở dữ liệu của máy chủ đó được giữ vô thời hạn trong một kho lưu trữ. Bản sao gồm license, đơn hàng và thành viên nhóm kèm địa chỉ email và tên; các máy Mac đã kích hoạt license, kèm tên máy; người đăng ký bản tin và người đăng ký dùng thử bản beta; bản ghi các email máy chủ đó đã gửi; và các báo cáo sử dụng cùng nhật ký yêu cầu liên quan đến license mà máy chủ đó giữ, kèm địa chỉ IP.
 - **Thiết bị**: được giữ khi còn dùng. Thiết bị không liên lạc trong 180 ngày sẽ bị gỡ, trừ khi một tệp offline cho thiết bị đó vẫn còn hiệu lực, và thiết bị đã gỡ bị xóa một năm sau.
 - **Nhật ký kiểm tra của tài khoản**: được giữ khi tài khoản còn tồn tại, kèm địa chỉ IP và trình duyệt của từng thay đổi bạn thực hiện. Xóa tài khoản sẽ gỡ khỏi nhật ký các địa chỉ email của bạn cùng địa chỉ IP và trình duyệt của những việc bạn đã làm; bản ghi về từng thay đổi vẫn còn.

@@ -229,7 +229,7 @@ Los servicios anteriores operan en varios países, por lo que tus datos pueden t
 
 ## Cuánto tiempo conservamos los datos {#retention}
 
-- **Informes de uso y eventos de análisis**: nuestro servidor no guarda ninguna copia una vez que los ha reenviado a PostHog. No hemos fijado un plazo para ellos en PostHog. Al eliminar tu cuenta, su perfil y sus eventos en PostHog se eliminan una hora después.
+- **Informes de uso y eventos de análisis**: nuestro servidor no guarda ninguna copia una vez que los ha reenviado a PostHog. No hemos fijado un plazo para ellos en PostHog.
 - **Registros de nuestro servidor anterior**: una copia de toda su base de datos se conserva indefinidamente en un archivo. Incluye licencias, pedidos y miembros de equipo con sus correos y nombres; los Mac activados con una licencia, con sus nombres; suscriptores del boletín e inscripciones a la beta; constancia de los correos que envió; y los informes de uso y los registros de solicitudes de licencia que guardaba, con sus direcciones IP.
 - **Dispositivos**: se conservan mientras se usan. Un dispositivo que no se comunica en 180 días se quita, salvo que aún tenga un archivo sin conexión válido, y un dispositivo quitado se elimina un año después.
 - **Registro de auditoría de tu cuenta**: se conserva mientras exista la cuenta, con la dirección IP y el navegador de cada cambio que hiciste. Al eliminar la cuenta se quitan de él tus direcciones de correo y la dirección IP y el navegador de lo que hiciste; queda el registro de cada cambio.

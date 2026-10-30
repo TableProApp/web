@@ -229,7 +229,7 @@ The services above operate in several countries, so your data may be processed o
 
 ## How long we keep data {#retention}
 
-- **Usage reports and analytics events**: our server keeps no copy once it has passed them to PostHog. We have not set a time limit for them in PostHog. Deleting your account deletes its PostHog profile and events an hour later.
+- **Usage reports and analytics events**: our server keeps no copy once it has passed them to PostHog. We have not set a time limit for them in PostHog.
 - **Records from our previous server**: a copy of its whole database is kept indefinitely in an archive. It includes licenses, orders and team members with their email addresses and names; the Macs activated on a license, with their names; newsletter subscribers and beta signups; records of the emails it sent; and the usage reports and license request logs it kept, with their IP addresses.
 - **Devices**: kept while in use. A device that has not checked in for 180 days is removed, unless an offline file for it is still valid, and a removed device is deleted a year later.
 - **Your account's audit log**: kept while the account exists, with the IP address and browser of each change you made. Deleting the account removes your email addresses from it and the IP address and browser of what you did; the record of each change stays.

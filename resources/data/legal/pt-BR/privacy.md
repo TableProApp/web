@@ -229,7 +229,7 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 
 ## Por quanto tempo mantemos dados {#retention}
 
-- **Relatórios de uso e eventos de análise**: nosso servidor não guarda cópia depois de repassá-los ao PostHog. Não definimos prazo para eles no PostHog. Excluir sua conta exclui o perfil e os eventos dela no PostHog uma hora depois.
+- **Relatórios de uso e eventos de análise**: nosso servidor não guarda cópia depois de repassá-los ao PostHog. Não definimos prazo para eles no PostHog.
 - **Registros do nosso servidor anterior**: uma cópia de todo o banco de dados dele é mantida por tempo indeterminado em um arquivo. Ela inclui licenças, pedidos e membros de equipe com seus emails e nomes; os Macs ativados com uma licença, com seus nomes; inscritos na newsletter e no beta; registros dos emails que ele enviou; e os relatórios de uso e os registros de solicitações de licença que ele mantinha, com seus IPs.
 - **Dispositivos**: mantidos enquanto estão em uso. Um dispositivo que não se comunica por 180 dias é removido, a menos que um arquivo offline dele ainda seja válido, e um dispositivo removido é excluído um ano depois.
 - **Registro de auditoria da sua conta**: mantido enquanto a conta existir, com o endereço IP e o navegador de cada mudança que você fez. Excluir a conta remove dele seus emails e o endereço IP e o navegador do que você fez; o registro de cada mudança permanece.
