@@ -1237,7 +1237,7 @@ Handoff-only fields (`family`, `ownerRepo`, `slot`, `handoffPriority`, `replacem
 
 ### 6.3 Geometry and export sizes
 
-**The full Mac window is 16:9.** The capture recipe in `docs/screenshots.md` sizes the window to exactly 1216 × 684 pt on a 2× display (`set size of front window to {1216, 684}`, then `screencapture -w -o`). That gives a 2432 × 1368 px file, which a 1216px slot shows 1:1 on a retina screen. Sitemap §A.8's 16:10 would need a 1216 × 760 pt window and would not match the recipe.
+**The full Mac window is 16:9.** The capture recipe in `docs/screenshots.md` sizes the window to exactly 1216 × 684 pt on a 2× display (`set size of front window to {1216, 684}`, then `screencapture -w -o`). That gives a 2432 × 1368 px file, which a 1216px slot shows 1:1 on a retina screen. The 16:10 that sitemap §A.8 first proposed would need a 1216 × 760 pt window and would not match the recipe.
 
 The files on disk today predate that recipe: 3024 × 1722 PNG sources, served as 1216 × 693 and 2432 × 1385 WebP. Their ratio is 1.756, which is 1.2% from 16:9.
 
@@ -1255,7 +1255,7 @@ These are the values that architecture's `kinds` pin:
 | `figure` (release posts) | from the source image | `text` width: 704 / 704 / 343 | 1408 wide (2×) |
 | `og-card` | 1200:630 | not a slot | 1200 × 630 |
 
-**One detail aspect.** Every detail crop is 4:3, the shape that also holds the taller subjects (forms, sheets and pickers such as `mac-fk-picker` and `mac-connection-ssh-form`). Sitemap §A.8's 3:2 rows are re-framed to 4:3. One aspect means one column height, one export size and one handoff rule.
+**One detail aspect.** Every detail crop is 4:3, the shape that also holds the taller subjects (forms, sheets and pickers such as `mac-fk-picker` and `mac-connection-ssh-form`). The 3:2 crops sitemap §A.8 first proposed are re-framed to 4:3. One aspect means one column height, one export size and one handoff rule.
 
 **Phone widths never show a shrunken window.** Spec §9 asks for "useful crops and separate detail views for phones instead of shrinking a full desktop window into unreadable detail". The rule:
 

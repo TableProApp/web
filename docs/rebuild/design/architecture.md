@@ -798,7 +798,7 @@ Where each value comes from:
 | The 1200×630 OG brief | spec §9.1 |
 | The byte budgets | Targets set here. The test enforces them once files exist |
 
-The sitemap §A.8 aspect column (16:10 windows, 3:2 crops) is superseded by these kinds. Its types map as follows:
+The sitemap §A.8 aspect column follows these kinds (it first proposed 16:10 windows and 3:2 crops). Its types map as follows:
 crop → `detail`, iPhone → `phone`, iPad → `ipad`, composite → `illustration`.
 
 **Component** `resources/js/components/ui/asset-slot.tsx` (new; it replaces `themed-image.tsx`, which is deleted in
