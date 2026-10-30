@@ -200,6 +200,13 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 </div>
             </Section>
 
+            <Section id="at-work" title={content.atWork.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{content.atWork.body}</p>
+                    <p>{content.atWork.ask}</p>
+                </div>
+            </Section>
+
             <Section id="open-source" title={content.openSource.title} width="text">
                 <div className="type-body space-y-4 text-foreground">
                     <p>{content.openSource.body}</p>
