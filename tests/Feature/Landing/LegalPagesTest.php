@@ -335,12 +335,13 @@ it('keeps the retention periods tablepro-cloud states', function (): void {
     $retention = legalSection('privacy', 'en', 'retention');
 
     // data-model.md, Retention.
-    expect($retention)->toContain('a deleted item is kept for 90 days')
+    expect($retention)->toContain('a deleted item keeps its last version')
         ->toContain('are deleted 7 days later. Portal sessions last 30 days.')
-        ->toContain('**Notifications from {merchant}, Resend and Apple**: 180 days.')
-        ->toContain('A device that has not checked in for 180 days is removed')
+        ->toContain('**Notifications from {merchant}, Resend and Apple**: kept.')
+        ->toContain('**Devices**: kept, with those you removed, until you delete your account.')
         ->toContain('We have not set a time limit for them in PostHog.')
         ->toContain("**Server logs**: our web server's and our server's logs, kept on our server for security and troubleshooting.");
+    expect(legalSource('privacy', 'en'))->not->toContain('180 days')->not->toContain('for 90 days, so every Mac');
 });
 
 it('states what tablepro-cloud keeps outside its own tables', function (): void {
