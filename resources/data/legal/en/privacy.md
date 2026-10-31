@@ -15,6 +15,7 @@ This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website a
 - From the version that adds TablePro accounts, the Mac app sends its usage data straight to PostHog, our product analytics service in the EU, which then receives your Mac's IP address and works out an approximate location from it. Earlier versions and the iPhone and iPad app send usage reports to our server, which passes them on to PostHog without their IP addresses. Your account keeps a log of the changes made to it, such as sign-ins and new devices, with the IP address and browser each came from.
 - The website counts page views with Cloudflare Web Analytics, which sets no cookies. It also loads Google Analytics, which sets cookies only if you allow them. Every page also loads our live chat, Crisp, which sets cookies of its own.
 - The account portal at account.tablepro.app runs no analytics script. It sets one cookie to keep you signed in, and in its Settings you can download your account's data or delete the account.
+- Amazon SES, a service of Amazon Web Services, sends our emails. The newsletter records when each recipient opens it and which of its links they click.
 - Purchases are sold by {merchant}, our merchant of record.
 
 ## Who is responsible {#controller}
@@ -167,15 +168,19 @@ The [account portal]({account}) at account.tablepro.app is where you manage your
 
 **Your teams.** When you invite someone to a team, we store their email address, their role and whether the invitation includes a seat, and email them a link that works for 7 days. Owners and admins see the team's members with their names and email addresses, its invitations, and its audit log, which shows who changed what in the team, invited addresses included, but never an IP address or browser. Members see the team, its plan, its seat counts and their own role.
 
-**Your data.** In Settings you can change your name, email address and language, add and remove sign-in methods, download your account's data as a JSON file, and delete your account. You cannot delete it while you own a team that has other members. Deleting it removes your sign-in methods, devices, licenses, team memberships and the teams you own alone, and ends your subscriptions without a refund. What we keep afterwards is under [How long we keep data](#retention).
+**Your data.** In Settings you can change your name, email address and language, add and remove sign-in methods, download your account's data as a JSON file, and delete your account. You cannot delete it while you own a team that has other members. Deleting it removes your sign-in methods, devices, licenses, team memberships and the teams you own alone, deletes the newsletter subscription of your email address, and ends your subscriptions without a refund. What we keep afterwards is under [How long we keep data](#retention).
 
 **What the portal loads.** The portal runs no Google Analytics, no Cloudflare Web Analytics and no other analytics script, and asks no cookie question. It shows the live chat from Crisp described under [Website](#website), and a purchase made there opens {merchant}'s checkout over the page.
 
 ## Newsletter {#newsletter}
 
-If you subscribe to release notes, we email you a confirmation link first, in the language of the page you subscribed from. The link works for 7 days, and one address gets at most 3 a day. Once you confirm, your address joins our newsletter list at Resend, the service that sends our emails. Every newsletter has an unsubscribe link, which Resend handles. After you unsubscribe we send no more newsletters; to have the address deleted as well, email us. Cloudflare Turnstile checks the form, as described under [Website](#website).
+If you subscribe to release notes, we email you a confirmation link first, in the language of the page you subscribed from. The link works for 7 days, and one address gets at most 3 a day. Once you confirm, your address joins our newsletter list, which we keep on our server with that language. For the signup and the confirmation we record when each happened, the IP address and browser it came from, the page you subscribed on and the version of the wording you agreed to. Cloudflare Turnstile checks the form, as described under [Website](#website).
 
-When we moved from our previous server, every address on its mailing list that had not unsubscribed joined this list as subscribed, confirmed or not: that server had also added the addresses of buyers, license holders and beta signups, and emailed them. Addresses that had unsubscribed moved over as unsubscribed, and those whose emails had bounced or been marked as spam went onto Resend's suppression list instead, so no newsletter reaches them.
+Every newsletter records opens and clicks for every recipient. It contains a small image, and its links pass through `links.news.tablepro.app`. When your email client loads the image or you follow a link, Amazon SES records the time of the open or click and the link clicked, with the IP address and user agent your email client sends, and passes them to our server, which counts each newsletter's opens and clicks. An email client that does not load images records no opens. The unsubscribe link and links that start an email are not tracked.
+
+Every newsletter has an unsubscribe link, which opens a page with an Unsubscribe button, and headers that let your email app unsubscribe you in one click. After you unsubscribe we send no more newsletters and no email to confirm it, and subscribing again needs a new confirmation. Marking a newsletter as spam unsubscribes you too, and once an email to your address bounces for good, we stop sending to it. To have the address deleted as well, email us, or delete your TablePro account if it uses that address.
+
+When we moved from our previous server, every address on its mailing list that had not unsubscribed joined this list as subscribed, confirmed or not: that server had also added the addresses of buyers, license holders and beta signups, and emailed them. Addresses that had unsubscribed moved over as unsubscribed, and those whose emails had bounced or been marked as spam went onto our suppression list instead, so no newsletter reaches them.
 
 ## Cookies and browser storage {#cookies}
 
@@ -209,7 +214,7 @@ For readers in the European Economic Area and the United Kingdom, the lawful bas
 We share personal data only with the services needed to run TablePro:
 
 - **{merchant}**, the merchant of record for purchases.
-- **Resend**, which sends our emails: sign-in links and codes, team invitations, account and security notices, and newsletters. It keeps the newsletter list and tells us when an email to an address bounces or is marked as spam.
+- **Amazon Web Services**, whose Amazon SES service sends our emails from its Asia Pacific (Sydney) region: sign-in links and codes, team invitations, account and security notices, and newsletters. It tells us when an email is delivered, bounces or is marked as spam, and we record bounces and spam reports to stop sending to those addresses. For newsletters it also reports each open and click, as described under [Newsletter](#newsletter).
 - **Our hosting provider and Cloudflare**, for the website, the account portal and the server the apps talk to. Cloudflare also counts page views with Cloudflare Web Analytics and checks the newsletter form with Turnstile.
 - **Google**, for Google Analytics on the website and the documentation.
 - **Crisp**, for the live chat on every page of the website and the account portal.
@@ -223,7 +228,7 @@ We do not sell personal data and do not share it with advertisers.
 
 ## International transfers {#transfers}
 
-The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub, Cloudflare and Mintlify process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. PostHog processes it in the European Union. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
+The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub, Cloudflare and Mintlify process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. PostHog processes it in the European Union. Amazon Web Services sends our emails from Australia. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
 
 ## How long we keep data {#retention}
 
@@ -232,11 +237,11 @@ The services above operate in several countries, so your data may be processed o
 - **Devices**: kept, with those you removed, until you delete your account.
 - **Your account's audit log**: kept while the account exists, with the IP address and browser of each change you made. Deleting the account removes your email addresses from it and the IP address and browser of what you did; the record of each change stays.
 - **Orders**: kept for tax and accounting. Deleting your account removes your email address and your account from them.
-- **Notifications from {merchant}, Resend and Apple**: kept. {merchant}'s hold your name, email address and billing address; deleting your account removes them from those about your purchases.
+- **Notifications from {merchant}, Amazon SES and Apple**: kept. {merchant}'s hold your name, email address and billing address; deleting your account removes them from those about your purchases. Amazon SES's hold the address each email went to and, for a newsletter, the IP address and user agent of each open and click; deleting your account removes these from the ones about emails to your address, and from our record of each email we send.
 - **Team Library**: until an item is changed; a deleted item keeps its last version. The library is deleted with its team, 30 days after the owner deletes the team; until then the owner can restore it. It stays after a license ends.
 - **Sign-in links and codes**: they expire after 15 minutes and are deleted 7 days later. Portal sessions last 30 days. The token that keeps an app signed in expires 90 days after the app last used it, and is deleted 30 days after that.
 - **Deleted accounts**: the account, its sign-in methods, devices, licenses and team memberships are deleted at once. Orders and the audit log stay as described above. What our previous server held about you stays in its archive, described above.
-- **Newsletter**: a confirmation link and the address it went to are deleted 7 days after the link expires. A confirmed address, or one carried over from our previous server, stays in our list at Resend until we delete it at your request; after you unsubscribe it is kept as unsubscribed, so no newsletter reaches it.
+- **Newsletter**: an address that is not confirmed within 30 days is deleted with its confirmation link. A confirmed address, or one carried over from our previous server, stays in our list with the record of how it joined until we delete it at your request or you delete the TablePro account that uses it; after you unsubscribe it is kept as unsubscribed, so no newsletter reaches it.
 - **Google Analytics**: user-level and event-level data for 2 months, Google's default retention period, which our property uses. Its cookies last up to 2 years, or are deleted when you decline.
 - **Cloudflare Web Analytics**: Cloudflare shows us the last six months of page-view totals. Nothing is stored in your browser.
 - **Live chat and support emails**: kept by Crisp and in our mailbox until deleted. Ask us to delete your conversations and emails.

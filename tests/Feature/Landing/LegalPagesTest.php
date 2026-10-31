@@ -337,7 +337,7 @@ it('keeps the retention periods tablepro-cloud states', function (): void {
     // data-model.md, Retention.
     expect($retention)->toContain('a deleted item keeps its last version')
         ->toContain('are deleted 7 days later. Portal sessions last 30 days.')
-        ->toContain('**Notifications from {merchant}, Resend and Apple**: kept.')
+        ->toContain('**Notifications from {merchant}, Amazon SES and Apple**: kept.')
         ->toContain('**Devices**: kept, with those you removed, until you delete your account.')
         ->toContain('We have not set a time limit for them in PostHog.')
         ->toContain("**Server logs**: our web server's and our server's logs, kept on our server for security and troubleshooting.");
@@ -373,10 +373,19 @@ it('describes the account portal tablepro-cloud runs, its sign-in and what it lo
         ->toContain('a purchase made there opens {merchant}\'s checkout over the page.');
 
     expect(legalSection('privacy', 'en', 'website'))->toContain('**Newsletter check.**')->toContain('`challenges.cloudflare.com`');
-    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Resend**')->toContain('**PostHog** (EU Cloud)')
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Amazon Web Services**')->toContain('**PostHog** (EU Cloud)')
         ->not->toContain('An email delivery provider');
     expect(legalSection('privacy', 'en', 'transfers'))->toContain('PostHog processes it in the European Union.');
 });
+
+it('names Amazon SES as the sender of every email and the newsletter\'s open and click tracking', function (string $locale): void {
+    // tablepro-cloud M24: SES in ap-southeast-2 sends both streams and tracks newsletter opens and clicks on links.news.tablepro.app.
+    expect(legalSource('privacy', $locale))->not->toContain('Resend');
+    expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Amazon Web Services**')->toContain('Amazon SES');
+    expect(legalSection('privacy', $locale, 'transfers'))->toContain('Amazon Web Services');
+    expect(legalSection('privacy', $locale, 'newsletter'))->toContain('`links.news.tablepro.app`');
+    expect(legalSection('privacy', $locale, 'retention'))->toContain('Amazon SES');
+})->with(legalLocales());
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
     // The docs once set GA cookies on .tablepro.app with no consent; their bar is English only, so every language names its controls in English.

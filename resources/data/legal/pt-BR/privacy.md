@@ -15,6 +15,7 @@ Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site ta
 - A partir da versão que traz as contas TablePro, o app para Mac envia seus dados de uso diretamente ao PostHog, nosso serviço de análise de produto na UE, que então recebe o endereço IP do seu Mac e deduz dele uma localização aproximada. As versões anteriores e o app para iPhone e iPad enviam relatórios de uso ao nosso servidor, que os repassa ao PostHog sem os endereços IP. Sua conta mantém um registro das mudanças feitas nela, como acessos e novos dispositivos, com o endereço IP e o navegador da solicitação que fez cada uma.
 - O site conta visualizações de página com Cloudflare Web Analytics, que não define cookies. Também carrega Google Analytics, que só define cookies se você permitir. Todas as páginas carregam nosso chat ao vivo, Crisp, que define seus próprios cookies.
 - O portal da conta em account.tablepro.app não carrega nenhum script de análise. Ele define um cookie para manter você conectado, e nas configurações dele você pode baixar os dados da sua conta ou excluí-la.
+- O Amazon SES, um serviço da Amazon Web Services, envia nossos emails. A newsletter registra quando cada destinatário a abre e em quais links dela clica.
 - As compras são vendidas por {merchant}, nosso merchant of record.
 
 ## Quem é responsável {#controller}
@@ -167,15 +168,19 @@ O [portal da conta]({account}) em account.tablepro.app é onde você gerencia su
 
 **Suas equipes.** Ao convidar alguém para uma equipe, guardamos o email, a função e se o convite inclui uma vaga, e enviamos um link válido por 7 dias. Proprietários e administradores veem os membros da equipe com nomes e emails, os convites e o registro de auditoria da equipe, que mostra quem mudou o quê, incluindo endereços convidados, mas nunca um endereço IP ou navegador. Membros veem a equipe, o plano, as vagas e a própria função.
 
-**Seus dados.** Nas configurações você pode mudar nome, email e idioma, adicionar e remover métodos de acesso, baixar os dados da sua conta em um arquivo JSON e excluir sua conta. Não é possível excluí-la enquanto você for proprietário de uma equipe com outros membros. A exclusão remove seus métodos de acesso, dispositivos, licenças, participações em equipes e as equipes que só têm você, e encerra suas assinaturas sem reembolso. O que guardamos depois está em [Por quanto tempo mantemos dados](#retention).
+**Seus dados.** Nas configurações você pode mudar nome, email e idioma, adicionar e remover métodos de acesso, baixar os dados da sua conta em um arquivo JSON e excluir sua conta. Não é possível excluí-la enquanto você for proprietário de uma equipe com outros membros. A exclusão remove seus métodos de acesso, dispositivos, licenças, participações em equipes e as equipes que só têm você, exclui a inscrição do seu email na newsletter e encerra suas assinaturas sem reembolso. O que guardamos depois está em [Por quanto tempo mantemos dados](#retention).
 
 **O que o portal carrega.** O portal não carrega Google Analytics, Cloudflare Web Analytics nem nenhum outro script de análise, e não faz pergunta sobre cookies. Ele mostra o chat ao vivo do Crisp descrito em [Site](#website), e uma compra feita nele abre o checkout de {merchant} sobre a página.
 
 ## Newsletter {#newsletter}
 
-Se você se inscrever nas notas de versão, primeiro enviamos um link de confirmação no idioma da página de inscrição. O link vale por 7 dias, e um endereço recebe no máximo 3 por dia. Depois que você confirma, seu endereço entra na nossa lista da newsletter no Resend, o serviço que envia nossos emails. Toda newsletter tem um link para cancelar a inscrição, tratado pelo Resend. Após cancelar, não enviamos mais newsletters; para excluir também o endereço, envie um email. O Cloudflare Turnstile verifica o formulário, como descrito em [Site](#website).
+Se você se inscrever nas notas de versão, primeiro enviamos um link de confirmação no idioma da página de inscrição. O link vale por 7 dias, e um endereço recebe no máximo 3 por dia. Depois que você confirma, seu endereço entra na nossa lista da newsletter, que mantemos no nosso servidor com esse idioma. Da inscrição e da confirmação registramos quando cada uma aconteceu, o endereço IP e o navegador de onde veio, a página em que você se inscreveu e a versão do texto de consentimento que você aceitou. O Cloudflare Turnstile verifica o formulário, como descrito em [Site](#website).
 
-Na mudança do nosso servidor anterior, todo endereço da lista de emails dele que não tinha cancelado a inscrição entrou nesta lista como inscrito, confirmado ou não: aquele servidor também adicionava os endereços de compradores, titulares de licença e inscritos no beta, e enviava emails a eles. Os endereços que tinham cancelado a inscrição vieram como cancelados, e aqueles cujos emails tinham voltado ou sido marcados como spam foram para a lista de supressão do Resend, para que nenhuma newsletter chegue a eles.
+Cada newsletter registra as aberturas e os cliques de todos os destinatários. Ela contém uma pequena imagem, e seus links passam por `links.news.tablepro.app`. Quando seu cliente de email carrega a imagem ou você segue um link, o Amazon SES registra o horário da abertura ou do clique e o link clicado, com o endereço IP e o user agent que seu cliente de email envia, e os repassa ao nosso servidor, que conta as aberturas e os cliques de cada newsletter. Um cliente de email que não carrega imagens não registra aberturas. O link para cancelar a inscrição e os links que abrem um novo email não são rastreados.
+
+Toda newsletter tem um link para cancelar a inscrição, que abre uma página com um botão para isso, e cabeçalhos que permitem ao seu app de email cancelar a inscrição com um clique. Após cancelar, não enviamos mais newsletters nem um email confirmando o cancelamento, e se inscrever de novo exige uma nova confirmação. Marcar uma newsletter como spam também cancela sua inscrição, e assim que um email para o seu endereço volta de forma permanente, paramos de enviar para ele. Para excluir também o endereço, envie um email, ou exclua sua conta TablePro se ela usa esse endereço.
+
+Na mudança do nosso servidor anterior, todo endereço da lista de emails dele que não tinha cancelado a inscrição entrou nesta lista como inscrito, confirmado ou não: aquele servidor também adicionava os endereços de compradores, titulares de licença e inscritos no beta, e enviava emails a eles. Os endereços que tinham cancelado a inscrição vieram como cancelados, e aqueles cujos emails tinham voltado ou sido marcados como spam foram para a nossa lista de supressão, para que nenhuma newsletter chegue a eles.
 
 ## Cookies e armazenamento do navegador {#cookies}
 
@@ -209,7 +214,7 @@ Para leitores no Espaço Econômico Europeu e Reino Unido, as bases legais sob o
 Compartilhamos dados pessoais apenas com os serviços necessários para operar TablePro:
 
 - **{merchant}**, merchant of record das compras.
-- **Resend**, que envia nossos emails: links e códigos de acesso, convites de equipe, avisos de conta e de segurança, e newsletters. Ele mantém a lista da newsletter e nos avisa quando um email para um endereço volta ou é marcado como spam.
+- **Amazon Web Services**, cujo serviço Amazon SES envia nossos emails da região Ásia-Pacífico (Sydney): links e códigos de acesso, convites de equipe, avisos de conta e de segurança, e newsletters. Ele nos avisa quando um email é entregue, volta ou é marcado como spam, e registramos as devoluções e as denúncias de spam para parar de enviar a esses endereços. Nas newsletters, ele também informa cada abertura e cada clique, como descrito em [Newsletter](#newsletter).
 - **Nosso provedor de hospedagem e Cloudflare**, para site, portal da conta e servidor dos apps. Cloudflare também conta visualizações com Cloudflare Web Analytics e verifica o formulário da newsletter com o Turnstile.
 - **Google**, para Google Analytics no site e na documentação.
 - **Crisp**, para chat ao vivo em todas as páginas do site e portal da conta.
@@ -223,7 +228,7 @@ Não vendemos dados pessoais nem os compartilhamos com anunciantes.
 
 ## Transferências internacionais {#transfers}
 
-Os serviços acima operam em vários países, portanto os dados podem ser processados fora do seu país. {merchant}, Google, GitHub, Cloudflare e Mintlify processam dados nos Estados Unidos; Google faz isso sob o EU-US Data Privacy Framework e Cláusulas Contratuais Padrão. O PostHog os processa na União Europeia. Quando exigido por lei, transferências do EEE e Reino Unido se baseiam em Cláusulas Contratuais Padrão ou outro mecanismo aprovado.
+Os serviços acima operam em vários países, portanto os dados podem ser processados fora do seu país. {merchant}, Google, GitHub, Cloudflare e Mintlify processam dados nos Estados Unidos; Google faz isso sob o EU-US Data Privacy Framework e Cláusulas Contratuais Padrão. O PostHog os processa na União Europeia. A Amazon Web Services envia nossos emails da Austrália. Quando exigido por lei, transferências do EEE e Reino Unido se baseiam em Cláusulas Contratuais Padrão ou outro mecanismo aprovado.
 
 ## Por quanto tempo mantemos dados {#retention}
 
@@ -232,11 +237,11 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 - **Dispositivos**: mantidos, incluindo os que você removeu, até você excluir sua conta.
 - **Registro de auditoria da sua conta**: mantido enquanto a conta existir, com o endereço IP e o navegador de cada mudança que você fez. Excluir a conta remove dele seus emails e o endereço IP e o navegador do que você fez; o registro de cada mudança permanece.
 - **Pedidos**: mantidos para fins fiscais e contábeis. Excluir sua conta remove deles seu email e sua conta.
-- **Notificações de {merchant}, Resend e Apple**: mantidas. As de {merchant} contêm nome, email e endereço de cobrança; excluir sua conta remove esses dados das notificações sobre suas compras.
+- **Notificações de {merchant}, Amazon SES e Apple**: mantidas. As de {merchant} contêm nome, email e endereço de cobrança; excluir sua conta remove esses dados das notificações sobre suas compras. As do Amazon SES contêm o endereço para onde cada email foi e, em uma newsletter, o endereço IP e o user agent de cada abertura e cada clique; excluir sua conta remove esses dados das notificações sobre emails para o seu endereço e do nosso registro de cada email enviado.
 - **Team Library**: até um item ser alterado; um item excluído mantém sua última versão. A biblioteca é excluída junto com a equipe, 30 dias depois que o proprietário exclui a equipe; até lá, o proprietário pode restaurá-la. Ela permanece após o fim de uma licença.
 - **Links e códigos de acesso**: expiram após 15 minutos e são excluídos 7 dias depois. Sessões do portal duram 30 dias. O token que mantém um app conectado expira 90 dias após o último uso pelo app e é excluído 30 dias depois.
 - **Contas excluídas**: a conta, seus métodos de acesso, dispositivos, licenças e participações em equipes são excluídos imediatamente. Pedidos e o registro de auditoria ficam como descrito acima. O que nosso servidor anterior guardava sobre você continua no arquivo dele, descrito acima.
-- **Newsletter**: um link de confirmação e o endereço para onde foi enviado são excluídos 7 dias após o link expirar. Um endereço confirmado, ou trazido do nosso servidor anterior, fica em nossa lista no Resend até o excluirmos a seu pedido; após cancelar a inscrição, ele fica marcado como cancelado, para que nenhuma newsletter chegue a ele.
+- **Newsletter**: um endereço não confirmado em 30 dias é excluído junto com seu link de confirmação. Um endereço confirmado, ou trazido do nosso servidor anterior, fica em nossa lista com o registro de como entrou até o excluirmos a seu pedido ou você excluir a conta TablePro que o usa; após cancelar a inscrição, ele fica marcado como cancelado, para que nenhuma newsletter chegue a ele.
 - **Google Analytics**: dados no nível de usuário e evento por 2 meses, o período padrão usado por nossa propriedade. Cookies duram até 2 anos ou são excluídos quando você recusa.
 - **Cloudflare Web Analytics**: Cloudflare nos mostra totais de visualizações dos últimos seis meses. Nada é armazenado no navegador.
 - **Chat ao vivo e emails de suporte**: mantidos pelo Crisp e em nossa caixa de email até serem excluídos. Solicite a exclusão das conversas e emails.
