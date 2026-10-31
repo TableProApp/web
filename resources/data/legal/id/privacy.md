@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -242,6 +242,7 @@ Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses
 - **Tautan dan kode masuk**: kedaluwarsa setelah 15 menit dan dihapus 7 hari kemudian. Sesi portal berlangsung selama 30 hari. Token yang membuat aplikasi tetap masuk kedaluwarsa 90 hari setelah terakhir dipakai aplikasi, dan dihapus 30 hari setelahnya.
 - **Akun yang dihapus**: akun, metode masuk, perangkat, lisensi, dan keanggotaan timnya langsung dihapus. Pesanan dan log audit tetap seperti dijelaskan di atas. Data tentang Anda yang disimpan server kami sebelumnya tetap ada dalam arsipnya, seperti dijelaskan di atas.
 - **Buletin**: alamat yang tidak dikonfirmasi dalam 30 hari dihapus beserta tautan konfirmasinya. Alamat yang sudah dikonfirmasi, atau yang dipindahkan dari server kami sebelumnya, tetap ada di daftar kami beserta catatan tentang cara alamat itu masuk, sampai kami menghapusnya atas permintaan Anda atau Anda menghapus akun TablePro yang memakainya; setelah Anda berhenti berlangganan, alamat itu disimpan sebagai berhenti berlangganan agar tidak ada buletin yang sampai kepadanya.
+- **Daftar penahanan**: alamat yang emailnya ditolak secara permanen, atau yang pemiliknya menandai salah satu email kami sebagai spam, tetap ada di daftar penahanan kami beserta waktu pertama dan terakhir hal itu terjadi, juga setelah akun atau langganan buletin yang memakainya dihapus. Dengan begitu, kami tidak mengirim email ke alamat itu lagi.
 - **Google Analytics**: data tingkat pengguna dan tingkat peristiwa selama 2 bulan, masa retensi bawaan Google yang digunakan properti kami. Cookie bertahan hingga 2 tahun atau dihapus saat Anda menolak.
 - **Cloudflare Web Analytics**: Cloudflare menampilkan jumlah tampilan halaman selama enam bulan terakhir kepada kami. Tidak ada data yang disimpan di peramban.
 - **Chat langsung dan email dukungan**: disimpan oleh Crisp dan di kotak email kami sampai dihapus. Mintalah kepada kami untuk menghapus percakapan dan email Anda.

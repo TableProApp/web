@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal account.tablepro.app. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
@@ -242,6 +242,7 @@ Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können dahe
 - **Anmeldelinks und -codes**: laufen nach 15 Minuten ab und werden 7 Tage später gelöscht. Portalsitzungen dauern 30 Tage. Das Token, das eine App angemeldet hält, läuft 90 Tage nach ihrer letzten Nutzung ab und wird 30 Tage danach gelöscht.
 - **Gelöschte Konten**: Konto, Anmeldemethoden, Geräte, Lizenzen und Teammitgliedschaften werden sofort gelöscht. Bestellungen und Audit-Log bleiben wie oben beschrieben. Was unser früherer Server über dich gespeichert hat, bleibt in seinem oben beschriebenen Archiv.
 - **Newsletter**: Eine Adresse, die nicht innerhalb von 30 Tagen bestätigt wird, wird mit ihrem Bestätigungslink gelöscht. Eine bestätigte oder von unserem früheren Server übernommene Adresse bleibt mit dem Nachweis, wie sie in die Liste kam, in unserer Liste, bis wir sie auf deine Anfrage löschen oder du das TablePro-Konto löschst, das sie verwendet; nach der Abmeldung bleibt sie als abgemeldet gespeichert, damit sie keinen Newsletter mehr erhält.
+- **Sperrliste**: Eine Adresse, an die eine E-Mail endgültig nicht zugestellt werden konnte oder deren Inhaber eine unserer E-Mails als Spam markiert hat, bleibt mit dem Zeitpunkt des ersten und des letzten Vorfalls auf unserer Sperrliste, auch nachdem das Konto oder das Newsletter-Abonnement mit dieser Adresse gelöscht wurde. So senden wir ihr keine E-Mail mehr.
 - **Google Analytics**: Nutzer- und Ereignisdaten für 2 Monate, Googles Standardfrist, die unsere Property verwendet. Cookies bleiben bis zu 2 Jahre oder werden beim Ablehnen gelöscht.
 - **Cloudflare Web Analytics**: Cloudflare zeigt uns die Seitenaufrufsummen der letzten sechs Monate. Im Browser wird nichts gespeichert.
 - **Live-Chat und Support-E-Mails**: werden bei Crisp und in unserem Postfach bis zur Löschung aufbewahrt. Bitte uns, deine Gespräche und E-Mails zu löschen.

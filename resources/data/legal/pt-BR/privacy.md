@@ -1,7 +1,7 @@
 ---
 title: Política de privacidade
 description: O que os apps, site e portal da conta TablePro coletam, para onde os dados vão, por quanto tempo são mantidos e como alterá-los ou excluí-los.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site tablepro.app, a documentação em docs.tablepro.app e o portal da conta account.tablepro.app. Descreve o que cada um realmente envia e armazena hoje. Os dois apps são de código aberto sob a AGPLv3, portanto você pode ler o código que envia os dados abaixo no [repositório TablePro]({github}).
@@ -242,6 +242,7 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 - **Links e códigos de acesso**: expiram após 15 minutos e são excluídos 7 dias depois. Sessões do portal duram 30 dias. O token que mantém um app conectado expira 90 dias após o último uso pelo app e é excluído 30 dias depois.
 - **Contas excluídas**: a conta, seus métodos de acesso, dispositivos, licenças e participações em equipes são excluídos imediatamente. Pedidos e o registro de auditoria ficam como descrito acima. O que nosso servidor anterior guardava sobre você continua no arquivo dele, descrito acima.
 - **Newsletter**: um endereço não confirmado em 30 dias é excluído junto com seu link de confirmação. Um endereço confirmado, ou trazido do nosso servidor anterior, fica em nossa lista com o registro de como entrou até o excluirmos a seu pedido ou você excluir a conta TablePro que o usa; após cancelar a inscrição, ele fica marcado como cancelado, para que nenhuma newsletter chegue a ele.
+- **Lista de supressão**: um endereço do qual um e-mail voltou de forma definitiva, ou cujo titular marcou um de nossos e-mails como spam, permanece na nossa lista de supressão com a data da primeira e da última vez, também depois que a conta ou a assinatura da newsletter que o usava é excluída. Assim não enviamos mais nenhum e-mail a ele.
 - **Google Analytics**: dados no nível de usuário e evento por 2 meses, o período padrão usado por nossa propriedade. Cookies duram até 2 anos ou são excluídos quando você recusa.
 - **Cloudflare Web Analytics**: Cloudflare nos mostra totais de visualizações dos últimos seis meses. Nada é armazenado no navegador.
 - **Chat ao vivo e emails de suporte**: mantidos pelo Crisp e em nossa caixa de email até serem excluídos. Solicite a exclusão das conversas e emails.

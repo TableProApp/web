@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -242,6 +242,7 @@ Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ li�
 - **Liên kết và mã đăng nhập**: hết hạn sau 15 phút và bị xóa 7 ngày sau đó. Mỗi phiên đăng nhập trang tài khoản kéo dài 30 ngày. Token giữ một ứng dụng ở trạng thái đăng nhập hết hạn 90 ngày sau lần cuối ứng dụng dùng nó, và bị xóa 30 ngày sau đó.
 - **Tài khoản đã xóa**: tài khoản, các cách đăng nhập, thiết bị, license và tư cách thành viên nhóm bị xóa ngay. Đơn hàng và nhật ký kiểm tra được giữ như mô tả ở trên. Những gì máy chủ trước đây lưu về bạn vẫn nằm trong kho lưu trữ của máy chủ đó, như mô tả ở trên.
 - **Bản tin**: địa chỉ không được xác nhận trong vòng 30 ngày sẽ bị xóa cùng liên kết xác nhận. Địa chỉ đã xác nhận, hoặc được chuyển từ máy chủ trước đây, nằm trong danh sách của chúng tôi cùng bản ghi về cách địa chỉ đó vào danh sách, cho tới khi chúng tôi xóa theo yêu cầu của bạn hoặc bạn xóa tài khoản TablePro dùng địa chỉ đó; sau khi bạn hủy đăng ký, địa chỉ được giữ ở trạng thái đã hủy đăng ký để không bản tin nào tới được địa chỉ đó.
+- **Danh sách chặn gửi**: địa chỉ có email bị trả về vĩnh viễn, hoặc có chủ sở hữu đã đánh dấu một email của chúng tôi là thư rác, được giữ trong danh sách chặn gửi của chúng tôi cùng thời điểm lần đầu và lần cuối việc đó xảy ra, kể cả sau khi tài khoản hoặc đăng ký bản tin dùng địa chỉ đó đã bị xóa. Nhờ vậy chúng tôi không gửi email đến địa chỉ đó nữa.
 - **Google Analytics**: dữ liệu ở cấp người dùng và cấp sự kiện được giữ 2 tháng, thời hạn lưu mặc định của Google mà property của chúng tôi đang dùng. Cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
 - **Cloudflare Web Analytics**: Cloudflare cho chúng tôi xem số liệu tổng về lượt xem trang trong sáu tháng gần nhất. Không có gì được lưu trong trình duyệt của bạn.
 - **Chat trực tuyến và email hỗ trợ**: được Crisp và hộp thư của chúng tôi giữ cho tới khi bị xóa. Bạn có thể yêu cầu chúng tôi xóa các cuộc chat và email của bạn.

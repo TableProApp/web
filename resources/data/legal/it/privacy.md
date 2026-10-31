@@ -1,7 +1,7 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account account.tablepro.app. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
@@ -242,6 +242,7 @@ I servizi elencati operano in diversi paesi, quindi i tuoi dati possono essere t
 - **Link e codici di accesso**: scadono dopo 15 minuti e vengono eliminati 7 giorni dopo. Le sessioni del portale durano 30 giorni. Il token che mantiene l'accesso di un'app scade 90 giorni dopo l'ultimo uso da parte dell'app e viene eliminato 30 giorni dopo.
 - **Account eliminati**: l'account, i suoi metodi di accesso, dispositivi, licenze e appartenenze ai team vengono eliminati subito. Gli ordini e il registro di audit restano come descritto sopra. Ciò che il nostro server precedente conservava su di te resta nel suo archivio, descritto sopra.
 - **Newsletter**: un indirizzo non confermato entro 30 giorni viene eliminato insieme al suo link di conferma. Un indirizzo confermato, o trasferito dal nostro server precedente, resta nella nostra lista con la traccia di come vi è entrato finché non lo eliminiamo su tua richiesta o non elimini l'account TablePro che lo usa; dopo l'annullamento dell'iscrizione resta segnato come disiscritto, così non riceve alcuna newsletter.
+- **Elenco di soppressione**: un indirizzo da cui un'email è tornata indietro in modo definitivo, o il cui titolare ha segnalato una delle nostre email come spam, resta nel nostro elenco di soppressione con la data della prima e dell'ultima volta, anche dopo l'eliminazione dell'account o dell'iscrizione alla newsletter che lo usava. Così non gli inviamo più alcuna email.
 - **Google Analytics**: dati a livello di utente e di evento per 2 mesi, il periodo di conservazione predefinito di Google usato dalla nostra proprietà. I cookie durano fino a 2 anni oppure vengono eliminati quando li rifiuti.
 - **Cloudflare Web Analytics**: Cloudflare ci mostra i totali delle visualizzazioni degli ultimi sei mesi. Nulla viene conservato nel browser.
 - **Chat dal vivo ed email di supporto**: conservate da Crisp e nella nostra casella email finché non vengono eliminate. Chiedici di eliminare le tue conversazioni e le tue email.

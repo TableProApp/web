@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-30"
+updatedAt: "2026-10-31"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -242,6 +242,7 @@ The services above operate in several countries, so your data may be processed o
 - **Sign-in links and codes**: they expire after 15 minutes and are deleted 7 days later. Portal sessions last 30 days. The token that keeps an app signed in expires 90 days after the app last used it, and is deleted 30 days after that.
 - **Deleted accounts**: the account, its sign-in methods, devices, licenses and team memberships are deleted at once. Orders and the audit log stay as described above. What our previous server held about you stays in its archive, described above.
 - **Newsletter**: an address that is not confirmed within 30 days is deleted with its confirmation link. A confirmed address, or one carried over from our previous server, stays in our list with the record of how it joined until we delete it at your request or you delete the TablePro account that uses it; after you unsubscribe it is kept as unsubscribed, so no newsletter reaches it.
+- **Suppression list**: an address that an email bounced from for good, or whose owner marked one of our emails as spam, stays on our suppression list with when that first and last happened, also after the account or newsletter subscription that used it is deleted. This keeps us from emailing it again.
 - **Google Analytics**: user-level and event-level data for 2 months, Google's default retention period, which our property uses. Its cookies last up to 2 years, or are deleted when you decline.
 - **Cloudflare Web Analytics**: Cloudflare shows us the last six months of page-view totals. Nothing is stored in your browser.
 - **Live chat and support emails**: kept by Crisp and in our mailbox until deleted. Ask us to delete your conversations and emails.
