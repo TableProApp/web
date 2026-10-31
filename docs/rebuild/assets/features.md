@@ -1206,7 +1206,7 @@ Shows the local MCP server running and the copyable setup for a client.
 
 ### Scene
 - Platform and release: Mac, TablePro 0.77.0.
-- Screen: Settings > Integrations with Enable MCP Server on and the Status row reading "Running on port 23508", and
+- Screen: Settings > MCP with Enable MCP Server on and the Status row reading "Running on port 23508", and
   Connect a Client… open on the Claude Code tab with its numbered steps and snippet.
 - No token, path with a real user name or e-mail may be visible; use a capture account with a neutral user name.
 
@@ -1218,7 +1218,7 @@ wide.
 Both variants from the same frame (switch the macOS appearance).
 
 ### Locale
-One English capture serves both sites (the Vietnamese copy names the pane Cài đặt > Tích hợp).
+One English capture serves both sites (the Vietnamese copy names the pane Cài đặt > MCP).
 
 ### Open evidence
 The legacy `/images/blog/mcp-settings-panel.png` is reference only.
@@ -1227,7 +1227,7 @@ The legacy `/images/blog/mcp-settings-panel.png` is reference only.
 None.
 
 ### Tóm tắt cho chủ sở hữu
-Chụp cận cảnh Cài đặt > Tích hợp (Settings > Integrations) với MCP server đang chạy và hộp Connect a Client… mở ở tab
+Chụp cận cảnh Cài đặt > MCP (Settings > MCP) với MCP server đang chạy và hộp Connect a Client… mở ở tab
 Claude Code, có đoạn cấu hình để sao chép. Không để lộ token hay tên người dùng thật trong đường dẫn.
 
 ## mac-connection-library

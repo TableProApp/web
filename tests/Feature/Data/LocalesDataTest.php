@@ -47,7 +47,7 @@ it('collides with no root path the site or the platform serves', function (): vo
             // The paths nginx answers on this origin without this app.
             'account', 'checkout', 'thank-you', 'newsletter', 'webhooks',
             // Static directories under public/.
-            'build', 'og', 'images', 'sponsors',
+            'build', 'og', 'images',
         ])
         ->unique();
 

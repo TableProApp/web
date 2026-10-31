@@ -503,15 +503,41 @@ describe('server-rendered', function (): void {
 
     it('thanks only the verified sponsors, each as a sponsored link', function (): void {
         $html = ssrHome('/');
+        $data = homeData('sponsors.json');
 
-        foreach (homeData('sponsors.json')['sponsors'] as $sponsor) {
-            expect($html)->toMatch('#<a[^>]*href="' . preg_quote(htmlspecialchars($sponsor['url'], ENT_QUOTES), '#') . '"[^>]*rel="sponsored noopener"#');
+        preg_match('#<section[^>]*id="sponsors".*?</section>#s', $html, $section);
+
+        foreach ($data['sponsors'] as $sponsor) {
+            $link = '#<a[^>]*href="' . preg_quote(htmlspecialchars($sponsor['url'], ENT_QUOTES), '#') . '"[^>]*rel="sponsored noopener"#';
+
+            if (in_array($sponsor['placement'], ['lead', 'homepage'], true)) {
+                expect($section[0] ?? '')->toMatch($link);
+            } else {
+                expect($html)->not->toContain(htmlspecialchars($sponsor['url'], ENT_QUOTES));
+            }
         }
 
         foreach (['getapps', 'Visnalize', 'Unikorn', 'Xermius'] as $former) {
             expect($html)->not->toContain($former);
         }
     })->group('ssr');
+
+    it('counts the open homepage places from the data and invites a sponsor to the sponsors page', function (string $path, string $prefix): void {
+        $data = homeData('sponsors.json');
+        $placed = count(array_filter($data['sponsors'], fn(array $sponsor): bool => in_array($sponsor['placement'], ['lead', 'homepage'], true)));
+        $open = max(0, $data['homepageSlots'] - $placed);
+        $locale = $prefix === '' ? 'en' : ltrim($prefix, '/');
+        $invite = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/home.json")), true)['sponsors']['invite'];
+
+        preg_match('#<section[^>]*id="sponsors".*?</section>#s', ssrHome($path), $section);
+
+        expect($open)->toBeGreaterThan(0, 'The invite cell is hidden when every place is taken; this test needs an open one');
+        expect(substr_count($section[0] ?? '', '<li'))->toBe($placed + 1);
+        expect(substr_count($section[0] ?? '', "href=\"{$prefix}/sponsors\""))->toBe(2, 'The heading link and the invite cell');
+        expect($section[0] ?? '')->toContain(htmlspecialchars($invite['title'], ENT_QUOTES))
+            ->toContain(str_replace(['{count}', '{total}'], [(string) $open, (string) $data['homepageSlots']], $invite['open'][$open === 1 ? 'one' : 'other']))
+            ->not->toContain('github.com/sponsors');
+    })->with([['/', ''], ['/vi', '/vi']])->group('ssr');
 
     it('renders a title built from platforms.json, Product Hunt only as a text link, and wraps the sponsor logos', function (string $path, string $title, string $productHunt): void {
         $html = ssrHome($path);

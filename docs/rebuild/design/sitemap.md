@@ -67,7 +67,7 @@ Column notes:
   - `pricing.json`: tiers, cycles, prices, seats, the account's device limit, the plan file's offline days and the old builds' license timings, refund window, the 10 paid features with tier, page anchor and lapse behaviour, merchant, currency, and the definition of Priority support.
   - `facts.json`: AI provider list, MCP clients, Safe Mode levels per platform, import sources, export formats, backup tools, sync categories, grid and editor limits.
   - `comparisons.json`: facts plus `checkedAt`, `sources[]` and three-state cells.
-  - `sponsors.json`: the 4 verified sponsors (CodeRabbit, SimpleLocalize, Nimbus, Dwarves Foundation).
+  - `sponsors.json`: the current sponsors with their placement, the homepage places and the tier prices.
   - `assets.json`: the placeholder manifest.
 - **Slots** are asset IDs from the slot catalogue in §A.8. One ID means one scene. A scene is reused only where it shows the same workflow on the same engine.
 - **Indexable "yes (pair)"** means `index,follow`, in the sitemap, self-canonical, with reciprocal `hreflang` between EN and VI and `x-default` set to EN. **"yes (EN only)"** means indexable, with no alternates.
@@ -231,7 +231,7 @@ These are the proposed asset IDs. `docs/visual-assets.md` owns the full brief fo
 | mac-ai-chat-mobile | crop | 4:5 | /#ai, /features/ai-mcp (<768px) | Close-up of the chat: the answer, its query and the Insert button. | Cận cảnh khung chat: câu trả lời, query đi kèm và nút Insert. |
 | mac-agent-mode | screenshot | 16:9 | /features/ai-mcp (≥768px) | Agent mode session "Find orders with no items": three statements, one write waiting for Run. | Phiên Agent mode "Find orders with no items": ba câu lệnh, một lệnh ghi đang chờ bấm Run. |
 | mac-agent-mode-mobile | crop | 4:5 | /features/ai-mcp (<768px) | Close-up of the waiting write: its statement card with Run and Reject. | Cận cảnh lệnh ghi đang chờ: thẻ câu lệnh với nút Run và Reject. |
-| mac-mcp-settings | crop | 4:3 | /features/ai-mcp | Settings > Integrations: the MCP server running and the Claude Code setup snippet. | Cài đặt > Tích hợp (Settings > Integrations): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code. |
+| mac-mcp-settings | crop | 4:3 | /features/ai-mcp | Settings > MCP: the MCP server running and the Claude Code setup snippet. | Cài đặt > MCP (Settings > MCP): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code. |
 | mac-connection-ssh-form | crop | 4:3 | /#features, /features/connections (≥768px) | Connection form, Network tab: SSH through bastion.acme.internal with one jump host. | Form connection, tab Network: SSH qua bastion.acme.internal với một jump host. |
 | mac-connection-ssh-form-mobile | crop | 4:5 | /#features, /features/connections (<768px) | Close-up of the SSH settings: the bastion host, the user, SSH Agent and the jump host row. | Cận cảnh phần cài đặt SSH: host bastion, user, SSH Agent và dòng jump host. |
 | mac-connection-library | crop | 4:3 | /features/connections | Welcome window: Production and Staging groups, coloured tags and the Chinook sample. | Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook. |
@@ -537,7 +537,7 @@ The same structure serves `/` and `/vi`. The ids are locale-neutral.
 |---|---|---|---|---|---|---|
 | 1 | `top` | **Hero** | What is TablePro, and can I use it on my devices? | H1 and subtitle (positioning decision). "Download for Mac" → /download, with the availability line below it ("macOS 13 Ventura or later · Apple Silicon and Intel"). The App Store badge, with its own line ("iPhone and iPad · iOS/iPadOS 18 or later · free"). A small link to Pricing | mac-hero-window (≥768px), mac-hero-window-mobile (<768px); the only `fetchpriority="high"` image on the site | platforms; `download_click{location:'hero', platform}` |
 | 2 | `databases` | **Databases** | Does it work with the database I use? | The featured engines with vendor marks; the number of engines, derived, with the hub's categories as links into /databases; one sentence on bundled drivers and drivers downloaded on first pick; the engines that open on iPhone; "Supported databases →" /databases | none (vendor marks are identity assets) | engines (names and categories; any count is derived) |
-| 3 | `sponsors` | **Sponsors** (fixed third) | Who supports the project? | The 4 verified sponsors' logos with `rel="sponsored noopener"` and accessible names; "Sponsor TablePro" (GitHub Sponsors) | none (sponsor logos are identity) | sponsors.json |
+| 3 | `sponsors` | **Sponsors** (fixed third) | Who supports the project? | The homepage-placed sponsors' logos with `rel="sponsored noopener"` and accessible names, an invite cell with the open places, and "Sponsor TablePro" (both to `/sponsors`) | none (sponsor logos are identity) | sponsors.json |
 | 4 | `features` | **Workflows** | What do I do with it day to day? | Five rows, each a heading, 2-3 sentences, one slot and a link: **Query** → /features/querying · **Edit data** → /features/data-editing · **Schemas and sync** (Compare & Sync marked Starter) → /features/schema · **Files** → /features/import-export · **Connect** → /features/connections | mac-query-autocomplete, mac-edit-preview-sql, mac-compare-sync-structure, mac-data-files-window, mac-connection-ssh-form | pricing (tier markers) |
 | 5 | `safety` | **Production safety** | Can I point it at production without fear? | Safe Mode per connection (levels named); DROP, TRUNCATE and WHERE-less DELETE always ask; Read-Only; Touch ID; Agent mode raises the floor → /features/data-editing#safe-mode | mac-safe-mode-touchid | facts (Safe Mode levels) |
 | 6 | `ai` (`mcp`) | **AI and MCP** | Does it work with AI tools, and what can the AI touch? | Bring your own provider (named); Agent mode; a local MCP server that is off by default; the permission layers in one line; free → /features/ai-mcp | mac-ai-chat | facts (providers) |
@@ -714,7 +714,7 @@ Matching runs on NFC text and on visible strings only. Values that are URLs or p
 | Bỏ qua đến nội dung | Chuyển đến nội dung chính | §10.1 |
 | Bài viết tiếng Anh, or a label whose whole value is "Tiếng Anh" | (tiếng Anh) | §11.4 |
 | team as a lowercase word | nhóm, thành viên nhóm | §11.3. The tier "Team" and feature names such as Team Library keep their capital |
-| An English click path that is not in parentheses: `(?<!\()\bSettings\s*[›>→]` | Cài đặt > Tích hợp (Settings > Integrations); Cài đặt > Giấy phép (Settings > License) | §11.2 click-path rule; the app's own labels come from its Vietnamese string catalog |
+| An English click path that is not in parentheses: `(?<!\()\bSettings\s*[›>→]` | Cài đặt > MCP (Settings > MCP); Cài đặt > Giấy phép (Settings > License) | §11.2 click-path rule; the app's own labels come from its Vietnamese string catalog |
 | giấy phép, except before "AGPL" (the capitalised app label "Giấy phép" in a click path is allowed) | license | §11.1, §11.3 |
 | Billing and invoices (English strings) | Billing & invoices (VI: Thanh toán và hóa đơn) | §4; spec §0 |
 

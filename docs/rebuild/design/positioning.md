@@ -612,7 +612,7 @@ move to their hubs, so no page becomes undiscoverable. There is no footer blurb.
 | Face ID, Touch ID, Optic ID, Handoff, Siri, Dynamic Island | unchanged | |
 
 **Click paths in Vietnamese copy.** Show the app's Vietnamese label first, then the English label in parentheses
-once. Example: **Cài đặt > Tích hợp** (Settings > Integrations). This is the only place app labels such as "Chế độ an
+once. Example: **Cài đặt > MCP** (Settings > MCP). This is the only place app labels such as "Chế độ an
 toàn" appear. Prose keeps "Safe Mode".
 
 ### 11.3 Commerce and account

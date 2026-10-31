@@ -32,7 +32,7 @@ export interface SiteLinks {
  */
 const INTERNAL: Record<string, string> = {
     home: '/',
-    sponsors: '/#sponsors',
+    sponsors: '/sponsors',
     features: '/features',
     querying: '/features/querying',
     connections: '/features/connections',

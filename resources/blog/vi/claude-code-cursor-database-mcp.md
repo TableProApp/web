@@ -40,7 +40,7 @@ Khởi động lại Cursor sau khi sửa file. Nếu TablePro được cài ở
 
 ## Bật server trong TablePro {#turn-on}
 
-1. Mở **Cài đặt > Tích hợp** (Settings > Integrations) và bật **Bật MCP Server** (Enable MCP Server). **Trạng thái** (Status) hiện **Đang chạy trên cổng 23508** (Running on port 23508), hoặc port mà server lấy thay khi port đó đang bận.
+1. Mở **Cài đặt > MCP** (Settings > MCP) và bật **Bật MCP Server** (Enable MCP Server). **Trạng thái** (Status) hiện **Đang chạy trên cổng 23508** (Running on port 23508), hoặc port mà server lấy thay khi port đó đang bận.
 2. Bấm **Kết nối client…** (Connect a Client…) và chọn **Claude Code** hoặc **Cursor**. Bảng này có các bước thiết lập và đoạn cấu hình chứa đúng đường dẫn bản cài của bạn. TablePro không sửa file cấu hình của ứng dụng khác, nên bạn tự dán vào.
 3. Nhờ client liệt kê các tool của TablePro, hoặc gọi `list_connections`. Danh sách có `list_connections`, `list_tables`, `describe_table` và `execute_query`.
 
@@ -56,7 +56,7 @@ Mỗi connection đã lưu có thiết lập riêng. Sửa connection, mở tab 
 | **Read Only** | Đọc schema và chạy câu lệnh đọc. Mọi câu lệnh ghi bị từ chối trước khi tới cơ sở dữ liệu. Đây là mức mặc định. |
 | **Read & Write** | Đọc, và ghi những gì Safe Mode cho qua. |
 
-Hãy để production ở **Read Only** hoặc **Blocked**. Chỉ cho **Read & Write** với cơ sở dữ liệu local hoặc staging, nơi bạn muốn agent thay đổi dữ liệu.
+Hãy để production ở **Read Only** hoặc **Blocked**, và cho agent dùng một [role chỉ đọc trong cơ sở dữ liệu](#database-role). Chỉ cho **Read & Write** với cơ sở dữ liệu local hoặc staging, nơi bạn muốn agent thay đổi dữ liệu.
 
 ## Yêu cầu duyệt trước khi ghi {#safe-mode}
 
@@ -83,18 +83,68 @@ Với **Read & Write** và **Silent**, thao tác ghi thông thường chạy đ�
 
 Một số câu lệnh luôn bị từ chối bất kể thiết lập: mọi thứ đọc hoặc ghi file trên server hay chạy code phía server, và nhiều hơn một câu lệnh trong một lần gọi, trừ script SQL Server.
 
-Nếu cần token hẹp hơn token của `tablepro-mcp`, ví dụ **Read Only** và chỉ cho vài connection, hãy tạo một token trong **Cài đặt > Tích hợp > Xác thực** (Settings > Integrations > Authentication) rồi cho client kết nối qua HTTP. Tài liệu [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) có cấu hình cho cách này.
+Nếu cần token hẹp hơn token của `tablepro-mcp`, ví dụ **Read Only** và chỉ cho vài connection, hãy tạo một token trong **Cài đặt > MCP > Xác thực** (Settings > MCP > Authentication) rồi cho client kết nối qua HTTP. Tài liệu [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) có cấu hình cho cách này.
+
+## Dùng role chỉ đọc trong cơ sở dữ liệu {#database-role}
+
+Mọi lớp kiểm tra ở trên chạy trong TablePro và đánh giá câu lệnh qua nội dung của nó. TablePro biết function có sẵn nào thay đổi dữ liệu, như `nextval` hay `set_config`, nhưng không biết function của chính bạn làm gì: `SELECT archive_orders()` trông như một câu lệnh đọc. Còn cơ sở dữ liệu kiểm tra quyền của role ở mọi câu lệnh, bất kể ai gửi.
+
+Với production, hãy cho agent kết nối bằng một role chỉ đọc được. Trên PostgreSQL, chạy các lệnh grant bằng role sở hữu các table, vì `ALTER DEFAULT PRIVILEGES` chỉ áp dụng cho table mà chính role đó tạo về sau:
+
+```sql
+CREATE ROLE agent LOGIN PASSWORD 'change-me';
+GRANT CONNECT ON DATABASE app TO agent;
+GRANT USAGE ON SCHEMA public TO agent;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO agent;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO agent;
+```
+
+Trên MySQL:
+
+```sql
+CREATE USER 'agent'@'%' IDENTIFIED BY 'change-me';
+GRANT SELECT ON app.* TO 'agent'@'%';
+```
+
+Thay `app` bằng tên cơ sở dữ liệu của bạn, và lặp lại các lệnh grant schema cho mỗi schema mà agent cần đọc. Sau đó tạo cho role này một connection riêng:
+
+1. Trên cửa sổ chào mừng, bấm chuột phải vào connection production và chọn **Nhân bản** (Duplicate).
+2. Sửa bản sao để đăng nhập bằng `agent`, và đặt **Client bên ngoài** (External Clients) của nó thành **Read Only**.
+3. Đặt **Client bên ngoài** của connection gốc thành **Blocked**, để client chỉ thấy bản sao.
+
+Để kiểm tra role, mở bản sao trong TablePro và chạy một câu lệnh ghi không khớp dòng nào:
+
+```sql
+UPDATE orders SET status = status WHERE false;
+```
+
+PostgreSQL trả về `permission denied for table orders`, MySQL trả về `UPDATE command denied`. Nếu câu lệnh chạy được, role đó vẫn ghi được.
+
+Những gì role chỉ đọc không che được:
+
+- Trên PostgreSQL, function `SECURITY DEFINER` chạy với quyền của owner, và role nào cũng gọi được function trừ khi `EXECUTE` đã bị thu hồi khỏi `PUBLIC`. Liệt kê các function đó, rồi thu hồi `EXECUTE` khỏi `PUBLIC` ở những function có ghi dữ liệu:
+
+  ```sql
+  SELECT p.oid::regprocedure
+  FROM pg_proc p
+  JOIN pg_namespace n ON n.oid = p.pronamespace
+  WHERE p.prosecdef AND n.nspname NOT IN ('pg_catalog', 'information_schema');
+  ```
+
+- Trên MySQL, đừng cấp gì ngoài `SELECT`. Routine mặc định chạy với quyền của definer, nên `EXECUTE` sẽ cho agent gọi được một routine có ghi dữ liệu.
+- `ALTER ROLE agent SET default_transaction_read_only = on` không phải ranh giới: session có thể `SET` lại.
 
 ## Xem hoạt động {#activity}
 
-**Xem hoạt động…** (View Activity…) trong **Cài đặt > Tích hợp** liệt kê mọi lần gọi tool và mọi query, kèm connection và kết quả. Câu lệnh ở đó được lưu dưới dạng mã băm SHA-256, không phải văn bản. Query do client chạy cũng xuất hiện trong lịch sử query của connection đó, trừ khi bạn tắt **Ghi truy vấn MCP vào lịch sử** (Log MCP queries in history).
+**Xem hoạt động…** (View Activity…) trong **Cài đặt > MCP** liệt kê mọi lần gọi tool và mọi query, kèm connection và kết quả. Câu lệnh ở đó được lưu dưới dạng mã băm SHA-256, không phải văn bản. Query do client chạy cũng xuất hiện trong lịch sử query của connection đó, trừ khi bạn tắt **Ghi truy vấn MCP vào lịch sử** (Log MCP queries in history).
 
 ## Giới hạn {#limits}
 
 - Server chỉ lắng nghe trên `127.0.0.1`. Không có chế độ truy cập từ xa; client trên máy khác cần một SSH port forward do bạn tự thiết lập và tự chịu trách nhiệm.
 - Server chạy trong ứng dụng cho Mac. Ứng dụng cho iPhone và iPad không có MCP server.
 - Client thấy các connection đã lưu nhưng không bao giờ thấy mật khẩu, và không tạo, sửa connection hay đổi Safe Mode được.
-- Kết quả dừng ở **Giới hạn dòng mặc định** (Default row limit), 500 dòng nếu bạn không đổi, và client chỉ xin thêm được tới **Giới hạn dòng tối đa** (Maximum row limit), mặc định là 10.000. Cả hai nằm trong **Cài đặt > Tích hợp**.
+- Kết quả dừng ở **Giới hạn dòng mặc định** (Default row limit), 500 dòng nếu bạn không đổi, và client chỉ xin thêm được tới **Giới hạn dòng tối đa** (Maximum row limit), mặc định là 10.000.
+- Mỗi lần gọi chờ tối đa **Thời gian chờ truy vấn** (Query timeout), 30 giây nếu bạn không đổi, và client xin được tới 300 giây. Câu lệnh đọc còn chạy lúc đó sẽ bị hủy. Cả ba giới hạn nằm trong **Cài đặt > MCP** (Settings > MCP).
 
 ## Xử lý lỗi {#troubleshooting}
 

@@ -35,6 +35,7 @@ class LlmsTxtController extends Controller
             'landing.faq',
             'landing.security',
             'landing.about',
+            'landing.sponsors',
         ],
         'Databases' => ['landing.databases.index', 'landing.databaseClient'],
         'Comparisons' => ['landing.compare.index', 'landing.compare'],
