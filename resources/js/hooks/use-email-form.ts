@@ -7,6 +7,10 @@ import { loadTurnstile, renderHumanCheck, turnstileLanguage, type HumanCheck } f
 
 export type { FlashMessage } from '@/hooks/email-form-response';
 
+// Names the wording the form shows, footer.newsletter's body and note in every locale; tablepro-cloud keeps it in the
+// consent record, so it changes whenever that wording does.
+export const NEWSLETTER_CONSENT_VERSION = '2026-10-28';
+
 // The newsletter signup. This app has no session, so the result lives in React state, never in a flash bag.
 export function useEmailForm() {
     const { locale, m } = useI18n();
@@ -74,7 +78,14 @@ export function useEmailForm() {
                 method: 'POST',
                 credentials: 'omit',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-                body: JSON.stringify({ email, locale, turnstile_token: token }),
+                // The page without its query or fragment, which may carry more than where the form was.
+                body: JSON.stringify({
+                    email,
+                    locale,
+                    turnstile_token: token,
+                    source: window.location.origin + window.location.pathname,
+                    consent_version: NEWSLETTER_CONSENT_VERSION,
+                }),
             });
             const data: unknown = await res.json().catch(() => ({}));
             const outcome = emailFormOutcome(res.status, data, m.forms);

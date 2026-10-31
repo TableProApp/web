@@ -53,17 +53,21 @@ it('calls only tablepro-cloud\'s public /v2 endpoints and Cloudflare\'s trace', 
     expect($api)->toContain('usePage().props.apiOrigin')->toContain('`${origin}${path}`');
 });
 
-it('sends the newsletter form as JSON with the page locale and a Turnstile token', function (): void {
+it('sends the newsletter form as JSON with the page locale, a Turnstile token, the page and the consent wording\'s version', function (): void {
     $hook = (string) file_get_contents(resource_path('js/hooks/use-email-form.ts'));
     $turnstile = (string) file_get_contents(resource_path('js/lib/turnstile.ts'));
 
     expect($hook)->toContain("method: 'POST'")
         ->toContain("headers: { 'Content-Type': 'application/json', Accept: 'application/json' }")
-        ->toContain('body: JSON.stringify({ email, locale, turnstile_token: token })')
+        ->toMatch('/body: JSON\.stringify\(\{\s*email,\s*locale,\s*turnstile_token: token,\s*source: window\.location\.origin \+ window\.location\.pathname,\s*consent_version: NEWSLETTER_CONSENT_VERSION,\s*\}\)/')
         ->toContain('emailFormOutcome(res.status, data, m.forms)')
         ->toContain('usePage().props.turnstileSiteKey');
 
     expect($hook)->toMatch("/fetch\\(api\\('\\/v2\\/newsletter\\/subscriptions'\\), \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
+
+    // The privacy policy says the consent record keeps the page and the version of the wording; tablepro-cloud takes at
+    // most 32 characters.
+    expect(preg_match("/NEWSLETTER_CONSENT_VERSION = '([^']{1,32})'/", $hook))->toBe(1);
 
     // tablepro-cloud checks the action, so the widget must name it.
     expect($turnstile)->toContain("TURNSTILE_ACTION = 'newsletter'")->toContain('action: TURNSTILE_ACTION');
