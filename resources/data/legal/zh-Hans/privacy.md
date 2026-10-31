@@ -214,7 +214,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 我们仅向运营 TablePro 所需的服务共享个人数据：
 
 - **{merchant}**：购买交易的 merchant of record。
-- **Amazon Web Services**：通过 Amazon SES 从其亚太地区（悉尼）区域发送我们的邮件，包括登录链接和代码、团队邀请、账户和安全通知以及订阅邮件。邮件送达、被退回或被标记为垃圾邮件时，它会通知我们；我们会记录退回和垃圾邮件投诉，以停止向这些地址发送。对于订阅邮件，它还会通知每次打开和点击，详见[邮件订阅](#newsletter)。
+- **Amazon Web Services**：通过 Amazon SES 从其亚太地区（新加坡）区域发送我们的邮件，包括登录链接和代码、团队邀请、账户和安全通知以及订阅邮件。邮件送达、被退回或被标记为垃圾邮件时，它会通知我们；我们会记录退回和垃圾邮件投诉，以停止向这些地址发送。对于订阅邮件，它还会通知每次打开和点击，详见[邮件订阅](#newsletter)。
 - **托管服务商及 Cloudflare**：运行网站、账户门户和应用连接的服务器。Cloudflare 也通过 Web Analytics 统计页面浏览量，并用 Turnstile 验证邮件订阅表单。
 - **Google**：网站和文档中的 Google Analytics。
 - **Crisp**：网站和账户门户每个页面的在线聊天。
@@ -228,7 +228,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 ## 国际传输 {#transfers}
 
-以上服务在多个国家运营，因此您的数据可能在居住国之外处理。{merchant}、Google、GitHub、Cloudflare 和 Mintlify 在美国处理数据；Google 依据 EU-US Data Privacy Framework 和标准合同条款处理。PostHog 在欧盟处理数据。Amazon Web Services 从澳大利亚发送我们的邮件。在法律要求时，从欧洲经济区和英国传输数据采用标准合同条款或其他获批机制。
+以上服务在多个国家运营，因此您的数据可能在居住国之外处理。{merchant}、Google、GitHub、Cloudflare 和 Mintlify 在美国处理数据；Google 依据 EU-US Data Privacy Framework 和标准合同条款处理。PostHog 在欧盟处理数据。Amazon Web Services 从新加坡发送我们的邮件。在法律要求时，从欧洲经济区和英国传输数据采用标准合同条款或其他获批机制。
 
 ## 数据保留期限 {#retention}
 

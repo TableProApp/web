@@ -379,7 +379,7 @@ it('describes the account portal tablepro-cloud runs, its sign-in and what it lo
 });
 
 it('names Amazon SES as the sender of every email and the newsletter\'s open and click tracking', function (string $locale): void {
-    // tablepro-cloud M24: SES in ap-southeast-2 sends both streams and tracks newsletter opens and clicks on links.news.tablepro.app.
+    // tablepro-cloud M24: SES in ap-southeast-1 sends both streams and tracks newsletter opens and clicks on links.news.tablepro.app.
     expect(legalSource('privacy', $locale))->not->toContain('Resend');
     expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Amazon Web Services**')->toContain('Amazon SES');
     expect(legalSection('privacy', $locale, 'transfers'))->toContain('Amazon Web Services');

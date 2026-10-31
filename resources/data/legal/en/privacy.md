@@ -214,7 +214,7 @@ For readers in the European Economic Area and the United Kingdom, the lawful bas
 We share personal data only with the services needed to run TablePro:
 
 - **{merchant}**, the merchant of record for purchases.
-- **Amazon Web Services**, whose Amazon SES service sends our emails from its Asia Pacific (Sydney) region: sign-in links and codes, team invitations, account and security notices, and newsletters. It tells us when an email is delivered, bounces or is marked as spam, and we record bounces and spam reports to stop sending to those addresses. For newsletters it also reports each open and click, as described under [Newsletter](#newsletter).
+- **Amazon Web Services**, whose Amazon SES service sends our emails from its Asia Pacific (Singapore) region: sign-in links and codes, team invitations, account and security notices, and newsletters. It tells us when an email is delivered, bounces or is marked as spam, and we record bounces and spam reports to stop sending to those addresses. For newsletters it also reports each open and click, as described under [Newsletter](#newsletter).
 - **Our hosting provider and Cloudflare**, for the website, the account portal and the server the apps talk to. Cloudflare also counts page views with Cloudflare Web Analytics and checks the newsletter form with Turnstile.
 - **Google**, for Google Analytics on the website and the documentation.
 - **Crisp**, for the live chat on every page of the website and the account portal.
@@ -228,7 +228,7 @@ We do not sell personal data and do not share it with advertisers.
 
 ## International transfers {#transfers}
 
-The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub, Cloudflare and Mintlify process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. PostHog processes it in the European Union. Amazon Web Services sends our emails from Australia. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
+The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub, Cloudflare and Mintlify process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. PostHog processes it in the European Union. Amazon Web Services sends our emails from Singapore. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
 
 ## How long we keep data {#retention}
 

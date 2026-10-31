@@ -214,7 +214,7 @@ Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan
 Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalankan TablePro:
 
 - **{merchant}**, merchant of record untuk pembelian.
-- **Amazon Web Services**, yang layanan Amazon SES-nya mengirim email kami dari region Asia Pasifik (Sydney): tautan dan kode masuk, undangan tim, pemberitahuan akun dan keamanan, serta buletin. Layanan ini memberi tahu kami saat email terkirim, terpental, atau ditandai sebagai spam, dan kami mencatat email yang terpental dan laporan spam untuk berhenti mengirim ke alamat tersebut. Untuk buletin, layanan ini juga melaporkan setiap pembukaan dan klik, seperti dijelaskan di [Buletin](#newsletter).
+- **Amazon Web Services**, yang layanan Amazon SES-nya mengirim email kami dari region Asia Pasifik (Singapura): tautan dan kode masuk, undangan tim, pemberitahuan akun dan keamanan, serta buletin. Layanan ini memberi tahu kami saat email terkirim, terpental, atau ditandai sebagai spam, dan kami mencatat email yang terpental dan laporan spam untuk berhenti mengirim ke alamat tersebut. Untuk buletin, layanan ini juga melaporkan setiap pembukaan dan klik, seperti dijelaskan di [Buletin](#newsletter).
 - **Penyedia hosting kami dan Cloudflare**, untuk situs web, portal akun, dan server yang berkomunikasi dengan aplikasi. Cloudflare juga menghitung tampilan halaman menggunakan Cloudflare Web Analytics dan memeriksa formulir buletin dengan Turnstile.
 - **Google**, untuk Google Analytics di situs web dan dokumentasi.
 - **Crisp**, untuk chat langsung pada setiap halaman situs web dan portal akun.
@@ -228,7 +228,7 @@ Kami tidak menjual data pribadi atau membagikannya kepada pengiklan.
 
 ## Transfer internasional {#transfers}
 
-Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses di luar negara Anda. {merchant}, Google, GitHub, Cloudflare, dan Mintlify memproses data di Amerika Serikat; Google melakukannya berdasarkan EU-US Data Privacy Framework dan Standard Contractual Clauses. PostHog memprosesnya di Uni Eropa. Amazon Web Services mengirim email kami dari Australia. Jika diwajibkan hukum, transfer dari EEA dan Britania Raya menggunakan Standard Contractual Clauses atau mekanisme lain yang disetujui.
+Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses di luar negara Anda. {merchant}, Google, GitHub, Cloudflare, dan Mintlify memproses data di Amerika Serikat; Google melakukannya berdasarkan EU-US Data Privacy Framework dan Standard Contractual Clauses. PostHog memprosesnya di Uni Eropa. Amazon Web Services mengirim email kami dari Singapura. Jika diwajibkan hukum, transfer dari EEA dan Britania Raya menggunakan Standard Contractual Clauses atau mekanisme lain yang disetujui.
 
 ## Lama penyimpanan data {#retention}
 

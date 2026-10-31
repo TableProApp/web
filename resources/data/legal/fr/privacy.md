@@ -214,7 +214,7 @@ Pour les lecteurs de l’Espace économique européen et du Royaume-Uni, les bas
 Nous partageons les données personnelles uniquement avec les services nécessaires au fonctionnement de TablePro :
 
 - **{merchant}**, merchant of record des achats.
-- **Amazon Web Services**, dont le service Amazon SES envoie nos e-mails depuis sa région Asie-Pacifique (Sydney) : liens et codes de connexion, invitations d’équipe, avis de compte et de sécurité, et newsletters. Il nous signale lorsqu’un e-mail est remis, rejeté ou marqué comme spam, et nous enregistrons les rejets et les signalements de spam pour cesser d’envoyer à ces adresses. Pour les newsletters, il signale aussi chaque ouverture et chaque clic, comme décrit dans [Newsletter](#newsletter).
+- **Amazon Web Services**, dont le service Amazon SES envoie nos e-mails depuis sa région Asie-Pacifique (Singapour) : liens et codes de connexion, invitations d’équipe, avis de compte et de sécurité, et newsletters. Il nous signale lorsqu’un e-mail est remis, rejeté ou marqué comme spam, et nous enregistrons les rejets et les signalements de spam pour cesser d’envoyer à ces adresses. Pour les newsletters, il signale aussi chaque ouverture et chaque clic, comme décrit dans [Newsletter](#newsletter).
 - **Notre hébergeur et Cloudflare**, pour le site, le portail de comptes et le serveur avec lequel les applications communiquent. Cloudflare compte aussi les pages vues avec Cloudflare Web Analytics et vérifie le formulaire de newsletter avec Turnstile.
 - **Google**, pour Google Analytics sur le site et la documentation.
 - **Crisp**, pour le chat sur chaque page du site et du portail de comptes.
@@ -228,7 +228,7 @@ Nous ne vendons pas de données personnelles et ne les partageons pas avec des a
 
 ## Transferts internationaux {#transfers}
 
-Les services ci-dessus opèrent dans plusieurs pays ; vos données peuvent donc être traitées hors de votre pays. {merchant}, Google, GitHub, Cloudflare et Mintlify traitent des données aux États-Unis ; Google le fait au titre du cadre de protection des données UE–États-Unis et des clauses contractuelles types. PostHog les traite dans l’Union européenne. Amazon Web Services envoie nos e-mails depuis l’Australie. Lorsque la loi l’exige, les transferts depuis l’EEE et le Royaume-Uni reposent sur les clauses contractuelles types ou un autre mécanisme approuvé.
+Les services ci-dessus opèrent dans plusieurs pays ; vos données peuvent donc être traitées hors de votre pays. {merchant}, Google, GitHub, Cloudflare et Mintlify traitent des données aux États-Unis ; Google le fait au titre du cadre de protection des données UE–États-Unis et des clauses contractuelles types. PostHog les traite dans l’Union européenne. Amazon Web Services envoie nos e-mails depuis Singapour. Lorsque la loi l’exige, les transferts depuis l’EEE et le Royaume-Uni reposent sur les clauses contractuelles types ou un autre mécanisme approuvé.
 
 ## Durée de conservation des données {#retention}
 

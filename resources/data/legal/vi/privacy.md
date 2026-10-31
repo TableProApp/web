@@ -214,7 +214,7 @@ Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc
 Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần thiết để vận hành TablePro:
 
 - **{merchant}**, merchant of record cho các giao dịch mua.
-- **Amazon Web Services**, với dịch vụ Amazon SES gửi email của chúng tôi từ vùng Châu Á Thái Bình Dương (Sydney): liên kết và mã đăng nhập, lời mời vào nhóm, thông báo về tài khoản và bảo mật, và bản tin. Amazon SES báo cho chúng tôi khi email được gửi tới nơi, bị trả về hoặc bị đánh dấu là spam, và chúng tôi ghi lại các lần bị trả về và bị báo spam để ngừng gửi tới các địa chỉ đó. Với bản tin, Amazon SES còn báo từng lượt mở và lượt bấm, như mô tả trong mục [Bản tin](#newsletter).
+- **Amazon Web Services**, với dịch vụ Amazon SES gửi email của chúng tôi từ vùng Châu Á Thái Bình Dương (Singapore): liên kết và mã đăng nhập, lời mời vào nhóm, thông báo về tài khoản và bảo mật, và bản tin. Amazon SES báo cho chúng tôi khi email được gửi tới nơi, bị trả về hoặc bị đánh dấu là spam, và chúng tôi ghi lại các lần bị trả về và bị báo spam để ngừng gửi tới các địa chỉ đó. Với bản tin, Amazon SES còn báo từng lượt mở và lượt bấm, như mô tả trong mục [Bản tin](#newsletter).
 - **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics và kiểm tra form đăng ký bản tin bằng Turnstile.
 - **Google**, cho Google Analytics trên website và tài liệu.
 - **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
@@ -228,7 +228,7 @@ Chúng tôi không bán dữ liệu cá nhân và không chia sẻ dữ liệu �
 
 ## Chuyển dữ liệu ra nước ngoài {#transfers}
 
-Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ liệu của bạn có thể được xử lý bên ngoài quốc gia của bạn. {merchant}, Google, GitHub, Cloudflare và Mintlify xử lý dữ liệu tại Hoa Kỳ; Google làm việc này theo Khung bảo vệ quyền riêng tư dữ liệu EU-Hoa Kỳ (EU-US Data Privacy Framework) và các Điều khoản hợp đồng mẫu (Standard Contractual Clauses). PostHog xử lý dữ liệu tại Liên minh châu Âu. Amazon Web Services gửi email của chúng tôi từ Úc. Khi pháp luật yêu cầu, việc chuyển dữ liệu từ EEA và Vương quốc Anh dựa trên các Điều khoản hợp đồng mẫu hoặc một cơ chế được phê duyệt khác.
+Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ liệu của bạn có thể được xử lý bên ngoài quốc gia của bạn. {merchant}, Google, GitHub, Cloudflare và Mintlify xử lý dữ liệu tại Hoa Kỳ; Google làm việc này theo Khung bảo vệ quyền riêng tư dữ liệu EU-Hoa Kỳ (EU-US Data Privacy Framework) và các Điều khoản hợp đồng mẫu (Standard Contractual Clauses). PostHog xử lý dữ liệu tại Liên minh châu Âu. Amazon Web Services gửi email của chúng tôi từ Singapore. Khi pháp luật yêu cầu, việc chuyển dữ liệu từ EEA và Vương quốc Anh dựa trên các Điều khoản hợp đồng mẫu hoặc một cơ chế được phê duyệt khác.
 
 ## Thời gian lưu dữ liệu {#retention}
 

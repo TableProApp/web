@@ -214,7 +214,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 我們僅向營運 TablePro 所需的服務分享個人資料：
 
 - **{merchant}**：購買交易的 merchant of record。
-- **Amazon Web Services**：透過 Amazon SES 從其亞太區域（雪梨）寄送我們的郵件，包括登入連結和代碼、團隊邀請、帳戶和安全通知以及電子報。郵件送達、被退回或被標記為垃圾郵件時，它會通知我們；我們會記錄退回和垃圾郵件檢舉，以停止向這些地址寄送。對於電子報，它也會通知每次開啟和點擊，詳見[電子報](#newsletter)。
+- **Amazon Web Services**：透過 Amazon SES 從其亞太區域（新加坡）寄送我們的郵件，包括登入連結和代碼、團隊邀請、帳戶和安全通知以及電子報。郵件送達、被退回或被標記為垃圾郵件時，它會通知我們；我們會記錄退回和垃圾郵件檢舉，以停止向這些地址寄送。對於電子報，它也會通知每次開啟和點擊，詳見[電子報](#newsletter)。
 - **託管服務商及 Cloudflare**：執行網站、帳戶入口網站和 App 連線的伺服器。Cloudflare 也透過 Web Analytics 統計網頁瀏覽量，並用 Turnstile 驗證電子報表單。
 - **Google**：網站和文件中的 Google Analytics。
 - **Crisp**：網站和帳戶入口網站每個網頁的線上聊天。
@@ -228,7 +228,7 @@ Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPa
 
 ## 國際傳輸 {#transfers}
 
-以上服務在多個國家營運，因此您的資料可能在居住國之外處理。{merchant}、Google、GitHub、Cloudflare 和 Mintlify 在美國處理資料；Google 依據 EU-US Data Privacy Framework 和標準契約條款處理。PostHog 在歐盟處理資料。Amazon Web Services 從澳洲寄送我們的郵件。在法律要求時，從歐洲經濟區和英國傳輸資料採用標準契約條款或其他獲准機制。
+以上服務在多個國家營運，因此您的資料可能在居住國之外處理。{merchant}、Google、GitHub、Cloudflare 和 Mintlify 在美國處理資料；Google 依據 EU-US Data Privacy Framework 和標準契約條款處理。PostHog 在歐盟處理資料。Amazon Web Services 從新加坡寄送我們的郵件。在法律要求時，從歐洲經濟區和英國傳輸資料採用標準契約條款或其他獲准機制。
 
 ## 資料保留期限 {#retention}
 

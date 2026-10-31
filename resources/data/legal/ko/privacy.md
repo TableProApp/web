@@ -214,7 +214,7 @@ account.tablepro.app의 [계정 포털]({account})에서 TablePro 계정의 라�
 개인정보는 TablePro 운영에 필요한 서비스에만 공유합니다.
 
 - **{merchant}**: 구매의 merchant of record.
-- **Amazon Web Services**: Amazon SES 서비스로 아시아 태평양(시드니) 리전에서 운영자의 이메일을 보냅니다. 로그인 링크와 코드, 팀 초대, 계정 및 보안 알림, 뉴스레터입니다. 이메일이 전달되거나 반송되거나 스팸으로 신고되면 운영자에게 알리며, 운영자는 반송과 스팸 신고를 기록해 해당 주소로 더 이상 보내지 않습니다. 뉴스레터의 경우 [뉴스레터](#newsletter)에 설명된 대로 각 열람과 클릭도 알립니다.
+- **Amazon Web Services**: Amazon SES 서비스로 아시아 태평양(싱가포르) 리전에서 운영자의 이메일을 보냅니다. 로그인 링크와 코드, 팀 초대, 계정 및 보안 알림, 뉴스레터입니다. 이메일이 전달되거나 반송되거나 스팸으로 신고되면 운영자에게 알리며, 운영자는 반송과 스팸 신고를 기록해 해당 주소로 더 이상 보내지 않습니다. 뉴스레터의 경우 [뉴스레터](#newsletter)에 설명된 대로 각 열람과 클릭도 알립니다.
 - **호스팅 제공업체 및 Cloudflare**: 웹사이트, 계정 포털 및 앱이 통신하는 서버 운영. Cloudflare는 Web Analytics로 페이지 조회 수도 집계하고 Turnstile로 뉴스레터 양식을 확인합니다.
 - **Google**: 웹사이트와 문서의 Google Analytics.
 - **Crisp**: 웹사이트와 계정 포털 모든 페이지의 실시간 채팅.
@@ -228,7 +228,7 @@ account.tablepro.app의 [계정 포털]({account})에서 TablePro 계정의 라�
 
 ## 국외 이전 {#transfers}
 
-위 서비스는 여러 국가에서 운영되므로 개인정보가 거주 국가 밖에서 처리될 수 있습니다. {merchant}, Google, GitHub, Cloudflare 및 Mintlify는 미국에서 데이터를 처리합니다. Google은 EU-US Data Privacy Framework 및 표준계약조항에 따라 처리합니다. PostHog는 유럽연합에서 데이터를 처리합니다. Amazon Web Services는 호주에서 운영자의 이메일을 보냅니다. 법률상 필요한 경우 EEA 및 영국에서의 이전은 표준계약조항 또는 다른 승인된 방식에 근거합니다.
+위 서비스는 여러 국가에서 운영되므로 개인정보가 거주 국가 밖에서 처리될 수 있습니다. {merchant}, Google, GitHub, Cloudflare 및 Mintlify는 미국에서 데이터를 처리합니다. Google은 EU-US Data Privacy Framework 및 표준계약조항에 따라 처리합니다. PostHog는 유럽연합에서 데이터를 처리합니다. Amazon Web Services는 싱가포르에서 운영자의 이메일을 보냅니다. 법률상 필요한 경우 EEA 및 영국에서의 이전은 표준계약조항 또는 다른 승인된 방식에 근거합니다.
 
 ## 보관 기간 {#retention}
 
