@@ -75,7 +75,6 @@ export const EXTERNAL = {
     github: facts.links.github,
     issues: facts.links.issues,
     discussions: facts.links.discussions,
-    sponsors: facts.links.sponsorsProgram,
     discord: facts.links.discord,
     x: facts.links.x,
     telegram: facts.links.telegram,

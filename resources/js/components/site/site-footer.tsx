@@ -301,7 +301,9 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </li>
                         )}
                         <li>
-                            <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
+                            <LocaleLink href="/sponsors" className={LINK}>
+                                {groups.community.sponsor}
+                            </LocaleLink>
                         </li>
                     </Group>
                     <Group title={groups.legal.title}>

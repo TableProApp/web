@@ -40,7 +40,7 @@ Restart Cursor after editing the file. If TablePro is installed somewhere other 
 
 ## Enable the server in TablePro {#turn-on}
 
-1. Open **Settings > Integrations** and turn on **Enable MCP Server**. **Status** reads **Running on port 23508**, or the port it took instead when that one is busy.
+1. Open **Settings > MCP** and turn on **Enable MCP Server**. **Status** reads **Running on port 23508**, or the port it took instead when that one is busy.
 2. Click **Connect a Client…** and pick **Claude Code** or **Cursor**. The sheet shows the steps and a snippet with the path of your own install. TablePro does not edit other apps' config files, so paste it yourself.
 3. Ask the client to list TablePro's tools, or to call `list_connections`. The list includes `list_connections`, `list_tables`, `describe_table` and `execute_query`.
 
@@ -56,7 +56,7 @@ Every saved connection has its own setting. Edit the connection, open the **Opti
 | **Read Only** | Read the schema and run reads. Any write is refused before it reaches the database. This is the default. |
 | **Read & Write** | Reads, and writes that pass Safe Mode. |
 
-Leave production on **Read Only** or **Blocked**. Give **Read & Write** to a local or staging database where you want the agent to change data.
+Leave production on **Read Only** or **Blocked**, and give the agent a [read-only database role](#database-role). Give **Read & Write** to a local or staging database where you want the agent to change data.
 
 ## Require approval for writes {#safe-mode}
 
@@ -83,18 +83,68 @@ With **Read & Write** and **Silent**, ordinary writes can run without a prompt. 
 
 Some statements are refused whatever the settings: anything that reads or writes files on the server or runs server-side code, and more than one statement in a single call, except a SQL Server script.
 
-For a narrower token than the one `tablepro-mcp` carries, such as **Read Only** limited to a few connections, generate one under **Settings > Integrations > Authentication** and connect the client over HTTP instead. The [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) docs show that config.
+For a narrower token than the one `tablepro-mcp` carries, such as **Read Only** limited to a few connections, generate one under **Settings > MCP > Authentication** and connect the client over HTTP instead. The [MCP Clients](https://docs.tablepro.app/integrations/mcp-clients#http-transport) docs show that config.
+
+## Use a read-only database role {#database-role}
+
+Every check above runs in TablePro and judges a statement by its text. TablePro knows which built-in functions change data, such as `nextval` or `set_config`, but not what your own functions do: `SELECT archive_orders()` reads like a read. The database checks the role's privileges on every statement, whatever sent it.
+
+For production, connect the agent as a role that can only read. On PostgreSQL, run the grants as the role that owns the tables, because `ALTER DEFAULT PRIVILEGES` covers only tables that role creates later:
+
+```sql
+CREATE ROLE agent LOGIN PASSWORD 'change-me';
+GRANT CONNECT ON DATABASE app TO agent;
+GRANT USAGE ON SCHEMA public TO agent;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO agent;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO agent;
+```
+
+On MySQL:
+
+```sql
+CREATE USER 'agent'@'%' IDENTIFIED BY 'change-me';
+GRANT SELECT ON app.* TO 'agent'@'%';
+```
+
+Replace `app` with your database, and repeat the schema grants for each schema the agent should read. Then give the role its own connection:
+
+1. On the welcome window, right-click the production connection and choose **Duplicate**.
+2. Edit the copy to sign in as `agent`, and set its **External Clients** to **Read Only**.
+3. Set **External Clients** on the original to **Blocked**, so clients see only the copy.
+
+To check the role, open the copy in TablePro and run a write that matches no rows:
+
+```sql
+UPDATE orders SET status = status WHERE false;
+```
+
+PostgreSQL answers `permission denied for table orders`, MySQL `UPDATE command denied`. If it runs, the role can write.
+
+What a read-only role does not cover:
+
+- On PostgreSQL, a `SECURITY DEFINER` function runs with its owner's privileges, and any role may call a function unless `EXECUTE` is revoked from `PUBLIC`. List them, and revoke `EXECUTE` from `PUBLIC` on any that write:
+
+  ```sql
+  SELECT p.oid::regprocedure
+  FROM pg_proc p
+  JOIN pg_namespace n ON n.oid = p.pronamespace
+  WHERE p.prosecdef AND n.nspname NOT IN ('pg_catalog', 'information_schema');
+  ```
+
+- On MySQL, grant nothing beyond `SELECT`. A routine runs as its definer by default, so `EXECUTE` would let the agent call one that writes.
+- `ALTER ROLE agent SET default_transaction_read_only = on` is not a boundary: the session can `SET` it back.
 
 ## Review activity {#activity}
 
-**View Activity…** in **Settings > Integrations** lists every tool call and query, with the connection and the outcome. Statements there are stored as a SHA-256 digest, not as text. Queries a client runs also appear in the query history of that connection, unless you turn off **Log MCP queries in history**.
+**View Activity…** in **Settings > MCP** lists every tool call and query, with the connection and the outcome. Statements there are stored as a SHA-256 digest, not as text. Queries a client runs also appear in the query history of that connection, unless you turn off **Log MCP queries in history**.
 
 ## Limitations {#limits}
 
 - The server listens on `127.0.0.1` only. There is no remote mode; a client on another machine needs an SSH port forward you set up and own.
 - It runs in the Mac app. The iPhone and iPad app has no MCP server.
 - Clients see your saved connections, never their passwords, and cannot create or edit connections or change Safe Mode.
-- A result stops at **Default row limit**, 500 rows unless you change it, and a client can ask for more only up to **Maximum row limit**, 10,000 by default. Both are in **Settings > Integrations**.
+- A result stops at **Default row limit**, 500 rows unless you change it, and a client can ask for more only up to **Maximum row limit**, 10,000 by default.
+- A call waits at most **Query timeout**, 30 seconds unless you change it, and a client can ask for up to 300. A read still running then is cancelled. All three limits are in **Settings > MCP**.
 
 ## Troubleshooting {#troubleshooting}
 

@@ -597,7 +597,7 @@ Repo key:
 | `IntegrationFilters` | P | **New** | — | `/integrations` only: a `role="search"` GET form of native controls (search, category, TablePro app, type). Results update as you type once the page has hydrated |
 | `IntegrationList` | P | **New** | — | Integrations as ruled rows, rail to rail: mark, name, publisher, type, tagline. Not a card grid |
 | `DatabaseMark` | P | **Refactor** | `ui/database-mark.tsx` | Original colours, no `grayscale` / `opacity-40` / `invert`. Uses `iconDark` from data or a light tile |
-| `SponsorList` | P | **Refactor** | `landing/sponsor-row.tsx` | The 4 verified sponsors only. Each link named |
+| `SponsorList` | P | **Refactor** | `sponsors/sponsor-grid.tsx` | The homepage-placed sponsors from `sponsors.json`, then one invite cell. Each link named |
 | `ProseArticle` | P | **Refactor** | `.blog-article` CSS, `ui/prose-block.tsx` | Blog and legal. Body in `--foreground`. Permalink glyph kept out of the heading's accessible name |
 | `TableOfContents` | P | **New** (optional) | — | Legal and long guides: sticky at ≥ 1280, a `Disclosure` below that |
 | `AccountBar`, `AccountNav` | A | **Refactor** | A `dashboard/account-bar.tsx`, `nav-rail.tsx` | Adds language and theme. Rail bar uses `--accent-indicator` |
@@ -991,10 +991,10 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **SponsorList:**
 
-- Section 3 on the homepage.
-- An H2 in the `h3` style, then four logo links at 28px tall with gaps of 32/48px.
+- Section 3 on the homepage, and the `#companies` section of `/sponsors`.
+- An H2 in the `h3` style, then one cell per sponsor with the logo 28px tall. A `lead` sponsor spans two cells with a 44px logo.
 - Each link is named (visible name in `caption` under the logo, or `aria-label`) with `rel="sponsored noopener"`.
-- Then "Sponsor TablePro ↗" (GitHub Sponsors; sitemap §D, positioning §10.2).
+- On the homepage, an invite cell after the last logo ("Your logo here", "7 of 12 open") and the heading link both go to `/sponsors`; the cell is hidden when no place is open. Only `/sponsors` links to GitHub Sponsors.
 - Logos follow the DatabaseMark rules in dark mode.
 
 #### 5.3.19 ProseArticle and TableOfContents
@@ -1382,7 +1382,7 @@ SiteHeader
     one small line: built-in drivers vs drivers downloaded on first pick · the engines that open on iPhone (names)
     Supported databases →  (/databases)
 §3  SPONSORS  #sponsors                         compact · flush: the logo cells close on the next join
-    H2 (h3 style) · SponsorList (the 4 verified sponsors, cells 2 × 2, four across from 768) · Sponsor TablePro ↗
+    H2 (h3 style) · SponsorList (homepage sponsors and an invite cell, two across, four from 768) · Sponsor TablePro →
 §4  WORKFLOWS  #features                        H2, then five FeatureRows (H3 each) as cells, flush, in this order
     Query                                  ▒ mac-query-autocomplete      window row   Querying →
     Edit data                              ▒ mac-edit-preview-sql        window row   Data editing → · Schema →
