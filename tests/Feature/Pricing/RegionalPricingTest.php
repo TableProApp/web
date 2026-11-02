@@ -1,6 +1,14 @@
 <?php
 
+use App\Support\Pricing\Campaign;
 use PHPUnit\Framework\Assert;
+
+use function Pest\Laravel\travelTo;
+
+// The regional discount against list prices; a live sale's cards are CampaignPageTest's, so these run after it.
+beforeEach(function (): void {
+    travelTo(Campaign::current()?->endsAt ?? now());
+});
 
 /** @return array<string, string> */
 function regionalSources(): array
@@ -19,8 +27,9 @@ function regionalSources(): array
     return $sources;
 }
 
-// The plan block is the one place the site names a regional price (positioning §9).
-it('asks for the regional discount from the plan block only', function (): void {
+// The plan block is the one place the site names a regional price (positioning §9). The dated sale's page
+// asks too, only to leave the sale's code off a checkout the regional discount takes more off; it never names it.
+it('asks for the regional discount from the plan block and the sale\'s page only', function (): void {
     $asks = [];
     $names = [];
 
@@ -34,7 +43,7 @@ it('asks for the regional discount from the plan block only', function (): void 
         }
     }
 
-    expect($asks)->toBe(['components/pricing/pricing-plans.tsx'])
+    expect($asks)->toBe(['components/pricing/pricing-plans.tsx', 'pages/BlackFriday.tsx'])
         ->and($names)->toBe(['components/pricing/pricing-card.tsx', 'components/pricing/regional-note.tsx']);
 });
 

@@ -26,6 +26,10 @@ return [
     | `BANNER_ENABLED=false` removes it from the DOM entirely: no hidden
     | element, no reserved height.
     |
+    | While a dated sale in pricing.json is live, the sale's own banner takes
+    | the slot instead (App\Support\Banner), whatever this switch says; it
+    | carries a countdown and can be closed (positioning §9, "Dated sales").
+    |
     */
 
     'enabled' => (bool) env('BANNER_ENABLED', true),

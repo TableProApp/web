@@ -454,13 +454,38 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 
 **Deliberately absent:**
 - "the whole app", "no feature gating", "free forever";
-- lifetime updates, savings badges or "most popular";
+- lifetime updates, savings badges or "most popular" (a dated sale's tag on the cards it covers is the one
+  exception, below);
 - regional prices, PPP, bank transfer, VND or named local payment gateways, with one exception: the plan block
   (`/pricing` and the homepage's `#pricing`) shows the regional discount checkout applies in some countries, once the
   platform says it applies to the reader (`GET /discount/region`). It is a struck list price, the price checkout will
   charge, and one line naming the country and the percentage (`pricing.regional`). It is never marketed elsewhere:
   no FAQ answer, banner, meta description, OG card or JSON-LD mentions it, and the words "PPP", "purchasing power",
   "regional pricing" and "regional prices" stay banned (§12.1). The privacy policy discloses the country lookup.
+
+**Dated sales.** A sale with a start and an end in pricing.json's `campaign` (Black Friday) is the one time the site
+says what a discount takes off and how long is left. It is a real discount at the provider, on the current list
+prices, with a code that works only inside the window (`App\Support\Pricing\Campaign`, `lib/campaign.ts`).
+- **Where, while it is live:** the banner slot on every page but the sale's own, a black band above the homepage
+  hero and Pricing's header, and the plan cards of the cycles it covers. Checkout from the site attaches the code.
+  Before and after the window, only the sale's own page mentions it.
+- **The sale's own page,** `/black-friday`, keeps one URL from year to year. Before the sale it states the window and
+  the prices; during it the offers can be bought from it; after it, its title, heading and description say the sale
+  has ended, and nothing on it is offered.
+- **Wording:** "{percent}% off" beside the struck list price and the sale price, never "save N%" (§12.1). A
+  subscription's sale price is its first charge's, and the line under it says what it renews at. A one-time license
+  is still "paid once, no expiry date", never lifetime updates.
+- **Honest reference prices:** every struck price is dated ("regular prices since …"), and the sale's page says when
+  the prices last changed, linking the post that explains it.
+- **Time:** a countdown to the real end, the same instant for every reader, which never resets and is never
+  extended. The banner that carries it can be closed for the rest of that sale (WCAG 2.2.2). The sale leaves every
+  page at that instant: cached copies expire at it (`CacheHtmlAtEdge`) and the head script drops it for a reader
+  whose clock is past it.
+- **The regional discount** stays as above: never named outside the plan block. Checkout takes one discount per
+  order, so the site sends the sale's code only when it takes at least as much off as the reader's regional
+  discount.
+- **The black ground** is an island of the dark theme (`.dark` on the element), so the design system's text pairs
+  hold on it in either theme.
 
 ---
 

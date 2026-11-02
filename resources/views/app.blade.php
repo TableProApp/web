@@ -4,19 +4,26 @@
     or for an error page the locale of its path. The locale lives in the URL
     alone, so this is right on the first byte and never needs JavaScript.
 
-    `has-banner` decides, before a single pixel is painted, whether the license
-    banner is seen and how much room it takes above the header. It is set here
+    `has-banner` decides, before a single pixel is painted, whether the banner
+    (the license one, or a live sale's) is seen and how much room it takes above the header. It is set here
     rather than in React because `--banner-h` has to be settled by the time the
     first frame renders: resolving it in state would drop the header 40px on
     the first frame of every load. It is set only on pages that show the banner
     (App\Support\Banner). The banner cannot be closed, so nothing in the
     reader's browser removes it, except the iPhone and iPad rule further down.
 
+    `campaign-live` marks a page rendered while a dated sale is live
+    (App\Support\Pricing\Campaign). Everything the sale adds to a page shows
+    only under it (app.css), so the script below can take it all away at once
+    when the reader's clock is past the end.
+
     No `overflow-x: hidden` on <html> or <body>: it masked horizontal-scroll
     regressions instead of preventing them. Anything wide scrolls inside its
     own region.
 --}}
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if(\App\Support\Banner::shownOn(request())) class="has-banner"@endif>
+@php($campaign = \App\Support\Pricing\Campaign::current())
+@php($htmlClasses = array_filter([\App\Support\Banner::shownOn(request()) ? 'has-banner' : null, $campaign?->isLive() ? 'campaign-live' : null]))
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if($htmlClasses !== []) class="{{ implode(' ', $htmlClasses) }}"@endif>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -105,6 +112,32 @@
     @endif
 
     @inertiaHead
+    @if($campaign?->isLive())
+        {{--
+            The sale ends at the same instant for every reader. A page the edge
+            served just before it, or one restored from the browser's history
+            after it, would still offer a code checkout no longer takes: so
+            before first paint, a reader whose clock is past the end gets the
+            page without the sale. `useCampaign` does the same for a tab left
+            open across the end.
+
+            A reader who closed the sale's banner keeps it closed for the rest
+            of that sale (CampaignBanner); the band and the prices stay.
+        --}}
+        <script>
+            (function () {
+                if (Date.now() >= {{ $campaign->endsAt->getTimestampMs() }}) {
+                    document.documentElement.classList.remove('campaign-live', 'has-banner');
+                    return;
+                }
+                try {
+                    if (localStorage.getItem('tablepro:campaign-closed') === @json($campaign->id)) {
+                        document.documentElement.classList.remove('has-banner');
+                    }
+                } catch (e) {}
+            })();
+        </script>
+    @endif
     @if(\App\Support\Banner::shownOn(request()) && \App\Support\Banner::hiddenOnIosDevices(request()))
         {{--
             The license is for the Mac app, so on the iPhone and iPad page a

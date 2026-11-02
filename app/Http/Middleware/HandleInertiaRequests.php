@@ -6,6 +6,7 @@ use App\Services\GitHub\StarCount;
 use App\Support\Banner;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Localization\LocalizedUrl;
+use App\Support\Pricing\Campaign;
 use App\Support\Seo\SeoContext;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -69,6 +70,7 @@ class HandleInertiaRequests extends Middleware
             },
             'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
             'banner' => Banner::forRequest($request),
+            'campaign' => fn(): ?array => Campaign::current()?->props(App::getLocale()),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
             'assetPlaceholders' => ! App::isProduction(),
         ];

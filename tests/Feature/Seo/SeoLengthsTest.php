@@ -71,6 +71,11 @@ function seoLengthsRenderedTitle(string $locale, string $path, array $copy): str
         ]);
     }
 
+    // The dated sale's percentage comes from pricing.json.
+    if ($path === 'black-friday.json') {
+        $title = str_replace('{percent}', (string) seoLengthsJson('pricing.json')['campaign']['percent'], $title);
+    }
+
     if ($path === 'home.json') {
         $title = str_replace('{deviceList}', seoLengthsJoin($platforms->flatMap(fn(array $platform): array => $platform['deviceNames'])->all(), $locale), $title);
 

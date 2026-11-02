@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\DownloadController;
@@ -60,6 +61,7 @@ Route::get('/faq', FaqController::class)->name('landing.faq');
 Route::get('/about', AboutController::class)->name('landing.about');
 Route::get('/security', SecurityController::class)->name('landing.security');
 Route::get('/sponsors', SponsorsController::class)->name('landing.sponsors');
+Route::get('/black-friday', CampaignController::class)->name('landing.black-friday');
 
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('landing.privacy');
 Route::get('/terms', [LegalController::class, 'terms'])->name('landing.terms');

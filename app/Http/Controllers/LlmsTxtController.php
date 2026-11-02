@@ -23,7 +23,8 @@ class LlmsTxtController extends Controller
     public const PATH = '/llms.txt';
 
     // Pages left out: the homepage is this file's summary, the blog index is
-    // the posts listed below, and an integration page is the integrations hub's.
+    // the posts listed below, an integration page is the integrations hub's,
+    // and the dated sale's page says something true for one week a year.
     public const SECTIONS = [
         'Product' => [
             'landing.features.index',
