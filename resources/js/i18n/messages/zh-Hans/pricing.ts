@@ -15,7 +15,7 @@ export default {
     "captions": {
         "monthly": "取消前每月自动续订。",
         "yearly": "取消前每年自动续订。比按月支付十二次低 {percent}%。",
-        "yearlyByTier": "取消前每年自动续订。相比按月支付十二次，Starter 低 {starterPercent}%，Team 低 {teamPercent}%。",
+        "yearlyByTier": "取消前每年自动续订。相比按月支付十二次，Pro 低 {starterPercent}%，Team 低 {teamPercent}%。",
         "lifetime": "一次付费，无到期日。"
     },
     "tiers": {
@@ -33,21 +33,37 @@ export default {
             ]
         },
         "starter": {
-            "name": "Starter",
+            "name": "Pro",
             "description": "为 Mac 应用添加 {examples} 等功能。",
             "activation": {
                 "one": "1 人，{count} 台 Mac。",
                 "other": "1 人，最多 {count} 台 Mac。"
             },
             "includesTitle": "免费版的全部功能，外加",
-            "cta": "购买 Starter"
+            "cta": "购买 Pro"
         },
         "team": {
             "name": "Team",
             "description": "与团队共享连接和已保存的查询。",
             "activation": "每个席位对应 1 台已激活的 Mac。",
-            "includesTitle": "Starter 的全部功能，外加",
-            "cta": "购买 Team"
+            "includesTitle": "Pro 的全部功能，外加",
+            "cta": "购买 Team",
+            "subscriptionOnly": "Team 按月或按年订阅。"
+        },
+        "enterprise": {
+            "name": "Enterprise",
+            "description": "适合需要统一管理 TablePro 使用方式的公司。",
+            "price": "联系我们",
+            "activation": "按公司报价。",
+            "includesTitle": "告诉我们您的需求，例如",
+            "includes": [
+                "使用公司账号登录",
+                "对团队连接强制执行的策略",
+                "生产环境写入审计",
+                "通过 MDM 部署",
+                "发票和采购订单"
+            ],
+            "cta": "联系我们"
         }
     },
     "units": {
@@ -58,8 +74,7 @@ export default {
         },
         "team": {
             "monthly": "每席位每月",
-            "yearly": "每席位每年",
-            "lifetime": "每席位一次付费"
+            "yearly": "每席位每月，按年付费"
         }
     },
     "seats": {
@@ -78,10 +93,6 @@ export default {
             "yearly": {
                 "one": "{count} 个席位：每年 {total}",
                 "other": "{count} 个席位：每年 {total}"
-            },
-            "lifetime": {
-                "one": "{count} 个席位：{total}，一次付费",
-                "other": "{count} 个席位：{total}，一次付费"
             }
         }
     },
@@ -116,7 +127,7 @@ export default {
         "macsTeam": "每席位一台",
         "everythingElse": "应用中的其他所有功能",
         "everythingElseDetail": "所有受支持的引擎、SQL 编辑器、AI 助手、MCP 服务器和 Safe Mode",
-        "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud Sync 在该应用中免费。若要与 Mac 同步，Mac 需要 Starter 或 Team。"
+        "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud Sync 在该应用中免费。若要与 Mac 同步，Mac 需要 Pro 或 Team。"
     },
     "regional": {
         "note": "您所在国家或地区（{country}）的价格：结账时享受 {percent}% 折扣。",

@@ -175,7 +175,7 @@ dataset('reviewed facts', [
     ],
     'DBeaver: no "native Mac client", no self-listing Compare & Sync' => [
         'content/en/compare/dbeaver.json',
-        ['It is part of Starter.'],
+        ['It is part of Pro.'],
         ['native Mac client', 'along with features such as {starterExamples}'],
     ],
     'the compare method names every kind of official source' => [

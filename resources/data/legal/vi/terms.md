@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
-description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Starter hoặc Team.
-updatedAt: "2026-10-10"
+description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
+updatedAt: "2026-11-02"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -12,7 +12,7 @@ Các điều khoản này điều chỉnh website tablepro.app, trang tài kho�
 - **"Ứng dụng"** là TablePro cho Mac và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
 - **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac liên lạc để kiểm tra license và dùng Team Library.
-- **"License"** là một gói trả phí Starter hoặc Team, và **"License Key"** là thông tin dùng để kích hoạt các tính năng của gói đó trong ứng dụng cho Mac.
+- **"License"** là một gói trả phí Pro hoặc Team, và **"License Key"** là thông tin dùng để kích hoạt các tính năng của gói đó trong ứng dụng cho Mac.
 - **"Bạn"** là cá nhân hoặc tổ chức sử dụng Dịch vụ hoặc sở hữu một License.
 
 ## Giấy phép mã nguồn mở {#open-source}
@@ -39,7 +39,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 Một License cho bạn quyền không độc quyền, không chuyển nhượng, để kích hoạt các tính năng trả phí của ứng dụng cho Mac bằng License Key của nó, trên số máy Mac và trong thời hạn của gói bạn mua:
 
-- License **Starter** dành cho một người, trên tối đa {starterActivations} máy Mac.
+- License **Pro** dành cho một người, trên tối đa {starterActivations} máy Mac.
 - License **Team** tính giá theo seat, tối thiểu {teamMinSeats} và tối đa {teamMaxSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Người mua mời các thành viên nhóm, và họ tham gia bằng một mã mời.
 
 Bạn không được chia sẻ License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.

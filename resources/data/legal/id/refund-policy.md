@@ -1,10 +1,10 @@
 ---
 title: Kebijakan pengembalian dana
 description: Semua paket TablePro dapat dikembalikan dananya dalam {refundDays} hari sejak dibeli, dan setiap perpanjangan bulanan atau tahunan dalam {refundDays} hari sejak ditagih.
-updatedAt: "2026-10-08"
+updatedAt: "2026-11-02"
 ---
 
-Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Starter dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian, dan setiap perpanjangan bulanan atau tahunan dapat dikembalikan dananya dalam {refundDays} hari sejak penagihannya. Paket tersedia di [halaman harga](/id/pricing#refunds).
+Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Pro dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian, dan setiap perpanjangan bulanan atau tahunan dapat dikembalikan dananya dalam {refundDays} hari sejak penagihannya. Paket tersedia di [halaman harga](/id/pricing#refunds).
 
 ## Cara meminta pengembalian dana {#request}
 

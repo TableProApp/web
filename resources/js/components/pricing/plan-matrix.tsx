@@ -32,7 +32,7 @@ interface PlanMatrixProps {
 }
 
 /**
- * Every paid feature against Free, Starter and Team (design-system §5.3.18
+ * Every paid feature against Free, Pro and Team (design-system §5.3.18
  * `PlanMatrix`), from paid-features.json in its display order, then the Macs a
  * license covers, Priority support and everything else in the app.
  *

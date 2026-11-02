@@ -1,7 +1,7 @@
 ---
 title: Terms of service
-description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Starter or Team license.
-updatedAt: "2026-10-10"
+description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Pro or Team license.
+updatedAt: "2026-11-02"
 ---
 
 These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
@@ -12,7 +12,7 @@ These terms govern the website at tablepro.app, the account portal, our license 
 - **"Application"** means TablePro for Mac and TablePro for iPhone and iPad, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
 - **"Services"** means the Website, the account portal, and the server the Mac app contacts for license checks and the Team Library.
-- **"License"** means a paid Starter or Team plan, and **"License Key"** the credential that activates its features in the Mac app.
+- **"License"** means a paid Pro or Team plan, and **"License Key"** the credential that activates its features in the Mac app.
 - **"You"** means the person or organization using the Services or holding a License.
 
 ## Open-source license {#open-source}
@@ -39,7 +39,7 @@ Refunds are described in the [refund policy](/refund-policy).
 
 A License gives you a non-exclusive, non-transferable right to activate the paid features of the Mac app with its License Key, on the number of Macs, and for the period, of your plan:
 
-- A **Starter** License is for one person, on up to {starterActivations} Macs.
+- A **Pro** License is for one person, on up to {starterActivations} Macs.
 - A **Team** License is priced per seat, with at least {teamMinSeats} and at most {teamMaxSeats} seats. Each seat is one activated Mac. The buyer invites team members, who join with an invitation code.
 
 You may not share a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer it, without our written permission.

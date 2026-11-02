@@ -20,6 +20,9 @@ export type TierId = 'free' | PaidTierId;
 
 export type CyclePrices = Record<BillingCycle, number>;
 
+/** Team is a subscription: it has no one-time price. */
+export type TeamCycle = Exclude<BillingCycle, 'lifetime'>;
+
 export interface StarterTier {
     /** One license, activated on up to `activations` Macs. */
     unit: 'license';
@@ -30,7 +33,7 @@ export interface StarterTier {
 export interface TeamTier {
     /** Priced per seat; a seat is one activated Mac. */
     unit: 'seat';
-    prices: CyclePrices;
+    prices: Record<TeamCycle, number>;
     seats: { min: number; max: number };
     activationsPerSeat: number;
     /** Team customers' emails are answered first, within this many business days. */
@@ -61,30 +64,39 @@ export interface PricingData {
  */
 export const PRICING = data as PricingData;
 
-export function tierPrice(tier: PaidTierId, cycle: BillingCycle): number {
-    return PRICING.tiers[tier].prices[cycle];
+/** What a plan costs in a cycle, or undefined for a cycle it is not sold in (Team one-time). */
+export function tierPrice(tier: PaidTierId, cycle: BillingCycle): number | undefined {
+    const prices: Partial<CyclePrices> = PRICING.tiers[tier].prices;
+
+    return prices[cycle];
+}
+
+/** Whether checkout sells the plan in the cycle. */
+export function sells(tier: PaidTierId, cycle: BillingCycle): boolean {
+    return tierPrice(tier, cycle) !== undefined;
 }
 
 /**
  * What a Team purchase costs for `seats` seats, clamped to the allowed range.
  * Rounded to cents, because `1.25 × 7` is not exact in binary floating point.
  */
-export function teamTotal(seats: number, cycle: BillingCycle): number {
+export function teamTotal(seats: number, cycle: TeamCycle): number {
     const { min, max } = PRICING.tiers.team.seats;
     const count = Math.min(max, Math.max(min, Math.round(seats)));
 
-    return Math.round(tierPrice('team', cycle) * count * 100) / 100;
+    return Math.round(PRICING.tiers.team.prices[cycle] * count * 100) / 100;
 }
 
 /**
  * How much a yearly plan saves against twelve monthly payments, as a whole
  * percentage rounded down, so the page never overstates it. Computed, never
- * typed: Starter and Team both give 33 today.
+ * typed: Pro gives 34 and Team 16 today.
  */
 export function yearlySavingsPercent(tier: PaidTierId): number {
-    const twelveMonths = tierPrice(tier, 'monthly') * 12;
+    const { monthly, yearly } = PRICING.tiers[tier].prices;
+    const twelveMonths = monthly * 12;
 
-    return Math.floor(((twelveMonths - tierPrice(tier, 'yearly')) / twelveMonths) * 100);
+    return Math.floor(((twelveMonths - yearly) / twelveMonths) * 100);
 }
 
 /** A price as structured data needs it: a locale-neutral decimal string, `"2.99"`, `"24"`. */

@@ -4,6 +4,7 @@ export default {
     "index": {
         "empty": "아직 게시물이 없습니다.",
         "guides": "가이드",
+        "news": "소식",
         "releases": "릴리스 노트"
     },
     "latest": "최신 릴리스 글: <post>{title}</post>.",

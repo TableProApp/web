@@ -19,16 +19,17 @@ interface BlogIndexContent {
 
 interface Props {
     content: BlogIndexContent;
-    /** Newest first. On `/vi/blog`, the Vietnamese guides and the English release posts, each of those marked as English. */
+    /** Newest first. On `/vi/blog`, the Vietnamese guides and news and the English release posts, each of those marked as English. */
     posts: PostSummary[];
 }
 
 /**
  * `/blog` and `/vi/blog` (sitemap §A.5; design-system §8.9).
  *
- * Two lists, each newest first: the guides, then the release posts under the
- * line on what they are, with the changelog linked, and the release email
- * signup. The guides list is left out while there are none.
+ * Three lists, each newest first: news about TablePro itself, the guides,
+ * then the release posts under the line on what they are, with the changelog
+ * linked, and the release email signup. The news and guides lists are left
+ * out while they are empty.
  *
  * `/vi/blog` has Vietnamese chrome. An English post keeps its English title
  * and description, marked `lang="en"` and labelled "(tiếng Anh)", and links
@@ -41,6 +42,7 @@ export default function BlogIndex({ content, posts }: Props) {
     const { locale, m, path } = useI18n();
     const inLanguage = LOCALES.supported[locale].hreflang;
     const changelogLang = locale === 'en' ? undefined : 'en';
+    const news = posts.filter((post) => post.kind === 'news');
     const guides = posts.filter((post) => post.kind === 'guide');
     const releases = posts.filter((post) => post.kind === 'release');
 
@@ -51,7 +53,7 @@ export default function BlogIndex({ content, posts }: Props) {
                 url: absoluteUrl(canonicalBaseUrl, path('/blog')),
                 name: content.seo.title,
                 description: content.seo.description,
-                items: [...guides, ...releases].map((post) => ({ name: post.title, path: post.url })),
+                items: [...news, ...guides, ...releases].map((post) => ({ name: post.title, path: post.url })),
             },
         ),
     ]);
@@ -62,6 +64,12 @@ export default function BlogIndex({ content, posts }: Props) {
             <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
             <PageHeader title={content.header.title} />
+
+            {news.length > 0 && (
+                <Section id="news" title={m.blog.index.news}>
+                    <PostList posts={news} headingLevel="h3" />
+                </Section>
+            )}
 
             {guides.length > 0 && (
                 <Section id="guides" title={m.blog.index.guides}>

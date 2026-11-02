@@ -1,10 +1,10 @@
 ---
 title: Refund policy
 description: Every TablePro plan is refundable within {refundDays} days of purchase, and each monthly or yearly renewal within {refundDays} days of its charge. How to ask for a refund.
-updatedAt: "2026-10-08"
+updatedAt: "2026-11-02"
 ---
 
-Every paid plan can be refunded within {refundDays} days: Starter and Team, monthly, yearly and one-time. The {refundDays} days start on the date of purchase, and each monthly or yearly renewal can be refunded within {refundDays} days of its charge. The plans themselves are on the [pricing page](/pricing#refunds).
+Every paid plan can be refunded within {refundDays} days: Pro and Team, monthly, yearly and one-time. The {refundDays} days start on the date of purchase, and each monthly or yearly renewal can be refunded within {refundDays} days of its charge. The plans themselves are on the [pricing page](/pricing#refunds).
 
 ## How to ask for a refund {#request}
 

@@ -1,7 +1,7 @@
 ---
 title: Termini di servizio
-description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Starter o Team.
-updatedAt: "2026-10-10"
+description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Pro o Team.
+updatedAt: "2026-11-02"
 ---
 
 Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
@@ -12,7 +12,7 @@ Questi termini regolano il sito tablepro.app, il portale dell’account, il nost
 - **"Applicazione"** indica TablePro per Mac e TablePro per iPhone e iPad, inclusi aggiornamenti e plugin.
 - **"Sito"** indica tablepro.app, docs.tablepro.app e gli altri domini che gestiamo.
 - **"Servizi"** indica il Sito, il portale dell’account e il server che l’app per Mac contatta per le verifiche delle licenze e la Team Library.
-- **"Licenza"** indica un piano Starter o Team a pagamento e **"Chiave di licenza"** la credenziale che ne attiva le funzionalità nell’app per Mac.
+- **"Licenza"** indica un piano Pro o Team a pagamento e **"Chiave di licenza"** la credenziale che ne attiva le funzionalità nell’app per Mac.
 - **"Tu"** indica la persona o l’organizzazione che usa i Servizi o è titolare di una Licenza.
 
 ## Licenza open source {#open-source}
@@ -39,7 +39,7 @@ I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy).
 
 Una Licenza concede un diritto non esclusivo e non trasferibile di attivare le funzionalità a pagamento dell’app per Mac con la sua Chiave di licenza, sul numero di Mac e per il periodo previsti dal piano:
 
-- Una Licenza **Starter** è per una persona, su un massimo di {starterActivations} Mac.
+- Una Licenza **Pro** è per una persona, su un massimo di {starterActivations} Mac.
 - Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} e al massimo {teamMaxSeats} posti. Ogni posto è un Mac attivato. L’acquirente invita i membri del team, che partecipano tramite un codice di invito.
 
 Non puoi condividere una Chiave di licenza oltre le persone e i Mac coperti dal piano, né concederla in sublicenza, venderla, noleggiarla o trasferirla altrimenti senza la nostra autorizzazione scritta.

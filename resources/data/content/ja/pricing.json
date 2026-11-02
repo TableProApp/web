@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "料金：無料、Starter、Team プラン",
-        "description": "TablePro は無料でダウンロードして使えます。Starter と Team プランは Mac アプリにオプション機能を追加し、月払い、年払い、買い切りから選べます。価格は米ドルです。"
+        "title": "料金：無料、Pro、Team プラン",
+        "description": "TablePro は無料でダウンロードして使えます。Pro と Team プランは Mac アプリにオプション機能を追加します。価格は米ドルです。"
     },
     "og": {
         "kicker": "料金",
@@ -9,21 +9,25 @@
     },
     "header": {
         "title": "料金",
-        "lead": "Mac アプリは試用期限なしで無料で使えます。Starter・Team で追加機能を利用できます。iPhone・iPad アプリは無料で、アプリ内課金はありません。"
+        "lead": "Mac アプリは試用期限なしで無料で使えます。Pro・Team で追加機能を利用できます。iPhone・iPad アプリは無料で、アプリ内課金はありません。"
+    },
+    "priceChange": {
+        "text": "TablePro の価格が新しくなり、Starter は Pro になりました。以前に購入されたものは、価格と条件がそのまま維持されます。",
+        "link": "変更内容"
     },
     "plans": {
         "title": "プラン"
     },
     "features": {
         "title": "有料プランで追加される機能",
-        "lead": "有料プランが必要なのはここに記載した機能だけで、現在 Mac が対象です。Team は Starter を含みます。対応する全エンジン、AI アシスタント、MCP、Safe Mode は無料です。"
+        "lead": "有料プランが必要なのはここに記載した機能だけで、現在 Mac が対象です。Team は Pro を含みます。対応する全エンジン、AI アシスタント、MCP、Safe Mode は無料です。"
     },
     "license": {
         "title": "ライセンスの仕組み",
         "items": {
             "macs": {
                 "term": "Mac 台数",
-                "body": "Starter は一人で最大 {activations} 台の Mac を使えます。Team は購入者を含め、認証した Mac 一台につき一席を使います。二台なら二席です。iPhone・iPad はライセンスや席を使いません。"
+                "body": "Pro は一人で最大 {activations} 台の Mac を使えます。Team は購入者を含め、認証した Mac 一台につき一席を使います。二台なら二席です。iPhone・iPad はライセンスや席を使いません。"
             },
             "activate": {
                 "term": "有効化",

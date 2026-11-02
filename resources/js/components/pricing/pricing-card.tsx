@@ -9,7 +9,7 @@ import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { examplesText, highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
-import { PRICING, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
+import { PRICING, sells, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
 import { discountedAmount, type Regional } from '@/lib/regional-pricing';
 import { cn } from '@/lib/utils';
 import { typedSeats, type SeatBound } from './seats';
@@ -48,7 +48,7 @@ interface PricingCardProps {
  * (`grid-rows-subgrid`), so the prices, the actions and the lists line up
  * across the three cards whatever each one holds. The price and what one
  * license covers share one track: Team's seat stepper makes that track tall,
- * and the spare height in Free and Starter then falls under their activation
+ * and the spare height in Free and Pro then falls under their activation
  * line, above the button, instead of between the price and the line that
  * explains it.
  *
@@ -99,6 +99,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                     <Button
                         variant="secondary"
                         fullWidth
+                        disabled={!sells(tier, cycle)}
                         loading={checkout.pending === tier}
                         onPointerEnter={checkout.warm}
                         onFocus={checkout.warm}
@@ -159,6 +160,10 @@ interface PaidPriceProps {
  * Under a regional discount every amount is what checkout will charge. Team's
  * total is discounted as a whole, as checkout discounts the order, so it can
  * differ by a cent from the seat price times the seats.
+ *
+ * Team's yearly price shows as a month's share of it, billed yearly, as its
+ * unit says; the total line names the yearly charge. Team has no one-time
+ * price, so that cycle says so instead of a price and drops the stepper.
  */
 function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
@@ -166,17 +171,32 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPricePro
     const [bound, setBound] = useState<SeatBound | null>(null);
 
     const charged = (amount: number): number => (regional ? discountedAmount(amount, regional.percent) : amount);
-    const prices = PRICING.cycles.map((each) => (
-        <Price
-            key={each}
-            amount={charged(tierPrice(tier, each))}
-            listAmount={regional ? tierPrice(tier, each) : undefined}
-            unit={m.pricing.units[tier][each]}
-            hidden={each !== cycle}
-        />
-    ));
+    const units: Partial<Record<BillingCycle, string>> = m.pricing.units[tier];
+    const prices = PRICING.cycles.map((each) => {
+        const amount = tierPrice(tier, each);
 
-    if (tier === 'starter') {
+        if (amount === undefined) {
+            return (
+                <p key={each} hidden={each !== cycle} className="type-body text-muted-foreground">
+                    {m.pricing.tiers.team.subscriptionOnly}
+                </p>
+            );
+        }
+
+        const shown = tier === 'team' && each === 'yearly' ? amount / 12 : amount;
+
+        return (
+            <Price
+                key={each}
+                amount={charged(shown)}
+                listAmount={regional ? shown : undefined}
+                unit={units[each]}
+                hidden={each !== cycle}
+            />
+        );
+    });
+
+    if (tier === 'starter' || cycle === 'lifetime') {
         return <>{prices}</>;
     }
 
@@ -256,7 +276,7 @@ function IncludesItem({ children }: { children: ReactNode }) {
 
 /**
  * What a plan adds, on `/pricing` only. Free lists what needs no license;
- * Starter and Team name their highlighted features from paid-features.json
+ * Pro and Team name their highlighted features from paid-features.json
  * and point to the full table below, which names every one of them.
  */
 function Includes({ tier, className }: { tier: TierId; className?: string }) {

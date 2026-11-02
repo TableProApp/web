@@ -42,9 +42,9 @@ it('has exactly the documented shape', function (): void {
     expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices', 'activations']);
     expect(array_keys($pricing['tiers']['team']))->toBe(['unit', 'prices', 'seats', 'activationsPerSeat', 'prioritySupport']);
 
-    foreach (['starter', 'team'] as $tier) {
-        expect(array_keys($pricing['tiers'][$tier]['prices']))->toBe($pricing['cycles'], "{$tier} must price every cycle, in cycle order");
-    }
+    // Pro is sold in every cycle; Team is a subscription, with no one-time price.
+    expect(array_keys($pricing['tiers']['starter']['prices']))->toBe($pricing['cycles'], 'Pro must price every cycle, in cycle order');
+    expect(array_keys($pricing['tiers']['team']['prices']))->toBe(['monthly', 'yearly'], 'Team prices the subscription cycles only, in cycle order');
 });
 
 it('bills in US dollars through Polar', function (): void {
@@ -63,15 +63,15 @@ it('keeps every price unchanged', function (): void {
 
     expect($tiers['free'])->toBe(['price' => 0]);
 
-    // Starter: one license on up to two Macs.
+    // Pro (the `starter` code): one license on up to three Macs.
     expect($tiers['starter']['unit'])->toBe('license');
-    expect(array_map(pricingCents(...), $tiers['starter']['prices']))->toBe(['monthly' => 299, 'yearly' => 2400, 'lifetime' => 5900]);
-    expect($tiers['starter']['activations'])->toBe(2);
+    expect(array_map(pricingCents(...), $tiers['starter']['prices']))->toBe(['monthly' => 499, 'yearly' => 3900, 'lifetime' => 7900]);
+    expect($tiers['starter']['activations'])->toBe(3);
 
-    // Team: priced per seat, a seat being one activated Mac, 5 to 200 seats.
+    // Team: priced per seat, a seat being one activated Mac, 2 to 200 seats, monthly or yearly only.
     expect($tiers['team']['unit'])->toBe('seat');
-    expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 125, 'yearly' => 1000, 'lifetime' => 2500]);
-    expect($tiers['team']['seats'])->toBe(['min' => 5, 'max' => 200]);
+    expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 1200, 'yearly' => 12000]);
+    expect($tiers['team']['seats'])->toBe(['min' => 2, 'max' => 200]);
     expect($tiers['team']['activationsPerSeat'])->toBe(1);
 });
 

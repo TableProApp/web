@@ -1,7 +1,7 @@
 ---
 title: 服务条款
-description: TablePro 网站、账户门户、许可证服务器和 Team Library 的条款，以及购买 Starter 或 Team 许可证的条款。
-updatedAt: "2026-10-10"
+description: TablePro 网站、账户门户、许可证服务器和 Team Library 的条款，以及购买 Pro 或 Team 许可证的条款。
+updatedAt: "2026-11-02"
 ---
 
 本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro 和 iPhone、iPad 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
@@ -12,7 +12,7 @@ updatedAt: "2026-10-10"
 - “**应用**”指 Mac 版 TablePro 和 iPhone、iPad 版 TablePro，包括其更新和插件。
 - “**网站**”指 tablepro.app、docs.tablepro.app 及我们运营的其他域名。
 - “**服务**”指网站、账户门户，以及 Mac 应用用于许可证验证和 Team Library 的服务器。
-- “**许可证**”指付费 Starter 或 Team 方案，“**许可证密钥**”指在 Mac 应用中激活相应功能的凭据。
+- “**许可证**”指付费 Pro 或 Team 方案，“**许可证密钥**”指在 Mac 应用中激活相应功能的凭据。
 - “**您**”指使用服务或持有许可证的个人或组织。
 
 ## 开源许可证 {#open-source}
@@ -39,7 +39,7 @@ TablePro™、TablePro 徽标和 TablePro 应用图标是 {publisherName} 的商
 
 许可证授予您非独占、不可转让的权利，允许在方案规定的 Mac 台数和期限内，用许可证密钥激活 Mac 应用的付费功能：
 
-- **Starter** 许可证供一人使用，最多可用于 {starterActivations} 台 Mac。
+- **Pro** 许可证供一人使用，最多可用于 {starterActivations} 台 Mac。
 - **Team** 许可证按席位定价，最少 {teamMinSeats} 个席位，最多 {teamMaxSeats} 个席位。每个席位对应一台已激活的 Mac。购买者邀请团队成员，成员使用邀请代码加入。
 
 未经我们书面许可，您不得在方案所涵盖的人员和 Mac 范围之外共享许可证密钥，也不得再许可、出售、出租或以其他方式转让密钥。

@@ -145,7 +145,7 @@ test('builds TablePro’s price cell from pricing.json, never a bare "Free"', ()
     assert.equal(cell.lines[0].text, hub.en.labels.tablepro.priceFree);
     assert.equal(
         cell.lines[1].text,
-        `Starter: $${pricing.tiers.starter.prices.monthly} a month, $${pricing.tiers.starter.prices.yearly} a year or $${pricing.tiers.starter.prices.lifetime} once, for up to ${pricing.tiers.starter.activations} devices`,
+        `Pro: $${pricing.tiers.starter.prices.monthly} a month, $${pricing.tiers.starter.prices.yearly} a year or $${pricing.tiers.starter.prices.lifetime} once, for up to ${pricing.tiers.starter.activations} devices`,
     );
     assert.ok(pricing.tiers.starter.activations > 1, 'the sentence above is the plural form');
     assert.match(cell.lines[2].text, new RegExp(`at least ${pricing.tiers.team.seats.min} seats$`));

@@ -18,6 +18,7 @@ export default {
     index: {
         empty: 'No posts yet.',
         guides: 'Guides',
+        news: 'News',
         releases: 'Release notes',
     },
     latest: 'Latest release post: <post>{title}</post>.',

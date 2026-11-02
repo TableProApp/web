@@ -70,7 +70,12 @@ function pricingExpectedPricePoints(string $pattern, string $decimal): array
 
     foreach (['starter', 'team'] as $tier) {
         foreach ($pricing['cycles'] as $cycle) {
-            $expected[] = ['price' => $write($pricing['tiers'][$tier]['prices'][$cycle]), 'hidden' => $cycle !== 'yearly'];
+            // Team has no one-time price, and shows its yearly price as a month's share of it.
+            $amount = $pricing['tiers'][$tier]['prices'][$cycle] ?? null;
+
+            if ($amount !== null) {
+                $expected[] = ['price' => $write($tier === 'team' && $cycle === 'yearly' ? $amount / 12 : $amount), 'hidden' => $cycle !== 'yearly'];
+            }
         }
     }
 
@@ -263,13 +268,13 @@ it('server-renders the plans, the table and every section, with prices written f
     }
 })->with([
     'English' => [
-        '/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year'], '$%s', '.',
+        '/pricing', 'en', ['$0', '$39', '$10', '2 seats: $240 per year'], '$%s', '.',
         'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ['Included', 'Not included'],
-        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Starter', 'paid features work for {graceDays} days after the last successful check', 'One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
+        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Pro', 'paid features work for {graceDays} days after the last successful check', 'One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
     ],
     'Vietnamese' => [
-        '/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',
+        '/vi/pricing', 'vi', ["0\u{a0}US$", "39\u{a0}US$", "10\u{a0}US$", "2 seat: 240\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',
         'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.',
         ['Có', 'Không có'],
         [],
@@ -294,7 +299,7 @@ it('keeps the short FAQ on account tasks, leaving the licensing facts to the pag
     }
 });
 
-it('says who a Starter license is for wherever it says how many Macs', function (string $locale, string $person, ?string $cardPerson = null, ?string $detailPerson = null): void {
+it('says who a Pro license is for wherever it says how many Macs', function (string $locale, string $person, ?string $cardPerson = null, ?string $detailPerson = null): void {
     // The rule is the terms' own: "Using a license".
     expect(File::get(resource_path("data/legal/{$locale}/terms.md")))->toContain($person);
 
@@ -331,8 +336,8 @@ it('names the plans and the account\'s pages as checkout and the account app do'
     $content = pricingPageJson("content/{$locale}/pricing.json");
 
     // Plan names stay English everywhere, as on the buy buttons.
-    expect($content['seo']['title'])->not->toBe($content['header']['title'])->toContain('Starter')->toContain('Team');
-    expect($content['seo']['description'])->toContain('Starter')->toContain('Team');
+    expect($content['seo']['title'])->not->toBe($content['header']['title'])->toContain('Pro')->toContain('Team');
+    expect($content['seo']['description'])->toContain('Pro')->toContain('Team');
 
     expect($content['license']['items']['activate']['body'])->toContain($macsPage);
     expect($content['billing']['portal'])->toContain("<account>{$billing}</account>");
