@@ -170,8 +170,10 @@ def check_blog(text, draft_path, add):
         add(HARD, "frontmatter", "no --- block at the top")
         return
     fields = dict(re.findall(r"^(\w+):\s*(.*)$", front.group(1), re.M))
+    # A news post (`kind: news`) announces no release and needs no figure.
+    news = fields.get("kind") == "news"
     for name in BLOG_FIELDS:
-        if not fields.get(name):
+        if not fields.get(name) and not (news and name == "release"):
             add(HARD, "frontmatter", f"missing {name}")
     stem = Path(draft_path).stem
     if fields.get("slug") and fields["slug"] != stem:
@@ -186,7 +188,8 @@ def check_blog(text, draft_path, add):
     if len(punchline) > OG_PUNCHLINE_MAX:
         add(SOFT, "ogPunchline", f"{len(punchline)} chars, keep it under about {OG_PUNCHLINE_MAX}")
 
-    check_slots(text, add)
+    if not news:
+        check_slots(text, add)
 
     body = ASSET_SLOT.sub("", text[front.end():])
     sections = [len(s.split()) for s in re.split(r"\n## ", body)[1:]]

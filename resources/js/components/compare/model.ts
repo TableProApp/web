@@ -67,9 +67,9 @@ export interface TableProFacts {
     macArchitectures: ('arm64' | 'x86_64')[];
     /** One app for both architectures, from `platforms.json`'s `universalBinary`. */
     macUniversal: boolean;
-    /** `activations`: the Macs one Starter license covers. */
+    /** `activations`: the Macs one Pro license covers. */
     starter: { monthly: number; yearly: number; lifetime: number; activations: number };
-    team: { monthly: number; yearly: number; lifetime: number; minSeats: number };
+    team: { monthly: number; yearly: number; minSeats: number };
     /** The iPhone and iPad app is free and sells nothing. */
     iosFree: boolean;
     /** `AGPL-3.0`. */
@@ -546,7 +546,6 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
                         price: interpolate(t.team, {
                             monthly: money(facts.team.monthly),
                             yearly: money(facts.team.yearly),
-                            lifetime: money(facts.team.lifetime),
                             min: facts.team.minSeats,
                         }),
                     }),

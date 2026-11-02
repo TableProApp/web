@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
-description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Starter atau Team.
-updatedAt: "2026-10-10"
+description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
+updatedAt: "2026-11-02"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -12,7 +12,7 @@ Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami,
 - **"Aplikasi"** berarti TablePro untuk Mac dan TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
 - **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi aplikasi Mac untuk pemeriksaan lisensi dan Team Library.
-- **"Lisensi"** berarti paket Starter atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang mengaktifkan fiturnya dalam aplikasi Mac.
+- **"Lisensi"** berarti paket Pro atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang mengaktifkan fiturnya dalam aplikasi Mac.
 - **"Anda"** berarti orang atau organisasi yang memakai Layanan atau memegang Lisensi.
 
 ## Lisensi sumber terbuka {#open-source}
@@ -39,7 +39,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk mengaktifkan fitur berbayar aplikasi Mac dengan Kunci Lisensinya, pada jumlah Mac dan selama periode paket Anda:
 
-- Lisensi **Starter** untuk satu orang, di maksimal {starterActivations} Mac.
+- Lisensi **Pro** untuk satu orang, di maksimal {starterActivations} Mac.
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} dan maksimum {teamMaxSeats} seat. Setiap seat adalah satu Mac yang diaktifkan. Pembeli mengundang anggota tim, yang bergabung dengan kode undangan.
 
 Anda tidak boleh membagikan Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankannya tanpa izin tertulis kami.

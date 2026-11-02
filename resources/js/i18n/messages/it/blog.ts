@@ -4,6 +4,7 @@ export default {
     "index": {
         "empty": "Ancora nessun articolo.",
         "guides": "Guide",
+        "news": "Novità",
         "releases": "Note di rilascio"
     },
     "latest": "Ultimo post di rilascio: <post>{title}</post>.",

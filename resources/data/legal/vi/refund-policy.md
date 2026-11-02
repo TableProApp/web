@@ -1,10 +1,10 @@
 ---
 title: Chính sách hoàn tiền
 description: Mọi gói TablePro đều được hoàn tiền trong {refundDays} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong {refundDays} ngày kể từ ngày tính phí. Cách yêu cầu.
-updatedAt: "2026-10-08"
+updatedAt: "2026-11-02"
 ---
 
-Mọi gói trả phí đều được hoàn tiền trong vòng {refundDays} ngày: Starter và Team, theo tháng, theo năm và mua một lần. {refundDays} ngày này tính từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm cũng được hoàn tiền trong vòng {refundDays} ngày kể từ ngày tính phí lần gia hạn đó. Các gói được trình bày trên [trang bảng giá](/vi/pricing#refunds).
+Mọi gói trả phí đều được hoàn tiền trong vòng {refundDays} ngày: Pro và Team, theo tháng, theo năm và mua một lần. {refundDays} ngày này tính từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm cũng được hoàn tiền trong vòng {refundDays} ngày kể từ ngày tính phí lần gia hạn đó. Các gói được trình bày trên [trang bảng giá](/vi/pricing#refunds).
 
 ## Cách yêu cầu hoàn tiền {#request}
 

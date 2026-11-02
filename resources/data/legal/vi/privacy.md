@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-22"
+updatedAt: "2026-11-02"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -104,7 +104,7 @@ iCloud Sync tắt cho tới khi bạn bật, trên Mac cũng như trên iPhone v
 - iPhone và iPad đồng bộ connection, nhóm và tag.
 - Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ (Sync Categories) trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key.
 
-Trên Mac, iCloud Sync thuộc license Starter hoặc Team. Trên iPhone và iPad, tính năng này miễn phí.
+Trên Mac, iCloud Sync thuộc license Pro hoặc Team. Trên iPhone và iPad, tính năng này miễn phí.
 
 Handoff chuyển mã của connection đang mở và tên của table đang mở giữa các thiết bị của chính bạn, thông qua Apple. Khi chưa mở table nào, Handoff chuyển tên của connection thay cho tên table, hoặc host nếu connection không có tên. Handoff không gửi cài đặt hay thông tin đăng nhập nào.
 

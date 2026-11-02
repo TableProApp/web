@@ -62,7 +62,7 @@ export interface Crumb {
 export type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
 export interface OfferInput {
-    /** The plan's visible name in the page's language, such as "Starter, yearly". */
+    /** The plan's visible name in the page's language, such as "Pro, yearly". */
     name: string;
     price: number;
     /** ISO 4217, from `pricing.json`. */

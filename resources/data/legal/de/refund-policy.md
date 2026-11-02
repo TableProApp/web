@@ -1,10 +1,10 @@
 ---
 title: Erstattungsrichtlinie
 description: Jeder Tarif ist bis {refundDays} Tage nach dem Kauf erstattbar, jede monatliche oder jährliche Verlängerung bis {refundDays} Tage nach ihrer Abbuchung. So beantragst du sie.
-updatedAt: "2026-10-08"
+updatedAt: "2026-11-02"
 ---
 
-Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Starter und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum, und jede monatliche oder jährliche Verlängerung kann innerhalb von {refundDays} Tagen nach ihrer Abbuchung erstattet werden. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
+Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Pro und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum, und jede monatliche oder jährliche Verlängerung kann innerhalb von {refundDays} Tagen nach ihrer Abbuchung erstattet werden. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
 
 ## Eine Erstattung beantragen {#request}
 

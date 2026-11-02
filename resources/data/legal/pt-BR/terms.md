@@ -1,7 +1,7 @@
 ---
 title: Termos de serviço
-description: Os termos do site, do portal da conta, do servidor de licenças e da Team Library do TablePro e da compra de uma licença Starter ou Team.
-updatedAt: "2026-10-10"
+description: Os termos do site, do portal da conta, do servidor de licenças e da Team Library do TablePro e da compra de uma licença Pro ou Team.
+updatedAt: "2026-11-02"
 ---
 
 Estes termos regem o site tablepro.app, o portal da conta, nosso servidor de licenças, a Team Library e as Licenças e Chaves de Licença pagas descritas abaixo. Ao usá-los, ou ao comprar ou ativar uma Licença, você concorda com estes termos. O TablePro para Mac e o TablePro para iPhone e iPad são licenciados somente sob a AGPLv3: você não precisa aceitar estes termos para baixá-los, instalá-los ou executá-los.
@@ -12,7 +12,7 @@ Estes termos regem o site tablepro.app, o portal da conta, nosso servidor de lic
 - **"Aplicativo"** significa TablePro para Mac e TablePro para iPhone e iPad, incluindo atualizações e plugins.
 - **"Site"** significa tablepro.app, docs.tablepro.app e os demais domínios que operamos.
 - **"Serviços"** significa o Site, o portal da conta e o servidor que o app para Mac contata para verificações de licença e para a Team Library.
-- **"Licença"** significa um plano pago Starter ou Team, e **"Chave de Licença"**, a credencial que ativa seus recursos no app para Mac.
+- **"Licença"** significa um plano pago Pro ou Team, e **"Chave de Licença"**, a credencial que ativa seus recursos no app para Mac.
 - **"Você"** significa a pessoa ou organização que usa os Serviços ou detém uma Licença.
 
 ## Licença de código aberto {#open-source}
@@ -39,7 +39,7 @@ Os reembolsos são descritos na [política de reembolso](/pt-BR/refund-policy).
 
 Uma Licença concede um direito não exclusivo e intransferível de ativar os recursos pagos do app para Mac com sua Chave de Licença, no número de Macs e pelo período previstos no plano:
 
-- Uma Licença **Starter** é para uma pessoa, em até {starterActivations} Macs.
+- Uma Licença **Pro** é para uma pessoa, em até {starterActivations} Macs.
 - Uma Licença **Team** é cobrada por vaga, com no mínimo {teamMinSeats} e no máximo {teamMaxSeats} vagas. Cada vaga corresponde a um Mac ativado. O comprador convida membros da equipe, que participam com um código de convite.
 
 Você não pode compartilhar uma Chave de Licença além das pessoas e Macs cobertos pelo plano, nem sublicenciá-la, vendê-la, alugá-la ou transferi-la de outra forma sem nossa autorização por escrito.

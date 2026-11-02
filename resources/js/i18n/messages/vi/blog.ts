@@ -4,6 +4,7 @@ export default {
     index: {
         empty: 'Chưa có bài viết nào.',
         guides: 'Hướng dẫn',
+        news: 'Tin tức',
         releases: 'Ghi chú phát hành',
     },
     latest: 'Bài phát hành mới nhất: <post>{title}</post>.',

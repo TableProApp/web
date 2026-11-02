@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-22"
+updatedAt: "2026-11-02"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -104,7 +104,7 @@ iCloud Sync is off until you turn it on, on the Mac and on iPhone and iPad. When
 - iPhone and iPad sync connections, groups and tags.
 - Passwords sync only if you also turn on **Passwords** under Sync Categories on the Mac, or **Sync Passwords** on iPhone and iPad, which uses iCloud Keychain. On the Mac this also syncs the other secrets TablePro keeps in the Keychain, such as AI provider keys and the license key.
 
-On the Mac, iCloud Sync is part of a Starter or Team license. On iPhone and iPad it is free.
+On the Mac, iCloud Sync is part of a Pro or Team license. On iPhone and iPad it is free.
 
 Handoff passes the ID of the open connection and the name of the open table between your own devices, through Apple. With no table open, it passes the connection's name instead, or its host when the connection has no name. It sends no settings or credentials.
 

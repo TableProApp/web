@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-10-22"
+updatedAt: "2026-11-02"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 tablepro.app/account 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
@@ -104,7 +104,7 @@ iCloud Sync 在 Mac、iPhone 與 iPad 上均預設關閉，直到您開啟。開
 - iPhone 與 iPad 同步連線、群組和標籤。
 - 密碼僅在您同時開啟 Mac 上 Sync Categories 中的**密碼**（Passwords），或 iPhone 與 iPad 上的**同步密碼**（Sync Passwords）後同步，使用 iCloud 鑰匙圈。在 Mac 上，這也會同步 TablePro 保存在鑰匙圈中的其他機密資訊，例如 AI 供應商金鑰和授權金鑰。
 
-Mac 上的 iCloud Sync 屬於 Starter 或 Team 授權功能，在 iPhone 與 iPad 上免費。
+Mac 上的 iCloud Sync 屬於 Pro 或 Team 授權功能，在 iPhone 與 iPad 上免費。
 
 接力透過 Apple 在您的裝置之間傳遞目前連線的 ID 和開啟的資料表名稱。沒有開啟資料表時，傳遞連線名稱；連線沒有名稱時則傳遞主機。不會傳送設定或認證資料。
 

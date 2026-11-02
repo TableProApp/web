@@ -49,6 +49,11 @@ const BLOG_GUIDES = [
     'postgresql-ssh-tunnel-mac' => '2026-10-08',
 ];
 
+// Notices about TablePro itself (`kind: news`), in English and Vietnamese.
+const BLOG_NEWS = [
+    'new-prices-2026' => '2026-11-02',
+];
+
 const BLOG_GUIDE_PAGES = [
     'postgresql-ssh-tunnel-mac' => ['/postgresql-client', '/features/connections#ssh'],
     'connect-postgresql-mysql-docker-mac' => ['/postgresql-client', '/mysql-client', '/features/connections#project-folder'],
@@ -92,7 +97,7 @@ function blogMatter(string $slug, string $locale = 'en'): array
  */
 function blogIndexOrder(): array
 {
-    $dates = [...BLOG_GUIDES, ...BLOG_PUBLISHED];
+    $dates = [...BLOG_NEWS, ...BLOG_GUIDES, ...BLOG_PUBLISHED];
     $slugs = array_keys($dates);
     usort($slugs, fn(string $a, string $b): int => [$dates[$b], $a] <=> [$dates[$a], $b]);
 
@@ -130,10 +135,14 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts', fn($posts): bool => collect($posts)->pluck('slug')->all() === $expected)
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
-            ->where('posts.0.date', BLOG_PUBLISHED[$expected[0]])
-            ->where('posts.0.dateFormatted', 'October 20, 2026')
+            ->where('posts.0.date', [...BLOG_NEWS, ...BLOG_GUIDES, ...BLOG_PUBLISHED][$expected[0]])
+            ->where('posts.0.dateFormatted', 'November 2, 2026')
             ->where('posts', fn($posts): bool => collect($posts)->every(
-                fn(array $post): bool => $post['kind'] === (array_key_exists($post['slug'], BLOG_GUIDES) ? 'guide' : 'release'),
+                fn(array $post): bool => $post['kind'] === match (true) {
+                    array_key_exists($post['slug'], BLOG_NEWS) => 'news',
+                    array_key_exists($post['slug'], BLOG_GUIDES) => 'guide',
+                    default => 'release',
+                },
             )));
 });
 
@@ -144,6 +153,36 @@ it('keeps the guides and the release posts apart: a guide announces no release',
 
     expect(array_intersect_key(BLOG_GUIDES, BLOG_PUBLISHED))->toBe([]);
 });
+
+it('marks each news post as news, in English and Vietnamese, announcing no release', function (): void {
+    foreach (array_keys(BLOG_NEWS) as $slug) {
+        foreach (['en', 'vi'] as $locale) {
+            $matter = blogMatter($slug, $locale);
+
+            expect($matter['kind'] ?? null)->toBe('news', "{$slug} ({$locale}) is not marked as news")
+                ->and(array_key_exists('release', $matter))->toBeFalse("{$slug} ({$locale}) names a release");
+        }
+    }
+
+    expect(array_intersect_key(BLOG_NEWS, [...BLOG_GUIDES, ...BLOG_PUBLISHED]))->toBe([]);
+});
+
+it('renders each news post as news in English and Vietnamese', function (string $slug, string $locale): void {
+    $prefix = $locale === 'en' ? '' : "/{$locale}";
+
+    $this->get("{$prefix}/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->component('Blog/Post')
+            ->where('locale', $locale)
+            ->where('seo.robots', 'index, follow')
+            ->where('seo.canonical', "https://localhost{$prefix}/blog/{$slug}")
+            ->where('post.slug', $slug)
+            ->where('post.kind', 'news')
+            ->where('post.title', blogMatter($slug, $locale)['title'])
+            ->where('post.date', BLOG_NEWS[$slug])
+            ->where('post.release', null));
+})->with(fn(): array => collect(array_keys(BLOG_NEWS))->crossJoin(['en', 'vi'])->all());
 
 it('describes the blog as guides and release posts in every language', function (): void {
     $kinds = [
@@ -208,7 +247,7 @@ it('gives each guide a Vietnamese version under the same slug and tags', functio
         expect(blogMatter($slug, 'vi')['tags'])->toBe(blogMatter($slug)['tags'], "{$slug}: the translation links other pages than the original");
     }
 
-    expect(glob(resource_path('blog/vi/*.md')))->toHaveCount(count(BLOG_GUIDES));
+    expect(glob(resource_path('blog/vi/*.md')))->toHaveCount(count(BLOG_GUIDES) + count(BLOG_NEWS));
 });
 
 it('gives each Vietnamese guide the same sections as the original, in the same order', function (): void {
@@ -453,15 +492,21 @@ it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese
             ->where('seo.canonical', 'https://localhost/vi/blog')
             ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->missing('content.seo.indexable')
-            ->has('posts', count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
-            ->where('posts', fn($posts): bool => collect($posts)->slice(3, $guides)->every(
+            ->has('posts', count(BLOG_NEWS) + count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
+            ->where('posts', fn($posts): bool => collect($posts)->slice(count(BLOG_NEWS) + 3, $guides)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
             ))
-            ->where('posts.0.slug', 'tablepro-0-82')
-            ->where('posts.0.locale', 'en')
-            ->where('posts.0.url', '/blog/tablepro-0-82')
-            ->where('posts.0.title', blogMatter('tablepro-0-82')['title'])
-            ->where('posts.0.dateFormatted', '20 tháng 10 năm 2026')
+            ->where('posts.0.slug', 'new-prices-2026')
+            ->where('posts.0.locale', 'vi')
+            ->where('posts.0.kind', 'news')
+            ->where('posts.0.url', '/vi/blog/new-prices-2026')
+            ->where('posts.0.title', blogMatter('new-prices-2026', 'vi')['title'])
+            ->where('posts.0.dateFormatted', '2 tháng 11 năm 2026')
+            ->where('posts.1.slug', 'tablepro-0-82')
+            ->where('posts.1.locale', 'en')
+            ->where('posts.1.url', '/blog/tablepro-0-82')
+            ->where('posts.1.title', blogMatter('tablepro-0-82')['title'])
+            ->where('posts.1.dateFormatted', '20 tháng 10 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
@@ -647,12 +692,14 @@ describe('server-rendered', function (): void {
         ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng gửi ghi chú phát hành bằng tiếng Anh. Hủy đăng ký trong bất kỳ email nào.'],
     ])->group('ssr');
 
-    it('lists the guides, then the release posts under the line that says what they are', function (string $path, string $guides, string $releases, string $lead): void {
+    it('lists the news, the guides, then the release posts under the line that says what they are', function (string $path, string $news, string $guides, string $releases, string $lead): void {
         $document = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR);
         $main = $document->querySelector('main');
         $sections = array_map(fn($section): string => $section->getAttribute('id'), iterator_to_array($document->querySelectorAll('main > section[id]')));
 
-        expect(array_values($sections))->toBe(['guides', 'releases'])
+        expect(array_values($sections))->toBe(['news', 'guides', 'releases'])
+            ->and($main->querySelector('#news-title')?->textContent)->toBe($news)
+            ->and($main->querySelectorAll('#news ol > li')->length)->toBe(count(BLOG_NEWS))
             ->and($main->querySelector('#guides-title')?->textContent)->toBe($guides)
             ->and($main->querySelector('#releases-title')?->textContent)->toBe($releases)
             ->and($main->querySelector('#releases')?->textContent)->toContain($lead)
@@ -660,8 +707,8 @@ describe('server-rendered', function (): void {
             ->and($main->querySelectorAll('#guides ol > li')->length)->toBe(count(BLOG_GUIDES))
             ->and($main->querySelectorAll('#releases ol > li')->length)->toBe(count(BLOG_PUBLISHED));
     })->with([
-        ['/blog', 'Guides', 'Release notes', 'Full version notes are in the changelog'],
-        ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Ghi chú đầy đủ của từng phiên bản nằm trong changelog'],
+        ['/blog', 'News', 'Guides', 'Release notes', 'Full version notes are in the changelog'],
+        ['/vi/blog', 'Tin tức', 'Hướng dẫn', 'Ghi chú phát hành', 'Ghi chú đầy đủ của từng phiên bản nằm trong changelog'],
     ])->group('ssr');
 
     it('shows the dated correction on the 0.74 post', function (): void {

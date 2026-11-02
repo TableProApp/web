@@ -8,6 +8,7 @@ import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
 import BillingCycleControl from './billing-cycle-control';
 import DiscountField from './discount-field';
+import EnterpriseCard from './enterprise-card';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
 import RegionalNote from './regional-note';
 import type { CheckoutProp } from './types';
@@ -26,7 +27,8 @@ interface PricingPlansProps {
 
 /**
  * The working plan block, the same on `/pricing` and on the homepage: the
- * billing-cycle control and its caption, the Free, Starter and Team cards,
+ * billing-cycle control and its caption, the Free, Pro and Team cards and
+ * the Enterprise contact card,
  * the refund window from pricing.json, the discount code where this site
  * takes one, and the line on currency and the merchant of record.
  *
@@ -67,7 +69,7 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
         <div className={cn('max-lg:[&_:is(a,button,input:not([type=radio]),summary)]:scroll-mt-14', className)}>
             <BillingCycleControl value={cycle} onChange={setCycle} />
 
-            <CellGrid className="mt-6 items-stretch lg:grid-cols-3">
+            <CellGrid className="mt-6 items-stretch lg:grid-cols-2 xl:grid-cols-4">
                 {TIERS.map((tier) => (
                     <PricingCard
                         key={tier}
@@ -82,6 +84,7 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         regional={regional}
                     />
                 ))}
+                <EnterpriseCard variant={variant} headingLevel={headingLevel} />
             </CellGrid>
 
             <div className="mt-6 grid gap-3">

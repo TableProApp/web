@@ -400,7 +400,7 @@ describe('server-rendered', function (): void {
         }
     })->with(['/', '/vi'])->group('ssr');
 
-    it('says what Starter adds and whom it is for, every cycle\'s price and the refund window, in the pricing section', function (string $path, string $locale, array $copy, string $pattern, string $decimal): void {
+    it('says what Pro adds and whom it is for, every cycle\'s price and the refund window, in the pricing section', function (string $path, string $locale, array $copy, string $pattern, string $decimal): void {
         $html = html_entity_decode(ssrHome($path), ENT_QUOTES | ENT_HTML5);
         $start = (int) strpos($html, 'id="pricing"');
         $section = substr($html, $start, (int) strpos($html, 'id="open-source"') - $start);
@@ -422,7 +422,9 @@ describe('server-rendered', function (): void {
             ->toContain('href="' . ($locale === 'en' ? '' : "/{$locale}") . '/refund-policy"');
 
         foreach (['starter', 'team'] as $tier) {
-            foreach ($pricing['tiers'][$tier]['prices'] as $amount) {
+            foreach ($pricing['tiers'][$tier]['prices'] as $cycle => $amount) {
+                // Team shows its yearly price as a month's share of it.
+                $amount = $tier === 'team' && $cycle === 'yearly' ? $amount / 12 : $amount;
                 $price = sprintf($pattern, str_replace('.', $decimal, is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '')));
 
                 expect($section)->toContain(">{$price}<");

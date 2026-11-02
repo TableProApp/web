@@ -4,6 +4,7 @@ export default {
     "index": {
         "empty": "記事はまだありません。",
         "guides": "ガイド",
+        "news": "お知らせ",
         "releases": "リリースノート"
     },
     "latest": "最新のリリース記事：<post>{title}</post>。",

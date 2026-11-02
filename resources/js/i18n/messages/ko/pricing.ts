@@ -15,7 +15,7 @@ export default {
     "captions": {
         "monthly": "취소할 때까지 매월 갱신됩니다.",
         "yearly": "취소할 때까지 매년 갱신됩니다. 월간 결제 12회보다 {percent}% 저렴합니다.",
-        "yearlyByTier": "취소할 때까지 매년 갱신됩니다. 월간 결제 12회보다 Starter는 {starterPercent}%, Team은 {teamPercent}% 저렴합니다.",
+        "yearlyByTier": "취소할 때까지 매년 갱신됩니다. 월간 결제 12회보다 Pro는 {starterPercent}%, Team은 {teamPercent}% 저렴합니다.",
         "lifetime": "한 번 결제하며 만료일은 없습니다."
     },
     "tiers": {
@@ -33,21 +33,37 @@ export default {
             ]
         },
         "starter": {
-            "name": "Starter",
+            "name": "Pro",
             "description": "Mac 앱에 {examples} 같은 기능을 추가합니다.",
             "activation": {
                 "one": "1명, Mac {count}대.",
                 "other": "1명, Mac 최대 {count}대."
             },
             "includesTitle": "무료 플랜의 모든 기능에 더해",
-            "cta": "Starter 구매"
+            "cta": "Pro 구매"
         },
         "team": {
             "name": "Team",
             "description": "팀과 연결 및 저장된 쿼리를 공유하세요.",
             "activation": "좌석당 활성화된 Mac 1대.",
-            "includesTitle": "Starter의 모든 기능에 더해",
-            "cta": "Team 구매"
+            "includesTitle": "Pro의 모든 기능에 더해",
+            "cta": "Team 구매",
+            "subscriptionOnly": "Team은 월간 또는 연간으로만 판매합니다."
+        },
+        "enterprise": {
+            "name": "Enterprise",
+            "description": "TablePro 사용을 더 세밀하게 관리해야 하는 회사를 위한 플랜입니다.",
+            "price": "문의하기",
+            "activation": "회사별로 가격을 정합니다.",
+            "includesTitle": "필요한 기능을 알려 주세요. 예를 들면",
+            "includes": [
+                "회사 계정으로 로그인",
+                "팀 연결에 적용되는 정책",
+                "프로덕션 쓰기 감사",
+                "MDM 배포",
+                "청구서와 구매 주문서"
+            ],
+            "cta": "문의하기"
         }
     },
     "units": {
@@ -58,8 +74,7 @@ export default {
         },
         "team": {
             "monthly": "좌석당 월",
-            "yearly": "좌석당 연",
-            "lifetime": "좌석당 일회 결제"
+            "yearly": "좌석당 월, 연간 청구"
         }
     },
     "seats": {
@@ -78,10 +93,6 @@ export default {
             "yearly": {
                 "one": "{count}좌석: 연 {total}",
                 "other": "{count}좌석: 연 {total}"
-            },
-            "lifetime": {
-                "one": "{count}좌석: {total}, 일회 결제",
-                "other": "{count}좌석: {total}, 일회 결제"
             }
         }
     },
@@ -116,7 +127,7 @@ export default {
         "macsTeam": "좌석당 한 대",
         "everythingElse": "앱의 나머지 모든 기능",
         "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",
-        "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."
+        "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Pro 또는 Team이 필요합니다."
     },
     "regional": {
         "note": "접속 국가({country}) 기준 가격: 결제 시 {percent}% 할인됩니다.",
