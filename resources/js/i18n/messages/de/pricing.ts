@@ -15,7 +15,7 @@ export default {
     "captions": {
         "monthly": "Verlängert sich monatlich, bis du kündigst.",
         "yearly": "Verlängert sich jährlich, bis du kündigst. {percent} % günstiger als zwölf Monatszahlungen.",
-        "yearlyByTier": "Verlängert sich jährlich, bis du kündigst. Starter ist {starterPercent} % günstiger als zwölf Monatszahlungen, Team {teamPercent} % günstiger.",
+        "yearlyByTier": "Verlängert sich jährlich, bis du kündigst. Pro ist {starterPercent} % günstiger als zwölf Monatszahlungen, Team {teamPercent} % günstiger.",
         "lifetime": "Einmalige Zahlung, ohne Ablaufdatum."
     },
     "tiers": {
@@ -33,14 +33,14 @@ export default {
             ]
         },
         "starter": {
-            "name": "Starter",
+            "name": "Pro",
             "description": "Ergänzt die Mac-App um Funktionen wie {examples}.",
             "activation": {
                 "one": "Eine Person, {count} Mac.",
                 "other": "Eine Person, bis zu {count} Macs."
             },
             "includesTitle": "Alles aus Kostenlos, plus",
-            "cta": "Starter kaufen"
+            "cta": "Pro kaufen"
         },
         "team": {
             "name": "Team",
@@ -49,8 +49,24 @@ export default {
                 "one": "Eine Person pro Arbeitsplatz, {count} Mac.",
                 "other": "Eine Person pro Arbeitsplatz, bis zu {count} Macs."
             },
-            "includesTitle": "Alles aus Starter, plus",
-            "cta": "Team kaufen"
+            "includesTitle": "Alles aus Pro, plus",
+            "cta": "Team kaufen",
+            "subscriptionOnly": "Team gibt es monatlich oder jährlich."
+        },
+        "enterprise": {
+            "name": "Enterprise",
+            "description": "Für Unternehmen, die mehr Kontrolle über die Nutzung von TablePro brauchen.",
+            "price": "Kontakt",
+            "activation": "Preis je Unternehmen.",
+            "includesTitle": "Sag uns, was du brauchst, zum Beispiel",
+            "includes": [
+                "Anmeldung mit den Konten deines Unternehmens",
+                "Verbindliche Richtlinien für Team-Verbindungen",
+                "Audit von Schreibzugriffen auf Produktion",
+                "Verteilung per MDM",
+                "Rechnungen und Bestellscheine"
+            ],
+            "cta": "Kontakt aufnehmen"
         }
     },
     "units": {
@@ -61,8 +77,7 @@ export default {
         },
         "team": {
             "monthly": "pro Arbeitsplatz und Monat",
-            "yearly": "pro Arbeitsplatz und Jahr",
-            "lifetime": "pro Arbeitsplatz, einmalig"
+            "yearly": "pro Arbeitsplatz und Monat, jährlich abgerechnet"
         }
     },
     "seats": {
@@ -82,10 +97,6 @@ export default {
             "yearly": {
                 "one": "{count} Arbeitsplatz: {total} pro Jahr",
                 "other": "{count} Arbeitsplätze: {total} pro Jahr"
-            },
-            "lifetime": {
-                "one": "{count} Arbeitsplatz: {total}, einmalige Zahlung",
-                "other": "{count} Arbeitsplätze: {total}, einmalige Zahlung"
             }
         }
     },
@@ -122,7 +133,7 @@ export default {
         },
         "everythingElse": "Alles andere in der App",
         "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und Safe Mode",
-        "iphoneNote": "Die iPhone- und iPad-App hat keine Bezahlfunktionen. iCloud Sync ist dort kostenlos; für die Synchronisierung mit einem Mac benötigt der Mac Starter oder Team."
+        "iphoneNote": "Die iPhone- und iPad-App hat keine Bezahlfunktionen. iCloud Sync ist dort kostenlos; für die Synchronisierung mit einem Mac benötigt der Mac Pro oder Team."
     },
     "regional": {
         "note": "Preise für dein Land ({country}): {percent} % Rabatt, wird beim Kauf abgezogen.",

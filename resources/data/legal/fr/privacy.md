@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-02"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes account.tablepro.app. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
@@ -124,7 +124,7 @@ iCloud Sync est désactivé jusqu’à votre activation, sur Mac comme sur iPhon
 - iPhone et iPad synchronisent les connexions, groupes et tags.
 - Les mots de passe ne sont synchronisés que si vous activez aussi **Mots de passe** (Passwords) dans Catégories synchronisées (Sync Categories) sur Mac, ou **Sync Passwords** sur iPhone et iPad, ce qui utilise le Trousseau iCloud. Sur Mac, cela synchronise aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs IA et la clé de licence. À partir de la version qui ajoute les comptes TablePro, la clé de licence est supprimée dès qu’elle est échangée contre une connexion, et le jeton qui maintient la connexion de l’application n’est jamais synchronisé.
 
-Sur Mac, iCloud Sync fait partie d’une licence Starter ou Team. Sur iPhone et iPad, il est gratuit.
+Sur Mac, iCloud Sync fait partie d’une licence Pro ou Team. Sur iPhone et iPad, il est gratuit.
 
 Handoff transmet l’identifiant de la connexion ouverte et le nom de la table ouverte entre vos appareils, via Apple. Si aucune table n’est ouverte, il transmet le nom de la connexion ou son hôte si elle n’a pas de nom. Il n’envoie aucun réglage ni identifiant de connexion.
 

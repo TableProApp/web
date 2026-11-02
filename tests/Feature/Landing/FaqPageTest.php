@@ -69,7 +69,7 @@ it('renders in both languages with the facts its answers state', function (strin
             ->where('facts.paidFeatures.team', ['Team Catalog', 'Team Library'])
             ->where('facts.commerce.merchant', 'Polar')
             ->where('facts.commerce.refundDays', 7)
-            ->where('facts.commerce.teamMinSeats', 5)
+            ->where('facts.commerce.teamMinSeats', 2)
             ->where('links.email', 'hello@tablepro.app')
             ->where('links.portal', fn(string $url): bool => str_starts_with($url, 'https://'))
             ->has('facts.featuredEngines')

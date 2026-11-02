@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro est-il gratuit ?",
                     "answer": [
-                        "Oui. L’app Mac n’a ni période d’essai ni limite de durée. Tous les moteurs compatibles, l’IA, MCP et Safe Mode sont gratuits. Starter et Team ajoutent les fonctions de la <pricing>page des tarifs</pricing>.",
+                        "Oui. L’app Mac n’a ni période d’essai ni limite de durée. Tous les moteurs compatibles, l’IA, MCP et Safe Mode sont gratuits. Pro et Team ajoutent les fonctions de la <pricing>page des tarifs</pricing>.",
                         "L’app iPhone et iPad est gratuite, sans licence ni achats intégrés."
                     ]
                 },
@@ -155,7 +155,7 @@
                     "id": "what-a-license-adds",
                     "question": "Qu’ajoute une licence ?",
                     "answer": [
-                        "Starter ajoute {starterFeatures} à l’app Mac. Team ajoute aussi {teamFeatures}. Consultez les <pricing>fonctions payantes</pricing> pour les détails."
+                        "Pro ajoute {starterFeatures} à l’app Mac. Team ajoute aussi {teamFeatures}. Consultez les <pricing>fonctions payantes</pricing> pour les détails."
                     ]
                 },
                 {
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Combien de Mac une licence couvre-t-elle ?",
                     "answer": [
-                        "Starter couvre une personne sur {deviceLimit} Mac au maximum. Team propose au moins {teamMinSeats} postes, et chaque poste couvre une personne sur {deviceLimit} Mac au maximum. La limite s’applique par compte, Starter et Team confondus. iPhone et iPad n’utilisent aucun poste.",
+                        "Pro couvre une personne sur {deviceLimit} Mac au maximum. Team propose au moins {teamMinSeats} postes, et chaque poste couvre une personne sur {deviceLimit} Mac au maximum. La limite s’applique par compte, Pro et Team confondus. iPhone et iPad n’utilisent aucun poste.",
                         "Pour utiliser votre licence sur un autre Mac, retirez-en un dans <ui>Réglages > Compte</ui> (Settings > Account) ou sur la page Appareils de <account>votre compte</account>. En attendant, l’autre Mac garde les fonctions gratuites."
                     ]
                 },
@@ -267,7 +267,7 @@
                     "question": "Que stocke iCloud Sync et où ?",
                     "answer": [
                         "La synchronisation est désactivée par défaut et utilise une base privée dans votre compte iCloud, que TablePro ne peut pas lire. Les mots de passe nécessitent une activation séparée : <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad.",
-                        "iCloud Sync nécessite Starter ou Team sur Mac et est gratuit sur iPhone et iPad."
+                        "iCloud Sync nécessite Pro ou Team sur Mac et est gratuit sur iPhone et iPad."
                     ]
                 }
             ]
@@ -296,7 +296,7 @@
                     "id": "seats",
                     "question": "Comment modifier le nombre de postes ?",
                     "answer": [
-                        "Le propriétaire de l’équipe modifie les postes dans Facturation, dans <account>votre compte</account>. Pour un abonnement, {merchant} facture ou crédite aussitôt la différence au prorata. Une équipe sans abonnement y achète des postes supplémentaires en achat unique."
+                        "Le propriétaire de l’équipe modifie les postes dans Facturation, dans <account>votre compte</account>. Pour un abonnement, {merchant} facture ou crédite aussitôt la différence au prorata. Une équipe qui a des postes en achat unique les garde, et les postes supplémentaires passent par un abonnement Team."
                     ]
                 },
                 {

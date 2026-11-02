@@ -144,8 +144,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 31, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '31 tháng 10 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'November 2, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '2 tháng 11 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -485,7 +485,7 @@ it('binds only the services, never the use of the apps, which the AGPLv3 alone l
 it('points every language at the AGPL for the apps', function (string $locale): void {
     $intro = strtok(YamlFrontMatter::parse(legalSource('terms', $locale))->body(), "\n");
 
-    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-28');
+    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-11-02');
     expect($intro)->toContain('AGPLv3');
     expect(legalSection('terms', $locale, 'acceptable-use'))->not->toContain('AGPL');
     expect(legalSection('terms', $locale, 'warranty'))->toContain('AGPLv3')->toMatch('/(?<!\d)15(?!\d)/');

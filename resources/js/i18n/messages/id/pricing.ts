@@ -15,7 +15,7 @@ export default {
     "captions": {
         "monthly": "Diperpanjang setiap bulan hingga Anda membatalkannya.",
         "yearly": "Diperpanjang setiap tahun hingga Anda membatalkannya. {percent}% lebih murah daripada dua belas pembayaran bulanan.",
-        "yearlyByTier": "Diperpanjang setiap tahun hingga Anda membatalkannya. Starter {starterPercent}% lebih murah daripada dua belas pembayaran bulanan, Team {teamPercent}% lebih murah.",
+        "yearlyByTier": "Diperpanjang setiap tahun hingga Anda membatalkannya. Pro {starterPercent}% lebih murah daripada dua belas pembayaran bulanan, Team {teamPercent}% lebih murah.",
         "lifetime": "Dibayar sekali, tanpa tanggal kedaluwarsa."
     },
     "tiers": {
@@ -33,14 +33,14 @@ export default {
             ]
         },
         "starter": {
-            "name": "Starter",
+            "name": "Pro",
             "description": "Menambahkan fitur seperti {examples} ke aplikasi Mac.",
             "activation": {
                 "one": "Satu orang, {count} Mac.",
                 "other": "Satu orang, hingga {count} Mac."
             },
             "includesTitle": "Semua fitur Gratis, ditambah",
-            "cta": "Beli Starter"
+            "cta": "Beli Pro"
         },
         "team": {
             "name": "Team",
@@ -49,8 +49,24 @@ export default {
                 "one": "Satu orang per seat, {count} Mac.",
                 "other": "Satu orang per seat, hingga {count} Mac."
             },
-            "includesTitle": "Semua fitur Starter, ditambah",
-            "cta": "Beli Team"
+            "includesTitle": "Semua fitur Pro, ditambah",
+            "cta": "Beli Team",
+            "subscriptionOnly": "Team dijual bulanan atau tahunan."
+        },
+        "enterprise": {
+            "name": "Enterprise",
+            "description": "Untuk perusahaan yang butuh kontrol lebih atas penggunaan TablePro.",
+            "price": "Hubungi kami",
+            "activation": "Harga per perusahaan.",
+            "includesTitle": "Beri tahu kebutuhan Anda, misalnya",
+            "includes": [
+                "Masuk dengan akun perusahaan",
+                "Kebijakan wajib pada koneksi tim",
+                "Audit penulisan ke production",
+                "Penyebaran melalui MDM",
+                "Faktur dan purchase order"
+            ],
+            "cta": "Hubungi kami"
         }
     },
     "units": {
@@ -61,8 +77,7 @@ export default {
         },
         "team": {
             "monthly": "per seat, per bulan",
-            "yearly": "per seat, per tahun",
-            "lifetime": "per seat, sekali bayar"
+            "yearly": "per seat, per bulan, ditagih tahunan"
         }
     },
     "seats": {
@@ -82,10 +97,6 @@ export default {
             "yearly": {
                 "one": "{count} seat: {total} per tahun",
                 "other": "{count} seat: {total} per tahun"
-            },
-            "lifetime": {
-                "one": "{count} seat: {total}, sekali bayar",
-                "other": "{count} seat: {total}, sekali bayar"
             }
         }
     },
@@ -122,7 +133,7 @@ export default {
         },
         "everythingElse": "Semua fitur lain dalam aplikasi",
         "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",
-        "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
+        "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Pro atau Team."
     },
     "regional": {
         "note": "Harga untuk negara Anda ({country}): diskon {percent}%, diterapkan saat checkout.",

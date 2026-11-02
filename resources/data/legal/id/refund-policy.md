@@ -1,14 +1,14 @@
 ---
 title: Kebijakan pengembalian dana
 description: Semua paket TablePro dapat dikembalikan dananya dalam {refundDays} hari sejak dibeli, dan setiap perpanjangan bulanan atau tahunan dalam {refundDays} hari sejak ditagih.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Starter dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian, dan setiap perpanjangan bulanan atau tahunan dapat dikembalikan dananya dalam {refundDays} hari sejak penagihannya. Paket tersedia di [halaman harga](/id/pricing#refunds).
+Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Pro dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian, dan setiap perpanjangan bulanan atau tahunan dapat dikembalikan dananya dalam {refundDays} hari sejak penagihannya. Paket tersedia di [halaman harga](/id/pricing#refunds).
 
 ## Cara meminta pengembalian dana {#request}
 
-Kembalikan dana pesanan sendiri di Penagihan pada [akun Anda]({account}), yang mencantumkan setiap pesanan yang masih bisa dikembalikan dananya. Pesanan Starter dikembalikan oleh pembelinya, dan pesanan Team oleh pemilik tim. Dana yang dikembalikan adalah jumlah penuh pesanan, ke metode pembayaran semula.
+Kembalikan dana pesanan sendiri di Penagihan pada [akun Anda]({account}), yang mencantumkan setiap pesanan yang masih bisa dikembalikan dananya. Pesanan Pro dikembalikan oleh pembelinya, dan pesanan Team oleh pemilik tim. Dana yang dikembalikan adalah jumlah penuh pesanan, ke metode pembayaran semula.
 
 Untuk pesanan yang tidak tercantum di Penagihan, seperti perubahan jumlah seat atau pembelian yang lisensinya ada di file offline, yang tidak dapat ditarik kembali, kirim email ke [{email}](mailto:{email}) dari alamat pembelian dan sebutkan pembelian yang ingin dikembalikan dananya. Pengembalian dana yang memenuhi syarat diproses dalam 5 hari kerja.
 

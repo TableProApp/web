@@ -1,7 +1,7 @@
 ---
 title: Nutzungsbedingungen
-description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Starter- oder Team-Lizenz.
-updatedAt: "2026-10-28"
+description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Pro- oder Team-Lizenz.
+updatedAt: "2026-11-02"
 ---
 
 Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac und TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
@@ -12,7 +12,7 @@ Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lize
 - **„Anwendung“** bezeichnet TablePro für Mac und TablePro für iPhone und iPad einschließlich ihrer Updates und Plugins.
 - **„Website“** bezeichnet tablepro.app, docs.tablepro.app und die weiteren Domains, die wir betreiben.
 - **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, den die Mac-App für Lizenzprüfungen und die Team Library kontaktiert.
-- **„Lizenz“** bezeichnet einen bezahlten Starter- oder Team-Tarif und **„Lizenzschlüssel“** die Zugangsdaten, mit denen Versionen der Mac-App vor den TablePro-Konten eine Lizenz aktivieren.
+- **„Lizenz“** bezeichnet einen bezahlten Pro- oder Team-Tarif und **„Lizenzschlüssel“** die Zugangsdaten, mit denen Versionen der Mac-App vor den TablePro-Konten eine Lizenz aktivieren.
 - **„Du“** bezeichnet die Person oder Organisation, die die Dienste nutzt oder eine Lizenz besitzt.
 
 ## Open-Source-Lizenz {#open-source}
@@ -39,7 +39,7 @@ Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 
 Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App auf den Macs zu nutzen, die bei deinem TablePro-Konto angemeldet sind oder, in Versionen vor den TablePro-Konten, mit ihrem Lizenzschlüssel aktiviert wurden, bis zur Anzahl und für den Zeitraum deines Tarifs:
 
-- Eine **Starter**-Lizenz gilt für eine Person auf bis zu {deviceLimit} Macs.
+- Eine **Pro**-Lizenz gilt für eine Person auf bis zu {deviceLimit} Macs.
 - Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.
 
 Das Limit von {deviceLimit} Macs gilt pro Konto, über alle Lizenzen hinweg, die es nutzt. Ohne unsere schriftliche Erlaubnis darfst du dein Konto oder einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Macs hinaus teilen und keine Lizenz und keinen Lizenzschlüssel unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.

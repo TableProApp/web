@@ -6,7 +6,7 @@ type Interpolate = (template: string, values: Record<string, string | number>) =
 
 /**
  * One structured-data offer per price the plan cards show, named in the
- * page's language ("Starter, Yearly", "Starter, Theo năm"). Prices stay
+ * page's language ("Pro, Yearly", "Pro, Theo năm"). Prices stay
  * locale-neutral strings, and the currency is pricing.json's.
  *
  * For any page that renders `PricingPlans` and so shows every price: `/pricing`

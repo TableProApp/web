@@ -93,7 +93,7 @@ export function macArchitectureList(m: Messages): string {
 
 /**
  * The paid features among `ids`, grouped by the plan that adds them, in data
- * order: one line per plan, such as "Requires a Starter plan: Query Insights
+ * order: one line per plan, such as "Requires a Pro plan: Query Insights
  * and Result Charts." The plan and feature names stay English in every
  * locale; `template` is the page's sentence around them.
  */
@@ -112,7 +112,7 @@ export function paidLines(ids: readonly string[], m: Messages, template: string)
     );
 }
 
-/** The plan that adds a paid feature, by name ("Starter"), or "" when the data has no such feature. */
+/** The plan that adds a paid feature, by name ("Pro"), or "" when the data has no such feature. */
 export function tierOf(id: string, m: Messages): string {
     const feature = PAID_FEATURES.find((entry) => entry.id === id);
 

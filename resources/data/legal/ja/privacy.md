@@ -1,7 +1,7 @@
 ---
 title: プライバシーポリシー
 description: TablePro のアプリ、ウェブサイト、アカウントポータルが収集する情報、送信先、保存期間、変更・削除方法を説明します。
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-02"
 ---
 
 このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、docs.tablepro.app のドキュメント、account.tablepro.app のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。
@@ -124,7 +124,7 @@ iCloud Sync は、Mac と iPhone・iPad のいずれでも、お客様がオン�
 - iPhone・iPad は接続、グループ、タグを同期します。
 - パスワードを同期するには、Mac の Sync Categories の **Passwords**、または iPhone・iPad の **Sync Passwords** もオンにする必要があります。iCloud キーチェーンを利用します。Mac では、AI プロバイダーのキーやライセンスキーなど、TablePro がキーチェーンに保存するその他の秘密情報も同期します。TablePro アカウントに対応したバージョン以降、ライセンスキーはサインインと交換された時点で削除され、アプリのサインイン状態を保つトークンは同期されません。
 
-Mac の iCloud Sync は Starter または Team ライセンスの機能です。iPhone・iPad では無料です。
+Mac の iCloud Sync は Pro または Team ライセンスの機能です。iPhone・iPad では無料です。
 
 Handoff は Apple を通じて、お客様自身のデバイス間で、開いている接続の ID とテーブル名を渡します。テーブルを開いていない場合は接続名を、名前がない場合はホストを渡します。設定や認証情報は送信しません。
 

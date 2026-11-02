@@ -1,7 +1,7 @@
 ---
 title: Conditions d’utilisation
-description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Starter ou Team.
-updatedAt: "2026-10-28"
+description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Pro ou Team.
+updatedAt: "2026-11-02"
 ---
 
 Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
@@ -12,7 +12,7 @@ Ces conditions régissent le site web tablepro.app, le portail de comptes, notre
 - **« Application »** désigne TablePro pour Mac et TablePro pour iPhone et iPad, y compris leurs mises à jour et plugins.
 - **« Site web »** désigne tablepro.app, docs.tablepro.app et les autres domaines que nous exploitons.
 - **« Services »** désigne le Site web, le portail de comptes et le serveur que l’application Mac contacte pour les vérifications de licence et Team Library.
-- **« Licence »** désigne une offre payante Starter ou Team, et **« Clé de licence »** l’identifiant avec lequel les versions de l’application Mac antérieures aux comptes TablePro activent une Licence.
+- **« Licence »** désigne une offre payante Pro ou Team, et **« Clé de licence »** l’identifiant avec lequel les versions de l’application Mac antérieures aux comptes TablePro activent une Licence.
 - **« Vous »** désigne la personne ou l’organisation utilisant les Services ou titulaire d’une Licence.
 
 ## Licence open source {#open-source}
@@ -39,7 +39,7 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 
 Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les Mac connectés à votre compte TablePro ou, dans les versions antérieures aux comptes TablePro, activés avec sa Clé de licence, dans la limite du nombre et de la période prévus par votre offre :
 
-- Une Licence **Starter** est destinée à une personne, sur un maximum de {deviceLimit} Mac.
+- Une Licence **Pro** est destinée à une personne, sur un maximum de {deviceLimit} Mac.
 - Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} Mac. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
 
 La limite de {deviceLimit} Mac s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.

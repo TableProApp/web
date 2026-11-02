@@ -1,7 +1,7 @@
 ---
 title: 隐私政策
 description: TablePro 应用、网站和账户门户收集什么信息、发送到哪里、保存多久，以及如何更改或删除。
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-02"
 ---
 
 本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 account.tablepro.app 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
@@ -124,7 +124,7 @@ iCloud Sync 在 Mac、iPhone 和 iPad 上均默认关闭，直到您开启。开
 - iPhone 和 iPad 同步连接、分组和标签。
 - 密码仅在您同时开启 Mac 上 Sync Categories 中的**密码**（Passwords），或 iPhone 和 iPad 上的**同步密码**（Sync Passwords）后同步，使用 iCloud 钥匙串。在 Mac 上，这也会同步 TablePro 保存在钥匙串中的其他机密信息，如 AI 提供商密钥和许可证密钥。从支持 TablePro 账户的版本起，许可证密钥在兑换为登录后即被删除，保持应用登录的令牌也从不同步。
 
-Mac 上的 iCloud Sync 属于 Starter 或 Team 许可证功能，在 iPhone 和 iPad 上免费。
+Mac 上的 iCloud Sync 属于 Pro 或 Team 许可证功能，在 iPhone 和 iPad 上免费。
 
 Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的表名。没有打开表时，传递连接名称；连接没有名称时则传递主机。不会发送设置或凭据。
 

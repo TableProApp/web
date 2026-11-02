@@ -4,6 +4,7 @@ export default {
     "index": {
         "empty": "Belum ada artikel.",
         "guides": "Panduan",
+        "news": "Berita",
         "releases": "Catatan rilis"
     },
     "latest": "Artikel rilis terbaru: <post>{title}</post>.",

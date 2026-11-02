@@ -1,14 +1,14 @@
 ---
 title: Política de reembolso
 description: Todo plano TablePro pode ser reembolsado em até {refundDays} dias após a compra, e cada renovação mensal ou anual em até {refundDays} dias após a cobrança. Como pedir.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Todos os planos pagos podem ser reembolsados em até {refundDays} dias: Starter e Team, mensais, anuais e com pagamento único. Os {refundDays} dias começam na data da compra, e cada renovação mensal ou anual pode ser reembolsada em até {refundDays} dias após a cobrança. Os planos estão na [página de preços](/pt-BR/pricing#refunds).
+Todos os planos pagos podem ser reembolsados em até {refundDays} dias: Pro e Team, mensais, anuais e com pagamento único. Os {refundDays} dias começam na data da compra, e cada renovação mensal ou anual pode ser reembolsada em até {refundDays} dias após a cobrança. Os planos estão na [página de preços](/pt-BR/pricing#refunds).
 
 ## Como solicitar um reembolso {#request}
 
-Reembolse um pedido você mesmo em Cobrança, na [sua conta]({account}), que lista cada pedido que ainda pode ser reembolsado. Um pedido Starter é reembolsado pelo comprador, e um pedido Team pelo proprietário da equipe. O reembolso é o valor total do pedido e volta para a forma de pagamento original.
+Reembolse um pedido você mesmo em Cobrança, na [sua conta]({account}), que lista cada pedido que ainda pode ser reembolsado. Um pedido Pro é reembolsado pelo comprador, e um pedido Team pelo proprietário da equipe. O reembolso é o valor total do pedido e volta para a forma de pagamento original.
 
 Para um pedido que Cobrança não lista, como uma mudança no número de vagas ou uma compra cuja licença está em um arquivo offline, que não pode ser retirado, envie um email para [{email}](mailto:{email}) a partir do endereço usado na compra e informe qual compra deseja reembolsar. Reembolsos elegíveis são processados em até 5 dias úteis.
 

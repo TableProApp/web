@@ -1,7 +1,7 @@
 ---
 title: 개인정보 처리방침
 description: TablePro 앱, 웹사이트 및 계정 포털이 수집하는 정보, 전송 대상, 보관 기간과 변경 또는 삭제 방법을 설명합니다.
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-02"
 ---
 
 이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 account.tablepro.app 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
@@ -124,7 +124,7 @@ iCloud Sync는 Mac과 iPhone 및 iPad에서 사용자가 켤 때까지 꺼져 �
 - iPhone 및 iPad는 연결, 그룹 및 태그를 동기화합니다.
 - 비밀번호를 동기화하려면 Mac의 Sync Categories에서 **암호**(Passwords)를, 또는 iPhone 및 iPad에서 **암호 동기화**(Sync Passwords)를 추가로 켜야 하며 iCloud 키체인을 사용합니다. Mac에서는 AI 제공업체 키와 라이선스 키 등 TablePro가 키체인에 보관하는 다른 비밀 정보도 동기화합니다. TablePro 계정을 지원하는 버전부터는 라이선스 키를 로그인으로 교환하는 즉시 삭제하며, 앱의 로그인 상태를 유지하는 토큰은 동기화하지 않습니다.
 
-Mac의 iCloud Sync는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다.
+Mac의 iCloud Sync는 Pro 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다.
 
 Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID와 열린 테이블 이름을 전달합니다. 열린 테이블이 없으면 연결 이름을 전달하며, 연결에 이름이 없으면 호스트를 전달합니다. 설정이나 인증 정보는 보내지 않습니다.
 

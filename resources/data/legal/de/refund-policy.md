@@ -1,14 +1,14 @@
 ---
 title: Erstattungsrichtlinie
 description: Jeder Tarif ist bis {refundDays} Tage nach dem Kauf erstattbar, jede monatliche oder jährliche Verlängerung bis {refundDays} Tage nach ihrer Abbuchung. So beantragst du sie.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Starter und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum, und jede monatliche oder jährliche Verlängerung kann innerhalb von {refundDays} Tagen nach ihrer Abbuchung erstattet werden. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
+Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Pro und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum, und jede monatliche oder jährliche Verlängerung kann innerhalb von {refundDays} Tagen nach ihrer Abbuchung erstattet werden. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
 
 ## Eine Erstattung beantragen {#request}
 
-Erstatte eine Bestellung selbst unter Abrechnung in [deinem Konto]({account}); dort steht jede Bestellung, die du noch erstatten kannst. Eine Starter-Bestellung erstattet ihr Käufer, eine Team-Bestellung der Inhaber des Teams. Erstattet wird der volle Betrag der Bestellung, an die ursprüngliche Zahlungsmethode.
+Erstatte eine Bestellung selbst unter Abrechnung in [deinem Konto]({account}); dort steht jede Bestellung, die du noch erstatten kannst. Eine Pro-Bestellung erstattet ihr Käufer, eine Team-Bestellung der Inhaber des Teams. Erstattet wird der volle Betrag der Bestellung, an die ursprüngliche Zahlungsmethode.
 
 Für eine Bestellung, die dort nicht steht, etwa eine Änderung der Anzahl der Arbeitsplätze oder einen Kauf, dessen Lizenz in einer Offline-Datei steckt, die sich nicht zurücknehmen lässt, schreibe von der beim Kauf verwendeten Adresse an [{email}](mailto:{email}) und nenne den Kauf, für den du eine Erstattung möchtest. Berechtigte Erstattungen werden innerhalb von 5 Werktagen bearbeitet.
 

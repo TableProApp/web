@@ -128,7 +128,7 @@ it('has a hub with the shared labels in every locale', function (string $locale)
 
     expect(array_keys($hub['labels']))->toBe(['number', 'tiers', 'paidBadge', 'header', 'sections', 'availability', 'download']);
     expect(array_keys($hub['labels']['tiers']))->toBe(['free', 'starter', 'team']);
-    expect($hub['labels']['tiers']['starter'])->toBe('Starter');
+    expect($hub['labels']['tiers']['starter'])->toBe('Pro');
     expect($hub['labels']['tiers']['team'])->toBe('Team');
     expect($hub['labels']['paidBadge'])->toContain('{name}')->toContain('{tier}');
     expect($hub['labels']['availability']['plan'])->toContain('{tier}');

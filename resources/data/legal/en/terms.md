@@ -1,7 +1,7 @@
 ---
 title: Terms of service
-description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Starter or Team license.
-updatedAt: "2026-10-28"
+description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Pro or Team license.
+updatedAt: "2026-11-02"
 ---
 
 These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
@@ -12,7 +12,7 @@ These terms govern the website at tablepro.app, the account portal, our license 
 - **"Application"** means TablePro for Mac and TablePro for iPhone and iPad, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
 - **"Services"** means the Website, the account portal, and the server the Mac app contacts for license checks and the Team Library.
-- **"License"** means a paid Starter or Team plan, and **"License Key"** the credential that versions of the Mac app before TablePro accounts use to activate a License.
+- **"License"** means a paid Pro or Team plan, and **"License Key"** the credential that versions of the Mac app before TablePro accounts use to activate a License.
 - **"You"** means the person or organization using the Services or holding a License.
 
 ## Open-source license {#open-source}
@@ -39,7 +39,7 @@ Refunds are described in the [refund policy](/refund-policy).
 
 A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the Macs signed in to your TablePro account or, in versions before TablePro accounts, activated with its License Key, up to the number, and for the period, of your plan:
 
-- A **Starter** License is for one person, on up to {deviceLimit} Macs.
+- A **Pro** License is for one person, on up to {deviceLimit} Macs.
 - A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} Macs. The team's owner and admins invite its members, who join from an emailed invitation link.
 
 The limit of {deviceLimit} Macs applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.

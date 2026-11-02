@@ -175,6 +175,7 @@ class BlogService
             release: $this->text($document->matter('release')),
             author: $this->text($document->matter('author')),
             seoTitle: $this->text($document->matter('seoTitle')),
+            news: $document->matter('kind') === Post::KIND_NEWS,
         );
     }
 

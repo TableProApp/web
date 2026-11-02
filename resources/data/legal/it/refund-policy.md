@@ -1,14 +1,14 @@
 ---
 title: Politica di rimborso
 description: Ogni piano TablePro è rimborsabile entro {refundDays} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {refundDays} giorni dal suo addebito. Come richiederlo.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Ogni piano a pagamento può essere rimborsato entro {refundDays} giorni: Starter e Team, mensili, annuali e una tantum. I {refundDays} giorni decorrono dalla data d’acquisto, e ogni rinnovo mensile o annuale può essere rimborsato entro {refundDays} giorni dal suo addebito. I piani sono nella [pagina dei prezzi](/it/pricing#refunds).
+Ogni piano a pagamento può essere rimborsato entro {refundDays} giorni: Pro e Team, mensili, annuali e una tantum. I {refundDays} giorni decorrono dalla data d’acquisto, e ogni rinnovo mensile o annuale può essere rimborsato entro {refundDays} giorni dal suo addebito. I piani sono nella [pagina dei prezzi](/it/pricing#refunds).
 
 ## Come richiedere un rimborso {#request}
 
-Rimborsa da solo un ordine in Fatturazione, nel [tuo account]({account}), che elenca ogni ordine ancora rimborsabile. Un ordine Starter lo rimborsa il suo acquirente, un ordine Team il proprietario del team. Il rimborso è l’intero importo dell’ordine e torna al metodo di pagamento originale.
+Rimborsa da solo un ordine in Fatturazione, nel [tuo account]({account}), che elenca ogni ordine ancora rimborsabile. Un ordine Pro lo rimborsa il suo acquirente, un ordine Team il proprietario del team. Il rimborso è l’intero importo dell’ordine e torna al metodo di pagamento originale.
 
 Per un ordine che Fatturazione non elenca, come una modifica del numero di posti o un acquisto la cui licenza è in un file offline, che non si può ritirare, scrivi a [{email}](mailto:{email}) dall’indirizzo usato per l’acquisto e indica quale acquisto vuoi rimborsare. I rimborsi ammissibili vengono elaborati entro 5 giorni lavorativi.
 

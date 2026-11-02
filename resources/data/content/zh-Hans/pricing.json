@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "定价：免费版、Starter 和 Team 方案",
-        "description": "TablePro 可免费下载使用。Starter 和 Team 方案为 Mac 应用增加可选功能，按月、按年或一次性付费。价格以美元计。"
+        "title": "定价：免费版、Pro 和 Team 方案",
+        "description": "TablePro 可免费下载使用。Pro 和 Team 方案为 Mac 应用增加可选功能。价格以美元计。"
     },
     "og": {
         "kicker": "定价",
@@ -9,21 +9,25 @@
     },
     "header": {
         "title": "定价",
-        "lead": "Mac App 免费使用，没有试用期。Starter 和 Team 提供可选功能。iPhone 和 iPad App 免费，无 App 内购买。"
+        "lead": "Mac App 免费使用，没有试用期。Pro 和 Team 提供可选功能。iPhone 和 iPad App 免费，无 App 内购买。"
+    },
+    "priceChange": {
+        "text": "TablePro 价格已更新，Starter 现更名为 Pro。之前购买的一切保持原有价格和条款。",
+        "link": "查看变更"
     },
     "plans": {
         "title": "方案"
     },
     "features": {
         "title": "付费方案增加哪些功能",
-        "lead": "仅此处列出的功能需要付费方案，目前适用于 Mac。Team 包含 Starter。所有支持的引擎、AI 助手、MCP 和 Safe Mode 均免费。"
+        "lead": "仅此处列出的功能需要付费方案，目前适用于 Mac。Team 包含 Pro。所有支持的引擎、AI 助手、MCP 和 Safe Mode 均免费。"
     },
     "license": {
         "title": "许可证如何运作",
         "items": {
             "macs": {
                 "term": "Mac 台数",
-                "body": "Starter 供一人在最多 {deviceLimit} 台 Mac 上使用。每个 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用，购买者自带一个席位。台数上限按账户计算，Starter 和 Team 合并计算。iPhone 和 iPad App 不使用许可证或席位。"
+                "body": "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用。每个 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用，购买者自带一个席位。台数上限按账户计算，Pro 和 Team 合并计算。iPhone 和 iPad App 不使用许可证或席位。"
             },
             "activate": {
                 "term": "登录",
@@ -62,13 +66,13 @@
         "title": "Team 方案",
         "seats": "Team 方案按席位定价，至少 {min} 个席位。",
         "invites": "所有者和管理员在账户的成员页面通过邮件邀请他人，可附带或不附带席位。附带席位的邀请会保留该席位，直到被接受或撤销；链接 7 天内有效，可重新发送。",
-        "changes": "所有者在账户的账单页面更改订阅席位，{merchant} 会立即按比例收取或退还差额。没有订阅的团队可在那里购买更多一次性席位。",
+        "changes": "所有者在账户的账单页面更改订阅席位，{merchant} 会立即按比例收取或退还差额。已有一次性席位的团队会保留这些席位，增加席位需要 Team 订阅。",
         "account": "在账户中管理团队"
     },
     "atWork": {
         "title": "在工作中使用 TablePro",
         "body": "在工作中使用 TablePro 是免费的，不论公司规模，现在免费的内容也不会变成付费。",
-        "ask": "如果 TablePro 是您工作的一部分，请购买许可证：个人选 Starter，两人或以上选 Team。这是请求，不是条件，下一个版本靠许可证收入完成。"
+        "ask": "如果 TablePro 是您工作的一部分，请购买许可证：个人选 Pro，两人或以上选 Team。这是请求，不是条件，下一个版本靠许可证收入完成。"
     },
     "openSource": {
         "title": "开源",

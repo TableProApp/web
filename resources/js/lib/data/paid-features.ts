@@ -1,5 +1,5 @@
 /**
- * resources/data/paid-features.json, typed: the ten features a Starter or
+ * resources/data/paid-features.json, typed: the ten features a Pro or
  * Team plan adds to the Mac app, in display order.
  *
  * The names are byte-identical to `ProFeature.displayName` in the app, and
@@ -29,7 +29,7 @@ export interface PaidFeature {
     proFeature: string;
     /** `ProFeature.displayName`, never translated. */
     name: string;
-    /** The lowest plan that includes it. Team includes everything in Starter. */
+    /** The lowest plan that includes it. Team includes everything in Pro. */
     tier: PaidTierId;
     platforms: PlatformId[];
     sinceAppVersion: string;

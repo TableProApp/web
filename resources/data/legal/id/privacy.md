@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-02"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
@@ -124,7 +124,7 @@ iCloud Sync nonaktif sampai Anda mengaktifkannya, baik di Mac maupun iPhone dan 
 - iPhone dan iPad menyinkronkan koneksi, grup, dan tag.
 - Kata sandi hanya disinkronkan jika Anda juga mengaktifkan **Passwords** di Sync Categories pada Mac atau **Sync Passwords** pada iPhone dan iPad, menggunakan iCloud Keychain. Di Mac, opsi ini juga menyinkronkan rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Mulai versi yang menghadirkan akun TablePro, kunci lisensi dihapus begitu ditukar dengan sesi masuk, dan token yang membuat aplikasi tetap masuk tidak pernah disinkronkan.
 
-Di Mac, iCloud Sync merupakan bagian dari lisensi Starter atau Team. Di iPhone dan iPad, fitur ini gratis.
+Di Mac, iCloud Sync merupakan bagian dari lisensi Pro atau Team. Di iPhone dan iPad, fitur ini gratis.
 
 Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperangkat Anda sendiri melalui Apple. Jika tidak ada tabel terbuka, Handoff mengirim nama koneksi, atau host-nya jika koneksi tidak memiliki nama. Handoff tidak mengirim pengaturan atau kredensial.
 

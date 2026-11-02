@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro は無料ですか？",
                     "answer": [
-                        "はい。Mac アプリには試用期間や期限がありません。対応する全エンジン、AI、MCP、Safe Mode は無料です。Starter と Team は<pricing>料金ページ</pricing>の機能を追加します。",
+                        "はい。Mac アプリには試用期間や期限がありません。対応する全エンジン、AI、MCP、Safe Mode は無料です。Pro と Team は<pricing>料金ページ</pricing>の機能を追加します。",
                         "iPhone・iPad アプリは無料で、ライセンスやアプリ内課金はありません。"
                     ]
                 },
@@ -155,7 +155,7 @@
                     "id": "what-a-license-adds",
                     "question": "ライセンスで何が追加されますか？",
                     "answer": [
-                        "Starter は Mac アプリに {starterFeatures} を追加します。Team はさらに {teamFeatures} を追加します。詳しくは<pricing>有料機能</pricing>をご覧ください。"
+                        "Pro は Mac アプリに {starterFeatures} を追加します。Team はさらに {teamFeatures} を追加します。詳しくは<pricing>有料機能</pricing>をご覧ください。"
                     ]
                 },
                 {
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "1 ライセンスで何台の Mac を使えますか？",
                     "answer": [
-                        "Starter は一人で最大 {deviceLimit} 台の Mac を使えます。Team は {teamMinSeats} 席以上で、1 席につき一人が最大 {deviceLimit} 台の Mac で使えます。台数の上限は Starter と Team を合わせたアカウント単位です。iPhone・iPad は席を使いません。",
+                        "Pro は一人で最大 {deviceLimit} 台の Mac を使えます。Team は {teamMinSeats} 席以上で、1 席につき一人が最大 {deviceLimit} 台の Mac で使えます。台数の上限は Pro と Team を合わせたアカウント単位です。iPhone・iPad は席を使いません。",
                         "別の Mac でライセンスを使うには、<ui>Settings > Account</ui> か<account>アカウント</account>のデバイスページで Mac を 1 台削除します。それまでの間、その Mac では無料機能を使えます。"
                     ]
                 },
@@ -267,7 +267,7 @@
                     "question": "iCloud Sync は何をどこに保存しますか？",
                     "answer": [
                         "同期は初期状態では無効です。あなたの iCloud アカウント内の非公開データベースを使い、TablePro は読めません。パスワードは Mac の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> で別途有効にします。",
-                        "iCloud Sync は Mac では Starter または Team が必要で、iPhone・iPad では無料です。"
+                        "iCloud Sync は Mac では Pro または Team が必要で、iPhone・iPad では無料です。"
                     ]
                 }
             ]
@@ -296,7 +296,7 @@
                     "id": "seats",
                     "question": "シート数を変更するには？",
                     "answer": [
-                        "チームのオーナーが<account>アカウント</account>の「請求」で席数を変更します。サブスクリプションでは、{merchant} が日割りの差額をすぐに請求または返金します。サブスクリプションのないチームは、そこで買い切りの席を追加購入します。"
+                        "チームのオーナーが<account>アカウント</account>の「請求」で席数を変更します。サブスクリプションでは、{merchant} が日割りの差額をすぐに請求または返金します。買い切りの席があるチームはその席をそのまま使え、席の追加は Team のサブスクリプションで行います。"
                     ]
                 },
                 {

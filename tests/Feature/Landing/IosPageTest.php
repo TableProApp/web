@@ -197,7 +197,7 @@ it('states the limits a phone user would otherwise discover', function (): void 
 
     expect(implode("\n", $en['safeMode']['paragraphs']))->toContain('{levels}');
 
-    expect(implode("\n", $en['mac']['paragraphs']))->toContain('Starter or Team')->toContain('free here');
+    expect(implode("\n", $en['mac']['paragraphs']))->toContain('Pro or Team')->toContain('free here');
 
     expect($en['privacy']['paragraphs'][0])->toStartWith('Usage reporting is off by default.')
         ->toContain('Enable Share Usage Data in <ui>Settings > Privacy</ui>')

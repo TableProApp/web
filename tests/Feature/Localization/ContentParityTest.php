@@ -408,7 +408,7 @@ function untranslatedKeptNames(): array
         // Apple's names that are not translated.
         'Face ID', 'Touch ID', 'Optic ID', 'Handoff', 'Siri', 'Dynamic Island', 'AppleScript', 'App Store', 'Mac App Store',
         'Apple silicon', 'Intel',
-        'Starter', 'Team', 'merchant of record',
+        'Starter', 'Pro', 'Team', 'merchant of record',
         'SQL', 'SSH', 'SSL', 'TLS', 'MCP', 'GUI',
         'TablePro', 'GitHub', 'Homebrew', 'Setapp', 'Microsoft Entra ID', 'AWS IAM', 'Cloud SQL Auth Proxy', 'Windows', 'Linux',
         'BigQuery',

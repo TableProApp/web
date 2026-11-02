@@ -16,6 +16,8 @@ use Carbon\CarbonImmutable;
  * `date` is the original publication date from the front matter, and never
  * changes. `release` names what a release post announced ("TablePro 0.74"),
  * for the archive note above it; null for a guide, which announces nothing.
+ * `news` marks a dated notice about TablePro itself, such as a price change,
+ * which is neither a guide nor a release (front matter `kind: news`).
  * `tags` rank related posts and name the pages a post links (`PostTopics`);
  * the pages do not print them. `seoTitle` replaces the title in `<title>`
  * only. The body is not held here: `BlogService::html()` renders it for the
@@ -36,18 +38,26 @@ final readonly class Post
         public ?string $release,
         public ?string $author = null,
         public ?string $seoTitle = null,
+        public bool $news = false,
     ) {}
 
     public const KIND_GUIDE = 'guide';
 
     public const KIND_RELEASE = 'release';
 
+    public const KIND_NEWS = 'news';
+
     /**
-     * `release` for a post that announced a release, `guide` for every other.
+     * `release` for a post that announced a release, `news` for a notice about
+     * TablePro itself, `guide` for every other.
      */
     public function kind(): string
     {
-        return $this->release === null ? self::KIND_GUIDE : self::KIND_RELEASE;
+        if ($this->release !== null) {
+            return self::KIND_RELEASE;
+        }
+
+        return $this->news ? self::KIND_NEWS : self::KIND_GUIDE;
     }
 
     /**

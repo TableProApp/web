@@ -15,7 +15,7 @@ export default {
     "captions": {
         "monthly": "解約するまで毎月更新されます。",
         "yearly": "解約するまで毎年更新されます。月払い 12 回分より {percent}% 安くなります。",
-        "yearlyByTier": "解約するまで毎年更新されます。月払い 12 回分と比べ、Starter は {starterPercent}%、Team は {teamPercent}% 安くなります。",
+        "yearlyByTier": "解約するまで毎年更新されます。月払い 12 回分と比べ、Pro は {starterPercent}%、Team は {teamPercent}% 安くなります。",
         "lifetime": "一度のお支払いで、有効期限はありません。"
     },
     "tiers": {
@@ -33,14 +33,14 @@ export default {
             ]
         },
         "starter": {
-            "name": "Starter",
+            "name": "Pro",
             "description": "Mac アプリに {examples} などの機能を追加します。",
             "activation": {
                 "one": "1 人、Mac {count} 台。",
                 "other": "1 人、Mac 最大 {count} 台。"
             },
             "includesTitle": "無料プランの全機能に加えて",
-            "cta": "Starter を購入"
+            "cta": "Pro を購入"
         },
         "team": {
             "name": "Team",
@@ -49,8 +49,24 @@ export default {
                 "one": "1 シートにつき 1 人、Mac {count} 台。",
                 "other": "1 シートにつき 1 人、Mac 最大 {count} 台。"
             },
-            "includesTitle": "Starter の全機能に加えて",
-            "cta": "Team を購入"
+            "includesTitle": "Pro の全機能に加えて",
+            "cta": "Team を購入",
+            "subscriptionOnly": "Team は月額または年額でのご提供です。"
+        },
+        "enterprise": {
+            "name": "Enterprise",
+            "description": "TablePro の利用を組織として管理したい企業向けです。",
+            "price": "お問い合わせ",
+            "activation": "企業ごとにお見積もりします。",
+            "includesTitle": "必要なものをお知らせください。例えば",
+            "includes": [
+                "会社アカウントでのサインイン",
+                "チームの接続に適用するポリシー",
+                "本番環境への書き込みの監査",
+                "MDM による配布",
+                "請求書と発注書"
+            ],
+            "cta": "お問い合わせ"
         }
     },
     "units": {
@@ -61,8 +77,7 @@ export default {
         },
         "team": {
             "monthly": "1 シートあたりの月額",
-            "yearly": "1 シートあたりの年額",
-            "lifetime": "1 シートあたり、一度のお支払い"
+            "yearly": "1 シートあたりの月額（年払い）"
         }
     },
     "seats": {
@@ -82,10 +97,6 @@ export default {
             "yearly": {
                 "one": "{count} シート：年額 {total}",
                 "other": "{count} シート：年額 {total}"
-            },
-            "lifetime": {
-                "one": "{count} シート：{total}、一度のお支払い",
-                "other": "{count} シート：{total}、一度のお支払い"
             }
         }
     },
@@ -122,7 +133,7 @@ export default {
         },
         "everythingElse": "アプリのその他すべての機能",
         "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",
-        "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
+        "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Pro または Team が必要です。"
     },
     "regional": {
         "note": "アクセス元の国（{country}）向けの価格：チェックアウト時に {percent}% 割引になります。",

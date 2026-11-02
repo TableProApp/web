@@ -228,7 +228,7 @@ it('server-renders a comparison with prices from data, its sources, the switchin
         ->toContain('id="switching"')
         ->toContain('id="sources"')
         ->toContain('$' . $basic['amount'] . ' once per license')
-        ->toContain('Starter: $' . $starterMonthly . ' a month')
+        ->toContain('Pro: $' . $starterMonthly . ' a month')
         ->toContain('File &gt; Import &gt; Import from Other App…')
         ->toContain('"@type":"BreadcrumbList"')
         ->not->toContain('"Review"')
