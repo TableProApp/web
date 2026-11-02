@@ -15,7 +15,7 @@ export default {
     captions: {
         monthly: 'Tự động gia hạn mỗi tháng cho tới khi bạn hủy.',
         yearly: 'Tự động gia hạn mỗi năm cho tới khi bạn hủy. Rẻ hơn {percent}% so với trả theo tháng trong một năm.',
-        yearlyByTier: 'Tự động gia hạn mỗi năm cho tới khi bạn hủy. So với trả theo tháng trong một năm, gói Starter rẻ hơn {starterPercent}%, gói Team rẻ hơn {teamPercent}%.',
+        yearlyByTier: 'Tự động gia hạn mỗi năm cho tới khi bạn hủy. So với trả theo tháng trong một năm, gói Pro rẻ hơn {starterPercent}%, gói Team rẻ hơn {teamPercent}%.',
         lifetime: 'Trả một lần, không có ngày hết hạn.',
     },
     tiers: {
@@ -33,13 +33,13 @@ export default {
             ],
         },
         starter: {
-            name: 'Starter',
+            name: 'Pro',
             description: 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             activation: {
                 other: 'Một người, tối đa {count} máy Mac.',
             },
             includesTitle: 'Mọi thứ trong gói Miễn phí, cộng thêm',
-            cta: 'Mua gói Starter',
+            cta: 'Mua gói Pro',
         },
         team: {
             name: 'Team',
@@ -47,8 +47,24 @@ export default {
             activation: {
                 other: 'Một người mỗi seat, tối đa {count} máy Mac.',
             },
-            includesTitle: 'Mọi thứ trong gói Starter, cộng thêm',
+            includesTitle: 'Mọi thứ trong gói Pro, cộng thêm',
             cta: 'Mua gói Team',
+            subscriptionOnly: 'Gói Team bán theo tháng hoặc theo năm.',
+        },
+        enterprise: {
+            name: 'Enterprise',
+            description: 'Dành cho công ty cần kiểm soát cách TablePro được dùng.',
+            price: 'Liên hệ',
+            activation: 'Báo giá theo từng công ty.',
+            includesTitle: 'Cho chúng tôi biết bạn cần gì, ví dụ',
+            includes: [
+                'Đăng nhập bằng tài khoản công ty',
+                'Policy bắt buộc trên connection của nhóm',
+                'Audit các lệnh ghi vào production',
+                'Triển khai qua MDM',
+                'Hóa đơn và purchase order',
+            ],
+            cta: 'Liên hệ',
         },
     },
     units: {
@@ -59,8 +75,7 @@ export default {
         },
         team: {
             monthly: 'mỗi seat, mỗi tháng',
-            yearly: 'mỗi seat, mỗi năm',
-            lifetime: 'mỗi seat, trả một lần',
+            yearly: 'mỗi seat, mỗi tháng, trả theo năm',
         },
     },
     seats: {
@@ -75,7 +90,6 @@ export default {
         total: {
             monthly: { other: '{count} seat: {total} mỗi tháng' },
             yearly: { other: '{count} seat: {total} mỗi năm' },
-            lifetime: { other: '{count} seat: {total}, trả một lần' },
         },
     },
     prioritySupport: {
@@ -103,7 +117,7 @@ export default {
         macsTeam: { other: 'Tối đa {count} mỗi seat' },
         everythingElse: 'Mọi phần còn lại của ứng dụng',
         everythingElseDetail: 'Mọi engine được hỗ trợ, SQL editor, trợ lý AI, MCP server và Safe Mode',
-        iphoneNote: 'Ứng dụng cho iPhone và iPad không có tính năng trả phí. Trên iPhone và iPad, iCloud Sync miễn phí; muốn đồng bộ với máy Mac thì máy Mac cần gói Starter hoặc Team.',
+        iphoneNote: 'Ứng dụng cho iPhone và iPad không có tính năng trả phí. Trên iPhone và iPad, iCloud Sync miễn phí; muốn đồng bộ với máy Mac thì máy Mac cần gói Pro hoặc Team.',
     },
     regional: {
         note: 'Giá cho quốc gia của bạn ({country}): giảm {percent}%, áp dụng khi thanh toán.',

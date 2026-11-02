@@ -17,7 +17,7 @@ export default {
     captions: {
         monthly: 'Renews every month until you cancel.',
         yearly: 'Renews every year until you cancel. {percent}% less than twelve monthly payments.',
-        yearlyByTier: 'Renews every year until you cancel. Starter is {starterPercent}% less than twelve monthly payments, Team {teamPercent}% less.',
+        yearlyByTier: 'Renews every year until you cancel. Pro is {starterPercent}% less than twelve monthly payments, Team {teamPercent}% less.',
         lifetime: 'Paid once, no expiry date.',
     },
     tiers: {
@@ -35,15 +35,15 @@ export default {
             ],
         },
         starter: {
-            name: 'Starter',
-            // `{examples}`: the highlighted Starter features from paid-features.json, joined for the language.
+            name: 'Pro',
+            // `{examples}`: the highlighted Pro features from paid-features.json, joined for the language.
             description: 'Adds features such as {examples} to the Mac app.',
             activation: {
                 one: 'One person, {count} Mac.',
                 other: 'One person, up to {count} Macs.',
             },
             includesTitle: 'Everything in Free, plus',
-            cta: 'Get Starter',
+            cta: 'Get Pro',
         },
         team: {
             name: 'Team',
@@ -52,8 +52,24 @@ export default {
                 one: 'One person per seat, on {count} Mac.',
                 other: 'One person per seat, on up to {count} Macs.',
             },
-            includesTitle: 'Everything in Starter, plus',
+            includesTitle: 'Everything in Pro, plus',
             cta: 'Get Team',
+            subscriptionOnly: 'Team is sold monthly or yearly.',
+        },
+        enterprise: {
+            name: 'Enterprise',
+            description: 'For a company that needs more control over how TablePro is used.',
+            price: 'Contact us',
+            activation: 'Priced per company.',
+            includesTitle: 'Tell us what you need, such as',
+            includes: [
+                'Sign-in with your company accounts',
+                'Policies enforced on team connections',
+                'An audit of writes to production',
+                'Deployment through MDM',
+                'Invoices and purchase orders',
+            ],
+            cta: 'Contact us',
         },
     },
     units: {
@@ -64,8 +80,7 @@ export default {
         },
         team: {
             monthly: 'per seat, per month',
-            yearly: 'per seat, per year',
-            lifetime: 'per seat, paid once',
+            yearly: 'per seat, per month, billed yearly',
         },
     },
     seats: {
@@ -83,7 +98,6 @@ export default {
         total: {
             monthly: { one: '{count} seat: {total} per month', other: '{count} seats: {total} per month' },
             yearly: { one: '{count} seat: {total} per year', other: '{count} seats: {total} per year' },
-            lifetime: { one: '{count} seat: {total}, paid once', other: '{count} seats: {total}, paid once' },
         },
     },
     prioritySupport: {
@@ -114,7 +128,7 @@ export default {
         macsTeam: { one: '{count} per seat', other: 'Up to {count} per seat' },
         everythingElse: 'Everything else in the app',
         everythingElseDetail: 'Every supported engine, the SQL editor, the AI assistant, the MCP server and Safe Mode',
-        iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Starter or Team.',
+        iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Pro or Team.',
     },
     // {country} is in parentheses so no language needs an article for it; listPrice names the struck price for a screen reader.
     regional: {

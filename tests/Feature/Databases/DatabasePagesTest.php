@@ -608,7 +608,7 @@ it('says under the availability line that TablePro is free to use and open sourc
 it('links pricing from the closing band and from every plan a page names', function (): void {
     requireSsr();
 
-    $starter = '#<a[^>]*href="/pricing"[^>]*>Starter</a>#';
+    $starter = '#<a[^>]*href="/pricing"[^>]*>Pro</a>#';
     $named = array_keys(array_filter(databasePagesFiles('en'), fn(array $copy): bool => preg_match('/\{[A-Za-z]+Tier\}/', json_encode($copy)) === 1));
 
     expect($named)->toContain('postgresql-client', 'redshift-client');

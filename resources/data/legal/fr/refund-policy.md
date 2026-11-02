@@ -1,14 +1,14 @@
 ---
 title: Politique de remboursement
 description: Toute offre TablePro est remboursable dans les {refundDays} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {refundDays} jours suivant son paiement.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Starter et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat, et chaque renouvellement mensuel ou annuel peut être remboursé dans les {refundDays} jours suivant son paiement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
+Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Pro et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat, et chaque renouvellement mensuel ou annuel peut être remboursé dans les {refundDays} jours suivant son paiement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
 
 ## Demander un remboursement {#request}
 
-Remboursez vous-même une commande dans Facturation, dans [votre compte]({account}), qui liste chaque commande encore remboursable. Une commande Starter est remboursée par son acheteur, et une commande Team par le propriétaire de l’équipe. Le remboursement porte sur le montant total de la commande et est reversé sur le moyen de paiement d’origine.
+Remboursez vous-même une commande dans Facturation, dans [votre compte]({account}), qui liste chaque commande encore remboursable. Une commande Pro est remboursée par son acheteur, et une commande Team par le propriétaire de l’équipe. Le remboursement porte sur le montant total de la commande et est reversé sur le moyen de paiement d’origine.
 
 Pour une commande que Facturation ne liste pas, comme un changement du nombre de postes ou un achat dont la licence figure dans un fichier hors ligne, qui ne peut pas être repris, écrivez à [{email}](mailto:{email}) depuis l’adresse utilisée pour l’achat et précisez l’achat à rembourser. Les remboursements admissibles sont traités sous 5 jours ouvrés.
 

@@ -1,7 +1,7 @@
 ---
 title: 이용약관
-description: TablePro 웹사이트, 계정 포털, 라이선스 서버, Team Library 이용과 Starter 또는 Team 라이선스 구매에 관한 약관입니다.
-updatedAt: "2026-10-28"
+description: TablePro 웹사이트, 계정 포털, 라이선스 서버, Team Library 이용과 Pro 또는 Team 라이선스 구매에 관한 약관입니다.
+updatedAt: "2026-11-02"
 ---
 
 이 약관은 tablepro.app 웹사이트, 계정 포털, 운영자의 라이선스 서버, Team Library 및 아래에 설명된 유료 라이선스와 라이선스 키에 적용됩니다. 이를 이용하거나 라이선스를 구매 또는 활성화하면 이 약관에 동의한 것으로 간주됩니다. Mac용 TablePro와 iPhone 및 iPad용 TablePro는 AGPLv3로만 라이선스되며, 다운로드, 설치 또는 실행하는 데 이 약관에 동의할 필요가 없습니다.
@@ -12,7 +12,7 @@ updatedAt: "2026-10-28"
 - "**애플리케이션**"은 업데이트와 플러그인을 포함한 Mac용 TablePro 및 iPhone과 iPad용 TablePro를 뜻합니다.
 - "**웹사이트**"는 tablepro.app, docs.tablepro.app 및 운영자가 관리하는 다른 도메인을 뜻합니다.
 - "**서비스**"는 웹사이트, 계정 포털 및 Mac 앱이 라이선스 확인과 Team Library를 위해 통신하는 서버를 뜻합니다.
-- "**라이선스**"는 유료 Starter 또는 Team 플랜을 뜻하며, "**라이선스 키**"는 TablePro 계정을 지원하기 전 버전의 Mac 앱이 라이선스를 활성화하는 데 쓰는 인증 정보를 뜻합니다.
+- "**라이선스**"는 유료 Pro 또는 Team 플랜을 뜻하며, "**라이선스 키**"는 TablePro 계정을 지원하기 전 버전의 Mac 앱이 라이선스를 활성화하는 데 쓰는 인증 정보를 뜻합니다.
 - "**귀하**"는 서비스를 이용하거나 라이선스를 보유한 개인이나 조직을 뜻합니다.
 
 ## 오픈 소스 라이선스 {#open-source}
@@ -39,7 +39,7 @@ TablePro™, TablePro 로고 및 TablePro 앱 아이콘은 {publisherName}의 �
 
 라이선스는 플랜에서 정한 대수와 기간 내에서 TablePro 계정에 로그인한 Mac 또는 TablePro 계정을 지원하기 전 버전에서 해당 라이선스 키로 활성화한 Mac에서 Mac 앱의 유료 기능을 사용할 수 있는 비독점적이며 양도 불가능한 권리를 부여합니다.
 
-- **Starter** 라이선스는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용할 수 있습니다.
+- **Pro** 라이선스는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용할 수 있습니다.
 - **Team** 라이선스는 좌석당 요금이며 최소 {teamMinSeats}좌석입니다. 좌석 하나는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. 팀 소유자와 관리자가 팀원을 초대하고 팀원은 이메일로 받은 초대 링크로 참여합니다.
 
 {deviceLimit}대 제한은 계정이 사용하는 모든 라이선스를 합쳐 계정 단위로 적용됩니다. 운영자의 서면 허가 없이 플랜에 포함된 사람과 Mac을 넘어 계정이나 라이선스 키를 공유하거나, 라이선스나 라이선스 키를 재사용 허가, 판매, 대여 또는 다른 방식으로 양도할 수 없습니다.

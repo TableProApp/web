@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro có miễn phí không?",
                     "answer": [
-                        "Có. Ứng dụng Mac không có thời gian dùng thử hay giới hạn thời gian. Mọi engine được hỗ trợ, AI, MCP và Safe Mode đều miễn phí. Starter và Team bổ sung các tính năng trên <pricing>trang bảng giá</pricing>.",
+                        "Có. Ứng dụng Mac không có thời gian dùng thử hay giới hạn thời gian. Mọi engine được hỗ trợ, AI, MCP và Safe Mode đều miễn phí. Pro và Team bổ sung các tính năng trên <pricing>trang bảng giá</pricing>.",
                         "Ứng dụng iPhone và iPad miễn phí, không cần license và không có mua hàng trong ứng dụng."
                     ]
                 },
@@ -155,7 +155,7 @@
                     "id": "what-a-license-adds",
                     "question": "License bổ sung những gì?",
                     "answer": [
-                        "Starter thêm {starterFeatures} cho ứng dụng Mac. Team còn thêm {teamFeatures}. Xem chi tiết <pricing>tính năng trả phí</pricing>."
+                        "Pro thêm {starterFeatures} cho ứng dụng Mac. Team còn thêm {teamFeatures}. Xem chi tiết <pricing>tính năng trả phí</pricing>."
                     ]
                 },
                 {
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Một license dùng được trên bao nhiêu máy Mac?",
                     "answer": [
-                        "Starter dành cho một người trên tối đa {deviceLimit} máy Mac. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy Mac. Giới hạn này tính theo tài khoản, chung cho Starter và Team. iPhone và iPad không dùng seat.",
+                        "Pro dành cho một người trên tối đa {deviceLimit} máy Mac. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy Mac. Giới hạn này tính theo tài khoản, chung cho Pro và Team. iPhone và iPad không dùng seat.",
                         "Để dùng license trên một máy Mac khác, gỡ một máy trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) hoặc trên trang Thiết bị trong <account>tài khoản của bạn</account>. Trong lúc đó, máy Mac kia vẫn dùng được các tính năng miễn phí."
                     ]
                 },
@@ -267,7 +267,7 @@
                     "question": "iCloud Sync lưu những gì, và lưu ở đâu?",
                     "answer": [
                         "Sync tắt theo mặc định, dùng cơ sở dữ liệu riêng trong tài khoản iCloud mà TablePro không đọc được. Mật khẩu cần bật riêng: <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên iPhone và iPad.",
-                        "iCloud Sync cần Starter hoặc Team trên Mac và miễn phí trên iPhone và iPad."
+                        "iCloud Sync cần Pro hoặc Team trên Mac và miễn phí trên iPhone và iPad."
                     ]
                 }
             ]
@@ -296,7 +296,7 @@
                     "id": "seats",
                     "question": "Làm sao để thay đổi số seat?",
                     "answer": [
-                        "Chủ sở hữu nhóm đổi số seat trong mục Thanh toán của <account>tài khoản của bạn</account>. Với subscription, {merchant} thu hoặc hoàn phần chênh lệch theo tỷ lệ ngay khi đổi. Nhóm không có subscription mua thêm seat mua một lần ở đó."
+                        "Chủ sở hữu nhóm đổi số seat trong mục Thanh toán của <account>tài khoản của bạn</account>. Với subscription, {merchant} thu hoặc hoàn phần chênh lệch theo tỷ lệ ngay khi đổi. Nhóm có seat mua một lần vẫn giữ các seat đó, và muốn thêm seat thì cần subscription Team."
                     ]
                 },
                 {

@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro 免费吗？",
                     "answer": [
-                        "是的。Mac App 没有试用期或时间限制。所有支持的引擎、AI、MCP 和 Safe Mode 均免费。Starter 和 Team 添加<pricing>价格页面</pricing>列出的功能。",
+                        "是的。Mac App 没有试用期或时间限制。所有支持的引擎、AI、MCP 和 Safe Mode 均免费。Pro 和 Team 添加<pricing>价格页面</pricing>列出的功能。",
                         "iPhone 和 iPad App 免费，无需许可证，也没有 App 内购买。"
                     ]
                 },
@@ -155,7 +155,7 @@
                     "id": "what-a-license-adds",
                     "question": "许可证增加哪些功能？",
                     "answer": [
-                        "Starter 为 Mac App 添加 {starterFeatures}，Team 还添加 {teamFeatures}。详见<pricing>付费功能</pricing>。"
+                        "Pro 为 Mac App 添加 {starterFeatures}，Team 还添加 {teamFeatures}。详见<pricing>付费功能</pricing>。"
                     ]
                 },
                 {
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "一个许可证涵盖多少台 Mac？",
                     "answer": [
-                        "Starter 供一人在最多 {deviceLimit} 台 Mac 上使用。Team 至少提供 {teamMinSeats} 个席位，每个席位供一人在最多 {deviceLimit} 台 Mac 上使用。台数上限按账户计算，Starter 和 Team 合并计算。iPhone 和 iPad 不占席位。",
+                        "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用。Team 至少提供 {teamMinSeats} 个席位，每个席位供一人在最多 {deviceLimit} 台 Mac 上使用。台数上限按账户计算，Pro 和 Team 合并计算。iPhone 和 iPad 不占席位。",
                         "要在另一台 Mac 上使用许可证，请在 <ui>设置 > 账户</ui> (Settings > Account) 或<account>账户</account>的设备页面移除一台 Mac。在此之前，另一台 Mac 仍可使用免费功能。"
                     ]
                 },
@@ -267,7 +267,7 @@
                     "question": "iCloud Sync 存储什么，存在哪里？",
                     "answer": [
                         "同步默认关闭，使用您 iCloud 账户中的私有数据库，TablePro 无法读取。密码需单独开启：Mac 上的 <ui>密码</ui> (Passwords)，或 iPhone 和 iPad 上的 <ui>同步密码</ui> (Sync Passwords)。",
-                        "iCloud Sync 在 Mac 上需要 Starter 或 Team，在 iPhone 和 iPad 上免费。"
+                        "iCloud Sync 在 Mac 上需要 Pro 或 Team，在 iPhone 和 iPad 上免费。"
                     ]
                 }
             ]
@@ -296,7 +296,7 @@
                     "id": "seats",
                     "question": "如何更改席位数？",
                     "answer": [
-                        "团队所有者在<account>账户</account>的账单页面更改席位数。对于订阅，{merchant} 会立即按比例收取或退还差额。没有订阅的团队可在那里购买更多一次性席位。"
+                        "团队所有者在<account>账户</account>的账单页面更改席位数。对于订阅，{merchant} 会立即按比例收取或退还差额。已有一次性席位的团队会保留这些席位，增加席位需要 Team 订阅。"
                     ]
                 },
                 {

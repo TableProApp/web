@@ -186,7 +186,7 @@ dataset('reviewed facts', [
     ],
     'DBeaver: no "native Mac client", no self-listing Compare & Sync' => [
         'content/en/compare/dbeaver.json',
-        ['It is part of Starter.'],
+        ['It is part of Pro.'],
         ['native Mac client', 'along with features such as {starterExamples}'],
     ],
     'the compare method names every kind of official source' => [
@@ -256,8 +256,8 @@ dataset('reviewed facts', [
     ],
     'the pricing page describes TablePro accounts' => [
         'content/en/pricing.json',
-        ['on the Devices page in <account>your account</account>', 'at most {offlineDays} days after the last renewal', 'holds it until it is accepted or revoked', 'buys more one-time seats there'],
-        ['Each code needs a free seat', 'Two Macs use two seats', 'the Macs page', 'to add seats', 'activated Mac'],
+        ['on the Devices page in <account>your account</account>', 'at most {offlineDays} days after the last renewal', 'holds it until it is accepted or revoked', 'more seats come with a Team subscription'],
+        ['Each code needs a free seat', 'Two Macs use two seats', 'the Macs page', 'to add seats', 'activated Mac', 'buys more one-time seats there'],
     ],
     'the refund policy refunds in the account portal' => [
         'legal/en/refund-policy.md',

@@ -5,6 +5,7 @@ import { planOffers } from '@/components/pricing/offers';
 import PricingPlans from '@/components/pricing/pricing-plans';
 import type { PricingContent, PricingPageProps } from '@/components/pricing/types';
 import SEOHead from '@/components/seo/seo-head';
+import Callout from '@/components/ui/callout';
 import { accountHref, SUPPORT_EMAIL } from '@/components/site/site-links';
 import Container from '@/components/ui/container';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
@@ -23,6 +24,9 @@ import { absoluteUrl, graph, macAppId, macAppNode, webPageNode, type JsonLdGraph
 import LandingLayout from '@/layouts/landing-layout';
 
 type Interpolate = (template: string, values: Record<string, string | number>) => string;
+
+// The post that explains the new prices. It exists in English and Vietnamese; every other page links the English one.
+const PRICE_CHANGE_POST = 'new-prices-2026';
 
 function copyValues(): Record<string, string | number> {
     return {
@@ -136,6 +140,17 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                     <h2 id="plans-title" className="sr-only">
                         {content.plans.title}
                     </h2>
+                    <Callout className="mb-6">
+                        <p>
+                            {content.priceChange.text}{' '}
+                            <TextLink
+                                href={locale === 'vi' ? `/vi/blog/${PRICE_CHANGE_POST}` : `/blog/${PRICE_CHANGE_POST}`}
+                                hrefLang={locale === 'vi' || locale === 'en' ? undefined : 'en'}
+                            >
+                                {content.priceChange.link}
+                            </TextLink>
+                        </p>
+                    </Callout>
                     <PricingPlans variant="full" />
                 </Container>
             </section>

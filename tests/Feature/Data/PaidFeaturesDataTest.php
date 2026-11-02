@@ -55,7 +55,7 @@ it('lists the ten ProFeature cases in display order, with the app names byte for
     }
 });
 
-it('splits eight Starter features from two Team features, as requiredTier does', function (): void {
+it('splits eight Pro features from two Team features, as requiredTier does', function (): void {
     $tiers = array_column(paidFeaturesJson(), 'tier', 'proFeature');
 
     expect(array_keys(array_filter($tiers, fn(string $tier): bool => $tier === 'starter')))->toBe([

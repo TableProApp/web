@@ -219,16 +219,24 @@ it('keeps the names of paid features, Safe Mode and the merchant of record where
     }
 
     // Legal pages also name the plans and two app parts, and a translation keeps its original's line numbers.
-    $legalNames = [...$names, 'Tunnel Command', 'Starter', 'Team', 'Favorites', 'Sync Categories'];
+    $legalNames = [...$names, 'Tunnel Command', 'Starter', 'Pro', 'Team', 'Favorites', 'Sync Categories'];
     $legal = wordingLegal($locale);
 
     foreach (wordingLegal('en') as $file => $lines) {
+        // An English-only page, such as the brand guidelines, has no translation to hold to its names.
+        if (! isset($legal[$file])) {
+            continue;
+        }
+
         foreach ($lines as $index => $line) {
             $target = $plain($legal[$file][$index] ?? '');
             $where = "legal/{$locale}/{$file}:" . ($index + 1);
 
             foreach ($legalNames as $name) {
-                if (str_contains($plain($line), $plain($name)) && ! str_contains($target, $plain($name))) {
+                // A whole name, so "Pro" is not found inside "TablePro"; only Latin letters bound it, as a Korean particle attaches.
+                $named = fn(string $text): bool => preg_match('/(?<![A-Za-z0-9])' . preg_quote($plain($name), '/') . '(?![A-Za-z0-9])/u', $text) === 1;
+
+                if ($named($plain($line)) && ! $named($target)) {
                     $offences[] = "{$where}: {$name}";
                 }
             }

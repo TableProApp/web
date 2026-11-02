@@ -10,6 +10,9 @@ export type TierId = 'free' | PaidTierId;
 
 export type CyclePrices = Record<BillingCycle, number>;
 
+// Team is a subscription: it has no one-time price.
+export type TeamCycle = Exclude<BillingCycle, 'lifetime'>;
+
 export interface StarterTier {
     unit: 'license';
     prices: CyclePrices;
@@ -17,7 +20,7 @@ export interface StarterTier {
 
 export interface TeamTier {
     unit: 'seat';
-    prices: CyclePrices;
+    prices: Record<TeamCycle, number>;
     seats: { min: number };
     prioritySupport: { responseBusinessDays: number };
 }
@@ -32,7 +35,7 @@ export interface PricingData {
         team: TeamTier;
     };
     refund: { days: number; scope: 'all-paid-plans' };
-    // deviceLimit is per account, across Starter and Team; legacy is for builds that still use /v1.
+    // deviceLimit is per account, across Pro and Team; legacy is for builds that still use /v1.
     license: {
         deviceLimit: number;
         offlineDays: number;
@@ -46,22 +49,31 @@ export interface PricingData {
 // TypeScript widens the JSON's string unions to string; tests/Feature/Data/PricingDataTest.php pins every value.
 export const PRICING = data as PricingData;
 
-export function tierPrice(tier: PaidTierId, cycle: BillingCycle): number {
-    return PRICING.tiers[tier].prices[cycle];
+// What a plan costs in a cycle, or undefined for a cycle it is not sold in (Team one-time).
+export function tierPrice(tier: PaidTierId, cycle: BillingCycle): number | undefined {
+    const prices: Partial<CyclePrices> = PRICING.tiers[tier].prices;
+
+    return prices[cycle];
+}
+
+// Whether checkout sells the plan in the cycle.
+export function sells(tier: PaidTierId, cycle: BillingCycle): boolean {
+    return tierPrice(tier, cycle) !== undefined;
 }
 
 // Rounded to cents, because 1.25 × 7 is not exact in binary floating point.
-export function teamTotal(seats: number, cycle: BillingCycle): number {
+export function teamTotal(seats: number, cycle: TeamCycle): number {
     const count = Math.max(PRICING.tiers.team.seats.min, Math.round(seats));
 
-    return Math.round(tierPrice('team', cycle) * count * 100) / 100;
+    return Math.round(PRICING.tiers.team.prices[cycle] * count * 100) / 100;
 }
 
-// Rounded down, so the page never overstates the saving.
+// Rounded down, so the page never overstates the saving: Pro gives 34 and Team 16 today.
 export function yearlySavingsPercent(tier: PaidTierId): number {
-    const twelveMonths = tierPrice(tier, 'monthly') * 12;
+    const { monthly, yearly } = PRICING.tiers[tier].prices;
+    const twelveMonths = monthly * 12;
 
-    return Math.floor(((twelveMonths - tierPrice(tier, 'yearly')) / twelveMonths) * 100);
+    return Math.floor(((twelveMonths - yearly) / twelveMonths) * 100);
 }
 
 export function jsonLdPrice(amount: number): string {

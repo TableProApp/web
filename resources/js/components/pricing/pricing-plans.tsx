@@ -8,6 +8,7 @@ import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
 import BillingCycleControl from './billing-cycle-control';
 import DiscountField from './discount-field';
+import EnterpriseCard from './enterprise-card';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
 import RegionalNote from './regional-note';
 import { useCheckout } from './use-checkout';
@@ -22,7 +23,7 @@ interface PricingPlansProps {
 }
 
 // The regional price and the seat maximum arrive after the first render, so the cached page and its structured data
-// carry the list prices and no maximum.
+// carry the list prices and no maximum. The Enterprise card is a contact route beside the plans, with no price.
 export default function PricingPlans({ variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
     const { m, fmt, plural } = useI18n();
     const [cycle, setCycle] = useState<BillingCycle>('yearly');
@@ -40,7 +41,7 @@ export default function PricingPlans({ variant = 'full', headingLevel = 'h3', cl
         <div className={cn('max-lg:[&_:is(a,button,input:not([type=radio]),summary)]:scroll-mt-14', className)}>
             <BillingCycleControl value={cycle} onChange={setCycle} />
 
-            <CellGrid className="mt-6 items-stretch lg:grid-cols-3">
+            <CellGrid className="mt-6 items-stretch lg:grid-cols-2 xl:grid-cols-4">
                 {TIERS.map((tier) => (
                     <PricingCard
                         key={tier}
@@ -56,6 +57,7 @@ export default function PricingPlans({ variant = 'full', headingLevel = 'h3', cl
                         regional={regional}
                     />
                 ))}
+                <EnterpriseCard variant={variant} headingLevel={headingLevel} />
             </CellGrid>
 
             <div className="mt-6 grid gap-3">

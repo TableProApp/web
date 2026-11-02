@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
-description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Starter atau Team.
-updatedAt: "2026-10-28"
+description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
+updatedAt: "2026-11-02"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -12,7 +12,7 @@ Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami,
 - **"Aplikasi"** berarti TablePro untuk Mac dan TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
 - **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi aplikasi Mac untuk pemeriksaan lisensi dan Team Library.
-- **"Lisensi"** berarti paket Starter atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang dipakai versi aplikasi Mac sebelum akun TablePro untuk mengaktifkan Lisensi.
+- **"Lisensi"** berarti paket Pro atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang dipakai versi aplikasi Mac sebelum akun TablePro untuk mengaktifkan Lisensi.
 - **"Anda"** berarti orang atau organisasi yang memakai Layanan atau memegang Lisensi.
 
 ## Lisensi sumber terbuka {#open-source}
@@ -39,7 +39,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar aplikasi Mac pada Mac yang masuk ke akun TablePro Anda atau, pada versi sebelum akun TablePro, yang diaktifkan dengan Kunci Lisensinya, hingga jumlah dan selama periode paket Anda:
 
-- Lisensi **Starter** untuk satu orang, di maksimal {deviceLimit} Mac.
+- Lisensi **Pro** untuk satu orang, di maksimal {deviceLimit} Mac.
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat untuk satu orang, di maksimal {deviceLimit} Mac. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.
 
 Batas {deviceLimit} Mac berlaku per akun, untuk semua Lisensi yang dipakainya. Anda tidak boleh membagikan akun Anda atau Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankan Lisensi atau Kunci Lisensi tanpa izin tertulis kami.

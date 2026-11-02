@@ -87,12 +87,14 @@ it('lists every indexed English page once, with posts and legal pages as markdow
 
 });
 
-it('lists guides apart from release posts, newest first', function (): void {
+it('lists guides apart from release posts and news, newest first', function (): void {
     $sections = llmsTxtSections((string) $this->get('/llms.txt')->getContent());
     $posts = app(BlogService::class)->all('en');
 
     $guides = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() === Post::KIND_GUIDE));
     $releases = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() === Post::KIND_RELEASE));
+    // News and release posts share Optional, newest first.
+    $others = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() !== Post::KIND_GUIDE));
 
     expect($guides)->not->toBeEmpty()
         ->and($releases)->not->toBeEmpty();
@@ -100,8 +102,8 @@ it('lists guides apart from release posts, newest first', function (): void {
     expect(array_map('llmsTxtUrl', $sections['Guides']))
         ->toBe(array_map(fn(Post $post): string => "https://tablepro.app/blog/{$post->slug}.md", $guides));
 
-    expect(array_slice(array_map('llmsTxtUrl', $sections['Optional']), 0, count($releases)))
-        ->toBe(array_map(fn(Post $post): string => "https://tablepro.app/blog/{$post->slug}.md", $releases));
+    expect(array_slice(array_map('llmsTxtUrl', $sections['Optional']), 0, count($others)))
+        ->toBe(array_map(fn(Post $post): string => "https://tablepro.app/blog/{$post->slug}.md", $others));
 });
 
 it('names a page by its title, and by its card title where the title has a slot', function (): void {

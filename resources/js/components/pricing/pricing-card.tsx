@@ -9,7 +9,7 @@ import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { examplesText, highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
-import { PRICING, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
+import { PRICING, sells, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
 import { discountedAmount, type Regional } from '@/lib/regional-pricing';
 import { cn } from '@/lib/utils';
 import { typedSeats, type SeatBound } from './seats';
@@ -34,7 +34,7 @@ interface PricingCardProps {
 }
 
 // From 1024px the rows sit on the parent's subgrid tracks, so prices, actions and lists line up across the cards, and
-// the spare height in Free and Starter falls under the activation line rather than between the price and that line.
+// the spare height in Free and Pro falls under the activation line rather than between the price and that line.
 export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, maxSeats, onSeatsChange, discountCode, regional }: PricingCardProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
@@ -76,6 +76,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                     <Button
                         variant="secondary"
                         fullWidth
+                        disabled={!sells(tier, cycle)}
                         loading={checkout.pending === tier}
                         onPointerEnter={checkout.warm}
                         onFocus={checkout.warm}
@@ -125,23 +126,39 @@ interface PaidPriceProps {
 
 // Every cycle's price is in the HTML, so the page states each price its structured data offers. Team's total is
 // discounted as a whole, as checkout discounts the order, so it can differ by a cent from the seat price times the seats.
+// Team's yearly price shows as a month's share, billed yearly; Team has no one-time price, so that cycle says so instead.
 function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
 
     const charged = (amount: number): number => (regional ? discountedAmount(amount, regional.percent) : amount);
-    const prices = PRICING.cycles.map((each) => (
-        <Price
-            key={each}
-            amount={charged(tierPrice(tier, each))}
-            listAmount={regional ? tierPrice(tier, each) : undefined}
-            unit={m.pricing.units[tier][each]}
-            hidden={each !== cycle}
-        />
-    ));
+    const units: Partial<Record<BillingCycle, string>> = m.pricing.units[tier];
+    const prices = PRICING.cycles.map((each) => {
+        const amount = tierPrice(tier, each);
 
-    if (tier === 'starter') {
+        if (amount === undefined) {
+            return (
+                <p key={each} hidden={each !== cycle} className="type-body text-muted-foreground">
+                    {m.pricing.tiers.team.subscriptionOnly}
+                </p>
+            );
+        }
+
+        const shown = tier === 'team' && each === 'yearly' ? amount / 12 : amount;
+
+        return (
+            <Price
+                key={each}
+                amount={charged(shown)}
+                listAmount={regional ? shown : undefined}
+                unit={units[each]}
+                hidden={each !== cycle}
+            />
+        );
+    });
+
+    if (tier === 'starter' || cycle === 'lifetime') {
         return <>{prices}</>;
     }
 

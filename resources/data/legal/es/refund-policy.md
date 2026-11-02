@@ -1,14 +1,14 @@
 ---
 title: Política de reembolso
 description: Cada plan es reembolsable en los {refundDays} días siguientes a la compra, y cada renovación mensual o anual en los {refundDays} días siguientes a su cobro. Cómo pedirlo.
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-02"
 ---
 
-Todos los planes de pago se pueden reembolsar en un plazo de {refundDays} días: Starter y Team, mensuales, anuales y de pago único. Los {refundDays} días cuentan desde la fecha de compra, y cada renovación mensual o anual se puede reembolsar en los {refundDays} días siguientes a su cobro. Los planes están en la [página de precios](/es/pricing#refunds).
+Todos los planes de pago se pueden reembolsar en un plazo de {refundDays} días: Pro y Team, mensuales, anuales y de pago único. Los {refundDays} días cuentan desde la fecha de compra, y cada renovación mensual o anual se puede reembolsar en los {refundDays} días siguientes a su cobro. Los planes están en la [página de precios](/es/pricing#refunds).
 
 ## Cómo solicitar un reembolso {#request}
 
-Reembolsa un pedido tú mismo en Facturación, en [tu cuenta]({account}), que muestra cada pedido que aún puedes reembolsar. Un pedido de Starter lo reembolsa su comprador, y uno de Team, el propietario del equipo. El reembolso es el importe completo del pedido y se devuelve al método de pago original.
+Reembolsa un pedido tú mismo en Facturación, en [tu cuenta]({account}), que muestra cada pedido que aún puedes reembolsar. Un pedido de Pro lo reembolsa su comprador, y uno de Team, el propietario del equipo. El reembolso es el importe completo del pedido y se devuelve al método de pago original.
 
 Para un pedido que Facturación no muestra, como un cambio en el número de puestos o una compra cuya licencia está en un archivo sin conexión, que no se puede retirar, escribe a [{email}](mailto:{email}) desde la dirección usada para la compra e indica qué compra quieres reembolsar. Los reembolsos que cumplen los requisitos se procesan en 5 días laborables.
 

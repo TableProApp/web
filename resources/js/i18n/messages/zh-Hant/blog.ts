@@ -4,6 +4,7 @@ export default {
     "index": {
         "empty": "尚無文章。",
         "guides": "指南",
+        "news": "公告",
         "releases": "版本說明"
     },
     "latest": "最新版本文章：<post>{title}</post>。",
