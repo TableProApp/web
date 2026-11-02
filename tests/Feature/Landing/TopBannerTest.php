@@ -1,9 +1,16 @@
 <?php
 
+use App\Support\Pricing\Campaign;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
+
+// The license banner's rules; a dated sale takes the slot while it is live (CampaignTest), so these run after it has ended.
+beforeEach(function (): void {
+    travelTo(Campaign::current()?->endsAt ?? now());
+});
 
 /** @return array<string, string> */
 function bannerCatalog(string $locale): array
@@ -76,7 +83,7 @@ it('stays off the iPhone and iPad page for a reader on one of those devices, in 
 it('sends only its link to the page, so the words come from the catalog', function (): void {
     config(['banner.enabled' => true, 'banner.href' => '/pricing']);
 
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['href' => '/pricing']));
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['kind' => 'license', 'href' => '/pricing']));
 });
 
 it('cannot be closed: no close button, no stored record, no head script reading one', function (): void {

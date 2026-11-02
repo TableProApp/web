@@ -69,7 +69,7 @@ it('lists every indexed English page once, with posts and legal pages as markdow
     unset($sections['Docs']);
 
     $listed = array_map('llmsTxtUrl', array_merge(...array_values($sections)));
-    $skipped = ['landing.home', 'landing.blog.index', 'landing.integrations.show'];
+    $skipped = ['landing.home', 'landing.blog.index', 'landing.integrations.show', 'landing.black-friday'];
     $expected = [];
 
     foreach (app(PageRegistry::class)->all() as $entry) {

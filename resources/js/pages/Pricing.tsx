@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
+import CampaignBand from '@/components/campaign/campaign-band';
 import PlanMatrix from '@/components/pricing/plan-matrix';
 import { planOffers } from '@/components/pricing/offers';
 import PricingPlans from '@/components/pricing/pricing-plans';
@@ -93,6 +94,9 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
  * seat bound, day count and the merchant's name comes from pricing.json; the
  * features and their tiers from paid-features.json. Nothing here is
  * conversion furniture: no "most popular", no typed saving, no countdown.
+ * The one exception is a dated sale while it is live: its band above the
+ * header, with the time left to its real end, and its price on the cards it
+ * covers (positioning §9, "Dated sales").
  */
 export default function Pricing({ content, paidFeatures, checkout, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
@@ -147,6 +151,7 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                 })}
             />
 
+            <CampaignBand variant="pricing" />
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
             <section id="plans" aria-labelledby="plans-title" className="py-8 md:py-10 xl:py-12">

@@ -11,6 +11,7 @@
  * changes with the locale; only the way a number is written does.
  */
 import data from '@data/pricing.json';
+import type { CampaignData } from '@/lib/campaign';
 
 export type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -53,6 +54,8 @@ export interface PricingData {
     refund: { days: number; scope: 'all-paid-plans' };
     /** Revalidated every `revalidateDays`; works offline for `offlineGraceDays`; no perpetual fallback. */
     license: { revalidateDays: number; offlineGraceDays: number; perpetualFallback: false };
+    /** The dated sale, synced by hand with the provider's discount; null when there is none (lib/campaign.ts). */
+    campaign: CampaignData | null;
     /** Polar's customer portal: billing and invoices for Polar purchases. */
     billingPortalUrl: string;
     syncedWith: string;

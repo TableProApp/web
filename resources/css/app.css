@@ -208,6 +208,65 @@ html.has-language-bar .support-banner {
   }
 }
 
+/*
+ * ---------------------------------------------------------------------------
+ * A dated sale
+ * ---------------------------------------------------------------------------
+ *
+ * While a sale in pricing.json is live, `html.campaign-live` (stamped by the
+ * server, App\Support\Pricing\Campaign) shows what it adds: its banner in
+ * the slot above the header, and its band at the top of the homepage and
+ * Pricing. The head script and `useCampaign` remove the class when the
+ * reader's clock passes the end, so all of it goes at once and nothing offers
+ * a code checkout no longer takes.
+ *
+ * Both are an island of the dark theme whatever the reader chose: the element
+ * carries `.dark`, so every token inside resolves to its dark value and the
+ * design system's text pairs hold, on a ground darker than the dark page so
+ * the band reads as an event rather than a section. The glow is the brand hue
+ * thinning out from the top right. Positioning §12.2.
+ */
+.campaign-banner,
+.campaign-band {
+  display: none;
+}
+
+html.has-banner.campaign-live .campaign-banner {
+  display: block;
+  height: var(--banner-h);
+}
+
+html.has-language-bar .campaign-banner {
+  display: none;
+}
+
+html.campaign-live .campaign-band {
+  display: block;
+}
+
+.campaign-surface {
+  background-color: oklch(0.12 0 0);
+  color: var(--foreground);
+}
+
+.campaign-banner {
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 45%, var(--rule));
+}
+
+.campaign-glow {
+  background-image: radial-gradient(
+    60rem 32rem at 100% 0%,
+    color-mix(in oklab, var(--accent) 26%, transparent),
+    transparent 70%
+  );
+}
+
+@media (forced-colors: active) {
+  .campaign-glow {
+    background-image: none;
+  }
+}
+
 html {
   scroll-padding-top: 5rem;
 }

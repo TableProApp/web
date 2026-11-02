@@ -5,6 +5,7 @@ import { CheckGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import Stepper from '@/components/ui/stepper';
 import { textLinkClasses } from '@/components/ui/text-link';
+import { useCampaign } from '@/hooks/use-campaign';
 import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
@@ -60,6 +61,7 @@ interface PricingCardProps {
  */
 export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode, regional }: PricingCardProps) {
     const { m, fmt, plural } = useI18n();
+    const { offer } = useCampaign();
     const id = useId();
     const Title = headingLevel;
     const copy = m.pricing.tiers[tier];
@@ -81,7 +83,13 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             </div>
 
             <div className="grid content-start gap-4 md:max-lg:col-start-1">
-                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} regional={regional} />}</div>
+                <div>
+                    {tier === 'free' ? (
+                        <Price amount={0} />
+                    ) : (
+                        <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} regional={regional} typedCode={discountCode !== null} />
+                    )}
+                </div>
 
                 <p className="type-small text-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
@@ -103,7 +111,13 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                         loading={checkout.pending === tier}
                         onPointerEnter={checkout.warm}
                         onFocus={checkout.warm}
-                        onClick={() => void checkout.start(tier, cycle, { seats: tier === 'team' ? seats : undefined, discountCode })}
+                        onClick={() =>
+                            void checkout.start(tier, cycle, {
+                                seats: tier === 'team' ? seats : undefined,
+                                // A typed code is the reader's choice; otherwise a live sale's, where it applies.
+                                discountCode: discountCode ?? offer(tier, cycle, regional?.percent ?? null)?.code ?? null,
+                            })
+                        }
                     >
                         {m.pricing.tiers[tier].cta}
                     </Button>
@@ -148,6 +162,8 @@ interface PaidPriceProps {
     seats: number;
     onSeatsChange: (seats: number) => void;
     regional: Regional | null;
+    /** A code the reader typed replaces every other discount at checkout, the sale's included. */
+    typedCode: boolean;
 }
 
 /**
@@ -164,9 +180,16 @@ interface PaidPriceProps {
  * Team's yearly price shows as a month's share of it, billed yearly, as its
  * unit says; the total line names the yearly charge. Team has no one-time
  * price, so that cycle says so instead of a price and drops the stepper.
+ *
+ * While a dated sale is live, a cycle it covers shows the sale's price beside
+ * the struck list price, under the sale's tag, instead of the regional one,
+ * unless the regional discount takes more off (`offerFor`): checkout applies
+ * one discount, and the card shows the one it will. A subscription's sale
+ * price is its first charge's, and the line under it says what it renews at.
  */
-function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPriceProps) {
+function PaidPrice({ tier, cycle, seats, onSeatsChange, regional, typedCode }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
+    const { offer } = useCampaign();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
 
@@ -184,6 +207,23 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange, regional }: PaidPricePro
         }
 
         const shown = tier === 'team' && each === 'yearly' ? amount / 12 : amount;
+        const sale = typedCode ? null : offer(tier, each, regional?.percent ?? null);
+
+        if (sale !== null) {
+            return (
+                <div key={each} hidden={each !== cycle} className="grid gap-1.5">
+                    <p>
+                        <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-accent-foreground">
+                            {fmt(m.campaign.offer.tag, { percent: sale.percent })}
+                        </span>
+                    </p>
+                    <Price amount={discountedAmount(shown, sale.percent)} listAmount={shown} unit={units[each]} />
+                    {sale.firstChargeOnly && (
+                        <p className="type-caption text-muted-foreground">{fmt(m.campaign.offer.firstYear, { price: formatUsd(shown, m.pricing.currency) })}</p>
+                    )}
+                </div>
+            );
+        }
 
         return (
             <Price

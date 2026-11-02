@@ -153,6 +153,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **`tablepro:attribution`**（本地存储，90 天）：[网站](#website)一节所述的首访记录。不包含您的标识符，仅随结账请求发送，服务器随后丢弃。合法依据：合法利益。
 - **`theme`**（本地存储，直至您清除）：保存所选浅色、深色或系统主题。合法依据：合法利益。
 - **`tablepro:language`**（本地存储，直至您清除）：保存您在语言菜单或语言栏中选择的语言，以及您关闭过推荐的语言，以免再次推荐。合法依据：合法利益。
+- **`tablepro:campaign-closed`**（本地存储，直至您清除）：保存您关闭了页眉上方通知的那次优惠活动，使该通知在活动结束前在每个页面上都保持关闭。合法依据：合法利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本地存储，由 Mintlify 设置，仅在您于文档中允许 Google Analytics 时）：[网站](#website)一节所述的访客 ID。拒绝后即删除。文档单独保存自己的 `tablepro:analytics-consent` 回答。合法依据：同意。
 - **以 `crisp-client/` 开头的 Cookie**（Crisp，如 `crisp-client/session/…`；六个月，再次访问时续期；聊天加载后每个页面都会设置）：在页面和访问之间保持聊天及对话。合法依据：为每个页面提供支持的合法利益。
 - **`tablepro-session` 和 `XSRF-TOKEN`**（账户门户 Cookie，两小时）：保持登录并保护门户表单免受跨站请求伪造。打开购买确认和邮件订阅等其他门户页面也会设置。公开网站的邮件订阅、结账和优惠码请求不携带凭据，也不会保留这些 Cookie。合法依据：严格必要。
