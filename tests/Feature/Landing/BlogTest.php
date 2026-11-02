@@ -51,6 +51,7 @@ const BLOG_GUIDES = [
 
 // Notices about TablePro itself (`kind: news`), in English and Vietnamese.
 const BLOG_NEWS = [
+    'black-friday-2026' => '2026-11-24',
     'new-prices-2026' => '2026-11-02',
 ];
 
@@ -136,7 +137,7 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
             ->where('posts.0.date', [...BLOG_NEWS, ...BLOG_GUIDES, ...BLOG_PUBLISHED][$expected[0]])
-            ->where('posts.0.dateFormatted', 'November 2, 2026')
+            ->where('posts.0.dateFormatted', 'November 24, 2026')
             ->where('posts', fn($posts): bool => collect($posts)->every(
                 fn(array $post): bool => $post['kind'] === match (true) {
                     array_key_exists($post['slug'], BLOG_NEWS) => 'news',
@@ -496,17 +497,21 @@ it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese
             ->where('posts', fn($posts): bool => collect($posts)->slice(count(BLOG_NEWS) + 3, $guides)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
             ))
-            ->where('posts.0.slug', 'new-prices-2026')
+            ->where('posts.0.slug', 'black-friday-2026')
             ->where('posts.0.locale', 'vi')
             ->where('posts.0.kind', 'news')
-            ->where('posts.0.url', '/vi/blog/new-prices-2026')
-            ->where('posts.0.title', blogMatter('new-prices-2026', 'vi')['title'])
-            ->where('posts.0.dateFormatted', '2 tháng 11 năm 2026')
-            ->where('posts.1.slug', 'tablepro-0-82')
-            ->where('posts.1.locale', 'en')
-            ->where('posts.1.url', '/blog/tablepro-0-82')
-            ->where('posts.1.title', blogMatter('tablepro-0-82')['title'])
-            ->where('posts.1.dateFormatted', '20 tháng 10 năm 2026')
+            ->where('posts.0.url', '/vi/blog/black-friday-2026')
+            ->where('posts.0.title', blogMatter('black-friday-2026', 'vi')['title'])
+            ->where('posts.0.dateFormatted', '24 tháng 11 năm 2026')
+            ->where('posts.1.slug', 'new-prices-2026')
+            ->where('posts.1.locale', 'vi')
+            ->where('posts.1.kind', 'news')
+            ->where('posts.1.dateFormatted', '2 tháng 11 năm 2026')
+            ->where('posts.2.slug', 'tablepro-0-82')
+            ->where('posts.2.locale', 'en')
+            ->where('posts.2.url', '/blog/tablepro-0-82')
+            ->where('posts.2.title', blogMatter('tablepro-0-82')['title'])
+            ->where('posts.2.dateFormatted', '20 tháng 10 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
