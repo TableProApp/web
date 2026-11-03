@@ -25,6 +25,7 @@ beforeEach(function (): void {
 
 // A post keeps the date it was published; an edit never re-dates it.
 const BLOG_PUBLISHED = [
+    'tablepro-0-84' => '2026-11-04',
     'tablepro-0-82' => '2026-10-20',
     'tablepro-0-81' => '2026-10-16',
     'tablepro-0-80' => '2026-10-11',
@@ -136,7 +137,7 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
             ->where('posts.0.date', [...BLOG_NEWS, ...BLOG_GUIDES, ...BLOG_PUBLISHED][$expected[0]])
-            ->where('posts.0.dateFormatted', 'November 2, 2026')
+            ->where('posts.0.dateFormatted', 'November 4, 2026')
             ->where('posts', fn($posts): bool => collect($posts)->every(
                 fn(array $post): bool => $post['kind'] === match (true) {
                     array_key_exists($post['slug'], BLOG_NEWS) => 'news',
@@ -493,20 +494,20 @@ it('renders and indexes /vi/blog in Vietnamese, listing the guides in Vietnamese
             ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->all() === ['en', 'vi'])
             ->missing('content.seo.indexable')
             ->has('posts', count(BLOG_NEWS) + count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
-            ->where('posts', fn($posts): bool => collect($posts)->slice(count(BLOG_NEWS) + 3, $guides)->every(
+            ->where('posts', fn($posts): bool => collect($posts)->slice(count(BLOG_NEWS) + 4, $guides)->every(
                 fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
             ))
-            ->where('posts.0.slug', 'new-prices-2026')
-            ->where('posts.0.locale', 'vi')
-            ->where('posts.0.kind', 'news')
-            ->where('posts.0.url', '/vi/blog/new-prices-2026')
-            ->where('posts.0.title', blogMatter('new-prices-2026', 'vi')['title'])
-            ->where('posts.0.dateFormatted', '2 tháng 11 năm 2026')
-            ->where('posts.1.slug', 'tablepro-0-82')
-            ->where('posts.1.locale', 'en')
-            ->where('posts.1.url', '/blog/tablepro-0-82')
-            ->where('posts.1.title', blogMatter('tablepro-0-82')['title'])
-            ->where('posts.1.dateFormatted', '20 tháng 10 năm 2026')
+            ->where('posts.0.slug', 'tablepro-0-84')
+            ->where('posts.0.locale', 'en')
+            ->where('posts.0.url', '/blog/tablepro-0-84')
+            ->where('posts.0.title', blogMatter('tablepro-0-84')['title'])
+            ->where('posts.0.dateFormatted', '4 tháng 11 năm 2026')
+            ->where('posts.1.slug', 'new-prices-2026')
+            ->where('posts.1.locale', 'vi')
+            ->where('posts.1.kind', 'news')
+            ->where('posts.1.url', '/vi/blog/new-prices-2026')
+            ->where('posts.1.title', blogMatter('new-prices-2026', 'vi')['title'])
+            ->where('posts.1.dateFormatted', '2 tháng 11 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
