@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "面向团队的 TablePro",
+        "description": "与团队共享连接和已保存查询，无需共享密码。按席位定价，可月付或年付，并可为公司开具发票。"
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "面向团队的 TablePro"
+    },
+    "breadcrumb": "面向团队",
+    "header": {
+        "title": "面向团队的 TablePro",
+        "lead": "与团队共享连接和已保存查询，不含密码。每个席位都包含 Pro，公司可获得发票。",
+        "primary": "查看 Team 价格",
+        "secondary": "联系我们"
+    },
+    "share": {
+        "title": "团队共享什么",
+        "lead": "共享方式有两种，取决于您希望文件存放在哪里。",
+        "library": {
+            "title": "Team Library",
+            "text": "拥有者和管理员将连接设置、已保存查询及其文件夹发布到 TablePro 服务器。团队所有人都能在侧边栏以只读方式使用。",
+            "link": "Team Library 的工作方式"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "将不含密码的连接文件发布到团队已在共享的文件夹，例如 Git 仓库或共享网盘。队友将其添加为 Linked Folder。所有内容都不经过 TablePro 服务器。",
+            "link": "Team Catalog 的工作方式"
+        },
+        "pro": {
+            "title": "每个席位都有 Pro",
+            "text": "团队中的每台 Mac 都可使用全部 Pro 功能，例如 {proExamples}。",
+            "link": "所有付费功能"
+        }
+    },
+    "seats": {
+        "title": "席位和成员",
+        "items": [
+            "一个席位对应一台已激活 Mac。购买者的 Mac 也占一个席位。",
+            "购买者在账户中通过邮箱邀请队友。每人会收到一个一次性代码，在 <ui>设置 > 许可证</ui> (Settings > License) 中输入。",
+            "拥有者和管理员向 Team Library 发布内容。成员使用共享的内容。",
+            "可随时在账户中增加或减少席位。差额会显示在下次账单上。",
+            "移除队友会释放其席位，并删除其发布到 Team Library 的内容。其 Mac 会在下次许可证检查时失去付费访问。"
+        ]
+    },
+    "pricing": {
+        "title": "价格",
+        "yearly": "按年付费时，每席位每月 {yearlyPerMonth}，即每席位每年 {yearly}。",
+        "monthly": "按月付费时，每席位每月 {monthly}。",
+        "seats": "可选 {min} 至 {max} 个席位。{exampleSeats} 个席位的团队每年支付 {exampleYearly}。",
+        "note": "Team 仅提供订阅，没有一次性购买的 Team 许可证。",
+        "cta": "购买 Team"
+    },
+    "buying": {
+        "title": "为公司购买",
+        "items": [
+            "{merchant} 是 merchant of record：负责收款，并按您的账单地址计算销售税或 VAT。",
+            "在 {merchant} 客户门户中，您可以为每张发票添加公司名称、增值税号和账单地址，然后下载。",
+            "每次购买可在 {refundDays} 天内退款，每次续费可在扣款后 {refundDays} 天内退款。",
+            "需要采购订单，或想用其他方式付款？请发邮件至 <email>{email}</email>，我们会与您商定办法。"
+        ]
+    },
+    "data": {
+        "title": "团队的数据",
+        "items": [
+            "密码绝不会发送到 TablePro 服务器。App 在发布前移除密码，服务器会拒绝任何包含密码的内容。",
+            "Team Library 将连接设置和已保存查询保存在 TablePro 服务器上。只有在您的许可证上激活的 Mac 才能读取。",
+            "方案结束后，已发布的内容仍保留在服务器上，直到您要求我们删除。"
+        ],
+        "security": "TablePro 如何处理您的数据",
+        "privacy": "隐私政策"
+    },
+    "enterprise": {
+        "title": "需要更多管控？",
+        "text": "使用公司账号登录、对团队连接强制执行的策略、生产环境写入审计和通过 MDM 部署，会在有公司提出需求时开发。告诉我们您的需求。",
+        "cta": "联系我们"
+    }
+}

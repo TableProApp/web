@@ -8,7 +8,7 @@ use App\Support\Localization\Locales;
 use App\Support\Pricing\Campaign;
 
 /**
- * The one-off pages: home, download, iOS, pricing, FAQ, about, security, sponsors, the dated sale and the blog index.
+ * The one-off pages: home, download, iOS, pricing, teams, FAQ, about, security, sponsors, the dated sale and the blog index.
  *
  * Each renders in a locale when `resources/data/content/{locale}/{page}.json`
  * exists, and is indexable there unless that file sets `seo.indexable` to
@@ -28,6 +28,7 @@ final class StaticPages implements PageFamily
         'landing.download' => 'download',
         'landing.ios' => 'ios',
         'landing.pricing' => 'pricing',
+        'landing.teams' => 'teams',
         'landing.faq' => 'faq',
         'landing.about' => 'about',
         'landing.security' => 'security',

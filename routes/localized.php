@@ -15,6 +15,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\SponsorsController;
+use App\Http\Controllers\TeamsController;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Content\Slugs\FeatureSlugs;
@@ -61,6 +62,7 @@ Route::get('/faq', FaqController::class)->name('landing.faq');
 Route::get('/about', AboutController::class)->name('landing.about');
 Route::get('/security', SecurityController::class)->name('landing.security');
 Route::get('/sponsors', SponsorsController::class)->name('landing.sponsors');
+Route::get('/teams', TeamsController::class)->name('landing.teams');
 Route::get('/black-friday', CampaignController::class)->name('landing.black-friday');
 
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('landing.privacy');

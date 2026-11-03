@@ -9,6 +9,7 @@ export default {
             "databases": "Bancos de dados",
             "integrations": "Integrações",
             "pricing": "Preços",
+            "teams": "Para equipes",
             "download": "Baixar",
             "compare": "Comparar"
         },

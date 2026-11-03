@@ -9,6 +9,7 @@ export default {
             "databases": "数据库",
             "integrations": "集成",
             "pricing": "定价",
+            "teams": "面向团队",
             "download": "下载",
             "compare": "对比"
         },

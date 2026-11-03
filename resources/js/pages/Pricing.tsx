@@ -226,7 +226,10 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                     <p>{rich(content.team.seats)}</p>
                     <p>{rich(content.team.invites)}</p>
                     <p>{rich(content.team.changes)}</p>
-                    <p>
+                    <p className="flex flex-wrap gap-x-6 gap-y-2">
+                        <LocaleLink href="/teams" className={textLinkClasses('standalone')}>
+                            {content.team.page}
+                        </LocaleLink>
                         <TextLink href={account} kind="standalone">
                             {content.team.account}
                         </TextLink>
