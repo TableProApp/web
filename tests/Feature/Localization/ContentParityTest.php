@@ -409,6 +409,8 @@ function untranslatedKeptNames(): array
         'Face ID', 'Touch ID', 'Optic ID', 'Handoff', 'Siri', 'Dynamic Island', 'AppleScript', 'App Store', 'Mac App Store',
         'Apple silicon', 'Intel',
         'Starter', 'Pro', 'Team', 'merchant of record',
+        // A dated sale's name, kept like a plan's (positioning §9, "Dated sales").
+        'Black Friday', 'Black Friday 2026',
         'SQL', 'SSH', 'SSL', 'TLS', 'MCP', 'GUI',
         'TablePro', 'GitHub', 'Homebrew', 'Setapp', 'Microsoft Entra ID', 'AWS IAM', 'Cloud SQL Auth Proxy', 'Windows', 'Linux',
         'BigQuery',

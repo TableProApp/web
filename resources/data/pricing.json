@@ -22,6 +22,17 @@
         "perpetualFallback": false,
         "legacy": { "revalidateDays": 7, "offlineGraceDays": 30 }
     },
+    "campaign": {
+        "id": "black-friday-2026",
+        "code": "BLACKFRIDAY2026",
+        "percent": 40,
+        "duration": "once",
+        "tier": "starter",
+        "cycles": ["yearly", "lifetime"],
+        "startsAt": "2026-11-24T00:00:00Z",
+        "endsAt": "2026-12-01T08:00:00Z",
+        "listPriceSince": "2026-11-02"
+    },
     "billingPortalUrl": "https://polar.sh/tablepro/portal",
     "checkoutSdk": "https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js",
     "syncedWith": "tablepro-cloud's GET /v2/pricing and the Polar products"

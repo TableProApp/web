@@ -1,6 +1,7 @@
 // pricing.json, synced by hand with tablepro-cloud's GET /v2/pricing and the Polar products: never change a value here alone.
 // The Team seat maximum is not in it: the plan cards read it from GET /v2/pricing.
 import data from '@data/pricing.json';
+import type { CampaignData } from '@/lib/campaign';
 
 export type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -42,6 +43,8 @@ export interface PricingData {
         perpetualFallback: false;
         legacy: { revalidateDays: number; offlineGraceDays: number };
     };
+    // The dated sale, synced by hand with the Polar discount; null when there is none (lib/campaign.ts).
+    campaign: CampaignData | null;
     billingPortalUrl: string;
     syncedWith: string;
 }

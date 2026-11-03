@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Middleware\CacheHtmlAtEdge;
+use App\Support\Pricing\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
 use Symfony\Component\HttpFoundation\Cookie;
+
+use function Pest\Laravel\travelTo;
+
+// The usual lifetimes; near a dated sale's start or end they shrink to end at it (CampaignTest), so these run after it.
+beforeEach(function (): void {
+    travelTo(Campaign::current()?->endsAt ?? now());
+});
 
 function expectSharedAtEdge(TestResponse $response): void
 {

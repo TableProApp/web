@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
+import CampaignBand from '@/components/campaign/campaign-band';
 import PlanMatrix from '@/components/pricing/plan-matrix';
 import { planOffers } from '@/components/pricing/offers';
 import PricingPlans from '@/components/pricing/pricing-plans';
@@ -79,7 +80,9 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
     ]);
 }
 
-// No conversion furniture: no "most popular", no typed saving, no countdown.
+// No conversion furniture: no "most popular", no typed saving, no countdown. The one exception is a dated sale while it
+// is live: its band above the header, with the time left to its real end, and its price on the cards it covers
+// (positioning §9, "Dated sales").
 export default function Pricing({ content, paidFeatures, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
@@ -133,6 +136,7 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 })}
             />
 
+            <CampaignBand variant="pricing" />
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
             <section id="plans" aria-labelledby="plans-title" className="py-8 md:py-10 xl:py-12">
@@ -207,7 +211,10 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                     <p>{rich(content.team.seats)}</p>
                     <p>{rich(content.team.invites)}</p>
                     <p>{rich(content.team.changes)}</p>
-                    <p>
+                    <p className="flex flex-wrap gap-x-6 gap-y-2">
+                        <LocaleLink href="/teams" className={textLinkClasses('standalone')}>
+                            {content.team.page}
+                        </LocaleLink>
                         <TextLink href={account} kind="standalone">
                             {content.team.account}
                         </TextLink>

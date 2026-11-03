@@ -9,6 +9,7 @@ export default {
             "databases": "資料庫",
             "integrations": "整合",
             "pricing": "價格方案",
+            "teams": "適合團隊",
             "download": "下載",
             "compare": "比較"
         },

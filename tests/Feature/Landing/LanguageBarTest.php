@@ -1,11 +1,18 @@
 <?php
 
+use App\Support\Pricing\Campaign;
 use App\Support\Localization\LanguageDetection;
 use App\Support\Localization\Locales;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
+
+// The license banner's rules; a dated sale takes the slot while it is live (CampaignTest), so these run after it has ended.
+beforeEach(function (): void {
+    travelTo(Campaign::current()?->endsAt ?? now());
+});
 
 const SUGGESTION_MARKER = '/* language-suggestion:start */';
 

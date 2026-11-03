@@ -4,6 +4,7 @@ import footer from './footer.ts';
 import controls from './controls.ts';
 import consent from './consent.ts';
 import banner from './banner.ts';
+import campaign from './campaign.ts';
 import forms from './forms.ts';
 import platforms from './platforms.ts';
 import pricing from './pricing.ts';
@@ -21,6 +22,7 @@ const zhHans = {
     controls,
     consent,
     banner,
+    campaign,
     forms,
     platforms,
     pricing,

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import type { PricingCardVariant } from './pricing-card';
 
 // The subject marks an inquiry, so each one can be counted before anything is built for it.
-const INQUIRY_SUBJECT = 'TablePro Enterprise';
+export const INQUIRY_SUBJECT = 'TablePro Enterprise';
 
 interface EnterpriseCardProps {
     variant: PricingCardVariant;

@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import AiSection from '@/components/home/ai-section';
+import CampaignBand from '@/components/campaign/campaign-band';
 import { availability as availabilityFor } from '@/components/home/availability';
 import DatabasesSection from '@/components/home/databases-section';
 import Hero from '@/components/home/hero';
@@ -30,6 +31,9 @@ import LandingLayout from '@/layouts/landing-layout';
  * (`#mcp`, `#mobile`, `#compare`, `#license`) are empty anchors inside the
  * sections that replaced them. `#pricing` is where shipped Mac builds land
  * with `/?ref=…#pricing`.
+ *
+ * While a dated sale is live, its band comes first, above the hero, which
+ * stays as it is (`CampaignBand`).
  *
  * Copy is `content/{locale}/home.json`. Every platform, requirement, engine,
  * format, plan and price comes from resources/data, so nothing here is typed
@@ -66,6 +70,7 @@ export default function Home({ content, engines, categories, iosEngines, testimo
                 })}
             />
 
+            <CampaignBand variant="home" />
             <Hero content={content.hero} availability={availability} featuredEngines={featuredEngines.join(', ')} />
             <DatabasesSection
                 content={content.databases}
