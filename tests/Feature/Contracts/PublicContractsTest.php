@@ -127,6 +127,11 @@ it('keeps the analytics event names and their parameters', function (): void {
         // The banner cannot be closed, so there is no dismiss event, and it has no version to report.
         'license_banner_view' => [],
         'license_banner_click' => [],
+        // The dated sale's banner and band, while it is live. Its banner can be closed, for its countdown.
+        'campaign_banner_view' => [],
+        'campaign_banner_click' => [],
+        'campaign_banner_close' => [],
+        'campaign_band_click' => [],
     ];
 
     foreach ($names as $name => $sets) {

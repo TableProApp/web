@@ -35,10 +35,34 @@ export interface SwitcherItem {
     fallback: boolean;
 }
 
-/** The banner's link; its words are the `banner` catalog's. It cannot be closed, so it has no version. */
+/**
+ * Which banner holds the slot above the header, and its link: the license
+ * banner, or the dated sale's while it is live (`App\Support\Banner`). The
+ * words are the `banner` and `campaign` catalogs'. Neither can be closed, so
+ * there is no version.
+ */
 export interface BannerProp {
+    kind: 'license' | 'campaign';
     href: string;
 }
+
+/**
+ * The dated sale in pricing.json, as this page was rendered: its phase on the
+ * server's clock, and its window's dates in the page's language, in UTC. The
+ * code, percentage and cycles are pricing.json's. `useCampaign` checks the
+ * phase again on the reader's clock.
+ */
+export interface CampaignProp {
+    phase: CampaignPhase;
+    startsOn: string;
+    startsAtTime: string;
+    endsOn: string;
+    endsAtTime: string;
+    /** When the struck list prices took effect. */
+    listPriceSince: string;
+}
+
+export type CampaignPhase = 'upcoming' | 'live' | 'ended';
 
 export interface SharedProps extends Record<string, unknown> {
     canonicalBaseUrl: string;
@@ -50,6 +74,8 @@ export interface SharedProps extends Record<string, unknown> {
     };
     seo: SeoProp;
     banner: BannerProp | null;
+    /** Null when pricing.json names no campaign. */
+    campaign: CampaignProp | null;
     /** Public website ID, read only by the click-to-load chat helper. */
     crispWebsiteId: string | null;
     // tablepro-cloud's API origin, without a trailing slash: https://api.tablepro.app in production.

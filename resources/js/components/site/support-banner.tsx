@@ -37,7 +37,9 @@ import { trackEvent } from '@/lib/analytics';
  * Analytics, which applies the reader's consent choice itself.
  */
 export default function SupportBanner() {
-    const banner = usePage().props.banner;
+    const slot = usePage().props.banner;
+    // The dated sale's banner takes the slot while it is live (CampaignBanner).
+    const banner = slot?.kind === 'license' ? slot : null;
     const { m } = useI18n();
     const shown = banner !== null;
 

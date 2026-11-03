@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Pricing\Campaign;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,11 @@ use Symfony\Component\HttpFoundation\Response;
  * and `stale-while-revalidate` lets it answer with the previous copy while it
  * fetches the next. The deploy purges the cache once a release is live.
  *
+ * A dated sale (`App\Support\Pricing\Campaign`) changes every page at its
+ * start and its end, with no deploy to purge the cache. So in the hour and ten
+ * minutes before either, both lifetimes shrink to end at it: no copy rendered
+ * on one side of the instant is served on the other.
+ *
  * Applied to the `web` group, and by `RenderErrorPage` to the error pages,
  * because a URL that matches no route never reaches the group.
  */
@@ -43,6 +49,13 @@ class CacheHtmlAtEdge
      * What a shareable page carries.
      */
     public const CACHE_CONTROL = 'public, max-age=0, s-maxage=600, stale-while-revalidate=3600';
+
+    /**
+     * How long the edge may answer from a copy, then serve it stale, in seconds.
+     */
+    public const FRESH_SECONDS = 600;
+
+    public const STALE_SECONDS = 3600;
 
     /**
      * The statuses a shared cache may keep.
@@ -70,13 +83,30 @@ class CacheHtmlAtEdge
             return $response;
         }
 
-        $response->headers->set('Cache-Control', self::CACHE_CONTROL);
+        $response->headers->set('Cache-Control', self::cacheControl(Campaign::current()?->secondsUntilChange()));
 
         if (! in_array('x-inertia', array_map('strtolower', $response->getVary()), true)) {
             $response->setVary('X-Inertia', false);
         }
 
         return $response;
+    }
+
+    /**
+     * The header for a page whose content changes in `$secondsUntilChange`
+     * seconds, or null when nothing dated is ahead: the usual lifetimes, or
+     * both cut short so that together they end at the change.
+     */
+    public static function cacheControl(?int $secondsUntilChange): string
+    {
+        if ($secondsUntilChange === null || $secondsUntilChange >= self::FRESH_SECONDS + self::STALE_SECONDS) {
+            return self::CACHE_CONTROL;
+        }
+
+        $fresh = max(0, min(self::FRESH_SECONDS, $secondsUntilChange));
+        $stale = max(0, min(self::STALE_SECONDS, $secondsUntilChange - $fresh));
+
+        return "public, max-age=0, s-maxage={$fresh}, stale-while-revalidate={$stale}";
     }
 
     /**

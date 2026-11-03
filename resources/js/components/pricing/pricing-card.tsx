@@ -5,6 +5,7 @@ import { CheckGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import Stepper from '@/components/ui/stepper';
 import { textLinkClasses } from '@/components/ui/text-link';
+import { useCampaign } from '@/hooks/use-campaign';
 import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
@@ -37,6 +38,7 @@ interface PricingCardProps {
 // the spare height in Free and Pro falls under the activation line rather than between the price and that line.
 export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, maxSeats, onSeatsChange, discountCode, regional }: PricingCardProps) {
     const { m, fmt, plural } = useI18n();
+    const { offer } = useCampaign();
     const id = useId();
     const Title = headingLevel;
     const copy = m.pricing.tiers[tier];
@@ -58,7 +60,21 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             </div>
 
             <div className="grid content-start gap-4 md:max-lg:col-start-1">
-                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} maxSeats={maxSeats} onSeatsChange={onSeatsChange} regional={regional} />}</div>
+                <div>
+                    {tier === 'free' ? (
+                        <Price amount={0} />
+                    ) : (
+                        <PaidPrice
+                            tier={tier}
+                            cycle={cycle}
+                            seats={seats}
+                            maxSeats={maxSeats}
+                            onSeatsChange={onSeatsChange}
+                            regional={regional}
+                            typedCode={discountCode}
+                        />
+                    )}
+                </div>
 
                 <p className="type-small text-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
@@ -80,7 +96,14 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                         loading={checkout.pending === tier}
                         onPointerEnter={checkout.warm}
                         onFocus={checkout.warm}
-                        onClick={() => void checkout.start(tier, cycle, { seats: tier === 'team' ? seats : undefined, maxSeats, discountCode })}
+                        onClick={() =>
+                            void checkout.start(tier, cycle, {
+                                seats: tier === 'team' ? seats : undefined,
+                                maxSeats,
+                                // A typed code is the reader's choice; otherwise a live sale's, where it applies.
+                                discountCode: discountCode ?? offer(tier, cycle, regional?.percent ?? null)?.code ?? null,
+                            })
+                        }
                     >
                         {m.pricing.tiers[tier].cta}
                     </Button>
@@ -122,13 +145,18 @@ interface PaidPriceProps {
     maxSeats: number | null;
     onSeatsChange: (seats: number) => void;
     regional: Regional | null;
+    /** A code the reader typed replaces every other discount at checkout, unless it is the sale's own. */
+    typedCode: string | null;
 }
 
 // Every cycle's price is in the HTML, so the page states each price its structured data offers. Team's total is
 // discounted as a whole, as checkout discounts the order, so it can differ by a cent from the seat price times the seats.
 // Team's yearly price shows as a month's share, billed yearly; Team has no one-time price, so that cycle says so instead.
-function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional }: PaidPriceProps) {
+// While a dated sale is live, a cycle it covers shows the sale's price under its tag instead of the regional one, unless
+// the regional discount takes more off (`offerFor`): checkout applies one discount, and the card shows the one it will.
+function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional, typedCode }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
+    const { offer } = useCampaign();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
 
@@ -146,6 +174,23 @@ function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional }: Pa
         }
 
         const shown = tier === 'team' && each === 'yearly' ? amount / 12 : amount;
+        const sale = typedCode !== null && typedCode.toUpperCase() !== PRICING.campaign?.code ? null : offer(tier, each, regional?.percent ?? null);
+
+        if (sale !== null) {
+            return (
+                <div key={each} hidden={each !== cycle} className="grid gap-1.5">
+                    <p>
+                        <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-accent-foreground">
+                            {fmt(m.campaign.offer.tag, { percent: sale.percent })}
+                        </span>
+                    </p>
+                    <Price amount={discountedAmount(shown, sale.percent)} listAmount={shown} unit={units[each]} />
+                    {sale.firstChargeOnly && (
+                        <p className="type-caption text-muted-foreground">{fmt(m.campaign.offer.firstYear, { price: formatUsd(shown, m.pricing.currency) })}</p>
+                    )}
+                </div>
+            );
+        }
 
         return (
             <Price

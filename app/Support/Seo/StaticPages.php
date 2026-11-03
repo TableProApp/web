@@ -2,11 +2,13 @@
 
 namespace App\Support\Seo;
 
+use App\Support\Banner;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
+use App\Support\Pricing\Campaign;
 
 /**
- * The one-off pages: home, download, iOS, pricing, FAQ, about, security, sponsors and the blog index.
+ * The one-off pages: home, download, iOS, pricing, teams, FAQ, about, security, sponsors, the dated sale and the blog index.
  *
  * Each renders in a locale when `resources/data/content/{locale}/{page}.json`
  * exists, and is indexable there unless that file sets `seo.indexable` to
@@ -26,10 +28,12 @@ final class StaticPages implements PageFamily
         'landing.download' => 'download',
         'landing.ios' => 'ios',
         'landing.pricing' => 'pricing',
+        'landing.teams' => 'teams',
         'landing.faq' => 'faq',
         'landing.about' => 'about',
         'landing.security' => 'security',
         'landing.sponsors' => 'sponsors',
+        'landing.black-friday' => 'black-friday',
         'landing.blog.index' => 'blog',
     ];
 
@@ -63,6 +67,11 @@ final class StaticPages implements PageFamily
         $name = self::PAGES[$route] ?? null;
 
         if ($name === null || $params !== []) {
+            return null;
+        }
+
+        // The sale's page exists while pricing.json names a sale, ended ones included.
+        if ($route === Banner::CAMPAIGN_PAGE && Campaign::current() === null) {
             return null;
         }
 

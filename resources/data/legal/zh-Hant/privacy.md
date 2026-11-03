@@ -191,6 +191,7 @@ Mac 上的 iCloud Sync 屬於 Pro 或 Team 授權功能，在 iPhone 與 iPad �
 - **`tablepro:attribution`**（本機儲存空間，90 天）：[網站](#website)一節所述的首次造訪紀錄。不包含您的識別碼，僅隨結帳請求傳送，伺服器會將造訪來源傳給 {merchant}。合法依據：正當利益。
 - **`theme`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀。帳戶入口網站另外保存自己的選擇。合法依據：正當利益。
 - **`tablepro:language`**（本機儲存空間，直至您清除）：保存您在語言選單或語言列中選擇的語言，以及您關閉過建議的語言，以免再次建議。合法依據：正當利益。
+- **`tablepro:campaign-closed`**（本機儲存空間，直至您清除）：保存您關閉了頁首上方通知的那次優惠活動，讓該通知在活動結束前在每個頁面上都維持關閉。合法依據：正當利益。
 - **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
 - **`__Host-tp_session`**（帳戶入口網站 Cookie，自登入起 30 天）：保持登入狀態。登入前，僅在透過通行密鑰、Apple、GitHub、Google 或 App 登入的過程中設定，最長 10 分鐘。登出會刪除它。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，也從不會收到它。合法依據：絕對必要。

@@ -15,6 +15,7 @@ use Symfony\Component\Finder\SplFileInfo;
  *     },
  *     refund: array{days: int, scope: string},
  *     license: array{deviceLimit: int, offlineDays: int, perpetualFallback: bool, legacy: array{revalidateDays: int, offlineGraceDays: int}},
+ *     campaign: array{id: string, code: string, percent: int, duration: string, tier: string, cycles: list<string>, startsAt: string, endsAt: string, listPriceSince: string}|null,
  *     billingPortalUrl: string,
  *     checkoutSdk: string,
  *     syncedWith: string
@@ -36,7 +37,7 @@ it('has exactly the documented shape', function (): void {
     $pricing = pricingJson();
 
     expect(array_keys($pricing))->toBe([
-        'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'billingPortalUrl', 'checkoutSdk', 'syncedWith',
+        'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'campaign', 'billingPortalUrl', 'checkoutSdk', 'syncedWith',
     ]);
     expect(array_keys($pricing['tiers']))->toBe(['free', 'starter', 'team']);
     expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices']);
@@ -72,6 +73,32 @@ it('keeps every price unchanged', function (): void {
     expect($tiers['team']['unit'])->toBe('seat');
     expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 1200, 'yearly' => 12000]);
     expect($tiers['team']['seats'])->toBe(['min' => 2]);
+});
+
+// Synced by hand with the provider's discount (Polar, BLACKFRIDAY2026): its percentage, duration, products and window.
+it('pins the dated sale to the provider\'s discount', function (): void {
+    expect(pricingJson()['campaign'])->toBe([
+        'id' => 'black-friday-2026',
+        'code' => 'BLACKFRIDAY2026',
+        'percent' => 40,
+        'duration' => 'once',
+        'tier' => 'starter',
+        'cycles' => ['yearly', 'lifetime'],
+        'startsAt' => '2026-11-24T00:00:00Z',
+        'endsAt' => '2026-12-01T08:00:00Z',
+        'listPriceSince' => '2026-11-02',
+    ]);
+});
+
+it('takes the sale off whole cents, so the site and checkout agree on every price', function (): void {
+    $pricing = pricingJson();
+    $campaign = $pricing['campaign'];
+
+    foreach ($campaign['cycles'] as $cycle) {
+        $cents = pricingCents($pricing['tiers'][$campaign['tier']]['prices'][$cycle]);
+
+        expect(($cents * $campaign['percent']) % 100)->toBe(0, "{$cycle} would leave a fraction of a cent off");
+    }
 });
 
 it('stores prices as dollar amounts that need no rounding', function (): void {

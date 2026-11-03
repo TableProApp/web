@@ -1,16 +1,20 @@
 <?php
 
 use App\Support\Localization\Locales;
+use App\Support\Pricing\Campaign;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
 use function Pest\Laravel\withoutVite;
 
+// The list prices; while a dated sale is live the cards it covers carry its price (CampaignPageTest), so these run after it.
 beforeEach(function (): void {
     withoutVite();
+    travelTo(Campaign::current()?->endsAt ?? now());
 });
 
 /**

@@ -207,6 +207,11 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </LocaleLink>
                         </li>
                         <li>
+                            <LocaleLink href="/teams" className={LINK}>
+                                {groups.product.teams}
+                            </LocaleLink>
+                        </li>
+                        <li>
                             <LocaleLink href="/download" className={LINK}>
                                 {groups.product.download}
                             </LocaleLink>

@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "TablePro cho nhóm",
+        "description": "Chia sẻ connection và query đã lưu với nhóm mà không chia sẻ mật khẩu. Tính phí theo seat, trả theo tháng hoặc theo năm, có hóa đơn cho công ty."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "TablePro cho nhóm"
+    },
+    "breadcrumb": "Cho nhóm",
+    "header": {
+        "title": "TablePro cho nhóm",
+        "lead": "Chia sẻ connection và query đã lưu với nhóm, không kèm mật khẩu. Mỗi seat có Pro, và công ty của bạn nhận hóa đơn.",
+        "primary": "Xem giá Team",
+        "secondary": "Liên hệ"
+    },
+    "share": {
+        "title": "Nhóm của bạn chia sẻ gì",
+        "lead": "Có hai cách chia sẻ, tùy bạn muốn file nằm ở đâu.",
+        "library": {
+            "title": "Team Library",
+            "text": "Chủ sở hữu và quản trị viên chia sẻ cài đặt connection, query đã lưu và thư mục của chúng lên server TablePro. Thành viên có seat thấy chúng trong sidebar, luôn được cập nhật, và biết ai sửa từng query gần nhất.",
+            "link": "Cách Team Library hoạt động"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Ghi file connection không có mật khẩu vào thư mục nhóm đã dùng chung, như một Git repository hoặc ổ đĩa chung. Thành viên thêm thư mục đó dưới dạng Linked Folder. Không có gì đi qua server TablePro.",
+            "link": "Cách Team Catalog hoạt động"
+        },
+        "pro": {
+            "title": "Pro cho mọi seat",
+            "text": "Mỗi máy Mac trong nhóm có mọi tính năng Pro, như {proExamples}.",
+            "link": "Mọi tính năng trả phí"
+        }
+    },
+    "seats": {
+        "title": "Seat và thành viên",
+        "items": [
+            "Một seat dành cho một người, dùng trên tối đa {deviceLimit} máy Mac.",
+            "Chủ sở hữu và quản trị viên mời người khác qua email từ trang Thành viên trong tài khoản, kèm vai trò và, nếu muốn, một seat. Liên kết có hiệu lực 7 ngày, và tài khoản TablePro nào cũng nhận được.",
+            "Chủ sở hữu lo phần thanh toán. Quản trị viên quản lý thành viên, lời mời, Team Library và nhật ký hoạt động của nhóm. Thành viên dùng những gì được chia sẻ.",
+            "Chủ sở hữu đổi số seat của subscription trong mục Thanh toán, và {merchant} tính thêm hoặc hoàn lại phần chênh lệch theo ngày ngay lập tức.",
+            "Gỡ một thành viên sẽ giải phóng seat của họ. Máy Mac của họ mất tính năng Team ở lần TablePro kết nối tiếp theo."
+        ]
+    },
+    "pricing": {
+        "title": "Giá",
+        "yearly": "{yearlyPerMonth} mỗi seat mỗi tháng, trả theo năm: {yearly} mỗi seat mỗi năm.",
+        "monthly": "{monthly} mỗi seat mỗi tháng, trả theo tháng.",
+        "seats": "Từ {min} seat. {exampleSeats} seat có giá {exampleYearly} mỗi năm.",
+        "note": "Team là subscription; không có license Team mua một lần.",
+        "cta": "Mua Team"
+    },
+    "buying": {
+        "title": "Mua cho công ty",
+        "items": [
+            "{merchant} là merchant of record: họ nhận thanh toán và tính thuế bán hàng hoặc VAT theo địa chỉ thanh toán của bạn.",
+            "Trong trang khách hàng của {merchant}, bạn có thể thêm tên công ty, mã số VAT và địa chỉ thanh toán vào từng hóa đơn, rồi tải về.",
+            "Mỗi lần mua được hoàn tiền trong vòng {refundDays} ngày, và mỗi lần gia hạn trong vòng {refundDays} ngày kể từ lúc bị trừ tiền.",
+            "Cần purchase order hoặc một cách thanh toán khác? Gửi email tới <email>{email}</email> và chúng tôi sẽ cùng bạn sắp xếp."
+        ]
+    },
+    "data": {
+        "title": "Dữ liệu của nhóm",
+        "items": [
+            "Mật khẩu không bao giờ được gửi lên server TablePro. App bỏ chúng ra trước khi chia sẻ, và server từ chối mọi dữ liệu có chứa mật khẩu.",
+            "Team Library lưu cài đặt connection và query đã lưu trên server TablePro. Chỉ những máy Mac đã kích hoạt trên license của bạn mới đọc được.",
+            "Nếu gói hết hạn, những gì đã chia sẻ vẫn nằm trên server cho tới khi chủ sở hữu xóa nhóm, khi đó thư viện bị xóa theo."
+        ],
+        "security": "TablePro xử lý dữ liệu của bạn thế nào",
+        "privacy": "Chính sách quyền riêng tư"
+    },
+    "enterprise": {
+        "title": "Cần kiểm soát nhiều hơn?",
+        "text": "Đăng nhập bằng tài khoản công ty, chính sách áp dụng cho connection của nhóm, nhật ký ghi trên production và triển khai qua MDM được xây dựng khi có công ty cần. Hãy cho chúng tôi biết bạn cần gì.",
+        "cta": "Liên hệ"
+    }
+}
