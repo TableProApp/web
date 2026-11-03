@@ -15,6 +15,7 @@ export default {
             databases: 'Databases',
             integrations: 'Integrations',
             pricing: 'Pricing',
+            teams: 'For teams',
             download: 'Download',
             compare: 'Compare',
         },

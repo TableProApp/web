@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "TablePro for teams",
+        "description": "Share connections and saved queries with your team without their passwords. Priced per seat, monthly or yearly, with an invoice for your company."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "TablePro for teams"
+    },
+    "breadcrumb": "For teams",
+    "header": {
+        "title": "TablePro for teams",
+        "lead": "Share connections and saved queries with your team, without their passwords. Every seat gets Pro, and your company gets an invoice.",
+        "primary": "See Team pricing",
+        "secondary": "Contact us"
+    },
+    "share": {
+        "title": "What your team shares",
+        "lead": "Two ways to share, depending on where you want the files to live.",
+        "library": {
+            "title": "Team Library",
+            "text": "Owners and admins publish connection settings, saved queries and their folders to TablePro's server. Everyone on the team gets them in the sidebar, read-only.",
+            "link": "How Team Library works"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Publish password-free connection files to a folder your team already shares, such as a Git repository or a shared drive. Teammates add it as a Linked Folder. Nothing goes through TablePro's server.",
+            "link": "How Team Catalog works"
+        },
+        "pro": {
+            "title": "Pro on every seat",
+            "text": "Each Mac on the team gets every Pro feature, such as {proExamples}.",
+            "link": "Every paid feature"
+        }
+    },
+    "seats": {
+        "title": "Seats and members",
+        "items": [
+            "A seat is one activated Mac. The buyer's Mac takes one too.",
+            "The buyer invites teammates by email from their account. Each one gets a single-use code to enter in <ui>Settings > License</ui>.",
+            "The owner and admins publish to the Team Library. Members use what is shared.",
+            "Add or remove seats in your account at any time. The difference shows on your next invoice.",
+            "Removing a teammate frees their seat and deletes what they published to the Team Library. Their Mac loses paid access at its next license check."
+        ]
+    },
+    "pricing": {
+        "title": "Price",
+        "yearly": "{yearlyPerMonth} a seat a month, billed yearly: {yearly} a seat a year.",
+        "monthly": "{monthly} a seat a month, billed monthly.",
+        "seats": "From {min} to {max} seats. {exampleSeats} seats cost {exampleYearly} a year.",
+        "note": "Team is a subscription; there is no one-time Team license.",
+        "cta": "Buy Team"
+    },
+    "buying": {
+        "title": "Buying for a company",
+        "items": [
+            "{merchant} is the merchant of record: it takes the payment and calculates sales tax or VAT from your billing address.",
+            "In {merchant}'s customer portal you can add your company's name, VAT number and billing address to each invoice, then download it.",
+            "A purchase can be refunded within {refundDays} days, and each renewal within {refundDays} days of its charge.",
+            "Need a purchase order, or another way to pay? Write to <email>{email}</email> and we will work it out with you."
+        ]
+    },
+    "data": {
+        "title": "Your team's data",
+        "items": [
+            "Passwords are never sent to TablePro's server. The app removes them before publishing, and the server refuses anything that holds one.",
+            "The Team Library keeps connection settings and saved queries on TablePro's server. Only Macs activated on your license can read them.",
+            "If the plan ends, what was published stays on the server until you ask us to delete it."
+        ],
+        "security": "How TablePro handles your data",
+        "privacy": "Privacy policy"
+    },
+    "enterprise": {
+        "title": "Need more control?",
+        "text": "Sign-in with your company accounts, policies enforced on team connections, an audit of production writes and MDM deployment are built when companies ask for them. Tell us what you need.",
+        "cta": "Contact us"
+    }
+}

@@ -30,6 +30,7 @@ class LlmsTxtController extends Controller
             'landing.features.index',
             'landing.features.show',
             'landing.pricing',
+            'landing.teams',
             'landing.download',
             'landing.ios',
             'landing.integrations.index',

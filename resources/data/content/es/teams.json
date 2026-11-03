@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "TablePro para equipos",
+        "description": "Comparte conexiones y consultas guardadas con tu equipo sin sus contraseñas. Precio por puesto, con pago mensual o anual y factura para tu empresa."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "TablePro para equipos"
+    },
+    "breadcrumb": "Para equipos",
+    "header": {
+        "title": "TablePro para equipos",
+        "lead": "Comparte conexiones y consultas guardadas con tu equipo, sin sus contraseñas. Cada puesto incluye Pro y tu empresa recibe una factura.",
+        "primary": "Ver precios de Team",
+        "secondary": "Contáctanos"
+    },
+    "share": {
+        "title": "Qué comparte tu equipo",
+        "lead": "Dos formas de compartir, según dónde quieras guardar los archivos.",
+        "library": {
+            "title": "Team Library",
+            "text": "Los propietarios y los administradores publican ajustes de conexión, consultas guardadas y sus carpetas en el servidor de TablePro. Todo el equipo los recibe en la barra lateral, en modo de solo lectura.",
+            "link": "Cómo funciona Team Library"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Publica archivos de conexión sin contraseñas en una carpeta que tu equipo ya comparte, como un repositorio Git o una unidad compartida. Los compañeros la añaden como Linked Folder. Nada pasa por el servidor de TablePro.",
+            "link": "Cómo funciona Team Catalog"
+        },
+        "pro": {
+            "title": "Pro en cada puesto",
+            "text": "Cada Mac del equipo recibe todas las funciones de Pro, como {proExamples}.",
+            "link": "Todas las funciones de pago"
+        }
+    },
+    "seats": {
+        "title": "Puestos y miembros",
+        "items": [
+            "Un puesto es un Mac activado. El Mac del comprador también ocupa uno.",
+            "El comprador invita a sus compañeros por correo desde su cuenta. Cada uno recibe un código de un solo uso para introducir en <ui>Settings > License</ui>.",
+            "El propietario y los administradores publican en Team Library. Los miembros usan lo que se comparte.",
+            "Añade o quita puestos en tu cuenta cuando quieras. La diferencia aparece en tu próxima factura.",
+            "Eliminar a un compañero libera su puesto y borra lo que publicó en Team Library. Su Mac pierde el acceso de pago en la siguiente verificación de licencia."
+        ]
+    },
+    "pricing": {
+        "title": "Precio",
+        "yearly": "{yearlyPerMonth} por puesto al mes, con facturación anual: {yearly} por puesto al año.",
+        "monthly": "{monthly} por puesto al mes, con facturación mensual.",
+        "seats": "De {min} a {max} puestos. Un equipo de {exampleSeats} paga {exampleYearly} al año.",
+        "note": "Team es una suscripción; no hay licencia Team de pago único.",
+        "cta": "Comprar Team"
+    },
+    "buying": {
+        "title": "Comprar para una empresa",
+        "items": [
+            "{merchant} es el merchant of record: cobra el pago y calcula el impuesto sobre ventas o el IVA según tu dirección de facturación.",
+            "En el portal de clientes de {merchant} puedes añadir a cada factura el nombre de tu empresa, tu número de IVA y tu dirección de facturación, y después descargarla.",
+            "Una compra se puede reembolsar dentro de los {refundDays} días siguientes, y cada renovación dentro de los {refundDays} días siguientes a su cobro.",
+            "¿Necesitas una orden de compra u otra forma de pago? Escribe a <email>{email}</email> y lo resolveremos contigo."
+        ]
+    },
+    "data": {
+        "title": "Los datos de tu equipo",
+        "items": [
+            "Las contraseñas nunca se envían al servidor de TablePro. La app las elimina antes de publicar y el servidor rechaza todo lo que contenga una.",
+            "Team Library guarda ajustes de conexión y consultas guardadas en el servidor de TablePro. Solo los Mac activados con tu licencia pueden leerlos.",
+            "Si el plan termina, lo publicado permanece en el servidor hasta que nos pidas eliminarlo."
+        ],
+        "security": "Cómo trata TablePro tus datos",
+        "privacy": "Política de privacidad"
+    },
+    "enterprise": {
+        "title": "¿Necesitas más control?",
+        "text": "El inicio de sesión con las cuentas de tu empresa, las políticas obligatorias en las conexiones del equipo, la auditoría de escrituras en producción y el despliegue mediante MDM se desarrollan cuando las empresas los piden. Cuéntanos qué necesitas.",
+        "cta": "Contáctanos"
+    }
+}

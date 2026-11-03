@@ -9,6 +9,7 @@ export default {
             databases: 'Cơ sở dữ liệu',
             integrations: 'Tích hợp',
             pricing: 'Bảng giá',
+            teams: 'Cho nhóm',
             download: 'Tải về',
             compare: 'So sánh',
         },

@@ -26,6 +26,7 @@ function landingFamilies(): array
         'landing.download' => ['Download', ['content', 'mac', 'release', 'unreleased']],
         'landing.ios' => ['Ios', ['content', 'ios', 'engines']],
         'landing.pricing' => ['Pricing', ['content', 'checkout', 'paidFeatures']],
+        'landing.teams' => ['Teams', ['content.header.title', 'content.seats.items', 'organizationProfiles']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
         'landing.about' => ['About', ['content', 'publisher.name', 'repositoryCreated', 'links']],
         'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],

@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "팀을 위한 TablePro",
+        "description": "비밀번호를 공유하지 않고 연결과 저장된 쿼리를 팀과 공유하세요. 좌석당 요금으로 월간 또는 연간 결제하며 회사 명의 청구서를 받을 수 있습니다."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "팀을 위한 TablePro"
+    },
+    "breadcrumb": "팀용",
+    "header": {
+        "title": "팀을 위한 TablePro",
+        "lead": "비밀번호를 공유하지 않고 연결과 저장된 쿼리를 팀과 공유하세요. 모든 좌석에 Pro가 포함되며 회사 명의 청구서를 받을 수 있습니다.",
+        "primary": "Team 요금 보기",
+        "secondary": "문의하기"
+    },
+    "share": {
+        "title": "팀이 공유하는 것",
+        "lead": "파일을 둘 위치에 따라 두 가지 방법으로 공유합니다.",
+        "library": {
+            "title": "Team Library",
+            "text": "소유자와 관리자가 연결 설정, 저장된 쿼리와 그 폴더를 TablePro 서버에 게시합니다. 팀원 모두의 사이드바에 읽기 전용으로 표시됩니다.",
+            "link": "Team Library 작동 방식"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Git 저장소나 공유 드라이브처럼 팀이 이미 공유하는 폴더에 비밀번호 없는 연결 파일을 게시합니다. 팀원은 이 폴더를 Linked Folder로 추가합니다. TablePro 서버를 거치는 것은 없습니다.",
+            "link": "Team Catalog 작동 방식"
+        },
+        "pro": {
+            "title": "모든 좌석에 Pro",
+            "text": "팀의 모든 Mac에서 {proExamples} 등 모든 Pro 기능을 사용할 수 있습니다.",
+            "link": "모든 유료 기능"
+        }
+    },
+    "seats": {
+        "title": "좌석과 팀원",
+        "items": [
+            "좌석 하나는 활성화된 Mac 한 대입니다. 구매자의 Mac도 한 석을 사용합니다.",
+            "구매자는 계정에서 이메일로 팀원을 초대합니다. 초대받은 사람은 각자 <ui>설정 > 라이선스</ui> (Settings > License)에 입력할 일회성 코드를 받습니다.",
+            "Team Library에는 소유자와 관리자가 게시합니다. 멤버는 공유된 항목을 사용합니다.",
+            "좌석은 계정에서 언제든 늘리거나 줄일 수 있습니다. 차액은 다음 청구서에 반영됩니다.",
+            "팀원을 제거하면 좌석이 반환되고 그 팀원이 Team Library에 게시한 내용이 삭제됩니다. 해당 Mac은 다음 라이선스 확인 때 유료 이용 권한을 잃습니다."
+        ]
+    },
+    "pricing": {
+        "title": "요금",
+        "yearly": "연간 결제 시 좌석당 월 {yearlyPerMonth}, 좌석당 연 {yearly}입니다.",
+        "monthly": "월간 결제 시 좌석당 월 {monthly}입니다.",
+        "seats": "{min}좌석부터 {max}좌석까지입니다. {exampleSeats}좌석 팀이면 연 {exampleYearly}입니다.",
+        "note": "Team은 구독 상품이며 일회성 Team 라이선스는 없습니다.",
+        "cta": "Team 구매"
+    },
+    "buying": {
+        "title": "회사 명의로 구매하기",
+        "items": [
+            "{merchant}가 merchant of record입니다. 결제를 받고 청구 주소를 기준으로 판매세나 VAT를 계산합니다.",
+            "{merchant} 고객 포털에서 청구서마다 회사명, VAT 번호, 청구 주소를 추가한 뒤 다운로드할 수 있습니다.",
+            "구매는 {refundDays}일 이내에, 각 갱신은 결제 후 {refundDays}일 이내에 환불할 수 있습니다.",
+            "구매 주문서가 필요하거나 다른 방법으로 결제하고 싶다면 <email>{email}</email>로 연락하세요. 방법을 함께 정하겠습니다."
+        ]
+    },
+    "data": {
+        "title": "팀 데이터",
+        "items": [
+            "비밀번호는 TablePro 서버로 전송되지 않습니다. 앱이 게시 전에 비밀번호를 제거하며, 서버는 비밀번호가 포함된 데이터를 거부합니다.",
+            "Team Library는 연결 설정과 저장된 쿼리를 TablePro 서버에 보관합니다. 해당 라이선스로 활성화된 Mac만 읽을 수 있습니다.",
+            "플랜이 끝나도 게시한 내용은 삭제를 요청할 때까지 서버에 남습니다."
+        ],
+        "security": "TablePro의 데이터 처리 방식",
+        "privacy": "개인정보 처리방침"
+    },
+    "enterprise": {
+        "title": "더 많은 관리 기능이 필요하신가요?",
+        "text": "회사 계정으로 로그인, 팀 연결에 적용되는 정책, 프로덕션 쓰기 감사, MDM 배포는 회사의 요청이 있을 때 만듭니다. 필요한 것을 알려 주세요.",
+        "cta": "문의하기"
+    }
+}

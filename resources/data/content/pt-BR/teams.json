@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "TablePro para equipes",
+        "description": "Compartilhe conexões e consultas salvas com sua equipe sem as senhas delas. Preço por vaga, mensal ou anual, com fatura para sua empresa."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "TablePro para equipes"
+    },
+    "breadcrumb": "Para equipes",
+    "header": {
+        "title": "TablePro para equipes",
+        "lead": "Compartilhe conexões e consultas salvas com sua equipe, sem as senhas delas. Cada vaga inclui o Pro, e sua empresa recebe uma fatura.",
+        "primary": "Ver preços do Team",
+        "secondary": "Fale conosco"
+    },
+    "share": {
+        "title": "O que sua equipe compartilha",
+        "lead": "Duas formas de compartilhar, conforme onde você quer guardar os arquivos.",
+        "library": {
+            "title": "Team Library",
+            "text": "Proprietários e administradores publicam configurações de conexão, consultas salvas e suas pastas no servidor do TablePro. Toda a equipe as recebe na barra lateral, somente para leitura.",
+            "link": "Como a Team Library funciona"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Publique arquivos de conexão sem senhas em uma pasta que sua equipe já compartilha, como um repositório Git ou um drive compartilhado. Os colegas a adicionam como uma Linked Folder. Nada passa pelo servidor do TablePro.",
+            "link": "Como o Team Catalog funciona"
+        },
+        "pro": {
+            "title": "Pro em cada vaga",
+            "text": "Cada Mac da equipe recebe todos os recursos do Pro, como {proExamples}.",
+            "link": "Todos os recursos pagos"
+        }
+    },
+    "seats": {
+        "title": "Vagas e membros",
+        "items": [
+            "Uma vaga é um Mac ativado. O Mac do comprador também ocupa uma.",
+            "O comprador convida os colegas por e-mail pela própria conta. Cada um recebe um código de uso único para inserir em <ui>Settings > License</ui>.",
+            "O proprietário e os administradores publicam na Team Library. Os membros usam o que é compartilhado.",
+            "Adicione ou remova vagas na sua conta a qualquer momento. A diferença aparece na sua próxima fatura.",
+            "Remover um colega libera a vaga dele e exclui o que ele publicou na Team Library. O Mac dele perde o acesso pago na próxima verificação da licença."
+        ]
+    },
+    "pricing": {
+        "title": "Preço",
+        "yearly": "{yearlyPerMonth} por vaga por mês, cobrado anualmente: {yearly} por vaga por ano.",
+        "monthly": "{monthly} por vaga por mês, cobrado mensalmente.",
+        "seats": "De {min} a {max} vagas. Uma equipe de {exampleSeats} paga {exampleYearly} por ano.",
+        "note": "O Team é uma assinatura; não existe licença Team de pagamento único.",
+        "cta": "Comprar Team"
+    },
+    "buying": {
+        "title": "Comprar para uma empresa",
+        "items": [
+            "{merchant} é o merchant of record: recebe o pagamento e calcula o imposto sobre vendas ou o IVA pelo endereço de cobrança.",
+            "No portal do cliente de {merchant}, você pode adicionar a cada fatura o nome da sua empresa, o número de IVA e o endereço de cobrança, e depois baixá-la.",
+            "Uma compra pode ser reembolsada em até {refundDays} dias, e cada renovação em até {refundDays} dias após a cobrança.",
+            "Precisa de um pedido de compra ou de outra forma de pagamento? Escreva para <email>{email}</email> e resolvemos com você."
+        ]
+    },
+    "data": {
+        "title": "Os dados da sua equipe",
+        "items": [
+            "As senhas nunca são enviadas ao servidor do TablePro. O app as remove antes de publicar, e o servidor recusa qualquer conteúdo que contenha uma.",
+            "A Team Library guarda configurações de conexão e consultas salvas no servidor do TablePro. Somente Macs ativados na sua licença podem lê-las.",
+            "Se o plano terminar, o que foi publicado fica no servidor até você pedir que seja excluído."
+        ],
+        "security": "Como o TablePro trata seus dados",
+        "privacy": "Política de privacidade"
+    },
+    "enterprise": {
+        "title": "Precisa de mais controle?",
+        "text": "Login com as contas da empresa, políticas obrigatórias nas conexões da equipe, auditoria de gravações em produção e implantação via MDM são desenvolvidos quando as empresas pedem. Conte o que você precisa.",
+        "cta": "Fale conosco"
+    }
+}

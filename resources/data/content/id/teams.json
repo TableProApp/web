@@ -1,0 +1,78 @@
+{
+    "seo": {
+        "title": "TablePro untuk tim",
+        "description": "Bagikan koneksi dan kueri tersimpan dengan tim Anda tanpa kata sandinya. Harga per seat, bulanan atau tahunan, dengan faktur untuk perusahaan Anda."
+    },
+    "og": {
+        "kicker": "Team",
+        "title": "TablePro untuk tim"
+    },
+    "breadcrumb": "Untuk tim",
+    "header": {
+        "title": "TablePro untuk tim",
+        "lead": "Bagikan koneksi dan kueri tersimpan dengan tim Anda, tanpa kata sandinya. Setiap seat mendapat Pro, dan perusahaan Anda mendapat faktur.",
+        "primary": "Lihat harga Team",
+        "secondary": "Hubungi kami"
+    },
+    "share": {
+        "title": "Yang dibagikan tim Anda",
+        "lead": "Ada dua cara berbagi, tergantung di mana Anda ingin file disimpan.",
+        "library": {
+            "title": "Team Library",
+            "text": "Pemilik dan admin memublikasikan pengaturan koneksi, kueri tersimpan, dan foldernya ke server TablePro. Semua anggota tim mendapatkannya di sidebar, dalam mode hanya-baca.",
+            "link": "Cara kerja Team Library"
+        },
+        "catalog": {
+            "title": "Team Catalog",
+            "text": "Publikasikan file koneksi tanpa kata sandi ke folder yang sudah dibagikan tim Anda, seperti repositori Git atau drive bersama. Rekan tim menambahkannya sebagai Linked Folder. Tidak ada yang melewati server TablePro.",
+            "link": "Cara kerja Team Catalog"
+        },
+        "pro": {
+            "title": "Pro di setiap seat",
+            "text": "Setiap Mac di tim mendapat semua fitur Pro, seperti {proExamples}.",
+            "link": "Semua fitur berbayar"
+        }
+    },
+    "seats": {
+        "title": "Seat dan anggota",
+        "items": [
+            "Satu seat adalah satu Mac yang diaktifkan. Mac pembeli juga memakai satu seat.",
+            "Pembeli mengundang rekan tim melalui email dari akunnya. Masing-masing menerima kode sekali pakai untuk dimasukkan di <ui>Settings > License</ui>.",
+            "Pemilik dan admin memublikasikan ke Team Library. Anggota memakai apa yang dibagikan.",
+            "Tambah atau kurangi seat di akun Anda kapan saja. Selisihnya muncul di faktur berikutnya.",
+            "Menghapus rekan tim membebaskan seatnya dan menghapus apa yang ia publikasikan ke Team Library. Mac-nya kehilangan akses berbayar pada pemeriksaan lisensi berikutnya."
+        ]
+    },
+    "pricing": {
+        "title": "Harga",
+        "yearly": "{yearlyPerMonth} per seat per bulan, ditagih tahunan: {yearly} per seat per tahun.",
+        "monthly": "{monthly} per seat per bulan, ditagih bulanan.",
+        "seats": "Dari {min} hingga {max} seat. Tim dengan {exampleSeats} seat membayar {exampleYearly} per tahun.",
+        "note": "Team adalah langganan; tidak ada lisensi Team sekali bayar.",
+        "cta": "Beli Team"
+    },
+    "buying": {
+        "title": "Membeli untuk perusahaan",
+        "items": [
+            "{merchant} adalah merchant of record: menerima pembayaran dan menghitung pajak penjualan atau PPN dari alamat penagihan Anda.",
+            "Di portal pelanggan {merchant}, Anda dapat menambahkan nama perusahaan, nomor pajak (VAT), dan alamat penagihan ke setiap faktur, lalu mengunduhnya.",
+            "Pembelian dapat dikembalikan dananya dalam {refundDays} hari, dan setiap perpanjangan dalam {refundDays} hari setelah tagihannya.",
+            "Butuh purchase order, atau cara bayar lain? Kirim email ke <email>{email}</email> dan kami akan mencari jalannya bersama Anda."
+        ]
+    },
+    "data": {
+        "title": "Data tim Anda",
+        "items": [
+            "Kata sandi tidak pernah dikirim ke server TablePro. Aplikasi menghapusnya sebelum publikasi, dan server menolak apa pun yang memuat kata sandi.",
+            "Team Library menyimpan pengaturan koneksi dan kueri tersimpan di server TablePro. Hanya Mac yang diaktifkan pada lisensi Anda yang dapat membacanya.",
+            "Jika paket berakhir, yang sudah dipublikasikan tetap di server sampai Anda meminta kami menghapusnya."
+        ],
+        "security": "Cara TablePro menangani data Anda",
+        "privacy": "Kebijakan privasi"
+    },
+    "enterprise": {
+        "title": "Butuh kontrol lebih?",
+        "text": "Masuk dengan akun perusahaan, kebijakan wajib pada koneksi tim, audit penulisan ke production, dan penyebaran melalui MDM dibuat saat ada perusahaan yang memintanya. Beri tahu kami kebutuhan Anda.",
+        "cta": "Hubungi kami"
+    }
+}

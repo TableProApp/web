@@ -9,6 +9,7 @@ export default {
             "databases": "Database",
             "integrations": "Integrasi",
             "pricing": "Harga",
+            "teams": "Untuk tim",
             "download": "Unduh",
             "compare": "Bandingkan"
         },
