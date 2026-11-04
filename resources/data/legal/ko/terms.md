@@ -1,7 +1,7 @@
 ---
 title: 이용약관
 description: TablePro 웹사이트, 계정 포털, 라이선스 서버, Team Library 이용과 Pro 또는 Team 라이선스 구매에 관한 약관입니다.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 이 약관은 tablepro.app 웹사이트, 계정 포털, 운영자의 라이선스 서버, Team Library 및 아래에 설명된 유료 라이선스와 라이선스 키에 적용됩니다. 이를 이용하거나 라이선스를 구매 또는 활성화하면 이 약관에 동의한 것으로 간주됩니다. Mac용 TablePro와 iPhone 및 iPad용 TablePro는 AGPLv3로만 라이선스되며, 다운로드, 설치 또는 실행하는 데 이 약관에 동의할 필요가 없습니다.

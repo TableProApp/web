@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Pro o Team.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.

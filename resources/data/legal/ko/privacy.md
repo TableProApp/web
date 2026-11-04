@@ -1,7 +1,7 @@
 ---
 title: 개인정보 처리방침
 description: TablePro 앱, 웹사이트 및 계정 포털이 수집하는 정보, 전송 대상, 보관 기간과 변경 또는 삭제 방법을 설명합니다.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 account.tablepro.app 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.

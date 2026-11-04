@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).

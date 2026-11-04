@@ -1,7 +1,7 @@
 ---
 title: Nutzungsbedingungen
 description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Pro- oder Team-Lizenz.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac und TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.

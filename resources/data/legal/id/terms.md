@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.

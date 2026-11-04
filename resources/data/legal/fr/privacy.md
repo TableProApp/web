@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes account.tablepro.app. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).

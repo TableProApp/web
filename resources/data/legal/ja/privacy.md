@@ -1,7 +1,7 @@
 ---
 title: プライバシーポリシー
 description: TablePro のアプリ、ウェブサイト、アカウントポータルが収集する情報、送信先、保存期間、変更・削除方法を説明します。
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、docs.tablepro.app のドキュメント、account.tablepro.app のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。

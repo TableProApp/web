@@ -1,7 +1,7 @@
 ---
 title: 服务条款
 description: TablePro 网站、账户门户、许可证服务器和 Team Library 的条款，以及购买 Pro 或 Team 许可证的条款。
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro 和 iPhone、iPad 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。

@@ -1,7 +1,7 @@
 ---
 title: 返金ポリシー
 description: TablePro のすべてのプランは購入から {refundDays} 日以内に返金でき、月払い・年払いの各更新も請求日から {refundDays} 日以内なら返金できます。申請方法とライセンスの扱いを説明します。
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 すべての有料プランで {refundDays} 日以内の返金に対応します。Pro と Team の月払い、年払い、買い切りが対象です。{refundDays} 日の期間は購入日から始まり、月払い・年払いの各更新も請求日から {refundDays} 日以内なら返金できます。各プランは[料金ページ](/ja/pricing#refunds)をご覧ください。

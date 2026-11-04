@@ -1,7 +1,7 @@
 ---
 title: 服務條款
 description: TablePro 網站、帳戶入口網站、授權伺服器與 Team Library 的條款，以及購買 Pro 或 Team 授權的條款。
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro 與 iPhone、iPad 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。

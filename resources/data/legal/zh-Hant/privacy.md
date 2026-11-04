@@ -1,7 +1,7 @@
 ---
 title: 隱私權政策
 description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 account.tablepro.app 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。

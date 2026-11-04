@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.

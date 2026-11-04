@@ -1,7 +1,7 @@
 ---
 title: Política de reembolso
 description: Todo plano TablePro pode ser reembolsado em até {refundDays} dias após a compra, e cada renovação mensal ou anual em até {refundDays} dias após a cobrança. Como pedir.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Todos os planos pagos podem ser reembolsados em até {refundDays} dias: Pro e Team, mensais, anuais e com pagamento único. Os {refundDays} dias começam na data da compra, e cada renovação mensal ou anual pode ser reembolsada em até {refundDays} dias após a cobrança. Os planos estão na [página de preços](/pt-BR/pricing#refunds).
