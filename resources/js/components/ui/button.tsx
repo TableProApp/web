@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/button.tsx. Change both in the same release. See docs/shared-files.md. */
 import type { AriaAttributes, FocusEvent, MouseEvent, PointerEvent, ReactNode, Ref } from 'react';
 import { LoaderCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';

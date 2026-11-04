@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/theme-control.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent } from 'react';
 import { Check, Monitor, Moon, Sun } from 'lucide-react';
 import { applyTheme, readTheme, THEME_CHANGE_EVENT, THEME_CHOICES, type ThemeChoice } from '@/lib/theme';

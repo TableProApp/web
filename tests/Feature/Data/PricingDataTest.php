@@ -10,14 +10,14 @@ use Symfony\Component\Finder\SplFileInfo;
  *     cycles: list<string>,
  *     tiers: array{
  *         free: array{price: int|float},
- *         starter: array{unit: string, prices: array<string, int|float>, activations: int},
- *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int, max: int}, activationsPerSeat: int, prioritySupport: array{responseBusinessDays: int}}
+ *         starter: array{unit: string, prices: array<string, int|float>},
+ *         team: array{unit: string, prices: array<string, int|float>, seats: array{min: int}, prioritySupport: array{responseBusinessDays: int}}
  *     },
  *     refund: array{days: int, scope: string},
- *     license: array{revalidateDays: int, offlineGraceDays: int, perpetualFallback: bool},
+ *     license: array{deviceLimit: int, offlineDays: int, perpetualFallback: bool, legacy: array{revalidateDays: int, offlineGraceDays: int}},
  *     campaign: array{id: string, code: string, percent: int, duration: string, tier: string, cycles: list<string>, startsAt: string, endsAt: string, listPriceSince: string}|null,
  *     billingPortalUrl: string,
- *     checkoutSdk: array{polar: string, lemonsqueezy: string},
+ *     checkoutSdk: string,
  *     syncedWith: string
  * }
  */
@@ -40,8 +40,9 @@ it('has exactly the documented shape', function (): void {
         'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'campaign', 'billingPortalUrl', 'checkoutSdk', 'syncedWith',
     ]);
     expect(array_keys($pricing['tiers']))->toBe(['free', 'starter', 'team']);
-    expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices', 'activations']);
-    expect(array_keys($pricing['tiers']['team']))->toBe(['unit', 'prices', 'seats', 'activationsPerSeat', 'prioritySupport']);
+    expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices']);
+    expect(array_keys($pricing['tiers']['team']))->toBe(['unit', 'prices', 'seats', 'prioritySupport']);
+    expect(array_keys($pricing['license']))->toBe(['deviceLimit', 'offlineDays', 'perpetualFallback', 'legacy']);
 
     // Pro is sold in every cycle; Team is a subscription, with no one-time price.
     expect(array_keys($pricing['tiers']['starter']['prices']))->toBe($pricing['cycles'], 'Pro must price every cycle, in cycle order');
@@ -64,16 +65,14 @@ it('keeps every price unchanged', function (): void {
 
     expect($tiers['free'])->toBe(['price' => 0]);
 
-    // Pro (the `starter` code): one license on up to three Macs.
+    // Pro (the `starter` code): one person's license.
     expect($tiers['starter']['unit'])->toBe('license');
     expect(array_map(pricingCents(...), $tiers['starter']['prices']))->toBe(['monthly' => 499, 'yearly' => 3900, 'lifetime' => 7900]);
-    expect($tiers['starter']['activations'])->toBe(3);
 
-    // Team: priced per seat, a seat being one activated Mac, 2 to 200 seats, monthly or yearly only.
+    // Team: priced per seat, a seat being one person, at least 2, monthly or yearly only; the most a checkout sells comes from GET /v2/pricing.
     expect($tiers['team']['unit'])->toBe('seat');
     expect(array_map(pricingCents(...), $tiers['team']['prices']))->toBe(['monthly' => 1200, 'yearly' => 12000]);
-    expect($tiers['team']['seats'])->toBe(['min' => 2, 'max' => 200]);
-    expect($tiers['team']['activationsPerSeat'])->toBe(1);
+    expect($tiers['team']['seats'])->toBe(['min' => 2]);
 });
 
 // Synced by hand with the provider's discount (Polar, BLACKFRIDAY2026): its percentage, duration, products and window.
@@ -124,17 +123,21 @@ it('pins the refund window, the license timings and Priority support', function 
     $pricing = pricingJson();
 
     expect($pricing['refund'])->toBe(['days' => 7, 'scope' => 'all-paid-plans']);
-    expect($pricing['license'])->toBe(['revalidateDays' => 7, 'offlineGraceDays' => 30, 'perpetualFallback' => false]);
+
+    // tablepro-cloud product.md: 3 devices per account, an entitlement valid 14 days at most.
+    // legacy: what released builds do over /v1 until its sunset (TablePro's LicenseManager: 7-day revalidation, 30-day grace).
+    expect($pricing['license'])->toBe([
+        'deviceLimit' => 3,
+        'offlineDays' => 14,
+        'perpetualFallback' => false,
+        'legacy' => ['revalidateDays' => 7, 'offlineGraceDays' => 30],
+    ]);
     expect($pricing['tiers']['team']['prioritySupport'])->toBe(['responseBusinessDays' => 1]);
 });
 
 // Pinned: the embed is third-party code running on this origin, so a new version is a reviewed change.
-it('pins the checkout overlay scripts, one per provider, over HTTPS', function (): void {
-    $sdk = pricingJson()['checkoutSdk'];
-
-    expect(array_keys($sdk))->toBe(['polar', 'lemonsqueezy']);
-    expect($sdk['polar'])->toBe('https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js');
-    expect($sdk['lemonsqueezy'])->toBe('https://app.lemonsqueezy.com/js/lemon.js');
+it('pins Polar\'s checkout overlay script over HTTPS', function (): void {
+    expect(pricingJson()['checkoutSdk'])->toBe('https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js');
 });
 
 it('keeps paid features out of the pricing file', function (): void {

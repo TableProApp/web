@@ -933,7 +933,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - a seat `Stepper`: min and max from data, 44px buttons, `inputmode="numeric"`
   - a live total line "{seats} seats · ${total} / year" (`aria-live="polite"`, height reserved), which follows the digits as they are typed
   - "Minimum {min} seats"; after a typed count outside the bounds was changed, this line says which bound it was changed to
-- Activation line: "One license for one person, on up to 2 Macs" or "1 seat = 1 activated Mac".
+- Activation line: "One person, up to 3 Macs." or "One person per seat, on up to 3 Macs.", the count from `license.deviceLimit`.
 - **Full-width `secondary` `md` purchase button.** Free gets "Download for Mac".
 - `Includes`: a `small` list of paid features from data, with the check in `--accent-text`.
 
@@ -1134,7 +1134,7 @@ Rail labels, their order and the footer links belong to the license repository; 
 | The visual values the manifest's `kinds` pin (aspect, rendered sizes, export pixels), the type vocabulary and its visible labels, the description limits and the placeholder's look | **this section** |
 | Production briefs: scene, dataset, framing, light and dark, a Vietnamese summary | `docs/visual-assets.md`, generated from the manifest and the per-family fragments (architecture §1.9) |
 
-Sitemap §A.8's Aspect and Type columns are superseded by §6.2 and §6.3, as architecture §1.9 already states.
+Sitemap §A.8's Aspect and Type columns follow §6.2, §6.3 and `resources/data/assets.json`, as architecture §1.9 states.
 
 ### 6.1 Data
 
@@ -1237,7 +1237,7 @@ Handoff-only fields (`family`, `ownerRepo`, `slot`, `handoffPriority`, `replacem
 
 ### 6.3 Geometry and export sizes
 
-**The full Mac window is 16:9.** The capture recipe in `docs/screenshots.md` sizes the window to exactly 1216 × 684 pt on a 2× display (`set size of front window to {1216, 684}`, then `screencapture -w -o`). That gives a 2432 × 1368 px file, which a 1216px slot shows 1:1 on a retina screen. Sitemap §A.8's 16:10 would need a 1216 × 760 pt window and would not match the recipe.
+**The full Mac window is 16:9.** The capture recipe in `docs/screenshots.md` sizes the window to exactly 1216 × 684 pt on a 2× display (`set size of front window to {1216, 684}`, then `screencapture -w -o`). That gives a 2432 × 1368 px file, which a 1216px slot shows 1:1 on a retina screen. The 16:10 that sitemap §A.8 first proposed would need a 1216 × 760 pt window and would not match the recipe.
 
 The files on disk today predate that recipe: 3024 × 1722 PNG sources, served as 1216 × 693 and 2432 × 1385 WebP. Their ratio is 1.756, which is 1.2% from 16:9.
 
@@ -1255,13 +1255,13 @@ These are the values that architecture's `kinds` pin:
 | `figure` (release posts) | from the source image | `text` width: 704 / 704 / 343 | 1408 wide (2×) |
 | `og-card` | 1200:630 | not a slot | 1200 × 630 |
 
-**One detail aspect.** Every detail crop is 4:3, the shape that also holds the taller subjects (forms, sheets and pickers such as `mac-fk-picker` and `mac-connection-ssh-form`). Sitemap §A.8's 3:2 rows are re-framed to 4:3. One aspect means one column height, one export size and one handoff rule.
+**One detail aspect.** Every detail crop is 4:3, the shape that also holds the taller subjects (forms, sheets and pickers such as `mac-fk-picker` and `mac-connection-ssh-form`). The 3:2 crops sitemap §A.8 first proposed are re-framed to 4:3. One aspect means one column height, one export size and one handoff rule.
 
 **Phone widths never show a shrunken window.** Spec §9 asks for "useful crops and separate detail views for phones instead of shrinking a full desktop window into unreadable detail". The rule:
 
 - Every `window` that renders below 768px names a `mobile` crop: a 4:5 cut of its focal area, with its own ID and brief.
 - The crop is cut from the same 2× capture, so it needs no new scene. A 686px-wide cut is a 343pt region of the window, so the Mac's own text shows at its real size on a 375 phone.
-- Sitemap §A.8 defines one crop today, `mac-hero-window-mobile`. The other window rows need `{id}-mobile` entries, each a manifest edit plus its brief (architecture §1.9).
+- Sitemap §A.8 lists each crop under the entry that names it. A new crop is an `{id}-mobile` row there, a manifest entry and a brief (architecture §1.9).
 - Until a crop exists, the **placeholder** may render the 16:9 box at 343 × 193, and its text still fits (§6.2). A window **must not** reach `supplied` without its crop.
 - The same holds for a `detail` and an `ipad` capture (found in review): below 768 a detail renders at 343 × 257, about half its size, and an iPad capture at about a quarter, so the focal text cannot be read. Every P1 or P2 `detail` or `ipad` entry (a page's lead or section image) names a `mobile` crop, cut the same way from its own capture; a P3 one may. An `illustration` may name one too, recomposed from the same captures. `AssetManifestTest` holds the rule.
 - A crop renders at its 343px design width, centred in a wider column (a 430 phone, an iPad mini in portrait), so the Mac or iPad text keeps its real size; `kinds.mobile-crop.sizes` is `343px`.
@@ -1532,8 +1532,8 @@ PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid pl
               Note        The iPhone and iPad app has no paid features.
               Each topic below is a Section of its own at `text` width, separated by the frame's joins (§4.7);
               its DescriptionList and FaqList rows run from rail to rail.
-#license      How licenses work (prose from licensing facts: Starter is for one person, 1 seat = 1 activated Mac,
-              what happens when a subscription ends)
+#license      How licenses work (prose from licensing facts: Starter is for one person, a seat is one person, each
+              on up to `deviceLimit` Macs; what happens when a subscription ends)
 #billing      Polar, USD, tax and receipts; "Billing & invoices" in Account for Polar purchases
 #refunds      7 days on every plan → Refund policy
 #team         Seats (min and max from data), invites, changing the number of seats

@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "透過私人 iCloud 資料庫在 Mac、iPhone 和 iPad 間同步，需在各裝置單獨開啟。iCloud Sync 在 Mac 上需要 Pro 或 Team，在 iPhone 和 iPad 上免費。",
-                "在 Mac 開啟 <ui>密碼</ui> (Passwords) 或行動版開啟 <ui>同步密碼</ui> (Sync Passwords) 後，密碼單獨透過 iCloud Keychain 同步。Mac 開關也同步已儲存 AI 和授權金鑰。將連線標記為 Local only，可將其及已儲存查詢排除在同步外。"
+                "在 Mac 開啟 <ui>密碼</ui> (Passwords) 或行動版開啟 <ui>同步密碼</ui> (Sync Passwords) 後，密碼單獨透過 iCloud Keychain 同步。Mac 開關也同步已儲存 AI 和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，登入狀態從不同步。將連線標記為 Local only，可將其及已儲存查詢排除在同步外。"
             ],
             "points": [
                 "Mac 可選擇同步內容：連線、群組和標籤、設定、SSH 設定檔、認證資訊設定檔（名稱和使用者名稱，從不包含密碼）、資料表和資料庫喜好項目、包含 SQL 的已儲存查詢，以及資料表資料夾。",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>分享 > 發佈到團隊庫…</ui> (Share > Publish to Team Library…) 和 <ui>將已儲存的查詢發佈到團隊…</ui> (Publish Saved Queries to Team…) 將連線設定和已儲存查詢 SQL 上傳至 TablePro 伺服器，絕不上傳密碼。同一授權下的 Mac 可下載。忽略啟動和通道命令；重新發佈會取代之前的內容。"
+                        "<ui>分享 > 發佈到團隊庫…</ui> (Share > Publish to Team Library…) 和 <ui>將已儲存的查詢發佈到團隊…</ui> (Publish Saved Queries to Team…) 將連線設定和已儲存查詢 SQL 上傳至 TablePro 伺服器，絕不上傳密碼。擁有席位的成員可下載。忽略啟動和通道命令。",
+                        "從支援 TablePro 帳戶的版本起，App 會在啟動時、每 15 分鐘以及每次發佈後取得變更，只發佈有變動的內容，顯示每項團隊查詢的最後修改者，並在其他成員先修改時詢問要保留哪一份。支援 TablePro 帳戶之前的版本最多每週下載一次資源庫，從這些版本重新發佈會取代之前的內容。"
                     ],
                     "paid": [
                         "team-library"
@@ -116,8 +117,8 @@
             "id": "seats",
             "title": "Team 席位",
             "paragraphs": [
-                "一個 Team 席位對應一台已啟用 Mac，而非一個人。購買者透過網頁帳戶管理邀請和席位。受邀者收到用於 <ui>設定 > 授權</ui> (Settings > License) 的一次性代碼；每次邀請都需要可用席位。",
-                "在帳戶變更訂閱席位；一次性購買請聯絡支援。移除隊友會釋放席位，並刪除其 Team Library 內容。付費存取在下次授權檢查時結束，最長 {licenseCheckDays} 天。"
+                "一個 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用。擁有者和管理員在帳戶入口網站透過郵件邀請他人，可附帶或不附帶席位，受邀者透過郵件中的連結加入。",
+                "擁有者在帳單頁面變更訂閱席位。已有一次性席位的團隊會保留這些席位，增加席位需要 Team 訂閱。移除成員會釋放其席位，其 Mac 會在 TablePro 下次聯絡伺服器時失去 Team 功能。"
             ],
             "links": [
                 {
@@ -126,7 +127,7 @@
                 },
                 {
                     "label": "您的帳戶",
-                    "href": "/account?locale=zh-Hant"
+                    "account": true
                 }
             ]
         },
@@ -194,7 +195,7 @@
     "limits": [
         "Mac 方案結束後，iCloud Sync 暫停並說明原因，Linked Folders 和 Team Library 的連線從清單消失。團隊發佈指令隱藏，Encrypted Export 不再提供密碼選項。",
         "在 iPhone 或 iPad 編輯同步連線可能改變該 App 沒有的設定。Safe Mode (Full) 等更嚴格的 Mac Safe Mode 等級會回傳為 Alert，SSH 跳板主機設定也可能遺失。請在 Mac 上修改這些連線。",
-        "Team 授權結束或暫停後，發佈至 Team Library 的內容仍保留在 TablePro 伺服器上，直到您要求刪除。"
+        "Team 授權結束或被撤銷後，發佈至 Team Library 的內容仍保留在 TablePro 伺服器上，直到團隊擁有者刪除團隊，資源庫也隨之刪除。"
     ],
     "docs": [
         {

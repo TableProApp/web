@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "非公開の iCloud データベースで Mac、iPhone、iPad 間を同期します。デバイスごとに有効にします。iCloud Sync は Mac では Pro・Team が必要で、iPhone・iPad では無料です。",
-                "Mac の <ui>Passwords</ui> かモバイルの <ui>Sync Passwords</ui> で有効にすると、iCloud Keychain でパスワードを別途同期します。Mac のスイッチは AI キーとライセンスキーも同期します。Local only にした接続と保存済みクエリは同期から除外します。"
+                "Mac の <ui>Passwords</ui> かモバイルの <ui>Sync Passwords</ui> で有効にすると、iCloud Keychain でパスワードを別途同期します。Mac のスイッチは AI キーとライセンスキーも同期します。TablePro アカウントに対応したバージョン以降、ライセンスキーはサインインと交換された時点で削除され、サインイン状態は同期されません。Local only にした接続と保存済みクエリは同期から除外します。"
             ],
             "points": [
                 "Mac では同期対象を選択：接続、グループとタグ、設定、SSH プロファイル、認証情報プロファイル（名前とユーザー名のみで、パスワードは含みません）、テーブルとデータベースのお気に入り、SQL を含む保存済みクエリ、テーブルフォルダー。",
@@ -97,7 +97,8 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。同じライセンスの Mac が取得します。起動・トンネルコマンドは無視し、再公開は前の投稿を置き換えます。"
+                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。席のあるメンバーが取得します。起動・トンネルコマンドは無視します。",
+                        "TablePro アカウントに対応したバージョン以降、アプリは起動時、15 分ごと、公開のたびに変更を取得し、変更した分だけを公開します。各チームクエリを最後に変更した人を表示し、ほかのメンバーが先に変更していた場合はどちらを残すかを尋ねます。TablePro アカウントに対応する前のバージョンは最大でも週に 1 回ライブラリを取得し、そこから再公開すると前の投稿を置き換えます。"
                     ],
                     "paid": [
                         "team-library"
@@ -116,8 +117,8 @@
             "id": "seats",
             "title": "Team の席",
             "paragraphs": [
-                "Team は一人につきではなく、認証した Mac 一台につき一席です。購入者が Web アカウントで招待と席を管理します。招待先に <ui>Settings > License</ui> 用の一回限りのコードを送り、招待ごとに空き席が必要です。",
-                "サブスクリプションの席数はアカウントで変更し、買い切りはサポートに連絡します。メンバー削除で席が空き、Team Library の投稿も削除します。有料機能は次回のライセンス確認時、{licenseCheckDays} 日以内に停止します。"
+                "Team の 1 席は、一人が最大 {deviceLimit} 台の Mac で使えます。オーナーと管理者がアカウントポータルからメールで招待し、席を付けるかどうかを選びます。招待された人はメールのリンクから参加します。",
+                "サブスクリプションの席数はオーナーが「請求」で変更します。買い切りの席があるチームはその席をそのまま使え、席の追加は Team のサブスクリプションで行います。メンバーを削除すると席が空き、その Mac は次に TablePro がサーバーと通信したときに Team の機能を使えなくなります。"
             ],
             "links": [
                 {
@@ -126,7 +127,7 @@
                 },
                 {
                     "label": "アカウント",
-                    "href": "/account?locale=ja"
+                    "account": true
                 }
             ]
         },
@@ -194,7 +195,7 @@
     "limits": [
         "Mac のプランが終了すると、iCloud Sync は一時停止して理由を表示し、Linked Folders と Team Library の接続は一覧から消えます。チーム公開コマンドは非表示になり、Encrypted Export のパスワードオプションもなくなります。",
         "iPhone や iPad で同期した接続を編集すると、そのアプリにない設定が変わることがあります。Safe Mode (Full) などの厳しい Mac の Safe Mode レベルは Alert として戻り、SSH 踏み台ホストも維持されない場合があります。これらの接続は Mac で変更してください。",
-        "Team ライセンスが終了または停止しても、Team Library に公開した内容は削除を依頼するまで TablePro のサーバーに残ります。"
+        "Team ライセンスが終了または取り消されても、Team Library に公開した内容は、チームのオーナーがチームを削除するまで TablePro のサーバーに残り、チームの削除とともにライブラリも削除されます。"
     ],
     "docs": [
         {

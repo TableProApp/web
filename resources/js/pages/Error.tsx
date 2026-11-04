@@ -18,7 +18,7 @@ interface Props {
     status: Status;
     /** The same page in another language, when only that version exists. */
     suggestion?: Suggestion;
-    /** `/account?locale=vi` on a 404 for `/vi/account…` or `/vi/checkout…`: the account has no locale prefix. */
+    // Only on a 404 for `/vi/account…` or `/vi/checkout…`: the portal in the path's language.
     account?: string;
 }
 

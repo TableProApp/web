@@ -19,7 +19,7 @@
         "lead": "Ada dua cara berbagi, tergantung di mana Anda ingin file disimpan.",
         "library": {
             "title": "Team Library",
-            "text": "Pemilik dan admin memublikasikan pengaturan koneksi, kueri tersimpan, dan foldernya ke server TablePro. Semua anggota tim mendapatkannya di sidebar, dalam mode hanya-baca.",
+            "text": "Pemilik dan admin memublikasikan pengaturan koneksi, kueri tersimpan, dan foldernya ke server TablePro. Anggota yang memiliki seat mendapatkannya di sidebar, selalu diperbarui, dan dapat melihat siapa yang terakhir mengubah setiap kueri.",
             "link": "Cara kerja Team Library"
         },
         "catalog": {
@@ -36,18 +36,18 @@
     "seats": {
         "title": "Seat dan anggota",
         "items": [
-            "Satu seat adalah satu Mac yang diaktifkan. Mac pembeli juga memakai satu seat.",
-            "Pembeli mengundang rekan tim melalui email dari akunnya. Masing-masing menerima kode sekali pakai untuk dimasukkan di <ui>Settings > License</ui>.",
-            "Pemilik dan admin memublikasikan ke Team Library. Anggota memakai apa yang dibagikan.",
-            "Tambah atau kurangi seat di akun Anda kapan saja. Selisihnya muncul di faktur berikutnya.",
-            "Menghapus rekan tim membebaskan seatnya dan menghapus apa yang ia publikasikan ke Team Library. Mac-nya kehilangan akses berbayar pada pemeriksaan lisensi berikutnya."
+            "Satu seat mencakup satu orang pada maksimal {deviceLimit} Mac.",
+            "Pemilik dan admin mengundang lewat email dari halaman Anggota di akun Anda, dengan peran dan, jika diinginkan, seat. Tautannya berlaku 7 hari, dan akun TablePro mana pun dapat menerimanya.",
+            "Pemilik mengurus penagihan. Admin mengelola anggota, undangan, Team Library, dan log audit tim. Anggota memakai apa yang dibagikan.",
+            "Pemilik mengubah seat langganan di Penagihan, dan {merchant} menagih atau mengkreditkan selisih prorata saat itu juga.",
+            "Menghapus anggota membebaskan seat-nya. Mac miliknya kehilangan fitur Team saat TablePro berikutnya menghubungi server."
         ]
     },
     "pricing": {
         "title": "Harga",
         "yearly": "{yearlyPerMonth} per seat per bulan, ditagih tahunan: {yearly} per seat per tahun.",
         "monthly": "{monthly} per seat per bulan, ditagih bulanan.",
-        "seats": "Dari {min} hingga {max} seat. Tim dengan {exampleSeats} seat membayar {exampleYearly} per tahun.",
+        "seats": "Mulai dari {min} seat. Tim dengan {exampleSeats} seat membayar {exampleYearly} per tahun.",
         "note": "Team adalah langganan; tidak ada lisensi Team sekali bayar.",
         "cta": "Beli Team"
     },
@@ -65,7 +65,7 @@
         "items": [
             "Kata sandi tidak pernah dikirim ke server TablePro. Aplikasi menghapusnya sebelum publikasi, dan server menolak apa pun yang memuat kata sandi.",
             "Team Library menyimpan pengaturan koneksi dan kueri tersimpan di server TablePro. Hanya Mac yang diaktifkan pada lisensi Anda yang dapat membacanya.",
-            "Jika paket berakhir, yang sudah dipublikasikan tetap di server sampai Anda meminta kami menghapusnya."
+            "Jika paket berakhir, yang sudah dipublikasikan tetap di server hingga pemilik tim menghapus tim, yang sekaligus menghapus pustakanya."
         ],
         "security": "Cara TablePro menangani data Anda",
         "privacy": "Kebijakan privasi"

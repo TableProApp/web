@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "팀과 연결 및 저장된 쿼리를 공유하세요.",
-            "activation": "좌석당 활성화된 Mac 1대.",
+            "activation": {
+                "one": "좌석당 1명, Mac {count}대.",
+                "other": "좌석당 1명, Mac 최대 {count}대."
+            },
             "includesTitle": "Pro의 모든 기능에 더해",
             "cta": "Team 구매",
             "subscriptionOnly": "Team은 월간 또는 연간으로만 판매합니다."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "좌석 수",
         "noun": "좌석 수",
+        "minimum": "최소 {min}좌석.",
         "bounds": "최소 {min}좌석, 최대 {max}좌석.",
         "clamped": {
             "min": "최소인 {min}좌석으로 변경했습니다.",
@@ -109,7 +113,6 @@ export default {
         "other": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
     },
     "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 처리하고 결제 시 판매세 또는 VAT를 계산합니다.",
-    "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",
     "section": {
         "title": "요금",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "최대 {count}"
         },
-        "macsTeam": "좌석당 한 대",
+        "macsTeam": {
+            "one": "좌석당 {count}대",
+            "other": "좌석당 최대 {count}대"
+        },
         "everythingElse": "앱의 나머지 모든 기능",
         "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",
         "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Pro 또는 Team이 필요합니다."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "정가 {price}"
     },
     "discount": {
-        "atCheckout": "할인 코드가 있나요? 결제 시 입력하세요.",
         "summary": "할인 코드가 있나요?",
         "label": "할인 코드",
         "apply": "코드 적용",
         "checking": "코드 확인 중…",
         "percent": "코드가 적용되었습니다. 결제 시 {amount}% 할인됩니다.",
         "fixed": "코드가 적용되었습니다. 결제 시 {amount} 할인됩니다.",
+        "accepted": "코드가 적용되었습니다. 결제 시 반영됩니다.",
         "invalid": "이 코드는 유효하지 않거나 만료되었습니다."
     },
     "checkout": {
-        "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요."
+        "failed": "결제 페이지를 열 수 없습니다. 다시 시도하세요.",
+        "planUnavailable": "이 플랜은 지금 판매하지 않습니다. 다른 결제 주기를 선택하거나 나중에 다시 시도하세요.",
+        "seats": "{min}~{max}좌석 사이로 선택한 후 다시 시도하세요.",
+        "seatsFewer": "좌석 수를 줄인 후 다시 시도하세요."
     },
     "offers": {
         "name": "{plan}, {cycle}",

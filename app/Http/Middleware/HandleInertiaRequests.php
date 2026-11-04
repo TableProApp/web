@@ -8,6 +8,7 @@ use App\Support\Localization\LocaleSwitcher;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Pricing\Campaign;
 use App\Support\Seo\SeoContext;
+use App\Support\TableProApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
@@ -72,6 +73,8 @@ class HandleInertiaRequests extends Middleware
             'banner' => Banner::forRequest($request),
             'campaign' => fn(): ?array => Campaign::current()?->props(App::getLocale()),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
+            'apiOrigin' => TableProApi::origin(),
+            'turnstileSiteKey' => TableProApi::turnstileSiteKey(),
             'assetPlaceholders' => ! App::isProduction(),
         ];
     }

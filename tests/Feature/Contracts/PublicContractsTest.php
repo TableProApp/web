@@ -19,12 +19,11 @@ function contractSources(): array
     return $sources;
 }
 
-// nginx sends only the unprefixed paths to the platform: /vi/checkout would never reach it.
-it('posts only to the platform\'s unprefixed endpoints', function (): void {
+it('calls only tablepro-cloud\'s public /v2 endpoints and Cloudflare\'s trace', function (): void {
     $targets = [];
 
     foreach (contractSources() as $file => $text) {
-        preg_match_all('/\bfetch\(\s*([^,)]+)/', $text, $calls);
+        preg_match_all("/\\bfetch\\(\\s*(api\\('[^']*'\\)|[^,)]+)/", $text, $calls);
 
         foreach ($calls[1] as $target) {
             $targets[] = [$file, trim($target)];
@@ -33,55 +32,62 @@ it('posts only to the platform\'s unprefixed endpoints', function (): void {
 
     expect($targets)->not->toBeEmpty();
 
+    $allowed = [
+        "api('/v2/checkouts')",
+        "api('/v2/discounts/preview')",
+        "api('/v2/pricing')",
+        "api('/v2/newsletter/subscriptions')",
+        "api('/v2/newsletter/stats')",
+        "'/cdn-cgi/trace'",
+    ];
+
     foreach ($targets as [$file, $target]) {
-        // A literal root path from the allowlist, or the email hook's `endpoint` parameter (checked below).
-        Assert::assertContains($target, ["'/checkout'", "'/discount/preview'", "'/discount/region'", "'/cdn-cgi/trace'", 'endpoint'], "{$file} fetches {$target}");
+        Assert::assertContains($target, $allowed, "{$file} fetches {$target}");
     }
 
-    foreach (contractSources() as $file => $text) {
-        preg_match_all('/useEmailForm\(([^)]*)\)/', $text, $uses);
+    // Each endpoint has one caller, so its contract has one place to change.
+    expect(array_count_values(array_column($targets, 1)))->each->toBe(1);
 
-        foreach ($uses[1] as $argument) {
-            if ($file === 'hooks/use-email-form.ts') {
-                continue;
-            }
+    $api = (string) file_get_contents(resource_path('js/hooks/use-api.ts'));
 
-            Assert::assertSame("'/newsletter/subscribe'", trim($argument), "{$file} sends the newsletter form somewhere else");
-        }
-    }
+    expect($api)->toContain('usePage().props.apiOrigin')->toContain('`${origin}${path}`');
 });
 
-it('never calls the subscriber count, whose session cookie would land on public pages', function (): void {
-    foreach (contractSources() as $file => $text) {
-        Assert::assertStringNotContainsString('/api/newsletter/stats', preg_replace('#^\s*(\*|//).*$#m', '', $text), "{$file} calls /api/newsletter/stats");
-    }
-});
-
-it('sends the newsletter form as JSON with the page locale', function (): void {
+it('sends the newsletter form as JSON with the page locale, a Turnstile token, the page and the consent wording\'s version', function (): void {
     $hook = (string) file_get_contents(resource_path('js/hooks/use-email-form.ts'));
-    $outcome = (string) file_get_contents(resource_path('js/hooks/email-form-response.ts'));
+    $turnstile = (string) file_get_contents(resource_path('js/lib/turnstile.ts'));
 
     expect($hook)->toContain("method: 'POST'")
         ->toContain("headers: { 'Content-Type': 'application/json', Accept: 'application/json' }")
-        ->toContain('body: JSON.stringify({ email, locale })')
-        ->toContain('emailFormOutcome(res.status, data, m.forms)');
+        ->toMatch('/body: JSON\.stringify\(\{\s*email,\s*locale,\s*turnstile_token: token,\s*source: window\.location\.origin \+ window\.location\.pathname,\s*consent_version: NEWSLETTER_CONSENT_VERSION,\s*\}\)/')
+        ->toContain('emailFormOutcome(res.status, data, m.forms)')
+        ->toContain('usePage().props.turnstileSiteKey');
 
-    expect($hook)->toMatch("/fetch\\(endpoint, \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
+    expect($hook)->toMatch("/fetch\\(api\\('\\/v2\\/newsletter\\/subscriptions'\\), \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 
-    // The platform's 429 text is shared with the license API and stays English, so the page uses its own.
-    expect($outcome)->toMatch('/status === 429\) \{\s*return \{ kind: \'flash\', flash: \{ type: \'error\', message: strings\.tooMany \}/');
+    // The privacy policy says the consent record keeps the page and the version of the wording; tablepro-cloud takes at
+    // most 32 characters.
+    expect(preg_match("/NEWSLETTER_CONSENT_VERSION = '([^']{1,32})'/", $hook))->toBe(1);
+
+    // tablepro-cloud checks the action, so the widget must name it.
+    expect($turnstile)->toContain("TURNSTILE_ACTION = 'newsletter'")->toContain('action: TURNSTILE_ACTION');
+
+    // Both forms send the same hook; neither posts anywhere of its own.
+    foreach (['components/site/site-footer.tsx', 'components/blog/newsletter-signup.tsx'] as $file) {
+        expect((string) file_get_contents(resource_path("js/{$file}")))->toContain('useEmailForm()')->toContain('ref={form.widget}');
+    }
 });
 
-// The platform's web group sets tablepro-session and XSRF-TOKEN; only credentials: 'omit' keeps them off public pages.
-it('sends no cookies with any request to the platform', function (): void {
+// The public site sets no cookies and sends none: a call that carried them would need a privacy-policy review first.
+it('sends no cookies with any request it makes', function (): void {
     foreach (contractSources() as $file => $text) {
         if (! preg_match_all('/fetch\(([^;]*?)\{(.*?)\}\s*\)/s', $text, $calls, PREG_SET_ORDER)) {
             continue;
         }
 
         foreach ($calls as [$call]) {
-            if (preg_match("#['\"`](/checkout|/discount/|/newsletter/|/cdn-cgi/)#", $call) || str_contains($call, 'endpoint')) {
-                Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} calls the platform with cookies: {$call}");
+            if (preg_match("#api\\('/v2/|['\"`]/cdn-cgi/#", $call)) {
+                Assert::assertStringContainsString("credentials: 'omit'", $call, "{$file} sends cookies: {$call}");
             }
         }
     }
@@ -183,10 +189,15 @@ it('keeps the consent calls in the head in their contract order', function (): v
     Assert::assertTrue($default < $stored && $stored < $configured, 'consent default, then the stored answer, then config');
 });
 
-it('links the account without a locale prefix, carrying the language in the query', function (): void {
+it('links the account portal at its own origin, carrying the language in the query', function (): void {
     $links = (string) file_get_contents(resource_path('js/components/site/site-links.ts'));
 
-    expect($links)->toContain('return `/account?locale=${locale}`;');
+    expect($links)->toContain('return `${facts.links.account}/?locale=${encodeURIComponent(locale)}`;');
+    expect(json_decode((string) file_get_contents(resource_path('data/facts.json')), true)['links']['account'])->toBe('https://account.tablepro.app');
+
+    foreach (['js/components/faq/content-links.tsx', 'js/components/features/feature-links.tsx', 'js/pages/Pricing.tsx'] as $file) {
+        expect((string) file_get_contents(resource_path($file)))->toContain('accountHref(locale)')->not->toContain('/account?locale=');
+    }
 
     // Cross-app links are plain anchors, never client-side visits.
     foreach (['site-header.tsx', 'site-footer.tsx', 'mobile-nav.tsx'] as $file) {

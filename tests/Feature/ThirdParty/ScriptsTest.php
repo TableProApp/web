@@ -66,7 +66,7 @@ it('loads chat only from an effect, and opens it only from a click', function ()
 });
 
 it('renders no third-party request into any page it serves', function (): void {
-    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id', 'payment.provider' => 'polar']);
+    config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id']);
 
     foreach (thirdPartyPages() as $path) {
         $html = ssrHtml($path);
@@ -89,14 +89,6 @@ it('renders no third-party request into any page it serves', function (): void {
         foreach (THIRD_PARTY_HOSTS as $host) {
             Assert::assertStringNotContainsString($host, $html, "{$path} renders {$host}");
         }
-    }
-
-    config(['payment.provider' => 'lemonsqueezy']);
-
-    $html = withoutAllowedLinks(ssrHtml('/pricing'));
-
-    foreach (THIRD_PARTY_HOSTS as $host) {
-        Assert::assertStringNotContainsString($host, $html, "/pricing renders {$host}");
     }
 })->group('ssr');
 

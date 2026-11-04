@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { accountHref } from '@/components/site/site-links';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
@@ -27,7 +28,7 @@ export interface SiteLinks {
  * page</pricing>`, and never holds a URL or a path: the destinations live
  * here, once, so a translator moves the words and cannot break the link.
  * Internal paths are English base paths; `LocaleLink` adds the reader's
- * locale. `/account` is the account app's and gets `?locale=` instead.
+ * locale. The account portal is another origin and gets `?locale=` instead.
  */
 const INTERNAL: Record<string, string> = {
     home: '/',
@@ -88,7 +89,7 @@ export function useContentTags(links: SiteLinks): Record<string, (text: string) 
     const tags: Record<string, (text: string) => ReactNode> = {
         ui: (text) => <span className="font-medium">{text}</span>,
         account: (text) => (
-            <a href={`/account?locale=${locale}`} className={textLinkClasses('inline')}>
+            <a href={accountHref(locale)} className={textLinkClasses('inline')}>
                 {text}
             </a>
         ),

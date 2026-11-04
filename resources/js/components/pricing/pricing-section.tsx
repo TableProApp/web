@@ -4,11 +4,8 @@ import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import PricingPlans from './pricing-plans';
-import type { CheckoutProp } from './types';
 
 interface PricingSectionProps {
-    /** The `checkout` prop from `App\Support\Pricing\Checkout::props()`. */
-    checkout: CheckoutProp;
     /** The section's id. `pricing` on the homepage: shipped Mac builds open `/?ref=…#pricing`. */
     id?: string;
     /**
@@ -31,7 +28,7 @@ interface PricingSectionProps {
  * It is the target of the Mac app's `/?ref=…#pricing` links, so it renders
  * `id="pricing"` on `/` and on `/vi`, and keeps `#license` as an alias.
  */
-export default function PricingSection({ checkout, id = 'pricing', aliasId = 'license', title, lead, tone = 'base' }: PricingSectionProps) {
+export default function PricingSection({ id = 'pricing', aliasId = 'license', title, lead, tone = 'base' }: PricingSectionProps) {
     const { m } = useI18n();
 
     return (
@@ -48,7 +45,7 @@ export default function PricingSection({ checkout, id = 'pricing', aliasId = 'li
             }
         >
             {aliasId && <span id={aliasId} aria-hidden="true" />}
-            <PricingPlans checkout={checkout} variant="compact" />
+            <PricingPlans variant="compact" />
         </Section>
     );
 }

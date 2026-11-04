@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Compartilhe conexões e consultas salvas com sua equipe.",
-            "activation": "Um Mac ativado por vaga.",
+            "activation": {
+                "one": "Uma pessoa por vaga, {count} Mac.",
+                "other": "Uma pessoa por vaga, em até {count} Macs."
+            },
             "includesTitle": "Tudo do Pro, mais",
             "cta": "Comprar Team",
             "subscriptionOnly": "O Team é vendido por mês ou por ano."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "Vagas",
         "noun": "vagas",
+        "minimum": "Mínimo de {min} vagas.",
         "bounds": "Mínimo de {min} vagas, máximo de {max}.",
         "clamped": {
             "min": "Alterado para o mínimo de {min} vagas.",
@@ -109,7 +113,6 @@ export default {
         "other": "Todos os planos pagos podem ser reembolsados em até {count} dias após a compra, e cada renovação mensal ou anual em até {count} dias após a cobrança. Veja a <link>política de reembolso</link>."
     },
     "finePrint": "Preços em dólares americanos. {merchant} processa pagamentos e calcula tributos sobre vendas ou IVA no checkout como merchant of record.",
-    "finePrintCurrency": "Preços em dólares americanos.",
     "comparePlans": "Comparar planos",
     "section": {
         "title": "Preços",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "Até {count}"
         },
-        "macsTeam": "Um por vaga",
+        "macsTeam": {
+            "one": "{count} por vaga",
+            "other": "Até {count} por vaga"
+        },
         "everythingElse": "Todo o restante do app",
         "everythingElseDetail": "Todos os mecanismos compatíveis, o editor SQL, o assistente de IA, o servidor MCP e o Safe Mode",
         "iphoneNote": "O app para iPhone e iPad não tem recursos pagos. O iCloud Sync é gratuito nesses dispositivos; para sincronizar com um Mac, o Mac precisa de Pro ou Team."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "Preço de tabela {price}"
     },
     "discount": {
-        "atCheckout": "Tem um código de desconto? Digite-o no checkout.",
         "summary": "Tem um código de desconto?",
         "label": "Código de desconto",
         "apply": "Aplicar código",
         "checking": "Verificando o código…",
         "percent": "Código aceito: {amount}% de desconto, aplicado no checkout.",
         "fixed": "Código aceito: {amount} de desconto, aplicado no checkout.",
+        "accepted": "Código aceito, aplicado no checkout.",
         "invalid": "Este código é inválido ou expirou."
     },
     "checkout": {
-        "failed": "Não foi possível abrir o checkout. Tente novamente."
+        "failed": "Não foi possível abrir o checkout. Tente novamente.",
+        "planUnavailable": "Este plano não está à venda no momento. Escolha outro ciclo de cobrança ou tente novamente mais tarde.",
+        "seats": "Escolha entre {min} e {max} vagas e tente novamente.",
+        "seatsFewer": "Escolha menos vagas e tente novamente."
     },
     "offers": {
         "name": "{plan}, {cycle}",

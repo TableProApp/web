@@ -265,7 +265,7 @@ test('a chat the reader opened is never hidden by the consent bar', () => {
     ]);
 });
 
-test('Crisp is given the language and nothing about the reader', () => {
+test('the shared loader gives Crisp the language and nothing about the reader; only the portal identifies an account', () => {
     const browser = installBrowser({ readyState: 'complete' });
 
     loadChatWhenIdle('website-id', 'en');

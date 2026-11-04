@@ -37,7 +37,7 @@ function faqProvidedSlots(): array
     preg_match_all('/^\s+(?:\.\.\.\(.*?\{ )?([a-zA-Z]+):/m', $block[1] ?? '', $keys);
 
     // The commerce values are spread in by name from the server's `commerce` prop.
-    $commerce = ['merchant', 'currency', 'refundDays', 'revalidateDays', 'graceDays', 'starterActivations', 'teamMinSeats', 'teamMaxSeats', 'supportBusinessDays'];
+    $commerce = ['merchant', 'currency', 'refundDays', 'deviceLimit', 'offlineDays', 'revalidateDays', 'graceDays', 'teamMinSeats', 'supportBusinessDays'];
 
     return array_values(array_unique([...$keys[1], ...$commerce]));
 }
@@ -104,7 +104,7 @@ it('groups the questions in the sitemap order, with stable ids in both languages
 
     expect($ids('vi'))->toBe($ids('en'));
     expect($ids('en'))->toBe(array_values(array_unique($ids('en'))));
-    // `/faq#lost-license-key` is linked from the pricing page's licensing questions.
+    // Kept so a link to `/faq#lost-license-key` from before TablePro accounts still lands on an answer.
     expect($ids('en'))->toContain('lost-license-key');
 });
 
@@ -157,10 +157,15 @@ it('states the AGPL, the free core and priority support the way the rest of the 
     expect(json_decode((string) file_get_contents(resource_path('data/pricing.json')), true)['tiers']['team']['prioritySupport']['responseBusinessDays'])->toBe(1);
 
     // Privacy sentences positioning §12.1 allows, and nothing stronger.
-    expect($en)->toContain('The Mac app sends a daily usage report by default; disable it in')
+    expect($en)->toContain('The Mac app shares usage data by default; disable it in')
         ->toContain('iPhone and iPad reports are opt-in.')
         ->toContain('Team Library receives settings and saved SQL you publish.')
         ->toContain('including IP logging.');
+
+    // The accounts build sends PostHog its events under the SDK's random ID, then the account ID (tablepro-cloud clients.md, macOS Telemetry).
+    expect($en)->toContain('under a random ID before you sign in and your account ID after.')
+        ->toContain('Versions before TablePro accounts send a daily report with a hashed machine ID through our server instead.')
+        ->not->toContain('daily usage report');
 });
 
 it('answers the Windows and Linux question without a promise', function (): void {

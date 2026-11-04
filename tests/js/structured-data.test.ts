@@ -138,15 +138,15 @@ test('a recurring price names its period, a one-time price does not', () => {
     });
 });
 
-test('a per-seat price says how many seats one purchase holds, as the page does', () => {
+test('a per-seat price says the fewest seats one purchase holds, as the page does, and no maximum, which the HTML never states', () => {
     const offers = mac.offers as Record<string, unknown>[];
-    const { min, max } = pricing.tiers.team.seats!;
+    const { min } = pricing.tiers.team.seats!;
     const perSeat = offers.filter((offer) => (offer.priceSpecification as Record<string, unknown> | undefined)?.unitText === 'seat');
 
     assert.equal(perSeat.length, Object.keys(pricing.tiers.team.prices ?? {}).length);
 
     for (const offer of perSeat) {
-        assert.deepEqual(offer.eligibleQuantity, { '@type': 'QuantitativeValue', minValue: min, maxValue: max, unitText: 'seat' });
+        assert.deepEqual(offer.eligibleQuantity, { '@type': 'QuantitativeValue', minValue: min, unitText: 'seat' });
     }
 
     for (const offer of offers.filter((offer) => !perSeat.includes(offer))) {

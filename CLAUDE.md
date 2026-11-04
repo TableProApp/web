@@ -74,16 +74,19 @@ server (`docs/architecture.md`, "The language bar").
 - French takes a no-break space before `; : ! ?` and inside `« »`. Japanese and
   Chinese put a space between Latin and CJK text, list joiners included.
 - Internal links go through `<LocaleLink>` or `useI18n().path()`, so they stay
-  in the reader's language. The platform's paths are never prefixed; both
-  helpers leave them alone (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`),
-  and `<LocaleLink>` renders them as a plain `<a>`.
-- The language crosses to the account app only explicitly: link
-  `/account?locale={locale}` (never `/vi/account`), and post to `/checkout` and
-  `/newsletter/subscribe` with `locale` in the body (`/discount/preview` takes
-  `{code}` only, `GET /discount/region` nothing), every call with
-  `credentials: 'omit'`, so no platform cookie lands on a public page.
-- The theme follows the OS by default; `localStorage.theme` holds an explicit choice, shared
-  with the account app on the same origin.
+  in the reader's language. The few paths nginx answers without this app
+  (`/account`, `/checkout`, …) are never prefixed; both helpers leave them alone
+  (`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`), and `<LocaleLink>`
+  renders them as a plain `<a>`.
+- The language crosses to tablepro-cloud only explicitly: link the portal with
+  `accountHref(locale)` (`https://account.tablepro.app/?locale={locale}`; in
+  legal markdown, the `{account}` slot), and
+  post to `/v2/checkouts` and `/v2/newsletter/subscriptions` with `locale` in
+  the body (`/v2/discounts/preview` takes `{code}` only, the `GET`s nothing),
+  every call through `useApi()` with `credentials: 'omit'`, so no cookie lands
+  on a public page.
+- The theme follows the OS by default; `localStorage.theme` holds an explicit
+  choice. The portal is another origin and keeps its own.
 
 ## Conventions
 
@@ -96,20 +99,20 @@ server (`docs/architecture.md`, "The language bar").
 - Every page sends a Content-Security-Policy. A new third-party host (script,
   frame, fetch, image, font) needs a source in
   `App\Support\Security\ContentSecurityPolicy`, or the browser blocks it.
-- A few files are byte-identical with the account app (tokens, fonts, the theme
-  partial, …). Change them in both repositories at once: `docs/shared-files.md`.
+- A few files are byte-identical with tablepro-cloud's portal (`tokens.css`,
+  `international.css`, `crisp.ts`). Change them in both repositories at once:
+  `docs/shared-files.md`.
 
 ## Commands
 
 ```bash
 composer dev                    # serve + vite
-npm run dev:proxy               # one origin for this app (:8000) and the platform (:8001) on :8080
 php artisan test --compact      # full suite
 php artisan test --compact --filter=BlogTest
 npm run typecheck               # includes the catalog parity between locales
 npm run test:js
 vendor/bin/pint                 # fix code style before finishing
-npm run check:shared -- ../license   # diff the files shared with the account app
+npm run check:shared -- ../tablepro-cloud   # diff the files shared with tablepro-cloud's portal
 php artisan sitemap:generate
 WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=my-post   # needs Chromium (PUPPETEER_EXECUTABLE_PATH); cards print WEB_DOMAIN
 php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: a supported locale code or all
@@ -127,8 +130,8 @@ Run `vendor/bin/pint --dirty --format agent` after editing any PHP file.
 which runs `scripts/deploy.sh` on the server. Never build straight into the live
 `public/build` — Vite empties it first and the site 500s until it is rewritten.
 Read `docs/deployment.md` before changing anything about the server; the host is
-shared with a dozen other sites and with the private platform app that answers
-`/account`, `/checkout` and `/newsletter` on this same domain.
+shared with a dozen other sites and with tablepro-cloud, which this domain's
+nginx still reaches for old account, unsubscribe and webhook paths.
 
 ## Testing
 
@@ -154,10 +157,12 @@ in the job with a live SSR service. It skips locally without one.
   there.
 - Prices live in `resources/data/pricing.json`, and every price on the site
   (pricing, FAQ, structured data) reads from it. The values must match what
-  checkout actually charges: they are synced by hand with the platform's
-  pricing configuration and the Polar products. Never change them here alone —
-  flag it instead. The same file pins the checkout SDK script URLs
-  (`checkoutSdk`), which load only when a reader shows intent to buy.
+  checkout actually charges: they are synced by hand with tablepro-cloud's
+  `GET /v2/pricing` and the Polar products. Never change them here alone:
+  flag it instead. The same file pins Polar's checkout script URL
+  (`checkoutSdk`), which loads only when a reader shows intent to buy. The
+  Team seat maximum is not in it: the seat field reads `max_seats` from
+  `GET /v2/pricing` and has none until that answers.
 - Other facts are data too, stated once: `platforms.json` (releases,
   requirements, the App Store), `engines.json`, `paid-features.json`,
   `facts.json` (URLs, limits), `sponsors.json`, `comparisons.json` (dated and

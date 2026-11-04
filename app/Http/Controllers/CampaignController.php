@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\Content\SiteFacts;
 use App\Support\Content\ContentRepository;
-use App\Support\Pricing\Checkout;
 use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -21,14 +20,13 @@ use Inertia\Response;
  */
 class CampaignController extends Controller
 {
-    public function __invoke(ContentRepository $content, Checkout $checkout, SiteFacts $site): Response
+    public function __invoke(ContentRepository $content, SiteFacts $site): Response
     {
         $locale = App::getLocale();
 
         return Inertia::render('BlackFriday', [
             'content' => $content->page('black-friday', $locale),
             'paidFeatures' => $content->page('paid-features', $locale),
-            'checkout' => $checkout->props(),
             'organizationProfiles' => $site->organizationProfiles(),
         ]);
     }

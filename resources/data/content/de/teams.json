@@ -19,7 +19,7 @@
         "lead": "Zwei Wege zum Teilen, je nachdem, wo die Dateien liegen sollen.",
         "library": {
             "title": "Team Library",
-            "text": "Inhaber und Admins veröffentlichen Verbindungseinstellungen, gespeicherte Abfragen und deren Ordner auf TablePros Server. Alle im Team erhalten sie schreibgeschützt in der Seitenleiste.",
+            "text": "Inhaber und Admins veröffentlichen Verbindungseinstellungen, gespeicherte Abfragen und deren Ordner auf TablePros Server. Mitglieder mit Arbeitsplatz erhalten sie in der Seitenleiste, stets aktuell, und sehen, wer jede Abfrage zuletzt geändert hat.",
             "link": "So funktioniert die Team Library"
         },
         "catalog": {
@@ -36,18 +36,18 @@
     "seats": {
         "title": "Arbeitsplätze und Mitglieder",
         "items": [
-            "Ein Arbeitsplatz ist ein aktivierter Mac. Auch der Mac des Käufers belegt einen.",
-            "Der Käufer lädt Teammitglieder per E-Mail aus seinem Konto ein. Jedes erhält einen einmaligen Code, den es unter <ui>Settings > License</ui> eingibt.",
-            "Der Inhaber und die Admins veröffentlichen in der Team Library. Mitglieder nutzen, was geteilt wird.",
-            "Füge in deinem Konto jederzeit Arbeitsplätze hinzu oder entferne welche. Die Differenz erscheint auf deiner nächsten Rechnung.",
-            "Das Entfernen eines Teammitglieds gibt seinen Arbeitsplatz frei und löscht, was es in der Team Library veröffentlicht hat. Sein Mac verliert den bezahlten Zugriff bei der nächsten Lizenzprüfung."
+            "Ein Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs.",
+            "Inhaber und Admins laden auf der Seite Mitglieder in deinem Konto per E-Mail ein, mit einer Rolle und auf Wunsch einem Arbeitsplatz. Der Link gilt 7 Tage, und jedes TablePro-Konto kann ihn annehmen.",
+            "Der Inhaber kümmert sich um die Abrechnung. Admins verwalten Mitglieder, Einladungen, die Team Library und das Audit-Log des Teams. Mitglieder nutzen, was geteilt wird.",
+            "Der Inhaber ändert die Arbeitsplätze eines Abos unter Abrechnung, und {merchant} berechnet oder erstattet die anteilige Differenz sofort.",
+            "Das Entfernen eines Mitglieds gibt seinen Arbeitsplatz frei. Seine Macs verlieren die Funktionen von Team, sobald TablePro sich das nächste Mal beim Server meldet."
         ]
     },
     "pricing": {
         "title": "Preis",
         "yearly": "{yearlyPerMonth} pro Arbeitsplatz und Monat, jährlich abgerechnet: {yearly} pro Arbeitsplatz und Jahr.",
         "monthly": "{monthly} pro Arbeitsplatz und Monat, monatlich abgerechnet.",
-        "seats": "Von {min} bis {max} Arbeitsplätzen. Ein Team mit {exampleSeats} Arbeitsplätzen zahlt {exampleYearly} pro Jahr.",
+        "seats": "Ab {min} Arbeitsplätzen. Ein Team mit {exampleSeats} Arbeitsplätzen zahlt {exampleYearly} pro Jahr.",
         "note": "Team ist ein Abo; eine einmalige Team-Lizenz gibt es nicht.",
         "cta": "Team kaufen"
     },
@@ -65,7 +65,7 @@
         "items": [
             "Passwörter werden nie an TablePros Server gesendet. Die App entfernt sie vor dem Veröffentlichen, und der Server lehnt alles ab, was eines enthält.",
             "Die Team Library speichert Verbindungseinstellungen und gespeicherte Abfragen auf TablePros Server. Nur Macs, die mit deiner Lizenz aktiviert sind, können sie lesen.",
-            "Endet der Tarif, bleibt das Veröffentlichte auf dem Server, bis du uns bittest, es zu löschen."
+            "Endet der Tarif, bleibt das Veröffentlichte auf dem Server, bis der Inhaber das Team löscht, womit auch die Bibliothek gelöscht wird."
         ],
         "security": "Wie TablePro mit deinen Daten umgeht",
         "privacy": "Datenschutzerklärung"

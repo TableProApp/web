@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Teile Verbindungen und gespeicherte Abfragen mit deinem Team.",
-            "activation": "Ein aktivierter Mac pro Arbeitsplatz.",
+            "activation": {
+                "one": "Eine Person pro Arbeitsplatz, {count} Mac.",
+                "other": "Eine Person pro Arbeitsplatz, bis zu {count} Macs."
+            },
             "includesTitle": "Alles aus Pro, plus",
             "cta": "Team kaufen",
             "subscriptionOnly": "Team gibt es monatlich oder jährlich."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "Arbeitsplätze",
         "noun": "Arbeitsplätze",
+        "minimum": "Mindestens {min} Arbeitsplätze.",
         "bounds": "Mindestens {min} Arbeitsplätze, höchstens {max}.",
         "clamped": {
             "min": "Auf das Minimum von {min} Arbeitsplätzen geändert.",
@@ -109,7 +113,6 @@ export default {
         "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tagen nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>."
     },
     "finePrint": "Preise in US-Dollar. {merchant} wickelt als Merchant of Record die Zahlung ab und berechnet die Umsatzsteuer beim Checkout.",
-    "finePrintCurrency": "Preise in US-Dollar.",
     "comparePlans": "Tarife vergleichen",
     "section": {
         "title": "Preise",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "Bis zu {count}"
         },
-        "macsTeam": "Einer pro Arbeitsplatz",
+        "macsTeam": {
+            "one": "{count} pro Arbeitsplatz",
+            "other": "Bis zu {count} pro Arbeitsplatz"
+        },
         "everythingElse": "Alles andere in der App",
         "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und Safe Mode",
         "iphoneNote": "Die iPhone- und iPad-App hat keine Bezahlfunktionen. iCloud Sync ist dort kostenlos; für die Synchronisierung mit einem Mac benötigt der Mac Pro oder Team."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "Listenpreis {price}"
     },
     "discount": {
-        "atCheckout": "Hast du einen Rabattcode? Gib ihn beim Kauf ein.",
         "summary": "Hast du einen Rabattcode?",
         "label": "Rabattcode",
         "apply": "Code einlösen",
         "checking": "Code wird geprüft…",
         "percent": "Code akzeptiert: {amount} % Rabatt, wird beim Kauf abgezogen.",
         "fixed": "Code akzeptiert: {amount} Rabatt, wird beim Kauf abgezogen.",
+        "accepted": "Code akzeptiert, wird beim Kauf abgezogen.",
         "invalid": "Dieser Code ist ungültig oder abgelaufen."
     },
     "checkout": {
-        "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut."
+        "failed": "Der Checkout konnte nicht geöffnet werden. Versuche es erneut.",
+        "planUnavailable": "Dieser Tarif ist gerade nicht erhältlich. Wähle einen anderen Abrechnungszeitraum oder versuche es später erneut.",
+        "seats": "Wähle zwischen {min} und {max} Arbeitsplätzen und versuche es erneut.",
+        "seatsFewer": "Wähle weniger Arbeitsplätze und versuche es erneut."
     },
     "offers": {
         "name": "{plan}, {cycle}",

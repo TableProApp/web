@@ -564,14 +564,20 @@ the fields the IA and positioning read.
 { "currency": "USD", "merchantOfRecord": { "name": "Polar" }, "cycles": ["monthly", "yearly", "lifetime"],
   "tiers": {
     "free": { "price": 0 },
-    "starter": { "unit": "license", "prices": { "monthly": 2.99, "yearly": 24, "lifetime": 59 }, "activations": 2 },
-    "team": { "unit": "seat", "prices": { "monthly": 1.25, "yearly": 10, "lifetime": 25 }, "seats": { "min": 5, "max": 200 },
-              "activationsPerSeat": 1, "prioritySupport": { "responseBusinessDays": 1 } } },
+    "starter": { "unit": "license", "prices": { "monthly": 2.99, "yearly": 24, "lifetime": 59 } },
+    "team": { "unit": "seat", "prices": { "monthly": 1.25, "yearly": 10, "lifetime": 25 }, "seats": { "min": 5 },
+              "prioritySupport": { "responseBusinessDays": 1 } } },
   "refund": { "days": 7, "scope": "all-paid-plans" },
-  "license": { "revalidateDays": 7, "offlineGraceDays": 30 },
+  "license": { "deviceLimit": 3, "offlineDays": 14, "perpetualFallback": false,
+               "legacy": { "revalidateDays": 7, "offlineGraceDays": 30 } },
   "billingPortalUrl": "https://polar.sh/tablepro/portal",
-  "syncedWith": "TableProApp/license pricing and the Polar products" }
+  "checkoutSdk": "https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js",
+  "syncedWith": "tablepro-cloud's GET /v2/pricing and the Polar products" }
 ```
+
+`license` follows tablepro-cloud's product.md: `deviceLimit` Macs per account, across Starter and Team; a signed plan
+that lasts `offlineDays` without the server. `legacy` is what builds before TablePro accounts do over `/v1` until its
+sunset. The most seats a Team checkout sells comes from `GET /v2/pricing`, not from this file.
 
 Paid features are **not** in this file (see `paid-features.json`). `PricingDataTest`:
 
@@ -792,7 +798,7 @@ Where each value comes from:
 | The 1200×630 OG brief | spec §9.1 |
 | The byte budgets | Targets set here. The test enforces them once files exist |
 
-The sitemap §A.8 aspect column (16:10 windows, 3:2 crops) is superseded by these kinds. Its types map as follows:
+The sitemap §A.8 aspect column follows these kinds (it first proposed 16:10 windows and 3:2 crops). Its types map as follows:
 crop → `detail`, iPhone → `phone`, iPad → `ipad`, composite → `illustration`.
 
 **Component** `resources/js/components/ui/asset-slot.tsx` (new; it replaces `themed-image.tsx`, which is deleted in

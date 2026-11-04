@@ -1,56 +1,63 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { emailFormOutcome } from '../../resources/js/hooks/email-form-response.ts';
+import { emailFormOutcome, subscriberCount } from '../../resources/js/hooks/email-form-response.ts';
 import vi from '../../resources/js/i18n/messages/vi/forms.ts';
 
-/*
- * Which message the newsletter form shows for each answer. Run with
- * `npm run test:js`.
- *
- * The page is Vietnamese here on purpose: the bug this guards against put
- * Laravel's English "Server Error" in front of Vietnamese readers.
- */
+// Which message the newsletter form shows for each answer of POST /v2/newsletter/subscriptions. The page is
+// Vietnamese on purpose: tablepro-cloud's problems are English and must never reach a Vietnamese reader.
 
-test('a server or framework failure shows the catalog, never the framework text', () => {
-    const answers: [number, unknown][] = [
-        [500, { message: 'Server Error' }],
-        [502, {}],
-        [503, { message: 'Service Unavailable' }],
-        [419, { message: 'CSRF token mismatch.' }],
-        [404, { message: 'Not Found' }],
-        [405, { message: 'The POST method is not supported for route newsletter/subscribe.' }],
-        [500, { type: 'error', message: 'Server Error' }],
-    ];
-
-    for (const [status, body] of answers) {
-        assert.deepEqual(emailFormOutcome(status, body, vi), { kind: 'flash', flash: { type: 'error', message: vi.failed }, reset: false }, String(status));
-    }
+const problem = (status: number, code: string, extra: Record<string, unknown> = {}) => ({
+    type: `https://api.tablepro.app/problems/${code}`,
+    title: 'Problem',
+    status,
+    code,
+    detail: 'English text the reader never sees.',
+    ...extra,
 });
 
-test("a 4xx in the platform's own {type, message} shape keeps its localized message", () => {
-    assert.deepEqual(emailFormOutcome(409, { type: 'error', message: 'Địa chỉ này đã đăng ký.' }, vi), {
+test('202 says to check the inbox and clears the field, whether or not the address was new', () => {
+    assert.deepEqual(emailFormOutcome(202, {}, vi), { kind: 'flash', flash: { type: 'success', message: vi.subscribed }, reset: true });
+    assert.deepEqual(emailFormOutcome(202, null, vi), { kind: 'flash', flash: { type: 'success', message: vi.subscribed }, reset: true });
+});
+
+test('validation_failed on the address is a message under the field', () => {
+    const answer = problem(422, 'validation_failed', { errors: [{ location: 'body.email', message: 'expected string to be RFC 5322 email', value: 'x' }] });
+
+    assert.deepEqual(emailFormOutcome(422, answer, vi), { kind: 'field', error: vi.invalidEmail });
+});
+
+test('a missing Turnstile token asks for a reload, any other 422 is a plain failure', () => {
+    assert.deepEqual(emailFormOutcome(422, problem(422, 'validation_failed', { errors: [{ location: 'body.turnstile_token' }] }), vi), {
         kind: 'flash',
-        flash: { type: 'error', message: 'Địa chỉ này đã đăng ký.' },
+        flash: { type: 'error', message: vi.verification },
+        reset: false,
+    });
+    assert.deepEqual(emailFormOutcome(422, problem(422, 'validation_failed', { errors: [{ location: 'body.locale' }] }), vi), {
+        kind: 'flash',
+        flash: { type: 'error', message: vi.failed },
         reset: false,
     });
 });
 
-test('a 422 shows the field message the platform localized, else the catalog', () => {
-    assert.deepEqual(emailFormOutcome(422, { errors: { email: ['Email không hợp lệ.'] } }, vi), { kind: 'field', error: 'Email không hợp lệ.' });
-    assert.deepEqual(emailFormOutcome(422, { message: 'The given data was invalid.' }, vi), { kind: 'field', error: vi.invalidEmail });
+test('rate_limited and every server failure show the catalog', () => {
+    assert.deepEqual(emailFormOutcome(429, problem(429, 'rate_limited'), vi), { kind: 'flash', flash: { type: 'error', message: vi.tooMany }, reset: false });
+
+    for (const [status, body] of [
+        [500, problem(500, 'internal_error')],
+        [502, {}],
+        [503, { message: 'Service Unavailable' }],
+        [404, problem(404, 'not_found')],
+    ] as [number, unknown][]) {
+        assert.deepEqual(emailFormOutcome(status, body, vi), { kind: 'flash', flash: { type: 'error', message: vi.failed }, reset: false }, String(status));
+    }
 });
 
-test('a 429 always shows the catalog, because the throttle text stays English', () => {
-    assert.deepEqual(emailFormOutcome(429, { message: 'Too Many Attempts.' }, vi), { kind: 'flash', flash: { type: 'error', message: vi.tooMany }, reset: false });
-});
-
-test('a success keeps the server answer, or falls back to the catalog, and clears the field', () => {
-    assert.deepEqual(emailFormOutcome(200, { type: 'warning', message: 'Bạn đã đăng ký từ trước.' }, vi), {
-        kind: 'flash',
-        flash: { type: 'warning', message: 'Bạn đã đăng ký từ trước.' },
-        reset: true,
-    });
-    assert.deepEqual(emailFormOutcome(200, null, vi), { kind: 'flash', flash: { type: 'success', message: vi.subscribed }, reset: true });
-    assert.deepEqual(emailFormOutcome(201, { type: 'nonsense', message: '' }, vi), { kind: 'flash', flash: { type: 'success', message: vi.subscribed }, reset: true });
+test('the subscriber count is a positive whole number, or nothing', () => {
+    assert.equal(subscriberCount({ subscribers: 743 }), 743);
+    assert.equal(subscriberCount({ subscribers: 0 }), null);
+    assert.equal(subscriberCount({ subscribers: '743' }), null);
+    assert.equal(subscriberCount({ subscribers: 7.5 }), null);
+    assert.equal(subscriberCount(problem(503, 'unavailable')), null);
+    assert.equal(subscriberCount(null), null);
 });

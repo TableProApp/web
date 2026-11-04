@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "與團隊共用連線和已儲存的查詢。",
-            "activation": "每個席位對應 1 台已啟用的 Mac。",
+            "activation": {
+                "one": "每個席位 1 人，{count} 台 Mac。",
+                "other": "每個席位 1 人，最多 {count} 台 Mac。"
+            },
             "includesTitle": "Pro 的所有功能，另加",
             "cta": "購買 Team",
             "subscriptionOnly": "Team 按月或按年訂閱。"
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "席位數",
         "noun": "席位數",
+        "minimum": "最少 {min} 個席位。",
         "bounds": "最少 {min} 個席位，最多 {max} 個。",
         "clamped": {
             "min": "已調整為最少的 {min} 個席位。",
@@ -109,7 +113,6 @@ export default {
         "other": "所有付費方案均可在購買後 {count} 天內退款，月付或年付方案的每次續訂也可在扣款後 {count} 天內退款。詳見<link>退款政策</link>。"
     },
     "finePrint": "價格以美元計。{merchant} 作為 merchant of record 處理付款，並在結帳時計算銷售稅或加值稅。",
-    "finePrintCurrency": "價格以美元計。",
     "comparePlans": "比較方案",
     "section": {
         "title": "價格方案",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "最多 {count}"
         },
-        "macsTeam": "每席位一台",
+        "macsTeam": {
+            "one": "每席位 {count} 台",
+            "other": "每席位最多 {count} 台"
+        },
         "everythingElse": "App 中的其他所有功能",
         "everythingElseDetail": "所有支援的引擎、SQL 編輯器、AI 助理、MCP 伺服器與 Safe Mode",
         "iphoneNote": "iPhone 與 iPad App 沒有付費功能，iCloud Sync 在此 App 中免費。若要與 Mac 同步，Mac 需要 Pro 或 Team。"
@@ -134,17 +140,20 @@ export default {
         "listPrice": "原價 {price}"
     },
     "discount": {
-        "atCheckout": "有折扣碼？請在結帳時輸入。",
         "summary": "有折扣碼？",
         "label": "折扣碼",
         "apply": "套用折扣碼",
         "checking": "正在驗證折扣碼…",
         "percent": "折扣碼有效：結帳時享有 {amount}% 折扣。",
         "fixed": "折扣碼有效：結帳時減免 {amount}。",
+        "accepted": "折扣碼有效，結帳時生效。",
         "invalid": "此折扣碼無效或已過期。"
     },
     "checkout": {
-        "failed": "無法開啟結帳頁面。請再試一次。"
+        "failed": "無法開啟結帳頁面。請再試一次。",
+        "planUnavailable": "此方案暫未開售。請選擇其他計費週期，或稍後再試一次。",
+        "seats": "請選擇 {min} 到 {max} 個席位，然後再試一次。",
+        "seatsFewer": "請減少席位數量，然後再試一次。"
     },
     "offers": {
         "name": "{plan}，{cycle}",

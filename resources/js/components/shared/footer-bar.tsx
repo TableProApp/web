@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/footer-bar.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { ChevronUp, Globe } from 'lucide-react';
 import ThemeControl, { type ThemeControlLabels } from '@/components/shared/theme-control';

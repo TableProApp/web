@@ -7,7 +7,6 @@ use App\Services\Releases\PlatformCatalog;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\Testimonials;
-use App\Support\Pricing\Checkout;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
@@ -22,9 +21,6 @@ use Inertia\Response;
  * large file, `engines.json`, is read here instead: the databases section
  * needs a few fields of each engine, so the page receives that slice rather
  * than shipping the whole file in its bundle.
- *
- * `checkout` is the pricing section's contract with the platform app, the
- * same prop `/pricing` receives (`App\Support\Pricing\Checkout`).
  *
  * `lcpAsset` is the hero window's preload descriptor. It is null while the
  * hero is a placeholder, because a placeholder requests nothing, and becomes
@@ -41,7 +37,7 @@ class HomeController extends Controller
      */
     private array $decoded = [];
 
-    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, AssetManifest $assets, Checkout $checkout, Testimonials $testimonials): Response
+    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, AssetManifest $assets, Testimonials $testimonials): Response
     {
         $locale = App::getLocale();
 
@@ -51,7 +47,6 @@ class HomeController extends Controller
             'categories' => $this->categories($content->page('databases/index', $locale)),
             'iosEngines' => $this->iosEngines($platforms),
             'testimonials' => $testimonials->forLocale($locale),
-            'checkout' => $checkout->props(),
             'lcpAsset' => $assets->lcpDescriptor('mac-hero-window', $locale),
         ]);
     }

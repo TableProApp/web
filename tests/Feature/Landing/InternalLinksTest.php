@@ -14,7 +14,7 @@ beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'api', 'beta', 'discount', 'webhooks', 'platform-build'];
+const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'webhooks'];
 
 const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt'];
 

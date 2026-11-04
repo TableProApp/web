@@ -11,4 +11,5 @@ export default {
     failed: 'Đã xảy ra lỗi. Hãy thử lại.',
     network: 'Không kết nối được tới máy chủ. Hãy kiểm tra kết nối rồi thử lại.',
     subscribed: 'Hãy kiểm tra hộp thư để mở liên kết xác nhận.',
+    verification: 'Bước kiểm tra chống spam chưa hoàn tất. Hãy tải lại trang rồi thử lại.',
 } satisfies Messages['forms'];

@@ -97,9 +97,16 @@ function featureSchemaAssertLink(array $link, string $where): void
 {
     expect($link['label'] ?? null)->toBeString()->not->toBe('', "{$where}: a link needs a label");
 
-    $targets = array_intersect(array_keys($link), ['href', 'docs']);
-    expect(count($targets))->toBe(1, "{$where}: a link has exactly one of href or docs");
-    expect(array_diff(array_keys($link), ['label', 'href', 'docs']))->toBe([], "{$where}: unknown link key");
+    $targets = array_intersect(array_keys($link), ['href', 'docs', 'account']);
+    expect(count($targets))->toBe(1, "{$where}: a link has exactly one of href, docs or account");
+    expect(array_diff(array_keys($link), ['label', 'href', 'docs', 'account']))->toBe([], "{$where}: unknown link key");
+
+    // The account portal is another origin, linked from data with the page's language.
+    if (isset($link['account'])) {
+        expect($link['account'])->toBeTrue("{$where}: account is true or absent");
+
+        return;
+    }
 
     $target = $link['href'] ?? $link['docs'];
     expect($target)->toStartWith('/', "{$where}: {$target} must be a root-relative path; external URLs come from data");

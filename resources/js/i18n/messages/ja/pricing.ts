@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "接続と保存済みクエリをチームで共有。",
-            "activation": "1 シートにつき、認証済みの Mac 1 台。",
+            "activation": {
+                "one": "1 シートにつき 1 人、Mac {count} 台。",
+                "other": "1 シートにつき 1 人、Mac 最大 {count} 台。"
+            },
             "includesTitle": "Pro の全機能に加えて",
             "cta": "Team を購入",
             "subscriptionOnly": "Team は月額または年額でのご提供です。"
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "シート数",
         "noun": "シート数",
+        "minimum": "最小 {min} シート。",
         "bounds": "最小 {min} シート、最大 {max} シート。",
         "clamped": {
             "min": "最小の {min} シートに変更しました。",
@@ -109,7 +113,6 @@ export default {
         "other": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
     },
     "finePrint": "価格は米ドルです。{merchant} が販売者（merchant of record）として決済を処理し、購入時に売上税または VAT を計算します。",
-    "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",
     "section": {
         "title": "料金",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "最大 {count}"
         },
-        "macsTeam": "1 シートにつき 1 台",
+        "macsTeam": {
+            "one": "1 シートにつき {count} 台",
+            "other": "1 シートにつき最大 {count} 台"
+        },
         "everythingElse": "アプリのその他すべての機能",
         "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",
         "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Pro または Team が必要です。"
@@ -134,17 +140,20 @@ export default {
         "listPrice": "通常価格 {price}"
     },
     "discount": {
-        "atCheckout": "割引コードをお持ちですか？チェックアウト時に入力してください。",
         "summary": "割引コードをお持ちですか？",
         "label": "割引コード",
         "apply": "コードを適用",
         "checking": "コードを確認中…",
         "percent": "コードを確認しました。チェックアウト時に {amount}% 割引になります。",
         "fixed": "コードを確認しました。チェックアウト時に {amount} 割引になります。",
+        "accepted": "コードを確認しました。チェックアウト時に適用されます。",
         "invalid": "このコードは無効か、有効期限が切れています。"
     },
     "checkout": {
-        "failed": "購入手続きを開けませんでした。もう一度お試しください。"
+        "failed": "購入手続きを開けませんでした。もう一度お試しください。",
+        "planUnavailable": "このプランは現在販売していません。別の請求サイクルを選ぶか、しばらくしてからもう一度お試しください。",
+        "seats": "{min}〜{max} シートの範囲で選び、もう一度お試しください。",
+        "seatsFewer": "シート数を減らして、もう一度お試しください。"
     },
     "offers": {
         "name": "{plan}（{cycle}）",

@@ -1,20 +1,7 @@
-/**
- * The `pricing` namespace: the plan cards, the billing-cycle control, the plan
- * table and checkout, wherever they render (`/pricing` and the homepage's
- * `#pricing` section).
- *
- * No price, seat bound, day count or percentage is typed here. Each arrives
- * through a `{slot}` from resources/data/pricing.json, and amounts are written
- * by `formatUsd()` with `currency` below. The currency style changes how a
- * number is written, never what is billed: every locale pays in US dollars.
- *
- * Words the commerce rules keep out (positioning §12): no "most popular", no
- * typed saving, no "unlock", no promise of future updates for a one-time
- * purchase, nothing about other ways to pay. A regional discount is named only
- * in `regional`, and only once the platform says it applies to the reader.
- */
+// No price, seat bound, day count or percentage is typed here: each comes through a {slot} from resources/data/pricing.json.
+// Commerce rules (positioning §12): no "most popular", typed saving, "unlock", promise of future updates or other ways to pay.
 export default {
-    /** `formatUsd()` style: the amount after a dollar sign, a point before the cents, commas between thousands. */
+    // How formatUsd() writes an amount; every locale is billed in US dollars.
     currency: {
         pattern: '${amount}',
         decimal: '.',
@@ -26,11 +13,7 @@ export default {
         yearly: 'Yearly',
         lifetime: 'One-time',
     },
-    /**
-     * The line under the cycle control. `{percent}` is computed from
-     * pricing.json (twelve monthly payments against one yearly payment,
-     * rounded down), never typed.
-     */
+    // {percent}: twelve monthly payments against one yearly payment, from pricing.json, rounded down.
     captions: {
         monthly: 'Renews every month until you cancel.',
         yearly: 'Renews every year until you cancel. {percent}% less than twelve monthly payments.',
@@ -65,7 +48,10 @@ export default {
         team: {
             name: 'Team',
             description: 'Share connections and saved queries with your team.',
-            activation: 'One activated Mac per seat.',
+            activation: {
+                one: 'One person per seat, on {count} Mac.',
+                other: 'One person per seat, on up to {count} Macs.',
+            },
             includesTitle: 'Everything in Pro, plus',
             cta: 'Get Team',
             subscriptionOnly: 'Team is sold monthly or yearly.',
@@ -86,7 +72,6 @@ export default {
             cta: 'Contact us',
         },
     },
-    /** The unit beside a price. */
     units: {
         starter: {
             monthly: 'per month',
@@ -99,10 +84,11 @@ export default {
         },
     },
     seats: {
-        /** The stepper's visible label and accessible name. */
         label: 'Seats',
-        /** Fills `controls.stepper.decrease` / `increase`: "Decrease seats". */
+        // Fills controls.stepper.decrease and increase: "Decrease seats".
         noun: 'seats',
+        // Until GET /v2/pricing names a maximum, and when Polar sets none.
+        minimum: 'Minimum {min} seats.',
         bounds: 'Minimum {min} seats, maximum {max}.',
         // Replaces `bounds` after a typed count was out of range.
         clamped: {
@@ -121,61 +107,51 @@ export default {
             other: 'Emails from Team customers are answered first, within {count} business days.',
         },
     },
-    /** A link to the plan table, after a card's highlighted features. */
+    // A link to the plan table, after a card's highlighted features.
     allFeatures: 'Every paid feature',
     refund: {
         one: 'Every paid plan can be refunded within {count} day of purchase, and each monthly or yearly renewal within {count} day of its charge. See the <link>refund policy</link>.',
         other: 'Every paid plan can be refunded within {count} days of purchase, and each monthly or yearly renewal within {count} days of its charge. See the <link>refund policy</link>.',
     },
-    /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
     finePrint: 'Prices in US dollars. {merchant} handles payment and calculates sales tax or VAT at checkout as merchant of record.',
-    /** The line under the cards when checkout is another provider's, so no merchant is named. */
-    finePrintCurrency: 'Prices in US dollars.',
     comparePlans: 'Compare plans',
-    /** The homepage section (`#pricing`). Its page may pass its own heading and lead instead. */
     section: {
         title: 'Pricing',
         lead: 'TablePro is open source and free to use. Paid plans add optional features to the Mac app.',
     },
-    /** The plan table on /pricing. Its rows are the paid features from paid-features.json. */
     matrix: {
         caption: 'What each plan includes in the Mac app',
         feature: 'Feature',
         macs: 'Macs',
         macsFree: 'No license',
         macsStarter: { one: '{count}', other: 'Up to {count}' },
-        macsTeam: 'One per seat',
+        macsTeam: { one: '{count} per seat', other: 'Up to {count} per seat' },
         everythingElse: 'Everything else in the app',
         everythingElseDetail: 'Every supported engine, the SQL editor, the AI assistant, the MCP server and Safe Mode',
         iphoneNote: 'The iPhone and iPad app has no paid features. iCloud Sync is free there; to sync with a Mac, the Mac needs Pro or Team.',
     },
-    /**
-     * The regional discount checkout applies in some countries, shown with the
-     * plans once the platform has said it applies to this reader
-     * (`GET /discount/region`). `{country}` is the country's name in the page's
-     * language, in parentheses so no language needs an article for it;
-     * `{percent}` comes from the platform. `listPrice` names the struck price
-     * for a screen reader.
-     */
+    // {country} is in parentheses so no language needs an article for it; listPrice names the struck price for a screen reader.
     regional: {
         note: 'Prices for your country ({country}): {percent}% off, applied at checkout.',
         listPrice: 'List price {price}',
     },
     discount: {
-        /** Under Polar, whose checkout takes the code itself. */
-        atCheckout: 'Have a discount code? Enter it at checkout.',
         summary: 'Have a discount code?',
         label: 'Discount code',
         apply: 'Apply code',
         checking: 'Checking the code…',
         percent: 'Code accepted: {amount}% off, applied at checkout.',
         fixed: 'Code accepted: {amount} off, applied at checkout.',
+        accepted: 'Code accepted, applied at checkout.',
         invalid: 'This code is invalid or has expired.',
     },
     checkout: {
         failed: "Couldn't open checkout. Try again.",
+        planUnavailable: "This plan isn't for sale right now. Choose another billing cycle, or try again later.",
+        seats: 'Choose between {min} and {max} seats, then try again.',
+        // A 422 on body.seats while no maximum is known.
+        seatsFewer: 'Choose fewer seats, then try again.',
     },
-    /** Structured data: one offer per visible price. */
     offers: {
         name: '{plan}, {cycle}',
         seat: 'seat',

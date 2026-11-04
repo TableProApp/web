@@ -197,13 +197,16 @@ it('closes every bold span on the rendered page', function (string $locale): voi
     }
 })->with(legalLocales());
 
-it('keeps the cookie contract the consent bar and the account app rely on', function (string $locale, string $basis, string $settings): void {
+it('keeps the cookie contract the consent bar relies on', function (string $locale, string $basis, string $settings): void {
     $privacy = legalSource('privacy', $locale);
     $cookies = legalSection('privacy', $locale, 'cookies');
 
-    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', 'tablepro-session', 'XSRF-TOKEN', 'theme'] as $name) {
+    foreach (['_ga', 'tablepro:analytics-consent', 'tablepro:attribution', 'crisp-client/', '__Host-tp_session', 'theme', 'sign-in-return-to'] as $name) {
         expect($cookies)->toContain($name);
     }
+
+    // tablepro-cloud's portal sets one cookie and no CSRF cookie: the Laravel portal's two are gone.
+    expect($cookies)->not->toContain('tablepro-session')->not->toContain('XSRF-TOKEN');
 
     // The banner cannot be closed, so nothing is stored about it and the policy must not say otherwise.
     expect($cookies)->not->toContain('banner');
@@ -219,30 +222,61 @@ it('keeps the cookie contract the consent bar and the account app rely on', func
     'Vietnamese' => ['vi', 'cơ sở pháp lý', 'Cài đặt cookie'],
 ]);
 
-it('describes purchase attribution as discarded, under the website and the cookies', function (string $locale, string $discarded): void {
+it('describes purchase attribution as checkout metadata kept with the order, under the website and the cookies', function (string $locale, string $kept): void {
     foreach (['website', 'cookies'] as $section) {
         expect(legalSection('privacy', $locale, $section))->toContain('tablepro:attribution');
     }
 
-    expect(legalSection('privacy', $locale, 'website'))->toContain($discarded);
+    // tablepro-cloud stores the utm_* tags and the referrer as Polar checkout metadata and on the order (data-model.md, orders.attribution).
+    expect(legalSection('privacy', $locale, 'website'))->toContain($kept);
+    expect(legalSource('privacy', $locale))->not->toContain('discards it')->not->toContain('bỏ nó đi');
 })->with([
-    'English' => ['en', 'Our server discards it'],
-    'Vietnamese' => ['vi', 'Máy chủ của chúng tôi bỏ nó đi'],
+    'English' => ['en', 'Our server passes the source of the visit to {merchant} as metadata of the checkout'],
+    'Vietnamese' => ['vi', 'Máy chủ của chúng tôi chuyển nguồn của lượt truy cập cho {merchant}'],
 ]);
 
 it('states what the Mac app and the server actually do', function (): void {
     $mac = legalSection('privacy', 'en', 'mac-app');
 
-    // The usage report: on by default, where to turn it off, and what the server adds.
+    // Usage data: on by default, where to turn it off, and what the server adds.
     expect($mac)
-        ->toContain('It is on by default, and the app does not ask before sending the first one.')
+        ->toContain('It is on by default, and the app does not ask before sending the first event.')
         ->toContain('**Settings > General > Privacy**')
-        ->toContain('Share anonymous usage data')
-        ->toContain('ip-api.com')->toContain('ipinfo.io')->toContain('geoplugin.net')
-        ->toContain('unencrypted HTTP');
+        ->toContain('**Share usage data**')
+        ->not->toContain('Share anonymous usage data');
+
+    // The accounts build sends PostHog its events itself, with posthog-ios's own properties (tablepro-cloud clients.md, macOS Telemetry).
+    expect($mac)->toContain('`eu.i.posthog.com`')
+        ->toContain('if the app starts with it off, it does not start PostHog\'s library at all')
+        ->toContain('screen size, time zone and language, whether it is on Wi-Fi')
+        ->toContain('works out an approximate location from it')
+        ->toContain('(`/config` from `eu-assets.i.posthog.com` and `/flags` from `eu.i.posthog.com`)')
+        ->toContain('your first successful connection and your first query, each with its database type;')
+        ->toContain('Before you sign in, the events carry a random ID')
+        // GeoIP is on, so PostHog also sets the derived location on the identified person.
+        ->toContain('the app\'s language and the approximate location PostHog works out from the IP address.')
+        ->toContain('The app\'s usage data no longer carries a machine ID, whether a license is activated, or your update settings.')
+        ->not->toContain('The app no longer sends a machine ID')
+        ->toContain('PostHog\'s crash reporter, which the app leaves turned off')
+        ->toContain('`~/Library/Application Support/com.TablePro`');
+
+    // tablepro-cloud's /v1 heartbeat goes to PostHog with Cloudflare's country, never the key or the IP; no lookup service, no HTTP.
+    expect($mac)->toContain('Our server does not store the report or the IP address it came from.')
+        ->toContain('the country Cloudflare gives for your connection');
+    expect(legalSource('privacy', 'en'))->not->toContain('ip-api.com')->not->toContain('geoplugin.net')->not->toContain('unencrypted HTTP');
+
+    // Devices belong to accounts, and their changes are audited with the request's IP and user agent.
+    expect($mac)->toContain('{#mac-account}')->toContain('macOS Keychain')->toContain('audit log');
+
+    // The accounts build keeps its refresh token in a Keychain item that never syncs (deviceOnlyKeychain in AccountServices+Live).
+    expect($mac)->toContain('kept in the macOS Keychain of that Mac only and never syncs through iCloud Keychain');
+    expect(legalSection('privacy', 'en', 'icloud'))->toContain('the license key is deleted once it is exchanged for a sign-in, and the token that keeps the app signed in never syncs');
 
     // The license check sends the Mac's name, not "the license key and no other data".
     expect($mac)->toContain('your Mac\'s name')->not->toContain('No other data');
+    expect(legalSection('privacy', 'en', 'mac-license'))->toContain('Versions before TablePro accounts contact our license server only after you enter a license key.')
+        ->toContain('the machine ID described under [Usage data](#mac-usage-report)')
+        ->not->toContain('described above');
 
     // The Team Library upload carries startup commands and the tunnel command too (ConnectionExportService.buildEnvelope at v0.77.0).
     expect($mac)->toContain('SQL text')->toContain('never passwords')->toContain('startup commands')->toContain('Tunnel Command');
@@ -262,20 +296,96 @@ it('states what the Mac app and the server actually do', function (): void {
     expect($ios)->toContain('of your open connections')->toContain('always reports that no license is activated');
 });
 
-it('lists the date of the first query for the iPhone report only', function (string $locale): void {
-    // The Mac app never records it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The iPhone app does.
+it('scopes the license checks to old builds, whose usage report describes the machine ID', function (string $locale): void {
+    // The accounts build drops LicenseAPIClient (tablepro-cloud clients.md, macOS Code); its sign-in is #mac-account.
+    expect(legalSection('privacy', $locale, 'mac-license'))->toContain('](#mac-usage-report)');
+    expect(strstr(legalSection('privacy', $locale, 'mac-usage-report'), '`api.tablepro.app`'))->toContain('SHA-256');
+})->with(legalLocales());
+
+it('names both PostHog hosts the accounts build contacts', function (string $locale): void {
+    // posthog-ios 3.92.7 fetches /config from the assets host of eu.i.posthog.com (PostHogApi.getRemoteConfigRequest).
+    expect(legalSection('privacy', $locale, 'mac-usage-report'))->toContain('`eu.i.posthog.com`')->toContain('`eu-assets.i.posthog.com`');
+})->with(legalLocales());
+
+it('lists the first query for the accounts build and the iPhone report, never for the old Mac report', function (string $locale): void {
+    // Old Mac builds never record it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The accounts build sends
+    // first_query_executed with database_type (TablePro m16/accounts 4399ab89c), and the iPhone app reports it.
     expect(LEGAL_FIRST_QUERY)->toHaveKey($locale);
-    expect(legalSection('privacy', $locale, 'mac-usage-report'))->not->toBe('')->not->toContain(LEGAL_FIRST_QUERY[$locale]);
+    $usage = legalSection('privacy', $locale, 'mac-usage-report');
+    $old = strstr($usage, '`api.tablepro.app`');
+
+    expect($old)->not->toBeFalse()->not->toContain(LEGAL_FIRST_QUERY[$locale]);
+    expect(strstr($usage, '`api.tablepro.app`', true))->toContain(LEGAL_FIRST_QUERY[$locale]);
     expect(legalSection('privacy', $locale, 'ios-app'))->toContain(LEGAL_FIRST_QUERY[$locale]);
 })->with(legalLocales());
 
-it('sets no retention period the server does not keep', function (string $locale): void {
+it('sets no retention period the server does not keep', function (string $locale, string $serverLogs): void {
     $retention = legalSection('privacy', $locale, 'retention');
 
     // The previous policy promised 90 days for server logs and "aggregated" analytics; neither was true.
-    expect($retention)->not->toContain('90');
+    preg_match('/^- \*\*' . preg_quote($serverLogs, '/') . '\*\*.*$/m', $retention, $logs);
+    expect($logs[0] ?? '')->not->toBe('')->not->toMatch('/\d/');
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
-})->with(['en', 'vi']);
+})->with([
+    'English' => ['en', 'Server logs'],
+    'Vietnamese' => ['vi', 'Nhật ký máy chủ'],
+]);
+
+it('keeps the retention periods tablepro-cloud states', function (): void {
+    $retention = legalSection('privacy', 'en', 'retention');
+
+    // data-model.md, Retention.
+    expect($retention)->toContain('a deleted item keeps its last version')
+        ->toContain('are deleted 7 days later. Portal sessions last 30 days.')
+        ->toContain('**Notifications from {merchant}, Amazon SES and Apple**: kept.')
+        ->toContain('**Devices**: kept, with those you removed, until you delete your account.')
+        ->toContain('We have not set a time limit for them in PostHog.')
+        ->toContain("**Server logs**: our web server's and our server's logs, kept on our server for security and troubleshooting.");
+    expect(legalSource('privacy', 'en'))->not->toContain('180 days')->not->toContain('for 90 days, so every Mac');
+});
+
+it('states what tablepro-cloud keeps outside its own tables', function (): void {
+    // migration.md: a pg_dump of the whole Laravel database to R2, kept indefinitely; no document says it is encrypted.
+    $retention = legalSection('privacy', 'en', 'retention');
+    expect($retention)->toContain('a copy of its whole database is kept indefinitely')
+        ->toContain('What our previous server held about you stays in its archive')
+        ->not->toContain('encrypted archive');
+
+    // data-model.md, Retention: a sign-in email job holds the raw link and code until River cleans it.
+    expect(legalSection('privacy', 'en', 'security'))->not->toContain('only as hashes')
+        ->toContain('a day after the email is sent, or 7 days after we give up sending it');
+
+    // migration.md: every Laravel subscriber not unsubscribed is imported subscribed, confirmed or not.
+    expect(legalSection('privacy', 'en', 'newsletter'))->toContain('confirmed or not');
+
+    // clients.md: the Mac app sends usage data to PostHog itself, so PostHog gets the request's IP address.
+    expect(legalSection('privacy', 'en', 'mac-usage-report'))->toContain('PostHog receives your Mac\'s IP address with each request');
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('reaches PostHog with your Mac\'s IP address');
+});
+
+it('describes the account portal tablepro-cloud runs, its sign-in and what it loads', function (): void {
+    $account = legalSection('privacy', 'en', 'account');
+
+    expect($account)->toContain('Apple, GitHub or Google')->toContain('passkeys')->toContain('6-digit code')
+        ->toContain('both expire after 15 minutes')
+        ->toContain('download your account\'s data as a JSON file')
+        ->toContain('no Google Analytics, no Cloudflare Web Analytics')
+        ->toContain('a purchase made there opens {merchant}\'s checkout over the page.');
+
+    expect(legalSection('privacy', 'en', 'website'))->toContain('**Newsletter check.**')->toContain('`challenges.cloudflare.com`');
+    expect(legalSection('privacy', 'en', 'sharing'))->toContain('**Amazon Web Services**')->toContain('**PostHog** (EU Cloud)')
+        ->not->toContain('An email delivery provider');
+    expect(legalSection('privacy', 'en', 'transfers'))->toContain('PostHog processes it in the European Union.');
+});
+
+it('names Amazon SES as the sender of every email and the newsletter\'s open and click tracking', function (string $locale): void {
+    // tablepro-cloud M24: SES in ap-southeast-1 sends both streams and tracks newsletter opens and clicks on links.news.tablepro.app.
+    expect(legalSource('privacy', $locale))->not->toContain('Resend');
+    expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Amazon Web Services**')->toContain('Amazon SES');
+    expect(legalSection('privacy', $locale, 'transfers'))->toContain('Amazon Web Services');
+    expect(legalSection('privacy', $locale, 'newsletter'))->toContain('`links.news.tablepro.app`');
+    expect(legalSection('privacy', $locale, 'retention'))->toContain('Amazon SES');
+})->with(legalLocales());
 
 it('covers the documentation site and its own analytics question', function (string $locale): void {
     // The docs once set GA cookies on .tablepro.app with no consent; their bar is English only, so every language names its controls in English.
@@ -340,8 +450,12 @@ it('makes the terms agree with priority support, the AGPL and the merchant of re
     // AGPLv3 §2, §4-§6 and §13: running carries no conditions; conveying and network use of a modified version do.
     expect($terms)->toContain('The AGPL places no conditions on running TablePro')->not->toContain('not to using it');
 
-    // A seat is a Mac, and the update feed is not ours.
-    expect($terms)->toContain('Each seat is one activated Mac')->not->toContain('update server');
+    // A seat is a person on the account's devices (tablepro-cloud product.md, Devices), and the update feed is not ours.
+    // Old builds activate with a License Key over /v1 until its sunset (tablepro-cloud api.md, /v1).
+    expect($terms)->toContain('Each seat is for one person, on up to {deviceLimit} Macs')
+        ->toContain('signed in to your TablePro account or, in versions before TablePro accounts, activated with its License Key')
+        ->not->toContain('activated Mac')
+        ->not->toContain('update server');
 
     // The buyer pays Polar, not us.
     expect($terms)->not->toContain('paid us');
@@ -383,10 +497,11 @@ it('keeps the refund window from pricing.json and tells a subscriber how to stop
 
     expect($source)->toContain('{refundDays}');
     Assert::assertDoesNotMatchRegularExpression('/\b7[\s-](days?|ngày)/u', $source);
-    expect($source)->toContain('{portal}')->toContain("/account?locale={$locale}");
+    expect($source)->toContain('{portal}')->toContain('({account})')->not->toContain('/account?locale=');
+    expect(app(LegalDocuments::class)->render('refund-policy', $locale)['html'])->toContain("href=\"https://account.tablepro.app/?locale={$locale}\"");
 
-    // A refund suspends the key at the next check, not "immediately".
-    expect($source)->toContain('{revalidateDays}');
+    // A full refund ends the license at once; a Mac stops at its next check, an old build within {revalidateDays}.
+    expect($source)->toContain('{offlineDays}')->toContain('{revalidateDays}');
     Assert::assertStringNotContainsStringIgnoringCase('machines deactivate', $source);
 })->with(['en', 'vi']);
 

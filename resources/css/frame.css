@@ -1,13 +1,10 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/css/frame.css. Change both in the same release. See docs/shared-files.md. */
-
 /*
  * ---------------------------------------------------------------------------
  * The page frame (design-system §4.7)
  * ---------------------------------------------------------------------------
  *
- * The page is drawn as a grid without being laid out as one, the same way on
- * the public site and in the account app, which import this file after
- * tokens.css:
+ * The page is drawn as a grid without being laid out as one; app.css imports
+ * this file after tokens.css:
  *
  * - Rails: `FrameRails` (components/shared/frame-rails.tsx), 1px verticals
  *   on the wide Container's outer edge, from 1280px. Below that, only

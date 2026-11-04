@@ -74,7 +74,7 @@ it('prefixes a path with a locale, keeping its query and fragment', function (st
     ['/pricing?plan=pro#plans', 'zh-Hant', '/zh-Hant/pricing?plan=pro#plans'],
 ]);
 
-it('never prefixes a path the platform app answers', function (string $path): void {
+it('never prefixes a path nginx answers without this app', function (string $path): void {
     expect(LocalizedUrl::isPlatformPath($path))->toBeTrue();
     expect(LocalizedUrl::path($path, 'vi'))->toBe($path);
     expect(LocalizedUrl::path($path, 'en'))->toBe($path);
@@ -83,24 +83,50 @@ it('never prefixes a path the platform app answers', function (string $path): vo
     '/account?locale=vi',
     '/account/login#form',
     '/checkout',
-    '/discount/preview',
-    '/newsletter/subscribe',
     '/thank-you?order=signed',
-    '/api/newsletter/stats',
-    '/platform-build/app.js',
+    '/newsletter/unsubscribe/42?signature=x',
     '/webhooks/polar',
-    '/beta',
 ]);
 
 it('still prefixes public paths that only start like a platform one', function (string $path): void {
     expect(LocalizedUrl::isPlatformPath($path))->toBeFalse();
     expect(LocalizedUrl::path($path, 'vi'))->toBe('/vi' . $path);
-})->with(['/accounting', '/checkouts', '/newsletters', '/betamax', '/api/other', '/blog/checkout-notes']);
+})->with(['/accounting', '/checkouts', '/newsletters', '/betamax', '/api/other', '/blog/checkout-notes', '/beta', '/discount/preview', '/newsletter/subscribe', '/platform-build/app.js']);
 
-it('matches the platform paths the TypeScript helper and the dev proxy use', function (): void {
+it('matches the platform paths the TypeScript helper uses', function (): void {
     $pattern = trim(LocalizedUrl::PLATFORM_PATHS, '~');
     $javascript = '/' . str_replace('/', '\\/', $pattern) . '/;';
 
     expect(file_get_contents(resource_path('js/i18n/paths.ts')))->toContain('export const PLATFORM_PATHS = ' . $javascript);
-    expect(file_get_contents(base_path('scripts/dev-proxy.mjs')))->toContain('export const PLATFORM_PATHS = ' . $javascript);
+});
+
+it('reserves exactly the paths the cutover nginx config answers without this app', function (): void {
+    $config = (string) file_get_contents(base_path('docs/deploy/tablepro.app.nginx.conf'));
+
+    $elsewhere = substr($config, 0, (int) strpos($config, 'Everything else: the public site.'));
+
+    preg_match_all('/^\s*location (=|\^~) (\/[^ ]*) \{/m', $elsewhere, $locations);
+
+    expect($locations[2])->toBe(['/account', '/account/', '/checkout', '/thank-you', '/newsletter/unsubscribe/', '/webhooks/polar']);
+
+    foreach ($locations[2] as $path) {
+        expect(LocalizedUrl::isPlatformPath(rtrim($path, '/') . '/x'))->toBeTrue($path);
+    }
+
+    preg_match('/~\^\/\(([^)]+)\)/', LocalizedUrl::PLATFORM_PATHS, $alternatives);
+
+    expect(explode('|', $alternatives[1]))->toBe(['account', 'checkout', 'thank-you', 'newsletter/unsubscribe', 'webhooks/polar']);
+
+    // The unsubscribe signature covers the raw URI, so proxy_pass names no URI of its own.
+    expect(substr_count($config, 'proxy_pass http://tablepro_cloud;'))->toBe(2)
+        ->and(substr_count($config, 'proxy_set_header Host api.tablepro.app;'))->toBe(2)
+        ->and(substr_count($config, 'include /etc/nginx/snippets/cloudflare-allow.conf;'))->toBe(2)
+        ->and($config)->not->toContain('license.tablepro.app/public')
+        ->not->toContain('location @platform')
+        ->not->toContain('location ^~ /platform-build');
+});
+
+it('links the account portal with the language in the query', function (): void {
+    expect(LocalizedUrl::account('vi'))->toBe('https://account.tablepro.app/?locale=vi')
+        ->and(LocalizedUrl::account('zh-Hant'))->toBe('https://account.tablepro.app/?locale=zh-Hant');
 });

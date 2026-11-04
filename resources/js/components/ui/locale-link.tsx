@@ -33,12 +33,9 @@ interface LocaleLinkProps {
  * and the theme script all run again for the new language.
  *
  * Anything that is not a root-relative path (an external URL, `#fragment`,
- * `mailto:`) renders as a plain `<a>` untouched. So do the platform's paths
- * (`/account`, `/checkout`, `/thank-you`, … see `PLATFORM_PATHS` in
- * `@/i18n/paths`): they belong to a different application, which nginx
- * routes by its unprefixed path, so they are never prefixed and never an
- * Inertia visit. The account app takes its language from the query, which
- * the caller adds: `/account?locale={locale}`.
+ * `mailto:`) renders as a plain `<a>` untouched. So do the paths nginx
+ * answers without this app (`/account`, `/checkout`, … see `PLATFORM_PATHS`
+ * in `@/i18n/paths`): they are never prefixed and never an Inertia visit.
  */
 export default function LocaleLink({ href, locale, children, ...rest }: LocaleLinkProps) {
     const { locale: current } = useI18n();

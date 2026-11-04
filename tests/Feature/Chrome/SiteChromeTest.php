@@ -163,7 +163,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     Assert::assertSame('en', $docs['attrs']['hreflang'] ?? null);
     Assert::assertSame($vi ? 'Tài liệu (tiếng Anh)' : 'Docs', $docs['attrs']['aria-label'] ?? null);
 
-    $account = chromeLink($header, "/account?locale={$locale}");
+    $account = chromeLink($header, "https://account.tablepro.app/?locale={$locale}");
 
     Assert::assertNotNull($account, 'The header has no account link');
     Assert::assertSame($vi ? 'Tài khoản' : 'Account', $account['text']);
@@ -198,7 +198,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
     // Twelve language rows once put "Download for Mac" 1,273px down an 844px screen.
     $menu = substr($header, (int) strpos($header, '<dialog'));
 
-    $menuAccount = strpos($menu, "href=\"/account?locale={$locale}\"");
+    $menuAccount = strpos($menu, "href=\"https://account.tablepro.app/?locale={$locale}\"");
     $menuDownload = strpos($menu, '>' . chromeCatalog($locale, 'download')['macCta'] . '</a>');
     $menuBadge = strpos($menu, 'href="https://apps.apple.com/');
     $menuLanguages = strpos($menu, '<details');
@@ -237,7 +237,7 @@ it('renders the header, its menu and the footer in the reader\'s language', func
         Assert::assertNotNull(chromeLink($footer, $prefix . $page), "The footer has no link to {$prefix}{$page}");
     }
 
-    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'mailto:hello@tablepro.app', "/account?locale={$locale}"] as $href) {
+    foreach (['https://docs.tablepro.app', 'https://docs.tablepro.app/changelog', 'https://github.com/TableProApp/TablePro', 'https://github.com/TableProApp/TablePro/issues', 'mailto:hello@tablepro.app', "https://account.tablepro.app/?locale={$locale}"] as $href) {
         Assert::assertNotNull(chromeLink($footer, $href), "The footer has no link to {$href}");
     }
 
@@ -390,7 +390,7 @@ it('gives the footer bar\'s controls a 44px target on a touch screen', function 
         ->toContain("iconsOnly ? 'size-9 justify-center sm:size-8 pointer-coarse:size-11'");
 });
 
-it('draws the footer as cells that close on the bar shared with the account app', function (): void {
+it('draws the footer as cells that close on the footer bar', function (): void {
     $footer = (string) file_get_contents(resource_path('js/components/site/site-footer.tsx'));
 
     expect($footer)->toContain('<CellGrid')
@@ -420,7 +420,7 @@ it('gives the error pages the same chrome in the language of their path, with Pr
     $html = $this->get('http://' . config('app.web_domain') . $path)->assertNotFound()->getContent();
 
     expect($html)->toContain('<header')->toContain('<footer');
-    Assert::assertNotNull(chromeLink($html, "/account?locale={$locale}"));
+    Assert::assertNotNull(chromeLink($html, "https://account.tablepro.app/?locale={$locale}"));
     Assert::assertSame($locale === 'vi' ? 'Chuyển đến nội dung chính' : 'Skip to content', chromeLink($html, '#main-content')['text'] ?? null);
 
     $main = substr($html, (int) strpos($html, '<main'), (int) strpos($html, '</main>') - (int) strpos($html, '<main'));

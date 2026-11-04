@@ -188,7 +188,17 @@ it('totals the seats as they are typed, and says when a typed count was changed'
 
     expect($card)->toContain('onChange={follow}')
         ->toContain('onBlur={(event) => settle(event.target)}')
-        ->toContain('fmt(bound ? m.pricing.seats.clamped[bound] : m.pricing.seats.bounds, { min, max })');
+        ->toContain('fmt(m.pricing.seats.clamped.min, { min })')
+        ->toContain('fmt(bound === \'max\' ? m.pricing.seats.clamped.max : m.pricing.seats.bounds, { min, max })');
+});
+
+it('takes the Team seat maximum from GET /v2/pricing, and has none before it answers', function (): void {
+    expect(layoutSource('js/components/pricing/pricing-plans.tsx'))
+        ->toContain('const maxSeats = useTeamMaxSeats()[cycle] ?? null;')
+        ->toContain('maxSeats={maxSeats}');
+    expect(layoutSource('js/components/pricing/pricing-card.tsx'))->toContain('max === null')->toContain('m.pricing.seats.minimum');
+    expect(layoutSource('js/components/ui/stepper.tsx'))->toContain('max: number | null;');
+    expect((string) file_get_contents(resource_path('data/pricing.json')))->not->toContain('"max"');
 });
 
 it('drops a discount check whose code was edited while it ran', function (): void {

@@ -56,7 +56,6 @@ it('renders in every locale, before, during and after the sale', function (strin
                 ->where('campaign.phase', $phase)
                 ->where('content.hero.eyebrow', campaignPageContent($locale)['hero']['eyebrow'])
                 ->has('paidFeatures')
-                ->has('checkout.provider')
                 ->has('organizationProfiles')
                 ->where('seo.robots', 'index, follow'));
     }
@@ -100,7 +99,6 @@ it('offers nothing once the sale has ended: its own title, heading and descripti
 })->with(campaignPageLocales());
 
 it('server-renders the sale on the Pro card, the band and the banner while it is live, and none of it after', function (string $path): void {
-    config(['payment.provider' => 'polar']);
     $campaign = Campaign::current();
     $pricing = json_decode(File::get(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR);
     $prices = $pricing['tiers']['starter']['prices'];

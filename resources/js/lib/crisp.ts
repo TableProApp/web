@@ -1,4 +1,4 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/lib/crisp.ts. Change both in the same release. See docs/shared-files.md. */
+/* Shared by TableProApp/web at resources/js/lib/crisp.ts and TableProApp/cloud at web/apps/portal/src/lib/crisp.ts. Change both in the same release. See docs/shared-files.md in TableProApp/web. */
 
 /**
  * Live chat on every page.
@@ -12,8 +12,9 @@
  * Crisp's loader sets its `crisp-client/` cookies on `.tablepro.app` as soon as
  * it runs. The privacy policy describes them and what Crisp receives.
  *
- * Crisp is given the page's language and nothing else: no email, no license,
- * no account details, on either application.
+ * This file gives Crisp the page's language and nothing else. In the portal,
+ * a signed-in session also gives Crisp the account's email address and its
+ * TypeID (`acct_…`), from the portal's own code; the public site never does.
  *
  * The launcher never covers the consent bar. While the bar reaches the
  * bottom-right corner (on a phone, reopened from "Cookie settings"), the

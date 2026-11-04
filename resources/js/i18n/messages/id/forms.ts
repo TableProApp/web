@@ -10,5 +10,6 @@ export default {
     "tooMany": "Terlalu banyak percobaan. Tunggu satu menit lalu coba lagi.",
     "failed": "Terjadi kesalahan. Coba lagi.",
     "network": "Tidak dapat menghubungi server. Periksa koneksi Anda lalu coba lagi.",
-    "subscribed": "Periksa kotak masuk Anda untuk tautan konfirmasi."
+    "subscribed": "Periksa kotak masuk Anda untuk tautan konfirmasi.",
+    "verification": "Pemeriksaan antispam belum selesai. Muat ulang halaman lalu coba lagi."
 } satisfies Messages['forms'];

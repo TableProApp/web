@@ -7,7 +7,7 @@ import { openConsentSettings } from '@/lib/consent';
  * `/privacy` and `/vi/privacy` (sitemap §A.6).
  *
  * The policy is `resources/data/legal/{locale}/privacy.md`. Its cookies
- * section (`#cookies`, linked from the consent bar and the account app) holds
+ * section (`#cookies`, linked from the consent bar) holds
  * the "Cookie settings" button, which reopens the same consent bar the footer
  * control opens, so the reader can change their answer where the policy
  * explains it.

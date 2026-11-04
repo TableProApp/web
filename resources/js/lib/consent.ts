@@ -1,5 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/lib/consent.ts. Change both in the same release. See docs/shared-files.md. */
-
 /**
  * The reader's answer to "may Google Analytics set cookies?".
  *
@@ -8,11 +6,6 @@
  * yes is counted with cookies from their first page view. This module owns the
  * other half: recording the answer, applying it to the running tag, and taking
  * the cookies back when the reader changes their mind.
- *
- * The public site and the account app are two applications on one origin, so
- * they read the same `localStorage`: one answer covers both, and withdrawing it
- * on either side withdraws it everywhere. This file is byte-identical in both
- * repositories, which keeps the key identical too.
  *
  * Only `analytics_storage` is ever granted. The advertising signals stay denied
  * for everyone because nothing on this site advertises.

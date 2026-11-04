@@ -68,7 +68,7 @@ const HOME_SECTIONS = ['top', 'databases', 'sponsors', 'features', 'safety', 'ai
 const HOME_ALIASES = ['mcp' => 'ai', 'mobile' => 'platforms', 'compare' => 'switch', 'license' => 'pricing'];
 
 describe('props and copy', function (): void {
-    it('renders in English with the page copy, the engine slice and the checkout contract', function (): void {
+    it('renders in English with the page copy, the engine slice and the API origin', function (): void {
         get('/')
             ->assertOk()
             ->assertInertia(fn(AssertableInertia $page) => $page
@@ -76,8 +76,8 @@ describe('props and copy', function (): void {
                 ->where('locale', 'en')
                 ->where('content.hero.title', 'A native database client.')
                 ->where('content.seo.title', 'TablePro: native database client for {deviceList}')
-                ->where('checkout.provider', fn(string $provider): bool => in_array($provider, ['polar', 'lemonsqueezy'], true))
-                ->has('checkout.couponField')
+                ->where('apiOrigin', 'https://api.tablepro.app')
+                ->missing('checkout')
                 ->has('engines')
                 ->has('categories')
                 ->has('iosEngines.picker')
@@ -411,7 +411,7 @@ describe('server-rendered', function (): void {
 
         $fill = fn(string $line): string => strtr($line, [
             '{examples}' => $examples,
-            '{macs}' => (string) $pricing['tiers']['starter']['activations'],
+            '{macs}' => (string) $pricing['license']['deviceLimit'],
             '{days}' => (string) $pricing['refund']['days'],
         ]);
 

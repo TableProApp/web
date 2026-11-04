@@ -124,7 +124,6 @@ it('never grants an advertising signal', function (): void {
     }
 });
 
-// The account app reads the same key through its byte-identical copy of consent.ts.
 it('reads the answer under the key the consent module writes', function (): void {
     preg_match("/CONSENT_STORAGE_KEY = '([^']+)'/", consentSource('resources/js/lib/consent.ts'), $key);
 

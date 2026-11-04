@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
-import { useRegionalPricing } from '@/hooks/use-regional-pricing';
+import { useRegionalPricing, useTeamMaxSeats } from '@/hooks/use-regional-pricing';
 import { Trans, useI18n } from '@/i18n';
 import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
@@ -11,58 +11,30 @@ import DiscountField from './discount-field';
 import EnterpriseCard from './enterprise-card';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
 import RegionalNote from './regional-note';
-import type { CheckoutProp } from './types';
 import { useCheckout } from './use-checkout';
 
 const TIERS: readonly TierId[] = ['free', 'starter', 'team'];
 
 interface PricingPlansProps {
-    checkout: CheckoutProp;
-    /** `full` on `/pricing`; `compact` (no Includes lists) in the homepage section. */
+    // `compact` (no Includes lists) in the homepage section.
     variant?: PricingCardVariant;
-    /** The cards' heading element: `h3` under a section heading (default), `h2` directly under the page's `h1`. */
     headingLevel?: 'h2' | 'h3';
     className?: string;
 }
 
-/**
- * The working plan block, the same on `/pricing` and on the homepage: the
- * billing-cycle control and its caption, the Free, Pro and Team cards and
- * the Enterprise contact card,
- * the refund window from pricing.json, the discount code where this site
- * takes one, and the line on currency and the merchant of record.
- *
- * Yearly is selected first, as before the rebuild, and Team starts at its
- * minimum seats. Both render on the server, so the block reads the same
- * before and after hydration.
- *
- * Where checkout applies a regional discount, the platform says so after the
- * block has rendered (`useRegionalPricing`): the paid prices then show what
- * checkout will charge beside the struck list price, and a line above the
- * notes names the country. The server render, and so the cached page and its
- * structured data, always carries the list prices.
- *
- * The cards are joined cells of the page grid (design-system §4.7), so the
- * block belongs in a wide section.
- */
-export default function PricingPlans({ checkout, variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
+// The regional price and the seat maximum arrive after the first render, so the cached page and its structured data
+// carry the list prices and no maximum. The Enterprise card is a contact route beside the plans, with no price.
+export default function PricingPlans({ variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
     const { m, fmt, plural } = useI18n();
     const [cycle, setCycle] = useState<BillingCycle>('yearly');
     const [seats, setSeats] = useState<number>(PRICING.tiers.team.seats.min);
     const [discountCode, setDiscountCode] = useState<string | null>(null);
-    const flow = useCheckout(checkout.provider);
-    /*
-     * A typed code replaces the regional discount at checkout; the two never
-     * stack. So while one is applied, the cards show the list prices again.
-     */
+    const flow = useCheckout();
+    // A typed code replaces the regional discount at checkout; the two never stack.
     const regionalDiscount = useRegionalPricing();
     const regional = discountCode === null ? regionalDiscount : null;
-
-    /*
-     * pricing.json names the merchant of record (Polar). Only its own checkout
-     * may be described as such; another provider's gets the currency alone.
-     */
-    const merchantCheckout = checkout.provider === PRICING.merchantOfRecord.name.toLowerCase();
+    const maxSeats = useTeamMaxSeats()[cycle] ?? null;
+    const teamSeats = maxSeats === null ? seats : Math.min(seats, maxSeats);
 
     return (
         // While the cycle control is pinned, a focused control must not scroll in under it.
@@ -78,7 +50,8 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         variant={variant}
                         headingLevel={headingLevel}
                         checkout={flow}
-                        seats={seats}
+                        seats={teamSeats}
+                        maxSeats={maxSeats}
                         onSeatsChange={setSeats}
                         discountCode={discountCode}
                         regional={regional}
@@ -101,14 +74,8 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         }}
                     />
                 </p>
-                {checkout.couponField ? (
-                    <DiscountField onApplied={setDiscountCode} />
-                ) : (
-                    <p className="type-small text-muted-foreground">{m.pricing.discount.atCheckout}</p>
-                )}
-                <p className="type-small text-muted-foreground">
-                    {merchantCheckout ? fmt(m.pricing.finePrint, { merchant: PRICING.merchantOfRecord.name }) : m.pricing.finePrintCurrency}
-                </p>
+                <DiscountField onApplied={setDiscountCode} />
+                <p className="type-small text-muted-foreground">{fmt(m.pricing.finePrint, { merchant: PRICING.merchantOfRecord.name })}</p>
             </div>
         </div>
     );

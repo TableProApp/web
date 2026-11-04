@@ -83,20 +83,20 @@ it('attaches the attribution to the checkout request', function () use ($readSou
 
     // An assignment that drifted below the fetch would typecheck, ship, and send nothing.
     $assigned = strpos($checkout, 'body.attribution = attribution');
-    $posted = strpos($checkout, "await fetch('/checkout'");
+    $posted = strpos($checkout, "await fetch(api('/v2/checkouts')");
 
-    expect($posted)->not->toBeFalse('Checkout must post to the root path, which nginx routes to the platform');
+    expect($posted)->not->toBeFalse('Checkout must post to tablepro-cloud\'s /v2/checkouts');
     expect($assigned)->toBeLessThan($posted, 'The attribution must be attached before the request is sent');
 });
 
-// The platform stores the page's language on the order, so the purchase emails arrive in it.
-it('sends the page language with the checkout request, and no cookies', function () use ($readSource): void {
+// Polar's checkout and the purchase emails follow the page's language.
+it('sends the plan, the cycle and the page language with the checkout request, and no cookies', function () use ($readSource): void {
     $checkout = $readSource(CHECKOUT_SOURCE);
 
-    expect($checkout)->toContain('const { locale, m } = useI18n();')
-        ->toContain('const body: CheckoutBody = { tier, cycle, locale };')
+    expect($checkout)->toContain('const { locale, m, fmt } = useI18n();')
+        ->toContain('const body: CheckoutBody = { plan: tier, cycle, locale };')
         ->toContain('body: JSON.stringify(body)')
-        ->toMatch("/fetch\\('\\/checkout', \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
+        ->toMatch("/fetch\\(api\\('\\/v2\\/checkouts'\\), \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 });
 
 // Nothing else calls captureAttribution(); without it every checkout silently sends an empty source.
@@ -117,8 +117,8 @@ it('counts the intent to buy, which is the only part of a sale this app can see'
 
     expect($checkout)->toContain("trackEvent('checkout_started', { tier, cycle });");
     expect(strpos($checkout, "trackEvent('checkout_started'"))->toBeLessThan(
-        strpos($checkout, "await fetch('/checkout'"),
-        'The intent is counted on the click, before the platform answers',
+        strpos($checkout, "await fetch(api('/v2/checkouts')"),
+        'The intent is counted on the click, before tablepro-cloud answers',
     );
 });
 

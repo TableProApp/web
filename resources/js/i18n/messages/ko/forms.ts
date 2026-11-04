@@ -10,5 +10,6 @@ export default {
     "tooMany": "시도 횟수가 너무 많습니다. 1분 후 다시 시도하세요.",
     "failed": "문제가 발생했습니다. 다시 시도하세요.",
     "network": "서버에 연결하지 못했습니다. 연결 상태를 확인하고 다시 시도하세요.",
-    "subscribed": "받은편지함에서 확인 링크를 확인하세요."
+    "subscribed": "받은편지함에서 확인 링크를 확인하세요.",
+    "verification": "스팸 방지 확인이 완료되지 않았습니다. 페이지를 새로 고친 후 다시 시도하세요."
 } satisfies Messages['forms'];

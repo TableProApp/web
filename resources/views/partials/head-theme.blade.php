@@ -1,4 +1,3 @@
-{{-- Shared with TableProApp/web and TableProApp/license at resources/views/partials/head-theme.blade.php. Change both in the same release. See docs/shared-files.md. --}}
 <meta name="theme-color" content="#ffffff">
 <script>
 (function () {

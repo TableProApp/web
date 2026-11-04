@@ -2,7 +2,7 @@
 
 namespace App\Support\Security;
 
-use App\Support\Pricing\Checkout;
+use App\Support\TableProApi;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -46,29 +46,18 @@ final class ContentSecurityPolicy
         'worker-src' => ['blob:'],
     ];
 
-    /**
-     * What each provider's checkout overlay needs besides its script in
-     * pricing.json.
-     */
-    private const CHECKOUT = [
-        'polar' => [
-            'frame-src' => ['https://polar.sh', 'https://*.polar.sh'],
-        ],
-        'lemonsqueezy' => [
-            // app.lemonsqueezy.com/js/lemon.js redirects here.
-            'script-src' => ['https://assets.lemonsqueezy.com/lemon.js'],
-            'frame-src' => ['https://*.lemonsqueezy.com'],
-        ],
+    private const TURNSTILE = [
+        'script-src' => ['https://challenges.cloudflare.com'],
+        'frame-src' => ['https://challenges.cloudflare.com'],
     ];
 
-    public function __construct(
-        private readonly Checkout $checkout,
-    ) {}
+    // Polar's overlay frame. Its script source is the one file pricing.json pins, from checkoutScript().
+    private const CHECKOUT = [
+        'frame-src' => ['https://polar.sh', 'https://*.polar.sh'],
+    ];
 
     public function for(string $html): string
     {
-        $provider = $this->checkout->provider();
-
         $policy = [
             'default-src' => ["'self'"],
             'script-src' => ["'self'", ...$this->inlineScriptHashes($html)],
@@ -89,8 +78,10 @@ final class ContentSecurityPolicy
             self::CLOUDFLARE,
             config('analytics.google.measurement_id') ? self::GOOGLE : [],
             config('services.crisp.website_id') ? self::CRISP : [],
-            ['script-src' => array_filter([$this->checkoutScript($provider)])],
-            self::CHECKOUT[$provider],
+            TableProApi::turnstileSiteKey() !== null ? self::TURNSTILE : [],
+            ['script-src' => array_filter([$this->checkoutScript()])],
+            self::CHECKOUT,
+            ['connect-src' => [TableProApi::origin()]],
         ];
 
         foreach ($thirdParties as $sources) {
@@ -140,13 +131,10 @@ final class ContentSecurityPolicy
         return array_values(array_unique($hashes));
     }
 
-    /**
-     * The one file the provider's overlay script is pinned to in pricing.json.
-     */
-    private function checkoutScript(string $provider): ?string
+    private function checkoutScript(): ?string
     {
         $pricing = json_decode((string) File::get(resource_path('data/pricing.json')), true);
-        $url = $pricing['checkoutSdk'][$provider] ?? null;
+        $url = $pricing['checkoutSdk'] ?? null;
 
         return is_string($url) && str_starts_with($url, 'https://') ? $url : null;
     }

@@ -104,16 +104,14 @@ it('still hashes a script that follows a data block larger than the pattern engi
     expect(app(ContentSecurityPolicy::class)->for($html))->toContain("'sha256-" . base64_encode(hash('sha256', 'run()', true)) . "'");
 });
 
-it('admits the script each third party loads from, and only the pinned file from a public CDN', function (string $provider, string $other): void {
-    config(['payment.provider' => $provider]);
-
+it('admits the script each third party loads from, and only the pinned file from a public CDN', function (): void {
     $scriptSrc = cspDirectives($this->get('/pricing'))['script-src'];
     $sdk = json_decode(File::get(resource_path('data/pricing.json')), true)['checkoutSdk'];
 
     preg_match("/CRISP_SCRIPT_URL = '([^']+)'/", File::get(resource_path('js/lib/crisp.ts')), $crisp);
 
-    expect(cspAdmits($scriptSrc, $sdk[$provider]))->toBeTrue()
-        ->and(cspAdmits($scriptSrc, $sdk[$other]))->toBeFalse()
+    expect(cspAdmits($scriptSrc, $sdk))->toBeTrue()
+        ->and(cspAdmits($scriptSrc, 'https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.1.0/dist/embed.global.js'))->toBeFalse()
         ->and(cspAdmits($scriptSrc, $crisp[1]))->toBeTrue()
         ->and(cspAdmits($scriptSrc, 'https://www.googletagmanager.com/gtag/js?id=G-TEST123'))->toBeTrue()
         ->and(cspAdmits($scriptSrc, 'https://static.cloudflareinsights.com/beacon.min.js/v1'))->toBeTrue()
@@ -123,27 +121,32 @@ it('admits the script each third party loads from, and only the pinned file from
     foreach ($scriptSrc as $source) {
         expect($source)->not->toContain('*');
     }
-})->with([
-    ['polar', 'lemonsqueezy'],
-    ['lemonsqueezy', 'polar'],
-]);
+});
 
-it('frames the checkout overlay of the configured provider only', function (): void {
-    config(['payment.provider' => 'polar']);
-
-    $frameSrc = cspDirectives($this->get('/pricing'))['frame-src'];
-
-    expect(cspAdmits($frameSrc, 'https://polar.sh/checkout/polar_c_x'))->toBeTrue()
-        ->and(cspAdmits($frameSrc, 'https://buy.polar.sh/polar_cl_x'))->toBeTrue()
-        ->and(cspAdmits($frameSrc, 'https://tablepro.lemonsqueezy.com/checkout/buy/x'))->toBeFalse();
-
-    config(['payment.provider' => 'lemonsqueezy']);
-
+it('frames Polar\'s checkout overlay and nothing that used to sell licenses', function (): void {
     $directives = cspDirectives($this->get('/pricing'));
 
-    expect(cspAdmits($directives['frame-src'], 'https://tablepro.lemonsqueezy.com/checkout/buy/x'))->toBeTrue()
-        // lemon.js answers with a redirect to this host, and a redirect is checked again.
-        ->and(cspAdmits($directives['script-src'], 'https://assets.lemonsqueezy.com/lemon.js'))->toBeTrue();
+    expect(cspAdmits($directives['frame-src'], 'https://polar.sh/checkout/polar_c_x'))->toBeTrue()
+        ->and(cspAdmits($directives['frame-src'], 'https://buy.polar.sh/polar_cl_x'))->toBeTrue()
+        ->and(cspAdmits($directives['frame-src'], 'https://tablepro.lemonsqueezy.com/checkout/buy/x'))->toBeFalse()
+        ->and(cspAdmits($directives['script-src'], 'https://assets.lemonsqueezy.com/lemon.js'))->toBeFalse();
+});
+
+it('lets the pages call tablepro-cloud\'s API at the configured origin only', function (): void {
+    expect(cspAdmits(cspDirectives($this->get('/pricing'))['connect-src'], 'https://api.tablepro.app/v2/pricing'))->toBeTrue();
+
+    config(['services.tablepro_api.origin' => 'http://api.localhost:8080/']);
+
+    $connectSrc = cspDirectives($this->get('/pricing'))['connect-src'];
+
+    expect($connectSrc)->toContain('http://api.localhost:8080')
+        ->and(cspAdmits($connectSrc, 'https://api.tablepro.app/v2/pricing'))->toBeFalse();
+
+    // A value that is not an origin would break the directive, so production stands in.
+    config(['services.tablepro_api.origin' => 'api.tablepro.app; script-src *']);
+
+    expect(cspDirectives($this->get('/pricing'))['connect-src'])->toContain('https://api.tablepro.app')
+        ->not->toContain('script-src');
 });
 
 it('names analytics and chat only where they are configured', function (): void {
@@ -152,6 +155,24 @@ it('names analytics and chat only where they are configured', function (): void 
     expect($this->get('/pricing')->headers->get('Content-Security-Policy'))
         ->not->toContain('google')
         ->not->toContain('crisp');
+});
+
+it('admits Turnstile\'s script and frame only where a site key is configured', function (): void {
+    config(['services.turnstile.site_key' => null]);
+
+    expect($this->get('/pricing')->headers->get('Content-Security-Policy'))->not->toContain('challenges.cloudflare.com');
+
+    config(['services.turnstile.site_key' => '1x00000000000000000000AA']);
+
+    $directives = cspDirectives($this->get('/blog'));
+
+    expect(cspAdmits($directives['script-src'], 'https://challenges.cloudflare.com/turnstile/v0/api.js'))->toBeTrue()
+        ->and(cspAdmits($directives['frame-src'], 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/turnstile/if/ov2/av0/rcv/x'))->toBeTrue()
+        ->and(cspAdmits($directives['connect-src'], 'https://challenges.cloudflare.com/x'))->toBeFalse();
+
+    preg_match("/TURNSTILE_SCRIPT_URL = '([^']+)'/", File::get(resource_path('js/lib/turnstile.ts')), $script);
+
+    expect(cspAdmits($directives['script-src'], (string) strtok($script[1], '?')))->toBeTrue();
 });
 
 it('gives every page the same sources, because an Inertia visit keeps the first document\'s policy', function (): void {

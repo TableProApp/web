@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/select.tsx. Change both in the same release. See docs/shared-files.md. */
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { INPUT_CLASS, INPUT_INVALID_CLASS } from '@/components/ui/field';

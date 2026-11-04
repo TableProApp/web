@@ -1,49 +1,66 @@
 import { useEffect, useState } from 'react';
-import { parseRegional, type Regional } from '@/lib/regional-pricing';
+import { useApi, type ApiPath } from '@/hooks/use-api';
+import { PRICING, type BillingCycle } from '@/lib/data/pricing';
+import { parseRegional, parseSeatMaximums, type ListCents, type Regional } from '@/lib/regional-pricing';
 
-let pending: Promise<Regional | null> | null = null;
+interface PricingAnswer {
+    regional: Regional | null;
+    teamMaxSeats: Partial<Record<BillingCycle, number>>;
+}
 
-/**
- * Asks the platform once per document whether its regional discount applies
- * to this reader.
- *
- * `GET /discount/region` answers from the country Cloudflare names for the
- * request, the same answer checkout acts on. It starts no session there, and
- * `credentials: 'omit'` keeps any platform cookie off this page all the same.
- * Any failure, a throttled answer included, means no regional price.
- */
-function fetchRegional(): Promise<Regional | null> {
-    pending ??= fetch('/discount/region', { credentials: 'omit', headers: { Accept: 'application/json' } })
+const NO_ANSWER: PricingAnswer = { regional: null, teamMaxSeats: {} };
+
+let pending: Promise<PricingAnswer> | null = null;
+
+const LIST_CENTS: ListCents = {
+    starter: centsOf(PRICING.tiers.starter.prices),
+    team: centsOf(PRICING.tiers.team.prices),
+};
+
+function centsOf(prices: Record<string, number>): Record<string, number> {
+    return Object.fromEntries(Object.entries(prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)]));
+}
+
+// Once per document. Any failure, a throttled answer included, means no regional price and no seat maximum.
+function fetchPricing(api: (path: ApiPath) => string): Promise<PricingAnswer> {
+    pending ??= fetch(api('/v2/pricing'), { credentials: 'omit', headers: { Accept: 'application/json' } })
         .then((res) => (res.ok ? res.json() : null))
-        .then(parseRegional)
-        .catch(() => null);
+        .then((body: unknown) => ({
+            regional: parseRegional(body, LIST_CENTS),
+            teamMaxSeats: parseSeatMaximums(body, 'team', PRICING.tiers.team.seats.min),
+        }))
+        .catch(() => NO_ANSWER);
 
     return pending;
 }
 
-/**
- * The regional discount for this reader, or null.
- *
- * Null on the server and on the first render, so the cached HTML, the
- * structured data and hydration all carry the list prices; the cards change
- * once the platform has answered.
- */
-export function useRegionalPricing(): Regional | null {
-    const [regional, setRegional] = useState<Regional | null>(null);
+function usePricingAnswer(): PricingAnswer {
+    const api = useApi();
+    const [answer, setAnswer] = useState<PricingAnswer>(NO_ANSWER);
 
     useEffect(() => {
         let active = true;
 
-        void fetchRegional().then((answer) => {
+        void fetchPricing(api).then((next) => {
             if (active) {
-                setRegional(answer);
+                setAnswer(next);
             }
         });
 
         return () => {
             active = false;
         };
-    }, []);
+    }, [api]);
 
-    return regional;
+    return answer;
+}
+
+// Null on the server and the first render, so the cached HTML, the structured data and hydration carry the list prices.
+export function useRegionalPricing(): Regional | null {
+    return usePricingAnswer().regional;
+}
+
+// Empty until GET /v2/pricing answers, and for a cycle Polar sets no limit for: the seat field then has no maximum.
+export function useTeamMaxSeats(): Partial<Record<BillingCycle, number>> {
+    return usePricingAnswer().teamMaxSeats;
 }

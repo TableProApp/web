@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -12,7 +12,7 @@ Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami,
 - **"Aplikasi"** berarti TablePro untuk Mac dan TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
 - **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi aplikasi Mac untuk pemeriksaan lisensi dan Team Library.
-- **"Lisensi"** berarti paket Pro atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang mengaktifkan fiturnya dalam aplikasi Mac.
+- **"Lisensi"** berarti paket Pro atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang dipakai versi aplikasi Mac sebelum akun TablePro untuk mengaktifkan Lisensi.
 - **"Anda"** berarti orang atau organisasi yang memakai Layanan atau memegang Lisensi.
 
 ## Lisensi sumber terbuka {#open-source}
@@ -37,18 +37,18 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 ## Penggunaan lisensi {#license}
 
-Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk mengaktifkan fitur berbayar aplikasi Mac dengan Kunci Lisensinya, pada jumlah Mac dan selama periode paket Anda:
+Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar aplikasi Mac pada Mac yang masuk ke akun TablePro Anda atau, pada versi sebelum akun TablePro, yang diaktifkan dengan Kunci Lisensinya, hingga jumlah dan selama periode paket Anda:
 
-- Lisensi **Pro** untuk satu orang, di maksimal {starterActivations} Mac.
-- Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} dan maksimum {teamMaxSeats} seat. Setiap seat adalah satu Mac yang diaktifkan. Pembeli mengundang anggota tim, yang bergabung dengan kode undangan.
+- Lisensi **Pro** untuk satu orang, di maksimal {deviceLimit} Mac.
+- Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat untuk satu orang, di maksimal {deviceLimit} Mac. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.
 
-Anda tidak boleh membagikan Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankannya tanpa izin tertulis kami.
+Batas {deviceLimit} Mac berlaku per akun, untuk semua Lisensi yang dipakainya. Anda tidak boleh membagikan akun Anda atau Kunci Lisensi di luar orang dan Mac yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankan Lisensi atau Kunci Lisensi tanpa izin tertulis kami.
 
-Aplikasi Mac memeriksa Lisensi ke server kami setiap {revalidateDays} hari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Saat paket bulanan atau tahunan berakhir, fiturnya berhenti berfungsi dan aplikasi Mac lainnya tetap berjalan.
+Aplikasi Mac memperbarui paket Anda ke server kami sekali sehari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi hingga {offlineDays} hari setelah pembaruan terakhir atau, di Mac yang memakai file offline dari portal akun, hingga file itu kedaluwarsa. Versi sebelum akun TablePro memeriksa Kunci Lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Saat paket bulanan atau tahunan berakhir, fiturnya berhenti berfungsi dan aplikasi Mac lainnya tetap berjalan.
 
 ## Portal akun {#account}
 
-Anda mengelola Lisensi dalam portal akun dengan masuk melalui tautan yang dikirim ke email pembelian. Amankan akun email tersebut: kami tidak bertanggung jawab atas akses ke akun Anda melalui akun email yang disusupi.
+Anda mengelola Lisensi dalam [portal akun]({account}), tempat Anda masuk dengan tautan atau kode yang dikirim ke email Anda, dengan passkey, atau dengan Apple, GitHub, atau Google. Amankan semuanya: kami tidak bertanggung jawab atas akses ke akun Anda melalui akun email, perangkat, atau akun penyedia yang disusupi.
 
 ## Penggunaan yang dapat diterima {#acceptable-use}
 
@@ -97,7 +97,7 @@ Anda setuju mengganti kerugian dan membebaskan TablePro serta kontributornya dar
 
 Kami merilis pembaruan, perbaikan, dan fitur baru sesuai kebijakan kami. Selain dukungan prioritas di atas, kami tidak berkewajiban memelihara, memperbarui, atau mendukung versi Aplikasi apa pun, dan versi lama mungkin berhenti menerima perbaikan keamanan.
 
-Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi Mac memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.
+Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi Mac memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama waktu yang disebut di [Penggunaan lisensi](#license).
 
 ## Pengakhiran {#termination}
 

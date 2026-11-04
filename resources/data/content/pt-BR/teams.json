@@ -19,7 +19,7 @@
         "lead": "Duas formas de compartilhar, conforme onde você quer guardar os arquivos.",
         "library": {
             "title": "Team Library",
-            "text": "Proprietários e administradores publicam configurações de conexão, consultas salvas e suas pastas no servidor do TablePro. Toda a equipe as recebe na barra lateral, somente para leitura.",
+            "text": "Proprietários e administradores publicam configurações de conexão, consultas salvas e suas pastas no servidor do TablePro. Membros com vaga as recebem na barra lateral, sempre atualizadas, e veem quem alterou por último cada consulta.",
             "link": "Como a Team Library funciona"
         },
         "catalog": {
@@ -36,18 +36,18 @@
     "seats": {
         "title": "Vagas e membros",
         "items": [
-            "Uma vaga é um Mac ativado. O Mac do comprador também ocupa uma.",
-            "O comprador convida os colegas por e-mail pela própria conta. Cada um recebe um código de uso único para inserir em <ui>Settings > License</ui>.",
-            "O proprietário e os administradores publicam na Team Library. Os membros usam o que é compartilhado.",
-            "Adicione ou remova vagas na sua conta a qualquer momento. A diferença aparece na sua próxima fatura.",
-            "Remover um colega libera a vaga dele e exclui o que ele publicou na Team Library. O Mac dele perde o acesso pago na próxima verificação da licença."
+            "Uma vaga cobre uma pessoa em até {deviceLimit} Macs.",
+            "Proprietários e administradores convidam por e-mail na página Membros da sua conta, com uma função e, se quiserem, uma vaga. O link vale por 7 dias, e qualquer conta TablePro pode aceitá-lo.",
+            "O proprietário cuida da cobrança. Os administradores gerenciam membros, convites, a Team Library e o registro de auditoria da equipe. Os membros usam o que é compartilhado.",
+            "O proprietário altera as vagas de uma assinatura em Cobrança, e {merchant} cobra ou credita a diferença proporcional na hora.",
+            "Remover um membro libera a vaga dele. Os Macs dele perdem os recursos do Team na próxima vez que o TablePro se comunicar com o servidor."
         ]
     },
     "pricing": {
         "title": "Preço",
         "yearly": "{yearlyPerMonth} por vaga por mês, cobrado anualmente: {yearly} por vaga por ano.",
         "monthly": "{monthly} por vaga por mês, cobrado mensalmente.",
-        "seats": "De {min} a {max} vagas. Uma equipe de {exampleSeats} paga {exampleYearly} por ano.",
+        "seats": "A partir de {min} vagas. Uma equipe de {exampleSeats} paga {exampleYearly} por ano.",
         "note": "O Team é uma assinatura; não existe licença Team de pagamento único.",
         "cta": "Comprar Team"
     },
@@ -65,7 +65,7 @@
         "items": [
             "As senhas nunca são enviadas ao servidor do TablePro. O app as remove antes de publicar, e o servidor recusa qualquer conteúdo que contenha uma.",
             "A Team Library guarda configurações de conexão e consultas salvas no servidor do TablePro. Somente Macs ativados na sua licença podem lê-las.",
-            "Se o plano terminar, o que foi publicado fica no servidor até você pedir que seja excluído."
+            "Se o plano terminar, o que foi publicado fica no servidor até o proprietário da equipe excluir a equipe, o que também exclui a biblioteca."
         ],
         "security": "Como o TablePro trata seus dados",
         "privacy": "Política de privacidade"

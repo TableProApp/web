@@ -196,7 +196,7 @@ it('links the account in the requested language from a prefixed account or check
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Error')
             ->where('locale', $locale)
-            ->where('account', '/account?locale=' . $locale));
+            ->where('account', 'https://account.tablepro.app/?locale=' . $locale));
 })->with(function (): array {
     $cases = [];
 

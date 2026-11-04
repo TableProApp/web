@@ -61,7 +61,7 @@ it('takes every price, seat bound, day count and address from the data, never fr
     preg_match_all('/\{([A-Za-z]+)\}/', $text, $slots);
 
     expect(array_values(array_diff(array_unique($slots[1]), [
-        'yearlyPerMonth', 'yearly', 'monthly', 'min', 'max', 'exampleSeats', 'exampleYearly', 'merchant', 'refundDays', 'email', 'proExamples',
+        'yearlyPerMonth', 'yearly', 'monthly', 'min', 'deviceLimit', 'exampleSeats', 'exampleYearly', 'merchant', 'refundDays', 'email', 'proExamples',
     ])))->toBe([]);
     expect($text)->not->toMatch('/\$\s?\d|\d\s?(US)?\$|\d\s?€|@tablepro\.app|Polar/u');
 })->with(teamsPageLocales());

@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Comparte conexiones y consultas guardadas con tu equipo.",
-            "activation": "Un Mac activado por puesto.",
+            "activation": {
+                "one": "Una persona por puesto, en {count} Mac.",
+                "other": "Una persona por puesto, en hasta {count} Mac."
+            },
             "includesTitle": "Todo lo de Pro, más",
             "cta": "Comprar Team",
             "subscriptionOnly": "Team se vende con pago mensual o anual."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "Puestos",
         "noun": "puestos",
+        "minimum": "Mínimo {min} puestos.",
         "bounds": "Mínimo {min} puestos, máximo {max}.",
         "clamped": {
             "min": "Se ha cambiado al mínimo, {min} puestos.",
@@ -109,7 +113,6 @@ export default {
         "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra, y cada renovación mensual o anual en los {count} días siguientes a su cobro. Consulta la <link>política de reembolso</link>."
     },
     "finePrint": "Precios en dólares estadounidenses. {merchant} gestiona el pago y calcula el impuesto sobre ventas o el IVA al pagar, como merchant of record.",
-    "finePrintCurrency": "Precios en dólares estadounidenses.",
     "comparePlans": "Comparar planes",
     "section": {
         "title": "Precios",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "Hasta {count}"
         },
-        "macsTeam": "Uno por puesto",
+        "macsTeam": {
+            "one": "{count} por puesto",
+            "other": "Hasta {count} por puesto"
+        },
         "everythingElse": "Todo lo demás en la app",
         "everythingElseDetail": "Todos los motores compatibles, el editor SQL, el asistente de IA, el servidor MCP y Safe Mode",
         "iphoneNote": "La app para iPhone y iPad no tiene funciones de pago. iCloud Sync es gratis en ella; para sincronizar con un Mac, este necesita Pro o Team."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "Precio de lista {price}"
     },
     "discount": {
-        "atCheckout": "¿Tienes un código de descuento? Introdúcelo al finalizar la compra.",
         "summary": "¿Tienes un código de descuento?",
         "label": "Código de descuento",
         "apply": "Aplicar código",
         "checking": "Comprobando el código…",
         "percent": "Código aceptado: {amount}% de descuento, aplicado al finalizar la compra.",
         "fixed": "Código aceptado: {amount} de descuento, aplicado al finalizar la compra.",
+        "accepted": "Código aceptado, aplicado al finalizar la compra.",
         "invalid": "Este código no es válido o ha caducado."
     },
     "checkout": {
-        "failed": "No se pudo abrir el pago. Inténtalo de nuevo."
+        "failed": "No se pudo abrir el pago. Inténtalo de nuevo.",
+        "planUnavailable": "Este plan no está a la venta ahora mismo. Elige otro ciclo de facturación o inténtalo más tarde.",
+        "seats": "Elige entre {min} y {max} puestos e inténtalo de nuevo.",
+        "seatsFewer": "Elige menos puestos e inténtalo de nuevo."
     },
     "offers": {
         "name": "{plan}, {cycle}",

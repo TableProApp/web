@@ -98,9 +98,6 @@ their browser (`resources/js/lib/language-suggestion.ts`):
 Steps 1 and 2 run in a head script in `app.blade.php` before first paint, so
 the bar takes the slot without moving anything; step 3, the one network call,
 runs after load. ✕ stops that language for good in this browser. No analytics.
-The account app runs the same tag and country tables, on the server, for a
-reader with no explicit, session or stored language (its `LocaleResolver`);
-the two copies are compared by its `LanguageRegionsConfigTest`.
 
 ### Where the content lives
 
@@ -193,8 +190,9 @@ page: the registry drops every path the map answers.
 ## What it does not serve
 
 Buying a license, signing in to an account and subscribing to the newsletter are
-handled by the TablePro backend, which is a separate application and not part of
-this repository. Requests to those paths never reach this code.
+handled by tablepro-cloud (TableProApp/cloud), a separate application on
+`api.tablepro.app` and `account.tablepro.app`, which the pages call from the
+browser.
 
 That is why this app runs **without a session**: it has nothing to keep state
 for. `StartSession`, `PreventRequestForgery`, `ShareErrorsFromSession` and
@@ -211,63 +209,91 @@ Two consequences worth knowing before you write code here:
 
 ## The endpoints the pages call
 
-All anonymous, all rate limited, none needs a token. They are the platform's
-paths, so they are always called at the root, never under `/vi`: nginx routes
-them by prefix, and `/vi/checkout` would never reach the platform. The page's
-language travels in the body instead.
+All anonymous and rate limited, none needs a token. They are tablepro-cloud's
+public API, another origin (`TABLEPRO_API_ORIGIN`, `https://api.tablepro.app`
+in production, shared with every page as the `apiOrigin` prop and read through
+`useApi()`). The page's language travels in the body.
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?, locale}` | `{url}` — passed to the checkout SDK |
-| `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
-| `GET /discount/region` | — | `{country, percent}`, or `{}` when no regional discount applies |
-| `POST /newsletter/subscribe` | `{email, locale}` | `{type, message}` |
+| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, max_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
+| `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
+| `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
+| `POST /v2/newsletter/subscriptions` | `{email, locale, turnstile_token}` | 202, whether or not the address was new |
+| `GET /v2/newsletter/stats` | nothing | `{subscribers}` |
 
-Every call is a plain `fetch` with `credentials: 'omit'`. The platform answers
-from its session-backed `web` group, so a same-origin request with credentials
-would send and store `tablepro-session` and `XSRF-TOKEN` on public pages;
-`omit` does neither. `PublicContractsTest` holds every call to it.
+Every call is a plain `fetch` with `credentials: 'omit'`, so no cookie is sent
+or kept. tablepro-cloud answers CORS for `https://tablepro.app` only, without
+credentials. `ContentSecurityPolicy` adds the API origin to `connect-src`.
+`PublicContractsTest` holds every call.
 
-`locale` lets the platform send the buyer's or subscriber's emails in the
-language of the page they came from. It is never inferred from anything else,
-and it says nothing about currency or region: prices are USD everywhere.
+Errors are RFC 9457 problems whose `title` and `detail` are English, so the
+cards show their own catalog's words for each `code`
+(`components/pricing/checkout-response.ts`): `plan_unavailable`, and
+`validation_failed` on `body.seats`, have their own message, `rate_limited`
+(429) is `forms.tooMany`, anything else `pricing.checkout.failed`.
 
-`GET /discount/region` is the platform's regional (PPP) discount for the
-country Cloudflare names for the request, the same answer `POST /checkout` acts
-on when no code is typed. The plan cards ask once per page, after rendering
-(`useRegionalPricing`), and then show what checkout will charge beside the
-struck list price, with one line naming the country. The cached HTML, the
-structured data and the first paint keep the list prices. The route starts no
-session and answers `Cache-Control: no-store, private`. It is the one place the
-site names a regional price (positioning §9).
+`locale` lets Polar's checkout and the purchase emails follow the page's
+language. It is never inferred from anything else, and it says nothing about
+currency or region: prices are USD everywhere.
 
-The plan cards on `/pricing` and the homepage's `#pricing` section receive a
-`checkout` page prop from `App\Support\Pricing\Checkout`:
-`{provider, couponField}`. `provider` is `PAYMENT_PROVIDER` (`polar` or
-`lemonsqueezy`), which must match the platform's own setting, because the cards
-open the overlay of whichever provider's URL `POST /checkout` returns. Polar's
-checkout takes a discount code itself, so under Polar the cards show no code
-field and never call `/discount/preview`.
+`GET /v2/pricing` answers for the country Cloudflare names for the request,
+with the regional (PPP) discount `POST /v2/checkouts` applies when no code is
+typed. The plan cards ask once per page, after rendering
+(`useRegionalPricing`), and show what checkout will charge beside the struck
+list price, with one line naming the country, only while every plan's `amount`
+equals its price in `pricing.json` and one percentage applies to all of them;
+otherwise the list prices stand. The cached HTML, the structured data and the
+first paint keep the list prices. It is the one place the site names a regional
+price (positioning §9).
 
-`GET /api/newsletter/stats` is no longer called. The old footer fetched it for a
-subscriber count, and the footer no longer shows one. The endpoint stays on the
-platform as a contract for anyone else.
+The same answer gives the Team seat field its maximum: `max_seats` of the Team
+plan for the chosen cycle (`useTeamMaxSeats`), the top of Polar's seat tiers.
+`pricing.json` holds only the minimum. Before the answer, after a failed one,
+and for a cycle whose `max_seats` is null, the field has no maximum and says
+only the minimum; checkout's 422 on `body.seats` then asks for at least the
+minimum, and names the maximum once it is known.
 
-Links to the account are plain `<a href="/account?locale={locale}">`: a
-different application, so never an Inertia `<Link>`, and never prefixed.
-`<LocaleLink>` and `localePath()` treat every platform path that way
-(`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`, the same pattern as
-`scripts/dev-proxy.mjs`), and never append `locale` themselves, because a
-signed `/thank-you?order=…` URL must arrive exactly as it was signed.
+The code field under the cards is always there: with a regional discount
+tablepro-cloud hands Polar that discount, and Polar's checkout then takes no
+code of its own. A code is checked with `POST /v2/discounts/preview`, and only
+one it accepted travels with checkout, replacing the regional discount.
 
-Checkout takes a tier and billing cycle rather than a product identifier, which
+Checkout takes a plan and billing cycle rather than a product identifier, which
 is why no payment-provider identifier appears anywhere in this repository.
 
-`POST /beta/signup` was the fifth row here until 2026-09-22. The endpoint still
-exists on the backend and nginx still proxies `/beta`, but nothing on this site
-calls it: the iPhone app shipped on the App Store, so the TestFlight invite form
-in the closing call to action became a link. Do not add a caller back without
-checking the endpoint is still wired.
+The newsletter forms (footer and blog index, `useEmailForm`) send a Cloudflare
+Turnstile token with the address. The widget (`resources/js/lib/turnstile.ts`,
+action `newsletter`) is rendered on the reader's first focus or pointer on the
+form, runs its check on submit, and shows itself only when it needs an answer.
+Its container stays `hidden` outside a challenge (Turnstile's
+`before-interactive-callback` and `after-interactive-callback`): the invisible
+widget would still take a row in the form's grid and move the result line.
+Its site key is public configuration, `TURNSTILE_SITE_KEY`, shared as the
+`turnstileSiteKey` prop; without one the form says the check did not finish
+and posts nothing. tablepro-cloud answers 202 whatever happened, so the form
+says to check the inbox, and only a 422 on `body.email` is about the address.
+Under each form, `useNewsletterStats` asks once per page for the subscriber
+count and shows it once known; a failure leaves it unsaid.
+
+Links to the account go to tablepro-cloud's portal, another origin:
+`https://account.tablepro.app/?locale={locale}` (`accountHref()`, the origin
+from `facts.json` → `links.account`), a plain `<a>`, never an Inertia `<Link>`.
+The legal pages link it through their `{account}` slot, the same URL from PHP
+(`LocalizedUrl::account()`).
+The page's language crosses in `?locale=`, for the portal to use when the
+reader has made no choice of their own there; signed in, the portal shows the
+account's language.
+
+nginx still answers a few old paths on this origin without this app: `/account`
+and below, `/checkout` and `/thank-you` redirect to the portal, and
+`/newsletter/unsubscribe/*` and `/webhooks/polar` reach tablepro-cloud for 90
+days after the cutover (`docs/deploy/tablepro.app.nginx.conf`). `<LocaleLink>`
+and `localePath()` never prefix them (`PLATFORM_PATHS` in
+`resources/js/i18n/paths.ts`), and a locale must never take one of those names.
+
+The beta signup is gone: the iPhone app shipped on the App Store on
+2026-09-22, and the account app that answered `POST /beta/signup` is retired.
 
 ## Purchase attribution
 
@@ -278,7 +304,7 @@ license is written by the backend. The backend sees the sale and never saw the
 arrival. Google Analytics measures visits on this domain only, so it can report
 the source of a *visit* and not the source of a *sale*.
 
-`POST /checkout` is the one request in which both are in scope, so the
+`POST /v2/checkouts` is the one request in which both are in scope, so the
 acquisition source is resolved in the browser and sent in that body as an
 optional `attribution` object:
 
@@ -311,10 +337,9 @@ app has no session and sets no cookies. It is disclosed on `/privacy`.
 The backend passes `source`, `medium`, `campaign`, `term`, `content` and
 `referrer` to the payment provider as checkout metadata (`utm_source` and so on,
 the keys tablepro-cloud reads), so they come back on the order webhook and stay
-with the order. `landing_page` and `first_seen_at` are not kept.
-
-If the backend ever starts keeping it, three things hold, and the privacy
-policy changes first:
+with the order, and sends them to PostHog with `checkout_started` and
+`order_paid`. `landing_page` and `first_seen_at` are not kept. The privacy
+policy says so (Website, Purchase attribution). Three things hold:
 
 1. **Tolerate its absence.** It is missing for every reader who arrived
    untagged, and for every browser that refuses storage. It is not a validation
@@ -354,16 +379,8 @@ Mode**, and nothing about it is optional:
 The advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`)
 are denied for everyone, always. Nothing here advertises, and `/privacy` says so.
 
-**The account portal is the other half.** `/account`, `/checkout`, `/thank-you`
-and the newsletter pages are the platform app, on this same origin. It carries a
-copy of the tag, the bar and `consent.ts`, reads the same storage key, and so
-shares one answer with this site. Change the key, the consent defaults or the
-measurement ID in one repository and the other has to follow in the same
-release, or a reader is asked twice and counted as two users.
-
-The platform app also redacts what it sends: its pages are reached through
-signed links and order IDs, and GA — unlike Plausible — records the full URL.
-See `App\Support\AnalyticsLocation` there.
+The account portal, `account.tablepro.app`, is another origin: it reads none
+of this site's storage and runs no Google Analytics.
 
 Events are sent only once the reader has chosen Allow: `trackEvent`
 (`resources/js/lib/analytics.ts`) reads the stored answer and drops the event
@@ -389,9 +406,10 @@ added after the page has loaded, and Cloudflare Web Analytics.
 
 - **Cloudflare Web Analytics** is a Cloudflare dashboard setting for
   tablepro.app. Cloudflare injects its beacon (`static.cloudflareinsights.com`)
-  at the edge into every page here and in the account portal; this repository
-  never adds it, so no test here sees it. It sets no cookies, and the privacy
-  policy discloses it (Website, retention and recipients sections).
+  at the edge into every page here; this repository never adds it, so no test
+  here sees it. The account portal's policy (tablepro-cloud) admits no such
+  script, so it does not run there. It sets no cookies, and the privacy policy
+  discloses it (Website, retention and recipients sections).
 
 - **Crisp** is on every page here and in the account portal. Each layout calls
   `loadChatWhenIdle()` (`resources/js/lib/crisp.ts`), which adds the loader
@@ -399,13 +417,18 @@ added after the page has loaded, and Cloudflare Web Analytics.
   render and never delays the first paint. A "Live chat" button opens the same
   widget. While the consent bar covers the bottom-right corner (on a phone,
   reopened from "Cookie settings"), the launcher is hidden. Crisp sets its `crisp-client/`
-  cookies as soon as it loads; the privacy policy describes them.
-- **The Polar or Lemon Squeezy checkout SDK** loads at checkout intent, not on
+  cookies as soon as it loads; the privacy policy describes them. This site
+  gives Crisp the page's language only; the portal also gives it a signed-in
+  account's email address and TypeID, which the policy says too.
+- **Cloudflare Turnstile** (`challenges.cloudflare.com`) loads on the first
+  focus or pointer on a newsletter form, with its script and its frame in the
+  policy only while `TURNSTILE_SITE_KEY` is set.
+- **Polar's checkout script** loads at checkout intent, not on
   every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the
   first `pointerenter` or focus of a buy button (or on the click itself), and
   the click awaits it before opening the overlay; if it cannot load, the reader
-  goes to the provider's checkout page instead. The script URLs, version
-  pinned, are `checkoutSdk` in `resources/data/pricing.json`.
+  goes to Polar's checkout page instead. The script URL, version pinned, is
+  `checkoutSdk` in `resources/data/pricing.json`.
 - **Product Hunt** is a plain text link ("TablePro on Product Hunt", URL in
   `facts.json` → `links.productHunt`): no badge image, no hotlink, no request.
 
@@ -435,26 +458,30 @@ HTML also carries a `Content-Security-Policy`, built by
 
 ## Working on these forms locally
 
-`php artisan serve` runs only this app, so the platform's paths return 404 on
-your machine. To exercise a journey that crosses between the two apps, run both
-behind one origin, the way nginx does in production:
+The forms call tablepro-cloud from the browser. Run its `make dev` (the API at
+`http://api.localhost:8080`) and set `TABLEPRO_API_ORIGIN=http://api.localhost:8080`
+here, with Polar in its sandbox; without Amazon SES configured (`AWS_REGION`,
+its `SES_*` settings and AWS credentials) it sends no email. tablepro-cloud answers
+CORS for one origin, its `PUBLIC_SITE_URL` (`https://tablepro.app` by default),
+and checks a Turnstile token's hostname against the same URL. `make dev` sets it
+to `http://localhost:8000`, where `php artisan serve` and `composer dev` put
+this site, so open the pages at exactly that address: `http://127.0.0.1:8000`
+is another origin and its calls fail CORS.
 
-```bash
-php artisan serve --port=8000                      # this repository
-(cd ../license && php artisan serve --port=8001)   # the platform
-npm run dev:proxy                                  # http://localhost:8080
-```
+- Checkout opens Polar's overlay on `http://localhost:8000` only once the
+  sandbox organization's Settings > Embedding lists that origin.
+- The newsletter's Turnstile check runs against Cloudflare as in production.
+  With Cloudflare's test keys (`TURNSTILE_SITE_KEY=1x00000000000000000000AA`
+  here) a signup answers 202 and sends nothing: the token's action is `test`,
+  not `newsletter`. A confirmation email needs a Turnstile widget of your own
+  that lists `localhost`, its site key here, and its secret and Amazon SES
+  configured in tablepro-cloud.
 
-`scripts/dev-proxy.mjs` sends `/account`, `/checkout`, `/webhooks`,
-`/newsletter`, `/beta`, `/discount`, `/thank-you`, `/api/newsletter` and
-`/platform-build` to the platform and everything else here, with
-`X-Forwarded-*` headers. Set `WEB_DOMAIN=localhost` in both `.env` files (the
-platform's routes are domain-scoped and domain matching ignores the port) and
-use built assets in both. Keep payments mocked and mail on the `log` driver: no
-real checkout, message or customer data.
+tablepro-cloud's `docs/design/testing.md`, "The public site against make dev",
+has the details.
 
-For styling or copy work that does not touch a form, stub the fetch instead, or
-ignore it.
+For styling or copy work, stub the `/v2` answers in the browser instead, or
+ignore them.
 
 ## Images
 
@@ -519,6 +546,6 @@ checked more than 30 days ago (`--max-age`) and compares every last release
 that cites a GitHub releases page with GitHub. Prices and features have no feed,
 so a stale row means re-reading that product's sources. Also run by hand.
 
-A few files are byte-identical with the platform app: the design tokens, the
-fonts, the theme partial and the consent and theme modules.
-`docs/shared-files.md` lists them and how to change them.
+A few files are byte-identical with tablepro-cloud's portal: the design tokens,
+the CJK font stacks and the chat loader. `docs/shared-files.md` lists them and
+how to change them.

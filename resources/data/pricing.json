@@ -6,19 +6,22 @@
         "free": { "price": 0 },
         "starter": {
             "unit": "license",
-            "prices": { "monthly": 4.99, "yearly": 39, "lifetime": 79 },
-            "activations": 3
+            "prices": { "monthly": 4.99, "yearly": 39, "lifetime": 79 }
         },
         "team": {
             "unit": "seat",
             "prices": { "monthly": 12, "yearly": 120 },
-            "seats": { "min": 2, "max": 200 },
-            "activationsPerSeat": 1,
+            "seats": { "min": 2 },
             "prioritySupport": { "responseBusinessDays": 1 }
         }
     },
     "refund": { "days": 7, "scope": "all-paid-plans" },
-    "license": { "revalidateDays": 7, "offlineGraceDays": 30, "perpetualFallback": false },
+    "license": {
+        "deviceLimit": 3,
+        "offlineDays": 14,
+        "perpetualFallback": false,
+        "legacy": { "revalidateDays": 7, "offlineGraceDays": 30 }
+    },
     "campaign": {
         "id": "black-friday-2026",
         "code": "BLACKFRIDAY2026",
@@ -31,9 +34,6 @@
         "listPriceSince": "2026-11-02"
     },
     "billingPortalUrl": "https://polar.sh/tablepro/portal",
-    "checkoutSdk": {
-        "polar": "https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js",
-        "lemonsqueezy": "https://app.lemonsqueezy.com/js/lemon.js"
-    },
-    "syncedWith": "TableProApp/license pricing and the Polar products"
+    "checkoutSdk": "https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js",
+    "syncedWith": "tablepro-cloud's GET /v2/pricing and the Polar products"
 }

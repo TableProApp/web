@@ -2,8 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-import { PLATFORM_PATHS as PROXY_PLATFORM_PATHS, upstreamFor } from '../../scripts/dev-proxy.mjs';
-import { isPlatformPath, localePath, PLATFORM_PATHS, resolveLink, splitLocale } from '../../resources/js/i18n/paths.ts';
+import { isPlatformPath, localePath, resolveLink, splitLocale } from '../../resources/js/i18n/paths.ts';
 import type { LocaleTable } from '../../resources/js/i18n/types.ts';
 
 /*
@@ -46,28 +45,24 @@ test('anything that is not a root-relative path is left alone', () => {
     assert.equal(localePath('relative/path', 'vi', table), 'relative/path');
 });
 
-/*
- * nginx routes the platform's paths by their root path alone, so /vi/account
- * reaches this app and answers 404 (docs/deployment.md). A link to one must
- * stay unprefixed in every locale.
- */
+// nginx answers these by their root path alone (docs/deploy/tablepro.app.nginx.conf), so /vi/account reaches this
+// app and answers 404. A link to one must stay unprefixed in every locale.
 const platformHrefs = [
     '/account',
     '/account?locale=vi',
     '/account/login?locale=en#form',
     '/account#billing',
     '/checkout',
-    '/discount/preview',
-    '/newsletter/subscribe',
-    '/newsletter/confirmed',
+    '/checkout?plan=starter&cycle=yearly',
     '/thank-you?order=signed',
-    '/api/newsletter/stats',
-    '/platform-build/assets/app.js',
+    '/newsletter/unsubscribe/42?signature=x',
     '/webhooks/polar',
-    '/beta',
 ];
 
-const publicLookalikes = ['/accounting', '/accounts', '/checkouts', '/newsletters', '/betamax', '/api/other', '/blog/checkout-notes', '/compare/account'];
+// What the account app answered before the cutover and nothing answers now: this app's own 404s, in the reader's language.
+const retiredPlatformPaths = ['/beta', '/discount/preview', '/newsletter/subscribe', '/newsletter/confirmed', '/api/newsletter/stats', '/platform-build/x.js', '/webhooks/lemonsqueezy'];
+
+const publicLookalikes = ['/accounting', '/accounts', '/checkouts', '/newsletters', '/betamax', '/api/other', '/blog/checkout-notes', '/compare/account', ...retiredPlatformPaths];
 
 test('a platform path is never prefixed, in any locale', () => {
     for (const href of platformHrefs) {
@@ -88,17 +83,6 @@ test('a public path that only starts like a platform one is still prefixed', () 
     for (const href of publicLookalikes) {
         assert.equal(isPlatformPath(href), false, href);
         assert.equal(localePath(href, 'vi', table), `/vi${href}`, href);
-    }
-});
-
-test('the platform pattern is the dev proxy\'s, so a link and a request agree on which app answers', () => {
-    assert.equal(PLATFORM_PATHS.source, PROXY_PLATFORM_PATHS.source);
-    assert.equal(PLATFORM_PATHS.flags, PROXY_PLATFORM_PATHS.flags);
-
-    const upstreams = { publicApp: 'public', platformApp: 'platform' };
-
-    for (const href of [...platformHrefs, ...publicLookalikes, '/', '/vi', '/vi/account', '/download']) {
-        assert.equal(upstreamFor(href, upstreams) === 'platform', isPlatformPath(href), href);
     }
 });
 

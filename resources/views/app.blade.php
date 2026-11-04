@@ -30,9 +30,7 @@
     {{-- No robots tag here. SEOHead emits exactly one per page, from the
          registry, so a tag in the layout would give every page two. --}}
 
-    {{-- Theme before anything paints: light unless the reader chose otherwise.
-         Shared byte for byte with the account app, which reads the same
-         `theme` key on this origin. --}}
+    {{-- Theme before anything paints: the system's unless the reader chose otherwise. --}}
     @include('partials.head-theme')
 
     {{-- An iPhone or iPad, by `classifyDevice` in resources/js/lib/device.ts
@@ -224,8 +222,8 @@
     {{--
         No third-party script is in this template. Crisp's chat loader is added
         by the page once it has loaded and the browser is idle
-        (resources/js/lib/crisp.ts), so it never delays the first render. The
-        Polar or Lemon Squeezy checkout SDK loads at checkout intent
+        (resources/js/lib/crisp.ts), so it never delays the first render.
+        Polar's checkout script loads at checkout intent
         (resources/js/lib/checkout-sdk.ts), not on every page. Google's tag is
         added the same way as the chat, by the script below.
     --}}
@@ -239,8 +237,7 @@
             and the stored choice is applied in between, so a reader who allowed
             analytics on an earlier visit has their first page view counted with
             cookies rather than as a stranger. The storage key is shared with
-            `resources/js/lib/consent.ts` and with the account portal, which
-            lives on this same origin and so reads the same choice.
+            `resources/js/lib/consent.ts`.
 
             With no stored answer the script marks `<html>`, which shows the
             server-rendered consent bar on the first paint.

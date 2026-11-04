@@ -59,7 +59,7 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
         document.documentElement.lang = locale;
     }, [locale]);
 
-    /* Another tab, or the account app, changed the theme; or the system did while "System" is chosen. */
+    /* Another tab changed the theme, or the system did while "System" is chosen. */
     useEffect(() => syncTheme(), []);
 
     useLiveChat();

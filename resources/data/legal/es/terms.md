@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Pro o Team.
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-04"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
@@ -12,7 +12,7 @@ Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro
 - **«Aplicación»** se refiere a TablePro para Mac y TablePro para iPhone y iPad, incluidas sus actualizaciones y plugins.
 - **«Sitio web»** se refiere a tablepro.app, docs.tablepro.app y los demás dominios que operamos.
 - **«Servicios»** se refiere al Sitio web, el portal de cuentas y el servidor con el que se comunica la app para Mac para comprobar licencias y para Team Library.
-- **«Licencia»** se refiere a un plan de pago Pro o Team y **«Clave de licencia»**, a la credencial que activa sus funciones en la app para Mac.
+- **«Licencia»** se refiere a un plan de pago Pro o Team y **«Clave de licencia»**, a la credencial que las versiones de la app para Mac anteriores a las cuentas de TablePro usan para activar una Licencia.
 - **«Tú»** se refiere a la persona u organización que usa los Servicios o es titular de una Licencia.
 
 ## Licencia de código abierto {#open-source}
@@ -37,18 +37,18 @@ Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 
 ## Usar una licencia {#license}
 
-Una Licencia te concede un derecho no exclusivo e intransferible a activar las funciones de pago de la app para Mac con su Clave de licencia, en el número de Mac y durante el periodo que contempla tu plan:
+Una Licencia te concede un derecho no exclusivo e intransferible a usar las funciones de pago de la app para Mac en los Mac con sesión iniciada en tu cuenta de TablePro o, en las versiones anteriores a las cuentas de TablePro, activados con su Clave de licencia, hasta el número y durante el periodo que contempla tu plan:
 
-- Una Licencia **Pro** es para una persona, en hasta {starterActivations} Mac.
-- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} y un máximo de {teamMaxSeats} puestos. Cada puesto corresponde a un Mac activado. El comprador invita a los miembros del equipo, que se unen mediante un código de invitación.
+- Una Licencia **Pro** es para una persona, en hasta {deviceLimit} Mac.
+- Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto es para una persona, en hasta {deviceLimit} Mac. El propietario y los administradores del equipo invitan a sus miembros, que se unen mediante un enlace de invitación enviado por correo.
 
-No puedes compartir una Clave de licencia fuera de las personas y los Mac que cubre tu plan, ni sublicenciarla, venderla, alquilarla o transferirla de otro modo sin nuestro permiso por escrito.
+El límite de {deviceLimit} Mac se aplica por cuenta, sumando todas las Licencias que usa. No puedes compartir tu cuenta ni una Clave de licencia fuera de las personas y los Mac que cubre tu plan, ni sublicenciar, vender, alquilar o transferir de otro modo una Licencia o Clave de licencia sin nuestro permiso por escrito.
 
-La app para Mac comprueba tu Licencia con nuestro servidor cada {revalidateDays} días. Si no se puede acceder al servidor, las funciones de pago siguen funcionando durante {graceDays} días desde la última comprobación correcta. Cuando termina un plan mensual o anual, sus funciones dejan de funcionar y el resto de la app para Mac sigue funcionando.
+La app para Mac renueva tu plan con nuestro servidor una vez al día. Si no se puede acceder al servidor, las funciones de pago siguen funcionando hasta {offlineDays} días desde la última renovación o, en un Mac que usa un archivo sin conexión del portal de la cuenta, hasta que caduca el archivo. Las versiones anteriores a las cuentas de TablePro comprueban una Clave de licencia cada {revalidateDays} días y mantienen las funciones de pago durante {graceDays} días desde la última comprobación correcta. Cuando termina un plan mensual o anual, sus funciones dejan de funcionar y el resto de la app para Mac sigue funcionando.
 
 ## Portal de cuentas {#account}
 
-Gestionas tus Licencias en el portal de cuentas, al que accedes mediante un enlace enviado al correo usado para la compra. Mantén segura esa cuenta de correo: no somos responsables del acceso a tu cuenta mediante una cuenta de correo comprometida.
+Gestionas tus Licencias en el [portal de cuentas]({account}), al que accedes con un enlace o un código enviado a tu correo, con una llave de acceso o con Apple, GitHub o Google. Mantenlos seguros: no somos responsables del acceso a tu cuenta mediante una cuenta de correo, un dispositivo o una cuenta de proveedor comprometidos.
 
 ## Uso aceptable {#acceptable-use}
 
@@ -97,7 +97,7 @@ Aceptas indemnizar y mantener indemnes a TablePro y sus colaboradores frente a c
 
 Publicamos actualizaciones, correcciones y nuevas funciones a nuestra discreción. Aparte del soporte prioritario anterior, no tenemos obligación de mantener, actualizar o dar soporte a ninguna versión de la Aplicación, y las versiones antiguas pueden dejar de recibir correcciones de seguridad.
 
-Algunos Servicios, como las comprobaciones de licencia y Team Library, necesitan acceso a la red. No garantizamos que estén siempre disponibles y podemos interrumpirlos con un preaviso razonable. Las funciones de pago de la app para Mac necesitan nuestro servidor de licencias: si no se puede acceder a él, siguen funcionando durante {graceDays} días desde la última comprobación correcta.
+Algunos Servicios, como las comprobaciones de licencia y Team Library, necesitan acceso a la red. No garantizamos que estén siempre disponibles y podemos interrumpirlos con un preaviso razonable. Las funciones de pago de la app para Mac necesitan nuestro servidor de licencias: si no se puede acceder a él, siguen funcionando durante el tiempo indicado en [Usar una licencia](#license).
 
 ## Terminación {#termination}
 

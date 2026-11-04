@@ -3,7 +3,6 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "dev:proxy": "node scripts/dev-proxy.mjs",
         "build": "vite build && vite build --ssr",
         "ssr:start": "php artisan inertia:start-ssr",
         "ssr:stop": "php artisan inertia:stop-ssr",

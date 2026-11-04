@@ -48,8 +48,8 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
  *
  * The current section takes the text colour and a 2px indicator bar, never
  * colour alone. Internal links go through `LocaleLink`, so they stay in the
- * reader's language. Account is a plain link to the platform app with the
- * language in its query; Docs is English only, and says so on Vietnamese
+ * reader's language. Account is a plain link to the portal on its own origin,
+ * with the language in its query; Docs is English only, and says so on Vietnamese
  * pages.
  *
  * The header is an opaque sticky layer above the page, so it draws its own

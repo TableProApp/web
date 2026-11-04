@@ -26,19 +26,18 @@ import LandingLayout from '@/layouts/landing-layout';
 
 type Interpolate = (template: string, values: Record<string, string | number>) => string;
 
-/** The post that explains the new prices. It exists in English and Vietnamese; every other page links the English one. */
+// The post that explains the new prices. It exists in English and Vietnamese; every other page links the English one.
 const PRICE_CHANGE_POST = 'new-prices-2026';
 
-/** The `{slots}` the page copy uses, every one from pricing.json or facts.json. */
 function copyValues(): Record<string, string | number> {
     return {
-        activations: PRICING.tiers.starter.activations,
-        revalidateDays: PRICING.license.revalidateDays,
-        graceDays: PRICING.license.offlineGraceDays,
+        deviceLimit: PRICING.license.deviceLimit,
+        offlineDays: PRICING.license.offlineDays,
+        revalidateDays: PRICING.license.legacy.revalidateDays,
+        graceDays: PRICING.license.legacy.offlineGraceDays,
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
         min: PRICING.tiers.team.seats.min,
-        max: PRICING.tiers.team.seats.max,
         email: SUPPORT_EMAIL,
     };
 }
@@ -53,12 +52,7 @@ interface JsonLdInput {
     fmt: Interpolate;
 }
 
-/**
- * The page's structured data (architecture §1.6): a `WebPage` about the Mac
- * app, and the Mac app with one `Offer` per price the plan cards show, built
- * by the same `macAppNode()` as `/download` so `#app` says the same thing on
- * both pages. No rating, no FAQPage.
- */
+// The same macAppNode() as /download, so #app says the same thing on both pages.
 function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines, m, fmt }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
     const mac = macPlatform();
@@ -86,19 +80,10 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
     ]);
 }
 
-/**
- * `/pricing` and `/vi/pricing` (sitemap §A.1, §E.5; design-system §8.6).
- *
- * The plans with a working checkout, then what a paid plan adds, how a license
- * behaves, billing, refunds, Team, open source and a short FAQ. Every price,
- * seat bound, day count and the merchant's name comes from pricing.json; the
- * features and their tiers from paid-features.json. Nothing here is
- * conversion furniture: no "most popular", no typed saving, no countdown.
- * The one exception is a dated sale while it is live: its band above the
- * header, with the time left to its real end, and its price on the cards it
- * covers (positioning §9, "Dated sales").
- */
-export default function Pricing({ content, paidFeatures, checkout, featuredEngines, comparisons }: PricingPageProps) {
+// No conversion furniture: no "most popular", no typed saving, no countdown. The one exception is a dated sale while it
+// is live: its band above the header, with the time left to its real end, and its price on the cards it covers
+// (positioning §9, "Dated sales").
+export default function Pricing({ content, paidFeatures, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const values = copyValues();
@@ -170,7 +155,7 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                             </TextLink>
                         </p>
                     </Callout>
-                    <PricingPlans checkout={checkout} variant="full" />
+                    <PricingPlans variant="full" />
                 </Container>
             </section>
 
@@ -234,6 +219,13 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                             {content.team.account}
                         </TextLink>
                     </p>
+                </div>
+            </Section>
+
+            <Section id="at-work" title={content.atWork.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{content.atWork.body}</p>
+                    <p>{content.atWork.ask}</p>
                 </div>
             </Section>
 

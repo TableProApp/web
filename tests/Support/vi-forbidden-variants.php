@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Shared with TableProApp/web and TableProApp/license at tests/Support/vi-forbidden-variants.php. Change both in the same release. See docs/shared-files.md.
+ * Ported to TableProApp/cloud at web/packages/i18n/test/vi-forbidden-variants.ts. Change both together.
  *
  * Wording the glossary rules out (positioning §11, sitemap §E.10), checked by
- * Localization/ContentParityTest here and Localization/LangParityTest in the
- * account app. A variant found in review is added here, never fixed only in
- * place.
+ * Localization/ContentParityTest here and by the port's vi-wording test in
+ * TableProApp/cloud. A variant found in review is added here, never fixed only
+ * in place.
  *
  * Each row: `pattern` (a PCRE with the `u` flag, matched against NFC text),
  * `use` (what to write instead), `applies` (`vi` for Vietnamese strings, `en`

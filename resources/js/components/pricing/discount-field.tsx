@@ -2,6 +2,7 @@ import { useId, useRef, useState, type FormEvent } from 'react';
 import Button from '@/components/ui/button';
 import Disclosure from '@/components/ui/disclosure';
 import { FieldError, FieldLabel, Input } from '@/components/ui/field';
+import { useApi } from '@/hooks/use-api';
 import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { discountOutcome } from './checkout-response';
@@ -9,29 +10,14 @@ import { discountOutcome } from './checkout-response';
 type Preview = { kind: 'idle' } | { kind: 'checking' } | { kind: 'applied'; message: string } | { kind: 'error'; message: string };
 
 interface DiscountFieldProps {
-    /** The code checkout should carry: a previewed, valid one, or null. */
     onApplied: (code: string | null) => void;
 }
 
-/**
- * "Have a discount code?" for a provider whose checkout takes the code from
- * this site (today Lemon Squeezy; under Polar the overlay has its own field
- * and this never renders).
- *
- * The code is checked with `POST /discount/preview` when the reader applies
- * it, and only a code the platform accepted travels with checkout. The answer
- * is a line under the field, not a recomputed price: whether a code applies
- * to every cycle and every seat is the provider's rule, so the page says what
- * the code is worth and leaves the arithmetic to checkout.
- *
- * Editing the code abandons a check still in flight: each check carries a
- * ticket, every keystroke takes a new one, and an answer whose ticket is no
- * longer current is dropped. Otherwise the answer for the old code arrived
- * after an edit, showed "applied" under a different code, and the next Buy
- * sent the old one.
- */
+// Under a regional discount Polar's checkout locks its own code field, so a code is typed here and checked first.
+// The answer says what the code is worth, not a recomputed price: which cycles and seats it covers is Polar's rule.
 export default function DiscountField({ onApplied }: DiscountFieldProps) {
     const { m, fmt } = useI18n();
+    const api = useApi();
     const id = useId();
     const [code, setCode] = useState('');
     const [preview, setPreview] = useState<Preview>({ kind: 'idle' });
@@ -49,11 +35,12 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
         setPreview({ kind: 'checking' });
         onApplied(null);
 
+        // Every keystroke takes a new ticket, so the answer for a code since edited is dropped, never applied to the new one.
         const mine = ++ticket.current;
         const current = (): boolean => mine === ticket.current;
 
         try {
-            const res = await fetch('/discount/preview', {
+            const res = await fetch(api('/v2/discounts/preview'), {
                 method: 'POST',
                 credentials: 'omit',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -72,6 +59,10 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
                     break;
                 case 'fixed':
                     setPreview({ kind: 'applied', message: fmt(m.pricing.discount.fixed, { amount: formatUsd(outcome.cents / 100, m.pricing.currency) }) });
+                    onApplied(trimmed);
+                    break;
+                case 'accepted':
+                    setPreview({ kind: 'applied', message: m.pricing.discount.accepted });
                     onApplied(trimmed);
                     break;
                 case 'invalid':
@@ -102,13 +93,12 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
                         id={inputId}
                         name="discount_code"
                         autoComplete="off"
-                        maxLength={50}
+                        maxLength={64}
                         value={code}
                         invalid={preview.kind === 'error'}
                         aria-describedby={preview.kind === 'error' ? errorId : undefined}
                         onChange={(event) => {
                             setCode(event.target.value);
-                            // Any check still in flight is for the code as it was.
                             ticket.current++;
 
                             if (preview.kind !== 'idle') {

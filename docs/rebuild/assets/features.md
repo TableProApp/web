@@ -1589,18 +1589,19 @@ hình iPhone với tiêu đề `Track` ở trên, đầu bên phải Dock với 
 ## mac-team-library
 
 ### Purpose
-Shows Team Library in use: saved queries a team shares, each labelled with the teammate who published it.
+Shows Team Library in use: saved queries a team shares, each labelled with the teammate who last changed it.
 
 ### Scene
-- Platform and release: Mac, TablePro 0.77.0, activated with a Team license.
+- Platform and release: Mac, the version that adds TablePro accounts, signed in as the owner or an admin of a Team,
+  with a seat.
 - Screen: a connection window on `orders-db (primary)` (PostgreSQL, `shop` sample, `orders-db.acme.internal`), sidebar
   on **Favorites**, with the **Team Library** section expanded.
 - Team Library content: three saved queries published by two fictional teammates and you, for example "Daily active
-  users", "Orders by status this week" and "Refund rate by month", each showing its publisher label.
+  users", "Orders by status this week" and "Refund rate by month", each labelled with who last changed it.
 - The editor beside the sidebar shows one of those queries opened from the library.
 
 ### Framing
-Detail crop, 4:3: the Favorites sidebar with the Team Library section and the publisher labels, plus the left edge of
+Detail crop, 4:3: the Favorites sidebar with the Team Library section and the last-changed-by labels, plus the left edge of
 the editor. The labels must be readable at 696 px wide.
 
 ### Light and dark
@@ -1610,9 +1611,10 @@ Both variants from the same frame (switch the macOS appearance).
 One English capture serves both sites.
 
 ### Open evidence
-- Needs a Team license with at least two other seats activated on test Macs whose members published the queries. Use
-  fictional member identities; whatever the server returns as the publisher (`publishedBy`) is what the label shows,
-  so confirm its format before capturing.
+- Needs a Team where the capturing account and at least two teammates each have a seat and the owner or admin role,
+  signed in on test Macs: only an owner or admin with a seat can publish to the Team Library.
+- Give every test account a fictional name. The label is the name of the query's last writer (`updated_by_name`). A
+  writer with no name shows as their email address to an owner or admin and as the query's folder to a member.
 - Load the `shop` schema into a local PostgreSQL.
 - Relaunch TablePro after publishing from the other Macs so the library is pulled before capture.
 
@@ -1620,6 +1622,8 @@ One English capture serves both sites.
 None.
 
 ### Tóm tắt cho chủ sở hữu
-Chụp cận cảnh sidebar Favorites của TablePro 0.77.0 (license Team) với mục Team Library mở ra, có ba query đã lưu do
-các thành viên nhóm giả đưa lên, mỗi query ghi tên người đưa lên. Bạn cần một license Team thử nghiệm với vài máy đã
-kích hoạt, dữ liệu mẫu `shop` trên PostgreSQL, và mở lại ứng dụng trước khi chụp để thư viện được tải về.
+Chụp cận cảnh sidebar Favorites của phiên bản TablePro có tài khoản, đăng nhập bằng owner hoặc admin có seat trong một
+Team, với mục Team Library mở ra, có ba query đã lưu do các thành viên nhóm giả đưa lên, mỗi query ghi tên người sửa
+gần nhất. Bạn cần một Team thử nghiệm có tài khoản chụp và ít nhất hai thành viên khác là owner hoặc admin có seat (chỉ
+họ mới đưa query lên được), đăng nhập trên các máy thử. Đặt tên giả cho mọi tài khoản, vì người sửa không có tên sẽ hiện
+địa chỉ email. Thêm dữ liệu mẫu `shop` trên PostgreSQL, và mở lại ứng dụng trước khi chụp để thư viện được tải về.

@@ -4,7 +4,7 @@ import CampaignCode from '@/components/campaign/campaign-code';
 import Countdown from '@/components/campaign/countdown';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
 import NewsletterSignup from '@/components/blog/newsletter-signup';
-import type { CheckoutProp, PaidFeatureCopy } from '@/components/pricing/types';
+import type { PaidFeatureCopy } from '@/components/pricing/types';
 import { useCheckout } from '@/components/pricing/use-checkout';
 import SEOHead from '@/components/seo/seo-head';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
@@ -31,7 +31,6 @@ type CampaignContent = typeof import('@data/content/en/black-friday.json');
 interface BlackFridayProps {
     content: CampaignContent;
     paidFeatures: PaidFeatureCopy;
-    checkout: CheckoutProp;
     organizationProfiles: string[];
 }
 
@@ -62,12 +61,12 @@ const PRICE_CHANGE_POST = 'new-prices-2026';
  * regular price, and a question says the prices went up then. A price is only
  * honest as a reference with its history beside it.
  */
-export default function BlackFriday({ content, paidFeatures, checkout, organizationProfiles }: BlackFridayProps) {
+export default function BlackFriday({ content, paidFeatures, organizationProfiles }: BlackFridayProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const { prop, phase, offer } = useCampaign();
     const regional = useRegionalPricing();
-    const flow = useCheckout(checkout.provider);
+    const flow = useCheckout();
     // Both offers are Pro, so the checkout's pending tier cannot tell which button started it.
     const [buying, setBuying] = useState<SaleCycle | null>(null);
     const campaign = PRICING.campaign;
@@ -78,7 +77,7 @@ export default function BlackFriday({ content, paidFeatures, checkout, organizat
 
     const usd = (amount: number): string => formatUsd(amount, m.pricing.currency);
     const prices = PRICING.tiers.starter.prices;
-    const activations = PRICING.tiers.starter.activations;
+    const activations = PRICING.license.deviceLimit;
     const values = {
         percent: campaign.percent,
         startsOn: prop.startsOn,

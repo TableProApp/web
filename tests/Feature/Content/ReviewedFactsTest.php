@@ -38,13 +38,13 @@ dataset('reviewed facts', [
     ],
     'Handoff also passes the connection name' => [
         'content/en/features/sync-and-teams.json',
-        ['With no table open, it passes the connection’s name instead', 'at the next license check, within {licenseCheckDays} days', '<ui>Publish Saved Queries to Team…</ui>'],
-        ['Only the connection’s ID and the table’s name pass', 'signs their Macs out'],
+        ['With no table open, it passes the connection’s name instead', 'their Macs lose Team’s features the next time TablePro checks in.', 'A Team seat covers one person on up to {deviceLimit} Macs', '<ui>Publish Saved Queries to Team…</ui>', 'Members with a seat download them.', 'ends or is revoked', 'until the team’s owner deletes the team, which deletes the library with it.', 'the app pulls changes at launch, every 15 minutes and after each publish', 'Versions before TablePro accounts download the library at most once a week', 'the license key is deleted once exchanged for a sign-in, and the sign-in never syncs.'],
+        ['Republishing replaces your previous contribution.', 'Only the connection’s ID and the table’s name pass', 'signs their Macs out', 'activated Mac', 'Settings > License', 'deletes their Team Library', 'until you ask for it to be deleted', 'within {offlineDays} days', 'Macs on the license', 'is suspended'],
     ],
     'Handoff, seats and publishing (vi)' => [
         'content/vi/features/sync-and-teams.json',
-        ['Nếu không mở table, nó gửi tên connection', 'trong {licenseCheckDays} ngày', 'Một seat Team là một máy Mac đã kích hoạt, không phải một người.'],
-        ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên'],
+        ['Nếu không mở table, nó gửi tên connection', 'vào lần tiếp theo TablePro liên lạc với server.', 'Thành viên có seat tải chúng về.', 'Một seat Team dành cho một người trên tối đa {deviceLimit} máy Mac.', 'cứ 15 phút một lần và sau mỗi lần chia sẻ', 'cho tới khi chủ sở hữu nhóm xóa nhóm'],
+        ['chỉ có ID của connection và tên table', 'đăng xuất các máy Mac', 'Dành cho khi', 'đưa lên', 'cho tới khi bạn yêu cầu xóa'],
     ],
     'Redis Add Row covers five types; restores are transactional only where the engine allows' => [
         'content/en/features/data-editing.json',
@@ -146,6 +146,17 @@ dataset('reviewed facts', [
         ['your own provider key or a local model', 'each file’s commit history with a side-by-side diff'],
         ['More use needs a paid JetBrains AI plan', 'No commit, branch or diff view'],
     ],
+    // The accounts build sends PostHog events, not a daily report (tablepro-cloud clients.md, macOS Telemetry).
+    'DataGrip’s page holds for old builds’ report and the accounts build’s events' => [
+        'content/en/compare/datagrip.json',
+        ['Usage data, on by default, which you can turn off in Settings', 'Its Mac app shares <link>usage data</link> by default, and you can turn that off in Settings.'],
+        ['daily usage report', 'daily Mac', 'usage report</link>'],
+    ],
+    'DataGrip’s page (vi)' => [
+        'content/vi/compare/datagrip.json',
+        ['Dữ liệu sử dụng, bật sẵn theo mặc định', 'Ứng dụng cho Mac gửi <link>dữ liệu sử dụng</link> theo mặc định'],
+        ['Báo cáo sử dụng', 'báo cáo sử dụng mỗi ngày'],
+    ],
     // Beekeeper Studio's AI Shell guide and pricing table disagree on the tier (2026-10-03).
     'Beekeeper Studio’s AI Shell needs a paid tier, which tier is disputed' => [
         'content/en/compare/beekeeper-studio.json',
@@ -238,6 +249,33 @@ dataset('reviewed facts', [
         ['Drivers for {bundledEngines} are bundled on the Mac', 'Others download on first use', 'Password sync is a separate opt-in', '<ui>Passwords</ui> on the Mac', 'Purchases and subscription renewals are refundable within {refundDays} days of each charge'],
         ['the most common engines', 'every driver is built into the app', 'days of buying', 'for a yearly plan'],
     ],
+    'the FAQ describes TablePro accounts, and old builds once' => [
+        'content/en/faq.json',
+        ['<ui>Settings > Account</ui>', 'at most {offlineDays} days after the last renewal', 'Versions before TablePro accounts check the license every {revalidateDays} days', 'any TablePro account can accept it', 'Purchases made since then come without one.', 'New members use their seat', 'Versions before TablePro accounts have no sign-in.', 'Versions before TablePro accounts take a license key instead.'],
+        ['invitation code', 'Settings > License', 'activated Mac', 'to see your keys', 'Only buyers sign in', 'deletes their published Team Library items'],
+    ],
+    'the pricing page describes TablePro accounts' => [
+        'content/en/pricing.json',
+        ['on the Devices page in <account>your account</account>', 'at most {offlineDays} days after the last renewal', 'holds it until it is accepted or revoked', 'more seats come with a Team subscription'],
+        ['Each code needs a free seat', 'Two Macs use two seats', 'the Macs page', 'to add seats', 'activated Mac', 'buys more one-time seats there'],
+    ],
+    'the refund policy refunds in the account portal' => [
+        'legal/en/refund-policy.md',
+        ['Refund an order yourself in Billing in [your account]({account})', 'After a full refund, the license ends at once.', 'whose license is in an offline file', 'if they stay offline, {graceDays} days after their last successful check'],
+        ['license key is suspended', 'include your license key', 'license key being suspended'],
+    ],
+    // From cutover the Mac app ships posthog-ios (tablepro-cloud clients.md, macOS dependencies).
+    'the security page claims no analytics library' => [
+        'content/en/security.json',
+        ['the only data the Mac app sends TablePro is usage data', 'Usage data never carries hostnames', 'it goes straight to PostHog, our analytics service in the EU', 'works out an approximate location from it'],
+        ['analytics library', 'daily usage report', 'first usage report'],
+    ],
+    // The accounts build keeps its refresh token in deviceOnlyKeychain and deletes the license key once exchanged (TablePro m16/accounts).
+    'the security page keeps the sign-in out of password sync' => [
+        'content/en/security.json',
+        ['so is the token that keeps you signed in', 'the license key is deleted once it is exchanged for a sign-in, and the sign-in never syncs.'],
+        [],
+    ],
     'the FAQ (vi)' => [
         'content/vi/faq.json',
         ['Mac có sẵn driver cho {bundledEngines}', 'Bắt đầu chat', 'SSH dùng mật khẩu hoặc private key', '<connections>tùy chọn kết nối</connections>'],
@@ -265,18 +303,24 @@ dataset('reviewed facts', [
             'credential profiles (their name and username, never the password)',
             'expanded Dynamic Island',
             'the processor architecture',
-            'looks up a country for each usage report',
+            'without your license key or IP address',
             'the Mac that publishes downloads it again right after',
             'With no table open, it passes the connection\'s name instead',
-            '](/account?locale=en)',
+            'account portal]({account}) at account.tablepro.app',
             '](/refund-policy)',
             '](/terms)',
+            'keeps the paid features working for up to {offlineDays} days without our server',
+            'Versions before TablePro accounts contain no crash reporter and no third-party analytics library.',
+            'Versions before TablePro accounts send a usage report to `api.tablepro.app` instead, under the same setting',
+            'downloads the library\'s changes when it starts, every 15 minutes and after each publish',
+            'the app asks which copy to keep, and it shows who last changed each team query',
+            'Versions before TablePro accounts download the library when they start, at most once a week',
         ],
-        ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.'],
+        ['The site sets no cookies of its own.', 'The MCP server is off until you turn it on', 'and after a publish.', 'Ask us to delete yours.', 'sends TablePro a usage report once a day', 'Turning the setting off stops both.', 'the same server as the Mac app'],
     ],
     'the privacy policy (vi)' => [
         'legal/vi/privacy.md',
-        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'xóa các cuộc chat và email của bạn', '](/account?locale=vi)', '](/vi/terms)'],
+        ['cdn.jsdelivr.net', '**MCP client.**', 'gợi ý nội tuyến', 'máy Mac vừa xuất bản tải lại ngay sau đó', 'cứ 15 phút một lần và sau mỗi lần xuất bản', 'xóa các cuộc chat và email của bạn', ']({account}) tại account.tablepro.app', '](/vi/terms)'],
         ['trò chuyện', 'Client MCP', 'sau mỗi lần có người xuất bản', 'xóa của bạn.', 'cấp độ Safe Mode'],
     ],
     'the terms use the legal word for indemnify (vi)' => [

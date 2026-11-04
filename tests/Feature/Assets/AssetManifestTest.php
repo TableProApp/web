@@ -367,6 +367,15 @@ describe('every entry', function (): void {
         }
     });
 
+    it('labels the Team Library crop by who last changed each query, as the accounts build does', function (): void {
+        // TeamLibraryQuery.detail is the last writer's name, or the folder (TablePro m16/accounts).
+        $entry = (new AssetManifest())->assets()['mac-team-library'];
+
+        expect($entry['description']['en'])->toContain('labelled by who last changed them')
+            ->and($entry['alt']['en'])->toContain('labelled with the teammate who last changed it')
+            ->and($entry['description']['en'] . $entry['alt']['en'])->not->toContain('published');
+    });
+
     it('places every entry on a page the site serves', function (): void {
         $routes = Route::getRoutes();
 

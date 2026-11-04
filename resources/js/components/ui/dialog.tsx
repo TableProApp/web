@@ -1,4 +1,3 @@
-/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/dialog.tsx. Change both in the same release. See docs/shared-files.md. */
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import Button, { type ButtonSize, type ButtonVariant } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';

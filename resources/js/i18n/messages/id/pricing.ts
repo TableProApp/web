@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Bagikan koneksi dan kueri tersimpan dengan tim Anda.",
-            "activation": "Satu Mac yang diaktifkan per seat.",
+            "activation": {
+                "one": "Satu orang per seat, {count} Mac.",
+                "other": "Satu orang per seat, hingga {count} Mac."
+            },
             "includesTitle": "Semua fitur Pro, ditambah",
             "cta": "Beli Team",
             "subscriptionOnly": "Team dijual bulanan atau tahunan."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "Seat",
         "noun": "seat",
+        "minimum": "Minimum {min} seat.",
         "bounds": "Minimum {min} seat, maksimum {max}.",
         "clamped": {
             "min": "Diubah ke minimum, {min} seat.",
@@ -109,7 +113,6 @@ export default {
         "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>."
     },
     "finePrint": "Harga dalam dolar AS. {merchant} menangani pembayaran dan menghitung pajak penjualan atau PPN saat checkout sebagai merchant of record.",
-    "finePrintCurrency": "Harga dalam dolar AS.",
     "comparePlans": "Bandingkan paket",
     "section": {
         "title": "Harga",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "Hingga {count}"
         },
-        "macsTeam": "Satu per seat",
+        "macsTeam": {
+            "one": "{count} per seat",
+            "other": "Hingga {count} per seat"
+        },
         "everythingElse": "Semua fitur lain dalam aplikasi",
         "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",
         "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Pro atau Team."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "Harga normal {price}"
     },
     "discount": {
-        "atCheckout": "Punya kode diskon? Masukkan saat checkout.",
         "summary": "Punya kode diskon?",
         "label": "Kode diskon",
         "apply": "Terapkan kode",
         "checking": "Memeriksa kode…",
         "percent": "Kode diterima: diskon {amount}%, diterapkan saat checkout.",
         "fixed": "Kode diterima: potongan {amount}, diterapkan saat checkout.",
+        "accepted": "Kode diterima, diterapkan saat checkout.",
         "invalid": "Kode ini tidak valid atau telah kedaluwarsa."
     },
     "checkout": {
-        "failed": "Tidak dapat membuka checkout. Coba lagi."
+        "failed": "Tidak dapat membuka checkout. Coba lagi.",
+        "planUnavailable": "Paket ini sedang tidak dijual. Pilih siklus penagihan lain atau coba lagi nanti.",
+        "seats": "Pilih antara {min} dan {max} seat, lalu coba lagi.",
+        "seatsFewer": "Pilih lebih sedikit seat, lalu coba lagi."
     },
     "offers": {
         "name": "{plan}, {cycle}",

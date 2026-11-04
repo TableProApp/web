@@ -71,10 +71,10 @@ it('quotes the limits from facts.json', function (): void {
     expect($facts['filterOperatorCount']['value'])->toBe(count(featurePagesData('facts.json')['filterOperators']['mac']));
 });
 
-it('quotes how often a Mac confirms its license from pricing.json', function (): void {
-    // A removed Team member's Mac keeps the paid features until this check (docs/features/team.mdx @v0.77.0).
-    expect((new FeatureFacts())->all()['licenseCheckDays'])
-        ->toBe(['kind' => 'number', 'value' => featurePagesData('pricing.json')['license']['revalidateDays']]);
+it('quotes the device limit from pricing.json', function (): void {
+    $license = featurePagesData('pricing.json')['license'];
+
+    expect((new FeatureFacts())->all()['deviceLimit'])->toBe(['kind' => 'number', 'value' => $license['deviceLimit']]);
 });
 
 it('names the Safe Mode levels and defaults from facts.json', function (): void {

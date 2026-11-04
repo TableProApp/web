@@ -56,7 +56,7 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
         yearly: usd(team.prices.yearly),
         monthly: usd(team.prices.monthly),
         min: team.seats.min,
-        max: team.seats.max,
+        deviceLimit: PRICING.license.deviceLimit,
         exampleSeats: EXAMPLE_SEATS,
         exampleYearly: usd(teamTotal(EXAMPLE_SEATS, 'yearly')),
         merchant: PRICING.merchantOfRecord.name,

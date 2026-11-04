@@ -121,7 +121,6 @@ function bannedClaimAllowlist(): array
         ['id' => 'A3', 'phrases' => ['Mac App Store'], 'sources' => $compare, 'evidence' => 'Sequel Ace and Postico distribution (their sources in comparisons.json)', 'spec' => true],
         ['id' => 'A4', 'phrases' => ['Setapp'], 'sources' => ['resources/data/content/*/compare/tableplus.json', 'resources/data/comparisons.json#products.tableplus.'], 'evidence' => 'TablePlus is on Setapp (setapp.com/apps/tableplus)', 'spec' => true],
         ['id' => 'A5', 'phrases' => ["TablePlus's Setapp edition", 'bản Setapp của TablePlus'], 'sources' => ['*'], 'evidence' => 'The connection importer reads it (the TablePlus importer in TablePro v0.77.0)', 'spec' => true],
-        ['id' => 'A8', 'phrases' => ['Share anonymous usage data', 'Chia sẻ dữ liệu sử dụng ẩn danh'], 'sources' => ['resources/data/legal/*/privacy.md'], 'evidence' => 'The Mac setting\'s exact label (TablePro v0.77.0, Settings)', 'spec' => true],
         [
             'id' => 'A9',
             'phrases' => ['Instant Client'],

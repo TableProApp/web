@@ -3,7 +3,6 @@
  * of the page copy. The copy's shape is the English file's:
  * `ContentParityTest` holds every other locale to the same keys.
  */
-import type { CheckoutProp } from '@/components/pricing/types';
 import type { EngineCategory } from '@/lib/data/engines';
 
 export type HomeContent = typeof import('@data/content/en/home.json');
@@ -56,6 +55,4 @@ export interface HomePageProps {
     categories: HomeCategory[];
     iosEngines: HomeIosEngines;
     testimonials: HomeTestimonial[];
-    /** How the plan cards hand a purchase to the platform. */
-    checkout: CheckoutProp;
 }

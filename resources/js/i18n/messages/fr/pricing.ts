@@ -45,7 +45,10 @@ export default {
         "team": {
             "name": "Team",
             "description": "Partagez connexions et requêtes enregistrées avec votre équipe.",
-            "activation": "Un Mac activé par poste.",
+            "activation": {
+                "one": "Une personne par poste, {count} Mac.",
+                "other": "Une personne par poste, jusqu’à {count} Mac."
+            },
             "includesTitle": "Tout ce que contient Pro, plus",
             "cta": "Acheter Team",
             "subscriptionOnly": "Team est vendu au mois ou à l’année."
@@ -80,6 +83,7 @@ export default {
     "seats": {
         "label": "Postes",
         "noun": "postes",
+        "minimum": "Minimum {min} postes.",
         "bounds": "Minimum {min} postes, maximum {max}.",
         "clamped": {
             "min": "Nombre ajusté au minimum de {min} postes.",
@@ -109,7 +113,6 @@ export default {
         "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {count} jours suivant son paiement. Voir la <link>politique de remboursement</link>."
     },
     "finePrint": "Prix en dollars américains. {merchant} gère le paiement et calcule la taxe de vente ou la TVA au paiement en tant que merchant of record.",
-    "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",
     "section": {
         "title": "Tarifs",
@@ -124,7 +127,10 @@ export default {
             "one": "{count}",
             "other": "Jusqu’à {count}"
         },
-        "macsTeam": "Un par poste",
+        "macsTeam": {
+            "one": "{count} par poste",
+            "other": "Jusqu’à {count} par poste"
+        },
         "everythingElse": "Tout le reste de l’application",
         "everythingElseDetail": "Tous les moteurs pris en charge, l’éditeur SQL, l’assistant IA, le serveur MCP et Safe Mode",
         "iphoneNote": "L’application iPhone et iPad n’a aucune fonctionnalité payante. iCloud Sync y est gratuit ; pour synchroniser avec un Mac, celui-ci doit disposer de Pro ou Team."
@@ -134,17 +140,20 @@ export default {
         "listPrice": "Prix catalogue {price}"
     },
     "discount": {
-        "atCheckout": "Vous avez un code de réduction ? Saisissez-le lors du règlement.",
         "summary": "Vous avez un code de réduction ?",
         "label": "Code de réduction",
         "apply": "Appliquer le code",
         "checking": "Vérification du code…",
         "percent": "Code accepté : {amount} % de réduction, appliquée lors du règlement.",
         "fixed": "Code accepté : {amount} de réduction, appliquée lors du règlement.",
+        "accepted": "Code accepté, appliqué lors du règlement.",
         "invalid": "Ce code est invalide ou a expiré."
     },
     "checkout": {
-        "failed": "Impossible d’ouvrir le paiement. Réessayez."
+        "failed": "Impossible d’ouvrir le paiement. Réessayez.",
+        "planUnavailable": "Cette offre n’est pas en vente pour le moment. Choisissez une autre périodicité de facturation ou réessayez plus tard.",
+        "seats": "Choisissez entre {min} et {max} postes, puis réessayez.",
+        "seatsFewer": "Choisissez moins de postes, puis réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

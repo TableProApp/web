@@ -2,7 +2,6 @@
 
 use App\Support\Localization\Locales;
 use App\Support\Pricing\Campaign;
-use App\Support\Pricing\Checkout;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
@@ -86,9 +85,7 @@ function pricingExpectedPricePoints(string $pattern, string $decimal): array
     return $expected;
 }
 
-it('renders in both languages with the copy, each paid feature\'s lines, the checkout provider, the featured engines and the paid clients\' comparisons', function (string $path, string $locale): void {
-    config(['payment.provider' => 'polar']);
-
+it('renders in both languages with the copy, each paid feature\'s lines, the API origin, the featured engines and the paid clients\' comparisons', function (string $path, string $locale): void {
     $content = pricingPageJson("content/{$locale}/pricing.json");
     $featureIds = array_column(pricingPageJson('paid-features.json'), 'id');
     $engines = collect(pricingPageJson('engines.json'))
@@ -115,7 +112,8 @@ it('renders in both languages with the copy, each paid feature\'s lines, the che
                 ->where('locale', $locale)
                 ->where('content.header.title', $content['header']['title'])
                 ->where('content.seo.title', $content['seo']['title'])
-                ->where('checkout', ['provider' => 'polar', 'couponField' => false])
+                ->where('apiOrigin', 'https://api.tablepro.app')
+                ->missing('checkout')
                 ->where('featuredEngines', $engines)
                 ->where('comparisons', $comparisons);
 
@@ -131,16 +129,6 @@ it('renders in both languages with the copy, each paid feature\'s lines, the che
     'Vietnamese' => ['/vi/pricing', 'vi'],
 ]);
 
-it('asks for a discount code only where the provider\'s checkout does not', function (string $provider, array $expected): void {
-    config(['payment.provider' => $provider]);
-
-    expect(app(Checkout::class)->props())->toBe($expected);
-})->with([
-    'Polar takes the code in its own checkout' => ['polar', ['provider' => 'polar', 'couponField' => false]],
-    'Lemon Squeezy takes it from this site' => ['lemonsqueezy', ['provider' => 'lemonsqueezy', 'couponField' => true]],
-    'an unknown value falls back to the configuration default' => ['stripe', ['provider' => 'lemonsqueezy', 'couponField' => true]],
-]);
-
 it('indexes every complete translation', function (): void {
     $entry = app(PageRegistry::class)->find('landing.pricing', []);
 
@@ -151,7 +139,7 @@ it('indexes every complete translation', function (): void {
 });
 
 it('fills every slot in its copy from data, and marks up only what the page renders', function (): void {
-    $slots = ['activations', 'revalidateDays', 'graceDays', 'merchant', 'refundDays', 'min', 'max', 'email'];
+    $slots = ['deviceLimit', 'offlineDays', 'revalidateDays', 'graceDays', 'merchant', 'refundDays', 'min', 'max', 'email'];
     $tags = ['ui', 'account', 'portal', 'link', 'email', 'terms'];
 
     foreach (array_filter(Illuminate\Support\Arr::dot(pricingPageJson('content/en/pricing.json')), 'is_string') as $key => $text) {
@@ -191,8 +179,6 @@ it('keeps the commerce claims positioning rules out of its copy', function (): v
 });
 
 it('server-renders the plans, the table and every section, with prices written for the language', function (string $path, string $locale, array $prices, string $pattern, string $decimal, string $refund, array $availability, array $facts): void {
-    config(['payment.provider' => 'polar']);
-
     $prefix = $locale === 'en' ? '' : "/{$locale}";
     $pricing = pricingPageJson('pricing.json');
     $raw = ssrHtml($path);
@@ -212,7 +198,7 @@ it('server-renders the plans, the table and every section, with prices written f
 
     expect($main)->toContain('type="radio"')
         ->toContain("href=\"{$prefix}/refund-policy\"")
-        ->toContain('href="/account?locale=' . $locale . '"')
+        ->toContain('href="https://account.tablepro.app/?locale=' . $locale . '"')
         // The license section links the terms, and the short FAQ the full licensing questions (sitemap §A.1).
         ->toContain("href=\"{$prefix}/terms\"")
         ->toContain("href=\"{$prefix}/faq#licensing\"")
@@ -237,7 +223,11 @@ it('server-renders the plans, the table and every section, with prices written f
     expect($table)->toContain(">{$availability[0]}<")->toContain(">{$availability[1]}<");
 
     foreach ($facts as $fact) {
-        expect(strip_tags($main))->toContain(str_replace('{graceDays}', (string) $pricing['license']['offlineGraceDays'], $fact));
+        expect(strip_tags($main))->toContain(strtr($fact, [
+            '{deviceLimit}' => (string) $pricing['license']['deviceLimit'],
+            '{offlineDays}' => (string) $pricing['license']['offlineDays'],
+            '{graceDays}' => (string) $pricing['license']['legacy']['offlineGraceDays'],
+        ]));
     }
 
     preg_match_all('#<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>#s', $raw, $blocks);
@@ -275,7 +265,7 @@ it('server-renders the plans, the table and every section, with prices written f
         '/pricing', 'en', ['$0', '$39', '$10', '2 seats: $240 per year'], '$%s', '.',
         'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ['Included', 'Not included'],
-        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Pro', 'paid features work for {graceDays} days after the last successful check', 'One activated Mac per seat.', 'Each Team seat covers one activated Mac', 'answered first, within one business day'],
+        ['no trial period', 'US dollars', 'currently on the Mac', 'Team includes Pro', 'paid features keep working until that copy expires, at most {offlineDays} days after the last renewal', 'One person per seat, on up to {deviceLimit} Macs.', 'Each Team seat covers one person on up to {deviceLimit} Macs', 'answered first, within one business day'],
     ],
     'Vietnamese' => [
         '/vi/pricing', 'vi', ["0\u{a0}US$", "39\u{a0}US$", "10\u{a0}US$", "2 seat: 240\u{a0}US$ mỗi năm"], "%s\u{a0}US$", ',',
@@ -286,8 +276,6 @@ it('server-renders the plans, the table and every section, with prices written f
 ])->group('ssr');
 
 it('carries every cycle\'s price in the server HTML in the page\'s number format', function (): void {
-    config(['payment.provider' => 'polar']);
-
     expect(pricingPricePoints(html_entity_decode(ssrHtml('/zh-Hant/pricing'), ENT_QUOTES | ENT_HTML5)))->toBe(pricingExpectedPricePoints('US$%s', '.'));
 })->group('ssr');
 
@@ -297,7 +285,7 @@ it('keeps the short FAQ on account tasks, leaving the licensing facts to the pag
     expect(array_keys($content['faq']['items']))->toBe(['payment-methods', 'company-invoice', 'lost-key']);
 
     foreach ($content['faq']['items'] as $item) {
-        foreach (['{graceDays}', '{activations}', 'no trial period', 'one activated Mac'] as $duplicate) {
+        foreach (['{graceDays}', '{offlineDays}', '{deviceLimit}', 'no trial period', 'one person on'] as $duplicate) {
             expect($item['answer'])->not->toContain($duplicate);
         }
     }
@@ -336,28 +324,29 @@ it('says who a Pro license is for wherever it says how many Macs', function (str
     ['id', 'satu orang'],
 ]);
 
-it('names the plans and the account\'s pages as checkout and the account app do', function (string $locale, string $macsPage, string $billing): void {
+it('names the plans as checkout does and the portal\'s pages as the portal does', function (string $locale, string $devicesPage, string $billing): void {
     $content = pricingPageJson("content/{$locale}/pricing.json");
 
     // Plan names stay English everywhere, as on the buy buttons.
     expect($content['seo']['title'])->not->toBe($content['header']['title'])->toContain('Pro')->toContain('Team');
     expect($content['seo']['description'])->toContain('Pro')->toContain('Team');
 
-    expect($content['license']['items']['activate']['body'])->toContain($macsPage);
+    // nav.devices and nav.billing in tablepro-cloud's web/packages/i18n catalogs.
+    expect($content['license']['items']['activate']['body'])->toContain($devicesPage);
     expect($content['billing']['portal'])->toContain("<account>{$billing}</account>");
 })->with([
-    ['en', 'the Macs page', 'Billing & invoices'],
-    ['vi', 'trang Macs', 'Billing & invoices'],
-    ['es', 'la página de Mac', 'Facturación y facturas'],
-    ['de', 'Macs-Seite', 'Abrechnung und Rechnungen'],
-    ['fr', 'la page Mac', 'Facturation et factures'],
-    ['ja', 'Macs ページ', 'Billing & invoices'],
-    ['pt-BR', 'página Macs', 'Faturamento e faturas'],
-    ['zh-Hans', 'Macs 页面', 'Billing & invoices'],
-    ['zh-Hant', 'Macs 頁面', 'Billing & invoices'],
-    ['ko', 'Macs 페이지', 'Billing & invoices'],
-    ['it', 'pagina Macs', 'Fatturazione e fatture'],
-    ['id', 'halaman Macs', 'Penagihan & faktur'],
+    ['en', 'the Devices page', 'Billing'],
+    ['vi', 'trang Thiết bị', 'Thanh toán'],
+    ['es', 'la página Dispositivos', 'Facturación'],
+    ['de', 'Geräte-Seite', 'Abrechnung'],
+    ['fr', 'la page Appareils', 'Facturation'],
+    ['ja', 'デバイスページ', '請求'],
+    ['pt-BR', 'página Dispositivos', 'Cobrança'],
+    ['zh-Hans', '设备页面', '账单'],
+    ['zh-Hant', '裝置頁面', '帳單'],
+    ['ko', '기기 페이지', '결제'],
+    ['it', 'pagina Dispositivi', 'Fatturazione'],
+    ['id', 'halaman Perangkat', 'Penagihan'],
 ]);
 
 it('asks in its short FAQ only what the full FAQ answers, in the same words', function (): void {
