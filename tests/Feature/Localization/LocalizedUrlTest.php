@@ -120,7 +120,7 @@ it('reserves exactly the paths the cutover nginx config answers without this app
     // The unsubscribe signature covers the raw URI, so proxy_pass names no URI of its own.
     expect(substr_count($config, 'proxy_pass http://tablepro_cloud;'))->toBe(2)
         ->and(substr_count($config, 'proxy_set_header Host api.tablepro.app;'))->toBe(2)
-        ->and(substr_count($config, 'include /etc/nginx/snippets/cloudflare-allow.conf;'))->toBe(2)
+        ->and($config)->not->toContain('cloudflare-allow')
         ->and($config)->not->toContain('license.tablepro.app/public')
         ->not->toContain('location @platform')
         ->not->toContain('location ^~ /platform-build');
