@@ -52,8 +52,7 @@ export interface PaidFeature {
 
 /**
  * The single cast from the JSON import, whose string unions TypeScript widens
- * to `string`. `tests/Feature/Data/PaidFeaturesDataTest.php` validates the
- * file and pins the names against the app.
+ * to `string`. `tests/Feature/Data/PricingDataTest.php` validates the file.
  */
 export const PAID_FEATURES = data as PaidFeature[];
 

@@ -9,8 +9,7 @@ namespace App\Support\Content\Slugs;
  * A slug renders only in the locales where
  * `resources/data/content/{locale}/features/{slug}.json` exists; the registry
  * decides that, not the route. `Localization/LocaleRoutingTest` pins this
- * list to the content files, and `Features/FeatureContentTest` checks each
- * file against the schema in `resources/js/components/features/README.md`.
+ * list to the content files.
  */
 final class FeatureSlugs
 {

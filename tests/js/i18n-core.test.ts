@@ -4,13 +4,7 @@ import assert from 'node:assert/strict';
 import { interpolate, placeholders, plural, splitTags } from '../../resources/js/i18n/core.ts';
 import { compactCount, formatNumber, formatUsd, joinList } from '../../resources/js/i18n/format.ts';
 
-/*
- * The string machinery behind useI18n(). Run with `npm run test:js`.
- *
- * Everything here renders on the server and again in the browser, so it has to
- * be deterministic: the same input must give the same bytes in both, or React
- * reports a hydration mismatch on every Vietnamese price.
- */
+// SSR and the browser must write the same bytes, or React reports a hydration mismatch.
 
 test('interpolate fills named slots and leaves unknown ones visible', () => {
     assert.equal(interpolate('Requires {system} {version} or later', { system: 'macOS', version: 13 }), 'Requires macOS 13 or later');

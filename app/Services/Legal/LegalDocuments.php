@@ -103,8 +103,10 @@ class LegalDocuments
         $publisher = $this->facts->publisher($locale);
 
         $values = [
+            ...$this->facts->privacyPolicies(),
             'email' => $links['email'],
             'github' => $links['github'],
+            'webGithub' => $links['webGithub'],
             'issues' => $links['issues'],
             'license' => $links['license'],
             'docs' => $links['docs'],

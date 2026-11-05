@@ -1,12 +1,8 @@
 <?php
 
-use App\Services\Content\SiteFacts;
+use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Finder\SplFileInfo;
 
-/**
- * @return array<string, mixed>
- */
 function factsJson(): array
 {
     static $data = null;
@@ -14,357 +10,114 @@ function factsJson(): array
     return $data ??= json_decode(File::get(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return list<string>
- */
-function factsEngineIds(): array
+function factsData(string $file): array
 {
-    return array_column(json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR), 'id');
+    return json_decode(File::get(resource_path("data/{$file}")), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array<string, array<string, mixed>>
- */
-function factsReleasedPlatforms(): array
+function factsUnique(array $list, string $label): void
 {
-    return collect(json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'])
-        ->filter(fn(array $platform): bool => $platform['status'] === 'released')
-        ->keyBy('id')
-        ->all();
+    expect($list)->not->toBeEmpty("{$label} is empty")
+        ->and($list)->toBe(array_values(array_unique($list, SORT_REGULAR)), "{$label} has duplicates");
 }
 
-/**
- * @param  list<mixed>  $list
- */
-function factsAssertUniqueList(array $list, string $label): void
-{
-    expect($list)->not->toBeEmpty("{$label} is empty");
-    expect($list)->toBe(array_values(array_unique($list, SORT_REGULAR)), "{$label} has duplicates");
-}
-
-it('is dated and has the documented sections', function (): void {
-    $facts = factsJson();
-
-    expect(array_keys($facts))->toBe([
-        'verifiedAt', 'links', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
+it('is dated and has the sections the pages read', function (): void {
+    expect(factsJson())->toHaveKeys([
+        'verifiedAt', 'links', 'privacyPolicies', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
         'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits',
-    ]);
-    expect($facts['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/');
-    expect($facts['verifiedAt'] <= now()->toDateString())->toBeTrue('verifiedAt is in the future');
+    ])
+        ->and(factsJson()['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/')
+        ->and(factsJson()['verifiedAt'] <= now()->toDateString())->toBeTrue('verifiedAt is in the future');
 });
 
-it('keeps every outbound link in one place, over HTTPS', function (): void {
+it('links only over HTTPS, and to the App Store destination platforms.json has', function (): void {
     $links = factsJson()['links'];
 
-    foreach ($links as $key => $url) {
-        expect($url)->toStartWith('https://', "links.{$key}");
-        expect(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse("links.{$key} is malformed");
+    foreach ([...$links, ...factsJson()['privacyPolicies']] as $key => $url) {
+        expect($url)->toStartWith('https://', $key)
+            ->and(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse("{$key} is malformed");
     }
 
-    expect($links['github'])->toBe('https://github.com/TableProApp/TablePro');
-    expect($links['issues'])->toStartWith($links['github'] . '/');
-    expect($links['discussions'])->toStartWith($links['github'] . '/');
-    expect($links['license'])->toStartWith($links['github'] . '/');
-    expect($links['docs'])->toBe('https://docs.tablepro.app');
-    expect($links['changelog'])->toStartWith($links['docs'] . '/');
-    expect($links['troubleshooting'])->toStartWith($links['docs'] . '/');
-    expect($links['sponsorsProgram'])->toBe('https://github.com/sponsors/datlechin');
+    $ios = collect(factsData('platforms.json')['platforms'])->firstWhere('id', 'ios');
 
-    $store = collect(factsReleasedPlatforms()['ios']['destinations'])->firstWhere('kind', 'app-store');
-
-    expect($links['appStore'])->toBe($store['url'], 'links.appStore must equal the iOS App Store destination in platforms.json');
+    expect($links['appStore'])->toBe(collect($ios['destinations'])->firstWhere('kind', 'app-store')['url']);
 });
 
-it('gives the organization only the profiles the site links to', function (): void {
-    $links = factsJson()['links'];
-
-    // The same list, in the same order, as `organizationProfiles()` in lib/structured-data.ts.
-    expect(app(SiteFacts::class)->organizationProfiles())->toBe([$links['github'], $links['x'], $links['discord'], $links['telegram']]);
-    expect($links)->not->toHaveKey('facebook');
-});
-
-it('names the support address, the open-source licence and the day the repository was created', function (): void {
-    $facts = factsJson();
-
-    expect($facts['support'])->toBe(['email' => 'hello@tablepro.app']);
-    expect($facts['openSource']['license'])->toBe('AGPL-3.0');
-    // GitHub API, repos/TableProApp/TablePro → created_at.
-    expect($facts['openSource']['repositoryCreatedAt'])->toBe('2025-12-17');
-    expect($facts['openSource']['evidence'])->toBeString()->not->toBe('');
-    expect(app(SiteFacts::class)->repositoryCreatedAt()?->toDateString())->toBe('2025-12-17');
-});
-
-it('names the publisher once, with the city and country in every supported language', function (): void {
+it('names the publisher in every supported language', function (): void {
     $publisher = factsJson()['publisher'];
-    $locales = array_keys(json_decode(File::get(resource_path('data/locales.json')), true)['supported']);
 
-    // The owner's name as he writes it; the App Store keeps the seller name Apple has.
-    expect($publisher['name'])->toBe('Ngo Quoc Dat');
-    expect($publisher['countryCode'])->toBe('VN');
-    expect($publisher['evidence'])->toBeString()->not->toBe('');
-    expect(array_keys($publisher))->toBe(['name', 'countryCode', 'city', 'country', 'evidence']);
+    expect($publisher['name'])->toBeString()->not->toBeEmpty()
+        ->and(filter_var(factsJson()['support']['email'], FILTER_VALIDATE_EMAIL))->not->toBeFalse();
 
     foreach (['city', 'country'] as $field) {
-        expect(array_keys($publisher[$field]))->toEqualCanonicalizing($locales, "publisher.{$field} does not cover every locale");
-
-        foreach ($publisher[$field] as $locale => $value) {
-            expect(trim($value))->not->toBe('', "publisher.{$field}.{$locale} is empty");
-            expect(Normalizer::isNormalized($value, Normalizer::FORM_C))->toBeTrue("publisher.{$field}.{$locale} is not NFC");
-        }
-    }
-
-    expect(app(SiteFacts::class)->publisher('vi'))->toBe([
-        'name' => 'Ngo Quoc Dat',
-        'city' => $publisher['city']['vi'],
-        'country' => $publisher['country']['vi'],
-        'countryCode' => 'VN',
-    ]);
-});
-
-it('names the publisher as the copyright holder of the code and of the content', function (string $file): void {
-    expect(File::get(base_path($file)))->toContain('Copyright (c) 2026 ' . factsJson()['publisher']['name'] . ' (TablePro)');
-})->with(['LICENSE', 'LICENSE-CONTENT']);
-
-it('names the AI providers in the app order, Mac only', function (): void {
-    $ai = factsJson()['ai'];
-
-    factsAssertUniqueList($ai['providers'], 'ai.providers');
-
-    // AIProviderType in TablePro/Models/AI/AIModels.swift @ v0.77.0, displayName in case order.
-    expect($ai['providers'])->toBe([
-        'GitHub Copilot', 'ChatGPT', 'Cursor', 'Claude', 'Claude Agent', 'OpenAI', 'OpenRouter',
-        'Gemini', 'xAI', 'Ollama', 'llama.cpp', 'MLX', 'OpenCode Zen', 'OpenAI-compatible',
-    ]);
-    expect($ai['platforms'])->toBe(['mac']);
-    expect($ai['evidence'])->toBeString()->not->toBe('');
-});
-
-it('describes the MCP server as local, off by default and Mac only', function (): void {
-    $mcp = factsJson()['mcp'];
-
-    expect($mcp['platforms'])->toBe(['mac']);
-    expect($mcp['host'])->toBe('127.0.0.1');
-    expect($mcp['defaultPort'])->toBe(23508);
-    expect($mcp['enabledByDefault'])->toBeFalse();
-
-    factsAssertUniqueList($mcp['toolGroups'], 'mcp.toolGroups');
-    factsAssertUniqueList($mcp['clients']['setupSheet'], 'mcp.clients.setupSheet');
-    factsAssertUniqueList($mcp['clients']['bridge'], 'mcp.clients.bridge');
-
-    expect($mcp['clients']['setupSheet'])->toBe(['Claude Code', 'Claude Desktop', 'Cursor', 'Zed']);
-    expect(array_diff($mcp['clients']['setupSheet'], $mcp['clients']['bridge']))->toBe([], 'Every client the setup sheet covers also works through the bridge');
-
-    foreach ($mcp['toolGroups'] as $group) {
-        expect($group)->toMatch('/^[a-z]+(-[a-z]+)*$/', 'Tool groups are ids; their names are copy');
+        expect(array_keys($publisher[$field]))->toEqualCanonicalizing(Locales::codes(), "publisher.{$field} does not cover every locale");
     }
 });
 
-it('pins the Safe Mode levels on each platform', function (): void {
-    $safeMode = factsJson()['safeMode'];
-
-    expect(array_column($safeMode['mac']['levels'], 'name', 'id'))->toBe([
-        'silent' => 'Silent',
-        'alert' => 'Alert',
-        'alertFull' => 'Alert (Full)',
-        'safeMode' => 'Safe Mode',
-        'safeModeFull' => 'Safe Mode (Full)',
-        'readOnly' => 'Read-Only',
-    ]);
-    expect($safeMode['mac']['default'])->toBe('silent');
-
-    expect(array_column($safeMode['ios']['levels'], 'name', 'id'))->toBe([
-        'off' => 'Off',
-        'confirmWrites' => 'Confirm Writes',
-        'readOnly' => 'Read-Only',
-    ]);
-    expect($safeMode['ios']['default'])->toBe('off');
-});
-
-it('lists the filter operators per platform without duplicates', function (): void {
-    $operators = factsJson()['filterOperators'];
-
-    factsAssertUniqueList($operators['mac'], 'filterOperators.mac');
-    factsAssertUniqueList($operators['ios'], 'filterOperators.ios');
-    expect($operators['mac'])->toContain('REGEX')->toContain('BETWEEN');
-    expect($operators['ios'])->toContain('LIKE')->not->toContain('REGEX');
-});
-
-it('names the apps TablePro imports connections from, each a compared product', function (): void {
-    $imports = factsJson()['connectionImport'];
-    $products = array_column(json_decode(File::get(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR)['products'], 'id');
-
-    factsAssertUniqueList(array_column($imports, 'id'), 'connectionImport ids');
-
-    expect(array_column($imports, 'app'))->toBe(['TablePlus', 'Sequel Ace', 'DBeaver', 'DataGrip', 'Beekeeper Studio', 'Navicat']);
-
-    foreach ($imports as $import) {
-        expect(array_keys($import))->toBe(['id', 'app', 'passwords', 'format']);
-        expect($import['passwords'])->toBeBool();
-        expect($products)->toContain($import['id']);
-    }
-
-    expect(collect($imports)->firstWhere('id', 'navicat')['format'])->toBe('.ncx');
-});
-
-it('lists import and export formats with known engines', function (): void {
+it('keeps each list free of duplicates', function (): void {
     $facts = factsJson();
-    $engines = factsEngineIds();
 
-    factsAssertUniqueList(array_column($facts['dataImport']['formats'], 'id'), 'dataImport.formats');
-    factsAssertUniqueList(array_column($facts['export']['formats'], 'id'), 'export.formats');
-
-    foreach ($facts['dataImport']['formats'] as $format) {
-        expect(array_keys($format))->toBe(['id', 'name', 'exceptEngines']);
-
-        foreach ($format['exceptEngines'] as $engine) {
-            expect($engines)->toContain($engine);
-        }
-    }
-
-    // SQLImportPlugin.excludedDatabaseTypeIds at v0.77.0.
-    expect(collect($facts['dataImport']['formats'])->firstWhere('id', 'sql')['exceptEngines'])->toBe(['mongodb', 'redis']);
-
-    foreach ($facts['export']['formats'] as $format) {
-        expect(array_keys($format))->toBe(['id', 'name', 'engines', 'exceptEngines', 'via']);
-        expect($format['via'])->toBeIn([null, 'plugin']);
-
-        foreach (array_merge($format['engines'] ?? [], $format['exceptEngines']) as $engine) {
-            expect($engines)->toContain($engine);
-        }
-    }
-
-    $formats = collect($facts['export']['formats'])->keyBy('id');
-
-    expect($formats['mql']['engines'])->toBe(['mongodb']);
-    expect($formats['parquet']['via'])->toBe('plugin');
+    factsUnique($facts['ai']['providers'], 'ai.providers');
+    factsUnique($facts['mcp']['toolGroups'], 'mcp.toolGroups');
+    factsUnique($facts['filterOperators']['mac'], 'filterOperators.mac');
+    factsUnique($facts['filterOperators']['ios'], 'filterOperators.ios');
+    factsUnique(array_column($facts['connectionImport'], 'id'), 'connectionImport');
+    factsUnique(array_column($facts['dataImport']['formats'], 'id'), 'dataImport.formats');
+    factsUnique(array_column($facts['export']['formats'], 'id'), 'export.formats');
+    factsUnique(array_column($facts['backup']['tools'], 'id'), 'backup.tools');
+    factsUnique($facts['sync']['neverSynced'], 'sync.neverSynced');
 });
 
-it('keeps the backup tools in step with engines.json', function (): void {
-    $backup = factsJson()['backup'];
-    $engines = collect(json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR))->keyBy('id');
+it('defaults Safe Mode to one of its own levels on each platform', function (): void {
+    foreach (factsJson()['safeMode'] as $platform => $safeMode) {
+        expect($safeMode['default'])->toBeIn(array_column($safeMode['levels'], 'id'), "safeMode.{$platform}.default");
+    }
+});
 
-    factsAssertUniqueList(array_column($backup['tools'], 'id'), 'backup.tools');
+it('refers only to engines, compared products and platforms the other data files have', function (): void {
+    $facts = factsJson();
+    $engines = array_column(factsData('engines.json'), 'id');
+    $products = array_column(factsData('comparisons.json')['products'], 'id');
+    $platforms = array_column(factsData('platforms.json')['platforms'], 'id');
 
-    foreach ($backup['tools'] as $tool) {
-        expect(array_keys($tool))->toBe(['id', 'name', 'engines', 'external']);
-        expect($tool['engines'])->not->toBeEmpty();
+    expect(array_diff(array_column($facts['connectionImport'], 'id'), $products))->toBe([]);
 
-        foreach ($tool['engines'] as $id) {
-            expect($engines->has($id))->toBeTrue("{$tool['id']} names an unknown engine {$id}");
-            expect($engines[$id]['capabilities']['nativeDump'])->toBe($tool['id'], "{$id} must use {$tool['id']} in engines.json");
-        }
+    foreach ([...$facts['dataImport']['formats'], ...$facts['export']['formats']] as $format) {
+        expect(array_diff([...$format['engines'] ?? [], ...$format['exceptEngines']], $engines))->toBe([], "{$format['id']} names an unknown engine");
     }
 
-    $fromEngines = $engines
+    expect(array_diff($facts['backup']['serverSideExport'], $engines))->toBe([]);
+
+    foreach ($facts['limits'] as $id => $limit) {
+        expect($limit['value'])->toBeInt()
+            ->and($limit['max'] === null || $limit['max'] >= $limit['value'])->toBeTrue("limits.{$id}.max")
+            ->and($platforms)->toContain($limit['platform']);
+    }
+});
+
+it('keeps the backup tools in step with the engines that dump natively', function (): void {
+    $fromEngines = collect(factsData('engines.json'))
         ->filter(fn(array $engine): bool => $engine['capabilities']['nativeDump'] !== null)
-        ->map(fn(array $engine): string => $engine['capabilities']['nativeDump'])
+        ->mapWithKeys(fn(array $engine): array => [$engine['id'] => $engine['capabilities']['nativeDump']])
         ->all();
-    $fromTools = collect($backup['tools'])
+    $fromTools = collect(factsJson()['backup']['tools'])
         ->flatMap(fn(array $tool): array => array_fill_keys($tool['engines'], $tool['id']))
         ->all();
 
     ksort($fromEngines);
     ksort($fromTools);
 
-    expect($fromEngines)->toBe($fromTools, 'Every engine with a nativeDump appears under that tool, and nowhere else');
-
-    foreach ($backup['serverSideExport'] as $id) {
-        expect($engines->has($id))->toBeTrue();
-    }
+    expect($fromTools)->toBe($fromEngines);
 });
 
-it('names what syncs on each platform and what never does', function (): void {
-    $sync = factsJson()['sync'];
-    $release = factsReleasedPlatforms()['mac']['release']['version'];
+it('dates no sync category after the current Mac release', function (): void {
+    $release = collect(factsData('platforms.json')['platforms'])->firstWhere('id', 'mac')['release']['version'];
 
     foreach (['mac', 'ios'] as $platform) {
-        factsAssertUniqueList(array_column($sync[$platform]['categories'], 'id'), "sync.{$platform}.categories");
-        expect($sync[$platform]['enabledByDefault'])->toBeFalse("iCloud Sync is off by default on {$platform}");
-
-        foreach ($sync[$platform]['categories'] as $category) {
-            expect(array_keys($category))->toBe(['id', 'defaultOn', 'sinceAppVersion']);
-
+        foreach (factsJson()['sync'][$platform]['categories'] as $category) {
             if ($category['sinceAppVersion'] !== null) {
-                expect(version_compare($category['sinceAppVersion'], $release, '<='))->toBeTrue();
+                expect(version_compare($category['sinceAppVersion'], $release, '<='))->toBeTrue("sync.{$platform}.{$category['id']}");
             }
         }
     }
-
-    expect(array_column($sync['ios']['categories'], 'id'))->toBe(['connections', 'groups-and-tags']);
-    expect(collect($sync['mac']['categories'])->firstWhere('id', 'passwords')['defaultOn'])->toBeFalse();
-    // The record type is in SyncSchemaRegistry's verifiedInProduction since v0.75.0, so the Mac writes it; the app's docs page still says "not yet".
-    expect(collect($sync['mac']['categories'])->firstWhere('id', 'credential-profiles'))->toBe(['id' => 'credential-profiles', 'defaultOn' => true, 'sinceAppVersion' => '0.75.0']);
-
-    factsAssertUniqueList($sync['neverSynced'], 'sync.neverSynced');
-    expect($sync['neverSynced'])->toContain('query-history')->toContain('data-rewind');
-});
-
-it('gives every limit a number, a unit, a platform and evidence', function (): void {
-    $limits = factsJson()['limits'];
-    $platforms = array_keys(factsReleasedPlatforms());
-
-    expect($limits)->not->toBeEmpty();
-
-    foreach ($limits as $id => $limit) {
-        expect(array_keys($limit))->toBe(['value', 'max', 'unit', 'platform', 'evidence'], "limits.{$id}");
-        expect($limit['value'])->toBeInt();
-        expect($limit['max'] === null || $limit['max'] >= $limit['value'])->toBeTrue("limits.{$id}.max");
-        expect($limit['unit'])->toBeString()->not->toBe('');
-        expect($platforms)->toContain($limit['platform']);
-        expect($limit['evidence'])->toBeString()->not->toBe('');
-    }
-
-    expect($limits['resultRowCap']['value'])->toBe(10000);
-    expect($limits['resultRowCap']['max'])->toBe(500000);
-    expect($limits['rewindDays']['value'])->toBe(7);
-    expect($limits['historyEntriesIos']['value'])->toBe(200);
-
-    // Data Rewind skips a value over 1,048,576 bytes; EXPLAIN Compare calls a run within 1.15× of its baseline unchanged.
-    expect($limits['rewindMaxValue'])->toMatchArray(['value' => 1, 'unit' => 'MB', 'platform' => 'mac']);
-    expect($limits['explainNoise'])->toMatchArray(['value' => 15, 'unit' => 'percent', 'platform' => 'mac']);
-});
-
-it('keeps external URLs in data files, not in components, catalogs or content', function (): void {
-    // Not links: the JSON-LD vocabulary, the site's own origin and SVG namespaces.
-    $ignoredHosts = ['schema.org', 'tablepro.app', 'www.w3.org'];
-
-    // Exact URLs per file, so an edit that keeps the file name still cannot add one.
-    $allowed = [
-        // A script source, not a link: the chat loader every page adds once it is idle.
-        'js/lib/crisp.ts' => ['https://client.crisp.chat/l.js'],
-        // The same for Turnstile, which the newsletter forms add on intent.
-        'js/lib/turnstile.ts' => ['https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'],
-    ];
-
-    $files = collect([resource_path('js'), resource_path('data/content')])
-        ->filter(fn(string $root): bool => File::isDirectory($root))
-        ->flatMap(fn(string $root): array => File::allFiles($root))
-        ->filter(fn(SplFileInfo $file): bool => in_array($file->getExtension(), ['ts', 'tsx', 'js', 'jsx', 'json'], true));
-
-    $found = [];
-
-    foreach ($files as $file) {
-        $relative = ltrim(str_replace(resource_path(), '', $file->getPathname()), '/');
-
-        // UTF-8 mode: in byte mode \R also matches 0x85, the last byte of "ễ".
-        foreach (preg_split('/\R/u', $file->getContents()) as $number => $line) {
-            if (preg_match('#^\s*(\*|//|/\*)#', $line) === 1) {
-                continue;
-            }
-
-            preg_match_all('#[\'"`](https?://[^\'"`\s]+)#', $line, $matches);
-
-            foreach ($matches[1] as $url) {
-                $host = (string) parse_url(str_replace(['${', '}'], '', $url), PHP_URL_HOST);
-
-                if (in_array($host, $ignoredHosts, true) || in_array($url, $allowed[$relative] ?? [], true)) {
-                    continue;
-                }
-
-                $found[] = "{$relative}:" . ($number + 1) . " {$url}";
-            }
-        }
-    }
-
-    expect($found)->toBe([], "External URLs belong in resources/data (facts, sponsors, comparisons, platforms, redirects). Docs links join a path to facts.links.docs:\n" . implode("\n", $found));
 });

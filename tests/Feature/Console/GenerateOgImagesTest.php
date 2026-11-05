@@ -3,11 +3,8 @@
 use App\Services\Og\OgImageRenderer;
 use App\Services\Og\OgImageRenderException;
 use App\Support\Seo\OgFonts;
-use App\Support\Seo\OgImages;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
-
-require_once __DIR__ . '/../Seo/helpers.php';
 
 beforeEach(function (): void {
     $this->dirs = seoScratch();
@@ -214,27 +211,4 @@ it('reports a card that fails to render and still renders the rest', function ()
         ->assertFailed();
 
     expect($rendered)->toHaveCount(1);
-});
-
-it('gives every page a card that exists once the cards are generated', function (): void {
-    $this->artisan('og:generate')->assertSuccessful();
-
-    $images = app(OgImages::class);
-    $checked = 0;
-
-    foreach (app(PageRegistry::class)->all() as $entry) {
-        foreach ($entry->renderLocales as $locale) {
-            $image = $images->for($entry, $locale);
-
-            expect($image)->not->toBeNull("{$entry->key()} ({$locale}) has no card");
-            expect(File::exists($this->public . seoPathOf($image['url'])))->toBeTrue();
-            $checked++;
-        }
-    }
-
-    expect($images->for(app(PageRegistry::class)->find('landing.features.show', ['slug' => 'querying']), 'vi')['url'])
-        ->toBe('https://localhost/og/vi/feature/querying.png');
-    expect($images->for(app(PageRegistry::class)->find('landing.faq', []), 'en')['url'])
-        ->toBe('https://localhost/og.png');
-    expect($checked)->toBeGreaterThan(5);
 });

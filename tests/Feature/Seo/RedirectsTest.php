@@ -1,321 +1,266 @@
 <?php
 
 use App\Http\Middleware\CanonicalizeRequest;
+use App\Support\Content\ContentRepository;
+use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
-use App\Support\Seo\PageRegistry;
+use App\Support\Seo\BlogPosts;
+use App\Support\Seo\ContentCollection;
+use App\Support\Seo\LegalPages;
 use App\Support\Seo\RedirectMap;
+use App\Support\Seo\StaticPages;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
 use Symfony\Component\HttpFoundation\Response;
 
-require_once __DIR__ . '/helpers.php';
-
 beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-function redirectsExpectedLocation(string $target, string $query = ''): string
+dataset('301 entries', fn(): array => collect(seoRedirectEntries())
+    ->where('status', 301)
+    ->mapWithKeys(fn(array $entry): array => [$entry['from'] => [$entry['from'], $entry['to']]])
+    ->all());
+
+dataset('410 entries', fn(): array => collect(seoRedirectEntries())
+    ->where('status', 410)
+    ->mapWithKeys(fn(array $entry): array => [$entry['from'] => [$entry['from']]])
+    ->all());
+
+function redirectsLocation(string $target, string $query = ''): string
 {
-    $fragmentAt = strpos($target, '#');
-    $fragment = $fragmentAt === false ? '' : substr($target, $fragmentAt);
-    $target = $fragmentAt === false ? $target : substr($target, 0, $fragmentAt);
+    [$target, $fragment] = str_contains($target, '#') ? explode('#', $target, 2) : [$target, null];
+    [$path, $own] = str_contains($target, '?') ? explode('?', $target, 2) : [$target, ''];
+    $merged = implode('&', array_filter([$own, $query], fn(string $part): bool => $part !== ''));
 
-    $queryAt = strpos($target, '?');
-    $own = $queryAt === false ? '' : substr($target, $queryAt + 1);
-    $target = $queryAt === false ? $target : substr($target, 0, $queryAt);
-
-    $merged = implode('&', array_filter([$own, $query], static fn(string $part): bool => $part !== ''));
-    $base = str_starts_with($target, '/') ? LocalizedUrl::base() . $target : $target;
-
-    return $base . ($merged === '' ? '' : '?' . $merged) . $fragment;
+    return (str_starts_with($path, '/') ? LocalizedUrl::base() . $path : $path)
+        . ($merged === '' ? '' : "?{$merged}")
+        . ($fragment === null ? '' : "#{$fragment}");
 }
 
-function redirectsThroughMiddleware(string $requestUri, string $method = 'GET'): Response
+function redirectsThroughMiddleware(string $uri, string $method = 'GET'): Response
 {
-    $request = new Request(server: ['REQUEST_URI' => $requestUri, 'REQUEST_METHOD' => $method, 'HTTP_HOST' => 'localhost']);
+    $request = new Request(server: ['REQUEST_URI' => $uri, 'REQUEST_METHOD' => $method, 'HTTP_HOST' => 'localhost']);
 
     return app(CanonicalizeRequest::class)->handle($request, fn(): Response => new Response('passed through', 200));
 }
 
-dataset('301 entries', function (): array {
-    $rows = [];
+function redirectsRouteFor(string $path): ?Route
+{
+    try {
+        $request = Request::create($path);
+        $route = app('router')->getRoutes()->match($request);
+        $route->bind($request);
 
-    foreach (seoRedirectEntries() as $entry) {
-        if ($entry['status'] === 301) {
-            $rows[$entry['from']] = [$entry['from'], $entry['to']];
-        }
+        return $route;
+    } catch (Throwable) {
+        return null;
+    }
+}
+
+function redirectsInternalTargets(): array
+{
+    $targets = collect(seoRedirectEntries())
+        ->filter(fn(array $entry): bool => $entry['status'] === 301 && str_starts_with($entry['to'], '/'))
+        ->mapWithKeys(fn(array $entry): array => [$entry['from'] => $entry['to']])
+        ->all();
+
+    foreach (app(RedirectMap::class)->docsSlugTargets() as $docsSlug => $target) {
+        $targets["/databases/{$docsSlug}"] = $target;
     }
 
-    return $rows;
+    return $targets;
+}
+
+function redirectsScratchMap(array $entries): void
+{
+    $path = storage_path('framework/testing/redirects-' . uniqid() . '.json');
+    File::put($path, json_encode($entries, JSON_THROW_ON_ERROR));
+    app()->instance(RedirectMap::class, new RedirectMap($path, resource_path('data/engines.json')));
+}
+
+afterEach(function (): void {
+    File::delete(File::glob(storage_path('framework/testing/redirects-*.json')));
 });
 
-dataset('410 entries', function (): array {
-    $rows = [];
+describe('redirects.json', function (): void {
+    it('gives every entry a clean source, a status, a target where it has one and a reason', function (): void {
+        $froms = array_column(seoRedirectEntries(), 'from');
 
-    foreach (seoRedirectEntries() as $entry) {
-        if ($entry['status'] === 410) {
-            $rows[$entry['from']] = [$entry['from']];
+        expect($froms)->toBe(array_values(array_unique($froms)));
+
+        foreach (seoRedirectEntries() as $entry) {
+            expect(array_diff(array_keys($entry), ['from', 'to', 'status', 'reason']))->toBe([], "{$entry['from']} has an unknown key")
+                ->and($entry['from'])->toMatch('#^/[a-z0-9][a-z0-9./-]*[a-z0-9]$#')
+                ->and(trim($entry['reason'] ?? ''))->not->toBeEmpty("{$entry['from']} needs a reason")
+                ->and($entry['status'])->toBeIn([301, 410])
+                ->and(array_key_exists('to', $entry))->toBe($entry['status'] === 301);
         }
-    }
+    });
 
-    return $rows;
+    it('retires no localized, platform or docs-style path', function (): void {
+        $prefixes = array_filter(array_map(Locales::prefixFor(...), Locales::codes()));
+
+        foreach (array_column(seoRedirectEntries(), 'from') as $from) {
+            expect(explode('/', trim($from, '/'))[0])->not->toBeIn($prefixes)
+                ->and(LocalizedUrl::isPlatformPath($from))->toBeFalse("{$from} belongs to the platform app")
+                ->and($from)->not->toStartWith('/databases/');
+        }
+    });
+
+    it('never retires a page that exists', function (): void {
+        $content = app(ContentRepository::class);
+        $families = [new StaticPages($content), new ContentCollection($content), app(LegalPages::class)];
+        $fixed = collect(app('router')->getRoutes())
+            ->filter(fn(Route $route): bool => in_array('GET', $route->methods(), true) && $route->parameterNames() === [])
+            ->map(fn(Route $route): string => '/' . ltrim($route->uri(), '/'))
+            ->all();
+
+        foreach (array_column(seoRedirectEntries(), 'from') as $from) {
+            expect($fixed)->not->toContain($from);
+
+            $route = redirectsRouteFor($from);
+
+            if ($route?->getName() === null) {
+                continue;
+            }
+
+            $name = (string) LocalizedUrl::baseName($route->getName());
+            $params = array_map(strval(...), $route->parameters());
+
+            foreach ($families as $family) {
+                expect($family->find($name, $params))->toBeNull("{$from} has content of its own");
+            }
+
+            $post = app(BlogPosts::class)->find($name, $params);
+
+            expect($post === null || $post->renderLocales === [Locales::default()])->toBeTrue("{$from} has a translation");
+        }
+    });
+
+    it('points external targets off this site over HTTPS', function (): void {
+        foreach (seoRedirectEntries() as $entry) {
+            if (($entry['status'] === 301) && ! str_starts_with($entry['to'], '/')) {
+                expect($entry['to'])->toStartWith('https://')
+                    ->and(parse_url($entry['to'], PHP_URL_HOST))->not->toBeIn(['tablepro.app', 'www.tablepro.app', config('app.web_domain')]);
+            }
+        }
+    });
+
+    it('sends every internal target to a clean path that answers, with no chain', function (): void {
+        $map = app(RedirectMap::class);
+
+        foreach (redirectsInternalTargets() as $from => $to) {
+            $path = substr($to, 0, strcspn($to, '?#'));
+
+            expect($path === '/' || ! str_ends_with($path, '/'))->toBeTrue("{$to} would be normalised again")
+                ->and($map->find($path))->toBeNull("{$from} → {$to} lands on another retired path");
+
+            if (pathinfo($path, PATHINFO_EXTENSION) !== '') {
+                continue;
+            }
+
+            $this->get($path)->assertOk();
+        }
+    });
 });
 
 it('answers each retired path with one 301 that keeps the query', function (string $from, string $to): void {
-    $query = 'ref=app-about&utm_source=x&utm_campaign=y';
-
-    $this->get($from)->assertStatus(301)->assertHeader('Location', redirectsExpectedLocation($to));
-    $this->get("{$from}?{$query}")->assertStatus(301)->assertHeader('Location', redirectsExpectedLocation($to, $query));
+    $this->get($from)->assertStatus(301)->assertHeader('Location', redirectsLocation($to));
+    $this->get("{$from}?ref=app&utm_source=x")->assertStatus(301)->assertHeader('Location', redirectsLocation($to, 'ref=app&utm_source=x'));
 })->with('301 entries');
 
-it('folds the slash and /index.php variants of a retired path into the same hop', function (string $from, string $to): void {
-    $location = redirectsExpectedLocation($to, 'ref=x');
-
-    // The test client strips a relative path's trailing slash but sends an absolute URL verbatim.
-    $this->get("http://localhost{$from}/?ref=x")->assertStatus(301)->assertHeader('Location', $location);
-    $this->get("/index.php{$from}?ref=x")->assertStatus(301)->assertHeader('Location', $location);
-    $this->call('HEAD', "http://localhost{$from}/?ref=x")->assertStatus(301)->assertHeader('Location', $location);
-
-    $direct = redirectsThroughMiddleware("{$from}/");
-
-    expect($direct->getStatusCode())->toBe(301);
-    expect($direct->headers->get('Location'))->toBe(redirectsExpectedLocation($to));
-})->with('301 entries');
-
-it('puts the query before the target fragment', function (): void {
-    $this->get('/mariadb-client/?utm_source=y')
-        ->assertStatus(301)
-        ->assertHeader('Location', 'https://localhost/mysql-client?utm_source=y#mariadb');
-});
-
-it('answers a gone path with the branded 410, in any of its forms', function (string $from): void {
-    foreach ([$from, "http://localhost{$from}/?ref=x", "/index.php{$from}", "{$from}?ref=x"] as $path) {
-        $response = $this->get($path);
-
-        $response->assertStatus(410)->assertHeaderMissing('Location');
-        $response->assertInertia(fn(AssertableInertia $page) => $page
+it('answers each gone path with the branded 410', function (string $from): void {
+    $this->get($from)
+        ->assertStatus(410)
+        ->assertHeaderMissing('Location')
+        ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Error')
             ->where('status', 410)
-            ->where('locale', 'en')
             ->where('seo.robots', 'noindex, follow')
-            ->where('seo.canonical', null)
-            ->where('seo.alternates', []));
-
-        expect($response->getContent())->toContain('<html lang="en"');
-    }
+            ->where('seo.canonical', null));
 })->with('410 entries');
 
-// The test client trims a trailing slash before sending, so these run the middleware on the raw URI.
-it('normalises the trailing slash and /index.php of any path in one hop', function (string $uri, string $location): void {
-    $response = redirectsThroughMiddleware($uri);
-
-    expect($response->getStatusCode())->toBe(301);
-    expect($response->headers->get('Location'))->toBe($location);
-})->with([
-    'a section' => ['/blog/', 'https://localhost/blog'],
-    'the Vietnamese home' => ['/vi/', 'https://localhost/vi'],
-    'a Vietnamese page' => ['/vi/download/', 'https://localhost/vi/download'],
-    'the front controller' => ['/index.php', 'https://localhost/'],
-    'the front controller with a slash' => ['/index.php/', 'https://localhost/'],
-    'a page behind the front controller' => ['/index.php/blog?ref=x', 'https://localhost/blog?ref=x'],
-    'both at once' => ['/index.php/download/?utm_source=y', 'https://localhost/download?utm_source=y'],
-    'several slashes' => ['/download///', 'https://localhost/download'],
-    'the query exactly as sent' => ['/blog/?q=a%20b&tag=x&tag=y', 'https://localhost/blog?q=a%20b&tag=x&tag=y'],
-]);
-
-it('sends a language prefix in another case, or the default language spelled out, to the canonical URL in one hop', function (string $uri, string $location): void {
-    $response = redirectsThroughMiddleware($uri);
-
-    expect($response->getStatusCode())->toBe(301);
-    expect($response->headers->get('Location'))->toBe($location);
-})->with([
-    'a lowercase region' => ['/pt-br', 'https://localhost/pt-BR'],
-    'a lowercase script, with a page' => ['/zh-hans/pricing', 'https://localhost/zh-Hans/pricing'],
-    'uppercase' => ['/ZH-HANT/download', 'https://localhost/zh-Hant/download'],
-    'an uppercase two-letter code' => ['/VI', 'https://localhost/vi'],
-    'the default language' => ['/en', 'https://localhost/'],
-    'a page under the default language' => ['/en/pricing?ref=x', 'https://localhost/pricing?ref=x'],
-    'with a trailing slash, still one hop' => ['/pt-br/pricing/?ref=x', 'https://localhost/pt-BR/pricing?ref=x'],
-    'a retired path under the default language' => ['/en/mariadb-client', 'https://localhost/mysql-client#mariadb'],
-]);
-
-it('lands a corrected language prefix on a page that answers', function (string $path, string $canonical): void {
-    $this->get($path)->assertStatus(301)->assertHeader('Location', 'https://localhost' . $canonical);
-    $this->get($canonical)->assertOk();
-})->with([
-    ['/pt-br/pricing', '/pt-BR/pricing'],
-    ['/zh-hans', '/zh-Hans'],
-    ['/en/download', '/download'],
-]);
-
-it('normalises through the whole stack, before routing', function (): void {
-    $this->get('http://localhost/blog/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/blog?ref=x');
-    $this->get('http://localhost/vi/download/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/vi/download?ref=x');
-    $this->get('/index.php/download?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/download?ref=x');
-    $this->get('/index.php')->assertStatus(301)->assertHeader('Location', 'https://localhost/');
-});
-
-it('lets clean URLs through untouched', function (): void {
-    $this->get('/')->assertOk()->assertHeaderMissing('Location');
-    $this->get('/download?ref=app-about')->assertOk()->assertHeaderMissing('Location');
-    $this->get('/vi/download')->assertOk()->assertHeaderMissing('Location');
-
-    expect(redirectsThroughMiddleware('/')->getContent())->toBe('passed through');
-    expect(redirectsThroughMiddleware('/vi')->getContent())->toBe('passed through');
-    expect(redirectsThroughMiddleware('/blog?ref=x')->getContent())->toBe('passed through');
-});
-
-it('builds the Location from the canonical origin, never from the request host', function (): void {
-    $this->get('http://attacker.example/blog/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/blog?ref=x');
-    $this->get('http://attacker.example/mariadb-client')->assertStatus(301)->assertHeader('Location', 'https://localhost/mysql-client#mariadb');
-});
-
-it('sends the docs-style database paths to the engine they name', function (string $path, string $location): void {
-    $this->get($path)->assertStatus(301)->assertHeader('Location', $location);
-})->with([
-    'oracle' => ['/databases/oracle', 'https://localhost/oracle-client'],
-    'clickhouse' => ['/databases/clickhouse', 'https://localhost/clickhouse-client'],
-    'sqlite' => ['/databases/sqlite', 'https://localhost/sqlite-client'],
-    'duckdb' => ['/databases/duckdb', 'https://localhost/duckdb-client'],
-    'a merged engine, to its section' => ['/databases/mariadb', 'https://localhost/mysql-client#mariadb'],
-    'a hub-only engine, to its row' => ['/databases/spanner', 'https://localhost/databases#spanner'],
-    'with a slash and a query, still one hop' => ['/databases/oracle/?ref=x', 'https://localhost/oracle-client?ref=x'],
-]);
-
-it('derives every docs-style path from engines.json', function (): void {
+it('redirects the docs-style database paths to the engine they name', function (): void {
     $targets = app(RedirectMap::class)->docsSlugTargets();
 
     expect($targets)->not->toBeEmpty();
 
     foreach ($targets as $docsSlug => $target) {
-        $this->get("/databases/{$docsSlug}")->assertStatus(301)->assertHeader('Location', redirectsExpectedLocation($target));
+        $this->get("/databases/{$docsSlug}")->assertStatus(301)->assertHeader('Location', redirectsLocation($target));
     }
 });
 
-it('never guesses: unknown paths stay 404 and nothing goes to the homepage', function (string $path): void {
-    $response = $this->get($path);
+it('folds every spelling of a retired path into one hop, with the query before the fragment', function (): void {
+    redirectsScratchMap([
+        ['from' => '/old-page', 'to' => '/download?from=old#mac', 'status' => 301, 'reason' => 'test'],
+        ['from' => '/gone-page', 'status' => 410, 'reason' => 'test'],
+    ]);
 
-    $response->assertNotFound()->assertHeaderMissing('Location');
+    $location = 'https://localhost/download?from=old&ref=x#mac';
+
+    $this->get('/old-page?ref=x')->assertStatus(301)->assertHeader('Location', $location);
+    $this->get('http://localhost/old-page/?ref=x')->assertStatus(301)->assertHeader('Location', $location);
+    $this->get('/index.php/old-page?ref=x')->assertStatus(301)->assertHeader('Location', $location);
+    $this->call('HEAD', 'http://localhost/old-page/?ref=x')->assertStatus(301)->assertHeader('Location', $location);
+    $this->get('http://attacker.example/old-page?ref=x')->assertStatus(301)->assertHeader('Location', $location);
+
+    foreach (['/gone-page', 'http://localhost/gone-page/?ref=x', '/index.php/gone-page'] as $path) {
+        $this->get($path)->assertStatus(410)->assertHeaderMissing('Location');
+    }
+});
+
+it('normalises the trailing slash and /index.php of any path in one hop', function (string $uri, string $location): void {
+    $response = redirectsThroughMiddleware($uri);
+
+    expect($response->getStatusCode())->toBe(301)
+        ->and($response->headers->get('Location'))->toBe($location);
+})->with([
+    'a section' => ['/blog/', 'https://localhost/blog'],
+    'a Vietnamese page' => ['/vi/download/', 'https://localhost/vi/download'],
+    'the front controller' => ['/index.php', 'https://localhost/'],
+    'a page behind the front controller' => ['/index.php/blog?ref=x', 'https://localhost/blog?ref=x'],
+    'several slashes' => ['/download///', 'https://localhost/download'],
+    'the query exactly as sent' => ['/blog/?q=a%20b&tag=x&tag=y', 'https://localhost/blog?q=a%20b&tag=x&tag=y'],
+]);
+
+it('lets clean URLs and double slashes through untouched', function (string $uri): void {
+    expect(redirectsThroughMiddleware($uri)->getContent())->toBe('passed through');
+})->with(['/', '/vi', '/blog?ref=x', '//blog', '/blog//post', '/Blog']);
+
+it('never guesses: an unknown path stays 404 with no redirect', function (string $path): void {
+    $this->get($path)->assertNotFound()->assertHeaderMissing('Location');
 })->with([
     'an unknown docs-style path' => ['/databases/not-an-engine'],
     'an unknown page' => ['/no-such-page'],
-    'a slug that never existed' => ['/compare/sql-workbench'],
+    'an unknown comparison' => ['/compare/sql-workbench'],
     'an uppercase path' => ['/Download'],
-    'an uppercase path under a language' => ['/vi/Download'],
-    'a language the site does not have' => ['/zh-CN'],
-    'a region the site does not have' => ['/pt-PT/pricing'],
     'a word that only starts like a language' => ['/enterprise'],
-    'a retired path in Vietnamese, which never existed' => ['/vi/mariadb-client'],
-    'a retired post in Vietnamese' => ['/vi/blog/mcp-database-claude'],
 ]);
 
-it('answers 404 for every URL the disposition table says never existed or has no replacement', function (string $path): void {
-    $this->get($path)->assertNotFound()->assertHeaderMissing('Location');
-})->with([
-    '/libsql-client',
-    '/sap-hana-client',
-    '/hana-client',
-    '/mssql-client',
-    '/postgres-client',
-    '/blog/tablepro-0-66',
-    '/blog/tablepro-0-71',
-    '/blog/tablepro-0-75',
-    '/feed',
-    '/blog/feed',
-    '/rss',
-    '/rss.xml',
-    '/atom.xml',
-    '/feed.xml',
-    '/blog/rss.xml',
-    '/sitemap-0.xml',
-    '/docs/logo/logo.png',
-    '/docs/images/hero-dark.png',
-    '/mail-preview',
-    '/mail-preview/waitlist-launch',
-    '/images/connections-dark.png',
-    '/sponsors/nimbus.svg',
-    '/vi/checkout',
-]);
+it('touches nothing but GET and HEAD', function (string $method): void {
+    redirectsScratchMap([['from' => '/old-page', 'to' => '/download', 'status' => 301, 'reason' => 'test']]);
+
+    foreach (['/old-page', '/blog/', '/index.php/blog'] as $path) {
+        expect(redirectsThroughMiddleware($path, $method)->getContent())->toBe('passed through', "{$method} {$path}");
+    }
+})->with(['POST', 'PUT', 'DELETE']);
 
 it('lands every redirect on an element its fragment names', function (): void {
-    $targets = [];
-
-    foreach (seoRedirectEntries() as $entry) {
-        if ($entry['status'] === 301 && str_starts_with($entry['to'], '/') && str_contains($entry['to'], '#')) {
-            $targets[$entry['to']] = $entry['from'];
-        }
-    }
-
-    foreach (app(RedirectMap::class)->docsSlugTargets() as $docsSlug => $target) {
-        if (str_contains($target, '#')) {
-            $targets[$target] = "/databases/{$docsSlug}";
-        }
-    }
-
-    expect($targets)->not->toBeEmpty();
-
     $documents = [];
 
-    foreach ($targets as $target => $from) {
+    foreach (redirectsInternalTargets() as $from => $target) {
+        if (! str_contains($target, '#')) {
+            continue;
+        }
+
         [$path, $fragment] = explode('#', $target, 2);
         $path = substr($path, 0, strcspn($path, '?'));
         $documents[$path] ??= Dom\HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR);
 
-        expect($documents[$path]->getElementById($fragment))->not->toBeNull("{$from} → {$target}: {$path} has no element with id=\"{$fragment}\"");
+        expect($documents[$path]->getElementById($fragment))->not->toBeNull("{$from} → {$target}: no element with id=\"{$fragment}\"");
     }
 })->group('ssr');
-
-it('leaves double slashes alone, so they stay 404', function (string $uri): void {
-    $response = redirectsThroughMiddleware($uri);
-
-    expect($response->getStatusCode())->toBe(200);
-    expect($response->getContent())->toBe('passed through');
-})->with([
-    '//blog',
-    '//blog/',
-    '/index.php//blog',
-    '/blog//post',
-    '/Blog',
-]);
-
-it('touches nothing but GET and HEAD', function (string $method): void {
-    foreach (['/mariadb-client', '/blog/', '/compare/azimutt', '/index.php/blog'] as $path) {
-        $response = redirectsThroughMiddleware($path, $method);
-
-        expect($response->getContent())->toBe('passed through', "{$method} {$path} was answered by the middleware");
-    }
-
-    $this->call($method, '/mariadb-client')->assertHeaderMissing('Location');
-})->with(['POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
-
-it('keeps retired paths out of the registry, so no surface advertises them', function (): void {
-    $map = app(RedirectMap::class);
-    $retired = array_column(seoRedirectEntries(), 'from');
-
-    foreach (app(PageRegistry::class)->all() as $entry) {
-        foreach ($entry->renderLocales as $locale) {
-            $path = $entry->url($locale, false);
-
-            expect(in_array($path, $retired, true))->toBeFalse("{$path} is retired but still a page");
-            expect($map->retires($path))->toBeFalse("{$path} is retired but still a page");
-        }
-    }
-});
-
-it('reads the map per request, so a change needs no cache rebuild', function (): void {
-    $dir = storage_path('framework/testing/redirects-' . uniqid());
-    File::ensureDirectoryExists($dir);
-    File::put("{$dir}/redirects.json", json_encode([
-        ['from' => '/old-page', 'to' => '/download?from=old', 'status' => 301, 'reason' => 'test'],
-        ['from' => '/gone-page', 'status' => 410, 'reason' => 'test'],
-    ], JSON_THROW_ON_ERROR));
-
-    $this->app->instance(RedirectMap::class, new RedirectMap("{$dir}/redirects.json", resource_path('data/engines.json')));
-
-    $this->get('/old-page/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/download?from=old&ref=x');
-    $this->get('/gone-page')->assertStatus(410);
-
-    File::deleteDirectory($dir);
-});

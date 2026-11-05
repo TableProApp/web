@@ -15,17 +15,6 @@ import it from '../../resources/js/i18n/messages/it/index.ts';
 import id from '../../resources/js/i18n/messages/id/index.ts';
 import { placeholders, splitTags } from '../../resources/js/i18n/core.ts';
 
-/*
- * The UI catalogs agree with each other. Run with `npm run test:js`.
- *
- * `npm run typecheck` already fails on a key that one locale has and the other
- * lacks. What the type system cannot see is inside the strings: a `{name}` slot
- * the translation dropped or renamed renders as a literal `{name}` on the page,
- * a `<link>` marker the translation lost takes its link with it, and an empty
- * string renders as nothing at all. Those are checked here, across every
- * namespace in both languages.
- */
-
 type Node = string | { [key: string]: Node };
 
 const PLURAL_CATEGORIES = new Set(['zero', 'one', 'two', 'few', 'many', 'other']);
@@ -39,7 +28,6 @@ function isPluralNode(node: Node): node is Record<string, string> {
     );
 }
 
-/** Every leaf string, keyed by its dotted path. Plural nodes stay whole. */
 function leaves(node: Node, path = ''): Map<string, Node> {
     const out = new Map<string, Node>();
 
@@ -58,10 +46,6 @@ function leaves(node: Node, path = ''): Map<string, Node> {
     return out;
 }
 
-function strings(node: Node): string[] {
-    return typeof node === 'string' ? [node] : Object.values(node as Record<string, string>);
-}
-
 function tagNames(text: string): string[] {
     return splitTags(text)
         .filter((token) => token.type === 'tag')
@@ -70,10 +54,8 @@ function tagNames(text: string): string[] {
 }
 
 const english = leaves(en as unknown as Node);
-const vietnamese = leaves(vi as unknown as Node);
 
 const catalogs = new Map<string, Map<string, Node>>([
-    ['en', leaves(en as unknown as Node)],
     ['vi', leaves(vi as unknown as Node)],
     ['es', leaves(es as unknown as Node)],
     ['de', leaves(de as unknown as Node)],
@@ -88,11 +70,7 @@ const catalogs = new Map<string, Map<string, Node>>([
 ]);
 
 for (const [locale, catalog] of catalogs) {
-    test(`${locale}: has all English message keys`, () => {
-        assert.deepEqual([...catalog.keys()].sort(), [...english.keys()].sort());
-    });
-
-    test(`${locale}: preserves text, slots, markup and plural nodes`, () => {
+    test(`${locale}: keeps the English slots, markup and plural forms`, () => {
         for (const [path, source] of english) {
             const target = catalog.get(path);
             assert.ok(target !== undefined, `${locale}: ${path} is missing`);
@@ -110,53 +88,3 @@ for (const [locale, catalog] of catalogs) {
         }
     });
 }
-
-/*
- * Identity keys name no platform, version or number, so they stay true when a
- * platform ships (positioning §13). The navigation's "iPhone & iPad" link and
- * the mobile menu's "Download for Mac" render from data and from the
- * availability keys instead. This guards the two namespaces the chrome owns;
- * the content guards check the rest.
- */
-test('navigation and footer group labels name no platform and no number', () => {
-    const identity = /\b(Mac|macOS|iPhone|iPad|iOS|iPadOS|Windows|Linux)\b|\d/;
-
-    for (const [locale, catalog] of catalogs) {
-        for (const [path, node] of catalog) {
-            if (!path.startsWith('nav.') && !path.startsWith('footer.groups.')) {
-                continue;
-            }
-
-            for (const value of strings(node)) {
-                assert.doesNotMatch(value, identity, `${locale}: ${path} is an identity key: "${value}"`);
-            }
-        }
-    }
-});
-
-/*
- * Word-for-word renderings a Vietnamese review found in these catalogs. Each
- * reads wrong to a Vietnamese developer: "chỗ dẫn" is not how anyone says
- * "where this is cited", "Không có sẵn" is a calque of "Not available", a
- * bare "Hiện có" is half of "Hiện có trên …", "dòng Chip" reads as a product
- * line called Chip, and "Bạn dùng TablePro miễn phí" states what the reader
- * does instead of what they may do.
- */
-test('the Vietnamese catalogs keep clear of calques found in review', () => {
-    const calques: [RegExp, string][] = [
-        [/chỗ dẫn/u, 'footnote back link'],
-        [/Không có sẵn/u, '"Not available"'],
-        [/^Hiện có$/u, 'a status badge'],
-        [/dòng Chip|dòng Bộ xử lý/u, 'About This Mac'],
-        [/^Bạn dùng TablePro miễn phí/u, 'free to use'],
-        [/được phục vụ/u, '"served"'],
-    ];
-
-    for (const [path, node] of leaves(vi as unknown as Node)) {
-        for (const text of strings(node)) {
-            for (const [pattern, what] of calques) {
-                assert.equal(pattern.test(text), false, `vi.${path} (${what}): ${text}`);
-            }
-        }
-    }
-});

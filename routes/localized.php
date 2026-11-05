@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Route;
 |    as a file would ship without a route.
 | 2. No root-level path may equal a locale prefix (`vi`), and `ios`, `linux`, `features`,
 |    `databases`, `compare`, `integrations`, `pricing` and `brand` must never
-|    join the database slugs. LocaleRoutingTest and LocalesDataTest guard both.
+|    join the database slugs. LocaleRoutingTest and SiteDataTest guard both.
 | 3. The blog and integration slugs stay patterns: whether a post or an
 |    integration exists in the requested locale is the registry's and the
 |    controller's decision. Integrations come from resources/data/integrations.json,

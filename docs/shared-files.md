@@ -34,7 +34,7 @@ Merge the tablepro-cloud side first only when its CI tolerates the difference
 repository first.
 
 A shared file imports nothing: each app reaches it through its own path, and
-strings arrive as arguments. `SharedFilesTest` checks the imports.
+strings arrive as arguments.
 
 ## Shared files
 
@@ -53,9 +53,6 @@ both change together. No hash pins them.
   `web/packages/ui/src/styles/fonts.css`: the same faces, unicode ranges and
   declaration order (latin-ext, vietnamese, latin); the `url()` paths follow
   each app's bundler.
-- `tests/Support/vi-forbidden-variants.php` and tablepro-cloud's
-  `web/packages/i18n/test/vi-forbidden-variants.ts`: the same rows, as PCRE
-  here and as JavaScript patterns there.
 
 ## Changing a header
 

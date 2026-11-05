@@ -19,7 +19,7 @@ class SiteFacts
     ) {}
 
     /**
-     * @return array{docs: string|null, changelog: string|null, github: string|null, issues: string|null, discussions: string|null, sponsorsProgram: string|null, license: string|null, appStore: string|null, portal: string|null, email: string|null}
+     * @return array{docs: string|null, changelog: string|null, github: string|null, webGithub: string|null, issues: string|null, discussions: string|null, sponsorsProgram: string|null, license: string|null, appStore: string|null, portal: string|null, email: string|null}
      */
     public function links(): array
     {
@@ -31,6 +31,7 @@ class SiteFacts
             'docs' => $this->url($links['docs'] ?? null),
             'changelog' => $this->url($links['changelog'] ?? null),
             'github' => $this->url($links['github'] ?? null),
+            'webGithub' => $this->url($links['webGithub'] ?? null),
             'issues' => $this->url($links['issues'] ?? null),
             'discussions' => $this->url($links['discussions'] ?? null),
             'sponsorsProgram' => $this->url($links['sponsorsProgram'] ?? null),
@@ -62,6 +63,24 @@ class SiteFacts
             'country' => is_string($country) ? $country : null,
             'countryCode' => is_string($code) && preg_match('/^[A-Z]{2}$/', $code) === 1 ? $code : null,
         ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function privacyPolicies(): array
+    {
+        $policies = [];
+
+        foreach ($this->json('facts.json')['privacyPolicies'] ?? [] as $name => $value) {
+            $url = $this->url($value);
+
+            if ($url !== null) {
+                $policies[$name] = $url;
+            }
+        }
+
+        return $policies;
     }
 
     public function repositoryCreatedAt(): ?CarbonImmutable

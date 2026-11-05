@@ -9,16 +9,6 @@ import {
     saveConsent,
 } from '../../resources/js/lib/consent.ts';
 
-/*
- * Behaviour tests for the analytics consent record. Run with `npm run test:js`.
- *
- * `saveConsent` is the one place a withdrawal actually happens: it has to tell
- * the running tag and delete the cookies the tag already wrote. Both are side
- * effects on browser globals, so the browser is faked below rather than the
- * source being read — a source assertion would confirm a `document.cookie`
- * write exists and nothing about whether it names the right domain.
- */
-
 interface FakeBrowser {
     storage: Map<string, string>;
     gtagCalls: unknown[][];
@@ -100,12 +90,7 @@ test('allowing records the answer and grants analytics storage only', () => {
     assert.deepEqual(browser.cookieWrites, []);
 });
 
-/*
- * The withdrawal case. Consent Mode stops gtag touching its cookies, but leaves
- * the ones already set in place — so declining after allowing must expire them,
- * on the registrable domain gtag wrote them to, or a two-year identifier
- * outlives the reader's "no".
- */
+// Consent Mode leaves cookies already set, so declining must expire them on the domain gtag wrote them to.
 test('declining expires the analytics cookies on the domain gtag wrote them to', () => {
     const browser = installBrowser('_ga=GA1.1.123.456; nl_subscribed=1; _ga_FG4YV1QXYN=GS2.1.s1');
 

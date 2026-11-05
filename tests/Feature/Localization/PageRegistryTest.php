@@ -8,8 +8,9 @@ use App\Support\Seo\PageRegistry;
 use App\Support\Seo\RedirectMap;
 use App\Support\Seo\StaticPages;
 use Illuminate\Support\Facades\File;
+use Inertia\Testing\AssertableInertia;
 
-require_once __DIR__ . '/../Seo/helpers.php';
+use function Pest\Laravel\get;
 
 beforeEach(function (): void {
     $this->contentDir = storage_path('framework/testing/content-' . uniqid());
@@ -69,7 +70,7 @@ it('knows a static page only once its content lands', function (): void {
 });
 
 it('sends the switcher to the nearest index when a page has no translation', function (): void {
-    // An English-only post that is still a page: a post merged elsewhere answers 301 and has no registry entry (sitemap §C.5).
+    // A post merged elsewhere answers 301 and has no registry entry.
     $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
         fn(string $post): bool => ! is_file(resource_path('blog/vi/' . basename($post)))
             && ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
@@ -141,9 +142,9 @@ it('keeps the static pages to the routes that exist', function (): void {
 it('points a missing translation at the language the page does exist in', function (): void {
     seoWriteContent($this->contentDir, 'vi', 'faq');
 
-    $this->get('/faq')
+    get('/faq')
         ->assertNotFound()
-        ->assertInertia(fn(Inertia\Testing\AssertableInertia $page) => $page
+        ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Error')
             ->where('locale', 'en')
             ->where('suggestion.href', '/vi/faq')

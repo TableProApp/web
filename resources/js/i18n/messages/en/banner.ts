@@ -7,8 +7,7 @@
  * pleads, and it never says the whole app is free. It cannot be closed, so
  * there is no "hide this" wording.
  *
- * Length limits, held by TopBannerTest in every language, in display columns
- * (a CJK character is two): the band is one 40px line and nothing in it may
+ * Length limits, in display columns (a CJK character is two): the band is one 40px line and nothing in it may
  * be truncated (design-system §3.3). From 1024px the line is `message` and
  * the `cta` link, together within 110, and `cta` within 20. Below 1024px
  * `short` asks the same question before the link, together within 34: 248px

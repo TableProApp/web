@@ -18,7 +18,7 @@ export default {
          * The bar that offers this page in the reader's language (LanguageBar),
          * written in that language and naming it, since the reader may not
          * read the page's: `action` is the link, `dismiss` the close button's
-         * name. One line on a 320px screen (LanguageBarTest).
+         * name. One line on a 320px screen.
          */
         suggest: {
             label: 'Language suggestion',

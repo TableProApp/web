@@ -1,16 +1,20 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 
 import { offerFor, phaseAt, remaining, shownPhase, type CampaignData } from '../../resources/js/lib/campaign.ts';
 
-/*
- * The dated sale as the site shows and sends it. Run with `npm run test:js`.
- * The phase must match `App\Support\Pricing\Campaign` (CampaignTest), and the
- * offer the provider's discount: its cycles, and one discount per order.
- */
-
-const campaign = (JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as { campaign: CampaignData }).campaign;
+// The phase must match App\Support\Pricing\Campaign, and the offer the provider's discount.
+const campaign: CampaignData = {
+    id: 'sale',
+    code: 'SALE',
+    percent: 40,
+    duration: 'once',
+    tier: 'starter',
+    cycles: ['yearly', 'lifetime'],
+    startsAt: '2026-11-24T00:00:00Z',
+    endsAt: '2026-12-01T08:00:00Z',
+    listPriceSince: '2026-11-02',
+};
 const start = Date.parse(campaign.startsAt);
 const end = Date.parse(campaign.endsAt);
 

@@ -1,6 +1,6 @@
 /**
  * The props `App\Http\Controllers\DownloadController` sends, and the
- * page copy's type. The copy's shape is the English file's: `ContentParityTest`
+ * page copy's type. The copy's shape is the English file's: `TranslationsTest`
  * holds every other locale to the same keys.
  */
 import type { PostSummary } from '@/components/blog/post-list';

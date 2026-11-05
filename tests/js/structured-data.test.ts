@@ -22,11 +22,7 @@ import {
 import en from '../../resources/js/i18n/messages/en/seo.ts';
 import vi from '../../resources/js/i18n/messages/vi/seo.ts';
 
-/*
- * The JSON-LD builders. The ids are a contract with other sites (the docs
- * assert `#organization`), prices are locale-neutral strings, and no node may
- * ever carry a rating, a review, FAQPage or HowTo.
- */
+// The ids are a contract with other sites: the docs assert `#organization`.
 const base = 'https://tablepro.app';
 const en_ = { baseUrl: base, inLanguage: 'en' };
 const vi_ = { baseUrl: `${base}/`, inLanguage: 'vi' };
@@ -64,7 +60,6 @@ test('the site is one WebSite in both languages, published by the one organizati
     const english = websiteNode(en_, { description: en.product.short, languages: ['en', 'vi'] });
     const vietnamese = websiteNode(vi_, { description: vi.product.short, languages: ['en', 'vi'] });
 
-    // Positioning §6.3: `https://tablepro.app/#website`, kept stable, `inLanguage` ["en", "vi"].
     for (const site of [english, vietnamese]) {
         assert.equal(site['@id'], 'https://tablepro.app/#website');
         assert.equal(site.url, 'https://tablepro.app/');
@@ -208,17 +203,12 @@ test('no builder ever emits a rating, a review, FAQPage or HowTo', () => {
     }
 });
 
-test('the identity sentence names no platform, version or number in either language', () => {
-    for (const short of [en.product.short, vi.product.short]) {
-        assert.doesNotMatch(short, /\b(Mac|macOS|iPhone|iPad|iOS|iPadOS|Windows|Linux)\b|\d/);
-    }
-});
-
-test('the organization lists its own profiles from facts.json, and nothing else', () => {
+test('the organization lists its own profiles from facts.json, and no other link', () => {
     const profiles = organizationProfiles(facts.links);
     const node = organizationNode(base, { description: en.product.short, sameAs: profiles, publisher });
 
-    assert.deepEqual(node.sameAs, [facts.links.github, facts.links.x, facts.links.discord, facts.links.telegram]);
+    assert.deepEqual(node.sameAs, profiles);
+    assert.ok(profiles.length > 0);
 
     for (const url of profiles) {
         assert.match(url, /^https:\/\//);

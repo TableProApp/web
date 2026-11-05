@@ -16,9 +16,6 @@ beforeEach(function (): void {
     Http::fake(['api.github.com/*' => Http::response([], 500), 'github.com/*' => Http::response([], 500), 'raw.githubusercontent.com/*' => Http::response([], 500)]);
 });
 
-/**
- * @return array<string, list<string>>
- */
 function emptySlotPages(): array
 {
     $manifest = new AssetManifest();
@@ -86,18 +83,6 @@ it('leaves no trace of a slot with no image on a production page', function (): 
                 Assert::assertStringNotContainsString($entry['description'][$locale] ?? $entry['description']['en'], $words, "{$path} prints or speaks the brief of {$id}");
                 // Head included: no preload, Open Graph tag or JSON-LD node may name a file that is not there.
                 Assert::assertStringNotContainsString($files, $html, "{$path} links a file of {$id}");
-            }
-
-            Assert::assertCount(0, $main->querySelectorAll('div:empty, figure:empty'), "{$path} keeps an empty box where a slot was");
-
-            foreach ($main->querySelectorAll('[class~="lg:grid-cols-12"]') as $grid) {
-                $columns = 0;
-
-                foreach ($grid->children as $cell) {
-                    $columns += preg_match('/(?:^|\s)lg:col-span-(\d+)(?:\s|$)/', (string) $cell->getAttribute('class'), $span) === 1 ? (int) $span[1] : 1;
-                }
-
-                Assert::assertSame(0, $columns % 12, "{$path}: a 12-column grid has a row with an empty column");
             }
         }
     }

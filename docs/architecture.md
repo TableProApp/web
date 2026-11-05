@@ -225,7 +225,7 @@ in production, shared with every page as the `apiOrigin` prop and read through
 Every call is a plain `fetch` with `credentials: 'omit'`, so no cookie is sent
 or kept. tablepro-cloud answers CORS for `https://tablepro.app` only, without
 credentials. `ContentSecurityPolicy` adds the API origin to `connect-src`.
-`PublicContractsTest` holds every call.
+`Security/PrivacyTest` holds every call.
 
 Errors are RFC 9457 problems whose `title` and `detail` are English, so the
 cards show their own catalog's words for each `code`

@@ -12,8 +12,8 @@ already holds.
 | `resources/data/content/{en,vi}/databases/index.json` | The hub's copy, plus `labels`: the shared words every engine page uses |
 | `resources/data/content/{en,vi}/databases/{slug}.json` | One engine page's copy |
 
-`tests/Feature/Databases/DatabasePagesTest.php` validates every page file against the schema below, and
-`Localization/ContentParityTest` holds `vi` to the same keys, `{tokens}` and asset ids as `en`.
+`tests/Feature/Pages/DatabasesTest.php` checks the tokens, tags and links of every page file, and
+`Localization/TranslationsTest` holds every other language to the same keys, `{tokens}` and asset ids as `en`.
 
 ## What a page contributor writes
 
@@ -111,7 +111,7 @@ Every string in `header.lead`, `sections`, `family`, `otherTools`, `faq` and `no
   statement).
 - `<name>text</name>` where `name` is a key of the page's `links` (camelCase letters and digits). A value is a site
   path (`/features/connections#network`), a same-page fragment (`#mariadb`) or a docs path (`docs:/databases/redis`).
-  Never a full URL: external URLs live only in data files (`Data/FactsDataTest`).
+  Never a full URL: external URLs live only in data files.
 - These `{tokens}`, filled from data: `{name}` (the engine's name), `{dumpTool}` (only if the engine has a backup
   tool), `{importFormats}` (only if it imports), `{exportFormats}`, `{engineVersion}` (only if it embeds its engine,
   such as SQLite or DuckDB), and `{compareSyncTier}`, `{queryInsightsTier}`, … (the plan name of a paid feature:
@@ -135,11 +135,11 @@ Tags do not nest. A number that belongs to the product (a cap, a count) belongs 
   index, export…), "khóa chính" and "khóa ngoại", "dòng" and "cột", "chỉ đọc", tone marks on the first vowel
   (khóa, xóa, tùy, hủy). An app label appears in Vietnamese first with the English in parentheses, as the app shows
   it, for example "Tệp từ xa (Remote File)". Feature names stay English (Preview SQL, Users & Roles, Copy To,
-  Compare & Sync). Text is NFC. The forbidden variants are in `tests/Support/vi-forbidden-variants.php`.
+  Compare & Sync). Text is NFC.
 
 ## Checks
 
 ```bash
-php artisan test --compact --filter='DatabasePagesTest|EnginesDataTest|ContentParityTest|AssetManifestTest'
+php artisan test --compact --filter='DatabasesTest|EnginesDataTest|TranslationsTest|AssetManifestTest'
 npm run typecheck
 ```

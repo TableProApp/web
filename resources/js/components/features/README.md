@@ -2,7 +2,7 @@
 
 `/features/{slug}` and `/vi/features/{slug}` are one template (`pages/Features/Show.tsx`) filled from
 `resources/data/content/{en,vi}/features/{slug}.json`. This file is the contract for whoever writes those files.
-`tests/Feature/Features/FeatureContentTest.php` enforces it; run it after every edit.
+`tests/Feature/Pages/FeaturesTest.php` checks its facts, links and tokens; run it after every edit.
 
 Sources of truth, in order: `docs/rebuild/design/sitemap.md` §A.2 (sections, ids, slots) and §E.4 (blueprint),
 `positioning.md` §11 (glossary) and §12 (banned claims), and the TablePro app repository at the `v0.77.0` tag for
@@ -82,7 +82,7 @@ gates nothing, so it has no plan column. Device names come from `platforms.json`
 
 Exactly one of `href` (a page on this site: root-relative, English form, it is localized for you) or `docs` (a
 docs.tablepro.app path; on Vietnamese pages the label gets "(tiếng Anh)" and `hreflang="en"` automatically). Never an
-`https://` URL: external URLs live only in data files (`FactsDataTest`). `docs` entries take `docs`, `related`
+`https://` URL: external URLs live only in data files. `docs` entries take `docs`, `related`
 entries take `href`. Pick docs destinations from docs.tablepro.app's own page list (the TableProApp/docs
 repository), and only pages that describe released behaviour.
 
@@ -169,7 +169,7 @@ in a block's `engines`: `{ "label": "Plan as text", "list": "explainText" }`. Ro
   connection, table, export…), "dòng/cột", "khóa chính/khóa ngoại", "nhóm" for a team, "license" for the commercial
   key, never "giấy phép" except the AGPLv3. Spelling: khóa, xóa, hóa, tùy, hủy. NFC.
 - Same keys, same array lengths, same section and block ids, same `asset` ids and the same `{tokens}` as English
-  (`ContentParityTest`). Feature, tier, mode and engine names stay English.
+  (`TranslationsTest`). Feature, tier, mode and engine names stay English.
 - Click paths show the Vietnamese app label first: **Cài đặt > MCP** (Settings > MCP).
 
 ## Writing rules (sitemap §E.4, positioning §12)
@@ -183,8 +183,8 @@ in a block's `engines`: `{ "label": "Plan as text", "list": "explainText" }`. Ro
 ## Checks
 
 ```bash
-./vendor/bin/pest --compact tests/Feature/Features
-./vendor/bin/pest --compact --filter='ContentParityTest|PaidFeaturesDataTest|LocaleRoutingTest|AssetManifestTest'
+./vendor/bin/pest --compact tests/Feature/Pages/FeaturesTest.php
+./vendor/bin/pest --compact --filter='TranslationsTest|PricingDataTest|LocaleRoutingTest|AssetManifestTest'
 npm run typecheck
 npm run test:js
 ```

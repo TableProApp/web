@@ -20,8 +20,7 @@ use Inertia\Response;
  * Everything the page links to outside this site arrives here, as props: the
  * DMG URL and size from the release service, the App Store and GitHub
  * Releases URLs from `platforms.json`, and the docs, source and licence links
- * from `facts.json`. No URL is typed into the page or its copy, so the
- * external-URL guard in `Data/FactsDataTest` holds by construction.
+ * from `facts.json`. No URL is typed into the page or its copy.
  *
  * The DMG link is in the server-rendered HTML; nothing starts a download on
  * its own.

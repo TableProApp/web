@@ -301,7 +301,7 @@
         those of everything it imports go out with the document. Otherwise
         the browser learns of them only once app.tsx has run and asked
         Inertia for the page, a round trip later, and hydration waits for it.
-        A component with no file (none today: SeoSmokeTest renders every page)
+        A component with no file (none today: Pages/PagesTest renders every page)
         is left to the runtime rather than failing the manifest lookup.
 
         The same goes for the page's UI catalog. English is inside app.tsx;

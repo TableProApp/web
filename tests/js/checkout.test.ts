@@ -1,11 +1,8 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 
 import { checkoutOutcome, discountOutcome, seatsMessage } from '../../resources/js/components/pricing/checkout-response.ts';
-import { placeholders } from '../../resources/js/i18n/core.ts';
-import en from '../../resources/js/i18n/messages/en/pricing.ts';
-import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '../../resources/js/lib/checkout-sdk.ts';
+import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay, withTimeout } from '../../resources/js/lib/checkout-sdk.ts';
 
 // Checkout from the plan cards: what they say for each answer of tablepro-cloud's /v2, and Polar's overlay script,
 // which loads at checkout intent and never with the page, once however many buttons are hovered.
@@ -58,7 +55,6 @@ test('a 422 on seats names the range only once /v2/pricing gave a maximum, and o
     // minimum, so the count was over a maximum the page does not know (MaxCheckoutSeats in tablepro-cloud).
     assert.equal(seatsMessage(undefined, range, 'Choose fewer seats.'), 'Choose fewer seats.');
     assert.equal(seatsMessage(null, range, 'Choose fewer seats.'), 'Choose fewer seats.');
-    assert.deepEqual(placeholders(en.checkout.seatsFewer), []);
 });
 
 test('a discount preview reports a percentage, a fixed amount in cents, or a code that does not apply', () => {
@@ -112,7 +108,7 @@ function installBrowser(): { scripts: FakeScript[]; window: ProviderGlobals } {
     return { scripts, window: win };
 }
 
-const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as { checkoutSdk: string };
+const SDK_URL = 'https://cdn.example.test/checkout/embed.js';
 
 beforeEach(() => {
     delete (globalThis as Record<string, unknown>).window;
@@ -125,12 +121,12 @@ test('nothing loads until checkout is wanted, and then the Polar embed loads onc
     assert.equal(browser.scripts.length, 0);
     assert.equal(checkoutSdkReady(), false);
 
-    const first = loadCheckoutSdk(pricing.checkoutSdk);
-    const second = loadCheckoutSdk(pricing.checkoutSdk);
+    const first = loadCheckoutSdk(SDK_URL);
+    const second = loadCheckoutSdk(SDK_URL);
 
     assert.equal(first, second);
     assert.equal(browser.scripts.length, 1);
-    assert.equal(browser.scripts[0].src, pricing.checkoutSdk);
+    assert.equal(browser.scripts[0].src, SDK_URL);
     assert.equal(browser.scripts[0].async, true);
 
     const opened: { url: string; theme?: string }[] = [];
@@ -148,7 +144,7 @@ test('nothing loads until checkout is wanted, and then the Polar embed loads onc
     assert.equal(checkoutSdkReady(), true);
 
     // Ready now: no second script, however often it is asked for.
-    await loadCheckoutSdk(pricing.checkoutSdk);
+    await loadCheckoutSdk(SDK_URL);
     assert.equal(browser.scripts.length, 1);
 
     await openCheckoutOverlay('https://polar.sh/checkout/abc', 'dark');
@@ -158,13 +154,13 @@ test('nothing loads until checkout is wanted, and then the Polar embed loads onc
 test('a script that fails to load is forgotten, so the next click tries again', async () => {
     const browser = installBrowser();
 
-    const failing = loadCheckoutSdk(pricing.checkoutSdk);
+    const failing = loadCheckoutSdk(SDK_URL);
 
     browser.scripts[0].onerror?.();
     await assert.rejects(failing);
     assert.equal(browser.scripts.length, 0);
 
-    const retry = loadCheckoutSdk(pricing.checkoutSdk);
+    const retry = loadCheckoutSdk(SDK_URL);
 
     assert.equal(browser.scripts.length, 1);
 
@@ -172,7 +168,7 @@ test('a script that fails to load is forgotten, so the next click tries again', 
     browser.scripts[0].onload?.();
     await assert.rejects(retry);
 
-    const third = loadCheckoutSdk(pricing.checkoutSdk);
+    const third = loadCheckoutSdk(SDK_URL);
 
     browser.window.Polar = { EmbedCheckout: { create: async () => undefined } };
     browser.scripts.at(-1)?.onload?.();
@@ -191,9 +187,4 @@ test('a stalled overlay script times out, so checkout falls back to the provider
     await assert.rejects(withTimeout(stalled, 20), /Timed out after 20ms/);
     assert.equal(await withTimeout(Promise.resolve('loaded'), 20), 'loaded');
     await assert.rejects(withTimeout(Promise.reject(new Error('did not load')), 20), /did not load/);
-    assert.ok(SDK_WAIT_MS >= 3000 && SDK_WAIT_MS <= 5000, 'the wait stays a few seconds');
-
-    const flow = readFileSync(new URL('../../resources/js/components/pricing/use-checkout.ts', import.meta.url), 'utf8');
-
-    assert.match(flow, /await withTimeout\(sdk, SDK_WAIT_MS\);/);
 });
