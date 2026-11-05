@@ -1,281 +1,228 @@
 ---
-title: 隱私權政策
-description: TablePro App、網站與帳戶入口網站收集哪些資訊、傳送至何處、保存多久，以及如何變更或刪除。
-updatedAt: "2026-11-04"
+title: 隱私政策
+description: TablePro 收集的資料、用途、接收方、儲存時間，以及您的選擇和權利。
+updatedAt: "2026-11-05"
 ---
 
-本政策涵蓋 Mac 版 TablePro、iPhone 與 iPad 版 TablePro、位於 tablepro.app 的網站、位於 docs.tablepro.app 的文件，以及位於 account.tablepro.app 的帳戶入口網站。它描述各產品目前實際傳送和儲存的資訊。兩款 App 均採用 AGPLv3 開放原始碼，您可在 [TablePro 儲存庫]({github})中查看傳送下列資料的程式碼。
+本政策涵蓋 Mac、Linux、iPhone 和 iPad 上的 TablePro；tablepro.app；docs.tablepro.app；以及帳戶、購買、支援和郵件訂閱服務。[技術清單](https://docs.tablepro.app/security/privacy)列出欄位、端點和控制選項。App原始碼位於[公開倉庫]({github})。
 
 ## 概要 {#summary}
 
-- Mac App 會傳送使用資料。此功能預設開啟，可以關閉。iPhone 與 iPad App 僅在您開啟後傳送使用情況報告。
-- 登入 TablePro 帳戶或啟用授權金鑰後，Mac App 會將您的 Mac 連同名稱登記到我們的伺服器，並定期向伺服器核對您的方案。
-- 您執行的查詢、結果與密碼不會傳送給 TablePro。例外是您自行選擇發佈至 Team Library 的連線設定（從不包含密碼）與已儲存查詢。
-- AI 請求從 Mac App 直接傳送至您設定的 AI 供應商，不經過我們。
-- 從支援 TablePro 帳戶的版本起，Mac App 直接向我們位於歐盟的產品分析服務 PostHog 傳送使用資料，PostHog 因此會收到您的 Mac 的 IP 位址，並據此推算大致位置。更早的版本以及 iPhone 與 iPad App 將使用報告傳送到我們的伺服器，由伺服器轉送給 PostHog，不附帶 IP 位址。您的帳戶會保存對帳戶所做變更的日誌，例如登入和新裝置，並附有發起每項變更的請求的 IP 位址和瀏覽器。
-- 網站使用不設定 Cookie 的 Cloudflare Web Analytics 統計網頁瀏覽量。網站也載入 Google Analytics，但只有獲得您的允許才設定 Cookie。每個網頁還會載入線上聊天服務 Crisp，它會設定自己的 Cookie。
-- account.tablepro.app 上的帳戶入口網站不載入任何分析指令碼。它設定一個保持登入的 Cookie，您可以在其設定中下載帳戶資料或刪除帳戶。
-- 我們的郵件由 Amazon Web Services 旗下的 Amazon SES 寄送。電子報會記錄每位收件人何時開啟，以及點擊了其中哪些連結。
-- 購買由我們的 merchant of record {merchant} 負責銷售。
+普通查詢和結果在您的裝置與資料庫之間傳輸。使用資料不含 SQL、結果行或憑據。您主動釋出到 Team Library、傳送給支援或與 AI 及外部工具共享的內容會到達相應接收方。
 
-## 誰負責處理 {#controller}
+Mac 和 Linux 預設開啟使用資料，可關閉。已發布的 iPhone 和 iPad App只在您同意後傳送報告。直接傳送的分析資料可關聯帳戶和購買記錄。關閉不會停止帳戶請求或伺服器分析。
 
-發佈 TablePro App 和本網站的{publisherCountry}{publisherCity}個人開發者 {publisherName} 是此處所述個人資料的責任方（資料控制者）。如對本政策或您的資料有疑問，請寄送郵件至 [{email}](mailto:{email})。
+網站統計訪問並在每頁載入 Crisp。Google Analytics Cookie 需要您的選擇。郵件訂閱測量開啟和點選。刪除帳戶仍會留下部分記錄，包括 PostHog 和 Crisp 中的資料。請閱讀[儲存期限](#retention)和[權利](#rights)。[控制者](#controller)也接受無帳戶的隱私請求。
 
-## Mac 版 TablePro {#mac-app}
+<span id="contact"></span>
 
-### 使用資料 {#mac-usage-report}
+## 負責方 {#controller}
 
-從支援 TablePro 帳戶的版本起，Mac App 直接向我們位於歐盟的產品分析服務 PostHog（`eu.i.posthog.com`）傳送使用資料。**此功能預設開啟，傳送第一個事件前不會徵求同意**。若要關閉，請進入**設定 > 一般 > 隱私**（Settings > General > Privacy）並取消勾選**分享使用資料**（Share usage data）。關閉期間，App 不向 PostHog 傳送任何內容；如果 App 啟動時該設定已關閉，則完全不會啟動 PostHog 的程式庫。
+{publisherName} 是位於 {publisherCity}、{publisherCountry} 的獨立開發者，也是本政策所述個人資料的控制者。聯絡 [{email}](mailto:{email})。我們沒有資料保護官。對於團隊，我們作為控制者管理帳戶、邀請和服務記錄。Team Library 釋出內容按團隊指示處理；團隊決定釋出什麼及誰能訪問。
 
-App 會在以下情況傳送事件：
+<span id="lawful-basis"></span>
 
-- 執行期間每天一次，附帶已開啟連線的資料庫類型名稱（如 PostgreSQL）與已開啟的連線數量；
-- 首次嘗試連線、首次成功連線與首次執行查詢時，各附帶資料庫類型；
-- App 提示某項付費功能無法使用時，每次執行 App 每項功能一次，附帶該功能與原因（例如未登入）；
-- 點按升級時，附帶您在 App 中點按的位置；
-- 登入時，附帶登入方式（在 App 中登入、使用授權金鑰，或兌換 Mac 上已有的金鑰），以及登出時。
+## 收集的資料和目的 {#data-use}
 
-PostHog 的程式庫會為每個事件加入 Mac 的機型、螢幕尺寸、時區與語言、是否使用 Wi-Fi、App 的版本、建置編號與 Bundle ID、macOS 版本、程式庫的版本以及隨機的工作階段 ID。PostHog 會隨每個請求收到您的 Mac 的 IP 位址，並據此推算大致位置，例如國家和城市。該設定開啟期間，程式庫也會從 PostHog 取得其設定與功能旗標（`eu-assets.i.posthog.com` 上的 `/config` 和 `eu.i.posthog.com` 上的 `/flags`）。
+對於歐洲經濟區和英國，各目的列明法律依據：合同（第 6(1)(b) 條）、合法利益（6(1)(f)）、同意（6(1)(a)）或法定義務（6(1)(c)）。我們不做產生法律或類似重大影響的自動決策。
 
-登入之前，事件攜帶程式庫在您的 Mac 上產生的隨機 ID，PostHog 不會為其建立個人檔案。登入後，事件改為攜帶您的帳戶 ID，PostHog 中該帳戶的檔案保存 App 和 macOS 版本、處理器架構、App 語言以及 PostHog 根據 IP 位址推算的大致位置，藉此把您的安裝與登入和購買連結起來。登出後會改用新的隨機 ID。App 的使用資料不再包含機器 ID、授權啟用狀態或更新設定。
+<span id="mac-account"></span>
 
-支援 TablePro 帳戶之前的版本則在同一設定下，於啟動約十秒後向 `api.tablepro.app` 傳送使用情況報告，之後在執行期間每天傳送一次。報告包含：
+### 帳戶和裝置 {#account}
 
-- 機器 ID：Mac 硬體 UUID 的 SHA-256 雜湊值（UUID 本身從不傳送）；
-- 平台、App 版本、macOS 版本、處理器架構與 App 語言；
-- 已開啟連線的資料庫類型名稱（如 PostgreSQL）與已開啟的連線數量；
-- 是否已啟用授權；
-- 首次嘗試連線與首次成功連線的日期和時間；
-- 更新設定（安裝方式及檢查頻率）。報告抵達時，我們的伺服器會捨棄這些設定。
+免費本地使用無需帳戶。帳戶服務需要電子郵箱。我們儲存姓名、語言、登入方式、授權、訂單、裝置、團隊角色及席位。Mac 和 Linux 裝置註冊傳送機器標識、裝置名、平臺及App/系統版本。裝置名可能包含您的姓名。此流程與使用資料分開。目的和依據是按合同提供帳戶與套餐。
 
-事件和報告都從不包含主機名稱、使用者名稱、密碼、查詢或列資料。
+登入使用郵件連結和驗證碼、通行金鑰或 Apple、GitHub、Google。通行金鑰記錄包括公鑰、名稱、同步狀態和使用日期。身份提供方給出 ID 和已驗證郵箱；Apple 還可能提供姓名。Apple 令牌加密儲存，在解綁或刪除帳戶時撤銷。帳戶變更記錄附帶 IP 和使用者代理。合法利益是保護帳戶及調查濫用。
 
-我們的伺服器既不保存報告，也不保存傳送報告的 IP 位址。伺服器將報告作為關於機器 ID 的事件轉送給 PostHog，附上 Cloudflare 為您的連線提供的國家，不附帶授權金鑰或 IP 位址；PostHog 不會據此建立個人檔案。由於您的帳戶以相同的機器 ID 記錄裝置，來自您登入過或啟用過授權的 Mac 的報告可與您的帳戶關聯。
+[帳戶門戶]({account})提供資料及登入方式修改、裝置管理、JSON 匯出和帳戶刪除。擁有含其他成員的團隊時不能刪除帳戶。刪除會終止訂閱，不退款。[儲存期限](#retention)說明保留內容。
 
-### 授權驗證 {#mac-license}
+### 購買 {#purchases}
 
-支援 TablePro 帳戶之前的版本僅在您輸入授權金鑰後連線至授權伺服器。它們會在啟用時、距上次驗證至少 {revalidateDays} 天後的啟動時，以及此後每隔 {revalidateDays} 天驗證。每次驗證傳送：
+{merchant}（Polar Software, Inc.）是 merchant of record 和轉售商，按自己的條款收集姓名、郵箱、賬單地址及付款資訊，處理付款、稅務、收據和爭議。我們從不接收完整銀行卡資訊。
 
-- 授權金鑰；
-- [使用資料](#mac-usage-report)中所述的機器 ID；
-- macOS 中設定的 Mac 名稱（其中經常包含您的姓名）；
-- App 版本與 macOS 版本。
+我們為結賬、稅務和幣種傳送購買內容、語言、訪問來源及 IP。我們接收買方及賬單詳情、金額、訂單/訂閱 ID、續訂、取消和退款。訂單保留郵箱、賬單國家、金額及來源歸因。未登入購買會在必要時為該郵箱建立未驗證帳戶。取消原因和評論傳送至 {merchant} 並隨訂閱儲存。處理履行購買合同；稅務及會計記錄履行法定義務。缺少必要資訊無法結賬。在 [{merchant} 門戶]({portal})管理賬單；參閱[條款](/zh-Hant/terms)和[退款](/zh-Hant/refund-policy)。
 
-停用某台 Mac 時只傳送授權金鑰和機器 ID。
+### 團隊和共享內容 {#library}
 
-伺服器將每台已啟用的 Mac 保存為持有授權的帳戶的裝置：包括機器 ID 和名稱、App 和 macOS 版本，以及最後一次聯絡伺服器的時間。啟用和停用 Mac 會連同請求的 IP 位址和使用者代理程式記錄在該帳戶的稽核日誌中；定期驗證不會記錄。帳戶入口網站按名稱列出您的裝置。如果無法連線至伺服器，付費功能可自上次成功驗證起繼續使用 {graceDays} 天。
+邀請人提供郵箱、角色及席位選擇。所有者和管理員檢視成員姓名/郵箱、邀請及團隊變更，包括受邀地址，但看不到審計 IP 或瀏覽器。成員檢視團隊、套餐、席位數及自己的角色。我們按合同使用這些記錄提供團隊服務。
 
-### TablePro 帳戶 {#mac-account}
+在 Mac 釋出到 Team Library 會把連線設定和已儲存查詢上傳伺服器，供有許可權成員使用。設定包括主機、埠、資料庫、使用者名稱、SSH/SSL、啟動命令、Tunnel Command 和 AI 設定。查詢包括名稱、SQL、關鍵詞和資料夾。結構化密碼欄位被排除；SQL 或自由文字中輸入的秘密不會自動刪除。庫顯示最後修改者。退出團隊不會自動清除共享內容。參閱[刪除時間](#retention)。Team Catalog 則寫入您選擇的共享資料夾。
 
-從支援 TablePro 帳戶的版本起，您使用 [TablePro 帳戶](#account)而不是授權金鑰登入 Mac App。App 會在瀏覽器視窗中開啟登入頁面，您也可以在那裡輸入登入郵件中的代碼。登入後，App 將您的 Mac 登記為帳戶的裝置：上文所述的機器 ID、Mac 名稱、平台，以及 App 和 macOS 版本。之後，App 在執行期間每天從我們的伺服器取得一次以簽署檔案形式提供的方案；有了該檔案，付費功能在無法連線至伺服器時最多可繼續使用 {offlineDays} 天。保持 App 登入的權杖僅保存在該 Mac 的 macOS 鑰匙圈中，即使開啟了密碼同步，也不會透過 iCloud 鑰匙圈同步。
+### 使用和服務分析 {#analytics}
 
-Mac 上已有的授權金鑰會一次性換成持有該金鑰的帳戶的登入，然後從 Mac 上刪除。您可以在 App 或帳戶入口網站中移除裝置；某台 Mac 首次使用您的授權時，我們會寄送郵件通知您。
+我們的合法利益是瞭解使用、修復問題及統計購買。Mac 和 Linux 傳送[App](#apps)中所述資料。伺服器也向 PostHog 傳送登入、購買、裝置和團隊事件，含帳戶 ID，不含姓名/郵箱。這些 ID 將App使用與服務活動關聯。開關停止App事件，不停止必要帳戶請求或伺服器事件。透過[權利](#rights)提出反對或刪除要求。
 
-### Team Library {#library}
+### 訂閱郵件和電子郵件 {#newsletter}
 
-Team Library 是 Team 授權的功能。當您在連線上選擇**分享 > 發佈到團隊庫…**（Share > Publish to Team Library…），或在 Favorites 側邊欄選擇**將已儲存的查詢發佈到團隊…**（Publish Saved Queries to Team…）時，Mac App 將您發佈的內容上傳至伺服器：
+Amazon SES 傳送驗證碼、邀請、帳戶通知和訂閱郵件。服務郵件履行您請求的服務。新郵件訂閱需確認並基於同意。我們儲存地址、語言、註冊/確認時間、IP、使用者代理、註冊頁面及同意文字版本。
 
-- 連線設定：主機、連接埠、資料庫名稱、使用者名稱、SSH 和 SSL 設定、驅動程式選項、啟動指令、Tunnel Command 設定、Safe Mode 等級與 AI 設定，但絕不包含密碼；
-- 已儲存查詢：名稱、SQL 文字、關鍵字與檔案夾。
+每封訂閱郵件透過圖片和 `links.news.tablepro.app` 測量每位收件人的開啟及點選。Amazon SES 接收時間、連結、IP 和使用者代理，再傳給伺服器統計。遮蔽圖片停止開啟測量，不停止點選測量。退訂及郵件連結不被跟蹤。沒有單獨的測量開關。透過郵件或郵件App的一鍵退訂停止接收；之後不發確認郵件。重新訂閱需確認。永久退信及垃圾郵件投訴會停止傳送。透過[聯絡](#controller)要求刪除地址。
 
-從支援 TablePro 帳戶的版本起，每位擁有席位的成員的 Mac App 會在啟動時、每 15 分鐘以及每次發佈後下載資源庫的變更。發佈時只傳送有變動的內容，並只刪除該 Mac 發佈過但已不再擁有的項目。如果其他人先修改了某個項目，App 會詢問要保留哪一份，並顯示每項團隊查詢的最後修改者。支援 TablePro 帳戶之前的版本在啟動時下載資源庫，最多每週一次；執行發佈的 Mac 會在發佈後立即重新下載。從這些版本再次發佈會取代先前發佈的內容。帳戶入口網站中的 Library 會向可讀取資源庫的成員顯示每個項目及最後修改者的姓名，擁有者和管理員可在其中刪除項目。已刪除的項目會連同其最後一個版本保留在我們的伺服器上，以便每台 Mac 同步刪除。授權結束後，資源庫仍保留在我們的伺服器上，直到團隊擁有者刪除團隊，資源庫也隨之刪除。
+舊伺服器名單中所有未退訂地址均已遷移，無論是否確認，包括買家、授權持有人和 beta 註冊者。已退訂地址保持退訂；退信/投訴地址進入抑制名單。參閱[儲存期限](#retention)。
 
-另一項 Team 功能 Team Catalog 會將不含密碼的連線檔案寫入您選擇的共用檔案夾，不經過我們的伺服器。
+### 支援 {#support}
 
-### 更新與外掛程式 {#mac-updates}
+您傳送的訊息、附件及診斷會到達我們和所用支援服務，其中可能包含您附上的資料庫內容或秘密。網站/門戶載入聊天時，Crisp 接收 IP、瀏覽器及瀏覽頁面。開始對話後保留 IP。我們提供頁面語言；門戶已登入時還提供帳戶郵箱和 ID。每頁載入聊天基於提供支援的合法利益。您發起的對話基於同意。
 
-- **更新檢查**。Mac App 每天從 GitHub（`raw.githubusercontent.com`）下載一次更新摘要。除所有網路請求都會帶有的 IP 位址和含 App 版本的 User-Agent 外，請求不會傳送其他 Mac 資訊。若要關閉，請進入**設定 > 一般 > 軟體更新**（Settings > General > Software Update）並取消勾選**自動檢查更新**（Automatically check for updates）。更新本身也從 GitHub 下載。
-- **外掛程式目錄**。App 啟動時與開啟外掛程式設定時，會從 GitHub 下載可用驅動程式和佈景主題清單。沒有關閉此行為的設定。您安裝的驅動程式和佈景主題從 GitHub 下載，外掛程式瀏覽器透過 GitHub API 取得下載次數。
+## 您的App {#apps}
 
-GitHub 會隨這些請求收到您的 IP 位址，這些請求適用 GitHub 自身的隱私權聲明。
+| App和版本 | 使用資料 | 控制 |
+| --- | --- | --- |
+| Mac 0.86.0，從 0.86.0-beta.1 起 | 直接發往 PostHog；預設開啟 | Settings > General > Privacy |
+| Linux 從 0.1.0-beta.1 起 | 直接發往 PostHog；預設開啟 | Preferences > General > Privacy |
+| 已發布的 iPhone 和 iPad | 經伺服器報告；同意前關閉 | Settings > Privacy |
 
-### 您選擇使用的服務 {#mac-third-parties}
+<span id="mac-local"></span>
 
-只有設定後，Mac App 才會直接向以下服務傳送資料，從不經過 TablePro：
+### 裝置上的資料 {#local-data}
 
-- **您的資料庫、SSH 伺服器與代理伺服器**接收連線向其傳送的資訊。
-- **AI 供應商**。加入供應商並使用 AI 助理或行內建議時，請求直接傳送給該供應商或 Mac 本機執行的模型。預設包含資料庫類型與名稱、結構中的資料表和欄位定義，以及目前查詢。僅在您開啟相應選項後才傳送結果列。適用供應商自身的條款。加入 GitHub Copilot 會從 npm 下載其語言伺服器，其「向 GitHub 傳送遙測資料」（Send telemetry to GitHub）設定預設開啟。
-- **登入服務**：連線使用時的 Microsoft Entra ID、Google、Amazon Web Services 和 Cloudflare Access。
-- **Apple Maps**：在地圖上顯示結果時提供地圖圖磚。
-- **DuckDB**：查詢首次使用某個擴充功能時提供該擴充功能。
-- **MCP 用戶端**。MCP 伺服器預設關閉。您開啟它，或已設定的 MCP 用戶端啟動 TablePro 橋接程式或與其配對時，它會啟動，且僅監聽 Mac 本機（127.0.0.1）。連線的 AI 用戶端（如 Claude 或 Cursor）接收其要求的結果，並依自身條款傳送至其服務。
-- **您加入的 MCP 伺服器**。AI 工作階段會將您核准的工具呼叫及其引數傳送至該伺服器。
+連線列表、查詢歷史、本地日誌和標籤頁留在裝置，除非您選擇共享。資料庫流量發往所選伺服器。密碼使用平臺憑據儲存。Mac 引用磁碟原位置的 SSH 金鑰。使用分析不含主機名、使用者名稱、SQL、行或憑據。[整合](#integrations)、Team Library 和支援有本文說明的例外。
 
-### 留在 Mac 上的資料 {#mac-local}
+### Mac {#mac-app}
 
-密碼保存在 macOS 鑰匙圈中。連線清單、查詢歷史、Query Insights、Data Rewind 快照、設定與開啟的分頁儲存在 Mac 上。App 參照磁碟上的 SSH 金鑰，不會複製它們。支援 TablePro 帳戶之前的版本不包含當機報告工具或第三方分析程式庫。從支援 TablePro 帳戶的版本起，App 包含 PostHog 的程式庫，用於傳送上文所述的使用資料。該程式庫包含 PostHog 的當機報告工具，但 App 讓它保持關閉，因此不會傳送當機報告。程式庫將其隨機 ID、設定與尚未傳送的事件儲存在 `~/Library/Application Support/com.TablePro` 下的檔案中。
+以下直接分析和帳戶行為從 0.86.0 開始，包括 0.86.0-beta.1。登入會註冊 Mac 並獲取套餐。帳戶令牌留在該 Mac 鑰匙圈，絕不透過 iCloud Keychain 同步。已有授權金鑰換成登入後在本地刪除。
 
-## iPhone 與 iPad 版 TablePro {#ios-app}
+#### Mac 使用資料 {#mac-usage-report}
 
-**除非您開啟分享使用資料（Share Usage Data），否則不會向 TablePro 傳送任何資訊**。您可在首次啟動時或之後的**設定 > 隱私權**（Settings > Privacy）中開啟。開啟後，App 每天向與支援 TablePro 帳戶之前的 Mac App 版本相同的伺服器傳送一次報告，伺服器以相同方式將報告轉送給 PostHog，不附帶其 IP 位址。報告包含 Apple 為裝置上的 App 分配的識別碼的 SHA-256 雜湊值、平台、App 和 iOS 版本、處理器架構、App 語言、已開啟連線的資料庫類型名稱、已開啟的連線數量，以及首次嘗試連線、首次成功連線與首次執行查詢的日期和時間。不包含更新設定，並一律回報未啟用授權，因為 App 沒有這兩項內容。
+預設開啟，傳送首個事件前不會詢問。在 **設定 > 一般 > 隱私 (Settings > General > Privacy)** 關閉 **分享使用資料 (Share usage data)**。關閉狀態啟動不會執行 PostHog 庫。不傳送自動崩潰報告；PostHog 崩潰捕獲被禁用。
 
-App 不會發起授權驗證、更新檢查或外掛程式請求。除選用報告外，它僅連線至您的資料庫和 SSH 伺服器、開啟 iCloud Sync 時的 Apple iCloud，以及 SQL Server 連線使用 Microsoft Entra ID 登入時的 Microsoft。
+事件涵蓋每日使用及開啟連線的型別/數量、首次嘗試連線、成功連線及首次執行查詢（按資料庫型別）、付費功能限制及原因、升級點選、登入方式/退出，以及授權購買提示的展示和回答。PostHog 新增裝置、螢幕、網路、會話、App和系統資訊，並接收 IP 推算大致位置。登入前使用隨機安裝 ID，不建個人檔案。登入後使用帳戶 ID，檔案含版本、架構、語言及推算位置。退出生成新隨機 ID。參閱[欄位和端點](https://docs.tablepro.app/security/privacy#usage-data)。
 
-在裝置上，密碼和貼上的 SSH 金鑰保存在鑰匙圈中，憑證從不同步。查詢歷史留在裝置上。連線會加入裝置的 Spotlight 索引，以便搜尋。查詢執行期間，除非您開啟**設定 > 即時動態 > 隱藏查詢**（Settings > Live Activities > Hide Query），其即時動態會在鎖定畫面和展開的動態島上顯示 SQL。
+#### 更新和外掛 {#mac-updates}
 
-如果您在 iPhone 或 iPad 設定中選擇與 App 開發者共享分析資料，Apple 可能透過 App Store Connect 向我們提供當機報告和使用統計。App 本身沒有當機報告工具或第三方分析程式庫。
+App透過 updates.tablepro.app 從 GitHub 獲取更新源和外掛目錄。下載及下載計數也訪問 GitHub。請求帶 IP 和使用者代理。在 **設定 > 一般 > 軟體更新 (Settings > General > Software Update)** 關閉 **自動檢查更新 (Automatically check for updates)** 可停止自動檢查。外掛目錄沒有關閉選項。[技術說明](https://docs.tablepro.app/security/privacy#update-checks)也列出舊版本更新源。
 
-## iCloud Sync 與接力 {#icloud}
+#### 較早的 Mac 版本 {#mac-license}
 
-iCloud Sync 在 Mac、iPhone 與 iPad 上均預設關閉，直到您開啟。開啟後，紀錄會傳送至您自己 iCloud 帳戶內的私有資料庫（容器 `iCloud.com.TablePro`）。TablePro 無法讀取它們。
+0.86.0 前，同一預設開啟的開關控制傳送至伺服器的報告。包含機器 ID 雜湊、系統/App詳情、連線型別/數量、授權狀態、首次嘗試及成功日期。更新設定會傳送，但伺服器丟棄。當前伺服器附 Cloudflare 國家資訊轉發 PostHog，不帶 IP 或授權金鑰，不建立個人檔案。機器 ID 可關聯帳戶裝置。目前不儲存專門的心跳歷史，但任務、日誌、備份和舊檔案可能保留資料。參閱[儲存期限](#retention)。
 
-- 在 Mac 上，您可選擇同步連線、群組與標籤、設定、SSH 設定檔、認證資料設定檔（名稱和使用者名稱，從不包含密碼）、資料表和資料庫喜好項目、已儲存查詢（包括 SQL 文字）以及資料表檔案夾。連線紀錄包含主機、連接埠、使用者名稱、資料庫名稱、SSH 和 SSL 設定、啟動指令、連線前指令碼與 AI 規則。查詢歷史、Data Rewind 快照和密碼來源從不同步。
-- iPhone 與 iPad 同步連線、群組和標籤。
-- 密碼僅在您同時開啟 Mac 上 Sync Categories 中的**密碼**（Passwords），或 iPhone 與 iPad 上的**同步密碼**（Sync Passwords）後同步，使用 iCloud 鑰匙圈。在 Mac 上，這也會同步 TablePro 保存在鑰匙圈中的其他機密資訊，例如 AI 供應商金鑰和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，保持 App 登入的權杖也從不同步。
+舊版僅在輸入金鑰後訪問授權服務。檢查傳送金鑰、機器 ID、Mac 名及版本。裝置記錄屬於帳戶；啟用/停用審計附 IP 和使用者代理。[技術清單](https://docs.tablepro.app/security/privacy#older-mac-reports)列出欄位與時間。
 
-Mac 上的 iCloud Sync 屬於 Pro 或 Team 授權功能，在 iPhone 與 iPad 上免費。
+### iPhone 和 iPad {#ios-app}
 
-接力透過 Apple 在您的裝置之間傳遞目前連線的 ID 和開啟的資料表名稱。沒有開啟資料表時，傳遞連線名稱；連線沒有名稱時則傳遞主機。不會傳送設定或認證資料。
+已發布App在首次啟動或 **設定 > 隱私權 (Settings > Privacy)** 啟用 **分享使用資料 (Share Usage Data)** 前不傳送使用報告。依據為同意。每日報告經伺服器向 PostHog 轉發，不含 IP，附 Cloudflare 國家且無個人檔案。包含 Apple 裝置標識雜湊、平臺、版本、架構、語言、連線型別/數量及首次嘗試、成功和首次執行查詢的日期。始終報告無授權；無更新設定。App不檢查帳戶、授權、更新或外掛。
 
-## 網站 {#website}
+資料庫/SSH、可選 iCloud 及 SQL Server 的 Microsoft Entra 登入會向相應服務發資料。密碼和貼上的 SSH 金鑰在鑰匙圈；證書和歷史在裝置。連線加入本地 Spotlight 索引。執行中查詢的 Live Activity 可在鎖定畫面顯示 SQL，除非開啟 Hide Query。另有 Apple 的 Share With App Developers 設定，可透過 App Store Connect 向我們提供崩潰報告及統計。App本身無崩潰報告器或第三方分析庫。參閱 [iOS](https://docs.tablepro.app/ios#privacy)。
 
-**託管**。網站和帳戶入口網站執行於我們的伺服器上，由 Cloudflare 提供前端服務。與任何網頁伺服器一樣，它們會收到您的 IP 位址、瀏覽器 User-Agent 和請求的每個網頁網址。
+### Linux {#linux-app}
 
-**Cloudflare Web Analytics**。Cloudflare 在網站網頁中加入 Web Analytics 指令碼；帳戶入口網站不執行該指令碼。瀏覽器從 `static.cloudflareinsights.com` 載入它，每次瀏覽網頁都會向 Cloudflare 回報網頁、連結來源網站、載入耗時，以及瀏覽器、作業系統和裝置類型。Cloudflare 會補充連線所屬國家。指令碼不設定 Cookie，也不在瀏覽器中保存資訊；Cloudflare 聲明不會使用 IP 位址或瀏覽器資訊對您進行指紋識別。Cloudflare 向我們提供網頁或國家的瀏覽量等彙總資料，不提供每位訪客的紀錄。合法依據：正當利益。
+從 0.1.0-beta.1 起，登入按[帳戶](#account)所述註冊裝置。秘密使用桌面金鑰環。包管理器更新遵循所選分發方設定。App不自動上傳崩潰報告。
 
-**Google Analytics**。網站在每個網頁以 Consent Mode 載入 Google Analytics。在您於 Cookie 提問中選擇**允許**之前，它不設定 Cookie，僅為每個網頁向 Google 傳送無 Cookie 訊號，不在裝置上儲存識別碼。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie，統計網頁瀏覽、下載點擊和開始結帳等造訪行為。廣告儲存、廣告個人化和廣告使用者資料始終被拒絕。Google 聲明 Google Analytics 4 不記錄或儲存 IP 位址。我們的 Google Analytics 資源使用 Google 預設保留期：使用者層級與事件層級資料收集後兩個月由 Google 刪除。保存彙總而非識別碼的標準報表不受影響。合法依據：您對 Cookie 的同意。
+#### Linux 使用資料 {#linux-usage-data}
 
-**線上聊天**。網站和帳戶入口網站的每個網頁都顯示聊天供應商 Crisp 的按鈕。網頁載入完成後，瀏覽器從 `client.crisp.chat` 載入 Crisp 指令碼，Crisp 會設定 [Cookie 與瀏覽器儲存空間](#cookies)中所述的 Cookie。Crisp 收到 IP 位址、瀏覽器資訊、瀏覽的網頁網址和您撰寫的訊息，並在您開始對話後保留 IP 位址。我們向 Crisp 提供網頁語言。您登入帳戶入口網站時，我們也會向 Crisp 提供您帳戶的電子郵件地址和帳戶 ID，以便將對話與您的帳戶關聯。我們不向 Crisp 提供您的其他資訊。Crisp 位於法國。
+從 0.1.0-beta.1 預設開啟。在 Preferences > General > Privacy 關閉 Share usage data。事件直接到 PostHog EU：每日使用及連線型別/數量、首次嘗試/成功及按型別的首次查詢、登入/退出、升級點選、授權提示展示及 Buy 回答。附安裝/帳戶 ID、版本、架構、介面語言及 SDK 中繼資料。PostHog 接收 IP 並推算位置。登入前隨機 ID，無個人檔案；之後帳戶檔案關聯使用和購買。退出重置 ID。事件不含主機名、SQL、行或憑據。裝置註冊另外包含主機名。
 
-**結帳指令碼**。當您將指標移至購買按鈕或用 Tab 鍵聚焦時，瀏覽器從 jsDelivr（`cdn.jsdelivr.net`）載入 {merchant} 的結帳指令碼。jsDelivr 會收到 IP 位址和瀏覽器資訊。只有點按後，結帳頁面才從 {merchant} 開啟。
+關閉停止新傳送，已在途請求可能完成。不會清除舊事件或停止帳戶請求/伺服器分析。參閱[儲存期限](#retention)、[權利](#rights)及[技術清單](https://docs.tablepro.app/security/privacy#linux-usage-data)。
 
-**電子報驗證**。當您開始填寫電子報訂閱表單時，瀏覽器會從 `challenges.cloudflare.com` 載入 Cloudflare Turnstile，以確認訂閱者是真人；Cloudflare 會收到您的 IP 位址和瀏覽器資訊。
+<span id="mac-third-parties"></span>
 
-**購買歸因**。首次造訪網站時，瀏覽器在本機儲存空間保存名為 `tablepro:attribution` 的首次造訪紀錄，期限為 90 天：造訪來源（所點按連結中的 `ref` 或 `utm_*` 標籤，或來源網站）、進入的網頁和時間。開始購買時，該紀錄隨結帳請求傳送。我們的伺服器將造訪來源作為結帳中繼資料傳給 {merchant}，在您付款後與訂單一起保存，並隨結帳和付款事件傳送給 PostHog。進入的網頁和時間不會保存。
+## 您選擇的服務 {#integrations}
 
-**文件**。位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。導覽列顯示儲存庫的星標數，由您的瀏覽器從 GitHub 的 API 取得，因此 GitHub 也會收到您的 IP 位址和瀏覽器資訊。這項要求不會設定 Cookie。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
+資料庫、SSH 和代理提供方直接接收您要求的流量。配置後的連線登入服務接收認證請求。Apple Maps 提供地圖圖塊；DuckDB 提供查詢用擴充套件。下載的連線/AI 輔助程式訪問其提供方。各自條款適用。
 
-**語言與地區折扣**。當您的瀏覽器語言中沒有本網站提供的語言時，為向您建議相應語言的網頁，並顯示結帳時將適用的地區折扣，網站會向 Cloudflare（`/cdn-cgi/trace`）和我們的伺服器詢問您的連線來自哪個國家或地區，並可能讀取裝置的時區。這兩項請求都不攜帶 Cookie，網頁也不會保存任何回應內容。合法依據：正當利益。
+### iCloud 和 Handoff {#icloud}
 
-僅閱讀網站不會設定網站自身的 Cookie。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，因此既不會傳送帳戶入口網站 Cookie，也不會接受回應中的 Cookie。開啟帳戶入口網站頁面是另一項操作：在入口網站登入會設定以下入口網站 Cookie。網站在瀏覽器中保存的全部資訊列於 [Cookie 與瀏覽器儲存空間](#cookies)。
+可選 iCloud Sync 將連線、分組、標籤、設定、查詢及 SSH 配置存入私人 CloudKit。 在 Mac 上，還會同步資料表和資料庫的喜好項目與資料夾，以及認證設定檔的名稱、使用者名稱和密碼模式，不含設定檔中的密碼。Apple 託管，我們無法讀取。密碼同步單獨控制，預設關閉，使用端到端加密 iCloud Keychain。Mac 上也適用於寫入同一儲存的其他秘密，如 AI 金鑰及舊授權金鑰。帳戶令牌從不同步。Mac 需 Pro 或 Team；iOS 免費。Handoff 在 Apple 裝置間傳連線 ID 和表名，無表時傳連線名/主機，不傳憑據。參閱[控制](https://docs.tablepro.app/features/icloud-sync)。
 
-## 購買 {#purchases}
+### AI 和外部工具 {#ai-tools}
 
-授權由 merchant of record 與經銷商 {merchant}（Polar Software, Inc.）銷售。您依據 {merchant} 的購買者條款和隱私權政策購買。{merchant} 負責收款、計算並繳納銷售稅或加值稅、寄送收據和發票，並處理付款問題和爭議。它收集姓名、電子郵件地址、帳單地址和付款資訊。我們不會看到完整信用卡資訊。
+AI 請求直接發往所選提供方或本地模型，可能包含提示、結構、SQL 和對話。附加網格結果行預設關閉。獲准的 AI 查詢工具返回的結果也進入對話並傳送至提供方，不受附加開關限制。GitHub Copilot 從 npm 下載輔助程式，初始開啟向 GitHub 傳送遙測資料 (Send telemetry to GitHub)。
 
-開始結帳時，我們的伺服器會告知 {merchant} 您購買的內容、購買頁面的語言、造訪來源（參閱[網站](#website)）以及您的 IP 位址，{merchant} 用 IP 位址決定稅金和幣別。我們從 {merchant} 收到您的電子郵件地址、您輸入的姓名和帳單地址、購買內容、金額、訂單及訂閱 ID，以及之後的續訂、取消和退款等變更。每筆訂單都會保存電子郵件地址、帳單國家和金額。
+MCP 預設關閉，禁用時無法啟動，包括橋接和配對請求。啟用後，已認證客戶端可按授權請求資料。AI 客戶端可將結果發至自己的服務。外部 MCP 伺服器接收已批准的工具引數。參閱 [AI/MCP 控制](https://docs.tablepro.app/security/privacy#ai-providers)。
 
-未登入時的購買會歸入購買所用電子郵件地址的 TablePro 帳戶；若沒有該帳戶則會新建，並在您首次登入前保持未驗證狀態。在[帳戶入口網站]({account})中，您可以變更訂閱的計費週期或席位數、取消或恢復訂閱，以及申請退款。取消時，您選擇的原因和填寫的備註會傳送給 {merchant}，並與訂閱一起保存。信用卡、發票、稅務資訊和帳單地址位於 [{merchant} 客戶入口網站]({portal})，可從帳戶入口網站直接開啟。退款詳情請參閱[退款政策](/zh-Hant/refund-policy)，授權的使用範圍請參閱[服務條款](/zh-Hant/terms)。
+## 網站和瀏覽器儲存 {#website}
 
-## 帳戶入口網站 {#account}
+伺服器及 Cloudflare 接收 IP、使用者代理和頁面請求。Cloudflare Web Analytics 統計瀏覽、來源、載入時間、瀏覽器/系統/裝置類別及國家，不使用瀏覽器儲存或指紋。合法利益是瞭解和維護網站。
 
-您可以在 account.tablepro.app 的[帳戶入口網站]({account})中管理 TablePro 帳戶的授權、裝置、帳單和團隊。它與網站一樣，執行在 Cloudflare 之後的我們的伺服器上。
+Google Analytics 以 Consent Mode 載入。在 Allow 前傳送無 Cookie、無已存裝置 ID 的頁面訊號。同意後啟用 Cookie 及訪問、下載、結賬測量。廣告儲存、個性化及廣告使用者資料始終拒絕。Google 表示 GA4 不儲存 IP。
 
-**您的帳戶**。每個帳戶屬於一個人，以電子郵件地址識別。帳戶包含該地址、您設定的姓名和語言、您的登入方式、已登入的裝置、您的授權和訂單、您所在的團隊及您的角色和席位，以及記錄帳戶變更的稽核日誌，例如登入、新裝置和團隊變更，並附有發起每項變更的請求的 IP 位址和瀏覽器。我們的郵件使用您帳戶的語言。
+Crisp 在網站/門戶每頁載入，見[支援](#support)。指向或 Tab 到 Buy 會從 jsDelivr 載入 {merchant} 指令碼，向其提供 IP/瀏覽器；點選才開啟結賬。開始訂閱表單會載入 Turnstile 防濫用，依據合法利益。國家查詢和時區用於語言/地區優惠建議，依據合法利益；請求無 Cookie，頁面不儲存回答。
 
-**登入**。我們透過郵件寄送一個連結和一個 6 位數代碼：連結只能使用一次，代碼可嘗試 5 次，兩者均在 15 分鐘後失效。您也可以新增通行密鑰；對每個通行密鑰，我們保存其公鑰、您設定的名稱、是否在您的裝置之間同步，以及新增時間和最近使用時間。您還可以使用 Apple、GitHub 或 Google 登入：提供者會告知我們您的 ID 和已驗證的電子郵件地址，Apple 首次還會提供您的姓名。我們將 ID 和地址與您的帳戶一起保存；對於 Apple，還會加密保存一個權杖，並在您解除 Apple 連結或刪除帳戶時向 Apple 撤銷該權杖。如果提供者的地址屬於既有帳戶，我們會在連結前向該帳戶寄送確認連結和代碼，但由 Google 管理的地址（Gmail 或 Google Workspace）除外。
+首次訪問建立 `tablepro:attribution`，儲存 90 天：標籤/來源、著陸頁和日期。結賬時伺服器將來源作為中繼資料傳給 {merchant}，隨訂單儲存，並隨結賬/付款事件發給 PostHog。著陸頁和日期不保留。依據是衡量購買來源的合法利益。公開訂閱、結賬和優惠請求省略憑據，不設門戶 Cookie。門戶無分析指令碼，但伺服器傳送服務事件。
 
-**團隊**。邀請他人加入團隊時，我們會保存其電子郵件地址、角色以及邀請是否包含席位，並寄送一個 7 天內有效的連結。擁有者和管理員可以看到團隊成員的姓名和電子郵件地址、邀請，以及團隊的稽核日誌；稽核日誌顯示團隊中誰變更了什麼（包括受邀地址），但從不顯示 IP 位址或瀏覽器。成員可以看到團隊、其方案、席位數以及自己的角色。
+### 文件網站 {#docs}
 
-**您的資料**。在設定中，您可以變更姓名、電子郵件地址和語言，新增和移除登入方式，以 JSON 檔案下載帳戶資料，以及刪除帳戶。當您是仍有其他成員的團隊的擁有者時，無法刪除帳戶。刪除帳戶會移除您的登入方式、裝置、授權、團隊成員身分以及只有您一人的團隊，刪除您電子郵件地址的電子報訂閱，並終止您的訂閱且不退款。刪除後保留的內容請參閱[資料保留期限](#retention)。
+Mintlify 託管 docs.tablepro.app。頁面、Google Fonts 和 GitHub 星標請求向這些提供方披露 IP/瀏覽器。文件單獨詢問分析同意。Allow 前不儲存分析 Cookie 或訪客 ID。Allow 啟用 Google Analytics 和 Mintlify ID。文件頁尾 Cookie settings 可撤回並刪除它們。主站選擇不會跨到此來源。
 
-**入口網站載入的內容**。入口網站不載入 Google Analytics、Cloudflare Web Analytics 或任何其他分析指令碼，也不詢問 Cookie 設定。入口網站顯示[網站](#website)一節所述的 Crisp 線上聊天；在入口網站中購買時，{merchant} 的結帳頁面會在網頁上方開啟。
+### Cookie 和儲存 {#cookies}
 
-## 電子報 {#newsletter}
+Cloudflare Web Analytics 不在瀏覽器儲存內容。公開頁面不設第一方 Cookie。以下儲存期限與提供方保留期不同。必要儲存維持登入或選擇；同意和合法利益用途列在此處。
 
-訂閱版本說明時，我們先以訂閱頁面的語言寄送確認連結。連結 7 天內有效，同一地址每天最多收到 3 封。確認後，您的地址會連同該語言加入我們伺服器上的電子報名單。對於訂閱和確認，我們分別記錄發生時間、來源 IP 位址和瀏覽器、您訂閱時所在的頁面，以及您同意的文字版本。表單由 Cloudflare Turnstile 驗證，詳見[網站](#website)。
+| 名稱/服務 | 目的與觸發 | 期限與控制 |
+| --- | --- | --- |
+| `_ga`, `_ga_<ID>` | 同意後的 Google Analytics | 最長 2 年；拒絕即刪除 |
+| `tablepro:analytics-consent` | 必要的選擇記錄，網站/文件各自儲存 | 直到清除 |
+| `tablepro:attribution` | 隨結賬傳送首次來源；合法利益 | 90 天 |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed` | 外觀、所選/忽略語言、已關閉促銷；合法利益 | 直到清除；門戶主題獨立 |
+| `mintlify_anonymous_id` | 文件訪客 ID，在該處同意後 | 直到清除或拒絕 |
+| `crisp-client/` Cookie | 每頁載入後的聊天延續；合法利益 | 6 個月，返回續期 |
+| `__Host-tp_session` | 必要門戶登入 | 登入後 30 天；登入過程最多 10 分鐘；退出刪除 |
+| `locale`, `context`, `sign-in-return-to` | 門戶語言、Personal/團隊檢視、返回頁；合法利益 | 前兩項直到清除；返回頁 15 分鐘 |
 
-每封電子報都會記錄所有收件人的開啟和點擊。電子報中含有一張小圖片，其中的連結會經過 `links.news.tablepro.app`。當您的郵件用戶端載入該圖片或您開啟某個連結時，Amazon SES 會記錄開啟或點擊的時間和所點擊的連結，以及您的郵件用戶端傳送的 IP 位址和使用者代理程式，並轉給我們的伺服器，由伺服器統計每封電子報的開啟次數和點擊次數。不載入圖片的郵件用戶端不會記錄開啟。取消訂閱連結和用於撰寫新郵件的連結不會被追蹤。
-
-每封電子報都附有取消訂閱連結，開啟後會顯示帶有取消訂閱按鈕的頁面；郵件也帶有可讓您的郵件 App 一鍵取消訂閱的郵件標頭。取消訂閱後，我們不再寄送電子報，也不會寄送確認取消訂閱的郵件；如需重新訂閱，需要再次確認。將電子報標記為垃圾郵件也會取消訂閱，寄往您地址的郵件一旦被永久退回，我們就停止向該地址寄送。若還希望刪除地址，請寄送郵件給我們，或刪除使用該地址的 TablePro 帳戶。
-
-從先前的伺服器移轉時，其郵件名單中所有未取消訂閱的地址，無論是否確認過，都以已訂閱狀態加入了此名單：該伺服器也曾加入購買者、授權持有者和 Beta 報名者的地址，並寄送郵件給他們。已取消訂閱的地址以取消訂閱狀態移轉，郵件曾被退回或被標記為垃圾郵件的地址則改為加入我們的封鎖名單，因此不會收到任何電子報。
-
-## Cookie 與瀏覽器儲存空間 {#cookies}
-
-僅閱讀公開網站不會設定網站自身的 Cookie。電子報訂閱、結帳和折扣碼請求不攜帶憑證，也不會設定入口網站 Cookie。登入帳戶入口網站或開始登入時，會設定以下唯一一個絕對必要的入口網站 Cookie。Cloudflare Web Analytics 不設定 Cookie，也不在瀏覽器中儲存資訊。Google Analytics Cookie 在您允許之前不會設定。Crisp 在聊天載入後為每個網頁設定 Cookie。此處的資訊不用於廣告，也不會出售。
-
-- **`_ga` 和 `_ga_<ID>`**（Google Analytics Cookie，最長兩年，僅在允許分析時）：瀏覽器的隨機識別碼及目前造訪狀態。拒絕或之後變更回答時會刪除。合法依據：同意。
-- **`tablepro:analytics-consent`**（本機儲存空間，直至您清除）：保存對分析提問的回答，避免每個網頁重複詢問。帳戶入口網站不進行分析，因此不會詢問此問題，也不讀取回答。合法依據：履行您的選擇所絕對必要。
-- **`tablepro:attribution`**（本機儲存空間，90 天）：[網站](#website)一節所述的首次造訪紀錄。不包含您的識別碼，僅隨結帳請求傳送，伺服器會將造訪來源傳給 {merchant}。合法依據：正當利益。
-- **`theme`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀。帳戶入口網站另外保存自己的選擇。合法依據：正當利益。
-- **`tablepro:language`**（本機儲存空間，直至您清除）：保存您在語言選單或語言列中選擇的語言，以及您關閉過建議的語言，以免再次建議。合法依據：正當利益。
-- **`tablepro:campaign-closed`**（本機儲存空間，直至您清除）：保存您關閉了頁首上方通知的那次優惠活動，讓該通知在活動結束前在每個頁面上都維持關閉。合法依據：正當利益。
-- **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
-- **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
-- **`__Host-tp_session`**（帳戶入口網站 Cookie，自登入起 30 天）：保持登入狀態。登入前，僅在透過通行密鑰、Apple、GitHub、Google 或 App 登入的過程中設定，最長 10 分鐘。登出會刪除它。公開網站的電子報訂閱、結帳和折扣碼請求不攜帶憑證，也從不會收到它。合法依據：絕對必要。
-- **`locale`、`context` 和 `sign-in-return-to`**（帳戶入口網站本機儲存空間）：登入前在入口網站中選擇的語言、最近開啟的是個人還是某個團隊（兩者均保存至您清除為止），以及開啟郵件中的登入連結後要返回的頁面（15 分鐘）。合法依據：正當利益。
-
-您可隨時透過每頁頁尾的 **Cookie 設定**或以下入口變更、撤回分析回答：
+在頁尾 Cookie settings 或此處更改分析同意：
 
 <cookie-settings></cookie-settings>
 
-## 合法依據 {#lawful-basis}
+## 接收方 {#sharing}
 
-對於歐洲經濟區和英國的讀者，GDPR 與 UK GDPR 下的合法依據為：
+| 接收方 | 資料與目的 |
+| --- | --- |
+| [OVH]({ovhPrivacy}) | 伺服器及服務記錄託管 |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/代理、R2/備份、Turnstile、Cloudflare Web Analytics |
+| [Amazon Web Services]({awsPrivacy}) | Amazon SES 郵件、投遞及互動；CloudFront 連結、SNS/SQS 事件 |
+| [PostHog EU]({posthogPrivacy}) | App/伺服器分析；帳戶 ID，無姓名/郵箱；直接請求含 IP |
+| [{merchant}]({merchantPrivacy}) | 獨立 merchant of record；結賬、賬單及購買 |
+| [Crisp]({crispPrivacy}) | 聊天、瀏覽器/頁面及已登入帳戶身份 |
+| [Google]({googlePrivacy}) | 網站/文件分析及字型；所選帳戶登入 |
+| [Mintlify]({mintlifyPrivacy}) | 文件託管和獲同意的測量 |
+| [GitHub]({githubPrivacy}) | 下載、更新、外掛、星標、公開 issue 和可選登入 |
+| [Apple]({applePrivacy}) | 可選登入；App/整合所述服務及診斷 |
+| [jsDelivr]({jsdelivrPrivacy}) | 結賬指令碼請求含 IP/瀏覽器 |
 
-- **契約**（第 6 條第 1 款 (b)）：授權銷售和提供、您的帳戶及其登入方式和裝置、授權驗證、帳戶入口網站和 Team Library。
-- **正當利益**（第 6 條第 1 款 (f)）：Mac App 使用資料及其在 PostHog 中的分析、我們的伺服器傳送給 PostHog 的關於登入、購買、裝置和團隊的事件、帳戶稽核日誌、安全和濫用防範（包括電子報表單上的 Cloudflare Turnstile）、伺服器日誌、Cloudflare Web Analytics、購買歸因紀錄、為語言與地區折扣進行的國家查詢，以及每個網頁的線上聊天。
-- **同意**（第 6 條第 1 款 (a)）：Google Analytics Cookie、iPhone 與 iPad App 使用報告、電子報和您主動發起的線上聊天。
-- **法律義務**（第 6 條第 1 款 (c)）：稅務與會計紀錄，以及對合法請求的回應。
+團隊成員按角色接收共享內容及帳戶詳情。整合接收您指定傳送的資料。我們不出售個人資料或為廣告共享。其他披露僅在法律要求時進行。提供方自己的政策也適用。
 
-## 資料接收方 {#sharing}
+## 處理地點 {#transfers}
 
-我們僅向營運 TablePro 所需的服務分享個人資料：
+OVH 伺服器和 Amazon SES 在新加坡（SES 為 `ap-southeast-1`）。PostHog 在歐盟。Crisp 總部在法國。{publisherName} 從越南運營。美國提供方，包括 {merchant}、Google、GitHub、Cloudflare、Amazon Web Services 和 Mintlify，在美國處理資料。儲存和備份可能涉及其他國家。所需 EEA/英國保障依賴各提供方的標準合同條款或其他批准機制；Google 也使用 EU-US Data Privacy Framework。透過[聯絡](#controller)查詢保障詳情。
 
-- **{merchant}**：購買交易的 merchant of record。
-- **Amazon Web Services**：透過 Amazon SES 從其亞太區域（新加坡）寄送我們的郵件，包括登入連結和代碼、團隊邀請、帳戶和安全通知以及電子報。郵件送達、被退回或被標記為垃圾郵件時，它會通知我們；我們會記錄退回和垃圾郵件檢舉，以停止向這些地址寄送。對於電子報，它也會通知每次開啟和點擊，詳見[電子報](#newsletter)。
-- **託管服務商及 Cloudflare**：執行網站、帳戶入口網站和 App 連線的伺服器。Cloudflare 也透過 Web Analytics 統計網頁瀏覽量，並用 Turnstile 驗證電子報表單。
-- **Google**：網站和文件中的 Google Analytics。
-- **Crisp**：網站和帳戶入口網站每個網頁的線上聊天。
-- **PostHog**（EU Cloud）：我們的產品分析服務，接收 App 的使用報告，以及我們的伺服器關於登入、購買、裝置和團隊的事件，附帶您的帳戶 ID，但從不包含您的電子郵件地址或姓名。Mac App 直接傳送的使用資料抵達 PostHog 時附帶您的 Mac 的 IP 位址。
-- **Apple、GitHub 和 Google**：在您使用它們登入帳戶時。
-- **jsDelivr**：在指標移至購買按鈕時向瀏覽器提供 {merchant} 的結帳指令碼。
-- **Mintlify**：代管位於 docs.tablepro.app 的文件。
-- **GitHub**：託管更新摘要、外掛程式目錄和下載內容，並提供文件顯示的星標數。
+## 儲存期限 {#retention}
 
-我們不出售個人資料，也不與廣告商分享。
+表中註明未設期限的專案確實沒有期限。刪除帳戶不會刪除 PostHog 或 Crisp 資料。透過[聯絡](#controller)發郵件，我們會按請求在這些提供方刪除。
 
-## 國際傳輸 {#transfers}
+| 記錄 | 儲存與刪除 |
+| --- | --- |
+| PostHog 分析 | 未設期限。關閉仍保留舊事件。可請求刪除。 |
+| 處理任務和伺服器日誌 | 任務在傳送/重試期間可能儲存報告。日誌用於安全及排錯。未設總體期限，不承諾無伺服器副本。 |
+| 裝置 | 包括已移除裝置，保留至刪除帳戶 |
+| 帳戶和審計 | 刪除帳戶、登入方式、裝置、授權及成員關係。審計無期限保留；移除郵箱欄位及操作者 IP/使用者代理，但自由文字內地址可能仍在。 |
+| 訂單和提供方通知 | 稅務/會計訂單未設期限。刪除移除帳戶/郵箱關聯。{merchant}、Amazon SES 和 Apple 事件保留；清理被刪帳戶的購買個人資訊、郵件收件人/互動詳情。 |
+| Team Library | 已刪專案保留最後版本用於同步。普通刪除團隊後 30 天刪庫，期間可恢復。刪除唯一所有者帳戶立即刪團隊和庫。授權結束不刪庫。 |
+| 認證 | 連結/驗證碼 15 分鐘過期，7 天后刪除。門戶會話 30 天。App令牌末次使用 90 天后過期，再過 30 天刪除。郵件任務儲存明文直到清理：傳送後一天或放棄傳送後 7 天。 |
+| 郵件訂閱 | 新未確認地址 30 天后刪除。已確認/遷移地址到請求刪除或同郵箱帳戶刪除為止。退訂仍保留地址並標為退訂。 |
+| 抑制名單 | 退信/投訴地址及首次/末次日期在帳戶/訂閱刪除後仍保留，以阻止再發。未設期限。 |
+| Google Analytics | 使用者/事件資料 2 個月；彙總標準報告另計 |
+| Cloudflare Web Analytics | 我們可檢視最近六個月瀏覽總數 |
+| 支援 | Crisp 對話和郵箱訊息保留至刪除，包括按請求刪除。未設期限。 |
+| 備份和遷移檔案 | 未設期限。刪帳戶不刪副本。舊完整資料庫含姓名/郵箱、授權、訂單、團隊、裝置名、訂閱者、beta 註冊、郵件、使用報告及帶 IP 的授權日誌。 |
 
-以上服務在多個國家營運，因此您的資料可能在居住國之外處理。{merchant}、Google、GitHub、Cloudflare 和 Mintlify 在美國處理資料；Google 依據 EU-US Data Privacy Framework 和標準契約條款處理。PostHog 在歐盟處理資料。Amazon Web Services 從新加坡寄送我們的郵件。在法律要求時，從歐洲經濟區和英國傳輸資料採用標準契約條款或其他獲准機制。
+## 選擇和權利 {#rights}
 
-## 資料保留期限 {#retention}
+使用App開關、網站/文件 Cookie settings 和退訂更改可選處理。撤回同意只向後生效，不影響之前處理的合法性。開關不刪舊資料或停止伺服器分析。在[門戶 Settings]({account})匯出或刪帳戶；並非涵蓋保留表中所有記錄。
 
-- **使用報告和分析事件**：我們的伺服器轉送給 PostHog 後不保留副本。我們未在 PostHog 中為其設定保留期限。
-- **我們先前伺服器的紀錄**：先前伺服器整個資料庫的副本存放在封存檔中，無限期保留。其中包括授權、訂單和團隊成員及其電子郵件地址和姓名；啟用了授權的 Mac 及其名稱；電子報訂閱者和 Beta 報名者；它所寄送郵件的紀錄；以及它保存的使用報告和授權請求日誌及其 IP 位址。
-- **裝置**：保留至您刪除帳戶，包括您已移除的裝置。
-- **您帳戶的稽核日誌**：帳戶存在期間保留，並附有您所做每項變更的 IP 位址和瀏覽器。刪除帳戶會從中移除您的電子郵件地址，以及您所做操作的 IP 位址和瀏覽器；每項變更的紀錄本身會保留。
-- **訂單**：為稅務和會計用途保留。刪除帳戶會從訂單中移除您的電子郵件地址和帳戶。
-- **來自 {merchant}、Amazon SES 和 Apple 的通知**：保留。{merchant} 的通知包含您的姓名、電子郵件地址和帳單地址；刪除帳戶後，關於您購買的通知中的這些資訊會被移除。Amazon SES 的通知包含每封郵件的收件地址，對於電子報還包含每次開啟和點擊的 IP 位址和使用者代理程式；刪除帳戶後，關於寄往您地址的郵件的通知以及我們對每封已寄送郵件的紀錄中的這些資訊會被移除。
-- **Team Library**：保留至項目被修改；已刪除的項目保留其最後一個版本。資源庫在擁有者刪除團隊 30 天後隨團隊一起刪除；在此之前，擁有者可以復原團隊。授權結束後仍會保留。
-- **登入連結和代碼**：15 分鐘後失效，7 天後刪除。入口網站工作階段持續 30 天。保持 App 登入的權杖在 App 最後一次使用後 90 天失效，並在之後 30 天刪除。
-- **已刪除的帳戶**：帳戶及其登入方式、裝置、授權和團隊成員身分會立即刪除。訂單和稽核日誌按上文所述保留。先前的伺服器保存的與您有關的資料仍留在上述封存檔中。
-- **電子報**：30 天內未確認的地址會連同確認連結一起刪除。已確認的地址以及從先前的伺服器移轉的地址會連同其加入方式的紀錄保留在我們的名單中，直到我們應您的要求刪除，或您刪除使用該地址的 TablePro 帳戶；取消訂閱後，該地址以已取消訂閱狀態保留，確保不再收到任何電子報。
-- **禁止寄送名單**：郵件被永久退回的地址，或擁有者將我們的郵件標記為垃圾郵件的地址，會連同首次和最近一次發生的時間保留在我們的禁止寄送名單中，使用該地址的帳戶或電子報訂閱被刪除後也是如此，以確保我們不再寄送任何郵件給該地址。
-- **Google Analytics**：使用者層級與事件層級資料保留兩個月，即我們資源所用的 Google 預設期限。Cookie 最長保留兩年，或在拒絕時刪除。
-- **Cloudflare Web Analytics**：向我們顯示最近六個月的網頁瀏覽彙總，不在瀏覽器中保存資訊。
-- **線上聊天與支援郵件**：在 Crisp 和我們的信箱中保留至刪除。您可要求刪除對話和郵件。
-- **伺服器日誌**：我們的網頁伺服器和伺服器的日誌，為安全和問題排查保留在我們的伺服器上，尚未設定固定期限。
+依居住地，可要求訪問、更正、刪除、限制、可攜帶或反對合法利益處理。無需帳戶：郵件[聯絡](#controller)。我們可能詢問查詢記錄所需資訊，如安裝 ID。切勿透過郵件明文傳送授權金鑰。我們在一個月內答覆。您可向資料保護機關投訴。法律儲存義務可能限制刪除。
 
-## 您的權利 {#rights}
-
-視居住地而定，您可以要求我們：
-
-- 提供我們持有的個人資料副本（存取）；
-- 更正資料（更正）；
-- 刪除資料（刪除），法律要求保留的除外；
-- 限制使用方式（限制）；
-- 以結構化、機器可讀格式提供資料（可攜）；
-- 停止基於正當利益使用資料（反對）。
-
-您可隨時撤回同意，並向資料保護機關申訴。行使上述權利，請寄送郵件至 [{email}](mailto:{email})。我們會在 30 天內回應。在[帳戶入口網站]({account})的設定中，您也可以取得帳戶資料的副本並刪除帳戶。對於其他內容，例如電子報地址或沒有帳戶的 Mac，請告知相關電子郵件地址、授權金鑰或裝置。{merchant}、Google、Crisp 或 GitHub 持有的資料還適用其自身政策。
+### 地區權利 {#regional-rights}
 
 **加利福尼亞州居民**。California Consumer Privacy Act 賦予您了解我們收集哪些個人資訊、要求刪除、拒絕出售，以及不因行使這些權利而受到差別待遇的權利。我們不出售個人資訊。
 
 ## 兒童 {#children}
 
-TablePro 不以十六歲以下兒童為對象，也不會在明知的情況下收集其個人資料。如您認為兒童向我們提供了個人資料，請聯絡，我們會刪除。
+TablePro 不面向 16 歲以下兒童，我們不會明知而收集其個人資料。如認為兒童已向我們提供資料，請聯絡我們刪除。
 
 ## 安全 {#security}
 
-App、網站、帳戶入口網站與我們的伺服器之間使用 HTTPS。TablePro 帳戶沒有密碼。登入連結和代碼、保持 App 登入的權杖以及團隊 API 權杖以雜湊形式保存。透過郵件寄送登入連結和代碼的工作會以明文保存它們，直到該工作被刪除：郵件寄出一天後，或放棄寄送 7 天後。連結和代碼都會在您提出請求 15 分鐘後失效。系統存取僅限於 {publisherName} 及[資料接收方](#sharing)中列出的服務供應商。沒有系統完全安全。回報弱點請參閱[安全性頁面](/zh-Hant/security#report)，或寄送郵件至 [{email}](mailto:{email})。
+服務流量使用 HTTPS。帳戶無密碼。登入憑據及團隊 API 令牌以雜湊儲存，[儲存期限](#retention)中的臨時郵件任務除外。系統訪問限於 {publisherName} 和[接收方](#sharing)。沒有系統絕對安全。透過[安全頁面](/zh-Hant/security#report)報告漏洞。
 
-## 政策變更 {#changes}
+## 變更 {#changes}
 
-本政策變更時，我們會在此更新並註明新的「最後更新」日期；法律要求時，我們會直接通知您。
-
-## 聯絡方式 {#contact}
-
-如對隱私權或本政策有疑問，請寄送郵件至 [{email}](mailto:{email})。
+頁面顯示最後更新日期。舊版本保留在[公開網站倉庫歷史]({webGithub}/commits/main/resources/data/legal/en/privacy.md)。新用途開始前我們會更新本政策，依法直接通知，並在需要時重新徵求同意。

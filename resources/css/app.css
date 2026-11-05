@@ -329,7 +329,7 @@ html {
  * is the width of "0" (10.1px) and cannot set it. Figures, tables and code
  * keep the column.
  */
-.blog-article > :is(p, ul, ol, blockquote, h2, h3) {
+.blog-article > :is(p, ul, ol, blockquote, h2, h3, h4) {
   max-width: 36rem;
 }
 
@@ -365,8 +365,18 @@ html {
   }
 }
 
+.blog-article h4 {
+  font-size: 1rem;
+  line-height: var(--lh-h3);
+  font-weight: 600;
+  text-wrap: balance;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .blog-article h2 + *,
-.blog-article h3 + * {
+.blog-article h3 + *,
+.blog-article h4 + * {
   margin-top: 0;
 }
 

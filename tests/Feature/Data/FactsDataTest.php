@@ -46,7 +46,7 @@ it('is dated and has the documented sections', function (): void {
     $facts = factsJson();
 
     expect(array_keys($facts))->toBe([
-        'verifiedAt', 'links', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
+        'verifiedAt', 'links', 'privacyPolicies', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
         'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits',
     ]);
     expect($facts['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/');
@@ -56,11 +56,13 @@ it('is dated and has the documented sections', function (): void {
 it('keeps every outbound link in one place, over HTTPS', function (): void {
     $links = factsJson()['links'];
 
-    foreach ($links as $key => $url) {
+    foreach ([...$links, ...factsJson()['privacyPolicies']] as $key => $url) {
         expect($url)->toStartWith('https://', "links.{$key}");
         expect(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse("links.{$key} is malformed");
     }
 
+    expect($links['webGithub'])->toBe('https://github.com/TableProApp/web');
+    expect(app(SiteFacts::class)->privacyPolicies())->toHaveCount(11);
     expect($links['github'])->toBe('https://github.com/TableProApp/TablePro');
     expect($links['issues'])->toStartWith($links['github'] . '/');
     expect($links['discussions'])->toStartWith($links['github'] . '/');

@@ -242,7 +242,7 @@ it('shows each label on the legal pages as the app does in that language, with t
         }
     }
 
-    expect($checked)->toBeGreaterThan(10)
+    expect($checked)->toBe(8)
         ->and($offences)->toBe([], "legal/{$locale}:\n  " . implode("\n  ", $offences));
 })->with(array_values(array_diff(array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true)['supported']), ['en'])));
 

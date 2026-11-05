@@ -50,6 +50,6 @@ test('holds running text to the reading measure, and leaves figures, tables and 
     const css = readFileSync(new URL('../../resources/css/app.css', import.meta.url), 'utf8');
 
     // 36rem of Inter at 16px is about 75 characters a line; the 44rem column alone ran to about 93.
-    assert.match(css, /\.blog-article > :is\(p, ul, ol, blockquote, h2, h3\) \{\s*max-width: 36rem;\s*\}/);
+    assert.match(css, /\.blog-article > :is\(p, ul, ol, blockquote, h2, h3, h4\) \{\s*max-width: 36rem;\s*\}/);
     assert.doesNotMatch(css, /\.blog-article[^{]*(figure|table|pre)[^{]*\{[^}]*max-width/);
 });

@@ -1,281 +1,228 @@
 ---
 title: Politique de confidentialité
-description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
-updatedAt: "2026-11-04"
+description: Les données recueillies par TablePro, leurs usages, destinataires et durées de conservation, vos choix et droits.
+updatedAt: "2026-11-05"
 ---
 
-Cette politique couvre TablePro pour Mac, TablePro pour iPhone et iPad, le site web tablepro.app, la documentation sur docs.tablepro.app et le portail de comptes account.tablepro.app. Elle décrit ce que chacun envoie et stocke réellement aujourd’hui. Les deux applications sont open source sous AGPLv3 ; vous pouvez donc lire le code qui envoie les données ci-dessous dans le [dépôt TablePro]({github}).
+Cette politique couvre TablePro sur Mac, Linux, iPhone et iPad ; tablepro.app ; docs.tablepro.app ; et nos services de compte, achats, assistance et newsletter. L'[inventaire technique](https://docs.tablepro.app/security/privacy) précise champs, destinations et réglages. Le code figure dans le [dépôt public]({github}).
 
-## Résumé {#summary}
+## En bref {#summary}
 
-- L’application Mac envoie des données d’utilisation. Cet envoi est activé par défaut et vous pouvez le désactiver. L’application iPhone et iPad n’envoie de rapport d’utilisation que si vous l’activez.
-- Si vous vous connectez à un compte TablePro ou activez une clé de licence, l’application Mac enregistre votre Mac sur notre serveur, avec son nom, et y vérifie régulièrement votre offre.
-- Vos requêtes, résultats et mots de passe ne sont pas envoyés à TablePro. L’exception concerne ce que vous choisissez de publier dans Team Library : paramètres de connexion (jamais les mots de passe) et requêtes enregistrées.
-- Les demandes IA vont directement de l’application Mac au fournisseur IA que vous avez configuré, pas à nous.
-- À partir de la version qui ajoute les comptes TablePro, l’application Mac envoie ses données d’utilisation directement à PostHog, notre service d’analyse produit dans l’UE, qui reçoit alors l’adresse IP de votre Mac et en déduit une localisation approximative. Les versions antérieures et l’application iPhone et iPad envoient des rapports d’utilisation à notre serveur, qui les transmet à PostHog sans leurs adresses IP. Votre compte conserve un journal des modifications qui y sont faites, comme les connexions et les nouveaux appareils, avec l’adresse IP et le navigateur de la requête à l’origine de chacune.
-- Le site compte les pages vues avec Cloudflare Web Analytics, qui ne dépose aucun cookie. Il charge aussi Google Analytics, qui ne dépose des cookies que si vous l’autorisez. Chaque page charge également notre chat en direct Crisp, qui dépose ses propres cookies.
-- Le portail de comptes sur account.tablepro.app ne charge aucun script d’analyse. Il dépose un cookie pour maintenir votre connexion, et ses réglages vous permettent de télécharger les données de votre compte ou de supprimer le compte.
-- Amazon SES, un service d’Amazon Web Services, envoie nos e-mails. La newsletter enregistre quand chaque destinataire l’ouvre et sur quels liens il clique.
-- Les achats sont vendus par {merchant}, notre merchant of record.
+Les requêtes et résultats ordinaires passent entre votre appareil et votre base. Les données d'utilisation ne contiennent ni SQL, ni lignes, ni identifiants secrets. Le contenu publié dans Team Library, envoyé à l'assistance ou partagé avec l'IA et des outils externes parvient à ces destinataires.
 
-## Qui est responsable {#controller}
+Les données d'utilisation sont activées par défaut sur Mac et Linux, avec un interrupteur. L'app iPhone et iPad publiée attend votre accord. L'analyse directe peut être liée à votre compte et vos achats. La désactiver n'arrête pas les requêtes du compte ni l'analyse du serveur.
 
-{publisherName}, développeur indépendant installé à {publisherCity}, au {publisherCountry}, publie les applications TablePro et ce site, et est responsable des données personnelles décrites ici (responsable du traitement). Pour toute question sur cette politique ou vos données, écrivez à [{email}](mailto:{email}).
+Le site mesure les visites et charge Crisp sur chaque page. Les cookies Google Analytics nécessitent votre choix. Les newsletters mesurent ouvertures et clics. Supprimer le compte laisse certains dossiers, dont ceux chez PostHog et Crisp. Consultez la [conservation](#retention) et [vos droits](#rights). Le [responsable](#controller) traite aussi les demandes sans compte.
 
-## TablePro pour Mac {#mac-app}
+<span id="contact"></span>
 
-### Données d’utilisation {#mac-usage-report}
+## Responsable {#controller}
 
-À partir de la version qui ajoute les comptes TablePro, l’application Mac envoie des données d’utilisation directement à PostHog, notre service d’analyse produit, à `eu.i.posthog.com` dans l’UE. **L’envoi est activé par défaut et l’application ne demande pas votre accord avant le premier événement.** Pour le désactiver, ouvrez **Réglages > Général > Confidentialité** (Settings > General > Privacy) et décochez **Partager des données d’utilisation** (Share usage data). Tant que le réglage est désactivé, l’application n’envoie rien à PostHog, et si elle démarre avec le réglage désactivé, elle ne lance pas du tout la bibliothèque de PostHog.
+{publisherName}, développeur indépendant à {publisherCity}, {publisherCountry}, est responsable des données personnelles décrites ici. Contact : [{email}](mailto:{email}). Nous n'avons pas de délégué à la protection des données. Pour les équipes, nous contrôlons les dossiers de compte, d'invitation et de service. Le contenu Team Library est traité sur instruction de l'équipe, qui choisit ce qu'elle publie et qui y accède.
 
-L’application envoie un événement :
+<span id="lawful-basis"></span>
 
-- une fois par jour tant qu’elle fonctionne, avec les noms des types de bases de données de vos connexions ouvertes (par exemple « PostgreSQL ») et le nombre de connexions ouvertes ;
-- lors de votre première tentative de connexion, de votre première connexion réussie et de votre première requête, chacune avec son type de base de données ;
-- quand elle vous montre qu’une fonction payante n’est pas disponible, une fois par fonction à chaque lancement de l’application, avec la fonction et la raison, par exemple que vous n’êtes pas connecté ;
-- quand vous cliquez pour passer à une offre supérieure, avec l’endroit de l’application où vous avez cliqué ;
-- quand vous vous connectez, avec la manière (dans l’application, avec une clé de licence, ou par l’échange de la clé déjà présente sur votre Mac), et quand vous vous déconnectez.
+## Données et usages {#data-use}
 
-La bibliothèque de PostHog ajoute à chaque événement le modèle de votre Mac, la taille de l’écran, le fuseau horaire et la langue, si le Mac est connecté en Wi-Fi, la version, le build et l’identifiant de bundle de l’application, la version de macOS, la version de la bibliothèque et un identifiant de session aléatoire. PostHog reçoit l’adresse IP de votre Mac avec chaque requête et en déduit une localisation approximative, comme le pays et la ville. Tant que le réglage est activé, la bibliothèque récupère aussi ses paramètres et ses feature flags auprès de PostHog (`/config` depuis `eu-assets.i.posthog.com` et `/flags` depuis `eu.i.posthog.com`).
+Pour l'EEE et le Royaume-Uni, chaque fin indique sa base juridique : contrat (article 6(1)(b)), intérêt légitime (6(1)(f)), consentement (6(1)(a)) ou obligation légale (6(1)(c)). Nous ne prenons aucune décision automatisée produisant des effets juridiques ou aussi importants.
 
-Avant que vous vous connectiez, les événements portent un identifiant aléatoire que la bibliothèque crée sur votre Mac, et PostHog n’en tire aucun profil de personne. Dès que vous vous connectez, ils portent l’identifiant de votre compte, et le profil de ce compte dans PostHog contient les versions de l’application et de macOS, l’architecture du processeur, la langue de l’application et la localisation approximative que PostHog déduit de l’adresse IP. Cela rapproche vos installations de vos connexions et de vos achats. Se déconnecter fait démarrer un nouvel identifiant aléatoire. Les données d’utilisation de l’application ne contiennent plus d’identifiant de machine, ni l’état d’activation d’une licence, ni vos réglages de mise à jour.
+<span id="mac-account"></span>
 
-Les versions antérieures aux comptes TablePro envoient à la place un rapport d’utilisation à `api.tablepro.app`, avec le même réglage, environ dix secondes après leur démarrage, puis une fois par jour tant qu’elles fonctionnent. Un rapport contient :
+### Comptes et appareils {#account}
 
-- un identifiant de machine : un hachage SHA-256 de l’UUID matériel de votre Mac (l’UUID lui-même n’est jamais envoyé) ;
-- la plateforme, la version de l’application, la version de macOS, l’architecture du processeur et la langue de l’application ;
-- les noms des types de bases de données de vos connexions ouvertes (par exemple « PostgreSQL ») et le nombre de connexions ouvertes ;
-- l’état d’activation d’une licence ;
-- la date et l’heure de votre première tentative de connexion et de votre première connexion réussie ;
-- vos réglages de mise à jour (mode d’installation et fréquence des vérifications). Notre serveur les écarte à la réception du rapport.
+L'usage local gratuit ne nécessite pas de compte. Les services de compte exigent votre adresse e-mail. Nous conservons nom, langue, méthodes de connexion, licences, commandes, appareils, rôles et places dans les équipes. L'enregistrement Mac/Linux transmet identifiant de machine, nom, plateforme et versions de l'app/système. Le nom de l'appareil peut contenir le vôtre. Ce flux est distinct des données d'utilisation. Le but et la base sont de fournir compte et formule au titre du contrat.
 
-Ni les événements ni les rapports ne contiennent de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes.
+La connexion utilise liens et codes par e-mail, passkeys, Apple, GitHub ou Google. Les passkeys ont une clé publique, un nom, un état de synchronisation et des dates d'usage. Les fournisseurs d'identité transmettent un ID et une adresse vérifiée ; Apple peut aussi donner le nom. Son jeton est chiffré et révoqué si vous dissociez Apple ou supprimez le compte. Les changements sont journalisés avec IP et agent utilisateur. L'intérêt légitime est la sécurité et l'enquête sur les abus.
 
-Notre serveur ne stocke ni le rapport ni l’adresse IP d’où il provient. Il transmet le rapport à PostHog comme un événement lié à l’identifiant de machine, avec le pays que Cloudflare indique pour votre connexion, sans votre clé de licence ni votre adresse IP, et PostHog n’en tire aucun profil de personne. Comme votre compte répertorie ses appareils sous le même identifiant de machine, les rapports d’un Mac sur lequel vous vous êtes connecté ou avez activé une licence peuvent être reliés à votre compte.
+Le [portail]({account}) sert à modifier profil et méthodes de connexion, gérer les appareils, exporter en JSON et supprimer le compte. La suppression est indisponible si vous possédez une équipe avec d'autres membres. Elle termine les abonnements sans remboursement. La [conservation](#retention) précise ce qui reste.
 
-### Vérifications de licence {#mac-license}
+### Achats {#purchases}
 
-Les versions antérieures aux comptes TablePro ne contactent notre serveur de licences qu’après la saisie d’une clé de licence. Elles le font lors de l’activation, au démarrage si au moins {revalidateDays} jours se sont écoulés depuis la dernière vérification, puis tous les {revalidateDays} jours. Chaque vérification envoie :
+{merchant} (Polar Software, Inc.) est le merchant of record et revendeur. Il recueille nom, e-mail, adresse de facturation et données de paiement selon ses conditions. Il gère paiement, taxes, reçus et litiges. Nous ne recevons jamais les données complètes de carte.
 
-- votre clé de licence ;
-- l’identifiant de machine décrit dans [Données d’utilisation](#mac-usage-report) ;
-- le nom de votre Mac défini dans macOS (il inclut souvent votre propre nom) ;
-- la version de l’application et celle de macOS.
+Nous transmettons achat, langue, origine de visite et IP pour le paiement, les taxes et la devise. Nous recevons données de l'acheteur/facturation, montants, IDs de commande/abonnement, renouvellements, annulations et remboursements. Les commandes gardent e-mail, pays, montants et attribution. Un achat sans connexion crée si nécessaire un compte non vérifié pour cette adresse. Motifs et commentaires d'annulation vont à {merchant} et restent avec l'abonnement. Le traitement exécute le contrat ; les dossiers fiscaux et comptables répondent aux obligations légales. Sans les données nécessaires, l'achat ne peut aboutir. Gérez la facturation sur le [portail {merchant}]({portal}) ; consultez [conditions](/fr/terms) et [remboursements](/fr/refund-policy).
 
-La désactivation d’un Mac n’envoie que la clé de licence et l’identifiant de machine.
+### Équipes et contenu partagé {#library}
 
-Notre serveur conserve chaque Mac activé comme appareil du compte titulaire de la licence : son identifiant de machine et son nom, les versions de l’application et de macOS, et la date de son dernier contact. L’activation et la désactivation d’un Mac sont consignées dans le journal d’audit de ce compte avec l’adresse IP et l’agent utilisateur de la requête ; les vérifications périodiques ne le sont pas. Le portail de comptes liste vos appareils par nom. Si notre serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner pendant {graceDays} jours après la dernière vérification réussie.
+L'auteur d'une invitation fournit e-mail, rôle et place. Propriétaires et administrateurs voient noms, e-mails, invitations et changements d'équipe, adresses invitées comprises, mais pas les IP ou navigateurs du journal. Les membres voient équipe, formule, nombre de places et leur rôle. Ces dossiers servent à exécuter le contrat d'équipe.
 
-### Compte TablePro {#mac-account}
+Sur Mac, publier dans Team Library envoie réglages de connexion et requêtes enregistrées au serveur pour les membres autorisés. Sont inclus hôte, port, base, utilisateur, SSH/SSL, commandes de démarrage, Tunnel Command et réglages IA. Les requêtes comprennent nom, SQL, mots-clés et dossiers. Les champs de mot de passe sont exclus ; les secrets écrits en SQL ou texte libre ne sont pas retirés. La bibliothèque affiche le dernier auteur. Quitter l'équipe n'efface pas son contenu. Voir les [délais](#retention). Team Catalog écrit plutôt dans un dossier partagé choisi.
 
-À partir de la version qui ajoute les comptes TablePro, vous vous connectez à l’application Mac avec un [compte TablePro](#account) au lieu d’une clé de licence. L’application ouvre la page de connexion dans une fenêtre de navigateur, où vous pouvez saisir le code de l’e-mail de connexion. Une fois connecté, elle enregistre votre Mac comme appareil de votre compte : l’identifiant de machine décrit ci-dessus, le nom de votre Mac, la plateforme et les versions de l’application et de macOS. Elle récupère ensuite votre offre auprès de notre serveur sous forme de fichier signé une fois par jour tant qu’elle tourne, et ce fichier maintient les fonctionnalités payantes jusqu’à {offlineDays} jours sans notre serveur. Le jeton qui maintient la connexion de l’application est conservé uniquement dans le Trousseau macOS de ce Mac et n’est jamais synchronisé par le Trousseau iCloud, même avec la synchronisation des mots de passe activée.
+### Analyse d'utilisation et du service {#analytics}
 
-Une clé de licence déjà présente sur votre Mac est échangée une seule fois contre une connexion au compte titulaire, puis supprimée du Mac. Vous pouvez retirer des appareils dans l’application ou dans le portail de comptes, et la première fois qu’un Mac utilise votre licence, nous vous prévenons par e-mail.
+Notre intérêt légitime est de comprendre l'usage, corriger les problèmes et mesurer les achats. Mac et Linux envoient les données de [Vos apps](#apps). Le serveur transmet à PostHog connexions, achats, appareils et équipes, avec IDs de compte, sans noms ni e-mails. Ces IDs relient usage et service. L'interrupteur arrête les événements de l'app, pas les requêtes nécessaires ni les événements serveur. Exercez [vos droits](#rights) pour vous opposer ou demander l'effacement.
 
-### Team Library {#library}
+### Newsletter et e-mails {#newsletter}
 
-Team Library fait partie d’une licence Team. Lorsque vous choisissez **Partager > Publier dans la bibliothèque d’équipe…** (Share > Publish to Team Library…) sur une connexion ou **Publier les requêtes enregistrées pour l’équipe…** (Publish Saved Queries to Team…) dans la barre latérale Favorites, l’application Mac envoie ce que vous publiez à notre serveur :
+Amazon SES envoie codes, invitations, avis de compte et newsletters. Les messages de service exécutent votre demande. Les nouvelles inscriptions à la newsletter nécessitent confirmation et consentement. Nous gardons adresse, langue, dates, IP, agents utilisateurs, page d'inscription et version du texte accepté.
 
-- paramètres de connexion : hôte, port, nom de base de données, nom d’utilisateur, paramètres SSH et SSL, options du pilote, commandes de démarrage, paramètres de Tunnel Command, niveau de Safe Mode et paramètres IA, mais jamais les mots de passe ;
-- requêtes enregistrées : noms, texte SQL, mots-clés et dossiers.
+Chaque newsletter mesure ouvertures et clics de chaque destinataire avec une image et `links.news.tablepro.app`. Amazon SES reçoit heure, lien, IP et agent utilisateur, puis les transmet au serveur pour comptage. Bloquer les images arrête la mesure d'ouverture, pas celle des clics. Liens de désinscription et d'e-mail ne sont pas suivis. Aucun interrupteur séparé n'existe pour la mesure. Désinscrivez-vous dans la newsletter ou en un clic dans votre logiciel ; aucun e-mail de confirmation ne suit. Une nouvelle inscription exige confirmation. Rejets définitifs et signalements de spam arrêtent l'envoi. Demandez l'effacement via [contact](#controller).
 
-À partir de la version qui ajoute les comptes TablePro, l’application Mac de chaque membre qui a un poste télécharge les modifications de la bibliothèque au démarrage, toutes les 15 minutes et après chaque publication. Une publication n’envoie que ce qui a changé et ne retire que les éléments que ce Mac a publiés et n’a plus. Si quelqu’un d’autre a modifié un élément avant vous, l’application demande quelle copie garder, et elle indique qui a modifié en dernier chaque requête de l’équipe. Les versions antérieures aux comptes TablePro téléchargent la bibliothèque au démarrage, au maximum une fois par semaine, et le Mac qui publie la télécharge de nouveau juste après. Depuis ces versions, une nouvelle publication remplace la précédente. La section Library du portail de comptes montre chaque élément, avec le nom de la personne qui l’a modifié en dernier, aux membres qui peuvent lire la bibliothèque, et permet aux propriétaires et aux administrateurs de supprimer des éléments. Un élément supprimé reste sur notre serveur avec sa dernière version pour que chaque Mac puisse synchroniser la suppression. Si la licence prend fin, la bibliothèque reste sur notre serveur jusqu’à ce que le propriétaire de l’équipe supprime l’équipe, ce qui supprime aussi la bibliothèque.
+L'ancienne liste a transféré toute adresse non désinscrite, confirmée ou non, dont acheteurs, titulaires de licences et inscriptions bêta. Les désinscriptions ont été conservées ; rejets et plaintes ont rejoint la liste de suppression. Voir la [conservation](#retention).
 
-Team Catalog, l’autre fonctionnalité Team, écrit des fichiers de connexion sans mots de passe dans un dossier partagé de votre choix. Il ne passe pas par notre serveur.
+### Assistance {#support}
 
-### Mises à jour et plugins {#mac-updates}
+Messages, pièces jointes et diagnostics parviennent à nous et au service choisi. Ils peuvent contenir les données ou secrets que vous incluez. Au chargement du chat, Crisp reçoit IP, navigateur et pages vues sur site et portail. Il conserve l'IP si vous engagez une conversation. Nous donnons la langue et, connecté au portail, votre e-mail et ID de compte. Charger le chat partout répond à notre intérêt légitime d'assistance. Les conversations engagées reposent sur le consentement.
 
-- **Vérifications de mise à jour.** Une fois par jour, l’application Mac télécharge le flux de mises à jour depuis GitHub (`raw.githubusercontent.com`). La demande n’envoie aucune information sur votre Mac au-delà de ce que transporte toute requête web : votre adresse IP et un agent utilisateur avec la version de l’application. Pour la désactiver, ouvrez **Réglages > Général > Mise à jour de logiciels** (Settings > General > Software Update) et décochez **Rechercher automatiquement les mises à jour** (Automatically check for updates). Les mises à jour elles-mêmes se téléchargent depuis GitHub.
-- **Catalogue de plugins.** Au démarrage et à l’ouverture des réglages des plugins, l’application télécharge la liste des pilotes et thèmes disponibles depuis GitHub. Aucun réglage ne permet de désactiver cela. Les pilotes et thèmes installés se téléchargent depuis GitHub, et le navigateur de plugins consulte les nombres de téléchargements via l’API GitHub.
+## Vos apps {#apps}
 
-GitHub reçoit votre adresse IP avec ces demandes. Sa propre déclaration de confidentialité s’y applique.
+| App et version | Données d'utilisation | Réglage |
+| --- | --- | --- |
+| Mac 0.86.0, dès 0.86.0-beta.1 | Directement à PostHog ; activées | Settings > General > Privacy |
+| Linux dès 0.1.0-beta.1 | Directement à PostHog ; activées | Preferences > General > Privacy |
+| iPhone et iPad publiés | Rapport par notre serveur ; désactivé avant accord | Settings > Privacy |
 
-### Services que vous choisissez d’utiliser {#mac-third-parties}
+<span id="mac-local"></span>
 
-L’application Mac n’envoie des données à ces services que lorsque vous les configurez, directement, sans passer par TablePro :
+### Données sur l'appareil {#local-data}
 
-- **Vos bases de données, serveurs SSH et proxys**, qui reçoivent ce que vos connexions leur envoient.
-- **Fournisseurs IA.** Lorsque vous ajoutez un fournisseur et utilisez l’assistant IA ou les suggestions en ligne, les demandes vont à ce fournisseur ou à un modèle exécuté sur votre Mac. Par défaut, une demande inclut le type et le nom de la base, les définitions de tables et colonnes du schéma et la requête courante. Les lignes de résultats ne sont envoyées que si vous activez cette option. Les conditions du fournisseur s’appliquent. L’ajout de GitHub Copilot télécharge son serveur de langage depuis npm, et son réglage « Envoyer la télémétrie à GitHub » (Send telemetry to GitHub) est activé au départ.
-- **Services d’authentification** : Microsoft Entra ID, Google, Amazon Web Services et Cloudflare Access, lorsqu’une connexion les utilise.
-- **Apple Maps**, qui fournit les tuiles de carte lorsque vous affichez des résultats sur une carte.
-- **DuckDB**, qui fournit les extensions DuckDB la première fois qu’une requête en utilise une.
-- **Clients MCP.** Le serveur MCP est désactivé par défaut. Il démarre lorsque vous l’activez ou lorsqu’un client MCP configuré lance le pont TablePro ou s’y associe, et il écoute uniquement sur votre Mac (127.0.0.1). Un client IA connecté, comme Claude ou Cursor, reçoit les résultats demandés et les envoie à son propre service selon ses propres conditions.
-- **Serveurs MCP ajoutés.** Une session IA envoie à ce serveur les appels d’outils que vous approuvez, avec leurs arguments.
+Connexions, historique, journaux locaux et onglets restent sur l'appareil sauf partage choisi. Le trafic des bases va à vos serveurs. Les mots de passe utilisent le stockage d'identifiants de la plateforme. Mac référence les clés SSH à leur emplacement. L'analyse exclut hôtes, utilisateurs, SQL, lignes et secrets. Les [intégrations](#integrations), Team Library et l'assistance ont les exceptions décrites ici.
 
-### Données qui restent sur votre Mac {#mac-local}
+### Mac {#mac-app}
 
-Les mots de passe sont conservés dans le Trousseau macOS. Votre liste de connexions, l’historique des requêtes, Query Insights, les instantanés Data Rewind, les réglages et les onglets ouverts sont stockés sur votre Mac. L’application référence les clés SSH à leur emplacement sur le disque sans les copier. Les versions antérieures aux comptes TablePro ne contiennent aucun outil de rapport de plantage ni bibliothèque d’analyse tierce. À partir de la version qui ajoute les comptes TablePro, l’application inclut la bibliothèque de PostHog, qui envoie les données d’utilisation décrites ci-dessus. La bibliothèque contient l’outil de rapport de plantage de PostHog, que l’application laisse désactivé, si bien qu’aucun rapport de plantage n’est envoyé. Elle conserve son identifiant aléatoire, ses paramètres et les événements pas encore envoyés dans des fichiers sous `~/Library/Application Support/com.TablePro`.
+L'analyse directe et le compte décrits commencent à 0.86.0, y compris 0.86.0-beta.1. La connexion enregistre le Mac et récupère la formule. Le jeton reste dans son Keychain et ne passe jamais par iCloud Keychain. Une ancienne clé de licence est échangée contre une connexion puis effacée localement.
 
-## TablePro pour iPhone et iPad {#ios-app}
+#### Données d'utilisation Mac {#mac-usage-report}
 
-**Rien n’est envoyé à TablePro tant que vous n’activez pas Share Usage Data**, au premier démarrage ou plus tard dans **Settings > Privacy**. Si vous le faites, l’application envoie un rapport une fois par jour au même serveur que les versions de l’application Mac antérieures aux comptes TablePro, et notre serveur le transmet à PostHog de la même manière, sans son adresse IP. Le rapport contient un hachage SHA-256 de l’identifiant donné par Apple à l’application sur votre appareil, la plateforme, les versions de l’application et d’iOS, l’architecture du processeur, la langue de l’application, les noms des types de bases de vos connexions ouvertes, le nombre de connexions ouvertes, ainsi que la date et l’heure de votre première tentative de connexion, de votre première connexion réussie et de votre première requête. Il ne contient aucun réglage de mise à jour et indique toujours qu’aucune licence n’est activée, car l’application n’a ni l’un ni l’autre.
+Elles sont activées par défaut, sans question avant le premier événement. Désactivez **Partager des données d’utilisation (Share usage data)** dans **Réglages > Général > Confidentialité (Settings > General > Privacy)**. Un démarrage avec le réglage désactivé ne lance pas PostHog. Aucun rapport automatique de plantage n'est envoyé ; son collecteur est désactivé.
 
-L’application n’effectue aucune vérification de licence, de mise à jour ou demande de plugin. Hormis le rapport facultatif, elle se connecte uniquement à vos bases de données et serveurs SSH, à iCloud d’Apple si vous activez iCloud Sync, et à Microsoft lorsqu’une connexion SQL Server s’authentifie avec Microsoft Entra ID.
+Les événements couvrent usage quotidien avec types/nombre de connexions ouvertes, premier essai, première réussite et première requête par type, blocages de fonctions payantes et motifs, clics de mise à niveau, méthode de connexion/déconnexion et demandes d'achat de licence avec réponses. PostHog ajoute contexte d'appareil, écran, réseau, session, app et système. Il reçoit l'IP et déduit une position approximative. Avant connexion, ID aléatoire d'installation sans profil personnel. Après, ID de compte et profil avec versions, architecture, langue et position. La déconnexion crée un nouvel ID. Voir [champs et destinations](https://docs.tablepro.app/security/privacy#usage-data).
 
-Sur l’appareil, les mots de passe et les clés SSH collées sont conservés dans le Trousseau ; les certificats ne sont jamais synchronisés. L’historique des requêtes reste sur l’appareil. Vos connexions sont ajoutées à l’index Spotlight local pour permettre leur recherche. Pendant l’exécution d’une requête, son Activité en direct affiche le SQL sur l’écran verrouillé et dans la Dynamic Island développée, sauf si vous activez **Settings > Live Activities > Hide Query**.
+#### Mises à jour et plugins {#mac-updates}
 
-Si vous partagez des données d’analyse avec les développeurs dans les réglages de votre iPhone ou iPad, Apple peut nous transmettre des rapports de plantage et statistiques d’utilisation via App Store Connect. L’application ne contient aucun outil propre de rapport de plantage ni bibliothèque d’analyse tierce.
+Flux de mises à jour et catalogue viennent de GitHub via updates.tablepro.app. Téléchargements et compteurs atteignent aussi GitHub. Les requêtes portent IP et agent utilisateur. Désactivez **Rechercher automatiquement les mises à jour (Automatically check for updates)** dans **Réglages > Général > Mise à jour de logiciels (Settings > General > Software Update)** pour arrêter les vérifications automatiques. Le catalogue n'a pas d'interrupteur. Les [détails](https://docs.tablepro.app/security/privacy#update-checks) incluent l'ancien flux.
 
-## iCloud Sync et Handoff {#icloud}
+#### Anciennes versions Mac {#mac-license}
 
-iCloud Sync est désactivé jusqu’à votre activation, sur Mac comme sur iPhone et iPad. Lorsqu’il est activé, les enregistrements vont dans une base privée de votre propre compte iCloud (conteneur `iCloud.com.TablePro`). TablePro ne peut pas les lire.
+Avant 0.86.0, le même réglage activé commande un rapport au serveur. Il contient ID de machine haché, versions, types/nombre de connexions, état de licence et dates de premier essai/réussite. Les réglages de mise à jour envoyés sont écartés. Le serveur actuel relaie vers PostHog avec le pays Cloudflare, sans IP ni clé, sans profil personnel. L'ID peut relier les appareils du compte. Aucun historique dédié n'est conservé aujourd'hui, mais tâches, journaux, sauvegardes et archive peuvent garder des données. Voir [conservation](#retention).
 
-- Sur Mac, vous choisissez les éléments synchronisés : connexions, groupes et tags, réglages, profils SSH, profils d’identifiants (nom et nom d’utilisateur, jamais le mot de passe), favoris de tables et de bases, requêtes enregistrées (texte SQL compris) et dossiers de tables. Un enregistrement de connexion inclut hôte, port, nom d’utilisateur, nom de base, paramètres SSH et SSL, commandes de démarrage, script avant connexion et règles IA. L’historique des requêtes, les instantanés Data Rewind et les sources de mots de passe ne sont jamais synchronisés.
-- iPhone et iPad synchronisent les connexions, groupes et tags.
-- Les mots de passe ne sont synchronisés que si vous activez aussi **Mots de passe** (Passwords) dans Catégories synchronisées (Sync Categories) sur Mac, ou **Sync Passwords** sur iPhone et iPad, ce qui utilise le Trousseau iCloud. Sur Mac, cela synchronise aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs IA et la clé de licence. À partir de la version qui ajoute les comptes TablePro, la clé de licence est supprimée dès qu’elle est échangée contre une connexion, et le jeton qui maintient la connexion de l’application n’est jamais synchronisé.
+Les anciennes versions appellent le service de licence après saisie d'une clé seulement. Elles envoient clé, ID, nom du Mac et versions. Les appareils appartiennent au compte ; activation/désactivation sont auditées avec IP et agent utilisateur. L'[inventaire](https://docs.tablepro.app/security/privacy#older-mac-reports) conserve champs et fréquence.
 
-Sur Mac, iCloud Sync fait partie d’une licence Pro ou Team. Sur iPhone et iPad, il est gratuit.
+### iPhone et iPad {#ios-app}
 
-Handoff transmet l’identifiant de la connexion ouverte et le nom de la table ouverte entre vos appareils, via Apple. Si aucune table n’est ouverte, il transmet le nom de la connexion ou son hôte si elle n’a pas de nom. Il n’envoie aucun réglage ni identifiant de connexion.
+L'app publiée ne rapporte rien sur l'usage avant **Share Usage Data**, au premier lancement ou dans **Settings > Privacy**. La base est le consentement. Un rapport quotidien passe par le serveur vers PostHog sans IP, avec pays Cloudflare et sans profil personnel. Il contient identifiant Apple haché, plateforme, versions, architecture, langue, types/nombre de connexions et dates de premier essai, réussite et première requête. Il indique toujours aucune licence, sans réglage de mise à jour. Aucun contrôle de compte, licence, mise à jour ou plugin n'est fait.
 
-## Site web {#website}
+Bases/SSH, iCloud facultatif et connexion Microsoft Entra pour SQL Server envoient aux services concernés. Mots de passe et clés collées restent dans Keychain ; certificats et historique sur l'appareil. Les connexions entrent dans Spotlight local. Live Activity peut afficher le SQL sur écran verrouillé sauf avec Hide Query. Séparément, Share With App Developers d'Apple peut nous transmettre plantages et statistiques par App Store Connect. L'app n'a ni collecteur de plantage ni bibliothèque d'analyse tierce. Voir [iOS](https://docs.tablepro.app/ios#privacy).
 
-**Hébergement.** Le site et le portail de comptes fonctionnent sur notre serveur, derrière Cloudflare. Comme tout serveur web, ils reçoivent votre adresse IP, l’agent utilisateur de votre navigateur et l’adresse de chaque page demandée.
+### Linux {#linux-app}
 
-**Cloudflare Web Analytics.** Cloudflare ajoute son script Web Analytics aux pages du site ; le portail de comptes ne l’exécute pas. Votre navigateur le charge depuis `static.cloudflareinsights.com` et signale chaque page vue à Cloudflare : la page, le site qui y mène, le temps de chargement, ainsi que votre navigateur, système d’exploitation et type d’appareil. Cloudflare ajoute le pays d’origine de votre connexion. Le script ne dépose aucun cookie et ne stocke rien dans votre navigateur ; Cloudflare indique ne pas utiliser votre adresse IP ou les détails du navigateur pour créer une empreinte numérique. Cloudflare nous montre des totaux, comme les pages vues par page ou par pays, pas un enregistrement de chaque visiteur. Base légale : intérêt légitime.
+Dès 0.1.0-beta.1, se connecter enregistre l'appareil selon [comptes](#account). Les secrets utilisent le trousseau du bureau. Les mises à jour du gestionnaire de paquets suivent votre distributeur. Aucun rapport automatique de plantage n'est envoyé.
 
-**Google Analytics.** Le site charge Google Analytics sur chaque page en mode Consentement. Tant que vous ne choisissez pas **Autoriser** à la question sur les cookies, il ne dépose aucun cookie et n’envoie à Google qu’un signal sans cookie par page, sans identifiant stocké sur votre appareil. Si vous l’autorisez, Google Analytics dépose les cookies `_ga` et `_ga_<ID>` et mesure vos visites, notamment pages consultées, clics de téléchargement et début de règlement. Le stockage publicitaire, la personnalisation des annonces et les données utilisateur publicitaires sont toujours refusés. Google indique que Google Analytics 4 ne journalise ni ne stocke les adresses IP. Notre propriété Google Analytics utilise la durée de conservation par défaut de Google : les données d’utilisateurs et d’événements collectées sont supprimées après 2 mois. Les rapports standards de Google, contenant des totaux plutôt que des identifiants, ne sont pas affectés. Base légale : votre consentement pour les cookies.
+#### Données d'utilisation Linux {#linux-usage-data}
 
-**Chat en direct.** Chaque page du site et du portail de comptes affiche un bouton de chat de notre fournisseur Crisp. Une fois la page chargée, votre navigateur charge le script Crisp depuis `client.crisp.chat`, et Crisp dépose les cookies décrits dans [Cookies et stockage du navigateur](#cookies). Crisp reçoit votre adresse IP, les détails du navigateur, les adresses des pages consultées et les messages écrits, et conserve votre adresse IP si vous commencez une conversation. Nous lui communiquons la langue de la page. Lorsque vous êtes connecté au portail de comptes, nous lui transmettons aussi l’adresse e-mail et l’identifiant de votre compte, qui relient la conversation à votre compte. Nous ne lui communiquons rien d’autre sur vous. Crisp est établi en France.
+Activées par défaut dès 0.1.0-beta.1. Désactivez Share usage data dans Preferences > General > Privacy. Envoi direct à PostHog EU : usage quotidien avec types/nombre de connexions, premier essai/réussite et requête par type, connexions/déconnexions, clics de mise à niveau et affichages de demande de licence/réponses Buy. Sont inclus IDs, versions, architecture, langue et métadonnées SDK. PostHog reçoit IP et position déduite. Avant connexion, ID aléatoire sans profil ; après, profil reliant usage et achats. La déconnexion réinitialise l'ID. Aucun hôte, SQL, ligne ou secret. L'enregistrement d'appareil inclut séparément le nom d'hôte.
 
-**Script de règlement.** Lorsque vous pointez un bouton Acheter ou y accédez avec Tab, votre navigateur charge le script de règlement de {merchant} depuis jsDelivr (`cdn.jsdelivr.net`), qui reçoit votre adresse IP et les détails du navigateur. Le règlement lui-même ne s’ouvre depuis {merchant} qu’au clic.
+Désactiver arrête les nouveaux envois. Une requête en cours peut finir. Les anciens événements restent, tout comme les requêtes de compte et l'analyse serveur. Voir [conservation](#retention), [droits](#rights) et [inventaire](https://docs.tablepro.app/security/privacy#linux-usage-data).
 
-**Vérification de la newsletter.** Lorsque vous commencez à remplir le formulaire de la newsletter, votre navigateur charge Cloudflare Turnstile depuis `challenges.cloudflare.com` pour vérifier qu’une personne s’inscrit ; Cloudflare reçoit votre adresse IP et les détails de votre navigateur.
+<span id="mac-third-parties"></span>
 
-**Attribution des achats.** À votre arrivée sur le site, votre navigateur conserve pendant 90 jours un enregistrement de première visite nommé `tablepro:attribution` dans son stockage local : source de la visite (paramètres `ref` ou `utm_*` du lien suivi, ou site référent), page d’arrivée et date. Si vous commencez un achat, l’enregistrement accompagne la demande de règlement. Notre serveur transmet la source de la visite à {merchant} comme métadonnée du règlement, la conserve avec la commande une fois le paiement fait et l’envoie à PostHog avec le règlement et le paiement. La page d’arrivée et la date ne sont pas conservées.
+## Services choisis {#integrations}
 
-**Documentation.** La documentation sur docs.tablepro.app est hébergée par Mintlify, qui reçoit votre adresse IP et les informations de votre navigateur à chaque page, et les pages chargent leurs polices depuis Google Fonts. La barre de navigation affiche le nombre d’étoiles du dépôt, que votre navigateur récupère auprès de l’API de GitHub ; GitHub reçoit donc aussi votre adresse IP et les informations de votre navigateur. Cette requête ne dépose aucun cookie. La documentation pose sa propre question sur les cookies, car elle ne peut pas lire la réponse que vous avez donnée sur ce site. Tant que vous n’y choisissez pas **Allow**, elle ne dépose aucun cookie et ne conserve aucun identifiant de visiteur. Si vous l’autorisez, Google Analytics dépose les cookies `_ga` et `_ga_<ID>` et mesure vos visites de la documentation, et Mintlify conserve un identifiant de visiteur aléatoire, `mintlify_anonymous_id`, dans le stockage local pour les compter. **Cookie settings**, dans le pied de page de la documentation, modifie votre réponse, et un refus supprime les deux. Base légale : votre consentement.
+Vos bases, SSH et proxies reçoivent directement le trafic demandé. Les services de connexion reçoivent l'authentification quand ils sont configurés. Apple Maps fournit les cartes ; DuckDB, les extensions utilisées. Les auxiliaires de connexion et IA téléchargés contactent leurs fournisseurs. Leurs conditions s'appliquent.
 
-**Langue et réduction régionale.** Pour vous proposer la page dans votre langue lorsque votre navigateur n’en indique aucune de celles du site, et pour afficher la réduction régionale que le règlement appliquerait, le site demande à Cloudflare (`/cdn-cgi/trace`) et à notre serveur de quel pays provient votre connexion, et peut lire le fuseau horaire de votre appareil. Aucune de ces deux requêtes ne transporte de cookie, et la page ne conserve rien des réponses. Base légale : intérêt légitime.
+### iCloud et Handoff {#icloud}
 
-Consulter le site ne dépose aucun cookie propre. Les demandes d’abonnement à la newsletter, de règlement et de vérification de code de réduction depuis le site public omettent les identifiants : elles n’envoient pas les cookies du portail et n’acceptent pas les cookies de la réponse. L’ouverture des pages du portail est distincte : s’y connecter dépose le cookie du portail ci-dessous. Tout ce que le site conserve dans votre navigateur figure dans [Cookies et stockage du navigateur](#cookies).
+iCloud Sync facultatif garde connexions, groupes, tags, réglages, requêtes et profils SSH dans votre CloudKit privé. Sur Mac, la synchronisation inclut aussi les favoris et dossiers de tables et bases de données, ainsi que les noms, identifiants et modes de mot de passe des profils de connexion, jamais leur mot de passe. Apple l'héberge ; nous ne pouvons le lire. La synchronisation de mots de passe est séparée et désactivée, via iCloud Keychain chiffré de bout en bout. Sur Mac elle couvre aussi les autres secrets de ce magasin, comme clés IA et anciennes licences. Les jetons de compte ne synchronisent jamais. Mac exige Pro ou Team ; iOS est gratuit. Handoff transmet ID de connexion et table, ou nom/hôte sans table ouverte, entre appareils Apple, sans secrets. Voir [réglages](https://docs.tablepro.app/features/icloud-sync).
 
-## Achats {#purchases}
+### IA et outils externes {#ai-tools}
 
-Les licences sont vendues par {merchant} (Polar Software, Inc.), notre merchant of record et revendeur. Vous achetez auprès de {merchant} selon ses propres conditions d’achat et sa politique de confidentialité. {merchant} encaisse les paiements, calcule et reverse la taxe sur les ventes ou la TVA, envoie reçus et factures et gère problèmes et litiges de paiement. Il collecte nom, adresse e-mail, adresse de facturation et données de paiement. Nous ne voyons jamais les coordonnées complètes de votre carte.
+L'IA contacte directement le fournisseur choisi ou modèle local. Instructions, schéma, SQL et conversation peuvent être envoyés. Joindre les lignes de la grille est désactivé par défaut. Les résultats d'un outil de requête autorisé rejoignent aussi la conversation et le fournisseur, indépendamment de ce réglage. GitHub Copilot télécharge un auxiliaire depuis npm et active initialement Envoyer la télémétrie à GitHub (Send telemetry to GitHub).
 
-Lorsque vous commencez un règlement, notre serveur indique à {merchant} ce que vous achetez, la langue de la page d’achat, la source de votre visite (voir [Site web](#website)) et votre adresse IP, que {merchant} utilise pour déterminer les taxes et la devise. De {merchant}, nous recevons votre adresse e-mail, votre nom et adresse de facturation tels que saisis, votre achat, les montants, les identifiants de commande et d’abonnement, puis les changements comme renouvellements, résiliations et remboursements. Avec chaque commande, nous conservons l’adresse e-mail, le pays de facturation et les montants.
+MCP est désactivé par défaut et ne démarre pas ainsi, même par pont ou jumelage. Activé, les clients authentifiés accèdent selon vos permissions. Un client IA peut transmettre les résultats à son service. Les serveurs MCP externes reçoivent les arguments approuvés. Voir [contrôles IA/MCP](https://docs.tablepro.app/security/privacy#ai-providers).
 
-Un achat fait sans connexion va au compte TablePro de l’adresse e-mail utilisée pour l’achat, qui est créé s’il n’existe pas et reste non vérifié jusqu’à votre première connexion. Dans le [portail de comptes]({account}), vous pouvez changer la période de facturation ou les postes d’un abonnement, le résilier ou le reprendre, et demander un remboursement. Lors d’une résiliation, le motif choisi et le commentaire éventuel sont transmis à {merchant} et conservés avec l’abonnement. Carte, factures, informations fiscales et adresse de facturation figurent dans le [portail client de {merchant}]({portal}), que le portail de comptes ouvre pour vous. Les remboursements sont décrits dans la [politique de remboursement](/fr/refund-policy), et les droits d’une licence dans les [conditions d’utilisation](/fr/terms).
+## Sites et stockage du navigateur {#website}
 
-## Portail de comptes {#account}
+Serveur et Cloudflare reçoivent IP, agent et pages. Cloudflare Web Analytics compte visites, sources, temps de chargement, catégories de navigateur/système/appareil et pays, sans stockage ni empreinte du navigateur. Notre intérêt légitime est comprendre et entretenir le site.
 
-Le [portail de comptes]({account}) sur account.tablepro.app vous permet de gérer votre compte TablePro : ses licences, appareils, facturation et équipes. Il tourne sur notre serveur, derrière Cloudflare, comme le site.
+Google Analytics se charge en Consent Mode. Avant Allow, il envoie un signal sans cookie ni ID stocké. L'accord active cookies et mesure des visites, téléchargements et achats. Stockage publicitaire, personnalisation et données publicitaires sont toujours refusés. Google indique que GA4 ne stocke pas d'IP.
 
-**Votre compte.** Un compte appartient à une personne et est identifié par une adresse e-mail. Il contient cette adresse, le nom et la langue que vous choisissez, vos méthodes de connexion, les appareils qui y sont connectés, vos licences et commandes, les équipes dont vous faites partie avec votre rôle et votre poste, et un journal d’audit des modifications qui y sont faites, comme les connexions, les nouveaux appareils et les changements d’équipe, avec l’adresse IP et le navigateur de la requête à l’origine de chacune. Nos e-mails vous parviennent dans la langue de votre compte.
+Crisp se charge partout sur site et portail selon [assistance](#support). Pointer ou tabuler vers Buy charge le script {merchant} de jsDelivr, qui reçoit IP et navigateur ; cliquer ouvre le paiement. Commencer le formulaire charge Turnstile contre les abus, intérêt légitime. Pays et fuseau servent aux suggestions de langue et remises régionales, sous intérêt légitime ; les requêtes omettent les cookies et la page ne garde pas les réponses.
 
-**Connexion.** Nous vous envoyons par e-mail un lien et un code à 6 chiffres : le lien fonctionne une fois, le code autorise 5 tentatives, et tous deux expirent après 15 minutes. Vous pouvez aussi ajouter des clés d’accès ; pour chacune, nous conservons la clé publique, le nom que vous lui donnez, si elle se synchronise entre vos appareils, et ses dates d’ajout et de dernière utilisation. Vous pouvez aussi vous connecter avec Apple, GitHub ou Google : le fournisseur nous communique un identifiant vous concernant et votre adresse e-mail vérifiée, et Apple aussi votre nom la première fois. Nous conservons l’identifiant et l’adresse avec votre compte et, pour Apple, un jeton que nous gardons chiffré et révoquons auprès d’Apple lorsque vous dissociez Apple ou supprimez votre compte. Si l’adresse d’un fournisseur appartient à un compte existant, nous envoyons à ce compte un lien et un code à confirmer avant de les associer, sauf si Google gère l’adresse (Gmail ou Google Workspace).
+La première visite crée `tablepro:attribution` pour 90 jours : tags/source, page d'arrivée et date. À l'achat, le serveur passe la source à {merchant} comme métadonnée, la garde avec la commande et l'envoie à PostHog avec achat/paiement. Page et date ne sont pas conservées. La base est l'intérêt légitime de mesurer les sources d'achat. Les requêtes publiques newsletter, achat et remise omettent les identifiants et ne fixent pas de cookie portail. Le portail n'a pas de script analytique, mais le serveur émet des événements.
 
-**Vos équipes.** Lorsque vous invitez quelqu’un dans une équipe, nous conservons son adresse e-mail, son rôle et le fait que l’invitation comprenne ou non un poste, et lui envoyons un lien valable 7 jours. Les propriétaires et les administrateurs voient les membres de l’équipe avec leurs noms et adresses e-mail, ses invitations et son journal d’audit, qui indique qui a modifié quoi dans l’équipe, adresses invitées comprises, mais jamais une adresse IP ni un navigateur. Les membres voient l’équipe, son offre, ses postes et leur propre rôle.
+### Documentation {#docs}
 
-**Vos données.** Dans les réglages, vous pouvez changer votre nom, votre adresse e-mail et votre langue, ajouter et retirer des méthodes de connexion, télécharger les données de votre compte dans un fichier JSON et supprimer votre compte. Vous ne pouvez pas le supprimer tant que vous êtes propriétaire d’une équipe qui compte d’autres membres. La suppression retire vos méthodes de connexion, appareils, licences, appartenances aux équipes et les équipes dont vous êtes le seul membre, supprime l’inscription de votre adresse e-mail à la newsletter, et met fin à vos abonnements sans remboursement. Ce que nous conservons ensuite figure dans [Durée de conservation des données](#retention).
+Mintlify héberge docs.tablepro.app. Requêtes de pages, Google Fonts et étoiles GitHub transmettent IP/navigateur aux fournisseurs. Docs demande un accord distinct. Avant Allow, aucun cookie analytique ni ID visiteur n'y est stocké. Allow active Google Analytics et l'ID Mintlify. Cookie settings au pied des docs retire le choix et les efface. Le choix du site ne passe pas à cette origine.
 
-**Ce que charge le portail.** Le portail ne charge ni Google Analytics, ni Cloudflare Web Analytics, ni aucun autre script d’analyse, et ne pose aucune question sur les cookies. Il affiche le chat de Crisp décrit dans [Site web](#website), et un achat fait depuis le portail ouvre la page de règlement de {merchant} par-dessus la page.
+### Cookies et stockage {#cookies}
 
-## Newsletter {#newsletter}
+Cloudflare Web Analytics ne stocke rien dans le navigateur. Les pages publiques ne fixent pas de cookies propres. Ces durées diffèrent de la conservation chez les fournisseurs. Le stockage nécessaire maintient connexion ou choix ; consentement et intérêt légitime sont précisés ici.
 
-Si vous vous abonnez aux notes de version, nous vous envoyons d’abord un lien de confirmation dans la langue de la page d’inscription. Le lien est valable 7 jours, et une adresse en reçoit au maximum 3 par jour. Une fois confirmée, votre adresse rejoint notre liste de newsletter, que nous conservons sur notre serveur avec cette langue. Pour l’inscription et la confirmation, nous enregistrons le moment de chacune, l’adresse IP et le navigateur d’où elle vient, la page sur laquelle vous vous êtes inscrit et la version du texte de consentement que vous avez accepté. Cloudflare Turnstile vérifie le formulaire, comme décrit dans [Site web](#website).
+| Nom/service | But et déclenchement | Durée et contrôle |
+| --- | --- | --- |
+| `_ga`, `_ga_<ID>` | Google Analytics après accord | Jusqu'à 2 ans ; refuser les efface |
+| `tablepro:analytics-consent` | Choix nécessaire, distinct site/docs | Jusqu'à effacement |
+| `tablepro:attribution` | Source initiale envoyée à l'achat ; intérêt légitime | 90 jours |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Apparence, langues choisies/écartées, avis fermé ; intérêt légitime | Jusqu'à effacement ; thème du portail distinct |
+| `mintlify_anonymous_id` | ID docs après accord local | Jusqu'à effacement ou refus |
+| Cookies `crisp-client/` | Continuité du chat sur chaque page après chargement ; intérêt légitime | 6 mois, renouvelés au retour |
+| `__Host-tp_session` | Connexion nécessaire au portail | 30 jours connecté ; 10 minutes maximum pendant la connexion ; déconnexion l'efface |
+| `locale`, `context`, `sign-in-return-to` | Langue, vue Personal/équipe, retour ; intérêt légitime | Deux premiers jusqu'à effacement ; retour 15 minutes |
 
-Chaque newsletter enregistre les ouvertures et les clics de tous ses destinataires. Elle contient une petite image, et ses liens passent par `links.news.tablepro.app`. Lorsque votre client de messagerie charge l’image ou que vous suivez un lien, Amazon SES enregistre l’heure de l’ouverture ou du clic et le lien cliqué, avec l’adresse IP et l’agent utilisateur qu’envoie votre client de messagerie, et les transmet à notre serveur, qui compte les ouvertures et les clics de chaque newsletter. Un client de messagerie qui ne charge pas les images n’enregistre aucune ouverture. Le lien de désinscription et les liens qui ouvrent un nouvel e-mail ne sont pas suivis.
-
-Chaque newsletter contient un lien de désinscription, qui ouvre une page avec un bouton pour vous désinscrire, et des en-têtes qui permettent à votre application de messagerie de vous désinscrire en un clic. Après désinscription, nous n’envoyons plus de newsletters, ni d’e-mail pour la confirmer, et vous réabonner demande une nouvelle confirmation. Signaler une newsletter comme spam vous désinscrit aussi, et dès qu’un e-mail envoyé à votre adresse est rejeté définitivement, nous cessons d’y envoyer. Pour supprimer aussi l’adresse, écrivez-nous, ou supprimez votre compte TablePro s’il utilise cette adresse.
-
-Lors du passage depuis notre ancien serveur, chaque adresse de sa liste de diffusion qui ne s’était pas désinscrite a rejoint cette liste comme abonnée, confirmée ou non : ce serveur avait aussi ajouté les adresses des acheteurs, des titulaires de licence et des inscrits à la bêta, et leur envoyait des e-mails. Les adresses désinscrites ont été reprises comme désinscrites, et celles dont les e-mails avaient été rejetés ou signalés comme spam ont été placées à la place sur notre liste de suppression, si bien qu’aucune newsletter ne les atteint.
-
-## Cookies et stockage du navigateur {#cookies}
-
-Consulter le site public et ses demandes de newsletter, de règlement et de code de réduction ne déposent aucun cookie propre. La connexion au portail de comptes, même seulement commencée, dépose le seul cookie strictement nécessaire listé ci-dessous. Cloudflare Web Analytics ne dépose aucun cookie et ne stocke rien dans votre navigateur. Les cookies Google Analytics ne sont déposés qu’après votre autorisation. Crisp dépose ses cookies sur chaque page une fois le chat chargé. Rien de tout cela n’est utilisé pour la publicité ou vendu.
-
-- **`_ga` et `_ga_<ID>`** (cookies Google Analytics, jusqu’à 2 ans, uniquement si vous autorisez l’analyse) : identifiant aléatoire de votre navigateur et état de votre visite actuelle. Refuser, ou modifier votre réponse plus tard, les supprime. Base légale : consentement.
-- **`tablepro:analytics-consent`** (stockage local, jusqu’à suppression) : votre réponse à la question sur l’analyse, pour éviter de la reposer sur chaque page. Le portail de comptes ne charge aucune analyse : il ne pose pas cette question et ne lit pas la réponse. Base légale : strictement nécessaire pour respecter votre choix.
-- **`tablepro:attribution`** (stockage local, 90 jours) : enregistrement de première visite décrit dans [Site web](#website). Il ne contient aucun identifiant personnel et n’accompagne qu’une demande de règlement, qui transmet la source de la visite à {merchant}. Base légale : intérêt légitime.
-- **`theme`** (stockage local, jusqu’à suppression) : votre choix d’apparence claire, sombre ou système. Le portail de comptes conserve le sien. Base légale : intérêt légitime.
-- **`tablepro:language`** (stockage local, jusqu’à suppression) : la langue que vous avez choisie dans le menu des langues ou dans la barre de langue, et chaque langue dont vous avez fermé la suggestion, pour qu’elle ne soit plus proposée. Base légale : intérêt légitime.
-- **`tablepro:campaign-closed`** (stockage local, jusqu’à suppression) : la promotion dont vous avez fermé l’annonce au-dessus de l’en-tête, pour qu’elle reste fermée sur toutes les pages jusqu’à la fin de cette promotion. Base légale : intérêt légitime.
-- **`mintlify_anonymous_id`** (stockage local sur docs.tablepro.app, déposé par Mintlify, uniquement si vous y autorisez Google Analytics) : l’identifiant de visiteur décrit dans [Site web](#website). Un refus le supprime. La documentation conserve sa propre réponse `tablepro:analytics-consent`. Base légale : consentement.
-- **Cookies commençant par `crisp-client/`** (Crisp, par exemple `crisp-client/session/…` ; 6 mois, renouvelés à votre retour ; déposés sur chaque page après le chargement du chat) : maintiennent le chat et votre conversation entre pages et visites. Base légale : intérêt légitime, pour proposer une assistance sur chaque page.
-- **`__Host-tp_session`** (cookie du portail de comptes, 30 jours à partir de la connexion) : maintient votre connexion. Avant la connexion, il n’est déposé que pendant une connexion en cours par clé d’accès, Apple, GitHub, Google ou depuis une application, pour 10 minutes au plus. La déconnexion le supprime. Les demandes de newsletter, de règlement et de code de réduction depuis le site public omettent les identifiants et ne le reçoivent jamais. Base légale : strictement nécessaire.
-- **`locale`, `context` et `sign-in-return-to`** (stockage local du portail de comptes) : la langue choisie dans le portail avant la connexion et le fait que vous ayez ouvert en dernier Personnel ou une équipe, tous deux jusqu’à suppression, et pendant 15 minutes la page à rouvrir après un lien de connexion reçu par e-mail. Base légale : intérêt légitime.
-
-Vous pouvez modifier ou retirer votre réponse sur l’analyse à tout moment via **Paramètres des cookies** au pied de chaque page, ou ici :
+Modifiez l'accord analytique avec Cookie settings au pied de page ou ici :
 
 <cookie-settings></cookie-settings>
 
-## Base légale {#lawful-basis}
+## Destinataires {#sharing}
 
-Pour les lecteurs de l’Espace économique européen et du Royaume-Uni, les bases légales au titre du RGPD et du UK GDPR sont :
+| Destinataire | Données et but |
+| --- | --- |
+| [OVH]({ovhPrivacy}) | Serveur et dossiers du service |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 et sauvegardes, Turnstile, Cloudflare Web Analytics |
+| [Amazon Web Services]({awsPrivacy}) | E-mails Amazon SES, livraison et engagement ; liens CloudFront, événements SNS/SQS |
+| [PostHog EU]({posthogPrivacy}) | Analyse app/serveur ; IDs sans noms/e-mails ; requêtes directes avec IP |
+| [{merchant}]({merchantPrivacy}) | Merchant of record indépendant ; paiement, facturation et achats |
+| [Crisp]({crispPrivacy}) | Chat, navigateur/pages et identité du compte connecté |
+| [Google]({googlePrivacy}) | Analyse site/docs et polices ; connexion choisie |
+| [Mintlify]({mintlifyPrivacy}) | Hébergement docs et mesure consentie |
+| [GitHub]({githubPrivacy}) | Téléchargements, mises à jour, plugins, étoiles, tickets publics et connexion facultative |
+| [Apple]({applePrivacy}) | Connexion facultative ; services/diagnostics des sections apps/intégrations |
+| [jsDelivr]({jsdelivrPrivacy}) | Script de paiement avec IP et navigateur |
 
-- **Contrat** (art. 6(1)(b)) : vente et fourniture d’une licence, votre compte avec ses méthodes de connexion et ses appareils, vérifications de licence, portail de comptes et Team Library.
-- **Intérêt légitime** (art. 6(1)(f)) : données d’utilisation de l’application Mac et leur analyse dans PostHog, événements sur les connexions, achats, appareils et équipes que notre serveur envoie à PostHog, journal d’audit du compte, sécurité et prévention des abus, y compris Cloudflare Turnstile sur le formulaire de newsletter, journaux du serveur, Cloudflare Web Analytics, enregistrement d’attribution des achats, recherche du pays pour la langue et la réduction régionale, et chat sur chaque page.
-- **Consentement** (art. 6(1)(a)) : cookies Google Analytics, rapport d’utilisation iPhone et iPad, newsletter et conversations initiées dans le chat.
-- **Obligation légale** (art. 6(1)(c)) : documents fiscaux et comptables et réponses aux demandes légales.
+Les membres reçoivent contenu et informations selon leur rôle. Les intégrations reçoivent ce que vous leur adressez. Nous ne vendons pas les données et ne les partageons pas pour la publicité. Toute autre divulgation exige une obligation légale. Les politiques des fournisseurs s'appliquent aussi.
 
-## Qui reçoit les données {#sharing}
+## Lieux de traitement {#transfers}
 
-Nous partageons les données personnelles uniquement avec les services nécessaires au fonctionnement de TablePro :
+OVH et Amazon SES sont à Singapour (`ap-southeast-1` pour SES). PostHog est dans l'UE. Crisp est basé en France. {publisherName} opère depuis le Vietnam. Les fournisseurs américains, dont {merchant}, Google, GitHub, Cloudflare, Amazon Web Services et Mintlify, traitent aux États-Unis. Stockage et sauvegardes peuvent concerner d'autres pays. Les garanties EEE/Royaume-Uni reposent sur les clauses contractuelles types ou autres mécanismes approuvés des fournisseurs ; Google utilise aussi EU-US Data Privacy Framework. Demandez des informations via [contact](#controller).
 
-- **{merchant}**, merchant of record des achats.
-- **Amazon Web Services**, dont le service Amazon SES envoie nos e-mails depuis sa région Asie-Pacifique (Singapour) : liens et codes de connexion, invitations d’équipe, avis de compte et de sécurité, et newsletters. Il nous signale lorsqu’un e-mail est remis, rejeté ou marqué comme spam, et nous enregistrons les rejets et les signalements de spam pour cesser d’envoyer à ces adresses. Pour les newsletters, il signale aussi chaque ouverture et chaque clic, comme décrit dans [Newsletter](#newsletter).
-- **Notre hébergeur et Cloudflare**, pour le site, le portail de comptes et le serveur avec lequel les applications communiquent. Cloudflare compte aussi les pages vues avec Cloudflare Web Analytics et vérifie le formulaire de newsletter avec Turnstile.
-- **Google**, pour Google Analytics sur le site et la documentation.
-- **Crisp**, pour le chat sur chaque page du site et du portail de comptes.
-- **PostHog** (EU Cloud), notre service d’analyse produit, qui reçoit les rapports d’utilisation des applications et les événements de notre serveur sur les connexions, achats, appareils et équipes, avec l’identifiant de votre compte mais jamais votre adresse e-mail ni votre nom. Les données d’utilisation que l’application Mac envoie directement parviennent à PostHog avec l’adresse IP de votre Mac.
-- **Apple, GitHub et Google**, lorsque vous vous connectez à votre compte avec eux.
-- **jsDelivr**, qui fournit au navigateur le script de règlement de {merchant} lorsque vous pointez un bouton Acheter.
-- **Mintlify**, qui héberge la documentation sur docs.tablepro.app.
-- **GitHub**, qui héberge le flux de mises à jour, le catalogue de plugins et les téléchargements, et fournit le nombre d’étoiles affiché dans la documentation.
+## Conservation {#retention}
 
-Nous ne vendons pas de données personnelles et ne les partageons pas avec des annonceurs.
+Aucune limite n'est fixée là où le tableau le dit. Supprimer le compte n'efface pas PostHog ou Crisp. Écrivez via [contact](#controller) pour obtenir leur effacement sur demande.
 
-## Transferts internationaux {#transfers}
+| Dossiers | Conservation et effacement |
+| --- | --- |
+| Analyse PostHog | Aucune limite fixée. Désactiver laisse les événements passés. Demandez l'effacement. |
+| Tâches et journaux serveur | Les tâches gardent les rapports en envoi/nouvel essai. Les journaux servent à la sécurité et au diagnostic. Aucune limite globale ; aucune promesse d'absence de copies. |
+| Appareils | Même retirés, jusqu'à suppression du compte |
+| Compte et audit | Compte, accès, appareils, licences et adhésions sont supprimés. Les audits restent sans limite ; champs e-mail et IP/agent de l'acteur sont retirés, mais des adresses en texte libre peuvent rester. |
+| Commandes et avis fournisseurs | Commandes pour fiscalité/comptabilité sans limite fixée. Les liens compte/e-mail sont retirés. Les événements {merchant}, Amazon SES et Apple restent ; données personnelles d'achat et de destinataire/engagement sont nettoyées pour le compte supprimé. |
+| Team Library | Un élément supprimé garde sa dernière version pour sync. Suppression ordinaire d'équipe : bibliothèque effacée après 30 jours, restaurable avant. Suppression du compte du seul propriétaire : équipe/bibliothèque effacées immédiatement. Fin de licence sans effacement. |
+| Authentification | Liens/codes expirent après 15 minutes, effacés 7 jours plus tard. Sessions : 30 jours. Jetons : expirent 90 jours après usage, effacés 30 jours après. Tâches e-mail gardent le texte clair jusqu'au nettoyage : un jour après envoi ou 7 après abandon. |
+| Newsletter | Nouvelles adresses non confirmées : 30 jours. Confirmées/migrées jusqu'à demande ou suppression du compte de cette adresse. Désinscription garde l'adresse marquée désinscrite. |
+| Suppression d'envoi | Adresses rejetées/plaignantes et premières/dernières dates restent après suppression du compte/inscription pour bloquer l'envoi. Aucune limite. |
+| Google Analytics | Données utilisateur/événement : 2 mois ; rapports standard totaux distincts |
+| Cloudflare Web Analytics | Totaux des six derniers mois accessibles |
+| Assistance | Crisp et boîte e-mail jusqu'à effacement, notamment sur demande. Aucune limite fixée. |
+| Sauvegardes et archive | Aucune limite. Supprimer le compte ne les efface pas. L'ancienne base complète contient noms/e-mails, licences, commandes, équipes, noms d'appareils, abonnés, inscriptions bêta, e-mails, rapports d'usage et journaux de licence avec IP. |
 
-Les services ci-dessus opèrent dans plusieurs pays ; vos données peuvent donc être traitées hors de votre pays. {merchant}, Google, GitHub, Cloudflare et Mintlify traitent des données aux États-Unis ; Google le fait au titre du cadre de protection des données UE–États-Unis et des clauses contractuelles types. PostHog les traite dans l’Union européenne. Amazon Web Services envoie nos e-mails depuis Singapour. Lorsque la loi l’exige, les transferts depuis l’EEE et le Royaume-Uni reposent sur les clauses contractuelles types ou un autre mécanisme approuvé.
+## Choix et droits {#rights}
 
-## Durée de conservation des données {#retention}
+Utilisez les interrupteurs, Cookie settings site/docs et désinscription. Retirer le consentement agit pour l'avenir sans invalider le passé. Les interrupteurs n'effacent rien et n'arrêtent pas l'analyse serveur. Dans [Settings du portail]({account}), exportez ou supprimez le compte ; cela ne couvre pas tous les dossiers conservés.
 
-- **Rapports d’utilisation et événements d’analyse** : notre serveur n’en garde aucune copie une fois transmis à PostHog. Nous n’avons pas fixé de durée pour eux dans PostHog.
-- **Données de notre ancien serveur** : une copie de toute sa base de données est conservée sans limite de durée dans une archive. Elle comprend les licences, commandes et membres d’équipe avec leurs adresses e-mail et leurs noms ; les Mac activés sur une licence, avec leurs noms ; les abonnés à la newsletter et les inscriptions à la bêta ; la trace des e-mails qu’il a envoyés ; et les rapports d’utilisation et journaux de demandes de licence qu’il conservait, avec leurs adresses IP.
-- **Appareils** : conservés, y compris ceux que vous avez retirés, jusqu’à la suppression de votre compte.
-- **Journal d’audit de votre compte** : conservé tant que le compte existe, avec l’adresse IP et le navigateur de chaque modification que vous avez faite. La suppression du compte en retire vos adresses e-mail ainsi que l’adresse IP et le navigateur de vos actions ; la trace de chaque modification demeure.
-- **Commandes** : conservées à des fins fiscales et comptables. La suppression de votre compte en retire votre adresse e-mail et votre compte.
-- **Notifications de {merchant}, Amazon SES et Apple** : conservées. Celles de {merchant} contiennent votre nom, votre adresse e-mail et votre adresse de facturation ; la suppression de votre compte les retire de celles qui concernent vos achats. Celles d’Amazon SES contiennent l’adresse à laquelle chaque e-mail a été envoyé et, pour une newsletter, l’adresse IP et l’agent utilisateur de chaque ouverture et de chaque clic ; la suppression de votre compte les retire de celles qui concernent les e-mails envoyés à votre adresse, ainsi que de notre registre de chaque e-mail envoyé.
-- **Team Library** : jusqu’à la modification d’un élément ; un élément supprimé garde sa dernière version. La bibliothèque est supprimée avec son équipe, 30 jours après que le propriétaire a supprimé l’équipe ; d’ici là, le propriétaire peut la restaurer. Elle reste après la fin d’une licence.
-- **Liens et codes de connexion** : expirent après 15 minutes et sont supprimés 7 jours plus tard. Les sessions du portail durent 30 jours. Le jeton qui maintient la connexion d’une application expire 90 jours après sa dernière utilisation par l’application, et est supprimé 30 jours plus tard.
-- **Comptes supprimés** : le compte, ses méthodes de connexion, appareils, licences et appartenances aux équipes sont supprimés immédiatement. Les commandes et le journal d’audit restent comme indiqué ci-dessus. Ce que notre ancien serveur détenait à votre sujet reste dans son archive, décrite ci-dessus.
-- **Newsletter** : une adresse qui n’est pas confirmée dans les 30 jours est supprimée avec son lien de confirmation. Une adresse confirmée, ou reprise de notre ancien serveur, reste dans notre liste avec la trace de son inscription jusqu’à ce que nous la supprimions à votre demande ou que vous supprimiez le compte TablePro qui l’utilise ; après désinscription, elle est conservée comme désinscrite afin qu’aucune newsletter ne lui parvienne.
-- **Liste de suppression** : une adresse dont un e-mail a été rejeté définitivement, ou dont le titulaire a signalé l’un de nos e-mails comme spam, reste sur notre liste de suppression avec la date de la première et de la dernière fois, y compris après la suppression du compte ou de l’abonnement à la newsletter qui l’utilisait. Ainsi, nous ne lui envoyons plus aucun e-mail.
-- **Google Analytics** : données d’utilisateurs et d’événements pendant 2 mois, durée par défaut de Google utilisée par notre propriété. Les cookies durent jusqu’à 2 ans ou sont supprimés au refus.
-- **Cloudflare Web Analytics** : Cloudflare nous montre les totaux de pages vues des six derniers mois. Rien n’est stocké dans votre navigateur.
-- **Chat et e-mails d’assistance** : conservés par Crisp et dans notre messagerie jusqu’à suppression. Demandez-nous de supprimer vos conversations et e-mails.
-- **Journaux du serveur** : les journaux de notre serveur web et de notre serveur, conservés sur notre serveur pour la sécurité et le diagnostic. Aucune durée fixe n’a encore été définie.
+Selon votre résidence, demandez accès, correction, effacement, restriction, portabilité ou opposition à l'intérêt légitime. Aucun compte requis : écrivez via [contact](#controller). Nous pouvons demander des détails pour retrouver les dossiers, comme l'ID d'installation. N'envoyez jamais une clé de licence en clair par e-mail. Nous répondons sous un mois. Vous pouvez saisir votre autorité de protection des données. Les obligations légales peuvent limiter l'effacement.
 
-## Vos droits {#rights}
-
-Selon votre lieu de résidence, vous pouvez nous demander de :
-
-- vous fournir une copie des données personnelles détenues sur vous (accès) ;
-- les corriger (rectification) ;
-- les supprimer (effacement), sauf celles à conserver légalement ;
-- limiter leur utilisation (limitation) ;
-- vous les envoyer dans un format structuré lisible par machine (portabilité) ;
-- cesser de les utiliser sur la base de l’intérêt légitime (opposition).
-
-Vous pouvez retirer votre consentement à tout moment et saisir votre autorité de protection des données. Pour exercer ces droits, écrivez à [{email}](mailto:{email}). Nous répondons sous 30 jours. Dans le [portail de comptes]({account}), les réglages vous donnent aussi une copie des données de votre compte et suppriment le compte. Pour tout le reste, comme une adresse de newsletter ou un Mac sans compte, indiquez l’adresse e-mail, la clé de licence ou l’appareil concerné. Les données détenues par {merchant}, Google, Crisp ou GitHub sont aussi couvertes par leurs propres politiques.
+### Droits régionaux {#regional-rights}
 
 **Résidents de Californie.** Le California Consumer Privacy Act vous donne le droit de savoir quelles informations personnelles nous collectons, d’en demander la suppression, de refuser leur vente et de ne pas être traité différemment pour avoir exercé ces droits. Nous ne vendons pas d’informations personnelles.
 
 ## Enfants {#children}
 
-TablePro ne s’adresse pas aux enfants de moins de 16 ans et nous ne collectons pas sciemment leurs données personnelles. Si vous pensez qu’un enfant nous a fourni des données, contactez-nous et nous les supprimerons.
+TablePro ne vise pas les moins de 16 ans et nous ne recueillons pas sciemment leurs données. Si vous pensez qu'un enfant nous en a donné, contactez-nous pour les supprimer.
 
 ## Sécurité {#security}
 
-Le trafic entre applications, site, portail de comptes et serveur utilise HTTPS. Les comptes TablePro n’ont pas de mot de passe. Les liens et codes de connexion, les jetons qui maintiennent la connexion des applications et les jetons d’API d’équipe sont stockés sous forme de hachages. La tâche qui envoie par e-mail un lien et un code de connexion les garde en clair jusqu’à sa suppression : un jour après l’envoi de l’e-mail, ou 7 jours après l’abandon de l’envoi. Tous deux cessent de fonctionner 15 minutes après votre demande. L’accès à nos systèmes est limité à {publisherName} et aux prestataires indiqués dans [Qui reçoit les données](#sharing). Aucun système n’est parfaitement sécurisé. Pour signaler une vulnérabilité, consultez la [page Sécurité](/fr/security#report) ou écrivez à [{email}](mailto:{email}).
+Nos services utilisent HTTPS. Les comptes n'ont pas de mots de passe. Identifiants de connexion et jetons API d'équipe sont hachés, sauf la tâche e-mail temporaire en [conservation](#retention). L'accès est limité à {publisherName} et aux [destinataires](#sharing). Aucun système n'est parfaitement sûr. Signalez les failles via la [page sécurité](/fr/security#report).
 
-## Modification de cette politique {#changes}
+## Modifications {#changes}
 
-Lorsque cette politique change, nous la mettons à jour ici avec une nouvelle date de « Dernière mise à jour » et, si la loi l’exige, vous en informons directement.
-
-## Contact {#contact}
-
-Pour toute question sur la confidentialité ou cette politique, écrivez à [{email}](mailto:{email}).
+La date de mise à jour figure sur la page. Les versions antérieures restent dans l'[historique du dépôt web public]({webGithub}/commits/main/resources/data/legal/en/privacy.md). Nous actualisons avant un nouvel usage, avertissons directement lorsque la loi l'exige et recueillons à nouveau le consentement si nécessaire.
