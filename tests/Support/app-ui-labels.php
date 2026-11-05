@@ -2,6 +2,7 @@
 
 // Every label the copy puts in a <ui> tag or the legal pages quote, with the app's own wording in the languages the app ships:
 // French, Korean and Chinese on the Mac, Korean and Chinese on iPhone. From the apps' Localizable.xcstrings.
+// Linux paths use linux/po/vi.po; untranslated labels stay in English.
 // A missing language, or an empty row, means the app shows the label in English there.
 
 return [
@@ -73,6 +74,7 @@ return [
     'Open the File Read-Only' => ['fr' => 'Ouvrir le fichier en lecture seule'],
     'Password' => ['fr' => 'Mot de passe', 'ko' => '암호', 'zh-Hans' => '密码', 'zh-Hant' => '密碼'],
     'Passwords' => ['fr' => 'Mots de passe', 'ko' => '암호', 'zh-Hans' => '密码', 'zh-Hant' => '密碼'],
+    'Preferences > General > Privacy > Share Usage Data' => ['vi' => 'Tùy chỉnh > Tổng quát > Privacy > Share Usage Data'],
     'Preview' => ['fr' => 'Aperçu', 'ko' => '미리보기', 'zh-Hans' => '预览', 'zh-Hant' => '預覽'],
     'Preview SQL' => ['fr' => 'Aperçu SQL', 'ko' => 'SQL 미리보기', 'zh-Hans' => '预览 SQL', 'zh-Hant' => '預覽 SQL'],
     'Project ID' => ['fr' => 'ID du projet', 'ko' => '프로젝트 ID', 'zh-Hans' => '项目 ID', 'zh-Hant' => '專案 ID'],

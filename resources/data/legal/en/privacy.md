@@ -1,14 +1,14 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
-This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
+This policy covers TablePro for Mac, TablePro for Linux, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at account.tablepro.app. It describes what each of them actually sends and stores today. The apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
 
 ## Summary {#summary}
 
-- The Mac app sends usage data. It is on by default and you can turn it off. The iPhone and iPad app sends a usage report only if you turn it on.
+- The Mac app sends usage data. It is on by default and you can turn it off. The iPhone and iPad app sends a usage report only if you turn it on. The [Linux app](#linux-usage-data) sends usage data only after you choose Share.
 - If you sign in to a TablePro account or activate a license key, the Mac app registers your Mac with our server, including its name, and checks your plan with it regularly.
 - The queries you run, your results and your passwords are not sent to TablePro. The exception is what you choose to publish to a Team Library: connection settings (never passwords) and saved queries.
 - AI requests go from the Mac app directly to the AI provider you set up, not to us.
@@ -105,6 +105,26 @@ The Mac app sends data to these services only when you set them up, and directly
 ### Data that stays on your Mac {#mac-local}
 
 Passwords are kept in the macOS Keychain. Your connection list, query history, Query Insights, Data Rewind snapshots, settings and open tabs are stored on your Mac. The app references SSH keys where they are on disk and does not copy them. Versions before TablePro accounts contain no crash reporter and no third-party analytics library. From the version that adds TablePro accounts, the app includes PostHog's library, which sends the usage data described above. The library contains PostHog's crash reporter, which the app leaves turned off, so it sends no crash reports. The library keeps its random ID, its settings and any events not sent yet in files under `~/Library/Application Support/com.TablePro`.
+
+## Linux usage data {#linux-usage-data}
+
+**Nothing is sent until you choose Share.** With your consent, {publisherName} uses this data to understand app use, account activity and upgrade choices, and decide what to improve in TablePro. You can stop sharing in **Preferences > General > Privacy > Share Usage Data**.
+
+While sharing is on, the app sends an event:
+
+- once per local day while it runs, with the database types and number of open connections;
+- for the first connection attempt, first successful connection and first successful query in the query editor, each once per installation, with the database type. A milestone reached while sharing is off is never sent later;
+- each time you sign in, with the sign-in method, and each time you choose to sign out;
+- each time you click Upgrade or Buy a License, with where you clicked;
+- each time the license prompt appears and when you answer it with Buy a License. The number of days you have used the app stays on your computer.
+
+Before sign-in, events carry a random installation ID. After sign-in, they carry your account ID instead, linking earlier activity to that account. Its PostHog profile holds the app and OS versions, processor architecture and interface language. Signing out starts a new random ID.
+
+Events go directly to PostHog, our processor for product analytics, at `eu.i.posthog.com` in its EU cloud. Each event also carries the OS name and version, analytics library version, an event ID and time. PostHog sees your IP address and derives an approximate location, such as country and city. See [International transfers](#transfers).
+
+These events never contain database host names, credentials, SQL text or row contents. The first-query event records that a query succeeded and its database type, not the query itself.
+
+Turning sharing off withdraws consent and stops future sending, including queued events. A request already in transit may still arrive. It does not erase data already received. We have [not set a time limit for these events](#retention). For access or deletion, see [Your rights](#rights) or email [{email}](mailto:{email}).
 
 ## TablePro for iPhone and iPad {#ios-app}
 
@@ -207,7 +227,7 @@ For readers in the European Economic Area and the United Kingdom, the lawful bas
 
 - **Contract** (Art. 6(1)(b)): selling and providing a license, your account with its sign-in methods and devices, license checks, the account portal and the Team Library.
 - **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage data and its analysis in PostHog, the events about sign-ins, purchases, devices and teams our server sends to PostHog, the account's audit log, security and abuse prevention, including Cloudflare Turnstile on the newsletter form, server logs, Cloudflare Web Analytics, the purchase attribution record, the country lookups for the language bar and the regional discount, and the live chat on every page.
-- **Consent** (Art. 6(1)(a)): Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and the conversations you start in live chat.
+- **Consent** (Art. 6(1)(a)): the Linux app's usage data, Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and the conversations you start in live chat.
 - **Legal obligation** (Art. 6(1)(c)): tax and accounting records, and answers to lawful requests.
 
 ## Who receives data {#sharing}

@@ -1,14 +1,14 @@
 ---
 title: 隐私政策
 description: TablePro 应用、网站和账户门户收集什么信息、发送到哪里、保存多久，以及如何更改或删除。
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
-本政策涵盖 Mac 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 account.tablepro.app 的账户门户。它描述各产品目前实际发送和存储的信息。两款应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
+本政策涵盖 Mac 版 TablePro、Linux 版 TablePro、iPhone 和 iPad 版 TablePro、位于 tablepro.app 的网站、位于 docs.tablepro.app 的文档，以及位于 account.tablepro.app 的账户门户。它描述各产品目前实际发送和存储的信息。这些应用均采用 AGPLv3 开源，您可在 [TablePro 仓库]({github})中查看发送下列数据的代码。
 
 ## 概要 {#summary}
 
-- Mac 应用会发送使用数据。该功能默认开启，可以关闭。iPhone 和 iPad 应用仅在您开启后发送使用情况报告。
+- Mac 应用会发送使用数据。该功能默认开启，可以关闭。iPhone 和 iPad 应用仅在您开启后发送使用情况报告。 [Linux 应用](#linux-usage-data)仅在您选择 Share 后发送使用数据。
 - 登录 TablePro 账户或激活许可证密钥后，Mac 应用会将您的 Mac 连同名称登记到我们的服务器，并定期向服务器核对您的方案。
 - 您运行的查询、结果和密码不会发送给 TablePro。例外是您自行选择发布到 Team Library 的连接设置（从不包含密码）和已保存查询。
 - AI 请求从 Mac 应用直接发送至您设置的 AI 提供商，不经过我们。
@@ -105,6 +105,26 @@ GitHub 会随这些请求收到您的 IP 地址，这些请求适用 GitHub 自�
 ### 留在 Mac 上的数据 {#mac-local}
 
 密码保存在 macOS 钥匙串中。连接列表、查询历史、Query Insights、Data Rewind 快照、设置和打开的选项卡存储在 Mac 上。应用引用磁盘上的 SSH 密钥，不会复制它们。支持 TablePro 账户之前的版本不包含崩溃报告工具或第三方分析库。从支持 TablePro 账户的版本起，应用包含 PostHog 的库，用于发送上文所述的使用数据。该库包含 PostHog 的崩溃报告工具，但应用将其保持关闭，因此不会发送崩溃报告。该库将其随机 ID、配置和尚未发送的事件保存在 `~/Library/Application Support/com.TablePro` 下的文件中。
+
+## Linux 使用数据 {#linux-usage-data}
+
+**在您选择 Share 之前，不会发送任何数据。** 经您同意，{publisherName} 使用这些数据了解应用使用情况、账户活动和升级选择，以决定如何改进 TablePro。您可以在 **Preferences > General > Privacy > Share Usage Data** 中停止共享。
+
+开启共享时，应用会发送以下事件：
+
+- 应用运行期间，每个本地日发送一次数据库类型和已打开的连接数；
+- 每次安装后，首次连接尝试、首次成功连接和在查询编辑器中首次成功执行查询时各发送一次，并附带数据库类型。关闭共享时达到的里程碑不会在之后补发；
+- 每次登录时发送登录方式，每次主动选择退出登录时发送退出事件；
+- 每次点击 Upgrade 或 Buy a License 时，发送点击位置；
+- 每次显示购买许可证提示，以及您通过 Buy a License 回应时。应用使用天数只保存在您的计算机上。
+
+登录前，事件携带随机安装 ID。登录后改用账户 ID，将之前的活动关联到该账户。其 PostHog 个人资料保存应用和操作系统版本、处理器架构及界面语言。退出登录会生成新的随机 ID。
+
+事件直接发送到 PostHog 欧盟云的 `eu.i.posthog.com`。PostHog 是我们用于产品分析的数据处理者。每个事件还携带操作系统名称和版本、分析库版本、事件 ID 及时间。PostHog 会看到您的 IP 地址，并据此推算国家和城市等大致位置。请参阅[国际数据传输](#transfers)。
+
+这些事件绝不包含数据库主机名、凭据、SQL 文本或行内容。首次查询事件只记录查询成功及数据库类型，不记录查询本身。
+
+关闭共享即撤回同意，并停止后续发送，包括排队中的事件。已在传输中的请求仍可能送达。这不会删除已经收到的数据：我们[尚未为这些事件设定保留期限](#retention)。如需访问或删除数据，请参阅[您的权利](#rights)，或发送邮件至 [{email}](mailto:{email})。
 
 ## iPhone 和 iPad 版 TablePro {#ios-app}
 
@@ -207,7 +227,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 - **合同**（第 6 条第 1 款 (b)）：许可证销售和提供、您的账户及其登录方式和设备、许可证验证、账户门户和 Team Library。
 - **合法利益**（第 6 条第 1 款 (f)）：Mac 应用使用数据及其在 PostHog 中的分析、我们的服务器发送给 PostHog 的关于登录、购买、设备和团队的事件、账户审计日志、安全和滥用防范（包括邮件订阅表单上的 Cloudflare Turnstile）、服务器日志、Cloudflare Web Analytics、购买归因记录、为语言与地区折扣进行的国家查询，以及每个页面的在线聊天。
-- **同意**（第 6 条第 1 款 (a)）：Google Analytics Cookie、iPhone 和 iPad 应用使用报告、邮件订阅和您主动发起的在线聊天。
+- **同意**（第 6 条第 1 款 (a)）：Linux 应用使用数据、Google Analytics Cookie、iPhone 和 iPad 应用使用报告、邮件订阅和您主动发起的在线聊天。
 - **法律义务**（第 6 条第 1 款 (c)）：税务与会计记录，以及对合法请求的回应。
 
 ## 数据接收方 {#sharing}

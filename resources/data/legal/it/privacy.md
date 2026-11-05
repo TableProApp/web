@@ -1,14 +1,14 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
-Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account account.tablepro.app. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
+Questa informativa riguarda TablePro per Mac, TablePro per Linux, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account account.tablepro.app. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
 
 ## Riepilogo {#summary}
 
-- L'app per Mac invia dati di utilizzo. L'invio è attivo per impostazione predefinita e puoi disattivarlo. L'app per iPhone e iPad invia un rapporto sull'utilizzo solo se lo attivi.
+- L'app per Mac invia dati di utilizzo. L'invio è attivo per impostazione predefinita e puoi disattivarlo. L'app per iPhone e iPad invia un rapporto sull'utilizzo solo se lo attivi. L’[app per Linux](#linux-usage-data) invia dati di utilizzo solo dopo che scegli Share.
 - Se accedi a un account TablePro o attivi una chiave di licenza, l'app per Mac registra il tuo Mac sul nostro server, con il suo nome, e verifica regolarmente il tuo piano.
 - Le query che esegui, i risultati e le password non vengono inviati a TablePro. Fa eccezione ciò che scegli di pubblicare nella Team Library: impostazioni delle connessioni (mai le password) e query salvate.
 - Le richieste di IA vengono inviate direttamente dall'app per Mac al fornitore di IA che configuri, non a noi.
@@ -105,6 +105,26 @@ L'app per Mac invia dati a questi servizi solo quando li configuri, direttamente
 ### Dati che rimangono sul Mac {#mac-local}
 
 Le password sono conservate nel Portachiavi di macOS. L'elenco delle connessioni, la cronologia delle query, Query Insights, le istantanee di Data Rewind, le impostazioni e le schede aperte sono conservati sul Mac. L'app fa riferimento alle chiavi SSH nella loro posizione sul disco e non le copia. Le versioni precedenti agli account TablePro non contengono un sistema di segnalazione degli arresti anomali né una libreria di analisi di terze parti. Dalla versione che introduce gli account TablePro, l'app include la libreria di PostHog, che invia i dati di utilizzo descritti sopra. La libreria contiene il sistema di segnalazione degli arresti anomali di PostHog, che l'app lascia disattivato, quindi non viene inviata alcuna segnalazione. La libreria conserva il suo ID casuale, le sue impostazioni e gli eventi non ancora inviati in file sotto `~/Library/Application Support/com.TablePro`.
+
+## Dati di utilizzo su Linux {#linux-usage-data}
+
+**Non viene inviato nulla finché non scegli Share.** Con il tuo consenso, {publisherName} usa questi dati per capire l’uso dell’app, l’attività degli account e le scelte di upgrade, e decidere cosa migliorare in TablePro. Puoi interrompere la condivisione in **Preferences > General > Privacy > Share Usage Data**.
+
+Quando la condivisione è attiva, l’app invia un evento:
+
+- una volta per giorno locale mentre è in esecuzione, con i tipi di database e il numero di connessioni aperte;
+- per il primo tentativo di connessione, la prima connessione riuscita e la prima query riuscita nell’editor, ciascuno una volta per installazione, con il tipo di database. Un traguardo raggiunto con la condivisione disattivata non viene inviato in seguito;
+- ogni volta che accedi, con il metodo di accesso, e ogni volta che scegli di uscire dall’account;
+- a ogni clic su Upgrade o Buy a License, con il punto dell’app in cui hai fatto clic;
+- ogni volta che compare l’invito ad acquistare una licenza e quando rispondi con Buy a License. Il numero di giorni di utilizzo dell’app resta sul tuo computer.
+
+Prima dell’accesso, gli eventi contengono un ID di installazione casuale. Dopo l’accesso contengono invece l’ID dell’account, collegando a esso l’attività precedente. Il suo profilo PostHog conserva le versioni dell’app e del sistema operativo, l’architettura del processore e la lingua dell’interfaccia. Uscire dall’account genera un nuovo ID casuale.
+
+Gli eventi vanno direttamente a PostHog, nostro responsabile del trattamento per l’analisi del prodotto, su `eu.i.posthog.com`, nel suo cloud UE. Ogni evento contiene anche il nome e la versione del sistema operativo, la versione della libreria di analisi, un ID evento e l’ora. PostHog vede il tuo indirizzo IP e ne ricava una posizione approssimativa, come paese e città. Vedi [Trasferimenti internazionali](#transfers).
+
+Questi eventi non contengono mai nomi host dei database, credenziali, testo SQL o contenuti delle righe. L’evento della prima query registra che è riuscita e il tipo di database, non la query stessa.
+
+Disattivare la condivisione revoca il consenso e interrompe gli invii futuri, inclusi gli eventi in attesa. Una richiesta già in transito può ancora arrivare. Non cancella i dati già ricevuti. [Non abbiamo fissato un limite di conservazione per questi eventi](#retention). Per accedervi o cancellarli, vedi [I tuoi diritti](#rights) o scrivi a [{email}](mailto:{email}).
 
 ## TablePro per iPhone e iPad {#ios-app}
 
@@ -207,7 +227,7 @@ Per i lettori dello Spazio economico europeo e del Regno Unito, le basi giuridic
 
 - **Contratto** (Art. 6(1)(b)): vendita e fornitura della licenza, il tuo account con i suoi metodi di accesso e dispositivi, verifiche della licenza, portale account e Team Library.
 - **Legittimo interesse** (Art. 6(1)(f)): dati di utilizzo dell'app per Mac e relativa analisi in PostHog, eventi su accessi, acquisti, dispositivi e team che il nostro server invia a PostHog, registro di audit dell'account, sicurezza e prevenzione degli abusi, compreso Cloudflare Turnstile nel modulo della newsletter, registri del server, Cloudflare Web Analytics, record di attribuzione degli acquisti, ricerca del paese per la lingua e lo sconto regionale, e chat dal vivo su ogni pagina.
-- **Consenso** (Art. 6(1)(a)): cookie di Google Analytics, rapporto sull'utilizzo dell'app per iPhone e iPad, newsletter e conversazioni che avvii nella chat dal vivo.
+- **Consenso** (Art. 6(1)(a)): dati di utilizzo dell’app per Linux, cookie di Google Analytics, rapporto sull'utilizzo dell'app per iPhone e iPad, newsletter e conversazioni che avvii nella chat dal vivo.
 - **Obbligo legale** (Art. 6(1)(c)): registri fiscali e contabili e risposte a richieste legittime.
 
 ## Chi riceve i dati {#sharing}

@@ -110,11 +110,24 @@ function appLabelsLegalBold(string $line): array
  */
 function appLabelsOnLegalLine(string $line, array $known): array
 {
+    $bold = array_filter(appLabelsLegalBold($line), fn(string $text): bool => array_key_exists($text, $known));
+    // A full path has its own translations; its last label may differ on another platform.
+    $inline = str_replace(array_map(fn(string $label): string => "**{$label}**", $bold), '', $line);
+
     return [
-        ...array_filter(appLabelsLegalBold($line), fn(string $text): bool => array_key_exists($text, $known)),
-        ...array_filter(APP_LABELS_LEGAL_INLINE, fn(string $label): bool => str_contains($line, $label)),
+        ...$bold,
+        ...array_filter(APP_LABELS_LEGAL_INLINE, fn(string $label): bool => str_contains($inline, $label)),
     ];
 }
+
+it('checks a full menu path once and still checks labels outside it', function (): void {
+    $path = 'Preferences > General > Privacy > Share Usage Data';
+    $known = require base_path('tests/Support/app-ui-labels.php');
+
+    expect(appLabelsOnLegalLine("Open **{$path}**.", $known))->toBe([$path]);
+    expect(appLabelsOnLegalLine("Open **{$path}** or enable Share Usage Data.", $known))
+        ->toBe([$path, 'Share Usage Data']);
+});
 
 it('knows the app’s wording for every label the English copy names', function (): void {
     $known = require base_path('tests/Support/app-ui-labels.php');

@@ -1,14 +1,14 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
-Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
+Chính sách này áp dụng cho TablePro cho Mac, TablePro cho Linux, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Các ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
 
 ## Tóm tắt {#summary}
 
-- Ứng dụng cho Mac gửi dữ liệu sử dụng. Tính năng này bật sẵn và bạn có thể tắt. Ứng dụng cho iPhone và iPad chỉ gửi báo cáo sử dụng khi bạn bật nó lên.
+- Ứng dụng cho Mac gửi dữ liệu sử dụng. Tính năng này bật sẵn và bạn có thể tắt. Ứng dụng cho iPhone và iPad chỉ gửi báo cáo sử dụng khi bạn bật nó lên. [Ứng dụng Linux](#linux-usage-data) chỉ gửi dữ liệu sử dụng sau khi bạn chọn Share.
 - Nếu bạn đăng nhập tài khoản TablePro hoặc kích hoạt license key, ứng dụng cho Mac đăng ký máy Mac của bạn với máy chủ của chúng tôi, kèm tên máy, và định kỳ kiểm tra gói của bạn với máy chủ.
 - Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
 - Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
@@ -105,6 +105,26 @@ GitHub nhận địa chỉ IP của bạn qua các yêu cầu này. Tuyên bố 
 ### Dữ liệu nằm lại trên máy Mac {#mac-local}
 
 Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Các phiên bản trước khi có tài khoản TablePro không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba. Từ phiên bản có tài khoản TablePro, ứng dụng có thư viện của PostHog, dùng để gửi dữ liệu sử dụng nêu ở trên. Thư viện này có công cụ báo lỗi (crash reporter) của PostHog, nhưng ứng dụng luôn để nó tắt, nên không gửi báo cáo lỗi nào. Thư viện lưu mã ngẫu nhiên, cấu hình và các sự kiện chưa gửi của nó trong các tệp dưới `~/Library/Application Support/com.TablePro`.
+
+## Dữ liệu sử dụng trên Linux {#linux-usage-data}
+
+**Không có dữ liệu nào được gửi cho đến khi bạn chọn Share.** Khi có sự đồng ý của bạn, {publisherName} dùng dữ liệu này để hiểu cách dùng ứng dụng, hoạt động tài khoản và lựa chọn nâng cấp, rồi quyết định cần cải thiện gì trong TablePro. Bạn có thể ngừng chia sẻ tại **Tùy chỉnh > Tổng quát > Privacy > Share Usage Data** (Preferences > General > Privacy > Share Usage Data).
+
+Khi bật chia sẻ, ứng dụng gửi một sự kiện:
+
+- mỗi ngày theo giờ địa phương khi ứng dụng chạy, kèm loại database và số connection đang mở;
+- cho lần thử kết nối đầu tiên, lần kết nối thành công đầu tiên và query thành công đầu tiên trong query editor, mỗi mốc một lần cho mỗi bản cài đặt, kèm loại database. Mốc đạt được khi tắt chia sẻ sẽ không được gửi lại sau đó;
+- mỗi lần bạn đăng nhập, kèm phương thức đăng nhập, và mỗi lần bạn chọn đăng xuất;
+- mỗi lần bạn bấm Upgrade hoặc Buy a License, kèm vị trí bạn bấm;
+- mỗi lần lời nhắc mua license xuất hiện và khi bạn trả lời bằng Buy a License. Số ngày bạn dùng ứng dụng chỉ được lưu trên máy tính của bạn.
+
+Trước khi đăng nhập, sự kiện mang ID ngẫu nhiên của bản cài đặt. Sau khi đăng nhập, chúng mang ID tài khoản, liên kết hoạt động trước đó với tài khoản này. Hồ sơ trên PostHog lưu phiên bản ứng dụng và hệ điều hành, kiến trúc bộ xử lý và ngôn ngữ giao diện. Đăng xuất tạo một ID ngẫu nhiên mới.
+
+Sự kiện được gửi thẳng đến PostHog, bên xử lý dữ liệu phân tích sản phẩm của chúng tôi, tại `eu.i.posthog.com` trên dịch vụ đám mây EU của họ. Mỗi sự kiện còn mang tên và phiên bản hệ điều hành, phiên bản thư viện phân tích, ID và thời gian sự kiện. PostHog thấy địa chỉ IP của bạn và suy ra vị trí gần đúng, như quốc gia và thành phố. Xem [Chuyển dữ liệu quốc tế](#transfers).
+
+Các sự kiện này không bao giờ chứa tên host của database, thông tin xác thực, nội dung SQL hay dữ liệu trong các hàng. Sự kiện query đầu tiên ghi nhận query đã thành công và loại database, không ghi nội dung query.
+
+Tắt chia sẻ là rút lại sự đồng ý và dừng việc gửi tiếp, kể cả các sự kiện đang chờ. Yêu cầu đang trên đường truyền vẫn có thể đến nơi. Thao tác này không xóa dữ liệu đã nhận: chúng tôi [chưa đặt thời hạn lưu các sự kiện này](#retention). Để truy cập hoặc xóa dữ liệu, xem [Quyền của bạn](#rights) hoặc gửi email đến [{email}](mailto:{email}).
 
 ## TablePro cho iPhone và iPad {#ios-app}
 
@@ -207,7 +227,7 @@ Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, tài khoản của bạn cùng các cách đăng nhập và thiết bị, kiểm tra license, trang tài khoản và Team Library.
 - **Lợi ích hợp pháp** (Điều 6(1)(f)): dữ liệu sử dụng của ứng dụng cho Mac và việc phân tích dữ liệu đó trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
-- **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
+- **Sự đồng ý** (Điều 6(1)(a)): dữ liệu sử dụng của ứng dụng Linux, cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 
 ## Bên nhận dữ liệu {#sharing}

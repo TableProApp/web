@@ -1,14 +1,14 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
-Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
+Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk Linux, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di account.tablepro.app. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Aplikasi-aplikasi ini bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
 
 ## Ringkasan {#summary}
 
-- Aplikasi Mac mengirim data penggunaan. Fitur ini aktif secara bawaan dan dapat Anda nonaktifkan. Aplikasi iPhone dan iPad hanya mengirim laporan penggunaan jika Anda mengaktifkannya.
+- Aplikasi Mac mengirim data penggunaan. Fitur ini aktif secara bawaan dan dapat Anda nonaktifkan. Aplikasi iPhone dan iPad hanya mengirim laporan penggunaan jika Anda mengaktifkannya. [Aplikasi Linux](#linux-usage-data) hanya mengirim data penggunaan setelah Anda memilih Share.
 - Jika Anda masuk ke akun TablePro atau mengaktifkan kunci lisensi, aplikasi Mac mendaftarkan Mac Anda di server kami, termasuk namanya, dan memeriksa paket Anda secara berkala.
 - Kueri yang Anda jalankan, hasilnya, dan kata sandi Anda tidak dikirim ke TablePro. Pengecualiannya adalah data yang Anda pilih untuk dipublikasikan ke Team Library: pengaturan koneksi (tanpa kata sandi) dan kueri tersimpan.
 - Permintaan AI dikirim langsung dari aplikasi Mac ke penyedia AI yang Anda konfigurasikan, bukan kepada kami.
@@ -105,6 +105,26 @@ Aplikasi Mac hanya mengirim data ke layanan berikut saat Anda mengonfigurasikann
 ### Data yang tetap berada di Mac Anda {#mac-local}
 
 Kata sandi disimpan di Rantai Kunci macOS. Daftar koneksi, riwayat kueri, Query Insights, snapshot Data Rewind, pengaturan, dan tab terbuka disimpan di Mac Anda. Aplikasi merujuk kunci SSH di lokasi aslinya pada disk dan tidak menyalinnya. Versi sebelum akun TablePro tidak berisi pelapor kerusakan atau pustaka analitik pihak ketiga. Mulai versi yang menghadirkan akun TablePro, aplikasi menyertakan pustaka PostHog, yang mengirim data penggunaan yang dijelaskan di atas. Pustaka itu berisi pelapor kerusakan PostHog, yang dibiarkan nonaktif oleh aplikasi, sehingga tidak ada laporan kerusakan yang dikirim. Pustaka menyimpan ID acaknya, pengaturannya, dan peristiwa yang belum terkirim dalam file di bawah `~/Library/Application Support/com.TablePro`.
+
+## Data penggunaan di Linux {#linux-usage-data}
+
+**Tidak ada data yang dikirim sampai Anda memilih Share.** Dengan persetujuan Anda, {publisherName} menggunakan data ini untuk memahami penggunaan aplikasi, aktivitas akun, dan pilihan peningkatan paket, lalu menentukan perbaikan untuk TablePro. Anda dapat berhenti berbagi di **Preferences > General > Privacy > Share Usage Data**.
+
+Saat berbagi diaktifkan, aplikasi mengirim peristiwa:
+
+- sekali per hari menurut waktu setempat saat aplikasi berjalan, dengan jenis database dan jumlah koneksi terbuka;
+- untuk percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama yang berhasil di editor, masing-masing sekali per instalasi, dengan jenis database. Pencapaian saat berbagi dinonaktifkan tidak pernah dikirim kemudian;
+- setiap kali Anda masuk, dengan metode masuk, dan setiap kali Anda memilih keluar dari akun;
+- setiap kali Anda mengklik Upgrade atau Buy a License, dengan lokasi klik;
+- setiap kali ajakan membeli lisensi muncul dan saat Anda menjawab dengan Buy a License. Jumlah hari penggunaan aplikasi tetap tersimpan di komputer Anda.
+
+Sebelum masuk, peristiwa membawa ID instalasi acak. Setelah masuk, peristiwa membawa ID akun Anda, yang menghubungkan aktivitas sebelumnya dengan akun itu. Profil PostHog akun menyimpan versi aplikasi dan sistem operasi, arsitektur prosesor, dan bahasa antarmuka. Keluar dari akun membuat ID acak baru.
+
+Peristiwa langsung dikirim ke PostHog, pemroses data kami untuk analisis produk, di `eu.i.posthog.com` pada cloud Uni Eropanya. Setiap peristiwa juga membawa nama dan versi sistem operasi, versi pustaka analisis, ID peristiwa, dan waktu. PostHog melihat alamat IP Anda dan memperkirakan lokasi, seperti negara dan kota. Lihat [Transfer internasional](#transfers).
+
+Peristiwa ini tidak pernah berisi nama host database, kredensial, teks SQL, atau isi baris. Peristiwa kueri pertama mencatat bahwa kueri berhasil dan jenis database, bukan kuerinya.
+
+Menonaktifkan berbagi menarik persetujuan Anda dan menghentikan pengiriman berikutnya, termasuk peristiwa dalam antrean. Permintaan yang sudah dalam perjalanan masih dapat tiba. Ini tidak menghapus data yang sudah diterima. Kami [belum menetapkan batas waktu penyimpanan peristiwa ini](#retention). Untuk mengakses atau menghapus data, lihat [Hak Anda](#rights) atau kirim email ke [{email}](mailto:{email}).
 
 ## TablePro untuk iPhone dan iPad {#ios-app}
 
@@ -207,7 +227,7 @@ Bagi pembaca di Wilayah Ekonomi Eropa dan Britania Raya, dasar hukum berdasarkan
 
 - **Kontrak** (Art. 6(1)(b)): penjualan dan penyediaan lisensi, akun Anda beserta metode masuk dan perangkatnya, pemeriksaan lisensi, portal akun, dan Team Library.
 - **Kepentingan yang sah** (Art. 6(1)(f)): data penggunaan aplikasi Mac dan analisisnya di PostHog, peristiwa tentang proses masuk, pembelian, perangkat, dan tim yang dikirim server kami ke PostHog, log audit akun, keamanan dan pencegahan penyalahgunaan, termasuk Cloudflare Turnstile pada formulir buletin, log server, Cloudflare Web Analytics, catatan atribusi pembelian, pencarian negara untuk bahasa dan diskon regional, dan chat langsung di setiap halaman.
-- **Persetujuan** (Art. 6(1)(a)): cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
+- **Persetujuan** (Art. 6(1)(a)): data penggunaan aplikasi Linux, cookie Google Analytics, laporan penggunaan aplikasi iPhone dan iPad, buletin, serta percakapan yang Anda mulai melalui chat langsung.
 - **Kewajiban hukum** (Art. 6(1)(c)): catatan pajak dan akuntansi, serta jawaban atas permintaan yang sah menurut hukum.
 
 ## Penerima data {#sharing}

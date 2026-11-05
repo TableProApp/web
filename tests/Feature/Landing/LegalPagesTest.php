@@ -144,8 +144,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'November 4, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '4 tháng 11 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'November 5, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '5 tháng 11 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -188,6 +188,13 @@ it('takes every number and address from the data files, the same ones in every l
         Assert::assertStringNotContainsString('github.com', $source);
         Assert::assertStringNotContainsString('polar.sh', $source);
     }
+})->with(legalLocales());
+
+it('renders the Linux consent link target in every language', function (string $locale): void {
+    $document = app(LegalDocuments::class)->render('privacy', $locale);
+
+    expect(substr_count($document['html'], '<h2 id="linux-usage-data">'))->toBe(1);
+    expect(array_column($document['toc'], 'id'))->toContain('linux-usage-data');
 })->with(legalLocales());
 
 it('closes every bold span on the rendered page', function (string $locale): void {
