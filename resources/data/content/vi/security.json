@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "Tới TablePro",
-                    "text": "Cho tới khi bạn đăng nhập hoặc kích hoạt license, dữ liệu duy nhất mà ứng dụng cho Mac gửi tới TablePro là dữ liệu sử dụng, bật sẵn và có thể tắt trong Cài đặt. Từ phiên bản có tài khoản TablePro, dữ liệu này đi thẳng tới PostHog, dịch vụ phân tích của chúng tôi đặt tại EU, thay vì qua máy chủ của TablePro. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Dữ liệu sử dụng không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng."
+                    "text": "Mac 0.86.0 (từ 0.86.0-beta.1) gửi dữ liệu sử dụng trực tiếp đến PostHog EU, bật mặc định và tắt được trong Cài đặt. Ứng dụng iPhone và iPad đã phát hành chỉ gửi báo cáo khi bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Chẩn đoán Apple là luồng riêng. Dữ liệu sử dụng không chứa hostname, username, mật khẩu, query hay hàng dữ liệu."
                 }
             ],
             "limits": [
-                "Ứng dụng cho Mac bắt đầu gửi dữ liệu sử dụng mà không hỏi trước. Từ phiên bản có tài khoản TablePro, PostHog nhận địa chỉ IP của máy Mac cùng mỗi sự kiện và suy ra vị trí gần đúng từ địa chỉ đó, còn nhật ký kiểm tra (audit log) của tài khoản lưu địa chỉ IP của mỗi lần đăng nhập và mỗi thiết bị mới."
+                "Mac gửi dữ liệu sử dụng mà không hỏi trước. PostHog nhận IP và suy ra vị trí gần đúng. Khi đăng nhập, sử dụng có thể liên kết với tài khoản và mua hàng. Thay đổi tài khoản cũng giữ IP trong audit log. Tắt dữ liệu ứng dụng không dừng analytics máy chủ."
             ],
             "links": [
                 {

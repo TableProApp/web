@@ -1,281 +1,228 @@
 ---
 title: Chính sách quyền riêng tư
-description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-11-04"
+description: Dữ liệu TablePro thu thập, mục đích, bên nhận, thời gian lưu giữ và quyền lựa chọn của bạn.
+updatedAt: "2026-11-05"
 ---
 
-Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản account.tablepro.app. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
+Chính sách này áp dụng cho TablePro trên Mac, Linux, iPhone và iPad; tablepro.app; docs.tablepro.app; cùng dịch vụ tài khoản, mua hàng, hỗ trợ và newsletter. [Danh mục kỹ thuật](https://docs.tablepro.app/security/privacy) liệt kê trường dữ liệu, endpoint và cách kiểm soát. Mã nguồn ứng dụng nằm trong [repository công khai]({github}).
 
 ## Tóm tắt {#summary}
 
-- Ứng dụng cho Mac gửi dữ liệu sử dụng. Tính năng này bật sẵn và bạn có thể tắt. Ứng dụng cho iPhone và iPad chỉ gửi báo cáo sử dụng khi bạn bật nó lên.
-- Nếu bạn đăng nhập tài khoản TablePro hoặc kích hoạt license key, ứng dụng cho Mac đăng ký máy Mac của bạn với máy chủ của chúng tôi, kèm tên máy, và định kỳ kiểm tra gói của bạn với máy chủ.
-- Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
-- Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
-- Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, dịch vụ phân tích sản phẩm của chúng tôi đặt tại EU, nên PostHog nhận được địa chỉ IP của máy Mac của bạn và suy ra vị trí gần đúng từ địa chỉ đó. Các phiên bản trước đó và ứng dụng cho iPhone và iPad gửi báo cáo sử dụng tới máy chủ của chúng tôi, và máy chủ chuyển báo cáo sang PostHog, không kèm địa chỉ IP. Tài khoản của bạn giữ nhật ký các thay đổi trên tài khoản, như các lần đăng nhập và thiết bị mới, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi.
-- Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép. Mọi trang cũng tải chat trực tuyến của chúng tôi, Crisp, và Crisp đặt cookie riêng của mình.
-- Trang tài khoản tại account.tablepro.app không tải script phân tích nào. Trang này đặt một cookie để giữ đăng nhập, và trong phần Cài đặt bạn có thể tải về dữ liệu tài khoản hoặc xóa tài khoản.
-- Amazon SES, một dịch vụ của Amazon Web Services, gửi email của chúng tôi. Bản tin ghi lại thời điểm mỗi người nhận mở nó và những liên kết trong đó mà họ bấm vào.
-- Việc mua license do {merchant}, merchant of record của chúng tôi, thực hiện.
+Query và kết quả thông thường đi giữa thiết bị và database của bạn. Dữ liệu sử dụng không chứa SQL, hàng dữ liệu hay thông tin xác thực. Nội dung bạn chủ động đăng lên Team Library, gửi hỗ trợ hoặc chia sẻ với AI và công cụ ngoài sẽ đến những bên nhận đó.
+
+Dữ liệu sử dụng trên Mac và Linux được bật mặc định, có công tắc tắt. Ứng dụng iPhone và iPad đã phát hành chỉ gửi báo cáo sau khi bạn đồng ý. Analytics gửi trực tiếp từ ứng dụng có thể liên kết với tài khoản và giao dịch. Tắt công tắc không dừng lưu lượng tài khoản hay analytics từ máy chủ.
+
+Website dùng analytics và tải Crisp trên mọi trang. Cookie Google Analytics cần lựa chọn của bạn. Newsletter đo lượt mở và nhấp. Xóa tài khoản vẫn để lại một số bản ghi, gồm dữ liệu tại PostHog và Crisp. Đọc [thời gian lưu giữ](#retention) và [quyền của bạn](#rights) trước khi chọn. [Bên kiểm soát](#controller) tiếp nhận yêu cầu quyền riêng tư, kể cả khi bạn không có tài khoản.
+
+<span id="contact"></span>
 
 ## Bên chịu trách nhiệm {#controller}
 
-{publisherName}, một lập trình viên độc lập tại {publisherCity}, {publisherCountry}, là người phát hành các ứng dụng TablePro và website này, và chịu trách nhiệm về dữ liệu cá nhân được mô tả ở đây (bên kiểm soát dữ liệu). Mọi câu hỏi về chính sách này hoặc về dữ liệu của bạn, hãy gửi email tới [{email}](mailto:{email}).
+{publisherName}, lập trình viên cá nhân tại {publisherCity}, {publisherCountry}, là bên kiểm soát dữ liệu cá nhân mô tả ở đây. Liên hệ [{email}](mailto:{email}). Chúng tôi không có cán bộ bảo vệ dữ liệu. Với nhóm, chúng tôi kiểm soát bản ghi tài khoản, lời mời và dịch vụ. Nội dung Team Library được xử lý theo chỉ dẫn của nhóm; nhóm quyết định nội dung đăng và người được truy cập.
 
-## TablePro cho Mac {#mac-app}
+<span id="lawful-basis"></span>
 
-### Dữ liệu sử dụng {#mac-usage-report}
+## Dữ liệu và mục đích sử dụng {#data-use}
 
-Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac gửi dữ liệu sử dụng thẳng tới PostHog, dịch vụ phân tích sản phẩm của chúng tôi, tại `eu.i.posthog.com` ở EU. **Tính năng này bật sẵn, và ứng dụng không hỏi bạn trước khi gửi sự kiện đầu tiên.** Để tắt, mở **Cài đặt > Tổng quát > Quyền riêng tư** (Settings > General > Privacy) và bỏ chọn **Chia sẻ dữ liệu sử dụng** (Share usage data). Khi tùy chọn này tắt, ứng dụng không gửi gì cho PostHog, và nếu ứng dụng khởi động lúc tùy chọn đang tắt, thư viện của PostHog hoàn toàn không được khởi chạy.
+Với EEA và Anh, cơ sở pháp lý được nêu theo mục đích: hợp đồng (Điều 6(1)(b)), lợi ích chính đáng (6(1)(f)), sự đồng ý (6(1)(a)) hoặc nghĩa vụ pháp lý (6(1)(c)). Chúng tôi không đưa ra quyết định tự động có tác động pháp lý hoặc tác động đáng kể tương tự.
 
-Ứng dụng gửi một sự kiện:
+<span id="mac-account"></span>
 
-- mỗi ngày một lần khi đang chạy, kèm tên các loại cơ sở dữ liệu của những connection bạn đang mở (ví dụ "PostgreSQL") và số connection đang mở;
-- khi bạn thử kết nối lần đầu, khi kết nối thành công lần đầu và khi bạn chạy query đầu tiên, mỗi sự kiện kèm loại cơ sở dữ liệu;
-- khi ứng dụng báo một tính năng trả phí không dùng được, mỗi tính năng một lần trong mỗi lần chạy ứng dụng, kèm tên tính năng và lý do, chẳng hạn bạn chưa đăng nhập;
-- khi bạn bấm nâng cấp, kèm nơi trong ứng dụng mà bạn bấm;
-- khi bạn đăng nhập, kèm cách đăng nhập (trong ứng dụng, bằng license key, hoặc bằng việc đổi key đã có trên máy Mac), và khi bạn đăng xuất.
+### Tài khoản và thiết bị {#account}
 
-Thư viện của PostHog thêm vào mọi sự kiện model máy Mac, kích thước màn hình, múi giờ và ngôn ngữ của máy, máy có đang dùng Wi-Fi hay không, phiên bản, số build và bundle ID của ứng dụng, phiên bản macOS, phiên bản của thư viện và một mã phiên ngẫu nhiên. PostHog nhận địa chỉ IP của máy Mac của bạn trong mỗi request và suy ra vị trí gần đúng từ địa chỉ đó, chẳng hạn quốc gia và thành phố. Khi tùy chọn này bật, thư viện còn lấy cấu hình và feature flag từ PostHog (`/config` từ `eu-assets.i.posthog.com` và `/flags` từ `eu.i.posthog.com`).
+Việc dùng miễn phí trên máy không yêu cầu tài khoản. Dịch vụ tài khoản cần email của bạn. Chúng tôi lưu tên, ngôn ngữ, phương thức đăng nhập, license, đơn hàng, thiết bị, vai trò và seat trong nhóm. Đăng ký thiết bị Mac và Linux gửi mã máy, tên thiết bị, nền tảng và phiên bản ứng dụng/hệ điều hành. Tên thiết bị có thể chứa tên bạn. Đây là luồng riêng với dữ liệu sử dụng. Mục đích và cơ sở là cung cấp tài khoản và gói theo hợp đồng.
 
-Trước khi bạn đăng nhập, các sự kiện mang một mã ngẫu nhiên do thư viện tạo trên máy Mac của bạn, và PostHog không tạo hồ sơ cá nhân nào cho mã đó. Khi bạn đăng nhập, các sự kiện mang mã tài khoản của bạn, và hồ sơ của tài khoản đó trên PostHog lưu phiên bản ứng dụng và macOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng và vị trí gần đúng mà PostHog suy ra từ địa chỉ IP. Nhờ đó các lần cài đặt được nối với các lần đăng nhập và mua hàng của bạn. Đăng xuất sẽ tạo một mã ngẫu nhiên mới. Dữ liệu sử dụng của ứng dụng không còn kèm mã máy, trạng thái kích hoạt license hay cài đặt cập nhật của bạn.
+Đăng nhập dùng link và mã qua email, passkey, hoặc Apple, GitHub hay Google. Bản ghi passkey gồm khóa công khai, tên, trạng thái sync và ngày dùng. Nhà cung cấp danh tính gửi ID và email đã xác minh; Apple có thể gửi thêm tên. Token Apple được mã hóa và thu hồi khi bạn bỏ liên kết hoặc xóa tài khoản. Chúng tôi ghi thay đổi tài khoản kèm IP và user agent. Lợi ích chính đáng là bảo vệ tài khoản và điều tra lạm dụng.
 
-Các phiên bản trước khi có tài khoản TablePro thì gửi báo cáo sử dụng tới `api.tablepro.app`, theo cùng tùy chọn, khoảng mười giây sau khi khởi động, rồi mỗi ngày một lần khi đang chạy. Một báo cáo gồm:
+[Cổng tài khoản]({account}) cho phép sửa hồ sơ và cách đăng nhập, quản lý thiết bị, xuất dữ liệu JSON và xóa tài khoản. Bạn chưa thể xóa khi sở hữu nhóm còn thành viên khác. Xóa chấm dứt subscription mà không hoàn tiền. [Thời gian lưu giữ](#retention) giải thích phần còn lại.
 
-- mã máy (machine ID): giá trị băm SHA-256 của UUID phần cứng máy Mac (bản thân UUID không bao giờ được gửi đi);
-- nền tảng, phiên bản ứng dụng, phiên bản macOS, kiến trúc bộ xử lý và ngôn ngữ của ứng dụng;
-- tên các loại cơ sở dữ liệu của những connection bạn đang mở (ví dụ "PostgreSQL") và số connection đang mở;
-- license đã được kích hoạt hay chưa;
-- ngày giờ bạn thử kết nối lần đầu và ngày giờ kết nối thành công lần đầu;
-- cài đặt cập nhật của bạn (cách cài bản cập nhật và tần suất kiểm tra). Máy chủ của chúng tôi bỏ các thông tin này ngay khi nhận báo cáo.
+### Mua hàng {#purchases}
 
-Cả sự kiện lẫn báo cáo đều không bao giờ chứa hostname, username, mật khẩu, query hay dữ liệu trong các dòng.
+{merchant} (Polar Software, Inc.) là merchant of record và bên bán lại. Họ thu tên, email, địa chỉ thanh toán và thông tin trả tiền theo điều khoản riêng. Họ xử lý thanh toán, thuế, biên nhận và tranh chấp. Chúng tôi không nhận đầy đủ thông tin thẻ.
 
-Máy chủ của chúng tôi không lưu báo cáo, cũng không lưu địa chỉ IP gửi báo cáo. Máy chủ chuyển báo cáo sang PostHog dưới dạng một sự kiện về mã máy, kèm quốc gia mà Cloudflare cho biết cho kết nối của bạn, không kèm license key hay địa chỉ IP của bạn, và PostHog không tạo hồ sơ cá nhân nào từ đó. Vì tài khoản của bạn ghi các thiết bị theo cùng mã máy, báo cáo từ một máy Mac mà bạn đã đăng nhập hoặc kích hoạt license có thể được liên kết với tài khoản của bạn.
+Chúng tôi gửi mặt hàng, ngôn ngữ, nguồn truy cập và IP để checkout, tính thuế và chọn tiền tệ. Chúng tôi nhận thông tin người mua/thanh toán, số tiền, ID đơn hàng/subscription, gia hạn, hủy và hoàn tiền. Đơn hàng giữ email, quốc gia thanh toán, số tiền và nguồn truy cập. Mua khi chưa đăng nhập tạo tài khoản chưa xác minh cho email đó nếu chưa có. Lý do hủy và bình luận đến {merchant} và được lưu với subscription. Xử lý thực hiện hợp đồng mua hàng; bản ghi thuế/kế toán đáp ứng nghĩa vụ pháp lý. Thiếu thông tin bắt buộc thì checkout không hoàn tất. Quản lý thanh toán ở [cổng {merchant}]({portal}); xem [điều khoản](/vi/terms) và [hoàn tiền](/vi/refund-policy).
 
-### Kiểm tra license {#mac-license}
+### Nhóm và nội dung chia sẻ {#library}
 
-Các phiên bản trước khi có tài khoản TablePro chỉ liên hệ máy chủ license của chúng tôi sau khi bạn nhập license key. Các phiên bản này làm việc đó khi bạn kích hoạt license, khi khởi động nếu đã qua {revalidateDays} ngày trở lên kể từ lần kiểm tra trước, và sau đó cứ mỗi {revalidateDays} ngày. Mỗi lần kiểm tra gửi:
+Người mời cung cấp email, vai trò và lựa chọn seat. Chủ sở hữu và admin thấy tên/email thành viên, lời mời và thay đổi trong nhóm, gồm địa chỉ được mời, nhưng không thấy IP hay trình duyệt trong audit log. Thành viên thấy nhóm, gói, số seat và vai trò của mình. Chúng tôi dùng các bản ghi để cung cấp dịch vụ nhóm theo hợp đồng.
 
-- license key của bạn;
-- mã máy nêu ở mục [Dữ liệu sử dụng](#mac-usage-report);
-- tên máy Mac của bạn, theo cài đặt trong macOS (thường có chứa tên của bạn);
-- phiên bản ứng dụng và phiên bản macOS.
+Trên Mac, đăng lên Team Library gửi cài đặt connection và query đã lưu đến máy chủ cho thành viên có quyền. Cài đặt gồm host, port, database, username, tùy chọn SSH/SSL, lệnh khởi động, Tunnel Command và AI. Query gồm tên, SQL, từ khóa và thư mục. Các trường mật khẩu có cấu trúc bị loại; bí mật gõ vào SQL hay văn bản tự do không được loại bỏ. Thư viện hiển thị người sửa cuối. Rời nhóm không tự xóa nội dung chung. Xem [thời điểm xóa](#retention). Team Catalog ghi file vào thư mục chia sẻ bạn chọn.
 
-Khi hủy kích hoạt một máy Mac, ứng dụng chỉ gửi license key và mã máy.
+### Analytics ứng dụng và dịch vụ {#analytics}
 
-Máy chủ của chúng tôi giữ mỗi máy Mac đã kích hoạt như một thiết bị của tài khoản sở hữu license: mã máy và tên máy, phiên bản ứng dụng và macOS, và thời điểm máy liên lạc gần nhất. Việc kích hoạt và hủy kích hoạt một máy Mac được ghi vào nhật ký kiểm tra (audit log) của tài khoản đó, kèm địa chỉ IP và user agent của request; các lần kiểm tra định kỳ thì không. Trang tài khoản liệt kê các thiết bị của bạn theo tên. Nếu không liên lạc được với máy chủ của chúng tôi, các tính năng trả phí vẫn hoạt động trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất.
+Lợi ích chính đáng của chúng tôi là hiểu cách sử dụng, sửa lỗi và đo giao dịch. Mac và Linux gửi dữ liệu mô tả ở [Ứng dụng](#apps). Máy chủ cũng gửi PostHog sự kiện đăng nhập, mua hàng, thiết bị và nhóm, với ID tài khoản nhưng không có tên/email. ID nối hoạt động ứng dụng với dịch vụ. Công tắc chỉ dừng sự kiện sử dụng từ ứng dụng; không dừng yêu cầu tài khoản bắt buộc hay sự kiện máy chủ. Dùng [quyền của bạn](#rights) để phản đối hoặc yêu cầu xóa.
 
-### Tài khoản TablePro {#mac-account}
+### Newsletter và email {#newsletter}
 
-Từ phiên bản có tài khoản TablePro, bạn đăng nhập ứng dụng cho Mac bằng [tài khoản TablePro](#account) thay cho license key. Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn có thể gõ mã trong email đăng nhập. Sau khi bạn đăng nhập, ứng dụng đăng ký máy Mac làm thiết bị của tài khoản: mã máy nêu ở trên, tên máy Mac của bạn, nền tảng, và phiên bản ứng dụng và macOS. Sau đó, mỗi ngày một lần khi đang chạy, ứng dụng lấy gói của bạn từ máy chủ dưới dạng một tệp có chữ ký, và tệp này giữ các tính năng trả phí hoạt động tới {offlineDays} ngày mà không cần máy chủ. Token giữ ứng dụng ở trạng thái đăng nhập chỉ được lưu trong Keychain của chính máy Mac đó và không bao giờ đồng bộ qua iCloud Keychain, kể cả khi bạn bật đồng bộ mật khẩu.
+Amazon SES gửi mã đăng nhập, lời mời, thông báo tài khoản và newsletter. Email dịch vụ thực hiện dịch vụ bạn yêu cầu. Đăng ký newsletter mới cần xác nhận và dựa trên sự đồng ý. Chúng tôi lưu email, ngôn ngữ, ngày đăng ký/xác nhận, IP, user agent, trang đăng ký và phiên bản nội dung đồng ý.
 
-License key đã có trên máy Mac được đổi một lần lấy phiên đăng nhập vào tài khoản sở hữu key đó, rồi bị xóa khỏi máy. Bạn có thể gỡ thiết bị trong ứng dụng hoặc trên trang tài khoản, và lần đầu một máy Mac dùng license của bạn, chúng tôi sẽ báo cho bạn qua email.
+Mỗi newsletter đo lượt mở và nhấp của mọi người nhận qua ảnh và `links.news.tablepro.app`. Amazon SES nhận thời gian, link nhấp, IP và user agent, rồi gửi về máy chủ để đếm. Chặn ảnh dừng đo mở, không dừng đo nhấp. Link hủy đăng ký và link email không được theo dõi. Không có công tắc riêng cho việc đo. Hủy trong newsletter hoặc qua nút một lần nhấp của ứng dụng email để dừng nhận; không có email xác nhận sau đó. Đăng ký lại cần xác nhận. Email trả lại vĩnh viễn và báo spam dừng gửi tiếp. Yêu cầu xóa địa chỉ qua [liên hệ](#controller).
 
-### Team Library {#library}
+Danh sách máy chủ cũ chuyển mọi địa chỉ chưa hủy đăng ký sang, dù đã xác nhận hay chưa, gồm người mua, chủ license và người đăng ký beta. Địa chỉ đã hủy giữ nguyên; địa chỉ bị trả lại hoặc báo spam vào danh sách chặn gửi. [Thời gian lưu giữ](#retention) áp dụng cho các bản ghi này.
 
-Team Library là một phần của license Team. Khi bạn chọn **Chia sẻ > Xuất bản lên thư viện nhóm…** (Share > Publish to Team Library…) trên một connection, hoặc **Xuất bản truy vấn đã lưu cho nhóm…** (Publish Saved Queries to Team…) trong sidebar Favorites, ứng dụng cho Mac tải lên máy chủ của chúng tôi những gì bạn xuất bản:
+### Hỗ trợ {#support}
 
-- cấu hình connection: host, port, tên cơ sở dữ liệu, username, cài đặt SSH và SSL, tùy chọn driver, startup command, cài đặt Tunnel Command, mức Safe Mode và cài đặt AI, nhưng không bao giờ gồm mật khẩu;
-- query đã lưu: tên, nội dung SQL, từ khóa và thư mục.
+Tin nhắn, file đính kèm và chẩn đoán bạn gửi đến chúng tôi và dịch vụ hỗ trợ bạn dùng. Chúng có thể chứa dữ liệu database hoặc bí mật bạn thêm vào. Crisp nhận IP, thông tin trình duyệt và trang đã xem khi chat tải trên website và cổng tài khoản. Họ giữ IP nếu bạn bắt đầu trò chuyện. Chúng tôi cung cấp ngôn ngữ trang và, khi đăng nhập cổng, email/ID tài khoản. Tải chat trên mọi trang phục vụ lợi ích chính đáng về hỗ trợ. Cuộc trò chuyện bạn bắt đầu dựa trên sự đồng ý.
 
-Từ phiên bản có tài khoản TablePro, ứng dụng cho Mac của mỗi thành viên có seat tải các thay đổi của thư viện về khi khởi động, cứ 15 phút một lần và sau mỗi lần xuất bản. Khi xuất bản, ứng dụng chỉ gửi những gì đã thay đổi và chỉ gỡ những mục mà máy Mac đó đã xuất bản nhưng không còn giữ. Nếu người khác đã sửa một mục trước, ứng dụng hỏi bạn giữ bản nào, và hiển thị người sửa gần nhất của từng query của nhóm. Các phiên bản trước khi có tài khoản TablePro tải thư viện về khi khởi động, tối đa mỗi tuần một lần, và máy Mac vừa xuất bản tải lại ngay sau đó. Xuất bản lại từ các phiên bản này sẽ thay thế những gì bạn đã xuất bản trước đó. Mục Library trên trang tài khoản hiển thị từng mục, kèm tên người sửa gần nhất, cho các thành viên được đọc thư viện, và cho phép chủ sở hữu và quản trị viên xóa mục. Mục đã xóa còn trên máy chủ của chúng tôi kèm phiên bản cuối cùng để mọi máy Mac đồng bộ được việc xóa. Nếu license kết thúc, thư viện vẫn nằm trên máy chủ của chúng tôi cho tới khi chủ sở hữu nhóm xóa nhóm, và thư viện bị xóa theo.
+## Ứng dụng của bạn {#apps}
 
-Team Catalog, tính năng Team còn lại, ghi các file connection không kèm mật khẩu vào một thư mục dùng chung do bạn chọn. Tính năng này không đi qua máy chủ của chúng tôi.
+| Ứng dụng và phiên bản | Dữ liệu sử dụng | Kiểm soát |
+| --- | --- | --- |
+| Mac 0.86.0, từ 0.86.0-beta.1 | Trực tiếp đến PostHog; bật mặc định | Cài đặt > Cài đặt chung > Quyền riêng tư (Settings > General > Privacy) |
+| Linux từ 0.1.0-beta.1 | Trực tiếp đến PostHog; bật mặc định | Preferences > General > Privacy |
+| iPhone và iPad đã phát hành | Báo cáo qua máy chủ; tắt đến khi đồng ý | Cài đặt > Quyền riêng tư (Settings > Privacy) |
 
-### Cập nhật và plugin {#mac-updates}
+<span id="mac-local"></span>
 
-- **Kiểm tra cập nhật.** Mỗi ngày một lần, ứng dụng cho Mac tải nguồn cập nhật từ GitHub (`raw.githubusercontent.com`). Yêu cầu này không gửi thông tin nào về máy Mac của bạn ngoài những gì mọi yêu cầu web đều mang theo: địa chỉ IP và một user agent có phiên bản ứng dụng. Để tắt, mở **Cài đặt > Tổng quát > Cập nhật phần mềm** (Settings > General > Software Update) và bỏ chọn **Tự động kiểm tra cập nhật** (Automatically check for updates). Bản cập nhật cũng được tải về từ GitHub.
-- **Danh mục plugin.** Khi khởi động, và khi bạn mở phần cài đặt plugin, ứng dụng tải danh sách driver và theme có sẵn từ GitHub. Không có cài đặt nào để tắt việc này. Driver và theme bạn cài được tải từ GitHub, và trình duyệt plugin đọc số lượt tải từ API của GitHub.
+### Dữ liệu trên thiết bị {#local-data}
 
-GitHub nhận địa chỉ IP của bạn qua các yêu cầu này. Tuyên bố về quyền riêng tư của GitHub áp dụng cho các yêu cầu đó.
+Danh sách connection, lịch sử query, log cục bộ và tab mở nằm trên thiết bị trừ khi bạn chọn chia sẻ. Lưu lượng database đến máy chủ bạn chọn. Mật khẩu dùng kho thông tin xác thực của nền tảng. Trên Mac, SSH key được tham chiếu tại vị trí trên đĩa. Analytics không chứa hostname, username, SQL, hàng hay thông tin xác thực. [Tích hợp](#integrations), Team Library và hỗ trợ có các ngoại lệ mô tả ở đây.
 
-### Dịch vụ bạn chọn sử dụng {#mac-third-parties}
+### Mac {#mac-app}
 
-Ứng dụng cho Mac chỉ gửi dữ liệu tới các dịch vụ sau khi bạn thiết lập chúng, và gửi trực tiếp, không bao giờ qua TablePro:
+Analytics trực tiếp và tài khoản sau đây bắt đầu từ 0.86.0, gồm 0.86.0-beta.1. Đăng nhập đăng ký Mac và tải gói của bạn. Token tài khoản nằm trong Keychain của Mac đó và không sync qua iCloud Keychain. License key hiện có được đổi thành đăng nhập rồi xóa trên máy.
 
-- **Cơ sở dữ liệu, máy chủ SSH và proxy của bạn**, nhận mọi thứ mà connection của bạn gửi tới.
-- **Nhà cung cấp AI.** Khi bạn thêm một nhà cung cấp và dùng trợ lý AI hoặc gợi ý nội tuyến (inline suggestions), yêu cầu được gửi tới nhà cung cấp đó, hoặc tới một model chạy trên máy Mac của bạn. Theo mặc định, một yêu cầu gồm loại và tên cơ sở dữ liệu, định nghĩa table và cột lấy từ schema, cùng query hiện tại. Các dòng kết quả chỉ được gửi nếu bạn bật tùy chọn đó. Điều khoản của nhà cung cấp được áp dụng. Khi thêm GitHub Copilot, ứng dụng tải language server của Copilot từ npm, và cài đặt "Gửi telemetry tới GitHub" (Send telemetry to GitHub) của nó được bật sẵn.
-- **Dịch vụ đăng nhập**: Microsoft Entra ID, Google, Amazon Web Services và Cloudflare Access, khi một connection dùng tới.
-- **Apple Maps**, cung cấp ô bản đồ khi bạn xem kết quả trên bản đồ.
-- **DuckDB**, cung cấp extension của DuckDB vào lần đầu một query cần tới.
-- **MCP client.** MCP server tắt theo mặc định. Server khởi động khi bạn bật nó, hoặc khi một MCP client bạn đã thiết lập khởi chạy bridge của TablePro hay ghép nối với TablePro, và chỉ lắng nghe trên máy Mac của bạn (127.0.0.1). Một AI client mà bạn kết nối tới server, chẳng hạn Claude hay Cursor, nhận các kết quả mà client đó yêu cầu và gửi chúng tới dịch vụ của chính nó theo điều khoản của nó.
-- **MCP server bạn thêm vào.** Một phiên AI gửi các lệnh gọi tool mà bạn duyệt, kèm tham số của chúng, tới server đó.
+#### Dữ liệu sử dụng trên Mac {#mac-usage-report}
 
-### Dữ liệu nằm lại trên máy Mac {#mac-local}
+Dữ liệu sử dụng bật mặc định; ứng dụng không hỏi trước sự kiện đầu tiên. Tắt **Chia sẻ dữ liệu sử dụng (Share usage data)** trong **Cài đặt > Cài đặt chung > Quyền riêng tư (Settings > General > Privacy)**. Khởi động khi tắt không chạy thư viện PostHog. Không gửi báo cáo crash tự động; crash reporter của PostHog bị tắt.
 
-Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, lịch sử query, Query Insights, các bản chụp của Data Rewind, cài đặt và các tab đang mở được lưu trên máy Mac của bạn. Ứng dụng chỉ tham chiếu tới SSH key ở đúng vị trí của chúng trên ổ đĩa và không sao chép chúng. Các phiên bản trước khi có tài khoản TablePro không chứa công cụ báo lỗi (crash reporter) nào và không có thư viện phân tích của bên thứ ba. Từ phiên bản có tài khoản TablePro, ứng dụng có thư viện của PostHog, dùng để gửi dữ liệu sử dụng nêu ở trên. Thư viện này có công cụ báo lỗi (crash reporter) của PostHog, nhưng ứng dụng luôn để nó tắt, nên không gửi báo cáo lỗi nào. Thư viện lưu mã ngẫu nhiên, cấu hình và các sự kiện chưa gửi của nó trong các tệp dưới `~/Library/Application Support/com.TablePro`.
+Sự kiện gồm dùng hằng ngày với loại/số connection mở, lần thử connection, kết nối thành công và query đầu tiên theo loại database, chặn tính năng trả phí và lý do, nhấp nâng cấp, cách đăng nhập/đăng xuất, hiển thị và trả lời lời mời mua license. PostHog thêm ngữ cảnh thiết bị, màn hình, mạng, session, ứng dụng và hệ thống. Họ nhận IP và suy ra vị trí gần đúng. Trước đăng nhập, sự kiện dùng ID ngẫu nhiên của bản cài, không tạo hồ sơ cá nhân. Sau đăng nhập dùng ID tài khoản, với hồ sơ chứa phiên bản ứng dụng/OS, kiến trúc, ngôn ngữ và vị trí suy ra. Đăng xuất tạo ID ngẫu nhiên mới. Xem [trường dữ liệu và endpoint](https://docs.tablepro.app/security/privacy#usage-data).
 
-## TablePro cho iPhone và iPad {#ios-app}
+#### Cập nhật và plugin {#mac-updates}
 
-**Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng** (Share Usage Data), khi ứng dụng khởi động lần đầu hoặc sau đó trong **Cài đặt > Quyền riêng tư** (Settings > Privacy). Nếu bạn bật, ứng dụng gửi một báo cáo mỗi ngày tới cùng máy chủ với các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro, và máy chủ của chúng tôi chuyển báo cáo sang PostHog theo cùng cách, không kèm địa chỉ IP. Báo cáo gồm giá trị băm SHA-256 của mã định danh mà Apple cấp cho ứng dụng trên thiết bị của bạn, nền tảng, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, tên các loại cơ sở dữ liệu của những connection bạn đang mở, số connection đang mở, và ngày giờ bạn thử kết nối lần đầu, kết nối thành công lần đầu và chạy query đầu tiên. Báo cáo không có cài đặt cập nhật và luôn ghi là chưa kích hoạt license nào, vì ứng dụng không có cả hai.
+Ứng dụng tải update feed và danh mục plugin từ GitHub qua updates.tablepro.app. File tải và số lượt tải plugin cũng đến GitHub. Yêu cầu mang IP và user agent. Tắt **Tự động kiểm tra cập nhật (Automatically check for updates)** trong **Cài đặt > Cài đặt chung > Cập nhật phần mềm (Settings > General > Software Update)** để dừng kiểm tra tự động. Danh mục plugin không có công tắc tắt. [Chi tiết kỹ thuật](https://docs.tablepro.app/security/privacy#update-checks) gồm feed cũ của các bản trước.
 
-Ứng dụng không kiểm tra license, không kiểm tra cập nhật và không gửi yêu cầu nào về plugin. Ngoài báo cáo tùy chọn nói trên, ứng dụng chỉ kết nối tới cơ sở dữ liệu và máy chủ SSH của bạn, tới iCloud của Apple nếu bạn bật iCloud Sync, và tới Microsoft khi một connection SQL Server đăng nhập bằng Microsoft Entra ID.
+#### Các bản Mac cũ {#mac-license}
 
-Trên thiết bị, mật khẩu và SSH key bạn dán vào được lưu trong Keychain, còn chứng chỉ không bao giờ được đồng bộ. Lịch sử query nằm lại trên thiết bị. Các connection của bạn được thêm vào chỉ mục Spotlight trên thiết bị để bạn tìm kiếm. Khi một query đang chạy, Hoạt động trực tiếp của nó hiển thị câu SQL trên Màn hình khóa và trong Dynamic Island khi mở rộng, trừ khi bạn bật **Cài đặt > Hoạt động trực tiếp > Ẩn truy vấn** (Settings > Live Activities > Hide Query).
+Trước 0.86.0, dữ liệu sử dụng là báo cáo gửi máy chủ dưới cùng công tắc bật mặc định. Báo cáo chứa mã máy đã băm, thông tin hệ thống/ứng dụng, loại/số connection mở, trạng thái license và ngày thử/thành công đầu tiên. Cài đặt cập nhật được gửi nhưng máy chủ bỏ đi. Máy chủ hiện tại chuyển sang PostHog kèm quốc gia từ Cloudflare, không kèm IP hay license key, không tạo hồ sơ cá nhân. Mã máy có thể nối với thiết bị tài khoản. Hiện không giữ lịch sử heartbeat riêng, nhưng job, log, backup và bản lưu cũ có thể giữ dữ liệu. Xem [lưu giữ](#retention).
 
-Nếu bạn chia sẻ dữ liệu phân tích với nhà phát triển ứng dụng trong phần cài đặt của iPhone hoặc iPad, Apple có thể chuyển báo cáo lỗi và số liệu sử dụng cho chúng tôi qua App Store Connect. Bản thân ứng dụng không có công cụ báo lỗi và không có thư viện phân tích của bên thứ ba.
+Bản cũ chỉ gọi dịch vụ license sau khi bạn nhập key. Kiểm tra gửi key, mã máy, tên Mac và phiên bản ứng dụng/OS. Thiết bị thuộc tài khoản; kích hoạt và hủy kích hoạt được ghi audit kèm IP/user agent. [Danh mục kỹ thuật](https://docs.tablepro.app/security/privacy#older-mac-reports) giữ trường dữ liệu và thời điểm.
 
-## iCloud Sync và Handoff {#icloud}
+### iPhone và iPad {#ios-app}
 
-iCloud Sync tắt cho tới khi bạn bật, trên Mac cũng như trên iPhone và iPad. Khi bật, các bản ghi được lưu vào một cơ sở dữ liệu riêng trong tài khoản iCloud của chính bạn (container `iCloud.com.TablePro`). TablePro không đọc được chúng.
+Ứng dụng đã phát hành không gửi báo cáo sử dụng cho đến khi bạn bật **Chia sẻ dữ liệu sử dụng (Share Usage Data)** lúc mở lần đầu hoặc trong **Cài đặt > Quyền riêng tư (Settings > Privacy)**. Cơ sở là sự đồng ý. Báo cáo hằng ngày qua máy chủ, được chuyển sang PostHog không kèm IP, có quốc gia từ Cloudflare và không tạo hồ sơ cá nhân. Nó chứa mã thiết bị Apple đã băm, nền tảng, phiên bản ứng dụng/iOS, kiến trúc, ngôn ngữ, loại/số connection mở và ngày thử, thành công, query đầu tiên. Nó luôn báo không có license; không có cài đặt cập nhật. Ứng dụng không kiểm tra tài khoản, license, cập nhật hay plugin.
 
-- Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm và tag, cài đặt, SSH profile, credential profile (tên và username, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu (kể cả nội dung SQL) và thư mục table. Một bản ghi connection gồm host, port, username, tên cơ sở dữ liệu, cài đặt SSH và SSL, lệnh khởi động, script chạy trước khi kết nối và quy tắc AI. Lịch sử query, các bản chụp của Data Rewind và nguồn mật khẩu không bao giờ được đồng bộ.
-- iPhone và iPad đồng bộ connection, nhóm và tag.
-- Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ (Sync Categories) trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key. Từ phiên bản có tài khoản TablePro, license key bị xóa ngay khi được đổi lấy phiên đăng nhập, và token giữ ứng dụng ở trạng thái đăng nhập không bao giờ được đồng bộ.
+Kết nối database/SSH, iCloud tùy chọn và đăng nhập Microsoft Entra cho SQL Server gửi dữ liệu đến các dịch vụ đó. Mật khẩu và SSH key dán vào ở Keychain; chứng chỉ và lịch sử query ở thiết bị. Connection vào chỉ mục Spotlight cục bộ. Live Activity của query đang chạy có thể hiện SQL trên màn hình khóa trừ khi bật Hide Query. Riêng cài đặt Share With App Developers của Apple có thể gửi báo cáo crash và thống kê qua App Store Connect. Ứng dụng không có crash reporter hay thư viện analytics bên thứ ba. Xem [chi tiết iOS](https://docs.tablepro.app/ios#privacy).
 
-Trên Mac, iCloud Sync thuộc license Pro hoặc Team. Trên iPhone và iPad, tính năng này miễn phí.
+### Linux {#linux-app}
 
-Handoff chuyển mã của connection đang mở và tên của table đang mở giữa các thiết bị của chính bạn, thông qua Apple. Khi chưa mở table nào, Handoff chuyển tên của connection thay cho tên table, hoặc host nếu connection không có tên. Handoff không gửi cài đặt hay thông tin đăng nhập nào.
+Từ 0.1.0-beta.1, đăng nhập đăng ký thiết bị theo mục [tài khoản](#account). Bí mật dùng keyring của desktop. Cập nhật qua trình quản lý gói theo nhà phân phối bạn chọn. Ứng dụng không gửi báo cáo crash tự động.
 
-## Website {#website}
+#### Dữ liệu sử dụng trên Linux {#linux-usage-data}
 
-**Lưu trữ.** Website và trang tài khoản chạy trên máy chủ của chúng tôi, phía sau Cloudflare. Như mọi máy chủ web, chúng nhận địa chỉ IP, user agent của trình duyệt và địa chỉ của từng trang bạn yêu cầu.
+Dữ liệu sử dụng bật mặc định từ 0.1.0-beta.1. Tắt Share usage data trong Preferences > General > Privacy. Sự kiện trực tiếp đến PostHog EU: dùng hằng ngày với loại/số connection mở, thử/thành công đầu tiên và query đầu tiên theo loại, đăng nhập/đăng xuất, nhấp nâng cấp, hiển thị lời mời mua license và chọn Buy. Chúng mang ID bản cài hoặc tài khoản, phiên bản ứng dụng/hệ thống, kiến trúc, ngôn ngữ giao diện và metadata SDK. PostHog nhận IP và suy ra vị trí gần đúng. Trước đăng nhập là ID ngẫu nhiên và không có hồ sơ cá nhân; sau đăng nhập hồ sơ nối sử dụng với mua hàng. Đăng xuất đặt lại ID. Không có hostname, SQL, hàng hay thông tin xác thực trong sự kiện. Đăng ký thiết bị riêng có hostname.
 
-**Cloudflare Web Analytics.** Cloudflare chèn script Web Analytics của mình vào các trang của website; trang tài khoản không chạy script này. Trình duyệt của bạn tải script này từ `static.cloudflareinsights.com`, và script báo cho Cloudflare từng lượt xem trang: trang được xem, trang web đã dẫn bạn tới, thời gian tải trang, cùng trình duyệt, hệ điều hành và loại thiết bị của bạn. Cloudflare bổ sung quốc gia nơi kết nối của bạn xuất phát. Script này không đặt cookie và không lưu gì trong trình duyệt của bạn, và Cloudflare cho biết dịch vụ này không dùng địa chỉ IP hay thông tin trình duyệt để nhận dạng bạn (fingerprinting). Cloudflare chỉ cho chúng tôi xem số liệu tổng, chẳng hạn số lượt xem theo từng trang hoặc từng quốc gia, chứ không có bản ghi về từng người truy cập. Cơ sở pháp lý: lợi ích hợp pháp.
+Tắt dừng gửi mới. Yêu cầu đang gửi có thể hoàn tất. Nó không xóa sự kiện cũ hay dừng yêu cầu tài khoản và analytics máy chủ. Xem [lưu giữ](#retention), [quyền](#rights) và [danh mục kỹ thuật](https://docs.tablepro.app/security/privacy#linux-usage-data).
 
-**Google Analytics.** Website tải Google Analytics trên mọi trang ở chế độ Consent Mode. Cho tới khi bạn chọn **Cho phép** trong câu hỏi về cookie, công cụ này không đặt cookie nào và chỉ gửi cho Google một tín hiệu không dùng cookie cho mỗi trang, không lưu mã định danh nào trên thiết bị của bạn. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt truy cập của bạn, chẳng hạn những trang bạn xem, các lượt bấm tải về và việc bắt đầu thanh toán. Lưu trữ cho quảng cáo, cá nhân hóa quảng cáo và dữ liệu người dùng cho quảng cáo luôn bị từ chối. Google cho biết Google Analytics 4 không ghi lại và không lưu địa chỉ IP. Property Google Analytics của chúng tôi dùng thời hạn lưu mặc định của Google: Google xóa dữ liệu ở cấp người dùng và cấp sự kiện sau 2 tháng. Các báo cáo tiêu chuẩn của Google, vốn chứa số liệu tổng chứ không chứa mã định danh, không bị ảnh hưởng. Cơ sở pháp lý: sự đồng ý của bạn đối với cookie.
+<span id="mac-third-parties"></span>
 
-**Chat trực tuyến.** Mọi trang của website và trang tài khoản đều có nút chat của nhà cung cấp dịch vụ chat của chúng tôi, Crisp. Sau khi trang tải xong, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt, địa chỉ các trang bạn xem và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi cho Crisp biết ngôn ngữ của trang. Khi bạn đã đăng nhập trang tài khoản, chúng tôi cũng cung cấp cho Crisp địa chỉ email và ID tài khoản của bạn, để gắn cuộc chat với tài khoản đó. Ngoài ra chúng tôi không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
+## Dịch vụ bạn chọn {#integrations}
 
-**Script thanh toán.** Khi bạn trỏ chuột hoặc dùng phím Tab tới một nút Mua, trình duyệt tải script thanh toán của {merchant} từ jsDelivr (`cdn.jsdelivr.net`), và jsDelivr nhận địa chỉ IP cùng thông tin trình duyệt của bạn. Bản thân trang thanh toán của {merchant} chỉ mở khi bạn bấm.
+Nhà cung cấp database, SSH và proxy nhận lưu lượng bạn yêu cầu trực tiếp từ ứng dụng. Dịch vụ đăng nhập connection nhận yêu cầu xác thực khi được cấu hình. Apple Maps cung cấp ô bản đồ; DuckDB cung cấp extension cho query. Helper kết nối và AI tải về liên hệ nhà cung cấp của chúng. Những dịch vụ này có điều khoản riêng.
 
-**Kiểm tra khi đăng ký bản tin.** Khi bạn bắt đầu điền form đăng ký bản tin, trình duyệt tải Cloudflare Turnstile từ `challenges.cloudflare.com` để kiểm tra rằng người đăng ký là người thật; Cloudflare nhận địa chỉ IP và thông tin trình duyệt của bạn.
+### iCloud và Handoff {#icloud}
 
-**Nguồn truy cập khi mua hàng.** Khi bạn vào website, trình duyệt giữ một bản ghi về lần truy cập đầu tiên, tên là `tablepro:attribution`, trong local storage trong 90 ngày: nguồn của lượt truy cập (các tag `ref` hoặc `utm_*` trên liên kết bạn đã theo, hoặc trang web đã dẫn bạn tới), trang bạn vào đầu tiên và thời điểm đó. Nếu bạn bắt đầu mua hàng, bản ghi này được gửi kèm yêu cầu thanh toán. Máy chủ của chúng tôi chuyển nguồn của lượt truy cập cho {merchant} dưới dạng metadata của lần thanh toán, giữ nó cùng đơn hàng sau khi bạn trả tiền, và gửi nó tới PostHog cùng sự kiện bắt đầu thanh toán và thanh toán xong. Trang bạn vào đầu tiên và thời điểm không được giữ.
+iCloud Sync tùy chọn lưu connection, nhóm, tag, cài đặt, query đã lưu và SSH profile vào CloudKit riêng của bạn. Trên Mac, iCloud còn đồng bộ mục yêu thích và thư mục của bảng/cơ sở dữ liệu, cùng tên credential profile, tên người dùng và chế độ mật khẩu, không bao giờ gồm mật khẩu của profile. Apple lưu trữ; chúng tôi không đọc được. Sync mật khẩu là lựa chọn riêng, tắt mặc định, dùng iCloud Keychain mã hóa đầu cuối. Trên Mac nó áp dụng cả bí mật khác ghi qua kho đó, như AI key và license key cũ. Token tài khoản không sync. Sync Mac cần Pro hoặc Team; iOS miễn phí. Handoff truyền ID connection và tên bảng, hoặc tên/host connection khi không mở bảng, giữa thiết bị Apple của bạn. Không gửi thông tin xác thực. Xem [kiểm soát sync](https://docs.tablepro.app/features/icloud-sync).
 
-**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Thanh điều hướng hiển thị số star của repository, do trình duyệt của bạn lấy từ API của GitHub, nên GitHub cũng nhận địa chỉ IP và thông tin trình duyệt của bạn. Yêu cầu đó không đặt cookie. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
+### AI và công cụ ngoài {#ai-tools}
 
-**Ngôn ngữ và giảm giá theo khu vực.** Để gợi ý trang bằng ngôn ngữ của bạn khi trình duyệt không nêu ngôn ngữ nào website có, và để hiển thị mức giảm giá theo khu vực mà bước thanh toán sẽ áp dụng, website hỏi Cloudflare (`/cdn-cgi/trace`) và máy chủ của chúng tôi về quốc gia mà kết nối của bạn đến từ đó, và có thể đọc múi giờ của thiết bị. Cả hai request đều không mang cookie, và trang không giữ lại gì từ các câu trả lời. Cơ sở pháp lý: lợi ích hợp pháp.
+Yêu cầu AI đi thẳng đến nhà cung cấp hoặc model cục bộ bạn chọn. Prompt, schema, SQL hiện tại và nội dung trò chuyện có thể được gửi. Đính kèm hàng từ grid tắt mặc định. Kết quả từ công cụ query AI đã được cấp quyền cũng vào cuộc trò chuyện và đến nhà cung cấp, độc lập với công tắc đính kèm. GitHub Copilot tải helper từ npm và lựa chọn Gửi telemetry đến GitHub (Send telemetry to GitHub) bật ban đầu.
 
-Đọc website không đặt cookie riêng. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng chế độ omit credentials: không gửi cookie trang tài khoản và không nhận cookie từ response. Mở trang tài khoản là việc riêng: đăng nhập ở đó sẽ đặt cookie liệt kê bên dưới. Mọi thứ website giữ trong trình duyệt được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
+MCP tắt mặc định và không thể chạy khi bị tắt, kể cả qua bridge hay yêu cầu ghép đôi. Khi bật, client đã xác thực có thể yêu cầu dữ liệu theo quyền bạn cấp. Client AI kết nối có thể gửi kết quả về dịch vụ của nó. MCP server ngoài nhận tham số công cụ đã duyệt. Xem [kiểm soát AI và MCP](https://docs.tablepro.app/security/privacy#ai-providers).
 
-## Mua hàng {#purchases}
+## Website và lưu trữ trình duyệt {#website}
 
-License được bán bởi {merchant} (Polar Software, Inc.), merchant of record kiêm đơn vị bán lại của chúng tôi. Bạn mua hàng từ {merchant} theo điều khoản dành cho người mua và chính sách quyền riêng tư của chính {merchant}. {merchant} nhận thanh toán, tính và nộp thuế bán hàng hoặc VAT nếu có, gửi biên nhận và hóa đơn, và xử lý các vấn đề cũng như tranh chấp về thanh toán. {merchant} thu thập tên, địa chỉ email, địa chỉ thanh toán và thông tin thanh toán của bạn. Chúng tôi không bao giờ thấy đầy đủ thông tin thẻ của bạn.
+Máy chủ và Cloudflare nhận IP, user agent và trang được yêu cầu. Cloudflare Web Analytics đếm lượt xem, nguồn giới thiệu, thời gian tải, loại trình duyệt/OS/thiết bị và quốc gia, không lưu trong trình duyệt hay tạo fingerprint. Lợi ích chính đáng là hiểu và duy trì website.
 
-Khi bạn bắt đầu thanh toán, máy chủ của chúng tôi cho {merchant} biết bạn mua gì, ngôn ngữ của trang bạn mua hàng, nguồn của lượt truy cập (xem mục [Website](#website)) và địa chỉ IP của bạn, mà {merchant} dùng để tính thuế và đơn vị tiền tệ. Từ {merchant}, chúng tôi nhận địa chỉ email, tên và địa chỉ thanh toán như bạn đã nhập, sản phẩm bạn mua, số tiền, mã đơn hàng và mã gói thuê bao, cùng các thay đổi sau đó như gia hạn, hủy và hoàn tiền. Với mỗi đơn hàng, chúng tôi giữ địa chỉ email, quốc gia thanh toán và số tiền.
+Google Analytics tải ở Consent Mode. Trước Allow, nó gửi tín hiệu trang không cookie và không ID thiết bị đã lưu. Đồng ý bật cookie và đo lượt truy cập, tải về và checkout. Lưu trữ quảng cáo, cá nhân hóa và dữ liệu quảng cáo luôn bị từ chối. Google nói GA4 không lưu IP.
 
-Một lần mua không đăng nhập sẽ thuộc về tài khoản TablePro của địa chỉ email bạn dùng để mua; nếu chưa có, tài khoản được tạo mới và ở trạng thái chưa xác minh cho tới khi bạn đăng nhập lần đầu. Trên [trang tài khoản]({account}), bạn có thể đổi chu kỳ thanh toán hoặc số seat của gói thuê bao, hủy hoặc tiếp tục gói, và yêu cầu hoàn tiền. Khi bạn hủy, lý do bạn chọn và nhận xét bạn viết (nếu có) được gửi tới {merchant} và được giữ cùng gói thuê bao. Thẻ, hóa đơn, thông tin thuế và địa chỉ thanh toán nằm trong [cổng khách hàng của {merchant}]({portal}), mà trang tài khoản mở giúp bạn. Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refund-policy), còn những gì một license cho phép được nêu trong [điều khoản sử dụng](/vi/terms).
+Crisp tải trên mọi trang website và cổng, như mục [hỗ trợ](#support). Trỏ hoặc tab đến Buy tải script {merchant} từ jsDelivr, bên nhận IP và thông tin trình duyệt; nhấp mở checkout. Bắt đầu form newsletter tải Cloudflare Turnstile chống lạm dụng, theo lợi ích chính đáng. Tra quốc gia và múi giờ giúp gợi ý ngôn ngữ/ưu đãi khu vực theo lợi ích chính đáng; yêu cầu không cookie và trang không lưu câu trả lời.
 
-## Trang tài khoản {#account}
+Lượt đầu tạo `tablepro:attribution` trong 90 ngày: tag/referrer, trang đích và ngày. Khi checkout, máy chủ chuyển nguồn lượt truy cập cho {merchant} làm metadata, giữ với đơn hàng và gửi PostHog cùng sự kiện checkout/thanh toán. Trang đích và ngày không được giữ. Cơ sở là lợi ích chính đáng trong đo nguồn mua hàng. Yêu cầu newsletter, checkout và mã giảm giá công khai bỏ credentials và không đặt cookie cổng. Cổng không chạy script analytics, nhưng máy chủ gửi sự kiện dịch vụ.
 
-[Trang tài khoản]({account}) tại account.tablepro.app là nơi bạn quản lý tài khoản TablePro: license, thiết bị, thanh toán và nhóm. Trang chạy trên máy chủ của chúng tôi, phía sau Cloudflare, giống website.
+### Website tài liệu {#docs}
 
-**Tài khoản của bạn.** Mỗi tài khoản thuộc về một người và được xác định bằng một địa chỉ email. Tài khoản giữ địa chỉ đó, tên và ngôn ngữ bạn đặt, các cách đăng nhập của bạn, các thiết bị đã đăng nhập, license và đơn hàng của bạn, các nhóm bạn tham gia cùng vai trò và seat của bạn, và nhật ký kiểm tra (audit log) các thay đổi trên tài khoản, như các lần đăng nhập, thiết bị mới và thay đổi trong nhóm, kèm địa chỉ IP và trình duyệt của request tạo ra từng thay đổi. Email của chúng tôi tới bạn bằng ngôn ngữ của tài khoản.
+Mintlify lưu trữ docs.tablepro.app. Yêu cầu trang, Google Fonts và số sao GitHub tiết lộ IP/thông tin trình duyệt cho các bên đó. Docs hỏi đồng ý analytics riêng. Trước Allow, không lưu cookie analytics hay ID khách. Allow bật Google Analytics và ID Mintlify. Cookie settings ở footer docs rút lại lựa chọn và xóa chúng. Lựa chọn website không chuyển sang origin đó.
 
-**Đăng nhập.** Chúng tôi gửi cho bạn qua email một liên kết và một mã 6 chữ số: liên kết dùng được một lần, mã cho phép thử 5 lần, và cả hai hết hạn sau 15 phút. Bạn cũng có thể thêm passkey; với mỗi passkey, chúng tôi giữ public key, tên bạn đặt, việc passkey có đồng bộ giữa các thiết bị của bạn hay không, và thời điểm thêm và dùng gần nhất. Hoặc bạn có thể đăng nhập bằng Apple, GitHub hoặc Google: nhà cung cấp cho chúng tôi biết một mã định danh của bạn và địa chỉ email đã xác minh, còn Apple cho biết thêm tên bạn ở lần đầu. Chúng tôi giữ mã định danh và địa chỉ đó cùng tài khoản của bạn, và với Apple là một token mà chúng tôi lưu ở dạng mã hóa và thu hồi với Apple khi bạn gỡ liên kết Apple hoặc xóa tài khoản. Nếu địa chỉ từ nhà cung cấp thuộc về một tài khoản đã có, chúng tôi gửi tới tài khoản đó một liên kết và một mã để xác nhận trước khi liên kết, trừ khi Google quản lý địa chỉ đó (Gmail hoặc Google Workspace).
+### Cookie và lưu trữ {#cookies}
 
-**Nhóm của bạn.** Khi bạn mời một người vào nhóm, chúng tôi lưu địa chỉ email, vai trò của người đó và việc lời mời có kèm seat hay không, rồi gửi cho họ một liên kết có hiệu lực 7 ngày. Chủ sở hữu và quản trị viên thấy các thành viên nhóm cùng tên và địa chỉ email, các lời mời, và nhật ký kiểm tra của nhóm, cho biết ai đã đổi gì trong nhóm, kể cả các địa chỉ được mời, nhưng không bao giờ có địa chỉ IP hay trình duyệt. Thành viên thấy nhóm, gói của nhóm, số seat và vai trò của chính mình.
+Cloudflare Web Analytics không lưu gì trong trình duyệt. Trang công khai không đặt cookie bên thứ nhất. Các mục sau có thời hạn riêng, khác lưu giữ của nhà cung cấp. Lưu trữ cần thiết duy trì đăng nhập hoặc lựa chọn; mục đích đồng ý và lợi ích chính đáng được nêu ở đây.
 
-**Dữ liệu của bạn.** Trong phần Cài đặt, bạn có thể đổi tên, địa chỉ email và ngôn ngữ, thêm và gỡ cách đăng nhập, tải về dữ liệu tài khoản dưới dạng tệp JSON, và xóa tài khoản. Bạn không thể xóa tài khoản khi đang là chủ sở hữu một nhóm còn thành viên khác. Xóa tài khoản sẽ gỡ các cách đăng nhập, thiết bị, license, tư cách thành viên nhóm và các nhóm chỉ có mình bạn, xóa địa chỉ email của bạn khỏi danh sách bản tin, và kết thúc các gói thuê bao của bạn mà không hoàn tiền. Những gì chúng tôi giữ sau đó được nêu trong mục [Thời gian lưu dữ liệu](#retention).
+| Tên/dịch vụ | Mục đích và lúc tạo | Thời hạn và kiểm soát |
+| --- | --- | --- |
+| `_ga`, `_ga_<ID>` | Google Analytics, chỉ sau đồng ý | Tối đa 2 năm; từ chối sẽ xóa |
+| `tablepro:analytics-consent` | Bản ghi lựa chọn cần thiết; riêng trên website và docs | Đến khi xóa |
+| `tablepro:attribution` | Nguồn lượt đầu gửi cùng checkout; lợi ích chính đáng | 90 ngày |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Giao diện, ngôn ngữ chọn/bỏ qua, thông báo sale đã đóng; lợi ích chính đáng | Đến khi xóa; theme cổng riêng |
+| `mintlify_anonymous_id` | ID khách docs, chỉ sau đồng ý tại đó | Đến khi xóa hoặc từ chối |
+| Cookie `crisp-client/` | Duy trì chat trên mọi trang sau khi tải; lợi ích chính đáng | 6 tháng, gia hạn khi quay lại |
+| `__Host-tp_session` | Đăng nhập cổng cần thiết | 30 ngày khi đăng nhập; tối đa 10 phút trong quá trình; đăng xuất xóa |
+| `locale`, `context`, `sign-in-return-to` | Ngôn ngữ cổng, chế độ Personal/nhóm, trang quay lại; lợi ích chính đáng | Hai mục đầu đến khi xóa; trang quay lại 15 phút |
 
-**Những gì trang tài khoản tải.** Trang tài khoản không tải Google Analytics, Cloudflare Web Analytics hay script phân tích nào khác, và không hỏi về cookie. Trang hiển thị khung chat trực tuyến của Crisp được mô tả trong mục [Website](#website), và một lần mua trên trang sẽ mở trang thanh toán của {merchant} phía trên trang.
-
-## Bản tin {#newsletter}
-
-Nếu bạn đăng ký nhận ghi chú phát hành, trước tiên chúng tôi gửi cho bạn một liên kết xác nhận bằng ngôn ngữ của trang bạn dùng để đăng ký. Liên kết có hiệu lực 7 ngày, và mỗi địa chỉ nhận tối đa 3 liên kết mỗi ngày. Khi bạn xác nhận, địa chỉ của bạn vào danh sách bản tin mà chúng tôi lưu trên máy chủ của mình, kèm ngôn ngữ đó. Với lần đăng ký và lần xác nhận, chúng tôi ghi lại thời điểm của mỗi lần, địa chỉ IP và trình duyệt gửi yêu cầu, trang bạn dùng để đăng ký và phiên bản nội dung đồng ý mà bạn đã chấp nhận. Cloudflare Turnstile kiểm tra form đăng ký, như mô tả trong mục [Website](#website).
-
-Mỗi bản tin ghi lại lượt mở và lượt bấm của mọi người nhận. Bản tin chứa một hình ảnh nhỏ, và các liên kết trong đó đi qua `links.news.tablepro.app`. Khi ứng dụng email của bạn tải hình ảnh đó hoặc bạn mở một liên kết, Amazon SES ghi lại thời điểm mở hoặc bấm và liên kết được bấm, kèm địa chỉ IP và user agent mà ứng dụng email của bạn gửi, rồi chuyển chúng tới máy chủ của chúng tôi, nơi đếm lượt mở và lượt bấm của từng bản tin. Ứng dụng email không tải hình ảnh thì không ghi lại lượt mở nào. Liên kết hủy đăng ký và các liên kết mở thư mới để soạn email không được theo dõi.
-
-Mọi bản tin đều có liên kết hủy đăng ký, mở ra một trang có nút hủy đăng ký, và có các header cho phép ứng dụng email hủy đăng ký cho bạn chỉ với một cú bấm. Sau khi bạn hủy đăng ký, chúng tôi không gửi bản tin nào nữa và cũng không gửi email xác nhận việc hủy; muốn đăng ký lại, bạn cần xác nhận lại từ đầu. Đánh dấu một bản tin là spam cũng hủy đăng ký cho bạn, và khi email tới địa chỉ của bạn bị trả về vĩnh viễn, chúng tôi ngừng gửi tới địa chỉ đó. Nếu muốn xóa luôn địa chỉ email, hãy gửi email cho chúng tôi, hoặc xóa tài khoản TablePro nếu tài khoản đó dùng địa chỉ này.
-
-Khi chuyển từ máy chủ trước đây, mọi địa chỉ chưa hủy đăng ký trong danh sách email của máy chủ đó đều được đưa vào danh sách này ở trạng thái đã đăng ký, dù đã xác nhận hay chưa: máy chủ đó cũng đã thêm địa chỉ của người mua, người giữ license và người đăng ký dùng thử bản beta, và gửi email cho họ. Các địa chỉ đã hủy đăng ký được chuyển sang ở trạng thái đã hủy, còn các địa chỉ có email bị trả về hoặc bị đánh dấu là spam được đưa vào danh sách chặn của chúng tôi thay vào đó, nên không bản tin nào tới được các địa chỉ này.
-
-## Cookie và bộ nhớ trình duyệt {#cookies}
-
-Website công khai và request đăng ký bản tin, thanh toán, kiểm tra mã giảm giá không đặt cookie riêng. Đăng nhập trang tài khoản, hoặc bắt đầu đăng nhập, đặt cookie thực sự cần thiết duy nhất liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt. Cookie Google Analytics chỉ đặt khi bạn cho phép. Crisp đặt cookie trên mọi trang sau khi chat tải xong. Không thứ nào ở đây được dùng cho quảng cáo hay được bán.
-
-- **`_ga` và `_ga_<ID>`** (cookie của Google Analytics, tối đa 2 năm, chỉ khi bạn cho phép phân tích): một mã ngẫu nhiên cho trình duyệt của bạn và trạng thái của lượt truy cập hiện tại. Khi bạn từ chối, hoặc đổi câu trả lời sau đó, các cookie này bị xóa. Cơ sở pháp lý: sự đồng ý.
-- **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Trang tài khoản không chạy công cụ phân tích nào, nên không hỏi câu này và không đọc câu trả lời. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
-- **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, và máy chủ của chúng tôi chuyển nguồn của lượt truy cập cho {merchant}. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`theme`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống). Trang tài khoản giữ lựa chọn riêng. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`tablepro:language`** (local storage, cho tới khi bạn xóa): ngôn ngữ bạn chọn trong menu ngôn ngữ hoặc thanh gợi ý ngôn ngữ, và từng ngôn ngữ có gợi ý bạn đã đóng, để website không gợi ý lại. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`tablepro:campaign-closed`** (local storage, cho tới khi bạn xóa): đợt ưu đãi mà bạn đã đóng thông báo phía trên đầu trang, để thông báo đó không hiện lại ở các trang khác cho tới khi đợt ưu đãi kết thúc. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, chỉ khi bạn cho phép Google Analytics ở đó): ID người xem được mô tả trong mục [Website](#website). Từ chối sẽ xóa nó. Trang tài liệu giữ câu trả lời `tablepro:analytics-consent` của riêng nó. Cơ sở pháp lý: sự đồng ý.
-- **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
-- **`__Host-tp_session`** (cookie trang tài khoản, 30 ngày kể từ khi bạn đăng nhập): giữ đăng nhập. Trước khi bạn đăng nhập, cookie chỉ được đặt khi đang đăng nhập bằng passkey, Apple, GitHub, Google hoặc từ một ứng dụng, tối đa 10 phút. Đăng xuất sẽ xóa cookie. Request đăng ký bản tin, thanh toán và kiểm tra mã giảm giá từ website công khai dùng omit credentials, không bao giờ nhận cookie này. Cơ sở pháp lý: thực sự cần thiết.
-- **`locale`, `context` và `sign-in-return-to`** (local storage của trang tài khoản): ngôn ngữ bạn chọn ở đó trước khi đăng nhập và việc bạn mở Cá nhân hay một nhóm gần nhất, cả hai cho tới khi bạn xóa, và trong 15 phút là trang cần quay lại sau khi bạn mở liên kết đăng nhập trong email. Cơ sở pháp lý: lợi ích hợp pháp.
-
-Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích bất cứ lúc nào bằng **Cài đặt cookie** ở chân mọi trang, hoặc tại đây:
+Đổi đồng ý analytics bằng Cài đặt cookie ở footer hoặc tại đây:
 
 <cookie-settings></cookie-settings>
 
-## Cơ sở pháp lý {#lawful-basis}
-
-Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
-
-- **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, tài khoản của bạn cùng các cách đăng nhập và thiết bị, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): dữ liệu sử dụng của ứng dụng cho Mac và việc phân tích dữ liệu đó trong PostHog, các sự kiện về đăng nhập, mua hàng, thiết bị và nhóm mà máy chủ của chúng tôi gửi tới PostHog, nhật ký kiểm tra của tài khoản, bảo mật và chống lạm dụng, gồm cả Cloudflare Turnstile trên form đăng ký bản tin, nhật ký máy chủ, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng, việc tra quốc gia để gợi ý ngôn ngữ và giảm giá theo khu vực, và khung chat trực tuyến trên mọi trang.
-- **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
-- **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
-
 ## Bên nhận dữ liệu {#sharing}
 
-Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần thiết để vận hành TablePro:
+| Bên nhận | Dữ liệu và mục đích |
+| --- | --- |
+| [OVH]({ovhPrivacy}) | Máy chủ và bản ghi dịch vụ |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 và backup, Turnstile, Cloudflare Web Analytics |
+| [Amazon Web Services]({awsPrivacy}) | Email Amazon SES, giao thư và tương tác newsletter; link CloudFront, sự kiện SNS/SQS |
+| [PostHog EU]({posthogPrivacy}) | Analytics ứng dụng/máy chủ; ID tài khoản, không tên/email; yêu cầu trực tiếp kèm IP |
+| [{merchant}]({merchantPrivacy}) | Merchant of record độc lập; checkout, thanh toán và đơn hàng |
+| [Crisp]({crispPrivacy}) | Chat, dữ liệu trình duyệt/trang, danh tính tài khoản đăng nhập |
+| [Google]({googlePrivacy}) | Analytics website/docs và font docs; đăng nhập tài khoản nếu chọn |
+| [Mintlify]({mintlifyPrivacy}) | Lưu trữ docs và đo khách đã đồng ý |
+| [GitHub]({githubPrivacy}) | Tải về, cập nhật, plugin, sao docs, issue công khai và đăng nhập tùy chọn |
+| [Apple]({applePrivacy}) | Đăng nhập tùy chọn; dịch vụ Apple và chẩn đoán tại mục ứng dụng/tích hợp |
+| [jsDelivr]({jsdelivrPrivacy}) | Yêu cầu script checkout kèm IP và thông tin trình duyệt |
 
-- **{merchant}**, merchant of record cho các giao dịch mua.
-- **Amazon Web Services**, với dịch vụ Amazon SES gửi email của chúng tôi từ vùng Châu Á Thái Bình Dương (Singapore): liên kết và mã đăng nhập, lời mời vào nhóm, thông báo về tài khoản và bảo mật, và bản tin. Amazon SES báo cho chúng tôi khi email được gửi tới nơi, bị trả về hoặc bị đánh dấu là spam, và chúng tôi ghi lại các lần bị trả về và bị báo spam để ngừng gửi tới các địa chỉ đó. Với bản tin, Amazon SES còn báo từng lượt mở và lượt bấm, như mô tả trong mục [Bản tin](#newsletter).
-- **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics và kiểm tra form đăng ký bản tin bằng Turnstile.
-- **Google**, cho Google Analytics trên website và tài liệu.
-- **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
-- **PostHog** (EU Cloud), dịch vụ phân tích sản phẩm của chúng tôi, nhận báo cáo sử dụng của các ứng dụng và các sự kiện từ máy chủ của chúng tôi về đăng nhập, mua hàng, thiết bị và nhóm, kèm mã tài khoản của bạn nhưng không bao giờ kèm địa chỉ email hay tên. Dữ liệu sử dụng mà ứng dụng cho Mac gửi thẳng tới PostHog đến kèm địa chỉ IP của máy Mac của bạn.
-- **Apple, GitHub và Google**, khi bạn đăng nhập tài khoản bằng các dịch vụ này.
-- **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
-- **Mintlify**, nơi lưu trữ trang tài liệu docs.tablepro.app.
-- **GitHub**, nơi lưu nguồn cập nhật, danh mục plugin và các bản tải về, đồng thời cung cấp số star mà trang tài liệu hiển thị.
+Thành viên nhóm nhận nội dung chung và thông tin tài khoản theo vai trò. Tích hợp bạn chọn nhận dữ liệu bạn gửi. Chúng tôi không bán dữ liệu cá nhân hay chia sẻ cho quảng cáo. Tiết lộ khác chỉ khi pháp luật yêu cầu. Chính sách riêng của nhà cung cấp cũng áp dụng cho dịch vụ của họ.
 
-Chúng tôi không bán dữ liệu cá nhân và không chia sẻ dữ liệu đó với bên quảng cáo.
+## Nơi xử lý dữ liệu {#transfers}
 
-## Chuyển dữ liệu ra nước ngoài {#transfers}
+Máy chủ OVH và Amazon SES ở Singapore (`ap-southeast-1` cho SES). PostHog ở EU. Crisp đặt tại Pháp. {publisherName} hoạt động từ Việt Nam. Các nhà cung cấp Mỹ, gồm {merchant}, Google, GitHub, Cloudflare, Amazon Web Services và Mintlify, xử lý tại Mỹ. Lưu trữ và backup có thể ở quốc gia khác của bạn. Biện pháp EEA/Anh bắt buộc dựa vào Standard Contractual Clauses hoặc cơ chế được chấp thuận của từng nhà cung cấp; Google còn dùng EU-US Data Privacy Framework. Hỏi qua [liên hệ](#controller) về biện pháp áp dụng.
 
-Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ liệu của bạn có thể được xử lý bên ngoài quốc gia của bạn. {merchant}, Google, GitHub, Cloudflare và Mintlify xử lý dữ liệu tại Hoa Kỳ; Google làm việc này theo Khung bảo vệ quyền riêng tư dữ liệu EU-Hoa Kỳ (EU-US Data Privacy Framework) và các Điều khoản hợp đồng mẫu (Standard Contractual Clauses). PostHog xử lý dữ liệu tại Liên minh châu Âu. Amazon Web Services gửi email của chúng tôi từ Singapore. Khi pháp luật yêu cầu, việc chuyển dữ liệu từ EEA và Vương quốc Anh dựa trên các Điều khoản hợp đồng mẫu hoặc một cơ chế được phê duyệt khác.
+## Thời gian lưu giữ {#retention}
 
-## Thời gian lưu dữ liệu {#retention}
+Chúng tôi chưa đặt giới hạn thời gian tại những mục ghi như vậy. Xóa tài khoản không xóa dữ liệu tại PostHog hay Crisp. Gửi email qua [liên hệ](#controller) để yêu cầu xóa tại các bên này.
 
-- **Báo cáo sử dụng và sự kiện phân tích**: máy chủ của chúng tôi không giữ bản sao nào sau khi đã chuyển chúng sang PostHog. Chúng tôi chưa đặt thời hạn cho chúng trong PostHog.
-- **Dữ liệu từ máy chủ trước đây của chúng tôi**: một bản sao toàn bộ cơ sở dữ liệu của máy chủ đó được giữ vô thời hạn trong một kho lưu trữ. Bản sao gồm license, đơn hàng và thành viên nhóm kèm địa chỉ email và tên; các máy Mac đã kích hoạt license, kèm tên máy; người đăng ký bản tin và người đăng ký dùng thử bản beta; bản ghi các email máy chủ đó đã gửi; và các báo cáo sử dụng cùng nhật ký yêu cầu liên quan đến license mà máy chủ đó giữ, kèm địa chỉ IP.
-- **Thiết bị**: được giữ, kể cả những thiết bị bạn đã gỡ, cho tới khi bạn xóa tài khoản.
-- **Nhật ký kiểm tra của tài khoản**: được giữ khi tài khoản còn tồn tại, kèm địa chỉ IP và trình duyệt của từng thay đổi bạn thực hiện. Xóa tài khoản sẽ gỡ khỏi nhật ký các địa chỉ email của bạn cùng địa chỉ IP và trình duyệt của những việc bạn đã làm; bản ghi về từng thay đổi vẫn còn.
-- **Đơn hàng**: được giữ cho mục đích thuế và kế toán. Xóa tài khoản sẽ gỡ địa chỉ email và tài khoản của bạn khỏi đơn hàng.
-- **Thông báo từ {merchant}, Amazon SES và Apple**: được giữ. Thông báo của {merchant} chứa tên, địa chỉ email và địa chỉ thanh toán của bạn; xóa tài khoản sẽ gỡ các thông tin đó khỏi những thông báo về các lần mua của bạn. Thông báo của Amazon SES chứa địa chỉ nhận của mỗi email và, với bản tin, địa chỉ IP và user agent của mỗi lượt mở và lượt bấm; xóa tài khoản sẽ gỡ các thông tin này khỏi những thông báo về email gửi tới địa chỉ của bạn, và khỏi bản ghi của chúng tôi về mỗi email đã gửi.
-- **Team Library**: cho tới khi một mục được sửa; mục đã xóa vẫn giữ phiên bản cuối cùng. Thư viện bị xóa cùng nhóm, 30 ngày sau khi chủ sở hữu xóa nhóm; trước thời điểm đó, chủ sở hữu có thể khôi phục nhóm. Thư viện vẫn còn sau khi license kết thúc.
-- **Liên kết và mã đăng nhập**: hết hạn sau 15 phút và bị xóa 7 ngày sau đó. Mỗi phiên đăng nhập trang tài khoản kéo dài 30 ngày. Token giữ một ứng dụng ở trạng thái đăng nhập hết hạn 90 ngày sau lần cuối ứng dụng dùng nó, và bị xóa 30 ngày sau đó.
-- **Tài khoản đã xóa**: tài khoản, các cách đăng nhập, thiết bị, license và tư cách thành viên nhóm bị xóa ngay. Đơn hàng và nhật ký kiểm tra được giữ như mô tả ở trên. Những gì máy chủ trước đây lưu về bạn vẫn nằm trong kho lưu trữ của máy chủ đó, như mô tả ở trên.
-- **Bản tin**: địa chỉ không được xác nhận trong vòng 30 ngày sẽ bị xóa cùng liên kết xác nhận. Địa chỉ đã xác nhận, hoặc được chuyển từ máy chủ trước đây, nằm trong danh sách của chúng tôi cùng bản ghi về cách địa chỉ đó vào danh sách, cho tới khi chúng tôi xóa theo yêu cầu của bạn hoặc bạn xóa tài khoản TablePro dùng địa chỉ đó; sau khi bạn hủy đăng ký, địa chỉ được giữ ở trạng thái đã hủy đăng ký để không bản tin nào tới được địa chỉ đó.
-- **Danh sách chặn gửi**: địa chỉ có email bị trả về vĩnh viễn, hoặc có chủ sở hữu đã đánh dấu một email của chúng tôi là thư rác, được giữ trong danh sách chặn gửi của chúng tôi cùng thời điểm lần đầu và lần cuối việc đó xảy ra, kể cả sau khi tài khoản hoặc đăng ký bản tin dùng địa chỉ đó đã bị xóa. Nhờ vậy chúng tôi không gửi email đến địa chỉ đó nữa.
-- **Google Analytics**: dữ liệu ở cấp người dùng và cấp sự kiện được giữ 2 tháng, thời hạn lưu mặc định của Google mà property của chúng tôi đang dùng. Cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
-- **Cloudflare Web Analytics**: Cloudflare cho chúng tôi xem số liệu tổng về lượt xem trang trong sáu tháng gần nhất. Không có gì được lưu trong trình duyệt của bạn.
-- **Chat trực tuyến và email hỗ trợ**: được Crisp và hộp thư của chúng tôi giữ cho tới khi bị xóa. Bạn có thể yêu cầu chúng tôi xóa các cuộc chat và email của bạn.
-- **Nhật ký máy chủ**: nhật ký của máy chủ web và của máy chủ chúng tôi, được giữ trên máy chủ của chúng tôi cho mục đích bảo mật và khắc phục sự cố. Chúng tôi chưa đặt thời hạn cố định cho các nhật ký này.
+| Bản ghi | Lưu giữ và xóa |
+| --- | --- |
+| Analytics PostHog | Chưa đặt giới hạn. Tắt để lại sự kiện trước đó. Yêu cầu xóa. |
+| Job xử lý và log máy chủ | Job có thể giữ báo cáo khi gửi/thử lại. Log dùng cho bảo mật và xử lý lỗi. Chưa đặt giới hạn tổng; không cam kết máy chủ không giữ bản sao. |
+| Thiết bị | Gồm thiết bị đã gỡ, đến khi xóa tài khoản |
+| Tài khoản và audit | Xóa ngay tài khoản, cách đăng nhập, thiết bị, license và tư cách thành viên. Audit còn vô thời hạn; xóa trường email và IP/user agent của người thực hiện, nhưng địa chỉ trong văn bản tự do có thể còn. |
+| Đơn hàng và thông báo nhà cung cấp | Đơn hàng giữ cho thuế/kế toán, chưa có giới hạn. Xóa bỏ liên kết tài khoản/email. Sự kiện {merchant}, Amazon SES và Apple còn; thông tin cá nhân mua hàng và người nhận/tương tác email được xóa cho tài khoản đã xóa. |
+| Team Library | Mục đã xóa giữ phiên bản cuối để sync. Xóa nhóm thường xóa thư viện sau 30 ngày, trong thời gian đó có thể khôi phục. Xóa tài khoản chủ sở hữu duy nhất xóa nhóm/thư viện ngay. License hết không xóa thư viện. |
+| Xác thực | Link/mã hết hạn sau 15 phút, xóa 7 ngày sau. Session cổng 30 ngày. Token ứng dụng hết hạn 90 ngày sau lần dùng cuối, xóa 30 ngày sau. Job email giữ link/mã rõ đến cleanup: một ngày sau gửi hoặc 7 ngày sau bỏ gửi. |
+| Newsletter | Địa chỉ mới chưa xác nhận bị xóa sau 30 ngày. Địa chỉ đã xác nhận/chuyển sang giữ đến khi yêu cầu xóa hoặc xóa tài khoản dùng địa chỉ đó. Hủy vẫn giữ địa chỉ với trạng thái đã hủy. |
+| Danh sách chặn gửi | Địa chỉ bounce/spam và ngày đầu/cuối còn sau xóa tài khoản/đăng ký để ngăn gửi tiếp. Chưa có giới hạn. |
+| Google Analytics | Dữ liệu người dùng/sự kiện: 2 tháng; báo cáo tổng hợp chuẩn là riêng |
+| Cloudflare Web Analytics | Chúng tôi xem được tổng lượt xem sáu tháng gần nhất |
+| Hỗ trợ | Crisp và email giữ đến khi xóa, gồm theo yêu cầu. Chưa có giới hạn. |
+| Backup và bản lưu chuyển đổi | Chưa có giới hạn. Xóa tài khoản không xóa các bản này. Bản lưu toàn database cũ gồm tên/email, license, đơn hàng, nhóm, tên thiết bị, subscriber, beta signup, email, báo cáo sử dụng và log license kèm IP. |
 
-## Quyền của bạn {#rights}
+## Lựa chọn và quyền của bạn {#rights}
 
-Tùy theo nơi bạn sống, bạn có thể yêu cầu chúng tôi:
+Dùng công tắc ứng dụng, Cookie settings trên website/docs và hủy newsletter để đổi xử lý tùy chọn. Rút đồng ý có hiệu lực về sau, không làm mất tính hợp lệ của xử lý trước đó. Công tắc không xóa dữ liệu cũ hay dừng analytics máy chủ. Trong [Settings của cổng]({account}), xuất hoặc xóa tài khoản; các nút này không bao gồm mọi bản ghi trong bảng lưu giữ.
 
-- cung cấp một bản sao dữ liệu cá nhân chúng tôi đang giữ về bạn (quyền truy cập);
-- sửa dữ liệu đó (quyền chỉnh sửa);
-- xóa dữ liệu đó (quyền xóa), trừ những gì pháp luật buộc chúng tôi phải giữ;
-- giới hạn cách chúng tôi sử dụng dữ liệu (quyền hạn chế xử lý);
-- gửi dữ liệu cho bạn ở định dạng có cấu trúc, máy đọc được (quyền di chuyển dữ liệu);
-- ngừng sử dụng dữ liệu dựa trên lợi ích hợp pháp (quyền phản đối).
+Tùy nơi sống, yêu cầu truy cập, sửa, xóa, hạn chế, di chuyển hoặc phản đối xử lý theo lợi ích chính đáng. Yêu cầu được tiếp nhận kể cả khi chưa có tài khoản: email qua [liên hệ](#controller). Chúng tôi có thể hỏi thông tin cần để tìm bản ghi, như ID bản cài. Không gửi license key rõ qua email. Chúng tôi trả lời trong một tháng. Bạn có thể khiếu nại với cơ quan bảo vệ dữ liệu. Nghĩa vụ lưu giữ pháp lý có thể giới hạn quyền xóa.
 
-Bạn có thể rút lại sự đồng ý bất cứ lúc nào, và có thể khiếu nại tới cơ quan bảo vệ dữ liệu nơi bạn sống. Để thực hiện bất kỳ quyền nào trong số này, hãy gửi email tới [{email}](mailto:{email}). Chúng tôi trả lời trong vòng 30 ngày. Trên [trang tài khoản]({account}), phần Cài đặt cũng cho bạn một bản sao dữ liệu tài khoản và xóa tài khoản. Với mọi thứ khác, như một địa chỉ nhận bản tin hoặc một máy Mac không có tài khoản, hãy cho chúng tôi biết yêu cầu liên quan tới địa chỉ email, license key hay thiết bị nào. Dữ liệu do {merchant}, Google, Crisp hoặc GitHub nắm giữ còn chịu sự điều chỉnh của chính sách riêng của họ.
+### Quyền theo khu vực {#regional-rights}
 
 **Cư dân California.** Đạo luật Quyền riêng tư người tiêu dùng California (CCPA) cho bạn quyền được biết chúng tôi thu thập thông tin cá nhân nào, yêu cầu chúng tôi xóa thông tin đó, từ chối việc bán thông tin đó, và không bị đối xử khác biệt khi thực hiện các quyền này. Chúng tôi không bán thông tin cá nhân.
 
 ## Trẻ em {#children}
 
-TablePro không hướng tới trẻ em dưới 16 tuổi, và chúng tôi không cố ý thu thập dữ liệu cá nhân của trẻ em. Nếu bạn cho rằng một trẻ em đã cung cấp dữ liệu cá nhân cho chúng tôi, hãy liên hệ và chúng tôi sẽ xóa dữ liệu đó.
+TablePro không hướng đến trẻ dưới 16 tuổi và chúng tôi không cố ý thu thập dữ liệu cá nhân của trẻ. Nếu bạn cho rằng trẻ đã cung cấp dữ liệu, liên hệ để chúng tôi xóa.
 
 ## Bảo mật {#security}
 
-Lưu lượng giữa các ứng dụng, website, trang tài khoản và máy chủ của chúng tôi dùng HTTPS. Tài khoản TablePro không có mật khẩu. Liên kết và mã đăng nhập, các token giữ ứng dụng ở trạng thái đăng nhập, và token API của nhóm được lưu dưới dạng giá trị băm. Tác vụ gửi email chứa liên kết và mã đăng nhập giữ nguyên văn hai giá trị này cho tới khi tác vụ bị xóa: một ngày sau khi email được gửi, hoặc 7 ngày sau khi chúng tôi ngừng thử gửi. Cả hai hết hiệu lực 15 phút sau khi bạn yêu cầu. Quyền truy cập vào hệ thống của chúng tôi chỉ dành cho {publisherName} và các nhà cung cấp dịch vụ được liệt kê trong mục [Bên nhận dữ liệu](#sharing). Không hệ thống nào an toàn tuyệt đối. Để báo một lỗ hổng bảo mật, hãy xem [trang Bảo mật](/vi/security#report) hoặc gửi email tới [{email}](mailto:{email}).
+Lưu lượng đến dịch vụ dùng HTTPS. Tài khoản không có mật khẩu. Thông tin đăng nhập và API token của nhóm được lưu dạng hash, với ngoại lệ job email tạm thời tại mục [lưu giữ](#retention). Chỉ {publisherName} và nhà cung cấp trong [Bên nhận dữ liệu](#sharing) có quyền truy cập hệ thống. Không hệ thống nào an toàn tuyệt đối. Báo lỗ hổng qua [trang bảo mật](/vi/security#report).
 
-## Thay đổi chính sách {#changes}
+## Thay đổi {#changes}
 
-Khi chính sách này thay đổi, chúng tôi cập nhật nó tại đây với ngày "Cập nhật lần cuối" mới, và thông báo trực tiếp cho bạn khi pháp luật yêu cầu.
-
-## Liên hệ {#contact}
-
-Với các câu hỏi về quyền riêng tư hoặc về chính sách này, hãy gửi email tới [{email}](mailto:{email}).
+Trang hiển thị ngày cập nhật cuối. Bản trước còn trong [lịch sử repository web công khai]({webGithub}/commits/main/resources/data/legal/en/privacy.md). Chúng tôi cập nhật trước khi dùng dữ liệu cho mục đích mới, thông báo trực tiếp khi luật yêu cầu và xin lại sự đồng ý khi cần.

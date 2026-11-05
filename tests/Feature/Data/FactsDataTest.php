@@ -23,7 +23,7 @@ function factsUnique(array $list, string $label): void
 
 it('is dated and has the sections the pages read', function (): void {
     expect(factsJson())->toHaveKeys([
-        'verifiedAt', 'links', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
+        'verifiedAt', 'links', 'privacyPolicies', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
         'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits',
     ])
         ->and(factsJson()['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/')
@@ -33,9 +33,9 @@ it('is dated and has the sections the pages read', function (): void {
 it('links only over HTTPS, and to the App Store destination platforms.json has', function (): void {
     $links = factsJson()['links'];
 
-    foreach ($links as $key => $url) {
-        expect($url)->toStartWith('https://', "links.{$key}")
-            ->and(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse("links.{$key} is malformed");
+    foreach ([...$links, ...factsJson()['privacyPolicies']] as $key => $url) {
+        expect($url)->toStartWith('https://', $key)
+            ->and(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse("{$key} is malformed");
     }
 
     $ios = collect(factsData('platforms.json')['platforms'])->firstWhere('id', 'ios');

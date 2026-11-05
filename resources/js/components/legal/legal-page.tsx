@@ -155,8 +155,8 @@ export default function LegalPage({ document, chrome, links, organizationProfile
                                 </Fragment>
                             ))}
 
-                            {/* A document that ends with its own Contact section (Privacy, Terms) does not repeat the address under it. */}
-                            {!document.toc.some((section) => section.id === 'contact') && (
+                            {/* A contact anchor also covers policies that put the address with the controller. */}
+                            {!document.html.includes('id="contact"') && (
                                 <p className="type-small mt-12 max-w-[44rem] border-t border-rule pt-6 text-muted-foreground">
                                     <Trans
                                         text={chrome.contact}

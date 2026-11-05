@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "发往 TablePro",
-                    "text": "在您登录或激活许可证之前，Mac 应用向 TablePro 发送的唯一数据是使用数据，默认开启，可在设置中关闭。从支持 TablePro 账户的版本起，这些数据不再经过 TablePro 的服务器，而是直接发送给我们位于欧盟的分析服务 PostHog。iPhone 和 iPad 除非开启 Share Usage Data，否则不向 TablePro 发送信息。使用数据从不包含主机名、用户名、密码、查询或行数据。"
+                    "text": "Mac 0.86.0（从 0.86.0-beta.1 起）直接向 PostHog EU 发送使用数据。默认开启，可在设置关闭。已发布的 iPhone/iPad 仅在启用 Share Usage Data 后报告。Apple 诊断另计。使用数据不含主机名、用户名、密码、查询或行。"
                 }
             ],
             "limits": [
-                "Mac 应用开始发送使用数据前不会询问。从支持 TablePro 账户的版本起，PostHog 会随每个事件收到您的 Mac 的 IP 地址并据此推算大致位置，账户的审计日志会保存每次登录和每台新设备的 IP 地址。"
+                "Mac 发送前不询问。PostHog 接收 IP 并推算大致位置。登录使用可关联账户和购买。账户变更也保留审计 IP。关闭应用使用数据不会停止服务器分析。"
             ],
             "links": [
                 {
