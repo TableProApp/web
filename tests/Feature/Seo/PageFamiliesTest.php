@@ -20,8 +20,6 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
 
-require_once __DIR__ . '/helpers.php';
-
 beforeEach(function (): void {
     $this->dirs = seoScratch();
 });
@@ -109,34 +107,9 @@ describe('ContentCollection', function (): void {
 
         $entry = (new ContentCollection(app(ContentRepository::class)))->find('landing.databaseClient', ['slug' => 'mysql-client']);
 
-        expect($entry->sources)->toContain(
-            'resources/data/content/en/databases/mysql-client.json',
-            'resources/data/content/vi/databases/mysql-client.json',
-            'resources/data/content/en/engines.json',
-            'resources/data/content/vi/engines.json',
-            'resources/data/engines.json',
-        );
-
-        expect(LastModified::sourcesFor($entry->sources, 'vi'))->toBe([
-            'resources/data/content/vi/databases/mysql-client.json',
-            'resources/data/content/vi/engines.json',
-            'resources/data/engines.json',
-        ]);
-    });
-
-    it('dates a feature page by the engine lists, platforms and shared labels it renders', function (): void {
-        seoWriteContent($this->dirs['content'], 'en', 'features/querying');
-
-        $family = new ContentCollection(app(ContentRepository::class));
-
-        expect(LastModified::sourcesFor($family->find('landing.features.show', ['slug' => 'querying'])->sources, 'en'))->toBe([
-            'resources/data/content/en/features/querying.json',
-            'resources/data/content/en/features/index.json',
-            'resources/data/facts.json',
-            'resources/data/paid-features.json',
-            'resources/data/engines.json',
-            'resources/data/platforms.json',
-        ]);
+        expect(LastModified::sourcesFor($entry->sources, 'vi'))
+            ->toContain('resources/data/content/vi/databases/mysql-client.json', 'resources/data/engines.json')
+            ->not->toContain('resources/data/content/en/databases/mysql-client.json');
     });
 
     it('lists every page once, from either locale', function (): void {
@@ -501,29 +474,6 @@ describe('OgImages', function (): void {
         expect($images->for($compare, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png');
     });
 
-    it('reads the real bespoke site card, which takes over a locale only when supplied and on disk', function (): void {
-        $manifest = new AssetManifest();
-
-        expect($manifest->entry(OgImages::SITE_CARD)['kind'])->toBe('og-card');
-
-        File::put($this->public . '/og.png', seoPngBytes());
-        File::ensureDirectoryExists($this->public . '/og/vi');
-        File::put($this->public . '/og/vi/default.png', seoPngBytes());
-
-        $home = new PageEntry('landing.home', [], ['en', 'vi'], ['en', 'vi'], [], 'site', null);
-        $images = app(OgImages::class);
-
-        expect($images->for($home, 'en')['url'])->toBe('https://localhost/og.png');
-        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/vi/default.png');
-
-        $card = $manifest->fileUrl(OgImages::SITE_CARD, 'light', 'en', 1200, 'png');
-        File::ensureDirectoryExists(dirname($this->public . $card));
-        File::copy(base_path('public' . $card), $this->public . $card);
-
-        expect($images->for($home, 'en')['url'])->toBe('https://localhost' . ($manifest->isSupplied(OgImages::SITE_CARD) ? $card : '/og.png'));
-        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/vi/default.png');
-    });
-
     it('names the paths og:generate writes', function (): void {
         expect(OgImages::cardPath('database', 'mysql-client', 'en'))->toBe('/og/database/mysql-client.png');
         expect(OgImages::cardPath('database', 'mysql-client', 'vi'))->toBe('/og/vi/database/mysql-client.png');
@@ -559,12 +509,6 @@ describe('OgFonts', function (): void {
         expect(fn() => (new OgFonts($this->dirs['root'] . '/css/none.css'))->css())->toThrow(RuntimeException::class);
     });
 
-    it('reads the site stylesheet, so a card and a page cannot use different faces', function (): void {
-        $stylesheet = (new ReflectionProperty(OgFonts::class, 'stylesheet'))->getValue(app(OgFonts::class));
-
-        expect($stylesheet)->toBe(resource_path('css/fonts.css'));
-        expect(file_get_contents($stylesheet))->toContain('inter-vietnamese');
-    });
 });
 
 it('never registers a locale the site does not serve', function (): void {

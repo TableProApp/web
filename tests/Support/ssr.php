@@ -40,11 +40,6 @@ function requireSsr(): void
     config(['inertia.ssr.enabled' => true, 'inertia.ssr.throw_on_error' => true]);
 }
 
-/**
- * Checked once per process: the probe shells out to lsof and ps.
- *
- * @return array{skip: string|null, fail: string|null}
- */
 function ssrProblem(): array
 {
     if (! file_exists(base_path('bootstrap/ssr/ssr.js'))) {
@@ -81,9 +76,6 @@ function ssrBundleIsStale(string $url): bool
     return $elapsed !== null && filemtime(base_path('bootstrap/ssr/ssr.js')) > time() - $elapsed + 2;
 }
 
-/**
- * Parses the `[[DD-]HH:]MM:SS` form `ps -o etime=` prints.
- */
 function parseProcessElapsedSeconds(string $etime): ?int
 {
     if (! preg_match('/^(?:(?:(\d+)-)?(\d+):)?(\d+):(\d+)$/', trim($etime), $m)) {

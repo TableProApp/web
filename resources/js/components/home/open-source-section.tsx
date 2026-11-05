@@ -24,7 +24,7 @@ interface OpenSourceSectionProps {
  *
  * Product Hunt is a plain text link, by the owner's decision (spec §0): no
  * badge image and no hotlink, so the page makes no request to Product Hunt
- * (`ThirdParty/ScriptsTest`). It sits after GitHub, away from the download
+ * (`Security/PrivacyTest`). It sits after GitHub, away from the download
  * actions.
  */
 export default function OpenSourceSection({ content, availability }: OpenSourceSectionProps) {

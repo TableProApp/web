@@ -4,11 +4,7 @@ import assert from 'node:assert/strict';
 import { trackDownload, trackEvent } from '../../resources/js/lib/analytics.ts';
 import { CONSENT_STORAGE_KEY } from '../../resources/js/lib/consent.ts';
 
-/*
- * Run with `npm run test:js`. With analytics declined or unanswered, Consent
- * Mode would still send an event as a cookieless ping, so the only place an
- * event can be held back is before `gtag` is called.
- */
+// Consent Mode still sends a cookieless ping, so an event can only be held back before gtag is called.
 
 function installBrowser(answer: string | null, options: { storageThrows?: boolean; gtag?: boolean } = {}): unknown[][] {
     const calls: unknown[][] = [];

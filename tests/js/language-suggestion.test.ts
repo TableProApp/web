@@ -17,15 +17,7 @@ import {
     type LanguageTables,
 } from '../../resources/js/lib/language-suggestion.ts';
 
-/*
- * Which language the bar offers, and the head script that decides it before
- * first paint. Run with `npm run test:js`.
- *
- * The head script in app.blade.php cannot import this module, so it repeats
- * the rule in plain JavaScript; the parity test runs that script against
- * `suggestionFor` for every case, the way banner.test.ts does for the license
- * banner.
- */
+// The head script cannot import this module, so it repeats the rule.
 
 const read = (path: string): string => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 
@@ -167,7 +159,7 @@ test('every table maps only to what exists', () => {
     }
 });
 
-/** [name, stored record, browser languages, page, suggestable, offered locale or null, settled] */
+// [name, stored record, browser languages, page, suggestable, offered locale or null, settled]
 const cases: [string, string | null, string[], string, string[], string | null, boolean][] = [
     ['a vietnamese browser on an english page', null, ['vi-VN', 'vi', 'en'], 'en', ['vi', 'de'], 'vi', true],
     ['taiwan', null, ['zh-TW'], 'en', ['zh-Hant'], 'zh-Hant', true],

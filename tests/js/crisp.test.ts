@@ -10,15 +10,7 @@ import {
     openChat,
 } from '../../resources/js/lib/crisp.ts';
 
-/*
- * Live chat on every page, after the page has loaded and the browser is idle.
- * Run with `npm run test:js`.
- *
- * Crisp's loader sets cookies the moment it runs, so the guarantees are about
- * requests and timing: nothing from Crisp is in the document before the page's
- * load event and an idle moment, exactly one loader arrives after any number of
- * calls, and the launcher never sits on top of the consent bar.
- */
+// Crisp's loader sets cookies the moment it runs, so these hold requests and timing.
 
 interface FakeScript {
     src: string;
@@ -39,11 +31,9 @@ interface CrispGlobals {
 interface Browser {
     scripts: FakeScript[];
     window: CrispGlobals;
-    /** Fires the page's load event. */
     load: () => void;
-    /** Runs the pending idle callback. */
     idle: () => void;
-    /** Opens the consent bar with its right and bottom edges at `right` and `bottom`, or closes it with null, and tells the observers. */
+    // Opens the consent bar with its right and bottom edges at `right` and `bottom`, or closes it with null, and tells the observers.
     setBar: (bar: FakeBar | null) => void;
 }
 
@@ -119,7 +109,6 @@ function installBrowser({ readyState = 'loading', width = 390, height = 844 } = 
     };
 }
 
-/** The commands queued for Crisp. */
 function commands(browser: Browser): unknown[] {
     return browser.window.$crisp ?? [];
 }
@@ -278,7 +267,6 @@ test('the shared loader gives Crisp the language and nothing about the reader; o
         'no user:email, user:nickname, session data or similar is pushed',
     );
 });
-
 
 for (const [locale, expected] of [['pt-BR', 'pt-br'], ['zh-Hans', 'zh'], ['zh-Hant', 'zh-tw']]) {
     test(`the ${locale} page requests Crisp's supported regional language`, () => {

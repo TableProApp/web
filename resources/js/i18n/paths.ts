@@ -14,7 +14,7 @@ import type { LocaleTable } from './types.ts';
 // The paths nginx answers on this origin without this app: the account app's old paths redirect to
 // account.tablepro.app, and old unsubscribe links and Polar's webhook reach tablepro-cloud for 90 days
 // (docs/deploy/tablepro.app.nginx.conf). nginx matches them at the root only, so they never take a locale prefix.
-// LocalizedUrlTest holds this equal to LocalizedUrl::PLATFORM_PATHS.
+// LocaleRoutingTest holds this equal to LocalizedUrl::PLATFORM_PATHS.
 export const PLATFORM_PATHS = /^\/(account|checkout|thank-you|newsletter\/unsubscribe|webhooks\/polar)(\/|\?|#|$)/;
 
 export function isPlatformPath(path: string): boolean {

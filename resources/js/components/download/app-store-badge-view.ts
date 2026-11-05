@@ -2,9 +2,9 @@
  * The markup of `<AppStoreBadge>`, as a plain function of the locale.
  *
  * Written with `createElement` rather than JSX so `node --test` can render it
- * through `react-dom/server` with no build step: tests/js/app-store-badge.test.ts
- * renders it in every locale. `app-store-badge.tsx` is the component that binds
- * it to the page's locale, its catalog label and the download event.
+ * through `react-dom/server` with no build step. `app-store-badge.tsx` is the
+ * component that binds it to the page's locale, its catalog label and the
+ * download event.
  *
  * Imports are relative and type-only, so Node resolves them without the `@/`
  * alias.

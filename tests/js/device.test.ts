@@ -4,11 +4,6 @@ import { readFileSync } from 'node:fs';
 
 import { appStoreFirst, classifyDevice } from '../../resources/js/lib/device.ts';
 
-/*
- * The download page's device rules (architecture §1.13). Nothing here may make
- * the page start a download; these only decide emphasis.
- */
-
 const UA = {
     iPhone: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
     iPadMobile: 'Mozilla/5.0 (iPad; CPU OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
@@ -54,12 +49,7 @@ test('the App Store card leads only on an iPhone or iPad', () => {
     assert.equal(appStoreFirst('other'), false);
 });
 
-/*
- * The root template marks an iPhone or iPad with an `ios` class before first
- * paint, which puts the App Store badge first and keeps the license banner off
- * the iPhone and iPad page. It cannot import this module, so it repeats the
- * rule; this runs it against `classifyDevice` for every user agent above.
- */
+// The head script cannot import this module, so it repeats the rule.
 test('the head script marks exactly the devices classifyDevice calls ios', () => {
     const blade = readFileSync(new URL('../../resources/views/app.blade.php', import.meta.url), 'utf8');
     const start = blade.indexOf('var ua = navigator.userAgent;');

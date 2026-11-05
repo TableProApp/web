@@ -10,22 +10,6 @@ import {
     type Visit,
 } from '../../resources/js/lib/attribution.ts';
 
-/*
- * Behaviour tests for the acquisition source that rides along with
- * `POST /checkout`. Run with `npm run test:js`; the CI `frontend` job runs the
- * same command.
- *
- * These execute the module rather than reading it, because everything that can
- * go wrong here is a branch: which touch wins, when a record lapses, what
- * counts as attributable at all. A source-level assertion would confirm the
- * code exists and nothing about whether it credits the right thing.
- *
- * `node --test` with type stripping, so this file costs no dependency. Its
- * imports are `node:` built-ins that the app bundle never sees, which is also
- * why it sits here rather than under `resources/js` — tsconfig covers that
- * directory, and typechecking these would mean pulling in @types/node.
- */
-
 const NOW = new Date('2026-09-03T12:00:00.000Z');
 
 function visit(url: string, referrer = '', now: Date = NOW): Visit {
@@ -68,11 +52,7 @@ test('ignores an empty tag rather than storing a blank source', () => {
     assert.equal(readVisit(visit('https://tablepro.app/?utm_source=%20%20')), null);
 });
 
-/*
- * The case the whole first-touch design exists for. Recording a direct visit
- * would occupy the slot, and the campaign click that arrives tomorrow would
- * then be credited to nobody.
- */
+// Recording a direct visit would take the slot from a campaign click that arrives later.
 test('treats a visit with no tag and no off-site referrer as unattributable', () => {
     assert.equal(readVisit(visit('https://tablepro.app/')), null);
     assert.equal(readVisit(visit('https://tablepro.app/blog/tablepro-0-69')), null);
@@ -157,7 +137,7 @@ test('holds a first touch right up to the edge of the window', () => {
     assert.equal(resolveAttribution(edge, visit('https://tablepro.app/?utm_source=twitter')), edge);
 });
 
-/* Null is the signal to clear storage, not to leave the stale record in place. */
+// Null is the signal to clear storage, not to leave the stale record in place.
 test('reports nothing when a lapsed touch meets an unattributable visit', () => {
     const stale: Attribution = { source: 'hn', landing_page: '/', first_seen_at: daysBefore(NOW, 400) };
 
@@ -178,11 +158,7 @@ test('rejects stored JSON that is not a usable record', () => {
     assert.equal(parseStored('{"source":"hn"}'), null, 'landing_page and first_seen_at are required');
 });
 
-/*
- * localStorage belongs to the reader, and this record ends up in a request body
- * the backend forwards to a payment provider. Anything the reader adds to it
- * has to stop here.
- */
+// The record ends up in a request body the backend forwards to the payment provider.
 test('rebuilds only the known keys, at the known lengths', () => {
     const parsed = parseStored(
         JSON.stringify({

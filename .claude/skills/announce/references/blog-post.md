@@ -49,7 +49,7 @@ Headings are plain statements or names. No questions, slogans or gerund stacks.
 ---
 slug: tablepro-0-81        # equals the filename
 title: "TablePro 0.81: Tabs per Database, Firebase and Bigtable"   # quote a title with a colon
-description: One or two sentences, at most 155 characters (SeoLengthsTest).
+description: One or two sentences, at most 155 characters.
 date: 2026-10-16           # the publish date, never changed later
 release: "TablePro 0.81"   # marks a release post; a guide has none
 author: TablePro Team
@@ -61,7 +61,7 @@ ogPunchline: Two or three short sentences under about 90 characters. The OG card
 - Every tag after `release` is a key of `PostTopics::PAGES` or an engine id in
   `resources/data/engines.json`; `BlogTest` fails on any other.
 - `ogPunchline` is what someone reads on a shared link, not the description restated. It counts no
-  engines (`NoTypedCountsTest`), and neither field makes a privacy claim (`BannedClaimsTest`).
+  engines, and neither field makes a privacy claim.
 
 ## 5. Figures
 
@@ -96,19 +96,14 @@ Dev to dev, plain and short: about 900 words at most, three or four figures.
 
 ## 7. Wire it up
 
-1. `tests/Feature/Landing/BlogTest.php`:
-   - the slug and date at the top of `BLOG_PUBLISHED`;
-   - in the `/blog` test, the newest post's `dateFormatted`;
-   - in the `/vi/blog` test, `posts.0` (slug, url, title, Vietnamese date) and the `slice(N, $guides)`
-     offset, which counts the release posts newer than the newest guide.
-2. Render the OG card and look at it: a long title wraps to three lines and can push the punchline
+1. Render the OG card and look at it: a long title wraps to three lines and can push the punchline
    off. `WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=<slug>`.
-3. Run:
+2. Run:
 
    ```bash
    python3 .claude/skills/announce/scripts/lint-draft.py --blog resources/blog/<slug>.md
    ../TablePro/scripts/check-banned-words.sh resources/blog/<slug>.md
-   php artisan test --compact --filter='BlogTest|SeoLengthsTest|OgCardsTest|AssetManifestTest'
+   php artisan test --compact --filter='BlogTest|OgCardsTest|AssetManifestTest'
    php artisan test --compact
    ```
 

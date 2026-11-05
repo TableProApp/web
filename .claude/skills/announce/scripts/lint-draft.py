@@ -183,7 +183,7 @@ def check_blog(text, draft_path, add):
         add(HARD, "frontmatter", "a title with a colon must be quoted")
     description = unquote(fields.get("description", ""))
     if len(description) > DESCRIPTION_MAX:
-        add(HARD, "description", f"{len(description)} chars, SeoLengthsTest allows {DESCRIPTION_MAX}")
+        add(HARD, "description", f"{len(description)} chars, the limit allows {DESCRIPTION_MAX}")
     punchline = unquote(fields.get("ogPunchline", ""))
     if len(punchline) > OG_PUNCHLINE_MAX:
         add(SOFT, "ogPunchline", f"{len(punchline)} chars, keep it under about {OG_PUNCHLINE_MAX}")

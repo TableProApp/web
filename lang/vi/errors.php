@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 |
 | Nội dung cho resources/views/errors/{500,503}.blade.php. Giữ cùng khóa và
-| cùng tham số với lang/en/errors.php (LangParityTest kiểm tra điều này).
+| cùng tham số với lang/en/errors.php (TranslationsTest kiểm tra điều này).
 |
 */
 

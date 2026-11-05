@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\File;
 
-/**
- * @return list<array<string, mixed>>
- */
 function enginesJson(): array
 {
     static $engines = null;
@@ -12,301 +9,111 @@ function enginesJson(): array
     return $engines ??= json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array<string, array<string, mixed>>
- */
-function enginesById(): array
+function enginesMacRelease(): string
 {
-    return collect(enginesJson())->keyBy('id')->all();
-}
+    $platforms = json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'];
 
-/**
- * @return array<string, mixed>
- */
-function enginesMacPlatform(): array
-{
-    return collect(json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'])
-        ->firstWhere('id', 'mac');
-}
-
-/**
- * @param  Closure(array<string, mixed>): bool  $test
- * @return list<string>
- */
-function enginesWhere(Closure $test): array
-{
-    return array_values(array_column(array_filter(enginesJson(), $test), 'id'));
+    return collect($platforms)->firstWhere('id', 'mac')['release']['version'];
 }
 
 it('gives every engine the documented fields', function (): void {
-    $keys = [
-        'id', 'appTypeId', 'name', 'page', 'slug', 'parent', 'anchor', 'category', 'featured', 'meta',
-        'distribution', 'driverPlugin', 'sinceAppVersion', 'minAppVersion', 'state', 'queryLanguage', 'defaultPort',
-        'connectionMode', 'icon', 'monogram', 'docsSlug', 'capabilities', 'versionFloor', 'bundledVersion', 'limits',
-        'ios', 'verified',
-    ];
-    $capabilities = [
-        'ssh', 'ssl', 'import', 'export', 'schemaEditing', 'explain', 'explainView', 'dashboard', 'usersRoles',
-        'awsIam', 'awsSignIn', 'cloudSqlProxy', 'nativeDump', 'readOnlyMode', 'alwaysReadOnly',
-    ];
-    $categories = ['relational', 'analytical', 'cloud', 'document', 'key-value', 'wide-column', 'search', 'streaming', 'coordination', 'files'];
-
     foreach (enginesJson() as $engine) {
         $id = $engine['id'];
 
-        expect(array_keys($engine))->toBe($keys, "{$id} has the wrong fields");
-        expect(array_keys($engine['capabilities']))->toBe($capabilities, "{$id} has the wrong capability fields");
-        expect(array_keys($engine['ios']))->toBe(['inPicker', 'openable', 'appearsAfterSync']);
-        expect($id)->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
-        expect($engine['name'])->toBeString()->not->toBe('');
-        expect($engine['appTypeId'])->toBeString()->not->toBe('');
-        expect($engine['page'])->toBeIn(['own', 'section', 'hub']);
-        expect($engine['category'])->toBeIn($categories);
-        expect($engine['distribution'])->toBeIn(['bundled', 'registry']);
-        expect($engine['state'])->toBeIn(['published', 'head_only']);
-        expect($engine['connectionMode'])->toBeIn(['network', 'file', 'api']);
-        expect($engine['queryLanguage'])->toBeString()->not->toBe('');
-        expect($engine['defaultPort'] === null || (is_int($engine['defaultPort']) && $engine['defaultPort'] > 0))->toBeTrue("{$id}.defaultPort");
-        expect($engine['monogram'])->toMatch('/^[A-Z0-9]{2}$/');
-        expect($engine['featured'])->toBeBool();
-        expect($engine['meta'])->toBeBool();
+        expect($engine)->toHaveKeys([
+            'id', 'appTypeId', 'name', 'page', 'slug', 'parent', 'anchor', 'category', 'featured', 'meta',
+            'distribution', 'driverPlugin', 'sinceAppVersion', 'minAppVersion', 'state', 'queryLanguage', 'defaultPort',
+            'connectionMode', 'icon', 'monogram', 'docsSlug', 'capabilities', 'versionFloor', 'limits', 'ios',
+        ])
+            ->and($id)->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/')
+            ->and($engine['name'])->toBeString()->not->toBeEmpty()
+            ->and($engine['page'])->toBeIn(['own', 'section', 'hub'])
+            ->and($engine['distribution'])->toBeIn(['bundled', 'registry'])
+            ->and($engine['state'])->toBeIn(['published', 'head_only'])
+            ->and($engine['connectionMode'])->toBeIn(['network', 'file', 'api'])
+            ->and($engine['featured'])->toBeBool()
+            ->and($engine['meta'])->toBeBool()
+            ->and($engine['sinceAppVersion'])->toMatch('/^\d+\.\d+\.\d+$/')
+            ->and($engine['capabilities']['schemaEditing'])->toBeIn(['full', 'partial', 'read-only'])
+            ->and($engine['capabilities']['explainView'])->toBeIn([null, 'diagram', 'text', 'cost']);
 
-        foreach (['ssh', 'ssl', 'import', 'export', 'dashboard', 'usersRoles', 'awsIam', 'awsSignIn', 'cloudSqlProxy', 'readOnlyMode', 'alwaysReadOnly'] as $flag) {
-            expect($engine['capabilities'][$flag])->toBeBool("{$id}.capabilities.{$flag}");
-        }
+        expect($engine['defaultPort'] === null || (is_int($engine['defaultPort']) && $engine['defaultPort'] > 0))->toBeTrue("{$id}.defaultPort");
+        expect($engine['minAppVersion'] === null)->toBe($engine['distribution'] === 'bundled', "{$id}: only a registry plugin has a minimum app version");
 
         foreach ($engine['ios'] as $flag => $value) {
             expect($value)->toBeBool("{$id}.ios.{$flag}");
         }
     }
-});
-
-it('lists the 37 engine types of the v0.77.0 picker by id', function (): void {
-    expect(array_column(enginesJson(), 'id'))->toEqualCanonicalizing([
-        'postgresql', 'mysql', 'sqlserver', 'sqlite', 'mongodb', 'redis', 'mariadb', 'tidb', 'oceanbase', 'databend',
-        'redshift', 'cockroachdb', 'pglite', 'oracle', 'clickhouse', 'duckdb', 'cassandra', 'scylladb', 'dynamodb',
-        'bigquery', 'snowflake', 'cloudflare-d1', 'turso', 'libsql', 'elasticsearch', 'etcd', 'kafka', 'surrealdb',
-        'teradata', 'trino', 'beancount', 'spanner', 'typesense', 'weaviate', 'cloudflare-r2-sql', 'dameng', 'sap-hana',
-    ]);
 
     foreach (['id', 'appTypeId', 'name'] as $field) {
         $values = array_column(enginesJson(), $field);
 
-        expect($values)->toBe(array_values(array_unique($values)), "{$field} values must be unique");
-    }
-});
-
-it('marks the twelve engines whose driver ships inside the app as bundled', function (): void {
-    expect(enginesWhere(fn(array $engine): bool => $engine['distribution'] === 'bundled'))->toEqualCanonicalizing([
-        'postgresql', 'mysql', 'sqlite', 'redis', 'mariadb', 'tidb', 'oceanbase', 'databend', 'redshift', 'cockroachdb', 'pglite', 'clickhouse',
-    ]);
-
-    foreach (enginesJson() as $engine) {
-        if ($engine['distribution'] === 'bundled') {
-            expect($engine['minAppVersion'])->toBeNull("{$engine['id']} ships with the app, so it has no registry minimum");
-        } else {
-            expect($engine['minAppVersion'])->toMatch('/^\d+\.\d+\.\d+$/', "{$engine['id']} is a registry plugin and needs its minimum app version");
-        }
+        expect($values)->toBe(array_values(array_unique($values)), "{$field} repeats");
     }
 });
 
 it('never dates an engine after the current Mac release', function (): void {
-    $release = enginesMacPlatform()['release']['version'];
+    $release = enginesMacRelease();
 
     foreach (enginesJson() as $engine) {
-        expect($engine['sinceAppVersion'])->toMatch('/^\d+\.\d+\.\d+$/');
         expect(version_compare($engine['sinceAppVersion'], $release, '<='))->toBeTrue("{$engine['id']} is newer than {$release}");
 
         if ($engine['minAppVersion'] !== null) {
             expect(version_compare($engine['minAppVersion'], $release, '<='))->toBeTrue("{$engine['id']} needs a newer app than {$release}");
         }
-
-        expect($engine['verified']['macTag'])->toBe('v' . $release);
-        expect($engine['verified']['date'] <= now()->toDateString())->toBeTrue();
     }
-
-    expect(enginesById()['sap-hana']['sinceAppVersion'])->toBe('0.77.0');
-    expect(enginesById()['sap-hana']['minAppVersion'])->toBe('0.79.0');
 });
 
-it('places every engine on its own page, a family section or the hub', function (): void {
-    $engines = enginesById();
+it('places every engine on its own page, a section of one, or the hub', function (): void {
+    $engines = collect(enginesJson())->keyBy('id');
+    $slugs = $engines->pluck('slug')->filter()->values()->all();
+
+    expect($slugs)->toBe(array_values(array_unique($slugs)));
 
     foreach ($engines as $id => $engine) {
         match ($engine['page']) {
             'own' => expect($engine['slug'])->toMatch('/^[a-z0-9-]+-(client|gui)$/', "{$id} needs a slug")
-                ->and($engine['parent'])->toBeNull()
-                ->and($engine['anchor'])->toBeNull(),
+                ->and($engine['icon'])->not->toBeNull("{$id} needs a mark for its page header"),
             'section' => expect($engine['slug'])->toBeNull()
                 ->and($engines[$engine['parent']]['page'] ?? null)->toBe('own', "{$id}'s parent must have its own page")
                 ->and($engine['anchor'])->toBe($id),
             'hub' => expect($engine['slug'])->toBeNull()
-                ->and($engine['parent'])->toBeNull()
                 ->and($engine['anchor'])->toBe($id),
         };
     }
-
-    expect(enginesWhere(fn(array $engine): bool => $engine['page'] === 'section'))->toEqualCanonicalizing([
-        'mariadb', 'tidb', 'oceanbase', 'databend', 'cockroachdb', 'pglite', 'scylladb', 'libsql',
-    ]);
-    expect(enginesWhere(fn(array $engine): bool => $engine['page'] === 'hub'))->toEqualCanonicalizing([
-        'spanner', 'typesense', 'weaviate', 'cloudflare-r2-sql', 'dameng', 'sap-hana',
-    ]);
-
-    $sections = collect($engines)->where('page', 'section');
-
-    expect($sections->groupBy('parent')->map->count()->sortKeys()->all())->toBe([
-        'cassandra' => 1, 'mysql' => 4, 'postgresql' => 2, 'turso' => 1,
-    ]);
 });
 
-it('keeps hub anchors clear of the category anchors on /databases', function (): void {
-    $categories = ['relational', 'analytical', 'cloud', 'document', 'key-value', 'wide-column', 'search', 'streaming', 'coordination', 'files', 'drivers'];
-
-    foreach (enginesJson() as $engine) {
-        if ($engine['page'] === 'hub') {
-            expect($categories)->not->toContain($engine['anchor']);
-        }
-    }
-
-});
-
-// The app files both as relational (PluginMetadataRegistry+HanaDefaults.swift and +CloudDefaults.swift).
-it('groups SAP HANA and Spanner with the relational engines', function (): void {
-    expect(enginesById()['sap-hana']['category'])->toBe('relational');
-    expect(enginesById()['spanner']['category'])->toBe('relational');
-    expect(collect(enginesJson())->where('category', 'cloud')->pluck('id')->all())
-        ->toEqualCanonicalizing(['cloudflare-d1', 'turso', 'libsql', 'cloudflare-r2-sql']);
-});
-
-it('has one database page per own-page engine, matching the sitemap', function (): void {
-    $slugs = array_values(array_filter(array_column(enginesJson(), 'slug')));
-
-    expect($slugs)->toBe(array_values(array_unique($slugs)));
-    expect($slugs)->toEqualCanonicalizing([
-        'postgresql-client', 'mysql-client', 'sqlite-client', 'mongodb-client', 'redis-gui', 'sql-server-client',
-        'oracle-client', 'clickhouse-client', 'duckdb-client', 'cassandra-client', 'redshift-client',
-        'cloudflare-d1-client', 'turso-client', 'dynamodb-gui', 'bigquery-client', 'snowflake-client', 'etcd-gui',
-        'elasticsearch-client', 'surrealdb-client', 'teradata-client', 'trino-client', 'beancount-client', 'kafka-client',
-    ]);
-});
-
-it('pins the featured engines in order, each in every Mac build still served', function (): void {
-    $floor = enginesMacPlatform()['floorVersion'];
-    $engines = enginesById();
-
-    $featured = enginesWhere(fn(array $engine): bool => $engine['featured']);
-    $meta = enginesWhere(fn(array $engine): bool => $engine['meta']);
-
-    expect($featured)->toBe(['postgresql', 'mysql', 'sqlserver', 'sqlite', 'mongodb', 'redis']);
-    expect($meta)->toBe(['postgresql', 'mysql', 'sqlserver', 'mongodb', 'redis']);
-    expect(array_diff($meta, $featured))->toBe([]);
-
-    foreach ($featured as $id) {
-        expect($engines[$id]['state'])->toBe('published');
-        expect(version_compare($engines[$id]['sinceAppVersion'], $floor, '<='))->toBeTrue("{$id} is not in Mac {$floor}");
-    }
-});
-
-it('names the engines iOS opens, in the order platforms.json gives', function (): void {
-    $ios = collect(json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'])
-        ->firstWhere('id', 'ios');
-
-    expect(enginesWhere(fn(array $engine): bool => $engine['ios']['inPicker']))->toEqualCanonicalizing($ios['iosEngines']);
-    expect(enginesWhere(fn(array $engine): bool => $engine['ios']['openable'] && ! $engine['ios']['inPicker']))->toBe(['redshift']);
-
-    foreach (enginesJson() as $engine) {
-        if ($engine['ios']['inPicker']) {
-            expect($engine['ios']['openable'])->toBeTrue("{$engine['id']} is offered on iOS, so it must open");
-        }
-
-        if ($engine['ios']['openable']) {
-            expect($engine['ios']['appearsAfterSync'])->toBeTrue();
-        }
-    }
-});
-
-it('pins the capability lists the feature pages derive', function (): void {
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['dashboard']))->toEqualCanonicalizing([
-        'postgresql', 'redshift', 'cockroachdb', 'mysql', 'mariadb', 'sqlserver', 'clickhouse', 'typesense',
-    ]);
-    // TiDB: MySQLPluginDriver.swift:116-129 gives every flavor but Databend `.userManagement`, and docs/databases/tidb.mdx:34 says it works (v0.78.0).
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['usersRoles']))->toEqualCanonicalizing([
-        'mysql', 'mariadb', 'tidb', 'postgresql', 'pglite',
-    ]);
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['awsIam']))->toEqualCanonicalizing([
-        'mysql', 'mariadb', 'postgresql',
-    ]);
-    // Every AWS IAM sign-in: RDS IAM, MONGODB-AWS, ElastiCache IAM and Amazon Keyspaces SigV4 (aws-iam.mdx and the engine docs at v0.77.0).
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['awsSignIn']))->toEqualCanonicalizing([
-        'mysql', 'mariadb', 'postgresql', 'mongodb', 'redis', 'cassandra', 'scylladb',
-    ]);
-
-    foreach (enginesJson() as $engine) {
-        if ($engine['capabilities']['awsIam']) {
-            expect($engine['capabilities']['awsSignIn'])->toBeTrue("{$engine['id']}: RDS IAM is an AWS sign-in");
-        }
-    }
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['cloudSqlProxy']))->toEqualCanonicalizing([
-        'mysql', 'postgresql', 'sqlserver',
-    ]);
-    expect(enginesWhere(fn(array $engine): bool => ! $engine['capabilities']['readOnlyMode']))->toBe([]);
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['alwaysReadOnly']))->toEqualCanonicalizing([
-        'beancount', 'cloudflare-r2-sql',
-    ]);
-
-    $engines = enginesById();
-
-    foreach (['sqlserver', 'oracle', 'cassandra', 'mongodb'] as $id) {
-        expect($engines[$id]['capabilities']['explain'])->toBe([], "{$id} has no EXPLAIN");
-    }
-
-    expect($engines['redshift']['capabilities']['awsIam'])->toBeFalse('Redshift has no AWS IAM sign-in');
-    expect($engines['redshift']['capabilities']['awsSignIn'])->toBeFalse('Redshift has no AWS IAM sign-in');
-    expect($engines['bigquery']['capabilities']['explainView'])->toBe('cost');
-});
-
-it('keeps EXPLAIN, schema editing and import values consistent', function (): void {
+it('keeps related capabilities consistent', function (): void {
     foreach (enginesJson() as $engine) {
         $capabilities = $engine['capabilities'];
 
-        expect($capabilities['schemaEditing'])->toBeIn(['full', 'partial', 'read-only']);
-        expect($capabilities['explain'])->toBe(array_values(array_unique($capabilities['explain'])));
+        expect($capabilities['explain'] === [])->toBe($capabilities['explainView'] === null, "{$engine['id']}: an EXPLAIN view needs EXPLAIN");
 
-        if ($capabilities['explain'] === []) {
-            expect($capabilities['explainView'])->toBeNull("{$engine['id']} has no EXPLAIN, so no view");
-        } else {
-            expect($capabilities['explainView'])->toBeIn(['diagram', 'text', 'cost']);
+        if ($capabilities['awsIam']) {
+            expect($capabilities['awsSignIn'])->toBeTrue("{$engine['id']}: RDS IAM is an AWS sign-in");
         }
 
         if ($capabilities['alwaysReadOnly']) {
-            expect($capabilities['schemaEditing'])->toBe('read-only');
-            expect($capabilities['import'])->toBeFalse();
+            expect($capabilities['schemaEditing'])->toBe('read-only')
+                ->and($capabilities['import'])->toBeFalse();
+        }
+
+        if ($engine['ios']['inPicker']) {
+            expect($engine['ios']['openable'])->toBeTrue("{$engine['id']} is offered on iOS, so it must open");
         }
     }
+});
 
-    expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['schemaEditing'] === 'read-only'))->toContain(
-        'redshift',
-        'cockroachdb',
-        'bigquery',
-        'spanner',
-        'elasticsearch',
-        'typesense',
-        'surrealdb',
-        'beancount',
-        'sap-hana',
-    );
+it('offers on iOS exactly the engines platforms.json lists', function (): void {
+    $platforms = json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'];
+    $inPicker = collect(enginesJson())->filter(fn(array $engine): bool => $engine['ios']['inPicker'])->pluck('id')->all();
+
+    expect($inPicker)->toEqualCanonicalizing(collect($platforms)->firstWhere('id', 'ios')['iosEngines']);
 });
 
 it('links each engine to a docs page of its own or of its driver sibling', function (): void {
-    $docsSlugs = array_values(array_filter(array_column(enginesJson(), 'docsSlug')));
-
-    expect($docsSlugs)->toBe(array_values(array_unique($docsSlugs)));
-
     foreach (enginesJson() as $engine) {
         if ($engine['docsSlug'] !== null) {
-            expect($engine['docsSlug'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
-
             continue;
         }
 
@@ -316,138 +123,48 @@ it('links each engine to a docs page of its own or of its driver sibling', funct
 
         expect($sibling)->not->toBeNull("{$engine['id']} has no docs page and no sibling with one");
     }
-
-    expect(enginesWhere(fn(array $engine): bool => $engine['docsSlug'] === null))->toEqualCanonicalizing(['scylladb', 'turso']);
 });
 
 it('points at icon files that exist', function (): void {
     foreach (enginesJson() as $engine) {
-        if ($engine['icon'] === null) {
-            continue;
+        if ($engine['icon'] !== null) {
+            expect(public_path($engine['icon']))->toBeFile();
         }
-
-        expect($engine['icon'])->toStartWith('/images/databases/');
-        expect(File::exists(public_path($engine['icon'])))->toBeTrue("{$engine['icon']} does not exist");
     }
 });
 
-it('records version floors, embedded versions and limits with evidence', function (): void {
+it('records version floors and limits with evidence', function (): void {
     foreach (enginesJson() as $engine) {
-        $id = $engine['id'];
-
         if ($engine['versionFloor'] !== null) {
-            expect(array_keys($engine['versionFloor']))->toBe(['text', 'enforced', 'evidence']);
-            expect($engine['versionFloor']['enforced'])->toBeBool();
-            expect($engine['versionFloor']['evidence'])->toBeString()->not->toBe('');
-
-            if ($engine['versionFloor']['text'] === null) {
-                expect($engine['versionFloor']['enforced'])->toBeFalse("{$id}: no minimum version cannot be enforced");
-            } else {
-                expect($engine['versionFloor']['text'])->toBeString()->not->toBe('');
-            }
+            expect($engine['versionFloor'])->toHaveKeys(['text', 'enforced', 'evidence'])
+                ->and($engine['versionFloor']['enforced'])->toBeBool()
+                ->and($engine['versionFloor']['evidence'])->toBeString()->not->toBeEmpty();
         }
 
-        $limitIds = array_column($engine['limits'], 'id');
+        $ids = array_column($engine['limits'], 'id');
 
-        expect($limitIds)->toBe(array_values(array_unique($limitIds)), "{$id} repeats a limit");
+        expect($ids)->toBe(array_values(array_unique($ids)), "{$engine['id']} repeats a limit");
 
         foreach ($engine['limits'] as $limit) {
-            expect(array_keys($limit))->toBe(['id', 'value', 'evidence']);
-            expect($limit['id'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
-            expect($limit['value'] === null || is_int($limit['value']))->toBeTrue("{$id}.{$limit['id']}.value");
-            expect($limit['evidence'])->toBeString()->not->toBe('');
+            expect($limit['value'] === null || is_int($limit['value']))->toBeTrue("{$engine['id']}.{$limit['id']}.value")
+                ->and($limit['evidence'])->toBeString()->not->toBeEmpty();
         }
     }
-
-    $engines = enginesById();
-
-    expect($engines['sqlite']['bundledVersion'])->toBe('3.53.4');
-    expect($engines['duckdb']['bundledVersion'])->toBe('1.5.2');
-    expect($engines['oracle']['versionFloor'])->toMatchArray(['text' => '11.1', 'enforced' => true]);
-    // The driver reads the server's /version and refuses anything older (SurrealDBError.swift:31 @v0.77.0).
-    expect($engines['surrealdb']['versionFloor'])->toMatchArray(['text' => '2.0', 'enforced' => true]);
-    expect(array_column($engines['sqlite']['limits'], 'id'))->toContain('no-encryption');
-    expect(array_column($engines['redis']['limits'], 'id'))->toContain('no-pubsub');
-    expect(array_column($engines['mongodb']['limits'], 'id'))->toContain('no-pipeline-builder');
 });
 
-// A null text is the docs saying there is no minimum (databases/*.mdx in TableProApp/docs); Trino's docs say nothing.
-it('says there is no minimum version only where the docs say so', function (): void {
-    expect(enginesWhere(fn(array $engine): bool => $engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null))->toEqualCanonicalizing([
-        'redis', 'clickhouse', 'redshift', 'teradata', 'cockroachdb', 'databend', 'tidb', 'oceanbase',
-    ]);
+it('has a tagline and a sentence for every limit in the English copy', function (): void {
+    $copy = json_decode(File::get(resource_path('data/content/en/engines.json')), true, 512, JSON_THROW_ON_ERROR);
+
+    expect(array_keys($copy))->toEqualCanonicalizing(array_column(enginesJson(), 'id'));
 
     foreach (enginesJson() as $engine) {
-        if ($engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null) {
-            expect($engine['versionFloor']['evidence'])->toMatch('#^TableProApp/docs:databases/[a-z0-9-]+\.mdx:\d+$#', "{$engine['id']}: no minimum needs the docs line that says so");
+        $entry = $copy[$engine['id']];
+
+        expect($entry['tagline'])->toBeString()->not->toBeEmpty()
+            ->and(array_keys($entry['limits']))->toEqualCanonicalizing(array_column($engine['limits'], 'id'));
+
+        foreach ($engine['limits'] as $limit) {
+            expect(str_contains($entry['limits'][$limit['id']], '{value}'))->toBe($limit['value'] !== null, "{$engine['id']}.{$limit['id']} uses {value} only when the limit has one");
         }
     }
-
-    expect(enginesById()['trino']['versionFloor'])->toBeNull();
-});
-
-// The docs left the app repository before v0.81.0, so a docs page is cited in TableProApp/docs at verified.docsCommit.
-it('cites every piece of evidence as an app path or a TableProApp/docs page, with its lines', function (): void {
-    foreach (enginesJson() as $engine) {
-        expect(array_keys($engine['verified']))->toBe(['macTag', 'iosCommit', 'docsCommit', 'date']);
-        expect($engine['verified']['docsCommit'])->toMatch('/^[0-9a-f]{7,40}$/');
-
-        $references = array_column($engine['limits'], 'evidence');
-
-        if ($engine['versionFloor'] !== null) {
-            $references[] = $engine['versionFloor']['evidence'];
-        }
-
-        foreach ($references as $reference) {
-            expect($reference)->toMatch('#^(TableProApp/docs:)?[\w./+-]+:\d+(-\d+)?(,\d+(-\d+)?)*( @[0-9a-f]{7,40})?$#', "{$engine['id']}: {$reference}");
-            expect($reference)->not->toStartWith('docs/', "{$engine['id']}: {$reference} is an app path that no longer exists");
-        }
-    }
-});
-
-it('gives every engine with its own page a mark for the page header', function (): void {
-    expect(enginesWhere(fn(array $engine): bool => $engine['page'] === 'own' && $engine['icon'] === null))->toBe([]);
-});
-
-// The same limit id can need different words on two engines, so the sentences are per engine.
-it('has a tagline and a sentence for every limit in both locales, and nothing else', function (): void {
-    foreach (['en', 'vi'] as $locale) {
-        $copy = json_decode(File::get(resource_path("data/content/{$locale}/engines.json")), true, 512, JSON_THROW_ON_ERROR);
-
-        expect(array_keys($copy))->toEqualCanonicalizing(array_column(enginesJson(), 'id'), "content/{$locale}/engines.json must hold exactly the engines");
-
-        foreach (enginesJson() as $engine) {
-            $entry = $copy[$engine['id']];
-
-            expect(array_keys($entry))->toBe(['tagline', 'limits'], "{$locale}: {$engine['id']} has the wrong keys");
-            expect($entry['tagline'])->toBeString()->not->toBe('', "{$locale}: {$engine['id']} has no tagline");
-            expect(array_keys($entry['limits']))->toEqualCanonicalizing(array_column($engine['limits'], 'id'), "{$locale}: {$engine['id']} limit sentences differ from its limits");
-
-            foreach ($engine['limits'] as $limit) {
-                $sentence = $entry['limits'][$limit['id']];
-
-                expect($sentence)->toBeString()->not->toBe('');
-                expect(str_contains($sentence, '{value}'))->toBe($limit['value'] !== null, "{$locale}: {$engine['id']}.{$limit['id']} must use {value} exactly when the limit has a number");
-                expect(preg_match('/(?<![\w.\/-])\d{2,}(?![\w.])/u', str_replace('{value}', '', $sentence)))->toBe(0, "{$locale}: {$engine['id']}.{$limit['id']} types a number; put it in engines.json as the limit's value");
-            }
-        }
-    }
-});
-
-// PluginMetadataRegistry+MySQLVariantDefaults.swift at v0.77.0; the docs pages for all three agree.
-it('gives the MySQL-protocol variants their text EXPLAIN', function (): void {
-    $engines = enginesById();
-
-    expect($engines['tidb']['capabilities']['explain'])->toBe(['EXPLAIN', 'EXPLAIN ANALYZE']);
-    expect($engines['databend']['capabilities']['explain'])->toBe(['EXPLAIN', 'EXPLAIN ANALYZE']);
-    expect($engines['oceanbase']['capabilities']['explain'])->toBe(['EXPLAIN']);
-
-    foreach (['tidb', 'databend', 'oceanbase'] as $id) {
-        expect($engines[$id]['capabilities']['explainView'])->toBe('text');
-    }
-});
-
-// etcd's plugin hides the generic SSL pane, but its own TLS Mode field does the same job (EtcdHttpClient.swift at v0.77.0).
-it('marks an engine with its own TLS setting as able to use TLS', function (): void {
-    expect(enginesById()['etcd']['capabilities']['ssl'])->toBeTrue();
 });

@@ -20,7 +20,7 @@ use Spatie\Sitemap\Tags\Url;
  *
  * - A translated page lists every translation as an `xhtml:link` alternate,
  *   itself included, plus `x-default` pointing at the English URL. These are
- *   exactly the head's alternates (`SitemapAlternatesTest`).
+ *   exactly the head's alternates (`Seo/SitemapTest`).
  * - An untranslated page (an English-only release post, `/blog`) has none.
  * - A page that renders but is not indexed (`/vi/blog`) is absent, as are
  *   redirect and 410 sources (the registry never lists them), error pages and

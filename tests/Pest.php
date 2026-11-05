@@ -12,3 +12,12 @@ pest()->extend(Tests\TestCase::class)
 
 require_once __DIR__ . '/Support/ssr.php';
 require_once __DIR__ . '/Support/asset-slots.php';
+require_once __DIR__ . '/Support/seo.php';
+require_once __DIR__ . '/Support/releases.php';
+
+dataset('locales', fn(): array => array_keys(json_decode((string) file_get_contents(__DIR__ . '/../resources/data/locales.json'), true)['supported']));
+
+dataset('translated locales', fn(): array => array_values(array_diff(
+    array_keys(json_decode((string) file_get_contents(__DIR__ . '/../resources/data/locales.json'), true)['supported']),
+    ['en'],
+)));

@@ -36,5 +36,5 @@ export interface SponsorsData {
     sponsors: Sponsor[];
 }
 
-// tests/Feature/Data/SponsorsDataTest.php validates the file this casts.
+// tests/Feature/Data/SiteDataTest.php validates the file this casts.
 export const SPONSORS = data as SponsorsData;

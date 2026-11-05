@@ -6,7 +6,7 @@ use App\Support\Content\EnginePaths;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
-// What each {token} and engines list in feature copy means, so the copy stays true when the data changes; FeatureContentTest fails on a name it does not know.
+// What each {token} and engines list in feature copy means, so the copy stays true when the data changes; Pages/FeaturesTest fails on a name it does not know.
 /**
  * @phpstan-type EngineItem array{name: string, href: string|null, detail: string|null, since: string|null}
  * @phpstan-type Fact array{kind: 'number', value: int}|array{kind: 'text', value: string}|array{kind: 'names', items: list<string>}|array{kind: 'engines', items: list<EngineItem>}

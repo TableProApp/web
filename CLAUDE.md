@@ -61,15 +61,11 @@ server (`docs/architecture.md`, "The language bar").
   browser agree.
 - Vietnamese text is NFC and follows the glossary
   (`docs/rebuild/design/positioning.md` §11): the reader is "bạn", developer
-  terms stay in English. `tests/Support/vi-forbidden-variants.php` lists the
-  wording that is ruled out.
+  terms stay in English.
 - In every language, the names of paid features, plans, modes, Safe Mode
   levels and app commands stay in English ("Safe Mode", "Data Rewind", "Team").
-  `tests/Support/locale-forbidden-variants.php` lists the wording ruled out per
-  language.
-- A label inside `<ui>` is what the app shows in that language:
-  `tests/Support/app-ui-labels.php` holds the app's wording where it is
-  translated, followed in the copy by the English label in parentheses. Every
+- A label inside `<ui>` is what the app shows in that language. Where the app
+  translates it, the copy follows it with the English label in parentheses. Every
   other language keeps the English label as written.
 - French takes a no-break space before `; : ! ?` and inside `« »`. Japanese and
   Chinese put a space between Latin and CJK text, list joiners included.

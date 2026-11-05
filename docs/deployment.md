@@ -29,7 +29,7 @@ the host's. On this origin:
 
 nginx matches those paths at the root only, so `/vi/account` comes here and
 answers 404 with a link to the portal. `PLATFORM_PATHS` keeps the site from
-prefixing them, and `LocalizedUrlTest` holds it to the file. Ninety days after
+prefixing them, and `LocaleRoutingTest` holds it to the file. Ninety days after
 the cutover, remove the two proxied locations from the host and from the file;
 the redirects stay.
 
@@ -373,7 +373,7 @@ www-data ALL=(root) NOPASSWD: /usr/bin/systemctl reload php8.5-fpm, /usr/bin/sup
 ```
 
 sudo matches each command line literally — path, verb and unit — and
-`scripts/deploy.sh` runs exactly the first two (`tests/Feature/DeployScriptTest.php`
+`scripts/deploy.sh` runs exactly the first two (`tests/Feature/Repo/DeployScriptTest.php`
 checks its calls against the rule above). The third restarts the platform app's
 SSR program (see "The SSR process"). A PHP upgrade renames the FPM unit, and
 this rule has to follow it; a deploy prints the unit it reloads.

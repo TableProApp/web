@@ -3,7 +3,6 @@ import CellGrid from '@/components/ui/cell-grid';
 import type { LogoSponsor, SponsorLogo } from '@/lib/data/sponsors';
 import { cn } from '@/lib/utils';
 
-// tests/Feature/Data/SponsorsDataTest.php reads both heights to keep raster logos near the size they are drawn at.
 const LOGO_HEIGHT = 28;
 const LEAD_LOGO_HEIGHT = 44;
 

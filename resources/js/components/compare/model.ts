@@ -199,7 +199,7 @@ function cellSources(cell: Pick<ComparisonCell, 'source'>): string[] {
 /**
  * The source ids behind a list item's `cite` entries: `platforms`, `licence`,
  * `status`, `mac`, `technology`, `prices` or `cells.{key}`. An entry that
- * names nothing in the data is ignored here; `CompareContentTest` rejects it.
+ * names nothing in the data is ignored here; `CompareTest` rejects it.
  */
 export function citedSources(product: ComparisonProduct, cite: readonly string[]): string[] {
     const ids: string[] = [];

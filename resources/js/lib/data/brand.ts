@@ -33,5 +33,5 @@ export interface BrandData {
     colors: BrandColor[];
 }
 
-// The /brand page is English only, so its labels live here rather than in the locale catalogs. BrandDataTest validates the file.
+// The /brand page is English only, so its labels live here rather than in the locale catalogs. SiteDataTest validates the file.
 export const BRAND = data as BrandData;
