@@ -1,5 +1,6 @@
 <?php
 
+use Dom\HTMLDocument;
 use Illuminate\Support\Facades\Process;
 
 use function Pest\Laravel\get;
@@ -174,6 +175,13 @@ it('opens the consent bar before first paint only for a reader who has not answe
     'granted' => ['granted', false],
     'denied' => ['denied', false],
 ]);
+
+it('server-renders the consent bar with its two answers', function (string $path): void {
+    $bar = HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)->querySelector('[data-consent-bar]');
+
+    expect($bar)->not->toBeNull()
+        ->and($bar->querySelectorAll('button'))->toHaveCount(2);
+})->with(['/download', '/vi/pricing'])->group('ssr');
 
 it('calls only tablepro-cloud\'s public /v2 endpoints and Cloudflare\'s trace', function (): void {
     $allowed = [

@@ -12,10 +12,9 @@
  * and every place that shows that price says so.
  *
  * `{percent}` is pricing.json's. Prices are slots filled with `formatUsd`.
- * Length limits, held by CampaignBannerTest in every language, in display
- * columns (a CJK character is two): from 1024px `name`, `banner.message`
- * and `banner.cta` together within 64, and below it `banner.short` within 14,
- * so each fits one 40px line beside its countdown.
+ * Length limits, in display columns (a CJK character is two): from 1024px
+ * `name`, `banner.message` and `banner.cta` together within 64, and below it
+ * `banner.short` within 14, so each fits one 40px line beside its countdown.
  */
 export default {
     name: 'Black Friday',

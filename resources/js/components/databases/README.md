@@ -111,7 +111,7 @@ Every string in `header.lead`, `sections`, `family`, `otherTools`, `faq` and `no
   statement).
 - `<name>text</name>` where `name` is a key of the page's `links` (camelCase letters and digits). A value is a site
   path (`/features/connections#network`), a same-page fragment (`#mariadb`) or a docs path (`docs:/databases/redis`).
-  Never a full URL: external URLs live only in data files (`Data/FactsDataTest`).
+  Never a full URL: external URLs live only in data files.
 - These `{tokens}`, filled from data: `{name}` (the engine's name), `{dumpTool}` (only if the engine has a backup
   tool), `{importFormats}` (only if it imports), `{exportFormats}`, `{engineVersion}` (only if it embeds its engine,
   such as SQLite or DuckDB), and `{compareSyncTier}`, `{queryInsightsTier}`, … (the plan name of a paid feature:

@@ -49,7 +49,7 @@ export interface PricingData {
     syncedWith: string;
 }
 
-// TypeScript widens the JSON's string unions to string; tests/Feature/Data/PricingDataTest.php pins every value.
+// TypeScript widens the JSON's string unions to string; tests/Feature/Data/PricingDataTest.php validates the file.
 export const PRICING = data as PricingData;
 
 // What a plan costs in a cycle, or undefined for a cycle it is not sold in (Team one-time).
