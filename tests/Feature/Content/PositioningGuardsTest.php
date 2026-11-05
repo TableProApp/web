@@ -299,7 +299,7 @@ function positioningUnreleasedNames(string $locale): array
     $unreleased = [];
 
     foreach (contentGuardDecode(resource_path('data/platforms.json'))['platforms'] as $platform) {
-        if (($platform['status'] ?? null) !== 'released') {
+        if (! in_array($platform['status'] ?? null, ['released', 'beta'], true)) {
             $unreleased[] = $names["names.{$platform['id']}"] ?? ucfirst((string) $platform['id']);
         }
     }

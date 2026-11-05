@@ -30,6 +30,7 @@ export default {
     free: 'Free, with no in-app purchases',
     status: {
         released: 'Available',
+        beta: 'Beta',
         prototype: 'A prototype only. Nothing to install, and no release date.',
         none: 'Not available, and no release date.',
     },

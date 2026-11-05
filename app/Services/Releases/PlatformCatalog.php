@@ -87,6 +87,12 @@ class PlatformCatalog
         return ($this->find($id)['status'] ?? null) === 'released';
     }
 
+    /** A beta has installable packages even though it is not a stable release. */
+    public function isAvailable(string $id): bool
+    {
+        return in_array($this->find($id)['status'] ?? null, ['released', 'beta'], true);
+    }
+
     /**
      * The ids of the platforms with nothing to install, in data order.
      *
@@ -97,7 +103,7 @@ class PlatformCatalog
         $ids = [];
 
         foreach ($this->all() as $platform) {
-            if (($platform['status'] ?? null) !== 'released' && is_string($platform['id'] ?? null)) {
+            if (! in_array($platform['status'] ?? null, ['released', 'beta'], true) && is_string($platform['id'] ?? null)) {
                 $ids[] = $platform['id'];
             }
         }

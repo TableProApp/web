@@ -168,11 +168,11 @@ it('states the AGPL, the free core and priority support the way the rest of the 
         ->not->toContain('daily usage report');
 });
 
-it('answers the Windows and Linux question without a promise', function (): void {
+it('answers the Linux question with beta availability', function (): void {
     $answer = collect(faqContent('en')['groups'])->firstWhere('id', 'platforms')['items'];
     $answer = collect($answer)->firstWhere('id', 'windows-linux')['answer'][0];
 
-    expect($answer)->toBe('No. There is no Windows version. A Linux prototype exists, but there is nothing to install and no release date.');
+    expect($answer)->toBe('The Linux app is in beta. See the <download>download page</download> for packages and installation instructions.');
 });
 
 it('server-renders every group, with no FAQPage markup', function (string $path): void {

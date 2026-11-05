@@ -74,7 +74,7 @@ describe('props and copy', function (): void {
             ->assertInertia(fn(AssertableInertia $page) => $page
                 ->component('Home')
                 ->where('locale', 'en')
-                ->where('content.hero.title', 'A native database client.')
+                ->where('content.hero.title', 'A native database client for {devices}.')
                 ->where('content.seo.title', 'TablePro: native database client for {deviceList}')
                 ->where('apiOrigin', 'https://api.tablepro.app')
                 ->missing('checkout')
@@ -97,7 +97,7 @@ describe('props and copy', function (): void {
             ->assertInertia(fn(AssertableInertia $page) => $page
                 ->component('Home')
                 ->where('locale', 'vi')
-                ->where('content.hero.title', 'Database client native.')
+                ->where('content.hero.title', 'Database client native cho {devices}.')
                 ->where('content.seo.title', 'TablePro: database client native cho {deviceList}')
                 ->missing('downloadUrls')
                 ->missing('latestRelease')
@@ -479,18 +479,18 @@ describe('server-rendered', function (): void {
             ->not->toContain('"datePublished"');
     })->with(['/', '/vi'])->group('ssr');
 
-    it('names the platforms only in the availability lines, from data', function (): void {
+    it('names available platforms in the headline and availability lines, from data', function (): void {
         // The requirement phrase is held together with no-break spaces ("Apple silicon or Intel"); compare as text.
         $text = static fn(string $path): string => str_replace("\u{00A0}", ' ', ssrHome($path));
 
         expect($text('/'))
-            ->toContain('A native database client.')
+            ->toContain('A native database client for Mac, iPhone, iPad and Linux (Beta).')
             ->toContain('macOS 13 Ventura or later · Apple silicon or Intel')
             ->toContain('iPhone and iPad · iOS and iPadOS 18 or later')
             ->toContain('Download for Mac');
 
         expect($text('/vi'))
-            ->toContain('Database client native.')
+            ->toContain('Database client native cho Mac, iPhone, iPad và Linux (Beta).')
             ->toContain('macOS 13 Ventura trở lên · Apple silicon hoặc Intel')
             ->toContain('iPhone và iPad · iOS và iPadOS 18 trở lên')
             ->toContain('Tải về cho Mac');
@@ -694,7 +694,8 @@ describe('server-rendered', function (): void {
         $hero = html_entity_decode(strip_tags(substr($html, (int) $start, (int) strpos($html, 'id="databases"') - (int) $start)), ENT_QUOTES | ENT_HTML5);
         preg_match('#<pricing>(.*?)</pricing>#', $copy['business'], $pricingLink);
 
-        $headline = strpos($hero, $copy['title']);
+        $headlineText = HTMLDocument::createFromString($html, LIBXML_NOERROR)->getElementById('top-title')->textContent;
+        $headline = strpos($hero, $headlineText);
         $pricing = strpos($hero, $pricingLink[1]);
         $native = strpos($hero, $copy['native']);
 

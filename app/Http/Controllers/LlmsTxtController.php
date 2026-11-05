@@ -33,6 +33,7 @@ class LlmsTxtController extends Controller
             'landing.teams',
             'landing.download',
             'landing.ios',
+            'landing.linux',
             'landing.integrations.index',
             'landing.faq',
             'landing.security',

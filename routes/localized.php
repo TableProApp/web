@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IntegrationController;
 use App\Http\Controllers\IosController;
 use App\Http\Controllers\LegalController;
+use App\Http\Controllers\LinuxController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\SponsorsController;
@@ -38,7 +39,7 @@ use Illuminate\Support\Facades\Route;
 |    app/Support/Content/Slugs, never from a content directory read here.
 |    `route:cache` rebuilds only when PHP changes, so a slug that existed only
 |    as a file would ship without a route.
-| 2. No root-level path may equal a locale prefix (`vi`), and `ios`, `features`,
+| 2. No root-level path may equal a locale prefix (`vi`), and `ios`, `linux`, `features`,
 |    `databases`, `compare`, `integrations`, `pricing` and `brand` must never
 |    join the database slugs. LocaleRoutingTest and LocalesDataTest guard both.
 | 3. The blog and integration slugs stay patterns: whether a post or an
@@ -57,6 +58,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('landing.home');
 Route::get('/download', DownloadController::class)->name('landing.download');
 Route::get('/ios', IosController::class)->name('landing.ios');
+Route::get('/linux', LinuxController::class)->name('landing.linux');
 Route::get('/pricing', PricingController::class)->name('landing.pricing');
 Route::get('/faq', FaqController::class)->name('landing.faq');
 Route::get('/about', AboutController::class)->name('landing.about');

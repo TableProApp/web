@@ -22,6 +22,7 @@ export default {
     "free": "Grátis, sem compras no app",
     "status": {
         "released": "Disponível",
+        "beta": "Beta",
         "prototype": "Apenas um protótipo. Nada para instalar, sem data de lançamento.",
         "none": "Indisponível, sem data de lançamento."
     },

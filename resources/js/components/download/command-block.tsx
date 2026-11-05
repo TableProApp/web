@@ -2,8 +2,8 @@ import CopyButton from '@/components/ui/copy-button';
 import { useI18n } from '@/i18n';
 
 interface CommandBlockProps {
-    /** The command exactly as it is copied, without a prompt. */
-    command: string;
+    /** The command exactly as it is copied, without a prompt; several run one per line. */
+    command: string | readonly string[];
     /** The title bar's text, such as "Terminal". */
     title: string;
     /** Names the command for the copy button and the scroll region: "Homebrew command". */
@@ -20,20 +20,23 @@ interface CommandBlockProps {
  */
 export default function CommandBlock({ command, title, label }: CommandBlockProps) {
     const { m } = useI18n();
+    const lines = typeof command === 'string' ? [command] : command;
 
     return (
         <div className="rounded-panel border border-rule bg-raised">
             <div className="flex min-h-9 items-center justify-between gap-2 border-b border-rule pr-1 pl-4">
                 <span className="type-caption text-muted-foreground">{title}</span>
-                <CopyButton value={command} label={label} labels={m.controls.copy} />
+                <CopyButton value={lines.join('\n')} label={label} labels={m.controls.copy} />
             </div>
             <div role="region" aria-label={label} tabIndex={0} className="overflow-x-auto rounded-b-panel px-4 py-3">
-                <pre className="type-mono text-foreground">
-                    <span aria-hidden="true" className="text-muted-foreground select-none">
-                        ${' '}
-                    </span>
-                    <code>{command}</code>
-                </pre>
+                {lines.map((line) => (
+                    <pre key={line} className="type-mono text-foreground">
+                        <span aria-hidden="true" className="text-muted-foreground select-none">
+                            ${' '}
+                        </span>
+                        <code>{line}</code>
+                    </pre>
+                ))}
             </div>
         </div>
     );

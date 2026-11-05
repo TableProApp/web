@@ -22,6 +22,7 @@ export default {
     "free": "免費，無 App 內購買",
     "status": {
         "released": "已推出",
+        "beta": "測試版",
         "prototype": "僅有原型。沒有可安裝的版本，也沒有發佈日期。",
         "none": "不提供，也沒有發佈日期。"
     },

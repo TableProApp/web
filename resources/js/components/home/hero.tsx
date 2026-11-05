@@ -2,7 +2,9 @@ import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
-import { Trans } from '@/i18n';
+import { Trans, useI18n } from '@/i18n';
+import { joinList } from '@/i18n/format';
+import { availablePlatforms } from '@/lib/data/platforms';
 import type { Availability } from './availability';
 import PlatformActions from './platform-actions';
 import type { HomeContent } from './types';
@@ -17,13 +19,6 @@ interface HeroProps {
 /**
  * Section 1, `#top` (sitemap §D; positioning §3; design-system §8.1).
  *
- * The H1 and subtitle are identity copy: no platform, version or number, so
- * they hold when a platform ships. Platforms appear only in the captions under
- * the two actions, which are built from platforms.json. "and more" jumps to the
- * databases section; "See pricing" to `#pricing`, where shipped Mac builds
- * already send people with `/?ref=…#pricing`. What "native" means sits under
- * the actions, beside the pricing line, not in the identity copy.
- *
  * The two actions are a row of cells across the page grid, the hero's one
  * piece of the frame (design-system §4.7); the headline above them stays
  * unlined.
@@ -35,13 +30,20 @@ interface HeroProps {
  */
 export default function Hero({ content, availability, featuredEngines }: HeroProps) {
     const shown = useShownSlot();
+    const { fmt, m } = useI18n();
+    const devices = joinList(
+        availablePlatforms().flatMap((platform) =>
+            platform.deviceNames.map((name) => platform.status === 'beta' ? `${name} (${m.platforms.status.beta})` : name),
+        ),
+        m.common.list,
+    );
 
     return (
         <section id="top" aria-labelledby="top-title" className="pt-12 pb-8 md:pt-16 md:pb-10 xl:pt-18 xl:pb-12">
             <Container>
                 <div className="max-w-[50rem]">
                     <h1 id="top-title" className="type-display text-balance text-foreground">
-                        {content.title}
+                        {fmt(content.title, { devices })}
                     </h1>
                     <p className="type-lead mt-5 max-w-[60ch] text-muted-foreground">
                         <Trans

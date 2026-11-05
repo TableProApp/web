@@ -1,5 +1,6 @@
 import AppStoreBadge from '@/components/download/app-store-badge';
 import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
+import Badge from '@/components/ui/badge';
 import { buttonClasses } from '@/components/ui/button';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
@@ -7,7 +8,7 @@ import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
-import { devicesOf, macPlatform } from '@/lib/data/platforms';
+import { devicesOf, linuxPlatform, macPlatform } from '@/lib/data/platforms';
 import { macArchitectureList, releasedIos, tierOf, type Availability } from './availability';
 import type { HomeContent } from './types';
 
@@ -21,9 +22,9 @@ interface PlatformsSectionProps {
  * how does it relate to the Mac app?" (sitemap §D; positioning §7 P6). The
  * page's one surface band.
  *
- * One card per released platform, described positively and with no parity
- * claim: the iPhone and iPad app is a separate app with its own scope, which
- * /ios spells out. The card titles, devices and requirements are
+ * One card per released or beta platform, described positively and with no
+ * parity claim: the iPhone and iPad app and the Linux app are separate apps
+ * with their own scope, which /ios and /linux spell out. The card titles, devices and requirements are
  * platforms.json's, and the plan iCloud Sync needs on the Mac is
  * paid-features.json's.
  */
@@ -34,6 +35,8 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
     const macDevices = devicesOf(mac, m.common.list);
     const iosDevices = ios !== null ? devicesOf(ios, m.common.list) : '';
     const phone = useShownSlot()('ios-connection-list');
+    const linux = linuxPlatform();
+    const linuxDevices = linux !== null ? devicesOf(linux, m.common.list) : '';
 
     return (
         <Section
@@ -106,6 +109,22 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
                         <p className="mt-4">
                             <LocaleLink href="/features/sync-and-teams" className={textLinkClasses('standalone')}>
                                 {m.nav.featureLinks.syncTeams}
+                                <span aria-hidden="true">→</span>
+                            </LocaleLink>
+                        </p>
+                    </div>
+                )}
+
+                {linux !== null && (
+                    <div className="flex flex-col md:col-span-full md:row-start-4 lg:row-start-3">
+                        <h3 className="type-h3 flex flex-wrap items-center gap-x-3 gap-y-1 text-foreground">
+                            {fmt(content.cardTitle, { devices: linuxDevices })}
+                            {linux.status === 'beta' && <Badge>{m.platforms.status.beta}</Badge>}
+                        </h3>
+                        <p className="type-body mt-3 max-w-[44rem] text-foreground">{content.linux}</p>
+                        <p className="mt-6">
+                            <LocaleLink href={linux.page} className={textLinkClasses('standalone')}>
+                                {fmt(content.cardTitle, { devices: linuxDevices })}
                                 <span aria-hidden="true">→</span>
                             </LocaleLink>
                         </p>

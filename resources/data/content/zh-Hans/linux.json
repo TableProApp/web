@@ -1,0 +1,31 @@
+{
+    "seo": {
+        "title": "适用于 Linux 的 TablePro",
+        "description": "带有 SQL 编辑器和数据网格的 Linux 测试版。"
+    },
+    "hero": {
+        "title": "适用于 Linux 的 TablePro",
+        "lead": "带有 SQL 编辑器和数据网格的 Linux 测试版。"
+    },
+    "install": {
+        "title": "安装测试版",
+        "label": "{system} 命令",
+        "lead": "适用于 {architectures} 的软件包。请同时启用稳定版和测试版软件仓库，通过 apt 或 dnf 获取更新。",
+        "stable": {
+            "title": "稳定版",
+            "body": "如只需稳定版，请启用稳定版仓库。测试版标签仅发布到测试版仓库；稳定版标签仅发布到稳定版仓库。"
+        },
+        "releases": {
+            "title": "GitHub 软件包",
+            "body": "从 <releases>GitHub Releases</releases> 获取 .deb、.rpm 和 .flatpak 文件。安装下一个版本的文件即可更新。"
+        },
+        "guide": {
+            "label": "阅读 Linux 安装指南",
+            "path": "/linux/install"
+        }
+    },
+    "databases": {
+        "title": "数据库",
+        "lead": "Linux 应用包含这些驱动程序。"
+    }
+}

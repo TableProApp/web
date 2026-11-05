@@ -3,8 +3,9 @@
  * needs, and where to get it.
  *
  * Only a `released` platform carries requirements, destinations and a
- * release. Linux and Windows are listed with their status and nothing else,
- * so no component can render a requirement, a button or a date for them.
+ * release. A `beta` platform (Linux) carries its page, packages and engines
+ * but no release or date. Any other platform is listed with its status and
+ * nothing else, so no component can render a button for it.
  * Every phrase around these values (the "or later" sentence, "Apple silicon",
  * "Mac app") is a `platforms` catalog entry; this module joins them.
  *
@@ -18,7 +19,7 @@ import { joinList, type ListStyle } from '../../i18n/format.ts';
 
 export type PlatformId = 'mac' | 'ios' | 'linux' | 'windows';
 
-export type PlatformStatus = 'released' | 'prototype' | 'none';
+export type PlatformStatus = 'released' | 'beta' | 'prototype' | 'none';
 
 export type MacArchitecture = 'arm64' | 'x86_64';
 
@@ -83,6 +84,29 @@ export interface IosPlatform extends ReleasedPlatformBase {
     price: { amount: number; inAppPurchases: boolean };
 }
 
+export interface LinuxRepository {
+    kind: 'apt' | 'dnf';
+    /** The distribution's name, never translated: `Ubuntu`. */
+    system: string;
+    versions: string[];
+    /** `Fedora 44 or later` rather than `Ubuntu 26.04 and 26.10`. */
+    orLater: boolean;
+    beta: string[];
+    stable: string[];
+}
+
+export interface LinuxPlatform {
+    id: 'linux';
+    status: 'beta';
+    deviceNames: string[];
+    page: string;
+    architectures: string[];
+    destinations: (LinuxRepository | { kind: 'releases'; url: string })[];
+    /** Engine ids the Linux app connects to, in its order. Name them; never count them. */
+    linuxEngines: string[];
+    appLanguages: string[];
+}
+
 export interface UnreleasedPlatform {
     id: 'linux' | 'windows';
     status: 'prototype' | 'none';
@@ -90,7 +114,10 @@ export interface UnreleasedPlatform {
 
 export type ReleasedPlatform = MacPlatform | IosPlatform;
 
-export type Platform = ReleasedPlatform | UnreleasedPlatform;
+/** A platform with something to install, a beta included. */
+export type AvailablePlatform = ReleasedPlatform | LinuxPlatform;
+
+export type Platform = AvailablePlatform | UnreleasedPlatform;
 
 export interface PlatformsData {
     verifiedAt: string;
@@ -115,9 +142,38 @@ export function isReleased(platform: Platform): platform is ReleasedPlatform {
     return platform.status === 'released';
 }
 
+export function isAvailable(platform: Platform): platform is AvailablePlatform {
+    return platform.status === 'released' || platform.status === 'beta';
+}
+
 /** Every platform with something to install, in data order. */
+export function availablePlatforms(): AvailablePlatform[] {
+    return PLATFORMS.platforms.filter(isAvailable);
+}
+
+/** Released platforms with version metadata. */
 export function releasedPlatforms(): ReleasedPlatform[] {
     return PLATFORMS.platforms.filter(isReleased);
+}
+
+/** The Linux app while it has something to install, else null. */
+export function linuxPlatform(): LinuxPlatform | null {
+    const linux = PLATFORMS.platforms.find((platform) => platform.id === 'linux');
+
+    return linux !== undefined && isAvailable(linux) ? (linux as LinuxPlatform) : null;
+}
+
+export function linuxRepositories(linux: LinuxPlatform): LinuxRepository[] {
+    return linux.destinations.filter((entry): entry is LinuxRepository => entry.kind === 'apt' || entry.kind === 'dnf');
+}
+
+/** `Ubuntu 26.04 and 26.10`, `Fedora 44 or later`. */
+export function distributionText(repository: LinuxRepository, strings: PlatformStrings, style: ListStyle): string {
+    if (repository.orLater) {
+        return interpolate(strings.requirement.unnamed, { systems: repository.system, version: repository.versions[0] ?? '' });
+    }
+
+    return `${repository.system} ${joinList(repository.versions, style)}`;
 }
 
 export function macPlatform(): MacPlatform {
@@ -172,7 +228,7 @@ export function architecturesText(strings: PlatformStrings): string {
     );
 }
 
-/** `Mac, iPhone and iPad`: every released platform's devices, joined with the locale's list style. */
+/** The released Apple apps used by the existing engine and feature pages. */
 export function deviceList(style: ListStyle): string {
     return joinList(
         releasedPlatforms().flatMap((platform) => platform.deviceNames),
@@ -181,7 +237,7 @@ export function deviceList(style: ListStyle): string {
 }
 
 /** One platform's devices: `iPhone and iPad`, or `iPhone & iPad` with the short list style. */
-export function devicesOf(platform: ReleasedPlatform, style: ListStyle): string {
+export function devicesOf(platform: AvailablePlatform, style: ListStyle): string {
     return joinList(platform.deviceNames, style);
 }
 

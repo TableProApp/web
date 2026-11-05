@@ -22,6 +22,7 @@ export default {
     "free": "Gratuit, sans achats intégrés",
     "status": {
         "released": "Disponible",
+        "beta": "Bêta",
         "prototype": "Un prototype uniquement. Rien à installer, aucune date de sortie.",
         "none": "Non disponible, aucune date de sortie."
     },

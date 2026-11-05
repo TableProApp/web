@@ -1,0 +1,31 @@
+{
+    "seo": {
+        "title": "TablePro for Linux",
+        "description": "A Linux beta with a SQL editor and data grid."
+    },
+    "hero": {
+        "title": "TablePro for Linux",
+        "lead": "A Linux beta with a SQL editor and data grid."
+    },
+    "install": {
+        "title": "Install the beta",
+        "label": "Commands for {system}",
+        "lead": "Packages for {architectures}. Enable both the stable and beta repositories to receive updates through apt or dnf.",
+        "stable": {
+            "title": "Stable releases",
+            "body": "For stable releases only, enable the stable repository. Beta tags publish only to the beta repositories; stable tags publish only to the stable ones."
+        },
+        "releases": {
+            "title": "Packages on GitHub",
+            "body": "Get .deb, .rpm and .flatpak files from <releases>GitHub Releases</releases>. Install the next file to update."
+        },
+        "guide": {
+            "label": "Read the Linux install guide",
+            "path": "/linux/install"
+        }
+    },
+    "databases": {
+        "title": "Databases",
+        "lead": "These drivers are included in the Linux app."
+    }
+}

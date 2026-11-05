@@ -10,12 +10,13 @@ import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { requirementLine } from '@/components/download/format';
+import Badge from '@/components/ui/badge';
 import IosCard from '@/components/download/ios-card';
 import MacCard, { UI_TAGS } from '@/components/download/mac-card';
 import type { DownloadPageProps } from '@/components/download/types';
 import { LOCALES, Trans, useI18n, type Messages } from '@/i18n';
 import { joinList, keepTogether } from '@/i18n/format';
-import { architecturesText } from '@/lib/data/platforms';
+import { architecturesText, linuxPlatform } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import { appStoreFirst, classifyDevice, type DeviceKind } from '@/lib/device';
 import { absoluteUrl, graph, iosAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
@@ -179,6 +180,16 @@ export default function Download({ content, release, mac, ios, unreleased, links
                     </CellGrid>
                 </Container>
             </div>
+
+            {linuxPlatform() !== null && (
+                <Section id="linux" title={content.linux.title} width="text">
+                    <Badge>{m.platforms.status.beta}</Badge>
+                    <p className="type-body mt-4 text-foreground">{content.linux.body}</p>
+                    <LocaleLink href="/linux" className={textLinkClasses('standalone', 'mt-4')}>
+                        {content.linux.link}
+                    </LocaleLink>
+                </Section>
+            )}
 
             {/* What to do after the download: one section each, so the page frame's joins separate them (design-system §4.7). */}
             <Section id="install" title={content.install.title} width="text">

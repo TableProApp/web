@@ -57,14 +57,17 @@ export interface PlatformPage {
 }
 
 /**
- * One link per released platform that has a page of its own: today `/ios`,
- * labelled "iPhone & iPad". The Mac's page is /download, which the header
- * already links. A platform that ships with a page gets its link from data.
+ * One link per released or beta platform that has a page of its own: `/ios`,
+ * labelled "iPhone & iPad", and `/linux`. The Mac's page is /download, which
+ * the header already links. A platform that ships with a page gets its link
+ * from data.
  */
 export const PLATFORM_PAGES: PlatformPage[] = platformData.platforms.flatMap((candidate) => {
-    const platform = releasedPlatform(candidate.id);
+    const available = candidate.status === 'released' || candidate.status === 'beta';
 
-    return platform?.page ? [{ id: platform.id, href: platform.page, deviceNames: platform.deviceNames }] : [];
+    return available && typeof candidate.page === 'string' && candidate.deviceNames
+        ? [{ id: candidate.id, href: candidate.page, deviceNames: candidate.deviceNames }]
+        : [];
 });
 
 /** External destinations, from facts.json. */

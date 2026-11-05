@@ -22,6 +22,7 @@ export default {
     "free": "Gratis, tanpa pembelian dalam aplikasi",
     "status": {
         "released": "Tersedia",
+        "beta": "Beta",
         "prototype": "Hanya prototipe. Tidak ada yang dapat diinstal dan tidak ada tanggal rilis.",
         "none": "Tidak tersedia dan tidak ada tanggal rilis."
     },

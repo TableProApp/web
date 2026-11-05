@@ -66,7 +66,37 @@
             "price": { "amount": 0, "inAppPurchases": false },
             "appLanguages": ["en", "vi", "ko", "zh-Hans", "zh-Hant"]
         },
-        { "id": "linux", "status": "prototype" },
+        {
+            "id": "linux",
+            "status": "beta",
+            "deviceNames": ["Linux"],
+            "page": "/linux",
+            "architectures": ["amd64", "arm64"],
+            "destinations": [
+                {
+                    "kind": "apt",
+                    "system": "Ubuntu",
+                    "versions": ["26.04", "26.10"],
+                    "orLater": false,
+                    "beta": ["sudo add-apt-repository ppa:tablepro/tablepro", "sudo add-apt-repository ppa:tablepro/tablepro-beta", "sudo apt install tablepro"],
+                    "stable": ["sudo add-apt-repository ppa:tablepro/tablepro", "sudo apt install tablepro"]
+                },
+                {
+                    "kind": "dnf",
+                    "system": "Fedora",
+                    "versions": ["44"],
+                    "orLater": true,
+                    "beta": ["sudo dnf copr enable @tablepro/tablepro", "sudo dnf copr enable @tablepro/tablepro-beta", "sudo dnf install tablepro"],
+                    "stable": ["sudo dnf copr enable @tablepro/tablepro", "sudo dnf install tablepro"]
+                },
+                {
+                    "kind": "releases",
+                    "url": "https://github.com/TableProApp/TablePro/releases"
+                }
+            ],
+            "linuxEngines": ["postgresql", "mysql", "mariadb", "sqlserver", "clickhouse", "cassandra", "scylladb", "sqlite", "duckdb", "redis", "mongodb"],
+            "appLanguages": ["en", "vi"]
+        },
         { "id": "windows", "status": "none" }
     ]
 }

@@ -1,0 +1,31 @@
+{
+    "seo": {
+        "title": "Linux 向け TablePro",
+        "description": "SQL エディターとデータグリッドを備えた Linux ベータ版。"
+    },
+    "hero": {
+        "title": "Linux 向け TablePro",
+        "lead": "SQL エディターとデータグリッドを備えた Linux ベータ版。"
+    },
+    "install": {
+        "title": "ベータ版をインストール",
+        "label": "{system} 用のコマンド",
+        "lead": "{architectures} 用のパッケージ。安定版とベータ版の両方のリポジトリを有効にすると、apt または dnf で更新できます。",
+        "stable": {
+            "title": "安定版",
+            "body": "安定版のみを使う場合は安定版リポジトリを有効にしてください。ベータ版のタグはベータ版リポジトリに、安定版のタグは安定版リポジトリにのみ公開されます。"
+        },
+        "releases": {
+            "title": "GitHub のパッケージ",
+            "body": "<releases>GitHub Releases</releases> から .deb、.rpm、.flatpak ファイルを取得してください。更新には次のファイルをインストールします。"
+        },
+        "guide": {
+            "label": "Linux インストールガイドを読む",
+            "path": "/linux/install"
+        }
+    },
+    "databases": {
+        "title": "データベース",
+        "lead": "これらのドライバーは Linux アプリに含まれています。"
+    }
+}

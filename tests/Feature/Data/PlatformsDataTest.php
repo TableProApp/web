@@ -35,12 +35,12 @@ it('lists the four platforms with a known status', function (): void {
     expect(array_column($data['platforms'], 'id'))->toBe(['mac', 'ios', 'linux', 'windows']);
 
     foreach ($data['platforms'] as $platform) {
-        expect($platform['status'])->toBeIn(['released', 'prototype', 'none']);
+        expect($platform['status'])->toBeIn(['released', 'beta', 'prototype', 'none']);
     }
 
     expect(platformsDataEntry('mac')['status'])->toBe('released');
     expect(platformsDataEntry('ios')['status'])->toBe('released');
-    expect(platformsDataEntry('linux')['status'])->toBe('prototype');
+    expect(platformsDataEntry('linux')['status'])->toBe('beta');
     expect(platformsDataEntry('windows')['status'])->toBe('none');
 });
 
@@ -48,6 +48,13 @@ it('gives a released platform everything a page needs and an unreleased one noth
     $common = ['id', 'status', 'deviceNames', 'page', 'requirements', 'destinations', 'release', 'appLanguages'];
 
     foreach (platformsDataFile()['platforms'] as $platform) {
+        if ($platform['status'] === 'beta') {
+            expect($platform)->toHaveKeys(['deviceNames', 'page', 'architectures', 'destinations', 'linuxEngines', 'appLanguages']);
+            expect($platform)->not->toHaveKeys(['release', 'requirements']);
+
+            continue;
+        }
+
         if ($platform['status'] !== 'released') {
             expect(array_keys($platform))->toBe(['id', 'status'], "{$platform['id']} is not released, so it carries no requirement, destination or date");
 

@@ -22,6 +22,7 @@ export default {
     "free": "免费，无应用内购买",
     "status": {
         "released": "已推出",
+        "beta": "测试版",
         "prototype": "仅有原型。没有可安装的版本，也没有发布日期。",
         "none": "不提供，也没有发布日期。"
     },

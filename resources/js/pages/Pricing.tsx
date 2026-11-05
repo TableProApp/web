@@ -169,6 +169,7 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
               * lists run from rail to rail (design-system §4.7).
               */}
             <Section id="license" title={content.license.title} width="text">
+                <p className="type-body mb-6 text-foreground">{content.license.linux}</p>
                 <div className="type-body space-y-4 text-foreground">
                     <DescriptionList className="frame-rows-text">
                         {Object.entries(content.license.items).map(([key, item]) => (

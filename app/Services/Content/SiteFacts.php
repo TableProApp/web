@@ -163,6 +163,31 @@ class SiteFacts
     }
 
     /**
+     * @param  list<string>  $ids
+     * @return list<array{id: string, name: string, href: string|null}>
+     */
+    public function engineLinks(array $ids): array
+    {
+        $byId = [];
+
+        foreach ($this->engines() as $engine) {
+            if (is_string($engine['id'] ?? null)) {
+                $byId[$engine['id']] = $engine;
+            }
+        }
+
+        $links = [];
+
+        foreach ($ids as $id) {
+            if (($byId[$id]['state'] ?? null) === 'published') {
+                $links[] = $this->engineLink($byId[$id], $byId);
+            }
+        }
+
+        return $links;
+    }
+
+    /**
      * @return list<string>
      */
     public function connectionImportApps(): array
