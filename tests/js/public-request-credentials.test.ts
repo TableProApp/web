@@ -22,7 +22,7 @@ for (const file of [
 
 test('the English policy distinguishes public requests from portal navigation', () => {
     const source = readFileSync(new URL('../../resources/data/legal/en/privacy.md', import.meta.url), 'utf8');
-    assert.match(source, /neither send account-portal cookies nor accept cookies from the response/);
-    assert.match(source, /Opening account-portal pages is separate/);
+    assert.match(source, /Public newsletter, checkout and discount requests omit credentials and set no portal cookie/);
+    assert.match(source, /__Host-tp_session/);
     assert.doesNotMatch(source, /and so does subscribing to the newsletter or starting a checkout/);
 });

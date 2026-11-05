@@ -68,11 +68,11 @@
                 {
                     "id": "to-tablepro",
                     "title": "An TablePro",
-                    "text": "Bis du dich anmeldest oder eine Lizenz aktivierst, sendet die Mac-App an TablePro nur Nutzungsdaten, standardmäßig aktiv und in den Einstellungen abschaltbar. Ab der Version, die TablePro-Konten einführt, gehen sie direkt an PostHog, unseren Analysedienst in der EU, statt über den Server von TablePro. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Nutzungsdaten enthalten niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen."
+                    "text": "Mac 0.86.0 (ab 0.86.0-beta.1) sendet Nutzungsdaten direkt an PostHog EU. Sie sind standardmäßig an und in Settings abschaltbar. Das veröffentlichte iPhone/iPad sendet erst nach Share Usage Data. Apple-Diagnosen sind getrennt. Nutzungsdaten enthalten keine Hosts, Benutzernamen, Passwörter, Abfragen oder Zeilen."
                 }
             ],
             "limits": [
-                "Die Mac-App beginnt ohne Nachfrage, Nutzungsdaten zu senden. Ab der Version, die TablePro-Konten einführt, erhält PostHog mit jedem Ereignis die IP-Adresse deines Macs und leitet daraus einen ungefähren Standort ab, und das Audit-Log deines Kontos speichert die IP-Adresse jeder Anmeldung und jedes neuen Geräts."
+                "Mac sendet ohne Nachfrage. PostHog erhält IP und schätzt den Ort. Angemeldete Nutzung kann Konto und Käufe verknüpfen. Kontoänderungen behalten ebenfalls Audit-IP-Adressen. Abschalten der App-Daten stoppt keine Serveranalyse."
             ],
             "links": [
                 {
