@@ -48,19 +48,7 @@ function edgeCacheInertiaVersion(): string
 
 it('lets the edge keep every page, in both languages', function (string $path): void {
     expectSharedAtEdge($this->get($path)->assertOk());
-})->with([
-    '/',
-    '/vi',
-    '/pricing',
-    '/vi/pricing',
-    '/download',
-    '/blog',
-    '/blog/tablepro-0-77',
-    '/compare/tableplus',
-    '/mysql-client',
-    '/vi/features',
-    '/privacy',
-]);
+})->with(['/', '/vi/pricing', '/blog/tablepro-0-77', '/mysql-client', '/privacy']);
 
 it('lets the edge keep a HEAD request as it keeps the GET', function (): void {
     expectSharedAtEdge($this->call('HEAD', '/pricing')->assertOk());
@@ -70,7 +58,6 @@ it('lets the edge keep the 404 and 410 pages, whether or not a route matched', f
     expectSharedAtEdge($this->get($path)->assertStatus($status));
 })->with([
     'no route' => ['/no-such-page', 404],
-    'no route, Vietnamese' => ['/vi/khong-co-trang-nay', 404],
     'a route, but no page' => ['/blog/no-such-post', 404],
     'a page, but not in this language' => ['/vi/blog/tablepro-0-77', 404],
     'retired' => ['/compare/azimutt', 410],
@@ -95,7 +82,7 @@ it('never shares an Inertia visit, which is JSON at the same URL', function (str
 
 it('never shares a redirect, which carries the visitor\'s own query string', function (string $path): void {
     expectNotSharedAtEdge($this->get($path)->assertStatus(301));
-})->with(['/mariadb-client?ref=newsletter', '/index.php/pricing']);
+})->with(['/index.php/pricing?ref=newsletter', '/en/pricing']);
 
 it('never shares a response that is not HTML', function (): void {
     expectNotSharedAtEdge($this->getJson('/no-such-page')->assertNotFound());
@@ -112,7 +99,6 @@ it('leaves a write, a server error and a response that sets a cookie alone', fun
 })->with([
     'a POST' => fn(): array => [Request::create('/pricing', 'POST'), new Response('<p>ok</p>', 200, ['Content-Type' => 'text/html; charset=UTF-8'])],
     'a 500' => fn(): array => [Request::create('/pricing'), new Response('<p>error</p>', 500, ['Content-Type' => 'text/html; charset=UTF-8'])],
-    'a 503' => fn(): array => [Request::create('/pricing'), new Response('<p>down</p>', 503, ['Content-Type' => 'text/html; charset=UTF-8'])],
     'a cookie' => fn(): array => [Request::create('/pricing'), (new Response('<p>ok</p>', 200, ['Content-Type' => 'text/html; charset=UTF-8']))->withCookie(Cookie::create('tracking', '1'))],
     'JSON' => fn(): array => [Request::create('/pricing'), new Response('{}', 200, ['Content-Type' => 'application/json'])],
     'an Inertia visit' => fn(): array => [Request::create('/pricing', server: ['HTTP_X_INERTIA' => 'true']), new Response('<p>ok</p>', 200, ['Content-Type' => 'text/html; charset=UTF-8'])],

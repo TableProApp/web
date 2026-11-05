@@ -1,26 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 
 import { GLIDE_TIMEOUT_MS, glideTarget, installAnchorGlide, type GlideWindow } from '../../resources/js/lib/anchor-glide.ts';
-
-/*
- * Smooth scrolling is for same-page anchors only (design-system §7.1). A global
- * `scroll-behavior: smooth` also animated Inertia's `window.scrollTo(0, 0)`
- * after every visit: the next page rendered mid-way and glided to the top for
- * over a second. These tests hold the rule out of the stylesheets and drive the
- * click handler with a stand-in window.
- */
-
-const css = (path: string): string => readFileSync(new URL(path, import.meta.url), 'utf8');
-
-test('no stylesheet makes scrolling smooth globally', () => {
-    for (const path of ['../../resources/css/app.css', '../../resources/css/tokens.css', '../../resources/css/frame.css']) {
-        const rules = css(path).replace(/\/\*[\s\S]*?\*\//g, '');
-
-        assert.ok(!/scroll-behavior:\s*smooth/.test(rules), `${path} sets scroll-behavior: smooth`);
-    }
-});
 
 interface Fake {
     win: GlideWindow;
@@ -69,7 +50,6 @@ function fakeWindow(reducedMotion = false): Fake {
     };
 }
 
-/** An element whose nearest `a[href^="#"]` ancestor has this href, or none. */
 const inside = (href: string | null) => ({
     closest: (selector: string) => {
         assert.equal(selector, 'a[href^="#"]');

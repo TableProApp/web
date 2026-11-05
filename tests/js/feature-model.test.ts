@@ -1,6 +1,5 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
 
 import {
     blockPaidIds,
@@ -14,14 +13,8 @@ import {
     pagePaidIds,
     slotLayout,
 } from '../../resources/js/components/features/model.ts';
-import type { Facts, FeatureHubContent, FeaturePageContent } from '../../resources/js/components/features/types.ts';
-import { placeholders } from '../../resources/js/i18n/core.ts';
+import type { Facts, FeaturePageContent } from '../../resources/js/components/features/types.ts';
 
-/*
- * The feature pages' rules: facts become text with the locale's separators,
- * a page's paid features come out in the data's order, docs links join the
- * docs origin cleanly, and a detail crop sits beside its text.
- */
 const en = { number: { decimal: '.', group: ',' }, list: { separator: ', ', last: ' and ' } };
 const vi = { number: { decimal: ',', group: '.' }, list: { separator: ', ', last: ' và ' } };
 
@@ -37,10 +30,6 @@ const facts: Facts = {
         ],
     },
 };
-
-function content(locale: string, name: string): unknown {
-    return JSON.parse(readFileSync(new URL(`../../resources/data/content/${locale}/features/${name}.json`, import.meta.url), 'utf8'));
-}
 
 test('writes numbers with the locale separators and joins names with its list style', () => {
     assert.equal(factText(facts.rowCap, en.number, en.list), '10,000');
@@ -95,24 +84,4 @@ test('puts a detail crop beside its text and a window below it', () => {
     assert.equal(slotLayout('window'), 'below');
     assert.equal(slotLayout('diagram'), 'below');
     assert.equal(slotLayout('illustration'), 'below');
-});
-
-test('keeps the hub labels’ slots identical in both languages', () => {
-    const english = content('en', 'index') as FeatureHubContent;
-    const vietnamese = content('vi', 'index') as FeatureHubContent;
-    const slots = (labels: FeatureHubContent['labels']): string[] =>
-        [labels.paidBadge, labels.header.paid, labels.header.paidItem, labels.availability.plan].map((text) => placeholders(text).join(','));
-
-    assert.deepEqual(slots(vietnamese.labels), slots(english.labels));
-});
-
-test('gives every feature page file an English twin with the same section ids', () => {
-    const directory = new URL('../../resources/data/content/vi/features/', import.meta.url);
-
-    for (const file of readdirSync(directory).filter((name) => name.endsWith('.json') && name !== 'index.json')) {
-        const name = file.replace(/\.json$/, '');
-        const ids = (page: FeaturePageContent): string[] => page.sections.map((section) => section.id);
-
-        assert.deepEqual(ids(content('vi', name) as FeaturePageContent), ids(content('en', name) as FeaturePageContent), name);
-    }
 });

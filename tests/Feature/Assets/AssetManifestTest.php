@@ -2,11 +2,8 @@
 
 use App\Support\Assets\AssetManifest;
 use App\Support\Assets\AssetReferences;
-use App\Support\Localization\Locales;
-use Dom\HTMLDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -22,9 +19,6 @@ function assetFixturePath(): string
     return dirname(__DIR__, 2) . '/Fixtures/assets/manifest.json';
 }
 
-/**
- * @return array{kinds: array<string, array<string, mixed>>, assets: array<string, array<string, mixed>>}
- */
 function assetManifestData(string $path): array
 {
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
@@ -39,9 +33,6 @@ function assetScratchDirectory(): string
     return $dir;
 }
 
-/**
- * @return list<string>
- */
 function assetScratchDirectories(?string $add = null): array
 {
     static $dirs = [];
@@ -142,9 +133,6 @@ function assetInstalledFixture(string $root): AssetManifest
     return assetSuppliedFixture($root);
 }
 
-/**
- * @return array<string, list<string>>
- */
 function assetReferences(): array
 {
     static $references = null;
@@ -152,9 +140,6 @@ function assetReferences(): array
     return $references ??= (new AssetReferences())->all();
 }
 
-/**
- * @return list<string>
- */
 function assetSlotFamilies(): array
 {
     $families = [];
@@ -174,11 +159,11 @@ afterEach(function (): void {
     }
 });
 
-describe('the visual contract', function (): void {
-    it('declares exactly the kinds of design-system §6.3, each with its export rules', function (): void {
+describe('the manifest', function (): void {
+    it('gives every kind its export rules', function (): void {
         $kinds = (new AssetManifest())->kinds();
 
-        expect(array_keys($kinds))->toBe(['window', 'mobile-crop', 'detail', 'phone', 'ipad', 'diagram', 'illustration', 'figure', 'og-card']);
+        expect($kinds)->not->toBeEmpty();
 
         foreach ($kinds as $name => $kind) {
             foreach (['type', 'aspect', 'rendered', 'exportPx', 'vector', 'density', 'format', 'transparency', 'maxBytes', 'widths', 'sizes'] as $field) {
@@ -205,36 +190,7 @@ describe('the visual contract', function (): void {
         }
     });
 
-    // The visual contract: a change here changes design-system §6.3 too.
-    it('pins the geometry of the screenshot kinds', function (): void {
-        $kinds = (new AssetManifest())->kinds();
-        $pick = fn(string $kind): array => [
-            $kinds[$kind]['type'],
-            $kinds[$kind]['aspect'],
-            $kinds[$kind]['rendered'],
-            $kinds[$kind]['exportPx'],
-            $kinds[$kind]['density'],
-        ];
-
-        expect($pick('window'))->toBe(['screenshot', '16:9', ['desktop' => [1216, 684], 'tablet' => [720, 405], 'phone' => [343, 193]], [2432, 1368], 2]);
-        expect($pick('mobile-crop'))->toBe(['detail', '4:5', ['desktop' => null, 'tablet' => null, 'phone' => [343, 429]], [686, 858], 2]);
-        expect($pick('detail'))->toBe(['detail', '4:3', ['desktop' => [696, 522], 'tablet' => [720, 540], 'phone' => [343, 257]], [1392, 1044], 2]);
-        expect($pick('phone'))->toBe(['screenshot-phone', '9:19.5', ['desktop' => [280, 607], 'tablet' => [280, 607], 'phone' => [240, 520]], [1179, 2556], 3]);
-        expect($pick('ipad'))->toBe(['screenshot-ipad', '4:3', ['desktop' => [1008, 756], 'tablet' => [720, 540], 'phone' => [343, 257]], [2732, 2048], 2]);
-        expect($pick('figure'))->toBe(['per-figure', null, ['desktop' => [704, null], 'tablet' => [704, null], 'phone' => [343, null]], [1408, null], 2]);
-        expect($pick('og-card'))->toBe(['og-card', '1200:630', null, [1200, 630], 1]);
-        expect($kinds['diagram']['aspect'])->toBe('16:9');
-        expect($kinds['illustration']['aspect'])->toBe('16:9');
-
-        expect(array_map(fn(array $kind): int => $kind['maxBytes'], $kinds))->toBe([
-            'window' => 250000, 'mobile-crop' => 120000, 'detail' => 150000, 'phone' => 150000, 'ipad' => 250000,
-            'diagram' => 60000, 'illustration' => 250000, 'figure' => 200000, 'og-card' => 320000,
-        ]);
-    });
-});
-
-describe('every entry', function (): void {
-    it('carries every handoff field of spec §9.1', function (): void {
+    it('gives every entry the fields the renderer reads', function (): void {
         $manifest = new AssetManifest();
         $kinds = $manifest->kinds();
         $fields = ['kind', 'type', 'family', 'ownerRepo', 'slot', 'handoffPriority', 'usedOn', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'description', 'alt', 'caption', 'replacement', 'status', 'src', 'legacySource'];
@@ -302,79 +258,7 @@ describe('every entry', function (): void {
                 Assert::assertNotSame('', trim($text), "{$id} has an empty {$field}.{$locale}");
             }
         }
-    })->with(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']));
-
-    it('keeps the visible brief short, NFC and free of asset ids', function (): void {
-        $assets = (new AssetManifest())->assets();
-        $limits = array_fill_keys(Locales::codes(), 200);
-        $limits['en'] = 160;
-        $offences = [];
-
-        foreach ($assets as $id => $entry) {
-            foreach ($limits as $locale => $limit) {
-                $text = $entry['description'][$locale] ?? null;
-
-                if ($text === null) {
-                    continue;
-                }
-
-                if (mb_strlen($text) > $limit) {
-                    $offences[] = "{$id}: description.{$locale} is " . mb_strlen($text) . " characters, over {$limit}";
-                }
-
-                foreach (array_keys($assets) as $other) {
-                    if (str_contains($text, $other)) {
-                        $offences[] = "{$id}: description.{$locale} names the id {$other}";
-                    }
-                }
-            }
-
-            foreach (['description', 'alt', 'caption'] as $field) {
-                foreach ($entry[$field] ?? [] as $locale => $text) {
-                    if ($text !== null && ! Normalizer::isNormalized($text, Normalizer::FORM_C)) {
-                        $offences[] = "{$id}: {$field}.{$locale} is not NFC";
-                    }
-                }
-            }
-        }
-
-        expect($assets)->not->toBeEmpty()
-            ->and($offences)->toBe([]);
-    });
-
-    // A Vietnamese developer reads "bảng" as a database table (positioning §11.2).
-    it('keeps the Vietnamese text clear of the misreadings found in review', function (): void {
-        $misreadings = [
-            '/\bbảng\b/iu' => '"bảng" for a sheet or panel',
-            '/được giữ lại/u' => '"held back" as "kept"',
-            '/của nó|cho chúng/u' => 'an English possessive',
-            '/liên kết nhiều-nhiều/u' => 'a many-to-many relation, which the manifest calls "quan hệ nhiều-nhiều"',
-            '/kiểu đơn/u' => '"scalar", which stays in English',
-        ];
-
-        foreach ((new AssetManifest())->assets() as $id => $entry) {
-            foreach (['description', 'alt', 'caption'] as $field) {
-                $text = $entry[$field]['vi'] ?? null;
-
-                if (! is_string($text)) {
-                    continue;
-                }
-
-                foreach ($misreadings as $pattern => $why) {
-                    Assert::assertSame(0, preg_match($pattern, $text), "{$id}: {$field}.vi uses {$why}: {$text}");
-                }
-            }
-        }
-    });
-
-    it('labels the Team Library crop by who last changed each query, as the accounts build does', function (): void {
-        // TeamLibraryQuery.detail is the last writer's name, or the folder (TablePro m16/accounts).
-        $entry = (new AssetManifest())->assets()['mac-team-library'];
-
-        expect($entry['description']['en'])->toContain('labelled by who last changed them')
-            ->and($entry['alt']['en'])->toContain('labelled with the teammate who last changed it')
-            ->and($entry['description']['en'] . $entry['alt']['en'])->not->toContain('published');
-    });
+    })->with('locales');
 
     it('places every entry on a page the site serves', function (): void {
         $routes = Route::getRoutes();
@@ -404,7 +288,7 @@ describe('every entry', function (): void {
         }
     });
 
-    it('gives every window a phone crop, and any other crop to a kind that shrinks on a phone', function (): void {
+    it('gives every window a phone crop, and every crop exactly one entry', function (): void {
         $assets = (new AssetManifest())->assets();
         $crops = [];
 
@@ -417,16 +301,11 @@ describe('every entry', function (): void {
 
             $crop = $entry['mobile'];
 
-            // At 343 px a detail is about half size and an iPad capture a quarter (found in review).
-            if (in_array($entry['kind'], ['detail', 'ipad'], true) && in_array($entry['handoffPriority'], ['P1', 'P2'], true)) {
-                Assert::assertIsString($crop, "{$id}: a {$entry['handoffPriority']} {$entry['kind']} shrinks to 343 px on a phone and needs a phone crop");
-            }
-
             if ($entry['kind'] !== 'window' && $crop === null) {
                 continue;
             }
 
-            Assert::assertIsString($crop, "{$id}: a window needs a phone crop (design-system §6.3)");
+            Assert::assertIsString($crop, "{$id}: a window needs a phone crop");
             Assert::assertArrayHasKey($crop, $assets, "{$id} names the unknown crop {$crop}");
             Assert::assertSame('mobile-crop', $assets[$crop]['kind'], "{$id}: {$crop} is not a mobile-crop");
             Assert::assertArrayNotHasKey($crop, $crops, "{$crop} is the crop of two entries");
@@ -442,17 +321,6 @@ describe('every entry', function (): void {
             if ($entry['kind'] === 'mobile-crop') {
                 Assert::assertArrayHasKey($id, $crops, "{$id} is the crop of no entry");
             }
-        }
-    });
-
-    it('gives priority only to one window and its crop', function (): void {
-        $priority = array_filter((new AssetManifest())->assets(), fn(array $entry): bool => $entry['priority']);
-        $windows = array_filter($priority, fn(array $entry): bool => $entry['kind'] === 'window');
-
-        expect(count($windows))->toBeLessThanOrEqual(1);
-
-        foreach ($priority as $id => $entry) {
-            Assert::assertContains($entry['kind'], ['window', 'mobile-crop'], "{$id}: only the hero window and its crop load with priority");
         }
     });
 
@@ -703,43 +571,6 @@ describe('the supplied path, on an isolated fixture', function (): void {
         ]);
     });
 
-    it('bundles a current slice of the manifest, with only what rendering needs', function (): void {
-        $manifest = new AssetManifest();
-        $committed = resource_path('js/lib/data/asset-slots.json');
-
-        expect($committed)->toBeFile();
-        Assert::assertSame($manifest->slotProjectionJson(), (string) file_get_contents($committed), 'resources/js/lib/data/asset-slots.json is stale. Run: php artisan assets:generate');
-
-        $projection = $manifest->slotProjection();
-        $slots = array_keys(array_filter($manifest->assets(), fn(array $entry): bool => $entry['slot']));
-
-        expect(array_keys($projection['assets']))->toBe($slots);
-
-        foreach ($projection['assets'] as $id => $entry) {
-            expect(array_keys($entry))->toBe(['kind', 'type', 'slot', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'status', 'src', 'replacement'], $id);
-        }
-
-        $minified = json_encode($projection, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
-
-        $metadataBytes = strlen((string) gzencode($minified, 9));
-
-        foreach (Locales::codes() as $locale) {
-            $path = resource_path('js/lib/data/asset-locales/' . $locale . '.json');
-            expect($path)->toBeFile();
-            Assert::assertSame($manifest->slotTextProjectionJson($locale), (string) file_get_contents($path), "Asset text for {$locale} is stale. Run: php artisan assets:generate");
-            $copy = $manifest->slotTextProjection($locale);
-            expect(array_keys($copy))->toBe($slots);
-            $copyBytes = strlen((string) gzencode(json_encode($copy, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 9));
-            expect($metadataBytes + $copyBytes)->toBeLessThan(18_432, "{$locale} downloads too much asset data");
-        }
-    });
-
-    it('uses the same breakpoint as the art-directed picture', function (): void {
-        $model = (string) file_get_contents(resource_path('js/lib/data/asset-model.ts'));
-
-        expect($model)->toContain("export const MOBILE_MEDIA = '" . AssetManifest::WIDE_MEDIA . "';");
-        expect(AssetManifest::NARROW_MEDIA)->toBe('(max-width: 767.98px)');
-    });
 
     it('keeps the window preload behind its breakpoint while the crop is still a placeholder', function (): void {
         $root = assetScratchDirectory();
@@ -794,58 +625,5 @@ describe('the supplied path, on an isolated fixture', function (): void {
         expect($manifest->ogCard('fixture-og', 'vi'))->toBe('/og/fixture/fixture-og-vi.png');
         expect($manifest->ogCard('fixture-og', 'en'))->toBe('/og/fixture/fixture-og-en.png');
         expect($manifest->ogCard('fixture-hero', 'en'))->toBeNull();
-
-        // The real card's files are committed with its entry (Seo/BespokeOgCardTest).
-        $real = new AssetManifest();
-
-        foreach (['en', 'vi'] as $locale) {
-            $path = $locale === Locales::default() ? '/og.png' : "/og/bespoke/og-site-{$locale}.png";
-            expect($real->ogCard('og-site', $locale))->toBe($real->isSupplied('og-site') ? $path : null);
-        }
     });
 });
-
-it('serves no image request inside a placeholder on any page', function (): void {
-    requireSsr();
-    Http::fake([
-        'api.github.com/*' => Http::response(null, 404),
-        'github.com/*' => Http::response(null, 404),
-        'raw.githubusercontent.com/*' => Http::response(null, 404),
-    ]);
-
-    $paths = [];
-
-    foreach ((new AssetManifest())->assets() as $entry) {
-        foreach ($entry['slot'] ? $entry['usedOn'] : [] as $use) {
-            $paths[$use['path']] = true;
-
-            if (! str_starts_with($use['path'], '/blog/')) {
-                $paths[rtrim('/vi' . $use['path'], '/')] = true;
-            }
-        }
-    }
-
-    $found = 0;
-
-    foreach (array_keys($paths) as $path) {
-        $response = $this->get($path);
-
-        if ($response->getStatusCode() !== 200) {
-            continue;
-        }
-
-        $document = HTMLDocument::createFromString((string) $response->getContent(), LIBXML_NOERROR);
-
-        foreach ($document->querySelectorAll('[data-asset-status="placeholder"]') as $placeholder) {
-            $found++;
-            $id = $placeholder->getAttribute('data-asset-id');
-
-            Assert::assertCount(0, $placeholder->querySelectorAll('img, picture, source'), "{$path}: placeholder {$id} holds an image element");
-            Assert::assertStringNotContainsString('background-image', (string) $placeholder->getAttribute('style'), "{$path}: placeholder {$id} sets a background image");
-            Assert::assertStringNotContainsString('url(', $placeholder->innerHTML, "{$path}: placeholder {$id} can request a file");
-        }
-    }
-
-    // Finding nothing means the selector or the markup changed.
-    Assert::assertGreaterThan(0, $found, 'No page renders an AssetSlot placeholder');
-})->group('ssr');

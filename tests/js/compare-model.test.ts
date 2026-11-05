@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { interpolate } from '../../resources/js/i18n/core.ts';
+import { formatUsd } from '../../resources/js/i18n/format.ts';
+import type { ComparisonCell, ComparisonPrice, ComparisonProduct } from '../../resources/js/lib/data/comparisons.ts';
 import {
     cellView,
     citedSources,
@@ -13,230 +15,218 @@ import {
     noteText,
     numberSources,
     priceCell,
+    priceLine,
     productTokens,
     tableproCell,
     type ModelContext,
     type TableProFacts,
 } from '../../resources/js/components/compare/model.ts';
 
-/*
- * The compare pages' cells. Facts about other products come only from
- * comparisons.json and keep their source; a row with no verified cell is left
- * out; TablePro's prices come from pricing.json; nothing is glued from
- * fragments, and prices are formatted the same way on server and client.
- */
 const read = (path: string) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 
-const comparisons = read('../../resources/data/comparisons.json');
-const pricing = read('../../resources/data/pricing.json');
-const hub = { en: read('../../resources/data/content/en/compare/index.json'), vi: read('../../resources/data/content/vi/compare/index.json') };
-const pages = {
-    en: { tableplus: read('../../resources/data/content/en/compare/tableplus.json') },
-    vi: { tableplus: read('../../resources/data/content/vi/compare/tableplus.json') },
-};
+const rows: string[] = read('../../resources/data/comparisons.json').rows;
+const labels = read('../../resources/data/content/en/compare/index.json').labels;
 
-const product = (id: string) => comparisons.products.find((entry: { id: string }) => entry.id === id);
-
-function context(locale: 'en' | 'vi', notes: Record<string, string> = {}): ModelContext {
+function context(notes: Record<string, string> = {}): ModelContext {
     return {
-        labels: hub[locale].labels,
+        labels,
         notes,
-        dates: { '2026-06-10': locale === 'en' ? 'June 10, 2026' : '10 tháng 6 năm 2026' },
-        list: locale === 'en' ? { separator: ', ', last: ' and ' } : { separator: ', ', last: ' và ' },
+        dates: { '2026-06-10': 'June 10, 2026' },
+        list: { separator: ', ', last: ' and ' },
         plural: (node, count, values = {}) => interpolate(count === 1 ? node.one : node.other, { count, ...values }),
+    };
+}
+
+function price(amount: number, extra: Partial<ComparisonPrice> = {}): ComparisonPrice {
+    return { edition: null, amount, currency: 'USD', per: null, period: 'once', source: 's2', ...extra };
+}
+
+function product(extra: Partial<ComparisonProduct> = {}): ComparisonProduct {
+    return {
+        id: 'acme',
+        name: 'Acme',
+        slug: 'acme',
+        checkedAt: '2026-06-10',
+        status: { state: 'active', lastRelease: { version: '1.0', date: '2026-06-10', source: 's3' } },
+        platforms: ['mac', 'windows'],
+        platformsSource: 's1',
+        mac: { minVersion: '13', architectures: ['arm64', 'x86_64'], source: 's1' },
+        technology: null,
+        licence: { name: null, openSource: false, edition: null, source: 's4' },
+        prices: [price(0, { source: 's2' })],
+        cells: { ai: { state: 'yes', source: 's5' } },
+        sources: ['s1', 's2', 's3', 's4', 's5', 's6'].map((id) => ({ id, url: `https://acme.example/${id}`, title: id, retrievedAt: '2026-06-10' })),
+        ...extra,
     };
 }
 
 const facts: TableProFacts = {
     devices: 'Mac, iPhone and iPad',
-    macRequirement: 'macOS 13 Ventura or later',
-    iosRequirement: 'iOS and iPadOS 18 or later',
+    macRequirement: 'macOS 13 or later',
+    iosRequirement: 'iOS 18 or later',
     macArchitectures: ['arm64', 'x86_64'],
     macUniversal: true,
-    starter: { ...pricing.tiers.starter.prices, activations: pricing.license.deviceLimit },
-    team: { ...pricing.tiers.team.prices, minSeats: pricing.tiers.team.seats.min },
+    starter: { monthly: 5, yearly: 40, lifetime: 80, activations: 3 },
+    team: { monthly: 12, yearly: 120, minSeats: 2 },
     iosFree: true,
     licence: 'AGPL-3.0',
     featuredEngines: ['PostgreSQL', 'MySQL'],
     syncTier: 'starter',
-    importer: { app: 'TablePlus', passwords: true, format: null },
+    importer: { app: 'Acme', passwords: true, format: null },
 };
 
+const row = (subject: ComparisonProduct, key: string, overrides: Partial<TableProFacts> = {}) =>
+    glanceRows(subject, rows, { ...facts, ...overrides }, context()).find((view) => view.key === key);
+
 test('lists every price in data order, with a shared note once after its last price', () => {
-    const cell = priceCell(product('tableplus'), context('en', pages.en.tableplus.notes));
-    const texts = cell.lines.map((line) => line.text);
+    const prices = [
+        price(0, { source: 's1' }),
+        price(10, { note: 'shared', source: 's2' }),
+        price(20, { note: 'shared', source: 's2' }),
+        price(5, { period: 'month', source: 's3' }),
+    ];
+    const ctx = context({ shared: 'A shared note' });
+    const cell = priceCell(product({ prices }), ctx);
 
-    assert.equal(texts[0], 'Free');
-    assert.equal(texts[1], 'No time limit, but at most 2 open tabs, 2 windows and 2 advanced filters at a time');
-    assert.equal(cell.lines[1].muted, true);
-    assert.ok(texts.includes('Basic: $99 once per license, for one device'));
-    assert.ok(texts.includes('Standard: $129 once per license, for up to 2 devices'));
-    assert.ok(texts.includes('Team: $79 once per seat, at least 3 seats'));
-    assert.ok(texts.includes('Renewal: $59 per device'));
-    assert.ok(texts.includes('iPhone and iPad app: $3.99 a month'));
-    assert.equal(texts.filter((text) => text.startsWith('Paid once, with a year of updates')).length, 1);
-    assert.equal(texts.indexOf('Paid once, with a year of updates. The app keeps working after that.'), texts.indexOf('Team: $79 once per seat, at least 3 seats') + 1);
-    assert.deepEqual(cell.sources, ['s2', 's5']);
-});
-
-test('writes Vietnamese prices in US dollars with Vietnamese separators', () => {
-    const texts = priceCell(product('tableplus'), context('vi', pages.vi.tableplus.notes)).lines.map((line) => line.text);
-
-    assert.ok(texts.includes('Basic: 99\u00a0US$ mua một lần cho mỗi license, dùng trên một thiết bị'));
-    assert.ok(texts.includes('Ứng dụng cho iPhone và iPad: 3,99\u00a0US$ mỗi tháng'));
+    assert.deepEqual(cell.lines, [
+        { text: priceLine(prices[0], ctx) },
+        { text: priceLine(prices[1], ctx) },
+        { text: priceLine(prices[2], ctx) },
+        { text: 'A shared note', muted: true },
+        { text: priceLine(prices[3], ctx) },
+    ]);
+    assert.deepEqual(cell.sources, ['s1', 's2', 's3']);
 });
 
 test('picks the cheapest professional way in for the hub', () => {
-    assert.equal(entryPrice(product('tableplus'))?.amount, 99);
-    assert.equal(entryPrice(product('datagrip'))?.amount, 10.9);
-    assert.equal(entryPrice(product('navicat'))?.amount, 74.99, 'a subscription is the cheapest way in, and the non-commercial edition is not a professional price');
-    assert.equal(entryPrice(product('navicat'))?.period, 'month');
-    assert.equal(entryPrice(product('sequel-ace')), null);
-    assert.equal(entryPrice(product('dbgate'))?.edition, 'Premium', 'a team edition with a seat minimum costs more up front');
-    assert.equal(entryPrice(product('dbgate'))?.period, 'month');
-    assert.equal(entryPrice(product('pgadmin')), null);
+    const prices = [
+        price(0),
+        price(1, { kind: 'renewal' }),
+        price(2, { audience: 'student' }),
+        price(3, { audience: 'non-commercial' }),
+        price(4, { platform: 'ios' }),
+        price(30, { minUnits: 3 }),
+        price(79),
+    ];
+
+    assert.equal(entryPrice({ prices })?.amount, 79, 'a seat minimum counts toward the outlay');
+    assert.equal(entryPrice({ prices: [price(0), price(1, { audience: 'student' })] }), null);
 });
 
 test('leaves out a row the product has no verified fact for, and derives iPhone and iPad from the sourced platforms', () => {
-    const dbeaver = glanceRows(product('dbeaver'), comparisons.rows, facts, context('en'));
-    const keys = dbeaver.map((row) => row.key);
+    const keys = glanceRows(product(), rows, facts, context()).map((view) => view.key);
 
-    assert.deepEqual(keys, ['platforms', 'technology', 'price', 'licence', 'databases', 'ai', 'mcp', 'ios', 'sync', 'import']);
-    assert.deepEqual(dbeaver.find((row) => row.key === 'ios')?.competitor, { mark: 'no', lines: [], sources: ['s1'] });
-
-    const tableplus = glanceRows(product('tableplus'), comparisons.rows, facts, context('en'));
-    const datagrip = glanceRows(product('datagrip'), comparisons.rows, facts, context('en'));
-
-    assert.ok(!datagrip.some((row) => row.key === 'sync'), 'DataGrip has no verified sync fact');
-    assert.ok(tableplus.some((row) => row.key === 'sync'), 'TablePlus syncs through a cloud folder');
-    assert.ok(!tableplus.some((row) => row.key === 'technology'));
-
-    const workbench = glanceRows(product('mysql-workbench'), comparisons.rows, facts, context('en'));
-    const platforms = workbench.find((row) => row.key === 'platforms')?.competitor?.lines.map((line) => line.text);
-
-    assert.ok(platforms?.includes('Apple silicon only'), 'the new Workbench ships a Mac build for Apple silicon only');
-    assert.ok(!workbench.some((row) => row.key === 'ai' || row.key === 'mcp'), 'no source states AI or MCP for MySQL Workbench');
+    assert.ok(keys.includes('ai'));
+    assert.ok(!keys.includes('mcp') && !keys.includes('sync'));
+    assert.deepEqual(row(product(), 'ios')?.competitor, { mark: 'no', lines: [], sources: ['s1'] });
+    assert.equal(row(product({ platforms: ['mac', 'ios'] }), 'ios')?.competitor?.mark, 'yes');
 });
 
 test('derives no iPhone and iPad row for a web application, which opens in a phone’s browser', () => {
-    const phpmyadmin = glanceRows(product('phpmyadmin'), comparisons.rows, facts, context('en'));
+    assert.equal(row(product({ platforms: ['web'] }), 'ios'), undefined);
+});
 
-    assert.ok(product('phpmyadmin').platforms.includes('web'));
-    assert.ok(!phpmyadmin.some((row) => row.key === 'ios'));
+test('adds a technology row after the platforms when the data names one', () => {
+    const keys = glanceRows(product({ technology: { name: 'Java', note: null, source: 's6' } }), rows, facts, context()).map((view) => view.key);
+
+    assert.equal(keys.indexOf('technology'), keys.indexOf('platforms') + 1);
 });
 
 test('adds no "since version" line under a note that already names the version', () => {
-    const notes = { 'phpmyadmin-in-development': 'Version {version} is in development' };
-    const cell = product('phpmyadmin').cells.nextMajor;
+    const cell: ComparisonCell = { state: 'qualified', version: '6.0', note: 'in-development', source: 's5' };
+    const view = cellView(product(), cell, context({ 'in-development': 'Version {version} is in development' }));
 
-    assert.ok(cell && cell.version !== undefined && cell.note === 'phpmyadmin-in-development');
-
-    const view = cellView(product('phpmyadmin'), cell, context('en', notes));
-
-    assert.deepEqual(
-        view.lines.map((line) => line.text),
-        [`Version ${cell.version} is in development`],
-    );
+    assert.deepEqual(view.lines.map((line) => line.text), ['Version 6.0 is in development']);
 });
 
-test('builds TablePro’s price cell from pricing.json, never a bare "Free"', () => {
-    const cell = tableproCell('price', facts, context('en'));
+test('builds TablePro’s price cell from the facts it is given', () => {
+    const cell = tableproCell('price', facts, context());
+    const money = (amount: number) => formatUsd(amount, labels.currency);
 
-    assert.equal(cell.lines[0].text, hub.en.labels.tablepro.priceFree);
-    assert.equal(
-        cell.lines[1].text,
-        `Pro: $${pricing.tiers.starter.prices.monthly} a month, $${pricing.tiers.starter.prices.yearly} a year or $${pricing.tiers.starter.prices.lifetime} once, for up to ${pricing.license.deviceLimit} devices`,
-    );
-    assert.ok(pricing.license.deviceLimit > 1, 'the sentence above is the plural form');
-    assert.match(cell.lines[2].text, new RegExp(`at least ${pricing.tiers.team.seats.min} seats$`));
-    assert.notEqual(cell.lines[0].text, 'Free');
+    assert.equal(cell.lines[0].text, labels.tablepro.priceFree);
+
+    for (const amount of [facts.starter.monthly, facts.starter.yearly, facts.starter.lifetime]) {
+        assert.ok(cell.lines[1].text.includes(money(amount)), cell.lines[1].text);
+    }
+
+    for (const amount of [facts.team.monthly, facts.team.yearly]) {
+        assert.ok(cell.lines[2].text.includes(money(amount)), cell.lines[2].text);
+    }
+
+    assert.equal(cell.link?.href, '/pricing');
 });
 
 test('states the importer from facts, or that there is none', () => {
-    assert.equal(importCell(product('tableplus'), facts, context('en')).lines[0].text, 'TablePro imports TablePlus connections, including saved passwords.');
-    assert.equal(
-        importCell(product('heidisql'), { ...facts, importer: null }, context('en')).lines[0].text,
-        'TablePro has no importer for HeidiSQL.',
-    );
-    assert.equal(
-        importCell(product('navicat'), { ...facts, importer: { app: 'Navicat', passwords: true, format: '.ncx' } }, context('en')).lines[0].text,
-        `TablePro imports ${product('navicat').name} connections from a .ncx file you export in ${product('navicat').name}, including saved passwords.`,
-    );
+    const line = (importer: TableProFacts['importer']) => importCell(product(), { ...facts, importer }, context()).lines[0].text;
+
+    assert.equal(line(null), interpolate(labels.import.none, { name: 'Acme' }));
+    assert.equal(line({ app: 'Acme', passwords: true, format: null }), interpolate(labels.import.yes, { name: 'Acme' }));
+    assert.equal(line({ app: 'Acme', passwords: false, format: null }), interpolate(labels.import.noPasswords, { name: 'Acme' }));
+    assert.equal(line({ app: 'Acme', passwords: true, format: '.ncx' }), interpolate(labels.import.yesFile, { name: 'Acme', format: '.ncx' }));
+    assert.equal(importCell(product(), { ...facts, importer: null }, context()).mark, 'no');
 });
 
-test('resolves citations to the product’s own source ids', () => {
-    assert.deepEqual(citedSources(product('tableplus'), ['platforms', 'cells.diagram', 'prices', 'cells.nope']), ['s1', 's3', 's2', 's5']);
+test('resolves citations to the product’s own source ids, once each', () => {
+    const subject = product({ cells: { diagram: { state: 'yes', source: 's5' } } });
+
+    assert.deepEqual(citedSources(subject, ['platforms', 'cells.diagram', 'prices', 'cells.nope', 'mac']), ['s1', 's5', 's2']);
 });
 
 test('cites every source of a fact that no single page states', () => {
-    const dbeaver = product('dbeaver');
-    const view = cellView(dbeaver, dbeaver.cells.mcp, context('en', { 'dbeaver-mcp-server': 'From version {version}' }));
+    const cell: ComparisonCell = { state: 'yes', version: '2.0', note: 'since', source: ['s5', 's6'] };
+    const subject = product({ cells: { mcp: cell } });
+    const view = cellView(subject, cell, context({ since: 'From version {version}' }));
 
-    assert.ok(Array.isArray(dbeaver.cells.mcp.source) && dbeaver.cells.mcp.source.length > 1);
-    assert.deepEqual(view.sources, dbeaver.cells.mcp.source);
-    assert.deepEqual(view.lines.map((line) => line.text), ['From version 26.3'], 'the note names the version, so no "since" line follows');
-    assert.deepEqual(citedSources(dbeaver, ['cells.mcp', 'cells.sync']), [...dbeaver.cells.mcp.source, dbeaver.cells.sync.source]);
+    assert.deepEqual(view.sources, ['s5', 's6']);
+    assert.deepEqual(view.lines.map((line) => line.text), ['From version 2.0']);
+    assert.deepEqual(citedSources(subject, ['cells.mcp']), ['s5', 's6']);
 });
 
 test('does not read a mark aloud when the cell’s words already say yes or no', () => {
-    const rows = glanceRows(product('tableplus'), comparisons.rows, facts, context('en'));
-    const licence = rows.find((row) => row.key === 'licence');
+    const subject = product({ cells: { mcp: { state: 'yes', source: 's5' } } });
 
-    assert.equal(licence?.competitor?.worded, true);
-    assert.equal(licence?.tablepro.worded, true);
-    assert.equal(rows.find((row) => row.key === 'mcp')?.competitor?.worded, undefined);
-    assert.deepEqual([hub.en.labels.cell.yes, hub.en.labels.cell.no], ['Yes', 'No']);
+    assert.equal(row(subject, 'licence')?.competitor?.worded, true);
+    assert.equal(row(subject, 'licence')?.tablepro.worded, true);
+    assert.equal(row(subject, 'mcp')?.competitor?.worded, undefined);
 });
 
 test('fills a note with the slots of the fact that cites it', () => {
-    const tableplus = product('tableplus');
-
-    assert.equal(noteText(context('en', pages.en.tableplus.notes), 'tableplus-safe-mode-levels', tableplus.cells.safeMode), '5 levels, with Touch ID support');
-    assert.equal(noteText(context('en', {}), 'missing', {}), null);
+    assert.equal(noteText(context({ levels: '{value} levels' }), 'levels', { value: 5 }), '5 levels');
+    assert.equal(noteText(context(), 'missing', {}), null);
 });
 
 test('offers the cells’ versions and dates as tokens, with dates as PHP formatted them', () => {
-    const tokens = productTokens(product('tableplus'), { '2026-06-10': 'June 10, 2026' });
+    const tokens = productTokens(product({ cells: { mcp: { state: 'yes', version: '7.1', date: '2026-06-10', source: 's5' } } }), context().dates);
 
-    assert.equal(tokens['cells.mcp.version'], '7.1.8');
+    assert.equal(tokens['cells.mcp.version'], '7.1');
     assert.equal(tokens['cells.mcp.date'], 'June 10, 2026');
-    assert.equal(tokens.name, 'TablePlus');
+    assert.equal(tokens.name, 'Acme');
 });
 
 test('keeps product-specific facts out of the standard rows', () => {
-    assert.deepEqual(extraCellKeys(product('tableplus')), ['diagram', 'excelExport', 'safeMode', 'setapp']);
+    const subject = product({ cells: { ai: { state: 'yes', source: 's5' }, diagram: { state: 'yes', source: 's5' }, safeMode: { state: 'no', source: 's5' } } });
+
+    assert.deepEqual(extraCellKeys(subject), ['diagram', 'safeMode']);
 });
 
 test('numbers the hub’s cited sources consecutively across products', () => {
-    const numbered = numberSources([product('tableplus'), product('dbeaver')]);
+    const numbered = numberSources([product(), product({ id: 'other' })]);
 
     assert.equal(numbered[0].start, 1);
     assert.equal(numbered[1].start, numbered[0].sources.length + 1);
     assert.ok(numbered.every((entry) => entry.sources.length === entry.numbers.size));
 });
 
-test('calls a single app for both architectures universal, and keeps "separate builds" for products that ship one per architecture', () => {
-    const lines = (id: string, locale: 'en' | 'vi' = 'en') =>
-        glanceRows(product(id), comparisons.rows, facts, context(locale))
-            .find((row) => row.key === 'platforms')
-            ?.competitor?.lines.map((line) => line.text) ?? [];
+test('calls one app for both architectures universal, and separate builds otherwise', () => {
+    const lines = (universal: boolean) =>
+        row(product({ mac: { minVersion: null, architectures: ['arm64', 'x86_64'], universal, source: 's1' } }), 'platforms')?.competitor?.lines.map((line) => line.text) ?? [];
 
-    // Sequel Ace ships one zip with no per-architecture asset; Postico offers one download.
-    for (const id of ['sequel-ace', 'postico']) {
-        assert.ok(lines(id).includes(hub.en.labels.builds.universal), `${id} is one universal app`);
-        assert.ok(!lines(id).includes(hub.en.labels.builds.both), `${id} must not claim separate builds`);
-        assert.ok(lines(id, 'vi').includes(hub.vi.labels.builds.universal));
-    }
+    assert.ok(lines(true).includes(labels.builds.universal));
+    assert.ok(!lines(true).includes(labels.builds.both));
+    assert.ok(lines(false).includes(labels.builds.both));
 
-    assert.ok(lines('dbeaver').includes(hub.en.labels.builds.both), 'DBeaver ships a DMG per architecture');
+    const ours = (macUniversal: boolean) => row(product(), 'platforms', { macUniversal })?.tablepro.lines.map((line) => line.text) ?? [];
 
-    const ours = (macUniversal: boolean) =>
-        glanceRows(product('dbeaver'), comparisons.rows, { ...facts, macUniversal }, context('en'))
-            .find((row) => row.key === 'platforms')
-            ?.tablepro?.lines.map((line) => line.text) ?? [];
-
-    assert.ok(ours(true).includes(hub.en.labels.builds.universal), 'TablePro ships one universal DMG');
-    assert.ok(!ours(true).includes(hub.en.labels.builds.both));
-    assert.ok(ours(false).includes(hub.en.labels.builds.both));
+    assert.ok(ours(true).includes(labels.builds.universal));
+    assert.ok(ours(false).includes(labels.builds.both));
 });
-

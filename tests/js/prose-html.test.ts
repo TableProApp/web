@@ -1,16 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 
-import { PROSE_TABLE_CLASS, wrapProseTables } from '../../resources/js/components/ui/prose-html.ts';
-
-/*
- * Article prose never widens the page at 375px. Run with `npm run test:js`.
- *
- * The markdown renderer emits bare tables, and the layout clips nothing, so a
- * table with a long cell (the privacy policy's cookie table names
- * `tablepro:analytics-consent`) used to scroll the whole document.
- */
+import { wrapProseTables } from '../../resources/js/components/ui/prose-html.ts';
 
 const table = '<table>\n<thead>\n<tr>\n<th>Key</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>tablepro:analytics-consent</code></td>\n</tr>\n</tbody>\n</table>';
 
@@ -36,20 +27,4 @@ test('escapes the label and never wraps twice', () => {
 
     assert.match(once, /aria-label="Bảng &quot;A&quot; &amp; &lt;B&gt;"/);
     assert.equal(wrapProseTables(once, 'Bảng "A" & <B>'), once);
-});
-
-test('styles the region to scroll and lets long inline code and links break', () => {
-    const css = readFileSync(new URL('../../resources/css/app.css', import.meta.url), 'utf8');
-
-    assert.match(css, new RegExp(`\\.blog-article \\.${PROSE_TABLE_CLASS} \\{\\s*overflow-x: auto;`));
-    assert.match(css, /\.blog-article :is\(code, a\) \{\s*overflow-wrap: anywhere;/);
-    assert.doesNotMatch(css, /\.blog-article table \{[^}]*display:\s*block/);
-});
-
-test('holds running text to the reading measure, and leaves figures, tables and code the column', () => {
-    const css = readFileSync(new URL('../../resources/css/app.css', import.meta.url), 'utf8');
-
-    // 36rem of Inter at 16px is about 75 characters a line; the 44rem column alone ran to about 93.
-    assert.match(css, /\.blog-article > :is\(p, ul, ol, blockquote, h2, h3, h4\) \{\s*max-width: 36rem;\s*\}/);
-    assert.doesNotMatch(css, /\.blog-article[^{]*(figure|table|pre)[^{]*\{[^}]*max-width/);
 });

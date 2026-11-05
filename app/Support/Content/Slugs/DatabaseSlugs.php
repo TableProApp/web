@@ -14,8 +14,8 @@ namespace App\Support\Content\Slugs;
  * `resources/data/engines.json`, in that file's order. The four pages merged
  * into family pages (`mariadb-client`, `cockroachdb-client`, `pglite-client`,
  * `scylladb-client`) are not here: `resources/data/redirects.json` answers them
- * with a 301 to their section before routing. `Data/EnginesDataTest` and
- * `Databases/DatabasePagesTest` pin this list against `engines.json` and
+ * with a 301 to their section before routing. `Pages/DatabasesTest` and
+ * `Localization/LocaleRoutingTest` pin this list against `engines.json` and
  * `resources/data/content/{en,vi}/databases/*.json`.
  *
  * Never add `ios`, a locale prefix such as `vi`, or another root path such as

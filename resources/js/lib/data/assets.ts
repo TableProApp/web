@@ -7,7 +7,7 @@
  * both from the manifest. The page resolver awaits the selected catalog before
  * SSR or hydration; other languages stay in separate chunks. Handoff fields
  * and bespoke social cards stay out of the browser’s JavaScript.
- * tests/Feature/Assets/AssetManifestTest.php fails while the slice is stale,
+ * `php artisan assets:generate --check` fails while the slice is stale,
  * and tests/js/asset-slot.test.ts proves every slot renders the same from
  * the slice as from the full manifest.
  *

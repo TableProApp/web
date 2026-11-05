@@ -15,15 +15,6 @@ import {
     syncTheme,
 } from '../../resources/js/lib/theme.ts';
 
-/*
- * The theme choice, executed against a fake browser. Run with `npm run test:js`.
- *
- * The head script decides the theme before paint; this module decides it after
- * load. Both must agree, and both must fall back to the system whenever storage
- * is missing, unreadable or holds something unexpected. The head script is run
- * here too, from the shared partial, so the two cannot drift apart unnoticed.
- */
-
 interface FakeElement {
     classes: Set<string>;
     dataset: Record<string, string>;
@@ -255,11 +246,7 @@ test('another tab changing the key repaints this one without writing it back', (
     assert.equal(browser.events.length, 1, 'an unrelated key changes nothing');
 });
 
-/*
- * The pre-paint script in the shared Blade partial is the other half of this
- * module. It is executed here against the same fake document, for each stored
- * value, and must reach the same decision as `resolveDark(readTheme())`.
- */
+// The head partial cannot import this module, so it repeats the decision.
 test('the head script and this module make the same decision', () => {
     const partial = readFileSync(
         fileURLToPath(new URL('../../resources/views/partials/head-theme.blade.php', import.meta.url)),

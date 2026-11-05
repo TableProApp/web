@@ -25,7 +25,7 @@ No benchmark, no rating, no `Review` or `FAQPage` markup, no competitor screensh
 
 ## The page file
 
-Keys and their order are fixed (`CompareContentTest`). Both languages have the **same keys in the same order, the same list lengths and the same `{tokens}`** (`ContentParityTest`).
+Keys and their order are fixed. Both languages have the **same keys in the same order, the same list lengths and the same `{tokens}`** (`TranslationsTest`).
 
 ```jsonc
 {
@@ -63,7 +63,7 @@ Keys and their order are fixed (`CompareContentTest`). Both languages have the *
 
 ### Tokens
 
-Prose may use only these, filled from the product's data (anything else prints literally and fails `CompareContentTest`):
+Prose may use only these, filled from the product's data (anything else prints literally and fails `CompareTest`):
 
 | Token | Value |
 |---|---|
@@ -79,7 +79,7 @@ Tags: `<link>…</link>` and `<ui>…</ui>` (an app label or menu path). Nothing
 
 ### Never in a compare file
 
-- A price, a URL, a download size, a speed, memory or startup figure (`CompareContentTest` and positioning §12). Prices render from data in the table.
+- A price, a URL, a download size, a speed, memory or startup figure (positioning §12). Prices render from data in the table.
 - A count of TablePro's engines, MCP tools, AI providers, Safe Mode levels or paid features.
 - "every/any/all database(s)", "every/all platforms", "cross-platform" about TablePro, "unlock", "faster than", "lighter", "free forever", "no feature gating", hype words. Vietnamese: "mọi cơ sở dữ liệu", "mọi nền tảng", "mở khóa", "nhanh hơn", "nhẹ hơn". "cross-platform", "macOS 14", "Mac App Store" and "Setapp" are allowed only about the other product.
 - "Free" alone for TablePro, adversarial words ("too slow", "bloated"), guesses. A fact nobody verified is left out.
@@ -102,11 +102,11 @@ Every competitor fact on the page must be in the product's `comparisons.json` en
 ## Checks
 
 ```bash
-php artisan test --compact --filter='ComparisonsDataTest|CompareContentTest|ComparePagesTest|ContentParityTest|LocaleRoutingTest'
+php artisan test --compact --filter='ComparisonsDataTest|CompareTest|TranslationsTest|LocaleRoutingTest'
 npm run typecheck && npm run test:js
 ```
 
-`ComparisonsDataTest` → "gives every compared product a page in both languages" and `LocaleRoutingTest` → "pins each slug constant…" fail until every comparison exists in both languages. The server-rendered cases in `ComparePagesTest` run where SSR is available.
+`ComparisonsDataTest` and `LocaleRoutingTest` fail until every comparison exists in every language.
 
 ## Per page (sitemap §A.4)
 

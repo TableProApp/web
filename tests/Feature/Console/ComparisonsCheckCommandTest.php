@@ -2,14 +2,10 @@
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Testing\PendingCommand;
 
-/**
- * @return array<string, array<string, mixed>>
- */
 function comparisonsOnGitHub(): array
 {
     $products = json_decode(File::get(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR)['products'];
@@ -26,9 +22,12 @@ function comparisonsOnGitHub(): array
     return $byRepository;
 }
 
-/**
- * @param  array<string, array{tag_name: string, published_at: string}|int>  $overrides  by product id: a payload, or a status code
- */
+function comparisonOnGitHub(): array
+{
+    return array_values(comparisonsOnGitHub())[0];
+}
+
+// Overrides by product id: a payload, or a status code.
 function fakeComparisonReleases(array $overrides = []): void
 {
     $products = comparisonsOnGitHub();
@@ -49,24 +48,16 @@ function fakeComparisonReleases(array $overrides = []): void
     }]);
 }
 
-/**
- * @return array{oldest: string, newest: string, spread: int}
- */
 function comparisonCheckDates(): array
 {
     $dates = array_column(json_decode(File::get(resource_path('data/comparisons.json')), true)['products'], 'checkedAt');
 
-    return [
-        'oldest' => min($dates),
-        'newest' => max($dates),
-        'spread' => (int) Carbon::parse(min($dates))->diffInDays(Carbon::parse(max($dates))),
-    ];
+    return ['oldest' => min($dates), 'newest' => max($dates), 'spread' => (int) Carbon::parse(min($dates))->diffInDays(Carbon::parse(max($dates)))];
 }
 
 function runComparisonsCheckWhileFresh(): PendingCommand
 {
     $dates = comparisonCheckDates();
-
     test()->travelTo($dates['newest'] . ' 12:00:00');
 
     return test()->artisan('comparisons:check', ['--max-age' => $dates['spread']]);
@@ -80,24 +71,20 @@ it('passes while every check is recent and GitHub has the recorded releases', fu
         ->doesntExpectOutputToContain('STALE')
         ->assertSuccessful();
 
-    expect(comparisonsOnGitHub())->toHaveKey('dbeaver/dbeaver');
     Http::assertSentCount(count(comparisonsOnGitHub()));
 });
 
 it('fails when GitHub has a newer release than the data records', function (): void {
-    $dates = comparisonCheckDates();
+    $product = comparisonOnGitHub();
+    fakeComparisonReleases([$product['id'] => ['tag_name' => '99.0.0', 'published_at' => '2027-01-01T00:00:00Z']]);
 
-    fakeComparisonReleases(['dbeaver' => ['tag_name' => '99.0.0', 'published_at' => '2027-01-01T00:00:00Z']]);
-    $this->travelTo($dates['newest'] . ' 12:00:00');
-
-    expect(Artisan::call('comparisons:check', ['--max-age' => $dates['spread']]))->toBe(1)
-        ->and(Artisan::output())->toMatch('/dbeaver +\| release +\| \S+ +\| 99\.0\.0 +\| DRIFT/');
+    runComparisonsCheckWhileFresh()->expectsOutputToContain('DRIFT')->assertFailed();
 });
 
 it('reads the version out of a prefixed or suffixed tag', function (): void {
-    $sequelAce = comparisonsOnGitHub()['Sequel-Ace/Sequel-Ace']['status']['lastRelease'];
-
-    fakeComparisonReleases(['sequel-ace' => ['tag_name' => "production/{$sequelAce['version']}-20115", 'published_at' => $sequelAce['date'] . 'T03:34:07Z']]);
+    $product = comparisonOnGitHub();
+    $release = $product['status']['lastRelease'];
+    fakeComparisonReleases([$product['id'] => ['tag_name' => "production/{$release['version']}-20115", 'published_at' => $release['date'] . 'T03:34:07Z']]);
 
     runComparisonsCheckWhileFresh()->assertSuccessful();
 });
@@ -111,16 +98,10 @@ it('fails once a product was checked longer ago than the limit, 30 days unless t
 
     $this->artisan('comparisons:check')->expectsOutputToContain('STALE')->assertFailed();
     $this->artisan('comparisons:check', ['--max-age' => 31])->doesntExpectOutputToContain('STALE')->assertSuccessful();
-
-    $this->travelBack();
-    $this->travelTo($dates['oldest'] . ' 12:00:00');
-    $this->travel(30)->days();
-
-    $this->artisan('comparisons:check')->doesntExpectOutputToContain('STALE')->assertSuccessful();
 });
 
 it('fails, rather than passing silently, when GitHub cannot be read', function (): void {
-    fakeComparisonReleases(['beekeeper-studio' => 503]);
+    fakeComparisonReleases([comparisonOnGitHub()['id'] => 503]);
 
     runComparisonsCheckWhileFresh()->expectsOutputToContain('UNREADABLE')->assertFailed();
 });

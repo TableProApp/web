@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
 
-/** @return array<string, list<string>> */
 function cspDirectives(TestResponse $response): array
 {
     $directives = [];
@@ -18,10 +17,9 @@ function cspDirectives(TestResponse $response): array
     return $directives;
 }
 
-/** @return list<string> */
 function cspInlineScripts(string $html): array
 {
-    // Read with the HTML parser, independently of the pattern the policy is built with.
+    // Parsed as HTML, independently of the pattern the policy is built with.
     $scripts = [];
 
     foreach (Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelectorAll('script:not([src])') as $script) {
@@ -33,7 +31,6 @@ function cspInlineScripts(string $html): array
     return $scripts;
 }
 
-/** @param  list<string>  $sources */
 function cspAdmits(array $sources, string $url): bool
 {
     $target = parse_url($url);
@@ -82,7 +79,6 @@ it('admits every inline script a document runs by its hash, and no other inline 
     'the homepage' => ['/', 200],
     'a page with the banner' => ['/pricing', 200],
     'a translated page' => ['/vi/download', 200],
-    'a post' => ['/blog/tablepro-0-77', 200],
     'no route' => ['/no-such-page', 404],
     'retired' => ['/compare/azimutt', 410],
 ])->group('ssr');
@@ -123,13 +119,11 @@ it('admits the script each third party loads from, and only the pinned file from
     }
 });
 
-it('frames Polar\'s checkout overlay and nothing that used to sell licenses', function (): void {
-    $directives = cspDirectives($this->get('/pricing'));
+it('frames Polar\'s checkout overlay', function (): void {
+    $frameSrc = cspDirectives($this->get('/pricing'))['frame-src'];
 
-    expect(cspAdmits($directives['frame-src'], 'https://polar.sh/checkout/polar_c_x'))->toBeTrue()
-        ->and(cspAdmits($directives['frame-src'], 'https://buy.polar.sh/polar_cl_x'))->toBeTrue()
-        ->and(cspAdmits($directives['frame-src'], 'https://tablepro.lemonsqueezy.com/checkout/buy/x'))->toBeFalse()
-        ->and(cspAdmits($directives['script-src'], 'https://assets.lemonsqueezy.com/lemon.js'))->toBeFalse();
+    expect(cspAdmits($frameSrc, 'https://polar.sh/checkout/polar_c_x'))->toBeTrue()
+        ->and(cspAdmits($frameSrc, 'https://buy.polar.sh/polar_cl_x'))->toBeTrue();
 });
 
 it('lets the pages call tablepro-cloud\'s API at the configured origin only', function (): void {

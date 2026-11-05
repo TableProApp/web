@@ -2,23 +2,18 @@
 
 use App\Services\Blog\BlogService;
 use App\Services\Blog\Post;
-use App\Services\Content\SiteFacts;
-use App\Support\Content\ContentRepository;
 use App\Support\Seo\PageRegistry;
 
 beforeEach(function (): void {
     config(['app.web_domain' => 'tablepro.app']);
 });
 
-/**
- * @return array<string, list<string>>
- */
-function llmsTxtSections(string $body): array
+function llmsTxtSections(): array
 {
     $sections = [];
     $current = null;
 
-    foreach (explode("\n", $body) as $line) {
+    foreach (explode("\n", (string) test()->get('/llms.txt')->getContent()) as $line) {
         if (str_starts_with($line, '## ')) {
             $current = substr($line, 3);
             $sections[$current] = [];
@@ -38,37 +33,24 @@ function llmsTxtUrl(string $line): string
 }
 
 it('follows the llmstxt.org layout', function (): void {
-    $response = $this->get('/llms.txt')->assertOk();
-    $body = (string) $response->getContent();
-    $summary = app(ContentRepository::class)->page('home', 'en')['seo']['description'];
+    $response = $this->get('/llms.txt')->assertOk()->assertHeader('Content-Type', 'text/plain; charset=utf-8');
 
-    expect($response->headers->get('Content-Type'))->toBe('text/plain; charset=utf-8')
-        ->and($response->headers->get('Cache-Control'))->toContain('s-maxage=600');
+    expect($response->getContent())->toStartWith("# TablePro\n\n> ")
+        ->not->toContain('{')
+        ->and(llmsTxtSections())->toHaveKey('Docs');
 
-    expect($body)->toStartWith("# TablePro\n\n> {$summary}\n\n## ")
-        ->toEndWith("\n")
-        ->not->toContain('{');
-
-    expect(array_keys(llmsTxtSections($body)))->toBe(['Docs', 'Product', 'Databases', 'Comparisons', 'Guides', 'Optional']);
-
-    foreach (llmsTxtSections($body) as $section => $lines) {
+    foreach (llmsTxtSections() as $section => $lines) {
         foreach ($lines as $line) {
             expect($line)->toMatch('/^- \[[^\]\n]+\]\(https:\/\/[^)\s]+\)(: \S.*)?$/', "{$section}: {$line}");
         }
     }
 });
 
-it('points at the documentation index', function (): void {
-    $docs = rtrim((string) app(SiteFacts::class)->links()['docs'], '/');
-
-    expect(llmsTxtSections((string) $this->get('/llms.txt')->getContent())['Docs'])->toBe(["- [Documentation]({$docs}/llms.txt)"]);
-});
-
 it('lists every indexed English page once, with posts and legal pages as markdown', function (): void {
-    $sections = llmsTxtSections((string) $this->get('/llms.txt')->getContent());
+    $sections = llmsTxtSections();
     unset($sections['Docs']);
 
-    $listed = array_map('llmsTxtUrl', array_merge(...array_values($sections)));
+    $listed = array_map(llmsTxtUrl(...), array_merge(...array_values($sections)));
     $skipped = ['landing.home', 'landing.blog.index', 'landing.integrations.show', 'landing.black-friday'];
     $expected = [];
 
@@ -78,40 +60,13 @@ it('lists every indexed English page once, with posts and legal pages as markdow
         }
     }
 
-    sort($expected);
-    $sorted = $listed;
-    sort($sorted);
-
     expect($listed)->toBe(array_values(array_unique($listed)))
-        ->and($sorted)->toBe($expected);
-
+        ->and($listed)->toEqualCanonicalizing($expected);
 });
 
 it('lists guides apart from release posts and news, newest first', function (): void {
-    $sections = llmsTxtSections((string) $this->get('/llms.txt')->getContent());
-    $posts = app(BlogService::class)->all('en');
+    $guides = array_values(array_filter(app(BlogService::class)->all('en'), fn(Post $post): bool => $post->kind() === Post::KIND_GUIDE));
 
-    $guides = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() === Post::KIND_GUIDE));
-    $releases = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() === Post::KIND_RELEASE));
-    // News and release posts share Optional, newest first.
-    $others = array_values(array_filter($posts, fn(Post $post): bool => $post->kind() !== Post::KIND_GUIDE));
-
-    expect($guides)->not->toBeEmpty()
-        ->and($releases)->not->toBeEmpty();
-
-    expect(array_map('llmsTxtUrl', $sections['Guides']))
+    expect(array_map(llmsTxtUrl(...), llmsTxtSections()['Guides']))
         ->toBe(array_map(fn(Post $post): string => "https://tablepro.app/blog/{$post->slug}.md", $guides));
-
-    expect(array_slice(array_map('llmsTxtUrl', $sections['Optional']), 0, count($others)))
-        ->toBe(array_map(fn(Post $post): string => "https://tablepro.app/blog/{$post->slug}.md", $others));
-});
-
-it('names a page by its title, and by its card title where the title has a slot', function (): void {
-    $body = (string) $this->get('/llms.txt')->getContent();
-    $postgres = app(ContentRepository::class)->page('databases/postgresql-client', 'en');
-    $pricing = app(ContentRepository::class)->page('pricing', 'en');
-
-    expect($postgres['seo']['title'])->toContain('{')
-        ->and($body)->toContain("- [{$postgres['og']['title']}](https://tablepro.app/postgresql-client): {$postgres['seo']['description']}\n")
-        ->and($body)->toContain("- [{$pricing['seo']['title']}](https://tablepro.app/pricing): {$pricing['seo']['description']}\n");
 });

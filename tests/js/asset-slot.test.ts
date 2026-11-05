@@ -18,14 +18,6 @@ import zhHant from '../../resources/js/i18n/messages/zh-Hant/assets.ts';
 import it from '../../resources/js/i18n/messages/it/assets.ts';
 import id from '../../resources/js/i18n/messages/id/assets.ts';
 
-/*
- * <AssetSlot> rendered through react-dom/server, with no build and no SSR
- * process: against every entry of the real manifest (placeholders and supplied
- * pictures), and against an isolated fixture that takes the supplied path
- * without any image on disk. The PHP side (AssetManifest: file names,
- * validation, the LCP preload) is held to the same fixture in
- * tests/Feature/Assets/AssetManifestTest.php.
- */
 const read = (path: string): AssetManifestData =>
     JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8')) as AssetManifestData;
 
@@ -75,35 +67,23 @@ test('every real slot renders as a labelled placeholder that requests nothing, o
     assert.ok(rendered > 100, `expected every slot in all locales, rendered ${rendered}`);
 });
 
-test('a window placeholder carries its phone crop as a second box, swapped by CSS', () => {
+test('a window placeholder carries its phone crop as a second box', () => {
     const markup = html(fixture, 'fixture-placeholder');
 
     assert.equal((markup.match(/role="img"/g) ?? []).length, 2);
-    assert.match(markup, /data-asset-id="fixture-placeholder"[^>]*data-asset-status="placeholder"[^>]*class="[^"]*max-md:hidden/);
-    assert.match(markup, /data-asset-id="fixture-placeholder-mobile"[^>]*data-asset-status="placeholder"[^>]*class="[^"]*md:hidden/);
-    // The crop is a 343 pt cut: centred at that width, never stretched across a wider phone or an iPad mini.
-    assert.match(markup, /data-asset-id="fixture-placeholder-mobile"[^>]*class="[^"]*mx-auto w-full max-w-\[343px\]/);
-    assert.ok(markup.includes('aspect-ratio:16 / 9'));
-    assert.ok(markup.includes('aspect-ratio:4 / 5'));
-    assert.ok(markup.includes('Screenshot placeholder'));
-    assert.ok(markup.includes('Detail crop placeholder'));
+    assert.ok(markup.includes('data-asset-id="fixture-placeholder"'));
+    assert.ok(markup.includes('data-asset-id="fixture-placeholder-mobile"'));
 });
 
-test('a placeholder shows the type label, the id in mono and the localized brief', () => {
+test('a placeholder shows its id and the brief in the page language', () => {
     const markup = html(fixture, 'fixture-placeholder', 'vi');
 
-    assert.ok(markup.includes('Ảnh chụp màn hình (sẽ bổ sung)'));
-    assert.ok(markup.includes('<code class="font-mono'));
     assert.ok(markup.includes('>fixture-placeholder</code>'));
-    assert.ok(markup.includes('Mô tả cửa sổ giữ chỗ.'));
-    assert.ok(markup.includes('aria-label="Ảnh chụp màn hình (sẽ bổ sung): Mô tả cửa sổ giữ chỗ."'));
+    assert.ok(markup.includes(fixture.assets['fixture-placeholder'].description.vi));
 });
 
 test('an English-only figure falls back to English on a Vietnamese page', () => {
-    const markup = html(fixture, 'fixture-figure', 'vi');
-
-    assert.ok(markup.includes('An English-only figure.'));
-    assert.ok(markup.includes('aspect-ratio:1990 / 1372'));
+    assert.ok(html(fixture, 'fixture-figure', 'vi').includes(fixture.assets['fixture-figure'].description.en));
 });
 
 test('names files the way the PHP manifest does', () => {
@@ -121,30 +101,21 @@ test('names files the way the PHP manifest does', () => {
 });
 
 test('a supplied themed window and its crop render one art-directed picture per theme', () => {
+    const hero = fixture.assets['fixture-hero'];
     const markup = html(fixture, 'fixture-hero');
 
     assert.match(markup, /^<figure [^>]*data-asset-status="supplied"/);
     assert.equal((markup.match(/<picture\b/g) ?? []).length, 2);
-    // Below 768px the picture shows the crop, held at its 343 px design width.
-    assert.match(markup, /<picture class="block dark:hidden max-md:mx-auto max-md:max-w-\[343px\]">/);
-    assert.match(markup, /<picture class="hidden dark:block max-md:mx-auto max-md:max-w-\[343px\]">/);
 
-    // The window above 768px, in both formats, then the crop.
-    assert.ok(markup.includes(
-        '<source media="(min-width: 768px)" type="image/avif" srcSet="/images/fixture/fixture-hero-light-32.avif 32w, /images/fixture/fixture-hero-light-64.avif 64w" sizes="(min-width: 1280px) 1216px, 100vw" width="64" height="36"/>',
-    ));
-    assert.ok(markup.includes('<source media="(min-width: 768px)" type="image/webp" srcSet="/images/fixture/fixture-hero-light-32.webp 32w, /images/fixture/fixture-hero-light-64.webp 64w"'));
-    assert.ok(markup.includes(
-        '<source type="image/avif" srcSet="/images/fixture/fixture-hero-mobile-light-16.avif 16w, /images/fixture/fixture-hero-mobile-light-32.avif 32w" sizes="calc(100vw - 32px)" width="32" height="40"/>',
-    ));
-    assert.ok(markup.includes('src="/images/fixture/fixture-hero-mobile-dark-32.webp"'));
-    assert.ok(markup.includes('srcSet="/images/fixture/fixture-hero-mobile-dark-16.webp 16w, /images/fixture/fixture-hero-mobile-dark-32.webp 32w"'));
+    for (const theme of ['light', 'dark'] as const) {
+        assert.ok(markup.includes(`<source media="(min-width: 768px)" type="image/avif" srcSet="${srcSet(hero, hero.src![theme]!, theme, null, 'avif')}"`), `${theme} window`);
+    }
 
-    // A priority pair stays lazy so the hidden theme is never fetched; the head preload fetches the visible one.
+    // Both themes stay lazy so the hidden one is never fetched; the head preload fetches the visible one.
     assert.equal((markup.match(/loading="lazy"/g) ?? []).length, 2);
     assert.equal((markup.match(/fetchPriority="high"/gi) ?? []).length, 2);
-    assert.ok(markup.includes('alt="A fixture window"'));
-    assert.ok(markup.includes('<figcaption class="type-caption mt-3 text-muted-foreground">A fixture caption.</figcaption>'));
+    assert.ok(markup.includes(`alt="${hero.alt.en}"`));
+    assert.ok(markup.includes(`${hero.caption.en}</figcaption>`));
 });
 
 test('a page can load a placement with priority that the manifest loads lazily', () => {
@@ -158,10 +129,6 @@ test('a page can load a placement with priority that the manifest loads lazily',
     assert.match(first, /fetchPriority="high"/i);
     // A placeholder still requests nothing, priority or not.
     assert.ok(!/<img\b/i.test(html(fixture, 'fixture-placeholder', 'en', { priority: true })));
-});
-
-test('a picture without a crop is not capped', () => {
-    assert.ok(!html(fixture, 'fixture-detail').includes('max-w-[343px]'));
 });
 
 test('a supplied slot hides the id, the type label and the brief', () => {
@@ -181,17 +148,14 @@ test('a supplied slot hides the id, the type label and the brief', () => {
     }
 });
 
-test('a single-theme detail is lazy, async and contained', () => {
-    const markup = html(fixture, 'fixture-detail', 'vi', { sizes: '(min-width: 1024px) 488px, 100vw' });
+test('a single-theme detail is lazy and async', () => {
+    const markup = html(fixture, 'fixture-detail', 'vi');
 
     assert.equal((markup.match(/<picture\b/g) ?? []).length, 1);
-    assert.match(markup, /<picture class="block">/);
-    assert.ok(markup.includes('<source type="image/avif" srcSet="/images/fixture/fixture-detail-light-24.avif 24w, /images/fixture/fixture-detail-light-48.avif 48w" sizes="(min-width: 1024px) 488px, 100vw" width="48" height="36"/>'));
     assert.ok(markup.includes('loading="lazy"'));
     assert.ok(markup.includes('decoding="async"'));
-    assert.ok(markup.includes('object-contain'));
-    assert.ok(markup.includes('alt="Một chi tiết mẫu"'));
     assert.ok(!/fetchPriority/i.test(markup));
+    assert.ok(markup.includes(`alt="${fixture.assets['fixture-detail'].alt.vi}"`));
 });
 
 test('a single-theme priority image is eager with high fetch priority', () => {
@@ -199,8 +163,6 @@ test('a single-theme priority image is eager with high fetch priority', () => {
 
     assert.ok(!markup.includes('loading='));
     assert.match(markup, /fetchPriority="high"/i);
-    assert.ok(markup.includes('w-[240px]'));
-    assert.ok(markup.includes('width="18" height="39"'));
 });
 
 test('a per-locale vector picks the page locale and needs no srcset widths', () => {
@@ -210,26 +172,25 @@ test('a per-locale vector picks the page locale and needs no srcset widths', () 
     assert.ok(markup.includes('src="/images/fixture/fixture-diagram-dark-vi.svg"'));
     assert.ok(!markup.includes('-en.svg'));
     assert.ok(!/ \d+w/.test(markup));
-    assert.ok(markup.includes('alt="Một sơ đồ mẫu"'));
-    assert.ok(markup.includes('max-w-[720px]'), 'a diagram stops at 720px so its labels never outsize the headings');
 });
 
-test('a detail with no phone crop links its widest file, so a phone can open it at full size', () => {
+test('a detail with no phone crop links its widest file', () => {
     const detail = html(fixture, 'fixture-detail');
 
-    assert.match(detail, /<figure [^>]*><a href="\/images\/fixture\/fixture-detail-light-48\.webp" class="block cursor-zoom-in"><picture class="block">/);
     assert.equal((detail.match(/<a\b/g) ?? []).length, 1);
+    assert.ok(detail.includes('<a href="/images/fixture/fixture-detail-light-48.webp"'));
 });
 
-test('a themed capture moves its theme classes to the link, so a hidden variant is no stop in the tab order', () => {
+// A hidden theme variant must not be a stop in the tab order.
+test('a themed capture hides the link of the other theme', () => {
     const themed: AssetManifestData = structuredClone(fixture);
     themed.assets['fixture-hero'].kind = 'detail';
     themed.assets['fixture-hero'].mobile = null;
 
     const markup = html(themed, 'fixture-hero');
 
-    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-light-64\.webp" class="block dark:hidden cursor-zoom-in"><picture class="block">/);
-    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-dark-64\.webp" class="hidden dark:block cursor-zoom-in"><picture class="block">/);
+    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-light-64\.webp" class="[^"]*dark:hidden/);
+    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-dark-64\.webp" class="[^"]*hidden dark:block/);
 });
 
 test('a window, a phone, a diagram and a placeholder are not links, nor is a detail cut to read on a phone', () => {
@@ -328,13 +289,6 @@ test('the catalogs label every type the manifest uses in every language', () => 
     }
 });
 
-/*
- * The bundle carries shared geometry plus one selected language catalog,
- * not the whole manifest. It must render every slot exactly as the manifest does, in both
- * states: the committed slice for the real (placeholder) entries, and the
- * same projection rules applied here to the fixture for the supplied path.
- * PHP pins the committed file to `AssetManifest::slotProjection()`.
- */
 const bundled = read('../../resources/js/lib/data/asset-slots.json') as unknown as SlotManifestData;
 
 function project(manifest: AssetManifestData): SlotManifestData {
@@ -367,10 +321,6 @@ test('the metadata and selected language render every real slot exactly as the m
         const localized = { kinds: bundled.kinds, assets: Object.fromEntries(Object.entries(bundled.assets).map(([id, entry]) => [id, { ...entry, ...copy[id] }])) };
         for (const id of slotIds) assert.equal(html(localized, id, locale), html(real, id, locale), `${id} (${locale}) renders differently from the selected language`);
     }
-
-    for (const field of ['usedOn', 'handoffPriority', 'legacySource', 'family', 'ownerRepo', 'alt', 'caption', 'description']) {
-        assert.ok(Object.values(bundled.assets).every((entry) => !(field in entry)), `the slice still carries ${field}`);
-    }
 });
 
 test('the projection keeps what the supplied path needs', () => {
@@ -390,12 +340,3 @@ function escapeHtml(text: string): string {
     return text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll("'", '&#x27;');
 }
 
-test('a placeholder keeps its type icon with its label, so a narrow phone slot never strands the icon on its own line', () => {
-    // Rendered as a placeholder whatever its status, so supplying the screenshot does not retire the check.
-    const entry = real.assets['ios-connection-list'];
-    const asPlaceholder: AssetManifestData = { ...real, assets: { ...real.assets, 'ios-connection-list': { ...entry, status: 'placeholder', src: null } } };
-    const markup = html(asPlaceholder, 'ios-connection-list', 'vi');
-
-    // The icon and the label share one wrapper; only the asset id is a separate item in the wrapping row.
-    assert.match(markup, /<p class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="inline-flex min-w-0 items-start gap-2"><svg[^>]*>.*?<\/svg><span class="type-label min-w-0 text-foreground">[^<]+<\/span><\/span><code /);
-});

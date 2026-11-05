@@ -15,8 +15,7 @@ return [
     | Config holds the switch and the link, and nothing else. The words live in
     | the `banner` UI catalog, once per language
     | (resources/js/i18n/messages/{locale}/banner.ts), so the banner reads in
-    | the page's language and its length limits are checked in each
-    | (TopBannerTest).
+    | the page's language.
     |
     | It states a fact and never pleads: no "we need your help", no countdown,
     | no orange fill, only a tint of the brand hue (app.css). It cannot be

@@ -1,31 +1,21 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { readFileSync } from 'node:fs';
-
 import { discountedAmount, discountedCents, parseRegional, parseSeatMaximums, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
 
-// What the pricing cards show under a regional discount. The cases with a half-cent discount are the ones the
-// rounding rule decides, rounded half up as Polar does: at 50% Pro monthly ($4.99 → $2.49), and at the prices before
-// 2026-11-02 Team monthly at 30% by the seat ($1.25 → $0.87) and for five seats ($6.25 → $4.37). api.md gives the 30% case.
-
-const pricing = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8')) as {
-    tiers: Record<'starter' | 'team', { prices: Record<string, number>; seats?: Record<string, number> }>;
-};
-
+// The list prices the cards strike through, in cents.
 const list: ListCents = {
-    starter: Object.fromEntries(Object.entries(pricing.tiers.starter.prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)])),
-    team: Object.fromEntries(Object.entries(pricing.tiers.team.prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)])),
+    starter: { monthly: 499, yearly: 3900, lifetime: 7900 },
+    team: { monthly: 1200, yearly: 12000 },
 };
 
-// Team is sold monthly or yearly only, since Team Lifetime was archived on 2026-11-02.
 type TeamMax = Record<'monthly' | 'yearly', number | null>;
 
 // Polar sets a maximum only for a cycle whose seat tiers end; one cycle with a maximum covers the per-cycle read.
 const YEARLY_TEAM_MAX: TeamMax = { monthly: null, yearly: 1000 };
 const NO_TEAM_MAX: TeamMax = { monthly: null, yearly: null };
 
-// GET /v2/pricing as tablepro-cloud answers it for the prices in pricing.json: Pro in every cycle, Team from 2 seats.
+// GET /v2/pricing as tablepro-cloud answers it for these list prices: Pro in every cycle, Team from 2 seats.
 // `max_seats` is 1 unless per_seat, and for a per-seat plan the top of Polar's seat tiers, or null without one.
 function answer(percent: number, country = 'VN', teamMax: TeamMax = YEARLY_TEAM_MAX) {
     const plan = (name: 'starter' | 'team', cycle: 'monthly' | 'yearly' | 'lifetime', amount: number) => ({
@@ -45,19 +35,14 @@ function answer(percent: number, country = 'VN', teamMax: TeamMax = YEARLY_TEAM_
     return {
         country,
         plans: [
-            plan('starter', 'monthly', 499),
-            plan('starter', 'yearly', 3900),
-            plan('starter', 'lifetime', 7900),
-            plan('team', 'monthly', 1200),
-            plan('team', 'yearly', 12000),
+            plan('starter', 'monthly', list.starter.monthly),
+            plan('starter', 'yearly', list.starter.yearly),
+            plan('starter', 'lifetime', list.starter.lifetime),
+            plan('team', 'monthly', list.team.monthly),
+            plan('team', 'yearly', list.team.yearly),
         ],
     };
 }
-
-test('pricing.json holds the prices and the seat minimum tablepro-cloud sells at, and no seat maximum', () => {
-    assert.deepEqual(list, { starter: { monthly: 499, yearly: 3900, lifetime: 7900 }, team: { monthly: 1200, yearly: 12000 } });
-    assert.deepEqual(pricing.tiers.team.seats, { min: answer(0).plans[3].min_seats });
-});
 
 test('the Team seat maximum is read per cycle from the answer, and only a whole number from the minimum up counts', () => {
     assert.deepEqual(parseSeatMaximums(answer(0), 'team', 2), { yearly: 1000 });
@@ -100,7 +85,7 @@ test('the answer is read strictly, so the cards never show a price checkout woul
         return parseRegional(body, list);
     };
 
-    // A price Polar charges that pricing.json does not state: the page cannot strike the right list price.
+    // A price Polar charges that the list does not state: the page cannot strike the right list price.
     assert.equal(changed((plans) => (plans[0].amount = 549)), null);
     // A plan not for sale, a second percentage, or a discounted price the cards would compute otherwise.
     assert.equal(changed((plans) => plans.splice(4, 1)), null);

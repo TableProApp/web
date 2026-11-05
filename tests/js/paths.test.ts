@@ -5,11 +5,6 @@ import { readFileSync } from 'node:fs';
 import { isPlatformPath, localePath, resolveLink, splitLocale } from '../../resources/js/i18n/paths.ts';
 import type { LocaleTable } from '../../resources/js/i18n/types.ts';
 
-/*
- * Locale-aware paths, against the real resources/data/locales.json. The PHP
- * side (LocalizedUrl) is held to the same cases in
- * tests/Feature/Localization/LocalizedUrlTest.php.
- */
 const table: LocaleTable = JSON.parse(readFileSync(new URL('../../resources/data/locales.json', import.meta.url), 'utf8'));
 
 test('the default locale has no prefix', () => {

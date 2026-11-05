@@ -1,6 +1,6 @@
 /**
  * The props the pricing components take from the server, and the copy types
- * of `/pricing`. Copy shapes are the English files': `ContentParityTest` holds
+ * of `/pricing`. Copy shapes are the English files': `TranslationsTest` holds
  * every other locale to the same keys.
  */
 export type PricingContent = typeof import('@data/content/en/pricing.json');

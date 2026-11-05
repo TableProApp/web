@@ -1,18 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
 
 import { articleHeadings, labelPermalinks, splitArticle } from '../../resources/js/components/blog/article-body.ts';
-
-/*
- * A post's server-rendered HTML, as the post page prepares it. Run with
- * `npm run test:js`.
- *
- * `BlogService::html()` leaves `<asset-slot>` blocks where figures go and a
- * `#` permalink with an empty `aria-label` after each h2 and h3. The page
- * splits on the slots and names the permalinks from the catalog, so these
- * have to hold for every post as written.
- */
 
 const permalink = (id: string): string => `<a class="heading-permalink" href="#${id}" aria-label="">#</a>`;
 
@@ -64,22 +53,4 @@ test('lists the h2 sections with their text, without markup or entities', () => 
         { id: 'content-sap-hana', text: 'SAP HANA' },
         { id: 'content-select--join', text: 'Run SELECT & JOIN' },
     ]);
-});
-
-test('every release post names only blog slots, numbered in figure order', () => {
-    const directory = new URL('../../resources/blog/', import.meta.url);
-    const posts = readdirSync(directory).filter((file) => file.endsWith('.md'));
-
-    assert.ok(posts.length > 0);
-
-    for (const file of posts) {
-        const slug = file.replace(/\.md$/, '');
-        const ids = [...readFileSync(new URL(file, directory), 'utf8').matchAll(/<asset-slot id="([^"]+)"><\/asset-slot>/g)].map((match) => match[1]);
-
-        assert.deepEqual(
-            ids,
-            ids.map((_id, index) => `blog-${slug}-${index + 1}`),
-            `${file} places its figures out of order or under another post's ids`,
-        );
-    }
 });

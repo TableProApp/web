@@ -26,8 +26,7 @@ import { trackEvent } from '@/lib/analytics';
  *
  * One 40px line at every width, never truncated: the sentence and its link
  * show from 1024px, and below that the short question and the same link, so a
- * phone reader is still asked whether they are a regular user. TopBannerTest
- * holds the catalog strings in every language to lengths that fit. The link
+ * phone reader is still asked whether they are a regular user. The link
  * takes the band's height as its target.
  *
  * It shares its slot with the language bar, which takes it over when it
