@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -70,4 +71,54 @@ it('bypasses the cached release the site serves', function (): void {
     $this->artisan('release:check')->assertSuccessful();
 
     Http::assertSent(fn($request): bool => str_contains($request->url(), 'releases/latest'));
+});
+
+function releasedLinuxFixture(): array
+{
+    $linux = collect(json_decode(File::get(resource_path('data/platforms.json')), true)['platforms'])->firstWhere('id', 'linux');
+
+    return ['linux' => [...$linux, 'status' => 'released', 'release' => ['version' => '0.1.0-beta.1', 'build' => null, 'publishedAt' => '2026-11-06']]];
+}
+
+function fakeLinuxChannels(string $ppa = '0.1.0~beta.1-0ppa1~26.04', string $copr = '0.1.0~beta.1-1'): void
+{
+    Http::fake([
+        'api.github.com/repos/TableProApp/TablePro/releases?*' => Http::response([[
+            'tag_name' => 'linux-v0.1.0-beta.1',
+            'draft' => false,
+            'prerelease' => true,
+            'published_at' => '2026-11-06T10:00:00Z',
+            'assets' => [['name' => 'tablepro-0.1.0-beta.1-x86_64.flatpak', 'state' => 'uploaded', 'size' => 1, 'browser_download_url' => 'https://github.com/TableProApp/TablePro/releases/download/linux-v0.1.0-beta.1/tablepro-0.1.0-beta.1-x86_64.flatpak']],
+        ]]),
+        'api.launchpad.net/1.0/~tablepro/+archive/ubuntu/tablepro-beta*' => Http::response(['entries' => [['source_package_version' => $ppa]]]),
+        'copr.fedorainfracloud.org/api_3/package*' => Http::response(['builds' => ['latest_succeeded' => ['source_package' => ['version' => $copr]]]]),
+        'flatpak.tablepro.app/*' => Http::response('', 200),
+    ]);
+    fakeReleaseChannels();
+}
+
+it('leaves Linux out until it ships', function (): void {
+    fakeReleaseChannels();
+
+    $this->artisan('release:check')->doesntExpectOutputToContain('Launchpad PPA')->assertSuccessful();
+});
+
+it('checks the Linux release on GitHub, the PPA, COPR and the Flatpak repository once Linux ships', function (): void {
+    bindReleaseFixturePlatforms(releasedLinuxFixture());
+    fakeLinuxChannels();
+
+    $this->artisan('release:check')
+        ->expectsOutputToContain('GitHub linux-v releases')
+        ->expectsOutputToContain('Launchpad PPA')
+        ->expectsOutputToContain('COPR')
+        ->expectsOutputToContain('Flatpak repository')
+        ->doesntExpectOutputToContain('DRIFT')
+        ->assertSuccessful();
+});
+
+it('reports a Linux channel that has moved past platforms.json', function (): void {
+    bindReleaseFixturePlatforms(releasedLinuxFixture());
+    fakeLinuxChannels(copr: '0.1.0~beta.2-1');
+
+    $this->artisan('release:check')->expectsOutputToContain('DRIFT')->assertFailed();
 });

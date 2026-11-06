@@ -402,7 +402,7 @@ it('caches the failure, so pages do not ask a broken API again and again', funct
 
 it('refreshes from the scheduler every 15 minutes', function (): void {
     $events = collect(app(Schedule::class)->events())
-        ->filter(fn(Event $event): bool => str_contains((string) $event->command, 'release:refresh'));
+        ->filter(fn(Event $event): bool => preg_match('/release:refresh$/', (string) $event->command) === 1);
 
     expect($events)->toHaveCount(1)
         ->and($events->first()->expression)->toBe('*/15 * * * *');
