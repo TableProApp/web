@@ -1,17 +1,17 @@
 ---
 title: Nutzungsbedingungen
 description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Pro- oder Team-Lizenz.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-06"
 ---
 
-Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac und TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
+Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac, TablePro für iPhone und iPad sowie TablePro für Linux stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
 
 ## Begriffsbestimmungen {#definitions}
 
 - **„TablePro“, „wir“, „uns“ und „unser“** bezeichnen {publisherName}, einen Einzelentwickler in {publisherCity}, {publisherCountry}, der TablePro veröffentlicht.
-- **„Anwendung“** bezeichnet TablePro für Mac und TablePro für iPhone und iPad einschließlich ihrer Updates und Plugins.
+- **„Anwendung“** bezeichnet TablePro für Mac, TablePro für iPhone und iPad sowie TablePro für Linux einschließlich ihrer Updates und Plugins.
 - **„Website“** bezeichnet tablepro.app, docs.tablepro.app und die weiteren Domains, die wir betreiben.
-- **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, den die Mac-App für Lizenzprüfungen und die Team Library kontaktiert.
+- **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, den die Mac-App und die Linux-App für Lizenzprüfungen und die Team Library kontaktieren.
 - **„Lizenz“** bezeichnet einen bezahlten Pro- oder Team-Tarif und **„Lizenzschlüssel“** die Zugangsdaten, mit denen Versionen der Mac-App vor den TablePro-Konten eine Lizenz aktivieren.
 - **„Du“** bezeichnet die Person oder Organisation, die die Dienste nutzt oder eine Lizenz besitzt.
 
@@ -21,7 +21,7 @@ Der Quellcode der Anwendung, einschließlich des Codes der Bezahlfunktionen, wir
 
 Die AGPL stellt keine Bedingungen an die Ausführung von TablePro in Unternehmen beliebiger Größe. Ihre Bedingungen gelten, wenn du Kopien an andere weitergibst, geändert oder unverändert, und wenn du TablePro änderst und andere deine geänderte Version über ein Netzwerk nutzen lässt. Diese Bedingungen schränken die Rechte, die dir die AGPLv3 gewährt, nicht ein.
 
-Die Mac-App lässt sich ohne Registrierung kostenlos herunterladen und nutzen. Eine Lizenz ergänzt die Mac-App um optionale Funktionen. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe.
+Die Mac-App und die Linux-App lassen sich ohne Registrierung kostenlos herunterladen und nutzen. Eine Lizenz ergänzt die Mac-App um optionale Funktionen. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe.
 
 ## Marken {#trademarks}
 
@@ -37,12 +37,12 @@ Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 
 ## Eine Lizenz nutzen {#license}
 
-Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App auf den Macs zu nutzen, die bei deinem TablePro-Konto angemeldet sind oder, in Versionen vor den TablePro-Konten, mit ihrem Lizenzschlüssel aktiviert wurden, bis zur Anzahl und für den Zeitraum deines Tarifs:
+Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht, die Bezahlfunktionen der Mac-App auf den Computern zu nutzen, die bei deinem TablePro-Konto angemeldet sind oder, in Versionen der Mac-App vor den TablePro-Konten, mit ihrem Lizenzschlüssel aktiviert wurden, bis zur Anzahl und für den Zeitraum deines Tarifs. Die Bezahlfunktionen gibt es nur in der Mac-App, aber ein Computer, der in TablePro für Linux bei deinem Konto angemeldet ist, zählt zu dieser Anzahl:
 
-- Eine **Pro**-Lizenz gilt für eine Person auf bis zu {deviceLimit} Macs.
-- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Macs. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.
+- Eine **Pro**-Lizenz gilt für eine Person auf bis zu {deviceLimit} Computern, Mac oder Linux.
+- Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Computern, Mac oder Linux. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.
 
-Das Limit von {deviceLimit} Macs gilt pro Konto, über alle Lizenzen hinweg, die es nutzt. Ohne unsere schriftliche Erlaubnis darfst du dein Konto oder einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Macs hinaus teilen und keine Lizenz und keinen Lizenzschlüssel unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
+Das Limit von {deviceLimit} Computern gilt pro Konto, über alle Lizenzen hinweg, die es nutzt. Ohne unsere schriftliche Erlaubnis darfst du dein Konto oder einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Computer hinaus teilen und keine Lizenz und keinen Lizenzschlüssel unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
 
 Die Mac-App erneuert deinen Tarif einmal täglich bei unserem Server. Ist der Server nicht erreichbar, funktionieren die Bezahlfunktionen noch bis zu {offlineDays} Tage nach der letzten Erneuerung oder, auf einem Mac mit einer Offline-Datei aus dem Kontoportal, bis die Datei abläuft. Versionen vor den TablePro-Konten prüfen stattdessen alle {revalidateDays} Tage einen Lizenzschlüssel und behalten die Bezahlfunktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung. Wenn ein monatlicher oder jährlicher Tarif endet, stehen seine Funktionen nicht mehr bereit; der Rest der Mac-App funktioniert weiter.
 

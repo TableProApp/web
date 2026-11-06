@@ -1,17 +1,17 @@
 ---
 title: Conditions d’utilisation
 description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Pro ou Team.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-06"
 ---
 
-Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
+Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac, TablePro pour iPhone et iPad, et TablePro pour Linux sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
 
 ## Définitions {#definitions}
 
 - **« TablePro », « nous » et « notre »** désignent {publisherName}, développeur indépendant installé à {publisherCity}, au {publisherCountry}, qui publie TablePro.
-- **« Application »** désigne TablePro pour Mac et TablePro pour iPhone et iPad, y compris leurs mises à jour et plugins.
+- **« Application »** désigne TablePro pour Mac, TablePro pour iPhone et iPad, et TablePro pour Linux, y compris leurs mises à jour et plugins.
 - **« Site web »** désigne tablepro.app, docs.tablepro.app et les autres domaines que nous exploitons.
-- **« Services »** désigne le Site web, le portail de comptes et le serveur que l’application Mac contacte pour les vérifications de licence et Team Library.
+- **« Services »** désigne le Site web, le portail de comptes et le serveur que les applications Mac et Linux contactent pour les vérifications de licence et Team Library.
 - **« Licence »** désigne une offre payante Pro ou Team, et **« Clé de licence »** l’identifiant avec lequel les versions de l’application Mac antérieures aux comptes TablePro activent une Licence.
 - **« Vous »** désigne la personne ou l’organisation utilisant les Services ou titulaire d’une Licence.
 
@@ -21,7 +21,7 @@ Le code source de l’Application, y compris le code des fonctionnalités payant
 
 L’AGPL n’impose aucune condition pour exécuter TablePro dans une entreprise de toute taille. Ses conditions s’appliquent lorsque vous fournissez des copies à d’autres personnes, modifiées ou non, et lorsque vous modifiez TablePro et permettez à d’autres d’utiliser votre version modifiée via un réseau. Aucune disposition de ces conditions ne limite les droits que l’AGPLv3 vous accorde.
 
-L’application Mac se télécharge et s’utilise gratuitement, sans inscription. Une Licence ajoute des fonctionnalités facultatives à l’application Mac. L’application iPhone et iPad est gratuite, sans achats intégrés.
+Les applications Mac et Linux se téléchargent et s’utilisent gratuitement, sans inscription. Une Licence ajoute des fonctionnalités facultatives à l’application Mac. L’application iPhone et iPad est gratuite, sans achats intégrés.
 
 ## Marques {#trademarks}
 
@@ -37,12 +37,12 @@ Les remboursements sont décrits dans la [politique de remboursement](/fr/refund
 
 ## Utiliser une licence {#license}
 
-Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les Mac connectés à votre compte TablePro ou, dans les versions antérieures aux comptes TablePro, activés avec sa Clé de licence, dans la limite du nombre et de la période prévus par votre offre :
+Une Licence vous accorde un droit non exclusif et non transférable d’utiliser les fonctionnalités payantes de l’application Mac sur les ordinateurs connectés à votre compte TablePro ou, dans les versions de l’application Mac antérieures aux comptes TablePro, activés avec sa Clé de licence, dans la limite du nombre et de la période prévus par votre offre. Les fonctionnalités payantes n’existent que dans l’application Mac, mais un ordinateur connecté à votre compte dans TablePro pour Linux compte dans ce nombre :
 
-- Une Licence **Pro** est destinée à une personne, sur un maximum de {deviceLimit} Mac.
-- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} Mac. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
+- Une Licence **Pro** est destinée à une personne, sur un maximum de {deviceLimit} ordinateurs, Mac ou Linux.
+- Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} ordinateurs, Mac ou Linux. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
 
-La limite de {deviceLimit} Mac s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des Mac couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.
+La limite de {deviceLimit} ordinateurs s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des ordinateurs couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.
 
 L’application Mac renouvelle votre offre auprès de notre serveur une fois par jour. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner jusqu’à {offlineDays} jours après le dernier renouvellement ou, sur un Mac qui utilise un fichier hors ligne du portail du compte, jusqu’à l’expiration de ce fichier. Les versions antérieures aux comptes TablePro vérifient plutôt une Clé de licence tous les {revalidateDays} jours et gardent les fonctionnalités payantes pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et le reste de l’application Mac continue de fonctionner.
 

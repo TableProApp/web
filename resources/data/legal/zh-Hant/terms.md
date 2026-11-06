@@ -1,17 +1,17 @@
 ---
 title: 服務條款
 description: TablePro 網站、帳戶入口網站、授權伺服器與 Team Library 的條款，以及購買 Pro 或 Team 授權的條款。
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-06"
 ---
 
-本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro 與 iPhone、iPad 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
+本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro、iPhone 與 iPad 版 TablePro 以及 Linux 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
 
 ## 定義 {#definitions}
 
 - 「**TablePro**」、「**我們**」及「**我們的**」指{publisherCountry}{publisherCity}的個人開發者 {publisherName}，即 TablePro 的發佈者。
-- 「**應用程式**」指 Mac 版 TablePro 與 iPhone、iPad 版 TablePro，包括其更新和外掛程式。
+- 「**應用程式**」指 Mac 版 TablePro、iPhone 與 iPad 版 TablePro 以及 Linux 版 TablePro，包括其更新和外掛程式。
 - 「**網站**」指 tablepro.app、docs.tablepro.app 及我們營運的其他網域。
-- 「**服務**」指網站、帳戶入口網站，以及 Mac App 用於授權驗證與 Team Library 的伺服器。
+- 「**服務**」指網站、帳戶入口網站，以及 Mac App 與 Linux App 用於授權驗證與 Team Library 的伺服器。
 - 「**授權**」指付費 Pro 或 Team 方案，「**授權金鑰**」指支援 TablePro 帳戶之前的 Mac App 版本用於啟用授權的認證資料。
 - 「**您**」指使用服務或持有授權的個人或組織。
 
@@ -21,7 +21,7 @@ updatedAt: "2026-11-04"
 
 AGPL 對在任何規模的公司中執行 TablePro 不設條件。其條件適用於向他人提供軟體副本（無論是否修改），以及修改 TablePro 後讓他人透過網路使用您的修改版。本條款不限制 AGPLv3 授予您的任何權利。
 
-Mac App 可免費下載使用，無需註冊。授權為 Mac App 增加選用功能。iPhone 與 iPad App 免費，且無 App 內購買。
+Mac App 與 Linux App 可免費下載使用，無需註冊。授權為 Mac App 增加選用功能。iPhone 與 iPad App 免費，且無 App 內購買。
 
 ## 商標 {#trademarks}
 
@@ -37,12 +37,12 @@ TablePro™、TablePro 標誌和 TablePro App 圖示是 {publisherName} 的商�
 
 ## 使用授權 {#license}
 
-授權授予您非專屬、不可轉讓的權利，允許在方案規定的台數和期限內，在登入您的 TablePro 帳戶的 Mac 上，或在支援 TablePro 帳戶之前的版本中以其授權金鑰啟用的 Mac 上，使用 Mac App 的付費功能：
+授權授予您非專屬、不可轉讓的權利，允許在方案規定的台數和期限內，在登入您的 TablePro 帳戶的電腦上，或在支援 TablePro 帳戶之前的 Mac App 版本中以其授權金鑰啟用的 Mac 上，使用 Mac App 的付費功能。付費功能僅在 Mac App 中提供，但在 Linux 版 TablePro 中登入您帳戶的電腦同樣計入該台數：
 
-- **Pro** 授權供一人使用，最多可用於 {deviceLimit} 台 Mac。
-- **Team** 授權按席位定價，最少 {teamMinSeats} 個席位。每個席位供一人使用，最多可用於 {deviceLimit} 台 Mac。團隊擁有者和管理員邀請團隊成員，成員透過郵件中的邀請連結加入。
+- **Pro** 授權供一人使用，最多可用於 {deviceLimit} 台 Mac 或 Linux 電腦。
+- **Team** 授權按席位定價，最少 {teamMinSeats} 個席位。每個席位供一人使用，最多可用於 {deviceLimit} 台 Mac 或 Linux 電腦。團隊擁有者和管理員邀請團隊成員，成員透過郵件中的邀請連結加入。
 
-{deviceLimit} 台 Mac 的上限按帳戶計算，涵蓋該帳戶使用的所有授權。未經我們書面許可，您不得在方案所涵蓋的人員與 Mac 範圍之外共用您的帳戶或授權金鑰，也不得再授權、出售、出租或以其他方式轉讓授權或授權金鑰。
+{deviceLimit} 台電腦的上限按帳戶計算，涵蓋該帳戶使用的所有授權。未經我們書面許可，您不得在方案所涵蓋的人員與電腦範圍之外共用您的帳戶或授權金鑰，也不得再授權、出售、出租或以其他方式轉讓授權或授權金鑰。
 
 Mac App 每天向我們的伺服器更新一次您的方案。若無法連線至伺服器，付費功能可自上次更新起繼續使用最多 {offlineDays} 天；在使用帳戶入口網站離線檔案的 Mac 上，可使用到該檔案過期。支援 TablePro 帳戶之前的版本改為每隔 {revalidateDays} 天驗證授權金鑰，並可自上次成功驗證起繼續使用付費功能 {graceDays} 天。月付或年付方案結束時，相應功能將停止，Mac App 的其餘功能仍可繼續使用。
 

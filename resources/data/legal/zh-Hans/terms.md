@@ -1,17 +1,17 @@
 ---
 title: 服务条款
 description: TablePro 网站、账户门户、许可证服务器和 Team Library 的条款，以及购买 Pro 或 Team 许可证的条款。
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-06"
 ---
 
-本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro 和 iPhone、iPad 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
+本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro、iPhone 和 iPad 版 TablePro 以及 Linux 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
 
 ## 定义 {#definitions}
 
 - “**TablePro**”、“**我们**”及“**我们的**”指{publisherCountry}{publisherCity}的个人开发者 {publisherName}，即 TablePro 的发布者。
-- “**应用**”指 Mac 版 TablePro 和 iPhone、iPad 版 TablePro，包括其更新和插件。
+- “**应用**”指 Mac 版 TablePro、iPhone 和 iPad 版 TablePro 以及 Linux 版 TablePro，包括其更新和插件。
 - “**网站**”指 tablepro.app、docs.tablepro.app 及我们运营的其他域名。
-- “**服务**”指网站、账户门户，以及 Mac 应用用于许可证验证和 Team Library 的服务器。
+- “**服务**”指网站、账户门户，以及 Mac 应用和 Linux 应用用于许可证验证和 Team Library 的服务器。
 - “**许可证**”指付费 Pro 或 Team 方案，“**许可证密钥**”指支持 TablePro 账户之前的 Mac 应用版本用于激活许可证的凭据。
 - “**您**”指使用服务或持有许可证的个人或组织。
 
@@ -21,7 +21,7 @@ updatedAt: "2026-11-04"
 
 AGPL 对在任何规模的公司中运行 TablePro 不设条件。其条件适用于向他人提供软件副本（无论是否修改），以及修改 TablePro 后让他人通过网络使用您的修改版。本条款不限制 AGPLv3 授予您的任何权利。
 
-Mac 应用可免费下载使用，无需注册。许可证为 Mac 应用增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。
+Mac 应用和 Linux 应用可免费下载使用，无需注册。许可证为 Mac 应用增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。
 
 ## 商标 {#trademarks}
 
@@ -37,12 +37,12 @@ TablePro™、TablePro 徽标和 TablePro 应用图标是 {publisherName} 的商
 
 ## 使用许可证 {#license}
 
-许可证授予您非独占、不可转让的权利，允许在方案规定的台数和期限内，在登录您的 TablePro 账户的 Mac 上，或在支持 TablePro 账户之前的版本中用其许可证密钥激活的 Mac 上，使用 Mac 应用的付费功能：
+许可证授予您非独占、不可转让的权利，允许在方案规定的台数和期限内，在登录您的 TablePro 账户的电脑上，或在支持 TablePro 账户之前的 Mac 应用版本中用其许可证密钥激活的 Mac 上，使用 Mac 应用的付费功能。付费功能仅在 Mac 应用中提供，但在 Linux 版 TablePro 中登录您账户的电脑同样计入该台数：
 
-- **Pro** 许可证供一人使用，最多可用于 {deviceLimit} 台 Mac。
-- **Team** 许可证按席位定价，最少 {teamMinSeats} 个席位。每个席位供一人使用，最多可用于 {deviceLimit} 台 Mac。团队所有者和管理员邀请团队成员，成员通过邮件中的邀请链接加入。
+- **Pro** 许可证供一人使用，最多可用于 {deviceLimit} 台 Mac 或 Linux 电脑。
+- **Team** 许可证按席位定价，最少 {teamMinSeats} 个席位。每个席位供一人使用，最多可用于 {deviceLimit} 台 Mac 或 Linux 电脑。团队所有者和管理员邀请团队成员，成员通过邮件中的邀请链接加入。
 
-{deviceLimit} 台 Mac 的上限按账户计算，涵盖该账户使用的所有许可证。未经我们书面许可，您不得在方案所涵盖的人员和 Mac 范围之外共享您的账户或许可证密钥，也不得再许可、出售、出租或以其他方式转让许可证或许可证密钥。
+{deviceLimit} 台电脑的上限按账户计算，涵盖该账户使用的所有许可证。未经我们书面许可，您不得在方案所涵盖的人员和电脑范围之外共享您的账户或许可证密钥，也不得再许可、出售、出租或以其他方式转让许可证或许可证密钥。
 
 Mac 应用每天向我们的服务器更新一次您的方案。若无法连接服务器，付费功能可自上次更新起继续使用最多 {offlineDays} 天；在使用账户门户离线文件的 Mac 上，可使用到该文件过期。支持 TablePro 账户之前的版本改为每隔 {revalidateDays} 天验证许可证密钥，并可自上次成功验证起继续使用付费功能 {graceDays} 天。月付或年付方案结束时，相应功能将停止，Mac 应用的其余功能仍可继续使用。
 

@@ -1,17 +1,17 @@
 ---
 title: Terms of service
 description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Pro or Team license.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-06"
 ---
 
-These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
+These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac, TablePro for iPhone and iPad, and TablePro for Linux are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
 
 ## Definitions {#definitions}
 
 - **"TablePro", "we", "us" and "our"** mean {publisherName}, an individual developer based in {publisherCity}, {publisherCountry}, who publishes TablePro.
-- **"Application"** means TablePro for Mac and TablePro for iPhone and iPad, including their updates and plugins.
+- **"Application"** means TablePro for Mac, TablePro for iPhone and iPad, and TablePro for Linux, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
-- **"Services"** means the Website, the account portal, and the server the Mac app contacts for license checks and the Team Library.
+- **"Services"** means the Website, the account portal, and the server the Mac and Linux apps contact for license checks and the Team Library.
 - **"License"** means a paid Pro or Team plan, and **"License Key"** the credential that versions of the Mac app before TablePro accounts use to activate a License.
 - **"You"** means the person or organization using the Services or holding a License.
 
@@ -21,7 +21,7 @@ The Application's source code, including the code of the paid features, is publi
 
 The AGPL places no conditions on running TablePro, in a company of any size. Its conditions apply when you give copies to others, modified or not, and when you modify TablePro and let other people use your modified version over a network. Nothing in these terms limits the rights the AGPLv3 gives you.
 
-The Mac app is free to download and use without registering. A License adds optional features to the Mac app. The iPhone and iPad app is free, with no in-app purchases.
+The Mac and Linux apps are free to download and use without registering. A License adds optional features to the Mac app. The iPhone and iPad app is free, with no in-app purchases.
 
 ## Trademarks {#trademarks}
 
@@ -37,12 +37,12 @@ Refunds are described in the [refund policy](/refund-policy).
 
 ## Using a license {#license}
 
-A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the Macs signed in to your TablePro account or, in versions before TablePro accounts, activated with its License Key, up to the number, and for the period, of your plan:
+A License gives you a non-exclusive, non-transferable right to use the paid features of the Mac app on the computers signed in to your TablePro account or, in versions of the Mac app before TablePro accounts, activated with its License Key, up to the number, and for the period, of your plan. The paid features are in the Mac app only, but a computer signed in to your account in TablePro for Linux counts toward that number:
 
-- A **Pro** License is for one person, on up to {deviceLimit} Macs.
-- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} Macs. The team's owner and admins invite its members, who join from an emailed invitation link.
+- A **Pro** License is for one person, on up to {deviceLimit} computers, Mac or Linux.
+- A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} computers, Mac or Linux. The team's owner and admins invite its members, who join from an emailed invitation link.
 
-The limit of {deviceLimit} Macs applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and Macs your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.
+The limit of {deviceLimit} computers applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and computers your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.
 
 The Mac app renews your plan with our server once a day. If our server cannot be reached, the paid features keep working for up to {offlineDays} days after the last renewal, or, on a Mac that uses an offline file from the account portal, until the file expires. Versions before TablePro accounts check a License Key every {revalidateDays} days instead, and keep the paid features for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the rest of the Mac app keeps working.
 
