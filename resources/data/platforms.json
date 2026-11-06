@@ -4,15 +4,22 @@
         {
             "id": "mac",
             "status": "released",
-            "deviceNames": ["Mac"],
+            "deviceNames": [
+                "Mac"
+            ],
             "page": null,
             "requirements": {
-                "systems": ["macOS"],
+                "systems": [
+                    "macOS"
+                ],
                 "minVersion": "13.0",
                 "displayVersion": "13",
                 "releaseName": "Ventura"
             },
-            "architectures": ["arm64", "x86_64"],
+            "architectures": [
+                "arm64",
+                "x86_64"
+            ],
             "universalBinary": true,
             "assetTemplate": "TablePro-{version}.dmg",
             "destinations": [
@@ -36,15 +43,29 @@
                 "publishedAt": "2026-10-19"
             },
             "floorVersion": "0.82.0",
-            "appLanguages": ["en", "vi", "zh-Hans", "zh-Hant", "ko", "tr", "fr"]
+            "appLanguages": [
+                "en",
+                "vi",
+                "zh-Hans",
+                "zh-Hant",
+                "ko",
+                "tr",
+                "fr"
+            ]
         },
         {
             "id": "ios",
             "status": "released",
-            "deviceNames": ["iPhone", "iPad"],
+            "deviceNames": [
+                "iPhone",
+                "iPad"
+            ],
             "page": "/ios",
             "requirements": {
-                "systems": ["iOS", "iPadOS"],
+                "systems": [
+                    "iOS",
+                    "iPadOS"
+                ],
                 "minVersion": "18.0",
                 "displayVersion": "18",
                 "releaseName": null
@@ -61,12 +82,193 @@
                 "build": "22",
                 "publishedAt": "2026-09-22"
             },
-            "iosEngines": ["mysql", "mariadb", "tidb", "oceanbase", "postgresql", "sqlite", "duckdb", "redis", "sqlserver", "oracle"],
-            "storefrontExclusions": ["at", "be", "bg", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gr", "hr", "hu", "ie", "it", "li", "lt", "lu", "lv", "mt", "nl", "pl", "pt", "ro", "se", "si", "sk"],
-            "price": { "amount": 0, "inAppPurchases": false },
-            "appLanguages": ["en", "vi", "ko", "zh-Hans", "zh-Hant"]
+            "iosEngines": [
+                "mysql",
+                "mariadb",
+                "tidb",
+                "oceanbase",
+                "postgresql",
+                "sqlite",
+                "duckdb",
+                "redis",
+                "sqlserver",
+                "oracle"
+            ],
+            "storefrontExclusions": [
+                "at",
+                "be",
+                "bg",
+                "cy",
+                "cz",
+                "de",
+                "dk",
+                "ee",
+                "es",
+                "fi",
+                "fr",
+                "gr",
+                "hr",
+                "hu",
+                "ie",
+                "it",
+                "li",
+                "lt",
+                "lu",
+                "lv",
+                "mt",
+                "nl",
+                "pl",
+                "pt",
+                "ro",
+                "se",
+                "si",
+                "sk"
+            ],
+            "price": {
+                "amount": 0,
+                "inAppPurchases": false
+            },
+            "appLanguages": [
+                "en",
+                "vi",
+                "ko",
+                "zh-Hans",
+                "zh-Hant"
+            ]
         },
-        { "id": "linux", "status": "prototype" },
-        { "id": "windows", "status": "none" }
+        {
+            "id": "linux",
+            "status": "prototype",
+            "channel": "beta",
+            "deviceNames": [
+                "Linux"
+            ],
+            "page": null,
+            "distributions": [
+                {
+                    "id": "ubuntu",
+                    "name": "Ubuntu",
+                    "versions": [
+                        "26.04",
+                        "26.10"
+                    ],
+                    "via": "ppa"
+                },
+                {
+                    "id": "fedora",
+                    "name": "Fedora",
+                    "versions": [
+                        "44",
+                        "45"
+                    ],
+                    "via": "copr"
+                },
+                {
+                    "id": "other",
+                    "name": null,
+                    "versions": [],
+                    "via": "flatpak"
+                }
+            ],
+            "desktop": {
+                "name": "GNOME",
+                "version": "50"
+            },
+            "architectures": [
+                "x86_64",
+                "arm64"
+            ],
+            "destinations": [
+                {
+                    "kind": "ppa",
+                    "channel": "beta",
+                    "repository": "ppa:tablepro/tablepro-beta",
+                    "commands": [
+                        "sudo add-apt-repository ppa:tablepro/tablepro-beta",
+                        "sudo apt install tablepro"
+                    ],
+                    "update": "sudo apt upgrade"
+                },
+                {
+                    "kind": "copr",
+                    "channel": "beta",
+                    "repository": "@tablepro/tablepro-beta",
+                    "commands": [
+                        "sudo dnf copr enable @tablepro/tablepro-beta",
+                        "sudo dnf install tablepro"
+                    ],
+                    "update": "sudo dnf upgrade"
+                },
+                {
+                    "kind": "flatpak",
+                    "channel": "beta",
+                    "appId": "app.tablepro.TablePro",
+                    "branch": "beta",
+                    "url": "https://flatpak.tablepro.app/beta-repo/app.tablepro.TablePro.flatpakref",
+                    "commands": [
+                        "flatpak install --from https://flatpak.tablepro.app/beta-repo/app.tablepro.TablePro.flatpakref",
+                        "flatpak run --branch=beta app.tablepro.TablePro"
+                    ],
+                    "update": "flatpak update"
+                },
+                {
+                    "kind": "packages",
+                    "url": "https://github.com/TableProApp/TablePro/releases",
+                    "tagPrefix": "linux-v",
+                    "tagTemplate": "https://github.com/TableProApp/TablePro/releases/tag/linux-v{version}",
+                    "assets": [
+                        {
+                            "format": "deb",
+                            "template": "tablepro-{version}-ubuntu-{series}-{arch}.deb",
+                            "series": [
+                                "26.04",
+                                "26.10"
+                            ],
+                            "arch": {
+                                "x86_64": "amd64",
+                                "arm64": "arm64"
+                            }
+                        },
+                        {
+                            "format": "rpm",
+                            "template": "tablepro-{version}-fedora-{series}-{arch}.rpm",
+                            "series": [
+                                "44",
+                                "45"
+                            ],
+                            "arch": {
+                                "x86_64": "x86_64",
+                                "arm64": "aarch64"
+                            }
+                        },
+                        {
+                            "format": "flatpak",
+                            "template": "tablepro-{version}-{arch}.flatpak",
+                            "series": [],
+                            "arch": {
+                                "x86_64": "x86_64",
+                                "arm64": "aarch64"
+                            }
+                        }
+                    ],
+                    "checksums": "SHA256SUMS",
+                    "verify": "gh attestation verify {file} --repo TableProApp/TablePro"
+                }
+            ],
+            "release": {
+                "version": "0.1.0-beta.1",
+                "build": null,
+                "publishedAt": "2026-11-06"
+            },
+            "appLanguages": [
+                "en",
+                "vi"
+            ],
+            "evidence": "TableProApp/TablePro:linux/README.md:39-116, linux/build-aux/packaging/release-matrix.json, linux/docs/decisions/0041-beta-repositories-and-release-packages.md:55-72, PR #4075"
+        },
+        {
+            "id": "windows",
+            "status": "none"
+        }
     ]
 }
