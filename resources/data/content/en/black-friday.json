@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Black Friday sale on TablePro Pro"
+        "title": "Black Friday sale on TablePro Pro",
+        "headline": "{percent}% off",
+        "product": "TablePro Pro",
+        "window": "{startsOn} to {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "{percent}% off TablePro Pro",
-        "upcoming": "From {startsOn} to {endsOn}, {endsAtTime} UTC. The prices below apply from the first minute.",
-        "live": "Until {endsOn}, {endsAtTime} UTC. After that, Pro goes back to its regular prices.",
-        "ended": "The Black Friday sale ended on {endsOn}, {endsAtTime} UTC. Pro is back to its regular prices."
+        "title": "<big>{percent}% off</big> TablePro Pro",
+        "upcoming": "Pro one-time and Pro yearly, from {startsOn} to {endsOn}, {endsAtTime} UTC.",
+        "live": "Pro one-time and Pro yearly, until {endsOn}, {endsAtTime} UTC."
     },
     "offers": {
         "lifetime": {
             "name": "Pro one-time",
-            "detail": "Pay once. The license has no expiry date and works on {activations} Macs."
+            "unit": "paid once",
+            "detail": "No expiry date. {activations} Macs."
         },
         "yearly": {
             "name": "Pro yearly",
-            "detail": "{yearly} for the first year, then {yearlyList} a year. Works on {activations} Macs. Cancel any time."
+            "unit": "first year",
+            "detail": "Then {yearlyList} a year. {activations} Macs."
         },
         "buy": "Buy for {price}",
-        "soon": "On sale from {startsOn}",
-        "regularSince": "Regular prices since {listPriceSince}. They return when the sale ends.",
-        "notIncluded": "Pro monthly and Team are not part of the sale."
+        "soon": "From {startsOn}",
+        "calendar": "Add to calendar",
+        "calendarSummary": "TablePro Black Friday: {percent}% off Pro",
+        "calendarDescription": "Pro one-time and Pro yearly, until {endsOn}, {endsAtTime} UTC.",
+        "footnote": "Pro monthly and Team are not on sale. Regular prices since {listPriceSince}."
     },
     "includes": {
         "title": "What Pro adds",
-        "lead": "TablePro is free to use, at work too. Pro adds these features on up to {activations} Macs."
+        "lead": "TablePro is free, at work too. Pro adds these on {activations} Macs.",
+        "more": "Also in Pro",
+        "link": "More about {feature}"
     },
     "faq": {
         "title": "Questions",
         "items": [
             {
-                "question": "Which plans are on sale?",
-                "answer": "Pro one-time and Pro yearly, {percent}% off. Pro monthly and Team keep their prices."
-            },
-            {
                 "question": "Does Pro yearly renew at {yearly}?",
-                "answer": "No. The sale covers the first year. After that the plan renews at {yearlyList} a year, unless you cancel it before then."
+                "answer": "No. The sale price covers the first year, then it renews at {yearlyList} a year."
             },
             {
                 "question": "Didn't the prices just go up?",
-                "answer": "Yes. Pro's prices changed on {listPriceSince}, and the sale takes {percent}% off those prices. Both sale prices are also below what Pro cost before that change. <prices>What changed and why</prices>."
+                "answer": "Yes, on {listPriceSince}. Both sale prices are below what Pro cost before that. <prices>What changed</prices>."
             },
             {
-                "question": "I already pay for Pro monthly or yearly. Can I switch to one-time?",
-                "answer": "Yes. Buy Pro one-time at the sale price, then cancel your subscription in the <portal>billing portal</portal> so it does not renew."
-            },
-            {
-                "question": "Do I need to type the code?",
-                "answer": "Not when you buy from this site: checkout applies the discount for you. If you are asked for a code, it is {code}."
+                "question": "I pay monthly or yearly. Can I switch to one-time?",
+                "answer": "Yes. Buy Pro one-time, then cancel your subscription in the <portal>billing portal</portal>."
             },
             {
                 "question": "Can I get a refund?",
-                "answer": "Yes, as with any purchase: within {refundDays} days. See the <refund>refund policy</refund>."
+                "answer": "Yes, within {refundDays} days, as with any purchase. See the <refund>refund policy</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "It covers each release, and it will say when the sale opens."
     },
     "ended": {
-        "title": "Black Friday has ended",
+        "title": "<big>Black Friday</big> has ended",
+        "lead": "It ran from {startsOn} to {endsOn}. Pro is back to its regular prices.",
         "action": "See current prices",
         "newsletterTitle": "Get the newsletter",
         "newsletterLead": "It covers each release, and it will say when the next sale opens."

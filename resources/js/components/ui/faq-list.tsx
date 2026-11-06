@@ -1,53 +1,46 @@
 import type { ReactNode } from 'react';
+import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/** One question and its answer. The answer is a string from content, or a node with links in it. */
 export interface FaqListItem {
     question: string;
     answer: ReactNode;
-    /** A stable, locale-neutral id for linking to one question (`/faq#lost-license-key`). */
     id?: string;
 }
 
 interface FaqListProps {
     items: FaqListItem[];
-    /**
-     * The questions' element. `h3` under a section's `h2` (the default); `h2`
-     * on a page whose questions sit directly under its `h1`. The style is the
-     * `h3` role either way: the outline decides the level, not the size.
-     */
     headingLevel?: 'h2' | 'h3' | 'h4';
+    // Every answer shows by default (design-system §5.3.7). Collapsed only where a short list sits under a sales page.
+    collapsible?: boolean;
     className?: string;
 }
 
-/**
- * Questions and answers, every answer visible (design-system §5.3.7).
- *
- * One column, whose measure the caller sets: `frame-rows-text` in a section
- * runs each row from rail to rail with its text at the reading width
- * (design-system §4.7), and a cell keeps it inside the cell.
- *
- * Not an accordion: an answer behind a disclosure is one that Ctrl+F cannot
- * find, a search engine ranks lower and a skimming reader never sees, and
- * these lists are short enough not to need collapsing.
- *
- * Each item is separated by a hairline with 24px of padding; the answer sits
- * 8px under its question, in the text colour, not muted, because it is what
- * the reader came for. `data-rule-list` lets the page frame drop the last
- * hairline when the list ends a section, where the frame's join closes it
- * (design-system §4.7).
- */
-export default function FaqList({ items, headingLevel = 'h3', className }: FaqListProps) {
+export default function FaqList({ items, headingLevel = 'h3', collapsible = false, className }: FaqListProps) {
     const Heading = headingLevel;
+    const answer = (item: FaqListItem): ReactNode => (typeof item.answer === 'string' ? <p>{item.answer}</p> : item.answer);
 
     return (
         <div data-rule-list className={cn('border-t border-rule', className)}>
-            {items.map((item) => (
-                <div key={item.id ?? item.question} id={item.id} className="scroll-mt-24 border-b border-rule py-6">
-                    <Heading className="type-h3 text-foreground">{item.question}</Heading>
-                    <div className="type-body mt-2 space-y-4 text-foreground">{typeof item.answer === 'string' ? <p>{item.answer}</p> : item.answer}</div>
-                </div>
-            ))}
+            {items.map((item) =>
+                collapsible ? (
+                    <details key={item.id ?? item.question} id={item.id} className="group scroll-mt-24 border-b border-rule">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
+                            <Heading className="type-h3 text-foreground">{item.question}</Heading>
+                            <Plus
+                                aria-hidden="true"
+                                className="size-5 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) ease-(--ease-feedback) group-open:rotate-45"
+                            />
+                        </summary>
+                        <div className="type-body max-w-[64ch] space-y-4 pb-6 text-muted-foreground">{answer(item)}</div>
+                    </details>
+                ) : (
+                    <div key={item.id ?? item.question} id={item.id} className="scroll-mt-24 border-b border-rule py-6">
+                        <Heading className="type-h3 text-foreground">{item.question}</Heading>
+                        <div className="type-body mt-2 space-y-4 text-foreground">{answer(item)}</div>
+                    </div>
+                ),
+            )}
         </div>
     );
 }

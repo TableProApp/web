@@ -710,6 +710,7 @@ Repo key:
   - The answer is `body` in `--foreground`, 8px below its question.
   - Items are separated by a 1px `--rule` with 24px of padding.
 - All answers are visible. Answers come from data, with named interpolation.
+- One exception, `collapsible`: the four questions under the sale's offers on `/black-friday` are `<details>`, closed, the whole row the control, a `+` turning to `×` (owner decision, 2026-11-06). Rows run rail to rail (`frame-rows`), so the `+` sits on the right edge.
 
 #### 5.3.8 Badge, StatusBadge, Availability
 
@@ -1314,6 +1315,15 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - counters that animate numbers
 - autoplay video
 - hover lifts (`translateY`) or shadow blooms
+
+**The dated sale is the exception** (owner decision, 2026-11-06: "ban the AI look, not motion"). On the sale's black ground only (`/black-friday`, its band and its banner), and never under reduced motion:
+
+- **The load sequence,** once per visit: the headline settles (`sale-rise`, 560ms, `--ease-panel`), a drawn line strikes the list prices, then the sale prices arrive. Under a second in all.
+- **The countdown digits roll**, each one only when it changes (`roll-in`, `roll-out`, 320ms).
+- **The light under the pointer** (`campaign-spot`): a 30rem accent radial at 13% that follows a mouse, never a finger, and fades out when the pointer leaves.
+- **The Pro capture crossfade** (`sale-stage`, `--dur-panel`): only when the reader picks another feature.
+
+Still not allowed there: gradient blobs, animated glows, sparkles, confetti, entrances on scroll, anything that loops or auto-advances.
 
 **Reduced motion.** Keep the existing global block (`app.css:350-365`), including `animation-delay`, `animation-timeline` and `transition-delay`. Theme switches also suppress transitions for one frame (§2.8).
 

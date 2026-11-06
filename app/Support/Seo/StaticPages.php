@@ -104,8 +104,8 @@ final class StaticPages implements PageFamily
             renderLocales: $render,
             indexableLocales: $indexable,
             sources: $sources,
-            ogFamily: 'site',
-            ogSlug: null,
+            ogFamily: $route === Banner::CAMPAIGN_PAGE ? 'campaign' : 'site',
+            ogSlug: $route === Banner::CAMPAIGN_PAGE ? $name : null,
         );
     }
 }

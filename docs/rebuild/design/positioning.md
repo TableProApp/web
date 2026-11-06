@@ -470,8 +470,12 @@ prices, with a code that works only inside the window (`App\Support\Pricing\Camp
   hero and Pricing's header, and the plan cards of the cycles it covers. Checkout from the site attaches the code.
   Before and after the window, only the sale's own page mentions it.
 - **The sale's own page,** `/black-friday`, keeps one URL from year to year. Before the sale it states the window and
-  the prices; during it the offers can be bought from it; after it, its title, heading and description say the sale
-  has ended, and nothing on it is offered.
+  the prices, and offers a calendar file for the start instead of a button that cannot be pressed; during it the offers
+  can be bought from it; after it, its title, heading and description say the sale has ended, and nothing on it is
+  offered. Its copy stays near 150 words: the offers as two ruled rows, Pro one-time first and larger, then the Pro
+  features with their captures, four questions and, outside the sale, one newsletter signup (the footer's is off then).
+- **Its share card** is the sale's own (`og/campaign.blade.php`, `og:generate --type=campaign`): the black ground,
+  the percentage off and the window.
 - **Wording:** "{percent}% off" beside the struck list price and the sale price, never "save N%" (§12.1). A
   subscription's sale price is its first charge's, and the line under it says what it renews at. A one-time license
   is still "paid once, no expiry date", never lifetime updates.

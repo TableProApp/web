@@ -255,8 +255,8 @@ html.campaign-live .campaign-band {
 
 .campaign-glow {
   background-image: radial-gradient(
-    60rem 32rem at 100% 0%,
-    color-mix(in oklab, var(--accent) 26%, transparent),
+    56rem 28rem at 100% 0%,
+    color-mix(in oklab, var(--accent) 16%, transparent),
     transparent 70%
   );
 }
@@ -265,6 +265,196 @@ html.campaign-live .campaign-band {
   .campaign-glow {
     background-image: none;
   }
+}
+
+/* The global rails are drawn in the page's theme; on the black ground they would be a light line in the light theme. */
+.campaign-rails {
+  position: absolute;
+  inset: 0;
+  z-index: 31;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 80rem) {
+  .campaign-rails {
+    display: block;
+  }
+}
+
+.campaign-rails > div {
+  position: relative;
+  max-width: 80rem;
+  height: 100%;
+  margin-inline: auto;
+  border-inline: 1px solid var(--rule);
+}
+
+@media (forced-colors: active), print {
+  .campaign-rails {
+    display: none;
+  }
+}
+
+/* The light under the pointer on the sale's black ground. Mouse only. */
+.campaign-spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    30rem circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in oklab, var(--accent) 13%, transparent),
+    transparent 70%
+  );
+  transition: opacity var(--dur-panel) var(--ease-feedback);
+}
+
+[data-spot="on"] > .campaign-spot {
+  opacity: 1;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .campaign-spot {
+    display: none;
+  }
+}
+
+.sale-display {
+  font-size: clamp(3.5rem, 15vw, 9.5rem);
+  line-height: 0.92;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+/* The struck price is crossed by a drawn line, so the load sequence can draw it. */
+.sale-strike {
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sale-strike::after {
+  content: "";
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  top: 52%;
+  height: max(2px, 0.07em);
+  background-color: currentColor;
+  transform-origin: left center;
+}
+
+@media (forced-colors: active) {
+  .sale-strike {
+    text-decoration: line-through;
+  }
+
+  .sale-strike::after {
+    display: none;
+  }
+}
+
+.sale-cents {
+  font-size: 0.5em;
+  vertical-align: 0.78em;
+  margin-left: 0.04em;
+  letter-spacing: 0;
+}
+
+.sale-affix {
+  font-size: 0.5em;
+  letter-spacing: -0.01em;
+}
+
+/*
+ * The load sequence, once per visit: the headline settles, a line strikes the
+ * list prices, then the sale prices arrive. The global reduced-motion block
+ * collapses it to the end state.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .sale-rise {
+    animation: sale-rise 560ms var(--ease-panel) both;
+    animation-delay: var(--sale-delay, 0ms);
+  }
+
+  .sale-strike::after {
+    animation: sale-strike 380ms var(--ease-panel) both;
+    animation-delay: var(--sale-delay, 0ms);
+  }
+}
+
+@keyframes sale-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+}
+
+@keyframes sale-strike {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* A countdown digit: the old one leaves downwards as the new one drops in. */
+.roll {
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.roll > span {
+  grid-area: 1 / 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .roll-in {
+    animation: roll-in 320ms var(--ease-panel) both;
+  }
+
+  .roll-out {
+    animation: roll-out 320ms var(--ease-panel) both;
+  }
+}
+
+.roll-out {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .roll-out {
+    visibility: visible;
+  }
+}
+
+@keyframes roll-in {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes roll-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* The Pro features: every capture sits in one cell and the chosen one fades in. */
+/* The chosen capture sets the height; the others lie over it, transparent, so the swap is a crossfade. */
+.sale-stage {
+  position: relative;
+}
+
+.sale-stage > * {
+  transition: opacity var(--dur-panel) var(--ease-feedback);
+}
+
+.sale-stage > [data-shown="false"] {
+  position: absolute;
+  inset: 0 0 auto;
+  opacity: 0;
+  pointer-events: none;
 }
 
 html {
