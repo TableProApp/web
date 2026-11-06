@@ -12,51 +12,29 @@
         "lead": "Choose a build for your device."
     },
     "mac": {
-        "otherWays": "Other ways to install",
         "homebrew": {
             "title": "Homebrew",
-            "body": "Homebrew installs the build for your Mac’s chip. After that, the app keeps itself up to date.",
             "trails": "Homebrew’s copy is updated separately and can trail a new release. If it installs an older version, choose <ui>TablePro > Check for Updates…</ui> to get the current one."
         },
-        "releases": "Every build on GitHub Releases",
+        "signing": "TablePro is signed with a Developer ID and notarized by Apple, so you don’t need to change any security setting to open it.",
         "source": "Build from source (AGPLv3)"
     },
     "ios": {
-        "body": "A free app for {devices}, with its own set of features.",
         "link": "TablePro for {devices}"
     },
-    "install": {
-        "title": "Install and first run",
-        "steps": [
-            "Open the downloaded .dmg file.",
-            "Drag TablePro into the Applications folder.",
-            "Open TablePro from Applications. Choose <ui>Open</ui> when macOS asks you to confirm.",
-            "Add a connection, or try the bundled Chinook SQLite database through <ui>Help > Open Sample Database</ui>."
-        ],
-        "signing": "TablePro is signed with a Developer ID and notarized by Apple, so you don’t need to change any security setting to open it.",
-        "drivers": "Common drivers are bundled. Others need an internet connection to download on first use and update separately from the app.",
-        "databases": "Supported databases",
-        "guide": {
-            "label": "Read the installation guide",
-            "path": "/installation"
-        }
+    "platforms": {
+        "databases": "Supported databases"
     },
     "updates": {
         "title": "Updates",
-        "paragraphs": [
-            "TablePro checks for updates once a day. A new version downloads in the background and installs the next time you quit the app.",
-            "Most releases reach Macs in stages over about a day and a half. To get one sooner, choose <ui>TablePro > Check for Updates…</ui>",
-            "You can turn off automatic checks or automatic installs in <ui>Settings > General</ui>. Update checks go to GitHub, where releases are published, and every update is signed and verified before it installs."
-        ]
+        "mac": "TablePro checks for updates once a day. A new version downloads in the background and installs the next time you quit the app."
     },
     "otherPlatforms": {
-        "title": "Other platforms",
         "body": "TablePro is not available for {platforms}, and there is no release date.",
         "faq": "Platform questions in the FAQ"
     },
     "olderVersions": {
         "title": "Older versions and release notes",
-        "body": "Every release, with its notes and disk images, is on GitHub Releases. The changelog lists what changed in each version.",
         "releases": "All releases on GitHub",
         "changelog": "Changelog"
     }

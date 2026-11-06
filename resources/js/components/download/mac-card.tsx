@@ -1,156 +1,83 @@
-import { useState, type ReactNode } from 'react';
-import { ChevronRight, Download } from 'lucide-react';
-import Badge from '@/components/ui/badge';
+import { useState } from 'react';
+import { Download } from 'lucide-react';
 import Button from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import { InlineCode } from '@/components/ui/code';
-import TextLink, { textLinkClasses } from '@/components/ui/text-link';
+import Disclosure from '@/components/ui/disclosure';
+import DotList from '@/components/ui/dot-list';
+import { textLinkClasses } from '@/components/ui/text-link';
 import { Trans, useI18n } from '@/i18n';
+import { keepTogether } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
-import type { DeviceKind } from '@/lib/device';
-import { cn } from '@/lib/utils';
+import { architecturesText } from '@/lib/data/platforms';
 import CommandBlock from './command-block';
 import { megabytes, requirementLine } from './format';
-import type { DownloadContent, LinksProp, MacProp, ReleaseProp } from './types';
+import PlatformCard from './platform-card';
+import type { DownloadContent, MacProp, ReleaseProp } from './types';
 
-/** `<ui>…</ui>` in the copy marks an app label or menu path. */
 export const UI_TAGS = { ui: (text: string) => <span className="font-medium">{text}</span> };
 
 interface MacCardProps {
     content: DownloadContent;
     release: ReleaseProp;
     mac: MacProp;
-    links: LinksProp;
-    /** Null until mounted: the server renders the same markup for every device. */
-    device: DeviceKind | null;
+    marked: boolean;
+    primary: boolean;
     className?: string;
 }
 
-/**
- * The Mac card (`#mac`): the release badge, the universal DMG, its SHA-256
- * when the release data carries it, and the other ways to install
- * (design-system §5.3.18 `PlatformCard`, §8.7). It is a cell of the download
- * page's `CellGrid`, so it draws no box of its own, and its inner rule runs
- * from wall to wall (§4.7).
- *
- * The DMG link is rendered on the server with its real URL. Nothing navigates
- * on its own, and nothing claims a download started: the "Next, install it"
- * panel appears only after the reader clicked the button, and offers the same
- * file again in case nothing arrived.
- */
-export default function MacCard({ content, release, mac, links, device, className }: MacCardProps) {
+// The DMG link is in the server render with its real URL, and nothing claims a download started: the install hint
+// appears only after the reader clicked, and offers the same file again in case nothing arrived.
+export default function MacCard({ content, release, mac, marked, primary, className }: MacCardProps) {
     const { m, fmt } = useI18n();
     const [clicked, setClicked] = useState(false);
 
     const available = release.source !== 'unavailable';
     const { asset } = release;
-
-    let badge: string | null = null;
-
-    if (available && release.version !== null) {
-        badge =
-            release.publishedAtFormatted !== null
-                ? fmt(m.download.release.badge, { version: release.version, date: release.publishedAtFormatted })
-                : fmt(m.download.release.badgeUndated, { version: release.version });
-    }
-
-    /**
-     * The file name in Plex Mono, as identifiers are (design-system §3.1), and
-     * only the size in tabular figures: tabular figures in Inter spaced the
-     * name's hyphen out ("TablePro - 0.82.0.dmg").
-     */
-    function fileLabel(): ReactNode {
-        if (asset.name === null) {
-            return null;
-        }
-
-        const template = asset.bytes !== null ? m.download.file.sized : m.download.file.unsized;
-
-        return (
-            <Trans
-                text={template.replace('{name}', '<file>{name}</file>').replace('{size}', '<size>{size}</size>')}
-                tags={{
-                    file: (text) => <span className="font-mono text-[0.75rem] [overflow-wrap:anywhere]">{text}</span>,
-                    size: (text) => <span className="tabular-nums">{text}</span>,
-                }}
-                values={{ name: asset.name, size: asset.bytes !== null ? megabytes(asset.bytes, m.download.file.number) : '' }}
-            />
-        );
-    }
-
-    const file = fileLabel();
-    const status = device === 'ios' || device === 'other' ? m.download.onAnotherDevice : '';
+    const version =
+        available && release.version !== null
+            ? release.publishedAtFormatted !== null
+                ? fmt(m.download.release.dated, { version: release.version, date: keepTogether(release.publishedAtFormatted) })
+                : fmt(m.download.release.undated, { version: release.version })
+            : null;
 
     return (
-        <section id="mac" aria-labelledby="mac-title" className={cn('scroll-mt-24', className)}>
-            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                <h2 id="mac-title" className="type-h3 text-foreground">
-                    {mac.deviceNames[0] ?? 'Mac'}
-                </h2>
-                {badge !== null && <Badge>{badge}</Badge>}
-            </div>
-            {mac.requirements && (
-                <p className="type-small mt-1 text-muted-foreground">
-                    {fmt(m.platforms.requires, { requirement: requirementLine(mac.requirements, m.platforms) })}
-                </p>
-            )}
+        <PlatformCard
+            id="mac"
+            name={mac.deviceNames[0] ?? 'Mac'}
+            marked={marked}
+            version={version}
+            className={className}
+            action={
+                <Button
+                    href={asset.url}
+                    variant={primary ? 'primary' : 'secondary'}
+                    size="lg"
+                    icon={<Download aria-hidden="true" />}
+                    onClick={() => {
+                        trackDownload('download-page', 'mac');
 
-            <div className="mt-6 grid sm:grid-cols-2">
-                <div>
-                    <Button
-                        href={asset.url}
-                        variant="primary"
-                        size="lg"
-                        fullWidth
-                        icon={<Download aria-hidden="true" />}
-                        onClick={() => {
-                            trackDownload('download-page', 'mac');
-
-                            if (available) {
-                                setClicked(true);
-                            }
-                        }}
-                    >
-                        {m.download.macCta}
-                    </Button>
-                    {file !== null && <p className="type-caption mt-2 text-muted-foreground">{file}</p>}
-                </div>
-            </div>
-
-            {/*
-              * Room reserved on the server, so the sentence for another device
-              * appears without moving anything below it: two lines below
-              * 640px, where it wraps in a phone-width card, one above. Not a
-              * live region: it changes on load, not in answer to anything the
-              * reader did.
-              */}
-            <p className="type-small mt-4 min-h-[3.2em] text-foreground sm:min-h-[1.6em]">
-                {status}
-            </p>
-
-            {asset.name !== null && asset.sha256 !== null && (
-                <details className="group mt-1">
-                    <summary className="type-label inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-chip text-foreground [&::-webkit-details-marker]:hidden">
-                        <ChevronRight
-                            aria-hidden="true"
-                            className="size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) group-open:rotate-90"
-                        />
-                        {m.download.checksum.summary}
-                    </summary>
-                    <div className="mt-2 space-y-3 pl-6">
-                        <p className="type-small text-foreground">
-                            <Trans text={m.download.checksum.body} tags={{ code: (text) => <InlineCode>{text}</InlineCode> }} />
-                        </p>
-                        <p className="font-mono text-[0.75rem] [overflow-wrap:anywhere]">
-                            <span className="block text-muted-foreground">{asset.name}</span>
-                            <span className="block text-foreground">{asset.sha256}</span>
-                        </p>
-                    </div>
-                </details>
-            )}
-
+                        if (available) {
+                            setClicked(true);
+                        }
+                    }}
+                >
+                    {m.download.card.dmg}
+                </Button>
+            }
+            details={
+                <DotList
+                    items={[
+                        architecturesText(m.platforms),
+                        asset.bytes !== null && <span className="tabular-nums">{fmt(m.download.file.size, { size: megabytes(asset.bytes, m.download.file.number) })}</span>,
+                        mac.requirements !== null && requirementLine(mac.requirements, m.platforms),
+                    ]}
+                />
+            }
+            updates={m.download.card.updates.mac}
+        >
             {clicked && asset.name !== null && (
-                <Callout role="status" title={m.download.afterClick.title} className="mt-6">
+                <Callout role="status" title={m.download.afterClick.title}>
                     <p>{fmt(m.download.afterClick.body, { file: asset.name })}</p>
                     <p>
                         <Trans
@@ -165,56 +92,37 @@ export default function MacCard({ content, release, mac, links, device, classNam
                             }}
                         />
                     </p>
-                    <p>
-                        <a href="#install" className={textLinkClasses('standalone')}>
-                            {m.download.afterClick.steps}
-                            <span aria-hidden="true">↓</span>
-                        </a>
-                    </p>
                 </Callout>
             )}
 
-            {!available && <Callout className="mt-6">{m.download.release.unavailable}</Callout>}
+            {!available && <Callout>{m.download.release.unavailable}</Callout>}
 
-            <div className="-mx-(--cell-bleed) mt-8 border-t border-rule px-(--cell-bleed) pt-6">
-                <h3 className="type-h3 text-foreground">{content.mac.otherWays}</h3>
-
-                {mac.homebrewCommand !== null && (
-                    <div className="mt-4">
-                        <h4 className="type-label text-foreground">{content.mac.homebrew.title}</h4>
-                        <p className="type-small mt-1 text-foreground">{content.mac.homebrew.body}</p>
-                        <div className="mt-3">
-                            <CommandBlock command={mac.homebrewCommand} title={m.download.homebrew.terminal} label={m.download.homebrew.label} />
-                        </div>
-                        {mac.homebrewTrails ? (
-                            <Callout tone="warning" className="mt-3">
-                                <p>
-                                    <Trans text={content.mac.homebrew.trails} tags={UI_TAGS} />
-                                </p>
-                            </Callout>
-                        ) : (
-                            <p className="type-small mt-3 text-muted-foreground">
-                                <Trans text={content.mac.homebrew.trails} tags={UI_TAGS} />
-                            </p>
-                        )}
-                    </div>
+            <div className="grid gap-2">
+                {asset.name !== null && asset.sha256 !== null && (
+                    <Disclosure summary={m.download.checksum.summary}>
+                        <p>
+                            <Trans text={m.download.checksum.body} tags={{ code: (text) => <InlineCode>{text}</InlineCode> }} />
+                        </p>
+                        <p className="mt-3 font-mono text-[0.75rem] [overflow-wrap:anywhere]">
+                            <span className="block text-muted-foreground">{asset.name}</span>
+                            <span className="block text-foreground">{asset.sha256}</span>
+                        </p>
+                    </Disclosure>
                 )}
-
-                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-                    <li>
-                        <TextLink href={release.releasesUrl} kind="standalone" external>
-                            {content.mac.releases}
-                        </TextLink>
-                    </li>
-                    {links.source !== null && (
-                        <li>
-                            <TextLink href={links.source} kind="standalone" external>
-                                {content.mac.source}
-                            </TextLink>
-                        </li>
-                    )}
-                </ul>
+                <p className="type-caption text-muted-foreground">{content.mac.signing}</p>
             </div>
-        </section>
+
+            {mac.homebrewCommand !== null && (
+                <div>
+                    <h3 className="type-label text-foreground">{content.mac.homebrew.title}</h3>
+                    <CommandBlock className="mt-3" lines={[mac.homebrewCommand]} title={m.download.homebrew.terminal} label={m.download.homebrew.label} />
+                    {mac.homebrewTrails && (
+                        <p className="type-caption mt-2 text-muted-foreground">
+                            <Trans text={content.mac.homebrew.trails} tags={UI_TAGS} />
+                        </p>
+                    )}
+                </div>
+            )}
+        </PlatformCard>
     );
 }

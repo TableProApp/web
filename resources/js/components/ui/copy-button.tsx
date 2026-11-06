@@ -3,17 +3,14 @@ import { Check, Copy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface CopyButtonLabels {
-    /** The visible label in the `md` size: "Copy". */
     copy: string;
-    /** Shown for two seconds after a copy, and announced: "Copied". */
     copied: string;
-    /** The accessible name, with `{label}` for what is copied: "Copy {label}". */
+    // "Copy {label}": the accessible name of the icon-only size.
     copyNamed: string;
-    /** Shown when the clipboard refuses. */
     failed: string;
 }
 
-/** English, for callers that have not passed their language yet. Localized pages pass `labels`. */
+// For callers that have not passed their language yet. Localized pages pass `labels`.
 const ENGLISH: CopyButtonLabels = {
     copy: 'Copy',
     copied: 'Copied',
@@ -22,25 +19,18 @@ const ENGLISH: CopyButtonLabels = {
 };
 
 interface CopyButtonProps {
-    /** What lands on the clipboard. */
     value: string;
-    /** Names what is copied, for the accessible name: "the Homebrew command". */
+    // Names what is copied, for the accessible name: "the Homebrew command".
     label: string;
-    /** `sm`: a 32px icon button. `md`: icon and the word "Copy". */
+    // `sm`: a 32px icon button. `md`: icon and the word "Copy".
     size?: 'sm' | 'md';
     labels?: CopyButtonLabels;
+    onCopied?: () => void;
     className?: string;
 }
 
-/**
- * Copy to clipboard (design-system §5.3.12).
- *
- * On success the icon becomes a check in `--accent-text` and the label reads
- * "Copied" for two seconds, announced through a polite live region instead of
- * a toast. On failure a line says so beside the button, and stays until the
- * next attempt.
- */
-export default function CopyButton({ value, label, size = 'sm', labels = ENGLISH, className }: CopyButtonProps) {
+// The success state is announced through a polite live region, not a toast; a failure stays until the next attempt.
+export default function CopyButton({ value, label, size = 'sm', labels = ENGLISH, onCopied, className }: CopyButtonProps) {
     const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle');
     const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -61,6 +51,7 @@ export default function CopyButton({ value, label, size = 'sm', labels = ENGLISH
         try {
             await navigator.clipboard.writeText(value);
             setState('copied');
+            onCopied?.();
             timer.current = setTimeout(() => setState('idle'), 2000);
         } catch {
             setState('failed');

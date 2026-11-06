@@ -5,20 +5,16 @@ export default {
     "release": {
         "dated": "Version {version}, publiée le {date}",
         "undated": "Version {version}",
-        "badge": "v{version} · {date}",
-        "badgeUndated": "v{version}",
         "notes": "Notes de version (anglais)",
         "unavailable": "Les détails de version sont indisponibles. Le bouton ouvre la dernière version sur GitHub."
     },
     "file": {
-        "sized": "{name} · {size} Mo",
-        "unsized": "{name}",
+        "size": "{size} Mo",
         "number": {
             "decimal": ",",
             "group": " "
         }
     },
-    "onAnotherDevice": "Pour installer l’application Mac, ouvrez cette page sur votre Mac.",
     "checksum": {
         "summary": "Vérifier votre téléchargement",
         "body": "Exécutez <code>shasum -a 256</code> sur le fichier dans Terminal. Le résultat doit correspondre à la somme de contrôle SHA-256 ci-dessous."
@@ -26,8 +22,7 @@ export default {
     "afterClick": {
         "title": "Installez ensuite l’application",
         "body": "Ouvrez {file} depuis votre dossier Téléchargements et faites glisser TablePro dans Applications.",
-        "retry": "Si le téléchargement n’a pas commencé, <link>téléchargez à nouveau {file}</link>.",
-        "steps": "Installation et premier lancement"
+        "retry": "Si le téléchargement n’a pas commencé, <link>téléchargez à nouveau {file}</link>."
     },
     "homebrew": {
         "label": "Commande Homebrew",
@@ -36,10 +31,83 @@ export default {
     "ios": {
         "badge": "Télécharger dans l’App Store"
     },
-    "otherPlatforms": {
-        "joiner": {
-            "separator": ", ",
-            "last": " ou "
+    "orList": {
+        "separator": ", ",
+        "last": " ou "
+    },
+    "card": {
+        "yourSystem": "Votre système",
+        "beta": "Bêta",
+        "dmg": "Télécharger le .dmg",
+        "linux": "Installer sur Linux",
+        "updates": {
+            "mac": "Se met à jour en arrière-plan",
+            "ios": "Se met à jour via l’App Store",
+            "linux": "Se met à jour via votre gestionnaire de paquets"
+        }
+    },
+    "linux": {
+        "title": "Installer sur Linux",
+        "beta": "L’app Linux est en bêta : elle est récente et peut changer d’une version à l’autre, alors <link>signalez les bugs sur GitHub</link>.",
+        "methods": "Installer avec",
+        "floor": "{name} {version}+",
+        "anyDistribution": "toute distribution via Flatpak",
+        "flatpak": "Flatpak",
+        "files": "Fichiers",
+        "commands": "Commandes pour {method}",
+        "requirement": "{name} {versions} · {architectures}",
+        "flatpakRequirement": "Toute distribution avec Flatpak · {architectures} · embarque son propre runtime GNOME {version}",
+        "update": "Les mises à jour arrivent avec <code>{command}</code>",
+        "table": {
+            "caption": "Paquets de TablePro {version} pour Linux",
+            "package": "Paquet",
+            "bundle": "Bundle Flatpak"
+        },
+        "checksums": "Sommes de contrôle de tous les fichiers : <link>{file}</link>",
+        "release": "TablePro {version} pour Linux sur GitHub",
+        "verify": {
+            "summary": "Vérifier un fichier",
+            "body": "Exécutez l’une des deux commandes dans le dossier qui contient le fichier. La première vérifie l’attestation de build de GitHub et nécessite GitHub CLI ; la seconde compare le fichier à {file}.",
+            "label": "commandes de vérification"
+        }
+    },
+    "platforms": {
+        "title": "Ce qui fonctionne sur chaque plateforme",
+        "lead": "Chaque fonctionnalité des pages Fonctionnalités, côte à côte.",
+        "databases": {
+            "one": "{count} base de données",
+            "other": "{count} bases de données"
+        },
+        "capability": "Fonctionnalité",
+        "covers": "{platform} {count} sur {total}",
+        "available": "Disponible",
+        "page": "Page de fonctionnalités",
+        "pageLabel": "Page de fonctionnalités {page}"
+    },
+    "updates": {
+        "ios": "L’App Store installe les mises à jour, comme pour vos autres apps.",
+        "linux": "Votre gestionnaire de paquets installe les mises à jour avec le reste du système. L’app ne les recherche pas elle-même."
+    },
+    "faq": {
+        "title": "Questions fréquentes",
+        "free": {
+            "question": "TablePro est-il gratuit sur Linux ?",
+            "answer": "Oui, son utilisation est gratuite. Les forfaits payants ajoutent des fonctions à l’app Mac, et aucune n’est encore sur Linux."
+        },
+        "license": {
+            "question": "Ma licence fonctionne-t-elle sur Linux ?",
+            "answer": {
+                "one": "Oui. Une licence s’active sur {count} ordinateur, Mac ou Linux. Ses fonctions payantes sont pour l’instant sur Mac.",
+                "other": "Oui. Une licence s’active sur {count} ordinateurs au maximum, Mac ou Linux. Ses fonctions payantes sont pour l’instant sur Mac."
+            }
+        },
+        "other": {
+            "question": "Existe-t-il une version pour {platforms} ?"
+        },
+        "verify": {
+            "question": "Comment vérifier un téléchargement ?",
+            "mac": "Sur Mac, ouvrez <ui>Vérifier votre téléchargement</ui> sous le bouton de téléchargement et comparez la somme de contrôle SHA-256.",
+            "linux": "Sur Linux, ouvrez <ui>Vérifier un fichier</ui> dans l’onglet Fichiers de la section Linux."
         }
     }
 } satisfies Messages['download'];

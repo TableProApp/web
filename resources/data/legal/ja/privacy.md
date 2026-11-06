@@ -153,7 +153,7 @@ Cloudflare Web Analytics はブラウザーに保存しません。公開ペー�
 | `_ga`, `_ga_<ID>` | 同意後の Google Analytics | 最長 2 年、拒否で削除 |
 | `tablepro:analytics-consent` | 必要な選択記録、サイト/Docs 別 | 消去まで |
 | `tablepro:attribution` | 決済時の初回流入元、正当な利益 | 90 日 |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | 外観、言語選択/却下、閉じたセール、正当な利益 | 消去まで、ポータルテーマは別 |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | 外観、言語選択/却下、閉じたセール、選んだ Linux インストール方法、正当な利益 | 消去まで、ポータルテーマは別 |
 | `mintlify_anonymous_id` | Docs 同意後の ID | 消去または拒否まで |
 | `crisp-client/` Cookie | 各ページ読込後のチャット継続、正当な利益 | 6 か月、再訪で更新 |
 | `__Host-tp_session` | 必要なポータル認証 | ログイン後 30 日、処理中最大 10 分、ログアウトで削除 |

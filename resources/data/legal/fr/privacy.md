@@ -153,7 +153,7 @@ Cloudflare Web Analytics ne stocke rien dans le navigateur. Les pages publiques 
 | `_ga`, `_ga_<ID>` | Google Analytics après accord | Jusqu'à 2 ans ; refuser les efface |
 | `tablepro:analytics-consent` | Choix nécessaire, distinct site/docs | Jusqu'à effacement |
 | `tablepro:attribution` | Source initiale envoyée à l'achat ; intérêt légitime | 90 jours |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Apparence, langues choisies/écartées, avis fermé ; intérêt légitime | Jusqu'à effacement ; thème du portail distinct |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | Apparence, langues choisies/écartées, avis fermé, méthode d'installation Linux choisie ; intérêt légitime | Jusqu'à effacement ; thème du portail distinct |
 | `mintlify_anonymous_id` | ID docs après accord local | Jusqu'à effacement ou refus |
 | Cookies `crisp-client/` | Continuité du chat sur chaque page après chargement ; intérêt légitime | 6 mois, renouvelés au retour |
 | `__Host-tp_session` | Connexion nécessaire au portail | 30 jours connecté ; 10 minutes maximum pendant la connexion ; déconnexion l'efface |

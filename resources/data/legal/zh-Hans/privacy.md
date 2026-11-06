@@ -153,7 +153,7 @@ Cloudflare Web Analytics 不在浏览器保存内容。公开页面不设第一�
 | `_ga`, `_ga_<ID>` | 同意后的 Google Analytics | 最长 2 年；拒绝即删除 |
 | `tablepro:analytics-consent` | 必要的选择记录，网站/文档各自保存 | 直到清除 |
 | `tablepro:attribution` | 随结账发送首次来源；合法利益 | 90 天 |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | 外观、所选/忽略语言、已关闭促销；合法利益 | 直到清除；门户主题独立 |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | 外观、所选/忽略语言、已关闭促销、所选 Linux 安装方式；合法利益 | 直到清除；门户主题独立 |
 | `mintlify_anonymous_id` | 文档访客 ID，在该处同意后 | 直到清除或拒绝 |
 | `crisp-client/` Cookie | 每页加载后的聊天延续；合法利益 | 6 个月，返回续期 |
 | `__Host-tp_session` | 必要门户登录 | 登录后 30 天；登录过程最多 10 分钟；退出删除 |

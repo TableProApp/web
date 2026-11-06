@@ -13,6 +13,9 @@ export default {
     iosApp: {
         alternateName: 'TablePro cho iPhone và iPad',
     },
+    linuxApp: {
+        alternateName: 'TablePro cho Linux',
+    },
     breadcrumbs: {
         features: 'Tính năng',
         databases: 'Cơ sở dữ liệu',

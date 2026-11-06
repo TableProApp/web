@@ -12,51 +12,29 @@
         "lead": "お使いのデバイス向けのビルドを選んでください。"
     },
     "mac": {
-        "otherWays": "その他のインストール方法",
         "homebrew": {
             "title": "Homebrew",
-            "body": "Homebrew はお使いの Mac のチップに合うビルドをインストールします。その後はアプリ自身が最新の状態を保ちます。",
             "trails": "Homebrew の配布版は別途更新されるため、新しいリリースより遅れる場合があります。古いバージョンが入った場合は、<ui>TablePro > Check for Updates…</ui> を選んで最新バージョンを取得してください。"
         },
-        "releases": "GitHub Releases の全ビルド",
+        "signing": "TablePro は Developer ID で署名され、Apple の公証を受けています。開くためにセキュリティ設定を変更する必要はありません。",
         "source": "ソースからビルド（AGPLv3）"
     },
     "ios": {
-        "body": "{devices} 向けの無料アプリです。デスクトップ版とは機能が異なります。",
         "link": "{devices} 版 TablePro"
     },
-    "install": {
-        "title": "インストールと初回起動",
-        "steps": [
-            "ダウンロードした .dmg ファイルを開きます。",
-            "TablePro をアプリケーションフォルダーにドラッグします。",
-            "アプリケーションから TablePro を開きます。macOS の確認が表示されたら <ui>Open</ui> を選びます。",
-            "接続を追加するか、<ui>Help > Open Sample Database</ui> から同梱の Chinook SQLite データベースを試せます。"
-        ],
-        "signing": "TablePro は Developer ID で署名され、Apple の公証を受けています。開くためにセキュリティ設定を変更する必要はありません。",
-        "drivers": "一般的なドライバーは同梱されています。その他は初回にインターネットからダウンロードし、アプリとは別に更新されます。",
-        "databases": "対応データベース",
-        "guide": {
-            "label": "インストールガイドを読む（英語）",
-            "path": "/installation"
-        }
+    "platforms": {
+        "databases": "対応データベース"
     },
     "updates": {
         "title": "アップデート",
-        "paragraphs": [
-            "TablePro は 1 日 1 回アップデートを確認します。新しいバージョンはバックグラウンドでダウンロードされ、次にアプリを終了したときにインストールされます。",
-            "ほとんどのリリースは約 1 日半かけて段階的に Mac へ配信されます。早く入手するには <ui>TablePro > Check for Updates…</ui> を選んでください。",
-            "<ui>Settings > General</ui> で自動確認や自動インストールをオフにできます。アップデートの確認先はリリースを公開している GitHub です。すべてのアップデートは署名され、インストール前に検証されます。"
-        ]
+        "mac": "TablePro は 1 日 1 回アップデートを確認します。新しいバージョンはバックグラウンドでダウンロードされ、次にアプリを終了したときにインストールされます。"
     },
     "otherPlatforms": {
-        "title": "その他のプラットフォーム",
         "body": "TablePro は {platforms} に対応していません。リリース日の予定もありません。",
         "faq": "FAQ のプラットフォームに関する質問"
     },
     "olderVersions": {
         "title": "以前のバージョンとリリースノート",
-        "body": "すべてのリリースのノートとディスクイメージは GitHub Releases にあります。各バージョンの変更内容は変更履歴で確認できます。",
         "releases": "GitHub の全リリース",
         "changelog": "変更履歴（英語）"
     }

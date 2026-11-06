@@ -12,51 +12,29 @@
         "lead": "Pilih build untuk perangkat Anda."
     },
     "mac": {
-        "otherWays": "Cara instalasi lainnya",
         "homebrew": {
             "title": "Homebrew",
-            "body": "Homebrew menginstal build sesuai chip Mac Anda. Setelah itu, aplikasi memperbarui dirinya sendiri.",
             "trails": "Salinan Homebrew diperbarui secara terpisah dan mungkin tertinggal dari rilis terbaru. Jika versi lama terinstal, pilih <ui>TablePro > Check for Updates…</ui> untuk mendapatkan versi terbaru."
         },
-        "releases": "Semua build di GitHub Releases",
+        "signing": "TablePro ditandatangani dengan Developer ID dan dinotarisasi Apple, sehingga Anda tidak perlu mengubah pengaturan keamanan untuk membukanya.",
         "source": "Build dari kode sumber (AGPLv3)"
     },
     "ios": {
-        "body": "Aplikasi gratis untuk {devices}, dengan serangkaian fiturnya sendiri.",
         "link": "TablePro untuk {devices}"
     },
-    "install": {
-        "title": "Instalasi dan penggunaan pertama",
-        "steps": [
-            "Buka file .dmg yang diunduh.",
-            "Seret TablePro ke folder Aplikasi.",
-            "Buka TablePro dari Aplikasi. Pilih <ui>Open</ui> ketika macOS meminta Anda untuk mengonfirmasi.",
-            "Tambahkan koneksi, atau coba paket database Chinook SQLite melalui <ui>Help > Open Sample Database</ui>."
-        ],
-        "signing": "TablePro ditandatangani dengan Developer ID dan dinotarisasi Apple, sehingga Anda tidak perlu mengubah pengaturan keamanan untuk membukanya.",
-        "drivers": "Driver umum dibundel. Yang lain memerlukan koneksi internet untuk mengunduh pada penggunaan pertama dan memperbarui secara terpisah dari aplikasi.",
-        "databases": "Database yang didukung",
-        "guide": {
-            "label": "Baca panduan instalasi (bahasa Inggris)",
-            "path": "/installation"
-        }
+    "platforms": {
+        "databases": "Database yang didukung"
     },
     "updates": {
         "title": "Pembaruan",
-        "paragraphs": [
-            "TablePro memeriksa pembaruan sekali sehari. Versi baru diunduh di latar belakang dan diinstal saat Anda menutup aplikasi berikutnya.",
-            "Sebagian besar rilis menjangkau Mac secara bertahap selama sekitar satu setengah hari. Untuk mendapatkannya lebih awal, pilih <ui>TablePro > Check for Updates…</ui>",
-            "Anda dapat menonaktifkan pemeriksaan atau instalasi otomatis di <ui>Settings > General</ui>. Pemeriksaan pembaruan mengakses GitHub, tempat rilis dipublikasikan, dan setiap pembaruan ditandatangani serta diverifikasi sebelum diinstal."
-        ]
+        "mac": "TablePro memeriksa pembaruan sekali sehari. Versi baru diunduh di latar belakang dan diinstal saat Anda menutup aplikasi berikutnya."
     },
     "otherPlatforms": {
-        "title": "Platform lainnya",
         "body": "TablePro tidak tersedia untuk {platforms} dan tidak ada tanggal rilis.",
         "faq": "Pertanyaan tentang platform di halaman Pertanyaan umum"
     },
     "olderVersions": {
         "title": "Versi lama dan catatan rilis",
-        "body": "Setiap rilis beserta catatan dan disk image-nya tersedia di GitHub Releases. Catatan perubahan mencantumkan perubahan dalam setiap versi.",
         "releases": "Semua rilis di GitHub",
         "changelog": "Catatan perubahan (bahasa Inggris)"
     }

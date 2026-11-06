@@ -153,7 +153,7 @@ Cloudflare Web Analytics không lưu gì trong trình duyệt. Trang công khai 
 | `_ga`, `_ga_<ID>` | Google Analytics, chỉ sau đồng ý | Tối đa 2 năm; từ chối sẽ xóa |
 | `tablepro:analytics-consent` | Bản ghi lựa chọn cần thiết; riêng trên website và docs | Đến khi xóa |
 | `tablepro:attribution` | Nguồn lượt đầu gửi cùng checkout; lợi ích chính đáng | 90 ngày |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Giao diện, ngôn ngữ chọn/bỏ qua, thông báo sale đã đóng; lợi ích chính đáng | Đến khi xóa; theme cổng riêng |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | Giao diện, ngôn ngữ chọn/bỏ qua, thông báo sale đã đóng, cách cài trên Linux đã chọn; lợi ích chính đáng | Đến khi xóa; theme cổng riêng |
 | `mintlify_anonymous_id` | ID khách docs, chỉ sau đồng ý tại đó | Đến khi xóa hoặc từ chối |
 | Cookie `crisp-client/` | Duy trì chat trên mọi trang sau khi tải; lợi ích chính đáng | 6 tháng, gia hạn khi quay lại |
 | `__Host-tp_session` | Đăng nhập cổng cần thiết | 30 ngày khi đăng nhập; tối đa 10 phút trong quá trình; đăng xuất xóa |
