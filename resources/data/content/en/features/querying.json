@@ -118,16 +118,16 @@
         }
     ],
     "availability": [
-        { "label": "SQL editor with autocomplete and formatting", "ios": "partial", "iosNote": "Highlighting, Run and Stop; no autocomplete" },
-        { "label": "Query parameters", "ios": "no" },
-        { "label": "Query history", "ios": "partial", "iosNote": "The last {historyEntriesIos} queries on the device" },
-        { "label": "Saved queries and linked SQL folders", "ios": "no" },
-        { "label": "Open Quickly", "ios": "no" },
-        { "label": "EXPLAIN and EXPLAIN Compare", "ios": "no" },
-        { "label": "Query Insights", "paid": "query-insights", "ios": "no" },
-        { "label": "Result Charts", "paid": "result-charts", "ios": "no" },
-        { "label": "Map view", "ios": "no" },
-        { "label": "Copy or share results", "ios": "yes" }
+        { "label": "SQL editor with autocomplete and formatting", "ios": "partial", "iosNote": "Highlighting, Run and Stop; no autocomplete", "linux": "yes" },
+        { "label": "Query parameters", "ios": "no", "linux": "no" },
+        { "label": "Query history", "ios": "partial", "iosNote": "The last {historyEntriesIos} queries on the device", "linux": "yes" },
+        { "label": "Saved queries and linked SQL folders", "ios": "no", "linux": "partial", "linuxNote": "Saved queries only" },
+        { "label": "Open Quickly", "ios": "no", "linux": "partial", "linuxNote": "Sidebar search of connections and tables" },
+        { "label": "EXPLAIN and EXPLAIN Compare", "ios": "no", "linux": "no" },
+        { "label": "Query Insights", "paid": "query-insights", "ios": "no", "linux": "no" },
+        { "label": "Result Charts", "paid": "result-charts", "ios": "no", "linux": "no" },
+        { "label": "Map view", "ios": "no", "linux": "no" },
+        { "label": "Copy or share results", "ios": "yes", "linux": "yes" }
     ],
     "limits": [
         "A query returns at most {rowCap} rows unless you raise the cap in Settings, up to {rowCapMax}, or run it with <kbd>⌘⌥⏎</kbd>. A LIMIT you write yourself always wins.",

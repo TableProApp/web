@@ -189,67 +189,87 @@
         {
             "label": "Formulário de conexão, grupos, etiquetas e favoritos",
             "ios": "partial",
-            "iosNote": "Uma etiqueta por conexão; sem cores"
+            "iosNote": "Uma etiqueta por conexão; sem cores",
+            "linux": "yes"
         },
         {
             "label": "Importar de URL ou área de transferência",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Importar de outros apps, pastas de projeto e AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Somente de outros apps"
         },
         {
             "label": "Túnel SSH com senha ou chave privada",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Agente SSH, códigos de uso único e hosts intermediários",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS com verificação de certificado",
             "ios": "partial",
-            "iosNote": "SQL Server criptografa sem verificar"
+            "iosNote": "SQL Server criptografa sem verificar",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy e Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos e autenticação Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Somente Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Em conexões sincronizadas de um Mac"
+            "iosNote": "Em conexões sincronizadas de um Mac",
+            "linux": "no"
         },
         {
             "label": "Senhas nas Chaves",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "No chaveiro do sistema"
         },
         {
             "label": "Fontes de senha, perfis de credenciais e ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode por conexão",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Tempos limite de conexão e consulta",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Somente tempo limite de consulta"
         },
         {
             "label": "Nível mínimo de Safe Mode por perfil de configuração",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

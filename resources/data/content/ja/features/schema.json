@@ -135,40 +135,50 @@
         {
             "label": "DDL プレビュー付き構造編集",
             "ios": "partial",
-            "iosNote": "カラム、インデックスと外部キーは読み取り専用"
+            "iosNote": "カラム、インデックスと外部キーは読み取り専用",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "テーブルを空にする・削除する",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "ER 図",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "ルーチン、トリガーとテーブルフォルダー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "ルーチンとトリガーのみ、テーブルフォルダーなし"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To、Duplicate Database と Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard とテーブル保守",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

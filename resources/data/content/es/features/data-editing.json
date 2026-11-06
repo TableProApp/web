@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Orden, paginación y filtros",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Filtros guardados y reglas de resaltado",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Navegación por claves foráneas y selector de valores",
             "ios": "partial",
-            "iosNote": "Toca para previsualizar la fila referenciada"
+            "iosNote": "Toca para previsualizar la fila referenciada",
+            "linux": "partial",
+            "linuxNote": "Navegación; sin selector de valores"
         },
         {
             "label": "Editar, insertar y eliminar filas",
             "ios": "partial",
-            "iosNote": "Editor de filas; requiere clave primaria"
+            "iosNote": "Editor de filas; requiere clave primaria",
+            "linux": "partial",
+            "linuxNote": "Requiere clave primaria"
         },
         {
             "label": "Ediciones pendientes, Preview SQL y deshacer",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Ediciones pendientes y deshacer; sin Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID o contraseña antes de escribir",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Documentos MongoDB y claves Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Las claves Redis solo cambian con comandos"
         }
     ],
     "limits": [

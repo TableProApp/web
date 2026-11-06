@@ -149,46 +149,58 @@
         {
             "label": "Editor SQL con autocompletado y formato",
             "ios": "partial",
-            "iosNote": "Resaltado, Run y Stop; sin autocompletado"
+            "iosNote": "Resaltado, Run y Stop; sin autocompletado",
+            "linux": "yes"
         },
         {
             "label": "Parámetros de consulta",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Historial de consultas",
             "ios": "partial",
-            "iosNote": "Las últimas {historyEntriesIos} consultas del dispositivo"
+            "iosNote": "Las últimas {historyEntriesIos} consultas del dispositivo",
+            "linux": "yes"
         },
         {
             "label": "Consultas guardadas y carpetas SQL vinculadas",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo consultas guardadas"
         },
         {
             "label": "Open Quickly",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Búsqueda de conexiones y tablas en la barra lateral"
         },
         {
             "label": "EXPLAIN y EXPLAIN Compare",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Query Insights",
             "paid": "query-insights",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Result Charts",
             "paid": "result-charts",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Vista de mapa",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copiar o compartir resultados",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         }
     ],
     "limits": [

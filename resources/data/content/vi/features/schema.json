@@ -135,40 +135,50 @@
         {
             "label": "Sửa cấu trúc với bản xem trước DDL",
             "ios": "partial",
-            "iosNote": "Cột, index và khóa ngoại, chỉ đọc"
+            "iosNote": "Cột, index và khóa ngoại, chỉ đọc",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Truncate và drop table",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "ER diagram",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Routine, trigger và thư mục table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Routine và trigger; không có thư mục table"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database và Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard và bảo trì table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

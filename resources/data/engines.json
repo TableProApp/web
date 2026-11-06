@@ -48,6 +48,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["14", "15", "17", "18"], "evidence": "TableProApp/TablePro:linux/README.md:15" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -99,6 +100,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["8.0", "8.4", "9.7"], "evidence": "TableProApp/TablePro:linux/README.md:16" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -154,6 +156,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["2017", "2019", "2022", "2025"], "evidence": "TableProApp/TablePro:linux/README.md:18" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -213,6 +216,7 @@
             { "id": "attached-files-not-listed", "value": null, "evidence": "TableProApp/docs:databases/sqlite.mdx:52" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["3.37.0+"], "evidence": "TableProApp/TablePro:linux/README.md:22" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -262,6 +266,7 @@
             { "id": "no-pipeline-builder", "value": null, "evidence": "TableProApp/docs:databases/mongodb.mdx:237" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["7.0", "8.0"], "evidence": "TableProApp/TablePro:linux/README.md:25" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -326,6 +331,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["7.4", "8.10"], "evidence": "TableProApp/TablePro:linux/README.md:24" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -374,6 +380,7 @@
             { "id": "roles-listed-as-users", "value": null, "evidence": "TableProApp/docs:databases/mariadb.mdx:38" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["10.11", "11.4", "12.3"], "evidence": "TableProApp/TablePro:linux/README.md:17" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -423,6 +430,7 @@
             { "id": "structure-sync-same-engine", "value": null, "evidence": "TableProApp/docs:databases/tidb.mdx:44" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -472,6 +480,7 @@
             { "id": "structure-sync-same-engine", "value": null, "evidence": "TableProApp/docs:databases/oceanbase.mdx:49" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -522,6 +531,7 @@
             { "id": "not-on-ios", "value": null, "evidence": "TableProApp/docs:databases/databend.mdx:51" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -579,6 +589,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -631,6 +642,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -680,6 +692,7 @@
             { "id": "cancel-has-no-effect", "value": null, "evidence": "TableProApp/docs:databases/pglite.mdx:52" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "untested", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:31" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -738,6 +751,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "blocked", "tested": [], "evidence": "TableProApp/TablePro:linux/ROADMAP.md:213" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -796,6 +810,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["26.3", "26.8"], "evidence": "TableProApp/TablePro:linux/README.md:19" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -849,6 +864,7 @@
             { "id": "remote-quack-experimental", "value": null, "evidence": "TableProApp/docs:databases/duckdb.mdx:47" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["2.0.0"], "evidence": "TableProApp/TablePro:linux/README.md:23" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -899,6 +915,7 @@
             { "id": "no-views-or-types-in-sidebar", "value": null, "evidence": "TableProApp/docs:databases/cassandra.mdx:103" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["4.0", "5.0"], "evidence": "TableProApp/TablePro:linux/README.md:20" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -944,6 +961,7 @@
         "bundledVersion": null,
         "limits": [],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "tested", "tested": ["2025.1", "2026.1"], "evidence": "TableProApp/TablePro:linux/README.md:21" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -992,6 +1010,7 @@
             { "id": "no-dax-or-truncate", "value": null, "evidence": "TableProApp/docs:databases/dynamodb.mdx:185,188" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1040,6 +1059,7 @@
             { "id": "no-transactions", "value": null, "evidence": "TableProApp/docs:databases/bigquery.mdx:85" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1091,6 +1111,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1142,6 +1163,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1190,6 +1212,7 @@
             { "id": "no-embedded-replicas", "value": null, "evidence": "TableProApp/docs:databases/libsql.mdx:75" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1241,6 +1264,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1289,6 +1313,7 @@
             { "id": "aliases-not-listed", "value": null, "evidence": "TableProApp/docs:databases/elasticsearch.mdx:89" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1338,6 +1363,7 @@
             { "id": "watch-collects-until-timeout", "value": null, "evidence": "TableProApp/docs:databases/etcd.mdx:81" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1387,6 +1413,7 @@
             { "id": "approximate-counts", "value": null, "evidence": "TableProApp/docs:databases/kafka.mdx:148" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1435,6 +1462,7 @@
             { "id": "no-live-queries", "value": null, "evidence": "TableProApp/docs:databases/surrealdb.mdx:105" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1483,6 +1511,7 @@
             { "id": "foreign-keys-not-listed", "value": null, "evidence": "TableProApp/docs:databases/teradata.mdx:65" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1531,6 +1560,7 @@
             { "id": "no-kerberos-or-oauth", "value": null, "evidence": "TableProApp/docs:databases/trino.mdx:112" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1583,6 +1613,7 @@
             { "id": "needs-ledger-tool", "value": null, "evidence": "TableProApp/docs:databases/beancount.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1630,6 +1661,7 @@
             { "id": "structure-read-only", "value": null, "evidence": "TableProApp/docs:databases/spanner.mdx:101" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1677,6 +1709,7 @@
             { "id": "api-keys-as-users", "value": null, "evidence": "TableProApp/docs:databases/typesense.mdx:35,95" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1724,6 +1757,7 @@
             { "id": "graphql-reads-rest-writes", "value": null, "evidence": "TableProApp/docs:databases/weaviate.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1773,6 +1807,7 @@
             { "id": "billed-per-scan", "value": null, "evidence": "TableProApp/docs:databases/cloudflare-r2-sql.mdx:8,81" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1820,6 +1855,7 @@
             { "id": "no-tls", "value": null, "evidence": "TableProApp/docs:databases/dameng.mdx:47" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     },
     {
@@ -1868,6 +1904,7 @@
             { "id": "unsupported-auth-methods", "value": null, "evidence": "TableProApp/docs:databases/sap-hana.mdx:56" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
+        "linux": { "support": "none", "tested": [], "evidence": "TableProApp/TablePro:linux/README.md:7" },
         "verified": { "macTag": "v0.82.0", "iosCommit": "232e8dae6", "docsCommit": "d735bb755", "date": "2026-10-19" }
     }
 ]

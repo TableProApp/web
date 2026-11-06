@@ -136,41 +136,52 @@
         {
             "label": "Importar arquivos para uma tabela",
             "ios": "partial",
-            "iosNote": "Ações dos Atalhos, a partir de JSON ou CSV"
+            "iosNote": "Ações dos Atalhos, a partir de JSON ou CSV",
+            "linux": "partial",
+            "linuxNote": "CSV para uma tabela existente e arquivos SQL"
         },
         {
             "label": "Mapeamentos salvos, Match by Name e Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Exportar tabelas e resultados para arquivos",
             "ios": "partial",
-            "iosNote": "Copiar ou compartilhar como JSON, CSV ou SQL INSERT"
+            "iosNote": "Copiar ou compartilhar como JSON, CSV ou SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin de exportação {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Janela Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump e Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dumps SQL sem ferramentas externas"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Arquivos SQLite e DuckDB",
             "ios": "partial",
-            "iosNote": "Arquivos no dispositivo ou DuckDB em memória"
+            "iosNote": "Arquivos no dispositivo ou DuckDB em memória",
+            "linux": "yes"
         },
         {
             "label": "Arquivos SQLite por SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

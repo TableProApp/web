@@ -109,15 +109,15 @@
         }
     ],
     "availability": [
-        { "label": "Structure editing with a DDL preview", "ios": "partial", "iosNote": "Columns, indexes and foreign keys, read-only" },
-        { "label": "New Table", "ios": "no" },
-        { "label": "Truncate and drop tables", "ios": "yes" },
-        { "label": "ER diagram", "ios": "no" },
-        { "label": "Routines, triggers and table folders", "ios": "no" },
-        { "label": "Compare & Sync", "paid": "compare-sync", "ios": "no" },
-        { "label": "Copy To, Duplicate Database and Transfer To", "ios": "no" },
-        { "label": "Users & Roles", "ios": "no" },
-        { "label": "Server Dashboard and table maintenance", "ios": "no" }
+        { "label": "Structure editing with a DDL preview", "ios": "partial", "iosNote": "Columns, indexes and foreign keys, read-only", "linux": "yes" },
+        { "label": "New Table", "ios": "no", "linux": "yes" },
+        { "label": "Truncate and drop tables", "ios": "yes", "linux": "yes" },
+        { "label": "ER diagram", "ios": "no", "linux": "yes" },
+        { "label": "Routines, triggers and table folders", "ios": "no", "linux": "partial", "linuxNote": "Routines and triggers; no table folders" },
+        { "label": "Compare & Sync", "paid": "compare-sync", "ios": "no", "linux": "no" },
+        { "label": "Copy To, Duplicate Database and Transfer To", "ios": "no", "linux": "no" },
+        { "label": "Users & Roles", "ios": "no", "linux": "no" },
+        { "label": "Server Dashboard and table maintenance", "ios": "no", "linux": "no" }
     ],
     "limits": [
         "Compare & Sync writes a structure script only between two databases of the same engine, with MySQL and MariaDB counted as one. Other pairs compare read-only, MongoDB structures never get a script, and a data sync across engines warns you to check how values are written. To move tables to another engine, use Copy To.",

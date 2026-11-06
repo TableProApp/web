@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Ordinamento, paginazione e filtri",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Filtri salvati e regole di evidenziazione",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Navigazione delle chiavi esterne e selettore dei valori",
             "ios": "partial",
-            "iosNote": "Tocca per vedere l’anteprima della riga referenziata"
+            "iosNote": "Tocca per vedere l’anteprima della riga referenziata",
+            "linux": "partial",
+            "linuxNote": "Navigazione; nessun selettore dei valori"
         },
         {
             "label": "Modifica, inserimento ed eliminazione delle righe",
             "ios": "partial",
-            "iosNote": "Editor di righe; richiede una chiave primaria"
+            "iosNote": "Editor di righe; richiede una chiave primaria",
+            "linux": "partial",
+            "linuxNote": "Richiede una chiave primaria"
         },
         {
             "label": "Modifiche in attesa, Preview SQL e annullamento",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Modifiche in attesa e annullamento; niente Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID o password prima di una scrittura",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Documenti MongoDB e chiavi Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chiavi Redis modificabili solo con comandi"
         }
     ],
     "limits": [

@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Sắp xếp, phân trang và bộ lọc",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Bộ lọc đã lưu và highlight rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Đi theo khóa ngoại và bộ chọn giá trị",
             "ios": "partial",
-            "iosNote": "Chạm để xem nhanh dòng được tham chiếu"
+            "iosNote": "Chạm để xem nhanh dòng được tham chiếu",
+            "linux": "partial",
+            "linuxNote": "Đi theo khóa ngoại; không có bộ chọn giá trị"
         },
         {
             "label": "Sửa, thêm và xóa dòng",
             "ios": "partial",
-            "iosNote": "Trình sửa từng dòng; cần khóa chính"
+            "iosNote": "Trình sửa từng dòng; cần khóa chính",
+            "linux": "partial",
+            "linuxNote": "Cần khóa chính"
         },
         {
             "label": "Thay đổi đang chờ lưu, Preview SQL và undo",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Thay đổi đang chờ lưu và undo; không có Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID hoặc mật khẩu trước câu lệnh ghi",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Document MongoDB và key Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Key Redis chỉ sửa được bằng lệnh"
         }
     ],
     "limits": [

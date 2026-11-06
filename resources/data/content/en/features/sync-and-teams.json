@@ -108,15 +108,15 @@
         }
     ],
     "availability": [
-        { "label": "iCloud Sync", "paid": "icloud-sync", "ios": "partial", "iosNote": "Connections, groups and tags, free" },
-        { "label": "Password sync through iCloud Keychain", "paid": "icloud-sync", "ios": "yes" },
-        { "label": "Choose what syncs and keep connections Local only", "paid": "icloud-sync", "ios": "no" },
-        { "label": "Handoff, with iCloud Sync on", "paid": "icloud-sync", "ios": "yes" },
-        { "label": "Export and import .tablepro files", "ios": "yes" },
-        { "label": "Encrypted Export with passwords", "paid": "encrypted-export", "ios": "yes" },
-        { "label": "Linked Folders", "paid": "linked-folders", "ios": "no" },
-        { "label": "Team Catalog", "paid": "team-catalog", "ios": "no" },
-        { "label": "Team Library", "paid": "team-library", "ios": "no" }
+        { "label": "iCloud Sync", "paid": "icloud-sync", "ios": "partial", "iosNote": "Connections, groups and tags, free", "linux": "no" },
+        { "label": "Password sync through iCloud Keychain", "paid": "icloud-sync", "ios": "yes", "linux": "no" },
+        { "label": "Choose what syncs and keep connections Local only", "paid": "icloud-sync", "ios": "no", "linux": "no" },
+        { "label": "Handoff, with iCloud Sync on", "paid": "icloud-sync", "ios": "yes", "linux": "no" },
+        { "label": "Export and import .tablepro files", "ios": "yes", "linux": "no" },
+        { "label": "Encrypted Export with passwords", "paid": "encrypted-export", "ios": "yes", "linux": "no" },
+        { "label": "Linked Folders", "paid": "linked-folders", "ios": "no", "linux": "no" },
+        { "label": "Team Catalog", "paid": "team-catalog", "ios": "no", "linux": "no" },
+        { "label": "Team Library", "paid": "team-library", "ios": "no", "linux": "no" }
     ],
     "limits": [
         "When a plan ends on the Mac, iCloud Sync pauses and says why, and connections from Linked Folders and the Team Library disappear from the list. The Team publishing commands are hidden, and Encrypted Export loses its password option.",

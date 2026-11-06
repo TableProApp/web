@@ -149,46 +149,58 @@
         {
             "label": "SQL editor có autocomplete và định dạng",
             "ios": "partial",
-            "iosNote": "Tô sáng cú pháp, Run và Stop; không có autocomplete"
+            "iosNote": "Tô sáng cú pháp, Run và Stop; không có autocomplete",
+            "linux": "yes"
         },
         {
             "label": "Tham số trong query",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Lịch sử query",
             "ios": "partial",
-            "iosNote": "{historyEntriesIos} query gần nhất trên thiết bị"
+            "iosNote": "{historyEntriesIos} query gần nhất trên thiết bị",
+            "linux": "yes"
         },
         {
             "label": "Query đã lưu và linked SQL folder",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chỉ có query đã lưu"
         },
         {
             "label": "Open Quickly",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Tìm connection và table trong sidebar"
         },
         {
             "label": "EXPLAIN và EXPLAIN Compare",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Query Insights",
             "paid": "query-insights",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Result Charts",
             "paid": "result-charts",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Map view",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Sao chép hoặc chia sẻ kết quả",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         }
     ],
     "limits": [

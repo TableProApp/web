@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Ordenação, paginação e filtros",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Filtros salvos e regras de destaque",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Navegação por chaves estrangeiras e seletor de valores",
             "ios": "partial",
-            "iosNote": "Toque para ver a prévia da linha referenciada"
+            "iosNote": "Toque para ver a prévia da linha referenciada",
+            "linux": "partial",
+            "linuxNote": "Navegação; sem seletor de valores"
         },
         {
             "label": "Editar, inserir e excluir linhas",
             "ios": "partial",
-            "iosNote": "Editor de linhas; exige chave primária"
+            "iosNote": "Editor de linhas; exige chave primária",
+            "linux": "partial",
+            "linuxNote": "Exige chave primária"
         },
         {
             "label": "Edições pendentes, Preview SQL e desfazer",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Edições pendentes e desfazer; sem Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID ou senha antes de gravar",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Documentos MongoDB e chaves Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chaves Redis mudam somente por comandos"
         }
     ],
     "limits": [

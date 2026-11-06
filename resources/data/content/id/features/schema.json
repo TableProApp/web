@@ -135,40 +135,50 @@
         {
             "label": "Pengeditan struktur dengan pratinjau DDL",
             "ios": "partial",
-            "iosNote": "Kolom, indeks, dan foreign key, hanya-baca"
+            "iosNote": "Kolom, indeks, dan foreign key, hanya-baca",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Truncate dan hapus tabel",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Diagram ER",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Routine, trigger, dan folder tabel",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Routine dan trigger; tanpa folder tabel"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database, dan Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard dan pemeliharaan tabel",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

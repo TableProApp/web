@@ -136,41 +136,52 @@
         {
             "label": "Impor file ke tabel",
             "ios": "partial",
-            "iosNote": "Tindakan Pintasan, dari JSON atau CSV"
+            "iosNote": "Tindakan Pintasan, dari JSON atau CSV",
+            "linux": "partial",
+            "linuxNote": "CSV ke tabel yang ada, dan file SQL"
         },
         {
             "label": "Pemetaan tersimpan, Match by Name, dan Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Ekspor tabel dan hasil ke file",
             "ios": "partial",
-            "iosNote": "Salin atau bagikan sebagai JSON, CSV, atau SQL INSERT"
+            "iosNote": "Salin atau bagikan sebagai JSON, CSV, atau SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin ekspor {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Jendela Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump dan Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dump SQL tanpa alat eksternal"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "File SQLite dan DuckDB",
             "ios": "partial",
-            "iosNote": "File di perangkat atau DuckDB dalam memori"
+            "iosNote": "File di perangkat atau DuckDB dalam memori",
+            "linux": "yes"
         },
         {
             "label": "File SQLite lewat SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

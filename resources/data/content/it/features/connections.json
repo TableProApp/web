@@ -189,67 +189,87 @@
         {
             "label": "Modulo di connessione, gruppi, tag e preferiti",
             "ios": "partial",
-            "iosNote": "Un tag per connessione; nessun colore"
+            "iosNote": "Un tag per connessione; nessun colore",
+            "linux": "yes"
         },
         {
             "label": "Importazione da URL o appunti",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Importazione da altre app, cartelle di progetto e AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo da altre app"
         },
         {
             "label": "Tunnel SSH con password o chiave privata",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Agente SSH, codici monouso e jump host",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS con verifica dei certificati",
             "ios": "partial",
-            "iosNote": "SQL Server cifra senza verificare"
+            "iosNote": "SQL Server cifra senza verificare",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy e Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos e accesso Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Su connessioni sincronizzate da un Mac"
+            "iosNote": "Su connessioni sincronizzate da un Mac",
+            "linux": "no"
         },
         {
             "label": "Password nel Portachiavi",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "Nel portachiavi di sistema"
         },
         {
             "label": "Sorgenti delle password, profili di credenziali e ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode per connessione",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Timeout di connessione e query",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo timeout delle query"
         },
         {
             "label": "Livello Safe Mode minimo tramite profilo di configurazione",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -136,41 +136,52 @@
         {
             "label": "Dateien in Tabellen importieren",
             "ios": "partial",
-            "iosNote": "Kurzbefehl-Aktionen, aus JSON oder CSV"
+            "iosNote": "Kurzbefehl-Aktionen, aus JSON oder CSV",
+            "linux": "partial",
+            "linuxNote": "CSV in eine bestehende Tabelle und SQL-Dateien"
         },
         {
             "label": "Gespeicherte Zuordnungen, Match by Name und Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Tabellen und Ergebnisse in Dateien exportieren",
             "ios": "partial",
-            "iosNote": "Als JSON, CSV oder SQL INSERT kopieren oder teilen"
+            "iosNote": "Als JSON, CSV oder SQL INSERT kopieren oder teilen",
+            "linux": "yes"
         },
         {
             "label": "{exportPluginFormats}-Export-Plugin",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Fenster Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump und Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "SQL-Dumps ohne externe Tools"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "SQLite- und DuckDB-Dateien",
             "ios": "partial",
-            "iosNote": "Dateien auf dem Gerät oder DuckDB im Arbeitsspeicher"
+            "iosNote": "Dateien auf dem Gerät oder DuckDB im Arbeitsspeicher",
+            "linux": "yes"
         },
         {
             "label": "SQLite-Dateien über SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

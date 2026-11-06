@@ -125,35 +125,47 @@
     "availability": [
         {
             "label": "使用自選供應商的 AI 聊天",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review、Explain、Optimize 與 Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "行內建議與 AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "行內建議；不支援 AI Rules"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MCP 伺服器",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} 個工具，僅限 HTTP"
         },
         {
             "label": "外部 MCP 伺服器",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript 與 <code>tablepro</code> shell 指令",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "<code>tablepro</code> 指令可開啟檔案"
         },
         {
             "label": "Raycast 擴充功能",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

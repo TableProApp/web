@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Sortieren, Blättern und Filtern",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Gespeicherte Filter und Hervorhebungsregeln",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Fremdschlüsselnavigation und Werteauswahl",
             "ios": "partial",
-            "iosNote": "Tippen zeigt die referenzierte Zeile"
+            "iosNote": "Tippen zeigt die referenzierte Zeile",
+            "linux": "partial",
+            "linuxNote": "Navigation; keine Werteauswahl"
         },
         {
             "label": "Zeilen bearbeiten, einfügen und löschen",
             "ios": "partial",
-            "iosNote": "Zeileneditor; benötigt einen Primärschlüssel"
+            "iosNote": "Zeileneditor; benötigt einen Primärschlüssel",
+            "linux": "partial",
+            "linuxNote": "Benötigt einen Primärschlüssel"
         },
         {
             "label": "Vorgemerkte Änderungen, Preview SQL und Rückgängig",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Vorgemerkte Änderungen und Rückgängig; kein Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID oder Passwort vor Schreibvorgängen",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MongoDB-Dokumente und Redis-Schlüssel",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Redis-Schlüssel nur per Befehl änderbar"
         }
     ],
     "limits": [

@@ -43,6 +43,12 @@ export interface SyncCategory {
     sinceAppVersion: string | null;
 }
 
+// Ids from the Mac list beside it, which holds each format's name.
+export interface LinuxFormats {
+    formats: string[];
+    evidence: string;
+}
+
 export interface Limit {
     value: number;
     max: number | null;
@@ -81,7 +87,12 @@ export interface FactsData {
         evidence: string;
     };
     openSource: { license: string; repositoryCreatedAt: string; evidence: string };
-    ai: { platforms: PlatformId[]; providers: string[]; evidence: string };
+    ai: {
+        platforms: PlatformId[];
+        providers: string[];
+        evidence: string;
+        linux: { providers: string[]; evidence: string };
+    };
     mcp: {
         platforms: PlatformId[];
         host: string;
@@ -91,17 +102,20 @@ export interface FactsData {
         toolGroups: string[];
         clients: { setupSheet: string[]; bridge: string[] };
         evidence: string;
+        // Tool names as the Linux server answers them, not group ids.
+        linux: { tools: string[]; evidence: string };
     };
     safeMode: {
         mac: { levels: SafeModeLevel[]; default: string; evidence: string };
         ios: { levels: SafeModeLevel[]; default: string; evidence: string };
+        linux: { levels: SafeModeLevel[]; default: string; evidence: string };
     };
     filterOperators: { mac: string[]; ios: string[]; evidence: string };
     /** Apps whose connections TablePro imports. `id` matches a `comparisons.json` product where one exists. */
     connectionImport: { id: string; app: string; passwords: boolean; format: string | null }[];
     /** `exceptEngines`: engine ids the format's import plugin refuses (SQL on MongoDB and Redis). */
-    dataImport: { formats: { id: string; name: string; exceptEngines: string[] }[]; evidence: string };
-    export: { formats: ExportFormat[]; evidence: string };
+    dataImport: { formats: { id: string; name: string; exceptEngines: string[] }[]; evidence: string; linux: LinuxFormats };
+    export: { formats: ExportFormat[]; evidence: string; linux: LinuxFormats };
     backup: { tools: BackupTool[]; serverSideExport: string[]; evidence: string };
     sync: {
         mac: { categories: SyncCategory[]; enabledByDefault: boolean; evidence: string };

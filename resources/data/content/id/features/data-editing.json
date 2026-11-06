@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Pengurutan, paginasi, dan filter",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Filter tersimpan dan aturan sorotan",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Navigasi foreign key dan pemilih nilai",
             "ios": "partial",
-            "iosNote": "Ketuk untuk melihat pratinjau baris rujukan"
+            "iosNote": "Ketuk untuk melihat pratinjau baris rujukan",
+            "linux": "partial",
+            "linuxNote": "Navigasi; tanpa pemilih nilai"
         },
         {
             "label": "Edit, sisipkan, dan hapus baris",
             "ios": "partial",
-            "iosNote": "Editor baris; memerlukan primary key"
+            "iosNote": "Editor baris; memerlukan primary key",
+            "linux": "partial",
+            "linuxNote": "Memerlukan primary key"
         },
         {
             "label": "Perubahan tertunda, Preview SQL, dan pembatalan",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Perubahan tertunda dan pembatalan; tanpa Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID atau kata sandi sebelum penulisan",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Dokumen MongoDB dan kunci Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Kunci Redis hanya diubah lewat perintah"
         }
     ],
     "limits": [

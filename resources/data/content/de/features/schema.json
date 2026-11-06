@@ -135,40 +135,50 @@
         {
             "label": "Strukturbearbeitung mit DDL-Vorschau",
             "ios": "partial",
-            "iosNote": "Spalten, Indizes und Fremdschlüssel, schreibgeschützt"
+            "iosNote": "Spalten, Indizes und Fremdschlüssel, schreibgeschützt",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Tabellen leeren und löschen",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "ER-Diagramm",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Routinen, Trigger und Tabellenordner",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Routinen und Trigger; keine Tabellenordner"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database und Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server-Dashboard und Tabellenwartung",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

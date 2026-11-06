@@ -68,15 +68,20 @@ querying holds EXPLAIN Compare and Query Insights. Every section needs text or b
 ### Where it works (`availability`)
 
 ```jsonc
-{ "label": "Query Insights", "paid": "query-insights", "ios": "no" }
-{ "label": "Query history", "ios": "partial", "iosNote": "The last {historyEntriesIos} queries on the device" }
-{ "label": "Copy or share results", "ios": "yes" }
-{ "label": "Live Activities", "mac": "no", "ios": "yes" }      // "mac" defaults to "yes"
+{ "label": "Query Insights", "paid": "query-insights", "ios": "no", "linux": "no" }
+{ "label": "Query history", "ios": "partial", "iosNote": "The last {historyEntriesIos} queries on the device", "linux": "yes" }
+{ "label": "Copy or share results", "ios": "yes", "linux": "yes" }
+{ "label": "Live Activities", "mac": "no", "ios": "yes", "linux": "no" }      // "mac" defaults to "yes"
+{ "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}", "linux": "partial", "linuxNote": "{linuxSafeModeLevels}" }
 ```
 
 The Mac column shows the plan from `paid` (or "Free"); the iPhone and iPad column shows "Free" for `yes`, a dash for
 `no`, and `iosNote` for `partial` (`iosNote` is required exactly when `ios` is `partial`). The iPhone and iPad app
 gates nothing, so it has no plan column. Device names come from `platforms.json`.
+
+`linux` is required on every row, and `linuxNote` exactly when it is `partial`, in the same short style as `iosNote`.
+Decide `linux` in English: rows align by index, and every locale carries the same value. None of the paid features
+exists in the Linux app, so a row with `paid` is `no` there. The page does not show the Linux column yet.
 
 ### Links
 

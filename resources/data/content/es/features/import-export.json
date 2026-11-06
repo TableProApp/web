@@ -136,41 +136,52 @@
         {
             "label": "Importar archivos a tablas",
             "ios": "partial",
-            "iosNote": "Acciones de Atajos desde JSON o CSV"
+            "iosNote": "Acciones de Atajos desde JSON o CSV",
+            "linux": "partial",
+            "linuxNote": "CSV a una tabla existente y archivos SQL"
         },
         {
             "label": "Correspondencias guardadas, Match by Name y Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Exportar tablas y resultados a archivos",
             "ios": "partial",
-            "iosNote": "Copiar o compartir JSON, CSV o SQL INSERT"
+            "iosNote": "Copiar o compartir JSON, CSV o SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin de exportación {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Ventana Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump y Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dumps SQL sin herramientas externas"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Archivos SQLite y DuckDB",
             "ios": "partial",
-            "iosNote": "Archivos del dispositivo o DuckDB en memoria"
+            "iosNote": "Archivos del dispositivo o DuckDB en memoria",
+            "linux": "yes"
         },
         {
             "label": "Archivos SQLite mediante SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -130,35 +130,47 @@
     "availability": [
         {
             "label": "KI-Chat mit eigenem Anbieter",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review, Explain, Optimize und Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Inline-Vorschläge und AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Inline-Vorschläge; keine AI Rules"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MCP-Server",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} Tools, nur über HTTP"
         },
         {
             "label": "Externe MCP-Server",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript und Shell-Befehl <code>tablepro</code>",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Der Befehl <code>tablepro</code> öffnet Dateien"
         },
         {
             "label": "Raycast-Erweiterung",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

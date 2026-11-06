@@ -189,67 +189,87 @@
         {
             "label": "Formulir koneksi, grup, tag, dan favorit",
             "ios": "partial",
-            "iosNote": "Satu tag per koneksi; tanpa warna"
+            "iosNote": "Satu tag per koneksi; tanpa warna",
+            "linux": "yes"
         },
         {
             "label": "Impor dari URL atau papan klip",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Impor dari aplikasi lain, folder proyek, dan AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Hanya dari aplikasi lain"
         },
         {
             "label": "Tunnel SSH dengan kata sandi atau private key",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Agen SSH, kode sekali pakai, dan jump host",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS dengan pemeriksaan sertifikat",
             "ios": "partial",
-            "iosNote": "SQL Server mengenkripsi tanpa verifikasi"
+            "iosNote": "SQL Server mengenkripsi tanpa verifikasi",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos, dan login Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Hanya Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Pada koneksi yang disinkronkan dari Mac"
+            "iosNote": "Pada koneksi yang disinkronkan dari Mac",
+            "linux": "no"
         },
         {
             "label": "Kata sandi dalam Rantai Kunci",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "Di keyring sistem"
         },
         {
             "label": "Sumber kata sandi, profil kredensial, dan ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode per koneksi",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Batas waktu koneksi dan kueri",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Hanya batas waktu kueri"
         },
         {
             "label": "Level minimum Safe Mode melalui profil konfigurasi",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

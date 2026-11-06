@@ -100,15 +100,15 @@
         }
     ],
     "availability": [
-        { "label": "Sorting, paging and filters", "ios": "yes" },
-        { "label": "Saved filters and highlight rules", "ios": "no" },
-        { "label": "Foreign key navigation and value picker", "ios": "partial", "iosNote": "Tap to preview the referenced row" },
-        { "label": "Edit, insert and delete rows", "ios": "partial", "iosNote": "Row editor; needs a primary key" },
-        { "label": "Staged edits, Preview SQL and undo", "ios": "no" },
-        { "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}" },
-        { "label": "Touch ID or password before a write", "ios": "no" },
-        { "label": "Data Rewind", "paid": "data-rewind", "ios": "no" },
-        { "label": "MongoDB documents and Redis keys", "ios": "no" }
+        { "label": "Sorting, paging and filters", "ios": "yes", "linux": "yes" },
+        { "label": "Saved filters and highlight rules", "ios": "no", "linux": "no" },
+        { "label": "Foreign key navigation and value picker", "ios": "partial", "iosNote": "Tap to preview the referenced row", "linux": "partial", "linuxNote": "Navigation; no value picker" },
+        { "label": "Edit, insert and delete rows", "ios": "partial", "iosNote": "Row editor; needs a primary key", "linux": "partial", "linuxNote": "Needs a primary key" },
+        { "label": "Staged edits, Preview SQL and undo", "ios": "no", "linux": "partial", "linuxNote": "Staged edits and undo; no Preview SQL" },
+        { "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}", "linux": "partial", "linuxNote": "{linuxSafeModeLevels}" },
+        { "label": "Touch ID or password before a write", "ios": "no", "linux": "no" },
+        { "label": "Data Rewind", "paid": "data-rewind", "ios": "no", "linux": "no" },
+        { "label": "MongoDB documents and Redis keys", "ios": "no", "linux": "partial", "linuxNote": "Redis keys change only through commands" }
     ],
     "limits": [
         "Data Rewind is not a backup. It does not undo triggers, cascades or changes made outside TablePro, and it cannot restore rows without a primary key, values over {rewindMaxValue} MB or values the server computed.",

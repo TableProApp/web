@@ -149,46 +149,58 @@
         {
             "label": "Editor SQL com preenchimento automático e formatação",
             "ios": "partial",
-            "iosNote": "Destaque, Run e Stop; sem preenchimento automático"
+            "iosNote": "Destaque, Run e Stop; sem preenchimento automático",
+            "linux": "yes"
         },
         {
             "label": "Parâmetros de consulta",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Histórico de consultas",
             "ios": "partial",
-            "iosNote": "As últimas {historyEntriesIos} consultas no dispositivo"
+            "iosNote": "As últimas {historyEntriesIos} consultas no dispositivo",
+            "linux": "yes"
         },
         {
             "label": "Consultas salvas e pastas SQL vinculadas",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Somente consultas salvas"
         },
         {
             "label": "Open Quickly",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Busca de conexões e tabelas na barra lateral"
         },
         {
             "label": "EXPLAIN e EXPLAIN Compare",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Query Insights",
             "paid": "query-insights",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Result Charts",
             "paid": "result-charts",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Visualização Mapa",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copiar ou compartilhar resultados",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         }
     ],
     "limits": [

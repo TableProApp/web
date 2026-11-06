@@ -136,41 +136,52 @@
         {
             "label": "파일을 테이블로 가져오기",
             "ios": "partial",
-            "iosNote": "JSON 또는 CSV를 사용하는 단축어 동작"
+            "iosNote": "JSON 또는 CSV를 사용하는 단축어 동작",
+            "linux": "partial",
+            "linuxNote": "기존 테이블로 CSV 가져오기 및 SQL 파일"
         },
         {
             "label": "저장된 매핑, Match by Name 및 Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "테이블과 결과를 파일로 내보내기",
             "ios": "partial",
-            "iosNote": "JSON, CSV 또는 SQL INSERT로 복사·공유"
+            "iosNote": "JSON, CSV 또는 SQL INSERT로 복사·공유",
+            "linux": "yes"
         },
         {
             "label": "{exportPluginFormats} 내보내기 플러그인",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Files 창",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump 및 Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "외부 도구 없이 만드는 SQL 덤프"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "SQLite 및 DuckDB 파일",
             "ios": "partial",
-            "iosNote": "기기의 파일 또는 메모리 내 DuckDB"
+            "iosNote": "기기의 파일 또는 메모리 내 DuckDB",
+            "linux": "yes"
         },
         {
             "label": "SSH를 통한 SQLite 파일",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -149,46 +149,58 @@
         {
             "label": "自動補完と整形付き SQL エディター",
             "ios": "partial",
-            "iosNote": "ハイライト、Run と Stop のみ。自動補完なし"
+            "iosNote": "ハイライト、Run と Stop のみ。自動補完なし",
+            "linux": "yes"
         },
         {
             "label": "クエリパラメーター",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "クエリ履歴",
             "ios": "partial",
-            "iosNote": "デバイス上の直近 {historyEntriesIos} 件"
+            "iosNote": "デバイス上の直近 {historyEntriesIos} 件",
+            "linux": "yes"
         },
         {
             "label": "保存済みクエリとリンクした SQL フォルダー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "保存済みクエリのみ"
         },
         {
             "label": "Open Quickly",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "サイドバーで接続とテーブルを検索"
         },
         {
             "label": "EXPLAIN と EXPLAIN Compare",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Query Insights",
             "paid": "query-insights",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Result Charts",
             "paid": "result-charts",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "地図ビュー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "結果をコピーまたは共有",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         }
     ],
     "limits": [

@@ -189,67 +189,87 @@
         {
             "label": "Formulaire de connexion, groupes, tags et favoris",
             "ios": "partial",
-            "iosNote": "Un tag par connexion ; pas de couleurs"
+            "iosNote": "Un tag par connexion ; pas de couleurs",
+            "linux": "yes"
         },
         {
             "label": "Import depuis une URL ou le presse-papiers",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Import depuis d’autres apps, des dossiers de projet et AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Depuis d’autres apps uniquement"
         },
         {
             "label": "Tunnel SSH avec mot de passe ou clé privée",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Agent SSH, codes à usage unique et hôtes de rebond",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS avec vérification des certificats",
             "ios": "partial",
-            "iosNote": "SQL Server chiffre sans vérification"
+            "iosNote": "SQL Server chiffre sans vérification",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy et Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos et authentification Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Kerberos uniquement"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Sur les connexions synchronisées depuis un Mac"
+            "iosNote": "Sur les connexions synchronisées depuis un Mac",
+            "linux": "no"
         },
         {
             "label": "Mots de passe dans le Trousseau",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "Dans le trousseau du système"
         },
         {
             "label": "Sources de mot de passe, profils d’identifiants et ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode par connexion",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Délais de connexion et de requête",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Délai de requête uniquement"
         },
         {
             "label": "Niveau minimal de Safe Mode via un profil de configuration",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

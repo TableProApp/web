@@ -136,41 +136,52 @@
         {
             "label": "Importazione di file in una tabella",
             "ios": "partial",
-            "iosNote": "Azioni di Comandi Rapidi, da JSON o CSV"
+            "iosNote": "Azioni di Comandi Rapidi, da JSON o CSV",
+            "linux": "partial",
+            "linuxNote": "CSV in una tabella esistente e file SQL"
         },
         {
             "label": "Mappature salvate, Match by Name e Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Esportazione di tabelle e risultati su file",
             "ios": "partial",
-            "iosNote": "Copia o condivisione come JSON, CSV o SQL INSERT"
+            "iosNote": "Copia o condivisione come JSON, CSV o SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin di esportazione {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Finestra Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump e Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dump SQL senza strumenti esterni"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "File SQLite e DuckDB",
             "ios": "partial",
-            "iosNote": "File sul dispositivo oppure DuckDB in memoria"
+            "iosNote": "File sul dispositivo oppure DuckDB in memoria",
+            "linux": "yes"
         },
         {
             "label": "File SQLite tramite SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "並べ替え、ページ分割とフィルター",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "保存済みフィルターとハイライトルール",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "外部キーの移動と値の選択",
             "ios": "partial",
-            "iosNote": "タップして参照先の行をプレビュー"
+            "iosNote": "タップして参照先の行をプレビュー",
+            "linux": "partial",
+            "linuxNote": "移動のみ、値の選択なし"
         },
         {
             "label": "行の編集、挿入と削除",
             "ios": "partial",
-            "iosNote": "行エディター、主キーが必要"
+            "iosNote": "行エディター、主キーが必要",
+            "linux": "partial",
+            "linuxNote": "主キーが必要"
         },
         {
             "label": "編集の保留、Preview SQL と取り消し",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "編集の保留と取り消し、Preview SQL なし"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "書き込み前に Touch ID やパスワードで確認",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MongoDB ドキュメントと Redis キー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Redis キーの変更はコマンドのみ"
         }
     ],
     "limits": [

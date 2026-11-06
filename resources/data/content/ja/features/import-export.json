@@ -136,41 +136,52 @@
         {
             "label": "ファイルをテーブルにインポート",
             "ios": "partial",
-            "iosNote": "JSON や CSV のショートカットアクション"
+            "iosNote": "JSON や CSV のショートカットアクション",
+            "linux": "partial",
+            "linuxNote": "既存テーブルへの CSV と SQL ファイル"
         },
         {
             "label": "対応付けの保存、Match by Name と Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "テーブルと結果をファイルにエクスポート",
             "ios": "partial",
-            "iosNote": "JSON、CSV や SQL INSERT としてコピー・共有"
+            "iosNote": "JSON、CSV や SQL INSERT としてコピー・共有",
+            "linux": "yes"
         },
         {
             "label": "{exportPluginFormats} エクスポートプラグイン",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Files ウィンドウ",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump と Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "外部ツール不要の SQL ダンプ"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "SQLite と DuckDB ファイル",
             "ios": "partial",
-            "iosNote": "デバイス上のファイルやインメモリ DuckDB"
+            "iosNote": "デバイス上のファイルやインメモリ DuckDB",
+            "linux": "yes"
         },
         {
             "label": "SSH 経由の SQLite ファイル",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [
