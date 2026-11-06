@@ -8,7 +8,7 @@ import Stepper from '@/components/ui/stepper';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useCampaign } from '@/hooks/use-campaign';
 import { useI18n } from '@/i18n';
-import { formatUsd } from '@/i18n/format';
+import { formatNumber, formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
 import { PRICING, sells, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
@@ -117,10 +117,15 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
 
 const AMOUNT = 'text-[2.5rem] leading-[1.1] font-semibold tracking-[-0.035em] text-foreground';
 
-// One price on show. The digits roll when it changes; a screen reader hears the price once, in words.
+// One price on show. The digits roll when it changes; a screen reader hears the price once, in words. A currency symbol
+// longer than "$" (US$, $US, USD) is set smaller, so it does not outweigh the number.
 function Price({ amount, listAmount, unit }: { amount: number; listAmount?: number; unit?: string }) {
     const { m, fmt } = useI18n();
-    const text = formatUsd(amount, m.pricing.currency);
+    const style = m.pricing.currency;
+    const text = formatUsd(amount, style);
+    const number = formatNumber(amount, style, Number.isInteger(amount) ? 0 : 2);
+    const [before, after = ''] = style.pattern.replace(/ /g, '\u00a0').split('{amount}');
+    const affix = (part: string) => (part.trim().length > 1 ? <span className="sale-affix">{part}</span> : part);
 
     return (
         <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -131,7 +136,11 @@ function Price({ amount, listAmount, unit }: { amount: number; listAmount?: numb
                 </s>
             )}
             <span className="sr-only">{text}</span>
-            <RollingText value={text} className={AMOUNT} />
+            <span aria-hidden="true" className={cn('inline-flex items-baseline tabular-nums', AMOUNT)}>
+                {affix(before)}
+                <RollingText value={number} />
+                {affix(after)}
+            </span>
             {unit && <span className="type-small text-muted-foreground">{unit}</span>}
         </p>
     );
