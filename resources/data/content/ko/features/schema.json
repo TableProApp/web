@@ -135,40 +135,50 @@
         {
             "label": "DDL 미리 보기를 통한 구조 편집",
             "ios": "partial",
-            "iosNote": "열, 인덱스 및 외래 키는 읽기 전용"
+            "iosNote": "열, 인덱스 및 외래 키는 읽기 전용",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "테이블 비우기 및 삭제",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "ER 다이어그램",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "루틴, 트리거 및 테이블 폴더",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "루틴과 트리거; 테이블 폴더 없음"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database 및 Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard 및 테이블 유지 관리",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

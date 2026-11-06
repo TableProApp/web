@@ -189,67 +189,87 @@
         {
             "label": "連線表單、群組、標籤與喜好項目",
             "ios": "partial",
-            "iosNote": "每個連線一個標籤；不支援顏色"
+            "iosNote": "每個連線一個標籤；不支援顏色",
+            "linux": "yes"
         },
         {
             "label": "從 URL 或剪貼簿匯入",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "從其他 App、專案資料夾與 AWS 匯入",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "僅從其他 App 匯入"
         },
         {
             "label": "使用密碼或私密金鑰的 SSH 通道",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "SSH 代理程式、一次性驗證碼與跳板主機",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "含憑證驗證的 TLS",
             "ios": "partial",
-            "iosNote": "SQL Server 僅加密，不驗證"
+            "iosNote": "SQL Server 僅加密，不驗證",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy 與 Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM、Kerberos 與 Google 登入",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "僅 Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "用於從 Mac 同步的連線"
+            "iosNote": "用於從 Mac 同步的連線",
+            "linux": "no"
         },
         {
             "label": "密碼儲存在鑰匙圈中",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "儲存在系統金鑰圈中"
         },
         {
             "label": "密碼來源、認證資訊設定檔與 ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "每個連線的 Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "連線與查詢逾時",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "僅查詢逾時"
         },
         {
             "label": "透過設定描述檔設定最低 Safe Mode 等級",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

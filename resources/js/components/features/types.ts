@@ -68,6 +68,8 @@ export interface FeatureSection extends FeatureBlock {
 
 export type IosAvailability = 'yes' | 'no' | 'partial';
 
+export type LinuxAvailability = 'yes' | 'no' | 'partial';
+
 /** A row of "Where it works": one capability, its plan on the Mac and its state on iPhone and iPad. */
 export interface AvailabilityRow {
     label: string;
@@ -78,6 +80,10 @@ export interface AvailabilityRow {
     ios: IosAvailability;
     /** Required when `ios` is `partial`: what exists there. */
     iosNote?: string;
+    // The same in every locale; no paid feature exists on Linux yet.
+    linux: LinuxAvailability;
+    // Present exactly when `linux` is `partial`.
+    linuxNote?: string;
 }
 
 export interface FeaturePageContent {

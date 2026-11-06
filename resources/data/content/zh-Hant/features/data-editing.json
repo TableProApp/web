@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "排序、分頁與篩選",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "已儲存篩選與醒目提示規則",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "外部索引鍵導覽與值選擇器",
             "ios": "partial",
-            "iosNote": "點一下預覽參照列"
+            "iosNote": "點一下預覽參照列",
+            "linux": "partial",
+            "linuxNote": "支援導覽；不支援值選擇器"
         },
         {
             "label": "編輯、插入與刪除列",
             "ios": "partial",
-            "iosNote": "列編輯器；需要主索引鍵"
+            "iosNote": "列編輯器；需要主索引鍵",
+            "linux": "partial",
+            "linuxNote": "需要主索引鍵"
         },
         {
             "label": "暫存編輯、Preview SQL 與復原",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "暫存編輯與復原；不支援 Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "寫入前要求 Touch ID 或密碼",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MongoDB 文件與 Redis 鍵",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Redis 鍵僅能透過指令修改"
         }
     ],
     "limits": [

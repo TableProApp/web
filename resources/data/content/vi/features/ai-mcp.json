@@ -130,35 +130,47 @@
     "availability": [
         {
             "label": "AI chat với nhà cung cấp AI của bạn",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review, Explain, Optimize và Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Gợi ý nội tuyến và AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Gợi ý nội tuyến; không có AI Rules"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MCP server",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} tool, chỉ qua HTTP"
         },
         {
             "label": "MCP server bên ngoài",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript và lệnh shell <code>tablepro</code>",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Lệnh <code>tablepro</code> mở file"
         },
         {
             "label": "Extension Raycast",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

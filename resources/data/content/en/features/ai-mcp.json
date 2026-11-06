@@ -106,14 +106,14 @@
         }
     ],
     "availability": [
-        { "label": "AI chat with your own provider", "ios": "no" },
-        { "label": "Review, Explain, Optimize and Fix with AI", "ios": "no" },
-        { "label": "Inline suggestions and AI Rules", "ios": "no" },
-        { "label": "Agent mode", "ios": "no" },
-        { "label": "MCP server", "ios": "no" },
-        { "label": "Outside MCP servers", "ios": "no" },
-        { "label": "AppleScript and the <code>tablepro</code> shell command", "ios": "no" },
-        { "label": "Raycast extension", "ios": "no" }
+        { "label": "AI chat with your own provider", "ios": "no", "linux": "partial", "linuxNote": "{aiProvidersLinux}" },
+        { "label": "Review, Explain, Optimize and Fix with AI", "ios": "no", "linux": "yes" },
+        { "label": "Inline suggestions and AI Rules", "ios": "no", "linux": "partial", "linuxNote": "Inline suggestions; no AI Rules" },
+        { "label": "Agent mode", "ios": "no", "linux": "no" },
+        { "label": "MCP server", "ios": "no", "linux": "partial", "linuxNote": "{mcpToolCountLinux} tools, over HTTP only" },
+        { "label": "Outside MCP servers", "ios": "no", "linux": "no" },
+        { "label": "AppleScript and the <code>tablepro</code> shell command", "ios": "no", "linux": "partial", "linuxNote": "The <code>tablepro</code> command opens files" },
+        { "label": "Raycast extension", "ios": "no", "linux": "no" }
     ],
     "limits": [
         "Cursor cannot call TablePro’s tools, so with Cursor as the provider, Edit and Agent run no queries. Local models call tools only if the model supports it.",

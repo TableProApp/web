@@ -456,7 +456,23 @@ unique; no prefix collides with a root slug.
       "price": { "amount": 0, "inAppPurchases": false },
       "appLanguages": ["…"]
     },
-    { "id": "linux", "status": "prototype" },
+    {
+      "id": "linux", "status": "prototype",   // carries its record before it ships; status alone decides whether it shows
+      "channel": "beta",                      // beta | stable: which repositories the commands name
+      "deviceNames": ["Linux"],
+      "distributions": [{ "id": "ubuntu", "name": "Ubuntu", "versions": ["26.04", "26.10"], "via": "ppa" },
+                        { "id": "fedora", "name": "Fedora", "versions": ["44", "45"], "via": "copr" },
+                        { "id": "other", "name": null, "versions": [], "via": "flatpak" }],
+      "desktop": { "name": "GNOME", "version": "50" },   // the .deb and .rpm floor; the Flatpak brings its runtime
+      "architectures": ["x86_64", "arm64"],
+      "destinations": [{ "kind": "ppa", "repository": "ppa:tablepro/tablepro-beta", "commands": ["…"], "update": "sudo apt upgrade" },
+                       { "kind": "copr", "repository": "@tablepro/tablepro-beta", "commands": ["…"], "update": "sudo dnf upgrade" },
+                       { "kind": "flatpak", "url": "https://flatpak.tablepro.app/beta-repo/…flatpakref", "commands": ["…"] },
+                       { "kind": "packages", "tagPrefix": "linux-v", "assets": [{ "format": "deb", "template": "tablepro-{version}-ubuntu-{series}-{arch}.deb", "series": ["…"], "arch": { "x86_64": "amd64", "arm64": "arm64" } }],
+                         "checksums": "SHA256SUMS", "verify": "gh attestation verify {file} --repo TableProApp/TablePro" }],
+      "release": { "version": "0.1.0-beta.1", "build": null, "publishedAt": "2026-11-06" },
+      "appLanguages": ["en", "vi"]
+    },
     { "id": "windows", "status": "none" }
   ]
 }
@@ -465,6 +481,12 @@ unique; no prefix collides with a root slug.
 Values come from the GitHub releases, the appcast, the Homebrew cask and the App Store listing, at Mac 0.77.0 and
 iOS 1.0 (build 22). The status word is
 `released`, as positioning §3.3 and §13 use it.
+
+Linux has its own version line and its own release service (`LinuxReleaseService`): its GitHub releases are tagged
+`linux-v*` and published with `--latest=false`, so the Mac's `releases/latest` lookup never sees them. The service
+lists releases, keeps the newest on the channel (a beta channel takes pre-releases), reads each package's size and
+SHA-256 digest, and stands in with the `release` above until GitHub has one. `release:refresh-linux` runs beside
+`release:refresh`, and `release:check` compares the PPA, COPR and Flatpak repository once Linux is `released`.
 
 Every phrase around these values is a catalog entry in the `platforms` namespace, never data:
 `requirement` ("{systems} {version} {releaseName} or later" / "… trở lên", with `releaseName` dropped when null),
@@ -482,7 +504,9 @@ positioning tokens are derived from these values, never typed:
 
 - The statuses are in the enum.
 - A `released` platform has `deviceNames`, `requirements`, `destinations` and `release`. Any other platform has none
-  of them.
+  of them, except Linux, which carries its record from before it ships.
+- Linux's repositories match its channel (`-beta` names on beta), every command starts with `sudo` or `flatpak`, and
+  every package template names `{version}` and `{arch}`.
 - The Mac `minVersion` is `13.0` with `releaseName` Ventura. Nothing in the file says 14 or Sonoma.
 - `universalBinary` is false.
 - The `iosEngines` ids exist in `engines.json` with `ios.inPicker`.

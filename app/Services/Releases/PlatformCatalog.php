@@ -163,6 +163,75 @@ class PlatformCatalog
      *
      * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null
      */
+    /**
+     * The Linux packages destination: GitHub release file templates, the tag prefix and how to verify a file.
+     *
+     * @return array{url: string, tagPrefix: string, tagTemplate: string, assets: list<array{format: string, template: string, series: list<string>, arch: array<string, string>}>, checksums: string, verify: string}|null
+     */
+    public function linuxPackages(): ?array
+    {
+        $packages = $this->destination('linux', 'packages');
+
+        if ($packages === null || ! is_string($packages['tagPrefix'] ?? null) || ! is_array($packages['assets'] ?? null)) {
+            return null;
+        }
+
+        return $packages;
+    }
+
+    public function linuxChannel(): string
+    {
+        return ($this->find('linux')['channel'] ?? null) === 'stable' ? 'stable' : 'beta';
+    }
+
+    /**
+     * Every file a Linux release carries for each format, series and architecture, in data order.
+     *
+     * @return list<string>
+     */
+    public function linuxAssetNames(string $version): array
+    {
+        $names = [];
+
+        foreach ($this->linuxPackages()['assets'] ?? [] as $asset) {
+            $series = $asset['series'] === [] ? [null] : $asset['series'];
+
+            foreach ($series as $one) {
+                foreach ($asset['arch'] as $arch) {
+                    $names[] = strtr($asset['template'], ['{version}' => $version, '{series}' => (string) $one, '{arch}' => $arch]);
+                }
+            }
+        }
+
+        return $names;
+    }
+
+    public function linuxTagUrl(string $version): ?string
+    {
+        $template = $this->linuxPackages()['tagTemplate'] ?? null;
+
+        return is_string($template) && str_starts_with($template, 'https://') ? strtr($template, ['{version}' => $version]) : null;
+    }
+
+    /**
+     * The release platforms.json records, for the page to show until GitHub answers.
+     *
+     * @return array{version: string, publishedAt: string|null}|null
+     */
+    public function linuxDataRelease(): ?array
+    {
+        $release = $this->find('linux')['release'] ?? null;
+
+        if (! is_array($release) || ! is_string($release['version'] ?? null)) {
+            return null;
+        }
+
+        return [
+            'version' => $release['version'],
+            'publishedAt' => is_string($release['publishedAt'] ?? null) ? $release['publishedAt'] : null,
+        ];
+    }
+
     public function summary(string $id): ?array
     {
         $platform = $this->find($id);

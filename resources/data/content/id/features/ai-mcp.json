@@ -130,35 +130,47 @@
     "availability": [
         {
             "label": "Chat AI dengan penyedia sendiri",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review, Explain, Optimize, dan Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Saran inline dan AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Saran inline; tanpa AI Rules"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server MCP",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} tool, hanya lewat HTTP"
         },
         {
             "label": "Server MCP eksternal",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript dan perintah shell <code>tablepro</code>",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Perintah <code>tablepro</code> membuka file"
         },
         {
             "label": "Ekstensi Raycast",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

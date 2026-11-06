@@ -125,35 +125,47 @@
     "availability": [
         {
             "label": "직접 선택한 제공업체를 사용하는 AI 채팅",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review, Explain, Optimize 및 Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "인라인 제안 및 AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "인라인 제안; AI Rules 없음"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MCP 서버",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux}개 도구, HTTP 전용"
         },
         {
             "label": "외부 MCP 서버",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript 및 <code>tablepro</code> 셸 명령",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "<code>tablepro</code> 명령으로 파일 열기"
         },
         {
             "label": "Raycast 확장",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -136,41 +136,52 @@
         {
             "label": "Import file vào table",
             "ios": "partial",
-            "iosNote": "Tác vụ Phím tắt, từ JSON hoặc CSV"
+            "iosNote": "Tác vụ Phím tắt, từ JSON hoặc CSV",
+            "linux": "partial",
+            "linuxNote": "CSV vào table có sẵn, và file SQL"
         },
         {
             "label": "Ghép cột đã lưu, Match by Name và Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Export table và kết quả query ra file",
             "ios": "partial",
-            "iosNote": "Sao chép hoặc chia sẻ dưới dạng JSON, CSV hoặc SQL INSERT"
+            "iosNote": "Sao chép hoặc chia sẻ dưới dạng JSON, CSV hoặc SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin export {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Cửa sổ Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump và Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dump SQL không cần công cụ ngoài"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "File SQLite và DuckDB",
             "ios": "partial",
-            "iosNote": "File trên thiết bị, hoặc DuckDB trong bộ nhớ"
+            "iosNote": "File trên thiết bị, hoặc DuckDB trong bộ nhớ",
+            "linux": "yes"
         },
         {
             "label": "File SQLite qua SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

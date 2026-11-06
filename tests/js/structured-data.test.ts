@@ -241,3 +241,27 @@ test('the about page is an AboutPage about the organization', () => {
     assert.deepEqual(page.about, { '@id': 'https://tablepro.app/#organization' });
     assert.equal(page.inLanguage, 'vi');
 });
+
+test('the Linux app is its own free SoftwareApplication, never the Mac node', async () => {
+    const { linuxAppNode, linuxAppId, macAppId } = await import('../../resources/js/lib/structured-data.ts');
+    const node = linuxAppNode(
+        { baseUrl: 'https://tablepro.app', inLanguage: 'vi' },
+        {
+            alternateName: 'TablePro for Linux',
+            operatingSystem: 'Linux',
+            requirements: 'Ubuntu 26.04, Fedora 44 or Flatpak; x86_64, arm64',
+            installUrl: 'https://tablepro.app/download#linux',
+            licenseUrl: 'https://github.com/TableProApp/TablePro/blob/main/LICENSE',
+            currency: 'USD',
+            version: '0.1.0-beta.1',
+        },
+    );
+
+    assert.equal(node['@id'], 'https://tablepro.app/#linux-app');
+    assert.notEqual(linuxAppId('https://tablepro.app'), macAppId('https://tablepro.app'));
+    assert.equal(node['@type'], 'SoftwareApplication');
+    assert.equal(node.operatingSystem, 'Linux');
+    assert.equal(node.isAccessibleForFree, true);
+    assert.equal(node.softwareVersion, '0.1.0-beta.1');
+    assert.deepEqual(node.offers, [{ '@type': 'Offer', name: 'TablePro for Linux', price: '0', priceCurrency: 'USD' }]);
+});

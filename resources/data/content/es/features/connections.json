@@ -189,67 +189,87 @@
         {
             "label": "Formulario de conexión, grupos, etiquetas y favoritos",
             "ios": "partial",
-            "iosNote": "Una etiqueta por conexión; sin colores"
+            "iosNote": "Una etiqueta por conexión; sin colores",
+            "linux": "yes"
         },
         {
             "label": "Importar desde una URL o el portapapeles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Importar desde otras apps, carpetas de proyecto y AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo desde otras apps"
         },
         {
             "label": "Túnel SSH con contraseña o clave privada",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Agente SSH, códigos de un solo uso y hosts de salto",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS con verificación de certificados",
             "ios": "partial",
-            "iosNote": "SQL Server cifra sin verificar"
+            "iosNote": "SQL Server cifra sin verificar",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy y Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos y autenticación de Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "En conexiones sincronizadas desde un Mac"
+            "iosNote": "En conexiones sincronizadas desde un Mac",
+            "linux": "no"
         },
         {
             "label": "Contraseñas en el Llavero",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "En el llavero del sistema"
         },
         {
             "label": "Orígenes de contraseña, perfiles de credenciales y ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode por conexión",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Tiempos de espera de conexión y consulta",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Solo tiempo de espera de consulta"
         },
         {
             "label": "Nivel mínimo de Safe Mode mediante un perfil de configuración",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

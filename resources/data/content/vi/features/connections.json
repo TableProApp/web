@@ -189,67 +189,87 @@
         {
             "label": "Form connection, nhóm, tag và mục yêu thích",
             "ios": "partial",
-            "iosNote": "Một tag cho mỗi connection; không có màu"
+            "iosNote": "Một tag cho mỗi connection; không có màu",
+            "linux": "yes"
         },
         {
             "label": "Import từ URL hoặc clipboard",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Import từ ứng dụng khác, thư mục dự án và AWS",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chỉ từ ứng dụng khác"
         },
         {
             "label": "SSH tunnel bằng mật khẩu hoặc private key",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "SSH agent, mã dùng một lần và jump host",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "TLS có kiểm tra chứng chỉ",
             "ios": "partial",
-            "iosNote": "SQL Server mã hóa nhưng không kiểm tra"
+            "iosNote": "SQL Server mã hóa nhưng không kiểm tra",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Đăng nhập bằng AWS IAM, Kerberos và Google",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chỉ Kerberos"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Với connection đồng bộ từ Mac"
+            "iosNote": "Với connection đồng bộ từ Mac",
+            "linux": "no"
         },
         {
             "label": "Lưu mật khẩu trong Keychain",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "Trong keyring của hệ thống"
         },
         {
             "label": "Nguồn mật khẩu, credential profile và ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Safe Mode cho từng connection",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Connect timeout và query timeout",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Chỉ có query timeout"
         },
         {
             "label": "Mức Safe Mode tối thiểu qua configuration profile",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

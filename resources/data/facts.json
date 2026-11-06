@@ -72,7 +72,7 @@
         "evidence": "GitHub API, repos/TableProApp/TablePro created_at 2025-12-17T01:01:38Z"
     },
     "ai": {
-        "platforms": ["mac"],
+        "platforms": ["mac", "linux"],
         "providers": [
             "GitHub Copilot",
             "ChatGPT",
@@ -89,10 +89,14 @@
             "OpenCode Zen",
             "OpenAI-compatible"
         ],
-        "evidence": "TablePro/Models/AI/AIModels.swift:10-45 @v0.77.0"
+        "evidence": "TablePro/Models/AI/AIModels.swift:10-45 @v0.77.0",
+        "linux": {
+            "providers": ["Anthropic", "OpenAI", "Ollama", "OpenAI-compatible"],
+            "evidence": "linux/crates/app/src/ui/assistant/mod.rs:34-36; linux/README.md:533-541 @3d95564ff"
+        }
     },
     "mcp": {
-        "platforms": ["mac"],
+        "platforms": ["mac", "linux"],
         "host": "127.0.0.1",
         "defaultPort": 23508,
         "enabledByDefault": false,
@@ -120,7 +124,21 @@
                 "Goose"
             ]
         },
-        "evidence": "TablePro/Views/Settings/Components/IntegrationClient.swift:4-7; docs/external-api/mcp-clients.mdx:3; docs/external-api/mcp-tools.mdx:20-30 @v0.77.0"
+        "evidence": "TablePro/Views/Settings/Components/IntegrationClient.swift:4-7; docs/external-api/mcp-clients.mdx:3; docs/external-api/mcp-tools.mdx:20-30 @v0.77.0",
+        "linux": {
+            "tools": [
+                "list_connections",
+                "connect",
+                "list_schemas",
+                "list_tables",
+                "describe_table",
+                "get_table_ddl",
+                "browse_table",
+                "count_rows",
+                "execute_query"
+            ],
+            "evidence": "core/crates/mcp/src/tool_server.rs:50-58; linux/README.md:559,582 @3d95564ff"
+        }
     },
     "safeMode": {
         "mac": {
@@ -143,6 +161,15 @@
             ],
             "default": "off",
             "evidence": "Packages/TableProCore/Sources/TableProModels/SafeModeLevel.swift:9-33 @232e8dae6"
+        },
+        "linux": {
+            "levels": [
+                { "id": "off", "name": "Off" },
+                { "id": "confirm_writes", "name": "Confirm Writes" },
+                { "id": "read_only", "name": "Read-Only" }
+            ],
+            "default": "off",
+            "evidence": "core/crates/core/src/safe_mode_level.rs:9-16; linux/crates/app/src/ui/safe_mode.rs:5-7 @3d95564ff"
         }
     },
     "filterOperators": {
@@ -203,7 +230,11 @@
             { "id": "xlsx", "name": "XLSX", "exceptEngines": [] },
             { "id": "sql", "name": "SQL", "exceptEngines": ["mongodb", "redis"] }
         ],
-        "evidence": "Plugins/{CSV,JSON,XLSX,SQL}ImportPlugin @v0.77.0; SQLImportPlugin.swift:22 excludedDatabaseTypeIds"
+        "evidence": "Plugins/{CSV,JSON,XLSX,SQL}ImportPlugin @v0.77.0; SQLImportPlugin.swift:22 excludedDatabaseTypeIds",
+        "linux": {
+            "formats": ["csv", "sql"],
+            "evidence": "linux/ROADMAP.md:60,129; linux/data/resources/ui/import-csv-dialog.ui:36-43 @3d95564ff"
+        }
     },
     "export": {
         "formats": [
@@ -217,7 +248,11 @@
             { "id": "parquet", "name": "Parquet", "engines": null, "exceptEngines": [], "via": "plugin" },
             { "id": "mql", "name": "MQL", "engines": ["mongodb"], "exceptEngines": [], "via": null }
         ],
-        "evidence": "TablePro/Core/Services/Export/ExportFormatCatalog.swift:16-18; Plugins/SQLExportPlugin/SQLExportPlugin.swift:20 @v0.77.0"
+        "evidence": "TablePro/Core/Services/Export/ExportFormatCatalog.swift:16-18; Plugins/SQLExportPlugin/SQLExportPlugin.swift:20 @v0.77.0",
+        "linux": {
+            "formats": ["csv", "json", "sql", "xlsx", "markdown", "html", "xml"],
+            "evidence": "linux/crates/app/src/ui/export/dialog.rs:49-67; linux/ROADMAP.md:120 @3d95564ff"
+        }
     },
     "backup": {
         "tools": [
@@ -321,6 +356,20 @@
             "unit": "rows",
             "platform": "ios",
             "evidence": "TableProMobile/TableProMobile/ViewModels/QueryEditorViewModel.swift:18 @232e8dae6"
+        },
+        "resultRowCapLinux": {
+            "value": 10000,
+            "max": null,
+            "unit": "rows",
+            "platform": "linux",
+            "evidence": "core/crates/core/src/row_limit.rs:14; linux/ROADMAP.md:102 @3d95564ff"
+        },
+        "runRowCapLinux": {
+            "value": 100000,
+            "max": null,
+            "unit": "rows",
+            "platform": "linux",
+            "evidence": "linux/crates/app/src/ui/editor/script_runner.rs:34-37; linux/ROADMAP.md:102 @3d95564ff"
         },
         "rewindDays": {
             "value": 7,

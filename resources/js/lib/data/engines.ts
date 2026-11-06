@@ -90,6 +90,16 @@ export interface EngineIos {
     appearsAfterSync: boolean;
 }
 
+// untested: a Linux driver speaks its protocol but no suite runs on it. blocked: no usable client library.
+export type LinuxSupport = 'tested' | 'untested' | 'blocked' | 'none';
+
+export interface EngineLinux {
+    support: LinuxSupport;
+    // Server releases as the app's linux/README.md lists them; empty unless support is tested.
+    tested: string[];
+    evidence: string;
+}
+
 export interface Engine {
     id: string;
     /** The app's `DatabaseType` raw value, spaces included. */
@@ -128,5 +138,6 @@ export interface Engine {
     bundledVersion: string | null;
     limits: EngineLimit[];
     ios: EngineIos;
+    linux: EngineLinux;
     verified: { macTag: string; iosCommit: string; docsCommit: string; date: string };
 }

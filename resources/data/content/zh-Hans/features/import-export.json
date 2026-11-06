@@ -136,41 +136,52 @@
         {
             "label": "将文件导入表",
             "ios": "partial",
-            "iosNote": "通过快捷指令从 JSON 或 CSV 导入"
+            "iosNote": "通过快捷指令从 JSON 或 CSV 导入",
+            "linux": "partial",
+            "linuxNote": "CSV 导入现有表，以及 SQL 文件"
         },
         {
             "label": "已保存映射、Match by Name 和 Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "将表和结果导出为文件",
             "ios": "partial",
-            "iosNote": "复制或分享为 JSON、CSV 或 SQL INSERT"
+            "iosNote": "复制或分享为 JSON、CSV 或 SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "{exportPluginFormats} 导出插件",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Files 窗口",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump 和 Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "无需外部工具的 SQL 转储"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "SQLite 和 DuckDB 文件",
             "ios": "partial",
-            "iosNote": "设备上的文件，或内存中的 DuckDB"
+            "iosNote": "设备上的文件，或内存中的 DuckDB",
+            "linux": "yes"
         },
         {
             "label": "通过 SSH 访问 SQLite 文件",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

@@ -122,43 +122,57 @@
     "availability": [
         {
             "label": "Tri, pagination et filtres",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Filtres enregistrés et règles de surbrillance",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Navigation par clés étrangères et sélecteur de valeurs",
             "ios": "partial",
-            "iosNote": "Touchez pour prévisualiser la ligne référencée"
+            "iosNote": "Touchez pour prévisualiser la ligne référencée",
+            "linux": "partial",
+            "linuxNote": "Navigation ; pas de sélecteur de valeurs"
         },
         {
             "label": "Modifier, insérer et supprimer des lignes",
             "ios": "partial",
-            "iosNote": "Éditeur de lignes ; nécessite une clé primaire"
+            "iosNote": "Éditeur de lignes ; nécessite une clé primaire",
+            "linux": "partial",
+            "linuxNote": "Nécessite une clé primaire"
         },
         {
             "label": "Modifications en attente, Preview SQL et annulation",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Modifications en attente et annulation ; pas de Preview SQL"
         },
         {
             "label": "Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "Touch ID ou mot de passe avant une écriture",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Data Rewind",
             "paid": "data-rewind",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Documents MongoDB et clés Redis",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Clés Redis modifiables par commandes uniquement"
         }
     ],
     "limits": [

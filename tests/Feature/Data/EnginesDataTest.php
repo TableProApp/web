@@ -23,7 +23,7 @@ it('gives every engine the documented fields', function (): void {
         expect($engine)->toHaveKeys([
             'id', 'appTypeId', 'name', 'page', 'slug', 'parent', 'anchor', 'category', 'featured', 'meta',
             'distribution', 'driverPlugin', 'sinceAppVersion', 'minAppVersion', 'state', 'queryLanguage', 'defaultPort',
-            'connectionMode', 'icon', 'monogram', 'docsSlug', 'capabilities', 'versionFloor', 'limits', 'ios',
+            'connectionMode', 'icon', 'monogram', 'docsSlug', 'capabilities', 'versionFloor', 'limits', 'ios', 'linux',
         ])
             ->and($id)->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/')
             ->and($engine['name'])->toBeString()->not->toBeEmpty()
@@ -109,6 +109,26 @@ it('offers on iOS exactly the engines platforms.json lists', function (): void {
     $inPicker = collect(enginesJson())->filter(fn(array $engine): bool => $engine['ios']['inPicker'])->pluck('id')->all();
 
     expect($inPicker)->toEqualCanonicalizing(collect($platforms)->firstWhere('id', 'ios')['iosEngines']);
+});
+
+it('states where each engine runs on Linux, with evidence from the app', function (): void {
+    foreach (enginesJson() as $engine) {
+        $linux = $engine['linux'];
+        $id = $engine['id'];
+
+        expect($linux)->toHaveKeys(['support', 'tested', 'evidence'])
+            ->and($linux['support'])->toBeIn(['tested', 'untested', 'blocked', 'none'], "{$id}.linux.support")
+            ->and($linux['tested'])->toBeArray()
+            ->and($linux['tested'] !== [])->toBe($linux['support'] === 'tested', "{$id}: tested releases exactly when support is tested")
+            ->and($linux['evidence'])->toMatch('/^TableProApp\/TablePro:\S+:\d+/', "{$id}.linux.evidence");
+
+        foreach ($linux['tested'] as $release) {
+            expect($release)->toBeString()->not->toBeEmpty();
+        }
+    }
+
+    // linux/README.md:15-25 tests eleven products; any other count means one side moved without the other.
+    expect(collect(enginesJson())->where('linux.support', 'tested')->count())->toBe(11);
 });
 
 it('links each engine to a docs page of its own or of its driver sibling', function (): void {

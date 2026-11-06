@@ -28,8 +28,15 @@ it('is dated and gives every platform a known status', function (): void {
 
 it('gives a released platform everything a page needs and an unreleased one nothing', function (): void {
     foreach (platformsJson()['platforms'] as $platform) {
-        if ($platform['status'] !== 'released') {
+        // Linux carries its record before it ships, so the pages can be built against it; its status alone shows it.
+        if ($platform['status'] !== 'released' && $platform['id'] !== 'linux') {
             expect(array_keys($platform))->toBe(['id', 'status'], "{$platform['id']} is not released, so it carries nothing else");
+
+            continue;
+        }
+
+        if ($platform['id'] === 'linux') {
+            expect($platform)->toHaveKeys(['channel', 'deviceNames', 'page', 'distributions', 'architectures', 'destinations', 'release', 'appLanguages']);
 
             continue;
         }
@@ -71,5 +78,35 @@ it('links the App Store without a country segment', function (): void {
 
     foreach (platformsEntry('ios')['storefrontExclusions'] as $code) {
         expect($code)->toMatch('/^[a-z]{2}$/');
+    }
+});
+
+it('installs Linux from a repository on its channel, or from a release file of a known name', function (): void {
+    $linux = platformsEntry('linux');
+    $destinations = collect($linux['destinations'])->keyBy('kind');
+    $suffix = $linux['channel'] === 'beta' ? '-beta' : '';
+
+    expect($linux['channel'])->toBeIn(['beta', 'stable'])
+        ->and($linux['release']['version'])->toMatch('/^\d+\.\d+\.\d+(-beta\.\d+)?$/')
+        ->and($linux['architectures'])->toBe(['x86_64', 'arm64'])
+        ->and($destinations->keys()->all())->toBe(['ppa', 'copr', 'flatpak', 'packages'])
+        ->and($destinations['ppa']['repository'])->toBe("ppa:tablepro/tablepro{$suffix}")
+        ->and($destinations['copr']['repository'])->toBe("@tablepro/tablepro{$suffix}")
+        ->and($destinations['flatpak']['url'])->toStartWith('https://flatpak.tablepro.app/' . ($linux['channel'] === 'beta' ? 'beta-repo' : 'repo') . '/');
+
+    foreach (['ppa', 'copr', 'flatpak'] as $kind) {
+        expect($destinations[$kind]['channel'])->toBe($linux['channel'])
+            ->and($destinations[$kind]['commands'])->not->toBeEmpty();
+
+        foreach ($destinations[$kind]['commands'] as $command) {
+            expect($command)->toMatch('/^(sudo |flatpak )/')->not->toContain('$ ');
+        }
+    }
+
+    expect(collect($linux['distributions'])->pluck('via')->all())->toBe(['ppa', 'copr', 'flatpak']);
+
+    foreach ($destinations['packages']['assets'] as $asset) {
+        expect($asset['template'])->toContain('{version}')->toContain('{arch}')
+            ->and(array_keys($asset['arch']))->toBe($linux['architectures']);
     }
 });

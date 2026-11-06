@@ -58,12 +58,16 @@ it('keeps each list free of duplicates', function (): void {
     $facts = factsJson();
 
     factsUnique($facts['ai']['providers'], 'ai.providers');
+    factsUnique($facts['ai']['linux']['providers'], 'ai.linux.providers');
     factsUnique($facts['mcp']['toolGroups'], 'mcp.toolGroups');
+    factsUnique($facts['mcp']['linux']['tools'], 'mcp.linux.tools');
     factsUnique($facts['filterOperators']['mac'], 'filterOperators.mac');
     factsUnique($facts['filterOperators']['ios'], 'filterOperators.ios');
     factsUnique(array_column($facts['connectionImport'], 'id'), 'connectionImport');
     factsUnique(array_column($facts['dataImport']['formats'], 'id'), 'dataImport.formats');
     factsUnique(array_column($facts['export']['formats'], 'id'), 'export.formats');
+    factsUnique($facts['dataImport']['linux']['formats'], 'dataImport.linux.formats');
+    factsUnique($facts['export']['linux']['formats'], 'export.linux.formats');
     factsUnique(array_column($facts['backup']['tools'], 'id'), 'backup.tools');
     factsUnique($facts['sync']['neverSynced'], 'sync.neverSynced');
 });
@@ -71,6 +75,31 @@ it('keeps each list free of duplicates', function (): void {
 it('defaults Safe Mode to one of its own levels on each platform', function (): void {
     foreach (factsJson()['safeMode'] as $platform => $safeMode) {
         expect($safeMode['default'])->toBeIn(array_column($safeMode['levels'], 'id'), "safeMode.{$platform}.default");
+    }
+});
+
+it('states the Linux app in the shapes the Mac entries use', function (): void {
+    $facts = factsJson();
+    $platforms = array_column(factsData('platforms.json')['platforms'], 'id');
+
+    foreach (['ai', 'mcp'] as $section) {
+        expect($facts[$section]['platforms'])->toContain('linux')
+            ->and(array_diff($facts[$section]['platforms'], $platforms))->toBe([], "{$section}.platforms names an unknown platform");
+    }
+
+    foreach (['dataImport', 'export'] as $section) {
+        expect(array_diff($facts[$section]['linux']['formats'], array_column($facts[$section]['formats'], 'id')))
+            ->toBe([], "{$section}.linux names a format the Mac list does not have");
+    }
+
+    expect($facts['safeMode']['linux']['levels'])->not->toBeEmpty();
+
+    foreach ([$facts['ai']['linux'], $facts['mcp']['linux'], $facts['safeMode']['linux'], $facts['dataImport']['linux'], $facts['export']['linux']] as $entry) {
+        expect($entry['evidence'])->toBeString()->not->toBeEmpty();
+    }
+
+    foreach ($facts['limits'] as $id => $limit) {
+        expect(str_ends_with($id, 'Linux'))->toBe($limit['platform'] === 'linux', "limits.{$id}: a Linux limit's id ends in Linux");
     }
 });
 

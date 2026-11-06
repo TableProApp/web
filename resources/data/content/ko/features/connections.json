@@ -189,67 +189,87 @@
         {
             "label": "연결 양식, 그룹, 태그 및 즐겨찾기",
             "ios": "partial",
-            "iosNote": "연결당 태그 하나, 색상 없음"
+            "iosNote": "연결당 태그 하나, 색상 없음",
+            "linux": "yes"
         },
         {
             "label": "URL 또는 클립보드에서 가져오기",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "다른 앱, 프로젝트 폴더 및 AWS에서 가져오기",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "다른 앱에서만"
         },
         {
             "label": "비밀번호 또는 개인 키를 사용하는 SSH 터널",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "SSH 에이전트, 일회용 코드 및 점프 호스트",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "인증서 검사를 사용하는 TLS",
             "ios": "partial",
-            "iosNote": "SQL Server는 검증 없이 암호화"
+            "iosNote": "SQL Server는 검증 없이 암호화",
+            "linux": "yes"
         },
         {
             "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy 및 Tunnel Command",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AWS IAM, Kerberos 및 Google 로그인",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Kerberos만"
         },
         {
             "label": "Microsoft Entra ID",
             "ios": "partial",
-            "iosNote": "Mac에서 동기화한 연결에서"
+            "iosNote": "Mac에서 동기화한 연결에서",
+            "linux": "no"
         },
         {
             "label": "키체인에 비밀번호 저장",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "partial",
+            "linuxNote": "시스템 키링에 저장"
         },
         {
             "label": "비밀번호 소스, 자격 증명 프로필 및 ~/.pgpass",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Environment Variables",
             "paid": "environment-variables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "연결별 Safe Mode",
             "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}"
+            "iosNote": "{iosSafeModeLevels}",
+            "linux": "partial",
+            "linuxNote": "{linuxSafeModeLevels}"
         },
         {
             "label": "연결 및 쿼리 제한 시간",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "쿼리 제한 시간만"
         },
         {
             "label": "구성 프로필을 통한 최소 Safe Mode 수준",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

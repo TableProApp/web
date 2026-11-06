@@ -135,40 +135,50 @@
         {
             "label": "Modification de structure avec aperçu DDL",
             "ios": "partial",
-            "iosNote": "Colonnes, index et clés étrangères en lecture seule"
+            "iosNote": "Colonnes, index et clés étrangères en lecture seule",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Tronquer et supprimer des tables",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Diagramme ER",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Routines, déclencheurs et dossiers de tables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Routines et déclencheurs ; pas de dossiers de tables"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database et Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard et maintenance de tables",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

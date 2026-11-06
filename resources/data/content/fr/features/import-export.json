@@ -136,41 +136,52 @@
         {
             "label": "Importer des fichiers dans une table",
             "ios": "partial",
-            "iosNote": "Actions Raccourcis depuis JSON ou CSV"
+            "iosNote": "Actions Raccourcis depuis JSON ou CSV",
+            "linux": "partial",
+            "linuxNote": "CSV vers une table existante, et fichiers SQL"
         },
         {
             "label": "Correspondances enregistrées, Match by Name et Match by Position",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Exporter tables et résultats vers des fichiers",
             "ios": "partial",
-            "iosNote": "Copier ou partager en JSON, CSV ou SQL INSERT"
+            "iosNote": "Copier ou partager en JSON, CSV ou SQL INSERT",
+            "linux": "yes"
         },
         {
             "label": "Plugin d’export {exportPluginFormats}",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Fenêtre Data Files",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Backup Dump et Restore Dump",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Dumps SQL sans outils externes"
         },
         {
             "label": "Server-Side Export",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Fichiers SQLite et DuckDB",
             "ios": "partial",
-            "iosNote": "Fichiers sur l’appareil ou DuckDB en mémoire"
+            "iosNote": "Fichiers sur l’appareil ou DuckDB en mémoire",
+            "linux": "yes"
         },
         {
             "label": "Fichiers SQLite via SSH",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

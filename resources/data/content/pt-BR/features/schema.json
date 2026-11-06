@@ -135,40 +135,50 @@
         {
             "label": "Edição de estrutura com prévia DDL",
             "ios": "partial",
-            "iosNote": "Colunas, índices e chaves estrangeiras, somente leitura"
+            "iosNote": "Colunas, índices e chaves estrangeiras, somente leitura",
+            "linux": "yes"
         },
         {
             "label": "New Table",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Truncar e remover tabelas",
-            "ios": "yes"
+            "ios": "yes",
+            "linux": "yes"
         },
         {
             "label": "Diagrama ER",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Rotinas, triggers e pastas de tabelas",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Rotinas e triggers; sem pastas de tabelas"
         },
         {
             "label": "Compare & Sync",
             "paid": "compare-sync",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Copy To, Duplicate Database e Transfer To",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Users & Roles",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Server Dashboard e manutenção de tabelas",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

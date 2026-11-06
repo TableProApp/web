@@ -107,15 +107,15 @@
         }
     ],
     "availability": [
-        { "label": "Import files into a table", "ios": "partial", "iosNote": "Shortcuts actions, from JSON or CSV" },
-        { "label": "Saved mappings, Match by Name and Match by Position", "ios": "no" },
-        { "label": "Export tables and results to files", "ios": "partial", "iosNote": "Copy or share as JSON, CSV or SQL INSERT" },
-        { "label": "{exportPluginFormats} export plugin", "ios": "no" },
-        { "label": "Data Files window", "ios": "no" },
-        { "label": "Backup Dump and Restore Dump", "ios": "no" },
-        { "label": "Server-Side Export", "ios": "no" },
-        { "label": "SQLite and DuckDB files", "ios": "partial", "iosNote": "Files on the device, or DuckDB in memory" },
-        { "label": "SQLite files over SSH", "ios": "no" }
+        { "label": "Import files into a table", "ios": "partial", "iosNote": "Shortcuts actions, from JSON or CSV", "linux": "partial", "linuxNote": "CSV into an existing table, and SQL files" },
+        { "label": "Saved mappings, Match by Name and Match by Position", "ios": "no", "linux": "no" },
+        { "label": "Export tables and results to files", "ios": "partial", "iosNote": "Copy or share as JSON, CSV or SQL INSERT", "linux": "yes" },
+        { "label": "{exportPluginFormats} export plugin", "ios": "no", "linux": "no" },
+        { "label": "Data Files window", "ios": "no", "linux": "no" },
+        { "label": "Backup Dump and Restore Dump", "ios": "no", "linux": "partial", "linuxNote": "SQL dumps written without external tools" },
+        { "label": "Server-Side Export", "ios": "no", "linux": "no" },
+        { "label": "SQLite and DuckDB files", "ios": "partial", "iosNote": "Files on the device, or DuckDB in memory", "linux": "yes" },
+        { "label": "SQLite files over SSH", "ios": "no", "linux": "no" }
     ],
     "limits": [
         "A SQL export includes DROP TABLE IF EXISTS before each table unless you turn that off, so check the options before running the file against a database whose tables you want to keep.",

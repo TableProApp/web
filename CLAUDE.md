@@ -115,7 +115,7 @@ php artisan og:generate --type=compare --locale=all  # types: site|blog|database
                                 # commit public/og; delete a retired page's card (Seo/OgCardsTest fails on a missing or orphaned card)
 php artisan assets:generate    # after editing resources/data/assets.json
 php artisan assets:generate --check   # checks only frontend asset catalogs
-php artisan release:check       # network: compares platforms.json with GitHub, Sparkle, Homebrew, App Store
+php artisan release:check       # network: compares platforms.json with GitHub, Sparkle, Homebrew, App Store, and Linux's PPA, COPR and Flatpak once it ships
 ```
 
 Run `vendor/bin/pint --dirty --format agent` after editing any PHP file.

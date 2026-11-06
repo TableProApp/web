@@ -125,35 +125,47 @@
     "availability": [
         {
             "label": "自分のプロバイダーを使う AI チャット",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review、Explain、Optimize と Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "インライン候補と AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "インライン候補のみ、AI Rules なし"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "MCP サーバー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} 個のツール、HTTP のみ"
         },
         {
             "label": "外部 MCP サーバー",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript と <code>tablepro</code> シェルコマンド",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "<code>tablepro</code> コマンドでファイルを開く"
         },
         {
             "label": "Raycast 拡張",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

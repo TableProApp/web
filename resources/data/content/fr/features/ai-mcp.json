@@ -130,35 +130,47 @@
     "availability": [
         {
             "label": "Chat IA avec votre fournisseur",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{aiProvidersLinux}"
         },
         {
             "label": "Review, Explain, Optimize et Fix with AI",
-            "ios": "no"
+            "ios": "no",
+            "linux": "yes"
         },
         {
             "label": "Suggestions en ligne et AI Rules",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "Suggestions en ligne ; pas d’AI Rules"
         },
         {
             "label": "Agent mode",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "Serveur MCP",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "{mcpToolCountLinux} outils, en HTTP uniquement"
         },
         {
             "label": "Serveurs MCP externes",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         },
         {
             "label": "AppleScript et commande shell <code>tablepro</code>",
-            "ios": "no"
+            "ios": "no",
+            "linux": "partial",
+            "linuxNote": "La commande <code>tablepro</code> ouvre des fichiers"
         },
         {
             "label": "Extension Raycast",
-            "ios": "no"
+            "ios": "no",
+            "linux": "no"
         }
     ],
     "limits": [

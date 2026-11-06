@@ -22,89 +22,131 @@ export type PlatformStatus = 'released' | 'prototype' | 'none';
 
 export type MacArchitecture = 'arm64' | 'x86_64';
 
+export type LinuxArchitecture = 'x86_64' | 'arm64';
+
+export type LinuxChannel = 'beta' | 'stable';
+
 export interface Requirements {
-    /** Apple's system names, never translated: `["iOS", "iPadOS"]`. */
+    // Apple's system names, never translated: `["iOS", "iPadOS"]`.
     systems: string[];
-    /** The exact floor, `13.0`. */
     minVersion: string;
-    /** How copy writes it, `13`. */
+    // How copy writes the floor: `13` for `13.0`.
     displayVersion: string;
-    /** `Ventura`; null where Apple gives the release no name. */
+    // `Ventura`; null where Apple gives the release no name.
     releaseName: string | null;
+}
+
+export interface LinuxPackageAsset {
+    format: 'deb' | 'rpm' | 'flatpak';
+    // `{version}`, `{series}` and `{arch}` fill in the GitHub release file name.
+    template: string;
+    series: string[];
+    // The architecture as each format spells it: amd64 for a .deb, x86_64 for an .rpm.
+    arch: Record<LinuxArchitecture, string>;
 }
 
 export type Destination =
     | { kind: 'dmg'; urlTemplate: string }
     | { kind: 'homebrew'; command: string; url: string }
     | { kind: 'releases'; url: string }
-    | { kind: 'app-store'; url: string; appId: string };
+    | { kind: 'app-store'; url: string; appId: string }
+    | { kind: 'ppa'; channel: LinuxChannel; repository: string; commands: string[]; update: string }
+    | { kind: 'copr'; channel: LinuxChannel; repository: string; commands: string[]; update: string }
+    | { kind: 'flatpak'; channel: LinuxChannel; appId: string; branch: string; url: string; commands: string[]; update: string }
+    | {
+          kind: 'packages';
+          url: string;
+          tagPrefix: string;
+          tagTemplate: string;
+          assets: LinuxPackageAsset[];
+          checksums: string;
+          verify: string;
+      };
 
 export type DestinationKind = Destination['kind'];
 
 export interface Release {
     version: string;
-    build: string;
-    /** `YYYY-MM-DD`. Format it in PHP for anything rendered on the server. */
+    build: string | null;
+    // `YYYY-MM-DD`. Format it in PHP for anything rendered on the server.
     publishedAt: string;
 }
 
 interface ReleasedPlatformBase {
     status: 'released';
-    /** Apple product names, never translated: `["iPhone", "iPad"]`. */
+    // Product names, never translated: `["iPhone", "iPad"]`, `["Linux"]`.
     deviceNames: string[];
-    /** The platform's own page (`/ios`), or null when `/download` is its page. */
+    // The platform's own page (`/ios`), or null when `/download` is its page.
     page: string | null;
-    requirements: Requirements;
     destinations: Destination[];
-    /** The last verified release. The download page prefers the live one. */
+    // The last verified release. The download page prefers the live one.
     release: Release;
-    /** BCP 47 tags of the app's own UI languages, in the app's order. */
+    // BCP 47 tags of the app's own UI languages, in the app's order.
     appLanguages: string[];
 }
 
-export interface MacPlatform extends ReleasedPlatformBase {
+interface ApplePlatformBase extends ReleasedPlatformBase {
+    requirements: Requirements;
+}
+
+export interface MacPlatform extends ApplePlatformBase {
     id: 'mac';
-    /** The chips the app runs on natively, in display order. */
     architectures: MacArchitecture[];
-    /** One DMG runs on every architecture. */
     universalBinary: boolean;
-    /** The DMG file name, with `{version}` for the release version. */
+    // The DMG file name, with `{version}` for the release version.
     assetTemplate: string;
-    /** The oldest version any channel still serves. */
+    // The oldest version any channel still serves.
     floorVersion: string;
 }
 
-export interface IosPlatform extends ReleasedPlatformBase {
+export interface IosPlatform extends ApplePlatformBase {
     id: 'ios';
-    /** Engine ids offered in the iOS connection picker, in its order. Name them; never count them. */
+    // Engine ids offered in the iOS connection picker, in its order. Name them; never count them.
     iosEngines: string[];
-    /** Storefront codes the listing is missing from. Read by `release:check` only; never rendered. */
+    // Read by `release:check` only; never rendered.
     storefrontExclusions: string[];
     price: { amount: number; inAppPurchases: boolean };
 }
 
+// A distribution with native packages, or `via: 'flatpak'` with no name for every other one.
+export interface LinuxDistribution {
+    id: string;
+    name: string | null;
+    versions: string[];
+    via: 'ppa' | 'copr' | 'flatpak';
+}
+
+// Linux carries its data before it ships, so pages can be built against it; `status` alone decides whether it shows.
+export interface LinuxPlatform extends Omit<ReleasedPlatformBase, 'status'> {
+    id: 'linux';
+    status: 'released' | 'prototype';
+    channel: LinuxChannel;
+    distributions: LinuxDistribution[];
+    desktop: { name: string; version: string };
+    architectures: LinuxArchitecture[];
+}
+
 export interface UnreleasedPlatform {
-    id: 'linux' | 'windows';
+    id: 'windows';
     status: 'prototype' | 'none';
 }
 
-export type ReleasedPlatform = MacPlatform | IosPlatform;
+export type ApplePlatform = MacPlatform | IosPlatform;
 
-export type Platform = ReleasedPlatform | UnreleasedPlatform;
+export type ReleasedLinuxPlatform = LinuxPlatform & { status: 'released' };
+
+export type ReleasedPlatform = ApplePlatform | ReleasedLinuxPlatform;
+
+export type Platform = ApplePlatform | LinuxPlatform | UnreleasedPlatform;
 
 export interface PlatformsData {
     verifiedAt: string;
     platforms: Platform[];
 }
 
-/**
- * The single cast from the JSON import, whose string unions TypeScript widens
- * to `string`. `tests/Feature/Data/PlatformsDataTest.php` validates the file
- * against these types.
- */
+// The single cast from the JSON import, whose string unions TypeScript widens; PlatformsDataTest validates the file.
 export const PLATFORMS = data as PlatformsData;
 
-/** The phrases of the `platforms` catalog namespace this module needs. */
 export interface PlatformStrings {
     requirement: { named: string; unnamed: string };
     systemsJoiner: string;
@@ -115,7 +157,7 @@ export function isReleased(platform: Platform): platform is ReleasedPlatform {
     return platform.status === 'released';
 }
 
-/** Every platform with something to install, in data order. */
+// Every platform with something to install, in data order.
 export function releasedPlatforms(): ReleasedPlatform[] {
     return PLATFORMS.platforms.filter(isReleased);
 }
@@ -126,6 +168,11 @@ export function macPlatform(): MacPlatform {
 
 export function iosPlatform(): IosPlatform {
     return find('ios') as IosPlatform;
+}
+
+// Linux's record whether or not it has shipped; ask `isReleased` before showing it.
+export function linuxPlatform(): LinuxPlatform {
+    return find('linux') as LinuxPlatform;
 }
 
 function find(id: PlatformId): Platform {
@@ -153,7 +200,7 @@ export function appStoreUrl(): string {
 }
 
 /** `macOS 13 Ventura or later`, `iOS and iPadOS 18 or later`, from the catalog's templates. */
-export function requirementText(platform: ReleasedPlatform, strings: PlatformStrings): string {
+export function requirementText(platform: ApplePlatform, strings: PlatformStrings): string {
     const { systems, displayVersion, releaseName } = platform.requirements;
     const values = {
         systems: systems.join(strings.systemsJoiner),

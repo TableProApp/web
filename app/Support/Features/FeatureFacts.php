@@ -131,6 +131,7 @@ final class FeatureFacts
             'explainNoise' => $limit('explainNoise'),
             'filterOperatorCount' => ['kind' => 'number', 'value' => count($facts['filterOperators']['mac'] ?? [])],
             'filterOperatorCountIos' => ['kind' => 'number', 'value' => count($facts['filterOperators']['ios'] ?? [])],
+            'mcpToolCountLinux' => ['kind' => 'number', 'value' => count($facts['mcp']['linux']['tools'] ?? [])],
             'deviceLimit' => ['kind' => 'number', 'value' => (int) ($pricing['license']['deviceLimit'] ?? 0)],
         ];
     }
@@ -154,7 +155,9 @@ final class FeatureFacts
             'macSafeModeDefault' => $default('mac'),
             'iosSafeModeLevels' => $names($levels('ios')),
             'iosSafeModeDefault' => $default('ios'),
+            'linuxSafeModeLevels' => $names($levels('linux')),
             'aiProviders' => $names($facts['ai']['providers'] ?? []),
+            'aiProvidersLinux' => $names($facts['ai']['linux']['providers'] ?? []),
             'mcpHost' => ['kind' => 'text', 'value' => (string) ($facts['mcp']['host'] ?? '')],
             'mcpPort' => ['kind' => 'text', 'value' => (string) ($facts['mcp']['defaultPort'] ?? '')],
             'mcpSetupClients' => $names($facts['mcp']['clients']['setupSheet'] ?? []),
