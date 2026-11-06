@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CacheHtmlAtEdge;
+use App\Support\Localization\Locales;
 use App\Support\Pricing\Campaign;
 use Inertia\Testing\AssertableInertia;
 
@@ -178,3 +179,34 @@ it('drops the banner before first paint on /ios for an iPhone or iPad only', fun
         ->toBeLessThan(strpos($ios, '<body'))
         ->and(get("{$prefix}/download")->assertOk()->getContent())->not->toContain($rule);
 })->with(['English' => '', 'Vietnamese' => '/vi']);
+
+it('shares its own card on its page, in every language', function (string $locale): void {
+    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
+
+    get("{$prefix}/black-friday")->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where(
+        'seo.ogImage.url',
+        fn(string $url): bool => str_ends_with($url, ($locale === Locales::default() ? '/og' : "/og/{$locale}") . '/campaign/black-friday.png'),
+    ));
+})->with('locales');
+
+it('sells from its page only while live, with one newsletter signup before and after', function (string $at, int $buy, bool $calendar): void {
+    requireSsr();
+    $campaign = saleCampaign();
+
+    travelTo(match ($at) {
+        'live' => $campaign->startsAt,
+        'ended' => $campaign->endsAt,
+        default => $campaign->startsAt->subDay(),
+    });
+
+    $html = get('/black-friday')->assertOk()->getContent();
+
+    expect(substr_count($html, 'type="email"'))->toBe(1)
+        ->and(substr_count($html, '>Buy for '))->toBe($buy)
+        ->and(str_contains($html, 'download="tablepro-' . $campaign->id . '.ics"'))->toBe($calendar)
+        ->and(str_contains($html, 'href="data:text/calendar;charset=utf-8,'))->toBe($calendar);
+})->with([
+    'before the sale' => ['upcoming', 0, true],
+    'during the sale' => ['live', 2, false],
+    'after the sale' => ['ended', 0, false],
+])->group('ssr');

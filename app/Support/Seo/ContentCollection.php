@@ -128,6 +128,10 @@ final class ContentCollection implements PageFamily
      */
     public static function contentName(PageEntry $entry): ?string
     {
+        if ($entry->ogFamily === 'campaign') {
+            return StaticPages::PAGES[$entry->route] ?? null;
+        }
+
         if (array_key_exists($entry->route, self::HUBS)) {
             return self::HUBS[$entry->route][0] . '/index';
         }

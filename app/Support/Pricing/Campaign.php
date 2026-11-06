@@ -36,6 +36,7 @@ final class Campaign
 
     private function __construct(
         public readonly string $id,
+        public readonly int $percent,
         public readonly CarbonImmutable $startsAt,
         public readonly CarbonImmutable $endsAt,
         public readonly CarbonImmutable $listPriceSince,
@@ -58,6 +59,7 @@ final class Campaign
 
             return new self(
                 id: (string) $campaign['id'],
+                percent: (int) $campaign['percent'],
                 startsAt: CarbonImmutable::parse((string) $campaign['startsAt'])->utc(),
                 endsAt: CarbonImmutable::parse((string) $campaign['endsAt'])->utc(),
                 listPriceSince: CarbonImmutable::parse((string) $campaign['listPriceSince'], 'UTC'),

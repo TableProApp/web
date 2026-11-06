@@ -8,6 +8,7 @@ use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
+use App\Support\Pricing\Campaign;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\ContentCollection;
 use App\Support\Seo\OgFonts;
@@ -48,7 +49,7 @@ use Throwable;
  * the fonts from `npm ci`.
  */
 #[Signature('og:generate
-    {--type=all : Card set to render (site|blog|database|compare|feature|all)}
+    {--type=all : Card set to render (site|blog|database|compare|feature|campaign|all)}
     {--slug= : Render only the page with this slug}
     {--locale=all : Supported language code, or all}')]
 #[Description('Render the Open Graph cards for the public pages, in each language they exist in.')]
@@ -57,7 +58,7 @@ class GenerateOgImagesCommand extends Command
     /**
      * @var list<string>
      */
-    public const TYPES = ['site', 'blog', 'database', 'compare', 'feature'];
+    public const TYPES = ['site', 'blog', 'database', 'compare', 'feature', 'campaign'];
 
     public function handle(
         PageRegistry $registry,
@@ -123,9 +124,11 @@ class GenerateOgImagesCommand extends Command
                     continue;
                 }
 
-                $card = $entry->ogFamily === 'blog'
-                    ? $this->blogCard($blog, $entry, $code)
-                    : $this->pageCard($content, $entry, $code);
+                $card = match ($entry->ogFamily) {
+                    'blog' => $this->blogCard($blog, $entry, $code),
+                    'campaign' => $this->campaignCard($content, $entry, $code),
+                    default => $this->pageCard($content, $entry, $code),
+                };
 
                 if ($card === null) {
                     $skipped[] = "{$entry->ogFamily}/{$entry->ogSlug} ({$code}): no `og` copy yet";
@@ -248,6 +251,45 @@ class GenerateOgImagesCommand extends Command
                 'kicker' => $kicker !== '' ? $kicker : $this->label("og.family.{$entry->ogFamily}", $locale),
                 'title' => $title,
                 'titleSize' => self::titleSize($title, false),
+                'address' => self::address($entry->url($locale)),
+            ],
+            'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
+            'label' => "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
+        ];
+    }
+
+    /**
+     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     */
+    private function campaignCard(ContentRepository $content, PageEntry $entry, string $locale): ?array
+    {
+        $campaign = Campaign::current();
+        $name = ContentCollection::contentName($entry);
+
+        if ($campaign === null || $name === null || ! $content->has($name, $locale)) {
+            return null;
+        }
+
+        $og = $content->page($name, $locale)['og'] ?? null;
+
+        if (! is_array($og) || ! is_string($og['title'] ?? null) || ! is_string($og['headline'] ?? null) || $entry->ogSlug === null) {
+            return null;
+        }
+
+        $dates = $campaign->props($locale);
+        $headline = str_replace('{percent}', (string) $campaign->percent, $og['headline']);
+        $width = mb_strwidth($headline);
+
+        return [
+            'view' => 'og.campaign',
+            'data' => [
+                'locale' => $locale,
+                'title' => trim($og['title']),
+                'kicker' => trim((string) ($og['kicker'] ?? '')),
+                'headline' => $headline,
+                'headlineSize' => $width <= 8 ? 'l' : ($width <= 12 ? 'm' : 's'),
+                'product' => trim((string) ($og['product'] ?? '')),
+                'window' => strtr((string) ($og['window'] ?? ''), ['{startsOn}' => $dates['startsOn'], '{endsOn}' => $dates['endsOn']]),
                 'address' => self::address($entry->url($locale)),
             ],
             'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
