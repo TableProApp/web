@@ -24,17 +24,11 @@ export default {
             description: 'Công cụ cơ sở dữ liệu cơ bản, không có thời gian dùng thử.',
             activation: 'Không cần đăng ký để dùng ứng dụng.',
             includesTitle: 'Bao gồm',
-            includes: [
-                'Kết nối tới bất kỳ engine nào được hỗ trợ',
-                'SQL editor và data grid',
-                'Trợ lý AI và MCP server',
-                'Safe Mode',
-                'Ứng dụng cho iPhone và iPad',
-            ],
+            includes: ['Mọi engine được hỗ trợ', 'SQL editor và data grid', 'Trợ lý AI và MCP server', 'Safe Mode', 'Ứng dụng cho iPhone và iPad'],
         },
         starter: {
             name: 'Pro',
-            description: 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
+            description: 'Các tính năng trả phí, cho một người.',
             activation: {
                 other: 'Một người, tối đa {count} máy Mac.',
             },
@@ -43,7 +37,7 @@ export default {
         },
         team: {
             name: 'Team',
-            description: 'Chia sẻ connection và query đã lưu với nhóm.',
+            description: 'Pro cho mọi người, cùng connection dùng chung.',
             activation: {
                 other: 'Một người mỗi seat, tối đa {count} máy Mac.',
             },
@@ -53,17 +47,7 @@ export default {
         },
         enterprise: {
             name: 'Enterprise',
-            description: 'Dành cho công ty cần kiểm soát cách TablePro được dùng.',
-            price: 'Liên hệ',
-            activation: 'Báo giá theo từng công ty.',
-            includesTitle: 'Cho chúng tôi biết bạn cần gì, ví dụ',
-            includes: [
-                'Đăng nhập bằng tài khoản công ty',
-                'Policy bắt buộc trên connection của nhóm',
-                'Audit các lệnh ghi vào production',
-                'Triển khai qua MDM',
-                'Hóa đơn và purchase order',
-            ],
+            description: 'Đăng nhập bằng tài khoản công ty, policy bắt buộc, audit log, MDM, purchase order.',
             cta: 'Liên hệ',
         },
     },
@@ -100,9 +84,9 @@ export default {
     },
     allFeatures: 'Tất cả tính năng trả phí',
     refund: {
-        other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {count} ngày kể từ ngày tính phí. Xem <link>chính sách hoàn tiền</link>.',
+        other: 'Hoàn tiền trong vòng {count} ngày kể từ lần mua hoặc gia hạn (<link>chính sách hoàn tiền</link>).',
     },
-    finePrint: 'Giá tính bằng USD. {merchant} xử lý thanh toán và tính thuế bán hàng hoặc VAT tại checkout với vai trò merchant of record.',
+    finePrint: 'Giá tính bằng USD; {merchant} cộng thuế bán hàng hoặc VAT khi thanh toán.',
     comparePlans: 'So sánh các gói',
     section: {
         title: 'Bảng giá',
@@ -111,6 +95,11 @@ export default {
     matrix: {
         caption: 'Những gì mỗi gói có trong ứng dụng Mac',
         feature: 'Tính năng',
+        groups: {
+            starter: 'Có trong Pro và Team',
+            team: 'Có trong Team',
+            all: 'Có trong mọi gói',
+        },
         macs: 'Số máy Mac',
         macsFree: 'Không cần license',
         macsStarter: { other: 'Tối đa {count}' },

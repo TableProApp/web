@@ -25,16 +25,16 @@ export default {
             "activation": "Aucune inscription nécessaire pour utiliser l’application.",
             "includesTitle": "Comprend",
             "includes": [
-                "Connexions à tous les moteurs pris en charge",
-                "L’éditeur SQL et la grille de données",
-                "L’assistant IA et le serveur MCP",
+                "Tous les moteurs pris en charge",
+                "Éditeur SQL et grille de données",
+                "Assistant IA et serveur MCP",
                 "Safe Mode",
-                "L’application iPhone et iPad"
+                "Application iPhone et iPad"
             ]
         },
         "starter": {
             "name": "Pro",
-            "description": "Ajoute à l’application Mac des fonctionnalités comme {examples}.",
+            "description": "Les fonctionnalités payantes, pour une personne.",
             "activation": {
                 "one": "Une personne, {count} Mac.",
                 "other": "Une personne, jusqu’à {count} Mac."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Partagez connexions et requêtes enregistrées avec votre équipe.",
+            "description": "Pro pour tous, et des connexions partagées.",
             "activation": {
                 "one": "Une personne par poste, {count} Mac.",
                 "other": "Une personne par poste, jusqu’à {count} Mac."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Pour une entreprise qui veut plus de contrôle sur l’usage de TablePro.",
-            "price": "Nous contacter",
-            "activation": "Tarif par entreprise.",
-            "includesTitle": "Dites-nous ce qu’il vous faut, par exemple",
-            "includes": [
-                "Connexion avec les comptes de votre entreprise",
-                "Règles imposées sur les connexions de l’équipe",
-                "Audit des écritures en production",
-                "Déploiement par MDM",
-                "Factures et bons de commande"
-            ],
+            "description": "Connexion avec les comptes de votre entreprise, règles imposées, journal d’audit, MDM, bons de commande.",
             "cta": "Nous contacter"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
     "refund": {
-        "one": "Toutes les offres payantes peuvent être remboursées dans un délai de {count} jour suivant l’achat, et chaque renouvellement mensuel ou annuel dans un délai de {count} jour suivant son paiement. Voir la <link>politique de remboursement</link>.",
-        "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {count} jours suivant son paiement. Voir la <link>politique de remboursement</link>."
+        "one": "Remboursement dans un délai de {count} jour après un achat ou un renouvellement (<link>politique de remboursement</link>).",
+        "other": "Remboursement dans les {count} jours suivant un achat ou un renouvellement (<link>politique de remboursement</link>)."
     },
-    "finePrint": "Prix en dollars américains. {merchant} gère le paiement et calcule la taxe de vente ou la TVA au paiement en tant que merchant of record.",
+    "finePrint": "Prix en dollars américains ; {merchant} ajoute la taxe de vente ou la TVA au paiement.",
     "comparePlans": "Comparer les offres",
     "section": {
         "title": "Tarifs",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Ce que chaque offre comprend dans l’application Mac",
         "feature": "Fonctionnalité",
+        "groups": {
+            "starter": "Dans Pro et Team",
+            "team": "Dans Team",
+            "all": "Dans toutes les offres"
+        },
         "macs": "Mac",
         "macsFree": "Sans licence",
         "macsStarter": {

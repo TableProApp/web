@@ -25,7 +25,7 @@ export default {
             "activation": "가입 없이 앱을 사용할 수 있습니다.",
             "includesTitle": "포함 기능",
             "includes": [
-                "지원하는 모든 엔진 연결",
+                "지원하는 모든 엔진",
                 "SQL 편집기 및 데이터 그리드",
                 "AI 어시스턴트 및 MCP 서버",
                 "Safe Mode",
@@ -34,7 +34,7 @@ export default {
         },
         "starter": {
             "name": "Pro",
-            "description": "Mac 앱에 {examples} 같은 기능을 추가합니다.",
+            "description": "한 사람을 위한 유료 기능.",
             "activation": {
                 "one": "1명, Mac {count}대.",
                 "other": "1명, Mac 최대 {count}대."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "팀과 연결 및 저장된 쿼리를 공유하세요.",
+            "description": "모두를 위한 Pro, 그리고 공유 연결.",
             "activation": {
                 "one": "좌석당 1명, Mac {count}대.",
                 "other": "좌석당 1명, Mac 최대 {count}대."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "TablePro 사용을 더 세밀하게 관리해야 하는 회사를 위한 플랜입니다.",
-            "price": "문의하기",
-            "activation": "회사별로 가격을 정합니다.",
-            "includesTitle": "필요한 기능을 알려 주세요. 예를 들면",
-            "includes": [
-                "회사 계정으로 로그인",
-                "팀 연결에 적용되는 정책",
-                "프로덕션 쓰기 감사",
-                "MDM 배포",
-                "청구서와 구매 주문서"
-            ],
+            "description": "회사 계정으로 로그인, 정책 적용, 감사 로그, MDM, 구매 주문서.",
             "cta": "문의하기"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "모든 유료 기능",
     "refund": {
-        "one": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요.",
-        "other": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
+        "one": "구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>).",
+        "other": "구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>)."
     },
-    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 처리하고 결제 시 판매세 또는 VAT를 계산합니다.",
+    "finePrint": "가격은 미국 달러 기준이며, {merchant}가 결제 시 판매세 또는 VAT를 더합니다.",
     "comparePlans": "플랜 비교",
     "section": {
         "title": "요금",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Mac 앱의 플랜별 포함 기능",
         "feature": "기능",
+        "groups": {
+            "starter": "Pro 및 Team 포함",
+            "team": "Team 포함",
+            "all": "모든 플랜 포함"
+        },
         "macs": "Mac 수",
         "macsFree": "라이선스 불필요",
         "macsStarter": {

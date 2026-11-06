@@ -9,4 +9,8 @@ return [
     ],
     'author' => 'TablePro',
     'byline' => ':author · :date',
+
+    'free' => 'Gratuit',
+
+    'currency' => '{amount} $US',
 ];

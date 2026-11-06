@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import RollingText from '@/components/ui/rolling-text';
 import { useCampaign } from '@/hooks/use-campaign';
 import { useCountdown } from '@/hooks/use-countdown';
 import { useI18n } from '@/i18n';
@@ -13,29 +13,6 @@ interface CountdownProps {
 }
 
 const pad = (value: number): string => String(value).padStart(2, '0');
-
-function Digit({ value }: { value: string }) {
-    const [shown, setShown] = useState(value);
-    const [previous, setPrevious] = useState<string | null>(null);
-
-    if (value !== shown) {
-        setPrevious(shown);
-        setShown(value);
-    }
-
-    return (
-        <span className="roll">
-            {previous !== null && (
-                <span key={`${previous}>${shown}`} className="roll-out">
-                    {previous}
-                </span>
-            )}
-            <span key={shown} className={previous === null ? undefined : 'roll-in'}>
-                {shown}
-            </span>
-        </span>
-    );
-}
 
 // The server and the first render write the date instead of the digits, so the cached HTML, a reader without JavaScript
 // and hydration all carry it. A screen reader hears that date once: the timer is named by it and the digits are hidden.
@@ -84,13 +61,7 @@ export default function Countdown({ to, variant, className }: CountdownProps) {
                 <ol aria-hidden="true" className="flex gap-5 md:gap-6">
                     {cells.map(([value, unit]) => (
                         <li key={unit} className="grid justify-items-start gap-1.5">
-                            <span className="flex text-[2rem] leading-none font-semibold tracking-[-0.03em] tabular-nums md:text-[2.5rem]">
-                                {pad(value)
-                                    .split('')
-                                    .map((digit, place) => (
-                                        <Digit key={place} value={digit} />
-                                    ))}
-                            </span>
+                            <RollingText value={pad(value)} className="text-[2rem] leading-none font-semibold tracking-[-0.03em] md:text-[2.5rem]" />
                             <span className="type-caption text-muted-foreground">{unit}</span>
                         </li>
                     ))}

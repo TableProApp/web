@@ -5,108 +5,98 @@
     },
     "og": {
         "kicker": "價格方案",
-        "title": "免費使用。付費方案增加選用功能。"
+        "title": "免費使用。付費方案增加選用功能。",
+        "pro": "Pro",
+        "proPrice": "{price} 每年",
+        "team": "Team",
+        "teamPrice": "{price} 每席位每月，按年付費"
     },
     "header": {
         "title": "價格方案",
-        "lead": "Mac App 免費使用，沒有試用期。Pro 和 Team 提供選用功能。iPhone 和 iPad App 免費，無 App 內購買。"
-    },
-    "priceChange": {
-        "text": "TablePro 價格已更新，Starter 現更名為 Pro。之前購買的一切維持原有價格與條款。",
-        "link": "查看變更"
+        "lead": "TablePro 免費使用，工作中也一樣。Pro 和 Team 為 Mac App 增加功能。"
     },
     "plans": {
         "title": "方案"
     },
     "features": {
         "title": "付費方案增加哪些功能",
-        "lead": "僅此處列出的功能需要付費方案，目前適用於 Mac。Team 包含 Pro。所有支援的引擎、AI 助手、MCP 和 Safe Mode 皆免費。"
-    },
-    "license": {
-        "title": "授權如何運作",
-        "items": {
-            "macs": {
-                "term": "Mac 台數",
-                "body": "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用。每個 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用，購買者自帶一個席位。台數上限按帳戶計算，Pro 和 Team 合併計算。iPhone 和 iPad App 不使用授權或席位。"
-            },
-            "activate": {
-                "term": "登入",
-                "body": "用購買信箱登入 Mac App，App 會登記雜湊機器 ID、Mac 名稱及 App 和 macOS 版本。要在另一台 Mac 上使用授權，請在 <ui>設定 > 帳號</ui> (Settings > Account) 或<account>帳戶</account>的裝置頁面移除一台 Mac。支援 TablePro 帳戶之前的版本則在 <ui>設定 > 授權</ui> (Settings > License) 輸入授權金鑰。"
-            },
-            "checks": {
-                "term": "驗證",
-                "body": "TablePro 在啟動時和每天更新一次帶簽章的方案副本。若伺服器無法存取，付費功能可繼續使用到該副本過期，最長為上次更新後 {offlineDays} 天。對於從不連網的 Mac，請在<account>帳戶</account>中建立離線檔案。支援 TablePro 帳戶之前的版本每 {revalidateDays} 天檢查一次，並在上次成功檢查後繼續提供付費功能 {graceDays} 天。"
-            },
-            "ends": {
-                "term": "方案結束時",
-                "body": "訂閱結束時，付費功能停止。Free 中所有功能繼續可用。"
-            },
-            "oneTime": {
-                "term": "一次性購買",
-                "body": "一次性購買只需支付一次，且無到期日。"
-            }
-        },
-        "lapse": {
-            "summary": "方案結束時各付費功能的行為",
-            "intro": "各付費功能會按以下方式停止："
-        },
-        "terms": "<terms>服務條款</terms>說明了授權允許的使用範圍。"
-    },
-    "billing": {
-        "title": "帳務",
-        "merchant": "{merchant} 是 merchant of record，處理付款，依帳單地址計算銷售稅或 VAT，並透過郵件傳送收據和發票。",
-        "renewal": "訂閱持續續費，直到在<account>帳戶</account>或 {merchant} 入口網站取消。付費期間內繼續可用，到期前可恢復。續費失敗會傳送更新信用卡的郵件，並在約三週內重試付款。",
-        "portal": "在 <portal>{merchant} 客戶入口網站</portal>管理發票、收據和付款方式。用購買信箱登入，或從帳戶的<account>帳單</account>頁面開啟。"
-    },
-    "refunds": {
-        "title": "退款",
-        "body": "購買和訂閱續費可在每次扣款後 {refundDays} 天內退款。您可以在<account>帳戶</account>的帳單頁面自行退款。例外情況及對授權的影響請見<link>退款政策</link>。"
-    },
-    "team": {
-        "title": "Team 方案",
-        "seats": "Team 方案按席位定價，至少 {min} 個席位。",
-        "invites": "擁有者和管理員在帳戶的成員頁面透過郵件邀請他人，可附帶或不附帶席位。附帶席位的邀請會保留該席位，直到被接受或撤銷；連結 7 天內有效，可重新傳送。",
-        "changes": "擁有者在帳戶的帳單頁面變更訂閱席位，{merchant} 會立即按比例收取或退還差額。已有一次性席位的團隊會保留這些席位，增加席位需要 Team 訂閱。",
-        "account": "在帳戶中管理團隊",
-        "page": "適合團隊的 TablePro"
-    },
-    "atWork": {
-        "title": "在工作中使用 TablePro",
-        "body": "在工作中使用 TablePro 是免費的，不論公司規模，現在免費的內容也不會變成付費。",
-        "ask": "如果 TablePro 是您工作的一部分，請購買授權：個人選 Pro，兩人或以上選 Team。這是請求，不是條件，下一個版本靠授權收入完成。"
-    },
-    "education": {
-        "title": "學生與教師",
-        "body": "學生與教師使用學校或大學的信箱，可以免費使用 Pro 一年。",
-        "how": "使用該信箱登入<account>帳戶</account>，或將帳戶信箱變更為該地址，然後在概覽頁面選擇<ui>免費取得 Pro</ui>，並輸入我們寄送到該地址的代碼。只要該地址仍可使用，您可以用同樣的方式續期。結束前一週，我們會寄送郵件提醒您。",
-        "scope": "免費的一年為一人使用的 Pro，不包含 Team。已有付費 Pro 授權的帳戶不適用。",
-        "help": "如果我們無法識別您學校或大學的信箱，請寄送郵件至 <email>{email}</email>。"
-    },
-    "openSource": {
-        "title": "開放原始碼",
-        "body": "TablePro 採用 AGPLv3 開放原始碼，包括付費功能的程式碼。從原始碼建置的版本會以與發行版相同的方式檢查授權。",
-        "agpl": "AGPL 對執行 TablePro 不設條件，包括在任何規模的公司中用於工作。其條件適用於散布軟體，以及透過網路向他人提供修改後的版本。",
-        "github": "在 GitHub 查看"
-    },
-    "compare": {
-        "title": "與其他用戶端比較",
-        "body": "比較其他用戶端的價格和功能。每篇比較都包含核查日期和來源。"
+        "lead": "只有這些功能需要付費方案，其餘全部免費。"
     },
     "faq": {
-        "title": "方案常見問題",
+        "title": "常見問題",
         "more": "更多方案與授權問題",
-        "items": {
-            "payment-methods": {
-                "question": "可以使用哪些付款方式？",
-                "answer": "{merchant} 的結帳頁面支援信用卡和簽帳金融卡。"
+        "groups": {
+            "license": {
+                "title": "授權",
+                "items": {
+                    "macs": {
+                        "question": "一個授權可以用於幾台 Mac？",
+                        "answer": "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用，每個 Team 席位也一樣。可在 <ui>設定 > 帳號</ui> (Settings > Account) 或<account>帳戶</account>中釋出一台 Mac。"
+                    },
+                    "offline": {
+                        "question": "TablePro 需要連網嗎？",
+                        "answer": "它每天更新一次方案，離線時付費功能最多可繼續使用 {offlineDays} 天。從不連網的 Mac 可使用在<account>帳戶</account>中建立的離線檔案。"
+                    },
+                    "ends": {
+                        "question": "方案結束後會怎樣？",
+                        "answer": "付費功能會各自以不同方式停止，免費版的所有功能繼續可用。一次性授權沒有到期日。詳見<terms>服務條款</terms>。"
+                    },
+                    "lost-key": {
+                        "question": "授權金鑰在哪裡？",
+                        "answer": "您不再需要它：用購買信箱登入即可。支援 TablePro 帳戶之前的版本使用該郵件中的金鑰，可離線使用 {graceDays} 天。"
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "可以開立公司抬頭的發票嗎？",
-                "answer": "可以。在 <portal>{merchant} 客戶入口網站</portal>中，您可以為發票加上公司名稱、加值稅號碼和帳單地址，然後下載。"
+            "billing": {
+                "title": "帳單與退款",
+                "items": {
+                    "payment-methods": {
+                        "question": "如何付款？",
+                        "answer": "使用卡片付款。{merchant} 作為 merchant of record 加收銷售稅或 VAT，並透過郵件傳送收據。"
+                    },
+                    "company-invoice": {
+                        "question": "可以開立公司抬頭的發票嗎？",
+                        "answer": "可以。在 <portal>{merchant} 客戶入口網站</portal>中加上公司名稱、加值稅號碼和地址，然後下載。"
+                    },
+                    "renewals": {
+                        "question": "如何續費？",
+                        "answer": "訂閱會持續續費，直到您在<account>帳戶</account>中取消，付費期間結束前仍可使用。付款失敗時，{merchant} 會在約三週內重試。"
+                    },
+                    "refunds": {
+                        "question": "可以退款嗎？",
+                        "answer": "可以，在購買或續費後 {refundDays} 天內，從<account>帳戶</account>的帳單頁面退款。詳見<link>退款政策</link>。"
+                    }
+                }
             },
-            "lost-key": {
-                "question": "在哪裡找到授權金鑰？",
-                "answer": "您不再需要它：用購買信箱登入 Mac App，您的購買就在該帳戶中。支援 TablePro 帳戶之前的版本仍使用購買郵件中的金鑰。"
+            "team": {
+                "title": "團隊",
+                "items": {
+                    "seats": {
+                        "question": "Team 席位如何運作？",
+                        "answer": "至少 {min} 個席位。擁有者和管理員邀請成員；擁有者在帳單頁面變更席位，{merchant} 按比例計算差額。<teams>適合團隊的 TablePro</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "免費與開放原始碼",
+                "items": {
+                    "at-work": {
+                        "question": "可以在工作中使用免費 App 嗎？",
+                        "answer": "可以，不論公司規模，現在免費的內容也不會變成付費。如果 TablePro 是您工作的一部分，授權收入將用於下一個版本。"
+                    },
+                    "education": {
+                        "question": "學生與教師可以取得 Pro 嗎？",
+                        "answer": "可以，使用學校或大學信箱可免費使用一年：在<account>帳戶</account>中選擇<ui>免費取得 Pro</ui>。這是一人使用的 Pro，不適用於已付費購買 Pro 的帳戶。信箱無法識別？請寄送郵件至 <email>{email}</email>。"
+                    },
+                    "open-source": {
+                        "question": "TablePro 是開放原始碼嗎？",
+                        "answer": "是的，採用 AGPLv3，包括付費功能。AGPL 對執行它不設任何條件。<github>在 GitHub 查看</github>"
+                    },
+                    "compare": {
+                        "question": "TablePro 與其他用戶端相比如何？",
+                        "answer": "每篇比較都包含核查日期和來源："
+                    }
+                }
             }
         }
     }

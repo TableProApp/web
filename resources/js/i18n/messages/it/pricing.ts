@@ -25,16 +25,16 @@ export default {
             "activation": "Non serve registrarsi per usare l’app.",
             "includesTitle": "Include",
             "includes": [
-                "Connessioni a qualsiasi motore supportato",
-                "L’editor SQL e la griglia dei dati",
-                "L’assistente IA e il server MCP",
+                "Ogni motore supportato",
+                "Editor SQL e griglia dei dati",
+                "Assistente IA e server MCP",
                 "Safe Mode",
-                "L’app per iPhone e iPad"
+                "App per iPhone e iPad"
             ]
         },
         "starter": {
             "name": "Pro",
-            "description": "Aggiunge all’app per Mac funzionalità come {examples}.",
+            "description": "Le funzionalità a pagamento, per una persona.",
             "activation": {
                 "one": "Una persona, {count} Mac.",
                 "other": "Una persona, fino a {count} Mac."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Condividi connessioni e query salvate con il team.",
+            "description": "Pro per tutti, e connessioni condivise.",
             "activation": {
                 "one": "Una persona per posto, {count} Mac.",
                 "other": "Una persona per posto, fino a {count} Mac."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Per le aziende che vogliono più controllo sull’uso di TablePro.",
-            "price": "Contattaci",
-            "activation": "Prezzo per azienda.",
-            "includesTitle": "Dicci di cosa hai bisogno, per esempio",
-            "includes": [
-                "Accesso con gli account aziendali",
-                "Criteri imposti sulle connessioni del team",
-                "Audit delle scritture in produzione",
-                "Distribuzione tramite MDM",
-                "Fatture e ordini di acquisto"
-            ],
+            "description": "Accesso con gli account aziendali, criteri imposti, un registro di audit, MDM, ordini di acquisto.",
             "cta": "Contattaci"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
     "refund": {
-        "one": "Ogni piano a pagamento può essere rimborsato entro {count} giorno dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorno dal suo addebito. Consulta la <link>politica di rimborso</link>.",
-        "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorni dal suo addebito. Consulta la <link>politica di rimborso</link>."
+        "one": "Rimborsi entro {count} giorno da un acquisto o da un rinnovo (<link>politica di rimborso</link>).",
+        "other": "Rimborsi entro {count} giorni da un acquisto o da un rinnovo (<link>politica di rimborso</link>)."
     },
-    "finePrint": "Prezzi in dollari USA. {merchant} gestisce il pagamento e calcola imposte o IVA al checkout come merchant of record.",
+    "finePrint": "Prezzi in dollari USA; {merchant} aggiunge imposte o IVA al checkout.",
     "comparePlans": "Confronta i piani",
     "section": {
         "title": "Prezzi",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Cosa include ogni piano nell’app per Mac",
         "feature": "Funzionalità",
+        "groups": {
+            "starter": "In Pro e Team",
+            "team": "In Team",
+            "all": "In ogni piano"
+        },
         "macs": "Mac",
         "macsFree": "Nessuna licenza",
         "macsStarter": {

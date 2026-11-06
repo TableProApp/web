@@ -21,6 +21,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use RuntimeException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -49,7 +50,7 @@ use Throwable;
  * the fonts from `npm ci`.
  */
 #[Signature('og:generate
-    {--type=all : Card set to render (site|blog|database|compare|feature|campaign|all)}
+    {--type=all : Card set to render (site|blog|database|compare|feature|campaign|pricing|all)}
     {--slug= : Render only the page with this slug}
     {--locale=all : Supported language code, or all}')]
 #[Description('Render the Open Graph cards for the public pages, in each language they exist in.')]
@@ -58,7 +59,7 @@ class GenerateOgImagesCommand extends Command
     /**
      * @var list<string>
      */
-    public const TYPES = ['site', 'blog', 'database', 'compare', 'feature', 'campaign'];
+    public const TYPES = ['site', 'blog', 'database', 'compare', 'feature', 'campaign', 'pricing'];
 
     public function handle(
         PageRegistry $registry,
@@ -127,6 +128,7 @@ class GenerateOgImagesCommand extends Command
                 $card = match ($entry->ogFamily) {
                     'blog' => $this->blogCard($blog, $entry, $code),
                     'campaign' => $this->campaignCard($content, $entry, $code),
+                    'pricing' => $this->pricingCard($content, $entry, $code),
                     default => $this->pageCard($content, $entry, $code),
                 };
 
@@ -290,6 +292,47 @@ class GenerateOgImagesCommand extends Command
                 'headlineSize' => $width <= 8 ? 'l' : ($width <= 12 ? 'm' : 's'),
                 'product' => trim((string) ($og['product'] ?? '')),
                 'window' => strtr((string) ($og['window'] ?? ''), ['{startsOn}' => $dates['startsOn'], '{endsOn}' => $dates['endsOn']]),
+                'address' => self::address($entry->url($locale)),
+            ],
+            'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
+            'label' => "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
+        ];
+    }
+
+    /**
+     * The plans with their yearly price, which every plan has and which is a whole number of dollars.
+     *
+     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     */
+    private function pricingCard(ContentRepository $content, PageEntry $entry, string $locale): ?array
+    {
+        $name = ContentCollection::contentName($entry);
+
+        if ($name === null || $entry->ogSlug === null || ! $content->has($name, $locale)) {
+            return null;
+        }
+
+        $og = $content->page($name, $locale)['og'] ?? null;
+
+        if (! is_array($og) || ! is_string($og['title'] ?? null) || ! is_string($og['proPrice'] ?? null) || ! is_string($og['teamPrice'] ?? null)) {
+            return null;
+        }
+
+        $tiers = File::json(resource_path('data/pricing.json'), JSON_THROW_ON_ERROR)['tiers'];
+        $usd = fn(int|float $amount): string => str_replace(['{amount}', ' '], [(string) $amount, "\u{00A0}"], (string) trans('og.currency', [], $locale));
+
+        return [
+            'view' => 'og.pricing',
+            'data' => [
+                'locale' => $locale,
+                'kicker' => trim((string) ($og['kicker'] ?? '')),
+                'title' => trim($og['title']),
+                'free' => $this->label('og.free', $locale),
+                'freePrice' => $usd(0),
+                'pro' => trim((string) ($og['pro'] ?? 'Pro')),
+                'proPrice' => str_replace('{price}', $usd($tiers['starter']['prices']['yearly']), $og['proPrice']),
+                'team' => trim((string) ($og['team'] ?? 'Team')),
+                'teamPrice' => str_replace('{price}', $usd($tiers['team']['prices']['yearly'] / 12), $og['teamPrice']),
                 'address' => self::address($entry->url($locale)),
             ],
             'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),

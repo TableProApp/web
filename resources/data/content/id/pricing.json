@@ -5,108 +5,98 @@
     },
     "og": {
         "kicker": "Harga",
-        "title": "Gratis digunakan. Paket berbayar menambahkan fitur opsional."
+        "title": "Gratis digunakan. Paket berbayar menambahkan fitur opsional.",
+        "pro": "Pro",
+        "proPrice": "{price} per tahun",
+        "team": "Team",
+        "teamPrice": "{price} per seat, per bulan, ditagih tahunan"
     },
     "header": {
         "title": "Harga",
-        "lead": "Gunakan aplikasi Mac secara gratis, tanpa masa uji coba. Pro dan Team menambahkan fitur opsional. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
-    },
-    "priceChange": {
-        "text": "TablePro punya harga baru, dan Starter kini bernama Pro. Semua yang Anda beli sebelumnya tetap dengan harga dan ketentuannya.",
-        "link": "Apa yang berubah"
+        "lead": "TablePro gratis, juga untuk bekerja. Pro dan Team menambahkan fitur ke aplikasi Mac."
     },
     "plans": {
         "title": "Paket"
     },
     "features": {
         "title": "Tambahan dari paket berbayar",
-        "lead": "Hanya fitur yang tercantum di sini yang memerlukan paket berbayar, saat ini ada di Mac. Team mencakup Pro. Semua mesin yang didukung, asisten AI, MCP, dan Safe Mode gratis."
-    },
-    "license": {
-        "title": "Cara kerja lisensi",
-        "items": {
-            "macs": {
-                "term": "Mac",
-                "body": "Pro mencakup satu orang pada maksimal {deviceLimit} Mac. Setiap seat Team mencakup satu orang pada maksimal {deviceLimit} Mac, dan pembeli langsung mendapat satu seat. Batas ini berlaku per akun, gabungan Pro dan Team. App iPhone dan iPad tidak menggunakan lisensi atau seat."
-            },
-            "activate": {
-                "term": "Masuk",
-                "body": "Masuk ke aplikasi Mac dengan email pembelian; aplikasi mendaftarkan ID mesin yang di-hash, nama Mac, serta versi app dan macOS. Untuk memakai lisensi di Mac lain, hapus satu Mac di <ui>Settings > Account</ui> atau di halaman Perangkat pada <account>akun Anda</account>. Versi sebelum akun TablePro memakai kunci lisensi di <ui>Settings > License</ui>."
-            },
-            "checks": {
-                "term": "Pemeriksaan",
-                "body": "TablePro memperbarui salinan paket Anda yang ditandatangani saat mulai dan sekali sehari. Jika server tidak dapat dijangkau, fitur berbayar tetap berfungsi hingga salinan itu kedaluwarsa, paling lama {offlineDays} hari setelah pembaruan terakhir. Untuk Mac yang tidak pernah online, buat file offline di <account>akun Anda</account>. Versi sebelum akun TablePro memeriksa setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil."
-            },
-            "ends": {
-                "term": "Saat paket berakhir",
-                "body": "Ketika langganan berakhir, fitur berbayar berhenti. Segala sesuatu di Gratis tetap berfungsi."
-            },
-            "oneTime": {
-                "term": "Sekali bayar",
-                "body": "Pembelian sekali bayar dibayar satu kali dan tidak memiliki tanggal kedaluwarsa."
-            }
-        },
-        "lapse": {
-            "summary": "Perilaku setiap fitur berbayar saat paket berakhir",
-            "intro": "Setiap fitur berbayar berhenti dengan cara tersendiri:"
-        },
-        "terms": "<terms>Ketentuan layanan</terms> menjelaskan apa yang diizinkan oleh lisensi."
-    },
-    "billing": {
-        "title": "Penagihan",
-        "merchant": "{merchant} adalah merchant of record. Menangani pembayaran, menghitung pajak penjualan atau PPN dari alamat penagihan, dan mengirim tanda terima serta faktur melalui email.",
-        "renewal": "Langganan diperpanjang hingga Anda membatalkan di <account>akun Anda</account> atau portal {merchant}. Akses berlanjut hingga periode berbayar; Anda dapat melanjutkan sebelum berakhir. Perpanjangan yang gagal memicu email untuk memperbarui kartu Anda dan percobaan pembayaran ulang selama sekitar tiga minggu.",
-        "portal": "Kelola faktur, kwitansi, dan metode pembayaran di portal pelanggan <portal>{merchant}</portal>. Masuk dengan email pembelian Anda, atau buka dari <account>Penagihan</account> di akun Anda."
-    },
-    "refunds": {
-        "title": "Pengembalian dana",
-        "body": "Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Kembalikan dananya sendiri di Penagihan pada <account>akun Anda</account>. Baca <link>kebijakan pengembalian dana</link> untuk pengecualian dan dampaknya pada lisensi Anda."
-    },
-    "team": {
-        "title": "Paket Team",
-        "seats": "Paket Team dihargai per seat, minimal {min} seat.",
-        "invites": "Pemilik dan admin mengundang lewat email dari halaman Anggota di akun mereka, dengan atau tanpa seat. Undangan dengan seat menyimpan seat itu sampai diterima atau dicabut; tautannya berlaku 7 hari dan dapat dikirim ulang.",
-        "changes": "Pemilik mengubah seat langganan di Penagihan pada akun Anda, dan {merchant} menagih atau mengkreditkan selisih prorata saat itu juga. Tim dengan seat satu kali tetap memilikinya, dan seat tambahan tersedia lewat langganan Team.",
-        "account": "Kelola tim dalam akun Anda",
-        "page": "TablePro untuk tim"
-    },
-    "atWork": {
-        "title": "Menggunakan TablePro untuk bekerja",
-        "body": "Menggunakan TablePro untuk bekerja itu gratis, di perusahaan sebesar apa pun, dan tidak ada yang gratis hari ini yang akan menjadi berbayar.",
-        "ask": "Jika TablePro menjadi bagian dari pekerjaan Anda, mohon beli lisensi: Pro untuk Anda sendiri, atau Team untuk dua orang atau lebih. Ini permintaan, bukan syarat, dan lisensilah yang mendanai rilis berikutnya."
-    },
-    "education": {
-        "title": "Pelajar dan pengajar",
-        "body": "Pelajar dan pengajar mendapatkan Pro gratis selama satu tahun dengan alamat email sekolah atau universitas mereka.",
-        "how": "Masuk ke <account>akun Anda</account> dengan alamat tersebut, atau ubah email akun Anda ke alamat tersebut, lalu pilih <ui>Dapatkan Pro gratis</ui> di halaman Ringkasan dan masukkan kode yang kami kirim ke alamat tersebut. Anda memperpanjangnya dengan cara yang sama selama alamat tersebut masih aktif, dan kami akan mengirim email seminggu sebelum masa berlakunya berakhir.",
-        "scope": "Tahun gratis ini berupa Pro untuk satu orang dan tidak termasuk Team. Akun yang sudah memiliki lisensi Pro berbayar tidak dapat menerimanya.",
-        "help": "Jika kami tidak mengenali alamat sekolah atau universitas Anda, silakan kirim email ke <email>{email}</email>."
-    },
-    "openSource": {
-        "title": "Sumber terbuka",
-        "body": "TablePro bersumber terbuka di bawah AGPLv3, termasuk kode fitur berbayarnya. Build dari kode sumber memeriksa lisensi dengan cara yang sama seperti aplikasi yang dirilis.",
-        "agpl": "AGPL tidak menetapkan syarat apa pun untuk menjalankan TablePro, termasuk di tempat kerja, dalam perusahaan sebesar apa pun. Syaratnya berlaku untuk distribusi dan penawaran versi yang dimodifikasi kepada pihak lain melalui jaringan.",
-        "github": "Lihat di GitHub"
-    },
-    "compare": {
-        "title": "Dibandingkan dengan klien lain",
-        "body": "Bandingkan harga dan fitur dengan klien lain. Setiap perbandingan mencakup tanggal dan sumber yang diperiksa."
+        "lead": "Hanya fitur ini yang memerlukan paket berbayar. Semua yang lain gratis."
     },
     "faq": {
-        "title": "Pertanyaan tentang paket",
+        "title": "Pertanyaan",
         "more": "Pertanyaan lain tentang paket dan lisensi",
-        "items": {
-            "payment-methods": {
-                "question": "Metode pembayaran apa yang bisa saya gunakan?",
-                "answer": "Checkout {merchant} menerima kartu kredit dan kartu debit."
+        "groups": {
+            "license": {
+                "title": "Lisensi",
+                "items": {
+                    "macs": {
+                        "question": "Berapa Mac yang dicakup satu lisensi?",
+                        "answer": "Pro mencakup satu orang pada maksimal {deviceLimit} Mac, begitu juga setiap seat Team. Kosongkan satu Mac di <ui>Settings > Account</ui> atau di <account>akun Anda</account>."
+                    },
+                    "offline": {
+                        "question": "Apakah TablePro harus online?",
+                        "answer": "TablePro memperbarui paket Anda setiap hari, dan fitur berbayar tetap berfungsi offline hingga {offlineDays} hari. Mac yang tidak pernah online memakai file offline dari <account>akun Anda</account>."
+                    },
+                    "ends": {
+                        "question": "Apa yang terjadi saat paket berakhir?",
+                        "answer": "Fitur berbayar berhenti, masing-masing dengan caranya sendiri, dan semua di Gratis tetap berfungsi. Lisensi sekali bayar tidak memiliki tanggal kedaluwarsa. Lihat <terms>ketentuan layanan</terms>."
+                    },
+                    "lost-key": {
+                        "question": "Di mana kunci lisensi saya?",
+                        "answer": "Anda tidak memerlukannya lagi: masuk dengan email pembelian Anda. Versi sebelum akun TablePro mengambil kunci dari email itu dan berfungsi {graceDays} hari offline."
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
-                "answer": "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor pajak (VAT), dan alamat penagihan ke faktur, lalu mengunduhnya."
+            "billing": {
+                "title": "Penagihan dan pengembalian dana",
+                "items": {
+                    "payment-methods": {
+                        "question": "Bagaimana cara membayar?",
+                        "answer": "Dengan kartu. {merchant}, sebagai merchant of record, menambahkan pajak penjualan atau PPN dan mengirim tanda terima lewat email."
+                    },
+                    "company-invoice": {
+                        "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
+                        "answer": "Ya. Tambahkan nama perusahaan, nomor pajak (VAT), dan alamat di <portal>portal pelanggan {merchant}</portal>, lalu unduh fakturnya."
+                    },
+                    "renewals": {
+                        "question": "Bagaimana perpanjangan berjalan?",
+                        "answer": "Langganan diperpanjang hingga Anda membatalkannya di <account>akun Anda</account>, dan akses berlaku hingga akhir periode berbayar. {merchant} mencoba ulang pembayaran yang gagal selama sekitar tiga minggu."
+                    },
+                    "refunds": {
+                        "question": "Bisakah saya mendapat pengembalian dana?",
+                        "answer": "Ya, dalam {refundDays} hari setelah pembelian atau perpanjangan, dari Penagihan di <account>akun Anda</account>. Lihat <link>kebijakan pengembalian dana</link>."
+                    }
+                }
             },
-            "lost-key": {
-                "question": "Di mana kunci lisensi saya?",
-                "answer": "Anda tidak memerlukannya lagi: masuk ke aplikasi Mac dengan email pembelian, dan pembelian Anda ada di akun tersebut. Versi sebelum akun TablePro tetap memakai kunci dari email pembelian Anda."
+            "team": {
+                "title": "Tim",
+                "items": {
+                    "seats": {
+                        "question": "Bagaimana seat Team bekerja?",
+                        "answer": "Mulai dari {min} seat. Pemilik dan admin mengundang orang; pemilik mengubah seat di Penagihan, dan {merchant} menghitung selisihnya secara prorata. <teams>TablePro untuk tim</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "Gratis dan open source",
+                "items": {
+                    "at-work": {
+                        "question": "Bisakah saya memakai aplikasi gratis untuk bekerja?",
+                        "answer": "Ya, di perusahaan sebesar apa pun, dan tidak ada yang gratis hari ini yang akan menjadi berbayar. Jika TablePro menjadi bagian dari pekerjaan Anda, lisensi mendanai rilis berikutnya."
+                    },
+                    "education": {
+                        "question": "Apakah pelajar dan pengajar mendapat Pro?",
+                        "answer": "Ya, gratis selama setahun dengan email sekolah atau universitas: pilih <ui>Dapatkan Pro gratis</ui> di <account>akun Anda</account>. Ini Pro untuk satu orang, bukan untuk akun yang sudah membayar Pro. Alamat tidak dikenali? Kirim email ke <email>{email}</email>."
+                    },
+                    "open-source": {
+                        "question": "Apakah TablePro open source?",
+                        "answer": "Ya, di bawah AGPLv3, termasuk fitur berbayarnya. AGPL tidak menetapkan syarat apa pun untuk menjalankannya. <github>Lihat di GitHub</github>"
+                    },
+                    "compare": {
+                        "question": "Bagaimana TablePro dibandingkan dengan klien lain?",
+                        "answer": "Setiap perbandingan mencantumkan tanggal pemeriksaan dan sumbernya:"
+                    }
+                }
             }
         }
     }

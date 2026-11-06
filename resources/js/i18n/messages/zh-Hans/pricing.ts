@@ -25,7 +25,7 @@ export default {
             "activation": "无需注册即可使用应用。",
             "includesTitle": "包含",
             "includes": [
-                "连接任何受支持的引擎",
+                "所有受支持的引擎",
                 "SQL 编辑器和数据网格",
                 "AI 助手和 MCP 服务器",
                 "Safe Mode",
@@ -34,7 +34,7 @@ export default {
         },
         "starter": {
             "name": "Pro",
-            "description": "为 Mac 应用添加 {examples} 等功能。",
+            "description": "付费功能，供一人使用。",
             "activation": {
                 "one": "1 人，{count} 台 Mac。",
                 "other": "1 人，最多 {count} 台 Mac。"
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "与团队共享连接和已保存的查询。",
+            "description": "人人都有 Pro，外加共享连接。",
             "activation": {
                 "one": "每个席位 1 人，{count} 台 Mac。",
                 "other": "每个席位 1 人，最多 {count} 台 Mac。"
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "适合需要统一管理 TablePro 使用方式的公司。",
-            "price": "联系我们",
-            "activation": "按公司报价。",
-            "includesTitle": "告诉我们您的需求，例如",
-            "includes": [
-                "使用公司账号登录",
-                "对团队连接强制执行的策略",
-                "生产环境写入审计",
-                "通过 MDM 部署",
-                "发票和采购订单"
-            ],
+            "description": "使用公司账号登录、强制执行的策略、审计日志、MDM、采购订单。",
             "cta": "联系我们"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "所有付费功能",
     "refund": {
-        "one": "所有付费方案均可在购买后 {count} 天内退款，月付或年付方案的每次续订也可在扣款后 {count} 天内退款。详见<link>退款政策</link>。",
-        "other": "所有付费方案均可在购买后 {count} 天内退款，月付或年付方案的每次续订也可在扣款后 {count} 天内退款。详见<link>退款政策</link>。"
+        "one": "购买或续订后 {count} 天内可退款（<link>退款政策</link>）。",
+        "other": "购买或续订后 {count} 天内可退款（<link>退款政策</link>）。"
     },
-    "finePrint": "价格以美元计。{merchant} 作为 merchant of record 处理付款，并在结账时计算销售税或增值税。",
+    "finePrint": "价格以美元计；{merchant} 在结账时加收销售税或增值税。",
     "comparePlans": "对比方案",
     "section": {
         "title": "定价",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "各方案在 Mac 应用中包含的功能",
         "feature": "功能",
+        "groups": {
+            "starter": "Pro 和 Team 包含",
+            "team": "Team 包含",
+            "all": "所有方案包含"
+        },
         "macs": "Mac 台数",
         "macsFree": "无需许可证",
         "macsStarter": {
