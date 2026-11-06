@@ -399,13 +399,16 @@ html.campaign-live .campaign-band {
 
 /* A countdown digit: the old one leaves downwards as the new one drops in. */
 .roll {
+  position: relative;
   display: inline-grid;
   overflow: hidden;
-  line-height: 1;
 }
 
-.roll > span {
-  grid-area: 1 / 1;
+/* The leaving character lies over the cell, so the cell is as wide as the new one: "$39" to "$4.99" leaves no gap after the point. */
+.roll-out {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -437,6 +440,27 @@ html.campaign-live .campaign-band {
 @keyframes roll-out {
   to {
     transform: translateY(100%);
+  }
+}
+
+/* The plan a page leads with: a raised cell with the accent along its top edge, beside its neighbours' shared lines. */
+.cell-grid > .plan-lead {
+  background-color: var(--surface);
+  box-shadow:
+    inset 0 2px 0 var(--accent),
+    0 0 0 1px var(--rule);
+}
+
+@media (forced-colors: active) {
+  .cell-grid > .plan-lead {
+    border-top: 2px solid CanvasText;
+  }
+}
+
+/* A row of the plan table under the pointer, on whichever ground the table sits. */
+@media (hover: hover) {
+  .plan-row:hover {
+    background-color: color-mix(in oklab, var(--foreground) 4%, transparent);
   }
 }
 

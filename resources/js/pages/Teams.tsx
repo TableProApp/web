@@ -1,6 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
-import { INQUIRY_SUBJECT } from '@/components/pricing/enterprise-card';
+import { INQUIRY_SUBJECT } from '@/components/pricing/enterprise-row';
+import PricingPlans from '@/components/pricing/pricing-plans';
 import SEOHead from '@/components/seo/seo-head';
 import { SUPPORT_EMAIL } from '@/components/site/site-links';
 import Button from '@/components/ui/button';
@@ -11,10 +12,9 @@ import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n } from '@/i18n';
-import { formatUsd } from '@/i18n/format';
 import { PUBLISHER } from '@/lib/data/facts';
 import { examplesText } from '@/lib/data/paid-features';
-import { PRICING, teamTotal } from '@/lib/data/pricing';
+import { PRICING } from '@/lib/data/pricing';
 import LandingLayout from '@/layouts/landing-layout';
 
 type TeamsContent = typeof import('@data/content/en/teams.json');
@@ -23,9 +23,6 @@ interface TeamsProps {
     content: TeamsContent;
     organizationProfiles: string[];
 }
-
-/** The team size the price line works an example for. */
-const EXAMPLE_SEATS = 5;
 
 /**
  * `/teams` in every language: Team for the person who buys it for a company
@@ -47,18 +44,12 @@ const EXAMPLE_SEATS = 5;
 export default function Teams({ content, organizationProfiles }: TeamsProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
-    const usd = (amount: number): string => formatUsd(amount, m.pricing.currency);
     const team = PRICING.tiers.team;
     const enterprise = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
 
     const values = {
-        yearlyPerMonth: usd(team.prices.yearly / 12),
-        yearly: usd(team.prices.yearly),
-        monthly: usd(team.prices.monthly),
         min: team.seats.min,
         deviceLimit: PRICING.license.deviceLimit,
-        exampleSeats: EXAMPLE_SEATS,
-        exampleYearly: usd(teamTotal(EXAMPLE_SEATS, 'yearly')),
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
         email: SUPPORT_EMAIL,
@@ -120,7 +111,7 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
                 breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
                 actions={
                     <>
-                        <Button href={path('/pricing#plans')}>{content.header.primary}</Button>
+                        <Button href="#price">{content.header.primary}</Button>
                         <a href={enterprise} className={textLinkClasses('standalone')}>
                             {content.header.secondary}
                         </a>
@@ -150,15 +141,12 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
             </Section>
 
             <Section id="price" tone="surface" title={content.pricing.title}>
-                <div className="grid max-w-[68ch] gap-3">
-                    <p className="type-lead text-foreground tabular-nums">{fmt(content.pricing.yearly, values)}</p>
-                    <p className="type-body text-foreground tabular-nums">{fmt(content.pricing.monthly, values)}</p>
-                    <p className="type-body text-muted-foreground tabular-nums">{fmt(content.pricing.seats, values)}</p>
-                    <p className="type-body text-muted-foreground">{plural(m.pricing.prioritySupport.detail, team.prioritySupport.responseBusinessDays)}</p>
-                    <p className="type-small text-muted-foreground">{content.pricing.note}</p>
-                    <p className="mt-2">
-                        <Button href={path('/pricing#plans')}>{content.pricing.cta}</Button>
-                    </p>
+                <div className="grid gap-8 lg:grid-cols-[28rem_minmax(0,1fr)] lg:items-start lg:gap-16">
+                    <PricingPlans tiers={['team']} cycles={['monthly', 'yearly']} enterprise={false} />
+                    <ul className="type-body grid max-w-[44ch] gap-3 text-muted-foreground lg:pt-14">
+                        <li>{plural(m.pricing.prioritySupport.detail, team.prioritySupport.responseBusinessDays)}</li>
+                        <li>{content.pricing.note}</li>
+                    </ul>
                 </div>
             </Section>
 

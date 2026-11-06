@@ -23,21 +23,14 @@ export default {
     tiers: {
         free: {
             name: 'Free',
-            description: 'Core database tools, with no trial period.',
-            activation: 'No sign-up to use the app.',
+            description: 'The whole app, at work too.',
+            activation: 'No sign-up.',
             includesTitle: 'Includes',
-            includes: [
-                'Connections to any supported engine',
-                'The SQL editor and the data grid',
-                'The AI assistant and the MCP server',
-                'Safe Mode',
-                'The iPhone and iPad app',
-            ],
+            includes: ['Every supported engine', 'SQL editor and data grid', 'AI assistant and MCP server', 'Safe Mode', 'iPhone and iPad app'],
         },
         starter: {
             name: 'Pro',
-            // `{examples}`: the highlighted Pro features from paid-features.json, joined for the language.
-            description: 'Adds features such as {examples} to the Mac app.',
+            description: 'The paid features, for one person.',
             activation: {
                 one: 'One person, {count} Mac.',
                 other: 'One person, up to {count} Macs.',
@@ -47,7 +40,7 @@ export default {
         },
         team: {
             name: 'Team',
-            description: 'Share connections and saved queries with your team.',
+            description: 'Pro for everyone, and shared connections.',
             activation: {
                 one: 'One person per seat, on {count} Mac.',
                 other: 'One person per seat, on up to {count} Macs.',
@@ -58,17 +51,7 @@ export default {
         },
         enterprise: {
             name: 'Enterprise',
-            description: 'For a company that needs more control over how TablePro is used.',
-            price: 'Contact us',
-            activation: 'Priced per company.',
-            includesTitle: 'Tell us what you need, such as',
-            includes: [
-                'Sign-in with your company accounts',
-                'Policies enforced on team connections',
-                'An audit of writes to production',
-                'Deployment through MDM',
-                'Invoices and purchase orders',
-            ],
+            description: 'Sign-in with your company accounts, enforced policies, an audit log, MDM, purchase orders.',
             cta: 'Contact us',
         },
     },
@@ -110,10 +93,10 @@ export default {
     // A link to the plan table, after a card's highlighted features.
     allFeatures: 'Every paid feature',
     refund: {
-        one: 'Every paid plan can be refunded within {count} day of purchase, and each monthly or yearly renewal within {count} day of its charge. See the <link>refund policy</link>.',
-        other: 'Every paid plan can be refunded within {count} days of purchase, and each monthly or yearly renewal within {count} days of its charge. See the <link>refund policy</link>.',
+        one: 'Refunds within {count} day of a purchase or a renewal (<link>refund policy</link>).',
+        other: 'Refunds within {count} days of a purchase or a renewal (<link>refund policy</link>).',
     },
-    finePrint: 'Prices in US dollars. {merchant} handles payment and calculates sales tax or VAT at checkout as merchant of record.',
+    finePrint: 'Prices in US dollars; {merchant} adds sales tax or VAT at checkout.',
     comparePlans: 'Compare plans',
     section: {
         title: 'Pricing',
@@ -122,6 +105,11 @@ export default {
     matrix: {
         caption: 'What each plan includes in the Mac app',
         feature: 'Feature',
+        groups: {
+            starter: 'In Pro and Team',
+            team: 'In Team',
+            all: 'In every plan',
+        },
         macs: 'Macs',
         macsFree: 'No license',
         macsStarter: { one: '{count}', other: 'Up to {count}' },

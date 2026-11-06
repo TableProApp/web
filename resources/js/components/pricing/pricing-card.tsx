@@ -1,15 +1,16 @@
-import { useId, useState, type FormEvent, type ReactNode } from 'react';
+import { useId, useState, type FormEvent } from 'react';
 import Button, { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import { CheckGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
+import RollingText from '@/components/ui/rolling-text';
 import Stepper from '@/components/ui/stepper';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useCampaign } from '@/hooks/use-campaign';
 import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
-import { examplesText, highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
+import { highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
 import { PRICING, sells, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
 import { discountedAmount, type Regional } from '@/lib/regional-pricing';
 import { cn } from '@/lib/utils';
@@ -32,65 +33,59 @@ interface PricingCardProps {
     discountCode: string | null;
     // Null until GET /v2/pricing says checkout applies one to this reader.
     regional: Regional | null;
+    // The one plan a page leads with: its card is raised and its button the only filled one.
+    leads?: boolean;
 }
 
-// From 1024px the rows sit on the parent's subgrid tracks, so prices, actions and lists line up across the cards, and
-// the spare height in Free and Pro falls under the activation line rather than between the price and that line.
-export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, maxSeats, onSeatsChange, discountCode, regional }: PricingCardProps) {
-    const { m, fmt, plural } = useI18n();
+// From 1024px the rows sit on the parent's subgrid tracks, so prices, actions and lists line up across the cards.
+export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, maxSeats, onSeatsChange, discountCode, regional, leads = false }: PricingCardProps) {
+    const { m, plural } = useI18n();
     const { offer } = useCampaign();
     const id = useId();
     const Title = headingLevel;
     const copy = m.pricing.tiers[tier];
-    const description = tier === 'starter' ? fmt(copy.description, { examples: examplesText('starter', m.common.list) }) : copy.description;
 
     return (
         <article
             aria-labelledby={`${id}-title`}
-            className={cn(
-                'grid content-start gap-4 lg:grid-rows-subgrid',
-                variant === 'full' ? 'md:max-lg:grid-cols-2 md:max-lg:gap-x-8 lg:row-span-4' : 'lg:row-span-3',
-            )}
+            className={cn('grid content-start gap-5 lg:grid-rows-subgrid', variant === 'full' ? 'lg:row-span-4' : 'lg:row-span-3', leads && 'plan-lead')}
         >
-            <div className="md:max-lg:col-span-2">
+            <div>
                 <Title id={`${id}-title`} className="type-h3 text-foreground">
                     {copy.name}
                 </Title>
-                <p className="type-small mt-1 text-muted-foreground">{description}</p>
+                <p className="type-small mt-1 text-muted-foreground">{copy.description}</p>
             </div>
 
-            <div className="grid content-start gap-4 md:max-lg:col-start-1">
-                <div>
-                    {tier === 'free' ? (
-                        <Price amount={0} />
-                    ) : (
-                        <PaidPrice
-                            tier={tier}
-                            cycle={cycle}
-                            seats={seats}
-                            maxSeats={maxSeats}
-                            onSeatsChange={onSeatsChange}
-                            regional={regional}
-                            typedCode={discountCode}
-                        />
-                    )}
-                </div>
-
-                <p className="type-small text-foreground">
+            <div className="grid content-start gap-2">
+                {tier === 'free' ? (
+                    <Price amount={0} />
+                ) : (
+                    <PaidPrice
+                        tier={tier}
+                        cycle={cycle}
+                        seats={seats}
+                        maxSeats={maxSeats}
+                        onSeatsChange={onSeatsChange}
+                        regional={regional}
+                        typedCode={discountCode}
+                    />
+                )}
+                <p className="type-small text-muted-foreground">
                     {tier === 'free' && m.pricing.tiers.free.activation}
                     {tier === 'starter' && plural(m.pricing.tiers.starter.activation, PRICING.license.deviceLimit)}
                     {tier === 'team' && plural(m.pricing.tiers.team.activation, PRICING.license.deviceLimit)}
                 </p>
             </div>
 
-            <div className={cn('grid content-start gap-3 md:max-lg:col-start-1', variant === 'compact' && 'md:max-lg:max-w-sm')}>
+            <div className="grid content-start gap-3">
                 {tier === 'free' ? (
                     <LocaleLink href="/download" onClick={() => trackDownload('pricing-free')} className={buttonClasses('secondary', 'md', 'w-full')}>
                         {m.download.macCta}
                     </LocaleLink>
                 ) : (
                     <Button
-                        variant="secondary"
+                        variant={leads ? 'primary' : 'secondary'}
                         fullWidth
                         disabled={!sells(tier, cycle)}
                         loading={checkout.pending === tier}
@@ -115,25 +110,38 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                 )}
             </div>
 
-            {variant === 'full' && <Includes tier={tier} className="md:max-lg:col-start-2 md:max-lg:row-span-2 md:max-lg:row-start-2 md:max-lg:border-t-0 md:max-lg:pt-0" />}
+            {variant === 'full' && <Includes tier={tier} />}
         </article>
     );
 }
 
-// A screen reader reads no strikethrough, so the struck list price is named in words too.
-function Price({ amount, listAmount, unit, hidden = false }: { amount: number; listAmount?: number; unit?: string; hidden?: boolean }) {
+const AMOUNT = 'text-[2.5rem] leading-[1.1] font-semibold tracking-[-0.035em] text-foreground';
+
+// One price on show. The digits roll when it changes; a screen reader hears the price once, in words.
+function Price({ amount, listAmount, unit }: { amount: number; listAmount?: number; unit?: string }) {
     const { m, fmt } = useI18n();
+    const text = formatUsd(amount, m.pricing.currency);
 
     return (
-        <p hidden={hidden} className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             {listAmount !== undefined && (
                 <s className="type-body text-muted-foreground tabular-nums">
                     <span className="sr-only">{fmt(m.pricing.regional.listPrice, { price: formatUsd(listAmount, m.pricing.currency) })}</span>
                     <span aria-hidden="true">{formatUsd(listAmount, m.pricing.currency)}</span>
                 </s>
             )}
-            <span className="type-h1 text-foreground tabular-nums">{formatUsd(amount, m.pricing.currency)}</span>
+            <span className="sr-only">{text}</span>
+            <RollingText value={text} className={AMOUNT} />
             {unit && <span className="type-small text-muted-foreground">{unit}</span>}
+        </p>
+    );
+}
+
+// The other cycles' prices, in the HTML but not shown, so the page states each price its structured data offers.
+function OtherPrice({ text, unit }: { text: string; unit?: string }) {
+    return (
+        <p hidden>
+            {text} {unit}
         </p>
     );
 }
@@ -145,72 +153,76 @@ interface PaidPriceProps {
     maxSeats: number | null;
     onSeatsChange: (seats: number) => void;
     regional: Regional | null;
-    /** A code the reader typed replaces every other discount at checkout, unless it is the sale's own. */
     typedCode: string | null;
 }
 
-// Every cycle's price is in the HTML, so the page states each price its structured data offers. Team's total is
-// discounted as a whole, as checkout discounts the order, so it can differ by a cent from the seat price times the seats.
-// Team's yearly price shows as a month's share, billed yearly; Team has no one-time price, so that cycle says so instead.
-// While a dated sale is live, a cycle it covers shows the sale's price under its tag instead of the regional one, unless
-// the regional discount takes more off (`offerFor`): checkout applies one discount, and the card shows the one it will.
+// Team's total is discounted as a whole, as checkout discounts the order, so it can differ by a cent from the seat price
+// times the seats. Team's yearly price shows as a month's share, billed yearly; Team has no one-time price, so that cycle
+// says so instead. While a dated sale is live, a cycle it covers shows the sale's price under its tag instead of the
+// regional one, unless the regional discount takes more off (`offerFor`): checkout applies one discount, and the card
+// shows the one it will.
 function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional, typedCode }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
     const { offer } = useCampaign();
     const id = useId();
     const [bound, setBound] = useState<SeatBound | null>(null);
 
+    const usd = (amount: number): string => formatUsd(amount, m.pricing.currency);
     const charged = (amount: number): number => (regional ? discountedAmount(amount, regional.percent) : amount);
     const units: Partial<Record<BillingCycle, string>> = m.pricing.units[tier];
-    const prices = PRICING.cycles.map((each) => {
+    const shownAmount = (each: BillingCycle): number | undefined => {
         const amount = tierPrice(tier, each);
 
-        if (amount === undefined) {
-            return (
-                <p key={each} hidden={each !== cycle} className="type-body text-muted-foreground">
-                    {m.pricing.tiers.team.subscriptionOnly}
+        return amount === undefined ? undefined : tier === 'team' && each === 'yearly' ? amount / 12 : amount;
+    };
+    const saleFor = (each: BillingCycle) => (typedCode !== null && typedCode.toUpperCase() !== PRICING.campaign?.code ? null : offer(tier, each, regional?.percent ?? null));
+
+    const others = PRICING.cycles
+        .filter((each) => each !== cycle)
+        .map((each) => {
+            const shown = shownAmount(each);
+
+            if (shown === undefined) {
+                return <OtherPrice key={each} text={m.pricing.tiers.team.subscriptionOnly} />;
+            }
+
+            const sale = saleFor(each);
+
+            return <OtherPrice key={each} text={usd(sale ? discountedAmount(shown, sale.percent) : charged(shown))} unit={units[each]} />;
+        });
+
+    const shown = shownAmount(cycle);
+    const sale = shown === undefined ? null : saleFor(cycle);
+
+    const current =
+        shown === undefined ? (
+            <p className="type-body text-muted-foreground">{m.pricing.tiers.team.subscriptionOnly}</p>
+        ) : sale !== null ? (
+            <div className="grid gap-1.5">
+                <p className="type-small flex items-center gap-2 font-medium text-foreground">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                    {fmt(m.campaign.offer.tag, { percent: sale.percent })}
                 </p>
-            );
-        }
-
-        const shown = tier === 'team' && each === 'yearly' ? amount / 12 : amount;
-        const sale = typedCode !== null && typedCode.toUpperCase() !== PRICING.campaign?.code ? null : offer(tier, each, regional?.percent ?? null);
-
-        if (sale !== null) {
-            return (
-                <div key={each} hidden={each !== cycle} className="grid gap-1.5">
-                    <p>
-                        <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-accent-foreground">
-                            {fmt(m.campaign.offer.tag, { percent: sale.percent })}
-                        </span>
-                    </p>
-                    <Price amount={discountedAmount(shown, sale.percent)} listAmount={shown} unit={units[each]} />
-                    {sale.firstChargeOnly && (
-                        <p className="type-caption text-muted-foreground">{fmt(m.campaign.offer.firstYear, { price: formatUsd(shown, m.pricing.currency) })}</p>
-                    )}
-                </div>
-            );
-        }
-
-        return (
-            <Price
-                key={each}
-                amount={charged(shown)}
-                listAmount={regional ? shown : undefined}
-                unit={units[each]}
-                hidden={each !== cycle}
-            />
+                <Price amount={discountedAmount(shown, sale.percent)} listAmount={shown} unit={units[cycle]} />
+                {sale.firstChargeOnly && <p className="type-caption text-muted-foreground">{fmt(m.campaign.offer.firstYear, { price: usd(shown) })}</p>}
+            </div>
+        ) : (
+            <Price amount={charged(shown)} listAmount={regional ? shown : undefined} unit={units[cycle]} />
         );
-    });
 
     if (tier === 'starter' || cycle === 'lifetime') {
-        return <>{prices}</>;
+        return (
+            <>
+                {current}
+                {others}
+            </>
+        );
     }
 
     const { min } = PRICING.tiers.team.seats;
     const max = maxSeats;
     const boundsId = `${id}-bounds`;
-    const total = formatUsd(charged(teamTotal(seats, cycle)), m.pricing.currency);
+    const total = usd(charged(teamTotal(seats, cycle)));
     // A cycle without a maximum can follow one that had it, so a stale `max` bound reads as the plain caption.
     const caption =
         bound === 'min'
@@ -244,7 +256,8 @@ function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional, type
 
     return (
         <div className="grid gap-3">
-            {prices}
+            {current}
+            {others}
             <div
                 className="flex flex-wrap items-center gap-x-3 gap-y-2"
                 onChange={follow}
@@ -269,10 +282,10 @@ function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional, type
                     increaseLabel={fmt(m.controls.stepper.increase, { label: m.pricing.seats.noun })}
                     aria-describedby={boundsId}
                 />
+                <span aria-live="polite" className="type-small font-medium text-foreground tabular-nums">
+                    {plural(m.pricing.seats.total[cycle], seats, { total })}
+                </span>
             </div>
-            <p aria-live="polite" className="type-small min-h-[1.6em] font-medium text-foreground tabular-nums">
-                {plural(m.pricing.seats.total[cycle], seats, { total })}
-            </p>
             <p id={boundsId} aria-live="polite" className={cn('type-caption tabular-nums', bound === 'min' || (bound === 'max' && max !== null) ? 'text-foreground' : 'text-muted-foreground')}>
                 {caption}
             </p>
@@ -280,47 +293,27 @@ function PaidPrice({ tier, cycle, seats, maxSeats, onSeatsChange, regional, type
     );
 }
 
-function IncludesItem({ children }: { children: ReactNode }) {
-    return (
-        <li className="flex items-start gap-2.5">
-            <CheckGlyph className="mt-[0.2em] shrink-0" />
-            <span>{children}</span>
-        </li>
-    );
-}
-
-function Includes({ tier, className }: { tier: TierId; className?: string }) {
-    const { m, plural } = useI18n();
+function Includes({ tier }: { tier: TierId }) {
+    const { m } = useI18n();
     const copy = m.pricing.tiers[tier];
-
-    let items: ReactNode[];
-
-    if (tier === 'free') {
-        items = m.pricing.tiers.free.includes;
-    } else {
-        items = highlightedFeatures(tier).map((feature) => feature.name);
-
-        if (tier === 'team') {
-            items = [...items, m.pricing.prioritySupport.name];
-        }
-    }
-
+    const items =
+        tier === 'free'
+            ? m.pricing.tiers.free.includes
+            : [...highlightedFeatures(tier).map((feature) => feature.name), ...(tier === 'team' ? [m.pricing.prioritySupport.name] : [])];
     const more = tier !== 'free' && paidFeaturesForTier(tier).length > highlightedFeatures(tier).length;
 
     return (
-        <div className={cn('-mx-(--cell-bleed) border-t border-rule px-(--cell-bleed) pt-4', className)}>
+        <div className="-mx-(--cell-bleed) border-t border-rule px-(--cell-bleed) pt-5">
             <p className="text-sm leading-[1.3] font-medium text-foreground">{copy.includesTitle}</p>
             <ul className="type-small mt-3 grid gap-2 text-foreground">
-                {items.map((item, index) => (
-                    <IncludesItem key={index}>{item}</IncludesItem>
+                {items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                        <CheckGlyph className="mt-[0.2em] shrink-0" />
+                        <span>{item}</span>
+                    </li>
                 ))}
             </ul>
-            {tier === 'team' && (
-                <p className="type-caption mt-2 text-muted-foreground">
-                    {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
-                </p>
-            )}
-            {(more || tier === 'team') && (
+            {more && (
                 <p className="mt-3">
                     <a href="#features" className={textLinkClasses('standalone')}>
                         {m.pricing.allFeatures}
