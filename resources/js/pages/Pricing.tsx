@@ -3,16 +3,13 @@ import { usePage } from '@inertiajs/react';
 import CampaignBand from '@/components/campaign/campaign-band';
 import PlanMatrix from '@/components/pricing/plan-matrix';
 import { planOffers } from '@/components/pricing/offers';
+import PricingFaq, { type PricingFaqGroup } from '@/components/pricing/pricing-faq';
 import PricingPlans from '@/components/pricing/pricing-plans';
 import type { PricingContent, PricingPageProps } from '@/components/pricing/types';
 import { useEducationOpen } from '@/hooks/use-regional-pricing';
 import SEOHead from '@/components/seo/seo-head';
-import Callout from '@/components/ui/callout';
 import { accountHref, SUPPORT_EMAIL } from '@/components/site/site-links';
 import Container from '@/components/ui/container';
-import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
-import Disclosure from '@/components/ui/disclosure';
-import FaqList from '@/components/ui/faq-list';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
@@ -26,9 +23,6 @@ import { absoluteUrl, graph, macAppId, macAppNode, webPageNode, type JsonLdGraph
 import LandingLayout from '@/layouts/landing-layout';
 
 type Interpolate = (template: string, values: Record<string, string | number>) => string;
-
-// The post that explains the new prices. It exists in English and Vietnamese; every other page links the English one.
-const PRICE_CHANGE_POST = 'new-prices-2026';
 
 function copyValues(): Record<string, string | number> {
     return {
@@ -118,9 +112,62 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 {text}
             </a>
         ),
+        teams: (text: string) => (
+            <LocaleLink href="/teams" className={textLinkClasses('inline')}>
+                {text}
+            </LocaleLink>
+        ),
+        github: (text: string) => (
+            <TextLink href={FACTS.links.github} external>
+                {text}
+            </TextLink>
+        ),
     };
 
     const rich = (text: string): ReactNode => <Trans text={text} tags={tags} values={values} />;
+
+    // Extra lines some answers carry from data: what each paid feature does when a plan ends, and the comparison links.
+    const extras: Record<string, ReactNode> = {
+        ends: (
+            <ul className="type-small grid gap-1.5">
+                {PAID_FEATURES.map((feature) => (
+                    <li key={feature.id}>
+                        <span className="font-medium text-foreground">{feature.name}</span> {paidFeatures[feature.id]?.lapse}
+                    </li>
+                ))}
+            </ul>
+        ),
+        compare: (
+            <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
+                {comparisons.map((comparison) => (
+                    <li key={comparison.path}>
+                        <LocaleLink href={comparison.path} className={textLinkClasses('inline')}>
+                            {comparison.title}
+                        </LocaleLink>
+                    </li>
+                ))}
+            </ul>
+        ),
+    };
+
+    const hidden = (id: string): boolean => (id === 'education' && !educationOpen) || (id === 'compare' && comparisons.length === 0);
+
+    const groups: PricingFaqGroup[] = Object.entries(content.faq.groups).map(([id, group]) => ({
+        id,
+        title: group.title,
+        items: Object.entries(group.items as Record<string, { question: string; answer: string }>)
+            .filter(([key]) => !hidden(key))
+            .map(([key, item]) => ({
+                id: key,
+                question: item.question,
+                answer: (
+                    <>
+                        <p>{rich(item.answer)}</p>
+                        {extras[key]}
+                    </>
+                ),
+            })),
+    }));
 
     return (
         <LandingLayout>
@@ -146,17 +193,6 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                     <h2 id="plans-title" className="sr-only">
                         {content.plans.title}
                     </h2>
-                    <Callout className="mb-6">
-                        <p>
-                            {content.priceChange.text}{' '}
-                            <TextLink
-                                href={locale === 'vi' ? `/vi/blog/${PRICE_CHANGE_POST}` : `/blog/${PRICE_CHANGE_POST}`}
-                                hrefLang={locale === 'vi' || locale === 'en' ? undefined : 'en'}
-                            >
-                                {content.priceChange.link}
-                            </TextLink>
-                        </p>
-                    </Callout>
                     <PricingPlans variant="full" />
                 </Container>
             </section>
@@ -165,121 +201,9 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 <PlanMatrix details={paidFeatures} />
             </Section>
 
-            {/*
-              * The prose after the table: each topic is a section of its own at the
-              * reading measure, so the page frame's joins separate them, and their
-              * lists run from rail to rail (design-system §4.7).
-              */}
-            <Section id="license" title={content.license.title} width="text">
-                <p className="type-body mb-6 text-foreground">{content.license.linux}</p>
-                <div className="type-body space-y-4 text-foreground">
-                    <DescriptionList className="frame-rows-text">
-                        {Object.entries(content.license.items).map(([key, item]) => (
-                            <DescriptionItem key={key} term={item.term}>
-                                {rich(item.body)}
-                            </DescriptionItem>
-                        ))}
-                    </DescriptionList>
-                    <Disclosure summary={content.license.lapse.summary}>
-                        <p>{content.license.lapse.intro}</p>
-                        <ul className="mt-3 space-y-3">
-                            {PAID_FEATURES.map((feature) => (
-                                <li key={feature.id}>
-                                    <span className="block font-medium">{feature.name}</span>
-                                    <span className="block">{paidFeatures[feature.id]?.lapse}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </Disclosure>
-                    <p>{rich(content.license.terms)}</p>
-                </div>
-            </Section>
-
-            <Section id="billing" title={content.billing.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{rich(content.billing.merchant)}</p>
-                    <p>{rich(content.billing.renewal)}</p>
-                    <p>{rich(content.billing.portal)}</p>
-                </div>
-            </Section>
-
-            <Section id="refunds" title={content.refunds.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{rich(content.refunds.body)}</p>
-                </div>
-            </Section>
-
-            <Section id="team" title={content.team.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{rich(content.team.seats)}</p>
-                    <p>{rich(content.team.invites)}</p>
-                    <p>{rich(content.team.changes)}</p>
-                    <p className="flex flex-wrap gap-x-6 gap-y-2">
-                        <LocaleLink href="/teams" className={textLinkClasses('standalone')}>
-                            {content.team.page}
-                        </LocaleLink>
-                        <TextLink href={account} kind="standalone">
-                            {content.team.account}
-                        </TextLink>
-                    </p>
-                </div>
-            </Section>
-
-            <Section id="at-work" title={content.atWork.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{content.atWork.body}</p>
-                    <p>{content.atWork.ask}</p>
-                </div>
-            </Section>
-
-            {educationOpen && (
-                <Section id="education" title={content.education.title} width="text">
-                    <div className="type-body space-y-4 text-foreground">
-                        <p>{content.education.body}</p>
-                        <p>{rich(content.education.how)}</p>
-                        <p>{content.education.scope}</p>
-                        <p>{rich(content.education.help)}</p>
-                    </div>
-                </Section>
-            )}
-
-            <Section id="open-source" title={content.openSource.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{content.openSource.body}</p>
-                    <p>{content.openSource.agpl}</p>
-                    <p>
-                        <TextLink href={FACTS.links.github} kind="standalone" external>
-                            {content.openSource.github}
-                        </TextLink>
-                    </p>
-                </div>
-            </Section>
-
-            {comparisons.length > 0 && (
-                <Section id="compare" title={content.compare.title} width="text">
-                    <p className="type-body text-foreground">{content.compare.body}</p>
-                    <ul className="type-body mt-4 flex flex-wrap gap-x-6 gap-y-2">
-                        {comparisons.map((comparison) => (
-                            <li key={comparison.path}>
-                                <LocaleLink href={comparison.path} className={textLinkClasses('inline')}>
-                                    {comparison.title}
-                                </LocaleLink>
-                            </li>
-                        ))}
-                    </ul>
-                </Section>
-            )}
-
-            <Section id="faq" title={content.faq.title} width="text">
-                <FaqList
-                    className="frame-rows-text"
-                    items={Object.entries(content.faq.items).map(([key, item]) => ({
-                        id: key,
-                        question: item.question,
-                        answer: <p>{rich(item.answer)}</p>,
-                    }))}
-                />
-                <p className="mt-6">
+            <Section id="faq" title={content.faq.title}>
+                <PricingFaq groups={groups} />
+                <p className="mt-8">
                     <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
                         {content.faq.more}
                         <span aria-hidden="true">→</span>

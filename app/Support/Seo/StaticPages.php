@@ -38,6 +38,14 @@ final class StaticPages implements PageFamily
         'landing.blog.index' => 'blog',
     ];
 
+    /**
+     * Base route name => OG card family, for the pages with a card of their own.
+     */
+    public const OWN_CARDS = [
+        'landing.black-friday' => 'campaign',
+        'landing.pricing' => 'pricing',
+    ];
+
     public function __construct(
         private readonly ContentRepository $content,
     ) {}
@@ -105,8 +113,8 @@ final class StaticPages implements PageFamily
             renderLocales: $render,
             indexableLocales: $indexable,
             sources: $sources,
-            ogFamily: $route === Banner::CAMPAIGN_PAGE ? 'campaign' : 'site',
-            ogSlug: $route === Banner::CAMPAIGN_PAGE ? $name : null,
+            ogFamily: self::OWN_CARDS[$route] ?? 'site',
+            ogSlug: isset(self::OWN_CARDS[$route]) ? $name : null,
         );
     }
 }

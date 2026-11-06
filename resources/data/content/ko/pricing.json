@@ -5,109 +5,102 @@
     },
     "og": {
         "kicker": "요금",
-        "title": "무료로 사용. 유료 플랜은 선택 기능을 추가합니다."
+        "title": "무료로 사용. 유료 플랜은 선택 기능을 추가합니다.",
+        "pro": "Pro",
+        "proPrice": "연 {price}",
+        "team": "Team",
+        "teamPrice": "{price} 좌석당 월, 연간 청구"
     },
     "header": {
         "title": "요금",
-        "lead": "Mac 앱을 체험 기간 없이 무료로 사용하세요. Pro와 Team은 선택 기능을 추가합니다. iPhone 및 iPad 앱은 무료이며 앱 내 구입이 없습니다."
-    },
-    "priceChange": {
-        "text": "TablePro 가격이 새로 바뀌었고 Starter는 이제 Pro입니다. 이전에 구매한 항목은 가격과 조건이 그대로 유지됩니다.",
-        "link": "변경 사항"
+        "lead": "TablePro는 업무용으로도 무료입니다. Pro와 Team은 Mac 앱에 기능을 추가합니다."
     },
     "plans": {
         "title": "플랜"
     },
     "features": {
         "title": "유료 플랜이 추가하는 기능",
-        "lead": "여기에 나열된 기능만 유료 플랜이 필요하며 현재 Mac에 적용됩니다. Team은 Pro를 포함합니다. 지원되는 모든 엔진, AI 도우미, MCP, Safe Mode는 무료입니다."
-    },
-    "license": {
-        "title": "라이선스 작동 방식",
-        "items": {
-            "macs": {
-                "term": "Mac 수",
-                "body": "Pro는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. Team은 좌석 하나로 한 사람이 최대 {deviceLimit}대의 Mac에서 사용하며, 구매자는 좌석 하나를 갖고 시작합니다. 대수 제한은 Pro와 Team을 합쳐 계정 단위로 적용됩니다. iPhone 및 iPad에는 라이선스나 좌석이 필요하지 않습니다."
-            },
-            "activate": {
-                "term": "로그인",
-                "body": "구매 이메일로 Mac 앱에 로그인하세요. 이때 해시된 기기 ID, Mac 이름, 앱 및 macOS 버전이 등록됩니다. 다른 Mac에서 라이선스를 사용하려면 <ui>설정 > 계정</ui> (Settings > Account) 또는 <account>계정</account>의 기기 페이지에서 Mac 한 대를 제거합니다. TablePro 계정을 지원하기 전 버전에서는 <ui>설정 > 라이선스</ui> (Settings > License)에 라이선스 키를 입력합니다."
-            },
-            "checks": {
-                "term": "검증",
-                "body": "TablePro는 시작할 때와 하루에 한 번 서명된 플랜 사본을 갱신합니다. 서버에 연결할 수 없으면 유료 기능은 그 사본이 만료될 때까지, 마지막 갱신 후 최대 {offlineDays}일 동안 작동합니다. 인터넷에 연결하지 않는 Mac에는 <account>계정</account>에서 오프라인 파일을 만드세요. TablePro 계정을 지원하기 전 버전은 {revalidateDays}일마다 확인하며 마지막 확인 성공 후 {graceDays}일 동안 유료 기능을 사용할 수 있습니다."
-            },
-            "ends": {
-                "term": "플랜 종료 시",
-                "body": "구독이 끝나면 유료 기능이 중단됩니다. Free의 모든 기능은 계속 작동합니다."
-            },
-            "oneTime": {
-                "term": "일회성",
-                "body": "일회성 구매는 한 번 결제하며 만료일은 없습니다."
-            }
-        },
-        "lapse": {
-            "summary": "플랜 종료 시 각 유료 기능의 동작",
-            "intro": "각 유료 기능은 다음과 같이 중지됩니다:"
-        },
-        "terms": "라이선스가 허용하는 범위는 <terms>이용약관</terms>에 명시되어 있습니다.",
-        "linux": "Linux는 Mac과 같은 라이선스 모델을 따릅니다. 요금 페이지의 유료 기능은 현재 Mac에서만 사용할 수 있으며 Linux에는 나중에 추가됩니다."
-    },
-    "billing": {
-        "title": "결제",
-        "merchant": "{merchant}가 merchant of record입니다. 결제를 처리하고 청구 주소로 판매세나 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다.",
-        "renewal": "<account>계정</account> 또는 {merchant} 포털에서 취소할 때까지 구독은 갱신됩니다. 결제한 기간까지 이용할 수 있고 끝나기 전에 다시 시작할 수 있습니다. 갱신 실패 시 카드 업데이트 이메일을 보내고 약 3주 동안 결제를 재시도합니다.",
-        "portal": "<portal>{merchant} 고객 포털</portal>에서 청구서, 영수증, 결제 수단을 관리하세요. 구매 이메일로 로그인하거나 계정의 <account>결제</account> 페이지에서 엽니다."
-    },
-    "refunds": {
-        "title": "환불",
-        "body": "구매와 구독 갱신은 각 결제 후 {refundDays}일 이내에 환불할 수 있습니다. <account>계정</account>의 결제 페이지에서 직접 환불하세요. 예외와 라이선스에 미치는 영향은 <link>환불 정책</link>을 확인하세요."
-    },
-    "team": {
-        "title": "Team 플랜",
-        "seats": "Team 플랜은 좌석당 요금이며 최소 {min}좌석부터 제공합니다.",
-        "invites": "소유자와 관리자가 계정의 구성원 페이지에서 이메일로 초대하며 좌석 포함 여부를 정합니다. 좌석이 포함된 초대는 수락되거나 취소될 때까지 그 좌석을 확보하며, 링크는 7일 동안 유효하고 다시 보낼 수 있습니다.",
-        "changes": "소유자가 계정의 결제 페이지에서 구독 좌석을 변경하면 {merchant}가 일할 계산한 차액을 즉시 청구하거나 환급합니다. 일회성 좌석이 있는 팀은 그 좌석을 그대로 유지하며, 좌석을 추가하려면 Team 구독이 필요합니다.",
-        "account": "계정에서 팀 관리",
-        "page": "팀을 위한 TablePro"
-    },
-    "atWork": {
-        "title": "업무에서 TablePro 사용하기",
-        "body": "업무에서 TablePro를 사용하는 것은 회사 규모와 관계없이 무료이며, 지금 무료인 것은 유료로 바뀌지 않습니다.",
-        "ask": "TablePro가 업무의 일부라면 라이선스를 구매해 주세요. 본인용은 Pro, 두 명 이상이면 Team입니다. 조건이 아니라 부탁이며, 라이선스가 다음 릴리스를 만듭니다."
-    },
-    "education": {
-        "title": "학생과 교사",
-        "body": "학생과 교사는 학교나 대학의 이메일 주소로 Pro를 1년 동안 무료로 사용할 수 있습니다.",
-        "how": "그 주소로 <account>계정</account>에 로그인하거나 계정의 이메일 주소를 그 주소로 변경한 다음, 개요 페이지에서 <ui>Pro 무료로 받기</ui>를 선택하고 그 주소로 보내 드리는 코드를 입력하세요. 주소를 계속 사용할 수 있는 동안 같은 방법으로 갱신할 수 있으며, 종료 1주일 전에 이메일로 알려 드립니다.",
-        "scope": "무료 1년은 1인용 Pro이며 Team은 포함되지 않습니다. 이미 유료 Pro 라이선스가 있는 계정은 받을 수 없습니다.",
-        "help": "학교나 대학 주소가 인식되지 않으면 <email>{email}</email>로 문의해 주세요."
-    },
-    "openSource": {
-        "title": "오픈 소스",
-        "body": "TablePro는 유료 기능의 코드를 포함해 AGPLv3로 공개된 오픈 소스입니다. 소스에서 빌드해도 배포 앱과 동일한 방식으로 라이선스를 검증합니다.",
-        "agpl": "AGPL은 회사 규모와 관계없이 업무용으로 사용하는 경우를 포함해 TablePro 실행에 조건을 부과하지 않습니다. 조건은 배포하거나 수정된 버전을 네트워크를 통해 다른 사람에게 제공하는 경우에 적용됩니다.",
-        "github": "GitHub에서 보기"
-    },
-    "compare": {
-        "title": "다른 클라이언트와 비교",
-        "body": "다른 클라이언트와 가격 및 기능을 비교하세요. 각 비교에는 확인 날짜와 출처가 포함됩니다."
+        "lead": "유료 플랜이 필요한 기능은 이것뿐입니다. 나머지는 모두 무료입니다."
     },
     "faq": {
-        "title": "플랜 관련 질문",
+        "title": "질문",
         "more": "플랜 및 라이선스에 관한 더 많은 질문",
-        "items": {
-            "payment-methods": {
-                "question": "어떤 결제 수단을 사용할 수 있나요?",
-                "answer": "{merchant} 결제 화면에서는 신용카드와 체크카드를 사용할 수 있습니다."
+        "groups": {
+            "license": {
+                "title": "라이선스",
+                "items": {
+                    "macs": {
+                        "question": "라이선스 하나로 Mac 몇 대에서 사용할 수 있나요?",
+                        "answer": "Pro는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용하며, Team 좌석도 하나당 같습니다. <ui>설정 > 계정</ui> (Settings > Account) 또는 <account>계정</account>에서 Mac을 해제하세요."
+                    },
+                    "offline": {
+                        "question": "TablePro는 온라인 상태여야 하나요?",
+                        "answer": "매일 플랜을 갱신하며, 오프라인에서도 최대 {offlineDays}일 동안 유료 기능이 작동합니다. 인터넷에 연결하지 않는 Mac은 <account>계정</account>에서 만든 오프라인 파일을 사용합니다."
+                    },
+                    "ends": {
+                        "question": "플랜이 끝나면 어떻게 되나요?",
+                        "answer": "유료 기능은 각각의 방식으로 중단되고, 무료 플랜의 모든 기능은 계속 작동합니다. 일회성 라이선스에는 만료일이 없습니다. <terms>이용약관</terms>을 확인하세요."
+                    },
+                    "lost-key": {
+                        "question": "라이선스 키는 어디에 있나요?",
+                        "answer": "더 이상 필요하지 않습니다. 구매 이메일로 로그인하세요. TablePro 계정을 지원하기 전 버전은 그 이메일의 키를 사용하며 오프라인에서 {graceDays}일 동안 작동합니다."
+                    },
+                    "linux": {
+                        "question": "유료 기능을 Linux에서 사용할 수 있나요?",
+                        "answer": "Linux는 Mac과 같은 라이선스 모델을 따릅니다. 요금 페이지의 유료 기능은 현재 Mac에서만 사용할 수 있으며 Linux에는 나중에 추가됩니다."
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "회사 명의로 청구서를 받을 수 있나요?",
-                "answer": "네. <portal>{merchant} 고객 포털</portal>에서 청구서에 회사명, VAT 번호, 청구 주소를 추가한 뒤 다운로드할 수 있습니다."
+            "billing": {
+                "title": "결제 및 환불",
+                "items": {
+                    "payment-methods": {
+                        "question": "어떻게 결제하나요?",
+                        "answer": "카드로 결제합니다. merchant of record인 {merchant}가 판매세나 VAT를 더하고 영수증을 이메일로 보냅니다."
+                    },
+                    "company-invoice": {
+                        "question": "회사 명의로 청구서를 받을 수 있나요?",
+                        "answer": "네. <portal>{merchant} 고객 포털</portal>에서 회사명, VAT 번호, 주소를 추가한 뒤 다운로드하세요."
+                    },
+                    "renewals": {
+                        "question": "갱신은 어떻게 되나요?",
+                        "answer": "구독은 <account>계정</account>에서 취소할 때까지 갱신되며, 결제한 기간이 끝날 때까지 이용할 수 있습니다. 결제에 실패하면 {merchant}가 약 3주 동안 재시도합니다."
+                    },
+                    "refunds": {
+                        "question": "환불받을 수 있나요?",
+                        "answer": "네, 구매나 갱신 후 {refundDays}일 이내에 <account>계정</account>의 결제 페이지에서 환불할 수 있습니다. <link>환불 정책</link>을 확인하세요."
+                    }
+                }
             },
-            "lost-key": {
-                "question": "라이선스 키는 어디에서 찾나요?",
-                "answer": "더 이상 필요하지 않습니다. 구매 이메일로 Mac 앱에 로그인하면 구매 내역이 그 계정에 있습니다. TablePro 계정을 지원하기 전 버전은 계속 구매 이메일의 키를 사용합니다."
+            "team": {
+                "title": "팀",
+                "items": {
+                    "seats": {
+                        "question": "Team 좌석은 어떻게 작동하나요?",
+                        "answer": "최소 {min}좌석부터입니다. 소유자와 관리자가 사람을 초대하고, 소유자가 결제 페이지에서 좌석을 변경하면 {merchant}가 차액을 일할 계산합니다. <teams>팀을 위한 TablePro</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "무료 및 오픈 소스",
+                "items": {
+                    "at-work": {
+                        "question": "무료 앱을 업무에 사용해도 되나요?",
+                        "answer": "네, 회사 규모와 관계없이 사용할 수 있으며, 지금 무료인 것은 유료로 바뀌지 않습니다. TablePro가 업무의 일부라면 라이선스가 다음 릴리스를 만듭니다."
+                    },
+                    "education": {
+                        "question": "학생과 교사는 Pro를 받을 수 있나요?",
+                        "answer": "네, 학교나 대학 이메일로 1년 동안 무료입니다. <account>계정</account>에서 <ui>Pro 무료로 받기</ui>를 선택하세요. 1인용 Pro이며, 이미 Pro를 구매한 계정은 받을 수 없습니다. 주소가 인식되지 않나요? <email>{email}</email>로 문의하세요."
+                    },
+                    "open-source": {
+                        "question": "TablePro는 오픈 소스인가요?",
+                        "answer": "네, 유료 기능을 포함해 AGPLv3로 공개되어 있습니다. AGPL은 실행에 조건을 부과하지 않습니다. <github>GitHub에서 보기</github>"
+                    },
+                    "compare": {
+                        "question": "TablePro는 다른 클라이언트와 비교하면 어떤가요?",
+                        "answer": "각 비교에는 확인 날짜와 출처가 있습니다:"
+                    }
+                }
             }
         }
     }

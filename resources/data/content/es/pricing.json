@@ -5,109 +5,102 @@
     },
     "og": {
         "kicker": "Precios",
-        "title": "Gratis. Los planes de pago añaden funciones opcionales."
+        "title": "Gratis. Los planes de pago añaden funciones opcionales.",
+        "pro": "Pro",
+        "proPrice": "{price} al año",
+        "team": "Team",
+        "teamPrice": "{price} por puesto, al mes, facturado anualmente"
     },
     "header": {
         "title": "Precios",
-        "lead": "Usa la app para Mac gratis, sin periodo de prueba. Pro y Team añaden funciones opcionales. La app para iPhone y iPad es gratis, sin compras dentro de la app."
-    },
-    "priceChange": {
-        "text": "TablePro tiene precios nuevos y Starter ahora es Pro. Todo lo que compraste antes mantiene su precio y sus condiciones.",
-        "link": "Qué cambió"
+        "lead": "TablePro es gratis, también en el trabajo. Pro y Team añaden funciones a la app para Mac."
     },
     "plans": {
         "title": "Planes"
     },
     "features": {
         "title": "Qué añade un plan de pago",
-        "lead": "Solo las funciones listadas aquí requieren un plan de pago, actualmente en el Mac. Team incluye Pro. Todos los motores compatibles, el asistente de IA, MCP y Safe Mode son gratis."
-    },
-    "license": {
-        "title": "Cómo funcionan las licencias",
-        "items": {
-            "macs": {
-                "term": "Mac",
-                "body": "Pro cubre a una persona en hasta {deviceLimit} Mac. Cada puesto de Team cubre a una persona en hasta {deviceLimit} Mac, y el comprador empieza con uno. El límite es por cuenta, sumando Pro y Team. La app para iPhone y iPad no usa licencia ni puesto."
-            },
-            "activate": {
-                "term": "Inicio de sesión",
-                "body": "Inicia sesión en la app para Mac con el correo de compra; registra el ID de máquina con hash, el nombre del Mac y las versiones de la app y de macOS. Para usar tu licencia en otro Mac, elimina uno en <ui>Settings > Account</ui> o en la página Dispositivos de <account>tu cuenta</account>. Las versiones anteriores a las cuentas de TablePro usan una clave de licencia en <ui>Settings > License</ui>."
-            },
-            "checks": {
-                "term": "Comprobaciones",
-                "body": "TablePro renueva una copia firmada de tu plan al iniciar y una vez al día. Si el servidor no está disponible, las funciones de pago siguen activas hasta que caduca esa copia, como máximo {offlineDays} días después de la última renovación. Para un Mac que nunca se conecta, crea un archivo sin conexión en <account>tu cuenta</account>. Las versiones anteriores a las cuentas de TablePro comprueban cada {revalidateDays} días y mantienen las funciones de pago {graceDays} días desde la última verificación correcta."
-            },
-            "ends": {
-                "term": "Cuando termina un plan",
-                "body": "Al terminar una suscripción se desactivan las funciones de pago. Todo lo incluido en Free sigue funcionando."
-            },
-            "oneTime": {
-                "term": "Pago único",
-                "body": "La compra de pago único se paga una sola vez y no tiene fecha de caducidad."
-            }
-        },
-        "lapse": {
-            "summary": "Qué ocurre con cada función de pago al terminar un plan",
-            "intro": "Cada función de pago se detiene de una forma distinta:"
-        },
-        "terms": "Las <terms>condiciones del servicio</terms> especifican qué permite una licencia.",
-        "linux": "Linux sigue el mismo modelo de licencias que Mac. Las funciones de pago de la página de precios están disponibles solo en Mac por ahora y llegarán a Linux más adelante."
-    },
-    "billing": {
-        "title": "Facturación",
-        "merchant": "{merchant} es el merchant of record. Gestiona el pago, calcula el impuesto sobre ventas o el IVA según tu dirección de facturación y envía recibos y facturas por correo.",
-        "renewal": "Las suscripciones se renuevan hasta que canceles en <account>tu cuenta</account> o en el portal de {merchant}. Conservas el acceso hasta el final del periodo pagado; puedes reanudar antes de que termine. Si falla una renovación, recibirás un correo para actualizar tu tarjeta y se reintentará el pago durante unas tres semanas.",
-        "portal": "Gestiona facturas, recibos y métodos de pago en el <portal>portal de clientes de {merchant}</portal>. Accede allí con el correo de compra, o ábrelo desde <account>Facturación</account> en tu cuenta."
-    },
-    "refunds": {
-        "title": "Reembolsos",
-        "body": "Las compras y renovaciones de suscripciones se pueden reembolsar dentro de los {refundDays} días siguientes a cada cobro. Puedes reembolsarlas tú mismo en Facturación, en <account>tu cuenta</account>. Consulta la <link>política de reembolso</link> para conocer las excepciones y qué pasa con tu licencia."
-    },
-    "team": {
-        "title": "Planes Team",
-        "seats": "El precio de un plan Team es por puesto, con un mínimo de {min} puestos.",
-        "invites": "Los propietarios y administradores invitan por correo desde la página Miembros de su cuenta, con o sin puesto. Una invitación con puesto lo reserva hasta que se acepta o se revoca; su enlace sirve 7 días y se puede reenviar.",
-        "changes": "El propietario cambia los puestos de una suscripción en Facturación, en tu cuenta, y {merchant} cobra o abona la diferencia prorrateada al momento. Un equipo con puestos de pago único los conserva, y los puestos nuevos llegan con una suscripción a Team.",
-        "account": "Gestiona tu equipo en tu cuenta",
-        "page": "TablePro para equipos"
-    },
-    "atWork": {
-        "title": "Usar TablePro en el trabajo",
-        "body": "Usar TablePro en el trabajo es gratis, en empresas de cualquier tamaño, y nada de lo que hoy es gratis pasará a ser de pago.",
-        "ask": "Si TablePro forma parte de tu trabajo, compra una licencia, por favor: Pro para ti, o Team para dos o más personas. Es una petición, no una condición, y las licencias financian la próxima versión."
-    },
-    "education": {
-        "title": "Estudiantes y docentes",
-        "body": "Los estudiantes y docentes obtienen Pro gratis durante un año con una dirección de correo de su escuela o universidad.",
-        "how": "Inicia sesión en <account>tu cuenta</account> con esa dirección, o cambia el correo de tu cuenta a esa dirección, y elige <ui>Obtener Pro gratis</ui> en la página Resumen. Después, introduce el código que te enviamos a esa dirección. Lo renuevas de la misma manera mientras la dirección siga activa, y te enviaremos un correo una semana antes de que termine.",
-        "scope": "El año gratuito es Pro para una persona y no incluye Team. No está disponible para una cuenta que ya tenga una licencia Pro de pago.",
-        "help": "Si no reconocemos la dirección de tu escuela o universidad, escribe a <email>{email}</email>, por favor."
-    },
-    "openSource": {
-        "title": "Código abierto",
-        "body": "TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago. Una compilación desde el código fuente comprueba la licencia igual que la app publicada.",
-        "agpl": "La AGPL no impone condiciones para ejecutar TablePro, tampoco en el trabajo ni en empresas de cualquier tamaño. Sus condiciones se aplican a su distribución y a ofrecer una versión modificada a otros a través de una red.",
-        "github": "Ver en GitHub"
-    },
-    "compare": {
-        "title": "Comparado con otros clientes",
-        "body": "Compara precios y funciones con otros clientes. Cada comparación incluye fecha de verificación y fuentes."
+        "lead": "Solo estas requieren un plan de pago. Todo lo demás es gratis."
     },
     "faq": {
-        "title": "Preguntas sobre los planes",
+        "title": "Preguntas",
         "more": "Más preguntas sobre planes y licencias",
-        "items": {
-            "payment-methods": {
-                "question": "¿Qué métodos de pago puedo usar?",
-                "answer": "El proceso de pago de {merchant} acepta tarjetas de crédito y de débito."
+        "groups": {
+            "license": {
+                "title": "Licencias",
+                "items": {
+                    "macs": {
+                        "question": "¿En cuántos Mac sirve una licencia?",
+                        "answer": "Pro cubre a una persona en hasta {deviceLimit} Mac, igual que cada puesto de Team. Libera un Mac en <ui>Settings > Account</ui> o en <account>tu cuenta</account>."
+                    },
+                    "offline": {
+                        "question": "¿TablePro necesita conexión?",
+                        "answer": "Renueva tu plan a diario y mantiene las funciones de pago sin conexión hasta {offlineDays} días. Un Mac que nunca se conecta usa un archivo sin conexión de <account>tu cuenta</account>."
+                    },
+                    "ends": {
+                        "question": "¿Qué pasa cuando termina un plan?",
+                        "answer": "Las funciones de pago se detienen, cada una a su manera, y todo lo del plan Gratis sigue funcionando. Una licencia de pago único no caduca. Consulta las <terms>condiciones del servicio</terms>."
+                    },
+                    "lost-key": {
+                        "question": "¿Dónde está mi clave de licencia?",
+                        "answer": "Ya no la necesitas: inicia sesión con tu correo de compra. Las versiones anteriores a las cuentas de TablePro toman la clave de ese correo y funcionan {graceDays} días sin conexión."
+                    },
+                    "linux": {
+                        "question": "¿Las funciones de pago funcionan en Linux?",
+                        "answer": "Linux sigue el mismo modelo de licencias que Mac. Las funciones de pago de la página de precios están disponibles solo en Mac por ahora y llegarán a Linux más adelante."
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "¿Puedo obtener una factura para mi empresa?",
-                "answer": "Sí. En el <portal>portal de clientes de {merchant}</portal> puedes añadir a una factura el nombre de la empresa, un número de IVA y una dirección de facturación, y después descargarla."
+            "billing": {
+                "title": "Facturación y reembolsos",
+                "items": {
+                    "payment-methods": {
+                        "question": "¿Cómo puedo pagar?",
+                        "answer": "Con tarjeta. {merchant}, el merchant of record, añade el impuesto sobre ventas o el IVA y envía los recibos por correo."
+                    },
+                    "company-invoice": {
+                        "question": "¿Puedo obtener una factura para mi empresa?",
+                        "answer": "Sí. Añade el nombre de la empresa, el número de IVA y la dirección en el <portal>portal de clientes de {merchant}</portal> y descárgala."
+                    },
+                    "renewals": {
+                        "question": "¿Cómo funcionan las renovaciones?",
+                        "answer": "Las suscripciones se renuevan hasta que canceles en <account>tu cuenta</account>, y conservas el acceso hasta el final del periodo pagado. {merchant} reintenta un pago fallido durante unas tres semanas."
+                    },
+                    "refunds": {
+                        "question": "¿Puedo pedir un reembolso?",
+                        "answer": "Sí, en los {refundDays} días siguientes a una compra o una renovación, desde Facturación en <account>tu cuenta</account>. Consulta la <link>política de reembolso</link>."
+                    }
+                }
             },
-            "lost-key": {
-                "question": "¿Dónde encuentro mi clave de licencia?",
-                "answer": "Ya no la necesitas: inicia sesión en la app para Mac con tu correo de compra y tu compra estará en esa cuenta. Las versiones anteriores a las cuentas de TablePro siguen usando la clave de tu correo de compra."
+            "team": {
+                "title": "Equipos",
+                "items": {
+                    "seats": {
+                        "question": "¿Cómo funcionan los puestos de Team?",
+                        "answer": "Desde {min} puestos. Los propietarios y administradores invitan a personas; el propietario cambia los puestos en Facturación y {merchant} prorratea la diferencia. <teams>TablePro para equipos</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "Gratis y de código abierto",
+                "items": {
+                    "at-work": {
+                        "question": "¿Puedo usar la app gratis en el trabajo?",
+                        "answer": "Sí, en empresas de cualquier tamaño, y nada de lo que hoy es gratis pasará a ser de pago. Si TablePro forma parte de tu trabajo, una licencia financia la próxima versión."
+                    },
+                    "education": {
+                        "question": "¿Los estudiantes y docentes obtienen Pro?",
+                        "answer": "Sí, gratis durante un año con un correo de escuela o universidad: elige <ui>Obtener Pro gratis</ui> en <account>tu cuenta</account>. Es Pro para una persona, no para una cuenta que ya pagó Pro. ¿No reconocemos tu dirección? Escribe a <email>{email}</email>."
+                    },
+                    "open-source": {
+                        "question": "¿TablePro es de código abierto?",
+                        "answer": "Sí, bajo AGPLv3, funciones de pago incluidas. La AGPL no impone condiciones para ejecutarlo. <github>Ver en GitHub</github>"
+                    },
+                    "compare": {
+                        "question": "¿Cómo se compara TablePro con otros clientes?",
+                        "answer": "Cada comparación incluye fecha de verificación y fuentes:"
+                    }
+                }
             }
         }
     }

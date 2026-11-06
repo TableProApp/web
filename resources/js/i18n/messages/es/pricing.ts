@@ -25,16 +25,16 @@ export default {
             "activation": "No necesitas registrarte para usar la app.",
             "includesTitle": "Incluye",
             "includes": [
-                "Conexiones a cualquier motor compatible",
-                "El editor SQL y la cuadrícula de datos",
-                "El asistente de IA y el servidor MCP",
+                "Todos los motores compatibles",
+                "Editor SQL y cuadrícula de datos",
+                "Asistente de IA y servidor MCP",
                 "Safe Mode",
-                "La app para iPhone y iPad"
+                "App para iPhone y iPad"
             ]
         },
         "starter": {
             "name": "Pro",
-            "description": "Añade a la app para Mac funciones como {examples}.",
+            "description": "Las funciones de pago, para una persona.",
             "activation": {
                 "one": "Una persona, {count} Mac.",
                 "other": "Una persona, hasta {count} Mac."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Comparte conexiones y consultas guardadas con tu equipo.",
+            "description": "Pro para todos, y conexiones compartidas.",
             "activation": {
                 "one": "Una persona por puesto, en {count} Mac.",
                 "other": "Una persona por puesto, en hasta {count} Mac."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Para empresas que necesitan más control sobre cómo se usa TablePro.",
-            "price": "Contáctanos",
-            "activation": "Precio por empresa.",
-            "includesTitle": "Cuéntanos qué necesitas, por ejemplo",
-            "includes": [
-                "Inicio de sesión con las cuentas de tu empresa",
-                "Políticas obligatorias en las conexiones del equipo",
-                "Auditoría de escrituras en producción",
-                "Despliegue mediante MDM",
-                "Facturas y órdenes de compra"
-            ],
+            "description": "Inicio de sesión con las cuentas de tu empresa, políticas obligatorias, registro de auditoría, MDM, órdenes de compra.",
             "cta": "Contáctanos"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "Todas las funciones de pago",
     "refund": {
-        "one": "Todos los planes de pago se pueden reembolsar en el plazo de {count} día desde la compra, y cada renovación mensual o anual en el plazo de {count} día desde su cobro. Consulta la <link>política de reembolso</link>.",
-        "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra, y cada renovación mensual o anual en los {count} días siguientes a su cobro. Consulta la <link>política de reembolso</link>."
+        "one": "Reembolsos en el plazo de {count} día desde una compra o una renovación (<link>política de reembolso</link>).",
+        "other": "Reembolsos en los {count} días siguientes a una compra o una renovación (<link>política de reembolso</link>)."
     },
-    "finePrint": "Precios en dólares estadounidenses. {merchant} gestiona el pago y calcula el impuesto sobre ventas o el IVA al pagar, como merchant of record.",
+    "finePrint": "Precios en dólares estadounidenses; {merchant} añade el impuesto sobre ventas o el IVA al pagar.",
     "comparePlans": "Comparar planes",
     "section": {
         "title": "Precios",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Qué incluye cada plan en la app para Mac",
         "feature": "Función",
+        "groups": {
+            "starter": "En Pro y Team",
+            "team": "En Team",
+            "all": "En todos los planes"
+        },
         "macs": "Mac",
         "macsFree": "Sin licencia",
         "macsStarter": {

@@ -5,109 +5,102 @@
     },
     "og": {
         "kicker": "定价",
-        "title": "免费使用。付费方案增加可选功能。"
+        "title": "免费使用。付费方案增加可选功能。",
+        "pro": "Pro",
+        "proPrice": "{price} 每年",
+        "team": "Team",
+        "teamPrice": "{price} 每席位每月，按年付费"
     },
     "header": {
         "title": "定价",
-        "lead": "Mac App 免费使用，没有试用期。Pro 和 Team 提供可选功能。iPhone 和 iPad App 免费，无 App 内购买。"
-    },
-    "priceChange": {
-        "text": "TablePro 价格已更新，Starter 现更名为 Pro。之前购买的一切保持原有价格和条款。",
-        "link": "查看变更"
+        "lead": "TablePro 免费使用，工作中也一样。Pro 和 Team 为 Mac App 增加功能。"
     },
     "plans": {
         "title": "方案"
     },
     "features": {
         "title": "付费方案增加哪些功能",
-        "lead": "仅此处列出的功能需要付费方案，目前适用于 Mac。Team 包含 Pro。所有支持的引擎、AI 助手、MCP 和 Safe Mode 均免费。"
-    },
-    "license": {
-        "title": "许可证如何运作",
-        "items": {
-            "macs": {
-                "term": "Mac 台数",
-                "body": "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用。每个 Team 席位供一人在最多 {deviceLimit} 台 Mac 上使用，购买者自带一个席位。台数上限按账户计算，Pro 和 Team 合并计算。iPhone 和 iPad App 不使用许可证或席位。"
-            },
-            "activate": {
-                "term": "登录",
-                "body": "用购买邮箱登录 Mac App，App 会登记哈希机器 ID、Mac 名称及 App 和 macOS 版本。要在另一台 Mac 上使用许可证，请在 <ui>设置 > 账户</ui> (Settings > Account) 或<account>账户</account>的设备页面移除一台 Mac。支持 TablePro 账户之前的版本则在 <ui>设置 > 许可证</ui> (Settings > License) 输入许可证密钥。"
-            },
-            "checks": {
-                "term": "验证",
-                "body": "TablePro 在启动时和每天更新一次带签名的方案副本。若服务器无法访问，付费功能可继续使用到该副本过期，最长为上次更新后 {offlineDays} 天。对于从不联网的 Mac，请在<account>账户</account>中创建离线文件。支持 TablePro 账户之前的版本每 {revalidateDays} 天检查一次，并在上次成功检查后继续提供付费功能 {graceDays} 天。"
-            },
-            "ends": {
-                "term": "方案结束时",
-                "body": "订阅结束时，付费功能停止。Free 中所有功能继续可用。"
-            },
-            "oneTime": {
-                "term": "一次性购买",
-                "body": "一次性购买只需支付一次，且无到期日。"
-            }
-        },
-        "lapse": {
-            "summary": "方案结束时各付费功能的行为",
-            "intro": "各付费功能会按以下方式停止："
-        },
-        "terms": "<terms>服务条款</terms>说明了许可证允许的使用范围。",
-        "linux": "Linux 采用与 Mac 相同的许可模式。定价页面列出的付费功能目前仅限 Mac，以后将加入 Linux。"
-    },
-    "billing": {
-        "title": "账单",
-        "merchant": "{merchant} 是 merchant of record，处理付款，按账单地址计算销售税或 VAT，并通过邮件发送收据和发票。",
-        "renewal": "订阅持续续费，直到在<account>账户</account>或 {merchant} 门户取消。付费期内继续可用，到期前可恢复。续费失败会发送更新银行卡的邮件，并在约三周内重试付款。",
-        "portal": "在 <portal>{merchant} 客户门户</portal>管理发票、收据和付款方式。用购买邮箱登录，或从账户的<account>账单</account>页面打开。"
-    },
-    "refunds": {
-        "title": "退款",
-        "body": "购买和订阅续费可在每次扣款后 {refundDays} 天内退款。您可以在<account>账户</account>的账单页面自行退款。例外情况及对许可证的影响见<link>退款政策</link>。"
-    },
-    "team": {
-        "title": "Team 方案",
-        "seats": "Team 方案按席位定价，至少 {min} 个席位。",
-        "invites": "所有者和管理员在账户的成员页面通过邮件邀请他人，可附带或不附带席位。附带席位的邀请会保留该席位，直到被接受或撤销；链接 7 天内有效，可重新发送。",
-        "changes": "所有者在账户的账单页面更改订阅席位，{merchant} 会立即按比例收取或退还差额。已有一次性席位的团队会保留这些席位，增加席位需要 Team 订阅。",
-        "account": "在账户中管理团队",
-        "page": "面向团队的 TablePro"
-    },
-    "atWork": {
-        "title": "在工作中使用 TablePro",
-        "body": "在工作中使用 TablePro 是免费的，不论公司规模，现在免费的内容也不会变成付费。",
-        "ask": "如果 TablePro 是您工作的一部分，请购买许可证：个人选 Pro，两人或以上选 Team。这是请求，不是条件，下一个版本靠许可证收入完成。"
-    },
-    "education": {
-        "title": "学生和教师",
-        "body": "学生和教师使用学校或大学的邮箱，可以免费使用 Pro 一年。",
-        "how": "使用该邮箱登录<account>账户</account>，或将账户邮箱更改为该地址，然后在概览页面选择<ui>免费获取 Pro</ui>，并输入我们发送到该地址的代码。只要该地址仍可使用，您可以用同样的方式续期。结束前一周，我们会发邮件提醒您。",
-        "scope": "免费的一年为一人使用的 Pro，不包含 Team。已有付费 Pro 许可证的账户不适用。",
-        "help": "如果我们无法识别您学校或大学的邮箱，请发送邮件至 <email>{email}</email>。"
-    },
-    "openSource": {
-        "title": "开源",
-        "body": "TablePro 采用 AGPLv3 开源，包括付费功能的代码。从源代码构建的版本会以与发行版相同的方式检查许可证。",
-        "agpl": "AGPL 对运行 TablePro 不设条件，包括在任何规模的公司中用于工作。其条件适用于分发软件，以及通过网络向他人提供修改后的版本。",
-        "github": "在 GitHub 查看"
-    },
-    "compare": {
-        "title": "与其他客户端对比",
-        "body": "比较其他客户端的价格和功能。每篇比较都包含核查日期和来源。"
+        "lead": "只有这些功能需要付费方案，其余全部免费。"
     },
     "faq": {
-        "title": "方案常见问题",
+        "title": "常见问题",
         "more": "更多方案和许可证问题",
-        "items": {
-            "payment-methods": {
-                "question": "可以使用哪些付款方式？",
-                "answer": "{merchant} 的结账页面支持信用卡和借记卡。"
+        "groups": {
+            "license": {
+                "title": "许可证",
+                "items": {
+                    "macs": {
+                        "question": "一个许可证可以用于几台 Mac？",
+                        "answer": "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用，每个 Team 席位也一样。可在 <ui>设置 > 账户</ui> (Settings > Account) 或<account>账户</account>中释放一台 Mac。"
+                    },
+                    "offline": {
+                        "question": "TablePro 需要联网吗？",
+                        "answer": "它每天更新一次方案，离线时付费功能最多可继续使用 {offlineDays} 天。从不联网的 Mac 可使用在<account>账户</account>中创建的离线文件。"
+                    },
+                    "ends": {
+                        "question": "方案结束后会怎样？",
+                        "answer": "付费功能会各自以不同方式停止，免费版的所有功能继续可用。一次性许可证没有到期日。详见<terms>服务条款</terms>。"
+                    },
+                    "lost-key": {
+                        "question": "许可证密钥在哪里？",
+                        "answer": "您不再需要它：用购买邮箱登录即可。支持 TablePro 账户之前的版本使用该邮件中的密钥，可离线使用 {graceDays} 天。"
+                    },
+                    "linux": {
+                        "question": "付费功能可以在 Linux 上使用吗？",
+                        "answer": "Linux 采用与 Mac 相同的许可模式。定价页面列出的付费功能目前仅限 Mac，以后将加入 Linux。"
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "可以开具公司抬头的发票吗？",
-                "answer": "可以。在 <portal>{merchant} 客户门户</portal>中，您可以为发票添加公司名称、增值税号和账单地址，然后下载。"
+            "billing": {
+                "title": "账单与退款",
+                "items": {
+                    "payment-methods": {
+                        "question": "如何付款？",
+                        "answer": "使用银行卡付款。{merchant} 作为 merchant of record 加收销售税或 VAT，并通过邮件发送收据。"
+                    },
+                    "company-invoice": {
+                        "question": "可以开具公司抬头的发票吗？",
+                        "answer": "可以。在 <portal>{merchant} 客户门户</portal>中添加公司名称、增值税号和地址，然后下载。"
+                    },
+                    "renewals": {
+                        "question": "如何续费？",
+                        "answer": "订阅会持续续费，直到您在<account>账户</account>中取消，付费期结束前仍可使用。付款失败时，{merchant} 会在约三周内重试。"
+                    },
+                    "refunds": {
+                        "question": "可以退款吗？",
+                        "answer": "可以，在购买或续费后 {refundDays} 天内，从<account>账户</account>的账单页面退款。详见<link>退款政策</link>。"
+                    }
+                }
             },
-            "lost-key": {
-                "question": "在哪里找到许可证密钥？",
-                "answer": "您不再需要它：用购买邮箱登录 Mac App，您的购买就在该账户中。支持 TablePro 账户之前的版本仍使用购买邮件中的密钥。"
+            "team": {
+                "title": "团队",
+                "items": {
+                    "seats": {
+                        "question": "Team 席位如何运作？",
+                        "answer": "至少 {min} 个席位。所有者和管理员邀请成员；所有者在账单页面更改席位，{merchant} 按比例计算差额。<teams>面向团队的 TablePro</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "免费与开源",
+                "items": {
+                    "at-work": {
+                        "question": "可以在工作中使用免费 App 吗？",
+                        "answer": "可以，不论公司规模，现在免费的内容也不会变成付费。如果 TablePro 是您工作的一部分，许可证收入将用于下一个版本。"
+                    },
+                    "education": {
+                        "question": "学生和教师可以获得 Pro 吗？",
+                        "answer": "可以，使用学校或大学邮箱可免费使用一年：在<account>账户</account>中选择<ui>免费获取 Pro</ui>。这是一人使用的 Pro，不适用于已付费购买 Pro 的账户。邮箱无法识别？请发送邮件至 <email>{email}</email>。"
+                    },
+                    "open-source": {
+                        "question": "TablePro 是开源的吗？",
+                        "answer": "是的，采用 AGPLv3，包括付费功能。AGPL 对运行它不设任何条件。<github>在 GitHub 查看</github>"
+                    },
+                    "compare": {
+                        "question": "TablePro 与其他客户端相比如何？",
+                        "answer": "每篇比较都包含核查日期和来源："
+                    }
+                }
             }
         }
     }

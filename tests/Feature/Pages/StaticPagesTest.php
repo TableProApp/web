@@ -152,6 +152,43 @@ it('server-renders neither the education section nor its FAQ entry', function (s
         ->and($faq->getElementById('students-teachers'))->toBeNull();
 })->with(['en', 'vi'])->group('ssr');
 
+// The sections these anchors named became questions of one FAQ; sites and posts still link them.
+it('keeps every pricing anchor other pages link to, and states each cycle\'s price', function (string $locale): void {
+    $html = ssrHtml(LocalizedUrl::path('/pricing', $locale));
+    $pricing = HTMLDocument::createFromString($html, LIBXML_NOERROR);
+    $prices = staticPageData('pricing.json')['tiers'];
+
+    foreach (['plans', 'features', 'faq', 'license', 'billing', 'refunds', 'team', 'at-work', 'open-source'] as $id) {
+        expect($pricing->getElementById($id))->not->toBeNull("#{$id} is gone from /pricing");
+    }
+
+    expect($pricing->getElementById('refunds')->tagName)->toBe('DETAILS')
+        ->and($html)->not->toContain('new-prices-2026');
+
+    foreach ([$prices['starter']['prices']['monthly'], $prices['starter']['prices']['yearly'], $prices['starter']['prices']['lifetime'], $prices['team']['prices']['monthly']] as $amount) {
+        expect($pricing->getElementById('plans')->textContent)->toContain(str_replace('.', $locale === 'en' ? '.' : ',', (string) $amount));
+    }
+})->with(['en', 'vi'])->group('ssr');
+
+it('sells Team on /teams with its seats, monthly or yearly', function (): void {
+    $teams = HTMLDocument::createFromString(ssrHtml('/teams'), LIBXML_NOERROR);
+    $price = $teams->getElementById('price');
+
+    expect($price->querySelectorAll('input[type=radio]')->length)->toBe(2)
+        ->and($price->querySelector('input[inputmode=numeric], input[type=number]'))->not->toBeNull()
+        ->and($price->textContent)->toContain('Get Team');
+})->group('ssr');
+
+it('prints prices on the pricing card the way the page does', function (string $locale): void {
+    $catalog = (string) file_get_contents(resource_path("js/i18n/messages/{$locale}/pricing.ts"));
+
+    preg_match('/pattern["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $pattern);
+    preg_match('/free["\']?\s*:\s*\{\s*["\']?name["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $free);
+
+    expect(trans('og.currency', [], $locale))->toBe($pattern[1])
+        ->and(trans('og.free', [], $locale))->toBe($free[1]);
+})->with('locales');
+
 it('lists the engines whose driver ships with the Mac app from engines.json on the FAQ', function (): void {
     $bundled = staticPagePublishedEngines()->where('distribution', 'bundled')->pluck('name')->values()->all();
 
