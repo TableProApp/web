@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "Apa itu TablePro?",
                     "answer": [
-                        "Klien database native dan open source. Di Mac, kueri dan edit {featuredEngines} dan lainnya serta gunakan skema. App iPhone dan iPad menawarkan alat database yang lebih terbatas.",
+                        "Klien database native dan open source. Di Mac, kueri dan edit {featuredEngines} dan lainnya serta gunakan skema. App iPhone dan iPad serta versi beta Linux menawarkan alat database yang lebih terbatas.",
                         "Lihat semua <features>fitur</features>."
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "Apa arti “native” di sini?",
                     "answer": [
-                        "TablePro menggunakan antarmuka asli dan driver database, tanpa Electron atau JDBC. Aplikasi saat ini menggunakan Swift: AppKit dan SwiftUI di Mac, dan fitur perangkat seperti Face ID dan Pintasan di iPhone dan iPad."
+                        "TablePro menggunakan antarmuka asli dan driver database, tanpa Electron atau JDBC. Aplikasi Mac, iPhone, dan iPad menggunakan Swift: AppKit dan SwiftUI di Mac, dan fitur perangkat seperti Face ID dan Pintasan di iPhone dan iPad. Aplikasi Linux menggunakan Rust, GTK 4, dan libadwaita."
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "Apakah TablePro gratis?",
                     "answer": [
                         "Ya. Aplikasi Mac tidak memiliki masa percobaan atau batas waktu. Semua mesin yang didukung, AI, MCP dan Safe Mode gratis. Pro dan Team menambahkan fitur pada <pricing>halaman harga</pricing>.",
-                        "Aplikasi iPhone dan iPad gratis, tanpa lisensi atau pembelian dalam aplikasi."
+                        "Aplikasi iPhone dan iPad gratis, tanpa lisensi atau pembelian dalam aplikasi. Aplikasi Linux gratis digunakan, dan untuk saat ini fitur berbayar ada di Mac."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "Apakah TablePro bersumber terbuka?",
                     "answer": [
-                        "Ya. Kedua aplikasi, termasuk kode fitur berbayar, berada di bawah AGPLv3 dalam satu repositori <source>GitHub</source>. Pembuatan dari sumber masih memeriksa lisensi untuk fitur berbayar."
+                        "Ya. Aplikasi-aplikasinya, termasuk kode fitur berbayar, berada di bawah AGPLv3 dalam satu repositori <source>GitHub</source>. Pembuatan dari sumber masih memeriksa lisensi untuk fitur berbayar."
                     ]
                 },
                 {
@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "Apakah ada versi Windows atau Linux?",
                     "answer": [
-                        "Tidak. Tidak ada versi Windows. Prototipe Linux ada, tetapi tidak ada yang dapat diinstal dan tidak ada tanggal rilis."
+                        "Untuk Linux, ya: <downloadLinux>TablePro untuk Linux</downloadLinux> tersedia sebagai versi beta, dengan <downloadPlatforms>engine dan fitur</downloadPlatforms> tersendiri. Windows tidak tersedia, dan tidak ada tanggal rilis."
                     ]
                 },
                 {
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "Di mana kata sandi disimpan?",
                     "answer": [
-                        "Kata sandi yang disimpan tetap berada di Rantai Kunci. Di Mac, Anda dapat menyelesaikannya dari file, variabel lingkungan, perintah shell, 1Password, Vault, atau AWS Secrets Manager.",
+                        "Kata sandi yang disimpan tetap berada di Rantai Kunci, atau di Linux dalam keyring Secret Service seperti GNOME Keyring atau KWallet. Di Mac, Anda dapat menyelesaikannya dari file, variabel lingkungan, perintah shell, 1Password, Vault, atau AWS Secrets Manager.",
                         "Sinkronisasi kata sandi adalah pilihan terpisah: aktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di iPhone dan iPad. Ini menggunakan iCloud Keychain."
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "Berapa Mac yang dicakup lisensi?",
+                    "question": "Berapa komputer yang dicakup lisensi?",
                     "answer": [
-                        "Pro mencakup satu orang pada maksimal {deviceLimit} Mac. Team menyediakan minimal {teamMinSeats} seat, dan setiap seat mencakup satu orang pada maksimal {deviceLimit} Mac. Batas ini berlaku per akun, gabungan Pro dan Team. iPhone dan iPad tidak menggunakan seat.",
-                        "Untuk memakai lisensi di Mac lain, hapus satu Mac di <ui>Settings > Account</ui> atau di halaman Perangkat pada <account>akun Anda</account>. Sementara itu, Mac lain tersebut tetap memakai fitur gratis."
+                        "Pro mencakup satu orang pada maksimal {deviceLimit} komputer, Mac atau Linux. Team menyediakan minimal {teamMinSeats} seat, dan setiap seat mencakup satu orang pada maksimal {deviceLimit} komputer. Batas ini berlaku per akun, gabungan Pro dan Team. Untuk saat ini fitur berbayar ada di Mac, tetapi komputer Linux tempat Anda masuk tetap dihitung. iPhone dan iPad tidak menggunakan seat.",
+                        "Untuk memakai lisensi di komputer lain, hapus satu komputer di halaman Perangkat pada <account>akun Anda</account> atau di <ui>Settings > Account</ui> di Mac. Sementara itu, komputer lain tersebut tetap memakai fitur gratis."
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "Apa yang dikirim aplikasi ke TablePro?",
                     "answer": [
-                        "Aplikasi Mac membagikan data penggunaan secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Mulai versi yang menghadirkan akun TablePro, data itu langsung dikirim ke PostHog: peristiwa aplikasi beserta model Mac, versi aplikasi dan macOS, dan jenis database, dengan ID acak sebelum Anda masuk dan ID akun Anda setelahnya. Versi sebelum akun TablePro mengirim laporan harian dengan ID mesin yang di-hash melalui server kami sebagai gantinya. Keduanya tidak pernah mencakup nama host, nama pengguna, kata sandi, kueri, atau baris.",
+                        "Aplikasi Mac membagikan data penggunaan secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Mulai versi yang menghadirkan akun TablePro, data itu langsung dikirim ke PostHog: peristiwa aplikasi beserta model Mac, versi aplikasi dan macOS, dan jenis database, dengan ID acak sebelum Anda masuk dan ID akun Anda setelahnya. Versi sebelum akun TablePro mengirim laporan harian dengan ID mesin yang di-hash melalui server kami sebagai gantinya. Keduanya tidak pernah mencakup nama host, nama pengguna, kata sandi, kueri, atau baris. Aplikasi Linux juga membagikan data penggunaan secara default, tanpa detail tersebut; nonaktifkan di preferensinya.",
                         "Setelah Anda masuk, aplikasi Mac mendaftarkan Mac ke akun Anda dengan ID mesin, nama, serta versi app dan macOS, lalu memperbarui paket Anda sekali sehari. Versi sebelum akun TablePro mengirimkan kunci lisensi beserta data tersebut setiap {revalidateDays} hari. Laporan iPhone dan iPad bersifat opsional. Team Library menerima pengaturan dan SQL tersimpan yang Anda publikasikan. Lihat <privacy>kebijakan privasi</privacy>, termasuk pencatatan IP."
                     ]
                 },

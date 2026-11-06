@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "Le funzionalità a pagamento, per una persona.",
             "activation": {
-                "one": "Una persona, {count} Mac.",
-                "other": "Una persona, fino a {count} Mac."
+                "one": "Una persona, {count} computer, Mac o Linux.",
+                "other": "Una persona, fino a {count} computer, Mac o Linux."
             },
             "includesTitle": "Tutto il piano Gratuito, più",
             "cta": "Acquista Pro"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "Pro per tutti, e connessioni condivise.",
             "activation": {
-                "one": "Una persona per posto, {count} Mac.",
-                "other": "Una persona per posto, fino a {count} Mac."
+                "one": "Una persona per posto, {count} computer, Mac o Linux.",
+                "other": "Una persona per posto, fino a {count} computer, Mac o Linux."
             },
             "includesTitle": "Tutto il piano Pro, più",
             "cta": "Acquista Team",
@@ -116,15 +116,15 @@ export default {
             "team": "In Team",
             "all": "In ogni piano"
         },
-        "macs": "Mac",
+        "macs": "Computer",
         "macsFree": "Nessuna licenza",
         "macsStarter": {
-            "one": "{count}",
-            "other": "Fino a {count}"
+            "one": "{count}, Mac o Linux",
+            "other": "Fino a {count}, Mac o Linux"
         },
         "macsTeam": {
-            "one": "{count} per posto",
-            "other": "Fino a {count} per posto"
+            "one": "{count} per posto, Mac o Linux",
+            "other": "Fino a {count} per posto, Mac o Linux"
         },
         "everythingElse": "Tutto il resto dell’app",
         "everythingElseDetail": "Ogni motore supportato, l’editor SQL, l’assistente IA, il server MCP e Safe Mode",

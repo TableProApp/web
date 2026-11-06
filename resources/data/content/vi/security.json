@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Các mức Safe Mode",
-                    "text": "Mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi. Tổ chức của bạn có thể áp một mức tối thiểu cho các máy Mac qua configuration profile. Trên iPhone và iPad, các mức là {iosSafeModeLevels}."
+                    "text": "Trên Mac, mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi. Tổ chức của bạn có thể áp một mức tối thiểu cho các máy Mac qua configuration profile. Trên iPhone và iPad, các mức là {iosSafeModeLevels}, còn trên Linux là {linuxSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Chỉ chạy cục bộ",
-                    "text": "MCP server chỉ có trong ứng dụng cho Mac, và chỉ chạy khi bạn bật hoặc khi một client bạn đã cấu hình khởi động nó. Server lắng nghe trên {mcpHost}, không có chế độ truy cập từ xa, và client không bao giờ thấy mật khẩu."
+                    "text": "Trong ứng dụng cho Mac, MCP server chỉ chạy khi bạn bật hoặc khi một client bạn đã cấu hình khởi động nó. Server lắng nghe trên {mcpHost}, không có chế độ truy cập từ xa, và client không bao giờ thấy mật khẩu."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "Mã nguồn công khai",
-                    "text": "Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Những gì trang này mô tả đều đọc được trong kho mã nguồn, cùng các script ký và notarize từng bản phát hành, và bạn có thể tự build ứng dụng cho Mac."
+                    "text": "Các ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Những gì trang này mô tả đều đọc được trong kho mã nguồn, cùng các script ký và notarize từng bản phát hành, và bạn có thể tự build ứng dụng cho Mac."
                 }
             ],
             "limits": [],

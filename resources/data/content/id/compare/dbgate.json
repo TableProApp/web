@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs DbGate: edisi dan platform yang didukung",
-        "description": "DbGate adalah klien sumber terbuka untuk Windows, macOS, Linux, dan web, dengan edisi Premium berbayar. TablePro bersumber terbuka dan native di Mac."
+        "description": "DbGate adalah klien sumber terbuka untuk Windows, macOS, Linux, dan web, dengan edisi Premium berbayar. TablePro bersumber terbuka dan native di Mac dan Linux."
     },
     "og": {
         "kicker": "Perbandingan",
@@ -18,7 +18,7 @@
             "Pencadangan gratis melalui alat dump engine yang didukung."
         ],
         "competitor": [
-            "Klien untuk Windows, Linux, atau server web.",
+            "Klien untuk Windows atau server web.",
             "Koneksi Firebird, Azure Cosmos DB, atau Firestore.",
             "Perancang kueri visual dalam {cells.queryDesigner.edition}, atau sinkronisasi DbGate Cloud."
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. DbGate dibangun di atas {technology}. Keduanya menyediakan build untuk Mac Apple silicon dan Intel.",
+                "text": "Aplikasi Mac TablePro ditulis dalam Swift, dengan driver database native. DbGate dibangun di atas {technology}. Keduanya menyediakan build untuk Mac Apple silicon dan Intel.",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "Apakah ada versi web TablePro?",
-            "answer": "Tidak. TablePro berjalan di Mac, iPhone, dan iPad Anda. Jika tim Anda membutuhkan klien database di peramban, DbGate juga berjalan sebagai aplikasi web.",
+            "answer": "Tidak. TablePro adalah aplikasi untuk Mac, iPhone, iPad, dan Linux. Jika tim Anda membutuhkan klien database di peramban, DbGate juga berjalan sebagai aplikasi web.",
             "href": null
         },
         {

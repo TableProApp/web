@@ -1,34 +1,26 @@
+import type { LinuxSummary } from '@/components/download/types';
 import Card from '@/components/ui/card';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { connectWith, iosStatus, shownPort, versionFloorText } from './format';
+import { connectWith, iosStatus, linuxStatus, shownPort, versionFloorText } from './format';
 import type { DatabaseLabels, EngineDetail } from './types';
 
 interface FactsCardProps {
     engine: EngineDetail;
     labels: DatabaseLabels;
+    // Null while Linux is not released, which leaves its row out.
+    linux: LinuxSummary | null;
     className?: string;
 }
 
-/**
- * The "At a glance" card beside an engine page's header (design-system §8.4).
- * Every row is data: the query language, where the driver comes from and what
- * shares it, how a connection reaches the engine, the default port, the
- * version floor, the embedded engine version and the iPhone and iPad status.
- * A row with nothing to say is left out.
- *
- * The version floor says "enforced" only where the app refuses an older
- * server; a floor that comes from the docs is the bare version, and "no
- * minimum" is shown only where the docs say so. The site never says "tested":
- * there is no test evidence for any engine version.
- *
- * A term is a third of a narrow card, too narrow for "Abfragesprache" or
- * "Puerto predeterminado", so terms hyphenate in the page's language.
- */
-export default function FactsCard({ engine, labels, className }: FactsCardProps) {
+// "Enforced" only where the app refuses an older server, and "tested" only for the Linux app, whose CI runs each
+// driver's suite against the releases engines.json lists. A term is a third of a narrow card, too narrow for
+// "Abfragesprache", so terms hyphenate in the page's language.
+export default function FactsCard({ engine, labels, linux, className }: FactsCardProps) {
     const { m, fmt } = useI18n();
     const facts = labels.facts;
+    const onLinux = linuxStatus(engine);
 
     return (
         <Card title={facts.title} titleAs="h2" className={className}>
@@ -57,6 +49,11 @@ export default function FactsCard({ engine, labels, className }: FactsCardProps)
                     </DescriptionItem>
                 )}
                 <DescriptionItem term={facts.ios}>{labels.ios[iosStatus(engine)]}</DescriptionItem>
+                {linux !== null && (
+                    <DescriptionItem term={joinList(linux.deviceNames, m.common.list)}>
+                        {onLinux === 'tested' && engine.linux.tested.length > 0 ? fmt(labels.linux.versions, { versions: engine.linux.tested.join(', ') }) : labels.linux[onLinux]}
+                    </DescriptionItem>
+                )}
             </DescriptionList>
         </Card>
     );

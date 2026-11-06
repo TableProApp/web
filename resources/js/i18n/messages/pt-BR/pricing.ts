@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "Os recursos pagos, para uma pessoa.",
             "activation": {
-                "one": "Uma pessoa, {count} Mac.",
-                "other": "Uma pessoa, até {count} Macs."
+                "one": "Uma pessoa, {count} computador, Mac ou Linux.",
+                "other": "Uma pessoa, até {count} computadores, Mac ou Linux."
             },
             "includesTitle": "Tudo do plano Grátis, mais",
             "cta": "Comprar Pro"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "Pro para todos, e conexões compartilhadas.",
             "activation": {
-                "one": "Uma pessoa por vaga, {count} Mac.",
-                "other": "Uma pessoa por vaga, em até {count} Macs."
+                "one": "Uma pessoa por vaga, {count} computador, Mac ou Linux.",
+                "other": "Uma pessoa por vaga, em até {count} computadores, Mac ou Linux."
             },
             "includesTitle": "Tudo do Pro, mais",
             "cta": "Comprar Team",
@@ -116,15 +116,15 @@ export default {
             "team": "No Team",
             "all": "Em todos os planos"
         },
-        "macs": "Macs",
+        "macs": "Computadores",
         "macsFree": "Sem licença",
         "macsStarter": {
-            "one": "{count}",
-            "other": "Até {count}"
+            "one": "{count}, Mac ou Linux",
+            "other": "Até {count}, Mac ou Linux"
         },
         "macsTeam": {
-            "one": "{count} por vaga",
-            "other": "Até {count} por vaga"
+            "one": "{count} por vaga, Mac ou Linux",
+            "other": "Até {count} por vaga, Mac ou Linux"
         },
         "everythingElse": "Todo o restante do app",
         "everythingElseDetail": "Todos os mecanismos compatíveis, o editor SQL, o assistente de IA, o servidor MCP e o Safe Mode",

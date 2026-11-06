@@ -1,23 +1,28 @@
 // Nothing about TablePro is typed into a compare page or comparisons.json (architecture §1.8). The featured engines come from the server so the bundle skips engines.json.
+import { linuxRequirement } from '@/components/download/linux-text';
 import type { Messages } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { connectionImportFor, FACTS } from '@/lib/data/facts';
 import { examplesText, PAID_FEATURES } from '@/lib/data/paid-features';
-import { deviceList, iosPlatform, isReleased, macPlatform, PLATFORMS, requirementText } from '@/lib/data/platforms';
+import { iosPlatform, isReleased, macPlatform, PLATFORMS, requirementText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import type { TableProFacts } from './model';
+import type { TableProProp } from './types';
 
-export function tableproFacts(productId: string | null, featuredEngines: string[], m: Messages): TableProFacts {
+// Linux comes from the server's prop, like the release versions, so the page and its tests read the same platforms.json.
+export function tableproFacts(productId: string | null, tablepro: Pick<TableProProp, 'featuredEngines' | 'linux'>, m: Messages): TableProFacts {
     const mac = macPlatform();
     const ios = PLATFORMS.platforms.some((platform) => platform.id === 'ios' && isReleased(platform)) ? iosPlatform() : null;
     const sync = PAID_FEATURES.find((feature) => feature.id === 'icloud-sync') ?? null;
     const importer = productId === null ? null : connectionImportFor(productId);
+    const { featuredEngines, linux } = tablepro;
 
     return {
         // Joined as the homepage and JSON-LD join them.
-        devices: deviceList(m.common.list),
+        devices: joinList([...mac.deviceNames, ...(ios?.deviceNames ?? []), ...(linux?.deviceNames ?? [])], m.common.list),
         macRequirement: requirementText(mac, m.platforms),
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
+        linuxRequirement: linux !== null ? linuxRequirement(linux, m) : null,
         macArchitectures: mac.architectures,
         macUniversal: mac.universalBinary,
         starter: { ...PRICING.tiers.starter.prices, activations: PRICING.license.deviceLimit },

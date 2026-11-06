@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "1 人で使う有料機能。",
             "activation": {
-                "one": "1 人、Mac {count} 台。",
-                "other": "1 人、Mac 最大 {count} 台。"
+                "one": "1 人、Mac または Linux のコンピューター {count} 台。",
+                "other": "1 人、Mac または Linux のコンピューター最大 {count} 台。"
             },
             "includesTitle": "無料プランの全機能に加えて",
             "cta": "Pro を購入"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "全員に Pro、さらに接続の共有。",
             "activation": {
-                "one": "1 シートにつき 1 人、Mac {count} 台。",
-                "other": "1 シートにつき 1 人、Mac 最大 {count} 台。"
+                "one": "1 シートにつき 1 人、Mac または Linux のコンピューター {count} 台。",
+                "other": "1 シートにつき 1 人、Mac または Linux のコンピューター最大 {count} 台。"
             },
             "includesTitle": "Pro の全機能に加えて",
             "cta": "Team を購入",
@@ -116,15 +116,15 @@ export default {
             "team": "Team に含まれる",
             "all": "すべてのプランに含まれる"
         },
-        "macs": "Mac 台数",
+        "macs": "コンピューター台数",
         "macsFree": "ライセンス不要",
         "macsStarter": {
-            "one": "{count}",
-            "other": "最大 {count}"
+            "one": "{count} 台（Mac または Linux）",
+            "other": "最大 {count} 台（Mac または Linux）"
         },
         "macsTeam": {
-            "one": "1 シートにつき {count} 台",
-            "other": "1 シートにつき最大 {count} 台"
+            "one": "1 シートにつき {count} 台（Mac または Linux）",
+            "other": "1 シートにつき最大 {count} 台（Mac または Linux）"
         },
         "everythingElse": "アプリのその他すべての機能",
         "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",

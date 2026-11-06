@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode のレベル",
-                    "text": "各接続には Safe Mode のレベル {macSafeModeLevels} があります。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求め、Full 系は読み取り前も確認し、Read-Only は書き込みを拒否します。組織は構成プロファイルで、自組織の Mac に最低レベルを強制できます。iPhone・iPad のレベルは {iosSafeModeLevels} です。"
+                    "text": "Mac では、各接続に Safe Mode のレベル {macSafeModeLevels} があります。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求め、Full 系は読み取り前も確認し、Read-Only は書き込みを拒否します。組織は構成プロファイルで、自組織の Mac に最低レベルを強制できます。iPhone・iPad のレベルは {iosSafeModeLevels}、Linux では {linuxSafeModeLevels} です。"
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "ローカル専用",
-                    "text": "MCP サーバーは Mac アプリだけにあり、有効にするか、設定したクライアントが起動するまでオフです。{mcpHost} で待ち受け、リモートモードはなく、クライアントがパスワードを見ることはありません。"
+                    "text": "Mac アプリの MCP サーバーは、有効にするか、設定したクライアントが起動するまでオフです。{mcpHost} で待ち受け、リモートモードはなく、クライアントがパスワードを見ることはありません。"
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "コードは公開",
-                    "text": "両アプリは有料機能のコードも含め、AGPLv3 のオープンソースです。このページの内容は、各リリースに署名して公証するスクリプトとともにリポジトリで確認でき、Mac アプリを自分でビルドすることもできます。"
+                    "text": "各アプリは有料機能のコードも含め、AGPLv3 のオープンソースです。このページの内容は、各リリースに署名して公証するスクリプトとともにリポジトリで確認でき、Mac アプリを自分でビルドすることもできます。"
                 }
             ],
             "limits": [],

@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import en from '../../resources/js/i18n/messages/en/index.ts';
-import { distributionFloor, methodLabel } from '../../resources/js/components/download/linux-text.ts';
+import vi from '../../resources/js/i18n/messages/vi/index.ts';
+import { distributionFloor, distributionsText, linuxRequirement, methodLabel } from '../../resources/js/components/download/linux-text.ts';
 import type { LinuxProp } from '../../resources/js/components/download/types.ts';
 import platforms from '../../resources/data/platforms.json' with { type: 'json' };
 
@@ -22,4 +23,13 @@ test('each install method is labelled by the distribution it serves', () => {
     assert.equal(methodLabel('ppa', linux, strings), `Ubuntu ${linux.distributions[0].versions[0]}+`);
     assert.equal(methodLabel('copr', linux, strings), `Fedora ${linux.distributions[1].versions[0]}+`);
     assert.equal(methodLabel('flatpak', linux, strings), strings.flatpak);
+});
+
+test('the requirement names every distribution in data order, and says beta while the channel is', () => {
+    const floors = linux.distributions.map((distribution) => distributionFloor(distribution, strings));
+
+    assert.equal(distributionsText(linux, en.download), `${floors.slice(0, -1).join(', ')} or ${floors[floors.length - 1]}`);
+    assert.equal(linuxRequirement({ ...linux, channel: 'beta' }, en), `Linux beta: ${distributionsText(linux, en.download)}`);
+    assert.equal(linuxRequirement({ ...linux, channel: 'stable' }, en), `Linux: ${distributionsText(linux, en.download)}`);
+    assert.ok(linuxRequirement({ ...linux, channel: 'beta' }, vi).includes(vi.download.linux.anyDistribution));
 });

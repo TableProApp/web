@@ -191,3 +191,56 @@ it('labels an engine with its version only while an older Mac build is still ser
         File::deleteDirectory($directory);
     }
 });
+
+function featuresDocument(string $path): Dom\HTMLDocument
+{
+    requireSsr();
+
+    return Dom\HTMLDocument::createFromString((string) get($path)->assertOk()->getContent(), LIBXML_NOERROR);
+}
+
+function featuresBadges(Dom\HTMLDocument $document): array
+{
+    return array_map(fn(Dom\Element $badge): string => trim((string) $badge->textContent), iterator_to_array($document->querySelectorAll('span.rounded-chip')));
+}
+
+it('sends a feature page the Linux record only once Linux is released', function (string $status): void {
+    $linux = bindPlatformsWithLinux($status);
+
+    get('/features/querying')->assertInertia(fn(AssertableInertia $page) => $status === 'released'
+        ? $page->where('linux.deviceNames', $linux['deviceNames'])->where('linux.channel', $linux['channel'])->where('linux.distributions', fn($distributions): bool => count($distributions) === count($linux['distributions']))
+        : $page->where('linux', null));
+})->with(['released', 'prototype']);
+
+it('gives Where it works a Linux column that follows each row, and a Linux badge where a row is on Linux', function (string $slug): void {
+    $name = bindPlatformsWithLinux('released')['deviceNames'][0];
+    $rows = featuresData("content/en/features/{$slug}.json")['availability'];
+    $labels = featuresData('content/en/features/index.json')['labels']['availability'];
+    $document = featuresDocument("/features/{$slug}");
+
+    $heads = array_map(fn(Dom\Element $head): string => trim((string) $head->textContent), iterator_to_array($document->querySelectorAll('#availability thead th')));
+    $cells = array_map(fn(Dom\Element $row): string => trim((string) $row->querySelector('td:last-child')?->textContent), iterator_to_array($document->querySelectorAll('#availability tbody tr')));
+
+    expect($heads)->toHaveCount(4)
+        ->and(end($heads))->toBe($name)
+        ->and($cells)->toHaveCount(count($rows))
+        ->and($document->querySelectorAll('#availability tbody th span.grid > span'))->toHaveCount(3 * count($rows))
+        ->and(in_array($name, featuresBadges($document), true))->toBe(collect($rows)->contains(fn(array $row): bool => $row['linux'] !== 'no'));
+
+    foreach ($rows as $index => $row) {
+        match ($row['linux']) {
+            'yes' => expect($cells[$index])->toBe($labels['free'], "{$slug} row {$index}"),
+            'no' => expect($cells[$index])->toStartWith($labels['notAvailable'], "{$slug} row {$index}"),
+            'partial' => expect($cells[$index])->not->toBe($labels['free'])->not->toStartWith($labels['notAvailable']),
+        };
+    }
+})->with(FeatureSlugs::ALL)->group('ssr');
+
+it('shows no Linux column or badge while Linux is not released', function (): void {
+    $name = bindPlatformsWithLinux('prototype')['deviceNames'][0];
+    $document = featuresDocument('/features/querying');
+
+    expect($document->querySelectorAll('#availability thead th'))->toHaveCount(3)
+        ->and(featuresBadges($document))->not->toContain($name)
+        ->and((string) $document->querySelector('#availability table')?->textContent)->not->toContain($name);
+})->group('ssr');

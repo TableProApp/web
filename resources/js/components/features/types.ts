@@ -5,6 +5,8 @@
  * README.md in this directory documents the content schema for authors.
  */
 
+import type { LinuxSummary } from '../download/types.ts';
+
 /** One published engine in a list the page shows, from `engines.json`. */
 export interface EngineItem {
     name: string;
@@ -165,6 +167,7 @@ export interface FeaturePageProps {
     content: FeaturePageContent;
     labels: FeatureLabels;
     facts: Facts;
+    linux: LinuxSummary | null;
 }
 
 export interface FeatureHubProps {

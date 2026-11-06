@@ -175,7 +175,7 @@
             "title": "Trên iPhone và iPad",
             "paragraphs": [
                 "Ứng dụng cho iPhone và iPad có form connection riêng cho {iosPicker}, với nhóm, một tag cho mỗi connection và mục yêu thích. SSH tunnel xác thực bằng mật khẩu hoặc private key, từ file hoặc dán vào, và có kiểm tra host key; SSH agent và jump host không được hỗ trợ trên iPhone và iPad. TLS có thể kiểm tra chứng chỉ của server, trừ với SQL Server: kết nối được mã hóa nhưng không kiểm tra. Chứng chỉ chỉ nằm trên thiết bị và không bao giờ được đồng bộ.",
-                "Mật khẩu và key dán vào được lưu trong Keychain. Connection SQL Server đồng bộ từ Mac có thể đăng nhập bằng Microsoft Entra ID. Import từ ứng dụng khác, đăng nhập bằng AWS IAM, Kerberos và Google, proxy và tunnel command, nguồn mật khẩu và timeout chỉ có trong ứng dụng Mac."
+                "Mật khẩu và key dán vào được lưu trong Keychain. Connection SQL Server đồng bộ từ Mac có thể đăng nhập bằng Microsoft Entra ID. Import từ ứng dụng khác, đăng nhập bằng AWS IAM, Kerberos và Google, proxy và tunnel command, nguồn mật khẩu và timeout không có trong ứng dụng iPhone và iPad."
             ],
             "links": [
                 {

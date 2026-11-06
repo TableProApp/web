@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode levels",
-                    "text": "Each connection has a Safe Mode level: {macSafeModeLevels}. Alert asks before a write runs, the Safe Mode levels also ask for Touch ID or your Mac password, the Full levels ask before reads too, and Read-Only refuses writes. An organization can enforce a minimum level on its Macs through a configuration profile. On iPhone and iPad the levels are {iosSafeModeLevels}."
+                    "text": "On the Mac, each connection has a Safe Mode level: {macSafeModeLevels}. Alert asks before a write runs, the Safe Mode levels also ask for Touch ID or your Mac password, the Full levels ask before reads too, and Read-Only refuses writes. An organization can enforce a minimum level on its Macs through a configuration profile. On iPhone and iPad the levels are {iosSafeModeLevels}, and on Linux {linuxSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Local only",
-                    "text": "The MCP server is in the Mac app only, off until you turn it on or a client you set up starts it. It listens on {mcpHost}, with no remote mode, and clients never see a password."
+                    "text": "In the Mac app, the MCP server is off until you turn it on or a client you set up starts it. It listens on {mcpHost}, with no remote mode, and clients never see a password."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "The code is public",
-                    "text": "Both apps are open source under the AGPLv3, including the code for the paid features. What this page describes can be read in the repository, with the scripts that sign and notarize each release, and you can build the Mac app yourself."
+                    "text": "The apps are open source under the AGPLv3, including the code for the paid features. What this page describes can be read in the repository, with the scripts that sign and notarize each release, and you can build the Mac app yourself."
                 }
             ],
             "limits": [],

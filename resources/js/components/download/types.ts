@@ -87,6 +87,9 @@ export interface LinuxProp {
     release: { version: string; publishedOn: string | null; releaseUrl: string; releasesUrl: string } | null;
 }
 
+// What a page outside /download says about Linux: `PlatformCatalog::linuxSummary`, null until Linux is released.
+export type LinuxSummary = Pick<LinuxProp, 'deviceNames' | 'channel' | 'distributions'>;
+
 export interface LinksProp {
     docs: string | null;
     changelog: string | null;

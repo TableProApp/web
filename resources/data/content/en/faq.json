@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "What is TablePro?",
                     "answer": [
-                        "A native, open-source database client. On the Mac, query and edit {featuredEngines} and more, and work with schemas. The iPhone and iPad app offers a smaller set of database tools.",
+                        "A native, open-source database client. On the Mac, query and edit {featuredEngines} and more, and work with schemas. The iPhone and iPad app and the Linux beta offer a smaller set of database tools.",
                         "See all <features>features</features>."
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "What does “native” mean here?",
                     "answer": [
-                        "TablePro uses native interfaces and database drivers, without Electron or JDBC. The current apps use Swift: AppKit and SwiftUI on the Mac, and device features such as Face ID and Shortcuts on iPhone and iPad."
+                        "TablePro uses native interfaces and database drivers, without Electron or JDBC. The Mac, iPhone and iPad apps use Swift: AppKit and SwiftUI on the Mac, and device features such as Face ID and Shortcuts on iPhone and iPad. The Linux app uses Rust, GTK 4 and libadwaita."
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "Is TablePro free?",
                     "answer": [
                         "Yes. The Mac app has no trial period or time limit. All supported engines, AI, MCP and Safe Mode are free. Pro and Team add the features on the <pricing>pricing page</pricing>.",
-                        "The iPhone and iPad app is free, with no license or in-app purchases."
+                        "The iPhone and iPad app is free, with no license or in-app purchases. The Linux app is free to use, and the paid features are on the Mac for now."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "Is TablePro open source?",
                     "answer": [
-                        "Yes. Both apps, including paid-feature code, are under the AGPLv3 in one <source>GitHub repository</source>. Builds from source still check licenses for paid features."
+                        "Yes. The apps, including paid-feature code, are under the AGPLv3 in one <source>GitHub repository</source>. Builds from source still check licenses for paid features."
                     ]
                 },
                 {
@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "Is there a version for Windows or Linux?",
                     "answer": [
-                        "No. There is no Windows version. A Linux prototype exists, but there is nothing to install and no release date."
+                        "Linux, yes: <downloadLinux>TablePro for Linux</downloadLinux> is available as a beta, with its own set of <downloadPlatforms>engines and features</downloadPlatforms>. Windows is not available, and there is no release date."
                     ]
                 },
                 {
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "Where are my passwords stored?",
                     "answer": [
-                        "Saved passwords stay in the Keychain. On the Mac, you can instead resolve them from files, environment variables, shell commands, 1Password, Vault or AWS Secrets Manager.",
+                        "Saved passwords stay in the Keychain, or on Linux in a Secret Service keyring such as GNOME Keyring or KWallet. On the Mac, you can instead resolve them from files, environment variables, shell commands, 1Password, Vault or AWS Secrets Manager.",
                         "Password sync is a separate opt-in: enable <ui>Passwords</ui> on the Mac or <ui>Sync Passwords</ui> on iPhone and iPad. It uses iCloud Keychain."
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "How many Macs does a license cover?",
+                    "question": "How many computers does a license cover?",
                     "answer": [
-                        "Pro covers one person on up to {deviceLimit} Macs. Team has at least {teamMinSeats} seats, and each seat covers one person on up to {deviceLimit} Macs. The limit is per account, across Pro and Team. iPhone and iPad use no seat.",
-                        "To use your license on another Mac, remove one in <ui>Settings > Account</ui> or on the Devices page in <account>your account</account>. Until then, the other Mac keeps the free features."
+                        "Pro covers one person on up to {deviceLimit} computers, Mac or Linux. Team has at least {teamMinSeats} seats, and each seat covers one person on up to {deviceLimit} computers. The limit is per account, across Pro and Team. The paid features are on the Mac for now, but a Linux computer you sign in on still counts. iPhone and iPad use no seat.",
+                        "To use your license on another computer, remove one on the Devices page in <account>your account</account>, or in <ui>Settings > Account</ui> on the Mac. Until then, the other computer keeps the free features."
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "What do the apps send to TablePro?",
                     "answer": [
-                        "The Mac app shares usage data by default; disable it in <ui>Settings > General > Privacy</ui>. From the version that adds TablePro accounts, it goes straight to PostHog: app events with your Mac’s model, the app and macOS versions and database types, under a random ID before you sign in and your account ID after. Versions before TablePro accounts send a daily report with a hashed machine ID through our server instead. Neither includes hostnames, usernames, passwords, queries or rows.",
+                        "The Mac app shares usage data by default; disable it in <ui>Settings > General > Privacy</ui>. From the version that adds TablePro accounts, it goes straight to PostHog: app events with your Mac’s model, the app and macOS versions and database types, under a random ID before you sign in and your account ID after. Versions before TablePro accounts send a daily report with a hashed machine ID through our server instead. Neither includes hostnames, usernames, passwords, queries or rows. The Linux app also shares usage data by default, without those details; turn it off in its Preferences.",
                         "Once you sign in, the Mac app registers your Mac with your account, sending its machine ID, name and app and macOS versions, and renews your plan once a day. Versions before TablePro accounts send the license key with those details every {revalidateDays} days. iPhone and iPad reports are opt-in. Team Library receives settings and saved SQL you publish. See the <privacy>privacy policy</privacy>, including IP logging."
                     ]
                 },

@@ -64,6 +64,8 @@ export interface TableProFacts {
     macRequirement: string;
     /** `iOS and iPadOS 18 or later`, or null while there is no iPhone and iPad app. */
     iosRequirement: string | null;
+    // `Linux beta: Ubuntu 26.04+, …`, or null while Linux is not released.
+    linuxRequirement: string | null;
     macArchitectures: ('arm64' | 'x86_64')[];
     /** One app for both architectures, from `platforms.json`'s `universalBinary`. */
     macUniversal: boolean;
@@ -518,6 +520,10 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
 
             if (facts.iosRequirement !== null) {
                 lines.push({ text: facts.iosRequirement, muted: true });
+            }
+
+            if (facts.linuxRequirement !== null) {
+                lines.push({ text: facts.linuxRequirement, muted: true });
             }
 
             return { mark: 'none', lines, sources: [] };

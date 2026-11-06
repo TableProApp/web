@@ -84,6 +84,13 @@
         "others": "他のエンジンの接続も iPhone と iPad に同期されて一覧に表示されますが、開くことはできません。",
         "link": "iPhone・iPad 版 TablePro"
     },
+    "linux": {
+        "title": "Linux では",
+        "tested": "Linux アプリはベータ版で、{engines} でテスト済みです。",
+        "untested": "{engines} への接続は Linux ではテストされていません。",
+        "others": "その他のエンジンは開けません。",
+        "link": "Linux にインストール"
+    },
     "license": {
         "title": "Free に含まれます",
         "body": "対応するすべてのデータベースへの接続が Free に含まれます。Pro と Team は Mac アプリに追加機能を提供します。",
@@ -130,6 +137,12 @@
             "picker": "開ける",
             "synced": "Mac から同期すれば開ける",
             "none": "開けない"
+        },
+        "linux": {
+            "tested": "テスト済み",
+            "versions": "テスト済み：{versions}",
+            "untested": "未テスト",
+            "none": "利用不可"
         },
         "availability": {
             "devices": "{devices} で使用可能",
@@ -184,6 +197,7 @@
             "title": "TablePro を入手",
             "mac": "Mac アプリは無料でダウンロードできます。Pro と Team で追加機能を利用できます。",
             "ios": "iPhone・iPad アプリは App Store で入手できます。",
+            "linux": "Linux アプリは無料のベータ版です。",
             "pricing": "料金を見る"
         }
     }

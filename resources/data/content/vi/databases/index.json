@@ -84,6 +84,13 @@
         "others": "Connection tới các engine khác vẫn được đồng bộ sang iPhone và iPad và hiện trong danh sách, nhưng không mở được trên đó.",
         "link": "TablePro cho iPhone và iPad"
     },
+    "linux": {
+        "title": "Trên Linux",
+        "tested": "Ứng dụng cho Linux đang là bản beta, đã được kiểm thử với {engines}.",
+        "untested": "Connection tới {engines} chưa được kiểm thử trên Linux.",
+        "others": "Các engine khác không mở được trên đó.",
+        "link": "Cài đặt trên Linux"
+    },
     "license": {
         "title": "Có trong Free",
         "body": "Mọi connection cơ sở dữ liệu được hỗ trợ đều có trong Free. Pro và Team thêm tính năng tùy chọn cho Mac.",
@@ -130,6 +137,12 @@
             "picker": "Mở được",
             "synced": "Mở được khi đồng bộ từ máy Mac",
             "none": "Không mở được"
+        },
+        "linux": {
+            "tested": "Đã kiểm thử",
+            "versions": "Đã kiểm thử: {versions}",
+            "untested": "Chưa kiểm thử",
+            "none": "Không có"
         },
         "availability": {
             "devices": "Dùng được trên {devices}",
@@ -184,6 +197,7 @@
             "title": "Tải TablePro",
             "mac": "Tải ứng dụng Mac miễn phí. Pro và Team thêm tính năng tùy chọn.",
             "ios": "Ứng dụng cho iPhone và iPad có trên App Store.",
+            "linux": "Ứng dụng cho Linux là bản beta miễn phí.",
             "pricing": "Xem bảng giá"
         }
     }

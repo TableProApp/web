@@ -80,22 +80,11 @@ class DownloadController extends Controller
     private function linux(PlatformCatalog $platforms, ?LinuxRelease $release, string $locale): array
     {
         $platform = $platforms->find('linux') ?? [];
+        $summary = $platforms->linuxSummary() ?? ['deviceNames' => [], 'channel' => $platforms->linuxChannel(), 'distributions' => []];
         $packages = $platforms->linuxPackages();
         $architectures = $this->strings($platform['architectures'] ?? []);
         $desktop = $platform['desktop'] ?? null;
-
-        $distributions = [];
-
-        foreach (is_array($platform['distributions'] ?? null) ? $platform['distributions'] : [] as $distribution) {
-            if (is_array($distribution) && is_string($distribution['id'] ?? null) && is_string($distribution['via'] ?? null)) {
-                $distributions[] = [
-                    'id' => $distribution['id'],
-                    'name' => $this->string($distribution['name'] ?? null),
-                    'versions' => $this->strings($distribution['versions'] ?? []),
-                    'via' => $distribution['via'],
-                ];
-            }
-        }
+        $distributions = $summary['distributions'];
 
         $methods = [];
 
@@ -134,8 +123,8 @@ class DownloadController extends Controller
         }
 
         return [
-            'deviceNames' => $this->strings($platform['deviceNames'] ?? []),
-            'channel' => $platforms->linuxChannel(),
+            'deviceNames' => $summary['deviceNames'],
+            'channel' => $summary['channel'],
             'distributions' => $distributions,
             'desktop' => is_array($desktop) && is_string($desktop['name'] ?? null) && is_string($desktop['version'] ?? null) ? ['name' => $desktop['name'], 'version' => $desktop['version']] : null,
             'architectures' => $architectures,

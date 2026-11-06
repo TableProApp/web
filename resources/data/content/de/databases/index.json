@@ -84,6 +84,13 @@
         "others": "Verbindungen zu anderen Engines werden mit iPhone und iPad synchronisiert und erscheinen in der Liste, lassen sich dort aber nicht öffnen.",
         "link": "TablePro für iPhone und iPad"
     },
+    "linux": {
+        "title": "Unter Linux",
+        "tested": "Die Linux-App ist eine Beta und mit {engines} getestet.",
+        "untested": "Verbindungen zu {engines} sind unter Linux nicht getestet.",
+        "others": "Andere Engines lassen sich dort nicht öffnen.",
+        "link": "Unter Linux installieren"
+    },
     "license": {
         "title": "In Free enthalten",
         "body": "Jede unterstützte Datenbankverbindung ist in Free enthalten. Pro und Team ergänzen optionale Funktionen in der Mac-App.",
@@ -130,6 +137,12 @@
             "picker": "Lässt sich öffnen",
             "synced": "Lässt sich nach Synchronisierung vom Mac öffnen",
             "none": "Lässt sich nicht öffnen"
+        },
+        "linux": {
+            "tested": "Getestet",
+            "versions": "Getestet: {versions}",
+            "untested": "Nicht getestet",
+            "none": "Nicht verfügbar"
         },
         "availability": {
             "devices": "Funktioniert auf {devices}",
@@ -184,6 +197,7 @@
             "title": "TablePro herunterladen",
             "mac": "Lade die Mac-App kostenlos herunter. Pro und Team ergänzen optionale Funktionen.",
             "ios": "Die App für iPhone und iPad ist im App Store erhältlich.",
+            "linux": "Die Linux-App ist eine kostenlose Beta.",
             "pricing": "Preise ansehen"
         }
     }

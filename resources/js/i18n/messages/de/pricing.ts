@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "Die Bezahlfunktionen, für eine Person.",
             "activation": {
-                "one": "Eine Person, {count} Mac.",
-                "other": "Eine Person, bis zu {count} Macs."
+                "one": "Eine Person, {count} Computer, Mac oder Linux.",
+                "other": "Eine Person, bis zu {count} Computer, Mac oder Linux."
             },
             "includesTitle": "Alles aus Kostenlos, plus",
             "cta": "Pro kaufen"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "Pro für alle, dazu geteilte Verbindungen.",
             "activation": {
-                "one": "Eine Person pro Arbeitsplatz, {count} Mac.",
-                "other": "Eine Person pro Arbeitsplatz, bis zu {count} Macs."
+                "one": "Eine Person pro Arbeitsplatz, {count} Computer, Mac oder Linux.",
+                "other": "Eine Person pro Arbeitsplatz, bis zu {count} Computer, Mac oder Linux."
             },
             "includesTitle": "Alles aus Pro, plus",
             "cta": "Team kaufen",
@@ -116,15 +116,15 @@ export default {
             "team": "In Team",
             "all": "In jedem Tarif"
         },
-        "macs": "Macs",
+        "macs": "Computer",
         "macsFree": "Keine Lizenz",
         "macsStarter": {
-            "one": "{count}",
-            "other": "Bis zu {count}"
+            "one": "{count}, Mac oder Linux",
+            "other": "Bis zu {count}, Mac oder Linux"
         },
         "macsTeam": {
-            "one": "{count} pro Arbeitsplatz",
-            "other": "Bis zu {count} pro Arbeitsplatz"
+            "one": "{count} pro Arbeitsplatz, Mac oder Linux",
+            "other": "Bis zu {count} pro Arbeitsplatz, Mac oder Linux"
         },
         "everythingElse": "Alles andere in der App",
         "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und Safe Mode",

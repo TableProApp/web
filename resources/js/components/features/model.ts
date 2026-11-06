@@ -78,6 +78,10 @@ export function pageOnIos(content: FeaturePageContent): boolean {
     return content.availability.some((row) => row.ios !== 'no');
 }
 
+export function pageOnLinux(content: FeaturePageContent): boolean {
+    return content.availability.some((row) => row.linux !== 'no');
+}
+
 /** True when anything on the page exists in the Mac app. */
 export function pageOnMac(content: FeaturePageContent): boolean {
     return content.availability.some((row) => row.mac !== 'no');

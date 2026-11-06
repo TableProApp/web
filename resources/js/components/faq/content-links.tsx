@@ -4,10 +4,7 @@ import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 
-/**
- * The outbound links `App\Services\Content\SiteFacts::links()` sends: every
- * URL from `facts.json` and `pricing.json`, or null where the data names none.
- */
+// From SiteFacts::links(); null where the data names no URL.
 export interface SiteLinks {
     docs: string | null;
     changelog: string | null;
@@ -21,15 +18,7 @@ export interface SiteLinks {
     email: string | null;
 }
 
-/**
- * Where each link tag in FAQ, iPhone-page and about-page copy goes.
- *
- * Copy marks a link with a tag named for its destination, `<pricing>pricing
- * page</pricing>`, and never holds a URL or a path: the destinations live
- * here, once, so a translator moves the words and cannot break the link.
- * Internal paths are English base paths; `LocaleLink` adds the reader's
- * locale. The account portal is another origin and gets `?locale=` instead.
- */
+// Copy names a link by a tag and never holds a path, so a translator cannot break it. LocaleLink adds the locale.
 const INTERNAL: Record<string, string> = {
     home: '/',
     sponsors: '/sponsors',
@@ -41,6 +30,8 @@ const INTERNAL: Record<string, string> = {
     databases: '/databases',
     compare: '/compare',
     download: '/download',
+    downloadLinux: '/download#linux',
+    downloadPlatforms: '/download#platforms',
     ios: '/ios',
     iosLimits: '/ios#limits',
     pricing: '/pricing',
@@ -60,7 +51,6 @@ const INTERNAL: Record<string, string> = {
 
 type ExternalKey = 'docs' | 'changelog' | 'github' | 'issues' | 'discussions' | 'sponsorsProgram' | 'license' | 'portal' | 'appStore';
 
-/** External destinations, by the `SiteLinks` key that holds their URL. `docs` and `changelog` are in English only. */
 const EXTERNAL: Record<string, { key: ExternalKey; englishOnly: boolean }> = {
     docs: { key: 'docs', englishOnly: true },
     changelog: { key: 'changelog', englishOnly: true },
@@ -73,17 +63,7 @@ const EXTERNAL: Record<string, { key: ExternalKey; englishOnly: boolean }> = {
     appStore: { key: 'appStore', englishOnly: false },
 };
 
-/**
- * Renderers for every tag FAQ, iPhone-page and about-page copy may use, for `<Trans>`:
- * the link tags above, `<account>` (the account app, in the reader's
- * language), `<brand>` (the brand guidelines, in English only), `<email>`
- * (the support address; its text is the address unless the copy gives other
- * words) and `<ui>` (an app label in a click path).
- *
- * A tag whose destination the data does not name renders its words as plain
- * text, so a missing URL never becomes a broken link. A link to the English
- * documentation says so in a Vietnamese sentence.
- */
+// A tag whose URL the data does not name renders its words as plain text, never a broken link.
 export function useContentTags(links: SiteLinks): Record<string, (text: string) => ReactNode> {
     const { locale, m } = useI18n();
     const tags: Record<string, (text: string) => ReactNode> = {

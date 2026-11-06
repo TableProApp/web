@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro とは何ですか？",
                     "answer": [
-                        "ネイティブでオープンソースのデータベースクライアントです。Mac では {featuredEngines} などをクエリ・編集し、スキーマを操作できます。iPhone・iPad アプリのデータベース機能は限定されています。",
+                        "ネイティブでオープンソースのデータベースクライアントです。Mac では {featuredEngines} などをクエリ・編集し、スキーマを操作できます。iPhone・iPad アプリと Linux ベータ版のデータベース機能は限定されています。",
                         "すべての<features>機能を見る</features>。"
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "ここでの「ネイティブ」とは何ですか？",
                     "answer": [
-                        "TablePro はネイティブのインターフェースとドライバーを使い、Electron・JDBC は使いません。現在のアプリは Swift 製です。Mac は AppKit と SwiftUI、iPhone・iPad は Face ID や Shortcuts などのデバイス機能を使います。"
+                        "TablePro はネイティブのインターフェースとドライバーを使い、Electron・JDBC は使いません。Mac、iPhone、iPad のアプリは Swift 製です。Mac は AppKit と SwiftUI、iPhone・iPad は Face ID や Shortcuts などのデバイス機能を使います。Linux アプリは Rust、GTK 4、libadwaita で作られています。"
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "TablePro は無料ですか？",
                     "answer": [
                         "はい。Mac アプリには試用期間や期限がありません。対応する全エンジン、AI、MCP、Safe Mode は無料です。Pro と Team は<pricing>料金ページ</pricing>の機能を追加します。",
-                        "iPhone・iPad アプリは無料で、ライセンスやアプリ内課金はありません。"
+                        "iPhone・iPad アプリは無料で、ライセンスやアプリ内課金はありません。Linux アプリは無料で使えます。有料機能は今のところ Mac のみです。"
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro はオープンソースですか？",
                     "answer": [
-                        "はい。両アプリは有料機能のコードも含め、一つの <source>GitHub リポジトリ</source>で AGPLv3 として公開しています。ソースからビルドしても、有料機能のライセンス確認は行います。"
+                        "はい。各アプリは有料機能のコードも含め、一つの <source>GitHub リポジトリ</source>で AGPLv3 として公開しています。ソースからビルドしても、有料機能のライセンス確認は行います。"
                     ]
                 },
                 {
@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "Windows や Linux 版はありますか？",
                     "answer": [
-                        "いいえ。Windows 版はありません。Linux のプロトタイプはありますが、インストールできるものはなく、リリース日の予定もありません。"
+                        "Linux 版はあります。<downloadLinux>Linux 版 TablePro</downloadLinux> をベータ版として提供しており、対応する<downloadPlatforms>エンジンと機能</downloadPlatforms>は Linux 版独自です。Windows 版はなく、リリース日の予定もありません。"
                     ]
                 },
                 {
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "パスワードはどこに保存されますか？",
                     "answer": [
-                        "保存したパスワードは Keychain に保持します。Mac ではファイル、環境変数、シェルコマンド、1Password、Vault、AWS Secrets Manager から取得することもできます。",
+                        "保存したパスワードは Keychain に、Linux では GNOME Keyring や KWallet などの Secret Service キーリングに保持します。Mac ではファイル、環境変数、シェルコマンド、1Password、Vault、AWS Secrets Manager から取得することもできます。",
                         "パスワード同期は別途有効にする必要があります。Mac の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> を有効にすると、iCloud Keychain を使います。"
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "1 ライセンスで何台の Mac を使えますか？",
+                    "question": "1 ライセンスで何台のコンピューターを使えますか？",
                     "answer": [
-                        "Pro は一人で最大 {deviceLimit} 台の Mac を使えます。Team は {teamMinSeats} 席以上で、1 席につき一人が最大 {deviceLimit} 台の Mac で使えます。台数の上限は Pro と Team を合わせたアカウント単位です。iPhone・iPad は席を使いません。",
-                        "別の Mac でライセンスを使うには、<ui>Settings > Account</ui> か<account>アカウント</account>のデバイスページで Mac を 1 台削除します。それまでの間、その Mac では無料機能を使えます。"
+                        "Pro は一人で最大 {deviceLimit} 台のコンピューター（Mac または Linux）を使えます。Team は {teamMinSeats} 席以上で、1 席につき一人が最大 {deviceLimit} 台のコンピューターで使えます。台数の上限は Pro と Team を合わせたアカウント単位です。有料機能は今のところ Mac のみですが、サインインした Linux コンピューターも台数に含まれます。iPhone・iPad は席を使いません。",
+                        "別のコンピューターでライセンスを使うには、<account>アカウント</account>のデバイスページか、Mac の <ui>Settings > Account</ui> で 1 台削除します。それまでの間、そのコンピューターでは無料機能を使えます。"
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "アプリは TablePro に何を送りますか？",
                     "answer": [
-                        "Mac アプリは初期設定で利用状況データを共有します。<ui>Settings > General > Privacy</ui> で無効にできます。TablePro アカウントに対応したバージョン以降は PostHog へ直接送られ、Mac のモデル、アプリと macOS のバージョン、データベースの種類を付けたアプリのイベントに、サインイン前はランダムな ID、サインイン後はアカウント ID が付きます。TablePro アカウントに対応する前のバージョンは、代わりにハッシュ化した端末 ID を含む毎日のレポートを運営者のサーバー経由で送ります。どちらにも、ホスト名、ユーザー名、パスワード、クエリ、行データは含まれません。",
+                        "Mac アプリは初期設定で利用状況データを共有します。<ui>Settings > General > Privacy</ui> で無効にできます。TablePro アカウントに対応したバージョン以降は PostHog へ直接送られ、Mac のモデル、アプリと macOS のバージョン、データベースの種類を付けたアプリのイベントに、サインイン前はランダムな ID、サインイン後はアカウント ID が付きます。TablePro アカウントに対応する前のバージョンは、代わりにハッシュ化した端末 ID を含む毎日のレポートを運営者のサーバー経由で送ります。どちらにも、ホスト名、ユーザー名、パスワード、クエリ、行データは含まれません。Linux アプリも初期設定で利用状況データを共有しますが、これらの情報は含みません。アプリの設定で無効にできます。",
                         "ログインすると、Mac アプリは端末 ID、Mac 名、アプリと macOS のバージョンを送って Mac をアカウントに登録し、1 日 1 回プランを更新します。TablePro アカウントに対応する前のバージョンは、{revalidateDays} 日ごとにライセンスキーとこれらの情報を送ります。iPhone・iPad のレポートは任意です。Team Library は公開した設定や保存済み SQL を受け取ります。IP ログを含む<privacy>プライバシーポリシー</privacy>をご覧ください。"
                     ]
                 },

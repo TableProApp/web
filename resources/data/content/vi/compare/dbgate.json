@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro và DbGate: phiên bản và nền tảng",
-        "description": "DbGate là client mã nguồn mở cho Windows, macOS, Linux và web, có các bản Premium trả phí. TablePro là mã nguồn mở, native trên Mac và iPhone."
+        "description": "DbGate là client mã nguồn mở cho Windows, macOS, Linux và web, có các bản Premium trả phí. TablePro là mã nguồn mở, native trên Mac, iPhone và Linux."
     },
     "og": {
         "kicker": "So sánh",
@@ -18,7 +18,7 @@
             "Backup miễn phí qua dump tool của engine được hỗ trợ."
         ],
         "competitor": [
-            "Client cho Windows, Linux hoặc web server.",
+            "Client cho Windows hoặc web server.",
             "Connection Firebird, Azure Cosmos DB hoặc Firestore.",
             "Visual query designer trong {cells.queryDesigner.edition}, hoặc sync DbGate Cloud."
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro là ứng dụng Mac viết bằng Swift, dùng driver cơ sở dữ liệu native. DbGate được xây dựng trên {technology}. Cả hai đều có bản build cho Mac chạy Apple silicon và Intel.",
+                "text": "Ứng dụng Mac của TablePro viết bằng Swift, dùng driver cơ sở dữ liệu native. DbGate được xây dựng trên {technology}. Cả hai đều có bản build cho Mac chạy Apple silicon và Intel.",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "TablePro có bản web không?",
-            "answer": "Không. TablePro chạy trên Mac, iPhone và iPad. Nếu nhóm của bạn cần một database client trong trình duyệt, DbGate cũng chạy được dưới dạng ứng dụng web.",
+            "answer": "Không. TablePro là ứng dụng cho Mac, iPhone, iPad và Linux. Nếu nhóm của bạn cần một database client trong trình duyệt, DbGate cũng chạy được dưới dạng ứng dụng web.",
             "href": null
         },
         {

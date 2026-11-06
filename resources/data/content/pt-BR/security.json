@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Níveis de Safe Mode",
-                    "text": "Cada conexão tem um nível de Safe Mode: {macSafeModeLevels}. Alert pede confirmação antes de uma gravação, os níveis Safe Mode também pedem Touch ID ou a senha do Mac, os níveis Full pedem confirmação também antes de leituras, e Read-Only recusa gravações. Uma organização pode impor um nível mínimo nos Macs dela por um perfil de configuração. No iPhone e iPad, os níveis são {iosSafeModeLevels}."
+                    "text": "No Mac, cada conexão tem um nível de Safe Mode: {macSafeModeLevels}. Alert pede confirmação antes de uma gravação, os níveis Safe Mode também pedem Touch ID ou a senha do Mac, os níveis Full pedem confirmação também antes de leituras, e Read-Only recusa gravações. Uma organização pode impor um nível mínimo nos Macs dela por um perfil de configuração. No iPhone e iPad, os níveis são {iosSafeModeLevels}, e no Linux, {linuxSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Somente local",
-                    "text": "O servidor MCP existe só no app para Mac e fica desativado até você ativá-lo ou um cliente configurado iniciá-lo. Ele escuta em {mcpHost}, sem modo remoto, e os clientes nunca veem uma senha."
+                    "text": "No app para Mac, o servidor MCP fica desativado até você ativá-lo ou um cliente configurado iniciá-lo. Ele escuta em {mcpHost}, sem modo remoto, e os clientes nunca veem uma senha."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "O código é público",
-                    "text": "Os dois apps são de código aberto sob a AGPLv3, incluindo o código dos recursos pagos. O que esta página descreve pode ser lido no repositório, junto com os scripts que assinam e autenticam cada versão, e você pode compilar o app para Mac por conta própria."
+                    "text": "Os apps são de código aberto sob a AGPLv3, incluindo o código dos recursos pagos. O que esta página descreve pode ser lido no repositório, junto com os scripts que assinam e autenticam cada versão, e você pode compilar o app para Mac por conta própria."
                 }
             ],
             "limits": [],

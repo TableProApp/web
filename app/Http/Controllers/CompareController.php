@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Releases\LinuxReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
 use Illuminate\Support\Arr;
@@ -29,13 +30,13 @@ use InvalidArgumentException;
  */
 class CompareController extends Controller
 {
-    public function index(ContentRepository $content, PlatformCatalog $platforms): Response
+    public function index(ContentRepository $content, PlatformCatalog $platforms, LinuxReleaseService $linux): Response
     {
         $locale = App::getLocale();
         $data = $this->comparisons();
         $products = $this->comparedProducts($data);
         $checkedAt = is_string($data['checkedAt'] ?? null) ? $data['checkedAt'] : null;
-        $tablepro = $this->tablepro($platforms);
+        $tablepro = $this->tablepro($platforms, $linux);
 
         return Inertia::render('Compare/Index', [
             'content' => $content->page('compare/index', $locale),
@@ -48,7 +49,7 @@ class CompareController extends Controller
         ]);
     }
 
-    public function show(ContentRepository $content, PlatformCatalog $platforms, string $slug): Response
+    public function show(ContentRepository $content, PlatformCatalog $platforms, LinuxReleaseService $linux, string $slug): Response
     {
         $locale = App::getLocale();
         $data = $this->comparisons();
@@ -57,7 +58,7 @@ class CompareController extends Controller
 
         abort_if($product === null, 404);
 
-        $tablepro = $this->tablepro($platforms);
+        $tablepro = $this->tablepro($platforms, $linux);
 
         return Inertia::render('Compare/Show', [
             'slug' => $slug,
@@ -169,16 +170,21 @@ class CompareController extends Controller
     /**
      * The TablePro facts the page states but should not bundle: the featured
      * engine names, and the Mac and iPhone and iPad releases the column
-     * describes (`platforms.json` → `release`).
+     * describes (`platforms.json` → `release`). Linux reports its newest
+     * release on its channel, and is null until platforms.json releases it.
      *
-     * @return array{featuredEngines: list<string>, mac: array{version: string, date: string}|null, ios: array{version: string, date: string}|null}
+     * @return array{featuredEngines: list<string>, mac: array{version: string, date: string}|null, ios: array{version: string, date: string}|null, linux: array{version: string|null, date: string|null, deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>}|null}
      */
-    private function tablepro(PlatformCatalog $platforms): array
+    private function tablepro(PlatformCatalog $platforms, LinuxReleaseService $linux): array
     {
+        $summary = $platforms->linuxSummary();
+        $release = $summary !== null ? $linux->latest() : null;
+
         return [
             'featuredEngines' => $this->featuredEngines(),
             'mac' => $this->release($platforms, 'mac'),
             'ios' => $this->release($platforms, 'ios'),
+            'linux' => $summary === null ? null : ['version' => $release?->version, 'date' => $release?->publishedAt, ...$summary],
         ];
     }
 

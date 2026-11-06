@@ -84,6 +84,13 @@
         "others": "其他引擎连接会同步至 iPhone 和 iPad 并显示在列表中，但无法打开。",
         "link": "适用于 iPhone 和 iPad 的 TablePro"
     },
+    "linux": {
+        "title": "在 Linux 上",
+        "tested": "Linux 应用目前为 Beta 版，已针对 {engines} 进行测试。",
+        "untested": "{engines} 连接未在 Linux 上测试。",
+        "others": "其他引擎无法在其中打开。",
+        "link": "在 Linux 上安装"
+    },
     "license": {
         "title": "包含在 Free 中",
         "body": "所有支持的数据库连接均包含在 Free 中。Pro 和 Team 为 Mac App 添加可选功能。",
@@ -130,6 +137,12 @@
             "picker": "可打开",
             "synced": "从 Mac 同步后可打开",
             "none": "无法打开"
+        },
+        "linux": {
+            "tested": "已测试",
+            "versions": "已测试：{versions}",
+            "untested": "未测试",
+            "none": "不可用"
         },
         "availability": {
             "devices": "适用于 {devices}",
@@ -184,6 +197,7 @@
             "title": "获取 TablePro",
             "mac": "免费下载 Mac App。Pro 和 Team 提供可选功能。",
             "ios": "iPhone 和 iPad 应用可在 App Store 获取。",
+            "linux": "Linux 应用是免费的 Beta 版。",
             "pricing": "查看价格"
         }
     }

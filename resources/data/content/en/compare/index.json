@@ -16,7 +16,7 @@
         "lead": "Start with the tools you need.",
         "tablepro": "TablePro is a native, open-source client for several database types. AI chat and MCP are free in the Mac app. It imports connections from {apps}.",
         "items": {
-            "tableplus": "Windows or Linux support, plus Vertica and Greenplum.",
+            "tableplus": "Windows support, plus Vertica and Greenplum.",
             "dbeaver": "A cross-platform client with JDBC driver support.",
             "datagrip": "A database IDE with code inspections and version control. Free for non-commercial work.",
             "navicat": "Data modeling and shared projects through Navicat Cloud.",
@@ -24,7 +24,7 @@
             "sequel-ace": "A free Mac App Store client focused on MySQL and MariaDB.",
             "sequel-pro": "Moving from Sequel Pro? Its last release was {status.version}, on {status.date}. Compare Sequel Ace and TablePro.",
             "postico": "A focused PostgreSQL client with a one-time license.",
-            "heidisql": "A free client for Windows, Linux and Apple silicon Macs.",
+            "heidisql": "A free client for Windows and Apple silicon Macs.",
             "phpmyadmin": "MySQL or MariaDB access through your browser, including cPanel hosting.",
             "mysql-workbench": "Oracle’s MySQL tool, with SQL notebooks and MySQL Enterprise Backup integration.",
             "pgadmin": "PostgreSQL administration, with a debugger, pgAgent jobs and a shared-server option.",
@@ -218,6 +218,7 @@
             "retrieved": "checked {date}",
             "latest": "Latest {name} release at that date: {version}, published {date}.",
             "tablepro": "TablePro’s column describes TablePro {macVersion} for Mac and {iosVersion} for iPhone and iPad.",
+            "tableproLinux": "TablePro’s column describes TablePro {macVersion} for Mac, {iosVersion} for iPhone and iPad, and {linuxVersion} for Linux.",
             "trademarks": "TablePro is an independent open-source project, not affiliated with or endorsed by the makers of the products compared here. Product names are trademarks of their owners."
         },
         "cta": {

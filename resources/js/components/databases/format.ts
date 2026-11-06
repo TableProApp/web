@@ -5,9 +5,12 @@
  */
 import { interpolate } from '@/i18n/core';
 import { joinList, type ListStyle } from '@/i18n/format';
-import type { DatabaseLabels, EngineDetail, EngineSummary, PlatformSummary } from './types';
+import type { DatabaseLabels, DatabasePlatforms, EngineDetail, EngineSummary, PlatformSummary } from './types';
 
 export type IosStatus = 'picker' | 'synced' | 'none';
+
+// A blocked engine has no client library on Linux, so to a reader it is as absent as one with no driver at all.
+export type LinuxStatus = 'tested' | 'untested' | 'none';
 
 /**
  * Opens on iPhone and iPad (in the app's picker), opens only when a Mac
@@ -32,6 +35,16 @@ export function deviceNamesFor(
     platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null },
 ): string[] {
     return [...(platforms.mac?.deviceNames ?? []), ...(iosStatus(engine) === 'picker' ? (platforms.ios?.deviceNames ?? []) : [])];
+}
+
+export function linuxStatus(engine: Pick<EngineSummary, 'linux'>): LinuxStatus {
+    return engine.linux.support === 'blocked' ? 'none' : engine.linux.support;
+}
+
+// The header's "Works on" line: the devices of `deviceNamesFor`, and Linux where its suites test the engine. The H1 and
+// the search title keep `deviceNamesFor`.
+export function availableDeviceNames(engine: Pick<EngineSummary, 'ios' | 'linux'>, platforms: DatabasePlatforms): string[] {
+    return [...deviceNamesFor(engine, platforms), ...(platforms.linux !== null && linuxStatus(engine) === 'tested' ? platforms.linux.deviceNames : [])];
 }
 
 /** The "Connect with" row: how a connection reaches the engine, from its capability flags. */

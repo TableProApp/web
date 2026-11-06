@@ -64,6 +64,7 @@ const facts: TableProFacts = {
     devices: 'Mac, iPhone and iPad',
     macRequirement: 'macOS 13 or later',
     iosRequirement: 'iOS 18 or later',
+    linuxRequirement: null,
     macArchitectures: ['arm64', 'x86_64'],
     macUniversal: true,
     starter: { monthly: 5, yearly: 40, lifetime: 80, activations: 3 },
@@ -229,4 +230,11 @@ test('calls one app for both architectures universal, and separate builds otherw
 
     assert.ok(ours(true).includes(labels.builds.universal));
     assert.ok(ours(false).includes(labels.builds.both));
+});
+
+test('lists Linux in TablePro’s platforms cell only once it is released', () => {
+    const ours = (linuxRequirement: string | null) => row(product(), 'platforms', { linuxRequirement })?.tablepro.lines ?? [];
+
+    assert.ok(!ours(null).some((line) => line.text.includes('Linux')));
+    assert.deepEqual(ours('Linux beta: Ubuntu 26.04+').at(-1), { text: 'Linux beta: Ubuntu 26.04+', muted: true });
 });

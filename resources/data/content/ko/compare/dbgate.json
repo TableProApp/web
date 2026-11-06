@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs DbGate: 에디션 및 지원 플랫폼",
-        "description": "DbGate는 Windows, macOS, Linux와 웹용 오픈 소스 클라이언트이며 유료 Premium 에디션이 있습니다. TablePro는 오픈 소스이며 Mac과 iPhone에서 네이티브입니다."
+        "description": "DbGate는 Windows, macOS, Linux와 웹용 오픈 소스 클라이언트이며 유료 Premium 에디션이 있습니다. TablePro는 오픈 소스이며 Mac, iPhone, Linux에서 네이티브입니다."
     },
     "og": {
         "kicker": "비교",
@@ -18,7 +18,7 @@
             "지원되는 엔진의 덤프 도구를 통한 무료 백업."
         ],
         "competitor": [
-            "Windows, Linux 또는 웹 서버용 클라이언트입니다.",
+            "Windows 또는 웹 서버용 클라이언트입니다.",
             "Firebird, Azure Cosmos DB 또는 Firestore 연결.",
             "{cells.queryDesigner.edition} 또는 DbGate 클라우드 동기화의 시각적 쿼리 디자이너입니다."
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. DbGate는 {technology} 기반입니다. 둘 다 Apple silicon과 Intel Mac용 빌드가 있습니다.",
+                "text": "TablePro의 Mac 앱은 Swift로 만들었으며 네이티브 데이터베이스 드라이버를 사용합니다. DbGate는 {technology} 기반입니다. 둘 다 Apple silicon과 Intel Mac용 빌드가 있습니다.",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "TablePro에 웹 버전이 있나요?",
-            "answer": "없습니다. TablePro는 Mac, iPhone, iPad에서 실행합니다. 팀이 브라우저에서 쓸 데이터베이스 클라이언트가 필요하다면 DbGate는 웹 앱으로도 실행됩니다.",
+            "answer": "없습니다. TablePro는 Mac, iPhone, iPad, Linux용 앱입니다. 팀이 브라우저에서 쓸 데이터베이스 클라이언트가 필요하다면 DbGate는 웹 앱으로도 실행됩니다.",
             "href": null
         },
         {

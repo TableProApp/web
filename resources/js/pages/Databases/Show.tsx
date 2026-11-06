@@ -3,7 +3,7 @@ import DownloadBand from '@/components/databases/download-band';
 import EngineHeader from '@/components/databases/engine-header';
 import EngineSection from '@/components/databases/engine-section';
 import FamilySection from '@/components/databases/family-section';
-import { deviceNamesFor, docsUrl, engineValues, iosStatus, tierToken } from '@/components/databases/format';
+import { deviceNamesFor, docsUrl, engineValues, iosStatus, linuxStatus, tierToken } from '@/components/databases/format';
 import LimitsList from '@/components/databases/limits-list';
 import OtherTools from '@/components/databases/other-tools';
 import RichText, { RichTextProvider } from '@/components/databases/rich-text';
@@ -23,22 +23,8 @@ import { PAID_FEATURES } from '@/lib/data/paid-features';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, webPageNode } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
-/**
- * An engine page, such as `/mysql-client` (sitemap §A.3, §E.1, §E.2;
- * design-system §8.4).
- *
- * The order is fixed by the blueprint: header and facts, the engine's own
- * lead image, the body sections the copy gives (Connect, Work with the data,
- * Schema, Operate, Move data), iPhone and iPad, limits, the family sections
- * of a merged page, other tools, questions, related pages and the download
- * band. Which body sections exist, and what they are called, is the copy's
- * call, so a Kafka page never inherits a SQL editor narrative.
- *
- * Facts come from props built from the data files; copy comes from
- * `content/{locale}/databases/{slug}.json` and the hub's shared `labels`.
- * Structured data is a `WebPage` about the Mac app with its breadcrumb: no
- * per-database pseudo-app, no FAQPage, no rating.
- */
+// Which body sections exist, and what they are called, is the copy's call, so a Kafka page never inherits a SQL editor
+// narrative. Structured data is a WebPage about the Mac app: no per-database pseudo-app, no FAQPage, no rating.
 export default function DatabaseShow({ content, labels, engine, family, copy, tools, comparisons, platforms, links, product }: EnginePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
@@ -202,6 +188,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
                     labels={labels}
                     platforms={platforms}
                     showIos={status === 'picker'}
+                    showLinux={linuxStatus(engine) === 'tested'}
                     appStoreUrl={links.appStore}
                     location={`database-${engine.id}`}
                 />

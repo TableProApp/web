@@ -84,6 +84,13 @@
         "others": "Koneksi ke mesin lainnya disinkronkan ke iPhone dan iPad dan ditampilkan dalam daftar, tetapi tidak dapat dibuka di sana.",
         "link": "TablePro untuk iPhone dan iPad"
     },
+    "linux": {
+        "title": "Di Linux",
+        "tested": "Aplikasi Linux masih beta dan sudah diuji dengan {engines}.",
+        "untested": "Koneksi ke {engines} belum diuji di Linux.",
+        "others": "Mesin lainnya tidak dapat dibuka di sana.",
+        "link": "Instal di Linux"
+    },
     "license": {
         "title": "Termasuk dalam Gratis",
         "body": "Setiap koneksi database yang didukung disertakan dalam Gratis. Pro dan Team menambahkan fitur opsional ke aplikasi Mac.",
@@ -130,6 +137,12 @@
             "picker": "Dapat dibuka",
             "synced": "Dapat dibuka jika disinkronkan dari Mac",
             "none": "Tidak dapat dibuka"
+        },
+        "linux": {
+            "tested": "Teruji",
+            "versions": "Teruji: {versions}",
+            "untested": "Belum diuji",
+            "none": "Tidak tersedia"
         },
         "availability": {
             "devices": "Berfungsi di {devices}",
@@ -184,6 +197,7 @@
             "title": "Unduh TablePro",
             "mac": "Unduh aplikasi Mac secara gratis. Pro dan Team menambahkan fitur opsional.",
             "ios": "Aplikasi iPhone dan iPad tersedia di App Store.",
+            "linux": "Aplikasi Linux adalah versi beta gratis.",
             "pricing": "Lihat harga"
         }
     }

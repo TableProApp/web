@@ -17,6 +17,8 @@ interface ActionPairProps {
     macExtra?: ReactNode;
     /** The App Store listing and its availability line, or null where the iPhone and iPad app does not apply. */
     ios: { url: string; caption: ReactNode } | null;
+    // The way to /download#linux and its availability line, where the Linux app applies.
+    linux?: { caption: ReactNode } | null;
     /**
      * Each action in a cell of the page grid, side by side from 640px
      * (design-system §4.7). Only in a wide section, where the cells can reach
@@ -46,7 +48,7 @@ interface ActionPairProps {
  * drawn first (positioning §3.2), from the `ios` class the root template sets
  * before first paint, so nothing moves after the page is shown.
  */
-export default function ActionPair({ location, macCaption, macExtra, ios, cells = false, className }: ActionPairProps) {
+export default function ActionPair({ location, macCaption, macExtra, ios, linux = null, cells = false, className }: ActionPairProps) {
     const { m } = useI18n();
 
     const mac = (
@@ -69,19 +71,30 @@ export default function ActionPair({ location, macCaption, macExtra, ios, cells 
         </div>
     );
 
+    const linuxAction = linux !== null && (
+        <div className="grid content-start justify-items-start gap-2">
+            <LocaleLink href="/download#linux" onClick={() => trackDownload(location, 'linux')} className={buttonClasses('secondary', 'lg')}>
+                {m.download.card.linux}
+            </LocaleLink>
+            <p className="type-small text-muted-foreground">{linux.caption}</p>
+        </div>
+    );
+
     if (cells) {
         return (
-            <CellGrid density="compact" className={cn(ios !== null && 'sm:grid-cols-2', className)}>
+            <CellGrid density="compact" className={cn(ios !== null && linux !== null ? 'sm:grid-cols-2 lg:grid-cols-3' : (ios !== null || linux !== null) && 'sm:grid-cols-2', className)}>
                 {mac}
                 {iosAction}
+                {linuxAction}
             </CellGrid>
         );
     }
 
     return (
-        <div className={cn('flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-x-10', className)}>
+        <div className={cn('flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-x-10', linux !== null && 'sm:flex-wrap', className)}>
             {mac}
             {iosAction}
+            {linuxAction}
         </div>
     );
 }

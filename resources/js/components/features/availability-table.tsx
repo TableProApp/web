@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import DataTable, { TABLE_CELL, TABLE_HEAD_CELL, TABLE_ROW, TABLE_ROW_HEADER } from '@/components/ui/data-table';
 import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
@@ -11,32 +12,46 @@ interface AvailabilityTableProps {
     rows: AvailabilityRow[];
     labels: FeatureLabels;
     values: Record<string, string>;
+    // The Linux column's heading, or null while Linux is not released.
+    linux: string | null;
 }
 
 // Shown from 640px; below it their values fold into the row header (design-system §5.3.10, priority columns).
 const PLATFORM_COLUMN = 'hidden sm:table-cell';
 
-// The iPhone and iPad app has no plans, so its column says what exists there, not what it costs.
-export default function AvailabilityTable({ rows, labels, values }: AvailabilityTableProps) {
+// The iPhone and iPad app and the Linux app have no plans, so their columns say what exists there, not what it costs.
+export default function AvailabilityTable({ rows, labels, values, linux }: AvailabilityTableProps) {
     const { m } = useI18n();
-    const mac = joinList(macPlatform().deviceNames, m.common.list);
-    const ios = joinList(iosPlatform().deviceNames, m.common.list);
-    const iosValue = (row: AvailabilityRow, folded: boolean) =>
-        platformAvailability(row.ios, row.iosNote, { labels, values, folded, yes: labels.availability.free });
+    const columns: { key: string; name: string; cell: (row: AvailabilityRow, folded: boolean) => ReactNode }[] = [
+        { key: 'mac', name: joinList(macPlatform().deviceNames, m.common.list), cell: (row, folded) => macAvailability(row, labels, folded) },
+        {
+            key: 'ios',
+            name: joinList(iosPlatform().deviceNames, m.common.list),
+            cell: (row, folded) => platformAvailability(row.ios, row.iosNote, { labels, values, folded, yes: labels.availability.free }),
+        },
+        ...(linux !== null
+            ? [
+                  {
+                      key: 'linux',
+                      name: linux,
+                      cell: (row: AvailabilityRow, folded: boolean) => platformAvailability(row.linux, row.linuxNote, { labels, values, folded, yes: labels.availability.free }),
+                  },
+              ]
+            : []),
+    ];
 
     return (
-        <DataTable wrapperClassName="frame-table" caption={labels.availability.caption} className="sm:min-w-[36rem]">
+        <DataTable wrapperClassName="frame-table" caption={labels.availability.caption} className={linux !== null ? 'sm:min-w-[40rem]' : 'sm:min-w-[36rem]'}>
             <thead>
                 <tr>
                     <th scope="col" className={TABLE_HEAD_CELL}>
                         {labels.availability.capability}
                     </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, PLATFORM_COLUMN)}>
-                        {mac}
-                    </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, PLATFORM_COLUMN)}>
-                        {ios}
-                    </th>
+                    {columns.map((column) => (
+                        <th key={column.key} scope="col" className={cn(TABLE_HEAD_CELL, PLATFORM_COLUMN)}>
+                            {column.name}
+                        </th>
+                    ))}
                 </tr>
             </thead>
             <tbody>
@@ -45,16 +60,18 @@ export default function AvailabilityTable({ rows, labels, values }: Availability
                         <th scope="row" className={TABLE_ROW_HEADER}>
                             <RichText text={row.label} values={values} />
                             <span className="type-caption mt-1.5 grid gap-1 font-normal text-muted-foreground sm:hidden">
-                                <span className="block">
-                                    {mac}: <span className="text-foreground">{macAvailability(row, labels, true)}</span>
-                                </span>
-                                <span className="block">
-                                    {ios}: <span className="text-foreground">{iosValue(row, true)}</span>
-                                </span>
+                                {columns.map((column) => (
+                                    <span key={column.key} className="block">
+                                        {column.name}: <span className="text-foreground">{column.cell(row, true)}</span>
+                                    </span>
+                                ))}
                             </span>
                         </th>
-                        <td className={cn(TABLE_CELL, PLATFORM_COLUMN)}>{macAvailability(row, labels, false)}</td>
-                        <td className={cn(TABLE_CELL, PLATFORM_COLUMN)}>{iosValue(row, false)}</td>
+                        {columns.map((column) => (
+                            <td key={column.key} className={cn(TABLE_CELL, PLATFORM_COLUMN)}>
+                                {column.cell(row, false)}
+                            </td>
+                        ))}
                     </tr>
                 ))}
             </tbody>

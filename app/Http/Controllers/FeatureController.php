@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\Slugs\FeatureSlugs;
 use App\Support\Features\FeatureFacts;
@@ -38,7 +39,7 @@ class FeatureController extends Controller
         ]);
     }
 
-    public function show(ContentRepository $content, FeatureFacts $facts, string $slug): Response
+    public function show(ContentRepository $content, FeatureFacts $facts, PlatformCatalog $platforms, string $slug): Response
     {
         $locale = App::getLocale();
         $page = $content->page("features/{$slug}", $locale);
@@ -49,6 +50,7 @@ class FeatureController extends Controller
             'content' => $page,
             'labels' => $labels,
             'facts' => $facts->for($page),
+            'linux' => $platforms->linuxSummary(),
         ]);
     }
 

@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "Fitur berbayar, untuk satu orang.",
             "activation": {
-                "one": "Satu orang, {count} Mac.",
-                "other": "Satu orang, hingga {count} Mac."
+                "one": "Satu orang, {count} komputer, Mac atau Linux.",
+                "other": "Satu orang, hingga {count} komputer, Mac atau Linux."
             },
             "includesTitle": "Semua fitur Gratis, ditambah",
             "cta": "Beli Pro"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "Pro untuk semua orang, plus koneksi bersama.",
             "activation": {
-                "one": "Satu orang per seat, {count} Mac.",
-                "other": "Satu orang per seat, hingga {count} Mac."
+                "one": "Satu orang per seat, {count} komputer, Mac atau Linux.",
+                "other": "Satu orang per seat, hingga {count} komputer, Mac atau Linux."
             },
             "includesTitle": "Semua fitur Pro, ditambah",
             "cta": "Beli Team",
@@ -116,15 +116,15 @@ export default {
             "team": "Di Team",
             "all": "Di semua paket"
         },
-        "macs": "Mac",
+        "macs": "Komputer",
         "macsFree": "Tanpa lisensi",
         "macsStarter": {
-            "one": "{count}",
-            "other": "Hingga {count}"
+            "one": "{count}, Mac atau Linux",
+            "other": "Hingga {count}, Mac atau Linux"
         },
         "macsTeam": {
-            "one": "{count} per seat",
-            "other": "Hingga {count} per seat"
+            "one": "{count} per seat, Mac atau Linux",
+            "other": "Hingga {count} per seat, Mac atau Linux"
         },
         "everythingElse": "Semua fitur lain dalam aplikasi",
         "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",

@@ -26,6 +26,22 @@ it('is dated and gives every platform a known status', function (): void {
     }
 });
 
+it('counts a license in computers, not Macs, once Linux ships', function (): void {
+    if (platformsEntry('linux')['status'] !== 'released') {
+        $this->markTestSkipped('Linux is not released.');
+    }
+
+    $sources = [...File::allFiles(resource_path('data/content/en')), ...File::files(resource_path('data/legal/en')), resource_path('js/i18n/messages/en/pricing.ts')];
+
+    foreach ($sources as $source) {
+        $path = (string) $source;
+
+        expect(File::get($path))
+            ->not->toMatch('/\{(deviceLimit|activations|count)\} Macs/', "{$path} counts a license in Macs")
+            ->not->toContain('Linux prototype', "{$path} calls Linux a prototype");
+    }
+});
+
 it('gives a released platform everything a page needs and an unreleased one nothing', function (): void {
     foreach (platformsJson()['platforms'] as $platform) {
         // Linux carries its record before it ships, so the pages can be built against it; its status alone shows it.

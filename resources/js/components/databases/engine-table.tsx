@@ -6,7 +6,7 @@ import LocaleLink from '@/components/ui/locale-link';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import { cn } from '@/lib/utils';
-import { docsUrl, iosStatus } from './format';
+import { docsUrl, iosStatus, linuxStatus } from './format';
 import LimitsList from './limits-list';
 import type { DatabaseLabels, EngineCopy, EngineSummary, HubContent } from './types';
 
@@ -17,49 +17,47 @@ interface EngineTableProps {
     table: HubContent['table'];
     labels: DatabaseLabels;
     docsBase: string | null;
+    // The Linux column's heading, or null while Linux is not released.
+    linux: string | null;
 }
 
-/** The three short columns: shown from 1024px, folded into the engine cell below it. */
+/** The short columns: shown from 1024px, folded into the engine cell below it. */
 const WIDE_ONLY = 'hidden lg:table-cell';
 /** Notes: its own column from 768px, folded into the engine cell below it. */
 const MEDIUM_UP = 'hidden md:table-cell';
 
-/**
- * One category's engines on `/databases` (design-system §8.3, `EngineTable`).
- *
- * Columns: the engine (its mark and name, linked to its page or its section
- * on a family page), the query language, where the driver comes from, the
- * iPhone and iPad status, and notes. A hub-only engine has no page, so its
- * row carries its own id (`#spanner`), its limits and its setup guide.
- *
- * Every category's table has the same fixed column widths (`table-fixed`, set
- * on the header row), so the columns line up from one category to the next
- * and a short value is never squeezed to one word per line beside a wide
- * Notes column. Priority columns below that (design-system §5.3.10): under
- * 1024px the query language, driver and iPhone status fold into the engine
- * cell as one caption line, and under 768px the notes fold in too, so a phone
- * reads one column with nothing cut off. A table is never turned into blocks,
- * which strips its roles in Safari.
- */
-export default function EngineTable({ caption, engines, copy, table, labels, docsBase }: EngineTableProps) {
+// Every category's table has the same fixed widths, so the columns line up from one category to the next. Below
+// 1024px the short columns fold into the engine cell as one caption line, and below 768px the notes fold in too.
+const WIDTHS = {
+    withoutLinux: { engine: 'md:w-[38%] lg:w-[22%]', queryLanguage: 'lg:w-[13%]', driver: 'lg:w-[17%]', ios: 'lg:w-[14%]', linux: '' },
+    withLinux: { engine: 'md:w-[38%] lg:w-[20%]', queryLanguage: 'lg:w-[11%]', driver: 'lg:w-[17%]', ios: 'lg:w-[12%]', linux: 'lg:w-[10%]' },
+};
+
+export default function EngineTable({ caption, engines, copy, table, labels, docsBase, linux }: EngineTableProps) {
     const { locale, m, fmt } = useI18n();
+    const widths = linux !== null ? WIDTHS.withLinux : WIDTHS.withoutLinux;
 
     return (
         <DataTable wrapperClassName="frame-table" caption={caption} className="table-fixed">
             <thead>
                 <tr>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, 'md:w-[38%] lg:w-[22%]')}>
+                    <th scope="col" className={cn(TABLE_HEAD_CELL, widths.engine)}>
                         {table.engine}
                     </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, 'lg:w-[13%]')}>
+                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.queryLanguage)}>
                         {table.queryLanguage}
                     </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, 'lg:w-[17%]')}>
+                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.driver)}>
                         {table.driver}
                     </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, 'lg:w-[14%]')}>
+                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.ios)}>
                         {table.ios}
                     </th>
+                    {linux !== null && (
+                        <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.linux)}>
+                            {linux}
+                        </th>
+                    )}
                     <th scope="col" className={cn(TABLE_HEAD_CELL, MEDIUM_UP)}>
                         {table.notes}
                     </th>
@@ -69,6 +67,7 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                 {engines.map((engine) => {
                     const docs = docsUrl(docsBase, engine.docsSlug);
                     const status = labels.ios[iosStatus(engine)];
+                    const onLinux = labels.linux[linuxStatus(engine)];
                     const driver = labels.driver[engine.distribution];
                     const notes = (
                         <>
@@ -108,7 +107,7 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                                             </Badge>
                                         )}
                                         <div className="type-caption mt-1 font-normal text-muted-foreground lg:hidden">
-                                            <DotList items={[engine.queryLanguage, driver, `${table.ios}: ${status}`]} />
+                                            <DotList items={[engine.queryLanguage, driver, `${table.ios}: ${status}`, linux !== null && `${linux}: ${onLinux}`]} />
                                         </div>
                                         <div className="mt-2 font-normal md:hidden">{notes}</div>
                                     </div>
@@ -117,6 +116,7 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                             <td className={cn(TABLE_CELL, WIDE_ONLY)}>{engine.queryLanguage}</td>
                             <td className={cn(TABLE_CELL, WIDE_ONLY)}>{driver}</td>
                             <td className={cn(TABLE_CELL, WIDE_ONLY)}>{status}</td>
+                            {linux !== null && <td className={cn(TABLE_CELL, WIDE_ONLY)}>{onLinux}</td>}
                             <td className={cn(TABLE_CELL, MEDIUM_UP)}>{notes}</td>
                         </tr>
                     );
