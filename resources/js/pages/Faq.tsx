@@ -10,6 +10,7 @@ import Container from '@/components/ui/container';
 import FaqList from '@/components/ui/faq-list';
 import PageHeader from '@/components/ui/page-header';
 import { textLinkClasses } from '@/components/ui/text-link';
+import { useEducationOpen } from '@/hooks/use-regional-pricing';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { PUBLISHER } from '@/lib/data/facts';
@@ -18,6 +19,9 @@ import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
 type FaqContent = typeof import('@data/content/en/faq.json');
+
+// Shown only while GET /v2/pricing says the education program is open.
+const EDUCATION_QUESTION = 'students-teachers';
 
 interface PlatformSummary {
     deviceNames: string[];
@@ -61,6 +65,7 @@ export default function Faq({ content, platforms, facts, links, organizationProf
     const { locale, m, path } = useI18n();
     const tags = useContentTags(links);
     const chat = useChatAvailable();
+    const educationOpen = useEducationOpen();
 
     const languageName = (tag: string): string => (content.languages as Record<string, string>)[tag] ?? tag;
     const list = (items: string[]): string => joinList(items, m.common.list);
@@ -145,15 +150,17 @@ export default function Faq({ content, platforms, facts, links, organizationProf
                                 <div className="py-0 md:py-0 xl:py-0 lg:col-span-8">
                                     <FaqList
                                         className="cell-rows border-t-0 [&>*:last-child]:border-b-0"
-                                        items={group.items.map((item) => ({
-                                            id: item.id,
-                                            question: item.question,
-                                            answer: item.answer.map((paragraph, paragraphIndex) => (
-                                                <p key={paragraphIndex}>
-                                                    <Trans text={paragraph} tags={tags} values={values} />
-                                                </p>
-                                            )),
-                                        }))}
+                                        items={group.items
+                                            .filter((item) => educationOpen || item.id !== EDUCATION_QUESTION)
+                                            .map((item) => ({
+                                                id: item.id,
+                                                question: item.question,
+                                                answer: item.answer.map((paragraph, paragraphIndex) => (
+                                                    <p key={paragraphIndex}>
+                                                        <Trans text={paragraph} tags={tags} values={values} />
+                                                    </p>
+                                                )),
+                                            }))}
                                     />
                                 </div>
                             </CellGrid>

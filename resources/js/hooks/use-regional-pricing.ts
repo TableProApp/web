@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useApi, type ApiPath } from '@/hooks/use-api';
 import { PRICING, type BillingCycle } from '@/lib/data/pricing';
-import { parseRegional, parseSeatMaximums, type ListCents, type Regional } from '@/lib/regional-pricing';
+import { parseEducationOpen, parseRegional, parseSeatMaximums, type ListCents, type Regional } from '@/lib/regional-pricing';
 
 interface PricingAnswer {
     regional: Regional | null;
     teamMaxSeats: Partial<Record<BillingCycle, number>>;
+    educationOpen: boolean;
 }
 
-const NO_ANSWER: PricingAnswer = { regional: null, teamMaxSeats: {} };
+const NO_ANSWER: PricingAnswer = { regional: null, teamMaxSeats: {}, educationOpen: false };
 
 let pending: Promise<PricingAnswer> | null = null;
 
@@ -21,13 +22,14 @@ function centsOf(prices: Record<string, number>): Record<string, number> {
     return Object.fromEntries(Object.entries(prices).map(([cycle, usd]) => [cycle, Math.round(usd * 100)]));
 }
 
-// Once per document. Any failure, a throttled answer included, means no regional price and no seat maximum.
+// Once per document. Any failure, a throttled answer included, means no regional price, no seat maximum and no education program.
 function fetchPricing(api: (path: ApiPath) => string): Promise<PricingAnswer> {
     pending ??= fetch(api('/v2/pricing'), { credentials: 'omit', headers: { Accept: 'application/json' } })
         .then((res) => (res.ok ? res.json() : null))
         .then((body: unknown) => ({
             regional: parseRegional(body, LIST_CENTS),
             teamMaxSeats: parseSeatMaximums(body, 'team', PRICING.tiers.team.seats.min),
+            educationOpen: parseEducationOpen(body),
         }))
         .catch(() => NO_ANSWER);
 
@@ -63,4 +65,9 @@ export function useRegionalPricing(): Regional | null {
 // Empty until GET /v2/pricing answers, and for a cycle Polar sets no limit for: the seat field then has no maximum.
 export function useTeamMaxSeats(): Partial<Record<BillingCycle, number>> {
     return usePricingAnswer().teamMaxSeats;
+}
+
+// False on the server and until GET /v2/pricing answers, so cached HTML never offers a program the admin has closed.
+export function useEducationOpen(): boolean {
+    return usePricingAnswer().educationOpen;
 }

@@ -5,6 +5,7 @@ import PlanMatrix from '@/components/pricing/plan-matrix';
 import { planOffers } from '@/components/pricing/offers';
 import PricingPlans from '@/components/pricing/pricing-plans';
 import type { PricingContent, PricingPageProps } from '@/components/pricing/types';
+import { useEducationOpen } from '@/hooks/use-regional-pricing';
 import SEOHead from '@/components/seo/seo-head';
 import Callout from '@/components/ui/callout';
 import { accountHref, SUPPORT_EMAIL } from '@/components/site/site-links';
@@ -87,6 +88,7 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const values = copyValues();
+    const educationOpen = useEducationOpen();
 
     const account = accountHref(locale);
     const tags = {
@@ -229,14 +231,16 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 </div>
             </Section>
 
-            <Section id="education" title={content.education.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{content.education.body}</p>
-                    <p>{rich(content.education.how)}</p>
-                    <p>{content.education.scope}</p>
-                    <p>{rich(content.education.help)}</p>
-                </div>
-            </Section>
+            {educationOpen && (
+                <Section id="education" title={content.education.title} width="text">
+                    <div className="type-body space-y-4 text-foreground">
+                        <p>{content.education.body}</p>
+                        <p>{rich(content.education.how)}</p>
+                        <p>{content.education.scope}</p>
+                        <p>{rich(content.education.help)}</p>
+                    </div>
+                </Section>
+            )}
 
             <Section id="open-source" title={content.openSource.title} width="text">
                 <div className="type-body space-y-4 text-foreground">

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { discountedAmount, discountedCents, parseRegional, parseSeatMaximums, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
+import { discountedAmount, discountedCents, parseEducationOpen, parseRegional, parseSeatMaximums, type ListCents } from '../../resources/js/lib/regional-pricing.ts';
 
 // The list prices the cards strike through, in cents.
 const list: ListCents = {
@@ -60,6 +60,17 @@ test('the Team seat maximum is read per cycle from the answer, and only a whole 
 
     assert.deepEqual(parseSeatMaximums(null, 'team', 2), {});
     assert.deepEqual(parseSeatMaximums({ country: 'US' }, 'team', 2), {});
+});
+
+test('the education program shows only while the answer says it is open', () => {
+    assert.equal(parseEducationOpen({ ...answer(0), education: { open: true } }), true);
+
+    assert.equal(parseEducationOpen({ ...answer(0), education: { open: false } }), false);
+    // An account service that does not send the field yet, or a failed call, which the hook reads as null.
+    assert.equal(parseEducationOpen(answer(0)), false);
+    assert.equal(parseEducationOpen(null), false);
+    assert.equal(parseEducationOpen({ ...answer(0), education: { open: 'true' } }), false);
+    assert.equal(parseEducationOpen({ ...answer(0), education: true }), false);
 });
 
 test('the answer is read strictly, so the cards never show a price checkout would not charge', () => {

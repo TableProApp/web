@@ -57,6 +57,11 @@ export function parseRegional(body: unknown, list: ListCents): Regional | null {
     return percent === null ? null : { country, percent };
 }
 
+// Only an explicit `true` opens it: a missing field or a failed call must never advertise a closed program.
+export function parseEducationOpen(body: unknown): boolean {
+    return record(record(body).education).open === true;
+}
+
 // Per cycle, the most seats a checkout of the per-seat plan sells; a cycle Polar sets no limit for is left out.
 export function parseSeatMaximums(body: unknown, plan: string, min: number): Record<string, number> {
     const { plans } = record(body);
