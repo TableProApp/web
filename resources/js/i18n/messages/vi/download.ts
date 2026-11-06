@@ -72,36 +72,12 @@ export default {
             "label": "lệnh kiểm tra"
         }
     },
-    "platforms": {
-        "title": "Dùng được gì trên từng nền tảng",
-        "lead": "Mọi tính năng trong mục Tính năng, đặt cạnh nhau.",
-        "databases": {
-            "one": "{count} cơ sở dữ liệu",
-            "other": "{count} cơ sở dữ liệu"
-        },
-        "capability": "Tính năng",
-        "covers": "{platform} {count}/{total}",
-        "available": "Có",
-        "page": "Trang tính năng",
-        "pageLabel": "Trang tính năng {page}"
-    },
     "updates": {
         "ios": "App Store tự cài bản cập nhật, như với các ứng dụng khác của bạn.",
         "linux": "Package manager cài bản cập nhật cùng phần còn lại của hệ thống. Ứng dụng không tự kiểm tra cập nhật."
     },
     "faq": {
         "title": "Câu hỏi",
-        "free": {
-            "question": "TablePro trên Linux có miễn phí không?",
-            "answer": "Có, bạn dùng miễn phí. Các gói trả phí thêm tính năng cho ứng dụng Mac, và chưa có tính năng nào trong số đó trên Linux."
-        },
-        "license": {
-            "question": "License của tôi có dùng được trên Linux không?",
-            "answer": {
-                "one": "Có. Một license kích hoạt được trên {count} máy tính, Mac hoặc Linux. Hiện tại, các tính năng trả phí của license chỉ có trên Mac.",
-                "other": "Có. Một license kích hoạt được trên tối đa {count} máy tính, Mac hoặc Linux. Hiện tại, các tính năng trả phí của license chỉ có trên Mac."
-            }
-        },
         "other": {
             "question": "Có phiên bản cho {platforms} không?"
         },

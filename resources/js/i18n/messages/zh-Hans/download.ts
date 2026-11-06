@@ -71,36 +71,12 @@ export default {
             "label": "验证命令"
         }
     },
-    "platforms": {
-        "title": "各平台支持的功能",
-        "lead": "功能页面上的所有能力，并排对比。",
-        "databases": {
-            "one": "{count} 种数据库",
-            "other": "{count} 种数据库"
-        },
-        "capability": "能力",
-        "covers": "{platform} {total} 项中 {count} 项",
-        "available": "支持",
-        "page": "功能页面",
-        "pageLabel": "{page} 功能页面"
-    },
     "updates": {
         "ios": "与您的其他应用一样，由 App Store 安装更新。",
         "linux": "更新由包管理器随系统其他部分一起安装，应用本身不检查更新。"
     },
     "faq": {
         "title": "常见问题",
-        "free": {
-            "question": "TablePro 在 Linux 上免费吗？",
-            "answer": "是的，可免费使用。付费方案为 Mac 应用增加功能，这些功能目前都还没有 Linux 版。"
-        },
-        "license": {
-            "question": "我的许可证在 Linux 上能用吗？",
-            "answer": {
-                "one": "可以。一个许可证可在 {count} 台 Mac 或 Linux 电脑上激活。其付费功能目前仅限 Mac。",
-                "other": "可以。一个许可证最多可在 {count} 台 Mac 或 Linux 电脑上激活。其付费功能目前仅限 Mac。"
-            }
-        },
         "other": {
             "question": "有 {platforms} 版本吗？"
         },

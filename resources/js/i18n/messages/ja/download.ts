@@ -71,36 +71,12 @@ export default {
             "label": "検証コマンド"
         }
     },
-    "platforms": {
-        "title": "プラットフォームごとの対応状況",
-        "lead": "機能ページにあるすべての機能を並べて比較します。",
-        "databases": {
-            "one": "{count} 種類のデータベース",
-            "other": "{count} 種類のデータベース"
-        },
-        "capability": "機能",
-        "covers": "{platform} {total} 件中 {count} 件",
-        "available": "対応",
-        "page": "機能ページ",
-        "pageLabel": "{page} の機能ページ"
-    },
     "updates": {
         "ios": "ほかのアプリと同じく、App Store がアップデートをインストールします。",
         "linux": "パッケージマネージャーが、システムのほかの部分と一緒にアップデートをインストールします。アプリ自身は確認しません。"
     },
     "faq": {
         "title": "よくある質問",
-        "free": {
-            "question": "Linux 版 TablePro は無料ですか？",
-            "answer": "はい、無料で使えます。有料プランは Mac アプリに機能を追加するもので、どれもまだ Linux にはありません。"
-        },
-        "license": {
-            "question": "ライセンスは Linux でも使えますか？",
-            "answer": {
-                "one": "はい。1 つのライセンスで Mac または Linux のコンピューター {count} 台を有効化できます。有料機能は今のところ Mac のみです。",
-                "other": "はい。1 つのライセンスで Mac または Linux のコンピューターを最大 {count} 台まで有効化できます。有料機能は今のところ Mac のみです。"
-            }
-        },
         "other": {
             "question": "{platforms} 版はありますか？"
         },

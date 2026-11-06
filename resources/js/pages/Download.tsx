@@ -7,10 +7,8 @@ import LinuxCard from '@/components/download/linux-card';
 import LinuxInstall from '@/components/download/linux-install';
 import { distributionFloor } from '@/components/download/linux-text';
 import MacCard, { UI_TAGS } from '@/components/download/mac-card';
-import PlatformParity, { type ParityPlatform } from '@/components/download/platform-parity';
-import type { DownloadPageProps, LinuxProp } from '@/components/download/types';
+import type { DownloadPageProps, LinuxProp, PlatformKey } from '@/components/download/types';
 import SEOHead from '@/components/seo/seo-head';
-import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Badge from '@/components/ui/badge';
 import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
@@ -100,26 +98,24 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
 
 // The server renders every platform the same way for every reader. After mount the page reads the device only to mark
 // the reader's own platform and give its action the filled button; nothing starts a download on its own.
-export default function Download({ content, release, mac, ios, linux, unreleased, links, engines, parity, featuredEngines, latestPost }: DownloadPageProps) {
+export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines, latestPost }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, fmt, path, plural } = useI18n();
-    const shown = useShownSlot();
+    const { locale, m, fmt, path } = useI18n();
     const [device, setDevice] = useState<DeviceKind | null>(null);
 
     useEffect(() => {
         setDevice(classifyDevice(navigator.userAgent, navigator.maxTouchPoints ?? 0));
     }, []);
 
-    const marked: ParityPlatform | null = device === 'mac' ? 'mac' : device === 'ios' && ios !== null ? 'ios' : device === 'linux' && linux !== null ? 'linux' : null;
-    const primary: ParityPlatform = marked ?? 'mac';
+    const marked: PlatformKey | null = device === 'mac' ? 'mac' : device === 'ios' && ios !== null ? 'ios' : device === 'linux' && linux !== null ? 'linux' : null;
+    const primary: PlatformKey = marked ?? 'mac';
 
-    const names: Record<ParityPlatform, string> = {
+    const names: Record<PlatformKey, string> = {
         mac: mac.deviceNames[0] ?? 'Mac',
         ios: joinList(ios?.deviceNames ?? [], m.common.shortList),
         linux: linux?.deviceNames[0] ?? 'Linux',
     };
-    const platforms: ParityPlatform[] = ['mac', ...(ios !== null ? (['ios'] as const) : []), ...(linux !== null ? (['linux'] as const) : [])];
-    const columns = platforms.map((key) => ({ key, name: names[key] }));
+    const platforms: PlatformKey[] = ['mac', ...(ios !== null ? (['ios'] as const) : []), ...(linux !== null ? (['linux'] as const) : [])];
     const grid = platforms.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2';
 
     const version = (value: string | null, date: string | null): string | null => {
@@ -135,12 +131,6 @@ export default function Download({ content, release, mac, ios, linux, unreleased
     const verifyLinux = linux !== null && linux.verify !== null && linux.packages.length > 0;
 
     const faq: FaqListItem[] = [
-        ...(linux !== null
-            ? [
-                  { id: 'linux-free', question: m.download.faq.free.question, answer: m.download.faq.free.answer },
-                  { id: 'linux-license', question: m.download.faq.license.question, answer: plural(m.download.faq.license.answer, PRICING.license.deviceLimit) },
-              ]
-            : []),
         ...(unreleasedNames.length > 0
             ? [
                   {
@@ -167,7 +157,7 @@ export default function Download({ content, release, mac, ios, linux, unreleased
             : []),
     ];
 
-    const cell = (platform: ParityPlatform, children: ReactNode) => (
+    const cell = (platform: PlatformKey, children: ReactNode) => (
         <div key={platform}>
             <h3 className="type-label text-foreground">{names[platform]}</h3>
             {children}
@@ -228,38 +218,8 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                     }
                 >
                     <LinuxInstall linux={linux} />
-                    {shown('linux-main-window') && (
-                        <div className="mt-12 md:mt-16">
-                            <AssetSlot id="linux-main-window" />
-                        </div>
-                    )}
                 </Section>
             )}
-
-            <Section id="platforms" title={m.download.platforms.title} lead={m.download.platforms.lead}>
-                <CellGrid density="compact" className={grid}>
-                    {platforms.map((platform) =>
-                        cell(
-                            platform,
-                            <>
-                                <p className="type-h3 mt-1 text-foreground tabular-nums">
-                                    {plural(m.download.platforms.databases, platform === 'linux' ? engines.linux.length : engines[platform])}
-                                </p>
-                                {platform === 'linux' && <p className="type-small mt-2 text-muted-foreground">{joinList(engines.linux, m.common.list)}</p>}
-                            </>,
-                        ),
-                    )}
-                </CellGrid>
-                <p className="mt-6">
-                    <LocaleLink href="/databases" className={textLinkClasses('standalone')}>
-                        {content.platforms.databases}
-                        <span aria-hidden="true">→</span>
-                    </LocaleLink>
-                </p>
-                <div className="mt-10">
-                    <PlatformParity parity={parity} columns={columns} />
-                </div>
-            </Section>
 
             <Section id="updates" title={content.updates.title} flush>
                 <CellGrid density="compact" className={grid}>

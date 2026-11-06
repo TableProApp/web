@@ -71,36 +71,12 @@ export default {
             "label": "perintah verifikasi"
         }
     },
-    "platforms": {
-        "title": "Apa yang berjalan di tiap platform",
-        "lead": "Semua kemampuan di halaman fitur, berdampingan.",
-        "databases": {
-            "one": "{count} database",
-            "other": "{count} database"
-        },
-        "capability": "Kemampuan",
-        "covers": "{platform} {count} dari {total}",
-        "available": "Tersedia",
-        "page": "Halaman fitur",
-        "pageLabel": "Halaman fitur {page}"
-    },
     "updates": {
         "ios": "App Store menginstal pembaruan, seperti untuk aplikasi Anda yang lain.",
         "linux": "Manajer paket Anda menginstal pembaruan bersama bagian sistem lainnya. Aplikasi tidak memeriksa pembaruan sendiri."
     },
     "faq": {
         "title": "Pertanyaan",
-        "free": {
-            "question": "Apakah TablePro gratis di Linux?",
-            "answer": "Ya, gratis digunakan. Paket berbayar menambah fitur di aplikasi Mac, dan belum ada yang tersedia di Linux."
-        },
-        "license": {
-            "question": "Apakah lisensi saya berlaku di Linux?",
-            "answer": {
-                "one": "Ya. Satu lisensi bisa diaktifkan di {count} komputer, Mac atau Linux. Untuk saat ini, fitur berbayarnya ada di Mac.",
-                "other": "Ya. Satu lisensi bisa diaktifkan di hingga {count} komputer, Mac atau Linux. Untuk saat ini, fitur berbayarnya ada di Mac."
-            }
-        },
         "other": {
             "question": "Apakah ada versi untuk {platforms}?"
         },

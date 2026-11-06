@@ -71,36 +71,12 @@ export default {
             "label": "comandos de verificación"
         }
     },
-    "platforms": {
-        "title": "Qué funciona en cada plataforma",
-        "lead": "Todas las capacidades de las páginas de funciones, lado a lado.",
-        "databases": {
-            "one": "{count} base de datos",
-            "other": "{count} bases de datos"
-        },
-        "capability": "Capacidad",
-        "covers": "{platform} {count} de {total}",
-        "available": "Disponible",
-        "page": "Página de funciones",
-        "pageLabel": "Página de funciones de {page}"
-    },
     "updates": {
         "ios": "El App Store instala las actualizaciones, como con tus otras apps.",
         "linux": "Tu gestor de paquetes instala las actualizaciones junto con el resto del sistema. La app no las busca por sí misma."
     },
     "faq": {
         "title": "Preguntas",
-        "free": {
-            "question": "¿TablePro es gratis en Linux?",
-            "answer": "Sí, su uso es gratuito. Los planes de pago añaden funciones a la app para Mac, y ninguna está todavía en Linux."
-        },
-        "license": {
-            "question": "¿Mi licencia funciona en Linux?",
-            "answer": {
-                "one": "Sí. Una licencia se activa en {count} ordenador, Mac o Linux. Por ahora, sus funciones de pago están en el Mac.",
-                "other": "Sí. Una licencia se activa en hasta {count} ordenadores, Mac o Linux. Por ahora, sus funciones de pago están en el Mac."
-            }
-        },
         "other": {
             "question": "¿Hay una versión para {platforms}?"
         },

@@ -71,36 +71,12 @@ export default {
             "label": "Prüfbefehle"
         }
     },
-    "platforms": {
-        "title": "Was auf welcher Plattform funktioniert",
-        "lead": "Jede Funktion der Funktionsseiten im direkten Vergleich.",
-        "databases": {
-            "one": "{count} Datenbank",
-            "other": "{count} Datenbanken"
-        },
-        "capability": "Funktion",
-        "covers": "{platform} {count} von {total}",
-        "available": "Verfügbar",
-        "page": "Funktionsseite",
-        "pageLabel": "Funktionsseite {page}"
-    },
     "updates": {
         "ios": "Der App Store installiert Updates wie bei deinen anderen Apps.",
         "linux": "Dein Paketmanager installiert Updates zusammen mit dem restlichen System. Die App sucht nicht selbst danach."
     },
     "faq": {
         "title": "Fragen",
-        "free": {
-            "question": "Ist TablePro unter Linux kostenlos?",
-            "answer": "Ja, die Nutzung ist kostenlos. Kostenpflichtige Tarife ergänzen die Mac-App um Funktionen, und keine davon gibt es bisher unter Linux."
-        },
-        "license": {
-            "question": "Funktioniert meine Lizenz unter Linux?",
-            "answer": {
-                "one": "Ja. Eine Lizenz lässt sich auf {count} Computer aktivieren, Mac oder Linux. Ihre kostenpflichtigen Funktionen gibt es vorerst nur auf dem Mac.",
-                "other": "Ja. Eine Lizenz lässt sich auf bis zu {count} Computern aktivieren, Mac oder Linux. Ihre kostenpflichtigen Funktionen gibt es vorerst nur auf dem Mac."
-            }
-        },
         "other": {
             "question": "Gibt es eine Version für {platforms}?"
         },

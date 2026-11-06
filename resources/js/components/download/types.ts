@@ -1,6 +1,5 @@
 // The props DownloadController sends. The copy's shape is the English file's; TranslationsTest holds the other locales to it.
 import type { PostSummary } from '@/components/blog/post-list';
-import type { AvailabilityRow, Facts, FeatureLabels } from '@/components/features/types';
 import type { Requirements } from '@/lib/data/platforms';
 
 export type { Requirements };
@@ -97,18 +96,7 @@ export interface LinksProp {
     issues: string | null;
 }
 
-export interface EngineCounts {
-    mac: number;
-    ios: number;
-    // The engines tested on Linux, by name; empty while Linux is not released.
-    linux: string[];
-}
-
-export interface ParityProp {
-    groups: { slug: string; rows: AvailabilityRow[] }[];
-    facts: Facts;
-    labels: FeatureLabels;
-}
+export type PlatformKey = 'mac' | 'ios' | 'linux';
 
 export interface DownloadPageProps {
     content: DownloadContent;
@@ -119,8 +107,6 @@ export interface DownloadPageProps {
     // Platform ids with nothing to install.
     unreleased: string[];
     links: LinksProp;
-    engines: EngineCounts;
-    parity: ParityProp;
     featuredEngines: string[];
     latestPost: PostSummary | null;
 }

@@ -48,12 +48,6 @@ export default function LinuxCard({ linux, marked, primary, className }: LinuxCa
             }
             updates={m.download.card.updates.linux}
         >
-            <p>
-                <a href="#platforms" className={textLinkClasses('standalone')}>
-                    {m.download.platforms.title}
-                    <span aria-hidden="true">↓</span>
-                </a>
-            </p>
         </PlatformCard>
     );
 }

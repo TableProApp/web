@@ -9,8 +9,6 @@ use App\Services\Releases\LinuxReleaseService;
 use App\Services\Releases\MacReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
-use App\Support\Content\Slugs\FeatureSlugs;
-use App\Support\Features\FeatureFacts;
 use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageRegistry;
@@ -33,7 +31,6 @@ class DownloadController extends Controller
         LinuxReleaseService $linuxReleases,
         PlatformCatalog $platforms,
         SiteFacts $facts,
-        FeatureFacts $featureFacts,
         BlogService $blog,
         PageRegistry $registry,
     ): Response {
@@ -54,8 +51,6 @@ class DownloadController extends Controller
             'linux' => $linux,
             'unreleased' => $platforms->unreleased(),
             'links' => $this->links($facts),
-            'engines' => $this->engines($linux !== null),
-            'parity' => $this->parity($content, $featureFacts, $locale),
             'featuredEngines' => $facts->featuredEngineNames(),
             'latestPost' => $this->latestPost($blog, $registry, $locale),
         ]);
@@ -194,64 +189,6 @@ class DownloadController extends Controller
             'license' => $links['license'],
             'issues' => $links['issues'],
         ];
-    }
-
-    /**
-     * @return array{mac: int, ios: int, linux: list<string>}
-     */
-    private function engines(bool $linux): array
-    {
-        $counts = ['mac' => 0, 'ios' => 0, 'linux' => []];
-
-        foreach ($this->json('engines.json') as $engine) {
-            if (! is_array($engine) || ($engine['state'] ?? null) !== 'published' || ! is_string($engine['name'] ?? null)) {
-                continue;
-            }
-
-            $counts['mac']++;
-
-            if (($engine['ios']['inPicker'] ?? false) === true) {
-                $counts['ios']++;
-            }
-
-            if ($linux && ($engine['linux']['support'] ?? null) === 'tested') {
-                $counts['linux'][] = $engine['name'];
-            }
-        }
-
-        return $counts;
-    }
-
-    /**
-     * @return array{groups: list<array{slug: string, rows: list<array<string, mixed>>}>, facts: array<string, mixed>, labels: array<string, mixed>}
-     */
-    private function parity(ContentRepository $content, FeatureFacts $facts, string $locale): array
-    {
-        $groups = [];
-
-        foreach (FeatureSlugs::ALL as $slug) {
-            if ($content->has("features/{$slug}", $locale)) {
-                $rows = $content->page("features/{$slug}", $locale)['availability'] ?? [];
-                $groups[] = ['slug' => $slug, 'rows' => is_array($rows) ? array_values($rows) : []];
-            }
-        }
-
-        return [
-            'groups' => $groups,
-            'facts' => $facts->for(...array_column($groups, 'rows')),
-            'labels' => $content->has('features/index', $locale) ? ($content->page('features/index', $locale)['labels'] ?? []) : [],
-        ];
-    }
-
-    /**
-     * @return array<array-key, mixed>
-     */
-    private function json(string $file): array
-    {
-        $path = resource_path('data/' . $file);
-        $decoded = File::isFile($path) ? json_decode((string) File::get($path), true) : null;
-
-        return is_array($decoded) ? $decoded : [];
     }
 
     private function date(mixed $date, string $locale): ?string

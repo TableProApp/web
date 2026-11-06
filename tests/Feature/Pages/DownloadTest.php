@@ -158,18 +158,11 @@ function downloadJsonLdIds(Dom\HTMLDocument $document): array
     return $ids;
 }
 
-function downloadEnglishAvailabilityRows(): int
-{
-    return collect(App\Support\Content\Slugs\FeatureSlugs::ALL)
-        ->sum(fn(string $slug): int => count(json_decode((string) file_get_contents(resource_path("data/content/en/features/{$slug}.json")), true)['availability']));
-}
-
 it('sends nothing about Linux while it is not released', function (): void {
     downloadFakeRelease();
 
     get('/download')->assertInertia(fn(AssertableInertia $page) => $page
         ->where('linux', null)
-        ->where('engines.linux', [])
         ->where('unreleased', fn($platforms): bool => in_array('linux', $platforms->all(), true)));
 });
 
@@ -188,7 +181,6 @@ it('sends the Linux install methods, packages and release once Linux is released
         ->where('linux.release.version', $linux['release']['version'])
         ->where('linux.architectures', $linux['architectures'])
         ->where('linux.packages', fn($rows): bool => count($rows) === 5 && $rows[0]['files']['x86_64']['name'] === "tablepro-{$linux['release']['version']}-ubuntu-26.04-amd64.deb")
-        ->where('engines.linux', fn($names): bool => in_array('PostgreSQL', $names->all(), true) && ! in_array('Oracle', $names->all(), true))
         ->where('unreleased', ['windows']));
 });
 
@@ -230,18 +222,6 @@ it('takes the Linux packages’ sizes from the newest GitHub release', function 
         ->where('linux.checksums.url', 'https://github.com/TableProApp/TablePro/releases/download/linux-v0.1.0-beta.2/SHA256SUMS'));
 });
 
-it('sends every availability row of the feature pages for the platform table', function (string $path, string $locale): void {
-    downloadFakeRelease();
-
-    get($path)->assertInertia(fn(AssertableInertia $page) => $page
-        ->where('parity.groups', fn($groups): bool => collect($groups)->pluck('slug')->all() === App\Support\Content\Slugs\FeatureSlugs::ALL
-            && collect($groups)->sum(fn(array $group): int => count($group['rows'])) === downloadEnglishAvailabilityRows())
-        ->where('parity.labels.tiers.starter', fn($name): bool => is_string($name) && $name !== '')
-        ->has('parity.facts.linuxSafeModeLevels')
-        ->where('engines.mac', collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))->where('state', 'published')->count())
-        ->where('engines.ios', collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))->filter(fn(array $engine): bool => ($engine['ios']['inPicker'] ?? false) === true)->count()));
-})->with([['/download', 'en'], ['/vi/download', 'vi']]);
-
 it('renders no Linux section, card or structured data while Linux is not released', function (): void {
     downloadFakeRelease();
     $document = downloadDocument();
@@ -249,7 +229,7 @@ it('renders no Linux section, card or structured data while Linux is not release
     expect($document->getElementById('linux'))->toBeNull()
         ->and($document->querySelector('#mac'))->not->toBeNull()
         ->and($document->querySelector('#ios'))->not->toBeNull()
-        ->and($document->querySelectorAll('#platforms thead th'))->toHaveCount(3)
+        ->and($document->getElementById('platforms'))->toBeNull()
         ->and(collect(downloadJsonLdIds($document))->filter(fn(string $id): bool => str_ends_with($id, '#linux-app')))->toBeEmpty();
 })->group('ssr');
 
@@ -263,17 +243,9 @@ it('renders the Linux section with platforms.json’s commands, and the Linux ap
 
     expect($document->getElementById('linux'))->not->toBeNull()
         ->and(array_slice($rendered, 0, count($expected)))->toBe($expected)
-        ->and($document->querySelectorAll('#platforms thead th'))->toHaveCount(4)
+        ->and($document->getElementById('platforms'))->toBeNull()
         ->and($document->querySelector('a[href="#linux"]'))->not->toBeNull()
         ->and(collect(downloadJsonLdIds($document))->filter(fn(string $id): bool => str_ends_with($id, '#linux-app')))->toHaveCount(1);
-})->group('ssr');
-
-it('renders one table row per availability row of the English feature pages', function (): void {
-    downloadFakeRelease();
-    $document = downloadDocument();
-
-    expect($document->querySelectorAll('#platforms tbody th[scope="row"]'))->toHaveCount(downloadEnglishAvailabilityRows())
-        ->and($document->querySelectorAll('#platforms tbody th[scope="rowgroup"]'))->toHaveCount(count(App\Support\Content\Slugs\FeatureSlugs::ALL));
 })->group('ssr');
 
 it('names each released platform’s version in the release notes', function (bool $linuxReleased): void {
@@ -288,3 +260,10 @@ it('names each released platform’s version in the release notes', function (bo
         ->and($notes)->toContain('Version 1.0,')
         ->and(str_contains($notes, 'Version 0.1.0-beta.1'))->toBe($linuxReleased);
 })->with(['Mac and iPhone' => false, 'with Linux' => true])->group('ssr');
+
+it('keeps the page to downloads: no feature table, no engine counts, no screenshot', function (): void {
+    downloadReleaseLinux();
+    downloadFakeRelease();
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->missing('parity')->missing('engines'));
+});

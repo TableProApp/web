@@ -1568,17 +1568,18 @@ platforms every row below has two cells.
 PageHeader        H1 · one line
 cards             one CellGrid row: Mac #mac | iPhone & iPad #ios | Linux (Beta). Each card: name, version and date,
                   one action with what you get under it, how it updates, then a wall-to-wall lower section
-                  (Mac: Verify your download, signed and notarized, Homebrew with copy; iPhone: /ios →; Linux: #platforms ↓)
+                  (Mac: Verify your download, signed and notarized, Homebrew with copy; iPhone: /ios →)
 #linux            H2 + Beta badge, one sentence on what beta means (GitHub issues). SegmentedControl tabs
                   Ubuntu | Fedora | Flatpak | Files; each method one CodeBlock of platforms.json's commands (one copy
                   button, no prompt, wraps only at spaces), its requirement and update lines. Files: a table of the
-                  release's packages by format × architecture, SHA256SUMS, a Verify a file Disclosure. Then linux-main-window
-#platforms        engine counts per platform (CellGrid), then one DataTable of every feature page's availability rows,
-                  grouped by page; groups collapse (the first open), the head sticks at top-16, rows tint on hover
+                  release's packages by format × architecture, SHA256SUMS, a Verify a file Disclosure.
 #updates          one cell per platform
 #older-versions   release notes per platform; the Mac cell keeps the older-versions links and the latest release post
-#faq              FaqList collapsible: free on Linux, license on Linux, other platforms, verifying a download
+#faq              FaqList collapsible: other platforms, verifying a download
 ```
+
+The page holds downloads only (owner, 2026-11-07): no feature table, no engine counts, no screenshots. What runs where
+lives on the feature pages' "Where it works" tables and /databases.
 
 - The server marks nothing. After mount `classifyDevice()` marks the reader's platform ("Your system", `.plan-lead`) and
   gives its action the filled button; before that, and for any other device, the Mac button is the filled one. The mark

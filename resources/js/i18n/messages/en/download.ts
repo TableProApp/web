@@ -70,36 +70,12 @@ export default {
             label: 'verification commands',
         },
     },
-    platforms: {
-        title: 'What works on each platform',
-        lead: 'Every capability on the feature pages, side by side.',
-        databases: {
-            one: '{count} database',
-            other: '{count} databases',
-        },
-        capability: 'Capability',
-        covers: '{platform} {count} of {total}',
-        available: 'Available',
-        page: 'Feature page',
-        pageLabel: '{page} feature page',
-    },
     updates: {
         ios: 'The App Store installs updates, as it does for your other apps.',
         linux: 'Your package manager installs updates with the rest of your system. The app does not check for them itself.',
     },
     faq: {
         title: 'Questions',
-        free: {
-            question: 'Is TablePro free on Linux?',
-            answer: 'Yes, it is free to use. Paid plans add features to the Mac app, and none of them is on Linux yet.',
-        },
-        license: {
-            question: 'Does my license work on Linux?',
-            answer: {
-                one: 'Yes. A license activates on {count} computer, Mac or Linux. Its paid features are on the Mac for now.',
-                other: 'Yes. A license activates on up to {count} computers, Mac or Linux. Its paid features are on the Mac for now.',
-            },
-        },
         other: {
             question: 'Is there a version for {platforms}?',
         },
