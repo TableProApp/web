@@ -5,108 +5,98 @@
     },
     "og": {
         "kicker": "Bảng giá",
-        "title": "Dùng miễn phí. Gói trả phí bổ sung các tính năng tùy chọn."
+        "title": "Dùng miễn phí. Gói trả phí bổ sung các tính năng tùy chọn.",
+        "pro": "Pro",
+        "proPrice": "{price} mỗi năm",
+        "team": "Team",
+        "teamPrice": "{price} mỗi seat, mỗi tháng, trả theo năm"
     },
     "header": {
         "title": "Bảng giá",
-        "lead": "Dùng ứng dụng Mac miễn phí, không có thời gian dùng thử. Pro và Team thêm tính năng tùy chọn. Ứng dụng iPhone và iPad miễn phí, không có mua hàng trong ứng dụng."
-    },
-    "priceChange": {
-        "text": "TablePro có giá mới, và Starter giờ là Pro. Mọi thứ đã mua trước đó giữ nguyên giá và điều khoản.",
-        "link": "Những gì đã thay đổi"
+        "lead": "TablePro miễn phí, kể cả cho công việc. Pro và Team thêm tính năng cho ứng dụng Mac."
     },
     "plans": {
         "title": "Các gói"
     },
     "features": {
         "title": "Gói trả phí bổ sung những gì",
-        "lead": "Chỉ các tính năng liệt kê ở đây cần gói trả phí, hiện trên Mac. Team gồm Pro. Mọi engine được hỗ trợ, trợ lý AI, MCP và Safe Mode đều miễn phí."
-    },
-    "license": {
-        "title": "License hoạt động thế nào",
-        "items": {
-            "macs": {
-                "term": "Máy Mac",
-                "body": "Pro dành cho một người trên tối đa {deviceLimit} máy Mac. Mỗi seat Team dành cho một người trên tối đa {deviceLimit} máy Mac, và người mua có sẵn một seat. Giới hạn này tính theo tài khoản, chung cho Pro và Team. Ứng dụng iPhone và iPad không dùng license hay seat."
-            },
-            "activate": {
-                "term": "Đăng nhập",
-                "body": "Đăng nhập ứng dụng cho Mac bằng email đã mua; ứng dụng đăng ký ID máy đã hash, tên máy Mac, phiên bản ứng dụng và macOS. Để dùng license trên máy Mac khác, gỡ một máy trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) hoặc trên trang Thiết bị trong <account>tài khoản của bạn</account>. Các phiên bản trước khi có tài khoản TablePro thì nhập license key trong <ui>Cài đặt > License</ui> (Settings > License)."
-            },
-            "checks": {
-                "term": "Kiểm tra",
-                "body": "TablePro làm mới một bản sao có chữ ký của gói bạn dùng khi mở ứng dụng và mỗi ngày một lần. Nếu không liên lạc được với server, tính năng trả phí vẫn hoạt động tới khi bản sao đó hết hạn, tối đa {offlineDays} ngày sau lần làm mới gần nhất. Với máy Mac không bao giờ kết nối mạng, hãy tạo file offline trong <account>tài khoản của bạn</account>. Các phiên bản trước khi có tài khoản TablePro kiểm tra mỗi {revalidateDays} ngày và giữ tính năng trả phí thêm {graceDays} ngày từ lần kiểm tra thành công gần nhất."
-            },
-            "ends": {
-                "term": "Khi gói kết thúc",
-                "body": "Khi subscription kết thúc, tính năng trả phí dừng. Mọi tính năng Free vẫn hoạt động."
-            },
-            "oneTime": {
-                "term": "Mua một lần",
-                "body": "Gói mua một lần chỉ thanh toán một lần và không có ngày hết hạn."
-            }
-        },
-        "lapse": {
-            "summary": "Từng tính năng trả phí thay đổi thế nào khi gói kết thúc",
-            "intro": "Mỗi tính năng trả phí ngừng hoạt động theo cách riêng:"
-        },
-        "terms": "<terms>Điều khoản sử dụng</terms> nêu rõ một license cho phép những gì."
-    },
-    "billing": {
-        "title": "Thanh toán",
-        "merchant": "{merchant} là merchant of record. Dịch vụ này xử lý thanh toán, tính thuế bán hàng hoặc VAT từ địa chỉ thanh toán và gửi biên lai, hóa đơn qua email.",
-        "renewal": "Subscription gia hạn cho tới khi bạn hủy trong <account>tài khoản</account> hoặc trang khách hàng của {merchant}. Quyền sử dụng tiếp tục tới hết kỳ đã trả; bạn có thể tiếp tục subscription trước khi kỳ đó kết thúc. Nếu gia hạn thất bại, dịch vụ gửi email yêu cầu cập nhật thẻ và thử thu tiền lại trong khoảng ba tuần.",
-        "portal": "Quản lý hóa đơn, biên lai và phương thức thanh toán trong <portal>trang khách hàng của {merchant}</portal>. Đăng nhập ở đó bằng email đã mua, hoặc mở từ mục <account>Thanh toán</account> trong tài khoản của bạn."
-    },
-    "refunds": {
-        "title": "Hoàn tiền",
-        "body": "Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó. Bạn tự hoàn tiền trong mục Thanh toán của <account>tài khoản của bạn</account>. Xem <link>chính sách hoàn tiền</link> để biết các trường hợp ngoại lệ và ảnh hưởng tới license."
-    },
-    "team": {
-        "title": "Gói Team",
-        "seats": "Gói Team tính phí theo seat, tối thiểu {min} seat.",
-        "invites": "Chủ sở hữu và quản trị viên mời người khác qua email trên trang Thành viên trong tài khoản, kèm hoặc không kèm seat. Lời mời kèm seat giữ seat đó tới khi được chấp nhận hoặc bị thu hồi; liên kết dùng được 7 ngày và có thể gửi lại.",
-        "changes": "Chủ sở hữu đổi số seat của subscription trong mục Thanh toán của tài khoản, và {merchant} thu hoặc hoàn phần chênh lệch theo tỷ lệ ngay khi đổi. Nhóm có seat mua một lần vẫn giữ các seat đó, và muốn thêm seat thì cần subscription Team.",
-        "account": "Quản lý nhóm trong tài khoản",
-        "page": "TablePro cho nhóm"
-    },
-    "atWork": {
-        "title": "Dùng TablePro cho công việc",
-        "body": "Dùng TablePro cho công việc là miễn phí, trong công ty với bất kỳ quy mô nào, và không có gì đang miễn phí sẽ chuyển sang trả phí.",
-        "ask": "Nếu TablePro là một phần công việc của bạn, hãy mua một license: Pro cho riêng bạn, hoặc Team cho nhóm từ hai người. Đây là lời đề nghị, không phải điều kiện, và license là thứ chi trả cho bản phát hành tiếp theo."
-    },
-    "education": {
-        "title": "Học sinh, sinh viên và giáo viên",
-        "body": "Học sinh, sinh viên và giáo viên được dùng Pro miễn phí trong một năm với địa chỉ email của trường học hoặc trường đại học.",
-        "how": "Đăng nhập <account>tài khoản của bạn</account> bằng địa chỉ đó, hoặc đổi email của tài khoản sang địa chỉ đó, rồi chọn <ui>Nhận Pro miễn phí</ui> trên trang Tổng quan và nhập mã chúng tôi gửi tới địa chỉ đó. Bạn gia hạn theo cách tương tự miễn là địa chỉ đó vẫn còn hoạt động, và chúng tôi sẽ gửi email cho bạn một tuần trước khi năm miễn phí kết thúc.",
-        "scope": "Năm miễn phí này là Pro cho một người và không bao gồm Team. Chương trình không áp dụng cho tài khoản đã có license Pro trả phí.",
-        "help": "Nếu chúng tôi chưa nhận diện được địa chỉ email của trường bạn, bạn vui lòng gửi email tới <email>{email}</email>."
-    },
-    "openSource": {
-        "title": "Mã nguồn mở",
-        "body": "TablePro là phần mềm mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Bản build từ mã nguồn kiểm tra license giống hệt bản phát hành.",
-        "agpl": "Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, kể cả ở nơi làm việc, trong công ty với bất kỳ quy mô nào. Các điều kiện áp dụng khi bạn phân phối TablePro, hoặc khi bạn cung cấp một phiên bản đã sửa đổi cho người khác dùng qua mạng.",
-        "github": "Xem trên GitHub"
-    },
-    "compare": {
-        "title": "So sánh với các client khác",
-        "body": "So sánh giá và tính năng với client khác. Mỗi bài có ngày kiểm tra và nguồn."
+        "lead": "Chỉ những tính năng này cần gói trả phí. Mọi thứ khác đều miễn phí."
     },
     "faq": {
-        "title": "Câu hỏi về các gói",
+        "title": "Câu hỏi",
         "more": "Thêm câu hỏi về gói và license",
-        "items": {
-            "payment-methods": {
-                "question": "Tôi có thể thanh toán bằng những phương thức nào?",
-                "answer": "Trang thanh toán của {merchant} chấp nhận thẻ tín dụng và thẻ ghi nợ."
+        "groups": {
+            "license": {
+                "title": "License",
+                "items": {
+                    "macs": {
+                        "question": "Một license dùng được trên bao nhiêu máy Mac?",
+                        "answer": "Pro dành cho một người trên tối đa {deviceLimit} máy Mac, mỗi seat Team cũng vậy. Gỡ một máy Mac trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) hoặc trong <account>tài khoản của bạn</account>."
+                    },
+                    "offline": {
+                        "question": "TablePro có cần kết nối mạng không?",
+                        "answer": "TablePro làm mới gói của bạn mỗi ngày và giữ tính năng trả phí hoạt động offline tối đa {offlineDays} ngày. Máy Mac không bao giờ kết nối mạng thì dùng file offline tạo trong <account>tài khoản của bạn</account>."
+                    },
+                    "ends": {
+                        "question": "Khi gói kết thúc thì sao?",
+                        "answer": "Tính năng trả phí dừng, mỗi tính năng theo cách riêng, còn mọi thứ trong gói Miễn phí vẫn hoạt động. License mua một lần không có ngày hết hạn. Xem <terms>Điều khoản sử dụng</terms>."
+                    },
+                    "lost-key": {
+                        "question": "License key của tôi ở đâu?",
+                        "answer": "Bạn không cần key nữa: đăng nhập bằng email đã mua. Các phiên bản trước khi có tài khoản TablePro lấy key từ email đó và hoạt động offline {graceDays} ngày."
+                    }
+                }
             },
-            "company-invoice": {
-                "question": "Có lấy được hóa đơn cho công ty không?",
-                "answer": "Có. Trong <portal>cổng khách hàng của {merchant}</portal>, bạn có thể thêm tên công ty, mã số thuế và địa chỉ thanh toán vào hóa đơn rồi tải về."
+            "billing": {
+                "title": "Thanh toán và hoàn tiền",
+                "items": {
+                    "payment-methods": {
+                        "question": "Tôi thanh toán bằng cách nào?",
+                        "answer": "Bằng thẻ. {merchant} là merchant of record, cộng thuế bán hàng hoặc VAT và gửi biên lai qua email."
+                    },
+                    "company-invoice": {
+                        "question": "Có lấy được hóa đơn cho công ty không?",
+                        "answer": "Có. Thêm tên công ty, mã số thuế và địa chỉ trong <portal>cổng khách hàng của {merchant}</portal> rồi tải về."
+                    },
+                    "renewals": {
+                        "question": "Gia hạn hoạt động thế nào?",
+                        "answer": "Gói thuê bao tự gia hạn cho tới khi bạn hủy trong <account>tài khoản của bạn</account>, và bạn vẫn dùng được tới hết kỳ đã trả. {merchant} thử thu lại khoản thanh toán thất bại trong khoảng ba tuần."
+                    },
+                    "refunds": {
+                        "question": "Tôi có được hoàn tiền không?",
+                        "answer": "Có, trong vòng {refundDays} ngày kể từ lần mua hoặc gia hạn, trong mục Thanh toán của <account>tài khoản của bạn</account>. Xem <link>chính sách hoàn tiền</link>."
+                    }
+                }
             },
-            "lost-key": {
-                "question": "Tìm license key ở đâu?",
-                "answer": "Bạn không cần key nữa: đăng nhập ứng dụng cho Mac bằng email đã mua, giao dịch của bạn nằm trong tài khoản đó. Các phiên bản trước khi có tài khoản TablePro vẫn nhận key trong email mua hàng."
+            "team": {
+                "title": "Team",
+                "items": {
+                    "seats": {
+                        "question": "Seat Team hoạt động thế nào?",
+                        "answer": "Từ {min} seat. Chủ sở hữu và quản trị viên mời thành viên; chủ sở hữu đổi số seat trong mục Thanh toán, và {merchant} tính phần chênh lệch theo tỷ lệ. <teams>TablePro cho nhóm</teams>"
+                    }
+                }
+            },
+            "free": {
+                "title": "Miễn phí và mã nguồn mở",
+                "items": {
+                    "at-work": {
+                        "question": "Tôi có thể dùng ứng dụng miễn phí cho công việc không?",
+                        "answer": "Có, trong công ty với bất kỳ quy mô nào, và không có gì đang miễn phí sẽ chuyển sang trả phí. Nếu TablePro là một phần công việc của bạn, một license sẽ giúp trang trải cho bản phát hành tiếp theo."
+                    },
+                    "education": {
+                        "question": "Học sinh, sinh viên và giáo viên có được dùng Pro không?",
+                        "answer": "Có, miễn phí một năm với email của trường học hoặc trường đại học: chọn <ui>Nhận Pro miễn phí</ui> trong <account>tài khoản của bạn</account>. Đây là Pro cho một người, không áp dụng cho tài khoản đã trả tiền cho Pro. Địa chỉ chưa được nhận diện? Gửi email tới <email>{email}</email>."
+                    },
+                    "open-source": {
+                        "question": "TablePro có phải mã nguồn mở không?",
+                        "answer": "Có, theo giấy phép AGPLv3, kể cả tính năng trả phí. Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro. <github>Xem trên GitHub</github>"
+                    },
+                    "compare": {
+                        "question": "TablePro so với các client khác thế nào?",
+                        "answer": "Mỗi bài so sánh có ngày kiểm tra và nguồn:"
+                    }
+                }
             }
         }
     }

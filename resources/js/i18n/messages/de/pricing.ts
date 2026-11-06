@@ -25,16 +25,16 @@ export default {
             "activation": "Die App lässt sich ohne Registrierung nutzen.",
             "includesTitle": "Enthält",
             "includes": [
-                "Verbindungen zu allen unterstützten Datenbanksystemen",
+                "Alle unterstützten Datenbanksysteme",
                 "SQL-Editor und Datentabelle",
                 "KI-Assistent und MCP-Server",
                 "Safe Mode",
-                "Die iPhone- und iPad-App"
+                "iPhone- und iPad-App"
             ]
         },
         "starter": {
             "name": "Pro",
-            "description": "Ergänzt die Mac-App um Funktionen wie {examples}.",
+            "description": "Die Bezahlfunktionen, für eine Person.",
             "activation": {
                 "one": "Eine Person, {count} Mac.",
                 "other": "Eine Person, bis zu {count} Macs."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Teile Verbindungen und gespeicherte Abfragen mit deinem Team.",
+            "description": "Pro für alle, dazu geteilte Verbindungen.",
             "activation": {
                 "one": "Eine Person pro Arbeitsplatz, {count} Mac.",
                 "other": "Eine Person pro Arbeitsplatz, bis zu {count} Macs."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Für Unternehmen, die mehr Kontrolle über die Nutzung von TablePro brauchen.",
-            "price": "Kontakt",
-            "activation": "Preis je Unternehmen.",
-            "includesTitle": "Sag uns, was du brauchst, zum Beispiel",
-            "includes": [
-                "Anmeldung mit den Konten deines Unternehmens",
-                "Verbindliche Richtlinien für Team-Verbindungen",
-                "Audit von Schreibzugriffen auf Produktion",
-                "Verteilung per MDM",
-                "Rechnungen und Bestellscheine"
-            ],
+            "description": "Anmeldung mit den Konten deines Unternehmens, verbindliche Richtlinien, ein Audit-Log, MDM, Bestellscheine.",
             "cta": "Kontakt aufnehmen"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "Alle Bezahlfunktionen",
     "refund": {
-        "one": "Jeder bezahlte Tarif kann innerhalb von {count} Tag nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tag nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>.",
-        "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden, jede monatliche oder jährliche Verlängerung innerhalb von {count} Tagen nach ihrer Abbuchung. Details in der <link>Erstattungsrichtlinie</link>."
+        "one": "Erstattung innerhalb von {count} Tag nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>).",
+        "other": "Erstattung innerhalb von {count} Tagen nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>)."
     },
-    "finePrint": "Preise in US-Dollar. {merchant} wickelt als Merchant of Record die Zahlung ab und berechnet die Umsatzsteuer beim Checkout.",
+    "finePrint": "Preise in US-Dollar; {merchant} berechnet die Umsatzsteuer beim Checkout.",
     "comparePlans": "Tarife vergleichen",
     "section": {
         "title": "Preise",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Was jeder Tarif in der Mac-App enthält",
         "feature": "Funktion",
+        "groups": {
+            "starter": "In Pro und Team",
+            "team": "In Team",
+            "all": "In jedem Tarif"
+        },
         "macs": "Macs",
         "macsFree": "Keine Lizenz",
         "macsStarter": {

@@ -23,8 +23,8 @@ export default {
     tiers: {
         free: {
             name: 'Free',
-            description: 'The whole app, at work too.',
-            activation: 'No sign-up.',
+            description: 'Core database tools, with no trial period.',
+            activation: 'No sign-up to use the app.',
             includesTitle: 'Includes',
             includes: ['Every supported engine', 'SQL editor and data grid', 'AI assistant and MCP server', 'Safe Mode', 'iPhone and iPad app'],
         },

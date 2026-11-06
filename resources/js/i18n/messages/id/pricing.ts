@@ -25,7 +25,7 @@ export default {
             "activation": "Tidak perlu mendaftar untuk menggunakan aplikasi.",
             "includesTitle": "Termasuk",
             "includes": [
-                "Koneksi ke semua mesin database yang didukung",
+                "Semua mesin database yang didukung",
                 "Editor SQL dan grid data",
                 "Asisten AI dan server MCP",
                 "Safe Mode",
@@ -34,7 +34,7 @@ export default {
         },
         "starter": {
             "name": "Pro",
-            "description": "Menambahkan fitur seperti {examples} ke aplikasi Mac.",
+            "description": "Fitur berbayar, untuk satu orang.",
             "activation": {
                 "one": "Satu orang, {count} Mac.",
                 "other": "Satu orang, hingga {count} Mac."
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Bagikan koneksi dan kueri tersimpan dengan tim Anda.",
+            "description": "Pro untuk semua orang, plus koneksi bersama.",
             "activation": {
                 "one": "Satu orang per seat, {count} Mac.",
                 "other": "Satu orang per seat, hingga {count} Mac."
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Untuk perusahaan yang butuh kontrol lebih atas penggunaan TablePro.",
-            "price": "Hubungi kami",
-            "activation": "Harga per perusahaan.",
-            "includesTitle": "Beri tahu kebutuhan Anda, misalnya",
-            "includes": [
-                "Masuk dengan akun perusahaan",
-                "Kebijakan wajib pada koneksi tim",
-                "Audit penulisan ke production",
-                "Penyebaran melalui MDM",
-                "Faktur dan purchase order"
-            ],
+            "description": "Masuk dengan akun perusahaan, kebijakan wajib, log audit, MDM, purchase order.",
             "cta": "Hubungi kami"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "Semua fitur berbayar",
     "refund": {
-        "one": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>.",
-        "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>."
+        "one": "Pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>).",
+        "other": "Pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>)."
     },
-    "finePrint": "Harga dalam dolar AS. {merchant} menangani pembayaran dan menghitung pajak penjualan atau PPN saat checkout sebagai merchant of record.",
+    "finePrint": "Harga dalam dolar AS; {merchant} menambahkan pajak penjualan atau PPN saat checkout.",
     "comparePlans": "Bandingkan paket",
     "section": {
         "title": "Harga",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Fitur setiap paket di aplikasi Mac",
         "feature": "Fitur",
+        "groups": {
+            "starter": "Di Pro dan Team",
+            "team": "Di Team",
+            "all": "Di semua paket"
+        },
         "macs": "Mac",
         "macsFree": "Tanpa lisensi",
         "macsStarter": {

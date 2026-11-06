@@ -25,7 +25,7 @@ export default {
             "activation": "登録なしでアプリを使えます。",
             "includesTitle": "含まれる機能",
             "includes": [
-                "すべての対応エンジンへの接続",
+                "すべての対応エンジン",
                 "SQL エディターとデータグリッド",
                 "AI アシスタントと MCP サーバー",
                 "Safe Mode",
@@ -34,7 +34,7 @@ export default {
         },
         "starter": {
             "name": "Pro",
-            "description": "Mac アプリに {examples} などの機能を追加します。",
+            "description": "1 人で使う有料機能。",
             "activation": {
                 "one": "1 人、Mac {count} 台。",
                 "other": "1 人、Mac 最大 {count} 台。"
@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "接続と保存済みクエリをチームで共有。",
+            "description": "全員に Pro、さらに接続の共有。",
             "activation": {
                 "one": "1 シートにつき 1 人、Mac {count} 台。",
                 "other": "1 シートにつき 1 人、Mac 最大 {count} 台。"
@@ -55,17 +55,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "TablePro の利用を組織として管理したい企業向けです。",
-            "price": "お問い合わせ",
-            "activation": "企業ごとにお見積もりします。",
-            "includesTitle": "必要なものをお知らせください。例えば",
-            "includes": [
-                "会社アカウントでのサインイン",
-                "チームの接続に適用するポリシー",
-                "本番環境への書き込みの監査",
-                "MDM による配布",
-                "請求書と発注書"
-            ],
+            "description": "会社アカウントでのサインイン、ポリシーの適用、監査ログ、MDM、発注書。",
             "cta": "お問い合わせ"
         }
     },
@@ -109,10 +99,10 @@ export default {
     },
     "allFeatures": "すべての有料機能",
     "refund": {
-        "one": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。",
-        "other": "すべての有料プランは購入から {count} 日以内に返金でき、月払い・年払いの各更新も請求日から {count} 日以内なら返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
+        "one": "購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。",
+        "other": "購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。"
     },
-    "finePrint": "価格は米ドルです。{merchant} が販売者（merchant of record）として決済を処理し、購入時に売上税または VAT を計算します。",
+    "finePrint": "価格は米ドルで、{merchant} が購入時に売上税または VAT を加算します。",
     "comparePlans": "プランを比較",
     "section": {
         "title": "料金",
@@ -121,6 +111,11 @@ export default {
     "matrix": {
         "caption": "Mac アプリで各プランに含まれる機能",
         "feature": "機能",
+        "groups": {
+            "starter": "Pro と Team に含まれる",
+            "team": "Team に含まれる",
+            "all": "すべてのプランに含まれる"
+        },
         "macs": "Mac 台数",
         "macsFree": "ライセンス不要",
         "macsStarter": {
