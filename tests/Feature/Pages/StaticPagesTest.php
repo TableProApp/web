@@ -208,3 +208,21 @@ it('names every app language platforms.json lists, in every locale', function (s
         }
     }
 })->with('locales');
+
+it('sends the FAQ\'s Linux answer to the Linux downloads and the engines Linux runs', function (string $locale): void {
+    $answer = collect(data_get(staticPageData("content/{$locale}/faq.json"), 'groups.*.items.*'))->firstWhere('id', 'windows-linux')['answer'] ?? null;
+    $links = (string) file_get_contents(resource_path('js/components/faq/content-links.tsx'));
+
+    expect(implode(' ', (array) $answer))->toContain('<downloadLinux>')->toContain('<databasesLinux>')
+        ->and($links)->toContain("databasesLinux: '/databases#linux'");
+})->with('locales');
+
+it('server-renders the FAQ\'s Linux links to sections that exist', function (string $locale): void {
+    $faq = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/faq', $locale)), LIBXML_NOERROR);
+    $databases = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/databases', $locale)), LIBXML_NOERROR);
+    $answer = $faq->getElementById('windows-linux');
+
+    expect($answer->querySelector('a[href="' . LocalizedUrl::path('/databases', $locale) . '#linux"]'))->not->toBeNull()
+        ->and($answer->querySelector('a[href="' . LocalizedUrl::path('/download', $locale) . '#linux"]'))->not->toBeNull()
+        ->and($databases->getElementById('linux'))->not->toBeNull();
+})->with(['en', 'vi'])->group('ssr');

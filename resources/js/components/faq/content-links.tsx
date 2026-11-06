@@ -31,7 +31,7 @@ const INTERNAL: Record<string, string> = {
     compare: '/compare',
     download: '/download',
     downloadLinux: '/download#linux',
-    downloadPlatforms: '/download#platforms',
+    databasesLinux: '/databases#linux',
     ios: '/ios',
     iosLimits: '/ios#limits',
     pricing: '/pricing',
