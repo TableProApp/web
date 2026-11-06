@@ -74,6 +74,10 @@ export function iosAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#ios-app`;
 }
 
+export function linuxAppId(baseUrl: string): string {
+    return `${origin(baseUrl)}/#linux-app`;
+}
+
 export function websiteId(baseUrl: string): string {
     return `${origin(baseUrl)}/#website`;
 }
@@ -277,6 +281,39 @@ export function iosAppNode(context: PageContext, input: IosAppInput): JsonLdNode
         publisher: reference(organizationId(context.baseUrl)),
         ...(input.version ? { softwareVersion: input.version } : {}),
         ...(input.featureList && input.featureList.length > 0 ? { featureList: [...input.featureList] } : {}),
+    };
+}
+
+export interface LinuxAppInput {
+    alternateName: string;
+    // "Linux": schema.org has no list of distributions, so they go in softwareRequirements.
+    operatingSystem: string;
+    requirements: string;
+    installUrl: string;
+    licenseUrl: string;
+    currency: string;
+    description?: string;
+    version?: string | null;
+}
+
+// Free to install and use; a license adds nothing on Linux yet, so it carries only the zero-price offer.
+export function linuxAppNode(context: PageContext, input: LinuxAppInput): JsonLdNode {
+    return {
+        '@type': 'SoftwareApplication',
+        '@id': linuxAppId(context.baseUrl),
+        name: 'TablePro',
+        alternateName: input.alternateName,
+        ...(input.description ? { description: input.description } : {}),
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: input.operatingSystem,
+        softwareRequirements: input.requirements,
+        installUrl: input.installUrl,
+        license: input.licenseUrl,
+        isAccessibleForFree: true,
+        offers: [offerNode({ name: input.alternateName, price: 0, currency: input.currency })],
+        inLanguage: context.inLanguage,
+        publisher: reference(organizationId(context.baseUrl)),
+        ...(input.version ? { softwareVersion: input.version } : {}),
     };
 }
 

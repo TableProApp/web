@@ -36,10 +36,16 @@ test('a Mac browser is a Mac, whatever chip its user agent claims', () => {
     assert.equal(classifyDevice(UA.safariMac, 1), 'mac');
 });
 
-test('Windows, Linux and Android are neither', () => {
+test('a Linux desktop is Linux, on Wayland or X11', () => {
+    assert.equal(classifyDevice(UA.linux, 0), 'linux');
+    assert.equal(classifyDevice('Mozilla/5.0 (X11; Ubuntu; Linux aarch64; rv:146.0) Gecko/20100101 Firefox/146.0', 0), 'linux');
+    assert.equal(classifyDevice('Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:146.0) Gecko/20100101 Firefox/146.0', 0), 'linux');
+});
+
+test('Windows, Android and ChromeOS are none of them', () => {
     assert.equal(classifyDevice(UA.chromeWindows, 0), 'other');
-    assert.equal(classifyDevice(UA.linux, 0), 'other');
     assert.equal(classifyDevice(UA.android, 5), 'other');
+    assert.equal(classifyDevice('Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 0), 'other');
     assert.equal(classifyDevice('', 0), 'other');
 });
 
@@ -47,6 +53,7 @@ test('the App Store card leads only on an iPhone or iPad', () => {
     assert.equal(appStoreFirst('ios'), true);
     assert.equal(appStoreFirst('mac'), false);
     assert.equal(appStoreFirst('other'), false);
+    assert.equal(appStoreFirst('linux'), false);
 });
 
 // The head script cannot import this module, so it repeats the rule.
