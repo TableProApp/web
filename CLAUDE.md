@@ -111,7 +111,7 @@ vendor/bin/pint                 # fix code style before finishing
 npm run check:shared -- ../tablepro-cloud   # diff the files shared with tablepro-cloud's portal
 php artisan sitemap:generate
 WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=my-post   # needs Chromium (PUPPETEER_EXECUTABLE_PATH); cards print WEB_DOMAIN
-php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: a supported locale code or all
+php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|campaign|all; locales: a supported locale code or all
                                 # commit public/og; delete a retired page's card (Seo/OgCardsTest fails on a missing or orphaned card)
 php artisan assets:generate    # after editing resources/data/assets.json
 php artisan assets:generate --check   # checks only frontend asset catalogs

@@ -99,3 +99,44 @@ export function remaining(targetMs: number, nowMs: number): Remaining {
         seconds: total % 60,
     };
 }
+
+export interface CalendarEvent {
+    summary: string;
+    description: string;
+    url: string;
+}
+
+const icsText = (value: string): string => value.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+
+const icsTime = (iso: string): string => new Date(Date.parse(iso)).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+
+// A half-hour event at the sale's start with an alert, as a data: URL, so the link works without JavaScript and sends nothing anywhere.
+export function calendarHref(campaign: CampaignData, event: CalendarEvent): string {
+    const start = icsTime(campaign.startsAt);
+    const end = icsTime(new Date(Date.parse(campaign.startsAt) + 30 * 60_000).toISOString());
+    const host = new URL(event.url).host;
+    const lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//TablePro//Sale//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${campaign.id}@${host}`,
+        `DTSTAMP:${start}`,
+        `DTSTART:${start}`,
+        `DTEND:${end}`,
+        `SUMMARY:${icsText(event.summary)}`,
+        `DESCRIPTION:${icsText(event.description)}`,
+        `URL:${event.url}`,
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:${icsText(event.summary)}`,
+        'TRIGGER:PT0M',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR',
+    ];
+
+    return `data:text/calendar;charset=utf-8,${encodeURIComponent(lines.join('\r\n') + '\r\n')}`;
+}

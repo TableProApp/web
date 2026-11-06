@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Promo Black Friday untuk TablePro Pro"
+        "title": "Promo Black Friday untuk TablePro Pro",
+        "headline": "Diskon {percent}%",
+        "product": "TablePro Pro",
+        "window": "{startsOn} hingga {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "Diskon {percent}% TablePro Pro",
-        "upcoming": "Mulai {startsOn} hingga {endsOn}, pukul {endsAtTime} UTC. Harga di bawah berlaku sejak menit pertama.",
-        "live": "Hingga {endsOn}, pukul {endsAtTime} UTC. Setelah itu, Pro kembali ke harga normal.",
-        "ended": "Promo Black Friday berakhir pada {endsOn}, pukul {endsAtTime} UTC. Pro sudah kembali ke harga normal."
+        "title": "<big>Diskon {percent}%</big> TablePro Pro",
+        "upcoming": "Pro sekali bayar dan Pro tahunan, mulai {startsOn} hingga {endsOn}, pukul {endsAtTime} UTC.",
+        "live": "Pro sekali bayar dan Pro tahunan, hingga {endsOn}, pukul {endsAtTime} UTC."
     },
     "offers": {
         "lifetime": {
             "name": "Pro sekali bayar",
-            "detail": "Bayar sekali. Lisensinya tidak memiliki tanggal kedaluwarsa dan berlaku di {activations} Mac."
+            "unit": "sekali bayar",
+            "detail": "Tanpa tanggal kedaluwarsa. {activations} Mac."
         },
         "yearly": {
             "name": "Pro tahunan",
-            "detail": "{yearly} untuk tahun pertama, lalu {yearlyList} per tahun. Berlaku di {activations} Mac. Batalkan kapan saja."
+            "unit": "tahun pertama",
+            "detail": "Setelah itu {yearlyList} per tahun. {activations} Mac."
         },
         "buy": "Beli seharga {price}",
-        "soon": "Dijual mulai {startsOn}",
-        "regularSince": "Harga normal sejak {listPriceSince}. Harga ini berlaku lagi saat promo berakhir.",
-        "notIncluded": "Pro bulanan dan Team tidak termasuk dalam promo."
+        "soon": "Mulai {startsOn}",
+        "calendar": "Tambahkan ke kalender",
+        "calendarSummary": "Black Friday TablePro: diskon {percent}% Pro",
+        "calendarDescription": "Pro sekali bayar dan Pro tahunan, hingga {endsOn}, pukul {endsAtTime} UTC.",
+        "footnote": "Pro bulanan dan Team tidak termasuk promo. Harga normal sejak {listPriceSince}."
     },
     "includes": {
         "title": "Yang ditambahkan Pro",
-        "lead": "TablePro gratis digunakan, termasuk di tempat kerja. Pro menambahkan fitur-fitur ini di maksimal {activations} Mac."
+        "lead": "TablePro gratis, termasuk di tempat kerja. Pro menambahkan fitur-fitur ini di {activations} Mac.",
+        "more": "Juga di Pro",
+        "link": "Selengkapnya tentang {feature}"
     },
     "faq": {
         "title": "Pertanyaan",
         "items": [
             {
-                "question": "Paket mana saja yang termasuk promo?",
-                "answer": "Pro sekali bayar dan Pro tahunan, dengan diskon {percent}%. Harga Pro bulanan dan Team tidak berubah."
-            },
-            {
                 "question": "Apakah Pro tahunan diperpanjang seharga {yearly}?",
-                "answer": "Tidak. Promo hanya berlaku untuk tahun pertama. Setelah itu paket diperpanjang seharga {yearlyList} per tahun, kecuali Anda membatalkannya sebelum waktu tersebut."
+                "answer": "Tidak. Harga promo berlaku untuk tahun pertama, lalu paket diperpanjang seharga {yearlyList} per tahun."
             },
             {
                 "question": "Bukankah harganya baru saja naik?",
-                "answer": "Ya. Harga Pro berubah pada {listPriceSince}, dan promo ini memberi diskon {percent}% dari harga tersebut. Kedua harga promo juga lebih rendah daripada harga Pro sebelum perubahan itu. <prices>Apa yang berubah dan alasannya</prices>."
+                "answer": "Ya, pada {listPriceSince}. Kedua harga promo lebih rendah daripada harga Pro sebelum itu. <prices>Apa yang berubah</prices>."
             },
             {
-                "question": "Saya sudah berlangganan Pro bulanan atau tahunan. Bisakah saya beralih ke sekali bayar?",
-                "answer": "Bisa. Beli Pro sekali bayar dengan harga promo, lalu batalkan langganan Anda di <portal>portal pelanggan</portal> agar tidak diperpanjang."
-            },
-            {
-                "question": "Apakah saya perlu mengetikkan kode?",
-                "answer": "Tidak jika Anda membeli dari situs ini: diskon diterapkan otomatis saat checkout. Jika Anda diminta kode, kodenya {code}."
+                "question": "Saya membayar bulanan atau tahunan. Bisakah saya beralih ke sekali bayar?",
+                "answer": "Bisa. Beli Pro sekali bayar, lalu batalkan langganan Anda di <portal>portal pelanggan</portal>."
             },
             {
                 "question": "Bisakah saya mendapatkan pengembalian dana?",
-                "answer": "Bisa, seperti pembelian lainnya: dalam {refundDays} hari. Lihat <refund>kebijakan pengembalian dana</refund>."
+                "answer": "Bisa, dalam {refundDays} hari, seperti pembelian lainnya. Lihat <refund>kebijakan pengembalian dana</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Buletin ini membahas setiap rilis, dan akan memberi tahu saat promo dimulai."
     },
     "ended": {
-        "title": "Black Friday sudah berakhir",
+        "title": "<big>Black Friday</big> sudah berakhir",
+        "lead": "Promo ini berlangsung dari {startsOn} hingga {endsOn}. Pro sudah kembali ke harga normal.",
         "action": "Lihat harga saat ini",
         "newsletterTitle": "Berlangganan buletin",
         "newsletterLead": "Buletin ini membahas setiap rilis, dan akan memberi tahu saat promo berikutnya dimulai."

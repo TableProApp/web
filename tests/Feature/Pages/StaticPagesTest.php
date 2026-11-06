@@ -6,6 +6,7 @@ use App\Services\Legal\LegalDocuments;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\Testimonials;
 use App\Support\Localization\LocalizedUrl;
+use Dom\HTMLDocument;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
@@ -139,6 +140,17 @@ it('sends the pricing page each paid feature\'s lines, the featured engines and 
             ->and($page['props']['paidFeatures'][$id]['lapse'] ?? null)->toBeString()->not->toBe('');
     }
 })->with('locales');
+
+// The server never asks GET /v2/pricing, so its HTML is the closed state the page keeps until the answer opens it.
+it('server-renders neither the education section nor its FAQ entry', function (string $locale): void {
+    $pricing = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/pricing', $locale)), LIBXML_NOERROR);
+    $faq = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/faq', $locale)), LIBXML_NOERROR);
+
+    expect($pricing->getElementById('at-work'))->not->toBeNull()
+        ->and($pricing->getElementById('education'))->toBeNull()
+        ->and($faq->getElementById('cost'))->not->toBeNull()
+        ->and($faq->getElementById('students-teachers'))->toBeNull();
+})->with(['en', 'vi'])->group('ssr');
 
 it('lists the engines whose driver ships with the Mac app from engines.json on the FAQ', function (): void {
     $bundled = staticPagePublishedEngines()->where('distribution', 'bundled')->pluck('name')->values()->all();

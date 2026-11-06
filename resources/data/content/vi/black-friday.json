@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Ưu đãi Black Friday cho TablePro Pro"
+        "title": "Ưu đãi Black Friday cho TablePro Pro",
+        "headline": "Giảm {percent}%",
+        "product": "TablePro Pro",
+        "window": "Từ {startsOn} đến {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "Giảm {percent}% TablePro Pro",
-        "upcoming": "Từ {startsOn} đến {endsAtTime} UTC ngày {endsOn}. Giá bên dưới áp dụng ngay từ phút đầu tiên.",
-        "live": "Đến {endsAtTime} UTC ngày {endsOn}. Sau đó Pro trở về giá thường.",
-        "ended": "Đợt Black Friday đã kết thúc lúc {endsAtTime} UTC ngày {endsOn}. Pro đã trở về giá thường."
+        "title": "<big>Giảm {percent}%</big> TablePro Pro",
+        "upcoming": "Pro mua một lần và Pro theo năm, từ {startsOn} đến {endsAtTime} UTC ngày {endsOn}.",
+        "live": "Pro mua một lần và Pro theo năm, đến {endsAtTime} UTC ngày {endsOn}."
     },
     "offers": {
         "lifetime": {
             "name": "Pro mua một lần",
-            "detail": "Trả một lần. License không có ngày hết hạn và dùng được trên {activations} máy Mac."
+            "unit": "trả một lần",
+            "detail": "Không có ngày hết hạn. {activations} máy Mac."
         },
         "yearly": {
             "name": "Pro theo năm",
-            "detail": "{yearly} cho năm đầu tiên, sau đó {yearlyList} mỗi năm. Dùng được trên {activations} máy Mac. Hủy lúc nào cũng được."
+            "unit": "năm đầu",
+            "detail": "Sau đó {yearlyList} mỗi năm. {activations} máy Mac."
         },
         "buy": "Mua với giá {price}",
-        "soon": "Mở bán từ {startsOn}",
-        "regularSince": "Giá thường áp dụng từ {listPriceSince}. Giá này quay lại khi đợt ưu đãi kết thúc.",
-        "notIncluded": "Pro theo tháng và Team không nằm trong đợt ưu đãi."
+        "soon": "Từ {startsOn}",
+        "calendar": "Thêm vào lịch",
+        "calendarSummary": "Black Friday của TablePro: giảm {percent}% gói Pro",
+        "calendarDescription": "Pro mua một lần và Pro theo năm, đến {endsAtTime} UTC ngày {endsOn}.",
+        "footnote": "Pro theo tháng và Team không được giảm giá. Giá thường áp dụng từ {listPriceSince}."
     },
     "includes": {
         "title": "Pro bổ sung những gì",
-        "lead": "TablePro dùng miễn phí, kể cả cho công việc. Pro bổ sung các tính năng này trên tối đa {activations} máy Mac."
+        "lead": "TablePro miễn phí, kể cả cho công việc. Pro bổ sung các tính năng này trên {activations} máy Mac.",
+        "more": "Pro còn có",
+        "link": "Xem thêm về {feature}"
     },
     "faq": {
         "title": "Câu hỏi",
         "items": [
             {
-                "question": "Những gói nào được giảm giá?",
-                "answer": "Pro mua một lần và Pro theo năm, giảm {percent}%. Pro theo tháng và Team giữ nguyên giá."
-            },
-            {
                 "question": "Pro theo năm có gia hạn với giá {yearly} không?",
-                "answer": "Không. Ưu đãi chỉ áp dụng cho năm đầu tiên. Sau đó gói gia hạn với giá {yearlyList} mỗi năm, trừ khi bạn hủy trước thời điểm đó."
+                "answer": "Không. Giá ưu đãi chỉ áp dụng cho năm đầu tiên, sau đó gói gia hạn với giá {yearlyList} mỗi năm."
             },
             {
-                "question": "Không phải giá vừa tăng sao?",
-                "answer": "Đúng vậy. Giá Pro đã đổi vào {listPriceSince}, và đợt ưu đãi giảm {percent}% trên mức giá đó. Cả hai giá ưu đãi cũng thấp hơn giá Pro trước lần đổi giá. <prices>Đã đổi những gì và vì sao</prices>."
+                "question": "Chẳng phải giá vừa tăng sao?",
+                "answer": "Đúng, giá tăng từ {listPriceSince}. Cả hai giá ưu đãi đều thấp hơn giá Pro trước đó. <prices>Những gì đã thay đổi</prices>."
             },
             {
-                "question": "Mình đang trả Pro theo tháng hoặc theo năm. Có chuyển sang mua một lần được không?",
-                "answer": "Được. Bạn mua Pro một lần với giá ưu đãi, rồi hủy gói đang dùng trong <portal>trang quản lý thanh toán</portal> để gói đó không gia hạn."
+                "question": "Tôi đang trả theo tháng hoặc theo năm. Có chuyển sang mua một lần được không?",
+                "answer": "Được. Bạn mua Pro một lần, rồi hủy gói thuê bao trong <portal>trang quản lý thanh toán</portal>."
             },
             {
-                "question": "Mình có cần nhập mã không?",
-                "answer": "Không, nếu bạn mua trên website này: ưu đãi được áp dụng sẵn lúc thanh toán. Nếu được hỏi mã, mã là {code}."
-            },
-            {
-                "question": "Mình có được hoàn tiền không?",
-                "answer": "Có, như mọi lần mua khác: trong vòng {refundDays} ngày. Xem <refund>chính sách hoàn tiền</refund>."
+                "question": "Tôi có được hoàn tiền không?",
+                "answer": "Có, trong vòng {refundDays} ngày, như mọi lần mua khác. Xem <refund>chính sách hoàn tiền</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Newsletter gửi tin mỗi bản phát hành, và sẽ báo khi đợt ưu đãi bắt đầu."
     },
     "ended": {
-        "title": "Black Friday đã kết thúc",
+        "title": "<big>Black Friday</big> đã kết thúc",
+        "lead": "Đợt ưu đãi diễn ra từ {startsOn} đến {endsOn}. Pro đã trở về giá thường.",
         "action": "Xem giá hiện tại",
         "newsletterTitle": "Nhận newsletter",
         "newsletterLead": "Newsletter gửi tin mỗi bản phát hành, và sẽ báo khi có đợt ưu đãi tiếp theo."

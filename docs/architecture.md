@@ -216,7 +216,7 @@ in production, shared with every page as the `apiOrigin` prop and read through
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, max_seats, features, discount_percent, discounted_amount, discounted_total}]}` |
+| `GET /v2/pricing` | nothing | `{country, plans: [{plan, cycle, currency, amount, per_seat, min_seats, max_seats, features, discount_percent, discounted_amount, discounted_total}], education: {open}}` |
 | `POST /v2/checkouts` | `{plan, cycle, locale, seats?, discount_code?, attribution?}` | 201 `{url}`, opened in Polar's overlay |
 | `POST /v2/discounts/preview` | `{code}` | `{valid, amount_type?, amount?, currency?}` |
 | `POST /v2/newsletter/subscriptions` | `{email, locale, turnstile_token}` | 202, whether or not the address was new |
@@ -253,6 +253,13 @@ plan for the chosen cycle (`useTeamMaxSeats`), the top of Polar's seat tiers.
 and for a cycle whose `max_seats` is null, the field has no maximum and says
 only the minimum; checkout's 422 on `body.seats` then asks for at least the
 minimum, and names the maximum once it is known.
+
+The same answer says whether the education program is open (`education.open`,
+which the admin turns on and off in tablepro-cloud). Pricing's "Students and
+teachers" section and the FAQ's `students-teachers` entry show only once it
+answers `true` (`useEducationOpen`). The server render, the cached HTML, a
+failed or slow call and an answer without the field all leave them out, so the
+site never offers a closed program.
 
 The code field under the cards is always there: with a regional discount
 tablepro-cloud hands Polar that discount, and Polar's checkout then takes no

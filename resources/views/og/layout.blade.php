@@ -103,6 +103,8 @@
         html:lang(ko) body { font-family: "Inter Variable", "Noto Sans CJK KR", "Apple SD Gothic Neo", sans-serif; }
         html:lang(zh-Hans) body { font-family: "Inter Variable", "Noto Sans CJK SC", "PingFang SC", sans-serif; }
         html:lang(zh-Hant) body { font-family: "Inter Variable", "Noto Sans CJK TC", "PingFang TC", sans-serif; }
+
+        @yield('style')
     </style>
 </head>
 <body>

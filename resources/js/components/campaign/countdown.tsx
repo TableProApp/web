@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useCampaign } from '@/hooks/use-campaign';
 import { useCountdown } from '@/hooks/use-countdown';
 import { useI18n } from '@/i18n';
@@ -5,29 +6,39 @@ import { PRICING } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
 
 interface CountdownProps {
-    /** Count to the sale's start (its page, before it) or its end. */
     to: 'start' | 'end';
-    /** `inline`: one line of text, for the banner. `blocks`: days, hours, minutes and seconds in cells, for the band and the sale's page. */
-    variant: 'inline' | 'blocks';
+    // `inline`: one line of text, for the banner. `digits`: large rolling digits with their units, for the band and the sale's page.
+    variant: 'inline' | 'digits';
     className?: string;
 }
 
 const pad = (value: number): string => String(value).padStart(2, '0');
 
-/**
- * The time left until the sale starts or ends, ticking each second.
- *
- * The instant is the real one in pricing.json, the same for every reader, so
- * the count never resets and never runs past it. The server and the first
- * render write the date instead (`Until December 1, 8:00 AM UTC`), so the
- * cached HTML, a reader without JavaScript and hydration all carry it; the
- * digits replace it once the page is running.
- *
- * A screen reader hears the date, once: the element is a `timer`, which is
- * not announced as it changes, named by that sentence, and the ticking digits
- * are hidden from it. Nothing moves but the digits, which are tabular so the
- * line keeps its width; there is no animation to reduce.
- */
+function Digit({ value }: { value: string }) {
+    const [shown, setShown] = useState(value);
+    const [previous, setPrevious] = useState<string | null>(null);
+
+    if (value !== shown) {
+        setPrevious(shown);
+        setShown(value);
+    }
+
+    return (
+        <span className="roll">
+            {previous !== null && (
+                <span key={`${previous}>${shown}`} className="roll-out">
+                    {previous}
+                </span>
+            )}
+            <span key={shown} className={previous === null ? undefined : 'roll-in'}>
+                {shown}
+            </span>
+        </span>
+    );
+}
+
+// The server and the first render write the date instead of the digits, so the cached HTML, a reader without JavaScript
+// and hydration all carry it. A screen reader hears that date once: the timer is named by it and the digits are hidden.
 export default function Countdown({ to, variant, className }: CountdownProps) {
     const { m, fmt, plural } = useI18n();
     const { prop } = useCampaign();
@@ -65,16 +76,22 @@ export default function Countdown({ to, variant, className }: CountdownProps) {
               ];
 
     return (
-        <div role="timer" aria-label={written} className={cn('grid gap-3', className)}>
-            <p aria-hidden="true" className="text-muted-foreground type-small font-medium">
+        <div role="timer" aria-label={written} className={cn('grid gap-2', className)}>
+            <p aria-hidden="true" className="type-small text-muted-foreground">
                 {left === null ? written : lead}
             </p>
             {left !== null && (
-                <ol aria-hidden="true" className="flex gap-2">
+                <ol aria-hidden="true" className="flex gap-5 md:gap-6">
                     {cells.map(([value, unit]) => (
-                        <li key={unit} className="border border-rule bg-surface grid min-w-[4.25rem] justify-items-center rounded-control px-2 py-2.5">
-                            <span className="type-h2 leading-none tabular-nums">{pad(value)}</span>
-                            <span className="text-muted-foreground type-caption mt-1.5">{unit}</span>
+                        <li key={unit} className="grid justify-items-start gap-1.5">
+                            <span className="flex text-[2rem] leading-none font-semibold tracking-[-0.03em] tabular-nums md:text-[2.5rem]">
+                                {pad(value)
+                                    .split('')
+                                    .map((digit, place) => (
+                                        <Digit key={place} value={digit} />
+                                    ))}
+                            </span>
+                            <span className="type-caption text-muted-foreground">{unit}</span>
                         </li>
                     ))}
                 </ol>
