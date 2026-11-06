@@ -506,7 +506,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
-- `/download`: the platform cards, the engine counts, the updates and the release notes
+- `/download`: the platform cards, the updates and the release notes
 - `/faq`: one row per topic, the topic beside its questions
 - a feature page: every block whose crop sits beside its text (5 / 7), and the documentation and related-pages row
 
