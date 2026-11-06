@@ -1,5 +1,6 @@
 export default {
     macCta: 'Download for Mac',
+    linuxCta: 'Install on Linux',
     release: {
         dated: 'Version {version}, released {date}',
         undated: 'Version {version}',

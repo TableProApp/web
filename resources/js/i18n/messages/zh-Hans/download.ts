@@ -2,6 +2,7 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "macCta": "下载 Mac 版",
+    "linuxCta": "在 Linux 上安装",
     "release": {
         "dated": "版本 {version}，发布于 {date}",
         "undated": "版本 {version}",

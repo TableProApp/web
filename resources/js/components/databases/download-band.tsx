@@ -46,7 +46,7 @@ export default function DownloadBand({ labels, platforms, showIos, showLinux, ap
                 }
                 linux={
                     linux !== null
-                        ? { caption: <DotList items={[linux.channel === 'beta' && m.download.card.beta, distributionsText(linux, m.download)]} /> }
+                        ? { caption: <DotList items={[linux.channel === 'beta' && m.download.panel.beta, distributionsText(linux, m.download)]} /> }
                         : null
                 }
             />

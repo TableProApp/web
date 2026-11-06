@@ -74,7 +74,7 @@ export default function ActionPair({ location, macCaption, macExtra, ios, linux 
     const linuxAction = linux !== null && (
         <div className="grid content-start justify-items-start gap-2">
             <LocaleLink href="/download#linux" onClick={() => trackDownload(location, 'linux')} className={buttonClasses('secondary', 'lg')}>
-                {m.download.card.linux}
+                {m.download.linuxCta}
             </LocaleLink>
             <p className="type-small text-muted-foreground">{linux.caption}</p>
         </div>
