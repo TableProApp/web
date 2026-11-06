@@ -229,6 +229,15 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 </div>
             </Section>
 
+            <Section id="education" title={content.education.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{content.education.body}</p>
+                    <p>{rich(content.education.how)}</p>
+                    <p>{content.education.scope}</p>
+                    <p>{rich(content.education.help)}</p>
+                </div>
+            </Section>
+
             <Section id="open-source" title={content.openSource.title} width="text">
                 <div className="type-body space-y-4 text-foreground">
                     <p>{content.openSource.body}</p>
