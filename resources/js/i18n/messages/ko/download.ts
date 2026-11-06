@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " 또는 "
     },
-    "card": {
-        "yourSystem": "사용 중인 시스템",
+    "panel": {
+        "legend": "플랫폼",
         "beta": "베타",
-        "dmg": ".dmg 다운로드",
-        "linux": "Linux에 설치",
         "updates": {
             "mac": "백그라운드에서 자동 업데이트",
-            "ios": "App Store에서 업데이트",
-            "linux": "패키지 관리자로 업데이트"
+            "ios": "App Store에서 업데이트"
         }
     },
     "linux": {
-        "title": "Linux에 설치",
         "beta": "Linux 앱은 베타입니다. 아직 초기 단계라 릴리스마다 달라질 수 있으니 <link>GitHub에서 버그를 보고</link>해 주세요.",
         "methods": "설치 방법",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "확인 명령어"
         }
     },
-    "updates": {
-        "ios": "다른 앱과 마찬가지로 App Store가 업데이트를 설치합니다.",
-        "linux": "패키지 관리자가 시스템의 나머지 부분과 함께 업데이트를 설치합니다. 앱이 직접 업데이트를 확인하지는 않습니다."
-    },
-    "faq": {
-        "title": "자주 묻는 질문",
-        "other": {
-            "question": "{platforms} 버전이 있나요?"
-        },
-        "verify": {
-            "question": "다운로드 파일은 어떻게 확인하나요?",
-            "mac": "Mac에서는 다운로드 버튼 아래의 <ui>다운로드 파일 확인</ui>을 열고 SHA-256 체크섬을 비교하세요.",
-            "linux": "Linux에서는 Linux 섹션의 파일 탭에 있는 <ui>파일 확인</ui>을 여세요."
-        }
+    "otherPlatforms": {
+        "question": "{platforms} 버전이 있나요?"
     }
 } satisfies Messages['download'];

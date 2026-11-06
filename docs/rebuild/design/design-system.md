@@ -506,7 +506,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
-- `/download`: the platform cards, the updates and the release notes
+- `/download`: the release row
 - `/faq`: one row per topic, the topic beside its questions
 - a feature page: every block whose crop sits beside its text (5 / 7), and the documentation and related-pages row
 
@@ -517,7 +517,7 @@ Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Car
 - `frame-table` on a DataTable's scroll region: the region reaches the rails, the first and last cells pad their text back to the content edges (the first column's text now starts on the heading edge), and the header row has one rule, not the 2px of its own rule plus the first row's.
 - `frame-rows` on a ruled list in a wide section, and `frame-rows-text` on one at the reading measure: the list reaches the rails from whatever measure it sits in, using container units (`Section`'s Container is a size container), and each row keeps its text at the measure. Used by DescriptionList rows, FaqList items, PostList rows and the feature and comparison lists.
 - `cell-rows` on a ruled list inside a cell, and the same bleed on a single divider in a cell (a plan's "Includes", the Mac card's "Other ways to install"): wall to wall.
-- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s Linux install, platform table, updates, release notes and questions, and a blog post's related posts.
+- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s release row, and a blog post's related posts.
 - A list that opens a block starts on its join (the blog index), and a list inside a card keeps its own inset rules, closed by the card's edge.
 
 `PageFrameTest` fails any `dl`, ruled list or table in `<main>` that does none of these, outside a card or a blog article's own prose.
@@ -556,7 +556,7 @@ Repo key:
 | `FrameRails` | P | **New** | — | The page frame's rails (§4.7), over the page and in the header |
 | `CellGrid` | P | **New** | — | Shared-border cells reaching the rails (§4.7). Wide sections only |
 | `PageHeader` | P+A | **Replace** | `section-shell.tsx` `PageHeader`; A `screen-header.tsx`, `notice-page.tsx` header | Breadcrumbs, H1, lead, meta line, actions. Variants `marketing` (`h1`), `utility` (`h1`, compact top), `screen` (account: H1 in the `h2` style) |
-| `Card` | P+A | **New** (sparingly) | — | Only for a block that holds one object: the download page's platform cards, account license and settings panels, and the database facts card. A set of like items is a `CellGrid` (§4.7), never a grid of cards |
+| `Card` | P+A | **New** (sparingly) | — | Only for a block that holds one object: account license and settings panels, and the database facts card. A set of like items is a `CellGrid` (§4.7), never a grid of cards |
 | `DataTable` | Shared\* | **Refactor** | `ui/data-table.tsx` (both) | Caption required, `visible` or `sr-only`. Scroll region, priority columns, numeric alignment. No row-selection bar |
 | `DescriptionList` | Shared\* | **Replace** | `ui/ledger.tsx` (both) | `<dl>` key/value rows: database facts, license details |
 | `Badge` | Shared\* | **Refactor** | A `ui/badge.tsx` | Variants `neutral`, `accent`, `outline`. 13px/500, sentence case |
@@ -912,9 +912,9 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Mac first in the markup on every device. On an iPhone or iPad the badge is drawn first (CSS `order` under the `ios` class the root template sets before first paint), so the actions never swap after the page is shown.
 - **DownloadBand:** an H2 + one sentence + PlatformActions, at `wide` width, on `--background`.
 
-**PlatformCard** (download page, the homepage's `#platforms`):
+**PlatformCard** (the homepage's `#platforms`; the download page uses platform tabs, §8.7):
 
-- A cell of a `CellGrid` (§4.7), on the download page and in the homepage's `#platforms`, with:
+- A cell of a `CellGrid` (§4.7), in the homepage's `#platforms`, with:
   - platform name (`h2` semantic, `h3` style)
   - a version Badge `neutral` "v0.77.0 · 2 Oct 2026" (from the release service, locale-formatted)
   - the requirement line
@@ -1561,32 +1561,36 @@ The `#features` heading and the intro say "adds" / "bổ sung", never "unlock" (
 
 ### 8.7 Download (`/download`)
 
-Redesigned on 2026-11-06 for three platforms. Linux renders only once `platforms.json` says it is released; with two
-platforms every row below has two cells.
+Rebuilt on 2026-11-07 as platform tabs, after tailscale.com/download (owner: the three-card page was too much and hard
+to use). Linux renders only once `platforms.json` says it is released; with two platforms the switch has two segments.
 
 ```
-PageHeader        H1 · one line
-cards             one CellGrid row: Mac #mac | iPhone & iPad #ios | Linux (Beta). Each card: name, version and date,
-                  one action with what you get under it, how it updates, then a wall-to-wall lower section
-                  (Mac: Verify your download, signed and notarized, Homebrew with copy; iPhone: /ios →)
-#linux            H2 + Beta badge, one sentence on what beta means (GitHub issues). SegmentedControl tabs
-                  Ubuntu | Fedora | Flatpak | Files; each method one CodeBlock of platforms.json's commands (one copy
-                  button, no prompt, wraps only at spaces), its requirement and update lines. Files: a table of the
-                  release's packages by format × architecture, SHA256SUMS, a Verify a file Disclosure.
-#updates          one cell per platform
-#older-versions   release notes per platform; the Mac cell keeps the older-versions links and the latest release post
-#faq              FaqList collapsible: other platforms, verifying a download
+header            the app icon (72px) and the H1, centred. No lead. The only centred page header (owner, 2026-11-07)
+switch            SegmentedControl size lg, centred at 40rem: Mac | iPhone & iPad | Linux (Beta), icon above label
+panel #mac        [Download for Mac] primary lg · version, date · size · requirement · architectures · updates line
+                  Homebrew: CodeBlock with copy, the trailing-cask note · Verify your download (Disclosure: signed and
+                  notarized, shasum, the SHA-256)
+panel #ios        App Store badge · version, date · free · requirement · updates line · /ios →
+panel #linux      version, date · what beta means (GitHub issues) · tabs Ubuntu | Fedora | Flatpak | Files, each one
+                  CodeBlock of platforms.json's commands, its requirement and update lines; Files: packages by format ×
+                  architecture, SHA256SUMS, Verify a file
+release row       CellGrid: Release notes (Mac, Linux, Changelog) #release-notes | Older versions (all releases, build
+                  from source) #older-versions | Is there a version for Windows? #other-platforms
 ```
 
 The page holds downloads only (owner, 2026-11-07): no feature table, no engine counts, no screenshots. What runs where
-lives on the feature pages' "Where it works" tables and /databases.
+lives on the feature pages' "Where it works" tables and /databases. Each fact appears once: a panel carries its
+platform's version, requirement and update line, and the release row only links.
 
-- The server marks nothing. After mount `classifyDevice()` marks the reader's platform ("Your system", `.plan-lead`) and
-  gives its action the filled button; before that, and for any other device, the Mac button is the filled one. The mark
-  is always in the markup, invisible until it applies, so nothing changes size.
-- On a phone the reader's card comes first: an iPhone's before first paint, from the root template's `ios` class.
-- The chosen Linux tab is kept in `localStorage` (`tablepro:linux-install`); the server renders the first one.
-- Only the tab indicator moves.
+- One panel shows at a time. The server renders the Mac panel; every panel is in the markup, hidden by the `hidden`
+  class (preflight's `[hidden]` is `!important`, so the attribute could not be overridden before paint).
+- Before paint, the root template's `ios` or `linux` class shows that platform's panel and marks its segment (app.css),
+  so an iPhone or a Linux desktop never sees the Mac panel first. After mount `classifyDevice()` takes over with the
+  same answer: no swap, no layout shift.
+- `#mac`, `#ios` and `#linux` open their panel; a choice is written to the URL hash with `replaceState`. `#updates`
+  (Security's "Download and updates") lands on the switch.
+- The segments' thumb slides only after the reader chose; a value restored on load lands in place. The chosen Linux tab
+  is kept in `localStorage` (`tablepro:linux-install`).
 - **No auto-download**, and an iPhone user agent is never detected as a Mac.
 - If the release API fails, the Mac button falls back to GitHub `releases/latest` (server-rendered).
 

@@ -33,14 +33,17 @@
     {{-- Theme before anything paints: the system's unless the reader chose otherwise. --}}
     @include('partials.head-theme')
 
-    {{-- An iPhone or iPad, by `classifyDevice` in resources/js/lib/device.ts
-         (tests/js/device.test.ts runs this against it), before first paint:
-         the App Store badge leads there, and nothing swaps under a finger. --}}
+    {{-- An iPhone or iPad, or a Linux desktop, by `classifyDevice` in
+         resources/js/lib/device.ts (tests/js/device.test.ts runs this against
+         it), before first paint: the App Store badge leads on iOS, the download
+         page opens on the reader's platform, and nothing swaps under a finger. --}}
     <script>
         (function () {
             var ua = navigator.userAgent;
             if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {
                 document.documentElement.classList.add('ios');
+            } else if (!/Macintosh|Android|CrOS/.test(ua) && /Linux|X11/.test(ua)) {
+                document.documentElement.classList.add('linux');
             }
         })();
     </script>

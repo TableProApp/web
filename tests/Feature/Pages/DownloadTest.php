@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 use function Pest\Laravel\get;
 
@@ -105,21 +104,6 @@ it('names the featured, published engines from engines.json', function (): void 
 
     get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('featuredEngines', $expected));
 });
-
-it('links the newest release post, in English on every page', function (string $path): void {
-    downloadFakeRelease();
-
-    $newest = collect(glob(resource_path('blog/*.md')) ?: [])
-        ->map(fn(string $file): array => ['slug' => pathinfo($file, PATHINFO_FILENAME), ...YamlFrontMatter::parseFile($file)->matter()])
-        ->filter(fn(array $post): bool => is_string($post['release'] ?? null))
-        ->sortByDesc('date')
-        ->first();
-
-    get($path)->assertInertia(fn(AssertableInertia $page) => $page
-        ->where('latestPost.slug', $newest['slug'])
-        ->where('latestPost.locale', 'en')
-        ->where('latestPost.url', "/blog/{$newest['slug']}"));
-})->with(['/download', '/vi/download']);
 
 function downloadLinuxRecord(): array
 {
@@ -244,26 +228,47 @@ it('renders the Linux section with platforms.json’s commands, and the Linux ap
     expect($document->getElementById('linux'))->not->toBeNull()
         ->and(array_slice($rendered, 0, count($expected)))->toBe($expected)
         ->and($document->getElementById('platforms'))->toBeNull()
-        ->and($document->querySelector('a[href="#linux"]'))->not->toBeNull()
+        ->and($document->querySelector('input[name="platform"][value="linux"]'))->not->toBeNull()
         ->and(collect(downloadJsonLdIds($document))->filter(fn(string $id): bool => str_ends_with($id, '#linux-app')))->toHaveCount(1);
 })->group('ssr');
 
-it('names each released platform’s version in the release notes', function (bool $linuxReleased): void {
+it('names each released platform’s version in its own panel, and links its release notes once', function (bool $linuxReleased): void {
     if ($linuxReleased) {
         downloadReleaseLinux();
     }
 
     downloadFakeRelease();
-    $notes = (string) downloadDocument()->getElementById('older-versions')?->textContent;
+    $document = downloadDocument();
+    $notes = array_map(fn(Dom\Element $link): string => trim(str_replace('↗', '', (string) $link->textContent)), iterator_to_array($document->querySelectorAll('#release-notes a')));
 
-    expect($notes)->toContain('Version 0.77.0')
-        ->and($notes)->toContain('Version 1.0,')
-        ->and(str_contains($notes, 'Version 0.1.0-beta.1'))->toBe($linuxReleased);
+    expect((string) $document->getElementById('mac')?->textContent)->toContain('Version 0.77.0')
+        ->and((string) $document->getElementById('ios')?->textContent)->toContain('Version 1.0,')
+        ->and(! $linuxReleased || str_contains((string) $document->getElementById('linux')?->textContent, 'Version 0.1.0-beta.1'))->toBeTrue()
+        ->and($notes)->toBe($linuxReleased ? ['Mac', 'Linux', 'Changelog'] : ['Mac', 'Changelog'])
+        ->and((string) $document->getElementById('older-versions')?->textContent)->not->toContain('Version');
 })->with(['Mac and iPhone' => false, 'with Linux' => true])->group('ssr');
+
+it('renders one platform panel at a time, the Mac first, and keeps the anchors other pages link', function (): void {
+    downloadReleaseLinux();
+    downloadFakeRelease();
+    $document = downloadDocument();
+    $hidden = fn(string $id): bool => in_array('hidden', explode(' ', (string) $document->getElementById($id)?->getAttribute('class')), true);
+
+    expect($document->querySelectorAll('[data-platform-switch] > [data-panel]'))->toHaveCount(3)
+        ->and($hidden('mac'))->toBeFalse()
+        ->and($hidden('ios'))->toBeTrue()
+        ->and($hidden('linux'))->toBeTrue()
+        ->and($document->querySelector('input[name="platform"][value="mac"]')?->hasAttribute('checked'))->toBeTrue()
+        ->and($document->querySelectorAll('h1'))->toHaveCount(1);
+
+    foreach (['updates', 'older-versions', 'other-platforms'] as $id) {
+        expect($document->getElementById($id))->not->toBeNull("#{$id} is gone from /download");
+    }
+})->group('ssr');
 
 it('keeps the page to downloads: no feature table, no engine counts, no screenshot', function (): void {
     downloadReleaseLinux();
     downloadFakeRelease();
 
-    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->missing('parity')->missing('engines'));
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->missing('parity')->missing('engines')->missing('latestPost'));
 });

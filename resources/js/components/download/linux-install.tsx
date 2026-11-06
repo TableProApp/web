@@ -10,6 +10,7 @@ import { trackDownload } from '@/lib/analytics';
 import CommandBlock from './command-block';
 import { megabytes } from './format';
 import { methodLabel } from './linux-text';
+import { CENTRED_DISCLOSURE } from './panel-facts';
 import type { LinuxFile, LinuxMethod, LinuxMethodKind, LinuxProp } from './types';
 
 type Tab = LinuxMethodKind | 'files';
@@ -53,11 +54,11 @@ export default function LinuxInstall({ linux }: { linux: LinuxProp }) {
     const label = (each: Tab): string => (each === 'files' ? strings.files : methodLabel(each, linux, strings));
 
     return (
-        <div className="max-w-[44rem]">
+        <div>
             <SegmentedControl<Tab>
                 legend={strings.methods}
                 name="linux-install"
-                className="max-sm:[&_label]:px-2.5"
+                className="flex justify-center max-sm:[&_label]:px-2.5"
                 value={tab}
                 options={tabs.map((each) => ({ value: each, label: label(each) }))}
                 onChange={(next) => {
@@ -100,9 +101,9 @@ function MethodPanel({ method, linux, title }: { method: LinuxMethod; linux: Lin
                 label={fmt(strings.commands, { method: title })}
                 onCopied={() => trackDownload(`download-page-${method.kind}`, 'linux')}
             />
-            <p className="type-small text-muted-foreground">{requirement}</p>
+            <p className="type-small text-center text-muted-foreground">{requirement}</p>
             {method.update !== null && (
-                <p className="type-small text-foreground">
+                <p className="type-small text-center text-foreground">
                     <Trans text={strings.update} values={{ command: method.update }} tags={{ code: (text) => <InlineCode>{text}</InlineCode> }} />
                 </p>
             )}
@@ -177,7 +178,7 @@ function FilesPanel({ linux }: { linux: LinuxProp }) {
             </div>
 
             {checksums !== null && (
-                <p className="type-small text-foreground">
+                <p className="type-small text-center text-foreground">
                     <Trans
                         text={strings.checksums}
                         values={{ file: checksums.name }}
@@ -196,7 +197,7 @@ function FilesPanel({ linux }: { linux: LinuxProp }) {
             )}
 
             {release !== null && (
-                <p>
+                <p className="text-center">
                     <TextLink href={release.releaseUrl} kind="standalone" external hrefLang="en">
                         {fmt(strings.release, { version: release.version })}
                     </TextLink>
@@ -204,7 +205,7 @@ function FilesPanel({ linux }: { linux: LinuxProp }) {
             )}
 
             {linux.verify !== null && example !== undefined && checksums !== null && (
-                <Disclosure summary={strings.verify.summary}>
+                <Disclosure summary={strings.verify.summary} className={CENTRED_DISCLOSURE}>
                     <p>{fmt(strings.verify.body, { file: checksums.name })}</p>
                     <CommandBlock
                         className="mt-3"

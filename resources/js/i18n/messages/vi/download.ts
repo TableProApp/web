@@ -36,19 +36,15 @@ export default {
         "separator": ", ",
         "last": " hoặc "
     },
-    "card": {
-        "yourSystem": "Hệ thống của bạn",
+    "panel": {
+        "legend": "Nền tảng",
         "beta": "Beta",
-        "dmg": "Tải về file .dmg",
-        "linux": "Cài đặt trên Linux",
         "updates": {
             "mac": "Tự cập nhật trong nền",
-            "ios": "Cập nhật qua App Store",
-            "linux": "Cập nhật qua package manager"
+            "ios": "Cập nhật qua App Store"
         }
     },
     "linux": {
-        "title": "Cài đặt trên Linux",
         "beta": "Ứng dụng cho Linux đang là bản beta: còn ở giai đoạn đầu và có thể thay đổi giữa các bản phát hành, nên hãy <link>báo lỗi trên GitHub</link>.",
         "methods": "Cài đặt bằng",
         "floor": "{name} {version}+",
@@ -72,19 +68,7 @@ export default {
             "label": "lệnh kiểm tra"
         }
     },
-    "updates": {
-        "ios": "App Store tự cài bản cập nhật, như với các ứng dụng khác của bạn.",
-        "linux": "Package manager cài bản cập nhật cùng phần còn lại của hệ thống. Ứng dụng không tự kiểm tra cập nhật."
-    },
-    "faq": {
-        "title": "Câu hỏi",
-        "other": {
-            "question": "Có phiên bản cho {platforms} không?"
-        },
-        "verify": {
-            "question": "Làm sao để kiểm tra file đã tải về?",
-            "mac": "Trên Mac, mở <ui>Kiểm tra file đã tải về</ui> bên dưới nút tải về và so sánh checksum SHA-256.",
-            "linux": "Trên Linux, mở <ui>Kiểm tra file</ui> trong tab File của phần Linux."
-        }
+    "otherPlatforms": {
+        "question": "Có phiên bản cho {platforms} không?"
     }
 } satisfies Messages['download'];

@@ -35,19 +35,15 @@ export default {
         "separator": "、",
         "last": " 或 "
     },
-    "card": {
-        "yourSystem": "您的系统",
+    "panel": {
+        "legend": "平台",
         "beta": "Beta 版",
-        "dmg": "下载 .dmg",
-        "linux": "在 Linux 上安装",
         "updates": {
             "mac": "在后台自动更新",
-            "ios": "通过 App Store 更新",
-            "linux": "通过包管理器更新"
+            "ios": "通过 App Store 更新"
         }
     },
     "linux": {
-        "title": "在 Linux 上安装",
         "beta": "Linux 应用是 Beta 版：尚处早期，不同版本之间可能有变化，请<link>在 GitHub 上报告问题</link>。",
         "methods": "安装方式",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "验证命令"
         }
     },
-    "updates": {
-        "ios": "与您的其他应用一样，由 App Store 安装更新。",
-        "linux": "更新由包管理器随系统其他部分一起安装，应用本身不检查更新。"
-    },
-    "faq": {
-        "title": "常见问题",
-        "other": {
-            "question": "有 {platforms} 版本吗？"
-        },
-        "verify": {
-            "question": "如何验证下载的文件？",
-            "mac": "在 Mac 上，打开下载按钮下方的<ui>验证下载的文件</ui>，比对 SHA-256 校验和。",
-            "linux": "在 Linux 上，打开 Linux 部分“文件”标签页中的<ui>验证文件</ui>。"
-        }
+    "otherPlatforms": {
+        "question": "有 {platforms} 版本吗？"
     }
 } satisfies Messages['download'];

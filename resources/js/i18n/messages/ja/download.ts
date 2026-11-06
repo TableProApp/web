@@ -35,19 +35,15 @@ export default {
         "separator": "、",
         "last": " または "
     },
-    "card": {
-        "yourSystem": "お使いのシステム",
+    "panel": {
+        "legend": "プラットフォーム",
         "beta": "ベータ版",
-        "dmg": ".dmg をダウンロード",
-        "linux": "Linux にインストール",
         "updates": {
             "mac": "バックグラウンドで自動アップデート",
-            "ios": "App Store からアップデート",
-            "linux": "パッケージマネージャーでアップデート"
+            "ios": "App Store からアップデート"
         }
     },
     "linux": {
-        "title": "Linux にインストール",
         "beta": "Linux アプリはベータ版です。まだ初期段階のため、リリースごとに変わる可能性があります。<link>不具合は GitHub で報告</link>してください。",
         "methods": "インストール方法",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "検証コマンド"
         }
     },
-    "updates": {
-        "ios": "ほかのアプリと同じく、App Store がアップデートをインストールします。",
-        "linux": "パッケージマネージャーが、システムのほかの部分と一緒にアップデートをインストールします。アプリ自身は確認しません。"
-    },
-    "faq": {
-        "title": "よくある質問",
-        "other": {
-            "question": "{platforms} 版はありますか？"
-        },
-        "verify": {
-            "question": "ダウンロードを検証するには？",
-            "mac": "Mac では、ダウンロードボタンの下にある<ui>ダウンロードを検証する</ui>を開き、SHA-256 チェックサムを比較します。",
-            "linux": "Linux では、Linux セクションの「ファイル」タブにある<ui>ファイルを検証する</ui>を開きます。"
-        }
+    "otherPlatforms": {
+        "question": "{platforms} 版はありますか？"
     }
 } satisfies Messages['download'];

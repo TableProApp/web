@@ -1,25 +1,20 @@
-import { useEffect, useState, type ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
-import LatestPost from '@/components/blog/latest-post';
+import { Laptop, SquareTerminal, TabletSmartphone } from 'lucide-react';
 import { requirementLine } from '@/components/download/format';
-import IosCard from '@/components/download/ios-card';
-import LinuxCard from '@/components/download/linux-card';
-import LinuxInstall from '@/components/download/linux-install';
+import IosPanel from '@/components/download/ios-panel';
+import LinuxPanel from '@/components/download/linux-panel';
 import { distributionFloor } from '@/components/download/linux-text';
-import MacCard, { UI_TAGS } from '@/components/download/mac-card';
-import type { DownloadPageProps, LinuxProp, PlatformKey } from '@/components/download/types';
+import MacPanel from '@/components/download/mac-panel';
+import PlatformSwitch, { type PlatformTab } from '@/components/download/platform-switch';
+import type { DownloadPageProps, LinuxProp } from '@/components/download/types';
 import SEOHead from '@/components/seo/seo-head';
 import Badge from '@/components/ui/badge';
 import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
-import FaqList, { type FaqListItem } from '@/components/ui/faq-list';
 import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
-import { LOCALES, Trans, useI18n, type Messages } from '@/i18n';
-import { joinList, keepTogether } from '@/i18n/format';
-import { classifyDevice, type DeviceKind } from '@/lib/device';
+import { LOCALES, useI18n, type Messages } from '@/i18n';
+import { joinList } from '@/i18n/format';
 import { architecturesText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import { absoluteUrl, graph, iosAppNode, linuxAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
@@ -96,73 +91,49 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
     ]);
 }
 
-// The server renders every platform the same way for every reader. After mount the page reads the device only to mark
-// the reader's own platform and give its action the filled button; nothing starts a download on its own.
-export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines, latestPost }: DownloadPageProps) {
+// The visitor's platform opens first, decided in the browser (PlatformSwitch); the server renders the Mac panel and
+// every panel's links, so nothing depends on JavaScript to download.
+export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
-    const [device, setDevice] = useState<DeviceKind | null>(null);
 
-    useEffect(() => {
-        setDevice(classifyDevice(navigator.userAgent, navigator.maxTouchPoints ?? 0));
-    }, []);
-
-    const marked: PlatformKey | null = device === 'mac' ? 'mac' : device === 'ios' && ios !== null ? 'ios' : device === 'linux' && linux !== null ? 'linux' : null;
-    const primary: PlatformKey = marked ?? 'mac';
-
-    const names: Record<PlatformKey, string> = {
+    const names = {
         mac: mac.deviceNames[0] ?? 'Mac',
         ios: joinList(ios?.deviceNames ?? [], m.common.shortList),
         linux: linux?.deviceNames[0] ?? 'Linux',
     };
-    const platforms: PlatformKey[] = ['mac', ...(ios !== null ? (['ios'] as const) : []), ...(linux !== null ? (['linux'] as const) : [])];
-    const grid = platforms.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2';
 
-    const version = (value: string | null, date: string | null): string | null => {
-        if (value === null) {
-            return null;
-        }
-
-        return date !== null ? fmt(m.download.release.dated, { version: value, date: keepTogether(date) }) : fmt(m.download.release.undated, { version: value });
-    };
-
-    const unreleasedNames = unreleased.filter((id): id is PlatformName => Object.hasOwn(m.platforms.names, id)).map((id) => m.platforms.names[id]);
-    const verifyMac = release.asset.sha256 !== null;
-    const verifyLinux = linux !== null && linux.verify !== null && linux.packages.length > 0;
-
-    const faq: FaqListItem[] = [
-        ...(unreleasedNames.length > 0
-            ? [
-                  {
-                      id: 'other-platforms',
-                      question: fmt(m.download.faq.other.question, { platforms: joinList(unreleasedNames, m.download.orList) }),
-                      answer: fmt(content.otherPlatforms.body, { platforms: joinList(unreleasedNames, m.download.orList) }),
-                  },
-              ]
+    const tabs: PlatformTab[] = [
+        { key: 'mac', name: names.mac, label: names.mac, icon: <Laptop aria-hidden="true" className="size-6" />, panel: <MacPanel content={content} release={release} mac={mac} /> },
+        ...(ios !== null
+            ? [{ key: 'ios' as const, name: names.ios, label: names.ios, icon: <TabletSmartphone aria-hidden="true" className="size-6" />, panel: <IosPanel content={content} ios={ios} /> }]
             : []),
-        ...(verifyMac || verifyLinux
+        ...(linux !== null
             ? [
                   {
-                      id: 'verify',
-                      question: m.download.faq.verify.question,
-                      answer: (
-                          <p>
-                              {verifyMac && <Trans text={m.download.faq.verify.mac} tags={UI_TAGS} />}
-                              {verifyMac && verifyLinux && ' '}
-                              {verifyLinux && <Trans text={m.download.faq.verify.linux} tags={UI_TAGS} />}
-                          </p>
+                      key: 'linux' as const,
+                      name: names.linux,
+                      label: (
+                          <span className="inline-flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
+                              {names.linux}
+                              {linux.channel === 'beta' && <Badge variant="outline">{m.download.panel.beta}</Badge>}
+                          </span>
                       ),
+                      icon: <SquareTerminal aria-hidden="true" className="size-6" />,
+                      panel: <LinuxPanel linux={linux} issues={links.issues} />,
                   },
               ]
             : []),
     ];
 
-    const cell = (platform: PlatformKey, children: ReactNode) => (
-        <div key={platform}>
-            <h3 className="type-label text-foreground">{names[platform]}</h3>
-            {children}
-        </div>
-    );
+    const unreleasedNames = unreleased.filter((id): id is PlatformName => Object.hasOwn(m.platforms.names, id)).map((id) => m.platforms.names[id]);
+    const others = joinList(unreleasedNames, m.download.orList);
+
+    const notes = [
+        release.source !== 'unavailable' && { href: release.releaseUrl, label: names.mac },
+        linux !== null && linux.release !== null && { href: linux.release.releaseUrl, label: names.linux },
+        links.changelog !== null && { href: links.changelog, label: content.olderVersions.changelog },
+    ].filter((link): link is { href: string; label: string } => link !== false);
 
     return (
         <LandingLayout>
@@ -186,70 +157,55 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                 })}
             />
 
-            <PageHeader title={content.header.title} lead={content.header.lead} />
-
-            <div>
+            <div className="pt-10 pb-16 md:pt-14 md:pb-20 xl:pt-16 xl:pb-24">
                 <Container>
-                    {/* On a phone the reader's platform comes first: an iPhone's before first paint, from the root template's class. */}
-                    <CellGrid className={cn('items-stretch', platforms.length > 2 ? 'lg:grid-cols-3' : 'lg:grid-cols-2')}>
-                        <MacCard content={content} release={release} mac={mac} marked={marked === 'mac'} primary={primary === 'mac'} />
-                        {ios !== null && <IosCard content={content} ios={ios} marked={marked === 'ios'} className="max-md:in-[.ios]:order-first" />}
-                        {linux !== null && (
-                            <LinuxCard linux={linux} marked={marked === 'linux'} primary={primary === 'linux'} className={cn(marked === 'linux' && 'max-md:order-first')} />
-                        )}
-                    </CellGrid>
+                    <div className="mx-auto max-w-[40rem]">
+                        <header className="grid justify-items-center text-center">
+                            <img
+                                src="/images/brand/tablepro-icon-128.png"
+                                srcSet="/images/brand/tablepro-icon-128.png 1x, /images/brand/tablepro-icon-256.png 2x"
+                                alt=""
+                                width={72}
+                                height={72}
+                                className="size-18"
+                            />
+                            <h1 className="type-h1 mt-5 text-foreground">{content.header.title}</h1>
+                        </header>
+
+                        {/* Security links "Download and updates" here; each panel says how its platform updates. */}
+                        <span id="updates" className="block" />
+                        <div className="mt-10">
+                            <PlatformSwitch legend={m.download.panel.legend} tabs={tabs} />
+                        </div>
+                    </div>
                 </Container>
             </div>
 
-            {linux !== null && (
-                <Section
-                    id="linux"
-                    title={
-                        <span className="inline-flex flex-wrap items-center gap-x-3 gap-y-1">
-                            {m.download.linux.title}
-                            {linux.channel === 'beta' && <Badge>{m.download.card.beta}</Badge>}
-                        </span>
-                    }
-                    lead={
-                        <Trans
-                            text={m.download.linux.beta}
-                            tags={{ link: (text) => (links.issues !== null ? <TextLink href={links.issues}>{text}</TextLink> : text) }}
-                        />
-                    }
-                >
-                    <LinuxInstall linux={linux} />
-                </Section>
-            )}
+            <div>
+                <Container>
+                    <CellGrid density="compact" className={cn('md:grid-cols-2', unreleasedNames.length > 0 && 'lg:grid-cols-3')}>
+                        {notes.length > 0 && (
+                            <section id="release-notes" aria-labelledby="release-notes-title">
+                                <h2 id="release-notes-title" className="type-label text-foreground">
+                                    {m.download.release.notes}
+                                </h2>
+                                <ul className="type-small mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                                    {notes.map((link) => (
+                                        <li key={link.href}>
+                                            <TextLink href={link.href} kind="standalone" external hrefLang="en">
+                                                {link.label}
+                                            </TextLink>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </section>
+                        )}
 
-            <Section id="updates" title={content.updates.title} flush>
-                <CellGrid density="compact" className={grid}>
-                    {cell('mac', <p className="type-small mt-2 text-foreground">{content.updates.mac}</p>)}
-                    {ios !== null && cell('ios', <p className="type-small mt-2 text-foreground">{m.download.updates.ios}</p>)}
-                    {linux !== null && cell('linux', <p className="type-small mt-2 text-foreground">{m.download.updates.linux}</p>)}
-                </CellGrid>
-            </Section>
-
-            <Section id="older-versions" title={content.olderVersions.title} flush>
-                <CellGrid density="compact" className={grid}>
-                    {cell(
-                        'mac',
-                        <>
-                            <p className="type-small mt-1 text-muted-foreground tabular-nums">{version(release.version, release.publishedAtFormatted)}</p>
+                        <section id="older-versions" aria-labelledby="older-versions-title">
+                            <h2 id="older-versions-title" className="type-label text-foreground">
+                                {content.olderVersions.title}
+                            </h2>
                             <ul className="type-small mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
-                                {release.source !== 'unavailable' && (
-                                    <li>
-                                        <TextLink href={release.releaseUrl} kind="standalone" external hrefLang="en">
-                                            {m.download.release.notes}
-                                        </TextLink>
-                                    </li>
-                                )}
-                                {links.changelog !== null && (
-                                    <li>
-                                        <TextLink href={links.changelog} kind="standalone" external hrefLang="en">
-                                            {content.olderVersions.changelog}
-                                        </TextLink>
-                                    </li>
-                                )}
                                 <li>
                                     <TextLink href={release.releasesUrl} kind="standalone" external>
                                         {content.olderVersions.releases}
@@ -263,61 +219,25 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                                     </li>
                                 )}
                             </ul>
-                            {latestPost !== null && (
-                                <p className="type-small mt-3 text-foreground">
-                                    <LatestPost post={latestPost} />
-                                </p>
-                            )}
-                        </>,
-                    )}
-                    {ios !== null &&
-                        cell(
-                            'ios',
-                            <>
-                                <p className="type-small mt-1 text-muted-foreground tabular-nums">{version(ios.version, ios.publishedAtFormatted)}</p>
-                                <p className="type-small mt-3">
-                                    <LocaleLink href="/ios" className={textLinkClasses('standalone')}>
-                                        {fmt(content.ios.link, { devices: names.ios })}
+                        </section>
+
+                        {unreleasedNames.length > 0 && (
+                            <section id="other-platforms" aria-labelledby="other-platforms-title">
+                                <h2 id="other-platforms-title" className="type-label text-foreground">
+                                    {fmt(m.download.otherPlatforms.question, { platforms: others })}
+                                </h2>
+                                <p className="type-small mt-3 text-foreground">{fmt(content.otherPlatforms.body, { platforms: others })}</p>
+                                <p className="type-small mt-2">
+                                    <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
+                                        {content.otherPlatforms.faq}
                                         <span aria-hidden="true">→</span>
                                     </LocaleLink>
                                 </p>
-                            </>,
+                            </section>
                         )}
-                    {linux !== null &&
-                        cell(
-                            'linux',
-                            <>
-                                <p className="type-small mt-1 text-muted-foreground tabular-nums">{version(linux.release?.version ?? null, linux.release?.publishedOn ?? null)}</p>
-                                {linux.release !== null && (
-                                    <ul className="type-small mt-3 grid gap-1.5">
-                                        <li>
-                                            <TextLink href={linux.release.releaseUrl} kind="standalone" external hrefLang="en">
-                                                {m.download.release.notes}
-                                            </TextLink>
-                                        </li>
-                                        <li>
-                                            <TextLink href={linux.release.releasesUrl} kind="standalone" external>
-                                                {content.olderVersions.releases}
-                                            </TextLink>
-                                        </li>
-                                    </ul>
-                                )}
-                            </>,
-                        )}
-                </CellGrid>
-            </Section>
-
-            {faq.length > 0 && (
-                <Section id="faq" title={m.download.faq.title}>
-                    <FaqList collapsible className="frame-rows" items={faq} />
-                    <p className="mt-8">
-                        <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
-                            {content.otherPlatforms.faq}
-                            <span aria-hidden="true">→</span>
-                        </LocaleLink>
-                    </p>
-                </Section>
-            )}
+                    </CellGrid>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

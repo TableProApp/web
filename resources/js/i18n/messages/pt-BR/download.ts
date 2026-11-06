@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " ou "
     },
-    "card": {
-        "yourSystem": "Seu sistema",
+    "panel": {
+        "legend": "Plataforma",
         "beta": "Beta",
-        "dmg": "Baixar .dmg",
-        "linux": "Instalar no Linux",
         "updates": {
             "mac": "Atualiza sozinho em segundo plano",
-            "ios": "Atualiza pela App Store",
-            "linux": "Atualiza pelo gerenciador de pacotes"
+            "ios": "Atualiza pela App Store"
         }
     },
     "linux": {
-        "title": "Instalar no Linux",
         "beta": "O app para Linux está em beta: ainda está no início e pode mudar entre versões, então <link>relate bugs no GitHub</link>.",
         "methods": "Instalar com",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "comandos de verificação"
         }
     },
-    "updates": {
-        "ios": "A App Store instala as atualizações, como faz com seus outros apps.",
-        "linux": "Seu gerenciador de pacotes instala as atualizações junto com o resto do sistema. O app não as procura sozinho."
-    },
-    "faq": {
-        "title": "Perguntas",
-        "other": {
-            "question": "Existe uma versão para {platforms}?"
-        },
-        "verify": {
-            "question": "Como verifico um download?",
-            "mac": "No Mac, abra <ui>Verifique seu download</ui> abaixo do botão de download e compare a soma de verificação SHA-256.",
-            "linux": "No Linux, abra <ui>Verifique um arquivo</ui> na aba Arquivos da seção Linux."
-        }
+    "otherPlatforms": {
+        "question": "Existe uma versão para {platforms}?"
     }
 } satisfies Messages['download'];

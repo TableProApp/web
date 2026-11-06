@@ -1089,17 +1089,14 @@ release state. Its tests use `Http::fake`.
 
 | Function | Rule |
 |---|---|
-| `classifyDevice(ua, maxTouchPoints)` | `ios` when `/iPhone\|iPad\|iPod/` matches, or when `Macintosh` matches and `maxTouchPoints > 1` (iPadOS desktop UA). `mac` when `Macintosh` matches. Otherwise `other`. **An iPhone UA ("like Mac OS X") is never `mac`**; the old page treated it as one |
-| `archHint()` | Chromium `navigator.userAgentData.getHighEntropyValues(['architecture'])`: `arm` gives `arm64`, `x86` gives `x86_64`, anything else `null`. Safari and Firefox give `null`, and the page then never guesses |
+| `classifyDevice(ua, maxTouchPoints)` | `ios` when `/iPhone\|iPad\|iPod/` matches, or when `Macintosh` matches and `maxTouchPoints > 1` (iPadOS desktop UA). `mac` when `Macintosh` matches. `other` for Android and ChromeOS, `linux` for any other `Linux` or `X11`. Otherwise `other`. **An iPhone UA ("like Mac OS X") is never `mac`**. The root template's head script repeats the `ios` and `linux` rules as classes, before first paint (`tests/js/device.test.ts` runs it against this function) |
 
-**Behaviour.** SSR renders both Mac buttons with their real DMG URLs from the server props, plus the Homebrew card
-(`brew install --cask tablepro`, with a note that Homebrew can lag a release; the cask version is not shown) and the
-App Store card. After mount, an `ios` device swaps card order so the App Store card leads, and the Mac card says
-"Download on your Mac". On a `mac` device with a hint, the matching button gets the primary variant (same
-dimensions, so no layout shift) plus "Detected: Apple silicon". With no hint, both buttons stay equal under an "About
-This Mac → Chip" help line. **Nothing starts on its own**, and no copy says a download is starting. After a click the
-page may say "If the download didn't begin, use this link". `trackDownload(location, platform)` is unchanged. No
-Windows or Linux buttons appear.
+**Behaviour.** SSR renders one panel per released platform with real URLs from the server props (the DMG, the App
+Store, the Linux commands and files) and shows the Mac panel. Before paint, the head script's `ios` or `linux` class
+shows that platform's panel instead; after mount `classifyDevice()` keeps the same choice, or the one a `#mac`, `#ios`
+or `#linux` link names (design-system §8.7). **Nothing starts on its own**, and no copy says a download is starting.
+After a click the page may say "If the download didn't begin, use this link". `trackDownload(location, platform)` takes
+`mac`, `ios` or `linux`. No Windows button appears.
 
 ### 1.14 Forms and cross-app contracts
 

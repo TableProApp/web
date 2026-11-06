@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Blog\BlogService;
 use App\Services\Content\SiteFacts;
 use App\Services\Releases\LinuxRelease;
 use App\Services\Releases\LinuxReleaseService;
 use App\Services\Releases\MacReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
-use App\Support\Localization\Locales;
-use App\Support\Seo\BlogPosts;
-use App\Support\Seo\PageRegistry;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
@@ -31,8 +27,6 @@ class DownloadController extends Controller
         LinuxReleaseService $linuxReleases,
         PlatformCatalog $platforms,
         SiteFacts $facts,
-        BlogService $blog,
-        PageRegistry $registry,
     ): Response {
         $locale = App::getLocale();
         $release = $releases->latest();
@@ -52,24 +46,7 @@ class DownloadController extends Controller
             'unreleased' => $platforms->unreleased(),
             'links' => $this->links($facts),
             'featuredEngines' => $facts->featuredEngineNames(),
-            'latestPost' => $this->latestPost($blog, $registry, $locale),
         ]);
-    }
-
-    /**
-     * @return array{slug: string, locale: string, kind: string, title: string, description: string, date: string, dateFormatted: string, url: string}|null
-     */
-    private function latestPost(BlogService $blog, PageRegistry $registry, string $locale): ?array
-    {
-        foreach ($blog->all(Locales::default()) as $post) {
-            $post = $blog->find($post->slug, $locale) ?? $post;
-
-            if ($post->release !== null && ($registry->find(BlogPosts::ROUTE, ['slug' => $post->slug])?->renders($post->locale) ?? false)) {
-                return $post->summary($locale);
-            }
-        }
-
-        return null;
     }
 
     /**

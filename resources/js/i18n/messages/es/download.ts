@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " o "
     },
-    "card": {
-        "yourSystem": "Tu sistema",
+    "panel": {
+        "legend": "Plataforma",
         "beta": "Beta",
-        "dmg": "Descargar .dmg",
-        "linux": "Instalar en Linux",
         "updates": {
             "mac": "Se actualiza en segundo plano",
-            "ios": "Se actualiza desde el App Store",
-            "linux": "Se actualiza con tu gestor de paquetes"
+            "ios": "Se actualiza desde el App Store"
         }
     },
     "linux": {
-        "title": "Instalar en Linux",
         "beta": "La app para Linux está en beta: está en una fase temprana y puede cambiar de una versión a otra, así que <link>informa de los errores en GitHub</link>.",
         "methods": "Instalar con",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "comandos de verificación"
         }
     },
-    "updates": {
-        "ios": "El App Store instala las actualizaciones, como con tus otras apps.",
-        "linux": "Tu gestor de paquetes instala las actualizaciones junto con el resto del sistema. La app no las busca por sí misma."
-    },
-    "faq": {
-        "title": "Preguntas",
-        "other": {
-            "question": "¿Hay una versión para {platforms}?"
-        },
-        "verify": {
-            "question": "¿Cómo verifico una descarga?",
-            "mac": "En un Mac, abre <ui>Verifica tu descarga</ui> bajo el botón de descarga y compara la suma SHA-256.",
-            "linux": "En Linux, abre <ui>Verifica un archivo</ui> en la pestaña Archivos de la sección de Linux."
-        }
+    "otherPlatforms": {
+        "question": "¿Hay una versión para {platforms}?"
     }
 } satisfies Messages['download'];

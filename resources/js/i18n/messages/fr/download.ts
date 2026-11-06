@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " ou "
     },
-    "card": {
-        "yourSystem": "Votre système",
+    "panel": {
+        "legend": "Plateforme",
         "beta": "Bêta",
-        "dmg": "Télécharger le .dmg",
-        "linux": "Installer sur Linux",
         "updates": {
             "mac": "Se met à jour en arrière-plan",
-            "ios": "Se met à jour via l’App Store",
-            "linux": "Se met à jour via votre gestionnaire de paquets"
+            "ios": "Se met à jour via l’App Store"
         }
     },
     "linux": {
-        "title": "Installer sur Linux",
         "beta": "L’app Linux est en bêta : elle est récente et peut changer d’une version à l’autre, alors <link>signalez les bugs sur GitHub</link>.",
         "methods": "Installer avec",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "commandes de vérification"
         }
     },
-    "updates": {
-        "ios": "L’App Store installe les mises à jour, comme pour vos autres apps.",
-        "linux": "Votre gestionnaire de paquets installe les mises à jour avec le reste du système. L’app ne les recherche pas elle-même."
-    },
-    "faq": {
-        "title": "Questions fréquentes",
-        "other": {
-            "question": "Existe-t-il une version pour {platforms} ?"
-        },
-        "verify": {
-            "question": "Comment vérifier un téléchargement ?",
-            "mac": "Sur Mac, ouvrez <ui>Vérifier votre téléchargement</ui> sous le bouton de téléchargement et comparez la somme de contrôle SHA-256.",
-            "linux": "Sur Linux, ouvrez <ui>Vérifier un fichier</ui> dans l’onglet Fichiers de la section Linux."
-        }
+    "otherPlatforms": {
+        "question": "Existe-t-il une version pour {platforms} ?"
     }
 } satisfies Messages['download'];

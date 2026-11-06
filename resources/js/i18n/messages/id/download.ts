@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " atau "
     },
-    "card": {
-        "yourSystem": "Sistem Anda",
+    "panel": {
+        "legend": "Platform",
         "beta": "Beta",
-        "dmg": "Unduh .dmg",
-        "linux": "Instal di Linux",
         "updates": {
             "mac": "Memperbarui sendiri di latar belakang",
-            "ios": "Diperbarui lewat App Store",
-            "linux": "Diperbarui lewat manajer paket Anda"
+            "ios": "Diperbarui lewat App Store"
         }
     },
     "linux": {
-        "title": "Instal di Linux",
         "beta": "Aplikasi Linux masih beta: masih tahap awal dan bisa berubah antarrilis, jadi <link>laporkan bug di GitHub</link>.",
         "methods": "Instal dengan",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "perintah verifikasi"
         }
     },
-    "updates": {
-        "ios": "App Store menginstal pembaruan, seperti untuk aplikasi Anda yang lain.",
-        "linux": "Manajer paket Anda menginstal pembaruan bersama bagian sistem lainnya. Aplikasi tidak memeriksa pembaruan sendiri."
-    },
-    "faq": {
-        "title": "Pertanyaan",
-        "other": {
-            "question": "Apakah ada versi untuk {platforms}?"
-        },
-        "verify": {
-            "question": "Bagaimana cara memverifikasi unduhan?",
-            "mac": "Di Mac, buka <ui>Verifikasi unduhan Anda</ui> di bawah tombol unduh dan bandingkan checksum SHA-256.",
-            "linux": "Di Linux, buka <ui>Verifikasi file</ui> di tab File pada bagian Linux."
-        }
+    "otherPlatforms": {
+        "question": "Apakah ada versi untuk {platforms}?"
     }
 } satisfies Messages['download'];

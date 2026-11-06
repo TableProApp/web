@@ -1,5 +1,4 @@
 // The props DownloadController sends. The copy's shape is the English file's; TranslationsTest holds the other locales to it.
-import type { PostSummary } from '@/components/blog/post-list';
 import type { Requirements } from '@/lib/data/platforms';
 
 export type { Requirements };
@@ -108,5 +107,4 @@ export interface DownloadPageProps {
     unreleased: string[];
     links: LinksProp;
     featuredEngines: string[];
-    latestPost: PostSummary | null;
 }

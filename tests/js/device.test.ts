@@ -15,6 +15,7 @@ const UA = {
     chromeWindows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
     android: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36',
     linux: 'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0',
+    chromeOS: 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
 };
 
 test('an iPhone is never a Mac, although its user agent says "like Mac OS X"', () => {
@@ -57,7 +58,7 @@ test('the App Store card leads only on an iPhone or iPad', () => {
 });
 
 // The head script cannot import this module, so it repeats the rule.
-test('the head script marks exactly the devices classifyDevice calls ios', () => {
+test('the head script marks exactly the devices classifyDevice calls ios or linux', () => {
     const blade = readFileSync(new URL('../../resources/views/app.blade.php', import.meta.url), 'utf8');
     const start = blade.indexOf('var ua = navigator.userAgent;');
     const end = blade.indexOf('})();', start);
@@ -73,7 +74,9 @@ test('the head script marks exactly the devices classifyDevice calls ios', () =>
 
             run({ userAgent, maxTouchPoints }, { documentElement: { classList: { add: (cls: string) => added.push(cls) } } });
 
-            assert.deepEqual(added, appStoreFirst(classifyDevice(userAgent, maxTouchPoints)) ? ['ios'] : [], `${name}, ${maxTouchPoints} touch points`);
+            const kind = classifyDevice(userAgent, maxTouchPoints);
+
+            assert.deepEqual(added, kind === 'ios' || kind === 'linux' ? [kind] : [], `${name}, ${maxTouchPoints} touch points`);
         }
     }
 });

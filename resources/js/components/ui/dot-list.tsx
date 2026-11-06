@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils';
 interface DotListProps {
     /** The facts, in order. `null`, `false` and empty strings are left out. */
     items: ReactNode[];
+    // `center`: one fact per line on a phone, with no dots; from 640px one centred line, the first item without its dot.
+    align?: 'start' | 'center';
     className?: string;
 }
 
@@ -23,8 +25,23 @@ interface DotListProps {
  * The 4px of padding inside the clip keeps a focus ring on a leading link
  * visible.
  */
-export default function DotList({ items, className }: DotListProps) {
+export default function DotList({ items, align = 'start', className }: DotListProps) {
     const shown = items.filter((item) => item !== null && item !== false && item !== undefined && item !== '');
+
+    if (align === 'center') {
+        return (
+            <span className={cn('flex flex-col items-center gap-y-1 sm:flex-row sm:flex-wrap sm:justify-center', className)}>
+                {shown.map((item, index) => (
+                    <span
+                        key={index}
+                        className="relative min-w-0 sm:pl-5 sm:before:absolute sm:before:left-[0.5625rem] sm:before:content-['·'_/_''] sm:before:text-muted-foreground sm:first:pl-0 sm:first:before:content-none"
+                    >
+                        {item}
+                    </span>
+                ))}
+            </span>
+        );
+    }
 
     return (
         <span className={cn('-ml-1 block overflow-hidden pl-1', className)}>

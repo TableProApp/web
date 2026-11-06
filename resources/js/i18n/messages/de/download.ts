@@ -35,19 +35,15 @@ export default {
         "separator": ", ",
         "last": " oder "
     },
-    "card": {
-        "yourSystem": "Dein System",
+    "panel": {
+        "legend": "Plattform",
         "beta": "Beta",
-        "dmg": ".dmg herunterladen",
-        "linux": "Unter Linux installieren",
         "updates": {
             "mac": "Aktualisiert sich im Hintergrund",
-            "ios": "Updates über den App Store",
-            "linux": "Updates über deinen Paketmanager"
+            "ios": "Updates über den App Store"
         }
     },
     "linux": {
-        "title": "Unter Linux installieren",
         "beta": "Die Linux-App ist eine Beta: Sie steht noch am Anfang und kann sich von Version zu Version ändern. Bitte <link>melde Fehler auf GitHub</link>.",
         "methods": "Installieren mit",
         "floor": "{name} {version}+",
@@ -71,19 +67,7 @@ export default {
             "label": "Prüfbefehle"
         }
     },
-    "updates": {
-        "ios": "Der App Store installiert Updates wie bei deinen anderen Apps.",
-        "linux": "Dein Paketmanager installiert Updates zusammen mit dem restlichen System. Die App sucht nicht selbst danach."
-    },
-    "faq": {
-        "title": "Fragen",
-        "other": {
-            "question": "Gibt es eine Version für {platforms}?"
-        },
-        "verify": {
-            "question": "Wie überprüfe ich einen Download?",
-            "mac": "Öffne auf dem Mac <ui>Download überprüfen</ui> unter der Download-Schaltfläche und vergleiche die SHA-256-Prüfsumme.",
-            "linux": "Öffne unter Linux <ui>Datei überprüfen</ui> im Tab Dateien des Linux-Abschnitts."
-        }
+    "otherPlatforms": {
+        "question": "Gibt es eine Version für {platforms}?"
     }
 } satisfies Messages['download'];

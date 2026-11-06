@@ -34,19 +34,15 @@ export default {
         separator: ', ',
         last: ' or ',
     },
-    card: {
-        yourSystem: 'Your system',
+    panel: {
+        legend: 'Platform',
         beta: 'Beta',
-        dmg: 'Download .dmg',
-        linux: 'Install on Linux',
         updates: {
             mac: 'Updates itself in the background',
             ios: 'Updates from the App Store',
-            linux: 'Updates with your package manager',
         },
     },
     linux: {
-        title: 'Install on Linux',
         beta: 'The Linux app is a beta: it is early and may change between releases, so please <link>report bugs on GitHub</link>.',
         methods: 'Install with',
         floor: '{name} {version}+',
@@ -70,19 +66,7 @@ export default {
             label: 'verification commands',
         },
     },
-    updates: {
-        ios: 'The App Store installs updates, as it does for your other apps.',
-        linux: 'Your package manager installs updates with the rest of your system. The app does not check for them itself.',
-    },
-    faq: {
-        title: 'Questions',
-        other: {
-            question: 'Is there a version for {platforms}?',
-        },
-        verify: {
-            question: 'How do I verify a download?',
-            mac: 'On a Mac, open <ui>Verify your download</ui> under the download button and compare the SHA-256 checksum.',
-            linux: 'On Linux, open <ui>Verify a file</ui> in the Files tab of the Linux section.',
-        },
+    otherPlatforms: {
+        question: 'Is there a version for {platforms}?',
     },
 };
