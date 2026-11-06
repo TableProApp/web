@@ -710,7 +710,7 @@ Repo key:
   - The answer is `body` in `--foreground`, 8px below its question.
   - Items are separated by a 1px `--rule` with 24px of padding.
 - All answers are visible. Answers come from data, with named interpolation.
-- One exception, `collapsible`: the four questions under the sale's offers on `/black-friday` are `<details>`, closed, the whole row the control, a `+` turning to `×` (owner decision, 2026-11-06). Rows run rail to rail (`frame-rows`), so the `+` sits on the right edge.
+- One exception, `collapsible`: the questions under the sale's offers on `/black-friday` and the grouped questions on `/pricing` are `<details>`, closed, the whole row the control, a `+` turning to `×` (owner decision, 2026-11-06). Rows run rail to rail (`frame-rows`), so the `+` sits on the right edge.
 
 #### 5.3.8 Badge, StatusBadge, Availability
 
@@ -923,25 +923,26 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - an optional section (Homebrew CodeBlock)
 - Future platforms get **no** card and no dead button.
 
-**PricingCard** (three across at ≥ 1024, equal width and emphasis):
+**PricingCard** (three across at ≥ 1024, equal width; Pro leads, owner decision of 2026-11-06):
 
 - Joined cells of one `CellGrid` (§4.7): no border, corner or fill of their own.
 
 - Tier name (`h3` style) and a one-line `small` muted description.
-- Price at `h1` size, weight 600, tabular, with the unit in `small` muted beside it ("/ month", "/ year", "once"; Team "per seat").
+- Price at 40px, weight 600, tabular, with the unit in `small` muted beside it ("per year", "paid once"; Team "per seat, per month, billed yearly"). Its digits roll on a cycle switch (`RollingText`); a screen reader hears the price once, in words.
   - Every cycle's price is in the HTML, so the page states each price its structured data offers. The ones not chosen carry `hidden`.
 - Team only:
   - a seat `Stepper`: min and max from data, 44px buttons, `inputmode="numeric"`
   - a live total line "{seats} seats · ${total} / year" (`aria-live="polite"`, height reserved), which follows the digits as they are typed
   - "Minimum {min} seats"; after a typed count outside the bounds was changed, this line says which bound it was changed to
 - Activation line: "One person, up to 3 Macs." or "One person per seat, on up to 3 Macs.", the count from `license.deviceLimit`.
-- **Full-width `secondary` `md` purchase button.** Free gets "Download for Mac".
-- `Includes`: a `small` list of paid features from data, with the check in `--accent-text`.
+- **Full-width `md` purchase button:** `primary` on the plan the page leads with, `secondary` on the others. Free gets "Download for Mac".
+- `Includes`: a `small` list of 2-5 word bullets, the paid ones from data, with the check in `--accent-text`.
+- Enterprise is not a card: one row under the three (`EnterpriseRow`), its name, one line and "Contact us →".
 
-**Equal emphasis is deliberate:**
+**One plan leads, by layout only:**
 
-- No "most popular" (the spec forbids invented ones).
-- No accent-filled buttons competing three abreast; the price is the focal point.
+- No "most popular" or any badge (the spec forbids invented ones).
+- Pro is a raised cell (`--surface`) with a 2px `--accent` top edge (`.plan-lead`) and the only filled button. On /teams, Team alone sits in a panel and leads.
 - **States:**
   - checkout loading: button busy
   - error: inline `Callout danger` under the button, with server text localized
@@ -1323,6 +1324,12 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - **The light under the pointer** (`campaign-spot`): a 30rem accent radial at 13% that follows a mouse, never a finger, and fades out when the pointer leaves.
 - **The Pro capture crossfade** (`sale-stage`, `--dur-panel`): only when the reader picks another feature.
 
+**Pricing** (owner decision, 2026-11-06), on the plan block wherever it shows (/pricing, the homepage, /teams), never under reduced motion:
+
+- **Prices roll** on a cycle switch: each changed character, 320ms (`RollingText`, the countdown's roll).
+- **The cycle toggle's selection slides** to the chosen segment (`SegmentedControl`, `--dur-panel`, `--ease-panel`).
+- **A plan-table row under the pointer is tinted** (`.plan-row`).
+
 Still not allowed there: gradient blobs, animated glows, sparkles, confetti, entrances on scroll, anything that loops or auto-advances.
 
 **Reduced motion.** Keep the existing global block (`app.css:350-365`), including `animation-delay`, `animation-timeline` and `transition-delay`. Theme switches also suppress transitions for one frame (§2.8).
@@ -1531,31 +1538,25 @@ No competitor screenshots and no benchmark numbers. A Download CTA sits in the P
 Sections and ids follow sitemap §A.1.
 
 ```
-PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid plan adds features to the Mac app; the iPhone and iPad app is free
-#plans        BillingCycleControl (Monthly | Yearly | Lifetime) + caption (computed saving / one payment)
-              PricingCard ×3  Free · Starter · Team   (cols 4/4/4, equal emphasis)
-              Line (small, muted)  Every paid plan can be refunded within 7 days → Refund policy
-              Line (small, muted)  Prices in USD. Polar is the merchant of record and handles tax and receipts.
-#features     H2 "What a paid plan adds" / "Gói trả phí bổ sung những gì"   (positioning's wording)
-              PlanMatrix  visible caption · each paid feature (linked to its feature-page anchor) + Macs + Priority support
-                          + "Everything else in the app"
+PageHeader    H1 "Pricing" · one line: free at work too; Pro and Team add features to the Mac app
+#plans        BillingCycleControl (Monthly | Yearly | One-time), centered, its selection sliding + caption (computed saving)
+              PricingCard ×3  Free · Pro · Team   (cols 4/4/4, Pro leads)
+              EnterpriseRow   one line under the three, "Contact us →"
+              Line (small, muted)  Refunds within 7 days (refund policy). Prices in USD; Polar adds tax.
+              Disclosure  Have a discount code?
+#features     H2 "What a paid plan adds"
+              PlanMatrix  grouped: In Pro and Team · In Team (+ Priority support) · In every plan (Macs, everything else);
+                          its head sticks under the site header; a row under the pointer is tinted
               Note        The iPhone and iPad app has no paid features.
-              Each topic below is a Section of its own at `text` width, separated by the frame's joins (§4.7);
-              its DescriptionList and FaqList rows run from rail to rail.
-#license      How licenses work (prose from licensing facts: Starter is for one person, a seat is one person, each
-              on up to `deviceLimit` Macs; what happens when a subscription ends)
-#billing      Polar, USD, tax and receipts; "Billing & invoices" in Account for Polar purchases
-#refunds      7 days on every plan → Refund policy
-#team         Seats (min and max from data), invites, changing the number of seats
-#open-source  AGPLv3; source builds gate the same features
-#faq          FaqList, licensing subset: purchase questions the sections above do not answer,
-              incl. Lost your license key? → /account?locale={locale}
+#faq          One grouped FaqList, collapsed (§5.3.7): Licenses (#license) · Billing and refunds (#billing, #refunds)
+              · Teams (#team) · Free and open source (#at-work, #education while open, #open-source, comparisons).
+              A link to a group or a question opens it.
 ```
 
 The `#features` heading and the intro say "adds" / "bổ sung", never "unlock" (positioning §12, spec §9). The exact strings are positioning's; this sketch quotes its current proposal.
 
 - Below 1024 the cards stack.
-- At 375, PlanMatrix keeps 4 columns with a sticky first column. The three value columns hold only glyphs, so it fits in 343.
+- At 375, PlanMatrix keeps 4 columns. The three value columns hold only glyphs, so it fits in 343 with no scroll box, which lets its head stick to the page.
 - No currency conversion, no PPP and no bank transfer anywhere.
 
 ### 8.7 Download (`/download`)

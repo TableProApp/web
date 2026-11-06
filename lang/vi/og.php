@@ -20,4 +20,8 @@ return [
     'author' => 'TablePro',
 
     'byline' => ':author · :date',
+
+    'free' => 'Miễn phí',
+
+    'currency' => '{amount} US$',
 ];

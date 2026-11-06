@@ -11,7 +11,9 @@
 |
 | `family` is the kicker a page card falls back to when its content gives
 | none, and the label on a blog card. `byline` is one template, so each
-| language orders author and date its own way.
+| language orders author and date its own way. `free` and `currency` are the
+| pricing card's: the Free plan's name and the site's price pattern, which
+| must equal `pricing.currency.pattern` in the page's UI catalog.
 |
 */
 
@@ -26,4 +28,8 @@ return [
     'author' => 'TablePro',
 
     'byline' => ':author · :date',
+
+    'free' => 'Free',
+
+    'currency' => '${amount}',
 ];

@@ -128,7 +128,7 @@ final class ContentCollection implements PageFamily
      */
     public static function contentName(PageEntry $entry): ?string
     {
-        if ($entry->ogFamily === 'campaign') {
+        if (isset(StaticPages::OWN_CARDS[$entry->route])) {
             return StaticPages::PAGES[$entry->route] ?? null;
         }
 
