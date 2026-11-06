@@ -145,7 +145,8 @@ promote the badge on an iPhone or iPad. The labels do not change, nothing auto-d
 - A file size.
 - A star count or "#1 trending".
 - "No account".
-- Any Linux or Windows line.
+- Any Windows line. Linux appears in the hero only as the visitor's own system's action, decided in the browser
+  (the Home redesign), never as a list of platforms.
 - "View source". Open source is in the line under both actions. GitHub is linked from the header, the footer and the
   homepage open-source section (sitemap §B.1, §B.3, §D).
 
@@ -728,7 +729,7 @@ Structured data and OG cards take their text from those sources, so they need no
 | Class | About | Banned (EN) | Banned (VI) | Allowed form |
 |---|---|---|---|---|
 | Universals | TablePro | every database, all databases, any database, all platforms, every platform, cross-platform, one app everywhere, works everywhere | mọi cơ sở dữ liệu, tất cả cơ sở dữ liệu, mọi nền tảng, đa nền tảng, trên mọi thiết bị | "{featuredEngines} and more"; "each platform it supports". A link to the hub says "Supported databases" / "Cơ sở dữ liệu được hỗ trợ" |
-| Platform futures | TablePro | coming soon, waitlist, release dates for unreleased platforms; any Windows or Linux availability (a reviewer check, because comparison pages name competitors' Windows and Linux builds) | sắp ra mắt, danh sách chờ | TablePro's Windows and Linux status appears only in the FAQ ("a prototype exists, nothing to install, no date") and on `/download#other-platforms` ("not available, no date", sitemap §A.1) |
+| Platform futures | TablePro | coming soon, waitlist, release dates for unreleased platforms; any Windows availability (a reviewer check, because comparison pages name competitors' Windows builds) | sắp ra mắt, danh sách chờ | TablePro's Windows status appears only in the FAQ and on `/download` ("not available, no date"). Linux shipped as a beta on 2026-11-06: say "beta" beside it, name its engines from `engines.json`, and never claim a Mac-only feature or a paid feature for it (`/download#platforms` holds the parity) |
 | Brand defined by Mac | TablePro | "Mac database client", or "for Mac" as the identity (tested on identity keys by §13; reviewers check the rest); "TablePro Mobile"; Universal, Universal Binary; Mac App Store; Setapp; visionOS app | TablePro Mobile | "Download for Mac" on Mac actions; platform-specific page titles; "separate builds for Apple silicon and Intel". On `/ios`, "one app for iPhone and iPad" rather than "universal app" |
 | Unscoped free | Any | the whole app is free, all of it, no feature gating, no per-feature gate, no paywall, free forever, completely free, 100% free, free software as a price | hoàn toàn miễn phí, miễn phí hoàn toàn, miễn phí mãi mãi, miễn phí trọn đời | "free to use" next to "paid plans add optional features"; "free, with no in-app purchases" for iPhone |
 | Unlock framing | Any | unlock, unlocks | mở khóa | "adds" / "bổ sung" for paid features. iPhone App Lock is written "lock the app with Face ID" / "khóa ứng dụng bằng Face ID", as in the App Store listing |
@@ -776,7 +777,7 @@ Structured data and OG cards take their text from those sources, so they need no
   hits ordinary prose. A reviewer treats an "anywhere" claim about TablePro as a Universal.
 - **Reviewers check these by hand, not the test:**
   - safety-overreach paraphrases, against the allowed form;
-  - TablePro's Windows and Linux availability;
+  - TablePro's Windows availability, and any Linux claim against `/download#platforms`;
   - "fast" as a claim;
   - "for Mac" as the identity outside the identity keys;
   - counts that `Content/NoTypedCountsTest` cannot see.
