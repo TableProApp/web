@@ -1109,7 +1109,7 @@ Windows or Linux buttons appear.
 | `POST /discount/preview {code}` | Unchanged. The invalid-coupon toast text comes from the catalog |
 | `POST /newsletter/subscribe {email}` | Adds `locale`. Fallback strings in `use-email-form.ts:40-56` move to the `forms` namespace. 429 always uses the catalog, because the platform's 429 text is shared with the license API and stays English |
 | `GET /api/newsletter/stats` | **The public site no longer calls it.** The new footer shows no subscriber count (sitemap §B.3, design-system §11.1, item 6), so `footer.tsx:122`'s lazy fetch goes. The endpoint stays as a platform contract. `Contracts/PublicContractsTest` asserts that no file in `resources/js` fetches it |
-| GA events `download_click{location, platform}`, `checkout_started{tier, cycle}`, `newsletter_signup_clicked{source}` | Names and parameters unchanged. The new layout may add new `location` values; `platform` stays `mac\|ios` |
+| GA events `download_click{location, platform}`, `checkout_started{tier, cycle}`, `newsletter_signup_clicked{source}` | Names and parameters unchanged. The new layout may add new `location` values; `platform` is `mac\|ios\|linux` |
 | Storage keys `tablepro:analytics-consent`, `theme`, `tablepro:attribution` | Unchanged. `theme` now has writers (§1.10). `tablepro:banner-dismissed` is retired: the banner cannot be closed (2026-10-22) |
 | Consent head order | Unchanged (pinned) |
 | Inbound URLs `/?ref=…#pricing`, `/download`, `/account`, `/privacy` | Unchanged (§1.1) |

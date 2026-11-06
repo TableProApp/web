@@ -506,7 +506,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
-- `/download`: the Mac and iPhone and iPad platforms
+- `/download`: the platform cards, the engine counts, the updates and the release notes
 - `/faq`: one row per topic, the topic beside its questions
 - a feature page: every block whose crop sits beside its text (5 / 7), and the documentation and related-pages row
 
@@ -517,7 +517,7 @@ Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Car
 - `frame-table` on a DataTable's scroll region: the region reaches the rails, the first and last cells pad their text back to the content edges (the first column's text now starts on the heading edge), and the header row has one rule, not the 2px of its own rule plus the first row's.
 - `frame-rows` on a ruled list in a wide section, and `frame-rows-text` on one at the reading measure: the list reaches the rails from whatever measure it sits in, using container units (`Section`'s Container is a size container), and each row keeps its text at the measure. Used by DescriptionList rows, FaqList items, PostList rows and the feature and comparison lists.
 - `cell-rows` on a ruled list inside a cell, and the same bleed on a single divider in a cell (a plan's "Includes", the Mac card's "Other ways to install"): wall to wall.
-- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s install, updates and older versions, and a blog post's related posts.
+- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s Linux install, platform table, updates, release notes and questions, and a blog post's related posts.
 - A list that opens a block starts on its join (the blog index), and a list inside a card keeps its own inset rules, closed by the card's edge.
 
 `PageFrameTest` fails any `dl`, ruled list or table in `<main>` that does none of these, outside a card or a blog article's own prose.
@@ -1561,37 +1561,33 @@ The `#features` heading and the intro say "adds" / "bổ sung", never "unlock" (
 
 ### 8.7 Download (`/download`)
 
-Sections and ids follow sitemap §A.1. The `#mac` card holds the other ways to install, which is where positioning §3.2's "Other ways to install" link lands.
+Redesigned on 2026-11-06 for three platforms. Linux renders only once `platforms.json` says it is released; with two
+platforms every row below has two cells.
 
 ```
-PageHeader (utility)  H1 · current release: v{ver} · {date} · Release notes ↗     (never "your download is starting")
-┌ PlatformCard Mac  #mac · cols 1–7 ──────────────────┐ ┌ PlatformCard iPhone & iPad  #ios · cols 8–12 ┐
-│ H2 Mac                     Badge v{ver} · {date}     │ │ H2 iPhone and iPad                            │
-│ Requires macOS 13 Ventura or later                   │ │ Requires iOS and iPadOS 18 or later           │
-│ [Download for Apple silicon]  lg primary             │ │ [ App Store badge ]                           │
-│ [Download for Intel]          lg secondary           │ │ Free · no in-app purchases                    │
-│ ▸ Which Mac do I have?  (Disclosure)                 │ │ TablePro for iPhone and iPad →                │
-│ ── Other ways to install (h3 style) ──               │ │                                               │
-│ Homebrew  CodeBlock(command) brew install --cask … ⧉ │ │                                               │
-│           (no version beside the command)            │ │                                               │
-│ Callout warning while the cask lags (from data)      │ │                                               │
-│ GitHub Releases ↗ · Build from source (AGPLv3) ↗     │ │                                               │
-└──────────────────────────────────────────────────────┘ └───────────────────────────────────────────────┘
-The two platforms are cells of one CellGrid between two joins, so neither draws a box; the Mac cell's "Other ways to install"
-rule runs from wall to wall. Each topic below is a Section of its own at `text` width, behind a join (§4.7).
-#install          Install and first run: ordered list (drag to Applications; notarized; drivers download the first time
-                  you pick an engine, which needs a network; the sample database)
-#updates          Daily check; the Settings toggle
-#other-platforms  Windows and Linux are not available; no date
-#older-versions   Older versions and release notes
+PageHeader        H1 · one line
+cards             one CellGrid row: Mac #mac | iPhone & iPad #ios | Linux (Beta). Each card: name, version and date,
+                  one action with what you get under it, how it updates, then a wall-to-wall lower section
+                  (Mac: Verify your download, signed and notarized, Homebrew with copy; iPhone: /ios →; Linux: #platforms ↓)
+#linux            H2 + Beta badge, one sentence on what beta means (GitHub issues). SegmentedControl tabs
+                  Ubuntu | Fedora | Flatpak | Files; each method one CodeBlock of platforms.json's commands (one copy
+                  button, no prompt, wraps only at spaces), its requirement and update lines. Files: a table of the
+                  release's packages by format × architecture, SHA256SUMS, a Verify a file Disclosure. Then linux-main-window
+#platforms        engine counts per platform (CellGrid), then one DataTable of every feature page's availability rows,
+                  grouped by page; groups collapse (the first open), the head sticks at top-16, rows tint on hover
+#updates          one cell per platform
+#older-versions   release notes per platform; the Mac cell keeps the older-versions links and the latest release post
+#faq              FaqList collapsible: free on Linux, license on Linux, other platforms, verifying a download
 ```
 
-- **No screenshot**, as on the reference download pages.
+- The server marks nothing. After mount `classifyDevice()` marks the reader's platform ("Your system", `.plan-lead`) and
+  gives its action the filled button; before that, and for any other device, the Mac button is the filled one. The mark
+  is always in the markup, invisible until it applies, so nothing changes size.
+- On a phone the reader's card comes first: an iPhone's before first paint, from the root template's `ios` class.
+- The chosen Linux tab is kept in `localStorage` (`tablepro:linux-install`); the server renders the first one.
+- Only the tab indicator moves.
 - **No auto-download**, and an iPhone user agent is never detected as a Mac.
-- Both arch links are server-rendered. The UA-CH hint only swaps which of the two is `primary`; the sizes are identical, so there is no CLS.
-- On an iPhone or iPad UA, both Mac buttons become `secondary`, which leaves the App Store badge as the strongest action, again with no layout change.
-- On a Mac whose browser gives no hint (Safari, Firefox), both buttons stay equal and "Which Mac do I have?" opens by itself.
-- If the release API fails, the links fall back to GitHub `releases/latest` (server-rendered).
+- If the release API fails, the Mac button falls back to GitHub `releases/latest` (server-rendered).
 
 ### 8.8 iPhone & iPad (`/ios`)
 
