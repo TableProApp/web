@@ -8,28 +8,14 @@ import { trackEvent } from '@/lib/analytics';
 import { PRICING } from '@/lib/data/pricing';
 import { discountedAmount } from '@/lib/regional-pricing';
 import CampaignCode from './campaign-code';
+import CampaignGround from './campaign-ground';
 import Countdown from './countdown';
 
 interface CampaignBandProps {
-    /** `home` leads to the sale's page; `pricing` says the cards below already carry it. */
     variant: 'home' | 'pricing';
 }
 
-/**
- * The dated sale at the top of the homepage and Pricing while it is live: its
- * name, what it takes off which plans with both prices, the code, the time
- * left, and on the homepage the way to the sale's page.
- *
- * A black band whatever the theme, full width above the page's own first
- * section, which stays as it is below it: the sale is a week's event, not a
- * new identity. Rendered only while the server says the sale is live, and
- * shown only under `html.campaign-live` (app.css), which the head script and
- * `useCampaign` take away at the end, so it never outlives the code.
- *
- * Both prices come from pricing.json: the list price and the sale's
- * percentage off it, rounded as checkout rounds. The yearly price is the
- * first year's, and the sentence says so.
- */
+// Shown only under `html.campaign-live` (app.css), which the head script and `useCampaign` take away at the end.
 export default function CampaignBand({ variant }: CampaignBandProps) {
     const { m, fmt } = useI18n();
     const { prop } = useCampaign();
@@ -44,17 +30,18 @@ export default function CampaignBand({ variant }: CampaignBandProps) {
     const copy = m.campaign.band;
 
     return (
-        <section aria-labelledby="campaign-band-title" className="campaign-band campaign-surface campaign-glow dark">
-            <Container className="grid gap-8 py-10 md:py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-12">
-                <div className="grid max-w-[44rem] gap-4">
-                    <p>
-                        <span className="bg-accent text-accent-foreground rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide uppercase">{m.campaign.name}</span>
+        <CampaignGround labelledBy="campaign-band-title" className="campaign-band">
+            <Container className="relative grid gap-8 py-10 md:py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-12">
+                <div className="grid max-w-[46rem] gap-5">
+                    <p className="type-small flex items-center gap-2 font-medium">
+                        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                        {m.campaign.name}
                     </p>
-                    {/* Not a heading: the band comes before the page's own h1, which must open the outline. It names the region instead. */}
-                    <p id="campaign-band-title" className="type-display text-balance">
+                    {/* Not a heading: the band comes before the page's own h1, which must open the outline. */}
+                    <p id="campaign-band-title" className="text-[2.5rem] leading-[0.95] font-semibold tracking-[-0.04em] text-balance md:text-[3.75rem]">
                         {fmt(copy.title, { percent: campaign.percent })}
                     </p>
-                    <p className="text-muted-foreground type-lead max-w-[60ch]">
+                    <p className="type-lead max-w-[56ch] text-muted-foreground">
                         {fmt(copy.lead, {
                             lifetime: usd(discountedAmount(lifetime, campaign.percent)),
                             lifetimeList: usd(lifetime),
@@ -62,20 +49,20 @@ export default function CampaignBand({ variant }: CampaignBandProps) {
                             yearlyList: usd(yearly),
                         })}
                     </p>
-                    <CampaignCode className="mt-1" />
-                    {variant === 'home' ? (
-                        <p className="mt-2">
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+                        {variant === 'home' ? (
                             <LocaleLink href="/black-friday" onClick={() => trackEvent('campaign_band_click')} className={buttonClasses('primary', 'lg')}>
                                 {copy.cta}
                                 <span aria-hidden="true">→</span>
                             </LocaleLink>
-                        </p>
-                    ) : (
-                        <p className="type-body font-medium">{copy.onPricing}</p>
-                    )}
+                        ) : (
+                            <p className="type-body font-medium">{copy.onPricing}</p>
+                        )}
+                        <CampaignCode />
+                    </div>
                 </div>
-                <Countdown to="end" variant="blocks" />
+                <Countdown to="end" variant="digits" />
             </Container>
-        </section>
+        </CampaignGround>
     );
 }

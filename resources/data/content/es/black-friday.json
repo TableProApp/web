@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Oferta de Black Friday en TablePro Pro"
+        "title": "Oferta de Black Friday en TablePro Pro",
+        "headline": "−{percent}%",
+        "product": "TablePro Pro",
+        "window": "Del {startsOn} al {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "{percent}% de descuento en TablePro Pro",
-        "upcoming": "Del {startsOn} hasta las {endsAtTime} UTC del {endsOn}. Los precios de abajo se aplican desde el primer minuto.",
-        "live": "Hasta las {endsAtTime} UTC del {endsOn}. Después, Pro vuelve a sus precios habituales.",
-        "ended": "La oferta de Black Friday terminó a las {endsAtTime} UTC del {endsOn}. Pro ha vuelto a sus precios habituales."
+        "title": "<big>−{percent}%</big> en TablePro Pro",
+        "upcoming": "Pro de pago único y Pro anual, del {startsOn} hasta las {endsAtTime} UTC del {endsOn}.",
+        "live": "Pro de pago único y Pro anual, hasta las {endsAtTime} UTC del {endsOn}."
     },
     "offers": {
         "lifetime": {
             "name": "Pro de pago único",
-            "detail": "Pagas una vez. La licencia no tiene fecha de caducidad y funciona en {activations} Mac."
+            "unit": "pago único",
+            "detail": "Sin fecha de caducidad. {activations} Mac."
         },
         "yearly": {
             "name": "Pro anual",
-            "detail": "{yearly} el primer año y después {yearlyList} al año. Funciona en {activations} Mac. Cancela cuando quieras."
+            "unit": "primer año",
+            "detail": "Después, {yearlyList} al año. {activations} Mac."
         },
         "buy": "Comprar por {price}",
-        "soon": "En oferta desde el {startsOn}",
-        "regularSince": "Precios habituales desde el {listPriceSince}. Vuelven cuando termina la oferta.",
-        "notIncluded": "Pro mensual y Team no forman parte de la oferta."
+        "soon": "Desde el {startsOn}",
+        "calendar": "Añadir al calendario",
+        "calendarSummary": "Black Friday de TablePro: {percent}% de descuento en Pro",
+        "calendarDescription": "Pro de pago único y Pro anual, hasta las {endsAtTime} UTC del {endsOn}.",
+        "footnote": "Pro mensual y Team no tienen descuento. Precios habituales desde el {listPriceSince}."
     },
     "includes": {
         "title": "Qué añade Pro",
-        "lead": "TablePro se puede usar gratis, también en el trabajo. Pro añade estas funciones en hasta {activations} Mac."
+        "lead": "TablePro es gratis, también en el trabajo. Pro añade estas funciones en {activations} Mac.",
+        "more": "También en Pro",
+        "link": "Más sobre {feature}"
     },
     "faq": {
         "title": "Preguntas",
         "items": [
             {
-                "question": "¿Qué planes tienen descuento?",
-                "answer": "Pro de pago único y Pro anual, con un {percent}% de descuento. Pro mensual y Team mantienen sus precios."
-            },
-            {
                 "question": "¿Pro anual se renueva a {yearly}?",
-                "answer": "No. La oferta cubre el primer año. Después, el plan se renueva a {yearlyList} al año, salvo que lo canceles antes."
+                "answer": "No. El precio de oferta cubre el primer año; después se renueva a {yearlyList} al año."
             },
             {
                 "question": "¿No acaban de subir los precios?",
-                "answer": "Sí. Los precios de Pro cambiaron el {listPriceSince}, y la oferta descuenta un {percent}% de esos precios. Los dos precios de oferta también son más bajos que lo que costaba Pro antes de ese cambio. <prices>Qué cambió y por qué</prices>."
+                "answer": "Sí, el {listPriceSince}. Los dos precios de oferta son más bajos que lo que costaba Pro antes. <prices>Qué cambió</prices>."
             },
             {
-                "question": "Ya pago Pro mensual o anual. ¿Puedo pasarme a pago único?",
-                "answer": "Sí. Compra Pro de pago único al precio de oferta y después cancela tu suscripción en el <portal>portal de facturación</portal> para que no se renueve."
-            },
-            {
-                "question": "¿Tengo que escribir el código?",
-                "answer": "No, si compras en este sitio: el descuento se aplica automáticamente al pagar. Si te piden un código, es {code}."
+                "question": "Pago al mes o al año. ¿Puedo pasarme a pago único?",
+                "answer": "Sí. Compra Pro de pago único y después cancela tu suscripción en el <portal>portal de facturación</portal>."
             },
             {
                 "question": "¿Puedo pedir un reembolso?",
-                "answer": "Sí, como con cualquier compra: en un plazo de {refundDays} días. Consulta la <refund>política de reembolso</refund>."
+                "answer": "Sí, en un plazo de {refundDays} días, como con cualquier compra. Consulta la <refund>política de reembolso</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Informa de cada nueva versión y avisará cuando empiece la oferta."
     },
     "ended": {
-        "title": "El Black Friday ha terminado",
+        "title": "<big>Black Friday</big> ha terminado",
+        "lead": "Duró del {startsOn} al {endsOn}. Pro ha vuelto a sus precios habituales.",
         "action": "Ver los precios actuales",
         "newsletterTitle": "Recibe el boletín",
         "newsletterLead": "Informa de cada nueva versión y avisará cuando empiece la próxima oferta."

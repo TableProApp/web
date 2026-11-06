@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Promoção de Black Friday do TablePro Pro"
+        "title": "Promoção de Black Friday do TablePro Pro",
+        "headline": "−{percent}%",
+        "product": "TablePro Pro",
+        "window": "De {startsOn} a {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "{percent}% de desconto no TablePro Pro",
-        "upcoming": "De {startsOn} a {endsOn}, às {endsAtTime} UTC. Os preços abaixo valem desde o primeiro minuto.",
-        "live": "Até {endsOn}, às {endsAtTime} UTC. Depois disso, o Pro volta aos preços normais.",
-        "ended": "A promoção de Black Friday terminou em {endsOn}, às {endsAtTime} UTC. O Pro voltou aos preços normais."
+        "title": "<big>−{percent}%</big> no TablePro Pro",
+        "upcoming": "Pro de pagamento único e Pro anual, de {startsOn} a {endsOn}, às {endsAtTime} UTC.",
+        "live": "Pro de pagamento único e Pro anual, até {endsOn}, às {endsAtTime} UTC."
     },
     "offers": {
         "lifetime": {
             "name": "Pro de pagamento único",
-            "detail": "Pague uma vez. A licença não tem data de expiração e funciona em {activations} Macs."
+            "unit": "pagamento único",
+            "detail": "Sem data de expiração. {activations} Macs."
         },
         "yearly": {
             "name": "Pro anual",
-            "detail": "{yearly} no primeiro ano, depois {yearlyList} por ano. Funciona em {activations} Macs. Cancele quando quiser."
+            "unit": "primeiro ano",
+            "detail": "Depois, {yearlyList} por ano. {activations} Macs."
         },
         "buy": "Comprar por {price}",
-        "soon": "Em promoção a partir de {startsOn}",
-        "regularSince": "Preços normais desde {listPriceSince}. Eles voltam quando a promoção terminar.",
-        "notIncluded": "O Pro mensal e o Team não fazem parte da promoção."
+        "soon": "A partir de {startsOn}",
+        "calendar": "Adicionar ao calendário",
+        "calendarSummary": "Black Friday do TablePro: {percent}% de desconto no Pro",
+        "calendarDescription": "Pro de pagamento único e Pro anual, até {endsOn}, às {endsAtTime} UTC.",
+        "footnote": "O Pro mensal e o Team não estão em promoção. Preços normais desde {listPriceSince}."
     },
     "includes": {
         "title": "O que o Pro adiciona",
-        "lead": "O TablePro é de uso gratuito, inclusive no trabalho. O Pro adiciona estes recursos em até {activations} Macs."
+        "lead": "O TablePro é gratuito, inclusive no trabalho. O Pro adiciona estes recursos em {activations} Macs.",
+        "more": "Também no Pro",
+        "link": "Mais sobre {feature}"
     },
     "faq": {
         "title": "Perguntas",
         "items": [
             {
-                "question": "Quais planos estão em promoção?",
-                "answer": "O Pro de pagamento único e o Pro anual, com {percent}% de desconto. O Pro mensal e o Team mantêm os preços."
-            },
-            {
                 "question": "O Pro anual é renovado por {yearly}?",
-                "answer": "Não. A promoção vale para o primeiro ano. Depois disso, o plano é renovado a {yearlyList} por ano, a menos que você cancele antes."
+                "answer": "Não. O preço promocional vale para o primeiro ano; depois, o plano é renovado a {yearlyList} por ano."
             },
             {
                 "question": "Os preços não acabaram de subir?",
-                "answer": "Sim. Os preços do Pro mudaram em {listPriceSince}, e a promoção tira {percent}% desses preços. Os dois preços promocionais também ficam abaixo do que o Pro custava antes dessa mudança. <prices>O que mudou e por quê</prices>."
+                "answer": "Sim, em {listPriceSince}. Os dois preços promocionais ficam abaixo do que o Pro custava antes disso. <prices>O que mudou</prices>."
             },
             {
-                "question": "Já pago o Pro mensal ou anual. Posso mudar para o pagamento único?",
-                "answer": "Sim. Compre o Pro de pagamento único pelo preço promocional e depois cancele sua assinatura no <portal>portal de faturamento</portal> para que ela não seja renovada."
-            },
-            {
-                "question": "Preciso digitar o código?",
-                "answer": "Não, se você comprar por este site: o checkout aplica o desconto para você. Se pedirem um código, ele é {code}."
+                "question": "Pago por mês ou por ano. Posso mudar para o pagamento único?",
+                "answer": "Sim. Compre o Pro de pagamento único e depois cancele sua assinatura no <portal>portal de faturamento</portal>."
             },
             {
                 "question": "Posso pedir reembolso?",
-                "answer": "Sim, como em qualquer compra: em até {refundDays} dias. Veja a <refund>política de reembolso</refund>."
+                "answer": "Sim, em até {refundDays} dias, como em qualquer compra. Veja a <refund>política de reembolso</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Ela apresenta cada nova versão e vai avisar quando a promoção começar."
     },
     "ended": {
-        "title": "A Black Friday terminou",
+        "title": "<big>Black Friday</big> terminou",
+        "lead": "A promoção foi de {startsOn} a {endsOn}. O Pro voltou aos preços normais.",
         "action": "Ver os preços atuais",
         "newsletterTitle": "Receba a newsletter",
         "newsletterLead": "Ela apresenta cada nova versão e vai avisar quando a próxima promoção começar."

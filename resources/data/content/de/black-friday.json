@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Black-Friday-Aktion für TablePro Pro"
+        "title": "Black-Friday-Aktion für TablePro Pro",
+        "headline": "{percent} % Rabatt",
+        "product": "TablePro Pro",
+        "window": "{startsOn} bis {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "{percent} % Rabatt auf TablePro Pro",
-        "upcoming": "Vom {startsOn} bis zum {endsOn}, {endsAtTime} UTC. Die Preise unten gelten ab der ersten Minute.",
-        "live": "Bis zum {endsOn}, {endsAtTime} UTC. Danach gelten für Pro wieder die regulären Preise.",
-        "ended": "Die Black-Friday-Aktion endete am {endsOn}, {endsAtTime} UTC. Für Pro gelten wieder die regulären Preise."
+        "title": "<big>{percent} % Rabatt</big> auf TablePro Pro",
+        "upcoming": "Pro einmalig und Pro jährlich, vom {startsOn} bis zum {endsOn}, {endsAtTime} UTC.",
+        "live": "Pro einmalig und Pro jährlich, bis zum {endsOn}, {endsAtTime} UTC."
     },
     "offers": {
         "lifetime": {
             "name": "Pro einmalig",
-            "detail": "Du zahlst einmal. Die Lizenz hat kein Ablaufdatum und gilt für {activations} Macs."
+            "unit": "einmalige Zahlung",
+            "detail": "Kein Ablaufdatum. {activations} Macs."
         },
         "yearly": {
             "name": "Pro jährlich",
-            "detail": "{yearly} im ersten Jahr, danach {yearlyList} pro Jahr. Gilt für {activations} Macs. Jederzeit kündbar."
+            "unit": "im ersten Jahr",
+            "detail": "Danach {yearlyList} pro Jahr. {activations} Macs."
         },
         "buy": "Für {price} kaufen",
-        "soon": "Reduziert ab dem {startsOn}",
-        "regularSince": "Reguläre Preise seit dem {listPriceSince}. Sie gelten wieder, wenn die Aktion endet.",
-        "notIncluded": "Pro monatlich und Team sind nicht Teil der Aktion."
+        "soon": "Ab dem {startsOn}",
+        "calendar": "Zum Kalender hinzufügen",
+        "calendarSummary": "TablePro Black Friday: {percent} % Rabatt auf Pro",
+        "calendarDescription": "Pro einmalig und Pro jährlich, bis zum {endsOn}, {endsAtTime} UTC.",
+        "footnote": "Pro monatlich und Team sind nicht reduziert. Reguläre Preise seit dem {listPriceSince}."
     },
     "includes": {
         "title": "Was Pro ergänzt",
-        "lead": "TablePro ist kostenlos nutzbar, auch bei der Arbeit. Pro ergänzt diese Funktionen auf bis zu {activations} Macs."
+        "lead": "TablePro ist kostenlos, auch bei der Arbeit. Pro ergänzt diese Funktionen auf {activations} Macs.",
+        "more": "Außerdem in Pro",
+        "link": "Mehr zu {feature}"
     },
     "faq": {
         "title": "Fragen",
         "items": [
             {
-                "question": "Welche Tarife sind reduziert?",
-                "answer": "Pro einmalig und Pro jährlich, mit {percent} % Rabatt. Pro monatlich und Team behalten ihre Preise."
-            },
-            {
                 "question": "Verlängert sich Pro jährlich zum Preis von {yearly}?",
-                "answer": "Nein. Die Aktion gilt für das erste Jahr. Danach verlängert sich der Tarif zum Preis von {yearlyList} pro Jahr, außer du kündigst vorher."
+                "answer": "Nein. Der Aktionspreis gilt für das erste Jahr, danach verlängert sich der Tarif zum Preis von {yearlyList} pro Jahr."
             },
             {
                 "question": "Sind die Preise nicht gerade erst gestiegen?",
-                "answer": "Ja. Die Preise von Pro haben sich am {listPriceSince} geändert, und die Aktion zieht {percent} % von diesen Preisen ab. Beide Aktionspreise liegen auch unter dem, was Pro vor dieser Änderung gekostet hat. <prices>Was sich geändert hat und warum</prices>."
+                "answer": "Ja, am {listPriceSince}. Beide Aktionspreise liegen unter dem, was Pro davor gekostet hat. <prices>Was sich geändert hat</prices>."
             },
             {
-                "question": "Ich zahle schon für Pro monatlich oder jährlich. Kann ich zu einmalig wechseln?",
-                "answer": "Ja. Kauf Pro einmalig zum Aktionspreis und kündige dann dein Abo im <portal>Abrechnungsportal</portal>, damit es sich nicht verlängert."
-            },
-            {
-                "question": "Muss ich den Code eingeben?",
-                "answer": "Nicht, wenn du auf dieser Website kaufst: Der Checkout zieht den Rabatt automatisch ab. Wirst du nach einem Code gefragt, lautet er {code}."
+                "question": "Ich zahle monatlich oder jährlich. Kann ich zu einmalig wechseln?",
+                "answer": "Ja. Kauf Pro einmalig und kündige dann dein Abo im <portal>Abrechnungsportal</portal>."
             },
             {
                 "question": "Bekomme ich eine Erstattung?",
-                "answer": "Ja, wie bei jedem Kauf: innerhalb von {refundDays} Tagen. Siehe die <refund>Erstattungsrichtlinie</refund>."
+                "answer": "Ja, innerhalb von {refundDays} Tagen, wie bei jedem Kauf. Siehe die <refund>Erstattungsrichtlinie</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Er stellt jede neue Version vor und sagt Bescheid, wenn die Aktion beginnt."
     },
     "ended": {
-        "title": "Black Friday ist vorbei",
+        "title": "<big>Black Friday</big> ist vorbei",
+        "lead": "Die Aktion lief vom {startsOn} bis zum {endsOn}. Für Pro gelten wieder die regulären Preise.",
         "action": "Aktuelle Preise ansehen",
         "newsletterTitle": "Newsletter abonnieren",
         "newsletterLead": "Er stellt jede neue Version vor und sagt Bescheid, wenn die nächste Aktion beginnt."

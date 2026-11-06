@@ -7,60 +7,60 @@
     },
     "og": {
         "kicker": "Black Friday",
-        "title": "Promozione Black Friday su TablePro Pro"
+        "title": "Promozione Black Friday su TablePro Pro",
+        "headline": "−{percent}%",
+        "product": "TablePro Pro",
+        "window": "Dal {startsOn} al {endsOn}"
     },
     "breadcrumb": "Black Friday",
     "hero": {
         "eyebrow": "Black Friday 2026",
-        "title": "{percent}% di sconto su TablePro Pro",
-        "upcoming": "Dal {startsOn} al {endsOn} alle {endsAtTime} UTC. I prezzi qui sotto valgono dal primo minuto.",
-        "live": "Fino al {endsOn} alle {endsAtTime} UTC. Dopo, Pro torna ai prezzi di listino.",
-        "ended": "La promozione Black Friday è terminata il {endsOn} alle {endsAtTime} UTC. Pro è tornato ai prezzi di listino."
+        "title": "<big>−{percent}%</big> su TablePro Pro",
+        "upcoming": "Pro una tantum e Pro annuale, dal {startsOn} al {endsOn} alle {endsAtTime} UTC.",
+        "live": "Pro una tantum e Pro annuale, fino al {endsOn} alle {endsAtTime} UTC."
     },
     "offers": {
         "lifetime": {
             "name": "Pro una tantum",
-            "detail": "Paghi una volta. La licenza non ha scadenza e funziona su {activations} Mac."
+            "unit": "un solo pagamento",
+            "detail": "Senza scadenza. {activations} Mac."
         },
         "yearly": {
             "name": "Pro annuale",
-            "detail": "{yearly} per il primo anno, poi {yearlyList} all’anno. Funziona su {activations} Mac. Puoi disdire quando vuoi."
+            "unit": "primo anno",
+            "detail": "Poi {yearlyList} all’anno. {activations} Mac."
         },
         "buy": "Acquista a {price}",
-        "soon": "In promozione dal {startsOn}",
-        "regularSince": "Prezzi di listino in vigore dal {listPriceSince}. Tornano quando finisce la promozione.",
-        "notIncluded": "Pro mensile e Team non fanno parte della promozione."
+        "soon": "Dal {startsOn}",
+        "calendar": "Aggiungi al calendario",
+        "calendarSummary": "Black Friday su TablePro: {percent}% di sconto su Pro",
+        "calendarDescription": "Pro una tantum e Pro annuale, fino al {endsOn} alle {endsAtTime} UTC.",
+        "footnote": "Pro mensile e Team non sono in promozione. Prezzi di listino dal {listPriceSince}."
     },
     "includes": {
         "title": "Cosa aggiunge Pro",
-        "lead": "TablePro si può usare gratuitamente, anche al lavoro. Pro aggiunge queste funzionalità su un massimo di {activations} Mac."
+        "lead": "TablePro è gratuito, anche al lavoro. Pro aggiunge queste funzionalità su {activations} Mac.",
+        "more": "Anche in Pro",
+        "link": "Altre informazioni su {feature}"
     },
     "faq": {
         "title": "Domande",
         "items": [
             {
-                "question": "Quali piani sono in promozione?",
-                "answer": "Pro una tantum e Pro annuale, con il {percent}% di sconto. Pro mensile e Team mantengono i loro prezzi."
-            },
-            {
                 "question": "Pro annuale si rinnova a {yearly}?",
-                "answer": "No. La promozione copre il primo anno. Dopo, il piano si rinnova a {yearlyList} all’anno, a meno che tu non lo disdica prima."
+                "answer": "No. Il prezzo in promozione copre il primo anno, poi il piano si rinnova a {yearlyList} all’anno."
             },
             {
                 "question": "I prezzi non sono appena aumentati?",
-                "answer": "Sì. I prezzi di Pro sono cambiati il {listPriceSince}, e la promozione toglie il {percent}% da quei prezzi. Entrambi i prezzi in promozione sono anche più bassi di quanto costava Pro prima di quel cambio. <prices>Cosa è cambiato e perché</prices>."
+                "answer": "Sì, il {listPriceSince}. Entrambi i prezzi in promozione sono più bassi di quanto costava Pro prima. <prices>Cosa è cambiato</prices>."
             },
             {
-                "question": "Pago già Pro mensile o annuale. Posso passare a una tantum?",
-                "answer": "Sì. Acquista Pro una tantum al prezzo in promozione, poi disdici l’abbonamento nel <portal>portale di fatturazione</portal>, così non si rinnova."
-            },
-            {
-                "question": "Devo inserire il codice?",
-                "answer": "No, se acquisti da questo sito: il checkout applica lo sconto per te. Se ti viene chiesto un codice, è {code}."
+                "question": "Pago al mese o all’anno. Posso passare a una tantum?",
+                "answer": "Sì. Acquista Pro una tantum, poi disdici l’abbonamento nel <portal>portale di fatturazione</portal>."
             },
             {
                 "question": "Posso avere un rimborso?",
-                "answer": "Sì, come per ogni acquisto: entro {refundDays} giorni. Consulta la <refund>politica di rimborso</refund>."
+                "answer": "Sì, entro {refundDays} giorni, come per ogni acquisto. Consulta la <refund>politica di rimborso</refund>."
             }
         ]
     },
@@ -69,7 +69,8 @@
         "lead": "Presenta ogni nuova versione e ti avviserà quando inizia la promozione."
     },
     "ended": {
-        "title": "Il Black Friday è finito",
+        "title": "<big>Black Friday</big> è finito",
+        "lead": "La promozione è durata dal {startsOn} al {endsOn}. Pro è tornato ai prezzi di listino.",
         "action": "Vedi i prezzi attuali",
         "newsletterTitle": "Ricevi la newsletter",
         "newsletterLead": "Presenta ogni nuova versione e ti avviserà quando inizia la prossima promozione."

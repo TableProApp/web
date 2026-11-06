@@ -8,30 +8,10 @@ import { trackEvent } from '@/lib/analytics';
 import { PRICING } from '@/lib/data/pricing';
 import Countdown from './countdown';
 
-/**
- * The dated sale's banner, in the slot above the header while the sale is
- * live (`App\Support\Banner`): on every page but the sale's own, in place of
- * the license banner.
- *
- * One link the height of the band, to the sale's page: the sale's name, what
- * it takes off, the time left and the action. Below 1024px the short form
- * keeps it on one line. It goes when the sale does: `html.campaign-live`,
- * which the head script and `useCampaign` remove at the end, is what shows it
- * (app.css).
- *
- * Unlike the license banner it can be closed, because its countdown updates
- * by itself on every page (WCAG 2.2.2). Closing it stores the sale's id under
- * `CLOSED_KEY`, and the head script in app.blade.php keeps it closed on every
- * later page of the same sale; a new sale has a new id.
- *
- * Black, whatever the theme, like the band: the sale is an event on the site,
- * not part of its chrome (positioning §9, "Dated sales").
- *
- * It reports `campaign_banner_view` and `campaign_banner_click`.
- */
-/** Local storage: the id of the sale whose banner the reader closed. Listed in the privacy policy. */
+// Local storage: the id of the sale whose banner the reader closed. Listed in the privacy policy.
 export const CLOSED_KEY = 'tablepro:campaign-closed';
 
+// Closable, because its countdown updates by itself on every page (WCAG 2.2.2).
 export default function CampaignBanner() {
     const banner = usePage().props.banner;
     const { m, fmt } = useI18n();
@@ -67,14 +47,20 @@ export default function CampaignBanner() {
     }
 
     return (
-        <div role="region" aria-label={copy.label} className="campaign-banner campaign-surface dark">
-            <Container className="flex h-full items-center gap-3">
+        <div role="region" aria-label={copy.label} className="campaign-banner campaign-surface dark relative">
+            <div aria-hidden="true" className="campaign-rails">
+                <div />
+            </div>
+            <Container className="relative flex h-full items-center gap-3">
                 <LocaleLink
                     href={banner.href}
                     onClick={() => trackEvent('campaign_banner_click')}
                     className="type-small flex h-full min-w-0 flex-1 items-center gap-x-3 whitespace-nowrap no-underline"
                 >
-                    <span className="bg-accent text-accent-foreground rounded-full px-2 py-0.5 text-xs font-semibold tracking-wide uppercase">{m.campaign.name}</span>
+                    <span className="flex items-center gap-2 font-semibold">
+                        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                        {m.campaign.name}
+                    </span>
                     <span className="max-lg:hidden">{fmt(copy.message, { percent: campaign.percent })}</span>
                     <span className="lg:hidden">{fmt(copy.short, { percent: campaign.percent })}</span>
                     <Countdown to="end" variant="inline" className="text-muted-foreground max-sm:hidden" />
