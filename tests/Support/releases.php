@@ -34,7 +34,7 @@ function bindReleaseFixturePlatforms(array $overrides = []): array
             'requirements' => ['systems' => ['iOS', 'iPadOS'], 'minVersion' => '18.0', 'displayVersion' => '18', 'releaseName' => null],
             'destinations' => [['kind' => 'app-store', 'url' => 'https://apps.apple.com/app/tablepro/id6761621829']],
             'release' => ['version' => '1.0', 'build' => '22', 'publishedAt' => '2026-09-22'],
-            'storefrontExclusions' => ['at', 'be', 'de', 'fr'],
+            'storefrontExclusions' => ['fr'],
             'price' => ['amount' => 0, 'inAppPurchases' => false],
         ],
         'linux' => ['id' => 'linux', 'status' => 'prototype'],
