@@ -11,45 +11,39 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Beancount client",
-        "lead": "Query a ledger as SQL tables or use BQL with rledger. Edit the source ledger in your own text editor."
+        "lead": "Query a ledger as read-only SQL tables, or with BQL through rledger, and edit it in your own text editor.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Open a ledger",
-            "paragraphs": [
-                "Install <code>rledger</code> or Python Beancount. rledger takes precedence when both are available; only rledger supports BQL and validation output in <code>diagnostics</code>.",
-                "Choose a ledger with <ui>Browse…</ui> or open a <code>.beancount</code> file from Finder. The path is the entire connection. <code>beancount:///path/to/main.beancount</code> URLs can also be imported.",
-                "An app opened from Finder does not inherit your shell’s <code>PATH</code>. If the backend runs in Terminal but not here, name it with <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> or <code>TABLEPRO_BEANCOUNT_PYTHON</code> and relaunch.",
+            "text": [
+                "Install <code>rledger</code> or Python Beancount. rledger takes precedence when both are there, and only rledger supports BQL and validation output in <code>diagnostics</code>.",
+                "Choose a ledger with <ui>Browse…</ui> or open a <code>.beancount</code> file from Finder: the path is the whole connection, and <code>beancount:///path/to/main.beancount</code> URLs can be imported. An app opened from Finder does not inherit your shell’s <code>PATH</code>, so if the backend runs in Terminal but not here, name it with <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> or <code>TABLEPRO_BEANCOUNT_PYTHON</code> and relaunch.",
                 "The Python backend runs the plugins that ship with Beancount and skips any other <code>plugin</code> directive, which is third-party code, until you turn on <ui>Run Ledger Plugins</ui> for that connection. Skipped plugins are listed in <code>diagnostics</code>."
             ]
         },
         {
             "id": "work",
             "title": "Query the ledger",
-            "paragraphs": [
-                "Query transactions, postings, accounts, balances, prices, directives, metadata and source files as tables. Join postings to transactions on <code>transaction_id</code>, and accounts by name.",
-                "Amounts arrive booked, with arithmetic, costs and prices resolved, and posting costs and inline prices in columns of their own. Transactions, postings and several directive tables carry a <code>source_location</code> such as <code>main.beancount:42</code>, so a row leads back to its line.",
-                "Prefix a query with <code>BQL:</code> to send it to rledger instead of the tables. Browsing, row counts and paging work on a BQL result; SQL parameters do not.",
-                "<code>include</code> directives are followed, literal paths and globs alike, and every ledger file and referenced document is watched. Save a change in your editor and the next query reads it without reconnecting. The connection is always at <safeMode>Safe Mode</safeMode> Read-Only, so INSERT, UPDATE, DELETE and schema changes are refused."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "Export a table or a query result as {exportFormats}. <files>Other files TablePro opens as databases</files> include SQLite, DuckDB and Parquet."
+            "text": [
+                "Transactions, postings, accounts, balances, prices, directives, metadata and source files are tables: join postings to transactions on <code>transaction_id</code>, and accounts by name. Amounts arrive booked, with arithmetic, costs and prices resolved, and posting costs and inline prices in their own columns.",
+                "Transactions, postings and several directive tables carry a <code>source_location</code> such as <code>main.beancount:42</code>, so a row leads back to its line. Prefix a query with <code>BQL:</code> to send it to rledger; browsing, row counts and paging work on the result, SQL parameters do not.",
+                "<code>include</code> directives are followed, literal paths and globs alike, and every ledger file and referenced document is watched, so the next query reads a saved change without reconnecting. The connection is always at <safeMode>Safe Mode</safeMode> Read-Only: INSERT, UPDATE, DELETE and schema changes are refused."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> a table or a query result as {exportFormats}. <files>Other files TablePro opens as databases</files> include SQLite, DuckDB and Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
@@ -62,18 +56,5 @@
             "answer": "One connection is one ledger file, with no switching. A main file that includes the others brings them all in, globs included."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB, for analytical files",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, a database in one file",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Import, export and data files",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

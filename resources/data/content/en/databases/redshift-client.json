@@ -11,74 +11,58 @@
     "breadcrumb": "Amazon Redshift",
     "header": {
         "title": "Amazon Redshift client",
-        "lead": "Query provisioned clusters or Serverless workgroups. Inspect sort keys, distribution styles and external schemas."
+        "lead": "Query provisioned clusters or Serverless workgroups, and inspect sort keys, distribution styles and external schemas.",
+        "asset": "databases-redshift"
     },
-    "asset": "mac-db-redshift-ddl",
     "links": {
-        "network": "/features/connections#network",
-        "credentials": "/features/connections#credentials",
-        "editing": "/features/data-editing#edit",
-        "explain": "/features/querying#explain",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
         "postgresql": "/postgresql-client",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#administer",
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
         "icloudSync": "/features/sync-and-teams#icloud-sync",
         "share": "/features/sync-and-teams#share"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter a cluster or Serverless workgroup endpoint, port and database. Clusters start with <code>dev</code>. A <code>redshift://</code> URL fills in the form.",
-                "New connections set SSL to Preferred, and there is no version check, so any cluster AWS still runs will connect. The password is kept in the Keychain or read from <code>~/.pgpass</code>, two of the <credentials>credential options</credentials> a connection has. A cluster that is not publicly reachable is reached through an <network>SSH tunnel</network> to a bastion host in its VPC."
+            "text": [
+                "Enter a cluster or Serverless workgroup endpoint, port and database; clusters start with <code>dev</code>, and a <code>redshift://</code> URL fills in the form. New connections set SSL to Preferred, and there is no version check, so any cluster AWS still runs connects.",
+                "The password is kept in the Keychain or read from <code>~/.pgpass</code>. A cluster that is not publicly reachable is reached through an SSH tunnel to a bastion host in its VPC."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit",
-            "paragraphs": [
-                "Queries and <editing>staged row edits with Preview SQL</editing> work as they do on <postgresql>PostgreSQL</postgresql>, through the same driver. A tab bound to a database other than the active one opens a second connection for it.",
-                "Inspect distribution style, sort keys and size from <code>svv_table_info</code>. DDL includes DISTKEY, SORTKEY, DISTSTYLE and ENCODE. Foreign keys are listed but not enforced by Redshift.",
-                "<explain>EXPLAIN and EXPLAIN VERBOSE</explain> return Redshift’s plan as text rather than as a diagram.",
-                "Browse external Spectrum, federated, cross-database and datashare schemas beside local ones. External tables support filtering, sorting and export but are read-only. Row counts are unavailable; types come from the external catalog."
+            "text": [
+                "Queries and row edits work as they do on <postgresql>PostgreSQL</postgresql>, through the same driver, and a tab bound to another database opens a second connection for it. <explain>EXPLAIN and EXPLAIN VERBOSE</explain> return Redshift’s plan as text.",
+                "Distribution style, sort keys and size come from <code>svv_table_info</code>, and DDL includes DISTKEY, SORTKEY, DISTSTYLE and ENCODE; foreign keys are listed, but Redshift does not enforce them. External Spectrum, federated, cross-database and datashare schemas sit beside local ones, and their tables filter, sort and export but stay read-only."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
-            "paragraphs": [
-                "Redshift has no indexes, enums, sequences or triggers to manage: DISTKEY and SORTKEY do the work an index would, and the Structure tab has no Triggers tab. Routines are not listed in the sidebar.",
-                "From the sidebar you can rename tables, databases and schemas, and create a schema with its owner."
+            "text": [
+                "Redshift has no indexes, enums, sequences or triggers to manage: DISTKEY and SORTKEY do an index’s work. From the sidebar, rename tables, databases and schemas, or create a schema with its owner."
             ]
         },
         {
             "id": "operate",
             "title": "Monitor and back up",
-            "paragraphs": [
-                "The <dashboard>Server Dashboard</dashboard> lists sessions and slow queries, with connections, cache hit ratio, database size, uptime and active queries as metrics. Cancel Query sends <code>pg_cancel_backend</code> and Terminate Session sends <code>pg_terminate_backend</code>, each after you confirm.",
-                "There is no Maintenance menu and no Users & Roles for Redshift: run VACUUM, ANALYZE and GRANT in the SQL editor.",
+            "text": [
+                "The <dashboard>Server Dashboard</dashboard> lists sessions and slow queries, cancels a query with <code>pg_cancel_backend</code> and ends a session with <code>pg_terminate_backend</code>, each after you confirm. Run VACUUM, ANALYZE and GRANT in the SQL editor.",
                 "<backup>Backup Dump and Restore Dump</backup> run {dumpTool} and pg_restore from your Mac, through the connection’s SSH tunnel when it has one. Install them first with Homebrew’s libpq."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<importData>Import</importData> loads {importFormats} files from your Mac into a Redshift table. Export writes a table or a query result as {exportFormats}, and external tables export like any other."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone and iPad",
-            "paragraphs": [
-                "To bring a Redshift connection to iPhone or iPad, turn on <icloudSync>iCloud Sync</icloudSync>, part of the {icloudSyncTier} plan on the Mac, or <share>export the connection</share> to a file and open it on the device. It then runs on the PostgreSQL driver built into the app: you browse tables as cards, filter and sort them, and run SQL in the Query tab. Passwords come along through iCloud Sync only when password sync is on, or in an export file encrypted with its passwords included, part of the {encryptedExportTier} plan. Certificates stay on each device."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> loads {importFormats} files from your Mac into a Redshift table. Export writes tables, external ones included, or query results as {exportFormats}."
+    ],
+    "iphone": [
+        "Bring the connection over with <icloudSync>iCloud Sync</icloudSync> ({icloudSyncTier} on the Mac) or an <share>exported connection file</share>. It runs on the PostgreSQL driver built into the app: browse tables as cards, filter and sort them, and run SQL in the Query tab."
+    ],
     "faq": [
         {
             "id": "serverless",
@@ -88,25 +72,8 @@
         {
             "id": "pg-dump",
             "question": "Does pg_dump support Redshift?",
-            "answer": "No pg_dump release claims to support the PostgreSQL version Redshift reports. TablePro runs the pg_dump you installed, where on PostgreSQL it picks one that matches the server, so try a backup of a small schema before you rely on it."
+            "answer": "No pg_dump release claims to support the PostgreSQL version Redshift reports. TablePro runs the pg_dump you installed, so try a backup of a small schema before you rely on it."
         }
     ],
-    "related": [
-        {
-            "label": "PostgreSQL, on the same driver",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "Server Dashboard and schema tools",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Backups, import and export",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Google BigQuery, another warehouse",
-            "href": "/bigquery-client"
-        }
-    ]
+    "otherTools": null
 }

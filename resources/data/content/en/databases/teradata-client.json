@@ -11,54 +11,47 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata client",
-        "lead": "Query and edit Teradata without installing separate client software. Browse databases, users, procedures and macros."
+        "lead": "Query and edit Teradata with no separate client software, and browse its databases, users, procedures and macros.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect and log on",
-            "paragraphs": [
-                "Enter a host, username and password. Choose <code>TD2</code> or <code>TDNEGO</code> in <ui>Logon Mechanism</ui>. <ui>Database</ui> overrides the account default. Vantage servers accepting TD2 are supported without a version check.",
-                "The default port carries a plain session. Any SSL mode moves the session to the gateway’s WebSocket endpoint on port 443, which cannot be changed. Verify CA needs a CA certificate, and Verify Identity checks the chain and hostname against that certificate or, without one, the system trust store.",
-                "Leave <ui>Transaction Mode</ui> on <code>DEFAULT</code> unless a script needs ANSI or TERA commit rules and case sensitivity on the session. Reach a system behind a bastion through an <network>SSH tunnel</network>. <ui>Import from URL…</ui> accepts <code>teradata://</code> URLs, which macOS does not open as links."
+            "text": [
+                "Enter a host, username and password, and choose <code>TD2</code> or <code>TDNEGO</code> in <ui>Logon Mechanism</ui>; <ui>Database</ui> overrides the account default. Vantage servers that accept TD2 connect without a version check.",
+                "The default port carries a plain session. Any SSL mode moves the session to the gateway’s WebSocket endpoint on port 443, which cannot be changed. Verify CA needs a CA certificate, and Verify Identity checks the chain and hostname against it or, without one, the system trust store.",
+                "Leave <ui>Transaction Mode</ui> on <code>DEFAULT</code> unless a script needs ANSI or TERA commit rules and case sensitivity. <ui>Import from URL…</ui> accepts <code>teradata://</code> URLs, which macOS does not open as links."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit",
-            "paragraphs": [
-                "Browse both databases and users as namespaces. Tabs on another database share the session and run <code>DATABASE</code> before their statements.",
-                "Stored procedures are listed in the sidebar, and macros sit under Functions, each opening its <objects>source in a read-only tab</objects>.",
-                "Teradata has no <code>LIMIT</code>, so a table’s first page comes back with <code>TOP</code> and later pages with <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> returns Teradata’s plan as raw text. Row edits wait until you save, and <editing>Preview SQL</editing> shows each statement first."
+            "text": [
+                "Databases and users both appear as namespaces, and a tab on another database shares the session, running <code>DATABASE</code> before its statements. Stored procedures are listed in the sidebar and macros under Functions, each opening its <objects>source in a read-only tab</objects>.",
+                "Teradata has no <code>LIMIT</code>, so a table’s first page comes back with <code>TOP</code> and later pages with <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> returns Teradata’s plan as raw text."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Create tables and change their columns from the <structure>Structure tab</structure>. A table’s DDL view shows its full definition, constraints included."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "Bring {importFormats} files in with <importData>Import</importData>, and save a table or a result as {exportFormats}. <copy>Copy To</copy> sends tables, their rows or both to another Teradata connection; a copy to a different engine is refused."
+            "text": [
+                "Create tables and change their columns in the <structure>Structure tab</structure>. A table’s DDL view shows its full definition, constraints included."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> {importFormats} files, and export a table or a result as {exportFormats}. <copy>Copy To</copy> sends tables, their rows or both to another Teradata connection; a copy to a different engine is refused."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
@@ -68,25 +61,8 @@
         {
             "id": "tls-check",
             "question": "How do I know the session is encrypted?",
-            "answer": "Test with Required (skip verify) or a verify mode. Preferred falls back to a plain session when the TLS port is unreachable, so with it a failed handshake still looks like a successful connect."
+            "answer": "Test with Required (skip verify) or a verify mode. Preferred falls back to a plain session when the TLS port is unreachable, so a failed handshake still looks like a successful connect."
         }
     ],
-    "related": [
-        {
-            "label": "Write, run and understand queries",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema, compare and sync",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake, another warehouse",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino, for queries across catalogs",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

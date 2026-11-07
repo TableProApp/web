@@ -11,59 +11,52 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Trino client",
-        "lead": "Query across catalogs, inspect plans and cancel running queries. Write support depends on each catalog’s connector."
+        "lead": "Query across catalogs, inspect plans and cancel running queries; writes depend on each catalog’s connector.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect and sign in",
-            "paragraphs": [
-                "Enter the coordinator host, port and <ui>Username</ui>. Optional <ui>Catalog</ui> and <ui>Schema</ui> set the starting location. Set an IANA <ui>Time Zone</ui> for the session.",
-                "Sign in with a password, sent as HTTP Basic for LDAP or password-file authentication, or with a JWT access token sent as a bearer credential. Either one goes only over TLS: with SSL Disabled, a connection that holds one is refused before anything is sent. A client certificate and key on the SSL pane add mutual TLS.",
-                "SSL starts Disabled, which is plain HTTP; every other mode forces TLS with no plaintext fallback, and port 443 turns on Verify Identity. A redirect from a proxy in front of the coordinator is never followed; the error names where it pointed. Reach a coordinator behind a bastion through an <network>SSH tunnel</network>, and bring a <code>trino://</code> URL in with <ui>Import from URL…</ui>."
+            "text": [
+                "Enter the coordinator host, port and <ui>Username</ui>. <ui>Catalog</ui> and <ui>Schema</ui> set the starting location, and an IANA <ui>Time Zone</ui> sets the session’s.",
+                "Sign in with a password, sent as HTTP Basic for LDAP or password-file authentication, or with a JWT access token sent as a bearer credential. Either goes only over TLS: with SSL Disabled, a connection that holds one is refused before anything is sent. A client certificate and key on the SSL pane add mutual TLS.",
+                "SSL starts Disabled, which is plain HTTP; every other mode forces TLS with no plaintext fallback, and port 443 turns on Verify Identity. A redirect from a proxy in front of the coordinator is never followed, and the error names where it pointed. <ui>Import from URL…</ui> brings in a <code>trino://</code> URL."
             ]
         },
         {
             "id": "work",
             "title": "Query across catalogs",
-            "paragraphs": [
-                "Query fully qualified <code>catalog.schema.table</code> names to join across catalogs. Browse catalogs, schemas, tables and materialized views; row-count estimates come from <code>SHOW STATS</code>.",
-                "<code>bigint</code> and <code>decimal</code> are read as exact text, not floating point. <code>varbinary</code> shows as hex, <code>array</code>, <code>map</code> and <code>row</code> as JSON, and timestamps keep the value the server returned.",
-                "<explain>Explain</explain> offers Logical, Distributed, IO, Validate and Analyze. Validate checks a query without running it, Analyze runs it and reports actual timings, and every plan comes back as raw text.",
-                "<code>SET SESSION</code> holds for the rest of the connection. <ui>Query > Cancel Query</ui> tells the coordinator to kill the running query, and that is the way to stop one: the connection’s query timeout does not reach Trino.",
-                "<editing>Cell edits</editing> use typed INSERT, UPDATE and DELETE statements. Trino reports no primary keys, so edits match every original column. Identical rows change together, with no transaction to undo them. Check for duplicates before editing."
+            "text": [
+                "Join across catalogs with fully qualified <code>catalog.schema.table</code> names, and browse catalogs, schemas, tables and materialized views, with row-count estimates from <code>SHOW STATS</code>. <code>bigint</code> and <code>decimal</code> are read as exact text, not floating point; <code>varbinary</code> shows as hex, <code>array</code>, <code>map</code> and <code>row</code> as JSON, and timestamps keep the value the server returned.",
+                "<explain>Explain</explain> offers Logical, Distributed, IO, Validate and Analyze, each as raw text: Validate checks a query without running it, and Analyze runs it and reports actual timings. <code>SET SESSION</code> holds for the rest of the connection, and <ui>Query > Cancel Query</ui> is the way to stop a query, since the connection’s query timeout does not reach Trino.",
+                "Trino reports no primary keys, so <editing>cell edits</editing> match every original column, and identical rows change together with no transaction to undo them. Check for duplicates before editing."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "The <structure>Structure tab</structure> creates tables and adds, drops, renames and retypes columns, in autocommit. Whether a change runs is up to the catalog’s connector, and a type change is the one fewest connectors accept."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "There is no import. <export>Export</export> a table or a result as {exportFormats}."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "There is no import. <export>Export</export> a table or a result as {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
             "question": "Why does a valid statement come back as NOT_SUPPORTED?",
-            "answer": "The connector behind that catalog does not implement the operation, whatever Trino’s grammar allows. A read-only connector refuses every write. Check the connector’s own documentation for what it supports."
+            "answer": "The connector behind that catalog does not implement the operation, whatever Trino’s grammar allows, and a read-only connector refuses every write. Check the connector’s own documentation."
         },
         {
             "id": "encrypted-key",
@@ -71,22 +64,5 @@
             "answer": "No. Trino connections have no key passphrase field. Write a decrypted copy with <code>openssl pkey -in encrypted.key -out client.key</code> and choose that file."
         }
     ],
-    "related": [
-        {
-            "label": "Write, run and understand queries",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Connections, tunnels and credentials",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata, a data warehouse",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake, a cloud warehouse",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

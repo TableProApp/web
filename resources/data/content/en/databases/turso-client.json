@@ -11,49 +11,40 @@
     "breadcrumb": "Turso and libSQL",
     "header": {
         "title": "Turso and libSQL client",
-        "lead": "Connect to a Turso database with its URL and token. Browse tables and run SQLite queries, or open a local libSQL file."
+        "lead": "Connect to a Turso database with its URL and token, or open a libSQL file, and query it in SQLite’s syntax.",
+        "asset": "databases-turso"
     },
-    "asset": "mac-db-turso-remote",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "sqlite": "/sqlite-client",
         "libsql": "#libsql",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect to Turso",
-            "paragraphs": [
-                "Choose <ui>Remote (Turso)</ui> in <ui>Connection Mode</ui>. Paste the database’s HTTPS URL and an <ui>API Token</ui>, stored in the macOS Keychain. Get both from the Turso dashboard or CLI.",
-                "Imported <code>libsql://</code> URLs become HTTPS remote connections. Each URL names one database. Plain HTTP URLs are not encrypted; SSH tunnels are unavailable."
+            "text": [
+                "Choose <ui>Remote (Turso)</ui> in <ui>Connection Mode</ui>, then paste the database’s HTTPS URL and an <ui>API Token</ui>, which is stored in the macOS Keychain. Both come from the Turso dashboard or CLI.",
+                "An imported <code>libsql://</code> URL becomes an HTTPS remote connection, and each URL names one database. Plain HTTP URLs are not encrypted, and SSH tunnels are not available."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit",
-            "paragraphs": [
-                "libSQL speaks SQLite’s syntax, so browsing, <explain>EXPLAIN QUERY PLAN</explain> diagrams, <editing>staged edits with Preview SQL</editing> and export behave as they do on <sqlite>SQLite</sqlite>.",
-                "A remote connection runs no transaction. Each statement is its own HTTP request and commits on its own, and <code>BEGIN</code> fails with “Transactions are not supported in this mode”. Transactional work needs a local libSQL file, described in the <libsql>libSQL section</libsql>.",
-                "Remote mode loads no SQLite extensions: a Turso database runs the ones its server was built with. When Turso throttles a connection, the error says how many seconds to wait before retrying."
+            "text": [
+                "libSQL speaks SQLite’s syntax, so browsing, <explain>EXPLAIN QUERY PLAN</explain> diagrams and export behave as they do on <sqlite>SQLite</sqlite>.",
+                "A remote connection runs no transaction: each statement is its own HTTP request and commits on its own, and <code>BEGIN</code> fails with “Transactions are not supported in this mode”. Transactions need a local file, opened as <libsql>libSQL</libsql>. Remote mode loads no SQLite extensions, since a Turso database runs the ones its server was built with, and a throttled request’s error says how many seconds to wait."
             ]
         },
         {
             "id": "schema",
             "title": "Tables, indexes and triggers",
-            "paragraphs": [
+            "text": [
                 "The <structure>Structure tab</structure> creates tables, adds and drops columns and indexes, and creates, edits and drops triggers. Tables, but not views, can be renamed from the sidebar.",
-                "Remote column reorders and foreign key changes produce a rebuild script for you to review and run. TablePro cannot run it as one transaction across separate HTTP requests."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "TablePro has no import for Turso or libSQL; load data with the Turso CLI or an import on your sqld server. To take data out, <export>export</export> a table or a query result as {exportFormats}."
+                "A remote column reorder or foreign key change produces a rebuild script for you to review and run, because TablePro cannot hold separate HTTP requests in one transaction."
             ]
         }
     ],
@@ -61,15 +52,16 @@
         {
             "engine": "libsql",
             "title": "libSQL",
-            "paragraphs": [
-                "Choose libSQL for a self-hosted sqld server or a file on this Mac. In Remote mode it reaches any sqld that serves the Hrana v2 pipeline endpoint, including one running on this Mac, which listens on port 8080 by default. Leave the token empty for a server started without <code>--auth-jwt-key-file</code>, or give it a JWT that matches the server’s key.",
-                "<ui>Local File</ui> mode opens a libSQL file with the SQLite engine the driver carries, and a path that does not exist yet is created, folders included. A local file runs transactions, loads SQLite extensions from the connection’s Extensions list, and runs a column reorder or foreign key rebuild once you confirm it.",
-                "Statements only libSQL understands, such as <code>ALTER TABLE … ALTER COLUMN</code>, fail on a local file, because the SQLite engine receives them. Encrypted libSQL files do not open. Never open a file that a running app is syncing as a Turso embedded replica: access from two programs at once can corrupt it.",
-                "<backup>Backup Dump and Restore Dump</backup> run {dumpTool} on a local libSQL file."
+            "text": [
+                "Choose libSQL for a self-hosted sqld server, reached through its Hrana v2 pipeline endpoint, or for a file on this Mac in <ui>Local File</ui> mode. A local file runs transactions, loads SQLite extensions and runs rebuild scripts once you confirm them, and <backup>Backup Dump and Restore Dump</backup> run {dumpTool} on it.",
+                "Never open a file that a running app syncs as a Turso embedded replica: access from two programs at once can corrupt it."
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> a table or a query result as {exportFormats}. To load data, use the Turso CLI or an import on your sqld server."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "remote-or-local",
@@ -79,25 +71,8 @@
         {
             "id": "turso-cli",
             "question": "Do I need the Turso CLI installed?",
-            "answer": "No. The Turso dashboard shows the database URL and creates tokens too. The CLI is useful for loading data from the terminal, since TablePro has no import for Turso."
+            "answer": "No. The Turso dashboard shows the database URL and creates tokens too. The CLI is useful for loading data from the terminal."
         }
     ],
-    "related": [
-        {
-            "label": "SQLite, the engine libSQL builds on",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Cloudflare D1, SQLite over Cloudflare’s API",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Structure editing and rebuild scripts",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "Export and backups",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

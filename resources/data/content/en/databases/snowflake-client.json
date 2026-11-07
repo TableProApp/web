@@ -11,61 +11,53 @@
     "breadcrumb": "Snowflake",
     "header": {
         "title": "Snowflake client",
-        "lead": "Query and edit tables, switch warehouses and roles, and export to a stage."
+        "lead": "Query and edit Snowflake tables, switch warehouses and roles without reconnecting, and export straight to a stage.",
+        "asset": "databases-snowflake"
     },
-    "asset": "mac-db-snowflake-session",
     "links": {
         "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect and sign in",
-            "paragraphs": [
-                "Enter the account identifier before <code>.snowflakecomputing.com</code>, such as <code>myorg-myaccount</code>. Requests use HTTPS; no host, TLS section or SSH pane is needed.",
-                "Choose an <ui>Auth Method</ui>: PKCS#8 key pair, browser SSO, OAuth token, or password with <ui>MFA Passcode (TOTP)</ui>. Key pairs require an accurate device clock. Pasted OAuth tokens are not refreshed.",
-                "With <code>ALLOW_CLIENT_MFA_CACHING</code> on the account, one fresh passcode is enough: Snowflake returns an MFA token that TablePro keeps in the <credentials>Keychain</credentials>. With <code>ALLOW_ID_TOKEN</code>, browser SSO keeps a sign-in token there, and later connects skip the browser until Snowflake rejects it.",
-                "Snowflake has no URL scheme. Name a section in <ui>CLI Connection Name</ui> instead, and every field you leave empty is read from <code>~/.snowflake/connections.toml</code> when you connect."
+            "text": [
+                "Enter the account identifier before <code>.snowflakecomputing.com</code>, such as <code>myorg-myaccount</code>. Requests use HTTPS, so there is no host, TLS section or SSH pane. Snowflake has no URL scheme: name a section in <ui>CLI Connection Name</ui>, and every field you leave empty is read from <code>~/.snowflake/connections.toml</code>.",
+                "Choose an <ui>Auth Method</ui>: PKCS#8 key pair, browser SSO, OAuth token, or password with <ui>MFA Passcode (TOTP)</ui>. Key pairs need an accurate device clock, and pasted OAuth tokens are not refreshed.",
+                "With <code>ALLOW_CLIENT_MFA_CACHING</code> on the account, one fresh passcode is enough: TablePro keeps the MFA token Snowflake returns in the <credentials>Keychain</credentials>. With <code>ALLOW_ID_TOKEN</code>, browser SSO keeps a sign-in token there, and later connects skip the browser until Snowflake rejects it."
             ]
         },
         {
             "id": "work",
             "title": "Warehouses, roles and queries",
-            "paragraphs": [
-                "Change warehouses and roles with <ui>Database > Session Context</ui>. The connection keeps one session while idle; tabs on another database run <code>USE DATABASE</code> before their statements.",
-                "The sidebar groups objects by database and schema. Object lists come from <code>SHOW</code> commands, which run without a warehouse; column details come from <code>INFORMATION_SCHEMA</code>, which needs one. <explain>Explain</explain> returns Snowflake’s plan as raw text.",
-                "<editing>Grid edits</editing> bind their values on the server, with VARIANT, OBJECT and ARRAY cells sent through <code>PARSE_JSON</code>. An edit keys on the declared primary key, or on every column when there is none. Standard Snowflake tables do not enforce key constraints, so a duplicated key value means an edit or a delete reaches every matching row: check a table for duplicates before you edit it. Hybrid tables enforce their keys."
+            "text": [
+                "Change warehouses and roles with <ui>Database > Session Context</ui>. The connection keeps one session while idle, and tabs on another database run <code>USE DATABASE</code> before their statements. Object lists come from <code>SHOW</code> commands, which need no warehouse; column details come from <code>INFORMATION_SCHEMA</code>, which does. <explain>Explain</explain> returns Snowflake’s plan as raw text.",
+                "Grid edits bind their values on the server, with VARIANT, OBJECT and ARRAY cells sent through <code>PARSE_JSON</code>. An edit keys on the declared primary key, or on every column when there is none. Standard tables do not enforce key constraints, so an edit or delete reaches every row that shares a duplicated key: check for duplicates first. Hybrid tables enforce their keys."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "The DDL view comes from <code>GET_DDL</code>. The <structure>Structure tab</structure> adds, renames and drops columns, sets NOT NULL, comments and the primary key, widens a VARCHAR, and changes a NUMBER’s precision at the same scale.",
                 "Changes Snowflake would reject are refused before anything runs: shrinking a VARCHAR, any other type change, and setting a column default to a new value. Clearing a default runs."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<importData>Import</importData> {importFormats} files through the connection, and export a table or a result to your Mac as {exportFormats}.",
-                "Choose <ui>File > Server-Side Export…</ui> and a stage. <backup>Server-Side Export</backup> runs <code>COPY INTO</code> with your privileges, writing gzipped CSV, Parquet or JSON. It waits for completion; files do not pass through your Mac."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> {importFormats} files, and export a table or a result to your Mac as {exportFormats}. <backup>Server-Side Export</backup>, under <ui>File > Server-Side Export…</ui>, runs <code>COPY INTO</code> a stage with your privileges and writes gzipped CSV, Parquet or JSON that never passes through your Mac."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "no-columns",
             "question": "Why does the sidebar show tables but no columns?",
-            "answer": "Column details come from <code>INFORMATION_SCHEMA</code>, which needs a running warehouse. Set <ui>Warehouse</ui> on the connection or in Session Context. A database whose objects do not appear at all needs <code>USAGE</code> granted to the connecting role."
+            "answer": "Column details come from <code>INFORMATION_SCHEMA</code>, which needs a running warehouse: set <ui>Warehouse</ui> on the connection or in Session Context. A database whose objects do not appear at all needs <code>USAGE</code> granted to the connecting role."
         },
         {
             "id": "timestamp-ltz",
@@ -75,25 +67,8 @@
         {
             "id": "jwt-invalid",
             "question": "Key pair sign-in says the JWT token is invalid. What should I check?",
-            "answer": "The token carries your account locator and a timestamp. Check the account identifier and the Mac’s clock, then confirm the public key is registered on the user with <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+            "answer": "The token carries your account locator and a timestamp. Check the account identifier and the Mac’s clock, then confirm the public key is registered with <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export and data files",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Write, run and understand queries",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Google BigQuery, another cloud warehouse",
-            "href": "/bigquery-client"
-        },
-        {
-            "label": "Trino, for queries across catalogs",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

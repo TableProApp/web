@@ -11,52 +11,38 @@
     "breadcrumb": "Cassandra and ScyllaDB",
     "header": {
         "title": "Cassandra and ScyllaDB client",
-        "lead": "Browse keyspaces, run CQL and edit rows by their primary keys. Connect to Cassandra, ScyllaDB or Amazon Keyspaces."
+        "lead": "Browse keyspaces, run CQL and edit rows by their primary keys on Cassandra, ScyllaDB or Amazon Keyspaces.",
+        "asset": "databases-cassandra"
     },
-    "asset": "mac-db-cassandra-table",
     "links": {
-        "network": "/features/connections#network",
         "awsIam": "docs:/connections/aws-iam",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "cassandraGuide": "docs:/databases/cassandra"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter a contact point, port and any required credentials. Choose a keyspace after connecting, or import a <code>cassandra://</code> or <code>cql://</code> URL with one in its path. Existing tabs keep their keyspace when you switch.",
-                "TLS is off on a new connection. Preferred and Required both encrypt without checking the certificate, because the driver has no opportunistic TLS. Verify CA and Verify Identity need a CA certificate file and never fall back to the system roots. For mutual TLS, add a client certificate, its key and the key’s passphrase. A cluster on a private network is reached through an <network>SSH tunnel</network>.",
-                "Amazon Keyspaces signs in with SigV4 instead of a password. Point the connection at the regional endpoint, such as <code>cassandra.us-east-1.amazonaws.com</code> on port 9142, set Authentication to <awsIam>an AWS IAM mode</awsIam> (an access key, a profile or AWS IAM Identity Center), leave the user name and password empty and turn TLS on, because Keyspaces refuses plain text."
+            "text": [
+                "Enter a contact point, port and any credentials, then choose a keyspace, or import a <code>cassandra://</code> or <code>cql://</code> URL with one in its path; open tabs keep their keyspace when you switch. TLS is off on a new connection. Preferred and Required encrypt without checking the certificate, because the driver has no opportunistic TLS; Verify CA and Verify Identity need a CA certificate file and never fall back to the system roots. For mutual TLS, add a client certificate, its key and the key’s passphrase.",
+                "Amazon Keyspaces signs in with SigV4 instead of a password. Point the connection at the regional endpoint, such as <code>cassandra.us-east-1.amazonaws.com</code> on port 9142, choose <awsIam>an AWS IAM mode</awsIam>, leave the user name and password empty and turn TLS on."
             ]
         },
         {
             "id": "work",
             "title": "Browse and run CQL",
-            "paragraphs": [
-                "Browse CQL values in the table grid, including collections, user-defined types, durations, vectors and blobs. Editor results are read-only; edit rows in the table opened from the sidebar.",
-                "CQL has no OFFSET, so pages are read forward from the first row: Next and Previous over pages already shown cost one read each, and a jump to a distant page reads every page before it. Rows arrive in token order, and a column header does not re-sort them, because CQL orders rows only by clustering columns inside one partition. Nothing is counted when a table opens; <ui>Count Exactly</ui> runs <code>SELECT COUNT(*)</code>, which reads every partition.",
-                "<filters>Filters</filters> add <code>ALLOW FILTERING</code>, so the server reads every partition unless the filter pins the whole partition key. Contains, starts with and ends with are sent as LIKE, which Cassandra accepts only on a column with a SASI or SAI index. Operators CQL cannot express, such as not equals or is NULL, are refused by name, and conditions join with AND only, because CQL has no OR.",
-                "<editing>Edits</editing> are validated as CQL types and written per row by the full primary key. Invalid values stop the save. <ui>Add Row</ui> uses <code>INSERT … IF NOT EXISTS</code>. To change a key, delete and reinsert the row.",
-                "Counter columns need <code>UPDATE … SET c = c + 1</code> in the CQL editor; the server rejects the plain UPDATE a grid edit writes. The connect timeout comes from the connection’s Options, while CQL requests keep the driver’s own fixed timeout, which the app’s query timeout does not change."
+            "text": [
+                "The grid shows collections, user-defined types, durations, vectors and blobs; editor results are read-only, so edit rows in the table opened from the sidebar. CQL has no OFFSET, so pages are read forward from the first row and a jump to a distant page reads every page before it. Rows arrive in token order, and a column header does not re-sort them. <ui>Count Exactly</ui> runs <code>SELECT COUNT(*)</code>, which reads every partition.",
+                "<filters>Filters</filters> add <code>ALLOW FILTERING</code>, so the server reads every partition unless the filter pins the whole partition key. Contains, starts with and ends with need a SASI or SAI index, and conditions join with AND only, because CQL has no OR. Edits are checked as CQL types and written by the full primary key, <ui>Add Row</ui> uses <code>INSERT … IF NOT EXISTS</code>, and a key changes by deleting and reinserting the row. Counter columns need <code>UPDATE … SET c = c + 1</code> in the editor."
             ]
         },
         {
             "id": "schema",
             "title": "Keyspaces and tables",
-            "paragraphs": [
-                "The <structure>Structure tab</structure> lists each column’s CQL type, marks partition key and clustering columns alike as primary key, and shows the table’s secondary indexes. It adds and drops columns; every other change, indexes included, is a CQL statement in the editor.",
-                "The DDL tab rebuilds <code>CREATE TABLE</code> from the column list, so it leaves out table options such as compaction, the clustering order and the split between partition and clustering keys. Read the full definition with <code>DESCRIBE TABLE</code> in cqlsh. User-defined functions and aggregates are listed under Functions."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "TablePro has no import for Cassandra or ScyllaDB. <export>Export</export> a table or a CQL result as {exportFormats}."
+            "text": [
+                "The <structure>Structure tab</structure> lists each column’s CQL type, marks partition and clustering columns as primary key, shows secondary indexes, and adds and drops columns; any other change is a CQL statement. The DDL tab rebuilds <code>CREATE TABLE</code> from the columns, without compaction or clustering order, so read the full definition with <code>DESCRIBE TABLE</code> in cqlsh."
             ]
         }
     ],
@@ -64,13 +50,16 @@
         {
             "engine": "scylladb",
             "title": "ScyllaDB",
-            "paragraphs": [
-                "ScyllaDB has its own entry in the connection type list and uses the Cassandra driver over the same CQL native protocol, so connecting, browsing, editing and the limits above apply as written. A <code>scylladb://</code> or <code>scylla://</code> URL creates a ScyllaDB connection.",
-                "One difference shows in the filter bar: ScyllaDB takes the LIKE that contains, starts with and ends with send on any column, where Cassandra needs a SASI or SAI index. ScyllaDB is set up as the <cassandraGuide>Cassandra setup guide</cassandraGuide> describes."
+            "text": [
+                "ScyllaDB has its own connection type and uses the Cassandra driver over the same CQL native protocol, so connecting, browsing, editing and Cassandra’s limits apply as written. A <code>scylladb://</code> or <code>scylla://</code> URL creates a ScyllaDB connection.",
+                "One difference shows in the filter bar: ScyllaDB accepts contains, starts with and ends with on any column, where Cassandra needs a SASI or SAI index. Set it up as the <cassandraGuide>Cassandra setup guide</cassandraGuide> describes."
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> a table or a CQL result as {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "cluster-status",
@@ -80,7 +69,7 @@
         {
             "id": "views-and-types",
             "question": "How do I see materialized views and user-defined types?",
-            "answer": "They are not in the sidebar, so query the <code>system_schema</code> keyspace in the CQL editor, for example <code>SELECT * FROM system_schema.views</code> or <code>system_schema.types</code>."
+            "answer": "Query the <code>system_schema</code> keyspace in the CQL editor, for example <code>SELECT * FROM system_schema.views</code> or <code>system_schema.types</code>."
         },
         {
             "id": "cassandra-2",
@@ -88,22 +77,5 @@
             "answer": "No. The driver reads the schema from <code>system_schema</code>, which Cassandra 2.x does not have, so the connection fails."
         }
     ],
-    "related": [
-        {
-            "label": "Filters, paging and staged edits",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Connections, tunnels and AWS sign-in",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Amazon DynamoDB, another AWS-signed engine",
-            "href": "/dynamodb-gui"
-        },
-        {
-            "label": "Supported databases",
-            "href": "/databases#wide-column"
-        }
-    ]
+    "otherTools": null
 }

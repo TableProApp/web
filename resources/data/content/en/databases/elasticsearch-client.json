@@ -11,54 +11,53 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Elasticsearch client",
-        "lead": "Run Query DSL requests and browse index documents in a grid. Edit documents by their IDs."
+        "lead": "Run Query DSL requests from a console, browse index documents in a grid and edit them by their IDs.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter the REST host and port, then choose an <ui>Auth Method</ui>: Username & Password, API Key or None. API keys use the <code>encoded</code> value from Elasticsearch. Each connection reaches one cluster.",
-                "New connections start with SSL Disabled, which is plain HTTP. Every other mode uses HTTPS: Preferred and Required (skip verify) accept a self-signed certificate, and Verify CA and Verify Identity check it. Elasticsearch 8.x turns security and TLS on by default, so an 8.x cluster usually needs HTTPS and credentials."
+            "text": [
+                "Enter the REST host and port, then choose an <ui>Auth Method</ui>: Username & Password, API Key or None. API keys use the <code>encoded</code> value from Elasticsearch, and each connection reaches one cluster.",
+                "New connections start with SSL Disabled, which is plain HTTP; every other mode uses HTTPS. Preferred and Required (skip verify) accept a self-signed certificate, and Verify CA and Verify Identity check it. Elasticsearch 8.x turns security and TLS on by default, so an 8.x cluster usually needs HTTPS and credentials."
             ]
         },
         {
             "id": "work",
             "title": "Indices and the Query DSL console",
-            "paragraphs": [
-                "Write a method, path and optional JSON body, such as <code>GET /orders/_search</code>. Search hits and array responses display as rows; other responses show formatted JSON. The <code>_sql</code> endpoint is unavailable.",
+            "text": [
+                "Write a method, path and optional JSON body, such as <code>GET /orders/_search</code>. Search hits and array responses display as rows, other responses as formatted JSON, and the <code>_sql</code> endpoint is not available.",
                 "The sidebar lists indices as tables and hides names that begin with a dot. Columns come from the mapping: object fields flatten to dotted paths such as <code>address.city</code>, a nested field gets one JSON column for its array plus a column per leaf, and every document carries <code>_id</code>, <code>_index</code> and <code>_score</code>.",
-                "<filters>Column filters</filters> become <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> and <code>exists</code> queries, and the Raw SQL filter row takes Lucene syntax, such as <code>name:Widget</code>, sent as a <code>query_string</code>. Sorting a <code>text</code> field uses its <code>.keyword</code> subfield when the mapping has one.",
-                "Edit documents by <code>_id</code> with REST calls. Enter an ID for a new document. Change nested arrays through their JSON column; editing a leaf column blocks the save without sending a request."
+                "<filters>Column filters</filters> become <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> and <code>exists</code> queries, and the Raw SQL filter row takes Lucene syntax, such as <code>name:Widget</code>. Edits go out as REST calls by <code>_id</code>; change a nested array through its JSON column."
+            ],
+            "notes": [
+                "TablePro also connects to <search>Typesense and Weaviate</search>, the other search engines."
             ]
         },
         {
             "id": "schema",
             "title": "Mappings",
-            "paragraphs": [
-                "Mappings are read-only in TablePro. Truncate is not offered, because the nearest thing Elasticsearch has, <code>_delete_by_query</code>, runs asynchronously and reports conflicts per document; send it from the console. Deleting an index from the sidebar sends the DELETE request its confirmation shows."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Export",
-            "paragraphs": [
-                "There is no import. <export>Export</export> reads a whole index with a point-in-time and <code>search_after</code>, so it is not capped at the result window, and writes {exportFormats}."
+            "text": [
+                "Mappings are read-only. Truncate is not offered, because the nearest thing Elasticsearch has, <code>_delete_by_query</code>, runs asynchronously and reports conflicts per document; send it from the console. Deleting an index from the sidebar sends the DELETE request its confirmation shows."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> reads a whole index with a point-in-time and <code>search_after</code>, so it is not capped at the result window, and writes {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "Can I page past the result window?",
-            "answer": "Yes. Paging past Elasticsearch’s default window switches to <code>search_after</code> over a point-in-time. The switch happens at the default, so an index with a lowered <code>max_result_window</code> errors before it; raise the setting back to the default."
+            "answer": "Yes. Paging past Elasticsearch’s default window switches to <code>search_after</code> over a point-in-time. The switch happens at the default, so an index with a lowered <code>max_result_window</code> errors first; raise the setting back to the default."
         },
         {
             "id": "sort-id",
@@ -66,18 +65,5 @@
             "answer": "Elasticsearch cannot sort on <code>_id</code>, or on a <code>text</code> field with no <code>.keyword</code> subfield, so TablePro drops that column from the sort. Add a keyword subfield to the mapping, or sort on a keyword field."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense and Weaviate, the other search engines",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Browse and edit data safely",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Query languages other than SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,86 +11,61 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "MongoDB client",
-        "lead": "Browse collections, query with mongosh-style syntax and edit documents as Extended JSON."
+        "lead": "Query MongoDB with mongosh-style JavaScript, browse collections and edit documents as Extended JSON.",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter a host or replica-set <code>host:port</code> list, or paste a <code>mongodb://</code> or <code>mongodb+srv://</code> URL. Authentication supports SCRAM-SHA-1, SCRAM-SHA-256, X.509 and AWS IAM. Set <ui>Auth Database</ui> to the database that defines your user.",
-                "A host ending in <code>.mongodb.net</code> turns on SRV and TLS for you, which MongoDB Atlas requires. Add your IP address to the cluster’s access list first: traffic from an address that is not on it times out rather than failing.",
-                "New connections start with TLS off, and the driver has no fallback, so Preferred behaves as Required. Read Preference and Write Concern are set per connection, and the write concern goes out with every insert, update and delete, from the shell or from a grid save.",
-                "Through an <network>SSH tunnel</network>, only the first host in the list is used, so replica set discovery and failover are off for that session."
+            "text": [
+                "Enter a host or a replica-set <code>host:port</code> list, or paste a <code>mongodb://</code> or <code>mongodb+srv://</code> URL. Sign in with SCRAM-SHA-1, SCRAM-SHA-256, X.509 or AWS IAM, with <ui>Auth Database</ui> set to the database that defines your user.",
+                "A host ending in <code>.mongodb.net</code> turns on SRV and TLS, which MongoDB Atlas requires; add your IP address to the cluster’s access list first, or the connection times out. New connections start with TLS off, and Preferred behaves as Required. Read Preference and Write Concern are set per connection."
+            ],
+            "notes": [
+                "Through an SSH tunnel only the first host in the list is used, so replica set discovery and failover are off for that session."
             ]
         },
         {
             "id": "work",
             "title": "Query and edit documents",
-            "paragraphs": [
-                "Use mongosh-style JavaScript in the Query tab: regex, <code>ISODate()</code>, variables, loops and <code>forEach</code>. No separate shell installation is needed. Variables persist across connection tabs until disconnect. Autocomplete includes collections, field paths, methods and operators.",
-                "Browse top-level fields as columns and nested objects as Extended JSON. Cell edits preserve types such as dates and ObjectIds. Nested edits update only the changed path, such as <code>address.city</code>.",
-                "<editing>Insert Document and Edit Document</editing> use Extended JSON. Edit Document re-reads the server document and refuses to save if it changed or disappeared while open. <ui>Remove Field</ui> sends <code>$unset</code>.",
-                "The <filters>filter bar</filters> reaches into nested objects and arrays of objects, so <code>customer.country</code> and <code>items.sku</code> filter directly. A field holding GeoJSON opens on the <map>Map view</map>.",
-                "<safeMode>Safe Mode</safeMode> runs a statement as a read when it is one call that only reads, such as <code>find</code>, <code>countDocuments</code> or an <code>aggregate</code> without <code>$out</code> or <code>$merge</code>. Any other JavaScript counts as a write."
+            "text": [
+                "The Query tab takes mongosh-style JavaScript, with regex, <code>ISODate()</code>, variables, loops and <code>forEach</code>, and no shell to install. Top-level fields show as columns and nested objects as Extended JSON; cell edits keep dates and ObjectIds, and a nested edit updates only its path, such as <code>address.city</code>.",
+                "<editing>Insert Document and Edit Document</editing> use Extended JSON, and Edit Document refuses to save if the document changed while it was open. The <filters>filter bar</filters> reaches into nested objects and arrays, and <safeMode>Safe Mode</safeMode> counts a call as a read only when it only reads, such as <code>find</code> or an <code>aggregate</code> without <code>$out</code> or <code>$merge</code>."
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "Collections, indexes and validators",
-            "paragraphs": [
-                "Inspect index fields, types and options in the <structure>Structure tab</structure>. Show DDL generates <code>createIndex</code> calls with the options reported by the server.",
-                "Rename or remove a field across a collection with a previewed <code>updateMany</code>. The validator updates too. Saving is blocked if an index, search index or view still uses the field.",
-                "<ui>New Table</ui> creates a collection whose fields become a <code>$jsonSchema</code> validator, then builds the indexes you list. Views and time-series collections appear in the sidebar, and views open read-only."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Back up",
-            "paragraphs": [
-                "<backup>Backup Dump</backup> writes each database you tick to a gzipped archive with {dumpTool}, using the connection’s hosts, Auth Database, SRV and TLS settings, and a dump can be narrowed to single collections. Restore Dump runs mongorestore into the database you pick and keeps what is already there. Install the MongoDB Database Tools on your Mac first."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<importData>Import</importData> {importFormats} files into a collection. <export>Export</export> collections or results as {exportFormats}.",
-                "An MQL export is a <code>.js</code> file of <code>insertMany</code> calls that runs in mongosh, with each collection’s indexes and validator if you tick them. Top-level values keep their type, but a typed value nested in a subdocument or array, such as an ObjectId inside an array, is written as a string: export those collections as JSON or back them up with mongodump instead."
+            "text": [
+                "The <structure>Structure tab</structure> lists indexes with their options, and Show DDL writes them as <code>createIndex</code> calls. Rename or remove a field across a collection with a previewed <code>updateMany</code> that updates the validator too, and <ui>New Table</ui> turns fields into a <code>$jsonSchema</code> validator.",
+                "<backup>Backup Dump</backup> writes the databases you tick, or single collections, to gzipped archives with {dumpTool}, and Restore Dump runs mongorestore into the database you pick. Install the MongoDB Database Tools first."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "Choose MongoDB Compass for visual aggregation pipelines, sampled schema analysis and explain plans. TablePro queries MongoDB alongside other database engines.",
-                "notes": ["compass-natural-language"]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass can also write a query from a question in plain language."
-        }
-    },
+    "moveData": [
+        "<importData>Import</importData> {importFormats} files into a collection, and <export>export</export> collections or results as {exportFormats}. An MQL export writes <code>insertMany</code> calls that run in mongosh, but a typed value nested in an array or subdocument becomes a string, so back those collections up with mongodump."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
             "question": "Is the query tab mongosh?",
-            "answer": "No. It is a shell that accepts mongosh syntax and runs inside TablePro on JavaScriptCore. Most mongosh code runs as written. One difference: a whole number outside the 32-bit range is stored as a 64-bit integer, where mongosh stores a double, so wrap it in <code>Double()</code> to match."
+            "answer": "No. It is a shell that accepts mongosh syntax and runs inside TablePro on JavaScriptCore, so most mongosh code runs as written. A whole number outside the 32-bit range is stored as a 64-bit integer, where mongosh stores a double: wrap it in <code>Double()</code> to match."
         },
         {
             "id": "query-plan",
@@ -103,22 +78,10 @@
             "answer": "Run <code>db.runCommand({usersInfo: 1})</code>. The shell does not parse <code>db.getUsers()</code> or <code>db.createUser()</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Browse and edit data safely",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Query languages other than SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Import, export and backups",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Compare TablePro with other database clients",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass has visual aggregation pipelines, sampled schema analysis and explain plans, while TablePro queries MongoDB alongside other engines; see <compass>TablePro vs MongoDB Compass</compass>.",
+        "also": [
+            "compass"
+        ]
+    }
 }
