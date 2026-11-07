@@ -9,119 +9,125 @@
     },
     "header": {
         "title": "綱要與資料庫比較",
-        "lead": "檢查資料表關聯，更改支援的資料表結構，並在套用同步腳本前比較資料庫。",
-        "docs": "/features/table-structure"
+        "lead": "查看資料表之間的關聯，對照 SQL 變更結構，並在同步前比較兩個資料庫。",
+        "docs": "/features/table-structure",
+        "asset": "mac-home-schema"
     },
-    "sections": [
+    "bands": [
         {
             "id": "structure",
             "title": "編輯資料表結構",
-            "paragraphs": [
-                "在 Structure 分頁編輯欄位、索引、外部索引鍵和 CHECK 條件約束。透過 <ui>預覽 SQL</ui> (Preview SQL) 檢查待執行 DDL。破壞性變更、型別變更、NOT NULL 和主索引鍵變更即使在 {macSafeModeDefault} 下也需確認。",
-                "建立資料表時即時預覽 SQL。SQLite 系列引擎的外部索引鍵變更可能需要重建資料表。TablePro 在 SQLite 和本機 libSQL 上執行已確認的重建；Turso、遠端 libSQL 和 Cloudflare D1 需自行執行產生腳本。"
+            "text": [
+                "在 Structure 分頁變更欄位、索引、外部索引鍵和 CHECK 條件約束，執行前在 <ui>預覽 SQL</ui> (Preview SQL) 中查看 DDL。型別變更、NOT NULL、主索引鍵和任何破壞性變更都會先詢問，即使在 {macSafeModeDefault} 下也一樣。建立新資料表時可即時預覽 SQL。"
+            ],
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "SQLite 需要重建資料表時，TablePro 會在您確認後執行；在 Turso、遠端 libSQL 和 Cloudflare D1 上則提供腳本給您。iPhone 與 iPad 以唯讀方式顯示結構。"
             ],
             "engines": [
                 {
-                    "label": "結構唯讀",
+                    "label": "結構唯讀：",
                     "list": "schemaReadOnly"
                 },
                 {
-                    "label": "僅支援部分結構修改",
+                    "label": "部分可編輯：",
                     "list": "schemaPartial"
                 }
             ],
-            "asset": "mac-structure-ddl-preview"
+            "docs": "/features/table-structure"
         },
         {
             "id": "er-diagram",
             "title": "ER 圖",
-            "paragraphs": [
-                "<ui>檢視 ER 圖</ui> (View ER Diagram) 用鳥腳表示法顯示資料表和外部索引鍵關聯。可匯出為 PNG 或 SQL，或將圖複製為圖片。",
-                "圖表唯讀，不是綱要設計工具。請在 Structure 分頁變更。"
+            "text": [
+                "<ui>檢視 ER 圖</ui> (View ER Diagram) 以鳥腳表示法繪製資料表及其外部索引鍵。可匯出為 PNG 或 SQL，或複製為圖片。它只用於檢視，不是設計工具：變更請在 Structure 分頁進行。"
             ],
-            "asset": "mac-er-diagram"
-        },
-        {
-            "id": "objects",
-            "title": "資料庫物件",
-            "paragraphs": [
-                "在唯讀原始碼分頁查看支援的常式和觸發程序，再複製 SQL 或在編輯器中開啟。物件清單因引擎而異。PostgreSQL 分割區顯示在父資料表下。"
-            ],
-            "blocks": [
-                {
-                    "id": "table-folders",
-                    "title": "資料表與檢視表的資料夾",
-                    "paragraphs": [
-                        "透過拖放或 <ui>移動至</ui> (Move to) 整理資料表和檢視。資料夾僅改變側邊欄，不改變資料庫；啟用 iCloud Sync 後可在 Mac 間同步。"
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
+            "where": {
+                "linux": "yes",
+                "ios": "no"
+            },
+            "docs": "/features/er-diagram",
+            "asset": "features-schema-er-diagram"
         },
         {
             "id": "compare-sync",
             "title": "Compare & Sync",
-            "paragraphs": [
-                "比較來源和目標資料庫的綱要或資料。在支援時包含檢視、常式和觸發程序。資料比較依鍵比對列，可逐表設定篩選和列數限制。",
-                "檢查依外部索引鍵排序的同步腳本。破壞性變更保持排除，直到您在本次執行中允許。Read-Only 連線不能作為目標。可儲存比較供重複使用。"
+            "text": [
+                "比較兩個資料庫的綱要或資料，在支援時包含檢視、常式和觸發程序。同步腳本依外部索引鍵排序，破壞性變更在您允許前保持排除，Read-Only 連線永遠不會成為目標。可儲存比較以便再次執行。"
             ],
             "paid": [
                 "compare-sync"
             ],
-            "asset": "mac-compare-sync-structure"
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "結構腳本僅在相同引擎的資料庫之間產生，MySQL 與 MariaDB 視為同一引擎。"
+            ],
+            "docs": "/features/compare-sync",
+            "asset": "features-schema-compare-sync"
         },
         {
             "id": "copy",
-            "title": "複製和傳輸資料表",
-            "paragraphs": [
-                "Copy To 在資料庫間移動支援的物件和資料，也可跨引擎。先檢查 DDL、列數和型別轉換。轉換可能遺失條件約束，例如 MariaDB <code>ENUM</code> 變為 PostgreSQL <code>VARCHAR</code>，不保留允許值清單。",
-                "Duplicate Database 在同一連線上複製資料庫。Transfer To 將列對應到另一連線的既有資料表，無需中間檔案。這些工具免費。"
+            "title": "在資料庫間複製資料表",
+            "text": [
+                "檢查 DDL、列數和型別轉換後，Copy To 會將資料表及其資料移至另一個資料庫，也可跨引擎。轉換可能遺失條件約束：MariaDB <code>ENUM</code> 會變為 PostgreSQL <code>VARCHAR</code>。Duplicate Database 和 Transfer To 同樣免費。"
             ],
-            "asset": "mac-copy-to-review"
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/copy-objects",
+            "asset": "features-schema-copy"
         },
         {
             "id": "administer",
-            "title": "使用者、工作階段與維護",
-            "paragraphs": [
-                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等資料表維護操作會在執行前顯示 SQL。引擎支援時，可在側邊欄建立、刪除和重新命名資料庫及 schema。"
+            "also": [
+                "users-roles",
+                "server-dashboard"
             ],
-            "blocks": [
+            "title": "使用者、工作階段與維護",
+            "text": [
+                "Server Dashboard 顯示即時工作階段、伺服器指標與慢查詢，並依連線的 Safe Mode 取消查詢或終止工作階段。Users & Roles 暫存授權與撤銷，可細到欄位層級，並附上 SQL 供檢查。VACUUM 或 OPTIMIZE 等維護操作會在執行前顯示 SQL。"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "engines": [
                 {
-                    "id": "users-roles",
-                    "title": "Users & Roles",
-                    "paragraphs": [
-                        "在支援的引擎上檢查從伺服器到欄位層級的權限。暫存授權和撤銷，再在套用前檢查 SQL。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "Users & Roles",
-                            "list": "usersRoles"
-                        }
-                    ],
-                    "asset": "mac-users-roles-mysql"
+                    "label": "Server Dashboard：",
+                    "list": "dashboard"
                 },
                 {
-                    "id": "server-dashboard",
-                    "title": "Server Dashboard",
-                    "paragraphs": [
-                        "Server Dashboard 依所選間隔重新整理即時工作階段、伺服器指標與慢查詢。引擎允許時，可從對應列取消執行中的查詢或終止工作階段，兩項操作均遵循連線的 Safe Mode。在 Typesense 上僅顯示指標。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "Server Dashboard",
-                            "list": "dashboard"
-                        }
-                    ],
-                    "asset": "mac-server-dashboard-postgresql"
+                    "label": "Users & Roles：",
+                    "list": "usersRoles"
                 }
+            ],
+            "docs": "/features/server-dashboard",
+            "asset": "features-schema-dashboard"
+        }
+    ],
+    "more": [
+        {
+            "id": "objects",
+            "also": [
+                "table-folders"
+            ],
+            "title": "常式、觸發程序與資料夾",
+            "text": [
+                "在原始碼分頁查看常式和觸發程序，再於編輯器中開啟。將資料表和檢視整理到側邊欄資料夾，這些資料夾可透過 iCloud Sync 在 Mac 間同步。"
             ]
         },
         {
             "id": "iphone",
             "title": "在 iPhone 與 iPad 上",
-            "paragraphs": [
-                "iPhone 與 iPad App 以唯讀方式顯示資料表的欄位、索引與外部索引鍵。SQL 引擎的資料表清單可清空或刪除資料表，除非連線設為 Read-Only。",
-                "結構編輯、ER 圖、Compare & Sync、Copy To、Users & Roles 與 Server Dashboard 不在 iPhone 和 iPad App 中提供。"
+            "text": [
+                "欄位、索引與外部索引鍵為唯讀。除非連線設為 Read-Only，否則可清空或刪除資料表。"
             ],
             "links": [
                 {
@@ -129,114 +135,6 @@
                     "href": "/ios#browse"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "含 DDL 預覽的結構編輯",
-            "ios": "partial",
-            "iosNote": "欄位、索引與外部索引鍵唯讀",
-            "linux": "yes"
-        },
-        {
-            "label": "New Table",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "清空與刪除資料表",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "ER 圖",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "常式、觸發程序與資料表資料夾",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "常式與觸發程序；不支援資料表資料夾"
-        },
-        {
-            "label": "Compare & Sync",
-            "paid": "compare-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copy To、Duplicate Database 與 Transfer To",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Users & Roles",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Server Dashboard 與資料表維護",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Compare & Sync 僅在相同引擎的兩個資料庫之間產生結構指令碼，MySQL 與 MariaDB 視為同一引擎。其他組合只能唯讀比較，MongoDB 結構從不產生指令碼；跨引擎同步資料時會提醒檢查值的寫入方式。將資料表移至其他引擎請使用 Copy To。",
-        "調整欄位順序時，SQLite 和本機 libSQL 檔案會在確認後重建資料表。PostgreSQL、Turso、遠端 libSQL 和 Cloudflare D1 則由 TablePro 產生重建指令碼，需自行執行。",
-        "ER 圖唯讀，不能用於設計結構。",
-        "Server Dashboard 可顯示的工作階段和查詢文字取決於連線帳戶的權限。"
-    ],
-    "docs": [
-        {
-            "label": "資料表結構",
-            "docs": "/features/table-structure"
-        },
-        {
-            "label": "ER 圖",
-            "docs": "/features/er-diagram"
-        },
-        {
-            "label": "預存程序、函式與觸發程序",
-            "docs": "/features/routines-triggers"
-        },
-        {
-            "label": "Compare & Sync",
-            "docs": "/features/compare-sync"
-        },
-        {
-            "label": "複製與建立副本",
-            "docs": "/features/copy-objects"
-        },
-        {
-            "label": "Users & Roles",
-            "docs": "/features/users-roles"
-        },
-        {
-            "label": "Server Dashboard",
-            "docs": "/features/server-dashboard"
-        },
-        {
-            "label": "資料表操作與維護",
-            "docs": "/features/table-operations"
-        }
-    ],
-    "related": [
-        {
-            "label": "匯入、匯出與資料檔案",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "在 TablePro 中使用 PostgreSQL",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "在 TablePro 中使用 MySQL 與 MariaDB",
-            "href": "/mysql-client"
-        },
-        {
-            "label": "付費方案提供的功能",
-            "href": "/pricing#features"
         }
     ]
 }

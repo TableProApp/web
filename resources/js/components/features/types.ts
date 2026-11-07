@@ -1,27 +1,15 @@
-/**
- * The feature pages' props and the shape of their content files.
- *
- * `App\Http\Controllers\FeatureController` sends these props.
- * README.md in this directory documents the content schema for authors.
- */
+// The content schema of `/features` and `/features/{slug}` (README.md); relative imports only, so `node --test`
+// loads it through model.ts.
 
 import type { LinuxSummary } from '../download/types.ts';
 
-/** One published engine in a list the page shows, from `engines.json`. */
 export interface EngineItem {
     name: string;
-    /** Its page, family section or `/databases` row, as a root-relative English path; null when none describes it (`EnginePaths`). */
     href: string | null;
-    /** The query language or dump tool, when the list carries one. */
     detail: string | null;
-    /** The app version that added it, only while some channel still serves an older one. */
     since: string | null;
 }
 
-/**
- * A fact the copy quotes, computed on the server by
- * `App\Support\Features\FeatureFacts` from the data files.
- */
 export type FactValue =
     | { kind: 'number'; value: number }
     | { kind: 'text'; value: string }
@@ -30,7 +18,6 @@ export type FactValue =
 
 export type Facts = Record<string, FactValue>;
 
-/** A link: `href` for a page on this site (root-relative, English form), or `docs` for a docs.tablepro.app path. */
 export interface FeatureLink {
     label: string;
     href?: string;
@@ -39,53 +26,38 @@ export interface FeatureLink {
     account?: boolean;
 }
 
-/** A linked engine list from `facts`, shown as a labelled row. */
 export interface EngineListRef {
     label: string;
-    /** The name of an `engines` fact, such as `explainDiagram`. */
     list: string;
 }
 
-/** A section, or a sub-block inside one (an H3). At most one slot each. */
-export interface FeatureBlock {
-    /** Optional on a block; a section's id is required and fixed by the sitemap. */
-    id?: string;
+export type Availability = 'yes' | 'partial' | 'no';
+
+// Where a feature runs besides the Mac, which has every feature on these pages. `partial` counts as present; the
+// difference goes in `notes`. The same values in every locale.
+export interface Where {
+    linux: Availability;
+    ios: Availability;
+}
+
+// A sub-feature. The main ones are bands with a full window below; the rest are items of the closing list. `also`
+// holds the ids of the old sections and blocks this one replaced, so links to them still land here.
+export interface FeaturePart {
+    id: string;
+    also?: string[];
     title: string;
-    paragraphs: string[];
-    points?: string[];
-    /** The `paid-features.json` ids this block describes. Each one shows its plan. */
+    text: string[];
     paid?: string[];
-    /** The app version that added what the block describes; labelled while an older one is still served. */
-    since?: string | null;
-    /** An `assets.json` id. */
-    asset?: string;
+    where?: Where;
+    notes?: string[];
     engines?: EngineListRef[];
+    docs?: string;
     links?: FeatureLink[];
 }
 
-export interface FeatureSection extends FeatureBlock {
-    id: string;
-    blocks?: FeatureBlock[];
-}
-
-export type IosAvailability = 'yes' | 'no' | 'partial';
-
-export type LinuxAvailability = 'yes' | 'no' | 'partial';
-
-/** A row of "Where it works": one capability, its plan on the Mac and its state on iPhone and iPad. */
-export interface AvailabilityRow {
-    label: string;
-    /** The `paid-features.json` id when the capability needs a plan on the Mac. */
-    paid?: string;
-    /** Defaults to `yes`. */
-    mac?: 'yes' | 'no';
-    ios: IosAvailability;
-    /** Required when `ios` is `partial`: what exists there. */
-    iosNote?: string;
-    // The same in every locale; no paid feature exists on Linux yet.
-    linux: LinuxAvailability;
-    // Present exactly when `linux` is `partial`.
-    linuxNote?: string;
+export interface FeatureBand extends FeaturePart {
+    where: Where;
+    asset?: string;
 }
 
 export interface FeaturePageContent {
@@ -94,47 +66,26 @@ export interface FeaturePageContent {
     header: {
         title: string;
         lead: string;
-        /** The docs path the header's "Read the docs" opens. */
         docs: string;
+        asset: string;
     };
-    sections: FeatureSection[];
-    availability: AvailabilityRow[];
-    limits: string[];
-    docs: FeatureLink[];
-    related: FeatureLink[];
+    bands: FeatureBand[];
+    more: FeaturePart[];
 }
 
-/** The words every feature page shares: the hub file's `labels` block. */
 export interface FeatureLabels {
     number: { decimal: string; group: string };
     tiers: { free: string; starter: string; team: string };
-    /** A paid feature's marker where it is described: `{name}`, `{tier}`. */
-    paidBadge: string;
-    header: {
-        /** `{features}`: the page's paid features, each written with `paidItem`. */
-        paid: string;
-        /** `{name}`, `{tier}`. */
-        paidItem: string;
-        allFree: string;
-        docs: string;
-    };
-    sections: {
-        availability: string;
-        limits: string;
-        docs: string;
-        related: string;
-    };
-    availability: {
-        caption: string;
-        capability: string;
-        free: string;
-        notAvailable: string;
-        /** `{tier}`. */
-        plan: string;
-    };
-    download: {
+    // "On {platforms}."
+    where: string;
+    docs: string;
+    more: string;
+    closing: {
         title: string;
-        body: string;
+        // "{tier} adds {features}."
+        tier: string;
+        rest: string;
+        allFree: string;
         pricing: string;
     };
 }
@@ -143,23 +94,17 @@ export interface FeatureHubContent {
     seo: { title: string; description: string; indexable?: boolean };
     og: { kicker: string; title: string };
     header: { title: string; lead: string };
-    areas: {
-        title: string;
-        /** `{tier}`, `{features}`. */
-        paid: string;
-        noPaid: string;
-        items: { slug: string; summary: string }[];
-    };
-    ios: { title: string; body: string; link: string };
-    paid: {
-        title: string;
-        lead: string;
-        caption: string;
-        columns: { feature: string; plan: string; page: string };
-        pricing: string;
-    };
-    docs: { title: string; body: string; link: string; path: string };
+    areas: { slug: string; summary: string }[];
+    closing: { body: string; ios: string };
     labels: FeatureLabels;
+}
+
+// What the hub shows of each page: its title, its bands and its window.
+export interface FeatureArea {
+    slug: string;
+    title: string;
+    asset: string;
+    bands: { id: string; title: string; paid: string[] }[];
 }
 
 export interface FeaturePageProps {
@@ -168,11 +113,12 @@ export interface FeaturePageProps {
     labels: FeatureLabels;
     facts: Facts;
     linux: LinuxSummary | null;
+    // The hero window's `sizes`, the same string its preload (`lcpAsset`) was built with.
+    heroSizes: string;
 }
 
 export interface FeatureHubProps {
     content: FeatureHubContent;
-    /** The feature slugs that render in this locale, in the menu's order. */
-    pages: string[];
+    areas: FeatureArea[];
     facts: Facts;
 }

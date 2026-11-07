@@ -9,211 +9,124 @@
     },
     "header": {
         "title": "Modification des données",
-        "lead": "Filtrez les lignes, suivez les clés étrangères et modifiez les valeurs dans la grille. Les changements attendent l’enregistrement et le SQL peut être vérifié d’abord.",
-        "docs": "/features/change-tracking"
+        "lead": "Filtrez les lignes, suivez les clés étrangères et modifiez dans la grille. Rien n’est écrit avant l’enregistrement, et vous pouvez lire le SQL d’abord.",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "Trouvez les lignes qu’il vous faut",
-            "paragraphs": [
-                "Le tri et la pagination s’exécutent sur le serveur ; une grande table s’ouvre donc sur sa première page. Au-delà de {countEstimate} lignes, le nombre est estimé ; Count Exactly fournit le nombre réel au besoin."
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "Filtres et règles de surbrillance",
-                    "paragraphs": [
-                        "Créez des filtres avec {filterOperatorCount} opérateurs ou une condition SQL, puis enregistrez-les. Les règles de surbrillance colorent les lignes ou cellules correspondantes et restent sur ce Mac."
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "Clés étrangères et JSON",
-                    "paragraphs": [
-                        "Suivez une clé étrangère vers sa ligne ou prévisualisez-la sur place. Un sélecteur aide à choisir parmi les lignes référencées. Ouvrez les valeurs JSON dans un arbre ou un éditeur de texte."
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "Trouvez les lignes qu’il vous faut",
+            "text": [
+                "Le tri et la pagination s’exécutent sur le serveur ; une grande table s’ouvre donc sur sa première page. Filtrez avec {filterOperatorCount} opérateurs ou une condition SQL, enregistrez les filtres que vous réutilisez et colorez les lignes ou cellules correspondantes avec des règles de surbrillance.",
+                "Suivez une clé étrangère jusqu’à sa ligne ou prévisualisez-la sur place, et ouvrez les valeurs JSON dans un arbre."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Les filtres enregistrés et les règles de surbrillance restent sur le Mac où vous les avez créés."
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "Vérifiez les modifications avant d’enregistrer",
-            "paragraphs": [
-                "Modifications, nouvelles lignes et suppressions restent dans l’onglet jusqu’à l’enregistrement avec <kbd>⌘S</kbd>. <ui>Aperçu SQL</ui> (Preview SQL) affiche les instructions en attente. L’enregistrement lie les paramètres et vérifie le nombre de lignes affectées, avec transaction et annulation lorsque le moteur le permet."
+            "text": [
+                "Modifications, nouvelles lignes et suppressions attendent dans l’onglet jusqu’à ce que vous appuyiez sur <kbd>⌘S</kbd>. <ui>Aperçu SQL</ui> (Preview SQL) affiche d’abord les instructions, l’annulation fonctionne jusqu’à l’enregistrement, et l’enregistrement vérifie le nombre de lignes affectées, dans une transaction si le moteur en propose.",
+                "Chaque type a son éditeur : dates, listes ENUM et SET, tableaux, JSON, hexadécimal pour les valeurs binaires, et images."
             ],
-            "points": [
-                "Éditeurs adaptés au type de colonne : date et heure, listes ENUM et SET, tableaux, JSON, éditeur hexadécimal pour valeurs binaires et visualiseur d’images.",
-                "Annulation et rétablissement par onglet jusqu’à l’enregistrement.",
-                "Les résultats d’une requête sont modifiables lorsqu’elle lit une seule table, sans jointure, CTE ni UNION.",
-                "Copiez les lignes en CSV, JSON, Markdown, liste IN ou instructions INSERT et UPDATE."
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Sur Linux, iPhone et iPad, une ligne doit avoir une clé primaire pour être modifiée. Le résultat d’une jointure, d’un CTE ou d’une UNION est en lecture seule partout."
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "Choisissez un niveau par connexion : {macSafeModeLevels}. Le niveau par défaut {macSafeModeDefault} exécute sans confirmation. Alert confirme les écritures ; Safe Mode ajoute Touch ID ou un mot de passe. Les niveaux Full confirment aussi les lectures. Read-Only bloque écritures et édition. Safe Mode est gratuit.",
-                "DROP, TRUNCATE et DELETE sans WHERE nécessitent toujours confirmation. Agent mode en pleine fenêtre impose au moins Alert. Les moteurs en lecture seule et la politique de gestion des appareils d’une organisation peuvent aussi relever le niveau effectif."
+            "text": [
+                "Choisissez un niveau par connexion. Le niveau par défaut, {macSafeModeDefault}, exécute les instructions sans demander ; Alert confirme les écritures, Safe Mode ajoute Touch ID ou votre mot de passe, les niveaux Full confirment aussi les lectures, et Read-Only bloque les écritures. DROP, TRUNCATE et DELETE sans WHERE demandent toujours confirmation. Safe Mode est gratuit."
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                {
-                    "label": "Safe Mode et autres règles de connexion",
-                    "href": "/features/connections#policies"
-                },
-                {
-                    "label": "Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux propose {linuxSafeModeLevels}. iPhone et iPad proposent {iosSafeModeLevels}."
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "Vérifiez et restaurez les valeurs remplacées par un enregistrement avec <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values). La revue signale les lignes modifiées depuis. Les restaurations suivent Safe Mode, dans une transaction lorsque le moteur le permet.",
-                "Les anciennes valeurs restent chiffrées sur ce Mac pendant {rewindDays} jours et ne se synchronisent jamais. L’enregistrement et la restauration s’arrêtent à la fin du forfait payant."
+            "text": [
+                "Après un enregistrement, <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) rétablit ce qu’il a remplacé. La revue signale les lignes modifiées depuis, et la restauration suit Safe Mode, dans une seule transaction si le moteur le permet. Les anciennes valeurs restent chiffrées sur ce Mac pendant {rewindDays} jours et ne se synchronisent jamais."
             ],
             "paid": [
                 "data-rewind"
             ],
-            "asset": "mac-data-rewind-review"
-        },
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "Ce n’est pas une sauvegarde : les déclencheurs, les cascades et les changements effectués hors de TablePro ne sont pas annulés."
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "Documents et clés",
-            "paragraphs": [
-                "Modifiez les documents MongoDB en Extended JSON, ou renommez et supprimez des champs dans une collection. Sur Redis, modifiez les chaînes, renommez les clés et définissez les TTL dans la grille, ou ajoutez des clés string, hash, list, set ou sorted set. Utilisez les commandes de l’éditeur pour les autres types."
+            "text": [
+                "Modifiez les documents MongoDB en Extended JSON, et les chaînes, noms de clés et TTL Redis dans la grille."
             ],
             "links": [
                 {
-                    "label": "MongoDB dans TablePro",
+                    "label": "MongoDB",
                     "href": "/mongodb-client"
                 },
                 {
-                    "label": "Redis dans TablePro",
+                    "label": "Redis",
                     "href": "/redis-gui"
                 }
             ]
         },
         {
+            "id": "copy-rows",
+            "title": "Copier des lignes",
+            "text": [
+                "Copiez des lignes en CSV, JSON, Markdown, liste IN ou instructions INSERT et UPDATE."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Sur iPhone et iPad",
-            "paragraphs": [
-                "Parcourez les lignes en cartes, triez et filtrez, ou touchez une clé étrangère pour voir sa ligne. Modifiez les valeurs ou définissez NULL ; édition et suppression nécessitent une clé primaire. Les nouvelles lignes commencent avec DEFAULT, avec NULL et chaîne vide comme alternatives.",
-                "Safe Mode mobile propose {iosSafeModeLevels}, avec {iosSafeModeDefault} par défaut. Les modifications en attente, Preview SQL, règles de surbrillance et Data Rewind ne sont pas dans l’app iPhone et iPad."
+            "text": [
+                "Les lignes s’affichent en cartes que vous pouvez trier, filtrer et modifier. La modification et la suppression nécessitent une clé primaire."
             ],
             "links": [
                 {
                     "label": "Navigation et modification sur iPhone et iPad",
                     "href": "/ios#browse"
-                },
-                {
-                    "label": "Safe Mode sur iPhone et iPad",
-                    "href": "/ios#safe-mode"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Tri, pagination et filtres",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Filtres enregistrés et règles de surbrillance",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Navigation par clés étrangères et sélecteur de valeurs",
-            "ios": "partial",
-            "iosNote": "Touchez pour prévisualiser la ligne référencée",
-            "linux": "partial",
-            "linuxNote": "Navigation ; pas de sélecteur de valeurs"
-        },
-        {
-            "label": "Modifier, insérer et supprimer des lignes",
-            "ios": "partial",
-            "iosNote": "Éditeur de lignes ; nécessite une clé primaire",
-            "linux": "partial",
-            "linuxNote": "Nécessite une clé primaire"
-        },
-        {
-            "label": "Modifications en attente, Preview SQL et annulation",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Modifications en attente et annulation ; pas de Preview SQL"
-        },
-        {
-            "label": "Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Touch ID ou mot de passe avant une écriture",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Rewind",
-            "paid": "data-rewind",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Documents MongoDB et clés Redis",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Clés Redis modifiables par commandes uniquement"
-        }
-    ],
-    "limits": [
-        "Data Rewind n’est pas une sauvegarde. Il n’annule ni les déclencheurs, ni les cascades, ni les changements effectués hors de TablePro, et ne peut restaurer ni les lignes sans clé primaire, ni les valeurs de plus de {rewindMaxValue} Mo, ni les valeurs calculées par le serveur.",
-        "Un UPDATE sans WHERE est une écriture ordinaire : il ne demande confirmation qu’au niveau Alert ou à un niveau plus strict.",
-        "Le résultat d’une jointure, CTE ou UNION est en lecture seule dans la grille ; ouvrez la table pour la modifier."
-    ],
-    "docs": [
-        {
-            "label": "Grille de données",
-            "docs": "/features/data-grid"
-        },
-        {
-            "label": "Filtrage",
-            "docs": "/features/filtering"
-        },
-        {
-            "label": "Suivi des modifications et Preview SQL",
-            "docs": "/features/change-tracking"
-        },
-        {
-            "label": "Data Rewind",
-            "docs": "/features/change-tracking#restoring-a-save"
-        },
-        {
-            "label": "Safe Mode",
-            "docs": "/features/safe-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Requêtes",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schéma",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Ce qu’ajoute une offre payante",
-            "href": "/pricing#features"
         }
     ]
 }

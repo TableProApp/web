@@ -9,116 +9,104 @@
     },
     "header": {
         "title": "同期と共有",
-        "lead": "iCloud で接続を同期し、接続ファイルを共有するか、チームに接続とクエリを公開できます。",
-        "docs": "/features/icloud-sync"
+        "lead": "iCloud で接続を同期し、ファイルとして共有するか、チームに接続とクエリを公開できます。",
+        "docs": "/features/icloud-sync",
+        "asset": "features-sync-and-teams-sync"
     },
-    "sections": [
+    "bands": [
         {
             "id": "icloud-sync",
             "title": "iCloud Sync",
-            "paragraphs": [
-                "非公開の iCloud データベースで Mac、iPhone、iPad 間を同期します。デバイスごとに有効にします。iCloud Sync は Mac では Pro・Team が必要で、iPhone・iPad では無料です。",
-                "Mac の <ui>Passwords</ui> かモバイルの <ui>Sync Passwords</ui> で有効にすると、iCloud Keychain でパスワードを別途同期します。Mac のスイッチは AI キーとライセンスキーも同期します。TablePro アカウントに対応したバージョン以降、ライセンスキーはサインインと交換された時点で削除され、サインイン状態は同期されません。Local only にした接続と保存済みクエリは同期から除外します。"
-            ],
-            "points": [
-                "Mac では同期対象を選択：接続、グループとタグ、設定、SSH プロファイル、認証情報プロファイル（名前とユーザー名のみで、パスワードは含みません）、テーブルとデータベースのお気に入り、SQL を含む保存済みクエリ、テーブルフォルダー。",
-                "iPhone と iPad：接続、グループとタグ。",
-                "同期する接続には、ホスト、ポート、ユーザー名、データベース、SSH と TLS 設定、起動コマンド、接続前スクリプトと AI ルールを含みます。",
-                "同期しないもの：クエリ履歴、Data Rewind、パスワード取得元、トンネルコマンドと接続ごとの External Clients レベル。"
+            "text": [
+                "非公開の iCloud データベースで Mac、iPhone、iPad 間を同期します。デバイスごとに有効にします。Mac では同期する対象を選べます：接続、グループ、設定、SSH プロファイルと認証情報プロファイル、お気に入り、保存済みクエリ、テーブルフォルダー。パスワードは、iCloud Keychain での同期も有効にした場合のみ同期します。"
             ],
             "paid": [
                 "icloud-sync"
             ],
+            "where": {
+                "linux": "no",
+                "ios": "partial"
+            },
+            "notes": [
+                "iPhone と iPad では無料で、接続、グループ、タグを同期します。クエリ履歴、Data Rewind、パスワード取得元、トンネルコマンドは同期しません。"
+            ],
+            "docs": "/features/icloud-sync",
             "asset": "diagram-icloud-sync"
-        },
-        {
-            "id": "handoff",
-            "title": "Handoff",
-            "paragraphs": [
-                "別の Apple デバイスで同じ接続やテーブルを続けられます。両方に iCloud Syncした接続が必要で、ファイル取り込みのコピーは ID が異なります。Handoff は Apple 経由で接続 ID とテーブル名を渡し、クエリセッションは渡しません。テーブルを開いていない場合は接続名、無名ならホストを渡します。"
-            ],
-            "paid": [
-                "icloud-sync"
-            ],
-            "asset": "mac-handoff-ios"
         },
         {
             "id": "share",
             "title": "接続を共有する",
-            "paragraphs": [
-                "接続設定、グループ、タグをパスワードなしの <code>.tablepro</code> ファイルで出力できます。Encrypted Export はパスフレーズと AES-256-GCM でパスワードを含めます。どちらの形式も Mac・iPhone・iPad で無料で取り込めます。",
-                "iPhone・iPad ではパスワードの暗号化出力も無料です。<code>tablepro://import</code> の共有リンクは接続設定だけを含み、パスワードは含めません。"
+            "text": [
+                "設定、グループ、タグを含み、パスワードを含まない <code>.tablepro</code> ファイルを出力できます。Encrypted Export を使うと、パスフレーズと AES-256-GCM でパスワードも含められます。どちらの取り込みも無料です。<code>tablepro://import</code> リンクは設定だけを運び、パスワードは含めません。"
             ],
             "paid": [
                 "encrypted-export"
             ],
+            "where": {
+                "linux": "no",
+                "ios": "yes"
+            },
+            "notes": [
+                "iPhone と iPad では Encrypted Export は無料です。"
+            ],
+            "docs": "/features/connection-sharing#export"
+        },
+        {
+            "id": "team",
+            "also": [
+                "team-catalog",
+                "team-library"
+            ],
+            "title": "Team Catalog と Team Library",
+            "text": [
+                "Team Catalog は共有フォルダーにパスワードなしの接続ファイルを公開し、メンバーはそれを Linked Folder として追加します。Team Library は接続と保存済みクエリを TablePro のサーバーに公開し、パスワードは送りません。席のあるメンバーは起動時と 15 分ごとに変更を取得し、各クエリを最後に変更した人を確認できます。"
+            ],
+            "paid": [
+                "team-catalog",
+                "team-library"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
             "links": [
                 {
-                    "label": "別のクライアントから接続をインポート",
-                    "href": "/features/connections#import"
+                    "label": "Team Library が送信する情報",
+                    "href": "/privacy#library"
                 }
-            ]
-        },
+            ],
+            "docs": "/features/connection-sharing#team-catalog",
+            "asset": "features-sync-and-teams-team"
+        }
+    ],
+    "more": [
         {
             "id": "linked-folders",
             "title": "Linked Folders",
-            "paragraphs": [
-                "Git のチェックアウトや共有ドライブなどの <code>.tablepro</code> 接続ファイルのフォルダーを監視します。接続はアプリでなくファイルで編集します。暗号化ファイルはスキップし、起動・トンネルコマンドは無視します。",
-                "Linked Folders は接続ファイル用です。SQL フォルダーのリンクは保存済み <code>.sql</code> クエリ用の別の無料機能です。"
+            "text": [
+                "Git のチェックアウトや共有ドライブなど、<code>.tablepro</code> ファイルのフォルダーを監視します。接続はファイルの内容に従います。"
             ],
             "paid": [
                 "linked-folders"
             ],
-            "links": [
-                {
-                    "label": "保存済みクエリとリンクした SQL フォルダー",
-                    "href": "/features/querying#history"
-                }
-            ]
+            "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "id": "team",
-            "title": "Team Catalog と Team Library",
-            "paragraphs": [
-                "Team Catalog は自分のフォルダー、Team Library は TablePro のサーバーを使って共有します。"
+            "id": "handoff",
+            "title": "Handoff",
+            "text": [
+                "両方のデバイスで接続を iCloud で同期していれば、別の Apple デバイスで同じ接続やテーブルを続けられます。"
             ],
-            "blocks": [
-                {
-                    "id": "team-catalog",
-                    "title": "Team Catalog",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> は共有フォルダーにパスワードなしの接続ファイルを書き出します。メンバーは Linked Folder として追加します。ファイルはドライブやリポジトリで運び、TablePro のサーバーは使いません。"
-                    ],
-                    "paid": [
-                        "team-catalog"
-                    ]
-                },
-                {
-                    "id": "team-library",
-                    "title": "Team Library",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> と <ui>Publish Saved Queries to Team…</ui> は接続設定と保存済みクエリの SQL を TablePro のサーバーに送り、パスワードは送りません。席のあるメンバーが取得します。起動・トンネルコマンドは無視します。",
-                        "TablePro アカウントに対応したバージョン以降、アプリは起動時、15 分ごと、公開のたびに変更を取得し、変更した分だけを公開します。各チームクエリを最後に変更した人を表示し、ほかのメンバーが先に変更していた場合はどちらを残すかを尋ねます。TablePro アカウントに対応する前のバージョンは最大でも週に 1 回ライブラリを取得し、そこから再公開すると前の投稿を置き換えます。"
-                    ],
-                    "paid": [
-                        "team-library"
-                    ],
-                    "asset": "mac-team-library",
-                    "links": [
-                        {
-                            "label": "Team Library が TablePro に送る情報",
-                            "href": "/privacy#library"
-                        }
-                    ]
-                }
-            ]
+            "paid": [
+                "icloud-sync"
+            ],
+            "docs": "/features/handoff"
         },
         {
             "id": "seats",
             "title": "Team の席",
-            "paragraphs": [
-                "Team の 1 席は、一人が最大 {deviceLimit} 台のコンピューター（Mac または Linux）で使えます。オーナーと管理者がアカウントポータルからメールで招待し、席を付けるかどうかを選びます。招待された人はメールのリンクから参加します。",
-                "サブスクリプションの席数はオーナーが「請求」で変更します。買い切りの席があるチームはその席をそのまま使え、席の追加は Team のサブスクリプションで行います。メンバーを削除すると席が空き、その Mac は次に TablePro がサーバーと通信したときに Team の機能を使えなくなります。"
+            "text": [
+                "1 席で、一人が最大 {deviceLimit} 台のコンピューター（Mac または Linux）で使えます。オーナーと管理者がアカウントポータルからメールで招待します。"
             ],
             "links": [
                 {
@@ -134,124 +122,15 @@
         {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "iPhone・iPad アプリは iCloud 経由で接続、グループとタグを同期し、Handoff に対応します。<code>.tablepro</code> ファイルのインポートとエクスポートでは、必要に応じてパスフレーズで保護したパスワードを含められます。Linked Folders、Team Catalog と Team Library は iPhone・iPad アプリにはありません。"
+            "text": [
+                "iCloud で接続を同期し、Handoff で作業を続け、<code>.tablepro</code> ファイルをインポート・エクスポートできます。"
             ],
             "links": [
                 {
-                    "label": "iPhone、iPad と Mac で使う TablePro",
+                    "label": "Mac と一緒に使う iPhone・iPad 版 TablePro",
                     "href": "/ios#mac"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "iCloud Sync",
-            "paid": "icloud-sync",
-            "ios": "partial",
-            "iosNote": "接続、グループとタグ、無料",
-            "linux": "no"
-        },
-        {
-            "label": "iCloud キーチェーン経由のパスワード同期",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "同期対象の選択と Local only 接続",
-            "paid": "icloud-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "iCloud Sync 有効時の Handoff",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": ".tablepro ファイルのエクスポートとインポート",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "パスワード付き Encrypted Export",
-            "paid": "encrypted-export",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Linked Folders",
-            "paid": "linked-folders",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Catalog",
-            "paid": "team-catalog",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Library",
-            "paid": "team-library",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Mac のプランが終了すると、iCloud Sync は一時停止して理由を表示し、Linked Folders と Team Library の接続は一覧から消えます。チーム公開コマンドは非表示になり、Encrypted Export のパスワードオプションもなくなります。",
-        "iPhone や iPad で同期した接続を編集すると、そのアプリにない設定が変わることがあります。Safe Mode (Full) などの厳しい Mac の Safe Mode レベルは Alert として戻り、SSH 踏み台ホストも維持されない場合があります。これらの接続は Mac で変更してください。",
-        "Team ライセンスが終了または取り消されても、Team Library に公開した内容は、チームのオーナーがチームを削除するまで TablePro のサーバーに残り、チームの削除とともにライブラリも削除されます。"
-    ],
-    "docs": [
-        {
-            "label": "iCloud Sync",
-            "docs": "/features/icloud-sync"
-        },
-        {
-            "label": "Handoff",
-            "docs": "/features/handoff"
-        },
-        {
-            "label": "接続ファイルと Encrypted Export",
-            "docs": "/features/connection-sharing#export"
-        },
-        {
-            "label": "Linked Folders",
-            "docs": "/features/connection-sharing#linked-folders"
-        },
-        {
-            "label": "Team Catalog",
-            "docs": "/features/connection-sharing#team-catalog"
-        },
-        {
-            "label": "Team Library",
-            "docs": "/features/favorites#team-library"
-        },
-        {
-            "label": "Team プランとシート",
-            "docs": "/features/team#seats"
-        }
-    ],
-    "related": [
-        {
-            "label": "iPhone・iPad 版 TablePro",
-            "href": "/ios"
-        },
-        {
-            "label": "接続、トンネルと認証情報",
-            "href": "/features/connections"
-        },
-        {
-            "label": "有料プランで増える機能",
-            "href": "/pricing#features"
-        },
-        {
-            "label": "プライバシー：iCloud Sync と Handoff",
-            "href": "/privacy#icloud"
         }
     ]
 }

@@ -17,7 +17,7 @@ final class FeatureFacts
     /**
      * @var list<string>
      */
-    public const TEMPLATE_PATHS = ['labels', 'areas.paid'];
+    public const TEMPLATE_PATHS = ['labels', 'closing.ios'];
 
     /**
      * @var array<string, Fact>|null

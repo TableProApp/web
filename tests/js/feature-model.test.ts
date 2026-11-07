@@ -1,19 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import {
-    blockPaidIds,
-    docsHref,
-    engineItems,
-    factText,
-    factValues,
-    fillFacts,
-    pageOnIos,
-    pageOnLinux,
-    pageOnMac,
-    pagePaidIds,
-    slotLayout,
-} from '../../resources/js/components/features/model.ts';
+import { docsHref, engineItems, factText, factValues, fillFacts, pagePaidIds, paidByTier, partIds, wherePlatforms } from '../../resources/js/components/features/model.ts';
 import type { Facts, FeaturePageContent } from '../../resources/js/components/features/types.ts';
 
 const en = { number: { decimal: '.', group: ',' }, list: { separator: ', ', last: ' and ' } };
@@ -53,44 +41,48 @@ test('returns engine items only for engine facts', () => {
     assert.deepEqual(engineItems(facts, 'missing'), []);
 });
 
-test('collects the paid features of a page in data order, from sections, blocks and the table', () => {
+test('collects the paid features of a page in data order, from its bands and its list', () => {
     const page = {
-        sections: [
-            { id: 'a', title: 'A', paragraphs: [], paid: ['result-charts'] },
-            { id: 'b', title: 'B', paragraphs: [], blocks: [{ title: 'B1', paragraphs: [], paid: ['query-insights'] }] },
+        bands: [
+            { id: 'a', title: 'A', text: [], paid: ['result-charts'], where: { linux: 'no', ios: 'no' } },
+            { id: 'b', title: 'B', text: [], where: { linux: 'yes', ios: 'no' } },
         ],
-        availability: [{ label: 'X', paid: 'data-rewind', ios: 'no' }],
+        more: [{ id: 'c', title: 'C', text: [], paid: ['data-rewind', 'result-charts'] }],
     } as unknown as FeaturePageContent;
 
-    assert.deepEqual(blockPaidIds(page.sections[1]), ['query-insights']);
-    assert.deepEqual(pagePaidIds(page, ['compare-sync', 'query-insights', 'result-charts', 'data-rewind']), ['query-insights', 'result-charts', 'data-rewind']);
+    assert.deepEqual(pagePaidIds(page, ['compare-sync', 'query-insights', 'result-charts', 'data-rewind']), ['result-charts', 'data-rewind']);
 });
 
-test('reads the platforms a page covers from its availability rows', () => {
-    const page = { availability: [{ label: 'X', ios: 'no' }, { label: 'Y', ios: 'partial', iosNote: 'n' }] } as unknown as FeaturePageContent;
-    const macOnly = { availability: [{ label: 'X', ios: 'no' }] } as unknown as FeaturePageContent;
-
-    assert.equal(pageOnIos(page), true);
-    assert.equal(pageOnIos(macOnly), false);
-    assert.equal(pageOnMac(macOnly), true);
+test('answers to its own id first, then to the ids of the sections it replaced', () => {
+    assert.deepEqual(partIds({ id: 'explain', also: ['performance'] }), ['explain', 'performance']);
+    assert.deepEqual(partIds({ id: 'mcp' }), ['mcp']);
 });
 
-test('covers Linux when any row is there, in full or in part', () => {
-    const rows = (...linux: string[]) => ({ availability: linux.map((state, index) => ({ label: `R${index}`, ios: 'no', linux: state })) }) as unknown as FeaturePageContent;
+test('names the Mac, then each platform that has the part, a partial one included', () => {
+    const names = { mac: 'Mac', linux: 'Linux', ios: 'iPhone & iPad' };
 
-    assert.equal(pageOnLinux(rows('no', 'no')), false);
-    assert.equal(pageOnLinux(rows('no', 'partial')), true);
-    assert.equal(pageOnLinux(rows('yes')), true);
+    assert.deepEqual(wherePlatforms({ linux: 'no', ios: 'no' }, names), ['Mac']);
+    assert.deepEqual(wherePlatforms({ linux: 'partial', ios: 'no' }, names), ['Mac', 'Linux']);
+    assert.deepEqual(wherePlatforms({ linux: 'yes', ios: 'partial' }, names), ['Mac', 'Linux', 'iPhone & iPad']);
+});
+
+test('groups paid features by plan in the order given, skipping unknown ids', () => {
+    const features = [
+        { id: 'query-insights', tier: 'starter', name: 'Query Insights' },
+        { id: 'team-library', tier: 'team', name: 'Team Library' },
+        { id: 'result-charts', tier: 'starter', name: 'Result Charts' },
+    ];
+
+    assert.deepEqual(
+        paidByTier(['query-insights', 'nope', 'team-library', 'result-charts'], features).map((group) => [group.tier, group.features.map((feature) => feature.id)]),
+        [
+            ['starter', ['query-insights', 'result-charts']],
+            ['team', ['team-library']],
+        ],
+    );
 });
 
 test('joins docs paths without doubled or missing slashes', () => {
     assert.equal(docsHref('https://docs.tablepro.app', '/features/mcp'), 'https://docs.tablepro.app/features/mcp');
     assert.equal(docsHref('https://docs.tablepro.app/', 'features/mcp#setup'), 'https://docs.tablepro.app/features/mcp#setup');
-});
-
-test('puts a detail crop beside its text and a window below it', () => {
-    assert.equal(slotLayout('detail'), 'beside');
-    assert.equal(slotLayout('window'), 'below');
-    assert.equal(slotLayout('diagram'), 'below');
-    assert.equal(slotLayout('illustration'), 'below');
 });

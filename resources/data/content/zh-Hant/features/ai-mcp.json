@@ -9,222 +9,98 @@
     },
     "header": {
         "title": "AI 助手與 MCP",
-        "lead": "用您選擇的服務商解釋或修正 SQL。透過 MCP (Model Context Protocol) 將 AI 用戶端連線至已儲存的連線。",
-        "docs": "/features/ai-assistant"
+        "lead": "用您選擇的 AI 服務商詢問資料庫相關問題，並讓 AI 用戶端透過 MCP (Model Context Protocol) 使用已儲存的連線。",
+        "docs": "/features/ai-assistant",
+        "asset": "mac-home-ai-mcp"
     },
-    "sections": [
+    "bands": [
         {
             "id": "assistant",
-            "title": "選擇 AI 服務商",
-            "paragraphs": [
-                "支援的服務商：{aiProviders}。依服務商使用 API 金鑰、既有帳戶或本機模型。請求直接傳送給服務商，TablePro 不營運 AI 服務。功能免費，但服務商可能收費。",
-                "訊息包含綱要內容和編輯器中的查詢。除非在 <ui>設定 > AI</ui> (Settings > AI) 中啟用，否則不包含結果列。將連線 AI 原則設為 Never，可同時封鎖助手和 MCP 用戶端。"
+            "also": [
+                "in-the-editor"
             ],
-            "asset": "mac-ai-chat"
-        },
-        {
-            "id": "in-the-editor",
-            "title": "檢閱、解釋、最佳化與修正",
-            "paragraphs": [
-                "檢查陳述式、取得解釋或要求最佳化。查詢失敗時可使用 Fix with AI。這些操作傳送相關綱要和 SQL，但不執行陳述式。<ui>套用到編輯器</ui> (Apply to Editor) 需要確認。",
-                "行內建議預設關閉。加入連線專屬 AI Rules，為每條訊息提供指令；它們是模型指令，不是強制執行的資料庫權限。"
-            ]
+            "title": "選擇 AI 服務商",
+            "text": [
+                "透過 API 金鑰、帳戶或本機模型使用 {aiProviders}。請求直接傳送給服務商，TablePro 不營運 AI 服務。助手免費，但服務商可能收費。",
+                "在編輯器中檢閱、解釋或最佳化陳述式，或修正執行失敗的陳述式。這些操作不會執行任何內容，建議只有在您套用後才會進入編輯器。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "除非在 <ui>設定 > AI</ui> (Settings > AI) 中允許，否則訊息不包含結果列。Linux 支援 {aiProvidersLinux}。"
+            ],
+            "docs": "/features/ai-assistant"
         },
         {
             "id": "agent-mode",
             "title": "聊天模式與 Agent mode",
-            "paragraphs": [
-                "預設聊天模式 Ask 讀取綱要，不執行陳述式。Edit 可執行查詢；Agent 還可提出破壞性陳述式。在預設 {macSafeModeDefault} 層級下，Edit 和 Agent 寫入可能無需核准。Alert 及更嚴格層級確認寫入；Read-Only 拒絕寫入。破壞性陳述式一律需要確認。",
-                "全視窗 Agent mode與聊天中的 Agent 選項不同。它將連線保持在 Alert 或更嚴格層級，寫入會等待 Run。關閉模式後取消最低層級限制。工作階段保留在這台 Mac 上。"
+            "text": [
+                "預設的 Ask 讀取綱要，不執行任何內容。Edit 執行查詢，Agent 還可提出破壞性陳述式，兩者都遵循連線的 Safe Mode：Alert 及更嚴格層級確認寫入，Read-Only 拒絕寫入。全視窗 Agent mode 在運作期間將連線保持在 Alert 或更嚴格層級。"
             ],
-            "asset": "mac-agent-mode",
-            "links": [
-                {
-                    "label": "Safe Mode 等級",
-                    "href": "/features/data-editing#safe-mode"
-                }
-            ]
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/agent-mode",
+            "asset": "features-ai-mcp-agent"
         },
         {
             "id": "mcp",
-            "title": "連線外部 AI 用戶端",
-            "paragraphs": [
-                "內建 MCP 伺服器透過已儲存連線提供存取，不暴露密碼。預設關閉，僅監聽 {mcpHost}。可自行啟用，或由已設定用戶端啟動。",
-                "用戶端可檢查綱要，並使用獲准的查詢、物件和管理工具。呼叫及陳述式摘要記錄在本機；已執行查詢也會出現在查詢歷史中。"
+            "also": [
+                "connect",
+                "permissions"
             ],
-            "asset": "mac-mcp-settings",
-            "blocks": [
-                {
-                    "id": "connect",
-                    "title": "連接用戶端",
-                    "paragraphs": [
-                        "在 <ui>設定 > MCP</ui> (Settings > MCP) 中查看 {mcpSetupClients} 的設定說明。內建 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}，並在需要時啟動 App。Raycast 使用單獨的配對流程，需要核准。",
-                        "例如，讓用戶端尋找重複信箱地址。它可檢查綱要、確定欄位，並透過已儲存連線執行獲准的 SELECT。"
-                    ]
-                },
-                {
-                    "id": "permissions",
-                    "title": "用戶端允許執行的操作",
-                    "paragraphs": [
-                        "每次呼叫都經過以下所有檢查，以最嚴格的限制為準。"
-                    ],
-                    "points": [
-                        "權杖範圍：Read Only、Read & Write 或 Full Access，可限定到指定連線。橋接使用 Read & Write，不允許破壞性陳述式。",
-                        "External Clients：每個連線選擇 Blocked、Read Only（預設）或 Read & Write。Blocked 連線不顯示在清單中。",
-                        "連線核准：每次詢問、每個連線一次，或從不詢問。",
-                        "AI 政策：設為 Never 的連線也拒絕 MCP 用戶端。",
-                        "Safe Mode：確認遵循連線層級。DROP 和 TRUNCATE 需要 Full Access，且每次都需核准。檔案存取和伺服器端程式碼執行陳述式會被拒絕。"
-                    ]
-                }
-            ]
-        },
+            "title": "透過 MCP 連接 AI 用戶端",
+            "text": [
+                "內建 MCP 伺服器讓 {mcpSetupClients} 等用戶端使用您已儲存的連線，但看不到密碼。它在您開啟前保持關閉，僅監聽 {mcpHost}，並記錄每次呼叫。",
+                "每次呼叫都會經過權杖範圍、連線的 External Clients 層級、核准設定和 Safe Mode 檢查，以最嚴格者為準。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "在 Linux 上，伺服器透過 HTTP 提供 {mcpToolCountLinux} 個工具。"
+            ],
+            "docs": "/features/mcp",
+            "asset": "features-ai-mcp-mcp"
+        }
+    ],
+    "more": [
         {
             "id": "outside-servers",
-            "title": "使用外部 MCP 工具",
-            "paragraphs": [
-                "TablePro 助手也可透過 Streamable HTTP 呼叫外部 MCP 伺服器。除本機伺服器外必須使用 HTTPS。為每個伺服器選擇可用連線；每次工具呼叫都需點擊確認。伺服器設定保留在這台 Mac。"
+            "title": "外部 MCP 工具",
+            "text": [
+                "助手可透過 Streamable HTTP 呼叫外部 MCP 伺服器。每次工具呼叫都會等待您點擊確認。"
             ]
         },
         {
             "id": "automation",
             "title": "自動化",
-            "paragraphs": [
-                "AppleScript 可在連線的 External Clients 等級和 Safe Mode 限制內連線、執行查詢和開啟資料表。<code>tablepro://</code> 連結開啟連線、資料表或查詢分頁；連結中的查詢在確認後填入，從不自行執行。<code>postgresql://</code> 等資料庫 URL 以連線形式開啟。",
-                "<code>tablepro</code> shell 指令在 App 中開啟這些 URL 和檔案，不從終端機執行查詢。官方 Raycast 擴充功能搜尋連線、資料表和查詢歷史，並透過已配對 App 執行查詢。"
+            "text": [
+                "AppleScript、<code>tablepro://</code> 連結和 Raycast 擴充功能可在各連線的限制內開啟連線並執行查詢。"
             ],
-            "links": [{ "label": "整合", "href": "/integrations" }]
+            "links": [
+                {
+                    "label": "整合",
+                    "href": "/integrations"
+                }
+            ]
         },
         {
             "id": "privacy",
             "title": "資料傳送到哪裡",
-            "paragraphs": [
-                "提示、綱要和附件依服務商條款直接傳送。本機提供的模型會將其保留在機器上。TablePro 不接收這些內容。外部 MCP 用戶端依自己的設定和條款處理存取的資料。",
-                "新增 GitHub Copilot 時，向 GitHub 傳送遙測的選項預設開啟；可在 Copilot 設定處關閉。"
+            "text": [
+                "提示和綱要依服務商條款傳送給服務商，使用本機模型時則保留在您的電腦上。TablePro 不接收這些內容。"
             ],
             "links": [
                 {
-                    "label": "Mac App 傳送的內容",
+                    "label": "App 傳送的內容",
                     "href": "/privacy#ai-tools"
                 }
             ]
-        },
-        {
-            "id": "iphone",
-            "title": "可用平台",
-            "paragraphs": [
-                "iPhone 和 iPad App 沒有本頁的 AI、MCP 和自動化工具。"
-            ],
-            "links": [
-                {
-                    "label": "iPhone 與 iPad App 的功能",
-                    "href": "/ios"
-                }
-            ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "使用自選供應商的 AI 聊天",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "{aiProvidersLinux}"
-        },
-        {
-            "label": "Review、Explain、Optimize 與 Fix with AI",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "行內建議與 AI Rules",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "行內建議；不支援 AI Rules"
-        },
-        {
-            "label": "Agent mode",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "MCP 伺服器",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "{mcpToolCountLinux} 個工具，僅限 HTTP"
-        },
-        {
-            "label": "外部 MCP 伺服器",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AppleScript 與 <code>tablepro</code> shell 指令",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "<code>tablepro</code> 指令可開啟檔案"
-        },
-        {
-            "label": "Raycast 擴充功能",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Cursor 無法呼叫 TablePro 工具，因此以 Cursor 為供應商時，Edit 和 Agent 不執行查詢。本機模型僅在模型支援時呼叫工具。",
-        "Claude Agent 使用 Claude Code 登入，並透過必須開啟的 MCP 伺服器存取結構。它依賴 Claude Code，可能因 Claude Code 更新而失效。",
-        "MCP 伺服器僅監聽 {mcpHost}。從其他機器存取需要自行轉送連接埠，並自行承擔由此帶來的暴露風險。",
-        "Mac App 沒有捷徑動作，可透過 AppleScript、連結或 MCP 伺服器自動化。",
-        "Agent 工作階段和外部 MCP 伺服器僅保留在設定它們的 Mac 上，不同步。"
-    ],
-    "docs": [
-        {
-            "label": "AI 助理",
-            "docs": "/features/ai-assistant"
-        },
-        {
-            "label": "Agent mode",
-            "docs": "/features/agent-mode"
-        },
-        {
-            "label": "MCP 伺服器",
-            "docs": "/features/mcp"
-        },
-        {
-            "label": "MCP 用戶端",
-            "docs": "/integrations/mcp-clients"
-        },
-        {
-            "label": "MCP 權杖與範圍",
-            "docs": "/developers/tokens"
-        },
-        {
-            "label": "外部 MCP 伺服器",
-            "docs": "/features/mcp-outside-servers"
-        },
-        {
-            "label": "AppleScript",
-            "docs": "/developers/applescript"
-        },
-        {
-            "label": "Raycast 擴充功能",
-            "docs": "/integrations/raycast"
-        }
-    ],
-    "related": [
-        {
-            "label": "Safe Mode",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "連線政策",
-            "href": "/features/connections#policies"
-        },
-        {
-            "label": "Mac App 傳送的內容",
-            "href": "/privacy#ai-tools"
-        },
-        {
-            "label": "比較 TablePro 與其他用戶端",
-            "href": "/compare"
         }
     ]
 }

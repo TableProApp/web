@@ -9,97 +9,105 @@
     },
     "header": {
         "title": "导入和导出",
-        "lead": "将文件导入支持的表，并导出表或查询结果。无需数据库连接即可打开 CSV、JSON 和 Excel 文件。",
-        "docs": "/features/import-export"
+        "lead": "将文件导入表，导出表和结果，无需数据库即可打开 CSV、JSON 或 Excel 文件。",
+        "docs": "/features/import-export",
+        "asset": "mac-home-import-export"
     },
-    "sections": [
-        {
-            "id": "import",
-            "title": "将文件导入表",
-            "paragraphs": [
-                "导入 {importFormats} 文件。数据格式通过列映射写入已有或新表；Excel 仅导入首个工作表。SQL 文件作为语句运行，包括 <code>.sql.gz</code> 转储和使用 <code>GO</code> 的 SQL Server 脚本。",
-                "除非禁用，导入使用一个事务。可选择失败行处理方式：回滚、保留已导入行或跳过失败。跳过的行可导出为 CSV 供检查。"
-            ],
-            "engines": [
-                {
-                    "label": "不支持导入的引擎",
-                    "list": "noImport"
-                }
-            ],
-            "asset": "mac-import-mapping",
-            "blocks": [
-                {
-                    "id": "mappings",
-                    "title": "已保存映射和编码",
-                    "paragraphs": [
-                        "复用已保存的 CSV、JSON 和 Excel 列映射。<ui>Match by Name</ui> 按字段名映射；<ui>Match by Position</ui> 适用于 CSV 和 Excel。CSV 和 SQL 也支持 UTF-16 及部分日语、中文、韩语编码。"
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
-        },
+    "bands": [
         {
             "id": "export",
             "title": "导出表和结果",
-            "paragraphs": [
-                "将表和视图导出为 {exportFormats}，流式输出超过表格行数上限的数据。SQL 引擎支持逐表筛选、限制和列选择。SQL 导出可包含结构；Excel 每表一张工作表。MongoDB 支持 mongosh 脚本导出，不支持 SQL 导出；Redis 也没有 SQL 导出。",
-                "<ui>导出结果</ui> (Export Results) 重新运行受行数限制的查询，流式输出完整结果。通过 <ui>设置 > 插件</ui> (Settings > Plugins) 中的免费插件添加 {exportPluginFormats} 导出，每表一个文件。"
+            "text": [
+                "将表和视图导出为 {exportFormats}，流式输出超过表格行数上限的数据。SQL 引擎支持逐表设置筛选、限制和列列表，SQL 导出可包含结构。<ui>导出结果</ui> (Export Results) 重新运行受行数限制的查询以写出完整结果，免费插件可添加 {exportPluginFormats}。"
             ],
-            "asset": "mac-export-dialog"
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "除非关闭该选项，SQL 导出会在每个表前加入 DROP TABLE IF EXISTS。"
+            ],
+            "docs": "/features/import-export"
+        },
+        {
+            "id": "import",
+            "also": [
+                "mappings"
+            ],
+            "title": "将文件导入表",
+            "text": [
+                "将 {importFormats} 文件导入新表或已有表，列映射可保存供下次使用。SQL 文件作为语句运行，包括 <code>.sql.gz</code> 转储和使用 <code>GO</code> 的 SQL Server 脚本。除非关闭，导入使用一个事务；出现失败行时，可回滚、保留已导入的行，或跳过失败行并将其导出。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux 可将 CSV 导入已有表，并导入 SQL 文件。iPhone 和 iPad 通过快捷指令添加行。"
+            ],
+            "engines": [
+                {
+                    "label": "不支持导入：",
+                    "list": "noImport"
+                }
+            ],
+            "docs": "/features/import-export",
+            "asset": "features-import-export-import"
         },
         {
             "id": "data-files",
+            "also": [
+                "open-and-clean",
+                "statistics"
+            ],
             "title": "Data Files",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "open-and-clean",
-                    "title": "编辑数据文件",
-                    "paragraphs": [
-                        "将分隔文本、JSON 和 JSON Lines 作为表打开并编辑。可筛选、搜索、替换文本或删除重复行。Excel 工作表和 <code>.csv.gz</code> 等压缩文件只读。",
-                        "更改在保存前保留在私有副本中。保存时写入原始格式，并保留未修改行。"
-                    ],
-                    "asset": "mac-data-files-window"
-                },
-                {
-                    "id": "statistics",
-                    "title": "查看列统计后导出或导入",
-                    "paragraphs": [
-                        "检查空值和不同值的数量、范围及常见值。点击值进行筛选，再导出文件，或在已打开连接上使用 <ui>Import into Table</ui>。"
-                    ],
-                    "asset": "mac-data-files-statistics"
-                }
-            ]
+            "text": [
+                "无需连接，即可将分隔文本、JSON 和 JSON Lines 作为表打开。可筛选、替换文本、删除重复行并查看各列统计，然后以原始格式保存或导入表中。Excel 和压缩文件以只读方式打开。"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/data-files",
+            "asset": "features-import-export-data-files"
         },
         {
             "id": "backup",
             "title": "备份和恢复",
-            "paragraphs": [
-                "Backup Dump 和 Restore Dump 使用 {backupTools} 及连接的 SSH、TLS 设置。所需命令行工具须自行安装；DuckDB 除外，它自行写入数据库或 Parquet 转储。",
-                "{serverSideExport} 上的 Server-Side Export 通过 Oracle Data Pump、Snowflake 暂存区或 Cloud Storage 写入。导出数据不经过 Mac。"
+            "text": [
+                "Backup Dump 和 Restore Dump 使用连接的 SSH 和 TLS 设置运行 {backupTools}；除 DuckDB 外，工具需自行安装。{serverSideExport} 上的 Server-Side Export 通过 Oracle Data Pump、Snowflake 暂存区或 Cloud Storage 写入，数据不经过您的 Mac。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "Linux 无需外部工具即可写出 SQL 转储。"
             ],
             "engines": [
                 {
-                    "label": "Backup Dump 及其工具",
+                    "label": "Backup Dump：",
                     "list": "backupEngines"
                 }
             ],
-            "asset": "mac-backup-dump"
-        },
+            "docs": "/features/backup-restore",
+            "asset": "features-import-export-backup"
+        }
+    ],
+    "more": [
         {
             "id": "files",
             "title": "作为数据库的文件",
-            "paragraphs": [
-                "SQLite 和 DuckDB 文件从 Finder 以连接形式打开。DuckDB 也可将 Parquet、CSV 和 JSON 文件读取为只读视图，因此 <code>.parquet</code> 文件会作为 DuckDB 连接打开，而非进入 Data Files。SSH 服务器上的 SQLite 数据库可通过一个小型代理程序直接访问（服务器需安装 Python 3.6 或更高版本），或打开为只读副本。",
-                "<code>.sql</code> 文件以查询标签页打开并保存回磁盘，Beancount 账本以一组只读表打开。"
+            "text": [
+                "SQLite 和 DuckDB 文件可从 Finder 以连接形式打开。SSH 服务器上的 SQLite 文件可直接访问，或打开为只读副本；DuckDB 将 Parquet、CSV 和 JSON 读取为视图。"
             ],
             "links": [
                 {
-                    "label": "在 TablePro 中使用 SQLite",
+                    "label": "SQLite",
                     "href": "/sqlite-client"
                 },
                 {
-                    "label": "在 TablePro 中使用 DuckDB",
+                    "label": "DuckDB",
                     "href": "/duckdb-client"
                 }
             ]
@@ -107,8 +115,8 @@
         {
             "id": "between-databases",
             "title": "从一个数据库到另一个数据库",
-            "paragraphs": [
-                "无需中间文件即可在支持的连接间复制或传输表。类型转换和检查详情见 Schema。"
+            "text": [
+                "无需中间文件，即可在连接间复制或传输表。"
             ],
             "links": [
                 {
@@ -120,9 +128,8 @@
         {
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
-            "paragraphs": [
-                "iPhone 和 iPad 应用从已加载的行中，将行和查询结果复制或分享为 JSON、CSV 或 SQL INSERT 语句。复制内容仅留在该设备剪贴板，不会与其他设备共享。",
-                "通过快捷指令的 Add Row to Table 和 Add Rows to Table 操作可导入行，接受 JSON 或 CSV 文本或文件，并遵循连接的 Safe Mode。iPhone 和 iPad 不提供导入面板、文件导出、Data Files 窗口或备份。"
+            "text": [
+                "将行复制或分享为 JSON、CSV 或 INSERT 语句，并通过快捷指令操作添加行。"
             ],
             "links": [
                 {
@@ -130,110 +137,6 @@
                     "href": "/ios#automation"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "将文件导入表",
-            "ios": "partial",
-            "iosNote": "通过快捷指令从 JSON 或 CSV 导入",
-            "linux": "partial",
-            "linuxNote": "CSV 导入现有表，以及 SQL 文件"
-        },
-        {
-            "label": "已保存映射、Match by Name 和 Match by Position",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "将表和结果导出为文件",
-            "ios": "partial",
-            "iosNote": "复制或分享为 JSON、CSV 或 SQL INSERT",
-            "linux": "yes"
-        },
-        {
-            "label": "{exportPluginFormats} 导出插件",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Files 窗口",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Backup Dump 和 Restore Dump",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "无需外部工具的 SQL 转储"
-        },
-        {
-            "label": "Server-Side Export",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "SQLite 和 DuckDB 文件",
-            "ios": "partial",
-            "iosNote": "设备上的文件，或内存中的 DuckDB",
-            "linux": "yes"
-        },
-        {
-            "label": "通过 SSH 访问 SQLite 文件",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "SQL 导出默认在每表前包含 DROP TABLE IF EXISTS，除非取消勾选。因此，在需要保留表的数据库上执行文件前，请检查选项。",
-        "Backup Dump 使用自行安装的命令行工具，仅支持列出的引擎。工具通过环境变量或临时文件获取密码。sqlpackage 例外：它在命令行接收 SQL Server 密码，Mac 上的其他进程可以读取；TablePro 会在启动前征求确认。",
-        "Restore Dump 会替换 MySQL 或 MariaDB 转储中的表。其他引擎不会替换已存在的对象，SQL Server 的 <code>.bacpac</code> 需要空数据库。",
-        "通过 SSH 打开数据库文件仅支持 SQLite。",
-        "S3 的 httpfs、Iceberg、Delta 等非内置 DuckDB 扩展，会在查询首次需要时从 DuckDB 自有服务器下载。",
-        "当前 App Store 版本的快捷指令操作仅以 UTF-8 读取 CSV 和 JSON，CSV 仅支持 LF 换行。"
-    ],
-    "docs": [
-        {
-            "label": "导入和导出",
-            "docs": "/features/import-export"
-        },
-        {
-            "label": "Data Files",
-            "docs": "/features/data-files"
-        },
-        {
-            "label": "备份和还原",
-            "docs": "/features/backup-restore"
-        },
-        {
-            "label": "远程数据库文件",
-            "docs": "/connections/remote-database-files"
-        },
-        {
-            "label": "SQL 文件",
-            "docs": "/features/sql-files"
-        },
-        {
-            "label": "插件",
-            "docs": "/features/plugins"
-        }
-    ],
-    "related": [
-        {
-            "label": "结构、对比和同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "在 TablePro 中使用 SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "在 TablePro 中使用 DuckDB",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "适用于 iPhone 和 iPad 的 TablePro",
-            "href": "/ios"
         }
     ]
 }

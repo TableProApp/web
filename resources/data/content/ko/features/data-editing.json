@@ -9,211 +9,124 @@
     },
     "header": {
         "title": "데이터 편집",
-        "lead": "행을 필터링하고 외래 키를 따라가며 그리드에서 값을 편집하세요. 변경은 저장할 때 적용되며 SQL을 먼저 확인할 수 있습니다.",
-        "docs": "/features/change-tracking"
+        "lead": "행을 필터링하고 외래 키를 따라가며 그리드에서 편집하세요. 저장하기 전에는 아무것도 기록되지 않으며 SQL을 먼저 확인할 수 있습니다.",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "필요한 행 찾기",
-            "paragraphs": [
-                "정렬과 페이지 처리는 서버에서 실행되므로 큰 테이블은 첫 페이지부터 열립니다. {countEstimate}개 행을 넘으면 행 수는 추정치이며 실제 수가 필요하면 Count Exactly를 사용합니다."
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "필터 및 강조 규칙",
-                    "paragraphs": [
-                        "{filterOperatorCount}개 연산자나 SQL 조건으로 필터를 만들고 저장해 재사용하세요. 강조 규칙은 일치하는 행이나 셀에 색을 표시하며 이 Mac에만 저장됩니다."
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "외래 키와 JSON",
-                    "paragraphs": [
-                        "외래 키로 참조 행을 열거나 현재 위치에서 미리 보세요. 값 선택기로 참조 행을 고를 수 있습니다. JSON 값은 트리 뷰어나 텍스트 편집기로 엽니다."
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "필요한 행 찾기",
+            "text": [
+                "정렬과 페이지 처리는 서버에서 실행되므로 큰 테이블은 첫 페이지부터 열립니다. {filterOperatorCount}개 연산자나 SQL 조건으로 필터링하고, 자주 쓰는 필터를 저장하고, 강조 규칙으로 일치하는 행이나 셀에 색을 표시하세요.",
+                "외래 키를 따라 참조 행으로 이동하거나 현재 위치에서 미리 보고, JSON 값을 트리로 여세요."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "저장된 필터와 강조 규칙은 만든 Mac에만 남습니다."
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "저장 전 편집 검토",
-            "paragraphs": [
-                "편집, 새 행, 삭제는 <kbd>⌘S</kbd>로 저장할 때까지 탭에 남습니다. <ui>SQL 미리보기</ui> (Preview SQL)로 대기 중인 구문을 확인하세요. 저장은 바인딩된 매개변수를 사용하고 영향받은 행 수를 검증하며 지원되는 엔진에서는 트랜잭션과 롤백도 사용합니다."
+            "text": [
+                "편집, 새 행, 삭제는 <kbd>⌘S</kbd>를 누를 때까지 탭에서 대기합니다. <ui>SQL 미리보기</ui> (Preview SQL)로 구문을 먼저 확인하고, 저장 전까지 실행 취소할 수 있습니다. 저장은 영향받은 행 수를 확인하며 엔진이 지원하면 트랜잭션 안에서 실행됩니다.",
+                "각 타입에 맞는 편집기를 제공합니다: 날짜, ENUM 및 SET 목록, 배열, JSON, 바이너리 값용 16진수, 이미지."
             ],
-            "points": [
-                "열 유형별 셀 편집기: 날짜·시간 선택기, ENUM 및 SET 목록, 배열, JSON, 바이너리 값용 16진수 편집기와 이미지 뷰어.",
-                "저장할 때까지 각 탭에서 실행 취소 및 다시 실행.",
-                "조인, CTE 또는 UNION 없이 단일 테이블을 읽는 쿼리 결과는 편집할 수 있습니다.",
-                "행을 CSV, JSON, Markdown, IN 목록 또는 INSERT·UPDATE 문으로 복사합니다."
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux와 iPhone, iPad에서는 행을 편집하려면 기본 키가 필요합니다. 조인, CTE 또는 UNION 결과는 모든 플랫폼에서 읽기 전용입니다."
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "연결별로 {macSafeModeLevels} 중에서 선택하세요. 기본 {macSafeModeDefault}는 확인 없이 구문을 실행합니다. Alert는 쓰기를 확인하며 Safe Mode는 Touch ID 또는 암호 승인도 요구합니다. Full 수준은 읽기도 확인합니다. Read-Only는 쓰기와 편집을 차단합니다. Safe Mode는 무료입니다.",
-                "DROP, TRUNCATE, WHERE 없는 DELETE는 항상 확인이 필요합니다. 전체 창 Agent mode는 최소 Alert를 적용합니다. 읽기 전용 엔진이나 조직의 기기 관리 정책도 실제 수준을 높일 수 있습니다."
+            "text": [
+                "연결마다 수준을 지정하세요. 기본값인 {macSafeModeDefault}에서는 묻지 않고 구문을 실행합니다. Alert는 쓰기를 확인하고, Safe Mode는 Touch ID 또는 암호를 추가로 요구하며, Full 수준은 읽기도 확인하고, Read-Only는 쓰기를 차단합니다. DROP, TRUNCATE, WHERE 없는 DELETE는 항상 확인합니다. Safe Mode는 무료입니다."
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                {
-                    "label": "Safe Mode 및 기타 연결 정책",
-                    "href": "/features/connections#policies"
-                },
-                {
-                    "label": "Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux는 {linuxSafeModeLevels} 수준을 제공합니다. iPhone과 iPad는 {iosSafeModeLevels} 수준을 제공합니다."
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "<ui>이전 값 복원</ui> (Restore Previous Values)로 저장 시 바뀐 값을 검토하고 복원하세요. 저장 이후 변경된 행은 표시됩니다. 복원은 Safe Mode를 따르며 지원되는 엔진에서는 하나의 트랜잭션으로 진행됩니다.",
-                "이전 값은 이 Mac에 암호화해 {rewindDays}일 동안 보관하며 동기화하지 않습니다. 유료 플랜이 끝나면 기록과 복원이 중단됩니다."
+            "text": [
+                "저장한 뒤 <ui>이전 값 복원</ui> (Restore Previous Values)로 저장 때 바뀐 값을 되돌리세요. 검토 화면은 그 후 변경된 행을 표시하며, 복원은 Safe Mode를 따르고 엔진이 허용하면 하나의 트랜잭션으로 진행됩니다. 이전 값은 이 Mac에 {rewindDays}일 동안 암호화되어 보관되며 동기화하지 않습니다."
             ],
             "paid": [
                 "data-rewind"
             ],
-            "asset": "mac-data-rewind-review"
-        },
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "백업이 아닙니다. 트리거, 연쇄 작업, TablePro 외부의 변경은 되돌리지 않습니다."
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "문서 및 키",
-            "paragraphs": [
-                "MongoDB 문서를 Extended JSON으로 편집하거나 컬렉션 전체의 필드 이름을 바꾸고 제거하세요. Redis에서는 그리드로 문자열, 키 이름, TTL을 바꾸고 문자열, 해시, 목록, 집합, 정렬 집합 키를 추가합니다. 다른 타입의 값은 편집기 명령으로 바꾸세요."
+            "text": [
+                "MongoDB 문서를 Extended JSON으로 편집하고, Redis 문자열, 키 이름, TTL을 그리드에서 편집하세요."
             ],
             "links": [
                 {
-                    "label": "TablePro의 MongoDB",
+                    "label": "MongoDB",
                     "href": "/mongodb-client"
                 },
                 {
-                    "label": "TablePro의 Redis",
+                    "label": "Redis",
                     "href": "/redis-gui"
                 }
             ]
         },
         {
+            "id": "copy-rows",
+            "title": "행 복사",
+            "text": [
+                "행을 CSV, JSON, Markdown, IN 목록 또는 INSERT·UPDATE 문으로 복사하세요."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "iPhone과 iPad에서",
-            "paragraphs": [
-                "행을 카드로 보고 정렬하거나 필터링하며 외래 키를 눌러 참조 행을 미리 보세요. 값을 편집하거나 NULL로 설정할 수 있습니다. 편집과 삭제에는 기본 키가 필요합니다. 새 행은 DEFAULT 값으로 시작하며 NULL이나 빈 문자열도 선택할 수 있습니다.",
-                "모바일 Safe Mode는 {iosSafeModeLevels}를 제공하며 기본값은 {iosSafeModeDefault}입니다. 편집 준비, Preview SQL, 강조 규칙, Data Rewind는 iPhone 및 iPad 앱에는 없습니다."
+            "text": [
+                "행은 정렬, 필터링, 편집할 수 있는 카드로 표시됩니다. 편집과 삭제에는 기본 키가 필요합니다."
             ],
             "links": [
                 {
                     "label": "iPhone과 iPad에서 탐색 및 편집",
                     "href": "/ios#browse"
-                },
-                {
-                    "label": "iPhone과 iPad의 Safe Mode",
-                    "href": "/ios#safe-mode"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "정렬, 페이지 처리 및 필터",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "저장된 필터 및 강조 규칙",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "외래 키 탐색 및 값 선택기",
-            "ios": "partial",
-            "iosNote": "탭하여 참조 행 미리 보기",
-            "linux": "partial",
-            "linuxNote": "탐색만; 값 선택기 없음"
-        },
-        {
-            "label": "행 편집, 삽입 및 삭제",
-            "ios": "partial",
-            "iosNote": "행 편집기; 기본 키 필요",
-            "linux": "partial",
-            "linuxNote": "기본 키 필요"
-        },
-        {
-            "label": "편집 보류, Preview SQL 및 실행 취소",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "편집 보류 및 실행 취소; Preview SQL 없음"
-        },
-        {
-            "label": "Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "쓰기 전 Touch ID 또는 비밀번호 확인",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Rewind",
-            "paid": "data-rewind",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "MongoDB 문서 및 Redis 키",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Redis 키는 명령으로만 변경"
-        }
-    ],
-    "limits": [
-        "Data Rewind는 백업이 아닙니다. 트리거, 연쇄 작업 또는 TablePro 외부의 변경을 되돌리지 않으며 기본 키 없는 행, {rewindMaxValue} MB를 넘는 값 또는 서버가 계산한 값을 복원할 수 없습니다.",
-        "WHERE 없는 UPDATE는 일반 쓰기 작업으로 Alert 이상의 수준에서만 먼저 확인합니다.",
-        "조인, CTE 또는 UNION의 결과는 그리드에서 읽기 전용입니다. 편집하려면 테이블을 여세요."
-    ],
-    "docs": [
-        {
-            "label": "데이터 그리드",
-            "docs": "/features/data-grid"
-        },
-        {
-            "label": "필터링",
-            "docs": "/features/filtering"
-        },
-        {
-            "label": "변경 추적 및 Preview SQL",
-            "docs": "/features/change-tracking"
-        },
-        {
-            "label": "Data Rewind",
-            "docs": "/features/change-tracking#restoring-a-save"
-        },
-        {
-            "label": "Safe Mode",
-            "docs": "/features/safe-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "쿼리",
-            "href": "/features/querying"
-        },
-        {
-            "label": "스키마",
-            "href": "/features/schema"
-        },
-        {
-            "label": "유료 플랜의 추가 기능",
-            "href": "/pricing#features"
         }
     ]
 }

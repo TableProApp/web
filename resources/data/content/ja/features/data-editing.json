@@ -9,211 +9,124 @@
     },
     "header": {
         "title": "データ編集",
-        "lead": "行をフィルターし、外部キーをたどり、グリッドで値を編集できます。変更は保存するまで反映されず、先に SQL を確認できます。",
-        "docs": "/features/change-tracking"
+        "lead": "行をフィルターし、外部キーをたどり、グリッドで編集できます。保存するまで何も書き込まず、先に SQL を確認できます。",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "必要な行を探す",
-            "paragraphs": [
-                "並べ替えとページ分割はサーバー上で行うため、大きなテーブルは最初のページから開きます。{countEstimate} 行を超えると行数は推定値になり、正確な数が必要な場合は Count Exactly を使えます。"
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "フィルターとハイライトルール",
-                    "paragraphs": [
-                        "{filterOperatorCount} 個の演算子や SQL 条件でフィルターを作り、保存して再利用できます。ハイライトルールは一致する行やセルを色付けし、この Mac に保存します。"
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "外部キーと JSON",
-                    "paragraphs": [
-                        "外部キーから参照先の行へ移動するか、その場でプレビューできます。値の選択画面で参照先の行を選べます。JSON 値はツリービューやテキストエディターで開けます。"
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "必要な行を探す",
+            "text": [
+                "並べ替えとページ分割はサーバー上で行うため、大きなテーブルも最初のページから開きます。{filterOperatorCount} 個の演算子や SQL 条件でフィルターし、よく使うフィルターを保存できます。ハイライトルールで一致する行やセルを色付けします。",
+                "外部キーから参照先の行に移動するか、その場でプレビューできます。JSON 値はツリーで開けます。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "保存済みフィルターとハイライトルールは、作成した Mac に残ります。"
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "保存前に編集内容を確認",
-            "paragraphs": [
-                "編集、新しい行、削除は <kbd>⌘S</kbd> で保存するまでタブ内に留まります。<ui>Preview SQL</ui> で保留中の文を確認できます。保存はバインドパラメーターと影響行数の確認を使い、対応エンジンではトランザクションとロールバックも使います。"
+            "text": [
+                "編集、新しい行、削除は <kbd>⌘S</kbd> を押すまでタブ内に留まります。<ui>Preview SQL</ui> で先に文を確認でき、保存するまで取り消せます。保存時は影響行数を確認し、エンジンが対応していればトランザクション内で実行します。",
+                "型ごとに専用のエディターを使います：日付、ENUM と SET のリスト、配列、JSON、バイナリ値の 16 進表示、画像。"
             ],
-            "points": [
-                "型に合ったセルエディター：日時選択、ENUM と SET のリスト、配列、JSON、バイナリ値の 16 進エディター、画像ビューアー。",
-                "保存するまで、各タブで取り消しとやり直し。",
-                "JOIN、CTE、UNION がなく、単一テーブルを読むクエリの結果は編集可能。",
-                "行を CSV、JSON、Markdown、IN リスト、INSERT や UPDATE 文としてコピー。"
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux と iPhone・iPad では、行の編集に主キーが必要です。JOIN、CTE、UNION の結果はどの環境でも読み取り専用です。"
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "接続ごとに {macSafeModeLevels} から選べます。既定の {macSafeModeDefault} は確認なしで実行します。Alert は書き込みを確認し、Safe Mode は Touch ID かパスワードの承認も求めます。Full レベルは読み取りも確認します。Read-Only は書き込みと編集をブロックします。Safe Mode は無料です。",
-                "DROP、TRUNCATE、WHERE のない DELETE は常に確認が必要です。全画面の Agent modeは最低でも Alert を適用します。読み取り専用エンジンや組織の端末管理ポリシーによって、実際のレベルが上がる場合もあります。"
+            "text": [
+                "接続ごとにレベルを設定します。既定の {macSafeModeDefault} は確認なしで文を実行します。Alert は書き込みを確認し、Safe Mode は Touch ID かパスワードを追加で求めます。Full レベルは読み取りも確認し、Read-Only は書き込みをブロックします。DROP、TRUNCATE、WHERE のない DELETE は常に確認が必要です。Safe Mode は無料です。"
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                {
-                    "label": "Safe Mode とその他の接続ポリシー",
-                    "href": "/features/connections#policies"
-                },
-                {
-                    "label": "Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux は {linuxSafeModeLevels} を提供します。iPhone と iPad は {iosSafeModeLevels} を提供します。"
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "<ui>Restore Previous Values</ui> で保存時に置き換えた値を確認・復元できます。その保存後に変わった行を示します。復元は Safe Mode に従い、対応エンジンでは一つのトランザクションで行います。",
-                "以前の値はこの Mac 上で暗号化して {rewindDays} 日間保持し、同期しません。有料プランが終了すると記録と復元は停止します。"
+            "text": [
+                "保存後、<ui>Restore Previous Values</ui> で置き換えた値を戻せます。確認画面ではその後に変わった行を示します。復元は Safe Mode に従い、エンジンが対応していれば一つのトランザクションで行います。以前の値はこの Mac 上で暗号化して {rewindDays} 日間保持し、同期しません。"
             ],
             "paid": [
                 "data-rewind"
             ],
-            "asset": "mac-data-rewind-review"
-        },
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "バックアップではありません。トリガー、カスケード、TablePro 外での変更は元に戻りません。"
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "ドキュメントとキー",
-            "paragraphs": [
-                "MongoDB ドキュメントを Extended JSON で編集し、コレクション全体でフィールド名変更・削除ができます。Redis はグリッドで文字列、キー名、TTL を編集し、文字列、ハッシュ、リスト、セット、ソート済みセットのキーを追加できます。他の値の型はエディターのコマンドで変更します。"
+            "text": [
+                "MongoDB ドキュメントを Extended JSON で編集し、Redis の文字列、キー名、TTL をグリッドで編集できます。"
             ],
             "links": [
                 {
-                    "label": "TablePro で使う MongoDB",
+                    "label": "MongoDB",
                     "href": "/mongodb-client"
                 },
                 {
-                    "label": "TablePro で使う Redis",
+                    "label": "Redis",
                     "href": "/redis-gui"
                 }
             ]
         },
         {
+            "id": "copy-rows",
+            "title": "行をコピー",
+            "text": [
+                "行を CSV、JSON、Markdown、IN リスト、INSERT 文や UPDATE 文としてコピーできます。"
+            ]
+        },
+        {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "カード形式で行を参照し、ソートやフィルター、外部キーの行プレビューができます。値を編集したり NULL に設定できます。編集と削除には主キーが必要です。新しい行は DEFAULT で始まり、NULL や空文字列も選べます。",
-                "モバイルの Safe Mode は {iosSafeModeLevels} を提供し、初期値は {iosSafeModeDefault} です。編集の一時保存、Preview SQL、ハイライトルール、Data Rewind は iPhone・iPad アプリにはありません。"
+            "text": [
+                "行はカードとして表示され、並べ替え、フィルター、編集ができます。編集と削除には主キーが必要です。"
             ],
             "links": [
                 {
                     "label": "iPhone と iPad で閲覧・編集",
                     "href": "/ios#browse"
-                },
-                {
-                    "label": "iPhone と iPad の Safe Mode",
-                    "href": "/ios#safe-mode"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "並べ替え、ページ分割とフィルター",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "保存済みフィルターとハイライトルール",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "外部キーの移動と値の選択",
-            "ios": "partial",
-            "iosNote": "タップして参照先の行をプレビュー",
-            "linux": "partial",
-            "linuxNote": "移動のみ、値の選択なし"
-        },
-        {
-            "label": "行の編集、挿入と削除",
-            "ios": "partial",
-            "iosNote": "行エディター、主キーが必要",
-            "linux": "partial",
-            "linuxNote": "主キーが必要"
-        },
-        {
-            "label": "編集の保留、Preview SQL と取り消し",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "編集の保留と取り消し、Preview SQL なし"
-        },
-        {
-            "label": "Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "書き込み前に Touch ID やパスワードで確認",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Rewind",
-            "paid": "data-rewind",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "MongoDB ドキュメントと Redis キー",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Redis キーの変更はコマンドのみ"
-        }
-    ],
-    "limits": [
-        "Data Rewind はバックアップではありません。トリガー、カスケードや TablePro 外の変更は戻せず、主キーのない行、{rewindMaxValue} MB を超える値やサーバーが計算した値は復元できません。",
-        "WHERE のない UPDATE は通常の書き込みです。Alert 以上のレベルの場合にだけ事前確認します。",
-        "JOIN、CTE、UNION の結果はグリッドで読み取り専用です。編集するにはテーブルを開いてください。"
-    ],
-    "docs": [
-        {
-            "label": "データグリッド",
-            "docs": "/features/data-grid"
-        },
-        {
-            "label": "フィルター",
-            "docs": "/features/filtering"
-        },
-        {
-            "label": "変更追跡と Preview SQL",
-            "docs": "/features/change-tracking"
-        },
-        {
-            "label": "Data Rewind",
-            "docs": "/features/change-tracking#restoring-a-save"
-        },
-        {
-            "label": "Safe Mode",
-            "docs": "/features/safe-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "クエリ",
-            "href": "/features/querying"
-        },
-        {
-            "label": "スキーマ",
-            "href": "/features/schema"
-        },
-        {
-            "label": "有料プランで増える機能",
-            "href": "/pricing#features"
         }
     ]
 }

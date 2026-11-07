@@ -95,29 +95,111 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "zh-Hant": "TablePro SQL 編輯器內的查詢將名為 recent_orders 的 CTE 與 users 聯結，自動完成清單顯示該 CTE 的欄位。"
+            "zh-Hant": "過去 7 天的 Query Insights，上方圖表按日顯示成功和失敗的查詢，下方為 Most Run、Slowest 和 Got Slower 清單，其中一種查詢形態標記為 Got Slower。"
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "zh-Hant": "TablePro SQL 編輯器的自動完成清單局部圖，列出 CTE 的欄位建議。"
+            "zh-Hant": "products 資料表內有四處等待儲存的價格修改，Preview SQL 面板列出對應的 UPDATE 陳述式。"
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "zh-Hant": "使用 :customer_id 和 :since 參數的查詢、輸入參數值的面板，以及查詢歷史抽屜。"
+            "zh-Hant": "shop 結構描述的 ER 圖顯示各資料表及其關聯，product_tags 表示為 products 和 tags 之間的多對多連線。"
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "zh-Hant": "orders 資料表查詢的 EXPLAIN Compare，顯示執行計畫從 Index Scan 變成 Seq Scan，查詢速度比基準更慢。"
+            "zh-Hant": "shop 和 shop_staging 之間的 Compare & Sync，列出長度不同的欄位，以及未加入指令碼的 DROP COLUMN。"
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "zh-Hant": "PostgreSQL 伺服器的 Server Dashboard 列出作用中的工作階段，選取了一項執行時間較長的 SELECT，並顯示 Terminate 按鈕。"
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "zh-Hant": "Data Files 視窗開啟 orders.csv 並搜尋 Hanoi，狀態列顯示 20,000 列中的 2,498 列。"
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "description": {
+            "zh-Hant": "Mac 上連到 shop 的 SQL 編輯器，查詢歷史面板已開啟並篩選出失敗的查詢，參數面板正在要求輸入 :customer_id。"
+        }
+    },
+    "features-querying-explain": {
+        "description": {
+            "zh-Hant": "shop (PostgreSQL) 上的 EXPLAIN：以圖表顯示的查詢計畫，EXPLAIN Compare 顯示與先前執行的耗時比較。"
+        }
+    },
+    "features-querying-charts": {
+        "description": {
+            "zh-Hant": "Mac SQL 編輯器的結果區域中，以長條圖顯示 shop 每月營收的查詢結果。"
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "zh-Hant": "在 Safe Mode 層級的連線上儲存編輯：表格上方顯示 Touch ID 或密碼提示，以及待執行的陳述式。"
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "zh-Hant": "shop 上的 Data Rewind：一次儲存的檢查畫面，列出變更列的先前值與目前值，並提供 Restore Previous Values。"
+        }
+    },
+    "features-schema-copy": {
+        "description": {
+            "zh-Hant": "從 shop (PostgreSQL) 到 MySQL 連線的 Copy To：執行前檢查 DDL、列數與型別轉換。"
+        }
+    },
+    "features-import-export-import": {
+        "description": {
+            "zh-Hant": "將 CSV 檔案匯入 shop 的 products 資料表：欄位對應、失敗列的選項與預覽。"
+        }
+    },
+    "features-import-export-backup": {
+        "description": {
+            "zh-Hant": "shop (PostgreSQL) 上的 Backup Dump：使用 pg_dump 的傾印選項與目的地檔案。"
+        }
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "zh-Hant": "shop 上的全視窗 Agent mode：聊天中的請求、Agent 提出的陳述式，以及等待核准的 Run 按鈕。"
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "description": {
+            "zh-Hant": "Mac 上的 Settings > MCP：伺服器開關、用戶端設定說明，以及各連線的 External Clients 層級。"
+        }
+    },
+    "features-connections-import": {
+        "description": {
+            "zh-Hant": "Mac 上的 Import from Other App：在另一個資料庫用戶端中找到的連線，各附一個核取方塊，可以匯入。"
+        }
+    },
+    "features-connections-network": {
+        "description": {
+            "zh-Hant": "連線表單的 SSH 分頁：位於跳板主機後方的主機、金鑰驗證，以及設為 Verify Identity 的 TLS 模式。"
+        }
+    },
+    "features-sync-and-teams-sync": {
+        "description": {
+            "zh-Hant": "Mac 上的 Settings > Sync：iCloud Sync 已開啟，並列出同步內容（連線、群組、設定、設定檔、喜好項目、已儲存查詢）。"
+        }
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "zh-Hant": "側邊欄中的 Team Library：隊友發佈的連線與已儲存查詢，並顯示每項查詢的最後修改者。"
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +225,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "zh-Hant": "products 資料表內有四處等待儲存的價格修改，Preview SQL 面板列出對應的 UPDATE 陳述式。"
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "zh-Hant": "Preview SQL 面板的局部圖，列出四處暫存價格修改對應的四項 UPDATE 陳述式。"
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "zh-Hant": "orders 資料表將已付款資料列標為綠色、已退款資料列標為橘色，並開啟了醒目提示規則彈出視窗。"
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "zh-Hant": "orders.user_id 外部索引鍵的值選擇器，搜尋 Silva 後按名字和姓氏列出使用者。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "zh-Hant": "標有紅色正式環境顏色的連線中，Safe Mode 在執行 orders 資料表的 DELETE 前顯示 Touch ID 提示。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "zh-Hant": "Safe Mode 在執行 DELETE 陳述式前顯示的 Touch ID 提示局部圖。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "zh-Hant": "Restore Previous Values 檢閱面板，三列標記為 Will restore，一列標記為 Changed since the save。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "zh-Hant": "reviews 資料表的 Structure 分頁內有等待儲存的新 CHECK 條件約束和新索引，DDL 預覽已開啟。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "zh-Hant": "DDL 預覽的局部圖，顯示向 reviews 資料表新增 CHECK 條件約束和索引的陳述式。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "zh-Hant": "shop 結構描述的 ER 圖顯示各資料表及其關聯，product_tags 表示為 products 和 tags 之間的多對多連線。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "zh-Hant": "ER 圖的局部圖，顯示 products 與 tags 的多對多關聯。"
         },
         "caption": null
     },
@@ -218,12 +240,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "zh-Hant": "Compare & Sync 指令碼的局部圖，一項 DROP COLUMN 被排除在本次執行之外，並顯示資料遺失警告。"
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "zh-Hant": "從 MariaDB 到 PostgreSQL 的 Copy To 檢閱：各資料表的預期列數、Type changes 下的兩個列舉欄位（允許值清單不會一併轉移），以及 CREATE TABLE 指令碼。"
         },
         "caption": null
     },
@@ -245,116 +261,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "zh-Hant": "Data Files 視窗開啟 orders.csv 並搜尋 Hanoi，狀態列顯示 20,000 列中的 2,498 列。"
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "zh-Hant": "orders.csv 中符合 Hanoi 的資料列局部圖，狀態列顯示符合項目的數量。"
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "zh-Hant": "Data Files 視窗中 orders.csv 的 status 欄位統計資訊。"
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "zh-Hant": "將 CSV 檔案匯入 orders 資料表的面板，檔案的每個欄位都對應至資料表欄位，並顯示發生錯誤時的處理選項。"
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "zh-Hant": "Export 對話框在結構描述的資料表和檢視清單中勾選 orders 資料表，並選定 XLSX 格式。"
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "zh-Hant": "透過 SSH 堡壘主機連線的 Back Up 面板，只選取了 shop 資料庫。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "zh-Hant": "AI 聊天面板回答上個月按營收排名最高的客戶問題，提供一項 SQL 查詢及 Copy 和 Insert 按鈕。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "zh-Hant": "AI 聊天回答的局部圖，包含一項 SQL 查詢和 Insert 按鈕。"
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "zh-Hant": "Agent mode 工作階段「Find orders with no items」：三項陳述式，一項寫入等待點選 Run。"
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "zh-Hant": "待執行寫入的局部圖：顯示 Run 和 Reject 的陳述式卡片。"
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "zh-Hant": "MCP 設定中的 Connect a Client 面板，顯示適用於 Claude Code 的 claude mcp add 指令。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "zh-Hant": "連線表單的 SSH 設定：主機 bastion.acme.internal、使用者 deploy、金鑰驗證，以及一個跳板主機。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "zh-Hant": "SSH 通道設定的局部圖，顯示主機 bastion.acme.internal、使用者 deploy、SSH Agent 驗證，以及一個跳板主機。"
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "zh-Hant": "Welcome 視窗以帶有顏色標籤的 Production 和 Staging 群組列出已儲存的連線，同時顯示 Chinook 範例資料庫。"
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "zh-Hant": "Import from DataGrip 面板列出在 DataGrip 中找到的三個連線，每個都標記為可匯入。"
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "zh-Hant": "acme-shop 專案的 Open Project Folder 結果，顯示在 .env 和 .env.production 中找到的連線。"
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "zh-Hant": "透過 kubectl port-forward 通道連線至 svc/orders-db 的連線，顯示將執行的指令。"
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "zh-Hant": "示意圖：連線、群組和標籤透過您的 iCloud 帳戶在 Mac 與 iPhone 或 iPad 之間同步；密碼僅在開啟密碼同步後，另外透過 iCloud 鑰匙圈同步。"
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "zh-Hant": "Favorites 側邊欄的 Team Library 區域：三項已儲存的查詢，各自標註最後修改者。"
-        }
     },
     "mac-handoff-ios": {
         "description": {

@@ -9,119 +9,125 @@
     },
     "header": {
         "title": "スキーマとデータベース比較",
-        "lead": "テーブルのリレーションを確認し、対応する構造を変更して、同期スクリプトの適用前にデータベースを比較できます。",
-        "docs": "/features/table-structure"
+        "lead": "テーブル同士の関係を確認し、SQL を見ながら構造を変更して、同期する前に二つのデータベースを比較できます。",
+        "docs": "/features/table-structure",
+        "asset": "mac-home-schema"
     },
-    "sections": [
+    "bands": [
         {
             "id": "structure",
             "title": "テーブル構造を編集",
-            "paragraphs": [
-                "Structure タブで列、インデックス、外部キー、CHECK 制約を編集できます。<ui>Preview SQL</ui> で保留中の DDL を確認します。破壊的な変更、型変更、NOT NULL、主キーの変更は {macSafeModeDefault} でも確認が必要です。",
-                "SQL のライブプレビューでテーブルを作成できます。SQLite 系の外部キー変更では再構築が必要な場合があります。SQLite とローカル libSQL は承認後に実行します。Turso、リモート libSQL、Cloudflare D1 は生成スクリプトを自分で実行します。"
+            "text": [
+                "Structure タブで列、インデックス、外部キー、CHECK 制約を変更し、実行前に <ui>Preview SQL</ui> で DDL を確認します。型変更、NOT NULL、主キー、破壊的な変更は {macSafeModeDefault} でも先に確認します。新しいテーブルは SQL のライブプレビューを見ながら作成できます。"
+            ],
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "SQLite でテーブルの再構築が必要な場合、TablePro は確認後に実行します。Turso、リモート libSQL、Cloudflare D1 ではスクリプトを渡します。iPhone と iPad は構造を読み取り専用で表示します。"
             ],
             "engines": [
                 {
-                    "label": "構造は読み取り専用",
+                    "label": "構造は読み取り専用：",
                     "list": "schemaReadOnly"
                 },
                 {
-                    "label": "一部の構造変更のみ対応",
+                    "label": "一部のみ編集可能：",
                     "list": "schemaPartial"
                 }
             ],
-            "asset": "mac-structure-ddl-preview"
+            "docs": "/features/table-structure"
         },
         {
             "id": "er-diagram",
             "title": "ER 図",
-            "paragraphs": [
-                "<ui>View ER Diagram</ui> で、テーブルと外部キーのリレーションをクロウズフット記法で表示します。PNG・SQL で出力するか、図を画像としてコピーできます。",
-                "図は読み取り専用で、スキーマ設計ツールではありません。変更は Structure タブで行います。"
+            "text": [
+                "<ui>View ER Diagram</ui> は、テーブルと外部キーをクロウズフット記法で描きます。PNG や SQL で出力するか、画像としてコピーできます。表示用であり、設計ツールではありません。変更は Structure タブで行います。"
             ],
-            "asset": "mac-er-diagram"
-        },
-        {
-            "id": "objects",
-            "title": "データベースオブジェクト",
-            "paragraphs": [
-                "対応するルーチンやトリガーを読み取り専用のソースタブで確認し、SQL をコピーしたりエディターで開けます。一覧はエンジンによって異なります。PostgreSQL のパーティションは親テーブルの下に表示します。"
-            ],
-            "blocks": [
-                {
-                    "id": "table-folders",
-                    "title": "テーブルとビューのフォルダー",
-                    "paragraphs": [
-                        "ドラッグや <ui>Move to</ui> でテーブルとビューをまとめられます。フォルダーはサイドバーだけを変え、データベースは変えません。iCloud Sync が有効なら Mac 間で同期します。"
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
+            "where": {
+                "linux": "yes",
+                "ios": "no"
+            },
+            "docs": "/features/er-diagram",
+            "asset": "features-schema-er-diagram"
         },
         {
             "id": "compare-sync",
             "title": "Compare & Sync",
-            "paragraphs": [
-                "ソースとターゲットのスキーマやデータを比較できます。対応していればビュー、ルーチン、トリガーも含められます。データ比較はキーで行を照合し、テーブルごとにフィルターと行数上限を設定できます。",
-                "外部キー順に並べた同期スクリプトを確認できます。破壊的変更は実行ごとに許可するまで除外します。Read-Only 接続はターゲットにできません。比較設定を保存して再利用できます。"
+            "text": [
+                "二つのデータベースのスキーマやデータを比較できます。対応していればビュー、ルーチン、トリガーも含みます。同期スクリプトは外部キー順に並び、破壊的変更は許可するまで含めません。Read-Only 接続はターゲットになりません。比較を保存して再実行できます。"
             ],
             "paid": [
                 "compare-sync"
             ],
-            "asset": "mac-compare-sync-structure"
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "構造スクリプトを生成するのは、同じエンジンのデータベース間だけです。MySQL と MariaDB は同じものとして扱います。"
+            ],
+            "docs": "/features/compare-sync",
+            "asset": "features-schema-compare-sync"
         },
         {
             "id": "copy",
-            "title": "テーブルのコピーと転送",
-            "paragraphs": [
-                "Copy To はエンジンをまたいで対応するオブジェクトとデータを移せます。先に DDL、行数、型変換を確認します。変換で制約が失われる場合があります。MariaDB の <code>ENUM</code> は許可値一覧なしの PostgreSQL <code>VARCHAR</code> になります。",
-                "Duplicate Database は同じ接続上でデータベースをコピーします。Transfer To は中間ファイルなしで別の接続の既存テーブルに行を対応付けます。どちらも無料です。"
+            "title": "データベース間でテーブルをコピー",
+            "text": [
+                "Copy To は、DDL、行数、型変換を確認したあと、テーブルとデータを別のデータベースに移します。エンジンをまたいでも使えます。変換で制約が失われる場合があります。MariaDB の <code>ENUM</code> は PostgreSQL の <code>VARCHAR</code> になります。Duplicate Database と Transfer To も無料です。"
             ],
-            "asset": "mac-copy-to-review"
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/copy-objects",
+            "asset": "features-schema-copy"
         },
         {
             "id": "administer",
-            "title": "ユーザー、セッションと保守",
-            "paragraphs": [
-                "PostgreSQL の VACUUM や REINDEX、MySQL の OPTIMIZE や CHECK などのテーブル保守は、実行前に SQL を表示します。エンジンが対応する場合、サイドバーからデータベースやスキーマを作成、削除、名前変更できます。"
+            "also": [
+                "users-roles",
+                "server-dashboard"
             ],
-            "blocks": [
+            "title": "ユーザー、セッションと保守",
+            "text": [
+                "Server Dashboard はライブセッション、サーバーメトリクス、遅いクエリを表示し、接続の Safe Mode を通してクエリのキャンセルやセッションの終了ができます。Users & Roles は列単位までの付与と取り消しを準備し、その SQL を確認できます。VACUUM や OPTIMIZE などの保守は、実行前に SQL を表示します。"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "engines": [
                 {
-                    "id": "users-roles",
-                    "title": "Users & Roles",
-                    "paragraphs": [
-                        "対応エンジンでサーバーから列までの権限を確認できます。付与や取り消しを準備し、適用前に SQL を確認します。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "Users & Roles",
-                            "list": "usersRoles"
-                        }
-                    ],
-                    "asset": "mac-users-roles-mysql"
+                    "label": "Server Dashboard：",
+                    "list": "dashboard"
                 },
                 {
-                    "id": "server-dashboard",
-                    "title": "Server Dashboard",
-                    "paragraphs": [
-                        "Server Dashboard はライブセッション、サーバーメトリクスと遅いクエリを、選んだ間隔で更新して表示します。エンジンが許可する場合、その行から実行中のクエリをキャンセルしたりセッションを終了したりできます。どちらも接続の Safe Mode を通します。Typesense ではメトリクスだけを表示します。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "Server Dashboard",
-                            "list": "dashboard"
-                        }
-                    ],
-                    "asset": "mac-server-dashboard-postgresql"
+                    "label": "Users & Roles：",
+                    "list": "usersRoles"
                 }
+            ],
+            "docs": "/features/server-dashboard",
+            "asset": "features-schema-dashboard"
+        }
+    ],
+    "more": [
+        {
+            "id": "objects",
+            "also": [
+                "table-folders"
+            ],
+            "title": "ルーチン、トリガーとフォルダー",
+            "text": [
+                "ルーチンとトリガーをソースタブで確認し、エディターで開けます。テーブルとビューをサイドバーのフォルダーにまとめられます。フォルダーは iCloud Sync で Mac 間を同期します。"
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "iPhone・iPad アプリは、テーブルのカラム、インデックスと外部キーを読み取り専用で表示します。接続が Read-Only でなければ、SQL エンジンのテーブル一覧からテーブルを空にしたり削除したりできます。",
-                "構造編集、ER 図、Compare & Sync、Copy To、Users & Roles と Server Dashboard は iPhone・iPad アプリにはありません。"
+            "text": [
+                "列、インデックス、外部キーは読み取り専用です。接続が Read-Only でなければ、テーブルを空にしたり削除したりできます。"
             ],
             "links": [
                 {
@@ -129,114 +135,6 @@
                     "href": "/ios#browse"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "DDL プレビュー付き構造編集",
-            "ios": "partial",
-            "iosNote": "カラム、インデックスと外部キーは読み取り専用",
-            "linux": "yes"
-        },
-        {
-            "label": "New Table",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "テーブルを空にする・削除する",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "ER 図",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "ルーチン、トリガーとテーブルフォルダー",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "ルーチンとトリガーのみ、テーブルフォルダーなし"
-        },
-        {
-            "label": "Compare & Sync",
-            "paid": "compare-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copy To、Duplicate Database と Transfer To",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Users & Roles",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Server Dashboard とテーブル保守",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Compare & Sync が構造スクリプトを生成するのは、同じエンジンの二つのデータベース間だけです。MySQL と MariaDB は同じものとして扱います。それ以外の組み合わせは読み取り専用比較で、MongoDB の構造にはスクリプトを生成しません。異なるエンジン間のデータ同期では、値の書き込み方を確認するよう警告します。別のエンジンにテーブルを移すには Copy To を使ってください。",
-        "カラムの順序変更は、SQLite とローカル libSQL ファイルでは確認後にテーブルを再構築します。PostgreSQL、Turso、リモート libSQL、Cloudflare D1 では、TablePro が再構築スクリプトを生成し、実行はユーザーに任せます。",
-        "ER 図は読み取り専用で、スキーマ設計ツールではありません。",
-        "Server Dashboard で表示できるセッションとクエリテキストは、接続に使うアカウントの権限によって異なります。"
-    ],
-    "docs": [
-        {
-            "label": "テーブル構造",
-            "docs": "/features/table-structure"
-        },
-        {
-            "label": "ER 図",
-            "docs": "/features/er-diagram"
-        },
-        {
-            "label": "プロシージャ、関数とトリガー",
-            "docs": "/features/routines-triggers"
-        },
-        {
-            "label": "Compare & Sync",
-            "docs": "/features/compare-sync"
-        },
-        {
-            "label": "コピーと複製",
-            "docs": "/features/copy-objects"
-        },
-        {
-            "label": "Users & Roles",
-            "docs": "/features/users-roles"
-        },
-        {
-            "label": "Server Dashboard",
-            "docs": "/features/server-dashboard"
-        },
-        {
-            "label": "テーブル操作と保守",
-            "docs": "/features/table-operations"
-        }
-    ],
-    "related": [
-        {
-            "label": "インポート、エクスポートとデータファイル",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "TablePro で使う PostgreSQL",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "TablePro で使う MySQL と MariaDB",
-            "href": "/mysql-client"
-        },
-        {
-            "label": "有料プランで増える機能",
-            "href": "/pricing#features"
         }
     ]
 }

@@ -95,29 +95,111 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "id": "Editor SQL TablePro dengan kueri yang menggabungkan CTE bernama recent_orders ke users, dan daftar pelengkapan otomatis menampilkan kolom CTE."
+            "id": "Query Insights selama 7 hari terakhir, dengan grafik kueri berhasil dan gagal per hari di atas daftar Most Run, Slowest, dan Got Slower, dengan satu bentuk kueri ditandai Got Slower."
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "id": "Tampilan dekat daftar pelengkapan otomatis yang menyarankan kolom CTE dalam editor SQL TablePro."
+            "id": "Tabel products dengan empat perubahan harga yang menunggu penyimpanan, dan lembar Preview SQL yang mencantumkan pernyataan UPDATE terkait."
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "id": "Kueri yang menggunakan parameter :customer_id dan :since, panel tempat nilainya diketik, serta laci riwayat kueri."
+            "id": "Diagram ER skema shop dengan tabel dan relasinya, product_tags ditampilkan sebagai garis banyak-ke-banyak antara products dan tags."
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "id": "EXPLAIN Compare untuk kueri pada orders, menunjukkan rencana berubah dari Index Scan menjadi Seq Scan dan kueri lebih lambat daripada acuan."
+            "id": "Compare & Sync antara shop dan shop_staging, mencantumkan kolom dengan panjang berbeda dan DROP COLUMN yang ditahan dari skrip."
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "id": "Server Dashboard untuk server PostgreSQL, mencantumkan sesi aktif dengan SELECT berdurasi panjang dipilih dan tombol Terminate terlihat."
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "id": "Jendela Data Files dengan orders.csv terbuka dan pencarian Hanoi, bilah status menunjukkan 2.498 dari 20.000 baris."
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "description": {
+            "id": "Editor SQL Mac pada shop dengan panel riwayat kueri terbuka, difilter ke kueri yang gagal, dan lembar parameter yang meminta :customer_id."
+        }
+    },
+    "features-querying-explain": {
+        "description": {
+            "id": "EXPLAIN pada shop (PostgreSQL): rencana kueri sebagai diagram, dengan EXPLAIN Compare yang menampilkan waktu dibandingkan eksekusi sebelumnya."
+        }
+    },
+    "features-querying-charts": {
+        "description": {
+            "id": "Kueri shop untuk pendapatan per bulan yang ditampilkan sebagai grafik batang di area hasil editor SQL Mac."
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "id": "Menyimpan hasil edit pada koneksi dengan level Safe Mode: permintaan Touch ID atau kata sandi di atas grid, dengan pernyataan yang tertunda ditampilkan."
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "id": "Data Rewind pada shop: peninjauan sebuah penyimpanan, yang mencantumkan nilai sebelumnya dan nilai saat ini dari baris yang berubah, dengan Restore Previous Values."
+        }
+    },
+    "features-schema-copy": {
+        "description": {
+            "id": "Copy To dari shop (PostgreSQL) ke koneksi MySQL: peninjauan DDL, jumlah baris, dan konversi tipe sebelum dijalankan."
+        }
+    },
+    "features-import-export-import": {
+        "description": {
+            "id": "Mengimpor file CSV ke tabel products di shop: pemetaan kolom, opsi untuk baris yang gagal, dan pratinjau."
+        }
+    },
+    "features-import-export-backup": {
+        "description": {
+            "id": "Backup Dump pada shop (PostgreSQL): opsi dump dengan pg_dump dan file tujuan."
+        }
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "id": "Agent mode jendela penuh pada shop: permintaan di chat, pernyataan yang diusulkan agen, dan tombol Run yang menunggu persetujuan."
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "description": {
+            "id": "Settings > MCP di Mac: sakelar server, petunjuk pengaturan untuk klien, dan level External Clients per koneksi."
+        }
+    },
+    "features-connections-import": {
+        "description": {
+            "id": "Import from Other App di Mac: koneksi yang ditemukan di klien database lain, masing-masing dengan kotak centang, siap diimpor."
+        }
+    },
+    "features-connections-network": {
+        "description": {
+            "id": "Formulir koneksi pada tab SSH: host di balik jump host, autentikasi kunci, dan mode TLS diatur ke Verify Identity."
+        }
+    },
+    "features-sync-and-teams-sync": {
+        "description": {
+            "id": "Settings > Sync di Mac: iCloud Sync aktif, dengan daftar yang disinkronkan (koneksi, grup, pengaturan, profil, favorit, kueri tersimpan)."
+        }
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "id": "Team Library di sidebar: koneksi dan kueri tersimpan yang dipublikasikan rekan tim, beserta siapa yang terakhir mengubah setiap kueri."
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +225,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "id": "Tabel products dengan empat perubahan harga yang menunggu penyimpanan, dan lembar Preview SQL yang mencantumkan pernyataan UPDATE terkait."
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "id": "Tampilan dekat lembar Preview SQL yang mencantumkan empat pernyataan UPDATE untuk perubahan harga yang disiapkan."
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "id": "Tabel orders dengan baris dibayar berwarna hijau dan dikembalikan berwarna oranye, serta popover aturan sorotan terbuka."
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "id": "Pemilih nilai untuk foreign key orders.user_id, dengan pencarian Silva, mencantumkan pengguna berdasarkan nama depan dan belakang."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "id": "Permintaan Touch ID yang ditampilkan Safe Mode sebelum DELETE pada tabel orders dijalankan, pada koneksi bertanda warna merah produksi."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "id": "Tampilan dekat permintaan Touch ID yang ditampilkan Safe Mode sebelum pernyataan DELETE dijalankan."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "id": "Lembar peninjauan Restore Previous Values, dengan tiga baris bertanda Will restore dan satu bertanda Changed since the save."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "id": "Tab Structure tabel reviews dengan batasan CHECK baru dan indeks baru yang menunggu penyimpanan, serta pratinjau DDL terbuka."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "id": "Tampilan dekat pratinjau DDL dengan pernyataan yang menambahkan batasan CHECK dan indeks ke tabel reviews."
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "id": "Diagram ER skema shop dengan tabel dan relasinya, product_tags ditampilkan sebagai garis banyak-ke-banyak antara products dan tags."
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "id": "Tampilan dekat diagram ER yang menghubungkan products dan tags secara banyak-ke-banyak."
         },
         "caption": null
     },
@@ -218,12 +240,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "id": "Tampilan dekat skrip Compare & Sync, dengan DROP COLUMN yang ditahan dari eksekusi ini beserta peringatan kehilangan datanya."
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "id": "Peninjauan Copy To dari MariaDB ke PostgreSQL: jumlah baris yang diharapkan untuk setiap tabel, dua kolom enum dalam Type changes karena daftar nilai yang diizinkan tidak ikut dipindahkan, serta skrip CREATE TABLE."
         },
         "caption": null
     },
@@ -245,116 +261,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "id": "Jendela Data Files dengan orders.csv terbuka dan pencarian Hanoi, bilah status menunjukkan 2.498 dari 20.000 baris."
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "id": "Tampilan dekat baris orders.csv yang cocok dengan Hanoi, dengan jumlah kecocokan dalam bilah status."
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "id": "Statistik kolom status orders.csv dalam jendela Data Files."
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "id": "Lembar impor berkas CSV ke tabel orders, dengan setiap kolom berkas dipetakan ke kolom tabel dan opsi saat terjadi kesalahan."
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "id": "Dialog Export dengan tabel orders dicentang di antara tabel dan tampilan skema, serta XLSX dipilih sebagai format."
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "id": "Lembar Back Up untuk koneksi melalui bastion SSH, dengan hanya database shop dipilih."
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "id": "Panel chat AI menjawab pertanyaan tentang pelanggan teratas bulan lalu berdasarkan pendapatan, dengan kueri SQL serta tombol Copy dan Insert."
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "id": "Tampilan dekat jawaban chat AI dengan kueri SQL dan tombol Insert."
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "id": "Sesi mode Agent “Find orders with no items”: tiga pernyataan, satu penulisan menunggu Run."
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "id": "Tampilan dekat penulisan yang menunggu: kartu pernyataannya dengan Run dan Reject."
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "id": "Lembar Connect a Client dalam pengaturan MCP, dengan perintah claude mcp add untuk Claude Code."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "id": "Pengaturan SSH formulir koneksi: host bastion.acme.internal, pengguna deploy, autentikasi kunci, dan satu jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "id": "Tampilan dekat pengaturan tunnel SSH, dengan host bastion.acme.internal, pengguna deploy, autentikasi SSH Agent, dan satu jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "id": "Jendela Welcome mencantumkan koneksi tersimpan dalam grup Production dan Staging dengan tag berwarna, serta database contoh Chinook."
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "id": "Lembar Import from DataGrip mencantumkan tiga koneksi yang ditemukan di DataGrip, masing-masing ditandai siap diimpor."
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "id": "Hasil Open Project Folder untuk proyek acme-shop, dengan koneksi ditemukan dalam .env dan .env.production."
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "id": "Koneksi yang ditunnel dengan kubectl port-forward ke svc/orders-db, beserta perintah yang akan dijalankan."
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "id": "Diagram koneksi, grup, dan tag yang disinkronkan antara Mac dan iPhone atau iPad melalui akun iCloud Anda, dengan kata sandi melalui iCloud Keychain secara terpisah hanya saat sinkronisasi kata sandi diaktifkan."
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "id": "Sidebar Favorites dengan bagian Team Library: tiga kueri tersimpan diberi label orang yang terakhir mengubahnya."
-        }
     },
     "mac-handoff-ios": {
         "description": {

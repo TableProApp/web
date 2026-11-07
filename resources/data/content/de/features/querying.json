@@ -9,133 +9,140 @@
     },
     "header": {
         "title": "SQL-Editor",
-        "lead": "Schreibe SQL mit schemabasierter Autovervollständigung. Speichere wiederkehrende Abfragen, durchsuche deinen Verlauf und prüfe Pläne auf unterstützten Engines.",
-        "docs": "/features/sql-editor"
+        "lead": "Schreibe SQL mit einer Autovervollständigung, die dein Schema liest, behalte wiederkehrende Abfragen und sieh, wie die Datenbank sie ausführt.",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
-            "title": "Schemabasierte Autovervollständigung",
-            "paragraphs": [
-                "Die Autovervollständigung schlägt Tabellen und Spalten vor, auch Aliase, CTEs und Unterabfragen. Formatiere die aktuelle Anweisung mit <kbd>⌘⇧L</kbd>; Kommentare bleiben erhalten.",
-                "Führe die aktuelle Anweisung, eine Auswahl oder ein ganzes Skript aus. Gewöhnliche Anweisungsfolgen nutzen eine Transaktion und werden bei Fehlern zurückgerollt. SQL-Server-Skripte, explizite Transaktionen und Anweisungen wie VACUUM sind Ausnahmen. DDL auf MySQL, MariaDB und Oracle bestätigt unabhängig."
+            "also": [
+                "open-quickly"
             ],
-            "points": [
-                "Anweisungsmarkierungen am Rand mit jeweils eigener Ausführungsschaltfläche.",
-                "Suchen und Ersetzen mit regulären Ausdrücken.",
-                "Vim-Modus mit Bewegungen, Registern und Makros; <code>:w</code> führt die Abfrage aus.",
-                "<code>.sql</code>-Dateien lassen sich als Abfrage-Tabs öffnen, bearbeiten und speichern."
+            "title": "Autovervollständigung aus deinem Schema",
+            "text": [
+                "Die Autovervollständigung schlägt Tabellen und Spalten vor, auch mit Aliasen, CTEs und Unterabfragen. Führe die aktuelle Anweisung, eine Auswahl oder das ganze Skript aus; eine gewöhnliche Anweisungsfolge läuft in einer Transaktion und wird zurückgerollt, wenn eine Anweisung fehlschlägt.",
+                "Formatiere mit <kbd>⌘⇧L</kbd>, schalte den Vim-Modus ein oder springe mit Open Quickly (<kbd>⌘⇧O</kbd>) zu jeder Tabelle, View oder gespeicherten Abfrage."
             ],
-            "asset": "mac-query-autocomplete"
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "Auf iPhone und iPad führt der Query-Tab SQL ohne Autovervollständigung aus."
+            ],
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "Parameter, Verlauf und gespeicherte Abfragen",
-            "paragraphs": [
-                "Mit Parametern wie <code>:customer_id</code> gibst du Werte vor der Ausführung ein. Wenn der Treiber es unterstützt, werden die Werte nativ gebunden.",
-                "Durchsuche den lokalen Abfrageverlauf nach Text, Quelle, Fehlern oder Zeitraum. Standardmäßig speichert er {historyEntries} Einträge für {historyDays} Tage und wird nie synchronisiert.",
-                "Speichere Abfragen mit wiederverwendbaren Schlüsselwörtern und Versionsverlauf. Binde einen Ordner mit <code>.sql</code>-Dateien in die Seitenleiste ein, mit beidseitigen Updates und Git-Status. SQL-Ordner sind kostenlos und unabhängig von Linked Folders, der kostenpflichtigen Funktion für Verbindungsdateien."
+            "text": [
+                "Schreibe <code>:customer_id</code>, und TablePro fragt vor der Ausführung nach dem Wert. Durchsuche deinen Verlauf nach Text, Quelle, Fehlern oder Zeitraum: Er speichert {historyEntries} Einträge für {historyDays} Tage und wird nie synchronisiert.",
+                "Speichere wiederkehrende Abfragen oder binde einen Ordner mit <code>.sql</code>-Dateien in die Seitenleiste ein, mit beidseitigen Updates und Git-Status."
             ],
-            "asset": "mac-query-parameters-history"
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux hat Verlauf und gespeicherte Abfragen. iPhone und iPad behalten die letzten {historyEntriesIos} Abfragen."
+            ],
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "open-quickly",
-            "title": "Open Quickly und Tabs",
-            "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) sucht Tabellen, Views und Abfragen in offenen Verbindungen. Tabs behalten SQL und Rastereinstellungen beim erneuten Öffnen der App."
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "Abfrageleistung",
-            "paragraphs": [],
-            "blocks": [
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN und EXPLAIN Compare",
+            "text": [
+                "Lies einen Abfrageplan als Diagramm, als Kostenbaum oder in der Ausgabe der Engine selbst. Führe die Abfrage nach einer Änderung erneut aus und vergleiche beide Läufe: Unterschiede bei Zeit und Plan stehen nebeneinander, und alles unter {explainNoise}% zählt als Rauschen."
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "engines": [
                 {
-                    "id": "explain",
-                    "title": "EXPLAIN und EXPLAIN Compare",
-                    "paragraphs": [
-                        "Zeige Abfragepläne als Diagramme, Kostenbäume oder rohe Engine-Ausgabe. Vergleiche einen früheren Lauf, um Änderungen an Zeiten und Plänen zu erkennen; Unterschiede unter {explainNoise}% zählen als Rauschen. Beide Funktionen sind kostenlos."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Plan als Diagramm und Baum",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "Plan als Text",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "Dry-Run-Kostenschätzung",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "SQL-Systeme ohne EXPLAIN",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
+                    "label": "Pläne als Diagramm:",
+                    "list": "explainDiagram"
                 },
                 {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "Finde langsame, fehlschlagende und häufig ausgeführte Abfragen im lokalen Verlauf dieses Macs. Ähnliche Anweisungen werden unabhängig von Parameterwerten gruppiert. Query Insights vergleicht Zeiträume lokal; es überwacht nicht den gesamten Server und lädt keine Metriken hoch."
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
+                    "label": "Pläne als Text:",
+                    "list": "explainText"
+                },
+                {
+                    "label": "Dry-Run-Kosten:",
+                    "list": "explainCost"
                 }
-            ]
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "Finde langsame, fehlschlagende und am häufigsten ausgeführte Abfragen im Verlauf dieses Macs. Anweisungen, die sich nur in ihren Werten unterscheiden, werden gruppiert, und zwei Zeiträume lassen sich nebeneinander vergleichen. Es liest nur den lokalen Verlauf: Es ist keine Serverüberwachung und lädt nichts hoch."
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
         },
         {
             "id": "results",
-            "title": "Ergebnisse als Diagramme und Karten",
-            "paragraphs": [
-                "Ein Ergebnis lässt sich im selben Tab von der Datentabelle zu einem Diagramm oder einer Karte und zurück umschalten."
+            "also": [
+                "result-charts",
+                "map"
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "Stelle Ergebnisse als Balken-, Linien-, Flächen- oder Streudiagramme dar. Diagramme zeigen bis zu {chartPoints} Punkte und {chartSeries} Reihen aus den ersten {chartInspectedRows} Zeilen, mit Hinweis bei Kürzung."
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "Kartenansicht",
-                    "paragraphs": [
-                        "Zeige unterstützte Geometriespalten auf Apple Karten und wähle eine Form, um ihre Zeile zu finden. Zeilen bleiben auf deinem Mac; Apple liefert die Kartenkacheln. Die Kartenansicht ist kostenlos."
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
-        },
+            "title": "Diagramme und Karten",
+            "text": [
+                "Mach aus einem Ergebnis im selben Tab ein Balken-, Linien-, Flächen- oder Streudiagramm, aus den ersten {chartInspectedRows} Zeilen. Geometriespalten öffnen sich auf einer Karte, und die Auswahl einer Form findet ihre Zeile. Result Charts gehört zu Pro; die Kartenansicht ist kostenlos."
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
         {
             "id": "other-languages",
             "title": "Weitere Abfragesprachen",
-            "paragraphs": [
-                "Nutze im Editor die Abfragesprache jeder Nicht-SQL-Engine. MongoDB verwendet eine integrierte JavaScript-Shell im mongosh-Stil, nicht mongosh selbst. Unterstützte Befehle stehen auf den Datenbankseiten."
+            "text": [
+                "Nicht-SQL-Engines nutzen im Editor ihre eigene Abfragesprache. MongoDB bekommt eine integrierte Shell im Stil von mongosh."
             ],
             "engines": [
                 {
-                    "label": "Abfragesprache nach System",
+                    "label": "Nach Engine:",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "Große Ergebnisse",
+            "text": [
+                "Eine Abfrage liefert höchstens {rowCap} Zeilen, außer du erhöhst das Limit in den Einstellungen auf bis zu {rowCapMax}. Ein selbst geschriebenes LIMIT hat immer Vorrang."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Auf iPhone und iPad",
-            "paragraphs": [
-                "Die iPhone- und iPad-App hat einen Query-Tab mit SQL-Hervorhebung, Run und Stop (<kbd>⌘↩</kbd> mit Tastatur) und einem Verlauf der letzten {historyEntriesIos} Abfragen auf diesem Gerät. Ergebnisse lassen sich als JSON, CSV oder SQL-INSERT-Anweisungen kopieren oder teilen.",
-                "Sie bietet weder Autovervollständigung noch Formatierung, Parameter, EXPLAIN oder gespeicherte Abfragen und behält höchstens {resultBufferIos} Ergebniszeilen. Nutze LIMIT für den gewünschten Ausschnitt."
+            "text": [
+                "Der Query-Tab hebt SQL hervor, führt es aus, stoppt es und teilt ein Ergebnis als JSON, CSV oder INSERT-Anweisungen."
             ],
             "links": [
                 {
@@ -143,109 +150,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "SQL-Editor mit Autovervollständigung und Formatierung",
-            "ios": "partial",
-            "iosNote": "Hervorhebung, Run und Stop; keine Autovervollständigung",
-            "linux": "yes"
-        },
-        {
-            "label": "Abfrageparameter",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Abfrageverlauf",
-            "ios": "partial",
-            "iosNote": "Die letzten {historyEntriesIos} Abfragen auf dem Gerät",
-            "linux": "yes"
-        },
-        {
-            "label": "Gespeicherte Abfragen und verknüpfte SQL-Ordner",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Nur gespeicherte Abfragen"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Suche nach Verbindungen und Tabellen in der Seitenleiste"
-        },
-        {
-            "label": "EXPLAIN und EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Kartenansicht",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Ergebnisse kopieren oder teilen",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Eine Abfrage liefert höchstens {rowCap} Zeilen, außer du erhöhst das Limit in den Einstellungen bis {rowCapMax} oder führst sie mit <kbd>⌘⌥⏎</kbd> aus. Ein selbst geschriebenes LIMIT hat immer Vorrang.",
-        "Abfrageverlauf und Query Insights gelten nur für diesen Mac; Abfragen auf anderen Macs oder iPhones fehlen darin.",
-        "Der Shell-Befehl <code>tablepro</code> öffnet Verbindungen und Dateien in der App. Er führt keine Abfragen aus dem Terminal aus."
-    ],
-    "docs": [
-        {
-            "label": "SQL-Editor",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "Abfrageparameter",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "Abfrageverlauf",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "EXPLAIN-Visualisierung",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "Diagramme und Karten in der Datentabelle",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Daten bearbeiten",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Unterstützte Datenbanken",
-            "href": "/databases"
-        },
-        {
-            "label": "Was ein bezahlter Tarif zusätzlich bietet",
-            "href": "/pricing#features"
         }
     ]
 }

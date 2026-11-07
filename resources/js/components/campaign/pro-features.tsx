@@ -1,7 +1,5 @@
-import { useId, useRef, useState, type KeyboardEvent } from 'react';
-import AssetSlot from '@/components/ui/asset-slot';
+import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import LocaleLink from '@/components/ui/locale-link';
-import type { AssetId } from '@/lib/data/assets';
 import { cn } from '@/lib/utils';
 
 export interface ProFeatureTab {
@@ -10,7 +8,8 @@ export interface ProFeatureTab {
     detail: string;
     href: string;
     link: string;
-    asset: AssetId;
+    // The feature's capture, a literal <AssetSlot> in the page.
+    capture: ReactNode;
 }
 
 interface ProFeaturesProps {
@@ -100,7 +99,7 @@ export default function ProFeatures({ items, label }: ProFeaturesProps) {
                             inert={!shown}
                             className="grid content-start gap-4"
                         >
-                            <AssetSlot id={item.asset} caption={false} sizes="(min-width: 1280px) 900px, (min-width: 1024px) 70vw, 100vw" />
+                            {item.capture}
                             <p className="type-body max-w-[60ch] text-muted-foreground">
                                 {item.detail}{' '}
                                 <LocaleLink href={item.href} className="font-medium whitespace-nowrap text-foreground hover:underline">

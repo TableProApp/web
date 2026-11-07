@@ -1,74 +1,49 @@
 import { usePage } from '@inertiajs/react';
-import AvailabilityTable from '@/components/features/availability-table';
-import DownloadBand from '@/components/features/download-band';
-import FeatureLinkList from '@/components/features/feature-links';
-import FeatureSection from '@/components/features/feature-section';
-import { docsHref, factValues, pageOnIos, pageOnLinux, pageOnMac, pagePaidIds } from '@/components/features/model';
-import RichText from '@/components/features/rich-text';
+import AreaNav from '@/components/features/area-nav';
+import FeatureBand from '@/components/features/feature-band';
+import FeatureClosing from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
+import { factValues, pagePaidIds } from '@/components/features/model';
+import MoreList from '@/components/features/more-list';
 import type { FeaturePageProps } from '@/components/features/types';
 import SEOHead from '@/components/seo/seo-head';
 import { FEATURE_PAGES } from '@/components/site/site-links';
-import Badge from '@/components/ui/badge';
-import { buttonClasses } from '@/components/ui/button';
-import Callout from '@/components/ui/callout';
-import CellGrid from '@/components/ui/cell-grid';
-import Container from '@/components/ui/container';
-import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
-import TextLink from '@/components/ui/text-link';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, useI18n } from '@/i18n';
-import { joinList } from '@/i18n/format';
-import { trackDownload } from '@/lib/analytics';
 import { FACTS } from '@/lib/data/facts';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
-import { iosPlatform, macPlatform } from '@/lib/data/platforms';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, organizationNode, organizationProfiles, webPageNode } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
-export default function FeatureShow({ slug, content, labels, facts, linux }: FeaturePageProps) {
+// `/features/{slug}` in every locale it has content in (sitemap §A.2, §E.4; README.md): the area nav, a hero with the
+// area's Mac window, four or five bands, the smaller features as a list, and one closing line on what is paid.
+export default function FeatureShow({ slug, content, labels, facts, linux, heroSizes }: FeaturePageProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, fmt, path } = useI18n();
+    const { locale, m, path } = useI18n();
+    const shown = useShownSlot();
+    useRevealOnScroll('main > section:not(#top)');
 
     const values = factValues(facts, labels.number, m.common.list);
-    const pageName = FEATURE_PAGES.find((page) => page.href === `/features/${slug}`);
-    const crumbLabel = pageName !== undefined ? m.nav.featureLinks[pageName.key] : content.header.title;
-
-    const paid = pagePaidIds(
-        content,
-        PAID_FEATURES.map((feature) => feature.id),
-    ).flatMap((id) => PAID_FEATURES.filter((feature) => feature.id === id));
-    const paidLine =
-        paid.length > 0
-            ? fmt(labels.header.paid, {
-                  features: joinList(
-                      paid.map((feature) => fmt(labels.header.paidItem, { name: feature.name, tier: labels.tiers[feature.tier] })),
-                      m.common.list,
-                  ),
-              })
-            : labels.header.allFree;
-
-    const linuxName = linux !== null ? joinList(linux.deviceNames, m.common.shortList) : null;
-    const platforms = [
-        ...(pageOnMac(content) ? [joinList(macPlatform().deviceNames, m.common.shortList)] : []),
-        ...(linuxName !== null && pageOnLinux(content) ? [linuxName] : []),
-        ...(pageOnIos(content) ? [joinList(iosPlatform().deviceNames, m.common.shortList)] : []),
-    ];
+    const context = { labels, facts, values, linux: linux?.deviceNames ?? null };
+    const hero = shown(content.header.asset);
+    const page = FEATURE_PAGES.find((candidate) => candidate.href === `/features/${slug}`);
+    const crumb = page !== undefined ? m.nav.featureLinks[page.key] : content.header.title;
 
     const pageUrl = absoluteUrl(canonicalBaseUrl, path(`/features/${slug}`));
-    const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
+    const jsonLdContext = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
     const jsonLd = graph([
         organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links) }),
-        webPageNode(context, {
+        webPageNode(jsonLdContext, {
             url: pageUrl,
             name: content.header.title,
             description: content.seo.description,
             about: macAppId(canonicalBaseUrl),
             breadcrumb: `${pageUrl}#breadcrumb`,
         }),
-        breadcrumbNode(context, pageUrl, [
+        breadcrumbNode(jsonLdContext, pageUrl, [
             { name: m.seo.breadcrumbs.features, path: path('/features') },
-            { name: crumbLabel, path: path(`/features/${slug}`) },
+            { name: crumb, path: path(`/features/${slug}`) },
         ]),
     ]);
 
@@ -76,72 +51,24 @@ export default function FeatureShow({ slug, content, labels, facts, linux }: Fea
         <LandingLayout>
             <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
-            <PageHeader
-                breadcrumbs={[{ label: m.seo.breadcrumbs.features, href: '/features' }, { label: crumbLabel }]}
-                title={content.header.title}
-                lead={content.header.lead}
-                actions={
-                    <>
-                        {/* A client-side visit, like every other internal action; a plain <a> reloaded the whole document. */}
-                        <LocaleLink href="/download" onClick={() => trackDownload('feature-header', 'mac')} className={buttonClasses('secondary', 'md')}>
-                            {m.nav.download}
-                        </LocaleLink>
-                        <TextLink href={docsHref(FACTS.links.docs, content.header.docs)} kind="standalone" external hrefLang="en">
-                            {locale === 'en' ? labels.header.docs : `${labels.header.docs} ${m.common.englishOnly}`}
-                        </TextLink>
-                    </>
-                }
-            >
-                <div className="flex flex-wrap items-center gap-2">
-                    {platforms.map((name) => (
-                        <Badge key={name} variant="outline">
-                            {name}
-                        </Badge>
-                    ))}
-                </div>
-                <p className="type-small mt-3 max-w-[56ch] text-muted-foreground">{paidLine}</p>
-            </PageHeader>
+            <AreaNav current={`/features/${slug}`} />
+            <FeatureHero title={content.header.title} lead={content.header.lead} docs={content.header.docs} docsLabel={labels.docs}>
+                {hero !== null ? <AssetSlot id={hero} sizes={heroSizes} caption={false} priority /> : undefined}
+            </FeatureHero>
 
-            {content.sections.map((section) => (
-                <FeatureSection key={section.id} section={section} facts={facts} values={values} labels={labels} />
+            {content.bands.map((band) => (
+                <FeatureBand key={band.id} band={band} context={context} />
             ))}
 
-            <Section id="availability" title={labels.sections.availability}>
-                <AvailabilityTable rows={content.availability} labels={labels} values={values} linux={linuxName} />
-                {content.limits.length > 0 && (
-                    <Callout id="limits" title={labels.sections.limits} className="mt-8 max-w-[44rem]">
-                        <ul className="list-disc space-y-1 pl-5">
-                            {content.limits.map((limit, index) => (
-                                <li key={index}>
-                                    <RichText text={limit} values={values} />
-                                </li>
-                            ))}
-                        </ul>
-                    </Callout>
+            <MoreList items={content.more} title={labels.more} context={context} />
+            <FeatureClosing
+                labels={labels}
+                paid={pagePaidIds(
+                    content,
+                    PAID_FEATURES.map((feature) => feature.id),
                 )}
-            </Section>
-
-            {/* Documentation and related pages: two cells between the page frame's joins (design-system §4.7). */}
-            <div>
-                <Container>
-                    <CellGrid className="md:grid-cols-2">
-                        <section id="docs" aria-labelledby="docs-title">
-                            <h2 id="docs-title" className="type-h3 text-foreground">
-                                {labels.sections.docs}
-                            </h2>
-                            <FeatureLinkList links={content.docs} direction="column" className="mt-4" />
-                        </section>
-                        <section id="related" aria-labelledby="related-title">
-                            <h2 id="related-title" className="type-h3 text-foreground">
-                                {labels.sections.related}
-                            </h2>
-                            <FeatureLinkList links={content.related} direction="column" className="mt-4" />
-                        </section>
-                    </CellGrid>
-                </Container>
-            </div>
-
-            <DownloadBand labels={labels} location="feature-page" />
+                location="feature-page"
+            />
         </LandingLayout>
     );
 }

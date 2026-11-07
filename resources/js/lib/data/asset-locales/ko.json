@@ -95,29 +95,111 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "ko": "recent_orders라는 CTE를 users에 조인하는 쿼리가 있는 TablePro SQL 편집기와 CTE의 열을 표시하는 자동 완성 목록."
+            "ko": "최근 7일의 Query Insights. Most Run, Slowest, Got Slower 목록 위에 일별 성공 및 실패 쿼리 차트가 있고, 한 쿼리 형태가 Got Slower로 표시됩니다."
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "ko": "TablePro SQL 편집기에서 CTE의 열을 제안하는 자동 완성 목록의 확대 화면."
+            "ko": "네 건의 가격 변경이 저장을 기다리는 products 테이블과 해당 UPDATE 문을 나열하는 Preview SQL 시트."
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "ko": ":customer_id와 :since 매개변수를 사용하는 쿼리, 값을 입력하는 패널, 쿼리 기록 서랍."
+            "ko": "shop 스키마의 테이블과 관계가 있는 ER 다이어그램. product_tags는 products와 tags 사이의 다대다 선으로 표시됩니다."
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "ko": "orders 쿼리의 EXPLAIN Compare. 실행 계획이 Index Scan에서 Seq Scan으로 바뀌고 쿼리가 기준보다 느려진 것을 보여 줍니다."
+            "ko": "shop과 shop_staging 간의 Compare & Sync. 길이가 다른 열과 스크립트에서 보류된 DROP COLUMN이 나열됩니다."
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "ko": "PostgreSQL 서버의 Server Dashboard. 활성 세션 목록에서 오래 실행 중인 SELECT가 선택되어 있고 Terminate 버튼이 표시됩니다."
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "ko": "orders.csv를 열어 Hanoi를 검색한 Data Files 창. 상태 표시줄에 20,000행 중 2,498행이 표시됩니다."
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "description": {
+            "ko": "shop에 연결된 Mac SQL 편집기. 쿼리 기록 패널이 열려 실패한 쿼리로 필터링되어 있고, 매개변수 시트가 :customer_id 값을 묻습니다."
+        }
+    },
+    "features-querying-explain": {
+        "description": {
+            "ko": "shop (PostgreSQL)의 EXPLAIN. 쿼리 계획이 다이어그램으로 표시되고 EXPLAIN Compare가 이전 실행과 시간을 비교합니다."
+        }
+    },
+    "features-querying-charts": {
+        "description": {
+            "ko": "Mac SQL 편집기의 결과 영역에 월별 매출을 조회한 shop 쿼리가 막대 차트로 표시됩니다."
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "ko": "Safe Mode 수준의 연결에서 편집을 저장하는 화면. 그리드 위에 Touch ID 또는 암호 프롬프트와 대기 중인 구문이 표시됩니다."
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "ko": "shop의 Data Rewind. 저장 검토 화면에 변경된 행의 이전 값과 현재 값이 나열되고 Restore Previous Values가 있습니다."
+        }
+    },
+    "features-schema-copy": {
+        "description": {
+            "ko": "shop (PostgreSQL)에서 MySQL 연결로의 Copy To. 실행 전에 DDL, 행 수, 타입 변환을 검토하는 화면입니다."
+        }
+    },
+    "features-import-export-import": {
+        "description": {
+            "ko": "CSV 파일을 shop의 products 테이블로 가져오는 화면. 열 매핑, 실패한 행 처리 옵션, 미리 보기가 있습니다."
+        }
+    },
+    "features-import-export-backup": {
+        "description": {
+            "ko": "shop (PostgreSQL)의 Backup Dump. pg_dump 덤프 옵션과 대상 파일이 표시됩니다."
+        }
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "ko": "shop의 전체 창 Agent mode. 채팅의 요청, 에이전트가 제안한 구문, 승인을 기다리는 Run 버튼이 있습니다."
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "description": {
+            "ko": "Mac의 Settings > MCP. 서버 스위치, 클라이언트 설정 안내, 연결별 External Clients 수준이 있습니다."
+        }
+    },
+    "features-connections-import": {
+        "description": {
+            "ko": "Mac의 Import from Other App. 다른 데이터베이스 클라이언트에서 찾은 연결이 각각 체크박스와 함께 가져올 준비가 되어 있습니다."
+        }
+    },
+    "features-connections-network": {
+        "description": {
+            "ko": "SSH 탭의 연결 양식. 점프 호스트 뒤의 호스트, 키 인증, Verify Identity로 설정된 TLS 모드가 있습니다."
+        }
+    },
+    "features-sync-and-teams-sync": {
+        "description": {
+            "ko": "Mac의 Settings > Sync. iCloud Sync가 켜져 있고 동기화 항목(연결, 그룹, 설정, 프로필, 즐겨찾기, 저장된 쿼리) 목록이 있습니다."
+        }
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "ko": "사이드바의 Team Library. 팀원이 게시한 연결과 저장된 쿼리, 각 쿼리를 마지막으로 변경한 사람이 표시됩니다."
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +225,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "ko": "네 건의 가격 변경이 저장을 기다리는 products 테이블과 해당 UPDATE 문을 나열하는 Preview SQL 시트."
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "ko": "미저장 가격 변경 네 건에 대한 UPDATE 문 네 개를 나열하는 Preview SQL 시트의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "ko": "orders 테이블의 결제 완료 행은 녹색, 환불된 행은 주황색으로 표시되고 강조 규칙 팝오버가 열려 있습니다."
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "ko": "orders.user_id 외래 키의 값 선택기. Silva를 검색하여 사용자를 이름과 성으로 나열합니다."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "ko": "프로덕션 환경의 빨간색으로 표시된 연결에서 orders 테이블에 DELETE를 실행하기 전에 Safe Mode가 표시하는 Touch ID 요청."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "ko": "DELETE 문 실행 전에 Safe Mode가 표시하는 Touch ID 요청의 확대 화면."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "ko": "Restore Previous Values 검토 시트. 세 행은 Will restore, 한 행은 Changed since the save로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "ko": "새 CHECK 제약 조건과 새 인덱스가 저장을 기다리는 reviews 테이블의 Structure 탭과 열린 DDL 미리보기."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "ko": "reviews 테이블에 CHECK 제약 조건과 인덱스를 추가하는 문이 있는 DDL 미리보기의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "ko": "shop 스키마의 테이블과 관계가 있는 ER 다이어그램. product_tags는 products와 tags 사이의 다대다 선으로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "ko": "products와 tags를 다대다로 연결하는 ER 다이어그램의 확대 화면."
         },
         "caption": null
     },
@@ -218,12 +240,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "ko": "이번 실행에서 보류된 DROP COLUMN과 데이터 손실 경고를 보여 주는 Compare & Sync 스크립트의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "ko": "MariaDB에서 PostgreSQL로 복사하는 Copy To 검토. 각 테이블의 예상 행 수, 허용 값 목록이 이전되지 않아 Type changes에 표시된 enum 열 두 개, CREATE TABLE 스크립트입니다."
         },
         "caption": null
     },
@@ -245,116 +261,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "ko": "orders.csv를 열어 Hanoi를 검색한 Data Files 창. 상태 표시줄에 20,000행 중 2,498행이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "ko": "orders.csv에서 Hanoi와 일치하는 행과 상태 표시줄의 일치 개수를 보여 주는 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "ko": "Data Files 창에서 표시된 orders.csv의 status 열 통계."
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "ko": "CSV 파일을 orders 테이블로 가져오는 시트. 파일의 각 열이 테이블 열에 매핑되어 있고 오류 발생 시 처리 옵션이 있습니다."
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "ko": "스키마의 테이블 및 뷰 중 orders 테이블이 선택되어 있고 형식이 XLSX로 설정된 Export 대화상자."
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "ko": "SSH 배스천을 통한 연결의 Back Up 시트. shop 데이터베이스만 선택되어 있습니다."
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "ko": "지난달 매출 상위 고객에 대한 질문에 답하는 AI 채팅 패널. SQL 쿼리와 Copy, Insert 버튼이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "ko": "SQL 쿼리와 Insert 버튼이 있는 AI 채팅 답변의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "ko": "Agent 모드의 “Find orders with no items” 세션. 명령문 세 개와 Run을 기다리는 쓰기 작업 하나입니다."
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "ko": "대기 중인 쓰기 작업의 확대 화면. Run과 Reject가 있는 명령문 카드입니다."
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "ko": "MCP 설정의 Connect a Client 시트. Claude Code용 claude mcp add 명령이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "ko": "연결 양식의 SSH 설정. 호스트 bastion.acme.internal, 사용자 deploy, 키 인증, 점프 호스트 하나입니다."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "ko": "SSH 터널 설정의 확대 화면. 호스트 bastion.acme.internal, 사용자 deploy, SSH Agent 인증, 점프 호스트 하나입니다."
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "ko": "Welcome 창에 색상 태그가 있는 Production 및 Staging 그룹의 저장된 연결과 Chinook 샘플 데이터베이스가 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "ko": "DataGrip에서 발견한 연결 세 개가 각각 가져오기 준비 완료로 표시된 Import from DataGrip 시트."
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "ko": "acme-shop 프로젝트의 Open Project Folder 결과. .env 및 .env.production에서 발견한 연결이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "ko": "kubectl port-forward로 svc/orders-db에 터널 연결하는 연결과 실행할 명령."
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "ko": "본인의 iCloud 계정을 통해 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그가 동기화되는 다이어그램입니다. 비밀번호는 비밀번호 동기화가 켜져 있을 때만 별도로 iCloud 키체인을 통해 동기화됩니다."
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "ko": "Favorites 사이드바의 Team Library 섹션. 마지막으로 변경한 사람이 표시된 저장된 쿼리 세 개입니다."
-        }
     },
     "mac-handoff-ios": {
         "description": {

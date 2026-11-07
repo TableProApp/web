@@ -9,173 +9,138 @@
     },
     "header": {
         "title": "Verbindungen",
-        "lead": "Speichere und organisiere Verbindungen, erreiche private Server per SSH und melde dich mit unterstützten Cloud-Konten an.",
-        "docs": "/connections"
+        "lead": "Speichere und organisiere Verbindungen, erreiche private Server über SSH und Tunnel und melde dich mit deinem Cloud-Konto an.",
+        "docs": "/connections",
+        "asset": "mac-home-connections"
     },
-    "sections": [
+    "bands": [
         {
             "id": "organize",
             "title": "Verbindungen organisieren",
-            "paragraphs": [
-                "Übernimm Verbindungseinstellungen aus einer URL, auch <code>jdbc:</code> und <code>+ssh</code>. Mit <ui>Use clipboard URL</ui> importierst du eine kopierte URL.",
-                "Ordne Verbindungen in verschachtelten Gruppen, ergänze Tags und Farben und markiere Favoriten. Teste das enthaltene SQLite-Beispiel mit <ui>Open Sample Database</ui>.",
-                "Nutze mehrere Verbindungen in einem Fenster oder <ui>Open in New Window</ui>. Jede Verbindung merkt sich den letzten Tab."
+            "text": [
+                "Füge eine URL ein, auch <code>jdbc:</code> und <code>+ssh</code>, und das Formular füllt sich selbst. Ordne Verbindungen in verschachtelten Gruppen mit Tags, Farben und Favoriten, halte mehrere in einem Fenster oder gib einer ihr eigenes, und jede merkt sich ihren letzten Tab."
             ],
-            "asset": "mac-connection-library"
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "Auf iPhone und iPad hat eine Verbindung ein Tag."
+            ],
+            "docs": "/connections"
         },
         {
             "id": "import",
-            "title": "Verbindungen importieren",
-            "paragraphs": [
-                "Importiere aus einem anderen Datenbankclient, Projektdateien oder deinem AWS-Konto."
+            "also": [
+                "other-apps",
+                "project-folder",
+                "aws"
             ],
-            "links": [
-                {
-                    "label": "Verbindungsdateien und Freigabelinks",
-                    "href": "/features/sync-and-teams#share"
-                }
+            "title": "Verbindungen mitbringen",
+            "text": [
+                "<ui>Import from Other App</ui> liest {connectionImportApps}, mit Passwörtern, wo die Quell-App es zulässt. <ui>Open Project Folder</ui> findet Datenbankeinstellungen in Umgebungs-, Framework- und Docker-Dateien, und <ui>Import from AWS</ui> listet die RDS- und Aurora-Datenbanken auf, die ein Profil sehen kann."
             ],
-            "blocks": [
-                {
-                    "id": "other-apps",
-                    "title": "Aus einem anderen Datenbankclient",
-                    "paragraphs": [
-                        "<ui>Import from Other App</ui> liest {connectionImportApps}, auch TablePlus’ Setapp-Edition. Passwortimport hängt von der Speicherung in der Quell-App ab. Verschlüsselte Passwörter von DBeaver und Navicat werden unterstützt; Navicat benötigt einen <code>.ncx</code>-Export."
-                    ],
-                    "asset": "mac-import-other-app"
-                },
-                {
-                    "id": "project-folder",
-                    "title": "Aus den Konfigurationsdateien eines Projekts",
-                    "paragraphs": [
-                        "<ui>Open Project Folder</ui> findet Datenbankeinstellungen in unterstützten Umgebungs-, Framework- und Docker-Dateien. Prüfe jede Quelle vor dem Import; Passwörter gehen in den Schlüsselbund. Erkannte Produktionsnamen starten mit Alert statt der üblichen Safe-Mode-Standardstufe."
-                    ],
-                    "asset": "mac-open-project-folder"
-                },
-                {
-                    "id": "aws",
-                    "title": "Aus deinem AWS-Konto",
-                    "paragraphs": [
-                        "<ui>Import from AWS</ui> listet die RDS-Instanzen und Aurora-Cluster auf, die ein AWS-Profil in den gewählten Regionen sehen kann, und fügt deine Auswahl hinzu. Das Profil benötigt <code>rds:DescribeDBInstances</code> und <code>rds:DescribeDBClusters</code>."
-                    ]
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "Linux importiert aus anderen Apps."
+            ],
+            "docs": "/switching",
+            "asset": "features-connections-import"
         },
         {
             "id": "network",
+            "also": [
+                "ssh",
+                "tunnels"
+            ],
             "title": "SSH, TLS und Tunnel",
-            "paragraphs": [],
-            "blocks": [
+            "text": [
+                "Verbinde dich per SSH mit Passwort, Schlüssel, Agent oder interaktiver Eingabe, auch über Jump Hosts, und speichere Tunnel als wiederverwendbare Profile. TLS reicht von Required bis Verify Identity. SOCKS5, Cloudflare Access, der Cloud SQL Auth Proxy und dein eigener Befehl wie <code>kubectl port-forward</code> decken den Rest ab."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux sowie iPhone und iPad verbinden sich über SSH und TLS."
+            ],
+            "engines": [
                 {
-                    "id": "ssh",
-                    "title": "SSH und TLS",
-                    "paragraphs": [
-                        "Verbinde dich per SSH mit Passwörtern, Schlüsseln, Agents oder interaktiven Abfragen. Nutze Jump Hosts oder <code>ProxyJump</code> und speichere Tunnel als SSH-Profile. Unbekannte Host-Schlüssel benötigen eine Freigabe des Fingerabdrucks.",
-                        "Wähle einen TLS-Modus und hinterlege CA- oder Clientzertifikate. Required verschlüsselt ohne Prüfung des Serverzertifikats; Verify CA und Verify Identity ergänzen Zertifikatsprüfungen."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Netzwerk-Engines ohne SSH-Tunnel",
-                            "list": "noSsh"
-                        }
-                    ],
-                    "asset": "mac-connection-ssh-form"
-                },
-                {
-                    "id": "tunnels",
-                    "title": "Proxys, Cloudflare, Cloud SQL und Tunnelbefehle",
-                    "paragraphs": [
-                        "Nutze SOCKS5 mit entferntem DNS oder Cloudflare Access über <code>cloudflared</code>. Für {cloudSqlProxy} lädt TablePro den Cloud SQL Auth Proxy herunter, prüft und startet ihn.",
-                        "Tunnel Command verbindet über einen lokalen Port, den <code>kubectl port-forward</code>, <code>aws ssm start-session</code> oder dein eigener Befehl öffnet. Shell-Skripte vor der Verbindung fragen in jeder Sitzung nach Freigabe."
-                    ],
-                    "asset": "mac-tunnel-command"
+                    "label": "Kein SSH:",
+                    "list": "noSsh"
                 }
-            ]
+            ],
+            "docs": "/connections/ssh-tunneling",
+            "asset": "features-connections-network"
         },
         {
             "id": "cloud-auth",
             "title": "Mit deinem Cloud-Konto anmelden",
-            "paragraphs": [
-                "Die AWS-IAM-Datenbankauthentifizierung signiert bei jeder Verbindung einen neuen Token aus einem Zugriffsschlüssel, einem Profil in <code>~/.aws</code> (mit <code>credential_process</code> und übernommenen Rollen) oder AWS IAM Identity Center. Sie setzt TLS außerdem auf Required. Amazon ElastiCache for Redis, Amazon Keyspaces und DynamoDB verwenden ihre eigene AWS-Signierung.",
-                "SQL Server meldet dich mit Microsoft Entra ID im Browser an, mit der Client-ID einer von dir bereitgestellten App-Registrierung, oder mit Kerberos über ein Ticket oder einen Prinzipal und ein Passwort. Google BigQuery akzeptiert einen Dienstkontoschlüssel, Application Default Credentials oder Google OAuth mit deinem eigenen Client; Google Cloud Spanner und der Cloud SQL Auth Proxy können dein Google-Konto verwenden."
+            "text": [
+                "AWS IAM signiert bei jeder Verbindung einen neuen Token, aus einem Schlüssel, einem Profil oder IAM Identity Center. SQL Server meldet sich mit Microsoft Entra ID oder Kerberos an, und BigQuery, Spanner und der Cloud SQL Auth Proxy können dein Google-Konto nutzen."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux meldet sich mit Kerberos an. iPhone und iPad nutzen Entra ID bei Verbindungen, die von einem Mac synchronisiert wurden."
             ],
             "engines": [
                 {
-                    "label": "AWS-IAM-Authentifizierung für RDS und Aurora",
+                    "label": "AWS IAM:",
                     "list": "awsIam"
                 }
             ],
-            "links": [
-                {
-                    "label": "SQL Server in TablePro",
-                    "href": "/sql-server-client"
-                },
-                {
-                    "label": "BigQuery in TablePro",
-                    "href": "/bigquery-client"
-                }
-            ]
+            "docs": "/connections/aws-iam"
         },
         {
             "id": "credentials",
-            "title": "Zugangsdaten und Passwortquellen",
-            "paragraphs": [
-                "Passwörter und Passphrasen für SSH-Schlüssel werden im macOS-Schlüsselbund gespeichert. Passwortsynchronisierung über den iCloud-Schlüsselbund ist separat optional. SSH-Schlüsseldateien bleiben auf der Festplatte.",
-                "Kostenlose Zugangsdatenprofile nutzen Logins mehrfach und lesen Passwörter aus 1Password, Vault, AWS Secrets Manager, Befehlen, Dateien oder Umgebungsvariablen. Erforderliche CLI-Werkzeuge müssen installiert sein. Quellen werden nie synchronisiert. PostgreSQL-Verbindungen können auch <code>~/.pgpass</code> nutzen, wo unterstützt."
+            "also": [
+                "environment-variables"
             ],
-            "links": [
-                {
-                    "label": "iCloud Sync und Passwortsynchronisierung",
-                    "href": "/features/sync-and-teams#icloud-sync"
-                }
+            "title": "Passwörter und Zugangsdaten",
+            "text": [
+                "Passwörter und SSH-Passphrasen kommen in den macOS-Schlüsselbund. Zugangsdatenprofile nutzen einen Login mehrfach und lesen Passwörter kostenlos aus 1Password, Vault, AWS Secrets Manager, einem Befehl, einer Datei oder der Umgebung. Environment Variables, Teil von Pro, füllt <code>$DB_HOST</code> und andere Felder beim Verbinden."
             ],
-            "blocks": [
-                {
-                    "id": "environment-variables",
-                    "title": "Environment Variables",
-                    "paragraphs": [
-                        "Nutze Referenzen wie <code>$DB_HOST</code> in unterstützten Verbindungsfeldern. Die Werte stammen beim Verbinden aus der App-Umgebung. Port und Passwort sind ausgeschlossen; Passwörter nutzen separate kostenlose Quellen."
-                    ],
-                    "paid": [
-                        "environment-variables"
-                    ]
-                }
-            ]
-        },
+            "paid": [
+                "environment-variables"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "yes"
+            },
+            "notes": [
+                "Linux speichert Passwörter im Schlüsselbund des Systems."
+            ],
+            "docs": "/connections/credential-profiles"
+        }
+    ],
+    "more": [
         {
             "id": "policies",
+            "also": [
+                "timeouts"
+            ],
             "title": "Verbindungsrichtlinien",
-            "paragraphs": [
-                "Safe Mode steuert die Anweisungsbestätigung. External Clients steuert MCP- und AppleScript-Zugriff, startet mit Read Only und bleibt auf diesem Mac. Die KI-Richtlinie steuert den Assistenten; Never blockiert auch MCP-Clients.",
-                "Eine Organisation kann über ein Konfigurationsprofil eine Safe-Mode-Mindeststufe für jede Verbindung erzwingen und Updates steuern."
+            "text": [
+                "Jede Verbindung legt ihre Safe-Mode-Stufe fest, was MCP- und AppleScript-Clients dürfen, ob der KI-Assistent sie sehen kann, und eigene Zeitlimits für Verbindung und Abfragen."
             ],
             "links": [
                 {
-                    "label": "Safe-Mode-Stufen",
+                    "label": "Safe Mode",
                     "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "MCP-Clients und External Clients",
-                    "href": "/features/ai-mcp#mcp"
-                }
-            ],
-            "blocks": [
-                {
-                    "id": "timeouts",
-                    "title": "Zeitlimits für Verbindungen und Abfragen",
-                    "paragraphs": [
-                        "Jede Verbindung kann ein eigenes Verbindungszeitlimit für Netzwerk, TLS, Anmeldung sowie Tunnel oder Proxy festlegen und ein eigenes Abfragezeitlimit statt des appweiten Werts verwenden. Das Abfragezeitlimit gilt nach dem erneuten Verbinden für Treiber, die es unterstützen."
-                    ],
-                    "since": "0.77.0"
                 }
             ]
         },
         {
             "id": "iphone",
             "title": "Auf iPhone und iPad",
-            "paragraphs": [
-                "Die App für iPhone und iPad hat ein eigenes Verbindungsformular für {iosPicker} mit Gruppen, einem Tag pro Verbindung und Favoriten. SSH-Tunnel melden sich mit einem Passwort oder einem privaten Schlüssel aus einer Datei oder aus eingefügtem Text an und prüfen den Hostschlüssel; SSH-Agenten und Jump-Hosts werden auf iPhone und iPad nicht unterstützt. TLS kann das Serverzertifikat prüfen, außer bei SQL Server, wo es ohne Prüfung verschlüsselt. Zertifikate bleiben auf dem Gerät und werden nie synchronisiert.",
-                "Passwörter und eingefügte Schlüssel werden im Schlüsselbund gespeichert. Vom Mac synchronisierte SQL-Server-Verbindungen können sich mit Microsoft Entra ID anmelden. Import aus anderen Apps, AWS IAM, Kerberos und Google-Anmeldung, Proxys und Tunnelbefehle, Passwortquellen und Zeitlimits gibt es nicht in der App für iPhone und iPad."
+            "text": [
+                "Die App hat ein eigenes Verbindungsformular, SSH mit Passwort oder Schlüssel, TLS und Passwörter im Schlüsselbund."
             ],
             "links": [
                 {
@@ -183,152 +148,6 @@
                     "href": "/ios#security"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Verbindungsformular, Gruppen, Tags und Favoriten",
-            "ios": "partial",
-            "iosNote": "Ein Tag pro Verbindung; keine Farben",
-            "linux": "yes"
-        },
-        {
-            "label": "Import aus URL oder Zwischenablage",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Import aus anderen Apps, Projektordnern und AWS",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Nur aus anderen Apps"
-        },
-        {
-            "label": "SSH-Tunnel mit Passwort oder privatem Schlüssel",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "SSH-Agent, Einmalcodes und Jump-Hosts",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "TLS mit Zertifikatsprüfung",
-            "ios": "partial",
-            "iosNote": "SQL Server verschlüsselt ohne Prüfung",
-            "linux": "yes"
-        },
-        {
-            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy und Tunnel Command",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AWS IAM, Kerberos und Google-Anmeldung",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Nur Kerberos"
-        },
-        {
-            "label": "Microsoft Entra ID",
-            "ios": "partial",
-            "iosNote": "Bei vom Mac synchronisierten Verbindungen",
-            "linux": "no"
-        },
-        {
-            "label": "Passwörter im Schlüsselbund",
-            "ios": "yes",
-            "linux": "partial",
-            "linuxNote": "Im Schlüsselbund des Systems"
-        },
-        {
-            "label": "Passwortquellen, Zugangsdatenprofile und ~/.pgpass",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Environment Variables",
-            "paid": "environment-variables",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Safe Mode pro Verbindung",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Verbindungs- und Abfragezeitlimits",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Nur Abfragezeitlimit"
-        },
-        {
-            "label": "Safe-Mode-Mindeststufe über ein Konfigurationsprofil",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Passwortquellen sowie Proxys und Tunnelbefehle des Tabs Network bleiben auf dem Mac, auf dem du sie einrichtest: Sie werden nie synchronisiert, daher müssen sie für eine synchronisierte Verbindung auf jedem Mac erneut eingerichtet werden.",
-        "TablePro liest die Umgebung, mit der es gestartet wurde. Beim Öffnen aus Dock oder Finder sieht es die Variablen deines Shell-Profils nicht. Das betrifft sowohl die Passwortquelle Umgebungsvariable als auch die Funktion Environment Variables.",
-        "Wenn ein Tarif endet, werden <code>$DB_HOST</code> und andere Verweise nicht mehr ersetzt und ohne Warnung genau wie eingegeben an den Server gesendet.",
-        "Open Project Folder ist ein einmaliger Import: Es werden keine Dateien überwacht, und ein zweimaliger Import derselben Einstellungen erzeugt zwei Verbindungen.",
-        "Die AWS-IAM-Authentifizierung deckt {awsIam} ab, nicht Amazon Redshift. Ein Konfigurationsprofil kann nur eine Safe-Mode-Mindeststufe und Update-Einstellungen erzwingen."
-    ],
-    "docs": [
-        {
-            "label": "Verbindungen verwalten",
-            "docs": "/connections"
-        },
-        {
-            "label": "Von einem anderen Client wechseln",
-            "docs": "/switching"
-        },
-        {
-            "label": "Open Project Folder",
-            "docs": "/features/project-folder-import"
-        },
-        {
-            "label": "SSH-Tunnel",
-            "docs": "/connections/ssh-tunneling"
-        },
-        {
-            "label": "Tunnel Command",
-            "docs": "/connections/tunnel-command"
-        },
-        {
-            "label": "AWS-IAM-Authentifizierung",
-            "docs": "/connections/aws-iam"
-        },
-        {
-            "label": "Zugangsdatenprofile",
-            "docs": "/connections/credential-profiles"
-        },
-        {
-            "label": "Passwortquellen und Environment Variables",
-            "docs": "/features/connection-sharing#environment-variables"
-        }
-    ],
-    "related": [
-        {
-            "label": "Verbindungen synchronisieren und teilen",
-            "href": "/features/sync-and-teams"
-        },
-        {
-            "label": "Safe Mode und Datenbearbeitung",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "TablePro mit anderen Clients vergleichen",
-            "href": "/compare"
-        },
-        {
-            "label": "Was ein bezahlter Tarif zusätzlich bietet",
-            "href": "/pricing#features"
         }
     ]
 }

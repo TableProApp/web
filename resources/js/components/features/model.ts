@@ -1,19 +1,10 @@
-/**
- * The feature pages' rules, as pure functions: how a fact becomes text, which
- * paid features a page or block describes, where a docs link goes and how a
- * slot sits beside its text.
- *
- * Relative imports only, so `node --test` loads it directly
- * (tests/js/feature-model.test.ts).
- */
+// The feature pages' rules as pure functions. Relative imports only, so `node --test` loads it directly
+// (tests/js/feature-model.test.ts).
 import { interpolate } from '../../i18n/core.ts';
 import { formatNumber, joinList, type ListStyle, type NumberStyle } from '../../i18n/format.ts';
-import type { EngineItem, FactValue, Facts, FeatureBlock, FeaturePageContent } from './types.ts';
+import type { EngineItem, FactValue, Facts, FeaturePageContent, FeaturePart, Where } from './types.ts';
 
-/**
- * A fact as plain text: numbers with the locale's separators, names and
- * engines joined with its list style ("A, B and C"), a single name as is.
- */
+// Numbers with the locale's separators, names and engines joined with its list style ("A, B and C").
 export function factText(fact: FactValue, number: NumberStyle, list: ListStyle): string {
     switch (fact.kind) {
         case 'number':
@@ -30,7 +21,6 @@ export function factText(fact: FactValue, number: NumberStyle, list: ListStyle):
     }
 }
 
-/** Every fact as text, for `{token}` slots. */
 export function factValues(facts: Facts, number: NumberStyle, list: ListStyle): Record<string, string> {
     const values: Record<string, string> = {};
 
@@ -41,62 +31,55 @@ export function factValues(facts: Facts, number: NumberStyle, list: ListStyle): 
     return values;
 }
 
-/** A string with its `{token}` slots filled from the facts. */
 export function fillFacts(template: string, values: Record<string, string>): string {
     return interpolate(template, values);
 }
 
-/** The engines of an `engines` fact, or none when the name is not one. */
 export function engineItems(facts: Facts, name: string): EngineItem[] {
     const fact = facts[name];
 
     return fact !== undefined && fact.kind === 'engines' ? fact.items : [];
 }
 
-/** The paid features a block describes, its own and its sub-blocks', without repeats. */
-export function blockPaidIds(block: FeatureBlock & { blocks?: FeatureBlock[] }): string[] {
-    const ids = [...(block.paid ?? []), ...(block.blocks ?? []).flatMap((child) => child.paid ?? [])];
-
-    return [...new Set(ids)];
-}
-
-/**
- * Every paid feature a page describes, anywhere on it, in `order` (the
- * display order of `paid-features.json`).
- */
-export function pagePaidIds(content: FeaturePageContent, order: readonly string[]): string[] {
-    const named = new Set<string>([
-        ...content.sections.flatMap((section) => blockPaidIds(section)),
-        ...content.availability.flatMap((row) => (row.paid ? [row.paid] : [])),
-    ]);
+// In `order`, the display order of paid-features.json.
+export function pagePaidIds(content: Pick<FeaturePageContent, 'bands' | 'more'>, order: readonly string[]): string[] {
+    const named = new Set([...content.bands, ...content.more].flatMap((part) => part.paid ?? []));
 
     return order.filter((id) => named.has(id));
 }
 
-/** True when anything on the page exists in the iPhone and iPad app. */
-export function pageOnIos(content: FeaturePageContent): boolean {
-    return content.availability.some((row) => row.ios !== 'no');
+export function partIds(part: Pick<FeaturePart, 'id' | 'also'>): string[] {
+    return [part.id, ...(part.also ?? [])];
 }
 
-export function pageOnLinux(content: FeaturePageContent): boolean {
-    return content.availability.some((row) => row.linux !== 'no');
+// The Mac has every feature on these pages; a partial platform counts as present.
+export function wherePlatforms<T>(where: Where, names: { mac: T; linux: T; ios: T }): T[] {
+    return [names.mac, ...(where.linux !== 'no' ? [names.linux] : []), ...(where.ios !== 'no' ? [names.ios] : [])];
 }
 
-/** True when anything on the page exists in the Mac app. */
-export function pageOnMac(content: FeaturePageContent): boolean {
-    return content.availability.some((row) => row.mac !== 'no');
+// For the closing sentence: "Pro adds A and B. Team adds C."
+export function paidByTier<T extends { id: string; tier: string }>(ids: readonly string[], features: readonly T[]): { tier: string; features: T[] }[] {
+    const groups: { tier: string; features: T[] }[] = [];
+
+    for (const id of ids) {
+        const feature = features.find((candidate) => candidate.id === id);
+
+        if (feature === undefined) {
+            continue;
+        }
+
+        const group = groups.find((candidate) => candidate.tier === feature.tier);
+
+        if (group !== undefined) {
+            group.features.push(feature);
+        } else {
+            groups.push({ tier: feature.tier, features: [feature] });
+        }
+    }
+
+    return groups;
 }
 
-/** `docsHref('https://docs.tablepro.app/', '/features/mcp')` → `https://docs.tablepro.app/features/mcp`. */
 export function docsHref(base: string, path: string): string {
     return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
-}
-
-/**
- * How a slot sits beside its text (design-system §8.2): a detail crop or a
- * phone capture beside the text from 1024px, anything 16:9 full width below
- * it.
- */
-export function slotLayout(kind: string): 'beside' | 'below' {
-    return kind === 'detail' || kind === 'phone' || kind === 'mobile-crop' ? 'beside' : 'below';
 }

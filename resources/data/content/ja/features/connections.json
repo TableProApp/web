@@ -9,173 +9,138 @@
     },
     "header": {
         "title": "接続",
-        "lead": "接続を保存・整理し、SSH で非公開サーバーに接続して、対応するクラウドアカウントでログインできます。",
-        "docs": "/connections"
+        "lead": "接続を保存・整理し、SSH やトンネルで非公開サーバーに接続して、クラウドアカウントでログインできます。",
+        "docs": "/connections",
+        "asset": "mac-home-connections"
     },
-    "sections": [
+    "bands": [
         {
             "id": "organize",
             "title": "接続を整理",
-            "paragraphs": [
-                "<code>jdbc:</code> や <code>+ssh</code> を含む URL から接続設定を入力できます。コピーした URL は <ui>Use clipboard URL</ui> でインポートします。",
-                "接続を階層グループに整理し、タグや色、お気に入りを設定できます。<ui>Open Sample Database</ui> で同梱の SQLite サンプルを試せます。",
-                "一つのウィンドウで複数接続を使うか、<ui>Open in New Window</ui> で分けられます。各接続は最後に使ったタブを覚えています。"
+            "text": [
+                "<code>jdbc:</code> や <code>+ssh</code> を含む URL を貼り付けると、フォームに自動入力されます。接続を階層グループに整理し、タグ、色、お気に入りを付けられます。複数の接続を一つのウィンドウで使うか、一つを別ウィンドウで開けます。各接続は最後に使ったタブを覚えています。"
             ],
-            "asset": "mac-connection-library"
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "iPhone と iPad では、接続ごとに一つのタグを付けられます。"
+            ],
+            "docs": "/connections"
         },
         {
             "id": "import",
-            "title": "接続をインポート",
-            "paragraphs": [
-                "他のデータベースクライアント、プロジェクト設定ファイル、AWS アカウントからインポートできます。"
+            "also": [
+                "other-apps",
+                "project-folder",
+                "aws"
             ],
-            "links": [
-                {
-                    "label": "接続ファイルと共有リンク",
-                    "href": "/features/sync-and-teams#share"
-                }
+            "title": "接続を移行",
+            "text": [
+                "<ui>Import from Other App</ui> は {connectionImportApps} を読み取り、元アプリが許す場合はパスワードも取り込みます。<ui>Open Project Folder</ui> は環境、フレームワーク、Docker のファイルからデータベース設定を探します。<ui>Import from AWS</ui> はプロファイルが参照できる RDS と Aurora のデータベースを一覧表示します。"
             ],
-            "blocks": [
-                {
-                    "id": "other-apps",
-                    "title": "別のデータベースクライアントから",
-                    "paragraphs": [
-                        "<ui>Import from Other App</ui> は TablePlus の Setapp 版を含む {connectionImportApps} を読み取ります。パスワードの取り込みは元アプリの保存方式によります。DBeaver・Navicat の暗号化パスワードに対応し、Navicat は <code>.ncx</code> 出力が必要です。"
-                    ],
-                    "asset": "mac-import-other-app"
-                },
-                {
-                    "id": "project-folder",
-                    "title": "プロジェクトの設定ファイルから",
-                    "paragraphs": [
-                        "<ui>Open Project Folder</ui> は対応する環境、フレームワーク、Docker の設定ファイルからデータベース設定を探します。インポート前に各ソースを確認してください。パスワードは Keychain に保存します。本番環境と認識した名前は通常の Safe Mode 既定値ではなく Alert で始まります。"
-                    ],
-                    "asset": "mac-open-project-folder"
-                },
-                {
-                    "id": "aws",
-                    "title": "AWS アカウントから",
-                    "paragraphs": [
-                        "<ui>Import from AWS</ui> は、選んだリージョンで AWS プロファイルが参照できる RDS インスタンスと Aurora クラスターを一覧表示し、選択したものを追加します。プロファイルには <code>rds:DescribeDBInstances</code> と <code>rds:DescribeDBClusters</code> 権限が必要です。"
-                    ]
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "Linux は他のアプリからインポートできます。"
+            ],
+            "docs": "/switching",
+            "asset": "features-connections-import"
         },
         {
             "id": "network",
-            "title": "SSH、TLS、トンネル",
-            "paragraphs": [],
-            "blocks": [
+            "also": [
+                "ssh",
+                "tunnels"
+            ],
+            "title": "SSH、TLS とトンネル",
+            "text": [
+                "パスワード、キー、エージェント、対話的な入力で SSH 接続し、踏み台ホストを経由できます。トンネルは再利用できるプロファイルとして保存できます。TLS は Required から Verify Identity まで選べます。SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy、<code>kubectl port-forward</code> などの独自コマンドで、その他の環境にも対応します。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux と iPhone・iPad は SSH と TLS で接続します。"
+            ],
+            "engines": [
                 {
-                    "id": "ssh",
-                    "title": "SSH と TLS",
-                    "paragraphs": [
-                        "パスワード、キー、エージェント、対話的な入力で SSH 接続できます。踏み台ホストや <code>ProxyJump</code> を使い、SSH プロファイルでトンネルを再利用できます。未知のホストキーはフィンガープリントの承認が必要です。",
-                        "TLS モードを選び、CA 証明書やクライアント証明書を指定します。Required はサーバー証明書を検証せず暗号化します。Verify CA と Verify Identity は証明書の検証を追加します。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "SSH トンネル非対応のネットワークエンジン",
-                            "list": "noSsh"
-                        }
-                    ],
-                    "asset": "mac-connection-ssh-form"
-                },
-                {
-                    "id": "tunnels",
-                    "title": "プロキシ、Cloudflare、Cloud SQL とトンネルコマンド",
-                    "paragraphs": [
-                        "リモート DNS 付き SOCKS5 や <code>cloudflared</code> 経由の Cloudflare Access を使えます。{cloudSqlProxy} には、TablePro が Cloud SQL Auth Proxy をダウンロード・検証・実行します。",
-                        "Tunnel Command は <code>kubectl port-forward</code>、<code>aws ssm start-session</code>、独自コマンドで開いたローカルポートから接続します。接続前のシェルスクリプトはセッションごとに承認が必要です。"
-                    ],
-                    "asset": "mac-tunnel-command"
+                    "label": "SSH 非対応：",
+                    "list": "noSsh"
                 }
-            ]
+            ],
+            "docs": "/connections/ssh-tunneling",
+            "asset": "features-connections-network"
         },
         {
             "id": "cloud-auth",
             "title": "クラウドアカウントで認証する",
-            "paragraphs": [
-                "AWS IAM データベース認証は、アクセスキー、<code>~/.aws</code> のプロファイル（<code>credential_process</code> と引き受けたロールにも対応）、または AWS IAM Identity Center を使い、接続のたびに新しいトークンを署名します。この認証では TLS を Required に引き上げます。Amazon ElastiCache for Redis、Amazon Keyspaces、DynamoDB は、それぞれ独自の AWS 署名を使用します。",
-                "SQL Server は、指定したアプリ登録のクライアント ID を使ってブラウザーで Microsoft Entra ID 認証を行うか、チケットまたはプリンシパルとパスワードで Kerberos 認証を行います。Google BigQuery はサービスアカウントキー、Application Default Credentials、または独自クライアントを使った Google OAuth に対応します。Google Cloud Spanner と Cloud SQL Auth Proxy では Google アカウントも使えます。"
+            "text": [
+                "AWS IAM は、キー、プロファイル、IAM Identity Center を使い、接続のたびに新しいトークンを署名します。SQL Server は Microsoft Entra ID か Kerberos で認証します。BigQuery、Spanner、Cloud SQL Auth Proxy では Google アカウントを使えます。"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux は Kerberos で認証します。iPhone と iPad は Mac から同期した接続で Entra ID を使います。"
             ],
             "engines": [
                 {
-                    "label": "RDS と Aurora の AWS IAM 認証",
+                    "label": "AWS IAM：",
                     "list": "awsIam"
                 }
             ],
-            "links": [
-                {
-                    "label": "TablePro で使う SQL Server",
-                    "href": "/sql-server-client"
-                },
-                {
-                    "label": "TablePro で使う BigQuery",
-                    "href": "/bigquery-client"
-                }
-            ]
+            "docs": "/connections/aws-iam"
         },
         {
             "id": "credentials",
-            "title": "認証情報とパスワードの取得元",
-            "paragraphs": [
-                "パスワードと SSH キーのパスフレーズは macOS Keychain に保存します。iCloud Keychain のパスワード同期は別途有効化する設定です。SSH キーファイルはディスクに残ります。",
-                "無料の認証情報プロファイルでログイン情報を再利用し、1Password、Vault、AWS Secrets Manager、コマンド、ファイル、環境変数からパスワードを取得できます。必要な CLI ツールは事前にインストールしてください。取得元は同期しません。PostgreSQL 系は対応していれば <code>~/.pgpass</code> も使えます。"
+            "also": [
+                "environment-variables"
             ],
-            "links": [
-                {
-                    "label": "iCloud Sync とパスワード同期",
-                    "href": "/features/sync-and-teams#icloud-sync"
-                }
+            "title": "パスワードと認証情報",
+            "text": [
+                "パスワードと SSH のパスフレーズは macOS Keychain に保存します。無料の認証情報プロファイルでログイン情報を再利用し、1Password、Vault、AWS Secrets Manager、コマンド、ファイル、環境変数からパスワードを取得できます。Pro に含まれる Environment Variables は、接続時に <code>$DB_HOST</code> などのフィールドを埋めます。"
             ],
-            "blocks": [
-                {
-                    "id": "environment-variables",
-                    "title": "Environment Variables",
-                    "paragraphs": [
-                        "対応する接続フィールドに <code>$DB_HOST</code> などの参照を使えます。接続時にアプリの環境から値を取得します。ポートとパスワードは対象外です。パスワードには別の無料の取得元を使います。"
-                    ],
-                    "paid": [
-                        "environment-variables"
-                    ]
-                }
-            ]
-        },
+            "paid": [
+                "environment-variables"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "yes"
+            },
+            "notes": [
+                "Linux はパスワードをシステムのキーリングに保存します。"
+            ],
+            "docs": "/connections/credential-profiles"
+        }
+    ],
+    "more": [
         {
             "id": "policies",
+            "also": [
+                "timeouts"
+            ],
             "title": "接続ポリシー",
-            "paragraphs": [
-                "Safe Mode は文の実行確認を制御します。External Clients は MCP と AppleScript のアクセスを制御し、初期値は Read Only、設定はこの Mac に残ります。AI ポリシーはアシスタントへのアクセスを制御し、Never は MCP クライアントもブロックします。",
-                "組織は構成プロファイルを使い、すべての接続に Safe Mode の最低レベルを強制し、アップデートを管理できます。"
+            "text": [
+                "接続ごとに Safe Mode のレベル、MCP と AppleScript クライアントに許可する操作、AI アシスタントから見えるかどうか、接続とクエリのタイムアウトを設定できます。"
             ],
             "links": [
                 {
-                    "label": "Safe Mode のレベル",
+                    "label": "Safe Mode",
                     "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "MCP クライアントと External Clients",
-                    "href": "/features/ai-mcp#mcp"
-                }
-            ],
-            "blocks": [
-                {
-                    "id": "timeouts",
-                    "title": "接続とクエリのタイムアウト",
-                    "paragraphs": [
-                        "接続ごとに、ネットワーク、TLS、認証、トンネルやプロキシを含む接続タイムアウトを設定できます。アプリ全体の値に代えて独自のクエリタイムアウトも設定できます。クエリタイムアウトは、対応ドライバーで再接続後に適用されます。"
-                    ],
-                    "since": "0.77.0"
                 }
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "iPhone・iPad アプリには {iosPicker} 用の接続フォームがあり、グループ、接続ごとに一つのタグ、お気に入りを使えます。SSH トンネルはパスワードまたはファイルや貼り付けで指定した秘密鍵で認証し、ホスト鍵を確認します。iPhone と iPad は SSH エージェントと踏み台ホストに対応しません。TLS はサーバー証明書を検証できますが、SQL Server の場合は検証せずに暗号化します。証明書はデバイスに残り、同期しません。",
-                "パスワードと貼り付けた鍵はキーチェーンに保存します。Mac から同期した SQL Server 接続では Microsoft Entra ID で認証できます。他アプリからのインポート、AWS IAM、Kerberos と Google 認証、プロキシとトンネルコマンド、パスワード取得元、タイムアウトは iPhone・iPad アプリにはありません。"
+            "text": [
+                "アプリには専用の接続フォームがあり、パスワードかキーでの SSH、TLS、キーチェーンへのパスワード保存に対応します。"
             ],
             "links": [
                 {
@@ -183,152 +148,6 @@
                     "href": "/ios#security"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "接続フォーム、グループ、タグとお気に入り",
-            "ios": "partial",
-            "iosNote": "接続ごとにタグ一つ、色は非対応",
-            "linux": "yes"
-        },
-        {
-            "label": "URL やクリップボードからインポート",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "他アプリ、プロジェクトフォルダーや AWS からインポート",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "他アプリからのみ"
-        },
-        {
-            "label": "パスワードや秘密鍵による SSH トンネル",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "SSH エージェント、ワンタイムコードと踏み台ホスト",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "証明書検証付き TLS",
-            "ios": "partial",
-            "iosNote": "SQL Server は検証せずに暗号化",
-            "linux": "yes"
-        },
-        {
-            "label": "SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy と Tunnel Command",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AWS IAM、Kerberos と Google 認証",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Kerberos のみ"
-        },
-        {
-            "label": "Microsoft Entra ID",
-            "ios": "partial",
-            "iosNote": "Mac から同期した接続のみ",
-            "linux": "no"
-        },
-        {
-            "label": "キーチェーンにパスワード保存",
-            "ios": "yes",
-            "linux": "partial",
-            "linuxNote": "システムのキーリングに保存"
-        },
-        {
-            "label": "パスワード取得元、認証情報プロファイルと ~/.pgpass",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Environment Variables",
-            "paid": "environment-variables",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "接続ごとの Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "接続とクエリのタイムアウト",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "クエリのタイムアウトのみ"
-        },
-        {
-            "label": "構成プロファイルで Safe Mode の最低レベルを強制",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "パスワード取得元と Network タブのプロキシやトンネルコマンドは、設定した Mac にのみ保存され、同期しません。そのため同期した接続には、Mac ごとにこれらを再設定する必要があります。",
-        "TablePro は起動時の環境を読み取ります。Dock や Finder から起動した場合、シェルプロファイルで設定した変数は見えません。環境変数を使うパスワード取得元と Environment Variables の両方に影響します。",
-        "プランが終了すると、<code>$DB_HOST</code> などの参照は展開されず、警告なしに入力した文字列のままサーバーに送られます。",
-        "Open Project Folder は一度限りのインポートです。変更は監視せず、同じ設定を二度インポートすると接続も二つ作成されます。",
-        "AWS IAM 認証は {awsIam} に対応し、Amazon Redshift には対応しません。構成プロファイルで強制できるのは Safe Mode の最低レベルとアップデート設定のみです。"
-    ],
-    "docs": [
-        {
-            "label": "接続の管理",
-            "docs": "/connections"
-        },
-        {
-            "label": "別のクライアントから移行",
-            "docs": "/switching"
-        },
-        {
-            "label": "Open Project Folder",
-            "docs": "/features/project-folder-import"
-        },
-        {
-            "label": "SSH トンネル",
-            "docs": "/connections/ssh-tunneling"
-        },
-        {
-            "label": "Tunnel Command",
-            "docs": "/connections/tunnel-command"
-        },
-        {
-            "label": "AWS IAM 認証",
-            "docs": "/connections/aws-iam"
-        },
-        {
-            "label": "認証情報プロファイル",
-            "docs": "/connections/credential-profiles"
-        },
-        {
-            "label": "パスワード取得元と Environment Variables",
-            "docs": "/features/connection-sharing#environment-variables"
-        }
-    ],
-    "related": [
-        {
-            "label": "接続の同期と共有",
-            "href": "/features/sync-and-teams"
-        },
-        {
-            "label": "Safe Mode とデータ編集",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "TablePro と他のクライアントを比較",
-            "href": "/compare"
-        },
-        {
-            "label": "有料プランで増える機能",
-            "href": "/pricing#features"
         }
     ]
 }

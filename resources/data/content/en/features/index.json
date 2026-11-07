@@ -9,64 +9,41 @@
     },
     "header": {
         "title": "Features",
-        "lead": "Query, edit and work with data across supported databases."
+        "lead": "What TablePro does on Mac and Linux, area by area, across the databases it supports."
     },
-    "areas": {
-        "title": "Features by task",
-        "paid": "Optional paid features: {features} ({tier})",
-        "noPaid": "No paid features",
-        "items": [
-            {
-                "slug": "querying",
-                "summary": "Write SQL with autocomplete, reuse saved queries and search your history. Inspect query plans on supported engines."
-            },
-            {
-                "slug": "data-editing",
-                "summary": "Filter rows, follow foreign keys and review edits before saving."
-            },
-            {
-                "slug": "schema",
-                "summary": "Inspect relationships, change table structure and compare supported databases."
-            },
-            {
-                "slug": "import-export",
-                "summary": "Import {importFormats} files and export tables or results. Open data files without a database connection."
-            },
-            {
-                "slug": "ai-mcp",
-                "summary": "Use your preferred AI provider, or connect an external client through MCP (Model Context Protocol)."
-            },
-            {
-                "slug": "connections",
-                "summary": "Use SSH tunnels and cloud sign-in. Import connections from other apps."
-            },
-            {
-                "slug": "sync-and-teams",
-                "summary": "Sync through iCloud or share connections and queries with your team."
-            }
-        ]
-    },
-    "ios": {
-        "title": "iPhone and iPad",
-        "body": "Browse tables, edit rows and run queries on iPhone and iPad. The separate mobile app is free, with no in-app purchases. Feature availability is listed on each detail page.",
-        "link": "TablePro for iPhone and iPad"
-    },
-    "paid": {
-        "title": "Free and paid",
-        "lead": "The core app is free, with no trial period. Pro adds paid features; Team includes Pro. All supported databases, the AI assistant, MCP and Safe Mode are available without a license.",
-        "caption": "Paid features currently available on Mac",
-        "columns": {
-            "feature": "Feature",
-            "plan": "Plan",
-            "page": "Described on"
+    "areas": [
+        {
+            "slug": "querying",
+            "summary": "Write SQL with autocomplete that reads your schema, keep the queries you reuse, and read query plans on supported engines."
         },
-        "pricing": "See pricing"
-    },
-    "docs": {
-        "title": "Documentation",
-        "body": "Find setup instructions, settings and shortcuts.",
-        "link": "Read the docs",
-        "path": "/features/overview"
+        {
+            "slug": "data-editing",
+            "summary": "Filter rows, follow foreign keys and edit in the grid, with the SQL to review before anything is saved."
+        },
+        {
+            "slug": "schema",
+            "summary": "Change table structure, read ER diagrams, and compare two databases before syncing them."
+        },
+        {
+            "slug": "import-export",
+            "summary": "Import {importFormats} files, export tables and results, and edit data files without a database."
+        },
+        {
+            "slug": "ai-mcp",
+            "summary": "Use the AI provider you choose, and let AI clients work with saved connections through MCP."
+        },
+        {
+            "slug": "connections",
+            "summary": "Reach private servers through SSH and tunnels, sign in with your cloud account, and import connections from other apps."
+        },
+        {
+            "slug": "sync-and-teams",
+            "summary": "Sync connections through iCloud, share them as files, and publish connections and queries to your team."
+        }
+    ],
+    "closing": {
+        "body": "TablePro is free, at work too, with no trial period. Pro adds paid features, and Team includes Pro.",
+        "ios": "TablePro for {devices}"
     },
     "labels": {
         "number": {
@@ -78,29 +55,14 @@
             "starter": "Pro",
             "team": "Team"
         },
-        "paidBadge": "{name}: {tier} plan",
-        "header": {
-            "paid": "Paid: {features}. Other features are free.",
-            "paidItem": "{name} ({tier})",
-            "allFree": "Everything on this page is free.",
-            "docs": "Read the docs"
-        },
-        "sections": {
-            "availability": "Where it works",
-            "limits": "Limitations",
-            "docs": "Documentation",
-            "related": "Related"
-        },
-        "availability": {
-            "caption": "Availability and plans on Mac, iPhone and iPad",
-            "capability": "Capability",
-            "free": "Free",
-            "notAvailable": "Not available",
-            "plan": "{tier} plan"
-        },
-        "download": {
+        "where": "On {platforms}.",
+        "docs": "Documentation",
+        "more": "Also",
+        "closing": {
             "title": "Get TablePro",
-            "body": "Free to use and open source.",
+            "tier": "{tier} adds {features}.",
+            "rest": "Everything else on this page is free.",
+            "allFree": "Everything on this page is free.",
             "pricing": "See pricing"
         }
     }

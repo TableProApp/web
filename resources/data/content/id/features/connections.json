@@ -9,173 +9,138 @@
     },
     "header": {
         "title": "Koneksi",
-        "lead": "Simpan dan atur koneksi, jangkau server pribadi melalui SSH dan masuk dengan akun cloud yang didukung.",
-        "docs": "/connections"
+        "lead": "Simpan dan atur koneksi, jangkau server pribadi melalui SSH dan tunnel, serta masuk dengan akun cloud Anda.",
+        "docs": "/connections",
+        "asset": "mac-home-connections"
     },
-    "sections": [
+    "bands": [
         {
             "id": "organize",
             "title": "Atur koneksi",
-            "paragraphs": [
-                "Isi pengaturan koneksi dari URL, termasuk URL <code>jdbc:</code> dan <code>+ssh</code>. Gunakan <ui>Use clipboard URL</ui> untuk mengimpor yang Anda salin.",
-                "Susun koneksi dalam grup bertingkat, tambahkan tag dan warna, dan tandai favorit. Coba sampel SQLite yang dibundel dengan <ui>Open Sample Database</ui>.",
-                "Pertahankan beberapa koneksi dalam satu jendela atau gunakan <ui>Open in New Window</ui>. Setiap koneksi mengingat tab terakhirnya."
+            "text": [
+                "Tempel URL, termasuk URL <code>jdbc:</code> dan <code>+ssh</code>, dan formulir terisi sendiri. Susun koneksi dalam grup bertingkat dengan tag, warna, dan favorit, buka beberapa koneksi dalam satu jendela atau beri satu koneksi jendelanya sendiri, dan setiap koneksi mengingat tab terakhirnya."
             ],
-            "asset": "mac-connection-library"
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "iPhone dan iPad memberi satu tag per koneksi."
+            ],
+            "docs": "/connections"
         },
         {
             "id": "import",
-            "title": "Impor koneksi",
-            "paragraphs": [
-                "Impor dari klien database lain, file konfigurasi proyek, atau akun AWS Anda."
+            "also": [
+                "other-apps",
+                "project-folder",
+                "aws"
             ],
-            "links": [
-                {
-                    "label": "File koneksi dan tautan berbagi",
-                    "href": "/features/sync-and-teams#share"
-                }
+            "title": "Bawa koneksi Anda",
+            "text": [
+                "<ui>Import from Other App</ui> membaca {connectionImportApps}, beserta kata sandi jika aplikasi sumber mengizinkannya. <ui>Open Project Folder</ui> menemukan pengaturan database di file lingkungan, framework, dan Docker, dan <ui>Import from AWS</ui> mencantumkan database RDS dan Aurora yang terlihat oleh suatu profil."
             ],
-            "blocks": [
-                {
-                    "id": "other-apps",
-                    "title": "Dari klien database lain",
-                    "paragraphs": [
-                        "<ui>Import from Other App</ui> membaca {connectionImportApps}, termasuk edisi Setapp TablePlus. Impor kata sandi bergantung pada cara aplikasi sumber menyimpannya. Kata sandi terenkripsi DBeaver dan Navicat didukung; Navicat memerlukan ekspor <code>.ncx</code>."
-                    ],
-                    "asset": "mac-import-other-app"
-                },
-                {
-                    "id": "project-folder",
-                    "title": "Dari file konfigurasi proyek",
-                    "paragraphs": [
-                        "<ui>Open Project Folder</ui> menemukan pengaturan database di lingkungan yang didukung, kerangka kerja, dan file konfigurasi Docker. Tinjau setiap sumber sebelum mengimpor; kata sandi masuk ke Rantai Kunci. Nama produksi yang dikenal dimulai dengan Alert, bukan default Safe Mode biasa."
-                    ],
-                    "asset": "mac-open-project-folder"
-                },
-                {
-                    "id": "aws",
-                    "title": "Dari akun AWS Anda",
-                    "paragraphs": [
-                        "<ui>Import from AWS</ui> mencantumkan instans RDS dan cluster Aurora yang terlihat oleh profil AWS dalam region pilihan Anda, lalu menambahkan yang dipilih. Profil memerlukan <code>rds:DescribeDBInstances</code> dan <code>rds:DescribeDBClusters</code>."
-                    ]
-                }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "no"
+            },
+            "notes": [
+                "Linux mengimpor dari aplikasi lain."
+            ],
+            "docs": "/switching",
+            "asset": "features-connections-import"
         },
         {
             "id": "network",
-            "title": "SSH, TLS dan terowongan",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "ssh",
-                    "title": "SSH dan TLS",
-                    "paragraphs": [
-                        "Terhubung melalui SSH dengan kata sandi, kunci, agen, atau perintah interaktif. Gunakan jump host atau <code>ProxyJump</code>, dan gunakan kembali terowongan sebagai profil SSH. Kunci host yang tidak dikenal memerlukan persetujuan sidik jari.",
-                        "Pilih mode TLS dan berikan sertifikat CA atau klien. Required mengenkripsi tanpa memvalidasi sertifikat server; Verify CA dan Verify Identity menambahkan pemeriksaan sertifikat."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Mesin jaringan tanpa tunnel SSH",
-                            "list": "noSsh"
-                        }
-                    ],
-                    "asset": "mac-connection-ssh-form"
-                },
-                {
-                    "id": "tunnels",
-                    "title": "Proxy, Cloudflare, Cloud SQL, dan perintah tunnel",
-                    "paragraphs": [
-                        "Gunakan SOCKS5 dengan DNS jarak jauh atau Akses Cloudflare melalui <code>cloudflared</code>. Untuk {cloudSqlProxy}, TablePro mengunduh, memverifikasi, dan menjalankan Proxy Auth Cloud SQL.",
-                        "Tunnel Command terhubung melalui port lokal yang dibuka oleh <code>kubectl port-forward</code>, <code>aws ssm start-session</code> atau perintah Anda sendiri. Skrip shell pra-koneksi meminta persetujuan setiap sesi."
-                    ],
-                    "asset": "mac-tunnel-command"
-                }
-            ]
-        },
-        {
-            "id": "cloud-auth",
-            "title": "Masuk dengan akun cloud",
-            "paragraphs": [
-                "Autentikasi database AWS IAM menandatangani token baru setiap koneksi, dari access key, profil di <code>~/.aws</code> (dengan <code>credential_process</code> dan assumed role), atau AWS IAM Identity Center. Autentikasi ini juga menaikkan TLS ke Required. Amazon ElastiCache for Redis, Amazon Keyspaces, dan DynamoDB memiliki penandatanganan AWS sendiri.",
-                "SQL Server masuk dengan Microsoft Entra ID melalui browser, memakai client ID dari app registration yang Anda sediakan, atau Kerberos dari tiket maupun principal dan kata sandi. Google BigQuery menerima key akun layanan, Application Default Credentials, atau Google OAuth dengan klien Anda sendiri; Google Cloud Spanner dan Cloud SQL Auth Proxy dapat memakai akun Google Anda."
+            "also": [
+                "ssh",
+                "tunnels"
+            ],
+            "title": "SSH, TLS, dan tunnel",
+            "text": [
+                "Terhubung melalui SSH dengan kata sandi, kunci, agen, atau prompt interaktif, lewat jump host, dan simpan tunnel sebagai profil yang dapat digunakan kembali. TLS tersedia dari Required hingga Verify Identity. SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan perintah Anda sendiri, seperti <code>kubectl port-forward</code>, mencakup sisanya."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux serta iPhone dan iPad terhubung melalui SSH dan TLS."
             ],
             "engines": [
                 {
-                    "label": "Autentikasi AWS IAM pada RDS dan Aurora",
+                    "label": "Tanpa SSH:",
+                    "list": "noSsh"
+                }
+            ],
+            "docs": "/connections/ssh-tunneling",
+            "asset": "features-connections-network"
+        },
+        {
+            "id": "cloud-auth",
+            "title": "Masuk dengan akun cloud Anda",
+            "text": [
+                "AWS IAM menandatangani token baru setiap kali terhubung, dari kunci, profil, atau IAM Identity Center. SQL Server masuk dengan Microsoft Entra ID atau Kerberos, dan BigQuery, Spanner, serta Cloud SQL Auth Proxy dapat memakai akun Google Anda."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux masuk dengan Kerberos. iPhone dan iPad memakai Entra ID pada koneksi yang disinkronkan dari Mac."
+            ],
+            "engines": [
+                {
+                    "label": "AWS IAM:",
                     "list": "awsIam"
                 }
             ],
-            "links": [
-                {
-                    "label": "SQL Server di TablePro",
-                    "href": "/sql-server-client"
-                },
-                {
-                    "label": "BigQuery di TablePro",
-                    "href": "/bigquery-client"
-                }
-            ]
+            "docs": "/connections/aws-iam"
         },
         {
             "id": "credentials",
-            "title": "Kredensial dan sumber kata sandi",
-            "paragraphs": [
-                "Kata sandi dan frasa sandi kunci SSH disimpan di macOS Rantai Kunci. Sinkronisasi kata sandi melalui iCloud Keychain adalah pengaturan keikutsertaan terpisah. File kunci SSH tetap ada di disk.",
-                "Profil kredensial gratis menggunakan kembali login dan membaca kata sandi dari 1Password, Vault, AWS Secrets Manager, perintah, file, atau variabel lingkungan. Alat CLI yang diperlukan harus diinstal. Sumber tidak pernah disinkronkan. Koneksi keluarga PostgreSQL juga dapat menggunakan <code>~/.pgpass</code> jika didukung."
+            "also": [
+                "environment-variables"
             ],
-            "links": [
-                {
-                    "label": "iCloud Sync dan kata sandi",
-                    "href": "/features/sync-and-teams#icloud-sync"
-                }
+            "title": "Kata sandi dan kredensial",
+            "text": [
+                "Kata sandi dan frasa sandi SSH disimpan di Rantai Kunci macOS. Profil kredensial menggunakan kembali login dan membaca kata sandi dari 1Password, Vault, AWS Secrets Manager, perintah, file, atau lingkungan, secara gratis. Environment Variables, bagian dari Pro, mengisi <code>$DB_HOST</code> dan bidang lain saat Anda terhubung."
             ],
-            "blocks": [
-                {
-                    "id": "environment-variables",
-                    "title": "Environment Variables",
-                    "paragraphs": [
-                        "Gunakan referensi seperti <code>$DB_HOST</code> di bidang koneksi yang didukung. Nilai berasal dari lingkungan aplikasi pada waktu koneksi. Bidang port dan kata sandi dikecualikan; kata sandi menggunakan sumber terpisah dan gratis."
-                    ],
-                    "paid": [
-                        "environment-variables"
-                    ]
-                }
-            ]
-        },
+            "paid": [
+                "environment-variables"
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "yes"
+            },
+            "notes": [
+                "Linux menyimpan kata sandi di keyring sistem."
+            ],
+            "docs": "/connections/credential-profiles"
+        }
+    ],
+    "more": [
         {
             "id": "policies",
+            "also": [
+                "timeouts"
+            ],
             "title": "Kebijakan koneksi",
-            "paragraphs": [
-                "Safe Mode mengontrol konfirmasi pernyataan. External Clients mengontrol akses MCP dan AppleScript, defaultnya Read Only, dan tetap di Mac ini. Kebijakan AI mengontrol akses asisten; Never juga memblokir klien MCP.",
-                "Organisasi dapat menerapkan level minimum Safe Mode untuk setiap koneksi dan mengontrol pembaruan melalui profil konfigurasi."
+            "text": [
+                "Setiap koneksi mengatur level Safe Mode-nya, apa yang boleh dilakukan klien MCP dan AppleScript, apakah asisten AI dapat melihatnya, serta batas waktu koneksi dan kuerinya sendiri."
             ],
             "links": [
                 {
-                    "label": "Level Safe Mode",
+                    "label": "Safe Mode",
                     "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "Klien MCP dan External Clients",
-                    "href": "/features/ai-mcp#mcp"
-                }
-            ],
-            "blocks": [
-                {
-                    "id": "timeouts",
-                    "title": "Batas waktu koneksi dan kueri",
-                    "paragraphs": [
-                        "Setiap koneksi dapat mengatur batas waktu koneksi sendiri, yang mencakup jaringan, TLS, login, dan tunnel atau proxy, serta batas waktu kueri sendiri sebagai pengganti pengaturan global aplikasi. Batas waktu kueri berlaku pada driver yang mendukungnya setelah Anda terhubung ulang."
-                    ],
-                    "since": "0.77.0"
                 }
             ]
         },
         {
             "id": "iphone",
             "title": "Di iPhone dan iPad",
-            "paragraphs": [
-                "Aplikasi iPhone dan iPad memiliki formulir koneksi sendiri untuk {iosPicker}, dengan grup, satu tag per koneksi, dan favorit. Tunnel SSH masuk dengan kata sandi atau private key dari file atau tempelan serta memeriksa host key; agen SSH dan jump host tidak didukung di iPhone dan iPad. TLS dapat memverifikasi sertifikat server, kecuali SQL Server yang mengenkripsi tanpa verifikasi. Sertifikat tetap di perangkat dan tidak pernah disinkronkan.",
-                "Kata sandi dan key yang ditempel disimpan dalam Rantai Kunci. Koneksi SQL Server yang disinkronkan dari Mac dapat masuk dengan Microsoft Entra ID. Impor dari aplikasi lain, AWS IAM, Kerberos dan login Google, proxy dan perintah tunnel, sumber kata sandi, serta batas waktu tidak tersedia di aplikasi iPhone dan iPad."
+            "text": [
+                "Aplikasi ini memiliki formulir koneksi sendiri, SSH dengan kata sandi atau kunci, TLS, dan kata sandi di Rantai Kunci."
             ],
             "links": [
                 {
@@ -183,152 +148,6 @@
                     "href": "/ios#security"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Formulir koneksi, grup, tag, dan favorit",
-            "ios": "partial",
-            "iosNote": "Satu tag per koneksi; tanpa warna",
-            "linux": "yes"
-        },
-        {
-            "label": "Impor dari URL atau papan klip",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Impor dari aplikasi lain, folder proyek, dan AWS",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Hanya dari aplikasi lain"
-        },
-        {
-            "label": "Tunnel SSH dengan kata sandi atau private key",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Agen SSH, kode sekali pakai, dan jump host",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "TLS dengan pemeriksaan sertifikat",
-            "ios": "partial",
-            "iosNote": "SQL Server mengenkripsi tanpa verifikasi",
-            "linux": "yes"
-        },
-        {
-            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan Tunnel Command",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AWS IAM, Kerberos, dan login Google",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Hanya Kerberos"
-        },
-        {
-            "label": "Microsoft Entra ID",
-            "ios": "partial",
-            "iosNote": "Pada koneksi yang disinkronkan dari Mac",
-            "linux": "no"
-        },
-        {
-            "label": "Kata sandi dalam Rantai Kunci",
-            "ios": "yes",
-            "linux": "partial",
-            "linuxNote": "Di keyring sistem"
-        },
-        {
-            "label": "Sumber kata sandi, profil kredensial, dan ~/.pgpass",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Environment Variables",
-            "paid": "environment-variables",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Safe Mode per koneksi",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Batas waktu koneksi dan kueri",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Hanya batas waktu kueri"
-        },
-        {
-            "label": "Level minimum Safe Mode melalui profil konfigurasi",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Sumber kata sandi serta proxy dan perintah tunnel tab Network tetap di Mac tempat Anda mengaturnya: tidak pernah disinkronkan, sehingga koneksi tersinkron memerlukan pengaturan ulang pada setiap Mac.",
-        "TablePro membaca lingkungan saat aplikasi dimulai. Jika dibuka dari Dock atau Finder, aplikasi tidak melihat variabel yang diatur profil shell; ini memengaruhi sumber kata sandi dari variabel lingkungan maupun Environment Variables.",
-        "Saat paket berakhir, <code>$DB_HOST</code> dan referensi lain tidak lagi diganti dan mencapai server persis seperti ditulis, tanpa peringatan.",
-        "Open Project Folder adalah impor sekali jalan: tidak ada yang dipantau, dan mengimpor pengaturan yang sama dua kali membuat dua koneksi.",
-        "Autentikasi AWS IAM mencakup {awsIam}, bukan Amazon Redshift. Profil konfigurasi hanya dapat menerapkan level minimum Safe Mode dan pengaturan pembaruan."
-    ],
-    "docs": [
-        {
-            "label": "Mengelola koneksi",
-            "docs": "/connections"
-        },
-        {
-            "label": "Beralih dari klien lain",
-            "docs": "/switching"
-        },
-        {
-            "label": "Open Project Folder",
-            "docs": "/features/project-folder-import"
-        },
-        {
-            "label": "Tunnel SSH",
-            "docs": "/connections/ssh-tunneling"
-        },
-        {
-            "label": "Tunnel Command",
-            "docs": "/connections/tunnel-command"
-        },
-        {
-            "label": "Autentikasi AWS IAM",
-            "docs": "/connections/aws-iam"
-        },
-        {
-            "label": "Profil kredensial",
-            "docs": "/connections/credential-profiles"
-        },
-        {
-            "label": "Sumber kata sandi dan Environment Variables",
-            "docs": "/features/connection-sharing#environment-variables"
-        }
-    ],
-    "related": [
-        {
-            "label": "Sinkronkan dan bagikan koneksi",
-            "href": "/features/sync-and-teams"
-        },
-        {
-            "label": "Safe Mode dan pengeditan data",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "Bandingkan TablePro dengan klien lain",
-            "href": "/compare"
-        },
-        {
-            "label": "Tambahan dari paket berbayar",
-            "href": "/pricing#features"
         }
     ]
 }

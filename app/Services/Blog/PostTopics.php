@@ -141,15 +141,16 @@ final class PostTopics
             return is_string($title) ? ['label' => $title, 'href' => '/' . $name, 'paid' => []] : null;
         }
 
-        foreach ($copy['sections'] ?? [] as $section) {
-            foreach ([$section, ...($section['blocks'] ?? [])] as $part) {
-                if (($part['id'] ?? null) === $anchor && is_string($part['title'] ?? null)) {
-                    return [
-                        'label' => $part['title'],
-                        'href' => '/' . $name . '#' . $anchor,
-                        'paid' => array_values(array_filter((array) ($part['paid'] ?? []), 'is_string')),
-                    ];
-                }
+        // A feature page's bands and closing list; `also` holds the ids of the sections a part replaced.
+        foreach ([...($copy['bands'] ?? []), ...($copy['more'] ?? [])] as $part) {
+            $ids = [$part['id'] ?? null, ...($part['also'] ?? [])];
+
+            if (in_array($anchor, $ids, true) && is_string($part['title'] ?? null)) {
+                return [
+                    'label' => $part['title'],
+                    'href' => '/' . $name . '#' . $anchor,
+                    'paid' => array_values(array_filter((array) ($part['paid'] ?? []), 'is_string')),
+                ];
             }
         }
 

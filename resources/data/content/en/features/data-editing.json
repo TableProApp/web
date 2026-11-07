@@ -9,122 +9,124 @@
     },
     "header": {
         "title": "Data editing",
-        "lead": "Filter rows, follow foreign keys and edit values in the grid. Changes wait until you save, with SQL available to review first.",
-        "docs": "/features/change-tracking"
+        "lead": "Filter rows, follow foreign keys and edit in the grid. Nothing is written until you save, and you can read the SQL first.",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "Find the rows you need",
-            "paragraphs": [
-                "Sorting and paging run on the server, so a large table opens at its first page. Above {countEstimate} rows the row count is an estimate, with Count Exactly when you need the real number."
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "Filters and highlight rules",
-                    "paragraphs": [
-                        "Build filters with {filterOperatorCount} operators or a SQL condition, then save them for reuse. Highlight rules color matching rows or cells and stay on this Mac."
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "Foreign keys and JSON",
-                    "paragraphs": [
-                        "Follow a foreign key to its referenced row or preview it in place. A value picker helps you choose from referenced rows. Open JSON values in a tree viewer or text editor."
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "Find the rows you need",
+            "text": [
+                "Sorting and paging run on the server, so a large table opens at its first page. Filter with {filterOperatorCount} operators or a SQL condition, save the filters you reuse, and color matching rows or cells with highlight rules.",
+                "Follow a foreign key to its row or preview it in place, and open JSON values in a tree."
+            ],
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Saved filters and highlight rules stay on the Mac where you made them."
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "Review edits before saving",
-            "paragraphs": [
-                "Edits, new rows and deletions stay in the tab until you save with <kbd>⌘S</kbd>. <ui>Preview SQL</ui> shows the pending statements. Saving uses bound parameters and checks affected row counts, with a transaction and rollback where the engine supports them."
+            "text": [
+                "Edits, new rows and deletions wait in the tab until you press <kbd>⌘S</kbd>. <ui>Preview SQL</ui> shows the statements first, undo works until you save, and the save checks affected row counts, in a transaction where the engine has one.",
+                "Each type gets its editor: dates, ENUM and SET lists, arrays, JSON, hex for binary values, and images."
             ],
-            "points": [
-                "Cell editors for the column’s type: a date and time picker, ENUM and SET lists, arrays, JSON, a hex editor for binary values, and an image viewer.",
-                "Undo and redo in each tab until you save.",
-                "Query results can be edited when the query reads a single table, with no join, CTE or UNION.",
-                "Copy rows as CSV, JSON, Markdown, an IN list, or INSERT and UPDATE statements."
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "On Linux and on iPhone and iPad, a row needs a primary key to be edited. A join, CTE or UNION result is read-only everywhere."
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "Choose a level per connection: {macSafeModeLevels}. The default is {macSafeModeDefault}, which runs statements without confirmation. Alert confirms writes; Safe Mode adds Touch ID or password approval. Full levels also confirm reads. Read-Only blocks writes and editing. Safe Mode is free.",
-                "DROP, TRUNCATE and DELETE without WHERE always require confirmation. Full-window Agent mode enforces at least Alert. Read-only engines and an organization's device-management policy can also raise the effective level."
+            "text": [
+                "Give each connection a level. The default, {macSafeModeDefault}, runs statements without asking; Alert confirms writes, Safe Mode adds Touch ID or your password, the Full levels confirm reads too, and Read-Only blocks writes. DROP, TRUNCATE and DELETE without WHERE always ask. Safe Mode is free."
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                { "label": "Safe Mode and other connection policies", "href": "/features/connections#policies" },
-                { "label": "Agent mode", "href": "/features/ai-mcp#agent-mode" }
-            ]
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux offers {linuxSafeModeLevels}. iPhone and iPad offer {iosSafeModeLevels}."
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "Review and restore values replaced by a save with <ui>Restore Previous Values</ui>. The review flags rows changed since that save. Restores follow Safe Mode, in one transaction where the engine allows.",
-                "Previous values stay encrypted on this Mac for {rewindDays} days and never sync. Recording and restoration stop when your paid plan ends."
+            "text": [
+                "After a save, <ui>Restore Previous Values</ui> brings back what it replaced. The review flags rows that changed since, and the restore follows Safe Mode, in one transaction where the engine allows. Previous values stay encrypted on this Mac for {rewindDays} days and never sync."
             ],
-            "paid": ["data-rewind"],
-            "asset": "mac-data-rewind-review"
-        },
+            "paid": [
+                "data-rewind"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "notes": [
+                "It is not a backup: triggers, cascades and changes made outside TablePro are not undone."
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "Documents and keys",
-            "paragraphs": [
-                "Edit MongoDB documents as Extended JSON, or rename and remove fields across a collection. On Redis, edit strings, rename keys and set TTLs in the grid, or add a string, hash, list, set or sorted-set key. Use editor commands to change other value types."
+            "text": [
+                "Edit MongoDB documents as Extended JSON, and Redis strings, key names and TTLs in the grid."
             ],
             "links": [
-                { "label": "MongoDB in TablePro", "href": "/mongodb-client" },
-                { "label": "Redis in TablePro", "href": "/redis-gui" }
+                {
+                    "label": "MongoDB",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "Redis",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "copy-rows",
+            "title": "Copy rows",
+            "text": [
+                "Copy rows as CSV, JSON, Markdown, an IN list, or INSERT and UPDATE statements."
             ]
         },
         {
             "id": "iphone",
             "title": "On iPhone and iPad",
-            "paragraphs": [
-                "Browse rows as cards, sort and filter them, or tap a foreign key to preview its row. Edit values or set NULL; editing and deleting require a primary key. New rows start with DEFAULT values, with NULL and empty string available instead.",
-                "Mobile Safe Mode offers {iosSafeModeLevels}, defaulting to {iosSafeModeDefault}. Staged edits, Preview SQL, highlight rules and Data Rewind are not in the iPhone and iPad app."
+            "text": [
+                "Rows show as cards you can sort, filter and edit. Editing and deleting need a primary key."
             ],
             "links": [
-                { "label": "Browsing and editing on iPhone and iPad", "href": "/ios#browse" },
-                { "label": "Safe Mode on iPhone and iPad", "href": "/ios#safe-mode" }
+                {
+                    "label": "Browsing and editing on iPhone and iPad",
+                    "href": "/ios#browse"
+                }
             ]
         }
-    ],
-    "availability": [
-        { "label": "Sorting, paging and filters", "ios": "yes", "linux": "yes" },
-        { "label": "Saved filters and highlight rules", "ios": "no", "linux": "no" },
-        { "label": "Foreign key navigation and value picker", "ios": "partial", "iosNote": "Tap to preview the referenced row", "linux": "partial", "linuxNote": "Navigation; no value picker" },
-        { "label": "Edit, insert and delete rows", "ios": "partial", "iosNote": "Row editor; needs a primary key", "linux": "partial", "linuxNote": "Needs a primary key" },
-        { "label": "Staged edits, Preview SQL and undo", "ios": "no", "linux": "partial", "linuxNote": "Staged edits and undo; no Preview SQL" },
-        { "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}", "linux": "partial", "linuxNote": "{linuxSafeModeLevels}" },
-        { "label": "Touch ID or password before a write", "ios": "no", "linux": "no" },
-        { "label": "Data Rewind", "paid": "data-rewind", "ios": "no", "linux": "no" },
-        { "label": "MongoDB documents and Redis keys", "ios": "no", "linux": "partial", "linuxNote": "Redis keys change only through commands" }
-    ],
-    "limits": [
-        "Data Rewind is not a backup. It does not undo triggers, cascades or changes made outside TablePro, and it cannot restore rows without a primary key, values over {rewindMaxValue} MB or values the server computed.",
-        "An UPDATE without WHERE is an ordinary write: it asks first only at Alert or a stricter level.",
-        "The result of a join, a CTE or a UNION is read-only in the grid; open the table to edit it."
-    ],
-    "docs": [
-        { "label": "Data grid", "docs": "/features/data-grid" },
-        { "label": "Filtering", "docs": "/features/filtering" },
-        { "label": "Change tracking and Preview SQL", "docs": "/features/change-tracking" },
-        { "label": "Data Rewind", "docs": "/features/change-tracking#restoring-a-save" },
-        { "label": "Safe Mode", "docs": "/features/safe-mode" }
-    ],
-    "related": [
-        { "label": "Querying", "href": "/features/querying" },
-        { "label": "Schema", "href": "/features/schema" },
-        { "label": "What a paid plan adds", "href": "/pricing#features" }
     ]
 }

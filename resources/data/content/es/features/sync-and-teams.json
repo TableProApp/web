@@ -9,116 +9,104 @@
     },
     "header": {
         "title": "Sincronización y uso compartido",
-        "lead": "Sincroniza conexiones mediante iCloud, comparte archivos de conexión o publica conexiones y consultas para tu equipo.",
-        "docs": "/features/icloud-sync"
+        "lead": "Sincroniza conexiones mediante iCloud, compártelas como archivos o publica conexiones y consultas para tu equipo.",
+        "docs": "/features/icloud-sync",
+        "asset": "features-sync-and-teams-sync"
     },
-    "sections": [
+    "bands": [
         {
             "id": "icloud-sync",
             "title": "iCloud Sync",
-            "paragraphs": [
-                "Sincroniza mediante una base privada de iCloud entre tus Mac, iPhone y iPad. Actívalo por separado en cada dispositivo. iCloud Sync requiere Pro o Team en el Mac y es gratis en iPhone y iPad.",
-                "Las contraseñas se sincronizan aparte mediante el llavero de iCloud al activar <ui>Passwords</ui> en el Mac o <ui>Sync Passwords</ui> en móvil. El ajuste del Mac también sincroniza claves de IA y licencia guardadas. A partir de la versión que añade las cuentas de TablePro, la clave de licencia se elimina al canjearse por un inicio de sesión, y la sesión nunca se sincroniza. Marca conexiones como Local only para excluirlas junto con sus consultas guardadas."
-            ],
-            "points": [
-                "En Mac eliges qué sincronizar: conexiones, grupos y etiquetas, ajustes, perfiles SSH, perfiles de credenciales (su nombre y nombre de usuario, nunca la contraseña), favoritos de tablas y bases de datos, consultas guardadas con su SQL y carpetas de tablas.",
-                "En iPhone y iPad: conexiones, grupos y etiquetas.",
-                "Una conexión sincronizada incluye el host, el puerto, el nombre de usuario, la base de datos, los ajustes SSH y TLS, los comandos de inicio, el script previo a la conexión y las reglas de IA.",
-                "Nunca se sincronizan: el historial de consultas, Data Rewind, los orígenes de contraseña, los comandos de túnel ni el nivel de External Clients de cada conexión."
+            "text": [
+                "Sincroniza mediante una base de datos privada de iCloud entre tus Mac, iPhone y iPad, activándolo por separado en cada uno. En el Mac eliges qué se sincroniza: conexiones, grupos, ajustes, perfiles SSH y de credenciales, favoritos, consultas guardadas y carpetas de tablas. Las contraseñas solo se sincronizan mediante el llavero de iCloud si también lo activas."
             ],
             "paid": [
                 "icloud-sync"
             ],
+            "where": {
+                "linux": "no",
+                "ios": "partial"
+            },
+            "notes": [
+                "Gratis en iPhone y iPad, para conexiones, grupos y etiquetas. El historial de consultas, Data Rewind, los orígenes de contraseña y los comandos de túnel nunca se sincronizan."
+            ],
+            "docs": "/features/icloud-sync",
             "asset": "diagram-icloud-sync"
-        },
-        {
-            "id": "handoff",
-            "title": "Handoff",
-            "paragraphs": [
-                "Continúa la misma conexión o tabla guardada en otro dispositivo Apple. Ambos necesitan la conexión sincronizada por iCloud; una copia importada tiene otro ID. Handoff transmite el ID de conexión y nombre de tabla mediante Apple, no la sesión de consulta. Sin una tabla abierta, transmite el nombre de conexión, o su host si no tiene nombre."
-            ],
-            "paid": [
-                "icloud-sync"
-            ],
-            "asset": "mac-handoff-ios"
         },
         {
             "id": "share",
             "title": "Comparte una conexión",
-            "paragraphs": [
-                "Exporta un archivo <code>.tablepro</code> con ajustes de conexión, grupos y etiquetas, sin contraseñas. Encrypted Export incluye contraseñas cifradas con una frase de contraseña y AES-256-GCM. Importar ambos formatos es gratis en Mac, iPhone y iPad.",
-                "La exportación cifrada de contraseñas es gratis en iPhone y iPad. Los enlaces <code>tablepro://import</code> contienen ajustes de conexión, nunca contraseñas."
+            "text": [
+                "Exporta un archivo <code>.tablepro</code> con ajustes, grupos y etiquetas y sin contraseñas, o usa Encrypted Export para incluirlas bajo una frase de contraseña, con AES-256-GCM. Importar cualquiera de los dos es gratis, y los enlaces <code>tablepro://import</code> llevan ajustes, nunca contraseñas."
             ],
             "paid": [
                 "encrypted-export"
             ],
+            "where": {
+                "linux": "no",
+                "ios": "yes"
+            },
+            "notes": [
+                "Encrypted Export es gratis en iPhone y iPad."
+            ],
+            "docs": "/features/connection-sharing#export"
+        },
+        {
+            "id": "team",
+            "also": [
+                "team-catalog",
+                "team-library"
+            ],
+            "title": "Team Catalog y Team Library",
+            "text": [
+                "Team Catalog publica archivos de conexión sin contraseñas en una carpeta que compartes, y tus compañeros la añaden como Linked Folder. Team Library publica conexiones y consultas guardadas en el servidor de TablePro, nunca contraseñas: los miembros con puesto descargan los cambios al iniciar la app y cada 15 minutos, y ven quién cambió por última vez cada consulta."
+            ],
+            "paid": [
+                "team-catalog",
+                "team-library"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
             "links": [
                 {
-                    "label": "Importar conexiones de otros clientes",
-                    "href": "/features/connections#import"
+                    "label": "Qué envía Team Library",
+                    "href": "/privacy#library"
                 }
-            ]
-        },
+            ],
+            "docs": "/features/connection-sharing#team-catalog",
+            "asset": "features-sync-and-teams-team"
+        }
+    ],
+    "more": [
         {
             "id": "linked-folders",
             "title": "Linked Folders",
-            "paragraphs": [
-                "Observa una carpeta de archivos de conexión <code>.tablepro</code>, como un checkout de Git o unidad compartida. Edita conexiones en los archivos, no en la app. Se omiten archivos cifrados y se ignoran comandos de inicio y túnel.",
-                "Linked Folders sirve para archivos de conexión. Las carpetas SQL enlazadas son una función gratuita aparte para consultas <code>.sql</code> guardadas."
+            "text": [
+                "Observa una carpeta de archivos <code>.tablepro</code>, como un checkout de Git o una unidad compartida, y las conexiones siguen a los archivos."
             ],
             "paid": [
                 "linked-folders"
             ],
-            "links": [
-                {
-                    "label": "Consultas guardadas y carpetas SQL vinculadas",
-                    "href": "/features/querying#history"
-                }
-            ]
+            "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "id": "team",
-            "title": "Team Catalog y Team Library",
-            "paragraphs": [
-                "Comparte mediante tu propia carpeta con Team Catalog o mediante el servidor de TablePro con Team Library."
+            "id": "handoff",
+            "title": "Handoff",
+            "text": [
+                "Continúa con la misma conexión o tabla en otro dispositivo Apple, siempre que la conexión se sincronice por iCloud en ambos."
             ],
-            "blocks": [
-                {
-                    "id": "team-catalog",
-                    "title": "Team Catalog",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> escribe archivos de conexión sin contraseñas en tu carpeta compartida. Los compañeros la añaden como Linked Folder. Tu unidad o repositorio transmite los archivos, no el servidor de TablePro."
-                    ],
-                    "paid": [
-                        "team-catalog"
-                    ]
-                },
-                {
-                    "id": "team-library",
-                    "title": "Team Library",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> y <ui>Publish Saved Queries to Team…</ui> suben ajustes de conexión y SQL guardado al servidor de TablePro, nunca contraseñas. Los miembros con puesto los descargan. Se ignoran comandos de inicio y túnel.",
-                        "A partir de la versión que añade las cuentas de TablePro, la app descarga los cambios al iniciarse, cada 15 minutos y después de cada publicación, publica solo lo que cambió, muestra quién cambió por última vez cada consulta del equipo y pregunta qué copia conservar cuando otro miembro la cambió antes. Las versiones anteriores a las cuentas de TablePro descargan la biblioteca como máximo una vez por semana, y volver a publicar desde ellas sustituye tu contribución anterior."
-                    ],
-                    "paid": [
-                        "team-library"
-                    ],
-                    "asset": "mac-team-library",
-                    "links": [
-                        {
-                            "label": "Qué envía Team Library a TablePro",
-                            "href": "/privacy#library"
-                        }
-                    ]
-                }
-            ]
+            "paid": [
+                "icloud-sync"
+            ],
+            "docs": "/features/handoff"
         },
         {
             "id": "seats",
             "title": "Puestos de Team",
-            "paragraphs": [
-                "Un puesto de Team cubre a una persona en hasta {deviceLimit} ordenadores, Mac o Linux. Los propietarios y administradores invitan por correo desde el portal de la cuenta, con o sin puesto, y cada invitado se une con el enlace del correo.",
-                "El propietario cambia los puestos de una suscripción en Facturación, y un equipo con puestos de pago único los conserva; los puestos nuevos llegan con una suscripción a Team. Eliminar a un miembro libera su puesto, y sus Mac pierden las funciones de Team la próxima vez que TablePro se comunica con el servidor."
+            "text": [
+                "Un puesto cubre a una persona en hasta {deviceLimit} ordenadores, Mac o Linux. Los propietarios y administradores invitan por correo desde el portal de la cuenta."
             ],
             "links": [
                 {
@@ -134,8 +122,8 @@
         {
             "id": "iphone",
             "title": "En iPhone y iPad",
-            "paragraphs": [
-                "La app para iPhone y iPad sincroniza conexiones, grupos y etiquetas mediante iCloud, participa en Handoff e importa y exporta archivos <code>.tablepro</code>, con contraseñas protegidas por una frase de contraseña si lo deseas. Linked Folders, Team Catalog y Team Library no están en la app para iPhone y iPad."
+            "text": [
+                "Sincroniza conexiones mediante iCloud, continúa con Handoff e importa o exporta archivos <code>.tablepro</code>."
             ],
             "links": [
                 {
@@ -143,115 +131,6 @@
                     "href": "/ios#mac"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "iCloud Sync",
-            "paid": "icloud-sync",
-            "ios": "partial",
-            "iosNote": "Conexiones, grupos y etiquetas, gratis",
-            "linux": "no"
-        },
-        {
-            "label": "Sincronización de contraseñas mediante el Llavero de iCloud",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Elegir qué sincronizar y mantener conexiones Local only",
-            "paid": "icloud-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Handoff con iCloud Sync activado",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Exportar e importar archivos .tablepro",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Encrypted Export con contraseñas",
-            "paid": "encrypted-export",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Linked Folders",
-            "paid": "linked-folders",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Catalog",
-            "paid": "team-catalog",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Library",
-            "paid": "team-library",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Cuando un plan termina en Mac, iCloud Sync se pausa e indica el motivo, y las conexiones de Linked Folders y Team Library desaparecen de la lista. Los comandos de publicación de Team se ocultan y Encrypted Export pierde la opción de contraseña.",
-        "Editar una conexión sincronizada en iPhone o iPad puede cambiar ajustes que la app de esos dispositivos no tiene. Un nivel más estricto de Safe Mode de Mac, como Safe Mode (Full), vuelve como Alert, y los hosts de salto SSH pueden perderse. Modifica esas conexiones en Mac.",
-        "Si una licencia Team termina o se revoca, lo publicado en Team Library permanece en el servidor de TablePro hasta que el propietario del equipo elimine el equipo, lo que también elimina la biblioteca."
-    ],
-    "docs": [
-        {
-            "label": "iCloud Sync",
-            "docs": "/features/icloud-sync"
-        },
-        {
-            "label": "Handoff",
-            "docs": "/features/handoff"
-        },
-        {
-            "label": "Archivos de conexión y Encrypted Export",
-            "docs": "/features/connection-sharing#export"
-        },
-        {
-            "label": "Linked Folders",
-            "docs": "/features/connection-sharing#linked-folders"
-        },
-        {
-            "label": "Team Catalog",
-            "docs": "/features/connection-sharing#team-catalog"
-        },
-        {
-            "label": "Team Library",
-            "docs": "/features/favorites#team-library"
-        },
-        {
-            "label": "Plan Team y puestos",
-            "docs": "/features/team#seats"
-        }
-    ],
-    "related": [
-        {
-            "label": "TablePro para iPhone y iPad",
-            "href": "/ios"
-        },
-        {
-            "label": "Conexiones, túneles y credenciales",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Qué añade un plan de pago",
-            "href": "/pricing#features"
-        },
-        {
-            "label": "Privacidad: iCloud Sync y Handoff",
-            "href": "/privacy#icloud"
         }
     ]
 }

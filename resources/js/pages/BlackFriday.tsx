@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
 import { CalendarPlus } from 'lucide-react';
 import CampaignCode from '@/components/campaign/campaign-code';
@@ -11,7 +11,7 @@ import NewsletterSignup from '@/components/blog/newsletter-signup';
 import type { PaidFeatureCopy } from '@/components/pricing/types';
 import { useCheckout } from '@/components/pricing/use-checkout';
 import SEOHead from '@/components/seo/seo-head';
-import { useShownSlot } from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Button, { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import Container from '@/components/ui/container';
@@ -43,12 +43,14 @@ type SaleCycle = 'lifetime' | 'yearly';
 const PRICE_CHANGE_POST = 'new-prices-2026';
 
 // The Pro features that have a capture showing them, in the order the tabs show them. The rest are listed by name.
-const CAPTURES: Record<string, AssetId> = {
-    'query-insights': 'mac-query-insights',
-    'compare-sync': 'mac-compare-sync-structure',
-    'data-rewind': 'mac-data-rewind-review',
-    'result-charts': 'mac-result-chart',
-    'icloud-sync': 'diagram-icloud-sync',
+// Written out as literal slots, so the asset references scan sees them (AssetReferences reads only literals).
+const CAPTURE_SIZES = '(min-width: 1280px) 900px, (min-width: 1024px) 70vw, 100vw';
+const CAPTURES: Record<string, { asset: AssetId; slot: ReactNode }> = {
+    'query-insights': { asset: 'mac-query-insights', slot: <AssetSlot id="mac-query-insights" caption={false} sizes={CAPTURE_SIZES} /> },
+    'compare-sync': { asset: 'mac-compare-sync-structure', slot: <AssetSlot id="mac-compare-sync-structure" caption={false} sizes={CAPTURE_SIZES} /> },
+    'data-rewind': { asset: 'mac-data-rewind-review', slot: <AssetSlot id="mac-data-rewind-review" caption={false} sizes={CAPTURE_SIZES} /> },
+    'result-charts': { asset: 'mac-result-chart', slot: <AssetSlot id="mac-result-chart" caption={false} sizes={CAPTURE_SIZES} /> },
+    'icloud-sync': { asset: 'diagram-icloud-sync', slot: <AssetSlot id="diagram-icloud-sync" caption={false} sizes={CAPTURE_SIZES} /> },
 };
 
 const delay = (ms: number): CSSProperties => ({ '--sale-delay': `${ms}ms` }) as CSSProperties;
@@ -95,7 +97,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
     const description = fmt(phase === 'ended' ? content.seo.endedDescription : content.seo.description, values);
 
     const features = paidFeaturesForTier('starter');
-    const tabs: ProFeatureTab[] = Object.entries(CAPTURES).flatMap(([id, asset]) => {
+    const tabs: ProFeatureTab[] = Object.entries(CAPTURES).flatMap(([id, { asset, slot }]) => {
         const feature = features.find((candidate) => candidate.id === id);
 
         return feature && shownSlot(asset) !== null
@@ -106,7 +108,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
                       detail: paidFeatures[id]?.detail ?? '',
                       href: featureHref(feature),
                       link: fmt(content.includes.link, { feature: feature.name }),
-                      asset,
+                      capture: slot,
                   },
               ]
             : [];

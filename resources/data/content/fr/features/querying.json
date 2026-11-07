@@ -9,133 +9,140 @@
     },
     "header": {
         "title": "Éditeur SQL",
-        "lead": "Écrivez du SQL avec autocomplétion du schéma. Enregistrez les requêtes réutilisées, recherchez dans l’historique et inspectez les plans des moteurs compatibles.",
-        "docs": "/features/sql-editor"
+        "lead": "Écrivez du SQL avec une autocomplétion qui lit votre schéma, gardez les requêtes que vous réutilisez et voyez comment la base les exécute.",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
+            "also": [
+                "open-quickly"
+            ],
             "title": "Autocomplétion du schéma",
-            "paragraphs": [
-                "L’autocomplétion propose tables et colonnes, avec alias, CTE et sous-requêtes. Formatez l’instruction courante avec <kbd>⌘⇧L</kbd> en conservant ses commentaires.",
-                "Exécutez l’instruction courante, une sélection ou un script entier. Les lots ordinaires utilisent une transaction et sont annulés en cas d’échec. Les scripts SQL Server, transactions explicites et instructions comme VACUUM font exception. Le DDL sur MySQL, MariaDB et Oracle est validé indépendamment."
+            "text": [
+                "L’autocomplétion propose tables et colonnes, avec alias, CTE et sous-requêtes. Exécutez l’instruction courante, une sélection ou tout le script ; un lot ordinaire s’exécute dans une transaction et est annulé si une instruction échoue.",
+                "Formatez avec <kbd>⌘⇧L</kbd>, activez le mode Vim, ou accédez à n’importe quelle table, vue ou requête enregistrée avec Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "points": [
-                "Repères d’instructions dans la marge, chacun avec son bouton d’exécution.",
-                "Recherche et remplacement avec expressions régulières.",
-                "Mode Vim avec déplacements, registres et macros, où <code>:w</code> exécute la requête.",
-                "Les fichiers <code>.sql</code> s’ouvrent, se modifient et s’enregistrent comme onglets de requête."
+            "where": {
+                "linux": "yes",
+                "ios": "partial"
+            },
+            "notes": [
+                "Sur iPhone et iPad, l’onglet Query exécute le SQL sans autocomplétion."
             ],
-            "asset": "mac-query-autocomplete"
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "Paramètres, historique et requêtes enregistrées",
-            "paragraphs": [
-                "Utilisez des paramètres comme <code>:customer_id</code> pour saisir les valeurs avant l’exécution. Elles sont liées nativement lorsque le pilote le permet.",
-                "Recherchez dans l’historique local par texte, source, erreurs ou période. Il conserve par défaut {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
-                "Enregistrez les requêtes avec mots-clés réutilisables et historique de versions. Liez un dossier de fichiers <code>.sql</code> à la barre latérale, avec mises à jour bidirectionnelles et statut Git. Les dossiers SQL liés sont gratuits, distincts de Linked Folders, la fonction payante pour les fichiers de connexion."
+            "text": [
+                "Écrivez <code>:customer_id</code> et TablePro demande la valeur avant d’exécuter la requête. Recherchez dans l’historique par texte, source, erreurs ou période : il conserve {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
+                "Enregistrez les requêtes que vous réutilisez, ou liez un dossier de fichiers <code>.sql</code> à la barre latérale, avec mises à jour bidirectionnelles et statut Git."
             ],
-            "asset": "mac-query-parameters-history"
+            "where": {
+                "linux": "partial",
+                "ios": "partial"
+            },
+            "notes": [
+                "Linux a l’historique et les requêtes enregistrées. iPhone et iPad conservent les {historyEntriesIos} dernières requêtes."
+            ],
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "open-quickly",
-            "title": "Open Quickly et onglets",
-            "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) recherche tables, vues et requêtes dans les connexions ouvertes. Les onglets conservent leur SQL et les réglages de grille à la réouverture de l’app."
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "Performances des requêtes",
-            "paragraphs": [],
-            "blocks": [
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN et EXPLAIN Compare",
+            "text": [
+                "Lisez un plan de requête en diagramme, en arbre de coûts ou dans la sortie brute du moteur. Relancez la requête après un changement et comparez les deux exécutions : les écarts de durée et de plan s’affichent côte à côte, et tout écart inférieur à {explainNoise} % compte comme du bruit."
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "engines": [
                 {
-                    "id": "explain",
-                    "title": "EXPLAIN et EXPLAIN Compare",
-                    "paragraphs": [
-                        "Affichez les plans en diagrammes, arbres de coûts ou sortie brute du moteur. Comparez à une exécution antérieure pour repérer les variations de durée et de plan ; les écarts inférieurs à {explainNoise} % sont considérés comme du bruit. Les deux fonctions sont gratuites."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Plan en diagramme et arbre",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "Plan en texte",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "Estimation du coût par exécution à blanc",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "Moteurs SQL sans EXPLAIN",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
+                    "label": "Plans en diagramme :",
+                    "list": "explainDiagram"
                 },
                 {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "Repérez les requêtes lentes, en échec ou fréquentes dans l’historique local de ce Mac. Les instructions similaires sont regroupées sans tenir compte des valeurs de paramètres. Query Insights compare les périodes localement ; ce n’est pas une surveillance globale du serveur et aucune métrique n’est envoyée."
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
+                    "label": "Plans en texte :",
+                    "list": "explainText"
+                },
+                {
+                    "label": "Coût par exécution à blanc :",
+                    "list": "explainCost"
                 }
-            ]
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "Repérez les requêtes lentes, en échec et les plus exécutées dans l’historique de ce Mac. Les instructions qui ne diffèrent que par leurs valeurs sont regroupées, et deux périodes se comparent côte à côte. Query Insights lit uniquement l’historique local : ce n’est pas une surveillance du serveur, et rien n’est envoyé."
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
         },
         {
             "id": "results",
-            "title": "Résultats en graphiques et cartes",
-            "paragraphs": [
-                "Un résultat peut passer de la grille à un graphique ou une carte dans le même onglet, puis revenir."
+            "also": [
+                "result-charts",
+                "map"
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "Affichez les résultats en graphiques à barres, courbes, aires ou nuages de points. Ils affichent jusqu’à {chartPoints} points et {chartSeries} séries des {chartInspectedRows} premières lignes, avec un avertissement en cas de troncature."
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "Vue Carte",
-                    "paragraphs": [
-                        "Affichez les colonnes géométriques compatibles dans Apple Plans et sélectionnez une forme pour retrouver sa ligne. Les lignes restent sur le Mac ; Apple fournit les tuiles cartographiques. La vue carte est gratuite."
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
-        },
+            "title": "Graphiques et cartes",
+            "text": [
+                "Transformez un résultat en graphique à barres, en courbes, en aires ou en nuage de points dans le même onglet, à partir des {chartInspectedRows} premières lignes. Les colonnes géométriques s’ouvrent sur une carte, et sélectionner une forme retrouve sa ligne. Result Charts fait partie de Pro ; la vue Carte est gratuite."
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "where": {
+                "linux": "no",
+                "ios": "no"
+            },
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
         {
             "id": "other-languages",
             "title": "Autres langages de requête",
-            "paragraphs": [
-                "Utilisez dans l’éditeur le langage de chaque moteur non SQL. MongoDB utilise un shell JavaScript intégré de type mongosh, pas mongosh lui-même. Les pages des bases listent les commandes compatibles."
+            "text": [
+                "Les moteurs non SQL utilisent leur propre langage de requête dans l’éditeur. MongoDB dispose d’un shell intégré dans le style de mongosh."
             ],
             "engines": [
                 {
-                    "label": "Langage de requête par moteur",
+                    "label": "Par moteur :",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "Résultats volumineux",
+            "text": [
+                "Une requête retourne au maximum {rowCap} lignes, sauf si vous relevez ce plafond dans les Réglages, jusqu’à {rowCapMax}. Un LIMIT que vous écrivez vous-même l’emporte toujours."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Sur iPhone et iPad",
-            "paragraphs": [
-                "L’application iPhone et iPad a un onglet Query avec coloration SQL, Run et Stop (<kbd>⌘↩</kbd> au clavier), et un historique des {historyEntriesIos} dernières requêtes de l’appareil. Vous pouvez copier ou partager les résultats en JSON, CSV ou instructions SQL INSERT.",
-                "Elle n’a ni autocomplétion, ni formatage, ni paramètres, ni EXPLAIN, ni requêtes enregistrées, et conserve au maximum {resultBufferIos} lignes d’un résultat ; ajoutez un LIMIT pour voir la partie dont vous avez besoin."
+            "text": [
+                "L’onglet Query colore le SQL, l’exécute et l’arrête, et partage un résultat en JSON, CSV ou instructions INSERT."
             ],
             "links": [
                 {
@@ -143,109 +150,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Éditeur SQL avec autocomplétion et formatage",
-            "ios": "partial",
-            "iosNote": "Coloration, Run et Stop ; sans autocomplétion",
-            "linux": "yes"
-        },
-        {
-            "label": "Paramètres de requête",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Historique des requêtes",
-            "ios": "partial",
-            "iosNote": "Les {historyEntriesIos} dernières requêtes de l’appareil",
-            "linux": "yes"
-        },
-        {
-            "label": "Requêtes enregistrées et dossiers SQL liés",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Requêtes enregistrées uniquement"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Recherche des connexions et tables dans la barre latérale"
-        },
-        {
-            "label": "EXPLAIN et EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Vue Carte",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copier ou partager les résultats",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Une requête retourne au maximum {rowCap} lignes, sauf si vous relevez ce plafond dans les Réglages, jusqu’à {rowCapMax}, ou si vous l’exécutez avec <kbd>⌘⌥⏎</kbd>. Un LIMIT que vous écrivez vous-même l’emporte toujours.",
-        "L’historique et Query Insights couvrent uniquement ce Mac ; les requêtes exécutées sur un autre Mac ou sur un iPhone n’y figurent pas.",
-        "La commande shell <code>tablepro</code> ouvre des connexions et des fichiers dans l’application. Elle n’exécute pas de requêtes depuis le terminal."
-    ],
-    "docs": [
-        {
-            "label": "Éditeur SQL",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "Paramètres de requête",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "Historique des requêtes",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "Visualisation EXPLAIN",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "Graphiques et cartes dans la grille de données",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Modification des données",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Bases de données prises en charge",
-            "href": "/databases"
-        },
-        {
-            "label": "Ce qu’ajoute une offre payante",
-            "href": "/pricing#features"
         }
     ]
 }

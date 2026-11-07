@@ -95,29 +95,111 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "pt-BR": "Editor SQL do TablePro com uma consulta que une uma CTE chamada recent_orders a users, e a lista de preenchimento automático mostrando as colunas da CTE."
+            "pt-BR": "Query Insights dos últimos 7 dias, com um gráfico de consultas bem-sucedidas e falhas por dia acima das listas Most Run, Slowest e Got Slower, onde um formato de consulta está marcado como Got Slower."
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "pt-BR": "Detalhe da lista de preenchimento automático sugerindo as colunas de uma CTE no editor SQL do TablePro."
+            "pt-BR": "A tabela products com quatro alterações de preço aguardando salvamento, e a folha Preview SQL listando as instruções UPDATE correspondentes."
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "pt-BR": "Uma consulta usando os parâmetros :customer_id e :since, o painel onde seus valores são digitados e a gaveta do histórico de consultas."
+            "pt-BR": "Um diagrama ER do esquema shop com suas tabelas e relações, e product_tags representado como uma linha muitos-para-muitos entre products e tags."
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "pt-BR": "EXPLAIN Compare para uma consulta a orders, mostrando que o plano mudou de Index Scan para Seq Scan e a consulta está mais lenta que sua referência."
+            "pt-BR": "Compare & Sync entre shop e shop_staging, listando uma coluna com comprimento diferente e um DROP COLUMN retido do script."
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "pt-BR": "Server Dashboard de um servidor PostgreSQL, listando sessões ativas com um SELECT demorado selecionado e o botão Terminate visível."
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "pt-BR": "A janela Data Files com orders.csv aberto e busca por Hanoi, e a barra de status indicando 2.498 de 20.000 linhas."
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "description": {
+            "pt-BR": "O editor SQL do Mac em shop, com o painel de histórico de consultas aberto, filtrado por consultas com falha, e uma folha de parâmetro pedindo :customer_id."
+        }
+    },
+    "features-querying-explain": {
+        "description": {
+            "pt-BR": "EXPLAIN em shop (PostgreSQL): um plano de consulta como diagrama, com EXPLAIN Compare mostrando o tempo em relação a uma execução anterior."
+        }
+    },
+    "features-querying-charts": {
+        "description": {
+            "pt-BR": "Uma consulta de receita por mês em shop, mostrada como gráfico de barras na área de resultados do editor SQL do Mac."
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "pt-BR": "Salvando uma edição em uma conexão no nível Safe Mode: o pedido de Touch ID ou senha sobre a grade, com a instrução pendente visível."
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "pt-BR": "Data Rewind em shop: a revisão de um salvamento, listando os valores anteriores e atuais das linhas alteradas, com Restore Previous Values."
+        }
+    },
+    "features-schema-copy": {
+        "description": {
+            "pt-BR": "Copy To de shop (PostgreSQL) para uma conexão MySQL: a revisão do DDL, das contagens de linhas e das conversões de tipo antes da execução."
+        }
+    },
+    "features-import-export-import": {
+        "description": {
+            "pt-BR": "Importação de um arquivo CSV para a tabela products de shop: o mapeamento de colunas, as opções para linhas com falha e a prévia."
+        }
+    },
+    "features-import-export-backup": {
+        "description": {
+            "pt-BR": "Backup Dump em shop (PostgreSQL): as opções de dump com pg_dump e o arquivo de destino."
+        }
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "pt-BR": "Agent mode em janela inteira em shop: um pedido no chat, as instruções que o agente propõe e o botão Run aguardando aprovação."
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "description": {
+            "pt-BR": "Settings > MCP no Mac: a chave do servidor, as instruções de configuração de um cliente e os níveis de External Clients por conexão."
+        }
+    },
+    "features-connections-import": {
+        "description": {
+            "pt-BR": "Import from Other App no Mac: conexões encontradas em outro cliente de banco de dados, cada uma com uma caixa de seleção, prontas para importar."
+        }
+    },
+    "features-connections-network": {
+        "description": {
+            "pt-BR": "O formulário de conexão na aba SSH: um host atrás de um host intermediário, autenticação por chave e o modo TLS definido como Verify Identity."
+        }
+    },
+    "features-sync-and-teams-sync": {
+        "description": {
+            "pt-BR": "Settings > Sync no Mac: iCloud Sync ativado, com a lista do que sincroniza (conexões, grupos, configurações, perfis, favoritos, consultas salvas)."
+        }
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "pt-BR": "A Team Library na barra lateral: conexões e consultas salvas publicadas por colegas, com quem alterou cada consulta por último."
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +225,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "pt-BR": "A tabela products com quatro alterações de preço aguardando salvamento, e a folha Preview SQL listando as instruções UPDATE correspondentes."
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe da folha Preview SQL listando quatro instruções UPDATE para alterações de preço preparadas."
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "pt-BR": "A tabela orders com linhas pagas coloridas de verde e reembolsadas de laranja, e o popover das regras de destaque aberto."
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "pt-BR": "Um seletor de valores para a chave estrangeira orders.user_id, com busca por Silva, listando usuários por nome e sobrenome."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "pt-BR": "Uma solicitação de Touch ID que Safe Mode mostra antes de executar um DELETE na tabela orders, em uma conexão marcada com a cor vermelha de produção."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe da solicitação de Touch ID que Safe Mode mostra antes de executar uma instrução DELETE."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "pt-BR": "A folha de revisão Restore Previous Values, com três linhas marcadas como Will restore e uma como Changed since the save."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "pt-BR": "A aba Structure da tabela reviews com uma nova restrição CHECK e um novo índice aguardando salvamento, e a prévia DDL aberta."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe de uma prévia DDL com as instruções que adicionam uma restrição CHECK e um índice à tabela reviews."
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "pt-BR": "Um diagrama ER do esquema shop com suas tabelas e relações, e product_tags representado como uma linha muitos-para-muitos entre products e tags."
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe de um diagrama ER ligando products e tags em uma relação muitos-para-muitos."
         },
         "caption": null
     },
@@ -218,12 +240,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "pt-BR": "Detalhe do script Compare & Sync, com um DROP COLUMN retido desta execução e seu aviso de perda de dados."
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "pt-BR": "A revisão Copy To de MariaDB para PostgreSQL: as linhas esperadas de cada tabela, duas colunas enum em Type changes porque suas listas de valores permitidos não são transferidas e o script CREATE TABLE."
         },
         "caption": null
     },
@@ -245,116 +261,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "pt-BR": "A janela Data Files com orders.csv aberto e busca por Hanoi, e a barra de status indicando 2.498 de 20.000 linhas."
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe de linhas em orders.csv que correspondem a Hanoi, com a contagem de correspondências na barra de status."
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "pt-BR": "Estatísticas da coluna status de orders.csv na janela Data Files."
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "pt-BR": "A folha de importação de um arquivo CSV para a tabela orders, com cada coluna do arquivo mapeada a uma coluna da tabela e a opção em caso de erro."
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "pt-BR": "O diálogo Export com a tabela orders marcada entre as tabelas e visualizações do esquema, e XLSX escolhido como formato."
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "pt-BR": "A folha Back Up para uma conexão por um bastion SSH, com apenas o banco shop selecionado."
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "pt-BR": "O painel de chat com IA respondendo a uma pergunta sobre os principais clientes do mês passado por receita, com uma consulta SQL e seus botões Copy e Insert."
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe de uma resposta do chat com IA com uma consulta SQL e o botão Insert."
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "pt-BR": "Sessão do modo Agent “Find orders with no items”: três instruções, uma gravação aguardando Run."
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "pt-BR": "Detalhe da gravação pendente: seu cartão de instrução com Run e Reject."
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "pt-BR": "A folha Connect a Client nas configurações MCP, com o comando claude mcp add para Claude Code."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "pt-BR": "As configurações SSH de um formulário de conexão: host bastion.acme.internal, usuário deploy, autenticação por chave e um jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "pt-BR": "Detalhe das configurações do túnel SSH, com host bastion.acme.internal, usuário deploy, autenticação SSH Agent e um jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "pt-BR": "A janela Welcome listando conexões salvas em grupos Production e Staging com etiquetas coloridas e o banco de exemplo Chinook."
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "pt-BR": "A folha Import from DataGrip listando três conexões encontradas no DataGrip, cada uma marcada como pronta para importar."
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "pt-BR": "Resultados de Open Project Folder para o projeto acme-shop, com conexões encontradas em .env e .env.production."
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "pt-BR": "Uma conexão tunelada com kubectl port-forward para svc/orders-db, com o comando que será executado."
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "pt-BR": "Diagrama de conexões, grupos e tags sincronizados entre um Mac e um iPhone ou iPad pela sua conta do iCloud, com as senhas passando separadamente pelo iCloud Keychain apenas quando a sincronização de senhas está ativada."
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "pt-BR": "Barra lateral Favorites com uma seção Team Library: três consultas salvas identificadas por quem as alterou por último."
-        }
     },
     "mac-handoff-ios": {
         "description": {
