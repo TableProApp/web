@@ -392,8 +392,8 @@
         1840,
         2432
       ],
-      "sizes": "(min-width: 1024px) 300px, 260px",
-      "note": "An iPhone or iPad screen in Apple's product frame on /ios: front-on, cut to the device with a transparent edge, a light and a dark frame to follow the page. Whole screens only, never cropped. Each entry carries its frame's aspect (iPhone 1318:2717, landscape iPad 367:281) and each placement passes its own sizes: the hero pair at their real relative size, an iPhone beside its band's text at 300 px (widths 320 and 640), an iPad across the band at 1216 px (720, 1216 and 2432)."
+      "sizes": "(min-width: 1024px) 300px, (min-width: 768px) 260px, 240px",
+      "note": "An iPhone or iPad screen in Apple's product frame on /ios: front-on, cut to the device with a transparent edge, a light and a dark frame to follow the page. Whole screens only, never cropped. Each entry carries its frame's aspect (iPhone 1318:2717, landscape iPad 367:281) and each placement passes its own sizes: the hero pair at their real relative size, an iPhone beside its band's text at 240 to 300 px (widths 320 and 640), an iPad across the band at 1216 px (720, 1216 and 2432)."
     },
     "figure": {
       "type": "per-figure",
