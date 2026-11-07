@@ -1,5 +1,4 @@
 import { buttonClasses } from '@/components/ui/button';
-import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
@@ -23,8 +22,7 @@ export default function GetStarted({ labels, location, hubLink = true }: GetStar
             <p className="type-body text-foreground">{labels.cta.body}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <LocaleLink href="/download" onClick={() => trackDownload(location, 'mac')} className={buttonClasses('primary', 'md')}>
-                    <AppleGlyph />
-                    {m.download.macCta}
+                    {m.nav.download}
                 </LocaleLink>
                 <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
                     {labels.cta.pricing}

@@ -13,7 +13,6 @@ import { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
-import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
@@ -85,8 +84,7 @@ export default function FeatureShow({ slug, content, labels, facts, linux }: Fea
                     <>
                         {/* A client-side visit, like every other internal action; a plain <a> reloaded the whole document. */}
                         <LocaleLink href="/download" onClick={() => trackDownload('feature-header', 'mac')} className={buttonClasses('secondary', 'md')}>
-                            <AppleGlyph />
-                            {m.download.macCta}
+                            {m.nav.download}
                         </LocaleLink>
                         <TextLink href={docsHref(FACTS.links.docs, content.header.docs)} kind="standalone" external hrefLang="en">
                             {locale === 'en' ? labels.header.docs : `${labels.header.docs} ${m.common.englishOnly}`}

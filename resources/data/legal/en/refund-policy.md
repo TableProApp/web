@@ -1,7 +1,7 @@
 ---
 title: Refund policy
 description: Every TablePro plan is refundable within {refundDays} days of purchase, and each monthly or yearly renewal within {refundDays} days of its charge. How to ask for a refund.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Every paid plan can be refunded within {refundDays} days: Pro and Team, monthly, yearly and one-time. The {refundDays} days start on the date of purchase, and each monthly or yearly renewal can be refunded within {refundDays} days of its charge. The plans themselves are on the [pricing page](/pricing#refunds).
@@ -16,7 +16,7 @@ Licenses are sold by {merchant}, our merchant of record, so the refund is issued
 
 ## What happens to the license {#license}
 
-After a full refund, the license ends at once. Each Mac stops using the paid features the next time TablePro checks in with our server; one that stays offline stops at most {offlineDays} days later, or when its offline file expires. Versions before TablePro accounts stop at their next license check, at most {revalidateDays} days later, or, if they stay offline, {graceDays} days after their last successful check. The rest of the Mac app keeps working as before, and the data on your Mac is not touched.
+After a full refund, the license ends at once. Each computer stops using the paid features the next time TablePro checks in with our server; one that stays offline stops at most {offlineDays} days later, or when its offline file expires. Versions before TablePro accounts stop at their next license check, at most {revalidateDays} days later, or, if they stay offline, {graceDays} days after their last successful check. The apps keep working as before without them, and the data on your computer is not touched.
 
 ## Subscriptions {#subscriptions}
 

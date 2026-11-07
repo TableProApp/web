@@ -44,7 +44,7 @@ Uma Licença concede um direito não exclusivo e intransferível de usar os recu
 
 O limite de {deviceLimit} computadores vale por conta, somando todas as Licenças que ela usa. Você não pode compartilhar sua conta ou uma Chave de Licença além das pessoas e computadores cobertos pelo plano, nem sublicenciar, vender, alugar ou transferir de outra forma uma Licença ou Chave de Licença sem nossa autorização por escrito.
 
-O app para Mac renova seu plano com nosso servidor uma vez por dia. Se o servidor não puder ser acessado, os recursos pagos continuam funcionando por até {offlineDays} dias após a última renovação ou, em um Mac que usa um arquivo offline do portal da conta, até o arquivo expirar. As versões anteriores às contas TablePro verificam uma Chave de Licença a cada {revalidateDays} dias e mantêm os recursos pagos por {graceDays} dias após a última verificação bem-sucedida. Quando um plano mensal ou anual termina, seus recursos param de funcionar, e o restante do app para Mac continua funcionando.
+Os apps renovam seu plano com nosso servidor uma vez por dia. Se o servidor não puder ser acessado, os recursos pagos continuam funcionando por até {offlineDays} dias após a última renovação ou, em um Mac que usa um arquivo offline do portal da conta, até o arquivo expirar. As versões anteriores às contas TablePro verificam uma Chave de Licença a cada {revalidateDays} dias e mantêm os recursos pagos por {graceDays} dias após a última verificação bem-sucedida. Quando um plano mensal ou anual termina, seus recursos param de funcionar, e os apps continuam funcionando sem eles.
 
 ## Portal da conta {#account}
 
@@ -97,7 +97,7 @@ Você concorda em indenizar e isentar TablePro e seus colaboradores de qualquer 
 
 Publicamos atualizações, correções e novos recursos a nosso critério. Além do suporte prioritário acima, não temos obrigação de manter, atualizar ou oferecer suporte a qualquer versão do Aplicativo, e versões antigas podem deixar de receber correções de segurança.
 
-Alguns Serviços, como verificações de licença e a Team Library, exigem acesso à rede. Não garantimos disponibilidade permanente e podemos descontinuá-los com aviso prévio razoável. Os recursos pagos do app para Mac precisam do nosso servidor de licenças: se ele não puder ser acessado, continuam funcionando pelo tempo indicado em [Uso de uma licença](#license).
+Alguns Serviços, como verificações de licença e a Team Library, exigem acesso à rede. Não garantimos disponibilidade permanente e podemos descontinuá-los com aviso prévio razoável. Os recursos pagos dos apps precisam do nosso servidor de licenças: se ele não puder ser acessado, continuam funcionando pelo tempo indicado em [Uso de uma licença](#license).
 
 ## Encerramento {#termination}
 

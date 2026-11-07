@@ -44,7 +44,7 @@ Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht
 
 Das Limit von {deviceLimit} Computern gilt pro Konto, über alle Lizenzen hinweg, die es nutzt. Ohne unsere schriftliche Erlaubnis darfst du dein Konto oder einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Computer hinaus teilen und keine Lizenz und keinen Lizenzschlüssel unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
 
-Die Mac-App erneuert deinen Tarif einmal täglich bei unserem Server. Ist der Server nicht erreichbar, funktionieren die Bezahlfunktionen noch bis zu {offlineDays} Tage nach der letzten Erneuerung oder, auf einem Mac mit einer Offline-Datei aus dem Kontoportal, bis die Datei abläuft. Versionen vor den TablePro-Konten prüfen stattdessen alle {revalidateDays} Tage einen Lizenzschlüssel und behalten die Bezahlfunktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung. Wenn ein monatlicher oder jährlicher Tarif endet, stehen seine Funktionen nicht mehr bereit; der Rest der Mac-App funktioniert weiter.
+Die Apps erneuern deinen Tarif einmal täglich bei unserem Server. Ist der Server nicht erreichbar, funktionieren die Bezahlfunktionen noch bis zu {offlineDays} Tage nach der letzten Erneuerung oder, auf einem Mac mit einer Offline-Datei aus dem Kontoportal, bis die Datei abläuft. Versionen vor den TablePro-Konten prüfen stattdessen alle {revalidateDays} Tage einen Lizenzschlüssel und behalten die Bezahlfunktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung. Wenn ein monatlicher oder jährlicher Tarif endet, stehen seine Funktionen nicht mehr bereit; die Apps funktionieren ohne sie weiter.
 
 ## Kontoportal {#account}
 
@@ -97,7 +97,7 @@ Du verpflichtest dich, TablePro und seine Mitwirkenden von Ansprüchen, Forderun
 
 Wir veröffentlichen Updates, Fehlerbehebungen und neue Funktionen nach eigenem Ermessen. Abgesehen vom oben genannten bevorzugten Support sind wir nicht verpflichtet, eine Version der Anwendung zu warten, zu aktualisieren oder zu unterstützen. Ältere Versionen erhalten möglicherweise keine Sicherheitskorrekturen mehr.
 
-Einige Dienste wie Lizenzprüfungen und die Team Library benötigen Netzwerkzugang. Wir garantieren keine ständige Verfügbarkeit und können sie nach angemessener Ankündigung einstellen. Die Bezahlfunktionen der Mac-App benötigen unseren Lizenzserver: Ist er nicht erreichbar, funktionieren sie noch für die unter [Eine Lizenz nutzen](#license) genannte Zeit.
+Einige Dienste wie Lizenzprüfungen und die Team Library benötigen Netzwerkzugang. Wir garantieren keine ständige Verfügbarkeit und können sie nach angemessener Ankündigung einstellen. Die Bezahlfunktionen der Apps benötigen unseren Lizenzserver: Ist er nicht erreichbar, funktionieren sie noch für die unter [Eine Lizenz nutzen](#license) genannte Zeit.
 
 ## Beendigung {#termination}
 

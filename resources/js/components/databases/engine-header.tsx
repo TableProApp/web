@@ -95,7 +95,7 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                             <LocaleLink href="/download" onClick={() => trackDownload(`database-${engine.id}`, 'mac')} className={buttonClasses('primary', 'md')}>
-                                {m.download.macCta}
+                                {m.nav.download}
                             </LocaleLink>
                             {onIos && links.appStore !== null && (
                                 <AppStoreBadge href={links.appStore} location={`database-${engine.id}`} />

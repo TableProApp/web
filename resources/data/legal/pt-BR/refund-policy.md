@@ -1,7 +1,7 @@
 ---
 title: Política de reembolso
 description: Todo plano TablePro pode ser reembolsado em até {refundDays} dias após a compra, e cada renovação mensal ou anual em até {refundDays} dias após a cobrança. Como pedir.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Todos os planos pagos podem ser reembolsados em até {refundDays} dias: Pro e Team, mensais, anuais e com pagamento único. Os {refundDays} dias começam na data da compra, e cada renovação mensal ou anual pode ser reembolsada em até {refundDays} dias após a cobrança. Os planos estão na [página de preços](/pt-BR/pricing#refunds).
@@ -16,7 +16,7 @@ As licenças são vendidas por {merchant}, nosso merchant of record, portanto o 
 
 ## O que acontece com a licença {#license}
 
-Após um reembolso total, a licença termina na hora. Cada Mac deixa de usar os recursos pagos na próxima vez que o TablePro se comunica com nosso servidor; um Mac que continua offline para em no máximo {offlineDays} dias, ou quando o arquivo offline dele expira. As versões anteriores às contas TablePro param na próxima verificação da licença, em no máximo {revalidateDays} dias, ou, se continuarem offline, {graceDays} dias após a última verificação bem-sucedida. O restante do app para Mac continua funcionando como antes, e os dados no Mac não são alterados.
+Após um reembolso total, a licença termina na hora. Cada computador deixa de usar os recursos pagos na próxima vez que o TablePro se comunica com nosso servidor; um computador que continua offline para em no máximo {offlineDays} dias, ou quando o arquivo offline dele expira. As versões anteriores às contas TablePro param na próxima verificação da licença, em no máximo {revalidateDays} dias, ou, se continuarem offline, {graceDays} dias após a última verificação bem-sucedida. Os apps continuam funcionando como antes sem eles, e os dados no computador não são alterados.
 
 ## Assinaturas {#subscriptions}
 

@@ -1,7 +1,7 @@
 ---
 title: 退款政策
 description: 所有 TablePro 方案均可在购买后 {refundDays} 天内退款，月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。本文说明申请方式及许可证后续处理。
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 所有付费方案均可在 {refundDays} 天内退款，包括 Pro 和 Team 的月付、年付和一次性购买。{refundDays} 天自购买日期起算；月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。方案详情请查看[定价页面](/zh-Hans/pricing#refunds)。
@@ -16,7 +16,7 @@ updatedAt: "2026-11-04"
 
 ## 许可证如何处理 {#license}
 
-全额退款后，许可证立即终止。每台 Mac 在 TablePro 下次联系我们的服务器时停止使用付费功能；保持离线的 Mac 最迟在 {offlineDays} 天后或其离线文件过期时停止。支持 TablePro 账户之前的版本在下次验证许可证时停止，最迟不超过 {revalidateDays} 天；若一直离线，则在最后一次验证成功后 {graceDays} 天停止。Mac 应用的其他功能仍照常运行，Mac 上的数据不会被改动。
+全额退款后，许可证立即终止。每台电脑在 TablePro 下次联系我们的服务器时停止使用付费功能；保持离线的电脑最迟在 {offlineDays} 天后或其离线文件过期时停止。支持 TablePro 账户之前的版本在下次验证许可证时停止，最迟不超过 {revalidateDays} 天；若一直离线，则在最后一次验证成功后 {graceDays} 天停止。应用的其他功能仍照常运行，电脑上的数据不会被改动。
 
 ## 订阅 {#subscriptions}
 

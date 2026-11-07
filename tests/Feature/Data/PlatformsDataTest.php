@@ -40,7 +40,7 @@ it('counts a license in computers, not Macs, and never says Linux lacks the paid
         expect(File::get($path))
             ->not->toMatch('/\{(deviceLimit|activations|count)\} Macs/', "{$path} counts a license in Macs")
             ->not->toMatch('/Linux prototype/', "{$path} calls Linux a prototype")
-            ->not->toMatch('/on the Mac for now|in the Mac app only|In TablePro for macOS|(features|these|\\}) to the Mac app|includes in the Mac app/', "{$path} says Linux lacks the paid features");
+            ->not->toMatch('/on the Mac for now|in the Mac app only|In TablePro for macOS|(features|these|\\}) to the Mac app|includes in the Mac app|features of the Mac app|rest of the Mac app|Mac app renews/', "{$path} says Linux lacks the paid features");
     }
 });
 
@@ -80,6 +80,27 @@ it('never ties the paid plans to the Mac app in any language, once Linux ships',
             expect($line)->not->toMatch('/Mac/', "{$locale} pricing.ts: {$line}");
         }
     }
+});
+
+it('labels a link to the platform chooser Download, not Download for Mac, once Linux ships', function (): void {
+    if (platformsEntry('linux')['status'] !== 'released') {
+        $this->markTestSkipped('Linux is not released.');
+    }
+
+    // The Mac panel on /download and the Mac button beside the Linux one are the only Mac-specific downloads.
+    $allowed = ['components/download/mac-panel.tsx', 'components/download/action-pair.tsx'];
+
+    foreach (File::allFiles(resource_path('js')) as $file) {
+        $path = str_replace(resource_path('js') . '/', '', $file->getPathname());
+
+        if (str_starts_with($path, 'i18n/') || in_array($path, $allowed, true)) {
+            continue;
+        }
+
+        expect($file->getContents())->not->toMatch('/m\\.download\\.macCta/', "{$path} labels a link to /download Download for Mac");
+    }
+
+    expect(File::get(resource_path('js/components/download/action-pair.tsx')))->toContain('href="/download#mac"');
 });
 
 it('gives a released platform everything a page needs and an unreleased one nothing', function (): void {

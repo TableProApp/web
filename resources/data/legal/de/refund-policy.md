@@ -1,7 +1,7 @@
 ---
 title: Erstattungsrichtlinie
 description: Jeder Tarif ist bis {refundDays} Tage nach dem Kauf erstattbar, jede monatliche oder jährliche Verlängerung bis {refundDays} Tage nach ihrer Abbuchung. So beantragst du sie.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Pro und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum, und jede monatliche oder jährliche Verlängerung kann innerhalb von {refundDays} Tagen nach ihrer Abbuchung erstattet werden. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
@@ -16,7 +16,7 @@ Die Lizenzen werden von {merchant}, unserem Merchant of Record, verkauft. Die Er
 
 ## Was mit der Lizenz passiert {#license}
 
-Nach einer vollständigen Erstattung endet die Lizenz sofort. Jeder Mac stellt die Nutzung der Bezahlfunktionen ein, sobald TablePro sich das nächste Mal bei unserem Server meldet; ein Mac, der offline bleibt, spätestens {offlineDays} Tage später oder wenn seine Offline-Datei abläuft. Versionen vor den TablePro-Konten stellen sie bei der nächsten Lizenzprüfung ein, spätestens {revalidateDays} Tage später, oder, wenn sie offline bleiben, {graceDays} Tage nach ihrer letzten erfolgreichen Prüfung. Der Rest der Mac-App funktioniert weiter wie zuvor; die Daten auf deinem Mac bleiben unberührt.
+Nach einer vollständigen Erstattung endet die Lizenz sofort. Jeder Computer stellt die Nutzung der Bezahlfunktionen ein, sobald TablePro sich das nächste Mal bei unserem Server meldet; einer, der offline bleibt, spätestens {offlineDays} Tage später oder wenn seine Offline-Datei abläuft. Versionen vor den TablePro-Konten stellen sie bei der nächsten Lizenzprüfung ein, spätestens {revalidateDays} Tage später, oder, wenn sie offline bleiben, {graceDays} Tage nach ihrer letzten erfolgreichen Prüfung. Die Apps funktionieren ohne sie weiter wie zuvor; die Daten auf deinem Computer bleiben unberührt.
 
 ## Abonnements {#subscriptions}
 

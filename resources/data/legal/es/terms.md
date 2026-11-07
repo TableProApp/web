@@ -44,7 +44,7 @@ Una Licencia te concede un derecho no exclusivo e intransferible a usar las func
 
 El límite de {deviceLimit} ordenadores se aplica por cuenta, sumando todas las Licencias que usa. No puedes compartir tu cuenta ni una Clave de licencia fuera de las personas y los ordenadores que cubre tu plan, ni sublicenciar, vender, alquilar o transferir de otro modo una Licencia o Clave de licencia sin nuestro permiso por escrito.
 
-La app para Mac renueva tu plan con nuestro servidor una vez al día. Si no se puede acceder al servidor, las funciones de pago siguen funcionando hasta {offlineDays} días desde la última renovación o, en un Mac que usa un archivo sin conexión del portal de la cuenta, hasta que caduca el archivo. Las versiones anteriores a las cuentas de TablePro comprueban una Clave de licencia cada {revalidateDays} días y mantienen las funciones de pago durante {graceDays} días desde la última comprobación correcta. Cuando termina un plan mensual o anual, sus funciones dejan de funcionar y el resto de la app para Mac sigue funcionando.
+Las apps renuevan tu plan con nuestro servidor una vez al día. Si no se puede acceder al servidor, las funciones de pago siguen funcionando hasta {offlineDays} días desde la última renovación o, en un Mac que usa un archivo sin conexión del portal de la cuenta, hasta que caduca el archivo. Las versiones anteriores a las cuentas de TablePro comprueban una Clave de licencia cada {revalidateDays} días y mantienen las funciones de pago durante {graceDays} días desde la última comprobación correcta. Cuando termina un plan mensual o anual, sus funciones dejan de funcionar y las apps siguen funcionando sin ellas.
 
 ## Portal de cuentas {#account}
 
@@ -97,7 +97,7 @@ Aceptas indemnizar y mantener indemnes a TablePro y sus colaboradores frente a c
 
 Publicamos actualizaciones, correcciones y nuevas funciones a nuestra discreción. Aparte del soporte prioritario anterior, no tenemos obligación de mantener, actualizar o dar soporte a ninguna versión de la Aplicación, y las versiones antiguas pueden dejar de recibir correcciones de seguridad.
 
-Algunos Servicios, como las comprobaciones de licencia y Team Library, necesitan acceso a la red. No garantizamos que estén siempre disponibles y podemos interrumpirlos con un preaviso razonable. Las funciones de pago de la app para Mac necesitan nuestro servidor de licencias: si no se puede acceder a él, siguen funcionando durante el tiempo indicado en [Usar una licencia](#license).
+Algunos Servicios, como las comprobaciones de licencia y Team Library, necesitan acceso a la red. No garantizamos que estén siempre disponibles y podemos interrumpirlos con un preaviso razonable. Las funciones de pago de las apps necesitan nuestro servidor de licencias: si no se puede acceder a él, siguen funcionando durante el tiempo indicado en [Usar una licencia](#license).
 
 ## Terminación {#termination}
 

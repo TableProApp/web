@@ -262,7 +262,7 @@ export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps
                             }}
                             className={buttonClasses('primary', 'lg', 'w-full')}
                         >
-                            {m.download.macCta}
+                            {m.nav.download}
                         </LocaleLink>
                         {mac && (
                             <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement: requirementLine(mac.requirements, m.platforms) })}</p>

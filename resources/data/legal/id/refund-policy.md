@@ -1,7 +1,7 @@
 ---
 title: Kebijakan pengembalian dana
 description: Semua paket TablePro dapat dikembalikan dananya dalam {refundDays} hari sejak dibeli, dan setiap perpanjangan bulanan atau tahunan dalam {refundDays} hari sejak ditagih.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Pro dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian, dan setiap perpanjangan bulanan atau tahunan dapat dikembalikan dananya dalam {refundDays} hari sejak penagihannya. Paket tersedia di [halaman harga](/id/pricing#refunds).
@@ -16,7 +16,7 @@ Lisensi dijual oleh {merchant}, merchant of record kami, sehingga pengembalian d
 
 ## Dampaknya pada lisensi {#license}
 
-Setelah pengembalian dana penuh, lisensi langsung berakhir. Setiap Mac berhenti memakai fitur berbayar saat TablePro berikutnya menghubungi server kami; Mac yang tetap offline berhenti paling lambat {offlineDays} hari kemudian, atau saat file offline-nya kedaluwarsa. Versi sebelum akun TablePro berhenti pada pemeriksaan lisensi berikutnya, paling lambat {revalidateDays} hari kemudian, atau, jika tetap offline, {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Fitur aplikasi Mac lainnya tetap berjalan seperti sebelumnya, dan data di Mac tidak disentuh.
+Setelah pengembalian dana penuh, lisensi langsung berakhir. Setiap komputer berhenti memakai fitur berbayar saat TablePro berikutnya menghubungi server kami; komputer yang tetap offline berhenti paling lambat {offlineDays} hari kemudian, atau saat file offline-nya kedaluwarsa. Versi sebelum akun TablePro berhenti pada pemeriksaan lisensi berikutnya, paling lambat {revalidateDays} hari kemudian, atau, jika tetap offline, {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Aplikasi tetap berjalan seperti sebelumnya tanpa fitur tersebut, dan data di komputer tidak disentuh.
 
 ## Langganan {#subscriptions}
 

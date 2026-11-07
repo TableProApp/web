@@ -1,7 +1,7 @@
 ---
 title: Chính sách hoàn tiền
 description: Mọi gói TablePro đều được hoàn tiền trong {refundDays} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong {refundDays} ngày kể từ ngày tính phí. Cách yêu cầu.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Mọi gói trả phí đều được hoàn tiền trong vòng {refundDays} ngày: Pro và Team, theo tháng, theo năm và mua một lần. {refundDays} ngày này tính từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm cũng được hoàn tiền trong vòng {refundDays} ngày kể từ ngày tính phí lần gia hạn đó. Các gói được trình bày trên [trang bảng giá](/vi/pricing#refunds).
@@ -16,7 +16,7 @@ License được bán bởi {merchant}, merchant of record của chúng tôi, n�
 
 ## Điều gì xảy ra với license {#license}
 
-Sau khi hoàn tiền toàn bộ, license kết thúc ngay. Mỗi máy Mac ngừng dùng các tính năng trả phí vào lần tiếp theo TablePro liên lạc với máy chủ của chúng tôi; máy không kết nối mạng ngừng chậm nhất {offlineDays} ngày sau đó, hoặc khi tệp offline của nó hết hạn. Các phiên bản trước khi có tài khoản TablePro ngừng ở lần kiểm tra license tiếp theo, chậm nhất là {revalidateDays} ngày sau đó, hoặc nếu vẫn không kết nối mạng thì {graceDays} ngày sau lần kiểm tra thành công gần nhất. Phần còn lại của ứng dụng cho Mac vẫn hoạt động như trước, và dữ liệu trên máy Mac của bạn không bị động tới.
+Sau khi hoàn tiền toàn bộ, license kết thúc ngay. Mỗi máy tính ngừng dùng các tính năng trả phí vào lần tiếp theo TablePro liên lạc với máy chủ của chúng tôi; máy không kết nối mạng ngừng chậm nhất {offlineDays} ngày sau đó, hoặc khi tệp offline của nó hết hạn. Các phiên bản trước khi có tài khoản TablePro ngừng ở lần kiểm tra license tiếp theo, chậm nhất là {revalidateDays} ngày sau đó, hoặc nếu vẫn không kết nối mạng thì {graceDays} ngày sau lần kiểm tra thành công gần nhất. Các ứng dụng vẫn hoạt động như trước mà không có các tính năng đó, và dữ liệu trên máy tính của bạn không bị động tới.
 
 ## Gói thuê bao {#subscriptions}
 
