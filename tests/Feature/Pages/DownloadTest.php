@@ -254,7 +254,10 @@ it('renders one platform panel at a time, the Mac first, and keeps the anchors o
     $document = downloadDocument();
     $hidden = fn(string $id): bool => in_array('hidden', explode(' ', (string) $document->getElementById($id)?->getAttribute('class')), true);
 
-    expect($document->querySelectorAll('[data-platform-switch] > [data-panel]'))->toHaveCount(3)
+    $segments = array_map(fn(Dom\Element $input): string => (string) $input->getAttribute('value'), iterator_to_array($document->querySelectorAll('input[name="platform"]')));
+
+    expect($segments)->toBe(['mac', 'linux', 'ios'])
+        ->and($document->querySelectorAll('[data-platform-switch] > [data-panel]'))->toHaveCount(3)
         ->and($hidden('mac'))->toBeFalse()
         ->and($hidden('ios'))->toBeTrue()
         ->and($hidden('linux'))->toBeTrue()

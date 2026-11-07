@@ -40,7 +40,7 @@ function linuxRequirements(linux: LinuxProp, m: Messages): string {
 function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, mac, ios, linux, links, featuredEngines }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
     const pageUrl = absoluteUrl(baseUrl, path('/download'));
-    const deviceNames = [...mac.deviceNames, ...(ios?.deviceNames ?? []), ...(linux?.deviceNames ?? [])];
+    const deviceNames = [...mac.deviceNames, ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])];
     const live = release.source !== 'unavailable' && release.version !== null;
 
     return graph([
@@ -66,17 +66,6 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
                 version: live ? release.version : null,
                 downloadUrl: pageUrl,
             }),
-        ios !== null &&
-            ios.appStoreUrl !== null &&
-            links.license !== null &&
-            iosAppNode(context, {
-                alternateName: m.seo.iosApp.alternateName,
-                operatingSystem: ios.requirements.systems.join(', '),
-                requirements: requirementLine(ios.requirements, m.platforms),
-                installUrl: ios.appStoreUrl,
-                licenseUrl: links.license,
-                currency: PRICING.currency,
-            }),
         linux !== null &&
             links.license !== null &&
             linuxAppNode(context, {
@@ -87,6 +76,17 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
                 licenseUrl: links.license,
                 currency: PRICING.currency,
                 version: linux.release?.version ?? null,
+            }),
+        ios !== null &&
+            ios.appStoreUrl !== null &&
+            links.license !== null &&
+            iosAppNode(context, {
+                alternateName: m.seo.iosApp.alternateName,
+                operatingSystem: ios.requirements.systems.join(', '),
+                requirements: requirementLine(ios.requirements, m.platforms),
+                installUrl: ios.appStoreUrl,
+                licenseUrl: links.license,
+                currency: PRICING.currency,
             }),
     ]);
 }
@@ -99,15 +99,12 @@ export default function Download({ content, release, mac, ios, linux, unreleased
 
     const names = {
         mac: mac.deviceNames[0] ?? 'Mac',
-        ios: joinList(ios?.deviceNames ?? [], m.common.shortList),
         linux: linux?.deviceNames[0] ?? 'Linux',
+        ios: joinList(ios?.deviceNames ?? [], m.common.shortList),
     };
 
     const tabs: PlatformTab[] = [
         { key: 'mac', name: names.mac, label: names.mac, icon: <Laptop aria-hidden="true" className="size-6" />, panel: <MacPanel content={content} release={release} mac={mac} /> },
-        ...(ios !== null
-            ? [{ key: 'ios' as const, name: names.ios, label: names.ios, icon: <TabletSmartphone aria-hidden="true" className="size-6" />, panel: <IosPanel content={content} ios={ios} /> }]
-            : []),
         ...(linux !== null
             ? [
                   {
@@ -123,6 +120,9 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                       panel: <LinuxPanel linux={linux} issues={links.issues} />,
                   },
               ]
+            : []),
+        ...(ios !== null
+            ? [{ key: 'ios' as const, name: names.ios, label: names.ios, icon: <TabletSmartphone aria-hidden="true" className="size-6" />, panel: <IosPanel content={content} ios={ios} /> }]
             : []),
     ];
 
