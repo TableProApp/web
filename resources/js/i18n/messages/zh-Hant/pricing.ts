@@ -106,10 +106,10 @@ export default {
     "comparePlans": "比較方案",
     "section": {
         "title": "價格方案",
-        "lead": "TablePro 開放原始碼且可免費使用。付費方案為 Mac App 增加選用功能。"
+        "lead": "TablePro 開放原始碼且可免費使用。付費方案增加選用功能。"
     },
     "matrix": {
-        "caption": "各方案在 Mac App 中包含的功能",
+        "caption": "各方案包含的功能",
         "feature": "功能",
         "groups": {
             "starter": "Pro 與 Team 包含",

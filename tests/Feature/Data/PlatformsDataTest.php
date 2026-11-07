@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\File;
 
 function platformsJson(): array
@@ -38,8 +39,46 @@ it('counts a license in computers, not Macs, and never says Linux lacks the paid
 
         expect(File::get($path))
             ->not->toMatch('/\{(deviceLimit|activations|count)\} Macs/', "{$path} counts a license in Macs")
-            ->not->toContain('Linux prototype', "{$path} calls Linux a prototype")
-            ->not->toMatch('/on the Mac for now|in the Mac app only|In TablePro for macOS/', "{$path} says Linux lacks the paid features");
+            ->not->toMatch('/Linux prototype/', "{$path} calls Linux a prototype")
+            ->not->toMatch('/on the Mac for now|in the Mac app only|In TablePro for macOS|(features|these|\\}) to the Mac app|includes in the Mac app/', "{$path} says Linux lacks the paid features");
+    }
+});
+
+it('never ties the paid plans to the Mac app in any language, once Linux ships', function (): void {
+    if (platformsEntry('linux')['status'] !== 'released') {
+        $this->markTestSkipped('Linux is not released.');
+    }
+
+    $keys = [
+        'pricing.json' => ['seo.description', 'header.lead'],
+        'about.json' => ['funding.plans'],
+        'black-friday.json' => ['includes.lead'],
+        'databases/index.json' => ['license.body'],
+        'features/index.json' => ['paid.lead'],
+        'compare/index.json' => ['labels.tablepro.priceFree'],
+    ];
+
+    foreach (Locales::codes() as $locale) {
+        foreach ($keys as $file => $paths) {
+            $content = json_decode(File::get(resource_path("data/content/{$locale}/{$file}")), true, 512, JSON_THROW_ON_ERROR);
+
+            foreach ($paths as $path) {
+                expect(data_get($content, $path))->toBeString()->not->toMatch('/Mac/', "{$locale}/{$file} {$path}");
+            }
+        }
+
+        $faq = File::get(resource_path("data/content/{$locale}/faq.json"));
+        preg_match('/"[^"\\n]*\\{starterFeatures\\}[^"\\n]*"/u', $faq, $answer);
+
+        expect($answer)->not->toBeEmpty("{$locale} faq has no {starterFeatures} answer")
+            ->and($answer[0])->not->toMatch('/Mac/', "{$locale} faq says Pro adds features to the Mac app");
+
+        $pricing = File::get(resource_path("js/i18n/messages/{$locale}/pricing.ts"));
+        preg_match_all('/^\\s*"?(lead|caption)"?: .*$/m', $pricing, $lines);
+
+        foreach ($lines[0] as $line) {
+            expect($line)->not->toMatch('/Mac/', "{$locale} pricing.ts: {$line}");
+        }
     }
 });
 

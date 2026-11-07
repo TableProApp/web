@@ -106,10 +106,10 @@ export default {
     "comparePlans": "Bandingkan paket",
     "section": {
         "title": "Harga",
-        "lead": "TablePro bersumber terbuka dan gratis digunakan. Paket berbayar menambahkan fitur opsional ke aplikasi Mac."
+        "lead": "TablePro bersumber terbuka dan gratis digunakan. Paket berbayar menambahkan fitur opsional."
     },
     "matrix": {
-        "caption": "Fitur setiap paket di aplikasi Mac",
+        "caption": "Fitur setiap paket",
         "feature": "Fitur",
         "groups": {
             "starter": "Di Pro dan Team",

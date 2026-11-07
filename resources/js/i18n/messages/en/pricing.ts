@@ -100,10 +100,10 @@ export default {
     comparePlans: 'Compare plans',
     section: {
         title: 'Pricing',
-        lead: 'TablePro is open source and free to use. Paid plans add optional features to the Mac app.',
+        lead: 'TablePro is open source and free to use. Paid plans add optional features.',
     },
     matrix: {
-        caption: 'What each plan includes in the Mac app',
+        caption: 'What each plan includes',
         feature: 'Feature',
         groups: {
             starter: 'In Pro and Team',

@@ -106,10 +106,10 @@ export default {
     "comparePlans": "플랜 비교",
     "section": {
         "title": "요금",
-        "lead": "TablePro는 오픈 소스이며 무료로 사용할 수 있습니다. 유료 플랜은 Mac 앱에 선택 기능을 추가합니다."
+        "lead": "TablePro는 오픈 소스이며 무료로 사용할 수 있습니다. 유료 플랜은 선택 기능을 추가합니다."
     },
     "matrix": {
-        "caption": "Mac 앱의 플랜별 포함 기능",
+        "caption": "플랜별 포함 기능",
         "feature": "기능",
         "groups": {
             "starter": "Pro 및 Team 포함",
