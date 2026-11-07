@@ -1090,8 +1090,35 @@
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "features-querying-charts"
@@ -1122,8 +1149,35 @@
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "features-data-editing-rewind"
