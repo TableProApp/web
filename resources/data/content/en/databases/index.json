@@ -9,101 +9,52 @@
     },
     "header": {
         "title": "Supported databases",
-        "lead": "Find your database and check its supported features. TablePro connects to {count} engines, including {featured}."
+        "lead": "TablePro connects to {count} engines, including {featured}. Find yours and what TablePro does with it.",
+        "docs": "Setup guides"
     },
-    "jump": "Categories",
-    "categories": {
-        "relational": {
-            "title": "Relational",
-            "intro": "SQL databases with tables, keys and transactions. Several of them share the MySQL or PostgreSQL driver."
+    "nav": {
+        "label": "Database categories",
+        "all": "All databases"
+    },
+    "groups": {
+        "relational": "Relational",
+        "analytical": "Analytical and warehouse",
+        "cloud": "Cloud and serverless",
+        "nosql": "NoSQL and streaming",
+        "search": "Search and vector",
+        "files": "Files"
+    },
+    "more": {
+        "drivers": {
+            "title": "How drivers are delivered",
+            "text": [
+                "The drivers for {bundled} come with the Mac app. Other drivers download as signed plugins the first time you choose the database, which needs an internet connection.",
+                "TablePro checks each plugin’s SHA-256 checksum and code signature before installing it. Plugins update separately from the app, and the iPhone and iPad app has its drivers built in."
+            ],
+            "docs": "Plugins and driver updates"
         },
-        "analytical": {
-            "title": "Analytical and warehouse",
-            "intro": "Warehouses, columnar databases and cross-catalog query engines."
+        "linux": {
+            "title": "On Linux",
+            "tested": "The Linux app is a beta, tested with {engines}.",
+            "untested": "Connections to {engines} are not tested on Linux.",
+            "others": "Other engines do not open there.",
+            "link": "Install on Linux"
         },
-        "cloud": {
-            "title": "Cloud and serverless",
-            "intro": "SQL services over HTTP, plus local libSQL files."
+        "iphone": {
+            "title": "On iPhone and iPad",
+            "picker": "The iPhone and iPad app connects to {engines}.",
+            "synced": "Connections to {engines} open there when they come from a Mac.",
+            "others": "Connections to other engines sync there and appear in the list, but do not open.",
+            "link": "TablePro for iPhone and iPad"
         },
-        "document": {
-            "title": "Document",
-            "intro": "Document and multi-model databases, each queried in its own language."
-        },
-        "key-value": {
-            "title": "Key-value",
-            "intro": "Keys and their values, read and written with commands or PartiQL."
-        },
-        "wide-column": {
-            "title": "Wide-column",
-            "intro": "CQL tables partitioned across a cluster."
-        },
-        "search": {
-            "title": "Search and vector",
-            "intro": "Search and vector engines, queried through their own request consoles."
-        },
-        "streaming": {
-            "title": "Streaming",
-            "intro": "Read and produce messages with KafkaQL, TablePro’s command language."
-        },
-        "coordination": {
-            "title": "Coordination",
-            "intro": "etcd’s key space, with leases and cluster members."
-        },
-        "files": {
-            "title": "Files",
-            "intro": "Query database files and ledgers without a database server."
+        "missing": {
+            "title": "Missing your database?",
+            "text": "New engines arrive as driver plugins. If yours is not listed, ask for it on GitHub.",
+            "link": "Request a database on GitHub"
         }
     },
-    "table": {
-        "caption": "{category}: each engine, its query language, its driver and whether it opens on iPhone and iPad",
-        "engine": "Database",
-        "queryLanguage": "Query language",
-        "driver": "Driver",
-        "ios": "iPhone & iPad",
-        "notes": "Notes"
-    },
-    "drivers": {
-        "title": "How drivers are delivered",
-        "paragraphs": [
-            "The drivers for {bundled} come with the Mac app. No separate client software is needed to connect.",
-            "Other drivers download as signed plugins when you first select the database. The first download needs an internet connection.",
-            "TablePro checks each plugin’s SHA-256 checksum against the registry and verifies its code signature before installation.",
-            "Driver plugins update separately from the app. Updates to a driver in use take effect after you restart.",
-            "The iPhone and iPad app has built-in drivers; it does not download plugins."
-        ],
-        "asset": "mac-engine-picker",
-        "docs": {
-            "label": "Plugins and driver updates",
-            "path": "/features/plugins"
-        }
-    },
-    "iphone": {
-        "title": "On iPhone and iPad",
-        "picker": "The iPhone and iPad app connects to {engines}.",
-        "synced": "Connections to {engines} open there only when they come from a Mac, through iCloud Sync or an exported connection file.",
-        "others": "Connections to other engines sync to iPhone and iPad and appear in the list, but they do not open there.",
-        "link": "TablePro for iPhone and iPad"
-    },
-    "linux": {
-        "title": "On Linux",
-        "tested": "The Linux app is a beta, tested with {engines}.",
-        "untested": "Connections to {engines} are not tested on Linux.",
-        "others": "Other engines do not open there.",
-        "link": "Install on Linux"
-    },
-    "license": {
-        "title": "Included in Free",
-        "body": "Every supported database connection is included in Free. Pro and Team add optional features.",
-        "link": "See pricing"
-    },
-    "missing": {
-        "title": "Missing your database?",
-        "body": "New engines arrive as driver plugins. If the one you use is not listed, ask for it on GitHub.",
-        "link": "Request a database on GitHub"
-    },
-    "docs": {
-        "label": "Setup guides for each database",
-        "path": "/databases"
+    "closing": {
+        "body": "Every supported database connection is included in Free. Pro and Team add optional features."
     },
     "labels": {
         "facts": {
@@ -117,8 +68,7 @@
             "enforced": "{version}, enforced: older servers are refused",
             "noMinimum": "None",
             "embedded": "Built-in engine",
-            "embeddedValue": "{name} {version}",
-            "ios": "iPhone and iPad"
+            "embeddedValue": "{name} {version}"
         },
         "connect": {
             "file": "A file",
@@ -133,71 +83,28 @@
             "bundled": "Comes with the Mac app",
             "registry": "Downloads on first use"
         },
-        "ios": {
-            "picker": "Opens",
-            "synced": "Opens when synced from a Mac",
-            "none": "Does not open"
-        },
-        "linux": {
-            "tested": "Tested",
-            "versions": "Tested: {versions}",
-            "untested": "Not tested",
-            "none": "Not available"
-        },
-        "availability": {
-            "devices": "Works on {devices}",
-            "bundled": "Driver comes with the Mac app",
-            "registry": "Driver downloads on first use of {name}",
-            "free": "Included in Free; <pricing>paid plans add optional features</pricing>"
-        },
         "release": "New in {version}",
         "docs": "{name} setup guide",
-        "sections": {
-            "limits": "Limits",
-            "limitsOf": "{name} limits",
-            "iphone": "iPhone and iPad",
-            "faq": "Questions about {name}",
-            "related": "Related"
-        },
+        "common": "This page covers what is specific to {name}. Safe Mode, the AI assistant, the MCP server and the rest of TablePro are on the <features>feature pages</features>.",
+        "more": "Also",
+        "moveData": "Move data",
+        "limits": "Limits",
+        "otherTools": "Other tools",
         "iphone": {
-            "picker": "{name} is offered when you create a connection in the iPhone and iPad app.",
-            "synced": "The iPhone and iPad app opens {name} connections only when they come from a Mac, through iCloud Sync or an exported connection file. You can’t create one there.",
-            "none": "The iPhone and iPad app has no {name} driver. {name} connections synced from a Mac appear in its list but do not open.",
+            "title": "iPhone and iPad",
+            "picker": "The iPhone and iPad app connects to {name}.",
+            "synced": "The iPhone and iPad app opens {name} connections that come from a Mac.",
             "link": "TablePro for iPhone and iPad"
-        },
-        "family": {
-            "port": "Default port {port}"
-        },
-        "otherTools": {
-            "title": "Other tools",
-            "released": "Version {version}, released {date}",
-            "discontinued": "{name} is discontinued. Its last release, {version}, came out on {date}.",
-            "free": "Free",
-            "openSource": "Open source ({licence})",
-            "closedSource": "Closed source",
-            "sourceAvailable": "Source available ({licence})",
-            "platforms": "Platforms: {platforms}",
-            "compare": "TablePro vs {name}",
-            "more": "More comparisons",
-            "checked": "Facts about other tools checked {date}.",
-            "sources": "Sources"
-        },
-        "platformNames": {
-            "mac": "Mac",
-            "windows": "Windows",
-            "linux": "Linux",
-            "ios": "iPhone and iPad",
-            "web": "Web"
         },
         "number": {
             "decimal": ".",
             "group": ","
         },
-        "download": {
+        "closing": {
             "title": "Get TablePro",
-            "mac": "Download the Mac app for free. Pro and Team add optional features.",
-            "ios": "The iPhone and iPad app is on the App Store.",
-            "linux": "The Linux app is a free beta.",
+            "tier": "{tier} adds {features}.",
+            "rest": "Everything else on this page is free.",
+            "allFree": "Everything on this page is free.",
             "pricing": "See pricing"
         }
     }

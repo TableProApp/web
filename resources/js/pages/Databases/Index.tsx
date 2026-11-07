@@ -1,48 +1,54 @@
 import { usePage } from '@inertiajs/react';
-import DownloadBand from '@/components/databases/download-band';
-import EngineTable from '@/components/databases/engine-table';
-import { linuxStatus } from '@/components/databases/format';
-import type { EngineCategory, HubPageProps } from '@/components/databases/types';
+import { groupRows } from '@/components/databases/format';
+import HubGroup from '@/components/databases/hub-group';
+import type { HubPageProps } from '@/components/databases/types';
+import AreaNav from '@/components/features/area-nav';
+import FeatureClosing from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
+import { MoreFrame, MoreItem } from '@/components/features/more-list';
 import SEOHead from '@/components/seo/seo-head';
-import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
+import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
+import { FACTS } from '@/lib/data/facts';
 import { absoluteUrl, breadcrumbNode, collectionPageNode, graph, macAppId } from '@/lib/structured-data';
-import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
-// One table per category in the sitemap's order, so a category keeps its id even when it holds one engine. Every
-// published engine appears exactly once, and every count and list is derived from the data.
-export default function DatabasesIndex({ content, engines, copy, iosEngines, platforms, links }: HubPageProps) {
+const ITEM_TEXT = 'mt-2 space-y-2 text-[0.9375rem] leading-[1.55] text-pretty text-muted-foreground';
+
+function ItemLink({ href, children }: { href: string; children: string }) {
+    return (
+        <p className="mt-3">
+            <LocaleLink href={href} className={textLinkClasses('standalone')}>
+                {children}
+                <span aria-hidden="true">→</span>
+            </LocaleLink>
+        </p>
+    );
+}
+
+// The database hub, `/databases` in every locale (sitemap §A.3, §E.8): the area nav and hero of /features, then one
+// band per category with its engines as a ruled list, the smaller parts as a list, and the closing line. Every
+// published engine appears exactly once, and every count and name list comes from engines.json.
+export default function DatabasesIndex({ content, groups, engines, taglines, iosEngines, platforms, request }: HubPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    useRevealOnScroll('main > section:not(#top), main [data-reveal]');
 
-    /* The sitemap's order, as the content file lists it; a category with no published engine is left out, link and all. */
-    const categories = (Object.keys(content.categories) as EngineCategory[]).filter((category) =>
-        engines.some((engine) => engine.category === category),
-    );
-    const featured = joinList(
-        engines.filter((engine) => engine.featured).map((engine) => engine.name),
+    const names = (filter: (engine: (typeof engines)[number]) => boolean): string => joinList(engines.filter(filter).map((engine) => engine.name), m.common.list);
+    const bands = groups.map((group) => ({ ...group, rows: groupRows(group, engines) })).filter((group) => group.rows.length > 0);
+    const byId = new Map(engines.map((engine) => [engine.id, engine.name]));
+    const onIos = joinList(
+        iosEngines.flatMap((id) => byId.get(id) ?? []),
         m.common.list,
     );
-    const bundled = joinList(
-        engines.filter((engine) => engine.distribution === 'bundled').map((engine) => engine.name),
-        m.common.list,
-    );
-    const byId = new Map(engines.map((engine) => [engine.id, engine]));
-    const onIos = iosEngines.map((id) => byId.get(id)?.name).filter((name): name is string => name !== undefined);
-    const syncedOnly = engines.filter((engine) => engine.ios.openable && !engine.ios.inPicker).map((engine) => engine.name);
-    const linux = platforms.linux !== null ? joinList(platforms.linux.deviceNames, m.common.list) : null;
-    const onLinux = (status: ReturnType<typeof linuxStatus>) => engines.filter((engine) => linuxStatus(engine) === status).map((engine) => engine.name);
-    const linuxTested = onLinux('tested');
-    const linuxUntested = onLinux('untested');
-    const linuxNone = onLinux('none');
-    const docsBase = links.docs;
-    const slot = useShownSlot()(content.drivers.asset);
+    const syncedOnly = names((engine) => engine.ios.openable && !engine.ios.inPicker);
+    const linuxTested = names((engine) => engine.linux === 'tested');
+    const linuxUntested = names((engine) => engine.linux === 'untested');
+    const more = content.more;
 
     const pageUrl = absoluteUrl(canonicalBaseUrl, path('/databases'));
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
@@ -65,128 +71,79 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                 ])}
             />
 
-            <PageHeader
+            <AreaNav
+                current="/databases"
+                label={content.nav.label}
+                items={[{ href: '/databases', label: content.nav.all }, ...bands.map((band) => ({ href: `#${band.id}`, label: content.groups[band.id] }))]}
+            />
+            <FeatureHero
                 title={content.header.title}
-                lead={fmt(content.header.lead, { count: engines.length, featured })}
-            >
-                <nav aria-label={content.jump}>
-                    <ul className="type-small flex flex-wrap gap-x-5 gap-y-2">
-                        {categories.map((category) => (
-                            <li key={category}>
-                                <a href={`#${category}`} className={textLinkClasses('inline')}>
-                                    {content.categories[category].title}
-                                </a>
-                            </li>
+                lead={fmt(content.header.lead, { count: engines.length, featured: names((engine) => engine.featured) })}
+                docs="/databases"
+                docsLabel={content.header.docs}
+                location="databases"
+            />
+
+            {/* One grid per category, inside one block, so neighbours share a line (design-system §4.7). */}
+            <div>
+                <Container>
+                    {bands.map((band, index) => (
+                        <HubGroup key={band.id} id={band.id} title={content.groups[band.id]} rows={band.rows} taglines={taglines} release={content.labels.release} first={index === 0} />
+                    ))}
+                </Container>
+            </div>
+
+            <MoreFrame title={content.labels.more}>
+                <MoreItem id="drivers" title={more.drivers.title}>
+                    <div className={ITEM_TEXT}>
+                        {more.drivers.text.map((paragraph, index) => (
+                            <p key={index}>{fmt(paragraph, { bundled: names((engine) => engine.distribution === 'bundled') })}</p>
                         ))}
-                    </ul>
-                </nav>
-            </PageHeader>
-
-            {categories.map((category) => {
-                const members = engines.filter((engine) => engine.category === category);
-
-                return (
-                    <Section key={category} id={category} title={content.categories[category].title} lead={content.categories[category].intro}>
-                        <EngineTable
-                            caption={fmt(content.table.caption, { category: content.categories[category].title })}
-                            engines={members}
-                            copy={copy}
-                            table={content.table}
-                            labels={content.labels}
-                            docsBase={docsBase}
-                            linux={linux}
-                        />
-                    </Section>
-                );
-            })}
-
-            <Section id="drivers" title={content.drivers.title}>
-                <div className={slot !== null ? 'grid items-start gap-8 lg:grid-cols-12' : undefined}>
-                    <div className={cn('type-body space-y-4 text-foreground', slot !== null ? 'lg:col-span-5' : 'max-w-[44rem]')}>
-                        {content.drivers.paragraphs.map((paragraph, index) => (
-                            <p key={index}>{fmt(paragraph, { bundled })}</p>
-                        ))}
-                        {docsBase !== null && (
-                            <p>
-                                <TextLink href={docsBase + content.drivers.docs.path} kind="standalone" external hrefLang="en">
-                                    {content.drivers.docs.label}
-                                    {locale !== 'en' && ` ${m.common.englishOnly}`}
-                                </TextLink>
-                            </p>
-                        )}
                     </div>
-                    {slot !== null && <AssetSlot id={slot} className="lg:col-span-7" />}
-                </div>
-            </Section>
-
-            {linux !== null && linuxTested.length > 0 && (
-                <Section id="linux" title={content.linux.title} width="text">
-                    <div className="type-body space-y-4 text-foreground">
-                        <p>{fmt(content.linux.tested, { engines: joinList(linuxTested, m.common.list) })}</p>
-                        {linuxUntested.length > 0 && <p>{fmt(content.linux.untested, { engines: joinList(linuxUntested, m.common.list) })}</p>}
-                        {linuxNone.length > 0 && <p>{content.linux.others}</p>}
-                        <p>
-                            <LocaleLink href="/download#linux" className={textLinkClasses('standalone')}>
-                                {content.linux.link}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </p>
-                    </div>
-                </Section>
-            )}
-
-            {onIos.length > 0 && (
-                <Section id="iphone" title={content.iphone.title} width="text">
-                    <div className="type-body space-y-4 text-foreground">
-                        <p>{fmt(content.iphone.picker, { engines: joinList(onIos, m.common.list) })}</p>
-                        {syncedOnly.length > 0 && <p>{fmt(content.iphone.synced, { engines: joinList(syncedOnly, m.common.list) })}</p>}
-                        <p>{content.iphone.others}</p>
-                        <p>
-                            <LocaleLink href="/ios#databases" className={textLinkClasses('standalone')}>
-                                {content.iphone.link}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </p>
-                    </div>
-                </Section>
-            )}
-
-            <Section id="license" title={content.license.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{content.license.body}</p>
-                    <p>
-                        <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
-                            {content.license.link}
-                            <span aria-hidden="true">→</span>
-                        </LocaleLink>
+                    <p className="mt-3">
+                        <TextLink href={`${FACTS.links.docs.replace(/\/+$/, '')}/features/plugins`} kind="standalone" external hrefLang="en">
+                            {locale === 'en' ? more.drivers.docs : `${more.drivers.docs} ${m.common.englishOnly}`}
+                        </TextLink>
                     </p>
-                </div>
-            </Section>
+                </MoreItem>
+                {platforms.linux !== null && linuxTested !== '' && (
+                    <MoreItem id="linux" title={more.linux.title}>
+                        <div className={ITEM_TEXT}>
+                            <p>{fmt(more.linux.tested, { engines: linuxTested })}</p>
+                            {linuxUntested !== '' && <p>{fmt(more.linux.untested, { engines: linuxUntested })}</p>}
+                            <p>{more.linux.others}</p>
+                        </div>
+                        <ItemLink href="/download#linux">{more.linux.link}</ItemLink>
+                    </MoreItem>
+                )}
+                {platforms.ios !== null && onIos !== '' && (
+                    <MoreItem id="iphone" title={more.iphone.title}>
+                        <div className={ITEM_TEXT}>
+                            <p>{fmt(more.iphone.picker, { engines: onIos })}</p>
+                            {syncedOnly !== '' && <p>{fmt(more.iphone.synced, { engines: syncedOnly })}</p>}
+                            <p>{more.iphone.others}</p>
+                        </div>
+                        <ItemLink href="/ios#databases">{more.iphone.link}</ItemLink>
+                    </MoreItem>
+                )}
+                <MoreItem id="missing" title={more.missing.title}>
+                    <p className={ITEM_TEXT}>{more.missing.text}</p>
+                    {request !== null && (
+                        <p className="mt-3">
+                            <TextLink href={request} kind="standalone" external hrefLang="en">
+                                {more.missing.link}
+                            </TextLink>
+                        </p>
+                    )}
+                </MoreItem>
+            </MoreFrame>
 
-            <Section id="missing" title={content.missing.title} width="text">
-                <div className="type-body space-y-4 text-foreground">
-                    <p>{content.missing.body}</p>
-                    <ul className="flex flex-col gap-3">
-                        {links.request !== null && (
-                            <li>
-                                <TextLink href={links.request} kind="standalone" external hrefLang="en">
-                                    {content.missing.link}
-                                </TextLink>
-                            </li>
-                        )}
-                        {docsBase !== null && (
-                            <li>
-                                <TextLink href={docsBase + content.docs.path} kind="standalone" external hrefLang="en">
-                                    {content.docs.label}
-                                    {locale !== 'en' && ` ${m.common.englishOnly}`}
-                                </TextLink>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-            </Section>
-
-            <DownloadBand labels={content.labels} platforms={platforms} showIos showLinux appStoreUrl={links.appStore} location="databases" />
+            <FeatureClosing
+                labels={{ closing: content.labels.closing, tiers: { free: m.pricing.tiers.free.name, starter: m.pricing.tiers.starter.name, team: m.pricing.tiers.team.name } }}
+                paid={[]}
+                body={content.closing.body}
+                location="databases"
+            />
         </LandingLayout>
     );
 }

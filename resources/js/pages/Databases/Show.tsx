@@ -1,60 +1,58 @@
 import { usePage } from '@inertiajs/react';
-import DownloadBand from '@/components/databases/download-band';
-import EngineHeader from '@/components/databases/engine-header';
-import EngineSection from '@/components/databases/engine-section';
-import FamilySection from '@/components/databases/family-section';
-import { deviceNamesFor, docsUrl, engineValues, iosStatus, linuxStatus, tierToken } from '@/components/databases/format';
+import EngineBand, { BAND_NOTES } from '@/components/databases/engine-band';
+import FactsCard from '@/components/databases/facts-card';
+import FamilyBand from '@/components/databases/family-band';
+import { deviceNamesFor, engineValues, iosStatus, namedPaidIds, pageStrings, tierToken } from '@/components/databases/format';
 import LimitsList from '@/components/databases/limits-list';
-import OtherTools from '@/components/databases/other-tools';
 import RichText, { RichTextProvider } from '@/components/databases/rich-text';
 import type { EnginePageProps } from '@/components/databases/types';
+import FeatureClosing from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
+import { MoreFrame, MoreItem } from '@/components/features/more-list';
 import SEOHead from '@/components/seo/seo-head';
 import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
-import Callout from '@/components/ui/callout';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 import Container from '@/components/ui/container';
-import FaqList from '@/components/ui/faq-list';
+import DatabaseMark from '@/components/ui/database-mark';
 import LocaleLink from '@/components/ui/locale-link';
-import Section from '@/components/ui/section';
-import TextLink, { textLinkClasses } from '@/components/ui/text-link';
-import { LOCALES, useI18n } from '@/i18n';
+import { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+import { LOCALES, Trans, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { assetEntry } from '@/lib/data/assets';
+import { FACTS } from '@/lib/data/facts';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, webPageNode } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
-// Which body sections exist, and what they are called, is the copy's call, so a Kafka page never inherits a SQL editor
-// narrative. Structured data is a WebPage about the Mac app: no per-database pseudo-app, no FAQPage, no rating.
-export default function DatabaseShow({ content, labels, engine, family, copy, tools, comparisons, platforms, links, product }: EnginePageProps) {
+const ITEM_TEXT = 'mt-2 space-y-2 text-[0.9375rem] leading-[1.55] text-pretty text-muted-foreground';
+
+// `/{slug}` in every locale it has content in (sitemap §A.3, §E.1; README.md): the feature-page system for one engine.
+// A hero with the facts beside it and the engine's whole window, three or four bands on what is specific to it, one
+// band per family member, the smaller parts as a list, and one closing line on what is paid. Structured data is a
+// WebPage about the Mac app: no per-database pseudo-app, no FAQPage, no rating.
+export default function DatabaseShow({ content, labels, engine, family, copy, platforms, heroSizes }: EnginePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    const shown = useShownSlot();
+    useRevealOnScroll('main > section:not(#top), main > [data-reveal]');
 
     const devices = joinList(deviceNamesFor(engine, platforms), m.common.list);
-    /* The Mac alone, for a page whose heading must not promise the iPhone app (Redis: no key browsing there). */
+    // The Mac alone, for a page whose title must not promise the iPhone app (Redis: no key browsing there).
     const macDevices = joinList(platforms.mac?.deviceNames ?? [], m.common.list);
-    /* Search titles describe current platforms; the English H1 is platform-neutral. */
     const title = fmt(content.seo.title, { devices, macDevices });
     const tiers = Object.fromEntries(PAID_FEATURES.map((feature) => [tierToken(feature.id), m.pricing.tiers[feature.tier].name]));
-    const values = { ...tiers, ...engineValues(engine, m.common.list), devices };
-
-    const lead = useShownSlot()(content.asset);
-    const leadIsWindow = lead !== null && assetEntry(lead).kind === 'window';
-    const status = iosStatus(engine);
-    const iphone = content.sections.find((section) => section.id === 'iphone');
-    const body = content.sections.filter((section) => section.id !== 'iphone');
+    const values = { ...tiers, ...engineValues(engine, m.common.list) };
+    const hero = shown(content.header.asset);
+    const status = platforms.ios !== null ? iosStatus(engine) : 'none';
     const members = new Map(family.map((member) => [member.id, member]));
+    const paid = namedPaidIds(
+        pageStrings(content),
+        PAID_FEATURES.map((feature) => feature.id),
+    );
 
-    // This page is the engine's own page, which always resolves; the hub is only the type's fallback.
     const ownPath = engine.path ?? '/databases';
     const pageUrl = absoluteUrl(canonicalBaseUrl, path(ownPath));
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
-    const crumbs = [
-        { name: m.seo.breadcrumbs.databases, path: path('/databases') },
-        { name: content.breadcrumb, path: path(ownPath) },
-    ];
-    const docsLinks = [engine, ...family]
-        .map((member) => ({ name: member.name, href: docsUrl(links.docs, member.docsSlug) }))
-        .filter((entry, index, all): entry is { name: string; href: string } => entry.href !== null && all.findIndex((other) => other.href === entry.href) === index);
 
     return (
         <LandingLayout>
@@ -62,134 +60,117 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
                 title={title}
                 description={content.seo.description}
                 jsonLd={graph([
-                    webPageNode(context, {
-                        url: pageUrl,
-                        name: title,
-                        description: content.seo.description,
-                        about: macAppId(canonicalBaseUrl),
-                        breadcrumb: `${pageUrl}#breadcrumb`,
-                    }),
-                    breadcrumbNode(context, pageUrl, crumbs),
+                    webPageNode(context, { url: pageUrl, name: title, description: content.seo.description, about: macAppId(canonicalBaseUrl), breadcrumb: `${pageUrl}#breadcrumb` }),
+                    breadcrumbNode(context, pageUrl, [
+                        { name: m.seo.breadcrumbs.databases, path: path('/databases') },
+                        { name: content.breadcrumb, path: path(ownPath) },
+                    ]),
                 ])}
             />
 
-            <RichTextProvider scope={{ links: content.links, docsBase: links.docs, values }}>
-                {/* A detail lead goes in the header's text column, beside the facts card; a window lead spans the page under it. */}
-                <EngineHeader
-                    content={content}
-                    labels={labels}
-                    engine={engine}
-                    platforms={platforms}
-                    links={links}
-                    product={product}
-                    lead={lead !== null && !leadIsWindow ? <AssetSlot id={lead} /> : undefined}
-                />
+            <RichTextProvider scope={{ links: content.links, docsBase: FACTS.links.docs, values }}>
+                <FeatureHero
+                    eyebrow={
+                        <div className="mb-8 md:mb-10">
+                            <Breadcrumbs items={[{ label: m.seo.breadcrumbs.databases, href: '/databases' }, { label: content.breadcrumb }]} />
+                            {engine.icon !== null && <DatabaseMark icon={engine.icon} name={engine.name} size={40} className="mt-6 -ml-1 md:mt-8" />}
+                        </div>
+                    }
+                    title={content.header.title}
+                    lead={<RichText text={content.header.lead} />}
+                    docs={engine.docsSlug !== null ? `/databases/${engine.docsSlug}` : '/databases'}
+                    docsLabel={fmt(labels.docs, { name: engine.name })}
+                    aside={<FactsCard engine={engine} labels={labels} />}
+                    location={`database-${engine.id}`}
+                >
+                    {hero !== null ? <AssetSlot id={hero} sizes={heroSizes} caption={false} priority /> : undefined}
+                </FeatureHero>
 
-                {lead !== null && leadIsWindow && (
-                    <Container>
-                        <AssetSlot id={lead} />
-                    </Container>
-                )}
-
-                {body.map((section) => (
-                    <EngineSection
-                        key={section.id}
-                        id={section.id}
-                        title={section.title}
-                        paragraphs={section.paragraphs}
-                        points={section.points}
-                        asset={section.asset}
-                    />
+                {content.bands.map((band) => (
+                    <EngineBand key={band.id} id={band.id} also={band.also} title={band.title} text={band.text} notes={band.notes} />
                 ))}
 
-                <EngineSection
-                    id="iphone"
-                    title={iphone?.title ?? labels.sections.iphone}
-                    paragraphs={status === 'none' ? [] : (iphone?.paragraphs ?? [])}
-                    points={status === 'none' ? undefined : iphone?.points}
-                    asset={status === 'none' ? undefined : iphone?.asset}
-                    before={<p>{fmt(labels.iphone[status], { name: engine.name })}</p>}
-                    after={
-                        status !== 'none' && (
-                            <p>
+                <div data-reveal className="py-8 md:py-10">
+                    <Container>
+                        <div className="grid md:grid-cols-12 md:gap-x-8">
+                            <p className={`max-w-[42rem] md:col-span-8 md:col-start-5 lg:col-span-9 lg:col-start-4 ${BAND_NOTES}`}>
+                                <Trans
+                                    text={labels.common}
+                                    values={{ name: engine.name }}
+                                    tags={{
+                                        features: (text) => (
+                                            <LocaleLink href="/features" className={textLinkClasses('inline')}>
+                                                {text}
+                                            </LocaleLink>
+                                        ),
+                                    }}
+                                />
+                            </p>
+                        </div>
+                    </Container>
+                </div>
+
+                {content.family.map((member) => {
+                    const detail = members.get(member.engine);
+
+                    return detail === undefined ? null : <FamilyBand key={detail.id} content={member} engine={detail} parent={engine} copy={copy[detail.id]} labels={labels} />;
+                })}
+
+                <MoreFrame title={labels.more}>
+                    <MoreItem id="move-data" title={labels.moveData}>
+                        <div className={ITEM_TEXT}>
+                            {content.moveData.map((paragraph, index) => (
+                                <p key={index}>
+                                    <RichText text={paragraph} />
+                                </p>
+                            ))}
+                        </div>
+                    </MoreItem>
+                    {status !== 'none' && (
+                        <MoreItem id="iphone" title={labels.iphone.title}>
+                            <div className={ITEM_TEXT}>
+                                <p>{fmt(labels.iphone[status], { name: engine.name })}</p>
+                                {content.iphone.map((paragraph, index) => (
+                                    <p key={index}>
+                                        <RichText text={paragraph} />
+                                    </p>
+                                ))}
+                            </div>
+                            <p className="mt-3">
                                 <LocaleLink href="/ios#databases" className={textLinkClasses('standalone')}>
                                     {labels.iphone.link}
                                     <span aria-hidden="true">→</span>
                                 </LocaleLink>
                             </p>
-                        )
-                    }
-                />
+                        </MoreItem>
+                    )}
+                    {engine.limits.length > 0 && (
+                        <MoreItem id="limits" title={labels.limits}>
+                            <LimitsList engine={engine} copy={copy[engine.id]} number={labels.number} className={ITEM_TEXT} />
+                        </MoreItem>
+                    )}
+                    {content.faq.map((entry) => (
+                        <MoreItem key={entry.id} id={entry.id} title={entry.question}>
+                            <p className={ITEM_TEXT}>
+                                <RichText text={entry.answer} />
+                            </p>
+                        </MoreItem>
+                    ))}
+                    {content.otherTools !== null && (
+                        <MoreItem id="other-tools" also={content.otherTools.also} title={labels.otherTools}>
+                            <p className={ITEM_TEXT}>
+                                <RichText text={content.otherTools.text} />
+                            </p>
+                        </MoreItem>
+                    )}
+                </MoreFrame>
 
-                {engine.limits.length > 0 && (
-                    <Section id="limits" title={labels.sections.limits}>
-                        <Callout className="max-w-[44rem]">
-                            <LimitsList engine={engine} copy={copy[engine.id]} number={labels.number} />
-                        </Callout>
-                    </Section>
-                )}
-
-                {content.family.map((section) => {
-                    const member = members.get(section.engine);
-
-                    return member === undefined ? null : (
-                        <FamilySection
-                            key={member.id}
-                            section={section}
-                            engine={member}
-                            copy={copy[member.id]}
-                            labels={labels}
-                            docsBase={links.docs}
-                        />
-                    );
-                })}
-
-                {content.otherTools !== null && tools.length > 0 && <OtherTools content={content.otherTools} tools={tools} comparisons={comparisons} labels={labels} />}
-
-                {content.faq.length > 0 && (
-                    <Section id="faq" title={fmt(labels.sections.faq, { name: engine.name })} width="text">
-                        <FaqList
-                            className="frame-rows-text"
-                            items={content.faq.map((entry) => ({
-                                id: entry.id,
-                                question: entry.question,
-                                answer: (
-                                    <p>
-                                        <RichText text={entry.answer} />
-                                    </p>
-                                ),
-                            }))}
-                        />
-                    </Section>
-                )}
-
-                <Section id="related" title={labels.sections.related}>
-                    <ul className="flex max-w-[44rem] flex-col gap-3">
-                        {content.related.map((link) => (
-                            <li key={link.href}>
-                                <LocaleLink href={link.href} className={textLinkClasses('standalone')}>
-                                    {link.label}
-                                    <span aria-hidden="true">→</span>
-                                </LocaleLink>
-                            </li>
-                        ))}
-                        {docsLinks.map((entry) => (
-                            <li key={entry.href}>
-                                <TextLink href={entry.href} kind="standalone" external hrefLang="en">
-                                    {fmt(labels.docs, { name: entry.name })}
-                                    {locale !== 'en' && ` ${m.common.englishOnly}`}
-                                </TextLink>
-                            </li>
-                        ))}
-                    </ul>
-                </Section>
-
-                <DownloadBand
-                    labels={labels}
-                    platforms={platforms}
-                    showIos={status === 'picker'}
-                    showLinux={linuxStatus(engine) === 'tested'}
-                    appStoreUrl={links.appStore}
+                <FeatureClosing
+                    labels={{
+                        closing: labels.closing,
+                        tiers: { free: m.pricing.tiers.free.name, starter: m.pricing.tiers.starter.name, team: m.pricing.tiers.team.name },
+                    }}
+                    paid={paid}
                     location={`database-${engine.id}`}
                 />
             </RichTextProvider>
