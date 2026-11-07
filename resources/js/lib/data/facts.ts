@@ -8,7 +8,6 @@
  * `links.docs` with `docsUrl()`.
  */
 import data from '@data/facts.json';
-import type { PublisherInput } from '../structured-data.ts';
 import type { PlatformId } from './platforms.ts';
 
 export interface SafeModeLevel {
@@ -132,23 +131,7 @@ export interface FactsData {
  */
 export const FACTS = data as FactsData;
 
-/** The publisher as the Organization node states it, in English and the same on every page. */
-export const PUBLISHER: PublisherInput = {
-    name: FACTS.publisher.name,
-    locality: FACTS.publisher.city.en,
-    countryCode: FACTS.publisher.countryCode,
-};
-
 // A locale with no city or country leaves its slot unfilled, so the gap shows on the page.
-export function publisherValues(locale: string): Record<string, string> {
-    const { name, city, country } = FACTS.publisher;
-
-    return {
-        maker: name,
-        ...(city[locale] !== undefined && { city: city[locale] }),
-        ...(country[locale] !== undefined && { country: country[locale] }),
-    };
-}
 
 /** `docsUrl('/features/mcp')` → `https://docs.tablepro.app/features/mcp`. */
 export function docsUrl(path = ''): string {

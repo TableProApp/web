@@ -12,7 +12,7 @@
 import { planOffers } from '@/components/pricing/offers';
 import type { Messages } from '@/i18n';
 import { LOCALES } from '@/i18n';
-import { FACTS, PUBLISHER } from '@/lib/data/facts';
+import { FACTS } from '@/lib/data/facts';
 import { appStoreUrl, architecturesText, deviceList, macPlatform, requirementText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import {
@@ -56,7 +56,6 @@ export function homeJsonLd({ baseUrl, inLanguage, m, fmt, path, featuredEngines 
         organizationNode(baseUrl, {
             description: m.seo.product.short,
             sameAs: organizationProfiles(FACTS.links),
-            publisher: PUBLISHER,
         }),
         websiteNode(context, {
             description: longDescription,

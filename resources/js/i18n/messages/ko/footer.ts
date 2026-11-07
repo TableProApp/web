@@ -58,6 +58,6 @@ export default {
         }
     },
     "bottom": {
-        "copyright": "© {year} TablePro. {city}의 {maker} 제작. 소스 코드는 AGPLv3로 배포됩니다."
+        "copyright": "© {year} TablePro 팀. 소스 코드는 AGPLv3로 배포됩니다."
     }
 } satisfies Messages['footer'];

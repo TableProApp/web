@@ -9,12 +9,9 @@ use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * Who makes TablePro, `/about` in every locale.
- *
- * The maker's name, city and country are `facts.json` → `publisher`, and the
- * repository's creation date is `openSource.repositoryCreatedAt`. The copy
- * holds `{maker}`, `{city}` and `{country}` slots and link tags, never the
- * values themselves.
+ * Who makes TablePro, `/about` in every locale: the TablePro team, never a
+ * person or a city. The repository's creation date is
+ * `openSource.repositoryCreatedAt`.
  */
 class AboutController extends Controller
 {
@@ -25,7 +22,6 @@ class AboutController extends Controller
 
         return Inertia::render('About', [
             'content' => $content->page('about', $locale),
-            'publisher' => $facts->publisher($locale),
             'repositoryCreated' => $created === null ? null : [
                 'date' => $created->toDateString(),
                 'formatted' => $created->locale($locale)->isoFormat('LL'),

@@ -54,6 +54,26 @@ it('names the publisher in every supported language', function (): void {
     }
 });
 
+it('names the TablePro team, not the publisher or the city, outside the legal pages', function (): void {
+    $publisher = factsJson()['publisher'];
+    $needles = array_values(array_unique([$publisher['name'], ...array_values($publisher['city'])]));
+    $files = [
+        ...File::allFiles(resource_path('data/content')),
+        ...File::allFiles(resource_path('js/i18n/messages')),
+        ...File::allFiles(base_path('lang')),
+    ];
+
+    foreach ($files as $file) {
+        $text = $file->getContents();
+
+        expect($text)->not->toMatch('/\\{(maker|city)\\}/u', "{$file->getRelativePathname()} has a maker or city slot");
+
+        foreach ($needles as $needle) {
+            expect(str_contains($text, $needle))->toBeFalse("{$file->getRelativePathname()} names {$needle}");
+        }
+    }
+});
+
 it('keeps each list free of duplicates', function (): void {
     $facts = factsJson();
 

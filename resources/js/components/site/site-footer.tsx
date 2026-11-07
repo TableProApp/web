@@ -11,7 +11,6 @@ import { useEmailForm } from '@/hooks/use-email-form';
 import { joinList } from '@/i18n/format';
 import { Trans, useI18n } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
-import { publisherValues } from '@/lib/data/facts';
 import { openConsentSettings } from '@/lib/consent';
 import { cn } from '@/lib/utils';
 import ChatButton, { useChatAvailable } from './chat-button';
@@ -340,10 +339,7 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                     </Group>
                 </CellGrid>
                 <FooterBar
-                    copyright={fmt(m.footer.bottom.copyright, {
-                        year: new Date().getFullYear(),
-                        ...publisherValues(locale),
-                    })}
+                    copyright={fmt(m.footer.bottom.copyright, { year: new Date().getFullYear() })}
                     language={<LanguageSwitcher variant="footer" />}
                     themeLabels={m.controls.theme}
                     chat={chat}

@@ -7,7 +7,6 @@ import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
-import { PUBLISHER } from '@/lib/data/facts';
 import { absoluteUrl, breadcrumbNode, graph, organizationId, organizationNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
@@ -15,8 +14,6 @@ type AboutContent = typeof import('@data/content/en/about.json');
 
 interface AboutProps {
     content: AboutContent;
-    /** `facts.json` → `publisher`, with the city and country in the page's language. */
-    publisher: { name: string; city: string | null; country: string | null; countryCode: string | null } | null;
     repositoryCreated: { date: string; formatted: string } | null;
     links: SiteLinks;
     organizationProfiles: string[];
@@ -32,12 +29,11 @@ interface JsonLdInput {
     organizationProfiles: string[];
 }
 
-/** The publisher with its founder and place, and an `AboutPage` about it. */
 function aboutJsonLd({ baseUrl, inLanguage, pageUrl, content, crumbs, description, organizationProfiles }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
 
     return graph([
-        organizationNode(baseUrl, { description, sameAs: organizationProfiles, publisher: PUBLISHER }),
+        organizationNode(baseUrl, { description, sameAs: organizationProfiles }),
         webPageNode(
             context,
             {
@@ -53,22 +49,13 @@ function aboutJsonLd({ baseUrl, inLanguage, pageUrl, content, crumbs, descriptio
     ]);
 }
 
-/**
- * `/about` in every locale: who makes TablePro and where, how it is funded,
- * where the code is, how to reach the maker, and where the brand guidelines are.
- *
- * The name, city and country fill `{maker}`, `{city}` and `{country}` from
- * the `publisher` prop; no sentence holds them.
- */
-export default function About({ content, publisher, repositoryCreated, links, organizationProfiles }: AboutProps) {
+// The page names the TablePro team, never a person or a city (owner, 2026-11-07).
+export default function About({ content, repositoryCreated, links, organizationProfiles }: AboutProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, fmt, path } = useI18n();
+    const { locale, m, path } = useI18n();
     const tags = useContentTags(links);
 
     const values: Values = {
-        ...(publisher !== null && { maker: publisher.name }),
-        ...(publisher?.city && { city: publisher.city }),
-        ...(publisher?.country && { country: publisher.country }),
         ...(links.email !== null && { email: links.email }),
     };
 
@@ -109,10 +96,6 @@ export default function About({ content, publisher, repositoryCreated, links, or
                     <p>{rich(content.maker.body)}</p>
                     <p>{rich(content.maker.identity)}</p>
                     <DescriptionList className="frame-rows-text">
-                        {publisher !== null && <DescriptionItem term={facts.maker}>{publisher.name}</DescriptionItem>}
-                        {publisher?.city && publisher.country && (
-                            <DescriptionItem term={facts.location}>{fmt(facts.locationValue, values)}</DescriptionItem>
-                        )}
                         {repositoryCreated !== null && (
                             <DescriptionItem term={facts.created}>
                                 <time dateTime={repositoryCreated.date}>{repositoryCreated.formatted}</time>

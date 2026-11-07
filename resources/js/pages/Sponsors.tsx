@@ -8,7 +8,7 @@ import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
-import { FACTS, PUBLISHER } from '@/lib/data/facts';
+import { FACTS } from '@/lib/data/facts';
 import { SPONSORS } from '@/lib/data/sponsors';
 import { byName, onHomepage, openSlots } from '@/lib/sponsors';
 import { cn } from '@/lib/utils';
@@ -51,7 +51,7 @@ export default function Sponsors({ content, organizationProfiles }: SponsorsProp
                     name: content.seo.title,
                     description: content.seo.description,
                     crumbs,
-                    organization: { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER },
+                    organization: { description: m.seo.product.short, sameAs: organizationProfiles },
                 })}
             />
 

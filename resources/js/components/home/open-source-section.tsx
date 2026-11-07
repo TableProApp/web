@@ -2,7 +2,7 @@ import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
-import { FACTS, publisherValues } from '@/lib/data/facts';
+import { FACTS } from '@/lib/data/facts';
 import type { Availability } from './availability';
 import PlatformActions from './platform-actions';
 import type { HomeContent } from './types';
@@ -28,13 +28,12 @@ interface OpenSourceSectionProps {
  * actions.
  */
 export default function OpenSourceSection({ content, availability }: OpenSourceSectionProps) {
-    const { locale, m, fmt } = useI18n();
+    const { m, fmt } = useI18n();
 
     return (
         <Section id="open-source" title={content.title} flush>
             <div className="max-w-[44rem]">
                 <p className="type-body text-foreground">{content.body}</p>
-                <p className="type-body mt-4 text-foreground">{fmt(content.maker, publisherValues(locale))}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                     <li>
                         <LocaleLink href="/about" className={textLinkClasses('standalone')}>

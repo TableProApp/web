@@ -64,6 +64,6 @@ export default {
         },
     },
     bottom: {
-        copyright: '© {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3.',
+        copyright: '© {year} The TablePro team. Source code under the AGPLv3.',
     },
 };

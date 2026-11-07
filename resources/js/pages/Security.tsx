@@ -10,7 +10,6 @@ import PageHeader from '@/components/ui/page-header';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { PUBLISHER } from '@/lib/data/facts';
 import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
@@ -106,7 +105,7 @@ export default function Security({ content, facts, links, organizationProfiles }
                     name: content.seo.title,
                     description: content.seo.description,
                     crumbs,
-                    organization: { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER },
+                    organization: { description: m.seo.product.short, sameAs: organizationProfiles },
                 })}
             />
 

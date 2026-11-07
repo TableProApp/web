@@ -12,7 +12,6 @@ import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n } from '@/i18n';
-import { PUBLISHER } from '@/lib/data/facts';
 import { examplesText } from '@/lib/data/paid-features';
 import { PRICING } from '@/lib/data/pricing';
 import LandingLayout from '@/layouts/landing-layout';
@@ -101,7 +100,7 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
                     name: content.seo.title,
                     description: content.seo.description,
                     crumbs,
-                    organization: { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER },
+                    organization: { description: m.seo.product.short, sameAs: organizationProfiles },
                 })}
             />
 
