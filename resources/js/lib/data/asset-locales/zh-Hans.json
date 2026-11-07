@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "zh-Hans": "shop 数据库的 Mac SQL 编辑器，查询历史面板已打开并筛选出失败的查询，参数面板正在询问 :customer_id 的值。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro SQL 编辑器，查询历史在一条使用参数的查询旁打开。"
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "zh-Hans": "shop (PostgreSQL) 上的 EXPLAIN：以图形显示的查询计划，EXPLAIN Compare 显示与之前一次运行的耗时对比。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 以图形绘制的 PostgreSQL 查询计划。"
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "zh-Hans": "从 shop (PostgreSQL) Copy To 到 MySQL 连接：执行前检查 DDL、行数和类型转换。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Copy To 检查界面，显示复制到 SQLite 文件 的 DDL、行数和类型转换。"
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "zh-Hans": "将 CSV 文件导入 shop 的 products 表：列映射、失败行选项和预览。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的导入面板，将 CSV 文件的列映射到表。"
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "zh-Hans": "shop (PostgreSQL) 上的 Backup Dump：使用 pg_dump 的转储选项和目标文件。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Backup Dump 面板，设置为用 pg_dump 转储 PostgreSQL 数据库。"
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "zh-Hans": "Mac 上的 Settings > MCP：服务器开关、客户端设置说明，以及每个连接的 External Clients 级别。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 MCP 设置，服务器已开启，并显示每个连接的访问级别。"
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "zh-Hans": "Mac 上的 Import from Other App：在另一个数据库客户端中找到的连接，各带一个复选框，可直接导入。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Import from Other App 面板，列出在另一个数据库客户端中找到的连接。"
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "zh-Hans": "连接表单的 SSH 标签页：位于跳板主机后的主机、密钥认证，TLS 模式设为 Verify Identity。"
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "zh-Hans": "Mac 上的 Settings > Sync：iCloud Sync 已开启，并列出同步内容（连接、分组、设置、配置、收藏、已保存查询）。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的连接表单，设置为使用密钥通过 SSH 跳板主机连接。"
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "en": "The Mac SQL editor on shop with the query history panel open, filtered to failed queries, and a parameter sheet asking for :customer_id."
-        }
+        "alt": {
+            "en": "The TablePro SQL editor on a Mac with its query history open beside a query that uses a parameter."
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "en": "EXPLAIN on shop (PostgreSQL): a query plan as a diagram, with EXPLAIN Compare showing the timing against an earlier run."
-        }
+        "alt": {
+            "en": "A PostgreSQL query plan drawn as a diagram in TablePro on a Mac."
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "en": "Copy To from shop (PostgreSQL) to a MySQL connection: the review of the DDL, row counts and type conversions before it runs."
-        }
+        "alt": {
+            "en": "The Copy To review in TablePro on a Mac, with the DDL, row counts and type conversions for a copy to a SQLite file."
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "en": "Importing a CSV file into the shop products table: the column mapping, the options for failed rows, and the preview."
-        }
+        "alt": {
+            "en": "The import sheet in TablePro on a Mac, mapping the columns of a CSV file to a table."
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "en": "Backup Dump on shop (PostgreSQL): the dump options with pg_dump and the destination file."
-        }
+        "alt": {
+            "en": "The Backup Dump sheet in TablePro on a Mac, set to dump a PostgreSQL database with pg_dump."
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "en": "Settings > MCP on the Mac: the server switch, the setup instructions for a client, and the per-connection External Clients levels."
-        }
+        "alt": {
+            "en": "The MCP settings in TablePro on a Mac, with the server on and the access level of each connection."
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "en": "Import from Other App on the Mac: connections found in another database client, each with a checkbox, ready to import."
-        }
+        "alt": {
+            "en": "The Import from Other App sheet in TablePro on a Mac, listing connections found in another database client."
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "en": "The connection form on the SSH tab: a host behind a jump host, key authentication, and the TLS mode set to Verify Identity."
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "en": "Settings > Sync on the Mac: iCloud Sync on, with the list of what syncs (connections, groups, settings, profiles, favorites, saved queries)."
-        }
+        "alt": {
+            "en": "The connection form in TablePro on a Mac, set to connect through an SSH jump host with a key."
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

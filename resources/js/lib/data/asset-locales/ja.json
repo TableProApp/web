@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "ja": "shop に接続した Mac の SQL エディター。クエリ履歴パネルを失敗したクエリで絞り込み、パラメーターシートが :customer_id の値を尋ねています。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro SQL エディター。パラメーターを使うクエリの横にクエリ履歴が開いています。"
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "ja": "shop (PostgreSQL) の EXPLAIN。クエリプランを図で表示し、EXPLAIN Compare が以前の実行との時間を比較しています。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro で図として描かれた PostgreSQL のクエリプラン。"
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "ja": "shop (PostgreSQL) から MySQL 接続への Copy To。実行前に DDL、行数、型変換を確認する画面です。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro の Copy To 確認画面。SQLite ファイルへのコピーの DDL、行数、型変換が表示されています。"
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "ja": "CSV ファイルを shop の products テーブルにインポートする画面。列の対応付け、失敗した行のオプション、プレビューがあります。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro のインポートシート。CSV ファイルの列をテーブルに対応付けています。"
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "ja": "shop (PostgreSQL) の Backup Dump。pg_dump を使うダンプオプションと出力先ファイル。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro の Backup Dump シート。pg_dump で PostgreSQL データベースをダンプする設定です。"
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "ja": "Mac の Settings > MCP。サーバーのスイッチ、クライアントの設定手順、接続ごとの External Clients レベル。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro の MCP 設定。サーバーが有効で、接続ごとのアクセスレベルが表示されています。"
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "ja": "Mac の Import from Other App。別のデータベースクライアントで見つかった接続がチェックボックス付きで並び、インポートできる状態です。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro の Import from Other App シート。別のデータベースクライアントで見つかった接続を一覧表示しています。"
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "ja": "SSH タブを開いた接続フォーム。踏み台ホストの先にあるホスト、キー認証、Verify Identity に設定した TLS モード。"
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "ja": "Mac の Settings > Sync。iCloud Sync が有効で、同期する項目（接続、グループ、設定、プロファイル、お気に入り、保存済みクエリ）が並んでいます。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro の接続フォーム。キーを使い、SSH 踏み台ホスト経由で接続する設定です。"
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

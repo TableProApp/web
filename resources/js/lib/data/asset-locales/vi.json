@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "vi": "SQL editor trên Mac với cơ sở dữ liệu shop, panel lịch sử query đang mở và lọc theo query lỗi, cùng sheet tham số hỏi giá trị :customer_id."
-        }
+        "alt": {
+            "vi": "SQL editor của TablePro trên Mac, với lịch sử query mở bên cạnh một query dùng tham số."
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "vi": "EXPLAIN trên shop (PostgreSQL): query plan dạng sơ đồ, với EXPLAIN Compare so sánh thời gian với một lần chạy trước."
-        }
+        "alt": {
+            "vi": "Query plan PostgreSQL vẽ dạng sơ đồ trong TablePro trên Mac."
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "vi": "Copy To từ shop (PostgreSQL) sang một connection MySQL: màn hình xem lại DDL, số dòng và chuyển đổi kiểu trước khi chạy."
-        }
+        "alt": {
+            "vi": "Màn hình xem lại của Copy To trong TablePro trên Mac, với DDL, số dòng và chuyển đổi kiểu cho lần sao chép sang một file SQLite."
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "vi": "Import file CSV vào table products của shop: column mapping, tùy chọn cho dòng lỗi và bản xem trước."
-        }
+        "alt": {
+            "vi": "Sheet import trong TablePro trên Mac, ghép các cột của file CSV vào một table."
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "vi": "Backup Dump trên shop (PostgreSQL): các tùy chọn dump với pg_dump và file đích."
-        }
+        "alt": {
+            "vi": "Sheet Backup Dump trong TablePro trên Mac, thiết lập để dump một cơ sở dữ liệu PostgreSQL bằng pg_dump."
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "vi": "Cài đặt > MCP (Settings > MCP) trên Mac: công tắc server, hướng dẫn thiết lập cho một client, và mức External Clients của từng connection."
-        }
+        "alt": {
+            "vi": "Cài đặt MCP trong TablePro trên Mac, với server đang bật và mức truy cập của từng connection."
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "vi": "Nhập từ ứng dụng khác (Import from Other App) trên Mac: các connection tìm thấy trong một database client khác, mỗi connection có một ô chọn, sẵn sàng để import."
-        }
+        "alt": {
+            "vi": "Sheet Nhập từ ứng dụng khác (Import from Other App) trong TablePro trên Mac, liệt kê các connection tìm thấy trong một database client khác."
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "vi": "Form connection ở tab SSH: một host phía sau jump host, xác thực bằng key, và chế độ TLS đặt là Verify Identity."
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "vi": "Cài đặt > Đồng bộ (Settings > Sync) trên Mac: iCloud Sync đang bật, với danh sách những gì được đồng bộ (connection, nhóm, cài đặt, profile, mục yêu thích, query đã lưu)."
-        }
+        "alt": {
+            "vi": "Form connection trong TablePro trên Mac, thiết lập để kết nối qua SSH jump host bằng key."
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

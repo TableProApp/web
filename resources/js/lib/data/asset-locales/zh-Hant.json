@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "zh-Hant": "Mac 上連到 shop 的 SQL 編輯器，查詢歷史面板已開啟並篩選出失敗的查詢，參數面板正在要求輸入 :customer_id。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro SQL 編輯器，查詢歷史開啟在一個使用參數的查詢旁。"
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "zh-Hant": "shop (PostgreSQL) 上的 EXPLAIN：以圖表顯示的查詢計畫，EXPLAIN Compare 顯示與先前執行的耗時比較。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 以圖表繪製的 PostgreSQL 查詢計畫。"
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "zh-Hant": "從 shop (PostgreSQL) 到 MySQL 連線的 Copy To：執行前檢查 DDL、列數與型別轉換。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的 Copy To 檢查畫面，顯示複製到 SQLite 檔案 的 DDL、列數與型別轉換。"
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "zh-Hant": "將 CSV 檔案匯入 shop 的 products 資料表：欄位對應、失敗列的選項與預覽。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的匯入面板，將 CSV 檔案的欄位對應到資料表。"
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "zh-Hant": "shop (PostgreSQL) 上的 Backup Dump：使用 pg_dump 的傾印選項與目的地檔案。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的 Backup Dump 面板，設定為使用 pg_dump 傾印 PostgreSQL 資料庫。"
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "zh-Hant": "Mac 上的 Settings > MCP：伺服器開關、用戶端設定說明，以及各連線的 External Clients 層級。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的 MCP 設定，伺服器已開啟，並顯示各連線的存取層級。"
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "zh-Hant": "Mac 上的 Import from Other App：在另一個資料庫用戶端中找到的連線，各附一個核取方塊，可以匯入。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的 Import from Other App 面板，列出在另一個資料庫用戶端中找到的連線。"
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "zh-Hant": "連線表單的 SSH 分頁：位於跳板主機後方的主機、金鑰驗證，以及設為 Verify Identity 的 TLS 模式。"
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "zh-Hant": "Mac 上的 Settings > Sync：iCloud Sync 已開啟，並列出同步內容（連線、群組、設定、設定檔、喜好項目、已儲存查詢）。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上 TablePro 的連線表單，設定為使用金鑰透過 SSH 跳板主機連線。"
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

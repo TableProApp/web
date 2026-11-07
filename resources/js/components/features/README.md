@@ -110,8 +110,8 @@ list is hidden.
 
 ## Slots
 
-- `header.asset` and every band `asset` are `window-whole` slots in `resources/data/assets.json`, shown whole at every
-  width, never as a phone crop. Their `usedOn` names the page and the band (`top` for the hero). The test checks it.
+- `header.asset` and every band `asset` are `window-whole` slots in `resources/data/assets.json` (sync-and-teams'
+  hero is the iCloud Sync diagram), shown whole at every width, never as a phone crop. Their `usedOn` names the page and the band (`top` for the hero). The test checks it.
 - Mac windows only, light and dark, on the `shop` sample database, at the homepage captures' window size.
 - A new id or a changed description is a manifest edit; then run `php artisan assets:generate`. A slot without its
   files renders nothing in production, so its band shows text only.

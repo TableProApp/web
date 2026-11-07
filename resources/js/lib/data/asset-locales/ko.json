@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "ko": "shop에 연결된 Mac SQL 편집기. 쿼리 기록 패널이 열려 실패한 쿼리로 필터링되어 있고, 매개변수 시트가 :customer_id 값을 묻습니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro SQL 편집기. 매개변수를 사용하는 쿼리 옆에 쿼리 기록이 열려 있습니다."
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "ko": "shop (PostgreSQL)의 EXPLAIN. 쿼리 계획이 다이어그램으로 표시되고 EXPLAIN Compare가 이전 실행과 시간을 비교합니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro에서 다이어그램으로 그린 PostgreSQL 쿼리 계획 화면."
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "ko": "shop (PostgreSQL)에서 MySQL 연결로의 Copy To. 실행 전에 DDL, 행 수, 타입 변환을 검토하는 화면입니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro에 있는 Copy To 검토 화면. SQLite 파일로 복사할 DDL, 행 수, 타입 변환이 표시됩니다."
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "ko": "CSV 파일을 shop의 products 테이블로 가져오는 화면. 열 매핑, 실패한 행 처리 옵션, 미리 보기가 있습니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro 가져오기 시트. CSV 파일의 열을 테이블에 매핑합니다."
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "ko": "shop (PostgreSQL)의 Backup Dump. pg_dump 덤프 옵션과 대상 파일이 표시됩니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro Backup Dump 시트. pg_dump로 PostgreSQL 데이터베이스를 덤프하도록 설정되어 있습니다."
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "ko": "Mac의 Settings > MCP. 서버 스위치, 클라이언트 설정 안내, 연결별 External Clients 수준이 있습니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro MCP 설정. 서버가 켜져 있고 연결별 접근 수준이 표시됩니다."
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "ko": "Mac의 Import from Other App. 다른 데이터베이스 클라이언트에서 찾은 연결이 각각 체크박스와 함께 가져올 준비가 되어 있습니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro에 있는 Import from Other App 시트. 다른 데이터베이스 클라이언트에서 찾은 연결이 나열됩니다."
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "ko": "SSH 탭의 연결 양식. 점프 호스트 뒤의 호스트, 키 인증, Verify Identity로 설정된 TLS 모드가 있습니다."
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "ko": "Mac의 Settings > Sync. iCloud Sync가 켜져 있고 동기화 항목(연결, 그룹, 설정, 프로필, 즐겨찾기, 저장된 쿼리) 목록이 있습니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro 연결 양식. 키를 사용해 SSH 점프 호스트를 거쳐 연결하도록 설정되어 있습니다."
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {

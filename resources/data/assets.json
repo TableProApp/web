@@ -2253,7 +2253,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "The Mac SQL editor on shop with the query history panel open, filtered to failed queries, and a parameter sheet asking for :customer_id.",
+        "en": "The Mac SQL editor on shop: a query with a :customer_id parameter set in the Parameters row, and the query history below, filtered to failed queries.",
         "vi": "SQL editor trên Mac với cơ sở dữ liệu shop, panel lịch sử query đang mở và lọc theo query lỗi, cùng sheet tham số hỏi giá trị :customer_id.",
         "es": "El editor SQL del Mac sobre shop con el panel de historial de consultas abierto, filtrado por consultas fallidas, y una hoja de parámetros que pide :customer_id.",
         "de": "Der SQL-Editor auf dem Mac mit shop, geöffnetem Abfrageverlauf, gefiltert auf fehlgeschlagene Abfragen, und einem Parameterdialog, der nach :customer_id fragt.",
@@ -2285,8 +2285,35 @@
         "dir": "public/images/features",
         "base": "features-querying-history"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-querying-explain": {
@@ -2308,7 +2335,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "EXPLAIN on shop (PostgreSQL): a query plan as a diagram, with EXPLAIN Compare showing the timing against an earlier run.",
+        "en": "EXPLAIN ANALYZE on shop (PostgreSQL): revenue by country since September, drawn as a plan diagram, with the Tree, Raw and Compare tabs beside it.",
         "vi": "EXPLAIN trên shop (PostgreSQL): query plan dạng sơ đồ, với EXPLAIN Compare so sánh thời gian với một lần chạy trước.",
         "es": "EXPLAIN sobre shop (PostgreSQL): un plan de consulta como diagrama, con EXPLAIN Compare mostrando el tiempo frente a una ejecución anterior.",
         "de": "EXPLAIN auf shop (PostgreSQL): ein Abfrageplan als Diagramm, EXPLAIN Compare zeigt die Zeit im Vergleich zu einem früheren Lauf.",
@@ -2322,26 +2349,53 @@
         "id": "EXPLAIN pada shop (PostgreSQL): rencana kueri sebagai diagram, dengan EXPLAIN Compare yang menampilkan waktu dibandingkan eksekusi sebelumnya."
       },
       "alt": {
-        "en": "A PostgreSQL query plan drawn as a diagram in TablePro on a Mac, compared with an earlier run.",
-        "vi": "Query plan PostgreSQL vẽ dạng sơ đồ trong TablePro trên Mac, được so sánh với một lần chạy trước.",
-        "es": "Un plan de consulta de PostgreSQL dibujado como diagrama en TablePro en un Mac, comparado con una ejecución anterior.",
-        "de": "Ein PostgreSQL-Abfrageplan als Diagramm in TablePro auf einem Mac, verglichen mit einem früheren Lauf.",
-        "fr": "Un plan de requête PostgreSQL dessiné en diagramme dans TablePro sur Mac, comparé à une exécution antérieure.",
-        "ja": "Mac の TablePro で図として描かれた PostgreSQL のクエリプラン。以前の実行と比較しています。",
-        "pt-BR": "Um plano de consulta PostgreSQL desenhado como diagrama no TablePro em um Mac, comparado com uma execução anterior.",
-        "zh-Hans": "Mac 上的 TablePro 以图形绘制的 PostgreSQL 查询计划，并与之前一次运行比较。",
-        "ko": "Mac의 TablePro에서 다이어그램으로 그린 PostgreSQL 쿼리 계획을 이전 실행과 비교한 화면.",
-        "zh-Hant": "Mac 上的 TablePro 以圖表繪製的 PostgreSQL 查詢計畫，並與先前的執行比較。",
-        "it": "Un piano di query PostgreSQL disegnato come diagramma in TablePro su un Mac, confrontato con un’esecuzione precedente.",
-        "id": "Rencana kueri PostgreSQL yang digambar sebagai diagram di TablePro untuk Mac, dibandingkan dengan eksekusi sebelumnya."
+        "en": "A PostgreSQL query plan drawn as a diagram in TablePro on a Mac.",
+        "vi": "Query plan PostgreSQL vẽ dạng sơ đồ trong TablePro trên Mac.",
+        "es": "Un plan de consulta de PostgreSQL dibujado como diagrama en TablePro en un Mac.",
+        "de": "Ein PostgreSQL-Abfrageplan als Diagramm in TablePro auf einem Mac.",
+        "fr": "Un plan de requête PostgreSQL dessiné en diagramme dans TablePro sur Mac.",
+        "ja": "Mac の TablePro で図として描かれた PostgreSQL のクエリプラン。",
+        "pt-BR": "Um plano de consulta PostgreSQL desenhado como diagrama no TablePro em um Mac.",
+        "zh-Hans": "Mac 上的 TablePro 以图形绘制的 PostgreSQL 查询计划。",
+        "ko": "Mac의 TablePro에서 다이어그램으로 그린 PostgreSQL 쿼리 계획 화면.",
+        "zh-Hant": "Mac 上的 TablePro 以圖表繪製的 PostgreSQL 查詢計畫。",
+        "it": "Un piano di query PostgreSQL disegnato come diagramma in TablePro su un Mac.",
+        "id": "Rencana kueri PostgreSQL yang digambar sebagai diagram di TablePro untuk Mac."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/features",
         "base": "features-querying-explain"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-querying-charts": {
@@ -2528,7 +2582,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Copy To from shop (PostgreSQL) to a MySQL connection: the review of the DDL, row counts and type conversions before it runs.",
+        "en": "Copy To from shop to a SQLite file: the rewritten DDL, the row counts per table and a timestamp with time zone type change.",
         "vi": "Copy To từ shop (PostgreSQL) sang một connection MySQL: màn hình xem lại DDL, số dòng và chuyển đổi kiểu trước khi chạy.",
         "es": "Copy To de shop (PostgreSQL) a una conexión MySQL: la revisión del DDL, el número de filas y las conversiones de tipos antes de ejecutarse.",
         "de": "Copy To von shop (PostgreSQL) zu einer MySQL-Verbindung: die Prüfung von DDL, Zeilenzahlen und Typkonvertierungen vor der Ausführung.",
@@ -2542,26 +2596,53 @@
         "id": "Copy To dari shop (PostgreSQL) ke koneksi MySQL: peninjauan DDL, jumlah baris, dan konversi tipe sebelum dijalankan."
       },
       "alt": {
-        "en": "The Copy To review in TablePro on a Mac, with the DDL, row counts and type conversions for a copy to MySQL.",
-        "vi": "Màn hình xem lại của Copy To trong TablePro trên Mac, với DDL, số dòng và chuyển đổi kiểu cho lần sao chép sang MySQL.",
-        "es": "La revisión de Copy To en TablePro en un Mac, con el DDL, el número de filas y las conversiones de tipos de una copia a MySQL.",
-        "de": "Die Prüfung von Copy To in TablePro auf einem Mac, mit DDL, Zeilenzahlen und Typkonvertierungen für eine Kopie nach MySQL.",
-        "fr": "La vérification Copy To dans TablePro sur Mac, avec le DDL, les nombres de lignes et les conversions de types pour une copie vers MySQL.",
-        "ja": "Mac の TablePro の Copy To 確認画面。MySQL へのコピーの DDL、行数、型変換が表示されています。",
-        "pt-BR": "A revisão do Copy To no TablePro em um Mac, com o DDL, as contagens de linhas e as conversões de tipo de uma cópia para MySQL.",
-        "zh-Hans": "Mac 上 TablePro 的 Copy To 检查界面，显示复制到 MySQL 的 DDL、行数和类型转换。",
-        "ko": "Mac의 TablePro에 있는 Copy To 검토 화면. MySQL로 복사할 DDL, 행 수, 타입 변환이 표시됩니다.",
-        "zh-Hant": "Mac 上 TablePro 的 Copy To 檢查畫面，顯示複製到 MySQL 的 DDL、列數與型別轉換。",
-        "it": "La revisione di Copy To in TablePro su un Mac, con il DDL, il conteggio delle righe e le conversioni dei tipi per una copia verso MySQL.",
-        "id": "Peninjauan Copy To di TablePro untuk Mac, dengan DDL, jumlah baris, dan konversi tipe untuk penyalinan ke MySQL."
+        "en": "The Copy To review in TablePro on a Mac, with the DDL, row counts and type conversions for a copy to a SQLite file.",
+        "vi": "Màn hình xem lại của Copy To trong TablePro trên Mac, với DDL, số dòng và chuyển đổi kiểu cho lần sao chép sang một file SQLite.",
+        "es": "La revisión de Copy To en TablePro en un Mac, con el DDL, el número de filas y las conversiones de tipos de una copia a un archivo SQLite.",
+        "de": "Die Prüfung von Copy To in TablePro auf einem Mac, mit DDL, Zeilenzahlen und Typkonvertierungen für eine Kopie in eine SQLite-Datei.",
+        "fr": "La vérification Copy To dans TablePro sur Mac, avec le DDL, les nombres de lignes et les conversions de types pour une copie vers un fichier SQLite.",
+        "ja": "Mac の TablePro の Copy To 確認画面。SQLite ファイルへのコピーの DDL、行数、型変換が表示されています。",
+        "pt-BR": "A revisão do Copy To no TablePro em um Mac, com o DDL, as contagens de linhas e as conversões de tipo de uma cópia para um arquivo SQLite.",
+        "zh-Hans": "Mac 上 TablePro 的 Copy To 检查界面，显示复制到 SQLite 文件 的 DDL、行数和类型转换。",
+        "ko": "Mac의 TablePro에 있는 Copy To 검토 화면. SQLite 파일로 복사할 DDL, 행 수, 타입 변환이 표시됩니다.",
+        "zh-Hant": "Mac 上 TablePro 的 Copy To 檢查畫面，顯示複製到 SQLite 檔案 的 DDL、列數與型別轉換。",
+        "it": "La revisione di Copy To in TablePro su un Mac, con il DDL, il conteggio delle righe e le conversioni dei tipi per una copia verso un file SQLite.",
+        "id": "Peninjauan Copy To di TablePro untuk Mac, dengan DDL, jumlah baris, dan konversi tipe untuk penyalinan ke file SQLite."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/features",
         "base": "features-schema-copy"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-import-export-import": {
@@ -2583,7 +2664,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Importing a CSV file into the shop products table: the column mapping, the options for failed rows, and the preview.",
+        "en": "Importing new-products.csv into the products table: the column matching, the delimiter and encoding options, and what to do on error.",
         "vi": "Import file CSV vào table products của shop: column mapping, tùy chọn cho dòng lỗi và bản xem trước.",
         "es": "Importación de un archivo CSV a la tabla products de shop: la asignación de columnas, las opciones para filas fallidas y la vista previa.",
         "de": "Import einer CSV-Datei in die Tabelle products von shop: die Spaltenzuordnung, die Optionen für fehlerhafte Zeilen und die Vorschau.",
@@ -2615,8 +2696,35 @@
         "dir": "public/images/features",
         "base": "features-import-export-import"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-import-export-backup": {
@@ -2638,7 +2746,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Backup Dump on shop (PostgreSQL): the dump options with pg_dump and the destination file.",
+        "en": "The Back Up sheet for shop: the tables of the PostgreSQL database selected and a destination folder.",
         "vi": "Backup Dump trên shop (PostgreSQL): các tùy chọn dump với pg_dump và file đích.",
         "es": "Backup Dump sobre shop (PostgreSQL): las opciones del volcado con pg_dump y el archivo de destino.",
         "de": "Backup Dump auf shop (PostgreSQL): die Dump-Optionen mit pg_dump und die Zieldatei.",
@@ -2670,8 +2778,35 @@
         "dir": "public/images/features",
         "base": "features-import-export-backup"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-ai-mcp-agent": {
@@ -2748,7 +2883,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Settings > MCP on the Mac: the server switch, the setup instructions for a client, and the per-connection External Clients levels.",
+        "en": "Settings > MCP on the Mac: the server running, its port, row limits and query timeout, and connection access set to ask once for each connection.",
         "vi": "Cài đặt > MCP (Settings > MCP) trên Mac: công tắc server, hướng dẫn thiết lập cho một client, và mức External Clients của từng connection.",
         "es": "Settings > MCP en el Mac: el interruptor del servidor, las instrucciones de configuración de un cliente y los niveles de External Clients por conexión.",
         "de": "Settings > MCP auf dem Mac: der Serverschalter, die Einrichtungsanleitung für einen Client und die Stufen für External Clients pro Verbindung.",
@@ -2780,8 +2915,35 @@
         "dir": "public/images/features",
         "base": "features-ai-mcp-mcp"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-connections-import": {
@@ -2803,7 +2965,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Import from Other App on the Mac: connections found in another database client, each with a checkbox, ready to import.",
+        "en": "Import from DBeaver: five connections found in DBeaver, each checked, ready to import.",
         "vi": "Nhập từ ứng dụng khác (Import from Other App) trên Mac: các connection tìm thấy trong một database client khác, mỗi connection có một ô chọn, sẵn sàng để import.",
         "es": "Import from Other App en el Mac: conexiones encontradas en otro cliente de bases de datos, cada una con su casilla, listas para importar.",
         "de": "Import from Other App auf dem Mac: in einem anderen Datenbankclient gefundene Verbindungen, jeweils mit Kontrollkästchen, bereit zum Import.",
@@ -2835,8 +2997,35 @@
         "dir": "public/images/features",
         "base": "features-connections-import"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-connections-network": {
@@ -2858,7 +3047,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "The connection form on the SSH tab: a host behind a jump host, key authentication, and the TLS mode set to Verify Identity.",
+        "en": "The new PostgreSQL connection form on its Network tab: SSH to bastion.internal as deploy with a private key, and SSL mode Verify Identity.",
         "vi": "Form connection ở tab SSH: một host phía sau jump host, xác thực bằng key, và chế độ TLS đặt là Verify Identity.",
         "es": "El formulario de conexión en la pestaña SSH: un host detrás de un host de salto, autenticación por clave y el modo TLS en Verify Identity.",
         "de": "Das Verbindungsformular im Tab SSH: ein Host hinter einem Jump Host, Schlüsselauthentifizierung und der TLS-Modus Verify Identity.",
@@ -2890,63 +3079,35 @@
         "dir": "public/images/features",
         "base": "features-connections-network"
       },
-      "status": "placeholder",
-      "src": null,
-      "legacySource": null
-    },
-    "features-sync-and-teams-sync": {
-      "kind": "window-whole",
-      "type": "screenshot",
-      "family": "features",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P2",
-      "usedOn": [
-        {
-          "path": "/features/sync-and-teams",
-          "section": "top"
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
         }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "both",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Settings > Sync on the Mac: iCloud Sync on, with the list of what syncs (connections, groups, settings, profiles, favorites, saved queries).",
-        "vi": "Cài đặt > Đồng bộ (Settings > Sync) trên Mac: iCloud Sync đang bật, với danh sách những gì được đồng bộ (connection, nhóm, cài đặt, profile, mục yêu thích, query đã lưu).",
-        "es": "Settings > Sync en el Mac: iCloud Sync activado, con la lista de lo que se sincroniza (conexiones, grupos, ajustes, perfiles, favoritos, consultas guardadas).",
-        "de": "Settings > Sync auf dem Mac: iCloud Sync eingeschaltet, mit der Liste dessen, was synchronisiert wird (Verbindungen, Gruppen, Einstellungen, Profile, Favoriten, gespeicherte Abfragen).",
-        "fr": "Les réglages de synchronisation sur Mac (Settings > Sync) : iCloud Sync activé, avec la liste de ce qui se synchronise (connexions, groupes, réglages, profils, favoris, requêtes enregistrées).",
-        "ja": "Mac の Settings > Sync。iCloud Sync が有効で、同期する項目（接続、グループ、設定、プロファイル、お気に入り、保存済みクエリ）が並んでいます。",
-        "pt-BR": "Settings > Sync no Mac: iCloud Sync ativado, com a lista do que sincroniza (conexões, grupos, configurações, perfis, favoritos, consultas salvas).",
-        "zh-Hans": "Mac 上的 Settings > Sync：iCloud Sync 已开启，并列出同步内容（连接、分组、设置、配置、收藏、已保存查询）。",
-        "ko": "Mac의 Settings > Sync. iCloud Sync가 켜져 있고 동기화 항목(연결, 그룹, 설정, 프로필, 즐겨찾기, 저장된 쿼리) 목록이 있습니다.",
-        "zh-Hant": "Mac 上的 Settings > Sync：iCloud Sync 已開啟，並列出同步內容（連線、群組、設定、設定檔、喜好項目、已儲存查詢）。",
-        "it": "Settings > Sync sul Mac: iCloud Sync attivo, con l’elenco di ciò che si sincronizza (connessioni, gruppi, impostazioni, profili, preferiti, query salvate).",
-        "id": "Settings > Sync di Mac: iCloud Sync aktif, dengan daftar yang disinkronkan (koneksi, grup, pengaturan, profil, favorit, kueri tersimpan)."
       },
-      "alt": {
-        "en": "The Sync settings in TablePro on a Mac, with iCloud Sync on and the kinds of data it syncs.",
-        "vi": "Cài đặt đồng bộ trong TablePro trên Mac, với iCloud Sync đang bật và các loại dữ liệu được đồng bộ.",
-        "es": "Los ajustes de Sync en TablePro en un Mac, con iCloud Sync activado y los tipos de datos que sincroniza.",
-        "de": "Die Sync-Einstellungen in TablePro auf einem Mac, mit eingeschaltetem iCloud Sync und den Datenarten, die es synchronisiert.",
-        "fr": "Les réglages de synchronisation de TablePro sur Mac, avec iCloud Sync activé et les types de données synchronisés.",
-        "ja": "Mac の TablePro の Sync 設定。iCloud Sync が有効で、同期するデータの種類が表示されています。",
-        "pt-BR": "As configurações de Sync no TablePro em um Mac, com iCloud Sync ativado e os tipos de dados que ele sincroniza.",
-        "zh-Hans": "Mac 上 TablePro 的同步设置，iCloud Sync 已开启，并显示其同步的数据类型。",
-        "ko": "Mac의 TablePro Sync 설정. iCloud Sync가 켜져 있고 동기화하는 데이터 종류가 표시됩니다.",
-        "zh-Hant": "Mac 上 TablePro 的 Sync 設定，iCloud Sync 已開啟，並顯示它同步的資料類型。",
-        "it": "Le impostazioni Sync in TablePro su un Mac, con iCloud Sync attivo e i tipi di dati che sincronizza.",
-        "id": "Pengaturan Sync di TablePro untuk Mac, dengan iCloud Sync aktif dan jenis data yang disinkronkannya."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/features",
-        "base": "features-sync-and-teams-sync"
-      },
-      "status": "placeholder",
-      "src": null,
       "legacySource": null
     },
     "features-sync-and-teams-team": {
@@ -3828,7 +3989,7 @@
       "usedOn": [
         {
           "path": "/features/sync-and-teams",
-          "section": "icloud-sync"
+          "section": "top"
         },
         {
           "path": "/ios",

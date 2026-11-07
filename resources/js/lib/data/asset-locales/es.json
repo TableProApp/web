@@ -132,14 +132,16 @@
         "caption": null
     },
     "features-querying-history": {
-        "description": {
-            "es": "El editor SQL del Mac sobre shop con el panel de historial de consultas abierto, filtrado por consultas fallidas, y una hoja de parámetros que pide :customer_id."
-        }
+        "alt": {
+            "es": "El editor SQL de TablePro en un Mac con el historial de consultas abierto junto a una consulta que usa un parámetro."
+        },
+        "caption": null
     },
     "features-querying-explain": {
-        "description": {
-            "es": "EXPLAIN sobre shop (PostgreSQL): un plan de consulta como diagrama, con EXPLAIN Compare mostrando el tiempo frente a una ejecución anterior."
-        }
+        "alt": {
+            "es": "Un plan de consulta de PostgreSQL dibujado como diagrama en TablePro en un Mac."
+        },
+        "caption": null
     },
     "features-querying-charts": {
         "description": {
@@ -157,19 +159,22 @@
         }
     },
     "features-schema-copy": {
-        "description": {
-            "es": "Copy To de shop (PostgreSQL) a una conexión MySQL: la revisión del DDL, el número de filas y las conversiones de tipos antes de ejecutarse."
-        }
+        "alt": {
+            "es": "La revisión de Copy To en TablePro en un Mac, con el DDL, el número de filas y las conversiones de tipos de una copia a un archivo SQLite."
+        },
+        "caption": null
     },
     "features-import-export-import": {
-        "description": {
-            "es": "Importación de un archivo CSV a la tabla products de shop: la asignación de columnas, las opciones para filas fallidas y la vista previa."
-        }
+        "alt": {
+            "es": "La hoja de importación de TablePro en un Mac, que asigna las columnas de un archivo CSV a una tabla."
+        },
+        "caption": null
     },
     "features-import-export-backup": {
-        "description": {
-            "es": "Backup Dump sobre shop (PostgreSQL): las opciones del volcado con pg_dump y el archivo de destino."
-        }
+        "alt": {
+            "es": "La hoja de Backup Dump en TablePro en un Mac, configurada para volcar una base de datos PostgreSQL con pg_dump."
+        },
+        "caption": null
     },
     "features-ai-mcp-agent": {
         "description": {
@@ -177,24 +182,22 @@
         }
     },
     "features-ai-mcp-mcp": {
-        "description": {
-            "es": "Settings > MCP en el Mac: el interruptor del servidor, las instrucciones de configuración de un cliente y los niveles de External Clients por conexión."
-        }
+        "alt": {
+            "es": "Los ajustes de MCP en TablePro en un Mac, con el servidor activado y el nivel de acceso de cada conexión."
+        },
+        "caption": null
     },
     "features-connections-import": {
-        "description": {
-            "es": "Import from Other App en el Mac: conexiones encontradas en otro cliente de bases de datos, cada una con su casilla, listas para importar."
-        }
+        "alt": {
+            "es": "La hoja Import from Other App en TablePro en un Mac, con las conexiones encontradas en otro cliente de bases de datos."
+        },
+        "caption": null
     },
     "features-connections-network": {
-        "description": {
-            "es": "El formulario de conexión en la pestaña SSH: un host detrás de un host de salto, autenticación por clave y el modo TLS en Verify Identity."
-        }
-    },
-    "features-sync-and-teams-sync": {
-        "description": {
-            "es": "Settings > Sync en el Mac: iCloud Sync activado, con la lista de lo que se sincroniza (conexiones, grupos, ajustes, perfiles, favoritos, consultas guardadas)."
-        }
+        "alt": {
+            "es": "El formulario de conexión de TablePro en un Mac, configurado para conectar a través de un host de salto SSH con una clave."
+        },
+        "caption": null
     },
     "features-sync-and-teams-team": {
         "description": {
