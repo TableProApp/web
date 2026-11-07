@@ -508,7 +508,6 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 - `/pricing`: the plans (`PricingPlans` is the same component)
 - `/download`: the release row
 - `/faq`: one row per topic, the topic beside its questions
-- a feature page: every block whose crop sits beside its text (5 / 7), and the documentation and related-pages row
 
 Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, callouts, code blocks, account panels).
 
@@ -1412,23 +1411,22 @@ SiteFooter
   crossfade. Nothing loops, and reduced motion turns all of it off. Content is never hidden before the script runs.
 - **Sponsors stays third** (spec §0).
 
-### 8.2 Feature page (`/features/{slug}`, `/vi/…`)
+### 8.2 Feature page (`/features/{slug}`, every locale)
+
+Redesigned 2026-11-07 (sitemap §E.4; `components/features/README.md`).
 
 ```
-Breadcrumbs  Features / {Feature}
-PageHeader   H1 · lead (2 sentences) · Badges: {platforms} {tier} from data · [Download for Mac] secondary · Read the docs ↗
-Sections     one per sub-workflow, in sitemap §A.2's order and with its ids (#editor, #history, #performance …):
-             H2 · 2–4 sentences at text width · tier marker · "0.77" label from data
-             · at most one ▒ slot, taken from sitemap §A.2's Slots column in section order:
-               a window (16:9) full width below its text; a detail (4:3) in cols 6–12 beside it
-Section      On iPhone and iPad  #iphone   (or a plain "not on iPhone or iPad")
-DataTable    Where it works: rows Mac / iPhone and iPad × cols Free · Starter · Team  (sr-only caption)
-Callout note Limits that change a decision, from data
-Related      3 standalone links named after their pages (no cards)
-DownloadBand
+Area nav     All features · Querying · Data editing · … (current underlined; scrolls sideways on a phone)
+Hero         H1 (Home's size) · one-sentence lead · [Download] · Documentation ↗
+             ▒ the area's Mac window, whole, settling in once on load
+Bands ×3–5   cols 1–3: H2 (28px) · Pro / Team pill   cols 4–12: 40–70 words · "On Mac, Linux and iPhone & iPad."
+             · notes · engine lines · Documentation ↗
+             ▒ the band's Mac window, whole (`window-whole`), full width below; none when the hero shows it
+Also         cols 1–3: label   cols 4–12: two columns of name + one or two sentences, ids kept
+Closing      cols 1–3: Get TablePro   cols 4–12: "Pro adds A and B. Everything else on this page is free." · [Download] · See pricing
 ```
 
-There is **no page-level overview slot**. The first section's slot is the page's lead image, so every image shows one named workflow (sitemap §E.4: "at most one slot" per section).
+Every window is shown whole at every width, never as a phone crop (owner, 2026-11-07). Bands and the closing rise into place as they scroll in, as on Home; reduced motion turns both off. The hub (`/features`) uses the same area nav and hero without a window, then one band per area with its bands as links and its window in cols 4–12.
 
 ### 8.3 Database hub (`/databases`)
 
