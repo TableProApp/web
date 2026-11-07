@@ -507,7 +507,6 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
 - `/download`: the release row
-- `/faq`: one row per topic, the topic beside its questions
 
 Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, callouts, code blocks, account panels).
 
@@ -703,9 +702,9 @@ Repo key:
 
 #### 5.3.7 FaqList
 
-- One column. In a section its rows run from rail to rail with their text at `text` width (`frame-rows-text`, §4.7); on `/faq` it fills the questions cell beside its topic, with rows from the cell divider to the rail.
+- One column. In a section its rows run from rail to rail with their text at `text` width (`frame-rows-text`, §4.7). `/faq` no longer uses it: its questions are bands (§8.12).
 - Each item:
-  - The question is an `h3` (or `h2` on `/faq` under group headings, which use the `h2` style).
+  - The question is an `h3`.
   - The answer is `body` in `--foreground`, 8px below its question.
   - Items are separated by a 1px `--rule` with 24px of padding.
 - All answers are visible. Answers come from data, with named interpolation.
@@ -1614,15 +1613,21 @@ End                   Contact line (hello@tablepro.app)
 
 Print styles apply.
 
-### 8.12 FAQ (`/faq`)
+### 8.12 FAQ (`/faq`, every locale)
+
+Rebuilt 2026-11-08 on the grid of the feature pages (§8.2): `AreaNav`, `FeatureHero`, `BandFrame`, `MoreItem`, `ClosingFrame`.
 
 ```
-PageHeader   H1 · lead · jump links: sitemap §A.1's categories and ids: #general · #platforms · #databases · #licensing ·
-             #privacy · #account · #switching
-per group    one row of two cells (§4.7): H2 in cols 1–4 (sticky from 1024) │ FaqList in cols 5–12, rows from the cell
-             divider to the rail (questions h3, answers visible). Below 1024 the heading cell stacks above its questions
-Callout note a block of its own: Didn't find it? Email us · Live chat (loads only when clicked)
+Topic row    Product · Pricing · Platforms · Databases · Privacy · Support (#id links; scrolls sideways on a phone)
+Hero         H1 · one sentence; no actions
+Bands ×6     cols 1–3: H2, the topic   cols 4–12 at 42rem: questions (h3, 17/600) with the answer open below (16, muted),
+             32px apart; no rules, no accordion. Pricing ends with one line to /pricing#faq
+#contact     cols 1–3: Contact   cols 4–12: "Email {email}, or report a problem on GitHub." (30px) · Start a live chat
 ```
+
+- An answer is two sentences and one link at most; links sit inside the sentence (`useContentTags` with `<Trans>`).
+- An id that moved lands through `also`: a question's old ids on the question, a topic's on its band, the billing questions' on the Pricing line, and `#students-teachers` on the Pricing band while the education program is closed.
+- Bands rise into place as they scroll in; reduced motion turns it off.
 
 ### 8.13 404 and 410 (both apps)
 
@@ -1765,6 +1770,22 @@ cols 9-12    Card "Details": Publisher · Category · Works with · TablePro app
 ```
 
 `/vi/integrations/{slug}` and the other languages answer 404 with a link to the English page.
+
+### 8.23 Security (`/security`, every locale)
+
+Rebuilt 2026-11-08 on the same grid as §8.12.
+
+```
+Topic row    Credentials · What leaves your device · AI & MCP · Updates & signing · Safe Mode · Open source · Report a vulnerability
+Hero         H1 · one sentence; no actions
+Bands ×7     cols 1–3: H2 that states the band's fact   cols 4–12 at 42rem: text, then at most two limits (15, muted)
+             and the band's links. #network and #ai-mcp add a table across cols 4–12, the limits and links under it
+#report      the last band: security@ or a private GitHub advisory · reply time · what to include · no bug bounty
+```
+
+- The tables are DataTables flush with the text: no header fill, no inset on the outer columns. Below 640 they keep the
+  first two columns and fold the rest under the second as labelled lines (§5.3.10, priority columns).
+- No diagram, badges or certification claims.
 
 ---
 
