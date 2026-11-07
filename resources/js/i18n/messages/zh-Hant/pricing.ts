@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "付費功能，供一人使用。",
             "activation": {
-                "one": "1 人，{count} 台 Mac。",
-                "other": "1 人，最多 {count} 台 Mac。"
+                "one": "1 人，{count} 台 Mac 或 Linux 電腦。",
+                "other": "1 人，最多 {count} 台 Mac 或 Linux 電腦。"
             },
             "includesTitle": "免費版的所有功能，另加",
             "cta": "購買 Pro"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "人人都有 Pro，另加共用連線。",
             "activation": {
-                "one": "每個席位 1 人，{count} 台 Mac。",
-                "other": "每個席位 1 人，最多 {count} 台 Mac。"
+                "one": "每個席位 1 人，{count} 台 Mac 或 Linux 電腦。",
+                "other": "每個席位 1 人，最多 {count} 台 Mac 或 Linux 電腦。"
             },
             "includesTitle": "Pro 的所有功能，另加",
             "cta": "購買 Team",
@@ -116,15 +116,15 @@ export default {
             "team": "Team 包含",
             "all": "所有方案包含"
         },
-        "macs": "Mac 台數",
+        "macs": "電腦台數",
         "macsFree": "無需授權",
         "macsStarter": {
-            "one": "{count}",
-            "other": "最多 {count}"
+            "one": "{count} 台（Mac 或 Linux）",
+            "other": "最多 {count} 台（Mac 或 Linux）"
         },
         "macsTeam": {
-            "one": "每席位 {count} 台",
-            "other": "每席位最多 {count} 台"
+            "one": "每席位 {count} 台（Mac 或 Linux）",
+            "other": "每席位最多 {count} 台（Mac 或 Linux）"
         },
         "everythingElse": "App 中的其他所有功能",
         "everythingElseDetail": "所有支援的引擎、SQL 編輯器、AI 助理、MCP 伺服器與 Safe Mode",

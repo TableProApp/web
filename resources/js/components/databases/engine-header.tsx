@@ -12,43 +12,27 @@ import { Trans, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import FactsCard from './facts-card';
-import { deviceNamesFor, docsUrl, iosStatus } from './format';
+import { availableDeviceNames, deviceNamesFor, docsUrl, iosStatus } from './format';
 import RichText from './rich-text';
-import type { DatabaseLinks, DatabaseLabels, EngineDetail, EnginePageContent, PlatformSummary, ProductFacts } from './types';
+import type { DatabaseLinks, DatabaseLabels, DatabasePlatforms, EngineDetail, EnginePageContent, ProductFacts } from './types';
 
 interface EngineHeaderProps {
     content: EnginePageContent;
     labels: DatabaseLabels;
     engine: EngineDetail;
-    platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
+    platforms: DatabasePlatforms;
     links: DatabaseLinks;
     product: ProductFacts;
-    /**
-     * A detail-crop lead image, placed in the text column under the actions so
-     * the facts card on the right sits beside it. A full-width window lead is
-     * rendered by the page under the header instead.
-     */
+    // A detail-crop lead, in the text column beside the facts card. A window lead spans the page under the header.
     lead?: ReactNode;
 }
 
-/**
- * The top of an engine page (sitemap §E.1 block 1, design-system §8.4).
- *
- * Columns 1-8: the breadcrumb, the engine's mark and the H1 (platform-neutral
- * in English), the lead, an availability line (devices, where the driver
- * comes from, and a version label while some channel still serves a Mac build
- * without the engine), what TablePro costs and its licence, from pricing.json
- * and facts.json, then the actions: Download for Mac, the App Store badge
- * only when the iPhone and iPad app offers the engine, and the setup guide.
- * Columns 9-12: the facts card. Below 1024px the card follows the actions.
- * A detail lead image sits in columns 1-8 under the actions, beside the facts
- * card; placed under both, it left a 250px hole under the actions and an
- * empty right half beside the image. Columns are 32px apart (design-system
- * §4.2).
- */
+// Columns 1-8 hold the text and actions, 9-12 the facts card, which follows the actions below 1024px. A detail lead
+// sits under the actions: placed under both columns it left a hole under the actions and an empty half beside it.
 export default function EngineHeader({ content, labels, engine, platforms, links, product, lead }: EngineHeaderProps) {
     const { locale, m, fmt } = useI18n();
     const devices = joinList(deviceNamesFor(engine, platforms), m.common.list);
+    const worksOn = joinList(availableDeviceNames(engine, platforms), m.common.list);
     const macDevices = joinList(platforms.mac?.deviceNames ?? [], m.common.list);
     const docs = docsUrl(links.docs, engine.docsSlug);
     const onIos = iosStatus(engine) === 'picker' && links.appStore !== null;
@@ -73,7 +57,7 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                         <p className="type-small mt-4 text-muted-foreground">
                             <DotList
                                 items={[
-                                    fmt(labels.availability.devices, { devices }),
+                                    fmt(labels.availability.devices, { devices: worksOn }),
                                     fmt(labels.availability[engine.distribution], { name: engine.name }),
                                     engine.release !== null && (
                                         <Badge variant="accent" className="whitespace-nowrap">
@@ -125,7 +109,7 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                         </div>
                         {lead && <div className="mt-10 lg:max-w-[43.5rem]">{lead}</div>}
                     </div>
-                    <FactsCard engine={engine} labels={labels} className="lg:col-span-4" />
+                    <FactsCard engine={engine} labels={labels} linux={platforms.linux} className="lg:col-span-4" />
                 </div>
             </Container>
         </header>

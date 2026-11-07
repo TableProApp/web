@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "Les fonctionnalités payantes, pour une personne.",
             "activation": {
-                "one": "Une personne, {count} Mac.",
-                "other": "Une personne, jusqu’à {count} Mac."
+                "one": "Une personne, {count} ordinateur, Mac ou Linux.",
+                "other": "Une personne, jusqu’à {count} ordinateurs, Mac ou Linux."
             },
             "includesTitle": "Tout ce qui est gratuit, plus",
             "cta": "Acheter Pro"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "Pro pour tous, et des connexions partagées.",
             "activation": {
-                "one": "Une personne par poste, {count} Mac.",
-                "other": "Une personne par poste, jusqu’à {count} Mac."
+                "one": "Une personne par poste, {count} ordinateur, Mac ou Linux.",
+                "other": "Une personne par poste, jusqu’à {count} ordinateurs, Mac ou Linux."
             },
             "includesTitle": "Tout ce que contient Pro, plus",
             "cta": "Acheter Team",
@@ -116,15 +116,15 @@ export default {
             "team": "Dans Team",
             "all": "Dans toutes les offres"
         },
-        "macs": "Mac",
+        "macs": "Ordinateurs",
         "macsFree": "Sans licence",
         "macsStarter": {
-            "one": "{count}",
-            "other": "Jusqu’à {count}"
+            "one": "{count}, Mac ou Linux",
+            "other": "Jusqu’à {count}, Mac ou Linux"
         },
         "macsTeam": {
-            "one": "{count} par poste",
-            "other": "Jusqu’à {count} par poste"
+            "one": "{count} par poste, Mac ou Linux",
+            "other": "Jusqu’à {count} par poste, Mac ou Linux"
         },
         "everythingElse": "Tout le reste de l’application",
         "everythingElseDetail": "Tous les moteurs pris en charge, l’éditeur SQL, l’assistant IA, le serveur MCP et Safe Mode",

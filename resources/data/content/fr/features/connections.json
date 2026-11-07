@@ -175,7 +175,7 @@
             "title": "Sur iPhone et iPad",
             "paragraphs": [
                 "L’app iPhone et iPad possède son propre formulaire de connexion pour {iosPicker}, avec des groupes, un tag par connexion et des favoris. Les tunnels SSH s’authentifient avec un mot de passe ou une clé privée provenant d’un fichier ou collée, et vérifient la clé de l’hôte ; les agents SSH et les hôtes de rebond ne sont pas pris en charge sur iPhone et iPad. TLS peut vérifier le certificat du serveur, sauf sur SQL Server, où il chiffre sans vérification. Les certificats restent sur l’appareil et ne sont jamais synchronisés.",
-                "Les mots de passe et les clés collées sont conservés dans le Trousseau. Les connexions SQL Server synchronisées depuis un Mac peuvent s’authentifier avec Microsoft Entra ID. L’import depuis d’autres apps, AWS IAM, Kerberos, l’authentification Google, les proxys et commandes de tunnel, les sources de mot de passe et les délais d’expiration sont réservés à l’app Mac."
+                "Les mots de passe et les clés collées sont conservés dans le Trousseau. Les connexions SQL Server synchronisées depuis un Mac peuvent s’authentifier avec Microsoft Entra ID. L’import depuis d’autres apps, AWS IAM, Kerberos, l’authentification Google, les proxys et commandes de tunnel, les sources de mot de passe et les délais d’expiration ne sont pas dans l’app iPhone et iPad."
             ],
             "links": [
                 {

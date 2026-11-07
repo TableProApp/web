@@ -24,21 +24,8 @@ import { trackDownload } from '@/lib/analytics';
 import { docsUrl } from '@/lib/data/facts';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, webPageNode } from '@/lib/structured-data';
 
-/**
- * `/compare/{slug}` and `/vi/compare/{slug}` (sitemap §A.4, §E.3;
- * design-system §8.5).
- *
- * One template for every comparison. The page's copy is
- * `content/{locale}/compare/{slug}.json`; every fact about the other product
- * is its `comparisons.json` entry, sent as `product` with its sources; and
- * TablePro's column is derived from TablePro's own data
- * (components/compare/tablepro-facts.ts). Each competitor fact carries a
- * numbered source with the date it was checked.
- *
- * Structured data is a `WebPage` about the Mac app plus the breadcrumb trail.
- * There is no `Review` of the other product, no rating, no `FAQPage` and no
- * benchmark anywhere on the page.
- */
+// Structured data is a WebPage about the Mac app and the breadcrumb trail: no Review of the other product, no rating, no
+// FAQPage and no benchmark.
 export default function CompareShow({ slug, content, labels, product, rows: rowOrder, others, dates, tablepro }: ComparePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
@@ -50,7 +37,7 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
         list: m.common.list,
         plural: (node, count, values) => plural(node, count, values),
     };
-    const facts = tableproFacts(product.id, tablepro.featuredEngines, m);
+    const facts = tableproFacts(product.id, tablepro, m);
     const values = productTokens(product, dates, { ...paidExamples(m), macLanguages: macLanguages(labels.languages, m) });
     const numbers = sourceNumbers(product);
     // The check date never breaks across lines in the meta line or the caption.
@@ -250,7 +237,9 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                     </p>
                     {tablepro.mac !== null && tablepro.ios !== null && (
                         <p className="type-small text-muted-foreground">
-                            {fmt(labels.sources.tablepro, { macVersion: tablepro.mac.version, iosVersion: tablepro.ios.version })}
+                            {tablepro.linux !== null && tablepro.linux.version !== null
+                                ? fmt(labels.sources.tableproLinux, { macVersion: tablepro.mac.version, iosVersion: tablepro.ios.version, linuxVersion: tablepro.linux.version })
+                                : fmt(labels.sources.tablepro, { macVersion: tablepro.mac.version, iosVersion: tablepro.ios.version })}
                         </p>
                     )}
                     <p className="type-small text-muted-foreground">{labels.sources.trademarks}</p>

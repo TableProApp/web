@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode 级别",
-                    "text": "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也会询问，Read-Only 拒绝写入。组织可通过配置描述文件为其 Mac 强制设定最低级别。iPhone 和 iPad 上的级别为 {iosSafeModeLevels}。"
+                    "text": "在 Mac 上，每个连接都有 Safe Mode 级别：{macSafeModeLevels}。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也会询问，Read-Only 拒绝写入。组织可通过配置描述文件为其 Mac 强制设定最低级别。Linux 上的级别为 {linuxSafeModeLevels}，iPhone 和 iPad 上为 {iosSafeModeLevels}。"
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "仅限本地",
-                    "text": "MCP 服务器只在 Mac 应用中提供，在您手动开启或已配置的客户端启动它之前保持关闭。它监听 {mcpHost}，没有远程模式，客户端也从不会看到密码。"
+                    "text": "在 Mac 应用中，MCP 服务器在您手动开启或已配置的客户端启动它之前保持关闭。它监听 {mcpHost}，没有远程模式，客户端也从不会看到密码。"
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "代码公开",
-                    "text": "两款应用均采用 AGPLv3 开源，包括付费功能的代码。本页描述的内容都能在仓库中查阅，签名和公证每个版本的脚本也在其中，您还可以自行构建 Mac 应用。"
+                    "text": "各款应用均采用 AGPLv3 开源，包括付费功能的代码。本页描述的内容都能在仓库中查阅，签名和公证每个版本的脚本也在其中，您还可以自行构建 Mac 应用。"
                 }
             ],
             "limits": [],

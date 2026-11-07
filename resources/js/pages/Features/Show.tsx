@@ -3,7 +3,7 @@ import AvailabilityTable from '@/components/features/availability-table';
 import DownloadBand from '@/components/features/download-band';
 import FeatureLinkList from '@/components/features/feature-links';
 import FeatureSection from '@/components/features/feature-section';
-import { docsHref, factValues, pageOnIos, pageOnMac, pagePaidIds } from '@/components/features/model';
+import { docsHref, factValues, pageOnIos, pageOnLinux, pageOnMac, pagePaidIds } from '@/components/features/model';
 import RichText from '@/components/features/rich-text';
 import type { FeaturePageProps } from '@/components/features/types';
 import SEOHead from '@/components/seo/seo-head';
@@ -27,21 +27,7 @@ import { iosPlatform, macPlatform } from '@/lib/data/platforms';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, organizationNode, organizationProfiles, webPageNode } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
-/**
- * A feature page, `/features/{slug}` and `/vi/features/{slug}` (sitemap §A.2,
- * §E.4; design-system §8.2).
- *
- * Everything on it comes from the page's content file, the shared `labels`
- * and the facts the server computed for it. The order is fixed: the header,
- * one section per sub-workflow in the sitemap's order and with its ids, then
- * "Where it works", the limits that change a decision, the docs and related
- * pages, and the closing band. There is no page-level overview image: the
- * first section's slot is the page's lead image.
- *
- * Structured data: a `WebPage` about the Mac app (`#app`) with its
- * `BreadcrumbList`, matching the visible breadcrumbs, and the organization.
- */
-export default function FeatureShow({ slug, content, labels, facts }: FeaturePageProps) {
+export default function FeatureShow({ slug, content, labels, facts, linux }: FeaturePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
 
@@ -63,8 +49,10 @@ export default function FeatureShow({ slug, content, labels, facts }: FeaturePag
               })
             : labels.header.allFree;
 
+    const linuxName = linux !== null ? joinList(linux.deviceNames, m.common.shortList) : null;
     const platforms = [
         ...(pageOnMac(content) ? [joinList(macPlatform().deviceNames, m.common.shortList)] : []),
+        ...(linuxName !== null && pageOnLinux(content) ? [linuxName] : []),
         ...(pageOnIos(content) ? [joinList(iosPlatform().deviceNames, m.common.shortList)] : []),
     ];
 
@@ -121,7 +109,7 @@ export default function FeatureShow({ slug, content, labels, facts }: FeaturePag
             ))}
 
             <Section id="availability" title={labels.sections.availability}>
-                <AvailabilityTable rows={content.availability} labels={labels} values={values} />
+                <AvailabilityTable rows={content.availability} labels={labels} values={values} linux={linuxName} />
                 {content.limits.length > 0 && (
                     <Callout id="limits" title={labels.sections.limits} className="mt-8 max-w-[44rem]">
                         <ul className="list-disc space-y-1 pl-5">

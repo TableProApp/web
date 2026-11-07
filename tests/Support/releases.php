@@ -56,6 +56,21 @@ function bindReleaseFixturePlatforms(array $overrides = []): array
     return $data;
 }
 
+// The live platforms.json with Linux at `$status`, for the pages that show Linux only once it ships. Returns the Linux record.
+function bindPlatformsWithLinux(string $status): array
+{
+    $data = json_decode((string) file_get_contents(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR);
+    $data['platforms'] = array_map(fn(array $platform): array => $platform['id'] === 'linux' ? [...$platform, 'status' => $status] : $platform, $data['platforms']);
+
+    $path = tempnam(sys_get_temp_dir(), 'platforms') ?: throw new RuntimeException('No temp file.');
+    file_put_contents($path, json_encode($data, JSON_THROW_ON_ERROR));
+    register_shutdown_function(static fn(): bool => @unlink($path));
+
+    app()->instance(PlatformCatalog::class, new PlatformCatalog($path));
+
+    return collect($data['platforms'])->firstWhere('id', 'linux');
+}
+
 function githubReleasePayload(string $tag = 'v0.77.0', array $overrides = [], ?array $assets = null): array
 {
     $version = ltrim($tag, 'v');

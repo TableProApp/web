@@ -1,17 +1,17 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
-Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
+Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
 
 ## Định nghĩa {#definitions}
 
 - **"TablePro", "chúng tôi"** là {publisherName}, một lập trình viên độc lập tại {publisherCity}, {publisherCountry}, người phát hành TablePro.
-- **"Ứng dụng"** là TablePro cho Mac và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
+- **"Ứng dụng"** là TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
-- **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac liên lạc để kiểm tra license và dùng Team Library.
+- **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac và ứng dụng cho Linux liên lạc để kiểm tra license và dùng Team Library.
 - **"License"** là một gói trả phí Pro hoặc Team, và **"License Key"** là thông tin mà các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro dùng để kích hoạt một License.
 - **"Bạn"** là cá nhân hoặc tổ chức sử dụng Dịch vụ hoặc sở hữu một License.
 
@@ -21,7 +21,7 @@ Mã nguồn của Ứng dụng, kể cả phần mã của các tính năng tr�
 
 Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, trong công ty ở bất kỳ quy mô nào. Các điều kiện của giấy phép AGPL áp dụng khi bạn đưa bản sao cho người khác, dù đã sửa đổi hay chưa, và khi bạn sửa đổi TablePro rồi cho người khác dùng phiên bản đã sửa đổi đó qua mạng. Không điều nào trong các điều khoản này giới hạn những quyền mà giấy phép AGPLv3 trao cho bạn.
 
-Bạn có thể tải về và dùng ứng dụng cho Mac miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn cho ứng dụng cho Mac. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
+Bạn có thể tải về và dùng ứng dụng cho Mac và ứng dụng cho Linux miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
 
 ## Nhãn hiệu {#trademarks}
 
@@ -37,12 +37,12 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 ## Sử dụng license {#license}
 
-Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên những máy Mac đã đăng nhập tài khoản TablePro của bạn hoặc, ở các phiên bản trước khi có tài khoản TablePro, đã kích hoạt bằng License Key của License đó, trong giới hạn số máy và thời hạn của gói bạn mua:
+Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của Ứng dụng trên những máy tính đã đăng nhập tài khoản TablePro của bạn hoặc, ở các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro, đã kích hoạt bằng License Key của License đó, trong giới hạn số máy và thời hạn của gói bạn mua. Một máy tính đăng nhập tài khoản của bạn trong TablePro cho Linux cũng được tính vào số máy đó:
 
-- License **Pro** dành cho một người, trên tối đa {deviceLimit} máy Mac.
-- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy Mac. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
+- License **Pro** dành cho một người, trên tối đa {deviceLimit} máy tính, Mac hoặc Linux.
+- License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
 
-Giới hạn {deviceLimit} máy Mac tính theo tài khoản, chung cho mọi License mà tài khoản đó dùng. Bạn không được chia sẻ tài khoản hoặc License Key ra ngoài phạm vi những người và máy Mac mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License hay License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
+Giới hạn {deviceLimit} máy tính được tính theo tài khoản, chung cho mọi License mà tài khoản đó dùng. Bạn không được chia sẻ tài khoản hoặc License Key ra ngoài phạm vi những người và máy tính mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License hay License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
 
 Ứng dụng cho Mac làm mới gói của bạn với máy chủ của chúng tôi mỗi ngày một lần. Nếu không liên lạc được với máy chủ, các tính năng trả phí vẫn hoạt động tối đa {offlineDays} ngày kể từ lần làm mới gần nhất, hoặc, trên máy Mac dùng tệp offline từ trang tài khoản, tới khi tệp đó hết hạn. Các phiên bản trước khi có tài khoản TablePro thì kiểm tra License Key mỗi {revalidateDays} ngày, và giữ các tính năng trả phí trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất. Khi một gói theo tháng hoặc theo năm kết thúc, các tính năng của gói đó ngừng hoạt động, phần còn lại của ứng dụng cho Mac vẫn hoạt động bình thường.
 

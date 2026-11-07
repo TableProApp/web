@@ -36,8 +36,8 @@ export default {
             "name": "Pro",
             "description": "한 사람을 위한 유료 기능.",
             "activation": {
-                "one": "1명, Mac {count}대.",
-                "other": "1명, Mac 최대 {count}대."
+                "one": "1명, Mac 또는 Linux 컴퓨터 {count}대.",
+                "other": "1명, Mac 또는 Linux 컴퓨터 최대 {count}대."
             },
             "includesTitle": "무료 플랜의 모든 기능에 더해",
             "cta": "Pro 구매"
@@ -46,8 +46,8 @@ export default {
             "name": "Team",
             "description": "모두를 위한 Pro, 그리고 공유 연결.",
             "activation": {
-                "one": "좌석당 1명, Mac {count}대.",
-                "other": "좌석당 1명, Mac 최대 {count}대."
+                "one": "좌석당 1명, Mac 또는 Linux 컴퓨터 {count}대.",
+                "other": "좌석당 1명, Mac 또는 Linux 컴퓨터 최대 {count}대."
             },
             "includesTitle": "Pro의 모든 기능에 더해",
             "cta": "Team 구매",
@@ -116,15 +116,15 @@ export default {
             "team": "Team 포함",
             "all": "모든 플랜 포함"
         },
-        "macs": "Mac 수",
+        "macs": "컴퓨터 수",
         "macsFree": "라이선스 불필요",
         "macsStarter": {
-            "one": "{count}",
-            "other": "최대 {count}"
+            "one": "{count}대 (Mac 또는 Linux)",
+            "other": "최대 {count}대 (Mac 또는 Linux)"
         },
         "macsTeam": {
-            "one": "좌석당 {count}대",
-            "other": "좌석당 최대 {count}대"
+            "one": "좌석당 {count}대 (Mac 또는 Linux)",
+            "other": "좌석당 최대 {count}대 (Mac 또는 Linux)"
         },
         "everythingElse": "앱의 나머지 모든 기능",
         "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",

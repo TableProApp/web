@@ -158,12 +158,6 @@ class PlatformCatalog
     }
 
     /**
-     * The facts the download page states about a released platform, or null
-     * when the platform is not released.
-     *
-     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null
-     */
-    /**
      * The Linux packages destination: GitHub release file templates, the tag prefix and how to verify a file.
      *
      * @return array{url: string, tagPrefix: string, tagTemplate: string, assets: list<array{format: string, template: string, series: list<string>, arch: array<string, string>}>, checksums: string, verify: string}|null
@@ -182,6 +176,36 @@ class PlatformCatalog
     public function linuxChannel(): string
     {
         return ($this->find('linux')['channel'] ?? null) === 'stable' ? 'stable' : 'beta';
+    }
+
+    /**
+     * @return array{deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>}|null
+     */
+    public function linuxSummary(): ?array
+    {
+        if (! $this->isReleased('linux')) {
+            return null;
+        }
+
+        $platform = $this->find('linux') ?? [];
+        $distributions = [];
+
+        foreach (is_array($platform['distributions'] ?? null) ? $platform['distributions'] : [] as $distribution) {
+            if (is_array($distribution) && is_string($distribution['id'] ?? null) && is_string($distribution['via'] ?? null)) {
+                $distributions[] = [
+                    'id' => $distribution['id'],
+                    'name' => is_string($distribution['name'] ?? null) && $distribution['name'] !== '' ? $distribution['name'] : null,
+                    'versions' => array_values(array_filter(is_array($distribution['versions'] ?? null) ? $distribution['versions'] : [], 'is_string')),
+                    'via' => $distribution['via'],
+                ];
+            }
+        }
+
+        return [
+            'deviceNames' => array_values(array_filter(is_array($platform['deviceNames'] ?? null) ? $platform['deviceNames'] : [], 'is_string')),
+            'channel' => $this->linuxChannel(),
+            'distributions' => $distributions,
+        ];
     }
 
     /**
@@ -232,6 +256,9 @@ class PlatformCatalog
         ];
     }
 
+    /**
+     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null
+     */
     public function summary(string $id): ?array
     {
         $platform = $this->find($id);

@@ -3,6 +3,7 @@ import type { Messages } from '../../types.ts';
 // ios.badge is the visible text of Apple's Vietnamese badge artwork, word for word: an accessible name must match it.
 export default {
     "macCta": "Tải về cho Mac",
+    "linuxCta": "Cài đặt trên Linux",
     "release": {
         "dated": "Phiên bản {version}, phát hành ngày {date}",
         "undated": "Phiên bản {version}",

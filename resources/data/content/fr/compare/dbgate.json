@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs DbGate : éditions et plateformes",
-        "description": "DbGate est un client open source pour Windows, macOS, Linux et le web, avec des éditions Premium payantes. TablePro est open source et natif sur Mac."
+        "description": "DbGate est un client open source pour Windows, macOS, Linux et le web, avec des éditions Premium payantes. TablePro est open source et natif sur Mac et Linux."
     },
     "og": {
         "kicker": "Comparer",
@@ -18,7 +18,7 @@
             "Des sauvegardes gratuites avec les outils de dump des moteurs pris en charge."
         ],
         "competitor": [
-            "Un client pour Windows, Linux ou un serveur web.",
+            "Un client pour Windows ou un serveur web.",
             "Des connexions à Firebird, Azure Cosmos DB ou Firestore.",
             "Un éditeur visuel de requêtes dans {cells.queryDesigner.edition}, ou la synchronisation DbGate Cloud."
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro est une app Mac écrite en Swift, avec des pilotes de base de données natifs. DbGate est construit sur {technology}. Les deux proposent des versions pour les Mac Apple silicon et Intel.",
+                "text": "L’app Mac de TablePro est écrite en Swift, avec des pilotes de base de données natifs. DbGate est construit sur {technology}. Les deux proposent des versions pour les Mac Apple silicon et Intel.",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "Existe-t-il une version web de TablePro ?",
-            "answer": "Non. TablePro fonctionne sur votre Mac, votre iPhone et votre iPad. Si votre équipe a besoin d’un client de base de données dans le navigateur, DbGate fonctionne aussi comme app web.",
+            "answer": "Non. TablePro est une app pour Mac, Linux, iPhone et iPad. Si votre équipe a besoin d’un client de base de données dans le navigateur, DbGate fonctionne aussi comme app web.",
             "href": null
         },
         {

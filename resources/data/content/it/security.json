@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Livelli di Safe Mode",
-                    "text": "Ogni connessione ha un livello Safe Mode: {macSafeModeLevels}. Alert chiede conferma prima di una scrittura, i livelli Safe Mode richiedono anche Touch ID o la password del Mac, i livelli Full chiedono conferma anche prima delle letture e Read-Only rifiuta le scritture. Un’organizzazione può imporre un livello minimo sui propri Mac con un profilo di configurazione. Su iPhone e iPad i livelli sono {iosSafeModeLevels}."
+                    "text": "Su Mac, ogni connessione ha un livello Safe Mode: {macSafeModeLevels}. Alert chiede conferma prima di una scrittura, i livelli Safe Mode richiedono anche Touch ID o la password del Mac, i livelli Full chiedono conferma anche prima delle letture e Read-Only rifiuta le scritture. Un’organizzazione può imporre un livello minimo sui propri Mac con un profilo di configurazione. Su Linux i livelli sono {linuxSafeModeLevels}, e su iPhone e iPad {iosSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Solo in locale",
-                    "text": "Il server MCP esiste solo nell’app per Mac ed è disattivato finché non lo attivi o un client configurato lo avvia. Ascolta su {mcpHost}, senza modalità remota, e i client non vedono mai una password."
+                    "text": "Nell’app per Mac, il server MCP è disattivato finché non lo attivi o un client configurato lo avvia. Ascolta su {mcpHost}, senza modalità remota, e i client non vedono mai una password."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "Il codice è pubblico",
-                    "text": "Entrambe le app sono open source sotto licenza AGPLv3, incluso il codice delle funzionalità a pagamento. Ciò che descrive questa pagina si può leggere nel repository, insieme agli script che firmano e autenticano ogni rilascio, e puoi compilare l’app per Mac da te."
+                    "text": "Le app sono open source sotto licenza AGPLv3, incluso il codice delle funzionalità a pagamento. Ciò che descrive questa pagina si può leggere nel repository, insieme agli script che firmano e autenticano ogni rilascio, e puoi compilare l’app per Mac da te."
                 }
             ],
             "limits": [],

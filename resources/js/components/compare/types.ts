@@ -6,6 +6,7 @@
  * TablePro's own column is never stored there and is derived on the page from
  * pricing, platforms, paid features and facts (./model.ts).
  */
+import type { LinuxSummary } from '@/components/download/types';
 import type { ComparisonProduct } from '@/lib/data/comparisons';
 
 /**
@@ -99,6 +100,8 @@ export interface TableProProp {
     featuredEngines: string[];
     mac: { version: string; date: string } | null;
     ios: { version: string; date: string } | null;
+    // The newest release on Linux's channel, null until Linux is released.
+    linux: (LinuxSummary & { version: string | null; date: string | null }) | null;
 }
 
 /** ISO date (`2026-10-02`) → the same date formatted in PHP for the page's locale. */

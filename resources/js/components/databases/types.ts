@@ -3,6 +3,8 @@
  * shape of the database pages' copy. README.md in this folder documents the
  * content schema.
  */
+import type { LinuxSummary } from '@/components/download/types';
+import type { LinuxSupport } from '@/lib/data/engines';
 import type { Requirements } from '@/lib/data/platforms';
 
 /** The hub file: its own copy plus the `labels` every engine page shares. */
@@ -129,6 +131,8 @@ export interface EngineSummary {
     /** The docs page, its own or its driver sibling's. */
     docsSlug: string | null;
     ios: { inPicker: boolean; openable: boolean };
+    // `tested` lists the server releases the Linux app's suites run on; empty unless `support` is tested.
+    linux: { support: LinuxSupport; tested: string[] };
     limits: { id: string; value: number | null }[];
 }
 
@@ -174,6 +178,12 @@ export interface PlatformSummary {
     requirements: Requirements;
 }
 
+export interface DatabasePlatforms {
+    mac: PlatformSummary | null;
+    ios: PlatformSummary | null;
+    linux: LinuxSummary | null;
+}
+
 export interface DatabaseLinks {
     /** docs.tablepro.app, with no trailing slash. */
     docs: string | null;
@@ -201,7 +211,7 @@ export interface EnginePageProps {
     tools: CitedTool[];
     /** Comparisons with clients for this engine that the "Other tools" block does not already link. */
     comparisons: { path: string; title: string }[];
-    platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
+    platforms: DatabasePlatforms;
     links: DatabaseLinks;
     product: ProductFacts;
 }
@@ -212,6 +222,6 @@ export interface HubPageProps {
     copy: Record<string, EngineCopy>;
     /** Engine ids in the iPhone and iPad app's picker, in its order. */
     iosEngines: string[];
-    platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
+    platforms: DatabasePlatforms;
     links: DatabaseLinks;
 }

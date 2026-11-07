@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro는 무엇인가요?",
                     "answer": [
-                        "네이티브 오픈 소스 데이터베이스 클라이언트입니다. Mac에서는 {featuredEngines} 등을 조회하고 편집하며 스키마를 다룹니다. iPhone 및 iPad 앱은 더 적은 데이터베이스 도구를 제공합니다.",
+                        "네이티브 오픈 소스 데이터베이스 클라이언트입니다. Mac에서는 {featuredEngines} 등을 조회하고 편집하며 스키마를 다룹니다. Linux 베타와 iPhone 및 iPad 앱은 더 적은 데이터베이스 도구를 제공합니다.",
                         "전체 <features>기능 보기</features>."
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "여기서 “네이티브”는 무슨 뜻인가요?",
                     "answer": [
-                        "TablePro는 Electron이나 JDBC 없이 네이티브 인터페이스와 데이터베이스 드라이버를 사용합니다. 현재 앱은 Swift로 작성됩니다. Mac에서는 AppKit과 SwiftUI를, iPhone 및 iPad에서는 Face ID와 Shortcuts 같은 기기 기능을 사용합니다."
+                        "TablePro는 Electron이나 JDBC 없이 네이티브 인터페이스와 데이터베이스 드라이버를 사용합니다. Mac, iPhone, iPad 앱은 Swift로 작성됩니다. Mac에서는 AppKit과 SwiftUI를, iPhone 및 iPad에서는 Face ID와 Shortcuts 같은 기기 기능을 사용합니다. Linux 앱은 Rust, GTK 4, libadwaita를 사용합니다."
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "TablePro는 무료인가요?",
                     "answer": [
                         "네. Mac 앱은 체험 기간이나 시간 제한이 없습니다. 지원되는 모든 엔진, AI, MCP, Safe Mode는 무료입니다. Pro와 Team은 <pricing>요금 페이지</pricing>의 기능을 추가합니다.",
-                        "iPhone 및 iPad 앱은 무료이며 라이선스나 앱 내 구입이 없습니다."
+                        "Linux 앱은 무료로 사용할 수 있습니다. iPhone 및 iPad 앱은 무료이며 라이선스나 앱 내 구입이 없습니다."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro는 오픈 소스인가요?",
                     "answer": [
-                        "네. 두 앱은 유료 기능 코드를 포함해 하나의 <source>GitHub 저장소</source>에 AGPLv3로 공개됩니다. 소스로 빌드해도 유료 기능의 라이선스는 확인합니다."
+                        "네. 모든 앱은 유료 기능 코드를 포함해 하나의 <source>GitHub 저장소</source>에 AGPLv3로 공개됩니다. 소스로 빌드해도 유료 기능의 라이선스는 확인합니다."
                     ]
                 },
                 {
@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Windows 또는 Linux 버전이 있나요?",
+                    "answer": [
+                        "Linux 버전은 있습니다. <downloadLinux>Linux용 TablePro</downloadLinux>를 베타로 제공하며, 지원하는 <databasesLinux>엔진</databasesLinux>과 기능은 Linux 버전에 따로 정해져 있습니다. Windows 버전은 없으며 출시 일정도 없습니다."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "iPhone 및 iPad 앱이 있나요?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Windows 또는 Linux 버전이 있나요?",
-                    "answer": [
-                        "아니요. Windows 버전은 없습니다. Linux 프로토타입은 있지만 설치 가능한 버전과 출시 일정은 없습니다."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "앱은 어떤 언어로 제공되나요?",
                     "answer": [
-                        "Mac 앱은 {macLanguages}를 지원하지만 일부 번역된 화면에도 영어가 남아 있습니다. iPhone 및 iPad 앱은 {iosLanguages}를 지원합니다.",
+                        "Mac 앱은 {macLanguages}를 지원하지만 일부 번역된 화면에도 영어가 남아 있습니다. Linux 앱은 {linuxLanguages}를 지원합니다. iPhone 및 iPad 앱은 {iosLanguages}를 지원합니다.",
                         "웹사이트와 계정 포털은 여러 언어를 지원합니다. <docs>문서</docs>는 영어로 제공됩니다."
                     ]
                 }
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "비밀번호는 어디에 저장되나요?",
                     "answer": [
-                        "저장된 암호는 Keychain에 보관됩니다. Mac에서는 파일, 환경 변수, 셸 명령, 1Password, Vault, AWS Secrets Manager에서 가져올 수도 있습니다.",
+                        "저장된 암호는 Keychain에, Linux에서는 GNOME Keyring이나 KWallet 같은 Secret Service 키링에 보관됩니다. Mac에서는 파일, 환경 변수, 셸 명령, 1Password, Vault, AWS Secrets Manager에서 가져올 수도 있습니다.",
                         "암호 동기화는 별도로 켜야 합니다. Mac의 <ui>암호</ui> (Passwords) 또는 iPhone 및 iPad의 <ui>암호 동기화</ui> (Sync Passwords)를 켜면 iCloud Keychain을 사용합니다."
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "라이선스 하나로 Mac 몇 대를 사용할 수 있나요?",
+                    "question": "라이선스 하나로 컴퓨터 몇 대를 사용할 수 있나요?",
                     "answer": [
-                        "Pro는 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. Team은 최소 {teamMinSeats}석이며, 좌석 하나로 한 사람이 최대 {deviceLimit}대의 Mac에서 사용합니다. 대수 제한은 Pro와 Team을 합쳐 계정 단위로 적용됩니다. iPhone 및 iPad는 좌석을 사용하지 않습니다.",
-                        "다른 Mac에서 라이선스를 사용하려면 <ui>설정 > 계정</ui> (Settings > Account) 또는 <account>계정</account>의 기기 페이지에서 Mac 한 대를 제거하세요. 그동안 다른 Mac은 무료 기능을 계속 사용할 수 있습니다."
+                        "Pro는 한 사람이 최대 {deviceLimit}대의 컴퓨터(Mac 또는 Linux)에서 사용합니다. Team은 최소 {teamMinSeats}석이며, 좌석 하나로 한 사람이 최대 {deviceLimit}대의 컴퓨터에서 사용합니다. 대수 제한은 Pro와 Team을 합쳐 계정 단위로 적용됩니다. 로그인한 Linux 컴퓨터도 대수에 포함됩니다. iPhone 및 iPad는 좌석을 사용하지 않습니다.",
+                        "다른 컴퓨터에서 라이선스를 사용하려면 <account>계정</account>의 기기 페이지나 Mac의 <ui>설정 > 계정</ui> (Settings > Account)에서 한 대를 제거하세요. 그동안 다른 컴퓨터는 무료 기능을 계속 사용할 수 있습니다."
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "앱은 TablePro에 무엇을 전송하나요?",
                     "answer": [
-                        "Mac 앱은 기본적으로 사용 데이터를 공유합니다. <ui>설정 > 일반 > 개인정보 보호</ui> (Settings > General > Privacy)에서 끌 수 있습니다. TablePro 계정을 지원하는 버전부터는 PostHog로 직접 전송되며, Mac 모델, 앱 및 macOS 버전, 데이터베이스 유형이 담긴 앱 이벤트에 로그인 전에는 무작위 ID가, 로그인 후에는 계정 ID가 붙습니다. TablePro 계정을 지원하기 전 버전은 대신 해시된 기기 ID가 담긴 일일 보고서를 운영자의 서버를 거쳐 보냅니다. 어느 쪽도 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다.",
+                        "Mac 앱은 기본적으로 사용 데이터를 공유합니다. <ui>설정 > 일반 > 개인정보 보호</ui> (Settings > General > Privacy)에서 끌 수 있습니다. TablePro 계정을 지원하는 버전부터는 PostHog로 직접 전송되며, Mac 모델, 앱 및 macOS 버전, 데이터베이스 유형이 담긴 앱 이벤트에 로그인 전에는 무작위 ID가, 로그인 후에는 계정 ID가 붙습니다. TablePro 계정을 지원하기 전 버전은 대신 해시된 기기 ID가 담긴 일일 보고서를 운영자의 서버를 거쳐 보냅니다. 어느 쪽도 호스트 이름, 사용자 이름, 암호, 쿼리, 행은 포함하지 않습니다. Linux 앱도 기본적으로 사용 데이터를 공유하며 이런 정보는 포함하지 않습니다. 앱 환경설정에서 끌 수 있습니다.",
                         "로그인하면 Mac 앱은 기기 ID, Mac 이름, 앱 및 macOS 버전을 보내 Mac을 계정에 등록하고 하루에 한 번 플랜을 갱신합니다. TablePro 계정을 지원하기 전 버전은 {revalidateDays}일마다 라이선스 키와 이 정보를 보냅니다. iPhone 및 iPad 보고는 선택 사항입니다. Team Library는 게시한 설정과 저장된 SQL을 받습니다. IP 기록을 포함한 <privacy>개인정보 처리방침</privacy>을 확인하세요."
                     ]
                 },

@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro 是什么？",
                     "answer": [
-                        "原生、开源的数据库客户端。在 Mac 上可查询和编辑 {featuredEngines} 等数据库，并操作结构。iPhone 和 iPad App 提供较少的数据库工具。",
+                        "原生、开源的数据库客户端。在 Mac 上可查询和编辑 {featuredEngines} 等数据库，并操作结构。Linux Beta 版以及 iPhone 和 iPad App 提供较少的数据库工具。",
                         "查看全部<features>功能</features>。"
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "这里的“原生”是什么意思？",
                     "answer": [
-                        "TablePro 使用原生界面和数据库驱动，不使用 Electron 或 JDBC。当前 App 使用 Swift：Mac 上采用 AppKit 和 SwiftUI，iPhone 和 iPad 上使用 Face ID、Shortcuts 等设备功能。"
+                        "TablePro 使用原生界面和数据库驱动，不使用 Electron 或 JDBC。Mac、iPhone 和 iPad App 使用 Swift：Mac 上采用 AppKit 和 SwiftUI，iPhone 和 iPad 上使用 Face ID、Shortcuts 等设备功能。Linux App 使用 Rust、GTK 4 和 libadwaita。"
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "TablePro 免费吗？",
                     "answer": [
                         "是的。Mac App 没有试用期或时间限制。所有支持的引擎、AI、MCP 和 Safe Mode 均免费。Pro 和 Team 添加<pricing>价格页面</pricing>列出的功能。",
-                        "iPhone 和 iPad App 免费，无需许可证，也没有 App 内购买。"
+                        "Linux App 可免费使用。iPhone 和 iPad App 免费，无需许可证，也没有 App 内购买。"
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro 开源吗？",
                     "answer": [
-                        "是的。两款 App（包括付费功能代码）以 AGPLv3 在同一个 <source>GitHub 仓库</source>公开。从源码构建的版本仍会检查付费功能许可证。"
+                        "是的。各款 App（包括付费功能代码）以 AGPLv3 在同一个 <source>GitHub 仓库</source>公开。从源码构建的版本仍会检查付费功能许可证。"
                     ]
                 },
                 {
@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "有 Windows 或 Linux 版本吗？",
+                    "answer": [
+                        "有 Linux 版：<downloadLinux>Linux 版 TablePro</downloadLinux> 以 Beta 版提供，支持的<databasesLinux>引擎</databasesLinux>和功能与 Mac 版不同。没有 Windows 版本，也没有发布日期。"
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "有 iPhone 和 iPad 应用吗？",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "有 Windows 或 Linux 版本吗？",
-                    "answer": [
-                        "没有 Windows 版本。Linux 有原型，但没有可安装的版本，也没有发布日期。"
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "应用支持哪些语言？",
                     "answer": [
-                        "Mac App 支持 {macLanguages}，但部分已翻译界面仍显示英文。iPhone 和 iPad App 支持 {iosLanguages}。",
+                        "Mac App 支持 {macLanguages}，但部分已翻译界面仍显示英文。Linux App 支持 {linuxLanguages}。iPhone 和 iPad App 支持 {iosLanguages}。",
                         "网站和账户门户支持多种语言。<docs>文档</docs>为英文。"
                     ]
                 }
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "密码存在哪里？",
                     "answer": [
-                        "已保存密码保留在 Keychain。Mac 上也可从文件、环境变量、shell 命令、1Password、Vault 或 AWS Secrets Manager 解析密码。",
+                        "已保存密码保留在 Keychain，在 Linux 上则保留在 GNOME Keyring 或 KWallet 等 Secret Service 密钥环中。Mac 上也可从文件、环境变量、shell 命令、1Password、Vault 或 AWS Secrets Manager 解析密码。",
                         "密码同步需要单独开启：在 Mac 启用 <ui>密码</ui> (Passwords)，或在 iPhone 和 iPad 启用 <ui>同步密码</ui> (Sync Passwords)，通过 iCloud Keychain 同步。"
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "一个许可证涵盖多少台 Mac？",
+                    "question": "一个许可证涵盖多少台电脑？",
                     "answer": [
-                        "Pro 供一人在最多 {deviceLimit} 台 Mac 上使用。Team 至少提供 {teamMinSeats} 个席位，每个席位供一人在最多 {deviceLimit} 台 Mac 上使用。台数上限按账户计算，Pro 和 Team 合并计算。iPhone 和 iPad 不占席位。",
-                        "要在另一台 Mac 上使用许可证，请在 <ui>设置 > 账户</ui> (Settings > Account) 或<account>账户</account>的设备页面移除一台 Mac。在此之前，另一台 Mac 仍可使用免费功能。"
+                        "Pro 供一人在最多 {deviceLimit} 台 Mac 或 Linux 电脑上使用。Team 至少提供 {teamMinSeats} 个席位，每个席位供一人在最多 {deviceLimit} 台电脑上使用。台数上限按账户计算，Pro 和 Team 合并计算。登录的 Linux 电脑同样计入台数。iPhone 和 iPad 不占席位。",
+                        "要在另一台电脑上使用许可证，请在<account>账户</account>的设备页面或 Mac 上的 <ui>设置 > 账户</ui> (Settings > Account) 移除一台。在此之前，另一台电脑仍可使用免费功能。"
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "应用会向 TablePro 发送什么？",
                     "answer": [
-                        "Mac App 默认共享使用数据，可在 <ui>设置 > 通用 > 隐私</ui> (Settings > General > Privacy) 关闭。从支持 TablePro 账户的版本起，数据直接发送给 PostHog：附带 Mac 型号、App 和 macOS 版本及数据库类型的 App 事件，登录前使用随机 ID，登录后使用账户 ID。支持 TablePro 账户之前的版本则通过我们的服务器发送包含哈希机器 ID 的每日报告。两者都绝不包含主机名、用户名、密码、查询或行数据。",
+                        "Mac App 默认共享使用数据，可在 <ui>设置 > 通用 > 隐私</ui> (Settings > General > Privacy) 关闭。从支持 TablePro 账户的版本起，数据直接发送给 PostHog：附带 Mac 型号、App 和 macOS 版本及数据库类型的 App 事件，登录前使用随机 ID，登录后使用账户 ID。支持 TablePro 账户之前的版本则通过我们的服务器发送包含哈希机器 ID 的每日报告。两者都绝不包含主机名、用户名、密码、查询或行数据。Linux App 也默认共享使用数据，同样不含这些信息，可在其偏好设置中关闭。",
                         "登录后，Mac App 会将您的 Mac 登记到账户，发送机器 ID、Mac 名称及 App 和 macOS 版本，并每天更新一次方案。支持 TablePro 账户之前的版本每 {revalidateDays} 天发送许可证密钥及上述信息。iPhone 和 iPad 报告需主动开启。Team Library 接收您发布的设置和已保存 SQL。查看<privacy>隐私政策</privacy>，其中包括 IP 日志说明。"
                     ]
                 },

@@ -9,6 +9,7 @@ import {
     factValues,
     fillFacts,
     pageOnIos,
+    pageOnLinux,
     pageOnMac,
     pagePaidIds,
     slotLayout,
@@ -72,6 +73,14 @@ test('reads the platforms a page covers from its availability rows', () => {
     assert.equal(pageOnIos(page), true);
     assert.equal(pageOnIos(macOnly), false);
     assert.equal(pageOnMac(macOnly), true);
+});
+
+test('covers Linux when any row is there, in full or in part', () => {
+    const rows = (...linux: string[]) => ({ availability: linux.map((state, index) => ({ label: `R${index}`, ios: 'no', linux: state })) }) as unknown as FeaturePageContent;
+
+    assert.equal(pageOnLinux(rows('no', 'no')), false);
+    assert.equal(pageOnLinux(rows('no', 'partial')), true);
+    assert.equal(pageOnLinux(rows('yes')), true);
 });
 
 test('joins docs paths without doubled or missing slashes', () => {

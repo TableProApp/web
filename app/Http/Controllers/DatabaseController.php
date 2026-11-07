@@ -129,6 +129,7 @@ class DatabaseController extends Controller
                 'inPicker' => ($engine['ios']['inPicker'] ?? false) === true,
                 'openable' => ($engine['ios']['openable'] ?? false) === true,
             ],
+            'linux' => $this->linuxSupport($engine),
             'limits' => array_map(
                 fn(array $limit): array => ['id' => (string) $limit['id'], 'value' => is_int($limit['value'] ?? null) ? $limit['value'] : null],
                 is_array($engine['limits'] ?? null) ? $engine['limits'] : [],
@@ -342,13 +343,29 @@ class DatabaseController extends Controller
      * list and the closing band's requirement line. Null for an app that is
      * not released.
      *
-     * @return array{mac: array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null, ios: array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null}
+     * @return array{mac: array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null, ios: array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}}|null, linux: array{deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>}|null}
      */
     private function platformSummaries(): array
     {
         return [
             'mac' => $this->platforms->summary('mac'),
             'ios' => $this->platforms->summary('ios'),
+            'linux' => $this->platforms->linuxSummary(),
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $engine
+     * @return array{support: string, tested: list<string>}
+     */
+    private function linuxSupport(array $engine): array
+    {
+        $linux = is_array($engine['linux'] ?? null) ? $engine['linux'] : [];
+        $support = in_array($linux['support'] ?? null, ['tested', 'untested', 'blocked', 'none'], true) ? $linux['support'] : 'none';
+
+        return [
+            'support' => $support,
+            'tested' => $support === 'tested' ? array_values(array_filter(is_array($linux['tested'] ?? null) ? $linux['tested'] : [], 'is_string')) : [],
         ];
     }
 

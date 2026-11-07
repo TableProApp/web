@@ -84,6 +84,13 @@
         "others": "다른 엔진의 연결도 iPhone과 iPad에 동기화되어 목록에 표시되지만 열 수는 없습니다.",
         "link": "iPhone 및 iPad용 TablePro"
     },
+    "linux": {
+        "title": "Linux에서",
+        "tested": "Linux 앱은 베타이며 {engines}에서 테스트되었습니다.",
+        "untested": "{engines} 연결은 Linux에서 테스트되지 않았습니다.",
+        "others": "다른 엔진은 열 수 없습니다.",
+        "link": "Linux에 설치"
+    },
     "license": {
         "title": "Free에 포함",
         "body": "지원하는 모든 데이터베이스 연결은 Free에 포함됩니다. Pro와 Team은 Mac 앱에 선택 기능을 추가합니다.",
@@ -130,6 +137,12 @@
             "picker": "열림",
             "synced": "Mac에서 동기화하면 열림",
             "none": "열리지 않음"
+        },
+        "linux": {
+            "tested": "테스트됨",
+            "versions": "테스트됨: {versions}",
+            "untested": "테스트 안 됨",
+            "none": "사용할 수 없음"
         },
         "availability": {
             "devices": "{devices}에서 사용 가능",
@@ -184,6 +197,7 @@
             "title": "TablePro 다운로드",
             "mac": "Mac 앱을 무료로 다운로드하세요. Pro와 Team은 선택 기능을 추가합니다.",
             "ios": "iPhone과 iPad 앱은 App Store에서 받을 수 있습니다.",
+            "linux": "Linux 앱은 무료 베타입니다.",
             "pricing": "요금 보기"
         }
     }

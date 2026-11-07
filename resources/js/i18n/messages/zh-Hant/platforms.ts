@@ -32,5 +32,11 @@ export default {
     "release": {
         "badge": "{version}",
         "badgeLabel": "在 Mac 版 TablePro {version} 中加入。Homebrew 可能仍會安裝舊版本。"
+    },
+    "linux": {
+        "requirement": {
+            "beta": "{name}（Beta 版）：{distributions}",
+            "stable": "{name}：{distributions}"
+        }
     }
 } satisfies Messages['platforms'];

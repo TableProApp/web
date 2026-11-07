@@ -3,8 +3,10 @@
 use App\Support\Content\Slugs\CompareSlugs;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia;
 
 use function Pest\Laravel\get;
@@ -145,3 +147,52 @@ it('gives the hub a line for every compared product, with tokens it can fill', f
         expect(array_diff(compareTokensIn($line), ['name', 'status.version', 'status.date', 'mac.minVersion']))->toBe([], "the hub line for {$slug}");
     }
 });
+
+// With no cached or last good Linux release, the page reports the one platforms.json records.
+function compareBindLinux(string $status): array
+{
+    Cache::flush();
+    Storage::fake('local');
+
+    return bindPlatformsWithLinux($status);
+}
+
+it('sends TablePro’s Linux release and distributions only once Linux is released', function (string $status): void {
+    $linux = compareBindLinux($status);
+    $slug = CompareSlugs::ALL[0];
+
+    get("/compare/{$slug}")->assertInertia(fn(AssertableInertia $page) => $status === 'released'
+        ? $page
+            ->where('tablepro.linux.version', $linux['release']['version'])
+            ->where('tablepro.linux.date', $linux['release']['publishedAt'])
+            ->where('tablepro.linux.deviceNames', $linux['deviceNames'])
+            ->where('tablepro.linux.channel', $linux['channel'])
+            ->where('tablepro.linux.distributions', $linux['distributions'])
+            ->has("dates.{$linux['release']['publishedAt']}")
+        : $page->where('tablepro.linux', null));
+    get('/compare')->assertInertia(fn(AssertableInertia $page) => $status === 'released'
+        ? $page->where('tablepro.linux.version', $linux['release']['version'])
+        : $page->where('tablepro.linux', null));
+})->with(['released', 'prototype']);
+
+it('lists Linux and its distributions in TablePro’s platforms cell, and its version in the sources', function (string $status): void {
+    $linux = compareBindLinux($status);
+    $platforms = collect(json_decode(File::get(resource_path('data/platforms.json')), true)['platforms'])->keyBy('id');
+    $labels = json_decode(File::get(resource_path('data/content/en/compare/index.json')), true)['labels'];
+    requireSsr();
+    $document = Dom\HTMLDocument::createFromString((string) get('/compare/' . CompareSlugs::ALL[0])->assertOk()->getContent(), LIBXML_NOERROR);
+
+    $glance = (string) $document->getElementById('at-a-glance')?->textContent;
+    $sources = (string) $document->getElementById('sources')?->textContent;
+    $floors = collect($linux['distributions'])->whereNotNull('name')->map(fn(array $distribution): string => "{$distribution['name']} {$distribution['versions'][0]}+");
+    $named = strtr($labels['sources']['tableproLinux'], [
+        '{macVersion}' => $platforms['mac']['release']['version'],
+        '{iosVersion}' => $platforms['ios']['release']['version'],
+        '{linuxVersion}' => $linux['release']['version'],
+    ]);
+
+    expect($floors)->not->toBeEmpty()
+        ->and($floors->every(fn(string $floor): bool => str_contains($glance, $floor)))->toBe($status === 'released')
+        ->and(str_contains($sources, $named))->toBe($status === 'released')
+        ->and(str_contains($sources, $linux['release']['version']))->toBe($status === 'released');
+})->with(['released', 'prototype'])->group('ssr');

@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro là gì?",
                     "answer": [
-                        "Database client native, mã nguồn mở. Trên Mac, chạy query và sửa dữ liệu trong {featuredEngines} và các engine khác, cùng công cụ schema. Ứng dụng iPhone và iPad có ít công cụ cơ sở dữ liệu hơn.",
+                        "Database client native, mã nguồn mở. Trên Mac, chạy query và sửa dữ liệu trong {featuredEngines} và các engine khác, cùng công cụ schema. Bản beta cho Linux, cùng ứng dụng iPhone và iPad, có ít công cụ cơ sở dữ liệu hơn.",
                         "Xem tất cả <features>tính năng</features>."
                     ]
                 },
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "“Native” ở đây có nghĩa là gì?",
                     "answer": [
-                        "TablePro dùng giao diện và driver cơ sở dữ liệu native, không dùng Electron hay JDBC. Các ứng dụng hiện tại viết bằng Swift: AppKit và SwiftUI trên Mac, cùng tính năng thiết bị như Face ID và Phím tắt trên iPhone và iPad."
+                        "TablePro dùng giao diện và driver cơ sở dữ liệu native, không dùng Electron hay JDBC. Ứng dụng cho Mac, iPhone và iPad viết bằng Swift: AppKit và SwiftUI trên Mac, cùng tính năng thiết bị như Face ID và Phím tắt trên iPhone và iPad. Ứng dụng cho Linux dùng Rust, GTK 4 và libadwaita."
                     ]
                 },
                 {
@@ -47,14 +47,14 @@
                     "question": "TablePro có miễn phí không?",
                     "answer": [
                         "Có. Ứng dụng Mac không có thời gian dùng thử hay giới hạn thời gian. Mọi engine được hỗ trợ, AI, MCP và Safe Mode đều miễn phí. Pro và Team bổ sung các tính năng trên <pricing>trang bảng giá</pricing>.",
-                        "Ứng dụng iPhone và iPad miễn phí, không cần license và không có mua hàng trong ứng dụng."
+                        "Ứng dụng cho Linux dùng miễn phí. Ứng dụng iPhone và iPad miễn phí, không cần license và không có mua hàng trong ứng dụng."
                     ]
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro có phải mã nguồn mở không?",
                     "answer": [
-                        "Có. Cả hai ứng dụng, kể cả mã của tính năng trả phí, dùng AGPLv3 trong cùng <source>repository GitHub</source>. Bản build từ mã nguồn vẫn kiểm tra license cho tính năng trả phí."
+                        "Có. Các ứng dụng, kể cả mã của tính năng trả phí, dùng AGPLv3 trong cùng <source>repository GitHub</source>. Bản build từ mã nguồn vẫn kiểm tra license cho tính năng trả phí."
                     ]
                 },
                 {
@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Có phiên bản cho Windows hoặc Linux không?",
+                    "answer": [
+                        "Linux thì có: <downloadLinux>TablePro cho Linux</downloadLinux> đang ở bản beta, với bộ <databasesLinux>engine</databasesLinux> và tính năng riêng. Không có bản cho Windows, và cũng không có ngày phát hành."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "Có ứng dụng cho iPhone và iPad không?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Có phiên bản cho Windows hoặc Linux không?",
-                    "answer": [
-                        "Không. Không có phiên bản cho Windows. Có một bản prototype cho Linux, nhưng không có gì để cài đặt và không có ngày phát hành."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "Ứng dụng có những ngôn ngữ nào?",
                     "answer": [
-                        "Ứng dụng Mac hỗ trợ {macLanguages}, nhưng một số màn hình đã dịch vẫn có tiếng Anh. Ứng dụng iPhone và iPad hỗ trợ {iosLanguages}.",
+                        "Ứng dụng Mac hỗ trợ {macLanguages}, nhưng một số màn hình đã dịch vẫn có tiếng Anh. Ứng dụng cho Linux hỗ trợ {linuxLanguages}. Ứng dụng iPhone và iPad hỗ trợ {iosLanguages}.",
                         "Website và trang tài khoản hỗ trợ nhiều ngôn ngữ. <docs>Tài liệu</docs> bằng tiếng Anh."
                     ]
                 }
@@ -134,7 +134,7 @@
                     "id": "passwords",
                     "question": "Mật khẩu của tôi được lưu ở đâu?",
                     "answer": [
-                        "Mật khẩu đã lưu nằm trong Keychain. Trên Mac, bạn cũng có thể lấy mật khẩu từ file, biến môi trường, shell command, 1Password, Vault hoặc AWS Secrets Manager.",
+                        "Mật khẩu đã lưu nằm trong Keychain, hoặc trên Linux là trong keyring của Secret Service như GNOME Keyring hay KWallet. Trên Mac, bạn cũng có thể lấy mật khẩu từ file, biến môi trường, shell command, 1Password, Vault hoặc AWS Secrets Manager.",
                         "Đồng bộ mật khẩu cần bật riêng: <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên iPhone và iPad. Tính năng này dùng iCloud Keychain."
                     ]
                 },
@@ -175,10 +175,10 @@
                 },
                 {
                     "id": "how-many-macs",
-                    "question": "Một license dùng được trên bao nhiêu máy Mac?",
+                    "question": "Một license dùng được trên bao nhiêu máy tính?",
                     "answer": [
-                        "Pro dành cho một người trên tối đa {deviceLimit} máy Mac. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy Mac. Giới hạn này tính theo tài khoản, chung cho Pro và Team. iPhone và iPad không dùng seat.",
-                        "Để dùng license trên một máy Mac khác, gỡ một máy trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) hoặc trên trang Thiết bị trong <account>tài khoản của bạn</account>. Trong lúc đó, máy Mac kia vẫn dùng được các tính năng miễn phí."
+                        "Pro dành cho một người trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy tính. Giới hạn này tính theo tài khoản, chung cho Pro và Team. Máy Linux bạn đăng nhập cũng được tính. iPhone và iPad không dùng seat.",
+                        "Để dùng license trên một máy tính khác, gỡ một máy trên trang Thiết bị trong <account>tài khoản của bạn</account>, hoặc trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) trên Mac. Trong lúc đó, máy kia vẫn dùng được các tính năng miễn phí."
                     ]
                 },
                 {
@@ -252,7 +252,7 @@
                     "id": "what-is-sent",
                     "question": "Ứng dụng gửi gì cho TablePro?",
                     "answer": [
-                        "Mac gửi dữ liệu sử dụng theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Từ phiên bản có tài khoản TablePro, dữ liệu đi thẳng tới PostHog: các sự kiện của ứng dụng kèm model máy Mac, phiên bản ứng dụng và macOS, loại cơ sở dữ liệu, gắn với một mã ngẫu nhiên trước khi bạn đăng nhập và mã tài khoản sau khi đăng nhập. Các phiên bản trước khi có tài khoản TablePro gửi báo cáo hằng ngày kèm ID máy đã hash qua máy chủ của chúng tôi. Cả hai đều không có hostname, username, mật khẩu, query hay dòng dữ liệu.",
+                        "Mac gửi dữ liệu sử dụng theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Từ phiên bản có tài khoản TablePro, dữ liệu đi thẳng tới PostHog: các sự kiện của ứng dụng kèm model máy Mac, phiên bản ứng dụng và macOS, loại cơ sở dữ liệu, gắn với một mã ngẫu nhiên trước khi bạn đăng nhập và mã tài khoản sau khi đăng nhập. Các phiên bản trước khi có tài khoản TablePro gửi báo cáo hằng ngày kèm ID máy đã hash qua máy chủ của chúng tôi. Cả hai đều không có hostname, username, mật khẩu, query hay dòng dữ liệu. Ứng dụng cho Linux cũng gửi dữ liệu sử dụng theo mặc định, không kèm các thông tin trên; bạn tắt được trong phần cài đặt của ứng dụng.",
                         "Khi bạn đăng nhập, ứng dụng cho Mac đăng ký máy Mac với tài khoản của bạn, gửi ID máy, tên máy, phiên bản ứng dụng và macOS, rồi làm mới gói mỗi ngày một lần. Các phiên bản trước khi có tài khoản TablePro gửi license key cùng các thông tin đó mỗi {revalidateDays} ngày. Báo cáo iPhone và iPad chỉ gửi khi bạn bật. Team Library nhận cài đặt và SQL đã lưu mà bạn chia sẻ. Xem <privacy>chính sách quyền riêng tư</privacy>, gồm việc ghi IP."
                     ]
                 },

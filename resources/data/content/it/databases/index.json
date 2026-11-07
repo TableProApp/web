@@ -84,6 +84,13 @@
         "others": "Le connessioni ad altri motori si sincronizzano con iPhone e iPad e compaiono nell’elenco, ma non si aprono.",
         "link": "TablePro per iPhone e iPad"
     },
+    "linux": {
+        "title": "Su Linux",
+        "tested": "L’app per Linux è una beta, testata con {engines}.",
+        "untested": "Le connessioni a {engines} non sono testate su Linux.",
+        "others": "Gli altri motori non si aprono.",
+        "link": "Installa su Linux"
+    },
     "license": {
         "title": "Incluso nella versione gratuita",
         "body": "Ogni connessione al database supportata è inclusa nella versione gratuita. Pro e Team aggiungono funzionalità opzionali all'app Mac.",
@@ -130,6 +137,12 @@
             "picker": "Si apre",
             "synced": "Si apre quando sincronizzato da un Mac",
             "none": "Non si apre"
+        },
+        "linux": {
+            "tested": "Testato",
+            "versions": "Testato: {versions}",
+            "untested": "Non testato",
+            "none": "Non disponibile"
         },
         "availability": {
             "devices": "Funziona su {devices}",
@@ -184,6 +197,7 @@
             "title": "Scarica TablePro",
             "mac": "Scarica gratuitamente l'app Mac. Pro e Team aggiungono funzionalità opzionali.",
             "ios": "L’app per iPhone e iPad è su App Store.",
+            "linux": "L’app per Linux è una beta gratuita.",
             "pricing": "Vedi i prezzi"
         }
     }

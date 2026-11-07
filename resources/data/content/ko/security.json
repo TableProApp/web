@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode 수준",
-                    "text": "각 연결에는 {macSafeModeLevels} 중 하나의 Safe Mode 수준이 있습니다. Alert는 쓰기 전에 확인하고, Safe Mode 수준은 Touch ID나 Mac 비밀번호도 요구하며, Full 수준은 읽기 전에도 확인하고, Read-Only는 쓰기를 거부합니다. 조직은 구성 프로필로 소속 Mac에 최소 수준을 강제할 수 있습니다. iPhone 및 iPad의 수준은 {iosSafeModeLevels}입니다."
+                    "text": "Mac에서 각 연결에는 {macSafeModeLevels} 중 하나의 Safe Mode 수준이 있습니다. Alert는 쓰기 전에 확인하고, Safe Mode 수준은 Touch ID나 Mac 비밀번호도 요구하며, Full 수준은 읽기 전에도 확인하고, Read-Only는 쓰기를 거부합니다. 조직은 구성 프로필로 소속 Mac에 최소 수준을 강제할 수 있습니다. Linux의 수준은 {linuxSafeModeLevels}이고, iPhone 및 iPad에서는 {iosSafeModeLevels}입니다."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "로컬 전용",
-                    "text": "MCP 서버는 Mac 앱에만 있으며, 직접 켜거나 설정한 클라이언트가 시작하기 전까지 꺼져 있습니다. {mcpHost}에서 수신하고 원격 모드가 없으며, 클라이언트는 비밀번호를 볼 수 없습니다."
+                    "text": "Mac 앱의 MCP 서버는 직접 켜거나 설정한 클라이언트가 시작하기 전까지 꺼져 있습니다. {mcpHost}에서 수신하고 원격 모드가 없으며, 클라이언트는 비밀번호를 볼 수 없습니다."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "공개된 코드",
-                    "text": "두 앱 모두 유료 기능 코드를 포함해 AGPLv3 오픈 소스입니다. 이 페이지에서 설명하는 내용은 각 릴리스에 서명하고 공증하는 스크립트와 함께 저장소에서 확인할 수 있으며, Mac 앱을 직접 빌드할 수도 있습니다."
+                    "text": "모든 앱은 유료 기능 코드를 포함해 AGPLv3 오픈 소스입니다. 이 페이지에서 설명하는 내용은 각 릴리스에 서명하고 공증하는 스크립트와 함께 저장소에서 확인할 수 있으며, Mac 앱을 직접 빌드할 수도 있습니다."
                 }
             ],
             "limits": [],

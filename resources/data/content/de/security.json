@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe-Mode-Stufen",
-                    "text": "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Alert fragt vor einem Schreibvorgang, die Safe-Mode-Stufen verlangen zusätzlich Touch ID oder dein Mac-Passwort, die Stufen mit (Full) fragen auch vor Lesevorgängen, und Read-Only verweigert Schreibvorgänge. Eine Organisation kann auf ihren Macs per Konfigurationsprofil eine Mindeststufe erzwingen. Auf iPhone und iPad heißen die Stufen {iosSafeModeLevels}."
+                    "text": "Auf dem Mac hat jede Verbindung eine Safe-Mode-Stufe: {macSafeModeLevels}. Alert fragt vor einem Schreibvorgang, die Safe-Mode-Stufen verlangen zusätzlich Touch ID oder dein Mac-Passwort, die Stufen mit (Full) fragen auch vor Lesevorgängen, und Read-Only verweigert Schreibvorgänge. Eine Organisation kann auf ihren Macs per Konfigurationsprofil eine Mindeststufe erzwingen. Unter Linux heißen die Stufen {linuxSafeModeLevels}, auf iPhone und iPad {iosSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Nur auf deinem Mac",
-                    "text": "Der MCP-Server gibt es nur in der Mac-App, und er bleibt aus, bis du ihn einschaltest oder ein eingerichteter Client ihn startet. Er lauscht auf {mcpHost}, ohne Remote-Modus, und Clients sehen nie ein Passwort."
+                    "text": "In der Mac-App bleibt der MCP-Server aus, bis du ihn einschaltest oder ein eingerichteter Client ihn startet. Er lauscht auf {mcpHost}, ohne Remote-Modus, und Clients sehen nie ein Passwort."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "Der Code ist öffentlich",
-                    "text": "Beide Apps sind quelloffen unter der AGPLv3, einschließlich des Codes der Bezahlfunktionen. Was diese Seite beschreibt, lässt sich im Repository nachlesen, zusammen mit den Skripten, die jede Version signieren und notarisieren, und du kannst die Mac-App selbst bauen."
+                    "text": "Die Apps sind quelloffen unter der AGPLv3, einschließlich des Codes der Bezahlfunktionen. Was diese Seite beschreibt, lässt sich im Repository nachlesen, zusammen mit den Skripten, die jede Version signieren und notarisieren, und du kannst die Mac-App selbst bauen."
                 }
             ],
             "limits": [],

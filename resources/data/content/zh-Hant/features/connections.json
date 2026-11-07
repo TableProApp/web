@@ -175,7 +175,7 @@
             "title": "在 iPhone 與 iPad 上",
             "paragraphs": [
                 "iPhone 與 iPad App 有專用於 {iosPicker} 的連線表單，支援群組、每個連線一個標籤以及喜好項目。SSH 通道使用密碼或從檔案讀取、直接貼上的私密金鑰登入，並檢查主機金鑰；iPhone 與 iPad 不支援 SSH 代理程式和跳板主機。TLS 可驗證伺服器憑證，但 SQL Server 僅加密而不驗證。憑證保留在裝置上，從不同步。",
-                "密碼與貼上的金鑰儲存在鑰匙圈中。從 Mac 同步的 SQL Server 連線可透過 Microsoft Entra ID 登入。從其他 App 匯入、AWS IAM、Kerberos 與 Google 登入、代理與通道指令、密碼來源及逾時設定僅在 Mac App 中提供。"
+                "密碼與貼上的金鑰儲存在鑰匙圈中。從 Mac 同步的 SQL Server 連線可透過 Microsoft Entra ID 登入。從其他 App 匯入、AWS IAM、Kerberos 與 Google 登入、代理與通道指令、密碼來源及逾時設定不在 iPhone 和 iPad App 中提供。"
             ],
             "links": [
                 {

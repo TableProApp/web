@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro 与 DbGate：版本和支持的平台",
-        "description": "DbGate 是适用于 Windows、macOS、Linux 和 Web 的开源客户端，另有付费 Premium 版。TablePro 开源，原生支持 Mac 和 iPhone。"
+        "description": "DbGate 是适用于 Windows、macOS、Linux 和 Web 的开源客户端，另有付费 Premium 版。TablePro 开源，原生支持 Mac、Linux 和 iPhone。"
     },
     "og": {
         "kicker": "对比",
@@ -18,7 +18,7 @@
             "通过支持的引擎的转储工具进行免费备份。"
         ],
         "competitor": [
-            "Windows、 Linux 或 Web 服务器的客户端。",
+            "Windows 或 Web 服务器的客户端。",
             "Firebird、Azure Cosmos DB 或 Firestore 连接。",
             "{cells.queryDesigner.edition} 或 DbGate 云同步中的可视化查询设计器。"
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 是 Swift 编写的 Mac 应用，使用原生数据库驱动。DbGate 基于 {technology}。两者都提供 Apple silicon 和 Intel Mac 构建。",
+                "text": "TablePro 的 Mac 应用以 Swift 编写，使用原生数据库驱动。DbGate 基于 {technology}。两者都提供 Apple silicon 和 Intel Mac 构建。",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "TablePro 有 Web 版本吗？",
-            "answer": "没有。TablePro 在 Mac、iPhone 和 iPad 上运行。如果团队需要在浏览器中使用数据库客户端，DbGate 也可作为 Web 应用运行。",
+            "answer": "没有。TablePro 是适用于 Mac、Linux、iPhone 和 iPad 的应用。如果团队需要在浏览器中使用数据库客户端，DbGate 也可作为 Web 应用运行。",
             "href": null
         },
         {

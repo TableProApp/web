@@ -58,7 +58,7 @@ export default function CompareIndex({ content, products, freeNotes, titles, che
         list: m.common.list,
         plural: (node, count, values) => plural(node, count, values),
     };
-    const facts = tableproFacts(null, tablepro.featuredEngines, m);
+    const facts = tableproFacts(null, tablepro, m);
     // The check date never breaks across lines in the meta line or the captions.
     const checked = keepTogether(dateLabel(dates, checkedAt));
     const numbered = numberSources(products);

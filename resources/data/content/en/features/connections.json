@@ -141,7 +141,7 @@
             "title": "On iPhone and iPad",
             "paragraphs": [
                 "The iPhone and iPad app has its own connection form for {iosPicker}, with groups, one tag per connection and favorites. SSH tunnels sign in with a password or a private key, from a file or pasted in, and check the host key; SSH agents and jump hosts are not supported on iPhone and iPad. TLS can verify the server’s certificate, except on SQL Server, where it encrypts without verifying. Certificates stay on the device and never sync.",
-                "Passwords and pasted keys are kept in the Keychain. SQL Server connections synced from a Mac can sign in with Microsoft Entra ID. Importing from other apps, AWS IAM, Kerberos and Google sign-in, proxies and tunnel commands, password sources and timeouts are in the Mac app only."
+                "Passwords and pasted keys are kept in the Keychain. SQL Server connections synced from a Mac can sign in with Microsoft Entra ID. Importing from other apps, AWS IAM, Kerberos and Google sign-in, proxies and tunnel commands, password sources and timeouts are not in the iPhone and iPad app."
             ],
             "links": [{ "label": "Connecting securely on iPhone and iPad", "href": "/ios#security" }]
         }

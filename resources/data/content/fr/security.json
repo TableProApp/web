@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Niveaux de Safe Mode",
-                    "text": "Chaque connexion a un niveau de Safe Mode : {macSafeModeLevels}. Alert demande confirmation avant une écriture, les niveaux Safe Mode demandent aussi Touch ID ou le mot de passe du Mac, les niveaux (Full) demandent aussi avant les lectures, et Read-Only refuse les écritures. Une organisation peut imposer un niveau minimal sur ses Mac par un profil de configuration. Sur iPhone et iPad, les niveaux sont {iosSafeModeLevels}."
+                    "text": "Sur Mac, chaque connexion a un niveau de Safe Mode : {macSafeModeLevels}. Alert demande confirmation avant une écriture, les niveaux Safe Mode demandent aussi Touch ID ou le mot de passe du Mac, les niveaux (Full) demandent aussi avant les lectures, et Read-Only refuse les écritures. Une organisation peut imposer un niveau minimal sur ses Mac par un profil de configuration. Sur Linux, les niveaux sont {linuxSafeModeLevels}, et sur iPhone et iPad {iosSafeModeLevels}."
                 },
                 {
                     "id": "destructive",
@@ -175,7 +175,7 @@
                 {
                     "id": "local",
                     "title": "Uniquement en local",
-                    "text": "Le serveur MCP n’existe que dans l’application Mac et reste désactivé jusqu’à ce que vous l’activiez ou qu’un client configuré le démarre. Il écoute sur {mcpHost}, sans mode distant, et les clients ne voient jamais de mot de passe."
+                    "text": "Dans l’application Mac, le serveur MCP reste désactivé jusqu’à ce que vous l’activiez ou qu’un client configuré le démarre. Il écoute sur {mcpHost}, sans mode distant, et les clients ne voient jamais de mot de passe."
                 },
                 {
                     "id": "approval",
@@ -210,7 +210,7 @@
                 {
                     "id": "source",
                     "title": "Le code est public",
-                    "text": "Les deux applications sont open source sous AGPLv3, y compris le code des fonctionnalités payantes. Ce que décrit cette page se lit dans le dépôt, avec les scripts qui signent et notarient chaque version, et vous pouvez compiler l’application Mac vous-même."
+                    "text": "Les applications sont open source sous AGPLv3, y compris le code des fonctionnalités payantes. Ce que décrit cette page se lit dans le dépôt, avec les scripts qui signent et notarient chaque version, et vous pouvez compiler l’application Mac vous-même."
                 }
             ],
             "limits": [],

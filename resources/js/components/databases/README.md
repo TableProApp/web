@@ -75,12 +75,14 @@ its `usedOn` in `assets.json`.
 
 **Blocks the template renders from data, with no copy of yours:** the facts card (query language, driver and the
 engines that share it, how to connect, default port, minimum version, marked where the app enforces it and "None"
-where the docs say there is none, the embedded engine version, iPhone and iPad status), the availability line, the line under it that says TablePro is free to use and open source, the
+where the docs say there is none, the embedded engine version, iPhone and iPad status, and once Linux is released
+the server releases its Linux suites test, from `engines.json` `linux`), the availability line (Linux only for a
+tested engine), the line under it that says TablePro is free to use and open source, the
 actions (Download for Mac, the App Store badge only when the engine is in the iPhone and iPad picker, the setup
 guide), the iPhone and iPad status sentence, the Limits list (`engines.json` `limits[]` with the sentences in
 `content/*/engines.json`), each family section's facts line, limits and setup guide, the dated facts of every other
-tool, the docs links under Related, and the download band with its link to pricing. Do not repeat any of these in
-prose.
+tool, the docs links under Related, and the download band with its link to pricing (and to `/download#linux` for a
+tested engine). Do not repeat any of these in prose.
 
 **`family`** (block 10). Only on a page with merged engines: one entry per engine whose `page` is `section` and whose
 `parent` is this page's engine, all of them, in `engines.json` order. Its anchor (`#scylladb`, `#libsql`) comes from

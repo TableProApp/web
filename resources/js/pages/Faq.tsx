@@ -34,6 +34,7 @@ interface FaqProps {
         mac: PlatformSummary | null;
         ios: PlatformSummary | null;
         macLanguages: string[];
+        linuxLanguages: string[];
         iosLanguages: string[];
     };
     facts: {
@@ -81,6 +82,7 @@ export default function Faq({ content, platforms, facts, links, organizationProf
         starterFeatures: list(facts.paidFeatures.starter),
         teamFeatures: list(facts.paidFeatures.team),
         macLanguages: list(platforms.macLanguages.map(languageName)),
+        linuxLanguages: list(platforms.linuxLanguages.map(languageName)),
         iosLanguages: list(platforms.iosLanguages.map(languageName)),
         ...(platforms.mac !== null && { macRequirement: requirementLine(platforms.mac.requirements, m.platforms) }),
         ...(platforms.ios !== null && { iosRequirement: requirementLine(platforms.ios.requirements, m.platforms) }),

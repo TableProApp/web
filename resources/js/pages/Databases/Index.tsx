@@ -1,6 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import DownloadBand from '@/components/databases/download-band';
 import EngineTable from '@/components/databases/engine-table';
+import { linuxStatus } from '@/components/databases/format';
 import type { EngineCategory, HubPageProps } from '@/components/databases/types';
 import SEOHead from '@/components/seo/seo-head';
 import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
@@ -14,16 +15,8 @@ import { absoluteUrl, breadcrumbNode, collectionPageNode, graph, macAppId } from
 import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
-/**
- * `/databases` and `/vi/databases` (sitemap §A.3, §E.8; design-system §8.3).
- *
- * A table generated from engines.json, one section per category in the
- * sitemap's order, so a category keeps its id (`#wide-column`, `#streaming`)
- * even when it holds one engine. Every published engine appears exactly once:
- * an engine with its own page links to it, a merged engine links to its
- * section on the family page, and a hub-only engine is a row with its own id,
- * its limits and its setup guide. Counts are lengths of the data, never typed.
- */
+// One table per category in the sitemap's order, so a category keeps its id even when it holds one engine. Every
+// published engine appears exactly once, and every count and list is derived from the data.
 export default function DatabasesIndex({ content, engines, copy, iosEngines, platforms, links }: HubPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
@@ -43,6 +36,11 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
     const byId = new Map(engines.map((engine) => [engine.id, engine]));
     const onIos = iosEngines.map((id) => byId.get(id)?.name).filter((name): name is string => name !== undefined);
     const syncedOnly = engines.filter((engine) => engine.ios.openable && !engine.ios.inPicker).map((engine) => engine.name);
+    const linux = platforms.linux !== null ? joinList(platforms.linux.deviceNames, m.common.list) : null;
+    const onLinux = (status: ReturnType<typeof linuxStatus>) => engines.filter((engine) => linuxStatus(engine) === status).map((engine) => engine.name);
+    const linuxTested = onLinux('tested');
+    const linuxUntested = onLinux('untested');
+    const linuxNone = onLinux('none');
     const docsBase = links.docs;
     const slot = useShownSlot()(content.drivers.asset);
 
@@ -96,6 +94,7 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                             table={content.table}
                             labels={content.labels}
                             docsBase={docsBase}
+                            linux={linux}
                         />
                     </Section>
                 );
@@ -119,6 +118,22 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                     {slot !== null && <AssetSlot id={slot} className="lg:col-span-7" />}
                 </div>
             </Section>
+
+            {linux !== null && linuxTested.length > 0 && (
+                <Section id="linux" title={content.linux.title} width="text">
+                    <div className="type-body space-y-4 text-foreground">
+                        <p>{fmt(content.linux.tested, { engines: joinList(linuxTested, m.common.list) })}</p>
+                        {linuxUntested.length > 0 && <p>{fmt(content.linux.untested, { engines: joinList(linuxUntested, m.common.list) })}</p>}
+                        {linuxNone.length > 0 && <p>{content.linux.others}</p>}
+                        <p>
+                            <LocaleLink href="/download#linux" className={textLinkClasses('standalone')}>
+                                {content.linux.link}
+                                <span aria-hidden="true">→</span>
+                            </LocaleLink>
+                        </p>
+                    </div>
+                </Section>
+            )}
 
             {onIos.length > 0 && (
                 <Section id="iphone" title={content.iphone.title} width="text">
@@ -171,7 +186,7 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                 </div>
             </Section>
 
-            <DownloadBand labels={content.labels} platforms={platforms} showIos appStoreUrl={links.appStore} location="databases" />
+            <DownloadBand labels={content.labels} platforms={platforms} showIos showLinux appStoreUrl={links.appStore} location="databases" />
         </LandingLayout>
     );
 }

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro と DbGate: エディションとサポートされるプラットフォーム",
-        "description": "DbGate は Windows、macOS、Linux と Web 向けのオープンソースクライアントで、有料の Premium 版があります。TablePro はオープンソースで Mac と iPhone にネイティブ対応。"
+        "description": "DbGate は Windows、macOS、Linux と Web 向けのオープンソースクライアントで、有料の Premium 版があります。TablePro はオープンソースで Mac、Linux、iPhone にネイティブ対応。"
     },
     "og": {
         "kicker": "比較",
@@ -18,7 +18,7 @@
             "サポートされているエンジンのダンプ ツールを使用した無料のバックアップ。"
         ],
         "competitor": [
-            "Windows、 Linux または Web サーバーのクライアント。",
+            "Windows または Web サーバーのクライアント。",
             "Firebird、Azure Cosmos DB または Firestore 接続。",
             "{cells.queryDesigner.edition} または DbGate クラウド同期のビジュアル クエリ デザイナー。"
         ]
@@ -99,7 +99,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。DbGate は {technology} で作られています。どちらも Apple silicon と Intel Mac 用のビルドがあります。",
+                "text": "TablePro の Mac アプリは Swift で書かれ、ネイティブのデータベースドライバーを使います。DbGate は {technology} で作られています。どちらも Apple silicon と Intel Mac 用のビルドがあります。",
                 "cite": [
                     "technology",
                     "mac"
@@ -194,7 +194,7 @@
         {
             "id": "web",
             "question": "TablePro に Web 版はありますか？",
-            "answer": "ありません。TablePro は Mac、iPhone、iPad で動きます。チームがブラウザーで使うデータベースクライアントが必要なら、DbGate は Web アプリとしても動きます。",
+            "answer": "ありません。TablePro は Mac、Linux、iPhone、iPad 向けのアプリです。チームがブラウザーで使うデータベースクライアントが必要なら、DbGate は Web アプリとしても動きます。",
             "href": null
         },
         {
