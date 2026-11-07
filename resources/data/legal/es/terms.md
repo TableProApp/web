@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Pro o Team.
-updatedAt: "2026-11-06"
+updatedAt: "2026-11-07"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac, TablePro para Linux y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
@@ -21,7 +21,7 @@ El código fuente de la Aplicación, incluido el código de las funciones de pag
 
 La AGPL no impone condiciones para ejecutar TablePro en una empresa de cualquier tamaño. Sus condiciones se aplican al entregar copias a otros, modificadas o no, y al modificar TablePro y permitir que otras personas usen esa versión modificada a través de una red. Nada de estas condiciones limita los derechos que te otorga la AGPLv3.
 
-Las apps para Mac y para Linux se pueden descargar y usar gratis sin registrarse. Una Licencia añade funciones opcionales a la app para Mac. La app para iPhone y iPad es gratis, sin compras dentro de la app.
+Las apps para Mac y para Linux se pueden descargar y usar gratis sin registrarse. Una Licencia añade funciones opcionales. La app para iPhone y iPad es gratis, sin compras dentro de la app.
 
 ## Marcas comerciales {#trademarks}
 
@@ -37,7 +37,7 @@ Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 
 ## Usar una licencia {#license}
 
-Una Licencia te concede un derecho no exclusivo e intransferible a usar las funciones de pago de la app para Mac en los ordenadores con sesión iniciada en tu cuenta de TablePro o, en las versiones de la app para Mac anteriores a las cuentas de TablePro, activados con su Clave de licencia, hasta el número y durante el periodo que contempla tu plan. Las funciones de pago solo están en la app para Mac, pero un ordenador con sesión iniciada en tu cuenta desde TablePro para Linux cuenta para ese número:
+Una Licencia te concede un derecho no exclusivo e intransferible a usar las funciones de pago de la Aplicación en los ordenadores con sesión iniciada en tu cuenta de TablePro o, en las versiones de la app para Mac anteriores a las cuentas de TablePro, activados con su Clave de licencia, hasta el número y durante el periodo que contempla tu plan. Un ordenador con sesión iniciada en tu cuenta desde TablePro para Linux también cuenta para ese número:
 
 - Una Licencia **Pro** es para una persona, en hasta {deviceLimit} ordenadores, Mac o Linux.
 - Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto es para una persona, en hasta {deviceLimit} ordenadores, Mac o Linux. El propietario y los administradores del equipo invitan a sus miembros, que se unen mediante un enlace de invitación enviado por correo.

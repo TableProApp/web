@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
-updatedAt: "2026-11-06"
+updatedAt: "2026-11-07"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac, TablePro untuk Linux, serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -21,7 +21,7 @@ Kode sumber Aplikasi, termasuk kode fitur berbayar, diterbitkan di bawah [GNU Af
 
 AGPL tidak memberikan syarat untuk menjalankan TablePro di perusahaan sebesar apa pun. Syaratnya berlaku saat Anda memberikan salinan kepada pihak lain, dimodifikasi atau tidak, serta saat Anda memodifikasi TablePro dan mengizinkan pihak lain memakai versi modifikasi melalui jaringan. Tidak ada dalam ketentuan ini yang membatasi hak yang diberikan AGPLv3 kepada Anda.
 
-Aplikasi Mac dan aplikasi Linux gratis diunduh dan digunakan tanpa pendaftaran. Lisensi menambahkan fitur opsional ke aplikasi Mac. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.
+Aplikasi Mac dan aplikasi Linux gratis diunduh dan digunakan tanpa pendaftaran. Lisensi menambahkan fitur opsional. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.
 
 ## Merek dagang {#trademarks}
 
@@ -37,7 +37,7 @@ Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-poli
 
 ## Penggunaan lisensi {#license}
 
-Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar aplikasi Mac pada komputer yang masuk ke akun TablePro Anda atau, pada versi aplikasi Mac sebelum akun TablePro, yang diaktifkan dengan Kunci Lisensinya, hingga jumlah dan selama periode paket Anda. Fitur berbayar hanya ada di aplikasi Mac, tetapi komputer yang masuk ke akun Anda di TablePro untuk Linux tetap dihitung dalam jumlah tersebut:
+Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk menggunakan fitur berbayar Aplikasi pada komputer yang masuk ke akun TablePro Anda atau, pada versi aplikasi Mac sebelum akun TablePro, yang diaktifkan dengan Kunci Lisensinya, hingga jumlah dan selama periode paket Anda. Komputer yang masuk ke akun Anda di TablePro untuk Linux juga dihitung dalam jumlah tersebut:
 
 - Lisensi **Pro** untuk satu orang, di maksimal {deviceLimit} komputer, Mac atau Linux.
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat untuk satu orang, di maksimal {deviceLimit} komputer, Mac atau Linux. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.

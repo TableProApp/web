@@ -26,7 +26,7 @@ it('is dated and gives every platform a known status', function (): void {
     }
 });
 
-it('counts a license in computers, not Macs, once Linux ships', function (): void {
+it('counts a license in computers, not Macs, and never says Linux lacks the paid features, once Linux ships', function (): void {
     if (platformsEntry('linux')['status'] !== 'released') {
         $this->markTestSkipped('Linux is not released.');
     }
@@ -38,7 +38,8 @@ it('counts a license in computers, not Macs, once Linux ships', function (): voi
 
         expect(File::get($path))
             ->not->toMatch('/\{(deviceLimit|activations|count)\} Macs/', "{$path} counts a license in Macs")
-            ->not->toContain('Linux prototype', "{$path} calls Linux a prototype");
+            ->not->toContain('Linux prototype', "{$path} calls Linux a prototype")
+            ->not->toMatch('/on the Mac for now|in the Mac app only|In TablePro for macOS/', "{$path} says Linux lacks the paid features");
     }
 });
 

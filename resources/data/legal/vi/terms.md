@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
-updatedAt: "2026-11-06"
+updatedAt: "2026-11-07"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -21,7 +21,7 @@ Mã nguồn của Ứng dụng, kể cả phần mã của các tính năng tr�
 
 Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, trong công ty ở bất kỳ quy mô nào. Các điều kiện của giấy phép AGPL áp dụng khi bạn đưa bản sao cho người khác, dù đã sửa đổi hay chưa, và khi bạn sửa đổi TablePro rồi cho người khác dùng phiên bản đã sửa đổi đó qua mạng. Không điều nào trong các điều khoản này giới hạn những quyền mà giấy phép AGPLv3 trao cho bạn.
 
-Bạn có thể tải về và dùng ứng dụng cho Mac và ứng dụng cho Linux miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn cho ứng dụng cho Mac. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
+Bạn có thể tải về và dùng ứng dụng cho Mac và ứng dụng cho Linux miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
 
 ## Nhãn hiệu {#trademarks}
 
@@ -37,7 +37,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 ## Sử dụng license {#license}
 
-Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên những máy tính đã đăng nhập tài khoản TablePro của bạn hoặc, ở các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro, đã kích hoạt bằng License Key của License đó, trong giới hạn số máy và thời hạn của gói bạn mua. Các tính năng trả phí chỉ có trong ứng dụng cho Mac, nhưng một máy tính đăng nhập tài khoản của bạn trong TablePro cho Linux vẫn được tính vào số máy đó:
+Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của Ứng dụng trên những máy tính đã đăng nhập tài khoản TablePro của bạn hoặc, ở các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro, đã kích hoạt bằng License Key của License đó, trong giới hạn số máy và thời hạn của gói bạn mua. Một máy tính đăng nhập tài khoản của bạn trong TablePro cho Linux cũng được tính vào số máy đó:
 
 - License **Pro** dành cho một người, trên tối đa {deviceLimit} máy tính, Mac hoặc Linux.
 - License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
