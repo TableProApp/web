@@ -95,60 +95,34 @@ and meta. The Vietnamese column is judged as a fluent Vietnamese developer would
 
 | Slot | English | Tiếng Việt |
 |---|---|---|
-| H1 | A native database client for developers. | Database client native dành cho lập trình viên. |
-| Subtitle | Run queries, browse and edit data in {featuredEngines} and more. | Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} và nhiều cơ sở dữ liệu khác. |
+| H1 | A native database client. | Database client native. |
+| Subtitle | Built with each platform’s own toolkit, so it behaves like the rest of your apps. | (in `content/vi/home.json`) |
 
-**Why this wording:**
+**Why this wording (Home redesign, 2026-11-07):**
 
-- **The H1 names three things.** It names the category (database client), the implementation (native) and the
-  audience (developers).
-  - "For developers" is backed by product features: Open Project Folder reads `.env` and docker-compose files,
-    linked SQL folders show Git status, there is a Vim mode, and the MCP server works with Claude Code, Cursor and
-    Zed.
-  - The H1 contains no platform, count or universal, so it never changes.
-- **The subtitle answers "is it a GUI, and does it support mine?"** It uses three verbs that only make sense in an
-  app, then recognisable engine names instead of a count.
-  - "Browse and edit data" fits rows, documents and keys.
-  - Each engine page states its own limits, for example that Redis edits are string-only.
-- **What "native" means sits under the actions, not in the subtitle** (`hero.native`): each app is written in Swift
-  for its own platform, with AppKit and SwiftUI on the Mac, and there is no Electron and no Java runtime. It is not an
-  identity key, so it may name the Mac. The platforms section says that the iPhone app is a separate app with its own
-  scope.
-- **Vietnamese choices:**
-  - "xem và chỉnh sửa" reads more naturally than "duyệt" in running copy.
-  - "trên PostgreSQL" is how Vietnamese developers say "in PostgreSQL".
-  - "lập trình viên" is ordinary Vietnamese, not a technical term, so it is translated.
-- **Typography:** Vietnamese headings need line-height ≥ 1.2 for stacked diacritics (design-system §3.3). Check the
-  47-character VI H1 at 375 px.
+- **The H1 names two things:** the category (database client) and the implementation (native). It holds no
+  platform, count or universal, so it never changes.
+- **The subtitle says what "native" means** instead of listing engines: each app is built with its platform's own
+  toolkit, so it behaves like the reader's other apps. It names no platform, so it stays true as Linux and later
+  Windows ship. The engines are the databases band directly under the hero (sitemap §D).
+- **No line of facts under the actions.** The owner rejected the dot-separated requirement and platform lines as the
+  look of generated pages. Versions and requirements live on `/download`; the platforms are in the hero's picture.
+- **Typography:** Vietnamese headings need line-height ≥ 1.2 for stacked diacritics (design-system §3.3).
 
-### 3.2 Actions and availability
+### 3.2 Actions
 
-Both actions are server-rendered and visible on every device, in the same order: Mac first. A client may visually
-promote the badge on an iPhone or iPad. The labels do not change, nothing auto-downloads and nothing redirects.
+| Element | English | Target / event |
+|---|---|---|
+| Primary button | Download | `/download` in the reader's language, where the platform switch picks their system; `download_click{location:'home-hero'}` |
+| Text link | Documentation ↗ | `facts.links.docs` |
 
-| Element | English | Tiếng Việt | Target / data / event |
-|---|---|---|---|
-| Primary button | Download for Mac | Tải về cho Mac | `/download` · `/vi/download`; `download_click{location:'hero', platform:'mac'}` |
-| Caption | {macRequirement} · {macArchitectures} | same keys | `platforms.json` → "macOS 13 Ventura or later · Apple silicon or Intel" / "macOS 13 Ventura trở lên · Apple silicon hoặc Intel" |
-| Text link under the caption | Other ways to install | Cách cài đặt khác | `/download#mac`, the section that holds the Homebrew command (sitemap §A.1; there is no `#other` id). Never print a version beside the Homebrew command, because the cask lags |
-| Secondary action | Official App Store badge, accessible name = its visible text "Download on the App Store" | Apple's Vietnamese badge. Accessible name = its visible text (expected "Tải về trên App Store"; check it against the artwork when the badge is installed) | App Store URL; `download_click{location:'hero', platform:'ios'}` |
-| Caption | {iosDevices} · {iosRequirement} | same keys | "iPhone and iPad · iOS and iPadOS 18 or later" / "iPhone và iPad · iOS và iPadOS 18 trở lên" |
-| Line under both | TablePro is open source and free to use. Paid plans add optional features to the {paidPlatformApps}. [See pricing] | TablePro là phần mềm mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung một số tính năng cho {paidPlatformApps}. [Xem bảng giá] | `{paidPlatformApps}` = "Mac app" / "ứng dụng Mac" from the platforms that have paid features. "See pricing" → `/#pricing` (shipped Mac builds open `/?ref=…#pricing`) |
+**Below the actions:** one illustration of every released platform's app, real captures in their device frames
+(Mac on a MacBook Pro, Linux on a Framework Laptop 13 Pro, iPad Pro, iPhone), layered on one baseline in the
+platform order of §3.3. Windows joins between the Mac and Linux when it ships.
 
-**Layout rules:**
-- Each caption sits 8–16 px under its own action and stays with it when the row stacks on a phone.
-- The badge is at least 40 px tall, and there is one badge per layout.
-
-**Deliberately absent from the hero:**
-- A version number. Homebrew lags, and versions belong on `/download`.
-- "Universal": the Mac app ships separate Apple silicon and Intel builds.
-- A file size.
-- A star count or "#1 trending".
-- "No account".
-- Any Windows line. Linux appears in the hero only as the visitor's own system's action, decided in the browser
-  (the Home redesign), never as a list of platforms.
-- "View source". Open source is in the line under both actions. GitHub is linked from the header, the footer and the
-  homepage open-source section (sitemap §B.1, §B.3, §D).
+**Deliberately absent from the hero:** a version number, a file size, "Universal", a star count or "#1 trending",
+"No account", "Free" (the free-to-use sentence sits in the pricing lead, next to the paid plans), and any list of
+platforms or requirements in text.
 
 ### 3.3 Availability summary (closing CTA, blog CTA)
 

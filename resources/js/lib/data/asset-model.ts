@@ -14,12 +14,14 @@
 
 export type AssetKindName =
     | 'window'
+    | 'window-whole'
     | 'mobile-crop'
     | 'detail'
     | 'phone'
     | 'ipad'
     | 'diagram'
     | 'illustration'
+    | 'device'
     | 'figure'
     | 'og-card';
 

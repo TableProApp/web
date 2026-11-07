@@ -132,6 +132,7 @@ function placeholderBox(part: PlaceholderPart, labels: AssetSlotLabels, visibili
 function imageClass(kind: SuppliedPart['kind']): string {
     switch (kind) {
         case 'window':
+        case 'window-whole':
         case 'mobile-crop':
             return 'app-plate h-auto w-full object-contain';
         case 'phone':
