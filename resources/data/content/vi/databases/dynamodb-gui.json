@@ -11,73 +11,59 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Amazon DynamoDB GUI",
-        "lead": "Xem item, query theo key và xem read capacity đã dùng. Sửa giá trị theo kiểu hoặc chạy request PartiQL."
+        "lead": "Duyệt item, đọc theo key và xem capacity đã dùng, sửa giá trị theo kiểu hoặc chạy PartiQL.",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối",
-            "paragraphs": [
-                "Chọn <ui>Auth Method</ui> và <ui>AWS Region</ui>. Dùng access key với session token tùy chọn, AWS CLI profile hoặc <cloudAuth>AWS IAM Identity Center</cloudAuth>. Session Identity Center hết hạn sẽ yêu cầu đăng nhập.",
-                "Profile hỗ trợ helper <code>credential_process</code> và chuỗi <code>role_arn</code>, và credential tạm thời hết hạn sẽ được lấy lại rồi gửi lại request một lần. Mọi request đi qua HTTPS, được ký bằng Signature Version 4, nên không có thiết lập SSL và không có SSH tunnel. Region thuộc partition AWS khác, như Trung Quốc hay European Sovereign Cloud, tự tới đúng endpoint của nó mà không cần endpoint tùy chỉnh.",
-                "Với DynamoDB Local, hãy chạy <code>docker run -p 8000:8000 amazon/dynamodb-local</code> và chọn <ui>DynamoDB Local (no credentials)</ui>; để trống <ui>Endpoint tùy chỉnh (Custom Endpoint)</ui> nếu dùng port 8000. Endpoint tùy chỉnh chỉ được dùng HTTP thường khi nằm trên chính máy Mac này. Hướng dẫn thiết lập liệt kê <permissions>các IAM action mà từng thao tác cần</permissions>."
+            "text": [
+                "Chọn <ui>Phương thức xác thực</ui> (Auth Method) và <ui>AWS Region</ui>: access key kèm session token tùy chọn, AWS CLI profile hoặc <cloudAuth>AWS IAM Identity Center</cloudAuth>. Profile hỗ trợ helper <code>credential_process</code> và chuỗi <code>role_arn</code>, và mọi request đi qua HTTPS, được ký bằng Signature Version 4, nên không có thiết lập SSL và không có SSH tunnel.",
+                "Với DynamoDB Local, hãy chạy <code>docker run -p 8000:8000 amazon/dynamodb-local</code> và chọn <ui>DynamoDB Local (no credentials)</ui>; endpoint tùy chỉnh chỉ được dùng HTTP thường khi nằm trên chính máy Mac này. Region thuộc partition AWS khác, như Trung Quốc, tự tới đúng endpoint của nó mà không cần endpoint tùy chỉnh. Hướng dẫn thiết lập liệt kê <permissions>các IAM action mà từng thao tác cần</permissions>."
             ]
         },
         {
             "id": "work",
             "title": "Đọc, lọc và sửa item",
-            "paragraphs": [
-                "Bộ lọc key dùng Query; bộ lọc khác dùng Scan. Scan đọc cả table và tính phí mọi item đã đọc. Thanh trạng thái hiển thị thao tác, số item trả về và quét, read capacity đã dùng.",
-                "<filters>Bộ lọc sort key</filters> dùng key condition ở nơi hỗ trợ. Bộ lọc khác chạy sau khi đọc và không giảm phí. Hỗ trợ path lồng như <code>address.city</code> và <code>items[0].sku</code>.",
-                "Khi Query chỉ đọc một partition, bấm vào tiêu đề cột sort key để DynamoDB trả item theo thứ tự đó. Các kiểu sắp xếp khác được làm ngay trong data grid khi lần đọc đã có đủ mọi item khớp, và thanh trạng thái báo khi chưa đủ. Trang tiếp theo đọc tiếp từ chỗ trang trước dừng lại. Tổng số dưới data grid là số item do chính DynamoDB đếm; <ui>Đếm chính xác (Count Exactly)</ui> đọc mọi item khớp với bộ lọc, và lần đọc đó bị tính phí đầy đủ.",
-                "Table chỉ khai báo key, nên các cột được lấy từ chính các item: các key attribute, những attribute có trong một mẫu gồm các item đầu tiên của table, và những attribute trên trang đang xem. Map, list và set hiện dưới dạng JSON và mở trong JSON editor, còn số giữ nguyên mọi chữ số.",
-                "Mỗi dòng lưu bằng một câu lệnh PartiQL, <editing>giữ nguyên kiểu</editing>. Update so thuộc tính đã đổi với giá trị lúc tải và từ chối ghi đè thay đổi đồng thời. <ui>Set NULL</ui> xóa thuộc tính.",
-                "Editor nhận PartiQL, với dấu ngoặc kép quanh tên và dấu nháy đơn quanh chuỗi, hoặc tên một action của DynamoDB kèm JSON request của nó, như <code>Query</code>, <code>BatchWriteItem</code> hay <code>TransactWriteItems</code>. Tên action khác bị từ chối. Item được trả về trong data grid, còn các phản hồi khác ở dạng JSON. Request bị throttle được thử lại với backoff, và <code>⌘.</code> dừng câu lệnh đang chạy."
+            "text": [
+                "Bộ lọc key chạy dưới dạng Query, còn bộ lọc khác chạy dưới dạng Scan, tức đọc và tính phí cả table; thanh trạng thái hiển thị thao tác, số item trả về và số item đã quét, cùng read capacity đã dùng. <filters>Bộ lọc sort key</filters> được chuyển thành key condition khi có thể, và path lồng như <code>address.city</code> dùng được. Khi Query chỉ đọc một partition, bấm vào tiêu đề cột sort key để DynamoDB trả item theo thứ tự đó.",
+                "Cột lấy từ chính các item: các key, những attribute có trong một mẫu gồm các item đầu tiên, và những attribute trên trang đang xem. Map, list và set mở trong JSON editor, số giữ nguyên mọi chữ số, <ui>Đặt NULL</ui> (Set NULL) xóa một attribute, và mỗi dòng lưu bằng một câu lệnh PartiQL, câu lệnh này từ chối ghi đè thay đổi đồng thời. Editor nhận PartiQL, hoặc tên một action như <code>Query</code> hay <code>TransactWriteItems</code> kèm JSON request của nó; request bị throttle được thử lại với backoff."
             ]
         },
         {
             "id": "schema",
-            "title": "Table và index",
-            "paragraphs": [
-                "<ui>Bảng mới… (New Table…)</ui> mở một form cho partition key và sort key, capacity on-demand hoặc provisioned, table class, deletion protection và secondary index, còn <ui>Xem trước (Preview)</ui> hiển thị request <code>CreateTable</code> trước khi gửi. Local secondary index chỉ định nghĩa được tại đây, lúc tạo table.",
-                "Trong tab Structure, bạn thêm hoặc xóa global secondary index, mỗi lần lưu một thay đổi, vì DynamoDB chỉ nhận một thay đổi index cho mỗi request <code>UpdateTable</code>. Attribute không sửa ở đây: hãy ghi một attribute vào item, nó sẽ xuất hiện thành một cột. Tab DDL hiển thị request <code>CreateTable</code> để tạo lại table, kèm thiết lập Time to Live và point-in-time recovery."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Thiết lập table",
-            "paragraphs": [
-                "Bấm chuột phải vào table và chọn <ui>Bảo trì (Maintenance)</ui> để chỉnh point-in-time recovery, deletion protection, stream, table class, chuyển sang capacity on-demand và tắt Time to Live. Xóa table sẽ gửi <code>DeleteTable</code>, request này thất bại khi deletion protection đang bật."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "TablePro không có import cho DynamoDB. Hãy ghi item từ editor bằng câu <code>INSERT</code> của PartiQL hoặc request <code>BatchWriteItem</code>, request này gửi lại các item chưa được xử lý và báo những item không ghi được. <export>Export</export> table hoặc kết quả ra {exportFormats} từ hộp thoại Export."
+            "also": [
+                "operate"
+            ],
+            "title": "Table, index và thiết lập",
+            "text": [
+                "<ui>Bảng mới…</ui> (New Table…) đặt key, capacity mode, table class, deletion protection và secondary index, rồi hiển thị trước request <code>CreateTable</code>; local secondary index chỉ định nghĩa được tại đây. Tab Structure thêm hoặc xóa một global secondary index mỗi lần lưu, còn tab DDL hiển thị request để tạo lại table.",
+                "<ui>Bảo trì</ui> (Maintenance) gồm point-in-time recovery, deletion protection, stream, table class, chuyển sang capacity on-demand và tắt Time to Live."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Ghi item từ editor bằng câu <code>INSERT</code> của PartiQL hoặc request <code>BatchWriteItem</code>, request này gửi lại các item chưa được xử lý. <export>Export</export> table hoặc kết quả ra {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
             "question": "Làm sao để một lần đọc không quét toàn bộ table?",
-            "answer": "Lọc theo partition key bằng =, hoặc theo partition key của một global index kèm bộ lọc trên từng sort key của nó, lần đọc sẽ chạy dưới dạng Query. Global index chỉ được dùng khi duyệt nếu nó project mọi attribute, nên với index chỉ chứa key, hãy query từ editor bằng request <code>Query</code> có ghi <code>IndexName</code>."
+            "answer": "Khi bạn lọc theo partition key bằng =, hoặc theo partition key của một global index kèm bộ lọc trên từng sort key của nó, lần đọc sẽ chạy dưới dạng Query. Index chỉ chứa key không được dùng khi duyệt, nên hãy query nó từ editor bằng request <code>Query</code> có ghi <code>IndexName</code>."
         },
         {
             "id": "change-key",
             "question": "Làm sao để đổi key của một item?",
-            "answer": "Key attribute không sửa trực tiếp được. Hãy dùng <ui>Nhân bản dòng (Duplicate Row)</ui>, lệnh này chép mọi attribute trừ key, đặt key mới cho bản sao, lưu lại, rồi xóa bản gốc."
+            "answer": "Dùng <ui>Nhân bản dòng</ui> (Duplicate Row), lệnh này chép mọi attribute trừ key, đặt key mới cho bản sao, lưu lại, rồi xóa bản gốc."
         },
         {
             "id": "transactions",
@@ -85,22 +71,5 @@
             "answer": "Không. Mỗi dòng thay đổi được ghi riêng. Những thao tác ghi cần cùng thành công thì hãy đặt chung trong một request <code>ExecuteTransaction</code> hoặc <code>TransactWriteItems</code> trong editor."
         }
     ],
-    "related": [
-        {
-            "label": "Bộ lọc trên các engine",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "Đăng nhập AWS, Google và Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis, key và lệnh",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra và Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

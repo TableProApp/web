@@ -224,12 +224,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "vi": "Map view hiển thị các địa điểm dân cư từ một table PostGIS, điểm đang chọn (Paris) hiển thị trong row inspector."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "vi": "Hộp thoại xem lại Restore Previous Values: ba dòng được đánh dấu Will restore, một dòng được đánh dấu Changed since the save."
@@ -245,24 +239,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "vi": "Cận cảnh script của Compare & Sync, với một lệnh DROP COLUMN chưa được đưa vào lần chạy này và cảnh báo mất dữ liệu."
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "vi": "Users & Roles trên một server MySQL, hộp thoại SQL Preview hiển thị câu GRANT cấp cho user app_reader quyền SELECT trên cột total của shop.orders."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "vi": "Server Dashboard của một server PostgreSQL liệt kê các session đang chạy, một câu SELECT chạy lâu đang được chọn và có nút Terminate."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một session SELECT chạy lâu được chọn trong Server Dashboard, cạnh nút Terminate."
         },
         "caption": null
     },
@@ -282,277 +258,135 @@
             "vi": "Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac."
         }
     },
-    "mac-engine-picker": {
+    "databases-postgresql": {
         "alt": {
-            "vi": "Hộp chọn loại cơ sở dữ liệu cho connection mới, các engine được chia theo nhóm, MongoDB được ghi Not Installed."
+            "vi": "TablePro trên Mac kết nối tới PostgreSQL, với một query tạo array và jsonb cùng kết quả của nó."
         },
         "caption": null
     },
-    "mac-engine-picker-mobile": {
+    "databases-mysql": {
         "alt": {
-            "vi": "Cận cảnh hộp chọn loại cơ sở dữ liệu, với Elasticsearch, MongoDB, SurrealDB và Typesense trong nhóm Document, mỗi mục được ghi Not Installed."
+            "vi": "TablePro trên Mac kết nối tới MySQL, với một query và kết quả của nó."
         },
         "caption": null
     },
-    "mac-db-postgresql-explain": {
+    "databases-sqlserver": {
         "alt": {
-            "vi": "Execution plan EXPLAIN ANALYZE của một query join orders và users, vẽ thành sơ đồ, bước Seq Scan trên orders được tô đỏ."
+            "vi": "TablePro trên Mac kết nối tới SQL Server, với một script T-SQL và output PRINT của nó."
         },
         "caption": null
     },
-    "mac-db-postgresql-explain-mobile": {
+    "databases-sqlite": {
         "alt": {
-            "vi": "Cận cảnh sơ đồ EXPLAIN ANALYZE, xuống tới bước Seq Scan trên orders được tô đỏ."
+            "vi": "TablePro trên Mac mở cơ sở dữ liệu SQLite mẫu Chinook ở table Track."
         },
         "caption": null
     },
-    "mac-db-mysql-query": {
+    "databases-mongodb": {
         "alt": {
-            "vi": "TablePro kết nối tới MySQL, với một query join orders và users trong cơ sở dữ liệu shop và kết quả bên dưới."
+            "vi": "TablePro trên Mac kết nối tới MongoDB, với một document được viết bằng Extended JSON."
         },
         "caption": null
     },
-    "mac-db-mysql-query-mobile": {
+    "databases-redis": {
         "alt": {
-            "vi": "Cận cảnh một query MySQL join orders và users, kèm các dòng kết quả đầu tiên."
+            "vi": "TablePro trên Mac kết nối tới Redis, với các key được nhóm thành cây cùng type, TTL và value của từng key."
         },
         "caption": null
     },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "vi": "TablePro mở cơ sở dữ liệu mẫu Chinook (SQLite) đi kèm ứng dụng, table Track được lọc theo thể loại."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "vi": "Cận cảnh table Track của Chinook được lọc theo thể loại."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "vi": "Hộp thoại Insert Document trên collection events của MongoDB, với một document viết bằng Extended JSON."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một document viết bằng Extended JSON, sẵn sàng để insert vào một collection MongoDB."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "vi": "Các key Redis trong TablePro được nhóm thành cây theo dấu hai chấm, data grid hiển thị type, TTL, độ dài và giá trị của từng key."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các key Redis trong data grid, kèm type và TTL của từng key."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "vi": "Một script T-SQL chia thành các batch bằng GO, thông báo PRINT của batch cuối trong tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các dòng GO phân tách batch trong một script T-SQL và một thông báo PRINT trong tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "vi": "Một khối PL/SQL của Oracle trong editor, các dòng ghi qua DBMS_OUTPUT hiện bên dưới kết quả của khối."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh lệnh gọi DBMS_OUTPUT.PUT_LINE trong một khối PL/SQL và các dòng phòng ban được in bên dưới kết quả."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "vi": "Tab Parts của một table MergeTree trong ClickHouse, liệt kê partition và part kèm số dòng."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "vi": "Cận cảnh tab Parts của một table ClickHouse, liệt kê partition, tên và số dòng của từng part."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "vi": "Một file Parquet mở trong DuckDB dưới dạng view chỉ đọc, kèm một query SQL trên file và kết quả."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query SQL đọc file Parquet qua DuckDB, kèm các dòng kết quả đầu tiên."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "vi": "Một table Cassandra mở từ sidebar trong data grid, một giá trị status vừa sửa được đánh dấu đang chờ cho tới khi lưu, và một cột set hiển thị dưới dạng collection."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các dòng Cassandra trong data grid, một ô status đã đổi thành shipped và được đánh dấu đang chờ lưu, cạnh cột tags hiển thị một set."
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-redshift": {
         "description": {
-            "vi": "DDL của một table Redshift với DISTKEY và SORTKEY; tab Structure ở chế độ chỉ đọc."
+            "vi": "Một connection Amazon Redshift: DDL của một table, với DISTKEY và SORTKEY của nó."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
-        "description": {
-            "vi": "Cận cảnh các dòng DISTKEY và SORTKEY trong DDL của table."
-        }
-    },
-    "mac-db-d1-databases": {
-        "description": {
-            "vi": "Bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, mở phía trên một query trên một trong số đó."
-        }
-    },
-    "mac-db-d1-databases-mobile": {
-        "description": {
-            "vi": "Cận cảnh bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản."
-        }
-    },
-    "mac-db-turso-remote": {
-        "description": {
-            "vi": "Một cơ sở dữ liệu Turso từ xa: các table trong sidebar và kết quả query."
-        }
-    },
-    "mac-db-turso-remote-mobile": {
-        "description": {
-            "vi": "Cận cảnh query trên cơ sở dữ liệu Turso từ xa và các dòng kết quả đầu tiên."
-        }
-    },
-    "mac-db-dynamodb-planner": {
+    "databases-oracle": {
         "alt": {
-            "vi": "Một lần đọc DynamoDB có lọc, thanh trạng thái hiển thị Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng."
+            "vi": "TablePro trên Mac kết nối tới Oracle Database, với một block PL/SQL và các dòng DBMS_OUTPUT của nó."
         },
         "caption": null
     },
-    "mac-db-dynamodb-planner-mobile": {
+    "databases-clickhouse": {
         "alt": {
-            "vi": "Cận cảnh thanh trạng thái DynamoDB sau một lần đọc có lọc: Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng."
+            "vi": "TablePro trên Mac kết nối tới ClickHouse, với một query phân tích và kết quả của nó."
         },
         "caption": null
     },
-    "mac-db-bigquery-dry-run": {
+    "databases-duckdb": {
+        "alt": {
+            "vi": "TablePro trên Mac với một cơ sở dữ liệu DuckDB, đang query một file Parquet bằng SQL."
+        },
+        "caption": null
+    },
+    "databases-cassandra": {
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Cassandra, với một query CQL và kết quả của nó."
+        },
+        "caption": null
+    },
+    "databases-dynamodb": {
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Amazon DynamoDB, với một query PartiQL trên index và các item trả về."
+        },
+        "caption": null
+    },
+    "databases-bigquery": {
         "description": {
-            "vi": "Dry Run của BigQuery từ menu Explain: số byte xử lý và chi phí ước tính."
+            "vi": "Một connection BigQuery: một Dry Run từ menu Explain, với số byte query sẽ xử lý và chi phí ước tính."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-snowflake": {
         "description": {
-            "vi": "Cận cảnh kết quả Dry Run: số byte xử lý và chi phí ước tính."
+            "vi": "Một connection Snowflake với warehouse và role được đặt trong Session Context, và một kết quả query bên dưới."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-cloudflare-d1": {
         "description": {
-            "vi": "Connection Snowflake với warehouse và role đặt trong Session Context, kết quả bên dưới."
+            "vi": "Một connection Cloudflare D1: bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, phía trên một tab query."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-turso": {
         "description": {
-            "vi": "Cận cảnh menu con Session Context với warehouse đang được chọn."
+            "vi": "Một cơ sở dữ liệu Turso từ xa: các table của nó trong sidebar và một kết quả query trong data grid."
         }
     },
-    "mac-db-etcd-keys": {
+    "databases-elasticsearch": {
         "alt": {
-            "vi": "Các key etcd dưới prefix /acme/sessions/, ba key dùng chung một lease."
+            "vi": "TablePro trên Mac kết nối tới Elasticsearch, với một search request và các hit của nó hiển thị thành dòng."
         },
         "caption": null
     },
-    "mac-db-etcd-keys-mobile": {
+    "databases-etcd": {
         "alt": {
-            "vi": "Cận cảnh các key etcd dưới prefix /acme/sessions/, kèm lease của từng key."
+            "vi": "TablePro trên Mac kết nối tới etcd, liệt kê các key dưới một prefix cùng giá trị của chúng."
         },
         "caption": null
     },
-    "mac-db-elasticsearch-console": {
+    "databases-kafka": {
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Apache Kafka, liệt kê các message của một topic."
+        },
+        "caption": null
+    },
+    "databases-surrealdb": {
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới SurrealDB, với một query SurrealQL và các record của nó."
+        },
+        "caption": null
+    },
+    "databases-teradata": {
         "description": {
-            "vi": "Console Query DSL: một request GET _search và các hit hiển thị thành dòng."
+            "vi": "Một connection Teradata: sidebar liệt kê stored procedure, với macro trong mục Functions, và một kết quả query."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
-        "description": {
-            "vi": "Cận cảnh request GET _search và các hit đầu tiên."
-        }
-    },
-    "mac-db-surrealdb-query": {
+    "databases-trino": {
         "alt": {
-            "vi": "Một query SurrealQL trong editor và các record trả về trong data grid."
+            "vi": "TablePro trên Mac kết nối tới Trino, với một query trên dữ liệu mẫu TPC-H và kết quả của nó."
         },
         "caption": null
     },
-    "mac-db-surrealdb-query-mobile": {
+    "databases-beancount": {
         "alt": {
-            "vi": "Cận cảnh một query SurrealQL và các record trả về, với id dạng person:alice."
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
-        "description": {
-            "vi": "Sidebar Teradata liệt kê procedure, và macro trong mục Functions."
-        }
-    },
-    "mac-db-teradata-sidebar-mobile": {
-        "description": {
-            "vi": "Cận cảnh mục Procedures và Functions trong sidebar."
-        }
-    },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "vi": "Một query Trino join các table từ hai catalog, kèm kết quả bên dưới."
-        },
-        "caption": null
-    },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query Trino join các table từ hai catalog, kèm các kết quả đầu tiên."
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "vi": "Các table được dựng từ một sổ cái Beancount trong sidebar, và kết quả của một query BQL."
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query BQL trên sổ cái Beancount, kèm các dòng kết quả đầu tiên."
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "vi": "Câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset, key và timestamp."
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "vi": "Cận cảnh câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset và key."
+            "vi": "TablePro trên Mac đang mở một sổ cái Beancount, với các table trong sidebar và kết quả một query BQL."
         },
         "caption": null
     },

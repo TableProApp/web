@@ -11,54 +11,47 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Cliente Cloudflare D1",
-        "lead": "Explora las bases D1 de tu cuenta de Cloudflare y ejecuta consultas SQLite mediante la API."
+        "lead": "Explora las bases de datos D1 de tu cuenta de Cloudflare y ejecuta consultas SQLite mediante la API de Cloudflare.",
+        "asset": "databases-cloudflare-d1"
     },
-    "asset": "mac-db-d1-databases",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "credentials": "/features/connections#credentials",
         "sqlite": "/sqlite-client"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecta con un token API",
-            "paragraphs": [
-                "Introduce el nombre de D1, UUID, ID de cuenta y <ui>API Token</ui>. El token permanece en el <credentials>Llavero de macOS</credentials>. La conexión usa HTTPS, sin host, puerto, ajustes TLS ni SSH.",
-                "El token necesita el permiso <ui>Account > D1 > Edit</ui>. Cópialo mientras sea visible. Da acceso a todas las bases D1 de la cuenta, no solo a la seleccionada.",
-                "Importar una URL <code>d1://account-id/database-name</code> rellena la cuenta y la base de datos; el token nunca viaja en la URL, por lo que debes pegarlo después."
+            "text": [
+                "Introduce el nombre o el UUID de una base de datos D1, el ID de tu cuenta de Cloudflare y un <ui>API Token</ui>, que se guarda en el <credentials>Llavero de macOS</credentials>. Las solicitudes usan HTTPS, así que no hay host, puerto, ajuste TLS ni túnel SSH.",
+                "Crea el token con el permiso <ui>Account > D1 > Edit</ui> y cópialo cuando se muestre. Da acceso a todas las bases de datos D1 de la cuenta, no solo a la que elijas. Importar una URL <code>d1://account-id/database-name</code> rellena la cuenta y la base de datos; el token nunca viaja en la URL, así que pégalo después."
             ]
         },
         {
             "id": "work",
             "title": "Cambia de base de datos y consulta",
-            "paragraphs": [
-                "Cambia de base D1 sin reconectar. El selector permite crear y eliminar bases. Las pestañas conservan su base inicial.",
-                "Las consultas usan el dialecto de SQLite. <explain>EXPLAIN QUERY PLAN</explain> se representa como diagrama, y las ediciones de filas quedan pendientes en la cuadrícula hasta guardar, con <editing>Preview SQL</editing> mostrando antes las sentencias.",
-                "Escribe cada sentencia de forma autónoma: un ajuste <code>PRAGMA</code> o una tabla temporal creados por una sentencia desaparecen en la siguiente; cada sentencia se confirma al ejecutarse, sin nada que revertir. Si Cloudflare limita la frecuencia de una solicitud, el error incluye el tiempo que Cloudflare pide esperar antes de reintentarlo."
+            "text": [
+                "Cambia entre las bases de datos D1 de la cuenta sin reconectar; el selector también crea y elimina bases, y las pestañas abiertas conservan su base inicial. Las consultas usan el dialecto de <sqlite>SQLite</sqlite>, y <explain>EXPLAIN QUERY PLAN</explain> se dibuja como diagrama.",
+                "Escribe cada sentencia de forma autónoma: un ajuste <code>PRAGMA</code> o una tabla temporal creados por una sentencia ya no existen en la siguiente, y cada sentencia se confirma al ejecutarse, sin nada que revertir. Cuando Cloudflare limita la frecuencia de una solicitud, el error incluye la espera que pide antes de reintentar."
             ]
         },
         {
             "id": "schema",
             "title": "Tablas, índices y triggers",
-            "paragraphs": [
-                "La <structure>pestaña Structure</structure> crea y elimina tablas, añade y elimina columnas y crea y elimina índices, incluidos los parciales con condición WHERE; Preview SQL muestra el DDL antes de guardar. La pestaña Triggers crea, edita y elimina triggers, y puedes renombrar tablas desde la barra lateral.",
-                "Reordenar columnas o cambiar una clave foránea requiere reconstruir la tabla. En D1, TablePro escribe el script de reconstrucción y te lo entrega para ejecutarlo, porque cada sentencia es una solicitud independiente y ninguna transacción puede abarcar toda la reconstrucción."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "TablePro no ofrece importación para D1. Carga un archivo SQL con <code>wrangler d1 execute</code> y su opción <code>--file</code>, y explora aquí el resultado. <export>Exportar</export> escribe una tabla D1 o el resultado de una consulta como {exportFormats}."
+            "text": [
+                "La <structure>pestaña Structure</structure> crea y elimina tablas, añade y elimina columnas, y crea y elimina índices, incluidos los parciales con condición WHERE. La pestaña Triggers crea, edita y elimina triggers, y puedes renombrar tablas desde la barra lateral.",
+                "Reordenar columnas o cambiar una clave foránea implica reconstruir la tabla. TablePro escribe ese script de reconstrucción y te lo entrega para que lo ejecutes, porque cada sentencia es una solicitud independiente y ninguna transacción puede mantener unida la reconstrucción."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exporta</export> una tabla D1 o el resultado de una consulta como {exportFormats}. Para cargar un archivo SQL, ejecuta <code>wrangler d1 execute</code> con su opción <code>--file</code> y luego explora aquí el resultado."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "sessions",
@@ -68,25 +61,8 @@
         {
             "id": "wrangler",
             "question": "¿Necesito instalar Wrangler?",
-            "answer": "No para explorar, consultar o editar: TablePro habla directamente con la API de Cloudflare. Wrangler solo hace falta para cargar un archivo SQL, ya que TablePro no ofrece importación para D1."
+            "answer": "No para explorar, consultar o editar: TablePro habla directamente con la API de Cloudflare. Wrangler solo hace falta para cargar un archivo SQL."
         }
     ],
-    "related": [
-        {
-            "label": "SQLite, el dialecto de D1",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Turso y libSQL, SQLite por HTTP",
-            "href": "/turso-client"
-        },
-        {
-            "label": "Edición de estructuras y scripts de reconstrucción",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "Conexiones y credenciales",
-            "href": "/features/connections"
-        }
-    ]
+    "otherTools": null
 }

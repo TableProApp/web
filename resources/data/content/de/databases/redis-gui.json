@@ -11,66 +11,42 @@
     "breadcrumb": "Redis",
     "header": {
         "title": "Grafische Oberfläche für Redis",
-        "lead": "Durchsuche auf Mac Schlüssel und führe Befehle auf Standalone-, Sentinel- oder Cluster-Installationen aus. iPhone und iPad unterstützen nur Standalone-Befehle."
+        "lead": "Durchsuche Schlüssel als Baum und führe Befehle auf Standalone-, Sentinel- oder Cluster-Installationen aus, Valkey eingeschlossen.",
+        "asset": "databases-redis"
     },
-    "asset": "mac-db-redis-keys",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "editing": "/features/data-editing#documents-and-keys",
         "safeMode": "/features/data-editing#safe-mode",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "compare": "/compare"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Wähle <ui>Connection Mode</ui>: Standalone, Sentinel oder Cluster. Sentinel folgt nach einem Failover dem Primary; Cluster findet Shards über ein Seed-Mitglied und leitet Befehle an den zuständigen Shard.",
-                "Melde dich mit einem Passwort an oder fülle Username aus, um dich als ACL-Benutzer von Redis 6 anzumelden. Wähle bei Amazon ElastiCache einen <cloudAuth>AWS-IAM</cloudAuth>-Modus; ein kurzlebiger Token wird zum Passwort. ElastiCache-IAM benötigt TLS.",
-                "Neue Verbindungen starten ohne TLS. Upstash, Redis Cloud und ähnliche Dienste verlangen es; eine eingefügte <code>rediss://</code>-URL aktiviert es. Es gibt keinen Klartext-Fallback, daher wirkt Preferred wie Required. Valkey-Server verbinden sich genauso wie Redis.",
-                "Die Seitenleiste listet nummerierte Datenbanken ab <code>db0</code>; ein Klick öffnet sie direkt zum Durchsuchen."
+            "text": [
+                "Wähle <ui>Connection Mode</ui>: Standalone, Sentinel oder Cluster. Sentinel folgt nach einem Failover dem Primary, und Cluster findet Shards über ein Seed-Mitglied und leitet jeden Befehl an den Shard, dem sein Schlüssel gehört. Valkey-Server verbinden sich genauso wie Redis.",
+                "Melde dich mit einem Passwort an oder fülle Username aus, um dich als ACL-Benutzer von Redis 6 anzumelden. Bei Amazon ElastiCache macht ein <cloudAuth>AWS-IAM</cloudAuth>-Modus einen kurzlebigen Token zum Passwort, mit aktivem TLS.",
+                "Neue Verbindungen starten ohne TLS. Upstash, Redis Cloud und ähnliche Dienste verlangen es, und eine eingefügte <code>rediss://</code>-URL aktiviert es; es gibt keinen Klartext-Fallback, daher verhält sich Preferred wie Required."
             ]
         },
         {
             "id": "work",
             "title": "Schlüssel und Befehle",
-            "paragraphs": [
-                "Durchsuche Schlüssel in durch Doppelpunkte getrennten Ordnern oder wähle ein anderes Trennzeichen. Jede Zeile zeigt Typ, TTL, Länge und Wert. Collections zeigen ihre ersten Einträge; Nicht-UTF-8-Werte öffnen sich im Hex-Editor.",
-                "<editing>Bearbeite Schlüsselnamen, TTLs und String-Werte</editing> im Raster. Add Row erstellt Hashes, Listen, Sets, Sorted Sets oder Strings. Filtere Namen und Typen serverseitig mit <code>SCAN MATCH</code> und <code>SCAN TYPE</code>.",
-                "Führe Befehle mit Anführungszeichen im redis-cli-Stil aus. Unbekannte Befehle werden unverändert gesendet. <code>DB 3 GET key</code> adressiert eine andere Datenbank, ohne die Sitzung zu ändern. In <code>MULTI</code> bleiben Antworten bis <code>EXEC</code> in der Warteschlange.",
-                "<safeMode>Safe Mode</safeMode> führt Befehle aus seiner Liste der Lesebefehle, etwa <code>GET</code>, als Lesezugriff aus und zählt jeden anderen Befehl als Schreibzugriff. <code>FLUSHDB</code> und <code>FLUSHALL</code> fragen auch bei Silent nach."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "<export>Exportiere</export> Schlüssel oder Befehlsergebnisse als {exportFormats}. Redis-Import ist nicht verfügbar; lade Daten mit Befehlen im Editor."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone und iPad",
-            "paragraphs": [
-                "Auf iPhone und iPad führst du Redis-Befehle im Query-Tab aus; das Durchsuchen von Schlüsseln gibt es in der iPhone- und iPad-App nicht. Eine Verbindung dort unterstützt ein Passwort, TLS mit CA- oder Client-Zertifikat aus einer Datei, eingefügtem Text oder einem PKCS#12-Bundle sowie einen SSH-Tunnel mit Passwort oder Schlüssel. Sentinel und Cluster gibt es nur auf dem Mac."
+            "text": [
+                "Durchsuche Schlüssel in Ordnern, getrennt an Doppelpunkten oder einem anderen Trennzeichen, mit Typ, TTL, Länge und Wert jedes Schlüssels. Collections zeigen ihre ersten Einträge, und Nicht-UTF-8-Werte öffnen sich im Hex-Editor. <editing>Bearbeite Schlüsselnamen, TTLs und String-Werte</editing> im Raster, und Add Row erstellt Hashes, Listen, Sets, Sorted Sets oder Strings. Filter auf Namen und Typen laufen serverseitig, mit <code>SCAN MATCH</code> und <code>SCAN TYPE</code>.",
+                "Befehle nehmen Anführungszeichen im redis-cli-Stil an, und unbekannte werden unverändert gesendet. <code>DB 3 GET key</code> liest eine andere Datenbank, ohne die Sitzung zu wechseln, und in <code>MULTI</code> bleiben Antworten bis <code>EXEC</code> in der Warteschlange. <safeMode>Safe Mode</safeMode> behandelt Befehle aus seiner Leseliste, etwa <code>GET</code>, als Lesezugriff und jeden anderen als Schreibzugriff; <code>FLUSHDB</code> und <code>FLUSHALL</code> fragen immer zuerst nach."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "redis-insight",
-                "text": "Wähle Redis Insight für Schlüsselbrowser, Befehls-Workbench, Pub/Sub-Arbeitsbereich, Profiler, Slow Logs und Speicheranalyse. TablePro nutzt Redis neben SQL-Datenbanken.",
-                "notes": [
-                    "redis-insight-copilot"
-                ]
-            }
-        ],
-        "notes": {
-            "redis-insight-copilot": "Der Redis Copilot von Redis Insight beantwortet Redis-Fragen und erstellt Suchabfragen aus natürlicher Sprache."
-        }
-    },
+    "moveData": [
+        "<export>Exportiere</export> Schlüssel oder Befehlsergebnisse als {exportFormats}. Um Daten zu laden, führe Befehle im Editor aus."
+    ],
+    "iphone": [
+        "Führe Redis-Befehle im Query-Tab einer Standalone-Verbindung aus, angemeldet mit Passwort, über TLS mit CA- oder Client-Zertifikat oder über einen SSH-Tunnel mit Passwort oder Schlüssel."
+    ],
     "faq": [
         {
             "id": "acl-scan",
@@ -80,30 +56,15 @@
         {
             "id": "select",
             "question": "Warum ändert SELECT nicht die Seitenleiste?",
-            "answer": "<code>SELECT</code> wechselt nur die Sitzung des Editors; die folgenden Befehle laufen auf dieser Datenbank, während Seitenleiste und Schlüsselbaum dort bleiben, wo du geklickt hast. Klicke in der Seitenleiste auf eine Datenbank, um beides zu wechseln, oder stelle einem einzelnen Befehl <code>DB</code> und die Datenbanknummer voran."
+            "answer": "<code>SELECT</code> wechselt nur die Sitzung des Editors, daher bleiben Seitenleiste und Schlüsselbaum dort, wo du geklickt hast. Klicke in der Seitenleiste auf eine Datenbank, um beides zu wechseln, oder stelle einem einzelnen Befehl <code>DB</code> und die Datenbanknummer voran."
         },
         {
             "id": "managed",
             "question": "Warum listet ein verwalteter Redis-Dienst Datenbanken auf, die es nicht gibt?",
-            "answer": "Dienste wie Upstash, Redis Cloud und ElastiCache lehnen <code>CONFIG</code> ab; TablePro kann daher nicht lesen, wie viele Datenbanken sie haben, und listet einen Standardbereich. Bei einem Dienst mit nur einer Datenbank zeigen alle Datenbanken außer <code>db0</code> beim Öffnen den Fehler des Servers."
+            "answer": "Upstash, Redis Cloud und ElastiCache lehnen <code>CONFIG</code> ab, daher kann TablePro nicht lesen, wie viele Datenbanken sie haben, und listet einen Standardbereich. Bei einem Dienst mit einer Datenbank zeigen die anderen beim Öffnen den Fehler des Servers."
         }
     ],
-    "related": [
-        {
-            "label": "Daten sicher durchsuchen und bearbeiten",
-            "href": "/features/data-editing#documents-and-keys"
-        },
-        {
-            "label": "Verbindungen, Tunnel und Zugangsdaten",
-            "href": "/features/connections"
-        },
-        {
-            "label": "TablePro für iPhone und iPad",
-            "href": "/ios"
-        },
-        {
-            "label": "TablePro mit anderen Datenbankclients vergleichen",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Redis Insight hat eine Befehls-Workbench, einen Pub/Sub-Arbeitsbereich, einen Profiler, Slow Logs und Speicheranalyse, während TablePro mit Redis neben deinen SQL-Datenbanken arbeitet; die <compare>Vergleiche</compare> behandeln andere Clients, die beides können."
+    }
 }

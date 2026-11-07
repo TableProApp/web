@@ -11,99 +11,60 @@
     "breadcrumb": "Redis",
     "header": {
         "title": "Redis GUI",
-        "lead": "在 Mac 上浏览键，并在 Standalone、Sentinel 或 Cluster 部署中运行命令。iPhone 和 iPad 仅支持 Standalone 命令。"
+        "lead": "以树形结构浏览键，并在 Standalone、Sentinel 或 Cluster 部署（包括 Valkey）上运行命令。",
+        "asset": "databases-redis"
     },
-    "asset": "mac-db-redis-keys",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "editing": "/features/data-editing#documents-and-keys",
         "safeMode": "/features/data-editing#safe-mode",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "compare": "/compare"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "从 <ui>连接模式</ui> (Connection Mode) 中选择 Standalone、Sentinel 或 Cluster。Sentinel 在故障转移后跟随主节点；Cluster 从种子成员发现分片，并将命令路由至所属分片。",
-                "用密码登录，或填写 Username 以 Redis 6 ACL 用户登录。Amazon ElastiCache 选择 <cloudAuth>AWS IAM</cloudAuth> 模式，用短期令牌作为密码；ElastiCache IAM 需开启 TLS。",
-                "新连接 TLS 关闭。Upstash、Redis Cloud 等服务要求 TLS，粘贴 <code>rediss://</code> URL 会开启。无明文回退，Preferred 等同 Required。Valkey 服务器与 Redis 连接方式相同。",
-                "侧边栏从 <code>db0</code> 起列出各编号数据库，点击原地浏览。"
+            "text": [
+                "选择 <ui>连接模式</ui> (Connection Mode)：Standalone、Sentinel 或 Cluster。Sentinel 在故障转移后跟随主节点，Cluster 从种子成员发现分片，并将每条命令路由至拥有其键的分片。Valkey 服务器的连接方式与 Redis 相同。",
+                "用密码登录，或填写 Username 以 Redis 6 ACL 用户登录。在 Amazon ElastiCache 上，<cloudAuth>AWS IAM</cloudAuth> 模式会将短期令牌作为密码，并开启 TLS。",
+                "新连接默认关闭 TLS。Upstash、Redis Cloud 等服务要求 TLS，粘贴 <code>rediss://</code> URL 会开启它；不会回退到明文，因此 Preferred 的行为等同 Required。"
             ]
         },
         {
             "id": "work",
             "title": "键和命令",
-            "paragraphs": [
-                "按冒号分隔的文件夹浏览键，也可选择其他分隔符。每行显示键类型、TTL、长度和值。集合显示前几个条目；非 UTF-8 值在十六进制编辑器中打开。",
-                "在表格中<editing>编辑键名、TTL 和字符串值</editing>。Add Row 可创建哈希、列表、集合、有序集合或字符串。通过服务器端 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 筛选键名和类型。",
-                "使用 redis-cli 风格引号规则运行命令。未知命令按原样发送。<code>DB 3 GET key</code> 可访问另一个数据库而不改变会话。<code>MULTI</code> 中的响应会排队，直到 <code>EXEC</code>。",
-                "<safeMode>Safe Mode</safeMode> 将读取命令列表中的命令（如 <code>GET</code>）作为读取运行，其他命令均视为写入。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "将键或命令结果<export>导出</export>为 {exportFormats}。Redis 不提供导入，请在编辑器用命令加载数据。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone 和 iPad",
-            "paragraphs": [
-                "iPhone、iPad 在 Query 标签页运行 Redis 命令，iPhone 和 iPad 应用不支持浏览键。连接接受密码、来自文件、粘贴文本或 PKCS#12 包的 CA 或客户端证书 TLS，以及密码或密钥登录的 SSH 隧道。Sentinel、Cluster 仅限 Mac。"
+            "text": [
+                "按冒号或其他分隔符划分的文件夹浏览键，并查看每个键的类型、TTL、长度和值。集合显示前几个条目，非 UTF-8 值在十六进制编辑器中打开。在网格中<editing>编辑键名、TTL 和字符串值</editing>，Add Row 可创建哈希、列表、集合、有序集合或字符串。键名和类型的筛选通过 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 在服务器端运行。",
+                "命令使用 redis-cli 风格的引号规则，未知命令按原样发送。<code>DB 3 GET key</code> 可读取另一个数据库而不移动会话，<code>MULTI</code> 中的响应会排队，直到 <code>EXEC</code>。<safeMode>Safe Mode</safeMode> 将其读取列表中的命令（如 <code>GET</code>）视为读取，其他命令均视为写入；<code>FLUSHDB</code> 和 <code>FLUSHALL</code> 总是先询问。"
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "redis-insight",
-                "text": "Redis Insight 提供键浏览器、命令 Workbench、Pub/Sub 工作区、分析器、慢日志和内存分析。TablePro 可同时处理 Redis 和 SQL 数据库。",
-                "notes": [
-                    "redis-insight-copilot"
-                ]
-            }
-        ],
-        "notes": {
-            "redis-insight-copilot": "Redis Insight 的 Redis Copilot 回答 Redis 问题，并从自然语言构建搜索查询。"
-        }
-    },
+    "moveData": [
+        "将键或命令结果<export>导出</export>为 {exportFormats}。要加载数据，请在编辑器中运行命令。"
+    ],
+    "iphone": [
+        "在 Standalone 连接的 Query 标签页中运行 Redis 命令，可用密码登录，通过带 CA 或客户端证书的 TLS 连接，或通过使用密码或密钥的 SSH 隧道连接。"
+    ],
     "faq": [
         {
             "id": "acl-scan",
             "question": "为什么 ACL 用户的键树为空？",
-            "answer": "键树用 <code>SCAN</code> 读取键名，用 <code>TYPE</code> 读取类型。授予两者，如 <code>ACL SETUSER app +scan +type</code>，再右击侧边栏<ui>键</ui>（Keys）选<ui>刷新</ui>（Refresh）。"
+            "answer": "键树用 <code>SCAN</code> 读取键名，用 <code>TYPE</code> 读取类型。请授予两者，例如 <code>ACL SETUSER app +scan +type</code>，然后在侧边栏右键点击 <ui>键</ui> (Keys) 并选择 <ui>刷新</ui> (Refresh)。"
         },
         {
             "id": "select",
-            "question": "为什么 SELECT 不改变侧边栏？",
-            "answer": "<code>SELECT</code> 仅移动编辑器会话，后续命令在该数据库运行，侧边栏和键树保持点击的位置。点击侧边栏数据库同时移动两者，或给单条命令加 <code>DB</code> 及数据库编号前缀。"
+            "question": "为什么 SELECT 不会改变侧边栏？",
+            "answer": "<code>SELECT</code> 仅移动编辑器的会话，因此侧边栏和键树保持在您点击的位置。点击侧边栏中的数据库可同时移动两者，或给单条命令加上 <code>DB</code> 和数据库编号作为前缀。"
         },
         {
             "id": "managed",
-            "question": "为什么托管 Redis 服务列出不存在的数据库？",
-            "answer": "Upstash、Redis Cloud、ElastiCache 等拒绝 <code>CONFIG</code>，TablePro 无法读取数据库数而列出默认范围。仅一个数据库的服务中，打开 <code>db0</code> 之外的数据库显示服务器错误。"
+            "question": "为什么托管 Redis 服务会列出它没有的数据库？",
+            "answer": "Upstash、Redis Cloud 和 ElastiCache 拒绝 <code>CONFIG</code>，因此 TablePro 无法读取它们有多少个数据库，只能列出默认范围。在只有一个数据库的服务上，打开其他数据库会显示服务器错误。"
         }
     ],
-    "related": [
-        {
-            "label": "安全浏览和编辑数据",
-            "href": "/features/data-editing#documents-and-keys"
-        },
-        {
-            "label": "连接、隧道和凭据",
-            "href": "/features/connections"
-        },
-        {
-            "label": "适用于 iPhone 和 iPad 的 TablePro",
-            "href": "/ios"
-        },
-        {
-            "label": "对比 TablePro 和其他数据库客户端",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Redis Insight 提供命令 Workbench、Pub/Sub 工作区、分析器、慢日志和内存分析，而 TablePro 可将 Redis 与您的 SQL 数据库一起使用；<compare>对比页面</compare>介绍了兼顾两者的其他客户端。"
+    }
 }

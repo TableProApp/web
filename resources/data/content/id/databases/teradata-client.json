@@ -11,82 +11,58 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Klien Teradata",
-        "lead": "Kueri dan edit Teradata tanpa menginstal perangkat lunak klien terpisah. Jelajahi database, pengguna, prosedur, dan makro."
+        "lead": "Jalankan kueri dan edit Teradata tanpa perangkat lunak klien terpisah, serta telusuri database, pengguna, prosedur, dan makronya.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan dan masuk",
-            "paragraphs": [
-                "Masukkan host, nama pengguna dan kata sandi. Pilih <code>TD2</code> atau <code>TDNEGO</code> di <ui>Logon Mechanism</ui>. <ui>Database</ui> menggantikan default akun. Server Vantage yang menerima TD2 didukung tanpa pemeriksaan versi.",
-                "Port default menggunakan sesi tanpa enkripsi. Mode SSL apa pun memindahkan sesi ke endpoint WebSocket gateway pada port 443, yang tidak dapat diubah. Verify CA memerlukan sertifikat CA, dan Verify Identity memeriksa rantai serta nama host terhadap sertifikat tersebut atau, jika tidak ada, penyimpanan kepercayaan sistem.",
-                "Biarkan <ui>Transaction Mode</ui> pada <code>DEFAULT</code> kecuali skrip memerlukan aturan commit dan sensitivitas huruf besar-kecil ANSI atau TERA pada sesi. Akses sistem di balik bastion melalui <network>tunnel SSH</network>. <ui>Import from URL…</ui> menerima URL <code>teradata://</code>, yang tidak dibuka macOS sebagai tautan."
+            "text": [
+                "Masukkan host, nama pengguna, dan kata sandi, lalu pilih <code>TD2</code> atau <code>TDNEGO</code> di <ui>Logon Mechanism</ui>; <ui>Database</ui> menggantikan default akun. Server Vantage yang menerima TD2 terhubung tanpa pemeriksaan versi.",
+                "Port default membawa sesi tanpa enkripsi. Mode SSL apa pun memindahkan sesi ke endpoint WebSocket gateway di port 443, yang tidak dapat diubah. Verify CA memerlukan sertifikat CA, dan Verify Identity memeriksa rantai dan nama host terhadap sertifikat itu atau, jika tidak ada, penyimpanan kepercayaan sistem.",
+                "Biarkan <ui>Transaction Mode</ui> pada <code>DEFAULT</code> kecuali skrip memerlukan aturan commit dan sensitivitas huruf besar-kecil ANSI atau TERA. <ui>Import from URL…</ui> menerima URL <code>teradata://</code>, yang tidak dibuka macOS sebagai tautan."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan edit",
-            "paragraphs": [
-                "Jelajahi database dan pengguna sebagai namespace. Tab di database lain berbagi sesi dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
-                "Prosedur tersimpan tercantum di sidebar, dan makro berada di bawah Functions; masing-masing membuka <objects>kode sumbernya dalam tab hanya baca</objects>.",
-                "Teradata tidak memiliki <code>LIMIT</code>, sehingga halaman pertama tabel menggunakan <code>TOP</code> dan halaman berikutnya menggunakan <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> mengembalikan rencana Teradata sebagai teks mentah. Perubahan baris menunggu hingga Anda menyimpan, dan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu."
+            "title": "Kueri dan edit",
+            "text": [
+                "Database dan pengguna sama-sama muncul sebagai namespace, dan tab pada database lain berbagi sesi, dengan menjalankan <code>DATABASE</code> sebelum pernyataannya. Prosedur tersimpan tercantum di sidebar dan makro di bawah Functions, masing-masing membuka <objects>kode sumbernya di tab hanya baca</objects>.",
+                "Teradata tidak memiliki <code>LIMIT</code>, sehingga halaman pertama tabel diambil dengan <code>TOP</code> dan halaman berikutnya dengan <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> mengembalikan rencana Teradata sebagai teks mentah."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Buat tabel dan ubah kolomnya dari <structure>tab Structure</structure>. Tampilan DDL tabel menampilkan definisi lengkap, termasuk constraint."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Muat file {importFormats} dengan <importData>Import</importData>, dan simpan tabel atau hasil sebagai {exportFormats}. <copy>Copy To</copy> mengirim tabel, barisnya, atau keduanya ke koneksi Teradata lain; penyalinan ke mesin berbeda ditolak."
+            "title": "Struktur",
+            "text": [
+                "Buat tabel dan ubah kolomnya di <structure>tab Structure</structure>. Tampilan DDL tabel menampilkan definisi lengkapnya, termasuk constraint."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Impor</importData> file {importFormats}, dan ekspor tabel atau hasil sebagai {exportFormats}. <copy>Copy To</copy> mengirim tabel, barisnya, atau keduanya ke koneksi Teradata lain; penyalinan ke mesin lain ditolak."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
-            "question": "Mengapa mekanisme login saya diabaikan?",
+            "question": "Mengapa logon mechanism saya diabaikan?",
             "answer": "Ketik dengan huruf besar. Nilai yang tidak dikenali driver, seperti <code>tdnego</code> dalam huruf kecil, dibaca sebagai <code>TD2</code>."
         },
         {
             "id": "tls-check",
-            "question": "Bagaimana saya mengetahui bahwa sesi terenkripsi?",
-            "answer": "Uji dengan Required (skip verify) atau mode verifikasi. Preferred beralih ke sesi tanpa enkripsi jika port TLS tidak dapat diakses, sehingga handshake yang gagal tetap terlihat sebagai koneksi berhasil."
+            "question": "Bagaimana cara mengetahui bahwa sesi terenkripsi?",
+            "answer": "Uji dengan Required (skip verify) atau mode verifikasi. Preferred beralih ke sesi tanpa enkripsi jika port TLS tidak dapat dijangkau, sehingga handshake yang gagal tetap terlihat seperti koneksi yang berhasil."
         }
     ],
-    "related": [
-        {
-            "label": "Tulis, jalankan, dan pahami kueri",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Skema, perbandingan, dan sinkronisasi",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake, data warehouse lainnya",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino, untuk kueri lintas katalog",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

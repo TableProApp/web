@@ -11,73 +11,59 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Interface gráfica de Amazon DynamoDB",
-        "lead": "Navegue pelos itens, consulte por chave e veja a capacidade de leitura consumida. Edite valores tipados ou execute solicitações PartiQL."
+        "lead": "Navegue pelos itens, leia por chave vendo a capacidade consumida e edite valores tipados ou execute PartiQL.",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se",
-            "paragraphs": [
-                "Escolha um <ui>Auth Method</ui> e <ui>AWS Region</ui>. Use uma chave de acesso com token de sessão opcional, um perfil AWS CLI ou <cloudAuth>AWS IAM Identity Center</cloudAuth>. Sessões expiradas do Identity Center solicitam login.",
-                "Os perfis resolvem auxiliares <code>credential_process</code> e cadeias <code>role_arn</code>, e credenciais temporárias expiradas são buscadas novamente, com uma repetição da requisição. Todas as requisições usam HTTPS com Signature Version 4, portanto não há configuração SSL ou túnel SSH. Uma região em outra partição AWS, como China ou European Sovereign Cloud, acessa o próprio endpoint sem exigir um endpoint personalizado.",
-                "Para DynamoDB Local, execute <code>docker run -p 8000:8000 amazon/dynamodb-local</code> e escolha <ui>DynamoDB Local (no credentials)</ui>; deixe <ui>Custom Endpoint</ui> vazio para usar a porta 8000. Um endpoint personalizado só pode usar HTTP sem criptografia neste Mac. O guia de configuração lista <permissions>as ações IAM exigidas por cada tarefa</permissions>."
+            "text": [
+                "Escolha um <ui>Auth Method</ui> e uma <ui>AWS Region</ui>: uma chave de acesso com token de sessão opcional, um perfil do AWS CLI ou <cloudAuth>AWS IAM Identity Center</cloudAuth>. Os perfis resolvem auxiliares <code>credential_process</code> e cadeias <code>role_arn</code>, e toda requisição vai por HTTPS, assinada com Signature Version 4, então não há configuração SSL nem túnel SSH.",
+                "Para o DynamoDB Local, execute <code>docker run -p 8000:8000 amazon/dynamodb-local</code> e escolha <ui>DynamoDB Local (no credentials)</ui>; um endpoint personalizado só pode usar HTTP sem criptografia neste Mac. Uma região em outra partição AWS, como a China, acessa o próprio endpoint sem precisar de um personalizado. O guia de configuração lista <permissions>as ações IAM que cada tarefa exige</permissions>."
             ]
         },
         {
             "id": "work",
             "title": "Leia, filtre e edite itens",
-            "paragraphs": [
-                "Filtros por chave usam Query; os demais usam Scan. Scans leem a tabela inteira e cobram por cada item lido. A barra de status mostra a operação, os itens retornados e examinados e a capacidade de leitura consumida.",
-                "<filters>Filtros de chave de classificação</filters> usam condições de chave quando suportados. Outros filtros funcionam após a leitura e não reduzem a conta. Caminhos aninhados como <code>address.city</code> e <code>items[0].sku</code> são suportados.",
-                "Clicar no cabeçalho da chave de ordenação em uma Query de uma partição faz DynamoDB retornar os itens nessa ordem. Qualquer outra ordenação acontece na grade quando a leitura contém todos os itens correspondentes, e a barra de status informa quando não contém. A próxima página continua de onde a anterior parou. O total abaixo da grade é a contagem de itens do próprio DynamoDB; <ui>Count Exactly</ui> lê todos os itens que correspondem aos filtros, e essa leitura é cobrada integralmente.",
-                "Uma tabela declara apenas suas chaves, portanto as colunas vêm dos itens: os atributos de chave, os atributos encontrados em uma amostra dos primeiros itens e os da página atual. Maps, listas e conjuntos aparecem como JSON e abrem no editor JSON, e números mantêm todos os dígitos.",
-                "Cada linha é salva como uma instrução PartiQL, com tipos <editing>preservados como</editing>. As atualizações verificam os atributos alterados em relação aos seus valores carregados e se recusam a substituir alterações simultâneas. <ui>Set NULL</ui> remove o atributo.",
-                "O editor aceita PartiQL, com aspas duplas nos nomes e aspas simples nas strings, ou o nome de uma ação DynamoDB seguido pelo JSON da requisição, como <code>Query</code>, <code>BatchWriteItem</code> ou <code>TransactWriteItems</code>. Qualquer outro nome de ação é recusado. Os itens retornam na grade e outras respostas como JSON. Requisições limitadas são repetidas com intervalos progressivos, e <code>⌘.</code> interrompe uma instrução em execução."
+            "text": [
+                "Filtros por chave rodam como Query e os demais como Scan, que lê e cobra a tabela inteira; a barra de status mostra a operação, os itens retornados e examinados e a capacidade de leitura consumida. <filters>Filtros na chave de ordenação</filters> viram condições de chave quando possível, e caminhos aninhados como <code>address.city</code> funcionam. Clicar no cabeçalho da chave de ordenação em uma Query de uma partição faz o DynamoDB retornar os itens nessa ordem.",
+                "As colunas vêm dos itens: as chaves, os atributos encontrados em uma amostra dos primeiros itens e os da página em exibição. Maps, listas e conjuntos abrem no editor JSON, números mantêm todos os dígitos, <ui>Set NULL</ui> remove um atributo, e cada linha é salva como uma instrução PartiQL que se recusa a sobrescrever uma alteração simultânea. O editor aceita PartiQL, ou o nome de uma ação como <code>Query</code> ou <code>TransactWriteItems</code> seguido do JSON da requisição; requisições limitadas são repetidas com intervalos progressivos."
             ]
         },
         {
             "id": "schema",
-            "title": "Tabelas e índices",
-            "paragraphs": [
-                "<ui>New Table…</ui> abre um formulário para as chaves de partição e ordenação, capacidade sob demanda ou provisionada, classe da tabela, proteção contra exclusão e índices secundários, e <ui>Preview</ui> mostra a requisição <code>CreateTable</code> antes do envio. Um índice secundário local só pode ser definido ali, na criação da tabela.",
-                "Na aba Structure você adiciona ou remove um índice secundário global, uma alteração por salvamento, pois DynamoDB aceita uma alteração de índice por requisição <code>UpdateTable</code>. Os atributos não são editados ali: grave um em um item para ele aparecer como coluna. A aba DDL mostra a requisição <code>CreateTable</code> que recria a tabela, com suas configurações de Time to Live e recuperação point-in-time."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Configurações de tabela",
-            "paragraphs": [
-                "Clique com o botão direito em uma tabela e escolha <ui>Maintenance</ui> para recuperação point-in-time, proteção contra exclusão, stream, classe da tabela, mudança para capacidade sob demanda e desativação de Time to Live. Excluir uma tabela envia <code>DeleteTable</code>, que falha enquanto a proteção contra exclusão está ativa."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "Não há importação para DynamoDB. Grave itens pelo editor com um <code>INSERT</code> PartiQL ou uma requisição <code>BatchWriteItem</code>, que reenvia itens não processados e informa os que não conseguiu gravar. <export>Exporte</export> uma tabela ou um resultado como {exportFormats} pela janela Export."
+            "also": [
+                "operate"
+            ],
+            "title": "Tabelas, índices e configurações",
+            "text": [
+                "<ui>New Table…</ui> define as chaves, o modo de capacidade, a classe da tabela, a proteção contra exclusão e os índices secundários, e mostra antes a requisição <code>CreateTable</code>; um índice secundário local só pode ser definido ali. A aba Structure adiciona ou remove um índice secundário global por salvamento, e a aba DDL mostra a requisição que recria a tabela.",
+                "<ui>Maintenance</ui> cobre recuperação point-in-time, proteção contra exclusão, o stream, a classe da tabela, a mudança para capacidade sob demanda e a desativação do Time to Live."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Grave itens pelo editor com um <code>INSERT</code> PartiQL ou uma requisição <code>BatchWriteItem</code>, que reenvia os itens não processados. <export>Exporte</export> uma tabela ou um resultado como {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
             "question": "Como evito que uma leitura varra a tabela inteira?",
-            "answer": "Filtre a chave de partição com =, ou a chave de partição de um índice global com um filtro em cada chave de ordenação, e a leitura usa Query. Um índice global só é usado na navegação quando projeta todos os atributos, portanto consulte um índice apenas de chaves pelo editor com uma requisição <code>Query</code> que informe seu <code>IndexName</code>."
+            "answer": "Filtre a chave de partição com =, ou a chave de partição de um índice global com um filtro em cada uma das chaves de ordenação dele, e a leitura roda como Query. Um índice só de chaves não é usado na navegação, então consulte-o pelo editor com uma requisição <code>Query</code> que informe o <code>IndexName</code>."
         },
         {
             "id": "change-key",
             "question": "Como altero a chave de um item?",
-            "answer": "Um atributo de chave não pode ser editado no local. Use <ui>Duplicate Row</ui>, que copia todos os atributos exceto as chaves, dê à cópia a nova chave, salve e depois exclua o original."
+            "answer": "Use <ui>Duplicate Row</ui>, que copia todos os atributos exceto as chaves, dê a nova chave à cópia, salve e depois exclua o original."
         },
         {
             "id": "transactions",
@@ -85,22 +71,5 @@
             "answer": "Não. Cada linha alterada é gravada separadamente. Coloque gravações que precisam ter sucesso juntas em uma requisição <code>ExecuteTransaction</code> ou <code>TransactWriteItems</code> no editor."
         }
     ],
-    "related": [
-        {
-            "label": "Filtros entre mecanismos",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "Autenticação em AWS, Google e Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis, chaves e comandos",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra e Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -9,101 +9,51 @@
     },
     "header": {
         "title": "対応データベース",
-        "lead": "使いたいデータベースの対応機能を確認できます。TablePro は {featured} を含む {count} エンジンに接続できます。"
+        "lead": "TablePro は {featured} を含む {count} エンジンに接続できます。使っているデータベースと、TablePro でできることを確認できます。",
+        "docs": "セットアップガイド"
     },
-    "jump": "種類",
-    "categories": {
-        "relational": {
-            "title": "リレーショナル",
-            "intro": "テーブル、キーとトランザクションを備えた SQL データベース。一部は MySQL または PostgreSQL ドライバーを共有します。"
+    "nav": {
+        "label": "データベースの種類",
+        "all": "すべてのデータベース"
+    },
+    "groups": {
+        "relational": "リレーショナル",
+        "analytical": "分析とウェアハウス",
+        "cloud": "クラウドとサーバーレス",
+        "nosql": "NoSQL とストリーミング",
+        "search": "検索とベクトル",
+        "files": "ファイル"
+    },
+    "more": {
+        "drivers": {
+            "title": "ドライバーの提供方法",
+            "text": [
+                "{bundled} のドライバーは Mac アプリに同梱されています。その他のドライバーは、そのデータベースを初めて選んだときに署名済みプラグインとしてダウンロードされます。このときインターネット接続が必要です。",
+                "TablePro はインストール前に、各プラグインの SHA-256 チェックサムとコード署名を検証します。プラグインはアプリとは別に更新されます。iPhone・iPad アプリにはドライバーが組み込まれています。"
+            ],
+            "docs": "プラグインとドライバー更新"
         },
-        "analytical": {
-            "title": "分析とウェアハウス",
-            "intro": "データウェアハウス、列指向データベース、複数カタログを横断するクエリエンジン。"
+        "linux": {
+            "title": "Linux では",
+            "tested": "Linux アプリはベータ版で、{engines} でテスト済みです。",
+            "untested": "{engines} への接続は Linux ではテストされていません。",
+            "link": "Linux にインストール"
         },
-        "cloud": {
-            "title": "クラウドとサーバーレス",
-            "intro": "HTTP 経由の SQL サービスとローカルの libSQL ファイル。"
+        "iphone": {
+            "title": "iPhone と iPad では",
+            "picker": "iPhone・iPad アプリは {engines} に接続できます。",
+            "synced": "{engines} への接続は、Mac から持ち込んだ場合に開けます。",
+            "others": "他のエンジンの接続も同期されて一覧に表示されますが、開くことはできません。",
+            "link": "iPhone・iPad 版 TablePro"
         },
-        "document": {
-            "title": "ドキュメント",
-            "intro": "それぞれ固有の言語で問い合わせる、ドキュメント型とマルチモデルのデータベース。"
-        },
-        "key-value": {
-            "title": "キーバリュー",
-            "intro": "コマンドや PartiQL で読み書きするキーと値。"
-        },
-        "wide-column": {
-            "title": "ワイドカラム",
-            "intro": "クラスターに分散した CQL テーブル。"
-        },
-        "search": {
-            "title": "検索とベクトル",
-            "intro": "専用のリクエストコンソールで問い合わせる検索とベクトルのエンジン。"
-        },
-        "streaming": {
-            "title": "ストリーミング",
-            "intro": "TablePro 独自のコマンド言語 KafkaQL でメッセージを読み取り、送信できます。"
-        },
-        "coordination": {
-            "title": "協調",
-            "intro": "リースとクラスターメンバーを備えた etcd のキースペース。"
-        },
-        "files": {
-            "title": "ファイル",
-            "intro": "データベースサーバーなしで、データベースファイルや帳簿をクエリできます。"
+        "missing": {
+            "title": "使いたいデータベースがない場合",
+            "text": "新しいエンジンはドライバープラグインとして追加されます。一覧になければ、GitHub でリクエストしてください。",
+            "link": "GitHub でデータベースをリクエスト"
         }
     },
-    "table": {
-        "caption": "{category}：各エンジンのクエリ言語、ドライバー、iPhone と iPad で開けるか",
-        "engine": "データベース",
-        "queryLanguage": "クエリ言語",
-        "driver": "ドライバー",
-        "ios": "iPhone と iPad",
-        "notes": "補足"
-    },
-    "drivers": {
-        "title": "ドライバーの提供方法",
-        "paragraphs": [
-            "{bundled} のドライバーは Mac アプリに同梱されています。接続に別のクライアントソフトウェアは不要です。",
-            "その他のドライバーは、そのデータベースを初めて選ぶと署名済みプラグインとしてダウンロードされます。初回はインターネット接続が必要です。",
-            "インストール前に、各プラグインの SHA-256 チェックサムをレジストリと照合し、コード署名を検証します。",
-            "ドライバープラグインはアプリとは別に更新されます。使用中のドライバーの更新は再起動後に反映されます。",
-            "iPhone・iPad アプリにはドライバーが組み込まれています。プラグインはダウンロードしません。"
-        ],
-        "asset": "mac-engine-picker",
-        "docs": {
-            "label": "プラグインとドライバー更新",
-            "path": "/features/plugins"
-        }
-    },
-    "iphone": {
-        "title": "iPhone と iPad では",
-        "picker": "iPhone・iPad アプリは {engines} に接続できます。",
-        "synced": "{engines} への接続は、iCloud Sync やエクスポートした接続ファイルで Mac から持ち込んだ場合のみ開けます。",
-        "others": "他のエンジンの接続も iPhone と iPad に同期されて一覧に表示されますが、開くことはできません。",
-        "link": "iPhone・iPad 版 TablePro"
-    },
-    "linux": {
-        "title": "Linux では",
-        "tested": "Linux アプリはベータ版で、{engines} でテスト済みです。",
-        "untested": "{engines} への接続は Linux ではテストされていません。",
-        "others": "その他のエンジンは開けません。",
-        "link": "Linux にインストール"
-    },
-    "license": {
-        "title": "Free に含まれます",
-        "body": "対応するすべてのデータベースへの接続が Free に含まれます。Pro と Team は追加機能を提供します。",
-        "link": "料金を見る"
-    },
-    "missing": {
-        "title": "使いたいデータベースがない場合",
-        "body": "新しいエンジンはドライバープラグインとして追加されます。使用するものが一覧になければ、GitHub でリクエストしてください。",
-        "link": "GitHub でデータベースをリクエスト"
-    },
-    "docs": {
-        "label": "各データベースのセットアップガイド",
-        "path": "/databases"
+    "closing": {
+        "body": "対応するすべてのデータベースへの接続が Free に含まれます。Pro と Team は追加機能を提供します。"
     },
     "labels": {
         "facts": {
@@ -117,8 +67,7 @@
             "enforced": "{version}、強制：古いサーバーは拒否",
             "noMinimum": "なし",
             "embedded": "組み込みエンジン",
-            "embeddedValue": "{name} {version}",
-            "ios": "iPhone と iPad"
+            "embeddedValue": "{name} {version}"
         },
         "connect": {
             "file": "ファイル",
@@ -133,71 +82,28 @@
             "bundled": "Mac アプリに同梱",
             "registry": "初回使用時にダウンロード"
         },
-        "ios": {
-            "picker": "開ける",
-            "synced": "Mac から同期すれば開ける",
-            "none": "開けない"
-        },
-        "linux": {
-            "tested": "テスト済み",
-            "versions": "テスト済み：{versions}",
-            "untested": "未テスト",
-            "none": "利用不可"
-        },
-        "availability": {
-            "devices": "{devices} で使用可能",
-            "bundled": "Mac アプリにドライバー同梱",
-            "registry": "{name} を初めて使うときにドライバーをダウンロード",
-            "free": "Free に含まれます。<pricing>有料プランで追加機能を利用できます</pricing>"
-        },
         "release": "{version} の新機能",
         "docs": "{name} セットアップガイド",
-        "sections": {
-            "limits": "制限",
-            "limitsOf": "{name} の制限",
-            "iphone": "iPhone と iPad",
-            "faq": "{name} に関する質問",
-            "related": "関連ページ"
-        },
+        "common": "このページでは {name} 固有の内容を扱います。Safe Mode、AI アシスタント、MCP サーバーなど TablePro のその他の機能は<features>機能ページ</features>で紹介しています。",
+        "more": "その他",
+        "moveData": "データの移動",
+        "limits": "制限",
+        "otherTools": "その他のツール",
         "iphone": {
-            "picker": "iPhone・iPad アプリで接続を作成するときに {name} を選べます。",
-            "synced": "iPhone・iPad アプリが {name} 接続を開けるのは、iCloud Sync やエクスポートした接続ファイルで Mac から持ち込んだ場合のみです。アプリ内では作成できません。",
-            "none": "iPhone・iPad アプリには {name} ドライバーがありません。Mac から同期した {name} 接続は一覧に表示されますが、開けません。",
+            "title": "iPhone と iPad",
+            "picker": "iPhone・iPad アプリは {name} に接続できます。",
+            "synced": "iPhone・iPad アプリは、Mac から持ち込んだ {name} 接続を開けます。",
             "link": "iPhone・iPad 版 TablePro"
-        },
-        "family": {
-            "port": "既定のポート {port}"
-        },
-        "otherTools": {
-            "title": "その他のツール",
-            "released": "バージョン {version}、{date} リリース",
-            "discontinued": "{name} は開発を終了しています。最終リリース {version} は {date} に公開されました。",
-            "free": "無料",
-            "openSource": "オープンソース（{licence}）",
-            "closedSource": "クローズドソース",
-            "sourceAvailable": "ソース公開（{licence}）",
-            "platforms": "対応プラットフォーム：{platforms}",
-            "compare": "TablePro と {name} を比較",
-            "more": "他の比較",
-            "checked": "他のツールの情報は {date} に確認。",
-            "sources": "出典"
-        },
-        "platformNames": {
-            "mac": "Mac",
-            "windows": "Windows",
-            "linux": "Linux",
-            "ios": "iPhone と iPad",
-            "web": "Web"
         },
         "number": {
             "decimal": ".",
             "group": ","
         },
-        "download": {
+        "closing": {
             "title": "TablePro を入手",
-            "mac": "Mac アプリは無料でダウンロードできます。Pro と Team で追加機能を利用できます。",
-            "ios": "iPhone・iPad アプリは App Store で入手できます。",
-            "linux": "Linux アプリは無料のベータ版です。",
+            "tier": "{tier} は {features} を追加します。",
+            "rest": "このページのその他の機能は無料です。",
+            "allFree": "このページの機能はすべて無料です。",
             "pricing": "料金を見る"
         }
     }

@@ -11,64 +11,42 @@
     "breadcrumb": "Redis",
     "header": {
         "title": "Redis GUI",
-        "lead": "On Mac, browse keys and run commands on Standalone, Sentinel or Cluster deployments. iPhone and iPad support Standalone commands only."
+        "lead": "Browse keys as a tree and run commands on Standalone, Sentinel or Cluster deployments, Valkey included.",
+        "asset": "databases-redis"
     },
-    "asset": "mac-db-redis-keys",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "editing": "/features/data-editing#documents-and-keys",
         "safeMode": "/features/data-editing#safe-mode",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "compare": "/compare"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Choose <ui>Connection Mode</ui>: Standalone, Sentinel or Cluster. Sentinel follows the primary after failover; Cluster discovers shards from a seed member and routes commands to the owning shard.",
-                "Sign in with a password, or fill in Username to sign in as a Redis 6 ACL user. On Amazon ElastiCache, choose an <cloudAuth>AWS IAM</cloudAuth> mode and a short-lived token becomes the password; ElastiCache IAM needs TLS turned on.",
-                "New connections start with TLS off. Upstash, Redis Cloud and similar services require it, and a pasted <code>rediss://</code> URL turns it on. There is no fallback to plain text, so Preferred behaves as Required. Valkey servers connect the same way as Redis.",
-                "The sidebar lists each numbered database from <code>db0</code> up, and clicking one browses it in place."
+            "text": [
+                "Choose <ui>Connection Mode</ui>: Standalone, Sentinel or Cluster. Sentinel follows the primary after failover, and Cluster discovers shards from a seed member and routes each command to the shard that owns its key. Valkey servers connect the same way as Redis.",
+                "Sign in with a password, or fill in Username to sign in as a Redis 6 ACL user. On Amazon ElastiCache, an <cloudAuth>AWS IAM</cloudAuth> mode turns a short-lived token into the password, with TLS on.",
+                "New connections start with TLS off. Upstash, Redis Cloud and similar services require it, and a pasted <code>rediss://</code> URL turns it on; there is no fallback to plain text, so Preferred behaves as Required."
             ]
         },
         {
             "id": "work",
             "title": "Keys and commands",
-            "paragraphs": [
-                "Browse keys by colon-separated folders, or choose another separator. Each row shows the key’s type, TTL, length and value. Collections show their first entries; non-UTF-8 values open in the hex editor.",
-                "<editing>Edit key names, TTLs and string values</editing> in the grid. Add Row creates hashes, lists, sets, sorted sets or strings. Filter key names and types using server-side <code>SCAN MATCH</code> and <code>SCAN TYPE</code>.",
-                "Run commands with redis-cli-style quoting. Unknown commands are sent as written. <code>DB 3 GET key</code> targets another database without changing the session. In <code>MULTI</code>, replies stay queued until <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> runs a command on its list of read commands, such as <code>GET</code>, as a read, and counts any other command as a write. <code>FLUSHDB</code> and <code>FLUSHALL</code> ask before they run, even at Silent."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<export>Export</export> keys or command results as {exportFormats}. Import is not available for Redis; load data with commands in the editor."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone and iPad",
-            "paragraphs": [
-                "On iPhone and iPad, run Redis commands in the Query tab; browsing keys is not available in the iPhone and iPad app. A connection there takes a password, TLS with a CA or client certificate from a file, pasted text or a PKCS#12 bundle, and an SSH tunnel that signs in with a password or a key. Sentinel and Cluster connections are Mac only."
+            "text": [
+                "Browse keys in folders split on colons, or on another separator, with each key’s type, TTL, length and value. Collections show their first entries, and non-UTF-8 values open in the hex editor. <editing>Edit key names, TTLs and string values</editing> in the grid, and Add Row creates hashes, lists, sets, sorted sets or strings. Filters on names and types run server-side, with <code>SCAN MATCH</code> and <code>SCAN TYPE</code>.",
+                "Commands take redis-cli quoting, and unknown ones are sent as written. <code>DB 3 GET key</code> reads another database without moving the session, and inside <code>MULTI</code> replies stay queued until <code>EXEC</code>. <safeMode>Safe Mode</safeMode> treats commands on its read list, such as <code>GET</code>, as reads and any other as a write; <code>FLUSHDB</code> and <code>FLUSHALL</code> always ask first."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "redis-insight",
-                "text": "Choose Redis Insight for its key browser, command Workbench, a Pub/Sub workspace, profiler, slow logs and memory analysis. TablePro works with Redis alongside SQL databases.",
-                "notes": ["redis-insight-copilot"]
-            }
-        ],
-        "notes": {
-            "redis-insight-copilot": "Redis Insight’s Redis Copilot answers Redis questions and builds search queries from plain language."
-        }
-    },
+    "moveData": [
+        "<export>Export</export> keys or command results as {exportFormats}. To load data, run commands in the editor."
+    ],
+    "iphone": [
+        "Run Redis commands in the Query tab of a Standalone connection, signed in with a password, over TLS with a CA or client certificate, or through an SSH tunnel with a password or a key."
+    ],
     "faq": [
         {
             "id": "acl-scan",
@@ -78,30 +56,15 @@
         {
             "id": "select",
             "question": "Why does SELECT not change the sidebar?",
-            "answer": "<code>SELECT</code> moves only the editor’s session, so the commands after it run on that database while the sidebar and the key tree stay where you clicked. Click a database in the sidebar to move both, or prefix one command with <code>DB</code> and the database number."
+            "answer": "<code>SELECT</code> moves only the editor’s session, so the sidebar and the key tree stay where you clicked. Click a database in the sidebar to move both, or prefix one command with <code>DB</code> and the database number."
         },
         {
             "id": "managed",
             "question": "Why does a managed Redis service list databases it does not have?",
-            "answer": "Services such as Upstash, Redis Cloud and ElastiCache refuse <code>CONFIG</code>, so TablePro cannot read how many databases they hold and lists a default range. On a service with one database, the databases other than <code>db0</code> show the server’s error when you open them."
+            "answer": "Upstash, Redis Cloud and ElastiCache refuse <code>CONFIG</code>, so TablePro cannot read how many databases they hold and lists a default range. On a service with one database, the others show the server’s error when you open them."
         }
     ],
-    "related": [
-        {
-            "label": "Browse and edit data safely",
-            "href": "/features/data-editing#documents-and-keys"
-        },
-        {
-            "label": "Connections, tunnels and credentials",
-            "href": "/features/connections"
-        },
-        {
-            "label": "TablePro for iPhone and iPad",
-            "href": "/ios"
-        },
-        {
-            "label": "Compare TablePro with other database clients",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Redis Insight has a command Workbench, a Pub/Sub workspace, a profiler, slow logs and memory analysis, while TablePro works with Redis beside your SQL databases; the <compare>comparisons</compare> cover other clients that do both."
+    }
 }

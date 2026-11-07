@@ -11,82 +11,58 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Trino 用戶端",
-        "lead": "跨目錄查詢、檢查執行計畫，並取消正在執行的查詢。寫入支援取決於每個目錄的連接器。"
+        "lead": "跨目錄查詢、檢查計畫並取消執行中的查詢；寫入取決於每個目錄的連接器。",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線與登入",
-            "paragraphs": [
-                "輸入協調器主機、連接埠和 <ui>使用者名稱</ui> (Username)。選用的 <ui>Catalog</ui> 和 <ui>綱要</ui> (Schema) 設定起始位置。為工作階段設定 IANA <ui>時區</ui> (Time Zone)。",
-                "密碼以 HTTP Basic 傳送，用於 LDAP 或密碼檔案驗證；JWT 存取權杖以 bearer 認證資訊傳送。兩者僅透過 TLS，SSL Disabled 下含此認證資訊的連線在傳送前即拒絕。SSL 面板的用戶端憑證和金鑰新增雙向 TLS。",
-                "SSL 預設為 Disabled，即明文 HTTP；其他模式強制 TLS，不退回明文，443 連接埠啟用 Verify Identity。不跟隨 coordinator 前代理的重新導向，錯誤指出目標位址。堡壘主機後的 coordinator 可透過 <network>SSH 通道</network>存取，並用<ui>從 URL 匯入…</ui>（Import from URL…）匯入 <code>trino://</code> URL。"
+            "text": [
+                "輸入協調器主機、連接埠和 <ui>使用者名稱</ui> (Username)。<ui>Catalog</ui> 和 <ui>綱要</ui> (Schema) 設定起始位置，IANA <ui>時區</ui> (Time Zone) 設定工作階段的時區。",
+                "以密碼登入（用於 LDAP 或密碼檔案驗證，以 HTTP Basic 傳送），或以 JWT 存取權杖登入（以 bearer 認證資訊傳送）。兩者都只透過 TLS 傳送：SSL 為 Disabled 時，持有其中之一的連線會在傳送任何內容前被拒絕。SSL 面板上的用戶端憑證和金鑰可加上雙向 TLS。",
+                "SSL 預設為 Disabled，即明文 HTTP；其他模式都強制 TLS，不退回明文，連接埠 443 會啟用 Verify Identity。協調器前方代理的重新導向一律不跟隨，錯誤會指出其目標。<ui>從 URL 匯入…</ui> (Import from URL…) 可匯入 <code>trino://</code> URL。"
             ]
         },
         {
             "id": "work",
-            "title": "跨 catalog 查詢",
-            "paragraphs": [
-                "查詢完整限定的 <code>catalog.schema.table</code> 名稱，實現跨目錄聯結。瀏覽目錄、綱要、資料表和實體化檢視；列數估計來自 <code>SHOW STATS</code>。",
-                "<code>bigint</code>、<code>decimal</code> 以精確文字而非浮點數讀取。<code>varbinary</code> 顯示為十六進位，<code>array</code>、<code>map</code>、<code>row</code> 為 JSON，時間戳記保留伺服器傳回值。",
-                "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不執行而驗證，Analyze 執行並報告實際耗時，所有計畫均為原始文字。",
-                "<code>SET SESSION</code> 在連線剩餘期間保持。<ui>查詢 > 取消查詢</ui>（Query > Cancel Query）通知 coordinator 終止執行中的查詢，這是停止查詢的方法，因為連線查詢逾時不傳至 Trino。",
-                "<editing>儲存格編輯</editing>使用帶型別的 INSERT、UPDATE 和 DELETE 陳述式。Trino 不回報主索引鍵，因此編輯比對所有原始欄位。相同列會一起變更，且沒有交易可復原。編輯前請檢查重複列。"
+            "title": "跨目錄查詢",
+            "text": [
+                "使用完整限定的 <code>catalog.schema.table</code> 名稱跨目錄聯結，並瀏覽目錄、綱要、資料表和具體化檢視表，列數估計來自 <code>SHOW STATS</code>。<code>bigint</code> 和 <code>decimal</code> 以精確文字而非浮點數讀取；<code>varbinary</code> 顯示為十六進位，<code>array</code>、<code>map</code> 和 <code>row</code> 顯示為 JSON，時間戳記保留伺服器傳回的值。",
+                "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate 和 Analyze，皆為原始文字：Validate 檢查查詢但不執行，Analyze 會執行查詢並回報實際耗時。<code>SET SESSION</code> 在連線剩餘期間有效；<ui>查詢 > 取消查詢</ui> (Query > Cancel Query) 是停止查詢的方式，因為連線的查詢逾時不會傳至 Trino。",
+                "Trino 不回報主索引鍵，因此<editing>儲存格編輯</editing>會比對所有原始欄位，相同的列會一起變更，且沒有交易可以復原。編輯前請檢查重複列。"
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Structure 分頁</structure>自動提交建立資料表、新增、刪除、重新命名和變更欄位型別的操作。能否執行取決於 catalog connector，其中型別修改被最少 connector 支援。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "沒有匯入。可將資料表或結果<export>匯出</export>為 {exportFormats}。"
+            "title": "結構",
+            "text": [
+                "<structure>Structure 分頁</structure>以自動提交方式建立資料表，以及新增、刪除、重新命名和變更欄位型別。變更能否執行取決於該目錄的連接器，而型別變更是最少連接器接受的操作。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "不提供匯入。將資料表或結果<export>匯出</export>為 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
-            "question": "為什麼有效陳述式傳回 NOT_SUPPORTED？",
-            "answer": "無論 Trino 語法允許什麼，catalog 後的 connector 未實作該操作。唯讀 connector 拒絕所有寫入，請查閱 connector 自身文件的支援範圍。"
+            "question": "為什麼有效的陳述式會傳回 NOT_SUPPORTED？",
+            "answer": "無論 Trino 的語法允許什麼，該目錄背後的連接器並未實作此操作，唯讀連接器則會拒絕所有寫入。請查閱連接器自己的文件。"
         },
         {
             "id": "encrypted-key",
-            "question": "可以使用加密用戶端金鑰嗎？",
-            "answer": "不可以。Trino 連線沒有金鑰通關密語欄位，請用 <code>openssl pkey -in encrypted.key -out client.key</code> 寫出解密副本並選擇該檔案。"
+            "question": "可以使用加密的用戶端金鑰嗎？",
+            "answer": "不可以。Trino 連線沒有金鑰通關密語欄位。請用 <code>openssl pkey -in encrypted.key -out client.key</code> 寫出解密的副本，然後選擇該檔案。"
         }
     ],
-    "related": [
-        {
-            "label": "撰寫、執行與理解查詢",
-            "href": "/features/querying"
-        },
-        {
-            "label": "連線、通道與認證資訊",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata，資料倉儲",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake，雲端資料倉儲",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,76 +11,58 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "Klien SurrealDB",
-        "lead": "Jalankan SurrealQL dan edit kolom rekaman sambil mempertahankan tipenya."
+        "lead": "Jalankan skrip SurrealQL, telusuri namespace, dan edit field record dengan tipenya tetap terjaga.",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan dan masuk",
-            "paragraphs": [
-                "Pilih <ui>Auth Level</ui> untuk pengguna: Root, Namespace, Database, Record Access atau Token. Namespace dan Database memerlukan namanya. Akses Rekam juga memerlukan metode akses dan bidang masuk; Token menerima JWT yang ada.",
-                "Driver menggunakan CBOR melalui endpoint HTTP RPC, sehingga tautan record, tanggal-waktu, durasi, desimal, dan UUID mempertahankan jenisnya. Tautan <code>surrealdb://</code> membuka formulir koneksi yang sudah terisi, dan server jarak jauh dapat diakses melalui <network>tunnel SSH</network>.",
-                "SSL awalnya Disabled, yang menggunakan HTTP tanpa enkripsi; mode lainnya menggunakan HTTPS. Verify CA dan Verify Identity memeriksa sertifikat terhadap penyimpanan kepercayaan sistem, dan file CA yang diatur pada panel SSL/TLS diabaikan, jadi pasang CA pribadi di macOS terlebih dahulu."
+            "text": [
+                "Pilih <ui>Auth Level</ui>: Root, Namespace, Database, Record Access, atau Token. Namespace dan Database memerlukan namanya, Record Access juga memerlukan metode akses dan bidang masuk, dan Token menerima JWT yang sudah ada.",
+                "Driver menggunakan CBOR melalui endpoint HTTP RPC, sehingga tautan record, datetime, durasi, desimal, dan UUID mempertahankan tipenya. Tautan <code>surrealdb://</code> membuka formulir koneksi yang sudah terisi.",
+                "SSL dimulai dengan Disabled, yaitu HTTP tanpa enkripsi; mode lainnya menggunakan HTTPS. Verify CA dan Verify Identity memeriksa sertifikat terhadap penyimpanan kepercayaan sistem dan mengabaikan file CA yang diatur di panel SSL/TLS, jadi pasang CA pribadi di macOS terlebih dahulu."
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL dan record",
-            "paragraphs": [
-                "Jalankan skrip SurrealQL lengkap, termasuk <code>RELATE</code>, dengan pelengkapan pernyataan. <explain>Explain dan Explain Full</explain> menjalankan kueri dengan <code>EXPLAIN</code> dan mengembalikan rencana teks.",
-                "Namespace berada di bagian atas sidebar dengan database di dalamnya. Berpindah namespace atau database tidak pernah membuka ulang koneksi karena keduanya disertakan pada setiap permintaan. Hanya pengguna root yang dapat melihat semua namespace.",
-                "Pembaruan pengeditan sel hanya mengubah bidang sebagai parameter yang diketik, mempertahankan bidang <code>FUTURE</code> yang dihitung dan perubahan penulis lainnya. Biarkan <code>id</code> kosong untuk ID yang dibuat secara otomatis. Kolom tabel SCHEMALESS berasal dari catatan yang diambil.",
-                "<filters>Filter</filters> diubah menjadi SurrealQL, dan baris Raw SQL menerima satu kondisi, seperti traversal graf. Kondisi yang menulis, mengandung <code>;</code> atau komentar, atau memanggil <code>fn::</code> maupun <code>http::</code> ditolak; jalankan di editor."
+            "text": [
+                "Jalankan skrip SurrealQL lengkap, termasuk <code>RELATE</code>, dengan pelengkapan pernyataan. <explain>Explain dan Explain Full</explain> menjalankan kueri dengan <code>EXPLAIN</code> dan mengembalikan rencana dalam bentuk teks.",
+                "Namespace berada di bagian atas sidebar dengan database di dalamnya. Berpindah keduanya tidak pernah menghubungkan ulang, karena keduanya ikut dalam setiap permintaan, dan hanya pengguna root yang melihat semua namespace.",
+                "Pengeditan sel hanya memperbarui field yang diubah, sebagai parameter bertipe, sehingga field <code>FUTURE</code> yang dihitung dan perubahan dari penulis lain tetap terjaga. Kosongkan <code>id</code> untuk ID yang dibuat otomatis; kolom tabel SCHEMALESS berasal dari record yang diambil.",
+                "<filters>Filter</filters> menjadi SurrealQL, dan baris Raw SQL menerima satu kondisi, seperti traversal graf. Kondisi yang menulis, berisi <code>;</code> atau komentar, atau memanggil <code>fn::</code> atau <code>http::</code> ditolak; jalankan di editor."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Tab Structure hanya baca. Buat dan ubah bidang serta indeks menggunakan <code>DEFINE FIELD</code> dan <code>DEFINE INDEX</code> dalam editor. Namespace atau database dihapus melalui menunya, dan memilih beberapa sekaligus meminta satu konfirmasi untuk semuanya."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Impor tidak tersedia. <export>Ekspor</export> tabel atau hasil SurrealQL sebagai {exportFormats}."
+            "title": "Struktur",
+            "text": [
+                "Tab Structure hanya baca: buat dan ubah field serta indeks dengan <code>DEFINE FIELD</code> dan <code>DEFINE INDEX</code> di editor. Namespace atau database dihapus dari menunya, dan memilih beberapa sekaligus hanya meminta satu konfirmasi untuk semuanya."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Tidak ada impor. <export>Ekspor</export> tabel atau hasil SurrealQL sebagai {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
             "question": "Apakah saya dapat menjalankan transaksi?",
-            "answer": "Dalam satu kueri, ya. HTTP RPC tidak meneruskan transaksi antarpermintaan, jadi kirim <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> sebagai satu kueri dalam editor."
+            "answer": "Dalam satu kueri, ya. HTTP RPC tidak membawa transaksi dari satu permintaan ke permintaan berikutnya, jadi kirim <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> sebagai satu kueri di editor."
         },
         {
             "id": "relations",
-            "question": "Bagaimana saya mengubah in atau out suatu relasi?",
-            "answer": "Bukan dari grid: penyimpanan berhenti, menyebutkan bidangnya, dan mempertahankan semua perubahan sebagai tertunda. <code>UPDATE</code> juga tidak memindahkan relasi, jadi hapus relasi lalu gunakan <code>RELATE</code> untuk pasangan baru."
+            "question": "Bagaimana cara mengubah in atau out sebuah relasi?",
+            "answer": "Tidak dari grid: penyimpanan berhenti, menyebutkan field-nya, dan mempertahankan semua pengeditan sebagai tertunda. <code>UPDATE</code> juga tidak memindahkan relasi, jadi hapus relasi itu dan <code>RELATE</code> pasangan yang baru."
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB, database dokumen lainnya",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "Bahasa kueri selain SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Telusuri dan edit data dengan aman",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

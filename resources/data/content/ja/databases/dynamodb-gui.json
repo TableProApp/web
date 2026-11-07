@@ -11,96 +11,65 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Amazon DynamoDB GUI",
-        "lead": "項目を参照し、キーでクエリして、消費した読み取りキャパシティを確認できます。型を保って値を編集するか、PartiQL リクエストを実行できます。"
+        "lead": "項目を参照し、消費キャパシティを確認しながらキーで読み取り、型付きの値を編集するか PartiQL を実行できます。",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "接続",
-            "paragraphs": [
-                "<ui>Auth Method</ui> と <ui>AWS Region</ui> を選びます。アクセスキーと任意のセッショントークン、AWS CLI プロファイル、<cloudAuth>AWS IAM Identity Center</cloudAuth> を使えます。Identity Center のセッションが切れるとログインを求めます。",
-                "プロファイルは <code>credential_process</code> ヘルパーと <code>role_arn</code> チェーンを解決し、期限切れの一時認証情報を再取得してリクエストを一回再試行します。すべて HTTPS と Signature Version 4 で署名するため、SSL 設定や SSH トンネルはありません。中国や European Sovereign Cloud など別の AWS パーティションも独自のエンドポイントに接続し、カスタム指定は不要です。",
-                "DynamoDB Local は <code>docker run -p 8000:8000 amazon/dynamodb-local</code> を実行し、<ui>DynamoDB Local (no credentials)</ui> を選びます。ポート 8000 は <ui>Custom Endpoint</ui> を空欄にします。カスタムエンドポイントの平文 HTTP はこの Mac 上でのみ許可します。設定ガイドに <permissions>各作業に必要な IAM アクション</permissions> を載せています。"
+            "text": [
+                "<ui>Auth Method</ui> と <ui>AWS Region</ui> を選びます。任意のセッショントークン付きのアクセスキー、AWS CLI プロファイル、<cloudAuth>AWS IAM Identity Center</cloudAuth> を使えます。プロファイルは <code>credential_process</code> ヘルパーと <code>role_arn</code> チェーンを解決します。すべてのリクエストは Signature Version 4 で署名して HTTPS で送るため、SSL 設定や SSH トンネルはありません。",
+                "DynamoDB Local は <code>docker run -p 8000:8000 amazon/dynamodb-local</code> を実行し、<ui>DynamoDB Local (no credentials)</ui> を選びます。カスタムエンドポイントで平文 HTTP を使えるのはこの Mac 上だけです。中国など別の AWS パーティションのリージョンは、カスタム指定なしで独自のエンドポイントに接続します。セットアップガイドに<permissions>各作業に必要な IAM アクション</permissions>を載せています。"
             ]
         },
         {
             "id": "work",
-            "title": "項目の読み取り、絞り込みと編集",
-            "paragraphs": [
-                "キーフィルターは Query、それ以外は Scan を使います。Scan はテーブル全体を読み、読み取った全項目に課金されます。ステータスバーで操作、取得件数、走査件数、消費した読み取りキャパシティを確認できます。",
-                "対応する<filters>ソートキーフィルター</filters>はキー条件を使います。他のフィルターは読み取り後に適用され、料金は減りません。<code>address.city</code> や <code>items[0].sku</code> などのネストしたパスに対応します。",
-                "一つのパーティションの Query でソートキーヘッダーをクリックすると DynamoDB がその順で返します。それ以外のソートはすべての一致項目を読めた場合グリッドで行い、揃わない場合はステータスバーで知らせます。次のページは前の終了位置から続きます。グリッド下の総件数は DynamoDB 自身の件数で、<ui>Count Exactly</ui> はフィルターに合う全項目を読み、その分すべて課金されます。",
-                "テーブルはキーだけを宣言するため、カラムは項目から取ります。キー属性、先頭項目のサンプルで見つかった属性と表示中ページの属性です。map、list と set は JSON で表示して JSON エディターで開き、数値はすべての桁を保持します。",
-                "行ごとに PartiQL 文を使い、<editing>型を保って</editing>保存します。更新する属性を読み込み時の値と照合し、同時に行われた変更の上書きを拒否します。<ui>Set NULL</ui> は属性を削除します。",
-                "エディターは名前を二重引用符、文字列を単一引用符で囲む PartiQL、または <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code> などの DynamoDB アクション名と JSON リクエストを受け付けます。他のアクション名は拒否します。項目はグリッド、その他の応答は JSON で表示します。制限されたリクエストはバックオフで再試行し、<code>⌘.</code> は実行中の文を停止します。"
+            "title": "項目の読み取り、絞り込み、編集",
+            "text": [
+                "キーフィルターは Query、その他のフィルターは Scan として実行します。Scan はテーブル全体を読み、その分課金されます。ステータスバーには操作、取得件数と走査件数、消費した読み取りキャパシティを表示します。<filters>ソートキーフィルター</filters>は可能な場合キー条件になり、<code>address.city</code> などのネストしたパスも使えます。一つのパーティションの Query でソートキーのヘッダーをクリックすると、DynamoDB がその順で項目を返します。",
+                "列は項目から取ります。キー、先頭項目のサンプルで見つかった属性、表示中のページの属性です。map、list、set は JSON エディターで開き、数値はすべての桁を保持します。<ui>Set NULL</ui> は属性を削除します。各行は一つの PartiQL 文で保存し、同時に行われた変更の上書きを拒否します。エディターは PartiQL、または <code>Query</code> や <code>TransactWriteItems</code> などのアクション名とそのリクエスト JSON を受け付けます。制限されたリクエストはバックオフで再試行します。"
             ]
         },
         {
             "id": "schema",
-            "title": "テーブルとインデックス",
-            "paragraphs": [
-                "<ui>New Table…</ui> はパーティション・ソートキー、オンデマンドかプロビジョンド容量、テーブルクラス、削除保護とセカンダリインデックスのフォームを開き、<ui>Preview</ui> は送信前の <code>CreateTable</code> を表示します。ローカルセカンダリインデックスはテーブル作成時のここでのみ定義できます。",
-                "Structure タブはグローバルセカンダリインデックスを追加・削除します。DynamoDB が <code>UpdateTable</code> 一回につき一つだけ許可するため、保存ごとに一つ変更します。属性はここでは編集せず、項目に書けばカラムになります。DDL タブは Time to Live と point-in-time recovery を含む、再作成用 <code>CreateTable</code> を表示します。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "テーブル設定",
-            "paragraphs": [
-                "テーブルを右クリックして <ui>Maintenance</ui> を選ぶと、point-in-time recovery、削除保護、stream、テーブルクラス、オンデマンド容量への切り替えと Time to Live の無効化を設定できます。テーブル削除は <code>DeleteTable</code> を送り、削除保護が有効なら失敗します。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "DynamoDB のインポートはありません。エディターの PartiQL <code>INSERT</code> や <code>BatchWriteItem</code> で項目を書き、後者は未処理項目を再送して書けなかったものを報告します。Export ダイアログからテーブルや結果を {exportFormats} で <export>エクスポート</export> できます。"
+            "also": [
+                "operate"
+            ],
+            "title": "テーブル、インデックス、設定",
+            "text": [
+                "<ui>New Table…</ui> はキー、キャパシティモード、テーブルクラス、削除保護、セカンダリインデックスを設定し、<code>CreateTable</code> リクエストをプレビューします。ローカルセカンダリインデックスはここでのみ定義できます。Structure タブは保存ごとにグローバルセカンダリインデックスを一つ追加または削除し、DDL タブはテーブルを再作成するリクエストを表示します。",
+                "<ui>Maintenance</ui> では、point-in-time recovery、削除保護、stream、テーブルクラス、オンデマンドキャパシティへの切り替え、Time to Live の無効化を設定できます。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "エディターから PartiQL の <code>INSERT</code> や <code>BatchWriteItem</code> リクエストで項目を書き込めます。後者は未処理の項目を再送します。テーブルや結果を {exportFormats} で<export>エクスポート</export>できます。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
             "question": "読み取りでテーブル全体をスキャンしないようにするには？",
-            "answer": "パーティションキーを = で絞るか、グローバルインデックスのパーティションキーと各ソートキーを絞ると Query になります。グローバルインデックスの閲覧は全属性を投影するものだけなので、keys-only はエディターで <code>IndexName</code> を指定した <code>Query</code> を実行します。"
+            "answer": "パーティションキーを = で絞るか、グローバルインデックスのパーティションキーと各ソートキーを絞ると、読み取りは Query で実行されます。keys-only のインデックスは閲覧に使わないため、エディターで <code>IndexName</code> を指定した <code>Query</code> リクエストで問い合わせてください。"
         },
         {
             "id": "change-key",
             "question": "項目のキーを変更するには？",
-            "answer": "キー属性はその場で編集できません。キー以外の全属性をコピーする <ui>Duplicate Row</ui> を使い、新しいキーを入れて保存してから元の行を削除します。"
+            "answer": "キー以外のすべての属性をコピーする <ui>Duplicate Row</ui> を使い、コピーに新しいキーを入れて保存してから、元の項目を削除します。"
         },
         {
             "id": "transactions",
-            "question": "グリッド編集は一つのトランザクションで保存しますか？",
-            "answer": "いいえ。変更した各行を個別に書きます。同時に成功させる必要のある書き込みはエディターの <code>ExecuteTransaction</code> や <code>TransactWriteItems</code> にまとめます。"
+            "question": "グリッドの編集は一つのトランザクションで保存されますか？",
+            "answer": "いいえ。変更した各行は個別に書き込みます。まとめて成功させる必要のある書き込みは、エディターで <code>ExecuteTransaction</code> または <code>TransactWriteItems</code> リクエストにまとめてください。"
         }
     ],
-    "related": [
-        {
-            "label": "エンジンごとのフィルター",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "AWS、Google と Microsoft のログイン",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis：キーとコマンド",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra と Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

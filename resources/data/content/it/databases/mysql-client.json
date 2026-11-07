@@ -11,145 +11,99 @@
     "breadcrumb": "MySQL e MariaDB",
     "header": {
         "title": "Client MySQL e MariaDB",
-        "lead": "Interroga MySQL e modifica le righe con le anteprime SQL. Gestisci utenti, sessioni e backup dalla stessa connessione."
+        "lead": "Interroga MySQL e MariaDB, modifica le righe e gestisci utenti, sessioni e backup dalla stessa connessione.",
+        "asset": "databases-mysql"
     },
-    "asset": "mac-db-mysql-query",
     "links": {
-        "network": "/features/connections#network",
         "cloudAuth": "/features/connections#cloud-auth",
         "importApps": "/features/connections#import",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
         "administer": "/features/schema#administer",
+        "erDiagram": "/features/schema#er-diagram",
         "copy": "/features/schema#copy",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup",
-        "erDiagram": "/features/schema#er-diagram"
+        "sequelAce": "/compare/sequel-ace",
+        "workbench": "/compare/mysql-workbench",
+        "phpmyadmin": "/compare/phpmyadmin",
+        "heidisql": "/compare/heidisql"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connetti",
-            "paragraphs": [
-                "Inserisci un host, una porta e un utente oppure incolla un URL <code>mysql://</code>. MySQL Sono supportati 8 account <code>caching_sha2_password</code>. Il database è facoltativo; il cambio di database mantiene la stessa connessione.",
-                "Le nuove connessioni iniziano con SSL su Preferred, che prova prima TLS e ripiega sul traffico in chiaro solo dopo un handshake TLS fallito. Scegli Verify CA o Verify Identity con il certificato del tuo provider per una verifica rigorosa.",
-                "Raggiungi server privati tramite tunnel <network>SSH, jump host, proxy o comandi tunnel</network>.",
-                "Accedi ad Amazon RDS o Aurora con <cloudAuth>AWS IAM</cloudAuth>, utilizzando un nuovo token su ogni connessione. Importa istanze da AWS o utilizza il proxy di autenticazione Cloud SQL per Google Cloud SQL.",
-                "<importApps>Import from Other App</importApps> legge i preferiti di Sequel Ace. L’importazione delle password da Portachiavi richiede la tua conferma."
+            "text": [
+                "Inserisci un host, una porta e un utente, oppure incolla un URL <code>mysql://</code>; gli account MySQL 8 <code>caching_sha2_password</code> sono supportati. Il database è facoltativo, e cambiare database mantiene la stessa connessione.",
+                "Le nuove connessioni iniziano con SSL su Preferred, che ripiega sul traffico in chiaro solo dopo un handshake TLS fallito. Scegli Verify CA o Verify Identity con il certificato del tuo provider per una verifica rigorosa. Amazon RDS e Aurora accedono con <cloudAuth>AWS IAM</cloudAuth>, con un nuovo token a ogni connessione, e <importApps>Import from Other App</importApps> legge i preferiti di Sequel Ace."
             ]
         },
         {
             "id": "work",
             "title": "Esegui query e modifica",
-            "paragraphs": [
-                "Il completamento automatico include schemi, alias e CTE. Esegui l’istruzione corrente o uno script completo. Visualizza <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE ed EXPLAIN ANALYZE</explain> come diagrammi o alberi e confronta due piani.",
-                "Prepara le modifiche e controlla le istruzioni con <editing>Preview SQL</editing>. Il salvataggio usa parametri associati e si interrompe se il numero di righe è inatteso. Senza una chiave primaria, le modifiche identificano le righe usando tutte le colonne.",
-                "Ogni sessione usa utf8mb4, quindi emoji e testo non latino vengono preservati in lettura e scrittura. Per un database il cui testo è stato scritto da un vecchio client tramite Latin 1, la codifica UTF-8 via Latin 1 lo legge come faceva quel client.",
-                "Le tabelle partizionate elencano le partizioni con i limiti, come <code>VALUES LESS THAN (2024)</code>, e i commenti di tabelle e colonne compaiono nella barra laterale e nelle intestazioni delle colonne della griglia."
+            "text": [
+                "Visualizza <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE ed EXPLAIN ANALYZE</explain> come diagrammi o alberi e confronta due piani. Il salvataggio si interrompe se il numero di righe è inatteso, e una tabella senza chiave primaria viene modificata confrontando tutte le colonne.",
+                "Ogni sessione usa utf8mb4, quindi emoji e testo non latino restano intatti in lettura e scrittura. Per il testo scritto da un vecchio client tramite Latin 1, la codifica UTF-8 via Latin 1 lo legge come faceva quel client. Le partizioni elencano i loro limiti, come <code>VALUES LESS THAN (2024)</code>, e i commenti compaiono nella barra laterale e nelle intestazioni delle colonne."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
-            "paragraphs": [
-                "Prepara modifiche a colonne, indici, chiavi esterne, vincoli CHECK e colonne generate nella <structure>scheda Structure</structure>. Controlla il DDL prima di salvare. Le chiavi di indice basate su espressioni richiedono MySQL 8.0.13 o successivo.",
-                "Routine e trigger compaiono nella barra laterale con il codice sorgente. Il <erDiagram>diagramma ER</erDiagram> rappresenta lo schema come immagine in sola lettura esportabile in PNG o SQL.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) confronta gli schemi o i dati MySQL o MariaDB e genera uno script di sincronizzazione. Le modifiche che potrebbero rimuovere dati vengono trattenute finché non le includi."
+            "text": [
+                "Prepara modifiche a colonne, indici, chiavi esterne, vincoli CHECK e colonne generate nella <structure>scheda Structure</structure>; le chiavi di indice basate su espressioni richiedono MySQL 8.0.13 o successivo. Routine e trigger compaiono nella barra laterale con il loro codice sorgente.",
+                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) confronta gli schemi o i dati MySQL o MariaDB e trattiene le modifiche che potrebbero rimuovere dati finché non le includi."
             ]
         },
         {
             "id": "operate",
             "title": "Amministra",
-            "paragraphs": [
-                "<administer>Users & Roles</administer> elenca i privilegi fino alle singole colonne. Esamina le dichiarazioni GRANT e REVOKE graduali prima di applicarle.",
-                "Il Server Dashboard elenca sessioni, metriche del server e query lente, aggiornate ogni pochi secondi. Annulla una query con <code>KILL QUERY</code> o termina una sessione con <code>KILL</code>. Un account senza privilegio PROCESS vede solo le proprie sessioni.",
-                "La manutenzione delle tabelle esegue OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE e REPAIR TABLE e mostra prima l’istruzione.",
-                "<backup>Backup Dump</backup> esegue {dumpTool} e Restore Dump esegue il client mysql, entrambi tramite il tunnel SSH della connessione; installa prima gli strumenti client MySQL sul Mac. Un ripristino sostituisce gli oggetti indicati dal dump.",
-                "Rilascia automaticamente le connessioni inattive e riconnettiti alla query successiva. TablePro mantiene le sessioni con lo stato che una riconnessione perderebbe, ad esempio una transazione aperta o una tabella temporanea."
-            ],
-            "asset": "mac-users-roles-mysql"
-        },
-        {
-            "id": "move-data",
-            "title": "Sposta i dati",
-            "paragraphs": [
-                "<importData>Import</importData> {importFormats} file con mappatura delle colonne e gestione degli errori di riga. Esporta tabelle o risultati come {exportFormats}.",
-                "<copy>Copy To</copy> trasferisce tabelle, dati o entrambi a un'altra connessione o motore MySQL. Esamina tutti i tipi di colonna che devono essere approssimati."
+            "text": [
+                "<administer>Users & Roles</administer> elenca i privilegi fino alle singole colonne. Il Server Dashboard elenca sessioni, metriche del server e query lente, e annulla una query con <code>KILL QUERY</code> o termina una sessione con <code>KILL</code>; un account senza il privilegio PROCESS vede solo le proprie sessioni. La manutenzione delle tabelle mostra OPTIMIZE, ANALYZE, CHECK e REPAIR TABLE prima dell’esecuzione.",
+                "<backup>Backup Dump</backup> esegue {dumpTool} e Restore Dump esegue il client mysql tramite il tunnel SSH della connessione, una volta installati gli strumenti client MySQL sul tuo Mac. Un ripristino sostituisce gli oggetti indicati dal dump."
             ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone e iPad",
-            "paragraphs": [
-                "Su iPhone e iPad esplori tabelle come schede, filtri e ordini, modifichi righe con chiave primaria ed esegui SQL nella scheda Query. Le connessioni offrono SSL da Required a Verify Identity e tunnel SSH con password o chiave. I jump host SSH non sono supportati."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [
         {
             "engine": "mariadb",
             "title": "MariaDB",
-            "paragraphs": [
-                "MariaDB si connette con lo stesso driver MySQL e le stesse opzioni SSH, SSL/TLS e AWS IAM. Un URL <code>mariadb://</code> crea una connessione MariaDB.",
-                "Le colonne JSON, conservate da MariaDB come LONGTEXT, si aprono nell’editor JSON. Le colonne virtuali e persistenti vengono rilevate ed escluse dalle istruzioni INSERT e UPDATE generate. Le sequenze sono elencate nella barra laterale in sola lettura e una tabella con versionamento di sistema è elencata come tabella ordinaria.",
+            "text": [
+                "MariaDB si connette tramite il driver MySQL con le stesse opzioni SSH, SSL/TLS e AWS IAM, e un URL <code>mariadb://</code> crea una connessione MariaDB. Le colonne JSON, che MariaDB conserva come LONGTEXT, si aprono nell’editor JSON; le colonne virtuali e persistenti restano escluse dalle istruzioni INSERT e UPDATE generate, e le sequenze sono elencate in sola lettura.",
                 "Users & Roles, Server Dashboard, manutenzione delle tabelle e backup {dumpTool} funzionano come su MySQL."
             ]
         },
         {
             "engine": "tidb",
             "title": "TiDB",
-            "paragraphs": [
-                "Punta la connessione alla porta SQL del server TiDB, mai a PD o TiKV. TiDB Cloud usa la stessa porta; lì imposta SSL Mode su Required.",
-                "Stop invia <code>KILL TIDB QUERY</code> per la tua sessione. Dietro TiProxy o un bilanciatore di carico richiede Global Kill, attivo per imposto predefinita in TiDB dalla versione 6.1.",
-                "EXPLAIN ed EXPLAIN ANALYZE mostrano il piano TiDB come testo. I vincoli CHECK compaiono nella scheda Structure su TiDB 7.2 e successivi quando il cluster li attiva, le chiavi esterne possono essere create e la manutenzione offre ANALYZE TABLE. <administer>Users & Roles</administer> funziona su TiDB, senza il campo del limite di connessioni.",
-                "Scegli TiDB come tipo di connessione anziché MySQL, così barra laterale, selettore dei tipi ed EXPLAIN seguono TiDB."
+            "text": [
+                "Punta la connessione alla porta SQL di un server TiDB, mai a PD o TiKV, e scegli TiDB come tipo di connessione, così barra laterale, selettore dei tipi ed EXPLAIN seguono TiDB. Su TiDB Cloud, imposta SSL Mode su Required.",
+                "Stop invia <code>KILL TIDB QUERY</code>, che dietro TiProxy o un bilanciatore di carico richiede Global Kill, attivo per impostazione predefinita da TiDB 6.1. EXPLAIN mostra il piano come testo, e Users & Roles funziona senza il campo del limite di connessioni."
             ]
         },
         {
             "engine": "oceanbase",
             "title": "OceanBase",
-            "paragraphs": [
-                "Inserisci il tenant nel nome utente: <code>root@test</code> su un observer oppure <code>root@test#obcluster</code> tramite OBProxy, che ascolta sulla porta 2883.",
-                "La connessione verifica che il server si identifichi come OceanBase, quindi host o porta errati falliscono subito. Il timeout delle query di TablePro sostituisce il limite delle istruzioni di OceanBase.",
-                "EXPLAIN mostra il piano come testo. Una tabella senza chiave primaria viene modificata identificando ogni colonna; un salvataggio che cambierebbe più di una riga o nessuna si ferma e lo segnala.",
-                "Scegli OceanBase come tipo di connessione: una connessione salvata come MySQL che raggiunge OceanBase non riceve nessuna di queste funzionalità."
+            "text": [
+                "Inserisci il tenant nel nome utente: <code>root@test</code> su un observer, oppure <code>root@test#obcluster</code> tramite OBProxy, che ascolta sulla porta 2883. Scegli OceanBase come tipo di connessione: la connessione verifica che il server si identifichi come OceanBase, quindi un host o una porta errati falliscono subito.",
+                "EXPLAIN mostra il piano come testo, il timeout delle query di TablePro sostituisce il limite delle istruzioni di OceanBase, e un salvataggio che cambierebbe più di una riga, o nessuna, si ferma e lo segnala."
             ]
         },
         {
             "engine": "databend",
             "title": "Databend",
-            "paragraphs": [
-                "Databend si connette tramite il proprio handler MySQL, non l’API HTTP. Scegli Databend come tipo di connessione; una connessione MySQL che raggiunge un server Databend viene rifiutata e chiede di cambiare tipo.",
-                "Su Databend Cloud chiedi all’assistenza Databend di attivare l’endpoint MySQL del warehouse, poi copia host e porta dalla finestra Connect.",
-                "La scheda Structure modifica colonne e vincoli CHECK e rinomina tabelle, viste e colonne. EXPLAIN ed EXPLAIN ANALYZE mostrano il piano come testo e la manutenzione offre ANALYZE TABLE.",
-                "Le celle ARRAY, MAP e TUPLE non possono essere scritte da testo. Modificale con un UPDATE nell’editor."
+            "text": [
+                "Databend si connette tramite il proprio handler MySQL, non tramite la sua API HTTP. Scegli Databend come tipo di connessione: una connessione MySQL che raggiunge un server Databend viene rifiutata. Su Databend Cloud, chiedi all’assistenza Databend di attivare l’endpoint MySQL del warehouse, poi copia host e porta dalla sua finestra Connect.",
+                "La scheda Structure modifica colonne e vincoli CHECK e rinomina tabelle, viste e colonne. Le celle ARRAY, MAP e TUPLE si modificano con un UPDATE nell’editor."
             ]
         }
     ],
-    "otherTools": {
-        "items": [
-            {
-                "product": "sequel-ace",
-                "text": "Sequel Ace si concentra su MySQL e MariaDB su Mac. Il suo server MCP è disattivato per imposto predefinita e di sola lettura a meno che non venga modificato. Non ha chat IA."
-            },
-            {
-                "product": "mysql-workbench",
-                "text": "MySQL Workbench è lo strumento MySQL di Oracle. L'attuale generazione utilizza notebook MySQL Shell e SQL; Oracle non mantiene più la generazione precedente."
-            },
-            {
-                "product": "phpmyadmin",
-                "text": "phpMyAdmin viene eseguito su un server Web ed è incluso in cPanel. Può raggiungere database disponibili tramite pannelli di hosting che non consentono connessioni desktop."
-            },
-            {
-                "product": "heidisql",
-                "text": "HeidiSQL è un client di database open source con le app Windows e macOS."
-            }
-        ],
-        "notes": {}
-    },
+    "moveData": [
+        "<importData>Importa</importData> file {importFormats} ed esporta tabelle o risultati in {exportFormats}. <copy>Copy To</copy> sposta tabelle e dati verso un’altra connessione MySQL o un altro motore."
+    ],
+    "iphone": [
+        "Sfoglia le tabelle come schede, filtrale e ordinale, modifica le righe che hanno una chiave primaria ed esegui SQL nella scheda Query. Le connessioni offrono SSL da Required a Verify Identity e tunnel SSH con password o chiave."
+    ],
     "faq": [
         {
             "id": "socket",
@@ -164,25 +118,10 @@
         {
             "id": "er-diagram",
             "question": "Posso progettare uno schema nel diagramma ER?",
-            "answer": "No. Il <erDiagram>diagramma ER</erDiagram> è un’immagine in sola lettura dello schema che puoi esportare. Modifica le tabelle nella scheda Structure o con SQL."
+            "answer": "No. Il <erDiagram>diagramma ER</erDiagram> è un’immagine in sola lettura dello schema che puoi esportare in PNG o SQL. Modifica le tabelle nella scheda Structure o con SQL."
         }
     ],
-    "related": [
-        {
-            "label": "Scrivi, esegui e comprendi le query",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema, confronto e sincronizzazione",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Connessioni, tunnel e credenziali",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Confronta TablePro con altri client di database",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Sequel Ace si limita a MySQL e MariaDB su Mac, MySQL Workbench è lo strumento di Oracle e phpMyAdmin gira su un server web; confronta TablePro con <sequelAce>Sequel Ace</sequelAce>, <workbench>MySQL Workbench</workbench>, <phpmyadmin>phpMyAdmin</phpmyadmin> o <heidisql>HeidiSQL</heidisql>."
+    }
 }

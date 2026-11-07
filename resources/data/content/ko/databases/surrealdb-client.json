@@ -11,76 +11,58 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "SurrealDB 클라이언트",
-        "lead": "SurrealQL을 실행하고 타입을 유지하며 레코드 필드를 편집하세요."
+        "lead": "SurrealQL 스크립트를 실행하고, 네임스페이스를 탐색하고, 타입을 유지하며 레코드 필드를 편집하세요.",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결 및 로그인",
-            "paragraphs": [
-                "사용자의 <ui>인증 수준</ui> (Auth Level)을 Root, Namespace, Database, Record Access, Token 중에서 선택하세요. Namespace와 Database에는 이름이 필요합니다. Record Access에는 접근 방식과 로그인 필드도 필요하며 Token은 기존 JWT를 받습니다.",
-                "드라이버는 HTTP RPC 엔드포인트와 CBOR로 통신해 레코드 링크, 날짜·시간, 기간, 소수와 UUID 유형을 유지합니다. <code>surrealdb://</code> 링크는 값이 채워진 연결 폼을 열고 원격 서버에는 <network>SSH 터널</network>로 접근합니다.",
-                "SSL 초기값 Disabled는 평문 HTTP이고 다른 모든 모드는 HTTPS입니다. Verify CA와 Verify Identity는 시스템 신뢰 저장소로 인증서를 검사하고 SSL/TLS 패널의 CA 파일은 무시하니 사설 CA를 먼저 macOS에 설치하세요."
+            "text": [
+                "<ui>인증 수준</ui> (Auth Level)에서 Root, Namespace, Database, Record Access, Token 중 하나를 선택하세요. Namespace와 Database에는 이름이 필요하고, Record Access에는 접근 방식과 로그인 필드도 필요하며, Token은 기존 JWT를 받습니다.",
+                "드라이버는 HTTP RPC 엔드포인트로 CBOR 통신을 하므로 레코드 링크, 날짜·시간, 기간, 소수, UUID가 타입을 유지합니다. <code>surrealdb://</code> 링크는 값이 채워진 연결 양식을 엽니다.",
+                "SSL은 평문 HTTP인 Disabled로 시작하며, 나머지 모드는 모두 HTTPS를 사용합니다. Verify CA와 Verify Identity는 시스템 신뢰 저장소로 인증서를 검사하고 SSL/TLS 패널에 설정한 CA 파일은 무시하므로, 사설 CA는 먼저 macOS에 설치하세요."
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL 및 레코드",
-            "paragraphs": [
+            "text": [
                 "<code>RELATE</code>를 포함한 전체 SurrealQL 스크립트를 구문 자동 완성과 함께 실행하세요. <explain>Explain과 Explain Full</explain>은 <code>EXPLAIN</code>으로 쿼리를 실행하고 텍스트 계획을 반환합니다.",
-                "사이드바 최상위에 네임스페이스, 그 안에 데이터베이스가 있습니다. 각 요청에 둘 다 실려 전환해도 재연결하지 않습니다. 모든 네임스페이스는 루트 사용자만 볼 수 있습니다.",
-                "셀 편집은 변경된 필드만 타입이 지정된 매개변수로 갱신하며 계산된 <code>FUTURE</code> 필드와 다른 작성자의 변경을 유지합니다. 자동 ID를 쓰려면 <code>id</code>를 비워 두세요. SCHEMALESS 테이블 열은 가져온 레코드에서 결정됩니다.",
-                "<filters>필터</filters>는 SurrealQL로 변환되고 Raw SQL 행은 그래프 순회 등 조건 하나를 받습니다. 쓰기, <code>;</code>·주석 포함 또는 <code>fn::</code>·<code>http::</code> 호출 조건은 거부하니 편집기에서 실행하세요."
+                "사이드바 최상위에 네임스페이스가 있고 그 안에 데이터베이스가 있습니다. 둘 다 각 요청에 실려 가므로 전환해도 재연결하지 않으며, 모든 네임스페이스는 루트 사용자만 볼 수 있습니다.",
+                "셀 편집은 변경된 필드만 타입이 지정된 매개변수로 갱신하므로 계산된 <code>FUTURE</code> 필드와 다른 작성자의 변경이 유지됩니다. 자동 생성 ID를 쓰려면 <code>id</code>를 비워 두세요. SCHEMALESS 테이블의 열은 가져온 레코드에서 결정됩니다.",
+                "<filters>필터</filters>는 SurrealQL로 변환되며, Raw SQL 행은 그래프 순회 같은 조건 하나를 받습니다. 쓰기를 하거나, <code>;</code>나 주석을 포함하거나, <code>fn::</code>나 <code>http::</code>를 호출하는 조건은 거부되니 편집기에서 실행하세요."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Structure 탭은 읽기 전용입니다. 편집기에서 <code>DEFINE FIELD</code>와 <code>DEFINE INDEX</code>로 필드·인덱스를 만들고 변경합니다. 네임스페이스·데이터베이스는 메뉴로 삭제하며 여러 개를 선택하면 모두 한 번에 확인합니다."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "가져오기는 없습니다. 테이블이나 SurrealQL 결과를 {exportFormats}로 <export>내보냅니다</export>."
+            "title": "구조",
+            "text": [
+                "Structure 탭은 읽기 전용입니다. 필드와 인덱스는 편집기에서 <code>DEFINE FIELD</code>와 <code>DEFINE INDEX</code>로 만들고 변경하세요. 네임스페이스나 데이터베이스는 메뉴에서 삭제하며, 여러 개를 선택하면 한 번에 모두 확인합니다."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "가져오기는 없습니다. 테이블이나 SurrealQL 결과를 {exportFormats}로 <export>내보내세요</export>."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
             "question": "트랜잭션을 실행할 수 있나요?",
-            "answer": "쿼리 하나 안에서는 가능합니다. HTTP RPC는 요청 간 트랜잭션을 유지하지 않으므로 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code>을 편집기 쿼리 하나로 보내세요."
+            "answer": "쿼리 하나 안에서는 가능합니다. HTTP RPC는 요청 간에 트랜잭션을 유지하지 않으므로 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code>을 편집기에서 하나의 쿼리로 보내세요."
         },
         {
             "id": "relations",
-            "question": "관계의 in이나 out을 어떻게 변경하나요?",
-            "answer": "그리드에서는 안 됩니다. 저장을 멈추고 필드를 알리며 모든 편집을 대기 상태로 둡니다. <code>UPDATE</code>도 관계를 옮기지 못하므로 삭제하고 새 쌍을 <code>RELATE</code>하세요."
+            "question": "관계의 in이나 out은 어떻게 변경하나요?",
+            "answer": "그리드에서는 안 됩니다. 저장이 멈추고 해당 필드를 알려 주며 모든 편집을 대기 상태로 둡니다. <code>UPDATE</code>로도 관계를 옮길 수 없으므로 관계를 삭제하고 새 쌍을 <code>RELATE</code>하세요."
         }
     ],
-    "related": [
-        {
-            "label": "다른 문서 데이터베이스 MongoDB",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "SQL 이외의 쿼리 언어",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "안전하게 데이터 탐색 및 편집",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

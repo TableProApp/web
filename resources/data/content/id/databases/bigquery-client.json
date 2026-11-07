@@ -11,54 +11,45 @@
     "breadcrumb": "Google BigQuery",
     "header": {
         "title": "Klien Google BigQuery",
-        "lead": "Tulis GoogleSQL, perkirakan biaya kueri, dan tetapkan batas byte yang ditagih."
+        "lead": "Tulis GoogleSQL, perkirakan biaya kueri sebelum dijalankan, dan batasi byte yang dapat ditagih sebuah job.",
+        "asset": "databases-bigquery"
     },
-    "asset": "mac-db-bigquery-dry-run",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Masuk ke Google Cloud",
-            "paragraphs": [
-                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>, bukan nama atau nomornya. <ui>Application Default Credentials</ui> menggunakan file login gcloud; <ui>Service Account Key</ui> menerima file JSON atau kunci yang ditempel.",
-                "Google Account (OAuth) masuk melalui peramban dengan klien OAuth desktop yang Anda buat di Google Cloud Console. Refresh token disimpan di Rantai Kunci, satu per klien OAuth, sehingga koneksi berikutnya tidak membuka peramban. Satu klien OAuth masuk ke satu akun Google, jadi akun kedua memerlukan klien kedua atau refresh token sendiri.",
-                "Semua akses melalui REST API BigQuery, sehingga tidak ada host, port, URL koneksi, atau tunnel SSH. <ui>Location</ui> menetapkan lokasi pemrosesan yang dikirim bersama setiap job. Selengkapnya tentang <cloudAuth>autentikasi cloud</cloudAuth>."
+            "text": [
+                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>, bukan nama atau nomornya. <ui>Application Default Credentials</ui> menggunakan file login gcloud, dan <ui>Service Account Key</ui> menerima file JSON atau kunci yang ditempel.",
+                "<cloudAuth>Google Account (OAuth)</cloudAuth> masuk melalui browser dengan klien OAuth desktop yang Anda buat di Google Cloud Console, dan menyimpan satu refresh token per klien di Rantai Kunci, sehingga koneksi berikutnya tidak membuka browser. Satu klien OAuth masuk ke satu akun Google, jadi akun kedua memerlukan klien kedua. Semua akses melalui REST API BigQuery, sehingga tidak ada host, port, atau tunnel SSH; <ui>Location</ui> menetapkan lokasi pemrosesan setiap job."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan kendalikan biaya",
-            "paragraphs": [
-                "Pilih <ui>Dry Run (Cost)</ui> dari <explain>Explain</explain> untuk memperkirakan byte yang diproses, byte yang ditagih, dan biaya sesuai permintaan tanpa menjalankan kueri. Hasilnya juga melaporkan status cache.",
-                "Setelah melakukan kueri, periksa byte yang diproses, byte yang ditagih, perkiraan biaya sesuai permintaan, dan status cache. Atur <ui>Max Bytes Billed</ui> untuk menolak pekerjaan melebihi batas byte yang ditagih.",
-                "Pelengkapan, pembatasan nama, dan pemformatan mengikuti GoogleSQL, dengan backtick pada nama tabel, dan kolom STRUCT serta ARRAY ditampilkan sebagai JSON. Dataset berperan sebagai database: tercantum di sidebar, <code>⌘K</code> berpindah di antaranya, dan setiap tab tetap pada dataset awalnya. Job dipantau hingga batas waktu kueri lalu dibatalkan; jika batas waktu No limit, TablePro menunggu hingga selesai.",
-                "Sel, penyisipan, dan penghapusan dilakukan melalui <editing>grid</editing>. UPDATE dan DELETE mencocokkan baris berdasarkan primary key yang dideklarasikan; pada tabel tanpa primary key, keduanya mencocokkan semua kolom kecuali ARRAY, JSON, dan GEOGRAPHY, sehingga baris identik berubah bersama. Deklarasikan <code>PRIMARY KEY (…) NOT ENFORCED</code> untuk mengedit tepat satu baris. Pada tabel berpartisi, tulis UPDATE dan DELETE dengan filter partisi dalam editor."
+            "title": "Kueri dan kendalikan biaya",
+            "text": [
+                "<ui>Dry Run (Cost)</ui> di menu <explain>Explain</explain> memperkirakan byte yang diproses, byte yang ditagih, dan biaya on-demand tanpa menjalankan kueri. Setelah kueri berjalan, angka yang sama tampil bersama status cache-nya, dan <ui>Max Bytes Billed</ui> menolak job yang melebihi batas yang Anda tetapkan.",
+                "Pelengkapan, pengutipan, dan pemformatan mengikuti GoogleSQL, dan kolom STRUCT dan ARRAY ditampilkan sebagai JSON. Dataset berperan sebagai database, <code>⌘K</code> berpindah di antaranya, dan job dipantau hingga batas waktu kueri, lalu dibatalkan. UPDATE dan DELETE dari grid mencocokkan baris berdasarkan primary key yang dideklarasikan, atau semua kolom kecuali kolom ARRAY, JSON, dan GEOGRAPHY, sehingga baris yang identik berubah bersama; deklarasikan <code>PRIMARY KEY (…) NOT ENFORCED</code> untuk mengedit tepat satu baris. Pada tabel berpartisi, tulis UPDATE dan DELETE dengan filter partisi di editor."
             ]
         },
         {
             "id": "schema",
             "title": "Dataset dan DDL",
-            "paragraphs": [
-                "DDL dijalankan dari editor, seperti <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code>, dan <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> membuat dataset dengan <code>CREATE SCHEMA</code>, dan tabel dapat diganti namanya dari sidebar. Tab DDL membaca setiap definisi dari <code>INFORMATION_SCHEMA.TABLES</code>, dan clustering serta partisi muncul di bawah Indexes."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "TablePro tidak menyediakan impor untuk BigQuery. <export>Ekspor</export> tabel atau hasil kueri ke Mac sebagai {exportFormats}.",
-                "<backup>Server-Side Export</backup> menggunakan <code>EXPORT DATA</code> untuk mengekspor CSV, Parquet, atau JSON per baris ke awalan <code>gs://</code>. Berjalan dengan izin Anda dan menunggu selesai. File tidak melewati Mac Anda."
+            "text": [
+                "Jalankan DDL dari editor, seperti <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, atau <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> membuat dataset, tabel dapat diganti namanya dari sidebar, tab DDL membaca setiap definisi dari <code>INFORMATION_SCHEMA.TABLES</code>, dan clustering serta partisi muncul di bawah Indexes."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Ekspor</export> tabel atau hasil kueri ke Mac Anda sebagai {exportFormats}. <backup>Server-Side Export</backup> mengeluarkan CSV, Parquet, atau JSON per baris ke awalan <code>gs://</code> dengan <code>EXPORT DATA</code>, sehingga file tidak pernah melewati Mac Anda."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "roles",
@@ -67,26 +58,9 @@
         },
         {
             "id": "deep-pages",
-            "question": "Mengapa memfilter alih-alih berpaginasi jauh ke dalam tabel?",
-            "answer": "Setiap halaman yang jauh dari awal memindai ulang tabel sejak awal. Batasi baris dengan filter atau klausa WHERE alih-alih berpaginasi terlalu jauh."
+            "question": "Mengapa memfilter alih-alih berpindah halaman jauh ke dalam tabel?",
+            "answer": "Setiap halaman yang jauh di dalam tabel memindai ulang tabel dari awal. Persempit baris dengan filter atau klausa WHERE."
         }
     ],
-    "related": [
-        {
-            "label": "Autentikasi cloud untuk AWS, Google, dan Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Ekspor, pencadangan, dan Server-Side Export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Amazon Redshift, data warehouse lainnya",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "Snowflake, data warehouse cloud lainnya",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

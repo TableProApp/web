@@ -11,82 +11,56 @@
     "breadcrumb": "Google BigQuery",
     "header": {
         "title": "Google BigQuery 用戶端",
-        "lead": "編寫 GoogleSQL，估算查詢費用，並設定計費位元組上限。"
+        "lead": "編寫 GoogleSQL，在查詢執行前估算費用，並限制工作可計費的位元組數上限。",
+        "asset": "databases-bigquery"
     },
-    "asset": "mac-db-bigquery-dry-run",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "登入 Google Cloud",
-            "paragraphs": [
-                "選擇 <ui>驗證方式</ui> (Auth Method)，輸入 <ui>專案 ID</ui> (Project ID)，而非專案名稱或編號。<ui>Application Default Credentials</ui> 使用 gcloud 的登入檔案；<ui>服務帳戶金鑰</ui> (Service Account Key) 接受 JSON 檔案或貼上的金鑰。",
-                "Google Account (OAuth) 使用在 Google Cloud Console 建立的桌面 OAuth 用戶端透過瀏覽器登入。更新權杖儲存在鑰匙圈，每個用戶端一個，後續連線無須瀏覽器。一個 OAuth 用戶端登入一個 Google 帳戶，第二個帳戶需第二個用戶端或自有更新權杖。",
-                "全部透過 BigQuery REST API，無主機、連接埠、連線 URL 或 SSH 通道。<ui>位置</ui>（Location）設定每個工作傳送的處理位置。詳見<cloudAuth>雲端帳戶登入</cloudAuth>。"
+            "text": [
+                "選擇 <ui>驗證方式</ui> (Auth Method)，並輸入 <ui>專案 ID</ui> (Project ID)，而非專案名稱或編號。<ui>Application Default Credentials</ui> 使用 gcloud 的登入檔案，<ui>服務帳戶金鑰</ui> (Service Account Key) 接受 JSON 檔案或貼上的金鑰。",
+                "<cloudAuth>Google Account (OAuth)</cloudAuth> 透過瀏覽器，以您在 Google Cloud Console 建立的桌面 OAuth 用戶端登入，並在鑰匙圈中為每個用戶端保存一個更新權杖，因此之後的連線不會開啟瀏覽器。一個 OAuth 用戶端登入一個 Google 帳戶，因此第二個帳戶需要第二個用戶端。所有操作都透過 BigQuery 的 REST API，因此沒有主機、連接埠或 SSH 通道；<ui>位置</ui> (Location) 設定每個工作的處理位置。"
             ]
         },
         {
             "id": "work",
             "title": "查詢與成本控制",
-            "paragraphs": [
-                "在 <explain>Explain</explain> 中選擇 <ui>Dry Run (Cost)</ui>，無需執行查詢即可估算處理位元組數、計費位元組數和隨選費用。結果也顯示快取狀態。",
-                "查詢後查看處理位元組數、計費位元組數、預估隨選費用和快取狀態。設定 <ui>最大計費位元組數</ui> (Max Bytes Billed) 可拒絕超出計費位元組上限的工作。",
-                "完成、引用和格式化遵循 GoogleSQL，資料表名稱用反引號，STRUCT、ARRAY 欄位顯示為 JSON。資料集代替資料庫，列在側邊欄，<code>⌘K</code> 切換，每個分頁保持初始資料集。工作輪詢至查詢逾時後取消，No limit 時等待完成。",
-                "儲存格、插入和刪除透過<editing>格線</editing>操作。UPDATE、DELETE 依宣告主索引鍵比對，無主索引鍵則比對除 ARRAY、JSON、GEOGRAPHY 外所有欄位，因此相同列會一起修改。宣告 <code>PRIMARY KEY (…) NOT ENFORCED</code> 可精確編輯一列。分割資料表請在編輯器寫含分割區篩選的 UPDATE、DELETE。"
+            "text": [
+                "<explain>Explain</explain> 選單中的 <ui>Dry Run (Cost)</ui> 無須執行查詢，即可估算處理位元組數、計費位元組數和隨選費用。查詢後會顯示相同的數字及其快取狀態，<ui>最大計費位元組數</ui> (Max Bytes Billed) 會拒絕超出您設定上限的工作。",
+                "自動完成、引號和格式化都遵循 GoogleSQL，STRUCT 和 ARRAY 欄位顯示為 JSON。資料集取代資料庫，<code>⌘K</code> 可在資料集之間切換，工作會輪詢至查詢逾時後取消。從格線執行的 UPDATE 和 DELETE 會依已宣告的主索引鍵比對列，沒有主索引鍵時比對 ARRAY、JSON 和 GEOGRAPHY 以外的所有欄位，因此相同的列會一起變更；宣告 <code>PRIMARY KEY (…) NOT ENFORCED</code> 即可精確編輯一列。對於分割資料表，請在編輯器中撰寫含分割區篩選的 UPDATE 和 DELETE。"
             ]
         },
         {
             "id": "schema",
             "title": "資料集與 DDL",
-            "paragraphs": [
-                "DDL 從編輯器執行，例如 <code>CREATE SCHEMA</code>、<code>ALTER TABLE … ADD COLUMN</code>、<code>DROP COLUMN</code>、<code>CREATE OR REPLACE VIEW</code>。<ui>新增資料庫…</ui>（New Database…）使用 <code>CREATE SCHEMA</code> 建立資料集，資料表可從側邊欄重新命名。DDL 分頁從 <code>INFORMATION_SCHEMA.TABLES</code> 讀取定義，叢集和分割區顯示在 Indexes。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "TablePro 不提供 BigQuery 匯入。可將資料表或查詢結果以 {exportFormats} <export>匯出</export>至 Mac。",
-                "<backup>Server-Side Export</backup> 使用 <code>EXPORT DATA</code> 將 CSV、Parquet 或換行分隔的 JSON 寫入 <code>gs://</code> 前綴。操作使用您的權限，並等待完成。檔案不經過 Mac。"
+            "text": [
+                "從編輯器執行 DDL，例如 <code>CREATE SCHEMA</code>、<code>ALTER TABLE … ADD COLUMN</code> 或 <code>CREATE OR REPLACE VIEW</code>。<ui>新增資料庫…</ui> (New Database…) 會建立資料集，資料表可從側邊欄重新命名，DDL 分頁從 <code>INFORMATION_SCHEMA.TABLES</code> 讀取每個定義，叢集和分割區顯示在 Indexes 下。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "將資料表或查詢結果以 {exportFormats} <export>匯出</export>到您的 Mac。<backup>Server-Side Export</backup> 以 <code>EXPORT DATA</code> 將 CSV、Parquet 或換行分隔的 JSON 卸載到 <code>gs://</code> 前綴，檔案不經過您的 Mac。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "roles",
             "question": "BigQuery 連線需要哪些 IAM 角色？",
-            "answer": "執行查詢需 <code>roles/bigquery.user</code>，讀取需 <code>roles/bigquery.dataViewer</code>，修改需 <code>roles/bigquery.dataEditor</code>。"
+            "answer": "執行查詢需要 <code>roles/bigquery.user</code>，讀取資料需要 <code>roles/bigquery.dataViewer</code>，變更資料需要 <code>roles/bigquery.dataEditor</code>。"
         },
         {
             "id": "deep-pages",
-            "question": "為什麼要篩選而非翻到資料表的深處？",
-            "answer": "每個靠後的頁面都會從資料表開頭重新掃描。請用篩選或 WHERE 子句縮小列範圍，而非深入翻頁。"
+            "question": "為什麼要篩選，而不是翻到資料表的深處？",
+            "answer": "每個靠後的頁面都會從資料表開頭重新掃描。請改用篩選或 WHERE 子句縮小列的範圍。"
         }
     ],
-    "related": [
-        {
-            "label": "AWS、Google 與 Microsoft 雲端登入",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "匯出、備份與 Server-Side Export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Amazon Redshift，另一種資料倉儲",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "Snowflake，另一種雲端資料倉儲",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

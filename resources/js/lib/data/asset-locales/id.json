@@ -224,12 +224,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "id": "Tampilan Map yang memetakan tempat berpenduduk dari tabel PostGIS, dengan titik terpilih, Paris, dalam pemeriksa baris."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "id": "Lembar peninjauan Restore Previous Values, dengan tiga baris bertanda Will restore dan satu bertanda Changed since the save."
@@ -245,24 +239,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "id": "Tampilan dekat skrip Compare & Sync, dengan DROP COLUMN yang ditahan dari eksekusi ini beserta peringatan kehilangan datanya."
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "id": "Users & Roles pada server MySQL, dengan SQL Preview menampilkan GRANT yang memberikan SELECT pada kolom total shop.orders kepada pengguna app_reader."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "id": "Server Dashboard untuk server PostgreSQL, mencantumkan sesi aktif dengan SELECT berdurasi panjang dipilih dan tombol Terminate terlihat."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "id": "Tampilan dekat sesi SELECT berdurasi panjang yang dipilih dalam Server Dashboard, di samping tombol Terminate."
         },
         "caption": null
     },
@@ -282,277 +258,135 @@
             "id": "Tampilan dekat untuk ponsel: iPhone menampilkan tabel Track di atas ikon Handoff dalam Dock Mac."
         }
     },
-    "mac-engine-picker": {
+    "databases-postgresql": {
         "alt": {
-            "id": "Pemilih jenis database untuk koneksi baru, dengan mesin dikelompokkan menurut kategori dan MongoDB ditandai Not Installed."
+            "id": "TablePro di Mac yang terhubung ke PostgreSQL, dengan kueri yang membentuk array dan jsonb, beserta hasilnya."
         },
         "caption": null
     },
-    "mac-engine-picker-mobile": {
+    "databases-mysql": {
         "alt": {
-            "id": "Tampilan dekat pemilih jenis database, dengan Elasticsearch, MongoDB, SurrealDB, dan Typesense dalam Document, masing-masing ditandai Not Installed."
+            "id": "TablePro di Mac yang terhubung ke MySQL, dengan kueri dan hasilnya."
         },
         "caption": null
     },
-    "mac-db-postgresql-explain": {
+    "databases-sqlserver": {
         "alt": {
-            "id": "Rencana EXPLAIN ANALYZE untuk kueri yang menggabungkan orders dan users, digambar sebagai diagram, dengan Seq Scan pada orders ditandai merah."
+            "id": "TablePro di Mac yang terhubung ke SQL Server, dengan skrip T-SQL dan output PRINT-nya."
         },
         "caption": null
     },
-    "mac-db-postgresql-explain-mobile": {
+    "databases-sqlite": {
         "alt": {
-            "id": "Tampilan dekat diagram EXPLAIN ANALYZE, hingga Seq Scan pada orders yang ditandai merah."
+            "id": "TablePro di Mac dengan database SQLite contoh Chinook terbuka di tabel Track."
         },
         "caption": null
     },
-    "mac-db-mysql-query": {
+    "databases-mongodb": {
         "alt": {
-            "id": "TablePro terhubung ke MySQL, dengan kueri yang menggabungkan orders dan users dalam database shop serta hasil di bawahnya."
+            "id": "TablePro di Mac yang terhubung ke MongoDB, dengan dokumen yang ditulis dalam Extended JSON."
         },
         "caption": null
     },
-    "mac-db-mysql-query-mobile": {
+    "databases-redis": {
         "alt": {
-            "id": "Tampilan dekat kueri MySQL yang menggabungkan orders dan users, dengan baris awal hasilnya."
+            "id": "TablePro di Mac yang terhubung ke Redis, dengan kunci yang dikelompokkan dalam pohon serta jenis, TTL, dan nilai setiap kunci."
         },
         "caption": null
     },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "id": "TablePro dengan contoh SQLite Chinook bawaan terbuka dan tabel Track difilter berdasarkan genre."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "id": "Tampilan dekat tabel Track Chinook difilter berdasarkan genre."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "id": "Lembar Insert Document di atas koleksi events MongoDB, dengan dokumen ditulis dalam Extended JSON."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "id": "Tampilan dekat dokumen yang ditulis dalam Extended JSON, siap dimasukkan ke koleksi MongoDB."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "id": "Kunci Redis dalam TablePro dikelompokkan menjadi pohon dengan pemisah titik dua, dengan tipe, TTL, panjang, dan nilai setiap kunci dalam grid."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "id": "Tampilan dekat kunci Redis dalam grid data, dengan tipe dan TTL setiap kunci."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "id": "Skrip T-SQL dibagi menjadi batch dengan GO, dan pesan PRINT batch terakhir dalam tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "id": "Tampilan dekat pemisah batch GO skrip T-SQL dan pesan PRINT dalam tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "id": "Blok Oracle PL/SQL dalam editor, dengan baris yang ditulis melalui DBMS_OUTPUT ditampilkan di bawah hasilnya."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "id": "Tampilan dekat pemanggilan DBMS_OUTPUT.PUT_LINE dalam blok PL/SQL dan baris departemen yang dicetak di bawah hasil."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "id": "Tab Parts untuk tabel ClickHouse MergeTree, mencantumkan partisi dan bagian beserta jumlah barisnya."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "id": "Tampilan dekat tab Parts tabel ClickHouse, mencantumkan partisi, nama, dan jumlah baris setiap bagian."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "id": "Berkas Parquet dibuka dalam DuckDB sebagai tampilan hanya baca, dengan kueri SQL atasnya dan hasilnya."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "id": "Tampilan dekat kueri SQL yang membaca berkas Parquet melalui DuckDB, dengan baris awal hasilnya."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "id": "Tabel Cassandra dibuka dari sidebar dalam grid data, dengan nilai status yang diubah ditandai tertunda hingga disimpan dan kolom set ditampilkan sebagai koleksi."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "id": "Tampilan dekat baris Cassandra dalam grid data, satu sel status diubah menjadi shipped dan ditandai tertunda, di samping kolom tags yang menampilkan set."
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-redshift": {
         "description": {
-            "id": "DDL tabel Redshift dengan DISTKEY dan SORTKEY; strukturnya hanya baca."
+            "id": "Koneksi Amazon Redshift: DDL tabel dengan DISTKEY dan SORTKEY-nya."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
-        "description": {
-            "id": "Tampilan dekat baris DISTKEY dan SORTKEY dalam DDL tabel."
-        }
-    },
-    "mac-db-d1-databases": {
-        "description": {
-            "id": "Pemilih database mencantumkan database D1 akun, di atas kueri pada salah satunya."
-        }
-    },
-    "mac-db-d1-databases-mobile": {
-        "description": {
-            "id": "Tampilan dekat pemilih database yang mencantumkan database D1 akun."
-        }
-    },
-    "mac-db-turso-remote": {
-        "description": {
-            "id": "Database Turso jarak jauh: tabel dalam sidebar dan hasil kueri."
-        }
-    },
-    "mac-db-turso-remote-mobile": {
-        "description": {
-            "id": "Tampilan dekat kueri pada database Turso jarak jauh dan baris awalnya."
-        }
-    },
-    "mac-db-dynamodb-planner": {
+    "databases-oracle": {
         "alt": {
-            "id": "Pembacaan DynamoDB terfilter, dengan bilah status menunjukkan Query pada indeks byStatus, 44 item dikembalikan, dan 1 unit kapasitas baca digunakan."
+            "id": "TablePro di Mac yang terhubung ke Oracle Database, dengan blok PL/SQL dan baris DBMS_OUTPUT-nya."
         },
         "caption": null
     },
-    "mac-db-dynamodb-planner-mobile": {
+    "databases-clickhouse": {
         "alt": {
-            "id": "Tampilan dekat bilah status DynamoDB setelah pembacaan terfilter: Query pada indeks byStatus, 44 item dikembalikan, dan 1 unit kapasitas baca digunakan."
+            "id": "TablePro di Mac yang terhubung ke ClickHouse, dengan kueri analitik dan hasilnya."
         },
         "caption": null
     },
-    "mac-db-bigquery-dry-run": {
+    "databases-duckdb": {
+        "alt": {
+            "id": "TablePro di Mac dengan database DuckDB, menjalankan kueri SQL pada file Parquet."
+        },
+        "caption": null
+    },
+    "databases-cassandra": {
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Cassandra, dengan kueri CQL dan hasilnya."
+        },
+        "caption": null
+    },
+    "databases-dynamodb": {
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Amazon DynamoDB, dengan kueri PartiQL pada sebuah indeks dan item hasilnya."
+        },
+        "caption": null
+    },
+    "databases-bigquery": {
         "description": {
-            "id": "BigQuery Dry Run dari menu Explain: byte yang diproses dan perkiraan biaya."
+            "id": "Koneksi BigQuery: Dry Run dari menu Explain, dengan byte yang akan diproses kueri dan perkiraan biayanya."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-snowflake": {
         "description": {
-            "id": "Tampilan dekat hasil Dry Run: byte yang diproses dan perkiraan biaya."
+            "id": "Koneksi Snowflake dengan warehouse dan peran yang diatur di Session Context, dan hasil kueri di bawahnya."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-cloudflare-d1": {
         "description": {
-            "id": "Koneksi Snowflake dengan warehouse dan peran diatur dalam Session Context, hasil di bawahnya."
+            "id": "Koneksi Cloudflare D1: pengalih database yang mencantumkan database D1 akun, di atas tab kueri."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-turso": {
         "description": {
-            "id": "Tampilan dekat submenu Session Context dengan warehouse yang dicentang."
+            "id": "Database Turso jarak jauh: tabelnya di sidebar dan hasil kueri di grid."
         }
     },
-    "mac-db-etcd-keys": {
+    "databases-elasticsearch": {
         "alt": {
-            "id": "Kunci etcd di bawah prefiks /acme/sessions/, tiga di antaranya berbagi satu lease."
+            "id": "TablePro di Mac yang terhubung ke Elasticsearch, dengan permintaan pencarian dan hasilnya sebagai baris."
         },
         "caption": null
     },
-    "mac-db-etcd-keys-mobile": {
+    "databases-etcd": {
         "alt": {
-            "id": "Tampilan dekat kunci etcd di bawah prefiks /acme/sessions/, dengan lease setiap kunci."
+            "id": "TablePro di Mac yang terhubung ke etcd, dengan kunci di bawah sebuah prefiks beserta nilainya."
         },
         "caption": null
     },
-    "mac-db-elasticsearch-console": {
+    "databases-kafka": {
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Apache Kafka, mencantumkan pesan sebuah topic."
+        },
+        "caption": null
+    },
+    "databases-surrealdb": {
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke SurrealDB, dengan kueri SurrealQL dan record-nya."
+        },
+        "caption": null
+    },
+    "databases-teradata": {
         "description": {
-            "id": "Konsol Query DSL: permintaan GET _search dan hasilnya sebagai baris."
+            "id": "Koneksi Teradata: sidebar yang mencantumkan prosedur tersimpan, dengan makro di bawah Functions, dan hasil kueri."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
-        "description": {
-            "id": "Tampilan dekat permintaan GET _search dan hasil awalnya."
-        }
-    },
-    "mac-db-surrealdb-query": {
+    "databases-trino": {
         "alt": {
-            "id": "Kueri SurrealQL dalam editor dan rekaman yang dikembalikannya dalam grid data."
+            "id": "TablePro di Mac yang terhubung ke Trino, dengan kueri pada data contoh TPC-H dan hasilnya."
         },
         "caption": null
     },
-    "mac-db-surrealdb-query-mobile": {
+    "databases-beancount": {
         "alt": {
-            "id": "Tampilan dekat kueri SurrealQL dan rekaman yang dikembalikannya, dengan ID seperti person:alice."
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
-        "description": {
-            "id": "Sidebar Teradata mencantumkan prosedur, dengan makro dalam Functions."
-        }
-    },
-    "mac-db-teradata-sidebar-mobile": {
-        "description": {
-            "id": "Tampilan dekat grup Procedures dan Functions pada sidebar."
-        }
-    },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "id": "Kueri Trino yang menggabungkan tabel dari dua katalog, dengan hasil di bawahnya."
-        },
-        "caption": null
-    },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "id": "Tampilan dekat kueri Trino yang menggabungkan tabel dari dua katalog, dengan hasil awalnya."
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "id": "Tabel yang diproyeksikan dari buku besar Beancount dalam sidebar, serta hasil kueri BQL."
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "id": "Tampilan dekat kueri BQL pada buku besar Beancount, dengan baris awal hasilnya."
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "id": "Pernyataan KafkaQL CONSUME pada topik orders, dengan pesan dicantumkan berdasarkan partisi, offset, kunci, dan timestamp."
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "id": "Tampilan dekat pernyataan KafkaQL CONSUME pada topik orders, dengan pesan dicantumkan berdasarkan partisi, offset, dan kunci."
+            "id": "TablePro di Mac dengan buku besar Beancount terbuka, tabelnya di sidebar, dan hasil kueri BQL."
         },
         "caption": null
     },

@@ -11,54 +11,47 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata client",
-        "lead": "Query và sửa Teradata không cần phần mềm client riêng. Xem cơ sở dữ liệu, user, procedure và macro."
+        "lead": "Query và sửa Teradata không cần phần mềm client riêng, và duyệt cơ sở dữ liệu, user, procedure và macro của nó.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối và đăng nhập",
-            "paragraphs": [
-                "Nhập host, username và mật khẩu. Chọn <code>TD2</code> hoặc <code>TDNEGO</code> trong <ui>Logon Mechanism</ui>. <ui>Database</ui> ghi đè mặc định tài khoản. Hỗ trợ server Vantage nhận TD2, không kiểm tra phiên bản.",
-                "Port mặc định mang một session thường, không mã hóa. Chọn bất kỳ chế độ SSL nào cũng sẽ chuyển session sang endpoint WebSocket của gateway ở port 443, và port này không đổi được. Xác minh CA (Verify CA) cần một chứng chỉ CA, còn Xác minh danh tính (Verify Identity) kiểm tra chuỗi chứng chỉ và hostname theo chứng chỉ đó, hoặc theo kho tin cậy của hệ thống nếu bạn không đặt.",
-                "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA cho session. Với hệ thống nằm sau bastion, hãy kết nối qua <network>SSH tunnel</network>. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>teradata://</code>, nhưng macOS không mở các URL này như liên kết."
+            "text": [
+                "Nhập host, username và mật khẩu, rồi chọn <code>TD2</code> hoặc <code>TDNEGO</code> trong <ui>Logon Mechanism</ui>; <ui>Cơ sở dữ liệu</ui> (Database) ghi đè mặc định của tài khoản. Server Vantage nhận TD2 kết nối được mà không cần kiểm tra phiên bản.",
+                "Port mặc định mang một session thường, không mã hóa. Chọn bất kỳ chế độ SSL nào cũng sẽ chuyển session sang endpoint WebSocket của gateway ở port 443, và port này không đổi được. Xác minh CA (Verify CA) cần một chứng chỉ CA, còn Xác minh danh tính (Verify Identity) kiểm tra chuỗi chứng chỉ và hostname theo chứng chỉ đó, hoặc theo kho tin cậy của hệ thống nếu không có.",
+                "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA. <ui>Nhập từ URL…</ui> (Import from URL…) nhận URL <code>teradata://</code>, loại URL mà macOS không mở như liên kết."
             ]
         },
         {
             "id": "work",
             "title": "Query và chỉnh sửa",
-            "paragraphs": [
-                "Xem cơ sở dữ liệu và user dạng namespace. Tab ở cơ sở dữ liệu khác chia sẻ session và chạy <code>DATABASE</code> trước câu lệnh.",
-                "Stored procedure được liệt kê trong sidebar, còn macro nằm trong mục Functions, và mỗi mục đều mở <objects>mã nguồn trong một tab chỉ đọc</objects>.",
-                "Teradata không có <code>LIMIT</code>, nên trang đầu của table được lấy bằng <code>TOP</code>, các trang sau bằng <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> trả về plan của Teradata dưới dạng text thô. Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh."
+            "text": [
+                "Cơ sở dữ liệu và user đều hiện dạng namespace, và tab ở cơ sở dữ liệu khác dùng chung session, chạy <code>DATABASE</code> trước câu lệnh của nó. Stored procedure được liệt kê trong sidebar, còn macro nằm trong mục Functions, và mỗi mục đều mở <objects>mã nguồn trong một tab chỉ đọc</objects>.",
+                "Teradata không có <code>LIMIT</code>, nên trang đầu của table được lấy bằng <code>TOP</code>, còn các trang sau bằng <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> trả về plan của Teradata dưới dạng text thô."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Tạo table và sửa cột từ <structure>tab Structure</structure>. Phần DDL của table cho thấy toàn bộ định nghĩa, kể cả các ràng buộc."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "Đưa file {importFormats} vào bằng <importData>Import</importData>, và lưu table hoặc kết quả query ra {exportFormats}. <copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection Teradata khác; bản sao sang engine khác sẽ bị từ chối."
+            "text": [
+                "Tạo table và sửa cột trong <structure>tab Structure</structure>. Phần DDL của table cho thấy toàn bộ định nghĩa, kể cả các ràng buộc."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> file {importFormats}, và export table hoặc kết quả ra {exportFormats}. <copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection Teradata khác; bản sao sang engine khác sẽ bị từ chối."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
@@ -68,25 +61,8 @@
         {
             "id": "tls-check",
             "question": "Làm sao biết session đã được mã hóa?",
-            "answer": "Hãy thử với chế độ Bắt buộc, bỏ qua xác minh (Required, skip verify) hoặc một chế độ xác minh. Chế độ Ưu tiên (Preferred) quay về session thường khi port TLS không truy cập được, nên với chế độ này, một lần bắt tay TLS thất bại trông vẫn như kết nối thành công."
+            "answer": "Hãy thử với Bắt buộc, bỏ qua xác minh (Required, skip verify) hoặc một chế độ xác minh. Ưu tiên (Preferred) quay về session thường khi port TLS không truy cập được, nên một lần bắt tay TLS thất bại trông vẫn như kết nối thành công."
         }
     ],
-    "related": [
-        {
-            "label": "Viết, chạy và phân tích query",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema, so sánh và đồng bộ",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake, một warehouse khác",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino, cho query xuyên catalog",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

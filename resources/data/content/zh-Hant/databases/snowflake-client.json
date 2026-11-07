@@ -11,89 +11,64 @@
     "breadcrumb": "Snowflake",
     "header": {
         "title": "Snowflake 用戶端",
-        "lead": "查詢和編輯資料表，切換倉儲與角色，並匯出到暫存區。"
+        "lead": "查詢和編輯 Snowflake 資料表，無須重新連線即可切換倉儲和角色，並直接匯出到暫存區。",
+        "asset": "databases-snowflake"
     },
-    "asset": "mac-db-snowflake-session",
     "links": {
         "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線與登入",
-            "paragraphs": [
-                "輸入 <code>.snowflakecomputing.com</code> 前的帳戶識別碼，例如 <code>myorg-myaccount</code>。請求使用 HTTPS；無需主機、TLS 區域或 SSH 面板。",
-                "從 <ui>驗證方式</ui> (Auth Method) 中選擇 PKCS#8 金鑰組、瀏覽器 SSO、OAuth 權杖，或密碼加 <ui>MFA 驗證碼（TOTP）</ui> (MFA Passcode (TOTP))。金鑰組要求裝置時鐘準確。貼上的 OAuth 權杖不會重新整理。",
-                "帳戶開啟 <code>ALLOW_CLIENT_MFA_CACHING</code> 時，一次新驗證碼即可：Snowflake 傳回 MFA 權杖，TablePro 儲存在<credentials>鑰匙圈</credentials>。啟用 <code>ALLOW_ID_TOKEN</code> 時，瀏覽器 SSO 儲存登入權杖，後續連線跳過瀏覽器直到 Snowflake 拒絕。",
-                "Snowflake 無 URL scheme。可在 <ui>CLI 連線名稱</ui>（CLI Connection Name）指定設定區段，連線時從 <code>~/.snowflake/connections.toml</code> 讀取所有留空欄位。"
+            "text": [
+                "輸入 <code>.snowflakecomputing.com</code> 前的帳戶識別碼，例如 <code>myorg-myaccount</code>。請求使用 HTTPS，因此沒有主機、TLS 區域或 SSH 面板。Snowflake 沒有 URL scheme：在 <ui>CLI 連線名稱</ui> (CLI Connection Name) 中指定設定區段，留空的每個欄位都會從 <code>~/.snowflake/connections.toml</code> 讀取。",
+                "選擇 <ui>驗證方式</ui> (Auth Method)：PKCS#8 金鑰組、瀏覽器 SSO、OAuth 權杖，或密碼加上 <ui>MFA 驗證碼（TOTP）</ui> (MFA Passcode (TOTP))。金鑰組需要準確的裝置時鐘，貼上的 OAuth 權杖不會重新整理。",
+                "帳戶開啟 <code>ALLOW_CLIENT_MFA_CACHING</code> 時，只需一次新的驗證碼：TablePro 會將 Snowflake 傳回的 MFA 權杖存放在<credentials>鑰匙圈</credentials>中。開啟 <code>ALLOW_ID_TOKEN</code> 時，瀏覽器 SSO 會在其中保存登入權杖，之後的連線會略過瀏覽器，直到 Snowflake 拒絕該權杖。"
             ]
         },
         {
             "id": "work",
             "title": "倉儲、角色與查詢",
-            "paragraphs": [
-                "透過 <ui>資料庫 > Session Context</ui> (Database > Session Context) 變更倉儲和角色。連線在閒置時保留一個工作階段；其他資料庫的分頁會在執行陳述式前執行 <code>USE DATABASE</code>。",
-                "側邊欄依資料庫和 schema 分組物件。物件清單來自不需倉儲的 <code>SHOW</code> 指令，欄位詳情來自需要倉儲的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 傳回 Snowflake 原始文字計畫。",
-                "<editing>表格編輯</editing>在伺服器端繫結值，VARIANT、OBJECT 和 ARRAY 儲存格透過 <code>PARSE_JSON</code> 傳送。編輯依已宣告的主索引鍵定位，沒有主索引鍵時比對所有欄位。標準 Snowflake 資料表不強制鍵條件約束，因此重複鍵會讓編輯或刪除影響所有符合列；編輯前請檢查重複值。混合資料表會強制執行鍵條件約束。"
+            "text": [
+                "透過 <ui>資料庫 > Session Context</ui> (Database > Session Context) 變更倉儲和角色。連線在閒置時保留一個工作階段，其他資料庫的分頁會在其陳述式前執行 <code>USE DATABASE</code>。物件清單來自不需倉儲的 <code>SHOW</code> 指令；欄位詳情來自需要倉儲的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 以原始文字傳回 Snowflake 的計畫。",
+                "格線編輯會在伺服器端繫結值，VARIANT、OBJECT 和 ARRAY 儲存格透過 <code>PARSE_JSON</code> 傳送。編輯依已宣告的主索引鍵定位，沒有主索引鍵時比對所有欄位。標準資料表不強制鍵條件約束，因此編輯或刪除會影響共用重複鍵的每一列：請先檢查重複值。混合資料表會強制執行其鍵。"
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "DDL 檢視來自 <code>GET_DDL</code>。<structure>Structure 分頁</structure> 可新增、重新命名、刪除欄位，設定 NOT NULL、註解和主索引鍵，擴寬 VARCHAR，並在小數位數相同的情況下修改 NUMBER 精確度。",
-                "Snowflake 會拒絕的修改在執行前即被拒絕，包括縮窄 VARCHAR、其他型別修改及將欄位預設值改為新值。清除預設值可以執行。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "透過連線<importData>匯入</importData> {importFormats}，將資料表或結果以 {exportFormats} 匯出至 Mac。",
-                "選擇 <ui>檔案 > Server-Side Export…</ui> (File > Server-Side Export…) 和暫存區。<backup>Server-Side Export</backup> 使用您的權限執行 <code>COPY INTO</code>，寫入 gzip 壓縮 CSV、Parquet 或 JSON。操作會等待完成，檔案不經過 Mac。"
+            "title": "結構",
+            "text": [
+                "DDL 檢視來自 <code>GET_DDL</code>。<structure>Structure 分頁</structure>可新增、重新命名和刪除欄位，設定 NOT NULL、註解和主索引鍵，擴寬 VARCHAR，並在小數位數不變的情況下變更 NUMBER 的精確度。",
+                "Snowflake 會拒絕的變更在執行任何操作前就會被拒絕：縮窄 VARCHAR、其他型別變更，以及將欄位預設值設為新值。清除預設值則可以執行。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>匯入</importData> {importFormats} 檔案，並將資料表或結果以 {exportFormats} 匯出到您的 Mac。<ui>檔案 > Server-Side Export…</ui> (File > Server-Side Export…) 下的 <backup>Server-Side Export</backup> 會以您的權限執行 <code>COPY INTO</code> 暫存區，寫入 gzip 壓縮的 CSV、Parquet 或 JSON，檔案不經過您的 Mac。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "no-columns",
-            "question": "為什麼側邊欄顯示資料表但不顯示欄位？",
-            "answer": "欄位詳情來自需要執行中倉儲的 <code>INFORMATION_SCHEMA</code>。請在連線或 Session Context 設定<ui>倉儲</ui>（Warehouse）。資料庫物件完全不顯示時，需要向連線角色授予 <code>USAGE</code>。"
+            "question": "為什麼側邊欄顯示資料表，卻沒有欄位？",
+            "answer": "欄位詳情來自需要執行中倉儲的 <code>INFORMATION_SCHEMA</code>：請在連線或 Session Context 中設定 <ui>倉儲</ui> (Warehouse)。資料庫的物件完全沒有出現時，需要將 <code>USAGE</code> 授予連線所用的角色。"
         },
         {
             "id": "timestamp-ltz",
-            "question": "為什麼 TIMESTAMP_LTZ 顯示為 UTC？",
-            "answer": "TablePro 以標記 <code>Z</code> 的 UTC 時間讀取，不轉換為工作階段的 <code>TIMEZONE</code>。"
+            "question": "為什麼 TIMESTAMP_LTZ 值以 UTC 顯示？",
+            "answer": "TablePro 將其讀取為標記 <code>Z</code> 的 UTC 時間，而不是轉換為工作階段的 <code>TIMEZONE</code>。"
         },
         {
             "id": "jwt-invalid",
-            "question": "金鑰對登入提示 JWT 無效，應檢查什麼？",
-            "answer": "權杖包含帳戶 locator 和時間戳記。檢查帳戶識別碼和 Mac 時鐘，再確認已用 <code>ALTER USER … SET RSA_PUBLIC_KEY</code> 為使用者註冊公開金鑰。"
+            "question": "金鑰組登入顯示 JWT 權杖無效，應該檢查什麼？",
+            "answer": "權杖包含您的帳戶 locator 和時間戳記。請檢查帳戶識別碼和 Mac 的時鐘，然後確認已用 <code>ALTER USER … SET RSA_PUBLIC_KEY</code> 註冊公開金鑰。"
         }
     ],
-    "related": [
-        {
-            "label": "匯入、匯出與資料檔案",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "撰寫、執行與理解查詢",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Google BigQuery，另一種雲端資料倉儲",
-            "href": "/bigquery-client"
-        },
-        {
-            "label": "Trino，跨 catalog 查詢",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,52 +11,47 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "SurrealDB-Client",
-        "lead": "Führe SurrealQL aus und bearbeite Datensatzfelder unter Beibehaltung ihrer Typen."
+        "lead": "Führe SurrealQL-Skripte aus, durchsuche Namespaces und bearbeite Datensatzfelder unter Beibehaltung ihrer Typen.",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden und anmelden",
-            "paragraphs": [
-                "Wähle <ui>Auth Level</ui> für den Benutzer: Root, Namespace, Database, Record Access oder Token. Namespace und Database brauchen ihre Namen. Record Access braucht außerdem Zugriffsmethode und Anmeldefelder; Token akzeptiert ein vorhandenes JWT.",
-                "Der Treiber spricht CBOR über HTTP RPC, damit Record-Links, Zeitpunkte, Dauern, Dezimalzahlen und UUIDs ihre Typen behalten. Ein <code>surrealdb://</code>-Link öffnet das ausgefüllte Formular; ein Remote-Server lässt sich per <network>SSH-Tunnel</network> erreichen.",
-                "SSL beginnt mit Disabled, also Klartext-HTTP; alle anderen Modi nutzen HTTPS. Verify CA und Verify Identity prüfen gegen den System-Vertrauensspeicher. Eine CA-Datei im SSL/TLS-Bereich wird ignoriert; installiere daher private CAs zuerst in macOS."
+            "text": [
+                "Wähle <ui>Auth Level</ui>: Root, Namespace, Database, Record Access oder Token. Namespace und Database brauchen ihre Namen, Record Access braucht außerdem Zugriffsmethode und Anmeldefelder, und Token nimmt ein vorhandenes JWT an.",
+                "Der Treiber spricht CBOR über den HTTP-RPC-Endpunkt, daher behalten Record-Links, Zeitpunkte, Dauern, Dezimalzahlen und UUIDs ihre Typen. Ein <code>surrealdb://</code>-Link öffnet das ausgefüllte Verbindungsformular.",
+                "SSL beginnt mit Disabled, also Klartext-HTTP; jeder andere Modus nutzt HTTPS. Verify CA und Verify Identity prüfen das Zertifikat gegen den System-Vertrauensspeicher und ignorieren eine CA-Datei im SSL/TLS-Bereich; installiere eine private CA daher zuerst in macOS."
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL und Datensätze",
-            "paragraphs": [
-                "Führe vollständige SurrealQL-Skripte einschließlich <code>RELATE</code> mit Anweisungsvervollständigung aus. <explain>Explain und Explain Full</explain> führen die Abfrage mit <code>EXPLAIN</code> aus und liefern einen Textplan.",
-                "Namespaces stehen oben in der Seitenleiste mit ihren Datenbanken darin. Ein Wechsel verbindet nie neu, da Namespace und Datenbank bei jeder Anfrage mitgesendet werden. Nur Root sieht alle Namespaces.",
-                "Zellenänderungen aktualisieren nur geänderte Felder als typisierte Parameter und erhalten berechnete <code>FUTURE</code>-Felder sowie Änderungen anderer Nutzer. Lass <code>id</code> für eine automatisch erzeugte ID leer. Spalten von SCHEMALESS-Tabellen stammen aus den abgerufenen Datensätzen.",
+            "text": [
+                "Führe vollständige SurrealQL-Skripte aus, <code>RELATE</code> eingeschlossen, mit Anweisungsvervollständigung. <explain>Explain und Explain Full</explain> führen die Abfrage mit <code>EXPLAIN</code> aus und liefern einen Textplan.",
+                "Namespaces stehen oben in der Seitenleiste mit ihren Datenbanken darin. Ein Wechsel verbindet nie neu, da beide bei jeder Anfrage mitgesendet werden, und nur ein Root-Benutzer sieht alle Namespaces.",
+                "Zellenänderungen aktualisieren nur die geänderten Felder, als typisierte Parameter, daher bleiben berechnete <code>FUTURE</code>-Felder und Änderungen anderer Schreiber erhalten. Lass <code>id</code> für eine automatisch erzeugte ID leer; die Spalten einer SCHEMALESS-Tabelle stammen aus den abgerufenen Datensätzen.",
                 "<filters>Filter</filters> werden zu SurrealQL; eine Raw-SQL-Zeile nimmt eine Bedingung wie Graph-Traversierung. Bedingungen mit Schreibzugriff, <code>;</code>, Kommentar oder Aufrufen von <code>fn::</code> oder <code>http::</code> werden abgelehnt; führe sie im Editor aus."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Der Structure-Tab ist schreibgeschützt. Erstelle und ändere Felder und Indizes mit <code>DEFINE FIELD</code> und <code>DEFINE INDEX</code> im Editor. Ein Namespace oder eine Datenbank wird im Menü gelöscht; mehrere ausgewählte werden einmal gemeinsam bestätigt."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Es gibt keinen Import. <export>Exportiere</export> Tabellen oder SurrealQL-Ergebnisse als {exportFormats}."
+            "text": [
+                "Der Structure-Tab ist schreibgeschützt: Erstelle und ändere Felder und Indizes mit <code>DEFINE FIELD</code> und <code>DEFINE INDEX</code> im Editor. Ein Namespace oder eine Datenbank wird über sein Menü gelöscht, und bei mehreren ausgewählten wird einmal für alle gefragt."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Es gibt keinen Import. <export>Exportiere</export> Tabellen oder SurrealQL-Ergebnisse als {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
@@ -69,18 +64,5 @@
             "answer": "Nicht im Raster: Speichern stoppt, nennt das Feld und hält alle Änderungen vorgemerkt. <code>UPDATE</code> verschiebt eine Relation auch nicht; lösche sie und nutze <code>RELATE</code> für das neue Paar."
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB, die andere Dokumentendatenbank",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "Abfragesprachen jenseits von SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Daten sicher durchsuchen und bearbeiten",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

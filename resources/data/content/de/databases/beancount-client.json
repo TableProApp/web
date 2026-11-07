@@ -11,45 +11,39 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Beancount-Client",
-        "lead": "Frage ein Ledger als SQL-Tabellen oder mit BQL über rledger ab. Bearbeite die Quelldatei in deinem Texteditor."
+        "lead": "Frage ein Ledger als schreibgeschützte SQL-Tabellen oder mit BQL über rledger ab und bearbeite es in deinem eigenen Texteditor.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Ein Journal öffnen",
-            "paragraphs": [
-                "Installiere <code>rledger</code> oder Python Beancount. Wenn beide verfügbar sind, wird rledger verwendet. Nur rledger unterstützt BQL und Validierungsausgaben über <code>diagnostics</code>.",
-                "Wähle ein Ledger mit <ui>Browse…</ui> oder öffne eine .beancount-Datei im Finder. Der Dateipfad ist die gesamte Verbindung. Du kannst auch <code>beancount:///path/to/main.beancount</code>-URLs importieren.",
-                "Eine aus dem Finder geöffnete App übernimmt den <code>PATH</code> deiner Shell nicht. Läuft das Backend im Terminal, aber nicht hier, gib es mit <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> oder <code>TABLEPRO_BEANCOUNT_PYTHON</code> an und starte die App neu.",
+            "text": [
+                "Installiere <code>rledger</code> oder Python Beancount. Sind beide vorhanden, hat rledger Vorrang, und nur rledger unterstützt BQL und Validierungsausgaben in <code>diagnostics</code>.",
+                "Wähle ein Ledger mit <ui>Browse…</ui> oder öffne eine <code>.beancount</code>-Datei im Finder: Der Pfad ist die gesamte Verbindung, und <code>beancount:///path/to/main.beancount</code>-URLs lassen sich importieren. Eine aus dem Finder geöffnete App übernimmt den <code>PATH</code> deiner Shell nicht; läuft das Backend im Terminal, aber nicht hier, gib es mit <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> oder <code>TABLEPRO_BEANCOUNT_PYTHON</code> an und starte die App neu.",
                 "Das Python-Backend führt die mit Beancount gelieferten Plugins aus und überspringt jede andere <code>plugin</code>-Direktive, da sie Drittanbietercode ist, bis du <ui>Run Ledger Plugins</ui> für diese Verbindung aktivierst. Übersprungene Plugins werden in <code>diagnostics</code> aufgelistet."
             ]
         },
         {
             "id": "work",
             "title": "Das Journal abfragen",
-            "paragraphs": [
-                "Frage Transaktionen, Buchungen, Konten, Salden, Preise, Direktiven, Metadaten und Quelldateien als Tabellen ab. Verknüpfe Buchungen und Transaktionen über <code>transaction_id</code>, Konten über ihren Namen.",
-                "Beträge sind bereits verbucht, mit aufgelöster Arithmetik, Kosten und Preisen; Buchungskosten und Inline-Preise stehen in eigenen Spalten. Transaktionen, Buchungen und mehrere Direktivtabellen enthalten eine <code>source_location</code> wie <code>main.beancount:42</code>, sodass eine Zeile zu ihrer Quellzeile zurückführt.",
-                "Stelle einer Abfrage <code>BQL:</code> voran, um sie statt an die Tabellen an rledger zu senden. Durchsuchen, Zeilenzählung und Seitennavigation funktionieren für BQL-Ergebnisse; SQL-Parameter nicht.",
-                "<code>include</code>-Direktiven werden verfolgt, sowohl konkrete Pfade als auch Glob-Muster, und jede Journaldatei sowie jedes referenzierte Dokument wird überwacht. Speichere eine Änderung in deinem Editor, und die nächste Abfrage liest sie ohne erneutes Verbinden. Die Verbindung steht immer auf <safeMode>Safe Mode</safeMode> Read-Only; INSERT, UPDATE, DELETE und Schemaänderungen werden daher abgelehnt."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Exportiere eine Tabelle oder ein Abfrageergebnis als {exportFormats}. Zu den <files>weiteren Dateien, die TablePro als Datenbanken öffnet</files>, gehören SQLite, DuckDB und Parquet."
+            "text": [
+                "Transaktionen, Buchungen, Konten, Salden, Preise, Direktiven, Metadaten und Quelldateien sind Tabellen: Verknüpfe Buchungen und Transaktionen über <code>transaction_id</code> und Konten über ihren Namen. Beträge kommen bereits verbucht an, mit aufgelöster Arithmetik, Kosten und Preisen, und Buchungskosten und Inline-Preise stehen in eigenen Spalten.",
+                "Transaktionen, Buchungen und mehrere Direktivtabellen enthalten eine <code>source_location</code> wie <code>main.beancount:42</code>, sodass eine Zeile zu ihrer Quellzeile zurückführt. Stelle einer Abfrage <code>BQL:</code> voran, um sie an rledger zu senden; Durchsuchen, Zeilenzählung und Seitennavigation funktionieren für das Ergebnis, SQL-Parameter nicht.",
+                "<code>include</code>-Direktiven werden verfolgt, konkrete Pfade wie Glob-Muster, und jede Journaldatei und jedes referenzierte Dokument wird überwacht, sodass die nächste Abfrage eine gespeicherte Änderung ohne Neuverbinden liest. Die Verbindung steht immer auf <safeMode>Safe Mode</safeMode> Read-Only: INSERT, UPDATE, DELETE und Schemaänderungen werden abgelehnt."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exportiere</export> eine Tabelle oder ein Abfrageergebnis als {exportFormats}. Zu den <files>weiteren Dateien, die TablePro als Datenbanken öffnet</files>, gehören SQLite, DuckDB und Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
@@ -62,18 +56,5 @@
             "answer": "Eine Verbindung entspricht einer Journaldatei, ohne Umschalten. Eine Hauptdatei, die die anderen einbindet, bringt sie alle mit, auch über Glob-Muster."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB für analytische Dateien",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, eine Datenbank in einer Datei",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Import, Export und Datendateien",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

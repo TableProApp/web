@@ -11,54 +11,45 @@
     "breadcrumb": "Google BigQuery",
     "header": {
         "title": "Google BigQuery client",
-        "lead": "Write GoogleSQL, estimate query cost and set a billed-bytes limit."
+        "lead": "Write GoogleSQL, estimate what a query will cost before it runs, and cap the bytes a job can bill.",
+        "asset": "databases-bigquery"
     },
-    "asset": "mac-db-bigquery-dry-run",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Sign in to Google Cloud",
-            "paragraphs": [
-                "Choose an <ui>Auth Method</ui> and enter the <ui>Project ID</ui>, not its name or number. <ui>Application Default Credentials</ui> uses gcloud’s login file; <ui>Service Account Key</ui> accepts a JSON file or pasted key.",
-                "Google Account (OAuth) signs in through the browser with a desktop OAuth client you create in Google Cloud Console. The refresh token is kept in the Keychain, one per OAuth client, so later connects open no browser. One OAuth client signs in one Google account, so a second account needs a second client or its own refresh token.",
-                "Everything goes through BigQuery’s REST API, so there is no host, port, connection URL or SSH tunnel. <ui>Location</ui> sets the processing location sent with every job. More on <cloudAuth>cloud sign-in</cloudAuth>."
+            "text": [
+                "Choose an <ui>Auth Method</ui> and enter the <ui>Project ID</ui>, not its name or number. <ui>Application Default Credentials</ui> uses gcloud’s login file, and <ui>Service Account Key</ui> takes a JSON file or a pasted key.",
+                "<cloudAuth>Google Account (OAuth)</cloudAuth> signs in through the browser with a desktop OAuth client you create in Google Cloud Console, and keeps one refresh token per client in the Keychain, so later connects open no browser. One OAuth client signs in one Google account, so a second account needs a second client. Everything goes through BigQuery’s REST API, so there is no host, port or SSH tunnel; <ui>Location</ui> sets the processing location of every job."
             ]
         },
         {
             "id": "work",
             "title": "Query and control cost",
-            "paragraphs": [
-                "Choose <ui>Dry Run (Cost)</ui> from <explain>Explain</explain> to estimate processed bytes, billed bytes and on-demand cost without running the query. The result also reports cache status.",
-                "After a query, inspect bytes processed, bytes billed, estimated on-demand cost and cache status. Set <ui>Max Bytes Billed</ui> to reject jobs over a billed-bytes ceiling.",
-                "Completion, quoting and formatting follow GoogleSQL, with backticks around table names, and STRUCT and ARRAY columns show as JSON. Datasets stand in for databases: they are listed in the sidebar, <code>⌘K</code> moves between them, and each tab stays on the dataset it opened with. A job is polled until the query timeout and then cancelled; with the timeout set to No limit, TablePro waits for it to finish.",
-                "Cells, inserts and deletes go through the <editing>grid</editing>. UPDATE and DELETE match a row on its declared primary key; on a table without one they match every column except ARRAY, JSON and GEOGRAPHY ones, so identical rows change together. Declare <code>PRIMARY KEY (…) NOT ENFORCED</code> to edit one row exactly. On a partitioned table, write UPDATE and DELETE with a partition filter in the editor."
+            "text": [
+                "<ui>Dry Run (Cost)</ui> in the <explain>Explain</explain> menu estimates processed bytes, billed bytes and on-demand cost without running the query. After a query, the same figures show with its cache status, and <ui>Max Bytes Billed</ui> rejects jobs over a ceiling you set.",
+                "Completion, quoting and formatting follow GoogleSQL, and STRUCT and ARRAY columns show as JSON. Datasets stand in for databases, <code>⌘K</code> moves between them, and a job is polled until the query timeout, then cancelled. UPDATE and DELETE from the grid match a row on its declared primary key, or on every column but ARRAY, JSON and GEOGRAPHY ones, so identical rows change together; declare <code>PRIMARY KEY (…) NOT ENFORCED</code> to edit one row exactly. On a partitioned table, write UPDATE and DELETE with a partition filter in the editor."
             ]
         },
         {
             "id": "schema",
             "title": "Datasets and DDL",
-            "paragraphs": [
-                "DDL runs from the editor, such as <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> and <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> creates a dataset with <code>CREATE SCHEMA</code>, and tables can be renamed from the sidebar. The DDL tab reads each definition from <code>INFORMATION_SCHEMA.TABLES</code>, and clustering and partitioning appear under Indexes."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "TablePro has no import for BigQuery. <export>Export</export> a table or a query result to your Mac as {exportFormats}.",
-                "<backup>Server-Side Export</backup> uses <code>EXPORT DATA</code> to unload CSV, Parquet or newline-delimited JSON to a <code>gs://</code> prefix. It runs with your permissions and waits for completion. Files do not pass through your Mac."
+            "text": [
+                "Run DDL from the editor, such as <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code> or <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> creates a dataset, tables can be renamed from the sidebar, the DDL tab reads each definition from <code>INFORMATION_SCHEMA.TABLES</code>, and clustering and partitioning appear under Indexes."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> a table or a query result to your Mac as {exportFormats}. <backup>Server-Side Export</backup> unloads CSV, Parquet or newline-delimited JSON to a <code>gs://</code> prefix with <code>EXPORT DATA</code>, so the files never pass through your Mac."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "roles",
@@ -68,25 +59,8 @@
         {
             "id": "deep-pages",
             "question": "Why filter instead of paging deep into a table?",
-            "answer": "Each page far into a table rescans the table from its start. Narrow the rows with a filter or a WHERE clause rather than paging deep."
+            "answer": "Each page far into a table rescans the table from its start. Narrow the rows with a filter or a WHERE clause instead."
         }
     ],
-    "related": [
-        {
-            "label": "Cloud sign-in for AWS, Google and Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Export, backups and Server-Side Export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Amazon Redshift, another warehouse",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "Snowflake, another cloud warehouse",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

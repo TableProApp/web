@@ -11,73 +11,59 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Grafische Oberfläche für Amazon DynamoDB",
-        "lead": "Durchsuche Elemente, frage Schlüssel und verbrauchte Lesekapazität ab. Bearbeite typisierte Werte und nutze PartiQL."
+        "lead": "Durchsuche Elemente, lies per Schlüssel mit der verbrauchten Kapazität im Blick und bearbeite typisierte Werte oder führe PartiQL aus.",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Wähle <ui>Auth Method</ui> und <ui>AWS Region</ui>. Nutze Zugriffsschlüssel mit optionalem Session Token, ein CLI-Profil oder <cloudAuth>AWS IAM Identity Center</cloudAuth>. Abgelaufene Sitzungen fordern zur erneuten Anmeldung auf.",
-                "Profile lösen <code>credential_process</code>-Hilfsprogramme und <code>role_arn</code>-Ketten auf. Abgelaufene temporäre Zugangsdaten werden erneut abgerufen und die Anfrage einmal wiederholt. Jede Anfrage läuft über HTTPS, signiert mit Signature Version 4; es gibt daher keine SSL-Einstellung und keinen SSH-Tunnel. Eine Region in einer anderen AWS-Partition wie China oder European Sovereign Cloud erreicht ihren eigenen Endpunkt ohne benutzerdefinierten Endpunkt.",
-                "Für DynamoDB Local führe <code>docker run -p 8000:8000 amazon/dynamodb-local</code> aus und wähle <ui>DynamoDB Local (no credentials)</ui>. Lasse <ui>Custom Endpoint</ui> für Port 8000 leer. Ein benutzerdefinierter Endpunkt darf unverschlüsseltes HTTP nur auf diesem Mac verwenden. Die Anleitung listet <permissions>die IAM-Aktionen für jede Aufgabe</permissions> auf."
+            "text": [
+                "Wähle <ui>Auth Method</ui> und <ui>AWS Region</ui>: einen Zugriffsschlüssel mit optionalem Session Token, ein AWS-CLI-Profil oder <cloudAuth>AWS IAM Identity Center</cloudAuth>. Profile lösen <code>credential_process</code>-Hilfsprogramme und <code>role_arn</code>-Ketten auf, und jede Anfrage läuft über HTTPS, signiert mit Signature Version 4; es gibt daher keine SSL-Einstellung und keinen SSH-Tunnel.",
+                "Für DynamoDB Local führe <code>docker run -p 8000:8000 amazon/dynamodb-local</code> aus und wähle <ui>DynamoDB Local (no credentials)</ui>; ein benutzerdefinierter Endpunkt darf unverschlüsseltes HTTP nur auf diesem Mac verwenden. Eine Region in einer anderen AWS-Partition wie China erreicht ihren eigenen Endpunkt ohne benutzerdefinierten Endpunkt. Die Einrichtungsanleitung listet <permissions>die IAM-Aktionen, die jede Aufgabe braucht</permissions>."
             ]
         },
         {
             "id": "work",
             "title": "Elemente lesen, filtern und bearbeiten",
-            "paragraphs": [
-                "Schlüsselfilter nutzen Query, andere Filter Scan. Scan liest die gesamte Tabelle und berechnet jedes Element. Die Statusleiste zeigt Operation, zurückgegebene und gescannte Elemente sowie verbrauchte Lesekapazität.",
-                "<filters>Sortierschlüsselfilter</filters> nutzen unterstützte Schlüsselbedingungen. Andere Filter greifen erst nach dem Lesen und senken die Kosten nicht. Verschachtelte Pfade wie <code>address.city</code> oder <code>items[0].sku</code> werden unterstützt.",
-                "Ein Klick auf den Sortierschlüsselkopf bei Query einer Partition lässt DynamoDB die Elemente in dieser Reihenfolge liefern. Jede andere Sortierung erfolgt im Raster, wenn die Leseoperation alle passenden Elemente enthält; die Statusleiste zeigt an, wenn das nicht der Fall ist. Die nächste Seite setzt am Ende der vorherigen fort. Die Gesamtzahl unter dem Raster stammt von DynamoDB; <ui>Count Exactly</ui> liest jedes Element, das zu deinen Filtern passt, und wird vollständig berechnet.",
-                "Eine Tabelle deklariert nur ihre Schlüssel; Spalten stammen daher aus den Elementen: Schlüsselattribute, Attribute aus einer Stichprobe der ersten Elemente und jene auf der sichtbaren Seite. Maps, Listen und Mengen erscheinen als JSON und öffnen im JSON-Editor; Zahlen behalten jede Ziffer.",
-                "Jede gespeicherte Zeile nutzt eine PartiQL-Anweisung mit <editing>erhaltenen Typen</editing>. Updates prüfen geänderte Attribute gegen die geladenen Werte und verhindern das Überschreiben paralleler Änderungen. <ui>Set NULL</ui> entfernt das Attribut.",
-                "Der Editor nimmt PartiQL mit doppelten Anführungszeichen für Namen und einfachen für Strings oder einen DynamoDB-Aktionsnamen mit anschließendem Anfrage-JSON entgegen, etwa <code>Query</code>, <code>BatchWriteItem</code> oder <code>TransactWriteItems</code>. Andere Aktionsnamen werden abgelehnt. Elemente erscheinen im Raster, andere Antworten als JSON. Gedrosselte Anfragen werden mit Backoff wiederholt; <code>⌘.</code> stoppt eine laufende Anweisung."
+            "text": [
+                "Schlüsselfilter laufen als Query und andere Filter als Scan, der die ganze Tabelle liest und berechnet; die Statusleiste zeigt die Operation, die Zahl zurückgegebener und gescannter Elemente und die verbrauchte Lesekapazität. <filters>Sortierschlüsselfilter</filters> werden, wo möglich, zu Schlüsselbedingungen, und verschachtelte Pfade wie <code>address.city</code> funktionieren. Ein Klick auf den Kopf des Sortierschlüssels bei einer Query auf eine Partition lässt DynamoDB die Elemente in dieser Reihenfolge liefern.",
+                "Spalten stammen aus den Elementen: die Schlüssel, Attribute aus einer Stichprobe der ersten Elemente und jene auf der sichtbaren Seite. Maps, Listen und Mengen öffnen sich im JSON-Editor, Zahlen behalten jede Ziffer, <ui>Set NULL</ui> entfernt ein Attribut, und jede Zeile wird als eine PartiQL-Anweisung gespeichert, die das Überschreiben einer parallelen Änderung verweigert. Der Editor nimmt PartiQL an oder einen Aktionsnamen wie <code>Query</code> oder <code>TransactWriteItems</code>, gefolgt vom Anfrage-JSON; gedrosselte Anfragen werden mit Backoff wiederholt."
             ]
         },
         {
             "id": "schema",
-            "title": "Tabellen und Indizes",
-            "paragraphs": [
-                "<ui>New Table…</ui> öffnet ein Formular für Partitions- und Sortierschlüssel, On-Demand- oder bereitgestellte Kapazität, Tabellenklasse, Löschschutz und sekundäre Indizes. <ui>Preview</ui> zeigt die <code>CreateTable</code>-Anfrage vor dem Senden. Ein lokaler sekundärer Index kann nur dort beim Erstellen definiert werden.",
-                "Im Structure-Tab fügst du einen globalen sekundären Index hinzu oder entfernst ihn, eine Änderung pro Speichern, da DynamoDB eine Indexänderung pro <code>UpdateTable</code>-Anfrage akzeptiert. Attribute werden dort nicht bearbeitet: Schreibe eines in ein Element, und es erscheint als Spalte. Der DDL-Tab zeigt die <code>CreateTable</code>-Anfrage zum Neuerstellen samt Time-to-Live- und Point-in-Time-Recovery-Einstellungen."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Tabelleneinstellungen",
-            "paragraphs": [
-                "Klicke eine Tabelle rechts an und wähle <ui>Maintenance</ui> für Point-in-Time-Recovery, Löschschutz, Stream, Tabellenklasse, Wechsel zu On-Demand-Kapazität und Abschalten von Time to Live. Das Löschen sendet <code>DeleteTable</code> und schlägt bei aktivem Löschschutz fehl."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Es gibt keinen DynamoDB-Import. Schreibe Elemente im Editor mit einem PartiQL-<code>INSERT</code> oder einer <code>BatchWriteItem</code>-Anfrage, die unverarbeitete Elemente erneut sendet und nicht geschriebene meldet. <export>Exportiere</export> eine Tabelle oder ein Ergebnis über den Exportdialog als {exportFormats}."
+            "also": [
+                "operate"
+            ],
+            "title": "Tabellen, Indizes und Einstellungen",
+            "text": [
+                "<ui>New Table…</ui> legt Schlüssel, Kapazitätsmodus, Tabellenklasse, Löschschutz und sekundäre Indizes fest und zeigt die <code>CreateTable</code>-Anfrage in der Vorschau; ein lokaler sekundärer Index lässt sich nur dort definieren. Der Structure-Tab fügt pro Speichern einen globalen sekundären Index hinzu oder entfernt ihn, und der DDL-Tab zeigt die Anfrage, die die Tabelle neu erstellt.",
+                "<ui>Maintenance</ui> umfasst Point-in-Time-Recovery, Löschschutz, den Stream, die Tabellenklasse, den Wechsel zu On-Demand-Kapazität und das Abschalten von Time to Live."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Schreibe Elemente im Editor mit einem PartiQL-<code>INSERT</code> oder einer <code>BatchWriteItem</code>-Anfrage, die unverarbeitete Elemente erneut sendet. <export>Exportiere</export> eine Tabelle oder ein Ergebnis als {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
             "question": "Wie verhindere ich einen Scan der ganzen Tabelle?",
-            "answer": "Filtere den Partitionsschlüssel mit = oder den Partitionsschlüssel eines globalen Index mit einem Filter auf jedem Sortierschlüssel, und die Leseoperation läuft als Query. Ein globaler Index wird nur zum Durchsuchen genutzt, wenn er jedes Attribut projiziert. Frage einen reinen Schlüsselindex im Editor mit einer <code>Query</code>-Anfrage ab, die seinen <code>IndexName</code> nennt."
+            "answer": "Filtere den Partitionsschlüssel mit = oder den Partitionsschlüssel eines globalen Index mit einem Filter auf jedem seiner Sortierschlüssel, und die Leseoperation läuft als Query. Ein reiner Schlüsselindex wird zum Durchsuchen nicht genutzt; frage ihn daher im Editor mit einer <code>Query</code>-Anfrage ab, die seinen <code>IndexName</code> nennt."
         },
         {
             "id": "change-key",
             "question": "Wie ändere ich den Schlüssel eines Elements?",
-            "answer": "Ein Schlüsselattribut lässt sich nicht direkt bearbeiten. Nutze <ui>Duplicate Row</ui>, das alle Attribute außer den Schlüsseln kopiert, gib der Kopie den neuen Schlüssel, speichere und lösche das Original."
+            "answer": "Nutze <ui>Duplicate Row</ui>, das alle Attribute außer den Schlüsseln kopiert, gib der Kopie ihren neuen Schlüssel, speichere und lösche dann das Original."
         },
         {
             "id": "transactions",
@@ -85,22 +71,5 @@
             "answer": "Nein. Jede geänderte Zeile wird einzeln geschrieben. Bündele Schreibvorgänge, die gemeinsam erfolgreich sein müssen, in einer <code>ExecuteTransaction</code>- oder <code>TransactWriteItems</code>-Anfrage im Editor."
         }
     ],
-    "related": [
-        {
-            "label": "Filter über Engines hinweg",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "AWS-, Google- und Microsoft-Anmeldung",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis, Schlüssel und Befehle",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra und Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

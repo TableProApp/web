@@ -11,107 +11,68 @@
     "breadcrumb": "Oracle",
     "header": {
         "title": "Oracle Database 客户端",
-        "lead": "无需安装 Oracle Instant Client 即可运行 SQL 和 PL/SQL，同时查看查询结果和 DBMS_OUTPUT。"
+        "lead": "无需 Oracle Instant Client 即可运行 SQL 和 PL/SQL，并在每个结果旁查看 DBMS_OUTPUT。",
+        "asset": "databases-oracle"
     },
-    "asset": "mac-db-oracle-plsql",
     "links": {
-        "network": "/features/connections#network",
-        "parameters": "/features/querying#history",
-        "editing": "/features/data-editing#edit",
-        "safeMode": "/features/data-editing#safe-mode",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "importData": "/features/import-export#import",
-        "serverExport": "/features/import-export#backup"
+        "serverExport": "/features/import-export#backup",
+        "importData": "/features/import-export#import"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入主机、监听端口和 Service Name，或在 <ui>连接类型</ui> (Connection Type) 中选择 SID。密码登录支持 Normal、SYSDBA 和 SYSOPER 角色。",
-                "Native Network Encryption 无需设置：服务器要求时提供带 SHA-2 校验和的 AES，<ui>Network Encryption</ui> 改变 TablePro 提供的选项。TLS 选择用于 TCPS 的 Required，或带 CA 证书的 Verify CA、Verify Identity。新连接 SSL 关闭，Preferred 仍用明文 TCP。",
-                "Oracle Autonomous Database 请从 TLS 连接字符串（非 mTLS）复制主机、端口和服务名，SSL 设 Required 或 Verify CA。从不读取钱包文件，所以数据库必须接受不带双向 TLS 的 TLS。",
-                "RAC SCAN 监听器、共享服务器或数据库前的负载均衡器无需配置；私网监听器通过 <network>SSH 隧道</network>访问。"
+            "text": [
+                "输入主机、监听端口和 Service Name，或在 <ui>连接类型</ui> (Connection Type) 中选择 SID。密码登录支持 Normal、SYSDBA 和 SYSOPER 角色；RAC SCAN 监听器、共享服务器或负载均衡器无需配置。",
+                "Native Network Encryption 无需设置：服务器要求时，会提供带 SHA-2 校验和的 AES，<ui>Network Encryption</ui> 可更改 TablePro 提供的选项。如需 TLS，请选择用于 TCPS 的 Required，或带 CA 证书的 Verify CA 或 Verify Identity；新连接默认关闭 SSL。",
+                "在 Oracle Autonomous Database 上，请从 TLS 连接字符串（而非 mTLS 连接字符串）复制主机、端口和服务名，并将 SSL 设为 Required 或 Verify CA。TablePro 从不读取钱包文件。"
             ]
         },
         {
             "id": "work",
             "title": "SQL、PL/SQL 和事务",
-            "paragraphs": [
-                "将 PL/SQL 块和存储单元作为单条语句运行。脚本中的 <code>/</code> 行结束一个单元。编译错误包含 Oracle 消息和源代码位置。不支持 SQL*Plus 客户端命令。",
-                "<code>DBMS_OUTPUT.PUT_LINE</code> 行与打印它的语句结果一起显示，无需 <code>SET SERVEROUTPUT ON</code>。匿名块中的 <code>:name</code> 是在面板填写的<parameters>查询参数</parameters>。",
-                "各语句成功即提交。用 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 开始保留改动，其后包括网格保存均等待 <code>COMMIT</code> 或 <code>ROLLBACK</code>。",
-                "每个用户是一个 schema，<code>⌘K</code> 无需重连切换活动 schema。行编辑暂存并可 <editing>Preview SQL</editing>。执行 drop 或 truncate 的块即使通过 <code>EXECUTE IMMEDIATE</code>，也在运行前触发<safeMode>危险查询警告</safeMode>。"
+            "text": [
+                "PL/SQL 块和存储单元作为单条语句运行，脚本中的 <code>/</code> 行结束一个单元，编译错误包含 Oracle 的消息和源代码位置。<code>DBMS_OUTPUT.PUT_LINE</code> 行与打印它的语句结果一起显示，无需 <code>SET SERVEROUTPUT ON</code>。",
+                "每条语句成功即提交。以 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 开始即可保留更改（包括网格保存），直到您执行 <code>COMMIT</code> 或 <code>ROLLBACK</code>。每个用户是一个 schema，<code>⌘K</code> 无需重新连接即可切换活动 schema。"
             ]
         },
         {
             "id": "schema",
-            "title": "结构",
-            "paragraphs": [
-                "在 <structure>Structure 标签页</structure>添加、重命名、修改或删除列，也可创建索引。区分大小写的名称会加引号。可查看主键、外键和 CREATE TABLE DDL。",
-                "分区表下列出各分区及位置，子分区嵌套在所属分区内。用 <code>SELECT * FROM orders PARTITION (p2024)</code> 查询一个分区。",
-                "<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比较 Oracle 结构或数据。脚本使用适用于 SQL*Plus 或 SQLcl 的 <code>/</code> 分隔符。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "在服务器导出",
-            "paragraphs": [
-                "<serverExport>Server-Side Export</serverExport> 以自有权限启动 Data Pump 作业，将表写入服务器的 <code>DIRECTORY</code> 对象，Mac 不接收文件。面板报告已启动后作业仍运行，请在 <code>DBA_DATAPUMP_JOBS</code> 跟踪。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "<importData>导入</importData> {importFormats} 文件；数据文件创建新表时，建议名称大写且符合 Oracle 长度限制。表或结果导出为 {exportFormats}。SQL 导出在每个例程和触发器后加 <code>/</code> 行，供 SQL*Plus 恢复。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone 和 iPad",
-            "paragraphs": [
-                "iPhone、iPad 的 Oracle 驱动内置于应用。连接表单接受 Service Name 或 SID、SYSDBA、SYSOPER 角色及 Network Encryption 设置。以卡片浏览表，编辑有主键的行，在 Query 标签页运行 SQL；创建修改表仍在 Mac。"
+            "also": [
+                "operate"
             ],
-            "asset": "ios-table-browse"
+            "title": "结构和 Data Pump",
+            "text": [
+                "在 <structure>Structure 标签页</structure>添加、重命名、修改和删除列，或创建索引，区分大小写的名称会加引号。分区表列出其分区，子分区嵌套在所属分区下。<compareSync>Compare & Sync</compareSync>（{compareSyncTier}）比较 Oracle 的结构或数据，并写入适用于 SQL*Plus 或 SQLcl 的 <code>/</code> 分隔符。",
+                "<serverExport>Server-Side Export</serverExport> 以您自己的权限启动 Data Pump 作业，将表写入服务器上的 <code>DIRECTORY</code> 对象，因此不会有文件落到您的 Mac 上。请在 <code>DBA_DATAPUMP_JOBS</code> 中跟踪作业。"
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>导入</importData> {importFormats} 文件；新表的建议名称为大写，且符合 Oracle 的长度限制。将表或结果导出为 {exportFormats}，SQL 导出会在每个例程和触发器后加 <code>/</code> 行，以便 SQL*Plus 恢复。"
+    ],
+    "iphone": [
+        "Oracle 驱动内置于应用，表单接受 Service Name 或 SID、SYSDBA 和 SYSOPER 角色以及 Network Encryption 设置。以卡片形式浏览表，编辑有主键的行，并在 Query 标签页运行 SQL。"
+    ],
     "faq": [
         {
             "id": "pluggable-database",
             "question": "为什么看不到应用的任何表？",
-            "answer": "可能连接到了容器数据库。可插拔数据库有独立服务名，例如 <code>XE</code> 内的 <code>XEPDB1</code>。在服务器运行 <code>lsnrctl services</code> 列出监听器响应的名称。"
+            "answer": "您可能连接到了容器数据库。可插拔数据库有自己的服务名，例如 <code>XE</code> 内的 <code>XEPDB1</code>；在服务器上运行 <code>lsnrctl services</code> 可列出监听器响应的名称。"
         },
         {
             "id": "sqlplus-commands",
-            "question": "为什么 SET SERVEROUTPUT ON 失败？",
-            "answer": "<code>SET SERVEROUTPUT ON</code>、<code>SHOW ERRORS</code>、<code>EXEC</code> 等 SQL*Plus 命令不是 SQL，服务器拒绝它们。请删除：连接即开启输出。将 <code>EXEC p</code> 写为 <code>BEGIN p; END;</code>。"
+            "question": "为什么 SET SERVEROUTPUT ON 会失败？",
+            "answer": "<code>SET SERVEROUTPUT ON</code>、<code>SHOW ERRORS</code> 和 <code>EXEC</code> 等 SQL*Plus 命令不是 SQL，因此服务器会拒绝它们。请删除它们，因为连接后输出即已开启，并将 <code>EXEC p</code> 写为 <code>BEGIN p; END;</code>。"
         },
         {
             "id": "password-verifier",
-            "question": "旧 10G 密码验证器的账户能连接吗？",
-            "answer": "可以，但 Oracle 已弃用其 DES 哈希。用 <code>ALTER USER … IDENTIFIED BY</code> 修改密码，再检查 <code>dba_users</code> 的 <code>password_versions</code> 含 11G 或 12C。"
+            "question": "使用旧 10G 密码验证器的账户能连接吗？",
+            "answer": "可以，但 Oracle 已弃用它所用的基于 DES 的哈希。请用 <code>ALTER USER … IDENTIFIED BY</code> 修改密码，然后检查 <code>dba_users</code> 中的 <code>password_versions</code> 是否包含 11G 或 12C。"
         }
     ],
-    "related": [
-        {
-            "label": "编写、运行和理解查询",
-            "href": "/features/querying"
-        },
-        {
-            "label": "备份和服务器端导出",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "结构、对比和同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "适用于 iPhone 和 iPad 的 TablePro",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

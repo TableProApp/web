@@ -171,7 +171,7 @@ it('drops a withdrawn platform from every page that offers it', function (string
     'iPhone and iPad' => ['/ios', ['ios']],
     'FAQ' => ['/faq', ['platforms.ios']],
     'database hub' => ['/databases', ['platforms.ios']],
-    'database page' => ['/vi/mysql-client', ['platforms.ios', 'links.appStore']],
+    'database page' => ['/vi/mysql-client', ['platforms.ios']],
     'compare hub' => ['/compare', ['tablepro.ios']],
     'comparison' => ['/compare/tableplus', ['tablepro.ios']],
 ]);

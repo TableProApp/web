@@ -11,102 +11,69 @@
     "breadcrumb": "Amazon Redshift",
     "header": {
         "title": "Amazon Redshift クライアント",
-        "lead": "プロビジョニング済みクラスターや Serverless ワークグループをクエリできます。ソートキー、分散方式、外部スキーマを確認できます。"
+        "lead": "プロビジョニング済みクラスターや Serverless ワークグループをクエリし、ソートキー、分散方式、外部スキーマを確認できます。",
+        "asset": "databases-redshift"
     },
-    "asset": "mac-db-redshift-ddl",
     "links": {
-        "network": "/features/connections#network",
-        "credentials": "/features/connections#credentials",
-        "editing": "/features/data-editing#edit",
-        "explain": "/features/querying#explain",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
         "postgresql": "/postgresql-client",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#administer",
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
         "icloudSync": "/features/sync-and-teams#icloud-sync",
         "share": "/features/sync-and-teams#share"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "接続",
-            "paragraphs": [
-                "クラスターか Serverless ワークグループのエンドポイント、ポート、データベースを入力します。クラスターの初期値は <code>dev</code> です。<code>redshift://</code> URL からフォームを入力できます。",
-                "新規接続は SSL を Preferred にし、バージョン検査は行わないため、AWS が稼働させているクラスターなら接続できます。パスワードはキーチェーンに保存するか <code>~/.pgpass</code> から読み取り、接続の <credentials>認証情報オプション</credentials> の二つです。公開アクセスできないクラスターには、VPC 内の踏み台への <network>SSH トンネル</network> でアクセスします。"
+            "text": [
+                "クラスターか Serverless ワークグループのエンドポイント、ポート、データベースを入力します。クラスターの初期値は <code>dev</code> で、<code>redshift://</code> URL からフォームを入力できます。新しい接続の SSL は Preferred です。バージョン検査は行わないため、AWS が稼働させているクラスターなら接続できます。",
+                "パスワードはキーチェーンに保存するか、<code>~/.pgpass</code> から読み取ります。公開アクセスできないクラスターには、VPC 内の踏み台ホストへの SSH トンネルで接続します。"
             ]
         },
         {
             "id": "work",
             "title": "クエリと編集",
-            "paragraphs": [
-                "クエリと <editing>Preview SQL 付きの行編集保留</editing> は、同じドライバーを使う <postgresql>PostgreSQL</postgresql> と同じように動作します。有効なデータベース以外に紐付いたタブは、そのために二つ目の接続を開きます。",
-                "<code>svv_table_info</code> で分散方式、ソートキー、サイズを確認できます。DDL に DISTKEY、SORTKEY、DISTSTYLE、ENCODE を表示します。外部キーは一覧に出ますが、Redshift は強制しません。",
-                "<explain>EXPLAIN と EXPLAIN VERBOSE</explain> は Redshift のプランを図ではなくテキストで返します。",
-                "ローカルと並べて Spectrum、フェデレーテッド、データベース横断、datashare の外部スキーマを参照できます。外部テーブルはフィルター、ソート、出力が可能ですが、読み取り専用です。行数は取得できず、型は外部カタログから取得します。"
+            "text": [
+                "クエリと行の編集は、同じドライバーを使う <postgresql>PostgreSQL</postgresql> と同じように動作します。別のデータベースに紐付いたタブは、そのために二つ目の接続を開きます。<explain>EXPLAIN と EXPLAIN VERBOSE</explain> は Redshift のプランをテキストで返します。",
+                "分散方式、ソートキー、サイズは <code>svv_table_info</code> から取得し、DDL には DISTKEY、SORTKEY、DISTSTYLE、ENCODE を含めます。外部キーは一覧に表示しますが、Redshift は強制しません。Spectrum、フェデレーテッド、データベース横断、datashare の外部スキーマはローカルのスキーマと並べて表示し、そのテーブルは絞り込み、並べ替え、エクスポートができますが、読み取り専用です。"
             ]
         },
         {
             "id": "schema",
             "title": "スキーマ",
-            "paragraphs": [
-                "Redshift に管理対象のインデックス、enum、シーケンスやトリガーはありません。DISTKEY と SORTKEY がインデックスに相当する役割を果たし、Structure に Triggers タブはありません。ルーチンはサイドバーに表示しません。",
-                "サイドバーからテーブル、データベースとスキーマを名前変更し、所有者付きのスキーマを作成できます。"
+            "text": [
+                "Redshift には管理対象のインデックス、enum、シーケンス、トリガーはなく、DISTKEY と SORTKEY がインデックスの役割を果たします。サイドバーからテーブル、データベース、スキーマの名前を変更したり、所有者付きのスキーマを作成したりできます。"
             ]
         },
         {
             "id": "operate",
             "title": "監視とバックアップ",
-            "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> はセッションと遅いクエリを一覧表示し、接続数、キャッシュヒット率、データベースサイズ、稼働時間と実行中のクエリをメトリクスとして示します。Cancel Query は <code>pg_cancel_backend</code>、Terminate Session は <code>pg_terminate_backend</code> を、それぞれ確認後に送ります。",
-                "Redshift には Maintenance メニューも Users & Roles もありません。VACUUM、ANALYZE と GRANT は SQL エディターで実行します。",
-                "<backup>Backup Dump と Restore Dump</backup> は Mac の {dumpTool} と pg_restore を実行し、SSH トンネルがある場合はそれを通します。先に Homebrew の libpq でインストールしてください。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "<importData>インポート</importData> は Mac の {importFormats} ファイルを Redshift テーブルに読み込みます。テーブルやクエリ結果は {exportFormats} にエクスポートし、外部テーブルも通常どおりエクスポートできます。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone と iPad",
-            "paragraphs": [
-                "Redshift 接続を iPhone や iPad に持ち込むには、Mac の {icloudSyncTier} プランに含まれる <icloudSync>iCloud Sync</icloudSync> を有効にするか、<share>接続をエクスポート</share>したファイルをデバイスで開きます。その後はアプリ内蔵の PostgreSQL ドライバーで、カードの閲覧、絞り込み、並べ替え、Query タブでの SQL 実行ができます。iCloud Sync のパスワードはパスワード同期を有効にした場合のみ届きます。エクスポートでは {encryptedExportTier} プランのパスワード付き暗号化ファイルを使います。証明書は各デバイスに残ります。"
+            "text": [
+                "<dashboard>Server Dashboard</dashboard> はセッションと遅いクエリを一覧表示し、確認後に <code>pg_cancel_backend</code> でクエリをキャンセルし、<code>pg_terminate_backend</code> でセッションを終了します。VACUUM、ANALYZE、GRANT は SQL エディターで実行してください。",
+                "<backup>Backup Dump と Restore Dump</backup> は Mac の {dumpTool} と pg_restore を実行し、接続に SSH トンネルがあればそれを経由します。先に Homebrew の libpq でインストールしてください。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>インポート</importData>は Mac の {importFormats} ファイルを Redshift テーブルに読み込みます。エクスポートは、外部テーブルを含むテーブルやクエリ結果を {exportFormats} で書き出します。"
+    ],
+    "iphone": [
+        "<icloudSync>iCloud Sync</icloudSync>（Mac では {icloudSyncTier}）か<share>エクスポートした接続ファイル</share>で接続を持ち込みます。アプリに組み込まれた PostgreSQL ドライバーで動作し、カードでテーブルを閲覧し、絞り込みと並べ替え、Query タブでの SQL 実行ができます。"
+    ],
     "faq": [
         {
             "id": "serverless",
             "question": "Redshift Serverless に対応しますか？",
-            "answer": "はい。ホストにワークグループエンドポイントを入れ、プロビジョンドクラスターと同様にポート、データベースとユーザーを指定します。"
+            "answer": "はい。ホストのフィールドにワークグループのエンドポイントを入れ、プロビジョニング済みクラスターと同じようにポート、データベース、ユーザーを入力します。"
         },
         {
             "id": "pg-dump",
             "question": "pg_dump は Redshift に対応しますか？",
-            "answer": "Redshift が報告する PostgreSQL バージョンへの対応を表明する pg_dump リリースはありません。PostgreSQL ではサーバーに合うものを選びますが、Redshift ではインストール済みの pg_dump を実行するため、頼る前に小さなスキーマでバックアップを試してください。"
+            "answer": "Redshift が報告する PostgreSQL バージョンへの対応を表明している pg_dump リリースはありません。TablePro はインストール済みの pg_dump を実行するため、頼る前に小さなスキーマでバックアップを試してください。"
         }
     ],
-    "related": [
-        {
-            "label": "同じドライバーの PostgreSQL",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "Server Dashboard とスキーマツール",
-            "href": "/features/schema"
-        },
-        {
-            "label": "バックアップ、インポートとエクスポート",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "別のウェアハウス Google BigQuery",
-            "href": "/bigquery-client"
-        }
-    ]
+    "otherTools": null
 }

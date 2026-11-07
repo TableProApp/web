@@ -11,92 +11,62 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "Cliente ClickHouse",
-        "lead": "Ejecuta consultas analíticas e inspecciona planes, pipelines, partes y particiones de tablas."
+        "lead": "Ejecuta consultas analíticas por HTTP, lee planes y pipelines, y gestiona las partes y particiones de MergeTree.",
+        "asset": "databases-clickhouse"
     },
-    "asset": "mac-db-clickhouse-parts",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
-        "map": "/features/querying#map",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import"
+        "explain": "/features/querying#explain",
+        "map": "/features/querying#results",
+        "dashboard": "/features/schema#administer",
+        "importData": "/features/import-export#import",
+        "network": "/features/connections#network"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conectar",
-            "paragraphs": [
-                "Introduce host, puerto HTTP, usuario y, opcionalmente, una base. Cambia de base sin reconectar. Las pestañas conservan su base inicial; <ui>View > Sidebar as Tree</ui> despliega las bases en la barra lateral.",
-                "Elige cualquier modo SSL para pasar a HTTPS. Los puertos 443 o 8443, este último usado por ClickHouse Cloud, activan Verify Identity, que comprueba el certificado con tu archivo de CA o el almacén de confianza del sistema. Verify CA necesita un archivo de CA; un certificado de cliente y su clave permiten acceder a servidores que requieren TLS mutuo.",
+            "text": [
+                "Introduce un host, un puerto HTTP, un usuario y, si quieres, una base de datos, y cambia de base sin reconectar; las pestañas abiertas conservan la base con la que empezaron.",
+                "Cualquier modo SSL cambia la conexión a HTTPS. Los puertos 443 u 8443, este último el de ClickHouse Cloud, activan Verify Identity, que comprueba el certificado con tu archivo de CA o el almacén de confianza del sistema. Verify CA necesita un archivo de CA, y un certificado de cliente con su clave permite acceder a servidores que exigen TLS mutuo.",
                 "Sin TLS, accede a un servidor remoto mediante un <network>túnel SSH</network> en lugar de enviar HTTP sin cifrar por la red."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y edita",
-            "paragraphs": [
-                "Sigue las filas leídas durante una consulta. Stop envía <code>KILL QUERY</code>; los límites de tiempo se pasan al servidor.",
-                "El <explain>menú Explain</explain> ofrece Plan, Pipeline, AST, Syntax y Estimate. La salida con sangría se representa como diagrama o árbol; Estimate muestra las filas, marcas y partes que leería la consulta.",
-                "Revisa <editing>Preview SQL</editing> antes de inserciones y mutaciones UPDATE o DELETE. Guardar significa aceptado, no aplicado; sigue el progreso en <code>system.mutations</code>. Las vistas materializadas son de solo lectura.",
-                "Un resultado con tuplas de puntos o anillos de ClickHouse se abre en la <map>vista de mapa</map>. Una consulta con su propia cláusula <code>FORMAT</code> muestra la salida bruta del servidor en una columna; omite la cláusula para obtener una cuadrícula."
+            "text": [
+                "El <explain>menú Explain</explain> ofrece Plan, Pipeline, AST, Syntax y Estimate. La salida con sangría se dibuja como diagrama o árbol, y Estimate muestra las filas, marcas y partes que leería una consulta. Una consulta en curso muestra las filas leídas hasta el momento, Stop envía <code>KILL QUERY</code>, y el tiempo de espera de consulta de la conexión se pasa al servidor.",
+                "Las inserciones y las mutaciones UPDATE y DELETE se ejecutan desde la cuadrícula. Guardar con éxito significa aceptado, no aplicado: sigue el progreso en <code>system.mutations</code>. Las vistas materializadas son de solo lectura. Las tuplas de puntos y anillos se abren en la <map>vista de mapa</map>, y una consulta con su propia cláusula <code>FORMAT</code> muestra la salida bruta del servidor en una columna, así que omite la cláusula para obtener una cuadrícula."
             ]
         },
         {
             "id": "schema",
-            "title": "Tablas, partes y particiones",
-            "paragraphs": [
-                "Una tabla se abre con las pestañas Structure, Indexes, DDL y Parts. Indexes muestra la clave de ordenación y los índices de omisión de datos; DDL muestra el <code>CREATE TABLE</code> completo, incluidos el motor y los ajustes.",
-                "Parts muestra partición, número de filas, tamaño y estado activo desde <code>system.parts</code>. Ejecuta Run Optimize, Drop Partition o Detach Partition desde la pestaña Parts.",
-                "La <structure>pestaña Structure</structure> añade, modifica y elimina columnas y elimina índices de omisión de datos. La clave de ordenación y la primaria se fijan al crear la tabla, así que añade un índice de omisión con <code>ALTER TABLE … ADD INDEX</code> y vuelve a crear la tabla para otros cambios."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Supervisar",
-            "paragraphs": [
-                "El <dashboard>Server Dashboard</dashboard> muestra consultas y fusiones activas, mutaciones de partes y uso de disco; enumera las demás sesiones con <ui>Terminate Session</ui> en cada una y lee las consultas lentas de <code>system.query_log</code>: las consultas finalizadas más recientes que tardaron más de un segundo."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "Carga archivos {importFormats} con <importData>Importar</importData> y exporta tablas o resultados de consultas como {exportFormats}. Si una columna contiene siquiera un valor que no sea UTF-8 válido, se muestra en hexadecimal en la cuadrícula; selecciona <code>toValidUTF8(column)</code> para leerla como texto."
+            "also": [
+                "operate"
+            ],
+            "title": "Tablas, partes y monitorización",
+            "text": [
+                "Una tabla se abre con las pestañas Structure, Indexes, DDL y Parts. Indexes muestra la clave de ordenación y los índices de omisión de datos, DDL el <code>CREATE TABLE</code> completo con el motor y los ajustes, y Parts lee <code>system.parts</code>, con Optimize, Drop Partition y Detach Partition. La pestaña Structure modifica columnas y elimina índices de omisión de datos. La clave de ordenación y la clave primaria se fijan al crear la tabla, así que añade un índice de omisión con <code>ALTER TABLE … ADD INDEX</code> y vuelve a crear la tabla para otros cambios.",
+                "El <dashboard>Server Dashboard</dashboard> muestra las consultas activas, las fusiones, las mutaciones de partes y el uso de disco, cierra otras sesiones y lista desde <code>system.query_log</code> las consultas finalizadas que tardaron más de un segundo."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importa</importData> archivos {importFormats} y exporta tablas o resultados como {exportFormats}. Una columna con un solo valor que no sea UTF-8 válido se muestra en hexadecimal; selecciona <code>toValidUTF8(column)</code> para leerla como texto."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "settings",
             "question": "¿Cómo cambio un ajuste para una consulta?",
-            "answer": "Inclúyelo en una cláusula <code>SETTINGS</code> de la consulta, como <code>SELECT … SETTINGS max_threads = 4</code>. Cada sentencia es su propia solicitud HTTP sin sesión, así que un <code>SET</code> separado desaparece en la siguiente."
+            "answer": "Inclúyelo en una cláusula <code>SETTINGS</code> de la consulta, como <code>SELECT … SETTINGS max_threads = 4</code>. Cada sentencia es su propia solicitud HTTP, así que un <code>SET</code> separado ya no existe en la siguiente."
         },
         {
             "id": "native-port",
             "question": "¿Por qué no conecta el puerto 9000?",
-            "answer": "El puerto 9000 es el puerto TCP nativo de ClickHouse, que TablePro no usa. Conecta al puerto HTTP, o al 8443 para HTTPS en ClickHouse Cloud, y comprueba que la interfaz HTTP esté activada: una solicitud a <code>/ping</code> en ese puerto responde <code>Ok.</code>"
+            "answer": "El puerto 9000 es el puerto TCP nativo de ClickHouse, que TablePro no usa. Conecta al puerto HTTP, o al 8443 para HTTPS en ClickHouse Cloud; una solicitud a <code>/ping</code> en ese puerto responde <code>Ok.</code> cuando la interfaz HTTP está activada."
         }
     ],
-    "related": [
-        {
-            "label": "Planes EXPLAIN y rendimiento de consultas",
-            "href": "/features/querying#performance"
-        },
-        {
-            "label": "Esquemas, comparación y sincronización",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Importación, exportación y archivos de datos",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "DuckDB, para archivos analíticos",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

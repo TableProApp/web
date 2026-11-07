@@ -11,109 +11,70 @@
     "breadcrumb": "SQLite",
     "header": {
         "title": "Client SQLite",
-        "lead": "Ouvrez un fichier SQLite, exécutez du SQL et inspectez ses tables. Vérifiez les changements de structure avant application."
+        "lead": "Ouvrez un fichier SQLite sur votre Mac ou via SSH, exécutez du SQL, et vérifiez les changements de structure avant leur exécution.",
+        "asset": "databases-sqlite"
     },
-    "asset": "mac-db-sqlite-chinook",
     "links": {
         "remoteFiles": "docs:/connections/remote-database-files",
-        "files": "/features/import-export#files",
-        "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
-        "copy": "/features/schema#copy",
-        "explain": "/features/querying#performance"
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
+        "dataFiles": "/features/import-export#data-files",
+        "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Ouvrez un fichier de base de données",
-            "paragraphs": [
-                "Choisissez un fichier ou glissez-le sur TablePro. Un nouveau chemin crée une base lors de la connexion. Les fichiers SQLite sont identifiés par leur en-tête <code>SQLite format 3</code>, pas leur extension.",
-                "Ouvrez les fichiers .db, .sqlite et .sqlite3 depuis le Finder. Les dossiers protégés, comme Messages ou l’historique Safari, nécessitent l’accès complet au disque ; il peut aussi falloir quitter l’app propriétaire.",
-                "Ouvrez une base distante dans le <remoteFiles>panneau Remote File</remoteFiles>. On the Server interroge le fichier en direct via SSH et nécessite <code>python3</code>. As a Read-Only Copy télécharge un instantané via SFTP.",
-                "Pour découvrir l’app, choisissez Aide > Ouvrir la base de données d’exemple (Help > Open Sample Database). Cela ouvre Chinook, une petite base d’exemple de boutique de musique en ligne, fournie avec l’app."
+            "text": [
+                "Choisissez un fichier ou glissez-le sur TablePro, ou ouvrez les fichiers .db, .sqlite et .sqlite3 depuis le Finder ; un nouveau chemin crée une base. Les fichiers sont identifiés par leur en-tête <code>SQLite format 3</code>, pas leur extension, et les dossiers protégés, comme Messages ou l’historique Safari, nécessitent l’accès complet au disque.",
+                "Dans le <remoteFiles>panneau Remote File</remoteFiles>, <ui>Sur le serveur</ui> (On the Server) interroge le fichier en direct via SSH et nécessite <code>python3</code> sur le serveur, et <ui>En tant que copie en lecture seule</ui> (As a Read-Only Copy) télécharge un instantané via SFTP. <ui>Aide > Ouvrir la base de données d’exemple</ui> (Help > Open Sample Database) ouvre Chinook, une petite base d’exemple de boutique de musique fournie avec l’app."
             ]
         },
         {
             "id": "work",
-            "title": "Interrogez et modifiez",
-            "paragraphs": [
-                "Le pilote inclut SQLite, indépendamment de votre version de macOS. Affichez <explain>EXPLAIN QUERY PLAN</explain> en diagramme.",
-                "Chargez des extensions comme sqlite-vec ou SpatiaLite par connexion. Les listes d’extensions importées, synchronisées ou liées nécessitent une approbation avant chargement. La fonction SQL <code>load_extension()</code> est bloquée.",
-                "Les modifications de lignes attendent l’enregistrement, et <editing>Preview SQL</editing> montre d’abord chaque instruction. Si un autre programme change le fichier, la barre latérale se recharge seule."
+            "title": "Requêtes et extensions",
+            "text": [
+                "Le pilote inclut SQLite, indépendamment de votre version de macOS, et affiche <explain>EXPLAIN QUERY PLAN</explain> en diagramme. Si un autre programme modifie le fichier, la barre latérale se recharge seule.",
+                "Chargez des extensions comme sqlite-vec ou SpatiaLite par connexion. Les listes d’extensions reçues par import, synchronisation ou dossier lié nécessitent votre approbation avant chargement, et la fonction SQL <code>load_extension()</code> est bloquée."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Renommer une table ou une colonne, ajouter ou supprimer une colonne et, depuis SQLite 3.53, ajouter ou supprimer une contrainte CHECK passent par ALTER TABLE. Les autres changements faits dans l’<structure>onglet Structure</structure>, comme le type d’une colonne ou une clé étrangère, reconstruisent la table : TablePro écrit le script, copie les lignes avec leurs rowids, restaure les index et les déclencheurs, et ne l’exécute qu’après confirmation.",
-                "Changer le type d’une colonne relit ses valeurs avec la nouvelle affinité : <code>'007'</code> devient <code>7</code> dans une colonne INTEGER ; la feuille de vérification le signale avant toute exécution. Une table virtuelle, comme une table FTS5, ne peut pas être reconstruite, et l’enregistrement la nomme.",
-                "Les déclencheurs se lisent et se modifient depuis la barre latérale."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Entretenez et sauvegardez",
-            "paragraphs": [
-                "La maintenance des tables exécute VACUUM, ANALYZE, REINDEX et un contrôle d’intégrité, chacun affiché en SQL avant de s’exécuter.",
-                "<backup>Backup Dump</backup> écrit la base dans un fichier .sql avec {dumpTool}, et Restore Dump exécute un tel fichier sur une base."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "<importData>Importez</importData> des fichiers {importFormats}, ou ouvrez un fichier CSV, JSON ou XLSX dans la <dataFiles>fenêtre Data Files</dataFiles> et importez-le depuis celle-ci. Les tables et les résultats s’exportent en {exportFormats}.",
-                "<copy>Copy To</copy> transfère tables et lignes vers un autre moteur et liste les approximations de types. Voir <files>les fichiers comme bases de données</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone et iPad",
-            "paragraphs": [
-                "Sur iPhone et iPad, choisissez un fichier de base de données ou créez-en un, ou ouvrez l’exemple Chinook via Open Sample Database. Vous parcourez les tables sous forme de cartes, les filtrez, modifiez les lignes qui ont une clé primaire et exécutez du SQL dans l’onglet Query."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-query"
+            "title": "Structure",
+            "text": [
+                "Renommer une table ou une colonne, ajouter ou supprimer une colonne et, depuis SQLite 3.53, ajouter ou supprimer une contrainte CHECK passent par ALTER TABLE. Les autres changements faits dans l’<structure>onglet Structure</structure> reconstruisent la table : TablePro écrit le script, copie les lignes avec leurs rowids, restaure les index et les déclencheurs, et ne l’exécute qu’après votre confirmation.",
+                "Un changement de type relit les valeurs avec la nouvelle affinité : <code>'007'</code> devient <code>7</code> dans une colonne INTEGER, et la vérification le signale d’abord. Une table virtuelle, comme une table FTS5, ne peut pas être reconstruite. La maintenance des tables montre VACUUM, ANALYZE, REINDEX et un contrôle d’intégrité avant leur exécution, et <backup>Backup Dump</backup> écrit un fichier .sql avec {dumpTool}."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importez</importData> des fichiers {importFormats}, ou ouvrez un fichier de données dans la <dataFiles>fenêtre Data Files</dataFiles> et importez-le depuis celle-ci. Les tables et les résultats s’exportent en {exportFormats}, et <copy>Copy To</copy> transfère tables et lignes vers un autre moteur."
+    ],
+    "iphone": [
+        "Choisissez un fichier de base de données, créez-en un ou ouvrez l’exemple Chinook, puis parcourez les tables sous forme de cartes, filtrez-les, modifiez les lignes qui ont une clé primaire et exécutez du SQL dans l’onglet Query."
+    ],
     "faq": [
         {
             "id": "encrypted",
-            "question": "TablePro peut-il ouvrir une base SQLite chiffrée ?",
+            "question": "TablePro peut-il ouvrir une base SQLite chiffrée ?",
             "answer": "Non. Les fichiers SQLCipher et SEE ne s’ouvrent pas, car le SQLite intégré n’accepte pas de clé. Déchiffrez d’abord le fichier avec l’outil sqlcipher."
         },
         {
             "id": "version",
-            "question": "Quelle version de SQLite TablePro utilise-t-il ?",
+            "question": "Quelle version de SQLite TablePro utilise-t-il ?",
             "answer": "SQLite {engineVersion}, intégré au pilote. Il ne dépend pas de la version fournie par macOS."
         },
         {
             "id": "framework-files",
-            "question": "Puis-je ouvrir la base de développement de mon app ?",
-            "answer": "Oui. Ouvrez le fichier là où votre framework le conserve, comme <code>db/development.sqlite3</code> sous Rails ou <code>db.sqlite3</code> sous Django. Les fichiers sous <code>~/Library</code>, y compris les conteneurs du Simulateur iOS, nécessitent l’Accès complet au disque (Full Disk Access)."
+            "question": "Puis-je ouvrir la base de développement de mon app ?",
+            "answer": "Oui. Ouvrez le fichier là où votre framework le conserve, comme <code>db/development.sqlite3</code> sous Rails ou <code>db.sqlite3</code> sous Django. Les fichiers sous <code>~/Library</code>, y compris les conteneurs du Simulateur iOS, nécessitent l’accès complet au disque."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export et fichiers de données",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Cloudflare D1, SQLite via HTTP",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Turso et libSQL",
-            "href": "/turso-client"
-        },
-        {
-            "label": "DuckDB pour les fichiers analytiques",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

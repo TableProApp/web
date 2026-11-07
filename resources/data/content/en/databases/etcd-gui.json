@@ -11,53 +11,44 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "etcd GUI",
-        "lead": "Browse keys by prefix, change values and manage leases with etcdctl-style commands."
+        "lead": "Browse etcd keys by prefix, change values and leases in a grid, and run etcdctl-style commands.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter one host and client port. The peer port has no JSON gateway. There is no database selection or endpoint failover.",
-                "Leave <ui>Username</ui> and <ui>Password</ui> empty on a cluster without authentication. A user without the <code>root</code> role connects and browses the keys its roles cover, while <code>endpoint status</code> and the <code>user</code> and <code>role</code> commands answer permission denied.",
-                "TLS is set by <ui>TLS Mode</ui> in the Advanced fields, not by an SSL section, and starts Disabled. Required (skip verify) encrypts without checking, Verify CA checks the certificate against the CA file you name, and Verify Identity adds the hostname. A client certificate and key add mutual TLS.",
-                "Reach a cluster behind a bastion through an <network>SSH tunnel</network>. <code>etcd://</code> and <code>etcds://</code> URLs import, and neither switches TLS on by itself."
+            "text": [
+                "Enter one host and its client port; the peer port has no JSON gateway, and there is no database selection or endpoint failover. Leave <ui>Username</ui> and <ui>Password</ui> empty on a cluster without authentication. A user without the <code>root</code> role browses the keys its roles cover, while <code>endpoint status</code> and the <code>user</code> and <code>role</code> commands answer permission denied.",
+                "TLS is set by <ui>TLS Mode</ui> in the Advanced fields and starts Disabled. Required (skip verify) encrypts without checking, Verify CA checks the certificate against the CA file you name, and Verify Identity adds the hostname; a client certificate and key add mutual TLS. <code>etcd://</code> and <code>etcds://</code> URLs import, and neither switches TLS on by itself."
             ]
         },
         {
             "id": "work",
             "title": "Browse keys and run commands",
-            "paragraphs": [
+            "text": [
                 "Set <ui>Key Prefix Root</ui>, such as <code>/app</code>, to scope a connection to one subtree. The sidebar groups keys by their first path segment under it, and each key is a row with its value, version, mod and create revisions, and lease.",
-                "Saving an edit sends commands. A new value or lease puts the key again, a NULL lease removes the lease, and renaming a key puts the new name and deletes the old one. The revision columns belong to etcd, so an edit to one stops the save and names the column.",
-                "Run etcdctl-style key, watch, lease, member, endpoint, compaction and access-control commands with command and flag completion. Unsupported commands are rejected before reaching the server.",
-                "<safeMode>Safe Mode</safeMode> runs <code>get</code>, <code>watch</code> and the commands that only list or report as reads, and counts every other command as a write."
+                "Saving an edit sends commands: a new value or lease puts the key again, a NULL lease removes the lease, and a rename puts the new name and deletes the old one. The revision columns belong to etcd, so an edit to one stops the save and names the column.",
+                "Run etcdctl-style key, watch, lease, member, endpoint, compaction and access-control commands with command and flag completion; unsupported ones are rejected before they reach the server. <safeMode>Safe Mode</safeMode> runs <code>get</code>, <code>watch</code> and the commands that only list or report as reads, and counts every other command as a write."
             ]
         },
         {
             "id": "operate",
             "title": "Leases and the cluster",
-            "paragraphs": [
-                "Manage leases and revision compaction from the editor. Inspect members and endpoint status or health with commands; etcd has no Server Dashboard.",
-                "Running <code>auth enable</code> from the editor turns authentication on for the whole cluster. A connection that holds a username and password keeps working; one that holds neither has to be reopened with credentials."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "There is no import. <export>Export</export> keys or a command’s result as {exportFormats}."
+            "text": [
+                "Manage leases and revision compaction from the editor, and inspect members and endpoint status or health with commands. Running <code>auth enable</code> turns authentication on for the whole cluster: a connection that holds a username and password keeps working, and one that holds neither has to be reopened with credentials."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> keys or a command’s result as {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
@@ -70,18 +61,5 @@
             "answer": "No. A value that is not valid UTF-8 shows in the grid as its base64, marked as such, and text you type is sent as UTF-8. Write binary values with <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Browse and edit data safely",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Connections, tunnels and credentials",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, another key space",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

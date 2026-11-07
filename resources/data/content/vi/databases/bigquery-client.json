@@ -11,54 +11,45 @@
     "breadcrumb": "Google BigQuery",
     "header": {
         "title": "Google BigQuery client",
-        "lead": "Viết GoogleSQL, ước tính chi phí query và đặt giới hạn byte tính phí."
+        "lead": "Viết GoogleSQL, ước tính chi phí của query trước khi chạy, và đặt giới hạn số byte một job được tính phí.",
+        "asset": "databases-bigquery"
     },
-    "asset": "mac-db-bigquery-dry-run",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Đăng nhập Google Cloud",
-            "paragraphs": [
-                "Chọn <ui>Auth Method</ui> và nhập <ui>Project ID</ui>, không phải tên hay số. <ui>Application Default Credentials</ui> dùng file đăng nhập gcloud; <ui>Service Account Key</ui> nhận file JSON hoặc key đã dán.",
-                "Google Account (OAuth) đăng nhập qua trình duyệt bằng một OAuth client loại desktop mà bạn tạo trong Google Cloud Console. Refresh token được lưu trong Keychain, mỗi OAuth client một token, nên những lần kết nối sau không cần mở trình duyệt. Một OAuth client chỉ đăng nhập một tài khoản Google, nên tài khoản thứ hai cần một client thứ hai hoặc refresh token riêng của tài khoản đó.",
-                "Mọi thứ đi qua REST API của BigQuery, nên không có host, port, URL kết nối hay SSH tunnel. <ui>Vị trí (Location)</ui> đặt processing location được gửi kèm mỗi job. Xem thêm về <cloudAuth>đăng nhập bằng tài khoản cloud</cloudAuth>."
+            "text": [
+                "Chọn <ui>Phương thức xác thực</ui> (Auth Method) và nhập <ui>Project ID</ui>, không phải tên hay số của project. <ui>Application Default Credentials</ui> dùng file đăng nhập của gcloud, còn <ui>Khóa tài khoản dịch vụ</ui> (Service Account Key) nhận file JSON hoặc key đã dán.",
+                "<cloudAuth>Google Account (OAuth)</cloudAuth> đăng nhập qua trình duyệt bằng một OAuth client loại desktop mà bạn tạo trong Google Cloud Console, và lưu một refresh token cho mỗi client trong Keychain, nên những lần kết nối sau không mở trình duyệt. Một OAuth client chỉ đăng nhập một tài khoản Google, nên tài khoản thứ hai cần client thứ hai. Mọi thứ đi qua REST API của BigQuery, nên không có host, port hay SSH tunnel; <ui>Vị trí</ui> (Location) đặt processing location cho mọi job."
             ]
         },
         {
             "id": "work",
             "title": "Query và kiểm soát chi phí",
-            "paragraphs": [
-                "Chọn <ui>Dry Run (Cost)</ui> từ <explain>Explain</explain> để ước tính byte xử lý, byte tính phí và chi phí on-demand mà không chạy query. Kết quả còn cho biết trạng thái cache.",
-                "Sau query, xem byte xử lý, byte tính phí, chi phí on-demand ước tính và trạng thái cache. Đặt <ui>Max Bytes Billed</ui> để từ chối job vượt trần byte tính phí.",
-                "Autocomplete, cách đặt dấu trích dẫn và định dạng đều theo GoogleSQL, với dấu backtick quanh tên table, còn cột STRUCT và ARRAY hiện dưới dạng JSON. Dataset đóng vai trò cơ sở dữ liệu: chúng được liệt kê trong sidebar, <code>⌘K</code> chuyển giữa chúng, và mỗi tab giữ dataset mà nó được mở trên đó. Job được theo dõi cho tới khi hết query timeout thì bị hủy; khi timeout đặt là Không giới hạn (No limit), TablePro chờ tới khi job xong.",
-                "Sửa ô, thêm và xóa dòng đều làm trong <editing>data grid</editing>. UPDATE và DELETE so khớp dòng theo khóa chính đã khai báo; với table không có khóa chính, chúng so khớp mọi cột trừ cột ARRAY, JSON và GEOGRAPHY, nên các dòng giống hệt nhau sẽ thay đổi cùng lúc. Hãy khai báo <code>PRIMARY KEY (…) NOT ENFORCED</code> để sửa đúng một dòng. Với table có partition, hãy viết UPDATE và DELETE kèm bộ lọc partition trong editor."
+            "text": [
+                "<ui>Dry Run (Cost)</ui> trong menu <explain>Giải thích (Explain)</explain> ước tính byte xử lý, byte tính phí và chi phí on-demand mà không chạy query. Sau khi query chạy, các số liệu này hiện kèm trạng thái cache, và <ui>Số byte tính phí tối đa</ui> (Max Bytes Billed) từ chối job vượt mức trần bạn đặt.",
+                "Autocomplete, cách đặt dấu trích dẫn và định dạng đều theo GoogleSQL, còn cột STRUCT và ARRAY hiện dưới dạng JSON. Dataset đóng vai trò cơ sở dữ liệu, <code>⌘K</code> chuyển giữa chúng, và job được theo dõi tới khi hết query timeout thì bị hủy. UPDATE và DELETE từ grid so khớp dòng theo khóa chính đã khai báo, hoặc theo mọi cột trừ cột ARRAY, JSON và GEOGRAPHY, nên các dòng giống hệt nhau thay đổi cùng lúc; hãy khai báo <code>PRIMARY KEY (…) NOT ENFORCED</code> để sửa đúng một dòng. Với table có partition, hãy viết UPDATE và DELETE kèm bộ lọc partition trong editor."
             ]
         },
         {
             "id": "schema",
             "title": "Dataset và DDL",
-            "paragraphs": [
-                "DDL chạy từ editor, như <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> và <code>CREATE OR REPLACE VIEW</code>. <ui>Cơ sở dữ liệu mới… (New Database…)</ui> tạo dataset bằng <code>CREATE SCHEMA</code>, và table có thể đổi tên từ sidebar. Tab DDL đọc từng định nghĩa từ <code>INFORMATION_SCHEMA.TABLES</code>, còn clustering và partitioning hiện trong mục Indexes."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "TablePro không có import cho BigQuery. <export>Export</export> table hoặc kết quả query về máy Mac ra {exportFormats}.",
-                "<backup>Server-Side Export</backup> dùng <code>EXPORT DATA</code> để ghi CSV, Parquet hoặc JSON phân tách bằng dòng mới tới prefix <code>gs://</code>. Chạy với quyền của bạn và chờ hoàn tất. File không đi qua máy Mac."
+            "text": [
+                "Chạy DDL từ editor, như <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code> hoặc <code>CREATE OR REPLACE VIEW</code>. <ui>Cơ sở dữ liệu mới…</ui> (New Database…) tạo dataset, table đổi tên được từ sidebar, tab DDL đọc từng định nghĩa từ <code>INFORMATION_SCHEMA.TABLES</code>, còn clustering và partitioning hiện trong mục Indexes."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> table hoặc kết quả query về máy Mac ra {exportFormats}. <backup>Server-Side Export</backup> dùng <code>EXPORT DATA</code> để ghi CSV, Parquet hoặc JSON phân tách bằng dòng mới ra một prefix <code>gs://</code>, nên file không bao giờ đi qua máy Mac."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "roles",
@@ -68,25 +59,8 @@
         {
             "id": "deep-pages",
             "question": "Vì sao nên lọc thay vì chuyển tới trang rất sâu trong table?",
-            "answer": "Mỗi trang ở sâu trong table đều quét lại table từ đầu. Hãy thu hẹp số dòng bằng bộ lọc hoặc mệnh đề WHERE thay vì chuyển trang thật sâu."
+            "answer": "Mỗi trang ở sâu trong table đều quét lại table từ đầu. Hãy thu hẹp số dòng bằng bộ lọc hoặc mệnh đề WHERE."
         }
     ],
-    "related": [
-        {
-            "label": "Đăng nhập cloud cho AWS, Google và Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Export, sao lưu và Server-Side Export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Amazon Redshift, một data warehouse khác",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "Snowflake, một cloud data warehouse khác",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

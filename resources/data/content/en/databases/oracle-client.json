@@ -11,84 +11,62 @@
     "breadcrumb": "Oracle",
     "header": {
         "title": "Oracle Database client",
-        "lead": "Run SQL and PL/SQL without installing Oracle Instant Client. Read DBMS_OUTPUT alongside query results."
+        "lead": "Run SQL and PL/SQL without Oracle Instant Client, and read DBMS_OUTPUT beside each result.",
+        "asset": "databases-oracle"
     },
-    "asset": "mac-db-oracle-plsql",
     "links": {
-        "network": "/features/connections#network",
-        "parameters": "/features/querying#history",
-        "editing": "/features/data-editing#edit",
-        "safeMode": "/features/data-editing#safe-mode",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "importData": "/features/import-export#import",
-        "serverExport": "/features/import-export#backup"
+        "serverExport": "/features/import-export#backup",
+        "importData": "/features/import-export#import"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connect",
-            "paragraphs": [
-                "Enter a host, listener port and Service Name, or choose SID in <ui>Connection Type</ui>. Password sign-in supports Normal, SYSDBA and SYSOPER roles.",
-                "Native Network Encryption needs no setup: when the server asks for it, AES with a SHA-2 checksum is offered, and the <ui>Network Encryption</ui> setting changes what TablePro offers. For TLS, choose Required for TCPS, or Verify CA or Verify Identity with a CA certificate. New connections start with SSL off, and Preferred stays on plain TCP.",
-                "On Oracle Autonomous Database, copy the host, port and service name from the TLS connection string, not the mTLS one, and set SSL to Required or Verify CA. Wallet files are never read, so the database has to accept TLS without mutual TLS.",
-                "A RAC SCAN listener, a shared server or a load balancer in front of the database needs no configuration, and an <network>SSH tunnel</network> reaches a listener on a private network."
+            "text": [
+                "Enter a host, listener port and Service Name, or choose SID in <ui>Connection Type</ui>. Password sign-in supports the Normal, SYSDBA and SYSOPER roles, and a RAC SCAN listener, a shared server or a load balancer needs no configuration.",
+                "Native Network Encryption needs no setup: when the server asks for it, AES with a SHA-2 checksum is offered, and <ui>Network Encryption</ui> changes what TablePro offers. For TLS, choose Required for TCPS, or Verify CA or Verify Identity with a CA certificate; new connections start with SSL off.",
+                "On Oracle Autonomous Database, copy the host, port and service name from the TLS connection string, not the mTLS one, and set SSL to Required or Verify CA. Wallet files are never read."
             ]
         },
         {
             "id": "work",
             "title": "SQL, PL/SQL and transactions",
-            "paragraphs": [
-                "Run PL/SQL blocks and stored units as single statements. A <code>/</code> line ends a unit in scripts. Compilation errors include Oracle’s messages and source positions. SQL*Plus client commands are not supported.",
-                "<code>DBMS_OUTPUT.PUT_LINE</code> lines show with the result of the statement that printed them, with no <code>SET SERVEROUTPUT ON</code> needed. In an anonymous block, <code>:name</code> is a <parameters>query parameter</parameters> you fill in from a panel.",
-                "Each statement commits when it succeeds. Start with <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> or <code>LOCK TABLE</code> to hold changes, and everything after it waits for your <code>COMMIT</code> or <code>ROLLBACK</code>, grid saves included.",
-                "Each user is a schema, and <code>⌘K</code> switches the active one without reconnecting. Row edits are staged with <editing>Preview SQL</editing>. A block that drops or truncates, even through <code>EXECUTE IMMEDIATE</code>, raises the <safeMode>dangerous query warning</safeMode> before it runs."
+            "text": [
+                "PL/SQL blocks and stored units run as single statements, a <code>/</code> line ends a unit in a script, and compile errors carry Oracle’s messages and source positions. <code>DBMS_OUTPUT.PUT_LINE</code> lines show with the result of the statement that printed them, with no <code>SET SERVEROUTPUT ON</code>.",
+                "Each statement commits when it succeeds. Start with <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> or <code>LOCK TABLE</code> to hold changes, grid saves included, until your <code>COMMIT</code> or <code>ROLLBACK</code>. Each user is a schema, and <code>⌘K</code> switches the active one without reconnecting."
             ]
         },
         {
             "id": "schema",
-            "title": "Schema",
-            "paragraphs": [
-                "Add, rename, modify and drop columns or create indexes in the <structure>Structure tab</structure>. Names are quoted when case-sensitive. Inspect primary keys, foreign keys and CREATE TABLE DDL.",
-                "A partitioned table lists its partitions under it, each with its position, and subpartitions nest under their partition. Query one with <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compares Oracle schemas or data. Scripts use <code>/</code> separators for SQL*Plus or SQLcl."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Export on the server",
-            "paragraphs": [
-                "<serverExport>Server-Side Export</serverExport> starts a Data Pump job that writes a table to a <code>DIRECTORY</code> object on the server, under your own privileges. Nothing lands on your Mac. The job keeps running after the sheet reports it started; follow it in <code>DBA_DATAPUMP_JOBS</code>."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<importData>Import</importData> {importFormats} files; when a data file creates a new table, its proposed name is upper case and fits Oracle’s length limit. Export tables or results as {exportFormats}. A SQL export follows each routine and trigger with a <code>/</code> line, so SQL*Plus can restore it."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone and iPad",
-            "paragraphs": [
-                "On iPhone and iPad, the Oracle driver is part of the app. The connection form takes a Service Name or SID, the SYSDBA and SYSOPER roles and the Network Encryption setting. You browse tables as cards, edit rows that have a primary key and run SQL in the Query tab; creating or altering tables stays on the Mac."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-table-browse"
+            "title": "Schema and Data Pump",
+            "text": [
+                "Add, rename, modify and drop columns or create indexes in the <structure>Structure tab</structure>, with case-sensitive names quoted. Partitioned tables list their partitions, and subpartitions nest under them. <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compares Oracle schemas or data and writes <code>/</code> separators for SQL*Plus or SQLcl.",
+                "<serverExport>Server-Side Export</serverExport> starts a Data Pump job that writes a table to a <code>DIRECTORY</code> object on the server under your own privileges, so nothing lands on your Mac. Follow the job in <code>DBA_DATAPUMP_JOBS</code>."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> {importFormats} files; a new table’s proposed name is upper case and fits Oracle’s length limit. Export tables or results as {exportFormats}, and a SQL export ends each routine and trigger with a <code>/</code> line, so SQL*Plus can restore it."
+    ],
+    "iphone": [
+        "The Oracle driver is part of the app, and the form takes a Service Name or SID, the SYSDBA and SYSOPER roles and the Network Encryption setting. Browse tables as cards, edit rows that have a primary key and run SQL in the Query tab."
+    ],
     "faq": [
         {
             "id": "pluggable-database",
             "question": "Why do I see none of my application’s tables?",
-            "answer": "You probably connected to the container database. A pluggable database has its own service name, such as <code>XEPDB1</code> inside <code>XE</code>. Run <code>lsnrctl services</code> on the server to list the names the listener answers for."
+            "answer": "You probably connected to the container database. A pluggable database has its own service name, such as <code>XEPDB1</code> inside <code>XE</code>; <code>lsnrctl services</code> on the server lists the names the listener answers for."
         },
         {
             "id": "sqlplus-commands",
             "question": "Why does SET SERVEROUTPUT ON fail?",
-            "answer": "SQL*Plus commands such as <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> and <code>EXEC</code> are not SQL, so the server refuses them. Delete them: output is on from the moment you connect. Write <code>EXEC p</code> as <code>BEGIN p; END;</code>."
+            "answer": "SQL*Plus commands such as <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> and <code>EXEC</code> are not SQL, so the server refuses them. Delete them, since output is on from the moment you connect, and write <code>EXEC p</code> as <code>BEGIN p; END;</code>."
         },
         {
             "id": "password-verifier",
@@ -96,22 +74,5 @@
             "answer": "Yes, though Oracle has deprecated the DES-based hashing it uses. Change the password with <code>ALTER USER … IDENTIFIED BY</code> and check that <code>password_versions</code> in <code>dba_users</code> then holds 11G or 12C."
         }
     ],
-    "related": [
-        {
-            "label": "Write, run and understand queries",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Backups and server-side export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Schema, compare and sync",
-            "href": "/features/schema"
-        },
-        {
-            "label": "TablePro for iPhone and iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

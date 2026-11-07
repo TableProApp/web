@@ -11,152 +11,92 @@
     "breadcrumb": "PostgreSQL",
     "header": {
         "title": "PostgreSQL-Client",
-        "lead": "Frage PostgreSQL ab, durchsuche Schemas und bearbeite Zeilen mit Preview SQL. Prüfe EXPLAIN-Pläne, jsonb, Arrays und PostGIS-Werte."
+        "lead": "Frage PostgreSQL ab, durchsuche Schemas, bearbeite Zeilen und lies EXPLAIN-Pläne, jsonb, Arrays und PostGIS-Werte.",
+        "asset": "databases-postgresql"
     },
-    "asset": "mac-db-postgresql-explain",
     "links": {
-        "network": "/features/connections#network",
         "cloudAuth": "/features/connections#cloud-auth",
-        "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "results": "/features/querying#results",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
         "administer": "/features/schema#administer",
-        "copy": "/features/schema#copy",
-        "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup",
-        "redshift": "/redshift-client"
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy",
+        "pgadmin": "/compare/pgadmin",
+        "postico": "/compare/postico"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Gib Host, Port, Benutzer und Datenbank ein oder füge eine <code>postgresql://</code>- oder <code>postgres://</code>-URL ein. Die Datenbank ist erforderlich.",
-                "Neue Verbindungen beginnen mit SSL Preferred, libpqs <code>sslmode=prefer</code>. Wähle Verify CA oder Verify Identity, um das Serverzertifikat zu prüfen.",
-                "Aktiviere Use ~/.pgpass, um das Passwort aus <code>~/.pgpass</code> zu lesen. Das Formular meldet, was es gefunden hat, auch eine Datei, die libpq wegen ihrer Berechtigungen ignorieren würde.",
-                "Erreiche private Server über <network>SSH-Tunnel, Jump Hosts, Proxys oder Tunnel-Befehle</network>. Amazon RDS und Aurora unterstützen <cloudAuth>AWS IAM</cloudAuth> für Rollen mit <code>rds_iam</code>. Google Cloud SQL nutzt den Cloud SQL Auth Proxy.",
-                "Alles, was libpq als Verbindungsoption akzeptiert, etwa <code>-c application_name=reporting</code>, gehört in Connection Options."
+            "text": [
+                "Gib Host, Port, Benutzer und Datenbank ein oder füge eine <code>postgresql://</code>- oder <code>postgres://</code>-URL ein; die Datenbank ist erforderlich. Neue Verbindungen beginnen mit SSL auf Preferred, libpqs <code>sslmode=prefer</code>. Wähle Verify CA oder Verify Identity, um das Serverzertifikat zu prüfen.",
+                "<ui>Use ~/.pgpass</ui> liest das Passwort aus <code>~/.pgpass</code> und meldet eine Datei, die libpq wegen ihrer Berechtigungen ignorieren würde. Amazon RDS und Aurora melden sich mit <cloudAuth>AWS IAM</cloudAuth> an, für Rollen mit <code>rds_iam</code>, und Google Cloud SQL nutzt den Cloud SQL Auth Proxy. Connection Options nimmt alles an, was libpq akzeptiert, etwa <code>-c application_name=reporting</code>."
             ]
         },
         {
             "id": "work",
             "title": "Abfragen und bearbeiten",
-            "paragraphs": [
-                "Schreibe SQL mit schemaabhängiger Vervollständigung. Sieh <explain>EXPLAIN und EXPLAIN ANALYZE</explain> als Diagramme oder Bäume und vergleiche Pläne zweier Ausführungen.",
-                "Prüfe formatiertes jsonb und PostgreSQL-Typen wie uuid, inet, timestamptz, interval und bytea. Bearbeite Array-Elemente als Liste; Enum-Spalten bieten ihre Labels an.",
-                "PostGIS-geometry- und geography-Werte werden als EWKT mit SRID gelesen; ein Ergebnis mit Geometrie öffnet in der <results>Kartenansicht</results>. Kartenkacheln kommen von Apple; deine Zeilen bleiben auf deinem Mac.",
-                "Zeilenänderungen werden bis zum Speichern vorgemerkt; <editing>Preview SQL</editing> zeigt vorher jede Anweisung, und Speichern nutzt gebundene Parameter. Zeilen materialisierter Sichten sind schreibgeschützt: Aktualisiere die Sicht über ihr Menü, nebenläufig, wenn sie den eindeutigen Index hat, den PostgreSQL dafür verlangt."
-            ],
-            "asset": "mac-result-map"
+            "text": [
+                "Sieh <explain>EXPLAIN und EXPLAIN ANALYZE</explain> als Diagramme oder Bäume und vergleiche die Pläne zweier Ausführungen. jsonb wird formatiert, Array-Elemente bearbeitest du als Liste, und Enum-Spalten bieten ihre Labels an.",
+                "PostGIS-geometry- und geography-Werte werden als EWKT mit ihrer SRID gelesen, und ein Ergebnis mit Geometrie öffnet sich in der <results>Kartenansicht</results>. Die Zeilen einer materialisierten Sicht sind schreibgeschützt: Aktualisiere sie über ihr Menü, nebenläufig, wenn die Sicht den eindeutigen Index hat, den PostgreSQL dafür verlangt."
+            ]
         },
         {
             "id": "schema",
             "title": "Schemas und Struktur",
-            "paragraphs": [
-                "Durchsuche zugängliche Schemas. Erstelle oder bearbeite ein Schema mit Eigentümer, Kommentar und Berechtigungen und prüfe die SQL vor dem Anwenden.",
-                "Bereite Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten im <structure>Structure-Tab</structure> vor. Prüfe Partitionsgrenzen und PostgreSQL Types, darunter Enums, zusammengesetzte Typen, Domains und Bereiche. Enum-Labels lassen sich ergänzen und umbenennen.",
-                "Die Sichtdefinition wird mit schemaqualifizierten Tabellennamen neu aufgebaut; ein Index, der nach einem fehlgeschlagenen nebenläufigen Aufbau ungültig geblieben ist, wird im Tab Indexes genannt.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht PostgreSQL-Schemas oder Daten und erzeugt ein Sync-Skript. Änderungen, die Daten entfernen könnten, werden zur Prüfung zurückgehalten."
+            "text": [
+                "Erstelle oder bearbeite ein Schema mit Eigentümer, Kommentar und Berechtigungen und prüfe vorher die SQL. Durchsuche Partitionsgrenzen und PostgreSQL Types: Enums, zusammengesetzte Typen, Domains und Bereiche. Enum-Labels lassen sich ergänzen oder umbenennen.",
+                "Die Definition einer Sicht wird mit schemaqualifizierten Tabellennamen neu aufgebaut, und ein Index, der nach einem fehlgeschlagenen nebenläufigen Aufbau ungültig geblieben ist, wird im Tab Indexes genannt. <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht PostgreSQL-Schemas oder Daten und hält Änderungen zurück, die Daten entfernen könnten."
             ]
         },
         {
             "id": "operate",
             "title": "Verwalten",
-            "paragraphs": [
-                "Prüfe die Herkunft jeder Berechtigung unter <administer>Users & Roles</administer>. GRANT- und REVOKE-Änderungen werden als SQL vorbereitet.",
-                "Das Server-Dashboard zeigt Sitzungen, Verbindungen, Cache-Trefferquote, Datenbankgröße und langsame Abfragen. Es bricht Abfragen mit <code>pg_cancel_backend</code> ab oder beendet Sitzungen mit <code>pg_terminate_backend</code>. Eine Rolle ohne Superuser-Status oder Mitgliedschaft in <code>pg_monitor</code> sieht andere Sitzungen ohne deren Abfragen.",
-                "Prüfe VACUUM, ANALYZE, REINDEX und CLUSTER vor der Tabellenwartung in der Vorschau.",
-                "<backup>Backup Dump und Restore Dump</backup> führen dein eigenes {dumpTool} und pg_restore über den SSH-Tunnel der Verbindung aus. Installiere sie mit Homebrew; um einen PostgreSQL-9.1-Server zu sichern, nutze pg_dump 14 oder älter."
-            ],
-            "asset": "mac-server-dashboard-postgresql"
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "<importData>Import</importData> liest {importFormats}-Dateien mit Spaltenzuordnung und Behandlung fehlerhafter Zeilen. Exportiere Tabellen oder Ergebnisse als {exportFormats}; SQL-Exporte erhalten Kommentare von Tabellen, Views und materialisierten Views.",
-                "<copy>Copy To</copy> überträgt Tabellen, Daten oder beides an eine andere PostgreSQL-Verbindung oder Engine. Prüfe Spaltentypen, die angenähert werden müssen."
+            "text": [
+                "<administer>Users & Roles</administer> zeigt, woher jede Berechtigung kommt. Das Server Dashboard zeigt Sitzungen, Cache-Trefferquote, Datenbankgröße und langsame Abfragen, bricht eine Abfrage mit <code>pg_cancel_backend</code> ab oder beendet eine Sitzung mit <code>pg_terminate_backend</code>. Eine Rolle, die weder Superuser noch Mitglied von <code>pg_monitor</code> ist, sieht andere Sitzungen ohne deren Abfragen.",
+                "Prüfe VACUUM, ANALYZE, REINDEX und CLUSTER in der Vorschau, bevor sie laufen. <backup>Backup Dump und Restore Dump</backup> führen dein eigenes {dumpTool} und pg_restore über den SSH-Tunnel der Verbindung aus; für einen PostgreSQL-9.1-Server nutze pg_dump 14 oder älter."
             ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone und iPad",
-            "paragraphs": [
-                "Auf iPhone und iPad wechselst du Datenbanken und Schemas in der Symbolleiste, durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Query-Tab aus. SSL reicht von Required bis Verify Identity; SSH-Tunnel melden sich mit Passwort oder Schlüssel an, ohne Jump-Host-Unterstützung."
-            ],
-            "asset": "ios-connection-form"
         }
     ],
     "family": [
         {
             "engine": "cockroachdb",
             "title": "CockroachDB",
-            "paragraphs": [
-                "CockroachDB nutzt den mitgelieferten PostgreSQL-Treiber; es gibt nichts zu installieren. Neue Cluster beginnen mit der Datenbank <code>defaultdb</code>.",
-                "Kopiere für CockroachDB Cloud Host, Benutzer, Passwort und Datenbank aus der Cloud-Konsole, trage den Routingwert <code>--cluster=your-cluster</code> in Connection Options ein und setze SSL auf Verify Identity. Für einen unsicheren lokalen Knoten wähle Disabled.",
-                "Tabellen- und Sicht-DDL stammt aus CockroachDBs SHOW CREATE. EXPLAIN- und EXPLAIN-ANALYZE-Textpläne werden als Planbaum geparst; das Server-Dashboard listet Sitzungen und aktive Abfragen.",
-                "Fremdschlüsselprüfungen können nicht aufgeschoben werden."
+            "text": [
+                "CockroachDB nutzt den PostgreSQL-Treiber, der in der App enthalten ist, und neue Cluster beginnen mit der Datenbank <code>defaultdb</code>. Kopiere für CockroachDB Cloud Host, Benutzer, Passwort und Datenbank aus der Cloud-Konsole, trage <code>--cluster=your-cluster</code> in Connection Options ein und setze SSL Mode auf Verify Identity; ein unsicherer lokaler Knoten nutzt Disabled.",
+                "Die DDL stammt aus CockroachDBs eigenem SHOW CREATE, EXPLAIN-Textpläne werden in den Planbaum geparst, und das Server Dashboard listet Sitzungen und aktive Abfragen. Fremdschlüsselprüfungen können nicht aufgeschoben werden."
             ]
         },
         {
             "engine": "pglite",
             "title": "PGlite",
-            "paragraphs": [
-                "PGlite ist zu WebAssembly kompiliertes PostgreSQL und erst nach Start seines Socketservers erreichbar: <code>npx @electric-sql/pglite-socket</code>, mit <code>--db=./my-pgdata</code>, um die Daten auf der Festplatte zu behalten.",
-                "Verbinde dich mit <code>127.0.0.1</code> statt mit localhost. Der Socketserver prüft nie ein Passwort und hat kein TLS; das Formular fragt daher nach keinem von beiden.",
-                "PGlites Kataloge sind vollständig; Strukturbearbeitung, Users & Roles und EXPLAIN-Diagramme funktionieren wie auf einem Server. Es stellt eine Datenbank bereit: <code>postgres</code>."
+            "text": [
+                "PGlite ist zu WebAssembly kompiliertes PostgreSQL. Starte seinen Socketserver mit <code>npx @electric-sql/pglite-socket</code>, mit <code>--db=./my-pgdata</code>, um die Daten auf der Festplatte zu behalten, und verbinde dich dann mit <code>127.0.0.1</code> statt mit localhost. Der Server prüft kein Passwort und hat kein TLS, deshalb fragt das Formular nach keinem von beiden.",
+                "Seine Kataloge sind vollständig, daher funktionieren Strukturbearbeitung, Users & Roles und die EXPLAIN-Diagramme wie auf einem Server, auf seiner einzigen Datenbank <code>postgres</code>."
             ]
         }
     ],
-    "otherTools": {
-        "items": [
-            {
-                "product": "pgadmin",
-                "text": "pgAdmin konzentriert sich auf PostgreSQL-Verwaltung, mit Debugger, Schema-Diff sowie Backup und Wiederherstellung.",
-                "notes": [
-                    "pgadmin-erd-design"
-                ]
-            },
-            {
-                "product": "postico",
-                "text": "Postico 2 konzentriert sich auf das Durchsuchen und Bearbeiten von PostgreSQL auf Mac. Seine Dokumentation schließt Backup, Wiederherstellung, Benutzerverwaltung und Monitoring aus."
-            }
-        ],
-        "notes": {
-            "pgadmin-erd-design": "Sein ERD-Werkzeug entwirft ein Schema und erzeugt das SQL dafür, während das ER-Diagramm von TablePro ein Schema nur liest."
-        }
-    },
+    "moveData": [
+        "<importData>Importiere</importData> {importFormats}-Dateien und exportiere Tabellen oder Ergebnisse als {exportFormats}; SQL-Exporte behalten Kommentare von Tabellen, Views und materialisierten Views. <copy>Copy To</copy> überträgt Tabellen und ihre Daten an eine andere PostgreSQL-Verbindung oder eine andere Engine."
+    ],
+    "iphone": [
+        "Wechsle Datenbanken und Schemas in der Symbolleiste, durchsuche Tabellen als Karten, bearbeite Zeilen mit Primärschlüssel und führe SQL im Query-Tab aus. SSL reicht von Required bis Verify Identity, und SSH-Tunnel melden sich mit Passwort oder Schlüssel an."
+    ],
     "faq": [
         {
             "id": "hosted",
             "question": "Funktioniert TablePro mit gehostetem PostgreSQL wie Amazon RDS, Neon oder Supabase?",
-            "answer": "Ja. Ein gehosteter Server besteht wie jeder andere aus Host und Port. Neon, Supabase und Heroku verbindest du mit dem Host, den sie dir nennen. Sie verlangen TLS, das eine neue Verbindung zuerst versucht. Bei RDS und Aurora kannst du dich auch mit AWS IAM anmelden; für Google Cloud SQL führt TablePro den Cloud SQL Auth Proxy aus."
+            "answer": "Ja. Ein gehosteter Server ist wie jeder andere ein Host und ein Port, und Neon, Supabase und Heroku verbindest du mit dem Host, den sie dir nennen. Sie verlangen TLS, das eine neue Verbindung zuerst versucht."
         },
         {
             "id": "column-order",
             "question": "Kann ich Spalten umordnen?",
-            "answer": "TablePro schreibt ein Skript, das die Tabelle mit der neuen Spaltenreihenfolge neu aufbaut, und zeigt es dir, führt es aber nie aus. Lies es und führe es selbst aus, wenn die Tabelle neu geschrieben werden kann."
+            "answer": "TablePro schreibt das Skript, das die Tabelle mit der neuen Spaltenreihenfolge neu aufbaut, und zeigt es dir, führt es aber nie aus. Führe es selbst aus, wenn die Tabelle neu geschrieben werden kann."
         }
     ],
-    "related": [
-        {
-            "label": "Abfragen schreiben, ausführen und verstehen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema, Vergleich und Synchronisierung",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Amazon Redshift mit demselben Treiber",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "TablePro mit anderen Datenbankclients vergleichen",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "pgAdmin konzentriert sich auf die Verwaltung von PostgreSQL und Postico 2 auf das Durchsuchen und Bearbeiten von PostgreSQL auf dem Mac; siehe <pgadmin>TablePro vs pgAdmin</pgadmin> und <postico>TablePro vs Postico 2</postico>."
+    }
 }

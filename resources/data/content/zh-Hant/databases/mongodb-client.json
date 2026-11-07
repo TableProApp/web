@@ -11,93 +11,66 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "MongoDB 用戶端",
-        "lead": "瀏覽集合，使用 mongosh 風格語法查詢，並以 Extended JSON 編輯文件。"
+        "lead": "使用 mongosh 風格的 JavaScript 查詢 MongoDB，瀏覽集合，並以 Extended JSON 編輯文件。",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線",
-            "paragraphs": [
-                "輸入主機或複本集的 <code>host:port</code> 清單，或貼上 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。支援 SCRAM-SHA-1、SCRAM-SHA-256、X.509 和 AWS IAM。將 <ui>Auth Database</ui> 設為定義使用者的資料庫。",
-                "以 <code>.mongodb.net</code> 結尾的主機自動開啟 MongoDB Atlas 所需的 SRV 和 TLS。請先將 IP 加入叢集存取清單：未列出位址的流量會逾時，而非立即失敗。",
-                "新連線 TLS 關閉，驅動程式無退回機制，所以 Preferred 等同 Required。Read Preference、Write Concern 依連線設定，寫入關注隨 shell 或格線儲存的每次插入、更新、刪除傳送。",
-                "透過 <network>SSH 通道</network>連線時僅使用清單中的第一個主機，因此該工作階段不進行複本集探索和容錯移轉。"
+            "text": [
+                "輸入主機或複本集的 <code>host:port</code> 清單，或貼上 <code>mongodb://</code> 或 <code>mongodb+srv://</code> URL。以 SCRAM-SHA-1、SCRAM-SHA-256、X.509 或 AWS IAM 登入，並將 <ui>Auth Database</ui> 設為定義您使用者的資料庫。",
+                "以 <code>.mongodb.net</code> 結尾的主機會開啟 MongoDB Atlas 所需的 SRV 和 TLS；請先將您的 IP 位址加入叢集的存取清單，否則連線會逾時。新連線的 TLS 預設為關閉，Preferred 的行為等同 Required。Read Preference 和 Write Concern 依連線設定。"
+            ],
+            "notes": [
+                "透過 SSH 通道時只會使用清單中的第一個主機，因此該工作階段不進行複本集探索和容錯移轉。"
             ]
         },
         {
             "id": "work",
             "title": "查詢與編輯文件",
-            "paragraphs": [
-                "在 Query 分頁使用 mongosh 風格 JavaScript，包括正規表示式、<code>ISODate()</code>、變數、迴圈和 <code>forEach</code>，無需安裝獨立 shell。變數在中斷連線前跨連線分頁保留。自動完成涵蓋集合、欄位路徑、方法和運算子。",
-                "頂層欄位顯示為欄，巢狀物件顯示為 Extended JSON。儲存格編輯保留日期、ObjectId 等型別。巢狀編輯僅更新已變更路徑，例如 <code>address.city</code>。",
-                "<editing>Insert Document 和 Edit Document</editing> 使用 Extended JSON。Edit Document 會重新讀取伺服器文件；若編輯期間文件已變更或消失，則拒絕儲存。<ui>Remove Field</ui> 傳送 <code>$unset</code>。",
-                "<filters>篩選列</filters>可存取巢狀物件和物件陣列，直接篩選 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 欄位在<map>地圖檢視</map>開啟。",
-                "<safeMode>Safe Mode</safeMode> 只把單一唯讀呼叫作為讀取執行，如 <code>find</code>、<code>countDocuments</code> 或不含 <code>$out</code>、<code>$merge</code> 的 <code>aggregate</code>。其他 JavaScript 均視為寫入。"
+            "text": [
+                "Query 分頁接受 mongosh 風格的 JavaScript，包括正規表示式、<code>ISODate()</code>、變數、迴圈和 <code>forEach</code>，無須安裝 shell。頂層欄位顯示為欄，巢狀物件顯示為 Extended JSON；儲存格編輯會保留日期和 ObjectId，巢狀編輯只更新其路徑，例如 <code>address.city</code>。",
+                "<editing>Insert Document 和 Edit Document</editing> 使用 Extended JSON，若文件在開啟期間已變更，Edit Document 會拒絕儲存。<filters>篩選列</filters>可深入巢狀物件和陣列，<safeMode>Safe Mode</safeMode> 只把純讀取的呼叫視為讀取，例如 <code>find</code> 或不含 <code>$out</code> 或 <code>$merge</code> 的 <code>aggregate</code>。"
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "集合、索引與驗證器",
-            "paragraphs": [
-                "在 <structure>Structure 分頁</structure>檢查索引欄位、型別和選項。Show DDL 使用伺服器回報的選項產生 <code>createIndex</code> 呼叫。",
-                "透過預覽後的 <code>updateMany</code> 在整個集合中重新命名或刪除欄位，驗證器也會更新。若索引、搜尋索引或檢視仍使用該欄位，則阻止儲存。",
-                "<ui>新增資料表</ui>（New Table）建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側邊欄，檢視表以唯讀開啟。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "備份",
-            "paragraphs": [
-                "<backup>Backup Dump</backup> 用 {dumpTool} 將勾選的每個資料庫寫入 gzip 封存，使用連線的主機、Auth Database、SRV、TLS 設定，可限定單一集合。Restore Dump 向所選資料庫執行 mongorestore，保留現有內容。請先在 Mac 安裝 MongoDB Database Tools。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "將 {importFormats} 檔案<importData>匯入</importData>集合，將集合或結果<export>匯出</export>為 {exportFormats}。",
-                "MQL 匯出為可在 mongosh 執行的 <code>insertMany</code> 呼叫 <code>.js</code> 檔案，勾選時含各集合索引和驗證器。頂層值保留型別，但子文件或陣列內的具型別值（例如陣列內 ObjectId）寫為字串；此類集合請匯出 JSON 或用 mongodump 備份。"
+            "text": [
+                "<structure>Structure 分頁</structure>列出索引及其選項，Show DDL 會將其寫成 <code>createIndex</code> 呼叫。以預覽過的 <code>updateMany</code> 在整個集合中重新命名或移除欄位，驗證器也會一併更新；<ui>新增資料表</ui> (New Table) 會將欄位轉為 <code>$jsonSchema</code> 驗證器。",
+                "<backup>Backup Dump</backup> 使用 {dumpTool} 將您勾選的資料庫或單一集合寫入 gzip 封存，Restore Dump 會對您選擇的資料庫執行 mongorestore。請先安裝 MongoDB Database Tools。"
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "MongoDB Compass 提供視覺化彙總管線、取樣結構分析和執行計畫。TablePro 可在同一 App 中查詢 MongoDB 和其他資料庫引擎。",
-                "notes": [
-                    "compass-natural-language"
-                ]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass 也可根據自然語言問題撰寫查詢。"
-        }
-    },
+    "moveData": [
+        "將 {importFormats} 檔案<importData>匯入</importData>集合，並將集合或結果<export>匯出</export>為 {exportFormats}。MQL 匯出會寫入可在 mongosh 中執行的 <code>insertMany</code> 呼叫，但陣列或子文件中的具型別值會變成字串，因此請用 mongodump 備份這類集合。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
             "question": "查詢分頁是 mongosh 嗎？",
-            "answer": "不是。它是接受 mongosh 語法、在 TablePro 內由 JavaScriptCore 執行的 shell。大多數 mongosh 程式碼直接執行。一個區別：超出 32 位範圍的整數存為 64 位整數，mongosh 則存 double；用 <code>Double()</code> 包裹以保持一致。"
+            "answer": "不是。它是接受 mongosh 語法、在 TablePro 內以 JavaScriptCore 執行的 shell，因此大多數 mongosh 程式碼可以直接執行。超出 32 位元範圍的整數會存為 64 位元整數，而 mongosh 存為 double：請用 <code>Double()</code> 包裹以保持一致。"
         },
         {
             "id": "query-plan",
             "question": "如何查看查詢計畫？",
-            "answer": "在查詢分頁的游標串接 <code>.explain(\"executionStats\")</code>。計畫傳回為文件；MongoDB 連線無計畫圖。"
+            "answer": "在查詢分頁的游標上串接 <code>.explain(\"executionStats\")</code>。計畫會以文件傳回；MongoDB 連線沒有計畫圖。"
         },
         {
             "id": "users",
@@ -105,22 +78,10 @@
             "answer": "執行 <code>db.runCommand({usersInfo: 1})</code>。shell 不解析 <code>db.getUsers()</code> 或 <code>db.createUser()</code>。"
         }
     ],
-    "related": [
-        {
-            "label": "安全瀏覽與編輯資料",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "SQL 以外的查詢語言",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "匯入、匯出與備份",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "比較 TablePro 與其他資料庫用戶端",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass 提供視覺化彙總管線、取樣綱要分析和執行計畫，而 TablePro 可與其他引擎一起查詢 MongoDB；請參閱 <compass>TablePro 與 MongoDB Compass 比較</compass>。",
+        "also": [
+            "compass"
+        ]
+    }
 }

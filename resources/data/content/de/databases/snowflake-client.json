@@ -11,61 +11,53 @@
     "breadcrumb": "Snowflake",
     "header": {
         "title": "Snowflake-Client",
-        "lead": "Frage Tabellen ab und bearbeite sie, wechsle Warehouses und Rollen und exportiere in eine Stage."
+        "lead": "Frage Snowflake-Tabellen ab und bearbeite sie, wechsle Warehouses und Rollen ohne Neuverbinden und exportiere direkt in eine Stage.",
+        "asset": "databases-snowflake"
     },
-    "asset": "mac-db-snowflake-session",
     "links": {
         "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden und anmelden",
-            "paragraphs": [
-                "Gib die Konto-ID vor <code>.snowflakecomputing.com</code> ein, etwa <code>myorg-myaccount</code>. Anfragen nutzen HTTPS; Host, TLS-Bereich und SSH-Bereich sind nicht erforderlich.",
-                "Wähle <ui>Auth Method</ui>: PKCS#8-Schlüsselpaar, Browser-SSO, OAuth-Token oder Passwort mit <ui>MFA Passcode (TOTP)</ui>. Schlüsselpaare brauchen eine genaue Geräteuhr. Eingefügte OAuth-Tokens werden nicht erneuert.",
-                "Mit <code>ALLOW_CLIENT_MFA_CACHING</code> im Konto reicht ein frischer Code: Snowflake liefert einen MFA-Token, den TablePro im <credentials>Schlüsselbund</credentials> speichert. Mit <code>ALLOW_ID_TOKEN</code> speichert Browser-SSO dort einen Anmeldetoken; spätere Verbindungen überspringen den Browser, bis Snowflake ihn ablehnt.",
-                "Snowflake hat kein URL-Schema. Nenne stattdessen einen Abschnitt unter <ui>CLI Connection Name</ui>; jedes leere Feld wird beim Verbinden aus <code>~/.snowflake/connections.toml</code> gelesen."
+            "text": [
+                "Gib die Konto-ID vor <code>.snowflakecomputing.com</code> ein, etwa <code>myorg-myaccount</code>. Anfragen nutzen HTTPS, daher gibt es keinen Host, keinen TLS-Bereich und keinen SSH-Bereich. Snowflake hat kein URL-Schema: Nenne einen Abschnitt unter <ui>CLI Connection Name</ui>, und jedes Feld, das du leer lässt, wird aus <code>~/.snowflake/connections.toml</code> gelesen.",
+                "Wähle <ui>Auth Method</ui>: PKCS#8-Schlüsselpaar, Browser-SSO, OAuth-Token oder Passwort mit <ui>MFA Passcode (TOTP)</ui>. Schlüsselpaare brauchen eine genaue Geräteuhr, und eingefügte OAuth-Tokens werden nicht erneuert.",
+                "Mit <code>ALLOW_CLIENT_MFA_CACHING</code> im Konto reicht ein frischer Code: TablePro speichert den MFA-Token, den Snowflake zurückgibt, im <credentials>Schlüsselbund</credentials>. Mit <code>ALLOW_ID_TOKEN</code> speichert Browser-SSO dort einen Anmeldetoken, und spätere Verbindungen überspringen den Browser, bis Snowflake ihn ablehnt."
             ]
         },
         {
             "id": "work",
             "title": "Warehouses, Rollen und Abfragen",
-            "paragraphs": [
-                "Wechsle Warehouses und Rollen unter <ui>Database > Session Context</ui>. Die Verbindung hält im Leerlauf eine Sitzung; Tabs auf einer anderen Datenbank führen vor ihren Anweisungen <code>USE DATABASE</code> aus.",
-                "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Explain</explain> liefert Snowflakes Plan als Rohtext.",
-                "<editing>Rasteränderungen</editing> binden Werte auf dem Server; VARIANT-, OBJECT- und ARRAY-Zellen nutzen <code>PARSE_JSON</code>. Änderungen werden über den deklarierten Primärschlüssel zugeordnet, sonst über alle Spalten. Standardtabellen in Snowflake erzwingen keine Schlüsselbedingungen: Bei doppelten Schlüsselwerten trifft eine Änderung oder Löschung alle passenden Zeilen. Prüfe deshalb vor dem Bearbeiten auf Duplikate. Hybridtabellen erzwingen ihre Schlüssel."
+            "text": [
+                "Wechsle Warehouses und Rollen unter <ui>Database > Session Context</ui>. Die Verbindung hält im Leerlauf eine Sitzung, und Tabs auf einer anderen Datenbank führen vor ihren Anweisungen <code>USE DATABASE</code> aus. Objektlisten stammen aus <code>SHOW</code>-Befehlen, die kein Warehouse brauchen; Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das eines braucht. <explain>Explain</explain> liefert Snowflakes Plan als Rohtext.",
+                "Rasteränderungen binden ihre Werte auf dem Server, und VARIANT-, OBJECT- und ARRAY-Zellen werden über <code>PARSE_JSON</code> gesendet. Eine Änderung wird über den deklarierten Primärschlüssel zugeordnet, ohne einen solchen über alle Spalten. Standardtabellen erzwingen keine Schlüsselbedingungen, daher trifft eine Änderung oder Löschung jede Zeile mit demselben doppelten Schlüssel: Prüfe zuerst auf Duplikate. Hybridtabellen erzwingen ihre Schlüssel."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "Die DDL-Ansicht stammt aus <code>GET_DDL</code>. Der <structure>Structure-Tab</structure> fügt Spalten hinzu, benennt sie um und entfernt sie, setzt NOT NULL, Kommentare und Primärschlüssel, erweitert VARCHAR und ändert NUMBER-Präzision bei gleicher Skalierung.",
                 "Änderungen, die Snowflake ablehnen würde, werden vor Ausführung verweigert: VARCHAR verkleinern, andere Typänderungen und einen Spaltenstandardwert neu setzen. Das Entfernen eines Standardwerts wird ausgeführt."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "<importData>Importiere</importData> {importFormats}-Dateien über die Verbindung und exportiere Tabellen oder Ergebnisse als {exportFormats} auf deinen Mac.",
-                "Wähle <ui>File > Server-Side Export…</ui> und eine Stage. <backup>Server-Side Export</backup> führt <code>COPY INTO</code> mit deinen Berechtigungen aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. TablePro wartet auf den Abschluss; Dateien laufen nicht über deinen Mac."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importiere</importData> {importFormats}-Dateien und exportiere eine Tabelle oder ein Ergebnis als {exportFormats} auf deinen Mac. <backup>Server-Side Export</backup> unter <ui>File > Server-Side Export…</ui> führt mit deinen Berechtigungen <code>COPY INTO</code> in eine Stage aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON, das nie über deinen Mac läuft."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "no-columns",
             "question": "Warum zeigt die Seitenleiste Tabellen ohne Spalten?",
-            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht. Setze <ui>Warehouse</ui> in Verbindung oder Session Context. Erscheinen die Objekte einer Datenbank gar nicht, benötigt die Verbindungsrolle <code>USAGE</code>."
+            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht: Setze <ui>Warehouse</ui> in der Verbindung oder in Session Context. Erscheinen die Objekte einer Datenbank gar nicht, braucht die verbindende Rolle <code>USAGE</code>."
         },
         {
             "id": "timestamp-ltz",
@@ -75,25 +67,8 @@
         {
             "id": "jwt-invalid",
             "question": "Schlüsselpaar-Anmeldung meldet einen ungültigen JWT. Was prüfen?",
-            "answer": "Der Token enthält Konto-Locator und Zeitstempel. Prüfe Kontobezeichner und Mac-Uhr und bestätige dann den beim Benutzer registrierten öffentlichen Schlüssel mit <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+            "answer": "Der Token enthält deinen Konto-Locator und einen Zeitstempel. Prüfe die Konto-ID und die Uhr des Mac und bestätige dann, dass der öffentliche Schlüssel mit <code>ALTER USER … SET RSA_PUBLIC_KEY</code> registriert ist."
         }
     ],
-    "related": [
-        {
-            "label": "Import, Export und Datendateien",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Abfragen schreiben, ausführen und verstehen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Google BigQuery, ein weiteres Cloud-Warehouse",
-            "href": "/bigquery-client"
-        },
-        {
-            "label": "Trino für Abfragen über Kataloge hinweg",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

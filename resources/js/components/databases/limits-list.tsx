@@ -1,23 +1,18 @@
 import { useI18n } from '@/i18n';
 import { formatNumber } from '@/i18n/format';
 import { cn } from '@/lib/utils';
-import type { DatabaseLabels, EngineCopy, EngineSummary } from './types';
+import type { DatabaseLabels, EngineCopy, EngineDetail } from './types';
 
 interface LimitsListProps {
-    engine: Pick<EngineSummary, 'limits'>;
+    engine: Pick<EngineDetail, 'limits'>;
     copy: EngineCopy | undefined;
     number: DatabaseLabels['number'];
     className?: string;
 }
 
-/**
- * An engine's limits (sitemap §E.1 block 9): one item per `limits[]` entry in
- * engines.json, in data order, each with its sentence from
- * `content/{locale}/engines.json`. A number in the sentence arrives as
- * `{value}` from data. Nothing is softened or summarised, and a limit whose
- * sentence is missing is left out rather than shown as an id (the data test
- * fails on it first).
- */
+// One sentence per `limits[]` entry of engines.json, in data order, from `content/{locale}/engines.json`, with
+// `{value}` filled from data. Nothing is softened, and a limit with no sentence is left out rather than shown as an id
+// (EnginesDataTest fails on it first).
 export default function LimitsList({ engine, copy, number, className }: LimitsListProps) {
     const { fmt } = useI18n();
     const items = engine.limits.filter((limit) => typeof copy?.limits[limit.id] === 'string');
@@ -27,11 +22,9 @@ export default function LimitsList({ engine, copy, number, className }: LimitsLi
     }
 
     return (
-        <ul className={cn('type-body list-disc space-y-2 pl-6 text-foreground marker:text-muted-foreground', className)}>
+        <ul className={cn('space-y-1.5', className)}>
             {items.map((limit) => (
-                <li key={limit.id} className="pl-1">
-                    {fmt(copy?.limits[limit.id] ?? '', limit.value === null ? {} : { value: formatNumber(limit.value, number) })}
-                </li>
+                <li key={limit.id}>{fmt(copy?.limits[limit.id] ?? '', limit.value === null ? {} : { value: formatNumber(limit.value, number) })}</li>
             ))}
         </ul>
     );

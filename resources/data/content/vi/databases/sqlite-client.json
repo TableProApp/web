@@ -11,76 +11,54 @@
     "breadcrumb": "SQLite",
     "header": {
         "title": "SQLite client",
-        "lead": "Mở file SQLite, chạy SQL và xem table. Xem thay đổi cấu trúc trước áp dụng."
+        "lead": "Mở file SQLite trên máy Mac hoặc qua SSH, chạy SQL, và xem lại thay đổi cấu trúc trước khi chạy.",
+        "asset": "databases-sqlite"
     },
-    "asset": "mac-db-sqlite-chinook",
     "links": {
         "remoteFiles": "docs:/connections/remote-database-files",
-        "files": "/features/import-export#files",
-        "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
-        "copy": "/features/schema#copy",
-        "explain": "/features/querying#performance"
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
+        "dataFiles": "/features/import-export#data-files",
+        "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Mở file cơ sở dữ liệu",
-            "paragraphs": [
-                "Chọn file hoặc kéo vào TablePro. Path mới tạo cơ sở dữ liệu lúc kết nối. File SQLite nhận diện theo header <code>SQLite format 3</code>, không theo phần mở rộng.",
-                "Mở file .db, .sqlite và .sqlite3 từ Finder. Thư mục bảo vệ như Messages hoặc lịch sử Safari cần Full Disk Access; có thể cần thoát ứng dụng sở hữu.",
-                "Mở cơ sở dữ liệu từ xa trong <remoteFiles>Remote File pane</remoteFiles>. On the Server query file trực tiếp qua SSH và cần <code>python3</code>. As a Read-Only Copy tải snapshot qua SFTP.",
-                "Muốn xem thử trước, hãy chọn Trợ giúp > Mở cơ sở dữ liệu mẫu (Help > Open Sample Database). Lệnh này mở Chinook, một cơ sở dữ liệu mẫu nhỏ của một cửa hàng nhạc số, đi kèm ứng dụng."
+            "text": [
+                "Chọn file hoặc kéo file vào TablePro, hoặc mở file .db, .sqlite và .sqlite3 từ Finder; đường dẫn mới sẽ tạo cơ sở dữ liệu mới. File được nhận diện theo header <code>SQLite format 3</code>, không theo phần mở rộng, và thư mục được bảo vệ như Messages hay lịch sử Safari cần quyền Truy cập toàn bộ ổ đĩa (Full Disk Access).",
+                "Trong <remoteFiles>Remote File pane</remoteFiles>, <ui>On the Server</ui> query trực tiếp file trên server qua SSH và cần <code>python3</code> ở đó, còn <ui>As a Read-Only Copy</ui> tải một snapshot qua SFTP. <ui>Trợ giúp > Mở cơ sở dữ liệu mẫu</ui> (Help > Open Sample Database) mở Chinook, một cơ sở dữ liệu mẫu nhỏ của một cửa hàng nhạc, đi kèm ứng dụng."
             ]
         },
         {
             "id": "work",
-            "title": "Query và chỉnh sửa",
-            "paragraphs": [
-                "Driver có SQLite riêng, không phụ thuộc phiên bản macOS. Xem <explain>EXPLAIN QUERY PLAN</explain> dạng sơ đồ.",
-                "Tải extension riêng cho connection như sqlite-vec hoặc SpatiaLite. Danh sách extension import, sync hoặc liên kết cần duyệt trước khi tải. Hàm SQL <code>load_extension()</code> bị chặn.",
-                "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh. Khi một chương trình khác thay đổi file, sidebar tự tải lại."
+            "title": "Query và extension",
+            "text": [
+                "Driver có SQLite riêng, không phụ thuộc phiên bản macOS, và vẽ <explain>EXPLAIN QUERY PLAN</explain> thành sơ đồ. Khi một chương trình khác thay đổi file, sidebar tự tải lại.",
+                "Tải extension như sqlite-vec hoặc SpatiaLite cho từng connection. Danh sách extension đến từ import, sync hoặc linked folder cần bạn duyệt trước khi tải, và hàm SQL <code>load_extension()</code> bị chặn."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Đổi tên table hay cột, thêm hay xóa cột, và từ SQLite 3.53 là thêm hay xóa ràng buộc CHECK, đều chạy bằng ALTER TABLE. Các thay đổi khác trong <structure>tab Structure</structure>, như kiểu của một cột hay một khóa ngoại, sẽ dựng lại table: TablePro viết script, chép các dòng cùng rowid, khôi phục index và trigger, và chỉ chạy sau khi bạn xác nhận.",
-                "Đổi kiểu của một cột sẽ đọc lại các giá trị theo affinity mới, nên <code>'007'</code> thành <code>7</code> trong cột INTEGER; bảng xem lại báo trước điều này khi chưa có gì chạy. Virtual table, như table FTS5, không dựng lại được, và thao tác lưu sẽ nêu tên table đó.",
-                "Trigger đọc và sửa được ngay từ sidebar."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Bảo trì và sao lưu",
-            "paragraphs": [
-                "Phần bảo trì table chạy VACUUM, ANALYZE, REINDEX và kiểm tra tính toàn vẹn, mỗi thao tác đều hiển thị SQL trước khi chạy.",
-                "<backup>Backup Dump</backup> ghi cơ sở dữ liệu ra một file .sql bằng {dumpTool}, và Restore Dump chạy một file như vậy vào cơ sở dữ liệu."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "<importData>Import</importData> file {importFormats}, hoặc mở file CSV, JSON hay XLSX trong <dataFiles>cửa sổ Data Files</dataFiles> rồi import từ đó. Table và kết quả query export được ra {exportFormats}.",
-                "<copy>Copy To</copy> chuyển table và dòng sang engine khác, kèm danh sách kiểu chuyển đổi gần đúng. Xem <files>file dạng cơ sở dữ liệu</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone và iPad",
-            "paragraphs": [
-                "Trên iPhone và iPad, bạn chọn một file cơ sở dữ liệu hoặc tạo file mới, hay mở mẫu Chinook từ Mở cơ sở dữ liệu mẫu (Open Sample Database). Bạn xem table dưới dạng thẻ, lọc dữ liệu, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query)."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-query"
+            "title": "Cấu trúc",
+            "text": [
+                "Đổi tên table hay cột, thêm hay xóa cột, và từ SQLite 3.53 là thêm hay xóa ràng buộc CHECK, đều chạy bằng ALTER TABLE. Các thay đổi khác trong <structure>tab Structure</structure> sẽ dựng lại table: TablePro viết script, chép các dòng cùng rowid, khôi phục index và trigger, và chỉ chạy sau khi bạn xác nhận.",
+                "Đổi kiểu sẽ đọc lại các giá trị theo affinity mới, nên <code>'007'</code> thành <code>7</code> trong cột INTEGER, và phần xem lại báo trước điều này. Virtual table, như table FTS5, không dựng lại được. Phần bảo trì table hiển thị VACUUM, ANALYZE, REINDEX và kiểm tra tính toàn vẹn trước khi chạy, còn <backup>Backup Dump</backup> ghi ra file .sql bằng {dumpTool}."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> file {importFormats}, hoặc mở file dữ liệu trong <dataFiles>cửa sổ Data Files</dataFiles> rồi import từ đó. Table và kết quả export được ra {exportFormats}, và <copy>Copy To</copy> chuyển table và dòng sang engine khác."
+    ],
+    "iphone": [
+        "Chọn một file cơ sở dữ liệu, tạo file mới hoặc mở mẫu Chinook, rồi xem table dưới dạng thẻ, lọc dữ liệu, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query)."
+    ],
     "faq": [
         {
             "id": "encrypted",
@@ -98,22 +76,5 @@
             "answer": "Được. Hãy mở file ở nơi framework của bạn lưu nó, như <code>db/development.sqlite3</code> trong Rails hay <code>db.sqlite3</code> trong Django. File nằm trong <code>~/Library</code>, kể cả container của iOS Simulator, cần quyền Truy cập toàn bộ ổ đĩa (Full Disk Access)."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export và file dữ liệu",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Cloudflare D1, SQLite qua HTTP",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Turso và libSQL",
-            "href": "/turso-client"
-        },
-        {
-            "label": "DuckDB, cho file phân tích",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

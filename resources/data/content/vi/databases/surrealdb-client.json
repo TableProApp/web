@@ -11,52 +11,47 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "SurrealDB client",
-        "lead": "Chạy SurrealQL và sửa field record mà giữ nguyên kiểu."
+        "lead": "Chạy script SurrealQL, duyệt namespace và sửa field của record mà vẫn giữ nguyên kiểu.",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối và đăng nhập",
-            "paragraphs": [
-                "Chọn <ui>Auth Level</ui> cho user: Root, Namespace, Database, Record Access hoặc Token. Namespace và Database cần tên. Record Access còn cần access method và trường đăng nhập; Token nhận JWT có sẵn.",
-                "Driver trao đổi CBOR qua endpoint HTTP RPC, nên record link, datetime, duration, decimal và UUID giữ nguyên kiểu. Liên kết <code>surrealdb://</code> mở form connection đã điền sẵn, và server ở xa có thể kết nối qua <network>SSH tunnel</network>.",
-                "SSL mặc định là Đã tắt (Disabled), tức HTTP thường; mọi chế độ khác dùng HTTPS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo kho tin cậy của hệ thống, còn file CA đặt trong phần SSL/TLS sẽ bị bỏ qua, nên hãy cài CA riêng vào macOS trước."
+            "text": [
+                "Chọn <ui>Cấp xác thực</ui> (Auth Level): Root, Namespace, Database, Record Access hoặc Token. Namespace và Database cần tên, Record Access còn cần access method và các trường đăng nhập, còn Token nhận một JWT có sẵn.",
+                "Driver trao đổi CBOR qua endpoint HTTP RPC, nên record link, datetime, duration, decimal và UUID giữ nguyên kiểu. Liên kết <code>surrealdb://</code> mở form connection đã điền sẵn.",
+                "SSL mặc định là Đã tắt (Disabled), tức HTTP thường; mọi chế độ khác dùng HTTPS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo kho tin cậy của hệ thống và bỏ qua file CA đặt trong phần SSL/TLS, nên hãy cài CA riêng vào macOS trước."
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL và record",
-            "paragraphs": [
-                "Chạy script SurrealQL đầy đủ, gồm <code>RELATE</code>, có gợi ý câu lệnh. <explain>Explain và Explain Full</explain> chạy query với <code>EXPLAIN</code> và trả plan văn bản.",
-                "Namespace nằm ở tầng trên cùng của sidebar, cơ sở dữ liệu nằm bên trong. Đổi namespace hay cơ sở dữ liệu đều không phải kết nối lại, vì hai giá trị này đi kèm từng request. Chỉ user root mới thấy mọi namespace.",
-                "Sửa ô chỉ cập nhật field đã đổi bằng tham số có kiểu, giữ field <code>FUTURE</code> tính toán và thay đổi từ người khác. Để trống <code>id</code> cho ID tự tạo. Cột table SCHEMALESS lấy từ record đã tải.",
+            "text": [
+                "Chạy script SurrealQL đầy đủ, kể cả <code>RELATE</code>, có gợi ý câu lệnh. <explain>Explain và Explain Full</explain> chạy query với <code>EXPLAIN</code> và trả về plan dạng văn bản.",
+                "Namespace nằm ở tầng trên cùng của sidebar, với cơ sở dữ liệu bên trong. Đổi namespace hay cơ sở dữ liệu đều không phải kết nối lại, vì cả hai đi kèm từng request, và chỉ user root mới thấy mọi namespace.",
+                "Sửa ô chỉ cập nhật các field đã đổi, dưới dạng tham số có kiểu, nên field <code>FUTURE</code> tính toán và thay đổi của người khác vẫn được giữ. Để trống <code>id</code> để có ID tự tạo; cột của table SCHEMALESS lấy từ các record đã tải.",
                 "<filters>Bộ lọc</filters> được chuyển thành SurrealQL, và dòng SQL thô (Raw SQL) nhận một điều kiện, chẳng hạn một phép duyệt đồ thị. Điều kiện có thao tác ghi, có <code>;</code> hay comment, hoặc gọi vào <code>fn::</code> hay <code>http::</code> sẽ bị từ chối; hãy chạy nó trong editor."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Tab Structure chỉ đọc. Hãy tạo và sửa field, index bằng <code>DEFINE FIELD</code> và <code>DEFINE INDEX</code> trong editor. Namespace hay cơ sở dữ liệu được xóa từ menu của nó, và khi chọn nhiều mục, bạn chỉ phải xác nhận một lần cho tất cả."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "TablePro không có import cho SurrealDB. Bạn có thể <export>export</export> table hoặc kết quả SurrealQL ra {exportFormats}."
+            "text": [
+                "Tab Structure chỉ đọc: hãy tạo và sửa field, index bằng <code>DEFINE FIELD</code> và <code>DEFINE INDEX</code> trong editor. Namespace hay cơ sở dữ liệu được xóa từ menu của nó, và khi chọn nhiều mục, bạn chỉ phải xác nhận một lần cho tất cả."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Không có import. <export>Export</export> table hoặc kết quả SurrealQL ra {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
@@ -69,18 +64,5 @@
             "answer": "Không làm được từ data grid: thao tác lưu dừng lại, nêu tên field và giữ mọi thay đổi ở trạng thái chờ lưu. <code>UPDATE</code> cũng không di chuyển được relation, nên hãy xóa nó rồi <code>RELATE</code> cặp mới."
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB, một cơ sở dữ liệu document khác",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "Các ngôn ngữ query ngoài SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Xem và chỉnh sửa dữ liệu an toàn",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

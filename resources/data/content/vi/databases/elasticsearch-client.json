@@ -11,54 +11,53 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Elasticsearch client",
-        "lead": "Chạy request Query DSL và xem document trong index dạng data grid. Sửa document theo ID."
+        "lead": "Chạy request Query DSL từ console, duyệt document trong index dạng data grid và sửa document theo ID.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối",
-            "paragraphs": [
-                "Nhập REST host và port, rồi chọn <ui>Auth Method</ui>: Username & Password, API Key hoặc None. API key dùng giá trị <code>encoded</code> từ Elasticsearch. Mỗi connection tới một cluster.",
-                "Connection mới để SSL ở Đã tắt (Disabled), tức HTTP thường. Mọi chế độ khác dùng HTTPS: Ưu tiên (Preferred) và Bắt buộc, bỏ qua xác minh (Required, skip verify) chấp nhận chứng chỉ tự ký, còn Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ. Elasticsearch 8.x bật sẵn bảo mật và TLS, nên cluster 8.x thường cần HTTPS và thông tin đăng nhập."
+            "text": [
+                "Nhập REST host và port, rồi chọn <ui>Phương thức xác thực</ui> (Auth Method): Username & Password, API Key hoặc None. API key dùng giá trị <code>encoded</code> từ Elasticsearch, và mỗi connection tới một cluster.",
+                "Connection mới để SSL ở Đã tắt (Disabled), tức HTTP thường; mọi chế độ khác dùng HTTPS. Ưu tiên (Preferred) và Bắt buộc, bỏ qua xác minh (Required, skip verify) chấp nhận chứng chỉ tự ký, còn Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ. Elasticsearch 8.x bật sẵn bảo mật và TLS, nên cluster 8.x thường cần HTTPS và thông tin đăng nhập."
             ]
         },
         {
             "id": "work",
             "title": "Index và console Query DSL",
-            "paragraphs": [
-                "Viết method, path và JSON body tùy chọn, như <code>GET /orders/_search</code>. Search hit và response dạng array hiển thị thành dòng; response khác hiển thị JSON đã format. Không có endpoint <code>_sql</code>.",
+            "text": [
+                "Viết method, path và JSON body tùy chọn, như <code>GET /orders/_search</code>. Search hit và response dạng array hiển thị thành dòng, response khác hiển thị dạng JSON đã format, và endpoint <code>_sql</code> không dùng được.",
                 "Sidebar liệt kê index như table và ẩn các tên bắt đầu bằng dấu chấm. Cột lấy từ mapping: field kiểu object được trải thành đường dẫn có dấu chấm như <code>address.city</code>, field nested có một cột JSON cho cả mảng cùng một cột cho mỗi field con, và mọi document đều có <code>_id</code>, <code>_index</code> và <code>_score</code>.",
-                "<filters>Bộ lọc theo cột</filters> được chuyển thành query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> và <code>exists</code>, còn dòng lọc SQL thô (Raw SQL) nhận cú pháp Lucene, như <code>name:Widget</code>, và gửi đi dưới dạng <code>query_string</code>. Sắp xếp theo field <code>text</code> sẽ dùng subfield <code>.keyword</code> nếu mapping có.",
-                "Sửa document theo <code>_id</code> bằng REST call. Nhập ID cho document mới. Sửa array lồng qua cột JSON; sửa cột lá chặn lưu mà không gửi request."
+                "<filters>Bộ lọc theo cột</filters> được chuyển thành query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> và <code>exists</code>, còn dòng lọc SQL thô (Raw SQL) nhận cú pháp Lucene, như <code>name:Widget</code>. Thay đổi được gửi đi bằng REST call theo <code>_id</code>; hãy sửa array lồng qua cột JSON của nó."
+            ],
+            "notes": [
+                "TablePro còn kết nối tới <search>Typesense và Weaviate</search>, các search engine khác."
             ]
         },
         {
             "id": "schema",
             "title": "Mapping",
-            "paragraphs": [
-                "Mapping chỉ đọc trong TablePro. Không có lệnh Truncate, vì cách gần nhất của Elasticsearch là <code>_delete_by_query</code>, chạy bất đồng bộ và báo xung đột theo từng document; hãy gửi nó từ console. Xóa một index từ sidebar sẽ gửi đúng request DELETE mà hộp xác nhận hiển thị."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Export",
-            "paragraphs": [
-                "TablePro không có import cho Elasticsearch. <export>Export</export> đọc toàn bộ index bằng point-in-time và <code>search_after</code>, nên không bị giới hạn bởi result window, rồi ghi ra {exportFormats}."
+            "text": [
+                "Mapping chỉ đọc. Không có Truncate, vì cách gần nhất của Elasticsearch là <code>_delete_by_query</code>, chạy bất đồng bộ và báo xung đột theo từng document; hãy gửi nó từ console. Xóa một index từ sidebar sẽ gửi đúng request DELETE mà hộp xác nhận hiển thị."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> đọc toàn bộ index bằng point-in-time và <code>search_after</code>, nên không bị giới hạn bởi result window, rồi ghi ra {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "Tôi có phân trang vượt quá result window được không?",
-            "answer": "Được. Khi vượt quá window mặc định của Elasticsearch, việc phân trang chuyển sang <code>search_after</code> trên một point-in-time. Điểm chuyển cố định ở mức mặc định, nên index đã hạ <code>max_result_window</code> sẽ báo lỗi trước khi chuyển; hãy nâng thiết lập đó về mức mặc định."
+            "answer": "Được. Khi phân trang vượt quá window mặc định của Elasticsearch, TablePro chuyển sang <code>search_after</code> trên một point-in-time. Điểm chuyển nằm ở mức mặc định, nên index đã hạ <code>max_result_window</code> sẽ báo lỗi trước; hãy nâng thiết lập đó về mức mặc định."
         },
         {
             "id": "sort-id",
@@ -66,18 +65,5 @@
             "answer": "Elasticsearch không sắp xếp được theo <code>_id</code>, hay theo field <code>text</code> không có subfield <code>.keyword</code>, nên TablePro bỏ cột đó ra khỏi phần sắp xếp. Hãy thêm subfield keyword vào mapping, hoặc sắp xếp theo một field keyword."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense và Weaviate, các search engine khác",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Xem và chỉnh sửa dữ liệu an toàn",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Các ngôn ngữ query ngoài SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

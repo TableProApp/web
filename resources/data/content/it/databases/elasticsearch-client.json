@@ -11,54 +11,53 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Client Elasticsearch",
-        "lead": "Esegui richieste Query DSL e sfoglia i documenti indice in una griglia. Modifica i documenti in base ai loro ID."
+        "lead": "Esegui richieste Query DSL da una console, sfoglia i documenti di un indice in una griglia e modificali tramite il loro ID.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connetti",
-            "paragraphs": [
-                "Inserisci host e porta REST, poi scegli un <ui>Auth Method</ui>: Username & Password, API Key o None. Le chiavi API usano il valore <code>encoded</code> di Elasticsearch. Ogni connessione raggiunge un solo cluster.",
-                "Le nuove connessioni iniziano con SSL Disabled, cioè HTTP non cifrato. Ogni altra modalità usa HTTPS: Preferred e Required (skip verify) accettano un certificato autofirmato, mentre Verify CA e Verify Identity lo verificano. Elasticsearch 8.x attiva sicurezza e TLS per imposto predefinita, quindi un cluster 8.x richiede solitamente HTTPS e credenziali."
+            "text": [
+                "Inserisci host e porta REST, poi scegli un <ui>Auth Method</ui>: Username & Password, API Key o None. Le chiavi API usano il valore <code>encoded</code> di Elasticsearch, e ogni connessione raggiunge un solo cluster.",
+                "Le nuove connessioni iniziano con SSL Disabled, cioè HTTP non cifrato; ogni altra modalità usa HTTPS. Preferred e Required (skip verify) accettano un certificato autofirmato, mentre Verify CA e Verify Identity lo verificano. Elasticsearch 8.x attiva sicurezza e TLS per impostazione predefinita, quindi un cluster 8.x di solito richiede HTTPS e credenziali."
             ]
         },
         {
             "id": "work",
             "title": "Indici e console Query DSL",
-            "paragraphs": [
-                "Scrivi un metodo, un percorso e un corpo JSON opzionale, come <code>GET /orders/_search</code>. I risultati della ricerca e le risposte dell'array vengono visualizzati come righe; altre risposte mostrano il formato JSON. L'endpoint <code>_sql</code> non è disponibile.",
+            "text": [
+                "Scrivi un metodo, un percorso e un corpo JSON facoltativo, per esempio <code>GET /orders/_search</code>. I risultati di ricerca e le risposte array appaiono come righe, le altre risposte come JSON formattato, e l’endpoint <code>_sql</code> non è disponibile.",
                 "La barra laterale elenca gli indici come tabelle e nasconde i nomi che iniziano con un punto. Le colonne provengono dal mapping: i campi oggetto vengono appiattiti in percorsi con punti come <code>address.city</code>, un campo nested riceve una colonna JSON per l’array e una colonna per ogni foglia e ogni documento contiene <code>_id</code>, <code>_index</code> e <code>_score</code>.",
-                "I <filters>filtri delle colonne</filters> diventano query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> ed <code>exists</code>; la riga del filtro Raw SQL accetta sintassi Lucene, come <code>name:Widget</code>, inviata come <code>query_string</code>. Ordinare un campo <code>text</code> usa il sottocampo <code>.keyword</code> quando il mapping ne contiene uno.",
-                "Modifica i documenti tramite <code>_id</code> con chiamate REST. Inserisci un ID per un nuovo documento. Cambia gli array nidificati attraverso la loro colonna JSON; la modifica di una colonna foglia blocca il salvataggio senza inviare una richiesta."
+                "I <filters>filtri delle colonne</filters> diventano query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> ed <code>exists</code>, e la riga del filtro Raw SQL accetta la sintassi Lucene, come <code>name:Widget</code>. Le modifiche partono come chiamate REST tramite <code>_id</code>; cambia un array nested tramite la sua colonna JSON."
+            ],
+            "notes": [
+                "TablePro si connette anche a <search>Typesense e Weaviate</search>, gli altri motori di ricerca."
             ]
         },
         {
             "id": "schema",
             "title": "Mapping",
-            "paragraphs": [
-                "I mapping sono in sola lettura in TablePro. Truncate non è disponibile perché l’equivalente più vicino in Elasticsearch, <code>_delete_by_query</code>, viene eseguito in modo asincrono e segnala conflitti per documento: invialo dalla console. Eliminare un indice dalla barra laterale invia la richiesta DELETE mostrata nella conferma."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Esportazione",
-            "paragraphs": [
-                "L’importazione non è disponibile. <export>Export</export> legge un intero indice con point-in-time e <code>search_after</code>, senza essere limitato alla finestra dei risultati, e scrive {exportFormats}."
+            "text": [
+                "I mapping sono in sola lettura. Truncate non è disponibile, perché l’equivalente più vicino in Elasticsearch, <code>_delete_by_query</code>, viene eseguito in modo asincrono e segnala i conflitti per documento; invialo dalla console. Eliminare un indice dalla barra laterale invia la richiesta DELETE mostrata nella conferma."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> legge un intero indice con un point-in-time e <code>search_after</code>, quindi non è limitato alla finestra dei risultati, e scrive {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "Posso scorrere oltre la finestra dei risultati?",
-            "answer": "Sì. La paginazione oltre la finestra predefinita di Elasticsearch passa a <code>search_after</code> su un point-in-time. Il passaggio avviene al limite predefinito, quindi un indice con <code>max_result_window</code> ridotto genera un errore prima: riporta l’imposto al valore predefinito."
+            "answer": "Sì. La paginazione oltre la finestra predefinita di Elasticsearch passa a <code>search_after</code> su un point-in-time. Il passaggio avviene al valore predefinito, quindi un indice con un <code>max_result_window</code> ridotto genera prima un errore; riporta l’impostazione al valore predefinito."
         },
         {
             "id": "sort-id",
@@ -66,18 +65,5 @@
             "answer": "Elasticsearch non può ordinare per <code>_id</code> né per un campo <code>text</code> senza sottocampo <code>.keyword</code>, quindi TablePro rimuove quella colonna dall’ordinamento. Aggiungi un sottocampo keyword al mapping oppure ordina su un campo keyword."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense e Weaviate, gli altri motori di ricerca",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Esplora e modifica i dati in sicurezza",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Linguaggi di query diversi da SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

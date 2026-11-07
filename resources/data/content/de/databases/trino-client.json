@@ -11,59 +11,52 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Trino-Client",
-        "lead": "Frage katalogübergreifend ab, prüfe Pläne und brich laufende Abfragen ab. Schreibzugriff hängt vom Connector des jeweiligen Katalogs ab."
+        "lead": "Frage katalogübergreifend ab, prüfe Pläne und brich laufende Abfragen ab; Schreibzugriff hängt vom Connector des jeweiligen Katalogs ab.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden und anmelden",
-            "paragraphs": [
-                "Gib Coordinator-Host, Port und <ui>Username</ui> ein. Optional legen <ui>Catalog</ui> und <ui>Schema</ui> den Startpunkt fest. Wähle eine IANA-<ui>Time Zone</ui> für die Sitzung.",
-                "Melde dich mit Passwort als HTTP Basic für LDAP oder Passwortdatei oder mit JWT-Zugriffstoken als Bearer-Zugangsdaten an. Beides läuft nur über TLS: Bei SSL Disabled wird eine Verbindung damit vor jedem Senden abgelehnt. Client-Zertifikat und Schlüssel im SSL-Bereich ergänzen gegenseitiges TLS.",
-                "SSL beginnt mit Disabled, also mit Klartext-HTTP; alle anderen Modi erzwingen TLS ohne Klartext-Fallback, und Port 443 aktiviert Verify Identity. Umleitungen eines Proxys vor dem Coordinator werden nie verfolgt; der Fehler nennt das Ziel. Erreiche ihn hinter einem Bastion-Host per <network>SSH-Tunnel</network> und importiere eine <code>trino://</code>-URL mit <ui>Import from URL…</ui>."
+            "text": [
+                "Gib Coordinator-Host, Port und <ui>Username</ui> ein. <ui>Catalog</ui> und <ui>Schema</ui> legen den Startpunkt fest, und eine IANA-<ui>Time Zone</ui> legt die Zeitzone der Sitzung fest.",
+                "Melde dich mit einem Passwort an, gesendet als HTTP Basic für LDAP- oder Passwortdatei-Authentifizierung, oder mit einem JWT-Zugriffstoken, gesendet als Bearer-Zugangsdaten. Beides läuft nur über TLS: Bei SSL Disabled wird eine Verbindung, die eines davon enthält, abgelehnt, bevor etwas gesendet wird. Client-Zertifikat und Schlüssel im SSL-Bereich ergänzen gegenseitiges TLS.",
+                "SSL beginnt mit Disabled, also Klartext-HTTP; jeder andere Modus erzwingt TLS ohne Klartext-Fallback, und Port 443 aktiviert Verify Identity. Einer Umleitung von einem Proxy vor dem Coordinator wird nie gefolgt, und der Fehler nennt ihr Ziel. <ui>Import from URL…</ui> übernimmt eine <code>trino://</code>-URL."
             ]
         },
         {
             "id": "work",
             "title": "Katalogübergreifend abfragen",
-            "paragraphs": [
-                "Frage vollqualifizierte Namen wie <code>catalog.schema.table</code> ab, um katalogübergreifend zu verknüpfen. Durchsuche Kataloge, Schemas, Tabellen und materialisierte Views; geschätzte Zeilenzahlen stammen aus <code>SHOW STATS</code>.",
-                "<code>bigint</code> und <code>decimal</code> werden als exakter Text statt Fließkomma gelesen. <code>varbinary</code> erscheint als Hex, <code>array</code>, <code>map</code> und <code>row</code> als JSON; Zeitstempel behalten den Serverwert.",
-                "<explain>Explain</explain> bietet Logical, Distributed, IO, Validate und Analyze. Validate prüft ohne Ausführung, Analyze führt aus und meldet tatsächliche Zeiten; jeder Plan kommt als Rohtext zurück.",
-                "<code>SET SESSION</code> gilt für den Rest der Verbindung. <ui>Query > Cancel Query</ui> weist den Coordinator an, die laufende Abfrage zu beenden; so stoppst du sie, da das Abfragezeitlimit der Verbindung Trino nicht erreicht.",
-                "<editing>Zellenänderungen</editing> nutzen typisierte INSERT-, UPDATE- und DELETE-Anweisungen. Trino meldet keine Primärschlüssel, daher werden alle ursprünglichen Spalten abgeglichen. Identische Zeilen ändern sich gemeinsam; es gibt keine Transaktion zum Rückgängigmachen. Prüfe vor dem Bearbeiten auf Duplikate."
+            "text": [
+                "Verknüpfe Kataloge über vollqualifizierte Namen wie <code>catalog.schema.table</code> und durchsuche Kataloge, Schemas, Tabellen und materialisierte Views, mit geschätzten Zeilenzahlen aus <code>SHOW STATS</code>. <code>bigint</code> und <code>decimal</code> werden als exakter Text gelesen, nicht als Fließkomma; <code>varbinary</code> erscheint als Hex, <code>array</code>, <code>map</code> und <code>row</code> als JSON, und Zeitstempel behalten den Wert, den der Server geliefert hat.",
+                "<explain>Explain</explain> bietet Logical, Distributed, IO, Validate und Analyze, jeweils als Rohtext: Validate prüft eine Abfrage, ohne sie auszuführen, und Analyze führt sie aus und meldet tatsächliche Zeiten. <code>SET SESSION</code> gilt für den Rest der Verbindung, und <ui>Query > Cancel Query</ui> ist der Weg, eine Abfrage zu stoppen, da das Abfragezeitlimit der Verbindung Trino nicht erreicht.",
+                "Trino meldet keine Primärschlüssel, daher gleichen <editing>Zellenänderungen</editing> alle ursprünglichen Spalten ab, und identische Zeilen ändern sich gemeinsam, ohne Transaktion zum Rückgängigmachen. Prüfe vor dem Bearbeiten auf Duplikate."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "Der <structure>Structure-Tab</structure> erstellt Tabellen und fügt Spalten hinzu, entfernt sie, benennt sie um und ändert Typen mit Autocommit. Ob eine Änderung läuft, entscheidet der Connector; Typänderungen akzeptieren die wenigsten Connectoren."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Es gibt keinen Import. <export>Exportiere</export> Tabellen oder Ergebnisse als {exportFormats}."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Es gibt keinen Import. <export>Exportiere</export> Tabellen oder Ergebnisse als {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
             "question": "Warum liefert eine gültige Anweisung NOT_SUPPORTED?",
-            "answer": "Der Connector des Katalogs implementiert die Operation nicht, unabhängig von Trinos Grammatik. Ein schreibgeschützter Connector lehnt jeden Schreibzugriff ab. Prüfe seine Dokumentation zur Unterstützung."
+            "answer": "Der Connector hinter diesem Katalog implementiert die Operation nicht, egal was Trinos Grammatik erlaubt, und ein schreibgeschützter Connector lehnt jeden Schreibzugriff ab. Prüfe die Dokumentation des Connectors."
         },
         {
             "id": "encrypted-key",
@@ -71,22 +64,5 @@
             "answer": "Nein. Trino-Verbindungen haben kein Schlüssel-Passphrase-Feld. Schreibe eine entschlüsselte Kopie mit <code>openssl pkey -in encrypted.key -out client.key</code> und wähle diese Datei."
         }
     ],
-    "related": [
-        {
-            "label": "Abfragen schreiben, ausführen und verstehen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Verbindungen, Tunnel und Zugangsdaten",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata, ein Data Warehouse",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake, ein Cloud-Warehouse",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

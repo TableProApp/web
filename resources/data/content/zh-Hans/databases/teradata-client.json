@@ -11,82 +11,58 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata 客户端",
-        "lead": "无需安装其他客户端软件即可查询和编辑 Teradata。浏览数据库、用户、过程和宏。"
+        "lead": "无需另装客户端软件即可查询和编辑 Teradata，并浏览其数据库、用户、存储过程和宏。",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接和登录",
-            "paragraphs": [
-                "输入主机、用户名和密码。在 <ui>Logon Mechanism</ui> 中选择 <code>TD2</code> 或 <code>TDNEGO</code>。<ui>数据库</ui> (Database) 覆盖账户默认值。支持接受 TD2 的 Vantage 服务器，不进行版本检查。",
-                "默认端口使用明文会话。任意 SSL 模式将会话移至网关 WebSocket 端点的 443 端口，不可更改。Verify CA 需 CA 证书，Verify Identity 用该证书验证链和主机名，未提供时使用系统信任库。",
-                "除非脚本需要 ANSI 或 TERA 提交规则及会话大小写敏感性，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡垒机后的系统通过 <network>SSH 隧道</network>访问。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>teradata://</code>，macOS 不会将其作为链接打开。"
+            "text": [
+                "输入主机、用户名和密码，并在 <ui>Logon Mechanism</ui> 中选择 <code>TD2</code> 或 <code>TDNEGO</code>；<ui>数据库</ui> (Database) 会覆盖账户的默认数据库。接受 TD2 的 Vantage 服务器可直接连接，不检查版本。",
+                "默认端口使用明文会话。选择任意 SSL 模式都会将会话移至网关在 443 端口上的 WebSocket 端点，该端口不可更改。Verify CA 需要 CA 证书，Verify Identity 用该证书检查证书链和主机名，未提供证书时使用系统信任库。",
+                "除非脚本需要 ANSI 或 TERA 的提交规则和大小写敏感性，否则请将 <ui>Transaction Mode</ui> 保持为 <code>DEFAULT</code>。<ui>从 URL 导入…</ui> (Import from URL…) 接受 <code>teradata://</code> URL，macOS 不会将其作为链接打开。"
             ]
         },
         {
             "id": "work",
             "title": "查询和编辑",
-            "paragraphs": [
-                "将数据库和用户作为命名空间浏览。其他数据库的标签页共享会话，并在语句执行前运行 <code>DATABASE</code>。",
-                "存储过程列在侧边栏，宏位于 Functions 下，各自在<objects>只读标签页中打开源码</objects>。",
-                "Teradata 没有 <code>LIMIT</code>，表第一页使用 <code>TOP</code>，后续使用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 返回原始文本计划。行编辑暂存至保存，<editing>Preview SQL</editing> 先显示每条语句。"
+            "text": [
+                "数据库和用户都显示为命名空间，其他数据库的标签页共享会话，并在其语句前运行 <code>DATABASE</code>。存储过程列在侧边栏中，宏位于 Functions 下，各自会<objects>在只读标签页中打开源码</objects>。",
+                "Teradata 没有 <code>LIMIT</code>，因此表的第一页用 <code>TOP</code> 返回，后续页面用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 以原始文本返回 Teradata 的计划。"
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "从 <structure>Structure 标签页</structure>创建表和修改列。表 DDL 视图显示含约束的完整定义。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "通过<importData>导入</importData>载入 {importFormats}，表或结果保存为 {exportFormats}。<copy>Copy To</copy> 将表、行或两者发送到其他 Teradata 连接，拒绝复制至其他引擎。"
+            "text": [
+                "在 <structure>Structure 标签页</structure>创建表并修改其列。表的 DDL 视图显示包含约束的完整定义。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>导入</importData> {importFormats} 文件，并将表或结果导出为 {exportFormats}。<copy>Copy To</copy> 将表、其行或两者发送到另一个 Teradata 连接；复制到其他引擎会被拒绝。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
-            "question": "为什么登录机制被忽略？",
-            "answer": "请用大写。驱动不识别的值，例如小写 <code>tdnego</code>，会按 <code>TD2</code> 读取。"
+            "question": "为什么我的登录机制被忽略？",
+            "answer": "请用大写输入。驱动不识别的值，例如小写的 <code>tdnego</code>，会按 <code>TD2</code> 读取。"
         },
         {
             "id": "tls-check",
-            "question": "如何知道会话已加密？",
-            "answer": "请用 Required (skip verify) 或验证模式测试。Preferred 在 TLS 端口不可达时退回明文，因此握手失败也可能显示连接成功。"
+            "question": "如何确认会话已加密？",
+            "answer": "请用 Required (skip verify) 或某个验证模式测试。TLS 端口不可达时，Preferred 会退回明文会话，因此握手失败看起来仍像连接成功。"
         }
     ],
-    "related": [
-        {
-            "label": "编写、运行和理解查询",
-            "href": "/features/querying"
-        },
-        {
-            "label": "结构、对比和同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake，另一种数据仓库",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino，跨 catalog 查询",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

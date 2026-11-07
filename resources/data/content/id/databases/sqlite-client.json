@@ -11,109 +11,70 @@
     "breadcrumb": "SQLite",
     "header": {
         "title": "Klien SQLite",
-        "lead": "Buka file SQLite, jalankan SQL dan periksa tabelnya. Tinjau perubahan struktur sebelum menerapkannya."
+        "lead": "Buka file SQLite di Mac Anda atau melalui SSH, jalankan SQL, dan tinjau perubahan struktur sebelum dijalankan.",
+        "asset": "databases-sqlite"
     },
-    "asset": "mac-db-sqlite-chinook",
     "links": {
         "remoteFiles": "docs:/connections/remote-database-files",
-        "files": "/features/import-export#files",
-        "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
-        "copy": "/features/schema#copy",
-        "explain": "/features/querying#performance"
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
+        "dataFiles": "/features/import-export#data-files",
+        "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Buka file database",
-            "paragraphs": [
-                "Pilih file atau seret ke TablePro. Jalur baru membuat database pada koneksi. File SQLite diidentifikasi berdasarkan header <code>SQLite format 3</code>, bukan ekstensinya.",
-                "Buka file .db, .sqlite dan .sqlite3 dari Finder. Folder yang dilindungi, seperti Pesan atau riwayat Safari, memerlukan Akses Disk Penuh; aplikasi pemilik mungkin juga harus ditutup.",
-                "Buka database jarak jauh di <remoteFiles>panel Remote File</remoteFiles>. On the Server mengueri file langsung melalui SSH dan memerlukan <code>python3</code>. As a Read-Only Copy mengunduh salinan melalui SFTP.",
-                "Untuk mencoba terlebih dahulu, pilih Help > Open Sample Database. Opsi ini membuka Chinook, contoh kecil toko musik digital yang disertakan dalam aplikasi."
+            "text": [
+                "Pilih file atau seret ke TablePro, atau buka file .db, .sqlite, dan .sqlite3 dari Finder; path baru membuat database. File dikenali dari header <code>SQLite format 3</code>, bukan ekstensinya, dan folder yang dilindungi seperti riwayat Pesan atau Safari memerlukan Akses Disk Penuh.",
+                "Di <remoteFiles>panel Remote File</remoteFiles>, <ui>On the Server</ui> menjalankan kueri pada file langsung melalui SSH dan memerlukan <code>python3</code> di sana, sedangkan <ui>As a Read-Only Copy</ui> mengunduh salinan melalui SFTP. <ui>Help > Open Sample Database</ui> membuka Chinook, contoh kecil toko musik yang disertakan dalam aplikasi."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan edit",
-            "paragraphs": [
-                "Driver menyertakan SQLite, tidak bergantung pada versi macOS Anda. Lihat <explain>EXPLAIN QUERY PLAN</explain> sebagai diagram.",
-                "Muat ekstensi per koneksi seperti sqlite-vec atau SpatiaLite. Daftar ekstensi yang diimpor, disinkronkan, atau ditautkan memerlukan persetujuan sebelum dimuat. Fungsi <code>load_extension()</code> SQL diblokir.",
-                "Perubahan baris ditampung sampai Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu. Saat program lain mengubah file, sidebar dimuat ulang secara otomatis."
+            "title": "Kueri dan ekstensi",
+            "text": [
+                "Driver menyertakan SQLite, tidak bergantung pada versi macOS Anda, dan menggambar <explain>EXPLAIN QUERY PLAN</explain> sebagai diagram. Saat program lain mengubah file, sidebar dimuat ulang dengan sendirinya.",
+                "Muat ekstensi seperti sqlite-vec atau SpatiaLite per koneksi. Daftar ekstensi yang datang melalui impor, sinkronisasi, atau folder tertaut memerlukan persetujuan Anda sebelum dimuat, dan fungsi SQL <code>load_extension()</code> diblokir."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Mengganti nama tabel atau kolom, menambah atau menghapus kolom, dan sejak SQLite 3.53 menambah atau menghapus CHECK dijalankan sebagai ALTER TABLE. Perubahan lain pada <structure>tab Structure</structure>, seperti jenis kolom atau foreign key, membangun ulang tabel: TablePro menulis skrip, menyalin baris beserta rowid, memulihkan indeks dan trigger, lalu menjalankannya hanya setelah Anda mengonfirmasi.",
-                "Mengubah jenis kolom membaca ulang nilainya menggunakan afinitas baru, sehingga <code>'007'</code> menjadi <code>7</code> dalam kolom INTEGER; lembar peninjauan memberitahukannya sebelum perintah dijalankan. Tabel virtual, seperti tabel FTS5, tidak dapat dibangun ulang, dan proses penyimpanan menyebutkan namanya.",
-                "Trigger dapat dibaca dan diedit dari sidebar."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Pemeliharaan dan pencadangan",
-            "paragraphs": [
-                "Pemeliharaan tabel menjalankan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas, masing-masing ditampilkan sebagai SQL sebelum dijalankan.",
-                "<backup>Backup Dump</backup> menulis database ke file .sql menggunakan {dumpTool}, dan Restore Dump menjalankan file tersebut pada database."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "<importData>Impor</importData> file {importFormats}, atau buka file CSV, JSON, atau XLSX di <dataFiles>jendela Data Files</dataFiles> lalu impor dari sana. Tabel dan hasil diekspor sebagai {exportFormats}.",
-                "<copy>Copy To</copy> mentransfer tabel dan baris ke mesin lain, dengan daftar perkiraan tipe. Lihat file <files>sebagai database</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone dan iPad",
-            "paragraphs": [
-                "Di iPhone dan iPad, pilih file database atau buat yang baru, atau buka contoh Chinook dari Open Sample Database. Anda dapat menelusuri tabel sebagai kartu, memfilternya, mengedit baris dengan primary key, dan menjalankan SQL di tab Query."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-query"
+            "title": "Struktur",
+            "text": [
+                "Mengganti nama tabel atau kolom, menambah atau menghapus kolom, dan sejak SQLite 3.53, menambah atau menghapus CHECK dijalankan sebagai ALTER TABLE. Perubahan lain di <structure>tab Structure</structure> membangun ulang tabel: TablePro menulis skrip, menyalin baris beserta rowid-nya, memulihkan indeks dan trigger, dan menjalankannya hanya setelah Anda mengonfirmasi.",
+                "Perubahan tipe membaca ulang nilai melalui afinitas baru, sehingga <code>'007'</code> menjadi <code>7</code> di kolom INTEGER, dan peninjauan memberitahukannya lebih dulu. Tabel virtual, seperti tabel FTS5, tidak dapat dibangun ulang. Pemeliharaan tabel menampilkan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas sebelum dijalankan, dan <backup>Backup Dump</backup> menulis file .sql dengan {dumpTool}."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Impor</importData> file {importFormats}, atau buka file data di <dataFiles>jendela Data Files</dataFiles> dan impor dari sana. Tabel dan hasil diekspor sebagai {exportFormats}, dan <copy>Copy To</copy> memindahkan tabel dan baris ke mesin lain."
+    ],
+    "iphone": [
+        "Pilih file database, buat yang baru, atau buka contoh Chinook, lalu telusuri tabel sebagai kartu, filter, edit baris yang memiliki primary key, dan jalankan SQL di tab Query."
+    ],
     "faq": [
         {
             "id": "encrypted",
             "question": "Apakah TablePro dapat membuka database SQLite terenkripsi?",
-            "answer": "Tidak. File SQLCipher dan SEE tidak dapat dibuka karena SQLite bawaan tidak menerima kunci. Dekripsi file terlebih dahulu menggunakan alat sqlcipher."
+            "answer": "Tidak. File SQLCipher dan SEE tidak dapat dibuka karena SQLite bawaan tidak menerima kunci. Dekripsi file dengan alat sqlcipher terlebih dahulu."
         },
         {
             "id": "version",
             "question": "Versi SQLite apa yang digunakan TablePro?",
-            "answer": "SQLite {engineVersion}, disertakan dalam driver. Versinya tidak bergantung pada SQLite bawaan macOS."
+            "answer": "SQLite {engineVersion}, terpasang di dalam driver. Versinya tidak bergantung pada versi yang disertakan dalam macOS."
         },
         {
             "id": "framework-files",
-            "question": "Apakah saya dapat membuka database pengembangan aplikasi?",
-            "answer": "Ya. Buka file di lokasi yang digunakan framework, seperti <code>db/development.sqlite3</code> pada Rails atau <code>db.sqlite3</code> pada Django. File di bawah <code>~/Library</code>, termasuk kontainer Simulator iOS, memerlukan Akses Disk Penuh (Full Disk Access)."
+            "question": "Apakah saya dapat membuka database pengembangan aplikasi saya?",
+            "answer": "Ya. Buka file di lokasi framework Anda menyimpannya, seperti <code>db/development.sqlite3</code> di Rails atau <code>db.sqlite3</code> di Django. File di bawah <code>~/Library</code>, termasuk kontainer iOS Simulator, memerlukan Akses Disk Penuh."
         }
     ],
-    "related": [
-        {
-            "label": "Impor, ekspor, dan file data",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Cloudflare D1, SQLite melalui HTTP",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Turso dan libSQL",
-            "href": "/turso-client"
-        },
-        {
-            "label": "DuckDB, untuk file analitik",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

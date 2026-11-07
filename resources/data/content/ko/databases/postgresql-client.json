@@ -11,152 +11,92 @@
     "breadcrumb": "PostgreSQL",
     "header": {
         "title": "PostgreSQL 클라이언트",
-        "lead": "PostgreSQL을 조회하고 스키마를 탐색하며 SQL 미리보기로 행을 편집하세요. EXPLAIN 계획, jsonb, 배열, PostGIS 값을 확인할 수 있습니다."
+        "lead": "PostgreSQL을 조회하고 스키마를 탐색하며 행을 편집하세요. EXPLAIN 계획, jsonb, 배열, PostGIS 값을 확인할 수 있습니다.",
+        "asset": "databases-postgresql"
     },
-    "asset": "mac-db-postgresql-explain",
     "links": {
-        "network": "/features/connections#network",
         "cloudAuth": "/features/connections#cloud-auth",
-        "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "results": "/features/querying#results",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
         "administer": "/features/schema#administer",
-        "copy": "/features/schema#copy",
-        "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup",
-        "redshift": "/redshift-client"
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy",
+        "pgadmin": "/compare/pgadmin",
+        "postico": "/compare/postico"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결",
-            "paragraphs": [
-                "호스트, 포트, 사용자, 데이터베이스를 입력하거나 <code>postgresql://</code> 또는 <code>postgres://</code> URL을 붙여 넣으세요. 데이터베이스는 필수입니다.",
-                "새 연결의 SSL은 Preferred, 즉 libpq의 <code>sslmode=prefer</code>로 시작합니다. 서버 인증서를 검사하려면 Verify CA나 Verify Identity를 선택하세요.",
-                "Use ~/.pgpass를 켜면 <code>~/.pgpass</code>에서 비밀번호를 읽습니다. 양식은 찾은 결과를 표시하고 파일 권한 때문에 libpq가 무시하는 경우도 알립니다.",
-                "<network>SSH 터널, 점프 호스트, 프록시, 터널 명령</network>으로 비공개 서버에 연결하세요. Amazon RDS와 Aurora는 <code>rds_iam</code> 권한이 있는 역할에 <cloudAuth>AWS IAM</cloudAuth>을 지원합니다. Google Cloud SQL은 Cloud SQL Auth Proxy를 사용합니다.",
-                "<code>-c application_name=reporting</code>처럼 libpq가 허용하는 연결 옵션은 Connection Options에 입력합니다."
+            "text": [
+                "호스트, 포트, 사용자, 데이터베이스를 입력하거나 <code>postgresql://</code> 또는 <code>postgres://</code> URL을 붙여 넣으세요. 데이터베이스는 필수입니다. 새 연결의 SSL은 Preferred, 즉 libpq의 <code>sslmode=prefer</code>로 시작합니다. 서버 인증서를 검사하려면 Verify CA나 Verify Identity를 선택하세요.",
+                "<ui>~/.pgpass 사용</ui> (Use ~/.pgpass)은 <code>~/.pgpass</code>에서 비밀번호를 읽고, 파일 권한 때문에 libpq가 무시하는 경우 알려 줍니다. Amazon RDS와 Aurora는 <code>rds_iam</code> 권한이 있는 역할에 <cloudAuth>AWS IAM</cloudAuth> 로그인을 지원하며, Google Cloud SQL은 Cloud SQL Auth Proxy를 사용합니다. Connection Options에는 <code>-c application_name=reporting</code>처럼 libpq가 허용하는 옵션을 입력합니다."
             ]
         },
         {
             "id": "work",
             "title": "쿼리 및 편집",
-            "paragraphs": [
-                "스키마 기반 자동 완성으로 SQL을 작성하세요. <explain>EXPLAIN과 EXPLAIN ANALYZE</explain>를 다이어그램이나 트리로 보고 두 실행의 계획을 비교할 수 있습니다.",
-                "서식이 지정된 jsonb와 uuid, inet, timestamptz, interval, bytea 등 PostgreSQL 타입을 확인하세요. 배열 요소는 목록으로 편집하고 enum 열은 정의된 레이블을 제공합니다.",
-                "PostGIS의 geometry·geography 값은 SRID가 포함된 EWKT로 읽히며 지오메트리 결과는 <results>지도 보기</results>로 열립니다. 지도 타일은 Apple이 제공하고 행 데이터는 Mac에 남습니다.",
-                "행 편집은 저장까지 대기하고 <editing>Preview SQL</editing>이 모든 명령문을 먼저 보여 주며 바인딩 매개변수로 저장합니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며 PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침이 가능합니다."
-            ],
-            "asset": "mac-result-map"
+            "text": [
+                "<explain>EXPLAIN과 EXPLAIN ANALYZE</explain>를 다이어그램이나 트리로 보고 두 실행의 계획을 비교하세요. jsonb는 서식이 지정되고, 배열 요소는 목록으로 편집하며, enum 열은 정의된 레이블을 제공합니다.",
+                "PostGIS의 geometry·geography 값은 SRID가 포함된 EWKT로 읽히며, 지오메트리가 있는 결과는 <results>지도 보기</results>로 열립니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며, PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침도 가능합니다."
+            ]
         },
         {
             "id": "schema",
             "title": "스키마 및 구조",
-            "paragraphs": [
-                "접근 가능한 스키마를 살펴보세요. 소유자, 주석, 권한을 포함해 스키마를 만들거나 편집하고 적용 전에 SQL을 확인합니다.",
-                "<structure>Structure 탭</structure>에서 열, 인덱스, 외래 키, CHECK, 생성 열 변경을 준비하세요. 파티션 경계와 enum, 복합 타입, 도메인, 범위 등 PostgreSQL Types를 살펴볼 수 있습니다. enum 레이블은 추가하거나 이름을 바꿀 수 있습니다.",
-                "뷰 정의는 모든 테이블을 스키마로 한정해 재구성하며 동시 생성 실패로 무효가 된 인덱스는 Indexes 탭에 이름이 표시됩니다.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 PostgreSQL 스키마나 데이터를 비교하고 동기화 스크립트를 만듭니다. 데이터가 삭제될 수 있는 변경은 검토하도록 보류합니다."
+            "text": [
+                "소유자, 주석, 권한을 포함해 스키마를 만들거나 편집하고 먼저 SQL을 확인하세요. 파티션 경계와 enum, 복합 타입, 도메인, 범위 등 PostgreSQL Types를 살펴볼 수 있습니다. enum 레이블은 추가하거나 이름을 바꿀 수 있습니다.",
+                "뷰 정의는 모든 테이블을 스키마로 한정해 재구성하며, 동시 생성 실패로 무효가 된 인덱스는 Indexes 탭에 이름이 표시됩니다. <compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 PostgreSQL 스키마나 데이터를 비교하고 데이터가 삭제될 수 있는 변경은 보류합니다."
             ]
         },
         {
             "id": "operate",
             "title": "관리",
-            "paragraphs": [
-                "<administer>Users & Roles</administer>에서 각 권한의 출처를 확인하세요. 권한 부여와 회수 변경은 SQL로 준비됩니다.",
-                "Server Dashboard는 세션, 연결, 캐시 적중률, 데이터베이스 크기와 느린 쿼리를 보여 줍니다. <code>pg_cancel_backend</code>로 쿼리를 취소하거나 <code>pg_terminate_backend</code>로 세션을 종료합니다. 슈퍼유저도 <code>pg_monitor</code> 멤버도 아닌 역할은 다른 세션은 보지만 쿼리는 보지 못합니다.",
-                "테이블 유지 관리를 실행하기 전에 VACUUM, ANALYZE, REINDEX, CLUSTER를 미리 확인하세요.",
-                "<backup>Backup Dump와 Restore Dump</backup>는 연결의 SSH 터널로 직접 설치한 {dumpTool}와 pg_restore를 실행합니다. Homebrew로 설치하세요. PostgreSQL 9.1 서버를 백업하려면 pg_dump 14 이하를 사용합니다."
-            ],
-            "asset": "mac-server-dashboard-postgresql"
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "열 매핑과 행 오류 처리를 사용해 {importFormats} 파일을 <importData>가져오세요</importData>. 테이블이나 결과를 {exportFormats} 형식으로 내보낼 수 있습니다. SQL 내보내기는 테이블, 뷰, 구체화된 뷰의 주석을 유지합니다.",
-                "<copy>Copy To</copy>는 테이블, 데이터 또는 둘 다 다른 PostgreSQL 연결이나 엔진으로 전송합니다. 근사 변환이 필요한 열 타입은 검토하세요."
+            "text": [
+                "<administer>Users & Roles</administer>에서 각 권한의 출처를 확인하세요. Server Dashboard는 세션, 캐시 적중률, 데이터베이스 크기와 느린 쿼리를 보여 주며, <code>pg_cancel_backend</code>로 쿼리를 취소하거나 <code>pg_terminate_backend</code>로 세션을 종료합니다. 슈퍼유저도 <code>pg_monitor</code> 멤버도 아닌 역할은 다른 세션을 보지만 그 쿼리는 보지 못합니다.",
+                "VACUUM, ANALYZE, REINDEX, CLUSTER를 실행하기 전에 미리 확인하세요. <backup>Backup Dump와 Restore Dump</backup>는 직접 설치한 {dumpTool}와 pg_restore를 연결의 SSH 터널로 실행합니다. PostgreSQL 9.1 서버에는 pg_dump 14 이하를 사용하세요."
             ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone과 iPad",
-            "paragraphs": [
-                "iPhone과 iPad에서는 도구 막대에서 데이터베이스·스키마를 전환하고 테이블을 카드로 탐색하며 기본 키가 있는 행을 편집하고 Query 탭에서 SQL을 실행합니다. SSL은 Required부터 Verify Identity까지, SSH 터널은 비밀번호나 키를 지원하며 점프 호스트는 지원하지 않습니다."
-            ],
-            "asset": "ios-connection-form"
         }
     ],
     "family": [
         {
             "engine": "cockroachdb",
             "title": "CockroachDB",
-            "paragraphs": [
-                "CockroachDB는 앱에 포함된 PostgreSQL 드라이버를 사용하므로 추가 설치가 필요 없습니다. 새 클러스터는 <code>defaultdb</code> 데이터베이스로 시작합니다.",
-                "CockroachDB Cloud에서는 Cloud 콘솔에서 호스트, 사용자, 비밀번호와 데이터베이스를 복사하고 클러스터 라우팅 값 <code>--cluster=your-cluster</code>를 Connection Options에 넣고 SSL Mode를 Verify Identity로 설정합니다. 보안 설정 없이(insecure) 실행한 로컬 노드는 SSL Mode를 Disabled로 설정합니다.",
-                "테이블·뷰 DDL은 CockroachDB의 SHOW CREATE에서 읽습니다. EXPLAIN·EXPLAIN ANALYZE 텍스트 계획은 계획 트리로 파싱되며 Server Dashboard는 세션과 활성 쿼리를 나열합니다.",
-                "외래 키 검사를 지연할 수 없습니다."
+            "text": [
+                "CockroachDB는 앱에 포함된 PostgreSQL 드라이버를 사용하며, 새 클러스터는 <code>defaultdb</code> 데이터베이스로 시작합니다. CockroachDB Cloud에서는 Cloud 콘솔에서 호스트, 사용자, 비밀번호와 데이터베이스를 복사하고, <code>--cluster=your-cluster</code>를 Connection Options에 넣고, SSL Mode를 Verify Identity로 설정합니다. 보안 설정 없이(insecure) 실행한 로컬 노드는 Disabled를 사용합니다.",
+                "DDL은 CockroachDB의 SHOW CREATE에서 읽고, EXPLAIN 텍스트 계획은 계획 트리로 파싱되며, Server Dashboard는 세션과 활성 쿼리를 나열합니다. 외래 키 검사는 지연할 수 없습니다."
             ]
         },
         {
             "engine": "pglite",
             "title": "PGlite",
-            "paragraphs": [
-                "PGlite는 WebAssembly로 컴파일된 PostgreSQL이며 소켓 서버 <code>npx @electric-sql/pglite-socket</code>을 시작하기 전에는 접근할 수 없습니다. <code>--db=./my-pgdata</code>로 데이터를 디스크에 유지합니다.",
-                "localhost 대신 <code>127.0.0.1</code>로 연결합니다. 소켓 서버는 비밀번호를 검사하지 않고 TLS도 없어 양식에서 둘 다 요청하지 않습니다.",
-                "PGlite의 카탈로그는 완전하므로 구조 편집, Users & Roles와 EXPLAIN 다이어그램은 서버와 동일하게 작동합니다. <code>postgres</code> 데이터베이스 하나를 제공합니다."
+            "text": [
+                "PGlite는 WebAssembly로 컴파일된 PostgreSQL입니다. <code>npx @electric-sql/pglite-socket</code>으로 소켓 서버를 시작하고, 데이터를 디스크에 유지하려면 <code>--db=./my-pgdata</code>를 추가한 뒤 localhost 대신 <code>127.0.0.1</code>로 연결하세요. 서버는 비밀번호를 검사하지 않고 TLS도 없어 양식에서 둘 다 요청하지 않습니다.",
+                "카탈로그가 완전하므로 구조 편집, Users & Roles와 EXPLAIN 다이어그램이 서버와 동일하게 작동합니다. 데이터베이스는 <code>postgres</code> 하나입니다."
             ]
         }
     ],
-    "otherTools": {
-        "items": [
-            {
-                "product": "pgadmin",
-                "text": "pgAdmin은 디버거, 스키마 비교, 백업 및 복원 등 PostgreSQL 관리에 집중합니다.",
-                "notes": [
-                    "pgadmin-erd-design"
-                ]
-            },
-            {
-                "product": "postico",
-                "text": "Postico 2는 Mac에서 PostgreSQL 탐색과 편집에 집중합니다. 문서상 백업 및 복원, 사용자 관리, 모니터링은 제외됩니다."
-            }
-        ],
-        "notes": {
-            "pgadmin-erd-design": "pgAdmin의 ERD 도구는 스키마를 설계하고 SQL을 생성하지만 TablePro의 ER 다이어그램은 읽기만 합니다."
-        }
-    },
+    "moveData": [
+        "{importFormats} 파일을 <importData>가져오고</importData> 테이블이나 결과를 {exportFormats} 형식으로 내보내세요. SQL 내보내기는 테이블, 뷰, 구체화된 뷰의 주석을 유지합니다. <copy>Copy To</copy>는 테이블과 데이터를 다른 PostgreSQL 연결이나 다른 엔진으로 옮깁니다."
+    ],
+    "iphone": [
+        "도구 막대에서 데이터베이스와 스키마를 전환하고, 테이블을 카드로 탐색하고, 기본 키가 있는 행을 편집하고, Query 탭에서 SQL을 실행합니다. SSL은 Required부터 Verify Identity까지 지원하며, SSH 터널은 비밀번호나 키로 로그인합니다."
+    ],
     "faq": [
         {
             "id": "hosted",
             "question": "Amazon RDS, Neon, Supabase 같은 호스팅 PostgreSQL을 지원하나요?",
-            "answer": "네. 호스팅 서버도 다른 서버처럼 호스트와 포트로 연결합니다. Neon, Supabase, Heroku는 서비스가 알려 주는 호스트로 연결합니다. 이들은 TLS를 요구하며 새 연결은 TLS를 먼저 시도합니다. RDS와 Aurora는 AWS IAM 로그인도 가능하며 Google Cloud SQL은 TablePro가 Cloud SQL Auth Proxy를 실행합니다."
+            "answer": "네. 호스팅 서버도 다른 서버처럼 호스트와 포트로 연결하며, Neon, Supabase, Heroku는 서비스가 알려 주는 호스트로 연결합니다. 이들은 TLS를 요구하며 새 연결은 TLS를 먼저 시도합니다."
         },
         {
             "id": "column-order",
             "question": "열 순서를 바꿀 수 있나요?",
-            "answer": "TablePro는 새 열 순서로 테이블을 재구성하는 스크립트를 작성해 보여 주지만 실행하지 않습니다. 검토한 뒤 테이블을 다시 쓸 수 있을 때 직접 실행하세요."
+            "answer": "TablePro는 새 열 순서로 테이블을 재구성하는 스크립트를 작성해 보여 주지만 실행하지는 않습니다. 테이블을 다시 써도 될 때 직접 실행하세요."
         }
     ],
-    "related": [
-        {
-            "label": "쿼리 작성, 실행 및 이해",
-            "href": "/features/querying"
-        },
-        {
-            "label": "스키마, 비교 및 동기화",
-            "href": "/features/schema"
-        },
-        {
-            "label": "같은 드라이버의 Amazon Redshift",
-            "href": "/redshift-client"
-        },
-        {
-            "label": "TablePro와 다른 데이터베이스 클라이언트 비교",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "pgAdmin은 PostgreSQL 관리에, Postico 2는 Mac에서 PostgreSQL 탐색과 편집에 집중합니다. <pgadmin>TablePro와 pgAdmin 비교</pgadmin>, <postico>TablePro와 Postico 2 비교</postico>를 참고하세요."
+    }
 }

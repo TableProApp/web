@@ -11,69 +11,50 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Klien Beancount",
-        "lead": "Kueri buku besar sebagai tabel SQL atau gunakan BQL dengan rledger. Edit buku besar sumber di editor teks Anda sendiri."
+        "lead": "Jalankan kueri pada buku besar sebagai tabel SQL hanya baca, atau dengan BQL melalui rledger, lalu edit di editor teks Anda sendiri.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Buka buku besar",
-            "paragraphs": [
-                "Instal <code>rledger</code> atau Python Beancount. rledger diutamakan jika keduanya tersedia; hanya rledger yang mendukung BQL dan keluaran validasi di <code>diagnostics</code>.",
-                "Pilih buku besar dengan <ui>Browse…</ui> atau buka file <code>.beancount</code> dari Finder. Jalurnya adalah keseluruhan koneksi. URL <code>beancount:///path/to/main.beancount</code> juga dapat diimpor.",
-                "Aplikasi yang dibuka dari Finder tidak mewarisi <code>PATH</code> shell Anda. Jika backend berjalan di Terminal tetapi tidak di sini, tentukan lokasinya dengan <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> atau <code>TABLEPRO_BEANCOUNT_PYTHON</code>, lalu jalankan ulang aplikasi.",
-                "Backend Python menjalankan plugin bawaan Beancount dan melewati setiap direktif <code>plugin</code> lainnya, yang merupakan kode pihak ketiga, sampai Anda mengaktifkan <ui>Run Ledger Plugins</ui> untuk koneksi tersebut. Plugin yang dilewati tercantum di <code>diagnostics</code>."
+            "text": [
+                "Pasang <code>rledger</code> atau Python Beancount. rledger diutamakan jika keduanya ada, dan hanya rledger yang mendukung BQL dan output validasi di <code>diagnostics</code>.",
+                "Pilih buku besar dengan <ui>Browse…</ui> atau buka file <code>.beancount</code> dari Finder: path-nya adalah keseluruhan koneksi, dan URL <code>beancount:///path/to/main.beancount</code> dapat diimpor. Aplikasi yang dibuka dari Finder tidak mewarisi <code>PATH</code> shell Anda, jadi jika backend berjalan di Terminal tetapi tidak di sini, tentukan dengan <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> atau <code>TABLEPRO_BEANCOUNT_PYTHON</code> lalu buka ulang aplikasi.",
+                "Backend Python menjalankan plugin bawaan Beancount dan melewati direktif <code>plugin</code> lainnya, yang merupakan kode pihak ketiga, sampai Anda mengaktifkan <ui>Run Ledger Plugins</ui> untuk koneksi tersebut. Plugin yang dilewati tercantum di <code>diagnostics</code>."
             ]
         },
         {
             "id": "work",
             "title": "Kueri buku besar",
-            "paragraphs": [
-                "Kueri transaksi, postingan, akun, saldo, harga, arahan, metadata, dan file sumber sebagai tabel. Gabung postingan ke transaksi di <code>transaction_id</code>, dan akun berdasarkan nama.",
-                "Jumlah diterima setelah dibukukan, dengan aritmetika, biaya, dan harga yang sudah diselesaikan, serta biaya posting dan harga inline pada kolom tersendiri. Transaksi, posting, dan beberapa tabel direktif memiliki <code>source_location</code> seperti <code>main.beancount:42</code>, sehingga baris data dapat ditelusuri ke baris sumbernya.",
-                "Awali kueri dengan <code>BQL:</code> untuk mengirimnya ke rledger alih-alih tabel. Penelusuran, jumlah baris, dan paginasi berfungsi pada hasil BQL; parameter SQL tidak.",
-                "Direktif <code>include</code> diikuti, baik jalur literal maupun glob, dan setiap file buku besar serta dokumen yang dirujuk dipantau. Simpan perubahan di editor, dan kueri berikutnya membacanya tanpa menghubungkan ulang. Koneksi selalu berada pada level Read-Only dalam <safeMode>Safe Mode</safeMode>, sehingga INSERT, UPDATE, DELETE, dan perubahan skema ditolak."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Ekspor tabel atau hasil kueri sebagai {exportFormats}. <files>File lain yang dibuka TablePro sebagai database</files> mencakup SQLite, DuckDB, dan Parquet."
+            "text": [
+                "Transaksi, posting, akun, saldo, harga, direktif, metadata, dan file sumber adalah tabel: gabungkan posting ke transaksi melalui <code>transaction_id</code>, dan akun berdasarkan nama. Jumlah tiba dalam keadaan sudah dibukukan, dengan aritmetika, biaya, dan harga yang sudah diselesaikan, serta biaya posting dan harga inline di kolomnya sendiri.",
+                "Transaksi, posting, dan beberapa tabel direktif membawa <code>source_location</code> seperti <code>main.beancount:42</code>, sehingga setiap baris data menunjuk kembali ke barisnya di file. Awali kueri dengan <code>BQL:</code> untuk mengirimnya ke rledger; penelusuran, jumlah baris, dan paging berfungsi pada hasilnya, parameter SQL tidak.",
+                "Direktif <code>include</code> diikuti, baik path literal maupun glob, dan setiap file buku besar serta dokumen yang dirujuk dipantau, sehingga kueri berikutnya membaca perubahan yang disimpan tanpa menghubungkan ulang. Koneksi selalu berada di level Read-Only <safeMode>Safe Mode</safeMode>: INSERT, UPDATE, DELETE, dan perubahan skema ditolak."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Ekspor</export> tabel atau hasil kueri sebagai {exportFormats}. <files>File lain yang dibuka TablePro sebagai database</files> mencakup SQLite, DuckDB, dan Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
             "question": "Apakah buku besar yang memiliki kesalahan tetap dapat dibuka?",
-            "answer": "Melalui rledger, ya. Buku besar tetap diproyeksikan menjadi tabel meskipun validasi gagal, dan setiap masalah berupa baris di <code>diagnostics</code> dengan file, nomor baris, tingkat keparahan, dan pesan."
+            "answer": "Melalui rledger, ya. Buku besar tetap diproyeksikan meskipun validasi gagal, dan setiap masalah menjadi baris di <code>diagnostics</code> beserta file, baris, tingkat keparahan, dan pesannya."
         },
         {
             "id": "several-ledgers",
             "question": "Apakah satu koneksi dapat membuka beberapa buku besar?",
-            "answer": "Satu koneksi adalah satu file buku besar, tanpa perpindahan. File utama yang menyertakan file lain akan memuat semuanya, termasuk melalui glob."
+            "answer": "Satu koneksi adalah satu file buku besar, tanpa perpindahan. File utama yang menyertakan file lain akan memuat semuanya, termasuk glob."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB, untuk file analitik",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, database dalam satu file",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Impor, ekspor, dan file data",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

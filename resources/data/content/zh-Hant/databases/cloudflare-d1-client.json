@@ -11,82 +11,58 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Cloudflare D1 用戶端",
-        "lead": "瀏覽 Cloudflare 帳戶中的 D1 資料庫，並透過其 API 執行 SQLite 查詢。"
+        "lead": "瀏覽 Cloudflare 帳戶中的 D1 資料庫，並透過 Cloudflare 的 API 執行 SQLite 查詢。",
+        "asset": "databases-cloudflare-d1"
     },
-    "asset": "mac-db-d1-databases",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "credentials": "/features/connections#credentials",
         "sqlite": "/sqlite-client"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "使用 API 權杖連線",
-            "paragraphs": [
-                "輸入 D1 資料庫名稱或 UUID、Cloudflare 帳戶 ID 和 <ui>API Token</ui>。權杖儲存在 <credentials>macOS Keychain</credentials>。請求使用 HTTPS；沒有主機、連接埠、TLS 設定或 SSH 通道。",
-                "建立具有 <ui>Account > D1 > Edit</ui> 權限的權杖，並在顯示時複製。它可存取帳戶中的所有 D1 資料庫，不僅是所選資料庫。",
-                "匯入 <code>d1://account-id/database-name</code> URL 會填入帳戶和資料庫；權杖從不包含在 URL 中，需隨後貼上。"
+            "text": [
+                "輸入 D1 資料庫名稱或 UUID、Cloudflare 帳戶 ID 和 <ui>API Token</ui>，權杖會存放在 <credentials>macOS 鑰匙圈</credentials>中。請求使用 HTTPS，因此沒有主機、連接埠、TLS 設定或 SSH 通道。",
+                "建立具有 <ui>Account > D1 > Edit</ui> 權限的權杖，並在顯示時複製。它可存取帳戶中的所有 D1 資料庫，而不只是您選擇的那一個。匯入 <code>d1://account-id/database-name</code> URL 會填入帳戶和資料庫；權杖從不包含在 URL 中，因此請在之後貼上。"
             ]
         },
         {
             "id": "work",
             "title": "切換資料庫並查詢",
-            "paragraphs": [
-                "無需重新連線即可切換帳戶中的 D1 資料庫。切換器也可建立和刪除資料庫；既有分頁保留原資料庫。",
-                "查詢使用 SQLite 方言。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形，列編輯在格線中暫存至儲存，<editing>Preview SQL</editing> 先顯示陳述式。",
-                "請讓每個陳述式獨立成立：一個陳述式設定的 <code>PRAGMA</code> 或暫存資料表在下一個時消失，每個執行即提交，無法復原。Cloudflare 限流時，錯誤包含重試前要求等待的時間。"
+            "text": [
+                "無須重新連線即可在帳戶的 D1 資料庫之間切換；切換器也可建立和刪除資料庫，已開啟的分頁會保留其開始時的資料庫。查詢使用 <sqlite>SQLite</sqlite> 的方言，<explain>EXPLAIN QUERY PLAN</explain> 會繪製為圖表。",
+                "請讓每個陳述式各自成立：一個陳述式設定的 <code>PRAGMA</code> 或建立的暫存資料表，到下一個陳述式時就已消失，而且每個陳述式執行時即提交，無法復原。Cloudflare 對請求限流時，錯誤會包含重試前要求等待的時間。"
             ]
         },
         {
             "id": "schema",
             "title": "資料表、索引與觸發程序",
-            "paragraphs": [
-                "<structure>Structure 分頁</structure> 可建立和刪除資料表、新增和刪除欄位、建立和刪除索引，包括含 WHERE 條件的部分索引；Preview SQL 在儲存前顯示 DDL。Triggers 分頁可建立、編輯和刪除觸發程序，資料表可從側邊欄重新命名。",
-                "調整欄位順序或修改外部索引鍵需要重建資料表。在 D1 上每個陳述式都是獨立請求，無法用交易將重建合併，TablePro 只產生重建指令碼供自行執行。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "TablePro 不提供 D1 匯入。用 <code>wrangler d1 execute</code> 的 <code>--file</code> 選項載入 SQL 檔案，再在此瀏覽結果。<export>匯出</export>將 D1 資料表或查詢結果寫為 {exportFormats}。"
+            "text": [
+                "<structure>Structure 分頁</structure>可建立和刪除資料表、新增和刪除欄位，以及建立和刪除索引，包括含 WHERE 條件的部分索引。Triggers 分頁可建立、編輯和刪除觸發程序，資料表可從側邊欄重新命名。",
+                "調整欄位順序或變更外部索引鍵需要重建資料表。TablePro 會產生重建指令碼並交給您執行，因為每個陳述式都是獨立的請求，沒有交易能將重建合在一起。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "將 D1 資料表或查詢結果<export>匯出</export>為 {exportFormats}。要載入 SQL 檔案，請以 <code>--file</code> 選項執行 <code>wrangler d1 execute</code>，然後在此瀏覽結果。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "sessions",
-            "question": "使用 D1 的 Sessions API 嗎？",
-            "answer": "不使用。每個陳述式作為獨立請求傳送，無工作階段或書籤，因此無論同一分頁或跨分頁，陳述式間都不保留狀態。"
+            "question": "TablePro 使用 D1 的 Sessions API 嗎？",
+            "answer": "不使用。每個陳述式都作為獨立請求傳送，沒有工作階段也沒有書籤，因此無論在同一分頁或跨分頁，陳述式之間都不會保留任何狀態。"
         },
         {
             "id": "wrangler",
             "question": "需要安裝 Wrangler 嗎？",
-            "answer": "瀏覽、查詢和編輯不需要，TablePro 直接與 Cloudflare API 通訊。僅載入 SQL 檔案需要 Wrangler，因為 TablePro 不提供 D1 匯入。"
+            "answer": "瀏覽、查詢或編輯都不需要：TablePro 直接與 Cloudflare 的 API 通訊。只有載入 SQL 檔案時才需要 Wrangler。"
         }
     ],
-    "related": [
-        {
-            "label": "SQLite，D1 使用的方言",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Turso 與 libSQL，透過 HTTP 使用 SQLite",
-            "href": "/turso-client"
-        },
-        {
-            "label": "結構編輯與重建指令碼",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "連線與認證資訊",
-            "href": "/features/connections"
-        }
-    ]
+    "otherTools": null
 }

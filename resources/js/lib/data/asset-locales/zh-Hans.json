@@ -224,12 +224,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "zh-Hans": "Map 视图在地图上标出 PostGIS 表中的有人居住地点，行检查器显示选中的巴黎点位。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "zh-Hans": "Restore Previous Values 审核面板，三行标记为 Will restore，一行标记为 Changed since the save。"
@@ -245,24 +239,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "zh-Hans": "Compare & Sync 脚本的局部图，一条 DROP COLUMN 被排除在本次运行之外，并显示数据丢失警告。"
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "zh-Hans": "MySQL 服务器的 Users & Roles，SQL Preview 显示一条 GRANT，授予 app_reader 用户对 shop.orders 的 total 列的 SELECT 权限。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "zh-Hans": "PostgreSQL 服务器的 Server Dashboard 列出活动会话，选中了一条运行时间较长的 SELECT，并显示 Terminate 按钮。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "zh-Hans": "Server Dashboard 中选中的长时间运行的 SELECT 会话局部图，旁边是 Terminate 按钮。"
         },
         "caption": null
     },
@@ -282,277 +258,135 @@
             "zh-Hans": "手机局部图：iPhone 显示 Track 表，下方是 Mac Dock 中的 Handoff 图标。"
         }
     },
-    "mac-engine-picker": {
+    "databases-postgresql": {
         "alt": {
-            "zh-Hans": "新建连接的数据库类型选择器，按类别分组列出引擎，MongoDB 标记为 Not Installed。"
+            "zh-Hans": "Mac 上连接到 PostgreSQL 的 TablePro，显示一条生成数组和 jsonb 的查询及其结果。"
         },
         "caption": null
     },
-    "mac-engine-picker-mobile": {
+    "databases-mysql": {
         "alt": {
-            "zh-Hans": "数据库类型选择器的局部图，Document 下的 Elasticsearch、MongoDB、SurrealDB 和 Typesense 都标记为 Not Installed。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 MySQL，显示一个查询及其结果。"
         },
         "caption": null
     },
-    "mac-db-postgresql-explain": {
+    "databases-sqlserver": {
         "alt": {
-            "zh-Hans": "orders 和 users 连接查询的 EXPLAIN ANALYZE 执行计划图，orders 的 Seq Scan 标为红色。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 SQL Server，显示一个 T-SQL 脚本及其 PRINT 输出。"
         },
         "caption": null
     },
-    "mac-db-postgresql-explain-mobile": {
+    "databases-sqlite": {
         "alt": {
-            "zh-Hans": "EXPLAIN ANALYZE 图的局部图，显示 orders 中标为红色的 Seq Scan 步骤。"
+            "zh-Hans": "Mac 上的 TablePro 打开了 SQLite 示例数据库 Chinook 的 Track 表。"
         },
         "caption": null
     },
-    "mac-db-mysql-query": {
+    "databases-mongodb": {
         "alt": {
-            "zh-Hans": "TablePro 连接到 MySQL，在 shop 数据库中查询连接 orders 和 users，下方显示结果。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 MongoDB，显示一个以 Extended JSON 编写的文档。"
         },
         "caption": null
     },
-    "mac-db-mysql-query-mobile": {
+    "databases-redis": {
         "alt": {
-            "zh-Hans": "连接 orders 和 users 的 MySQL 查询局部图，显示结果的前几行。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 Redis，键按树形分组，并显示每个键的类型、TTL 和值。"
         },
         "caption": null
     },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "zh-Hans": "TablePro 打开内置的 Chinook SQLite 示例，Track 表按流派筛选。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "zh-Hans": "按流派筛选的 Chinook Track 表局部图。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "zh-Hans": "MongoDB 的 events 集合上方显示 Insert Document 面板，文档以 Extended JSON 编写。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "zh-Hans": "使用 Extended JSON 编写的文档局部图，可插入 MongoDB 集合。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "zh-Hans": "TablePro 中的 Redis 键以冒号分隔组成树形结构，数据网格显示每个键的类型、TTL、长度和值。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "zh-Hans": "数据网格中的 Redis 键局部图，显示每个键的类型和 TTL。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "zh-Hans": "使用 GO 分隔批次的 T-SQL 脚本，Output 标签页显示最后一个批次的 PRINT 消息。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "zh-Hans": "T-SQL 脚本的 GO 批次分隔符局部图，以及 Output 标签页中的 PRINT 消息。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "zh-Hans": "编辑器中的 Oracle PL/SQL 块，结果下方显示通过 DBMS_OUTPUT 输出的行。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "zh-Hans": "PL/SQL 块中 DBMS_OUTPUT.PUT_LINE 调用的局部图，结果下方显示输出的部门信息行。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "zh-Hans": "ClickHouse MergeTree 表的 Parts 标签页，列出分区、数据片及其行数。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "zh-Hans": "ClickHouse 表的 Parts 标签页局部图，列出各数据片的分区、名称和行数。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "zh-Hans": "Parquet 文件在 DuckDB 中打开为只读视图，显示针对该视图的 SQL 查询和结果。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "zh-Hans": "通过 DuckDB 读取 Parquet 文件的 SQL 查询局部图，显示结果的前几行。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "zh-Hans": "Cassandra 表从侧边栏打开到数据网格，修改后的 status 值在保存前标记为待处理，一个 set 列显示为集合。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "zh-Hans": "Cassandra 数据网格的行局部图，一个 status 单元格改为 shipped 并标记为待处理，旁边的 tags 列显示一个 set。"
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-redshift": {
         "description": {
-            "zh-Hans": "Redshift 表的 DDL，包含 DISTKEY 和 SORTKEY；结构为只读。"
+            "zh-Hans": "Amazon Redshift 连接：一张表的 DDL，包含其 DISTKEY 和 SORTKEY。"
         }
     },
-    "mac-db-redshift-ddl-mobile": {
-        "description": {
-            "zh-Hans": "表的 DDL 中 DISTKEY 和 SORTKEY 行的局部图。"
-        }
-    },
-    "mac-db-d1-databases": {
-        "description": {
-            "zh-Hans": "数据库切换器列出该账户的 D1 数据库，下方是其中一个数据库的查询。"
-        }
-    },
-    "mac-db-d1-databases-mobile": {
-        "description": {
-            "zh-Hans": "数据库切换器局部图，列出该账户的 D1 数据库。"
-        }
-    },
-    "mac-db-turso-remote": {
-        "description": {
-            "zh-Hans": "远程 Turso 数据库：侧边栏显示表，并展示查询结果。"
-        }
-    },
-    "mac-db-turso-remote-mobile": {
-        "description": {
-            "zh-Hans": "远程 Turso 数据库上的查询及其前几行结果的局部图。"
-        }
-    },
-    "mac-db-dynamodb-planner": {
+    "databases-oracle": {
         "alt": {
-            "zh-Hans": "DynamoDB 的筛选读取，状态栏显示在 byStatus 索引上执行 Query，返回 44 个项目，消耗 1 个读取容量单位。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 Oracle Database，显示一个 PL/SQL 块及其 DBMS_OUTPUT 行。"
         },
         "caption": null
     },
-    "mac-db-dynamodb-planner-mobile": {
+    "databases-clickhouse": {
         "alt": {
-            "zh-Hans": "DynamoDB 筛选读取后的状态栏局部图：在 byStatus 索引上执行 Query，返回 44 个项目，消耗 1 个读取容量单位。"
+            "zh-Hans": "Mac 上连接到 ClickHouse 的 TablePro，显示一条分析查询及其结果。"
         },
         "caption": null
     },
-    "mac-db-bigquery-dry-run": {
+    "databases-duckdb": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 打开了一个 DuckDB 数据库，正在用 SQL 查询 Parquet 文件。"
+        },
+        "caption": null
+    },
+    "databases-cassandra": {
+        "alt": {
+            "zh-Hans": "Mac 上连接到 Cassandra 的 TablePro，显示一条 CQL 查询及其结果。"
+        },
+        "caption": null
+    },
+    "databases-dynamodb": {
+        "alt": {
+            "zh-Hans": "Mac 上连接到 Amazon DynamoDB 的 TablePro，显示一条针对索引的 PartiQL 查询及返回的项目。"
+        },
+        "caption": null
+    },
+    "databases-bigquery": {
         "description": {
-            "zh-Hans": "从 Explain 菜单执行 BigQuery Dry Run：处理字节数及预计成本。"
+            "zh-Hans": "BigQuery 连接：从 Explain 菜单运行的 Dry Run，显示查询将处理的字节数及其估算费用。"
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-snowflake": {
         "description": {
-            "zh-Hans": "Dry Run 结果局部图：处理字节数及预计成本。"
+            "zh-Hans": "一个 Snowflake 连接，已在 Session Context 中设置其仓库和角色，下方是查询结果。"
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-cloudflare-d1": {
         "description": {
-            "zh-Hans": "Snowflake 连接在 Session Context 中设置了仓库和角色，下方显示结果。"
+            "zh-Hans": "Cloudflare D1 连接：数据库切换器列出账户的 D1 数据库，下方是查询标签页。"
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-turso": {
         "description": {
-            "zh-Hans": "Session Context 子菜单局部图，显示已勾选的仓库。"
+            "zh-Hans": "一个远程 Turso 数据库：侧边栏显示其表，网格中显示查询结果。"
         }
     },
-    "mac-db-etcd-keys": {
+    "databases-elasticsearch": {
         "alt": {
-            "zh-Hans": "/acme/sessions/ 前缀下的 etcd 键，其中三个键共享同一个租约。"
+            "zh-Hans": "Mac 上的 TablePro 已连接 Elasticsearch，显示一个搜索请求，其命中结果显示为行。"
         },
         "caption": null
     },
-    "mac-db-etcd-keys-mobile": {
+    "databases-etcd": {
         "alt": {
-            "zh-Hans": "/acme/sessions/ 前缀下的 etcd 键局部图，显示每个键的租约。"
+            "zh-Hans": "Mac 上连接到 etcd 的 TablePro，列出某个前缀下的键及其值。"
         },
         "caption": null
     },
-    "mac-db-elasticsearch-console": {
+    "databases-kafka": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 Apache Kafka，列出一个主题的消息。"
+        },
+        "caption": null
+    },
+    "databases-surrealdb": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 SurrealDB，显示一个 SurrealQL 查询及其记录。"
+        },
+        "caption": null
+    },
+    "databases-teradata": {
         "description": {
-            "zh-Hans": "Query DSL 控制台：GET _search 请求及以行显示的命中结果。"
+            "zh-Hans": "Teradata 连接：侧边栏列出存储过程，宏位于 Functions 下，并显示一个查询结果。"
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
-        "description": {
-            "zh-Hans": "GET _search 请求及前几个命中结果的局部图。"
-        }
-    },
-    "mac-db-surrealdb-query": {
+    "databases-trino": {
         "alt": {
-            "zh-Hans": "编辑器中的 SurrealQL 查询，以及数据网格中返回的记录。"
+            "zh-Hans": "Mac 上连接到 Trino 的 TablePro，显示一条针对 TPC-H 示例数据的查询及其结果。"
         },
         "caption": null
     },
-    "mac-db-surrealdb-query-mobile": {
+    "databases-beancount": {
         "alt": {
-            "zh-Hans": "SurrealQL 查询及返回记录的局部图，显示 person:alice 等 ID。"
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
-        "description": {
-            "zh-Hans": "Teradata 侧边栏列出过程，宏归入 Functions 分组。"
-        }
-    },
-    "mac-db-teradata-sidebar-mobile": {
-        "description": {
-            "zh-Hans": "侧边栏中 Procedures 和 Functions 分组的局部图。"
-        }
-    },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "zh-Hans": "Trino 查询连接来自两个目录的表，下方显示结果。"
-        },
-        "caption": null
-    },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "zh-Hans": "连接两个目录中表的 Trino 查询局部图，显示前几项结果。"
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "zh-Hans": "侧边栏显示 Beancount 账本投影出的表，并显示 BQL 查询结果。"
-        },
-        "caption": null
-    },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "zh-Hans": "Beancount 账本上的 BQL 查询局部图，显示结果的前几行。"
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "zh-Hans": "针对 orders 主题的 KafkaQL CONSUME 语句，消息按分区、偏移量、键和时间戳列出。"
-        },
-        "caption": null
-    },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "zh-Hans": "针对 orders 主题的 KafkaQL CONSUME 语句局部图，消息按分区、偏移量和键列出。"
+            "zh-Hans": "Mac 上的 TablePro 打开了一个 Beancount 账本，侧边栏中显示其表，并显示一个 BQL 查询结果。"
         },
         "caption": null
     },

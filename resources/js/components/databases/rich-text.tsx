@@ -7,11 +7,9 @@ import { splitTags } from '@/i18n/core';
 import { resolveHref } from './format';
 
 interface RichTextScope {
-    /** The page's link tags: tag name → path, `#fragment` or `docs:/path`. */
+    // Link tag name → site path, `#fragment` or `docs:/path`.
     links: Record<string, string>;
-    /** docs.tablepro.app, with no trailing slash. */
     docsBase: string | null;
-    /** The `{token}` values every string on the page can use. */
     values: Values;
 }
 
@@ -19,12 +17,6 @@ const RichTextContext = createContext<RichTextScope>({ links: {}, docsBase: null
 
 export function RichTextProvider({ scope, children }: { scope: RichTextScope; children: ReactNode }) {
     return <RichTextContext.Provider value={scope}>{children}</RichTextContext.Provider>;
-}
-
-interface RichTextProps {
-    text: string;
-    /** Values for this string only, over the page's: a family section fills `{dumpTool}` with its own engine's tool. */
-    values?: Values;
 }
 
 const TIER_SLOT = /\{[A-Za-z][A-Za-z0-9]*Tier\}/g;
@@ -36,20 +28,9 @@ function linkPlanNames(text: string): string {
         .join('');
 }
 
-/**
- * One string of database-page copy, with its inline markup.
- *
- * - `<ui>Label</ui>`: an app control's name, in medium weight.
- * - `<code>text</code>`: a literal: a command, a URL scheme, a statement.
- * - `<name>text</name>`, where `name` is a key of the page's `links`: a link.
- *   Site paths stay in the reader's language. Docs links leave the site for
- *   English pages, so outside English they say so in words, not only with ↗.
- * - `{compareSyncTier}` and the other plan-name slots link to pricing.
- *
- * Tags do not nest, and a tag with no renderer prints its text plainly, so a
- * typo in a link name degrades to words rather than breaking the sentence.
- */
-export default function RichText({ text, values }: RichTextProps) {
+// One string of database copy: `<ui>`, `<code>`, a `<name>` link from the page's `links`, and plan names linked to
+// pricing. A tag with no renderer prints its text, so a typo in a link name degrades to words.
+export default function RichText({ text, values }: { text: string; values?: Values }) {
     const scope = useContext(RichTextContext);
     const { locale, m } = useI18n();
     const tags: Record<string, (content: string) => ReactNode> = {
@@ -86,6 +67,7 @@ export default function RichText({ text, values }: RichTextProps) {
                 );
             }
 
+            // The docs are English only, so another language says so in words, not only with the arrow.
             return (
                 <TextLink href={target.href} external hrefLang="en">
                     {content}

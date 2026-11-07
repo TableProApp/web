@@ -11,45 +11,39 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Beancount client",
-        "lead": "Query sổ cái dạng table SQL hoặc dùng BQL với rledger. Sửa sổ cái gốc bằng text editor của bạn."
+        "lead": "Query sổ cái dưới dạng table SQL chỉ đọc, hoặc bằng BQL qua rledger, và sửa sổ cái trong text editor của bạn.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Mở sổ cái",
-            "paragraphs": [
-                "Cài <code>rledger</code> hoặc Python Beancount. rledger được ưu tiên nếu có cả hai; chỉ rledger hỗ trợ BQL và kết quả kiểm tra trong <code>diagnostics</code>.",
-                "Chọn sổ cái bằng <ui>Browse…</ui> hoặc mở file <code>.beancount</code> từ Finder. Toàn bộ connection là đường dẫn. Cũng import được URL <code>beancount:///path/to/main.beancount</code>.",
-                "Ứng dụng mở từ Finder không kế thừa <code>PATH</code> của shell. Nếu backend chạy được trong Terminal mà không chạy được ở đây, hãy chỉ đường dẫn tới nó bằng <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> hoặc <code>TABLEPRO_BEANCOUNT_PYTHON</code>, rồi mở lại ứng dụng.",
-                "Backend Python chạy các plugin đi kèm Beancount và bỏ qua mọi chỉ thị <code>plugin</code> khác, vốn là mã của bên thứ ba, cho tới khi bạn bật <ui>Chạy plugin sổ cái (Run Ledger Plugins)</ui> cho connection đó. Các plugin bị bỏ qua được liệt kê trong <code>diagnostics</code>."
+            "text": [
+                "Cài <code>rledger</code> hoặc Python Beancount. rledger được ưu tiên khi có cả hai, và chỉ rledger hỗ trợ BQL và kết quả kiểm tra trong <code>diagnostics</code>.",
+                "Chọn sổ cái bằng <ui>Duyệt…</ui> (Browse…) hoặc mở file <code>.beancount</code> từ Finder: đường dẫn là toàn bộ connection, và import được URL <code>beancount:///path/to/main.beancount</code>. Ứng dụng mở từ Finder không kế thừa <code>PATH</code> của shell, nên nếu backend chạy được trong Terminal mà không chạy được ở đây, hãy chỉ tới nó bằng <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> hoặc <code>TABLEPRO_BEANCOUNT_PYTHON</code> rồi mở lại ứng dụng.",
+                "Backend Python chạy các plugin đi kèm Beancount và bỏ qua mọi chỉ thị <code>plugin</code> khác, vốn là mã của bên thứ ba, cho tới khi bạn bật <ui>Chạy plugin sổ cái</ui> (Run Ledger Plugins) cho connection đó. Các plugin bị bỏ qua được liệt kê trong <code>diagnostics</code>."
             ]
         },
         {
             "id": "work",
             "title": "Query sổ cái",
-            "paragraphs": [
-                "Query transaction, posting, account, balance, price, directive, metadata và file nguồn như table. Join posting với transaction qua <code>transaction_id</code>, và account theo tên.",
-                "Số tiền đã qua bước booking: phép tính, giá vốn (cost) và giá (price) đều đã được tính xong, còn giá vốn của posting và giá ghi kèm nằm ở các cột riêng. Transaction, posting và một số table chỉ thị có cột <code>source_location</code> như <code>main.beancount:42</code>, nên mỗi dòng dẫn ngược về đúng dòng trong file.",
-                "Thêm tiền tố <code>BQL:</code> vào query để gửi nó tới rledger thay vì các table. Duyệt, đếm dòng và phân trang đều dùng được trên kết quả BQL; tham số SQL thì không.",
-                "Các chỉ thị <code>include</code> đều được đọc theo, cả đường dẫn cụ thể lẫn glob, và mọi file sổ cái cùng tài liệu được tham chiếu đều được theo dõi. Lưu một thay đổi trong editor của bạn, và query kế tiếp sẽ đọc được nó mà không cần kết nối lại. Connection luôn ở mức <safeMode>Safe Mode</safeMode> Read-Only, nên INSERT, UPDATE, DELETE và mọi thay đổi schema đều bị từ chối."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "Export table hoặc kết quả query ra {exportFormats}. <files>Các loại file khác mà TablePro mở như cơ sở dữ liệu</files> gồm SQLite, DuckDB và Parquet."
+            "text": [
+                "Transaction, posting, account, balance, price, directive, metadata và file nguồn đều là table: join posting với transaction qua <code>transaction_id</code>, và account theo tên. Số tiền đã qua bước booking, với phép tính, giá vốn (cost) và giá (price) đã được tính xong, còn giá vốn của posting và giá ghi kèm nằm ở các cột riêng.",
+                "Transaction, posting và một số table chỉ thị có cột <code>source_location</code> như <code>main.beancount:42</code>, nên mỗi dòng dẫn ngược về đúng dòng trong file. Thêm tiền tố <code>BQL:</code> vào query để gửi nó tới rledger; duyệt, đếm dòng và phân trang dùng được trên kết quả, còn tham số SQL thì không.",
+                "Các chỉ thị <code>include</code> đều được đọc theo, cả đường dẫn cụ thể lẫn glob, và mọi file sổ cái cùng tài liệu được tham chiếu đều được theo dõi, nên query kế tiếp đọc được thay đổi đã lưu mà không cần kết nối lại. Connection luôn ở mức <safeMode>Safe Mode</safeMode> Read-Only: INSERT, UPDATE, DELETE và thay đổi schema đều bị từ chối."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> table hoặc kết quả query ra {exportFormats}. <files>Các loại file khác mà TablePro mở như cơ sở dữ liệu</files> gồm SQLite, DuckDB và Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
@@ -62,18 +56,5 @@
             "answer": "Mỗi connection là một file sổ cái, không chuyển qua lại được. Một file chính include các file còn lại sẽ đưa tất cả vào, kể cả qua glob."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB, cho file phân tích",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, cơ sở dữ liệu trong một file",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Import, export và file dữ liệu",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

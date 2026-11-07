@@ -9,101 +9,51 @@
     },
     "header": {
         "title": "Cơ sở dữ liệu được hỗ trợ",
-        "lead": "Tìm cơ sở dữ liệu và xem tính năng được hỗ trợ. TablePro kết nối tới {count} engine, gồm {featured}."
+        "lead": "TablePro kết nối tới {count} engine, gồm {featured}. Tìm cơ sở dữ liệu bạn dùng và xem TablePro làm được gì với nó.",
+        "docs": "Hướng dẫn thiết lập"
     },
-    "jump": "Nhóm",
-    "categories": {
-        "relational": {
-            "title": "Quan hệ",
-            "intro": "Cơ sở dữ liệu SQL với table, khóa và transaction. Một số engine dùng chung driver MySQL hoặc PostgreSQL."
+    "nav": {
+        "label": "Nhóm cơ sở dữ liệu",
+        "all": "Tất cả cơ sở dữ liệu"
+    },
+    "groups": {
+        "relational": "Quan hệ",
+        "analytical": "Phân tích và kho dữ liệu",
+        "cloud": "Cloud và serverless",
+        "nosql": "NoSQL và streaming",
+        "search": "Tìm kiếm và vector",
+        "files": "File"
+    },
+    "more": {
+        "drivers": {
+            "title": "Driver được cung cấp thế nào",
+            "text": [
+                "Ứng dụng Mac có sẵn driver cho {bundled}. Driver khác được tải về dưới dạng plugin có chữ ký vào lần đầu bạn chọn cơ sở dữ liệu đó, và lần tải này cần kết nối internet.",
+                "TablePro kiểm tra checksum SHA-256 và chữ ký mã của từng plugin trước khi cài. Plugin cập nhật riêng với ứng dụng, còn ứng dụng cho iPhone và iPad có sẵn driver."
+            ],
+            "docs": "Plugin và việc cập nhật driver"
         },
-        "analytical": {
-            "title": "Phân tích và kho dữ liệu",
-            "intro": "Data warehouse, cơ sở dữ liệu dạng cột và engine query xuyên catalog."
+        "linux": {
+            "title": "Trên Linux",
+            "tested": "Ứng dụng cho Linux đang là bản beta, đã được kiểm thử với {engines}.",
+            "untested": "Connection tới {engines} chưa được kiểm thử trên Linux.",
+            "link": "Cài đặt trên Linux"
         },
-        "cloud": {
-            "title": "Cloud và serverless",
-            "intro": "Dịch vụ SQL qua HTTP và file libSQL local."
+        "iphone": {
+            "title": "Trên iPhone và iPad",
+            "picker": "Ứng dụng cho iPhone và iPad kết nối được tới {engines}.",
+            "synced": "Connection tới {engines} mở được trên đó khi đến từ máy Mac.",
+            "others": "Connection tới các engine khác vẫn được đồng bộ sang đó và hiện trong danh sách, nhưng không mở được.",
+            "link": "TablePro cho iPhone và iPad"
         },
-        "document": {
-            "title": "Document",
-            "intro": "Cơ sở dữ liệu document và đa mô hình, mỗi loại query bằng ngôn ngữ riêng."
-        },
-        "key-value": {
-            "title": "Key-value",
-            "intro": "Key và giá trị của chúng, đọc và ghi bằng lệnh hoặc PartiQL."
-        },
-        "wide-column": {
-            "title": "Wide-column",
-            "intro": "Table CQL được phân vùng trên một cluster."
-        },
-        "search": {
-            "title": "Tìm kiếm và vector",
-            "intro": "Engine tìm kiếm và vector, query qua console gửi request riêng của từng engine."
-        },
-        "streaming": {
-            "title": "Streaming",
-            "intro": "Đọc và gửi message với KafkaQL, ngôn ngữ command của TablePro."
-        },
-        "coordination": {
-            "title": "Điều phối",
-            "intro": "Không gian key của etcd, cùng lease và các member của cluster."
-        },
-        "files": {
-            "title": "File",
-            "intro": "Query file cơ sở dữ liệu và sổ cái mà không cần server."
+        "missing": {
+            "title": "Không thấy cơ sở dữ liệu bạn dùng?",
+            "text": "Engine mới được bổ sung dưới dạng plugin driver. Nếu engine bạn dùng chưa có trong danh sách, hãy đề xuất trên GitHub.",
+            "link": "Đề xuất cơ sở dữ liệu trên GitHub"
         }
     },
-    "table": {
-        "caption": "{category}: từng engine, ngôn ngữ query, driver và việc engine có mở được trên iPhone và iPad hay không",
-        "engine": "Cơ sở dữ liệu",
-        "queryLanguage": "Ngôn ngữ query",
-        "driver": "Driver",
-        "ios": "iPhone và iPad",
-        "notes": "Ghi chú"
-    },
-    "drivers": {
-        "title": "Driver được cung cấp thế nào",
-        "paragraphs": [
-            "Ứng dụng Mac có sẵn driver cho {bundled}. Không cần phần mềm client riêng để kết nối.",
-            "Driver khác tải dạng plugin có chữ ký khi chọn cơ sở dữ liệu lần đầu. Lần tải đầu cần internet.",
-            "TablePro kiểm tra checksum SHA-256 của từng plugin với registry và xác minh chữ ký mã trước khi cài.",
-            "Plugin driver cập nhật riêng với ứng dụng. Cập nhật driver đang dùng có hiệu lực sau khi khởi động lại.",
-            "Ứng dụng iPhone và iPad có sẵn driver, không tải plugin."
-        ],
-        "asset": "mac-engine-picker",
-        "docs": {
-            "label": "Plugin và việc cập nhật driver",
-            "path": "/features/plugins"
-        }
-    },
-    "iphone": {
-        "title": "Trên iPhone và iPad",
-        "picker": "Ứng dụng cho iPhone và iPad kết nối được tới {engines}.",
-        "synced": "Connection tới {engines} chỉ mở được trên đó khi đến từ máy Mac, qua iCloud Sync hoặc một file connection đã export.",
-        "others": "Connection tới các engine khác vẫn được đồng bộ sang iPhone và iPad và hiện trong danh sách, nhưng không mở được trên đó.",
-        "link": "TablePro cho iPhone và iPad"
-    },
-    "linux": {
-        "title": "Trên Linux",
-        "tested": "Ứng dụng cho Linux đang là bản beta, đã được kiểm thử với {engines}.",
-        "untested": "Connection tới {engines} chưa được kiểm thử trên Linux.",
-        "others": "Các engine khác không mở được trên đó.",
-        "link": "Cài đặt trên Linux"
-    },
-    "license": {
-        "title": "Có trong Free",
-        "body": "Mọi connection cơ sở dữ liệu được hỗ trợ đều có trong Free. Pro và Team thêm tính năng tùy chọn.",
-        "link": "Xem bảng giá"
-    },
-    "missing": {
-        "title": "Không thấy cơ sở dữ liệu bạn dùng?",
-        "body": "Engine mới được bổ sung dưới dạng plugin driver. Nếu engine bạn dùng không có trong danh sách, hãy đề xuất trên GitHub.",
-        "link": "Đề xuất cơ sở dữ liệu trên GitHub"
-    },
-    "docs": {
-        "label": "Hướng dẫn thiết lập cho từng cơ sở dữ liệu",
-        "path": "/databases"
+    "closing": {
+        "body": "Mọi connection cơ sở dữ liệu được hỗ trợ đều có trong Free. Pro và Team thêm tính năng tùy chọn."
     },
     "labels": {
         "facts": {
@@ -117,8 +67,7 @@
             "enforced": "{version}, bắt buộc: server cũ hơn bị từ chối",
             "noMinimum": "Không yêu cầu",
             "embedded": "Engine tích hợp sẵn",
-            "embeddedValue": "{name} {version}",
-            "ios": "iPhone và iPad"
+            "embeddedValue": "{name} {version}"
         },
         "connect": {
             "file": "Một file",
@@ -133,71 +82,28 @@
             "bundled": "Có sẵn trong ứng dụng Mac",
             "registry": "Tải về ở lần dùng đầu"
         },
-        "ios": {
-            "picker": "Mở được",
-            "synced": "Mở được khi đồng bộ từ máy Mac",
-            "none": "Không mở được"
-        },
-        "linux": {
-            "tested": "Đã kiểm thử",
-            "versions": "Đã kiểm thử: {versions}",
-            "untested": "Chưa kiểm thử",
-            "none": "Không có"
-        },
-        "availability": {
-            "devices": "Dùng được trên {devices}",
-            "bundled": "Driver có sẵn trong ứng dụng Mac",
-            "registry": "Driver tải vào lần đầu dùng {name}",
-            "free": "Có trong Free; <pricing>gói trả phí thêm tính năng tùy chọn</pricing>"
-        },
         "release": "Mới từ bản {version}",
         "docs": "Hướng dẫn thiết lập {name}",
-        "sections": {
-            "limits": "Giới hạn",
-            "limitsOf": "Giới hạn của {name}",
-            "iphone": "iPhone và iPad",
-            "faq": "Câu hỏi về {name}",
-            "related": "Liên quan"
-        },
+        "common": "Trang này chỉ nói về những gì riêng của {name}. Safe Mode, trợ lý AI, MCP server và phần còn lại của TablePro nằm ở <features>các trang tính năng</features>.",
+        "more": "Ngoài ra",
+        "moveData": "Di chuyển dữ liệu",
+        "limits": "Giới hạn",
+        "otherTools": "Công cụ khác",
         "iphone": {
-            "picker": "Có thể chọn {name} khi tạo connection trong ứng dụng iPhone và iPad.",
-            "synced": "Ứng dụng cho iPhone và iPad chỉ mở connection {name} khi connection đó đến từ máy Mac, qua iCloud Sync hoặc một file connection đã export. Bạn không tạo được connection {name} mới trên đó.",
-            "none": "Ứng dụng cho iPhone và iPad không có driver {name}. Connection {name} đồng bộ từ máy Mac vẫn hiện trong danh sách nhưng không mở được.",
+            "title": "iPhone và iPad",
+            "picker": "Ứng dụng cho iPhone và iPad kết nối được tới {name}.",
+            "synced": "Ứng dụng cho iPhone và iPad mở connection {name} đến từ máy Mac.",
             "link": "TablePro cho iPhone và iPad"
-        },
-        "family": {
-            "port": "Port mặc định {port}"
-        },
-        "otherTools": {
-            "title": "Công cụ khác",
-            "released": "Phiên bản {version}, phát hành ngày {date}",
-            "discontinued": "{name} đã ngừng phát triển. Bản phát hành cuối cùng, {version}, ra ngày {date}.",
-            "free": "Miễn phí",
-            "openSource": "Mã nguồn mở ({licence})",
-            "closedSource": "Mã nguồn đóng",
-            "sourceAvailable": "Mã nguồn công khai ({licence})",
-            "platforms": "Nền tảng: {platforms}",
-            "compare": "TablePro và {name}",
-            "more": "Các trang so sánh khác",
-            "checked": "Thông tin về các công cụ khác được kiểm tra ngày {date}.",
-            "sources": "Nguồn"
-        },
-        "platformNames": {
-            "mac": "Mac",
-            "windows": "Windows",
-            "linux": "Linux",
-            "ios": "iPhone và iPad",
-            "web": "Web"
         },
         "number": {
             "decimal": ",",
             "group": "."
         },
-        "download": {
+        "closing": {
             "title": "Tải TablePro",
-            "mac": "Tải ứng dụng Mac miễn phí. Pro và Team thêm tính năng tùy chọn.",
-            "ios": "Ứng dụng cho iPhone và iPad có trên App Store.",
-            "linux": "Ứng dụng cho Linux là bản beta miễn phí.",
+            "tier": "Gói {tier} có thêm {features}.",
+            "rest": "Các tính năng khác trên trang này đều miễn phí.",
+            "allFree": "Mọi tính năng trên trang này đều miễn phí.",
             "pricing": "Xem bảng giá"
         }
     }

@@ -11,49 +11,40 @@
     "breadcrumb": "Turso dan libSQL",
     "header": {
         "title": "Klien Turso dan libSQL",
-        "lead": "Hubungkan ke database Turso dengan URL dan tokennya. Telusuri tabel dan jalankan kueri SQLite, atau buka file libSQL lokal."
+        "lead": "Hubungkan ke database Turso dengan URL dan tokennya, atau buka file libSQL, lalu jalankan kueri dengan sintaks SQLite.",
+        "asset": "databases-turso"
     },
-    "asset": "mac-db-turso-remote",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "sqlite": "/sqlite-client",
         "libsql": "#libsql",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan ke Turso",
-            "paragraphs": [
-                "Pilih <ui>Remote (Turso)</ui> di <ui>Connection Mode</ui>. Tempelkan URL HTTPS database dan <ui>API Token</ui>, yang disimpan di macOS Rantai Kunci. Dapatkan keduanya dari dasbor Turso atau CLI.",
-                "URL <code>libsql://</code> yang diimpor menjadi koneksi jarak jauh HTTPS. Setiap URL menamai satu database. URL HTTP biasa tidak dienkripsi; Terowongan SSH tidak tersedia."
+            "text": [
+                "Pilih <ui>Remote (Turso)</ui> di <ui>Connection Mode</ui>, lalu tempel URL HTTPS database dan <ui>API Token</ui>, yang disimpan di Rantai Kunci macOS. Keduanya didapat dari dashboard Turso atau CLI.",
+                "URL <code>libsql://</code> yang diimpor menjadi koneksi jarak jauh HTTPS, dan setiap URL menunjuk satu database. URL HTTP biasa tidak dienkripsi, dan tunnel SSH tidak tersedia."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan edit",
-            "paragraphs": [
-                "libSQL menggunakan sintaks SQLite, sehingga penelusuran, diagram <explain>EXPLAIN QUERY PLAN</explain>, <editing>perubahan tertunda dengan Preview SQL</editing>, dan ekspor berperilaku seperti pada <sqlite>SQLite</sqlite>.",
-                "Koneksi jarak jauh tidak menjalankan transaksi. Setiap pernyataan adalah permintaan HTTP tersendiri dan melakukan commit sendiri, sementara <code>BEGIN</code> gagal dengan “Transactions are not supported in this mode”. Pekerjaan transaksional memerlukan file libSQL lokal, yang dijelaskan di <libsql>bagian libSQL</libsql>.",
-                "Mode jarak jauh tidak memuat ekstensi SQLite: database Turso menjalankan ekstensi yang disertakan saat server dikompilasi. Saat Turso membatasi koneksi, kesalahan menyebutkan berapa detik harus menunggu sebelum mencoba lagi."
+            "title": "Kueri dan edit",
+            "text": [
+                "libSQL menggunakan sintaks SQLite, sehingga penelusuran, diagram <explain>EXPLAIN QUERY PLAN</explain>, dan ekspor berperilaku seperti di <sqlite>SQLite</sqlite>.",
+                "Koneksi jarak jauh tidak menjalankan transaksi: setiap pernyataan adalah permintaan HTTP tersendiri dan melakukan commit sendiri, dan <code>BEGIN</code> gagal dengan “Transactions are not supported in this mode”. Transaksi memerlukan file lokal, yang dibuka sebagai <libsql>libSQL</libsql>. Mode jarak jauh tidak memuat ekstensi SQLite, karena database Turso menjalankan ekstensi yang disertakan saat server-nya dibangun, dan kesalahan pada permintaan yang dibatasi menyebutkan berapa detik harus menunggu."
             ]
         },
         {
             "id": "schema",
             "title": "Tabel, indeks, dan trigger",
-            "paragraphs": [
+            "text": [
                 "<structure>Tab Structure</structure> membuat tabel, menambah dan menghapus kolom serta indeks, dan membuat, mengedit, serta menghapus trigger. Tabel, tetapi bukan view, dapat diganti namanya dari sidebar.",
-                "Penyusunan ulang kolom jarak jauh dan perubahan kunci asing menghasilkan skrip pembangunan kembali untuk Anda tinjau dan jalankan. TablePro tidak dapat menjalankannya sebagai satu transaksi di permintaan HTTP terpisah."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "TablePro tidak menyediakan impor untuk Turso atau libSQL; muat data menggunakan CLI Turso atau impor pada server sqld Anda. Untuk mengambil data, <export>ekspor</export> tabel atau hasil kueri sebagai {exportFormats}."
+                "Penyusunan ulang kolom atau perubahan kunci asing pada koneksi jarak jauh menghasilkan skrip pembangunan ulang untuk Anda tinjau dan jalankan, karena TablePro tidak dapat menyatukan permintaan HTTP terpisah dalam satu transaksi."
             ]
         }
     ],
@@ -61,43 +52,27 @@
         {
             "engine": "libsql",
             "title": "libSQL",
-            "paragraphs": [
-                "Pilih libSQL untuk server sqld yang Anda hosting sendiri atau file di Mac ini. Pada mode Remote, driver mengakses sqld apa pun yang menyediakan endpoint pipeline Hrana v2, termasuk yang berjalan di Mac ini dan menggunakan port default 8080. Kosongkan token untuk server yang dimulai tanpa <code>--auth-jwt-key-file</code>, atau masukkan JWT yang sesuai dengan kunci server.",
-                "Mode <ui>Local File</ui> membuka file libSQL dengan mesin SQLite bawaan driver, dan membuat jalur yang belum ada beserta foldernya. File lokal menjalankan transaksi, memuat ekstensi SQLite dari daftar Extensions koneksi, dan menjalankan pembangunan ulang untuk pengurutan kolom atau foreign key setelah Anda mengonfirmasi.",
-                "Pernyataan yang hanya dipahami libSQL, seperti <code>ALTER TABLE … ALTER COLUMN</code>, gagal pada file lokal karena diterima mesin SQLite. File libSQL terenkripsi tidak dapat dibuka. Jangan pernah membuka file yang sedang disinkronkan aplikasi aktif sebagai replika tertanam Turso: akses bersamaan dari dua program dapat merusaknya.",
-                "<backup>Backup Dump dan Restore Dump</backup> menjalankan {dumpTool} pada file libSQL lokal."
+            "text": [
+                "Pilih libSQL untuk server sqld yang Anda hosting sendiri, yang dijangkau melalui endpoint pipeline Hrana v2-nya, atau untuk file di Mac ini dalam mode <ui>Local File</ui>. File lokal menjalankan transaksi, memuat ekstensi SQLite, dan menjalankan skrip pembangunan ulang setelah Anda mengonfirmasinya, dan <backup>Backup Dump dan Restore Dump</backup> menjalankan {dumpTool} pada file tersebut.",
+                "Jangan pernah membuka file yang sedang disinkronkan aplikasi aktif sebagai embedded replica Turso: akses dari dua program sekaligus dapat merusaknya."
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "<export>Ekspor</export> tabel atau hasil kueri sebagai {exportFormats}. Untuk memuat data, gunakan CLI Turso atau impor di server sqld Anda."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "remote-or-local",
             "question": "Sebaiknya saya memilih Remote atau Local File?",
-            "answer": "Remote untuk database Turso atau server sqld yang diakses melalui URL. Local File untuk file libSQL di Mac ini, yang juga menyediakan transaksi, ekstensi SQLite, dan pencadangan."
+            "answer": "Remote, untuk database Turso atau server sqld yang Anda jangkau melalui URL. Local File, untuk file libSQL di Mac ini, yang juga memberi Anda transaksi, ekstensi SQLite, dan pencadangan."
         },
         {
             "id": "turso-cli",
             "question": "Apakah saya perlu memasang CLI Turso?",
-            "answer": "Tidak. Dashboard Turso menampilkan URL database dan juga membuat token. CLI berguna untuk memuat data dari terminal karena TablePro tidak menyediakan impor untuk Turso."
+            "answer": "Tidak. Dashboard Turso juga menampilkan URL database dan membuat token. CLI berguna untuk memuat data dari terminal."
         }
     ],
-    "related": [
-        {
-            "label": "SQLite, mesin dasar libSQL",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Cloudflare D1, SQLite melalui API Cloudflare",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Pengeditan struktur dan skrip pembangunan ulang",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "Ekspor dan pencadangan",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,49 +11,40 @@
     "breadcrumb": "Turso 與 libSQL",
     "header": {
         "title": "Turso 與 libSQL 用戶端",
-        "lead": "透過 URL 和權杖連線至 Turso 資料庫。瀏覽資料表並執行 SQLite 查詢，或開啟本機 libSQL 檔案。"
+        "lead": "以 URL 和權杖連線至 Turso 資料庫，或開啟 libSQL 檔案，並以 SQLite 語法查詢。",
+        "asset": "databases-turso"
     },
-    "asset": "mac-db-turso-remote",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "sqlite": "/sqlite-client",
         "libsql": "#libsql",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
-            "title": "連線 Turso",
-            "paragraphs": [
-                "選擇 <ui>遠端 (Turso)</ui> (Remote (Turso))（位於 <ui>連線模式</ui> (Connection Mode)）。貼上資料庫 HTTPS URL 和 <ui>API Token</ui>，權杖儲存在 macOS Keychain。兩者皆可從 Turso 主控台或 CLI 取得。",
-                "匯入的 <code>libsql://</code> URL 會轉換為 HTTPS 遠端連線。每個 URL 指定一個資料庫。一般 HTTP URL 未加密，不支援 SSH 通道。"
+            "title": "連線至 Turso",
+            "text": [
+                "在 <ui>連線模式</ui> (Connection Mode) 中選擇 <ui>遠端 (Turso)</ui> (Remote (Turso))，然後貼上資料庫的 HTTPS URL 和 <ui>API Token</ui>，權杖會存放在 macOS 鑰匙圈中。兩者都可從 Turso 主控台或 CLI 取得。",
+                "匯入的 <code>libsql://</code> URL 會成為 HTTPS 遠端連線，每個 URL 指定一個資料庫。一般 HTTP URL 未加密，也不提供 SSH 通道。"
             ]
         },
         {
             "id": "work",
             "title": "查詢與編輯",
-            "paragraphs": [
-                "libSQL 使用 SQLite 語法，瀏覽、<explain>EXPLAIN QUERY PLAN</explain> 圖、<editing>含 Preview SQL 的暫存編輯</editing>和匯出與 <sqlite>SQLite</sqlite> 相同。",
-                "遠端連線不執行交易。每個陳述式為獨立 HTTP 請求並各自提交，<code>BEGIN</code> 會報錯「Transactions are not supported in this mode」。交易工作需使用 <libsql>libSQL 一節</libsql>介紹的本機檔案。",
-                "遠端模式不載入 SQLite 擴充功能，Turso 資料庫執行伺服器建置時包含的擴充功能。Turso 限流時，錯誤說明重試前需等待多少秒。"
+            "text": [
+                "libSQL 使用 SQLite 的語法，因此瀏覽、<explain>EXPLAIN QUERY PLAN</explain> 圖表和匯出的行為與 <sqlite>SQLite</sqlite> 相同。",
+                "遠端連線不執行交易：每個陳述式都是獨立的 HTTP 請求並各自提交，<code>BEGIN</code> 會失敗並顯示「Transactions are not supported in this mode」。交易需要以 <libsql>libSQL</libsql> 開啟的本機檔案。遠端模式不載入 SQLite 擴充功能，因為 Turso 資料庫會執行其伺服器建置時所含的擴充功能；被節流的請求，其錯誤會說明需要等待幾秒。"
             ]
         },
         {
             "id": "schema",
             "title": "資料表、索引與觸發程序",
-            "paragraphs": [
-                "<structure>Structure 分頁</structure> 可建立資料表、新增和刪除欄位及索引，建立、編輯和刪除觸發程序。側邊欄可重新命名資料表，但不能重新命名檢視表。",
-                "遠端欄位順序和外部索引鍵變更會產生重建腳本，供您檢查並執行。TablePro 無法跨獨立 HTTP 請求將其作為一個交易執行。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "TablePro 不提供 Turso、libSQL 匯入；請用 Turso CLI 或 sqld 伺服器的匯入功能載入。要取出資料，可將資料表或查詢結果<export>匯出</export>為 {exportFormats}。"
+            "text": [
+                "<structure>Structure 分頁</structure>可建立資料表，新增和刪除欄位及索引，並建立、編輯和刪除觸發程序。可從側邊欄重新命名資料表，但不能重新命名檢視表。",
+                "遠端的欄位重新排序或外部索引鍵變更會產生重建指令碼，供您檢查並執行，因為 TablePro 無法將多個獨立的 HTTP 請求放在同一個交易中。"
             ]
         }
     ],
@@ -61,43 +52,27 @@
         {
             "engine": "libsql",
             "title": "libSQL",
-            "paragraphs": [
-                "自行託管 sqld 或此 Mac 上的檔案請選擇 libSQL。Remote 模式可存取任何提供 Hrana v2 pipeline 端點的 sqld，包括預設監聽 8080 連接埠的本機伺服器。未使用 <code>--auth-jwt-key-file</code> 啟動的伺服器可留空權杖，否則提供符合伺服器金鑰的 JWT。",
-                "<ui>本機檔案</ui>（Local File）使用驅動程式內建 SQLite 開啟 libSQL 檔案，不存在的路徑連同資料夾一起建立。本機檔案支援交易、從連線 Extensions 清單載入 SQLite 擴充功能，並在確認後執行欄位重排或外部索引鍵重建。",
-                "<code>ALTER TABLE … ALTER COLUMN</code> 等僅 libSQL 理解的陳述式，在本機檔案上會失敗，因為執行者是 SQLite。加密 libSQL 檔案無法開啟。切勿開啟執行中的 App 正在作為 Turso 嵌入式複本同步的檔案，兩個程式同時存取可能導致損毀。",
-                "<backup>Backup Dump 和 Restore Dump</backup> 對本機 libSQL 檔案執行 {dumpTool}。"
+            "text": [
+                "自行託管的 sqld 伺服器（透過其 Hrana v2 pipeline 端點存取），或這台 Mac 上以 <ui>本機檔案</ui> (Local File) 模式開啟的檔案，請選擇 libSQL。本機檔案支援交易、載入 SQLite 擴充功能，並在您確認後執行重建指令碼，<backup>Backup Dump 和 Restore Dump</backup> 會對其執行 {dumpTool}。",
+                "切勿開啟執行中的 App 正作為 Turso 嵌入式複本同步的檔案：兩個程式同時存取可能導致檔案損毀。"
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "將資料表或查詢結果<export>匯出</export>為 {exportFormats}。要載入資料，請使用 Turso CLI 或 sqld 伺服器上的匯入功能。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "remote-or-local",
-            "question": "應選 Remote 還是 Local File？",
-            "answer": "透過 URL 存取的 Turso 或 sqld 選 Remote；此 Mac 上的 libSQL 檔案選 Local File，後者也支援交易、SQLite 擴充功能和備份。"
+            "question": "應該選 Remote 還是 Local File？",
+            "answer": "透過 URL 存取的 Turso 資料庫或 sqld 伺服器請選 Remote。這台 Mac 上的 libSQL 檔案請選 Local File，它也提供交易、SQLite 擴充功能和備份。"
         },
         {
             "id": "turso-cli",
             "question": "需要安裝 Turso CLI 嗎？",
-            "answer": "不需要。Turso 儀表板也可顯示資料庫 URL 並建立權杖。因 TablePro 不提供 Turso 匯入，CLI 適合從終端機載入資料。"
+            "answer": "不需要。Turso 主控台也會顯示資料庫 URL 並建立權杖。CLI 適合從終端機載入資料。"
         }
     ],
-    "related": [
-        {
-            "label": "SQLite，libSQL 的基礎引擎",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Cloudflare D1，透過 Cloudflare API 使用 SQLite",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "結構編輯與重建指令碼",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "匯出與備份",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

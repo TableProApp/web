@@ -11,76 +11,58 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "SurrealDB 客户端",
-        "lead": "运行 SurrealQL，编辑记录字段并保留类型。"
+        "lead": "运行 SurrealQL 脚本，浏览命名空间，并在保留类型的情况下编辑记录字段。",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接和登录",
-            "paragraphs": [
-                "从 Root、Namespace、Database、Record Access 或 Token 中选择用户的 <ui>认证级别</ui> (Auth Level)。Namespace 和 Database 需要名称；Record Access 还需访问方式和登录字段，Token 接受已有 JWT。",
-                "驱动通过 HTTP RPC 端点传输 CBOR，记录链接、日期时间、时长、小数和 UUID 保留类型。<code>surrealdb://</code> 链接打开已填好的连接表单，远程服务器可经 <network>SSH 隧道</network>访问。",
-                "SSL 默认 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 对照系统信任库验证证书，忽略 SSL/TLS 面板的 CA 文件，因此请先在 macOS 安装私有 CA。"
+            "text": [
+                "选择 <ui>认证级别</ui> (Auth Level)：Root、Namespace、Database、Record Access 或 Token。Namespace 和 Database 需要填写其名称，Record Access 还需要访问方式和登录字段，Token 接受已有的 JWT。",
+                "驱动通过 HTTP RPC 端点传输 CBOR，因此记录链接、日期时间、时长、小数和 UUID 都保留其类型。<code>surrealdb://</code> 链接会打开已填好的连接表单。",
+                "SSL 默认为 Disabled，即明文 HTTP；其他所有模式都使用 HTTPS。Verify CA 和 Verify Identity 对照系统信任库验证证书，并忽略 SSL/TLS 面板中设置的 CA 文件，因此请先在 macOS 中安装私有 CA。"
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL 和记录",
-            "paragraphs": [
-                "运行完整 SurrealQL 脚本，包括 <code>RELATE</code>，支持语句补全。<explain>Explain 和 Explain Full</explain> 使用 <code>EXPLAIN</code> 运行查询，返回文本计划。",
-                "命名空间位于侧边栏顶层，内含数据库。两者随每次请求发送，切换均无需重连。只有根用户能看到所有命名空间。",
-                "单元格编辑仅用带类型的参数更新已更改字段，保留计算的 <code>FUTURE</code> 字段和其他写入者的更改。将 <code>id</code> 留空可自动生成 ID。SCHEMALESS 表的列来自已获取记录。",
-                "<filters>筛选</filters>转换为 SurrealQL，Raw SQL 行接受单个条件，例如图遍历。写入、含 <code>;</code> 或注释、调用 <code>fn::</code> 或 <code>http::</code> 的条件被拒绝，请在编辑器运行。"
+            "text": [
+                "运行完整的 SurrealQL 脚本（包括 <code>RELATE</code>），支持语句补全。<explain>Explain 和 Explain Full</explain> 使用 <code>EXPLAIN</code> 运行查询，并返回文本计划。",
+                "命名空间位于侧边栏顶层，其中包含各自的数据库。切换两者都不会重新连接，因为它们随每个请求发送；只有根用户能看到所有命名空间。",
+                "单元格编辑以带类型的参数仅更新已更改的字段，因此计算得出的 <code>FUTURE</code> 字段和其他写入者的更改都会保留。将 <code>id</code> 留空即可自动生成 ID；SCHEMALESS 表的列来自已获取的记录。",
+                "<filters>筛选</filters>会转换为 SurrealQL，Raw SQL 行接受一个条件，例如图遍历。会写入、包含 <code>;</code> 或注释，或调用 <code>fn::</code> 或 <code>http::</code> 的条件会被拒绝；请在编辑器中运行它。"
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Structure 标签页只读。在编辑器用 <code>DEFINE FIELD</code>、<code>DEFINE INDEX</code> 创建修改字段和索引。从菜单删除命名空间或数据库，多选时对全部项目仅确认一次。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "不提供导入。将表或 SurrealQL 结果<export>导出</export>为 {exportFormats}。"
+            "text": [
+                "Structure 标签页只读：请在编辑器中用 <code>DEFINE FIELD</code> 和 <code>DEFINE INDEX</code> 创建和修改字段及索引。命名空间或数据库可从其菜单删除，多选时只会对全部项目确认一次。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "不提供导入。将表或 SurrealQL 结果<export>导出</export>为 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
             "question": "可以运行事务吗？",
-            "answer": "同一查询内可以。HTTP RPC 不在请求间保留事务，请将 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作为一条编辑器查询发送。"
+            "answer": "在单个查询内可以。HTTP RPC 不会在请求之间保留事务，因此请将 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作为一条编辑器查询发送。"
         },
         {
             "id": "relations",
             "question": "如何修改关系的 in 或 out？",
-            "answer": "无法从网格修改：保存会停止，指出字段，保留所有待处理编辑。<code>UPDATE</code> 也不移动关系，需删除后 <code>RELATE</code> 新的一对记录。"
+            "answer": "无法从网格修改：保存会停止，指出该字段，并保留所有待处理的编辑。<code>UPDATE</code> 也不会移动关系，因此请删除它，再用 <code>RELATE</code> 关联新的一对记录。"
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB，另一种文档数据库",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "SQL 以外的查询语言",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "安全浏览和编辑数据",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

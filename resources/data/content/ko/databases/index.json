@@ -9,101 +9,51 @@
     },
     "header": {
         "title": "지원 데이터베이스",
-        "lead": "사용할 데이터베이스의 지원 기능을 확인하세요. TablePro는 {featured} 등을 포함한 {count}개 엔진에 연결합니다."
+        "lead": "TablePro는 {featured} 등 {count}개 엔진에 연결합니다. 사용하는 데이터베이스와 TablePro로 할 수 있는 일을 찾아보세요.",
+        "docs": "설정 가이드"
     },
-    "jump": "분류",
-    "categories": {
-        "relational": {
-            "title": "관계형",
-            "intro": "테이블, 키와 트랜잭션이 있는 SQL 데이터베이스입니다. 일부는 MySQL 또는 PostgreSQL 드라이버를 공유합니다."
+    "nav": {
+        "label": "데이터베이스 분류",
+        "all": "모든 데이터베이스"
+    },
+    "groups": {
+        "relational": "관계형",
+        "analytical": "분석 및 웨어하우스",
+        "cloud": "클라우드 및 서버리스",
+        "nosql": "NoSQL 및 스트리밍",
+        "search": "검색 및 벡터",
+        "files": "파일"
+    },
+    "more": {
+        "drivers": {
+            "title": "드라이버 제공 방식",
+            "text": [
+                "{bundled} 드라이버는 Mac 앱에 포함되어 있습니다. 그 밖의 드라이버는 데이터베이스를 처음 선택할 때 서명된 플러그인으로 다운로드되며, 이때 인터넷 연결이 필요합니다.",
+                "TablePro는 설치 전에 각 플러그인의 SHA-256 체크섬과 코드 서명을 확인합니다. 플러그인은 앱과 별도로 업데이트되며, iPhone 및 iPad 앱에는 드라이버가 내장되어 있습니다."
+            ],
+            "docs": "플러그인 및 드라이버 업데이트"
         },
-        "analytical": {
-            "title": "분석 및 웨어하우스",
-            "intro": "데이터 웨어하우스, 열 지향 데이터베이스, 여러 카탈로그를 조회하는 쿼리 엔진."
+        "linux": {
+            "title": "Linux에서",
+            "tested": "Linux 앱은 베타이며 {engines}에서 테스트되었습니다.",
+            "untested": "{engines} 연결은 Linux에서 테스트되지 않았습니다.",
+            "link": "Linux에 설치"
         },
-        "cloud": {
-            "title": "클라우드 및 서버리스",
-            "intro": "HTTP 기반 SQL 서비스와 로컬 libSQL 파일."
+        "iphone": {
+            "title": "iPhone과 iPad에서",
+            "picker": "iPhone과 iPad 앱은 {engines}에 연결합니다.",
+            "synced": "{engines} 연결은 Mac에서 가져온 경우 iPhone과 iPad에서 열립니다.",
+            "others": "다른 엔진의 연결도 동기화되어 목록에 표시되지만 열리지 않습니다.",
+            "link": "iPhone 및 iPad용 TablePro"
         },
-        "document": {
-            "title": "문서",
-            "intro": "각자의 고유 언어로 쿼리하는 문서 및 다중 모델 데이터베이스입니다."
-        },
-        "key-value": {
-            "title": "키-값",
-            "intro": "명령 또는 PartiQL로 읽고 쓰는 키와 값입니다."
-        },
-        "wide-column": {
-            "title": "와이드 컬럼",
-            "intro": "클러스터에 분산된 CQL 테이블입니다."
-        },
-        "search": {
-            "title": "검색 및 벡터",
-            "intro": "자체 요청 콘솔로 쿼리하는 검색 및 벡터 엔진입니다."
-        },
-        "streaming": {
-            "title": "스트리밍",
-            "intro": "TablePro의 명령 언어인 KafkaQL로 메시지를 읽고 생성합니다."
-        },
-        "coordination": {
-            "title": "조정",
-            "intro": "리스와 클러스터 멤버가 있는 etcd 키 공간입니다."
-        },
-        "files": {
-            "title": "파일",
-            "intro": "데이터베이스 서버 없이 데이터베이스 파일과 원장을 조회합니다."
+        "missing": {
+            "title": "사용하는 데이터베이스가 없나요?",
+            "text": "새 엔진은 드라이버 플러그인으로 추가됩니다. 사용하는 엔진이 목록에 없다면 GitHub에서 요청하세요.",
+            "link": "GitHub에서 데이터베이스 요청"
         }
     },
-    "table": {
-        "caption": "{category}: 각 엔진의 쿼리 언어, 드라이버 및 iPhone·iPad 지원 여부",
-        "engine": "데이터베이스",
-        "queryLanguage": "쿼리 언어",
-        "driver": "드라이버",
-        "ios": "iPhone과 iPad",
-        "notes": "참고"
-    },
-    "drivers": {
-        "title": "드라이버 제공 방식",
-        "paragraphs": [
-            "{bundled} 드라이버는 Mac 앱에 포함되어 있습니다. 별도의 클라이언트 소프트웨어 없이 연결할 수 있습니다.",
-            "그 밖의 드라이버는 데이터베이스를 처음 선택할 때 서명된 플러그인으로 다운로드됩니다. 최초 다운로드에는 인터넷 연결이 필요합니다.",
-            "설치 전에 각 플러그인의 SHA-256 체크섬을 레지스트리와 대조하고 코드 서명을 검증합니다.",
-            "드라이버 플러그인은 앱과 별도로 업데이트됩니다. 사용 중인 드라이버의 업데이트는 재시작 후 적용됩니다.",
-            "iPhone 및 iPad 앱에는 드라이버가 내장되어 있으며 플러그인을 다운로드하지 않습니다."
-        ],
-        "asset": "mac-engine-picker",
-        "docs": {
-            "label": "플러그인 및 드라이버 업데이트",
-            "path": "/features/plugins"
-        }
-    },
-    "iphone": {
-        "title": "iPhone과 iPad에서",
-        "picker": "iPhone과 iPad 앱은 {engines}에 연결합니다.",
-        "synced": "{engines} 연결은 iCloud Sync나 내보낸 연결 파일로 Mac에서 가져온 경우에만 열립니다.",
-        "others": "다른 엔진의 연결도 iPhone과 iPad에 동기화되어 목록에 표시되지만 열 수는 없습니다.",
-        "link": "iPhone 및 iPad용 TablePro"
-    },
-    "linux": {
-        "title": "Linux에서",
-        "tested": "Linux 앱은 베타이며 {engines}에서 테스트되었습니다.",
-        "untested": "{engines} 연결은 Linux에서 테스트되지 않았습니다.",
-        "others": "다른 엔진은 열 수 없습니다.",
-        "link": "Linux에 설치"
-    },
-    "license": {
-        "title": "Free에 포함",
-        "body": "지원하는 모든 데이터베이스 연결은 Free에 포함됩니다. Pro와 Team은 선택 기능을 추가합니다.",
-        "link": "요금 보기"
-    },
-    "missing": {
-        "title": "사용하는 데이터베이스가 없나요?",
-        "body": "새 엔진은 드라이버 플러그인으로 추가됩니다. 사용하는 엔진이 목록에 없다면 GitHub에서 요청하세요.",
-        "link": "GitHub에서 데이터베이스 요청"
-    },
-    "docs": {
-        "label": "데이터베이스별 설정 가이드",
-        "path": "/databases"
+    "closing": {
+        "body": "지원하는 모든 데이터베이스 연결은 Free에 포함됩니다. Pro와 Team은 선택 기능을 추가합니다."
     },
     "labels": {
         "facts": {
@@ -117,8 +67,7 @@
             "enforced": "{version}, 강제 적용: 이전 서버는 거부",
             "noMinimum": "없음",
             "embedded": "내장 엔진",
-            "embeddedValue": "{name} {version}",
-            "ios": "iPhone과 iPad"
+            "embeddedValue": "{name} {version}"
         },
         "connect": {
             "file": "파일",
@@ -133,71 +82,28 @@
             "bundled": "Mac 앱에 포함",
             "registry": "처음 사용할 때 다운로드"
         },
-        "ios": {
-            "picker": "열림",
-            "synced": "Mac에서 동기화하면 열림",
-            "none": "열리지 않음"
-        },
-        "linux": {
-            "tested": "테스트됨",
-            "versions": "테스트됨: {versions}",
-            "untested": "테스트 안 됨",
-            "none": "사용할 수 없음"
-        },
-        "availability": {
-            "devices": "{devices}에서 사용 가능",
-            "bundled": "Mac 앱에 드라이버 포함",
-            "registry": "{name} 첫 사용 시 드라이버 다운로드",
-            "free": "Free에 포함되며 <pricing>유료 플랜으로 선택 기능을 추가할 수 있습니다</pricing>"
-        },
         "release": "{version}의 새 기능",
         "docs": "{name} 설정 가이드",
-        "sections": {
-            "limits": "제한 사항",
-            "limitsOf": "{name} 제한 사항",
-            "iphone": "iPhone과 iPad",
-            "faq": "{name} 관련 질문",
-            "related": "관련 항목"
-        },
+        "common": "이 페이지는 {name}에만 해당하는 내용을 다룹니다. Safe Mode, AI 도우미, MCP 서버 등 TablePro의 나머지 기능은 <features>기능 페이지</features>에서 볼 수 있습니다.",
+        "more": "그 밖에",
+        "moveData": "데이터 이동",
+        "limits": "제한 사항",
+        "otherTools": "다른 도구",
         "iphone": {
-            "picker": "iPhone 및 iPad 앱에서 연결을 만들 때 {name}을 선택할 수 있습니다.",
-            "synced": "iPhone과 iPad 앱은 iCloud Sync나 내보낸 연결 파일로 Mac에서 가져온 {name} 연결만 엽니다. 앱에서 직접 만들 수는 없습니다.",
-            "none": "iPhone과 iPad 앱에는 {name} 드라이버가 없습니다. Mac에서 동기화한 {name} 연결은 목록에 표시되지만 열리지 않습니다.",
+            "title": "iPhone과 iPad",
+            "picker": "iPhone과 iPad 앱은 {name}에 연결합니다.",
+            "synced": "iPhone과 iPad 앱은 Mac에서 가져온 {name} 연결을 엽니다.",
             "link": "iPhone 및 iPad용 TablePro"
-        },
-        "family": {
-            "port": "기본 포트 {port}"
-        },
-        "otherTools": {
-            "title": "다른 도구",
-            "released": "버전 {version}, {date} 출시",
-            "discontinued": "{name} 개발은 중단되었습니다. 마지막 버전({version})은 {date}에 출시되었습니다.",
-            "free": "무료",
-            "openSource": "오픈 소스({licence})",
-            "closedSource": "비공개 소스",
-            "sourceAvailable": "소스 공개({licence})",
-            "platforms": "플랫폼: {platforms}",
-            "compare": "TablePro와 {name} 비교",
-            "more": "다른 비교",
-            "checked": "다른 도구의 정보 확인일: {date}.",
-            "sources": "출처"
-        },
-        "platformNames": {
-            "mac": "Mac",
-            "windows": "Windows",
-            "linux": "Linux",
-            "ios": "iPhone과 iPad",
-            "web": "웹"
         },
         "number": {
             "decimal": ".",
             "group": ","
         },
-        "download": {
-            "title": "TablePro 다운로드",
-            "mac": "Mac 앱을 무료로 다운로드하세요. Pro와 Team은 선택 기능을 추가합니다.",
-            "ios": "iPhone과 iPad 앱은 App Store에서 받을 수 있습니다.",
-            "linux": "Linux 앱은 무료 베타입니다.",
+        "closing": {
+            "title": "TablePro 받기",
+            "tier": "{tier} 플랜은 {features} 기능을 추가합니다.",
+            "rest": "이 페이지의 나머지 기능은 모두 무료입니다.",
+            "allFree": "이 페이지의 모든 기능은 무료입니다.",
             "pricing": "요금 보기"
         }
     }

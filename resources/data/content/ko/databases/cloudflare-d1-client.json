@@ -11,82 +11,58 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Cloudflare D1 클라이언트",
-        "lead": "Cloudflare 계정의 D1 데이터베이스를 탐색하고 API로 SQLite 쿼리를 실행하세요."
+        "lead": "Cloudflare 계정의 D1 데이터베이스를 탐색하고 Cloudflare API로 SQLite 쿼리를 실행하세요.",
+        "asset": "databases-cloudflare-d1"
     },
-    "asset": "mac-db-d1-databases",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "credentials": "/features/connections#credentials",
         "sqlite": "/sqlite-client"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "API 토큰으로 연결",
-            "paragraphs": [
-                "D1 데이터베이스 이름 또는 UUID, Cloudflare 계정 ID, <ui>API 토큰</ui> (API Token)을 입력하세요. 토큰은 <credentials>macOS Keychain</credentials>에 저장됩니다. 요청은 HTTPS를 사용하며 호스트, 포트, TLS 설정, SSH 터널은 없습니다.",
-                "<ui>Account > D1 > Edit</ui> 권한으로 토큰을 만들고 표시될 때 복사하세요. 선택한 데이터베이스뿐 아니라 계정의 모든 D1 데이터베이스에 접근할 수 있습니다.",
-                "<code>d1://account-id/database-name</code> URL을 가져오면 계정과 데이터베이스가 채워집니다. 토큰은 URL에 포함되지 않으므로 나중에 붙여넣으세요."
+            "text": [
+                "D1 데이터베이스 이름 또는 UUID, Cloudflare 계정 ID, <ui>API 토큰</ui> (API Token)을 입력하세요. 토큰은 <credentials>macOS Keychain</credentials>에 보관됩니다. 요청은 HTTPS를 사용하므로 호스트, 포트, TLS 설정, SSH 터널이 없습니다.",
+                "<ui>Account > D1 > Edit</ui> 권한으로 토큰을 만들고 표시될 때 복사하세요. 이 토큰은 선택한 데이터베이스뿐 아니라 계정의 모든 D1 데이터베이스에 접근할 수 있습니다. <code>d1://account-id/database-name</code> URL을 가져오면 계정과 데이터베이스가 채워집니다. 토큰은 URL에 포함되지 않으므로 나중에 붙여 넣으세요."
             ]
         },
         {
             "id": "work",
             "title": "데이터베이스 전환 및 쿼리",
-            "paragraphs": [
-                "재연결 없이 계정의 D1 데이터베이스를 전환하세요. 전환 메뉴에서 데이터베이스를 만들거나 삭제할 수도 있습니다. 기존 탭은 원래 데이터베이스를 유지합니다.",
-                "쿼리는 SQLite 문법을 사용합니다. <explain>EXPLAIN QUERY PLAN</explain>은 다이어그램으로 표시되고 행 편집은 저장까지 그리드에서 대기하며 <editing>Preview SQL</editing>이 명령문을 먼저 보여 줍니다.",
-                "각 명령문은 독립적으로 작성하세요. 한 명령문의 <code>PRAGMA</code> 설정이나 임시 테이블은 다음 명령문에서 사라지고 모든 명령문이 실행 시 커밋되어 롤백할 수 없습니다. Cloudflare가 요청 속도를 제한하면 오류에 재시도 전 대기 시간이 표시됩니다."
+            "text": [
+                "재연결 없이 계정의 D1 데이터베이스 사이를 전환하세요. 전환 메뉴에서 데이터베이스를 만들거나 삭제할 수도 있으며, 열린 탭은 시작한 데이터베이스를 유지합니다. 쿼리는 <sqlite>SQLite</sqlite> 문법을 사용하며, <explain>EXPLAIN QUERY PLAN</explain>은 다이어그램으로 그려집니다.",
+                "각 명령문은 독립적으로 동작하도록 작성하세요. 한 명령문의 <code>PRAGMA</code> 설정이나 임시 테이블은 다음 명령문에서 사라지며, 모든 명령문은 실행 시 커밋되어 롤백할 수 없습니다. Cloudflare가 요청 속도를 제한하면 오류에 재시도 전 대기 시간이 표시됩니다."
             ]
         },
         {
             "id": "schema",
             "title": "테이블, 인덱스 및 트리거",
-            "paragraphs": [
-                "<structure>Structure 탭</structure>은 테이블 생성·삭제, 열 추가·삭제와 인덱스 생성·삭제를 지원하며 WHERE 조건의 부분 인덱스도 포함합니다. Preview SQL은 저장 전에 DDL을 보여 줍니다. Triggers 탭은 트리거를 생성·편집·삭제하며 테이블 이름은 사이드바에서 바꿉니다.",
-                "열 순서나 외래 키 변경은 테이블 재구성이 필요합니다. D1에서는 명령문마다 별도 요청이어서 재구성을 하나의 트랜잭션으로 묶을 수 없으므로 TablePro가 스크립트를 작성하고 실행은 사용자에게 맡깁니다."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "TablePro는 D1 가져오기를 제공하지 않습니다. <code>wrangler d1 execute</code>의 <code>--file</code> 옵션으로 SQL 파일을 넣고 여기서 결과를 탐색하세요. <export>내보내기</export>는 D1 테이블이나 쿼리 결과를 {exportFormats}로 기록합니다."
+            "text": [
+                "<structure>Structure 탭</structure>은 테이블을 만들고 삭제하며, 열을 추가하고 삭제하고, WHERE 조건이 있는 부분 인덱스를 포함해 인덱스를 만들고 삭제합니다. Triggers 탭은 트리거를 만들고 편집하고 삭제하며, 테이블 이름은 사이드바에서 바꿀 수 있습니다.",
+                "열 순서나 외래 키를 바꾸려면 테이블을 재구성해야 합니다. 명령문마다 별도 요청이라 재구성을 하나의 트랜잭션으로 묶을 수 없으므로, TablePro가 재구성 스크립트를 작성하고 실행은 사용자에게 맡깁니다."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "D1 테이블이나 쿼리 결과를 {exportFormats}로 <export>내보내세요</export>. SQL 파일을 넣으려면 <code>wrangler d1 execute</code>를 <code>--file</code> 옵션과 함께 실행한 뒤 여기서 결과를 탐색하세요."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "sessions",
             "question": "D1 Sessions API를 사용하나요?",
-            "answer": "아니요. 각 명령문은 세션이나 북마크 없는 독립 요청이므로 같은 탭이든 다른 탭이든 명령문 사이에 상태가 이어지지 않습니다."
+            "answer": "아니요. 각 명령문은 세션이나 북마크 없는 별도 요청으로 전송되므로, 같은 탭이든 다른 탭이든 명령문 사이에 아무것도 이어지지 않습니다."
         },
         {
             "id": "wrangler",
             "question": "Wrangler를 설치해야 하나요?",
-            "answer": "탐색, 쿼리와 편집에는 필요 없습니다. TablePro가 Cloudflare API와 직접 통신합니다. D1 가져오기가 없으므로 SQL 파일을 넣을 때만 Wrangler가 필요합니다."
+            "answer": "탐색, 쿼리, 편집에는 필요 없습니다. TablePro가 Cloudflare API와 직접 통신합니다. Wrangler는 SQL 파일을 넣을 때만 필요합니다."
         }
     ],
-    "related": [
-        {
-            "label": "D1의 문법인 SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Turso·libSQL, HTTP를 통한 SQLite",
-            "href": "/turso-client"
-        },
-        {
-            "label": "구조 편집 및 재구성 스크립트",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "연결 및 자격 증명",
-            "href": "/features/connections"
-        }
-    ]
+    "otherTools": null
 }

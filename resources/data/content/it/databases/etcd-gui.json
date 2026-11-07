@@ -11,53 +11,44 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "Interfaccia grafica etcd",
-        "lead": "Sfoglia le chiavi per prefisso, modifica i valori e gestisci i lease con comandi in stile etcdctl."
+        "lead": "Sfoglia le chiavi etcd per prefisso, modifica valori e lease in una griglia ed esegui comandi in stile etcdctl.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connetti",
-            "paragraphs": [
-                "Inserisci un host e una porta client. La porta peer non offre un gateway JSON. Non sono disponibili selezione del database o failover degli endpoint.",
-                "Lascia vuoti <ui>Username</ui> e <ui>Password</ui> su un cluster senza autenticazione. Un utente senza il ruolo <code>root</code> si connette ed esplora le chiavi consentite dai suoi ruoli, mentre <code>endpoint status</code> e i comandi <code>user</code> e <code>role</code> rispondono con un errore di autorizzazione.",
-                "TLS si configura con <ui>TLS Mode</ui> nei campi Advanced, non in una sezione SSL, ed è inizialmente Disabled. Required (skip verify) cifra senza verificare, Verify CA verifica il certificato rispetto al file della CA che indichi e Verify Identity aggiunge il controllo del nome host. Un certificato e una chiave client aggiungono TLS reciproco.",
-                "Raggiungi un cluster dietro un bastion tramite un <network>tunnel SSH</network>. Gli URL <code>etcd://</code> e <code>etcds://</code> si importano, ma nessuno dei due attiva TLS automaticamente."
+            "text": [
+                "Inserisci un host e la sua porta client; la porta peer non offre un gateway JSON, e non sono disponibili selezione del database o failover degli endpoint. Lascia vuoti <ui>Username</ui> e <ui>Password</ui> su un cluster senza autenticazione. Un utente senza il ruolo <code>root</code> esplora le chiavi consentite dai suoi ruoli, mentre <code>endpoint status</code> e i comandi <code>user</code> e <code>role</code> rispondono con permission denied.",
+                "TLS si imposta con <ui>TLS Mode</ui> nei campi Advanced e parte da Disabled. Required (skip verify) cifra senza verificare, Verify CA verifica il certificato rispetto al file della CA che indichi, e Verify Identity aggiunge il controllo del nome host; un certificato e una chiave client aggiungono il TLS reciproco. Gli URL <code>etcd://</code> ed <code>etcds://</code> si importano, ma nessuno dei due attiva TLS da solo."
             ]
         },
         {
             "id": "work",
             "title": "Esplora le chiavi ed esegui comandi",
-            "paragraphs": [
+            "text": [
                 "Imposta <ui>Key Prefix Root</ui>, per esempio <code>/app</code>, per limitare una connessione a un sottoalbero. La barra laterale raggruppa le chiavi per il primo segmento del percorso sottostante e ogni chiave è una riga con valore, versione, revisioni di modifica e creazione e lease.",
-                "Salvare una modifica invia comandi. Un nuovo valore o lease riscrive la chiave, un lease NULL rimuove il lease e rinominare una chiave scrive il nuovo nome ed elimina il vecchio. Le colonne delle revisioni appartengono a etcd, quindi modificarne una interrompe il salvataggio e indica la colonna.",
-                "Esegui comandi in stile etcdctl per chiavi, watch, lease, membri, endpoint, compattazione e controllo degli accessi, con completamento di comandi e flag. I comandi non supportati vengono rifiutati prima di raggiungere il server.",
-                "<safeMode>Safe Mode</safeMode> esegue come letture <code>get</code>, <code>watch</code> e i comandi che si limitano a elencare o riportare, e considera ogni altro comando una scrittura."
+                "Salvare una modifica invia comandi: un nuovo valore o lease riscrive la chiave, un lease NULL rimuove il lease, e una rinomina scrive il nuovo nome ed elimina il vecchio. Le colonne delle revisioni appartengono a etcd, quindi modificarne una interrompe il salvataggio e indica la colonna.",
+                "Esegui comandi in stile etcdctl per chiavi, watch, lease, membri, endpoint, compattazione e controllo degli accessi, con completamento di comandi e flag; quelli non supportati vengono rifiutati prima di raggiungere il server. <safeMode>Safe Mode</safeMode> esegue come letture <code>get</code>, <code>watch</code> e i comandi che si limitano a elencare o riportare, e considera ogni altro comando una scrittura."
             ]
         },
         {
             "id": "operate",
             "title": "Lease e cluster",
-            "paragraphs": [
-                "Gestisci lease e compattazione delle revisioni nell’editor. Usa i comandi per controllare membri, stato e salute degli endpoint; etcd non offre Server Dashboard.",
-                "Eseguire <code>auth enable</code> dall’editor attiva l’autenticazione per l’intero cluster. Una connessione con nome utente e password continua a funzionare; una senza credenziali va riaperta specificandole."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Sposta i dati",
-            "paragraphs": [
-                "L’importazione non è disponibile. <export>Esporta</export> le chiavi o il risultato di un comando in {exportFormats}."
+            "text": [
+                "Gestisci i lease e la compattazione delle revisioni dall’editor, e controlla membri e stato o salute degli endpoint con i comandi. Eseguire <code>auth enable</code> attiva l’autenticazione per l’intero cluster: una connessione con nome utente e password continua a funzionare, mentre una senza credenziali va riaperta specificandole."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Esporta</export> le chiavi o il risultato di un comando in {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
@@ -70,18 +61,5 @@
             "answer": "No. Un valore che non è UTF-8 valido compare nella griglia in base64, contrassegnato come tale, e il testo che digiti viene inviato come UTF-8. Scrivi i valori binari con <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Esplora e modifica i dati in sicurezza",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Connessioni, tunnel e credenziali",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, un altro spazio delle chiavi",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

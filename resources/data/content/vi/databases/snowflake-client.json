@@ -11,61 +11,53 @@
     "breadcrumb": "Snowflake",
     "header": {
         "title": "Snowflake client",
-        "lead": "Query và sửa table, chuyển warehouse và role, export tới stage."
+        "lead": "Query và sửa table Snowflake, đổi warehouse và role mà không cần kết nối lại, và export thẳng tới stage.",
+        "asset": "databases-snowflake"
     },
-    "asset": "mac-db-snowflake-session",
     "links": {
         "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối và đăng nhập",
-            "paragraphs": [
-                "Nhập account identifier trước <code>.snowflakecomputing.com</code>, như <code>myorg-myaccount</code>. Request dùng HTTPS; không cần host, phần TLS hay SSH pane.",
-                "Chọn <ui>Auth Method</ui>: cặp key PKCS#8, SSO qua trình duyệt, OAuth token hoặc mật khẩu với <ui>MFA Passcode (TOTP)</ui>. Cặp key cần đồng hồ thiết bị chính xác. OAuth token dán vào không được refresh.",
-                "Khi tài khoản bật <code>ALLOW_CLIENT_MFA_CACHING</code>, bạn chỉ cần nhập passcode mới một lần: Snowflake trả về một MFA token và TablePro giữ nó trong <credentials>Keychain</credentials>. Khi bật <code>ALLOW_ID_TOKEN</code>, SSO qua trình duyệt cũng lưu một token đăng nhập ở đó, và những lần kết nối sau không cần mở trình duyệt cho tới khi Snowflake từ chối token.",
-                "Snowflake không có URL scheme. Thay vào đó, hãy nhập tên một section vào <ui>Tên kết nối CLI (CLI Connection Name)</ui>, và mọi ô bạn để trống sẽ được đọc từ <code>~/.snowflake/connections.toml</code> khi kết nối."
+            "text": [
+                "Nhập account identifier đứng trước <code>.snowflakecomputing.com</code>, như <code>myorg-myaccount</code>. Request dùng HTTPS, nên không có ô host, phần TLS hay phần SSH. Snowflake không có URL scheme: hãy nhập tên một section vào <ui>Tên kết nối CLI</ui> (CLI Connection Name), và mọi ô bạn để trống sẽ được đọc từ <code>~/.snowflake/connections.toml</code>.",
+                "Chọn <ui>Phương thức xác thực</ui> (Auth Method): cặp key PKCS#8, SSO qua trình duyệt, OAuth token, hoặc mật khẩu với <ui>Mã MFA (TOTP)</ui> (MFA Passcode (TOTP)). Cặp key cần đồng hồ thiết bị chính xác, và OAuth token dán vào không được refresh.",
+                "Khi tài khoản bật <code>ALLOW_CLIENT_MFA_CACHING</code>, bạn chỉ cần nhập passcode mới một lần: TablePro giữ MFA token mà Snowflake trả về trong <credentials>Keychain</credentials>. Khi bật <code>ALLOW_ID_TOKEN</code>, SSO qua trình duyệt lưu một token đăng nhập ở đó, và những lần kết nối sau không cần mở trình duyệt cho tới khi Snowflake từ chối token."
             ]
         },
         {
             "id": "work",
             "title": "Warehouse, role và query",
-            "paragraphs": [
-                "Đổi warehouse và role bằng <ui>Database > Session Context</ui>. Connection giữ một session khi idle; tab ở cơ sở dữ liệu khác chạy <code>USE DATABASE</code> trước câu lệnh.",
-                "Sidebar nhóm các đối tượng theo cơ sở dữ liệu và schema. Danh sách đối tượng lấy từ các lệnh <code>SHOW</code>, chạy được khi chưa có warehouse; thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse. <explain>Explain</explain> trả về plan của Snowflake dưới dạng text thô.",
-                "<editing>Sửa trong data grid</editing> bind giá trị trên server, ô VARIANT, OBJECT và ARRAY gửi qua <code>PARSE_JSON</code>. Thay đổi dựa vào khóa chính đã khai báo, hoặc mọi cột nếu không có. Table Snowflake standard không cưỡng chế ràng buộc key, nên key trùng khiến sửa hoặc xóa tác động mọi dòng khớp: kiểm tra dòng trùng trước khi sửa. Table hybrid cưỡng chế key."
+            "text": [
+                "Đổi warehouse và role bằng <ui>Cơ sở dữ liệu > Session Context</ui> (Database > Session Context). Connection giữ một session khi idle, và tab ở cơ sở dữ liệu khác chạy <code>USE DATABASE</code> trước câu lệnh của nó. Danh sách đối tượng lấy từ các lệnh <code>SHOW</code>, không cần warehouse; thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần warehouse. <explain>Explain</explain> trả về plan của Snowflake dưới dạng text thô.",
+                "Thay đổi trong data grid được bind giá trị phía server, với ô VARIANT, OBJECT và ARRAY gửi qua <code>PARSE_JSON</code>. Thay đổi dựa vào khóa chính đã khai báo, hoặc mọi cột nếu không có. Table standard không cưỡng chế ràng buộc key, nên một lần sửa hoặc xóa sẽ tác động mọi dòng có cùng key bị trùng: hãy kiểm tra dòng trùng trước. Table hybrid cưỡng chế key."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "DDL của đối tượng lấy từ <code>GET_DDL</code>. <structure>Tab Structure</structure> thêm, đổi tên và xóa cột, đặt NOT NULL, comment và khóa chính, nới rộng VARCHAR, và đổi độ chính xác (precision) của NUMBER khi giữ nguyên scale.",
                 "Những thay đổi Snowflake sẽ từ chối bị chặn trước khi chạy: thu hẹp VARCHAR, mọi thay đổi kiểu dữ liệu khác, và đặt giá trị mặc định mới cho cột. Xóa giá trị mặc định thì vẫn chạy."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "<importData>Import</importData> file {importFormats} qua connection, và export table hoặc kết quả query về máy Mac ra {exportFormats}.",
-                "Chọn <ui>File > Server-Side Export…</ui> và stage. <backup>Server-Side Export</backup> chạy <code>COPY INTO</code> với quyền của bạn, ghi CSV gzip, Parquet hoặc JSON. Chờ hoàn tất; file không đi qua máy Mac."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> file {importFormats}, và export table hoặc kết quả về máy Mac ra {exportFormats}. <backup>Server-Side Export</backup>, trong <ui>Tệp > Server-Side Export…</ui> (File > Server-Side Export…), chạy <code>COPY INTO</code> một stage với quyền của bạn và ghi CSV nén gzip, Parquet hoặc JSON, không đi qua máy Mac."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "no-columns",
             "question": "Vì sao sidebar hiện table nhưng không có cột?",
-            "answer": "Thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse đang chạy. Hãy đặt <ui>Warehouse</ui> trong connection hoặc trong Session Context. Nếu các đối tượng của một cơ sở dữ liệu hoàn toàn không xuất hiện, role đang kết nối cần được cấp quyền <code>USAGE</code> trên cơ sở dữ liệu đó."
+            "answer": "Thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse đang chạy: hãy đặt <ui>Warehouse</ui> trong connection hoặc trong Session Context. Nếu các đối tượng của một cơ sở dữ liệu hoàn toàn không xuất hiện, role đang kết nối cần được cấp quyền <code>USAGE</code>."
         },
         {
             "id": "timestamp-ltz",
@@ -75,25 +67,8 @@
         {
             "id": "jwt-invalid",
             "question": "Đăng nhập bằng key pair báo JWT token không hợp lệ. Tôi nên kiểm tra gì?",
-            "answer": "Token chứa locator của tài khoản và một mốc thời gian. Hãy kiểm tra mã định danh tài khoản và đồng hồ của máy Mac, sau đó xác nhận public key đã được gắn cho user bằng <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+            "answer": "Token chứa locator của tài khoản và một mốc thời gian. Hãy kiểm tra account identifier và đồng hồ của máy Mac, sau đó xác nhận public key đã được đăng ký bằng <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export và file dữ liệu",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Viết, chạy và phân tích query",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Google BigQuery, một cloud warehouse khác",
-            "href": "/bigquery-client"
-        },
-        {
-            "label": "Trino, cho query xuyên catalog",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

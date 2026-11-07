@@ -11,116 +11,77 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "MongoDB 클라이언트",
-        "lead": "컬렉션을 탐색하고 mongosh 방식으로 조회하며 Extended JSON으로 문서를 편집하세요."
+        "lead": "mongosh 방식의 JavaScript로 MongoDB를 조회하고, 컬렉션을 탐색하고, Extended JSON으로 문서를 편집하세요.",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결",
-            "paragraphs": [
-                "호스트 또는 복제본 세트의 <code>host:port</code> 목록을 입력하거나 <code>mongodb://</code>, <code>mongodb+srv://</code> URL을 붙여 넣으세요. SCRAM-SHA-1, SCRAM-SHA-256, X.509, AWS IAM을 지원합니다. <ui>Auth Database</ui>에는 사용자가 정의된 데이터베이스를 지정합니다.",
-                "<code>.mongodb.net</code>으로 끝나는 호스트는 MongoDB Atlas가 요구하는 SRV·TLS를 자동으로 켭니다. 먼저 IP 주소를 클러스터 접근 목록에 추가하세요. 목록에 없는 주소의 트래픽은 즉시 실패 대신 시간 초과됩니다.",
-                "새 연결은 TLS가 꺼져 있고 드라이버에 대체(fallback) 동작이 없어 Preferred는 Required처럼 작동합니다. Read Preference·Write Concern은 연결별로 설정하고 쓰기 확인 수준은 셸·그리드 저장의 모든 삽입·업데이트·삭제에 전송됩니다.",
-                "<network>SSH 터널</network>은 목록의 첫 호스트만 사용해 해당 세션의 복제 세트 검색·장애 조치는 꺼집니다."
+            "text": [
+                "호스트 또는 복제본 세트의 <code>host:port</code> 목록을 입력하거나 <code>mongodb://</code>, <code>mongodb+srv://</code> URL을 붙여 넣으세요. SCRAM-SHA-1, SCRAM-SHA-256, X.509, AWS IAM으로 로그인하며, <ui>Auth Database</ui>에는 사용자가 정의된 데이터베이스를 지정합니다.",
+                "<code>.mongodb.net</code>으로 끝나는 호스트는 MongoDB Atlas가 요구하는 SRV와 TLS를 켭니다. 먼저 IP 주소를 클러스터 접근 목록에 추가하세요. 그렇지 않으면 연결이 시간 초과됩니다. 새 연결은 TLS가 꺼진 상태로 시작하며, Preferred는 Required처럼 작동합니다. Read Preference와 Write Concern은 연결별로 설정합니다."
+            ],
+            "notes": [
+                "SSH 터널을 통하면 목록의 첫 호스트만 사용하므로 해당 세션에서는 복제본 세트 검색과 장애 조치가 꺼집니다."
             ]
         },
         {
             "id": "work",
             "title": "문서 쿼리 및 편집",
-            "paragraphs": [
-                "Query 탭에서 정규식, <code>ISODate()</code>, 변수, 반복문, <code>forEach</code> 등 mongosh 방식의 JavaScript를 사용하세요. 별도 셸 설치는 필요하지 않습니다. 변수는 연결 해제 전까지 연결 탭 간에 유지됩니다. 컬렉션, 필드 경로, 메서드, 연산자를 자동 완성합니다.",
-                "최상위 필드는 열로, 중첩 객체는 Extended JSON으로 표시합니다. 셀 편집은 날짜, ObjectId 등 타입을 유지합니다. 중첩 편집은 <code>address.city</code>처럼 변경된 경로만 업데이트합니다.",
-                "<editing>Insert Document와 Edit Document</editing>는 Extended JSON을 사용합니다. Edit Document는 서버 문서를 다시 읽고 편집 중 변경되거나 삭제되었으면 저장을 거부합니다. <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
-                "<filters>필터 바</filters>는 중첩 객체·객체 배열 안에 접근해 <code>customer.country</code>·<code>items.sku</code>를 바로 필터링합니다. GeoJSON 필드는 <map>지도 보기</map>로 열립니다.",
-                "<safeMode>Safe Mode</safeMode>는 <code>find</code>, <code>countDocuments</code>, <code>$out</code>이나 <code>$merge</code>가 없는 <code>aggregate</code>처럼 읽기만 하는 호출 하나를 읽기로 실행합니다. 그 밖의 JavaScript는 쓰기로 취급합니다."
+            "text": [
+                "Query 탭은 정규식, <code>ISODate()</code>, 변수, 반복문, <code>forEach</code>를 포함한 mongosh 방식의 JavaScript를 받으며, 셸을 따로 설치할 필요가 없습니다. 최상위 필드는 열로, 중첩 객체는 Extended JSON으로 표시됩니다. 셀 편집은 날짜와 ObjectId를 유지하며, 중첩 편집은 <code>address.city</code>처럼 해당 경로만 업데이트합니다.",
+                "<editing>Insert Document와 Edit Document</editing>는 Extended JSON을 사용하며, Edit Document는 열려 있는 동안 문서가 변경되었으면 저장을 거부합니다. <filters>필터 바</filters>는 중첩 객체와 배열 안까지 접근합니다. <safeMode>Safe Mode</safeMode>는 <code>find</code>나 <code>$out</code>, <code>$merge</code>가 없는 <code>aggregate</code>처럼 읽기만 하는 호출만 읽기로 취급합니다."
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "컬렉션, 인덱스 및 검증기",
-            "paragraphs": [
-                "<structure>Structure 탭</structure>에서 인덱스 필드, 타입, 옵션을 확인하세요. Show DDL은 서버가 보고한 옵션으로 <code>createIndex</code> 호출을 생성합니다.",
-                "<code>updateMany</code>를 미리 확인하고 컬렉션 전체에서 필드 이름을 바꾸거나 제거하세요. 검증 규칙도 함께 갱신됩니다. 인덱스, 검색 인덱스, 뷰가 해당 필드를 사용하면 저장을 차단합니다.",
-                "<ui>새 테이블</ui>(New Table)은 필드를 <code>$jsonSchema</code> 검증기로 구성한 컬렉션을 만든 뒤 나열한 인덱스를 만듭니다. 뷰·시계열 컬렉션은 사이드바에 표시되며 뷰는 읽기 전용입니다."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "백업",
-            "paragraphs": [
-                "<backup>Backup Dump</backup>는 선택한 데이터베이스마다 {dumpTool}로 gzip 아카이브를 쓰며 연결 호스트, Auth Database, SRV·TLS 설정을 사용합니다. 단일 컬렉션으로 좁힐 수도 있습니다. Restore Dump는 선택한 데이터베이스에 mongorestore를 실행하고 기존 내용은 유지합니다. 먼저 Mac에 MongoDB Database Tools를 설치하세요."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "{importFormats} 파일을 컬렉션에 <importData>가져오고</importData> 컬렉션·결과를 {exportFormats}로 <export>내보냅니다</export>.",
-                "MQL 내보내기는 mongosh에서 실행하는 <code>insertMany</code> 호출의 <code>.js</code> 파일이며 체크하면 컬렉션별 인덱스·검증기도 포함합니다. 최상위 값은 유형을 유지하지만 하위 문서·배열의 유형 값, 예를 들어 배열 안 ObjectId는 문자열로 기록됩니다. 그런 컬렉션은 JSON으로 내보내거나 mongodump로 백업하세요."
+            "text": [
+                "<structure>Structure 탭</structure>은 인덱스와 옵션을 나열하며, Show DDL은 이를 <code>createIndex</code> 호출로 작성합니다. 미리 확인하는 <code>updateMany</code>로 컬렉션 전체에서 필드 이름을 바꾸거나 제거하면 검증기도 함께 갱신됩니다. <ui>새 테이블</ui> (New Table)은 필드를 <code>$jsonSchema</code> 검증기로 만듭니다.",
+                "<backup>Backup Dump</backup>는 선택한 데이터베이스나 단일 컬렉션을 {dumpTool}로 gzip 아카이브에 기록하며, Restore Dump는 선택한 데이터베이스에 mongorestore를 실행합니다. 먼저 MongoDB Database Tools를 설치하세요."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "MongoDB Compass는 시각적 집계 파이프라인, 표본 스키마 분석, 실행 계획에 적합합니다. TablePro는 MongoDB와 다른 데이터베이스 엔진을 함께 조회합니다.",
-                "notes": [
-                    "compass-natural-language"
-                ]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass는 자연어 질문에서 쿼리를 작성할 수도 있습니다."
-        }
-    },
+    "moveData": [
+        "{importFormats} 파일을 컬렉션에 <importData>가져오고</importData> 컬렉션이나 결과를 {exportFormats}로 <export>내보내세요</export>. MQL 내보내기는 mongosh에서 실행되는 <code>insertMany</code> 호출을 작성하지만, 배열이나 하위 문서 안의 유형 값은 문자열이 됩니다. 그런 컬렉션은 mongodump로 백업하세요."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
             "question": "쿼리 탭은 mongosh인가요?",
-            "answer": "아니요. mongosh 구문을 받아 TablePro 안의 JavaScriptCore에서 실행하는 셸입니다. 대부분 mongosh 코드는 그대로 실행됩니다. 한 가지 차이는 32비트 범위를 벗어난 정수를 64비트 정수로 저장한다는 점입니다. mongosh는 double로 저장하므로 같게 하려면 <code>Double()</code>로 감싸세요."
+            "answer": "아니요. mongosh 구문을 받아 TablePro 안의 JavaScriptCore에서 실행하는 셸이므로 대부분의 mongosh 코드는 그대로 실행됩니다. 32비트 범위를 벗어난 정수는 64비트 정수로 저장되지만 mongosh는 double로 저장합니다. 같게 하려면 <code>Double()</code>로 감싸세요."
         },
         {
             "id": "query-plan",
             "question": "쿼리 계획은 어떻게 보나요?",
-            "answer": "쿼리 탭의 커서에 <code>.explain(\"executionStats\")</code>를 연결하세요. 계획은 문서로 반환되며 MongoDB 연결에는 계획 다이어그램이 없습니다."
+            "answer": "쿼리 탭의 커서에 <code>.explain(\"executionStats\")</code>를 연결하세요. 계획은 문서로 반환되며, MongoDB 연결에는 계획 다이어그램이 없습니다."
         },
         {
             "id": "users",
             "question": "데이터베이스 사용자는 어떻게 나열하나요?",
-            "answer": "<code>db.runCommand({usersInfo: 1})</code>을 실행하세요. 셸은 <code>db.getUsers()</code>·<code>db.createUser()</code>를 파싱하지 않습니다."
+            "answer": "<code>db.runCommand({usersInfo: 1})</code>을 실행하세요. 셸은 <code>db.getUsers()</code>나 <code>db.createUser()</code>를 파싱하지 않습니다."
         }
     ],
-    "related": [
-        {
-            "label": "안전하게 데이터 탐색 및 편집",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "SQL 이외의 쿼리 언어",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "가져오기, 내보내기 및 백업",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "TablePro와 다른 데이터베이스 클라이언트 비교",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass는 시각적 집계 파이프라인, 표본 스키마 분석, 실행 계획을 제공하며, TablePro는 MongoDB를 다른 엔진과 함께 조회합니다. <compass>TablePro와 MongoDB Compass 비교</compass>를 참고하세요.",
+        "also": [
+            "compass"
+        ]
+    }
 }

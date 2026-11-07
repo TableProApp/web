@@ -11,76 +11,54 @@
     "breadcrumb": "SQLite",
     "header": {
         "title": "SQLite client",
-        "lead": "Open a SQLite file, run SQL and inspect its tables. Review structure changes before applying them."
+        "lead": "Open a SQLite file on your Mac or over SSH, run SQL, and review structure changes before they run.",
+        "asset": "databases-sqlite"
     },
-    "asset": "mac-db-sqlite-chinook",
     "links": {
         "remoteFiles": "docs:/connections/remote-database-files",
-        "files": "/features/import-export#files",
-        "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
-        "copy": "/features/schema#copy",
-        "explain": "/features/querying#performance"
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
+        "dataFiles": "/features/import-export#data-files",
+        "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Open a database file",
-            "paragraphs": [
-                "Pick a file or drag it onto TablePro. A new path creates a database on connection. SQLite files are identified by their <code>SQLite format 3</code> header, not their extension.",
-                "Open .db, .sqlite and .sqlite3 files from Finder. Protected folders, such as Messages or Safari history, need Full Disk Access; the owning app may also need to quit.",
-                "Open a remote database in the <remoteFiles>Remote File pane</remoteFiles>. On the Server queries the live file over SSH and requires <code>python3</code>. As a Read-Only Copy downloads a snapshot over SFTP.",
-                "To look around first, choose Help > Open Sample Database. It opens Chinook, a small sample of a digital music store that comes with the app."
+            "text": [
+                "Pick a file or drag it onto TablePro, or open .db, .sqlite and .sqlite3 files from Finder; a new path creates a database. Files are identified by their <code>SQLite format 3</code> header, not their extension, and protected folders such as Messages or Safari history need Full Disk Access.",
+                "In the <remoteFiles>Remote File pane</remoteFiles>, <ui>On the Server</ui> queries the live file over SSH and needs <code>python3</code> there, and <ui>As a Read-Only Copy</ui> downloads a snapshot over SFTP. <ui>Help > Open Sample Database</ui> opens Chinook, a small music-store sample that comes with the app."
             ]
         },
         {
             "id": "work",
-            "title": "Query and edit",
-            "paragraphs": [
-                "The driver includes SQLite, independent of your macOS version. View <explain>EXPLAIN QUERY PLAN</explain> as a diagram.",
-                "Load per-connection extensions such as sqlite-vec or SpatiaLite. Imported, synced or linked extension lists need approval before loading. The <code>load_extension()</code> SQL function is blocked.",
-                "Row edits are staged until you save, with <editing>Preview SQL</editing> showing every statement first. When another program changes the file, the sidebar reloads on its own."
+            "title": "Query and extensions",
+            "text": [
+                "The driver includes SQLite, independent of your macOS version, and draws <explain>EXPLAIN QUERY PLAN</explain> as a diagram. When another program changes the file, the sidebar reloads on its own.",
+                "Load extensions such as sqlite-vec or SpatiaLite per connection. Extension lists that arrive by import, sync or a linked folder need your approval before they load, and the <code>load_extension()</code> SQL function is blocked."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Renaming a table or a column, adding or dropping a column and, from SQLite 3.53, adding or dropping a CHECK run as ALTER TABLE. Other <structure>Structure tab</structure> changes, such as a column’s type or a foreign key, rebuild the table: TablePro writes the script, copies the rows with their rowids, restores the indexes and triggers, and runs it only after you confirm.",
-                "Changing a column’s type re-reads its values through the new affinity, so <code>'007'</code> becomes <code>7</code> in an INTEGER column; the review sheet says so before anything runs. A virtual table, such as an FTS5 table, cannot be rebuilt, and the save names it.",
-                "Triggers can be read and edited from the sidebar."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Maintain and back up",
-            "paragraphs": [
-                "Table maintenance runs VACUUM, ANALYZE, REINDEX and an integrity check, each shown as SQL before it runs.",
-                "<backup>Backup Dump</backup> writes the database to a .sql file with {dumpTool}, and Restore Dump runs such a file against a database."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Move data",
-            "paragraphs": [
-                "<importData>Import</importData> {importFormats} files, or open a CSV, JSON or XLSX file in the <dataFiles>Data Files window</dataFiles> and import it from there. Tables and results export as {exportFormats}.",
-                "<copy>Copy To</copy> transfers tables and rows to another engine, with a list of type approximations. See <files>files as databases</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone and iPad",
-            "paragraphs": [
-                "On iPhone and iPad, pick a database file or create a new one, or open the Chinook sample from Open Sample Database. You browse tables as cards, filter them, edit rows that have a primary key and run SQL in the Query tab."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-query"
+            "title": "Structure",
+            "text": [
+                "Renaming a table or a column, adding or dropping a column and, from SQLite 3.53, adding or dropping a CHECK run as ALTER TABLE. Other <structure>Structure tab</structure> changes rebuild the table: TablePro writes the script, copies the rows with their rowids, restores indexes and triggers, and runs it only after you confirm.",
+                "A type change re-reads values through the new affinity, so <code>'007'</code> becomes <code>7</code> in an INTEGER column, and the review says so first. A virtual table, such as an FTS5 table, cannot be rebuilt. Table maintenance shows VACUUM, ANALYZE, REINDEX and an integrity check before they run, and <backup>Backup Dump</backup> writes a .sql file with {dumpTool}."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> {importFormats} files, or open a data file in the <dataFiles>Data Files window</dataFiles> and import it from there. Tables and results export as {exportFormats}, and <copy>Copy To</copy> moves tables and rows to another engine."
+    ],
+    "iphone": [
+        "Pick a database file, create a new one or open the Chinook sample, then browse tables as cards, filter them, edit rows that have a primary key and run SQL in the Query tab."
+    ],
     "faq": [
         {
             "id": "encrypted",
@@ -95,25 +73,8 @@
         {
             "id": "framework-files",
             "question": "Can I open my app’s development database?",
-            "answer": "Yes. Open the file where your framework keeps it, such as <code>db/development.sqlite3</code> in Rails or <code>db.sqlite3</code> in Django. Files under <code>~/Library</code>, including iOS Simulator containers, need Full Disk Access."
+            "answer": "Yes. Open the file where your framework keeps it, such as <code>db/development.sqlite3</code> in Rails or <code>db.sqlite3</code> in Django. Files under <code>~/Library</code>, iOS Simulator containers included, need Full Disk Access."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export and data files",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Cloudflare D1, SQLite over HTTP",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Turso and libSQL",
-            "href": "/turso-client"
-        },
-        {
-            "label": "DuckDB, for analytical files",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

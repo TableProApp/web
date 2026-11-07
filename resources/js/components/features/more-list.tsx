@@ -1,14 +1,10 @@
+import type { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import { AlsoAnchors, PartDetails, PartText, PlanPills, type PartContext } from './feature-part';
 import type { FeaturePart } from './types';
 
-// The smaller sub-features as plain text in two columns, no cards or icons. Each item keeps its id, since database
-// pages and blog posts link some of them.
-export default function MoreList({ items, title, context }: { items: FeaturePart[]; title: string; context: PartContext }) {
-    if (items.length === 0) {
-        return null;
-    }
-
+// The smaller parts of a page as plain text in two columns, no cards or icons.
+export function MoreFrame({ title, children }: { title: string; children: ReactNode }) {
     return (
         <section id="more" aria-labelledby="more-title" className="py-14 md:py-20">
             <Container>
@@ -16,21 +12,40 @@ export default function MoreList({ items, title, context }: { items: FeaturePart
                     <h2 id="more-title" className="text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground md:col-span-4 lg:col-span-3">
                         {title}
                     </h2>
-                    <ul className="grid gap-x-10 gap-y-10 sm:grid-cols-2 md:col-span-8 lg:col-span-9">
-                        {items.map((item) => (
-                            <li key={item.id} id={item.id} className="scroll-mt-16">
-                                <AlsoAnchors part={item} />
-                                <h3 className="text-[1.0625rem] leading-[1.35] font-semibold tracking-[-0.012em] text-foreground">
-                                    {item.title}
-                                    <PlanPills paid={item.paid} labels={context.labels} className="ml-2" />
-                                </h3>
-                                <PartText part={item} values={context.values} className="mt-2 text-[0.9375rem] leading-[1.55] text-pretty text-muted-foreground" />
-                                <PartDetails part={item} context={context} className="mt-3" />
-                            </li>
-                        ))}
-                    </ul>
+                    <ul className="grid gap-x-10 gap-y-10 sm:grid-cols-2 md:col-span-8 lg:col-span-9">{children}</ul>
                 </div>
             </Container>
         </section>
+    );
+}
+
+// Each item keeps its id, since other pages, redirects and blog posts link some of them.
+export function MoreItem({ id, also, title, marker, children }: { id: string; also?: string[]; title: ReactNode; marker?: ReactNode; children: ReactNode }) {
+    return (
+        <li id={id} className="scroll-mt-16">
+            <AlsoAnchors part={{ id, also }} />
+            <h3 className="text-[1.0625rem] leading-[1.35] font-semibold tracking-[-0.012em] text-foreground">
+                {title}
+                {marker}
+            </h3>
+            {children}
+        </li>
+    );
+}
+
+export default function MoreList({ items, title, context }: { items: FeaturePart[]; title: string; context: PartContext }) {
+    if (items.length === 0) {
+        return null;
+    }
+
+    return (
+        <MoreFrame title={title}>
+            {items.map((item) => (
+                <MoreItem key={item.id} id={item.id} also={item.also} title={item.title} marker={<PlanPills paid={item.paid} labels={context.labels} className="ml-2" />}>
+                    <PartText part={item} values={context.values} className="mt-2 text-[0.9375rem] leading-[1.55] text-pretty text-muted-foreground" />
+                    <PartDetails part={item} context={context} className="mt-3" />
+                </MoreItem>
+            ))}
+        </MoreFrame>
     );
 }

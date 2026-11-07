@@ -11,99 +11,60 @@
     "breadcrumb": "Redis",
     "header": {
         "title": "Redis GUI",
-        "lead": "在 Mac 上瀏覽鍵，並在 Standalone、Sentinel 或 Cluster 部署中執行命令。iPhone 和 iPad 僅支援 Standalone 命令。"
+        "lead": "以樹狀結構瀏覽鍵，並在 Standalone、Sentinel 或 Cluster 部署（包括 Valkey）上執行指令。",
+        "asset": "databases-redis"
     },
-    "asset": "mac-db-redis-keys",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "editing": "/features/data-editing#documents-and-keys",
         "safeMode": "/features/data-editing#safe-mode",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "compare": "/compare"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線",
-            "paragraphs": [
-                "從 <ui>連線模式</ui> (Connection Mode) 中選擇 Standalone、Sentinel 或 Cluster。Sentinel 在容錯移轉後跟隨主要節點；Cluster 從種子成員探索分片，並將命令路由至所屬分片。",
-                "用密碼登入，或填寫 Username 以 Redis 6 ACL 使用者登入。Amazon ElastiCache 選擇 <cloudAuth>AWS IAM</cloudAuth> 模式，用短期權杖作為密碼；ElastiCache IAM 需開啟 TLS。",
-                "新連線 TLS 關閉。Upstash、Redis Cloud 等服務要求 TLS，貼上 <code>rediss://</code> URL 會開啟。無明文退回機制，Preferred 等同 Required。Valkey 伺服器與 Redis 連線方式相同。",
-                "側邊欄從 <code>db0</code> 起列出各編號資料庫，點選原地瀏覽。"
+            "text": [
+                "選擇 <ui>連線模式</ui> (Connection Mode)：Standalone、Sentinel 或 Cluster。Sentinel 會在容錯移轉後跟隨主要節點，Cluster 從種子成員探索分片，並將每個指令路由至擁有其鍵的分片。Valkey 伺服器的連線方式與 Redis 相同。",
+                "以密碼登入，或填寫 Username 以 Redis 6 ACL 使用者登入。在 Amazon ElastiCache 上，<cloudAuth>AWS IAM</cloudAuth> 模式會將短期權杖作為密碼，並開啟 TLS。",
+                "新連線的 TLS 預設為關閉。Upstash、Redis Cloud 等服務要求 TLS，貼上 <code>rediss://</code> URL 會將其開啟；沒有退回明文的機制，因此 Preferred 的行為等同 Required。"
             ]
         },
         {
             "id": "work",
             "title": "鍵與指令",
-            "paragraphs": [
-                "依冒號分隔的資料夾瀏覽鍵，也可選擇其他分隔符。每列顯示鍵型別、TTL、長度和值。集合顯示前幾個項目；非 UTF-8 值在十六進位編輯器中開啟。",
-                "在表格中<editing>編輯鍵名、TTL 和字串值</editing>。Add Row 可建立雜湊、清單、集合、有序集合或字串。透過伺服器端 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 篩選鍵名和型別。",
-                "使用 redis-cli 風格引號規則執行命令。未知命令依原樣傳送。<code>DB 3 GET key</code> 可存取另一個資料庫而不改變工作階段。<code>MULTI</code> 中的回應會排隊，直到 <code>EXEC</code>。",
-                "<safeMode>Safe Mode</safeMode> 將讀取指令清單中的指令（如 <code>GET</code>）作為讀取執行，其他指令均視為寫入。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "將鍵或指令結果<export>匯出</export>為 {exportFormats}。Redis 不提供匯入，請在編輯器用指令載入資料。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone 與 iPad",
-            "paragraphs": [
-                "iPhone、iPad 在 Query 分頁執行 Redis 指令，iPhone 與 iPad App 不支援瀏覽鍵。連線接受密碼、來自檔案、貼上文字或 PKCS#12 套件的 CA 或用戶端憑證 TLS，以及密碼或金鑰登入的 SSH 通道。Sentinel、Cluster 僅限 Mac。"
+            "text": [
+                "依冒號或其他分隔符拆分的資料夾瀏覽鍵，查看每個鍵的型別、TTL、長度和值。集合顯示前幾個項目，非 UTF-8 值在十六進位編輯器中開啟。在表格中<editing>編輯鍵名、TTL 和字串值</editing>，Add Row 可建立雜湊、清單、集合、有序集合或字串。名稱和型別的篩選在伺服器端以 <code>SCAN MATCH</code> 和 <code>SCAN TYPE</code> 執行。",
+                "指令採用 redis-cli 的引號規則，未知指令會依原樣傳送。<code>DB 3 GET key</code> 可讀取另一個資料庫而不移動工作階段，<code>MULTI</code> 中的回應會排隊直到 <code>EXEC</code>。<safeMode>Safe Mode</safeMode> 將讀取清單上的指令（例如 <code>GET</code>）視為讀取，其他指令均視為寫入；<code>FLUSHDB</code> 和 <code>FLUSHALL</code> 一律先詢問。"
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "redis-insight",
-                "text": "Redis Insight 提供鍵瀏覽器、命令 Workbench、Pub/Sub 工作區、分析工具、慢速記錄和記憶體分析。TablePro 可同時處理 Redis 和 SQL 資料庫。",
-                "notes": [
-                    "redis-insight-copilot"
-                ]
-            }
-        ],
-        "notes": {
-            "redis-insight-copilot": "Redis Insight 的 Redis Copilot 回答 Redis 問題，並從自然語言建構搜尋查詢。"
-        }
-    },
+    "moveData": [
+        "將鍵或指令結果<export>匯出</export>為 {exportFormats}。要載入資料，請在編輯器中執行指令。"
+    ],
+    "iphone": [
+        "在 Standalone 連線的 Query 分頁執行 Redis 指令，可使用密碼登入、搭配 CA 或用戶端憑證的 TLS，或以密碼或金鑰登入的 SSH 通道。"
+    ],
     "faq": [
         {
             "id": "acl-scan",
-            "question": "為什麼 ACL 使用者的鍵樹為空？",
-            "answer": "鍵樹用 <code>SCAN</code> 讀取鍵名稱，用 <code>TYPE</code> 讀取型別。授予兩者，如 <code>ACL SETUSER app +scan +type</code>，再右鍵點選側邊欄<ui>鍵</ui>（Keys）選<ui>重新整理</ui>（Refresh）。"
+            "question": "為什麼我的 ACL 使用者的鍵樹是空的？",
+            "answer": "鍵樹以 <code>SCAN</code> 讀取鍵名稱，以 <code>TYPE</code> 讀取型別。請授予兩者，例如 <code>ACL SETUSER app +scan +type</code>，然後在側邊欄的 <ui>鍵</ui> (Keys) 上按右鍵並選擇 <ui>重新整理</ui> (Refresh)。"
         },
         {
             "id": "select",
-            "question": "為什麼 SELECT 不改變側邊欄？",
-            "answer": "<code>SELECT</code> 僅移動編輯器工作階段，後續指令在該資料庫執行，側邊欄和鍵樹保持點選的位置。點選側邊欄資料庫同時移動兩者，或給單一指令加 <code>DB</code> 及資料庫編號前綴。"
+            "question": "為什麼 SELECT 不會改變側邊欄？",
+            "answer": "<code>SELECT</code> 只移動編輯器的工作階段，因此側邊欄和鍵樹會停留在您點選的位置。點選側邊欄中的資料庫可同時移動兩者，或在單一指令前加上 <code>DB</code> 和資料庫編號。"
         },
         {
             "id": "managed",
-            "question": "為什麼受控 Redis 服務列出不存在的資料庫？",
-            "answer": "Upstash、Redis Cloud、ElastiCache 等拒絕 <code>CONFIG</code>，TablePro 無法讀取資料庫數而列出預設範圍。僅一個資料庫的服務中，開啟 <code>db0</code> 之外的資料庫顯示伺服器錯誤。"
+            "question": "為什麼受管理的 Redis 服務會列出它沒有的資料庫？",
+            "answer": "Upstash、Redis Cloud 和 ElastiCache 會拒絕 <code>CONFIG</code>，因此 TablePro 無法讀取它們有多少資料庫，而列出預設範圍。在只有一個資料庫的服務上，開啟其他資料庫時會顯示伺服器的錯誤。"
         }
     ],
-    "related": [
-        {
-            "label": "安全瀏覽與編輯資料",
-            "href": "/features/data-editing#documents-and-keys"
-        },
-        {
-            "label": "連線、通道與認證資訊",
-            "href": "/features/connections"
-        },
-        {
-            "label": "適用於 iPhone 與 iPad 的 TablePro",
-            "href": "/ios"
-        },
-        {
-            "label": "比較 TablePro 與其他資料庫用戶端",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Redis Insight 提供指令 Workbench、Pub/Sub 工作區、分析工具、慢速記錄和記憶體分析，而 TablePro 可在 SQL 資料庫旁處理 Redis；<compare>比較頁面</compare>涵蓋兩者兼具的其他用戶端。"
+    }
 }

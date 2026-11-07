@@ -11,77 +11,55 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "GUI etcd",
-        "lead": "Telusuri kunci berdasarkan awalan, ubah nilai, dan kelola sewa dengan perintah bergaya etcdctl."
+        "lead": "Telusuri kunci etcd berdasarkan prefiks, ubah nilai dan lease di grid, dan jalankan perintah gaya etcdctl.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan",
-            "paragraphs": [
-                "Masukkan satu host dan port klien. Port peer tidak memiliki gateway JSON. Tidak ada pemilihan database atau failover endpoint.",
-                "Kosongkan <ui>Username</ui> dan <ui>Password</ui> pada cluster tanpa autentikasi. Pengguna tanpa peran <code>root</code> dapat terhubung dan menelusuri kunci yang diizinkan perannya, sementara <code>endpoint status</code> serta perintah <code>user</code> dan <code>role</code> mengembalikan penolakan izin.",
-                "TLS diatur melalui <ui>TLS Mode</ui> dalam bidang Advanced, bukan bagian SSL, dan awalnya Disabled. Required (skip verify) mengenkripsi tanpa verifikasi, Verify CA memeriksa sertifikat terhadap file CA yang Anda tentukan, dan Verify Identity menambahkan pemeriksaan nama host. Sertifikat dan kunci klien menambahkan TLS timbal balik.",
-                "Akses cluster di balik bastion melalui <network>tunnel SSH</network>. URL <code>etcd://</code> dan <code>etcds://</code> dapat diimpor, dan keduanya tidak otomatis mengaktifkan TLS."
+            "text": [
+                "Masukkan satu host dan port kliennya; port peer tidak memiliki gateway JSON, dan tidak ada pemilihan database atau failover endpoint. Kosongkan <ui>Username</ui> dan <ui>Password</ui> pada cluster tanpa autentikasi. Pengguna tanpa peran <code>root</code> menelusuri kunci yang dicakup perannya, sedangkan <code>endpoint status</code> serta perintah <code>user</code> dan <code>role</code> menjawab permission denied.",
+                "TLS diatur melalui <ui>TLS Mode</ui> di bidang Advanced dan dimulai dengan Disabled. Required (skip verify) mengenkripsi tanpa pemeriksaan, Verify CA memeriksa sertifikat terhadap file CA yang Anda tentukan, dan Verify Identity menambahkan nama host; sertifikat dan kunci klien menambahkan TLS timbal balik. URL <code>etcd://</code> dan <code>etcds://</code> dapat diimpor, dan keduanya tidak mengaktifkan TLS dengan sendirinya."
             ]
         },
         {
             "id": "work",
             "title": "Telusuri kunci dan jalankan perintah",
-            "paragraphs": [
-                "Tetapkan <ui>Key Prefix Root</ui>, seperti <code>/app</code>, untuk membatasi koneksi pada satu subpohon. Sidebar mengelompokkan kunci berdasarkan segmen jalur pertama di bawahnya, dan setiap kunci berupa baris dengan nilai, versi, revisi perubahan dan pembuatan, serta lease.",
-                "Menyimpan perubahan mengirim perintah. Nilai atau lease baru menulis ulang kunci, lease NULL menghapus lease, dan mengganti nama kunci menulis nama baru serta menghapus nama lama. Kolom revisi dikelola etcd, sehingga mengeditnya menghentikan penyimpanan dan menyebutkan kolom tersebut.",
-                "Jalankan perintah bergaya etcdctl untuk kunci, watch, lease, member, endpoint, pemadatan, dan kontrol akses, dengan pelengkapan perintah dan flag. Perintah yang tidak didukung ditolak sebelum mencapai server.",
-                "<safeMode>Safe Mode</safeMode> menjalankan <code>get</code>, <code>watch</code>, dan perintah yang hanya menampilkan daftar atau laporan sebagai pembacaan, serta menganggap perintah lain sebagai penulisan."
+            "text": [
+                "Atur <ui>Key Prefix Root</ui>, seperti <code>/app</code>, untuk membatasi koneksi ke satu subpohon. Sidebar mengelompokkan kunci berdasarkan segmen path pertama di bawahnya, dan setiap kunci adalah baris dengan nilai, versi, revisi mod dan create, serta lease-nya.",
+                "Menyimpan pengeditan mengirim perintah: nilai atau lease baru menulis ulang kunci, lease NULL menghapus lease, dan penggantian nama menulis nama baru lalu menghapus nama lama. Kolom revisi milik etcd, sehingga mengedit salah satunya menghentikan penyimpanan dan menyebutkan kolom tersebut.",
+                "Jalankan perintah gaya etcdctl untuk key, watch, lease, member, endpoint, compaction, dan kontrol akses, dengan pelengkapan perintah dan flag; perintah yang tidak didukung ditolak sebelum mencapai server. <safeMode>Safe Mode</safeMode> menjalankan <code>get</code>, <code>watch</code>, dan perintah yang hanya menampilkan daftar atau laporan sebagai pembacaan, dan menganggap perintah lain sebagai penulisan."
             ]
         },
         {
             "id": "operate",
             "title": "Lease dan cluster",
-            "paragraphs": [
-                "Kelola lease dan pemadatan revisi dari editor. Gunakan perintah untuk memeriksa member serta status atau kesehatan endpoint; etcd tidak memiliki Server Dashboard.",
-                "Menjalankan <code>auth enable</code> dari editor mengaktifkan autentikasi untuk seluruh cluster. Koneksi dengan nama pengguna dan kata sandi tetap berfungsi; koneksi tanpa keduanya harus dibuka ulang dengan kredensial."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Impor tidak tersedia. <export>Ekspor</export> kunci atau hasil perintah sebagai {exportFormats}."
+            "text": [
+                "Kelola lease dan compaction revisi dari editor, dan periksa member serta status atau kesehatan endpoint dengan perintah. Menjalankan <code>auth enable</code> mengaktifkan autentikasi untuk seluruh cluster: koneksi yang menyimpan nama pengguna dan kata sandi tetap berfungsi, dan koneksi tanpa keduanya harus dibuka ulang dengan kredensial."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Ekspor</export> kunci atau hasil perintah sebagai {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
             "question": "Mengapa ID lease merujuk ke lease lain?",
-            "answer": "ID lease menerima desimal atau heksadesimal, dan heksadesimal dikenali dari hurufnya. Awali ID heksadesimal yang hanya berisi digit dengan <code>0x</code>, seperti <code>--lease=0x69407712</code>, atau ID dibaca sebagai desimal dan merujuk ke lease lain."
+            "answer": "ID lease menerima desimal atau heksadesimal, dan heksadesimal dikenali dari hurufnya. Awali ID heksadesimal yang semuanya digit dengan <code>0x</code>, seperti <code>--lease=0x69407712</code>, atau ID dibaca sebagai desimal dan merujuk ke lease lain."
         },
         {
             "id": "binary-values",
             "question": "Apakah saya dapat mengedit nilai biner?",
-            "answer": "Tidak. Nilai yang bukan UTF-8 valid ditampilkan dalam grid sebagai base64 dan ditandai demikian, sedangkan teks yang Anda ketik dikirim sebagai UTF-8. Tulis nilai biner menggunakan <code>etcdctl</code>."
+            "answer": "Tidak. Nilai yang bukan UTF-8 valid ditampilkan di grid sebagai base64, dengan penanda, dan teks yang Anda ketik dikirim sebagai UTF-8. Tulis nilai biner dengan <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Telusuri dan edit data dengan aman",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Koneksi, tunnel, dan kredensial",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, ruang kunci lainnya",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

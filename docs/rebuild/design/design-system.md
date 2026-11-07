@@ -1430,49 +1430,40 @@ Every window is shown whole at every width, never as a phone crop (owner, 2026-1
 
 ### 8.3 Database hub (`/databases`)
 
-```
-PageHeader   H1 · intro (native drivers in one app; a few engines named)
-Jump links   one per category, in sitemap §A.3's order and ids:
-             #relational · #analytical · #cloud · #document · #key-value · #wide-column · #search · #streaming · #coordination · #files
-             (labels from the catalog, for example Relational · Analytical and warehouse · Cloud and serverless · Document ·
-              Key-value · Wide-column · Search and vector · Streaming · Coordination · Files; membership from engines.json `category`)
-per category H2 carrying that id · EngineTable [Engine (mark + name → page, or docs ↗) | Query language | Driver | iPhone & iPad | Notes]
-             hub-only engines keep their own row ids (#spanner, #sap-hana …)
-#drivers     text cols 1–5: how drivers are delivered (built in vs downloaded on first pick, signature check,
-             plugins update separately, a network connection for a first install) │ ▒ mac-engine-picker (4:3) cols 6–12
-Section      iPhone and iPad engines (names only)
-Line         No engine needs a license
-Section      Missing your database? → GitHub request form ↗
-Read the docs ↗
-DownloadBand
-```
-
-At 375, EngineTable folds Query language, Driver, iPhone and Notes into the Engine cell. Other pages link these ids directly (for example `/databases#wide-column` from the Cassandra page and `#streaming` from the Kafka page), so a category never loses its id even when it holds one engine.
-
-### 8.4 Database page (`/{engine}-client` and the like; `/vi/…`)
+Redesigned 2026-11-08 on the feature-page system (`components/databases/README.md`).
 
 ```
-Breadcrumbs  Databases / {Engine}
-cols 1–8:  [mark 40] H1 · lead (1–2 sentences) · AvailabilityLine (platforms · driver delivery · "0.77" where it applies)
-           · one line from data: free to use with optional paid plans → /pricing · open source (licence) → repository ↗
-           [Download for Mac] primary · App Store badge only if the engine opens on iPhone · Setup guide ↗
-cols 9–12: Card "Facts" → DescriptionList { Query language · Driver · Connect with · Minimum version · iPhone and iPad }
-▒ lead slot  the first ID in sitemap §A.3's Slots column for this page (engine-specific; never shared across engines)
-             a window renders cols 1–12 at 16:9; a detail renders cols 1–7 at 4:3
-Sections     sitemap §E.1's order: Connect · Work with the data · Schema · Operate · Move data · iPhone and iPad
-             · further sitemap §A.3 slots, one per section at most, as detail rows (cols 6–12)
-             · the query surface named as the engine has it (SQL, Redis commands, Query DSL…)
-Callout note Limits, from engines.json `limits[]`
-Family       #mariadb, #cockroachdb … sections, on merged pages only
-Section      Other tools (optional, dated)
-FaqList      2–4, optional
-Related      feature pages, comparisons, docs ↗ (standalone links)
-DownloadBand
+Area nav     All databases · Relational · Analytical and warehouse · … (one #id per band; scrolls sideways on a phone)
+Hero         H1 · lead with the derived count and the featured engines · [Download] · Setup guides ↗
+Bands ×6     CellGrid row, as /faq: cell 1–3 the group name │ cells 4–12 a ruled list, one row per engine:
+             name (→ its page or family section; setup guide ↗ for a hub-only engine) · query language · tagline
+             #relational · #analytical · #cloud · #nosql (document, key-value, wide-column, streaming, coordination) ·
+             #search · #files; hub-only rows keep their ids (#spanner, #sap-hana …)
+Also         #drivers · #linux (once released) · #iphone · #missing
+Closing      "Every supported database connection is included in Free. …" · [Download] · See pricing
+```
+
+A category of one or two engines shares a band, and its old id lands on its first engine (`/databases#wide-column` on
+Cassandra). No logos or icons. The rows' rules run from the cell wall to the rail. Below 640px a row is two lines: the
+name with its query language, then the tagline; from 1280 the query language takes its own column.
+
+### 8.4 Database page (`/{engine}-client` and the like, every locale)
+
+```
+Hero         Databases / {Engine} · [mark 40, where the site has one] · H1 · one sentence · [Download] · Setup guide ↗
+             cols 8–12 (9–12 from 1280): Card "At a glance" → DescriptionList { Query language · Driver · Connect with
+             · Default port · Minimum version · Built-in engine }, no platform rows
+             ▒ the engine's whole Mac window (`databases-{engine id}`, window-whole), settling in once on load
+Bands ×2–4   #connect · #work · #schema · #operate, as feature bands without a window
+Line         cols 4–12: what every engine gets is on the feature pages → /features
+Family       #mariadb, #cockroachdb … bands: 2–3 sentences, then a card: default port · minimum version · limits
+Also         #move-data · #iphone (only where the engine opens there) · #limits · FAQ items (their ids) · #other-tools
+Closing      the paid sentence from the copy's plan tokens · [Download] · See pricing
 ```
 
 **The "Minimum version" row** shows the engine's recorded server version floor from `engines.json`. A floor the app enforces says so ("enforced: older servers are refused", Oracle 10g for example). A floor that comes from documentation is the bare version (MySQL 5.7, for example): the word "documented" told a reader nothing. Where the documentation says there is no minimum, the floor's `text` is null and the row reads "None". The row is left out when the engine has no recorded floor. The site never says "tested": there is no test evidence for any engine version.
 
-At 375 the Facts card moves under the lead, before the slot.
+Below 1024 the facts card follows the actions, before the window. Bands and the list rise into place as they scroll in.
 
 ### 8.5 Comparison (`/compare/{competitor}`; the hub is a plain list of rows)
 

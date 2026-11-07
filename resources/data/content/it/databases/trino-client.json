@@ -11,59 +11,52 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Client Trino",
-        "lead": "Effettua query tra cataloghi, controlla i piani e annulla le query in esecuzione. Il supporto in scrittura dipende dal connettore di ciascun catalogo."
+        "lead": "Esegui query tra cataloghi, esamina i piani e annulla le query in esecuzione; le scritture dipendono dal connettore di ciascun catalogo.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connetti e accedi",
-            "paragraphs": [
-                "Inserisci l'host del coordinatore, la porta e <ui>Username</ui>. Gli optional <ui>Catalog</ui> e <ui>Schema</ui> impostano la posizione di partenza. Imposta uno IANA <ui>Time Zone</ui> per la sessione.",
-                "Accedi con una password, inviata come HTTP Basic per l’autenticazione LDAP o tramite file di password, oppure con un token di accesso JWT inviato come credenziale bearer. Entrambi viaggiano solo su TLS: con SSL Disabled, una connessione che ne contiene uno viene rifiutata prima di inviare qualsiasi dato. Un certificato e una chiave client nel pannello SSL aggiungono TLS reciproco.",
-                "SSL è inizialmente Disabled, cioè HTTP non cifrato; ogni altra modalità impone TLS senza fallback in chiaro e la porta 443 attiva Verify Identity. Un reindirizzamento da un proxy davanti al coordinatore non viene mai seguito; l’errore ne indica la destinazione. Raggiungi un coordinatore dietro un bastion tramite un <network>tunnel SSH</network> e importa un URL <code>trino://</code> con <ui>Import from URL…</ui>."
+            "text": [
+                "Inserisci l’host del coordinatore, la porta e <ui>Username</ui>. <ui>Catalog</ui> e <ui>Schema</ui> impostano la posizione di partenza, e un <ui>Time Zone</ui> IANA imposta il fuso orario della sessione.",
+                "Accedi con una password, inviata come HTTP Basic per l’autenticazione LDAP o tramite file di password, oppure con un token di accesso JWT inviato come credenziale bearer. Entrambi viaggiano solo su TLS: con SSL Disabled, una connessione che ne contiene uno viene rifiutata prima di inviare qualsiasi dato. Un certificato e una chiave client nel pannello SSL aggiungono il TLS reciproco.",
+                "SSL parte da Disabled, cioè HTTP non cifrato; ogni altra modalità impone TLS senza fallback in chiaro, e la porta 443 attiva Verify Identity. Un reindirizzamento da un proxy davanti al coordinatore non viene mai seguito, e l’errore ne indica la destinazione. <ui>Import from URL…</ui> importa un URL <code>trino://</code>."
             ]
         },
         {
             "id": "work",
             "title": "Esegui query su più cataloghi",
-            "paragraphs": [
-                "Interroga i nomi <code>catalog.schema.table</code> completi per unirli tra i cataloghi. Sfoglia cataloghi, schemi, tabelle e viste materializzate; le stime del conteggio delle righe provengono da <code>SHOW STATS</code>.",
-                "<code>bigint</code> e <code>decimal</code> vengono letti come testo esatto, non come virgola mobile. <code>varbinary</code> appare in esadecimale, <code>array</code>, <code>map</code> e <code>row</code> in JSON e i timestamp mantengono il valore restituito dal server.",
-                "<explain>Explain</explain> offre Logical, Distributed, IO, Validate e Analyze. Validate verifica una query senza eseguirla, Analyze la esegue e riporta i tempi effettivi e ogni piano viene restituito come testo non elaborato.",
-                "<code>SET SESSION</code> resta valido per il resto della connessione. <ui>Query > Cancel Query</ui> chiede al coordinatore di terminare la query in esecuzione ed è il modo per fermarla: il timeout delle query della connessione non raggiunge Trino.",
-                "<editing>Le modifiche alle celle</editing> utilizzano le istruzioni INSERT, UPDATE e DELETE digitate. Trino non riporta chiavi primarie, quindi le modifiche corrispondono a ogni colonna originale. Le righe identiche cambiano insieme, senza alcuna transazione per annullarle. Verifica la presenza di duplicati prima della modifica."
+            "text": [
+                "Unisci tabelle tra cataloghi con nomi completi <code>catalog.schema.table</code>, e sfoglia cataloghi, schemi, tabelle e viste materializzate, con le stime del numero di righe da <code>SHOW STATS</code>. <code>bigint</code> e <code>decimal</code> vengono letti come testo esatto, non in virgola mobile; <code>varbinary</code> appare in esadecimale, <code>array</code>, <code>map</code> e <code>row</code> come JSON, e i timestamp mantengono il valore restituito dal server.",
+                "<explain>Explain</explain> offre Logical, Distributed, IO, Validate e Analyze, ciascuno come testo grezzo: Validate verifica una query senza eseguirla, e Analyze la esegue e riporta i tempi effettivi. <code>SET SESSION</code> resta valido per il resto della connessione, e <ui>Query > Cancel Query</ui> è il modo per fermare una query, perché il timeout delle query della connessione non raggiunge Trino.",
+                "Trino non riporta chiavi primarie, quindi le <editing>modifiche alle celle</editing> corrispondono a ogni colonna originale, e le righe identiche cambiano insieme senza alcuna transazione per annullarle. Verifica la presenza di duplicati prima di modificare."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
+            "text": [
                 "La <structure>scheda Structure</structure> crea tabelle e aggiunge, elimina, rinomina e cambia il tipo delle colonne, in autocommit. L’esecuzione dipende dal connettore del catalogo e il cambio di tipo è l’operazione accettata da meno connettori."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Sposta i dati",
-            "paragraphs": [
-                "L’importazione non è disponibile. <export>Esporta</export> una tabella o un risultato in {exportFormats}."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "L’importazione non è disponibile. <export>Esporta</export> una tabella o un risultato in {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
             "question": "Perché un’istruzione valida restituisce NOT_SUPPORTED?",
-            "answer": "Il connettore di quel catalogo non implementa l’operazione, indipendentemente da ciò che consente la grammatica di Trino. Un connettore in sola lettura rifiuta ogni scrittura. Consulta la documentazione del connettore per sapere cosa supporta."
+            "answer": "Il connettore dietro quel catalogo non implementa l’operazione, qualunque cosa consenta la grammatica di Trino, e un connettore in sola lettura rifiuta ogni scrittura. Consulta la documentazione del connettore."
         },
         {
             "id": "encrypted-key",
@@ -71,22 +64,5 @@
             "answer": "No. Le connessioni Trino non hanno un campo per la passphrase della chiave. Scrivi una copia decifrata con <code>openssl pkey -in encrypted.key -out client.key</code> e scegli quel file."
         }
     ],
-    "related": [
-        {
-            "label": "Scrivi, esegui e comprendi le query",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Connessioni, tunnel e credenziali",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata, un data warehouse",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake, un data warehouse cloud",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,116 +11,77 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "Client MongoDB",
-        "lead": "Parcourez les collections, utilisez une syntaxe de type mongosh et modifiez les documents en Extended JSON."
+        "lead": "Interrogez MongoDB en JavaScript de type mongosh, parcourez les collections et modifiez les documents en Extended JSON.",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connexion",
-            "paragraphs": [
-                "Saisissez un hôte ou une liste <code>host:port</code> de replica set, ou collez une URL <code>mongodb://</code> ou <code>mongodb+srv://</code>. L’authentification accepte SCRAM-SHA-1, SCRAM-SHA-256, X.509 et AWS IAM. Définissez <ui>Auth Database</ui> sur la base qui définit votre utilisateur.",
-                "Un hôte se terminant par <code>.mongodb.net</code> active automatiquement SRV et TLS, requis par MongoDB Atlas. Ajoutez d’abord votre IP à la liste d’accès du cluster : le trafic d’une adresse absente expire plutôt que d’échouer immédiatement.",
-                "Les nouvelles connexions démarrent sans TLS et le pilote n’a pas de repli ; Preferred se comporte donc comme Required. Read Preference et Write Concern se définissent par connexion ; le write concern accompagne chaque insertion, mise à jour et suppression depuis le shell ou lors de l’enregistrement de la grille.",
-                "Avec un <network>tunnel SSH</network>, seul le premier hôte est utilisé ; découverte du replica set et basculement sont donc désactivés pour cette session."
+            "text": [
+                "Saisissez un hôte ou une liste <code>host:port</code> de replica set, ou collez une URL <code>mongodb://</code> ou <code>mongodb+srv://</code>. Authentifiez-vous avec SCRAM-SHA-1, SCRAM-SHA-256, X.509 ou AWS IAM, en définissant <ui>Auth Database</ui> sur la base qui définit votre utilisateur.",
+                "Un hôte se terminant par <code>.mongodb.net</code> active SRV et TLS, requis par MongoDB Atlas ; ajoutez d’abord votre adresse IP à la liste d’accès du cluster, sinon la connexion expire. Les nouvelles connexions démarrent sans TLS, et Preferred se comporte comme Required. Read Preference et Write Concern se définissent par connexion."
+            ],
+            "notes": [
+                "Avec un tunnel SSH, seul le premier hôte de la liste est utilisé ; découverte du replica set et basculement sont donc désactivés pour cette session."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez des documents",
-            "paragraphs": [
-                "Utilisez du JavaScript de type mongosh dans l’onglet Query : regex, <code>ISODate()</code>, variables, boucles et <code>forEach</code>. Aucune installation de shell n’est nécessaire. Les variables persistent entre les onglets de la connexion jusqu’à déconnexion. La complétion inclut collections, chemins de champs, méthodes et opérateurs.",
-                "Consultez les champs de premier niveau en colonnes et les objets imbriqués en Extended JSON. Les modifications de cellules préservent les types comme les dates et ObjectIds. Les modifications imbriquées ne changent que le chemin concerné, comme <code>address.city</code>.",
-                "<editing>Insert Document et Edit Document</editing> utilisent Extended JSON. Edit Document relit le document du serveur et refuse l’enregistrement s’il a changé ou disparu pendant son ouverture. <ui>Supprimer le champ</ui> (Remove Field) envoie <code>$unset</code>.",
-                "La <filters>barre de filtres</filters> descend dans les objets imbriqués et les tableaux d’objets : vous pouvez filtrer directement sur <code>customer.country</code> et <code>items.sku</code>. Un champ contenant du GeoJSON s’ouvre dans la <map>vue Carte</map>.",
-                "<safeMode>Safe Mode</safeMode> exécute une instruction comme lecture quand c’est un seul appel qui ne fait que lire, comme <code>find</code>, <code>countDocuments</code> ou un <code>aggregate</code> sans <code>$out</code> ni <code>$merge</code>. Tout autre JavaScript compte comme écriture."
+            "text": [
+                "L’onglet Query accepte du JavaScript de type mongosh, avec regex, <code>ISODate()</code>, variables, boucles et <code>forEach</code>, sans shell à installer. Les champs de premier niveau s’affichent en colonnes et les objets imbriqués en Extended JSON ; les modifications de cellules préservent les dates et les ObjectIds, et une modification imbriquée ne change que son chemin, comme <code>address.city</code>.",
+                "<editing>Insert Document et Edit Document</editing> utilisent Extended JSON, et Edit Document refuse l’enregistrement si le document a changé pendant son ouverture. La <filters>barre de filtres</filters> descend dans les objets imbriqués et les tableaux, et <safeMode>Safe Mode</safeMode> ne compte un appel comme lecture que s’il ne fait que lire, comme <code>find</code> ou un <code>aggregate</code> sans <code>$out</code> ni <code>$merge</code>."
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "Collections, index et validateurs",
-            "paragraphs": [
-                "Inspectez champs, types et options des index dans l’<structure>onglet Structure</structure>. Show DDL génère des appels <code>createIndex</code> avec les options indiquées par le serveur.",
-                "Renommez ou supprimez un champ dans toute une collection avec un aperçu de <code>updateMany</code>. Le validateur est aussi mis à jour. L’enregistrement est bloqué si un index, index de recherche ou vue utilise encore le champ.",
-                "<ui>Nouvelle table</ui> (New Table) crée une collection dont les champs deviennent un validateur <code>$jsonSchema</code>, puis construit les index indiqués. Les vues et les collections de séries temporelles apparaissent dans la barre latérale ; les vues s’ouvrent en lecture seule."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Sauvegardez",
-            "paragraphs": [
-                "<backup>Backup Dump</backup> écrit chaque base cochée dans une archive gzip avec {dumpTool}, en utilisant les hôtes, l’Auth Database et les paramètres SRV et TLS de la connexion ; un dump peut se limiter à certaines collections. Restore Dump exécute mongorestore dans la base choisie et conserve ce qui s’y trouve déjà. Installez d’abord les MongoDB Database Tools sur votre Mac."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "<importData>Importez</importData> des fichiers {importFormats} dans une collection. <export>Exportez</export> des collections ou des résultats en {exportFormats}.",
-                "Un export MQL est un fichier <code>.js</code> d’appels <code>insertMany</code> exécutable dans mongosh, avec les index et le validateur de chaque collection si vous les cochez. Les valeurs de premier niveau gardent leur type, mais une valeur typée imbriquée dans un sous-document ou un tableau, comme un ObjectId dans un tableau, est écrite sous forme de chaîne : exportez plutôt ces collections en JSON ou sauvegardez-les avec mongodump."
+            "text": [
+                "L’<structure>onglet Structure</structure> liste les index avec leurs options, et Show DDL les écrit sous forme d’appels <code>createIndex</code>. Renommez ou supprimez un champ dans toute une collection avec un <code>updateMany</code> prévisualisé qui met aussi à jour le validateur, et <ui>Nouvelle table</ui> (New Table) transforme les champs en validateur <code>$jsonSchema</code>.",
+                "<backup>Backup Dump</backup> écrit les bases cochées, ou des collections isolées, dans des archives gzip avec {dumpTool}, et Restore Dump exécute mongorestore dans la base choisie. Installez d’abord les MongoDB Database Tools."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "Choisissez MongoDB Compass pour les pipelines d’agrégation visuels, l’analyse de schéma par échantillonnage et les plans d’exécution. TablePro interroge MongoDB aux côtés d’autres moteurs.",
-                "notes": [
-                    "compass-natural-language"
-                ]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass peut aussi écrire une requête à partir d’une question en langage naturel."
-        }
-    },
+    "moveData": [
+        "<importData>Importez</importData> des fichiers {importFormats} dans une collection, et <export>exportez</export> des collections ou des résultats en {exportFormats}. Un export MQL écrit des appels <code>insertMany</code> exécutables dans mongosh, mais une valeur typée imbriquée dans un tableau ou un sous-document devient une chaîne : sauvegardez donc ces collections avec mongodump."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
-            "question": "L’onglet Requête est-il mongosh ?",
-            "answer": "Non. C’est un shell acceptant la syntaxe mongosh et exécuté dans TablePro sur JavaScriptCore. La plupart du code mongosh fonctionne tel quel. Une différence : un entier hors de la plage 32 bits est stocké en entier 64 bits, tandis que mongosh stocke un double ; enveloppez-le dans <code>Double()</code> pour reproduire cela."
+            "question": "L’onglet Requête est-il mongosh ?",
+            "answer": "Non. C’est un shell qui accepte la syntaxe mongosh et s’exécute dans TablePro sur JavaScriptCore ; la plupart du code mongosh fonctionne donc tel quel. Un entier hors de la plage 32 bits est stocké en entier 64 bits, là où mongosh stocke un double : enveloppez-le dans <code>Double()</code> pour obtenir le même résultat."
         },
         {
             "id": "query-plan",
-            "question": "Comment voir un plan de requête ?",
-            "answer": "Chaînez <code>.explain(\"executionStats\")</code> au curseur dans l’onglet Requête. Le plan revient sous forme de document ; les connexions MongoDB n’ont pas de diagramme de plan."
+            "question": "Comment voir un plan de requête ?",
+            "answer": "Chaînez <code>.explain(\"executionStats\")</code> au curseur dans l’onglet Requête. Le plan revient sous forme de document ; les connexions MongoDB n’ont pas de diagramme de plan."
         },
         {
             "id": "users",
-            "question": "Comment lister les utilisateurs de la base ?",
+            "question": "Comment lister les utilisateurs de la base ?",
             "answer": "Exécutez <code>db.runCommand({usersInfo: 1})</code>. Le shell n’analyse ni <code>db.getUsers()</code> ni <code>db.createUser()</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Parcourez et modifiez les données en sécurité",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Langages de requête autres que SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Import, export et sauvegardes",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Comparer TablePro à d’autres clients de bases de données",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass propose des pipelines d’agrégation visuels, une analyse de schéma par échantillonnage et des plans d’exécution, tandis que TablePro interroge MongoDB aux côtés d’autres moteurs ; voir <compass>TablePro face à MongoDB Compass</compass>.",
+        "also": [
+            "compass"
+        ]
+    }
 }

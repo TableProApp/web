@@ -11,54 +11,53 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Elasticsearch-Client",
-        "lead": "Führe Query-DSL-Anfragen aus und durchsuche Indexdokumente im Raster. Bearbeite Dokumente anhand ihrer IDs."
+        "lead": "Führe Query-DSL-Anfragen in einer Konsole aus, durchsuche Indexdokumente im Raster und bearbeite sie anhand ihrer IDs.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Gib REST-Host und Port ein und wähle <ui>Auth Method</ui> : Username & Password, API Key oder None. Nutze bei API-Schlüsseln den <code>encoded</code>-Wert. Jede Verbindung entspricht einem Cluster.",
-                "Neue Verbindungen beginnen mit SSL Disabled, also Klartext-HTTP. Jeder andere Modus nutzt HTTPS: Preferred und Required (skip verify) akzeptieren selbstsignierte Zertifikate; Verify CA und Verify Identity überprüfen sie. Elasticsearch 8.x aktiviert Sicherheit und TLS standardmäßig, daher benötigt ein 8.x-Cluster meist HTTPS und Zugangsdaten."
+            "text": [
+                "Gib REST-Host und Port ein und wähle dann <ui>Auth Method</ui>: Username & Password, API Key oder None. API-Schlüssel nutzen den <code>encoded</code>-Wert von Elasticsearch, und jede Verbindung erreicht einen Cluster.",
+                "Neue Verbindungen beginnen mit SSL Disabled, also Klartext-HTTP; jeder andere Modus nutzt HTTPS. Preferred und Required (skip verify) akzeptieren ein selbstsigniertes Zertifikat, und Verify CA und Verify Identity prüfen es. Elasticsearch 8.x aktiviert Sicherheit und TLS standardmäßig, daher braucht ein 8.x-Cluster meist HTTPS und Zugangsdaten."
             ]
         },
         {
             "id": "work",
             "title": "Indizes und Query-DSL-Konsole",
-            "paragraphs": [
-                "Schreibe Methode, Pfad und optional JSON, etwa <code>GET /orders/_search</code>. Treffer und Arrays erscheinen als Zeilen, andere Antworten als formatiertes JSON. <code>_sql</code> ist nicht verfügbar.",
+            "text": [
+                "Schreibe Methode, Pfad und optional einen JSON-Body, etwa <code>GET /orders/_search</code>. Suchtreffer und Array-Antworten erscheinen als Zeilen, andere Antworten als formatiertes JSON, und der Endpunkt <code>_sql</code> ist nicht verfügbar.",
                 "Die Seitenleiste listet Indizes als Tabellen und verbirgt Namen, die mit einem Punkt beginnen. Spalten stammen aus dem Mapping: Objektfelder werden zu Punktpfaden wie <code>address.city</code>, ein verschachteltes Feld erhält eine JSON-Spalte für sein Array und eine Spalte pro Blatt. Jedes Dokument enthält <code>_id</code>, <code>_index</code> und <code>_score</code>.",
-                "<filters>Spaltenfilter</filters> werden zu <code>term</code>-, <code>range</code>-, <code>wildcard</code>-, <code>terms</code>- und <code>exists</code>-Abfragen. Die Raw-SQL-Filterzeile nimmt Lucene-Syntax wie <code>name:Widget</code> entgegen, gesendet als <code>query_string</code>. Beim Sortieren eines <code>text</code>-Feldes wird dessen <code>.keyword</code>-Unterfeld verwendet, sofern das Mapping eines hat.",
-                "Bearbeite Dokumente per <code>_id</code> über REST. Neue Dokumente brauchen eine ID. Bearbeite verschachtelte Arrays in der JSON-Spalte; Änderungen an Blattspalten verhindern das Speichern, ohne eine Anfrage zu senden."
+                "<filters>Spaltenfilter</filters> werden zu <code>term</code>-, <code>range</code>-, <code>wildcard</code>-, <code>terms</code>- und <code>exists</code>-Abfragen, und die Raw-SQL-Filterzeile nimmt Lucene-Syntax wie <code>name:Widget</code> an. Änderungen gehen als REST-Aufrufe per <code>_id</code> hinaus; ändere ein verschachteltes Array über seine JSON-Spalte."
+            ],
+            "notes": [
+                "TablePro verbindet sich auch mit <search>Typesense und Weaviate</search>, den anderen Suchmaschinen."
             ]
         },
         {
             "id": "schema",
             "title": "Mappings",
-            "paragraphs": [
-                "Mappings sind in TablePro schreibgeschützt. Leeren wird nicht angeboten, da die ähnlichste Funktion in Elasticsearch, <code>_delete_by_query</code>, asynchron läuft und Konflikte pro Dokument meldet; sende sie aus der Konsole. Das Löschen eines Index aus der Seitenleiste sendet die in der Bestätigung gezeigte DELETE-Anfrage."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Exportieren",
-            "paragraphs": [
-                "Es gibt keinen Import. <export>Exportieren</export> liest einen ganzen Index mit einem Point-in-Time und <code>search_after</code>, ohne Begrenzung durch das Ergebnisfenster, und schreibt {exportFormats}."
+            "text": [
+                "Mappings sind schreibgeschützt. Leeren wird nicht angeboten, da das Nächstliegende in Elasticsearch, <code>_delete_by_query</code>, asynchron läuft und Konflikte pro Dokument meldet; sende es aus der Konsole. Das Löschen eines Index aus der Seitenleiste sendet die DELETE-Anfrage, die die Bestätigung zeigt."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> liest einen ganzen Index mit einem Point-in-Time und <code>search_after</code>, daher ist er nicht durch das Ergebnisfenster begrenzt, und schreibt {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "Kann ich über das Ergebnisfenster hinaus blättern?",
-            "answer": "Ja. Beim Blättern über das Standardfenster von Elasticsearch hinaus wird auf <code>search_after</code> mit Point-in-Time gewechselt. Der Wechsel erfolgt am Standardwert; ein Index mit kleinerem <code>max_result_window</code> meldet vorher einen Fehler. Setze die Einstellung wieder auf den Standardwert."
+            "answer": "Ja. Beim Blättern über das Standardfenster von Elasticsearch hinaus wird auf <code>search_after</code> über einen Point-in-Time gewechselt. Der Wechsel erfolgt am Standardwert, daher meldet ein Index mit verkleinertem <code>max_result_window</code> zuerst einen Fehler; setze die Einstellung wieder auf den Standardwert."
         },
         {
             "id": "sort-id",
@@ -66,18 +65,5 @@
             "answer": "Elasticsearch kann nicht nach <code>_id</code> oder einem <code>text</code>-Feld ohne <code>.keyword</code>-Unterfeld sortieren, daher entfernt TablePro die Spalte aus der Sortierung. Füge dem Mapping ein keyword-Unterfeld hinzu oder sortiere nach einem keyword-Feld."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense und Weaviate, die anderen Such-Engines",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Daten sicher durchsuchen und bearbeiten",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Abfragesprachen jenseits von SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

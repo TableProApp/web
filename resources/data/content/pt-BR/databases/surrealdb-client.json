@@ -11,52 +11,47 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "Cliente de SurrealDB",
-        "lead": "Execute o SurrealQL e edite os campos de registro preservando seus tipos."
+        "lead": "Execute scripts SurrealQL, navegue por namespaces e edite campos de registros mantendo seus tipos.",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se e entre",
-            "paragraphs": [
-                "Escolha <ui>Auth Level</ui> para o usuário: Root, Namespace, Database, Record Access ou Token. Namespace e banco de dados exigem seus nomes. O Record Access também requer o método de acesso e os campos de login; O token aceita um JWT existente.",
-                "O driver usa CBOR pelo endpoint HTTP RPC, portanto links de registros, datas e horas, durações, decimais e UUIDs mantêm seus tipos. Um link <code>surrealdb://</code> abre o formulário de conexão preenchido, e um servidor remoto pode ser acessado por um <network>túnel SSH</network>.",
-                "SSL começa em Disabled, que usa HTTP sem criptografia; todos os outros modos usam HTTPS. Verify CA e Verify Identity verificam o certificado no repositório de confiança do sistema, e um arquivo CA definido no painel SSL/TLS é ignorado, portanto instale primeiro uma CA privada no macOS."
+            "text": [
+                "Escolha o <ui>Auth Level</ui>: Root, Namespace, Database, Record Access ou Token. Namespace e Database exigem os nomes deles, Record Access também exige o método de acesso e os campos de login, e Token aceita um JWT existente.",
+                "O driver usa CBOR pelo endpoint HTTP RPC, então links de registros, datas e horas, durações, decimais e UUIDs mantêm seus tipos. Um link <code>surrealdb://</code> abre o formulário de conexão preenchido.",
+                "O SSL começa em Disabled, que é HTTP sem criptografia; todos os outros modos usam HTTPS. Verify CA e Verify Identity verificam o certificado com o repositório de confiança do sistema e ignoram um arquivo CA definido no painel SSL/TLS, então instale antes uma CA privada no macOS."
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL e registros",
-            "paragraphs": [
+            "text": [
                 "Execute scripts SurrealQL completos, incluindo <code>RELATE</code>, com preenchimento de instruções. <explain>Explain e Explain Full</explain> executam a consulta com <code>EXPLAIN</code> e retornam um plano em texto.",
-                "Os namespaces aparecem no topo da barra lateral, com seus bancos dentro. Alternar qualquer um deles nunca reconecta, pois namespace e banco acompanham cada requisição. Apenas um usuário root vê todos os namespaces.",
-                "As edições de células atualizam apenas os campos alterados como parâmetros digitados, preservando os campos <code>FUTURE</code> computados e outras alterações dos gravadores. Deixe <code>id</code> vazio para um ID gerado automaticamente. As colunas da tabela SCHEMALESS vêm de registros buscados.",
+                "Os namespaces ficam no topo da barra lateral, com seus bancos dentro. Alternar qualquer um deles nunca reconecta, porque os dois acompanham cada requisição, e só um usuário root vê todos os namespaces.",
+                "As edições de células atualizam só os campos alterados, como parâmetros tipados, então campos <code>FUTURE</code> calculados e alterações de outros gravadores são preservados. Deixe <code>id</code> vazio para um ID gerado automaticamente; as colunas de uma tabela SCHEMALESS vêm dos registros buscados.",
                 "Os <filters>filtros</filters> viram SurrealQL, e uma linha Raw SQL aceita uma condição, como uma travessia de grafo. Uma condição que grava, contém <code>;</code> ou um comentário, ou chama <code>fn::</code> ou <code>http::</code>, é recusada; execute-a no editor."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "A aba Structure é somente leitura. Crie e altere campos e índices com <code>DEFINE FIELD</code> e <code>DEFINE INDEX</code> no editor. Um namespace ou banco é excluído pelo seu menu, e selecionar vários pede uma só confirmação para todos."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "Não há importação. <export>Exporte</export> uma tabela ou um resultado de SurrealQL como {exportFormats}."
+            "text": [
+                "A aba Structure é somente leitura: crie e altere campos e índices com <code>DEFINE FIELD</code> e <code>DEFINE INDEX</code> no editor. Um namespace ou um banco é excluído pelo menu dele, e selecionar vários pede uma única confirmação para todos."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Não há importação. <export>Exporte</export> uma tabela ou um resultado de SurrealQL como {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
@@ -69,18 +64,5 @@
             "answer": "Não pela grade: o salvamento para, informa o campo e mantém todas as edições pendentes. Um <code>UPDATE</code> também não move uma relação, portanto exclua-a e use <code>RELATE</code> no novo par."
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB, o outro banco de documentos",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "Linguagens de consulta além de SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Navegue e edite dados com segurança",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

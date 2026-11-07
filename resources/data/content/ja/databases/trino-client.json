@@ -11,82 +11,58 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Trino クライアント",
-        "lead": "カタログを横断してクエリし、プランを確認して、実行中のクエリを取り消せます。書き込み対応は各カタログのコネクターによって異なります。"
+        "lead": "カタログを横断してクエリし、プランを確認し、実行中のクエリをキャンセルできます。書き込みは各カタログのコネクター次第です。",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "接続と認証",
-            "paragraphs": [
-                "コーディネーターのホスト、ポート、<ui>Username</ui> を入力します。任意の <ui>Catalog</ui> と <ui>Schema</ui> で開始位置を指定し、セッションの <ui>Time Zone</ui> を IANA 形式で設定します。",
-                "パスワードは LDAP や password-file 認証用の HTTP Basic、JWT アクセストークンは Bearer 認証情報として送ります。どちらも TLS のみで送り、SSL Disabled のまま保持する接続は送信前に拒否します。SSL ペインのクライアント証明書と鍵で相互 TLS を追加できます。",
-                "SSL は平文 HTTP の Disabled で始まります。他のモードはすべて TLS を強制し、平文へフォールバックしません。443 ポートは Verify Identity を有効にします。コーディネーター前のプロキシのリダイレクトは追跡せず、エラーに転送先を表示します。踏み台の背後には <network>SSH トンネル</network> を使い、<ui>Import from URL…</ui> で <code>trino://</code> URL を取り込めます。"
+            "text": [
+                "コーディネーターのホスト、ポート、<ui>Username</ui> を入力します。<ui>Catalog</ui> と <ui>Schema</ui> で開始位置を、IANA 形式の <ui>Time Zone</ui> でセッションのタイムゾーンを設定します。",
+                "ログインには、LDAP や password-file 認証用に HTTP Basic で送るパスワードか、Bearer 認証情報として送る JWT アクセストークンを使います。どちらも TLS でのみ送ります。SSL が Disabled のままどちらかを保持する接続は、何かを送る前に拒否します。SSL ペインのクライアント証明書と鍵で相互 TLS を使えます。",
+                "SSL は Disabled（平文 HTTP）で始まり、それ以外のモードはすべて平文へのフォールバックなしで TLS を強制します。ポート 443 では Verify Identity が有効になります。コーディネーター前のプロキシからのリダイレクトは追跡せず、エラーに転送先を示します。<ui>Import from URL…</ui> で <code>trino://</code> URL を取り込めます。"
             ]
         },
         {
             "id": "work",
             "title": "カタログをまたいでクエリ",
-            "paragraphs": [
-                "完全修飾した <code>catalog.schema.table</code> 名でカタログをまたぐ結合ができます。カタログ、スキーマ、テーブル、マテリアライズドビューを参照できます。推定行数は <code>SHOW STATS</code> から取得します。",
-                "<code>bigint</code> と <code>decimal</code> は浮動小数点ではなく正確なテキストとして読み取ります。<code>varbinary</code> は 16 進、<code>array</code>、<code>map</code>、<code>row</code> は JSON で表示し、タイムスタンプはサーバーが返した値を保持します。",
-                "<explain>Explain</explain> は Logical、Distributed、IO、Validate、Analyze を提供します。Validate は実行せず検査し、Analyze は実行して実測時間を報告します。プランはすべて生のテキストで返ります。",
-                "<code>SET SESSION</code> は接続中維持します。<ui>Query > Cancel Query</ui> はコーディネーターに実行中クエリの終了を要求します。接続のクエリタイムアウトは Trino に伝わらないため、停止にはこの操作を使います。",
-                "<editing>セル編集</editing>は型付き INSERT、UPDATE、DELETE を使います。Trino は主キーを報告しないため、元の全列で照合します。同じ行はまとめて変更され、取り消せるトランザクションはありません。編集前に重複を確認してください。"
+            "text": [
+                "完全修飾した <code>catalog.schema.table</code> 名でカタログをまたいで結合し、カタログ、スキーマ、テーブル、マテリアライズドビューを <code>SHOW STATS</code> による推定行数とともに参照できます。<code>bigint</code> と <code>decimal</code> は浮動小数点ではなく正確なテキストとして読み取ります。<code>varbinary</code> は 16 進、<code>array</code>、<code>map</code>、<code>row</code> は JSON で表示し、タイムスタンプはサーバーが返した値を保持します。",
+                "<explain>Explain</explain> は Logical、Distributed、IO、Validate、Analyze を提供し、いずれも生のテキストで返します。Validate はクエリを実行せずに検査し、Analyze は実行して実測時間を報告します。<code>SET SESSION</code> は接続中ずっと有効です。接続のクエリタイムアウトは Trino に伝わらないため、クエリを止めるには <ui>Query > Cancel Query</ui> を使います。",
+                "Trino は主キーを報告しないため、<editing>セルの編集</editing>は元のすべての列で行を照合し、同一の行はまとめて変更されます。取り消せるトランザクションはありません。編集前に重複を確認してください。"
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "<structure>Structure タブ</structure> は自動コミットでテーブル作成とカラムの追加、削除、名前変更、型変更を行います。実行できるかはカタログのコネクター次第で、型変更に対応するものは特に少数です。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "インポートはありません。テーブルや結果を {exportFormats} に <export>エクスポート</export> できます。"
+            "text": [
+                "<structure>Structure タブ</structure>は自動コミットで、テーブルの作成と、列の追加、削除、名前変更、型変更を行います。変更を実行できるかはカタログのコネクター次第で、型変更に対応するコネクターは特に少数です。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "インポートはありません。テーブルや結果を {exportFormats} で<export>エクスポート</export>できます。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
             "question": "正しい文が NOT_SUPPORTED になるのはなぜですか？",
-            "answer": "Trino の文法で許されても、そのカタログのコネクターが操作を実装していないためです。読み取り専用コネクターはすべての書き込みを拒否します。対応内容はコネクター自身のドキュメントを確認してください。"
+            "answer": "Trino の文法で許されていても、そのカタログのコネクターがその操作を実装していないためです。読み取り専用のコネクターはすべての書き込みを拒否します。コネクター自身のドキュメントを確認してください。"
         },
         {
             "id": "encrypted-key",
             "question": "暗号化したクライアント鍵は使えますか？",
-            "answer": "使えません。Trino 接続には鍵のパスフレーズ欄がありません。<code>openssl pkey -in encrypted.key -out client.key</code> で復号したコピーを書き、そのファイルを選んでください。"
+            "answer": "使えません。Trino 接続には鍵のパスフレーズ欄がありません。<code>openssl pkey -in encrypted.key -out client.key</code> で復号したコピーを書き出し、そのファイルを選んでください。"
         }
     ],
-    "related": [
-        {
-            "label": "クエリを書き、実行し、理解する",
-            "href": "/features/querying"
-        },
-        {
-            "label": "接続、トンネルと認証情報",
-            "href": "/features/connections"
-        },
-        {
-            "label": "データウェアハウス Teradata",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "クラウドウェアハウス Snowflake",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

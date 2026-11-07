@@ -11,92 +11,62 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "Client ClickHouse",
-        "lead": "Esegui query analitiche, ispeziona piani e pipeline e gestisci parti e partizioni di tabella."
+        "lead": "Esegui query analitiche via HTTP, leggi piani e pipeline e gestisci parti e partizioni MergeTree.",
+        "asset": "databases-clickhouse"
     },
-    "asset": "mac-db-clickhouse-parts",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
-        "map": "/features/querying#map",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import"
+        "explain": "/features/querying#explain",
+        "map": "/features/querying#results",
+        "dashboard": "/features/schema#administer",
+        "importData": "/features/import-export#import",
+        "network": "/features/connections#network"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connetti",
-            "paragraphs": [
-                "Inserisci un host, una porta HTTP, un utente e un database opzionale. Cambia database senza riconnetterti. Le schede aperte mantengono il database iniziale; <ui>View > Sidebar as Tree</ui> espande i database esistenti.",
-                "Scegli qualsiasi modalità SSL per passare a HTTPS. Le porte 443 o 8443, quella usata da ClickHouse Cloud, attivano Verify Identity, che verifica il certificato rispetto al file CA o all’archivio di certificati attendibili del sistema. Verify CA richiede un file CA e un certificato e una chiave client consentono di raggiungere server che richiedono TLS reciproco.",
+            "text": [
+                "Inserisci un host, una porta HTTP, un utente e un database facoltativo, e cambia database senza riconnetterti; le schede aperte mantengono il database da cui sono partite.",
+                "Qualsiasi modalità SSL porta la connessione su HTTPS. Le porte 443 o 8443, quella usata da ClickHouse Cloud, attivano Verify Identity, che verifica il certificato rispetto al tuo file CA o all’archivio di certificati attendibili del sistema. Verify CA richiede un file CA, e un certificato e una chiave client raggiungono i server che richiedono TLS reciproco.",
                 "Senza TLS, raggiungi un server remoto tramite un <network>tunnel SSH</network> anziché inviare HTTP non cifrato sulla rete."
             ]
         },
         {
             "id": "work",
             "title": "Esegui query e modifica",
-            "paragraphs": [
-                "Controlla le righe lette durante una query. Stop invia <code>KILL QUERY</code> e il timeout della connessione viene passato al server.",
-                "Il <explain>menu Explain</explain> offre Plan, Pipeline, AST, Syntax ed Estimate. L’output indentato viene rappresentato come diagramma o albero ed Estimate mostra righe, mark e parti che la query leggerebbe.",
-                "Esamina <editing>Preview SQL</editing> prima di inserire righe o inviare mutazioni UPDATE e DELETE. Un salvataggio riuscito significa accettato, non applicato; seguire i progressi in <code>system.mutations</code>. Le viste materializzate sono di sola lettura.",
-                "Un risultato con tuple di punti o anelli ClickHouse si apre nella <map>vista Mappa</map>. Una query con una propria clausola <code>FORMAT</code> mostra l’output non elaborato del server in una colonna, quindi ometti la clausola per ottenere una griglia."
+            "text": [
+                "Il <explain>menu Explain</explain> offre Plan, Pipeline, AST, Syntax ed Estimate. L’output indentato viene disegnato come diagramma o albero, ed Estimate mostra le righe, i mark e le parti che una query leggerebbe. Una query in esecuzione mostra le righe lette fino a quel momento, Stop invia <code>KILL QUERY</code> e il timeout delle query della connessione viene passato al server.",
+                "Inserimenti e mutazioni UPDATE e DELETE si eseguono dalla griglia. Un salvataggio riuscito significa accettato, non applicato: segui i progressi in <code>system.mutations</code>. Le viste materializzate sono in sola lettura. Le tuple di punti e anelli si aprono nella <map>vista Mappa</map>, e una query con una propria clausola <code>FORMAT</code> mostra l’output grezzo del server in una colonna, quindi ometti la clausola per ottenere una griglia."
             ]
         },
         {
             "id": "schema",
-            "title": "Tabelle, parti e partizioni",
-            "paragraphs": [
-                "Una tabella si apre con le schede Structure, Indexes, DDL e Parts. Indexes mostra la chiave di ordinamento e gli indici data-skipping e DDL mostra l’intero <code>CREATE TABLE</code>, motore e imposti inclusi.",
-                "Ispeziona le parti da <code>system.parts</code>, inclusi partizione, conteggio delle righe, dimensioni e stato attivo. Esegui Ottimizza, Elimina partizione o Scollega partizione dalla scheda Parts.",
-                "La <structure>scheda Structure</structure> aggiunge, modifica ed elimina colonne ed elimina indici data-skipping. Chiave di ordinamento e chiave primaria vengono fissate alla creazione della tabella, quindi aggiungi un indice data-skipping con <code>ALTER TABLE … ADD INDEX</code> e ricrea la tabella per altre modifiche."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Monitora",
-            "paragraphs": [
-                "Il <dashboard>Server Dashboard</dashboard> mostra query attive, merge attivi, mutazioni delle parti e uso del disco, elenca le altre sessioni con <ui>Terminate Session</ui> per ciascuna e legge l’elenco delle query lente da <code>system.query_log</code>: le query concluse più recenti durate oltre un secondo."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Sposta i dati",
-            "paragraphs": [
-                "Carica file {importFormats} con <importData>Import</importData> ed esporta tabelle o risultati delle query in {exportFormats}. Una colonna con anche un solo valore non UTF-8 valido appare in esadecimale nella griglia; seleziona <code>toValidUTF8(column)</code> per leggerla come testo."
+            "also": [
+                "operate"
+            ],
+            "title": "Tabelle, parti e monitoraggio",
+            "text": [
+                "Una tabella si apre con le schede Structure, Indexes, DDL e Parts. Indexes mostra la chiave di ordinamento e gli indici data-skipping, DDL l’intero <code>CREATE TABLE</code> con motore e impostazioni, e Parts legge <code>system.parts</code>, con Optimize, Drop Partition e Detach Partition. La scheda Structure modifica le colonne ed elimina gli indici data-skipping. La chiave di ordinamento e la chiave primaria vengono fissate alla creazione della tabella, quindi aggiungi un indice data-skipping con <code>ALTER TABLE … ADD INDEX</code> e ricrea la tabella per altre modifiche.",
+                "Il <dashboard>Server Dashboard</dashboard> mostra query attive, merge, mutazioni delle parti e uso del disco, termina altre sessioni ed elenca da <code>system.query_log</code> le query concluse che sono durate più di un secondo."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importa</importData> file {importFormats} ed esporta tabelle o risultati in {exportFormats}. Una colonna con anche un solo valore non UTF-8 valido appare in esadecimale; seleziona <code>toValidUTF8(column)</code> per leggerla come testo."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "settings",
-            "question": "Come modifico un’imposto per una query?",
-            "answer": "Inseriscila in una clausola <code>SETTINGS</code> nella query stessa, per esempio <code>SELECT … SETTINGS max_threads = 4</code>. Ogni istruzione è una richiesta HTTP autonoma senza sessione, quindi un <code>SET</code> separato scompare alla successiva."
+            "question": "Come modifico un’impostazione per una sola query?",
+            "answer": "Mettila in una clausola <code>SETTINGS</code> nella query, per esempio <code>SELECT … SETTINGS max_threads = 4</code>. Ogni istruzione è una richiesta HTTP a sé, quindi un <code>SET</code> separato è già perso alla successiva."
         },
         {
             "id": "native-port",
             "question": "Perché la porta 9000 non si connette?",
-            "answer": "La porta 9000 è la porta TCP nativa di ClickHouse, che TablePro non usa. Connettiti alla porta HTTP oppure alla 8443 per HTTPS su ClickHouse Cloud e verifica che l’interfaccia HTTP del server sia attiva: una richiesta a <code>/ping</code> su quella porta risponde <code>Ok.</code>"
+            "answer": "La porta 9000 è la porta TCP nativa di ClickHouse, che TablePro non usa. Connettiti alla porta HTTP, o alla 8443 per HTTPS su ClickHouse Cloud; una richiesta a <code>/ping</code> su quella porta risponde <code>Ok.</code> quando l’interfaccia HTTP è attiva."
         }
     ],
-    "related": [
-        {
-            "label": "Piani EXPLAIN e prestazioni delle query",
-            "href": "/features/querying#performance"
-        },
-        {
-            "label": "Schema, confronto e sincronizzazione",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Importazione, esportazione e file di dati",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "DuckDB, per file analitici",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }
