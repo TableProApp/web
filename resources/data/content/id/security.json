@@ -9,41 +9,34 @@
     },
     "header": {
         "title": "Keamanan",
-        "lead": "Bagaimana TablePro menyimpan kredensial, mengirim data, dan menangani pembaruan serta pengamanan database."
+        "lead": "Kueri Anda berjalan dari aplikasi ke server database Anda sendiri, tidak pernah melalui TablePro. Berikut yang disimpan dan dikirim aplikasi."
     },
     "breadcrumb": "Keamanan",
-    "jump": "Di halaman ini",
-    "limits": "Batasan yang perlu diketahui",
-    "more": "Selengkapnya",
-    "sections": [
+    "nav": "Di halaman ini",
+    "labelled": "{label}:",
+    "counts": {
+        "businessDays": {
+            "one": "satu hari kerja",
+            "other": "{count} hari kerja"
+        }
+    },
+    "bands": [
         {
             "id": "credentials",
-            "title": "Kredensial",
-            "items": [
-                {
-                    "id": "mac-keychain",
-                    "title": "Di Mac",
-                    "text": "Kata sandi, frasa sandi key, API key penyedia AI, dan kunci lisensi disimpan dalam Rantai Kunci macOS, begitu pula, mulai versi yang menghadirkan akun TablePro, token yang membuat Anda tetap masuk. Daftar koneksi di disk tidak berisi kata sandi, dan key SSH tetap berupa file di disk."
-                },
-                {
-                    "id": "ios-keychain",
-                    "title": "Di iPhone dan iPad",
-                    "text": "Kata sandi dan key SSH yang ditempel disimpan dalam Rantai Kunci."
-                },
-                {
-                    "id": "icloud",
-                    "title": "iCloud Sync",
-                    "text": "iCloud Sync nonaktif hingga Anda mengaktifkannya. Data masuk ke database privat dalam akun iCloud Anda sendiri, yang tidak dapat dibaca TablePro, dan tidak berisi kata sandi. Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di iPhone dan iPad, dan saat itu dikirim melalui Rantai Kunci iCloud."
-                },
-                {
-                    "id": "not-sent",
-                    "title": "Yang diterima TablePro",
-                    "text": "Kueri yang Anda jalankan, hasilnya, dan kata sandi Anda tidak dikirim ke TablePro. Pengecualiannya adalah Team Library yang Anda pilih sebagai tempat publikasi: Team Library menerima pengaturan koneksi dan kueri tersimpan, tidak pernah kata sandi."
-                }
+            "also": [
+                "mac-keychain",
+                "ios-keychain",
+                "icloud"
             ],
-            "limits": [
-                "Di Mac, sinkronisasi kata sandi juga membawa API key penyedia AI dan kunci lisensi. Mulai versi yang menghadirkan akun TablePro, kunci lisensi dihapus begitu ditukar dengan sesi masuk, dan sesi masuk itu tidak pernah disinkronkan.",
-                "Sumber kata sandi seperti 1Password atau perintah shell menjalankan program di Mac Anda setiap kali Anda terhubung."
+            "nav": "Kredensial",
+            "title": "Kata sandi tetap di rantai kunci sistem Anda",
+            "text": [
+                "Aplikasi Mac menyimpan kata sandi, frasa sandi key, key penyedia AI, dan sesi masuk Anda di Rantai Kunci macOS. iPhone dan iPad juga memakai Rantai Kunci, dan Linux memakai keyring Secret Service seperti GNOME Keyring atau KWallet.",
+                "iCloud Sync nonaktif hingga Anda mengaktifkannya, dan kata sandi hanya disinkronkan melalui Rantai Kunci iCloud jika Anda juga mengaktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di iPhone dan iPad."
+            ],
+            "notes": [
+                "Di Mac, sinkronisasi kata sandi juga membawa key penyedia AI, tidak pernah sesi masuk Anda.",
+                "Sumber kata sandi seperti 1Password atau perintah shell menjalankan program setiap kali Anda terhubung."
             ],
             "links": [
                 {
@@ -58,30 +51,77 @@
         },
         {
             "id": "network",
-            "title": "Yang keluar dari perangkat Anda",
-            "items": [
-                {
-                    "id": "your-servers",
-                    "title": "Ke server dan penyedia Anda",
-                    "text": "Kueri dan hasil berpindah antara aplikasi dan server database Anda sendiri, tidak pernah melalui TablePro. Permintaan AI langsung dikirim ke penyedia yang Anda tambahkan."
-                },
-                {
-                    "id": "to-tablepro",
-                    "title": "Ke TablePro",
-                    "text": "Mac 0.86.0 (mulai 0.86.0-beta.1) mengirim langsung ke PostHog EU. Aktif secara bawaan dan bisa dimatikan di Settings. iPhone/iPad yang dirilis hanya melapor setelah Share Usage Data. Diagnostik Apple terpisah. Data penggunaan tanpa host, pengguna, kata sandi, kueri atau baris."
-                }
+            "also": [
+                "your-servers",
+                "to-tablepro",
+                "not-sent"
             ],
-            "limits": [
-                "Mac mengirim tanpa bertanya. PostHog menerima IP dan memperkirakan lokasi. Penggunaan setelah masuk bisa terhubung ke akun/pembelian. Perubahan akun juga menyimpan IP audit. Mematikan data aplikasi tidak menghentikan analitik server."
+            "nav": "Yang keluar dari perangkat Anda",
+            "title": "Kueri Anda tidak pernah melewati TablePro",
+            "text": [
+                "Selain server database dan host SSH Anda, inilah semua yang dikirim aplikasi."
+            ],
+            "table": {
+                "caption": "Yang dikirim aplikasi, kapan, dan cara mematikannya",
+                "columns": [
+                    "Tujuan",
+                    "Yang dikirim",
+                    "Kapan",
+                    "Cara mematikannya"
+                ],
+                "rows": [
+                    [
+                        "PostHog, dari Mac dan Linux",
+                        "Peristiwa penggunaan, tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris",
+                        "Aktif secara default",
+                        "<ui>Share Usage Data</ui> di pengaturan Privasi aplikasi"
+                    ],
+                    [
+                        "TablePro, dari iPhone dan iPad",
+                        "Laporan penggunaan harian dengan batasan yang sama",
+                        "Setelah Anda menyetujuinya",
+                        "<ui>Settings > Privacy</ui>"
+                    ],
+                    [
+                        "Akun TablePro Anda",
+                        "Nama komputer ini, ID mesin, dan versinya",
+                        "Setelah Anda masuk: saat aplikasi dibuka dan setiap hari",
+                        "Tetap tidak masuk"
+                    ],
+                    [
+                        "GitHub, melalui updates.tablepro.app",
+                        "Alamat IP Anda, untuk pembaruan Mac dan plugin driver",
+                        "Pemeriksaan pembaruan dan penggunaan pertama sebuah driver",
+                        "<ui>Automatically check for updates</ui>"
+                    ],
+                    [
+                        "Penyedia AI Anda",
+                        "Pertanyaan Anda, skema, dan kueri yang sedang dipakai",
+                        "Saat Anda bertanya kepada asisten",
+                        "Jangan tambahkan penyedia"
+                    ],
+                    [
+                        "Akun iCloud Anda",
+                        "Koneksi dan pengaturan yang Anda pilih",
+                        "Nonaktif hingga Anda mengaktifkan iCloud Sync",
+                        "Matikan iCloud Sync"
+                    ],
+                    [
+                        "Team Library, di server TablePro",
+                        "Koneksi dan kueri tersimpan yang Anda publikasikan, tidak pernah kata sandi",
+                        "Saat Anda memublikasikan",
+                        "Jangan publikasikan apa pun"
+                    ]
+                ]
+            },
+            "notes": [
+                "PostHog memperkirakan lokasi kasar dari alamat IP, dan menautkan penggunaan ke akun Anda setelah Anda masuk.",
+                "Build Mac lama mengirim data penggunaan dan pemeriksaan lisensi melalui server kami sebagai gantinya."
             ],
             "links": [
                 {
-                    "label": "Kebijakan privasi: yang dikirim aplikasi Mac",
-                    "href": "/privacy#mac-app"
-                },
-                {
-                    "label": "Kebijakan privasi: yang dikirim aplikasi iPhone dan iPad",
-                    "href": "/privacy#ios-app"
+                    "label": "Kebijakan privasi: aplikasi Anda",
+                    "href": "/privacy#apps"
                 },
                 {
                     "label": "Semua permintaan keluar",
@@ -90,107 +130,51 @@
             ]
         },
         {
-            "id": "distribution",
-            "title": "Distribusi aplikasi",
-            "items": [
-                {
-                    "id": "signing",
-                    "title": "Ditandatangani dan dinotarisasi",
-                    "text": "Build Mac ditandatangani dengan Developer ID, memakai Hardened Runtime, dan dinotarisasi Apple. Image disk tersedia di GitHub Releases, masing-masing dengan checksum SHA-256. Cask Homebrew mengunduh image yang sama dan memeriksa SHA-256-nya."
-                },
-                {
-                    "id": "updates",
-                    "title": "Pembaruan",
-                    "text": "Aplikasi Mac diperbarui melalui Sparkle dan memeriksa tanda tangan EdDSA setiap pembaruan dengan kunci publik di dalam aplikasi sebelum menginstalnya. Pemeriksaan ini tidak dapat dinonaktifkan. Pembaruan otomatis dapat dinonaktifkan, di pengaturan atau melalui profil konfigurasi."
-                },
-                {
-                    "id": "plugins",
-                    "title": "Plugin driver",
-                    "text": "Driver yang tidak disertakan dalam aplikasi Mac diunduh dari GitHub. Setiap driver harus cocok dengan SHA-256 di registri plugin dan membawa tanda tangan kode yang valid: milik TablePro sendiri, atau Developer ID pengembang lain setelah Anda setuju memercayai pengembang itu berdasarkan namanya."
-                },
-                {
-                    "id": "app-store",
-                    "title": "iPhone dan iPad",
-                    "text": "Aplikasi iPhone dan iPad tersedia di App Store, yang juga mengirimkan pembaruannya. Driver-nya sudah terpasang, dan aplikasi ini tidak mengunduh plugin."
-                }
+            "id": "ai-mcp",
+            "also": [
+                "mcp",
+                "local",
+                "approval",
+                "permissions"
             ],
-            "limits": [
-                "Aplikasi Mac tidak memakai App Sandbox macOS: aplikasi berjalan dengan akses akun pengguna Anda ke file dan jaringan.",
-                "Plugin driver berjalan sebagai bagian dari TablePro dan dapat membaca kredensial setiap koneksi yang Anda buka."
+            "nav": "AI dan MCP",
+            "title": "TablePro tidak menjalankan layanan AI apa pun",
+            "text": [
+                "Asisten berkomunikasi langsung dengan penyedia Anda. Server MCP nonaktif hingga Anda mengaktifkannya, hanya mendengarkan di {mcpHost}, dan tidak pernah menunjukkan kata sandi kepada klien."
             ],
-            "links": [
-                {
-                    "label": "Unduhan dan pembaruan",
-                    "href": "/download#updates"
-                },
-                {
-                    "label": "Pembaruan terkelola",
-                    "docs": "/security/managed-updates"
-                },
-                {
-                    "label": "Plugin",
-                    "docs": "/features/plugins"
-                }
-            ]
-        },
-        {
-            "id": "safe-mode",
-            "title": "Perlindungan database",
-            "items": [
-                {
-                    "id": "levels",
-                    "title": "Level Safe Mode",
-                    "text": "Di Mac, setiap koneksi memiliki level Safe Mode: {macSafeModeLevels}. Alert meminta konfirmasi sebelum penulisan, level Safe Mode juga meminta Touch ID atau kata sandi Mac, level Full juga meminta konfirmasi sebelum membaca, dan Read-Only menolak penulisan. Organisasi dapat menerapkan level minimum di Mac miliknya melalui profil konfigurasi. Di Linux, levelnya adalah {linuxSafeModeLevels}, dan di iPhone dan iPad {iosSafeModeLevels}."
-                },
-                {
-                    "id": "destructive",
-                    "title": "Pernyataan destruktif",
-                    "text": "Di setiap level di Mac, DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi terlebih dahulu, dengan menampilkan seluruh pernyataan."
-                }
-            ],
-            "limits": [
-                "Safe Mode berjalan di dalam TablePro dan mencegah kesalahan. Safe Mode bukan sandbox atau sistem izin: untuk aturan yang wajib berlaku, gunakan hak akses database itu sendiri.",
-                "Koneksi baru dimulai pada {macSafeModeDefault}, yang menjalankan pernyataan sesuai tulisannya, termasuk UPDATE tanpa WHERE.",
-                "Dalam mode Edit dan Agent pada chat, asisten AI dapat menjalankan pernyataan, dan pada {macSafeModeDefault} penulisannya berjalan tanpa meminta konfirmasi. Agent mode, yang memakai seluruh jendela, mempertahankan koneksinya pada Alert atau lebih ketat; ini pengingat, bukan kunci."
-            ],
-            "links": [
-                {
-                    "label": "Safe Mode untuk koneksi produksi",
-                    "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "Mode chat dan Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                },
-                {
-                    "label": "Safe Mode",
-                    "docs": "/features/safe-mode"
-                }
-            ]
-        },
-        {
-            "id": "mcp",
-            "title": "Server MCP",
-            "items": [
-                {
-                    "id": "local",
-                    "title": "Hanya lokal",
-                    "text": "Di aplikasi Mac, server MCP nonaktif hingga Anda mengaktifkannya atau klien yang Anda siapkan memulainya. Server mendengarkan di {mcpHost}, tanpa mode jarak jauh, dan klien tidak pernah melihat kata sandi."
-                },
-                {
-                    "id": "approval",
-                    "title": "Cara klien disetujui",
-                    "text": "Secara bawaan, setiap permintaan memerlukan token dengan cakupan (Read Only, Read & Write, atau Full Access), dan dialog di Mac menanyakan Anda saat klien pertama kali mengakses sebuah koneksi."
-                },
-                {
-                    "id": "permissions",
-                    "title": "Yang dapat dilakukan klien",
-                    "text": "Setiap koneksi menentukan apa yang boleh dilakukan klien eksternal: Blocked, Read Only (bawaan), atau Read & Write. Penulisan tetap melewati level Safe Mode koneksi itu, DROP dan TRUNCATE memerlukan token Full Access serta persetujuan Anda setiap kali, dan setiap panggilan dicatat di Mac Anda."
-                }
-            ],
-            "limits": [
-                "{mcpHost} menunjukkan tempat server mendengarkan, bukan siapa yang dapat menjangkaunya. Program apa pun di Mac Anda dapat terhubung, begitu pula halaman yang terbuka di claude.ai atau app.cursor.com. Masing-masing tetap memerlukan token, jadi biarkan autentikasi tetap wajib.",
-                "Apa yang dibaca klien akan dikirimnya ke layanan AI miliknya sendiri, sesuai ketentuan layanan itu."
+            "table": {
+                "caption": "Ke mana setiap permintaan AI dikirim",
+                "columns": [
+                    "Jalur",
+                    "Yang menanganinya",
+                    "Yang perlu diketahui"
+                ],
+                "rows": [
+                    [
+                        "Asisten, dengan penyedia cloud",
+                        "Penyedia Anda, sesuai ketentuannya",
+                        "Baris hasil hanya dikirim jika Anda mengizinkannya."
+                    ],
+                    [
+                        "Asisten, dengan model lokal",
+                        "Komputer Anda, melalui {localAiProviders}",
+                        "Tidak ada yang keluar dari mesin."
+                    ],
+                    [
+                        "Klien MCP seperti Claude Code",
+                        "Server MCP TablePro",
+                        "Setiap permintaan memerlukan token, setiap koneksi menentukan apa yang boleh dilakukan klien, dan penulisan melewati Safe Mode."
+                    ],
+                    [
+                        "Server MCP eksternal",
+                        "Server itu",
+                        "Setiap panggilan tool menunggu klik Anda."
+                    ]
+                ]
+            },
+            "notes": [
+                "{mcpHost} menunjukkan tempat server mendengarkan, bukan siapa yang dapat menjangkaunya: program apa pun di komputer Anda, atau halaman yang terbuka di claude.ai atau app.cursor.com, dapat terhubung.",
+                "Apa yang dibaca klien MCP akan dikirimnya ke layanan AI miliknya sendiri."
             ],
             "links": [
                 {
@@ -204,16 +188,72 @@
             ]
         },
         {
-            "id": "open-source",
-            "title": "Sumber terbuka",
-            "items": [
-                {
-                    "id": "source",
-                    "title": "Kodenya terbuka",
-                    "text": "Aplikasi-aplikasinya bersumber terbuka di bawah AGPLv3, termasuk kode fitur berbayar. Apa yang dijelaskan halaman ini dapat dibaca di repositori, bersama skrip yang menandatangani dan menotarisasi setiap rilis, dan Anda dapat mem-build aplikasi Mac sendiri."
-                }
+            "id": "updates",
+            "also": [
+                "distribution",
+                "signing",
+                "plugins",
+                "app-store"
             ],
-            "limits": [],
+            "nav": "Pembaruan dan tanda tangan",
+            "title": "Setiap build ditandatangani, dan pembaruan diverifikasi",
+            "text": [
+                "Build Mac ditandatangani dengan Developer ID, memakai Hardened Runtime, dan dinotarisasi Apple. Aplikasi hanya menginstal pembaruan jika tanda tangan EdDSA-nya cocok dengan kunci di dalam aplikasi.",
+                "Di Linux, Launchpad dan COPR menandatangani paket apt dan dnf, dan TablePro menandatangani repositori Flatpak-nya. Setiap file di rilis GitHub memiliki checksum SHA-256, dan setiap file Linux memiliki atestasi build.",
+                "Plugin driver hanya terinstal jika cocok dengan SHA-256 di registri plugin dan membawa tanda tangan kode yang valid. Aplikasi iPhone dan iPad berasal dari App Store."
+            ],
+            "notes": [
+                "Aplikasi Mac tidak memakai App Sandbox macOS: aplikasi berjalan dengan akses akun pengguna Anda ke file dan jaringan.",
+                "Plugin driver berjalan di dalam TablePro dan dapat membaca kredensial setiap koneksi yang Anda buka."
+            ],
+            "links": [
+                {
+                    "label": "Unduhan dan pembaruan",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "Pembaruan terkelola",
+                    "docs": "/security/managed-updates"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "also": [
+                "levels",
+                "destructive"
+            ],
+            "nav": "Safe Mode",
+            "title": "Setiap koneksi memiliki level Safe Mode sendiri",
+            "text": [
+                "Di Mac, levelnya adalah {macSafeModeLevels}: Alert meminta konfirmasi sebelum penulisan, level Safe Mode menambahkan Touch ID atau kata sandi Anda, level Full juga meminta konfirmasi sebelum membaca, dan Read-Only menolak penulisan. Di setiap level, DROP, TRUNCATE, dan DELETE tanpa WHERE meminta konfirmasi terlebih dahulu.",
+                "Linux memiliki {linuxSafeModeLevels}, dan iPhone dan iPad {iosSafeModeLevels}. Organisasi dapat menerapkan level minimum di Mac miliknya."
+            ],
+            "notes": [
+                "Safe Mode menangkap kesalahan di dalam TablePro; untuk aturan yang wajib berlaku, gunakan hak akses database itu sendiri.",
+                "Koneksi Mac baru dimulai pada {macSafeModeDefault}, yang menjalankan pernyataan sesuai tulisannya, termasuk penulisan oleh asisten AI."
+            ],
+            "links": [
+                {
+                    "label": "Safe Mode untuk koneksi produksi",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "Mode chat dan Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "also": [
+                "source"
+            ],
+            "nav": "Sumber terbuka",
+            "title": "Kodenya terbuka untuk publik di bawah AGPLv3",
+            "text": [
+                "Aplikasinya open source, termasuk fitur berbayar, bersama skrip yang menandatangani dan menotarisasi setiap rilis, sehingga Anda dapat mencocokkan halaman ini dengan kodenya."
+            ],
             "links": [
                 {
                     "label": "Kode sumber di GitHub",
@@ -231,25 +271,18 @@
         },
         {
             "id": "report",
-            "title": "Melaporkan kerentanan",
-            "items": [
-                {
-                    "id": "contact",
-                    "title": "Cara melapor",
-                    "text": "Kirim email ke <email>{email}</email> atau <advisory>laporkan secara privat di GitHub</advisory>, dalam bahasa Inggris atau Vietnam. Jangan membuka issue, diskusi, atau pull request publik untuk sebuah kerentanan."
-                },
-                {
-                    "id": "include",
-                    "title": "Yang perlu disertakan",
-                    "text": "Apa yang terdampak dan versinya: aplikasi Mac, aplikasi iPhone dan iPad, sebuah plugin, atau situs ini. Sertakan versi macOS atau iOS, jenis database bila melibatkan driver, langkah atau proof of concept, dan apa yang diperoleh penyerang."
-                },
-                {
-                    "id": "fixes",
-                    "title": "Versi yang menerima perbaikan",
-                    "text": "Hanya rilis terbaru dari setiap aplikasi dan plugin yang menerima perbaikan keamanan, jadi pastikan masalahnya masih ada di rilis terbaru sebelum melapor."
-                }
+            "also": [
+                "contact",
+                "include",
+                "fixes"
             ],
-            "limits": [],
+            "nav": "Melaporkan kerentanan",
+            "title": "Laporkan kerentanan secara privat",
+            "text": [
+                "Kirim email ke <securityEmail>{securityEmail}</securityEmail> atau <advisory>buka advisory privat di GitHub</advisory>, dalam bahasa Inggris atau Vietnam, jangan pernah lewat issue publik. Kami membalas dalam {businessDays}.",
+                "Sebutkan apa yang terdampak dan versinya, sistem Anda, langkah atau proof of concept, dan apa yang diperoleh penyerang.",
+                "Perbaikan dirilis di versi baru, jadi periksa rilis terbaru terlebih dahulu. Tidak ada program bug bounty."
+            ],
             "links": [
                 {
                     "label": "Kebijakan keamanan di GitHub",

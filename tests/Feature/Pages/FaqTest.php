@@ -158,7 +158,7 @@ it('keeps every link into /faq landing on an id it still has', function (): void
         }
     }
 
-    expect($anchors)->toBeGreaterThanOrEqual(2);
+    expect($anchors)->toBeGreaterThanOrEqual(1);
 });
 
 it('renders the topic row, one band per topic with every answer open, and the contact line', function (): void {

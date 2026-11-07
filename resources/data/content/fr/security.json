@@ -9,41 +9,34 @@
     },
     "header": {
         "title": "Sécurité",
-        "lead": "Comment TablePro stocke les identifiants, transmet les données et gère les mises à jour et protections des bases."
+        "lead": "Vos requêtes vont de l’app à vos propres serveurs de bases de données, jamais par TablePro. Voici ce que les apps conservent et envoient."
     },
     "breadcrumb": "Sécurité",
-    "jump": "Sur cette page",
-    "limits": "Limites à connaître",
-    "more": "Pour aller plus loin",
-    "sections": [
+    "nav": "Sur cette page",
+    "labelled": "{label} :",
+    "counts": {
+        "businessDays": {
+            "one": "un jour ouvré",
+            "other": "{count} jours ouvrés"
+        }
+    },
+    "bands": [
         {
             "id": "credentials",
-            "title": "Identifiants",
-            "items": [
-                {
-                    "id": "mac-keychain",
-                    "title": "Sur Mac",
-                    "text": "Les mots de passe, les phrases secrètes des clés, les clés API des fournisseurs d’IA et la clé de licence sont enregistrés dans le Trousseau macOS, ainsi que, à partir de la version qui ajoute les comptes TablePro, le jeton qui vous garde connecté. La liste des connexions sur disque ne contient aucun mot de passe, et une clé SSH reste un fichier sur disque."
-                },
-                {
-                    "id": "ios-keychain",
-                    "title": "Sur iPhone et iPad",
-                    "text": "Les mots de passe et les clés SSH collées sont enregistrés dans le Trousseau."
-                },
-                {
-                    "id": "icloud",
-                    "title": "iCloud Sync",
-                    "text": "iCloud Sync est désactivé jusqu’à ce que vous l’activiez. Les enregistrements vont dans une base privée de votre propre compte iCloud, que TablePro ne peut pas lire, et ne contiennent aucun mot de passe. Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad, et passent alors par le Trousseau iCloud."
-                },
-                {
-                    "id": "not-sent",
-                    "title": "Ce que reçoit TablePro",
-                    "text": "Vos requêtes, leurs résultats et vos mots de passe ne sont pas envoyés à TablePro. L’exception est une Team Library dans laquelle vous choisissez de publier : elle reçoit les réglages des connexions et les requêtes enregistrées, jamais de mot de passe."
-                }
+            "also": [
+                "mac-keychain",
+                "ios-keychain",
+                "icloud"
             ],
-            "limits": [
-                "Sur Mac, la synchronisation des mots de passe transmet aussi les clés API des fournisseurs d’IA et la clé de licence. À partir de la version qui ajoute les comptes TablePro, la clé de licence est supprimée dès qu’elle est échangée contre une connexion, et la connexion n’est jamais synchronisée.",
-                "Une source de mot de passe comme 1Password ou une commande shell exécute un programme sur votre Mac à chaque connexion."
+            "nav": "Identifiants",
+            "title": "Les mots de passe restent dans le trousseau de votre système",
+            "text": [
+                "L’app Mac conserve les mots de passe, les phrases secrètes des clés, les clés des fournisseurs d’IA et votre connexion dans le Trousseau macOS. iPhone et iPad utilisent aussi le Trousseau, et Linux un trousseau Secret Service comme GNOME Keyring ou KWallet.",
+                "iCloud Sync est désactivé jusqu’à ce que vous l’activiez, et les mots de passe ne se synchronisent par le Trousseau iCloud que si vous activez aussi <ui>Mots de passe</ui> (Passwords) sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad."
+            ],
+            "notes": [
+                "Sur Mac, la synchronisation des mots de passe transmet aussi les clés des fournisseurs d’IA, jamais votre connexion.",
+                "Une source de mot de passe comme 1Password ou une commande shell exécute un programme à chaque connexion."
             ],
             "links": [
                 {
@@ -58,30 +51,77 @@
         },
         {
             "id": "network",
-            "title": "Ce qui quitte votre appareil",
-            "items": [
-                {
-                    "id": "your-servers",
-                    "title": "Vers vos serveurs et fournisseurs",
-                    "text": "Les requêtes et les résultats circulent entre l’application et vos propres serveurs de bases de données, jamais par TablePro. Les requêtes d’IA vont directement au fournisseur que vous ajoutez."
-                },
-                {
-                    "id": "to-tablepro",
-                    "title": "Vers TablePro",
-                    "text": "Mac 0.86.0 (dès 0.86.0-beta.1) envoie directement à PostHog EU. Activé par défaut, cet envoi se désactive dans les réglages. L’app iPhone/iPad publiée attend Share Usage Data. Les diagnostics Apple sont séparés. Les données d’utilisation ne contiennent ni hôtes, utilisateurs, mots de passe, requêtes ou lignes."
-                }
+            "also": [
+                "your-servers",
+                "to-tablepro",
+                "not-sent"
             ],
-            "limits": [
-                "Mac envoie sans demander. PostHog reçoit l’IP et déduit une position approximative. L’usage connecté peut être lié au compte et aux achats. Les changements de compte gardent aussi des IP d’audit. Désactiver l’app n’arrête pas l’analyse serveur."
+            "nav": "Ce qui quitte votre appareil",
+            "title": "Vos requêtes ne passent jamais par TablePro",
+            "text": [
+                "En dehors de vos serveurs de bases de données et de vos hôtes SSH, voici tout ce que les apps envoient."
+            ],
+            "table": {
+                "caption": "Ce que les apps envoient, quand, et comment le désactiver",
+                "columns": [
+                    "Destination",
+                    "Contenu envoyé",
+                    "Quand",
+                    "Comment le désactiver"
+                ],
+                "rows": [
+                    [
+                        "PostHog, depuis Mac et Linux",
+                        "Des événements d’utilisation, jamais de noms d’hôtes, de noms d’utilisateur, de mots de passe, de requêtes ni de lignes",
+                        "Activé par défaut",
+                        "<ui>Partager des données d’utilisation</ui> (Share Usage Data) dans les réglages de confidentialité de l’app"
+                    ],
+                    [
+                        "TablePro, depuis iPhone et iPad",
+                        "Un rapport d’utilisation quotidien, avec les mêmes limites",
+                        "Une fois que vous l’acceptez",
+                        "<ui>Settings > Privacy</ui>"
+                    ],
+                    [
+                        "Votre compte TablePro",
+                        "Le nom de cet ordinateur, son identifiant de machine et les versions",
+                        "Une fois connecté : au lancement et chaque jour",
+                        "Rester déconnecté"
+                    ],
+                    [
+                        "GitHub, via updates.tablepro.app",
+                        "Votre adresse IP, pour les mises à jour Mac et les plugins de pilotes",
+                        "Recherches de mises à jour et première utilisation d’un pilote",
+                        "<ui>Rechercher automatiquement les mises à jour</ui> (Automatically check for updates)"
+                    ],
+                    [
+                        "Votre fournisseur d’IA",
+                        "Votre question, le schéma et la requête en cours",
+                        "Quand vous interrogez l’assistant",
+                        "N’ajouter aucun fournisseur"
+                    ],
+                    [
+                        "Votre compte iCloud",
+                        "Les connexions et réglages que vous choisissez",
+                        "Désactivé jusqu’à ce que vous activiez iCloud Sync",
+                        "Désactiver iCloud Sync"
+                    ],
+                    [
+                        "Team Library, sur le serveur de TablePro",
+                        "Les connexions et requêtes enregistrées que vous publiez, jamais les mots de passe",
+                        "Quand vous publiez",
+                        "Ne rien publier"
+                    ]
+                ]
+            },
+            "notes": [
+                "PostHog déduit une position approximative de l’adresse IP et associe l’utilisation à votre compte une fois que vous êtes connecté.",
+                "Les anciennes versions Mac envoient plutôt l’utilisation et les vérifications de licence via notre serveur."
             ],
             "links": [
                 {
-                    "label": "Politique de confidentialité : ce qu’envoie l’application Mac",
-                    "href": "/privacy#mac-app"
-                },
-                {
-                    "label": "Politique de confidentialité : ce qu’envoie l’application iPhone et iPad",
-                    "href": "/privacy#ios-app"
+                    "label": "Politique de confidentialité : vos apps",
+                    "href": "/privacy#apps"
                 },
                 {
                     "label": "Toutes les requêtes sortantes",
@@ -90,107 +130,51 @@
             ]
         },
         {
-            "id": "distribution",
-            "title": "Distribution de l’app",
-            "items": [
-                {
-                    "id": "signing",
-                    "title": "Signées et notariées",
-                    "text": "Les versions Mac sont signées avec un Developer ID, utilisent le Hardened Runtime et sont notariées par Apple. Les images disque sont sur GitHub Releases, chacune avec une somme de contrôle SHA-256. Le cask Homebrew télécharge la même image et vérifie son SHA-256."
-                },
-                {
-                    "id": "updates",
-                    "title": "Mises à jour",
-                    "text": "L’application Mac se met à jour avec Sparkle et vérifie la signature EdDSA de chaque mise à jour avec la clé publique intégrée à l’application avant de l’installer. Cette vérification ne peut pas être désactivée. Les mises à jour automatiques le peuvent, dans les réglages ou par un profil de configuration."
-                },
-                {
-                    "id": "plugins",
-                    "title": "Plugins de pilotes",
-                    "text": "Les pilotes qui ne sont pas fournis avec l’application Mac se téléchargent depuis GitHub. Chacun doit correspondre au SHA-256 du registre des plugins et porter une signature de code valide : celle de TablePro, ou le Developer ID d’un autre développeur une fois que vous acceptez de faire confiance à ce développeur, nommément."
-                },
-                {
-                    "id": "app-store",
-                    "title": "iPhone et iPad",
-                    "text": "L’application iPhone et iPad est sur l’App Store, qui livre aussi ses mises à jour. Ses pilotes sont intégrés, et elle ne télécharge aucun plugin."
-                }
+            "id": "ai-mcp",
+            "also": [
+                "mcp",
+                "local",
+                "approval",
+                "permissions"
             ],
-            "limits": [
-                "L’application Mac n’utilise pas l’App Sandbox de macOS : elle s’exécute avec l’accès de votre compte utilisateur aux fichiers et au réseau.",
-                "Un plugin de pilote s’exécute dans TablePro et peut lire les identifiants de toutes les connexions que vous ouvrez."
+            "nav": "IA et MCP",
+            "title": "TablePro n’exploite aucun service d’IA",
+            "text": [
+                "L’assistant communique directement avec votre fournisseur. Le serveur MCP est désactivé jusqu’à ce que vous l’activiez, n’écoute que sur {mcpHost} et ne montre jamais de mot de passe à un client."
             ],
-            "links": [
-                {
-                    "label": "Téléchargement et mises à jour",
-                    "href": "/download#updates"
-                },
-                {
-                    "label": "Mises à jour gérées",
-                    "docs": "/security/managed-updates"
-                },
-                {
-                    "label": "Plugins",
-                    "docs": "/features/plugins"
-                }
-            ]
-        },
-        {
-            "id": "safe-mode",
-            "title": "Protections des bases de données",
-            "items": [
-                {
-                    "id": "levels",
-                    "title": "Niveaux de Safe Mode",
-                    "text": "Sur Mac, chaque connexion a un niveau de Safe Mode : {macSafeModeLevels}. Alert demande confirmation avant une écriture, les niveaux Safe Mode demandent aussi Touch ID ou le mot de passe du Mac, les niveaux (Full) demandent aussi avant les lectures, et Read-Only refuse les écritures. Une organisation peut imposer un niveau minimal sur ses Mac par un profil de configuration. Sur Linux, les niveaux sont {linuxSafeModeLevels}, et sur iPhone et iPad {iosSafeModeLevels}."
-                },
-                {
-                    "id": "destructive",
-                    "title": "Instructions destructrices",
-                    "text": "À tous les niveaux sur Mac, DROP, TRUNCATE et un DELETE sans WHERE s’arrêtent et demandent d’abord confirmation, en montrant l’instruction complète."
-                }
-            ],
-            "limits": [
-                "Safe Mode fonctionne dans TablePro et protège des erreurs. Ce n’est ni un sandbox ni un système de permissions : pour une règle qui doit tenir, utilisez les privilèges de la base de données elle-même.",
-                "Les nouvelles connexions commencent à {macSafeModeDefault}, où les instructions s’exécutent telles quelles, y compris un UPDATE sans WHERE.",
-                "Dans les modes Edit et Agent du chat, l’assistant IA peut exécuter des instructions, et à {macSafeModeDefault} ses écritures passent sans confirmation. Agent mode, qui occupe toute la fenêtre, maintient sa connexion à Alert ou plus strict : c’est un rappel, pas un verrou."
-            ],
-            "links": [
-                {
-                    "label": "Safe Mode pour les connexions de production",
-                    "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "Modes du chat et Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                },
-                {
-                    "label": "Safe Mode",
-                    "docs": "/features/safe-mode"
-                }
-            ]
-        },
-        {
-            "id": "mcp",
-            "title": "Le serveur MCP",
-            "items": [
-                {
-                    "id": "local",
-                    "title": "Uniquement en local",
-                    "text": "Dans l’application Mac, le serveur MCP reste désactivé jusqu’à ce que vous l’activiez ou qu’un client configuré le démarre. Il écoute sur {mcpHost}, sans mode distant, et les clients ne voient jamais de mot de passe."
-                },
-                {
-                    "id": "approval",
-                    "title": "Comment un client est approuvé",
-                    "text": "Par défaut, chaque requête exige un jeton doté d’une portée (Read Only, Read & Write ou Full Access), et une boîte de dialogue sur votre Mac vous demande votre accord la première fois qu’un client atteint une connexion."
-                },
-                {
-                    "id": "permissions",
-                    "title": "Ce qu’un client peut faire",
-                    "text": "Chaque connexion fixe ce que les clients externes peuvent faire : Blocked, Read Only (par défaut) ou Read & Write. Les écritures passent toujours par son niveau de Safe Mode, DROP et TRUNCATE exigent un jeton Full Access et votre accord à chaque fois, et chaque appel est journalisé sur votre Mac."
-                }
-            ],
-            "limits": [
-                "{mcpHost} indique où le serveur écoute, pas qui peut l’atteindre. Tout programme de votre Mac peut s’y connecter, de même qu’une page ouverte sur claude.ai ou app.cursor.com. Chacun a tout de même besoin d’un jeton : gardez l’authentification obligatoire.",
-                "Ce qu’un client lit, il l’envoie à son propre service d’IA, selon les conditions de ce service."
+            "table": {
+                "caption": "Où va chaque requête d’IA",
+                "columns": [
+                    "Chemin",
+                    "Qui la traite",
+                    "À savoir"
+                ],
+                "rows": [
+                    [
+                        "L’assistant, avec un fournisseur cloud",
+                        "Votre fournisseur, selon ses conditions",
+                        "Les lignes de résultat ne partent que si vous l’autorisez."
+                    ],
+                    [
+                        "L’assistant, avec un modèle local",
+                        "Votre ordinateur, via {localAiProviders}",
+                        "Rien ne quitte la machine."
+                    ],
+                    [
+                        "Un client MCP comme Claude Code",
+                        "Le serveur MCP de TablePro",
+                        "Chaque requête exige un jeton, chaque connexion fixe ce que les clients peuvent faire, et les écritures passent par Safe Mode."
+                    ],
+                    [
+                        "Un serveur MCP externe",
+                        "Ce serveur",
+                        "Chaque appel d’outil attend votre clic."
+                    ]
+                ]
+            },
+            "notes": [
+                "{mcpHost} indique où le serveur écoute, pas qui peut l’atteindre : tout programme de votre ordinateur, ou une page ouverte sur claude.ai ou app.cursor.com, peut s’y connecter.",
+                "Ce qu’un client MCP lit, il l’envoie à son propre service d’IA."
             ],
             "links": [
                 {
@@ -204,16 +188,72 @@
             ]
         },
         {
-            "id": "open-source",
-            "title": "Open source",
-            "items": [
-                {
-                    "id": "source",
-                    "title": "Le code est public",
-                    "text": "Les applications sont open source sous AGPLv3, y compris le code des fonctionnalités payantes. Ce que décrit cette page se lit dans le dépôt, avec les scripts qui signent et notarient chaque version, et vous pouvez compiler l’application Mac vous-même."
-                }
+            "id": "updates",
+            "also": [
+                "distribution",
+                "signing",
+                "plugins",
+                "app-store"
             ],
-            "limits": [],
+            "nav": "Mises à jour et signature",
+            "title": "Chaque version est signée, et les mises à jour sont vérifiées",
+            "text": [
+                "Les versions Mac sont signées avec un Developer ID, utilisent le Hardened Runtime et sont notariées par Apple. L’app n’installe une mise à jour que si sa signature EdDSA correspond à la clé intégrée à l’app.",
+                "Sur Linux, Launchpad et COPR signent les paquets apt et dnf, et TablePro signe son dépôt Flatpak. Chaque fichier d’une release GitHub a une somme de contrôle SHA-256, et chaque fichier Linux une attestation de build.",
+                "Un plugin de pilote ne s’installe que s’il correspond au SHA-256 du registre des plugins et porte une signature de code valide. L’app iPhone et iPad vient de l’App Store."
+            ],
+            "notes": [
+                "L’app Mac n’utilise pas l’App Sandbox de macOS : elle s’exécute avec l’accès de votre compte utilisateur aux fichiers et au réseau.",
+                "Un plugin de pilote s’exécute dans TablePro et peut lire les identifiants de toutes les connexions que vous ouvrez."
+            ],
+            "links": [
+                {
+                    "label": "Téléchargement et mises à jour",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "Mises à jour gérées",
+                    "docs": "/security/managed-updates"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "also": [
+                "levels",
+                "destructive"
+            ],
+            "nav": "Safe Mode",
+            "title": "Chaque connexion a son propre niveau de Safe Mode",
+            "text": [
+                "Sur Mac, les niveaux sont {macSafeModeLevels} : Alert demande confirmation avant une écriture, les niveaux Safe Mode ajoutent Touch ID ou votre mot de passe, les niveaux Full demandent aussi avant les lectures, et Read-Only refuse les écritures. À tous les niveaux, DROP, TRUNCATE et un DELETE sans WHERE demandent d’abord confirmation.",
+                "Linux propose {linuxSafeModeLevels}, et iPhone et iPad {iosSafeModeLevels}. Une organisation peut imposer un niveau minimal sur ses Mac."
+            ],
+            "notes": [
+                "Safe Mode rattrape les erreurs dans TablePro ; pour une règle qui doit tenir, utilisez les privilèges de la base de données elle-même.",
+                "Les nouvelles connexions Mac commencent à {macSafeModeDefault}, où les instructions s’exécutent telles quelles, écritures de l’assistant IA comprises."
+            ],
+            "links": [
+                {
+                    "label": "Safe Mode pour les connexions de production",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "Modes du chat et Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "also": [
+                "source"
+            ],
+            "nav": "Open source",
+            "title": "Le code est public sous AGPLv3",
+            "text": [
+                "Les apps sont open source, fonctions payantes comprises, avec les scripts qui signent et notarient chaque version, et vous pouvez donc vérifier cette page dans le code."
+            ],
             "links": [
                 {
                     "label": "Code source sur GitHub",
@@ -231,25 +271,18 @@
         },
         {
             "id": "report",
-            "title": "Signaler une vulnérabilité",
-            "items": [
-                {
-                    "id": "contact",
-                    "title": "Comment signaler",
-                    "text": "Écrivez à <email>{email}</email> ou <advisory>signalez-la en privé sur GitHub</advisory>, en anglais ou en vietnamien. N’ouvrez pas d’issue, de discussion ou de pull request publics pour une vulnérabilité."
-                },
-                {
-                    "id": "include",
-                    "title": "Que fournir",
-                    "text": "Ce qui est touché et sa version : l’application Mac, l’application iPhone et iPad, un plugin ou ce site. Ajoutez la version de macOS ou d’iOS, le type de base de données si un pilote est en cause, les étapes ou une preuve de concept, et ce qu’un attaquant y gagne."
-                },
-                {
-                    "id": "fixes",
-                    "title": "Versions corrigées",
-                    "text": "Seule la dernière version de chaque application et de chaque plugin reçoit des correctifs de sécurité : vérifiez que le problème est toujours présent dans la dernière version avant de le signaler."
-                }
+            "also": [
+                "contact",
+                "include",
+                "fixes"
             ],
-            "limits": [],
+            "nav": "Signaler une vulnérabilité",
+            "title": "Signalez une vulnérabilité en privé",
+            "text": [
+                "Écrivez à <securityEmail>{securityEmail}</securityEmail> ou <advisory>ouvrez un avis privé sur GitHub</advisory>, en anglais ou en vietnamien, jamais dans une issue publique. Nous répondons sous {businessDays}.",
+                "Indiquez ce qui est touché et sa version, votre système, les étapes ou une preuve de concept, et ce qu’un attaquant y gagne.",
+                "Les correctifs sortent dans une nouvelle version : vérifiez donc d’abord la dernière. Il n’y a pas de programme de bug bounty."
+            ],
             "links": [
                 {
                     "label": "Politique de sécurité sur GitHub",

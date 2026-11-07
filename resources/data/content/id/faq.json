@@ -9,10 +9,10 @@
     },
     "header": {
         "title": "Pertanyaan umum",
-        "lead": "Pertanyaan tentang aplikasi, lisensi, dan privasi."
+        "lead": "Jawaban singkat, masing-masing dengan tautan ke halaman yang berisi detailnya."
     },
     "breadcrumb": "Pertanyaan umum",
-    "jump": "Pertanyaan menurut topik",
+    "nav": "Topik",
     "languages": {
         "en": "bahasa Inggris",
         "vi": "bahasa Vietnam",
@@ -24,47 +24,78 @@
     },
     "groups": [
         {
-            "id": "general",
-            "title": "Umum",
+            "id": "product",
+            "also": [
+                "general"
+            ],
+            "title": "Produk",
             "items": [
                 {
                     "id": "what-is-tablepro",
+                    "also": [
+                        "native"
+                    ],
                     "question": "Apa itu TablePro?",
-                    "answer": [
-                        "Klien database native dan open source. Di Mac, kueri dan edit {featuredEngines} dan lainnya serta gunakan skema. Versi beta Linux serta app iPhone dan iPad menawarkan alat database yang lebih terbatas.",
-                        "Lihat semua <features>fitur</features>."
-                    ]
-                },
-                {
-                    "id": "native",
-                    "question": "Apa arti “native” di sini?",
-                    "answer": [
-                        "TablePro menggunakan antarmuka asli dan driver database, tanpa Electron atau JDBC. Aplikasi Mac, iPhone, dan iPad menggunakan Swift: AppKit dan SwiftUI di Mac, dan fitur perangkat seperti Face ID dan Pintasan di iPhone dan iPad. Aplikasi Linux menggunakan Rust, GTK 4, dan libadwaita."
-                    ]
-                },
-                {
-                    "id": "is-it-free",
-                    "question": "Apakah TablePro gratis?",
-                    "answer": [
-                        "Ya. Aplikasi Mac tidak memiliki masa percobaan atau batas waktu. Semua mesin yang didukung, AI, MCP dan Safe Mode gratis. Pro dan Team menambahkan fitur pada <pricing>halaman harga</pricing>.",
-                        "Aplikasi Linux gratis digunakan. Aplikasi iPhone dan iPad gratis, tanpa lisensi atau pembelian dalam aplikasi."
-                    ]
+                    "answer": "Klien database native dan open source untuk Mac dan Linux, dengan aplikasi untuk iPhone dan iPad, dibuat tanpa Electron atau JDBC. TablePro menjalankan kueri, mengedit data, dan bekerja dengan skema: <features>lihat semua fitur</features>."
                 },
                 {
                     "id": "open-source",
-                    "question": "Apakah TablePro bersumber terbuka?",
-                    "answer": [
-                        "Ya. Aplikasi-aplikasinya, termasuk kode fitur berbayar, berada di bawah AGPLv3 dalam satu repositori <source>GitHub</source>. Pembuatan dari sumber masih memeriksa lisensi untuk fitur berbayar."
-                    ]
+                    "question": "Apakah TablePro open source?",
+                    "answer": "Ya. Aplikasinya, termasuk kode fitur berbayar, berada di bawah AGPLv3 dalam satu <source>repositori GitHub</source>, dan build dari kode sumber tetap memeriksa paket Anda untuk fitur berbayar."
+                },
+                {
+                    "id": "compare",
+                    "question": "Bagaimana perbandingan TablePro dengan klien database lain?",
+                    "answer": "Setiap <compare>perbandingan</compare> mencantumkan perbedaannya beserta tanggal pemeriksaan dan sumbernya, termasuk saat klien lain mungkin lebih cocok."
+                }
+            ]
+        },
+        {
+            "id": "pricing",
+            "also": [
+                "licensing",
+                "account"
+            ],
+            "title": "Harga",
+            "items": [
+                {
+                    "id": "is-it-free",
+                    "question": "Apakah TablePro gratis?",
+                    "answer": "Ya, tanpa masa percobaan atau batas waktu: semua engine yang didukung, asisten AI, MCP, dan Safe Mode gratis, dan aplikasi iPhone dan iPad tidak memiliki pembelian dalam aplikasi. Pro dan Team menambahkan fitur di <pricing>halaman harga</pricing>."
+                },
+                {
+                    "id": "what-a-license-adds",
+                    "question": "Apa tambahan dari paket berbayar?",
+                    "answer": "Pro menambahkan {starterFeatures}. Team juga menambahkan {teamFeatures}: <pricingFeatures>bandingkan paketnya</pricingFeatures>."
                 },
                 {
                     "id": "work-use",
-                    "question": "Bolehkah TablePro digunakan di tempat kerja?",
-                    "answer": [
-                        "Ya, di perusahaan dengan ukuran apa pun. AGPL tidak membatasi penggunaan TablePro. Ketentuannya berlaku untuk distribusi dan penyediaan versi yang dimodifikasi kepada orang lain melalui jaringan. Lihat <agpl>teks lisensi</agpl> untuk detailnya."
-                    ]
+                    "question": "Bolehkah aplikasi gratisnya dipakai di tempat kerja?",
+                    "answer": "Ya, di perusahaan dengan ukuran apa pun, dan tidak ada yang gratis hari ini yang akan menjadi berbayar. AGPL menetapkan syarat untuk mendistribusikan TablePro atau menyediakan versi yang diubah melalui jaringan, bukan untuk menjalankannya: <agpl>baca lisensinya</agpl>."
+                },
+                {
+                    "id": "students-teachers",
+                    "question": "Apakah Pro gratis untuk pelajar dan pengajar?",
+                    "answer": "Ya, selama satu tahun: masuk ke <account>akun Anda</account> dengan email sekolah atau universitas Anda, lalu pilih <ui>Dapatkan Pro gratis</ui>. Ini Pro untuk satu orang, diperpanjang selama alamatnya masih aktif, dan tidak berlaku untuk akun yang sudah membayar Pro."
                 }
-            ]
+            ],
+            "more": {
+                "also": [
+                    "cost",
+                    "how-many-macs",
+                    "subscription-ends",
+                    "offline",
+                    "payment",
+                    "payment-methods",
+                    "company-invoice",
+                    "refunds",
+                    "lost-license-key",
+                    "members",
+                    "seats",
+                    "cancel"
+                ],
+                "text": "Harga, penagihan, faktur, pengembalian dana, seat, kunci lisensi, dan penggunaan offline ada di <pricingFaq>pertanyaan di halaman Harga</pricingFaq>."
+            }
         },
         {
             "id": "platforms",
@@ -73,274 +104,117 @@
                 {
                     "id": "mac-requirements",
                     "question": "Mac apa yang dapat menjalankan TablePro?",
-                    "answer": [
-                        "App Mac memerlukan {macRequirement} dan berjalan native di Apple silicon dan Intel. Unduh dari <download>halaman unduhan</download> atau instal dengan Homebrew."
-                    ]
+                    "answer": "Aplikasi Mac memerlukan {macRequirement} dan berjalan native di Apple silicon dan Intel. Unduh dari <download>halaman unduhan</download> atau dengan Homebrew."
                 },
                 {
                     "id": "windows-linux",
                     "question": "Apakah ada versi Windows atau Linux?",
-                    "answer": [
-                        "Untuk Linux, ya: <downloadLinux>TablePro untuk Linux</downloadLinux> tersedia sebagai versi beta, dengan <databasesLinux>engine</databasesLinux> dan fitur tersendiri. Windows tidak tersedia, dan tidak ada tanggal rilis."
-                    ]
+                    "answer": "Untuk Linux, ya: <downloadLinux>TablePro untuk Linux</downloadLinux> adalah versi beta untuk {linuxDistributions}, dan untuk distribusi lain melalui Flatpak, dengan engine dan fitur tersendiri. Tidak ada versi Windows, dan belum ada tanggal rilisnya."
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "Apakah ada aplikasi iPhone dan iPad?",
-                    "answer": [
-                        "Ya. Aplikasi App Store gratis memerlukan {iosRequirement} dan terhubung ke {iosEngines}. Mendukung kueri, terowongan SSH, Safe Mode dan Face ID; penelusuran dan pengeditan tabel bergantung pada mesin.",
-                        "Tidak ada asisten AI, server MCP, atau kueri tersimpan. Lihat <ios>fitur dan batasannya</ios>."
-                    ]
+                    "answer": "Ya, aplikasi App Store gratis yang memerlukan {iosRequirement} dan terhubung ke {iosEngines}. Aplikasi ini menjalankan kueri melalui terowongan SSH dengan Safe Mode dan Face ID, dan tidak memiliki asisten AI, server MCP, atau kueri tersimpan: <ios>lihat apa yang bisa dilakukannya</ios>."
                 },
                 {
                     "id": "languages",
                     "question": "Dalam bahasa apa aplikasi tersedia?",
-                    "answer": [
-                        "Aplikasi Mac mendukung {macLanguages}, meskipun beberapa layar terjemahan masih menampilkan bahasa Inggris. Aplikasi Linux mendukung {linuxLanguages}. Aplikasi iPhone dan iPad mendukung {iosLanguages}.",
-                        "Situs web dan portal akun mendukung berbagai bahasa. <docs>Dokumentasi</docs> dalam bahasa Inggris."
-                    ]
+                    "answer": "Aplikasi Mac tersedia dalam {macLanguages}, meskipun beberapa layar masih menampilkan bahasa Inggris, aplikasi Linux dalam {linuxLanguages}, dan aplikasi iPhone dan iPad dalam {iosLanguages}. Situs web tersedia dalam lebih banyak bahasa, dan <docs>dokumentasi</docs> dalam bahasa Inggris."
                 }
             ]
         },
         {
             "id": "databases",
+            "also": [
+                "switching"
+            ],
             "title": "Database",
             "items": [
                 {
                     "id": "supported-databases",
                     "question": "Database apa yang dapat dihubungkan?",
-                    "answer": [
-                        "Aplikasi Mac mendukung {featuredEngines} dan banyak lagi. Lihat <databases>database yang didukung</databases> untuk mengetahui kemampuan setiap mesin.",
-                        "Aplikasi iPhone dan iPad terhubung ke {iosEngines}."
-                    ]
+                    "answer": "Aplikasi Mac terhubung ke {featuredEngines} dan lainnya, sedangkan aplikasi Linux serta iPhone dan iPad ke kumpulan engine masing-masing. <databases>Database yang didukung</databases> mencantumkan kemampuan setiap engine."
                 },
                 {
                     "id": "drivers",
                     "question": "Apakah driver database harus diinstal?",
-                    "answer": [
-                        "Driver untuk {bundledEngines} dibundel pada Mac. Lainnya mengunduh saat pertama kali digunakan, memerlukan akses internet, dan memperbarui secara mandiri. TablePro memverifikasi checksum dan tanda tangan kodenya.",
-                        "Semua driver iPhone dan iPad sudah terpasang."
-                    ]
+                    "answer": "Tidak: aplikasi Mac sudah menyertakan driver untuk {bundledEngines}, dan mengunduh yang lain sebagai plugin saat pertama kali Anda membutuhkannya, setelah memeriksa checksum dan tanda tangan kodenya. Driver iPhone dan iPad sudah terpasang."
                 },
                 {
                     "id": "ssh-ssl",
                     "question": "Dapatkah saya terhubung melalui SSH atau TLS?",
-                    "answer": [
-                        "Ya, jika mesin mendukungnya. Aplikasi Mac mendukung kunci SSH, kata sandi, agen, dan jump host, ditambah verifikasi sertifikat TLS dan terowongan atau proksi eksternal. Lihat <connections>opsi koneksi</connections>.",
-                        "Di iPhone dan iPad, SSH menggunakan kata sandi atau kunci pribadi. Host lompat tidak didukung."
-                    ]
-                },
-                {
-                    "id": "passwords",
-                    "question": "Di mana kata sandi disimpan?",
-                    "answer": [
-                        "Kata sandi yang disimpan tetap berada di Rantai Kunci, atau di Linux dalam keyring Secret Service seperti GNOME Keyring atau KWallet. Di Mac, Anda dapat menyelesaikannya dari file, variabel lingkungan, perintah shell, 1Password, Vault, atau AWS Secrets Manager.",
-                        "Sinkronisasi kata sandi adalah pilihan terpisah: aktifkan <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di iPhone dan iPad. Ini menggunakan iCloud Keychain."
-                    ]
+                    "answer": "Ya, jika engine mendukungnya: di Mac, kunci SSH, kata sandi, agen, dan jump host, verifikasi sertifikat TLS, serta terowongan atau proksi eksternal. iPhone dan iPad memakai SSH dengan kata sandi atau kunci privat, tanpa jump host: <connections>lihat opsi koneksi</connections>."
                 },
                 {
                     "id": "import-connections",
+                    "also": [
+                        "switch-connections"
+                    ],
                     "question": "Bisakah koneksi dibawa dari aplikasi lain?",
-                    "answer": [
-                        "Ya. Aplikasi Mac mengimpor koneksi dan kata sandi yang disimpan dari {importApps}. Mengimpor itu gratis."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "licensing",
-            "title": "Harga dan lisensi",
-            "items": [
-                {
-                    "id": "what-a-license-adds",
-                    "question": "Apa tambahan dari lisensi?",
-                    "answer": [
-                        "Pro menambahkan {starterFeatures}. Team juga menambahkan {teamFeatures}. Lihat <pricing>fitur berbayar</pricing> untuk detailnya."
-                    ]
-                },
-                {
-                    "id": "cost",
-                    "question": "Berapa harga lisensi?",
-                    "answer": [
-                        "Pilih penagihan bulanan, tahunan, atau satu kali dalam dolar AS. Team dimulai dari seat {teamMinSeats}. Lihat harga dan total <pricing>saat ini</pricing>."
-                    ]
-                },
-                {
-                    "id": "students-teachers",
-                    "question": "Apakah Pro gratis untuk pelajar dan pengajar?",
-                    "answer": [
-                        "Ya, selama satu tahun. Masuk ke <account>akun Anda</account> dengan alamat email sekolah atau universitas Anda, atau ubah email akun Anda ke alamat tersebut, lalu pilih <ui>Dapatkan Pro gratis</ui> di halaman Ringkasan dan masukkan kode yang kami kirim ke alamat tersebut. Anda memperpanjangnya dengan cara yang sama selama alamat tersebut masih aktif, dan kami akan mengirim email seminggu sebelum masa berlakunya berakhir.",
-                        "Tahun gratis ini berupa Pro untuk satu orang dan tidak termasuk Team. Akun yang sudah memiliki lisensi Pro berbayar tidak dapat menerimanya. Jika kami tidak mengenali alamat Anda, silakan kirim email ke <email>{email}</email>."
-                    ]
-                },
-                {
-                    "id": "how-many-macs",
-                    "question": "Berapa komputer yang dicakup lisensi?",
-                    "answer": [
-                        "Pro mencakup satu orang pada maksimal {deviceLimit} komputer, Mac atau Linux. Team menyediakan minimal {teamMinSeats} seat, dan setiap seat mencakup satu orang pada maksimal {deviceLimit} komputer. Batas ini berlaku per akun, gabungan Pro dan Team. Komputer Linux tempat Anda masuk juga dihitung. iPhone dan iPad tidak menggunakan seat.",
-                        "Untuk memakai lisensi di komputer lain, hapus satu komputer di halaman Perangkat pada <account>akun Anda</account> atau di <ui>Settings > Account</ui> di Mac. Sementara itu, komputer lain tersebut tetap memakai fitur gratis."
-                    ]
-                },
-                {
-                    "id": "subscription-ends",
-                    "question": "Apa yang terjadi saat langganan berakhir?",
-                    "answer": [
-                        "Fitur berbayar berhenti: iCloud Sync dijeda dan koneksi bersama mungkin disembunyikan. Koneksi lokal, kueri, dan pengaturan Anda tetap ada. Fitur gratis tetap berfungsi; memperbarui memulihkan akses berbayar.",
-                        "Lisensi pembelian satu kali tidak memiliki tanggal kedaluwarsa. iPhone dan iPad tidak terpengaruh."
-                    ]
-                },
-                {
-                    "id": "offline",
-                    "question": "Apakah lisensi bekerja offline?",
-                    "answer": [
-                        "Ya. TablePro menyimpan salinan paket Anda yang ditandatangani dan memperbaruinya saat aplikasi dibuka dan sekali sehari. Jika server kami tidak dapat dijangkau, fitur berbayar tetap berfungsi hingga salinan itu kedaluwarsa, paling lama {offlineDays} hari setelah pembaruan terakhir.",
-                        "Untuk Mac yang tidak pernah online, buat file offline di <account>akun Anda</account> lalu impor di <ui>Settings > Account</ui>. File berlaku hingga akhir periode berbayar, atau satu tahun untuk pembelian satu kali.",
-                        "Versi sebelum akun TablePro memeriksa lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.",
-                        "Pengunduhan driver, pembaruan, dan cloud AI masih memerlukan akses internet."
-                    ]
-                },
-                {
-                    "id": "payment",
-                    "question": "Siapa yang menangani pembayaran?",
-                    "answer": [
-                        "{merchant} adalah merchant of record yang menangani pembayaran, pajak, dan tanda terima. Kartu dan faktur Anda ada di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan email pembelian. Ubah atau batalkan langganan di <account>akun Anda</account>."
-                    ]
-                },
-                {
-                    "id": "payment-methods",
-                    "question": "Metode pembayaran apa yang bisa saya gunakan?",
-                    "answer": [
-                        "Checkout {merchant} menerima kartu kredit dan kartu debit."
-                    ]
-                },
-                {
-                    "id": "company-invoice",
-                    "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
-                    "answer": [
-                        "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor pajak (VAT), dan alamat penagihan ke faktur, lalu mengunduhnya."
-                    ]
-                },
-                {
-                    "id": "refunds",
-                    "question": "Bisakah meminta pengembalian dana?",
-                    "answer": [
-                        "Ya. Pembelian dan perpanjangan langganan dapat dikembalikan dalam waktu {refundDays} hari setelah setiap tagihan. Kembalikan dananya sendiri di Penagihan pada <account>akun Anda</account>, atau lihat <refundPolicy>kebijakan pengembalian dana</refundPolicy>."
-                    ]
-                },
-                {
-                    "id": "lost-license-key",
-                    "question": "Kunci lisensi hilang. Di mana kuncinya?",
-                    "answer": [
-                        "Anda tidak memerlukannya lagi. Masuk ke aplikasi Mac dengan email pembelian: pembelian Anda ada di akun tersebut. Setelah TablePro diperbarui, kunci yang sudah ada di Mac akan memasukkan Anda secara otomatis.",
-                        "Hanya versi sebelum akun TablePro yang masih meminta kunci, yang ada di email pembelian Anda. Pembelian setelahnya tidak memiliki kunci."
-                    ]
-                },
-                {
-                    "id": "priority-support",
-                    "question": "Apa itu dukungan prioritas?",
-                    "answer": [
-                        "Dukungan ini disertakan dalam lisensi Team: email pelanggan Team dijawab terlebih dahulu dalam satu hari kerja. <termsSupport>Ketentuan</termsSupport> menjelaskan dukungan setiap paket."
-                    ]
+                    "answer": "Ya. Aplikasi Mac mengimpor koneksi dari {importApps}, beserta kata sandi tersimpan, terowongan SSH, dan pengaturan TLS-nya, secara gratis."
                 }
             ]
         },
         {
             "id": "privacy",
-            "title": "Privasi dan jaringan",
+            "title": "Privasi",
             "items": [
                 {
                     "id": "what-is-sent",
                     "question": "Apa yang dikirim aplikasi ke TablePro?",
-                    "answer": [
-                        "Aplikasi Mac membagikan data penggunaan secara default; nonaktifkan di <ui>Settings > General > Privacy</ui>. Mulai versi yang menghadirkan akun TablePro, data itu langsung dikirim ke PostHog: peristiwa aplikasi beserta model Mac, versi aplikasi dan macOS, dan jenis database, dengan ID acak sebelum Anda masuk dan ID akun Anda setelahnya. Versi sebelum akun TablePro mengirim laporan harian dengan ID mesin yang di-hash melalui server kami sebagai gantinya. Keduanya tidak pernah mencakup nama host, nama pengguna, kata sandi, kueri, atau baris. Aplikasi Linux juga membagikan data penggunaan secara default, tanpa detail tersebut; nonaktifkan di preferensinya.",
-                        "Setelah Anda masuk, aplikasi Mac mendaftarkan Mac ke akun Anda dengan ID mesin, nama, serta versi app dan macOS, lalu memperbarui paket Anda sekali sehari. Versi sebelum akun TablePro mengirimkan kunci lisensi beserta data tersebut setiap {revalidateDays} hari. Laporan iPhone dan iPad bersifat opsional. Team Library menerima pengaturan dan SQL tersimpan yang Anda publikasikan. Lihat <privacy>kebijakan privasi</privacy>, termasuk pencatatan IP."
-                    ]
+                    "answer": "Data penggunaan tanpa nama host, nama pengguna, kata sandi, kueri, atau baris, aktif secara default di Mac dan Linux dan opsional di iPhone dan iPad, serta pemeriksaan paket Anda setelah Anda masuk: <securityNetwork>lihat semua yang keluar dari perangkat Anda</securityNetwork>."
                 },
                 {
-                    "id": "sign-up",
-                    "question": "Apakah harus mendaftar?",
-                    "answer": [
-                        "Tidak diperlukan pendaftaran untuk menggunakan aplikasi. Fitur berbayar berfungsi setelah Anda masuk ke akun TablePro: pembelian masuk ke akun email yang dipakai untuk membeli, yang dibuat jika belum ada, dan setiap anggota tim masuk dengan akunnya sendiri. Versi sebelum akun TablePro memakai kunci lisensi sebagai gantinya."
-                    ]
+                    "id": "passwords",
+                    "question": "Di mana kata sandi disimpan?",
+                    "answer": "Di Rantai Kunci pada Mac, iPhone, dan iPad, dan di keyring desktop pada Linux, tidak pernah di server TablePro: <securityCredentials>lihat cara kredensial disimpan</securityCredentials>."
                 },
                 {
                     "id": "ai-data",
                     "question": "Apakah asisten AI mengirim data saya ke TablePro?",
-                    "answer": [
-                        "Tidak. Permintaan dikirim langsung ke penyedia pilihan Anda, bukan melalui TablePro. Mereka mencakup tipe dan nama database, skema, dan kueri saat ini secara default. Baris hasil memerlukan keikutsertaan terpisah. {localAiProviders} dijalankan secara lokal. Penyedia mungkin mengenakan biaya untuk penggunaan. Lihat penanganan data <aiMcp>AI</aiMcp>."
-                    ]
+                    "answer": "Tidak, permintaannya langsung dikirim ke penyedia yang Anda pilih, atau tetap di komputer Anda dengan {localAiProviders}: <securityAi>lihat ke mana setiap permintaan AI dikirim</securityAi>."
                 },
                 {
                     "id": "icloud-data",
-                    "question": "Apa yang disimpan iCloud Sync dan di mana?",
-                    "answer": [
-                        "Sinkronisasi dinonaktifkan secara default dan menggunakan database pribadi di akun iCloud Anda, yang tidak dapat dibaca oleh TablePro. Kata sandi memerlukan keikutsertaan terpisah: <ui>Passwords</ui> di Mac atau <ui>Sync Passwords</ui> di iPhone dan iPad.",
-                        "iCloud Sync memerlukan Pro atau Team di Mac dan gratis di iPhone dan iPad."
-                    ]
+                    "question": "Apa yang disimpan iCloud Sync, dan di mana?",
+                    "answer": "Tidak ada sampai Anda mengaktifkannya; setelah itu, koneksi dan pengaturan yang Anda pilih masuk ke database privat di akun iCloud Anda sendiri yang tidak dapat dibaca TablePro, dengan kata sandi hanya jika Anda juga mengaktifkan sinkronisasi kata sandi: <securityCredentials>lihat apa yang disinkronkan</securityCredentials>."
                 }
             ]
         },
         {
-            "id": "account",
-            "title": "Akun dan tim",
+            "id": "support",
+            "title": "Dukungan",
             "items": [
                 {
-                    "id": "sign-in",
-                    "question": "Bagaimana masuk ke akun?",
-                    "answer": [
-                        "Di <account>akun Anda</account>, masukkan email untuk menerima tautan masuk dan kode 6 digit, atau gunakan passkey, Apple, GitHub, atau Google. Tidak ada kata sandi. Tautan berlaku satu kali, dan keduanya kedaluwarsa setelah 15 menit.",
-                        "Aplikasi Mac menawarkan untuk masuk saat pertama kali dibuka, dan setelahnya di <ui>Settings > Account</ui>. Aplikasi membuka halaman masuk di jendela browser, tempat Anda mengetik kode dari email. Versi sebelum akun TablePro tidak memiliki fitur masuk."
-                    ]
+                    "id": "sign-up",
+                    "also": [
+                        "sign-in"
+                    ],
+                    "question": "Apakah saya perlu akun?",
+                    "answer": "Tidak untuk aplikasi gratis; fitur berbayar berfungsi setelah Anda masuk ke <account>akun TablePro</account> dengan email yang Anda pakai untuk membeli, melalui tautan email, passkey, Apple, GitHub, atau Google. Build Mac lama memakai kunci lisensi sebagai gantinya."
                 },
                 {
-                    "id": "members",
-                    "question": "Bagaimana menambah atau menghapus anggota tim?",
-                    "answer": [
-                        "Pemilik dan admin mengundang lewat email dari halaman Anggota di <account>akun Anda</account>, dengan peran dan, jika diinginkan, seat. Tautan dalam email berlaku 7 hari, dan akun TablePro mana pun dapat menerimanya. Anggota baru memakai seat di versi TablePro yang menghadirkan akun.",
-                        "Menghapus anggota membebaskan seat-nya. Mac miliknya kehilangan fitur Team saat TablePro berikutnya menghubungi server."
-                    ]
+                    "id": "priority-support",
+                    "question": "Apa itu dukungan prioritas?",
+                    "answer": "Email dari pelanggan Team dijawab lebih dulu, dalam {businessDays}. <termsSupport>Ketentuan</termsSupport> menjelaskan dukungan untuk setiap paket."
                 },
                 {
-                    "id": "seats",
-                    "question": "Bagaimana mengubah jumlah seat?",
-                    "answer": [
-                        "Pemilik tim mengubah jumlah seat di Penagihan pada <account>akun Anda</account>. Untuk langganan, {merchant} menagih atau mengkreditkan selisih prorata saat itu juga. Tim dengan seat satu kali tetap memilikinya, dan seat tambahan tersedia lewat langganan Team."
-                    ]
-                },
-                {
-                    "id": "cancel",
-                    "question": "Bagaimana membatalkan langganan?",
-                    "answer": [
-                        "Batalkan di <account>akun Anda</account> atau <portal>portal {merchant}</portal>. Akses berlanjut hingga akhir periode berbayar, tanpa perpanjangan berikutnya. Anda dapat melanjutkan kembali sebelum periode berakhir."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "switching",
-            "title": "Beralih dari aplikasi lain",
-            "items": [
-                {
-                    "id": "switch-connections",
-                    "question": "Apakah harus menyiapkan koneksi lagi?",
-                    "answer": [
-                        "Jika klien Anda saat ini didukung, Anda dapat mengimpor koneksi dari {importApps}, termasuk kata sandi yang disimpan, terowongan SSH, dan pengaturan TLS."
-                    ]
-                },
-                {
-                    "id": "compare",
-                    "question": "Bagaimana perbandingan TablePro dengan klien database lain?",
-                    "answer": [
-                        "Lihat <compare>comparisons</compare> untuk mengetahui perbedaan, memeriksa tanggal dan sumber, termasuk di mana klien lain mungkin lebih cocok."
-                    ]
+                    "id": "report-vulnerability",
+                    "question": "Bagaimana cara melaporkan masalah keamanan?",
+                    "answer": "Secara privat, melalui email atau security advisory GitHub, tidak pernah di issue publik: <securityReport>lihat cara melaporkan kerentanan</securityReport>."
                 }
             ]
         }
     ],
+    "counts": {
+        "businessDays": {
+            "one": "satu hari kerja",
+            "other": "{count} hari kerja"
+        }
+    },
     "contact": {
-        "title": "Butuh bantuan?",
+        "title": "Kontak",
         "body": "Kirim email ke <email>{email}</email> atau laporkan masalah di <issues>GitHub</issues>.",
-        "chat": "Mulai chat langsung",
-        "chatNote": "Chat langsung dimuat setelah halaman selesai dimuat."
+        "chat": "Mulai chat langsung"
     }
 }
