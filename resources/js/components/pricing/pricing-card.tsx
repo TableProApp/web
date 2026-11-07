@@ -87,7 +87,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             <div className="grid content-start gap-3">
                 {tier === 'free' ? (
                     <LocaleLink href="/download" onClick={() => trackDownload('pricing-free')} className={buttonClasses('secondary', 'md', 'w-full')}>
-                        {m.download.macCta}
+                        {m.nav.download}
                     </LocaleLink>
                 ) : (
                     <Button

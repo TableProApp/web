@@ -12,7 +12,7 @@
  *   said something that was never true. `{date}` is the correction's date.
  * - `post.notes` links that release's changelog entry and GitHub release.
  * - The download line under a post is the availability layer's
- *   (`platforms.availability.summary`, `download.macCta`), never typed here.
+ *   (`platforms.availability.summary`, `nav.download`), never typed here.
  */
 export default {
     index: {

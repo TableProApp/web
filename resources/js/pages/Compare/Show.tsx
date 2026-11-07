@@ -12,7 +12,6 @@ import SEOHead from '@/components/seo/seo-head';
 import { buttonClasses } from '@/components/ui/button';
 import DotList from '@/components/ui/dot-list';
 import FaqList from '@/components/ui/faq-list';
-import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
@@ -89,8 +88,7 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                 actions={
                     <>
                         <LocaleLink href="/download" onClick={() => trackDownload('compare', 'mac')} className={buttonClasses('primary', 'md')}>
-                            <AppleGlyph />
-                            {m.download.macCta}
+                            {m.nav.download}
                         </LocaleLink>
                         <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
                             {labels.cta.pricing}

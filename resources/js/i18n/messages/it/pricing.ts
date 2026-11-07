@@ -106,10 +106,10 @@ export default {
     "comparePlans": "Confronta i piani",
     "section": {
         "title": "Prezzi",
-        "lead": "TablePro è open source e si può usare gratuitamente. I piani a pagamento aggiungono funzionalità opzionali all’app per Mac."
+        "lead": "TablePro è open source e si può usare gratuitamente. I piani a pagamento aggiungono funzionalità opzionali."
     },
     "matrix": {
-        "caption": "Cosa include ogni piano nell’app per Mac",
+        "caption": "Cosa include ogni piano",
         "feature": "Funzionalità",
         "groups": {
             "starter": "In Pro e Team",

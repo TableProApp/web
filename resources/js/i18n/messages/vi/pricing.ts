@@ -90,10 +90,10 @@ export default {
     comparePlans: 'So sánh các gói',
     section: {
         title: 'Bảng giá',
-        lead: 'TablePro là phần mềm mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung một số tính năng cho ứng dụng Mac.',
+        lead: 'TablePro là phần mềm mã nguồn mở, dùng miễn phí. Các gói trả phí bổ sung một số tính năng tùy chọn.',
     },
     matrix: {
-        caption: 'Những gì mỗi gói có trong ứng dụng Mac',
+        caption: 'Những gì mỗi gói có',
         feature: 'Tính năng',
         groups: {
             starter: 'Có trong Pro và Team',

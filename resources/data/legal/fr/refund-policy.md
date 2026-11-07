@@ -1,7 +1,7 @@
 ---
 title: Politique de remboursement
 description: Toute offre TablePro est remboursable dans les {refundDays} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {refundDays} jours suivant son paiement.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Pro et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat, et chaque renouvellement mensuel ou annuel peut être remboursé dans les {refundDays} jours suivant son paiement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
@@ -16,7 +16,7 @@ Les licences sont vendues par {merchant}, notre merchant of record ; le rembou
 
 ## Conséquences pour la licence {#license}
 
-Après un remboursement intégral, la licence prend fin aussitôt. Chaque Mac cesse d’utiliser les fonctionnalités payantes la prochaine fois que TablePro contacte notre serveur ; un Mac qui reste hors ligne cesse au plus tard {offlineDays} jours après, ou à l’expiration de son fichier hors ligne. Les versions antérieures aux comptes TablePro cessent à leur prochaine vérification de licence, au plus tard {revalidateDays} jours après, ou, si elles restent hors ligne, {graceDays} jours après leur dernière vérification réussie. Le reste de l’application Mac continue de fonctionner comme auparavant et les données de votre Mac restent intactes.
+Après un remboursement intégral, la licence prend fin aussitôt. Chaque ordinateur cesse d’utiliser les fonctionnalités payantes la prochaine fois que TablePro contacte notre serveur ; un ordinateur qui reste hors ligne cesse au plus tard {offlineDays} jours après, ou à l’expiration de son fichier hors ligne. Les versions antérieures aux comptes TablePro cessent à leur prochaine vérification de licence, au plus tard {revalidateDays} jours après, ou, si elles restent hors ligne, {graceDays} jours après leur dernière vérification réussie. Les applications continuent de fonctionner comme auparavant sans elles et les données de votre ordinateur restent intactes.
 
 ## Abonnements {#subscriptions}
 

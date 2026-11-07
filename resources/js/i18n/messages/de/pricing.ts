@@ -106,10 +106,10 @@ export default {
     "comparePlans": "Tarife vergleichen",
     "section": {
         "title": "Preise",
-        "lead": "TablePro ist quelloffen und kostenlos nutzbar. Bezahlte Tarife ergänzen die Mac-App um optionale Funktionen."
+        "lead": "TablePro ist quelloffen und kostenlos nutzbar. Bezahlte Tarife ergänzen optionale Funktionen."
     },
     "matrix": {
-        "caption": "Was jeder Tarif in der Mac-App enthält",
+        "caption": "Was jeder Tarif enthält",
         "feature": "Funktion",
         "groups": {
             "starter": "In Pro und Team",

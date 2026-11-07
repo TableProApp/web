@@ -44,7 +44,7 @@ Une Licence vous accorde un droit non exclusif et non transférable d’utiliser
 
 La limite de {deviceLimit} ordinateurs s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des ordinateurs couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.
 
-L’application Mac renouvelle votre offre auprès de notre serveur une fois par jour. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner jusqu’à {offlineDays} jours après le dernier renouvellement ou, sur un Mac qui utilise un fichier hors ligne du portail du compte, jusqu’à l’expiration de ce fichier. Les versions antérieures aux comptes TablePro vérifient plutôt une Clé de licence tous les {revalidateDays} jours et gardent les fonctionnalités payantes pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et le reste de l’application Mac continue de fonctionner.
+Les applications renouvellent votre offre auprès de notre serveur une fois par jour. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner jusqu’à {offlineDays} jours après le dernier renouvellement ou, sur un Mac qui utilise un fichier hors ligne du portail du compte, jusqu’à l’expiration de ce fichier. Les versions antérieures aux comptes TablePro vérifient plutôt une Clé de licence tous les {revalidateDays} jours et gardent les fonctionnalités payantes pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et les applications continuent de fonctionner sans elles.
 
 ## Portail de comptes {#account}
 
@@ -97,7 +97,7 @@ Vous acceptez d’indemniser TablePro et ses contributeurs et de les dégager de
 
 Nous publions mises à jour, corrections et nouvelles fonctionnalités à notre discrétion. Hormis l’assistance prioritaire ci-dessus, nous n’avons aucune obligation de maintenir, mettre à jour ou assister une version de l’Application ; les anciennes versions peuvent cesser de recevoir des correctifs de sécurité.
 
-Certains Services, comme les vérifications de licence et Team Library, nécessitent un accès réseau. Nous ne garantissons pas leur disponibilité permanente et pouvons les arrêter avec un préavis raisonnable. Les fonctionnalités payantes de l’application Mac nécessitent notre serveur de licences : s’il est inaccessible, elles continuent de fonctionner pendant la durée indiquée dans [Utiliser une licence](#license).
+Certains Services, comme les vérifications de licence et Team Library, nécessitent un accès réseau. Nous ne garantissons pas leur disponibilité permanente et pouvons les arrêter avec un préavis raisonnable. Les fonctionnalités payantes des applications nécessitent notre serveur de licences : s’il est inaccessible, elles continuent de fonctionner pendant la durée indiquée dans [Utiliser une licence](#license).
 
 ## Résiliation {#termination}
 

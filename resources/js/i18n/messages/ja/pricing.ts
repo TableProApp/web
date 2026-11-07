@@ -106,10 +106,10 @@ export default {
     "comparePlans": "プランを比較",
     "section": {
         "title": "料金",
-        "lead": "TablePro はオープンソースで、無料で使えます。有料プランで Mac アプリにオプション機能を追加できます。"
+        "lead": "TablePro はオープンソースで、無料で使えます。有料プランでオプション機能を追加できます。"
     },
     "matrix": {
-        "caption": "Mac アプリで各プランに含まれる機能",
+        "caption": "各プランに含まれる機能",
         "feature": "機能",
         "groups": {
             "starter": "Pro と Team に含まれる",

@@ -1,7 +1,7 @@
 ---
 title: Política de reembolso
 description: Cada plan es reembolsable en los {refundDays} días siguientes a la compra, y cada renovación mensual o anual en los {refundDays} días siguientes a su cobro. Cómo pedirlo.
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 ---
 
 Todos los planes de pago se pueden reembolsar en un plazo de {refundDays} días: Pro y Team, mensuales, anuales y de pago único. Los {refundDays} días cuentan desde la fecha de compra, y cada renovación mensual o anual se puede reembolsar en los {refundDays} días siguientes a su cobro. Los planes están en la [página de precios](/es/pricing#refunds).
@@ -16,7 +16,7 @@ Las licencias las vende {merchant}, nuestro merchant of record, por lo que el re
 
 ## Qué ocurre con la licencia {#license}
 
-Tras un reembolso completo, la licencia termina al momento. Cada Mac deja de usar las funciones de pago la próxima vez que TablePro se comunica con nuestro servidor; uno que sigue sin conexión deja de usarlas como máximo {offlineDays} días después, o cuando caduca su archivo sin conexión. Las versiones anteriores a las cuentas de TablePro dejan de usarlas en su siguiente comprobación de licencia, como máximo {revalidateDays} días después, o, si siguen sin conexión, {graceDays} días después de su última comprobación correcta. El resto de la app para Mac sigue funcionando como antes y los datos de tu Mac no se modifican.
+Tras un reembolso completo, la licencia termina al momento. Cada ordenador deja de usar las funciones de pago la próxima vez que TablePro se comunica con nuestro servidor; uno que sigue sin conexión deja de usarlas como máximo {offlineDays} días después, o cuando caduca su archivo sin conexión. Las versiones anteriores a las cuentas de TablePro dejan de usarlas en su siguiente comprobación de licencia, como máximo {revalidateDays} días después, o, si siguen sin conexión, {graceDays} días después de su última comprobación correcta. Las apps siguen funcionando como antes sin ellas y los datos de tu ordenador no se modifican.
 
 ## Suscripciones {#subscriptions}
 

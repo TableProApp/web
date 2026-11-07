@@ -44,7 +44,7 @@ A License gives you a non-exclusive, non-transferable right to use the paid feat
 
 The limit of {deviceLimit} computers applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and computers your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.
 
-The Mac app renews your plan with our server once a day. If our server cannot be reached, the paid features keep working for up to {offlineDays} days after the last renewal, or, on a Mac that uses an offline file from the account portal, until the file expires. Versions before TablePro accounts check a License Key every {revalidateDays} days instead, and keep the paid features for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the rest of the Mac app keeps working.
+The apps renew your plan with our server once a day. If our server cannot be reached, the paid features keep working for up to {offlineDays} days after the last renewal, or, on a Mac that uses an offline file from the account portal, until the file expires. Versions before TablePro accounts check a License Key every {revalidateDays} days instead, and keep the paid features for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the apps keep working without them.
 
 ## Account portal {#account}
 
@@ -97,7 +97,7 @@ You agree to indemnify and hold harmless TablePro and its contributors against a
 
 We release updates, fixes and new features at our discretion. Apart from the priority support above, we have no obligation to maintain, update or provide support for any version of the Application, and older versions may stop receiving security fixes.
 
-Some Services, such as license checks and the Team Library, need network access. We do not guarantee that they are always available, and we may discontinue them with reasonable notice. The paid features of the Mac app need our license server: if it cannot be reached, they keep working for the time set out under [Using a license](#license).
+Some Services, such as license checks and the Team Library, need network access. We do not guarantee that they are always available, and we may discontinue them with reasonable notice. The paid features of the apps need our license server: if it cannot be reached, they keep working for the time set out under [Using a license](#license).
 
 ## Termination {#termination}
 

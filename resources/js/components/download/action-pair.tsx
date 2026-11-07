@@ -53,7 +53,7 @@ export default function ActionPair({ location, macCaption, macExtra, ios, linux 
 
     const mac = (
         <div className="grid content-start justify-items-start gap-2">
-            <LocaleLink href="/download" onClick={() => trackDownload(location, 'mac')} className={buttonClasses('primary', 'lg')}>
+            <LocaleLink href="/download#mac" onClick={() => trackDownload(location, 'mac')} className={buttonClasses('primary', 'lg')}>
                 <AppleGlyph className="size-5" />
                 {m.download.macCta}
             </LocaleLink>

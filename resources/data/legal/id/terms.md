@@ -44,7 +44,7 @@ Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk men
 
 Batas {deviceLimit} komputer berlaku per akun, untuk semua Lisensi yang dipakainya. Anda tidak boleh membagikan akun Anda atau Kunci Lisensi di luar orang dan komputer yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankan Lisensi atau Kunci Lisensi tanpa izin tertulis kami.
 
-Aplikasi Mac memperbarui paket Anda ke server kami sekali sehari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi hingga {offlineDays} hari setelah pembaruan terakhir atau, di Mac yang memakai file offline dari portal akun, hingga file itu kedaluwarsa. Versi sebelum akun TablePro memeriksa Kunci Lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Saat paket bulanan atau tahunan berakhir, fiturnya berhenti berfungsi dan aplikasi Mac lainnya tetap berjalan.
+Aplikasi TablePro memperbarui paket Anda ke server kami sekali sehari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi hingga {offlineDays} hari setelah pembaruan terakhir atau, di Mac yang memakai file offline dari portal akun, hingga file itu kedaluwarsa. Versi sebelum akun TablePro memeriksa Kunci Lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Saat paket bulanan atau tahunan berakhir, fiturnya berhenti berfungsi dan aplikasi tetap berjalan tanpa fitur tersebut.
 
 ## Portal akun {#account}
 
@@ -97,7 +97,7 @@ Anda setuju mengganti kerugian dan membebaskan TablePro serta kontributornya dar
 
 Kami merilis pembaruan, perbaikan, dan fitur baru sesuai kebijakan kami. Selain dukungan prioritas di atas, kami tidak berkewajiban memelihara, memperbarui, atau mendukung versi Aplikasi apa pun, dan versi lama mungkin berhenti menerima perbaikan keamanan.
 
-Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi Mac memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama waktu yang disebut di [Penggunaan lisensi](#license).
+Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi TablePro memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama waktu yang disebut di [Penggunaan lisensi](#license).
 
 ## Pengakhiran {#termination}
 

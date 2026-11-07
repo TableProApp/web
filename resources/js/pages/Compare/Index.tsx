@@ -23,7 +23,6 @@ import type { CompareHubProps, HubProduct } from '@/components/compare/types';
 import SEOHead from '@/components/seo/seo-head';
 import { buttonClasses } from '@/components/ui/button';
 import DataTable, { TABLE_CELL, TABLE_HEAD_CELL, TABLE_ROW, TABLE_ROW_HEADER } from '@/components/ui/data-table';
-import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
@@ -192,8 +191,7 @@ export default function CompareIndex({ content, products, freeNotes, titles, che
                 actions={
                     <>
                         <LocaleLink href="/download" onClick={() => trackDownload('compare-hub', 'mac')} className={buttonClasses('primary', 'md')}>
-                            <AppleGlyph />
-                            {m.download.macCta}
+                            {m.nav.download}
                         </LocaleLink>
                         <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
                             {labels.cta.pricing}
@@ -211,7 +209,7 @@ export default function CompareIndex({ content, products, freeNotes, titles, che
                         <p className="type-body text-foreground">{fmt(content.bySituation.tablepro, { apps: joinList(importers, m.common.list) })}</p>
                         <p className="mt-2">
                             <LocaleLink href="/download" onClick={() => trackDownload('compare-hub-situation', 'mac')} className={textLinkClasses('standalone')}>
-                                {m.download.macCta}
+                                {m.nav.download}
                                 <span aria-hidden="true">→</span>
                             </LocaleLink>
                         </p>

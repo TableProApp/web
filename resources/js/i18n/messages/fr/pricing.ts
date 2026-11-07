@@ -106,10 +106,10 @@ export default {
     "comparePlans": "Comparer les offres",
     "section": {
         "title": "Tarifs",
-        "lead": "TablePro est open source et s’utilise gratuitement. Les offres payantes ajoutent des fonctionnalités facultatives à l’application Mac."
+        "lead": "TablePro est open source et s’utilise gratuitement. Les offres payantes ajoutent des fonctionnalités facultatives."
     },
     "matrix": {
-        "caption": "Ce que chaque offre comprend dans l’application Mac",
+        "caption": "Ce que chaque offre comprend",
         "feature": "Fonctionnalité",
         "groups": {
             "starter": "Dans Pro et Team",

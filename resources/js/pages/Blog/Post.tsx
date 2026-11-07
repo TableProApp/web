@@ -202,7 +202,7 @@ export default function BlogPost({ post, archived, correction, pages, notes, rel
                     <div className="flex max-w-[44rem] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <p className="type-body text-foreground">{fmt(m.platforms.availability.summary, { deviceList: deviceList(m.common.list) })}</p>
                         <LocaleLink href="/download" className={buttonClasses('secondary', 'md', 'shrink-0')} onClick={() => trackDownload('blog-post', 'mac')}>
-                            {m.download.macCta}
+                            {m.nav.download}
                         </LocaleLink>
                     </div>
                 </Container>

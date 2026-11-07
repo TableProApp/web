@@ -106,10 +106,10 @@ export default {
     "comparePlans": "Comparar planes",
     "section": {
         "title": "Precios",
-        "lead": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales a la app para Mac."
+        "lead": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales."
     },
     "matrix": {
-        "caption": "Qué incluye cada plan en la app para Mac",
+        "caption": "Qué incluye cada plan",
         "feature": "Función",
         "groups": {
             "starter": "En Pro y Team",

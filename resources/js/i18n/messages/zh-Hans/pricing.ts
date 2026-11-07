@@ -106,10 +106,10 @@ export default {
     "comparePlans": "对比方案",
     "section": {
         "title": "定价",
-        "lead": "TablePro 开源且可免费使用。付费方案为 Mac 应用增加可选功能。"
+        "lead": "TablePro 开源且可免费使用。付费方案增加可选功能。"
     },
     "matrix": {
-        "caption": "各方案在 Mac 应用中包含的功能",
+        "caption": "各方案包含的功能",
         "feature": "功能",
         "groups": {
             "starter": "Pro 和 Team 包含",
