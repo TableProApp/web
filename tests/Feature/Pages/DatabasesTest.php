@@ -216,10 +216,12 @@ it('states an engine’s Linux support in its header, its facts and its download
         default => $labels['none'],
     })
         ->and(str_contains(databasesWorksOn($document), $name))->toBe($support === 'tested')
+        ->and($support !== 'tested' || ! str_contains(databasesWorksOn($document), 'iPhone') || strpos(databasesWorksOn($document), $name) < strpos(databasesWorksOn($document), 'iPhone'))->toBeTrue()
+        ->and(array_search($name, array_keys(databasesFacts($document)), true))->toBeLessThan(array_search(databasesData('content/en/databases/index.json')['labels']['facts']['ios'], array_keys(databasesFacts($document)), true))
         ->and($document->querySelector('#get-tablepro a[href="/download#linux"]') !== null)->toBe($support === 'tested');
 })->with(['tested', 'untested', 'blocked', 'none'])->group('ssr');
 
-it('gives the hub a Linux column and a section that names the engines tested on Linux', function (): void {
+it('gives the hub a Linux column before the iPhone one, and a Linux section before the iPhone one that names the engines tested on Linux', function (): void {
     $name = bindPlatformsWithLinux('released')['deviceNames'][0];
     $hub = databasesData('content/en/databases/index.json');
     $engines = databasesPublished();
@@ -228,11 +230,12 @@ it('gives the hub a Linux column and a section that names the engines tested on 
     $document = databasesDocument('/databases');
 
     $cells = array_count_values(array_map(
-        fn(Dom\Element $row): string => trim((string) $row->querySelectorAll('td')->item(3)?->textContent),
+        fn(Dom\Element $row): string => trim((string) $row->querySelectorAll('td')->item(2)?->textContent),
         iterator_to_array($document->querySelectorAll('section table tbody tr')),
     ));
     $section = (string) $document->getElementById('linux')?->textContent;
-    $linuxHeads = array_filter(iterator_to_array($document->querySelectorAll('section table thead th:nth-child(5)')), fn(Dom\Element $head): bool => trim((string) $head->textContent) === $name);
+    $linuxHeads = array_filter(iterator_to_array($document->querySelectorAll('section table thead th:nth-child(4)')), fn(Dom\Element $head): bool => trim((string) $head->textContent) === $name);
+    $sections = array_map(fn(Dom\Element $section): string => (string) $section->getAttribute('id'), iterator_to_array($document->querySelectorAll('main section[id]')));
 
     expect($linuxHeads)->toHaveCount($document->querySelectorAll('section table')->length)
         ->and($cells[$hub['labels']['linux']['tested']] ?? 0)->toBe(count($names(['tested'])))
@@ -240,6 +243,7 @@ it('gives the hub a Linux column and a section that names the engines tested on 
         ->and($cells[$hub['labels']['linux']['none']] ?? 0)->toBe(count($names(['blocked', 'none'])))
         ->and($section)->toContain(str_replace('{engines}', $list($names(['tested'])), $hub['linux']['tested']))
         ->and($section)->toContain(str_replace('{engines}', $list($names(['untested'])), $hub['linux']['untested']))
+        ->and(array_search('linux', $sections, true))->toBeLessThan(array_search('iphone', $sections, true))
         ->and($document->querySelector('#linux a[href="/download#linux"]'))->not->toBeNull()
         ->and($document->querySelector('#get-tablepro a[href="/download#linux"]'))->not->toBeNull();
 })->group('ssr');

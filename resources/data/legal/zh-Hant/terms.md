@@ -4,12 +4,12 @@ description: TablePro 網站、帳戶入口網站、授權伺服器與 Team Libr
 updatedAt: "2026-11-06"
 ---
 
-本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro、iPhone 與 iPad 版 TablePro 以及 Linux 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
+本條款適用於位於 tablepro.app 的網站、帳戶入口網站、我們的授權伺服器、Team Library，以及下述付費授權與授權金鑰。使用這些服務，或購買、啟用授權，即表示您同意本條款。Mac 版 TablePro、Linux 版 TablePro 以及 iPhone 與 iPad 版 TablePro 僅依據 AGPLv3 授權：下載、安裝或執行它們無需接受本條款。
 
 ## 定義 {#definitions}
 
 - 「**TablePro**」、「**我們**」及「**我們的**」指{publisherCountry}{publisherCity}的個人開發者 {publisherName}，即 TablePro 的發佈者。
-- 「**應用程式**」指 Mac 版 TablePro、iPhone 與 iPad 版 TablePro 以及 Linux 版 TablePro，包括其更新和外掛程式。
+- 「**應用程式**」指 Mac 版 TablePro、Linux 版 TablePro 以及 iPhone 與 iPad 版 TablePro，包括其更新和外掛程式。
 - 「**網站**」指 tablepro.app、docs.tablepro.app 及我們營運的其他網域。
 - 「**服務**」指網站、帳戶入口網站，以及 Mac App 與 Linux App 用於授權驗證與 Team Library 的伺服器。
 - 「**授權**」指付費 Pro 或 Team 方案，「**授權金鑰**」指支援 TablePro 帳戶之前的 Mac App 版本用於啟用授權的認證資料。

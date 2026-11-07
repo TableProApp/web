@@ -4,12 +4,12 @@ description: TablePro のウェブサイト、アカウントポータル、ラ�
 updatedAt: "2026-11-06"
 ---
 
-この規約は、tablepro.app のウェブサイト、アカウントポータル、運営者のライセンスサーバー、Team Library、および以下に記載する有料のライセンスとライセンスキーに適用されます。これらを利用するか、ライセンスを購入または有効化することで、この規約に同意したものとします。Mac 版 TablePro、iPhone・iPad 版 TablePro、Linux 版 TablePro は AGPLv3 のみでライセンスされており、ダウンロード、インストール、実行にこの規約への同意は必要ありません。
+この規約は、tablepro.app のウェブサイト、アカウントポータル、運営者のライセンスサーバー、Team Library、および以下に記載する有料のライセンスとライセンスキーに適用されます。これらを利用するか、ライセンスを購入または有効化することで、この規約に同意したものとします。Mac 版 TablePro、Linux 版 TablePro、iPhone・iPad 版 TablePro は AGPLv3 のみでライセンスされており、ダウンロード、インストール、実行にこの規約への同意は必要ありません。
 
 ## 定義 {#definitions}
 
 - 「**TablePro**」「**運営者**」は、{publisherCountry}・{publisherCity}を拠点に TablePro を公開している個人開発者 {publisherName} を指します。
-- 「**アプリケーション**」は、アップデートとプラグインを含む、Mac 版 TablePro、iPhone・iPad 版 TablePro、および Linux 版 TablePro を指します。
+- 「**アプリケーション**」は、アップデートとプラグインを含む、Mac 版 TablePro、Linux 版 TablePro、および iPhone・iPad 版 TablePro を指します。
 - 「**ウェブサイト**」は、tablepro.app、docs.tablepro.app、および運営者が管理するその他のドメインを指します。
 - 「**サービス**」は、ウェブサイト、アカウントポータル、およびライセンスの確認と Team Library のために Mac アプリと Linux アプリが通信するサーバーを指します。
 - 「**ライセンス**」は有料の Pro または Team プランを、「**ライセンスキー**」は TablePro アカウントに対応する前のバージョンの Mac アプリがライセンスを有効化するための認証情報を指します。

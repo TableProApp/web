@@ -48,12 +48,12 @@ export default function FactsCard({ engine, labels, linux, className }: FactsCar
                         {fmt(facts.embeddedValue, { name: engine.name, version: engine.bundledVersion })}
                     </DescriptionItem>
                 )}
-                <DescriptionItem term={facts.ios}>{labels.ios[iosStatus(engine)]}</DescriptionItem>
                 {linux !== null && (
                     <DescriptionItem term={joinList(linux.deviceNames, m.common.list)}>
                         {onLinux === 'tested' && engine.linux.tested.length > 0 ? fmt(labels.linux.versions, { versions: engine.linux.tested.join(', ') }) : labels.linux[onLinux]}
                     </DescriptionItem>
                 )}
+                <DescriptionItem term={facts.ios}>{labels.ios[iosStatus(engine)]}</DescriptionItem>
             </DescriptionList>
         </Card>
     );

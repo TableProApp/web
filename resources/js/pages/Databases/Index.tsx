@@ -119,22 +119,6 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                 </div>
             </Section>
 
-            {onIos.length > 0 && (
-                <Section id="iphone" title={content.iphone.title} width="text">
-                    <div className="type-body space-y-4 text-foreground">
-                        <p>{fmt(content.iphone.picker, { engines: joinList(onIos, m.common.list) })}</p>
-                        {syncedOnly.length > 0 && <p>{fmt(content.iphone.synced, { engines: joinList(syncedOnly, m.common.list) })}</p>}
-                        <p>{content.iphone.others}</p>
-                        <p>
-                            <LocaleLink href="/ios#databases" className={textLinkClasses('standalone')}>
-                                {content.iphone.link}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </p>
-                    </div>
-                </Section>
-            )}
-
             {linux !== null && linuxTested.length > 0 && (
                 <Section id="linux" title={content.linux.title} width="text">
                     <div className="type-body space-y-4 text-foreground">
@@ -144,6 +128,22 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                         <p>
                             <LocaleLink href="/download#linux" className={textLinkClasses('standalone')}>
                                 {content.linux.link}
+                                <span aria-hidden="true">→</span>
+                            </LocaleLink>
+                        </p>
+                    </div>
+                </Section>
+            )}
+
+            {onIos.length > 0 && (
+                <Section id="iphone" title={content.iphone.title} width="text">
+                    <div className="type-body space-y-4 text-foreground">
+                        <p>{fmt(content.iphone.picker, { engines: joinList(onIos, m.common.list) })}</p>
+                        {syncedOnly.length > 0 && <p>{fmt(content.iphone.synced, { engines: joinList(syncedOnly, m.common.list) })}</p>}
+                        <p>{content.iphone.others}</p>
+                        <p>
+                            <LocaleLink href="/ios#databases" className={textLinkClasses('standalone')}>
+                                {content.iphone.link}
                                 <span aria-hidden="true">→</span>
                             </LocaleLink>
                         </p>

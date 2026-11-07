@@ -4,12 +4,12 @@ description: TablePro 웹사이트, 계정 포털, 라이선스 서버, Team Lib
 updatedAt: "2026-11-06"
 ---
 
-이 약관은 tablepro.app 웹사이트, 계정 포털, 운영자의 라이선스 서버, Team Library 및 아래에 설명된 유료 라이선스와 라이선스 키에 적용됩니다. 이를 이용하거나 라이선스를 구매 또는 활성화하면 이 약관에 동의한 것으로 간주됩니다. Mac용 TablePro, iPhone 및 iPad용 TablePro, Linux용 TablePro는 AGPLv3로만 라이선스되며, 다운로드, 설치 또는 실행하는 데 이 약관에 동의할 필요가 없습니다.
+이 약관은 tablepro.app 웹사이트, 계정 포털, 운영자의 라이선스 서버, Team Library 및 아래에 설명된 유료 라이선스와 라이선스 키에 적용됩니다. 이를 이용하거나 라이선스를 구매 또는 활성화하면 이 약관에 동의한 것으로 간주됩니다. Mac용 TablePro, Linux용 TablePro, iPhone 및 iPad용 TablePro는 AGPLv3로만 라이선스되며, 다운로드, 설치 또는 실행하는 데 이 약관에 동의할 필요가 없습니다.
 
 ## 정의 {#definitions}
 
 - "**TablePro**" 및 "**운영자**"는 TablePro를 배포하는 {publisherCountry} {publisherCity}의 개인 개발자 {publisherName}입니다.
-- "**애플리케이션**"은 업데이트와 플러그인을 포함한 Mac용 TablePro, iPhone과 iPad용 TablePro 및 Linux용 TablePro를 뜻합니다.
+- "**애플리케이션**"은 업데이트와 플러그인을 포함한 Mac용 TablePro, Linux용 TablePro 및 iPhone과 iPad용 TablePro를 뜻합니다.
 - "**웹사이트**"는 tablepro.app, docs.tablepro.app 및 운영자가 관리하는 다른 도메인을 뜻합니다.
 - "**서비스**"는 웹사이트, 계정 포털 및 Mac 앱과 Linux 앱이 라이선스 확인과 Team Library를 위해 통신하는 서버를 뜻합니다.
 - "**라이선스**"는 유료 Pro 또는 Team 플랜을 뜻하며, "**라이선스 키**"는 TablePro 계정을 지원하기 전 버전의 Mac 앱이 라이선스를 활성화하는 데 쓰는 인증 정보를 뜻합니다.

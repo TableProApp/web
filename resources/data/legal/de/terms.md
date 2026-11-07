@@ -4,12 +4,12 @@ description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Li
 updatedAt: "2026-11-06"
 ---
 
-Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac, TablePro für iPhone und iPad sowie TablePro für Linux stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
+Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac, TablePro für Linux sowie TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
 
 ## Begriffsbestimmungen {#definitions}
 
 - **„TablePro“, „wir“, „uns“ und „unser“** bezeichnen {publisherName}, einen Einzelentwickler in {publisherCity}, {publisherCountry}, der TablePro veröffentlicht.
-- **„Anwendung“** bezeichnet TablePro für Mac, TablePro für iPhone und iPad sowie TablePro für Linux einschließlich ihrer Updates und Plugins.
+- **„Anwendung“** bezeichnet TablePro für Mac, TablePro für Linux sowie TablePro für iPhone und iPad einschließlich ihrer Updates und Plugins.
 - **„Website“** bezeichnet tablepro.app, docs.tablepro.app und die weiteren Domains, die wir betreiben.
 - **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, den die Mac-App und die Linux-App für Lizenzprüfungen und die Team Library kontaktieren.
 - **„Lizenz“** bezeichnet einen bezahlten Pro- oder Team-Tarif und **„Lizenzschlüssel“** die Zugangsdaten, mit denen Versionen der Mac-App vor den TablePro-Konten eine Lizenz aktivieren.

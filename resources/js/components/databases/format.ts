@@ -41,10 +41,14 @@ export function linuxStatus(engine: Pick<EngineSummary, 'linux'>): LinuxStatus {
     return engine.linux.support === 'blocked' ? 'none' : engine.linux.support;
 }
 
-// The header's "Works on" line: the devices of `deviceNamesFor`, and Linux where its suites test the engine. The H1 and
-// the search title keep `deviceNamesFor`.
+// The header's "Works on" line: the devices of `deviceNamesFor`, and Linux where its suites test the engine, in the
+// platform order (Mac, Linux, iPhone and iPad). The H1 and the search title keep `deviceNamesFor`.
 export function availableDeviceNames(engine: Pick<EngineSummary, 'ios' | 'linux'>, platforms: DatabasePlatforms): string[] {
-    return [...deviceNamesFor(engine, platforms), ...(platforms.linux !== null && linuxStatus(engine) === 'tested' ? platforms.linux.deviceNames : [])];
+    return [
+        ...(platforms.mac?.deviceNames ?? []),
+        ...(platforms.linux !== null && linuxStatus(engine) === 'tested' ? platforms.linux.deviceNames : []),
+        ...(iosStatus(engine) === 'picker' ? (platforms.ios?.deviceNames ?? []) : []),
+    ];
 }
 
 /** The "Connect with" row: how a connection reaches the engine, from its capability flags. */

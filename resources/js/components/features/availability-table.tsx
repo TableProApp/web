@@ -19,16 +19,11 @@ interface AvailabilityTableProps {
 // Shown from 640px; below it their values fold into the row header (design-system §5.3.10, priority columns).
 const PLATFORM_COLUMN = 'hidden sm:table-cell';
 
-// The iPhone and iPad app and the Linux app have no plans, so their columns say what exists there, not what it costs.
+// The Linux app and the iPhone and iPad app have no plans, so their columns say what exists there, not what it costs.
 export default function AvailabilityTable({ rows, labels, values, linux }: AvailabilityTableProps) {
     const { m } = useI18n();
     const columns: { key: string; name: string; cell: (row: AvailabilityRow, folded: boolean) => ReactNode }[] = [
         { key: 'mac', name: joinList(macPlatform().deviceNames, m.common.list), cell: (row, folded) => macAvailability(row, labels, folded) },
-        {
-            key: 'ios',
-            name: joinList(iosPlatform().deviceNames, m.common.list),
-            cell: (row, folded) => platformAvailability(row.ios, row.iosNote, { labels, values, folded, yes: labels.availability.free }),
-        },
         ...(linux !== null
             ? [
                   {
@@ -38,6 +33,11 @@ export default function AvailabilityTable({ rows, labels, values, linux }: Avail
                   },
               ]
             : []),
+        {
+            key: 'ios',
+            name: joinList(iosPlatform().deviceNames, m.common.list),
+            cell: (row, folded) => platformAvailability(row.ios, row.iosNote, { labels, values, folded, yes: labels.availability.free }),
+        },
     ];
 
     return (

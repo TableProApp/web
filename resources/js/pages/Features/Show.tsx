@@ -52,8 +52,8 @@ export default function FeatureShow({ slug, content, labels, facts, linux }: Fea
     const linuxName = linux !== null ? joinList(linux.deviceNames, m.common.shortList) : null;
     const platforms = [
         ...(pageOnMac(content) ? [joinList(macPlatform().deviceNames, m.common.shortList)] : []),
-        ...(pageOnIos(content) ? [joinList(iosPlatform().deviceNames, m.common.shortList)] : []),
         ...(linuxName !== null && pageOnLinux(content) ? [linuxName] : []),
+        ...(pageOnIos(content) ? [joinList(iosPlatform().deviceNames, m.common.shortList)] : []),
     ];
 
     const pageUrl = absoluteUrl(canonicalBaseUrl, path(`/features/${slug}`));

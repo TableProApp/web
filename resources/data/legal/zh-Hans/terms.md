@@ -4,12 +4,12 @@ description: TablePro 网站、账户门户、许可证服务器和 Team Library
 updatedAt: "2026-11-06"
 ---
 
-本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro、iPhone 和 iPad 版 TablePro 以及 Linux 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
+本条款适用于位于 tablepro.app 的网站、账户门户、我们的许可证服务器、Team Library，以及下述付费许可证和许可证密钥。使用这些服务，或购买、激活许可证，即表示您同意本条款。Mac 版 TablePro、Linux 版 TablePro 以及 iPhone 和 iPad 版 TablePro 仅依据 AGPLv3 授权：下载、安装或运行它们无需接受本条款。
 
 ## 定义 {#definitions}
 
 - “**TablePro**”、“**我们**”及“**我们的**”指{publisherCountry}{publisherCity}的个人开发者 {publisherName}，即 TablePro 的发布者。
-- “**应用**”指 Mac 版 TablePro、iPhone 和 iPad 版 TablePro 以及 Linux 版 TablePro，包括其更新和插件。
+- “**应用**”指 Mac 版 TablePro、Linux 版 TablePro 以及 iPhone 和 iPad 版 TablePro，包括其更新和插件。
 - “**网站**”指 tablepro.app、docs.tablepro.app 及我们运营的其他域名。
 - “**服务**”指网站、账户门户，以及 Mac 应用和 Linux 应用用于许可证验证和 Team Library 的服务器。
 - “**许可证**”指付费 Pro 或 Team 方案，“**许可证密钥**”指支持 TablePro 账户之前的 Mac 应用版本用于激活许可证的凭据。

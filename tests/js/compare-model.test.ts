@@ -232,9 +232,11 @@ test('calls one app for both architectures universal, and separate builds otherw
     assert.ok(ours(false).includes(labels.builds.both));
 });
 
-test('lists Linux in TablePro’s platforms cell only once it is released', () => {
-    const ours = (linuxRequirement: string | null) => row(product(), 'platforms', { linuxRequirement })?.tablepro.lines ?? [];
+test('lists Linux in TablePro’s platforms cell only once it is released, before the iPhone and iPad line', () => {
+    const ours = (linuxRequirement: string | null) => row(product(), 'platforms', { linuxRequirement })?.tablepro.lines.map((line) => line.text) ?? [];
+    const released = ours('Linux beta: Ubuntu 26.04+');
 
-    assert.ok(!ours(null).some((line) => line.text.includes('Linux')));
-    assert.deepEqual(ours('Linux beta: Ubuntu 26.04+').at(-1), { text: 'Linux beta: Ubuntu 26.04+', muted: true });
+    assert.ok(!ours(null).some((text) => text.includes('Linux')));
+    assert.ok(released.includes('Linux beta: Ubuntu 26.04+'));
+    assert.ok(released.indexOf('Linux beta: Ubuntu 26.04+') < released.indexOf('iOS 18 or later'));
 });

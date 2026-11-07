@@ -518,12 +518,12 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
                 lines.push({ text: builds, muted: true });
             }
 
-            if (facts.iosRequirement !== null) {
-                lines.push({ text: facts.iosRequirement, muted: true });
-            }
-
             if (facts.linuxRequirement !== null) {
                 lines.push({ text: facts.linuxRequirement, muted: true });
+            }
+
+            if (facts.iosRequirement !== null) {
+                lines.push({ text: facts.iosRequirement, muted: true });
             }
 
             return { mark: 'none', lines, sources: [] };

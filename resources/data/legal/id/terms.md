@@ -4,12 +4,12 @@ description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Li
 updatedAt: "2026-11-06"
 ---
 
-Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac, TablePro untuk iPhone dan iPad, serta TablePro untuk Linux dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
+Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac, TablePro untuk Linux, serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
 
 ## Definisi {#definitions}
 
 - **"TablePro", "kami", dan "milik kami"** berarti {publisherName}, pengembang perorangan di {publisherCity}, {publisherCountry}, yang menerbitkan TablePro.
-- **"Aplikasi"** berarti TablePro untuk Mac, TablePro untuk iPhone dan iPad, serta TablePro untuk Linux, termasuk pembaruan dan plugin.
+- **"Aplikasi"** berarti TablePro untuk Mac, TablePro untuk Linux, serta TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
 - **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi aplikasi Mac dan aplikasi Linux untuk pemeriksaan lisensi dan Team Library.
 - **"Lisensi"** berarti paket Pro atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang dipakai versi aplikasi Mac sebelum akun TablePro untuk mengaktifkan Lisensi.

@@ -4,12 +4,12 @@ description: Condiciones del sitio web, el portal de cuentas, el servidor de lic
 updatedAt: "2026-11-06"
 ---
 
-Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac, TablePro para iPhone y iPad, y TablePro para Linux se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
+Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac, TablePro para Linux y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
 
 ## Definiciones {#definitions}
 
 - **«TablePro», «nosotros» y «nuestro»** se refieren a {publisherName}, un desarrollador independiente en {publisherCity}, {publisherCountry}, que publica TablePro.
-- **«Aplicación»** se refiere a TablePro para Mac, TablePro para iPhone y iPad, y TablePro para Linux, incluidas sus actualizaciones y plugins.
+- **«Aplicación»** se refiere a TablePro para Mac, TablePro para Linux y TablePro para iPhone y iPad, incluidas sus actualizaciones y plugins.
 - **«Sitio web»** se refiere a tablepro.app, docs.tablepro.app y los demás dominios que operamos.
 - **«Servicios»** se refiere al Sitio web, el portal de cuentas y el servidor con el que se comunican las apps para Mac y para Linux para comprobar licencias y para Team Library.
 - **«Licencia»** se refiere a un plan de pago Pro o Team y **«Clave de licencia»**, a la credencial que las versiones de la app para Mac anteriores a las cuentas de TablePro usan para activar una Licencia.

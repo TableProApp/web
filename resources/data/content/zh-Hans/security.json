@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode 级别",
-                    "text": "在 Mac 上，每个连接都有 Safe Mode 级别：{macSafeModeLevels}。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也会询问，Read-Only 拒绝写入。组织可通过配置描述文件为其 Mac 强制设定最低级别。iPhone 和 iPad 上的级别为 {iosSafeModeLevels}，Linux 上为 {linuxSafeModeLevels}。"
+                    "text": "在 Mac 上，每个连接都有 Safe Mode 级别：{macSafeModeLevels}。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也会询问，Read-Only 拒绝写入。组织可通过配置描述文件为其 Mac 强制设定最低级别。Linux 上的级别为 {linuxSafeModeLevels}，iPhone 和 iPad 上为 {iosSafeModeLevels}。"
                 },
                 {
                     "id": "destructive",

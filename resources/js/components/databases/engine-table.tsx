@@ -50,14 +50,14 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                     <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.driver)}>
                         {table.driver}
                     </th>
-                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.ios)}>
-                        {table.ios}
-                    </th>
                     {linux !== null && (
                         <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.linux)}>
                             {linux}
                         </th>
                     )}
+                    <th scope="col" className={cn(TABLE_HEAD_CELL, WIDE_ONLY, widths.ios)}>
+                        {table.ios}
+                    </th>
                     <th scope="col" className={cn(TABLE_HEAD_CELL, MEDIUM_UP)}>
                         {table.notes}
                     </th>
@@ -107,7 +107,7 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                                             </Badge>
                                         )}
                                         <div className="type-caption mt-1 font-normal text-muted-foreground lg:hidden">
-                                            <DotList items={[engine.queryLanguage, driver, `${table.ios}: ${status}`, linux !== null && `${linux}: ${onLinux}`]} />
+                                            <DotList items={[engine.queryLanguage, driver, linux !== null && `${linux}: ${onLinux}`, `${table.ios}: ${status}`]} />
                                         </div>
                                         <div className="mt-2 font-normal md:hidden">{notes}</div>
                                     </div>
@@ -115,8 +115,8 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
                             </th>
                             <td className={cn(TABLE_CELL, WIDE_ONLY)}>{engine.queryLanguage}</td>
                             <td className={cn(TABLE_CELL, WIDE_ONLY)}>{driver}</td>
-                            <td className={cn(TABLE_CELL, WIDE_ONLY)}>{status}</td>
                             {linux !== null && <td className={cn(TABLE_CELL, WIDE_ONLY)}>{onLinux}</td>}
+                            <td className={cn(TABLE_CELL, WIDE_ONLY)}>{status}</td>
                             <td className={cn(TABLE_CELL, MEDIUM_UP)}>{notes}</td>
                         </tr>
                     );

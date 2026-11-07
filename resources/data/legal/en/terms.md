@@ -4,12 +4,12 @@ description: The terms for TablePro's website, account portal, license server an
 updatedAt: "2026-11-06"
 ---
 
-These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac, TablePro for iPhone and iPad, and TablePro for Linux are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
+These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac, TablePro for Linux, and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
 
 ## Definitions {#definitions}
 
 - **"TablePro", "we", "us" and "our"** mean {publisherName}, an individual developer based in {publisherCity}, {publisherCountry}, who publishes TablePro.
-- **"Application"** means TablePro for Mac, TablePro for iPhone and iPad, and TablePro for Linux, including their updates and plugins.
+- **"Application"** means TablePro for Mac, TablePro for Linux, and TablePro for iPhone and iPad, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
 - **"Services"** means the Website, the account portal, and the server the Mac and Linux apps contact for license checks and the Team Library.
 - **"License"** means a paid Pro or Team plan, and **"License Key"** the credential that versions of the Mac app before TablePro accounts use to activate a License.

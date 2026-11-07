@@ -4,12 +4,12 @@ description: Conditions du site web, du portail de comptes, du serveur de licenc
 updatedAt: "2026-11-06"
 ---
 
-Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac, TablePro pour iPhone et iPad, et TablePro pour Linux sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
+Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac, TablePro pour Linux et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
 
 ## Définitions {#definitions}
 
 - **« TablePro », « nous » et « notre »** désignent {publisherName}, développeur indépendant installé à {publisherCity}, au {publisherCountry}, qui publie TablePro.
-- **« Application »** désigne TablePro pour Mac, TablePro pour iPhone et iPad, et TablePro pour Linux, y compris leurs mises à jour et plugins.
+- **« Application »** désigne TablePro pour Mac, TablePro pour Linux et TablePro pour iPhone et iPad, y compris leurs mises à jour et plugins.
 - **« Site web »** désigne tablepro.app, docs.tablepro.app et les autres domaines que nous exploitons.
 - **« Services »** désigne le Site web, le portail de comptes et le serveur que les applications Mac et Linux contactent pour les vérifications de licence et Team Library.
 - **« Licence »** désigne une offre payante Pro ou Team, et **« Clé de licence »** l’identifiant avec lequel les versions de l’application Mac antérieures aux comptes TablePro activent une Licence.

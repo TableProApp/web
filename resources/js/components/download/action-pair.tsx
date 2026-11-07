@@ -84,8 +84,8 @@ export default function ActionPair({ location, macCaption, macExtra, ios, linux 
         return (
             <CellGrid density="compact" className={cn(ios !== null && linux !== null ? 'sm:grid-cols-2 lg:grid-cols-3' : (ios !== null || linux !== null) && 'sm:grid-cols-2', className)}>
                 {mac}
-                {iosAction}
                 {linuxAction}
+                {iosAction}
             </CellGrid>
         );
     }
@@ -93,8 +93,8 @@ export default function ActionPair({ location, macCaption, macExtra, ios, linux 
     return (
         <div className={cn('flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-x-10', linux !== null && 'sm:flex-wrap', className)}>
             {mac}
-            {iosAction}
             {linuxAction}
+            {iosAction}
         </div>
     );
 }

@@ -4,12 +4,12 @@ description: Các điều khoản cho website, trang tài khoản, máy chủ li
 updatedAt: "2026-11-06"
 ---
 
-Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho iPhone và iPad, và TablePro cho Linux chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
+Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
 
 ## Định nghĩa {#definitions}
 
 - **"TablePro", "chúng tôi"** là {publisherName}, một lập trình viên độc lập tại {publisherCity}, {publisherCountry}, người phát hành TablePro.
-- **"Ứng dụng"** là TablePro cho Mac, TablePro cho iPhone và iPad, và TablePro cho Linux, bao gồm các bản cập nhật và plugin của chúng.
+- **"Ứng dụng"** là TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
 - **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac và ứng dụng cho Linux liên lạc để kiểm tra license và dùng Team Library.
 - **"License"** là một gói trả phí Pro hoặc Team, và **"License Key"** là thông tin mà các phiên bản ứng dụng cho Mac trước khi có tài khoản TablePro dùng để kích hoạt một License.

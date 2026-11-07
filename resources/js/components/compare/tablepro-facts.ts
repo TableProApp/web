@@ -19,7 +19,7 @@ export function tableproFacts(productId: string | null, tablepro: Pick<TableProP
 
     return {
         // Joined as the homepage and JSON-LD join them.
-        devices: joinList([...mac.deviceNames, ...(ios?.deviceNames ?? []), ...(linux?.deviceNames ?? [])], m.common.list),
+        devices: joinList([...mac.deviceNames, ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])], m.common.list),
         macRequirement: requirementText(mac, m.platforms),
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
         linuxRequirement: linux !== null ? linuxRequirement(linux, m) : null,

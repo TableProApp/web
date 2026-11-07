@@ -140,7 +140,7 @@
                 {
                     "id": "levels",
                     "title": "Safe Mode のレベル",
-                    "text": "Mac では、各接続に Safe Mode のレベル {macSafeModeLevels} があります。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求め、Full 系は読み取り前も確認し、Read-Only は書き込みを拒否します。組織は構成プロファイルで、自組織の Mac に最低レベルを強制できます。iPhone・iPad のレベルは {iosSafeModeLevels}、Linux では {linuxSafeModeLevels} です。"
+                    "text": "Mac では、各接続に Safe Mode のレベル {macSafeModeLevels} があります。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求め、Full 系は読み取り前も確認し、Read-Only は書き込みを拒否します。組織は構成プロファイルで、自組織の Mac に最低レベルを強制できます。Linux のレベルは {linuxSafeModeLevels}、iPhone・iPad では {iosSafeModeLevels} です。"
                 },
                 {
                     "id": "destructive",

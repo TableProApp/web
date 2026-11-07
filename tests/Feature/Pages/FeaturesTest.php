@@ -212,17 +212,17 @@ it('sends a feature page the Linux record only once Linux is released', function
         : $page->where('linux', null));
 })->with(['released', 'prototype']);
 
-it('gives Where it works a Linux column that follows each row, and a Linux badge where a row is on Linux', function (string $slug): void {
+it('gives Where it works a Linux column after the Mac’s that follows each row, and a Linux badge where a row is on Linux', function (string $slug): void {
     $name = bindPlatformsWithLinux('released')['deviceNames'][0];
     $rows = featuresData("content/en/features/{$slug}.json")['availability'];
     $labels = featuresData('content/en/features/index.json')['labels']['availability'];
     $document = featuresDocument("/features/{$slug}");
 
     $heads = array_map(fn(Dom\Element $head): string => trim((string) $head->textContent), iterator_to_array($document->querySelectorAll('#availability thead th')));
-    $cells = array_map(fn(Dom\Element $row): string => trim((string) $row->querySelector('td:last-child')?->textContent), iterator_to_array($document->querySelectorAll('#availability tbody tr')));
+    $cells = array_map(fn(Dom\Element $row): string => trim((string) $row->querySelector('td:nth-child(3)')?->textContent), iterator_to_array($document->querySelectorAll('#availability tbody tr')));
 
     expect($heads)->toHaveCount(4)
-        ->and(end($heads))->toBe($name)
+        ->and($heads[2])->toBe($name)
         ->and($cells)->toHaveCount(count($rows))
         ->and($document->querySelectorAll('#availability tbody th span.grid > span'))->toHaveCount(3 * count($rows))
         ->and(in_array($name, featuresBadges($document), true))->toBe(collect($rows)->contains(fn(array $row): bool => $row['linux'] !== 'no'));

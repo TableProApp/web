@@ -29,7 +29,7 @@ export default function DownloadBand({ labels, platforms, showIos, showLinux, ap
         return null;
     }
 
-    const lead = [labels.download.mac, ios !== null && labels.download.ios, linux !== null && labels.download.linux].filter(Boolean).join(' ');
+    const lead = [labels.download.mac, linux !== null && labels.download.linux, ios !== null && labels.download.ios].filter(Boolean).join(' ');
 
     return (
         <Section id="get-tablepro" title={labels.download.title} lead={lead}>
