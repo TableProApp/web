@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "Ein nativer Datenbankclient.",
-        "subtitle": "Führe Abfragen aus, durchsuche und bearbeite Daten in {featuredEngines} <more>und weiteren Systemen</more>.",
-        "native": "Native Oberflächen statt Electron oder Java-Laufzeitumgebung.",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "Weitere Installationsmöglichkeiten",
-        "business": "Kostenlos nutzbar und quelloffen. Optionale Bezahlfunktionen: {paidPlatformApps}. <pricing>Preise ansehen</pricing>"
+        "subtitle": "Gebaut mit dem eigenen UI-Toolkit jeder Plattform, daher verhält sich TablePro wie deine anderen Apps.",
+        "download": "Download",
+        "docs": "Dokumentation"
     },
     "databases": {
         "title": "Unterstützte Datenbanken",
-        "lead": "Die {macApp} enthält gängige Treiber und lädt weitere bei der ersten Nutzung herunter.",
-        "count": "Verbinde dich auf dem Mac mit {count} Datenbanken:",
-        "ios": "Auf {iosDevices} verbindet sich TablePro mit {iosEngines}.",
-        "iosSynced": "Vom Mac synchronisierte {syncedOnly}-Verbindungen lassen sich dort ebenfalls öffnen.",
-        "link": "Unterstützte Datenbanken"
+        "more": "und weitere"
     },
     "sponsors": {
         "title": "Sponsoren",
-        "link": "TablePro unterstützen",
         "invite": {
             "title": "Dein Logo hier",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "Mit deinen Datenbanken arbeiten",
-        "paid": "Optionale kostenpflichtige Funktionen: {features} ({tier}).",
-        "link": "Alle Funktionen",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "SQL-Editor",
-                "body": "Die Autovervollständigung schlägt Tabellen und Spalten aus deinem Schema vor. Speichere wiederkehrende Abfragen und durchsuche deinen Abfrageverlauf."
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "Änderungen vorab ansehen",
-                "body": "Zeilenänderungen warten, bis du speicherst. Prüfe zuerst das SQL oder mache Änderungen im Tab rückgängig."
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "Datenbanken vergleichen",
-                "body": "Vergleiche Schema oder Daten unterstützter Engines und erstelle ein Synchronisierungsskript. Prüfe Änderungen, die Daten entfernen könnten, bevor du sie einschließt."
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "Import und Export",
-                "body": "Importiere {importFormats}-Dateien, wo unterstützt. Exportiere Tabellen oder Abfrageergebnisse als {exportFormats}."
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "Mit deinen Servern verbinden",
-                "body": "Nutze SSH-Tunnel, TLS oder unterstützte Cloud-Anmeldungen. Organisiere gespeicherte Verbindungen mit Gruppen und Tags."
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "Lege pro Verbindung eine Safe-Mode-Stufe fest. Auf dem Mac fragt Alert vor Schreibvorgängen. Safe Mode und Safe Mode (Full) erfordern zusätzlich Touch ID oder dein Passwort. Silent ist der Standard. DROP, TRUNCATE und DELETE ohne WHERE fragen immer.",
-            "Auf iPhone und iPad fragt Confirm Writes vor Schreibvorgängen. Read-Only verweigert Schreibvorgänge in beiden Apps; bei MongoDB, Redis und etcd blockiert es alle Befehle."
-        ],
-        "levels": "Safe-Mode-Stufen",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "KI-Assistent und MCP",
-        "body": [
-            "Lass SQL vom Anbieter deiner Wahl erklären oder korrigieren, auch mit einem lokalen Modell. Auf dem Mac verfügbar; vor der Anbietereinrichtung wird nichts gesendet.",
-            "Der Chat startet in Ask. Edit und Agent können Anweisungen ausführen, abhängig von Safe Mode; bei Silent sind Schreibvorgänge ohne Freigabe möglich. Agent mode im ganzen Fenster nutzt mindestens Alert.",
-            "Verbinde Clients wie {mcpClients} über den integrierten MCP-Server (Model Context Protocol) mit gespeicherten Verbindungen. Er lauscht auf {mcpHost}, ist standardmäßig aus und beginnt mit schreibgeschütztem Zugriff. Clients sehen gespeicherte Passwörter nie.",
-            "Beide Funktionen sind kostenlos. Dein KI-Anbieter kann Gebühren erheben."
-        ],
-        "providers": "Anbieter, die du hinzufügen kannst: {providers}."
-    },
-    "platforms": {
-        "title": "Native Apps für {deviceList}",
-        "cardTitle": "TablePro für {devices}",
-        "mac": "Die Desktop-App mit separaten Builds für {architectures}. Mit SQL-Editor, Schemawerkzeugen, KI-Assistent und MCP-Server.",
-        "ios": "Führe Abfragen aus und arbeite mit unterstützten Tabellen auf {devices}. Eine separate kostenlose App mit SSH-Tunneln und optionaler Face-ID-Sperre.",
-        "sync": "iCloud Sync teilt Verbindungen, Gruppen und Tags zwischen Apple-Geräten. Standardmäßig aus; auf dem Mac ist {tier} erforderlich."
-    },
-    "switch": {
-        "title": "Deine Verbindungen übernehmen",
-        "lead": "Die iPhone- und iPad-App importiert nicht aus anderen Apps, und Open Project Folder ist nur in der {macApp} verfügbar.",
-        "import": "Importiere Verbindungen aus {apps}, einschließlich gespeicherter Passwörter.",
-        "importWithoutPasswords": "Verbindungen aus {apps} werden ohne Passwörter importiert.",
-        "project": "Open Project Folder erstellt Verbindungen aus unterstützten Projektdateien, darunter <code>.env</code>, <code>docker-compose.yml</code> und Prisma-Schemas.",
-        "link": "TablePro mit anderen Clients vergleichen"
+        "platform": "App anzeigen auf",
+        "tabs": "Funktionen",
+        "more": "Mehr zu {feature}",
+        "items": {
+            "querying": "Schreibe SQL mit Autovervollständigung aus deinem Schema, führe es aus und lies die Ergebnisse darunter.",
+            "dataEditing": "Bearbeite Zellen in der Datentabelle. Änderungen warten, bis du speicherst, und du kannst sie verwerfen.",
+            "schema": "Füge Spalten, Indizes und Fremdschlüssel hinzu oder ändere sie. Bis du speicherst, ändert sich nichts.",
+            "importExport": "Exportiere Tabellen und Abfrageergebnisse in Dateien und importiere CSV- und SQL-Dateien.",
+            "aiMcp": "Stelle in einem Chat Fragen zu deiner Datenbank oder lass deinen Coding-Agenten über MCP damit arbeiten.",
+            "connections": "Verbinde dich über SSH und TLS und speichere deine Server als Verbindungen."
+        }
     },
     "testimonials": {
         "title": "Was Entwickler sagen",
@@ -115,17 +50,22 @@
             "en": "Aus dem Englischen übersetzt",
             "ja": "Aus dem Japanischen übersetzt",
             "zh": "Aus dem Chinesischen übersetzt"
-        }
+        },
+        "more": {
+            "one": "{count} weitere Stimme von Entwicklern",
+            "other": "{count} weitere Stimmen von Entwicklern"
+        },
+        "fewer": "Weniger anzeigen"
     },
     "pricing": {
-        "title": "Free, Pro und Team",
-        "lead": "Nutze die {macApp} kostenlos, ohne Testzeitraum. Pro ergänzt {starterExamples}; Team ergänzt {teamExamples}. Die {iosApp} ist kostenlos, ohne In-App-Käufe."
+        "title": "Preise",
+        "lead": "Kostenlos nutzbar, ohne Testzeitraum. Pro und Team ergänzen Funktionen, und eine Lizenz gilt für {deviceLimit} Computer, Mac oder Linux."
     },
     "openSource": {
         "title": "Open Source",
-        "body": "TablePro ist Open Source unter der AGPLv3, einschließlich des Codes kostenpflichtiger Funktionen. Lizenzen und Sponsoren finanzieren die Entwicklung.",
+        "statement": "TablePro ist Open Source unter der AGPLv3, kostenpflichtige Funktionen eingeschlossen.",
+        "funding": "Das TablePro-Team entwickelt es, Lizenzen und Sponsoren finanzieren die Arbeit.",
         "about": "Über TablePro",
-        "github": "Auf GitHub ansehen",
-        "productHunt": "TablePro auf Product Hunt"
+        "github": "Quellcode auf GitHub"
     }
 }

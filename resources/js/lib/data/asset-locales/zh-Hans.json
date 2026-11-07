@@ -1,13 +1,97 @@
 {
-    "mac-hero-window": {
+    "home-hero-mac": {
         "alt": {
-            "zh-Hans": "Mac 上的 TablePro 窗口连接到 PostgreSQL 示例数据库，侧边栏显示 orders 表，SQL 编辑器中有一条查询，下方显示结果行。"
+            "zh-Hans": "MacBook Pro 上的 TablePro，显示对 PostgreSQL 示例数据库的查询及其结果。"
         },
         "caption": null
     },
-    "mac-hero-window-mobile": {
+    "home-hero-linux": {
         "alt": {
-            "zh-Hans": "TablePro SQL 编辑器的局部图，显示 orders 表查询及结果的前几行。"
+            "zh-Hans": "Framework 笔记本电脑上的 Linux 版 TablePro，显示经过筛选的 orders 表。"
+        },
+        "caption": null
+    },
+    "home-hero-ipad": {
+        "alt": {
+            "zh-Hans": "iPad Pro 上的 TablePro，已打开 products 表。"
+        },
+        "caption": null
+    },
+    "home-hero-iphone": {
+        "alt": {
+            "zh-Hans": "iPhone 上的 TablePro，显示已保存的连接列表。"
+        },
+        "caption": null
+    },
+    "mac-home-querying": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro SQL 编辑器，查询上打开了列自动补全列表，下方显示结果。"
+        },
+        "caption": null
+    },
+    "mac-home-data-editing": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 数据表格，products 表中有三处价格修改等待保存。"
+        },
+        "caption": null
+    },
+    "mac-home-schema": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro，在保存前显示新增列的 ALTER TABLE 语句。"
+        },
+        "caption": null
+    },
+    "mac-home-import-export": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro Export 对话框，已选择三个表进行 CSV 导出。"
+        },
+        "caption": null
+    },
+    "mac-home-ai-mcp": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro AI 聊天，用 SQL 查询回答关于排名靠前的客户的问题。"
+        },
+        "caption": null
+    },
+    "mac-home-connections": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 连接切换器，列出已保存的数据库连接。"
+        },
+        "caption": null
+    },
+    "linux-home-querying": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的 SQL 编辑器，查询上打开了列自动补全列表，下方显示结果。"
+        },
+        "caption": null
+    },
+    "linux-home-data-editing": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的数据表格，有三处未保存的价格修改，以及 Save 和 Discard 按钮。"
+        },
+        "caption": null
+    },
+    "linux-home-schema": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的结构编辑器，reviews 表中新增了一列。"
+        },
+        "caption": null
+    },
+    "linux-home-import-export": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的导出对话框，格式设为 CSV。"
+        },
+        "caption": null
+    },
+    "linux-home-ai-mcp": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的助手，用一条按订单状态汇总收入的 SQL 查询作答。"
+        },
+        "caption": null
+    },
+    "linux-home-connections": {
+        "alt": {
+            "zh-Hans": "Linux 版 TablePro 的连接表单，配置了经由堡垒主机的 SSH 隧道。"
         },
         "caption": null
     },

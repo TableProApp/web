@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "Klien database native.",
-        "subtitle": "Jalankan kueri, telusuri dan edit data di {featuredEngines} <more>dan lainnya</more>.",
-        "native": "Antarmuka native, tanpa Electron atau runtime Java.",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "Cara instalasi lainnya",
-        "business": "Gratis dan open source. Paket berbayar menambahkan fitur ke {paidPlatformApps}. <pricing>Lihat harga</pricing>"
+        "subtitle": "Dibuat dengan toolkit UI bawaan setiap platform, sehingga TablePro berperilaku seperti aplikasi Anda yang lain.",
+        "download": "Unduh",
+        "docs": "Dokumentasi"
     },
     "databases": {
         "title": "Database yang didukung",
-        "lead": "Di {macApp}, driver umum sudah disertakan dan driver lainnya diunduh saat Anda pertama kali menggunakannya.",
-        "count": "Hubungkan ke {count} database di Mac:",
-        "ios": "Di {iosDevices}, TablePro terhubung ke {iosEngines}.",
-        "iosSynced": "Koneksi {syncedOnly} yang disinkronkan dari Mac juga dapat dibuka di sana.",
-        "link": "Database yang didukung"
+        "more": "dan lainnya"
     },
     "sponsors": {
         "title": "Sponsor",
-        "link": "Sponsori TablePro",
         "invite": {
             "title": "Logo Anda di sini",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "Bekerja dengan database Anda",
-        "paid": "Fitur berbayar opsional: {features} ({tier}).",
-        "link": "Semua fitur",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "Editor SQL",
-                "body": "Pelengkapan otomatis menyarankan tabel dan kolom dari skema Anda. Simpan kueri yang Anda gunakan kembali dan telusuri riwayat kueri Anda."
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "Pratinjau perubahan Anda",
-                "body": "Pengeditan baris menunggu hingga Anda menyimpannya. Tinjau SQL terlebih dahulu, atau batalkan perubahan di tab."
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "Bandingkan database",
-                "body": "Bandingkan skema atau data pada mesin yang didukung dan buat skrip sinkronisasi. Tinjau perubahan yang dapat menghapus data sebelum memasukkannya."
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "Impor dan ekspor",
-                "body": "Impor file {importFormats} jika didukung. Ekspor tabel atau hasil kueri sebagai {exportFormats}."
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "Hubungkan ke server Anda",
-                "body": "Gunakan terowongan SSH, TLS, atau metode masuk cloud yang didukung. Atur koneksi tersimpan dengan grup dan tag."
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "Atur tingkat Safe Mode untuk setiap koneksi. Di Mac, Alert meminta konfirmasi sebelum penulisan. Safe Mode dan Safe Mode (Full) juga memerlukan Touch ID atau kata sandi. Silent adalah default. DROP, TRUNCATE, dan DELETE tanpa WHERE selalu meminta konfirmasi.",
-            "Di iPhone dan iPad, Confirm Writes meminta konfirmasi sebelum penulisan. Read-Only memblokir penulisan di kedua app; untuk MongoDB, Redis, dan etcd, semua perintah diblokir."
-        ],
-        "levels": "Level Safe Mode",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "Asisten AI dan MCP",
-        "body": [
-            "Jelaskan atau perbaiki SQL dengan penyedia yang Anda pilih, termasuk model yang berjalan secara lokal. Tersedia di Mac; tidak ada yang dikirim sampai Anda menambahkan penyedia.",
-            "Chat dimulai dalam mode Ask. Edit dan Agent dapat menjalankan pernyataan sesuai Safe Mode; pada Silent, penulisan dapat berjalan tanpa persetujuan. Mode Agent layar penuh menggunakan Alert atau tingkat yang lebih ketat.",
-            "Hubungkan klien seperti {mcpClients} ke koneksi tersimpan melalui server MCP (Model Context Protocol) bawaan. Itu mendengarkan di {mcpHost}, dinonaktifkan secara default dan dimulai dengan akses hanya baca. Klien tidak pernah melihat kata sandi yang disimpan.",
-            "Kedua fitur tersebut gratis. Penyedia AI Anda mungkin mengenakan biaya untuk penggunaan."
-        ],
-        "providers": "Penyedia yang dapat Anda tambahkan: {providers}."
-    },
-    "platforms": {
-        "title": "Aplikasi native untuk {deviceList}",
-        "cardTitle": "TablePro untuk {devices}",
-        "mac": "Aplikasi desktop, dengan build terpisah untuk {architectures}. Termasuk editor SQL, alat skema, asisten AI, dan server MCP.",
-        "ios": "Jalankan kueri dan bekerja dengan tabel yang didukung di {devices}. Aplikasi gratis terpisah dengan terowongan SSH dan kunci Face ID opsional.",
-        "sync": "iCloud Sync berbagi koneksi, grup, dan tag di seluruh perangkat Apple. Ini dinonaktifkan secara default dan memerlukan {tier} di Mac."
-    },
-    "switch": {
-        "title": "Bawa koneksi Anda",
-        "lead": "Aplikasi iPhone dan iPad tidak mengimpor dari aplikasi lain, dan Open Project Folder hanya tersedia dalam {macApp}.",
-        "import": "Impor koneksi dari {apps}, termasuk kata sandi tersimpan.",
-        "importWithoutPasswords": "Koneksi dari {apps} diimpor tanpa kata sandinya.",
-        "project": "Open Project Folder membuat koneksi dari file proyek yang didukung, termasuk <code>.env</code>, <code>docker-compose.yml</code>, dan skema Prisma.",
-        "link": "Bandingkan TablePro dengan klien lain"
+        "platform": "Tampilkan aplikasi di",
+        "tabs": "Fitur",
+        "more": "Selengkapnya tentang {feature}",
+        "items": {
+            "querying": "Tulis SQL dengan pelengkapan otomatis dari skema Anda, lalu jalankan dan baca hasilnya di bawah.",
+            "dataEditing": "Edit sel di grid. Perubahan menunggu sampai Anda menyimpan, dan Anda bisa membuangnya.",
+            "schema": "Tambah dan ubah kolom, indeks, dan kunci asing. Tidak ada yang berubah sampai Anda menyimpan.",
+            "importExport": "Ekspor tabel dan hasil kueri ke file, serta impor file CSV dan SQL.",
+            "aiMcp": "Tanyakan tentang database Anda lewat chat, atau biarkan coding agent Anda bekerja dengannya melalui MCP.",
+            "connections": "Hubungkan lewat SSH dan TLS, dan simpan server Anda sebagai koneksi."
+        }
     },
     "testimonials": {
         "title": "Kata para developer",
@@ -115,17 +50,22 @@
             "en": "Diterjemahkan dari bahasa Inggris",
             "ja": "Diterjemahkan dari bahasa Jepang",
             "zh": "Diterjemahkan dari bahasa Mandarin"
-        }
+        },
+        "more": {
+            "one": "{count} kutipan lagi dari developer",
+            "other": "{count} kutipan lagi dari developer"
+        },
+        "fewer": "Tampilkan lebih sedikit"
     },
     "pricing": {
-        "title": "Gratis, Pro dan Team",
-        "lead": "Gunakan {macApp} secara gratis, tanpa masa uji coba. Pro menambahkan {starterExamples}; Team menambahkan {teamExamples}. Untuk {iosApp}, tidak ada biaya atau pembelian dalam aplikasi."
+        "title": "Harga",
+        "lead": "Gratis digunakan, tanpa masa uji coba. Pro dan Team menambahkan fitur, dan satu lisensi mencakup {deviceLimit} komputer, Mac atau Linux."
     },
     "openSource": {
         "title": "Sumber terbuka",
-        "body": "TablePro bersifat open source di bawah AGPLv3, termasuk kode fitur berbayar. Lisensi dan sponsor mendanai pengembangan.",
+        "statement": "TablePro bersifat open source di bawah AGPLv3, termasuk fitur berbayar.",
+        "funding": "Tim TablePro membuatnya, dan lisensi serta sponsor mendanai pengembangannya.",
         "about": "Tentang TablePro",
-        "github": "Lihat di GitHub",
-        "productHunt": "TablePro di Product Hunt"
+        "github": "Kode sumber di GitHub"
     }
 }

@@ -17,7 +17,7 @@ beforeEach(function (): void {
 function pageFamilies(): array
 {
     return [
-        'landing.home' => ['Home', ['content.hero.title', 'engines.0.path', 'apiOrigin', 'iosEngines']],
+        'landing.home' => ['Home', ['content.hero.title', 'engines.0.path', 'apiOrigin', 'testimonials.0.featured']],
         'landing.download' => ['Download', ['content', 'mac', 'release', 'unreleased']],
         'landing.ios' => ['Ios', ['content', 'ios', 'engines']],
         'landing.pricing' => ['Pricing', ['content', 'apiOrigin', 'paidFeatures']],
@@ -166,7 +166,7 @@ it('drops a withdrawn platform from every page that offers it', function (string
             ->and(array_filter((array) data_get($props, $key)))->toBe([], "{$path} still offers the platform in {$key}");
     }
 })->with([
-    'home' => ['/', ['iosEngines']],
+    'home' => ['/', []],
     'download' => ['/download', ['ios']],
     'iPhone and iPad' => ['/ios', ['ios']],
     'FAQ' => ['/faq', ['platforms.ios']],

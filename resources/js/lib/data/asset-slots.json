@@ -5,6 +5,11 @@
             "aspect": "16:9",
             "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
         },
+        "window-whole": {
+            "type": "screenshot",
+            "aspect": "16:9",
+            "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
         "mobile-crop": {
             "type": "detail",
             "aspect": "4:5",
@@ -35,6 +40,11 @@
             "aspect": "16:9",
             "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
         },
+        "device": {
+            "type": "illustration",
+            "aspect": null,
+            "sizes": "(min-width: 1280px) 640px, (min-width: 768px) 53vw, 70vw"
+        },
         "figure": {
             "type": "per-figure",
             "aspect": null,
@@ -47,52 +57,9 @@
         }
     },
     "assets": {
-        "mac-hero-window": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": true,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-hero-window-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/home",
-                "base": "mac-hero-window"
-            }
-        },
-        "mac-hero-window-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
+        "home-hero-mac": {
+            "kind": "device",
+            "type": "illustration",
             "slot": true,
             "aspect": null,
             "priority": true,
@@ -103,32 +70,671 @@
             "src": {
                 "light": {
                     "widths": [
-                        343,
-                        686
+                        640,
+                        1280
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 686,
-                    "height": 858
+                    "width": 1280,
+                    "height": 784
                 },
                 "dark": {
                     "widths": [
-                        343,
-                        686
+                        640,
+                        1280
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 686,
-                    "height": 858
+                    "width": 1280,
+                    "height": 784
                 }
             },
             "replacement": {
                 "dir": "public/images/home",
-                "base": "mac-hero-window-mobile"
+                "base": "home-hero-mac"
+            }
+        },
+        "home-hero-linux": {
+            "kind": "device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        520,
+                        1040
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1040,
+                    "height": 873
+                },
+                "dark": {
+                    "widths": [
+                        520,
+                        1040
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1040,
+                    "height": 873
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "home-hero-linux"
+            }
+        },
+        "home-hero-ipad": {
+            "kind": "device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        320,
+                        640
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 640,
+                    "height": 836
+                },
+                "dark": {
+                    "widths": [
+                        320,
+                        640
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 640,
+                    "height": 836
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "home-hero-ipad"
+            }
+        },
+        "home-hero-iphone": {
+            "kind": "device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        104,
+                        208
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 208,
+                    "height": 429
+                },
+                "dark": {
+                    "widths": [
+                        104,
+                        208
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 208,
+                    "height": 429
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "home-hero-iphone"
+            }
+        },
+        "mac-home-querying": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-querying"
+            }
+        },
+        "mac-home-data-editing": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-data-editing"
+            }
+        },
+        "mac-home-schema": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-schema"
+            }
+        },
+        "mac-home-import-export": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-import-export"
+            }
+        },
+        "mac-home-ai-mcp": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-ai-mcp"
+            }
+        },
+        "mac-home-connections": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-home-connections"
+            }
+        },
+        "linux-home-querying": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-querying"
+            }
+        },
+        "linux-home-data-editing": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-data-editing"
+            }
+        },
+        "linux-home-schema": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-schema"
+            }
+        },
+        "linux-home-import-export": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-import-export"
+            }
+        },
+        "linux-home-ai-mcp": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-ai-mcp"
+            }
+        },
+        "linux-home-connections": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "linux-home-connections"
             }
         },
         "mac-query-autocomplete": {

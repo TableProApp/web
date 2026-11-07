@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\IosController;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Assets\AssetManifest;
-use App\Support\Content\Testimonials;
 use App\Support\Localization\LocalizedUrl;
 use Dom\HTMLDocument;
 use Illuminate\Http\Client\Request;
@@ -87,36 +85,31 @@ it('names the iPhone engines from platforms.json, asking GitHub for nothing', fu
 
     Http::assertNotSent(fn(Request $request): bool => str_contains($request->url(), 'github'));
 })->with([
-    'home' => ['/', 'iosEngines'],
     'iPhone and iPad' => ['/ios', 'engines'],
 ]);
 
 it('preloads the LCP image only once it is supplied', function (string $path, Closure $descriptor): void {
     get($path)->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('lcpAsset', $descriptor(app(AssetManifest::class))));
 })->with([
-    'home' => ['/', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('mac-hero-window', 'en')],
+    'home' => ['/', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('home-hero-mac', 'en')],
     'iPhone and iPad' => ['/ios', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('ipad-table-browse', 'en', priority: true, sizes: IosController::IPAD_SIZES)],
 ]);
 
-it('sends the homepage every published engine once, and the categories in hub order', function (string $locale): void {
-    $used = staticPagePublishedEngines()->pluck('category')->unique()->all();
-    $hub = staticPageData("content/{$locale}/databases/index.json")['categories'];
-    $categories = collect(DatabaseController::CATEGORIES)
-        ->filter(fn(string $id): bool => in_array($id, $used, true))
-        ->map(fn(string $id): array => ['id' => $id, 'title' => $hub[$id]['title']])
-        ->values()
-        ->all();
-
+it('sends the homepage every published engine once, with its name, page and featured flag', function (string $locale): void {
     get(LocalizedUrl::path('/', $locale))->assertOk()->assertInertia(fn(AssertableInertia $page) => $page
         ->where('engines', fn($engines): bool => collect($engines)->pluck('id')->all() === staticPagePublishedEngines()->pluck('id')->all())
-        ->where('categories', $categories));
+        ->where('engines.0', fn($engine): bool => array_keys(collect($engine)->all()) === ['id', 'name', 'path', 'featured'])
+        ->missing('categories')
+        ->missing('iosEngines'));
 })->with(['en', 'vi']);
 
-it('sends the homepage its quotes, the reader\'s language first', function (): void {
+it('sends the homepage every quote, the featured ones first and then the reader\'s language', function (): void {
     get('/ja')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page
-        ->has('testimonials', Testimonials::SHOWN)
-        ->where('testimonials.0.lang', 'ja')
-        ->where('testimonials.0.translation', null));
+        ->has('testimonials', count(staticPageData('testimonials.json')['quotes']))
+        ->where('testimonials.0.featured', true)
+        ->where('testimonials.3.featured', false)
+        ->where('testimonials.3.lang', 'ja')
+        ->where('testimonials.3.translation', null));
 });
 
 it('sends the pricing page each paid feature\'s lines, the featured engines and the paid clients\' comparisons', function (string $locale): void {

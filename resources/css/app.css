@@ -893,3 +893,45 @@ html {
     font-size: 0.875em;
   }
 }
+
+/*
+ * The home hero's devices (components/home/hero-devices.tsx): a soft neutral
+ * shadow under each, and one settle on load. The shadow follows the device's
+ * own transparent edge, so it is a drop-shadow, never a box.
+ */
+.hero-device {
+  filter: drop-shadow(0 24px 40px oklch(0 0 0 / 0.16));
+}
+
+.dark .hero-device {
+  filter: drop-shadow(0 24px 48px oklch(0 0 0 / 0.55));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-device {
+    animation: hero-settle 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--settle-delay, 0ms) both;
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.97);
+  }
+}
+
+/* Home sections rising into place once as they scroll in (hooks/use-reveal-on-scroll.ts). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-armed {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 600ms ease-out,
+      transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .reveal-armed.reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+}

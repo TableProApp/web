@@ -41,6 +41,46 @@
       "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
       "note": "A full Mac window, 1216 x 684 pt on a 2x display, captured with screencapture -w -o (docs/screenshots.md). Below 768px the page shows the entry's mobile crop; 343 x 193 is only the placeholder fallback. A window never reaches supplied without its crop."
     },
+    "window-whole": {
+      "type": "screenshot",
+      "aspect": "16:9",
+      "rendered": {
+        "desktop": [
+          1216,
+          684
+        ],
+        "tablet": [
+          720,
+          405
+        ],
+        "phone": [
+          343,
+          193
+        ]
+      },
+      "exportPx": [
+        2432,
+        1368
+      ],
+      "vector": false,
+      "density": 2,
+      "format": {
+        "master": "png",
+        "delivered": [
+          "avif",
+          "webp"
+        ]
+      },
+      "transparency": true,
+      "maxBytes": 250000,
+      "widths": [
+        720,
+        1216,
+        2432
+      ],
+      "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+      "note": "A full window like `window`, shown whole at every width with no phone crop: the homepage's feature tabs, where the owner wants the app seen entire on a phone too (2026-11-07). Same capture recipe as `window`."
+    },
     "mobile-crop": {
       "type": "detail",
       "aspect": "4:5",
@@ -265,6 +305,50 @@
       "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
       "note": "A composite of real captures (for example a Mac Dock and an iPhone screen). No invented UI. A 16:9 composite is 343 x 193 on a phone; one whose details must read there names a mobile crop, recomposed from the same captures."
     },
+    "device": {
+      "type": "illustration",
+      "aspect": null,
+      "rendered": {
+        "desktop": [
+          640,
+          null
+        ],
+        "tablet": [
+          480,
+          null
+        ],
+        "phone": [
+          260,
+          null
+        ]
+      },
+      "exportPx": [
+        1280,
+        null
+      ],
+      "vector": false,
+      "density": 2,
+      "format": {
+        "master": "png",
+        "delivered": [
+          "avif",
+          "webp"
+        ]
+      },
+      "transparency": true,
+      "maxBytes": 250000,
+      "widths": [
+        104,
+        208,
+        320,
+        520,
+        640,
+        1040,
+        1280
+      ],
+      "sizes": "(min-width: 1280px) 640px, (min-width: 768px) 53vw, 70vw",
+      "note": "One device in the home hero, a real capture inside its product frame (Apple product bezels; Framework's product photo), cut to the device with a transparent edge. The hero places each layer and passes its own sizes; the entry's width is its 2x desktop width."
+    },
     "figure": {
       "type": "per-figure",
       "aspect": null,
@@ -330,94 +414,9 @@
     }
   },
   "assets": {
-    "mac-hero-window": {
-      "kind": "window",
-      "type": "screenshot",
-      "family": "home",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P1",
-      "usedOn": [
-        {
-          "path": "/",
-          "section": "top"
-        }
-      ],
-      "aspect": null,
-      "priority": true,
-      "theme": "both",
-      "locale": "shared",
-      "mobile": "mac-hero-window-mobile",
-      "description": {
-        "en": "TablePro on Mac with the shop sample database (PostgreSQL): the orders table, a query in the editor and its results.",
-        "vi": "TablePro trên Mac với cơ sở dữ liệu mẫu shop (PostgreSQL): table orders, một query trong editor cùng kết quả.",
-        "pt-BR": "TablePro no Mac com o banco de exemplo shop (PostgreSQL): a tabela orders, uma consulta no editor e seus resultados.",
-        "it": "TablePro su Mac con il database di esempio shop (PostgreSQL): la tabella orders, una query nell’editor e i risultati.",
-        "id": "TablePro di Mac dengan database contoh shop (PostgreSQL): tabel orders, kueri dalam editor, dan hasilnya.",
-        "zh-Hans": "Mac 上的 TablePro 打开 shop 示例数据库（PostgreSQL）：orders 表、编辑器中的查询及其结果。",
-        "zh-Hant": "Mac 上的 TablePro 開啟 shop 範例資料庫（PostgreSQL）：orders 資料表、編輯器內的查詢及其結果。",
-        "es": "TablePro en Mac con la base de datos de ejemplo shop (PostgreSQL): la tabla orders, una consulta en el editor y sus resultados.",
-        "de": "TablePro auf dem Mac mit der Beispieldatenbank shop (PostgreSQL): die Tabelle orders, eine Abfrage im Editor und ihre Ergebnisse.",
-        "fr": "TablePro sur Mac avec la base d’exemple shop (PostgreSQL) : la table orders, une requête dans l’éditeur et ses résultats.",
-        "ja": "Mac 上の TablePro で開いた shop サンプルデータベース（PostgreSQL）。orders テーブル、エディタ内のクエリとその結果。",
-        "ko": "Mac의 TablePro에서 열린 shop 샘플 데이터베이스(PostgreSQL). orders 테이블, 편집기의 쿼리와 결과입니다."
-      },
-      "alt": {
-        "en": "TablePro window on a Mac, connected to a PostgreSQL sample database, with the orders table in the sidebar, a query in the SQL editor and its result rows below.",
-        "vi": "Cửa sổ TablePro trên Mac, kết nối tới một cơ sở dữ liệu PostgreSQL mẫu, với table orders ở sidebar, một query trong SQL editor và các dòng kết quả bên dưới.",
-        "pt-BR": "Janela do TablePro em um Mac, conectada a um banco de exemplo PostgreSQL, com a tabela orders na barra lateral, uma consulta no editor SQL e suas linhas de resultado abaixo.",
-        "it": "Finestra di TablePro su un Mac, connessa a un database PostgreSQL di esempio, con la tabella orders nella barra laterale, una query nell’editor SQL e le righe del risultato sotto.",
-        "id": "Jendela TablePro di Mac, terhubung ke database contoh PostgreSQL, dengan tabel orders di sidebar, kueri dalam editor SQL, dan baris hasil di bawahnya.",
-        "zh-Hans": "Mac 上的 TablePro 窗口连接到 PostgreSQL 示例数据库，侧边栏显示 orders 表，SQL 编辑器中有一条查询，下方显示结果行。",
-        "zh-Hant": "Mac 上的 TablePro 視窗連線至 PostgreSQL 範例資料庫，側邊欄顯示 orders 資料表，SQL 編輯器內有一項查詢，下方顯示結果資料列。",
-        "es": "Ventana de TablePro en Mac conectada a una base PostgreSQL de ejemplo, con la tabla orders en la barra lateral, una consulta en el editor SQL y las filas de resultados debajo.",
-        "de": "TablePro-Fenster auf einem Mac, verbunden mit einer PostgreSQL-Beispieldatenbank: Tabelle orders in der Seitenleiste, Abfrage im SQL-Editor und Ergebniszeilen darunter.",
-        "fr": "Fenêtre TablePro sur Mac connectée à une base PostgreSQL d’exemple, avec la table orders dans la barre latérale, une requête dans l’éditeur SQL et les lignes de résultat dessous.",
-        "ja": "Mac 上の TablePro のウインドウ。PostgreSQL のサンプルデータベースに接続し、サイドバーに orders テーブル、SQL エディタにクエリ、その下に結果の行が表示されています。",
-        "ko": "Mac의 TablePro 창이 PostgreSQL 샘플 데이터베이스에 연결되어 있습니다. 사이드바에는 orders 테이블, SQL 편집기에는 쿼리, 아래에는 결과 행이 표시됩니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/home",
-        "base": "mac-hero-window"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            720,
-            1216,
-            2432
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 2432,
-          "height": 1368
-        },
-        "dark": {
-          "widths": [
-            720,
-            1216,
-            2432
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 2432,
-          "height": 1368
-        }
-      },
-      "legacySource": [
-        "/images/app-light.png",
-        "/images/app-dark.png"
-      ]
-    },
-    "mac-hero-window-mobile": {
-      "kind": "mobile-crop",
-      "type": "detail",
+    "home-hero-mac": {
+      "kind": "device",
+      "type": "illustration",
       "family": "home",
       "ownerRepo": "web",
       "slot": true,
@@ -434,63 +433,1287 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Close-up of the same window: the query and the first result rows.",
-        "vi": "Cận cảnh cùng cửa sổ: câu query và các dòng kết quả đầu tiên.",
-        "pt-BR": "Detalhe da mesma janela: a consulta e as primeiras linhas do resultado.",
-        "it": "Dettaglio della stessa finestra: la query e le prime righe del risultato.",
-        "id": "Tampilan dekat jendela yang sama: kueri dan baris awal hasilnya.",
-        "zh-Hans": "同一窗口的局部图：查询及结果的前几行。",
-        "zh-Hant": "同一視窗的局部圖：查詢及結果的前幾列。",
-        "es": "Detalle de la misma ventana: la consulta y las primeras filas de resultados.",
-        "de": "Detailansicht desselben Fensters: Abfrage und erste Ergebniszeilen.",
-        "fr": "Gros plan de la même fenêtre : la requête et les premières lignes de résultat.",
-        "ja": "同じウインドウの拡大図。クエリと結果の最初の数行。",
-        "ko": "같은 창의 확대 화면. 쿼리와 결과의 첫 행들입니다."
+        "en": "The Mac app on a MacBook Pro (Apple's product bezel): the shop sample database (PostgreSQL), a query of revenue by month in the SQL editor and its results.",
+        "vi": "Ứng dụng cho Mac trên MacBook Pro (khung thiết bị của Apple): cơ sở dữ liệu mẫu shop (PostgreSQL), một query doanh thu theo tháng trong SQL editor và kết quả của nó.",
+        "es": "La app para Mac en un MacBook Pro (marco de producto de Apple): la base de datos de ejemplo shop (PostgreSQL), una consulta de ingresos por mes en el editor SQL y sus resultados.",
+        "de": "Die Mac-App auf einem MacBook Pro (Geräterahmen von Apple): die Beispieldatenbank shop (PostgreSQL), eine Abfrage des Umsatzes pro Monat im SQL-Editor und ihre Ergebnisse.",
+        "fr": "L’application Mac sur un MacBook Pro (cadre produit d’Apple) : la base de données d’exemple shop (PostgreSQL), une requête du chiffre d’affaires par mois dans l’éditeur SQL et ses résultats.",
+        "ja": "MacBook Pro（Apple の製品ベゼル）上の Mac アプリ。shop サンプルデータベース（PostgreSQL）、SQL エディタの月別売上クエリとその結果。",
+        "pt-BR": "O app para Mac em um MacBook Pro (moldura de produto da Apple): o banco de dados de exemplo shop (PostgreSQL), uma consulta de receita por mês no editor SQL e seus resultados.",
+        "zh-Hans": "MacBook Pro（Apple 的产品边框）上的 Mac 应用：shop 示例数据库（PostgreSQL），SQL 编辑器中按月统计收入的查询及其结果。",
+        "ko": "MacBook Pro(Apple 제품 베젤)의 Mac 앱. shop 샘플 데이터베이스(PostgreSQL), SQL 편집기의 월별 매출 쿼리와 그 결과입니다.",
+        "zh-Hant": "MacBook Pro（Apple 的產品邊框）上的 Mac App：shop 範例資料庫（PostgreSQL），SQL 編輯器中按月統計營收的查詢及其結果。",
+        "it": "L’app per Mac su un MacBook Pro (cornice del prodotto di Apple): il database di esempio shop (PostgreSQL), una query dei ricavi per mese nell’editor SQL e i suoi risultati.",
+        "id": "Aplikasi Mac di MacBook Pro (bingkai produk Apple): database contoh shop (PostgreSQL), kueri pendapatan per bulan di editor SQL, dan hasilnya."
       },
       "alt": {
-        "en": "Close-up of the TablePro SQL editor with a query on the orders table and the first rows of its result.",
-        "vi": "Cận cảnh SQL editor của TablePro với một query trên table orders và các dòng kết quả đầu tiên.",
-        "pt-BR": "Detalhe do editor SQL do TablePro com uma consulta à tabela orders e as primeiras linhas do resultado.",
-        "it": "Dettaglio dell’editor SQL di TablePro con una query sulla tabella orders e le prime righe del risultato.",
-        "id": "Tampilan dekat editor SQL TablePro dengan kueri pada tabel orders dan baris awal hasilnya.",
-        "zh-Hans": "TablePro SQL 编辑器的局部图，显示 orders 表查询及结果的前几行。",
-        "zh-Hant": "TablePro SQL 編輯器的局部圖，顯示 orders 資料表查詢及結果的前幾列。",
-        "es": "Detalle del editor SQL de TablePro con una consulta sobre la tabla orders y las primeras filas de resultados.",
-        "de": "Detailansicht des TablePro-SQL-Editors mit einer Abfrage auf orders und den ersten Ergebniszeilen.",
-        "fr": "Gros plan de l’éditeur SQL TablePro avec une requête sur la table orders et les premières lignes de résultat.",
-        "ja": "TablePro の SQL エディタの拡大図。orders テーブルへのクエリと結果の最初の数行が表示されています。",
-        "ko": "orders 테이블의 쿼리와 결과의 첫 행들을 보여 주는 TablePro SQL 편집기의 확대 화면."
+        "en": "TablePro on a MacBook Pro, with a query on a PostgreSQL sample database and its results.",
+        "vi": "TablePro trên MacBook Pro, hiển thị một query trên cơ sở dữ liệu mẫu PostgreSQL và kết quả của nó.",
+        "es": "TablePro en un MacBook Pro, con una consulta sobre una base de datos de ejemplo PostgreSQL y sus resultados.",
+        "de": "TablePro auf einem MacBook Pro mit einer Abfrage auf einer PostgreSQL-Beispieldatenbank und ihren Ergebnissen.",
+        "fr": "TablePro sur un MacBook Pro, avec une requête sur une base de données d’exemple PostgreSQL et ses résultats.",
+        "ja": "MacBook Pro 上の TablePro。PostgreSQL のサンプルデータベースに対するクエリとその結果が表示されています。",
+        "pt-BR": "TablePro em um MacBook Pro, com uma consulta em um banco de dados de exemplo PostgreSQL e seus resultados.",
+        "zh-Hans": "MacBook Pro 上的 TablePro，显示对 PostgreSQL 示例数据库的查询及其结果。",
+        "ko": "MacBook Pro의 TablePro. PostgreSQL 샘플 데이터베이스에 대한 쿼리와 그 결과가 표시됩니다.",
+        "zh-Hant": "MacBook Pro 上的 TablePro，顯示對 PostgreSQL 範例資料庫的查詢及其結果。",
+        "it": "TablePro su un MacBook Pro, con una query su un database di esempio PostgreSQL e i suoi risultati.",
+        "id": "TablePro di MacBook Pro, dengan kueri pada database contoh PostgreSQL dan hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/home",
-        "base": "mac-hero-window-mobile"
+        "base": "home-hero-mac"
       },
       "status": "supplied",
       "src": {
         "light": {
           "widths": [
-            343,
-            686
+            640,
+            1280
           ],
           "formats": [
             "avif",
             "webp"
           ],
-          "width": 686,
-          "height": 858
+          "width": 1280,
+          "height": 784
         },
         "dark": {
           "widths": [
-            343,
-            686
+            640,
+            1280
           ],
           "formats": [
             "avif",
             "webp"
           ],
-          "width": 686,
-          "height": 858
+          "width": 1280,
+          "height": 784
+        }
+      },
+      "legacySource": null
+    },
+    "home-hero-linux": {
+      "kind": "device",
+      "type": "illustration",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P1",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "top"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux app on a Framework Laptop 13 Pro (Framework's product photo): the orders table of the shop sample database, filtered with a WHERE clause.",
+        "vi": "Ứng dụng cho Linux trên Framework Laptop 13 Pro (ảnh sản phẩm của Framework): table orders của cơ sở dữ liệu mẫu shop, được lọc bằng mệnh đề WHERE.",
+        "es": "La app para Linux en un Framework Laptop 13 Pro (foto de producto de Framework): la tabla orders de la base de datos de ejemplo shop, filtrada con una cláusula WHERE.",
+        "de": "Die Linux-App auf einem Framework Laptop 13 Pro (Produktfoto von Framework): die Tabelle orders der Beispieldatenbank shop, gefiltert mit einer WHERE-Klausel.",
+        "fr": "L’application Linux sur un Framework Laptop 13 Pro (photo produit de Framework) : la table orders de la base de données d’exemple shop, filtrée par une clause WHERE.",
+        "ja": "Framework Laptop 13 Pro（Framework の製品写真）上の Linux アプリ。shop サンプルデータベースの orders テーブルを WHERE 句でフィルターしています。",
+        "pt-BR": "O app para Linux em um Framework Laptop 13 Pro (foto de produto da Framework): a tabela orders do banco de dados de exemplo shop, filtrada com uma cláusula WHERE.",
+        "zh-Hans": "Framework Laptop 13 Pro（Framework 的产品照片）上的 Linux 应用：shop 示例数据库的 orders 表，用 WHERE 子句筛选。",
+        "ko": "Framework Laptop 13 Pro(Framework 제품 사진)의 Linux 앱. shop 샘플 데이터베이스의 orders 테이블을 WHERE 절로 필터링했습니다.",
+        "zh-Hant": "Framework Laptop 13 Pro（Framework 的產品照片）上的 Linux App：shop 範例資料庫的 orders 資料表，以 WHERE 子句篩選。",
+        "it": "L’app per Linux su un Framework Laptop 13 Pro (foto del prodotto di Framework): la tabella orders del database di esempio shop, filtrata con una clausola WHERE.",
+        "id": "Aplikasi Linux di Framework Laptop 13 Pro (foto produk Framework): tabel orders dari database contoh shop, difilter dengan klausa WHERE."
+      },
+      "alt": {
+        "en": "TablePro for Linux on a Framework laptop, with the orders table filtered.",
+        "vi": "TablePro cho Linux trên một laptop Framework, với table orders đã được lọc.",
+        "es": "TablePro para Linux en un portátil Framework, con la tabla orders filtrada.",
+        "de": "TablePro für Linux auf einem Framework-Laptop mit gefilterter Tabelle orders.",
+        "fr": "TablePro pour Linux sur un ordinateur portable Framework, avec la table orders filtrée.",
+        "ja": "Framework のノートパソコン上の Linux 版 TablePro。フィルターした orders テーブルが表示されています。",
+        "pt-BR": "TablePro para Linux em um notebook Framework, com a tabela orders filtrada.",
+        "zh-Hans": "Framework 笔记本电脑上的 Linux 版 TablePro，显示经过筛选的 orders 表。",
+        "ko": "Framework 노트북의 Linux용 TablePro. orders 테이블이 필터링되어 있습니다.",
+        "zh-Hant": "Framework 筆電上的 Linux 版 TablePro，顯示經過篩選的 orders 資料表。",
+        "it": "TablePro per Linux su un portatile Framework, con la tabella orders filtrata.",
+        "id": "TablePro untuk Linux di laptop Framework, dengan tabel orders yang difilter."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "home-hero-linux"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            520,
+            1040
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1040,
+          "height": 873
+        },
+        "dark": {
+          "widths": [
+            520,
+            1040
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1040,
+          "height": 873
+        }
+      },
+      "legacySource": null
+    },
+    "home-hero-ipad": {
+      "kind": "device",
+      "type": "illustration",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P1",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "top"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The iPhone and iPad app on an iPad Pro (Apple's product bezel): the products table of the shop sample database.",
+        "vi": "Ứng dụng cho iPhone và iPad trên iPad Pro (khung thiết bị của Apple): table products của cơ sở dữ liệu mẫu shop.",
+        "es": "La app para iPhone y iPad en un iPad Pro (marco de producto de Apple): la tabla products de la base de datos de ejemplo shop.",
+        "de": "Die iPhone- und iPad-App auf einem iPad Pro (Geräterahmen von Apple): die Tabelle products der Beispieldatenbank shop.",
+        "fr": "L’application iPhone et iPad sur un iPad Pro (cadre produit d’Apple) : la table products de la base de données d’exemple shop.",
+        "ja": "iPad Pro（Apple の製品ベゼル）上の iPhone・iPad アプリ。shop サンプルデータベースの products テーブル。",
+        "pt-BR": "O app para iPhone e iPad em um iPad Pro (moldura de produto da Apple): a tabela products do banco de dados de exemplo shop.",
+        "zh-Hans": "iPad Pro（Apple 的产品边框）上的 iPhone 和 iPad 应用：shop 示例数据库的 products 表。",
+        "ko": "iPad Pro(Apple 제품 베젤)의 iPhone 및 iPad 앱. shop 샘플 데이터베이스의 products 테이블입니다.",
+        "zh-Hant": "iPad Pro（Apple 的產品邊框）上的 iPhone 與 iPad App：shop 範例資料庫的 products 資料表。",
+        "it": "L’app per iPhone e iPad su un iPad Pro (cornice del prodotto di Apple): la tabella products del database di esempio shop.",
+        "id": "Aplikasi iPhone dan iPad di iPad Pro (bingkai produk Apple): tabel products dari database contoh shop."
+      },
+      "alt": {
+        "en": "TablePro on an iPad Pro, with the products table open.",
+        "vi": "TablePro trên iPad Pro, đang mở table products.",
+        "es": "TablePro en un iPad Pro, con la tabla products abierta.",
+        "de": "TablePro auf einem iPad Pro mit geöffneter Tabelle products.",
+        "fr": "TablePro sur un iPad Pro, avec la table products ouverte.",
+        "ja": "iPad Pro 上の TablePro。products テーブルを開いています。",
+        "pt-BR": "TablePro em um iPad Pro, com a tabela products aberta.",
+        "zh-Hans": "iPad Pro 上的 TablePro，已打开 products 表。",
+        "ko": "iPad Pro의 TablePro. products 테이블이 열려 있습니다.",
+        "zh-Hant": "iPad Pro 上的 TablePro，已開啟 products 資料表。",
+        "it": "TablePro su un iPad Pro, con la tabella products aperta.",
+        "id": "TablePro di iPad Pro, dengan tabel products terbuka."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "home-hero-ipad"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            320,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 836
+        },
+        "dark": {
+          "widths": [
+            320,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 836
+        }
+      },
+      "legacySource": null
+    },
+    "home-hero-iphone": {
+      "kind": "device",
+      "type": "illustration",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P1",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "top"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The iPhone and iPad app on an iPhone (Apple's product bezel): the connection list, with shop and four other saved connections.",
+        "vi": "Ứng dụng cho iPhone và iPad trên iPhone (khung thiết bị của Apple): danh sách connection, gồm shop và bốn connection đã lưu khác.",
+        "es": "La app para iPhone y iPad en un iPhone (marco de producto de Apple): la lista de conexiones, con shop y otras cuatro conexiones guardadas.",
+        "de": "Die iPhone- und iPad-App auf einem iPhone (Geräterahmen von Apple): die Verbindungsliste mit shop und vier weiteren gespeicherten Verbindungen.",
+        "fr": "L’application iPhone et iPad sur un iPhone (cadre produit d’Apple) : la liste des connexions, avec shop et quatre autres connexions enregistrées.",
+        "ja": "iPhone（Apple の製品ベゼル）上の iPhone・iPad アプリ。shop とほか四つの保存済み接続がある接続一覧。",
+        "pt-BR": "O app para iPhone e iPad em um iPhone (moldura de produto da Apple): a lista de conexões, com shop e outras quatro conexões salvas.",
+        "zh-Hans": "iPhone（Apple 的产品边框）上的 iPhone 和 iPad 应用：连接列表，包含 shop 和另外四个已保存的连接。",
+        "ko": "iPhone(Apple 제품 베젤)의 iPhone 및 iPad 앱. shop과 다른 저장된 연결 네 개가 있는 연결 목록입니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框）上的 iPhone 與 iPad App：連線清單，包含 shop 和另外四個已儲存的連線。",
+        "it": "L’app per iPhone e iPad su un iPhone (cornice del prodotto di Apple): l’elenco connessioni, con shop e altre quattro connessioni salvate.",
+        "id": "Aplikasi iPhone dan iPad di iPhone (bingkai produk Apple): daftar koneksi, dengan shop dan empat koneksi tersimpan lainnya."
+      },
+      "alt": {
+        "en": "TablePro on an iPhone, with the list of saved connections.",
+        "vi": "TablePro trên iPhone, hiển thị danh sách connection đã lưu.",
+        "es": "TablePro en un iPhone, con la lista de conexiones guardadas.",
+        "de": "TablePro auf einem iPhone mit der Liste gespeicherter Verbindungen.",
+        "fr": "TablePro sur un iPhone, avec la liste des connexions enregistrées.",
+        "ja": "iPhone 上の TablePro。保存済みの接続の一覧が表示されています。",
+        "pt-BR": "TablePro em um iPhone, com a lista de conexões salvas.",
+        "zh-Hans": "iPhone 上的 TablePro，显示已保存的连接列表。",
+        "ko": "iPhone의 TablePro. 저장된 연결 목록이 표시됩니다.",
+        "zh-Hant": "iPhone 上的 TablePro，顯示已儲存的連線清單。",
+        "it": "TablePro su un iPhone, con l’elenco delle connessioni salvate.",
+        "id": "TablePro di iPhone, dengan daftar koneksi tersimpan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "home-hero-iphone"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            104,
+            208
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 208,
+          "height": 429
+        },
+        "dark": {
+          "widths": [
+            104,
+            208
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 208,
+          "height": 429
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-querying": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac SQL editor on shop: a query joining orders and users, the column completion list open after \"o.\", and the result rows below.",
+        "vi": "SQL editor của bản Mac trên shop: một query join orders với users, danh sách autocomplete gợi ý cột đang mở sau \"o.\", và các dòng kết quả bên dưới.",
+        "es": "El editor SQL de la app para Mac en shop: una consulta que une orders y users, la lista de autocompletado de columnas abierta tras «o.» y las filas de resultados debajo.",
+        "de": "Der SQL-Editor der Mac-App für shop: eine Abfrage, die orders mit users verknüpft, die nach „o.“ geöffnete Autovervollständigungsliste mit Spalten und darunter die Ergebniszeilen.",
+        "fr": "L’éditeur SQL de l’application Mac sur shop : une requête joignant orders et users, la liste d’autocomplétion des colonnes ouverte après « o. », et les lignes de résultat en dessous.",
+        "ja": "shop の Mac 版 SQL エディタ。orders と users を結合するクエリ、「o.」の後に開いた列の補完リスト、その下の結果の行。",
+        "pt-BR": "O editor SQL do app para Mac em shop: uma consulta que une orders e users, a lista de preenchimento automático de colunas aberta após “o.” e as linhas de resultado abaixo.",
+        "zh-Hans": "在 shop 上使用 Mac 版 SQL 编辑器：连接 orders 与 users 的查询，在“o.”之后打开的列自动补全列表，以及下方的结果行。",
+        "ko": "shop의 Mac SQL 편집기. orders와 users를 조인하는 쿼리, “o.” 뒤에 열린 열 자동 완성 목록, 아래의 결과 행입니다.",
+        "zh-Hant": "在 shop 上使用 Mac 版 SQL 編輯器：聯結 orders 與 users 的查詢，在「o.」之後開啟的欄位自動完成清單，以及下方的結果資料列。",
+        "it": "L’editor SQL dell’app per Mac su shop: una query che unisce orders e users, l’elenco di completamento delle colonne aperto dopo “o.” e le righe dei risultati sotto.",
+        "id": "Editor SQL aplikasi Mac pada shop: kueri yang menggabungkan orders dan users, daftar pelengkapan kolom yang terbuka setelah “o.”, dan baris hasil di bawahnya."
+      },
+      "alt": {
+        "en": "The TablePro SQL editor on a Mac, with the column completion list open over a query and its results below.",
+        "vi": "SQL editor của TablePro trên Mac, với danh sách autocomplete gợi ý cột mở trên một query và kết quả bên dưới.",
+        "es": "El editor SQL de TablePro en un Mac, con la lista de autocompletado de columnas abierta sobre una consulta y sus resultados debajo.",
+        "de": "Der TablePro-SQL-Editor auf dem Mac mit geöffneter Autovervollständigungsliste für Spalten über einer Abfrage und den Ergebnissen darunter.",
+        "fr": "L’éditeur SQL TablePro sur Mac, avec la liste d’autocomplétion des colonnes ouverte sur une requête et ses résultats en dessous.",
+        "ja": "Mac 上の TablePro の SQL エディタ。クエリの上に列の補完リストが開き、その下に結果が表示されています。",
+        "pt-BR": "O editor SQL do TablePro no Mac, com a lista de preenchimento automático de colunas aberta sobre uma consulta e os resultados abaixo.",
+        "zh-Hans": "Mac 上的 TablePro SQL 编辑器，查询上打开了列自动补全列表，下方显示结果。",
+        "ko": "Mac의 TablePro SQL 편집기. 쿼리 위에 열 자동 완성 목록이 열려 있고 아래에 결과가 있습니다.",
+        "zh-Hant": "Mac 上的 TablePro SQL 編輯器，查詢上開啟了欄位自動完成清單，下方顯示結果。",
+        "it": "L’editor SQL di TablePro su Mac, con l’elenco di completamento delle colonne aperto su una query e i risultati sotto.",
+        "id": "Editor SQL TablePro di Mac, dengan daftar pelengkapan kolom terbuka di atas kueri dan hasilnya di bawah."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-querying"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-data-editing": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac data grid on shop.products with three edited prices, not yet saved.",
+        "vi": "Data grid của bản Mac với shop.products, có ba giá đã sửa, chưa lưu.",
+        "es": "La cuadrícula de datos de la app para Mac en shop.products, con tres precios editados aún sin guardar.",
+        "de": "Die Datentabelle der Mac-App für shop.products mit drei bearbeiteten, noch nicht gespeicherten Preisen.",
+        "fr": "La grille de données de l’application Mac sur shop.products, avec trois prix modifiés pas encore enregistrés.",
+        "ja": "shop.products の Mac 版データグリッド。三つの価格を編集し、まだ保存していません。",
+        "pt-BR": "A grade de dados do app para Mac em shop.products com três preços editados, ainda não salvos.",
+        "zh-Hans": "Mac 版数据表格中的 shop.products，三处价格已修改，尚未保存。",
+        "ko": "shop.products의 Mac 데이터 그리드. 가격 세 개를 편집했으며 아직 저장하지 않았습니다.",
+        "zh-Hant": "Mac 版資料表格中的 shop.products，三處價格已修改，尚未儲存。",
+        "it": "La griglia dati dell’app per Mac su shop.products con tre prezzi modificati, non ancora salvati.",
+        "id": "Grid data aplikasi Mac pada shop.products dengan tiga harga yang diedit dan belum disimpan."
+      },
+      "alt": {
+        "en": "The TablePro data grid on a Mac, with three edited prices in the products table waiting to be saved.",
+        "vi": "Data grid của TablePro trên Mac, với ba giá đã sửa trong table products đang chờ lưu.",
+        "es": "La cuadrícula de datos de TablePro en un Mac, con tres precios editados en la tabla products pendientes de guardar.",
+        "de": "Die TablePro-Datentabelle auf dem Mac mit drei bearbeiteten Preisen in der Tabelle products, die auf das Speichern warten.",
+        "fr": "La grille de données TablePro sur Mac, avec trois prix modifiés dans la table products en attente d’enregistrement.",
+        "ja": "Mac 上の TablePro のデータグリッド。products テーブルで編集した三つの価格が保存を待っています。",
+        "pt-BR": "A grade de dados do TablePro no Mac, com três preços editados na tabela products aguardando salvamento.",
+        "zh-Hans": "Mac 上的 TablePro 数据表格，products 表中有三处价格修改等待保存。",
+        "ko": "Mac의 TablePro 데이터 그리드. products 테이블에서 편집한 가격 세 개가 저장을 기다리고 있습니다.",
+        "zh-Hant": "Mac 上的 TablePro 資料表格，products 資料表中有三處價格修改等待儲存。",
+        "it": "La griglia dati di TablePro su Mac, con tre prezzi modificati nella tabella products in attesa di salvataggio.",
+        "id": "Grid data TablePro di Mac, dengan tiga harga yang diedit di tabel products menunggu disimpan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-data-editing"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-schema": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac structure editor on shop.reviews: a new boolean column, verified, staged, and the SQL Preview sheet with its ALTER TABLE statement.",
+        "vi": "Trình sửa cấu trúc của bản Mac với shop.reviews: một cột boolean mới, verified, đang chờ lưu, và hộp thoại SQL Preview với câu ALTER TABLE tương ứng.",
+        "es": "El editor de estructura de la app para Mac en shop.reviews: una nueva columna booleana, verified, pendiente, y la hoja SQL Preview con su instrucción ALTER TABLE.",
+        "de": "Der Struktureditor der Mac-App für shop.reviews: eine neue, vorgemerkte boolesche Spalte verified und das Sheet SQL Preview mit der Anweisung ALTER TABLE.",
+        "fr": "L’éditeur de structure de l’application Mac sur shop.reviews : une nouvelle colonne booléenne, verified, en attente, et la feuille SQL Preview avec son instruction ALTER TABLE.",
+        "ja": "shop.reviews の Mac 版構造エディタ。新しい boolean 列 verified が未保存で、SQL Preview シートにその ALTER TABLE 文が表示されています。",
+        "pt-BR": "O editor de estrutura do app para Mac em shop.reviews: uma nova coluna booleana, verified, preparada, e a folha SQL Preview com sua instrução ALTER TABLE.",
+        "zh-Hans": "Mac 版结构编辑器中的 shop.reviews：新增的 boolean 列 verified 已暂存，SQL Preview 面板显示对应的 ALTER TABLE 语句。",
+        "ko": "shop.reviews의 Mac 구조 편집기. 새 boolean 열 verified가 저장 대기 중이며, SQL Preview 시트에 ALTER TABLE 문이 표시됩니다.",
+        "zh-Hant": "Mac 版結構編輯器中的 shop.reviews：新增的 boolean 欄位 verified 已暫存，SQL Preview 面板顯示對應的 ALTER TABLE 陳述式。",
+        "it": "L’editor della struttura dell’app per Mac su shop.reviews: una nuova colonna booleana, verified, preparata, e il foglio SQL Preview con la sua istruzione ALTER TABLE.",
+        "id": "Editor struktur aplikasi Mac pada shop.reviews: kolom boolean baru, verified, yang disiapkan, dan lembar SQL Preview dengan pernyataan ALTER TABLE-nya."
+      },
+      "alt": {
+        "en": "TablePro on a Mac, showing the ALTER TABLE statement for a new column before it is saved.",
+        "vi": "TablePro trên Mac, hiển thị câu ALTER TABLE cho một cột mới trước khi lưu.",
+        "es": "TablePro en un Mac, con la instrucción ALTER TABLE de una nueva columna antes de guardarla.",
+        "de": "TablePro auf dem Mac mit der Anweisung ALTER TABLE für eine neue Spalte, bevor sie gespeichert wird.",
+        "fr": "TablePro sur Mac, affichant l’instruction ALTER TABLE d’une nouvelle colonne avant son enregistrement.",
+        "ja": "Mac 上の TablePro。新しい列の ALTER TABLE 文を保存前に表示しています。",
+        "pt-BR": "TablePro no Mac, mostrando a instrução ALTER TABLE de uma nova coluna antes de ser salva.",
+        "zh-Hans": "Mac 上的 TablePro，在保存前显示新增列的 ALTER TABLE 语句。",
+        "ko": "Mac의 TablePro. 새 열을 저장하기 전에 ALTER TABLE 문을 보여 줍니다.",
+        "zh-Hant": "Mac 上的 TablePro，在儲存前顯示新增欄位的 ALTER TABLE 陳述式。",
+        "it": "TablePro su Mac, con l’istruzione ALTER TABLE per una nuova colonna prima del salvataggio.",
+        "id": "TablePro di Mac, menampilkan pernyataan ALTER TABLE untuk kolom baru sebelum disimpan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-schema"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-import-export": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac Export dialog: three tables of shop selected, exported as CSV with its options.",
+        "vi": "Hộp thoại Export của bản Mac: ba table của shop được chọn, export ra CSV kèm các tùy chọn CSV.",
+        "es": "El diálogo Export de la app para Mac: tres tablas de shop seleccionadas, exportadas como CSV con sus opciones.",
+        "de": "Der Export-Dialog der Mac-App: drei Tabellen von shop ausgewählt, Export als CSV mit den zugehörigen Optionen.",
+        "fr": "La boîte de dialogue Export de l’application Mac : trois tables de shop sélectionnées, exportées en CSV avec les options du format.",
+        "ja": "Mac 版の Export ダイアログ。shop の三つのテーブルを選び、CSV 形式とそのオプションを指定しています。",
+        "pt-BR": "O diálogo Export do app para Mac: três tabelas de shop selecionadas, exportadas como CSV com suas opções.",
+        "zh-Hans": "Mac 版 Export 对话框：已选择 shop 的三个表，以 CSV 格式导出，并显示 CSV 选项。",
+        "ko": "Mac의 Export 대화상자. shop의 테이블 세 개를 선택해 CSV로 내보내며 CSV 옵션이 표시됩니다.",
+        "zh-Hant": "Mac 版 Export 對話框：已選取 shop 的三個資料表，以 CSV 格式匯出，並顯示 CSV 選項。",
+        "it": "La finestra Export dell’app per Mac: tre tabelle di shop selezionate, esportate come CSV con le relative opzioni.",
+        "id": "Dialog Export aplikasi Mac: tiga tabel shop dipilih, diekspor sebagai CSV dengan opsinya."
+      },
+      "alt": {
+        "en": "The TablePro Export dialog on a Mac, with three tables selected for a CSV export.",
+        "vi": "Hộp thoại Export của TablePro trên Mac, với ba table được chọn để export ra CSV.",
+        "es": "El diálogo Export de TablePro en un Mac, con tres tablas seleccionadas para exportar a CSV.",
+        "de": "Der TablePro-Export-Dialog auf dem Mac mit drei für einen CSV-Export ausgewählten Tabellen.",
+        "fr": "La boîte de dialogue Export de TablePro sur Mac, avec trois tables sélectionnées pour un export CSV.",
+        "ja": "Mac 上の TablePro の Export ダイアログ。CSV エクスポート用に三つのテーブルが選択されています。",
+        "pt-BR": "O diálogo Export do TablePro no Mac, com três tabelas selecionadas para uma exportação em CSV.",
+        "zh-Hans": "Mac 上的 TablePro Export 对话框，已选择三个表进行 CSV 导出。",
+        "ko": "Mac의 TablePro Export 대화상자. CSV 내보내기를 위해 테이블 세 개가 선택되어 있습니다.",
+        "zh-Hant": "Mac 上的 TablePro Export 對話框，已選取三個資料表進行 CSV 匯出。",
+        "it": "La finestra Export di TablePro su Mac, con tre tabelle selezionate per un’esportazione CSV.",
+        "id": "Dialog Export TablePro di Mac, dengan tiga tabel dipilih untuk ekspor CSV."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-import-export"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-ai-mcp": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac AI chat beside the orders table: a question about the top customers in September and the SQL the assistant wrote.",
+        "vi": "AI chat của bản Mac bên cạnh table orders: một câu hỏi về các khách hàng hàng đầu trong tháng 9 và câu SQL mà trợ lý AI viết ra.",
+        "es": "El chat de IA de la app para Mac junto a la tabla orders: una pregunta sobre los mejores clientes de septiembre y el SQL que escribió el asistente.",
+        "de": "Der KI-Chat der Mac-App neben der Tabelle orders: eine Frage nach den Top-Kunden im September und das SQL, das der Assistent geschrieben hat.",
+        "fr": "Le chat IA de l’application Mac à côté de la table orders : une question sur les meilleurs clients de septembre et le SQL écrit par l’assistant.",
+        "ja": "orders テーブルの横にある Mac 版 AI チャット。9 月の上位顧客についての質問と、アシスタントが書いた SQL。",
+        "pt-BR": "O chat com IA do app para Mac ao lado da tabela orders: uma pergunta sobre os principais clientes de setembro e o SQL que o assistente escreveu.",
+        "zh-Hans": "Mac 版 AI 聊天位于 orders 表旁：关于 9 月排名靠前的客户的问题，以及助手编写的 SQL。",
+        "ko": "orders 테이블 옆의 Mac AI 채팅. 9월 상위 고객에 대한 질문과 도우미가 작성한 SQL입니다.",
+        "zh-Hant": "Mac 版 AI 聊天位於 orders 資料表旁：關於 9 月排名靠前客戶的問題，以及助手撰寫的 SQL。",
+        "it": "La chat AI dell’app per Mac accanto alla tabella orders: una domanda sui migliori clienti di settembre e il SQL scritto dall’assistente.",
+        "id": "Chat AI aplikasi Mac di samping tabel orders: pertanyaan tentang pelanggan teratas pada bulan September dan SQL yang ditulis asisten."
+      },
+      "alt": {
+        "en": "The TablePro AI chat on a Mac, answering a question about the top customers with a SQL query.",
+        "vi": "AI chat của TablePro trên Mac, trả lời câu hỏi về các khách hàng hàng đầu bằng một query SQL.",
+        "es": "El chat de IA de TablePro en un Mac, que responde a una pregunta sobre los mejores clientes con una consulta SQL.",
+        "de": "Der TablePro-KI-Chat auf dem Mac beantwortet eine Frage nach den Top-Kunden mit einer SQL-Abfrage.",
+        "fr": "Le chat IA de TablePro sur Mac, répondant à une question sur les meilleurs clients par une requête SQL.",
+        "ja": "Mac 上の TablePro の AI チャット。上位顧客についての質問に SQL クエリで回答しています。",
+        "pt-BR": "O chat com IA do TablePro no Mac, respondendo a uma pergunta sobre os principais clientes com uma consulta SQL.",
+        "zh-Hans": "Mac 上的 TablePro AI 聊天，用 SQL 查询回答关于排名靠前的客户的问题。",
+        "ko": "Mac의 TablePro AI 채팅. 상위 고객에 대한 질문에 SQL 쿼리로 답하고 있습니다.",
+        "zh-Hant": "Mac 上的 TablePro AI 聊天，以 SQL 查詢回答關於排名靠前客戶的問題。",
+        "it": "La chat AI di TablePro su Mac, che risponde a una domanda sui migliori clienti con una query SQL.",
+        "id": "Chat AI TablePro di Mac, menjawab pertanyaan tentang pelanggan teratas dengan kueri SQL."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-ai-mcp"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "mac-home-connections": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Mac connection switcher: the active shop connection and saved connections to MySQL, ClickHouse, Redis, PostgreSQL and SQL Server.",
+        "vi": "Bộ chuyển connection của bản Mac: connection shop đang dùng và các connection đã lưu tới MySQL, ClickHouse, Redis, PostgreSQL và SQL Server.",
+        "es": "El selector de conexiones de la app para Mac: la conexión activa shop y conexiones guardadas a MySQL, ClickHouse, Redis, PostgreSQL y SQL Server.",
+        "de": "Die Verbindungsauswahl der Mac-App: die aktive Verbindung shop und gespeicherte Verbindungen zu MySQL, ClickHouse, Redis, PostgreSQL und SQL Server.",
+        "fr": "Le sélecteur de connexions de l’application Mac : la connexion active shop et des connexions enregistrées vers MySQL, ClickHouse, Redis, PostgreSQL et SQL Server.",
+        "ja": "Mac 版の接続スイッチャー。使用中の shop 接続と、MySQL、ClickHouse、Redis、PostgreSQL、SQL Server への保存済み接続。",
+        "pt-BR": "O seletor de conexões do app para Mac: a conexão ativa shop e conexões salvas para MySQL, ClickHouse, Redis, PostgreSQL e SQL Server.",
+        "zh-Hans": "Mac 版连接切换器：当前的 shop 连接，以及连接到 MySQL、ClickHouse、Redis、PostgreSQL 和 SQL Server 的已保存连接。",
+        "ko": "Mac 연결 전환기. 활성 shop 연결과 MySQL, ClickHouse, Redis, PostgreSQL, SQL Server에 대한 저장된 연결입니다.",
+        "zh-Hant": "Mac 版連線切換器：目前的 shop 連線，以及連線到 MySQL、ClickHouse、Redis、PostgreSQL 和 SQL Server 的已儲存連線。",
+        "it": "Il selettore di connessioni dell’app per Mac: la connessione attiva shop e le connessioni salvate a MySQL, ClickHouse, Redis, PostgreSQL e SQL Server.",
+        "id": "Pemilih koneksi aplikasi Mac: koneksi aktif shop dan koneksi tersimpan ke MySQL, ClickHouse, Redis, PostgreSQL, dan SQL Server."
+      },
+      "alt": {
+        "en": "The TablePro connection switcher on a Mac, listing saved database connections.",
+        "vi": "Bộ chuyển connection của TablePro trên Mac, liệt kê các connection cơ sở dữ liệu đã lưu.",
+        "es": "El selector de conexiones de TablePro en un Mac, con una lista de conexiones guardadas a bases de datos.",
+        "de": "Die TablePro-Verbindungsauswahl auf dem Mac mit einer Liste gespeicherter Datenbankverbindungen.",
+        "fr": "Le sélecteur de connexions TablePro sur Mac, listant des connexions enregistrées à des bases de données.",
+        "ja": "Mac 上の TablePro の接続スイッチャー。保存済みのデータベース接続が一覧表示されています。",
+        "pt-BR": "O seletor de conexões do TablePro no Mac, listando conexões de banco de dados salvas.",
+        "zh-Hans": "Mac 上的 TablePro 连接切换器，列出已保存的数据库连接。",
+        "ko": "Mac의 TablePro 연결 전환기. 저장된 데이터베이스 연결 목록이 표시됩니다.",
+        "zh-Hant": "Mac 上的 TablePro 連線切換器，列出已儲存的資料庫連線。",
+        "it": "Il selettore di connessioni di TablePro su Mac, con l’elenco delle connessioni ai database salvate.",
+        "id": "Pemilih koneksi TablePro di Mac, mencantumkan koneksi database tersimpan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "mac-home-connections"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-querying": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux SQL editor on shop: the same query, the completion list with column types, and the results below.",
+        "vi": "SQL editor của bản Linux trên shop: cùng query đó, danh sách autocomplete kèm kiểu dữ liệu của cột, và kết quả bên dưới.",
+        "es": "El editor SQL de la app para Linux en shop: la misma consulta, la lista de autocompletado con los tipos de columna y los resultados debajo.",
+        "de": "Der SQL-Editor der Linux-App für shop: dieselbe Abfrage, die Autovervollständigungsliste mit Spaltentypen und darunter die Ergebnisse.",
+        "fr": "L’éditeur SQL de l’application Linux sur shop : la même requête, la liste d’autocomplétion avec les types de colonnes, et les résultats en dessous.",
+        "ja": "shop の Linux 版 SQL エディタ。同じクエリ、列の型を示す補完リスト、その下の結果。",
+        "pt-BR": "O editor SQL do app para Linux em shop: a mesma consulta, a lista de preenchimento automático com os tipos de coluna e os resultados abaixo.",
+        "zh-Hans": "在 shop 上使用 Linux 版 SQL 编辑器：同一条查询，显示列类型的自动补全列表，以及下方的结果。",
+        "ko": "shop의 Linux SQL 편집기. 같은 쿼리, 열 유형이 표시된 자동 완성 목록, 아래의 결과입니다.",
+        "zh-Hant": "在 shop 上使用 Linux 版 SQL 編輯器：同一項查詢，顯示欄位類型的自動完成清單，以及下方的結果。",
+        "it": "L’editor SQL dell’app per Linux su shop: la stessa query, l’elenco di completamento con i tipi di colonna e i risultati sotto.",
+        "id": "Editor SQL aplikasi Linux pada shop: kueri yang sama, daftar pelengkapan dengan tipe kolom, dan hasilnya di bawah."
+      },
+      "alt": {
+        "en": "The TablePro for Linux SQL editor, with the column completion list open over a query and its results below.",
+        "vi": "SQL editor của TablePro cho Linux, với danh sách autocomplete gợi ý cột mở trên một query và kết quả bên dưới.",
+        "es": "El editor SQL de TablePro para Linux, con la lista de autocompletado de columnas abierta sobre una consulta y sus resultados debajo.",
+        "de": "Der SQL-Editor von TablePro für Linux mit geöffneter Autovervollständigungsliste für Spalten über einer Abfrage und den Ergebnissen darunter.",
+        "fr": "L’éditeur SQL de TablePro pour Linux, avec la liste d’autocomplétion des colonnes ouverte sur une requête et ses résultats en dessous.",
+        "ja": "Linux 版 TablePro の SQL エディタ。クエリの上に列の補完リストが開き、その下に結果が表示されています。",
+        "pt-BR": "O editor SQL do TablePro para Linux, com a lista de preenchimento automático de colunas aberta sobre uma consulta e os resultados abaixo.",
+        "zh-Hans": "Linux 版 TablePro 的 SQL 编辑器，查询上打开了列自动补全列表，下方显示结果。",
+        "ko": "Linux용 TablePro SQL 편집기. 쿼리 위에 열 자동 완성 목록이 열려 있고 아래에 결과가 있습니다.",
+        "zh-Hant": "Linux 版 TablePro 的 SQL 編輯器，查詢上開啟了欄位自動完成清單，下方顯示結果。",
+        "it": "L’editor SQL di TablePro per Linux, con l’elenco di completamento delle colonne aperto su una query e i risultati sotto.",
+        "id": "Editor SQL TablePro untuk Linux, dengan daftar pelengkapan kolom terbuka di atas kueri dan hasilnya di bawah."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-querying"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-data-editing": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux data grid on shop.products: three edited prices, their marked rows and the Save and Discard buttons.",
+        "vi": "Data grid của bản Linux với shop.products: ba giá đã sửa, các dòng được đánh dấu tương ứng và các nút Save và Discard.",
+        "es": "La cuadrícula de datos de la app para Linux en shop.products: tres precios editados, sus filas marcadas y los botones Save y Discard.",
+        "de": "Die Datentabelle der Linux-App für shop.products: drei bearbeitete Preise, ihre markierten Zeilen und die Schaltflächen Save und Discard.",
+        "fr": "La grille de données de l’application Linux sur shop.products : trois prix modifiés, leurs lignes marquées et les boutons Save et Discard.",
+        "ja": "shop.products の Linux 版データグリッド。編集した三つの価格、印の付いたその行、Save、Discard ボタン。",
+        "pt-BR": "A grade de dados do app para Linux em shop.products: três preços editados, suas linhas marcadas e os botões Save e Discard.",
+        "zh-Hans": "Linux 版数据表格中的 shop.products：三处已修改的价格、被标记的对应行，以及 Save 和 Discard 按钮。",
+        "ko": "shop.products의 Linux 데이터 그리드. 편집한 가격 세 개, 표시된 해당 행, Save 및 Discard 버튼입니다.",
+        "zh-Hant": "Linux 版資料表格中的 shop.products：三處已修改的價格、被標記的對應資料列，以及 Save 和 Discard 按鈕。",
+        "it": "La griglia dati dell’app per Linux su shop.products: tre prezzi modificati, le relative righe contrassegnate e i pulsanti Save e Discard.",
+        "id": "Grid data aplikasi Linux pada shop.products: tiga harga yang diedit, baris yang ditandai, serta tombol Save dan Discard."
+      },
+      "alt": {
+        "en": "The TablePro for Linux data grid, with three unsaved price edits and the Save and Discard buttons.",
+        "vi": "Data grid của TablePro cho Linux, với ba thay đổi giá chưa lưu và các nút Save và Discard.",
+        "es": "La cuadrícula de datos de TablePro para Linux, con tres cambios de precio sin guardar y los botones Save y Discard.",
+        "de": "Die Datentabelle von TablePro für Linux mit drei nicht gespeicherten Preisänderungen und den Schaltflächen Save und Discard.",
+        "fr": "La grille de données de TablePro pour Linux, avec trois modifications de prix non enregistrées et les boutons Save et Discard.",
+        "ja": "Linux 版 TablePro のデータグリッド。未保存の三つの価格変更と、Save、Discard ボタンが表示されています。",
+        "pt-BR": "A grade de dados do TablePro para Linux, com três edições de preço não salvas e os botões Save e Discard.",
+        "zh-Hans": "Linux 版 TablePro 的数据表格，有三处未保存的价格修改，以及 Save 和 Discard 按钮。",
+        "ko": "Linux용 TablePro 데이터 그리드. 저장하지 않은 가격 변경 세 건과 Save, Discard 버튼이 있습니다.",
+        "zh-Hant": "Linux 版 TablePro 的資料表格，有三處未儲存的價格修改，以及 Save 和 Discard 按鈕。",
+        "it": "La griglia dati di TablePro per Linux, con tre modifiche ai prezzi non salvate e i pulsanti Save e Discard.",
+        "id": "Grid data TablePro untuk Linux, dengan tiga perubahan harga yang belum disimpan serta tombol Save dan Discard."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-data-editing"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-schema": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux structure editor on shop.reviews: the columns, with a new boolean column, verified, added and not yet saved.",
+        "vi": "Trình sửa cấu trúc của bản Linux với shop.reviews: danh sách cột, có một cột boolean mới, verified, đã thêm nhưng chưa lưu.",
+        "es": "El editor de estructura de la app para Linux en shop.reviews: las columnas, con una nueva columna booleana, verified, añadida y aún sin guardar.",
+        "de": "Der Struktureditor der Linux-App für shop.reviews: die Spalten, darunter eine neue, noch nicht gespeicherte boolesche Spalte verified.",
+        "fr": "L’éditeur de structure de l’application Linux sur shop.reviews : les colonnes, dont une nouvelle colonne booléenne, verified, ajoutée et pas encore enregistrée.",
+        "ja": "shop.reviews の Linux 版構造エディタ。列の一覧に新しい boolean 列 verified が追加され、まだ保存されていません。",
+        "pt-BR": "O editor de estrutura do app para Linux em shop.reviews: as colunas, com uma nova coluna booleana, verified, adicionada e ainda não salva.",
+        "zh-Hans": "Linux 版结构编辑器中的 shop.reviews：各列中新增了一个 boolean 列 verified，尚未保存。",
+        "ko": "shop.reviews의 Linux 구조 편집기. 열 목록에 새 boolean 열 verified가 추가되었으며 아직 저장되지 않았습니다.",
+        "zh-Hant": "Linux 版結構編輯器中的 shop.reviews：欄位清單中新增了 boolean 欄位 verified，尚未儲存。",
+        "it": "L’editor della struttura dell’app per Linux su shop.reviews: le colonne, con una nuova colonna booleana, verified, aggiunta e non ancora salvata.",
+        "id": "Editor struktur aplikasi Linux pada shop.reviews: daftar kolom, dengan kolom boolean baru, verified, yang ditambahkan dan belum disimpan."
+      },
+      "alt": {
+        "en": "The TablePro for Linux structure editor, with a new column added to the reviews table.",
+        "vi": "Trình sửa cấu trúc của TablePro cho Linux, với một cột mới được thêm vào table reviews.",
+        "es": "El editor de estructura de TablePro para Linux, con una nueva columna añadida a la tabla reviews.",
+        "de": "Der Struktureditor von TablePro für Linux mit einer neuen Spalte in der Tabelle reviews.",
+        "fr": "L’éditeur de structure de TablePro pour Linux, avec une nouvelle colonne ajoutée à la table reviews.",
+        "ja": "Linux 版 TablePro の構造エディタ。reviews テーブルに新しい列が追加されています。",
+        "pt-BR": "O editor de estrutura do TablePro para Linux, com uma nova coluna adicionada à tabela reviews.",
+        "zh-Hans": "Linux 版 TablePro 的结构编辑器，reviews 表中新增了一列。",
+        "ko": "Linux용 TablePro 구조 편집기. reviews 테이블에 새 열이 추가되어 있습니다.",
+        "zh-Hant": "Linux 版 TablePro 的結構編輯器，reviews 資料表中新增了一個欄位。",
+        "it": "L’editor della struttura di TablePro per Linux, con una nuova colonna aggiunta alla tabella reviews.",
+        "id": "Editor struktur TablePro untuk Linux, dengan kolom baru yang ditambahkan ke tabel reviews."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-schema"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-import-export": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux Export Rows dialog: the current page of orders as CSV, with its options.",
+        "vi": "Hộp thoại Export Rows của bản Linux: trang hiện tại của orders, export ra CSV kèm các tùy chọn CSV.",
+        "es": "El diálogo Export Rows de la app para Linux: la página actual de orders como CSV, con sus opciones.",
+        "de": "Der Dialog Export Rows der Linux-App: die aktuelle Seite von orders als CSV, mit den zugehörigen Optionen.",
+        "fr": "La boîte de dialogue Export Rows de l’application Linux : la page actuelle de la table orders en CSV, avec ses options.",
+        "ja": "Linux 版の Export Rows ダイアログ。orders の現在のページを CSV で出力する設定と、そのオプション。",
+        "pt-BR": "O diálogo Export Rows do app para Linux: a página atual de orders como CSV, com suas opções.",
+        "zh-Hans": "Linux 版 Export Rows 对话框：将 orders 的当前页导出为 CSV，并显示 CSV 选项。",
+        "ko": "Linux Export Rows 대화상자. orders의 현재 페이지를 CSV로 내보내며 CSV 옵션이 표시됩니다.",
+        "zh-Hant": "Linux 版 Export Rows 對話框：將 orders 的目前頁面匯出為 CSV，並顯示 CSV 選項。",
+        "it": "La finestra Export Rows dell’app per Linux: la pagina corrente di orders come CSV, con le relative opzioni.",
+        "id": "Dialog Export Rows aplikasi Linux: halaman orders saat ini sebagai CSV, dengan opsinya."
+      },
+      "alt": {
+        "en": "The TablePro for Linux export dialog, set to CSV.",
+        "vi": "Hộp thoại export của TablePro cho Linux, đặt định dạng CSV.",
+        "es": "El diálogo de exportación de TablePro para Linux, configurado en CSV.",
+        "de": "Der Export-Dialog von TablePro für Linux, auf CSV eingestellt.",
+        "fr": "La boîte de dialogue d’export de TablePro pour Linux, réglée sur CSV.",
+        "ja": "Linux 版 TablePro のエクスポートダイアログ。CSV に設定されています。",
+        "pt-BR": "O diálogo de exportação do TablePro para Linux, definido como CSV.",
+        "zh-Hans": "Linux 版 TablePro 的导出对话框，格式设为 CSV。",
+        "ko": "CSV로 설정된 Linux용 TablePro 내보내기 대화상자.",
+        "zh-Hant": "Linux 版 TablePro 的匯出對話框，格式設為 CSV。",
+        "it": "La finestra di esportazione di TablePro per Linux, impostata su CSV.",
+        "id": "Dialog ekspor TablePro untuk Linux, diatur ke CSV."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-import-export"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-ai-mcp": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux assistant beside the orders table: a question about revenue per order status and the SQL it wrote.",
+        "vi": "Trợ lý AI của bản Linux bên cạnh table orders: một câu hỏi về doanh thu theo trạng thái đơn hàng và câu SQL mà trợ lý viết ra.",
+        "es": "El asistente de la app para Linux junto a la tabla orders: una pregunta sobre los ingresos por estado de pedido y el SQL que escribió.",
+        "de": "Der Assistent der Linux-App neben der Tabelle orders: eine Frage nach dem Umsatz pro Bestellstatus und das SQL, das er geschrieben hat.",
+        "fr": "L’assistant de l’application Linux à côté de la table orders : une question sur le chiffre d’affaires par statut de commande et le SQL qu’il a écrit.",
+        "ja": "orders テーブルの横にある Linux 版アシスタント。注文ステータスごとの売上についての質問と、アシスタントが書いた SQL。",
+        "pt-BR": "O assistente do app para Linux ao lado da tabela orders: uma pergunta sobre a receita por status do pedido e o SQL que ele escreveu.",
+        "zh-Hans": "Linux 版助手位于 orders 表旁：关于各订单状态收入的问题，以及助手编写的 SQL。",
+        "ko": "orders 테이블 옆의 Linux 도우미. 주문 상태별 매출에 대한 질문과 도우미가 작성한 SQL입니다.",
+        "zh-Hant": "Linux 版助手位於 orders 資料表旁：關於各訂單狀態營收的問題，以及助手撰寫的 SQL。",
+        "it": "L’assistente dell’app per Linux accanto alla tabella orders: una domanda sui ricavi per stato dell’ordine e il SQL che ha scritto.",
+        "id": "Asisten aplikasi Linux di samping tabel orders: pertanyaan tentang pendapatan per status pesanan dan SQL yang ditulisnya."
+      },
+      "alt": {
+        "en": "The TablePro for Linux assistant, answering with a SQL query that sums revenue per order status.",
+        "vi": "Trợ lý AI của TablePro cho Linux, trả lời bằng một query SQL tính tổng doanh thu theo trạng thái đơn hàng.",
+        "es": "El asistente de TablePro para Linux, que responde con una consulta SQL que suma los ingresos por estado de pedido.",
+        "de": "Der Assistent von TablePro für Linux antwortet mit einer SQL-Abfrage, die den Umsatz pro Bestellstatus summiert.",
+        "fr": "L’assistant de TablePro pour Linux, répondant par une requête SQL qui additionne le chiffre d’affaires par statut de commande.",
+        "ja": "Linux 版 TablePro のアシスタント。注文ステータスごとに売上を合計する SQL クエリで回答しています。",
+        "pt-BR": "O assistente do TablePro para Linux, respondendo com uma consulta SQL que soma a receita por status do pedido.",
+        "zh-Hans": "Linux 版 TablePro 的助手，用一条按订单状态汇总收入的 SQL 查询作答。",
+        "ko": "Linux용 TablePro 도우미. 주문 상태별 매출을 합산하는 SQL 쿼리로 답하고 있습니다.",
+        "zh-Hant": "Linux 版 TablePro 的助手，以一項按訂單狀態加總營收的 SQL 查詢作答。",
+        "it": "L’assistente di TablePro per Linux, che risponde con una query SQL che somma i ricavi per stato dell’ordine.",
+        "id": "Asisten TablePro untuk Linux, menjawab dengan kueri SQL yang menjumlahkan pendapatan per status pesanan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-ai-mcp"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
+      "legacySource": null
+    },
+    "linux-home-connections": {
+      "kind": "window-whole",
+      "type": "screenshot",
+      "family": "home",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/",
+          "section": "features"
+        }
+      ],
+      "aspect": null,
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Linux connection form: a PostgreSQL connection to a staging server through an SSH tunnel, signing in with the SSH agent.",
+        "vi": "Form connection của bản Linux: một connection PostgreSQL tới server staging qua SSH tunnel, đăng nhập bằng SSH agent.",
+        "es": "El formulario de conexión de la app para Linux: una conexión PostgreSQL a un servidor de staging mediante un túnel SSH, autenticada con el agente SSH.",
+        "de": "Das Verbindungsformular der Linux-App: eine PostgreSQL-Verbindung zu einem Staging-Server über einen SSH-Tunnel, Anmeldung mit dem SSH-Agent.",
+        "fr": "Le formulaire de connexion de l’application Linux : une connexion PostgreSQL à un serveur de staging via un tunnel SSH, avec authentification par l’agent SSH.",
+        "ja": "Linux 版の接続フォーム。SSH トンネル経由でステージングサーバーに接続する PostgreSQL 接続で、SSH エージェントでログインします。",
+        "pt-BR": "O formulário de conexão do app para Linux: uma conexão PostgreSQL a um servidor de staging por um túnel SSH, autenticando com o agente SSH.",
+        "zh-Hans": "Linux 版连接表单：通过 SSH 隧道连接到 staging 服务器的 PostgreSQL 连接，使用 SSH agent 登录。",
+        "ko": "Linux 연결 양식. SSH 터널을 통해 스테이징 서버에 연결하는 PostgreSQL 연결이며, SSH 에이전트로 로그인합니다.",
+        "zh-Hant": "Linux 版連線表單：透過 SSH 通道連線到 staging 伺服器的 PostgreSQL 連線，使用 SSH agent 登入。",
+        "it": "Il modulo di connessione dell’app per Linux: una connessione PostgreSQL a un server di staging tramite un tunnel SSH, con accesso tramite l’agente SSH.",
+        "id": "Formulir koneksi aplikasi Linux: koneksi PostgreSQL ke server staging melalui tunnel SSH, masuk dengan SSH agent."
+      },
+      "alt": {
+        "en": "The TablePro for Linux connection form, with an SSH tunnel through a bastion host.",
+        "vi": "Form connection của TablePro cho Linux, với SSH tunnel qua một bastion host.",
+        "es": "El formulario de conexión de TablePro para Linux, con un túnel SSH a través de un host bastión.",
+        "de": "Das Verbindungsformular von TablePro für Linux mit einem SSH-Tunnel über einen Bastion-Host.",
+        "fr": "Le formulaire de connexion de TablePro pour Linux, avec un tunnel SSH via un hôte bastion.",
+        "ja": "Linux 版 TablePro の接続フォーム。踏み台ホストを経由する SSH トンネルが設定されています。",
+        "pt-BR": "O formulário de conexão do TablePro para Linux, com um túnel SSH por um bastion host.",
+        "zh-Hans": "Linux 版 TablePro 的连接表单，配置了经由堡垒主机的 SSH 隧道。",
+        "ko": "Linux용 TablePro 연결 양식. 배스천 호스트를 거치는 SSH 터널이 설정되어 있습니다.",
+        "zh-Hant": "Linux 版 TablePro 的連線表單，設定了經由堡壘主機的 SSH 通道。",
+        "it": "Il modulo di connessione di TablePro per Linux, con un tunnel SSH attraverso un bastion host.",
+        "id": "Formulir koneksi TablePro untuk Linux, dengan tunnel SSH melalui bastion host."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/home",
+        "base": "linux-home-connections"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
         }
       },
       "legacySource": null
@@ -503,10 +1726,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/querying",
           "section": "editor"
@@ -592,10 +1811,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/querying",
           "section": "editor"
@@ -1179,10 +2394,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "features"
-        },
-        {
           "path": "/features/data-editing",
           "section": "edit"
         }
@@ -1267,10 +2478,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/data-editing",
           "section": "edit"
@@ -1514,10 +2721,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "safety"
-        },
-        {
           "path": "/features/data-editing",
           "section": "safe-mode"
         }
@@ -1597,10 +2800,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "safety"
-        },
         {
           "path": "/features/data-editing",
           "section": "safe-mode"
@@ -2094,10 +3293,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "features"
-        },
-        {
           "path": "/features/schema",
           "section": "compare-sync"
         },
@@ -2185,10 +3380,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/schema",
           "section": "compare-sync"
@@ -2610,10 +3801,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "features"
-        },
-        {
           "path": "/features/import-export",
           "section": "data-files"
         }
@@ -2697,10 +3884,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/import-export",
           "section": "data-files"
@@ -3108,10 +4291,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "ai"
-        },
-        {
           "path": "/features/ai-mcp",
           "section": "assistant"
         }
@@ -3196,10 +4375,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "ai"
-        },
         {
           "path": "/features/ai-mcp",
           "section": "assistant"
@@ -3475,10 +4650,6 @@
       "handoffPriority": "P2",
       "usedOn": [
         {
-          "path": "/",
-          "section": "features"
-        },
-        {
           "path": "/features/connections",
           "section": "network"
         }
@@ -3560,10 +4731,6 @@
       "slot": true,
       "handoffPriority": "P2",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "features"
-        },
         {
           "path": "/features/connections",
           "section": "network"
@@ -7919,10 +9086,6 @@
       "slot": true,
       "handoffPriority": "P1",
       "usedOn": [
-        {
-          "path": "/",
-          "section": "platforms"
-        },
         {
           "path": "/ios",
           "section": "top"

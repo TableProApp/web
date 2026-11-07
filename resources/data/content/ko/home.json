@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "네이티브 데이터베이스 클라이언트.",
-        "subtitle": "{featuredEngines} <more>등의 데이터베이스</more>에서 쿼리를 실행하고 데이터를 탐색하고 편집하세요.",
-        "native": "Electron이나 Java 런타임 대신 네이티브 인터페이스로 만들었습니다.",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "다른 설치 방법",
-        "business": "무료로 사용하는 오픈 소스 앱입니다. 유료 플랜은 {paidPlatformApps}에 기능을 추가합니다. <pricing>요금 보기</pricing>"
+        "subtitle": "각 플랫폼 고유의 UI 툴킷으로 만들어, 사용 중인 다른 앱과 같은 방식으로 동작합니다.",
+        "download": "다운로드",
+        "docs": "문서"
     },
     "databases": {
         "title": "지원 데이터베이스",
-        "lead": "{macApp}에는 일반적인 드라이버가 포함되어 있으며 나머지는 첫 사용 시 다운로드합니다.",
-        "count": "Mac에서 {count}개 데이터베이스에 연결:",
-        "ios": "{iosDevices}에서 TablePro는 {iosEngines}에 연결합니다.",
-        "iosSynced": "Mac에서 동기화한 {syncedOnly} 연결도 열 수 있습니다.",
-        "link": "지원 데이터베이스"
+        "more": "등의 데이터베이스"
     },
     "sponsors": {
         "title": "후원자",
-        "link": "TablePro 후원",
         "invite": {
             "title": "여기에 로고를 게재하세요",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "데이터베이스 작업",
-        "paid": "선택 유료 기능: {features} ({tier}).",
-        "link": "모든 기능",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "SQL 편집기",
-                "body": "스키마를 바탕으로 테이블과 열을 자동 완성합니다. 자주 쓰는 쿼리를 저장하고 쿼리 기록을 검색하세요."
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "변경 사항 미리 확인",
-                "body": "행 편집은 저장할 때 적용됩니다. SQL을 먼저 확인하거나 탭에서 변경 사항을 취소하세요."
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "데이터베이스 비교",
-                "body": "지원하는 엔진의 스키마나 데이터를 비교하고 동기화 스크립트를 만듭니다. 데이터가 삭제될 수 있는 변경은 포함하기 전에 검토하세요."
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "가져오기 및 내보내기",
-                "body": "지원되는 경우 {importFormats} 파일을 가져오세요. 테이블이나 쿼리 결과를 {exportFormats} 형식으로 내보낼 수 있습니다."
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "서버에 연결",
-                "body": "SSH 터널, TLS, 지원되는 클라우드 로그인 방식으로 연결하세요. 저장된 연결을 그룹과 태그로 정리할 수 있습니다."
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "연결별로 Safe Mode 수준을 설정하세요. Mac에서 Alert는 쓰기 전에 확인합니다. Safe Mode와 Safe Mode (Full)은 Touch ID 또는 암호도 요구합니다. 기본값은 Silent입니다. DROP, TRUNCATE, WHERE 없는 DELETE는 항상 확인합니다.",
-            "iPhone 및 iPad에서는 Confirm Writes가 쓰기 전에 확인합니다. Read-Only는 두 앱 모두에서 쓰기를 거부하며 MongoDB, Redis, etcd에서는 모든 명령을 차단합니다."
-        ],
-        "levels": "Safe Mode 수준",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "AI 도우미와 MCP",
-        "body": [
-            "선택한 제공자나 로컬 모델로 SQL 설명과 수정을 요청하세요. Mac에서 사용할 수 있으며 제공자를 추가하기 전에는 아무것도 전송하지 않습니다.",
-            "채팅은 Ask 모드로 시작합니다. Edit와 Agent는 Safe Mode에 따라 구문을 실행할 수 있으며 Silent에서는 승인 없이 쓰기가 실행될 수 있습니다. 전체 창 Agent mode는 Alert 이상을 사용합니다.",
-            "내장 MCP (Model Context Protocol) 서버를 통해 {mcpClients} 같은 클라이언트를 저장된 연결에 연결하세요. {mcpHost}에서 수신하며 기본적으로 꺼져 있고 읽기 전용 권한으로 시작합니다. 클라이언트에는 저장된 암호가 노출되지 않습니다.",
-            "두 기능 모두 무료입니다. AI 제공자의 사용 요금은 별도로 청구될 수 있습니다."
-        ],
-        "providers": "추가할 수 있는 제공업체: {providers}."
-    },
-    "platforms": {
-        "title": "{deviceList}용 네이티브 앱",
-        "cardTitle": "{devices}용 TablePro",
-        "mac": "{architectures}용 빌드를 각각 제공하는 데스크톱 앱입니다. SQL 편집기, 스키마 도구, AI 도우미, MCP 서버가 포함됩니다.",
-        "ios": "{devices}에서 쿼리를 실행하고 지원되는 테이블을 다루세요. SSH 터널과 선택적인 Face ID 잠금을 제공하는 별도의 무료 앱입니다.",
-        "sync": "iCloud Sync는 Apple 기기 간에 연결, 그룹, 태그를 공유합니다. 기본적으로 꺼져 있으며 Mac에서는 {tier}이 필요합니다."
-    },
-    "switch": {
-        "title": "연결 가져오기",
-        "lead": "iPhone 및 iPad 앱은 다른 앱에서 가져오지 않으며, Open Project Folder는 {macApp}에서만 제공합니다.",
-        "import": "저장된 비밀번호를 포함해 {apps}에서 연결을 가져옵니다.",
-        "importWithoutPasswords": "{apps}의 연결은 비밀번호 없이 가져옵니다.",
-        "project": "Open Project Folder는 <code>.env</code>, <code>docker-compose.yml</code>, Prisma 스키마 등 지원되는 프로젝트 파일에서 연결을 만듭니다.",
-        "link": "TablePro와 다른 클라이언트 비교"
+        "platform": "앱을 표시할 플랫폼",
+        "tabs": "기능",
+        "more": "{feature} 자세히 보기",
+        "items": {
+            "querying": "스키마 기반 자동 완성으로 SQL을 작성하고 실행한 뒤, 아래에서 결과를 확인하세요.",
+            "dataEditing": "그리드에서 셀을 편집하세요. 변경 사항은 저장할 때까지 적용되지 않으며, 취소할 수도 있습니다.",
+            "schema": "열, 인덱스, 외래 키를 추가하고 변경하세요. 저장하기 전에는 아무것도 바뀌지 않습니다.",
+            "importExport": "테이블과 쿼리 결과를 파일로 내보내고, CSV와 SQL 파일을 다시 가져오세요.",
+            "aiMcp": "채팅으로 데이터베이스에 대해 물어보거나, 코딩 에이전트가 MCP로 데이터베이스를 다루게 하세요.",
+            "connections": "SSH와 TLS로 연결하고, 서버를 저장된 연결로 보관하세요."
+        }
     },
     "testimonials": {
         "title": "개발자들의 이야기",
@@ -115,17 +50,22 @@
             "en": "영어에서 번역",
             "ja": "일본어에서 번역",
             "zh": "중국어에서 번역"
-        }
+        },
+        "more": {
+            "one": "개발자 의견 {count}개 더 보기",
+            "other": "개발자 의견 {count}개 더 보기"
+        },
+        "fewer": "접기"
     },
     "pricing": {
-        "title": "Free, Pro, Team",
-        "lead": "{macApp}을 체험 기간 없이 무료로 사용하세요. Pro에서는 {starterExamples}, Team에서는 {teamExamples} 기능이 추가됩니다. {iosApp}은 무료이며 앱 내 구입이 없습니다."
+        "title": "요금",
+        "lead": "체험 기간 없이 무료로 사용할 수 있습니다. Pro와 Team은 기능을 추가하며, 라이선스 하나로 Mac 또는 Linux 컴퓨터 {deviceLimit}대에서 사용할 수 있습니다."
     },
     "openSource": {
         "title": "오픈 소스",
-        "body": "TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다. 라이선스와 후원이 개발을 지원합니다.",
+        "statement": "TablePro는 유료 기능을 포함해 AGPLv3로 공개된 오픈 소스입니다.",
+        "funding": "TablePro 팀이 개발하며, 라이선스와 후원이 개발을 지원합니다.",
         "about": "TablePro 소개",
-        "github": "GitHub에서 보기",
-        "productHunt": "Product Hunt의 TablePro"
+        "github": "GitHub의 소스 코드"
     }
 }
