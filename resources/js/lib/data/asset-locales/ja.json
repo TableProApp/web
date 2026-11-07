@@ -1,13 +1,97 @@
 {
-    "mac-hero-window": {
+    "home-hero-mac": {
         "alt": {
-            "ja": "Mac 上の TablePro のウインドウ。PostgreSQL のサンプルデータベースに接続し、サイドバーに orders テーブル、SQL エディタにクエリ、その下に結果の行が表示されています。"
+            "ja": "MacBook Pro 上の TablePro。PostgreSQL のサンプルデータベースに対するクエリとその結果が表示されています。"
         },
         "caption": null
     },
-    "mac-hero-window-mobile": {
+    "home-hero-linux": {
         "alt": {
-            "ja": "TablePro の SQL エディタの拡大図。orders テーブルへのクエリと結果の最初の数行が表示されています。"
+            "ja": "Framework のノートパソコン上の Linux 版 TablePro。フィルターした orders テーブルが表示されています。"
+        },
+        "caption": null
+    },
+    "home-hero-ipad": {
+        "alt": {
+            "ja": "iPad Pro 上の TablePro。products テーブルを開いています。"
+        },
+        "caption": null
+    },
+    "home-hero-iphone": {
+        "alt": {
+            "ja": "iPhone 上の TablePro。保存済みの接続の一覧が表示されています。"
+        },
+        "caption": null
+    },
+    "mac-home-querying": {
+        "alt": {
+            "ja": "Mac 上の TablePro の SQL エディタ。クエリの上に列の補完リストが開き、その下に結果が表示されています。"
+        },
+        "caption": null
+    },
+    "mac-home-data-editing": {
+        "alt": {
+            "ja": "Mac 上の TablePro のデータグリッド。products テーブルで編集した三つの価格が保存を待っています。"
+        },
+        "caption": null
+    },
+    "mac-home-schema": {
+        "alt": {
+            "ja": "Mac 上の TablePro。新しい列の ALTER TABLE 文を保存前に表示しています。"
+        },
+        "caption": null
+    },
+    "mac-home-import-export": {
+        "alt": {
+            "ja": "Mac 上の TablePro の Export ダイアログ。CSV エクスポート用に三つのテーブルが選択されています。"
+        },
+        "caption": null
+    },
+    "mac-home-ai-mcp": {
+        "alt": {
+            "ja": "Mac 上の TablePro の AI チャット。上位顧客についての質問に SQL クエリで回答しています。"
+        },
+        "caption": null
+    },
+    "mac-home-connections": {
+        "alt": {
+            "ja": "Mac 上の TablePro の接続スイッチャー。保存済みのデータベース接続が一覧表示されています。"
+        },
+        "caption": null
+    },
+    "linux-home-querying": {
+        "alt": {
+            "ja": "Linux 版 TablePro の SQL エディタ。クエリの上に列の補完リストが開き、その下に結果が表示されています。"
+        },
+        "caption": null
+    },
+    "linux-home-data-editing": {
+        "alt": {
+            "ja": "Linux 版 TablePro のデータグリッド。未保存の三つの価格変更と、Save、Discard ボタンが表示されています。"
+        },
+        "caption": null
+    },
+    "linux-home-schema": {
+        "alt": {
+            "ja": "Linux 版 TablePro の構造エディタ。reviews テーブルに新しい列が追加されています。"
+        },
+        "caption": null
+    },
+    "linux-home-import-export": {
+        "alt": {
+            "ja": "Linux 版 TablePro のエクスポートダイアログ。CSV に設定されています。"
+        },
+        "caption": null
+    },
+    "linux-home-ai-mcp": {
+        "alt": {
+            "ja": "Linux 版 TablePro のアシスタント。注文ステータスごとに売上を合計する SQL クエリで回答しています。"
+        },
+        "caption": null
+    },
+    "linux-home-connections": {
+        "alt": {
+            "ja": "Linux 版 TablePro の接続フォーム。踏み台ホストを経由する SSH トンネルが設定されています。"
         },
         "caption": null
     },
