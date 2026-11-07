@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
@@ -19,6 +20,25 @@ interface FeatureClosingProps {
     // The hub points to the iPhone and iPad app here.
     extra?: { href: string; label: string };
     location: string;
+}
+
+// The page's last band: a small title in the left quarter, one sentence, then the way in.
+export function ClosingFrame({ id = 'get-started', title, sentence, children }: { id?: string; title: string; sentence: string; children: ReactNode }) {
+    return (
+        <section id={id} aria-labelledby={`${id}-title`} className="py-16 md:py-24">
+            <Container>
+                <div className="grid gap-6 md:grid-cols-12 md:gap-x-8">
+                    <h2 id={`${id}-title`} className="text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground md:col-span-4 lg:col-span-3">
+                        {title}
+                    </h2>
+                    <div className="md:col-span-8 lg:col-span-9">
+                        <p className="max-w-[40rem] text-[1.5rem] leading-[1.3] font-[480] tracking-[-0.022em] text-balance text-foreground md:text-[1.875rem]">{sentence}</p>
+                        <div className="mt-8">{children}</div>
+                    </div>
+                </div>
+            </Container>
+        </section>
+    );
 }
 
 // The one place a page says what is paid: "Pro adds A and B. Everything else on this page is free." Then the way in.
@@ -43,30 +63,20 @@ export default function FeatureClosing({ labels, paid, body, extra, location }: 
               ].join(' '));
 
     return (
-        <section id="get-started" aria-labelledby="get-started-title" className="py-16 md:py-24">
-            <Container>
-                <div className="grid gap-6 md:grid-cols-12 md:gap-x-8">
-                    <h2 id="get-started-title" className="text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground md:col-span-4 lg:col-span-3">
-                        {labels.closing.title}
-                    </h2>
-                    <div className="md:col-span-8 lg:col-span-9">
-                        <p className="max-w-[40rem] text-[1.5rem] leading-[1.3] font-[480] tracking-[-0.022em] text-balance text-foreground md:text-[1.875rem]">{sentence}</p>
-                        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                            <LocaleLink href="/download" onClick={() => trackDownload(location)} className={buttonClasses('primary', 'lg', 'min-w-36')}>
-                                {m.nav.download}
-                            </LocaleLink>
-                            <LocaleLink href="/pricing" className={`text-[0.9375rem] font-medium tracking-[-0.009em] ${LINK}`}>
-                                {labels.closing.pricing}
-                            </LocaleLink>
-                            {extra !== undefined && (
-                                <LocaleLink href={extra.href} className={`text-[0.9375rem] font-medium tracking-[-0.009em] ${LINK}`}>
-                                    {extra.label}
-                                </LocaleLink>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </Container>
-        </section>
+        <ClosingFrame title={labels.closing.title} sentence={sentence}>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                <LocaleLink href="/download" onClick={() => trackDownload(location)} className={buttonClasses('primary', 'lg', 'min-w-36')}>
+                    {m.nav.download}
+                </LocaleLink>
+                <LocaleLink href="/pricing" className={`text-[0.9375rem] font-medium tracking-[-0.009em] ${LINK}`}>
+                    {labels.closing.pricing}
+                </LocaleLink>
+                {extra !== undefined && (
+                    <LocaleLink href={extra.href} className={`text-[0.9375rem] font-medium tracking-[-0.009em] ${LINK}`}>
+                        {extra.label}
+                    </LocaleLink>
+                )}
+            </div>
+        </ClosingFrame>
     );
 }

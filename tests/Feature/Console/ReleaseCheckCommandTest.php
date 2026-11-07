@@ -11,7 +11,7 @@ beforeEach(function (): void {
     bindReleaseFixturePlatforms();
 });
 
-// Overrides: `github`, `appcast`, `homebrew`, `us`, `de` responses.
+// Overrides: `github`, `appcast`, `homebrew`, `us`, `fr` responses.
 function fakeReleaseChannels(array $overrides = []): void
 {
     $iosApp = ['version' => '1.0', 'minimumOsVersion' => '18.0', 'price' => 0.0];
@@ -21,7 +21,7 @@ function fakeReleaseChannels(array $overrides = []): void
         RELEASES_FAKE_APPCAST => $overrides['appcast'] ?? Http::response(appcastXml('0.77.0')),
         'formulae.brew.sh/api/cask/tablepro.json' => $overrides['homebrew'] ?? Http::response(['token' => 'tablepro', 'version' => '0.76.1']),
         'itunes.apple.com/lookup?id=6761621829&country=us' => $overrides['us'] ?? Http::response(['resultCount' => 1, 'results' => [$iosApp]]),
-        'itunes.apple.com/lookup?id=6761621829&country=de' => $overrides['de'] ?? Http::response(['resultCount' => 0, 'results' => []]),
+        'itunes.apple.com/lookup?id=6761621829&country=fr' => $overrides['fr'] ?? Http::response(['resultCount' => 0, 'results' => []]),
     ]);
 }
 
@@ -45,7 +45,7 @@ it('fails when a channel disagrees with platforms.json', function (array $platfo
     'Homebrew caught up, floorVersion not bumped' => [[], fn(): array => ['homebrew' => Http::response(['token' => 'tablepro', 'version' => '0.77.0'])]],
     'another minimum macOS in the appcast' => [[], fn(): array => ['appcast' => Http::response(appcastXml('0.77.0', minimum: '14.0'))]],
     'a new iOS version on the App Store' => [[], fn(): array => ['us' => Http::response(['resultCount' => 1, 'results' => [['version' => '1.1', 'minimumOsVersion' => '18.0', 'price' => 0.0]]])]],
-    'an excluded storefront that lists the app' => [[], fn(): array => ['de' => Http::response(['resultCount' => 1, 'results' => [['version' => '1.0']]])]],
+    'an excluded storefront that lists the app' => [[], fn(): array => ['fr' => Http::response(['resultCount' => 1, 'results' => [['version' => '1.0']]])]],
 ]);
 
 it('passes once platforms.json follows the channel', function (array $platforms, Closure $channels): void {
@@ -55,8 +55,20 @@ it('passes once platforms.json follows the channel', function (array $platforms,
     $this->artisan('release:check')->assertSuccessful();
 })->with([
     'floorVersion follows Homebrew' => [['mac.floorVersion' => '0.77.0'], fn(): array => ['homebrew' => Http::response(['token' => 'tablepro', 'version' => '0.77.0'])]],
-    'the exclusions are gone' => [['ios.storefrontExclusions' => []], fn(): array => ['de' => Http::response(['resultCount' => 1, 'results' => [['version' => '1.0']]])]],
+    'the exclusions are gone' => [['ios.storefrontExclusions' => []], fn(): array => ['fr' => Http::response(['resultCount' => 1, 'results' => [['version' => '1.0']]])]],
 ]);
+
+it('asks every excluded storefront, and only those', function (): void {
+    bindReleaseFixturePlatforms(['ios.storefrontExclusions' => ['fr', 'cn']]);
+    fakeReleaseChannels();
+    Http::fake(['itunes.apple.com/lookup?id=6761621829&country=cn' => Http::response(['resultCount' => 0, 'results' => []])]);
+
+    $this->artisan('release:check')
+        ->expectsOutputToContain('App Store (fr)')
+        ->expectsOutputToContain('App Store (cn)')
+        ->doesntExpectOutputToContain('App Store (de)')
+        ->assertSuccessful();
+});
 
 it('fails, rather than passing silently, when a channel cannot be read', function (): void {
     fakeReleaseChannels(['homebrew' => Http::failedConnection()]);

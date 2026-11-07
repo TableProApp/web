@@ -9,122 +9,120 @@
     },
     "hero": {
         "title": "TablePro pour iPhone et iPad",
-        "lead": "Parcourez les tables compatibles, exécutez des requêtes et modifiez les lignes sur votre téléphone ou tablette.",
-        "noSignUp": "Sans inscription ni licence",
-        "mac": "Vous cherchez l’application Mac ? <download>Téléchargez TablePro pour Mac</download>."
+        "lead": "Connectez-vous via SSH ou TLS, puis parcourez, modifiez et interrogez vos bases de données depuis votre téléphone ou votre tablette.",
+        "requirement": "Gratuite, sans achats intégrés. Nécessite {requirement}."
     },
     "databases": {
         "title": "Bases de données",
-        "lead": "Créez des connexions à ces bases de données. Tous les pilotes sont intégrés.",
-        "syncedOnly": "Les connexions {engines} s’ouvrent lorsqu’elles proviennent de votre Mac, via iCloud Sync ou un fichier .tablepro. Vous ne pouvez pas les créer dans cette application.",
-        "others": "Les autres connexions synchronisées depuis le Mac apparaissent dans la liste, mais ne s’ouvrent pas sans pilote compatible. Voir toutes les <databases>bases de données compatibles</databases>.",
-        "files": "SQLite copie le fichier choisi dans le stockage de l’app ; les modifications touchent cette copie. Vous pouvez aussi créer une base. DuckDB ouvre le fichier sur place ou fonctionne en mémoire.",
-        "redis": "Redis prend en charge les commandes dans l’onglet Query, pas la navigation dans les clés.",
-        "sample": "Pour explorer d’abord, ouvrez Chinook, la base d’exemple fournie avec l’application."
+        "syncedOnly": "Les connexions {engines} s’ouvrent lorsqu’elles proviennent de votre Mac, via iCloud Sync ou un fichier .tablepro.",
+        "files": "SQLite travaille sur une copie du fichier choisi. DuckDB ouvre un fichier sur place ou fonctionne en mémoire."
     },
-    "browse": {
-        "title": "Parcourez et modifiez les tables",
-        "paragraphs": [
-            "Chaque connexion a des onglets pour les tables, requêtes, historique et détails de connexion.",
-            "Parcourez les lignes sous forme de cartes, triez les colonnes, recherchez les valeurs non binaires et combinez les filtres avec AND ou OR. Touchez une clé étrangère pour voir la ligne référencée. Structure liste les colonnes, index et clés étrangères.",
-            "Ouvrez une ligne pour modifier les valeurs ou définir NULL, puis confirmez l’enregistrement. Insérez ou supprimez des lignes, videz ou supprimez des tables. L’édition et la suppression de lignes nécessitent une clé primaire. Read-Only bloque les modifications."
-        ]
-    },
-    "query": {
-        "title": "Exécutez des requêtes",
-        "paragraphs": [
-            "Écrivez du SQL avec coloration syntaxique, exécutez-le ou arrêtez-le, et partagez les résultats en JSON, CSV ou instructions SQL INSERT. Utilisez le presse-papiers ou la feuille de partage.",
-            "Les résultats conservent jusqu’à {results} lignes ; utilisez LIMIT pour les grandes requêtes. L’historique garde les {history} dernières requêtes de toutes les connexions sur cet appareil et ne se synchronise pas.",
-            "Les activités en direct affichent la durée et les lignes reçues sur l’écran verrouillé et la Dynamic Island. Elles affichent aussi le SQL sur l’écran verrouillé et l’Island agrandie, sauf si <ui>Settings > Live Activities > Hide Query</ui> est activé."
-        ]
-    },
-    "security": {
-        "title": "Connectez-vous de manière sécurisée",
-        "paragraphs": [
-            "Les tunnels SSH utilisent un mot de passe ou une clé privée, avec phrase secrète optionnelle. Importez ou collez la clé. À la première connexion, l’app vous demande d’approuver l’empreinte de la clé d’hôte du serveur.",
-            "Les réglages TLS sont propres à chaque connexion. MySQL, MariaDB, TiDB, OceanBase et PostgreSQL peuvent vérifier certificats et noms d’hôtes et utiliser des certificats clients. Redis prend en charge la vérification et les certificats clients. Le mode Required de SQL Server chiffre sans vérifier le certificat. Les certificats restent sur cet appareil.",
-            "Les mots de passe et clés collées restent dans le trousseau. Les connexions SQL Server synchronisées peuvent utiliser Microsoft Entra ID, pas l’authentification Windows. Autorisez l’accès au réseau local pour joindre les hôtes .local."
-        ]
-    },
-    "safeMode": {
-        "title": "Safe Mode et verrouillage de l’application",
-        "paragraphs": [
-            "Choisissez un niveau par connexion : {levels}. Confirm Writes demande confirmation avant les écritures ; Read-Only les bloque. Les instructions non reconnues comptent comme écritures.",
-            "Définissez le niveau dans Organization et le niveau par défaut des nouvelles connexions dans Settings. Raccourcis suit le même niveau.",
-            "Activez Face ID ou Touch ID dans <ui>Settings > Security</ui>, avec le code de l’appareil en secours. L’app se verrouille au lancement et après l’intervalle Auto-Lock choisi."
-        ]
-    },
-    "ipad": {
-        "title": "Sur iPad",
-        "paragraphs": [
-            "Sur iPad, utilisez toutes les orientations et plusieurs fenêtres avec Stage Manager ou Split View. La barre d’onglets peut devenir une barre latérale.",
-            "Raccourcis clavier : ⌘1–⌘4 pour les onglets, ⌘F pour rechercher, ⌘↩ pour exécuter une requête et ⌘N pour une nouvelle connexion. Souris et trackpad fonctionnent aussi."
-        ]
-    },
-    "mac": {
-        "title": "Avec votre Mac",
-        "paragraphs": [
-            "Activez iCloud Sync pour partager connexions, groupes et tags via votre compte iCloud. Les mots de passe nécessitent l’activation séparée de Sync Passwords. Les requêtes enregistrées, profils SSH et réglages se synchronisent uniquement entre Mac.",
-            "La synchronisation est gratuite ici ; le Mac nécessite Pro ou Team. Voir les <pricing>tarifs</pricing>.",
-            "Vous pouvez aussi transférer un fichier .tablepro via AirDrop ou Fichiers. Les exports excluent les mots de passe sauf si vous les incluez et les chiffrez avec une phrase secrète. Ces deux options sont gratuites ici ; Encrypted Export nécessite une licence payante sur Mac.",
-            "Avec la synchronisation active, Handoff reprend une connexion ou table ouverte sur un autre appareil. Voir <sync>Synchronisation et équipes</sync>."
-        ]
-    },
-    "automation": {
-        "title": "Raccourcis, widgets et Spotlight",
-        "paragraphs": [
-            "Ouvrez des connexions avec Siri ou Raccourcis. Add Row to Table et Add Rows to Table insèrent du JSON ou CSV sans ouvrir l’app. Ces actions ne s’exécutent pas lorsque l’appareil est verrouillé, suivent Safe Mode et ne prennent pas en charge Redis.",
-            "Les widgets Quick Connect ouvrent vos premières connexions depuis l’écran d’accueil. Les connexions apparaissent aussi dans Spotlight."
-        ]
-    },
-    "limits": {
-        "title": "Non disponible sur iPhone et iPad",
-        "lead": "Ces fonctionnalités sont disponibles dans TablePro pour Mac :",
+    "bands": [
+        {
+            "id": "connect",
+            "also": [
+                "security"
+            ],
+            "title": "Connectez-vous de manière sécurisée",
+            "text": [
+                "Passez par un tunnel SSH avec un mot de passe ou une clé privée, et approuvez la clé d’hôte du serveur à la première connexion. Réglez TLS pour chaque connexion, avec vérification des certificats et certificats clients lorsque la base de données les prend en charge. Les mots de passe et les clés collées restent dans le trousseau."
+            ],
+            "asset": "ios-connect"
+        },
+        {
+            "id": "browse",
+            "title": "Parcourez et modifiez",
+            "text": [
+                "Lisez les lignes sous forme de cartes, triez, recherchez et filtrez avec AND ou OR, et touchez une clé étrangère pour voir la ligne qu’elle désigne. Modifiez une valeur ou passez-la à NULL, puis confirmez l’enregistrement. Insérez et supprimez des lignes, ou videz et supprimez une table. Modifier ou supprimer une ligne nécessite une clé primaire."
+            ],
+            "asset": "ios-browse"
+        },
+        {
+            "id": "query",
+            "title": "Exécutez des requêtes",
+            "text": [
+                "Écrivez du SQL avec coloration syntaxique, puis exécutez-le ou arrêtez-le. Partagez les résultats en JSON, CSV ou instructions INSERT. Les résultats contiennent jusqu’à {results} lignes, et l’historique garde vos {history} dernières requêtes sur l’appareil. Une Live Activity suit la requête en cours sur l’écran verrouillé."
+            ],
+            "asset": "ios-query"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Safe Mode",
+            "text": [
+                "Attribuez un niveau à chaque connexion : {levels}. Confirm Writes demande confirmation avant qu’une instruction modifie des données, et Read-Only la bloque. Une instruction que l’app ne sait pas classer compte comme une écriture. Face ID ou Touch ID peut verrouiller l’app au lancement et après l’Auto-Lock."
+            ],
+            "asset": "ios-safe-mode"
+        },
+        {
+            "id": "shortcuts",
+            "also": [
+                "automation"
+            ],
+            "title": "Raccourcis et widgets",
+            "text": [
+                "Ouvrez une connexion depuis Siri, Raccourcis, un widget Quick Connect ou Spotlight. <ui>Add Rows to Table</ui> insère du JSON ou du CSV sans ouvrir l’app. Les actions suivent le niveau Safe Mode de la connexion et ne s’exécutent pas lorsque l’appareil est verrouillé."
+            ],
+            "asset": "ios-shortcuts"
+        },
+        {
+            "id": "mac",
+            "title": "Avec votre Mac",
+            "text": [
+                "Activez iCloud Sync pour partager connexions, groupes et tags avec votre Mac via votre propre compte iCloud. Les mots de passe ne se synchronisent que si Sync Passwords est activé, et le Mac nécessite Pro ou Team pour synchroniser. Avec la synchronisation active, Handoff reprend une table ouverte sur l’autre appareil."
+            ],
+            "asset": "diagram-icloud-sync"
+        }
+    ],
+    "more": {
+        "title": "Et aussi",
         "items": [
-            "L’assistant IA et le serveur MCP",
-            "Requêtes enregistrées, autocomplétion, formatage des requêtes et EXPLAIN",
-            "Modifications de schéma au-delà de la troncature ou suppression d’une table, et diagrammes ER",
-            "Compare & Sync, Query Insights, Result Charts et Data Rewind",
-            "Export de fichiers dans des formats comme XLSX et import dans une table (Raccourcis peut ajouter des lignes)",
-            "Server Dashboard, Users & Roles et sauvegardes",
-            "Plugins de pilotes pour d’autres bases de données",
-            "Hôtes de rebond SSH, agents SSH et authentification Windows pour SQL Server",
-            "Navigation dans les clés Redis"
-        ],
-        "mac": "<download>Télécharger TablePro pour Mac</download>"
-    },
-    "knownIssues": {
-        "title": "Problèmes connus dans la version {version}",
-        "items": [
-            "Dans l’éditeur de ligne, n’enregistrez pas une ligne tant qu’un texte long ou une valeur binaire s’affiche sous forme tronquée : l’éditeur peut remplacer la valeur complète par le texte tronqué. Modifiez ces lignes sur Mac.",
-            "Enregistrer une connexion synchronisée sur iPhone ou iPad peut supprimer des paramètres propres au Mac, comme les hôtes de rebond SSH, et abaisser son niveau de Safe Mode. Modifiez ces connexions sur Mac.",
-            "Lorsque les connexions Redis vérifient le certificat du serveur, elles contrôlent le certificat et non le nom d’hôte.",
-            "Dans les actions Raccourcis qui ajoutent des lignes, le CSV doit être du texte UTF-8 avec fins de ligne LF."
-        ]
-    },
-    "privacy": {
-        "title": "Confidentialité",
-        "paragraphs": [
-            "Les rapports d’utilisation sont désactivés par défaut. Activez Share Usage Data dans <ui>Settings > Privacy</ui> pour envoyer un rapport quotidien : identifiant d’appareil haché, versions de l’app et d’iOS, architecture, langue, types de bases, nombre de connexions et dates de première utilisation. Aucun nom d’hôte, identifiant, mot de passe, requête ou ligne.",
-            "Aucune vérification de licence, mise à jour ou plugin n’est envoyée à TablePro. Les requêtes vont à vos bases, iCloud Sync à votre compte iCloud et la connexion Entra à Microsoft. Consultez la <privacyIos>politique de confidentialité</privacyIos>."
-        ]
-    },
-    "get": {
-        "title": "Obtenez TablePro pour iPhone et iPad",
-        "source": "L’application est open source sous AGPLv3, dans le <source>même dépôt</source> que l’application Mac.",
-        "faq": [
             {
-                "question": "Ai-je besoin de l’application Mac ?",
-                "answer": "Non. L’application iPhone et iPad fonctionne seule. Si vous utilisez aussi un Mac, iCloud Sync et Handoff relient les deux."
+                "id": "limits",
+                "also": [
+                    "known-issues"
+                ],
+                "title": "Ce qui reste sur Mac",
+                "text": [
+                    "L’assistant IA, le serveur MCP et les plugins de pilotes sont dans TablePro pour Mac, pas dans cette app. Tout comme les requêtes enregistrées, l’autocomplétion, EXPLAIN et les diagrammes ER. Compare & Sync, Query Insights, Result Charts et Data Rewind s’y trouvent aussi, avec l’import et l’export de fichiers et les sauvegardes. De même pour les hôtes de rebond SSH, l’authentification Windows et la navigation dans les clés Redis."
+                ],
+                "links": [
+                    {
+                        "label": "Télécharger TablePro pour Mac",
+                        "href": "/download"
+                    }
+                ]
             },
             {
-                "question": "Faut-il une licence ?",
-                "answer": "Non. L’application n’a ni fonctionnalité payante, ni achat intégré, ni licence. iCloud Sync est gratuit ici ; seul le Mac nécessite une licence Pro ou Team pour synchroniser."
+                "id": "ipad",
+                "title": "Sur iPad",
+                "text": [
+                    "Utilisez toutes les orientations et plusieurs fenêtres avec Stage Manager ou Split View. Les raccourcis clavier changent d’onglet, lancent la recherche et exécutent une requête."
+                ]
             },
             {
-                "question": "Est-ce la même application que sur Mac ?",
-                "answer": "Non. Elle propose moins de fonctions. Voir les <iosLimits>fonctions indisponibles ici</iosLimits>."
+                "id": "privacy",
+                "title": "Confidentialité",
+                "text": [
+                    "Rien n’est envoyé à TablePro sauf si vous activez Share Usage Data, un rapport quotidien sans nom d’hôte, nom d’utilisateur, mot de passe, requête ni ligne."
+                ],
+                "links": [
+                    {
+                        "label": "Politique de confidentialité",
+                        "href": "/privacy#ios-app"
+                    }
+                ]
+            },
+            {
+                "id": "source",
+                "title": "Open source",
+                "text": [
+                    "L’application est open source sous AGPLv3, dans le <source>même dépôt</source> que l’application Mac."
+                ]
             }
         ]
+    },
+    "closing": {
+        "title": "Obtenez TablePro pour iPhone et iPad",
+        "text": "Installez-la depuis l’App Store, puis ouvrez la base d’exemple Chinook pour faire le tour."
     }
 }

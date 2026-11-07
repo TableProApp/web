@@ -92,7 +92,7 @@ it('preloads the LCP image only once it is supplied', function (string $path, Cl
     get($path)->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('lcpAsset', $descriptor(app(AssetManifest::class))));
 })->with([
     'home' => ['/', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('home-hero-mac', 'en')],
-    'iPhone and iPad' => ['/ios', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('ipad-table-browse', 'en', priority: true, sizes: IosController::IPAD_SIZES)],
+    'iPhone and iPad' => ['/ios', fn(AssetManifest $assets): ?array => $assets->lcpDescriptor('ios-hero-ipad', 'en', priority: true, sizes: IosController::HERO_SIZES, media: AssetManifest::WIDE_MEDIA)],
 ]);
 
 it('sends the homepage every published engine once, with its name, page and featured flag', function (string $locale): void {

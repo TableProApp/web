@@ -248,15 +248,47 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
-        "description": {
-            "en": "Handoff: the Chinook Track table open on iPhone, offered in the Mac Dock."
-        }
+    "ios-hero-ipad": {
+        "alt": {
+            "en": "TablePro on an iPad Pro in landscape, with a table open."
+        },
+        "caption": null
     },
-    "mac-handoff-ios-mobile": {
-        "description": {
-            "en": "Close-up for phones: the iPhone showing the Track table above the Handoff icon in the Mac Dock."
-        }
+    "ios-hero-iphone": {
+        "alt": {
+            "en": "TablePro on an iPhone, with the list of saved connections."
+        },
+        "caption": null
+    },
+    "ios-connect": {
+        "alt": {
+            "en": "A TablePro connection form on iPhone, with SSH tunnel and TLS settings."
+        },
+        "caption": null
+    },
+    "ios-browse": {
+        "alt": {
+            "en": "A table's rows in TablePro on an iPad in landscape."
+        },
+        "caption": null
+    },
+    "ios-query": {
+        "alt": {
+            "en": "A SQL query and its results in TablePro on iPhone."
+        },
+        "caption": null
+    },
+    "ios-safe-mode": {
+        "alt": {
+            "en": "TablePro on iPhone asking to confirm a write under Safe Mode."
+        },
+        "caption": null
+    },
+    "ios-shortcuts": {
+        "alt": {
+            "en": "A shortcut in the Shortcuts app on iPhone that adds a row to a table through TablePro."
+        },
+        "caption": null
     },
     "databases-postgresql": {
         "alt": {
@@ -387,82 +419,6 @@
     "databases-beancount": {
         "alt": {
             "en": "TablePro on a Mac with a Beancount ledger open, its tables in the sidebar and a BQL query result."
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "en": "TablePro on iPhone showing the connection list, with the Chinook sample under Favorites and a Production group of tagged connections."
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "en": "TablePro on iPad in landscape, showing rows of the Chinook Track table as cards."
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "en": "Close-up of TablePro on iPad showing the first rows of the Chinook Track table as cards."
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "en": "The Chinook Track table on iPhone filtered by genre, its rows shown as cards with the page range below."
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "en": "A Chinook track open for editing on iPhone, with Composer set to NULL before saving."
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "en": "The Query tab on iPhone with a SQL query that counts tracks per genre, and its results."
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "en": "A running query as a Live Activity on the Lock Screen: the connection, the query, the elapsed time and the Running status."
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "en": "A new connection form on iPhone with SSL set to Verify Identity and an SSH tunnel to bastion.acme.internal that signs in with a private key."
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "en": "A confirmation on iPhone asking before an UPDATE statement runs on a connection set to Confirm Writes."
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "en": "Two TablePro windows open at once on iPad in Stage Manager, each on a different table."
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "en": "Small and medium Quick Connect widgets on the iPhone Home Screen."
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "en": "The Shortcuts editor with TablePro's Add Rows to Table action set to add CSV rows to a table."
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "en": "TablePro Settings on iPhone with the Face ID lock and iCloud Sync on and usage data sharing off."
         },
         "caption": null
     },

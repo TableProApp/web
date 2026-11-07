@@ -22,6 +22,7 @@ export type AssetKindName =
     | 'diagram'
     | 'illustration'
     | 'device'
+    | 'framed-device'
     | 'figure'
     | 'og-card';
 

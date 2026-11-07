@@ -205,6 +205,9 @@ describe('the manifest', function (): void {
             if ($entry['kind'] === 'figure') {
                 Assert::assertContains($entry['type'], ['screenshot', 'detail'], "{$id}: a figure is a screenshot or a detail");
                 Assert::assertMatchesRegularExpression('/^\d+:\d+$/', (string) $entry['aspect'], "{$id}: a figure takes its source's aspect");
+            } elseif ($entry['kind'] === 'framed-device') {
+                Assert::assertSame($kinds[$entry['kind']]['type'], $entry['type'], "{$id}: its type must be its kind's");
+                Assert::assertMatchesRegularExpression('/^\d+:\d+$/', (string) $entry['aspect'], "{$id}: a framed device takes its frame's aspect");
             } else {
                 Assert::assertSame($kinds[$entry['kind']]['type'], $entry['type'], "{$id}: its type must be its kind's");
                 Assert::assertTrue(
@@ -603,7 +606,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
     });
 
     it('preloads a supplied image that a page places with priority, never a placeholder', function (): void {
-        // /ios places ipad-table-browse with <AssetSlot priority> although its entry loads lazily elsewhere.
+        // /ios preloads ios-hero-ipad although its entry loads lazily.
         $fixture = new AssetManifest(assetFixturePath());
         $detail = $fixture->lcpDescriptor('fixture-detail', 'en', priority: true);
 
@@ -612,6 +615,13 @@ describe('the supplied path, on an isolated fixture', function (): void {
             ->and($detail['light'][0])->not->toHaveKey('media')
             ->and($detail['dark'])->toBeNull();
         expect($fixture->lcpDescriptor('fixture-placeholder', 'en', priority: true))->toBeNull();
+    });
+
+    it('limits a preload to the viewport its placement shows in', function (): void {
+        $detail = (new AssetManifest(assetFixturePath()))->lcpDescriptor('fixture-detail', 'en', priority: true, media: AssetManifest::WIDE_MEDIA);
+
+        expect($detail['light'])->toHaveCount(1)
+            ->and($detail['light'][0]['media'])->toBe(AssetManifest::WIDE_MEDIA);
     });
 
     it('offers a bespoke social card only once its file exists', function (): void {

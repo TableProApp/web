@@ -248,15 +248,47 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
-        "description": {
-            "vi": "Handoff: table Track của Chinook đang mở trên iPhone, xuất hiện trong Dock của Mac."
-        }
+    "ios-hero-ipad": {
+        "alt": {
+            "vi": "TablePro trên iPad Pro nằm ngang, đang mở một table."
+        },
+        "caption": null
     },
-    "mac-handoff-ios-mobile": {
-        "description": {
-            "vi": "Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac."
-        }
+    "ios-hero-iphone": {
+        "alt": {
+            "vi": "TablePro trên iPhone, hiển thị danh sách connection đã lưu."
+        },
+        "caption": null
+    },
+    "ios-connect": {
+        "alt": {
+            "vi": "Form connection của TablePro trên iPhone, với cài đặt SSH tunnel và TLS."
+        },
+        "caption": null
+    },
+    "ios-browse": {
+        "alt": {
+            "vi": "Các dòng của một table trong TablePro trên iPad nằm ngang."
+        },
+        "caption": null
+    },
+    "ios-query": {
+        "alt": {
+            "vi": "Một query SQL và kết quả của nó trong TablePro trên iPhone."
+        },
+        "caption": null
+    },
+    "ios-safe-mode": {
+        "alt": {
+            "vi": "TablePro trên iPhone hỏi xác nhận một thao tác ghi khi bật Safe Mode."
+        },
+        "caption": null
+    },
+    "ios-shortcuts": {
+        "alt": {
+            "vi": "Một shortcut trong app Phím tắt trên iPhone, thêm một dòng vào table qua TablePro."
+        },
+        "caption": null
     },
     "databases-postgresql": {
         "alt": {
@@ -387,82 +419,6 @@
     "databases-beancount": {
         "alt": {
             "vi": "TablePro trên Mac đang mở một sổ cái Beancount, với các table trong sidebar và kết quả một query BQL."
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "vi": "TablePro trên iPhone hiển thị danh sách connection, với cơ sở dữ liệu mẫu Chinook trong mục Favorites và nhóm Production gồm các connection có tag."
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "vi": "TablePro trên iPad ở chế độ ngang, hiển thị các dòng của table Track (Chinook) dưới dạng thẻ."
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "vi": "Cận cảnh TablePro trên iPad hiển thị các dòng đầu của table Track (Chinook) dưới dạng thẻ."
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "vi": "Table Track của Chinook trên iPhone được lọc theo thể loại, các dòng hiển thị dạng thẻ, khoảng trang ở bên dưới."
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "vi": "Một track của Chinook đang được sửa trên iPhone, Composer được đặt thành NULL trước khi lưu."
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "vi": "Tab Query trên iPhone với một query SQL đếm số track theo thể loại, kèm kết quả."
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "vi": "Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa: connection, câu query, thời gian đã chạy và trạng thái Running."
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "vi": "Form connection mới trên iPhone với SSL đặt ở Verify Identity và SSH tunnel tới bastion.acme.internal, đăng nhập bằng private key."
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "vi": "Hộp xác nhận trên iPhone hỏi lại trước khi chạy câu UPDATE trên một connection đặt ở Confirm Writes."
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "vi": "Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ một table."
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "vi": "Tiện ích Quick Connect cỡ nhỏ và cỡ vừa trên Màn hình chính của iPhone."
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "vi": "Trình chỉnh sửa Phím tắt với tác vụ Add Rows to Table của TablePro, được thiết lập để thêm các dòng CSV vào một table."
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "vi": "Cài đặt của TablePro trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng."
         },
         "caption": null
     },

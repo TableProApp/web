@@ -349,6 +349,52 @@
       "sizes": "(min-width: 1280px) 640px, (min-width: 768px) 53vw, 70vw",
       "note": "One device in the home hero, a real capture inside its product frame (Apple product bezels; Framework's product photo), cut to the device with a transparent edge. The hero places each layer and passes its own sizes; the entry's width is its 2x desktop width."
     },
+    "framed-device": {
+      "type": "illustration",
+      "aspect": null,
+      "rendered": {
+        "desktop": [
+          1216,
+          null
+        ],
+        "tablet": [
+          720,
+          null
+        ],
+        "phone": [
+          358,
+          null
+        ]
+      },
+      "exportPx": [
+        2432,
+        null
+      ],
+      "vector": false,
+      "density": 2,
+      "format": {
+        "master": "png",
+        "delivered": [
+          "avif",
+          "webp"
+        ]
+      },
+      "transparency": true,
+      "maxBytes": 250000,
+      "widths": [
+        240,
+        320,
+        480,
+        640,
+        720,
+        920,
+        1216,
+        1840,
+        2432
+      ],
+      "sizes": "(min-width: 1024px) 300px, (min-width: 768px) 260px, 240px",
+      "note": "An iPhone or iPad screen in Apple's product frame on /ios: front-on, cut to the device with a transparent edge, a light and a dark frame to follow the page. Whole screens only, never cropped. Each entry carries its frame's aspect (iPhone 1318:2717, landscape iPad 367:281) and each placement passes its own sizes: the hero pair at their real relative size, an iPhone beside its band's text at 240 to 300 px (widths 320 and 640), an iPad across the band at 1216 px (720, 1216 and 2432)."
+    },
     "figure": {
       "type": "per-figure",
       "aspect": null,
@@ -3989,114 +4035,596 @@
       },
       "legacySource": null
     },
-    "mac-handoff-ios": {
-      "kind": "illustration",
+    "ios-hero-ipad": {
+      "kind": "framed-device",
       "type": "illustration",
-      "family": "features",
+      "family": "ios",
       "ownerRepo": "web",
       "slot": true,
-      "handoffPriority": "P3",
+      "handoffPriority": "P1",
       "usedOn": [
         {
           "path": "/ios",
-          "section": "mac"
+          "section": "top"
         }
       ],
-      "aspect": null,
+      "aspect": "30:23",
       "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": "mac-handoff-ios-mobile",
-      "description": {
-        "en": "Handoff: the Chinook Track table open on iPhone, offered in the Mac Dock.",
-        "vi": "Handoff: table Track của Chinook đang mở trên iPhone, xuất hiện trong Dock của Mac.",
-        "pt-BR": "Handoff: a tabela Track do Chinook aberta no iPhone, oferecida no Dock do Mac.",
-        "it": "Handoff: la tabella Track di Chinook aperta su iPhone, proposta nel Dock del Mac.",
-        "id": "Handoff: tabel Track Chinook terbuka di iPhone, ditawarkan dalam Dock Mac.",
-        "zh-Hans": "Handoff：iPhone 打开 Chinook 的 Track 表，Mac Dock 中提供接续选项。",
-        "zh-Hant": "Handoff：iPhone 開啟 Chinook 的 Track 資料表，Mac Dock 中提供接續選項。",
-        "es": "Handoff: tabla Track de Chinook abierta en iPhone, disponible en el Dock del Mac.",
-        "de": "Handoff: Chinook-Tabelle Track auf dem iPhone geöffnet und im Mac-Dock angeboten.",
-        "fr": "Handoff : table Track de Chinook ouverte sur iPhone, proposée dans le Dock du Mac.",
-        "ja": "Handoff。iPhone で開いた Chinook の Track テーブルを Mac の Dock から引き継げます。",
-        "ko": "Handoff. iPhone에서 열린 Chinook Track 테이블이 Mac Dock에서 이어서 열도록 제공됩니다."
-      },
-      "alt": {
-        "en": "An iPhone showing the Chinook Track table in TablePro, and the Handoff icon for it in the Dock of a Mac.",
-        "vi": "iPhone đang mở table Track của Chinook trong TablePro, và biểu tượng Handoff tương ứng trong Dock của Mac.",
-        "pt-BR": "Um iPhone mostrando a tabela Track do Chinook no TablePro, e seu ícone Handoff no Dock de um Mac.",
-        "it": "Un iPhone che mostra la tabella Track di Chinook in TablePro e la relativa icona Handoff nel Dock di un Mac.",
-        "id": "iPhone menampilkan tabel Track Chinook dalam TablePro, dan ikon Handoff-nya dalam Dock Mac.",
-        "zh-Hans": "iPhone 在 TablePro 中显示 Chinook 的 Track 表，Mac 的 Dock 中显示该表的 Handoff 图标。",
-        "zh-Hant": "iPhone 在 TablePro 中顯示 Chinook 的 Track 資料表，Mac 的 Dock 中顯示該資料表的 Handoff 圖示。",
-        "es": "iPhone con la tabla Track de Chinook en TablePro y su icono Handoff en el Dock de un Mac.",
-        "de": "Ein iPhone mit der Chinook-Tabelle Track in TablePro und das zugehörige Handoff-Symbol im Dock eines Mac.",
-        "fr": "Un iPhone affichant la table Track de Chinook dans TablePro, et son icône Handoff dans le Dock d’un Mac.",
-        "ja": "iPhone で TablePro の Chinook の Track テーブルが開き、Mac の Dock にその Handoff アイコンが表示されています。",
-        "ko": "iPhone에서 TablePro의 Chinook Track 테이블이 표시되고 Mac의 Dock에 해당 Handoff 아이콘이 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/features",
-        "base": "mac-handoff-ios"
-      },
-      "status": "placeholder",
-      "src": null,
-      "legacySource": null
-    },
-    "mac-handoff-ios-mobile": {
-      "kind": "mobile-crop",
-      "type": "detail",
-      "family": "features",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "mac"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
+      "theme": "both",
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Close-up for phones: the iPhone showing the Track table above the Handoff icon in the Mac Dock.",
-        "vi": "Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac.",
-        "pt-BR": "Detalhe para celulares: o iPhone mostrando a tabela Track acima do ícone Handoff no Dock do Mac.",
-        "it": "Dettaglio per telefoni: l’iPhone con la tabella Track sopra l’icona Handoff nel Dock del Mac.",
-        "id": "Tampilan dekat untuk ponsel: iPhone menampilkan tabel Track di atas ikon Handoff dalam Dock Mac.",
-        "zh-Hans": "手机局部图：iPhone 显示 Track 表，下方是 Mac Dock 中的 Handoff 图标。",
-        "zh-Hant": "手機局部圖：iPhone 顯示 Track 資料表，下方是 Mac Dock 中的 Handoff 圖示。",
-        "es": "Detalle para teléfonos: iPhone con la tabla Track sobre el icono Handoff del Dock del Mac.",
-        "de": "Detailansicht für Smartphones: iPhone mit der Tabelle Track über dem Handoff-Symbol im Mac-Dock.",
-        "fr": "Gros plan pour téléphones : iPhone affichant la table Track au-dessus de l’icône Handoff dans le Dock du Mac.",
-        "ja": "携帯電話向けの拡大図。Track テーブルを表示する iPhone の下に、Mac の Dock の Handoff アイコンがあります。",
-        "ko": "휴대폰용 확대 화면. Track 테이블을 표시하는 iPhone 아래에 Mac Dock의 Handoff 아이콘이 있습니다."
+        "en": "The iPhone and iPad app on an iPad Pro in landscape, in Apple's product frame (silver on light pages, space black on dark): a table open in the table browser.",
+        "vi": "Ứng dụng cho iPhone và iPad trên iPad Pro nằm ngang, trong khung thiết bị của Apple (màu Bạc trên trang sáng, Đen Không Gian trên trang tối): một table đang mở trong trình xem table.",
+        "es": "La app para iPhone y iPad en un iPad Pro en horizontal, en el marco de producto de Apple (plata en páginas claras, negro espacial en oscuras): una tabla abierta en el explorador de tablas.",
+        "de": "Die iPhone- und iPad-App auf einem iPad Pro im Querformat, im Geräterahmen von Apple (Silber auf hellen Seiten, Space Schwarz auf dunklen): eine geöffnete Tabelle im Tabellenbrowser.",
+        "fr": "L’application iPhone et iPad sur un iPad Pro à l’horizontale, dans le cadre produit d’Apple (argent sur les pages claires, noir sidéral sur les sombres) : une table ouverte dans le navigateur de tables.",
+        "ja": "横向きの iPad Pro（Apple の製品フレーム。明るいページではシルバー、暗いページではスペースブラック）上の iPhone・iPad アプリ。テーブルブラウザでテーブルを開いています。",
+        "pt-BR": "O app para iPhone e iPad em um iPad Pro na horizontal, na moldura de produto da Apple (prateado nas páginas claras, preto-espacial nas escuras): uma tabela aberta no navegador de tabelas.",
+        "zh-Hans": "横向 iPad Pro（Apple 的产品边框，浅色页面为银色，深色页面为深空黑色）上的 iPhone 和 iPad 应用：表浏览器中打开的一张表。",
+        "ko": "가로 방향 iPad Pro(Apple 제품 프레임, 밝은 페이지에서는 실버, 어두운 페이지에서는 스페이스 블랙)의 iPhone 및 iPad 앱. 테이블 브라우저에 테이블이 열려 있습니다.",
+        "zh-Hant": "橫向 iPad Pro（Apple 的產品邊框，淺色頁面為銀色，深色頁面為太空黑色）上的 iPhone 與 iPad App：資料表瀏覽器中開啟的一個資料表。",
+        "it": "L’app per iPhone e iPad su un iPad Pro in orizzontale, nella cornice del prodotto di Apple (argento sulle pagine chiare, nero siderale su quelle scure): una tabella aperta nel browser delle tabelle.",
+        "id": "Aplikasi iPhone dan iPad di iPad Pro dalam posisi lanskap, dalam bingkai produk Apple (perak di halaman terang, hitam angkasa di halaman gelap): tabel yang terbuka di penjelajah tabel."
       },
       "alt": {
-        "en": "An iPhone showing the Chinook Track table in TablePro, above the Handoff icon for it in the Dock of a Mac.",
-        "vi": "iPhone đang mở table Track của Chinook trong TablePro, phía trên biểu tượng Handoff tương ứng trong Dock của Mac.",
-        "pt-BR": "Um iPhone mostrando a tabela Track do Chinook no TablePro, acima de seu ícone Handoff no Dock de um Mac.",
-        "it": "Un iPhone che mostra la tabella Track di Chinook in TablePro, sopra la relativa icona Handoff nel Dock di un Mac.",
-        "id": "iPhone menampilkan tabel Track Chinook dalam TablePro, di atas ikon Handoff-nya dalam Dock Mac.",
-        "zh-Hans": "iPhone 在 TablePro 中显示 Chinook 的 Track 表，下方是 Mac Dock 中对应的 Handoff 图标。",
-        "zh-Hant": "iPhone 在 TablePro 中顯示 Chinook 的 Track 資料表，下方是 Mac Dock 中對應的 Handoff 圖示。",
-        "es": "iPhone con la tabla Track de Chinook en TablePro, sobre su icono Handoff en el Dock de un Mac.",
-        "de": "Ein iPhone mit der Chinook-Tabelle Track in TablePro über dem zugehörigen Handoff-Symbol im Dock eines Mac.",
-        "fr": "Un iPhone affichant la table Track de Chinook dans TablePro, au-dessus de son icône Handoff dans le Dock d’un Mac.",
-        "ja": "Chinook の Track テーブルを TablePro で表示する iPhone と、その下に表示された Mac の Dock の Handoff アイコン。",
-        "ko": "TablePro의 Chinook Track 테이블을 표시하는 iPhone과 그 아래 Mac Dock의 해당 Handoff 아이콘."
+        "en": "TablePro on an iPad Pro in landscape, with a table open.",
+        "vi": "TablePro trên iPad Pro nằm ngang, đang mở một table.",
+        "es": "TablePro en un iPad Pro en horizontal, con una tabla abierta.",
+        "de": "TablePro auf einem iPad Pro im Querformat mit geöffneter Tabelle.",
+        "fr": "TablePro sur un iPad Pro à l’horizontale, avec une table ouverte.",
+        "ja": "横向きの iPad Pro 上の TablePro。テーブルを開いています。",
+        "pt-BR": "TablePro em um iPad Pro na horizontal, com uma tabela aberta.",
+        "zh-Hans": "横向 iPad Pro 上的 TablePro，已打开一张表。",
+        "ko": "가로 방향 iPad Pro의 TablePro. 테이블이 열려 있습니다.",
+        "zh-Hant": "橫向 iPad Pro 上的 TablePro，已開啟一個資料表。",
+        "it": "TablePro su un iPad Pro in orizzontale, con una tabella aperta.",
+        "id": "TablePro di iPad Pro dalam posisi lanskap, dengan tabel terbuka."
       },
       "caption": null,
       "replacement": {
-        "dir": "public/images/features",
-        "base": "mac-handoff-ios-mobile"
+        "dir": "public/images/ios",
+        "base": "ios-hero-ipad"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            920,
+            1216,
+            1840,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1865
+        },
+        "dark": {
+          "widths": [
+            720,
+            920,
+            1216,
+            1840,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1865
+        }
+      },
+      "legacySource": null
+    },
+    "ios-hero-iphone": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P1",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "top"
+        }
+      ],
+      "aspect": "45:92",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The iPhone and iPad app on an iPhone, in Apple's product frame (silver on light pages, black on dark): the list of saved connections.",
+        "vi": "Ứng dụng cho iPhone và iPad trên iPhone, trong khung thiết bị của Apple (màu Bạc trên trang sáng, màu Đen trên trang tối): danh sách connection đã lưu.",
+        "es": "La app para iPhone y iPad en un iPhone, en el marco de producto de Apple (plata en páginas claras, negro en oscuras): la lista de conexiones guardadas.",
+        "de": "Die iPhone- und iPad-App auf einem iPhone, im Geräterahmen von Apple (Silber auf hellen Seiten, Schwarz auf dunklen): die Liste gespeicherter Verbindungen.",
+        "fr": "L’application iPhone et iPad sur un iPhone, dans le cadre produit d’Apple (argent sur les pages claires, noir sur les sombres) : la liste des connexions enregistrées.",
+        "ja": "iPhone（Apple の製品フレーム。明るいページではシルバー、暗いページではブラック）上の iPhone・iPad アプリ。保存済みの接続の一覧。",
+        "pt-BR": "O app para iPhone e iPad em um iPhone, na moldura de produto da Apple (prateado nas páginas claras, preto nas escuras): a lista de conexões salvas.",
+        "zh-Hans": "iPhone（Apple 的产品边框，浅色页面为银色，深色页面为黑色）上的 iPhone 和 iPad 应用：已保存的连接列表。",
+        "ko": "iPhone(Apple 제품 프레임, 밝은 페이지에서는 실버, 어두운 페이지에서는 블랙)의 iPhone 및 iPad 앱. 저장된 연결 목록입니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框，淺色頁面為銀色，深色頁面為黑色）上的 iPhone 與 iPad App：已儲存的連線清單。",
+        "it": "L’app per iPhone e iPad su un iPhone, nella cornice del prodotto di Apple (argento sulle pagine chiare, nero su quelle scure): l’elenco delle connessioni salvate.",
+        "id": "Aplikasi iPhone dan iPad di iPhone, dalam bingkai produk Apple (perak di halaman terang, hitam di halaman gelap): daftar koneksi tersimpan."
+      },
+      "alt": {
+        "en": "TablePro on an iPhone, with the list of saved connections.",
+        "vi": "TablePro trên iPhone, hiển thị danh sách connection đã lưu.",
+        "es": "TablePro en un iPhone, con la lista de conexiones guardadas.",
+        "de": "TablePro auf einem iPhone mit der Liste gespeicherter Verbindungen.",
+        "fr": "TablePro sur un iPhone, avec la liste des connexions enregistrées.",
+        "ja": "iPhone 上の TablePro。保存済みの接続の一覧が表示されています。",
+        "pt-BR": "TablePro em um iPhone, com a lista de conexões salvas.",
+        "zh-Hans": "iPhone 上的 TablePro，显示已保存的连接列表。",
+        "ko": "iPhone의 TablePro. 저장된 연결 목록이 표시됩니다.",
+        "zh-Hant": "iPhone 上的 TablePro，顯示已儲存的連線清單。",
+        "it": "TablePro su un iPhone, con l’elenco delle connessioni salvate.",
+        "id": "TablePro di iPhone, dengan daftar koneksi tersimpan."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-hero-iphone"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        },
+        "dark": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        }
+      },
+      "legacySource": null
+    },
+    "ios-connect": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "connect"
+        }
+      ],
+      "aspect": "45:92",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The app on an iPhone, in Apple's product frame: a connection form with its SSH tunnel and TLS settings.",
+        "vi": "Ứng dụng trên iPhone, trong khung thiết bị của Apple: form connection với cài đặt SSH tunnel và TLS.",
+        "es": "La app en un iPhone, en el marco de producto de Apple: un formulario de conexión con sus ajustes de túnel SSH y TLS.",
+        "de": "Die App auf einem iPhone, im Geräterahmen von Apple: ein Verbindungsformular mit seinen SSH-Tunnel- und TLS-Einstellungen.",
+        "fr": "L’application sur un iPhone, dans le cadre produit d’Apple : un formulaire de connexion avec ses réglages de tunnel SSH et TLS.",
+        "ja": "iPhone（Apple の製品フレーム）上のアプリ。SSH トンネルと TLS の設定がある接続フォーム。",
+        "pt-BR": "O app em um iPhone, na moldura de produto da Apple: um formulário de conexão com as configurações de túnel SSH e TLS.",
+        "zh-Hans": "iPhone（Apple 的产品边框）上的应用：带有 SSH 隧道和 TLS 设置的连接表单。",
+        "ko": "iPhone(Apple 제품 프레임)의 앱. SSH 터널과 TLS 설정이 있는 연결 양식입니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框）上的 App：含 SSH 通道和 TLS 設定的連線表單。",
+        "it": "L’app su un iPhone, nella cornice del prodotto di Apple: un modulo di connessione con le impostazioni del tunnel SSH e di TLS.",
+        "id": "Aplikasi di iPhone, dalam bingkai produk Apple: formulir koneksi dengan pengaturan terowongan SSH dan TLS."
+      },
+      "alt": {
+        "en": "A TablePro connection form on iPhone, with SSH tunnel and TLS settings.",
+        "vi": "Form connection của TablePro trên iPhone, với cài đặt SSH tunnel và TLS.",
+        "es": "Un formulario de conexión de TablePro en iPhone, con ajustes de túnel SSH y TLS.",
+        "de": "Ein TablePro-Verbindungsformular auf dem iPhone mit SSH-Tunnel- und TLS-Einstellungen.",
+        "fr": "Un formulaire de connexion TablePro sur iPhone, avec les réglages de tunnel SSH et TLS.",
+        "ja": "iPhone 上の TablePro の接続フォーム。SSH トンネルと TLS の設定があります。",
+        "pt-BR": "Um formulário de conexão do TablePro no iPhone, com configurações de túnel SSH e TLS.",
+        "zh-Hans": "iPhone 上的 TablePro 连接表单，带有 SSH 隧道和 TLS 设置。",
+        "ko": "iPhone의 TablePro 연결 양식. SSH 터널과 TLS 설정이 있습니다.",
+        "zh-Hant": "iPhone 上的 TablePro 連線表單，含 SSH 通道和 TLS 設定。",
+        "it": "Un modulo di connessione di TablePro su iPhone, con le impostazioni del tunnel SSH e di TLS.",
+        "id": "Formulir koneksi TablePro di iPhone, dengan pengaturan terowongan SSH dan TLS."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-connect"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        },
+        "dark": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        }
+      },
+      "legacySource": null
+    },
+    "ios-browse": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "browse"
+        }
+      ],
+      "aspect": "30:23",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The app on an iPad Pro in landscape, in Apple's product frame: a table's rows, filtered, in the table browser.",
+        "vi": "Ứng dụng trên iPad Pro nằm ngang, trong khung thiết bị của Apple: các dòng đã lọc của một table trong trình xem table.",
+        "es": "La app en un iPad Pro en horizontal, en el marco de producto de Apple: las filas filtradas de una tabla en el explorador de tablas.",
+        "de": "Die App auf einem iPad Pro im Querformat, im Geräterahmen von Apple: gefilterte Zeilen einer Tabelle im Tabellenbrowser.",
+        "fr": "L’application sur un iPad Pro à l’horizontale, dans le cadre produit d’Apple : les lignes filtrées d’une table dans le navigateur de tables.",
+        "ja": "横向きの iPad Pro（Apple の製品フレーム）上のアプリ。テーブルブラウザでフィルターをかけたテーブルの行。",
+        "pt-BR": "O app em um iPad Pro na horizontal, na moldura de produto da Apple: as linhas filtradas de uma tabela no navegador de tabelas.",
+        "zh-Hans": "横向 iPad Pro（Apple 的产品边框）上的应用：表浏览器中一张表经过筛选的行。",
+        "ko": "가로 방향 iPad Pro(Apple 제품 프레임)의 앱. 테이블 브라우저에서 필터링한 테이블의 행입니다.",
+        "zh-Hant": "橫向 iPad Pro（Apple 的產品邊框）上的 App：資料表瀏覽器中一個資料表經過篩選的列。",
+        "it": "L’app su un iPad Pro in orizzontale, nella cornice del prodotto di Apple: le righe filtrate di una tabella nel browser delle tabelle.",
+        "id": "Aplikasi di iPad Pro dalam posisi lanskap, dalam bingkai produk Apple: baris tabel yang difilter di penjelajah tabel."
+      },
+      "alt": {
+        "en": "A table's rows in TablePro on an iPad in landscape.",
+        "vi": "Các dòng của một table trong TablePro trên iPad nằm ngang.",
+        "es": "Las filas de una tabla en TablePro en un iPad en horizontal.",
+        "de": "Zeilen einer Tabelle in TablePro auf einem iPad im Querformat.",
+        "fr": "Les lignes d’une table dans TablePro sur un iPad à l’horizontale.",
+        "ja": "横向きの iPad 上の TablePro に表示されたテーブルの行。",
+        "pt-BR": "As linhas de uma tabela no TablePro em um iPad na horizontal.",
+        "zh-Hans": "横向 iPad 上 TablePro 中一张表的行。",
+        "ko": "가로 방향 iPad의 TablePro에 표시된 테이블의 행.",
+        "zh-Hant": "橫向 iPad 上 TablePro 中一個資料表的列。",
+        "it": "Le righe di una tabella in TablePro su un iPad in orizzontale.",
+        "id": "Baris tabel di TablePro pada iPad dalam posisi lanskap."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-browse"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            920,
+            1216,
+            1840,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1865
+        },
+        "dark": {
+          "widths": [
+            720,
+            920,
+            1216,
+            1840,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1865
+        }
+      },
+      "legacySource": null
+    },
+    "ios-query": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "query"
+        }
+      ],
+      "aspect": "45:92",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The app on an iPhone, in Apple's product frame: a SQL query and its results in the Query tab.",
+        "vi": "Ứng dụng trên iPhone, trong khung thiết bị của Apple: một query SQL và kết quả của nó trong tab Query.",
+        "es": "La app en un iPhone, en el marco de producto de Apple: una consulta SQL y sus resultados en la pestaña Query.",
+        "de": "Die App auf einem iPhone, im Geräterahmen von Apple: eine SQL-Abfrage und ihre Ergebnisse im Query-Tab.",
+        "fr": "L’application sur un iPhone, dans le cadre produit d’Apple : une requête SQL et ses résultats dans l’onglet Query.",
+        "ja": "iPhone（Apple の製品フレーム）上のアプリ。Query タブの SQL クエリとその結果。",
+        "pt-BR": "O app em um iPhone, na moldura de produto da Apple: uma consulta SQL e seus resultados na aba Query.",
+        "zh-Hans": "iPhone（Apple 的产品边框）上的应用：Query 标签页中的 SQL 查询及其结果。",
+        "ko": "iPhone(Apple 제품 프레임)의 앱. Query 탭의 SQL 쿼리와 그 결과입니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框）上的 App：Query 分頁中的 SQL 查詢及其結果。",
+        "it": "L’app su un iPhone, nella cornice del prodotto di Apple: una query SQL e i suoi risultati nella scheda Query.",
+        "id": "Aplikasi di iPhone, dalam bingkai produk Apple: kueri SQL dan hasilnya di tab Query."
+      },
+      "alt": {
+        "en": "A SQL query and its results in TablePro on iPhone.",
+        "vi": "Một query SQL và kết quả của nó trong TablePro trên iPhone.",
+        "es": "Una consulta SQL y sus resultados en TablePro en iPhone.",
+        "de": "Eine SQL-Abfrage und ihre Ergebnisse in TablePro auf dem iPhone.",
+        "fr": "Une requête SQL et ses résultats dans TablePro sur iPhone.",
+        "ja": "iPhone 上の TablePro の SQL クエリとその結果。",
+        "pt-BR": "Uma consulta SQL e seus resultados no TablePro no iPhone.",
+        "zh-Hans": "iPhone 上 TablePro 中的 SQL 查询及其结果。",
+        "ko": "iPhone의 TablePro에 표시된 SQL 쿼리와 그 결과.",
+        "zh-Hant": "iPhone 上 TablePro 中的 SQL 查詢及其結果。",
+        "it": "Una query SQL e i suoi risultati in TablePro su iPhone.",
+        "id": "Kueri SQL dan hasilnya di TablePro pada iPhone."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-query"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        },
+        "dark": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        }
+      },
+      "legacySource": null
+    },
+    "ios-safe-mode": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P2",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "safe-mode"
+        }
+      ],
+      "aspect": "45:92",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The app on an iPhone, in Apple's product frame: Confirm Writes asking before a statement changes data.",
+        "vi": "Ứng dụng trên iPhone, trong khung thiết bị của Apple: Confirm Writes hỏi trước khi một câu lệnh thay đổi dữ liệu.",
+        "es": "La app en un iPhone, en el marco de producto de Apple: Confirm Writes pregunta antes de que una instrucción cambie datos.",
+        "de": "Die App auf einem iPhone, im Geräterahmen von Apple: Confirm Writes fragt nach, bevor eine Anweisung Daten ändert.",
+        "fr": "L’application sur un iPhone, dans le cadre produit d’Apple : Confirm Writes demande confirmation avant qu’une instruction modifie des données.",
+        "ja": "iPhone（Apple の製品フレーム）上のアプリ。文がデータを変更する前に Confirm Writes が確認しています。",
+        "pt-BR": "O app em um iPhone, na moldura de produto da Apple: Confirm Writes pergunta antes que uma instrução altere dados.",
+        "zh-Hans": "iPhone（Apple 的产品边框）上的应用：Confirm Writes 在语句更改数据前询问。",
+        "ko": "iPhone(Apple 제품 프레임)의 앱. 구문이 데이터를 바꾸기 전에 Confirm Writes가 확인합니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框）上的 App：Confirm Writes 在陳述式變更資料前詢問。",
+        "it": "L’app su un iPhone, nella cornice del prodotto di Apple: Confirm Writes chiede conferma prima che un’istruzione modifichi i dati.",
+        "id": "Aplikasi di iPhone, dalam bingkai produk Apple: Confirm Writes bertanya sebelum pernyataan mengubah data."
+      },
+      "alt": {
+        "en": "TablePro on iPhone asking to confirm a write under Safe Mode.",
+        "vi": "TablePro trên iPhone hỏi xác nhận một thao tác ghi khi bật Safe Mode.",
+        "es": "TablePro en iPhone pide confirmar una escritura con Safe Mode.",
+        "de": "TablePro auf dem iPhone bittet im Safe Mode um Bestätigung eines Schreibvorgangs.",
+        "fr": "TablePro sur iPhone demande de confirmer une écriture avec Safe Mode.",
+        "ja": "Safe Mode で書き込みの確認を求める iPhone 上の TablePro。",
+        "pt-BR": "TablePro no iPhone pede para confirmar uma gravação com Safe Mode.",
+        "zh-Hans": "iPhone 上的 TablePro 在 Safe Mode 下请求确认写入。",
+        "ko": "Safe Mode에서 쓰기 확인을 요청하는 iPhone의 TablePro.",
+        "zh-Hant": "iPhone 上的 TablePro 在 Safe Mode 下要求確認寫入。",
+        "it": "TablePro su iPhone chiede di confermare una scrittura con Safe Mode.",
+        "id": "TablePro di iPhone meminta konfirmasi penulisan dengan Safe Mode."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-safe-mode"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        },
+        "dark": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        }
+      },
+      "legacySource": null
+    },
+    "ios-shortcuts": {
+      "kind": "framed-device",
+      "type": "illustration",
+      "family": "ios",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/ios",
+          "section": "shortcuts"
+        }
+      ],
+      "aspect": "45:92",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Shortcuts app on an iPhone, in Apple's product frame: a shortcut using TablePro's Add Rows to Table action.",
+        "vi": "Ứng dụng Phím tắt trên iPhone, trong khung thiết bị của Apple: một phím tắt dùng tác vụ Add Rows to Table của TablePro.",
+        "es": "La app Atajos en un iPhone, en el marco de producto de Apple: un atajo que usa la acción Add Rows to Table de TablePro.",
+        "de": "Die Kurzbefehle-App auf einem iPhone, im Geräterahmen von Apple: ein Kurzbefehl mit der TablePro-Aktion Add Rows to Table.",
+        "fr": "L’app Raccourcis sur un iPhone, dans le cadre produit d’Apple : un raccourci qui utilise l’action Add Rows to Table de TablePro.",
+        "ja": "iPhone（Apple の製品フレーム）上のショートカット App。TablePro の Add Rows to Table アクションを使うショートカット。",
+        "pt-BR": "O app Atalhos em um iPhone, na moldura de produto da Apple: um atalho que usa a ação Add Rows to Table do TablePro.",
+        "zh-Hans": "iPhone（Apple 的产品边框）上的快捷指令 App：一个使用 TablePro 的 Add Rows to Table 操作的快捷指令。",
+        "ko": "iPhone(Apple 제품 프레임)의 단축어 앱. TablePro의 Add Rows to Table 동작을 사용하는 단축어입니다.",
+        "zh-Hant": "iPhone（Apple 的產品邊框）上的捷徑 App：一個使用 TablePro 的 Add Rows to Table 動作的捷徑。",
+        "it": "L’app Comandi Rapidi su un iPhone, nella cornice del prodotto di Apple: un comando rapido che usa l’azione Add Rows to Table di TablePro.",
+        "id": "Aplikasi Pintasan di iPhone, dalam bingkai produk Apple: pintasan yang memakai tindakan Add Rows to Table dari TablePro."
+      },
+      "alt": {
+        "en": "A shortcut in the Shortcuts app on iPhone that adds a row to a table through TablePro.",
+        "vi": "Một shortcut trong app Phím tắt trên iPhone, thêm một dòng vào table qua TablePro.",
+        "es": "Un atajo en la app Atajos del iPhone que añade una fila a una tabla a través de TablePro.",
+        "de": "Ein Kurzbefehl in der Kurzbefehle-App auf dem iPhone, der über TablePro eine Zeile zu einer Tabelle hinzufügt.",
+        "fr": "Un raccourci dans l’app Raccourcis sur iPhone qui ajoute une ligne à une table via TablePro.",
+        "ja": "iPhone のショートカット App で、TablePro を通じてテーブルに行を追加するショートカット。",
+        "pt-BR": "Um atalho no app Atalhos do iPhone que adiciona uma linha a uma tabela pelo TablePro.",
+        "zh-Hans": "iPhone 快捷指令 App 中的一个快捷指令，通过 TablePro 向表中添加一行。",
+        "ko": "iPhone 단축어 앱에서 TablePro로 테이블에 행을 추가하는 단축어.",
+        "zh-Hant": "iPhone 捷徑 App 中的一個捷徑，透過 TablePro 在資料表中新增一列。",
+        "it": "Una scorciatoia nell’app Comandi su iPhone che aggiunge una riga a una tabella tramite TablePro.",
+        "id": "Pintasan di app Pintasan pada iPhone yang menambahkan baris ke tabel melalui TablePro."
+      },
+      "caption": null,
+      "replacement": {
+        "dir": "public/images/ios",
+        "base": "ios-shortcuts"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        },
+        "dark": {
+          "widths": [
+            240,
+            320,
+            480,
+            640
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 640,
+          "height": 1308
+        }
+      },
       "legacySource": null
     },
     "databases-postgresql": {
@@ -5819,884 +6347,6 @@
           ],
           "width": 2432,
           "height": 1368
-        }
-      },
-      "legacySource": null
-    },
-    "ios-connection-list": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P1",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "top"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "TablePro on iPhone: Favorites with the Chinook sample, a Production group and tagged connections.",
-        "vi": "TablePro trên iPhone: mục Favorites có cơ sở dữ liệu mẫu Chinook, nhóm Production và các connection có tag.",
-        "pt-BR": "TablePro no iPhone: Favorites com o exemplo Chinook, um grupo Production e conexões etiquetadas.",
-        "it": "TablePro su iPhone: Favorites con l’esempio Chinook, un gruppo Production e connessioni con tag.",
-        "id": "TablePro di iPhone: Favorites dengan contoh Chinook, grup Production, dan koneksi bertag.",
-        "zh-Hans": "iPhone 上的 TablePro：Favorites 中的 Chinook 示例、Production 分组，以及带标签的连接。",
-        "zh-Hant": "iPhone 上的 TablePro：Favorites 中的 Chinook 範例、Production 群組，以及帶標籤的連線。",
-        "es": "TablePro en iPhone: favoritos con el ejemplo Chinook, un grupo Production y conexiones etiquetadas.",
-        "de": "TablePro auf dem iPhone: Favoriten mit Chinook-Beispiel, einer Gruppe Production und getaggten Verbindungen.",
-        "fr": "TablePro sur iPhone : favoris avec l’exemple Chinook, un groupe Production et des connexions étiquetées.",
-        "ja": "iPhone 上の TablePro。Favorites 内の Chinook サンプル、Production グループ、タグ付き接続。",
-        "ko": "iPhone의 TablePro. Favorites의 Chinook 샘플, Production 그룹, 태그가 지정된 연결입니다."
-      },
-      "alt": {
-        "en": "TablePro on iPhone showing the connection list, with the Chinook sample under Favorites and a Production group of tagged connections.",
-        "vi": "TablePro trên iPhone hiển thị danh sách connection, với cơ sở dữ liệu mẫu Chinook trong mục Favorites và nhóm Production gồm các connection có tag.",
-        "pt-BR": "TablePro no iPhone mostrando a lista de conexões, com o exemplo Chinook em Favorites e um grupo Production de conexões etiquetadas.",
-        "it": "TablePro su iPhone con l’elenco connessioni, l’esempio Chinook sotto Favorites e un gruppo Production di connessioni con tag.",
-        "id": "TablePro di iPhone menampilkan daftar koneksi, dengan contoh Chinook dalam Favorites dan grup Production berisi koneksi bertag.",
-        "zh-Hans": "iPhone 上的 TablePro 显示连接列表，Favorites 下有 Chinook 示例，Production 分组包含带标签的连接。",
-        "zh-Hant": "iPhone 上的 TablePro 顯示連線清單，Favorites 下有 Chinook 範例，Production 群組包含帶標籤的連線。",
-        "es": "TablePro en iPhone con la lista de conexiones, el ejemplo Chinook en Favoritos y un grupo Production de conexiones etiquetadas.",
-        "de": "TablePro auf dem iPhone mit Verbindungsliste, Chinook-Beispiel unter Favoriten und einer Gruppe Production mit getaggten Verbindungen.",
-        "fr": "TablePro sur iPhone affichant la liste des connexions, avec l’exemple Chinook sous Favoris et un groupe Production de connexions étiquetées.",
-        "ja": "iPhone 上の TablePro の接続一覧。Favorites に Chinook サンプルがあり、Production グループにはタグ付きの接続があります。",
-        "ko": "iPhone의 TablePro 연결 목록. Favorites에는 Chinook 샘플이 있고 Production 그룹에는 태그가 지정된 연결이 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-connection-list"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": [
-        "/images/ios-screenshot-light.png",
-        "/images/ios-screenshot-dark.png"
-      ]
-    },
-    "ipad-table-browse": {
-      "kind": "ipad",
-      "type": "screenshot-ipad",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P1",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "top"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": "ipad-table-browse-mobile",
-      "description": {
-        "en": "TablePro on iPad showing the Chinook Track table.",
-        "vi": "TablePro trên iPad hiển thị table Track của Chinook.",
-        "pt-BR": "TablePro no iPad mostrando a tabela Track do Chinook.",
-        "it": "TablePro su iPad con la tabella Track di Chinook.",
-        "id": "TablePro di iPad menampilkan tabel Track Chinook.",
-        "zh-Hans": "iPad 上的 TablePro 显示 Chinook 的 Track 表。",
-        "zh-Hant": "iPad 上的 TablePro 顯示 Chinook 的 Track 資料表。",
-        "es": "TablePro en iPad con la tabla Track de Chinook.",
-        "de": "TablePro auf dem iPad mit der Chinook-Tabelle Track.",
-        "fr": "TablePro sur iPad affichant la table Track de Chinook.",
-        "ja": "iPad 上の TablePro で表示した Chinook の Track テーブル。",
-        "ko": "iPad의 TablePro에서 표시한 Chinook Track 테이블입니다."
-      },
-      "alt": {
-        "en": "TablePro on iPad in landscape, showing rows of the Chinook Track table as cards.",
-        "vi": "TablePro trên iPad ở chế độ ngang, hiển thị các dòng của table Track (Chinook) dưới dạng thẻ.",
-        "pt-BR": "TablePro no iPad em orientação horizontal, mostrando linhas da tabela Track do Chinook como cartões.",
-        "it": "TablePro su iPad in orizzontale, con righe della tabella Track di Chinook mostrate come schede.",
-        "id": "TablePro di iPad dalam orientasi lanskap, menampilkan baris tabel Track Chinook sebagai kartu.",
-        "zh-Hans": "横向使用的 iPad 上，TablePro 将 Chinook 的 Track 表行显示为卡片。",
-        "zh-Hant": "橫向使用的 iPad 上，TablePro 將 Chinook 的 Track 資料表資料列顯示為卡片。",
-        "es": "TablePro en iPad en horizontal, con filas de la tabla Track de Chinook como tarjetas.",
-        "de": "TablePro auf dem iPad im Querformat, mit Zeilen der Chinook-Tabelle Track als Karten.",
-        "fr": "TablePro sur iPad en paysage, affichant les lignes de la table Track de Chinook sous forme de cartes.",
-        "ja": "横向きの iPad 上の TablePro。Chinook の Track テーブルの行をカードとして表示しています。",
-        "ko": "가로 방향 iPad의 TablePro. Chinook Track 테이블의 행을 카드로 표시합니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ipad-table-browse"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            720,
-            1008,
-            2016
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 2016,
-          "height": 1511
-        }
-      },
-      "legacySource": null
-    },
-    "ipad-table-browse-mobile": {
-      "kind": "mobile-crop",
-      "type": "detail",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P1",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "top"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Close-up of the iPad table browser: the first Track rows as cards.",
-        "vi": "Cận cảnh trình duyệt table trên iPad: các dòng đầu của table Track dưới dạng thẻ.",
-        "pt-BR": "Detalhe do navegador de tabelas no iPad: as primeiras linhas de Track como cartões.",
-        "it": "Dettaglio del navigatore di tabelle su iPad: le prime righe Track come schede.",
-        "id": "Tampilan dekat penjelajah tabel iPad: baris awal Track sebagai kartu.",
-        "zh-Hans": "iPad 表浏览器的局部图：前几行 Track 数据以卡片显示。",
-        "zh-Hant": "iPad 資料表瀏覽器的局部圖：前幾列 Track 資料以卡片顯示。",
-        "es": "Detalle del explorador de tablas del iPad: primeras filas Track como tarjetas.",
-        "de": "Detailansicht des iPad-Tabellenbrowsers: erste Track-Zeilen als Karten.",
-        "fr": "Gros plan du navigateur de tables iPad : premières lignes Track en cartes.",
-        "ja": "iPad のテーブルブラウザの拡大図。最初の Track の行をカードとして表示しています。",
-        "ko": "iPad 테이블 탐색기의 확대 화면. 첫 Track 행들이 카드로 표시됩니다."
-      },
-      "alt": {
-        "en": "Close-up of TablePro on iPad showing the first rows of the Chinook Track table as cards.",
-        "vi": "Cận cảnh TablePro trên iPad hiển thị các dòng đầu của table Track (Chinook) dưới dạng thẻ.",
-        "pt-BR": "Detalhe do TablePro no iPad mostrando as primeiras linhas da tabela Track do Chinook como cartões.",
-        "it": "Dettaglio di TablePro su iPad con le prime righe della tabella Track di Chinook mostrate come schede.",
-        "id": "Tampilan dekat TablePro di iPad menampilkan baris awal tabel Track Chinook sebagai kartu.",
-        "zh-Hans": "iPad 上 TablePro 的局部图，将 Chinook 的 Track 表前几行显示为卡片。",
-        "zh-Hant": "iPad 上 TablePro 的局部圖，將 Chinook 的 Track 資料表前幾列顯示為卡片。",
-        "es": "Detalle de TablePro en iPad con las primeras filas de la tabla Track de Chinook como tarjetas.",
-        "de": "Detailansicht von TablePro auf dem iPad mit den ersten Zeilen der Chinook-Tabelle Track als Karten.",
-        "fr": "Gros plan de TablePro sur iPad affichant les premières lignes de la table Track de Chinook sous forme de cartes.",
-        "ja": "iPad 上の TablePro の拡大図。Chinook の Track テーブルの最初の数行をカードとして表示しています。",
-        "ko": "iPad의 TablePro 확대 화면. Chinook Track 테이블의 첫 행들을 카드로 표시합니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ipad-table-browse-mobile"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            343,
-            686
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 686,
-          "height": 858
-        }
-      },
-      "legacySource": null
-    },
-    "ios-table-browse": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "browse"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "The Chinook Track table filtered by genre, with row cards and the page range.",
-        "vi": "Table Track của Chinook lọc theo thể loại, hiển thị dạng thẻ và khoảng trang.",
-        "pt-BR": "A tabela Track do Chinook filtrada por gênero, com cartões de linhas e o intervalo da página.",
-        "it": "La tabella Track di Chinook filtrata per genere, con schede delle righe e intervallo della pagina.",
-        "id": "Tabel Track Chinook difilter berdasarkan genre, dengan kartu baris dan rentang halaman.",
-        "zh-Hans": "Chinook 的 Track 表按流派筛选，显示行卡片和页面范围。",
-        "zh-Hant": "Chinook 的 Track 資料表按曲風篩選，顯示資料列卡片和頁面範圍。",
-        "es": "Tabla Track de Chinook filtrada por género, con tarjetas de filas e intervalo de la página.",
-        "de": "Nach Genre gefilterte Chinook-Tabelle Track mit Zeilenkarten und Seitenbereich.",
-        "fr": "Table Track de Chinook filtrée par genre, avec cartes de lignes et plage de page.",
-        "ja": "ジャンルで絞り込んだ Chinook の Track テーブル。行のカードとページ範囲。",
-        "ko": "장르별로 필터링된 Chinook Track 테이블. 행 카드와 페이지 범위입니다."
-      },
-      "alt": {
-        "en": "The Chinook Track table on iPhone filtered by genre, its rows shown as cards with the page range below.",
-        "vi": "Table Track của Chinook trên iPhone được lọc theo thể loại, các dòng hiển thị dạng thẻ, khoảng trang ở bên dưới.",
-        "pt-BR": "A tabela Track do Chinook no iPhone filtrada por gênero, com linhas mostradas como cartões e o intervalo da página abaixo.",
-        "it": "La tabella Track di Chinook su iPhone filtrata per genere, con righe mostrate come schede e intervallo della pagina sotto.",
-        "id": "Tabel Track Chinook di iPhone difilter berdasarkan genre, barisnya ditampilkan sebagai kartu dengan rentang halaman di bawahnya.",
-        "zh-Hans": "iPhone 上的 Chinook Track 表按流派筛选，行以卡片显示，下方标明页面范围。",
-        "zh-Hant": "iPhone 上的 Chinook Track 資料表按曲風篩選，資料列以卡片顯示，下方標明頁面範圍。",
-        "es": "Tabla Track de Chinook en iPhone filtrada por género, con filas como tarjetas y el intervalo de la página debajo.",
-        "de": "Chinook-Tabelle Track auf dem iPhone nach Genre gefiltert, Zeilen als Karten mit Seitenbereich darunter.",
-        "fr": "Table Track de Chinook sur iPhone filtrée par genre, lignes affichées en cartes et plage de page dessous.",
-        "ja": "iPhone 上の Chinook の Track テーブル。ジャンルで絞り込んだ行がカードとして表示され、その下にページ範囲があります。",
-        "ko": "iPhone의 Chinook Track 테이블이 장르별로 필터링되어 있습니다. 행은 카드로 표시되고 아래에는 페이지 범위가 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-table-browse"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": [
-        "/images/ios/table-light.png",
-        "/images/ios/table-dark.png",
-        "/images/blog/tablepro-for-iphone-table.png"
-      ]
-    },
-    "ios-row-edit": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "browse"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Editing a track with Composer set to NULL and a link to the related album.",
-        "vi": "Sửa một track, đặt Composer thành NULL, kèm liên kết tới album liên quan.",
-        "pt-BR": "Edição de uma faixa com Composer definido como NULL e um link para o álbum relacionado.",
-        "it": "Modifica di un brano con Composer impostato a NULL e un collegamento all’album correlato.",
-        "id": "Mengedit track dengan Composer diatur menjadi NULL dan tautan ke album terkait.",
-        "zh-Hans": "编辑音轨，将 Composer 设为 NULL，并提供相关专辑的链接。",
-        "zh-Hant": "編輯音軌，將 Composer 設為 NULL，並提供相關專輯的連結。",
-        "es": "Edición de una pista con Composer en NULL y enlace al álbum relacionado.",
-        "de": "Bearbeitung eines Titels mit Composer auf NULL und Link zum zugehörigen Album.",
-        "fr": "Modification d’un morceau avec Composer défini sur NULL et lien vers l’album associé.",
-        "ja": "Composer を NULL に設定したトラックの編集画面。関連するアルバムへのリンクもあります。",
-        "ko": "Composer가 NULL로 설정된 트랙 편집 화면과 관련 앨범 링크입니다."
-      },
-      "alt": {
-        "en": "A Chinook track open for editing on iPhone, with Composer set to NULL before saving.",
-        "vi": "Một track của Chinook đang được sửa trên iPhone, Composer được đặt thành NULL trước khi lưu.",
-        "pt-BR": "Uma faixa do Chinook aberta para edição no iPhone, com Composer definido como NULL antes de salvar.",
-        "it": "Un brano di Chinook aperto per la modifica su iPhone, con Composer impostato a NULL prima del salvataggio.",
-        "id": "Track Chinook terbuka untuk diedit di iPhone, dengan Composer diatur menjadi NULL sebelum disimpan.",
-        "zh-Hans": "iPhone 上打开 Chinook 的一条音轨进行编辑，保存前将 Composer 设为 NULL。",
-        "zh-Hant": "iPhone 上開啟 Chinook 的一筆音軌進行編輯，儲存前將 Composer 設為 NULL。",
-        "es": "Pista de Chinook abierta para editar en iPhone, con Composer en NULL antes de guardar.",
-        "de": "Chinook-Titel zur Bearbeitung auf dem iPhone geöffnet, Composer vor dem Speichern auf NULL gesetzt.",
-        "fr": "Morceau Chinook ouvert en modification sur iPhone, Composer défini sur NULL avant l’enregistrement.",
-        "ja": "iPhone で編集のために開いた Chinook のトラック。保存前に Composer を NULL に設定しています。",
-        "ko": "iPhone에서 편집을 위해 열린 Chinook 트랙. 저장 전에 Composer가 NULL로 설정되어 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-row-edit"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": [
-        "/images/ios/row-light.png",
-        "/images/ios/row-dark.png"
-      ]
-    },
-    "ios-query": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "query"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "A grouped SQL query and its results in the Query tab.",
-        "vi": "Một query SQL có GROUP BY và kết quả trong tab Query.",
-        "pt-BR": "Uma consulta SQL agrupada e seus resultados na aba Query.",
-        "it": "Una query SQL raggruppata e i risultati nella scheda Query.",
-        "id": "Kueri SQL berkelompok dan hasilnya dalam tab Query.",
-        "zh-Hans": "Query 标签页中的分组 SQL 查询及其结果。",
-        "zh-Hant": "Query 分頁中的分組 SQL 查詢及其結果。",
-        "es": "Consulta SQL agrupada y sus resultados en la pestaña Consulta.",
-        "de": "Gruppierte SQL-Abfrage und ihre Ergebnisse im Abfrage-Tab.",
-        "fr": "Requête SQL groupée et ses résultats dans l’onglet Requête.",
-        "ja": "Query タブのグループ化した SQL クエリと、その結果。",
-        "ko": "Query 탭의 그룹화된 SQL 쿼리와 결과입니다."
-      },
-      "alt": {
-        "en": "The Query tab on iPhone with a SQL query that counts tracks per genre, and its results.",
-        "vi": "Tab Query trên iPhone với một query SQL đếm số track theo thể loại, kèm kết quả.",
-        "pt-BR": "A aba Query no iPhone com uma consulta SQL que conta faixas por gênero e seus resultados.",
-        "it": "La scheda Query su iPhone con una query SQL che conta i brani per genere e i risultati.",
-        "id": "Tab Query di iPhone dengan kueri SQL yang menghitung track per genre, serta hasilnya.",
-        "zh-Hans": "iPhone 的 Query 标签页中，SQL 查询按流派统计音轨数，并显示结果。",
-        "zh-Hant": "iPhone 的 Query 分頁中，SQL 查詢按曲風統計音軌數，並顯示結果。",
-        "es": "Pestaña Consulta en iPhone con una consulta SQL que cuenta pistas por género y sus resultados.",
-        "de": "Abfrage-Tab auf dem iPhone mit einer SQL-Abfrage, die Titel je Genre zählt, und ihren Ergebnissen.",
-        "fr": "Onglet Requête sur iPhone avec une requête SQL comptant les morceaux par genre et ses résultats.",
-        "ja": "iPhone の Query タブ。ジャンルごとにトラック数を数える SQL クエリと、その結果。",
-        "ko": "iPhone의 Query 탭. 장르별 트랙 수를 세는 SQL 쿼리와 결과가 표시됩니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-query"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": null
-    },
-    "ios-live-activity": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "query"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "A running query as a Live Activity on the Lock Screen: the connection, the query, the elapsed time and the Running status.",
-        "vi": "Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa: connection, câu query, thời gian đã chạy và trạng thái Running.",
-        "pt-BR": "Uma consulta em execução como Atividade ao Vivo na Tela Bloqueada: a conexão, a consulta, o tempo decorrido e o status Running.",
-        "it": "Una query in esecuzione come attività in tempo reale sulla schermata di blocco: connessione, query, tempo trascorso e stato Running.",
-        "id": "Kueri yang berjalan sebagai Aktivitas Langsung pada Layar Terkunci: koneksi, kueri, waktu berlalu, dan status Running.",
-        "zh-Hans": "查询在锁定屏幕上以实时活动显示：连接、查询、已用时间和 Running 状态。",
-        "zh-Hant": "查詢在鎖定畫面上以即時動態顯示：連線、查詢、已用時間和 Running 狀態。",
-        "es": "Consulta en ejecución como actividad en directo en la pantalla bloqueada: conexión, consulta, tiempo transcurrido y estado En ejecución.",
-        "de": "Laufende Abfrage als Live-Aktivität auf dem Sperrbildschirm: Verbindung, Abfrage, verstrichene Zeit und Status Läuft.",
-        "fr": "Requête en cours sous forme d’activité en direct sur l’écran verrouillé : connexion, requête, temps écoulé et état En cours.",
-        "ja": "ロック画面のライブアクティビティとして表示された実行中のクエリ。接続、クエリ、経過時間、Running ステータス。",
-        "ko": "잠금 화면에 실시간 현황으로 표시된 실행 중인 쿼리. 연결, 쿼리, 경과 시간, Running 상태입니다."
-      },
-      "alt": {
-        "en": "A Live Activity on the iPhone Lock Screen for a running query, showing the connection name, the start of the query, the elapsed time and the Running status.",
-        "vi": "Một Hoạt động trực tiếp trên Màn hình khóa của iPhone cho một query đang chạy, hiển thị tên connection, phần đầu câu query, thời gian đã chạy và trạng thái Running.",
-        "pt-BR": "Uma Atividade ao Vivo na Tela Bloqueada do iPhone para uma consulta em execução, mostrando o nome da conexão, o início da consulta, o tempo decorrido e o status Running.",
-        "it": "Un’attività in tempo reale sulla schermata di blocco di iPhone per una query in esecuzione, con nome della connessione, inizio della query, tempo trascorso e stato Running.",
-        "id": "Aktivitas Langsung pada Layar Terkunci iPhone untuk kueri yang berjalan, menampilkan nama koneksi, awal kueri, waktu berlalu, dan status Running.",
-        "zh-Hans": "iPhone 锁定屏幕上的实时活动显示正在运行的查询，包含连接名称、查询开头、已用时间和 Running 状态。",
-        "zh-Hant": "iPhone 鎖定畫面上的即時動態顯示正在執行的查詢，包含連線名稱、查詢開頭、已用時間和 Running 狀態。",
-        "es": "Actividad en directo en la pantalla bloqueada del iPhone para una consulta en ejecución, con nombre de conexión, inicio de la consulta, tiempo transcurrido y estado En ejecución.",
-        "de": "Live-Aktivität einer laufenden Abfrage auf dem iPhone-Sperrbildschirm mit Verbindungsname, Abfrageanfang, verstrichener Zeit und Status Läuft.",
-        "fr": "Activité en direct sur l’écran verrouillé iPhone pour une requête en cours, avec nom de connexion, début de la requête, temps écoulé et état En cours.",
-        "ja": "実行中のクエリを表示する iPhone のロック画面のライブアクティビティ。接続名、クエリの冒頭、経過時間、Running ステータスが表示されています。",
-        "ko": "iPhone 잠금 화면에서 실행 중인 쿼리를 보여 주는 실시간 현황. 연결 이름, 쿼리의 시작 부분, 경과 시간, Running 상태가 표시됩니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-live-activity"
-      },
-      "status": "placeholder",
-      "src": null,
-      "legacySource": null
-    },
-    "ios-connection-form": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "security"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "A new PostgreSQL connection with Read-Only Safe Mode, SSL and an SSH tunnel.",
-        "vi": "Connection PostgreSQL mới với Safe Mode Read-Only, SSL và SSH tunnel.",
-        "pt-BR": "Uma nova conexão PostgreSQL com Read-Only Safe Mode, SSL e um túnel SSH.",
-        "it": "Una nuova connessione PostgreSQL con Read-Only Safe Mode, SSL e un tunnel SSH.",
-        "id": "Koneksi PostgreSQL baru dengan Read-Only Safe Mode, SSL, dan tunnel SSH.",
-        "zh-Hans": "新建 PostgreSQL 连接，配置 Read-Only Safe Mode、SSL 和 SSH 隧道。",
-        "zh-Hant": "新增 PostgreSQL 連線，設定 Read-Only Safe Mode、SSL 和 SSH 通道。",
-        "es": "Nueva conexión PostgreSQL con modo seguro Solo lectura, SSL y túnel SSH.",
-        "de": "Neue PostgreSQL-Verbindung mit Sicherheitsmodus Schreibgeschützt, SSL und SSH-Tunnel.",
-        "fr": "Nouvelle connexion PostgreSQL avec mode sécurisé Lecture seule, SSL et tunnel SSH.",
-        "ja": "Read-Only Safe Mode、SSL、SSH トンネルを設定した新規 PostgreSQL 接続。",
-        "ko": "Read-Only Safe Mode, SSL, SSH 터널이 설정된 새 PostgreSQL 연결입니다."
-      },
-      "alt": {
-        "en": "A new connection form on iPhone with SSL set to Verify Identity and an SSH tunnel to bastion.acme.internal that signs in with a private key.",
-        "vi": "Form connection mới trên iPhone với SSL đặt ở Verify Identity và SSH tunnel tới bastion.acme.internal, đăng nhập bằng private key.",
-        "pt-BR": "Um formulário de nova conexão no iPhone com SSL definido como Verify Identity e um túnel SSH para bastion.acme.internal que autentica com uma chave privada.",
-        "it": "Un modulo di nuova connessione su iPhone con SSL impostato a Verify Identity e un tunnel SSH verso bastion.acme.internal che autentica con una chiave privata.",
-        "id": "Formulir koneksi baru di iPhone dengan SSL diatur ke Verify Identity dan tunnel SSH ke bastion.acme.internal yang masuk dengan kunci privat.",
-        "zh-Hans": "iPhone 的新建连接表单将 SSL 设为 Verify Identity，并使用私钥登录通向 bastion.acme.internal 的 SSH 隧道。",
-        "zh-Hant": "iPhone 的新增連線表單將 SSL 設為 Verify Identity，並使用私密金鑰登入通向 bastion.acme.internal 的 SSH 通道。",
-        "es": "Formulario de nueva conexión en iPhone con SSL en Verificar identidad y túnel SSH a bastion.acme.internal autenticado con una clave privada.",
-        "de": "Neues Verbindungsformular auf dem iPhone mit SSL auf Identität prüfen und SSH-Tunnel nach bastion.acme.internal mit privatem Schlüssel zur Anmeldung.",
-        "fr": "Formulaire de nouvelle connexion sur iPhone, SSL défini sur Vérifier l’identité et tunnel SSH vers bastion.acme.internal authentifié par clé privée.",
-        "ja": "iPhone の新規接続フォーム。SSL は Verify Identity に設定され、秘密鍵でログインする bastion.acme.internal への SSH トンネルがあります。",
-        "ko": "iPhone의 새 연결 양식. SSL은 Verify Identity로 설정되어 있으며 개인 키로 로그인하는 bastion.acme.internal까지의 SSH 터널이 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-connection-form"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": null
-    },
-    "ios-safe-mode-confirm": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "safe-mode"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Confirm Writes asking before an UPDATE runs.",
-        "vi": "Confirm Writes hỏi lại trước khi chạy câu UPDATE.",
-        "pt-BR": "Confirm Writes pedindo autorização antes de executar um UPDATE.",
-        "it": "Confirm Writes che richiede l’autorizzazione prima di eseguire un UPDATE.",
-        "id": "Confirm Writes meminta persetujuan sebelum UPDATE dijalankan.",
-        "zh-Hans": "Confirm Writes 在执行 UPDATE 前要求确认。",
-        "zh-Hant": "Confirm Writes 在執行 UPDATE 前要求確認。",
-        "es": "Confirmar escrituras pregunta antes de ejecutar UPDATE.",
-        "de": "Schreibzugriffe bestätigen fragt vor einem UPDATE nach.",
-        "fr": "Confirmer les écritures demande une confirmation avant un UPDATE.",
-        "ja": "UPDATE の実行前に確認を求める Confirm Writes。",
-        "ko": "UPDATE 실행 전에 확인을 요청하는 Confirm Writes입니다."
-      },
-      "alt": {
-        "en": "A confirmation on iPhone asking before an UPDATE statement runs on a connection set to Confirm Writes.",
-        "vi": "Hộp xác nhận trên iPhone hỏi lại trước khi chạy câu UPDATE trên một connection đặt ở Confirm Writes.",
-        "pt-BR": "Uma confirmação no iPhone pedindo autorização antes de executar uma instrução UPDATE em uma conexão definida como Confirm Writes.",
-        "it": "Una conferma su iPhone che richiede l’autorizzazione prima di eseguire un’istruzione UPDATE su una connessione impostata a Confirm Writes.",
-        "id": "Konfirmasi di iPhone yang meminta persetujuan sebelum pernyataan UPDATE dijalankan pada koneksi yang diatur ke Confirm Writes.",
-        "zh-Hans": "iPhone 上的确认提示，在配置为 Confirm Writes 的连接中执行 UPDATE 语句前询问。",
-        "zh-Hant": "iPhone 上的確認提示，在設定為 Confirm Writes 的連線中執行 UPDATE 陳述式前詢問。",
-        "es": "Confirmación en iPhone antes de ejecutar UPDATE en una conexión configurada con Confirmar escrituras.",
-        "de": "Bestätigung auf dem iPhone vor einer UPDATE-Anweisung auf einer Verbindung mit Schreibzugriffe bestätigen.",
-        "fr": "Confirmation sur iPhone avant l’exécution d’un UPDATE sur une connexion réglée sur Confirmer les écritures.",
-        "ja": "Confirm Writes に設定した接続で、UPDATE 文の実行前に iPhone が表示する確認。",
-        "ko": "Confirm Writes로 설정된 연결에서 UPDATE 문을 실행하기 전에 iPhone에 표시되는 확인 메시지."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-safe-mode-confirm"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": null
-    },
-    "ipad-two-windows": {
-      "kind": "ipad",
-      "type": "screenshot-ipad",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "ipad"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Two TablePro windows open at once on iPad in Stage Manager, each on a different table.",
-        "vi": "Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ một table.",
-        "pt-BR": "Duas janelas do TablePro abertas ao mesmo tempo no iPad com Organizador Visual, cada uma em uma tabela diferente.",
-        "it": "Due finestre TablePro aperte contemporaneamente su iPad in Stage Manager, ciascuna su una tabella diversa.",
-        "id": "Dua jendela TablePro terbuka sekaligus di iPad dalam Stage Manager, masing-masing pada tabel berbeda.",
-        "zh-Hans": "iPad 的台前调度中同时打开两个 TablePro 窗口，各自显示不同的表。",
-        "zh-Hant": "iPad 的幕前調度中同時開啟兩個 TablePro 視窗，各自顯示不同的資料表。",
-        "es": "Dos ventanas de TablePro abiertas a la vez en iPad con Stage Manager, cada una en una tabla distinta.",
-        "de": "Zwei gleichzeitig in Stage Manager auf dem iPad geöffnete TablePro-Fenster, jedes mit einer anderen Tabelle.",
-        "fr": "Deux fenêtres TablePro ouvertes simultanément sur iPad dans Stage Manager, chacune sur une table différente.",
-        "ja": "iPad のステージマネージャで同時に開いた二つの TablePro ウインドウ。それぞれ異なるテーブル。",
-        "ko": "iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 테이블이 표시됩니다."
-      },
-      "alt": {
-        "en": "Two TablePro windows open at once on iPad in Stage Manager, each showing a different Chinook table.",
-        "vi": "Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ hiển thị một table khác nhau của Chinook.",
-        "pt-BR": "Duas janelas do TablePro abertas ao mesmo tempo no iPad com Organizador Visual, cada uma mostrando uma tabela diferente do Chinook.",
-        "it": "Due finestre TablePro aperte contemporaneamente su iPad in Stage Manager, ciascuna con una tabella Chinook diversa.",
-        "id": "Dua jendela TablePro terbuka sekaligus di iPad dalam Stage Manager, masing-masing menampilkan tabel Chinook berbeda.",
-        "zh-Hans": "iPad 的台前调度中同时打开两个 TablePro 窗口，各自显示不同的 Chinook 表。",
-        "zh-Hant": "iPad 的幕前調度中同時開啟兩個 TablePro 視窗，各自顯示不同的 Chinook 資料表。",
-        "es": "Dos ventanas de TablePro abiertas a la vez en iPad con Stage Manager, cada una con una tabla distinta de Chinook.",
-        "de": "Zwei gleichzeitig in Stage Manager auf dem iPad geöffnete TablePro-Fenster, jedes mit einer anderen Chinook-Tabelle.",
-        "fr": "Deux fenêtres TablePro ouvertes simultanément sur iPad dans Stage Manager, chacune affichant une table Chinook différente.",
-        "ja": "iPad のステージマネージャで同時に開いた二つの TablePro ウインドウ。それぞれ異なる Chinook テーブルを表示しています。",
-        "ko": "iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 Chinook 테이블을 표시합니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ipad-two-windows"
-      },
-      "status": "placeholder",
-      "src": null,
-      "legacySource": null
-    },
-    "ios-widgets": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "automation"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Quick Connect widgets on the Home Screen.",
-        "vi": "Tiện ích Quick Connect trên Màn hình chính.",
-        "pt-BR": "Widgets Quick Connect na Tela de Início.",
-        "it": "Widget Quick Connect sulla schermata Home.",
-        "id": "Widget Quick Connect pada Layar Utama.",
-        "zh-Hans": "主屏幕上的 Quick Connect 小组件。",
-        "zh-Hant": "主畫面上的 Quick Connect 小工具。",
-        "es": "Widgets de conexión rápida en la pantalla de inicio.",
-        "de": "Schnellverbindungs-Widgets auf dem Home-Bildschirm.",
-        "fr": "Widgets de connexion rapide sur l’écran d’accueil.",
-        "ja": "ホーム画面の Quick Connect ウィジェット。",
-        "ko": "홈 화면의 Quick Connect 위젯입니다."
-      },
-      "alt": {
-        "en": "Small and medium Quick Connect widgets on the iPhone Home Screen.",
-        "vi": "Tiện ích Quick Connect cỡ nhỏ và cỡ vừa trên Màn hình chính của iPhone.",
-        "pt-BR": "Widgets Quick Connect pequenos e médios na Tela de Início do iPhone.",
-        "it": "Widget Quick Connect piccoli e medi sulla schermata Home di iPhone.",
-        "id": "Widget Quick Connect kecil dan sedang pada Layar Utama iPhone.",
-        "zh-Hans": "iPhone 主屏幕上的小号和中号 Quick Connect 小组件。",
-        "zh-Hant": "iPhone 主畫面上的小型和中型 Quick Connect 小工具。",
-        "es": "Widgets pequeños y medianos de conexión rápida en la pantalla de inicio del iPhone.",
-        "de": "Kleine und mittlere Schnellverbindungs-Widgets auf dem iPhone-Home-Bildschirm.",
-        "fr": "Widgets de connexion rapide petits et moyens sur l’écran d’accueil iPhone.",
-        "ja": "iPhone のホーム画面に配置した、小サイズと中サイズの Quick Connect ウィジェット。",
-        "ko": "iPhone 홈 화면의 작은 크기와 중간 크기 Quick Connect 위젯."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-widgets"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": null
-    },
-    "ios-shortcuts-add-rows": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "automation"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "A Shortcuts action that adds CSV rows to a table.",
-        "vi": "Một tác vụ trong ứng dụng Phím tắt thêm các dòng CSV vào table.",
-        "pt-BR": "Uma ação do Atalhos que adiciona linhas CSV a uma tabela.",
-        "it": "Un’azione Comandi Rapidi che aggiunge righe CSV a una tabella.",
-        "id": "Tindakan Pintasan yang menambahkan baris CSV ke tabel.",
-        "zh-Hans": "将 CSV 行添加到表的快捷指令操作。",
-        "zh-Hant": "將 CSV 資料列加入資料表的捷徑動作。",
-        "es": "Acción de Atajos que añade filas CSV a una tabla.",
-        "de": "Kurzbefehle-Aktion, die CSV-Zeilen zu einer Tabelle hinzufügt.",
-        "fr": "Action Raccourcis ajoutant des lignes CSV à une table.",
-        "ja": "CSV の行をテーブルに追加するショートカットのアクション。",
-        "ko": "CSV 행을 테이블에 추가하는 단축어 동작입니다."
-      },
-      "alt": {
-        "en": "The Shortcuts editor with TablePro's Add Rows to Table action set to add CSV rows to a table.",
-        "vi": "Trình chỉnh sửa Phím tắt với tác vụ Add Rows to Table của TablePro, được thiết lập để thêm các dòng CSV vào một table.",
-        "pt-BR": "O editor do Atalhos com a ação Add Rows to Table do TablePro configurada para adicionar linhas CSV a uma tabela.",
-        "it": "L’editor Comandi Rapidi con l’azione Add Rows to Table di TablePro impostata per aggiungere righe CSV a una tabella.",
-        "id": "Editor Pintasan dengan tindakan Add Rows to Table TablePro diatur untuk menambahkan baris CSV ke tabel.",
-        "zh-Hans": "快捷指令编辑器中的 TablePro Add Rows to Table 操作，设置为将 CSV 行添加到表。",
-        "zh-Hant": "捷徑編輯器中的 TablePro Add Rows to Table 動作，設定為將 CSV 資料列加入資料表。",
-        "es": "Editor de Atajos con la acción Añadir filas a tabla de TablePro configurada para añadir filas CSV a una tabla.",
-        "de": "Kurzbefehle-Editor mit TablePros Aktion Zeilen zu Tabelle hinzufügen, eingerichtet zum Hinzufügen von CSV-Zeilen.",
-        "fr": "Éditeur Raccourcis avec l’action Ajouter des lignes à une table de TablePro configurée pour ajouter des lignes CSV à une table.",
-        "ja": "ショートカットのエディタ。TablePro の Add Rows to Table アクションは、CSV の行をテーブルに追加するように設定されています。",
-        "ko": "단축어 편집기에서 TablePro의 Add Rows to Table 동작이 CSV 행을 테이블에 추가하도록 설정되어 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-shortcuts-add-rows"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
-        }
-      },
-      "legacySource": null
-    },
-    "ios-settings-privacy": {
-      "kind": "phone",
-      "type": "screenshot-phone",
-      "family": "ios",
-      "ownerRepo": "web",
-      "slot": true,
-      "handoffPriority": "P3",
-      "usedOn": [
-        {
-          "path": "/ios",
-          "section": "privacy"
-        }
-      ],
-      "aspect": null,
-      "priority": false,
-      "theme": "single",
-      "locale": "shared",
-      "mobile": null,
-      "description": {
-        "en": "Settings on iPhone: Face ID lock and iCloud Sync on, usage data sharing off.",
-        "vi": "Cài đặt (Settings) trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng.",
-        "pt-BR": "Ajustes no iPhone: bloqueio por Face ID e iCloud Sync ativados, compartilhamento de dados de uso desativado.",
-        "it": "Impostazioni su iPhone: blocco Face ID e iCloud Sync attivi, condivisione dei dati di utilizzo disattivata.",
-        "id": "Pengaturan di iPhone: kunci Face ID dan iCloud Sync aktif, berbagi data penggunaan nonaktif.",
-        "zh-Hans": "iPhone 设置：Face ID 锁定和 iCloud 同步已开启，使用数据共享已关闭。",
-        "zh-Hant": "iPhone 設定：Face ID 鎖定和 iCloud 同步已開啟，使用情況資料共享已關閉。",
-        "es": "Ajustes en iPhone: bloqueo con Face ID y sincronización iCloud activados, compartir datos de uso desactivado.",
-        "de": "Einstellungen auf dem iPhone: Face-ID-Sperre und iCloud-Synchronisierung aktiviert, Teilen von Nutzungsdaten deaktiviert.",
-        "fr": "Réglages sur iPhone : verrouillage Face ID et synchronisation iCloud activés, partage des données d’utilisation désactivé.",
-        "ja": "iPhone の設定。Face ID ロックと iCloud Sync はオン、利用データの共有はオフ。",
-        "ko": "iPhone 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다."
-      },
-      "alt": {
-        "en": "TablePro Settings on iPhone with the Face ID lock and iCloud Sync on and usage data sharing off.",
-        "vi": "Cài đặt của TablePro trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng.",
-        "pt-BR": "Ajustes do TablePro no iPhone com bloqueio por Face ID e iCloud Sync ativados e compartilhamento de dados de uso desativado.",
-        "it": "Impostazioni di TablePro su iPhone con blocco Face ID e iCloud Sync attivi e condivisione dei dati di utilizzo disattivata.",
-        "id": "Pengaturan TablePro di iPhone dengan kunci Face ID dan iCloud Sync aktif serta berbagi data penggunaan nonaktif.",
-        "zh-Hans": "iPhone 上的 TablePro 设置，Face ID 锁定和 iCloud 同步已开启，使用数据共享已关闭。",
-        "zh-Hant": "iPhone 上的 TablePro 設定，Face ID 鎖定和 iCloud 同步已開啟，使用情況資料共享已關閉。",
-        "es": "Ajustes de TablePro en iPhone con bloqueo Face ID y sincronización iCloud activados, y compartir datos de uso desactivado.",
-        "de": "TablePro-Einstellungen auf dem iPhone mit aktivierter Face-ID-Sperre und iCloud-Synchronisierung sowie deaktiviertem Teilen von Nutzungsdaten.",
-        "fr": "Réglages TablePro sur iPhone avec verrouillage Face ID et synchronisation iCloud activés, partage des données d’utilisation désactivé.",
-        "ja": "iPhone の TablePro の設定。Face ID ロックと iCloud Sync はオンで、利用データの共有はオフです。",
-        "ko": "iPhone의 TablePro 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다."
-      },
-      "caption": null,
-      "replacement": {
-        "dir": "public/images/ios",
-        "base": "ios-settings-privacy"
-      },
-      "status": "supplied",
-      "src": {
-        "light": {
-          "widths": [
-            280,
-            560,
-            840
-          ],
-          "formats": [
-            "avif",
-            "webp"
-          ],
-          "width": 840,
-          "height": 1821
         }
       },
       "legacySource": null

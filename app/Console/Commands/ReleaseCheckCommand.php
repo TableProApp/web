@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Http;
  *   `mac.floorVersion` (the 0.77 labels disappear when that is bumped);
  * - the iTunes lookup in the `us` storefront against `ios.release.version`,
  *   `ios.requirements.minVersion` and `ios.price.amount`;
- * - the iTunes lookup in the `de` storefront against `ios.storefrontExclusions`:
- *   `de` is expected to be missing when that list holds `de` or an `EU` entry.
+ * - the iTunes lookup in each storefront `ios.storefrontExclusions` names,
+ *   where the app is expected to be missing.
  *
  * It prints one row per comparison and exits non-zero when any differs or any
  * source cannot be read, because an unchecked fact is not a checked one.
@@ -89,13 +89,10 @@ class ReleaseCheckCommand extends Command
         $this->compare('App Store (us)', 'minimum iOS', $this->string($ios['requirements']['minVersion'] ?? null), $missing ?? $this->string($usApp['minimumOsVersion'] ?? null), readable: $us !== null);
         $this->compare('App Store (us)', 'price', $this->amount($ios['price']['amount'] ?? null), $missing ?? $this->amount($usApp['price'] ?? null), readable: $us !== null);
 
-        $de = $appId !== null ? $this->lookup($appId, 'de') : null;
-        $this->compare(
-            'App Store (de)',
-            'listed',
-            $this->excludes($ios['storefrontExclusions'] ?? [], 'de') ? 'no' : 'yes',
-            is_array($de) ? ((int) ($de['resultCount'] ?? 0) > 0 ? 'yes' : 'no') : null,
-        );
+        foreach ($this->storefronts($ios['storefrontExclusions'] ?? []) as $country) {
+            $lookup = $appId !== null ? $this->lookup($appId, $country) : null;
+            $this->compare("App Store ({$country})", 'listed', 'no', is_array($lookup) ? ((int) ($lookup['resultCount'] ?? 0) > 0 ? 'yes' : 'no') : null);
+        }
 
         // Before Linux ships no channel holds a package, so its rows would only report what is not there yet.
         if ($platforms->isReleased('linux')) {
@@ -327,26 +324,11 @@ class ReleaseCheckCommand extends Command
     }
 
     /**
-     * Whether `storefrontExclusions` leaves out a storefront: its own code
-     * (`de`), or an entry naming the EU, which holds every EU storefront.
+     * @return list<string>
      */
-    private function excludes(mixed $exclusions, string $country): bool
+    private function storefronts(mixed $exclusions): array
     {
-        if (! is_array($exclusions)) {
-            return false;
-        }
-
-        foreach ($exclusions as $entry) {
-            if (! is_string($entry)) {
-                continue;
-            }
-
-            if (strcasecmp(trim($entry), $country) === 0 || preg_match('/\bEU\b/i', $entry) === 1) {
-                return true;
-            }
-        }
-
-        return false;
+        return is_array($exclusions) ? array_values(array_filter($exclusions, fn(mixed $code): bool => is_string($code) && preg_match('/^[a-z]{2}$/', $code) === 1)) : [];
     }
 
     private function string(mixed $value): ?string

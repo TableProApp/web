@@ -248,15 +248,47 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
-        "description": {
-            "ko": "Handoff. iPhone에서 열린 Chinook Track 테이블이 Mac Dock에서 이어서 열도록 제공됩니다."
-        }
+    "ios-hero-ipad": {
+        "alt": {
+            "ko": "가로 방향 iPad Pro의 TablePro. 테이블이 열려 있습니다."
+        },
+        "caption": null
     },
-    "mac-handoff-ios-mobile": {
-        "description": {
-            "ko": "휴대폰용 확대 화면. Track 테이블을 표시하는 iPhone 아래에 Mac Dock의 Handoff 아이콘이 있습니다."
-        }
+    "ios-hero-iphone": {
+        "alt": {
+            "ko": "iPhone의 TablePro. 저장된 연결 목록이 표시됩니다."
+        },
+        "caption": null
+    },
+    "ios-connect": {
+        "alt": {
+            "ko": "iPhone의 TablePro 연결 양식. SSH 터널과 TLS 설정이 있습니다."
+        },
+        "caption": null
+    },
+    "ios-browse": {
+        "alt": {
+            "ko": "가로 방향 iPad의 TablePro에 표시된 테이블의 행."
+        },
+        "caption": null
+    },
+    "ios-query": {
+        "alt": {
+            "ko": "iPhone의 TablePro에 표시된 SQL 쿼리와 그 결과."
+        },
+        "caption": null
+    },
+    "ios-safe-mode": {
+        "alt": {
+            "ko": "Safe Mode에서 쓰기 확인을 요청하는 iPhone의 TablePro."
+        },
+        "caption": null
+    },
+    "ios-shortcuts": {
+        "alt": {
+            "ko": "iPhone 단축어 앱에서 TablePro로 테이블에 행을 추가하는 단축어."
+        },
+        "caption": null
     },
     "databases-postgresql": {
         "alt": {
@@ -387,82 +419,6 @@
     "databases-beancount": {
         "alt": {
             "ko": "Beancount 원장을 연 Mac의 TablePro. 사이드바의 테이블과 BQL 쿼리 결과가 표시됩니다."
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "ko": "iPhone의 TablePro 연결 목록. Favorites에는 Chinook 샘플이 있고 Production 그룹에는 태그가 지정된 연결이 있습니다."
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "ko": "가로 방향 iPad의 TablePro. Chinook Track 테이블의 행을 카드로 표시합니다."
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "ko": "iPad의 TablePro 확대 화면. Chinook Track 테이블의 첫 행들을 카드로 표시합니다."
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "ko": "iPhone의 Chinook Track 테이블이 장르별로 필터링되어 있습니다. 행은 카드로 표시되고 아래에는 페이지 범위가 있습니다."
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "ko": "iPhone에서 편집을 위해 열린 Chinook 트랙. 저장 전에 Composer가 NULL로 설정되어 있습니다."
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "ko": "iPhone의 Query 탭. 장르별 트랙 수를 세는 SQL 쿼리와 결과가 표시됩니다."
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "ko": "잠금 화면에 실시간 현황으로 표시된 실행 중인 쿼리. 연결, 쿼리, 경과 시간, Running 상태입니다."
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "ko": "iPhone의 새 연결 양식. SSL은 Verify Identity로 설정되어 있으며 개인 키로 로그인하는 bastion.acme.internal까지의 SSH 터널이 있습니다."
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "ko": "Confirm Writes로 설정된 연결에서 UPDATE 문을 실행하기 전에 iPhone에 표시되는 확인 메시지."
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "ko": "iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 테이블이 표시됩니다."
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "ko": "iPhone 홈 화면의 작은 크기와 중간 크기 Quick Connect 위젯."
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "ko": "단축어 편집기에서 TablePro의 Add Rows to Table 동작이 CSV 행을 테이블에 추가하도록 설정되어 있습니다."
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "ko": "iPhone의 TablePro 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다."
         },
         "caption": null
     },

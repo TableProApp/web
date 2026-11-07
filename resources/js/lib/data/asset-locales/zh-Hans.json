@@ -248,15 +248,47 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
-        "description": {
-            "zh-Hans": "Handoff：iPhone 打开 Chinook 的 Track 表，Mac Dock 中提供接续选项。"
-        }
+    "ios-hero-ipad": {
+        "alt": {
+            "zh-Hans": "横向 iPad Pro 上的 TablePro，已打开一张表。"
+        },
+        "caption": null
     },
-    "mac-handoff-ios-mobile": {
-        "description": {
-            "zh-Hans": "手机局部图：iPhone 显示 Track 表，下方是 Mac Dock 中的 Handoff 图标。"
-        }
+    "ios-hero-iphone": {
+        "alt": {
+            "zh-Hans": "iPhone 上的 TablePro，显示已保存的连接列表。"
+        },
+        "caption": null
+    },
+    "ios-connect": {
+        "alt": {
+            "zh-Hans": "iPhone 上的 TablePro 连接表单，带有 SSH 隧道和 TLS 设置。"
+        },
+        "caption": null
+    },
+    "ios-browse": {
+        "alt": {
+            "zh-Hans": "横向 iPad 上 TablePro 中一张表的行。"
+        },
+        "caption": null
+    },
+    "ios-query": {
+        "alt": {
+            "zh-Hans": "iPhone 上 TablePro 中的 SQL 查询及其结果。"
+        },
+        "caption": null
+    },
+    "ios-safe-mode": {
+        "alt": {
+            "zh-Hans": "iPhone 上的 TablePro 在 Safe Mode 下请求确认写入。"
+        },
+        "caption": null
+    },
+    "ios-shortcuts": {
+        "alt": {
+            "zh-Hans": "iPhone 快捷指令 App 中的一个快捷指令，通过 TablePro 向表中添加一行。"
+        },
+        "caption": null
     },
     "databases-postgresql": {
         "alt": {
@@ -387,82 +419,6 @@
     "databases-beancount": {
         "alt": {
             "zh-Hans": "Mac 上的 TablePro 打开了一个 Beancount 账本，侧边栏中显示其表，并显示一个 BQL 查询结果。"
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "zh-Hans": "iPhone 上的 TablePro 显示连接列表，Favorites 下有 Chinook 示例，Production 分组包含带标签的连接。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "zh-Hans": "横向使用的 iPad 上，TablePro 将 Chinook 的 Track 表行显示为卡片。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "zh-Hans": "iPad 上 TablePro 的局部图，将 Chinook 的 Track 表前几行显示为卡片。"
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "zh-Hans": "iPhone 上的 Chinook Track 表按流派筛选，行以卡片显示，下方标明页面范围。"
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "zh-Hans": "iPhone 上打开 Chinook 的一条音轨进行编辑，保存前将 Composer 设为 NULL。"
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "zh-Hans": "iPhone 的 Query 标签页中，SQL 查询按流派统计音轨数，并显示结果。"
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "zh-Hans": "查询在锁定屏幕上以实时活动显示：连接、查询、已用时间和 Running 状态。"
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "zh-Hans": "iPhone 的新建连接表单将 SSL 设为 Verify Identity，并使用私钥登录通向 bastion.acme.internal 的 SSH 隧道。"
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "zh-Hans": "iPhone 上的确认提示，在配置为 Confirm Writes 的连接中执行 UPDATE 语句前询问。"
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "zh-Hans": "iPad 的台前调度中同时打开两个 TablePro 窗口，各自显示不同的表。"
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "zh-Hans": "iPhone 主屏幕上的小号和中号 Quick Connect 小组件。"
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "zh-Hans": "快捷指令编辑器中的 TablePro Add Rows to Table 操作，设置为将 CSV 行添加到表。"
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "zh-Hans": "iPhone 上的 TablePro 设置，Face ID 锁定和 iCloud 同步已开启，使用数据共享已关闭。"
         },
         "caption": null
     },
