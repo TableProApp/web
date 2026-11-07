@@ -18,9 +18,14 @@ class SecurityController extends Controller
 
         return Inertia::render('Security', [
             'content' => $page,
-            'facts' => $this->values($facts->for($page)),
+            'facts' => [
+                ...$this->values($facts->for($page)),
+                'localAiProviders' => $site->localAiProviders(),
+            ],
+            'replyDays' => $site->commerce()['supportBusinessDays'],
             'links' => [
                 ...$links,
+                'securityEmail' => $site->securityEmail(),
                 'securityPolicy' => $links['github'] === null ? null : $links['github'] . '/security/policy',
                 'securityAdvisory' => $links['github'] === null ? null : $links['github'] . '/security/advisories/new',
                 'securityTxt' => SecurityTxtController::PATH,
