@@ -222,12 +222,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "ko": "PostGIS 테이블의 거주 지역을 지도에 표시하는 Map 뷰. 선택된 지점인 파리가 행 검사기에 표시됩니다."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "ko": "Restore Previous Values 검토 시트. 세 행은 Will restore, 한 행은 Changed since the save로 표시됩니다."
@@ -243,24 +237,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "ko": "이번 실행에서 보류된 DROP COLUMN과 데이터 손실 경고를 보여 주는 Compare & Sync 스크립트의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "ko": "MySQL 서버의 Users & Roles. SQL Preview가 app_reader 사용자에게 shop.orders의 total 열에 대한 SELECT를 부여하는 GRANT를 보여 줍니다."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "ko": "PostgreSQL 서버의 Server Dashboard. 활성 세션 목록에서 오래 실행 중인 SELECT가 선택되어 있고 Terminate 버튼이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "ko": "Server Dashboard에서 선택된 장시간 SELECT 세션과 옆의 Terminate 버튼의 확대 화면."
         },
         "caption": null
     },
@@ -280,279 +256,120 @@
             "ko": "휴대폰용 확대 화면. Track 테이블을 표시하는 iPhone 아래에 Mac Dock의 Handoff 아이콘이 있습니다."
         }
     },
-    "mac-engine-picker": {
-        "alt": {
-            "ko": "새 연결의 데이터베이스 유형 선택기. 엔진이 범주별로 그룹화되어 있으며 MongoDB는 Not Installed로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-engine-picker-mobile": {
-        "alt": {
-            "ko": "데이터베이스 유형 선택기의 확대 화면. Document 아래의 Elasticsearch, MongoDB, SurrealDB, Typesense가 각각 Not Installed로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain": {
-        "alt": {
-            "ko": "orders와 users를 조인하는 쿼리의 EXPLAIN ANALYZE 계획 다이어그램. orders의 Seq Scan이 빨간색으로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain-mobile": {
-        "alt": {
-            "ko": "orders의 빨간색 Seq Scan까지 보여 주는 EXPLAIN ANALYZE 다이어그램의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query": {
-        "alt": {
-            "ko": "MySQL에 연결된 TablePro. shop 데이터베이스에서 orders와 users를 조인하는 쿼리와 아래의 결과입니다."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query-mobile": {
-        "alt": {
-            "ko": "orders와 users를 조인하는 MySQL 쿼리와 결과의 첫 행들을 보여 주는 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "ko": "TablePro에서 열린 기본 제공 Chinook SQLite 샘플. Track 테이블이 장르별로 필터링되어 있습니다."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "ko": "장르별로 필터링된 Chinook Track 테이블의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "ko": "MongoDB의 events 컬렉션 위에 열린 Insert Document 시트. 문서는 Extended JSON으로 작성되어 있습니다."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "ko": "MongoDB 컬렉션에 삽입할 준비가 된 Extended JSON 문서의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "ko": "TablePro의 Redis 키가 콜론 구분자로 트리에 그룹화되어 있고, 그리드에 각 키의 타입, TTL, 길이, 값이 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "ko": "데이터 그리드의 Redis 키와 각 키의 타입 및 TTL을 보여 주는 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "ko": "GO로 배치를 나눈 T-SQL 스크립트와 Output 탭에 표시된 마지막 배치의 PRINT 메시지."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "ko": "T-SQL 스크립트의 GO 배치 구분자와 Output 탭의 PRINT 메시지의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "ko": "편집기의 Oracle PL/SQL 블록. DBMS_OUTPUT으로 출력한 텍스트 줄이 결과 아래에 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "ko": "PL/SQL 블록의 DBMS_OUTPUT.PUT_LINE 호출과 결과 아래에 출력된 부서 정보 줄의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "ko": "ClickHouse MergeTree 테이블의 Parts 탭. 파티션과 파트 및 각 행 수가 나열됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "ko": "ClickHouse 테이블의 Parts 탭의 확대 화면. 각 파트의 파티션, 이름, 행 수가 나열됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "ko": "DuckDB에서 읽기 전용 뷰로 열린 Parquet 파일과 이를 조회하는 SQL 쿼리 및 결과."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "ko": "DuckDB를 통해 Parquet 파일을 읽는 SQL 쿼리와 결과의 첫 행들의 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "ko": "사이드바에서 데이터 그리드로 연 Cassandra 테이블. 변경된 status 값은 저장 전까지 보류로 표시되고 set 열은 컬렉션으로 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "ko": "데이터 그리드의 Cassandra 행의 확대 화면. status 셀 하나가 shipped로 변경되어 보류로 표시되고, 옆의 tags 열은 set을 표시합니다."
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-postgresql": {
         "description": {
-            "ko": "DISTKEY와 SORTKEY가 있는 Redshift 테이블의 DDL. 구조는 읽기 전용입니다."
+            "ko": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
+    "databases-mysql": {
         "description": {
-            "ko": "테이블 DDL의 DISTKEY와 SORTKEY 줄의 확대 화면입니다."
+            "ko": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
         }
     },
-    "mac-db-d1-databases": {
+    "databases-sqlserver": {
         "description": {
-            "ko": "계정의 D1 데이터베이스를 나열하는 전환기. 그중 한 데이터베이스의 쿼리 위에 열려 있습니다."
+            "ko": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
         }
     },
-    "mac-db-d1-databases-mobile": {
+    "databases-sqlite": {
         "description": {
-            "ko": "계정의 D1 데이터베이스를 나열하는 데이터베이스 전환기의 확대 화면입니다."
+            "ko": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
         }
     },
-    "mac-db-turso-remote": {
+    "databases-mongodb": {
         "description": {
-            "ko": "원격 Turso 데이터베이스. 사이드바의 테이블과 쿼리 결과입니다."
+            "ko": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
         }
     },
-    "mac-db-turso-remote-mobile": {
+    "databases-redis": {
         "description": {
-            "ko": "원격 Turso 데이터베이스의 쿼리와 결과의 첫 행들의 확대 화면입니다."
+            "ko": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
         }
     },
-    "mac-db-dynamodb-planner": {
-        "alt": {
-            "ko": "필터링된 DynamoDB 읽기. 상태 표시줄에 byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개가 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-dynamodb-planner-mobile": {
-        "alt": {
-            "ko": "필터링된 읽기 후 DynamoDB 상태 표시줄의 확대 화면. byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개입니다."
-        },
-        "caption": null
-    },
-    "mac-db-bigquery-dry-run": {
+    "databases-redshift": {
         "description": {
-            "ko": "Explain 메뉴에서 실행한 BigQuery Dry Run. 처리할 바이트 수와 예상 비용입니다."
+            "ko": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-oracle": {
         "description": {
-            "ko": "Dry Run 결과의 확대 화면. 처리할 바이트 수와 예상 비용입니다."
+            "ko": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-clickhouse": {
         "description": {
-            "ko": "Session Context에서 웨어하우스와 역할을 설정한 Snowflake 연결과 아래의 결과입니다."
+            "ko": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-duckdb": {
         "description": {
-            "ko": "선택한 웨어하우스에 체크 표시가 있는 Session Context 하위 메뉴의 확대 화면입니다."
+            "ko": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
         }
     },
-    "mac-db-etcd-keys": {
-        "alt": {
-            "ko": "/acme/sessions/ 접두사 아래의 etcd 키. 이 중 세 개가 리스 하나를 공유합니다."
-        },
-        "caption": null
-    },
-    "mac-db-etcd-keys-mobile": {
-        "alt": {
-            "ko": "/acme/sessions/ 접두사 아래의 etcd 키와 각 키의 리스를 보여 주는 확대 화면."
-        },
-        "caption": null
-    },
-    "mac-db-elasticsearch-console": {
+    "databases-cassandra": {
         "description": {
-            "ko": "Query DSL 콘솔. GET _search 요청과 행으로 표시된 반환 결과입니다."
+            "ko": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
+    "databases-dynamodb": {
         "description": {
-            "ko": "GET _search 요청과 첫 반환 결과의 확대 화면입니다."
+            "ko": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
         }
     },
-    "mac-db-surrealdb-query": {
-        "alt": {
-            "ko": "편집기의 SurrealQL 쿼리와 반환된 레코드를 표시하는 데이터 그리드."
-        },
-        "caption": null
-    },
-    "mac-db-surrealdb-query-mobile": {
-        "alt": {
-            "ko": "SurrealQL 쿼리와 반환된 레코드의 확대 화면. person:alice와 같은 ID가 표시됩니다."
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
+    "databases-bigquery": {
         "description": {
-            "ko": "프로시저가 나열된 Teradata 사이드바와 Functions 아래의 매크로입니다."
+            "ko": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
         }
     },
-    "mac-db-teradata-sidebar-mobile": {
+    "databases-snowflake": {
         "description": {
-            "ko": "사이드바의 Procedures 및 Functions 그룹의 확대 화면입니다."
+            "ko": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
         }
     },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "ko": "두 카탈로그의 테이블을 조인하는 Trino 쿼리와 아래의 결과."
-        },
-        "caption": null
+    "databases-cloudflare-d1": {
+        "description": {
+            "ko": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+        }
     },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "ko": "두 카탈로그의 테이블을 조인하는 Trino 쿼리와 첫 결과의 확대 화면."
-        },
-        "caption": null
+    "databases-turso": {
+        "description": {
+            "ko": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+        }
     },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "ko": "사이드바에 표시된 Beancount 원장 데이터를 표현하는 테이블과 BQL 쿼리 결과."
-        },
-        "caption": null
+    "databases-elasticsearch": {
+        "description": {
+            "ko": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+        }
     },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "ko": "Beancount 원장의 BQL 쿼리와 결과의 첫 행들의 확대 화면."
-        },
-        "caption": null
+    "databases-etcd": {
+        "description": {
+            "ko": "An etcd connection: keys under a prefix root, with their values and leases."
+        }
     },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "ko": "orders 토픽에 대한 KafkaQL CONSUME 문. 메시지가 파티션, 오프셋, 키, 타임스탬프로 나열됩니다."
-        },
-        "caption": null
+    "databases-kafka": {
+        "description": {
+            "ko": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+        }
     },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "ko": "orders 토픽에 대한 KafkaQL CONSUME 문의 확대 화면. 메시지가 파티션, 오프셋, 키로 나열됩니다."
-        },
-        "caption": null
+    "databases-surrealdb": {
+        "description": {
+            "ko": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+        }
+    },
+    "databases-teradata": {
+        "description": {
+            "ko": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+        }
+    },
+    "databases-trino": {
+        "description": {
+            "ko": "A Trino connection: a query joining tables from two catalogs, with its results below."
+        }
+    },
+    "databases-beancount": {
+        "description": {
+            "ko": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+        }
     },
     "ios-connection-list": {
         "alt": {

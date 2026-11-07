@@ -222,12 +222,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "ja": "Map ビューで PostGIS テーブルの居住地を地図に表示し、行インスペクタに選択された地点のパリを表示しています。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "ja": "Restore Previous Values のレビューシート。三行が Will restore、一行が Changed since the save と表示されています。"
@@ -243,24 +237,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "ja": "Compare & Sync スクリプトの拡大図。今回の実行から保留された DROP COLUMN と、そのデータ損失の警告。"
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "ja": "MySQL サーバーの Users & Roles。SQL Preview に、app_reader ユーザーに shop.orders の total 列への SELECT を付与する GRANT が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "ja": "PostgreSQL サーバーの Server Dashboard。アクティブなセッションの一覧で長時間実行中の SELECT が選択され、Terminate ボタンが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "ja": "Server Dashboard で選択された長時間実行中の SELECT セッションと、その横の Terminate ボタンの拡大図。"
         },
         "caption": null
     },
@@ -280,279 +256,120 @@
             "ja": "携帯電話向けの拡大図。Track テーブルを表示する iPhone の下に、Mac の Dock の Handoff アイコンがあります。"
         }
     },
-    "mac-engine-picker": {
-        "alt": {
-            "ja": "新規接続のデータベース種別の選択画面。エンジンはカテゴリ別に分かれ、MongoDB に Not Installed と表示されています。"
-        },
-        "caption": null
-    },
-    "mac-engine-picker-mobile": {
-        "alt": {
-            "ja": "データベース種別の選択画面の拡大図。Document の Elasticsearch、MongoDB、SurrealDB、Typesense は、それぞれ Not Installed と表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain": {
-        "alt": {
-            "ja": "orders と users を結合するクエリの EXPLAIN ANALYZE 計画を描いた図。orders の Seq Scan が赤く示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain-mobile": {
-        "alt": {
-            "ja": "EXPLAIN ANALYZE 図の拡大図。orders の赤く示された Seq Scan までが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query": {
-        "alt": {
-            "ja": "MySQL に接続した TablePro。shop データベースで orders と users を結合するクエリと、その下の結果。"
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query-mobile": {
-        "alt": {
-            "ja": "orders と users を結合する MySQL クエリと、結果の最初の数行の拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "ja": "TablePro で付属の Chinook SQLite サンプルを開き、Track テーブルをジャンルで絞り込んでいます。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "ja": "ジャンルで絞り込んだ Chinook の Track テーブルの拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "ja": "MongoDB の events コレクションの上に表示された Insert Document シート。ドキュメントは Extended JSON で書かれています。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "ja": "MongoDB コレクションに挿入する準備ができた、Extended JSON で書かれたドキュメントの拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "ja": "TablePro の Redis キー。コロン区切りのツリーにまとめられ、グリッドには各キーの型、TTL、長さ、値が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "ja": "データグリッドの Redis キーの拡大図。各キーの型と TTL が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "ja": "GO でバッチに分割された T-SQL スクリプト。Output タブに最後のバッチの PRINT メッセージが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "ja": "T-SQL スクリプトの GO バッチ区切りと、Output タブの PRINT メッセージの拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "ja": "エディタ内の Oracle PL/SQL ブロック。DBMS_OUTPUT で出力したテキスト行が結果の下に表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "ja": "PL/SQL ブロックの DBMS_OUTPUT.PUT_LINE 呼び出しと、結果の下に出力された部門のテキスト行の拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "ja": "ClickHouse の MergeTree テーブルの Parts タブ。パーティションとパーツが、それぞれの行数とともに表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "ja": "ClickHouse テーブルの Parts タブの拡大図。各パーツのパーティション、名前、行数が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "ja": "DuckDB で読み取り専用ビューとして開いた Parquet ファイルと、それに対する SQL クエリおよび結果。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "ja": "DuckDB で Parquet ファイルを読み取る SQL クエリと、結果の最初の数行の拡大図。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "ja": "サイドバーからデータグリッドに開いた Cassandra テーブル。変更した status 値は保存まで保留中と示され、set 列はコレクションとして表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "ja": "データグリッドの Cassandra の行の拡大図。status セルが shipped に変更されて保留中と示され、隣の tags 列に set が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-postgresql": {
         "description": {
-            "ja": "DISTKEY と SORTKEY を含む Redshift テーブルの DDL。構造は読み取り専用です。"
+            "ja": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
+    "databases-mysql": {
         "description": {
-            "ja": "テーブルの DDL の DISTKEY と SORTKEY の行の拡大図。"
+            "ja": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
         }
     },
-    "mac-db-d1-databases": {
+    "databases-sqlserver": {
         "description": {
-            "ja": "アカウントの D1 データベースを一覧表示する切り替えメニュー。一つのデータベースのクエリの上に開いています。"
+            "ja": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
         }
     },
-    "mac-db-d1-databases-mobile": {
+    "databases-sqlite": {
         "description": {
-            "ja": "アカウントの D1 データベースを一覧表示する切り替えメニューの拡大図。"
+            "ja": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
         }
     },
-    "mac-db-turso-remote": {
+    "databases-mongodb": {
         "description": {
-            "ja": "リモートの Turso データベース。サイドバーのテーブルとクエリ結果。"
+            "ja": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
         }
     },
-    "mac-db-turso-remote-mobile": {
+    "databases-redis": {
         "description": {
-            "ja": "リモートの Turso データベースへのクエリと、最初の結果行の拡大図。"
+            "ja": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
         }
     },
-    "mac-db-dynamodb-planner": {
-        "alt": {
-            "ja": "フィルタ付きの DynamoDB の読み取り。ステータスバーは byStatus インデックスでの Query、返された 44 項目、消費した 1 読み取りキャパシティーユニットを示しています。"
-        },
-        "caption": null
-    },
-    "mac-db-dynamodb-planner-mobile": {
-        "alt": {
-            "ja": "フィルタ付き読み取り後の DynamoDB ステータスバーの拡大図。byStatus インデックスでの Query、返された 44 項目、消費した 1 読み取りキャパシティーユニット。"
-        },
-        "caption": null
-    },
-    "mac-db-bigquery-dry-run": {
+    "databases-redshift": {
         "description": {
-            "ja": "Explain メニューから実行した BigQuery の Dry Run。処理されるバイト数と推定コスト。"
+            "ja": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-oracle": {
         "description": {
-            "ja": "Dry Run の結果の拡大図。処理されるバイト数と推定コスト。"
+            "ja": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-clickhouse": {
         "description": {
-            "ja": "Session Context でウェアハウスとロールを設定した Snowflake 接続と、その下の結果。"
+            "ja": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-duckdb": {
         "description": {
-            "ja": "選択したウェアハウスにチェックが入った Session Context サブメニューの拡大図。"
+            "ja": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
         }
     },
-    "mac-db-etcd-keys": {
-        "alt": {
-            "ja": "/acme/sessions/ プレフィックスの配下にある etcd キー。そのうち三つが一つのリースを共有しています。"
-        },
-        "caption": null
-    },
-    "mac-db-etcd-keys-mobile": {
-        "alt": {
-            "ja": "/acme/sessions/ プレフィックス配下の etcd キーの拡大図。各キーのリースが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-elasticsearch-console": {
+    "databases-cassandra": {
         "description": {
-            "ja": "Query DSL コンソール。GET _search リクエストと、行として表示されたヒット。"
+            "ja": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
+    "databases-dynamodb": {
         "description": {
-            "ja": "GET _search リクエストと最初のヒットの拡大図。"
+            "ja": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
         }
     },
-    "mac-db-surrealdb-query": {
-        "alt": {
-            "ja": "エディタ内の SurrealQL クエリと、そのクエリが返したレコードを表示するデータグリッド。"
-        },
-        "caption": null
-    },
-    "mac-db-surrealdb-query-mobile": {
-        "alt": {
-            "ja": "SurrealQL クエリと、返されたレコードの拡大図。person:alice などの ID が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
+    "databases-bigquery": {
         "description": {
-            "ja": "Teradata のサイドバー。プロシージャの一覧と、Functions のマクロ。"
+            "ja": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
         }
     },
-    "mac-db-teradata-sidebar-mobile": {
+    "databases-snowflake": {
         "description": {
-            "ja": "サイドバーの Procedures と Functions グループの拡大図。"
+            "ja": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
         }
     },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "ja": "二つのカタログのテーブルを結合する Trino クエリと、その下の結果。"
-        },
-        "caption": null
+    "databases-cloudflare-d1": {
+        "description": {
+            "ja": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+        }
     },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "ja": "二つのカタログのテーブルを結合する Trino クエリと、最初の結果の拡大図。"
-        },
-        "caption": null
+    "databases-turso": {
+        "description": {
+            "ja": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+        }
     },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "ja": "サイドバーに表示された、Beancount 台帳のデータを表すテーブルと BQL クエリの結果。"
-        },
-        "caption": null
+    "databases-elasticsearch": {
+        "description": {
+            "ja": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+        }
     },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "ja": "Beancount 台帳に対する BQL クエリと、結果の最初の数行の拡大図。"
-        },
-        "caption": null
+    "databases-etcd": {
+        "description": {
+            "ja": "An etcd connection: keys under a prefix root, with their values and leases."
+        }
     },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "ja": "orders トピックに対する KafkaQL の CONSUME 文。メッセージがパーティション、オフセット、キー、タイムスタンプごとに一覧表示されています。"
-        },
-        "caption": null
+    "databases-kafka": {
+        "description": {
+            "ja": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+        }
     },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "ja": "orders トピックに対する KafkaQL の CONSUME 文の拡大図。メッセージがパーティション、オフセット、キーごとに一覧表示されています。"
-        },
-        "caption": null
+    "databases-surrealdb": {
+        "description": {
+            "ja": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+        }
+    },
+    "databases-teradata": {
+        "description": {
+            "ja": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+        }
+    },
+    "databases-trino": {
+        "description": {
+            "ja": "A Trino connection: a query joining tables from two catalogs, with its results below."
+        }
+    },
+    "databases-beancount": {
+        "description": {
+            "ja": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+        }
     },
     "ios-connection-list": {
         "alt": {

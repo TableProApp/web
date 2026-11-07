@@ -222,12 +222,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "vi": "Map view hiển thị các địa điểm dân cư từ một table PostGIS, điểm đang chọn (Paris) hiển thị trong row inspector."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "vi": "Hộp thoại xem lại Restore Previous Values: ba dòng được đánh dấu Will restore, một dòng được đánh dấu Changed since the save."
@@ -243,24 +237,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "vi": "Cận cảnh script của Compare & Sync, với một lệnh DROP COLUMN chưa được đưa vào lần chạy này và cảnh báo mất dữ liệu."
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "vi": "Users & Roles trên một server MySQL, hộp thoại SQL Preview hiển thị câu GRANT cấp cho user app_reader quyền SELECT trên cột total của shop.orders."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "vi": "Server Dashboard của một server PostgreSQL liệt kê các session đang chạy, một câu SELECT chạy lâu đang được chọn và có nút Terminate."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một session SELECT chạy lâu được chọn trong Server Dashboard, cạnh nút Terminate."
         },
         "caption": null
     },
@@ -280,279 +256,120 @@
             "vi": "Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac."
         }
     },
-    "mac-engine-picker": {
-        "alt": {
-            "vi": "Hộp chọn loại cơ sở dữ liệu cho connection mới, các engine được chia theo nhóm, MongoDB được ghi Not Installed."
-        },
-        "caption": null
-    },
-    "mac-engine-picker-mobile": {
-        "alt": {
-            "vi": "Cận cảnh hộp chọn loại cơ sở dữ liệu, với Elasticsearch, MongoDB, SurrealDB và Typesense trong nhóm Document, mỗi mục được ghi Not Installed."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain": {
-        "alt": {
-            "vi": "Execution plan EXPLAIN ANALYZE của một query join orders và users, vẽ thành sơ đồ, bước Seq Scan trên orders được tô đỏ."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain-mobile": {
-        "alt": {
-            "vi": "Cận cảnh sơ đồ EXPLAIN ANALYZE, xuống tới bước Seq Scan trên orders được tô đỏ."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query": {
-        "alt": {
-            "vi": "TablePro kết nối tới MySQL, với một query join orders và users trong cơ sở dữ liệu shop và kết quả bên dưới."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query MySQL join orders và users, kèm các dòng kết quả đầu tiên."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "vi": "TablePro mở cơ sở dữ liệu mẫu Chinook (SQLite) đi kèm ứng dụng, table Track được lọc theo thể loại."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "vi": "Cận cảnh table Track của Chinook được lọc theo thể loại."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "vi": "Hộp thoại Insert Document trên collection events của MongoDB, với một document viết bằng Extended JSON."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một document viết bằng Extended JSON, sẵn sàng để insert vào một collection MongoDB."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "vi": "Các key Redis trong TablePro được nhóm thành cây theo dấu hai chấm, data grid hiển thị type, TTL, độ dài và giá trị của từng key."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các key Redis trong data grid, kèm type và TTL của từng key."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "vi": "Một script T-SQL chia thành các batch bằng GO, thông báo PRINT của batch cuối trong tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các dòng GO phân tách batch trong một script T-SQL và một thông báo PRINT trong tab Output."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "vi": "Một khối PL/SQL của Oracle trong editor, các dòng ghi qua DBMS_OUTPUT hiện bên dưới kết quả của khối."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh lệnh gọi DBMS_OUTPUT.PUT_LINE trong một khối PL/SQL và các dòng phòng ban được in bên dưới kết quả."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "vi": "Tab Parts của một table MergeTree trong ClickHouse, liệt kê partition và part kèm số dòng."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "vi": "Cận cảnh tab Parts của một table ClickHouse, liệt kê partition, tên và số dòng của từng part."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "vi": "Một file Parquet mở trong DuckDB dưới dạng view chỉ đọc, kèm một query SQL trên file và kết quả."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query SQL đọc file Parquet qua DuckDB, kèm các dòng kết quả đầu tiên."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "vi": "Một table Cassandra mở từ sidebar trong data grid, một giá trị status vừa sửa được đánh dấu đang chờ cho tới khi lưu, và một cột set hiển thị dưới dạng collection."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các dòng Cassandra trong data grid, một ô status đã đổi thành shipped và được đánh dấu đang chờ lưu, cạnh cột tags hiển thị một set."
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-postgresql": {
         "description": {
-            "vi": "DDL của một table Redshift với DISTKEY và SORTKEY; tab Structure ở chế độ chỉ đọc."
+            "vi": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
+    "databases-mysql": {
         "description": {
-            "vi": "Cận cảnh các dòng DISTKEY và SORTKEY trong DDL của table."
+            "vi": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
         }
     },
-    "mac-db-d1-databases": {
+    "databases-sqlserver": {
         "description": {
-            "vi": "Bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, mở phía trên một query trên một trong số đó."
+            "vi": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
         }
     },
-    "mac-db-d1-databases-mobile": {
+    "databases-sqlite": {
         "description": {
-            "vi": "Cận cảnh bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản."
+            "vi": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
         }
     },
-    "mac-db-turso-remote": {
+    "databases-mongodb": {
         "description": {
-            "vi": "Một cơ sở dữ liệu Turso từ xa: các table trong sidebar và kết quả query."
+            "vi": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
         }
     },
-    "mac-db-turso-remote-mobile": {
+    "databases-redis": {
         "description": {
-            "vi": "Cận cảnh query trên cơ sở dữ liệu Turso từ xa và các dòng kết quả đầu tiên."
+            "vi": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
         }
     },
-    "mac-db-dynamodb-planner": {
-        "alt": {
-            "vi": "Một lần đọc DynamoDB có lọc, thanh trạng thái hiển thị Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng."
-        },
-        "caption": null
-    },
-    "mac-db-dynamodb-planner-mobile": {
-        "alt": {
-            "vi": "Cận cảnh thanh trạng thái DynamoDB sau một lần đọc có lọc: Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng."
-        },
-        "caption": null
-    },
-    "mac-db-bigquery-dry-run": {
+    "databases-redshift": {
         "description": {
-            "vi": "Dry Run của BigQuery từ menu Explain: số byte xử lý và chi phí ước tính."
+            "vi": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-oracle": {
         "description": {
-            "vi": "Cận cảnh kết quả Dry Run: số byte xử lý và chi phí ước tính."
+            "vi": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-clickhouse": {
         "description": {
-            "vi": "Connection Snowflake với warehouse và role đặt trong Session Context, kết quả bên dưới."
+            "vi": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-duckdb": {
         "description": {
-            "vi": "Cận cảnh menu con Session Context với warehouse đang được chọn."
+            "vi": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
         }
     },
-    "mac-db-etcd-keys": {
-        "alt": {
-            "vi": "Các key etcd dưới prefix /acme/sessions/, ba key dùng chung một lease."
-        },
-        "caption": null
-    },
-    "mac-db-etcd-keys-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các key etcd dưới prefix /acme/sessions/, kèm lease của từng key."
-        },
-        "caption": null
-    },
-    "mac-db-elasticsearch-console": {
+    "databases-cassandra": {
         "description": {
-            "vi": "Console Query DSL: một request GET _search và các hit hiển thị thành dòng."
+            "vi": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
+    "databases-dynamodb": {
         "description": {
-            "vi": "Cận cảnh request GET _search và các hit đầu tiên."
+            "vi": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
         }
     },
-    "mac-db-surrealdb-query": {
-        "alt": {
-            "vi": "Một query SurrealQL trong editor và các record trả về trong data grid."
-        },
-        "caption": null
-    },
-    "mac-db-surrealdb-query-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query SurrealQL và các record trả về, với id dạng person:alice."
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
+    "databases-bigquery": {
         "description": {
-            "vi": "Sidebar Teradata liệt kê procedure, và macro trong mục Functions."
+            "vi": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
         }
     },
-    "mac-db-teradata-sidebar-mobile": {
+    "databases-snowflake": {
         "description": {
-            "vi": "Cận cảnh mục Procedures và Functions trong sidebar."
+            "vi": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
         }
     },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "vi": "Một query Trino join các table từ hai catalog, kèm kết quả bên dưới."
-        },
-        "caption": null
+    "databases-cloudflare-d1": {
+        "description": {
+            "vi": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+        }
     },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query Trino join các table từ hai catalog, kèm các kết quả đầu tiên."
-        },
-        "caption": null
+    "databases-turso": {
+        "description": {
+            "vi": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+        }
     },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "vi": "Các table được dựng từ một sổ cái Beancount trong sidebar, và kết quả của một query BQL."
-        },
-        "caption": null
+    "databases-elasticsearch": {
+        "description": {
+            "vi": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+        }
     },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh một query BQL trên sổ cái Beancount, kèm các dòng kết quả đầu tiên."
-        },
-        "caption": null
+    "databases-etcd": {
+        "description": {
+            "vi": "An etcd connection: keys under a prefix root, with their values and leases."
+        }
     },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "vi": "Câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset, key và timestamp."
-        },
-        "caption": null
+    "databases-kafka": {
+        "description": {
+            "vi": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+        }
     },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "vi": "Cận cảnh câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset và key."
-        },
-        "caption": null
+    "databases-surrealdb": {
+        "description": {
+            "vi": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+        }
+    },
+    "databases-teradata": {
+        "description": {
+            "vi": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+        }
+    },
+    "databases-trino": {
+        "description": {
+            "vi": "A Trino connection: a query joining tables from two catalogs, with its results below."
+        }
+    },
+    "databases-beancount": {
+        "description": {
+            "vi": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+        }
     },
     "ios-connection-list": {
         "alt": {

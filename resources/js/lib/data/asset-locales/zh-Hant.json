@@ -222,12 +222,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "zh-Hant": "Map 檢視在地圖上標出 PostGIS 資料表中的有人居住地點，資料列檢查器顯示選取的巴黎點位。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "zh-Hant": "Restore Previous Values 檢閱面板，三列標記為 Will restore，一列標記為 Changed since the save。"
@@ -243,24 +237,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "zh-Hant": "Compare & Sync 指令碼的局部圖，一項 DROP COLUMN 被排除在本次執行之外，並顯示資料遺失警告。"
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "zh-Hant": "MySQL 伺服器的 Users & Roles，SQL Preview 顯示一項 GRANT，授予 app_reader 使用者對 shop.orders 的 total 欄位的 SELECT 權限。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "zh-Hant": "PostgreSQL 伺服器的 Server Dashboard 列出作用中的工作階段，選取了一項執行時間較長的 SELECT，並顯示 Terminate 按鈕。"
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "zh-Hant": "Server Dashboard 中選取的長時間執行的 SELECT 工作階段局部圖，旁邊是 Terminate 按鈕。"
         },
         "caption": null
     },
@@ -280,279 +256,120 @@
             "zh-Hant": "手機局部圖：iPhone 顯示 Track 資料表，下方是 Mac Dock 中的 Handoff 圖示。"
         }
     },
-    "mac-engine-picker": {
-        "alt": {
-            "zh-Hant": "新增連線的資料庫類型選擇器，按類別分組列出引擎，MongoDB 標記為 Not Installed。"
-        },
-        "caption": null
-    },
-    "mac-engine-picker-mobile": {
-        "alt": {
-            "zh-Hant": "資料庫類型選擇器的局部圖，Document 下的 Elasticsearch、MongoDB、SurrealDB 和 Typesense 都標記為 Not Installed。"
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain": {
-        "alt": {
-            "zh-Hant": "orders 和 users 聯結查詢的 EXPLAIN ANALYZE 執行計畫圖，orders 的 Seq Scan 標為紅色。"
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain-mobile": {
-        "alt": {
-            "zh-Hant": "EXPLAIN ANALYZE 圖的局部圖，顯示 orders 中標為紅色的 Seq Scan 步驟。"
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query": {
-        "alt": {
-            "zh-Hant": "TablePro 連線至 MySQL，在 shop 資料庫中查詢聯結 orders 和 users，下方顯示結果。"
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query-mobile": {
-        "alt": {
-            "zh-Hant": "聯結 orders 和 users 的 MySQL 查詢局部圖，顯示結果的前幾列。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "zh-Hant": "TablePro 開啟內建的 Chinook SQLite 範例，Track 資料表按曲風篩選。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "zh-Hant": "按曲風篩選的 Chinook Track 資料表局部圖。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "zh-Hant": "MongoDB 的 events 集合上方顯示 Insert Document 面板，文件以 Extended JSON 撰寫。"
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "zh-Hant": "使用 Extended JSON 撰寫的文件局部圖，可插入 MongoDB 集合。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "zh-Hant": "TablePro 中的 Redis 索引鍵以冒號分隔組成樹狀結構，資料網格顯示每個索引鍵的型別、TTL、長度和值。"
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "zh-Hant": "資料網格中的 Redis 索引鍵局部圖，顯示每個索引鍵的型別和 TTL。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "zh-Hant": "使用 GO 分隔批次的 T-SQL 指令碼，Output 分頁顯示最後一個批次的 PRINT 訊息。"
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "zh-Hant": "T-SQL 指令碼的 GO 批次分隔符號局部圖，以及 Output 分頁中的 PRINT 訊息。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "zh-Hant": "編輯器中的 Oracle PL/SQL 區塊，結果下方顯示透過 DBMS_OUTPUT 輸出的文字行。"
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "zh-Hant": "PL/SQL 區塊中 DBMS_OUTPUT.PUT_LINE 呼叫的局部圖，結果下方顯示印出的部門資訊文字行。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "zh-Hant": "ClickHouse MergeTree 資料表的 Parts 分頁，列出分割區、資料片段及其列數。"
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "zh-Hant": "ClickHouse 資料表的 Parts 分頁局部圖，列出各資料片段的分割區、名稱和列數。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "zh-Hant": "Parquet 檔案在 DuckDB 中開啟為唯讀檢視，顯示針對該檢視的 SQL 查詢和結果。"
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "zh-Hant": "透過 DuckDB 讀取 Parquet 檔案的 SQL 查詢局部圖，顯示結果的前幾列。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "zh-Hant": "Cassandra 資料表從側邊欄開啟至資料網格，修改後的 status 值在儲存前標記為待處理，一個 set 欄位顯示為集合。"
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "zh-Hant": "Cassandra 資料網格的資料列局部圖，一個 status 儲存格改為 shipped 並標記為待處理，旁邊的 tags 欄位顯示一個 set。"
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-postgresql": {
         "description": {
-            "zh-Hant": "Redshift 資料表的 DDL，包含 DISTKEY 和 SORTKEY；結構為唯讀。"
+            "zh-Hant": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
+    "databases-mysql": {
         "description": {
-            "zh-Hant": "資料表 DDL 中 DISTKEY 和 SORTKEY 指令行的局部圖。"
+            "zh-Hant": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
         }
     },
-    "mac-db-d1-databases": {
+    "databases-sqlserver": {
         "description": {
-            "zh-Hant": "資料庫切換器列出該帳戶的 D1 資料庫，下方是其中一個資料庫的查詢。"
+            "zh-Hant": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
         }
     },
-    "mac-db-d1-databases-mobile": {
+    "databases-sqlite": {
         "description": {
-            "zh-Hant": "資料庫切換器局部圖，列出該帳戶的 D1 資料庫。"
+            "zh-Hant": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
         }
     },
-    "mac-db-turso-remote": {
+    "databases-mongodb": {
         "description": {
-            "zh-Hant": "遠端 Turso 資料庫：側邊欄顯示資料表，並呈現查詢結果。"
+            "zh-Hant": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
         }
     },
-    "mac-db-turso-remote-mobile": {
+    "databases-redis": {
         "description": {
-            "zh-Hant": "遠端 Turso 資料庫上的查詢及其前幾列結果的局部圖。"
+            "zh-Hant": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
         }
     },
-    "mac-db-dynamodb-planner": {
-        "alt": {
-            "zh-Hant": "DynamoDB 的篩選讀取，狀態列顯示在 byStatus 索引上執行 Query，傳回 44 個項目，消耗 1 個讀取容量單位。"
-        },
-        "caption": null
-    },
-    "mac-db-dynamodb-planner-mobile": {
-        "alt": {
-            "zh-Hant": "DynamoDB 篩選讀取後的狀態列局部圖：在 byStatus 索引上執行 Query，傳回 44 個項目，消耗 1 個讀取容量單位。"
-        },
-        "caption": null
-    },
-    "mac-db-bigquery-dry-run": {
+    "databases-redshift": {
         "description": {
-            "zh-Hant": "從 Explain 選單執行 BigQuery Dry Run：處理位元組數及預估成本。"
+            "zh-Hant": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-oracle": {
         "description": {
-            "zh-Hant": "Dry Run 結果局部圖：處理位元組數及預估成本。"
+            "zh-Hant": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-clickhouse": {
         "description": {
-            "zh-Hant": "Snowflake 連線在 Session Context 中設定了倉儲和角色，下方顯示結果。"
+            "zh-Hant": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-duckdb": {
         "description": {
-            "zh-Hant": "Session Context 子選單局部圖，顯示已勾選的倉儲。"
+            "zh-Hant": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
         }
     },
-    "mac-db-etcd-keys": {
-        "alt": {
-            "zh-Hant": "/acme/sessions/ 前綴下的 etcd 索引鍵，其中三個索引鍵共用同一個租約。"
-        },
-        "caption": null
-    },
-    "mac-db-etcd-keys-mobile": {
-        "alt": {
-            "zh-Hant": "/acme/sessions/ 前綴下的 etcd 索引鍵局部圖，顯示每個索引鍵的租約。"
-        },
-        "caption": null
-    },
-    "mac-db-elasticsearch-console": {
+    "databases-cassandra": {
         "description": {
-            "zh-Hant": "Query DSL 主控台：GET _search 請求及以資料列顯示的符合結果。"
+            "zh-Hant": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
+    "databases-dynamodb": {
         "description": {
-            "zh-Hant": "GET _search 請求及前幾個符合結果的局部圖。"
+            "zh-Hant": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
         }
     },
-    "mac-db-surrealdb-query": {
-        "alt": {
-            "zh-Hant": "編輯器中的 SurrealQL 查詢，以及資料網格中傳回的紀錄。"
-        },
-        "caption": null
-    },
-    "mac-db-surrealdb-query-mobile": {
-        "alt": {
-            "zh-Hant": "SurrealQL 查詢及傳回紀錄的局部圖，顯示 person:alice 等 ID。"
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
+    "databases-bigquery": {
         "description": {
-            "zh-Hant": "Teradata 側邊欄列出程序，巨集歸入 Functions 群組。"
+            "zh-Hant": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
         }
     },
-    "mac-db-teradata-sidebar-mobile": {
+    "databases-snowflake": {
         "description": {
-            "zh-Hant": "側邊欄中 Procedures 和 Functions 群組的局部圖。"
+            "zh-Hant": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
         }
     },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "zh-Hant": "Trino 查詢聯結來自兩個目錄的資料表，下方顯示結果。"
-        },
-        "caption": null
+    "databases-cloudflare-d1": {
+        "description": {
+            "zh-Hant": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+        }
     },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "zh-Hant": "聯結兩個目錄中資料表的 Trino 查詢局部圖，顯示前幾項結果。"
-        },
-        "caption": null
+    "databases-turso": {
+        "description": {
+            "zh-Hant": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+        }
     },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "zh-Hant": "側邊欄顯示 Beancount 帳本投影出的資料表，並顯示 BQL 查詢結果。"
-        },
-        "caption": null
+    "databases-elasticsearch": {
+        "description": {
+            "zh-Hant": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+        }
     },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "zh-Hant": "Beancount 帳本上的 BQL 查詢局部圖，顯示結果的前幾列。"
-        },
-        "caption": null
+    "databases-etcd": {
+        "description": {
+            "zh-Hant": "An etcd connection: keys under a prefix root, with their values and leases."
+        }
     },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "zh-Hant": "針對 orders 主題的 KafkaQL CONSUME 陳述式，訊息按分割區、位移、索引鍵和時間戳記列出。"
-        },
-        "caption": null
+    "databases-kafka": {
+        "description": {
+            "zh-Hant": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+        }
     },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "zh-Hant": "針對 orders 主題的 KafkaQL CONSUME 陳述式局部圖，訊息按分割區、位移和索引鍵列出。"
-        },
-        "caption": null
+    "databases-surrealdb": {
+        "description": {
+            "zh-Hant": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+        }
+    },
+    "databases-teradata": {
+        "description": {
+            "zh-Hant": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+        }
+    },
+    "databases-trino": {
+        "description": {
+            "zh-Hant": "A Trino connection: a query joining tables from two catalogs, with its results below."
+        }
+    },
+    "databases-beancount": {
+        "description": {
+            "zh-Hant": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+        }
     },
     "ios-connection-list": {
         "alt": {

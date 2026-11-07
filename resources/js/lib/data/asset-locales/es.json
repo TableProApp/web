@@ -222,12 +222,6 @@
         },
         "caption": null
     },
-    "mac-result-map": {
-        "alt": {
-            "es": "Vista Mapa con lugares poblados de una tabla PostGIS y el punto seleccionado, París, en el inspector de filas."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "es": "Hoja de revisión de Restaurar valores anteriores, con tres filas marcadas Se restaurará y una marcada Cambiada desde el guardado."
@@ -243,24 +237,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "es": "Detalle del script de Comparar y sincronizar, con DROP COLUMN excluido de esta ejecución y su advertencia de pérdida de datos."
-        },
-        "caption": null
-    },
-    "mac-users-roles-mysql": {
-        "alt": {
-            "es": "Usuarios y roles en un servidor MySQL, con la vista previa SQL que muestra el GRANT que concede SELECT a app_reader sobre la columna total de shop.orders."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql": {
-        "alt": {
-            "es": "Panel del servidor PostgreSQL que lista las sesiones activas, con un SELECT de larga duración seleccionado y el botón Finalizar visible."
-        },
-        "caption": null
-    },
-    "mac-server-dashboard-postgresql-mobile": {
-        "alt": {
-            "es": "Detalle de una sesión SELECT de larga duración seleccionada en el panel del servidor, junto al botón Finalizar."
         },
         "caption": null
     },
@@ -280,279 +256,120 @@
             "es": "Detalle para teléfonos: iPhone con la tabla Track sobre el icono Handoff del Dock del Mac."
         }
     },
-    "mac-engine-picker": {
-        "alt": {
-            "es": "Selector de tipo de base de datos para una conexión nueva, con motores por categoría y MongoDB marcado No instalado."
-        },
-        "caption": null
-    },
-    "mac-engine-picker-mobile": {
-        "alt": {
-            "es": "Detalle del selector de tipos, con Elasticsearch, MongoDB, SurrealDB y Typesense en Documento, todos marcados No instalado."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain": {
-        "alt": {
-            "es": "Plan EXPLAIN ANALYZE para una consulta que une orders y users, en forma de diagrama, con Seq Scan sobre orders marcado en rojo."
-        },
-        "caption": null
-    },
-    "mac-db-postgresql-explain-mobile": {
-        "alt": {
-            "es": "Detalle de un diagrama EXPLAIN ANALYZE centrado en Seq Scan sobre orders marcado en rojo."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query": {
-        "alt": {
-            "es": "TablePro conectado a MySQL, con una consulta que une orders y users en la base shop y sus resultados debajo."
-        },
-        "caption": null
-    },
-    "mac-db-mysql-query-mobile": {
-        "alt": {
-            "es": "Detalle de una consulta MySQL que une orders y users, con las primeras filas de resultados."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook": {
-        "alt": {
-            "es": "TablePro con el ejemplo SQLite Chinook incluido abierto y la tabla Track filtrada por género."
-        },
-        "caption": null
-    },
-    "mac-db-sqlite-chinook-mobile": {
-        "alt": {
-            "es": "Detalle de la tabla Track de Chinook filtrada por género."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document": {
-        "alt": {
-            "es": "Hoja Insertar documento sobre una colección events de MongoDB, con un documento escrito en Extended JSON."
-        },
-        "caption": null
-    },
-    "mac-db-mongodb-document-mobile": {
-        "alt": {
-            "es": "Detalle de un documento en Extended JSON listo para insertarse en una colección MongoDB."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys": {
-        "alt": {
-            "es": "Claves Redis en TablePro agrupadas en árbol por el separador de dos puntos, con tipo, TTL, longitud y valor de cada clave en la cuadrícula."
-        },
-        "caption": null
-    },
-    "mac-db-redis-keys-mobile": {
-        "alt": {
-            "es": "Detalle de claves Redis en la cuadrícula, con tipo y TTL de cada clave."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script": {
-        "alt": {
-            "es": "Script T-SQL dividido en lotes con GO y el mensaje PRINT del último lote en la pestaña Salida."
-        },
-        "caption": null
-    },
-    "mac-db-sqlserver-script-mobile": {
-        "alt": {
-            "es": "Detalle de los separadores GO de un script T-SQL y un mensaje PRINT en la pestaña Salida."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql": {
-        "alt": {
-            "es": "Bloque PL/SQL de Oracle en el editor, con las líneas escritas mediante DBMS_OUTPUT bajo su resultado."
-        },
-        "caption": null
-    },
-    "mac-db-oracle-plsql-mobile": {
-        "alt": {
-            "es": "Detalle de la llamada DBMS_OUTPUT.PUT_LINE en un bloque PL/SQL y las líneas de departamentos impresas bajo el resultado."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts": {
-        "alt": {
-            "es": "Pestaña Partes de una tabla MergeTree de ClickHouse, con particiones y partes y sus recuentos de filas."
-        },
-        "caption": null
-    },
-    "mac-db-clickhouse-parts-mobile": {
-        "alt": {
-            "es": "Detalle de la pestaña Partes de una tabla ClickHouse, con partición, nombre y número de filas de cada parte."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet": {
-        "alt": {
-            "es": "Archivo Parquet abierto en DuckDB como vista de solo lectura, con una consulta SQL y sus resultados."
-        },
-        "caption": null
-    },
-    "mac-db-duckdb-parquet-mobile": {
-        "alt": {
-            "es": "Detalle de una consulta SQL que lee Parquet mediante DuckDB, con las primeras filas de resultados."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table": {
-        "alt": {
-            "es": "Tabla Cassandra abierta desde la barra lateral en la cuadrícula, con un valor status modificado pendiente de guardar y una columna set mostrada como colección."
-        },
-        "caption": null
-    },
-    "mac-db-cassandra-table-mobile": {
-        "alt": {
-            "es": "Detalle de filas Cassandra en la cuadrícula, con una celda status cambiada a shipped y marcada pendiente, junto a tags que muestra un set."
-        },
-        "caption": null
-    },
-    "mac-db-redshift-ddl": {
+    "databases-postgresql": {
         "description": {
-            "es": "DDL de una tabla Redshift con DISTKEY y SORTKEY; la estructura es de solo lectura."
+            "es": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
         }
     },
-    "mac-db-redshift-ddl-mobile": {
+    "databases-mysql": {
         "description": {
-            "es": "Detalle de las líneas DISTKEY y SORTKEY del DDL de la tabla."
+            "es": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
         }
     },
-    "mac-db-d1-databases": {
+    "databases-sqlserver": {
         "description": {
-            "es": "Selector de bases de datos con las bases D1 de la cuenta sobre una consulta en una de ellas."
+            "es": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
         }
     },
-    "mac-db-d1-databases-mobile": {
+    "databases-sqlite": {
         "description": {
-            "es": "Detalle del selector con las bases D1 de la cuenta."
+            "es": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
         }
     },
-    "mac-db-turso-remote": {
+    "databases-mongodb": {
         "description": {
-            "es": "Base Turso remota: tablas en la barra lateral y resultado de consulta."
+            "es": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
         }
     },
-    "mac-db-turso-remote-mobile": {
+    "databases-redis": {
         "description": {
-            "es": "Detalle de la consulta en la base Turso remota y sus primeras filas."
+            "es": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
         }
     },
-    "mac-db-dynamodb-planner": {
-        "alt": {
-            "es": "Lectura DynamoDB filtrada, con la barra de estado que indica Query sobre el índice byStatus, 44 elementos devueltos y 1 unidad de capacidad de lectura consumida."
-        },
-        "caption": null
-    },
-    "mac-db-dynamodb-planner-mobile": {
-        "alt": {
-            "es": "Detalle de la barra de estado DynamoDB tras una lectura filtrada: Query sobre byStatus, 44 elementos devueltos y 1 unidad de capacidad de lectura consumida."
-        },
-        "caption": null
-    },
-    "mac-db-bigquery-dry-run": {
+    "databases-redshift": {
         "description": {
-            "es": "Simulación de BigQuery desde el menú Explain: bytes procesados y coste estimado."
+            "es": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
         }
     },
-    "mac-db-bigquery-dry-run-mobile": {
+    "databases-oracle": {
         "description": {
-            "es": "Detalle del resultado de simulación: bytes procesados y coste estimado."
+            "es": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
         }
     },
-    "mac-db-snowflake-session": {
+    "databases-clickhouse": {
         "description": {
-            "es": "Conexión Snowflake con almacén y rol configurados en Contexto de sesión y un resultado debajo."
+            "es": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
         }
     },
-    "mac-db-snowflake-session-mobile": {
+    "databases-duckdb": {
         "description": {
-            "es": "Detalle del submenú Contexto de sesión con el almacén marcado."
+            "es": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
         }
     },
-    "mac-db-etcd-keys": {
-        "alt": {
-            "es": "Claves etcd bajo el prefijo /acme/sessions/, tres de ellas con el mismo arrendamiento."
-        },
-        "caption": null
-    },
-    "mac-db-etcd-keys-mobile": {
-        "alt": {
-            "es": "Detalle de claves etcd bajo /acme/sessions/, con el arrendamiento de cada clave."
-        },
-        "caption": null
-    },
-    "mac-db-elasticsearch-console": {
+    "databases-cassandra": {
         "description": {
-            "es": "Consola Query DSL: petición GET _search y sus coincidencias como filas."
+            "es": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
         }
     },
-    "mac-db-elasticsearch-console-mobile": {
+    "databases-dynamodb": {
         "description": {
-            "es": "Detalle de la petición GET _search y sus primeras coincidencias."
+            "es": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
         }
     },
-    "mac-db-surrealdb-query": {
-        "alt": {
-            "es": "Consulta SurrealQL en el editor y los registros devueltos en la cuadrícula de datos."
-        },
-        "caption": null
-    },
-    "mac-db-surrealdb-query-mobile": {
-        "alt": {
-            "es": "Detalle de una consulta SurrealQL y sus registros devueltos, con identificadores como person:alice."
-        },
-        "caption": null
-    },
-    "mac-db-teradata-sidebar": {
+    "databases-bigquery": {
         "description": {
-            "es": "Barra lateral Teradata con procedimientos y macros en Funciones."
+            "es": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
         }
     },
-    "mac-db-teradata-sidebar-mobile": {
+    "databases-snowflake": {
         "description": {
-            "es": "Detalle de los grupos Procedimientos y Funciones de la barra lateral."
+            "es": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
         }
     },
-    "mac-db-trino-catalogs": {
-        "alt": {
-            "es": "Consulta Trino que une tablas de dos catálogos, con resultados debajo."
-        },
-        "caption": null
+    "databases-cloudflare-d1": {
+        "description": {
+            "es": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+        }
     },
-    "mac-db-trino-catalogs-mobile": {
-        "alt": {
-            "es": "Detalle de una consulta Trino que une tablas de dos catálogos, con sus primeros resultados."
-        },
-        "caption": null
+    "databases-turso": {
+        "description": {
+            "es": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+        }
     },
-    "mac-db-beancount-bql": {
-        "alt": {
-            "es": "Tablas proyectadas de un libro Beancount en la barra lateral y el resultado de una consulta BQL."
-        },
-        "caption": null
+    "databases-elasticsearch": {
+        "description": {
+            "es": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+        }
     },
-    "mac-db-beancount-bql-mobile": {
-        "alt": {
-            "es": "Detalle de una consulta BQL sobre un libro Beancount, con las primeras filas de resultados."
-        },
-        "caption": null
+    "databases-etcd": {
+        "description": {
+            "es": "An etcd connection: keys under a prefix root, with their values and leases."
+        }
     },
-    "mac-db-kafka-consume": {
-        "alt": {
-            "es": "Instrucción KafkaQL CONSUME sobre un tema orders, con mensajes listados por partición, offset, clave y marca de tiempo."
-        },
-        "caption": null
+    "databases-kafka": {
+        "description": {
+            "es": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+        }
     },
-    "mac-db-kafka-consume-mobile": {
-        "alt": {
-            "es": "Detalle de una instrucción KafkaQL CONSUME sobre un tema orders, con mensajes listados por partición, offset y clave."
-        },
-        "caption": null
+    "databases-surrealdb": {
+        "description": {
+            "es": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+        }
+    },
+    "databases-teradata": {
+        "description": {
+            "es": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+        }
+    },
+    "databases-trino": {
+        "description": {
+            "es": "A Trino connection: a query joining tables from two catalogs, with its results below."
+        }
+    },
+    "databases-beancount": {
+        "description": {
+            "es": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+        }
     },
     "ios-connection-list": {
         "alt": {
