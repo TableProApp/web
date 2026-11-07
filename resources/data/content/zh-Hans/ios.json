@@ -9,122 +9,120 @@
     },
     "hero": {
         "title": "iPhone 和 iPad 版 TablePro",
-        "lead": "在手机或平板上浏览支持的表、运行查询并编辑行。",
-        "noSignUp": "无需注册或许可证",
-        "mac": "在找 Mac 应用？<download>下载 Mac 版 TablePro</download>。"
+        "lead": "通过 SSH 或 TLS 连接，然后在手机或平板上浏览、编辑和查询您的数据库。",
+        "requirement": "免费，无应用内购买。需要 {requirement}。"
     },
     "databases": {
         "title": "数据库",
-        "lead": "可为这些数据库创建连接。所有驱动均内置。",
-        "syncedOnly": "{engines} 连接可在通过 iCloud Sync 或 .tablepro 文件从 Mac 导入后打开，无法在此应用中创建。",
-        "others": "从 Mac 同步的其他连接会出现在列表中，但没有支持的驱动就无法打开。查看全部<databases>支持的数据库</databases>。",
-        "files": "SQLite 将所选文件复制到 App 存储，编辑只改变副本，也可创建数据库。DuckDB 就地打开文件或在内存中运行。",
-        "redis": "Redis 支持 Query 标签页中的命令，不支持键浏览。",
-        "sample": "先体验看看，可打开随应用提供的 Chinook 示例数据库。"
+        "syncedOnly": "{engines} 连接通过 iCloud Sync 或 .tablepro 文件从 Mac 导入后即可打开。",
+        "files": "SQLite 在您所选文件的副本上工作。DuckDB 就地打开文件或在内存中运行。"
     },
-    "browse": {
-        "title": "浏览和编辑表",
-        "paragraphs": [
-            "每个连接提供表、查询、历史和连接详情标签页。",
-            "浏览行卡片、排序列、搜索非二进制值，并用 AND 或 OR 组合筛选。点击外键预览引用行。Structure 列出列、索引和外键。",
-            "打开行编辑值或设为 NULL，再确认保存。可插入和删除行，或清空和删除表。行编辑和删除需要主键。Read-Only 阻止更改。"
-        ]
-    },
-    "query": {
-        "title": "运行查询",
-        "paragraphs": [
-            "编写带语法高亮的 SQL，运行或停止，并将结果共享为 JSON、CSV 或 SQL INSERT 语句。使用剪贴板或共享表单。",
-            "结果最多保留 {results} 行，大查询请使用 LIMIT。历史保留本设备所有连接中最近 {history} 条查询，不参与同步。",
-            "Live Activities 在锁定屏幕和 Dynamic Island 显示已用时间及接收行数。除非启用 <ui>设置 > 实时活动 > 隐藏查询</ui> (Settings > Live Activities > Hide Query)，锁定屏幕和展开的 Island 也会显示 SQL。"
-        ]
-    },
-    "security": {
-        "title": "安全连接",
-        "paragraphs": [
-            "SSH 隧道使用密码或私钥，可附加口令。可导入或粘贴密钥。首次连接时，App 会要求信任服务器主机密钥指纹。",
-            "TLS 按连接设置。MySQL、MariaDB、TiDB、OceanBase 和 PostgreSQL 可验证证书和主机名，并使用客户端证书。Redis 支持证书验证和客户端证书。SQL Server 的 Required 模式加密但不验证证书。证书保留在本设备。",
-            "密码和粘贴的密钥保留在 Keychain。同步的 SQL Server 连接可使用 Microsoft Entra ID，不支持 Windows 身份验证。访问 .local 主机需允许 Local Network 访问。"
-        ]
-    },
-    "safeMode": {
-        "title": "Safe Mode 和应用锁",
-        "paragraphs": [
-            "为每个连接选择级别：{levels}。Confirm Writes 在写入前确认；Read-Only 阻止写入。无法识别的语句按写入处理。",
-            "在 Organization 设置级别，在 Settings 设置新连接默认值。Shortcuts 遵循相同级别。",
-            "在 <ui>设置 > 安全</ui> (Settings > Security) 启用 Face ID 或 Touch ID，可用密码作为备用。App 在启动时及所选 Auto-Lock 间隔后锁定。"
-        ]
-    },
-    "ipad": {
-        "title": "在 iPad 上",
-        "paragraphs": [
-            "iPad 支持任意方向，可用 Stage Manager 或 Split View 开启多个窗口。标签栏可切换为侧边栏。",
-            "键盘快捷键包括 ⌘1–⌘4 切换标签页、⌘F 搜索、⌘↩ 运行查询和 ⌘N 新建连接。也支持鼠标和触控板。"
-        ]
-    },
-    "mac": {
-        "title": "与 Mac 配合使用",
-        "paragraphs": [
-            "启用 iCloud Sync，通过自己的 iCloud 账户共享连接、分组和标签。密码需单独启用 Sync Passwords。已保存查询、SSH 配置和设置仅在 Mac 间同步。",
-            "这里的同步免费；Mac 需要 Pro 或 Team。查看<pricing>价格</pricing>。",
-            "也可通过 AirDrop 或 Files 传输 .tablepro 文件。导出默认不含密码，除非选择包含并用口令加密。两种选项在这里均免费；Mac 上的Encrypted Export需要付费许可证。",
-            "启用同步后，Handoff 可在另一设备继续打开的连接或表。查看<sync>同步与团队</sync>。"
-        ]
-    },
-    "automation": {
-        "title": "快捷指令、小组件和 Spotlight",
-        "paragraphs": [
-            "用 Siri 或 Shortcuts 打开连接。Add Row to Table 和 Add Rows to Table 无需打开 App 即可插入 JSON 或 CSV。这些操作在设备锁定时不运行，遵循 Safe Mode，且不支持 Redis。",
-            "Quick Connect 小组件从主屏幕打开列表靠前的连接。连接也显示在 Spotlight 中。"
-        ]
-    },
-    "limits": {
-        "title": "iPhone 和 iPad 未提供的功能",
-        "lead": "以下在 Mac 版 TablePro 中提供：",
+    "bands": [
+        {
+            "id": "connect",
+            "also": [
+                "security"
+            ],
+            "title": "安全连接",
+            "text": [
+                "使用密码或私钥建立 SSH 隧道，并在首次连接时信任服务器的主机密钥。按连接设置 TLS，在数据库支持时可验证证书并使用客户端证书。密码和粘贴的密钥保留在 Keychain 中。"
+            ],
+            "asset": "ios-connect"
+        },
+        {
+            "id": "browse",
+            "title": "浏览和编辑",
+            "text": [
+                "以卡片形式查看行，排序、搜索并用 AND 或 OR 筛选，点击外键即可查看它指向的行。编辑值或设为 NULL，然后确认保存。插入和删除行，或清空和删除表。编辑或删除行需要主键。"
+            ],
+            "asset": "ios-browse"
+        },
+        {
+            "id": "query",
+            "title": "运行查询",
+            "text": [
+                "编写带语法高亮的 SQL，然后运行或停止。将结果共享为 JSON、CSV 或 INSERT 语句。结果最多保留 {results} 行，历史记录在设备上保留最近 {history} 条查询。Live Activity 会在锁定屏幕上跟踪正在运行的查询。"
+            ],
+            "asset": "ios-query"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Safe Mode",
+            "text": [
+                "为每个连接设置级别：{levels}。Confirm Writes 在语句更改数据前询问，Read-Only 则阻止它。App 无法分类的语句按写入处理。Face ID 或 Touch ID 可在启动时和 Auto-Lock 后锁定 App。"
+            ],
+            "asset": "ios-safe-mode"
+        },
+        {
+            "id": "shortcuts",
+            "also": [
+                "automation"
+            ],
+            "title": "快捷指令和小组件",
+            "text": [
+                "从 Siri、快捷指令、Quick Connect 小组件或 Spotlight 打开连接。<ui>向表添加多行</ui> (Add Rows to Table) 无需打开 App 即可插入 JSON 或 CSV。操作遵循连接的 Safe Mode 级别，设备锁定时不会运行。"
+            ],
+            "asset": "ios-shortcuts"
+        },
+        {
+            "id": "mac",
+            "title": "与 Mac 配合使用",
+            "text": [
+                "启用 iCloud Sync，通过您自己的 iCloud 账户与 Mac 共享连接、分组和标签。密码仅在启用 Sync Passwords 时同步，Mac 需要 Pro 或 Team 才能同步。启用同步后，Handoff 可在另一台设备上接续打开的表。"
+            ],
+            "asset": "diagram-icloud-sync"
+        }
+    ],
+    "more": {
+        "title": "其他",
         "items": [
-            "AI 助手和 MCP 服务器",
-            "已保存查询、自动补全、查询格式化和 EXPLAIN",
-            "截断或删除表之外的结构修改，以及 ER 图",
-            "Compare & Sync、Query Insights、Result Charts 和 Data Rewind",
-            "导出 XLSX 等格式文件，以及将文件导入表（快捷指令可添加行）",
-            "服务器仪表盘、用户和角色、备份",
-            "其他数据库的驱动插件",
-            "SSH 跳板机、SSH agent 和 SQL Server 的 Windows 认证",
-            "浏览 Redis 键"
-        ],
-        "mac": "<download>下载 Mac 版 TablePro</download>"
-    },
-    "knownIssues": {
-        "title": "版本 {version} 的已知问题",
-        "items": [
-            "在行编辑器中，当长文本或二进制值显示为缩略内容时，请勿保存该行：编辑器可能用缩略文本覆盖完整值。请在 Mac 上修改这些行。",
-            "在 iPhone 或 iPad 保存已同步连接可能丢失 SSH 跳板机等 Mac 专用设置，并可能降低 Safe Mode 级别。请在 Mac 上编辑这些连接。",
-            "Redis 连接验证服务器证书时，只检查证书，不检查主机名。",
-            "在添加行的快捷指令操作中，CSV 必须为 UTF-8 文本且使用 LF 换行。"
-        ]
-    },
-    "privacy": {
-        "title": "隐私",
-        "paragraphs": [
-            "使用报告默认关闭。在 <ui>设置 > 隐私</ui> (Settings > Privacy) 启用 Share Usage Data 后，每天发送哈希设备 ID、App 和 iOS 版本、架构、语言、数据库类型、连接数及首次使用日期。不包含主机名、用户名、密码、查询或行数据。",
-            "不会向 TablePro 发送许可证、更新或插件检查。查询发送给数据库，iCloud Sync 发送给您的 iCloud 账户，Entra 登录发送给 Microsoft。阅读<privacyIos>隐私政策</privacyIos>。"
-        ]
-    },
-    "get": {
-        "title": "获取 iPhone 和 iPad 版 TablePro",
-        "source": "应用采用 AGPLv3 开源，与 Mac 应用位于<source>同一个仓库</source>。",
-        "faq": [
             {
-                "question": "需要 Mac 应用吗？",
-                "answer": "不需要，iPhone 和 iPad 应用可独立使用。如果也使用 Mac，iCloud Sync 和 Handoff 可连接两者。"
+                "id": "limits",
+                "also": [
+                    "known-issues"
+                ],
+                "title": "仅在 Mac 上提供",
+                "text": [
+                    "AI 助手、MCP 服务器和驱动插件在 Mac 版 TablePro 中，不在此 App 中。已保存查询、自动补全、EXPLAIN 和 ER 图也是如此。Compare & Sync、Query Insights、Result Charts 和 Data Rewind 也在 Mac 版中，文件导入导出和备份同样如此。SSH 跳板机、Windows 身份验证和 Redis 键浏览也是如此。"
+                ],
+                "links": [
+                    {
+                        "label": "下载 Mac 版 TablePro",
+                        "href": "/download"
+                    }
+                ]
             },
             {
-                "question": "需要许可证吗？",
-                "answer": "不需要。应用没有付费功能、应用内购买或许可证。此应用的 iCloud Sync 免费，只有 Mac 需要 Pro 或 Team 许可证才能同步。"
+                "id": "ipad",
+                "title": "在 iPad 上",
+                "text": [
+                    "支持任意方向，并可通过 Stage Manager 或 Split View 使用多个窗口。键盘快捷键可切换标签页、搜索和运行查询。"
+                ]
             },
             {
-                "question": "与 Mac 应用相同吗？",
-                "answer": "不是。功能更少。查看<iosLimits>这里不提供的功能</iosLimits>。"
+                "id": "privacy",
+                "title": "隐私",
+                "text": [
+                    "除非您启用 Share Usage Data，否则不会向 TablePro 发送任何内容。该报告每天发送一次，不包含主机名、用户名、密码、查询或行数据。"
+                ],
+                "links": [
+                    {
+                        "label": "隐私政策",
+                        "href": "/privacy#ios-app"
+                    }
+                ]
+            },
+            {
+                "id": "source",
+                "title": "开源",
+                "text": [
+                    "应用采用 AGPLv3 开源，与 Mac 应用位于<source>同一个仓库</source>。"
+                ]
             }
         ]
+    },
+    "closing": {
+        "title": "获取 iPhone 和 iPad 版 TablePro",
+        "text": "从 App Store 安装，然后打开 Chinook 示例数据库四处看看。"
     }
 }
