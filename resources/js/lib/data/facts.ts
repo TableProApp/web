@@ -76,7 +76,7 @@ export interface FactsData {
         /** Rendered as a plain text link only: no badge image and no request from the page (spec §0). */
         productHunt: string;
     };
-    support: { email: string };
+    support: { email: string; securityEmail: string };
     openSource: { license: string; repositoryCreatedAt: string; evidence: string };
     ai: {
         platforms: PlatformId[];

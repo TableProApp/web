@@ -7,27 +7,24 @@ use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use Illuminate\Http\Response;
 
-/**
- * `/.well-known/security.txt` (RFC 9116).
- */
+// `/.well-known/security.txt` (RFC 9116): the contacts in order of preference, then the policy on /security.
 class SecurityTxtController extends Controller
 {
     public const PATH = '/.well-known/security.txt';
 
-    /**
-     * The date the contact below stops being vouched for. Move it forward,
-     * less than a year ahead, after checking the address still reaches someone.
-     */
+    // Move it forward, less than a year ahead, after checking the contacts still reach someone.
     public const EXPIRES = '2027-10-01T00:00:00Z';
 
     public function __invoke(SiteFacts $facts): Response
     {
-        $email = $facts->links()['email'];
+        $email = $facts->securityEmail();
+        $github = $facts->links()['github'];
 
         abort_if($email === null, 404);
 
         $lines = [
             'Contact: mailto:' . $email,
+            ...($github === null ? [] : ['Contact: ' . $github . '/security/advisories/new']),
             'Expires: ' . self::EXPIRES,
             'Preferred-Languages: en, vi',
             'Canonical: ' . LocalizedUrl::base() . self::PATH,

@@ -47,7 +47,8 @@ it('names the publisher in every supported language', function (): void {
     $publisher = factsJson()['publisher'];
 
     expect($publisher['name'])->toBeString()->not->toBeEmpty()
-        ->and(filter_var(factsJson()['support']['email'], FILTER_VALIDATE_EMAIL))->not->toBeFalse();
+        ->and(filter_var(factsJson()['support']['email'], FILTER_VALIDATE_EMAIL))->not->toBeFalse()
+        ->and(filter_var(factsJson()['support']['securityEmail'], FILTER_VALIDATE_EMAIL))->not->toBeFalse();
 
     expect(array_keys($publisher['country']))->toEqualCanonicalizing(Locales::codes(), 'publisher.country does not cover every locale')
         ->and($publisher)->not->toHaveKey('city');
