@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "id": "Koneksi PostgreSQL ke shop: kueri yang menggabungkan orders dan users, dengan rencana EXPLAIN ANALYZE-nya digambar sebagai diagram."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke PostgreSQL, dengan kueri yang membentuk array dan jsonb, beserta hasilnya."
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "id": "Koneksi MySQL ke shop: kueri yang menggabungkan orders dan users, dengan hasilnya di grid."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke MySQL, dengan kueri dan hasilnya."
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "id": "Koneksi SQL Server: skrip T-SQL yang dipecah menjadi batch GO, dengan output PRINT-nya di tab Output."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke SQL Server, dengan skrip T-SQL dan output PRINT-nya."
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "id": "Contoh SQLite Chinook bawaan, dengan tabel Track yang difilter berdasarkan genre."
-        }
+        "alt": {
+            "id": "TablePro di Mac dengan database SQLite contoh Chinook terbuka di tabel Track."
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "id": "Koneksi MongoDB: koleksi events di grid, dengan lembar Insert Document terbuka dalam Extended JSON."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke MongoDB, dengan dokumen yang ditulis dalam Extended JSON."
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "id": "Koneksi Redis: pohon kunci yang dipisahkan dengan \":\", dengan kolom Key, Type, TTL, Length, dan Value."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Redis, dengan kunci yang dikelompokkan dalam pohon serta jenis, TTL, dan nilai setiap kunci."
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "id": "Koneksi Oracle: blok PL/SQL di editor, dengan baris DBMS_OUTPUT-nya di bawah hasil."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Oracle Database, dengan blok PL/SQL dan baris DBMS_OUTPUT-nya."
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "id": "Koneksi ClickHouse: tab Parts dari tabel MergeTree, dengan partisi, part, dan jumlah baris."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke ClickHouse, dengan kueri analitik dan hasilnya."
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "id": "Database DuckDB dengan file Parquet yang dibuka sebagai view dan dikueri dengan SQL."
-        }
+        "alt": {
+            "id": "TablePro di Mac dengan database DuckDB, menjalankan kueri SQL pada file Parquet."
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "id": "Keyspace Cassandra: tabel di grid, dengan satu sel skalar yang diubah masih tertunda dan kolom set ditampilkan sebagai koleksi."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Cassandra, dengan kueri CQL dan hasilnya."
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "id": "Tabel DynamoDB: pembacaan terfilter yang dijalankan sebagai Query pada indeks, dengan kapasitas baca yang digunakan di bilah status."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Amazon DynamoDB, dengan kueri PartiQL pada sebuah indeks dan item hasilnya."
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "id": "Konsol Query DSL Elasticsearch: permintaan GET _search dan hasilnya sebagai baris."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Elasticsearch, dengan permintaan pencarian dan hasilnya sebagai baris."
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "id": "Koneksi etcd: kunci di bawah prefix root, dengan nilai dan lease-nya."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke etcd, dengan kunci di bawah sebuah prefiks beserta nilainya."
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "id": "Koneksi Kafka: KafkaQL CONSUME pada topic orders, dengan pesan berdasarkan partisi, offset, kunci, dan timestamp."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Apache Kafka, mencantumkan pesan sebuah topic."
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "id": "Koneksi SurrealDB: kueri SurrealQL dan record yang dikembalikannya di grid."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke SurrealDB, dengan kueri SurrealQL dan record-nya."
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "id": "Koneksi Trino: kueri yang menggabungkan tabel dari dua katalog, dengan hasilnya di bawah."
-        }
+        "alt": {
+            "id": "TablePro di Mac yang terhubung ke Trino, dengan kueri pada data contoh TPC-H dan hasilnya."
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "id": "Buku besar Beancount: tabel hasil proyeksinya di sidebar dan hasil kueri BQL."
-        }
+        "alt": {
+            "id": "TablePro di Mac dengan buku besar Beancount terbuka, tabelnya di sidebar, dan hasil kueri BQL."
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

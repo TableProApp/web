@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "ko": "shop의 PostgreSQL 연결. orders와 users를 조인하는 쿼리와 다이어그램으로 그린 EXPLAIN ANALYZE 계획입니다."
-        }
+        "alt": {
+            "ko": "PostgreSQL에 연결된 Mac의 TablePro. 배열과 jsonb를 만드는 쿼리와 그 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "ko": "shop의 MySQL 연결. orders와 users를 조인하는 쿼리와 그리드의 결과입니다."
-        }
+        "alt": {
+            "ko": "MySQL에 연결된 Mac의 TablePro. 쿼리와 그 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "ko": "SQL Server 연결. GO 배치로 나뉜 T-SQL 스크립트와 Output 탭의 PRINT 출력입니다."
-        }
+        "alt": {
+            "ko": "SQL Server에 연결된 Mac의 TablePro. T-SQL 스크립트와 PRINT 출력이 표시됩니다."
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "ko": "앱에 포함된 Chinook SQLite 샘플. 장르로 필터링한 Track 테이블입니다."
-        }
+        "alt": {
+            "ko": "Mac의 TablePro에서 SQLite 샘플 데이터베이스 Chinook의 Track 테이블을 연 화면."
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "ko": "MongoDB 연결. 그리드의 events 컬렉션과 Extended JSON으로 열린 Insert Document 시트입니다."
-        }
+        "alt": {
+            "ko": "MongoDB에 연결된 Mac의 TablePro. Extended JSON으로 작성한 문서가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "ko": "Redis 연결. \":\"로 나눈 키 트리와 Key, Type, TTL, Length, Value 열입니다."
-        }
+        "alt": {
+            "ko": "Redis에 연결된 Mac의 TablePro. 트리로 묶인 키와 각 키의 타입, TTL, 값이 표시됩니다."
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "ko": "Oracle 연결. 편집기의 PL/SQL 블록과 결과 아래의 DBMS_OUTPUT 줄입니다."
-        }
+        "alt": {
+            "ko": "Oracle Database에 연결된 Mac의 TablePro. PL/SQL 블록과 DBMS_OUTPUT 줄이 표시됩니다."
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "ko": "ClickHouse 연결. MergeTree 테이블의 Parts 탭과 파티션, 파트, 행 수입니다."
-        }
+        "alt": {
+            "ko": "ClickHouse에 연결된 Mac의 TablePro. 분석 쿼리와 그 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "ko": "뷰로 연 Parquet 파일을 SQL로 조회하는 DuckDB 데이터베이스입니다."
-        }
+        "alt": {
+            "ko": "DuckDB 데이터베이스를 연 Mac의 TablePro. SQL로 Parquet 파일을 조회합니다."
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "ko": "Cassandra 키스페이스. 그리드의 테이블과 대기 중인 스칼라 셀 변경, 컬렉션으로 표시된 set 열입니다."
-        }
+        "alt": {
+            "ko": "Cassandra에 연결된 Mac의 TablePro. CQL 쿼리와 그 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "ko": "DynamoDB 테이블. 인덱스에 대한 Query로 실행된 필터링 읽기와 상태 표시줄의 소비된 읽기 용량입니다."
-        }
+        "alt": {
+            "ko": "Amazon DynamoDB에 연결된 Mac의 TablePro. 인덱스에 대한 PartiQL 쿼리와 조회된 항목이 표시됩니다."
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "ko": "Elasticsearch Query DSL 콘솔. GET _search 요청과 행으로 표시된 검색 결과입니다."
-        }
+        "alt": {
+            "ko": "Elasticsearch에 연결된 Mac의 TablePro. 검색 요청과 행으로 표시된 결과가 보입니다."
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "ko": "etcd 연결. 접두사 루트 아래의 키와 그 값, 리스입니다."
-        }
+        "alt": {
+            "ko": "etcd에 연결된 Mac의 TablePro. 접두사 아래의 키와 그 값이 표시됩니다."
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "ko": "Kafka 연결. orders 토픽에 대한 KafkaQL CONSUME과 파티션, 오프셋, 키, 타임스탬프별 메시지입니다."
-        }
+        "alt": {
+            "ko": "Apache Kafka에 연결된 Mac의 TablePro. 토픽의 메시지가 나열됩니다."
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "ko": "SurrealDB 연결. SurrealQL 쿼리와 그리드에 반환된 레코드입니다."
-        }
+        "alt": {
+            "ko": "SurrealDB에 연결된 Mac의 TablePro. SurrealQL 쿼리와 레코드가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "ko": "Trino 연결. 두 카탈로그의 테이블을 조인하는 쿼리와 그 아래의 결과입니다."
-        }
+        "alt": {
+            "ko": "Trino에 연결된 Mac의 TablePro. TPC-H 샘플 데이터에 대한 쿼리와 그 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "ko": "Beancount 원장. 사이드바에 표시된 원장의 테이블과 BQL 쿼리 결과입니다."
-        }
+        "alt": {
+            "ko": "Beancount 원장을 연 Mac의 TablePro. 사이드바의 테이블과 BQL 쿼리 결과가 표시됩니다."
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

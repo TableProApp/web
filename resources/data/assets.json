@@ -4064,7 +4064,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram.",
+        "en": "PostgreSQL shop: a query building tag arrays and a jsonb object per product, with its results.",
         "vi": "Một connection PostgreSQL tới shop: một query join orders với users, cùng plan EXPLAIN ANALYZE của nó được vẽ thành sơ đồ.",
         "es": "Una conexión PostgreSQL en shop: una consulta que une orders y users, con su plan EXPLAIN ANALYZE dibujado como diagrama.",
         "de": "Eine PostgreSQL-Verbindung für shop: eine Abfrage, die orders mit users verknüpft, mit ihrem EXPLAIN-ANALYZE-Plan als Diagramm.",
@@ -4078,26 +4078,53 @@
         "id": "Koneksi PostgreSQL ke shop: kueri yang menggabungkan orders dan users, dengan rencana EXPLAIN ANALYZE-nya digambar sebagai diagram."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to PostgreSQL, with a query plan drawn as a diagram.",
-        "vi": "TablePro trên Mac kết nối tới PostgreSQL, với một query plan được vẽ thành sơ đồ.",
-        "es": "TablePro en un Mac conectado a PostgreSQL, con un plan de consulta dibujado como diagrama.",
-        "de": "TablePro auf dem Mac, verbunden mit PostgreSQL, mit einem Abfrageplan als Diagramm.",
-        "fr": "TablePro sur Mac connecté à PostgreSQL, avec un plan de requête représenté en diagramme.",
-        "ja": "PostgreSQL に接続した Mac 上の TablePro。クエリプランが図で表示されています。",
-        "pt-BR": "O TablePro no Mac conectado ao PostgreSQL, com um plano de consulta desenhado como diagrama.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 PostgreSQL，查询计划绘制为图表。",
-        "ko": "PostgreSQL에 연결된 Mac의 TablePro. 쿼리 계획이 다이어그램으로 표시됩니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 PostgreSQL，查詢計畫繪製為圖表。",
-        "it": "TablePro su Mac connesso a PostgreSQL, con un piano di query disegnato come diagramma.",
-        "id": "TablePro di Mac yang terhubung ke PostgreSQL, dengan rencana kueri digambar sebagai diagram."
+        "en": "TablePro on a Mac connected to PostgreSQL, with a query that builds arrays and jsonb, and its results.",
+        "vi": "TablePro trên Mac kết nối tới PostgreSQL, với một query tạo array và jsonb cùng kết quả của nó.",
+        "es": "TablePro en un Mac conectado a PostgreSQL, con una consulta que genera arrays y jsonb, y sus resultados.",
+        "de": "TablePro auf einem Mac, verbunden mit PostgreSQL, mit einer Abfrage, die Arrays und jsonb erzeugt, und ihren Ergebnissen.",
+        "fr": "TablePro sur Mac, connecté à PostgreSQL, avec une requête qui produit des tableaux et du jsonb, et ses résultats.",
+        "ja": "PostgreSQL に接続した Mac の TablePro。配列と jsonb を組み立てるクエリとその結果を表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao PostgreSQL, com uma consulta que gera arrays e jsonb, e seus resultados.",
+        "zh-Hans": "Mac 上连接到 PostgreSQL 的 TablePro，显示一条生成数组和 jsonb 的查询及其结果。",
+        "ko": "PostgreSQL에 연결된 Mac의 TablePro. 배열과 jsonb를 만드는 쿼리와 그 결과가 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 PostgreSQL 的 TablePro，顯示一條產生陣列與 jsonb 的查詢及其結果。",
+        "it": "TablePro su un Mac connesso a PostgreSQL, con una query che genera array e jsonb e i suoi risultati.",
+        "id": "TablePro di Mac yang terhubung ke PostgreSQL, dengan kueri yang membentuk array dan jsonb, beserta hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-postgresql"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-mysql": {
@@ -4119,7 +4146,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A MySQL connection on shop: a query joining orders and users, with its results in the grid.",
+        "en": "MySQL library database: a query joining books, authors and loans, with its results.",
         "vi": "Một connection MySQL tới shop: một query join orders với users, cùng kết quả của nó trong data grid.",
         "es": "Una conexión MySQL en shop: una consulta que une orders y users, con sus resultados en la cuadrícula.",
         "de": "Eine MySQL-Verbindung für shop: eine Abfrage, die orders mit users verknüpft, mit ihren Ergebnissen im Raster.",
@@ -4151,8 +4178,35 @@
         "dir": "public/images/databases",
         "base": "databases-mysql"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-sqlserver": {
@@ -4174,7 +4228,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab.",
+        "en": "SQL Server: a T-SQL script in two GO batches and its PRINT lines in the Output tab.",
         "vi": "Một connection SQL Server: một script T-SQL được tách thành các batch GO, cùng output PRINT của nó trong tab Output.",
         "es": "Una conexión SQL Server: un script T-SQL dividido en lotes GO, con su salida PRINT en la pestaña Output.",
         "de": "Eine SQL-Server-Verbindung: ein T-SQL-Skript, in GO-Batches aufgeteilt, mit seiner PRINT-Ausgabe im Tab Output.",
@@ -4206,8 +4260,35 @@
         "dir": "public/images/databases",
         "base": "databases-sqlserver"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-sqlite": {
@@ -4229,7 +4310,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "The bundled Chinook SQLite sample, with the Track table filtered by genre.",
+        "en": "The bundled Chinook sample (SQLite), open at the Track table.",
         "vi": "Cơ sở dữ liệu mẫu SQLite Chinook đi kèm ứng dụng, với table Track được lọc theo genre.",
         "es": "El ejemplo SQLite Chinook incluido, con la tabla Track filtrada por género.",
         "de": "Die mitgelieferte SQLite-Beispieldatenbank Chinook, mit der Tabelle Track nach Genre gefiltert.",
@@ -4243,26 +4324,53 @@
         "id": "Contoh SQLite Chinook bawaan, dengan tabel Track yang difilter berdasarkan genre."
       },
       "alt": {
-        "en": "TablePro on a Mac with a SQLite database file open and a table filtered in the grid.",
-        "vi": "TablePro trên Mac đang mở một file cơ sở dữ liệu SQLite, với một table được lọc trong data grid.",
-        "es": "TablePro en un Mac con un archivo de base de datos SQLite abierto y una tabla filtrada en la cuadrícula.",
-        "de": "TablePro auf dem Mac mit einer geöffneten SQLite-Datenbankdatei und einer gefilterten Tabelle im Raster.",
-        "fr": "TablePro sur Mac avec un fichier de base SQLite ouvert et une table filtrée dans la grille.",
-        "ja": "SQLite データベースファイルを開いた Mac 上の TablePro。グリッドでテーブルが絞り込まれています。",
-        "pt-BR": "O TablePro no Mac com um arquivo de banco de dados SQLite aberto e uma tabela filtrada na grade.",
-        "zh-Hans": "Mac 上的 TablePro 打开了一个 SQLite 数据库文件，网格中的表已筛选。",
-        "ko": "SQLite 데이터베이스 파일을 연 Mac의 TablePro. 그리드에서 테이블이 필터링되어 있습니다.",
-        "zh-Hant": "Mac 上的 TablePro 開啟了 SQLite 資料庫檔案，格線中有一個已篩選的資料表。",
-        "it": "TablePro su Mac con un file di database SQLite aperto e una tabella filtrata nella griglia.",
-        "id": "TablePro di Mac dengan file database SQLite terbuka dan tabel yang difilter di grid."
+        "en": "TablePro on a Mac with the Chinook sample SQLite database open at its Track table.",
+        "vi": "TablePro trên Mac mở cơ sở dữ liệu SQLite mẫu Chinook ở table Track.",
+        "es": "TablePro en un Mac con la base de datos SQLite de ejemplo Chinook abierta en la tabla Track.",
+        "de": "TablePro auf einem Mac mit der SQLite-Beispieldatenbank Chinook, geöffnet in der Tabelle Track.",
+        "fr": "TablePro sur Mac avec la base SQLite d’exemple Chinook ouverte sur la table Track.",
+        "ja": "Mac の TablePro で SQLite のサンプルデータベース Chinook を開き、Track テーブルを表示しています。",
+        "pt-BR": "TablePro em um Mac com o banco SQLite de exemplo Chinook aberto na tabela Track.",
+        "zh-Hans": "Mac 上的 TablePro 打开了 SQLite 示例数据库 Chinook 的 Track 表。",
+        "ko": "Mac의 TablePro에서 SQLite 샘플 데이터베이스 Chinook의 Track 테이블을 연 화면.",
+        "zh-Hant": "Mac 上的 TablePro 開啟了 SQLite 範例資料庫 Chinook 的 Track 資料表。",
+        "it": "TablePro su un Mac con il database SQLite di esempio Chinook aperto sulla tabella Track.",
+        "id": "TablePro di Mac dengan database SQLite contoh Chinook terbuka di tabel Track."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-sqlite"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-mongodb": {
@@ -4284,7 +4392,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON.",
+        "en": "MongoDB orders collection: the Edit Document sheet with a document in Extended JSON.",
         "vi": "Một connection MongoDB: collection events trong data grid, với sheet Insert Document đang mở ở dạng Extended JSON.",
         "es": "Una conexión MongoDB: la colección events en la cuadrícula, con la hoja Insert Document abierta en Extended JSON.",
         "de": "Eine MongoDB-Verbindung: die Sammlung events im Raster, mit geöffnetem Insert-Document-Dialog in Extended JSON.",
@@ -4316,8 +4424,35 @@
         "dir": "public/images/databases",
         "base": "databases-mongodb"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-redis": {
@@ -4339,7 +4474,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns.",
+        "en": "Redis db0: namespaced keys in a tree, with each key's type, TTL, length and value.",
         "vi": "Một connection Redis: cây key được tách theo \":\", với các cột Key, Type, TTL, Length và Value.",
         "es": "Una conexión Redis: el árbol de claves dividido por \":\", con las columnas Key, Type, TTL, Length y Value.",
         "de": "Eine Redis-Verbindung: der an \":\" aufgeteilte Schlüsselbaum, mit den Spalten Key, Type, TTL, Length und Value.",
@@ -4371,8 +4506,35 @@
         "dir": "public/images/databases",
         "base": "databases-redis"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-redshift": {
@@ -4449,7 +4611,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result.",
+        "en": "Oracle Database: a PL/SQL block and its DBMS_OUTPUT lines in the Output tab.",
         "vi": "Một connection Oracle: một block PL/SQL trong editor, với các dòng DBMS_OUTPUT bên dưới kết quả.",
         "es": "Una conexión Oracle: un bloque PL/SQL en el editor, con sus líneas DBMS_OUTPUT bajo el resultado.",
         "de": "Eine Oracle-Verbindung: ein PL/SQL-Block im Editor, mit seinen DBMS_OUTPUT-Zeilen unter dem Ergebnis.",
@@ -4481,8 +4643,35 @@
         "dir": "public/images/databases",
         "base": "databases-oracle"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-clickhouse": {
@@ -4504,7 +4693,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts.",
+        "en": "ClickHouse analytics database: a weekly page_views query with countIf and topK, and its results.",
         "vi": "Một connection ClickHouse: tab Parts của một table MergeTree, với partition, part và số dòng.",
         "es": "Una conexión ClickHouse: la pestaña Parts de una tabla MergeTree, con particiones, partes y número de filas.",
         "de": "Eine ClickHouse-Verbindung: der Tab Parts einer MergeTree-Tabelle, mit Partitionen, Parts und Zeilenzahlen.",
@@ -4518,26 +4707,53 @@
         "id": "Koneksi ClickHouse: tab Parts dari tabel MergeTree, dengan partisi, part, dan jumlah baris."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to ClickHouse, listing a MergeTree table's partitions and parts.",
-        "vi": "TablePro trên Mac kết nối tới ClickHouse, liệt kê partition và part của một table MergeTree.",
-        "es": "TablePro en un Mac conectado a ClickHouse, con las particiones y partes de una tabla MergeTree.",
-        "de": "TablePro auf dem Mac, verbunden mit ClickHouse, mit den Partitionen und Parts einer MergeTree-Tabelle.",
-        "fr": "TablePro sur Mac connecté à ClickHouse, listant les partitions et les parts d’une table MergeTree.",
-        "ja": "ClickHouse に接続した Mac 上の TablePro。MergeTree テーブルのパーティションとパーツが一覧表示されています。",
-        "pt-BR": "O TablePro no Mac conectado ao ClickHouse, listando as partições e partes de uma tabela MergeTree.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 ClickHouse，列出一张 MergeTree 表的分区和数据片段。",
-        "ko": "ClickHouse에 연결된 Mac의 TablePro. MergeTree 테이블의 파티션과 파트가 나열됩니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 ClickHouse，列出 MergeTree 資料表的分割區和資料部件。",
-        "it": "TablePro su Mac connesso a ClickHouse, con l’elenco delle partizioni e delle parti di una tabella MergeTree.",
-        "id": "TablePro di Mac yang terhubung ke ClickHouse, mencantumkan partisi dan part tabel MergeTree."
+        "en": "TablePro on a Mac connected to ClickHouse, with an analytics query and its results.",
+        "vi": "TablePro trên Mac kết nối tới ClickHouse, với một query phân tích và kết quả của nó.",
+        "es": "TablePro en un Mac conectado a ClickHouse, con una consulta analítica y sus resultados.",
+        "de": "TablePro auf einem Mac, verbunden mit ClickHouse, mit einer Analyseabfrage und ihren Ergebnissen.",
+        "fr": "TablePro sur Mac, connecté à ClickHouse, avec une requête analytique et ses résultats.",
+        "ja": "ClickHouse に接続した Mac の TablePro。分析クエリとその結果を表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao ClickHouse, com uma consulta analítica e seus resultados.",
+        "zh-Hans": "Mac 上连接到 ClickHouse 的 TablePro，显示一条分析查询及其结果。",
+        "ko": "ClickHouse에 연결된 Mac의 TablePro. 분석 쿼리와 그 결과가 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 ClickHouse 的 TablePro，顯示一條分析查詢及其結果。",
+        "it": "TablePro su un Mac connesso a ClickHouse, con una query analitica e i suoi risultati.",
+        "id": "TablePro di Mac yang terhubung ke ClickHouse, dengan kueri analitik dan hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-clickhouse"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-duckdb": {
@@ -4559,7 +4775,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A DuckDB database with a Parquet file opened as a view and queried with SQL.",
+        "en": "DuckDB reading a Parquet file with read_parquet: units and revenue by region and product.",
         "vi": "Một cơ sở dữ liệu DuckDB với một file Parquet được mở dạng view và query bằng SQL.",
         "es": "Una base de datos DuckDB con un archivo Parquet abierto como vista y consultado con SQL.",
         "de": "Eine DuckDB-Datenbank mit einer Parquet-Datei, als View geöffnet und mit SQL abgefragt.",
@@ -4591,8 +4807,35 @@
         "dir": "public/images/databases",
         "base": "databases-duckdb"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-cassandra": {
@@ -4614,7 +4857,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection.",
+        "en": "Cassandra keyspace shop: a CQL query with an IN list, a list column and a map lookup, with the consistency level in the status bar.",
         "vi": "Một keyspace Cassandra: một table trong data grid, với một ô scalar đã đổi đang chờ lưu và một cột set hiển thị dạng collection.",
         "es": "Un espacio de claves de Cassandra: una tabla en la cuadrícula, con una celda escalar modificada pendiente y una columna set mostrada como colección.",
         "de": "Ein Cassandra-Keyspace: eine Tabelle im Raster, mit einer vorgemerkten geänderten Skalarzelle und einer set-Spalte als Collection.",
@@ -4628,26 +4871,53 @@
         "id": "Keyspace Cassandra: tabel di grid, dengan satu sel skalar yang diubah masih tertunda dan kolom set ditampilkan sebagai koleksi."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to Cassandra, with a table open in the grid and an edit pending.",
-        "vi": "TablePro trên Mac kết nối tới Cassandra, với một table mở trong data grid và một thay đổi đang chờ lưu.",
-        "es": "TablePro en un Mac conectado a Cassandra, con una tabla abierta en la cuadrícula y una edición pendiente.",
-        "de": "TablePro auf dem Mac, verbunden mit Cassandra, mit einer geöffneten Tabelle im Raster und einer vorgemerkten Änderung.",
-        "fr": "TablePro sur Mac connecté à Cassandra, avec une table ouverte dans la grille et une modification en attente.",
-        "ja": "Cassandra に接続した Mac 上の TablePro。グリッドでテーブルを開き、編集が保留されています。",
-        "pt-BR": "O TablePro no Mac conectado ao Cassandra, com uma tabela aberta na grade e uma edição pendente.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 Cassandra，网格中打开了一张表，有一处编辑待保存。",
-        "ko": "Cassandra에 연결된 Mac의 TablePro. 그리드에 테이블이 열려 있고 편집이 대기 중입니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 Cassandra，格線中開啟了資料表並有待儲存的編輯。",
-        "it": "TablePro su Mac connesso a Cassandra, con una tabella aperta nella griglia e una modifica in attesa.",
-        "id": "TablePro di Mac yang terhubung ke Cassandra, dengan tabel terbuka di grid dan pengeditan yang tertunda."
+        "en": "TablePro on a Mac connected to Cassandra, with a CQL query and its results.",
+        "vi": "TablePro trên Mac kết nối tới Cassandra, với một query CQL và kết quả của nó.",
+        "es": "TablePro en un Mac conectado a Cassandra, con una consulta CQL y sus resultados.",
+        "de": "TablePro auf einem Mac, verbunden mit Cassandra, mit einer CQL-Abfrage und ihren Ergebnissen.",
+        "fr": "TablePro sur Mac, connecté à Cassandra, avec une requête CQL et ses résultats.",
+        "ja": "Cassandra に接続した Mac の TablePro。CQL クエリとその結果を表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao Cassandra, com uma consulta CQL e seus resultados.",
+        "zh-Hans": "Mac 上连接到 Cassandra 的 TablePro，显示一条 CQL 查询及其结果。",
+        "ko": "Cassandra에 연결된 Mac의 TablePro. CQL 쿼리와 그 결과가 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 Cassandra 的 TablePro，顯示一條 CQL 查詢及其結果。",
+        "it": "TablePro su un Mac connesso a Cassandra, con una query CQL e i suoi risultati.",
+        "id": "TablePro di Mac yang terhubung ke Cassandra, dengan kueri CQL dan hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-cassandra"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-dynamodb": {
@@ -4669,7 +4939,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar.",
+        "en": "DynamoDB Local: a PartiQL query on the status-created_at index of orders, with the matching items.",
         "vi": "Một table DynamoDB: một lần đọc có lọc chạy dưới dạng Query trên một index, với read capacity đã dùng trên thanh trạng thái.",
         "es": "Una tabla DynamoDB: una lectura filtrada ejecutada como Query sobre un índice, con la capacidad de lectura consumida en la barra de estado.",
         "de": "Eine DynamoDB-Tabelle: ein gefilterter Lesevorgang, als Query auf einem Index ausgeführt, mit der verbrauchten Lesekapazität in der Statusleiste.",
@@ -4683,26 +4953,53 @@
         "id": "Tabel DynamoDB: pembacaan terfilter yang dijalankan sebagai Query pada indeks, dengan kapasitas baca yang digunakan di bilah status."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to Amazon DynamoDB, with a filtered read and the capacity it consumed.",
-        "vi": "TablePro trên Mac kết nối tới Amazon DynamoDB, với một lần đọc có lọc và capacity đã dùng.",
-        "es": "TablePro en un Mac conectado a Amazon DynamoDB, con una lectura filtrada y la capacidad que consumió.",
-        "de": "TablePro auf dem Mac, verbunden mit Amazon DynamoDB, mit einem gefilterten Lesevorgang und der verbrauchten Kapazität.",
-        "fr": "TablePro sur Mac connecté à Amazon DynamoDB, avec une lecture filtrée et la capacité qu’elle a consommée.",
-        "ja": "Amazon DynamoDB に接続した Mac 上の TablePro。絞り込み読み取りとその消費キャパシティが表示されています。",
-        "pt-BR": "O TablePro no Mac conectado ao Amazon DynamoDB, com uma leitura filtrada e a capacidade que ela consumiu.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 Amazon DynamoDB，显示一次筛选读取及其消耗的容量。",
-        "ko": "Amazon DynamoDB에 연결된 Mac의 TablePro. 필터링 읽기와 소비된 용량이 표시됩니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 Amazon DynamoDB，顯示篩選讀取及其消耗的容量。",
-        "it": "TablePro su Mac connesso ad Amazon DynamoDB, con una lettura filtrata e la capacità consumata.",
-        "id": "TablePro di Mac yang terhubung ke Amazon DynamoDB, dengan pembacaan terfilter dan kapasitas yang digunakannya."
+        "en": "TablePro on a Mac connected to Amazon DynamoDB, with a PartiQL query on an index and its items.",
+        "vi": "TablePro trên Mac kết nối tới Amazon DynamoDB, với một query PartiQL trên index và các item trả về.",
+        "es": "TablePro en un Mac conectado a Amazon DynamoDB, con una consulta PartiQL sobre un índice y sus elementos.",
+        "de": "TablePro auf einem Mac, verbunden mit Amazon DynamoDB, mit einer PartiQL-Abfrage auf einem Index und ihren Items.",
+        "fr": "TablePro sur Mac, connecté à Amazon DynamoDB, avec une requête PartiQL sur un index et ses éléments.",
+        "ja": "Amazon DynamoDB に接続した Mac の TablePro。インデックスに対する PartiQL クエリと取得した項目を表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao Amazon DynamoDB, com uma consulta PartiQL em um índice e seus itens.",
+        "zh-Hans": "Mac 上连接到 Amazon DynamoDB 的 TablePro，显示一条针对索引的 PartiQL 查询及返回的项目。",
+        "ko": "Amazon DynamoDB에 연결된 Mac의 TablePro. 인덱스에 대한 PartiQL 쿼리와 조회된 항목이 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 Amazon DynamoDB 的 TablePro，顯示一條針對索引的 PartiQL 查詢及傳回的項目。",
+        "it": "TablePro su un Mac connesso ad Amazon DynamoDB, con una query PartiQL su un indice e i suoi elementi.",
+        "id": "TablePro di Mac yang terhubung ke Amazon DynamoDB, dengan kueri PartiQL pada sebuah indeks dan item hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-dynamodb"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-bigquery": {
@@ -4944,7 +5241,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows.",
+        "en": "Elasticsearch: a GET orders/_search bool query and its hits as rows with _id, _index and _score.",
         "vi": "Console Query DSL của Elasticsearch: một request GET _search và các hit của nó hiển thị thành dòng.",
         "es": "La consola Query DSL de Elasticsearch: una petición GET _search y sus resultados como filas.",
         "de": "Die Query-DSL-Konsole von Elasticsearch: eine GET-_search-Anfrage und ihre Treffer als Zeilen.",
@@ -4976,8 +5273,35 @@
         "dir": "public/images/databases",
         "base": "databases-elasticsearch"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-etcd": {
@@ -4999,7 +5323,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "An etcd connection: keys under a prefix root, with their values and leases.",
+        "en": "etcd: keys under /config/ in the key tree, with their values, versions and revisions.",
         "vi": "Một connection etcd: các key dưới một prefix root, với value và lease của chúng.",
         "es": "Una conexión etcd: claves bajo una raíz de prefijo, con sus valores y arrendamientos.",
         "de": "Eine etcd-Verbindung: Schlüssel unter einem Präfix-Root, mit ihren Werten und Leases.",
@@ -5013,26 +5337,53 @@
         "id": "Koneksi etcd: kunci di bawah prefix root, dengan nilai dan lease-nya."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to etcd, listing keys under a prefix with their leases.",
-        "vi": "TablePro trên Mac kết nối tới etcd, liệt kê các key dưới một prefix cùng lease của chúng.",
-        "es": "TablePro en un Mac conectado a etcd, con las claves de un prefijo y sus arrendamientos.",
-        "de": "TablePro auf dem Mac, verbunden mit etcd, mit Schlüsseln unter einem Präfix und ihren Leases.",
-        "fr": "TablePro sur Mac connecté à etcd, listant les clés sous un préfixe avec leurs baux.",
-        "ja": "etcd に接続した Mac 上の TablePro。プレフィックス配下のキーがリースとともに一覧表示されています。",
-        "pt-BR": "O TablePro no Mac conectado ao etcd, listando as chaves sob um prefixo com os leases.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 etcd，列出某个前缀下的键及其租约。",
-        "ko": "etcd에 연결된 Mac의 TablePro. 접두사 아래의 키가 리스와 함께 나열됩니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 etcd，列出某前綴下的鍵及其租約。",
-        "it": "TablePro su Mac connesso a etcd, con l’elenco delle chiavi sotto un prefisso e i loro lease.",
-        "id": "TablePro di Mac yang terhubung ke etcd, mencantumkan kunci di bawah prefiks beserta lease-nya."
+        "en": "TablePro on a Mac connected to etcd, listing keys under a prefix with their values.",
+        "vi": "TablePro trên Mac kết nối tới etcd, liệt kê các key dưới một prefix cùng giá trị của chúng.",
+        "es": "TablePro en un Mac conectado a etcd, con las claves bajo un prefijo y sus valores.",
+        "de": "TablePro auf einem Mac, verbunden mit etcd, mit den Schlüsseln unter einem Präfix und ihren Werten.",
+        "fr": "TablePro sur Mac, connecté à etcd, avec les clés sous un préfixe et leurs valeurs.",
+        "ja": "etcd に接続した Mac の TablePro。プレフィックス配下のキーとその値を一覧表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao etcd, com as chaves sob um prefixo e seus valores.",
+        "zh-Hans": "Mac 上连接到 etcd 的 TablePro，列出某个前缀下的键及其值。",
+        "ko": "etcd에 연결된 Mac의 TablePro. 접두사 아래의 키와 그 값이 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 etcd 的 TablePro，列出某個前綴下的鍵及其值。",
+        "it": "TablePro su un Mac connesso a etcd, con le chiavi sotto un prefisso e i loro valori.",
+        "id": "TablePro di Mac yang terhubung ke etcd, dengan kunci di bawah sebuah prefiks beserta nilainya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-etcd"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-kafka": {
@@ -5054,7 +5405,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp.",
+        "en": "Apache Kafka: CONSUME orders FROM EARLIEST, with partition, offset, timestamp, key and value.",
         "vi": "Một connection Kafka: KafkaQL CONSUME trên topic orders, với các message theo partition, offset, key và timestamp.",
         "es": "Una conexión Kafka: KafkaQL CONSUME sobre un topic orders, con los mensajes por partición, offset, clave y marca de tiempo.",
         "de": "Eine Kafka-Verbindung: KafkaQL CONSUME auf einem Topic orders, mit Nachrichten nach Partition, Offset, Schlüssel und Zeitstempel.",
@@ -5086,8 +5437,35 @@
         "dir": "public/images/databases",
         "base": "databases-kafka"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-surrealdb": {
@@ -5109,7 +5487,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid.",
+        "en": "SurrealDB: a SurrealQL query over purchased edges, with its records.",
         "vi": "Một connection SurrealDB: một query SurrealQL và các record nó trả về trong data grid.",
         "es": "Una conexión SurrealDB: una consulta SurrealQL y los registros que devolvió en la cuadrícula.",
         "de": "Eine SurrealDB-Verbindung: eine SurrealQL-Abfrage und die Datensätze, die sie im Raster geliefert hat.",
@@ -5141,8 +5519,35 @@
         "dir": "public/images/databases",
         "base": "databases-surrealdb"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-teradata": {
@@ -5219,7 +5624,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A Trino connection: a query joining tables from two catalogs, with its results below.",
+        "en": "Trino tpch.tiny: revenue by nation from orders, customer and nation, with its results.",
         "vi": "Một connection Trino: một query join các table từ hai catalog, với kết quả bên dưới.",
         "es": "Una conexión Trino: una consulta que une tablas de dos catálogos, con sus resultados debajo.",
         "de": "Eine Trino-Verbindung: eine Abfrage, die Tabellen aus zwei Katalogen verknüpft, mit ihren Ergebnissen darunter.",
@@ -5233,26 +5638,53 @@
         "id": "Koneksi Trino: kueri yang menggabungkan tabel dari dua katalog, dengan hasilnya di bawah."
       },
       "alt": {
-        "en": "TablePro on a Mac connected to Trino, with a query across two catalogs and its results.",
-        "vi": "TablePro trên Mac kết nối tới Trino, với một query xuyên hai catalog và kết quả của nó.",
-        "es": "TablePro en un Mac conectado a Trino, con una consulta entre dos catálogos y sus resultados.",
-        "de": "TablePro auf dem Mac, verbunden mit Trino, mit einer Abfrage über zwei Kataloge und ihren Ergebnissen.",
-        "fr": "TablePro sur Mac connecté à Trino, avec une requête sur deux catalogues et ses résultats.",
-        "ja": "Trino に接続した Mac 上の TablePro。二つのカタログをまたぐクエリとその結果が表示されています。",
-        "pt-BR": "O TablePro no Mac conectado ao Trino, com uma consulta em dois catálogos e os resultados.",
-        "zh-Hans": "Mac 上的 TablePro 已连接 Trino，显示一个跨两个 catalog 的查询及其结果。",
-        "ko": "Trino에 연결된 Mac의 TablePro. 두 카탈로그에 걸친 쿼리와 결과가 표시됩니다.",
-        "zh-Hant": "Mac 上的 TablePro 已連線至 Trino，顯示跨兩個目錄的查詢及其結果。",
-        "it": "TablePro su Mac connesso a Trino, con una query su due cataloghi e i suoi risultati.",
-        "id": "TablePro di Mac yang terhubung ke Trino, dengan kueri lintas dua katalog dan hasilnya."
+        "en": "TablePro on a Mac connected to Trino, with a query over the TPC-H sample data and its results.",
+        "vi": "TablePro trên Mac kết nối tới Trino, với một query trên dữ liệu mẫu TPC-H và kết quả của nó.",
+        "es": "TablePro en un Mac conectado a Trino, con una consulta sobre los datos de ejemplo TPC-H y sus resultados.",
+        "de": "TablePro auf einem Mac, verbunden mit Trino, mit einer Abfrage auf den TPC-H-Beispieldaten und ihren Ergebnissen.",
+        "fr": "TablePro sur Mac, connecté à Trino, avec une requête sur les données d’exemple TPC-H et ses résultats.",
+        "ja": "Trino に接続した Mac の TablePro。TPC-H サンプルデータに対するクエリとその結果を表示しています。",
+        "pt-BR": "TablePro em um Mac conectado ao Trino, com uma consulta nos dados de exemplo TPC-H e seus resultados.",
+        "zh-Hans": "Mac 上连接到 Trino 的 TablePro，显示一条针对 TPC-H 示例数据的查询及其结果。",
+        "ko": "Trino에 연결된 Mac의 TablePro. TPC-H 샘플 데이터에 대한 쿼리와 그 결과가 표시됩니다.",
+        "zh-Hant": "Mac 上連線至 Trino 的 TablePro，顯示一條針對 TPC-H 範例資料的查詢及其結果。",
+        "it": "TablePro su un Mac connesso a Trino, con una query sui dati di esempio TPC-H e i suoi risultati.",
+        "id": "TablePro di Mac yang terhubung ke Trino, dengan kueri pada data contoh TPC-H dan hasilnya."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/databases",
         "base": "databases-trino"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "databases-beancount": {
@@ -5274,7 +5706,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query.",
+        "en": "A Beancount ledger at /Users/Shared/books.beancount: the ledger tables in the sidebar and a BQL journal query of expenses with balances.",
         "vi": "Một sổ cái Beancount: các table được dựng từ sổ cái trong sidebar và kết quả của một query BQL.",
         "es": "Un libro de Beancount: sus tablas proyectadas en la barra lateral y el resultado de una consulta BQL.",
         "de": "Ein Beancount-Ledger: seine abgebildeten Tabellen in der Seitenleiste und das Ergebnis einer BQL-Abfrage.",
@@ -5306,8 +5738,35 @@
         "dir": "public/images/databases",
         "base": "databases-beancount"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "ios-connection-list": {

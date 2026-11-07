@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "vi": "Một connection PostgreSQL tới shop: một query join orders với users, cùng plan EXPLAIN ANALYZE của nó được vẽ thành sơ đồ."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới PostgreSQL, với một query tạo array và jsonb cùng kết quả của nó."
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "vi": "Một connection MySQL tới shop: một query join orders với users, cùng kết quả của nó trong data grid."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới MySQL, với một query và kết quả của nó."
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "vi": "Một connection SQL Server: một script T-SQL được tách thành các batch GO, cùng output PRINT của nó trong tab Output."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới SQL Server, với một script T-SQL và output PRINT của nó."
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "vi": "Cơ sở dữ liệu mẫu SQLite Chinook đi kèm ứng dụng, với table Track được lọc theo genre."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac mở cơ sở dữ liệu SQLite mẫu Chinook ở table Track."
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "vi": "Một connection MongoDB: collection events trong data grid, với sheet Insert Document đang mở ở dạng Extended JSON."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới MongoDB, với một document được viết bằng Extended JSON."
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "vi": "Một connection Redis: cây key được tách theo \":\", với các cột Key, Type, TTL, Length và Value."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Redis, với các key được nhóm thành cây cùng type, TTL và value của từng key."
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "vi": "Một connection Oracle: một block PL/SQL trong editor, với các dòng DBMS_OUTPUT bên dưới kết quả."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Oracle Database, với một block PL/SQL và các dòng DBMS_OUTPUT của nó."
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "vi": "Một connection ClickHouse: tab Parts của một table MergeTree, với partition, part và số dòng."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới ClickHouse, với một query phân tích và kết quả của nó."
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "vi": "Một cơ sở dữ liệu DuckDB với một file Parquet được mở dạng view và query bằng SQL."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac với một cơ sở dữ liệu DuckDB, đang query một file Parquet bằng SQL."
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "vi": "Một keyspace Cassandra: một table trong data grid, với một ô scalar đã đổi đang chờ lưu và một cột set hiển thị dạng collection."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Cassandra, với một query CQL và kết quả của nó."
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "vi": "Một table DynamoDB: một lần đọc có lọc chạy dưới dạng Query trên một index, với read capacity đã dùng trên thanh trạng thái."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Amazon DynamoDB, với một query PartiQL trên index và các item trả về."
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "vi": "Console Query DSL của Elasticsearch: một request GET _search và các hit của nó hiển thị thành dòng."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Elasticsearch, với một search request và các hit của nó hiển thị thành dòng."
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "vi": "Một connection etcd: các key dưới một prefix root, với value và lease của chúng."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới etcd, liệt kê các key dưới một prefix cùng giá trị của chúng."
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "vi": "Một connection Kafka: KafkaQL CONSUME trên topic orders, với các message theo partition, offset, key và timestamp."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Apache Kafka, liệt kê các message của một topic."
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "vi": "Một connection SurrealDB: một query SurrealQL và các record nó trả về trong data grid."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới SurrealDB, với một query SurrealQL và các record của nó."
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "vi": "Một connection Trino: một query join các table từ hai catalog, với kết quả bên dưới."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac kết nối tới Trino, với một query trên dữ liệu mẫu TPC-H và kết quả của nó."
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "vi": "Một sổ cái Beancount: các table được dựng từ sổ cái trong sidebar và kết quả của một query BQL."
-        }
+        "alt": {
+            "vi": "TablePro trên Mac đang mở một sổ cái Beancount, với các table trong sidebar và kết quả một query BQL."
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

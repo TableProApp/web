@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "fr": "Une connexion PostgreSQL sur shop : une requête joignant orders et users, avec son plan EXPLAIN ANALYZE représenté en diagramme."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à PostgreSQL, avec une requête qui produit des tableaux et du jsonb, et ses résultats."
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "fr": "Une connexion MySQL sur shop : une requête joignant orders et users, avec ses résultats dans la grille."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à MySQL, avec une requête et ses résultats."
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "fr": "Une connexion SQL Server : un script T-SQL découpé en batches GO, avec sa sortie PRINT dans l’onglet Output."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à SQL Server, avec un script T-SQL et sa sortie PRINT."
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "fr": "L’exemple SQLite Chinook fourni avec l’app, avec la table Track filtrée par genre."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac avec la base SQLite d’exemple Chinook ouverte sur la table Track."
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "fr": "Une connexion MongoDB : la collection events dans la grille, avec la feuille Insert Document ouverte en Extended JSON."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à MongoDB, avec un document écrit en Extended JSON."
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "fr": "Une connexion Redis : l’arbre de clés découpé sur « : », avec les colonnes Key, Type, TTL, Length et Value."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à Redis, avec les clés regroupées en arbre et le type, le TTL et la valeur de chaque clé."
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "fr": "Une connexion Oracle : un bloc PL/SQL dans l’éditeur, avec ses lignes DBMS_OUTPUT sous le résultat."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à Oracle Database, avec un bloc PL/SQL et ses lignes DBMS_OUTPUT."
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "fr": "Une connexion ClickHouse : l’onglet Parts d’une table MergeTree, avec partitions, parts et nombres de lignes."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à ClickHouse, avec une requête analytique et ses résultats."
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "fr": "Une base DuckDB avec un fichier Parquet ouvert comme vue et interrogé en SQL."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac avec une base DuckDB, interrogeant un fichier Parquet en SQL."
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "fr": "Un keyspace Cassandra : une table dans la grille, avec une cellule scalaire modifiée en attente et une colonne set affichée comme collection."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à Cassandra, avec une requête CQL et ses résultats."
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "fr": "Une table DynamoDB : une lecture filtrée exécutée en Query sur un index, avec la capacité de lecture consommée dans la barre d’état."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à Amazon DynamoDB, avec une requête PartiQL sur un index et ses éléments."
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "fr": "La console Query DSL d’Elasticsearch : une requête GET _search et ses hits en lignes."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à Elasticsearch, avec une requête de recherche et ses hits en lignes."
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "fr": "Une connexion etcd : les clés sous une racine de préfixe, avec leurs valeurs et leurs baux."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à etcd, avec les clés sous un préfixe et leurs valeurs."
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "fr": "Une connexion Kafka : KafkaQL CONSUME sur un topic orders, avec les messages par partition, offset, clé et horodatage."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à Apache Kafka, listant les messages d’un topic."
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "fr": "Une connexion SurrealDB : une requête SurrealQL et les enregistrements qu’elle a renvoyés dans la grille."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac connecté à SurrealDB, avec une requête SurrealQL et ses enregistrements."
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "fr": "Une connexion Trino : une requête joignant des tables de deux catalogues, avec ses résultats en dessous."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac, connecté à Trino, avec une requête sur les données d’exemple TPC-H et ses résultats."
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "fr": "Un ledger Beancount : ses tables projetées dans la barre latérale et le résultat d’une requête BQL."
-        }
+        "alt": {
+            "fr": "TablePro sur Mac avec un ledger Beancount ouvert, ses tables dans la barre latérale et le résultat d’une requête BQL."
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "ja": "shop 上の PostgreSQL 接続。orders と users を結合するクエリと、その EXPLAIN ANALYZE プランの図。"
-        }
+        "alt": {
+            "ja": "PostgreSQL に接続した Mac の TablePro。配列と jsonb を組み立てるクエリとその結果を表示しています。"
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "ja": "shop 上の MySQL 接続。orders と users を結合するクエリと、グリッドに表示されたその結果。"
-        }
+        "alt": {
+            "ja": "MySQL に接続した Mac 上の TablePro。クエリとその結果が表示されています。"
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "ja": "SQL Server 接続。GO バッチに分割した T-SQL スクリプトと、Output タブの PRINT 出力。"
-        }
+        "alt": {
+            "ja": "SQL Server に接続した Mac 上の TablePro。T-SQL スクリプトとその PRINT 出力が表示されています。"
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "ja": "同梱の Chinook SQLite サンプル。Track テーブルをジャンルで絞り込んだ状態。"
-        }
+        "alt": {
+            "ja": "Mac の TablePro で SQLite のサンプルデータベース Chinook を開き、Track テーブルを表示しています。"
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "ja": "MongoDB 接続。グリッドに表示した events コレクションと、Extended JSON で開いた Insert Document シート。"
-        }
+        "alt": {
+            "ja": "MongoDB に接続した Mac 上の TablePro。Extended JSON で書いたドキュメントが表示されています。"
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "ja": "Redis 接続。\":\" で分割したキーツリーと、Key、Type、TTL、Length、Value 列。"
-        }
+        "alt": {
+            "ja": "Redis に接続した Mac 上の TablePro。キーがツリーにまとめられ、各キーの型、TTL、値が表示されています。"
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "ja": "Oracle 接続。エディターの PL/SQL ブロックと、結果の下に表示された DBMS_OUTPUT の行。"
-        }
+        "alt": {
+            "ja": "Oracle Database に接続した Mac 上の TablePro。PL/SQL ブロックとその DBMS_OUTPUT の行が表示されています。"
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "ja": "ClickHouse 接続。MergeTree テーブルの Parts タブと、パーティション、パーツ、行数。"
-        }
+        "alt": {
+            "ja": "ClickHouse に接続した Mac の TablePro。分析クエリとその結果を表示しています。"
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "ja": "Parquet ファイルをビューとして開き、SQL でクエリしている DuckDB データベース。"
-        }
+        "alt": {
+            "ja": "DuckDB データベースを開いた Mac 上の TablePro。Parquet ファイルを SQL でクエリしています。"
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "ja": "Cassandra のキースペース。グリッドのテーブルに保留中のスカラーセルの変更があり、set 列がコレクションとして表示されています。"
-        }
+        "alt": {
+            "ja": "Cassandra に接続した Mac の TablePro。CQL クエリとその結果を表示しています。"
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "ja": "DynamoDB テーブル。インデックスに対する Query として実行した絞り込み読み取りと、ステータスバーに表示された消費読み取りキャパシティ。"
-        }
+        "alt": {
+            "ja": "Amazon DynamoDB に接続した Mac の TablePro。インデックスに対する PartiQL クエリと取得した項目を表示しています。"
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "ja": "Elasticsearch の Query DSL コンソール。GET _search リクエストと、行として表示したそのヒット。"
-        }
+        "alt": {
+            "ja": "Elasticsearch に接続した Mac 上の TablePro。検索リクエストとそのヒットが行として表示されています。"
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "ja": "etcd 接続。プレフィックスルート配下のキーと、その値とリース。"
-        }
+        "alt": {
+            "ja": "etcd に接続した Mac の TablePro。プレフィックス配下のキーとその値を一覧表示しています。"
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "ja": "Kafka 接続。orders トピックに対する KafkaQL の CONSUME と、パーティション、オフセット、キー、タイムスタンプ別のメッセージ。"
-        }
+        "alt": {
+            "ja": "Apache Kafka に接続した Mac 上の TablePro。トピックのメッセージが一覧表示されています。"
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "ja": "SurrealDB 接続。SurrealQL クエリと、それが返したレコードのグリッド。"
-        }
+        "alt": {
+            "ja": "SurrealDB に接続した Mac 上の TablePro。SurrealQL クエリとそのレコードが表示されています。"
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "ja": "Trino 接続。二つのカタログのテーブルを結合するクエリと、その下の結果。"
-        }
+        "alt": {
+            "ja": "Trino に接続した Mac の TablePro。TPC-H サンプルデータに対するクエリとその結果を表示しています。"
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "ja": "Beancount の台帳。サイドバーに表示したテーブルと、BQL クエリの結果。"
-        }
+        "alt": {
+            "ja": "Beancount の台帳を開いた Mac 上の TablePro。サイドバーのテーブルと BQL クエリの結果が表示されています。"
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

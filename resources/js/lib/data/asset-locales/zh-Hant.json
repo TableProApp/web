@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "zh-Hant": "shop 上的 PostgreSQL 連線：一個聯結 orders 和 users 的查詢，其 EXPLAIN ANALYZE 計畫繪製為圖表。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 PostgreSQL 的 TablePro，顯示一條產生陣列與 jsonb 的查詢及其結果。"
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "zh-Hant": "shop 上的 MySQL 連線：一個聯結 orders 和 users 的查詢，結果顯示在格線中。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 MySQL，顯示查詢及其結果。"
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "zh-Hant": "SQL Server 連線：拆分為 GO 批次的 T-SQL 指令碼，其 PRINT 輸出顯示在 Output 分頁中。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 SQL Server，顯示 T-SQL 指令碼及其 PRINT 輸出。"
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "zh-Hant": "內建的 Chinook SQLite 範例，Track 資料表依類型篩選。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 開啟了 SQLite 範例資料庫 Chinook 的 Track 資料表。"
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "zh-Hant": "MongoDB 連線：格線中的 events 集合，以及以 Extended JSON 開啟的 Insert Document 表單。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 MongoDB，顯示以 Extended JSON 撰寫的文件。"
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "zh-Hant": "Redis 連線：依「:」拆分的鍵樹，以及 Key、Type、TTL、Length 和 Value 欄位。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 Redis，鍵分組為樹狀結構，並顯示每個鍵的型別、TTL 和值。"
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "zh-Hant": "Oracle 連線：編輯器中的 PL/SQL 區塊，結果下方顯示其 DBMS_OUTPUT 輸出。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 Oracle Database，顯示 PL/SQL 區塊及其 DBMS_OUTPUT 輸出。"
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "zh-Hant": "ClickHouse 連線：MergeTree 資料表的 Parts 分頁，含分割區、資料部件和列數。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 ClickHouse 的 TablePro，顯示一條分析查詢及其結果。"
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "zh-Hant": "DuckDB 資料庫，其中一個 Parquet 檔案開啟為檢視表並以 SQL 查詢。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 開啟了 DuckDB 資料庫，以 SQL 查詢 Parquet 檔案。"
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "zh-Hant": "Cassandra 鍵空間：格線中的資料表，有一個待儲存的純量儲存格變更，set 欄位顯示為集合。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 Cassandra 的 TablePro，顯示一條 CQL 查詢及其結果。"
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "zh-Hant": "DynamoDB 資料表：以索引上的 Query 執行的篩選讀取，狀態列顯示其消耗的讀取容量。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 Amazon DynamoDB 的 TablePro，顯示一條針對索引的 PartiQL 查詢及傳回的項目。"
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "zh-Hant": "Elasticsearch Query DSL 主控台：一個 GET _search 請求，其命中結果顯示為列。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 Elasticsearch，顯示搜尋請求及以列呈現的命中結果。"
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "zh-Hant": "etcd 連線：前綴根目錄下的鍵，以及其值和租約。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 etcd 的 TablePro，列出某個前綴下的鍵及其值。"
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "zh-Hant": "Kafka 連線：在 orders 主題上執行 KafkaQL CONSUME，訊息依分割區、位移、鍵和時間戳記顯示。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 Apache Kafka，列出主題的訊息。"
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "zh-Hant": "SurrealDB 連線：一個 SurrealQL 查詢，以及格線中傳回的記錄。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 已連線至 SurrealDB，顯示 SurrealQL 查詢及其記錄。"
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "zh-Hant": "Trino 連線：一個聯結兩個目錄中資料表的查詢，下方為其結果。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上連線至 Trino 的 TablePro，顯示一條針對 TPC-H 範例資料的查詢及其結果。"
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "zh-Hant": "Beancount 帳本：側邊欄中映射出的資料表，以及 BQL 查詢的結果。"
-        }
+        "alt": {
+            "zh-Hant": "Mac 上的 TablePro 開啟了 Beancount 帳本，側邊欄中有其資料表，並顯示 BQL 查詢結果。"
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {

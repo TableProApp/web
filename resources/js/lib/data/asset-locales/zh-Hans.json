@@ -257,34 +257,40 @@
         }
     },
     "databases-postgresql": {
-        "description": {
-            "zh-Hans": "shop 上的 PostgreSQL 连接：一个联接 orders 和 users 的查询，其 EXPLAIN ANALYZE 计划绘制为图表。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 PostgreSQL 的 TablePro，显示一条生成数组和 jsonb 的查询及其结果。"
+        },
+        "caption": null
     },
     "databases-mysql": {
-        "description": {
-            "zh-Hans": "shop 上的 MySQL 连接：一个联接 orders 和 users 的查询，结果显示在网格中。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 MySQL，显示一个查询及其结果。"
+        },
+        "caption": null
     },
     "databases-sqlserver": {
-        "description": {
-            "zh-Hans": "SQL Server 连接：一个按 GO 拆分为批次的 T-SQL 脚本，其 PRINT 输出显示在 Output 标签页中。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 SQL Server，显示一个 T-SQL 脚本及其 PRINT 输出。"
+        },
+        "caption": null
     },
     "databases-sqlite": {
-        "description": {
-            "zh-Hans": "内置的 Chinook SQLite 示例，Track 表按 genre 筛选。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 打开了 SQLite 示例数据库 Chinook 的 Track 表。"
+        },
+        "caption": null
     },
     "databases-mongodb": {
-        "description": {
-            "zh-Hans": "MongoDB 连接：网格中显示 events 集合，Insert Document 面板以 Extended JSON 打开。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 MongoDB，显示一个以 Extended JSON 编写的文档。"
+        },
+        "caption": null
     },
     "databases-redis": {
-        "description": {
-            "zh-Hans": "Redis 连接：按 \":\" 拆分的键树，以及 Key、Type、TTL、Length 和 Value 列。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 Redis，键按树形分组，并显示每个键的类型、TTL 和值。"
+        },
+        "caption": null
     },
     "databases-redshift": {
         "description": {
@@ -292,29 +298,34 @@
         }
     },
     "databases-oracle": {
-        "description": {
-            "zh-Hans": "Oracle 连接：编辑器中的一个 PL/SQL 块，结果下方显示其 DBMS_OUTPUT 行。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 Oracle Database，显示一个 PL/SQL 块及其 DBMS_OUTPUT 行。"
+        },
+        "caption": null
     },
     "databases-clickhouse": {
-        "description": {
-            "zh-Hans": "ClickHouse 连接：一张 MergeTree 表的 Parts 标签页，显示分区、数据片段和行数。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 ClickHouse 的 TablePro，显示一条分析查询及其结果。"
+        },
+        "caption": null
     },
     "databases-duckdb": {
-        "description": {
-            "zh-Hans": "一个 DuckDB 数据库，其中一个 Parquet 文件以视图打开，并用 SQL 查询。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 打开了一个 DuckDB 数据库，正在用 SQL 查询 Parquet 文件。"
+        },
+        "caption": null
     },
     "databases-cassandra": {
-        "description": {
-            "zh-Hans": "一个 Cassandra 键空间：网格中的一张表，一个已更改的标量单元格待保存，一个 set 列显示为集合。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 Cassandra 的 TablePro，显示一条 CQL 查询及其结果。"
+        },
+        "caption": null
     },
     "databases-dynamodb": {
-        "description": {
-            "zh-Hans": "一张 DynamoDB 表：一次筛选读取以索引上的 Query 运行，状态栏显示其消耗的读取容量。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 Amazon DynamoDB 的 TablePro，显示一条针对索引的 PartiQL 查询及返回的项目。"
+        },
+        "caption": null
     },
     "databases-bigquery": {
         "description": {
@@ -337,24 +348,28 @@
         }
     },
     "databases-elasticsearch": {
-        "description": {
-            "zh-Hans": "Elasticsearch Query DSL 控制台：一个 GET _search 请求，其命中结果显示为行。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 Elasticsearch，显示一个搜索请求，其命中结果显示为行。"
+        },
+        "caption": null
     },
     "databases-etcd": {
-        "description": {
-            "zh-Hans": "etcd 连接：前缀根下的键，以及它们的值和租约。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 etcd 的 TablePro，列出某个前缀下的键及其值。"
+        },
+        "caption": null
     },
     "databases-kafka": {
-        "description": {
-            "zh-Hans": "Kafka 连接：在 orders 主题上运行 KafkaQL CONSUME，消息按分区、偏移量、键和时间戳显示。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 Apache Kafka，列出一个主题的消息。"
+        },
+        "caption": null
     },
     "databases-surrealdb": {
-        "description": {
-            "zh-Hans": "SurrealDB 连接：一个 SurrealQL 查询，及其在网格中返回的记录。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 已连接 SurrealDB，显示一个 SurrealQL 查询及其记录。"
+        },
+        "caption": null
     },
     "databases-teradata": {
         "description": {
@@ -362,14 +377,16 @@
         }
     },
     "databases-trino": {
-        "description": {
-            "zh-Hans": "Trino 连接：一个联接两个 catalog 中表的查询，下方是其结果。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上连接到 Trino 的 TablePro，显示一条针对 TPC-H 示例数据的查询及其结果。"
+        },
+        "caption": null
     },
     "databases-beancount": {
-        "description": {
-            "zh-Hans": "一个 Beancount 账本：侧边栏显示其映射出的表，以及一个 BQL 查询的结果。"
-        }
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 打开了一个 Beancount 账本，侧边栏中显示其表，并显示一个 BQL 查询结果。"
+        },
+        "caption": null
     },
     "ios-connection-list": {
         "alt": {
