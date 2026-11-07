@@ -1254,6 +1254,8 @@ These are the values that architecture's `kinds` pin:
 | `ipad` | 4:3 | usually cols 2–11, 1008 × 756 (max 1216 × 912) / 720 × 540 / 343 × 257 | Native landscape capture (a 13-inch iPad is 4:3: 2732 × 2048 or 2752 × 2064) |
 | `diagram` | 16:9 | as `window`; drawn to read at 343 wide | Vector (SVG) |
 | `illustration` (composites) | 16:9 | as `window` | 2432 × 1368 (2×) |
+| `device` (home hero layers) | the device's own | each layer's place in the hero: Mac 640 wide at 1280 | 2× its desktop width, transparent edge |
+| `window-whole` (home feature tabs) | 16:9 | as `window`, and the whole window below 768 too (no crop, owner 2026-11-07) | 2432 × 1368 (2×) |
 | `figure` (release posts) | from the source image | `text` width: 704 / 704 / 343 | 1408 wide (2×) |
 | `og-card` | 1200:630 | not a slot | 1200 × 630 |
 
@@ -1378,80 +1380,36 @@ Still not allowed there: gradient blobs, animated glows, sparkles, confetti, ent
 - Link text names its destination. There is no "Learn more" (positioning §4).
 - Copy in these sketches is illustrative; the content documents own the final wording.
 
-### 8.1 Home (`/`, `/vi`)
+### 8.1 Home (`/` and every locale's home)
 
-The eleven sections, their ids, aliases and slots are sitemap §D's. `HomepageRenderTest` and sitemap §G.3 pin these ids.
+Rebuilt 2026-11-07. The sections, ids and slots are sitemap §D's; `Pages/HomeTest` pins the order, the single h1,
+the old anchors and the four hero devices.
 
 ```
 SiteHeader
-§1  HERO  #top                                                      pt 72 · pb 48
-    cols 1–8 │ H1 (display), ≤ 2 lines
-             │ Lead (body-lg, muted, 56ch): names engines, no counts
-    cells 6 │ 6 [Download for Mac] lg primary          [ App Store badge ]           (rail to rail, §4.7)
-             │ macOS 13 Ventura or later ·              iPhone and iPad ·
-             │ Apple silicon or Intel                   iOS and iPadOS 18 or later
-             │ Other ways to install →  (/download#mac, the section holding the Homebrew command)
-             │ Open source and free to use. Paid plans add optional features to the Mac app.
-             │ See pricing →  (localePath('/#pricing'): /#pricing or /vi#pricing)
-    cols 1–12 ▒ mac-hero-window  16:9  1216×684        (< 768: ▒ mac-hero-window-mobile  4:5)
-§2  DATABASES  #databases
-    H2 + lead (cols 1–7) · the featured engines as cells, 2 / 3 / 6 across · the engine count and the hub's categories as links
-    one small line: built-in drivers vs drivers downloaded on first pick · the engines that open on iPhone (names)
-    Supported databases →  (/databases)
-§3  SPONSORS  #sponsors                         compact · flush: the logo cells close on the next join
-    H2 (h3 style) · SponsorList (homepage sponsors and an invite cell, two across, four from 768) · Sponsor TablePro →
-§4  WORKFLOWS  #features                        H2, then five FeatureRows (H3 each) as cells, flush, in this order
-    Query                                  ▒ mac-query-autocomplete      window row   Querying →
-    Edit data                              ▒ mac-edit-preview-sql        window row   Data editing → · Schema →
-    Schemas and sync (Compare & Sync: Starter)  ▒ mac-compare-sync-structure  window row   Schema →
-    Files                                  ▒ mac-data-files-window       window row   Import & export →
-    Connect                                ▒ mac-connection-ssh-form     detail row   Connections →
-§5  PRODUCTION SAFETY  #safety
-    H2, detail-row layout as two cells, flush: Safe Mode levels named · DROP, TRUNCATE and WHERE-less DELETE always ask · Read-Only · Touch ID
-                · Agent mode raises the floor          ▒ mac-safe-mode-touchid (4:3)    Safe Mode →
-§6  AI AND MCP  #ai   (alias #mcp)
-    H2, window-row layout: providers named · Agent mode · local MCP server, off by default · permission layers in one line · free
-                                                       ▒ mac-ai-chat                    AI & MCP →
-§7  MAC, IPHONE AND IPAD  #platforms   (alias #mobile)       tone: surface (the page's one band) · cells, flush
-    cols 1–6  PlatformCard Mac: the full workbench · requirement · [Download for Mac] secondary
-    cols 7–12 PlatformCard iPhone and iPad: browse, edit, query and SSH on the go · free · App Store badge + caption
-              ▒ ios-connection-list (280 wide, 9:19.5) · TablePro for iPhone and iPad →
-    one line on iCloud Sync and Handoff (Starter on the Mac) · Sync & teams →
-§8  COMING FROM ANOTHER APP  #switch   (alias #compare)
-    text at text width: importers named (passwords where true) · Open Project Folder
-    Compare TablePro with other clients →  (/compare)
-§9  WHAT DEVELOPERS SAY  #testimonials                        cells, flush: the quotes close on the next join
-    H2 + lead ("quoted from public posts, each linked to the original")
-    six quotes as cells, 1 / 2 / 3 across (768, 1280), the reader's language first. Each cell: the quote at body 500,
-    its marks in the quoted language with the opening one hanging in the padding from 768; a quote in another language
-    shows its translation, with the original behind a Disclosure labelled "Translated from …"; on the cell's floor the
-    name (small 500), handle · platform ↗ (muted) and the author's own photo, 40px, 6px radius, a 10% hairline, on the right.
-    No dates, ratings, platform logos or Review markup. Photos are 96px WebP under public/images/testimonials
-§10 PRICING  #pricing   (alias #license)
-    H2 + lead (free core · optional paid features on Mac · open source) · BillingCycleControl + caption
-    PricingCard ×3 as joined cells (compact: no Includes list) · Compare plans →  (/pricing) · Prices in USD … line
-§11 OPEN SOURCE AND GET STARTED  #open-source                 background, not surface
-    AGPLv3 · View on GitHub ↗ · one sentence on how the project is funded
-    PlatformActions as cells, flush on the footer's rule: [Download for Mac] primary + AvailabilityLine · App Store badge + AvailabilityLine
+§1  HERO  #top                                   left on the page grid, never centred
+    H1 60/520 at 1280 (52 at 768, 38 below), tracking -0.034em, balanced
+    Subtitle 19px muted, 30rem
+    [Download] lg primary   Documentation ↗ (underlined link)
+    HeroDevices: Linux (back) · Mac · iPad · iPhone on one baseline, about real size to each other,
+    1216 × 437 stage at 1280; below 768 the Linux laptop stands higher, behind
+§2  DATABASES  #databases        index band: muted label in cols 1–3, content in cols 4–12
+    the featured engines as 40px words (weight 480), each nowrap and linked, then "and more" muted
+§3  SPONSORS  #sponsors          index band: logos sized by area in one row; label + "Your logo here / N of 12 open"
+§4  FEATURES  #features          H2 + Mac | Linux SegmentedControl; tablist of six, underline on the selected tab;
+    one sentence + the feature page link; the whole window (1216 × 684) below, crossfading between tabs
+§5  TESTIMONIALS  #testimonials  H2 + lead; three quotes in three columns, no cells; "N more from developers"
+§6  PRICING  #pricing            the /pricing plan cards (PricingSection)
+§7  OPEN SOURCE  #open-source    index band: 40px statement, funding line with About, [Download] + Source on GitHub ★
 SiteFooter
 ```
 
-**FeatureRow** has two layouts:
-
-- **Window row:** H3, 2–3 sentences, the tier marker from `pricing.json` and the link at text width, then the 16:9 slot full width below. From 1280px the text takes cols 1–4 and the window cols 5–12, 790px wide, so its SQL and grid text render at about 8.5px and its smallest labels at about 7px. Measured on 2026-10-09: the homepage is 1,950px shorter at 1280 and wider. Below 1280 the window would drop under the 0.6 scale a phone crop may not go below, so the row stays stacked.
-- **Detail row:** text in cols 1–5 and the 4:3 slot in cols 6–12 from 1024px; from 1280px 4 / 8, with the crop at its 696px width, so its divider meets the window rows'.
-
-Its link is a standalone link whose text is the destination page's name in the Features menu (sitemap §B.1), for example "Querying →". Never "Learn more".
-
-**One primary button per region:** the hero's Download and the final band's Download. The §7 Mac card uses `secondary`.
-
-- **375:**
-  - The hero stacks; each action keeps its caption.
-  - The hero slot uses its mobile crop.
-  - EngineList in 2 columns; sponsors 2 × 2. No rails: cells run to the screen edge and only horizontals remain.
-  - FeatureRows stack text, then slot. Window slots show their `mobile` crops (§6.3).
-  - The platform cards stack, with the phone slot 240 wide.
-  - Pricing cards stack.
+- **One primary button per region:** the hero's Download and the open source band's Download.
+- **Phones:** the hero keeps all four devices; feature captures show the whole window, never a crop (owner,
+  2026-11-07); pricing stacks Pro, Team, Free, then Enterprise.
+- **Motion (the homepage's exception to §7.1, owner's choice):** the devices settle in once on load and drift a few
+  pixels with a fine pointer; sections below the first screen rise into place once as they scroll in; tabs
+  crossfade. Nothing loops, and reduced motion turns all of it off. Content is never hidden before the script runs.
 - **Sponsors stays third** (spec §0).
 
 ### 8.2 Feature page (`/features/{slug}`, `/vi/…`)

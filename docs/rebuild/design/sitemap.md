@@ -531,30 +531,22 @@ The public rebuild must not serve these. They are listed so the disposition tabl
 
 ## D. Homepage section order
 
-The same structure serves `/` and `/vi`. The ids are locale-neutral.
+Redesigned 2026-11-07 (owner's decisions; full rewrite of the eleven-section page). Every locale serves the same
+structure; ids are locale-neutral, and the ids of the sections this page replaced are empty anchors inside the section
+that took over their subject.
 
-| # | id (aliases) | Section | Reader question | Content | Slots | Data and events |
-|---|---|---|---|---|---|---|
-| 1 | `top` | **Hero** | What is TablePro, and can I use it on my devices? | H1 and subtitle (positioning decision). "Download for Mac" → /download, with the availability line below it ("macOS 13 Ventura or later · Apple Silicon and Intel"). The App Store badge, with its own line ("iPhone and iPad · iOS/iPadOS 18 or later · free"). A small link to Pricing | mac-hero-window (≥768px), mac-hero-window-mobile (<768px); the only `fetchpriority="high"` image on the site | platforms; `download_click{location:'hero', platform}` |
-| 2 | `databases` | **Databases** | Does it work with the database I use? | The featured engines with vendor marks; the number of engines, derived, with the hub's categories as links into /databases; one sentence on bundled drivers and drivers downloaded on first pick; the engines that open on iPhone; "Supported databases →" /databases | none (vendor marks are identity assets) | engines (names and categories; any count is derived) |
-| 3 | `sponsors` | **Sponsors** (fixed third) | Who supports the project? | The homepage-placed sponsors' logos with `rel="sponsored noopener"` and accessible names, an invite cell with the open places, and "Sponsor TablePro" (both to `/sponsors`) | none (sponsor logos are identity) | sponsors.json |
-| 4 | `features` | **Workflows** | What do I do with it day to day? | Five rows, each a heading, 2-3 sentences, one slot and a link: **Query** → /features/querying · **Edit data** → /features/data-editing · **Schemas and sync** (Compare & Sync marked Starter) → /features/schema · **Files** → /features/import-export · **Connect** → /features/connections | mac-query-autocomplete, mac-edit-preview-sql, mac-compare-sync-structure, mac-data-files-window, mac-connection-ssh-form | pricing (tier markers) |
-| 5 | `safety` | **Production safety** | Can I point it at production without fear? | Safe Mode per connection (levels named); DROP, TRUNCATE and WHERE-less DELETE always ask; Read-Only; Touch ID; Agent mode raises the floor → /features/data-editing#safe-mode | mac-safe-mode-touchid | facts (Safe Mode levels) |
-| 6 | `ai` (`mcp`) | **AI and MCP** | Does it work with AI tools, and what can the AI touch? | Bring your own provider (named); Agent mode; a local MCP server that is off by default; the permission layers in one line; free → /features/ai-mcp | mac-ai-chat | facts (providers) |
-| 7 | `platforms` (`mobile`) | **Mac, iPhone and iPad** | Is there a phone app, and how does it relate to the Mac app? | Two cards, described positively and with no parity claim. **Mac**: the full workbench, requirement, Download. **iPhone and iPad**: browse, edit, query and SSH on the go; free; App Store. One line on iCloud Sync and Handoff (Starter on the Mac) → /ios, /features/sync-and-teams | ios-connection-list | platforms; `download_click{location:'home-platforms', platform}` |
-| 8 | `switch` (`compare`) | **Coming from another app** | I already use another client. Can I bring my connections? | Importers named, with passwords where true; Open Project Folder; "Compare TablePro with …" → /compare | none | facts (import sources) |
-| 9 | `testimonials` | **What developers say** (added 2026-10-10, owner's decision) | Do other developers actually use it? | Six public posts, quoted as written, each with the author's name, handle, own photo and a link to the post; the reader's language first; a quote in another language shows a labelled translation with the original one click away. No dates, ratings or `Review` markup | none (author photos are identity, like sponsor logos) | testimonials.json (sources, dates, translations) |
-| 10 | `pricing` (`license`) | **Pricing** | What is free, and what costs money? | A working compact block: the Free, Starter and Team cards with the cycle toggle and Buy buttons (same component and data as /pricing); one sentence on the free core and open source; "Compare plans →" /pricing. This is the target of `/?ref=…#pricing` from the Mac app | none | pricing; `checkout_started{tier,cycle}`; `download_click{location:'pricing-free'}` |
-| 11 | `open-source` | **Open source and get started** | Who builds it, can I read the code, and how do I start? | AGPLv3 and a GitHub link; one sentence on how the project is funded (no superlatives); the final "Download for Mac" plus App Store badge with their availability lines | none | platforms; `download_click{location:'footer-cta', platform}` |
+| # | id (aliases) | Section | Content | Slots | Data and events |
+|---|---|---|---|---|---|
+| 1 | `top` (`platforms`, `mobile`) | **Hero** | H1, subtitle (positioning §3.1), Download → /download and Documentation ↗; below them the four devices with each platform's app | home-hero-mac (priority), home-hero-linux, home-hero-ipad, home-hero-iphone | `download_click{location:'home-hero'}` |
+| 2 | `databases` | **Supported databases** | Index band: the featured engines as large linked names, "and more" → /databases. No marks, counts or categories | none | engines.json (`featured`) |
+| 3 | `sponsors` | **Sponsors** (fixed third) | Index band: the homepage-placed logos sized by area, each sponsor's own dark logo in dark mode; "Your logo here" with the open places → /sponsors | none (sponsor logos are identity) | sponsors.json |
+| 4 | `features` (`workflows`, `safety`, `compare`, `switch`, `ai`, `mcp`) | **Working with your databases** | Six tabs, one per feature page in the Features menu's order, with a Mac / Linux switch (the reader's system first): one sentence true on both platforms, the feature page's link, and a whole-window capture. An old anchor opens its tab | `{mac,linux}-home-{querying,data-editing,schema,import-export,ai-mcp,connections}` (kind `window-whole`) | none |
+| 5 | `testimonials` | **What developers say** | Three featured quotes (testimonials.json `featured`), then the rest behind a button; translations as before | none | testimonials.json |
+| 6 | `pricing` (`license`) | **Pricing** | The /pricing plan cards; the lead: free to use, Pro and Team add features, one license covers {deviceLimit} computers, Mac or Linux. Below 1024px the paid plans stack first. Target of `/?ref=…#pricing` from the Mac app | none | pricing.json; `checkout_started`; `download_click{location:'pricing-free'}` |
+| 7 | `open-source` | **Open source** | Index band: AGPLv3 with the paid features, who builds and funds it (the TablePro team, never a person or a city), About, Download, Source on GitHub with the star count | none | facts.json; `download_click{location:'home-footer-cta'}` |
 
-**Not on the homepage:**
-
-- Performance numbers.
-- Download totals, and a star count in any section (the header carries one from 1280px).
-- Comparison matrices (they live on /compare).
-- Windows and Linux (they are on /download#other-platforms and in the FAQ).
-- Integration configuration (it is on /features/ai-mcp).
-- The "#1 on GitHub Trending" badge (misleading without its scope).
+**Not on the homepage:** performance numbers, download totals, comparison matrices, integration configuration, the
+"#1 on GitHub Trending" badge, and any line of platform requirements.
 
 ---
 
