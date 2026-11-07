@@ -248,14 +248,39 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
+    "ios-hero-ipad": {
         "description": {
-            "fr": "Handoff : table Track de Chinook ouverte sur iPhone, proposée dans le Dock du Mac."
+            "fr": "The iPhone and iPad app on an iPad Pro in landscape, in Apple's product frame (silver on light pages, space black on dark): a table open in the table browser."
         }
     },
-    "mac-handoff-ios-mobile": {
+    "ios-hero-iphone": {
         "description": {
-            "fr": "Gros plan pour téléphones : iPhone affichant la table Track au-dessus de l’icône Handoff dans le Dock du Mac."
+            "fr": "The iPhone and iPad app on an iPhone, in Apple's product frame (silver on light pages, black on dark): the list of saved connections."
+        }
+    },
+    "ios-connect": {
+        "description": {
+            "fr": "The app on an iPhone, in Apple's product frame: a connection form with its SSH tunnel and TLS settings."
+        }
+    },
+    "ios-browse": {
+        "description": {
+            "fr": "The app on an iPad Pro in landscape, in Apple's product frame: a table's rows, filtered, in the table browser."
+        }
+    },
+    "ios-query": {
+        "description": {
+            "fr": "The app on an iPhone, in Apple's product frame: a SQL query and its results in the Query tab."
+        }
+    },
+    "ios-safe-mode": {
+        "description": {
+            "fr": "The app on an iPhone, in Apple's product frame: Confirm Writes asking before a statement changes data."
+        }
+    },
+    "ios-shortcuts": {
+        "description": {
+            "fr": "The Shortcuts app on an iPhone, in Apple's product frame: a shortcut using TablePro's Add Rows to Table action."
         }
     },
     "databases-postgresql": {
@@ -387,82 +412,6 @@
     "databases-beancount": {
         "alt": {
             "fr": "TablePro sur Mac avec un ledger Beancount ouvert, ses tables dans la barre latérale et le résultat d’une requête BQL."
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "fr": "TablePro sur iPhone affichant la liste des connexions, avec l’exemple Chinook sous Favoris et un groupe Production de connexions étiquetées."
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "fr": "TablePro sur iPad en paysage, affichant les lignes de la table Track de Chinook sous forme de cartes."
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "fr": "Gros plan de TablePro sur iPad affichant les premières lignes de la table Track de Chinook sous forme de cartes."
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "fr": "Table Track de Chinook sur iPhone filtrée par genre, lignes affichées en cartes et plage de page dessous."
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "fr": "Morceau Chinook ouvert en modification sur iPhone, Composer défini sur NULL avant l’enregistrement."
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "fr": "Onglet Requête sur iPhone avec une requête SQL comptant les morceaux par genre et ses résultats."
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "fr": "Requête en cours sous forme d’activité en direct sur l’écran verrouillé : connexion, requête, temps écoulé et état En cours."
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "fr": "Formulaire de nouvelle connexion sur iPhone, SSL défini sur Vérifier l’identité et tunnel SSH vers bastion.acme.internal authentifié par clé privée."
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "fr": "Confirmation sur iPhone avant l’exécution d’un UPDATE sur une connexion réglée sur Confirmer les écritures."
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "fr": "Deux fenêtres TablePro ouvertes simultanément sur iPad dans Stage Manager, chacune sur une table différente."
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "fr": "Widgets de connexion rapide petits et moyens sur l’écran d’accueil iPhone."
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "fr": "Éditeur Raccourcis avec l’action Ajouter des lignes à une table de TablePro configurée pour ajouter des lignes CSV à une table."
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "fr": "Réglages TablePro sur iPhone avec verrouillage Face ID et synchronisation iCloud activés, partage des données d’utilisation désactivé."
         },
         "caption": null
     },

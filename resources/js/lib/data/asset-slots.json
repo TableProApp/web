@@ -45,6 +45,11 @@
             "aspect": null,
             "sizes": "(min-width: 1280px) 640px, (min-width: 768px) 53vw, 70vw"
         },
+        "framed-device": {
+            "type": "illustration",
+            "aspect": null,
+            "sizes": "(min-width: 1024px) 300px, 260px"
+        },
         "figure": {
             "type": "per-figure",
             "aspect": null,
@@ -1956,36 +1961,116 @@
                 "base": "diagram-icloud-sync"
             }
         },
-        "mac-handoff-ios": {
-            "kind": "illustration",
+        "ios-hero-ipad": {
+            "kind": "framed-device",
             "type": "illustration",
             "slot": true,
-            "aspect": null,
+            "aspect": "367:281",
             "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": "mac-handoff-ios-mobile",
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-handoff-ios"
-            }
-        },
-        "mac-handoff-ios-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
+            "theme": "both",
             "locale": "shared",
             "mobile": null,
             "status": "placeholder",
             "src": null,
             "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-handoff-ios-mobile"
+                "dir": "public/images/ios",
+                "base": "ios-hero-ipad"
+            }
+        },
+        "ios-hero-iphone": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "1318:2717",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-hero-iphone"
+            }
+        },
+        "ios-connect": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "1318:2717",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-connect"
+            }
+        },
+        "ios-browse": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "367:281",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-browse"
+            }
+        },
+        "ios-query": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "1318:2717",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-query"
+            }
+        },
+        "ios-safe-mode": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "1318:2717",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-safe-mode"
+            }
+        },
+        "ios-shortcuts": {
+            "kind": "framed-device",
+            "type": "illustration",
+            "slot": true,
+            "aspect": "1318:2717",
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-shortcuts"
             }
         },
         "databases-postgresql": {
@@ -2813,367 +2898,6 @@
             "replacement": {
                 "dir": "public/images/databases",
                 "base": "databases-beancount"
-            }
-        },
-        "ios-connection-list": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-connection-list"
-            }
-        },
-        "ipad-table-browse": {
-            "kind": "ipad",
-            "type": "screenshot-ipad",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": "ipad-table-browse-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1008,
-                        2016
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2016,
-                    "height": 1511
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ipad-table-browse"
-            }
-        },
-        "ipad-table-browse-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ipad-table-browse-mobile"
-            }
-        },
-        "ios-table-browse": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-table-browse"
-            }
-        },
-        "ios-row-edit": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-row-edit"
-            }
-        },
-        "ios-query": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-query"
-            }
-        },
-        "ios-live-activity": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-live-activity"
-            }
-        },
-        "ios-connection-form": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-connection-form"
-            }
-        },
-        "ios-safe-mode-confirm": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-safe-mode-confirm"
-            }
-        },
-        "ipad-two-windows": {
-            "kind": "ipad",
-            "type": "screenshot-ipad",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ipad-two-windows"
-            }
-        },
-        "ios-widgets": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-widgets"
-            }
-        },
-        "ios-shortcuts-add-rows": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-shortcuts-add-rows"
-            }
-        },
-        "ios-settings-privacy": {
-            "kind": "phone",
-            "type": "screenshot-phone",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "single",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        280,
-                        560,
-                        840
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 840,
-                    "height": 1821
-                }
-            },
-            "replacement": {
-                "dir": "public/images/ios",
-                "base": "ios-settings-privacy"
             }
         },
         "blog-tablepro-0-67-1": {

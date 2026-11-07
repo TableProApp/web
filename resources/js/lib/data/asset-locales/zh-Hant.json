@@ -248,14 +248,39 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
+    "ios-hero-ipad": {
         "description": {
-            "zh-Hant": "Handoff：iPhone 開啟 Chinook 的 Track 資料表，Mac Dock 中提供接續選項。"
+            "zh-Hant": "The iPhone and iPad app on an iPad Pro in landscape, in Apple's product frame (silver on light pages, space black on dark): a table open in the table browser."
         }
     },
-    "mac-handoff-ios-mobile": {
+    "ios-hero-iphone": {
         "description": {
-            "zh-Hant": "手機局部圖：iPhone 顯示 Track 資料表，下方是 Mac Dock 中的 Handoff 圖示。"
+            "zh-Hant": "The iPhone and iPad app on an iPhone, in Apple's product frame (silver on light pages, black on dark): the list of saved connections."
+        }
+    },
+    "ios-connect": {
+        "description": {
+            "zh-Hant": "The app on an iPhone, in Apple's product frame: a connection form with its SSH tunnel and TLS settings."
+        }
+    },
+    "ios-browse": {
+        "description": {
+            "zh-Hant": "The app on an iPad Pro in landscape, in Apple's product frame: a table's rows, filtered, in the table browser."
+        }
+    },
+    "ios-query": {
+        "description": {
+            "zh-Hant": "The app on an iPhone, in Apple's product frame: a SQL query and its results in the Query tab."
+        }
+    },
+    "ios-safe-mode": {
+        "description": {
+            "zh-Hant": "The app on an iPhone, in Apple's product frame: Confirm Writes asking before a statement changes data."
+        }
+    },
+    "ios-shortcuts": {
+        "description": {
+            "zh-Hant": "The Shortcuts app on an iPhone, in Apple's product frame: a shortcut using TablePro's Add Rows to Table action."
         }
     },
     "databases-postgresql": {
@@ -387,82 +412,6 @@
     "databases-beancount": {
         "alt": {
             "zh-Hant": "Mac 上的 TablePro 開啟了 Beancount 帳本，側邊欄中有其資料表，並顯示 BQL 查詢結果。"
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "zh-Hant": "iPhone 上的 TablePro 顯示連線清單，Favorites 下有 Chinook 範例，Production 群組包含帶標籤的連線。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "zh-Hant": "橫向使用的 iPad 上，TablePro 將 Chinook 的 Track 資料表資料列顯示為卡片。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "zh-Hant": "iPad 上 TablePro 的局部圖，將 Chinook 的 Track 資料表前幾列顯示為卡片。"
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "zh-Hant": "iPhone 上的 Chinook Track 資料表按曲風篩選，資料列以卡片顯示，下方標明頁面範圍。"
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "zh-Hant": "iPhone 上開啟 Chinook 的一筆音軌進行編輯，儲存前將 Composer 設為 NULL。"
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "zh-Hant": "iPhone 的 Query 分頁中，SQL 查詢按曲風統計音軌數，並顯示結果。"
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "zh-Hant": "查詢在鎖定畫面上以即時動態顯示：連線、查詢、已用時間和 Running 狀態。"
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "zh-Hant": "iPhone 的新增連線表單將 SSL 設為 Verify Identity，並使用私密金鑰登入通向 bastion.acme.internal 的 SSH 通道。"
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "zh-Hant": "iPhone 上的確認提示，在設定為 Confirm Writes 的連線中執行 UPDATE 陳述式前詢問。"
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "zh-Hant": "iPad 的幕前調度中同時開啟兩個 TablePro 視窗，各自顯示不同的資料表。"
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "zh-Hant": "iPhone 主畫面上的小型和中型 Quick Connect 小工具。"
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "zh-Hant": "捷徑編輯器中的 TablePro Add Rows to Table 動作，設定為將 CSV 資料列加入資料表。"
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "zh-Hant": "iPhone 上的 TablePro 設定，Face ID 鎖定和 iCloud 同步已開啟，使用情況資料共享已關閉。"
         },
         "caption": null
     },

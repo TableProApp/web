@@ -248,14 +248,39 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
+    "ios-hero-ipad": {
         "description": {
-            "id": "Handoff: tabel Track Chinook terbuka di iPhone, ditawarkan dalam Dock Mac."
+            "id": "The iPhone and iPad app on an iPad Pro in landscape, in Apple's product frame (silver on light pages, space black on dark): a table open in the table browser."
         }
     },
-    "mac-handoff-ios-mobile": {
+    "ios-hero-iphone": {
         "description": {
-            "id": "Tampilan dekat untuk ponsel: iPhone menampilkan tabel Track di atas ikon Handoff dalam Dock Mac."
+            "id": "The iPhone and iPad app on an iPhone, in Apple's product frame (silver on light pages, black on dark): the list of saved connections."
+        }
+    },
+    "ios-connect": {
+        "description": {
+            "id": "The app on an iPhone, in Apple's product frame: a connection form with its SSH tunnel and TLS settings."
+        }
+    },
+    "ios-browse": {
+        "description": {
+            "id": "The app on an iPad Pro in landscape, in Apple's product frame: a table's rows, filtered, in the table browser."
+        }
+    },
+    "ios-query": {
+        "description": {
+            "id": "The app on an iPhone, in Apple's product frame: a SQL query and its results in the Query tab."
+        }
+    },
+    "ios-safe-mode": {
+        "description": {
+            "id": "The app on an iPhone, in Apple's product frame: Confirm Writes asking before a statement changes data."
+        }
+    },
+    "ios-shortcuts": {
+        "description": {
+            "id": "The Shortcuts app on an iPhone, in Apple's product frame: a shortcut using TablePro's Add Rows to Table action."
         }
     },
     "databases-postgresql": {
@@ -387,82 +412,6 @@
     "databases-beancount": {
         "alt": {
             "id": "TablePro di Mac dengan buku besar Beancount terbuka, tabelnya di sidebar, dan hasil kueri BQL."
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "id": "TablePro di iPhone menampilkan daftar koneksi, dengan contoh Chinook dalam Favorites dan grup Production berisi koneksi bertag."
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "id": "TablePro di iPad dalam orientasi lanskap, menampilkan baris tabel Track Chinook sebagai kartu."
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "id": "Tampilan dekat TablePro di iPad menampilkan baris awal tabel Track Chinook sebagai kartu."
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "id": "Tabel Track Chinook di iPhone difilter berdasarkan genre, barisnya ditampilkan sebagai kartu dengan rentang halaman di bawahnya."
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "id": "Track Chinook terbuka untuk diedit di iPhone, dengan Composer diatur menjadi NULL sebelum disimpan."
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "id": "Tab Query di iPhone dengan kueri SQL yang menghitung track per genre, serta hasilnya."
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "id": "Kueri yang berjalan sebagai Aktivitas Langsung pada Layar Terkunci: koneksi, kueri, waktu berlalu, dan status Running."
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "id": "Formulir koneksi baru di iPhone dengan SSL diatur ke Verify Identity dan tunnel SSH ke bastion.acme.internal yang masuk dengan kunci privat."
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "id": "Konfirmasi di iPhone yang meminta persetujuan sebelum pernyataan UPDATE dijalankan pada koneksi yang diatur ke Confirm Writes."
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "id": "Dua jendela TablePro terbuka sekaligus di iPad dalam Stage Manager, masing-masing pada tabel berbeda."
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "id": "Widget Quick Connect kecil dan sedang pada Layar Utama iPhone."
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "id": "Editor Pintasan dengan tindakan Add Rows to Table TablePro diatur untuk menambahkan baris CSV ke tabel."
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "id": "Pengaturan TablePro di iPhone dengan kunci Face ID dan iCloud Sync aktif serta berbagi data penggunaan nonaktif."
         },
         "caption": null
     },

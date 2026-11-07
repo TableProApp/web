@@ -248,14 +248,39 @@
         },
         "caption": null
     },
-    "mac-handoff-ios": {
+    "ios-hero-ipad": {
         "description": {
-            "ja": "Handoff。iPhone で開いた Chinook の Track テーブルを Mac の Dock から引き継げます。"
+            "ja": "The iPhone and iPad app on an iPad Pro in landscape, in Apple's product frame (silver on light pages, space black on dark): a table open in the table browser."
         }
     },
-    "mac-handoff-ios-mobile": {
+    "ios-hero-iphone": {
         "description": {
-            "ja": "携帯電話向けの拡大図。Track テーブルを表示する iPhone の下に、Mac の Dock の Handoff アイコンがあります。"
+            "ja": "The iPhone and iPad app on an iPhone, in Apple's product frame (silver on light pages, black on dark): the list of saved connections."
+        }
+    },
+    "ios-connect": {
+        "description": {
+            "ja": "The app on an iPhone, in Apple's product frame: a connection form with its SSH tunnel and TLS settings."
+        }
+    },
+    "ios-browse": {
+        "description": {
+            "ja": "The app on an iPad Pro in landscape, in Apple's product frame: a table's rows, filtered, in the table browser."
+        }
+    },
+    "ios-query": {
+        "description": {
+            "ja": "The app on an iPhone, in Apple's product frame: a SQL query and its results in the Query tab."
+        }
+    },
+    "ios-safe-mode": {
+        "description": {
+            "ja": "The app on an iPhone, in Apple's product frame: Confirm Writes asking before a statement changes data."
+        }
+    },
+    "ios-shortcuts": {
+        "description": {
+            "ja": "The Shortcuts app on an iPhone, in Apple's product frame: a shortcut using TablePro's Add Rows to Table action."
         }
     },
     "databases-postgresql": {
@@ -387,82 +412,6 @@
     "databases-beancount": {
         "alt": {
             "ja": "Beancount の台帳を開いた Mac 上の TablePro。サイドバーのテーブルと BQL クエリの結果が表示されています。"
-        },
-        "caption": null
-    },
-    "ios-connection-list": {
-        "alt": {
-            "ja": "iPhone 上の TablePro の接続一覧。Favorites に Chinook サンプルがあり、Production グループにはタグ付きの接続があります。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse": {
-        "alt": {
-            "ja": "横向きの iPad 上の TablePro。Chinook の Track テーブルの行をカードとして表示しています。"
-        },
-        "caption": null
-    },
-    "ipad-table-browse-mobile": {
-        "alt": {
-            "ja": "iPad 上の TablePro の拡大図。Chinook の Track テーブルの最初の数行をカードとして表示しています。"
-        },
-        "caption": null
-    },
-    "ios-table-browse": {
-        "alt": {
-            "ja": "iPhone 上の Chinook の Track テーブル。ジャンルで絞り込んだ行がカードとして表示され、その下にページ範囲があります。"
-        },
-        "caption": null
-    },
-    "ios-row-edit": {
-        "alt": {
-            "ja": "iPhone で編集のために開いた Chinook のトラック。保存前に Composer を NULL に設定しています。"
-        },
-        "caption": null
-    },
-    "ios-query": {
-        "alt": {
-            "ja": "iPhone の Query タブ。ジャンルごとにトラック数を数える SQL クエリと、その結果。"
-        },
-        "caption": null
-    },
-    "ios-live-activity": {
-        "description": {
-            "ja": "ロック画面のライブアクティビティとして表示された実行中のクエリ。接続、クエリ、経過時間、Running ステータス。"
-        }
-    },
-    "ios-connection-form": {
-        "alt": {
-            "ja": "iPhone の新規接続フォーム。SSL は Verify Identity に設定され、秘密鍵でログインする bastion.acme.internal への SSH トンネルがあります。"
-        },
-        "caption": null
-    },
-    "ios-safe-mode-confirm": {
-        "alt": {
-            "ja": "Confirm Writes に設定した接続で、UPDATE 文の実行前に iPhone が表示する確認。"
-        },
-        "caption": null
-    },
-    "ipad-two-windows": {
-        "description": {
-            "ja": "iPad のステージマネージャで同時に開いた二つの TablePro ウインドウ。それぞれ異なるテーブル。"
-        }
-    },
-    "ios-widgets": {
-        "alt": {
-            "ja": "iPhone のホーム画面に配置した、小サイズと中サイズの Quick Connect ウィジェット。"
-        },
-        "caption": null
-    },
-    "ios-shortcuts-add-rows": {
-        "alt": {
-            "ja": "ショートカットのエディタ。TablePro の Add Rows to Table アクションは、CSV の行をテーブルに追加するように設定されています。"
-        },
-        "caption": null
-    },
-    "ios-settings-privacy": {
-        "alt": {
-            "ja": "iPhone の TablePro の設定。Face ID ロックと iCloud Sync はオンで、利用データの共有はオフです。"
         },
         "caption": null
     },

@@ -245,7 +245,7 @@ final class AssetManifest
      * preload) and for an image that is not marked `priority`, which loads
      * lazily, unless the page passes `$priority`: a placement that renders an
      * entry with priority although the entry is not the homepage hero (the
-     * /ios header, `<AssetSlot priority>`).
+     * /ios hero iPad).
      *
      * Each srcset is the first delivered format's, with its MIME type, because
      * that is the `<source>` the browser picks in `<picture>`. A browser that
@@ -259,7 +259,7 @@ final class AssetManifest
      *
      * @return array{light: list<Preload>, dark: list<Preload>|null}|null
      */
-    public function lcpDescriptor(string $id, ?string $locale = null, bool $priority = false, ?string $sizes = null): ?array
+    public function lcpDescriptor(string $id, ?string $locale = null, bool $priority = false, ?string $sizes = null, ?string $media = null): ?array
     {
         $entry = $this->entry($id);
 
@@ -278,8 +278,8 @@ final class AssetManifest
         $cropResolved = $crop !== null ? $this->themedSources($crop, $locale) : null;
         $themed = $entry['theme'] === 'both' && is_array($resolved[0]['dark'] ?? null);
 
-        $describe = function (string $variant) use ($id, $resolved, $crop, $cropResolved, $sizes): array {
-            $preloads = [$this->preload($id, $resolved, $variant, $crop !== null ? self::WIDE_MEDIA : null, $sizes)];
+        $describe = function (string $variant) use ($id, $resolved, $crop, $cropResolved, $sizes, $media): array {
+            $preloads = [$this->preload($id, $resolved, $variant, $crop !== null ? self::WIDE_MEDIA : $media, $sizes)];
 
             if ($crop !== null && $cropResolved !== null) {
                 $preloads[] = $this->preload($crop, $cropResolved, $variant, self::NARROW_MEDIA);
