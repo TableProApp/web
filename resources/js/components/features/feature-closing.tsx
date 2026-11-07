@@ -23,7 +23,7 @@ interface FeatureClosingProps {
 }
 
 // The page's last band: a small title in the left quarter, one sentence, then the way in.
-export function ClosingFrame({ id = 'get-started', title, sentence, children }: { id?: string; title: string; sentence: string; children: ReactNode }) {
+export function ClosingFrame({ id = 'get-started', title, sentence, children }: { id?: string; title: string; sentence: ReactNode; children?: ReactNode }) {
     return (
         <section id={id} aria-labelledby={`${id}-title`} className="py-16 md:py-24">
             <Container>
@@ -33,7 +33,7 @@ export function ClosingFrame({ id = 'get-started', title, sentence, children }: 
                     </h2>
                     <div className="md:col-span-8 lg:col-span-9">
                         <p className="max-w-[40rem] text-[1.5rem] leading-[1.3] font-[480] tracking-[-0.022em] text-balance text-foreground md:text-[1.875rem]">{sentence}</p>
-                        <div className="mt-8">{children}</div>
+                        {children !== undefined && <div className="mt-8">{children}</div>}
                     </div>
                 </div>
             </Container>

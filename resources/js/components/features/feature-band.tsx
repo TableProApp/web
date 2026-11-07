@@ -18,12 +18,14 @@ interface BandFrameProps {
     assetClassName?: string;
     // A right column beside the text from 1024px, under it below: an /ios band's iPhone.
     beside?: ReactNode;
+    // Under the text, as wide as the three quarters it sits in: a /security table.
+    after?: ReactNode;
     children: ReactNode;
 }
 
 // The Home index grid that feature and database pages share: the name in the left quarter, the text beside it, the
 // whole window below.
-export function BandFrame({ id, also, title, marker, asset, assetClassName, beside, children }: BandFrameProps) {
+export function BandFrame({ id, also, title, marker, asset, assetClassName, beside, after, children }: BandFrameProps) {
     const shown = useShownSlot();
     const slot = asset !== undefined ? shown(asset) : null;
 
@@ -40,6 +42,7 @@ export function BandFrame({ id, also, title, marker, asset, assetClassName, besi
                     </div>
                     <div className={cn('max-w-[42rem] md:col-span-8', beside === undefined ? 'lg:col-span-9' : 'lg:col-span-5')}>{children}</div>
                     {beside !== undefined && <div className="mt-5 md:col-span-8 md:col-start-5 lg:col-span-4 lg:col-start-auto lg:mt-0">{beside}</div>}
+                    {after !== undefined && <div className="mt-3 min-w-0 md:col-span-8 md:col-start-5 lg:col-span-9 lg:col-start-4">{after}</div>}
                 </div>
                 {slot !== null && (
                     <div className="mt-8 md:mt-12">
