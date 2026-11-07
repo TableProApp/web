@@ -2417,7 +2417,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "A shop query of revenue by month shown as a bar chart in the result area of the Mac SQL editor.",
+        "en": "A shop query of revenue and order count by country since September, shown as a bar chart in the result area of the Mac SQL editor.",
         "vi": "Một query doanh thu theo tháng trên shop, hiển thị dạng biểu đồ cột trong vùng kết quả của SQL editor trên Mac.",
         "es": "Una consulta de shop con los ingresos por mes, mostrada como gráfico de barras en el área de resultados del editor SQL del Mac.",
         "de": "Eine Abfrage auf shop zum Umsatz pro Monat, als Balkendiagramm im Ergebnisbereich des SQL-Editors auf dem Mac.",
@@ -2431,26 +2431,53 @@
         "id": "Kueri shop untuk pendapatan per bulan yang ditampilkan sebagai grafik batang di area hasil editor SQL Mac."
       },
       "alt": {
-        "en": "A query result shown as a bar chart of revenue by month in TablePro on a Mac.",
-        "vi": "Kết quả query hiển thị dạng biểu đồ cột doanh thu theo tháng trong TablePro trên Mac.",
-        "es": "Un resultado de consulta mostrado como gráfico de barras de ingresos por mes en TablePro en un Mac.",
-        "de": "Ein Abfrageergebnis als Balkendiagramm des Umsatzes pro Monat in TablePro auf einem Mac.",
-        "fr": "Un résultat de requête affiché en graphique à barres du chiffre d’affaires par mois dans TablePro sur Mac.",
-        "ja": "Mac の TablePro で、クエリ結果を月別売上の棒グラフとして表示しています。",
-        "pt-BR": "Um resultado de consulta mostrado como gráfico de barras de receita por mês no TablePro em um Mac.",
-        "zh-Hans": "Mac 上的 TablePro 将查询结果显示为按月收入柱状图。",
-        "ko": "Mac의 TablePro에서 월별 매출 막대 차트로 표시된 쿼리 결과.",
-        "zh-Hant": "Mac 上的 TablePro 將查詢結果顯示為每月營收長條圖。",
-        "it": "Un risultato di query mostrato come grafico a barre dei ricavi per mese in TablePro su un Mac.",
-        "id": "Hasil kueri yang ditampilkan sebagai grafik batang pendapatan per bulan di TablePro untuk Mac."
+        "en": "A query result shown as a bar chart of revenue by country in TablePro on a Mac.",
+        "vi": "Kết quả query hiển thị dạng biểu đồ cột doanh thu theo quốc gia trong TablePro trên Mac.",
+        "es": "Un resultado de consulta mostrado como gráfico de barras de ingresos por país en TablePro en un Mac.",
+        "de": "Ein Abfrageergebnis als Balkendiagramm des Umsatzes pro Land in TablePro auf einem Mac.",
+        "fr": "Un résultat de requête affiché en graphique à barres du chiffre d’affaires par pays dans TablePro sur Mac.",
+        "ja": "Mac の TablePro で、クエリ結果を国別売上の棒グラフとして表示しています。",
+        "pt-BR": "Um resultado de consulta mostrado como gráfico de barras de receita por país no TablePro em um Mac.",
+        "zh-Hans": "Mac 上的 TablePro 将查询结果显示为按国家收入柱状图。",
+        "ko": "Mac의 TablePro에서 국가별 매출 막대 차트로 표시된 쿼리 결과.",
+        "zh-Hant": "Mac 上的 TablePro 將查詢結果顯示為各國營收長條圖。",
+        "it": "Un risultato di query mostrato come grafico a barre dei ricavi per paese in TablePro su un Mac.",
+        "id": "Hasil kueri yang ditampilkan sebagai grafik batang pendapatan per negara di TablePro untuk Mac."
       },
       "caption": null,
       "replacement": {
         "dir": "public/images/features",
         "base": "features-querying-charts"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-data-editing-safe-mode": {
@@ -2527,7 +2554,7 @@
       "locale": "shared",
       "mobile": null,
       "description": {
-        "en": "Data Rewind on shop: the review of a save, listing the previous and current values of the changed rows, with Restore Previous Values.",
+        "en": "Data Rewind on shop after a save to products: the Restore Previous Values sheet, three rows marked to restore, with the SQL of the previous values shown.",
         "vi": "Data Rewind trên shop: màn hình xem lại một lần lưu, liệt kê giá trị trước đó và giá trị hiện tại của các dòng đã đổi, cùng nút Restore Previous Values.",
         "es": "Data Rewind sobre shop: la revisión de un guardado, con los valores anteriores y actuales de las filas cambiadas y Restore Previous Values.",
         "de": "Data Rewind auf shop: die Prüfung einer Speicherung mit den früheren und aktuellen Werten der geänderten Zeilen und Restore Previous Values.",
@@ -2559,8 +2586,35 @@
         "dir": "public/images/features",
         "base": "features-data-editing-rewind"
       },
-      "status": "placeholder",
-      "src": null,
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        },
+        "dark": {
+          "widths": [
+            720,
+            1216,
+            2432
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 2432,
+          "height": 1368
+        }
+      },
       "legacySource": null
     },
     "features-schema-copy": {
