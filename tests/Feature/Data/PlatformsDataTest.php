@@ -110,3 +110,9 @@ it('installs Linux from a repository on its channel, or from a release file of a
             ->and(array_keys($asset['arch']))->toBe($linux['architectures']);
     }
 });
+
+it('lists the platforms desktop first: Mac, Windows, Linux, then iPhone and iPad', function (): void {
+    $ids = array_column(platformsJson()['platforms'], 'id');
+
+    expect($ids)->toBe(['mac', 'windows', 'linux', 'ios']);
+});

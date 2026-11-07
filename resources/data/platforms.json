@@ -54,87 +54,8 @@
             ]
         },
         {
-            "id": "ios",
-            "status": "released",
-            "deviceNames": [
-                "iPhone",
-                "iPad"
-            ],
-            "page": "/ios",
-            "requirements": {
-                "systems": [
-                    "iOS",
-                    "iPadOS"
-                ],
-                "minVersion": "18.0",
-                "displayVersion": "18",
-                "releaseName": null
-            },
-            "destinations": [
-                {
-                    "kind": "app-store",
-                    "url": "https://apps.apple.com/app/tablepro/id6761621829",
-                    "appId": "6761621829"
-                }
-            ],
-            "release": {
-                "version": "1.0",
-                "build": "22",
-                "publishedAt": "2026-09-22"
-            },
-            "iosEngines": [
-                "mysql",
-                "mariadb",
-                "tidb",
-                "oceanbase",
-                "postgresql",
-                "sqlite",
-                "duckdb",
-                "redis",
-                "sqlserver",
-                "oracle"
-            ],
-            "storefrontExclusions": [
-                "at",
-                "be",
-                "bg",
-                "cy",
-                "cz",
-                "de",
-                "dk",
-                "ee",
-                "es",
-                "fi",
-                "fr",
-                "gr",
-                "hr",
-                "hu",
-                "ie",
-                "it",
-                "li",
-                "lt",
-                "lu",
-                "lv",
-                "mt",
-                "nl",
-                "pl",
-                "pt",
-                "ro",
-                "se",
-                "si",
-                "sk"
-            ],
-            "price": {
-                "amount": 0,
-                "inAppPurchases": false
-            },
-            "appLanguages": [
-                "en",
-                "vi",
-                "ko",
-                "zh-Hans",
-                "zh-Hant"
-            ]
+            "id": "windows",
+            "status": "none"
         },
         {
             "id": "linux",
@@ -267,8 +188,87 @@
             "evidence": "TableProApp/TablePro:linux/README.md:39-116, linux/build-aux/packaging/release-matrix.json, linux/docs/decisions/0041-beta-repositories-and-release-packages.md:55-72, PR #4075"
         },
         {
-            "id": "windows",
-            "status": "none"
+            "id": "ios",
+            "status": "released",
+            "deviceNames": [
+                "iPhone",
+                "iPad"
+            ],
+            "page": "/ios",
+            "requirements": {
+                "systems": [
+                    "iOS",
+                    "iPadOS"
+                ],
+                "minVersion": "18.0",
+                "displayVersion": "18",
+                "releaseName": null
+            },
+            "destinations": [
+                {
+                    "kind": "app-store",
+                    "url": "https://apps.apple.com/app/tablepro/id6761621829",
+                    "appId": "6761621829"
+                }
+            ],
+            "release": {
+                "version": "1.0",
+                "build": "22",
+                "publishedAt": "2026-09-22"
+            },
+            "iosEngines": [
+                "mysql",
+                "mariadb",
+                "tidb",
+                "oceanbase",
+                "postgresql",
+                "sqlite",
+                "duckdb",
+                "redis",
+                "sqlserver",
+                "oracle"
+            ],
+            "storefrontExclusions": [
+                "at",
+                "be",
+                "bg",
+                "cy",
+                "cz",
+                "de",
+                "dk",
+                "ee",
+                "es",
+                "fi",
+                "fr",
+                "gr",
+                "hr",
+                "hu",
+                "ie",
+                "it",
+                "li",
+                "lt",
+                "lu",
+                "lv",
+                "mt",
+                "nl",
+                "pl",
+                "pt",
+                "ro",
+                "se",
+                "si",
+                "sk"
+            ],
+            "price": {
+                "amount": 0,
+                "inAppPurchases": false
+            },
+            "appLanguages": [
+                "en",
+                "vi",
+                "ko",
+                "zh-Hans",
+                "zh-Hant"
+            ]
         }
     ]
 }

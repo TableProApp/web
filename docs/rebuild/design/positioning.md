@@ -158,6 +158,9 @@ promote the badge on an iPhone or iPad. The labels do not change, nothing auto-d
 - `{deviceList}` joins each available platform's `deviceNames` with the catalog's list joiners (§11.4) during SSR
   (architecture §1.5). Today it renders as "Mac, iPhone and iPad" / "Mac, iPhone và iPad".
 - Platforms whose `status` is not `released` (architecture §1.8) never render.
+- Platforms are always listed desktop first: Mac, Windows (once it ships), Linux, then iPhone & iPad (owner,
+  2026-11-07). `platforms.json` holds them in that order and every list follows it: `{deviceList}`, tabs, columns,
+  action rows, structured data and any sentence that names them.
 
 ---
 

@@ -29,7 +29,7 @@ export default {
     ios: {
         badge: 'Download on the App Store',
     },
-    // Joins names in a sentence that offers a choice: "26.04 or 26.10", "Linux or Windows".
+    // Joins names in a sentence that offers a choice: "26.04 or 26.10", "Windows or Linux".
     orList: {
         separator: ', ',
         last: ' or ',

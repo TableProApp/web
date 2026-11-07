@@ -95,7 +95,7 @@ export interface LinksProp {
     issues: string | null;
 }
 
-export type PlatformKey = 'mac' | 'ios' | 'linux';
+export type PlatformKey = 'mac' | 'linux' | 'ios';
 
 export interface DownloadPageProps {
     content: DownloadContent;

@@ -1566,14 +1566,15 @@ to use). Linux renders only once `platforms.json` says it is released; with two 
 
 ```
 header            the app icon (72px) and the H1, centred. No lead. The only centred page header (owner, 2026-11-07)
-switch            SegmentedControl size lg, centred at 40rem: Mac | iPhone & iPad | Linux (Beta), icon above label
+switch            SegmentedControl size lg, centred at 40rem: Mac | Linux (Beta) | iPhone & iPad, icon above label (the
+                  platform order of positioning §3.3)
 panel #mac        [Download for Mac] primary lg · version, date · size · requirement · architectures · updates line
                   Homebrew: CodeBlock with copy, the trailing-cask note · Verify your download (Disclosure: signed and
                   notarized, shasum, the SHA-256)
-panel #ios        App Store badge · version, date · free · requirement · updates line · /ios →
 panel #linux      version, date · what beta means (GitHub issues) · tabs Ubuntu | Fedora | Flatpak | Files, each one
                   CodeBlock of platforms.json's commands, its requirement and update lines; Files: packages by format ×
                   architecture, SHA256SUMS, Verify a file
+panel #ios        App Store badge · version, date · free · requirement · updates line · /ios →
 release row       CellGrid: Release notes (Mac, Linux, Changelog) #release-notes | Older versions (all releases, build
                   from source) #older-versions | Is there a version for Windows? #other-platforms
 ```
