@@ -111,7 +111,6 @@ export default function DatabasesIndex({ content, groups, engines, taglines, ios
                         <div className={ITEM_TEXT}>
                             <p>{fmt(more.linux.tested, { engines: linuxTested })}</p>
                             {linuxUntested !== '' && <p>{fmt(more.linux.untested, { engines: linuxUntested })}</p>}
-                            <p>{more.linux.others}</p>
                         </div>
                         <ItemLink href="/download#linux">{more.linux.link}</ItemLink>
                     </MoreItem>
