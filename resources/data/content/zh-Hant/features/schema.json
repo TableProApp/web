@@ -20,10 +20,6 @@
             "text": [
                 "在 Structure 分頁變更欄位、索引、外部索引鍵和 CHECK 條件約束，執行前在 <ui>預覽 SQL</ui> (Preview SQL) 中查看 DDL。型別變更、NOT NULL、主索引鍵和任何破壞性變更都會先詢問，即使在 {macSafeModeDefault} 下也一樣。建立新資料表時可即時預覽 SQL。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQLite 需要重建資料表時，TablePro 會在您確認後執行；在 Turso、遠端 libSQL 和 Cloudflare D1 上則提供腳本給您。iPhone 與 iPad 以唯讀方式顯示結構。"
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>檢視 ER 圖</ui> (View ER Diagram) 以鳥腳表示法繪製資料表及其外部索引鍵。可匯出為 PNG 或 SQL，或複製為圖片。它只用於檢視，不是設計工具：變更請在 Structure 分頁進行。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "結構腳本僅在相同引擎的資料庫之間產生，MySQL 與 MariaDB 視為同一引擎。"
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "檢查 DDL、列數和型別轉換後，Copy To 會將資料表及其資料移至另一個資料庫，也可跨引擎。轉換可能遺失條件約束：MariaDB <code>ENUM</code> 會變為 PostgreSQL <code>VARCHAR</code>。Duplicate Database 和 Transfer To 同樣免費。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Server Dashboard 顯示即時工作階段、伺服器指標與慢查詢，並依連線的 Safe Mode 取消查詢或終止工作階段。Users & Roles 暫存授權與撤銷，可細到欄位層級，並附上 SQL 供檢查。VACUUM 或 OPTIMIZE 等維護操作會在執行前顯示 SQL。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard：",

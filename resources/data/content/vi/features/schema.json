@@ -20,10 +20,6 @@
             "text": [
                 "Sửa cột, index, khóa ngoại và ràng buộc CHECK trong tab Structure, rồi đọc DDL trong <ui>Xem trước SQL</ui> (Preview SQL) trước khi chạy. Đổi kiểu, NOT NULL, khóa chính và mọi thay đổi phá hủy dữ liệu đều hỏi trước, ngay cả ở mức {macSafeModeDefault}. Table mới có SQL preview cập nhật trực tiếp."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Khi SQLite cần dựng lại table, TablePro chạy bước đó sau khi bạn xác nhận; trên Turso, libSQL remote và Cloudflare D1, TablePro viết sẵn script để bạn tự chạy. iPhone và iPad hiển thị cấu trúc ở chế độ chỉ đọc."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>Xem sơ đồ ER</ui> (View ER Diagram) vẽ table và khóa ngoại của chúng bằng ký hiệu chân quạ. Export ra PNG hoặc SQL, hoặc sao chép dạng ảnh. Sơ đồ chỉ để xem, không phải công cụ thiết kế: muốn thay đổi thì sửa trong tab Structure."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Script cấu trúc chỉ được tạo giữa hai cơ sở dữ liệu cùng engine, trong đó MySQL và MariaDB được tính là một."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To chuyển table và dữ liệu của chúng sang cơ sở dữ liệu khác, kể cả khác engine, sau khi bạn đã xem lại DDL, số dòng và các chuyển đổi kiểu. Chuyển đổi có thể làm mất ràng buộc: <code>ENUM</code> của MariaDB thành <code>VARCHAR</code> của PostgreSQL. Duplicate Database và Transfer To cũng miễn phí."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Server Dashboard hiển thị các session đang chạy, chỉ số của server và query chậm, và có thể hủy query hoặc kết thúc session, đều đi qua Safe Mode của connection. Users & Roles cho bạn chuẩn bị việc cấp và thu hồi quyền, chi tiết tới từng cột, kèm SQL để xem lại. Thao tác bảo trì như VACUUM hay OPTIMIZE hiển thị SQL trước khi chạy."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

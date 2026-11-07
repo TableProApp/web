@@ -20,10 +20,6 @@
             "text": [
                 "Cole uma URL, incluindo as <code>jdbc:</code> e <code>+ssh</code>, e o formulário se preenche sozinho. Organize conexões em grupos aninhados com etiquetas, cores e favoritos, mantenha várias em uma janela ou dê a uma delas sua própria janela, e cada uma lembra a última aba."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "No iPhone e iPad, uma conexão tem uma única etiqueta."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> lê {connectionImportApps}, com senhas quando o app de origem permite. <ui>Open Project Folder</ui> encontra configurações de banco de dados em arquivos de ambiente, de framework e do Docker, e <ui>Import from AWS</ui> lista os bancos RDS e Aurora que um perfil consegue ver."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "O Linux importa de outros apps."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Conecte por SSH com senha, chave, agente ou prompt, passando por hosts intermediários, e guarde túneis como perfis reutilizáveis. O TLS vai de Required a Verify Identity. SOCKS5, Cloudflare Access, o Cloud SQL Auth Proxy e seu próprio comando, como <code>kubectl port-forward</code>, cobrem o resto."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "O Linux, o iPhone e o iPad conectam por SSH e TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "O AWS IAM assina um token novo a cada conexão, a partir de uma chave, um perfil ou do IAM Identity Center. O SQL Server autentica com Microsoft Entra ID ou Kerberos, e BigQuery, Spanner e o Cloud SQL Auth Proxy podem usar sua conta Google."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "O Linux autentica com Kerberos. O iPhone e o iPad usam Entra ID em conexões sincronizadas de um Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "O Linux guarda as senhas no chaveiro do sistema."
             ],

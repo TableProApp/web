@@ -20,10 +20,6 @@
             "text": [
                 "Füge eine URL ein, auch <code>jdbc:</code> und <code>+ssh</code>, und das Formular füllt sich selbst. Ordne Verbindungen in verschachtelten Gruppen mit Tags, Farben und Favoriten, halte mehrere in einem Fenster oder gib einer ihr eigenes, und jede merkt sich ihren letzten Tab."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Auf iPhone und iPad hat eine Verbindung ein Tag."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> liest {connectionImportApps}, mit Passwörtern, wo die Quell-App es zulässt. <ui>Open Project Folder</ui> findet Datenbankeinstellungen in Umgebungs-, Framework- und Docker-Dateien, und <ui>Import from AWS</ui> listet die RDS- und Aurora-Datenbanken auf, die ein Profil sehen kann."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux importiert aus anderen Apps."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Verbinde dich per SSH mit Passwort, Schlüssel, Agent oder interaktiver Eingabe, auch über Jump Hosts, und speichere Tunnel als wiederverwendbare Profile. TLS reicht von Required bis Verify Identity. SOCKS5, Cloudflare Access, der Cloud SQL Auth Proxy und dein eigener Befehl wie <code>kubectl port-forward</code> decken den Rest ab."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux sowie iPhone und iPad verbinden sich über SSH und TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM signiert bei jeder Verbindung einen neuen Token, aus einem Schlüssel, einem Profil oder IAM Identity Center. SQL Server meldet sich mit Microsoft Entra ID oder Kerberos an, und BigQuery, Spanner und der Cloud SQL Auth Proxy können dein Google-Konto nutzen."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux meldet sich mit Kerberos an. iPhone und iPad nutzen Entra ID bei Verbindungen, die von einem Mac synchronisiert wurden."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux speichert Passwörter im Schlüsselbund des Systems."
             ],

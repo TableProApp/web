@@ -25,10 +25,6 @@
                 "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Lọc bằng {filterOperatorCount} toán tử hoặc một điều kiện SQL, lưu các bộ lọc hay dùng, và tô màu dòng hoặc ô khớp điều kiện bằng highlight rule.",
                 "Đi theo khóa ngoại tới dòng được tham chiếu hoặc xem ngay tại chỗ, và mở giá trị JSON dạng cây."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Bộ lọc đã lưu và highlight rule chỉ nằm trên máy Mac nơi bạn tạo chúng."
             ],
@@ -44,10 +40,6 @@
                 "Giá trị đã sửa, dòng mới và dòng bị xóa nằm chờ trong tab cho tới khi bạn bấm <kbd>⌘S</kbd>. <ui>Xem trước SQL</ui> (Preview SQL) hiển thị câu lệnh trước, undo dùng được cho tới khi lưu, và khi lưu, TablePro kiểm tra số dòng bị ảnh hưởng, trong một transaction nếu engine có hỗ trợ.",
                 "Mỗi kiểu dữ liệu có trình sửa riêng: ngày giờ, danh sách ENUM và SET, mảng, JSON, hex cho giá trị nhị phân, và ảnh."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Trên Linux, iPhone và iPad, dòng phải có khóa chính mới sửa được. Kết quả có JOIN, CTE hoặc UNION chỉ đọc trên mọi nền tảng."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Đặt một mức cho từng connection. Mức mặc định, {macSafeModeDefault}, chạy câu lệnh mà không hỏi; Alert hỏi xác nhận trước khi ghi, Safe Mode thêm Touch ID hoặc mật khẩu, các mức Full hỏi cả trước khi đọc, và Read-Only chặn ghi. DROP, TRUNCATE và DELETE không có WHERE luôn cần xác nhận. Safe Mode miễn phí."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux có các mức {linuxSafeModeLevels}. iPhone và iPad có các mức {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Data Rewind không phải bản sao lưu: trigger, cascade và thay đổi từ bên ngoài TablePro không được hoàn tác."
             ],

@@ -1,12 +1,9 @@
 import Badge from '@/components/ui/badge';
-import { useI18n } from '@/i18n';
-import { joinList } from '@/i18n/format';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
-import { iosPlatform, macPlatform } from '@/lib/data/platforms';
 import { cn } from '@/lib/utils';
 import EngineLists from './engine-lists';
 import { FeatureLinkItem } from './feature-links';
-import { partIds, wherePlatforms } from './model';
+import { partIds } from './model';
 import RichText from './rich-text';
 import type { Facts, FeatureLabels, FeaturePart } from './types';
 
@@ -14,8 +11,6 @@ export interface PartContext {
     labels: FeatureLabels;
     facts: Facts;
     values: Record<string, string>;
-    // Linux's device names once it is released, from the server; null before.
-    linux: string[] | null;
 }
 
 // The plan a paid part needs, as the plan's English name in every locale; no icon.
@@ -56,20 +51,9 @@ export function PartText({ part, values, className }: { part: FeaturePart; value
     );
 }
 
-// Where it runs, what differs, which engines, then the docs: quiet lines under the text.
+// What differs on another platform or limits a decision, which engines, then the docs: quiet lines under the text.
 export function PartDetails({ part, context, className }: { part: FeaturePart; context: PartContext; className?: string }) {
-    const { m, fmt } = useI18n();
-    const names = {
-        mac: joinList(macPlatform().deviceNames, m.common.shortList),
-        linux: joinList(context.linux ?? [], m.common.shortList),
-        ios: joinList(iosPlatform().deviceNames, m.common.shortList),
-    };
-    const lines = [
-        ...(part.where !== undefined
-            ? [fmt(context.labels.where, { platforms: joinList(wherePlatforms(context.linux !== null ? part.where : { ...part.where, linux: 'no' }, names), m.common.list) })]
-            : []),
-        ...(part.notes ?? []),
-    ];
+    const lines = part.notes ?? [];
     const links = [...(part.docs !== undefined ? [{ label: context.labels.docs, docs: part.docs }] : []), ...(part.links ?? [])];
 
     if (lines.length === 0 && (part.engines ?? []).length === 0 && links.length === 0) {

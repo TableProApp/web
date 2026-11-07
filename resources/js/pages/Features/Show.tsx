@@ -18,14 +18,14 @@ import LandingLayout from '@/layouts/landing-layout';
 
 // `/features/{slug}` in every locale it has content in (sitemap §A.2, §E.4; README.md): the area nav, a hero with the
 // area's Mac window, four or five bands, the smaller features as a list, and one closing line on what is paid.
-export default function FeatureShow({ slug, content, labels, facts, linux, heroSizes }: FeaturePageProps) {
+export default function FeatureShow({ slug, content, labels, facts, heroSizes }: FeaturePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, path } = useI18n();
     const shown = useShownSlot();
     useRevealOnScroll('main > section:not(#top)');
 
     const values = factValues(facts, labels.number, m.common.list);
-    const context = { labels, facts, values, linux: linux?.deviceNames ?? null };
+    const context = { labels, facts, values };
     const hero = shown(content.header.asset);
     const page = FEATURE_PAGES.find((candidate) => candidate.href === `/features/${slug}`);
     const crumb = page !== undefined ? m.nav.featureLinks[page.key] : content.header.title;

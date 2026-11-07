@@ -24,10 +24,6 @@
                 "通过 API 密钥、账户或本地模型使用 {aiProviders}。请求直接发送给服务商，TablePro 不运营 AI 服务。助手免费，但服务商可能收费。",
                 "在编辑器中审查、解释或优化语句，或修复失败的语句。这些操作不执行任何语句，建议只有在您应用后才会进入编辑器。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "除非在 <ui>设置 > AI</ui> (Settings > AI) 中允许，否则消息不包含结果行。Linux 支持 {aiProvidersLinux}。"
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "默认模式 Ask 读取结构，不执行任何语句。Edit 可运行查询，Agent 还可提出破坏性语句，均受连接的 Safe Mode 约束：Alert 及更严格的级别确认写入，Read-Only 拒绝写入。全窗口 Agent mode 运行期间将连接保持在 Alert 或更严格的级别。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "内置 MCP 服务器让 {mcpSetupClients} 等客户端使用已保存的连接，而不会看到其密码。服务器在您开启前保持关闭，仅监听 {mcpHost}，并记录每次调用。",
                 "每次调用都要经过令牌范围、连接的 External Clients 级别、批准设置和 Safe Mode 检查，以最严格的为准。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "在 Linux 上，服务器通过 HTTP 提供 {mcpToolCountLinux} 个工具。"
             ],

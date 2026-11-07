@@ -24,10 +24,6 @@
                 "Nutze {aiProviders} mit einem API-Schlüssel, einem Konto oder einem lokalen Modell. Anfragen gehen direkt an den Anbieter; TablePro betreibt keinen KI-Dienst. Der Assistent ist kostenlos, dein Anbieter kann Gebühren verlangen.",
                 "Prüfe, erkläre oder optimiere eine Anweisung direkt aus dem Editor oder korrigiere eine fehlgeschlagene. Dabei wird nichts ausgeführt, und ein Vorschlag landet erst im Editor, wenn du ihn übernimmst."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Ergebniszeilen bleiben aus Nachrichten draußen, außer du erlaubst sie unter <ui>Settings > AI</ui>. Linux unterstützt {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, der Standard, liest das Schema und führt nichts aus. Edit führt Abfragen aus, und Agent kann auch destruktive Anweisungen vorschlagen, jeweils unter dem Safe Mode der Verbindung: Alert und strengere Stufen bestätigen Schreibvorgänge, Read-Only verweigert sie. Agent mode im ganzen Fenster hält die Verbindung auf Alert oder strenger, solange er arbeitet."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "Der integrierte MCP-Server lässt Clients wie {mcpSetupClients} deine gespeicherten Verbindungen nutzen, ohne ihre Passwörter zu sehen. Er ist aus, bis du ihn einschaltest, lauscht nur auf {mcpHost} und protokolliert jeden Aufruf.",
                 "Jeder Aufruf durchläuft den Bereich des Tokens, die Stufe für External Clients der Verbindung, ihre Freigabeeinstellung und Safe Mode; die strengste Prüfung gilt."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Unter Linux bietet der Server {mcpToolCountLinux} Werkzeuge über HTTP."
             ],

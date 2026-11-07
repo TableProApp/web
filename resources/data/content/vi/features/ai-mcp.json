@@ -24,10 +24,6 @@
                 "Dùng {aiProviders} với API key, tài khoản hoặc model chạy trên máy. Request đi thẳng tới nhà cung cấp; TablePro không vận hành dịch vụ AI nào. Trợ lý AI miễn phí, còn nhà cung cấp của bạn có thể tính phí.",
                 "Ngay trong editor, bạn có thể review, giải thích hoặc tối ưu một câu lệnh, hay sửa câu lệnh bị lỗi. Không có câu lệnh nào được chạy, và gợi ý chỉ được đưa vào editor khi bạn áp dụng."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Dòng kết quả không được đưa vào tin nhắn trừ khi bạn cho phép trong <ui>Cài đặt > AI</ui> (Settings > AI). Linux hỗ trợ {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, chế độ mặc định, đọc schema và không chạy gì. Edit chạy query, và Agent còn có thể đề xuất câu lệnh phá hủy dữ liệu, trong phạm vi Safe Mode của connection: Alert và các mức chặt hơn hỏi xác nhận trước khi ghi, Read-Only từ chối ghi. Agent mode toàn cửa sổ giữ connection ở mức Alert hoặc chặt hơn trong lúc làm việc."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "MCP server tích hợp sẵn cho phép các client như {mcpSetupClients} dùng connection đã lưu của bạn mà không thấy mật khẩu. Server tắt cho tới khi bạn bật, chỉ lắng nghe trên {mcpHost}, và ghi log mọi lời gọi.",
                 "Mỗi lời gọi phải qua phạm vi của token, rồi mức External Clients, cài đặt duyệt và Safe Mode của connection; lớp chặt nhất được áp dụng."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Trên Linux, server cung cấp {mcpToolCountLinux} tool, qua HTTP."
             ],

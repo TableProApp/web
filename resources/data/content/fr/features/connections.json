@@ -20,10 +20,6 @@
             "text": [
                 "Collez une URL, y compris <code>jdbc:</code> et <code>+ssh</code>, et le formulaire se remplit tout seul. Classez les connexions en groupes imbriqués avec tags, couleurs et favoris, gardez-en plusieurs dans une fenêtre ou ouvrez-en une dans sa propre fenêtre ; chacune mémorise son dernier onglet."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Sur iPhone et iPad, une connexion a un seul tag."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Importer depuis une autre app</ui> (Import from Other App) lit {connectionImportApps}, avec les mots de passe quand l’app source le permet. <ui>Ouvrir le dossier du projet</ui> (Open Project Folder) trouve les réglages de base dans les fichiers d’environnement, de framework et Docker, et <ui>Importer depuis AWS</ui> (Import from AWS) liste les bases RDS et Aurora visibles par un profil."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux importe depuis d’autres apps."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Connectez-vous par SSH avec un mot de passe, une clé, un agent ou une invite, via des hôtes de rebond, et gardez les tunnels comme profils réutilisables. TLS va de Required à Verify Identity. SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy et votre propre commande, comme <code>kubectl port-forward</code>, couvrent le reste."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux, iPhone et iPad se connectent par SSH et TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM signe un nouveau jeton à chaque connexion, à partir d’une clé, d’un profil ou d’IAM Identity Center. SQL Server s’authentifie avec Microsoft Entra ID ou Kerberos, et BigQuery, Spanner et Cloud SQL Auth Proxy peuvent utiliser votre compte Google."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux s’authentifie avec Kerberos. iPhone et iPad utilisent Entra ID sur les connexions synchronisées depuis un Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux garde les mots de passe dans le trousseau du système."
             ],

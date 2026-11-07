@@ -20,10 +20,6 @@
             "text": [
                 "将表和视图导出为 {exportFormats}，流式输出超过表格行数上限的数据。SQL 引擎支持逐表设置筛选、限制和列列表，SQL 导出可包含结构。<ui>导出结果</ui> (Export Results) 重新运行受行数限制的查询以写出完整结果，免费插件可添加 {exportPluginFormats}。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "除非关闭该选项，SQL 导出会在每个表前加入 DROP TABLE IF EXISTS。"
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "将 {importFormats} 文件导入新表或已有表，列映射可保存供下次使用。SQL 文件作为语句运行，包括 <code>.sql.gz</code> 转储和使用 <code>GO</code> 的 SQL Server 脚本。除非关闭，导入使用一个事务；出现失败行时，可回滚、保留已导入的行，或跳过失败行并将其导出。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 可将 CSV 导入已有表，并导入 SQL 文件。iPhone 和 iPad 通过快捷指令添加行。"
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "无需连接，即可将分隔文本、JSON 和 JSON Lines 作为表打开。可筛选、替换文本、删除重复行并查看各列统计，然后以原始格式保存或导入表中。Excel 和压缩文件以只读方式打开。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump 和 Restore Dump 使用连接的 SSH 和 TLS 设置运行 {backupTools}；除 DuckDB 外，工具需自行安装。{serverSideExport} 上的 Server-Side Export 通过 Oracle Data Pump、Snowflake 暂存区或 Cloud Storage 写入，数据不经过您的 Mac。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux 无需外部工具即可写出 SQL 转储。"
             ],

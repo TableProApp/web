@@ -25,10 +25,6 @@
                 "並べ替えとページ分割はサーバー上で行うため、大きなテーブルも最初のページから開きます。{filterOperatorCount} 個の演算子や SQL 条件でフィルターし、よく使うフィルターを保存できます。ハイライトルールで一致する行やセルを色付けします。",
                 "外部キーから参照先の行に移動するか、その場でプレビューできます。JSON 値はツリーで開けます。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "保存済みフィルターとハイライトルールは、作成した Mac に残ります。"
             ],
@@ -44,10 +40,6 @@
                 "編集、新しい行、削除は <kbd>⌘S</kbd> を押すまでタブ内に留まります。<ui>Preview SQL</ui> で先に文を確認でき、保存するまで取り消せます。保存時は影響行数を確認し、エンジンが対応していればトランザクション内で実行します。",
                 "型ごとに専用のエディターを使います：日付、ENUM と SET のリスト、配列、JSON、バイナリ値の 16 進表示、画像。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux と iPhone・iPad では、行の編集に主キーが必要です。JOIN、CTE、UNION の結果はどの環境でも読み取り専用です。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "接続ごとにレベルを設定します。既定の {macSafeModeDefault} は確認なしで文を実行します。Alert は書き込みを確認し、Safe Mode は Touch ID かパスワードを追加で求めます。Full レベルは読み取りも確認し、Read-Only は書き込みをブロックします。DROP、TRUNCATE、WHERE のない DELETE は常に確認が必要です。Safe Mode は無料です。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux は {linuxSafeModeLevels} を提供します。iPhone と iPad は {iosSafeModeLevels} を提供します。"
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "バックアップではありません。トリガー、カスケード、TablePro 外での変更は元に戻りません。"
             ],

@@ -1,8 +1,6 @@
 // The content schema of `/features` and `/features/{slug}` (README.md); relative imports only, so `node --test`
 // loads it through model.ts.
 
-import type { LinuxSummary } from '../download/types.ts';
-
 export interface EngineItem {
     name: string;
     href: string | null;
@@ -31,15 +29,6 @@ export interface EngineListRef {
     list: string;
 }
 
-export type Availability = 'yes' | 'partial' | 'no';
-
-// Where a feature runs besides the Mac, which has every feature on these pages. `partial` counts as present; the
-// difference goes in `notes`. The same values in every locale.
-export interface Where {
-    linux: Availability;
-    ios: Availability;
-}
-
 // A sub-feature. The main ones are bands with a full window below; the rest are items of the closing list. `also`
 // holds the ids of the old sections and blocks this one replaced, so links to them still land here.
 export interface FeaturePart {
@@ -48,7 +37,6 @@ export interface FeaturePart {
     title: string;
     text: string[];
     paid?: string[];
-    where?: Where;
     notes?: string[];
     engines?: EngineListRef[];
     docs?: string;
@@ -56,7 +44,6 @@ export interface FeaturePart {
 }
 
 export interface FeatureBand extends FeaturePart {
-    where: Where;
     asset?: string;
 }
 
@@ -76,8 +63,6 @@ export interface FeaturePageContent {
 export interface FeatureLabels {
     number: { decimal: string; group: string };
     tiers: { free: string; starter: string; team: string };
-    // "On {platforms}."
-    where: string;
     docs: string;
     more: string;
     closing: {
@@ -112,7 +97,6 @@ export interface FeaturePageProps {
     content: FeaturePageContent;
     labels: FeatureLabels;
     facts: Facts;
-    linux: LinuxSummary | null;
     // The hero window's `sizes`, the same string its preload (`lcpAsset`) was built with.
     heroSizes: string;
 }

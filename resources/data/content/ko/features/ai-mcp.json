@@ -24,10 +24,6 @@
                 "지원 제공자: {aiProviders}. API 키, 계정 또는 로컬 모델로 사용할 수 있습니다. 요청은 제공자에게 직접 전송되며 TablePro는 AI 서비스를 운영하지 않습니다. 도우미는 무료이며 제공자의 요금이 발생할 수 있습니다.",
                 "편집기에서 구문을 검토, 설명, 최적화하거나 실패한 구문을 수정하세요. 아무것도 실행되지 않으며 제안은 적용할 때만 편집기에 반영됩니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "결과 행은 <ui>설정 > AI</ui> (Settings > AI)에서 허용하지 않으면 메시지에 포함되지 않습니다. Linux는 {aiProvidersLinux} 제공자를 지원합니다."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "기본 모드인 Ask는 스키마를 읽고 아무것도 실행하지 않습니다. Edit는 쿼리를 실행하고 Agent는 파괴적 구문도 제안할 수 있으며, 둘 다 연결의 Safe Mode를 따릅니다. Alert 이상의 수준은 쓰기를 확인하고 Read-Only는 거부합니다. 전체 창 Agent mode는 작업하는 동안 연결을 Alert 이상으로 유지합니다."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "내장 MCP 서버를 사용하면 {mcpSetupClients} 같은 클라이언트가 암호를 보지 않고 저장된 연결을 사용할 수 있습니다. 직접 켜기 전까지 꺼져 있고 {mcpHost}에서만 수신하며 모든 호출을 기록합니다.",
                 "모든 호출은 토큰 범위, 연결의 External Clients 수준, 승인 설정, Safe Mode를 거치며 가장 엄격한 조건이 적용됩니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux에서는 서버가 HTTP로 {mcpToolCountLinux}개 도구를 제공합니다."
             ],

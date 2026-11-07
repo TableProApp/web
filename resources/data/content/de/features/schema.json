@@ -20,10 +20,6 @@
             "text": [
                 "Ändere Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen im Structure-Tab und lies das DDL in <ui>Preview SQL</ui>, bevor es läuft. Typänderungen, NOT NULL, Primärschlüssel und alles Destruktive fragen vorher nach, auch bei {macSafeModeDefault}. Neue Tabellen haben eine laufende SQL-Vorschau."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Wo SQLite einen Neuaufbau der Tabelle braucht, führt TablePro ihn nach deiner Bestätigung aus; bei Turso, Remote-libSQL und Cloudflare D1 bekommst du das Skript. iPhone und iPad zeigen die Struktur schreibgeschützt."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>View ER Diagram</ui> zeichnet Tabellen und ihre Fremdschlüssel in Krähenfußnotation. Exportiere es als PNG oder SQL oder kopiere es als Bild. Es ist eine Ansicht, kein Designer: Änderungen machst du im Structure-Tab."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Ein Strukturskript entsteht nur zwischen Datenbanken derselben Engine; MySQL und MariaDB zählen als eine."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To überträgt Tabellen und ihre Daten in eine andere Datenbank, auch zwischen Engines, nachdem du DDL, Zeilenzahlen und Typkonvertierungen geprüft hast. Eine Konvertierung kann eine Bedingung verlieren: Aus MariaDB <code>ENUM</code> wird PostgreSQL <code>VARCHAR</code>. Duplicate Database und Transfer To sind ebenfalls kostenlos."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Das Server Dashboard zeigt laufende Sitzungen, Servermetriken und langsame Abfragen und bricht eine Abfrage ab oder beendet eine Sitzung, jeweils über den Safe Mode der Verbindung. Users & Roles bereitet Grants und Revokes bis auf Spaltenebene vor, mit ihrem SQL zur Prüfung. Wartung wie VACUUM oder OPTIMIZE zeigt ihr SQL, bevor sie läuft."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

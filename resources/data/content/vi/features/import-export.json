@@ -20,10 +20,6 @@
             "text": [
                 "Export table và view ra {exportFormats}, stream vượt giới hạn dòng của data grid. Engine SQL nhận bộ lọc, giới hạn và danh sách cột cho từng table, và SQL export có thể kèm cấu trúc. <ui>Xuất kết quả</ui> (Export Results) chạy lại query bị giới hạn để ghi toàn bộ kết quả, và một plugin miễn phí thêm {exportPluginFormats}."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQL export thêm DROP TABLE IF EXISTS trước mỗi table, trừ khi bạn tắt tùy chọn này."
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "Import file {importFormats} vào table mới hoặc có sẵn, với column mapping lưu lại được cho lần sau. File SQL chạy như câu lệnh, gồm cả dump <code>.sql.gz</code> và script SQL Server dùng <code>GO</code>. Một lần import là một transaction trừ khi bạn tắt, và khi có dòng lỗi, bạn có thể rollback, giữ phần đã import, hoặc bỏ qua dòng lỗi rồi export chúng ra."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux import CSV vào table có sẵn, và import file SQL. iPhone và iPad thêm dòng qua Phím tắt."
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "Mở văn bản phân tách, JSON và JSON Lines dạng table mà không cần connection. Lọc, thay văn bản, xóa dòng trùng và xem thống kê của từng cột, rồi lưu theo định dạng gốc hoặc import vào một table. File Excel và file nén mở ở chế độ chỉ đọc."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump và Restore Dump chạy {backupTools} với cài đặt SSH và TLS của connection; bạn tự cài công cụ, trừ với DuckDB. Server-Side Export trên {serverSideExport} ghi qua Oracle Data Pump, Snowflake stage hoặc Cloud Storage, nên dữ liệu không bao giờ đi qua máy Mac của bạn."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux ghi dump SQL mà không cần công cụ bên ngoài."
             ],

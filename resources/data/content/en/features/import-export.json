@@ -20,10 +20,6 @@
             "text": [
                 "Export tables and views to {exportFormats}, streaming past the grid’s row cap. SQL engines take a filter, a limit and a column list per table, and a SQL export can include the structure. <ui>Export Results</ui> reruns a capped query to write the whole result, and a free plugin adds {exportPluginFormats}."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "A SQL export puts DROP TABLE IF EXISTS before each table unless you turn it off."
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "Import {importFormats} files into a new or existing table, with a column mapping you can save for next time. SQL files run as statements, <code>.sql.gz</code> dumps and SQL Server <code>GO</code> scripts included. An import is one transaction unless you turn that off; when a row fails, roll back, keep what was imported, or skip the failed rows and export them."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux imports CSV into an existing table, and SQL files. iPhone and iPad add rows through Shortcuts."
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "Open delimited text, JSON and JSON Lines as tables, with no connection. Filter, replace text, remove duplicate rows and read each column’s statistics, then save in the original format or import into a table. Excel and compressed files open read-only."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump and Restore Dump run {backupTools} with the connection’s SSH and TLS settings; you install the tool, except for DuckDB. Server-Side Export on {serverSideExport} writes through Oracle Data Pump, a Snowflake stage or Cloud Storage, so the data never passes through your Mac."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux writes SQL dumps without external tools."
             ],

@@ -20,10 +20,6 @@
             "text": [
                 "Tempel URL, termasuk URL <code>jdbc:</code> dan <code>+ssh</code>, dan formulir terisi sendiri. Susun koneksi dalam grup bertingkat dengan tag, warna, dan favorit, buka beberapa koneksi dalam satu jendela atau beri satu koneksi jendelanya sendiri, dan setiap koneksi mengingat tab terakhirnya."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone dan iPad memberi satu tag per koneksi."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> membaca {connectionImportApps}, beserta kata sandi jika aplikasi sumber mengizinkannya. <ui>Open Project Folder</ui> menemukan pengaturan database di file lingkungan, framework, dan Docker, dan <ui>Import from AWS</ui> mencantumkan database RDS dan Aurora yang terlihat oleh suatu profil."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux mengimpor dari aplikasi lain."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Terhubung melalui SSH dengan kata sandi, kunci, agen, atau prompt interaktif, lewat jump host, dan simpan tunnel sebagai profil yang dapat digunakan kembali. TLS tersedia dari Required hingga Verify Identity. SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan perintah Anda sendiri, seperti <code>kubectl port-forward</code>, mencakup sisanya."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux serta iPhone dan iPad terhubung melalui SSH dan TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM menandatangani token baru setiap kali terhubung, dari kunci, profil, atau IAM Identity Center. SQL Server masuk dengan Microsoft Entra ID atau Kerberos, dan BigQuery, Spanner, serta Cloud SQL Auth Proxy dapat memakai akun Google Anda."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux masuk dengan Kerberos. iPhone dan iPad memakai Entra ID pada koneksi yang disinkronkan dari Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux menyimpan kata sandi di keyring sistem."
             ],

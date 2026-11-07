@@ -24,10 +24,6 @@
                 "Usa {aiProviders} con una clave API, una cuenta o un modelo local. Las solicitudes van directamente al proveedor; TablePro no opera ningún servicio de IA. El asistente es gratis, aunque tu proveedor puede cobrar.",
                 "Desde el editor, revisa, explica u optimiza una instrucción, o corrige una que ha fallado. No se ejecuta nada, y una sugerencia solo llega al editor cuando la aplicas."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Las filas de resultados quedan fuera de los mensajes salvo que las permitas en <ui>Settings > AI</ui>. Linux admite {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, el modo predeterminado, lee el esquema y no ejecuta nada. Edit ejecuta consultas, y Agent también puede proponer instrucciones destructivas, bajo el Safe Mode de la conexión: Alert y los niveles más estrictos confirman las escrituras, Read-Only las rechaza. Agent mode a ventana completa mantiene la conexión en Alert o un nivel más estricto mientras trabaja."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "El servidor MCP integrado permite que clientes como {mcpSetupClients} usen tus conexiones guardadas sin ver sus contraseñas. Está desactivado hasta que lo activas, solo escucha en {mcpHost} y registra cada llamada.",
                 "Cada llamada pasa por el alcance del token, el nivel de External Clients de la conexión, su ajuste de aprobación y Safe Mode, y prevalece el más estricto."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "En Linux, el servidor ofrece {mcpToolCountLinux} herramientas, por HTTP."
             ],

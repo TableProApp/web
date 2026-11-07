@@ -20,10 +20,6 @@
             "text": [
                 "<code>jdbc:</code> や <code>+ssh</code> を含む URL を貼り付けると、フォームに自動入力されます。接続を階層グループに整理し、タグ、色、お気に入りを付けられます。複数の接続を一つのウィンドウで使うか、一つを別ウィンドウで開けます。各接続は最後に使ったタブを覚えています。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone と iPad では、接続ごとに一つのタグを付けられます。"
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> は {connectionImportApps} を読み取り、元アプリが許す場合はパスワードも取り込みます。<ui>Open Project Folder</ui> は環境、フレームワーク、Docker のファイルからデータベース設定を探します。<ui>Import from AWS</ui> はプロファイルが参照できる RDS と Aurora のデータベースを一覧表示します。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux は他のアプリからインポートできます。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "パスワード、キー、エージェント、対話的な入力で SSH 接続し、踏み台ホストを経由できます。トンネルは再利用できるプロファイルとして保存できます。TLS は Required から Verify Identity まで選べます。SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy、<code>kubectl port-forward</code> などの独自コマンドで、その他の環境にも対応します。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux と iPhone・iPad は SSH と TLS で接続します。"
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM は、キー、プロファイル、IAM Identity Center を使い、接続のたびに新しいトークンを署名します。SQL Server は Microsoft Entra ID か Kerberos で認証します。BigQuery、Spanner、Cloud SQL Auth Proxy では Google アカウントを使えます。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux は Kerberos で認証します。iPhone と iPad は Mac から同期した接続で Entra ID を使います。"
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux はパスワードをシステムのキーリングに保存します。"
             ],

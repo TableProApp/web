@@ -20,10 +20,6 @@
             "text": [
                 "在 Structure 标签页更改列、索引、外键和 CHECK 约束，执行前在 <ui>预览 SQL</ui> (Preview SQL) 中检查 DDL。类型更改、NOT NULL、主键和任何破坏性更改都会先确认，即使在 {macSafeModeDefault} 下也是如此。新建表时可实时预览 SQL。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQLite 需要重建表时，TablePro 在您确认后执行；在 Turso、远程 libSQL 和 Cloudflare D1 上，它会提供脚本。iPhone 和 iPad 以只读方式显示结构。"
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>查看 ER 图</ui> (View ER Diagram) 用乌鸦脚表示法绘制表及其外键。可导出为 PNG 或 SQL，或复制为图片。它只用于查看，不是设计器：更改请在 Structure 标签页进行。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "仅在相同引擎的数据库之间生成结构脚本，MySQL 与 MariaDB 视为同一引擎。"
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "检查 DDL、行数和类型转换后，Copy To 将表及其数据移到另一个数据库，也可跨引擎。转换可能丢失约束：MariaDB <code>ENUM</code> 会变为 PostgreSQL <code>VARCHAR</code>。Duplicate Database 和 Transfer To 同样免费。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Server Dashboard 显示实时会话、服务器指标和慢查询，并按连接的 Safe Mode 取消查询或终止会话。Users & Roles 可暂存细化到列的授权和撤销，并提供 SQL 供检查。VACUUM 或 OPTIMIZE 等维护操作会在执行前显示 SQL。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard：",

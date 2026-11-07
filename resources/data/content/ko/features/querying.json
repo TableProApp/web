@@ -24,10 +24,6 @@
                 "별칭, CTE, 하위 쿼리를 포함해 테이블과 열을 자동 완성합니다. 현재 구문, 선택 영역, 전체 스크립트를 실행하세요. 일반 배치는 하나의 트랜잭션으로 실행되며 구문 하나가 실패하면 롤백합니다.",
                 "<kbd>⌘⇧L</kbd>로 서식을 정리하고, Vim mode를 켜거나, Open Quickly (<kbd>⌘⇧O</kbd>)로 테이블, 뷰, 저장된 쿼리로 바로 이동하세요."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone과 iPad의 Query 탭은 자동 완성 없이 SQL을 실행합니다."
             ],
@@ -40,10 +36,6 @@
                 "<code>:customer_id</code> 같은 매개변수를 쓰면 쿼리 실행 전에 TablePro가 값을 묻습니다. 텍스트, 출처, 실패, 기간으로 기록을 검색하세요. 기록은 {historyDays}일 동안 {historyEntries}개 항목을 보관하며 동기화하지 않습니다.",
                 "자주 쓰는 쿼리를 저장하거나 <code>.sql</code> 파일 폴더를 사이드바에 연결하세요. 양방향 업데이트와 Git 상태를 지원합니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux에는 기록과 저장된 쿼리가 있습니다. iPhone과 iPad는 최근 {historyEntriesIos}개 쿼리를 보관합니다."
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "쿼리 계획을 다이어그램, 비용 트리, 엔진 자체 출력으로 보세요. 변경 후 쿼리를 다시 실행해 두 실행을 비교하면 시간과 계획 차이가 나란히 표시되며 {explainNoise}% 미만의 차이는 잡음으로 처리합니다."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "다이어그램으로 실행 계획 표시:",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

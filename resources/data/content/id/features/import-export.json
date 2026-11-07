@@ -20,10 +20,6 @@
             "text": [
                 "Ekspor tabel dan tampilan ke {exportFormats}, dengan streaming melampaui batas baris grid. Mesin SQL menerima filter, batas, dan daftar kolom per tabel, dan ekspor SQL dapat menyertakan struktur. <ui>Export Results</ui> menjalankan ulang kueri yang dibatasi untuk menulis hasil lengkap, dan plugin gratis menambahkan {exportPluginFormats}."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Ekspor SQL menyertakan DROP TABLE IF EXISTS sebelum setiap tabel kecuali Anda menonaktifkannya."
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "Impor file {importFormats} ke tabel baru atau yang sudah ada, dengan pemetaan kolom yang dapat Anda simpan untuk lain kali. File SQL dijalankan sebagai pernyataan, termasuk dump <code>.sql.gz</code> dan skrip SQL Server dengan <code>GO</code>. Impor berjalan dalam satu transaksi kecuali Anda menonaktifkannya, saat sebuah baris gagal, Anda bisa membatalkan impor, menyimpan baris yang sudah masuk, atau melewati baris yang gagal lalu mengekspornya."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux mengimpor CSV ke tabel yang sudah ada, serta file SQL. iPhone dan iPad menambahkan baris melalui Pintasan."
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "Buka teks berpembatas, JSON, dan JSON Lines sebagai tabel, tanpa koneksi. Filter, ganti teks, hapus baris duplikat, dan baca statistik setiap kolom, lalu simpan dalam format asli atau impor ke tabel. File Excel dan file terkompresi terbuka hanya-baca."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump dan Restore Dump menjalankan {backupTools} dengan pengaturan SSH dan TLS koneksi; Anda menginstal alatnya sendiri, kecuali untuk DuckDB. Server-Side Export pada {serverSideExport} menulis melalui Oracle Data Pump, stage Snowflake, atau Cloud Storage, sehingga data tidak pernah melewati Mac Anda."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux menulis dump SQL tanpa alat eksternal."
             ],

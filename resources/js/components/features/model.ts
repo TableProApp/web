@@ -2,7 +2,7 @@
 // (tests/js/feature-model.test.ts).
 import { interpolate } from '../../i18n/core.ts';
 import { formatNumber, joinList, type ListStyle, type NumberStyle } from '../../i18n/format.ts';
-import type { EngineItem, FactValue, Facts, FeaturePageContent, FeaturePart, Where } from './types.ts';
+import type { EngineItem, FactValue, Facts, FeaturePageContent, FeaturePart } from './types.ts';
 
 // Numbers with the locale's separators, names and engines joined with its list style ("A, B and C").
 export function factText(fact: FactValue, number: NumberStyle, list: ListStyle): string {
@@ -50,11 +50,6 @@ export function pagePaidIds(content: Pick<FeaturePageContent, 'bands' | 'more'>,
 
 export function partIds(part: Pick<FeaturePart, 'id' | 'also'>): string[] {
     return [part.id, ...(part.also ?? [])];
-}
-
-// The Mac has every feature on these pages; a partial platform counts as present.
-export function wherePlatforms<T>(where: Where, names: { mac: T; linux: T; ios: T }): T[] {
-    return [names.mac, ...(where.linux !== 'no' ? [names.linux] : []), ...(where.ios !== 'no' ? [names.ios] : [])];
 }
 
 // For the closing sentence: "Pro adds A and B. Team adds C."

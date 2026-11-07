@@ -20,10 +20,6 @@
             "text": [
                 "Dán một URL, kể cả URL <code>jdbc:</code> và <code>+ssh</code>, form sẽ tự điền. Sắp xếp connection trong nhóm lồng nhau với tag, màu và mục yêu thích, mở nhiều connection trong một cửa sổ hoặc cho một connection cửa sổ riêng, và mỗi connection nhớ tab gần nhất."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Trên iPhone và iPad, mỗi connection có một tag."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Nhập từ ứng dụng khác</ui> (Import from Other App) đọc {connectionImportApps}, kèm mật khẩu nếu ứng dụng nguồn cho phép. <ui>Mở thư mục dự án</ui> (Open Project Folder) tìm cài đặt cơ sở dữ liệu trong file môi trường, framework và Docker, và <ui>Import from AWS</ui> liệt kê các cơ sở dữ liệu RDS và Aurora mà một profile thấy được."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux import được từ ứng dụng khác."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Kết nối qua SSH bằng mật khẩu, key, agent hoặc prompt, đi qua jump host, và lưu tunnel thành profile để dùng lại. TLS có các mức từ Required tới Verify Identity. SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và command của riêng bạn, như <code>kubectl port-forward</code>, lo phần còn lại."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux, iPhone và iPad kết nối qua SSH và TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM ký một token mới mỗi lần kết nối, từ access key, một profile hoặc IAM Identity Center. SQL Server đăng nhập bằng Microsoft Entra ID hoặc Kerberos, còn BigQuery, Spanner và Cloud SQL Auth Proxy có thể dùng tài khoản Google của bạn."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux đăng nhập bằng Kerberos. iPhone và iPad dùng Entra ID cho connection được đồng bộ từ Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux lưu mật khẩu trong keyring của hệ thống."
             ],

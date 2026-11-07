@@ -20,10 +20,6 @@
             "text": [
                 "Exportez tables et vues en {exportFormats}, en flux au-delà du plafond de lignes de la grille. Les moteurs SQL acceptent un filtre, une limite et une liste de colonnes par table, et un export SQL peut inclure la structure. <ui>Exporter les résultats</ui> (Export Results) réexécute une requête plafonnée pour écrire le résultat complet, et un plugin gratuit ajoute {exportPluginFormats}."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Un export SQL place DROP TABLE IF EXISTS avant chaque table, sauf si vous désactivez cette option."
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "Importez des fichiers {importFormats} dans une table nouvelle ou existante, avec une correspondance de colonnes que vous pouvez enregistrer pour la prochaine fois. Les fichiers SQL s’exécutent comme instructions, y compris les dumps <code>.sql.gz</code> et les scripts SQL Server avec <code>GO</code>. Un import forme une seule transaction sauf si vous la désactivez, et en cas de lignes en échec, vous pouvez tout annuler, garder ce qui est importé, ou ignorer ces lignes et les exporter."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux importe du CSV dans une table existante, et des fichiers SQL. iPhone et iPad ajoutent des lignes via Raccourcis."
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "Ouvrez du texte délimité, du JSON et du JSON Lines en tables, sans connexion. Filtrez, remplacez du texte, supprimez les lignes en double et lisez les statistiques de chaque colonne, puis enregistrez dans le format d’origine ou importez dans une table. Les fichiers Excel et compressés s’ouvrent en lecture seule."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump et Restore Dump exécutent {backupTools} avec les réglages SSH et TLS de la connexion ; vous installez l’outil vous-même, sauf pour DuckDB. Server-Side Export sur {serverSideExport} écrit via Oracle Data Pump, un stage Snowflake ou Cloud Storage : les données ne passent jamais par votre Mac."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux écrit des dumps SQL sans outils externes."
             ],

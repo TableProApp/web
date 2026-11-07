@@ -20,10 +20,6 @@
             "text": [
                 "Paste a URL, <code>jdbc:</code> and <code>+ssh</code> ones included, and the form fills itself. Arrange connections in nested groups with tags, colors and favorites, keep several in one window or give one its own, and each remembers its last tab."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone and iPad give a connection one tag."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> reads {connectionImportApps}, with passwords where the source app allows it. <ui>Open Project Folder</ui> finds database settings in environment, framework and Docker files, and <ui>Import from AWS</ui> lists the RDS and Aurora databases a profile can see."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux imports from other apps."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Connect over SSH with a password, a key, an agent or a prompt, through jump hosts, and keep tunnels as reusable profiles. TLS runs from Required to Verify Identity. SOCKS5, Cloudflare Access, the Cloud SQL Auth Proxy and your own command, such as <code>kubectl port-forward</code>, cover the rest."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux and iPhone and iPad connect through SSH and TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM signs a fresh token at every connect, from a key, a profile or IAM Identity Center. SQL Server signs in with Microsoft Entra ID or Kerberos, and BigQuery, Spanner and the Cloud SQL Auth Proxy can use your Google account."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux signs in with Kerberos. iPhone and iPad use Entra ID on connections synced from a Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux keeps passwords in the system keyring."
             ],

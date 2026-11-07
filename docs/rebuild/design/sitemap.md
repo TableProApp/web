@@ -625,7 +625,7 @@ Redesigned 2026-11-07 (owner): stacked bands on the Home grid, Mac windows only,
 
 1. **The area nav**: All features and the seven areas, the current one underlined. No breadcrumb.
 2. **Hero**: the H1, one sentence, Download and the docs link, then the area's Mac window.
-3. **Three to five bands**, one per main sub-workflow: the name with a Pro or Team pill when it is paid, 40 to 70 words, one line on where it runs (Mac first, then Linux and iPhone & iPad from data), notes for a platform difference or a limit that changes a decision, engine coverage computed from `engines.json`, the docs link, then the whole window.
+3. **Three to five bands**, one per main sub-workflow: the name with a Pro or Team pill when it is paid, 40 to 70 words, notes for a platform difference or a limit that changes a decision, engine coverage computed from `engines.json`, the docs link, then the whole window. No line lists the platforms a band runs on (owner, 2026-11-08).
 4. **Also**: the smaller features as plain text, each keeping its id.
 5. **One closing sentence on what is paid**, derived from the parts' paid ids, with Download and See pricing.
 
@@ -634,7 +634,7 @@ Redesigned 2026-11-07 (owner): stacked bands on the Home grid, Mac windows only,
 - No filler grids, no availability table, no limits callout: a fact sits in the band it belongs to, the rest in the docs.
 - Every claim traces to the TablePro app at a released version, or to docs.tablepro.app.
 - A paid feature shows its plan as a pill where it is described, and in the closing sentence. Never "free" without saying what is free.
-- Never say Linux lacks a paid feature; a Linux note states what Linux has.
+- Never say Linux lacks a paid feature, not even as a bare "On Mac."; a Linux note states what Linux has.
 
 ### E.5 Platform and commerce pages
 

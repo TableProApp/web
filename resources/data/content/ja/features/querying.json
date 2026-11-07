@@ -24,10 +24,6 @@
                 "エイリアス、CTE、サブクエリを含め、テーブルと列を補完します。現在の文、選択範囲、スクリプト全体を実行できます。通常のバッチは一つのトランザクションで実行し、文が失敗するとロールバックします。",
                 "<kbd>⌘⇧L</kbd> で整形し、Vim mode を有効にしたり、Open Quickly（<kbd>⌘⇧O</kbd>）でテーブル、ビュー、保存済みクエリに移動したりできます。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone と iPad の Query タブは、自動補完なしで SQL を実行します。"
             ],
@@ -40,10 +36,6 @@
                 "<code>:customer_id</code> と書くと、TablePro は実行前に値を尋ねます。テキスト、実行元、失敗、期間で履歴を検索できます。履歴は {historyEntries} 件を {historyDays} 日間保持し、同期しません。",
                 "よく使うクエリを保存するか、<code>.sql</code> ファイルのフォルダーをサイドバーにリンクできます。双方向の更新と Git 状態に対応します。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux には履歴と保存済みクエリがあります。iPhone と iPad は直近 {historyEntriesIos} 件のクエリを保持します。"
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "クエリプランを図、コストツリー、エンジンの生出力で確認できます。変更後にクエリを再実行して二つの実行を比較すると、時間とプランの違いが並べて表示されます。{explainNoise}% 未満の差はノイズとして扱います。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "図でプラン表示：",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

@@ -24,10 +24,6 @@
                 "Utilisez {aiProviders} avec une clé API, un compte ou un modèle local. Les requêtes vont directement au fournisseur ; TablePro n’exploite aucun service IA. L’assistant est gratuit, mais votre fournisseur peut facturer.",
                 "Depuis l’éditeur, faites vérifier, expliquer ou optimiser une instruction, ou corriger une instruction en échec. Rien ne s’exécute, et une suggestion n’arrive dans l’éditeur que si vous l’appliquez."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Les lignes de résultat restent hors des messages, sauf si vous les autorisez dans <ui>Réglages > IA</ui> (Settings > AI). Linux prend en charge {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, le mode par défaut, lit le schéma et n’exécute rien. Edit exécute des requêtes, et Agent peut aussi proposer des instructions destructives, sous le Safe Mode de la connexion : Alert et les niveaux plus stricts confirment les écritures, Read-Only les refuse. Agent mode en pleine fenêtre maintient la connexion à Alert ou plus strict pendant qu’il travaille."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "Le serveur MCP intégré permet à des clients comme {mcpSetupClients} d’utiliser vos connexions enregistrées sans voir leurs mots de passe. Il reste désactivé jusqu’à ce que vous l’activiez, écoute uniquement sur {mcpHost} et journalise chaque appel.",
                 "Chaque appel passe par la portée du jeton, le niveau External Clients de la connexion, son réglage d’approbation et Safe Mode, et le plus strict l’emporte."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Sur Linux, le serveur propose {mcpToolCountLinux} outils, en HTTP."
             ],

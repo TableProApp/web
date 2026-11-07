@@ -20,10 +20,6 @@
             "text": [
                 "Exportiere Tabellen und Views als {exportFormats}, per Streaming über das Zeilenlimit des Rasters hinaus. SQL-Engines nehmen pro Tabelle einen Filter, ein Limit und eine Spaltenliste, und ein SQL-Export kann die Struktur enthalten. <ui>Export Results</ui> führt eine begrenzte Abfrage erneut aus, um das ganze Ergebnis zu schreiben, und ein kostenloses Plugin ergänzt {exportPluginFormats}."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Ein SQL-Export setzt DROP TABLE IF EXISTS vor jede Tabelle, außer du schaltest das ab."
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "Importiere {importFormats}-Dateien in eine neue oder bestehende Tabelle, mit einer Spaltenzuordnung, die du für das nächste Mal speichern kannst. SQL-Dateien laufen als Anweisungen, auch <code>.sql.gz</code>-Dumps und SQL-Server-Skripte mit <code>GO</code>. Ein Import ist eine Transaktion, außer du schaltest das ab, und bei fehlerhaften Zeilen wählst du zwischen Rollback, Behalten der importierten Zeilen oder Überspringen und Exportieren."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux importiert CSV in eine bestehende Tabelle sowie SQL-Dateien. iPhone und iPad fügen Zeilen über Kurzbefehle hinzu."
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "Öffne Text mit Trennzeichen, JSON und JSON Lines als Tabellen, ohne Verbindung. Filtere, ersetze Text, entferne doppelte Zeilen und lies die Statistik jeder Spalte, und speichere dann im Originalformat oder importiere in eine Tabelle. Excel- und komprimierte Dateien öffnen sich schreibgeschützt."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump und Restore Dump führen {backupTools} mit den SSH- und TLS-Einstellungen der Verbindung aus; das Werkzeug installierst du selbst, außer bei DuckDB. Server-Side Export auf {serverSideExport} schreibt über Oracle Data Pump, eine Snowflake-Stage oder Cloud Storage, sodass die Daten nie über deinen Mac laufen."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux schreibt SQL-Dumps ohne externe Werkzeuge."
             ],

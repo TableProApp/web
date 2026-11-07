@@ -24,10 +24,6 @@
                 "自動完成建議資料表和欄位，包括別名、CTE 和子查詢。執行目前陳述式、選取內容或完整腳本；一般批次在一個交易中執行，任一陳述式失敗時復原。",
                 "用 <kbd>⌘⇧L</kbd> 格式化，開啟 Vim mode，或用 Open Quickly（<kbd>⌘⇧O</kbd>）跳到任一資料表、檢視或已儲存查詢。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "在 iPhone 與 iPad 上，Query 分頁可執行 SQL，但沒有自動完成。"
             ],
@@ -40,10 +36,6 @@
                 "寫下 <code>:customer_id</code>，TablePro 會在查詢執行前詢問值。依文字、來源、失敗或時間範圍搜尋歷史：保留 {historyEntries} 條記錄，期限為 {historyDays} 天，絕不參與同步。",
                 "儲存常用查詢，或將 <code>.sql</code> 檔案資料夾連結到側邊欄，支援雙向更新和 Git 狀態。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 提供歷史與已儲存查詢。iPhone 與 iPad 保留最近 {historyEntriesIos} 筆查詢。"
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "以圖表、成本樹或引擎原始輸出查看查詢計畫。變更後再次執行查詢並比較兩次執行：耗時和計畫差異並排顯示，低於 {explainNoise}% 的差異視為雜訊。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "以圖表顯示計畫：",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

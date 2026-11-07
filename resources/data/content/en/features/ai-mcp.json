@@ -24,10 +24,6 @@
                 "Use {aiProviders} with an API key, an account or a local model. Requests go straight to the provider; TablePro runs no AI service. The assistant is free, and your provider may charge.",
                 "From the editor, review, explain or optimize a statement, or fix one that failed. Nothing runs, and a suggestion reaches the editor only when you apply it."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Result rows stay out of messages unless you allow them in <ui>Settings > AI</ui>. Linux supports {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, the default, reads the schema and runs nothing. Edit runs queries, and Agent can also propose destructive statements, under the connection’s Safe Mode: Alert and stricter levels confirm writes, Read-Only refuses them. Full-window Agent mode keeps the connection at Alert or stricter while it works."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "The built-in MCP server lets clients such as {mcpSetupClients} use your saved connections without seeing their passwords. It is off until you turn it on, listens on {mcpHost} only, and logs every call.",
                 "Each call passes the token’s scope, the connection’s External Clients level, its approval setting and Safe Mode, and the strictest one wins."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "On Linux the server offers {mcpToolCountLinux} tools, over HTTP."
             ],

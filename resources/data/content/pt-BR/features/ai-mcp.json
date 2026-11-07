@@ -24,10 +24,6 @@
                 "Use {aiProviders} com uma chave de API, uma conta ou um modelo local. As solicitações vão direto para o provedor; o TablePro não opera nenhum serviço de IA. O assistente é gratuito, mas seu provedor pode cobrar.",
                 "No editor, revise, explique ou otimize uma instrução, ou corrija uma que falhou. Nada é executado, e uma sugestão só chega ao editor quando você a aplica."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "As linhas de resultado ficam fora das mensagens, a menos que você as permita em <ui>Settings > AI</ui>. O Linux suporta {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, o modo padrão, lê o esquema e não executa nada. Edit executa consultas, e Agent também pode propor instruções destrutivas, sob o Safe Mode da conexão: Alert e níveis mais rigorosos confirmam gravações, e Read-Only as recusa. O Agent mode em janela inteira mantém a conexão em Alert ou em um nível mais rigoroso enquanto trabalha."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "O servidor MCP integrado permite que clientes como {mcpSetupClients} usem suas conexões salvas sem ver as senhas. Ele fica desativado até você ativá-lo, escuta apenas em {mcpHost} e registra cada chamada.",
                 "Cada chamada passa pelo escopo do token, pelo nível de External Clients da conexão, pela configuração de aprovação e pelo Safe Mode, e o mais rigoroso prevalece."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "No Linux, o servidor oferece {mcpToolCountLinux} ferramentas, por HTTP."
             ],

@@ -79,12 +79,8 @@ it('links, lists, marks and places only what exists', function (string $slug): v
 
     foreach (featuresParts($content) as $part) {
         expect(array_diff($part['paid'] ?? [], $paid))->toBe([], "{$slug}#{$part['id']}: unknown paid feature")
+            ->and(array_key_exists('where', $part))->toBeFalse("{$slug}#{$part['id']}: no platform line; a bare \"On Mac.\" reads as not on Linux")
             ->and(trim(implode(' ', $part['text'])))->not->toBe('', "{$slug}#{$part['id']}: no text");
-
-        if (isset($part['where'])) {
-            expect(array_keys($part['where']))->toBe(['linux', 'ios'], "{$slug}#{$part['id']}: where names linux and ios")
-                ->and(array_diff($part['where'], ['yes', 'partial', 'no']))->toBe([], "{$slug}#{$part['id']}: where is yes, partial or no");
-        }
 
         if (isset($part['asset'])) {
             expect(in_array(['path' => "/features/{$slug}", 'section' => $part['id']], $assets[$part['asset']]['usedOn'] ?? [], true))->toBeTrue("{$slug}#{$part['id']}: {$part['asset']} is not placed here in assets.json");
@@ -107,16 +103,12 @@ it('links, lists, marks and places only what exists', function (string $slug): v
             }
         }
     }
-
-    foreach ($content['bands'] as $band) {
-        expect(isset($band['where']))->toBeTrue("{$slug}#{$band['id']}: a band says where it runs");
-    }
 })->with(FeatureSlugs::ALL);
 
-it('keeps every language on the English ids, platforms, plans and windows', function (string $slug): void {
+it('keeps every language on the English ids, plans and windows', function (string $slug): void {
     $shape = fn(array $content): array => [
         'asset' => $content['header']['asset'],
-        'parts' => array_map(fn(array $part): array => array_intersect_key($part, array_flip(['id', 'also', 'paid', 'where', 'asset', 'docs'])), featuresParts($content)),
+        'parts' => array_map(fn(array $part): array => array_intersect_key($part, array_flip(['id', 'also', 'paid', 'asset', 'docs'])), featuresParts($content)),
     ];
     $english = $shape(featuresData("content/en/features/{$slug}.json"));
 
@@ -240,7 +232,6 @@ function featuresDocument(string $path): Dom\HTMLDocument
 }
 
 it('renders the area nav, the bands in order with the ids they replaced, and one paid sentence', function (string $slug): void {
-    bindPlatformsWithLinux('released');
     $content = featuresData("content/en/features/{$slug}.json");
     $labels = featuresData('content/en/features/index.json')['labels'];
     $document = featuresDocument("/features/{$slug}");
@@ -268,11 +259,3 @@ it('renders the area nav, the bands in order with the ids they replaced, and one
         }
     }
 })->with(FeatureSlugs::ALL)->group('ssr');
-
-it('names Linux where a band runs on it only once Linux is released', function (string $status): void {
-    $name = bindPlatformsWithLinux($status)['deviceNames'][0];
-    $document = featuresDocument('/features/querying');
-
-    expect(str_contains((string) $document->querySelector('#editor')?->textContent, $name))->toBe($status === 'released')
-        ->and((string) $document->querySelector('#explain')?->textContent)->not->toContain($name);
-})->with(['released', 'prototype'])->group('ssr');

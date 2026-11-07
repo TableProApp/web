@@ -25,10 +25,6 @@
                 "排序和分页在服务器上执行，因此大表从第一页打开。用 {filterOperatorCount} 种运算符或 SQL 条件筛选，保存常用筛选，并用高亮规则为匹配的行或单元格着色。",
                 "跟随外键访问引用行，或就地预览；JSON 值可在树状视图中打开。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "已保存的筛选和高亮规则保留在创建它们的 Mac 上。"
             ],
@@ -44,10 +40,6 @@
                 "编辑、新增行和删除会保留在标签页中，直到按下 <kbd>⌘S</kbd>。<ui>预览 SQL</ui> (Preview SQL) 先显示语句，保存前可撤销，保存时检查受影响行数，并在引擎支持时使用事务。",
                 "每种类型都有对应的编辑器：日期、ENUM 和 SET 列表、数组、JSON、二进制值的十六进制编辑及图片。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "在 Linux 以及 iPhone 和 iPad 上，行需要主键才能编辑。JOIN、CTE 或 UNION 结果在所有平台上均为只读。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "为每个连接选择级别。默认级别 {macSafeModeDefault} 无需确认即执行语句；Alert 确认写入，Safe Mode 增加 Touch ID 或密码验证，Full 级别也确认读取，Read-Only 阻止写入。DROP、TRUNCATE 和不带 WHERE 的 DELETE 始终需要确认。Safe Mode 免费。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 提供 {linuxSafeModeLevels}。iPhone 和 iPad 提供 {iosSafeModeLevels}。"
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "它不是备份：不会撤销触发器、级联操作或在 TablePro 外部所做的更改。"
             ],

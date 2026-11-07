@@ -20,10 +20,6 @@
             "text": [
                 "Incolla un URL, inclusi quelli <code>jdbc:</code> e <code>+ssh</code>, e il modulo si compila da solo. Organizza le connessioni in gruppi nidificati con tag, colori e preferiti, tienine più d’una in una sola finestra o apri una connessione in una finestra propria, e ognuna ricorda la sua ultima scheda."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Su iPhone e iPad una connessione ha un solo tag."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>Import from Other App</ui> legge {connectionImportApps}, con le password se l’app di origine lo consente. <ui>Open Project Folder</ui> trova le impostazioni del database nei file di ambiente, di framework e Docker, e <ui>Import from AWS</ui> elenca i database RDS e Aurora visibili a un profilo."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux importa da altre app."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Connettiti tramite SSH con password, chiave, agente o richiesta interattiva, anche attraverso jump host, e salva i tunnel come profili riutilizzabili. TLS va da Required a Verify Identity. SOCKS5, Cloudflare Access, il Cloud SQL Auth Proxy e un tuo comando, come <code>kubectl port-forward</code>, coprono il resto."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux, iPhone e iPad si connettono tramite SSH e TLS."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM firma un nuovo token a ogni connessione, da una chiave, un profilo o IAM Identity Center. SQL Server accede con Microsoft Entra ID o Kerberos, e BigQuery, Spanner e il Cloud SQL Auth Proxy possono usare il tuo account Google."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux accede con Kerberos. iPhone e iPad usano Entra ID sulle connessioni sincronizzate da un Mac."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux conserva le password nel portachiavi di sistema."
             ],

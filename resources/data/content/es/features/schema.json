@@ -20,10 +20,6 @@
             "text": [
                 "Cambia columnas, índices, claves foráneas y restricciones CHECK en la pestaña Structure, y lee el DDL en <ui>Preview SQL</ui> antes de que se ejecute. Los cambios de tipo, NOT NULL, claves primarias y todo lo destructivo preguntan antes, incluso en {macSafeModeDefault}. Las tablas nuevas tienen una vista previa SQL en directo."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Cuando SQLite necesita reconstruir una tabla, TablePro lo hace tras tu confirmación; en Turso, libSQL remoto y Cloudflare D1 te da el script. iPhone y iPad muestran la estructura en solo lectura."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>View ER Diagram</ui> dibuja las tablas y sus claves foráneas con notación de pata de gallo. Expórtalo como PNG o SQL, o cópialo como imagen. Es una vista, no un diseñador: los cambios se hacen en la pestaña Structure."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Solo se genera un script de estructura entre bases de datos del mismo motor, contando MySQL y MariaDB como uno."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To mueve tablas y sus datos a otra base de datos, también entre motores, después de que revises el DDL, el número de filas y las conversiones de tipos. Una conversión puede perder una restricción: un <code>ENUM</code> de MariaDB pasa a ser un <code>VARCHAR</code> de PostgreSQL. Duplicate Database y Transfer To también son gratis."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "El Server Dashboard muestra sesiones en directo, métricas del servidor y consultas lentas, y cancela una consulta o termina una sesión a través del Safe Mode de la conexión. Users & Roles prepara concesiones y revocaciones hasta el nivel de columna, con su SQL para revisar. El mantenimiento, como VACUUM u OPTIMIZE, muestra su SQL antes de ejecutarse."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

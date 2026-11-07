@@ -20,10 +20,6 @@
             "text": [
                 "Structure 탭에서 열, 인덱스, 외래 키, CHECK 제약 조건을 바꾸고, 실행 전에 <ui>SQL 미리보기</ui> (Preview SQL)에서 DDL을 확인하세요. 타입 변경, NOT NULL, 기본 키 및 파괴적 변경은 {macSafeModeDefault} 수준에서도 먼저 확인합니다. 새 테이블은 실시간 SQL 미리보기를 보며 만듭니다."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQLite에서 테이블 재구축이 필요하면 TablePro가 확인 후 실행합니다. Turso, 원격 libSQL, Cloudflare D1에서는 스크립트를 제공합니다. iPhone과 iPad는 구조를 읽기 전용으로 표시합니다."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>ER 다이어그램 보기</ui> (View ER Diagram)은 테이블과 외래 키를 까마귀발 표기법으로 그립니다. PNG나 SQL로 내보내거나 이미지로 복사하세요. 설계 도구가 아닌 보기 전용이며 변경은 Structure 탭에서 합니다."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "구조 스크립트는 같은 엔진의 데이터베이스 사이에서만 작성하며 MySQL과 MariaDB는 같은 엔진으로 간주합니다."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To는 DDL, 행 수, 타입 변환을 검토한 뒤 테이블과 데이터를 다른 데이터베이스로 옮기며 엔진 간에도 가능합니다. 변환 시 제약 조건이 사라질 수 있습니다. 예를 들어 MariaDB <code>ENUM</code>은 PostgreSQL <code>VARCHAR</code>가 됩니다. Duplicate Database와 Transfer To도 무료입니다."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Server Dashboard는 실시간 세션, 서버 지표, 느린 쿼리를 보여 주며 연결의 Safe Mode를 거쳐 쿼리를 취소하거나 세션을 종료합니다. Users & Roles는 열 수준까지 권한 부여와 회수를 준비하고 해당 SQL을 검토하게 합니다. VACUUM이나 OPTIMIZE 같은 유지 관리 작업은 실행 전에 SQL을 보여 줍니다."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

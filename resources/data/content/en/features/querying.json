@@ -24,10 +24,6 @@
                 "Autocomplete suggests tables and columns, aliases, CTEs and subqueries included. Run the current statement, a selection or the whole script; an ordinary batch runs in one transaction and rolls back if a statement fails.",
                 "Format with <kbd>⌘⇧L</kbd>, switch on Vim mode, or jump to any table, view or saved query with Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "On iPhone and iPad, the Query tab runs SQL without autocomplete."
             ],
@@ -40,10 +36,6 @@
                 "Write <code>:customer_id</code> and TablePro asks for the value before the query runs. Search your history by text, source, failures or time range: it keeps {historyEntries} entries for {historyDays} days and never syncs.",
                 "Save the queries you reuse, or link a folder of <code>.sql</code> files to the sidebar, with two-way updates and Git status."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux has history and saved queries. iPhone and iPad keep the last {historyEntriesIos} queries."
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "Read a query plan as a diagram, a cost tree or the engine’s own output. Run the query again after a change and compare the two runs: timing and plan differences show side by side, and anything under {explainNoise}% counts as noise."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Plans as a diagram:",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

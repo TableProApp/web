@@ -20,10 +20,6 @@
             "text": [
                 "Modifica colonne, indici, chiavi esterne e vincoli CHECK nella scheda Structure, poi leggi il DDL in <ui>Preview SQL</ui> prima che venga eseguito. Modifiche ai tipi, NOT NULL, chiavi primarie e tutto ciò che è distruttivo chiedono prima conferma, anche a {macSafeModeDefault}. Le nuove tabelle hanno un’anteprima SQL in tempo reale."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Dove SQLite richiede di ricostruire una tabella, TablePro lo fa dopo la tua conferma; su Turso, libSQL remoto e Cloudflare D1 ti fornisce lo script. iPhone e iPad mostrano la struttura in sola lettura."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>View ER Diagram</ui> disegna le tabelle e le loro chiavi esterne con la notazione a zampa di gallina. Esportalo come PNG o SQL, o copialo come immagine. È una vista, non uno strumento di progettazione: le modifiche si fanno nella scheda Structure."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Uno script di struttura viene generato solo tra database dello stesso motore, considerando MySQL e MariaDB come uno solo."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To sposta tabelle e dati in un altro database, anche tra motori diversi, dopo che hai controllato il DDL, il conteggio delle righe e le conversioni dei tipi. Una conversione può perdere un vincolo: un <code>ENUM</code> di MariaDB diventa un <code>VARCHAR</code> di PostgreSQL. Anche Duplicate Database e Transfer To sono gratuiti."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "Il Server Dashboard mostra sessioni attive, metriche del server e query lente, e annulla una query o termina una sessione rispettando il Safe Mode della connessione. Users & Roles prepara concessioni e revoche fino al livello di colonna, con il relativo SQL da controllare. La manutenzione, come VACUUM o OPTIMIZE, mostra l’SQL prima dell’esecuzione."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

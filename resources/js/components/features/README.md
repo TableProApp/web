@@ -12,8 +12,8 @@ Every fact must trace to the app or its docs at a released tag. Do not describe 
 2. The hero: H1, lead, Download, the docs link (`header.docs`), and the area's Mac window (`header.asset`), which
    settles in once on load.
 3. Three to five `bands`, one `<section id>` each: the name in the left quarter with a Pro or Team pill when it
-   describes a paid feature, the text, one line on where it runs, the notes, engine lines, the docs link and other
-   links, then the whole window (`asset`). A band the hero window already shows has no `asset`.
+   describes a paid feature, the text, the notes, engine lines, the docs link and other links, then the whole window
+   (`asset`). A band the hero window already shows has no `asset`.
 4. `#more` ("Also"): the smaller features as plain text in two columns, each item keeping its id.
 5. `#get-started`: one sentence on what is paid, derived ("Pro adds Query Insights and Result Charts. Everything else
    on this page is free."), Download and See pricing.
@@ -41,7 +41,6 @@ Top-level keys, in this order: `seo`, `og`, `header`, `bands`, `more`.
       "title": "EXPLAIN and EXPLAIN Compare",
       "text": ["…"],                                // 40 to 70 words in all
       "paid": ["query-insights"],                   // paid-features.json ids; shows the plan pill
-      "where": { "linux": "no", "ios": "no" },      // required on a band: "yes" | "partial" | "no"
       "notes": ["…"],                               // a platform difference or a limit that changes a decision
       "engines": [{ "label": "Plans as a diagram:", "list": "explainDiagram" }],
       "docs": "/features/explain-visualization",
@@ -49,14 +48,13 @@ Top-level keys, in this order: `seo`, `og`, `header`, `bands`, `more`.
       "asset": "features-querying-explain"          // a window-whole slot
     }
   ],
-  "more": [ /* the same keys, no asset; "where" optional */ ]
+  "more": [ /* the same keys, no asset */ ]
 }
 ```
 
-- `where` renders "On Mac, Linux and iPhone & iPad.": the Mac always, then each platform that is not `no`. The
-  device names come from `platforms.json`, and Linux is named only once it is released. Say what a `partial`
-  platform lacks or does differently in `notes`. Decide `where` in English: every locale carries the same values.
-- A `notes` line about Linux states what Linux has. Never write that Linux lacks a paid feature.
+- No line lists the platforms a part runs on: a bare "On Mac." under a paid feature reads as "not on Linux" (owner,
+  2026-11-08). Where a platform differs in a way a reader needs, say so in `notes`, as what that platform has.
+  Never write that Linux lacks a paid feature.
 - An engine label carries its own colon ("Plans as a diagram:", French "… :" with a no-break space).
 - Write "free" only next to what is free ("Map view is free."). Never type a plan into a sentence to mark a feature's
   plan; the pill and the closing sentence do that. Never "unlock" / "mở khóa": a plan adds features.
@@ -118,7 +116,7 @@ list is hidden.
 
 ## Languages
 
-- Same keys, same ids, `also`, `paid`, `where`, `asset` and `{tokens}` as English in every locale (`FeaturesTest`,
+- Same keys, same ids, `also`, `paid`, `asset` and `{tokens}` as English in every locale (`FeaturesTest`,
   `TranslationsTest`). Feature, plan, mode and engine names stay English.
 - Vietnamese: "bạn", developer terms in English, positioning §11's glossary, NFC.
 

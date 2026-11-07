@@ -20,10 +20,6 @@
             "text": [
                 "テーブルとビューを {exportFormats} でエクスポートでき、グリッドの行数上限を超えてストリーミングします。SQL エンジンではテーブルごとにフィルター、上限、列を指定でき、SQL 出力には構造も含められます。<ui>Export Results</ui> は上限付きクエリを再実行して全結果を書き出します。無料プラグインで {exportPluginFormats} を追加できます。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQL エクスポートは、オフにしない限り各テーブルの前に DROP TABLE IF EXISTS を入れます。"
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "{importFormats} ファイルを新規または既存のテーブルにインポートでき、列の対応付けは次回用に保存できます。SQL ファイルは文として実行し、<code>.sql.gz</code> ダンプや SQL Server の <code>GO</code> スクリプトにも対応します。オフにしない限りインポートは一つのトランザクションで行います。行が失敗したときは、ロールバックする、インポート済みの行を残す、失敗した行をスキップしてエクスポートする、のいずれかを選べます。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux は既存テーブルへの CSV と、SQL ファイルをインポートします。iPhone と iPad はショートカットで行を追加します。"
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "区切りテキスト、JSON、JSON Lines を接続なしでテーブルとして開けます。フィルター、テキスト置換、重複行の削除、各列の統計の確認ができ、元の形式で保存するか、テーブルにインポートできます。Excel と圧縮ファイルは読み取り専用で開きます。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump と Restore Dump は、接続の SSH と TLS 設定で {backupTools} を実行します。DuckDB 以外はツールを自分でインストールします。{serverSideExport} の Server-Side Export は Oracle Data Pump、Snowflake ステージ、Cloud Storage を使って書き出すため、データは Mac を経由しません。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux は外部ツールなしで SQL ダンプを書き出します。"
             ],

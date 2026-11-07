@@ -25,10 +25,6 @@
                 "Le tri et la pagination s’exécutent sur le serveur ; une grande table s’ouvre donc sur sa première page. Filtrez avec {filterOperatorCount} opérateurs ou une condition SQL, enregistrez les filtres que vous réutilisez et colorez les lignes ou cellules correspondantes avec des règles de surbrillance.",
                 "Suivez une clé étrangère jusqu’à sa ligne ou prévisualisez-la sur place, et ouvrez les valeurs JSON dans un arbre."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Les filtres enregistrés et les règles de surbrillance restent sur le Mac où vous les avez créés."
             ],
@@ -44,10 +40,6 @@
                 "Modifications, nouvelles lignes et suppressions attendent dans l’onglet jusqu’à ce que vous appuyiez sur <kbd>⌘S</kbd>. <ui>Aperçu SQL</ui> (Preview SQL) affiche d’abord les instructions, l’annulation fonctionne jusqu’à l’enregistrement, et l’enregistrement vérifie le nombre de lignes affectées, dans une transaction si le moteur en propose.",
                 "Chaque type a son éditeur : dates, listes ENUM et SET, tableaux, JSON, hexadécimal pour les valeurs binaires, et images."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Sur Linux, iPhone et iPad, une ligne doit avoir une clé primaire pour être modifiée. Le résultat d’une jointure, d’un CTE ou d’une UNION est en lecture seule partout."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Choisissez un niveau par connexion. Le niveau par défaut, {macSafeModeDefault}, exécute les instructions sans demander ; Alert confirme les écritures, Safe Mode ajoute Touch ID ou votre mot de passe, les niveaux Full confirment aussi les lectures, et Read-Only bloque les écritures. DROP, TRUNCATE et DELETE sans WHERE demandent toujours confirmation. Safe Mode est gratuit."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux propose {linuxSafeModeLevels}. iPhone et iPad proposent {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Ce n’est pas une sauvegarde : les déclencheurs, les cascades et les changements effectués hors de TablePro ne sont pas annulés."
             ],

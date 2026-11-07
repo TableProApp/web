@@ -24,10 +24,6 @@
                 "自动补全建议表和列，包括别名、CTE 和子查询。运行当前语句、选中内容或完整脚本；普通批次在一个事务中运行，任一语句失败时回滚。",
                 "用 <kbd>⌘⇧L</kbd> 格式化，开启 Vim mode，或用 Open Quickly（<kbd>⌘⇧O</kbd>）跳转到任意表、视图或已保存查询。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "在 iPhone 和 iPad 上，Query 标签页可运行 SQL，但不提供自动补全。"
             ],
@@ -40,10 +36,6 @@
                 "写入 <code>:customer_id</code>，TablePro 会在查询运行前询问其值。按文本、来源、失败或时间范围搜索历史：保留 {historyEntries} 条记录，期限为 {historyDays} 天，绝不参与同步。",
                 "保存常用查询，或将 <code>.sql</code> 文件夹链接到侧边栏，支持双向更新和 Git 状态。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 提供历史和已保存查询。iPhone 和 iPad 保留最近 {historyEntriesIos} 条查询。"
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "将查询计划显示为图形、成本树或引擎原始输出。更改后再次运行查询并比较两次运行：耗时和计划差异并排显示，低于 {explainNoise}% 的差异视为噪声。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "以图形显示计划：",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

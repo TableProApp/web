@@ -20,10 +20,6 @@
             "text": [
                 "Change columns, indexes, foreign keys and CHECK constraints in the Structure tab, then read the DDL in <ui>Preview SQL</ui> before it runs. Type changes, NOT NULL, primary keys and anything destructive ask first, even at {macSafeModeDefault}. New tables come with a live SQL preview."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "Where SQLite needs a table rebuild, TablePro runs it after you confirm; on Turso, remote libSQL and Cloudflare D1 it gives you the script. iPhone and iPad show structure read-only."
             ],
@@ -45,10 +41,6 @@
             "text": [
                 "<ui>View ER Diagram</ui> draws tables and their foreign keys in crow’s-foot notation. Export it as PNG or SQL, or copy it as an image. It is a view, not a designer: changes happen in the Structure tab."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "no"
-            },
             "docs": "/features/er-diagram",
             "asset": "features-schema-er-diagram"
         },
@@ -61,10 +53,6 @@
             "paid": [
                 "compare-sync"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "A structure script is written only between databases of the same engine, with MySQL and MariaDB counted as one."
             ],
@@ -77,10 +65,6 @@
             "text": [
                 "Copy To moves tables and their data to another database, across engines too, once you have reviewed the DDL, the row counts and the type conversions. A conversion can lose a constraint: a MariaDB <code>ENUM</code> becomes a PostgreSQL <code>VARCHAR</code>. Duplicate Database and Transfer To are free as well."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/copy-objects",
             "asset": "features-schema-copy"
         },
@@ -94,10 +78,6 @@
             "text": [
                 "The Server Dashboard shows live sessions, server metrics and slow queries, and cancels a query or ends a session through the connection’s Safe Mode. Users & Roles stages grants and revokes down to a column, with their SQL to review. Maintenance such as VACUUM or OPTIMIZE shows its SQL before it runs."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Server Dashboard:",

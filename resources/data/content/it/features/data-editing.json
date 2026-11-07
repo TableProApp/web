@@ -25,10 +25,6 @@
                 "Ordinamento e paginazione avvengono sul server, quindi una tabella grande si apre alla prima pagina. Filtra con {filterOperatorCount} operatori o una condizione SQL, salva i filtri che riutilizzi e colora le righe o le celle corrispondenti con le regole di evidenziazione.",
                 "Segui una chiave esterna fino alla sua riga o visualizzala in anteprima sul posto, e apri i valori JSON in una vista ad albero."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "I filtri salvati e le regole di evidenziazione restano sul Mac dove li hai creati."
             ],
@@ -44,10 +40,6 @@
                 "Modifiche, nuove righe ed eliminazioni restano in attesa nella scheda finché non premi <kbd>⌘S</kbd>. <ui>Preview SQL</ui> mostra prima le istruzioni, l’annullamento funziona fino al salvataggio, e il salvataggio controlla il numero di righe interessate, in una transazione se il motore la supporta.",
                 "Ogni tipo ha il suo editor: date, elenchi ENUM e SET, array, JSON, esadecimale per i valori binari e immagini."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Su Linux e su iPhone e iPad, per modificare una riga serve una chiave primaria. Il risultato di un join, una CTE o una UNION è in sola lettura ovunque."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Assegna un livello a ogni connessione. Il predefinito, {macSafeModeDefault}, esegue le istruzioni senza chiedere; Alert conferma le scritture, Safe Mode aggiunge Touch ID o la password, i livelli Full confermano anche le letture e Read-Only blocca le scritture. DROP, TRUNCATE e DELETE senza WHERE chiedono sempre conferma. Safe Mode è gratuito."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux offre {linuxSafeModeLevels}. iPhone e iPad offrono {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Non è un backup: trigger, modifiche a cascata e modifiche fatte fuori da TablePro non vengono annullati."
             ],

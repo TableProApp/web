@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Releases\PlatformCatalog;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\Slugs\FeatureSlugs;
@@ -36,7 +35,7 @@ class FeatureController extends Controller
         ]);
     }
 
-    public function show(ContentRepository $content, FeatureFacts $facts, AssetManifest $assets, PlatformCatalog $platforms, string $slug): Response
+    public function show(ContentRepository $content, FeatureFacts $facts, AssetManifest $assets, string $slug): Response
     {
         $locale = App::getLocale();
         $page = $content->page("features/{$slug}", $locale);
@@ -46,8 +45,6 @@ class FeatureController extends Controller
             'content' => $page,
             'labels' => $content->page('features/index', $locale)['labels'] ?? [],
             'facts' => $facts->for($page),
-            // Null until Linux ships, so a band names Linux only once it has.
-            'linux' => $platforms->linuxSummary(),
             'heroSizes' => self::HERO_SIZES,
             'lcpAsset' => $assets->lcpDescriptor($page['header']['asset'], $locale, priority: true, sizes: self::HERO_SIZES),
         ]);

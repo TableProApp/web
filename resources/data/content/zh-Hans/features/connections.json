@@ -20,10 +20,6 @@
             "text": [
                 "粘贴 URL（包括 <code>jdbc:</code> 和 <code>+ssh</code> URL），表单会自动填写。用嵌套分组、标签、颜色和收藏整理连接，可在一个窗口保留多个连接，也可让某个连接单独使用一个窗口，每个连接都会记住上次使用的标签页。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "在 iPhone 和 iPad 上，每个连接只能有一个标签。"
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>从其他应用导入</ui> (Import from Other App) 读取 {connectionImportApps}，在源应用允许时一并导入密码。<ui>打开项目文件夹</ui> (Open Project Folder) 从环境、框架和 Docker 文件中查找数据库设置，<ui>Import from AWS</ui> 列出配置文件可见的 RDS 和 Aurora 数据库。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux 支持从其他应用导入。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "通过 SSH 连接时可使用密码、密钥、SSH agent 或交互式提示，支持跳板主机，并可将隧道保存为可复用的配置。TLS 支持从 Required 到 Verify Identity 的各级模式。其余情况可使用 SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy，或 <code>kubectl port-forward</code> 等自定义命令。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 以及 iPhone 和 iPad 支持通过 SSH 和 TLS 连接。"
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM 在每次连接时签发新令牌，可使用密钥、配置文件或 IAM Identity Center。SQL Server 可通过 Microsoft Entra ID 或 Kerberos 登录，BigQuery、Spanner 和 Cloud SQL Auth Proxy 可使用您的 Google 账户。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 支持 Kerberos 登录。iPhone 和 iPad 可在从 Mac 同步的连接上使用 Entra ID。"
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux 将密码保存在系统密钥环中。"
             ],

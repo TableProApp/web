@@ -24,10 +24,6 @@
                 "O preenchimento automático sugere tabelas e colunas, incluindo aliases, CTEs e subconsultas. Execute a instrução atual, uma seleção ou o script inteiro; um lote comum roda em uma transação e é revertido se uma instrução falhar.",
                 "Formate com <kbd>⌘⇧L</kbd>, ative o Vim mode ou vá direto a qualquer tabela, visualização ou consulta salva com Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "No iPhone e iPad, a aba Query executa SQL sem preenchimento automático."
             ],
@@ -40,10 +36,6 @@
                 "Escreva <code>:customer_id</code> e o TablePro pede o valor antes de executar a consulta. Pesquise o histórico por texto, origem, falhas ou intervalo de tempo: ele guarda {historyEntries} entradas por {historyDays} dias e nunca sincroniza.",
                 "Salve as consultas que você reutiliza ou vincule uma pasta de arquivos <code>.sql</code> à barra lateral, com atualizações bidirecionais e status do Git."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "O Linux tem histórico e consultas salvas. O iPhone e o iPad guardam as últimas {historyEntriesIos} consultas."
             ],
@@ -59,10 +51,6 @@
             "text": [
                 "Leia um plano de consulta como diagrama, árvore de custos ou a saída do próprio mecanismo. Execute a consulta de novo após uma mudança e compare as duas execuções: as diferenças de tempo e de plano aparecem lado a lado, e o que fica abaixo de {explainNoise}% conta como ruído."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "engines": [
                 {
                     "label": "Planos como diagrama:",
@@ -89,10 +77,6 @@
             "paid": [
                 "query-insights"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/query-insights",
             "asset": "features-querying-insights"
         },
@@ -109,10 +93,6 @@
             "paid": [
                 "result-charts"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-grid#chart-mode",
             "asset": "features-querying-charts"
         }

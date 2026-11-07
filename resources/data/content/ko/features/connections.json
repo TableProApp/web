@@ -20,10 +20,6 @@
             "text": [
                 "<code>jdbc:</code> 및 <code>+ssh</code> URL을 포함해 URL을 붙여넣으면 양식이 자동으로 채워집니다. 연결을 태그, 색상, 즐겨찾기와 함께 중첩 그룹으로 정리하고, 한 창에서 여러 연결을 쓰거나 연결 하나를 별도 창으로 열 수 있습니다. 각 연결은 마지막 탭을 기억합니다."
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "iPhone과 iPad에서는 연결당 태그 하나를 지정합니다."
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>다른 앱에서 가져오기</ui> (Import from Other App)은 {connectionImportApps}에서 연결을 읽으며 원본 앱이 허용하면 암호도 가져옵니다. <ui>프로젝트 폴더 열기</ui> (Open Project Folder)는 환경, 프레임워크, Docker 파일에서 데이터베이스 설정을 찾고, <ui>Import from AWS</ui>는 프로필이 볼 수 있는 RDS 및 Aurora 데이터베이스를 나열합니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux는 다른 앱에서 가져올 수 있습니다."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "암호, 키, 에이전트 또는 프롬프트로 점프 호스트를 거쳐 SSH에 연결하고, 터널을 재사용 가능한 프로필로 저장하세요. TLS는 Required부터 Verify Identity까지 지원합니다. 나머지는 SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, 그리고 <code>kubectl port-forward</code> 같은 직접 지정한 명령으로 처리합니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux와 iPhone, iPad는 SSH와 TLS로 연결합니다."
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM은 키, 프로필 또는 IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명합니다. SQL Server는 Microsoft Entra ID 또는 Kerberos로 로그인하며, BigQuery, Spanner, Cloud SQL Auth Proxy는 Google 계정을 사용할 수 있습니다."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux는 Kerberos로 로그인합니다. iPhone과 iPad는 Mac에서 동기화한 연결에서 Entra ID를 사용합니다."
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux는 암호를 시스템 키링에 보관합니다."
             ],

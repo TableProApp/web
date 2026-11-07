@@ -24,10 +24,6 @@
                 "Gunakan {aiProviders} dengan kunci API, akun, atau model lokal. Permintaan dikirim langsung ke penyedia; TablePro tidak menjalankan layanan AI. Asisten ini gratis, dan penyedia Anda mungkin mengenakan biaya.",
                 "Dari editor, tinjau, jelaskan, atau optimalkan pernyataan, atau perbaiki pernyataan yang gagal. Tidak ada yang dijalankan, dan saran baru masuk ke editor saat Anda menerapkannya."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Baris hasil tidak disertakan dalam pesan kecuali Anda mengizinkannya di <ui>Settings > AI</ui>. Linux mendukung {aiProvidersLinux}."
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "Ask, mode default, membaca skema dan tidak menjalankan apa pun. Edit menjalankan kueri, dan Agent juga dapat mengusulkan pernyataan destruktif, di bawah Safe Mode koneksi: Alert dan level yang lebih ketat mengonfirmasi penulisan, Read-Only menolaknya. Agent mode jendela penuh menjaga koneksi pada Alert atau lebih ketat selama bekerja."
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "Server MCP bawaan memungkinkan klien seperti {mcpSetupClients} memakai koneksi tersimpan Anda tanpa melihat kata sandinya. Server ini nonaktif sampai Anda mengaktifkannya, hanya mendengarkan di {mcpHost}, dan mencatat setiap panggilan.",
                 "Setiap panggilan melewati cakupan token, level External Clients koneksi, pengaturan persetujuannya, dan Safe Mode, dan yang paling ketat berlaku."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Di Linux, server menyediakan {mcpToolCountLinux} alat, melalui HTTP."
             ],

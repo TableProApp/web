@@ -1419,8 +1419,8 @@ Redesigned 2026-11-07 (sitemap §E.4; `components/features/README.md`).
 Area nav     All features · Querying · Data editing · … (current underlined; scrolls sideways on a phone)
 Hero         H1 (Home's size) · one-sentence lead · [Download] · Documentation ↗
              ▒ the area's Mac window, whole, settling in once on load
-Bands ×3–5   cols 1–3: H2 (28px) · Pro / Team pill   cols 4–12: 40–70 words · "On Mac, Linux and iPhone & iPad."
-             · notes · engine lines · Documentation ↗
+Bands ×3–5   cols 1–3: H2 (28px) · Pro / Team pill   cols 4–12: 40–70 words · notes · engine lines
+             · Documentation ↗
              ▒ the band's Mac window, whole (`window-whole`), full width below; none when the hero shows it
 Also         cols 1–3: label   cols 4–12: two columns of name + one or two sentences, ids kept
 Closing      cols 1–3: Get TablePro   cols 4–12: "Pro adds A and B. Everything else on this page is free." · [Download] · See pricing

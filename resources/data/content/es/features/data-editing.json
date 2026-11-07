@@ -25,10 +25,6 @@
                 "El orden y la paginación se ejecutan en el servidor, así que una tabla grande se abre en su primera página. Filtra con {filterOperatorCount} operadores o una condición SQL, guarda los filtros que reutilizas y colorea las filas o celdas que coinciden con reglas de resaltado.",
                 "Sigue una clave foránea hasta su fila o previsualízala en el sitio, y abre valores JSON en un árbol."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Los filtros guardados y las reglas de resaltado permanecen en el Mac donde los creaste."
             ],
@@ -44,10 +40,6 @@
                 "Los cambios, las filas nuevas y las eliminaciones esperan en la pestaña hasta que pulsas <kbd>⌘S</kbd>. <ui>Preview SQL</ui> muestra antes las instrucciones, deshacer funciona hasta que guardas, y el guardado comprueba el número de filas afectadas, en una transacción si el motor la admite.",
                 "Cada tipo tiene su editor: fechas, listas ENUM y SET, arrays, JSON, hexadecimal para valores binarios e imágenes."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "En Linux y en iPhone y iPad, una fila necesita clave primaria para poder editarse. Un resultado de join, CTE o UNION es de solo lectura en todas partes."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Asigna un nivel a cada conexión. El predeterminado, {macSafeModeDefault}, ejecuta las instrucciones sin preguntar; Alert confirma escrituras, Safe Mode añade Touch ID o tu contraseña, los niveles Full también confirman lecturas y Read-Only bloquea escrituras. DROP, TRUNCATE y DELETE sin WHERE siempre preguntan. Safe Mode es gratis."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux ofrece {linuxSafeModeLevels}. iPhone y iPad ofrecen {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "No es una copia de seguridad: no deshace triggers, cascadas ni cambios hechos fuera de TablePro."
             ],

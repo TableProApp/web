@@ -25,10 +25,6 @@
                 "排序與分頁在伺服器上執行，因此大型資料表從第一頁開啟。用 {filterOperatorCount} 種運算子或 SQL 條件篩選，儲存常用篩選，並用醒目提示規則為符合的列或儲存格上色。",
                 "跟隨外部索引鍵前往參照列或原地預覽，並以樹狀檢視開啟 JSON 值。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "已儲存的篩選和醒目提示規則保留在建立它們的 Mac 上。"
             ],
@@ -44,10 +40,6 @@
                 "編輯、新增列和刪除會保留在分頁中，直到按下 <kbd>⌘S</kbd>。<ui>預覽 SQL</ui> (Preview SQL) 先顯示陳述式，儲存前都可以復原，儲存時會檢查受影響列數，並在引擎支援時使用交易。",
                 "每種型別都有對應的編輯器：日期、ENUM 和 SET 清單、陣列、JSON、二進位值的十六進位編輯，以及圖片。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "在 Linux 以及 iPhone 與 iPad 上，列需要主索引鍵才能編輯。JOIN、CTE 或 UNION 的結果在所有平台上皆為唯讀。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "為每個連線選擇層級。預設的 {macSafeModeDefault} 不經詢問即執行陳述式；Alert 確認寫入，Safe Mode 增加 Touch ID 或密碼核准，Full 層級也確認讀取，Read-Only 封鎖寫入。DROP、TRUNCATE 和不含 WHERE 的 DELETE 一律需要確認。Safe Mode 免費。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 提供 {linuxSafeModeLevels}。iPhone 與 iPad 提供 {iosSafeModeLevels}。"
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "它不是備份：觸發程序、串聯操作和在 TablePro 外部所做的變更不會被復原。"
             ],

@@ -24,10 +24,6 @@
                 "{aiProviders} を API キー、アカウント、ローカルモデルで使えます。リクエストはプロバイダーに直接送り、TablePro は AI サービスを運営しません。アシスタントは無料ですが、プロバイダーの料金がかかる場合があります。",
                 "エディターから文のレビュー、説明、最適化や、失敗した文の修正を依頼できます。何も実行せず、提案は適用したときだけエディターに入ります。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "結果の行は <ui>Settings > AI</ui> で許可しない限りメッセージに含めません。Linux は {aiProvidersLinux} に対応します。"
             ],
@@ -39,10 +35,6 @@
             "text": [
                 "既定の Ask はスキーマを読み、何も実行しません。Edit はクエリを実行し、Agent は破壊的な文も提案できます。どちらも接続の Safe Mode に従い、Alert 以上のレベルは書き込みを確認し、Read-Only は拒否します。全画面の Agent mode は、動作中は接続を Alert 以上に保ちます。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/agent-mode",
             "asset": "features-ai-mcp-agent"
         },
@@ -57,10 +49,6 @@
                 "内蔵 MCP サーバーにより、{mcpSetupClients} などのクライアントがパスワードを見ずに保存済み接続を使えます。有効にするまでオフで、{mcpHost} のみで待ち受け、すべての呼び出しを記録します。",
                 "各呼び出しはトークンの範囲、接続の External Clients レベル、承認設定、Safe Mode を通り、最も厳しいものが優先されます。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux のサーバーは HTTP で {mcpToolCountLinux} 個のツールを提供します。"
             ],

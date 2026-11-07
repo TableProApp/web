@@ -20,10 +20,6 @@
             "text": [
                 "貼上 URL（包括 <code>jdbc:</code> 和 <code>+ssh</code> URL），表單會自動填入。用巢狀群組、標籤、顏色和喜好項目整理連線，可在一個視窗保留多個連線，或讓單一連線使用獨立視窗，每個連線都會記住上次使用的分頁。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "在 iPhone 與 iPad 上，每個連線可設定一個標籤。"
             ],
@@ -40,10 +36,6 @@
             "text": [
                 "<ui>從其他 App 匯入</ui> (Import from Other App) 讀取 {connectionImportApps}，來源 App 允許時也會匯入密碼。<ui>開啟專案資料夾</ui> (Open Project Folder) 從環境、框架和 Docker 檔案中尋找資料庫設定，<ui>Import from AWS</ui> 列出 AWS 設定檔可見的 RDS 與 Aurora 資料庫。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux 可從其他 App 匯入。"
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "使用密碼、金鑰、代理程式或互動式提示透過 SSH 連線，可經由跳板主機，並將通道儲存為可重複使用的設定。TLS 模式從 Required 到 Verify Identity。SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy 和自訂命令（例如 <code>kubectl port-forward</code>）涵蓋其餘情況。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 以及 iPhone 與 iPad 透過 SSH 和 TLS 連線。"
             ],
@@ -82,10 +70,6 @@
             "text": [
                 "AWS IAM 每次連線時都會使用金鑰、設定檔或 IAM Identity Center 簽發新權杖。SQL Server 可透過 Microsoft Entra ID 或 Kerberos 登入，BigQuery、Spanner 和 Cloud SQL Auth Proxy 可使用您的 Google 帳戶。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 支援 Kerberos 登入。iPhone 與 iPad 在從 Mac 同步的連線上使用 Entra ID。"
             ],
@@ -109,10 +93,6 @@
             "paid": [
                 "environment-variables"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "yes"
-            },
             "notes": [
                 "Linux 將密碼儲存在系統金鑰圈中。"
             ],

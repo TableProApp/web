@@ -20,10 +20,6 @@
             "text": [
                 "將資料表和檢視匯出為 {exportFormats}，串流輸出超過表格列數上限的資料。SQL 引擎可逐表設定篩選、限制和欄位清單，SQL 匯出可包含結構。<ui>匯出結果</ui> (Export Results) 重新執行受列數限制的查詢以寫出完整結果，免費外掛可加入 {exportPluginFormats}。"
             ],
-            "where": {
-                "linux": "yes",
-                "ios": "partial"
-            },
             "notes": [
                 "SQL 匯出會在每個資料表前加入 DROP TABLE IF EXISTS，除非您將其關閉。"
             ],
@@ -38,10 +34,6 @@
             "text": [
                 "將 {importFormats} 檔案匯入新資料表或既有資料表，欄位對應可儲存供下次使用。SQL 檔案作為陳述式執行，包括 <code>.sql.gz</code> 傾印和 SQL Server <code>GO</code> 腳本。除非停用，匯入使用一個交易；有列失敗時，可以復原整個匯入、保留已匯入的列，或略過失敗的列並將其匯出。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux 可將 CSV 匯入既有資料表，也可匯入 SQL 檔案。iPhone 與 iPad 透過捷徑新增列。"
             ],
@@ -64,10 +56,6 @@
             "text": [
                 "無需連線，即可將分隔文字、JSON 和 JSON Lines 作為資料表開啟。篩選、取代文字、刪除重複列並查看各欄位統計，再以原始格式儲存或匯入資料表。Excel 和壓縮檔案以唯讀方式開啟。"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "docs": "/features/data-files",
             "asset": "features-import-export-data-files"
         },
@@ -77,10 +65,6 @@
             "text": [
                 "Backup Dump 和 Restore Dump 使用連線的 SSH 與 TLS 設定執行 {backupTools}；工具需自行安裝，DuckDB 除外。{serverSideExport} 上的 Server-Side Export 透過 Oracle Data Pump、Snowflake 暫存區或 Cloud Storage 寫入，資料不經過您的 Mac。"
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "no"
-            },
             "notes": [
                 "Linux 無需外部工具即可寫出 SQL 傾印。"
             ],

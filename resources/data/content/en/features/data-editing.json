@@ -25,10 +25,6 @@
                 "Sorting and paging run on the server, so a large table opens at its first page. Filter with {filterOperatorCount} operators or a SQL condition, save the filters you reuse, and color matching rows or cells with highlight rules.",
                 "Follow a foreign key to its row or preview it in place, and open JSON values in a tree."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Saved filters and highlight rules stay on the Mac where you made them."
             ],
@@ -44,10 +40,6 @@
                 "Edits, new rows and deletions wait in the tab until you press <kbd>⌘S</kbd>. <ui>Preview SQL</ui> shows the statements first, undo works until you save, and the save checks affected row counts, in a transaction where the engine has one.",
                 "Each type gets its editor: dates, ENUM and SET lists, arrays, JSON, hex for binary values, and images."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "On Linux and on iPhone and iPad, a row needs a primary key to be edited. A join, CTE or UNION result is read-only everywhere."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Give each connection a level. The default, {macSafeModeDefault}, runs statements without asking; Alert confirms writes, Safe Mode adds Touch ID or your password, the Full levels confirm reads too, and Read-Only blocks writes. DROP, TRUNCATE and DELETE without WHERE always ask. Safe Mode is free."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux offers {linuxSafeModeLevels}. iPhone and iPad offer {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "It is not a backup: triggers, cascades and changes made outside TablePro are not undone."
             ],

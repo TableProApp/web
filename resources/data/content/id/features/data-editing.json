@@ -25,10 +25,6 @@
                 "Pengurutan dan paginasi berjalan di server, sehingga tabel besar terbuka pada halaman pertamanya. Filter dengan {filterOperatorCount} operator atau kondisi SQL, simpan filter yang Anda gunakan kembali, dan warnai baris atau sel yang cocok dengan aturan sorotan.",
                 "Ikuti kunci asing ke barisnya atau pratinjau di tempat, dan buka nilai JSON dalam tampilan pohon."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Filter tersimpan dan aturan sorotan tetap di Mac tempat Anda membuatnya."
             ],
@@ -44,10 +40,6 @@
                 "Perubahan, baris baru, dan penghapusan menunggu di tab hingga Anda menekan <kbd>⌘S</kbd>. <ui>Preview SQL</ui> menampilkan pernyataannya terlebih dahulu, urungkan berfungsi hingga Anda menyimpan, dan penyimpanan memeriksa jumlah baris yang terpengaruh, dalam satu transaksi jika mesin mendukungnya.",
                 "Setiap tipe punya editornya sendiri: tanggal, daftar ENUM dan SET, array, JSON, heksadesimal untuk nilai biner, dan gambar."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Di Linux serta di iPhone dan iPad, baris memerlukan primary key agar dapat diedit. Hasil join, CTE, atau UNION hanya-baca di semua platform."
             ],
@@ -60,10 +52,6 @@
             "text": [
                 "Beri setiap koneksi sebuah level. Default-nya, {macSafeModeDefault}, menjalankan pernyataan tanpa bertanya; Alert mengonfirmasi penulisan, Safe Mode menambahkan Touch ID atau kata sandi Anda, level Full juga mengonfirmasi pembacaan, dan Read-Only memblokir penulisan. DROP, TRUNCATE, dan DELETE tanpa WHERE selalu meminta konfirmasi. Safe Mode gratis."
             ],
-            "where": {
-                "linux": "partial",
-                "ios": "partial"
-            },
             "notes": [
                 "Linux menawarkan {linuxSafeModeLevels}. iPhone dan iPad menawarkan {iosSafeModeLevels}."
             ],
@@ -79,10 +67,6 @@
             "paid": [
                 "data-rewind"
             ],
-            "where": {
-                "linux": "no",
-                "ios": "no"
-            },
             "notes": [
                 "Ini bukan cadangan: trigger, perubahan berantai, dan perubahan di luar TablePro tidak diurungkan."
             ],

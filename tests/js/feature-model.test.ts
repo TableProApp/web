@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { docsHref, engineItems, factText, factValues, fillFacts, pagePaidIds, paidByTier, partIds, wherePlatforms } from '../../resources/js/components/features/model.ts';
+import { docsHref, engineItems, factText, factValues, fillFacts, pagePaidIds, paidByTier, partIds } from '../../resources/js/components/features/model.ts';
 import type { Facts, FeaturePageContent } from '../../resources/js/components/features/types.ts';
 
 const en = { number: { decimal: '.', group: ',' }, list: { separator: ', ', last: ' and ' } };
@@ -44,8 +44,8 @@ test('returns engine items only for engine facts', () => {
 test('collects the paid features of a page in data order, from its bands and its list', () => {
     const page = {
         bands: [
-            { id: 'a', title: 'A', text: [], paid: ['result-charts'], where: { linux: 'no', ios: 'no' } },
-            { id: 'b', title: 'B', text: [], where: { linux: 'yes', ios: 'no' } },
+            { id: 'a', title: 'A', text: [], paid: ['result-charts'] },
+            { id: 'b', title: 'B', text: [] },
         ],
         more: [{ id: 'c', title: 'C', text: [], paid: ['data-rewind', 'result-charts'] }],
     } as unknown as FeaturePageContent;
@@ -56,14 +56,6 @@ test('collects the paid features of a page in data order, from its bands and its
 test('answers to its own id first, then to the ids of the sections it replaced', () => {
     assert.deepEqual(partIds({ id: 'explain', also: ['performance'] }), ['explain', 'performance']);
     assert.deepEqual(partIds({ id: 'mcp' }), ['mcp']);
-});
-
-test('names the Mac, then each platform that has the part, a partial one included', () => {
-    const names = { mac: 'Mac', linux: 'Linux', ios: 'iPhone & iPad' };
-
-    assert.deepEqual(wherePlatforms({ linux: 'no', ios: 'no' }, names), ['Mac']);
-    assert.deepEqual(wherePlatforms({ linux: 'partial', ios: 'no' }, names), ['Mac', 'Linux']);
-    assert.deepEqual(wherePlatforms({ linux: 'yes', ios: 'partial' }, names), ['Mac', 'Linux', 'iPhone & iPad']);
 });
 
 test('groups paid features by plan in the order given, skipping unknown ids', () => {
