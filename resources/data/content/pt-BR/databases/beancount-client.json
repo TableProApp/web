@@ -11,45 +11,39 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Cliente Beancount",
-        "lead": "Consulte um razão como tabelas SQL ou use BQL com razão. Edite o razão de origem em seu próprio editor de texto."
+        "lead": "Consulte um livro-razão como tabelas SQL somente leitura, ou com BQL pelo rledger, e edite-o no seu próprio editor de texto.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Abra um livro-razão",
-            "paragraphs": [
-                "Instale <code>rledger</code> ou Python Beancount. rledger tem prioridade quando ambos estão disponíveis; somente rledger aceita BQL e resultados de validação em <code>diagnostics</code>.",
-                "Escolha um razão com <ui>Browse…</ui> ou abra um arquivo <code>.beancount</code> no Finder. O caminho é toda a conexão. URLs <code>beancount:///path/to/main.beancount</code> também podem ser importados.",
-                "Um app aberto pelo Finder não herda o <code>PATH</code> do seu shell. Se o backend funciona no Terminal, mas não aqui, indique-o com <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code> e reinicie o app.",
+            "text": [
+                "Instale <code>rledger</code> ou Python Beancount. O rledger tem prioridade quando os dois estão instalados, e só o rledger aceita BQL e resultados de validação em <code>diagnostics</code>.",
+                "Escolha um livro-razão com <ui>Browse…</ui> ou abra um arquivo <code>.beancount</code> no Finder: o caminho é a conexão inteira, e URLs <code>beancount:///path/to/main.beancount</code> podem ser importados. Um app aberto pelo Finder não herda o <code>PATH</code> do seu shell; se o backend funciona no Terminal, mas não aqui, indique-o com <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code> e reabra o app.",
                 "O backend Python executa os plugins que acompanham Beancount e ignora qualquer outra diretiva <code>plugin</code>, que contém código de terceiros, até você ativar <ui>Run Ledger Plugins</ui> para essa conexão. Os plugins ignorados são listados em <code>diagnostics</code>."
             ]
         },
         {
             "id": "work",
             "title": "Consulte o livro-razão",
-            "paragraphs": [
-                "Consulta transações, lançamentos, contas, saldos, preços, diretivas, metadados e arquivos de origem como tabelas. Junte lançamentos a transações em <code>transaction_id</code> e contas por nome.",
-                "Os valores chegam contabilizados, com operações aritméticas, custos e preços resolvidos, e os custos dos lançamentos e preços inline em colunas próprias. Transações, lançamentos e várias tabelas de diretivas contêm uma <code>source_location</code>, como <code>main.beancount:42</code>, permitindo chegar à linha de origem a partir de uma linha de dados.",
-                "Comece uma consulta com <code>BQL:</code> para enviá-la ao rledger em vez de consultar as tabelas. Navegação, contagem de linhas e paginação funcionam nos resultados BQL; parâmetros SQL não.",
-                "As diretivas <code>include</code> são seguidas, tanto com caminhos literais quanto com globs, e todos os arquivos do livro-razão e documentos referenciados são monitorados. Salve uma alteração no editor e a próxima consulta a lerá sem reconectar. A conexão está sempre no nível Read-Only do <safeMode>Safe Mode</safeMode>, portanto INSERT, UPDATE, DELETE e alterações de esquema são recusados."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "Exporte uma tabela ou o resultado de uma consulta como {exportFormats}. <files>Outros arquivos que TablePro abre como bancos de dados</files> incluem SQLite, DuckDB e Parquet."
+            "text": [
+                "Transações, lançamentos, contas, saldos, preços, diretivas, metadados e arquivos de origem são tabelas: junte lançamentos a transações em <code>transaction_id</code>, e contas pelo nome. Os valores chegam contabilizados, com aritmética, custos e preços resolvidos, e os custos dos lançamentos e preços inline ficam em colunas próprias.",
+                "Transações, lançamentos e várias tabelas de diretivas trazem uma <code>source_location</code>, como <code>main.beancount:42</code>, então cada linha leva de volta à sua linha no arquivo. Comece uma consulta com <code>BQL:</code> para enviá-la ao rledger; navegação, contagem de linhas e paginação funcionam no resultado, parâmetros SQL não.",
+                "As diretivas <code>include</code> são seguidas, tanto caminhos literais quanto globs, e todos os arquivos do livro-razão e documentos referenciados são monitorados, então a próxima consulta lê uma alteração salva sem reconectar. A conexão fica sempre no nível Read-Only do <safeMode>Safe Mode</safeMode>: INSERT, UPDATE, DELETE e alterações de esquema são recusados."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exporte</export> uma tabela ou o resultado de uma consulta como {exportFormats}. <files>Outros arquivos que o TablePro abre como bancos de dados</files> incluem SQLite, DuckDB e Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
@@ -62,18 +56,5 @@
             "answer": "Uma conexão corresponde a um arquivo de livro-razão, sem alternância. Um arquivo principal que inclui os outros traz todos eles, inclusive por globs."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB, para arquivos analíticos",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, um banco de dados em um arquivo",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Importação, exportação e arquivos de dados",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

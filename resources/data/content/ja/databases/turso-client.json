@@ -11,49 +11,40 @@
     "breadcrumb": "Turso と libSQL",
     "header": {
         "title": "Turso・libSQL クライアント",
-        "lead": "URL とトークンで Turso データベースに接続できます。テーブルを参照して SQLite クエリを実行するか、ローカルの libSQL ファイルを開けます。"
+        "lead": "URL とトークンで Turso データベースに接続するか、libSQL ファイルを開き、SQLite の構文でクエリできます。",
+        "asset": "databases-turso"
     },
-    "asset": "mac-db-turso-remote",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "sqlite": "/sqlite-client",
         "libsql": "#libsql",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Turso に接続",
-            "paragraphs": [
-                "<ui>Remote (Turso)</ui> を <ui>Connection Mode</ui> で選びます。データベースの HTTPS URL と <ui>API Token</ui> を貼り付けます。トークンは macOS Keychain に保存します。どちらも Turso ダッシュボードか CLI で取得できます。",
-                "インポートした <code>libsql://</code> URL は HTTPS のリモート接続になります。各 URL は一つのデータベースを指定します。HTTP URL は暗号化されず、SSH トンネルは使えません。"
+            "text": [
+                "<ui>Connection Mode</ui> で <ui>Remote (Turso)</ui> を選び、データベースの HTTPS URL と <ui>API Token</ui> を貼り付けます。トークンは macOS Keychain に保存します。どちらも Turso のダッシュボードか CLI で取得できます。",
+                "インポートした <code>libsql://</code> URL は HTTPS のリモート接続になり、各 URL は一つのデータベースを指します。平文の HTTP URL は暗号化されず、SSH トンネルは使えません。"
             ]
         },
         {
             "id": "work",
             "title": "クエリと編集",
-            "paragraphs": [
-                "libSQL は SQLite 構文を使うため、閲覧、<explain>EXPLAIN QUERY PLAN</explain> の図、<editing>Preview SQL 付きの編集保留</editing>、エクスポートは <sqlite>SQLite</sqlite> と同じように動作します。",
-                "リモート接続ではトランザクションを使えません。各文は独立した HTTP リクエストで個別にコミットし、<code>BEGIN</code> は「Transactions are not supported in this mode」で失敗します。トランザクションには <libsql>libSQL の節</libsql>で説明するローカル libSQL ファイルが必要です。",
-                "リモートモードでは SQLite 拡張を読み込みません。Turso データベースはサーバーに組み込まれたものを使います。Turso が接続を制限すると、エラーで再試行までの待機秒数を表示します。"
+            "text": [
+                "libSQL は SQLite の構文を使うため、閲覧、<explain>EXPLAIN QUERY PLAN</explain> の図、エクスポートは <sqlite>SQLite</sqlite> と同じように動作します。",
+                "リモート接続ではトランザクションを使えません。各文は独立した HTTP リクエストで個別にコミットし、<code>BEGIN</code> は「Transactions are not supported in this mode」で失敗します。トランザクションには <libsql>libSQL</libsql> として開いたローカルファイルが必要です。Turso データベースはサーバーに組み込まれた拡張を使うため、リモートモードでは SQLite 拡張を読み込みません。制限されたリクエストのエラーには、待機すべき秒数が表示されます。"
             ]
         },
         {
             "id": "schema",
-            "title": "テーブル、インデックスとトリガー",
-            "paragraphs": [
-                "<structure>Structure タブ</structure> はテーブルの作成、カラムとインデックスの追加・削除、トリガーの作成・編集・削除を行います。サイドバーではテーブルを名前変更できますが、ビューはできません。",
-                "リモートの列順序や外部キーの変更では、確認・実行用の再構築スクリプトを生成します。TablePro は別々の HTTP リクエストをまたいで一つのトランザクションとして実行できません。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "TablePro は Turso や libSQL のインポートに対応しません。Turso CLI や sqld サーバーのインポートで読み込んでください。取り出すにはテーブルやクエリ結果を {exportFormats} に <export>エクスポート</export> できます。"
+            "title": "テーブル、インデックス、トリガー",
+            "text": [
+                "<structure>Structure タブ</structure>はテーブルの作成、列とインデックスの追加と削除、トリガーの作成、編集、削除を行います。サイドバーからテーブルの名前は変更できますが、ビューはできません。",
+                "TablePro は別々の HTTP リクエストを一つのトランザクションにまとめられないため、リモートでの列の並べ替えや外部キーの変更では、確認して実行する再構築スクリプトを生成します。"
             ]
         }
     ],
@@ -61,43 +52,27 @@
         {
             "engine": "libsql",
             "title": "libSQL",
-            "paragraphs": [
-                "自前の sqld サーバーや Mac 上のファイルには libSQL を選びます。Remote モードは Hrana v2 pipeline エンドポイントを提供する任意の sqld に接続でき、この Mac 上で既定ポート 8080 を使うものにも対応します。<code>--auth-jwt-key-file</code> なしで起動したサーバーはトークンを空欄にし、それ以外はサーバーの鍵と一致する JWT を入力します。",
-                "<ui>Local File</ui> モードはドライバー同梱の SQLite で libSQL ファイルを開き、存在しないパスならフォルダーも含めて作成します。ローカルファイルはトランザクションを使い、接続の Extensions リストから SQLite 拡張を読み込み、確認後にカラム順や外部キーの再構築を実行します。",
-                "<code>ALTER TABLE … ALTER COLUMN</code> など libSQL だけが理解する文は、SQLite エンジンが受け取るためローカルファイルで失敗します。暗号化 libSQL ファイルは開けません。別の実行中アプリが Turso 埋め込みレプリカとして同期しているファイルは、二つのプログラムの同時アクセスで破損する可能性があるため、決して開かないでください。",
-                "<backup>Backup Dump と Restore Dump</backup> は、ローカル libSQL ファイルに {dumpTool} を実行します。"
+            "text": [
+                "自前の sqld サーバー（Hrana v2 pipeline エンドポイント経由）や、<ui>Local File</ui> モードでこの Mac 上のファイルを開くには libSQL を選びます。ローカルファイルはトランザクションを使え、SQLite 拡張を読み込み、確認後に再構築スクリプトを実行します。<backup>Backup Dump と Restore Dump</backup> はファイルに対して {dumpTool} を実行します。",
+                "実行中のアプリが Turso の埋め込みレプリカとして同期しているファイルは、決して開かないでください。二つのプログラムから同時にアクセスすると破損する可能性があります。"
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "テーブルやクエリ結果を {exportFormats} で<export>エクスポート</export>できます。データの読み込みには Turso CLI か sqld サーバーのインポートを使ってください。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "remote-or-local",
             "question": "Remote と Local File のどちらを選ぶべきですか？",
-            "answer": "URL でアクセスする Turso データベースや sqld サーバーには Remote、Mac 上の libSQL ファイルには Local File を選びます。後者はトランザクション、SQLite 拡張とバックアップにも対応します。"
+            "answer": "URL でアクセスする Turso データベースや sqld サーバーには Remote を選びます。この Mac 上の libSQL ファイルには Local File を選び、トランザクション、SQLite 拡張、バックアップも使えます。"
         },
         {
             "id": "turso-cli",
             "question": "Turso CLI のインストールは必要ですか？",
-            "answer": "不要です。Turso ダッシュボードでデータベース URL の表示とトークン作成ができます。TablePro に Turso インポートがないため、ターミナルからデータを読み込む場合は CLI が便利です。"
+            "answer": "不要です。Turso のダッシュボードでもデータベースの URL を確認し、トークンを作成できます。CLI はターミナルからデータを読み込むときに便利です。"
         }
     ],
-    "related": [
-        {
-            "label": "libSQL の基盤となる SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Cloudflare D1、Cloudflare API 経由の SQLite",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "構造編集と再構築スクリプト",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "エクスポートとバックアップ",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,82 +11,58 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Cloudflare D1 クライアント",
-        "lead": "Cloudflare アカウント内の D1 データベースを参照し、API 経由で SQLite クエリを実行できます。"
+        "lead": "Cloudflare アカウント内の D1 データベースを参照し、Cloudflare の API 経由で SQLite クエリを実行できます。",
+        "asset": "databases-cloudflare-d1"
     },
-    "asset": "mac-db-d1-databases",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "credentials": "/features/connections#credentials",
         "sqlite": "/sqlite-client"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "API トークンで接続",
-            "paragraphs": [
-                "D1 のデータベース名か UUID、Cloudflare アカウント ID、<ui>API Token</ui> を入力します。トークンは <credentials>macOS Keychain</credentials> に保存します。通信は HTTPS で、ホスト、ポート、TLS 設定、SSH トンネルはありません。",
-                "<ui>Account > D1 > Edit</ui> 権限でトークンを作り、表示時にコピーします。選んだデータベースだけでなく、アカウント内のすべての D1 データベースにアクセスできます。",
-                "<code>d1://account-id/database-name</code> URL のインポートでアカウントとデータベースを入力できます。トークンは URL に含まれないため、後で貼り付けてください。"
+            "text": [
+                "D1 のデータベース名か UUID、Cloudflare アカウント ID、<ui>API Token</ui> を入力します。トークンは <credentials>macOS Keychain</credentials> に保存します。通信は HTTPS なので、ホスト、ポート、TLS 設定、SSH トンネルはありません。",
+                "<ui>Account > D1 > Edit</ui> 権限でトークンを作成し、表示されたときにコピーします。このトークンは選んだデータベースだけでなく、アカウント内のすべての D1 データベースにアクセスできます。<code>d1://account-id/database-name</code> URL をインポートするとアカウントとデータベースが入力されます。トークンは URL に含まれないため、後から貼り付けてください。"
             ]
         },
         {
             "id": "work",
             "title": "データベースの切り替えとクエリ",
-            "paragraphs": [
-                "再接続せずにアカウント内の D1 データベースを切り替えられます。切り替えメニューで作成や削除もできます。既存のタブは元のデータベースを維持します。",
-                "クエリは SQLite 方言を使います。<explain>EXPLAIN QUERY PLAN</explain> は図で表示し、行の編集は保存までグリッドに保留します。<editing>Preview SQL</editing> で先に文を確認できます。",
-                "各文を単独で成立するように書いてください。一つの文で設定した <code>PRAGMA</code> や一時テーブルは次の文で消えます。各文は実行時にコミットし、ロールバックできません。Cloudflare がレート制限すると、エラーには再試行前に要求された待機時間を含みます。"
+            "text": [
+                "再接続せずにアカウント内の D1 データベースを切り替えられます。切り替えメニューではデータベースの作成と削除もでき、開いているタブは元のデータベースを維持します。クエリは <sqlite>SQLite</sqlite> の方言を使い、<explain>EXPLAIN QUERY PLAN</explain> は図で表示します。",
+                "各文は単独で成立するように書いてください。一つの文で設定した <code>PRAGMA</code> や作成した一時テーブルは、次の文では消えています。各文は実行時にコミットされ、ロールバックはできません。Cloudflare がリクエストをレート制限すると、エラーに再試行までの待機時間が含まれます。"
             ]
         },
         {
             "id": "schema",
             "title": "テーブル、インデックスとトリガー",
-            "paragraphs": [
-                "<structure>Structure タブ</structure> はテーブルの作成・削除、カラムの追加・削除、インデックスの作成・削除を行い、WHERE 条件付き部分インデックスにも対応します。Preview SQL は保存前に DDL を表示します。Triggers タブでトリガーを作成、編集、削除でき、テーブルはサイドバーから名前変更できます。",
-                "カラム順や外部キーの変更にはテーブル再構築が必要です。D1 では文がそれぞれ別のリクエストで、再構築を一つにまとめるトランザクションがないため、TablePro は再構築スクリプトを生成し、ユーザーに実行を任せます。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "TablePro は D1 のインポートに対応しません。<code>wrangler d1 execute</code> の <code>--file</code> オプションで SQL ファイルを読み込み、結果をここで閲覧できます。<export>エクスポート</export> は D1 テーブルやクエリ結果を {exportFormats} に書き込みます。"
+            "text": [
+                "<structure>Structure タブ</structure>はテーブルの作成と削除、列の追加と削除、インデックスの作成と削除を行い、WHERE 条件付きの部分インデックスにも対応します。Triggers タブではトリガーの作成、編集、削除ができ、テーブルはサイドバーから名前を変更できます。",
+                "列の並べ替えや外部キーの変更にはテーブルの再構築が必要です。各文は別々のリクエストで、再構築を一つにまとめるトランザクションがないため、TablePro は再構築スクリプトを生成し、実行はユーザーに任せます。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "D1 のテーブルやクエリ結果を {exportFormats} で<export>エクスポート</export>できます。SQL ファイルを読み込むには <code>wrangler d1 execute</code> を <code>--file</code> オプション付きで実行し、結果をここで閲覧してください。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "sessions",
             "question": "D1 の Sessions API を使いますか？",
-            "answer": "使いません。各文はセッションもブックマークもない独立したリクエストで送るため、同じタブでも別のタブでも、前の文の状態を引き継ぎません。"
+            "answer": "使いません。各文はセッションもブックマークもない独立したリクエストで送るため、同じタブでも別のタブでも、前の文の状態は引き継がれません。"
         },
         {
             "id": "wrangler",
             "question": "Wrangler のインストールは必要ですか？",
-            "answer": "閲覧、クエリと編集には不要で、TablePro は Cloudflare API と直接通信します。D1 インポートがないため、SQL ファイルを読み込む場合だけ Wrangler が必要です。"
+            "answer": "閲覧、クエリ、編集には不要です。TablePro は Cloudflare の API と直接通信します。Wrangler が必要なのは SQL ファイルを読み込むときだけです。"
         }
     ],
-    "related": [
-        {
-            "label": "D1 の方言である SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Turso と libSQL、HTTP 経由の SQLite",
-            "href": "/turso-client"
-        },
-        {
-            "label": "構造編集と再構築スクリプト",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "接続と認証情報",
-            "href": "/features/connections"
-        }
-    ]
+    "otherTools": null
 }

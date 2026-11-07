@@ -11,51 +11,49 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Cliente de Apache Kafka",
-        "lead": "Inspecione mensagens de tópicos e consumer lag, ou produza uma mensagem de teste com KafkaQL, a linguagem de comandos do TablePro."
+        "lead": "Inspecione mensagens de tópicos e consumer lag, ou produza uma mensagem de teste com KafkaQL, a linguagem de comandos do TablePro.",
+        "asset": "databases-kafka"
     },
-    "asset": "mac-db-kafka-consume",
     "links": {
         "network": "/features/connections#network",
+        "otherLanguages": "/features/querying#other-languages",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se",
-            "paragraphs": [
-                "Insira host e porta de um broker bootstrap. <ui>Additional Bootstrap Servers</ui> adiciona brokers de reserva. Cada conexão acessa um cluster; a barra lateral lista seus tópicos.",
-                "<ui>Security Protocol</ui> aceita PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL, e <ui>SASL Mechanism</ui> aceita PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN atende ao Confluent Cloud; SCRAM ao Amazon MSK e a brokers hospedados por você. Com SSL ou SASL_SSL e sem um modo SSL escolhido, a cadeia do certificado e o nome do host são verificados. Uma CA privada fica em <ui>CA Certificate</ui>, e um certificado e uma chave de cliente adicionam TLS mútuo.",
+            "text": [
+                "Informe o host e a porta de um broker de bootstrap e adicione brokers de reserva em <ui>Additional Bootstrap Servers</ui>. Cada conexão acessa um cluster, com os tópicos dele na barra lateral.",
+                "<ui>Security Protocol</ui> é PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL, e <ui>SASL Mechanism</ui> é PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512: PLAIN serve para o Confluent Cloud, SCRAM para o Amazon MSK e brokers hospedados por você. Com SSL ou SASL_SSL e nenhum modo SSL escolhido, a cadeia do certificado e o nome do host são verificados. Uma CA privada vai em <ui>CA Certificate</ui>, e um certificado e uma chave de cliente adicionam TLS mútuo.",
                 "Por um <network>túnel SSH</network>, a conexão permanece no broker de bootstrap, portanto lê apenas as partições lideradas por ele. <ui>Import from URL…</ui> aceita URLs <code>kafka://</code>, que o macOS não abre como links."
             ]
         },
         {
             "id": "work",
             "title": "Leia, inspecione e produza",
-            "paragraphs": [
-                "Navegue por mensagens recentes com partição, offset, timestamp, chave, valor e cabeçalhos. Mensagens de várias partições são intercaladas por timestamp; partição e offset as identificam. Valores não UTF-8 aparecem em hexadecimal. Tombstones continuam distintos de mensagens vazias.",
-                "Use KafkaQL para consumir a partir do mais recente, do mais antigo, de um offset ou timestamp ISO 8601, com restrição opcional a partições. SHOW lista tópicos, brokers, grupos e detalhes do cluster; DESCRIBE TOPIC inspeciona um tópico.",
-                "<code>DESCRIBE GROUP</code> fornece o relatório de atraso: o offset confirmado, o offset final e a diferença, por partição. Uma partição em que o grupo nunca confirmou um offset não mostra atraso, em vez de um número contado do zero, e <code>SHOW GROUPS</code> marca a lista como truncada quando um broker não pode ser acessado.",
-                "<code>PRODUCE INTO</code> grava uma mensagem com chave, cabeçalhos e partição opcionais. Uma mensagem com chave e sem partição vai para onde o produtor do próprio Kafka a colocaria. Lotes gzip, snappy, lz4 e zstd são descomprimidos durante a leitura, sem configuração a escolher.",
-                "As mensagens não podem ser editadas ou excluídas individualmente e as colunas não podem ser classificadas. A paginação continua a partir da posição anterior à medida que novas mensagens chegam."
+            "text": [
+                "Navegue pelas mensagens recentes com partição, offset, timestamp, chave, valor e cabeçalhos. Mensagens de várias partições são intercaladas por timestamp, valores que não são UTF-8 aparecem em hexadecimal, e tombstones continuam distintos de mensagens vazias.",
+                "O <otherLanguages>KafkaQL</otherLanguages> consome a partir da mensagem mais recente ou mais antiga, de um offset ou de um timestamp ISO 8601, com restrição opcional a partições. <code>SHOW</code> lista tópicos, brokers, grupos e detalhes do cluster, e <code>DESCRIBE TOPIC</code> inspeciona um tópico. <code>DESCRIBE GROUP</code> é o relatório de lag: o offset confirmado, o offset final e a diferença, por partição. Uma partição em que o grupo nunca confirmou offset não mostra lag, em vez de um número contado a partir do zero.",
+                "<code>PRODUCE INTO</code> grava uma mensagem com chave, cabeçalhos e partição opcionais, e uma mensagem com chave e sem partição vai para onde o produtor do próprio Kafka a colocaria. Lotes gzip, snappy, lz4 e zstd são descomprimidos durante a leitura."
+            ],
+            "notes": [
+                "As mensagens não podem ser editadas nem excluídas individualmente, e a paginação continua a partir da posição anterior à medida que novas mensagens chegam."
             ]
         },
         {
             "id": "operate",
             "title": "Tópicos",
-            "paragraphs": [
+            "text": [
                 "Excluir um tópico pela barra lateral ou com <code>DROP TOPIC</code> é a única ação destrutiva. O cluster remove o log depois, portanto o tópico pode permanecer na lista por um momento. Truncate não é oferecido: Kafka remove registros por retenção ou por um offset por partição, e nenhum desses métodos esvazia um tópico."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "Não há importação; coloque mensagens em um tópico com <code>PRODUCE INTO</code>. <export>Exporte</export> as mensagens lidas por uma consulta como {exportFormats}."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Não há importação: coloque mensagens em um tópico com <code>PRODUCE INTO</code>. <export>Exporte</export> as mensagens lidas por uma consulta como {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "advertised-addresses",
@@ -65,21 +63,8 @@
         {
             "id": "msk-iam",
             "question": "A autenticação IAM de Amazon MSK funciona?",
-            "answer": "Não. Os mecanismos SASL oferecidos são PLAIN, SCRAM-SHA-256 e SCRAM-SHA-512, portanto crie um usuário SCRAM no cluster MSK e conecte com SASL_SSL."
+            "answer": "Não. Os mecanismos SASL são PLAIN, SCRAM-SHA-256 e SCRAM-SHA-512, então crie um usuário SCRAM no cluster MSK e conecte-se com SASL_SSL."
         }
     ],
-    "related": [
-        {
-            "label": "Linguagens de consulta além de SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Conexões, túneis e credenciais",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Bancos de dados compatíveis",
-            "href": "/databases"
-        }
-    ]
+    "otherTools": null
 }

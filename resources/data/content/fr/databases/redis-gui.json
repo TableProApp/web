@@ -11,99 +11,60 @@
     "breadcrumb": "Redis",
     "header": {
         "title": "Interface graphique Redis",
-        "lead": "Sur Mac, parcourez les clés et exécutez des commandes sur des déploiements Standalone, Sentinel ou Cluster. iPhone et iPad ne prennent en charge que les commandes Standalone."
+        "lead": "Parcourez les clés en arbre et exécutez des commandes sur des déploiements Standalone, Sentinel ou Cluster, Valkey compris.",
+        "asset": "databases-redis"
     },
-    "asset": "mac-db-redis-keys",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "editing": "/features/data-editing#documents-and-keys",
         "safeMode": "/features/data-editing#safe-mode",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "compare": "/compare"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connexion",
-            "paragraphs": [
-                "Choisissez <ui>Mode de connexion</ui> (Connection Mode) : Standalone, Sentinel ou Cluster. Sentinel suit le primaire après basculement ; Cluster découvre les shards via un membre initial et route les commandes vers le shard responsable.",
-                "Authentifiez-vous par mot de passe, ou renseignez Nom d’utilisateur (Username) pour vous connecter en tant qu’utilisateur ACL de Redis 6. Sur Amazon ElastiCache, choisissez un mode <cloudAuth>AWS IAM</cloudAuth> : un jeton de courte durée sert de mot de passe ; l’IAM d’ElastiCache exige que TLS soit activé.",
-                "Les nouvelles connexions démarrent sans TLS. Upstash, Redis Cloud et les services similaires l’exigent, et coller une URL <code>rediss://</code> l’active. Il n’y a pas de repli en clair : Preferred se comporte donc comme Required. Les serveurs Valkey se connectent comme Redis.",
-                "La barre latérale liste les bases numérotées depuis <code>db0</code> ; un clic sur l’une d’elles la parcourt sur place."
+            "text": [
+                "Choisissez <ui>Mode de connexion</ui> (Connection Mode) : Standalone, Sentinel ou Cluster. Sentinel suit le primaire après basculement, et Cluster découvre les shards via un membre initial et route chaque commande vers le shard qui détient sa clé. Les serveurs Valkey se connectent comme Redis.",
+                "Authentifiez-vous par mot de passe, ou renseignez Nom d’utilisateur (Username) pour vous connecter en tant qu’utilisateur ACL de Redis 6. Sur Amazon ElastiCache, un mode <cloudAuth>AWS IAM</cloudAuth> transforme un jeton de courte durée en mot de passe, avec TLS activé.",
+                "Les nouvelles connexions démarrent sans TLS. Upstash, Redis Cloud et les services similaires l’exigent, et coller une URL <code>rediss://</code> l’active ; il n’y a pas de repli en clair, donc Preferred se comporte comme Required."
             ]
         },
         {
             "id": "work",
             "title": "Clés et commandes",
-            "paragraphs": [
-                "Parcourez les clés en dossiers séparés par des deux-points, ou choisissez un autre séparateur. Chaque ligne affiche type, TTL, longueur et valeur. Les collections montrent leurs premières entrées ; les valeurs non UTF-8 s’ouvrent dans l’éditeur hexadécimal.",
-                "<editing>Modifiez noms de clés, TTL et valeurs de chaînes</editing> dans la grille. Add Row crée hashes, listes, sets, sorted sets ou chaînes. Filtrez noms et types côté serveur avec <code>SCAN MATCH</code> et <code>SCAN TYPE</code>.",
-                "Exécutez les commandes avec les règles de guillemets de redis-cli. Les commandes inconnues sont envoyées telles quelles. <code>DB 3 GET key</code> cible une autre base sans changer la session. Dans <code>MULTI</code>, les réponses restent en attente jusqu’à <code>EXEC</code>.",
-                "<safeMode>Safe Mode</safeMode> exécute comme lecture les commandes de sa liste de lecture, comme <code>GET</code>, et compte toute autre commande comme écriture. <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent confirmation même au niveau Silent."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "<export>Exportez</export> des clés ou des résultats de commandes en {exportFormats}. L’import n’est pas disponible pour Redis ; chargez les données avec des commandes dans l’éditeur."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone et iPad",
-            "paragraphs": [
-                "Sur iPhone et iPad, exécutez les commandes Redis dans l’onglet Query ; la navigation dans les clés n’est pas disponible dans l’application iPhone et iPad. Une connexion y accepte un mot de passe, TLS avec une AC ou un certificat client issu d’un fichier, de texte collé ou d’un paquet PKCS#12, et un tunnel SSH par mot de passe ou par clé. Sentinel et Cluster sont réservés au Mac."
+            "text": [
+                "Parcourez les clés en dossiers séparés par des deux-points, ou par un autre séparateur, avec le type, le TTL, la longueur et la valeur de chaque clé. Les collections montrent leurs premières entrées, et les valeurs non UTF-8 s’ouvrent dans l’éditeur hexadécimal. <editing>Modifiez noms de clés, TTL et valeurs de chaînes</editing> dans la grille, et Add Row crée hashes, listes, sets, sorted sets ou chaînes. Les filtres sur les noms et les types s’exécutent côté serveur, avec <code>SCAN MATCH</code> et <code>SCAN TYPE</code>.",
+                "Les commandes suivent les règles de guillemets de redis-cli, et les commandes inconnues sont envoyées telles quelles. <code>DB 3 GET key</code> lit une autre base sans changer la session, et dans <code>MULTI</code>, les réponses restent en attente jusqu’à <code>EXEC</code>. <safeMode>Safe Mode</safeMode> traite comme lectures les commandes de sa liste de lecture, comme <code>GET</code>, et toute autre commande comme écriture ; <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent toujours confirmation."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "redis-insight",
-                "text": "Choisissez Redis Insight pour son navigateur de clés, Workbench de commandes, espace Pub/Sub, profileur, journaux de requêtes lentes et analyse mémoire. TablePro utilise Redis aux côtés des bases SQL.",
-                "notes": [
-                    "redis-insight-copilot"
-                ]
-            }
-        ],
-        "notes": {
-            "redis-insight-copilot": "Le Redis Copilot de Redis Insight répond aux questions Redis et crée des requêtes de recherche à partir du langage naturel."
-        }
-    },
+    "moveData": [
+        "<export>Exportez</export> des clés ou des résultats de commandes en {exportFormats}. Pour charger des données, exécutez des commandes dans l’éditeur."
+    ],
+    "iphone": [
+        "Exécutez des commandes Redis dans l’onglet Query d’une connexion Standalone, authentifiée par mot de passe, via TLS avec une AC ou un certificat client, ou via un tunnel SSH par mot de passe ou par clé."
+    ],
     "faq": [
         {
             "id": "acl-scan",
-            "question": "Pourquoi l’arbre de clés est-il vide pour mon utilisateur ACL ?",
+            "question": "Pourquoi l’arbre de clés est-il vide pour mon utilisateur ACL ?",
             "answer": "L’arbre de clés lit les noms avec <code>SCAN</code> et les types avec <code>TYPE</code>. Accordez les deux, par exemple avec <code>ACL SETUSER app +scan +type</code>, puis faites un clic droit sur <ui>Clés</ui> (Keys) dans la barre latérale et choisissez <ui>Actualiser</ui> (Refresh)."
         },
         {
             "id": "select",
-            "question": "Pourquoi SELECT ne change-t-il pas la barre latérale ?",
-            "answer": "<code>SELECT</code> ne change que la session de l’éditeur : les commandes suivantes s’exécutent sur cette base, tandis que la barre latérale et l’arbre de clés restent là où vous avez cliqué. Cliquez sur une base dans la barre latérale pour changer les deux, ou préfixez une seule commande par <code>DB</code> et le numéro de la base."
+            "question": "Pourquoi SELECT ne change-t-il pas la barre latérale ?",
+            "answer": "<code>SELECT</code> ne change que la session de l’éditeur : la barre latérale et l’arbre de clés restent là où vous avez cliqué. Cliquez sur une base dans la barre latérale pour changer les deux, ou préfixez une seule commande par <code>DB</code> et le numéro de la base."
         },
         {
             "id": "managed",
-            "question": "Pourquoi un service Redis géré affiche-t-il des bases qu’il n’a pas ?",
-            "answer": "Des services comme Upstash, Redis Cloud et ElastiCache refusent <code>CONFIG</code> : TablePro ne peut donc pas lire leur nombre de bases et affiche une plage par défaut. Sur un service à une seule base, ouvrir une base autre que <code>db0</code> affiche l’erreur du serveur."
+            "question": "Pourquoi un service Redis géré affiche-t-il des bases qu’il n’a pas ?",
+            "answer": "Upstash, Redis Cloud et ElastiCache refusent <code>CONFIG</code> : TablePro ne peut donc pas lire leur nombre de bases et affiche une plage par défaut. Sur un service à une seule base, les autres affichent l’erreur du serveur quand vous les ouvrez."
         }
     ],
-    "related": [
-        {
-            "label": "Parcourez et modifiez les données en sécurité",
-            "href": "/features/data-editing#documents-and-keys"
-        },
-        {
-            "label": "Connexions, tunnels et identifiants",
-            "href": "/features/connections"
-        },
-        {
-            "label": "TablePro pour iPhone et iPad",
-            "href": "/ios"
-        },
-        {
-            "label": "Comparer TablePro à d’autres clients de bases de données",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "Redis Insight propose un Workbench de commandes, un espace Pub/Sub, un profileur, les journaux de requêtes lentes et une analyse mémoire, tandis que TablePro utilise Redis aux côtés de vos bases SQL ; les <compare>comparaisons</compare> couvrent d’autres clients qui font les deux."
+    }
 }

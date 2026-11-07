@@ -11,73 +11,59 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Klien Elasticsearch",
-        "lead": "Jalankan permintaan DSL Kueri dan telusuri dokumen indeks dalam kotak. Edit dokumen berdasarkan ID mereka."
+        "lead": "Jalankan permintaan Query DSL dari konsol, telusuri dokumen indeks di grid, dan edit berdasarkan ID-nya.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan",
-            "paragraphs": [
-                "Masukkan host dan port REST, lalu pilih <ui>Auth Method</ui>: Username & Password, API Key, atau None. Kunci API menggunakan nilai <code>encoded</code> dari Elasticsearch. Setiap koneksi mengakses satu cluster.",
-                "Koneksi baru menggunakan SSL Disabled, yaitu HTTP tanpa enkripsi. Mode lainnya menggunakan HTTPS: Preferred dan Required (skip verify) menerima sertifikat yang ditandatangani sendiri, sedangkan Verify CA dan Verify Identity memverifikasinya. Elasticsearch 8.x mengaktifkan keamanan dan TLS secara bawaan, sehingga cluster 8.x biasanya memerlukan HTTPS dan kredensial."
+            "text": [
+                "Masukkan host dan port REST, lalu pilih <ui>Auth Method</ui>: Username & Password, API Key, atau None. API key menggunakan nilai <code>encoded</code> dari Elasticsearch, dan setiap koneksi menjangkau satu cluster.",
+                "Koneksi baru dimulai dengan SSL Disabled, yaitu HTTP tanpa enkripsi; mode lainnya menggunakan HTTPS. Preferred dan Required (skip verify) menerima sertifikat yang ditandatangani sendiri, sedangkan Verify CA dan Verify Identity memeriksanya. Elasticsearch 8.x mengaktifkan keamanan dan TLS secara default, sehingga cluster 8.x biasanya memerlukan HTTPS dan kredensial."
             ]
         },
         {
             "id": "work",
             "title": "Indeks dan konsol Query DSL",
-            "paragraphs": [
-                "Tulis metode, jalur, dan isi JSON opsional, seperti <code>GET /orders/_search</code>. Hasil pencarian dan respons array ditampilkan sebagai baris; tanggapan lain menunjukkan format JSON. Titik akhir <code>_sql</code> tidak tersedia.",
-                "Sidebar menampilkan indeks sebagai tabel dan menyembunyikan nama yang diawali titik. Kolom berasal dari mapping: bidang objek diratakan menjadi jalur bertitik seperti <code>address.city</code>, bidang nested memiliki satu kolom JSON untuk array-nya serta satu kolom per daun, dan setiap dokumen memiliki <code>_id</code>, <code>_index</code>, dan <code>_score</code>.",
-                "<filters>Filter kolom</filters> menjadi kueri <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code>, dan <code>exists</code>, sedangkan baris filter Raw SQL menerima sintaks Lucene, seperti <code>name:Widget</code>, yang dikirim sebagai <code>query_string</code>. Pengurutan bidang <code>text</code> menggunakan subbidang <code>.keyword</code> jika tersedia dalam mapping.",
-                "Edit dokumen dengan <code>_id</code> dengan panggilan REST. Masukkan ID untuk dokumen baru. Ubah array bersarang melalui kolom JSON; mengedit kolom daun memblokir penyimpanan tanpa mengirimkan permintaan."
+            "text": [
+                "Tulis metode, path, dan isi JSON opsional, seperti <code>GET /orders/_search</code>. Hasil pencarian dan respons array ditampilkan sebagai baris, respons lain sebagai JSON terformat, dan endpoint <code>_sql</code> tidak tersedia.",
+                "Sidebar mencantumkan indeks sebagai tabel dan menyembunyikan nama yang diawali titik. Kolom berasal dari mapping: field objek diratakan menjadi path bertitik seperti <code>address.city</code>, field nested mendapat satu kolom JSON untuk array-nya ditambah satu kolom per daun, dan setiap dokumen membawa <code>_id</code>, <code>_index</code>, dan <code>_score</code>.",
+                "<filters>Filter kolom</filters> menjadi kueri <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code>, dan <code>exists</code>, dan baris filter Raw SQL menerima sintaks Lucene, seperti <code>name:Widget</code>. Pengeditan dikirim sebagai panggilan REST berdasarkan <code>_id</code>; ubah array nested melalui kolom JSON-nya."
+            ],
+            "notes": [
+                "TablePro juga terhubung ke <search>Typesense dan Weaviate</search>, mesin pencarian lainnya."
             ]
         },
         {
             "id": "schema",
             "title": "Mapping",
-            "paragraphs": [
-                "Mapping hanya dapat dibaca di TablePro. Truncate tidak tersedia karena padanan terdekat di Elasticsearch, <code>_delete_by_query</code>, berjalan secara asinkron dan melaporkan konflik per dokumen; kirim dari konsol. Menghapus indeks dari sidebar mengirim permintaan DELETE yang ditampilkan dalam konfirmasi."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Ekspor",
-            "paragraphs": [
-                "Impor tidak tersedia. <export>Export</export> membaca seluruh indeks menggunakan point-in-time dan <code>search_after</code>, sehingga tidak dibatasi jendela hasil, lalu menulis {exportFormats}."
+            "text": [
+                "Mapping hanya baca. Truncate tidak tersedia, karena padanan terdekatnya di Elasticsearch, <code>_delete_by_query</code>, berjalan secara asinkron dan melaporkan konflik per dokumen; kirimkan dari konsol. Menghapus indeks dari sidebar mengirim permintaan DELETE yang ditampilkan di konfirmasinya."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Ekspor</export> membaca seluruh indeks dengan point-in-time dan <code>search_after</code>, sehingga tidak dibatasi jendela hasil, lalu menulis {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
-            "question": "Apakah saya dapat berpaginasi melewati jendela hasil?",
-            "answer": "Ya. Paginasi melewati jendela default Elasticsearch beralih ke <code>search_after</code> menggunakan point-in-time. Peralihan terjadi pada batas default, sehingga indeks dengan <code>max_result_window</code> lebih rendah mengalami kesalahan sebelumnya; kembalikan pengaturan ke nilai default."
+            "question": "Apakah saya dapat berpindah halaman melewati jendela hasil?",
+            "answer": "Ya. Berpindah halaman melewati jendela default Elasticsearch beralih ke <code>search_after</code> di atas point-in-time. Peralihan terjadi pada nilai default, sehingga indeks dengan <code>max_result_window</code> yang diturunkan mengalami kesalahan lebih dulu; kembalikan pengaturan itu ke nilai default."
         },
         {
             "id": "sort-id",
             "question": "Mengapa mengurutkan berdasarkan _id tidak mengubah urutan baris?",
-            "answer": "Elasticsearch tidak dapat mengurutkan berdasarkan <code>_id</code> atau bidang <code>text</code> tanpa subbidang <code>.keyword</code>, sehingga TablePro menghapus kolom tersebut dari pengurutan. Tambahkan subbidang keyword ke mapping atau urutkan berdasarkan bidang keyword."
+            "answer": "Elasticsearch tidak dapat mengurutkan berdasarkan <code>_id</code>, atau field <code>text</code> tanpa subfield <code>.keyword</code>, sehingga TablePro mengeluarkan kolom itu dari pengurutan. Tambahkan subfield keyword ke mapping, atau urutkan berdasarkan field keyword."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense dan Weaviate, mesin pencarian lainnya",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Telusuri dan edit data dengan aman",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Bahasa kueri selain SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

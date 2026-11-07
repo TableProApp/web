@@ -11,73 +11,59 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Elasticsearch 客户端",
-        "lead": "运行 Query DSL 请求，在表格中浏览索引文档，并按 ID 编辑文档。"
+        "lead": "在控制台运行 Query DSL 请求，在网格中浏览索引文档，并按 ID 编辑文档。",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入 REST 主机和端口，再从 <ui>认证方式</ui> (Auth Method) 中选择 Username & Password、API Key 或 None。API 密钥使用 Elasticsearch 的 <code>encoded</code> 值。每个连接访问一个集群。",
-                "新连接默认 SSL Disabled，即明文 HTTP。其他模式用 HTTPS：Preferred、Required (skip verify) 接受自签证书，Verify CA、Verify Identity 验证证书。Elasticsearch 8.x 默认开启安全和 TLS，因此通常需要 HTTPS 和凭据。"
+            "text": [
+                "输入 REST 主机和端口，然后选择 <ui>认证方式</ui> (Auth Method)：Username & Password、API Key 或 None。API 密钥使用 Elasticsearch 提供的 <code>encoded</code> 值，每个连接访问一个集群。",
+                "新连接默认为 SSL Disabled，即明文 HTTP；其他所有模式都使用 HTTPS。Preferred 和 Required (skip verify) 接受自签名证书，Verify CA 和 Verify Identity 会验证证书。Elasticsearch 8.x 默认开启安全和 TLS，因此 8.x 集群通常需要 HTTPS 和凭据。"
             ]
         },
         {
             "id": "work",
             "title": "索引和 Query DSL 控制台",
-            "paragraphs": [
-                "编写方法、路径和可选 JSON 请求体，例如 <code>GET /orders/_search</code>。搜索命中和数组响应显示为行，其他响应显示为格式化 JSON。不提供 <code>_sql</code> 端点。",
-                "侧边栏将索引列为表，隐藏点号开头的名称。列来自映射：对象字段展开为 <code>address.city</code> 等点分路径，nested 字段有一个存放数组的 JSON 列及每个叶字段的列，每个文档含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
-                "<filters>列筛选</filters>转换为 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> 查询，Raw SQL 筛选行接受 <code>name:Widget</code> 等 Lucene 语法，以 <code>query_string</code> 发送。排序 <code>text</code> 字段时，映射存在 <code>.keyword</code> 子字段则使用它。",
-                "通过 REST 调用按 <code>_id</code> 编辑文档。新文档需输入 ID。嵌套数组通过 JSON 列修改；编辑叶子列会阻止保存，不会发送请求。"
+            "text": [
+                "编写方法、路径和可选的 JSON 请求体，例如 <code>GET /orders/_search</code>。搜索命中和数组响应显示为行，其他响应显示为格式化的 JSON；不提供 <code>_sql</code> 端点。",
+                "侧边栏将索引列为表，并隐藏以点号开头的名称。列来自映射：对象字段展开为 <code>address.city</code> 等点分路径，nested 字段有一个存放其数组的 JSON 列以及每个叶字段的列，每个文档都带有 <code>_id</code>、<code>_index</code> 和 <code>_score</code>。",
+                "<filters>列筛选</filters>会转换为 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code> 和 <code>exists</code> 查询，Raw SQL 筛选行接受 Lucene 语法，例如 <code>name:Widget</code>。编辑以按 <code>_id</code> 的 REST 调用发送；nested 数组请通过其 JSON 列修改。"
+            ],
+            "notes": [
+                "TablePro 也可连接其他搜索引擎：<search>Typesense 和 Weaviate</search>。"
             ]
         },
         {
             "id": "schema",
             "title": "映射",
-            "paragraphs": [
-                "TablePro 中映射只读。不提供 Truncate，因为 Elasticsearch 最接近的 <code>_delete_by_query</code> 异步运行并逐文档报告冲突，请从控制台发送。从侧边栏删除索引发送确认中显示的 DELETE 请求。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "导出",
-            "paragraphs": [
-                "不提供导入。<export>导出</export>使用时间点和 <code>search_after</code> 读取整个索引，不受结果窗口限制，写入 {exportFormats}。"
+            "text": [
+                "映射只读。不提供 Truncate，因为 Elasticsearch 最接近的 <code>_delete_by_query</code> 异步运行，并逐文档报告冲突；请从控制台发送。从侧边栏删除索引时，会发送确认中显示的 DELETE 请求。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>导出</export>使用时间点和 <code>search_after</code> 读取整个索引，因此不受结果窗口限制，并写入 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "可以翻页超过结果窗口吗？",
-            "answer": "可以。超过 Elasticsearch 默认窗口时切换为时间点上的 <code>search_after</code>。切换发生在默认值，因此降低 <code>max_result_window</code> 的索引会提前报错；请调回默认值。"
+            "answer": "可以。翻页超过 Elasticsearch 的默认窗口时，会切换为基于时间点的 <code>search_after</code>。切换发生在默认值处，因此降低了 <code>max_result_window</code> 的索引会先报错；请将该设置调回默认值。"
         },
         {
             "id": "sort-id",
-            "question": "为什么按 _id 排序后行顺序不变？",
-            "answer": "Elasticsearch 无法按 <code>_id</code> 或无 <code>.keyword</code> 子字段的 <code>text</code> 字段排序，TablePro 会移除该排序列。请给映射添加 keyword 子字段，或按 keyword 字段排序。"
+            "question": "为什么按 _id 排序后行的顺序不变？",
+            "answer": "Elasticsearch 无法按 <code>_id</code> 或没有 <code>.keyword</code> 子字段的 <code>text</code> 字段排序，因此 TablePro 会将该列从排序中移除。请给映射添加 keyword 子字段，或按 keyword 字段排序。"
         }
     ],
-    "related": [
-        {
-            "label": "Typesense 和 Weaviate，其他搜索引擎",
-            "href": "/databases#search"
-        },
-        {
-            "label": "安全浏览和编辑数据",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "SQL 以外的查询语言",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

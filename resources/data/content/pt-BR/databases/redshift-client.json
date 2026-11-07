@@ -11,74 +11,58 @@
     "breadcrumb": "Amazon Redshift",
     "header": {
         "title": "Cliente de Amazon Redshift",
-        "lead": "Consulte clusters provisionados ou workgroups Serverless. Veja sort keys, estilos de distribuição e esquemas externos."
+        "lead": "Consulte clusters provisionados ou workgroups Serverless e inspecione sort keys, estilos de distribuição e esquemas externos.",
+        "asset": "databases-redshift"
     },
-    "asset": "mac-db-redshift-ddl",
     "links": {
-        "network": "/features/connections#network",
-        "credentials": "/features/connections#credentials",
-        "editing": "/features/data-editing#edit",
-        "explain": "/features/querying#explain",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
         "postgresql": "/postgresql-client",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#administer",
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
         "icloudSync": "/features/sync-and-teams#icloud-sync",
         "share": "/features/sync-and-teams#share"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se",
-            "paragraphs": [
-                "Insira endpoint, porta e banco de um cluster ou workgroup Serverless. Clusters começam com <code>dev</code>. Um URL <code>redshift://</code> preenche o formulário.",
-                "Novas conexões definem SSL como Preferred, e não há verificação de versão, portanto qualquer cluster ainda operado pela AWS se conecta. A senha é armazenada nas Chaves ou lida de <code>~/.pgpass</code>, duas das <credentials>opções de credenciais</credentials> disponíveis. Um cluster sem acesso público é acessado por um <network>túnel SSH</network> para um bastion host na sua VPC."
+            "text": [
+                "Informe o endpoint, a porta e o banco de um cluster ou workgroup Serverless; clusters começam com <code>dev</code>, e uma URL <code>redshift://</code> preenche o formulário. Novas conexões definem SSL como Preferred, e não há verificação de versão, então qualquer cluster que a AWS ainda opera se conecta.",
+                "A senha fica no Keychain ou é lida de <code>~/.pgpass</code>. Um cluster sem acesso público é acessado por um túnel SSH até um bastion host na VPC dele."
             ]
         },
         {
             "id": "work",
             "title": "Consulte e edite",
-            "paragraphs": [
-                "Consultas e <editing>edições de linhas pendentes com Preview SQL</editing> funcionam como em <postgresql>PostgreSQL</postgresql>, pelo mesmo driver. Uma aba vinculada a um banco diferente do ativo abre uma segunda conexão para ele.",
-                "Inspecione o estilo de distribuição, classifique as chaves e o tamanho de <code>svv_table_info</code>. DDL inclui DISTKEY, SORTKEY, DISTSTYLE e ENCODE. As chaves estrangeiras são listadas, mas não aplicadas por Redshift.",
-                "<explain>EXPLAIN e EXPLAIN VERBOSE</explain> retornam o plano de Redshift como texto, em vez de diagrama.",
-                "Procure esquemas Spectrum externos, federados, de banco de dados cruzado e de compartilhamento de dados, além dos locais. As tabelas externas suportam filtragem, classificação e exportação, mas são somente leitura. As contagens de linhas não estão disponíveis; tipos vêm do catálogo externo."
+            "text": [
+                "Consultas e edições de linhas funcionam como no <postgresql>PostgreSQL</postgresql>, pelo mesmo driver, e uma aba vinculada a outro banco abre uma segunda conexão para ele. <explain>EXPLAIN e EXPLAIN VERBOSE</explain> retornam o plano do Redshift como texto.",
+                "Estilo de distribuição, sort keys e tamanho vêm de <code>svv_table_info</code>, e o DDL inclui DISTKEY, SORTKEY, DISTSTYLE e ENCODE; as chaves estrangeiras são listadas, mas o Redshift não as aplica. Esquemas externos Spectrum, federados, entre bancos e de datashare ficam ao lado dos locais, e as tabelas deles podem ser filtradas, ordenadas e exportadas, mas são somente leitura."
             ]
         },
         {
             "id": "schema",
             "title": "Esquema",
-            "paragraphs": [
-                "Redshift não tem índices, enums, sequências ou triggers para gerenciar: DISTKEY e SORTKEY fazem o trabalho de um índice, e a aba Structure não tem uma aba Triggers. Rotinas não são listadas na barra lateral.",
-                "Pela barra lateral você pode renomear tabelas, bancos e esquemas, e criar um esquema com seu proprietário."
+            "text": [
+                "O Redshift não tem índices, enums, sequências nem triggers para gerenciar: DISTKEY e SORTKEY fazem o trabalho de um índice. Pela barra lateral, renomeie tabelas, bancos e esquemas, ou crie um esquema com o proprietário dele."
             ]
         },
         {
             "id": "operate",
             "title": "Monitore e faça backups",
-            "paragraphs": [
-                "O <dashboard>Server Dashboard</dashboard> lista sessões e consultas lentas, com métricas de conexões, taxa de acertos de cache, tamanho do banco, tempo em atividade e consultas ativas. Cancel Query envia <code>pg_cancel_backend</code>, e Terminate Session envia <code>pg_terminate_backend</code>, cada um após sua confirmação.",
-                "Não há menu Maintenance nem Users & Roles para Redshift: execute VACUUM, ANALYZE e GRANT no editor SQL.",
+            "text": [
+                "O <dashboard>Server Dashboard</dashboard> lista sessões e consultas lentas, cancela uma consulta com <code>pg_cancel_backend</code> e encerra uma sessão com <code>pg_terminate_backend</code>, sempre depois da sua confirmação. Execute VACUUM, ANALYZE e GRANT no editor SQL.",
                 "<backup>Backup Dump e Restore Dump</backup> executam {dumpTool} e pg_restore no Mac, pelo túnel SSH da conexão quando existe um. Primeiro instale-os com libpq do Homebrew."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "<importData>Import</importData> carrega arquivos {importFormats} do Mac em uma tabela Redshift. A exportação grava uma tabela ou o resultado de uma consulta como {exportFormats}, e tabelas externas são exportadas como as demais."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone e iPad",
-            "paragraphs": [
-                "Para levar uma conexão Redshift ao iPhone ou iPad, ative <icloudSync>iCloud Sync</icloudSync>, parte do plano {icloudSyncTier} no Mac, ou <share>exporte a conexão</share> para um arquivo e abra-o no dispositivo. Ela então funciona pelo driver PostgreSQL integrado ao app: navegue por tabelas como cartões, filtre e ordene e execute SQL na aba Query. As senhas acompanham pelo iCloud Sync apenas com a sincronização de senhas ativada, ou em um arquivo exportado criptografado que inclua as senhas, parte do plano {encryptedExportTier}. Os certificados permanecem em cada dispositivo."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "O <importData>Import</importData> carrega arquivos {importFormats} do seu Mac em uma tabela Redshift. A exportação grava tabelas, inclusive externas, ou resultados de consultas como {exportFormats}."
+    ],
+    "iphone": [
+        "Leve a conexão com o <icloudSync>iCloud Sync</icloudSync> ({icloudSyncTier} no Mac) ou um <share>arquivo de conexão exportado</share>. Ela roda no driver PostgreSQL integrado ao app: navegue pelas tabelas como cartões, filtre e ordene, e execute SQL na aba Query."
+    ],
     "faq": [
         {
             "id": "serverless",
@@ -88,25 +72,8 @@
         {
             "id": "pg-dump",
             "question": "pg_dump oferece suporte a Redshift?",
-            "answer": "Nenhuma versão de pg_dump afirma oferecer suporte à versão PostgreSQL informada por Redshift. TablePro executa o pg_dump que você instalou, enquanto no PostgreSQL escolhe um compatível com o servidor; portanto teste um backup de um esquema pequeno antes de depender dele."
+            "answer": "Nenhuma versão do pg_dump declara suporte à versão do PostgreSQL que o Redshift informa. O TablePro executa o pg_dump que você instalou, então teste o backup de um esquema pequeno antes de confiar nele."
         }
     ],
-    "related": [
-        {
-            "label": "PostgreSQL, no mesmo driver",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "Server Dashboard e ferramentas de esquema",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Backups, importação e exportação",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Google BigQuery, outro data warehouse",
-            "href": "/bigquery-client"
-        }
-    ]
+    "otherTools": null
 }

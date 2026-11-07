@@ -11,128 +11,77 @@
     "breadcrumb": "SQL Server",
     "header": {
         "title": "Cliente SQL Server",
-        "lead": "Ejecuta scripts T-SQL con lotes GO y salida PRINT. Conecta con credenciales SQL Server, Kerberos o Microsoft Entra ID."
+        "lead": "Ejecuta scripts T-SQL con lotes GO y salida PRINT, e inicia sesión con un login de SQL Server, Kerberos o Microsoft Entra ID.",
+        "asset": "databases-sqlserver"
     },
-    "asset": "mac-db-sqlserver-script",
     "links": {
-        "network": "/features/connections#network",
         "cloudAuth": "/features/connections#cloud-auth",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "dashboard": "/features/schema#server-dashboard",
+        "dashboard": "/features/schema#administer",
         "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup"
+        "backup": "/features/import-export#backup",
+        "ssms": "/compare/ssms"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conectar",
-            "paragraphs": [
-                "Introduce host y puerto TCP, y elige <ui>Authentication</ui>: credenciales SQL Server, Kerberos o Microsoft Entra ID. Las cuentas limitadas a una base, incluidos los usuarios contenidos de Azure SQL, también necesitan el campo Database.",
-                "Kerberos usa el ticket de la caché de credenciales o pide uno con principal y contraseña introducidos. Conéctate por nombre de host y no por IP, porque el ticket se emite para el SPN registrado del servidor. TablePro nunca ejecuta <code>kinit</code> ni edita <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> usa inicio de sesión por código de dispositivo con autenticación multifactor y Conditional Access. Registra una aplicación Azure e introduce su ID de cliente. Los tokens se renuevan en segundo plano y permanecen en el Llavero de inicio de sesión exclusivo del dispositivo.",
-                "Las conexiones nuevas usan Preferred, que en SQL Server cifra solo el acceso. Elige Required o más estricto para cifrar toda la sesión; Verify CA y Verify Identity comprueban el certificado con raíces de macOS. TablePro también ejecuta Cloud SQL Auth Proxy para Google Cloud SQL; los <network>túneles SSH</network> acceden a redes privadas."
+            "text": [
+                "Introduce un host y un puerto TCP, y elige <ui>Authentication</ui>: login de SQL Server, Kerberos o Microsoft Entra ID. Los logins limitados a una base de datos, incluidos los usuarios contenidos de Azure SQL, también necesitan el campo Database.",
+                "Kerberos usa el ticket de tu caché de credenciales, o pide uno con el principal y la contraseña que introduzcas; conéctate por nombre de host, porque el ticket se emite para el SPN registrado del servidor. <cloudAuth>Microsoft Entra ID</cloudAuth> usa inicio de sesión por código de dispositivo con el ID de cliente de tu aplicación de Azure.",
+                "Las conexiones nuevas empiezan en Preferred, que en SQL Server solo cifra el inicio de sesión. Elige Required o algo más estricto para cifrar toda la sesión."
             ]
         },
         {
             "id": "work",
             "title": "Scripts, lotes y ediciones",
-            "paragraphs": [
-                "Los scripts se dividen en las líneas <code>GO</code>; <code>GO 5</code> repite cinco veces el lote anterior. Cada conjunto de resultados abre una pestaña propia. Lee la salida <code>PRINT</code> y los mensajes informativos en Output.",
-                "Usa <code>BEGIN TRAN</code> y <code>COMMIT</code> para lotes transaccionales. Una transacción abierta genera un aviso. La ejecución se detiene en el primer lote fallido y el error indica su línea en el editor.",
-                "Cada sesión abre con las opciones SET necesarias para índices filtrados, vistas indexadas e índices de columnas calculadas, como <code>ANSI_NULLS</code> y <code>QUOTED_IDENTIFIER</code> activados. Por eso <code>col = NULL</code> no coincide con nada: usa <code>IS NULL</code>.",
-                "Las tablas se anidan en sus esquemas; <code>⌘K</code> cambia de base sin reconectar. Las ediciones se preparan con <editing>Preview SQL</editing>, las filas nuevas dejan IDENTITY al servidor y <code>nvarchar(max)</code> llega completo."
+            "text": [
+                "Los scripts se dividen en las líneas <code>GO</code>, y <code>GO 5</code> repite cinco veces el lote anterior. Cada conjunto de resultados se abre en su propia pestaña, la salida <code>PRINT</code> y los mensajes aparecen en Output, y la ejecución se detiene en el primer lote fallido, con su línea del editor en el error. Usa <code>BEGIN TRAN</code> y <code>COMMIT</code> cuando los lotes deban ser transaccionales.",
+                "Las sesiones se abren con <code>ANSI_NULLS</code> y <code>QUOTED_IDENTIFIER</code> activados, como exigen los índices filtrados y las vistas indexadas, así que compara con <code>IS NULL</code> en lugar de <code>= NULL</code>. <code>⌘K</code> cambia de base de datos sin reconectar, y las filas nuevas dejan las columnas IDENTITY al servidor."
             ]
         },
         {
             "id": "schema",
             "title": "Esquema",
-            "paragraphs": [
-                "La <structure>pestaña Structure</structure> prepara cambios de columnas, índices, claves foráneas y restricciones y muestra T-SQL antes. Puedes eliminar esquemas en la barra lateral; SQL Server se niega a eliminar un esquema que aún contiene objetos. Crea uno con CREATE SCHEMA en el editor.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compara esquemas o datos de SQL Server. Los scripts generados separan instrucciones con <code>GO</code> para sqlcmd o SQL Server Management Studio."
+            "text": [
+                "La <structure>pestaña Structure</structure> prepara como T-SQL los cambios de columnas, índices, claves foráneas y restricciones, y puedes eliminar un esquema desde la barra lateral cuando ya no contiene objetos. <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compara esquemas o datos de SQL Server y separa sus sentencias con <code>GO</code> para sqlcmd o SQL Server Management Studio."
             ]
         },
         {
             "id": "operate",
             "title": "Supervisa y haz copias",
-            "paragraphs": [
-                "El <dashboard>Server Dashboard</dashboard> muestra sesiones de usuario, tiempo activo y tamaño, enumera las otras sesiones y consultas de más de un segundo y termina sesiones con <ui>Terminate Session</ui>. SQL Server no tiene Cancel Query.",
-                "<backup>Backup Dump</backup> escribe <code>.bacpac</code> con {dumpTool}, descargado de Microsoft; Restore Dump lo carga en una base vacía. SqlPackage solo acepta la contraseña en su línea de comandos, donde otros procesos del Mac pueden leerla, así que TablePro pregunta antes de empezar. Con la autenticación de Windows o de Entra no hace falta pasarla."
+            "text": [
+                "El <dashboard>Server Dashboard</dashboard> muestra las sesiones, el tiempo activo, el tamaño de la base de datos y las consultas que llevan más de un segundo en ejecución, y termina una sesión con <ui>Terminate Session</ui>. SQL Server no tiene Cancel Query.",
+                "<backup>Backup Dump</backup> escribe un <code>.bacpac</code> con {dumpTool}, que descargas de Microsoft, y Restore Dump lo carga en una base de datos vacía. SqlPackage solo acepta la contraseña en su línea de comandos, así que TablePro pregunta antes de empezar; con la autenticación de Windows o de Entra no se pasa ninguna."
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "<importData>Import</importData> lee archivos {importFormats}. Los archivos SQL respetan los lotes <code>GO</code>. Exporta tablas o resultados como {exportFormats}; los exports SQL también usan separadores <code>GO</code>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone y iPad",
-            "paragraphs": [
-                "En iPhone y iPad accedes con login SQL Server, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas T-SQL en la pestaña Query. Allí no está disponible la autenticación de Windows. Una conexión que usa Microsoft Entra ID llega desde tu Mac mediante iCloud Sync o un archivo de conexión exportado, e inicias sesión en Microsoft al abrirla."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "ssms",
-                "text": "SQL Server Management Studio cubre administración más allá de TablePro, como tareas de SQL Server Agent, grupos de disponibilidad Always On, estadísticas de consultas en vivo y ajuste de rendimiento.",
-                "notes": [
-                    "ssms-github-copilot-component"
-                ]
-            },
-            {
-                "product": "azure-data-studio",
-                "text": "Azure Data Studio era el editor Microsoft para SQL Server y Azure SQL, con extensiones para SQL Server Agent y Profiler, entre otras tareas.",
-                "notes": [
-                    "ads-retired-successor"
-                ]
-            }
-        ],
-        "notes": {
-            "ssms-github-copilot-component": "GitHub Copilot en SQL Server Management Studio es un componente separado añadido con Visual Studio Installer.",
-            "ads-retired-successor": "Microsoft lo retiró, sin más actualizaciones ni correcciones de seguridad, y dirige a sus usuarios a Visual Studio Code con MSSQL, que abre las mismas consultas, scripts y proyectos sin conversión."
-        }
-    },
+    "moveData": [
+        "<importData>Importa</importData> archivos {importFormats}, y los archivos SQL con sus lotes <code>GO</code>. Exporta tablas o resultados como {exportFormats}; las exportaciones SQL también usan separadores <code>GO</code>."
+    ],
+    "iphone": [
+        "Inicia sesión con un login de SQL Server, explora tablas como tarjetas, edita filas con clave primaria y ejecuta T-SQL en la pestaña Query. Una conexión que usa Microsoft Entra ID llega desde tu Mac, e inicias sesión en Microsoft al abrirla."
+    ],
     "faq": [
         {
             "id": "azure-sql",
             "question": "¿Funciona TablePro con Azure SQL Database?",
-            "answer": "Sí. Usa <code>yourserver.database.windows.net</code> como host, configura SSL en Required o más estricto e inicia sesión con un login SQL o con Microsoft Entra ID. Un usuario contenido también necesita el campo Database relleno."
+            "answer": "Sí. Usa <code>yourserver.database.windows.net</code> como host, configura SSL en Required o algo más estricto e inicia sesión con un login SQL o con Microsoft Entra ID. Un usuario contenido también necesita el campo Database."
         },
         {
             "id": "declare",
             "question": "¿Por qué un script dice «Must declare the scalar variable»?",
-            "answer": "La sentencia que lee la variable se ejecutó en un lote distinto de <code>DECLARE</code>: hay <code>GO</code> entre ellas, o <code>⌘⏎</code> ejecutó solo la del cursor. Selecciona ambas o ejecuta todo el script."
+            "answer": "La sentencia que lee la variable se ejecutó en un lote distinto del de su <code>DECLARE</code>: hay una línea <code>GO</code> entre ellas, o <code>⌘⏎</code> ejecutó solo la sentencia del cursor. Ejecuta ambas juntas."
         },
         {
             "id": "freetds",
             "question": "¿Necesito FreeTDS o un controlador ODBC?",
-            "answer": "No. El controlador está basado en FreeTDS y lo incluye, así que no hay que instalar nada más y no se lee tu <code>freetds.conf</code>. Solo Backup Dump y Restore Dump necesitan una herramienta propia: {dumpTool}."
+            "answer": "No. El controlador incluye su propio FreeTDS, así que no hay que instalar nada más y no se lee tu <code>freetds.conf</code>. Solo Backup Dump y Restore Dump necesitan una herramienta propia: {dumpTool}."
         }
     ],
-    "related": [
-        {
-            "label": "Autenticación en la nube para AWS, Google y Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Esquemas, comparación y sincronización",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Importación, exportación y copias de seguridad",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "TablePro para iPhone y iPad",
-            "href": "/ios#security"
-        }
-    ]
+    "otherTools": {
+        "text": "SQL Server Management Studio cubre administración más allá de TablePro, como los trabajos de SQL Server Agent, los grupos de disponibilidad Always On y el ajuste de rendimiento, y Microsoft retiró Azure Data Studio; consulta <ssms>TablePro vs SQL Server Management Studio</ssms>."
+    }
 }

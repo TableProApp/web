@@ -11,49 +11,40 @@
     "breadcrumb": "Turso và libSQL",
     "header": {
         "title": "Turso và libSQL client",
-        "lead": "Kết nối Turso bằng URL và token. Xem table, chạy query SQLite hoặc mở file libSQL local."
+        "lead": "Kết nối tới cơ sở dữ liệu Turso bằng URL và token, hoặc mở file libSQL, và query bằng cú pháp của SQLite.",
+        "asset": "databases-turso"
     },
-    "asset": "mac-db-turso-remote",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "sqlite": "/sqlite-client",
         "libsql": "#libsql",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối tới Turso",
-            "paragraphs": [
-                "Chọn <ui>Remote (Turso)</ui> trong <ui>Connection Mode</ui>. Dán HTTPS URL của cơ sở dữ liệu và <ui>API Token</ui>, lưu trong macOS Keychain. Lấy cả hai từ dashboard hoặc CLI Turso.",
-                "URL <code>libsql://</code> import trở thành connection remote HTTPS. Mỗi URL chỉ một cơ sở dữ liệu. URL HTTP thường không mã hóa; không có SSH tunnel."
+            "text": [
+                "Chọn <ui>Từ xa (Turso)</ui> (Remote (Turso)) trong <ui>Chế độ kết nối</ui> (Connection Mode), rồi dán HTTPS URL của cơ sở dữ liệu và <ui>API Token</ui>, được lưu trong macOS Keychain. Lấy cả hai từ dashboard hoặc CLI của Turso.",
+                "URL <code>libsql://</code> khi import sẽ thành connection từ xa qua HTTPS, và mỗi URL chỉ tới một cơ sở dữ liệu. URL HTTP thường không được mã hóa, và không dùng được SSH tunnel."
             ]
         },
         {
             "id": "work",
             "title": "Query và chỉnh sửa",
-            "paragraphs": [
-                "libSQL dùng cú pháp của SQLite, nên việc duyệt dữ liệu, sơ đồ <explain>EXPLAIN QUERY PLAN</explain>, <editing>thay đổi đang chờ lưu cùng Preview SQL</editing> và export hoạt động như trên <sqlite>SQLite</sqlite>.",
-                "Connection từ xa không chạy transaction. Mỗi câu lệnh là một request HTTP riêng và tự commit, còn <code>BEGIN</code> báo lỗi “Transactions are not supported in this mode”. Công việc cần transaction phải dùng file libSQL cục bộ, như mô tả ở <libsql>phần libSQL</libsql>.",
-                "Chế độ từ xa không nạp extension SQLite nào: cơ sở dữ liệu Turso chạy những extension mà server của nó được build kèm. Khi Turso giới hạn tần suất một connection, thông báo lỗi cho biết cần chờ bao nhiêu giây trước khi thử lại."
+            "text": [
+                "libSQL dùng cú pháp của SQLite, nên việc duyệt dữ liệu, sơ đồ <explain>EXPLAIN QUERY PLAN</explain> và export hoạt động như trên <sqlite>SQLite</sqlite>.",
+                "Connection từ xa không chạy transaction: mỗi câu lệnh là một request HTTP riêng và tự commit, còn <code>BEGIN</code> báo lỗi “Transactions are not supported in this mode”. Transaction cần một file cục bộ, mở dưới dạng <libsql>libSQL</libsql>. Chế độ từ xa không nạp extension SQLite nào, vì cơ sở dữ liệu Turso chạy những extension mà server của nó được build kèm, và khi request bị giới hạn tần suất, thông báo lỗi cho biết cần chờ bao nhiêu giây."
             ]
         },
         {
             "id": "schema",
             "title": "Table, index và trigger",
-            "paragraphs": [
+            "text": [
                 "<structure>Tab Structure</structure> tạo table, thêm và xóa cột cùng index, và tạo, sửa, xóa trigger. Table, nhưng không phải view, có thể đổi tên từ sidebar.",
-                "Sắp lại cột hoặc đổi khóa ngoại từ xa tạo script dựng lại để bạn xem và chạy. TablePro không chạy được thành một transaction qua các HTTP request riêng."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "TablePro không có import cho Turso và libSQL; hãy nạp dữ liệu bằng Turso CLI hoặc tính năng import trên server sqld của bạn. Để lấy dữ liệu ra, hãy <export>export</export> table hoặc kết quả query ra {exportFormats}."
+                "Sắp lại cột hoặc đổi khóa ngoại trên connection từ xa sẽ tạo script dựng lại để bạn xem và chạy, vì TablePro không gộp được các HTTP request riêng vào một transaction."
             ]
         }
     ],
@@ -61,15 +52,16 @@
         {
             "engine": "libsql",
             "title": "libSQL",
-            "paragraphs": [
-                "Hãy chọn libSQL cho server sqld tự host hoặc file trên máy Mac này. Ở chế độ từ xa, libSQL kết nối tới bất kỳ sqld nào phục vụ endpoint Hrana v2 pipeline, kể cả sqld chạy ngay trên máy Mac này, vốn lắng nghe ở port 8080 theo mặc định. Hãy để trống token với server khởi động không có <code>--auth-jwt-key-file</code>, hoặc dùng một JWT khớp với key của server.",
-                "Chế độ <ui>Tệp cục bộ (Local File)</ui> mở file libSQL bằng engine SQLite đi kèm driver, và đường dẫn chưa tồn tại sẽ được tạo mới, kể cả các thư mục. File cục bộ chạy được transaction, nạp extension SQLite từ danh sách Extensions của connection, và chạy việc dựng lại table khi đổi thứ tự cột hay khóa ngoại sau khi bạn xác nhận.",
-                "Câu lệnh chỉ libSQL hiểu, như <code>ALTER TABLE … ALTER COLUMN</code>, sẽ lỗi trên file cục bộ, vì engine SQLite là bên nhận câu lệnh. File libSQL đã mã hóa không mở được. Đừng bao giờ mở một file đang được một ứng dụng khác đồng bộ dưới dạng embedded replica của Turso khi ứng dụng đó đang chạy: hai chương trình cùng truy cập có thể làm hỏng file.",
-                "<backup>Backup Dump và Restore Dump</backup> chạy {dumpTool} trên file libSQL cục bộ."
+            "text": [
+                "Hãy chọn libSQL cho server sqld tự host, kết nối qua endpoint Hrana v2 pipeline của nó, hoặc cho file trên máy Mac này ở chế độ <ui>Tệp cục bộ</ui> (Local File). File cục bộ chạy được transaction, nạp extension SQLite và chạy script dựng lại sau khi bạn xác nhận, còn <backup>Backup Dump và Restore Dump</backup> chạy {dumpTool} trên file đó.",
+                "Đừng bao giờ mở một file mà một ứng dụng đang chạy đồng bộ dưới dạng embedded replica của Turso: hai chương trình cùng truy cập có thể làm hỏng file."
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "<export>Export</export> table hoặc kết quả query ra {exportFormats}. Để nạp dữ liệu, hãy dùng Turso CLI hoặc tính năng import trên server sqld của bạn."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "remote-or-local",
@@ -79,25 +71,8 @@
         {
             "id": "turso-cli",
             "question": "Tôi có cần cài Turso CLI không?",
-            "answer": "Không. Dashboard của Turso cũng hiển thị URL của cơ sở dữ liệu và tạo token. CLI hữu ích khi bạn nạp dữ liệu từ terminal, vì TablePro không có import cho Turso."
+            "answer": "Không. Dashboard của Turso cũng hiển thị URL của cơ sở dữ liệu và tạo token. CLI hữu ích khi bạn nạp dữ liệu từ terminal."
         }
     ],
-    "related": [
-        {
-            "label": "SQLite, engine nền tảng của libSQL",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Cloudflare D1, SQLite qua API của Cloudflare",
-            "href": "/cloudflare-d1-client"
-        },
-        {
-            "label": "Sửa cấu trúc và script dựng lại table",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "Export và sao lưu",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

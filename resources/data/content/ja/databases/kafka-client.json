@@ -11,75 +11,60 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Apache Kafka クライアント",
-        "lead": "トピックのメッセージやコンシューマーの遅延を確認し、TablePro 独自のコマンド言語 KafkaQL でテストメッセージを送信できます。"
+        "lead": "トピックのメッセージやコンシューマーの遅延を確認し、TablePro 独自のコマンド言語 KafkaQL でテストメッセージを送信できます。",
+        "asset": "databases-kafka"
     },
-    "asset": "mac-db-kafka-consume",
     "links": {
         "network": "/features/connections#network",
+        "otherLanguages": "/features/querying#other-languages",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "接続",
-            "paragraphs": [
-                "ブートストラップブローカーのホストとポートを入力します。<ui>Additional Bootstrap Servers</ui> で予備のブローカーを追加できます。各接続は一つのクラスターにつながり、サイドバーにトピックを表示します。",
-                "<ui>Security Protocol</ui> は PLAINTEXT、SSL、SASL_PLAINTEXT または SASL_SSL、<ui>SASL Mechanism</ui> は PLAIN、SCRAM-SHA-256 または SCRAM-SHA-512 です。PLAIN は Confluent Cloud、SCRAM は Amazon MSK と自己ホストのブローカー向けです。SSL または SASL_SSL で SSL モード未選択なら証明書チェーンとホスト名を検証します。プライベート CA は <ui>CA Certificate</ui>、クライアント証明書と鍵は相互 TLS に使います。",
-                "<network>SSH トンネル</network> では接続がブートストラップブローカーに留まり、そのブローカーがリーダーのパーティションだけを読みます。<ui>Import from URL…</ui> は <code>kafka://</code> URL を受け付けますが、macOS はリンクとして開きません。"
+            "text": [
+                "ブートストラップブローカーのホストとポートを入力し、<ui>Additional Bootstrap Servers</ui> で予備のブローカーを追加します。各接続は一つのクラスターにつながり、サイドバーにトピックを表示します。",
+                "<ui>Security Protocol</ui> は PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL、<ui>SASL Mechanism</ui> は PLAIN、SCRAM-SHA-256、SCRAM-SHA-512 から選びます。PLAIN は Confluent Cloud、SCRAM は Amazon MSK と自己ホストのブローカー向けです。SSL または SASL_SSL で SSL モードを選ばない場合は、証明書チェーンとホスト名を検証します。プライベート CA は <ui>CA Certificate</ui> に入れ、クライアント証明書と鍵で相互 TLS を使えます。",
+                "<network>SSH トンネル</network>経由では接続がブートストラップブローカーに留まるため、そのブローカーがリーダーのパーティションだけを読みます。<ui>Import from URL…</ui> は <code>kafka://</code> URL を受け付けます。macOS はこの URL をリンクとして開きません。"
             ]
         },
         {
             "id": "work",
-            "title": "読み取り、確認と送信",
-            "paragraphs": [
-                "最近のメッセージをパーティション、オフセット、時刻、キー、値、ヘッダーとともに参照できます。パーティションをまたぐメッセージは時刻順に並び、パーティションとオフセットで識別します。UTF-8 以外の値は 16 進数で表示し、トゥームストーンと空メッセージは区別します。",
-                "KafkaQL で最新、最古、指定オフセット、ISO 8601 の時刻から読み取れます。対象パーティションも指定できます。SHOW はトピック、ブローカー、グループ、クラスター情報を一覧表示し、DESCRIBE TOPIC はトピックを調べます。",
-                "<code>DESCRIBE GROUP</code> はパーティションごとのコミット済みオフセット、末尾オフセットと差分を示す遅延レポートです。グループが一度もコミットしていないパーティションはゼロから数えず遅延なしと表示します。ブローカーにアクセスできないと <code>SHOW GROUPS</code> は一覧が不完全と示します。",
-                "<code>PRODUCE INTO</code> は任意のキー、ヘッダーとパーティションを持つメッセージを書き込みます。キーがありパーティション未指定なら Kafka 自身の producer と同じ場所に送ります。gzip、snappy、lz4、zstd バッチは読み取り時に展開し、設定の選択は不要です。",
-                "メッセージの編集や個別削除、列のソートはできません。新しいメッセージが届いても、前の位置からページ送りを続けます。"
+            "title": "読み取り、確認、送信",
+            "text": [
+                "最近のメッセージを、パーティション、オフセット、タイムスタンプ、キー、値、ヘッダーとともに参照できます。複数のパーティションのメッセージはタイムスタンプ順に並び、UTF-8 以外の値は 16 進で表示し、トゥームストーンは空のメッセージと区別します。",
+                "<otherLanguages>KafkaQL</otherLanguages> は最新または最古のメッセージ、オフセット、ISO 8601 のタイムスタンプから読み取り、パーティションに限定することもできます。<code>SHOW</code> はトピック、ブローカー、グループ、クラスター情報を一覧表示し、<code>DESCRIBE TOPIC</code> はトピックを調べます。<code>DESCRIBE GROUP</code> は遅延レポートで、パーティションごとにコミット済みオフセット、末尾オフセット、その差を示します。グループが一度もコミットしていないパーティションは、ゼロから数えた数値ではなく遅延なしと表示します。",
+                "<code>PRODUCE INTO</code> は、任意のキー、ヘッダー、パーティションを指定してメッセージを書き込みます。キーがありパーティションを指定しないメッセージは、Kafka 自身の producer と同じ場所に送ります。gzip、snappy、lz4、zstd のバッチは読み取り時に展開します。"
+            ],
+            "notes": [
+                "メッセージを一件ずつ編集・削除することはできません。新しいメッセージが届いても、ページ送りは前の位置から続きます。"
             ]
         },
         {
             "id": "operate",
             "title": "トピック",
-            "paragraphs": [
-                "サイドバーや <code>DROP TOPIC</code> からのトピック削除が唯一の破壊的操作です。クラスターが後からログを削除するため、一覧にしばらく残ることがあります。Kafka は保持ポリシーかパーティションごとのオフセットでレコードを削除し、どちらもトピックを空にしないため Truncate は提供しません。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "インポートはありません。<code>PRODUCE INTO</code> でトピックにメッセージを書き込みます。クエリで読んだメッセージを {exportFormats} で <export>エクスポート</export> できます。"
+            "text": [
+                "サイドバーまたは <code>DROP TOPIC</code> によるトピックの削除が、唯一の破壊的な操作です。クラスターは後からログを削除するため、トピックがしばらく一覧に残ることがあります。Kafka は保持期間かパーティションごとのオフセットでレコードを削除し、どちらもトピックを空にしないため、Truncate はありません。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "インポートはありません。メッセージは <code>PRODUCE INTO</code> でトピックに書き込みます。クエリで読んだメッセージを {exportFormats} で<export>エクスポート</export>できます。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "advertised-addresses",
-            "question": "トピックは読み込めるのにメッセージがタイムアウトするのはなぜですか？",
-            "answer": "クラスターがコンテナのホスト名やプライベート IP など、この Mac から届かないアドレスを通知しています。<code>advertised.listeners</code> を修正するか、<ui>Broker Addresses</ui> をブートストラップアドレスだけ使う設定にしてください。"
+            "question": "トピックは読み込めるのに、メッセージがタイムアウトするのはなぜですか？",
+            "answer": "クラスターが、コンテナのホスト名やプライベート IP など、この Mac から届かないアドレスを通知しています。<code>advertised.listeners</code> を修正するか、<ui>Broker Addresses</ui> をブートストラップアドレスだけを使う設定にしてください。"
         },
         {
             "id": "msk-iam",
             "question": "Amazon MSK の IAM ログインに対応しますか？",
-            "answer": "対応しません。SASL 方式は PLAIN、SCRAM-SHA-256 と SCRAM-SHA-512 なので、MSK クラスターで SCRAM ユーザーを作成し、SASL_SSL で接続してください。"
+            "answer": "対応しません。SASL 方式は PLAIN、SCRAM-SHA-256、SCRAM-SHA-512 なので、MSK クラスターで SCRAM ユーザーを作成し、SASL_SSL で接続してください。"
         }
     ],
-    "related": [
-        {
-            "label": "SQL 以外のクエリ言語",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "接続、トンネルと認証情報",
-            "href": "/features/connections"
-        },
-        {
-            "label": "対応データベース",
-            "href": "/databases"
-        }
-    ]
+    "otherTools": null
 }

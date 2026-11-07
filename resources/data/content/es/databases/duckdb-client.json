@@ -11,71 +11,49 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "Cliente DuckDB",
-        "lead": "Abre bases o consulta Parquet, CSV y JSON con SQL, sin servidor de base de datos."
+        "lead": "Abre una base de datos DuckDB o consulta archivos Parquet, CSV y JSON con SQL, sin ningún servidor de base de datos que mantener.",
+        "asset": "databases-duckdb"
     },
-    "asset": "mac-db-duckdb-parquet",
     "links": {
-        "files": "/features/import-export#files",
         "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "export": "/features/import-export#export",
+        "explain": "/features/querying#explain",
         "backup": "/features/import-export#backup",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure"
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Abre un archivo",
-            "paragraphs": [
-                "Abre un archivo .duckdb o .ddb, introduce una ruta nueva para crearlo o usa <code>:memory:</code> para una base temporal. La cabecera identifica la base, no la extensión.",
-                "Abre Parquet, CSV, TSV, JSON o NDJSON como vistas de solo lectura llamadas <code>file</code> y como el archivo. La fuente no cambia. Crea una tabla DuckDB para editar los datos.",
-                "Abre archivos de base desde Finder. Parquet se abre mediante <ui>File > Open File</ui> como conexión DuckDB, no en la <dataFiles>ventana Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> conecta con un alias <code>quack_serve</code>. La primera conexión descarga la extensión <code>quack</code>."
+            "text": [
+                "Abre un archivo <code>.duckdb</code> o <code>.ddb</code>, también desde Finder, introduce una ruta nueva para crear uno o usa <code>:memory:</code> para una base temporal. Los archivos se identifican por su cabecera, no por su extensión.",
+                "Parquet, CSV, TSV, JSON y NDJSON se abren con <ui>File > Open File</ui> como vistas de solo lectura llamadas <code>file</code> y como el archivo, y el archivo de origen nunca cambia. <ui>Remote (Quack, experimental)</ui> conecta con un servidor <code>quack_serve</code> mediante un alias; la primera conexión descarga la extensión <code>quack</code> de DuckDB."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y edita",
-            "paragraphs": [
-                "Consulta archivos directamente, por ejemplo con <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> añade un archivo a la barra lateral; cambia con ⌘K. Los archivos adjuntos no persisten al reconectar.",
-                "<explain>EXPLAIN</explain> se representa como diagrama del plan. Las filas de una tabla se editan con <editing>Preview SQL</editing> mostrando cada sentencia antes, mientras que las vistas sobre un archivo de datos siguen siendo de solo lectura."
-            ]
-        },
-        {
-            "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Edita tablas en la <structure>pestaña Structure</structure> con vista previa de DDL. La barra lateral no crea ni elimina bases. Para crear un archivo, conecta con una ruta nueva; añade otro con <code>ATTACH</code>."
+            "text": [
+                "Consulta archivos directamente, por ejemplo con <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> añade otro archivo DuckDB a la barra lateral y <code>⌘K</code> cambia entre ellos, hasta la siguiente reconexión. <explain>EXPLAIN</explain> se dibuja como diagrama del plan.",
+                "Las filas de una tabla se pueden editar, mientras que las vistas sobre un archivo de datos siguen siendo de solo lectura: crea una tabla en una base DuckDB para editar sus datos. No hay acción para crear o eliminar bases; introduce una ruta nueva al conectar para crear un archivo."
             ]
         },
         {
             "id": "operate",
             "title": "Comparte el archivo y haz copias de seguridad",
-            "paragraphs": [
-                "Mientras TablePro tiene el archivo bloqueado, la CLI <code>duckdb</code>, un notebook o una ejecución de dbt no pueden abrirlo. Configura <ui>Release the File Lock After</ui> para liberarlo tras unos minutos de inactividad y recuperarlo en la siguiente consulta, o <ui>Open the File Read-Only</ui> para compartirlo entre varios lectores. <ui>Database > Release File Lock</ui> lo libera de inmediato y conserva tus pestañas. Se rechaza la liberación, indicando el motivo, si la sesión mantiene una transacción abierta, una tabla temporal, una base adjunta o un ajuste modificado.",
-                "<backup>Backup Dump</backup> no requiere instalar nada, porque {dumpTool} lo escribe mediante la conexión abierta. Elige un archivo <code>.duckdb</code> para restaurarlo después en TablePro, o una carpeta con <code>schema.sql</code>, <code>load.sql</code> y un archivo Parquet por tabla, que pandas, Spark y BigQuery leen directamente. Restore Dump se detiene en el primer objeto cuyo nombre ya esté ocupado."
+            "text": [
+                "Mientras TablePro tiene un archivo, la CLI <code>duckdb</code>, un notebook o una ejecución de dbt no pueden abrirlo. <ui>Release the File Lock After</ui> lo libera tras unos minutos de inactividad y lo recupera en la siguiente consulta, <ui>Open the File Read-Only</ui> permite que varios lectores lo compartan, y <ui>Database > Release File Lock</ui> lo libera de inmediato. Se rechaza la liberación, indicando el motivo, mientras la sesión mantiene una transacción, una tabla temporal, una base adjunta o un ajuste modificado.",
+                "<backup>Backup Dump</backup> no requiere instalar nada, porque {dumpTool} lo escribe mediante la conexión abierta: un archivo <code>.duckdb</code> para restaurarlo después, o una carpeta con <code>schema.sql</code>, <code>load.sql</code> y un archivo Parquet por tabla, que pandas, Spark y BigQuery leen directamente."
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "<importData>Importar</importData> acepta archivos {importFormats}, y la exportación escribe tablas y resultados como {exportFormats}. El <export>plugin de exportación Parquet</export>, instalado desde Settings > Plugins, añade salida Parquet, un archivo por tabla. Más sobre <files>trabajar con archivos como bases de datos</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone y iPad",
-            "paragraphs": [
-                "En iPhone y iPad, DuckDB forma parte de la app. Un archivo elegido en Archivos se abre donde está, sin copiarlo; también puedes elegir En memoria para una base temporal. Exploras tablas como tarjetas y ejecutas SQL en la pestaña Query. Las conexiones Remoto (Quack) solo están en Mac."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importa</importData> archivos {importFormats} y exporta tablas y resultados como {exportFormats}. El <export>plugin de exportación Parquet</export>, desde Settings > Plugins, añade salida Parquet, un archivo por tabla."
+    ],
+    "iphone": [
+        "Allí DuckDB forma parte de la app. Un archivo que eliges en la app Archivos se abre donde está y no como copia, In-Memory crea una base temporal, y exploras tablas como tarjetas y ejecutas SQL en la pestaña Query."
+    ],
     "faq": [
         {
             "id": "version",
@@ -85,25 +63,8 @@
         {
             "id": "csv-or-data-files",
             "question": "¿Debo abrir un CSV en DuckDB o en la ventana Data Files?",
-            "answer": "Ábrelo en la <dataFiles>ventana Data Files</dataFiles> para revisarlo, limpiarlo y guardarlo de nuevo. Ábrelo como DuckDB para unirlo con otros archivos o tablas mediante SQL; allí el archivo sigue siendo de solo lectura."
+            "answer": "Usa la <dataFiles>ventana Data Files</dataFiles> para revisar un archivo, limpiarlo y volver a guardarlo. Ábrelo como DuckDB para unirlo con otros archivos o tablas en SQL; allí el archivo sigue siendo de solo lectura."
         }
     ],
-    "related": [
-        {
-            "label": "Importación, exportación y archivos de datos",
-            "href": "/features/import-export#files"
-        },
-        {
-            "label": "SQLite, para archivos de bases de aplicaciones",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "ClickHouse, para servidores analíticos",
-            "href": "/clickhouse-client"
-        },
-        {
-            "label": "TablePro para iPhone y iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

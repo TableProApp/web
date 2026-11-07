@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "zh-Hans": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "zh-Hans": "shop 上的 PostgreSQL 连接：一个联接 orders 和 users 的查询，其 EXPLAIN ANALYZE 计划绘制为图表。"
         }
     },
     "databases-mysql": {
         "description": {
-            "zh-Hans": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "zh-Hans": "shop 上的 MySQL 连接：一个联接 orders 和 users 的查询，结果显示在网格中。"
         }
     },
     "databases-sqlserver": {
         "description": {
-            "zh-Hans": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "zh-Hans": "SQL Server 连接：一个按 GO 拆分为批次的 T-SQL 脚本，其 PRINT 输出显示在 Output 标签页中。"
         }
     },
     "databases-sqlite": {
         "description": {
-            "zh-Hans": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "zh-Hans": "内置的 Chinook SQLite 示例，Track 表按 genre 筛选。"
         }
     },
     "databases-mongodb": {
         "description": {
-            "zh-Hans": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "zh-Hans": "MongoDB 连接：网格中显示 events 集合，Insert Document 面板以 Extended JSON 打开。"
         }
     },
     "databases-redis": {
         "description": {
-            "zh-Hans": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "zh-Hans": "Redis 连接：按 \":\" 拆分的键树，以及 Key、Type、TTL、Length 和 Value 列。"
         }
     },
     "databases-redshift": {
         "description": {
-            "zh-Hans": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "zh-Hans": "Amazon Redshift 连接：一张表的 DDL，包含其 DISTKEY 和 SORTKEY。"
         }
     },
     "databases-oracle": {
         "description": {
-            "zh-Hans": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "zh-Hans": "Oracle 连接：编辑器中的一个 PL/SQL 块，结果下方显示其 DBMS_OUTPUT 行。"
         }
     },
     "databases-clickhouse": {
         "description": {
-            "zh-Hans": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "zh-Hans": "ClickHouse 连接：一张 MergeTree 表的 Parts 标签页，显示分区、数据片段和行数。"
         }
     },
     "databases-duckdb": {
         "description": {
-            "zh-Hans": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "zh-Hans": "一个 DuckDB 数据库，其中一个 Parquet 文件以视图打开，并用 SQL 查询。"
         }
     },
     "databases-cassandra": {
         "description": {
-            "zh-Hans": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "zh-Hans": "一个 Cassandra 键空间：网格中的一张表，一个已更改的标量单元格待保存，一个 set 列显示为集合。"
         }
     },
     "databases-dynamodb": {
         "description": {
-            "zh-Hans": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "zh-Hans": "一张 DynamoDB 表：一次筛选读取以索引上的 Query 运行，状态栏显示其消耗的读取容量。"
         }
     },
     "databases-bigquery": {
         "description": {
-            "zh-Hans": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "zh-Hans": "BigQuery 连接：从 Explain 菜单运行的 Dry Run，显示查询将处理的字节数及其估算费用。"
         }
     },
     "databases-snowflake": {
         "description": {
-            "zh-Hans": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "zh-Hans": "一个 Snowflake 连接，已在 Session Context 中设置其仓库和角色，下方是查询结果。"
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "zh-Hans": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "zh-Hans": "Cloudflare D1 连接：数据库切换器列出账户的 D1 数据库，下方是查询标签页。"
         }
     },
     "databases-turso": {
         "description": {
-            "zh-Hans": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "zh-Hans": "一个远程 Turso 数据库：侧边栏显示其表，网格中显示查询结果。"
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "zh-Hans": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "zh-Hans": "Elasticsearch Query DSL 控制台：一个 GET _search 请求，其命中结果显示为行。"
         }
     },
     "databases-etcd": {
         "description": {
-            "zh-Hans": "An etcd connection: keys under a prefix root, with their values and leases."
+            "zh-Hans": "etcd 连接：前缀根下的键，以及它们的值和租约。"
         }
     },
     "databases-kafka": {
         "description": {
-            "zh-Hans": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "zh-Hans": "Kafka 连接：在 orders 主题上运行 KafkaQL CONSUME，消息按分区、偏移量、键和时间戳显示。"
         }
     },
     "databases-surrealdb": {
         "description": {
-            "zh-Hans": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "zh-Hans": "SurrealDB 连接：一个 SurrealQL 查询，及其在网格中返回的记录。"
         }
     },
     "databases-teradata": {
         "description": {
-            "zh-Hans": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "zh-Hans": "Teradata 连接：侧边栏列出存储过程，宏位于 Functions 下，并显示一个查询结果。"
         }
     },
     "databases-trino": {
         "description": {
-            "zh-Hans": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "zh-Hans": "Trino 连接：一个联接两个 catalog 中表的查询，下方是其结果。"
         }
     },
     "databases-beancount": {
         "description": {
-            "zh-Hans": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "zh-Hans": "一个 Beancount 账本：侧边栏显示其映射出的表，以及一个 BQL 查询的结果。"
         }
     },
     "ios-connection-list": {

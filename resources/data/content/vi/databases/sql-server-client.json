@@ -11,95 +11,59 @@
     "breadcrumb": "SQL Server",
     "header": {
         "title": "SQL Server client",
-        "lead": "Chạy script T-SQL với batch GO và output PRINT. Kết nối bằng login SQL Server, Kerberos hoặc Microsoft Entra ID."
+        "lead": "Chạy script T-SQL với batch GO và output PRINT, và đăng nhập bằng login SQL Server, Kerberos hoặc Microsoft Entra ID.",
+        "asset": "databases-sqlserver"
     },
-    "asset": "mac-db-sqlserver-script",
     "links": {
-        "network": "/features/connections#network",
         "cloudAuth": "/features/connections#cloud-auth",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "dashboard": "/features/schema#server-dashboard",
+        "dashboard": "/features/schema#administer",
         "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup"
+        "backup": "/features/import-export#backup",
+        "ssms": "/compare/ssms"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối",
-            "paragraphs": [
-                "Nhập host và TCP port, rồi chọn <ui>Authentication</ui>: login SQL Server, Kerberos hoặc Microsoft Entra ID. Login theo cơ sở dữ liệu, gồm Azure SQL contained user, còn cần trường Database.",
-                "Kerberos dùng ticket đã có trong credential cache của bạn, hoặc xin ticket mới từ principal và mật khẩu bạn nhập. Hãy kết nối bằng hostname thay vì địa chỉ IP, vì ticket được cấp cho SPN đã đăng ký của server. TablePro không bao giờ chạy <code>kinit</code> hay sửa <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> dùng device-code sign-in với MFA và Conditional Access. Đăng ký ứng dụng Azure và nhập client ID. Token refresh nền và nằm trong login keychain chỉ trên thiết bị.",
-                "Connection mới để SSL ở chế độ Ưu tiên (Preferred), mà trên SQL Server chỉ mã hóa bước đăng nhập. Hãy chọn Required hoặc chặt hơn để mã hóa toàn bộ phiên; Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo bộ chứng chỉ gốc của macOS. TablePro cũng chạy được Cloud SQL Auth Proxy cho Google Cloud SQL, và <network>SSH tunnel</network> đưa bạn tới server trong mạng nội bộ."
+            "text": [
+                "Nhập host và TCP port, rồi chọn <ui>Xác thực</ui> (Authentication): login SQL Server, Kerberos hoặc Microsoft Entra ID. Login theo cơ sở dữ liệu, kể cả contained user của Azure SQL, còn cần ô Database.",
+                "Kerberos dùng ticket trong credential cache của bạn, hoặc xin ticket mới từ principal và mật khẩu bạn nhập; hãy kết nối bằng hostname, vì ticket được cấp cho SPN đã đăng ký của server. <cloudAuth>Microsoft Entra ID</cloudAuth> dùng device-code sign-in với client ID của ứng dụng Azure của bạn.",
+                "Connection mới để SSL ở chế độ Ưu tiên (Preferred), mà trên SQL Server chỉ mã hóa bước đăng nhập. Hãy chọn Required hoặc chặt hơn để mã hóa toàn bộ phiên."
             ]
         },
         {
             "id": "work",
             "title": "Script, batch và chỉnh sửa",
-            "paragraphs": [
-                "Script tách theo dòng <code>GO</code>; <code>GO 5</code> lặp batch trước năm lần. Mỗi result set mở tab riêng. Đọc output <code>PRINT</code> và thông báo trong Output.",
-                "Dùng <code>BEGIN TRAN</code> và <code>COMMIT</code> khi batch cần transaction. Transaction đang mở có thông báo. Thực thi dừng ở batch lỗi đầu, có dòng editor trong lỗi.",
-                "Mọi session đều mở với các tùy chọn SET mà filtered index, indexed view và index trên cột computed cần, như bật <code>ANSI_NULLS</code> và <code>QUOTED_IDENTIFIER</code>. Vì vậy <code>col = NULL</code> không khớp dòng nào: hãy so sánh bằng <code>IS NULL</code>.",
-                "Table nằm dưới schema của nó trong sidebar, và <code>⌘K</code> đổi cơ sở dữ liệu ngay tại chỗ, không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>, dòng mới để server tự gán giá trị cho cột IDENTITY, và giá trị <code>nvarchar(max)</code> được nhận đầy đủ."
+            "text": [
+                "Script được tách theo dòng <code>GO</code>, và <code>GO 5</code> lặp batch đứng trước nó năm lần. Mỗi result set mở trong tab riêng, output <code>PRINT</code> và thông báo hiện trong Output, và việc thực thi dừng ở batch lỗi đầu tiên, với thông báo lỗi chỉ ra dòng tương ứng trong editor. Hãy dùng <code>BEGIN TRAN</code> và <code>COMMIT</code> khi các batch cần chạy trong một transaction.",
+                "Session mở với <code>ANSI_NULLS</code> và <code>QUOTED_IDENTIFIER</code> bật, như filtered index và indexed view yêu cầu, nên hãy so sánh bằng <code>IS NULL</code> thay vì <code>= NULL</code>. <code>⌘K</code> đổi cơ sở dữ liệu mà không cần kết nối lại, và dòng mới để server tự gán giá trị cho cột IDENTITY."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
-            "paragraphs": [
-                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại và ràng buộc ở trạng thái chờ lưu, và hiển thị câu T-SQL trước khi chạy. Bạn xóa được schema ngay trong sidebar; SQL Server từ chối xóa schema vẫn còn chứa đối tượng. Hãy tạo schema bằng CREATE SCHEMA trong editor.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so schema hoặc dữ liệu SQL Server. Script tạo ra phân tách câu lệnh bằng <code>GO</code> cho sqlcmd hoặc SQL Server Management Studio."
+            "text": [
+                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại và ràng buộc dưới dạng T-SQL chờ lưu, và schema xóa được từ sidebar khi không còn chứa đối tượng nào. <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) so sánh schema hoặc dữ liệu SQL Server và phân tách câu lệnh bằng <code>GO</code> cho sqlcmd hoặc SQL Server Management Studio."
             ]
         },
         {
             "id": "operate",
             "title": "Theo dõi và sao lưu",
-            "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> hiển thị số user session, thời gian hoạt động và dung lượng cơ sở dữ liệu, liệt kê mọi session khác cùng các query chạy lâu hơn một giây, và kết thúc một session bằng <ui>Kết thúc phiên (Terminate Session)</ui>. Trên SQL Server không có thao tác Cancel Query.",
-                "<backup>Backup Dump</backup> ghi file <code>.bacpac</code> bằng {dumpTool}, công cụ bạn tải về từ Microsoft, và Restore Dump nạp file đó vào một cơ sở dữ liệu trống. SqlPackage chỉ nhận mật khẩu trên dòng lệnh, nơi các tiến trình khác trên máy Mac đọc được, nên TablePro hỏi bạn trước khi bắt đầu. Đăng nhập bằng Windows hoặc Entra thì không cần truyền mật khẩu."
+            "text": [
+                "<dashboard>Server Dashboard</dashboard> hiển thị session, thời gian hoạt động, dung lượng cơ sở dữ liệu và các query chạy lâu hơn một giây, và kết thúc một session bằng <ui>Kết thúc phiên</ui> (Terminate Session). Trên SQL Server không có Cancel Query.",
+                "<backup>Backup Dump</backup> ghi file <code>.bacpac</code> bằng {dumpTool}, công cụ bạn tải về từ Microsoft, và Restore Dump nạp file đó vào một cơ sở dữ liệu trống. SqlPackage chỉ nhận mật khẩu trên dòng lệnh, nên TablePro hỏi bạn trước khi bắt đầu; đăng nhập bằng Windows hoặc Entra thì không truyền mật khẩu nào."
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "<importData>Import</importData> file {importFormats}. File SQL theo batch <code>GO</code>. Export table hoặc kết quả ra {exportFormats}; SQL export cũng dùng dấu phân tách <code>GO</code>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone và iPad",
-            "paragraphs": [
-                "Trên iPhone và iPad, bạn đăng nhập bằng SQL Server login, xem table dưới dạng thẻ, sửa các dòng có khóa chính và chạy T-SQL trong tab Truy vấn (Query). Windows Authentication không dùng được trên đó. Connection dùng Microsoft Entra ID đến từ máy Mac qua iCloud Sync hoặc một file connection đã export, và bạn đăng nhập Microsoft khi mở nó."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "ssms",
-                "text": "SQL Server Management Studio quản trị ngoài phạm vi TablePro, gồm job SQL Server Agent, nhóm Always On, thống kê query trực tiếp và tối ưu hiệu năng.",
-                "notes": [
-                    "ssms-github-copilot-component"
-                ]
-            },
-            {
-                "product": "azure-data-studio",
-                "text": "Azure Data Studio từng là query editor của Microsoft cho SQL Server và Azure SQL, với các extension cho những việc như SQL Server Agent và Profiler.",
-                "notes": [
-                    "ads-retired-successor"
-                ]
-            }
-        ],
-        "notes": {
-            "ssms-github-copilot-component": "GitHub Copilot trong SQL Server Management Studio là một thành phần riêng, bạn cài thêm qua Visual Studio Installer.",
-            "ads-retired-successor": "Microsoft đã cho ngừng hỗ trợ, không còn bản cập nhật hay bản vá bảo mật, và hướng người dùng sang Visual Studio Code với MSSQL extension, nơi mở được các query, script và database project cũ mà không cần chuyển đổi."
-        }
-    },
+    "moveData": [
+        "<importData>Import</importData> file {importFormats}, file SQL kèm các batch <code>GO</code> của nó. Export table hoặc kết quả ra {exportFormats}; SQL export cũng dùng dấu phân tách <code>GO</code>."
+    ],
+    "iphone": [
+        "Đăng nhập bằng SQL Server login, xem table dưới dạng thẻ, sửa các dòng có khóa chính và chạy T-SQL trong tab Truy vấn (Query). Connection dùng Microsoft Entra ID đến từ máy Mac của bạn, và bạn đăng nhập Microsoft khi mở nó."
+    ],
     "faq": [
         {
             "id": "azure-sql",
@@ -109,30 +73,15 @@
         {
             "id": "declare",
             "question": "Vì sao script báo “Must declare the scalar variable”?",
-            "answer": "Câu lệnh đọc biến đã chạy trong một batch khác với câu <code>DECLARE</code> của nó: có một dòng <code>GO</code> nằm giữa hai câu, hoặc <code>⌘⏎</code> chỉ chạy câu lệnh tại con trỏ. Hãy chọn cả hai câu lệnh, hoặc chạy toàn bộ script."
+            "answer": "Câu lệnh đọc biến đã chạy trong một batch khác với câu <code>DECLARE</code> của nó: có một dòng <code>GO</code> nằm giữa hai câu, hoặc <code>⌘⏎</code> chỉ chạy câu lệnh tại con trỏ. Hãy chạy cả hai cùng lúc."
         },
         {
             "id": "freetds",
             "question": "Tôi có cần cài FreeTDS hay ODBC driver không?",
-            "answer": "Không. Driver được xây dựng trên FreeTDS và mang sẵn nó, nên bạn không cần cài thêm gì, và file <code>freetds.conf</code> của bạn không được đọc. Chỉ Backup Dump và Restore Dump cần một công cụ do bạn tự cài: {dumpTool}."
+            "answer": "Không. Driver mang sẵn FreeTDS của riêng nó, nên bạn không cần cài thêm gì, và file <code>freetds.conf</code> của bạn không được đọc. Chỉ Backup Dump và Restore Dump cần một công cụ do bạn tự cài: {dumpTool}."
         }
     ],
-    "related": [
-        {
-            "label": "Đăng nhập cloud cho AWS, Google và Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Schema, so sánh và đồng bộ",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Import, export và sao lưu",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "TablePro cho iPhone và iPad",
-            "href": "/ios#security"
-        }
-    ]
+    "otherTools": {
+        "text": "SQL Server Management Studio quản trị những phần ngoài phạm vi TablePro, như job SQL Server Agent, availability group Always On và tối ưu hiệu năng, còn Azure Data Studio đã bị Microsoft cho ngừng hỗ trợ; xem <ssms>TablePro vs SQL Server Management Studio</ssms>."
+    }
 }

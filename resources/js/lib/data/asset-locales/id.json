@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "id": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "id": "Koneksi PostgreSQL ke shop: kueri yang menggabungkan orders dan users, dengan rencana EXPLAIN ANALYZE-nya digambar sebagai diagram."
         }
     },
     "databases-mysql": {
         "description": {
-            "id": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "id": "Koneksi MySQL ke shop: kueri yang menggabungkan orders dan users, dengan hasilnya di grid."
         }
     },
     "databases-sqlserver": {
         "description": {
-            "id": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "id": "Koneksi SQL Server: skrip T-SQL yang dipecah menjadi batch GO, dengan output PRINT-nya di tab Output."
         }
     },
     "databases-sqlite": {
         "description": {
-            "id": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "id": "Contoh SQLite Chinook bawaan, dengan tabel Track yang difilter berdasarkan genre."
         }
     },
     "databases-mongodb": {
         "description": {
-            "id": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "id": "Koneksi MongoDB: koleksi events di grid, dengan lembar Insert Document terbuka dalam Extended JSON."
         }
     },
     "databases-redis": {
         "description": {
-            "id": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "id": "Koneksi Redis: pohon kunci yang dipisahkan dengan \":\", dengan kolom Key, Type, TTL, Length, dan Value."
         }
     },
     "databases-redshift": {
         "description": {
-            "id": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "id": "Koneksi Amazon Redshift: DDL tabel dengan DISTKEY dan SORTKEY-nya."
         }
     },
     "databases-oracle": {
         "description": {
-            "id": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "id": "Koneksi Oracle: blok PL/SQL di editor, dengan baris DBMS_OUTPUT-nya di bawah hasil."
         }
     },
     "databases-clickhouse": {
         "description": {
-            "id": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "id": "Koneksi ClickHouse: tab Parts dari tabel MergeTree, dengan partisi, part, dan jumlah baris."
         }
     },
     "databases-duckdb": {
         "description": {
-            "id": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "id": "Database DuckDB dengan file Parquet yang dibuka sebagai view dan dikueri dengan SQL."
         }
     },
     "databases-cassandra": {
         "description": {
-            "id": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "id": "Keyspace Cassandra: tabel di grid, dengan satu sel skalar yang diubah masih tertunda dan kolom set ditampilkan sebagai koleksi."
         }
     },
     "databases-dynamodb": {
         "description": {
-            "id": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "id": "Tabel DynamoDB: pembacaan terfilter yang dijalankan sebagai Query pada indeks, dengan kapasitas baca yang digunakan di bilah status."
         }
     },
     "databases-bigquery": {
         "description": {
-            "id": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "id": "Koneksi BigQuery: Dry Run dari menu Explain, dengan byte yang akan diproses kueri dan perkiraan biayanya."
         }
     },
     "databases-snowflake": {
         "description": {
-            "id": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "id": "Koneksi Snowflake dengan warehouse dan peran yang diatur di Session Context, dan hasil kueri di bawahnya."
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "id": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "id": "Koneksi Cloudflare D1: pengalih database yang mencantumkan database D1 akun, di atas tab kueri."
         }
     },
     "databases-turso": {
         "description": {
-            "id": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "id": "Database Turso jarak jauh: tabelnya di sidebar dan hasil kueri di grid."
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "id": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "id": "Konsol Query DSL Elasticsearch: permintaan GET _search dan hasilnya sebagai baris."
         }
     },
     "databases-etcd": {
         "description": {
-            "id": "An etcd connection: keys under a prefix root, with their values and leases."
+            "id": "Koneksi etcd: kunci di bawah prefix root, dengan nilai dan lease-nya."
         }
     },
     "databases-kafka": {
         "description": {
-            "id": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "id": "Koneksi Kafka: KafkaQL CONSUME pada topic orders, dengan pesan berdasarkan partisi, offset, kunci, dan timestamp."
         }
     },
     "databases-surrealdb": {
         "description": {
-            "id": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "id": "Koneksi SurrealDB: kueri SurrealQL dan record yang dikembalikannya di grid."
         }
     },
     "databases-teradata": {
         "description": {
-            "id": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "id": "Koneksi Teradata: sidebar yang mencantumkan prosedur tersimpan, dengan makro di bawah Functions, dan hasil kueri."
         }
     },
     "databases-trino": {
         "description": {
-            "id": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "id": "Koneksi Trino: kueri yang menggabungkan tabel dari dua katalog, dengan hasilnya di bawah."
         }
     },
     "databases-beancount": {
         "description": {
-            "id": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "id": "Buku besar Beancount: tabel hasil proyeksinya di sidebar dan hasil kueri BQL."
         }
     },
     "ios-connection-list": {

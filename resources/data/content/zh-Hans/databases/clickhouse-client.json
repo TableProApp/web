@@ -11,92 +11,62 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "ClickHouse 客户端",
-        "lead": "运行分析查询，检查执行计划和流水线，并管理表的数据片段和分区。"
+        "lead": "通过 HTTP 运行分析查询，查看计划和流水线，并管理 MergeTree 数据片段和分区。",
+        "asset": "databases-clickhouse"
     },
-    "asset": "mac-db-clickhouse-parts",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
-        "map": "/features/querying#map",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import"
+        "explain": "/features/querying#explain",
+        "map": "/features/querying#results",
+        "dashboard": "/features/schema#administer",
+        "importData": "/features/import-export#import",
+        "network": "/features/connections#network"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入主机、HTTP 端口、用户和可选数据库。无需重新连接即可切换数据库；已有标签页保留原数据库。<ui>视图 > 侧边栏显示为树状</ui> (View > Sidebar as Tree) 在侧边栏就地展开数据库。",
-                "选择任意 SSL 模式切换为 HTTPS。443 或 ClickHouse Cloud 的 8443 端口会启用 Verify Identity，使用 CA 文件或系统信任库验证证书。Verify CA 需要 CA 文件，客户端证书和密钥可访问要求双向 TLS 的服务器。",
-                "未使用 TLS 时，请通过 <network>SSH 隧道</network>访问远程服务器，避免在网络上传输明文 HTTP。"
+            "text": [
+                "输入主机、HTTP 端口、用户和可选数据库，无需重新连接即可切换数据库；已打开的标签页保留其最初的数据库。",
+                "选择任意 SSL 模式都会将连接切换为 HTTPS。端口为 443 或 ClickHouse Cloud 使用的 8443 时，会启用 Verify Identity，使用您的 CA 文件或系统信任库验证证书。Verify CA 需要 CA 文件，客户端证书和密钥可用于要求双向 TLS 的服务器。",
+                "未使用 TLS 时，请通过 <network>SSH 隧道</network>访问远程服务器，而不是在网络上传输明文 HTTP。"
             ]
         },
         {
             "id": "work",
             "title": "查询和编辑",
-            "paragraphs": [
-                "查询时跟踪已读取行数。Stop 发送 <code>KILL QUERY</code>，连接的查询超时设置也会传给服务器。",
-                "<explain>Explain 菜单</explain>提供 Plan、Pipeline、AST、Syntax、Estimate。缩进输出绘制为图或树，Estimate 显示查询预计读取的行、marks 和数据部件。",
-                "插入行或提交 UPDATE、DELETE 变更前，先检查 <editing>Preview SQL</editing>。保存成功表示已接受，并非已应用；进度可在 <code>system.mutations</code> 查看。物化视图只读。",
-                "含 ClickHouse point 或 ring 元组的结果可在 <map>地图视图</map>打开。自带 <code>FORMAT</code> 子句的查询将服务器原始输出显示在单列中，要获得网格请省略该子句。"
+            "text": [
+                "<explain>Explain 菜单</explain>提供 Plan、Pipeline、AST、Syntax 和 Estimate。缩进输出会绘制为图表或树，Estimate 显示查询将读取的行、marks 和数据片段。运行中的查询会显示已读取的行数，Stop 发送 <code>KILL QUERY</code>，连接的查询超时也会传给服务器。",
+                "插入以及 UPDATE 和 DELETE mutation 可从网格运行。保存成功表示已接受，而非已应用：请在 <code>system.mutations</code> 中查看进度。物化视图只读。point 和 ring 元组可在 <map>地图视图</map>中打开；自带 <code>FORMAT</code> 子句的查询会将服务器原始输出显示在单列中，要获得网格请省略该子句。"
             ]
         },
         {
             "id": "schema",
-            "title": "表、数据部件和分区",
-            "paragraphs": [
-                "表提供 Structure、Indexes、DDL、Parts 标签页。Indexes 显示排序键和数据跳过索引，DDL 显示包含引擎和设置的完整 <code>CREATE TABLE</code>。",
-                "从 <code>system.parts</code> 查看数据片段的分区、行数、大小和活动状态。在 Parts 标签页执行 Optimize、Drop Partition 或 Detach Partition。",
-                "<structure>Structure 标签页</structure>可添加、修改、删除列及删除数据跳过索引。排序键和主键在表创建时固定，新增数据跳过索引用 <code>ALTER TABLE … ADD INDEX</code>，其他修改需重建表。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "监控",
-            "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 显示活动查询、合并、数据部件 mutation 和磁盘使用，列出其他会话并各提供<ui>终止会话</ui>（Terminate Session）。慢查询从 <code>system.query_log</code> 读取最近完成且耗时超过一秒的查询。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "通过<importData>导入</importData>加载 {importFormats}，表或查询结果导出为 {exportFormats}。某列只要有一个非有效 UTF-8 值，就在网格中显示为十六进制；选择 <code>toValidUTF8(column)</code> 可按文本读取。"
+            "also": [
+                "operate"
+            ],
+            "title": "表、数据片段和监控",
+            "text": [
+                "表提供 Structure、Indexes、DDL 和 Parts 标签页。Indexes 显示排序键和数据跳过索引，DDL 显示包含引擎和设置的完整 <code>CREATE TABLE</code>，Parts 读取 <code>system.parts</code>，并提供 Optimize、Drop Partition 和 Detach Partition。Structure 标签页可更改列并删除数据跳过索引。排序键和主键在表创建时固定，因此请用 <code>ALTER TABLE … ADD INDEX</code> 添加数据跳过索引，其他更改需重建表。",
+                "<dashboard>Server Dashboard</dashboard> 显示活动查询、合并、数据片段 mutation 和磁盘使用，可结束其他会话，并从 <code>system.query_log</code> 列出耗时超过一秒的已完成查询。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>导入</importData> {importFormats} 文件，并将表或结果导出为 {exportFormats}。某列只要有一个值不是有效的 UTF-8，就会显示为十六进制；选择 <code>toValidUTF8(column)</code> 即可按文本读取。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "settings",
             "question": "如何仅为一个查询修改设置？",
-            "answer": "在查询自身加入 <code>SETTINGS</code> 子句，例如 <code>SELECT … SETTINGS max_threads = 4</code>。每条语句是无会话的独立 HTTP 请求，单独的 <code>SET</code> 不保留到下一条。"
+            "answer": "在查询中加入 <code>SETTINGS</code> 子句，例如 <code>SELECT … SETTINGS max_threads = 4</code>。每条语句都是独立的 HTTP 请求，因此单独的 <code>SET</code> 到下一条语句时已失效。"
         },
         {
             "id": "native-port",
             "question": "为什么端口 9000 无法连接？",
-            "answer": "9000 是 ClickHouse 原生 TCP 端口，TablePro 不使用它。请连接 HTTP 端口，ClickHouse Cloud 的 HTTPS 为 8443，并确认服务器 HTTP 接口已开启：该端口上的 <code>/ping</code> 请求应返回 <code>Ok.</code>。"
+            "answer": "9000 是 ClickHouse 的原生 TCP 端口，TablePro 不使用它。请连接 HTTP 端口，ClickHouse Cloud 上的 HTTPS 则使用 8443；HTTP 接口开启时，向该端口发送 <code>/ping</code> 请求会返回 <code>Ok.</code>。"
         }
     ],
-    "related": [
-        {
-            "label": "EXPLAIN 计划和查询性能",
-            "href": "/features/querying#performance"
-        },
-        {
-            "label": "结构、对比和同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "导入、导出和数据文件",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "用于分析文件的 DuckDB",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

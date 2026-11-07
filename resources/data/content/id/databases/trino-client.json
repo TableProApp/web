@@ -11,82 +11,58 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Klien Trino",
-        "lead": "Kueri di seluruh katalog, periksa rencana, dan batalkan kueri yang sedang berjalan. Dukungan penulisan bergantung pada konektor masing-masing katalog."
+        "lead": "Jalankan kueri lintas katalog, periksa rencana, dan batalkan kueri yang sedang berjalan; penulisan bergantung pada konektor setiap katalog.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan dan masuk",
-            "paragraphs": [
-                "Masukkan host koordinator, port dan <ui>Username</ui>. <ui>Catalog</ui> dan <ui>Schema</ui> opsional mengatur lokasi awal. Tetapkan IANA <ui>Time Zone</ui> untuk sesi tersebut.",
-                "Masuk dengan kata sandi, yang dikirim sebagai HTTP Basic untuk autentikasi LDAP atau file kata sandi, atau token akses JWT yang dikirim sebagai kredensial bearer. Keduanya hanya dikirim melalui TLS: dengan SSL Disabled, koneksi yang memuat salah satunya ditolak sebelum data dikirim. Sertifikat dan kunci klien pada panel SSL menambahkan TLS timbal balik.",
-                "SSL awalnya Disabled, yaitu HTTP tanpa enkripsi; mode lainnya mewajibkan TLS tanpa peralihan ke teks biasa, dan port 443 mengaktifkan Verify Identity. Pengalihan dari proxy di depan koordinator tidak pernah diikuti; kesalahan menyebutkan tujuannya. Akses koordinator di balik bastion melalui <network>tunnel SSH</network>, lalu impor URL <code>trino://</code> menggunakan <ui>Import from URL…</ui>."
+            "text": [
+                "Masukkan host coordinator, port, dan <ui>Username</ui>. <ui>Catalog</ui> dan <ui>Schema</ui> menetapkan lokasi awal, dan <ui>Time Zone</ui> IANA menetapkan zona waktu sesi.",
+                "Masuk dengan kata sandi, yang dikirim sebagai HTTP Basic untuk autentikasi LDAP atau file kata sandi, atau dengan token akses JWT yang dikirim sebagai kredensial bearer. Keduanya hanya dikirim melalui TLS: dengan SSL Disabled, koneksi yang menyimpan salah satunya ditolak sebelum apa pun dikirim. Sertifikat dan kunci klien di panel SSL menambahkan TLS timbal balik.",
+                "SSL dimulai dengan Disabled, yaitu HTTP tanpa enkripsi; mode lainnya mewajibkan TLS tanpa peralihan ke teks biasa, dan port 443 mengaktifkan Verify Identity. Pengalihan dari proxy di depan coordinator tidak pernah diikuti, dan pesan kesalahan menyebutkan tujuannya. <ui>Import from URL…</ui> mengimpor URL <code>trino://</code>."
             ]
         },
         {
             "id": "work",
             "title": "Kueri lintas katalog",
-            "paragraphs": [
-                "Kueri nama <code>catalog.schema.table</code> yang sepenuhnya memenuhi syarat untuk digabungkan di seluruh katalog. Jelajahi katalog, skema, tabel, dan tampilan material; perkiraan jumlah baris berasal dari <code>SHOW STATS</code>.",
-                "<code>bigint</code> dan <code>decimal</code> dibaca sebagai teks presisi, bukan floating point. <code>varbinary</code> ditampilkan sebagai heksadesimal, <code>array</code>, <code>map</code>, dan <code>row</code> sebagai JSON, dan timestamp mempertahankan nilai yang dikembalikan server.",
-                "<explain>Explain</explain> menyediakan Logical, Distributed, IO, Validate, dan Analyze. Validate memeriksa kueri tanpa menjalankannya, Analyze menjalankan kueri dan melaporkan waktu aktual, dan setiap rencana dikembalikan sebagai teks mentah.",
-                "<code>SET SESSION</code> berlaku selama sisa koneksi. <ui>Query > Cancel Query</ui> meminta koordinator menghentikan kueri aktif, dan itulah cara menghentikannya: batas waktu kueri koneksi tidak diteruskan ke Trino.",
-                "<editing>Pengeditan sel</editing> menggunakan pernyataan INSERT, UPDATE, dan DELETE yang diketik. Trino melaporkan tidak ada kunci utama, jadi hasil edit cocok dengan setiap kolom asli. Baris yang identik berubah secara bersamaan, tanpa ada transaksi yang dapat membatalkannya. Periksa duplikat sebelum mengedit."
+            "text": [
+                "Gabungkan data lintas katalog dengan nama <code>catalog.schema.table</code> lengkap, dan telusuri katalog, skema, tabel, dan materialized view, dengan perkiraan jumlah baris dari <code>SHOW STATS</code>. <code>bigint</code> dan <code>decimal</code> dibaca sebagai teks persis, bukan floating point; <code>varbinary</code> ditampilkan sebagai hex, <code>array</code>, <code>map</code>, dan <code>row</code> sebagai JSON, dan timestamp mempertahankan nilai yang dikembalikan server.",
+                "<explain>Explain</explain> menyediakan Logical, Distributed, IO, Validate, dan Analyze, masing-masing sebagai teks mentah: Validate memeriksa kueri tanpa menjalankannya, dan Analyze menjalankannya lalu melaporkan waktu sebenarnya. <code>SET SESSION</code> berlaku selama sisa koneksi, dan <ui>Query > Cancel Query</ui> adalah cara menghentikan kueri, karena batas waktu kueri koneksi tidak diteruskan ke Trino.",
+                "Trino tidak melaporkan primary key, sehingga <editing>pengeditan sel</editing> mencocokkan semua kolom asli, dan baris yang identik berubah bersama tanpa transaksi untuk membatalkannya. Periksa duplikat sebelum mengedit."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Tab Structure</structure> membuat tabel serta menambah, menghapus, mengganti nama, dan mengubah jenis kolom dalam autocommit. Apakah perubahan dapat dijalankan bergantung pada konektor katalog, dan perubahan jenis diterima oleh paling sedikit konektor."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Impor tidak tersedia. <export>Ekspor</export> tabel atau hasil sebagai {exportFormats}."
+            "title": "Struktur",
+            "text": [
+                "<structure>Tab Structure</structure> membuat tabel serta menambah, menghapus, mengganti nama, dan mengubah tipe kolom, dalam autocommit. Apakah perubahan dapat dijalankan bergantung pada konektor katalog, dan perubahan tipe adalah yang paling sedikit diterima konektor."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Tidak ada impor. <export>Ekspor</export> tabel atau hasil sebagai {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
-            "question": "Mengapa pernyataan valid mengembalikan NOT_SUPPORTED?",
-            "answer": "Konektor di balik katalog tersebut tidak menerapkan operasi itu, apa pun yang diizinkan tata bahasa Trino. Konektor hanya baca menolak semua penulisan. Periksa dokumentasi konektor untuk kemampuan yang didukung."
+            "question": "Mengapa pernyataan yang valid mengembalikan NOT_SUPPORTED?",
+            "answer": "Konektor di balik katalog itu tidak mengimplementasikan operasi tersebut, apa pun yang diizinkan tata bahasa Trino, dan konektor hanya baca menolak semua penulisan. Periksa dokumentasi konektor itu sendiri."
         },
         {
             "id": "encrypted-key",
             "question": "Apakah saya dapat menggunakan kunci klien terenkripsi?",
-            "answer": "Tidak. Koneksi Trino tidak memiliki bidang frasa sandi kunci. Tulis salinan terdekripsi menggunakan <code>openssl pkey -in encrypted.key -out client.key</code>, lalu pilih file tersebut."
+            "answer": "Tidak. Koneksi Trino tidak memiliki bidang passphrase kunci. Tulis salinan yang sudah didekripsi dengan <code>openssl pkey -in encrypted.key -out client.key</code> lalu pilih file tersebut."
         }
     ],
-    "related": [
-        {
-            "label": "Tulis, jalankan, dan pahami kueri",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Koneksi, tunnel, dan kredensial",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata, data warehouse",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake, data warehouse cloud",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

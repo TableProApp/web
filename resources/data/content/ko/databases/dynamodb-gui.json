@@ -11,96 +11,65 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Amazon DynamoDB GUI",
-        "lead": "항목을 탐색하고 키로 조회하며 소비된 읽기 용량을 확인하세요. 타입을 유지해 값을 편집하거나 PartiQL 요청을 실행할 수 있습니다."
+        "lead": "항목을 탐색하고, 소비된 읽기 용량을 보면서 키로 조회하고, 타입을 유지한 값을 편집하거나 PartiQL을 실행하세요.",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결",
-            "paragraphs": [
-                "<ui>인증 방식</ui> (Auth Method)와 <ui>AWS 리전</ui> (AWS Region)을 선택하세요. 액세스 키와 선택적인 세션 토큰, AWS CLI 프로필, <cloudAuth>AWS IAM Identity Center</cloudAuth>를 사용할 수 있습니다. Identity Center 세션이 만료되면 로그인을 요청합니다.",
-                "프로필은 <code>credential_process</code> 도우미·<code>role_arn</code> 체인을 해석하고 만료 임시 자격 증명을 다시 받아 요청을 한 번 재시도합니다. 모든 요청은 HTTPS·Signature Version 4 서명으로 보내 SSL 설정·SSH 터널은 없습니다. 중국·European Sovereign Cloud 등 다른 AWS 파티션 리전도 사용자 지정 없이 자체 엔드포인트로 연결합니다.",
-                "DynamoDB Local은 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>을 실행하고 <ui>DynamoDB Local (no credentials)</ui>를 고르세요. 8000 포트는 <ui>사용자 지정 엔드포인트</ui>(Custom Endpoint)를 비웁니다. 사용자 지정 엔드포인트의 평문 HTTP는 이 Mac에서만 허용합니다. 설정 가이드에 <permissions>작업별 필요한 IAM 작업</permissions>이 있습니다."
+            "text": [
+                "<ui>인증 방식</ui> (Auth Method)과 <ui>AWS 리전</ui> (AWS Region)을 선택하세요. 액세스 키와 선택적인 세션 토큰, AWS CLI 프로필, <cloudAuth>AWS IAM Identity Center</cloudAuth>를 사용할 수 있습니다. 프로필은 <code>credential_process</code> 도우미와 <code>role_arn</code> 체인을 해석하며, 모든 요청은 Signature Version 4로 서명해 HTTPS로 보내므로 SSL 설정과 SSH 터널이 없습니다.",
+                "DynamoDB Local은 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>을 실행하고 <ui>DynamoDB Local (no credentials)</ui>를 선택하세요. 사용자 지정 엔드포인트의 평문 HTTP는 이 Mac에서만 허용됩니다. 중국 같은 다른 AWS 파티션의 리전은 사용자 지정 엔드포인트 없이 자체 엔드포인트로 연결합니다. 설정 가이드에 <permissions>작업별로 필요한 IAM 작업</permissions>이 나와 있습니다."
             ]
         },
         {
             "id": "work",
             "title": "항목 읽기, 필터 및 편집",
-            "paragraphs": [
-                "키 필터는 Query, 나머지 필터는 Scan을 사용합니다. Scan은 테이블 전체를 읽고 읽은 모든 항목에 비용이 청구됩니다. 상태 표시줄에 작업, 반환 및 스캔 항목 수, 소비된 읽기 용량이 표시됩니다.",
-                "지원되는 <filters>정렬 키 필터</filters>는 키 조건을 사용합니다. 나머지는 읽은 후에 필터링하므로 비용이 줄지 않습니다. <code>address.city</code>, <code>items[0].sku</code> 같은 중첩 경로를 지원합니다.",
-                "한 파티션 Query에서 정렬 키 헤더를 클릭하면 DynamoDB가 그 순서로 반환합니다. 다른 정렬은 일치 항목을 모두 읽었을 때 그리드에서 하며 아닐 때 상태 표시줄이 알립니다. 다음 페이지는 이전 끝에서 이어집니다. 아래 총계는 DynamoDB 자체 항목 수이며 <ui>정확히 계산</ui>(Count Exactly)은 필터에 맞는 모든 항목을 읽어 전액 과금됩니다.",
-                "테이블은 키만 선언해 열은 항목에서 가져옵니다. 키 속성, 테이블 첫 항목 표본에서 찾은 속성과 현재 페이지 속성입니다. 맵·리스트·세트는 JSON으로 표시해 JSON 편집기로 열고 숫자는 모든 자릿수를 유지합니다.",
-                "각 행은 <editing>타입을 유지</editing>하며 하나의 PartiQL 구문으로 저장됩니다. 업데이트는 변경된 속성을 불러온 값과 비교하고 동시 변경을 덮어쓰지 않습니다. <ui>NULL로 설정</ui> (Set NULL)은 속성을 제거합니다.",
-                "편집기는 이름을 큰따옴표, 문자열을 작은따옴표로 감싼 PartiQL 또는 <code>Query</code>·<code>BatchWriteItem</code>·<code>TransactWriteItems</code> 같은 DynamoDB 작업명 뒤 요청 JSON을 받습니다. 다른 작업명은 거부합니다. 항목은 그리드, 다른 응답은 JSON입니다. 제한된 요청은 백오프로 재시도하고 <code>⌘.</code>가 실행 중인 명령문을 멈춥니다."
+            "text": [
+                "키 필터는 Query로, 나머지 필터는 Scan으로 실행되며, Scan은 테이블 전체를 읽고 그만큼 과금됩니다. 상태 표시줄에 작업, 반환 및 스캔 항목 수, 소비된 읽기 용량이 표시됩니다. <filters>정렬 키 필터</filters>는 가능한 경우 키 조건이 되며, <code>address.city</code> 같은 중첩 경로도 사용할 수 있습니다. 한 파티션의 Query에서 정렬 키 헤더를 클릭하면 DynamoDB가 그 순서로 항목을 반환합니다.",
+                "열은 항목에서 가져옵니다. 키, 첫 항목 표본에서 찾은 속성, 현재 페이지의 속성입니다. 맵, 리스트, 세트는 JSON 편집기로 열리고, 숫자는 모든 자릿수를 유지하며, <ui>NULL로 설정</ui> (Set NULL)은 속성을 제거합니다. 각 행은 하나의 PartiQL 구문으로 저장되며 동시 변경을 덮어쓰지 않습니다. 편집기는 PartiQL이나, <code>Query</code>, <code>TransactWriteItems</code> 같은 작업 이름 뒤에 요청 JSON을 받으며, 제한된 요청은 백오프로 재시도합니다."
             ]
         },
         {
             "id": "schema",
-            "title": "테이블 및 인덱스",
-            "paragraphs": [
-                "<ui>새 테이블…</ui>(New Table…)은 파티션·정렬 키, 온디맨드·프로비저닝 용량, 테이블 클래스, 삭제 보호와 보조 인덱스 폼을 열고 <ui>미리보기</ui>(Preview)는 전송 전 <code>CreateTable</code> 요청을 보여 줍니다. 로컬 보조 인덱스는 테이블을 만드는 여기서만 정의할 수 있습니다.",
-                "Structure 탭에서 글로벌 보조 인덱스를 추가·삭제하며 DynamoDB가 <code>UpdateTable</code> 요청당 변경 하나만 받아 저장마다 하나씩 합니다. 속성은 여기서 편집하지 않고 항목에 쓰면 열로 나타납니다. DDL 탭은 Time to Live·시점 복구 설정을 포함해 재생성할 <code>CreateTable</code> 요청을 보여 줍니다."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "테이블 설정",
-            "paragraphs": [
-                "테이블 우클릭 후 <ui>유지 관리</ui>(Maintenance)에서 시점 복구, 삭제 보호, 스트림, 테이블 클래스, 온디맨드 용량 전환과 Time to Live 끄기를 설정합니다. 테이블 삭제는 <code>DeleteTable</code>을 보내며 삭제 보호가 켜져 있으면 실패합니다."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "DynamoDB 가져오기는 없습니다. 편집기의 PartiQL <code>INSERT</code>·<code>BatchWriteItem</code> 요청으로 쓰며 후자는 미처리 항목을 재전송하고 쓰지 못한 것을 보고합니다. Export 대화상자에서 테이블·결과를 {exportFormats}로 <export>내보냅니다</export>."
+            "also": [
+                "operate"
+            ],
+            "title": "테이블, 인덱스 및 설정",
+            "text": [
+                "<ui>새 테이블…</ui> (New Table…)은 키, 용량 모드, 테이블 클래스, 삭제 보호, 보조 인덱스를 설정하고 <code>CreateTable</code> 요청을 미리 보여 줍니다. 로컬 보조 인덱스는 여기서만 정의할 수 있습니다. Structure 탭은 저장마다 글로벌 보조 인덱스 하나를 추가하거나 삭제하며, DDL 탭은 테이블을 다시 만드는 요청을 보여 줍니다.",
+                "<ui>유지 관리</ui> (Maintenance)에서 시점 복구, 삭제 보호, 스트림, 테이블 클래스, 온디맨드 용량 전환, Time to Live 끄기를 설정합니다."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "편집기에서 PartiQL <code>INSERT</code>나 미처리 항목을 재전송하는 <code>BatchWriteItem</code> 요청으로 항목을 쓰세요. 테이블이나 결과를 {exportFormats}로 <export>내보낼 수 있습니다</export>."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
-            "question": "읽기가 전체 테이블을 스캔하지 않게 하려면 어떻게 하나요?",
-            "answer": "파티션 키를 =로 필터링하거나 글로벌 인덱스 파티션 키와 각 정렬 키를 필터링하면 Query로 읽습니다. 모든 속성을 투영하는 글로벌 인덱스만 탐색에 쓰므로 keys-only 인덱스는 편집기에서 <code>IndexName</code>을 지정한 <code>Query</code> 요청으로 쿼리하세요."
+            "question": "읽기가 테이블 전체를 스캔하지 않게 하려면 어떻게 하나요?",
+            "answer": "파티션 키를 =로 필터링하거나, 글로벌 인덱스의 파티션 키와 각 정렬 키를 필터링하면 Query로 읽습니다. keys-only 인덱스는 탐색에 쓰이지 않으므로 편집기에서 <code>IndexName</code>을 지정한 <code>Query</code> 요청으로 쿼리하세요."
         },
         {
             "id": "change-key",
-            "question": "항목 키는 어떻게 변경하나요?",
-            "answer": "키 속성은 직접 편집할 수 없습니다. 키 외 모든 속성을 복사하는 <ui>행 복제</ui>(Duplicate Row)를 써 새 키를 넣고 저장한 뒤 원본을 삭제하세요."
+            "question": "항목의 키는 어떻게 변경하나요?",
+            "answer": "키를 제외한 모든 속성을 복사하는 <ui>행 복제</ui> (Duplicate Row)를 사용해 복사본에 새 키를 넣고 저장한 뒤 원본을 삭제하세요."
         },
         {
             "id": "transactions",
-            "question": "그리드 편집은 한 트랜잭션으로 저장하나요?",
-            "answer": "아니요. 변경 행마다 따로 씁니다. 함께 성공해야 할 쓰기는 편집기의 <code>ExecuteTransaction</code>·<code>TransactWriteItems</code> 요청에 넣으세요."
+            "question": "그리드 편집은 한 트랜잭션으로 저장되나요?",
+            "answer": "아니요. 변경된 행마다 따로 기록합니다. 함께 성공해야 하는 쓰기는 편집기의 <code>ExecuteTransaction</code>이나 <code>TransactWriteItems</code> 요청에 넣으세요."
         }
     ],
-    "related": [
-        {
-            "label": "엔진별 필터",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "AWS·Google·Microsoft 로그인",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis: 키 및 명령",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra 및 Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

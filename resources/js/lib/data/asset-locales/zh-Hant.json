@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "zh-Hant": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "zh-Hant": "shop 上的 PostgreSQL 連線：一個聯結 orders 和 users 的查詢，其 EXPLAIN ANALYZE 計畫繪製為圖表。"
         }
     },
     "databases-mysql": {
         "description": {
-            "zh-Hant": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "zh-Hant": "shop 上的 MySQL 連線：一個聯結 orders 和 users 的查詢，結果顯示在格線中。"
         }
     },
     "databases-sqlserver": {
         "description": {
-            "zh-Hant": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "zh-Hant": "SQL Server 連線：拆分為 GO 批次的 T-SQL 指令碼，其 PRINT 輸出顯示在 Output 分頁中。"
         }
     },
     "databases-sqlite": {
         "description": {
-            "zh-Hant": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "zh-Hant": "內建的 Chinook SQLite 範例，Track 資料表依類型篩選。"
         }
     },
     "databases-mongodb": {
         "description": {
-            "zh-Hant": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "zh-Hant": "MongoDB 連線：格線中的 events 集合，以及以 Extended JSON 開啟的 Insert Document 表單。"
         }
     },
     "databases-redis": {
         "description": {
-            "zh-Hant": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "zh-Hant": "Redis 連線：依「:」拆分的鍵樹，以及 Key、Type、TTL、Length 和 Value 欄位。"
         }
     },
     "databases-redshift": {
         "description": {
-            "zh-Hant": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "zh-Hant": "Amazon Redshift 連線：含 DISTKEY 和 SORTKEY 的資料表 DDL。"
         }
     },
     "databases-oracle": {
         "description": {
-            "zh-Hant": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "zh-Hant": "Oracle 連線：編輯器中的 PL/SQL 區塊，結果下方顯示其 DBMS_OUTPUT 輸出。"
         }
     },
     "databases-clickhouse": {
         "description": {
-            "zh-Hant": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "zh-Hant": "ClickHouse 連線：MergeTree 資料表的 Parts 分頁，含分割區、資料部件和列數。"
         }
     },
     "databases-duckdb": {
         "description": {
-            "zh-Hant": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "zh-Hant": "DuckDB 資料庫，其中一個 Parquet 檔案開啟為檢視表並以 SQL 查詢。"
         }
     },
     "databases-cassandra": {
         "description": {
-            "zh-Hant": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "zh-Hant": "Cassandra 鍵空間：格線中的資料表，有一個待儲存的純量儲存格變更，set 欄位顯示為集合。"
         }
     },
     "databases-dynamodb": {
         "description": {
-            "zh-Hant": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "zh-Hant": "DynamoDB 資料表：以索引上的 Query 執行的篩選讀取，狀態列顯示其消耗的讀取容量。"
         }
     },
     "databases-bigquery": {
         "description": {
-            "zh-Hant": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "zh-Hant": "BigQuery 連線：從 Explain 選單執行的 Dry Run，顯示查詢將處理的位元組數和預估費用。"
         }
     },
     "databases-snowflake": {
         "description": {
-            "zh-Hant": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "zh-Hant": "Snowflake 連線，已在 Session Context 中設定倉儲和角色，下方為查詢結果。"
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "zh-Hant": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "zh-Hant": "Cloudflare D1 連線：資料庫切換器列出帳戶的 D1 資料庫，位於查詢分頁上方。"
         }
     },
     "databases-turso": {
         "description": {
-            "zh-Hant": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "zh-Hant": "遠端 Turso 資料庫：側邊欄中的資料表，以及格線中的查詢結果。"
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "zh-Hant": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "zh-Hant": "Elasticsearch Query DSL 主控台：一個 GET _search 請求，其命中結果顯示為列。"
         }
     },
     "databases-etcd": {
         "description": {
-            "zh-Hant": "An etcd connection: keys under a prefix root, with their values and leases."
+            "zh-Hant": "etcd 連線：前綴根目錄下的鍵，以及其值和租約。"
         }
     },
     "databases-kafka": {
         "description": {
-            "zh-Hant": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "zh-Hant": "Kafka 連線：在 orders 主題上執行 KafkaQL CONSUME，訊息依分割區、位移、鍵和時間戳記顯示。"
         }
     },
     "databases-surrealdb": {
         "description": {
-            "zh-Hant": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "zh-Hant": "SurrealDB 連線：一個 SurrealQL 查詢，以及格線中傳回的記錄。"
         }
     },
     "databases-teradata": {
         "description": {
-            "zh-Hant": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "zh-Hant": "Teradata 連線：側邊欄列出預存程序，巨集位於 Functions 下，並顯示查詢結果。"
         }
     },
     "databases-trino": {
         "description": {
-            "zh-Hant": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "zh-Hant": "Trino 連線：一個聯結兩個目錄中資料表的查詢，下方為其結果。"
         }
     },
     "databases-beancount": {
         "description": {
-            "zh-Hant": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "zh-Hant": "Beancount 帳本：側邊欄中映射出的資料表，以及 BQL 查詢的結果。"
         }
     },
     "ios-connection-list": {

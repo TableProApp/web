@@ -11,71 +11,49 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "DuckDB クライアント",
-        "lead": "DuckDB データベースを開くか、Parquet・CSV・JSON ファイルを SQL でクエリできます。ローカルのデータベースサーバーは不要です。"
+        "lead": "DuckDB データベースを開くか、Parquet、CSV、JSON ファイルを SQL でクエリできます。データベースサーバーを動かす必要はありません。",
+        "asset": "databases-duckdb"
     },
-    "asset": "mac-db-duckdb-parquet",
     "links": {
-        "files": "/features/import-export#files",
         "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "export": "/features/import-export#export",
+        "explain": "/features/querying#explain",
         "backup": "/features/import-export#backup",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure"
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "ファイルを開く",
-            "paragraphs": [
-                "<code>.duckdb</code>・<code>.ddb</code> ファイルを開くか、新しいパスで作成します。<code>:memory:</code> は一時データベースです。ファイルは拡張子ではなくヘッダーで識別します。",
-                "Parquet、CSV、TSV、JSON、NDJSON を、<code>file</code> とファイル名に基づく読み取り専用ビューとして開けます。元のファイルは変わりません。編集するには DuckDB データベースにテーブルを作ります。",
-                "Finder から DuckDB ファイルを開けます。Parquet は <ui>File > Open File</ui> で DuckDB 接続として開きます。<dataFiles>Data Files ウィンドウ</dataFiles>では開きません。",
-                "<ui>Remote (Quack, experimental)</ui> はエイリアスを使って <code>quack_serve</code> サーバーに接続します。初回接続時に DuckDB の <code>quack</code> 拡張をダウンロードします。"
+            "text": [
+                "<code>.duckdb</code> または <code>.ddb</code> ファイルを開くか（Finder からも開けます）、新しいパスを入力して作成します。<code>:memory:</code> は一時データベースです。ファイルは拡張子ではなくヘッダーで識別します。",
+                "Parquet、CSV、TSV、JSON、NDJSON は <ui>File > Open File</ui> で、<code>file</code> とファイル名に基づく名前の読み取り専用ビューとして開きます。元のファイルは変更しません。<ui>Remote (Quack, experimental)</ui> はエイリアスを使って <code>quack_serve</code> サーバーに接続します。初回接続時に DuckDB の <code>quack</code> 拡張をダウンロードします。"
             ]
         },
         {
             "id": "work",
             "title": "クエリと編集",
-            "paragraphs": [
-                "<code>SELECT * FROM 'data.csv'</code> のようにファイルを直接クエリできます。<code>ATTACH</code> で別の DuckDB ファイルをサイドバーに追加し、<code>⌘K</code> で切り替えます。再接続すると追加状態は解除されます。",
-                "<explain>EXPLAIN</explain> はプラン図で表示します。テーブルの行を編集すると <editing>Preview SQL</editing> が各文を先に表示し、データファイル上のビューは読み取り専用のままです。"
-            ]
-        },
-        {
-            "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Structure タブ</structure>でテーブルを編集し、実行前に DDL を確認できます。サイドバーにはデータベースの作成・削除操作がありません。ファイルを作るには接続時に新しいパスを入力し、別のファイルには <code>ATTACH</code> でアクセスします。"
+            "text": [
+                "<code>SELECT * FROM 'data.csv'</code> のようにファイルを直接クエリできます。<code>ATTACH</code> で別の DuckDB ファイルをサイドバーに追加し、<code>⌘K</code> で切り替えられます。追加は次の再接続まで有効です。<explain>EXPLAIN</explain> はプラン図で表示します。",
+                "テーブルの行は編集できますが、データファイル上のビューは読み取り専用のままです。データを編集するには DuckDB データベースにテーブルを作成してください。データベースの作成・削除操作はありません。ファイルを作るには接続時に新しいパスを入力します。"
             ]
         },
         {
             "id": "operate",
             "title": "ファイルの共有とバックアップ",
-            "paragraphs": [
-                "TablePro がファイルを保持する間は <code>duckdb</code> CLI、ノートブックや dbt 実行が開けません。<ui>Release the File Lock After</ui> でアイドル数分後にファイルを返し、次のクエリで再取得できます。<ui>Open the File Read-Only</ui> なら複数の読み取り側で共有できます。<ui>Database > Release File Lock</ui> はタブを残したまますぐ返します。セッションが開いたトランザクション、一時テーブル、アタッチしたデータベースや変更した設定を保持している場合は、理由とともに解放を拒否します。",
-                "<backup>Backup Dump</backup> は {dumpTool} が開いている接続で書き込むため、インストール不要です。後で TablePro に復元する <code>.duckdb</code> ファイル、または <code>schema.sql</code>、<code>load.sql</code> とテーブルごとの Parquet を含むフォルダーを選べます。後者は pandas、Spark、BigQuery が直接読み取れます。Restore Dump は、最初に名前が既に使われているオブジェクトで停止します。"
+            "text": [
+                "TablePro がファイルを保持している間は、<code>duckdb</code> CLI、ノートブック、dbt 実行からは開けません。<ui>Release the File Lock After</ui> はアイドル数分後にファイルを返し、次のクエリで再取得します。<ui>Open the File Read-Only</ui> なら複数の読み取り側で共有でき、<ui>Database > Release File Lock</ui> はすぐに返します。セッションがトランザクション、一時テーブル、アタッチしたデータベース、変更した設定を保持している間は、理由を示して解放を拒否します。",
+                "<backup>Backup Dump</backup> は {dumpTool} が開いている接続で書き込むため、インストールは不要です。後で復元する <code>.duckdb</code> ファイル、または <code>schema.sql</code>、<code>load.sql</code> とテーブルごとの Parquet ファイルを含むフォルダーを書き出せます。後者は pandas、Spark、BigQuery が直接読み取れます。"
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "データの移動",
-            "paragraphs": [
-                "<importData>インポート</importData> は {importFormats} ファイルに対応し、テーブルと結果を {exportFormats} にエクスポートします。Settings > Plugins から入れる <export>Parquet エクスポートプラグイン</export> はテーブルごとに一つの Parquet ファイルを出力します。<files>ファイルをデータベースとして扱う方法</files>も参照してください。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone と iPad",
-            "paragraphs": [
-                "iPhone と iPad では DuckDB がアプリに組み込まれています。ファイル App で選んだファイルはコピーではなく元の場所で開きます。作業用データベースには In-Memory を選べます。カードでテーブルを閲覧し、Query タブで SQL を実行します。Remote (Quack) 接続は Mac 専用です。"
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "{importFormats} ファイルを<importData>インポート</importData>し、テーブルと結果を {exportFormats} でエクスポートできます。Settings > Plugins から入れる <export>Parquet エクスポートプラグイン</export>は、テーブルごとに一つの Parquet ファイルを出力します。"
+    ],
+    "iphone": [
+        "iPhone と iPad では DuckDB がアプリに組み込まれています。ファイル App で選んだファイルはコピーではなく元の場所で開き、In-Memory で作業用データベースを使えます。テーブルはカードで閲覧し、Query タブで SQL を実行します。"
+    ],
     "faq": [
         {
             "id": "version",
@@ -84,26 +62,9 @@
         },
         {
             "id": "csv-or-data-files",
-            "question": "CSV は DuckDB と Data Files ウィンドウのどちらで開くべきですか？",
-            "answer": "閲覧、整理して書き戻すには <dataFiles>Data Files ウィンドウ</dataFiles> で開いてください。SQL で他のファイルやテーブルと JOIN するには DuckDB として開きます。その場合ファイルは読み取り専用です。"
+            "question": "CSV ファイルは DuckDB と Data Files ウィンドウのどちらで開くべきですか？",
+            "answer": "ファイルを閲覧し、整理して保存し直すには <dataFiles>Data Files ウィンドウ</dataFiles>を使います。SQL で他のファイルやテーブルと結合するには DuckDB として開きます。その場合ファイルは読み取り専用です。"
         }
     ],
-    "related": [
-        {
-            "label": "インポート、エクスポートとデータファイル",
-            "href": "/features/import-export#files"
-        },
-        {
-            "label": "アプリ用データベースファイルの SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "分析サーバー向け ClickHouse",
-            "href": "/clickhouse-client"
-        },
-        {
-            "label": "iPhone・iPad 版 TablePro",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

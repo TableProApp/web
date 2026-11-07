@@ -11,53 +11,44 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "Interface gráfica de etcd",
-        "lead": "Navegue pelas chaves por prefixo, altere valores e gerencie concessões com comandos no estilo etcdctl."
+        "lead": "Navegue pelas chaves do etcd por prefixo, altere valores e leases em uma grade e execute comandos no estilo etcdctl.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se",
-            "paragraphs": [
-                "Insira um host e uma porta de cliente. A porta peer não tem gateway JSON. Não há seleção de banco nem failover de endpoint.",
-                "Deixe <ui>Username</ui> e <ui>Password</ui> vazios em um cluster sem autenticação. Um usuário sem a função <code>root</code> se conecta e navega pelas chaves cobertas por suas funções, enquanto <code>endpoint status</code> e os comandos <code>user</code> e <code>role</code> respondem com permissão negada.",
-                "O TLS é definido por <ui>TLS Mode</ui> nos campos Advanced, não por uma seção SSL, e começa em Disabled. Required (skip verify) criptografa sem verificar, Verify CA verifica o certificado com o arquivo de CA indicado e Verify Identity acrescenta a verificação do nome do host. Um certificado e uma chave de cliente adicionam TLS mútuo.",
-                "Acesse um cluster protegido por um bastion usando um <network>túnel SSH</network>. URLs <code>etcd://</code> e <code>etcds://</code> podem ser importadas, e nenhuma ativa TLS por si só."
+            "text": [
+                "Informe um host e a porta de cliente dele; a porta peer não tem gateway JSON, e não há seleção de banco nem failover de endpoint. Deixe <ui>Username</ui> e <ui>Password</ui> vazios em um cluster sem autenticação. Um usuário sem a função <code>root</code> navega pelas chaves que suas funções cobrem, enquanto <code>endpoint status</code> e os comandos <code>user</code> e <code>role</code> respondem com permissão negada.",
+                "O TLS é definido por <ui>TLS Mode</ui> nos campos Advanced e começa em Disabled. Required (skip verify) criptografa sem verificar, Verify CA verifica o certificado com o arquivo de CA indicado, e Verify Identity acrescenta o nome do host; um certificado e uma chave de cliente adicionam TLS mútuo. URLs <code>etcd://</code> e <code>etcds://</code> podem ser importadas, e nenhuma ativa TLS por si só."
             ]
         },
         {
             "id": "work",
             "title": "Navegue pelas chaves e execute comandos",
-            "paragraphs": [
+            "text": [
                 "Defina <ui>Key Prefix Root</ui>, como <code>/app</code>, para limitar uma conexão a uma subárvore. A barra lateral agrupa as chaves pelo primeiro segmento do caminho abaixo dela, e cada chave aparece como uma linha com seu valor, versão, revisões de modificação e criação, e lease.",
-                "Salvar uma edição envia comandos. Um novo valor ou lease grava novamente a chave, um lease NULL remove o lease, e renomear uma chave grava o novo nome e exclui o antigo. As colunas de revisão pertencem ao etcd, portanto editá-las interrompe o salvamento e informa o nome da coluna.",
-                "Execute comandos no estilo etcdctl para chaves, watch, leases, membros, endpoints, compactação e controle de acesso, com preenchimento de comandos e flags. Comandos não suportados são rejeitados antes de chegar ao servidor.",
-                "<safeMode>Safe Mode</safeMode> executa como leitura <code>get</code>, <code>watch</code> e os comandos que apenas listam ou informam, e considera gravação qualquer outro comando."
+                "Salvar uma edição envia comandos: um novo valor ou lease grava a chave de novo, um lease NULL remove o lease, e renomear grava o novo nome e exclui o antigo. As colunas de revisão pertencem ao etcd, então editar uma delas interrompe o salvamento e informa o nome da coluna.",
+                "Execute comandos no estilo etcdctl para chaves, watch, leases, membros, endpoints, compactação e controle de acesso, com preenchimento de comandos e flags; os não suportados são rejeitados antes de chegar ao servidor. O <safeMode>Safe Mode</safeMode> trata como leitura <code>get</code>, <code>watch</code> e os comandos que apenas listam ou informam, e considera gravação qualquer outro comando."
             ]
         },
         {
             "id": "operate",
             "title": "Leases e o cluster",
-            "paragraphs": [
-                "Gerencie leases e compactação de revisões no editor. Use comandos para consultar membros, status e saúde dos endpoints; etcd não tem Server Dashboard.",
-                "Executar <code>auth enable</code> no editor ativa a autenticação para todo o cluster. Uma conexão com nome de usuário e senha continua funcionando; uma sem ambos precisa ser reaberta com credenciais."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "Não há importação. <export>Exporte</export> chaves ou o resultado de um comando como {exportFormats}."
+            "text": [
+                "Gerencie leases e compactação de revisões no editor, e consulte membros e o status ou a saúde dos endpoints com comandos. Executar <code>auth enable</code> ativa a autenticação para o cluster inteiro: uma conexão com nome de usuário e senha continua funcionando, e uma sem nenhum dos dois precisa ser reaberta com credenciais."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exporte</export> chaves ou o resultado de um comando como {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
@@ -70,18 +61,5 @@
             "answer": "Não. Um valor que não é UTF-8 válido aparece na grade em base64, identificado como tal, e o texto digitado é enviado como UTF-8. Grave valores binários com <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Navegue e edite dados com segurança",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Conexões, túneis e credenciais",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, outro espaço de chaves",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

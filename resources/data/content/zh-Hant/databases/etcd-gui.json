@@ -11,77 +11,55 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "etcd GUI",
-        "lead": "依前綴瀏覽鍵、變更值，並使用 etcdctl 風格命令管理租約。"
+        "lead": "依前綴瀏覽 etcd 鍵，在格線中變更值和租約，並執行 etcdctl 風格的指令。",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線",
-            "paragraphs": [
-                "輸入一個主機和用戶端連接埠。對等連接埠沒有 JSON 閘道。不提供資料庫選擇或端點容錯移轉。",
-                "無驗證叢集請留空<ui>使用者名稱</ui>（Username）和<ui>密碼</ui>（Password）。沒有 <code>root</code> 角色的使用者可連線並瀏覽其角色允許的索引鍵，但 <code>endpoint status</code>、<code>user</code> 和 <code>role</code> 指令傳回權限拒絕。",
-                "TLS 在 Advanced 欄位的 <ui>TLS 模式</ui>（TLS Mode）設定，非 SSL 區域，預設 Disabled。Required (skip verify) 加密但不驗證，Verify CA 對照指定 CA 檔案驗證憑證，Verify Identity 再檢查主機名稱。用戶端憑證和金鑰提供雙向 TLS。",
-                "透過 <network>SSH 通道</network>存取堡壘主機後的叢集。可匯入 <code>etcd://</code>、<code>etcds://</code> URL，兩者均不會自行開啟 TLS。"
+            "text": [
+                "輸入一個主機及其用戶端連接埠；對等連接埠沒有 JSON 閘道，也不提供資料庫選擇或端點容錯移轉。沒有驗證的叢集請將 <ui>使用者名稱</ui> (Username) 和 <ui>密碼</ui> (Password) 留空。沒有 <code>root</code> 角色的使用者可瀏覽其角色涵蓋的鍵，但 <code>endpoint status</code> 以及 <code>user</code> 和 <code>role</code> 指令會傳回權限拒絕。",
+                "TLS 在 Advanced 欄位的 <ui>TLS 模式</ui> (TLS Mode) 中設定，預設為 Disabled。Required (skip verify) 會加密但不驗證，Verify CA 以您指定的 CA 檔案驗證憑證，Verify Identity 再加上主機名稱檢查；用戶端憑證和金鑰可加上雙向 TLS。可匯入 <code>etcd://</code> 和 <code>etcds://</code> URL，兩者都不會自行開啟 TLS。"
             ]
         },
         {
             "id": "work",
-            "title": "瀏覽索引鍵與執行指令",
-            "paragraphs": [
-                "設定<ui>索引鍵前綴根目錄</ui>（Key Prefix Root）（如 <code>/app</code>）將連線限制於一個子樹。側邊欄依其下第一個路徑區段分組，每個索引鍵一列，顯示值、版本、修改和建立修訂號及租約。",
-                "儲存編輯傳送指令。新值或租約重新 put 索引鍵，NULL 租約移除租約，重新命名先 put 新名稱再刪除舊名稱。修訂號欄由 etcd 管理，編輯會停止儲存並指出欄名。",
-                "執行 etcdctl 風格的鍵、watch、租約、成員、端點、壓縮和存取控制命令，支援命令及旗標自動完成。不支援的命令會在傳送到伺服器前被拒絕。",
-                "<safeMode>Safe Mode</safeMode> 將 <code>get</code>、<code>watch</code> 以及只列出或回報狀態的指令作為讀取執行，其他指令均視為寫入。"
+            "title": "瀏覽鍵與執行指令",
+            "text": [
+                "設定 <ui>索引鍵前綴根目錄</ui> (Key Prefix Root)，例如 <code>/app</code>，即可將連線限制在一個子樹。側邊欄依其下第一個路徑區段將鍵分組，每個鍵為一列，顯示其值、版本、修改與建立修訂號以及租約。",
+                "儲存編輯時會傳送指令：新值或租約會重新 put 該鍵，NULL 租約會移除租約，重新命名會 put 新名稱並刪除舊名稱。修訂號欄位屬於 etcd，因此編輯其中一欄會停止儲存並指出該欄。",
+                "執行 etcdctl 風格的鍵、watch、租約、成員、端點、壓縮和存取控制指令，並支援指令和旗標自動完成；不支援的指令會在送達伺服器前被拒絕。<safeMode>Safe Mode</safeMode> 將 <code>get</code>、<code>watch</code> 以及只列出或回報狀態的指令作為讀取執行，其他指令一律視為寫入。"
             ]
         },
         {
             "id": "operate",
             "title": "租約與叢集",
-            "paragraphs": [
-                "在編輯器中管理租約和修訂壓縮。透過命令查看成員、端點狀態或健康情況；etcd 沒有 Server Dashboard。",
-                "在編輯器執行 <code>auth enable</code> 開啟整個叢集的驗證。儲存使用者名稱和密碼的連線繼續運作；兩者均無的連線需帶認證資訊重新開啟。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "不提供匯入。將索引鍵或指令結果<export>匯出</export>為 {exportFormats}。"
+            "text": [
+                "從編輯器管理租約和修訂壓縮，並以指令查看成員以及端點狀態或健康情況。執行 <code>auth enable</code> 會為整個叢集開啟驗證：儲存了使用者名稱和密碼的連線會繼續運作，兩者都沒有的連線則需帶著認證資訊重新開啟。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "將鍵或指令結果<export>匯出</export>為 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
             "question": "為什麼租約 ID 指向另一個租約？",
-            "answer": "租約 ID 接受十進位或十六進位，透過字母識別十六進位。純數字十六進位 ID 請加 <code>0x</code>，如 <code>--lease=0x69407712</code>，否則依十進位解析為其他租約。"
+            "answer": "租約 ID 接受十進位或十六進位，十六進位以其中的字母辨識。純數字的十六進位 ID 請加上 <code>0x</code> 前綴，例如 <code>--lease=0x69407712</code>，否則會被當作十進位讀取，指向另一個租約。"
         },
         {
             "id": "binary-values",
             "question": "可以編輯二進位值嗎？",
-            "answer": "不可以。非有效 UTF-8 的值在格線以 base64 顯示並註明，輸入文字依 UTF-8 傳送。請用 <code>etcdctl</code> 寫入二進位值。"
+            "answer": "不可以。不是有效 UTF-8 的值會在格線中以 base64 顯示並加上標示，您輸入的文字會以 UTF-8 傳送。請用 <code>etcdctl</code> 寫入二進位值。"
         }
     ],
-    "related": [
-        {
-            "label": "安全瀏覽與編輯資料",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "連線、通道與認證資訊",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis，另一個索引鍵空間",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

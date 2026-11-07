@@ -11,96 +11,65 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "GUI Amazon DynamoDB",
-        "lead": "Telusuri item, kueri berdasarkan kunci, dan periksa kapasitas baca yang digunakan. Edit nilai bertipe atau jalankan permintaan PartiQL."
+        "lead": "Telusuri item, baca berdasarkan kunci sambil melihat kapasitas yang digunakan, lalu edit nilai bertipe atau jalankan PartiQL.",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan",
-            "paragraphs": [
-                "Pilih <ui>Auth Method</ui> dan <ui>AWS Region</ui>. Gunakan kunci akses dengan token sesi opsional, profil AWS CLI atau <cloudAuth>AWS IAM Identity Center</cloudAuth>. Sesi Pusat Identitas yang sudah habis masa berlakunya meminta login.",
-                "Profil menyelesaikan helper <code>credential_process</code> dan rantai <code>role_arn</code>, dan kredensial sementara yang kedaluwarsa diambil kembali dengan permintaan dicoba ulang sekali. Semua permintaan menggunakan HTTPS dan Signature Version 4, sehingga tidak ada pengaturan SSL atau tunnel SSH. Wilayah pada partisi AWS lain, seperti China atau European Sovereign Cloud, mengakses endpoint sendiri tanpa endpoint khusus.",
-                "Untuk DynamoDB Local, jalankan <code>docker run -p 8000:8000 amazon/dynamodb-local</code> dan pilih <ui>DynamoDB Local (no credentials)</ui>; kosongkan <ui>Custom Endpoint</ui> untuk port 8000. Endpoint khusus hanya dapat menggunakan HTTP tanpa enkripsi pada Mac ini. Panduan konfigurasi mencantumkan <permissions>tindakan IAM yang diperlukan setiap tugas</permissions>."
+            "text": [
+                "Pilih <ui>Auth Method</ui> dan <ui>AWS Region</ui>: access key dengan session token opsional, profil AWS CLI, atau <cloudAuth>AWS IAM Identity Center</cloudAuth>. Profil menyelesaikan helper <code>credential_process</code> dan rantai <code>role_arn</code>, dan setiap permintaan berjalan melalui HTTPS, ditandatangani dengan Signature Version 4, sehingga tidak ada pengaturan SSL dan tidak ada tunnel SSH.",
+                "Untuk DynamoDB Local, jalankan <code>docker run -p 8000:8000 amazon/dynamodb-local</code> dan pilih <ui>DynamoDB Local (no credentials)</ui>; endpoint khusus hanya boleh menggunakan HTTP tanpa enkripsi di Mac ini. Region di partisi AWS lain, seperti China, menjangkau endpoint-nya sendiri tanpa endpoint khusus. Panduan pengaturan mencantumkan <permissions>tindakan IAM yang diperlukan setiap tugas</permissions>."
             ]
         },
         {
             "id": "work",
             "title": "Baca, filter, dan edit item",
-            "paragraphs": [
-                "Filter kunci menggunakan Query; filter lain menggunakan Scan. Scan membaca seluruh tabel dan menagih setiap item yang dibaca. Bilah status menampilkan operasi, jumlah item yang dikembalikan dan dipindai, serta kapasitas baca yang digunakan.",
-                "<filters>Filter tombol sortir</filters> menggunakan ketentuan kunci bila didukung. Filter lain dijalankan setelah membaca dan tidak mengurangi tagihan. Jalur bersarang seperti <code>address.city</code> dan <code>items[0].sku</code> didukung.",
-                "Mengeklik header sort key pada Query satu partisi membuat DynamoDB mengembalikan item dalam urutan tersebut. Pengurutan lain dilakukan di grid jika pembacaan berisi semua item yang cocok, dan bilah status memberi tahu jika tidak. Halaman berikutnya melanjutkan dari akhir halaman sebelumnya. Total di bawah grid adalah jumlah item dari DynamoDB; <ui>Count Exactly</ui> membaca setiap item yang cocok dengan filter dan pembacaan itu ditagih penuh.",
-                "Tabel hanya mendeklarasikan kuncinya, sehingga kolom berasal dari item: atribut kunci, atribut yang ditemukan pada sampel item awal tabel, dan atribut pada halaman saat ini. Map, list, dan set ditampilkan sebagai JSON dan dibuka dalam editor JSON, dan angka mempertahankan semua digit.",
-                "Setiap baris disimpan sebagai satu pernyataan PartiQL, dengan <editing>types dipertahankan</editing>. Pembaruan memeriksa atribut yang diubah terhadap nilai yang dimuat dan menolak untuk menimpa perubahan bersamaan. <ui>Set NULL</ui> menghapus atribut.",
-                "Editor menerima PartiQL dengan kutip ganda pada nama dan kutip tunggal pada string, atau nama tindakan DynamoDB diikuti JSON permintaannya, seperti <code>Query</code>, <code>BatchWriteItem</code>, atau <code>TransactWriteItems</code>. Nama tindakan lain ditolak. Item dikembalikan ke grid dan respons lain sebagai JSON. Permintaan yang dibatasi dicoba ulang dengan backoff, dan <code>⌘.</code> menghentikan pernyataan aktif."
+            "text": [
+                "Filter kunci berjalan sebagai Query dan filter lain sebagai Scan, yang membaca dan menagih seluruh tabel; bilah status menampilkan operasi, jumlah item yang dikembalikan dan dipindai, serta kapasitas baca yang digunakan. <filters>Filter sort key</filters> menjadi kondisi kunci jika memungkinkan, dan path bertingkat seperti <code>address.city</code> berfungsi. Mengeklik header sort key pada Query satu partisi membuat DynamoDB mengembalikan item dalam urutan tersebut.",
+                "Kolom berasal dari item: kunci, atribut yang ditemukan pada sampel item pertama, dan atribut pada halaman yang sedang ditampilkan. Map, list, dan set dibuka di editor JSON, angka mempertahankan semua digit, <ui>Set NULL</ui> menghapus atribut, dan setiap baris disimpan sebagai satu pernyataan PartiQL yang menolak menimpa perubahan bersamaan. Editor menerima PartiQL, atau nama tindakan seperti <code>Query</code> atau <code>TransactWriteItems</code> diikuti JSON permintaannya; permintaan yang dibatasi dicoba ulang dengan backoff."
             ]
         },
         {
             "id": "schema",
-            "title": "Tabel dan indeks",
-            "paragraphs": [
-                "<ui>New Table…</ui> membuka formulir untuk partition key dan sort key, kapasitas on-demand atau provisioned, kelas tabel, perlindungan penghapusan, serta indeks sekunder, dan <ui>Preview</ui> menampilkan permintaan <code>CreateTable</code> sebelum dikirim. Indeks sekunder lokal hanya dapat ditetapkan di sana saat tabel dibuat.",
-                "Di tab Structure Anda menambah atau menghapus indeks sekunder global, satu perubahan per penyimpanan, karena DynamoDB menerima satu perubahan indeks per permintaan <code>UpdateTable</code>. Atribut tidak diedit di sana: tulis atribut pada item dan atribut muncul sebagai kolom. Tab DDL menampilkan permintaan <code>CreateTable</code> yang membuat ulang tabel, dengan pengaturan Time to Live dan pemulihan point-in-time."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Pengaturan tabel",
-            "paragraphs": [
-                "Klik kanan tabel dan pilih <ui>Maintenance</ui> untuk pemulihan point-in-time, perlindungan penghapusan, stream, kelas tabel, peralihan ke kapasitas on-demand, dan menonaktifkan Time to Live. Menghapus tabel mengirim <code>DeleteTable</code>, yang gagal selama perlindungan penghapusan aktif."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Impor tidak tersedia untuk DynamoDB. Tulis item dari editor dengan <code>INSERT</code> PartiQL atau permintaan <code>BatchWriteItem</code> yang mengirim ulang item belum diproses dan melaporkan item yang tidak berhasil ditulis. <export>Ekspor</export> tabel atau hasil sebagai {exportFormats} melalui dialog Export."
+            "also": [
+                "operate"
+            ],
+            "title": "Tabel, indeks, dan pengaturan",
+            "text": [
+                "<ui>New Table…</ui> menetapkan kunci, mode kapasitas, kelas tabel, perlindungan penghapusan, dan indeks sekunder, serta menampilkan pratinjau permintaan <code>CreateTable</code>; indeks sekunder lokal hanya dapat ditetapkan di sana. Tab Structure menambah atau menghapus satu indeks sekunder global per penyimpanan, dan tab DDL menampilkan permintaan yang membuat ulang tabel.",
+                "<ui>Maintenance</ui> mencakup pemulihan point-in-time, perlindungan penghapusan, stream, kelas tabel, peralihan ke kapasitas on-demand, dan menonaktifkan Time to Live."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Tulis item dari editor dengan <code>INSERT</code> PartiQL atau permintaan <code>BatchWriteItem</code>, yang mengirim ulang item yang belum diproses. <export>Ekspor</export> tabel atau hasil sebagai {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
-            "question": "Bagaimana saya mencegah pembacaan memindai seluruh tabel?",
-            "answer": "Filter partition key dengan =, atau partition key indeks global dengan filter pada setiap sort key, dan pembacaan berjalan sebagai Query. Indeks global hanya digunakan untuk penelusuran jika memproyeksikan setiap atribut, jadi kueri indeks khusus kunci dari editor dengan permintaan <code>Query</code> yang menyebutkan <code>IndexName</code>-nya."
+            "question": "Bagaimana cara mencegah pembacaan memindai seluruh tabel?",
+            "answer": "Filter partition key dengan =, atau partition key indeks global dengan filter pada setiap sort key-nya, dan pembacaan berjalan sebagai Query. Indeks keys-only tidak digunakan untuk penelusuran, jadi jalankan kueri padanya dari editor dengan permintaan <code>Query</code> yang menyebutkan <code>IndexName</code>-nya."
         },
         {
             "id": "change-key",
-            "question": "Bagaimana saya mengubah kunci item?",
-            "answer": "Atribut kunci tidak dapat diedit langsung. Gunakan <ui>Duplicate Row</ui> yang menyalin semua atribut kecuali kunci, beri salinan kunci baru, simpan, lalu hapus item asli."
+            "question": "Bagaimana cara mengubah kunci item?",
+            "answer": "Gunakan <ui>Duplicate Row</ui>, yang menyalin semua atribut kecuali kunci, beri salinan itu kunci baru, simpan, lalu hapus item aslinya."
         },
         {
             "id": "transactions",
-            "question": "Apakah perubahan grid disimpan dalam satu transaksi?",
-            "answer": "Tidak. Setiap baris yang diubah ditulis sendiri. Masukkan penulisan yang harus berhasil bersama dalam permintaan <code>ExecuteTransaction</code> atau <code>TransactWriteItems</code> dalam editor."
+            "question": "Apakah perubahan di grid disimpan dalam satu transaksi?",
+            "answer": "Tidak. Setiap baris yang diubah ditulis sendiri. Masukkan penulisan yang harus berhasil bersama ke permintaan <code>ExecuteTransaction</code> atau <code>TransactWriteItems</code> di editor."
         }
     ],
-    "related": [
-        {
-            "label": "Filter lintas mesin",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "Autentikasi AWS, Google, dan Microsoft",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis, kunci dan perintah",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra dan Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,54 +11,47 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata-Client",
-        "lead": "Frage Teradata ab und bearbeite Daten ohne separate Client-Software. Durchsuche Datenbanken, Benutzer, Prozeduren und Makros."
+        "lead": "Frage Teradata ab und bearbeite Daten ohne separate Client-Software, und durchsuche Datenbanken, Benutzer, Prozeduren und Makros.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden und anmelden",
-            "paragraphs": [
-                "Gib Host, Benutzername und Passwort ein. Wähle <code>TD2</code> oder <code>TDNEGO</code> unter <ui>Logon Mechanism</ui>. <ui>Database</ui> überschreibt den Kontostandard. Vantage-Server mit TD2 werden ohne Versionsprüfung unterstützt.",
-                "Der Standardport trägt eine Klartextsitzung. Jeder SSL-Modus verschiebt sie auf den WebSocket-Endpunkt des Gateways auf dem unveränderbaren Port 443. Verify CA braucht ein CA-Zertifikat; Verify Identity prüft Kette und Hostnamen dagegen oder ohne Zertifikat gegen den System-Vertrauensspeicher.",
-                "Lasse <ui>Transaction Mode</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung in der Sitzung braucht. Erreiche ein System hinter einem Bastion-Host per <network>SSH-Tunnel</network>. <ui>Import from URL…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
+            "text": [
+                "Gib Host, Benutzername und Passwort ein und wähle <code>TD2</code> oder <code>TDNEGO</code> unter <ui>Logon Mechanism</ui>; <ui>Database</ui> überschreibt den Kontostandard. Vantage-Server, die TD2 akzeptieren, verbinden sich ohne Versionsprüfung.",
+                "Der Standardport trägt eine Klartextsitzung. Jeder SSL-Modus verschiebt die Sitzung auf den WebSocket-Endpunkt des Gateways auf Port 443, der sich nicht ändern lässt. Verify CA braucht ein CA-Zertifikat, und Verify Identity prüft Kette und Hostnamen dagegen oder, ohne Zertifikat, gegen den System-Vertrauensspeicher.",
+                "Lass <ui>Transaction Mode</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung braucht. <ui>Import from URL…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
             ]
         },
         {
             "id": "work",
             "title": "Abfragen und bearbeiten",
-            "paragraphs": [
-                "Durchsuche Datenbanken und Benutzer als Namespaces. Tabs auf einer anderen Datenbank teilen die Sitzung und führen vor ihren Anweisungen <code>DATABASE</code> aus.",
-                "Gespeicherte Prozeduren stehen in der Seitenleiste, Makros unter Funktionen; beide öffnen ihren <objects>Quelltext in einem schreibgeschützten Tab</objects>.",
-                "Teradata hat kein <code>LIMIT</code>: Die erste Tabellenseite nutzt <code>TOP</code>, spätere <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> liefert den Plan als Rohtext. Zeilenänderungen warten bis zum Speichern; <editing>Preview SQL</editing> zeigt vorher jede Anweisung."
+            "text": [
+                "Datenbanken und Benutzer erscheinen beide als Namespaces, und ein Tab auf einer anderen Datenbank teilt die Sitzung und führt vor seinen Anweisungen <code>DATABASE</code> aus. Gespeicherte Prozeduren stehen in der Seitenleiste und Makros unter Functions, und beide öffnen ihren <objects>Quelltext in einem schreibgeschützten Tab</objects>.",
+                "Teradata hat kein <code>LIMIT</code>, daher kommt die erste Seite einer Tabelle mit <code>TOP</code> zurück und spätere Seiten mit <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> liefert Teradatas Plan als Rohtext."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Erstelle Tabellen und ändere Spalten im <structure>Structure-Tab</structure>. Die DDL-Ansicht zeigt die vollständige Definition samt Bedingungen."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Lade {importFormats}-Dateien mit <importData>Importieren</importData> und speichere Tabellen oder Ergebnisse als {exportFormats}. <copy>Copy To</copy> sendet Tabellen, Zeilen oder beides an eine andere Teradata-Verbindung; Kopieren zu einer anderen Engine wird abgelehnt."
+            "text": [
+                "Erstelle Tabellen und ändere ihre Spalten im <structure>Structure-Tab</structure>. Die DDL-Ansicht einer Tabelle zeigt ihre vollständige Definition samt Bedingungen."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importiere</importData> {importFormats}-Dateien und exportiere eine Tabelle oder ein Ergebnis als {exportFormats}. <copy>Copy To</copy> sendet Tabellen, ihre Zeilen oder beides an eine andere Teradata-Verbindung; eine Kopie zu einer anderen Engine wird abgelehnt."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
@@ -68,25 +61,8 @@
         {
             "id": "tls-check",
             "question": "Wie erkenne ich eine verschlüsselte Sitzung?",
-            "answer": "Teste mit Required (skip verify) oder einem Prüfmodus. Preferred fällt bei unerreichbarem TLS-Port auf Klartext zurück, sodass ein fehlgeschlagener Handshake wie erfolgreiches Verbinden aussieht."
+            "answer": "Teste mit Required (skip verify) oder einem Prüfmodus. Preferred fällt auf eine Klartextsitzung zurück, wenn der TLS-Port nicht erreichbar ist, daher sieht ein fehlgeschlagener Handshake trotzdem wie ein erfolgreiches Verbinden aus."
         }
     ],
-    "related": [
-        {
-            "label": "Abfragen schreiben, ausführen und verstehen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema, Vergleich und Synchronisierung",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake, ein weiteres Data Warehouse",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino für Abfragen über Kataloge hinweg",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

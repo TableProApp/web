@@ -11,77 +11,55 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "Interface graphique etcd",
-        "lead": "Parcourez les clés par préfixe, inspectez valeurs et baux, et utilisez des commandes de type etcdctl."
+        "lead": "Parcourez les clés etcd par préfixe, modifiez valeurs et baux dans une grille, et exécutez des commandes de type etcdctl.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connexion",
-            "paragraphs": [
-                "Connectez un hôte sur son port client. Les ports de pairs et la passerelle JSON ne sont pas pris en charge. Il n’y a ni sélection de base ni basculement entre endpoints.",
-                "Laissez <ui>Nom d’utilisateur</ui> (Username) et <ui>Mot de passe</ui> (Password) vides sur un cluster sans authentification. Un utilisateur sans rôle <code>root</code> se connecte et parcourt les clés couvertes par ses rôles, tandis que <code>endpoint status</code> et les commandes <code>user</code> et <code>role</code> répondent par un refus d’autorisation.",
-                "TLS se définit avec <ui>Mode TLS</ui> (TLS Mode) dans les champs Advanced, pas dans une section SSL, et commence sur Disabled. Required (skip verify) chiffre sans contrôle, Verify CA contrôle le certificat avec le fichier d’AC indiqué et Verify Identity ajoute le nom d’hôte. Un certificat client et sa clé ajoutent TLS mutuel.",
-                "Accédez à un cluster derrière un bastion via un <network>tunnel SSH</network>. Les URL <code>etcd://</code> et <code>etcds://</code> peuvent être importées ; aucune n’active TLS par elle-même."
+            "text": [
+                "Saisissez un hôte et son port client ; le port de pairs n’a pas de passerelle JSON, et il n’y a ni sélection de base ni basculement entre endpoints. Laissez <ui>Nom d’utilisateur</ui> (Username) et <ui>Mot de passe</ui> (Password) vides sur un cluster sans authentification. Un utilisateur sans le rôle <code>root</code> parcourt les clés couvertes par ses rôles, tandis que <code>endpoint status</code> et les commandes <code>user</code> et <code>role</code> répondent par un refus d’autorisation.",
+                "TLS se définit avec <ui>Mode TLS</ui> (TLS Mode) dans les champs Advanced et commence sur Disabled. Required (skip verify) chiffre sans contrôle, Verify CA contrôle le certificat avec le fichier d’AC indiqué, et Verify Identity ajoute le nom d’hôte ; un certificat client et sa clé ajoutent TLS mutuel. Les URL <code>etcd://</code> et <code>etcds://</code> s’importent, et aucune n’active TLS par elle-même."
             ]
         },
         {
             "id": "work",
             "title": "Parcourez les clés et exécutez des commandes",
-            "paragraphs": [
-                "Définissez <ui>Racine du préfixe de clé</ui> (Key Prefix Root), par exemple <code>/app</code>, pour limiter une connexion à un sous-arbre. La barre latérale regroupe les clés par leur premier segment de chemin sous cette racine ; chaque clé est une ligne avec valeur, version, révisions de modification et de création, et bail.",
-                "Enregistrer une modification envoie des commandes. Une nouvelle valeur ou un nouveau bail réécrit la clé, un bail NULL retire le bail, et renommer une clé écrit le nouveau nom et supprime l’ancien. Les colonnes de révision appartiennent à etcd ; les modifier bloque donc l’enregistrement et nomme la colonne.",
-                "Utilisez les commandes de type etcdctl pour clés, watches, baux, membres, endpoints, compactage et droits d’accès, avec complétion des options. Les commandes non prises en charge sont rejetées avant envoi.",
-                "<safeMode>Safe Mode</safeMode> exécute comme lectures <code>get</code>, <code>watch</code> et les commandes qui ne font que lister ou rendre compte, et compte toute autre commande comme écriture."
+            "text": [
+                "Définissez <ui>Racine du préfixe de clé</ui> (Key Prefix Root), par exemple <code>/app</code>, pour limiter une connexion à un sous-arbre. La barre latérale regroupe les clés par leur premier segment de chemin sous cette racine ; chaque clé est une ligne avec valeur, version, révisions de modification et de création, et bail.",
+                "Enregistrer une modification envoie des commandes : une nouvelle valeur ou un nouveau bail réécrit la clé, un bail NULL retire le bail, et renommer écrit le nouveau nom et supprime l’ancien. Les colonnes de révision appartiennent à etcd ; en modifier une bloque donc l’enregistrement et nomme la colonne.",
+                "Exécutez des commandes de type etcdctl pour clés, watches, baux, membres, endpoints, compactage et contrôle d’accès, avec complétion des commandes et des options ; les commandes non prises en charge sont rejetées avant d’atteindre le serveur. <safeMode>Safe Mode</safeMode> exécute comme lectures <code>get</code>, <code>watch</code> et les commandes qui ne font que lister ou rendre compte, et compte toute autre commande comme écriture."
             ]
         },
         {
             "id": "operate",
             "title": "Baux et cluster",
-            "paragraphs": [
-                "Gérez les baux et le compactage des révisions dans l’éditeur. Inspectez membres, statut et santé des endpoints par commandes ; il n’y a pas de Server Dashboard.",
-                "Exécuter <code>auth enable</code> depuis l’éditeur active l’authentification pour tout le cluster. Une connexion avec utilisateur et mot de passe continue à fonctionner ; une connexion sans les deux doit être rouverte avec des identifiants."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "Il n’y a pas d’import. <export>Exportez</export> des clés ou le résultat d’une commande en {exportFormats}."
+            "text": [
+                "Gérez les baux et le compactage des révisions depuis l’éditeur, et inspectez les membres ainsi que le statut ou la santé des endpoints par commandes. Exécuter <code>auth enable</code> active l’authentification pour tout le cluster : une connexion avec utilisateur et mot de passe continue à fonctionner, et une connexion sans les deux doit être rouverte avec des identifiants."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exportez</export> des clés ou le résultat d’une commande en {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
-            "question": "Pourquoi un ID de bail pointe-t-il vers un autre bail ?",
+            "question": "Pourquoi un ID de bail pointe-t-il vers un autre bail ?",
             "answer": "Les ID de bail acceptent le décimal ou l’hexadécimal, reconnu par ses lettres. Préfixez un ID hexadécimal composé uniquement de chiffres par <code>0x</code>, comme <code>--lease=0x69407712</code>, sinon il est lu en décimal et désigne un autre bail."
         },
         {
             "id": "binary-values",
-            "question": "Puis-je modifier des valeurs binaires ?",
-            "answer": "Non. Une valeur UTF-8 invalide s’affiche en base64 dans la grille, marquée comme telle ; le texte saisi est envoyé en UTF-8. Écrivez les valeurs binaires avec <code>etcdctl</code>."
+            "question": "Puis-je modifier des valeurs binaires ?",
+            "answer": "Non. Une valeur UTF-8 invalide s’affiche en base64 dans la grille, marquée comme telle ; le texte saisi est envoyé en UTF-8. Écrivez les valeurs binaires avec <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Parcourez et modifiez les données en sécurité",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Connexions, tunnels et identifiants",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, un autre espace de clés",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

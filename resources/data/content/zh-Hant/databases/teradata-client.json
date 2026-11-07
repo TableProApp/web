@@ -11,82 +11,58 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata 用戶端",
-        "lead": "無需安裝其他用戶端軟體即可查詢和編輯 Teradata。瀏覽資料庫、使用者、程序和巨集。"
+        "lead": "無須其他用戶端軟體即可查詢和編輯 Teradata，並瀏覽其資料庫、使用者、程序和巨集。",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線與登入",
-            "paragraphs": [
-                "輸入主機、使用者名稱和密碼。在 <ui>Logon Mechanism</ui> 中選擇 <code>TD2</code> 或 <code>TDNEGO</code>。<ui>資料庫</ui> (Database) 覆寫帳戶預設值。支援接受 TD2 的 Vantage 伺服器，不進行版本檢查。",
-                "預設連接埠使用明文工作階段。任意 SSL 模式將工作階段移至閘道 WebSocket 端點的 443 連接埠，不可變更。Verify CA 需 CA 憑證，Verify Identity 用該憑證驗證鏈和主機名稱，未提供時使用系統信任存放區。",
-                "除非指令碼需要 ANSI 或 TERA 提交規則及工作階段大小寫區分，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡壘主機後的系統透過 <network>SSH 通道</network>存取。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>teradata://</code>，macOS 不會將其作為連結開啟。"
+            "text": [
+                "輸入主機、使用者名稱和密碼，並在 <ui>Logon Mechanism</ui> 中選擇 <code>TD2</code> 或 <code>TDNEGO</code>；<ui>資料庫</ui> (Database) 會覆寫帳戶的預設值。接受 TD2 的 Vantage 伺服器無須版本檢查即可連線。",
+                "預設連接埠使用明文工作階段。選擇任一 SSL 模式都會將工作階段移至閘道在連接埠 443 上的 WebSocket 端點，此連接埠無法變更。Verify CA 需要 CA 憑證，Verify Identity 會以該憑證驗證憑證鏈和主機名稱，未提供時則使用系統信任存放區。",
+                "除非指令碼需要 ANSI 或 TERA 的提交規則和大小寫區分，否則請將 <ui>Transaction Mode</ui> 保持為 <code>DEFAULT</code>。<ui>從 URL 匯入…</ui> (Import from URL…) 接受 <code>teradata://</code> URL，macOS 不會將其作為連結開啟。"
             ]
         },
         {
             "id": "work",
             "title": "查詢與編輯",
-            "paragraphs": [
-                "將資料庫和使用者作為命名空間瀏覽。其他資料庫的分頁共用工作階段，並在陳述式執行前執行 <code>DATABASE</code>。",
-                "預存程序列在側邊欄，巨集位於 Functions 下，各自在<objects>唯讀分頁中開啟原始碼</objects>。",
-                "Teradata 沒有 <code>LIMIT</code>，資料表第一頁使用 <code>TOP</code>，後續使用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 傳回原始文字計畫。列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示每個陳述式。"
+            "text": [
+                "資料庫和使用者都以命名空間顯示，其他資料庫的分頁會共用工作階段，並在其陳述式前執行 <code>DATABASE</code>。預存程序列在側邊欄，巨集位於 Functions 下，各自在<objects>唯讀分頁中開啟原始碼</objects>。",
+                "Teradata 沒有 <code>LIMIT</code>，因此資料表的第一頁以 <code>TOP</code> 取得，後續頁面以 <code>QUALIFY ROW_NUMBER()</code> 取得。<explain>EXPLAIN</explain> 以原始文字傳回 Teradata 的計畫。"
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "從 <structure>Structure 分頁</structure>建立資料表和修改欄位。資料表 DDL 檢視顯示含條件約束的完整定義。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "透過<importData>匯入</importData>載入 {importFormats}，資料表或結果儲存為 {exportFormats}。<copy>Copy To</copy> 將資料表、列或兩者傳送至其他 Teradata 連線，拒絕複製至其他引擎。"
+            "title": "結構",
+            "text": [
+                "在 <structure>Structure 分頁</structure>中建立資料表並變更其欄位。資料表的 DDL 檢視會顯示其完整定義，包括條件約束。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>匯入</importData> {importFormats} 檔案，並將資料表或結果匯出為 {exportFormats}。<copy>Copy To</copy> 可將資料表、其列或兩者傳送至另一個 Teradata 連線；複製到其他引擎會被拒絕。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
-            "question": "為什麼登入機制被忽略？",
-            "answer": "請用大寫。驅動程式不識別的值，例如小寫 <code>tdnego</code>，會依 <code>TD2</code> 讀取。"
+            "question": "為什麼我的登入機制被忽略？",
+            "answer": "請以大寫輸入。驅動程式無法辨識的值（例如小寫的 <code>tdnego</code>）會被當作 <code>TD2</code> 讀取。"
         },
         {
             "id": "tls-check",
             "question": "如何知道工作階段已加密？",
-            "answer": "請用 Required (skip verify) 或驗證模式測試。Preferred 在 TLS 連接埠不可達時退回明文，因此交握失敗也可能顯示連線成功。"
+            "answer": "請用 Required (skip verify) 或驗證模式測試。TLS 連接埠無法連線時，Preferred 會退回明文工作階段，因此交握失敗看起來仍像連線成功。"
         }
     ],
-    "related": [
-        {
-            "label": "撰寫、執行與理解查詢",
-            "href": "/features/querying"
-        },
-        {
-            "label": "結構、比較與同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake，另一種資料倉儲",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino，跨 catalog 查詢",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

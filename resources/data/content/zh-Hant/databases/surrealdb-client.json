@@ -11,76 +11,58 @@
     "breadcrumb": "SurrealDB",
     "header": {
         "title": "SurrealDB 用戶端",
-        "lead": "執行 SurrealQL，編輯記錄欄位並保留型別。"
+        "lead": "執行 SurrealQL 指令碼，瀏覽命名空間，並在保留型別的情況下編輯記錄欄位。",
+        "asset": "databases-surrealdb"
     },
-    "asset": "mac-db-surrealdb-query",
     "links": {
-        "network": "/features/connections#network",
+        "explain": "/features/querying#explain",
         "filters": "/features/data-editing#filters",
-        "explain": "/features/querying#performance",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線與登入",
-            "paragraphs": [
-                "從 Root、Namespace、Database、Record Access 或 Token 中選擇使用者的 <ui>驗證層級</ui> (Auth Level)。Namespace 和 Database 需要名稱；Record Access 還需存取方式和登入欄位，Token 接受既有 JWT。",
-                "驅動程式透過 HTTP RPC 端點傳輸 CBOR，記錄連結、日期時間、期間、小數和 UUID 保留型別。<code>surrealdb://</code> 連結開啟已填好的連線表單，遠端伺服器可經 <network>SSH 通道</network>存取。",
-                "SSL 預設 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 對照系統信任存放區驗證憑證，忽略 SSL/TLS 面板的 CA 檔案，因此請先在 macOS 安裝私有 CA。"
+            "text": [
+                "選擇 <ui>驗證層級</ui> (Auth Level)：Root、Namespace、Database、Record Access 或 Token。Namespace 和 Database 需要其名稱，Record Access 還需要存取方式和登入欄位，Token 接受既有的 JWT。",
+                "驅動程式透過 HTTP RPC 端點傳輸 CBOR，因此記錄連結、日期時間、期間、小數和 UUID 都會保留型別。<code>surrealdb://</code> 連結會開啟已填好的連線表單。",
+                "SSL 預設為 Disabled，即明文 HTTP；其他模式都使用 HTTPS。Verify CA 和 Verify Identity 會以系統信任存放區驗證憑證，並忽略 SSL/TLS 面板中設定的 CA 檔案，因此請先在 macOS 中安裝私有 CA。"
             ]
         },
         {
             "id": "work",
             "title": "SurrealQL 與記錄",
-            "paragraphs": [
-                "執行完整 SurrealQL 腳本，包括 <code>RELATE</code>，支援陳述式自動完成。<explain>Explain 和 Explain Full</explain> 使用 <code>EXPLAIN</code> 執行查詢，傳回文字計畫。",
-                "命名空間位於側邊欄頂層，內含資料庫。兩者隨每次請求傳送，切換均無須重新連線。只有根使用者能看到所有命名空間。",
-                "儲存格編輯僅用帶型別的參數更新已變更欄位，保留計算的 <code>FUTURE</code> 欄位和其他寫入者的變更。將 <code>id</code> 留空可自動產生 ID。SCHEMALESS 資料表的欄位來自已取得記錄。",
-                "<filters>篩選</filters>轉換為 SurrealQL，Raw SQL 列接受單一條件，例如圖遍歷。寫入、含 <code>;</code> 或註解、呼叫 <code>fn::</code> 或 <code>http::</code> 的條件被拒絕，請在編輯器執行。"
+            "text": [
+                "執行完整的 SurrealQL 指令碼（包括 <code>RELATE</code>），並支援陳述式自動完成。<explain>Explain 和 Explain Full</explain> 會以 <code>EXPLAIN</code> 執行查詢並傳回文字計畫。",
+                "命名空間位於側邊欄頂層，其資料庫位於其中。切換兩者都不會重新連線，因為兩者都隨每個請求傳送，只有根使用者能看到所有命名空間。",
+                "儲存格編輯只以帶型別的參數更新已變更的欄位，因此計算的 <code>FUTURE</code> 欄位和其他寫入者的變更都會保留。將 <code>id</code> 留空即可自動產生 ID；SCHEMALESS 資料表的欄位來自已取得的記錄。",
+                "<filters>篩選</filters>會轉換為 SurrealQL，Raw SQL 列接受單一條件，例如圖遍歷。會寫入、含有 <code>;</code> 或註解，或呼叫 <code>fn::</code> 或 <code>http::</code> 的條件會被拒絕；請在編輯器中執行。"
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Structure 分頁唯讀。在編輯器用 <code>DEFINE FIELD</code>、<code>DEFINE INDEX</code> 建立修改欄位和索引。從選單刪除命名空間或資料庫，多選時對全部項目僅確認一次。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "不提供匯入。將資料表或 SurrealQL 結果<export>匯出</export>為 {exportFormats}。"
+            "title": "結構",
+            "text": [
+                "Structure 分頁為唯讀：請在編輯器中以 <code>DEFINE FIELD</code> 和 <code>DEFINE INDEX</code> 建立和變更欄位及索引。命名空間或資料庫可從其選單刪除，選取多個時只會詢問一次。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "不提供匯入。將資料表或 SurrealQL 結果<export>匯出</export>為 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "transactions",
             "question": "可以執行交易嗎？",
-            "answer": "同一查詢內可以。HTTP RPC 不在請求間保留交易，請將 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作為一個編輯器查詢傳送。"
+            "answer": "在同一個查詢內可以。HTTP RPC 不會在請求之間保留交易，因此請將 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作為單一編輯器查詢傳送。"
         },
         {
             "id": "relations",
-            "question": "如何修改關係的 in 或 out？",
-            "answer": "無法從格線修改：儲存會停止，指出欄位，保留所有待處理編輯。<code>UPDATE</code> 也不移動關係，需刪除後 <code>RELATE</code> 新的一對記錄。"
+            "question": "如何變更關係的 in 或 out？",
+            "answer": "無法從格線變更：儲存會停止、指出該欄位，並保留所有待處理的編輯。<code>UPDATE</code> 也無法移動關係，因此請刪除它，再以 <code>RELATE</code> 建立新的一對。"
         }
     ],
-    "related": [
-        {
-            "label": "MongoDB，另一種文件資料庫",
-            "href": "/mongodb-client"
-        },
-        {
-            "label": "SQL 以外的查詢語言",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "安全瀏覽與編輯資料",
-            "href": "/features/data-editing"
-        }
-    ]
+    "otherTools": null
 }

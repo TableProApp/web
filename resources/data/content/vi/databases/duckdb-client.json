@@ -11,71 +11,49 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "DuckDB client",
-        "lead": "Mở cơ sở dữ liệu DuckDB hoặc query Parquet, CSV và JSON bằng SQL. Không cần server cơ sở dữ liệu local."
+        "lead": "Mở cơ sở dữ liệu DuckDB, hoặc query file Parquet, CSV và JSON bằng SQL, không cần chạy server cơ sở dữ liệu nào.",
+        "asset": "databases-duckdb"
     },
-    "asset": "mac-db-duckdb-parquet",
     "links": {
-        "files": "/features/import-export#files",
         "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "export": "/features/import-export#export",
+        "explain": "/features/querying#explain",
         "backup": "/features/import-export#backup",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure"
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Mở file",
-            "paragraphs": [
-                "Mở file <code>.duckdb</code> hoặc <code>.ddb</code>, nhập path mới để tạo file, hoặc dùng <code>:memory:</code> cho cơ sở dữ liệu tạm. File nhận diện theo header, không phải phần mở rộng.",
-                "Mở Parquet, CSV, TSV, JSON hoặc NDJSON dạng view chỉ đọc tên <code>file</code> và theo tên file. File gốc không đổi. Tạo table trong cơ sở dữ liệu DuckDB để sửa dữ liệu.",
-                "Mở file DuckDB từ Finder. File Parquet mở dạng connection DuckDB bằng <ui>File > Open File</ui>, không trong <dataFiles>cửa sổ Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> kết nối server <code>quack_serve</code> dưới alias. Lần kết nối đầu tải extension <code>quack</code> của DuckDB."
+            "text": [
+                "Mở file <code>.duckdb</code> hoặc <code>.ddb</code>, kể cả từ Finder, nhập đường dẫn mới để tạo file, hoặc dùng <code>:memory:</code> cho cơ sở dữ liệu tạm. File được nhận diện theo header, không theo phần mở rộng.",
+                "Parquet, CSV, TSV, JSON và NDJSON mở bằng <ui>Tệp > Mở tệp</ui> (File > Open File) thành các view chỉ đọc tên <code>file</code> và theo tên file, và file gốc không bao giờ bị thay đổi. <ui>Từ xa (Quack, thử nghiệm)</ui> (Remote (Quack, experimental)) kết nối tới server <code>quack_serve</code> dưới một alias; lần kết nối đầu tải extension <code>quack</code> của DuckDB."
             ]
         },
         {
             "id": "work",
             "title": "Query và chỉnh sửa",
-            "paragraphs": [
-                "Query file trực tiếp, như <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> thêm file DuckDB khác vào sidebar; <code>⌘K</code> chuyển giữa chúng. Attachment không giữ sau khi kết nối lại.",
-                "<explain>EXPLAIN</explain> được vẽ thành sơ đồ execution plan. Các dòng trong table được sửa với <editing>Preview SQL</editing> hiển thị trước từng câu lệnh, còn view đọc từ file dữ liệu vẫn chỉ đọc."
-            ]
-        },
-        {
-            "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Tab Structure</structure> sửa table và hiển thị DDL trước khi chạy. Sidebar không có thao tác tạo hoặc drop cơ sở dữ liệu. Để tạo file, nhập path mới lúc kết nối; dùng <code>ATTACH</code> để truy cập file thứ hai."
+            "text": [
+                "Query file trực tiếp, như <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> thêm một file DuckDB khác vào sidebar và <code>⌘K</code> chuyển giữa chúng, cho tới lần kết nối lại tiếp theo. <explain>EXPLAIN</explain> được vẽ thành sơ đồ plan.",
+                "Các dòng trong table sửa được, còn view đọc từ file dữ liệu vẫn chỉ đọc: hãy tạo table trong một cơ sở dữ liệu DuckDB để sửa dữ liệu. Không có thao tác tạo hay drop cơ sở dữ liệu; hãy nhập đường dẫn mới khi kết nối để tạo file."
             ]
         },
         {
             "id": "operate",
             "title": "Chia sẻ file và sao lưu",
-            "paragraphs": [
-                "Khi TablePro đang giữ một file, CLI <code>duckdb</code>, một notebook hay một lần chạy dbt đều không mở được file đó. Hãy đặt <ui>Release the File Lock After</ui> để trả file lại sau một số phút không hoạt động và lấy lại ở query tiếp theo, hoặc bật <ui>Open the File Read-Only</ui> để nhiều tiến trình cùng đọc. <ui>Cơ sở dữ liệu > Release File Lock</ui> (Database > Release File Lock) trả file ngay lập tức mà vẫn giữ các tab của bạn. Việc trả file bị từ chối, kèm lý do, khi session còn một transaction đang mở, một temporary table, một cơ sở dữ liệu đã attach hoặc một setting đã đổi.",
-                "<backup>Backup Dump</backup> không cần cài gì, vì {dumpTool} tự ghi bản sao lưu qua connection đang mở. Hãy chọn một file <code>.duckdb</code> nếu sau này muốn khôi phục vào TablePro, hoặc một thư mục gồm <code>schema.sql</code>, <code>load.sql</code> và mỗi table một file Parquet, mà pandas, Spark và BigQuery đọc trực tiếp được. Restore Dump dừng ở đối tượng đầu tiên có tên đã tồn tại."
+            "text": [
+                "Khi TablePro đang giữ một file, CLI <code>duckdb</code>, một notebook hay một lần chạy dbt đều không mở được file đó. <ui>Release the File Lock After</ui> trả file lại sau một số phút không hoạt động và lấy lại ở query tiếp theo, <ui>Open the File Read-Only</ui> cho nhiều tiến trình cùng đọc file, còn <ui>Cơ sở dữ liệu > Release File Lock</ui> (Database > Release File Lock) trả file ngay lập tức. Việc trả file bị từ chối, kèm lý do, khi session còn giữ một transaction, một temporary table, một cơ sở dữ liệu đã attach hoặc một setting đã đổi.",
+                "<backup>Backup Dump</backup> không cần cài gì, vì {dumpTool} ghi bản sao lưu qua connection đang mở: một file <code>.duckdb</code> để khôi phục sau này, hoặc một thư mục gồm <code>schema.sql</code>, <code>load.sql</code> và mỗi table một file Parquet, mà pandas, Spark và BigQuery đọc trực tiếp được."
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "<importData>Import</importData> nhận file {importFormats}, còn khi export, table và kết quả query được ghi ra {exportFormats}. <export>Plugin Parquet export</export>, cài từ Cài đặt > Plugin (Settings > Plugins), bổ sung định dạng Parquet, mỗi table một file. Xem thêm về <files>làm việc với file như cơ sở dữ liệu</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone và iPad",
-            "paragraphs": [
-                "Trên iPhone và iPad, DuckDB có sẵn trong ứng dụng. File bạn chọn trong ứng dụng Tệp được mở ngay tại chỗ chứ không bị sao chép, hoặc bạn chọn Cơ sở dữ liệu trong bộ nhớ (In-Memory Database) để có một cơ sở dữ liệu nháp. Bạn xem table dưới dạng thẻ và chạy SQL trong tab Truy vấn (Query). Kết nối Từ xa (Quack) chỉ có trên Mac."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Import</importData> file {importFormats}, và export table cùng kết quả query ra {exportFormats}. <export>Plugin Parquet export</export>, cài từ Cài đặt > Plugin (Settings > Plugins), bổ sung output Parquet, mỗi table một file."
+    ],
+    "iphone": [
+        "Trên đó, DuckDB có sẵn trong ứng dụng. File bạn chọn trong ứng dụng Tệp được mở ngay tại chỗ chứ không phải bản sao, chế độ Trong bộ nhớ (In-Memory) cho bạn một cơ sở dữ liệu nháp, và bạn xem table dưới dạng thẻ, chạy SQL trong tab Truy vấn (Query)."
+    ],
     "faq": [
         {
             "id": "version",
@@ -85,25 +63,8 @@
         {
             "id": "csv-or-data-files",
             "question": "Nên mở file CSV bằng DuckDB hay trong cửa sổ Data Files?",
-            "answer": "Hãy mở trong <dataFiles>cửa sổ Data Files</dataFiles> khi bạn muốn xem qua, làm sạch rồi lưu lại file. Hãy mở bằng DuckDB khi cần join file đó với các file hay table khác bằng SQL; ở đó file chỉ đọc."
+            "answer": "Hãy dùng <dataFiles>cửa sổ Data Files</dataFiles> để xem qua, làm sạch rồi lưu lại file. Hãy mở file bằng DuckDB để join nó với các file hay table khác bằng SQL; ở đó file chỉ đọc."
         }
     ],
-    "related": [
-        {
-            "label": "Import, export và file dữ liệu",
-            "href": "/features/import-export#files"
-        },
-        {
-            "label": "SQLite, cho file cơ sở dữ liệu của ứng dụng",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "ClickHouse, cho server phân tích",
-            "href": "/clickhouse-client"
-        },
-        {
-            "label": "TablePro cho iPhone và iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

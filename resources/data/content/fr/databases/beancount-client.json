@@ -11,69 +11,50 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Client Beancount",
-        "lead": "Interrogez un ledger comme des tables SQL ou avec BQL via rledger. Modifiez le fichier source dans votre éditeur de texte."
+        "lead": "Interrogez un ledger comme des tables SQL en lecture seule, ou avec BQL via rledger, et modifiez-le dans votre propre éditeur de texte.",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Ouvrez un livre",
-            "paragraphs": [
-                "Installez <code>rledger</code> ou Python Beancount. Si les deux sont disponibles, rledger est utilisé. Seul rledger prend en charge BQL et les résultats de validation via <code>diagnostics</code>.",
-                "Choisissez un ledger avec <ui>Parcourir…</ui> (Browse…) ou ouvrez un fichier .beancount dans le Finder. Le chemin constitue toute la connexion. Vous pouvez aussi importer des URL <code>beancount:///path/to/main.beancount</code>.",
-                "Une app ouverte depuis le Finder n’hérite pas du <code>PATH</code> de votre shell. Si le moteur fonctionne dans Terminal mais pas ici, indiquez-le avec <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code>, puis relancez l’app.",
+            "text": [
+                "Installez <code>rledger</code> ou Python Beancount. Si les deux sont présents, rledger est prioritaire, et seul rledger prend en charge BQL et les résultats de validation dans <code>diagnostics</code>.",
+                "Choisissez un ledger avec <ui>Parcourir…</ui> (Browse…) ou ouvrez un fichier <code>.beancount</code> depuis le Finder : le chemin constitue toute la connexion, et les URL <code>beancount:///path/to/main.beancount</code> peuvent être importées. Une app ouverte depuis le Finder n’hérite pas du <code>PATH</code> de votre shell ; si le moteur fonctionne dans Terminal mais pas ici, indiquez-le avec <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code>, puis relancez l’app.",
                 "Le moteur Python exécute les plugins fournis avec Beancount et ignore toute autre directive <code>plugin</code>, qui représente du code tiers, jusqu’à ce que vous activiez <ui>Exécuter les plugins Ledger</ui> (Run Ledger Plugins) pour cette connexion. Les plugins ignorés figurent dans <code>diagnostics</code>."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez le livre",
-            "paragraphs": [
-                "Interrogez transactions, écritures, comptes, soldes, prix, directives, métadonnées et fichiers source comme des tables. Reliez écritures et transactions par <code>transaction_id</code>, et les comptes par leur nom.",
-                "Les montants arrivent comptabilisés, avec calculs, coûts et prix résolus ; les coûts des écritures et les prix en ligne occupent leurs propres colonnes. Les transactions, écritures et plusieurs tables de directives comportent une <code>source_location</code> telle que <code>main.beancount:42</code>, pour retrouver la ligne source d’un enregistrement.",
-                "Préfixez une requête par <code>BQL:</code> pour l’envoyer à rledger plutôt qu’aux tables. La navigation, le comptage des lignes et la pagination fonctionnent sur un résultat BQL ; les paramètres SQL, non.",
-                "Les directives <code>include</code> sont suivies, pour les chemins explicites comme les motifs glob, et tous les fichiers du livre et documents référencés sont surveillés. Enregistrez une modification dans votre éditeur : la requête suivante la lit sans reconnexion. La connexion reste toujours au niveau Read-Only de <safeMode>Safe Mode</safeMode> ; INSERT, UPDATE, DELETE et les modifications de schéma sont donc refusés."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "Exportez une table ou un résultat de requête en {exportFormats}. Les <files>autres fichiers que TablePro ouvre comme bases de données</files> incluent SQLite, DuckDB et Parquet."
+            "text": [
+                "Transactions, écritures, comptes, soldes, prix, directives, métadonnées et fichiers source sont des tables : reliez écritures et transactions par <code>transaction_id</code>, et les comptes par leur nom. Les montants arrivent comptabilisés, avec calculs, coûts et prix résolus, et les coûts des écritures et les prix en ligne occupent leurs propres colonnes.",
+                "Les transactions, les écritures et plusieurs tables de directives comportent une <code>source_location</code> telle que <code>main.beancount:42</code>, qui ramène une ligne de résultat à sa ligne source. Préfixez une requête par <code>BQL:</code> pour l’envoyer à rledger ; la navigation, le comptage des lignes et la pagination fonctionnent sur le résultat, les paramètres SQL non.",
+                "Les directives <code>include</code> sont suivies, chemins explicites comme motifs glob, et tous les fichiers du livre et documents référencés sont surveillés ; la requête suivante lit donc une modification enregistrée sans reconnexion. La connexion reste toujours au niveau Read-Only de <safeMode>Safe Mode</safeMode> : INSERT, UPDATE, DELETE et les modifications de schéma sont refusés."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exportez</export> une table ou un résultat de requête en {exportFormats}. Les <files>autres fichiers que TablePro ouvre comme bases de données</files> incluent SQLite, DuckDB et Parquet."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
-            "question": "Un livre contenant des erreurs s’ouvre-t-il ?",
+            "question": "Un livre contenant des erreurs s’ouvre-t-il ?",
             "answer": "Avec rledger, oui. Le livre est projeté même si la validation échoue, et chaque problème devient une ligne de <code>diagnostics</code> avec fichier, ligne, gravité et message."
         },
         {
             "id": "several-ledgers",
-            "question": "Une connexion peut-elle ouvrir plusieurs livres ?",
+            "question": "Une connexion peut-elle ouvrir plusieurs livres ?",
             "answer": "Une connexion correspond à un seul fichier de livre, sans bascule possible. Un fichier principal qui inclut les autres les rassemble tous, y compris via des motifs glob."
         }
     ],
-    "related": [
-        {
-            "label": "DuckDB pour les fichiers analytiques",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite, une base de données dans un fichier",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Import, export et fichiers de données",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

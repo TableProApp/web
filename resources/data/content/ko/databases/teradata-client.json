@@ -11,82 +11,58 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Teradata 클라이언트",
-        "lead": "별도의 클라이언트 소프트웨어 없이 Teradata를 조회하고 편집하세요. 데이터베이스, 사용자, 프로시저, 매크로를 살펴볼 수 있습니다."
+        "lead": "별도의 클라이언트 소프트웨어 없이 Teradata를 조회하고 편집하며, 데이터베이스, 사용자, 프로시저, 매크로를 살펴보세요.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결 및 로그온",
-            "paragraphs": [
-                "호스트, 사용자 이름, 암호를 입력하세요. <ui>Logon Mechanism</ui>에서 <code>TD2</code> 또는 <code>TDNEGO</code>를 선택합니다. <ui>데이터베이스</ui> (Database)는 계정 기본값을 재정의합니다. TD2를 받는 Vantage 서버는 버전 확인 없이 지원합니다.",
-                "기본 포트는 평문 세션입니다. SSL 모드는 변경 불가능한 443 포트의 게이트웨이 WebSocket으로 이동합니다. Verify CA는 CA 인증서가 필요하며 Verify Identity는 해당 인증서나 없으면 시스템 신뢰 저장소로 체인·호스트 이름을 검사합니다.",
-                "스크립트에 ANSI·TERA 커밋 규칙과 세션 대소문자 구분이 필요하지 않으면 <ui>Transaction Mode</ui>를 <code>DEFAULT</code>로 두세요. 배스천 뒤는 <network>SSH 터널</network>로 연결합니다. <ui>URL에서 가져오기…</ui>(Import from URL…)는 <code>teradata://</code>를 받지만 macOS는 링크로 열지 않습니다."
+            "text": [
+                "호스트, 사용자 이름, 비밀번호를 입력하고 <ui>Logon Mechanism</ui>에서 <code>TD2</code> 또는 <code>TDNEGO</code>를 선택하세요. <ui>데이터베이스</ui> (Database)는 계정 기본값을 재정의합니다. TD2를 받는 Vantage 서버는 버전 확인 없이 연결됩니다.",
+                "기본 포트는 평문 세션입니다. SSL 모드를 선택하면 세션이 443 포트의 게이트웨이 WebSocket 엔드포인트로 이동하며, 이 포트는 바꿀 수 없습니다. Verify CA에는 CA 인증서가 필요하며, Verify Identity는 해당 인증서로, 없으면 시스템 신뢰 저장소로 체인과 호스트 이름을 검사합니다.",
+                "스크립트에 ANSI나 TERA 커밋 규칙과 대소문자 구분이 필요하지 않으면 <ui>Transaction Mode</ui>를 <code>DEFAULT</code>로 두세요. <ui>URL에서 가져오기…</ui> (Import from URL…)는 <code>teradata://</code> URL을 받지만, macOS는 이 URL을 링크로 열지 않습니다."
             ]
         },
         {
             "id": "work",
             "title": "쿼리 및 편집",
-            "paragraphs": [
-                "데이터베이스와 사용자를 네임스페이스로 살펴보세요. 다른 데이터베이스의 탭은 세션을 공유하며 구문 전에 <code>DATABASE</code>를 실행합니다.",
-                "저장 프로시저는 사이드바에, 매크로는 Functions 아래에 나열되고 각각 <objects>소스를 읽기 전용 탭</objects>으로 엽니다.",
-                "Teradata에는 <code>LIMIT</code>이 없어 첫 페이지는 <code>TOP</code>, 뒤 페이지는 <code>QUALIFY ROW_NUMBER()</code>를 씁니다. <explain>EXPLAIN</explain>은 원시 텍스트 계획을 반환합니다. 행 편집은 저장까지 대기하며 <editing>Preview SQL</editing>이 먼저 보여 줍니다."
+            "text": [
+                "데이터베이스와 사용자는 모두 네임스페이스로 표시되며, 다른 데이터베이스의 탭은 세션을 공유하고 구문 전에 <code>DATABASE</code>를 실행합니다. 저장 프로시저는 사이드바에, 매크로는 Functions 아래에 나열되며, 각각 <objects>소스를 읽기 전용 탭</objects>으로 엽니다.",
+                "Teradata에는 <code>LIMIT</code>이 없으므로 테이블의 첫 페이지는 <code>TOP</code>으로, 뒤 페이지는 <code>QUALIFY ROW_NUMBER()</code>로 가져옵니다. <explain>EXPLAIN</explain>은 Teradata 계획을 원시 텍스트로 반환합니다."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Structure 탭</structure>에서 테이블을 만들고 열을 변경합니다. DDL 보기는 제약 조건을 포함한 전체 정의를 표시합니다."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "<importData>가져오기</importData>로 {importFormats} 파일을 넣고 테이블·결과를 {exportFormats}로 저장합니다. <copy>Copy To</copy>는 테이블, 행 또는 둘 다 다른 Teradata 연결로 보내며 다른 엔진은 거부합니다."
+            "title": "구조",
+            "text": [
+                "<structure>Structure 탭</structure>에서 테이블을 만들고 열을 변경하세요. 테이블의 DDL 보기는 제약 조건을 포함한 전체 정의를 보여 줍니다."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "{importFormats} 파일을 <importData>가져오고</importData> 테이블이나 결과를 {exportFormats}로 내보내세요. <copy>Copy To</copy>는 테이블, 행 또는 둘 다를 다른 Teradata 연결로 보내며, 다른 엔진으로의 복사는 거부됩니다."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
             "question": "로그온 메커니즘이 무시되는 이유는 무엇인가요?",
-            "answer": "대문자로 입력하세요. 소문자 <code>tdnego</code>처럼 인식하지 못하는 값은 <code>TD2</code>로 읽습니다."
+            "answer": "대문자로 입력하세요. 소문자 <code>tdnego</code>처럼 드라이버가 인식하지 못하는 값은 <code>TD2</code>로 읽습니다."
         },
         {
             "id": "tls-check",
-            "question": "세션 암호화 여부를 어떻게 확인하나요?",
-            "answer": "Required (skip verify)나 검증 모드로 테스트하세요. Preferred는 TLS 포트에 접근 못하면 평문으로 전환해 핸드셰이크 실패도 연결 성공처럼 보입니다."
+            "question": "세션이 암호화되었는지 어떻게 확인하나요?",
+            "answer": "Required (skip verify)나 검증 모드로 테스트하세요. Preferred는 TLS 포트에 접근할 수 없으면 평문 세션으로 전환하므로, 핸드셰이크가 실패해도 연결에 성공한 것처럼 보입니다."
         }
     ],
-    "related": [
-        {
-            "label": "쿼리 작성, 실행 및 이해",
-            "href": "/features/querying"
-        },
-        {
-            "label": "스키마, 비교 및 동기화",
-            "href": "/features/schema"
-        },
-        {
-            "label": "다른 웨어하우스 Snowflake",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "카탈로그 간 쿼리용 Trino",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

@@ -11,75 +11,60 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Apache Kafka 客户端",
-        "lead": "检查主题消息和消费者延迟，或使用 TablePro 的命令语言 KafkaQL 发送测试消息。"
+        "lead": "检查主题消息和消费者延迟，或使用 TablePro 自己的命令语言 KafkaQL 发送测试消息。",
+        "asset": "databases-kafka"
     },
-    "asset": "mac-db-kafka-consume",
     "links": {
         "network": "/features/connections#network",
+        "otherLanguages": "/features/querying#other-languages",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入引导代理的主机和端口。<ui>额外的 Bootstrap 服务器</ui> (Additional Bootstrap Servers) 可添加备用代理。每个连接访问一个集群，侧边栏显示其主题。",
-                "<ui>安全协议</ui>（Security Protocol）可选 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 机制</ui>（SASL Mechanism）可选 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 适合 Confluent Cloud，SCRAM 适合 Amazon MSK 和自托管代理。SSL 或 SASL_SSL 未选择 SSL 模式时验证证书链和主机名。私有 CA 填入 <ui>CA 证书</ui>（CA Certificate），客户端证书和密钥提供双向 TLS。",
-                "通过 <network>SSH 隧道</network>时连接停留在引导代理，仅读取该代理领导的分区。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不将其作为链接打开。"
+            "text": [
+                "输入一个引导代理的主机和端口，并在 <ui>额外的 Bootstrap 服务器</ui> (Additional Bootstrap Servers) 中添加备用代理。每个连接访问一个集群，侧边栏显示其主题。",
+                "<ui>安全协议</ui> (Security Protocol) 可选 PLAINTEXT、SSL、SASL_PLAINTEXT 或 SASL_SSL，<ui>SASL 机制</ui> (SASL Mechanism) 可选 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512：PLAIN 适合 Confluent Cloud，SCRAM 适合 Amazon MSK 和自托管代理。使用 SSL 或 SASL_SSL 且未选择 SSL 模式时，会验证证书链和主机名。私有 CA 填入 <ui>CA 证书</ui> (CA Certificate)，客户端证书和密钥提供双向 TLS。",
+                "通过 <network>SSH 隧道</network>连接时，连接停留在引导代理上，因此只读取该代理作为 leader 的分区。<ui>从 URL 导入…</ui> (Import from URL…) 接受 <code>kafka://</code> URL，macOS 不会将其作为链接打开。"
             ]
         },
         {
             "id": "work",
             "title": "读取、检查和生成",
-            "paragraphs": [
-                "浏览近期消息及其分区、偏移量、时间戳、键、值和标头。跨分区消息按时间戳交错显示，由分区和偏移量标识。非 UTF-8 值显示为十六进制；墓碑消息与空消息保持区分。",
-                "用 KafkaQL 从最新、最早、指定偏移量或 ISO 8601 时间戳开始消费，也可限定分区。SHOW 列出主题、代理、组和集群详情；DESCRIBE TOPIC 检查主题。",
-                "<code>DESCRIBE GROUP</code> 是延迟报告，逐分区显示已提交偏移、末端偏移和差值。组从未提交过的分区显示无延迟，而不是从零计算。代理不可达时 <code>SHOW GROUPS</code> 标注列表已截断。",
-                "<code>PRODUCE INTO</code> 写入消息，可选键、头和分区。有键但未指定分区的消息落在 Kafka 自身生产者会选择的位置。读取时自动解压 gzip、snappy、lz4、zstd 批次，无需选择设置。",
-                "不能编辑或单独删除消息，也不能按列排序。新消息到达时，分页会从上次位置继续。"
+            "text": [
+                "浏览近期消息及其分区、偏移量、时间戳、键、值和标头。来自多个分区的消息按时间戳交错显示，非 UTF-8 值显示为十六进制，墓碑消息与空消息保持区分。",
+                "<otherLanguages>KafkaQL</otherLanguages> 可从最新或最早的消息、某个偏移量或 ISO 8601 时间戳开始消费，也可限定分区。<code>SHOW</code> 列出主题、代理、组和集群详情，<code>DESCRIBE TOPIC</code> 检查主题。<code>DESCRIBE GROUP</code> 是延迟报告：逐分区显示已提交偏移量、末端偏移量及其差值。组从未提交过的分区显示无延迟，而不是从零算起的数字。",
+                "<code>PRODUCE INTO</code> 写入消息，可选键、标头和分区；有键但未指定分区的消息会落在 Kafka 自身生产者会选择的位置。gzip、snappy、lz4 和 zstd 批次会在读取时解压。"
+            ],
+            "notes": [
+                "消息不能逐条编辑或删除，新消息到达时，分页从上次的位置继续。"
             ]
         },
         {
             "id": "operate",
             "title": "主题",
-            "paragraphs": [
-                "从侧边栏或 <code>DROP TOPIC</code> 删除主题是唯一破坏性操作。集群随后移除日志，主题可能暂留列表。不提供 Truncate：Kafka 按保留策略或各分区偏移移除记录，两者均不清空主题。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "不提供导入；用 <code>PRODUCE INTO</code> 向主题写消息。将查询读取的消息<export>导出</export>为 {exportFormats}。"
+            "text": [
+                "从侧边栏或用 <code>DROP TOPIC</code> 删除主题是唯一的破坏性操作。集群随后才移除日志，因此主题可能会在列表中短暂停留。不提供 Truncate：Kafka 按保留策略或按各分区的偏移量移除记录，两者都不会清空主题。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "不提供导入：请用 <code>PRODUCE INTO</code> 向主题写入消息。将查询读取的消息<export>导出</export>为 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "advertised-addresses",
-            "question": "为什么主题能加载但消息超时？",
-            "answer": "集群公布了此 Mac 无法访问的地址，如容器主机名或私有 IP。请修正 <code>advertised.listeners</code>，或设置 <ui>Broker 地址</ui>（Broker Addresses）仅用引导地址。"
+            "question": "为什么主题能加载，但消息会超时？",
+            "answer": "集群公布了此 Mac 无法访问的地址，例如容器主机名或私有 IP。请修正 <code>advertised.listeners</code>，或设置 <ui>Broker 地址</ui> (Broker Addresses) 以仅使用引导地址。"
         },
         {
             "id": "msk-iam",
             "question": "支持 Amazon MSK IAM 登录吗？",
-            "answer": "不支持。提供的 SASL 机制为 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512，请在 MSK 集群创建 SCRAM 用户，以 SASL_SSL 连接。"
+            "answer": "不支持。SASL 机制为 PLAIN、SCRAM-SHA-256 和 SCRAM-SHA-512，因此请在 MSK 集群上创建 SCRAM 用户，并以 SASL_SSL 连接。"
         }
     ],
-    "related": [
-        {
-            "label": "SQL 以外的查询语言",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "连接、隧道和凭据",
-            "href": "/features/connections"
-        },
-        {
-            "label": "支持的数据库",
-            "href": "/databases"
-        }
-    ]
+    "otherTools": null
 }

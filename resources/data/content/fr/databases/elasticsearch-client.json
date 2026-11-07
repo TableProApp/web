@@ -11,73 +11,59 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Client Elasticsearch",
-        "lead": "Exécutez des requêtes Query DSL et parcourez les documents d’index dans la grille. Modifiez les documents par leur ID."
+        "lead": "Exécutez des requêtes Query DSL depuis une console, parcourez les documents d’index dans une grille et modifiez-les par leur ID.",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connexion",
-            "paragraphs": [
-                "Saisissez l’hôte REST et le port, puis choisissez <ui>Méthode d’authentification</ui> (Auth Method) : Username & Password, API Key ou None. Pour les clés API, utilisez la valeur <code>encoded</code>. Chaque connexion correspond à un cluster.",
-                "Les nouvelles connexions démarrent avec SSL sur Disabled, soit HTTP en clair. Tous les autres modes utilisent HTTPS : Preferred et Required (skip verify) acceptent un certificat autosigné, tandis que Verify CA et Verify Identity le contrôlent. Elasticsearch 8.x active sécurité et TLS par défaut ; un cluster 8.x nécessite donc généralement HTTPS et des identifiants."
+            "text": [
+                "Saisissez l’hôte REST et le port, puis choisissez <ui>Méthode d’authentification</ui> (Auth Method) : Username & Password, API Key ou None. Les clés API utilisent la valeur <code>encoded</code> fournie par Elasticsearch, et chaque connexion atteint un seul cluster.",
+                "Les nouvelles connexions démarrent avec SSL sur Disabled, soit HTTP en clair ; tous les autres modes utilisent HTTPS. Preferred et Required (skip verify) acceptent un certificat autosigné, tandis que Verify CA et Verify Identity le contrôlent. Elasticsearch 8.x active sécurité et TLS par défaut ; un cluster 8.x nécessite donc généralement HTTPS et des identifiants."
             ]
         },
         {
             "id": "work",
             "title": "Index et console Query DSL",
-            "paragraphs": [
-                "Écrivez la méthode, le chemin et, si besoin, du JSON, par exemple <code>GET /orders/_search</code>. Les hits et tableaux apparaissent en lignes, les autres réponses en JSON formaté. <code>_sql</code> n’est pas disponible.",
-                "La barre latérale liste les index comme tables et masque les noms commençant par un point. Les colonnes viennent du mapping : les champs objets sont aplatis en chemins comme <code>address.city</code>, un champ imbriqué reçoit une colonne JSON pour son tableau et une colonne par feuille ; chaque document comporte <code>_id</code>, <code>_index</code> et <code>_score</code>.",
-                "Les <filters>filtres de colonne</filters> deviennent des requêtes <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> et <code>exists</code> ; la ligne de filtre Raw SQL accepte la syntaxe Lucene, telle que <code>name:Widget</code>, envoyée en <code>query_string</code>. Le tri d’un champ <code>text</code> utilise son sous-champ <code>.keyword</code> si le mapping en contient un.",
-                "Modifiez les documents par <code>_id</code> via REST. Les nouveaux documents nécessitent un ID. Modifiez les tableaux imbriqués dans la colonne JSON ; modifier une colonne feuille bloque l’enregistrement sans envoyer de requête."
+            "text": [
+                "Écrivez une méthode, un chemin et, si besoin, un corps JSON, par exemple <code>GET /orders/_search</code>. Les hits de recherche et les réponses en tableau s’affichent en lignes, les autres réponses en JSON formaté, et l’endpoint <code>_sql</code> n’est pas disponible.",
+                "La barre latérale liste les index comme tables et masque les noms commençant par un point. Les colonnes viennent du mapping : les champs objets sont aplatis en chemins comme <code>address.city</code>, un champ imbriqué reçoit une colonne JSON pour son tableau et une colonne par feuille ; chaque document comporte <code>_id</code>, <code>_index</code> et <code>_score</code>.",
+                "Les <filters>filtres de colonne</filters> deviennent des requêtes <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> et <code>exists</code>, et la ligne de filtre Raw SQL accepte la syntaxe Lucene, comme <code>name:Widget</code>. Les modifications partent en appels REST par <code>_id</code> ; modifiez un tableau imbriqué via sa colonne JSON."
+            ],
+            "notes": [
+                "TablePro se connecte aussi à <search>Typesense et Weaviate</search>, les autres moteurs de recherche."
             ]
         },
         {
             "id": "schema",
             "title": "Mappings",
-            "paragraphs": [
-                "Les mappings sont en lecture seule dans TablePro. Vider n’est pas proposé, car l’équivalent le plus proche dans Elasticsearch, <code>_delete_by_query</code>, est asynchrone et signale les conflits par document ; envoyez-le depuis la console. Supprimer un index depuis la barre latérale envoie la requête DELETE affichée dans la confirmation."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Exporter",
-            "paragraphs": [
-                "Il n’y a pas d’import. <export>Exporter</export> lit un index entier avec un point-in-time et <code>search_after</code>, sans limite liée à la fenêtre de résultats, puis écrit en {exportFormats}."
+            "text": [
+                "Les mappings sont en lecture seule. Vider n’est pas proposé, car l’équivalent le plus proche dans Elasticsearch, <code>_delete_by_query</code>, est asynchrone et signale les conflits par document ; envoyez-le depuis la console. Supprimer un index depuis la barre latérale envoie la requête DELETE affichée dans sa confirmation."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exporter</export> lit un index entier avec un point-in-time et <code>search_after</code>, sans limite liée à la fenêtre de résultats, et écrit en {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
-            "question": "Puis-je dépasser la fenêtre de résultats par pagination ?",
-            "answer": "Oui. Au-delà de la fenêtre par défaut d’Elasticsearch, la pagination passe à <code>search_after</code> sur un point-in-time. La bascule se fait au seuil par défaut ; un index avec <code>max_result_window</code> réduit échoue avant. Remettez ce paramètre à sa valeur par défaut."
+            "question": "Puis-je dépasser la fenêtre de résultats par pagination ?",
+            "answer": "Oui. Au-delà de la fenêtre par défaut d’Elasticsearch, la pagination passe à <code>search_after</code> sur un point-in-time. La bascule se fait au seuil par défaut ; un index avec un <code>max_result_window</code> réduit échoue donc avant. Remettez ce paramètre à sa valeur par défaut."
         },
         {
             "id": "sort-id",
-            "question": "Pourquoi le tri par _id laisse-t-il les lignes dans le même ordre ?",
-            "answer": "Elasticsearch ne peut pas trier sur <code>_id</code> ni sur un champ <code>text</code> sans sous-champ <code>.keyword</code> ; TablePro retire donc cette colonne du tri. Ajoutez un sous-champ keyword au mapping ou triez sur un champ keyword."
+            "question": "Pourquoi le tri par _id laisse-t-il les lignes dans le même ordre ?",
+            "answer": "Elasticsearch ne peut pas trier sur <code>_id</code> ni sur un champ <code>text</code> sans sous-champ <code>.keyword</code> ; TablePro retire donc cette colonne du tri. Ajoutez un sous-champ keyword au mapping ou triez sur un champ keyword."
         }
     ],
-    "related": [
-        {
-            "label": "Typesense et Weaviate, les autres moteurs de recherche",
-            "href": "/databases#search"
-        },
-        {
-            "label": "Parcourez et modifiez les données en sécurité",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Langages de requête autres que SQL",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

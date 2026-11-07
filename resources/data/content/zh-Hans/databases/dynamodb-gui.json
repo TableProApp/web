@@ -11,96 +11,65 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Amazon DynamoDB GUI",
-        "lead": "浏览项目，按键查询，并查看消耗的读取容量。编辑带类型的值，或运行 PartiQL 请求。"
+        "lead": "浏览项目，按键读取并查看消耗的容量，编辑带类型的值或运行 PartiQL。",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "选择 <ui>认证方式</ui> (Auth Method) 和 <ui>AWS 区域</ui> (AWS Region)。可使用访问密钥和可选会话令牌、AWS CLI 配置文件或 <cloudAuth>AWS IAM Identity Center</cloudAuth>。Identity Center 会话过期时会提示登录。",
-                "配置解析 <code>credential_process</code> 辅助程序和 <code>role_arn</code> 链，过期临时凭据重新获取并重试请求一次。所有请求经 HTTPS、Signature Version 4 签名，无 SSL 设置或 SSH 隧道。中国、European Sovereign Cloud 等其他 AWS 分区的区域自动访问自身端点，无需自定义。",
-                "DynamoDB Local 运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，选 <ui>DynamoDB Local (no credentials)</ui>；8000 端口留空<ui>自定义端点</ui>（Custom Endpoint）。自定义端点仅在此 Mac 可用明文 HTTP。设置指南列出<permissions>各任务需要的 IAM 操作</permissions>。"
+            "text": [
+                "选择 <ui>认证方式</ui> (Auth Method) 和 <ui>AWS 区域</ui> (AWS Region)：访问密钥（可附会话令牌）、AWS CLI 配置文件或 <cloudAuth>AWS IAM Identity Center</cloudAuth>。配置文件会解析 <code>credential_process</code> 辅助程序和 <code>role_arn</code> 链，每个请求都经 HTTPS 发送并以 Signature Version 4 签名，因此没有 SSL 设置，也没有 SSH 隧道。",
+                "对于 DynamoDB Local，请运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code> 并选择 <ui>DynamoDB Local (no credentials)</ui>；自定义端点仅在此 Mac 上可使用明文 HTTP。其他 AWS 分区（例如中国）中的区域会访问其自身端点，无需自定义。设置指南列出了<permissions>各项任务所需的 IAM 操作</permissions>。"
             ]
         },
         {
             "id": "work",
             "title": "读取、筛选和编辑项目",
-            "paragraphs": [
-                "键筛选使用 Query，其他筛选使用 Scan。Scan 读取整张表，并按所有已读取项目计费。状态栏显示所选操作、返回与扫描项目数，以及消耗的读取容量。",
-                "支持的<filters>排序键筛选</filters>使用键条件。其他筛选在读取后执行，不会降低费用。支持 <code>address.city</code> 和 <code>items[0].sku</code> 等嵌套路径。",
-                "单分区 Query 点击排序键头让 DynamoDB 按该顺序返回。其他排序在读取包含所有匹配项目时由网格完成，否则状态栏注明。下一页从上页结束处继续。网格下总数是 DynamoDB 自身项目数；<ui>精确计数</ui>（Count Exactly）读取所有符合筛选的项目，该读取全额计费。",
-                "表仅声明键，列来自项目：键属性、首批项目样本中的属性及当前页属性。map、list、set 显示 JSON 并在 JSON 编辑器打开，数字保留所有位。",
-                "每行作为一条 PartiQL 语句保存，并<editing>保留类型</editing>。更新会对照加载时的值检查已更改属性，拒绝覆盖并发更改。<ui>设为 NULL</ui> (Set NULL) 会删除该属性。",
-                "编辑器接受名称双引号、字符串单引号的 PartiQL，或 DynamoDB 操作名后跟请求 JSON，如 <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code>。其他操作名拒绝。项目返回网格，其他响应显示 JSON。限流请求退避重试，<code>⌘.</code> 停止运行语句。"
+            "text": [
+                "键筛选以 Query 运行，其他筛选以 Scan 运行，后者会读取整张表并按此计费；状态栏显示所用操作、返回和扫描的项目数以及消耗的读取容量。<filters>排序键筛选</filters>会尽可能转为键条件，并支持 <code>address.city</code> 等嵌套路径。对单个分区的 Query 点击排序键列标题，DynamoDB 会按该顺序返回项目。",
+                "列来自项目：键、首批项目样本中的属性以及当前页面上的属性。map、list 和 set 在 JSON 编辑器中打开，数字保留所有位数，<ui>设为 NULL</ui> (Set NULL) 会删除属性，每行作为一条 PartiQL 语句保存，并拒绝覆盖并发更改。编辑器接受 PartiQL，或接受 <code>Query</code>、<code>TransactWriteItems</code> 等操作名后跟其请求 JSON；被限流的请求会退避重试。"
             ]
         },
         {
             "id": "schema",
-            "title": "表和索引",
-            "paragraphs": [
-                "<ui>新建表…</ui>（New Table…）打开分区键、排序键、按需或预置容量、表类别、删除保护和二级索引表单，<ui>预览</ui>（Preview）在发送前显示 <code>CreateTable</code> 请求。本地二级索引仅可在此创建表时定义。",
-                "Structure 标签页添加删除全局二级索引，每次保存一个修改，因为 DynamoDB 每个 <code>UpdateTable</code> 仅接受一个索引改动。这里不编辑属性：写入项目即可成为列。DDL 标签页显示重建表的 <code>CreateTable</code> 请求，含 Time to Live 和时间点恢复设置。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "表设置",
-            "paragraphs": [
-                "右击表选<ui>维护</ui>（Maintenance），设置时间点恢复、删除保护、流、表类别、切换按需容量或关闭 Time to Live。删除表发送 <code>DeleteTable</code>，删除保护开启时失败。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "DynamoDB 无导入。编辑器用 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 请求写项目，后者重发未处理项目并报告无法写入者。在 Export 对话框将表或结果<export>导出</export>为 {exportFormats}。"
+            "also": [
+                "operate"
+            ],
+            "title": "表、索引和设置",
+            "text": [
+                "<ui>新建表…</ui> (New Table…) 可设置键、容量模式、表类别、删除保护和二级索引，并预览 <code>CreateTable</code> 请求；本地二级索引只能在此定义。Structure 标签页每次保存可添加或删除一个全局二级索引，DDL 标签页显示重建该表的请求。",
+                "<ui>维护</ui> (Maintenance) 涵盖时间点恢复、删除保护、流、表类别、切换为按需容量以及关闭 Time to Live。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "在编辑器中用 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 请求写入项目，后者会重发未处理的项目。将表或结果<export>导出</export>为 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
-            "question": "如何避免读取扫描全表？",
-            "answer": "用 = 筛选分区键，或筛选全局索引分区键并为各排序键加筛选，读取即为 Query。仅投影所有属性的全局索引用于浏览；keys-only 索引请在编辑器用指定 <code>IndexName</code> 的 <code>Query</code> 请求查询。"
+            "question": "如何避免读取扫描整张表？",
+            "answer": "用 = 筛选分区键，或筛选全局索引的分区键并为其每个排序键添加筛选，读取就会以 Query 运行。keys-only 索引不用于浏览，请在编辑器中用指定其 <code>IndexName</code> 的 <code>Query</code> 请求查询。"
         },
         {
             "id": "change-key",
             "question": "如何修改项目的键？",
-            "answer": "键属性不可原地编辑。用<ui>复制行</ui>（Duplicate Row）复制键以外的所有属性，给副本新键，保存后删除原项。"
+            "answer": "使用 <ui>复制行</ui> (Duplicate Row)，它会复制键以外的所有属性；为副本设置新键并保存，然后删除原项目。"
         },
         {
             "id": "transactions",
-            "question": "网格编辑在同一事务保存吗？",
-            "answer": "不是。各修改行独立写入。必须共同成功的写入放进编辑器的 <code>ExecuteTransaction</code> 或 <code>TransactWriteItems</code> 请求。"
+            "question": "网格编辑会在同一个事务中保存吗？",
+            "answer": "不会。每个更改的行单独写入。必须一起成功的写入，请放进编辑器中的 <code>ExecuteTransaction</code> 或 <code>TransactWriteItems</code> 请求。"
         }
     ],
-    "related": [
-        {
-            "label": "各引擎的筛选",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "AWS、Google 和 Microsoft 登录",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis，键和命令",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra 和 Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

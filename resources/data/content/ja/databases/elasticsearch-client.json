@@ -11,73 +11,59 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "Elasticsearch クライアント",
-        "lead": "Query DSL リクエストを実行し、インデックスのドキュメントをグリッドで参照できます。ID を使ってドキュメントを編集します。"
+        "lead": "コンソールから Query DSL リクエストを実行し、インデックスのドキュメントをグリッドで参照して、ID で編集できます。",
+        "asset": "databases-elasticsearch"
     },
-    "asset": "mac-db-elasticsearch-console",
     "links": {
         "filters": "/features/data-editing#filters",
-        "export": "/features/import-export#export"
+        "export": "/features/import-export#export",
+        "search": "/databases#search"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "接続",
-            "paragraphs": [
+            "text": [
                 "REST のホストとポートを入力し、<ui>Auth Method</ui> で Username & Password、API Key、None を選びます。API キーは Elasticsearch の <code>encoded</code> 値を使います。各接続は一つのクラスターに接続します。",
-                "新しい接続の SSL Disabled は平文 HTTP です。それ以外は HTTPS で、Preferred と Required (skip verify) は自己署名証明書を許可し、Verify CA と Verify Identity は検証します。Elasticsearch 8.x は既定でセキュリティと TLS が有効なので、通常 HTTPS と認証情報が必要です。"
+                "新しい接続は SSL Disabled（平文 HTTP）で始まり、それ以外のモードはすべて HTTPS を使います。Preferred と Required (skip verify) は自己署名証明書を受け入れ、Verify CA と Verify Identity は証明書を検証します。Elasticsearch 8.x は既定でセキュリティと TLS が有効なので、8.x のクラスターには通常 HTTPS と認証情報が必要です。"
             ]
         },
         {
             "id": "work",
             "title": "インデックスと Query DSL コンソール",
-            "paragraphs": [
-                "<code>GET /orders/_search</code> のようにメソッド、パス、任意の JSON 本文を書きます。検索結果と配列レスポンスは行として、その他は整形済み JSON として表示します。<code>_sql</code> エンドポイントは使えません。",
-                "サイドバーはインデックスをテーブルとして一覧にし、ドットで始まる名前を隠します。カラムはマッピングから取り、オブジェクトは <code>address.city</code> などのドット区切りパスに展開、nested フィールドは配列の JSON カラムと各リーフのカラムを作ります。各ドキュメントには <code>_id</code>、<code>_index</code>、<code>_score</code> があります。",
-                "<filters>カラムフィルター</filters> は <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> クエリになり、Raw SQL フィルター行は <code>name:Widget</code> などの Lucene 構文を <code>query_string</code> として送ります。<code>text</code> フィールドの並べ替えはマッピングにあれば <code>.keyword</code> サブフィールドを使います。",
-                "REST 呼び出しで <code>_id</code> ごとにドキュメントを編集します。新しいドキュメントには ID を入力します。ネストした配列は JSON 列で変更します。末端の列を編集すると、リクエストを送らずに保存をブロックします。"
+            "text": [
+                "<code>GET /orders/_search</code> のように、メソッド、パス、任意の JSON 本文を書きます。検索ヒットと配列レスポンスは行として、その他のレスポンスは整形済み JSON として表示します。<code>_sql</code> エンドポイントは使えません。",
+                "サイドバーはインデックスをテーブルとして一覧表示し、ドットで始まる名前は隠します。列はマッピングから取ります。オブジェクトのフィールドは <code>address.city</code> などのドット区切りパスに展開し、nested フィールドは配列用の JSON 列一つと末端ごとの列になります。各ドキュメントには <code>_id</code>、<code>_index</code>、<code>_score</code> があります。",
+                "<filters>列フィルター</filters>は <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> クエリになり、Raw SQL フィルター行は <code>name:Widget</code> などの Lucene 構文を受け付けます。編集は <code>_id</code> ごとの REST 呼び出しで送ります。nested の配列は JSON 列で変更してください。"
+            ],
+            "notes": [
+                "TablePro は、他の検索エンジンである <search>Typesense と Weaviate</search> にも接続できます。"
             ]
         },
         {
             "id": "schema",
             "title": "マッピング",
-            "paragraphs": [
-                "TablePro のマッピングは読み取り専用です。Elasticsearch の類似操作 <code>_delete_by_query</code> は非同期でドキュメントごとに競合を報告するため Truncate はなく、コンソールから送信してください。サイドバーのインデックス削除は確認に表示した DELETE リクエストを送ります。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "エクスポート",
-            "paragraphs": [
-                "インポートはありません。<export>エクスポート</export> は point-in-time と <code>search_after</code> でインデックス全体を読み、結果ウィンドウで制限せず {exportFormats} に書き込みます。"
+            "text": [
+                "マッピングは読み取り専用です。Elasticsearch で最も近い操作である <code>_delete_by_query</code> は非同期に実行され、競合をドキュメントごとに報告するため、Truncate はありません。コンソールから送信してください。サイドバーからのインデックス削除は、確認画面に表示した DELETE リクエストを送ります。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>エクスポート</export>は point-in-time と <code>search_after</code> でインデックス全体を読むため、結果ウィンドウに制限されず、{exportFormats} で書き出します。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "deep-paging",
             "question": "結果ウィンドウを超えてページを送れますか？",
-            "answer": "はい。Elasticsearch の既定ウィンドウを超えると point-in-time の <code>search_after</code> に切り替えます。切り替えは既定値で行うため、<code>max_result_window</code> を下げたインデックスはその前にエラーになります。設定を既定値に戻してください。"
+            "answer": "はい。Elasticsearch の既定のウィンドウを超えると、point-in-time 上の <code>search_after</code> に切り替えます。切り替えは既定値で行うため、<code>max_result_window</code> を下げたインデックスはその前にエラーになります。設定を既定値に戻してください。"
         },
         {
             "id": "sort-id",
-            "question": "_id で並べ替えても行の順序が同じなのはなぜですか？",
-            "answer": "Elasticsearch は <code>_id</code> や <code>.keyword</code> サブフィールドのない <code>text</code> フィールドで並べ替えできないため、そのカラムをソートから外します。マッピングに keyword サブフィールドを追加するか、keyword フィールドで並べ替えてください。"
+            "question": "_id で並べ替えても行の順序が変わらないのはなぜですか？",
+            "answer": "Elasticsearch は <code>_id</code> や、<code>.keyword</code> サブフィールドのない <code>text</code> フィールドで並べ替えできないため、TablePro はその列をソートから外します。マッピングに keyword サブフィールドを追加するか、keyword フィールドで並べ替えてください。"
         }
     ],
-    "related": [
-        {
-            "label": "別の検索エンジン Typesense と Weaviate",
-            "href": "/databases#search"
-        },
-        {
-            "label": "安全にデータを閲覧して編集",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "SQL 以外のクエリ言語",
-            "href": "/features/querying#other-languages"
-        }
-    ]
+    "otherTools": null
 }

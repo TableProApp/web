@@ -11,82 +11,58 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Client Cloudflare D1",
-        "lead": "Parcourez les bases D1 de votre compte Cloudflare et exécutez des requêtes SQLite via l’API."
+        "lead": "Parcourez les bases D1 de votre compte Cloudflare et exécutez des requêtes SQLite via l’API de Cloudflare.",
+        "asset": "databases-cloudflare-d1"
     },
-    "asset": "mac-db-d1-databases",
     "links": {
         "explain": "/features/querying#explain",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "credentials": "/features/connections#credentials",
         "sqlite": "/sqlite-client"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connectez-vous avec un jeton API",
-            "paragraphs": [
-                "Saisissez le nom D1, l’UUID, l’identifiant du compte et le <ui>Jeton API</ui> (API Token). Le token reste dans le <credentials>trousseau macOS</credentials>. La connexion utilise HTTPS, sans hôte, port, réglages TLS ni SSH.",
-                "Le token doit avoir le droit <ui>Account > D1 > Edit</ui>. Copiez-le tant qu’il est visible. Il donne accès à toutes les bases D1 du compte, pas seulement à celle choisie.",
-                "L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
+            "text": [
+                "Saisissez le nom ou l’UUID d’une base D1, l’identifiant de votre compte Cloudflare et un <ui>Jeton API</ui> (API Token), qui reste dans le <credentials>trousseau macOS</credentials>. Les requêtes utilisent HTTPS : il n’y a donc ni hôte, ni port, ni réglage TLS, ni tunnel SSH.",
+                "Créez le jeton avec le droit <ui>Account > D1 > Edit</ui> et copiez-le tant qu’il est affiché. Il donne accès à toutes les bases D1 du compte, pas seulement à celle que vous choisissez. L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
             ]
         },
         {
             "id": "work",
             "title": "Changez de base et interrogez",
-            "paragraphs": [
-                "Changez de base D1 sans reconnexion. Le sélecteur permet de créer et supprimer des bases. Les onglets gardent leur base initiale.",
-                "Les requêtes utilisent le dialecte SQLite. <explain>EXPLAIN QUERY PLAN</explain> est représenté en diagramme et les modifications de lignes attendent dans la grille jusqu’à l’enregistrement ; <editing>Preview SQL</editing> montre d’abord les instructions.",
-                "Écrivez chaque instruction pour qu’elle soit autonome : un réglage <code>PRAGMA</code> ou une table temporaire créés par une instruction disparaissent à la suivante, et chaque instruction est validée à son exécution, sans possibilité d’annulation. Lorsque Cloudflare limite le débit d’une requête, l’erreur indique l’attente demandée avant une nouvelle tentative."
+            "text": [
+                "Passez d’une base D1 du compte à l’autre sans reconnexion ; le sélecteur crée et supprime aussi des bases, et les onglets ouverts gardent leur base initiale. Les requêtes utilisent le dialecte de <sqlite>SQLite</sqlite>, et <explain>EXPLAIN QUERY PLAN</explain> est représenté en diagramme.",
+                "Écrivez chaque instruction pour qu’elle soit autonome : un réglage <code>PRAGMA</code> ou une table temporaire créés par une instruction ont disparu à la suivante, et chaque instruction est validée à son exécution, sans rien à annuler. Lorsque Cloudflare limite le débit d’une requête, l’erreur indique l’attente demandée avant une nouvelle tentative."
             ]
         },
         {
             "id": "schema",
             "title": "Tables, index et déclencheurs",
-            "paragraphs": [
-                "L’<structure>onglet Structure</structure> crée et supprime des tables, ajoute et supprime des colonnes, crée et supprime des index, y compris partiels avec condition WHERE ; Preview SQL montre le DDL avant l’enregistrement. L’onglet Déclencheurs crée, modifie et supprime les déclencheurs, et les tables se renomment depuis la barre latérale.",
-                "Réordonner les colonnes ou changer une clé étrangère nécessite de reconstruire la table. Sur D1, TablePro écrit le script de reconstruction et vous le remet pour exécution, car chaque instruction est une requête distincte et aucune transaction ne peut englober toute la reconstruction."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "TablePro ne propose pas d’import pour D1. Chargez un fichier SQL avec <code>wrangler d1 execute</code> et son option <code>--file</code>, puis parcourez le résultat ici. <export>Exporter</export> écrit une table D1 ou un résultat de requête en {exportFormats}."
+            "text": [
+                "L’<structure>onglet Structure</structure> crée et supprime des tables, ajoute et supprime des colonnes, et crée et supprime des index, y compris des index partiels avec une condition WHERE. L’onglet Déclencheurs crée, modifie et supprime les déclencheurs, et les tables se renomment depuis la barre latérale.",
+                "Réordonner les colonnes ou changer une clé étrangère implique de reconstruire la table. TablePro écrit ce script de reconstruction et vous le remet pour que vous l’exécutiez, car chaque instruction est une requête distincte et aucune transaction ne peut englober toute la reconstruction."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exportez</export> une table D1 ou un résultat de requête en {exportFormats}. Pour charger un fichier SQL, exécutez <code>wrangler d1 execute</code> avec son option <code>--file</code>, puis parcourez le résultat ici."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "sessions",
-            "question": "TablePro utilise-t-il l’API Sessions de D1 ?",
-            "answer": "Non. Chaque instruction part comme une requête distincte, sans session ni marqueur ; rien ne persiste donc d’une instruction à l’autre, dans un onglet ou entre onglets."
+            "question": "TablePro utilise-t-il l’API Sessions de D1 ?",
+            "answer": "Non. Chaque instruction part comme une requête distincte, sans session ni marqueur ; rien ne persiste donc d’une instruction à l’autre, dans un onglet ou entre onglets."
         },
         {
             "id": "wrangler",
-            "question": "Dois-je installer Wrangler ?",
-            "answer": "Pas pour parcourir, interroger ou modifier : TablePro communique directement avec l’API Cloudflare. Wrangler n’est nécessaire que pour charger un fichier SQL, puisque TablePro ne propose pas d’import pour D1."
+            "question": "Dois-je installer Wrangler ?",
+            "answer": "Pas pour parcourir, interroger ou modifier : TablePro communique directement avec l’API de Cloudflare. Wrangler n’est nécessaire que pour charger un fichier SQL."
         }
     ],
-    "related": [
-        {
-            "label": "SQLite, le dialecte de D1",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "Turso et libSQL, SQLite via HTTP",
-            "href": "/turso-client"
-        },
-        {
-            "label": "Édition de structures et scripts de reconstruction",
-            "href": "/features/schema#structure"
-        },
-        {
-            "label": "Connexions et identifiants",
-            "href": "/features/connections"
-        }
-    ]
+    "otherTools": null
 }

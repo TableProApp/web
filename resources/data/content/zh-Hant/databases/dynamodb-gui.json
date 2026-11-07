@@ -11,96 +11,65 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "Amazon DynamoDB GUI",
-        "lead": "瀏覽項目，依鍵查詢，並查看消耗的讀取容量。編輯帶型別的值，或執行 PartiQL 請求。"
+        "lead": "瀏覽項目，依鍵讀取並查看消耗的容量，編輯帶型別的值或執行 PartiQL。",
+        "asset": "databases-dynamodb"
     },
-    "asset": "mac-db-dynamodb-planner",
     "links": {
         "cloudAuth": "/features/connections#cloud-auth",
         "permissions": "docs:/databases/dynamodb#iam-permissions",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線",
-            "paragraphs": [
-                "選擇 <ui>驗證方式</ui> (Auth Method) 和 <ui>AWS 區域</ui> (AWS Region)。可使用存取金鑰和選用工作階段權杖、AWS CLI 設定檔或 <cloudAuth>AWS IAM Identity Center</cloudAuth>。Identity Center 工作階段過期時會提示登入。",
-                "設定檔解析 <code>credential_process</code> 輔助程式和 <code>role_arn</code> 鏈，過期臨時認證資訊重新取得並重試請求一次。所有請求經 HTTPS、Signature Version 4 簽章，無 SSL 設定或 SSH 通道。中國、European Sovereign Cloud 等其他 AWS 分割區的區域自動存取自身端點，無須自訂。",
-                "DynamoDB Local 執行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，選 <ui>DynamoDB Local (no credentials)</ui>；8000 連接埠留空<ui>自訂端點</ui>（Custom Endpoint）。自訂端點僅在此 Mac 可用明文 HTTP。設定指南列出<permissions>各工作需要的 IAM 動作</permissions>。"
+            "text": [
+                "選擇 <ui>驗證方式</ui> (Auth Method) 和 <ui>AWS 區域</ui> (AWS Region)：存取金鑰搭配選用的工作階段權杖、AWS CLI 設定檔或 <cloudAuth>AWS IAM Identity Center</cloudAuth>。設定檔會解析 <code>credential_process</code> 輔助程式和 <code>role_arn</code> 鏈，所有請求都經由 HTTPS 並以 Signature Version 4 簽章，因此沒有 SSL 設定，也沒有 SSH 通道。",
+                "使用 DynamoDB Local 時，執行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code> 並選擇 <ui>DynamoDB Local (no credentials)</ui>；自訂端點只有在這台 Mac 上才能使用明文 HTTP。其他 AWS 分割區（例如中國）的區域會存取自己的端點，無須自訂。設定指南列出<permissions>各項工作需要的 IAM 動作</permissions>。"
             ]
         },
         {
             "id": "work",
             "title": "讀取、篩選與編輯項目",
-            "paragraphs": [
-                "鍵篩選使用 Query，其他篩選使用 Scan。Scan 讀取整張資料表，並依所有已讀取項目計費。狀態列顯示所選操作、傳回與掃描項目數，以及消耗的讀取容量。",
-                "支援的<filters>排序鍵篩選</filters>使用鍵條件。其他篩選在讀取後執行，不會降低費用。支援 <code>address.city</code> 和 <code>items[0].sku</code> 等巢狀路徑。",
-                "單一分割區 Query 點選排序索引鍵標頭讓 DynamoDB 依該順序傳回。其他排序在讀取包含所有符合項目時由格線完成，否則狀態列註明。下一頁從上頁結束處繼續。格線下總數是 DynamoDB 自身項目數；<ui>精確計算</ui>（Count Exactly）讀取所有符合篩選的項目，該讀取全額計費。",
-                "資料表僅宣告索引鍵，欄位來自項目：索引鍵屬性、首批項目樣本中的屬性及目前頁屬性。map、list、set 顯示 JSON 並在 JSON 編輯器開啟，數字保留所有位數。",
-                "每列作為一條 PartiQL 陳述式儲存，並<editing>保留型別</editing>。更新會對照載入時的值檢查已變更屬性，拒絕覆寫並行變更。<ui>設為 NULL</ui> (Set NULL) 會刪除該屬性。",
-                "編輯器接受名稱雙引號、字串單引號的 PartiQL，或 DynamoDB 動作名稱後跟請求 JSON，如 <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code>。其他動作名稱拒絕。項目傳回格線，其他回應顯示 JSON。節流請求延遲重試，<code>⌘.</code> 停止執行陳述式。"
+            "text": [
+                "鍵篩選以 Query 執行，其他篩選以 Scan 執行，而 Scan 會讀取整張資料表並依此計費；狀態列會顯示操作、傳回與掃描的項目數，以及消耗的讀取容量。<filters>排序鍵篩選</filters>會盡可能轉為鍵條件，也支援 <code>address.city</code> 等巢狀路徑。對單一分割區的 Query 點選排序鍵的欄位標題，DynamoDB 就會依該順序傳回項目。",
+                "欄位來自項目：鍵、在前幾個項目樣本中找到的屬性，以及目前頁面上的屬性。map、list 和 set 在 JSON 編輯器中開啟，數字保留所有位數，<ui>設為 NULL</ui> (Set NULL) 會移除屬性，每一列都以一條 PartiQL 陳述式儲存，並拒絕覆寫並行變更。編輯器接受 PartiQL，或動作名稱（例如 <code>Query</code> 或 <code>TransactWriteItems</code>）後接其請求 JSON；被節流的請求會延遲重試。"
             ]
         },
         {
             "id": "schema",
-            "title": "資料表與索引",
-            "paragraphs": [
-                "<ui>新增資料表…</ui>（New Table…）開啟分割區索引鍵、排序索引鍵、隨需或佈建容量、資料表類別、刪除保護和次要索引表單，<ui>預覽</ui>（Preview）在傳送前顯示 <code>CreateTable</code> 請求。本機次要索引僅可在此建立資料表時定義。",
-                "Structure 分頁新增刪除全域次要索引，每次儲存一個修改，因為 DynamoDB 每個 <code>UpdateTable</code> 僅接受一個索引改動。這裡不編輯屬性：寫入項目即可成為欄。DDL 分頁顯示重建資料表的 <code>CreateTable</code> 請求，含 Time to Live 和時間點復原設定。"
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "資料表設定",
-            "paragraphs": [
-                "右鍵點選資料表選<ui>維護</ui>（Maintenance），設定時間點復原、刪除保護、串流、資料表類別、切換隨需容量或關閉 Time to Live。刪除資料表傳送 <code>DeleteTable</code>，刪除保護開啟時失敗。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "DynamoDB 無匯入。編輯器用 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 請求寫入項目，後者重送未處理項目並報告無法寫入者。在 Export 對話方塊將資料表或結果<export>匯出</export>為 {exportFormats}。"
+            "also": [
+                "operate"
+            ],
+            "title": "資料表、索引與設定",
+            "text": [
+                "<ui>新增資料表…</ui> (New Table…) 可設定鍵、容量模式、資料表類別、刪除保護和次要索引，並預覽 <code>CreateTable</code> 請求；本機次要索引只能在此定義。Structure 分頁每次儲存可新增或刪除一個全域次要索引，DDL 分頁顯示重建資料表的請求。",
+                "<ui>維護</ui> (Maintenance) 涵蓋時間點復原、刪除保護、串流、資料表類別、切換為隨需容量，以及關閉 Time to Live。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "在編輯器中以 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 請求寫入項目，後者會重新傳送未處理的項目。將資料表或結果<export>匯出</export>為 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "avoid-scans",
-            "question": "如何避免讀取掃描全表？",
-            "answer": "用 = 篩選分割區索引鍵，或篩選全域索引分割區索引鍵並為各排序索引鍵加篩選，讀取即為 Query。僅投影所有屬性的全域索引用於瀏覽；keys-only 索引請在編輯器用指定 <code>IndexName</code> 的 <code>Query</code> 請求查詢。"
+            "question": "如何避免讀取時掃描整張資料表？",
+            "answer": "以 = 篩選分割區鍵，或篩選全域索引的分割區鍵並為其每個排序鍵加上篩選，讀取就會以 Query 執行。keys-only 索引不用於瀏覽，請在編輯器中以指定其 <code>IndexName</code> 的 <code>Query</code> 請求查詢。"
         },
         {
             "id": "change-key",
-            "question": "如何修改項目的索引鍵？",
-            "answer": "索引鍵屬性不可原地編輯。用<ui>複製列</ui>（Duplicate Row）複製索引鍵以外的所有屬性，給副本新索引鍵，儲存後刪除原項。"
+            "question": "如何變更項目的鍵？",
+            "answer": "使用 <ui>複製列</ui> (Duplicate Row)，它會複製鍵以外的所有屬性；為副本設定新鍵並儲存，然後刪除原項目。"
         },
         {
             "id": "transactions",
-            "question": "格線編輯在同一交易儲存嗎？",
-            "answer": "不是。各修改列獨立寫入。必須共同成功的寫入放進編輯器的 <code>ExecuteTransaction</code> 或 <code>TransactWriteItems</code> 請求。"
+            "question": "格線編輯會在同一個交易中儲存嗎？",
+            "answer": "不會。每個變更的列都會個別寫入。必須一起成功的寫入，請放進編輯器中的 <code>ExecuteTransaction</code> 或 <code>TransactWriteItems</code> 請求。"
         }
     ],
-    "related": [
-        {
-            "label": "各引擎的篩選",
-            "href": "/features/data-editing#filters"
-        },
-        {
-            "label": "AWS、Google 與 Microsoft 登入",
-            "href": "/features/connections#cloud-auth"
-        },
-        {
-            "label": "Redis，索引鍵與指令",
-            "href": "/redis-gui"
-        },
-        {
-            "label": "Cassandra 與 Amazon Keyspaces",
-            "href": "/cassandra-client"
-        }
-    ]
+    "otherTools": null
 }

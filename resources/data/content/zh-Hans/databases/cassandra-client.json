@@ -11,52 +11,38 @@
     "breadcrumb": "Cassandra 和 ScyllaDB",
     "header": {
         "title": "Cassandra 和 ScyllaDB 客户端",
-        "lead": "浏览键空间，运行 CQL，并按主键编辑行。可连接 Cassandra、ScyllaDB 或 Amazon Keyspaces。"
+        "lead": "在 Cassandra、ScyllaDB 或 Amazon Keyspaces 上浏览键空间，运行 CQL，并按主键编辑行。",
+        "asset": "databases-cassandra"
     },
-    "asset": "mac-db-cassandra-table",
     "links": {
-        "network": "/features/connections#network",
         "awsIam": "docs:/connections/aws-iam",
         "filters": "/features/data-editing#filters",
-        "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export",
         "cassandraGuide": "docs:/databases/cassandra"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入联系节点、端口和所需凭据。连接后选择键空间，或导入路径中包含键空间的 <code>cassandra://</code> 或 <code>cql://</code> URL。切换时，已有标签页保留原键空间。",
-                "新连接关闭 TLS。驱动没有机会性 TLS，因此 Preferred、Required 均加密但不验证证书。Verify CA、Verify Identity 必须有 CA 证书文件，绝不回退系统根证书。双向 TLS 添加客户端证书、密钥和密钥密码。私网集群通过 <network>SSH 隧道</network>访问。",
-                "Amazon Keyspaces 用 SigV4 而非密码登录。连接地域端点，例如 9142 端口的 <code>cassandra.us-east-1.amazonaws.com</code>，Authentication 设置为 <awsIam>AWS IAM 模式</awsIam>（访问密钥、配置或 AWS IAM Identity Center），留空用户名密码并开启 TLS，因为 Keyspaces 拒绝明文。"
+            "text": [
+                "输入联系节点、端口和所需凭据，然后选择键空间，或导入路径中包含键空间的 <code>cassandra://</code> 或 <code>cql://</code> URL；切换时，已打开的标签页保留其键空间。新连接默认关闭 TLS。由于驱动没有机会性 TLS，Preferred 和 Required 会加密但不验证证书；Verify CA 和 Verify Identity 需要 CA 证书文件，且绝不回退到系统根证书。如需双向 TLS，请添加客户端证书、其密钥和密钥密码。",
+                "Amazon Keyspaces 使用 SigV4 而非密码登录。将连接指向地域端点，例如 9142 端口上的 <code>cassandra.us-east-1.amazonaws.com</code>，选择 <awsIam>AWS IAM 模式</awsIam>，用户名和密码留空，并开启 TLS。"
             ]
         },
         {
             "id": "work",
             "title": "浏览和运行 CQL",
-            "paragraphs": [
-                "在表格中浏览 CQL 值，包括集合、用户定义类型、时长、向量和 blob。编辑器结果只读；请在从侧边栏打开的表中编辑行。",
-                "CQL 无 OFFSET，因此从首行向前分页：已显示页的 Next、Previous 各读一次，跳到远处需读取此前每页。行按令牌顺序返回，列头不重新排序，因为 CQL 仅能按单分区内聚簇列排序。打开表不计数；<ui>精确计数</ui>（Count Exactly）运行 <code>SELECT COUNT(*)</code> 读取所有分区。",
-                "<filters>筛选</filters>添加 <code>ALLOW FILTERING</code>，除非固定完整分区键，否则服务器读所有分区。包含、开头为、结尾为发送 LIKE，Cassandra 仅在有 SASI 或 SAI 索引的列接受。CQL 无法表达的不等于、is NULL 等运算符按名称拒绝；CQL 无 OR，条件仅以 AND 连接。",
-                "<editing>更改</editing>会按 CQL 类型验证，并以完整主键逐行写入。无效值会阻止保存。<ui>添加行</ui> (Add Row) 使用 <code>INSERT … IF NOT EXISTS</code>。更改键时需删除并重新插入该行。",
-                "计数器列需在 CQL 编辑器运行 <code>UPDATE … SET c = c + 1</code>，服务器拒绝网格编辑的普通 UPDATE。连接超时取自 Options；CQL 请求保持驱动自身固定超时，应用查询超时不改变它。"
+            "text": [
+                "网格显示集合、用户定义类型、时长、向量和 blob；编辑器结果只读，请在从侧边栏打开的表中编辑行。CQL 没有 OFFSET，因此从首行开始向前分页，跳到远处的页面需要读取此前的每一页。行按令牌顺序返回，点击列标题不会重新排序。<ui>精确计数</ui> (Count Exactly) 运行 <code>SELECT COUNT(*)</code>，会读取所有分区。",
+                "<filters>筛选</filters>会添加 <code>ALLOW FILTERING</code>，因此除非筛选固定了完整分区键，否则服务器会读取所有分区。包含、开头为和结尾为需要 SASI 或 SAI 索引，条件仅能以 AND 连接，因为 CQL 没有 OR。编辑会按 CQL 类型检查，并按完整主键写入；<ui>添加行</ui> (Add Row) 使用 <code>INSERT … IF NOT EXISTS</code>，更改键需删除并重新插入该行。计数器列需要在编辑器中运行 <code>UPDATE … SET c = c + 1</code>。"
             ]
         },
         {
             "id": "schema",
             "title": "键空间和表",
-            "paragraphs": [
-                "<structure>Structure 标签页</structure>列出各列 CQL 类型，将分区键和聚簇列均标为主键，并显示二级索引。可添加删除列；其他修改包括索引均在编辑器用 CQL 语句执行。",
-                "DDL 标签页从列列表重建 <code>CREATE TABLE</code>，省略 compaction 等表选项、聚簇顺序及分区键和聚簇键的区分。请在 cqlsh 用 <code>DESCRIBE TABLE</code> 读取完整定义。用户定义函数和聚合列在 Functions 下。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "TablePro 不提供 Cassandra 或 ScyllaDB 导入。将表或 CQL 结果<export>导出</export>为 {exportFormats}。"
+            "text": [
+                "<structure>Structure 标签页</structure>列出每列的 CQL 类型，将分区列和聚簇列标为主键，显示二级索引，并可添加和删除列；其他更改均需使用 CQL 语句。DDL 标签页根据列重建 <code>CREATE TABLE</code>，不含 compaction 和聚簇顺序，因此请在 cqlsh 中用 <code>DESCRIBE TABLE</code> 读取完整定义。"
             ]
         }
     ],
@@ -64,46 +50,32 @@
         {
             "engine": "scylladb",
             "title": "ScyllaDB",
-            "paragraphs": [
-                "ScyllaDB 在连接类型列表有独立条目，通过相同 CQL 原生协议使用 Cassandra 驱动，因此上述连接、浏览、编辑及限制完全适用。<code>scylladb://</code> 或 <code>scylla://</code> URL 创建 ScyllaDB 连接。",
-                "筛选栏有一个区别：ScyllaDB 在任何列接受包含、开头为、结尾为发送的 LIKE，Cassandra 则需 SASI 或 SAI 索引。ScyllaDB 按 <cassandraGuide>Cassandra 设置指南</cassandraGuide>配置。"
+            "text": [
+                "ScyllaDB 有自己的连接类型，通过相同的 CQL 原生协议使用 Cassandra 驱动，因此上述连接、浏览、编辑和 Cassandra 的限制同样适用。<code>scylladb://</code> 或 <code>scylla://</code> URL 会创建 ScyllaDB 连接。",
+                "筛选栏有一个区别：ScyllaDB 在任何列上都接受包含、开头为和结尾为，而 Cassandra 需要 SASI 或 SAI 索引。请按 <cassandraGuide>Cassandra 设置指南</cassandraGuide>进行配置。"
             ]
         }
     ],
-    "otherTools": null,
+    "moveData": [
+        "将表或 CQL 结果<export>导出</export>为 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "cluster-status",
-            "question": "显示节点或环状态吗？",
-            "answer": "不显示。Cassandra、ScyllaDB 无 Server Dashboard。用 <code>nodetool status</code> 检查节点，用 TablePro 操作键空间、表和 CQL。"
+            "question": "TablePro 会显示节点或环状态吗？",
+            "answer": "不会。Cassandra 和 ScyllaDB 没有 Server Dashboard。请用 <code>nodetool status</code> 检查节点，用 TablePro 处理键空间、表和 CQL。"
         },
         {
             "id": "views-and-types",
             "question": "如何查看物化视图和用户定义类型？",
-            "answer": "侧边栏不显示，请在 CQL 编辑器查询 <code>system_schema</code> 键空间，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
+            "answer": "在 CQL 编辑器中查询 <code>system_schema</code> 键空间，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
         },
         {
             "id": "cassandra-2",
-            "question": "能连接 Cassandra 2.x 吗？",
-            "answer": "不能。驱动从 Cassandra 2.x 没有的 <code>system_schema</code> 读取结构，因此连接失败。"
+            "question": "TablePro 能连接 Cassandra 2.x 吗？",
+            "answer": "不能。驱动从 <code>system_schema</code> 读取结构，而 Cassandra 2.x 没有它，因此连接会失败。"
         }
     ],
-    "related": [
-        {
-            "label": "筛选、分页和暂存编辑",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "连接、隧道和 AWS 登录",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Amazon DynamoDB，另一种 AWS 签名引擎",
-            "href": "/dynamodb-gui"
-        },
-        {
-            "label": "支持的数据库",
-            "href": "/databases#wide-column"
-        }
-    ]
+    "otherTools": null
 }

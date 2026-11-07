@@ -11,107 +11,68 @@
     "breadcrumb": "Oracle",
     "header": {
         "title": "Oracle Database 클라이언트",
-        "lead": "Oracle Instant Client 설치 없이 SQL 및 PL/SQL을 실행하세요. 쿼리 결과와 함께 DBMS_OUTPUT을 볼 수 있습니다."
+        "lead": "Oracle Instant Client 없이 SQL과 PL/SQL을 실행하고, 결과마다 DBMS_OUTPUT을 함께 확인하세요.",
+        "asset": "databases-oracle"
     },
-    "asset": "mac-db-oracle-plsql",
     "links": {
-        "network": "/features/connections#network",
-        "parameters": "/features/querying#history",
-        "editing": "/features/data-editing#edit",
-        "safeMode": "/features/data-editing#safe-mode",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "importData": "/features/import-export#import",
-        "serverExport": "/features/import-export#backup"
+        "serverExport": "/features/import-export#backup",
+        "importData": "/features/import-export#import"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결",
-            "paragraphs": [
-                "호스트, 리스너 포트, Service Name을 입력하거나 <ui>연결 유형</ui> (Connection Type)에서 SID를 선택하세요. 암호 로그인은 Normal, SYSDBA, SYSOPER 역할을 지원합니다.",
-                "Native Network Encryption은 설정 없이 서버가 요청하면 SHA-2 체크섬의 AES를 제공하며 <ui>Network Encryption</ui>으로 제공 방식을 바꿉니다. TLS는 TCPS용 Required 또는 CA 인증서의 Verify CA·Verify Identity를 고릅니다. 새 연결은 SSL이 꺼져 있고 Preferred는 평문 TCP를 유지합니다.",
-                "Oracle Autonomous Database는 mTLS 대신 TLS 연결 문자열의 호스트·포트·서비스 이름을 복사하고 SSL을 Required·Verify CA로 설정합니다. 지갑 파일은 읽지 않으므로 데이터베이스가 상호 TLS 없는 TLS를 허용해야 합니다.",
-                "RAC SCAN 리스너, 공유 서버나 데이터베이스 앞 로드 밸런서는 설정이 필요 없고 사설 네트워크 리스너에는 <network>SSH 터널</network>로 접근합니다."
+            "text": [
+                "호스트, 리스너 포트, Service Name을 입력하거나 <ui>연결 유형</ui> (Connection Type)에서 SID를 선택하세요. 비밀번호 로그인은 Normal, SYSDBA, SYSOPER 역할을 지원하며, RAC SCAN 리스너, 공유 서버, 로드 밸런서는 설정이 필요 없습니다.",
+                "Native Network Encryption은 설정이 필요 없습니다. 서버가 요청하면 SHA-2 체크섬의 AES를 제공하며, <ui>Network Encryption</ui>으로 TablePro가 제공하는 방식을 바꿉니다. TLS는 TCPS용 Required나, CA 인증서와 함께 Verify CA 또는 Verify Identity를 선택하세요. 새 연결은 SSL이 꺼진 상태로 시작합니다.",
+                "Oracle Autonomous Database에서는 mTLS가 아닌 TLS 연결 문자열에서 호스트, 포트, 서비스 이름을 복사하고 SSL을 Required나 Verify CA로 설정하세요. 지갑 파일은 읽지 않습니다."
             ]
         },
         {
             "id": "work",
             "title": "SQL, PL/SQL 및 트랜잭션",
-            "paragraphs": [
-                "PL/SQL 블록과 저장 단위를 단일 구문으로 실행하세요. 스크립트의 <code>/</code> 행은 단위를 끝냅니다. 컴파일 오류에는 Oracle 메시지와 소스 위치가 표시됩니다. SQL*Plus 클라이언트 명령은 지원하지 않습니다.",
-                "<code>DBMS_OUTPUT.PUT_LINE</code> 출력은 출력한 명령문 결과와 함께 표시돼 <code>SET SERVEROUTPUT ON</code>이 필요 없습니다. 익명 블록의 <code>:name</code>은 패널에서 입력하는 <parameters>쿼리 매개변수</parameters>입니다.",
-                "각 명령문은 성공하면 커밋합니다. <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> 또는 <code>LOCK TABLE</code>로 시작하면 변경을 유지하며 그 뒤 그리드 저장까지 모두 <code>COMMIT</code>·<code>ROLLBACK</code>을 기다립니다.",
-                "각 사용자는 스키마이고 <code>⌘K</code>로 재연결 없이 활성 스키마를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 대기합니다. <code>EXECUTE IMMEDIATE</code>를 통한 경우도 drop·truncate 블록은 실행 전 <safeMode>위험한 쿼리 경고</safeMode>를 표시합니다."
+            "text": [
+                "PL/SQL 블록과 저장 단위는 단일 구문으로 실행되고, 스크립트의 <code>/</code> 행은 단위를 끝내며, 컴파일 오류에는 Oracle 메시지와 소스 위치가 표시됩니다. <code>DBMS_OUTPUT.PUT_LINE</code> 출력은 해당 명령문의 결과와 함께 표시되므로 <code>SET SERVEROUTPUT ON</code>이 필요 없습니다.",
+                "각 명령문은 성공하면 커밋합니다. <code>SET TRANSACTION</code>, <code>SAVEPOINT</code>, <code>LOCK TABLE</code>로 시작하면 그리드 저장을 포함한 변경이 <code>COMMIT</code>이나 <code>ROLLBACK</code>까지 유지됩니다. 각 사용자는 스키마이며, <code>⌘K</code>로 재연결 없이 활성 스키마를 바꿉니다."
             ]
         },
         {
             "id": "schema",
-            "title": "스키마",
-            "paragraphs": [
-                "<structure>Structure 탭</structure>에서 열 추가, 이름 변경, 수정, 삭제와 인덱스 생성을 하세요. 대소문자를 구분하는 이름은 따옴표로 감쌉니다. 기본 키, 외래 키, CREATE TABLE DDL을 확인할 수 있습니다.",
-                "파티션 테이블 아래 각 파티션과 위치를 나열하고 하위 파티션은 그 안에 표시합니다. 하나를 쿼리하려면 <code>SELECT * FROM orders PARTITION (p2024)</code>를 쓰세요.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 Oracle 스키마나 데이터를 비교합니다. 스크립트는 SQL*Plus 또는 SQLcl용 <code>/</code> 구분자를 사용합니다."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "서버에서 내보내기",
-            "paragraphs": [
-                "<serverExport>Server-Side Export</serverExport>는 본인 권한으로 서버의 <code>DIRECTORY</code> 객체에 테이블을 쓰는 Data Pump 작업을 시작합니다. Mac에는 저장하지 않습니다. 시작 보고 후에도 작업은 계속되니 <code>DBA_DATAPUMP_JOBS</code>에서 확인하세요."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "{importFormats} 파일을 <importData>가져옵니다</importData>. 데이터 파일로 새 테이블을 만들면 제안 이름은 대문자이며 Oracle 길이 제한에 맞습니다. 테이블·결과는 {exportFormats}로 내보냅니다. SQL 내보내기는 루틴·트리거마다 <code>/</code> 행을 붙여 SQL*Plus로 복원할 수 있습니다."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone과 iPad",
-            "paragraphs": [
-                "iPhone·iPad에는 Oracle 드라이버가 앱에 포함됩니다. 연결 폼은 Service Name·SID, SYSDBA·SYSOPER 역할과 Network Encryption 설정을 받습니다. 테이블을 카드로 탐색하고 기본 키가 있는 행을 편집하며 Query 탭에서 SQL을 실행합니다. 테이블 생성·변경은 Mac에서 합니다."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-table-browse"
+            "title": "스키마 및 Data Pump",
+            "text": [
+                "<structure>Structure 탭</structure>에서 열을 추가, 이름 변경, 수정, 삭제하거나 인덱스를 만드세요. 대소문자를 구분하는 이름은 따옴표로 감쌉니다. 파티션 테이블은 파티션을 나열하고 하위 파티션은 그 아래에 표시합니다. <compareSync>Compare & Sync</compareSync> ({compareSyncTier})는 Oracle 스키마나 데이터를 비교하며, SQL*Plus나 SQLcl용 <code>/</code> 구분자를 사용합니다.",
+                "<serverExport>Server-Side Export</serverExport>는 본인 권한으로 서버의 <code>DIRECTORY</code> 객체에 테이블을 쓰는 Data Pump 작업을 시작하므로 Mac에는 아무것도 저장되지 않습니다. 작업은 <code>DBA_DATAPUMP_JOBS</code>에서 확인하세요."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "{importFormats} 파일을 <importData>가져오세요</importData>. 새 테이블의 제안 이름은 대문자이며 Oracle 길이 제한에 맞습니다. 테이블이나 결과를 {exportFormats}로 내보내며, SQL 내보내기는 루틴과 트리거마다 <code>/</code> 행으로 끝나 SQL*Plus로 복원할 수 있습니다."
+    ],
+    "iphone": [
+        "Oracle 드라이버가 앱에 포함되어 있으며, 연결 양식은 Service Name이나 SID, SYSDBA와 SYSOPER 역할, Network Encryption 설정을 받습니다. 테이블을 카드로 탐색하고, 기본 키가 있는 행을 편집하고, Query 탭에서 SQL을 실행합니다."
+    ],
     "faq": [
         {
             "id": "pluggable-database",
             "question": "애플리케이션 테이블이 전혀 안 보이는 이유는 무엇인가요?",
-            "answer": "컨테이너 데이터베이스에 연결했을 가능성이 큽니다. 플러그형 데이터베이스는 <code>XE</code> 안의 <code>XEPDB1</code>처럼 별도 서비스 이름이 있습니다. 서버에서 <code>lsnrctl services</code>로 리스너가 응답하는 이름을 나열하세요."
+            "answer": "컨테이너 데이터베이스에 연결했을 가능성이 큽니다. 플러그형 데이터베이스는 <code>XE</code> 안의 <code>XEPDB1</code>처럼 별도 서비스 이름이 있습니다. 서버에서 <code>lsnrctl services</code>를 실행하면 리스너가 응답하는 이름이 나열됩니다."
         },
         {
             "id": "sqlplus-commands",
             "question": "SET SERVEROUTPUT ON이 실패하는 이유는 무엇인가요?",
-            "answer": "<code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code>, <code>EXEC</code> 같은 SQL*Plus 명령은 SQL이 아니므로 서버가 거부합니다. 연결 순간부터 출력이 켜지니 삭제하세요. <code>EXEC p</code>는 <code>BEGIN p; END;</code>로 쓰세요."
+            "answer": "<code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code>, <code>EXEC</code> 같은 SQL*Plus 명령은 SQL이 아니므로 서버가 거부합니다. 연결 순간부터 출력이 켜져 있으니 삭제하고, <code>EXEC p</code>는 <code>BEGIN p; END;</code>로 쓰세요."
         },
         {
             "id": "password-verifier",
-            "question": "이전 10G 비밀번호 검증자를 가진 계정도 연결하나요?",
-            "answer": "네. 다만 사용하는 DES 기반 해시는 Oracle에서 사용 중단 권고했습니다. <code>ALTER USER … IDENTIFIED BY</code>로 비밀번호를 바꾸고 <code>dba_users</code>의 <code>password_versions</code>에 11G·12C가 있는지 확인하세요."
+            "question": "이전 10G 비밀번호 검증자를 가진 계정도 연결되나요?",
+            "answer": "네. 다만 이 계정이 쓰는 DES 기반 해시는 Oracle에서 사용 중단되었습니다. <code>ALTER USER … IDENTIFIED BY</code>로 비밀번호를 바꾼 뒤 <code>dba_users</code>의 <code>password_versions</code>에 11G나 12C가 있는지 확인하세요."
         }
     ],
-    "related": [
-        {
-            "label": "쿼리 작성, 실행 및 이해",
-            "href": "/features/querying"
-        },
-        {
-            "label": "백업 및 서버 측 내보내기",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "스키마, 비교 및 동기화",
-            "href": "/features/schema"
-        },
-        {
-            "label": "iPhone 및 iPad용 TablePro",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

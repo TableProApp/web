@@ -11,69 +11,50 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Beancount 客户端",
-        "lead": "将账本作为 SQL 表查询，或通过 rledger 使用 BQL。源账本在您自己的文本编辑器中编辑。"
+        "lead": "将账本作为只读 SQL 表查询，或通过 rledger 使用 BQL 查询，并在您自己的文本编辑器中编辑账本。",
+        "asset": "databases-beancount"
     },
-    "asset": "mac-db-beancount-bql",
     "links": {
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export",
         "files": "/features/import-export#files"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "打开账本",
-            "paragraphs": [
-                "安装 <code>rledger</code> 或 Python Beancount。两者均可用时优先使用 rledger；只有 rledger 支持 BQL 和 <code>diagnostics</code> 中的验证输出。",
-                "通过 <ui>浏览…</ui> (Browse…) 选择账本，或从 Finder 打开 <code>.beancount</code> 文件。连接只需文件路径，也可导入 <code>beancount:///path/to/main.beancount</code> URL。",
-                "从 Finder 打开的应用不继承 shell 的 <code>PATH</code>。若后端在 Terminal 可运行但在此不可用，请用 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 或 <code>TABLEPRO_BEANCOUNT_PYTHON</code> 指定并重启。",
-                "Python 后端运行 Beancount 附带插件，其他 <code>plugin</code> 指令属于第三方代码，在连接中启用<ui>运行账本插件</ui>（Run Ledger Plugins）前会跳过。跳过的插件列在 <code>diagnostics</code>。"
+            "text": [
+                "安装 <code>rledger</code> 或 Python Beancount。两者都有时优先使用 rledger，且只有 rledger 支持 BQL 和 <code>diagnostics</code> 中的验证输出。",
+                "通过 <ui>浏览…</ui> (Browse…) 选择账本，或从 Finder 打开 <code>.beancount</code> 文件：路径就是连接的全部内容，也可导入 <code>beancount:///path/to/main.beancount</code> URL。从 Finder 打开的应用不会继承您 shell 的 <code>PATH</code>，因此如果后端在 Terminal 中能运行，在这里却不能，请用 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 或 <code>TABLEPRO_BEANCOUNT_PYTHON</code> 指定它，然后重新启动应用。",
+                "Python 后端会运行 Beancount 附带的插件，并跳过其他 <code>plugin</code> 指令（它们属于第三方代码），直到您为该连接开启 <ui>运行账本插件</ui> (Run Ledger Plugins)。跳过的插件会列在 <code>diagnostics</code> 中。"
             ]
         },
         {
             "id": "work",
             "title": "查询账本",
-            "paragraphs": [
-                "将交易、分录、账户、余额、价格、指令、元数据和源文件作为表查询。按 <code>transaction_id</code> 连接分录与交易，按名称连接账户。",
-                "金额已完成记账、算术、成本和价格解析，分录成本和行内价格有独立列。交易、分录及若干指令表含 <code>source_location</code>，例如 <code>main.beancount:42</code>，可从记录追溯源文件行。",
-                "查询前加 <code>BQL:</code> 将其发送给 rledger 而非表。BQL 结果支持浏览、行数和分页，不支持 SQL 参数。",
-                "<code>include</code> 支持具体路径和 glob，所有账本文件及引用文档均被监控。在编辑器保存后，下次查询无需重连即可读取。连接始终处于 <safeMode>Safe Mode</safeMode> Read-Only，拒绝 INSERT、UPDATE、DELETE 和结构修改。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "表或查询结果可导出为 {exportFormats}。<files>TablePro 可作为数据库打开的其他文件</files>包括 SQLite、DuckDB 和 Parquet。"
+            "text": [
+                "交易、分录、账户、余额、价格、指令、元数据和源文件都是表：按 <code>transaction_id</code> 联接分录与交易，按名称联接账户。金额以记账后的形式返回，算术、成本和价格均已解析，分录成本和行内价格有各自的列。",
+                "交易、分录和若干指令表带有 <code>source_location</code>，例如 <code>main.beancount:42</code>，因此每行都能追溯到其源文件行。在查询前加上 <code>BQL:</code> 即可将其发送给 rledger；结果支持浏览、行数和分页，但不支持 SQL 参数。",
+                "<code>include</code> 指令会被跟随，具体路径和 glob 均可，所有账本文件和引用的文档都会被监控，因此下次查询无需重新连接即可读取已保存的更改。连接始终处于 <safeMode>Safe Mode</safeMode> Read-Only：INSERT、UPDATE、DELETE 和结构更改都会被拒绝。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "将表或查询结果<export>导出</export>为 {exportFormats}。<files>TablePro 可作为数据库打开的其他文件</files>包括 SQLite、DuckDB 和 Parquet。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "errors",
             "question": "有错误的账本还能打开吗？",
-            "answer": "通过 rledger 可以。验证失败时仍映射账本，每个问题作为 <code>diagnostics</code> 中的一行，含文件、行号、严重程度和消息。"
+            "answer": "通过 rledger 可以。即使验证失败，账本仍会映射为表，每个问题都是 <code>diagnostics</code> 中的一行，包含文件、行号、严重程度和消息。"
         },
         {
             "id": "several-ledgers",
             "question": "一个连接能打开多个账本吗？",
-            "answer": "一个连接对应一个账本文件，无法切换。主文件若 include 其他文件，会全部加载，也支持 glob。"
+            "answer": "一个连接对应一个账本文件，无法切换。如果主文件 include 了其他文件，它们会全部加载，glob 也包括在内。"
         }
     ],
-    "related": [
-        {
-            "label": "用于分析文件的 DuckDB",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "SQLite，单文件数据库",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "导入、导出和数据文件",
-            "href": "/features/import-export"
-        }
-    ]
+    "otherTools": null
 }

@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "ja": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "ja": "shop 上の PostgreSQL 接続。orders と users を結合するクエリと、その EXPLAIN ANALYZE プランの図。"
         }
     },
     "databases-mysql": {
         "description": {
-            "ja": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "ja": "shop 上の MySQL 接続。orders と users を結合するクエリと、グリッドに表示されたその結果。"
         }
     },
     "databases-sqlserver": {
         "description": {
-            "ja": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "ja": "SQL Server 接続。GO バッチに分割した T-SQL スクリプトと、Output タブの PRINT 出力。"
         }
     },
     "databases-sqlite": {
         "description": {
-            "ja": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "ja": "同梱の Chinook SQLite サンプル。Track テーブルをジャンルで絞り込んだ状態。"
         }
     },
     "databases-mongodb": {
         "description": {
-            "ja": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "ja": "MongoDB 接続。グリッドに表示した events コレクションと、Extended JSON で開いた Insert Document シート。"
         }
     },
     "databases-redis": {
         "description": {
-            "ja": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "ja": "Redis 接続。\":\" で分割したキーツリーと、Key、Type、TTL、Length、Value 列。"
         }
     },
     "databases-redshift": {
         "description": {
-            "ja": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "ja": "Amazon Redshift 接続。DISTKEY と SORTKEY を含むテーブルの DDL。"
         }
     },
     "databases-oracle": {
         "description": {
-            "ja": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "ja": "Oracle 接続。エディターの PL/SQL ブロックと、結果の下に表示された DBMS_OUTPUT の行。"
         }
     },
     "databases-clickhouse": {
         "description": {
-            "ja": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "ja": "ClickHouse 接続。MergeTree テーブルの Parts タブと、パーティション、パーツ、行数。"
         }
     },
     "databases-duckdb": {
         "description": {
-            "ja": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "ja": "Parquet ファイルをビューとして開き、SQL でクエリしている DuckDB データベース。"
         }
     },
     "databases-cassandra": {
         "description": {
-            "ja": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "ja": "Cassandra のキースペース。グリッドのテーブルに保留中のスカラーセルの変更があり、set 列がコレクションとして表示されています。"
         }
     },
     "databases-dynamodb": {
         "description": {
-            "ja": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "ja": "DynamoDB テーブル。インデックスに対する Query として実行した絞り込み読み取りと、ステータスバーに表示された消費読み取りキャパシティ。"
         }
     },
     "databases-bigquery": {
         "description": {
-            "ja": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "ja": "BigQuery 接続。Explain メニューの Dry Run と、クエリが処理するバイト数と推定費用。"
         }
     },
     "databases-snowflake": {
         "description": {
-            "ja": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "ja": "Session Context でウェアハウスとロールを設定した Snowflake 接続と、その下のクエリ結果。"
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "ja": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "ja": "Cloudflare D1 接続。クエリタブの上に、アカウントの D1 データベースを一覧表示した切り替えメニュー。"
         }
     },
     "databases-turso": {
         "description": {
-            "ja": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "ja": "リモートの Turso データベース。サイドバーのテーブルと、グリッドのクエリ結果。"
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "ja": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "ja": "Elasticsearch の Query DSL コンソール。GET _search リクエストと、行として表示したそのヒット。"
         }
     },
     "databases-etcd": {
         "description": {
-            "ja": "An etcd connection: keys under a prefix root, with their values and leases."
+            "ja": "etcd 接続。プレフィックスルート配下のキーと、その値とリース。"
         }
     },
     "databases-kafka": {
         "description": {
-            "ja": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "ja": "Kafka 接続。orders トピックに対する KafkaQL の CONSUME と、パーティション、オフセット、キー、タイムスタンプ別のメッセージ。"
         }
     },
     "databases-surrealdb": {
         "description": {
-            "ja": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "ja": "SurrealDB 接続。SurrealQL クエリと、それが返したレコードのグリッド。"
         }
     },
     "databases-teradata": {
         "description": {
-            "ja": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "ja": "Teradata 接続。ストアドプロシージャーと Functions 配下のマクロを一覧表示したサイドバーと、クエリ結果。"
         }
     },
     "databases-trino": {
         "description": {
-            "ja": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "ja": "Trino 接続。二つのカタログのテーブルを結合するクエリと、その下の結果。"
         }
     },
     "databases-beancount": {
         "description": {
-            "ja": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "ja": "Beancount の台帳。サイドバーに表示したテーブルと、BQL クエリの結果。"
         }
     },
     "ios-connection-list": {

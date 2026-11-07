@@ -11,84 +11,62 @@
     "breadcrumb": "Oracle",
     "header": {
         "title": "Cliente de Oracle Database",
-        "lead": "Execute SQL e PL/SQL sem instalar Oracle Instant Client. Leia DBMS_OUTPUT junto aos resultados das consultas."
+        "lead": "Execute SQL e PL/SQL sem o Oracle Instant Client e leia o DBMS_OUTPUT ao lado de cada resultado.",
+        "asset": "databases-oracle"
     },
-    "asset": "mac-db-oracle-plsql",
     "links": {
-        "network": "/features/connections#network",
-        "parameters": "/features/querying#history",
-        "editing": "/features/data-editing#edit",
-        "safeMode": "/features/data-editing#safe-mode",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "importData": "/features/import-export#import",
-        "serverExport": "/features/import-export#backup"
+        "serverExport": "/features/import-export#backup",
+        "importData": "/features/import-export#import"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecte-se",
-            "paragraphs": [
-                "Insira um host, uma porta listener e um nome de serviço ou escolha SID em <ui>Connection Type</ui>. O login com senha oferece suporte às funções Normal, SYSDBA e SYSOPER.",
-                "Native Network Encryption não exige configuração: quando o servidor a solicita, são oferecidos AES com uma soma de verificação SHA-2, e <ui>Network Encryption</ui> altera o que TablePro oferece. Para TLS, escolha Required para TCPS, ou Verify CA ou Verify Identity com um certificado CA. Novas conexões começam com SSL desativado, e Preferred permanece em TCP sem criptografia.",
-                "No Oracle Autonomous Database, copie host, porta e nome do serviço da string de conexão TLS, não da mTLS, e defina SSL como Required ou Verify CA. Arquivos wallet nunca são lidos, portanto o banco precisa aceitar TLS sem TLS mútuo.",
-                "Um listener RAC SCAN, servidor compartilhado ou balanceador de carga à frente do banco não exige configuração, e um <network>túnel SSH</network> acessa um listener em rede privada."
+            "text": [
+                "Informe host, porta do listener e Service Name, ou escolha SID em <ui>Connection Type</ui>. O login com senha aceita as funções Normal, SYSDBA e SYSOPER, e um listener RAC SCAN, um servidor compartilhado ou um balanceador de carga não exigem configuração.",
+                "O Native Network Encryption não exige configuração: quando o servidor o solicita, o TablePro oferece AES com soma de verificação SHA-2, e <ui>Network Encryption</ui> muda o que é oferecido. Para TLS, escolha Required para TCPS, ou Verify CA ou Verify Identity com um certificado CA; novas conexões começam com SSL desativado.",
+                "No Oracle Autonomous Database, copie host, porta e nome do serviço da string de conexão TLS, não da mTLS, e defina SSL como Required ou Verify CA. Arquivos wallet nunca são lidos."
             ]
         },
         {
             "id": "work",
             "title": "SQL, PL/SQL e transações",
-            "paragraphs": [
-                "Execute blocos PL/SQL e unidades armazenadas como instruções únicas. Uma linha <code>/</code> encerra uma unidade em scripts. Erros de compilação incluem mensagens e posições de origem de Oracle. SQL *Os comandos do cliente Plus não são suportados.",
-                "As linhas de <code>DBMS_OUTPUT.PUT_LINE</code> aparecem junto ao resultado da instrução que as imprimiu, sem precisar de <code>SET SERVEROUTPUT ON</code>. Em um bloco anônimo, <code>:name</code> é um <parameters>parâmetro de consulta</parameters> preenchido em um painel.",
-                "Cada instrução é confirmada quando tem sucesso. Comece com <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> para manter alterações pendentes, e tudo depois aguarda seu <code>COMMIT</code> ou <code>ROLLBACK</code>, inclusive salvamentos na grade.",
-                "Cada usuário é um esquema, e <code>⌘K</code> alterna o esquema ativo sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>. Um bloco que exclui ou trunca, mesmo por <code>EXECUTE IMMEDIATE</code>, aciona o <safeMode>aviso de consulta perigosa</safeMode> antes de executar."
+            "text": [
+                "Blocos PL/SQL e unidades armazenadas rodam como instruções únicas, uma linha <code>/</code> encerra uma unidade em um script, e os erros de compilação trazem as mensagens e as posições no código-fonte do Oracle. As linhas de <code>DBMS_OUTPUT.PUT_LINE</code> aparecem junto ao resultado da instrução que as imprimiu, sem <code>SET SERVEROUTPUT ON</code>.",
+                "Cada instrução é confirmada quando tem sucesso. Comece com <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> para manter as alterações pendentes, inclusive os salvamentos na grade, até o seu <code>COMMIT</code> ou <code>ROLLBACK</code>. Cada usuário é um esquema, e <code>⌘K</code> alterna o esquema ativo sem reconectar."
             ]
         },
         {
             "id": "schema",
-            "title": "Esquema",
-            "paragraphs": [
-                "Adicione, renomeie, modifique e elimine colunas ou crie índices na guia <structure>Structure</structure>. Os nomes são citados quando diferenciam maiúsculas de minúsculas. Inspecione chaves primárias, chaves estrangeiras e CREATE TABLE DDL.",
-                "Uma tabela particionada lista suas partições abaixo dela, cada uma com sua posição, e subpartições ficam dentro da partição. Consulte uma com <code>SELECT * FROM orders PARTITION (p2024)</code>.",
-                "<compareSync>Compare & Sync</compareSync> ( {compareSyncTier} ) compara esquemas ou dados Oracle. Os scripts usam separadores <code>/</code> para SQL*Plus ou SQLcl."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Exporte no servidor",
-            "paragraphs": [
-                "<serverExport>Server-Side Export</serverExport> inicia um job Data Pump que grava uma tabela em um objeto <code>DIRECTORY</code> no servidor, com seus próprios privilégios. Nada é gravado no Mac. O job continua executando depois que a tela informa seu início; acompanhe-o em <code>DBA_DATAPUMP_JOBS</code>."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Mova dados",
-            "paragraphs": [
-                "<importData>Importe</importData> arquivos {importFormats}; quando um arquivo de dados cria uma nova tabela, o nome proposto usa maiúsculas e respeita o limite de tamanho de Oracle. Exporte tabelas ou resultados como {exportFormats}. Uma exportação SQL acrescenta uma linha <code>/</code> após cada rotina e trigger, permitindo restaurar com SQL*Plus."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone e iPad",
-            "paragraphs": [
-                "No iPhone e iPad, o driver Oracle faz parte do app. O formulário aceita Service Name ou SID, as funções SYSDBA e SYSOPER e a configuração Network Encryption. Navegue por tabelas como cartões, edite linhas com chave primária e execute SQL na aba Query; criar ou alterar tabelas continua sendo feito no Mac."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-table-browse"
+            "title": "Esquema e Data Pump",
+            "text": [
+                "Adicione, renomeie, modifique e remova colunas ou crie índices na <structure>aba Structure</structure>, com aspas nos nomes que diferenciam maiúsculas de minúsculas. Tabelas particionadas listam suas partições, e as subpartições ficam dentro delas. O <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) compara esquemas ou dados Oracle e escreve separadores <code>/</code> para SQL*Plus ou SQLcl.",
+                "O <serverExport>Server-Side Export</serverExport> inicia um job Data Pump que grava uma tabela em um objeto <code>DIRECTORY</code> no servidor, com os seus próprios privilégios, então nada chega ao seu Mac. Acompanhe o job em <code>DBA_DATAPUMP_JOBS</code>."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importe</importData> arquivos {importFormats}; o nome proposto para uma nova tabela fica em maiúsculas e respeita o limite de tamanho do Oracle. Exporte tabelas ou resultados como {exportFormats}; uma exportação SQL encerra cada rotina e trigger com uma linha <code>/</code>, para que o SQL*Plus possa restaurá-la."
+    ],
+    "iphone": [
+        "O driver Oracle faz parte do app, e o formulário aceita Service Name ou SID, as funções SYSDBA e SYSOPER e a configuração Network Encryption. Navegue pelas tabelas como cartões, edite linhas que têm chave primária e execute SQL na aba Query."
+    ],
     "faq": [
         {
             "id": "pluggable-database",
             "question": "Por que não vejo nenhuma tabela do meu aplicativo?",
-            "answer": "Você provavelmente se conectou ao banco contêiner. Um banco conectável tem seu próprio nome de serviço, como <code>XEPDB1</code> dentro de <code>XE</code>. Execute <code>lsnrctl services</code> no servidor para listar os nomes atendidos pelo listener."
+            "answer": "Provavelmente você se conectou ao banco de dados contêiner. Um pluggable database tem o próprio nome de serviço, como <code>XEPDB1</code> dentro de <code>XE</code>; <code>lsnrctl services</code> no servidor lista os nomes que o listener atende."
         },
         {
             "id": "sqlplus-commands",
             "question": "Por que SET SERVEROUTPUT ON falha?",
-            "answer": "Comandos SQL*Plus como <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> e <code>EXEC</code> não são SQL, portanto o servidor os recusa. Remova-os: a saída está ativa desde a conexão. Escreva <code>EXEC p</code> como <code>BEGIN p; END;</code>."
+            "answer": "Comandos do SQL*Plus como <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> e <code>EXEC</code> não são SQL, então o servidor os recusa. Apague-os, já que a saída fica ativa desde a conexão, e escreva <code>EXEC p</code> como <code>BEGIN p; END;</code>."
         },
         {
             "id": "password-verifier",
@@ -96,22 +74,5 @@
             "answer": "Sim, embora Oracle tenha descontinuado o hash baseado em DES usado por ele. Altere a senha com <code>ALTER USER … IDENTIFIED BY</code> e confira se <code>password_versions</code> em <code>dba_users</code> passa a incluir 11G ou 12C."
         }
     ],
-    "related": [
-        {
-            "label": "Escreva, execute e entenda consultas",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Backups e exportação no servidor",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Esquema, comparação e sincronização",
-            "href": "/features/schema"
-        },
-        {
-            "label": "TablePro para iPhone e iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

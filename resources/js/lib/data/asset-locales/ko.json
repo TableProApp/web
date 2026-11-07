@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "ko": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "ko": "shop의 PostgreSQL 연결. orders와 users를 조인하는 쿼리와 다이어그램으로 그린 EXPLAIN ANALYZE 계획입니다."
         }
     },
     "databases-mysql": {
         "description": {
-            "ko": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "ko": "shop의 MySQL 연결. orders와 users를 조인하는 쿼리와 그리드의 결과입니다."
         }
     },
     "databases-sqlserver": {
         "description": {
-            "ko": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "ko": "SQL Server 연결. GO 배치로 나뉜 T-SQL 스크립트와 Output 탭의 PRINT 출력입니다."
         }
     },
     "databases-sqlite": {
         "description": {
-            "ko": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "ko": "앱에 포함된 Chinook SQLite 샘플. 장르로 필터링한 Track 테이블입니다."
         }
     },
     "databases-mongodb": {
         "description": {
-            "ko": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "ko": "MongoDB 연결. 그리드의 events 컬렉션과 Extended JSON으로 열린 Insert Document 시트입니다."
         }
     },
     "databases-redis": {
         "description": {
-            "ko": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "ko": "Redis 연결. \":\"로 나눈 키 트리와 Key, Type, TTL, Length, Value 열입니다."
         }
     },
     "databases-redshift": {
         "description": {
-            "ko": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "ko": "Amazon Redshift 연결. DISTKEY와 SORTKEY가 포함된 테이블 DDL입니다."
         }
     },
     "databases-oracle": {
         "description": {
-            "ko": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "ko": "Oracle 연결. 편집기의 PL/SQL 블록과 결과 아래의 DBMS_OUTPUT 줄입니다."
         }
     },
     "databases-clickhouse": {
         "description": {
-            "ko": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "ko": "ClickHouse 연결. MergeTree 테이블의 Parts 탭과 파티션, 파트, 행 수입니다."
         }
     },
     "databases-duckdb": {
         "description": {
-            "ko": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "ko": "뷰로 연 Parquet 파일을 SQL로 조회하는 DuckDB 데이터베이스입니다."
         }
     },
     "databases-cassandra": {
         "description": {
-            "ko": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "ko": "Cassandra 키스페이스. 그리드의 테이블과 대기 중인 스칼라 셀 변경, 컬렉션으로 표시된 set 열입니다."
         }
     },
     "databases-dynamodb": {
         "description": {
-            "ko": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "ko": "DynamoDB 테이블. 인덱스에 대한 Query로 실행된 필터링 읽기와 상태 표시줄의 소비된 읽기 용량입니다."
         }
     },
     "databases-bigquery": {
         "description": {
-            "ko": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "ko": "BigQuery 연결. Explain 메뉴의 Dry Run과 쿼리가 처리할 바이트, 예상 비용입니다."
         }
     },
     "databases-snowflake": {
         "description": {
-            "ko": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "ko": "Session Context에서 웨어하우스와 역할을 설정한 Snowflake 연결과 그 아래의 쿼리 결과입니다."
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "ko": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "ko": "Cloudflare D1 연결. 쿼리 탭 위에서 계정의 D1 데이터베이스를 나열하는 데이터베이스 전환 메뉴입니다."
         }
     },
     "databases-turso": {
         "description": {
-            "ko": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "ko": "원격 Turso 데이터베이스. 사이드바의 테이블과 그리드의 쿼리 결과입니다."
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "ko": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "ko": "Elasticsearch Query DSL 콘솔. GET _search 요청과 행으로 표시된 검색 결과입니다."
         }
     },
     "databases-etcd": {
         "description": {
-            "ko": "An etcd connection: keys under a prefix root, with their values and leases."
+            "ko": "etcd 연결. 접두사 루트 아래의 키와 그 값, 리스입니다."
         }
     },
     "databases-kafka": {
         "description": {
-            "ko": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "ko": "Kafka 연결. orders 토픽에 대한 KafkaQL CONSUME과 파티션, 오프셋, 키, 타임스탬프별 메시지입니다."
         }
     },
     "databases-surrealdb": {
         "description": {
-            "ko": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "ko": "SurrealDB 연결. SurrealQL 쿼리와 그리드에 반환된 레코드입니다."
         }
     },
     "databases-teradata": {
         "description": {
-            "ko": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "ko": "Teradata 연결. 저장 프로시저와 Functions 아래의 매크로를 나열하는 사이드바, 쿼리 결과입니다."
         }
     },
     "databases-trino": {
         "description": {
-            "ko": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "ko": "Trino 연결. 두 카탈로그의 테이블을 조인하는 쿼리와 그 아래의 결과입니다."
         }
     },
     "databases-beancount": {
         "description": {
-            "ko": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "ko": "Beancount 원장. 사이드바에 표시된 원장의 테이블과 BQL 쿼리 결과입니다."
         }
     },
     "ios-connection-list": {

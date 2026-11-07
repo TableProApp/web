@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "es": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "es": "Una conexión PostgreSQL en shop: una consulta que une orders y users, con su plan EXPLAIN ANALYZE dibujado como diagrama."
         }
     },
     "databases-mysql": {
         "description": {
-            "es": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "es": "Una conexión MySQL en shop: una consulta que une orders y users, con sus resultados en la cuadrícula."
         }
     },
     "databases-sqlserver": {
         "description": {
-            "es": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "es": "Una conexión SQL Server: un script T-SQL dividido en lotes GO, con su salida PRINT en la pestaña Output."
         }
     },
     "databases-sqlite": {
         "description": {
-            "es": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "es": "El ejemplo SQLite Chinook incluido, con la tabla Track filtrada por género."
         }
     },
     "databases-mongodb": {
         "description": {
-            "es": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "es": "Una conexión MongoDB: la colección events en la cuadrícula, con la hoja Insert Document abierta en Extended JSON."
         }
     },
     "databases-redis": {
         "description": {
-            "es": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "es": "Una conexión Redis: el árbol de claves dividido por \":\", con las columnas Key, Type, TTL, Length y Value."
         }
     },
     "databases-redshift": {
         "description": {
-            "es": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "es": "Una conexión Amazon Redshift: el DDL de una tabla con su DISTKEY y su SORTKEY."
         }
     },
     "databases-oracle": {
         "description": {
-            "es": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "es": "Una conexión Oracle: un bloque PL/SQL en el editor, con sus líneas DBMS_OUTPUT bajo el resultado."
         }
     },
     "databases-clickhouse": {
         "description": {
-            "es": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "es": "Una conexión ClickHouse: la pestaña Parts de una tabla MergeTree, con particiones, partes y número de filas."
         }
     },
     "databases-duckdb": {
         "description": {
-            "es": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "es": "Una base de datos DuckDB con un archivo Parquet abierto como vista y consultado con SQL."
         }
     },
     "databases-cassandra": {
         "description": {
-            "es": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "es": "Un espacio de claves de Cassandra: una tabla en la cuadrícula, con una celda escalar modificada pendiente y una columna set mostrada como colección."
         }
     },
     "databases-dynamodb": {
         "description": {
-            "es": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "es": "Una tabla DynamoDB: una lectura filtrada ejecutada como Query sobre un índice, con la capacidad de lectura consumida en la barra de estado."
         }
     },
     "databases-bigquery": {
         "description": {
-            "es": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "es": "Una conexión BigQuery: un Dry Run desde el menú Explain, con los bytes que procesaría la consulta y su coste estimado."
         }
     },
     "databases-snowflake": {
         "description": {
-            "es": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "es": "Una conexión Snowflake con su almacén y su rol definidos en Session Context, y el resultado de una consulta debajo."
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "es": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "es": "Una conexión Cloudflare D1: el selector de bases de datos con las bases D1 de la cuenta, sobre una pestaña de consulta."
         }
     },
     "databases-turso": {
         "description": {
-            "es": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "es": "Una base de datos Turso remota: sus tablas en la barra lateral y el resultado de una consulta en la cuadrícula."
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "es": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "es": "La consola Query DSL de Elasticsearch: una petición GET _search y sus resultados como filas."
         }
     },
     "databases-etcd": {
         "description": {
-            "es": "An etcd connection: keys under a prefix root, with their values and leases."
+            "es": "Una conexión etcd: claves bajo una raíz de prefijo, con sus valores y arrendamientos."
         }
     },
     "databases-kafka": {
         "description": {
-            "es": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "es": "Una conexión Kafka: KafkaQL CONSUME sobre un topic orders, con los mensajes por partición, offset, clave y marca de tiempo."
         }
     },
     "databases-surrealdb": {
         "description": {
-            "es": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "es": "Una conexión SurrealDB: una consulta SurrealQL y los registros que devolvió en la cuadrícula."
         }
     },
     "databases-teradata": {
         "description": {
-            "es": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "es": "Una conexión Teradata: la barra lateral con los procedimientos almacenados, las macros en Functions y el resultado de una consulta."
         }
     },
     "databases-trino": {
         "description": {
-            "es": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "es": "Una conexión Trino: una consulta que une tablas de dos catálogos, con sus resultados debajo."
         }
     },
     "databases-beancount": {
         "description": {
-            "es": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "es": "Un libro de Beancount: sus tablas proyectadas en la barra lateral y el resultado de una consulta BQL."
         }
     },
     "ios-connection-list": {

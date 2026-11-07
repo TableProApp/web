@@ -11,82 +11,58 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Trino 클라이언트",
-        "lead": "카탈로그를 가로질러 조회하고 실행 계획을 확인하며 실행 중인 쿼리를 취소하세요. 쓰기 지원은 각 카탈로그의 커넥터에 따라 다릅니다."
+        "lead": "카탈로그를 가로질러 조회하고, 실행 계획을 확인하고, 실행 중인 쿼리를 취소하세요. 쓰기는 각 카탈로그의 커넥터에 따라 다릅니다.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "연결 및 로그인",
-            "paragraphs": [
-                "코디네이터 호스트, 포트, <ui>사용자 이름</ui> (Username)을 입력하세요. 선택적인 <ui>Catalog</ui>와 <ui>스키마</ui> (Schema)로 시작 위치를 정하고 세션의 <ui>시간대</ui> (Time Zone)을 IANA 형식으로 설정합니다.",
-                "비밀번호는 LDAP·password-file 인증의 HTTP Basic으로, JWT 액세스 토큰은 bearer 자격 증명으로 전송합니다. 둘 다 TLS로만 보내며 SSL Disabled 상태에서 보유한 연결은 전송 전에 거부합니다. SSL 패널의 클라이언트 인증서와 키로 상호 TLS를 추가합니다.",
-                "SSL은 평문 HTTP인 Disabled로 시작합니다. 나머지 모드는 모두 평문 대체 없이 TLS를 강제하고 443 포트는 Verify Identity를 켭니다. 코디네이터 앞 프록시의 리다이렉트는 따라가지 않으며 오류에 대상 주소를 표시합니다. 배스천 뒤는 <network>SSH 터널</network>로 접근하며 <ui>URL에서 가져오기…</ui>(Import from URL…)로 <code>trino://</code> URL을 가져옵니다."
+            "text": [
+                "코디네이터 호스트, 포트, <ui>사용자 이름</ui> (Username)을 입력하세요. <ui>Catalog</ui>와 <ui>스키마</ui> (Schema)로 시작 위치를 정하고, IANA 형식의 <ui>시간대</ui> (Time Zone)로 세션의 시간대를 설정합니다.",
+                "LDAP이나 password-file 인증에서는 비밀번호를 HTTP Basic으로, JWT 액세스 토큰은 bearer 자격 증명으로 보내 로그인합니다. 둘 다 TLS로만 전송되며, SSL이 Disabled인 연결에 자격 증명이 있으면 아무것도 보내기 전에 거부됩니다. SSL 패널의 클라이언트 인증서와 키로 상호 TLS를 추가합니다.",
+                "SSL은 평문 HTTP인 Disabled로 시작합니다. 나머지 모드는 모두 평문 대체 없이 TLS를 강제하며, 443 포트는 Verify Identity를 켭니다. 코디네이터 앞 프록시의 리다이렉트는 따라가지 않으며, 오류에 리다이렉트 대상이 표시됩니다. <ui>URL에서 가져오기…</ui> (Import from URL…)로 <code>trino://</code> URL을 가져올 수 있습니다."
             ]
         },
         {
             "id": "work",
             "title": "카탈로그 간 쿼리",
-            "paragraphs": [
-                "전체 이름인 <code>catalog.schema.table</code>로 카탈로그 간 조인을 하세요. 카탈로그, 스키마, 테이블, 구체화된 뷰를 살펴볼 수 있습니다. 추정 행 수는 <code>SHOW STATS</code>에서 가져옵니다.",
-                "<code>bigint</code>와 <code>decimal</code>은 부동소수점이 아닌 정확한 텍스트로 읽습니다. <code>varbinary</code>는 16진수, <code>array</code>, <code>map</code>, <code>row</code>는 JSON으로 표시하며 타임스탬프는 서버 반환 값을 유지합니다.",
-                "<explain>Explain</explain>은 Logical, Distributed, IO, Validate와 Analyze를 제공합니다. Validate는 실행 없이 검사하고 Analyze는 실행해 실제 시간을 보고하며 모든 계획은 원시 텍스트입니다.",
-                "<code>SET SESSION</code>은 연결 동안 유지됩니다. <ui>쿼리 > 쿼리 취소</ui>(Query > Cancel Query)는 코디네이터에 실행 쿼리 종료를 요청하며 연결의 쿼리 제한 시간은 Trino에 전달되지 않으므로 이 방법으로 중단합니다.",
-                "<editing>셀 편집</editing>은 타입이 지정된 INSERT, UPDATE, DELETE를 사용합니다. Trino는 기본 키를 보고하지 않아 원래의 모든 열로 행을 식별합니다. 동일한 행은 함께 바뀌며 되돌릴 트랜잭션이 없습니다. 편집 전에 중복을 확인하세요."
+            "text": [
+                "<code>catalog.schema.table</code> 같은 전체 이름으로 카탈로그 간 조인을 하고, <code>SHOW STATS</code>의 추정 행 수와 함께 카탈로그, 스키마, 테이블, 구체화된 뷰를 살펴보세요. <code>bigint</code>와 <code>decimal</code>은 부동소수점이 아닌 정확한 텍스트로 읽습니다. <code>varbinary</code>는 16진수로, <code>array</code>, <code>map</code>, <code>row</code>는 JSON으로 표시되며, 타임스탬프는 서버가 반환한 값을 유지합니다.",
+                "<explain>Explain</explain>은 Logical, Distributed, IO, Validate, Analyze를 원시 텍스트로 제공합니다. Validate는 쿼리를 실행하지 않고 검사하며, Analyze는 실행해 실제 시간을 보고합니다. <code>SET SESSION</code>은 연결이 끝날 때까지 유지됩니다. 연결의 쿼리 제한 시간은 Trino에 전달되지 않으므로 쿼리는 <ui>쿼리 > 쿼리 취소</ui> (Query > Cancel Query)로 중단하세요.",
+                "Trino는 기본 키를 보고하지 않으므로 <editing>셀 편집</editing>은 원래의 모든 열로 행을 매칭하며, 동일한 행은 함께 바뀌고 되돌릴 트랜잭션도 없습니다. 편집 전에 중복을 확인하세요."
             ]
         },
         {
             "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "<structure>Structure 탭</structure>은 자동 커밋으로 테이블 생성과 열 추가·삭제·이름 변경·유형 변경을 합니다. 허용 여부는 카탈로그 커넥터가 결정하며 유형 변경을 지원하는 커넥터는 가장 적습니다."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "데이터 이동",
-            "paragraphs": [
-                "가져오기는 없습니다. 테이블이나 결과를 {exportFormats}로 <export>내보냅니다</export>."
+            "title": "구조",
+            "text": [
+                "<structure>Structure 탭</structure>은 자동 커밋으로 테이블을 만들고 열을 추가, 삭제, 이름 변경, 타입 변경합니다. 변경이 실행되는지는 카탈로그의 커넥터가 결정하며, 타입 변경을 지원하는 커넥터가 가장 적습니다."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "가져오기는 없습니다. 테이블이나 결과를 {exportFormats}로 <export>내보내세요</export>."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
             "question": "유효한 명령문이 NOT_SUPPORTED로 반환되는 이유는 무엇인가요?",
-            "answer": "Trino 문법과 관계없이 해당 카탈로그 커넥터가 작업을 구현하지 않았기 때문입니다. 읽기 전용 커넥터는 모든 쓰기를 거부합니다. 지원 범위는 커넥터 문서를 확인하세요."
+            "answer": "Trino 문법이 허용하더라도 해당 카탈로그의 커넥터가 그 작업을 구현하지 않았기 때문이며, 읽기 전용 커넥터는 모든 쓰기를 거부합니다. 커넥터 문서를 확인하세요."
         },
         {
             "id": "encrypted-key",
             "question": "암호화된 클라이언트 키를 쓸 수 있나요?",
-            "answer": "아니요. Trino 연결에는 키 암호 문구 필드가 없습니다. <code>openssl pkey -in encrypted.key -out client.key</code>로 복호화된 복사본을 만들고 선택하세요."
+            "answer": "아니요. Trino 연결에는 키 암호 문구 필드가 없습니다. <code>openssl pkey -in encrypted.key -out client.key</code>로 복호화된 복사본을 만들고 그 파일을 선택하세요."
         }
     ],
-    "related": [
-        {
-            "label": "쿼리 작성, 실행 및 이해",
-            "href": "/features/querying"
-        },
-        {
-            "label": "연결, 터널 및 자격 증명",
-            "href": "/features/connections"
-        },
-        {
-            "label": "데이터 웨어하우스 Teradata",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "클라우드 웨어하우스 Snowflake",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }

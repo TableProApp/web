@@ -11,92 +11,62 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "Klien ClickHouse",
-        "lead": "Jalankan kueri analitis, periksa rencana dan saluran pipa, serta kelola bagian dan partisi tabel."
+        "lead": "Jalankan kueri analitis melalui HTTP, baca plan dan pipeline, serta kelola part dan partisi MergeTree.",
+        "asset": "databases-clickhouse"
     },
-    "asset": "mac-db-clickhouse-parts",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
-        "map": "/features/querying#map",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import"
+        "explain": "/features/querying#explain",
+        "map": "/features/querying#results",
+        "dashboard": "/features/schema#administer",
+        "importData": "/features/import-export#import",
+        "network": "/features/connections#network"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan",
-            "paragraphs": [
-                "Masukkan host, port HTTP, pengguna dan database opsional. Beralih database tanpa menghubungkan kembali. Tab yang terbuka menyimpan database awalnya; <ui>View > Sidebar as Tree</ui> memperluas database yang ada.",
-                "Pilih mode SSL apa pun untuk beralih ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity untuk memeriksa sertifikat terhadap file CA atau penyimpanan kepercayaan sistem. Verify CA memerlukan file CA, dan sertifikat serta kunci klien mengakses server yang mewajibkan TLS timbal balik.",
-                "Tanpa TLS, akses server jarak jauh melalui <network>tunnel SSH</network> alih-alih mengirim HTTP tanpa enkripsi melalui jaringan."
+            "text": [
+                "Masukkan host, port HTTP, pengguna, dan database opsional, lalu berpindah database tanpa menghubungkan ulang; tab yang terbuka tetap memakai database tempat tab itu dimulai.",
+                "Mode SSL apa pun mengalihkan koneksi ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity, yang memeriksa sertifikat terhadap file CA Anda atau penyimpanan kepercayaan sistem. Verify CA memerlukan file CA, dan sertifikat serta kunci klien menjangkau server yang mewajibkan TLS timbal balik.",
+                "Tanpa TLS, jangkau server jarak jauh melalui <network>tunnel SSH</network>, bukan dengan mengirim HTTP tanpa enkripsi melalui jaringan."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan edit",
-            "paragraphs": [
-                "Pantau baris yang dibaca selama kueri. Stop mengirimkan <code>KILL QUERY</code>, dan batas waktu kueri koneksi diteruskan ke server.",
-                "<explain>Menu Explain</explain> menyediakan Plan, Pipeline, AST, Syntax, dan Estimate. Keluaran berindentasi digambar sebagai diagram atau pohon, dan Estimate menampilkan baris, mark, serta part yang akan dibaca kueri.",
-                "Tinjau <editing>Preview SQL</editing> sebelum menyisipkan baris atau mengirimkan mutasi UPDATE dan DELETE. Penyimpanan yang berhasil berarti diterima, tidak diterapkan; ikuti kemajuan di <code>system.mutations</code>. Pandangan yang terwujud bersifat hanya-baca.",
-                "Hasil yang berisi tuple titik atau ring ClickHouse dibuka pada <map>tampilan Map</map>. Kueri dengan klausa <code>FORMAT</code> sendiri menampilkan keluaran mentah server dalam satu kolom, jadi hilangkan klausa tersebut untuk mendapatkan grid."
+            "title": "Kueri dan edit",
+            "text": [
+                "<explain>Menu Explain</explain> menyediakan Plan, Pipeline, AST, Syntax, dan Estimate. Output berindentasi digambar sebagai diagram atau pohon, dan Estimate menampilkan baris, mark, dan part yang akan dibaca kueri. Kueri yang sedang berjalan menampilkan baris yang sudah dibaca, Stop mengirim <code>KILL QUERY</code>, dan batas waktu kueri koneksi diteruskan ke server.",
+                "Insert serta mutasi UPDATE dan DELETE berjalan dari grid. Penyimpanan yang berhasil berarti diterima, bukan diterapkan: pantau kemajuannya di <code>system.mutations</code>. Materialized view hanya baca. Tuple point dan ring dibuka di <map>tampilan Peta</map>, dan kueri dengan klausa <code>FORMAT</code> sendiri menampilkan output mentah server dalam satu kolom, jadi hilangkan klausa itu untuk mendapatkan grid."
             ]
         },
         {
             "id": "schema",
-            "title": "Tabel, part, dan partisi",
-            "paragraphs": [
-                "Tabel dibuka dengan tab Structure, Indexes, DDL, dan Parts. Indexes menampilkan kunci pengurutan dan indeks data-skipping, sedangkan DDL menampilkan <code>CREATE TABLE</code> lengkap, termasuk mesin dan pengaturan.",
-                "Periksa bagian dari <code>system.parts</code>, termasuk partisi, jumlah baris, ukuran dan status aktif. Jalankan Optimize, Drop Partition, atau Detach Partition dari tab Parts.",
-                "<structure>Tab Structure</structure> menambah, mengubah, dan menghapus kolom serta menghapus indeks data-skipping. Kunci pengurutan dan primary key ditetapkan saat tabel dibuat, jadi tambahkan indeks data-skipping menggunakan <code>ALTER TABLE … ADD INDEX</code>, dan buat ulang tabel untuk perubahan lainnya."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Pantau",
-            "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> menampilkan kueri aktif, merge aktif, mutasi part, dan penggunaan disk, mencantumkan sesi lain dengan <ui>Terminate Session</ui> pada masing-masing, serta membaca daftar kueri lambat dari <code>system.query_log</code>: kueri selesai terbaru yang memerlukan lebih dari satu detik."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "Muat file {importFormats} menggunakan <importData>Import</importData>, lalu ekspor tabel atau hasil kueri sebagai {exportFormats}. Kolom dengan satu nilai saja yang bukan UTF-8 valid ditampilkan sebagai heksadesimal pada grid; pilih <code>toValidUTF8(column)</code> untuk membacanya sebagai teks."
+            "also": [
+                "operate"
+            ],
+            "title": "Tabel, part, dan pemantauan",
+            "text": [
+                "Tabel dibuka dengan tab Structure, Indexes, DDL, dan Parts. Indexes menampilkan kunci pengurutan dan indeks data-skipping, DDL menampilkan <code>CREATE TABLE</code> lengkap dengan mesin dan pengaturan, dan Parts membaca <code>system.parts</code>, dengan Optimize, Drop Partition, dan Detach Partition. Tab Structure mengubah kolom dan menghapus indeks data-skipping. Kunci pengurutan dan primary key ditetapkan saat tabel dibuat, jadi tambahkan indeks data-skipping dengan <code>ALTER TABLE … ADD INDEX</code> dan buat ulang tabel untuk perubahan lainnya.",
+                "<dashboard>Server Dashboard</dashboard> menampilkan kueri aktif, merge, mutasi part, dan penggunaan disk, mengakhiri sesi lain, dan mencantumkan kueri selesai yang memakan waktu lebih dari satu detik dari <code>system.query_log</code>."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Impor</importData> file {importFormats}, dan ekspor tabel atau hasil sebagai {exportFormats}. Kolom dengan satu saja nilai yang bukan UTF-8 valid ditampilkan sebagai hex; pilih <code>toValidUTF8(column)</code> untuk membacanya sebagai teks."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "settings",
-            "question": "Bagaimana saya mengubah pengaturan untuk satu kueri?",
-            "answer": "Masukkan dalam klausa <code>SETTINGS</code> pada kueri itu sendiri, seperti <code>SELECT … SETTINGS max_threads = 4</code>. Setiap pernyataan adalah permintaan HTTP tersendiri tanpa sesi, sehingga <code>SET</code> terpisah tidak berlaku pada pernyataan berikutnya."
+            "question": "Bagaimana cara mengubah pengaturan untuk satu kueri?",
+            "answer": "Masukkan ke klausa <code>SETTINGS</code> pada kueri, seperti <code>SELECT … SETTINGS max_threads = 4</code>. Setiap pernyataan adalah permintaan HTTP tersendiri, sehingga <code>SET</code> terpisah sudah hilang pada pernyataan berikutnya."
         },
         {
             "id": "native-port",
             "question": "Mengapa port 9000 tidak dapat terhubung?",
-            "answer": "Port 9000 adalah port TCP native ClickHouse, yang tidak digunakan TablePro. Hubungkan ke port HTTP, atau 8443 untuk HTTPS pada ClickHouse Cloud, dan periksa apakah antarmuka HTTP server aktif: permintaan ke <code>/ping</code> pada port tersebut menjawab <code>Ok.</code>"
+            "answer": "Port 9000 adalah port TCP native ClickHouse, yang tidak digunakan TablePro. Hubungkan ke port HTTP, atau 8443 untuk HTTPS di ClickHouse Cloud; permintaan ke <code>/ping</code> pada port itu menjawab <code>Ok.</code> jika antarmuka HTTP aktif."
         }
     ],
-    "related": [
-        {
-            "label": "Rencana EXPLAIN dan performa kueri",
-            "href": "/features/querying#performance"
-        },
-        {
-            "label": "Skema, perbandingan, dan sinkronisasi",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Impor, ekspor, dan file data",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "DuckDB, untuk file analitik",
-            "href": "/duckdb-client"
-        }
-    ]
+    "otherTools": null
 }

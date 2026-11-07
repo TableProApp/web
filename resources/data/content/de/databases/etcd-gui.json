@@ -11,53 +11,44 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "Grafische Oberfläche für etcd",
-        "lead": "Durchsuche Schlüssel nach Präfix, prüfe Werte und Leases und nutze Befehle im etcdctl-Stil."
+        "lead": "Durchsuche etcd-Schlüssel nach Präfix, ändere Werte und Leases im Raster und führe Befehle im etcdctl-Stil aus.",
+        "asset": "databases-etcd"
     },
-    "asset": "mac-db-etcd-keys",
     "links": {
-        "network": "/features/connections#network",
         "safeMode": "/features/data-editing#safe-mode",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Verbinde einen Host über seinen Client-Port. Peer-Ports und das JSON-Gateway werden nicht unterstützt. Es gibt keine Datenbankauswahl oder Endpunkt-Ausfallsicherung.",
-                "Lasse <ui>Username</ui> und <ui>Password</ui> bei einem Cluster ohne Authentifizierung leer. Ein Benutzer ohne <code>root</code>-Rolle verbindet sich und durchsucht die Schlüssel seiner Rollen; <code>endpoint status</code> sowie <code>user</code>- und <code>role</code>-Befehle antworten dagegen mit Zugriff verweigert.",
-                "TLS wird mit <ui>TLS Mode</ui> in den Advanced-Feldern festgelegt, nicht in einem SSL-Abschnitt, und beginnt mit Disabled. Required (skip verify) verschlüsselt ohne Prüfung; Verify CA prüft das Zertifikat gegen die angegebene CA-Datei, und Verify Identity ergänzt den Hostnamen. Client-Zertifikat und Schlüssel fügen gegenseitiges TLS hinzu.",
-                "Erreiche einen Cluster hinter einem Bastion-Host über einen <network>SSH-Tunnel</network>. <code>etcd://</code>- und <code>etcds://</code>-URLs lassen sich importieren; keine aktiviert TLS von selbst."
+            "text": [
+                "Gib einen Host und seinen Client-Port ein; der Peer-Port hat kein JSON-Gateway, und es gibt keine Datenbankauswahl und kein Endpunkt-Failover. Lass <ui>Username</ui> und <ui>Password</ui> bei einem Cluster ohne Authentifizierung leer. Ein Benutzer ohne die Rolle <code>root</code> durchsucht die Schlüssel, die seine Rollen abdecken, während <code>endpoint status</code> sowie die Befehle <code>user</code> und <code>role</code> mit Zugriff verweigert antworten.",
+                "TLS wird mit <ui>TLS Mode</ui> in den Advanced-Feldern festgelegt und beginnt mit Disabled. Required (skip verify) verschlüsselt ohne Prüfung, Verify CA prüft das Zertifikat gegen die CA-Datei, die du angibst, und Verify Identity ergänzt den Hostnamen; Client-Zertifikat und Schlüssel fügen gegenseitiges TLS hinzu. <code>etcd://</code>- und <code>etcds://</code>-URLs lassen sich importieren, und keine aktiviert TLS von selbst."
             ]
         },
         {
             "id": "work",
             "title": "Schlüssel durchsuchen und Befehle ausführen",
-            "paragraphs": [
+            "text": [
                 "Setze <ui>Key Prefix Root</ui>, etwa <code>/app</code>, um eine Verbindung auf einen Teilbaum zu begrenzen. Die Seitenleiste gruppiert Schlüssel nach ihrem ersten Pfadsegment darunter; jeder Schlüssel ist eine Zeile mit Wert, Version, Änderungs- und Erstellungsrevision sowie Lease.",
-                "Das Speichern einer Änderung sendet Befehle. Ein neuer Wert oder Lease schreibt den Schlüssel erneut; ein NULL-Lease entfernt den Lease, und beim Umbenennen wird der neue Name geschrieben und der alte gelöscht. Revisionsspalten gehören etcd; ihre Bearbeitung stoppt daher das Speichern und nennt die Spalte.",
-                "Nutze Befehle im etcdctl-Stil für Schlüssel, Watches, Leases, Mitglieder, Endpunkte, Kompaktierung und Zugriffsrechte, mit Flag-Vervollständigung. Nicht unterstützte Befehle werden vor dem Senden abgelehnt.",
-                "<safeMode>Safe Mode</safeMode> führt <code>get</code>, <code>watch</code> und die Befehle, die nur auflisten oder berichten, als Lesezugriffe aus und zählt jeden anderen Befehl als Schreibzugriff."
+                "Das Speichern einer Änderung sendet Befehle: Ein neuer Wert oder Lease schreibt den Schlüssel erneut, ein NULL-Lease entfernt den Lease, und beim Umbenennen wird der neue Name geschrieben und der alte gelöscht. Die Revisionsspalten gehören etcd, daher stoppt eine Änderung an einer davon das Speichern und nennt die Spalte.",
+                "Führe Befehle im etcdctl-Stil für Schlüssel, Watches, Leases, Mitglieder, Endpunkte, Kompaktierung und Zugriffsrechte aus, mit Vervollständigung für Befehle und Flags; nicht unterstützte werden abgelehnt, bevor sie den Server erreichen. <safeMode>Safe Mode</safeMode> führt <code>get</code>, <code>watch</code> und die Befehle, die nur auflisten oder berichten, als Lesezugriffe aus und zählt jeden anderen Befehl als Schreibzugriff."
             ]
         },
         {
             "id": "operate",
             "title": "Leases und Cluster",
-            "paragraphs": [
-                "Verwalte Leases und Revisionskompaktierung im Editor. Prüfe Mitglieder sowie Status und Zustand der Endpunkte mit Befehlen; ein Server Dashboard gibt es nicht.",
-                "<code>auth enable</code> im Editor aktiviert die Authentifizierung für den gesamten Cluster. Eine Verbindung mit Benutzername und Passwort funktioniert weiter; eine ohne beides muss mit Zugangsdaten neu geöffnet werden."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "Es gibt keinen Import. <export>Exportiere</export> Schlüssel oder das Ergebnis eines Befehls als {exportFormats}."
+            "text": [
+                "Verwalte Leases und Revisionskompaktierung im Editor und prüfe Mitglieder sowie Status und Zustand der Endpunkte mit Befehlen. <code>auth enable</code> aktiviert die Authentifizierung für den gesamten Cluster: Eine Verbindung mit Benutzername und Passwort funktioniert weiter, und eine ohne beides muss mit Zugangsdaten neu geöffnet werden."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<export>Exportiere</export> Schlüssel oder das Ergebnis eines Befehls als {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "lease-ids",
@@ -70,18 +61,5 @@
             "answer": "Nein. Ein ungültiger UTF-8-Wert wird im Raster als entsprechend markiertes base64 angezeigt; eingegebener Text wird als UTF-8 gesendet. Schreibe Binärwerte mit <code>etcdctl</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Daten sicher durchsuchen und bearbeiten",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Verbindungen, Tunnel und Zugangsdaten",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Redis, ein weiterer Schlüsselraum",
-            "href": "/redis-gui"
-        }
-    ]
+    "otherTools": null
 }

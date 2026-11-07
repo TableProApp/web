@@ -11,88 +11,61 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "MongoDB client",
-        "lead": "Xem collection, query bằng cú pháp kiểu mongosh và sửa document dạng Extended JSON."
+        "lead": "Query MongoDB bằng JavaScript kiểu mongosh, duyệt collection và sửa document dạng Extended JSON.",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Kết nối",
-            "paragraphs": [
-                "Nhập host hoặc danh sách <code>host:port</code> của replica set, hoặc dán URL <code>mongodb://</code> hay <code>mongodb+srv://</code>. Xác thực hỗ trợ SCRAM-SHA-1, SCRAM-SHA-256, X.509 và AWS IAM. Đặt <ui>Auth Database</ui> thành cơ sở dữ liệu định nghĩa user.",
-                "Host có đuôi <code>.mongodb.net</code> được tự bật SRV và TLS, đúng như MongoDB Atlas yêu cầu. Hãy thêm địa chỉ IP của bạn vào danh sách truy cập của cluster trước: kết nối từ một địa chỉ không có trong danh sách sẽ bị timeout thay vì báo lỗi.",
-                "Connection mới để TLS tắt, và driver không có cơ chế dự phòng, nên Ưu tiên (Preferred) hoạt động như Required. Read Preference và Write Concern được đặt cho từng connection, và write concern đi kèm mọi lệnh insert, update và delete, dù chạy từ shell hay khi lưu trong data grid.",
-                "Khi đi qua <network>SSH tunnel</network>, chỉ host đầu tiên trong danh sách được dùng, nên việc tự phát hiện replica set và failover bị tắt trong phiên đó."
+            "text": [
+                "Nhập host hoặc danh sách <code>host:port</code> của replica set, hoặc dán URL <code>mongodb://</code> hay <code>mongodb+srv://</code>. Đăng nhập bằng SCRAM-SHA-1, SCRAM-SHA-256, X.509 hoặc AWS IAM, với <ui>Auth Database</ui> đặt thành cơ sở dữ liệu định nghĩa user của bạn.",
+                "Host có đuôi <code>.mongodb.net</code> sẽ bật SRV và TLS, đúng như MongoDB Atlas yêu cầu; hãy thêm địa chỉ IP của bạn vào danh sách truy cập của cluster trước, nếu không kết nối sẽ bị timeout. Connection mới để TLS tắt, và Ưu tiên (Preferred) hoạt động như Required. Read Preference và Write Concern được đặt cho từng connection."
+            ],
+            "notes": [
+                "Khi đi qua SSH tunnel, chỉ host đầu tiên trong danh sách được dùng, nên việc tự phát hiện replica set và failover bị tắt trong phiên đó."
             ]
         },
         {
             "id": "work",
             "title": "Query và sửa document",
-            "paragraphs": [
-                "Dùng JavaScript kiểu mongosh trong tab Truy vấn (Query): regex, <code>ISODate()</code>, biến, vòng lặp và <code>forEach</code>. Không cần cài shell riêng. Biến giữ giữa tab connection tới khi ngắt kết nối. Autocomplete gồm collection, field path, method và toán tử.",
-                "Xem field cấp cao nhất dạng cột và object lồng dạng Extended JSON. Sửa ô giữ kiểu như date và ObjectId. Sửa lồng chỉ update path đã đổi, như <code>address.city</code>.",
-                "<editing>Insert Document và Edit Document</editing> dùng Extended JSON. Edit Document đọc lại document server và từ chối lưu nếu đã đổi hoặc biến mất khi đang mở. <ui>Remove Field</ui> gửi <code>$unset</code>.",
-                "<filters>Thanh lọc</filters> đi được vào object lồng nhau và mảng object, nên bạn lọc thẳng theo <code>customer.country</code> hay <code>items.sku</code>. Field chứa GeoJSON mở được trên <map>Map view</map>.",
-                "<safeMode>Safe Mode</safeMode> coi một câu lệnh là thao tác đọc khi nó chỉ là một lời gọi đọc dữ liệu, như <code>find</code>, <code>countDocuments</code> hoặc <code>aggregate</code> không có <code>$out</code> hay <code>$merge</code>. Mọi đoạn JavaScript khác được coi là thao tác ghi."
+            "text": [
+                "Tab Truy vấn (Query) nhận JavaScript kiểu mongosh, với regex, <code>ISODate()</code>, biến, vòng lặp và <code>forEach</code>, mà không cần cài shell. Field cấp cao nhất hiện dạng cột và object lồng dạng Extended JSON; sửa ô giữ nguyên date và ObjectId, và sửa lồng chỉ update đúng path đó, như <code>address.city</code>.",
+                "<editing>Insert Document và Edit Document</editing> dùng Extended JSON, và Edit Document từ chối lưu nếu document đã đổi trong lúc đang mở. <filters>Thanh lọc</filters> đi được vào object lồng nhau và mảng, còn <safeMode>Safe Mode</safeMode> chỉ coi một lời gọi là thao tác đọc khi nó chỉ đọc, như <code>find</code> hoặc <code>aggregate</code> không có <code>$out</code> hay <code>$merge</code>."
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "Collection, index và validator",
-            "paragraphs": [
-                "Xem field, kiểu và tùy chọn index trong <structure>tab Structure</structure>. Show DDL tạo lời gọi <code>createIndex</code> với tùy chọn server báo.",
-                "Đổi tên hoặc xóa field trên cả collection bằng <code>updateMany</code> được xem trước. Validator cũng cập nhật. Chặn lưu nếu index, search index hoặc view còn dùng field.",
-                "<ui>Bảng mới (New Table)</ui> tạo một collection mà các field trở thành validator <code>$jsonSchema</code>, rồi dựng các index bạn liệt kê. View và time-series collection hiện trong sidebar, và view mở ở chế độ chỉ đọc."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Sao lưu",
-            "paragraphs": [
-                "<backup>Backup Dump</backup> ghi từng cơ sở dữ liệu bạn chọn ra một file archive nén gzip bằng {dumpTool}, theo đúng các host, Auth Database, thiết lập SRV và TLS của connection, và bạn có thể thu hẹp bản dump xuống từng collection. Restore Dump chạy mongorestore vào cơ sở dữ liệu bạn chọn và giữ nguyên những gì đã có. Hãy cài MongoDB Database Tools trên máy Mac trước."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Di chuyển dữ liệu",
-            "paragraphs": [
-                "<importData>Import</importData> file {importFormats} vào một collection. <export>Export</export> collection hoặc kết quả query ra {exportFormats}.",
-                "Bản export MQL là một file <code>.js</code> gồm các lệnh <code>insertMany</code> chạy được trong mongosh, kèm index và validator của từng collection nếu bạn chọn. Giá trị ở cấp cao nhất giữ nguyên kiểu, nhưng giá trị có kiểu nằm trong subdocument hay mảng, như một ObjectId trong mảng, được ghi thành chuỗi: với những collection đó, hãy export ra JSON hoặc sao lưu bằng mongodump."
+            "text": [
+                "<structure>Tab Structure</structure> liệt kê index cùng tùy chọn của chúng, và Show DDL viết chúng thành lời gọi <code>createIndex</code>. Đổi tên hoặc xóa field trên cả collection bằng một lệnh <code>updateMany</code> được xem trước, lệnh này cập nhật cả validator, còn <ui>Bảng mới</ui> (New Table) biến các field thành validator <code>$jsonSchema</code>.",
+                "<backup>Backup Dump</backup> ghi các cơ sở dữ liệu bạn chọn, hoặc từng collection, ra file archive nén gzip bằng {dumpTool}, và Restore Dump chạy mongorestore vào cơ sở dữ liệu bạn chọn. Hãy cài MongoDB Database Tools trước."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "Chọn MongoDB Compass cho aggregation pipeline trực quan, phân tích schema theo mẫu và explain plan. TablePro query MongoDB cùng các engine cơ sở dữ liệu khác.",
-                "notes": [
-                    "compass-natural-language"
-                ]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass còn viết được query từ một câu hỏi bằng ngôn ngữ tự nhiên."
-        }
-    },
+    "moveData": [
+        "<importData>Import</importData> file {importFormats} vào một collection, và <export>export</export> collection hoặc kết quả ra {exportFormats}. Bản export MQL ghi các lệnh <code>insertMany</code> chạy được trong mongosh, nhưng giá trị có kiểu nằm trong mảng hay subdocument sẽ thành chuỗi, nên hãy sao lưu những collection đó bằng mongodump."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
             "question": "Tab query có phải là mongosh không?",
-            "answer": "Không. Đó là một shell nhận cú pháp mongosh, chạy ngay trong TablePro trên JavaScriptCore. Phần lớn code mongosh chạy được nguyên văn. Có một khác biệt: số nguyên vượt quá phạm vi 32-bit được lưu thành số nguyên 64-bit, trong khi mongosh lưu thành double, nên hãy bọc số đó trong <code>Double()</code> để có kết quả giống mongosh."
+            "answer": "Không. Đó là một shell nhận cú pháp mongosh và chạy ngay trong TablePro trên JavaScriptCore, nên phần lớn code mongosh chạy được nguyên văn. Số nguyên vượt quá phạm vi 32-bit được lưu thành số nguyên 64-bit, trong khi mongosh lưu thành double: hãy bọc số đó trong <code>Double()</code> để có kết quả giống mongosh."
         },
         {
             "id": "query-plan",
@@ -105,22 +78,10 @@
             "answer": "Hãy chạy <code>db.runCommand({usersInfo: 1})</code>. Shell không phân tích được <code>db.getUsers()</code> hay <code>db.createUser()</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Xem và chỉnh sửa dữ liệu an toàn",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Các ngôn ngữ query ngoài SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Import, export và sao lưu",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "So sánh TablePro với các database client khác",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass có aggregation pipeline trực quan, phân tích schema theo mẫu và explain plan, còn TablePro query MongoDB cùng các engine khác; xem <compass>TablePro vs MongoDB Compass</compass>.",
+        "also": [
+            "compass"
+        ]
+    }
 }

@@ -11,116 +11,77 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "Klien MongoDB",
-        "lead": "Telusuri koleksi, kueri dengan sintaksis gaya mongosh, dan edit dokumen sebagai Extended JSON."
+        "lead": "Jalankan kueri di MongoDB dengan JavaScript gaya mongosh, telusuri koleksi, dan edit dokumen sebagai Extended JSON.",
+        "asset": "databases-mongodb"
     },
-    "asset": "mac-db-mongodb-document",
     "links": {
-        "network": "/features/connections#network",
         "editing": "/features/data-editing#documents-and-keys",
         "filters": "/features/data-editing#filters",
         "safeMode": "/features/data-editing#safe-mode",
-        "map": "/features/querying#map",
         "structure": "/features/schema#structure",
+        "backup": "/features/import-export#backup",
         "importData": "/features/import-export#import",
         "export": "/features/import-export#export",
-        "backup": "/features/import-export#backup"
+        "compass": "/compare/mongodb-compass"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Hubungkan",
-            "paragraphs": [
-                "Masukkan daftar <code>host:port</code> host atau replika, atau tempel URL <code>mongodb://</code> atau <code>mongodb+srv://</code>. Otentikasi mendukung SCRAM-SHA-1, SCRAM-SHA-256, X.509 dan AWS IAM. Setel <ui>Auth Database</ui> ke database yang mendefinisikan pengguna Anda.",
-                "Host berakhiran <code>.mongodb.net</code> mengaktifkan SRV dan TLS otomatis, sesuai persyaratan MongoDB Atlas. Tambahkan alamat IP ke daftar akses cluster terlebih dahulu: lalu lintas dari alamat di luar daftar mengalami timeout, bukan langsung gagal.",
-                "Koneksi baru menggunakan TLS nonaktif, dan driver tidak memiliki fallback, sehingga Preferred berperilaku seperti Required. Read Preference dan Write Concern diatur per koneksi, dan write concern dikirim bersama setiap penyisipan, pembaruan, serta penghapusan dari shell maupun penyimpanan grid.",
-                "Melalui <network>tunnel SSH</network>, hanya host pertama dalam daftar yang digunakan, sehingga penemuan replica set dan failover nonaktif untuk sesi tersebut."
+            "text": [
+                "Masukkan host atau daftar <code>host:port</code> replica set, atau tempel URL <code>mongodb://</code> atau <code>mongodb+srv://</code>. Masuk dengan SCRAM-SHA-1, SCRAM-SHA-256, X.509, atau AWS IAM, dengan <ui>Auth Database</ui> diatur ke database yang mendefinisikan pengguna Anda.",
+                "Host yang berakhiran <code>.mongodb.net</code> mengaktifkan SRV dan TLS, yang diwajibkan MongoDB Atlas; tambahkan alamat IP Anda ke daftar akses cluster terlebih dahulu, atau koneksi akan timeout. Koneksi baru dimulai dengan TLS nonaktif, dan Preferred berperilaku seperti Required. Read Preference dan Write Concern diatur per koneksi."
+            ],
+            "notes": [
+                "Melalui tunnel SSH, hanya host pertama dalam daftar yang digunakan, sehingga penemuan replica set dan failover nonaktif untuk sesi tersebut."
             ]
         },
         {
             "id": "work",
             "title": "Kueri dan edit dokumen",
-            "paragraphs": [
-                "Gunakan JavaScript gaya mongosh di tab Kueri: regex, <code>ISODate()</code>, variabel, loop, dan <code>forEach</code>. Tidak diperlukan instalasi shell terpisah. Variabel tetap ada di seluruh tab koneksi hingga terputus. Pelengkapan otomatis mencakup koleksi, jalur bidang, metode, dan operator.",
-                "Telusuri bidang tingkat atas sebagai kolom dan objek bertumpuk sebagai Extended JSON. Pengeditan sel mempertahankan tipe seperti tanggal dan ObjectIds. Pengeditan bertingkat hanya memperbarui jalur yang diubah, seperti <code>address.city</code>.",
-                "<editing>Insert Document dan Edit Document</editing> menggunakan Extended JSON. Edit Document membaca ulang dokumen server dan menolak menyimpan jika dokumen berubah atau hilang saat terbuka. <ui>Remove Field</ui> mengirimkan <code>$unset</code>.",
-                "<filters>Bilah filter</filters> mengakses objek bertingkat dan array objek, sehingga <code>customer.country</code> serta <code>items.sku</code> dapat difilter langsung. Bidang yang berisi GeoJSON dibuka pada <map>Tampilan Peta</map>.",
-                "<safeMode>Safe Mode</safeMode> menjalankan pernyataan sebagai pembacaan jika pernyataan itu satu panggilan yang hanya membaca, seperti <code>find</code>, <code>countDocuments</code>, atau <code>aggregate</code> tanpa <code>$out</code> atau <code>$merge</code>. JavaScript lainnya dianggap penulisan."
+            "text": [
+                "Tab Query menerima JavaScript gaya mongosh, dengan regex, <code>ISODate()</code>, variabel, loop, dan <code>forEach</code>, tanpa shell yang perlu dipasang. Field tingkat atas tampil sebagai kolom dan objek bertingkat sebagai Extended JSON; pengeditan sel mempertahankan tanggal dan ObjectId, dan pengeditan bertingkat hanya memperbarui path-nya, seperti <code>address.city</code>.",
+                "<editing>Insert Document dan Edit Document</editing> menggunakan Extended JSON, dan Edit Document menolak menyimpan jika dokumen berubah selama terbuka. <filters>Bilah filter</filters> menjangkau objek bertingkat dan array, dan <safeMode>Safe Mode</safeMode> menganggap panggilan sebagai pembacaan hanya jika panggilan itu hanya membaca, seperti <code>find</code> atau <code>aggregate</code> tanpa <code>$out</code> atau <code>$merge</code>."
             ]
         },
         {
             "id": "schema",
+            "also": [
+                "operate"
+            ],
             "title": "Koleksi, indeks, dan validator",
-            "paragraphs": [
-                "Periksa bidang, tipe, dan opsi indeks di <structure>tab Structure</structure>. Show DDL menghasilkan panggilan <code>createIndex</code> dengan opsi yang dilaporkan server.",
-                "Ganti nama atau hapus bidang di seluruh koleksi dengan <code>updateMany</code> yang dipratinjau. Validator juga memperbarui. Penyimpanan diblokir jika indeks, indeks pencarian, atau tampilan masih menggunakan bidang tersebut.",
-                "<ui>New Table</ui> membuat koleksi yang bidangnya menjadi validator <code>$jsonSchema</code>, lalu membangun indeks yang Anda cantumkan. View dan koleksi time-series muncul di sidebar, dan view dibuka hanya baca."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Cadangkan",
-            "paragraphs": [
-                "<backup>Backup Dump</backup> menulis setiap database yang Anda centang ke arsip berkompresi gzip menggunakan {dumpTool}, dengan host, Auth Database, SRV, dan TLS koneksi; dump dapat dibatasi pada koleksi tertentu. Restore Dump menjalankan mongorestore ke database pilihan dan mempertahankan data yang sudah ada. Pasang MongoDB Database Tools pada Mac terlebih dahulu."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "<importData>Impor</importData> file {importFormats} ke koleksi. <export>Ekspor</export> koleksi atau hasil sebagai {exportFormats}.",
-                "Ekspor MQL adalah file <code>.js</code> berisi panggilan <code>insertMany</code> yang berjalan di mongosh, dengan indeks dan validator setiap koleksi jika Anda mencentangnya. Nilai tingkat atas mempertahankan jenisnya, tetapi nilai bertipe di dalam subdokumen atau array, seperti ObjectId dalam array, ditulis sebagai string: ekspor koleksi tersebut sebagai JSON atau cadangkan dengan mongodump."
+            "text": [
+                "<structure>Tab Structure</structure> mencantumkan indeks beserta opsinya, dan Show DDL menuliskannya sebagai panggilan <code>createIndex</code>. Ganti nama atau hapus field di seluruh koleksi dengan <code>updateMany</code> yang dipratinjau dan juga memperbarui validator, dan <ui>New Table</ui> mengubah field menjadi validator <code>$jsonSchema</code>.",
+                "<backup>Backup Dump</backup> menulis database yang Anda centang, atau koleksi tertentu, ke arsip gzip dengan {dumpTool}, dan Restore Dump menjalankan mongorestore ke database yang Anda pilih. Pasang MongoDB Database Tools terlebih dahulu."
             ]
         }
     ],
     "family": [],
-    "otherTools": {
-        "items": [
-            {
-                "product": "mongodb-compass",
-                "anchor": "compass",
-                "text": "Pilih MongoDB Compass untuk alur agregasi visual, sampel analisis skema, dan penjelasan rencana. TablePro menanyakan MongoDB bersama mesin database lainnya.",
-                "notes": [
-                    "compass-natural-language"
-                ]
-            }
-        ],
-        "notes": {
-            "compass-natural-language": "Compass juga dapat menulis kueri dari pertanyaan dalam bahasa alami."
-        }
-    },
+    "moveData": [
+        "<importData>Impor</importData> file {importFormats} ke koleksi, dan <export>ekspor</export> koleksi atau hasil sebagai {exportFormats}. Ekspor MQL menulis panggilan <code>insertMany</code> yang berjalan di mongosh, tetapi nilai bertipe di dalam array atau subdokumen menjadi string, jadi cadangkan koleksi tersebut dengan mongodump."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "mongosh",
             "question": "Apakah tab kueri adalah mongosh?",
-            "answer": "Tidak. Tab tersebut adalah shell yang menerima sintaks mongosh dan berjalan di dalam TablePro menggunakan JavaScriptCore. Sebagian besar kode mongosh berjalan tanpa perubahan. Satu perbedaan: bilangan bulat di luar rentang 32-bit disimpan sebagai integer 64-bit, sedangkan mongosh menyimpannya sebagai double, jadi gunakan <code>Double()</code> untuk perilaku yang sama."
+            "answer": "Tidak. Tab ini adalah shell yang menerima sintaks mongosh dan berjalan di dalam TablePro di atas JavaScriptCore, sehingga sebagian besar kode mongosh berjalan apa adanya. Bilangan bulat di luar rentang 32-bit disimpan sebagai integer 64-bit, sedangkan mongosh menyimpan double: bungkus dengan <code>Double()</code> agar sama."
         },
         {
             "id": "query-plan",
-            "question": "Bagaimana saya melihat rencana kueri?",
-            "answer": "Tambahkan <code>.explain(\"executionStats\")</code> ke cursor pada tab kueri. Rencana dikembalikan sebagai dokumen; koneksi MongoDB tidak memiliki diagram rencana."
+            "question": "Bagaimana cara melihat rencana kueri?",
+            "answer": "Tambahkan <code>.explain(\"executionStats\")</code> ke cursor di tab kueri. Rencana dikembalikan sebagai dokumen; koneksi MongoDB tidak memiliki diagram rencana."
         },
         {
             "id": "users",
-            "question": "Bagaimana saya mencantumkan pengguna database?",
+            "question": "Bagaimana cara mencantumkan pengguna database?",
             "answer": "Jalankan <code>db.runCommand({usersInfo: 1})</code>. Shell tidak mengurai <code>db.getUsers()</code> atau <code>db.createUser()</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Telusuri dan edit data dengan aman",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Bahasa kueri selain SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Impor, ekspor, dan pencadangan",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Bandingkan TablePro dengan klien database lain",
-            "href": "/compare"
-        }
-    ]
+    "otherTools": {
+        "text": "MongoDB Compass memiliki pipeline agregasi visual, analisis skema berbasis sampel, dan explain plan, sedangkan TablePro menjalankan kueri MongoDB bersama mesin lain; lihat <compass>TablePro vs MongoDB Compass</compass>.",
+        "also": [
+            "compass"
+        ]
+    }
 }

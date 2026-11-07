@@ -11,99 +11,60 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "Klien DuckDB",
-        "lead": "Buka database DuckDB atau kueri file Parquet, CSV, dan JSON dengan SQL. Tidak diperlukan server database lokal."
+        "lead": "Buka database DuckDB, atau jalankan kueri pada file Parquet, CSV, dan JSON dengan SQL, tanpa server database yang perlu dijalankan.",
+        "asset": "databases-duckdb"
     },
-    "asset": "mac-db-duckdb-parquet",
     "links": {
-        "files": "/features/import-export#files",
         "dataFiles": "/features/import-export#data-files",
-        "importData": "/features/import-export#import",
-        "export": "/features/import-export#export",
+        "explain": "/features/querying#explain",
         "backup": "/features/import-export#backup",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
-        "structure": "/features/schema#structure"
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Buka file",
-            "paragraphs": [
-                "Buka file <code>.duckdb</code> atau <code>.ddb</code>, masukkan jalur baru untuk membuatnya, atau gunakan <code>:memory:</code> untuk database sementara. File diidentifikasi berdasarkan headernya, bukan ekstensinya.",
-                "Buka Parquet, CSV, TSV, JSON, atau NDJSON sebagai view hanya-baca bernama <code>file</code> dan nama file tersebut. File sumber tidak berubah. Buat tabel dalam database DuckDB untuk mengedit datanya.",
-                "Buka file DuckDB dari Finder. File Parquet dibuka sebagai koneksi DuckDB dengan <ui>File > Open File</ui>, bukan di jendela <dataFiles>Data Files</dataFiles>.",
-                "<ui>Remote (Quack, experimental)</ui> terhubung ke server <code>quack_serve</code> dengan alias. Koneksi pertama mengunduh ekstensi <code>quack</code> DuckDB."
+            "text": [
+                "Buka file <code>.duckdb</code> atau <code>.ddb</code>, juga dari Finder, masukkan path baru untuk membuatnya, atau gunakan <code>:memory:</code> untuk database sementara. File dikenali dari header-nya, bukan ekstensinya.",
+                "Parquet, CSV, TSV, JSON, dan NDJSON dibuka dengan <ui>File > Open File</ui> sebagai view hanya baca bernama <code>file</code> dan sesuai nama file, dan file sumber tidak pernah diubah. <ui>Remote (Quack, experimental)</ui> terhubung ke server <code>quack_serve</code> dengan sebuah alias; koneksi pertama mengunduh ekstensi <code>quack</code> milik DuckDB."
             ]
         },
         {
             "id": "work",
-            "title": "Jalankan kueri dan edit",
-            "paragraphs": [
-                "File kueri secara langsung, seperti <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> menambahkan file DuckDB lainnya ke sidebar; <code>⌘K</code> beralih di antara keduanya. Lampiran tidak dapat bertahan jika dihubungkan kembali.",
-                "<explain>EXPLAIN</explain> digambar sebagai diagram rencana. Baris tabel dapat diedit dengan <editing>Preview SQL</editing> yang menampilkan setiap pernyataan terlebih dahulu, sedangkan view atas file data tetap hanya baca."
-            ]
-        },
-        {
-            "id": "schema",
-            "title": "Structure",
-            "paragraphs": [
-                "Tab <structure>Structure</structure> mengedit tabel dan menampilkan DDL sebelum dijalankan. Tidak ada tindakan buat atau lepas database di sidebar. Untuk membuat file, masukkan jalur baru saat menghubungkan; gunakan <code>ATTACH</code> untuk mencapai file kedua."
+            "title": "Kueri dan edit",
+            "text": [
+                "Jalankan kueri langsung pada file, seperti <code>SELECT * FROM 'data.csv'</code>. <code>ATTACH</code> menambahkan file DuckDB lain ke sidebar dan <code>⌘K</code> berpindah di antaranya, hingga koneksi ulang berikutnya. <explain>EXPLAIN</explain> digambar sebagai diagram rencana.",
+                "Baris dalam tabel dapat diedit, sedangkan view atas file data tetap hanya baca: buat tabel di database DuckDB untuk mengedit datanya. Tidak ada tindakan untuk membuat atau menghapus database; masukkan path baru saat menghubungkan untuk membuat file."
             ]
         },
         {
             "id": "operate",
             "title": "Bagikan file dan cadangkan",
-            "paragraphs": [
-                "Selama TablePro memegang file, CLI <code>duckdb</code>, notebook, atau proses dbt tidak dapat membukanya. Atur <ui>Release the File Lock After</ui> agar file dilepas setelah beberapa menit tidak aktif dan diambil kembali pada kueri berikutnya, atau <ui>Open the File Read-Only</ui> agar beberapa pembaca dapat mengaksesnya. <ui>Database > Release File Lock</ui> langsung melepaskannya sambil mempertahankan tab. Pelepasan ditolak dengan alasannya selama sesi memiliki transaksi terbuka, tabel sementara, database terlampir, atau pengaturan yang diubah.",
-                "<backup>Backup Dump</backup> tidak memerlukan pemasangan karena {dumpTool} menulis melalui koneksi terbuka. Pilih file <code>.duckdb</code> untuk dipulihkan di TablePro nanti, atau folder berisi <code>schema.sql</code>, <code>load.sql</code>, dan satu file Parquet per tabel yang dapat dibaca langsung oleh pandas, Spark, dan BigQuery. Restore Dump berhenti pada objek pertama yang namanya sudah digunakan."
+            "text": [
+                "Selama TablePro memegang file, CLI <code>duckdb</code>, notebook, atau proses dbt tidak dapat membukanya. <ui>Release the File Lock After</ui> mengembalikan file setelah beberapa menit tidak aktif dan mengambilnya lagi pada kueri berikutnya, <ui>Open the File Read-Only</ui> memungkinkan beberapa pembaca berbagi file, dan <ui>Database > Release File Lock</ui> langsung mengembalikannya. Pelepasan ditolak, beserta alasannya, selama sesi memegang transaksi, tabel sementara, database terlampir, atau pengaturan yang diubah.",
+                "<backup>Backup Dump</backup> tidak memerlukan pemasangan apa pun, karena {dumpTool} menulisnya melalui koneksi yang terbuka: file <code>.duckdb</code> untuk dipulihkan nanti, atau folder berisi <code>schema.sql</code>, <code>load.sql</code>, dan satu file Parquet per tabel, yang dibaca langsung oleh pandas, Spark, dan BigQuery."
             ]
-        },
-        {
-            "id": "move-data",
-            "title": "Pindahkan data",
-            "paragraphs": [
-                "<importData>Import</importData> menerima file {importFormats}, dan ekspor menulis tabel serta hasil sebagai {exportFormats}. <export>Plugin ekspor Parquet</export>, dipasang dari Settings > Plugins, menambahkan keluaran Parquet, satu file per tabel. Selengkapnya tentang <files>menggunakan file sebagai database</files>."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone dan iPad",
-            "paragraphs": [
-                "Di iPhone dan iPad, DuckDB disertakan dalam aplikasi. File yang dipilih di aplikasi File dibuka di lokasi aslinya, bukan sebagai salinan, atau pilih In-Memory untuk database sementara. Anda dapat menelusuri tabel sebagai kartu dan menjalankan SQL di tab Query. Koneksi Remote (Quack) hanya tersedia di Mac."
-            ],
-            "asset": "ios-table-browse"
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Impor</importData> file {importFormats}, dan ekspor tabel serta hasil sebagai {exportFormats}. <export>Plugin ekspor Parquet</export>, dari Settings > Plugins, menambahkan output Parquet, satu file per tabel."
+    ],
+    "iphone": [
+        "Di sana, DuckDB adalah bagian dari aplikasi. File yang Anda pilih di aplikasi File dibuka di lokasi aslinya, bukan sebagai salinan, In-Memory memberi database sementara, dan Anda menelusuri tabel sebagai kartu serta menjalankan SQL di tab Query."
+    ],
     "faq": [
         {
             "id": "version",
             "question": "Versi DuckDB apa yang digunakan TablePro?",
-            "answer": "DuckDB {engineVersion}, dikompilasi ke dalam driver. Versinya tidak bergantung pada DuckDB yang telah Anda pasang."
+            "answer": "DuckDB {engineVersion}, dikompilasi ke dalam driver. Versinya tidak bergantung pada DuckDB yang Anda pasang."
         },
         {
             "id": "csv-or-data-files",
-            "question": "Sebaiknya saya membuka CSV di DuckDB atau jendela Data Files?",
-            "answer": "Buka di <dataFiles>jendela Data Files</dataFiles> untuk menelusuri, membersihkan, dan menyimpannya kembali. Buka sebagai DuckDB untuk menggabungkannya dengan file atau tabel lain melalui SQL; file tetap hanya baca di sana."
+            "question": "Sebaiknya saya membuka file CSV di DuckDB atau di jendela Data Files?",
+            "answer": "Gunakan <dataFiles>jendela Data Files</dataFiles> untuk menelusuri file, membersihkannya, dan menyimpannya kembali. Buka sebagai DuckDB untuk menggabungkannya dengan file atau tabel lain dalam SQL; di sana file tetap hanya baca."
         }
     ],
-    "related": [
-        {
-            "label": "Impor, ekspor, dan file data",
-            "href": "/features/import-export#files"
-        },
-        {
-            "label": "SQLite, untuk file database aplikasi",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "ClickHouse, untuk server analitik",
-            "href": "/clickhouse-client"
-        },
-        {
-            "label": "TablePro untuk iPhone dan iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

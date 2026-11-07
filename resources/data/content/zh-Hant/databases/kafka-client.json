@@ -11,75 +11,60 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Apache Kafka 用戶端",
-        "lead": "檢查主題訊息和消費者延遲，或使用 TablePro 的命令語言 KafkaQL 傳送測試訊息。"
+        "lead": "檢查主題訊息和消費者延遲，或使用 TablePro 自己的指令語言 KafkaQL 傳送測試訊息。",
+        "asset": "databases-kafka"
     },
-    "asset": "mac-db-kafka-consume",
     "links": {
         "network": "/features/connections#network",
+        "otherLanguages": "/features/querying#other-languages",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "連線",
-            "paragraphs": [
-                "輸入啟動代理的主機和連接埠。<ui>額外的 Bootstrap 伺服器</ui> (Additional Bootstrap Servers) 可加入備援代理。每個連線存取一個叢集，側邊欄顯示其主題。",
-                "<ui>安全性協定</ui>（Security Protocol）可選 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 機制</ui>（SASL Mechanism）可選 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管代理。SSL 或 SASL_SSL 未選擇 SSL 模式時驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA 憑證</ui>（CA Certificate），用戶端憑證和金鑰提供雙向 TLS。",
-                "透過 <network>SSH 通道</network>時連線停留在啟動代理，僅讀取該代理領導的分割區。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不將其作為連結開啟。"
+            "text": [
+                "輸入啟動代理的主機和連接埠，並在 <ui>額外的 Bootstrap 伺服器</ui> (Additional Bootstrap Servers) 中加入備援代理。每個連線存取一個叢集，側邊欄顯示其主題。",
+                "<ui>安全性協定</ui> (Security Protocol) 可選 PLAINTEXT、SSL、SASL_PLAINTEXT 或 SASL_SSL，<ui>SASL 機制</ui> (SASL Mechanism) 可選 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512：PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管的代理。使用 SSL 或 SASL_SSL 且未選擇 SSL 模式時，會驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA 憑證</ui> (CA Certificate)，用戶端憑證和金鑰可加上雙向 TLS。",
+                "透過 <network>SSH 通道</network>時，連線會停留在啟動代理，因此只讀取該代理領導的分割區。<ui>從 URL 匯入…</ui> (Import from URL…) 接受 <code>kafka://</code> URL，macOS 不會將其作為連結開啟。"
             ]
         },
         {
             "id": "work",
-            "title": "讀取、檢查與產生",
-            "paragraphs": [
-                "瀏覽近期訊息及其分割區、位移、時間戳記、鍵、值和標頭。跨分割區訊息依時間戳記交錯顯示，由分割區和位移識別。非 UTF-8 值顯示為十六進位；墓碑訊息與空訊息保持區分。",
-                "用 KafkaQL 從最新、最早、指定位移或 ISO 8601 時間戳記開始消費，也可限定分割區。SHOW 列出主題、代理、群組和叢集詳情；DESCRIBE TOPIC 檢查主題。",
-                "<code>DESCRIBE GROUP</code> 是延遲報告，逐分割區顯示已提交位移、末端位移和差值。群組從未提交過的分割區顯示無延遲，而非從零計算。代理無法連線時 <code>SHOW GROUPS</code> 標註清單已截斷。",
-                "<code>PRODUCE INTO</code> 寫入訊息，可選索引鍵、標頭和分割區。有索引鍵但未指定分割區的訊息落在 Kafka 自身生產者會選擇的位置。讀取時自動解壓縮 gzip、snappy、lz4、zstd 批次，無須選擇設定。",
-                "不能編輯或單獨刪除訊息，也不能依欄位排序。新訊息到達時，分頁會從上次位置繼續。"
+            "title": "讀取、檢查與傳送",
+            "text": [
+                "瀏覽近期訊息及其分割區、位移、時間戳記、鍵、值和標頭。來自多個分割區的訊息依時間戳記交錯顯示，非 UTF-8 值顯示為十六進位，墓碑訊息與空訊息保持區分。",
+                "<otherLanguages>KafkaQL</otherLanguages> 可從最新或最舊的訊息、某個位移或 ISO 8601 時間戳記開始消費，也可限定分割區。<code>SHOW</code> 列出主題、代理、群組和叢集詳情，<code>DESCRIBE TOPIC</code> 檢查主題。<code>DESCRIBE GROUP</code> 是延遲報告：逐分割區顯示已提交位移、末端位移和差值。群組從未提交過的分割區會顯示無延遲，而不是從零算起的數字。",
+                "<code>PRODUCE INTO</code> 會寫入訊息，可選擇鍵、標頭和分割區；有鍵但未指定分割區的訊息，會落在 Kafka 自己的生產者會放置的位置。gzip、snappy、lz4 和 zstd 批次會在讀取時解壓縮。"
+            ],
+            "notes": [
+                "訊息無法逐一編輯或刪除，新訊息到達時，分頁會從先前的位置繼續。"
             ]
         },
         {
             "id": "operate",
             "title": "主題",
-            "paragraphs": [
-                "從側邊欄或 <code>DROP TOPIC</code> 刪除主題是唯一破壞性操作。叢集隨後移除記錄，主題可能暫留清單。不提供 Truncate：Kafka 依保留策略或各分割區位移移除記錄，兩者均不清空主題。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移動資料",
-            "paragraphs": [
-                "不提供匯入；用 <code>PRODUCE INTO</code> 向主題寫入訊息。將查詢讀取的訊息<export>匯出</export>為 {exportFormats}。"
+            "text": [
+                "從側邊欄或以 <code>DROP TOPIC</code> 刪除主題是唯一的破壞性操作。叢集會在之後移除記錄，因此主題可能會在清單中暫留片刻。不提供 Truncate：Kafka 依保留策略或各分割區的位移移除記錄，兩者都不會清空主題。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "不提供匯入：請用 <code>PRODUCE INTO</code> 將訊息寫入主題。將查詢讀取的訊息<export>匯出</export>為 {exportFormats}。"
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "advertised-addresses",
-            "question": "為什麼主題能載入但訊息逾時？",
-            "answer": "叢集公布了此 Mac 無法存取的位址，如容器主機名稱或私有 IP。請修正 <code>advertised.listeners</code>，或設定 <ui>Broker 位址</ui>（Broker Addresses）僅用啟動位址。"
+            "question": "為什麼主題能載入，但訊息會逾時？",
+            "answer": "叢集公布了這台 Mac 無法存取的位址，例如容器主機名稱或私有 IP。請修正 <code>advertised.listeners</code>，或設定 <ui>Broker 位址</ui> (Broker Addresses) 只使用啟動位址。"
         },
         {
             "id": "msk-iam",
             "question": "支援 Amazon MSK IAM 登入嗎？",
-            "answer": "不支援。提供的 SASL 機制為 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512，請在 MSK 叢集建立 SCRAM 使用者，以 SASL_SSL 連線。"
+            "answer": "不支援。SASL 機制為 PLAIN、SCRAM-SHA-256 和 SCRAM-SHA-512，因此請在 MSK 叢集上建立 SCRAM 使用者，並以 SASL_SSL 連線。"
         }
     ],
-    "related": [
-        {
-            "label": "SQL 以外的查詢語言",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "連線、通道與認證資訊",
-            "href": "/features/connections"
-        },
-        {
-            "label": "支援的資料庫",
-            "href": "/databases"
-        }
-    ]
+    "otherTools": null
 }

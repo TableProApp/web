@@ -11,102 +11,69 @@
     "breadcrumb": "Amazon Redshift",
     "header": {
         "title": "Amazon Redshift 客户端",
-        "lead": "查询预置集群或 Serverless 工作组。检查排序键、分布方式和外部结构。"
+        "lead": "查询预置集群或 Serverless 工作组，并检查排序键、分布方式和外部 schema。",
+        "asset": "databases-redshift"
     },
-    "asset": "mac-db-redshift-ddl",
     "links": {
-        "network": "/features/connections#network",
-        "credentials": "/features/connections#credentials",
-        "editing": "/features/data-editing#edit",
-        "explain": "/features/querying#explain",
-        "dashboard": "/features/schema#server-dashboard",
-        "importData": "/features/import-export#import",
-        "backup": "/features/import-export#backup",
         "postgresql": "/postgresql-client",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#administer",
+        "backup": "/features/import-export#backup",
+        "importData": "/features/import-export#import",
         "icloudSync": "/features/sync-and-teams#icloud-sync",
         "share": "/features/sync-and-teams#share"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "连接",
-            "paragraphs": [
-                "输入集群或 Serverless 工作组端点、端口和数据库。集群默认从 <code>dev</code> 开始。<code>redshift://</code> URL 可自动填充表单。",
-                "新连接 SSL 为 Preferred，不检查版本，因此 AWS 仍运行的任何集群都可连接。密码存入钥匙串或从 <code>~/.pgpass</code> 读取，是连接的两种<credentials>凭据选项</credentials>。无法公开访问的集群通过通往其 VPC 堡垒机的 <network>SSH 隧道</network>访问。"
+            "text": [
+                "输入集群或 Serverless 工作组端点、端口和数据库；集群默认以 <code>dev</code> 开始，<code>redshift://</code> URL 可自动填充表单。新连接的 SSL 默认为 Preferred，且不检查版本，因此 AWS 仍在运行的任何集群都可连接。",
+                "密码保存在钥匙串中，或从 <code>~/.pgpass</code> 读取。无法公开访问的集群可通过通往其 VPC 中堡垒机的 SSH 隧道访问。"
             ]
         },
         {
             "id": "work",
             "title": "查询和编辑",
-            "paragraphs": [
-                "查询和<editing>带 Preview SQL 的暂存行编辑</editing>通过同一驱动，与 <postgresql>PostgreSQL</postgresql> 相同。绑定非当前数据库的标签页会为其打开第二个连接。",
-                "从 <code>svv_table_info</code> 查看分布方式、排序键和大小。DDL 包含 DISTKEY、SORTKEY、DISTSTYLE 和 ENCODE。外键会列出，但 Redshift 不强制执行。",
-                "<explain>EXPLAIN 和 EXPLAIN VERBOSE</explain> 返回 Redshift 文本计划，不绘制图形。",
-                "与本地结构一起浏览外部 Spectrum、联合查询、跨数据库和 datashare 结构。外部表支持筛选、排序和导出，但只读。无法获取行数；类型来自外部目录。"
+            "text": [
+                "查询和行编辑通过同一驱动，与 <postgresql>PostgreSQL</postgresql> 上的用法相同；绑定到其他数据库的标签页会为其打开第二个连接。<explain>EXPLAIN 和 EXPLAIN VERBOSE</explain> 以文本返回 Redshift 的计划。",
+                "分布方式、排序键和大小来自 <code>svv_table_info</code>，DDL 包含 DISTKEY、SORTKEY、DISTSTYLE 和 ENCODE；外键会列出，但 Redshift 不强制执行。外部 Spectrum、联合查询、跨数据库和 datashare schema 与本地 schema 并列显示，其中的表可筛选、排序和导出，但保持只读。"
             ]
         },
         {
             "id": "schema",
             "title": "结构",
-            "paragraphs": [
-                "Redshift 无索引、枚举、序列或触发器可管理：DISTKEY、SORTKEY 承担索引作用，Structure 中无 Triggers 标签页，侧边栏不列出例程。",
-                "可从侧边栏重命名表、数据库和 schema，并创建指定所有者的 schema。"
+            "text": [
+                "Redshift 没有可管理的索引、枚举、序列或触发器：DISTKEY 和 SORTKEY 承担索引的作用。可从侧边栏重命名表、数据库和 schema，或创建指定所有者的 schema。"
             ]
         },
         {
             "id": "operate",
             "title": "监控和备份",
-            "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 列出会话和慢查询，显示连接、缓存命中率、数据库大小、运行时间和活动查询指标。Cancel Query 发送 <code>pg_cancel_backend</code>，Terminate Session 发送 <code>pg_terminate_backend</code>，两者均先确认。",
-                "Redshift 无 Maintenance 菜单或 Users & Roles，请在 SQL 编辑器运行 VACUUM、ANALYZE、GRANT。",
-                "<backup>Backup Dump 和 Restore Dump</backup> 在 Mac 运行 {dumpTool} 和 pg_restore，有 SSH 隧道时通过它连接。请先用 Homebrew 的 libpq 安装。"
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "移动数据",
-            "paragraphs": [
-                "<importData>导入</importData>将 Mac 上的 {importFormats} 文件加载到 Redshift 表。表或查询结果可导出为 {exportFormats}，外部表与其他表一样可导出。"
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone 和 iPad",
-            "paragraphs": [
-                "将 Redshift 连接带到 iPhone、iPad，可启用 Mac 的 {icloudSyncTier} 方案中的 <icloudSync>iCloud Sync</icloudSync>，或<share>导出连接</share>文件在设备打开。之后使用内置 PostgreSQL 驱动，以卡片形式浏览、筛选排序表，在 Query 标签页运行 SQL。密码仅在密码同步开启时通过 iCloud Sync 传递，或通过 {encryptedExportTier} 方案中含密码的加密导出文件传递。证书保留在各设备上。"
+            "text": [
+                "<dashboard>Server Dashboard</dashboard> 列出会话和慢查询，可用 <code>pg_cancel_backend</code> 取消查询，用 <code>pg_terminate_backend</code> 终止会话，每项操作都需您先确认。请在 SQL 编辑器中运行 VACUUM、ANALYZE 和 GRANT。",
+                "<backup>Backup Dump 和 Restore Dump</backup> 在您的 Mac 上运行 {dumpTool} 和 pg_restore，连接有 SSH 隧道时会通过它。请先用 Homebrew 的 libpq 安装它们。"
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>导入</importData>会将您 Mac 上的 {importFormats} 文件加载到 Redshift 表中。导出可将表（包括外部表）或查询结果写为 {exportFormats}。"
+    ],
+    "iphone": [
+        "通过 <icloudSync>iCloud Sync</icloudSync>（Mac 上为 {icloudSyncTier}）或<share>导出的连接文件</share>将连接带过去。它使用应用内置的 PostgreSQL 驱动运行：以卡片形式浏览表，筛选和排序，并在 Query 标签页运行 SQL。"
+    ],
     "faq": [
         {
             "id": "serverless",
-            "question": "支持 Redshift Serverless 吗？",
-            "answer": "支持。主机填写工作组端点，像预置集群一样填写端口、数据库和用户。"
+            "question": "TablePro 支持 Redshift Serverless 吗？",
+            "answer": "支持。在主机字段填写工作组端点，并像预置集群一样填写端口、数据库和用户。"
         },
         {
             "id": "pg-dump",
             "question": "pg_dump 支持 Redshift 吗？",
-            "answer": "没有 pg_dump 版本声称支持 Redshift 报告的 PostgreSQL 版本。TablePro 对 PostgreSQL 选择匹配服务器的版本，对 Redshift 则运行已安装的 pg_dump，因此依赖前请先尝试备份小型 schema。"
+            "answer": "没有任何 pg_dump 版本声称支持 Redshift 报告的 PostgreSQL 版本。TablePro 会运行您安装的 pg_dump，因此在依赖它之前，请先尝试备份一个小型 schema。"
         }
     ],
-    "related": [
-        {
-            "label": "使用同一驱动的 PostgreSQL",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "Server Dashboard 和结构工具",
-            "href": "/features/schema"
-        },
-        {
-            "label": "备份、导入和导出",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Google BigQuery，另一种数据仓库",
-            "href": "/bigquery-client"
-        }
-    ]
+    "otherTools": null
 }

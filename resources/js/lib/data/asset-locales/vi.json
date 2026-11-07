@@ -258,117 +258,117 @@
     },
     "databases-postgresql": {
         "description": {
-            "vi": "A PostgreSQL connection on shop: a query joining orders and users, with its EXPLAIN ANALYZE plan drawn as a diagram."
+            "vi": "Một connection PostgreSQL tới shop: một query join orders với users, cùng plan EXPLAIN ANALYZE của nó được vẽ thành sơ đồ."
         }
     },
     "databases-mysql": {
         "description": {
-            "vi": "A MySQL connection on shop: a query joining orders and users, with its results in the grid."
+            "vi": "Một connection MySQL tới shop: một query join orders với users, cùng kết quả của nó trong data grid."
         }
     },
     "databases-sqlserver": {
         "description": {
-            "vi": "A SQL Server connection: a T-SQL script split into GO batches, with its PRINT output in the Output tab."
+            "vi": "Một connection SQL Server: một script T-SQL được tách thành các batch GO, cùng output PRINT của nó trong tab Output."
         }
     },
     "databases-sqlite": {
         "description": {
-            "vi": "The bundled Chinook SQLite sample, with the Track table filtered by genre."
+            "vi": "Cơ sở dữ liệu mẫu SQLite Chinook đi kèm ứng dụng, với table Track được lọc theo genre."
         }
     },
     "databases-mongodb": {
         "description": {
-            "vi": "A MongoDB connection: the events collection in the grid, with the Insert Document sheet open in Extended JSON."
+            "vi": "Một connection MongoDB: collection events trong data grid, với sheet Insert Document đang mở ở dạng Extended JSON."
         }
     },
     "databases-redis": {
         "description": {
-            "vi": "A Redis connection: the key tree split on \":\", with the Key, Type, TTL, Length and Value columns."
+            "vi": "Một connection Redis: cây key được tách theo \":\", với các cột Key, Type, TTL, Length và Value."
         }
     },
     "databases-redshift": {
         "description": {
-            "vi": "An Amazon Redshift connection: a table's DDL with its DISTKEY and SORTKEY."
+            "vi": "Một connection Amazon Redshift: DDL của một table, với DISTKEY và SORTKEY của nó."
         }
     },
     "databases-oracle": {
         "description": {
-            "vi": "An Oracle connection: a PL/SQL block in the editor, with its DBMS_OUTPUT lines under the result."
+            "vi": "Một connection Oracle: một block PL/SQL trong editor, với các dòng DBMS_OUTPUT bên dưới kết quả."
         }
     },
     "databases-clickhouse": {
         "description": {
-            "vi": "A ClickHouse connection: the Parts tab of a MergeTree table, with partitions, parts and row counts."
+            "vi": "Một connection ClickHouse: tab Parts của một table MergeTree, với partition, part và số dòng."
         }
     },
     "databases-duckdb": {
         "description": {
-            "vi": "A DuckDB database with a Parquet file opened as a view and queried with SQL."
+            "vi": "Một cơ sở dữ liệu DuckDB với một file Parquet được mở dạng view và query bằng SQL."
         }
     },
     "databases-cassandra": {
         "description": {
-            "vi": "A Cassandra keyspace: a table in the grid, with a changed scalar cell pending and a set column shown as a collection."
+            "vi": "Một keyspace Cassandra: một table trong data grid, với một ô scalar đã đổi đang chờ lưu và một cột set hiển thị dạng collection."
         }
     },
     "databases-dynamodb": {
         "description": {
-            "vi": "A DynamoDB table: a filtered read run as a Query on an index, with the read capacity it consumed in the status bar."
+            "vi": "Một table DynamoDB: một lần đọc có lọc chạy dưới dạng Query trên một index, với read capacity đã dùng trên thanh trạng thái."
         }
     },
     "databases-bigquery": {
         "description": {
-            "vi": "A BigQuery connection: a Dry Run from the Explain menu, with the bytes the query would process and its estimated cost."
+            "vi": "Một connection BigQuery: một Dry Run từ menu Explain, với số byte query sẽ xử lý và chi phí ước tính."
         }
     },
     "databases-snowflake": {
         "description": {
-            "vi": "A Snowflake connection with its warehouse and role set in Session Context, and a query result below."
+            "vi": "Một connection Snowflake với warehouse và role được đặt trong Session Context, và một kết quả query bên dưới."
         }
     },
     "databases-cloudflare-d1": {
         "description": {
-            "vi": "A Cloudflare D1 connection: the database switcher listing the account's D1 databases, over a query tab."
+            "vi": "Một connection Cloudflare D1: bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, phía trên một tab query."
         }
     },
     "databases-turso": {
         "description": {
-            "vi": "A remote Turso database: its tables in the sidebar and a query result in the grid."
+            "vi": "Một cơ sở dữ liệu Turso từ xa: các table của nó trong sidebar và một kết quả query trong data grid."
         }
     },
     "databases-elasticsearch": {
         "description": {
-            "vi": "The Elasticsearch Query DSL console: a GET _search request and its hits as rows."
+            "vi": "Console Query DSL của Elasticsearch: một request GET _search và các hit của nó hiển thị thành dòng."
         }
     },
     "databases-etcd": {
         "description": {
-            "vi": "An etcd connection: keys under a prefix root, with their values and leases."
+            "vi": "Một connection etcd: các key dưới một prefix root, với value và lease của chúng."
         }
     },
     "databases-kafka": {
         "description": {
-            "vi": "A Kafka connection: KafkaQL CONSUME on an orders topic, with messages by partition, offset, key and timestamp."
+            "vi": "Một connection Kafka: KafkaQL CONSUME trên topic orders, với các message theo partition, offset, key và timestamp."
         }
     },
     "databases-surrealdb": {
         "description": {
-            "vi": "A SurrealDB connection: a SurrealQL query and the records it returned in the grid."
+            "vi": "Một connection SurrealDB: một query SurrealQL và các record nó trả về trong data grid."
         }
     },
     "databases-teradata": {
         "description": {
-            "vi": "A Teradata connection: the sidebar listing stored procedures, with macros under Functions, and a query result."
+            "vi": "Một connection Teradata: sidebar liệt kê stored procedure, với macro trong mục Functions, và một kết quả query."
         }
     },
     "databases-trino": {
         "description": {
-            "vi": "A Trino connection: a query joining tables from two catalogs, with its results below."
+            "vi": "Một connection Trino: một query join các table từ hai catalog, với kết quả bên dưới."
         }
     },
     "databases-beancount": {
         "description": {
-            "vi": "A Beancount ledger: its projected tables in the sidebar and the result of a BQL query."
+            "vi": "Một sổ cái Beancount: các table được dựng từ sổ cái trong sidebar và kết quả của một query BQL."
         }
     },
     "ios-connection-list": {

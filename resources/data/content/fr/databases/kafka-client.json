@@ -11,75 +11,60 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Client Apache Kafka",
-        "lead": "Inspectez les messages des topics et le retard des consommateurs, ou produisez un message de test avec KafkaQL, le langage de commandes propre à TablePro."
+        "lead": "Inspectez les messages des topics et le retard des consommateurs, ou produisez un message de test avec KafkaQL, le langage de commandes propre à TablePro.",
+        "asset": "databases-kafka"
     },
-    "asset": "mac-db-kafka-consume",
     "links": {
         "network": "/features/connections#network",
+        "otherLanguages": "/features/querying#other-languages",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connexion",
-            "paragraphs": [
-                "Saisissez l’hôte et le port d’un broker bootstrap. <ui>Serveurs bootstrap supplémentaires</ui> (Additional Bootstrap Servers) ajoute des brokers de secours. Chaque connexion atteint un cluster ; la barre latérale affiche ses topics.",
-                "Le <ui>Protocole de sécurité</ui> (Security Protocol) est PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL ; le <ui>Mécanisme SASL</ui> (SASL Mechanism) est PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN convient à Confluent Cloud, SCRAM à Amazon MSK et aux brokers autohébergés. Avec SSL ou SASL_SSL sans mode SSL choisi, la chaîne de certificats et le nom d’hôte sont vérifiés. Une AC privée va dans <ui>Certificat d’autorité (CA)</ui> (CA Certificate) ; certificat client et clé ajoutent TLS mutuel.",
+            "text": [
+                "Saisissez l’hôte et le port d’un broker bootstrap, et ajoutez des brokers de secours dans <ui>Serveurs bootstrap supplémentaires</ui> (Additional Bootstrap Servers). Chaque connexion atteint un seul cluster, avec ses topics dans la barre latérale.",
+                "Le <ui>Protocole de sécurité</ui> (Security Protocol) est PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL, et le <ui>Mécanisme SASL</ui> (SASL Mechanism) est PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512 : PLAIN convient à Confluent Cloud, SCRAM à Amazon MSK et aux brokers autohébergés. Avec SSL ou SASL_SSL sans mode SSL choisi, la chaîne de certificats et le nom d’hôte sont vérifiés. Une AC privée va dans <ui>Certificat d’autorité (CA)</ui> (CA Certificate), et un certificat client et sa clé ajoutent TLS mutuel.",
                 "Avec un <network>tunnel SSH</network>, la connexion reste sur le broker bootstrap et ne lit donc que les partitions dont il est leader. <ui>Importer depuis une URL…</ui> (Import from URL…) accepte les URL <code>kafka://</code>, que macOS n’ouvre pas comme liens."
             ]
         },
         {
             "id": "work",
             "title": "Lisez, inspectez et produisez",
-            "paragraphs": [
-                "Parcourez les messages récents avec partition, offset, horodatage, clé, valeur et en-têtes. Les messages de partitions différentes sont intercalés par horodatage ; partition et offset les identifient. Les valeurs non UTF-8 s’affichent en hexadécimal. Les tombstones restent distincts des messages vides.",
-                "Avec KafkaQL, consommez depuis le message le plus récent, le plus ancien, un offset ou un horodatage ISO 8601, en limitant au besoin les partitions. Les commandes SHOW listent topics, brokers, groupes et détails du cluster ; DESCRIBE TOPIC inspecte un topic.",
-                "<code>DESCRIBE GROUP</code> donne le rapport de retard : offset validé, offset final et écart par partition. Une partition où le groupe n’a jamais validé d’offset n’affiche pas de retard plutôt qu’un nombre compté depuis zéro ; <code>SHOW GROUPS</code> marque sa liste comme tronquée si un broker est inaccessible.",
-                "<code>PRODUCE INTO</code> écrit un message avec clé, en-têtes et partition facultatifs. Un message avec clé sans partition arrive là où le producteur Kafka le placerait. Les lots gzip, snappy, lz4 et zstd sont décompressés à la lecture, sans réglage à choisir.",
-                "Les messages ne peuvent être ni modifiés ni supprimés individuellement, et les colonnes ne se trient pas. La pagination reprend à la position précédente malgré l’arrivée de nouveaux messages."
+            "text": [
+                "Parcourez les messages récents avec partition, offset, horodatage, clé, valeur et en-têtes. Les messages de plusieurs partitions sont intercalés par horodatage, les valeurs non UTF-8 s’affichent en hexadécimal, et les tombstones restent distincts des messages vides.",
+                "<otherLanguages>KafkaQL</otherLanguages> consomme depuis le message le plus récent ou le plus ancien, un offset ou un horodatage ISO 8601, en limitant au besoin les partitions. <code>SHOW</code> liste topics, brokers, groupes et détails du cluster, et <code>DESCRIBE TOPIC</code> inspecte un topic. <code>DESCRIBE GROUP</code> donne le rapport de retard : offset validé, offset final et écart, par partition. Une partition où le groupe n’a jamais validé d’offset n’affiche pas de retard plutôt qu’un nombre compté depuis zéro.",
+                "<code>PRODUCE INTO</code> écrit un message avec clé, en-têtes et partition facultatifs, et un message avec clé sans partition arrive là où le producteur Kafka le placerait. Les lots gzip, snappy, lz4 et zstd sont décompressés à la lecture."
+            ],
+            "notes": [
+                "Les messages ne peuvent être ni modifiés ni supprimés individuellement, et la pagination reprend à la position précédente malgré l’arrivée de nouveaux messages."
             ]
         },
         {
             "id": "operate",
             "title": "Topics",
-            "paragraphs": [
-                "Supprimer un topic depuis la barre latérale ou avec <code>DROP TOPIC</code> est la seule action destructive. Le cluster retire ensuite le journal ; le topic peut donc rester un moment dans la liste. Vider n’est pas proposé : Kafka retire les enregistrements par rétention ou offset par partition, sans vider un topic."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "Il n’y a pas d’import ; placez les messages dans un topic avec <code>PRODUCE INTO</code>. <export>Exportez</export> les messages lus par une requête en {exportFormats}."
+            "text": [
+                "Supprimer un topic depuis la barre latérale ou avec <code>DROP TOPIC</code> est la seule action destructive. Le cluster retire ensuite le journal ; le topic peut donc rester un moment dans la liste. Vider n’est pas proposé : Kafka retire les enregistrements par rétention ou offset par partition, sans vider un topic."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Il n’y a pas d’import : placez les messages dans un topic avec <code>PRODUCE INTO</code>. <export>Exportez</export> les messages lus par une requête en {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "advertised-addresses",
-            "question": "Pourquoi les topics chargent-ils mais les messages expirent ?",
+            "question": "Pourquoi les topics chargent-ils mais les messages expirent ?",
             "answer": "Le cluster annonce des adresses inaccessibles depuis ce Mac, comme un nom de conteneur ou une IP privée. Corrigez <code>advertised.listeners</code> ou définissez <ui>Adresses des brokers</ui> (Broker Addresses) pour n’utiliser que l’adresse bootstrap."
         },
         {
             "id": "msk-iam",
-            "question": "L’authentification IAM d’Amazon MSK fonctionne-t-elle ?",
-            "answer": "Non. Les mécanismes SASL proposés sont PLAIN, SCRAM-SHA-256 et SCRAM-SHA-512 ; créez donc un utilisateur SCRAM dans le cluster MSK et connectez-vous avec SASL_SSL."
+            "question": "L’authentification IAM d’Amazon MSK fonctionne-t-elle ?",
+            "answer": "Non. Les mécanismes SASL sont PLAIN, SCRAM-SHA-256 et SCRAM-SHA-512 ; créez donc un utilisateur SCRAM sur le cluster MSK et connectez-vous avec SASL_SSL."
         }
     ],
-    "related": [
-        {
-            "label": "Langages de requête autres que SQL",
-            "href": "/features/querying#other-languages"
-        },
-        {
-            "label": "Connexions, tunnels et identifiants",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Bases de données prises en charge",
-            "href": "/databases"
-        }
-    ]
+    "otherTools": null
 }

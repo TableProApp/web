@@ -11,61 +11,53 @@
     "breadcrumb": "Snowflake",
     "header": {
         "title": "Cliente Snowflake",
-        "lead": "Consulta y edita tablas, cambia de warehouse y rol, y exporta a un stage."
+        "lead": "Consulta y edita tablas de Snowflake, cambia de almacén y de rol sin reconectar, y exporta directamente a un stage.",
+        "asset": "databases-snowflake"
     },
-    "asset": "mac-db-snowflake-session",
     "links": {
         "credentials": "/features/connections#credentials",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "backup": "/features/import-export#backup"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecta e inicia sesión",
-            "paragraphs": [
-                "Introduce el identificador de cuenta anterior a <code>.snowflakecomputing.com</code>, como <code>myorg-myaccount</code>. Las peticiones usan HTTPS; no hacen falta host, sección TLS ni panel SSH.",
-                "Elige una <ui>Auth Method</ui>: par de claves PKCS#8, SSO en el navegador, token OAuth o contraseña con <ui>MFA Passcode (TOTP)</ui>. Los pares de claves requieren un reloj preciso. Los tokens OAuth pegados no se renuevan.",
-                "Con <code>ALLOW_CLIENT_MFA_CACHING</code> en la cuenta basta un código nuevo: Snowflake devuelve un token MFA que TablePro guarda en el <credentials>Llavero</credentials>. Con <code>ALLOW_ID_TOKEN</code>, SSO guarda ahí un token de acceso y las conexiones siguientes omiten el navegador hasta que Snowflake lo rechaza.",
-                "Snowflake no tiene esquema URL. Indica una sección en <ui>CLI Connection Name</ui>; al conectar, cada campo vacío se lee de <code>~/.snowflake/connections.toml</code>."
+            "text": [
+                "Introduce el identificador de cuenta que va antes de <code>.snowflakecomputing.com</code>, como <code>myorg-myaccount</code>. Las solicitudes usan HTTPS, así que no hay host, sección TLS ni panel SSH. Snowflake no tiene esquema de URL: indica una sección en <ui>CLI Connection Name</ui>, y cada campo que dejes vacío se lee de <code>~/.snowflake/connections.toml</code>.",
+                "Elige un <ui>Auth Method</ui>: par de claves PKCS#8, SSO en el navegador, token OAuth o contraseña con <ui>MFA Passcode (TOTP)</ui>. Los pares de claves necesitan un reloj del dispositivo preciso, y los tokens OAuth pegados no se renuevan.",
+                "Con <code>ALLOW_CLIENT_MFA_CACHING</code> en la cuenta basta un código nuevo: TablePro guarda en el <credentials>Llavero</credentials> el token MFA que devuelve Snowflake. Con <code>ALLOW_ID_TOKEN</code>, el SSO en el navegador guarda ahí un token de inicio de sesión, y las conexiones siguientes omiten el navegador hasta que Snowflake lo rechaza."
             ]
         },
         {
             "id": "work",
             "title": "Almacenes, roles y consultas",
-            "paragraphs": [
-                "Cambia de warehouse y rol con <ui>Database > Session Context</ui>. La conexión mantiene una sesión inactiva; las pestañas en otra base ejecutan <code>USE DATABASE</code> antes de sus instrucciones.",
-                "La barra lateral agrupa objetos por base y esquema. Las listas proceden de comandos <code>SHOW</code>, que no requieren almacén; los detalles de columnas vienen de <code>INFORMATION_SCHEMA</code>, que sí lo requiere. <explain>Explain</explain> devuelve el plan Snowflake como texto sin procesar.",
-                "Las <editing>ediciones en la cuadrícula</editing> enlazan valores en el servidor; las celdas VARIANT, OBJECT y ARRAY usan <code>PARSE_JSON</code>. Una edición usa la clave primaria declarada o todas las columnas si no existe. Las tablas estándar de Snowflake no imponen restricciones de clave: un valor duplicado hace que la edición o eliminación afecte a todas las filas coincidentes. Comprueba duplicados antes de editar. Las tablas híbridas sí imponen sus claves."
+            "text": [
+                "Cambia de almacén y de rol con <ui>Database > Session Context</ui>. La conexión mantiene una sesión mientras está inactiva, y las pestañas en otra base de datos ejecutan <code>USE DATABASE</code> antes de sus sentencias. Las listas de objetos proceden de comandos <code>SHOW</code>, que no necesitan almacén; los detalles de columnas vienen de <code>INFORMATION_SCHEMA</code>, que sí lo necesita. <explain>Explain</explain> devuelve el plan de Snowflake como texto sin procesar.",
+                "Las ediciones en la cuadrícula enlazan sus valores en el servidor, y las celdas VARIANT, OBJECT y ARRAY se envían mediante <code>PARSE_JSON</code>. Una edición usa la clave primaria declarada, o todas las columnas si no existe. Las tablas estándar no imponen restricciones de clave, así que una edición o eliminación afecta a todas las filas que comparten una clave duplicada: comprueba antes si hay duplicados. Las tablas híbridas sí imponen sus claves."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "DDL procede de <code>GET_DDL</code>. La <structure>pestaña Structure</structure> añade, renombra y elimina columnas, establece NOT NULL, comentarios y clave primaria, amplía VARCHAR y cambia la precisión de NUMBER manteniendo su escala.",
+            "text": [
+                "La vista DDL procede de <code>GET_DDL</code>. La <structure>pestaña Structure</structure> añade, renombra y elimina columnas, establece NOT NULL, comentarios y la clave primaria, amplía un VARCHAR y cambia la precisión de un NUMBER manteniendo su escala.",
                 "Los cambios que Snowflake rechazaría se bloquean antes de ejecutar: reducir VARCHAR, cualquier otro cambio de tipo y cambiar un valor predeterminado. Eliminar un valor predeterminado sí se ejecuta."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "<importData>Importa</importData> archivos {importFormats} por la conexión y exporta tablas o resultados al Mac como {exportFormats}.",
-                "Elige <ui>File > Server-Side Export…</ui> y un stage. <backup>Server-Side Export</backup> ejecuta <code>COPY INTO</code> con tus permisos y escribe CSV comprimido con gzip, Parquet o JSON. TablePro espera a que termine; los archivos no pasan por tu Mac."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importa</importData> archivos {importFormats} y exporta una tabla o un resultado a tu Mac como {exportFormats}. <backup>Server-Side Export</backup>, en <ui>File > Server-Side Export…</ui>, ejecuta <code>COPY INTO</code> un stage con tus permisos y escribe CSV comprimido con gzip, Parquet o JSON que nunca pasa por tu Mac."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "no-columns",
             "question": "¿Por qué la barra lateral muestra tablas sin columnas?",
-            "answer": "Los detalles vienen de <code>INFORMATION_SCHEMA</code>, que necesita un almacén activo. Configura <ui>Warehouse</ui> en la conexión o en Session Context. Si no aparece ningún objeto de una base, el rol necesita <code>USAGE</code> concedido."
+            "answer": "Los detalles de columnas vienen de <code>INFORMATION_SCHEMA</code>, que necesita un almacén en ejecución: configura <ui>Warehouse</ui> en la conexión o en Session Context. Si los objetos de una base de datos no aparecen en absoluto, el rol que conecta necesita <code>USAGE</code> concedido."
         },
         {
             "id": "timestamp-ltz",
@@ -75,25 +67,8 @@
         {
             "id": "jwt-invalid",
             "question": "La autenticación con claves dice que el JWT no es válido. ¿Qué compruebo?",
-            "answer": "El token contiene el localizador de cuenta y una fecha. Comprueba el identificador y el reloj del Mac, y confirma la clave pública registrada en el usuario con <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+            "answer": "El token contiene el localizador de tu cuenta y una marca de tiempo. Comprueba el identificador de cuenta y el reloj del Mac, y luego confirma que la clave pública está registrada con <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
         }
     ],
-    "related": [
-        {
-            "label": "Importación, exportación y archivos de datos",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "Escribe, ejecuta y comprende consultas",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Google BigQuery, otro almacén en la nube",
-            "href": "/bigquery-client"
-        },
-        {
-            "label": "Trino, para consultas entre catálogos",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

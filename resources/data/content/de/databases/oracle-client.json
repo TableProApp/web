@@ -11,84 +11,62 @@
     "breadcrumb": "Oracle",
     "header": {
         "title": "Oracle-Database-Client",
-        "lead": "Führe SQL und PL/SQL ohne Oracle Instant Client aus. Lies DBMS_OUTPUT neben den Abfrageergebnissen."
+        "lead": "Führe SQL und PL/SQL ohne Oracle Instant Client aus und lies DBMS_OUTPUT neben jedem Ergebnis.",
+        "asset": "databases-oracle"
     },
-    "asset": "mac-db-oracle-plsql",
     "links": {
-        "network": "/features/connections#network",
-        "parameters": "/features/querying#history",
-        "editing": "/features/data-editing#edit",
-        "safeMode": "/features/data-editing#safe-mode",
         "structure": "/features/schema#structure",
         "compareSync": "/features/schema#compare-sync",
-        "importData": "/features/import-export#import",
-        "serverExport": "/features/import-export#backup"
+        "serverExport": "/features/import-export#backup",
+        "importData": "/features/import-export#import"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Verbinden",
-            "paragraphs": [
-                "Gib Host, Listener-Port und Service Name ein oder wähle SID unter <ui>Connection Type</ui>. Die Passwortanmeldung unterstützt Normal, SYSDBA und SYSOPER.",
-                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten. <ui>Network Encryption</ui> ändert das Angebot von TablePro. Wähle für TLS Required für TCPS oder Verify CA beziehungsweise Verify Identity mit CA-Zertifikat. Neue Verbindungen haben SSL aus; Preferred bleibt bei Klartext-TCP.",
-                "Kopiere bei Oracle Autonomous Database Host, Port und Dienstnamen aus der TLS-Verbindungszeichenfolge, nicht der mTLS-Zeichenfolge, und setze SSL auf Required oder Verify CA. Wallet-Dateien werden nie gelesen, daher muss die Datenbank TLS ohne gegenseitiges TLS akzeptieren.",
-                "Ein RAC-SCAN-Listener, Shared Server oder Load Balancer vor der Datenbank braucht keine Konfiguration; ein <network>SSH-Tunnel</network> erreicht einen Listener im privaten Netzwerk."
+            "text": [
+                "Gib Host, Listener-Port und Service Name ein oder wähle SID unter <ui>Connection Type</ui>. Die Passwortanmeldung unterstützt die Rollen Normal, SYSDBA und SYSOPER, und ein RAC-SCAN-Listener, ein Shared Server oder ein Load Balancer braucht keine Konfiguration.",
+                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten, und <ui>Network Encryption</ui> ändert, was TablePro anbietet. Wähle für TLS Required für TCPS oder Verify CA beziehungsweise Verify Identity mit einem CA-Zertifikat; neue Verbindungen beginnen mit SSL aus.",
+                "Kopiere bei Oracle Autonomous Database Host, Port und Dienstnamen aus der TLS-Verbindungszeichenfolge, nicht aus der mTLS-Zeichenfolge, und setze SSL auf Required oder Verify CA. Wallet-Dateien werden nie gelesen."
             ]
         },
         {
             "id": "work",
             "title": "SQL, PL/SQL und Transaktionen",
-            "paragraphs": [
-                "Führe PL/SQL-Blöcke und gespeicherte Einheiten als einzelne Anweisungen aus. In Skripten beendet eine <code>/</code>-Zeile eine Einheit. Kompilierungsfehler zeigen Oracle-Meldungen und Quellpositionen. SQL*Plus-Client-Befehle werden nicht unterstützt.",
-                "<code>DBMS_OUTPUT.PUT_LINE</code>-Zeilen erscheinen mit dem Ergebnis der Anweisung, die sie ausgab, ohne <code>SET SERVEROUTPUT ON</code>. In einem anonymen Block ist <code>:name</code> ein <parameters>Abfrageparameter</parameters>, den du in einem Panel ausfüllst.",
-                "Jede erfolgreiche Anweisung wird committet. Beginne mit <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> oder <code>LOCK TABLE</code>, um Änderungen zu halten; alles danach wartet auf dein <code>COMMIT</code> oder <code>ROLLBACK</code>, einschließlich Raster-Speichern.",
-                "Jeder Benutzer ist ein Schema; <code>⌘K</code> wechselt das aktive ohne Neuverbinden. Zeilenänderungen werden mit <editing>Preview SQL</editing> vorgemerkt. Ein Block mit Löschen oder Leeren, auch über <code>EXECUTE IMMEDIATE</code>, zeigt vorher die <safeMode>Warnung vor gefährlichen Abfragen</safeMode>."
+            "text": [
+                "PL/SQL-Blöcke und gespeicherte Einheiten laufen als einzelne Anweisungen, in einem Skript beendet eine <code>/</code>-Zeile eine Einheit, und Kompilierungsfehler zeigen Oracles Meldungen und Quellpositionen. <code>DBMS_OUTPUT.PUT_LINE</code>-Zeilen erscheinen mit dem Ergebnis der Anweisung, die sie ausgab, ohne <code>SET SERVEROUTPUT ON</code>.",
+                "Jede Anweisung wird committet, wenn sie erfolgreich ist. Beginne mit <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> oder <code>LOCK TABLE</code>, um Änderungen, auch Speichervorgänge im Raster, bis zu deinem <code>COMMIT</code> oder <code>ROLLBACK</code> zu halten. Jeder Benutzer ist ein Schema, und <code>⌘K</code> wechselt das aktive ohne Neuverbinden."
             ]
         },
         {
             "id": "schema",
-            "title": "Schema",
-            "paragraphs": [
-                "Ergänze, benenne um, ändere oder lösche Spalten und erstelle Indizes im <structure>Structure-Tab</structure>. Namen mit relevanter Groß-/Kleinschreibung werden quotiert. Prüfe Primärschlüssel, Fremdschlüssel und CREATE TABLE-DDL.",
-                "Eine partitionierte Tabelle listet ihre Partitionen darunter jeweils mit Position; Unterpartitionen liegen unter ihrer Partition. Frage eine mit <code>SELECT * FROM orders PARTITION (p2024)</code> ab.",
-                "<compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht Oracle-Schemas oder Daten. Skripte nutzen <code>/</code>-Trennzeichen für SQL*Plus oder SQLcl."
-            ]
-        },
-        {
-            "id": "operate",
-            "title": "Auf dem Server exportieren",
-            "paragraphs": [
-                "<serverExport>Server-Side Export</serverExport> startet einen Data-Pump-Job, der mit deinen Rechten eine Tabelle in ein <code>DIRECTORY</code>-Objekt auf dem Server schreibt. Nichts landet auf dem Mac. Der Job läuft nach der Startmeldung weiter; verfolge ihn in <code>DBA_DATAPUMP_JOBS</code>."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Daten übertragen",
-            "paragraphs": [
-                "<importData>Importiere</importData> {importFormats}-Dateien. Erstellt eine Datendatei eine Tabelle, ist der vorgeschlagene Name großgeschrieben und passt in Oracles Längenlimit. Exportiere Tabellen oder Ergebnisse als {exportFormats}. Ein SQL-Export folgt jeder Routine und jedem Trigger mit einer <code>/</code>-Zeile zur SQL*Plus-Wiederherstellung."
-            ]
-        },
-        {
-            "id": "iphone",
-            "title": "iPhone und iPad",
-            "paragraphs": [
-                "Auf iPhone und iPad ist der Oracle-Treiber Teil der App. Das Formular nimmt Service Name oder SID, SYSDBA- und SYSOPER-Rollen und die Einstellung Network Encryption entgegen. Du durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Query-Tab aus; Tabellen erstellen oder ändern bleibt auf dem Mac."
+            "also": [
+                "operate"
             ],
-            "asset": "ios-table-browse"
+            "title": "Schema und Data Pump",
+            "text": [
+                "Ergänze, benenne um, ändere oder lösche Spalten oder erstelle Indizes im <structure>Structure-Tab</structure>, mit quotierten Namen, wo die Groß-/Kleinschreibung zählt. Partitionierte Tabellen listen ihre Partitionen, und Unterpartitionen liegen darunter. <compareSync>Compare & Sync</compareSync> ({compareSyncTier}) vergleicht Oracle-Schemas oder Daten und schreibt <code>/</code>-Trennzeichen für SQL*Plus oder SQLcl.",
+                "<serverExport>Server-Side Export</serverExport> startet einen Data-Pump-Job, der mit deinen eigenen Rechten eine Tabelle in ein <code>DIRECTORY</code>-Objekt auf dem Server schreibt, sodass nichts auf deinem Mac landet. Verfolge den Job in <code>DBA_DATAPUMP_JOBS</code>."
+            ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importiere</importData> {importFormats}-Dateien; der vorgeschlagene Name einer neuen Tabelle ist großgeschrieben und passt in Oracles Längenlimit. Exportiere Tabellen oder Ergebnisse als {exportFormats}, und ein SQL-Export beendet jede Routine und jeden Trigger mit einer <code>/</code>-Zeile, damit SQL*Plus sie wiederherstellen kann."
+    ],
+    "iphone": [
+        "Der Oracle-Treiber ist Teil der App, und das Formular nimmt Service Name oder SID, die Rollen SYSDBA und SYSOPER und die Einstellung Network Encryption entgegen. Durchsuche Tabellen als Karten, bearbeite Zeilen mit Primärschlüssel und führe SQL im Query-Tab aus."
+    ],
     "faq": [
         {
             "id": "pluggable-database",
             "question": "Warum sehe ich keine Anwendungstabellen?",
-            "answer": "Du bist wahrscheinlich mit der Container-Datenbank verbunden. Eine Pluggable Database hat ihren eigenen Dienstnamen, etwa <code>XEPDB1</code> innerhalb von <code>XE</code>. Führe <code>lsnrctl services</code> auf dem Server aus, um die Listener-Dienstnamen aufzulisten."
+            "answer": "Du bist wahrscheinlich mit der Container-Datenbank verbunden. Eine Pluggable Database hat ihren eigenen Dienstnamen, etwa <code>XEPDB1</code> innerhalb von <code>XE</code>; <code>lsnrctl services</code> auf dem Server listet die Namen, für die der Listener antwortet."
         },
         {
             "id": "sqlplus-commands",
             "question": "Warum schlägt SET SERVEROUTPUT ON fehl?",
-            "answer": "SQL*Plus-Befehle wie <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> und <code>EXEC</code> sind kein SQL und werden abgelehnt. Entferne sie: Ausgabe ist ab dem Verbinden aktiv. Schreibe <code>EXEC p</code> als <code>BEGIN p; END;</code>."
+            "answer": "SQL*Plus-Befehle wie <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> und <code>EXEC</code> sind kein SQL, daher lehnt der Server sie ab. Entferne sie, denn die Ausgabe ist ab dem Verbinden aktiv, und schreibe <code>EXEC p</code> als <code>BEGIN p; END;</code>."
         },
         {
             "id": "password-verifier",
@@ -96,22 +74,5 @@
             "answer": "Ja, obwohl Oracle das verwendete DES-Hashing abgekündigt hat. Ändere das Passwort mit <code>ALTER USER … IDENTIFIED BY</code> und prüfe, dass <code>password_versions</code> in <code>dba_users</code> danach 11G oder 12C enthält."
         }
     ],
-    "related": [
-        {
-            "label": "Abfragen schreiben, ausführen und verstehen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Backups und serverseitiger Export",
-            "href": "/features/import-export#backup"
-        },
-        {
-            "label": "Schema, Vergleich und Synchronisierung",
-            "href": "/features/schema"
-        },
-        {
-            "label": "TablePro für iPhone und iPad",
-            "href": "/ios"
-        }
-    ]
+    "otherTools": null
 }

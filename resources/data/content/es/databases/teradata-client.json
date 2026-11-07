@@ -11,54 +11,47 @@
     "breadcrumb": "Teradata",
     "header": {
         "title": "Cliente Teradata",
-        "lead": "Consulta y edita Teradata sin instalar software cliente adicional. Explora bases, usuarios, procedimientos y macros."
+        "lead": "Consulta y edita Teradata sin software cliente aparte, y explora sus bases de datos, usuarios, procedimientos y macros.",
+        "asset": "databases-teradata"
     },
-    "asset": "mac-db-teradata-sidebar",
     "links": {
-        "network": "/features/connections#network",
         "objects": "/features/schema#objects",
-        "explain": "/features/querying#performance",
-        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
         "structure": "/features/schema#structure",
         "importData": "/features/import-export#import",
         "copy": "/features/schema#copy"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Conecta e inicia sesión",
-            "paragraphs": [
-                "Introduce host, usuario y contraseña. Elige <code>TD2</code> o <code>TDNEGO</code> en <ui>Logon Mechanism</ui>. <ui>Database</ui> sustituye la base predeterminada de la cuenta. Se admiten servidores Vantage que acepten TD2 sin comprobar la versión.",
-                "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL la mueve al endpoint WebSocket del gateway en 443, que no se puede cambiar. Verify CA necesita un certificado CA; Verify Identity comprueba cadena y host con él o, sin él, con el almacén de confianza del sistema.",
-                "Deja <ui>Transaction Mode</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Import from URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
+            "text": [
+                "Introduce un host, un usuario y una contraseña, y elige <code>TD2</code> o <code>TDNEGO</code> en <ui>Logon Mechanism</ui>; <ui>Database</ui> sustituye la base predeterminada de la cuenta. Los servidores Vantage que aceptan TD2 conectan sin comprobar la versión.",
+                "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL mueve la sesión al endpoint WebSocket del gateway en el puerto 443, que no se puede cambiar. Verify CA necesita un certificado de CA, y Verify Identity comprueba la cadena y el nombre de host con él o, sin él, con el almacén de confianza del sistema.",
+                "Deja <ui>Transaction Mode</ui> en <code>DEFAULT</code> salvo que un script necesite las reglas de commit y la sensibilidad a mayúsculas de ANSI o TERA. <ui>Import from URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y edita",
-            "paragraphs": [
-                "Explora bases y usuarios como espacios de nombres. Las pestañas en otra base comparten la sesión y ejecutan <code>DATABASE</code> antes de sus instrucciones.",
-                "Los procedimientos almacenados aparecen en la barra lateral; las macros, en Funciones, abriendo su <objects>código en una pestaña de solo lectura</objects>.",
-                "Teradata no tiene <code>LIMIT</code>; la primera página usa <code>TOP</code> y las siguientes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> devuelve el plan como texto sin procesar. Las ediciones esperan a guardar; <editing>Preview SQL</editing> muestra antes cada sentencia."
+            "text": [
+                "Las bases de datos y los usuarios aparecen como espacios de nombres, y una pestaña en otra base de datos comparte la sesión y ejecuta <code>DATABASE</code> antes de sus sentencias. Los procedimientos almacenados aparecen en la barra lateral y las macros en Functions, y cada uno abre su <objects>código en una pestaña de solo lectura</objects>.",
+                "Teradata no tiene <code>LIMIT</code>, así que la primera página de una tabla llega con <code>TOP</code> y las siguientes con <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> devuelve el plan de Teradata como texto sin procesar."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "Crea tablas y cambia columnas en la <structure>pestaña Structure</structure>. DDL muestra su definición completa, incluidas restricciones."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transfiere datos",
-            "paragraphs": [
-                "Carga archivos {importFormats} con <importData>Importar</importData> y guarda tablas o resultados como {exportFormats}. <copy>Copy To</copy> envía tablas, filas o ambos a otra conexión Teradata; se rechaza copiar a otro motor."
+            "text": [
+                "Crea tablas y cambia sus columnas en la <structure>pestaña Structure</structure>. La vista DDL de una tabla muestra su definición completa, incluidas las restricciones."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "<importData>Importa</importData> archivos {importFormats} y exporta una tabla o un resultado como {exportFormats}. <copy>Copy To</copy> envía tablas, sus filas o ambas cosas a otra conexión Teradata; se rechaza copiar a otro motor."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "logon-mechanism",
@@ -68,25 +61,8 @@
         {
             "id": "tls-check",
             "question": "¿Cómo sé si la sesión está cifrada?",
-            "answer": "Prueba con Required (skip verify) o un modo de verificación. Preferred vuelve a una sesión sin cifrar si el puerto TLS no es accesible, así que un handshake fallido aún parece una conexión correcta."
+            "answer": "Prueba con Required (skip verify) o un modo de verificación. Preferred vuelve a una sesión sin cifrar cuando el puerto TLS no es accesible, así que un handshake fallido sigue pareciendo una conexión correcta."
         }
     ],
-    "related": [
-        {
-            "label": "Escribe, ejecuta y comprende consultas",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Esquemas, comparación y sincronización",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Snowflake, otro almacén de datos",
-            "href": "/snowflake-client"
-        },
-        {
-            "label": "Trino, para consultas entre catálogos",
-            "href": "/trino-client"
-        }
-    ]
+    "otherTools": null
 }

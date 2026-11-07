@@ -11,82 +11,58 @@
     "breadcrumb": "Trino",
     "header": {
         "title": "Client Trino",
-        "lead": "Interrogez plusieurs catalogues, inspectez les plans et annulez les requêtes en cours. L’écriture dépend du connecteur de chaque catalogue."
+        "lead": "Interrogez plusieurs catalogues, inspectez les plans et annulez les requêtes en cours ; l’écriture dépend du connecteur de chaque catalogue.",
+        "asset": "databases-trino"
     },
-    "asset": "mac-db-trino-catalogs",
     "links": {
-        "network": "/features/connections#network",
-        "explain": "/features/querying#performance",
+        "explain": "/features/querying#explain",
         "editing": "/features/data-editing#edit",
         "structure": "/features/schema#structure",
         "export": "/features/import-export#export"
     },
-    "sections": [
+    "bands": [
         {
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
-            "paragraphs": [
-                "Saisissez hôte du coordinateur, port et <ui>Nom d’utilisateur</ui> (Username). <ui>Catalog</ui> et <ui>Schéma</ui> (Schema), facultatifs, définissent le point de départ. Choisissez une <ui>Fuseau horaire</ui> (Time Zone) IANA pour la session.",
-                "Authentifiez-vous par mot de passe en HTTP Basic pour LDAP ou fichier de mots de passe, ou jeton JWT comme identifiant bearer. Les deux ne passent que par TLS : avec SSL sur Disabled, une connexion qui en contient est refusée avant tout envoi. Certificat client et clé dans SSL ajoutent TLS mutuel.",
-                "SSL commence sur Disabled, soit HTTP en clair ; les autres modes imposent TLS sans repli en clair, et le port 443 active Verify Identity. Une redirection d’un proxy devant le coordinateur n’est jamais suivie ; l’erreur nomme sa destination. Accédez derrière un bastion par <network>tunnel SSH</network> et importez une URL <code>trino://</code> avec <ui>Importer depuis une URL…</ui> (Import from URL…)."
+            "text": [
+                "Saisissez l’hôte du coordinateur, le port et le <ui>Nom d’utilisateur</ui> (Username). <ui>Catalog</ui> et <ui>Schéma</ui> (Schema) définissent le point de départ, et un <ui>Fuseau horaire</ui> (Time Zone) IANA définit celui de la session.",
+                "Authentifiez-vous par mot de passe, envoyé en HTTP Basic pour LDAP ou un fichier de mots de passe, ou par jeton d’accès JWT envoyé comme identifiant bearer. Les deux ne passent que par TLS : avec SSL sur Disabled, une connexion qui en contient un est refusée avant tout envoi. Un certificat client et sa clé dans le panneau SSL ajoutent TLS mutuel.",
+                "SSL commence sur Disabled, soit HTTP en clair ; tous les autres modes imposent TLS sans repli en clair, et le port 443 active Verify Identity. Une redirection d’un proxy placé devant le coordinateur n’est jamais suivie, et l’erreur nomme sa destination. <ui>Importer depuis une URL…</ui> (Import from URL…) importe une URL <code>trino://</code>."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez entre catalogues",
-            "paragraphs": [
-                "Interrogez les noms complets <code>catalog.schema.table</code> pour joindre plusieurs catalogues. Parcourez catalogues, schémas, tables et vues matérialisées ; les estimations du nombre de lignes viennent de <code>SHOW STATS</code>.",
-                "<code>bigint</code> et <code>decimal</code> se lisent en texte exact, pas en flottant. <code>varbinary</code> s’affiche en hexadécimal, <code>array</code>, <code>map</code> et <code>row</code> en JSON ; les horodatages conservent la valeur du serveur.",
-                "<explain>Explain</explain> propose Logical, Distributed, IO, Validate et Analyze. Validate vérifie sans exécution, Analyze exécute et rapporte les temps réels ; tous les plans reviennent en texte brut.",
-                "<code>SET SESSION</code> dure le reste de la connexion. <ui>Requête > Annuler la requête</ui> (Query > Cancel Query) demande au coordinateur de terminer la requête ; c’est ainsi qu’on l’arrête, car le délai de connexion n’atteint pas Trino.",
-                "Les <editing>modifications de cellules</editing> utilisent des instructions INSERT, UPDATE et DELETE typées. Trino ne signale aucune clé primaire : toutes les colonnes originales identifient donc la ligne. Les lignes identiques changent ensemble, sans transaction pour annuler. Vérifiez les doublons avant modification."
+            "text": [
+                "Joignez plusieurs catalogues avec des noms complets <code>catalog.schema.table</code>, et parcourez catalogues, schémas, tables et vues matérialisées, avec des estimations du nombre de lignes issues de <code>SHOW STATS</code>. <code>bigint</code> et <code>decimal</code> se lisent en texte exact, pas en flottant ; <code>varbinary</code> s’affiche en hexadécimal, <code>array</code>, <code>map</code> et <code>row</code> en JSON, et les horodatages conservent la valeur renvoyée par le serveur.",
+                "<explain>Explain</explain> propose Logical, Distributed, IO, Validate et Analyze, chacun en texte brut : Validate vérifie une requête sans l’exécuter, et Analyze l’exécute et rapporte les temps réels. <code>SET SESSION</code> dure le reste de la connexion, et <ui>Requête > Annuler la requête</ui> (Query > Cancel Query) est le moyen d’arrêter une requête, car le délai de requête de la connexion n’atteint pas Trino.",
+                "Trino ne signale aucune clé primaire : les <editing>modifications de cellules</editing> comparent donc toutes les colonnes d’origine, et les lignes identiques changent ensemble, sans transaction pour annuler. Vérifiez les doublons avant de modifier."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
-            "paragraphs": [
-                "L’<structure>onglet Structure</structure> crée des tables et ajoute, supprime, renomme et change les types des colonnes en autocommit. Le connecteur décide si le changement s’exécute ; le changement de type est le moins accepté."
-            ]
-        },
-        {
-            "id": "move-data",
-            "title": "Transférez des données",
-            "paragraphs": [
-                "Il n’y a pas d’import. <export>Exportez</export> tables ou résultats en {exportFormats}."
+            "text": [
+                "L’<structure>onglet Structure</structure> crée des tables et ajoute, supprime, renomme et change les types des colonnes en autocommit. Le connecteur décide si le changement s’exécute ; le changement de type est le moins accepté."
             ]
         }
     ],
     "family": [],
-    "otherTools": null,
+    "moveData": [
+        "Il n’y a pas d’import. <export>Exportez</export> tables ou résultats en {exportFormats}."
+    ],
+    "iphone": [],
     "faq": [
         {
             "id": "not-supported",
-            "question": "Pourquoi une instruction valide retourne-t-elle NOT_SUPPORTED ?",
-            "answer": "Le connecteur du catalogue n’implémente pas l’opération, quelle que soit la grammaire Trino. Un connecteur en lecture seule refuse toute écriture. Consultez sa documentation pour ce qu’il prend en charge."
+            "question": "Pourquoi une instruction valide retourne-t-elle NOT_SUPPORTED ?",
+            "answer": "Le connecteur derrière ce catalogue n’implémente pas l’opération, quoi que permette la grammaire de Trino, et un connecteur en lecture seule refuse toute écriture. Consultez la documentation du connecteur."
         },
         {
             "id": "encrypted-key",
-            "question": "Puis-je utiliser une clé client chiffrée ?",
+            "question": "Puis-je utiliser une clé client chiffrée ?",
             "answer": "Non. Les connexions Trino n’ont pas de champ de phrase secrète. Créez une copie déchiffrée avec <code>openssl pkey -in encrypted.key -out client.key</code> et choisissez ce fichier."
         }
     ],
-    "related": [
-        {
-            "label": "Rédigez, exécutez et comprenez vos requêtes",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Connexions, tunnels et identifiants",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Teradata, un entrepôt de données",
-            "href": "/teradata-client"
-        },
-        {
-            "label": "Snowflake, un entrepôt cloud",
-            "href": "/snowflake-client"
-        }
-    ]
+    "otherTools": null
 }
