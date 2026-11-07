@@ -1,7 +1,7 @@
 ---
 title: 隱私政策
 description: TablePro 收集的資料、用途、接收方、儲存時間，以及您的選擇和權利。
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 本政策涵蓋 Mac、Linux、iPhone 和 iPad 上的 TablePro；tablepro.app；docs.tablepro.app；以及帳戶、購買、支援和郵件訂閱服務。[技術清單](https://docs.tablepro.app/security/privacy)列出欄位、端點和控制選項。App原始碼位於[公開倉庫]({github})。
@@ -18,7 +18,7 @@ Mac 和 Linux 預設開啟使用資料，可關閉。已發布的 iPhone 和 iPa
 
 ## 負責方 {#controller}
 
-{publisherName} 是位於 {publisherCity}、{publisherCountry} 的獨立開發者，也是本政策所述個人資料的控制者。聯絡 [{email}](mailto:{email})。我們沒有資料保護官。對於團隊，我們作為控制者管理帳戶、邀請和服務記錄。Team Library 釋出內容按團隊指示處理；團隊決定釋出什麼及誰能訪問。
+{publisherName} 是位於{publisherCountry}的獨立開發者，也是本政策所述個人資料的控制者。聯絡 [{email}](mailto:{email})。我們沒有資料保護官。對於團隊，我們作為控制者管理帳戶、邀請和服務記錄。Team Library 釋出內容按團隊指示處理；團隊決定釋出什麼及誰能訪問。
 
 <span id="lawful-basis"></span>
 

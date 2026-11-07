@@ -77,14 +77,6 @@ export interface FactsData {
         productHunt: string;
     };
     support: { email: string };
-    publisher: {
-        name: string;
-        countryCode: string;
-        // Keyed by locale code.
-        city: Record<string, string>;
-        country: Record<string, string>;
-        evidence: string;
-    };
     openSource: { license: string; repositoryCreatedAt: string; evidence: string };
     ai: {
         platforms: PlatformId[];
@@ -130,8 +122,6 @@ export interface FactsData {
  * to `string`. `tests/Feature/Data/FactsDataTest.php` validates the file.
  */
 export const FACTS = data as FactsData;
-
-// A locale with no city or country leaves its slot unfilled, so the gap shows on the page.
 
 /** `docsUrl('/features/mcp')` → `https://docs.tablepro.app/features/mcp`. */
 export function docsUrl(path = ''): string {

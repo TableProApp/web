@@ -43,7 +43,7 @@ class SiteFacts
     }
 
     /**
-     * @return array{name: string, city: string|null, country: string|null, countryCode: string|null}|null
+     * @return array{name: string, country: string|null, countryCode: string|null}|null
      */
     public function publisher(string $locale): ?array
     {
@@ -53,13 +53,11 @@ class SiteFacts
             return null;
         }
 
-        $city = $publisher['city'][$locale] ?? null;
         $country = $publisher['country'][$locale] ?? null;
         $code = $publisher['countryCode'] ?? null;
 
         return [
             'name' => $publisher['name'],
-            'city' => is_string($city) ? $city : null,
             'country' => is_string($country) ? $country : null,
             'countryCode' => is_string($code) && preg_match('/^[A-Z]{2}$/', $code) === 1 ? $code : null,
         ];

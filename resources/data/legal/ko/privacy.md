@@ -1,7 +1,7 @@
 ---
 title: 개인정보 처리방침
 description: TablePro가 수집하는 데이터, 목적, 수신자, 보관 기간과 선택 및 권리.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 이 방침은 Mac, Linux, iPhone, iPad용 TablePro, tablepro.app, docs.tablepro.app, 계정·구매·지원·뉴스레터 서비스에 적용됩니다. [기술 목록](https://docs.tablepro.app/security/privacy)은 필드, 엔드포인트와 설정을 설명합니다. 소스는 [공개 저장소]({github})에 있습니다.
@@ -18,7 +18,7 @@ Mac과 Linux는 사용 데이터가 기본으로 켜져 있으며 끌 수 있습
 
 ## 책임자 {#controller}
 
-{publisherCity}, {publisherCountry}의 개인 개발자 {publisherName}이 여기 설명한 개인정보의 관리자입니다. 연락처는 [{email}](mailto:{email})입니다. 개인정보 보호책임자는 없습니다. 팀의 계정, 초대, 서비스 기록은 관리자로서 처리합니다. Team Library 게시물은 팀의 지시에 따라 처리하며 팀이 게시 내용과 접근자를 정합니다.
+{publisherCountry}의 개인 개발자 {publisherName}이 여기 설명한 개인정보의 관리자입니다. 연락처는 [{email}](mailto:{email})입니다. 개인정보 보호책임자는 없습니다. 팀의 계정, 초대, 서비스 기록은 관리자로서 처리합니다. Team Library 게시물은 팀의 지시에 따라 처리하며 팀이 게시 내용과 접근자를 정합니다.
 
 <span id="lawful-basis"></span>
 

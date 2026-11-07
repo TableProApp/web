@@ -8,7 +8,7 @@ Ces conditions régissent le site web tablepro.app, le portail de comptes, notre
 
 ## Définitions {#definitions}
 
-- **« TablePro », « nous » et « notre »** désignent {publisherName}, développeur indépendant installé à {publisherCity}, au {publisherCountry}, qui publie TablePro.
+- **« TablePro », « nous » et « notre »** désignent {publisherName}, développeur indépendant installé au {publisherCountry}, qui publie TablePro.
 - **« Application »** désigne TablePro pour Mac, TablePro pour Linux et TablePro pour iPhone et iPad, y compris leurs mises à jour et plugins.
 - **« Site web »** désigne tablepro.app, docs.tablepro.app et les autres domaines que nous exploitons.
 - **« Services »** désigne le Site web, le portail de comptes et le serveur que les applications Mac et Linux contactent pour les vérifications de licence et Team Library.

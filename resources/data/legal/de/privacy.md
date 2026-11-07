@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten TablePro erhebt, wofür, wer sie erhält, wie lange sie bleiben und welche Rechte du hast.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 Diese Erklärung gilt für TablePro auf Mac, Linux, iPhone und iPad; tablepro.app; docs.tablepro.app; sowie Konto, Käufe, Support und Newsletter. Das [technische Verzeichnis](https://docs.tablepro.app/security/privacy) nennt Felder, Ziele und Einstellungen. Der Code steht im [öffentlichen Repository]({github}).
@@ -18,7 +18,7 @@ Die Website misst Besuche und lädt Crisp auf jeder Seite. Google-Analytics-Cook
 
 ## Verantwortlicher {#controller}
 
-{publisherName}, selbstständiger Entwickler in {publisherCity}, {publisherCountry}, ist für die beschriebenen personenbezogenen Daten verantwortlich. Kontakt: [{email}](mailto:{email}). Wir haben keinen Datenschutzbeauftragten. Für Teams verwalten wir Konto-, Einladungs- und Dienstdaten als Verantwortlicher. Veröffentlichte Team Library-Inhalte verarbeiten wir nach Weisung des Teams. Es bestimmt Inhalt und Zugriff.
+{publisherName}, selbstständiger Entwickler in {publisherCountry}, ist für die beschriebenen personenbezogenen Daten verantwortlich. Kontakt: [{email}](mailto:{email}). Wir haben keinen Datenschutzbeauftragten. Für Teams verwalten wir Konto-, Einladungs- und Dienstdaten als Verantwortlicher. Veröffentlichte Team Library-Inhalte verarbeiten wir nach Weisung des Teams. Es bestimmt Inhalt und Zugriff.
 
 <span id="lawful-basis"></span>
 

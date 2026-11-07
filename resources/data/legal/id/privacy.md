@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan TablePro, tujuan, penerima, masa penyimpanan, pilihan dan hak Anda.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, Linux, iPhone dan iPad; tablepro.app; docs.tablepro.app; serta layanan akun, pembelian, dukungan dan newsletter. [Inventaris teknis](https://docs.tablepro.app/security/privacy) memuat kolom, tujuan jaringan dan kontrol. Kode ada di [repositori publik]({github}).
@@ -18,7 +18,7 @@ Situs mengukur kunjungan dan memuat Crisp di setiap halaman. Cookie Google Analy
 
 ## Penanggung jawab {#controller}
 
-{publisherName}, pengembang perorangan di {publisherCity}, {publisherCountry}, adalah pengendali data pribadi yang dijelaskan di sini. Hubungi [{email}](mailto:{email}). Kami tidak memiliki petugas perlindungan data. Untuk tim, kami mengendalikan catatan akun, undangan dan layanan. Konten Team Library diproses menurut instruksi tim; tim menentukan isi dan akses.
+{publisherName}, pengembang perorangan di {publisherCountry}, adalah pengendali data pribadi yang dijelaskan di sini. Hubungi [{email}](mailto:{email}). Kami tidak memiliki petugas perlindungan data. Untuk tim, kami mengendalikan catatan akun, undangan dan layanan. Konten Team Library diproses menurut instruksi tim; tim menentukan isi dan akses.
 
 <span id="lawful-basis"></span>
 
