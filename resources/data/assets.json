@@ -11711,6 +11711,218 @@
         }
       },
       "legacySource": null
+    },
+    "blog-tablepro-for-linux-beta-1": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-for-linux-beta",
+          "section": "figure-1"
+        }
+      ],
+      "aspect": "1050:750",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The products table with an edited stock value and one unsaved change.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro for Linux showing the Shop database sidebar and a products grid with 24 rows, the stock value 24 highlighted on the Hand Grinder row, one unsaved change, and Discard and Save buttons below the grid",
+        "vi": null
+      },
+      "caption": {
+        "en": "The stock edit stays pending until you save or discard it.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-for-linux-beta-1"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 1006
+        }
+      },
+      "legacySource": [
+        "/images/blog/linux-beta-table.png"
+      ]
+    },
+    "blog-tablepro-for-linux-beta-2": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-for-linux-beta",
+          "section": "figure-2"
+        }
+      ],
+      "aspect": "1050:750",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A SQL query grouping products by category, with its result below the editor.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro for Linux showing stock-by-category.sql joining products and categories, grouping active products by category and ordering by stock, with four result rows for Coffee, Accessories, Tea and Brewing below the editor",
+        "vi": null
+      },
+      "caption": {
+        "en": "The query groups active products by category and shows the result below the SQL.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-for-linux-beta-2"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 1006
+        }
+      },
+      "legacySource": [
+        "/images/blog/linux-beta-editor.png"
+      ]
+    },
+    "blog-tablepro-for-linux-beta-3": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-for-linux-beta",
+          "section": "figure-3"
+        }
+      ],
+      "aspect": "1050:750",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The products Structure tab with the stock column expanded for editing.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro for Linux showing the products Structure tab with Columns selected beside Indexes, Foreign Keys and SQL Preview, the stock column expanded with integer type and default value 0, and one unsaved change beside Discard and Save",
+        "vi": null
+      },
+      "caption": {
+        "en": "The Structure tab keeps the column change pending and offers SQL Preview before saving.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-for-linux-beta-3"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 1006
+        }
+      },
+      "legacySource": [
+        "/images/blog/linux-beta-structure.png"
+      ]
+    },
+    "blog-tablepro-for-linux-beta-4": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-for-linux-beta",
+          "section": "figure-4"
+        }
+      ],
+      "aspect": "480:660",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The PostgreSQL connection dialog with TLS and SSH tunnel settings.",
+        "vi": null
+      },
+      "alt": {
+        "en": "TablePro for Linux showing the PostgreSQL connection dialog with Encryption set to Prefer, a Certificates row, and Use SSH Tunnel enabled for bastion.example.com with username deploy and Password authentication",
+        "vi": null
+      },
+      "caption": {
+        "en": "The connection dialog keeps TLS and SSH tunnel settings together.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-for-linux-beta-4"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 1936
+        }
+      },
+      "legacySource": [
+        "/images/blog/linux-beta-connect.png"
+      ]
     }
   }
 }
