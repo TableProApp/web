@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "Um cliente de banco de dados nativo.",
-        "subtitle": "Execute consultas, explore e edite dados em {featuredEngines} <more>e outros bancos</more>.",
-        "native": "Interfaces nativas, sem Electron nem runtime Java.",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "Outras formas de instalar",
-        "business": "Gratuito e de código aberto. Os planos pagos adicionam recursos ao {paidPlatformApps}. <pricing>Veja os preços</pricing>"
+        "subtitle": "Feito com o toolkit de interface de cada plataforma, o TablePro se comporta como os seus outros apps.",
+        "download": "Baixar",
+        "docs": "Documentação"
     },
     "databases": {
         "title": "Bancos de dados compatíveis",
-        "lead": "O {macApp} inclui drivers comuns e baixa outros quando você os usa pela primeira vez.",
-        "count": "Conecte-se a {count} bancos de dados no Mac:",
-        "ios": "No {iosDevices}, TablePro se conecta a {iosEngines}.",
-        "iosSynced": "As conexões {syncedOnly} sincronizadas de um Mac também abrem nesses dispositivos.",
-        "link": "Bancos de dados compatíveis"
+        "more": "e outros bancos"
     },
     "sponsors": {
         "title": "Patrocinadores",
-        "link": "Patrocinar TablePro",
         "invite": {
             "title": "Seu logo aqui",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "Trabalhando com seus bancos de dados",
-        "paid": "Recursos pagos opcionais: {features} ({tier}).",
-        "link": "Todos os recursos",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "Editor SQL",
-                "body": "O preenchimento automático sugere tabelas e colunas do seu esquema. Salve consultas reutilizadas e pesquise seu histórico de consultas."
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "Visualize suas alterações",
-                "body": "As edições de linha aguardam até você salvar. Revise primeiro o SQL ou desfaça as alterações na guia."
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "Comparar bancos de dados",
-                "body": "Compare esquema ou dados em mecanismos suportados e gere um script de sincronização. Revise as alterações que podem remover dados antes de incluí-los."
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "Importação e exportação",
-                "body": "Importe arquivos {importFormats} onde houver suporte. Exporte tabelas ou resultados de consulta como {exportFormats}."
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "Conecte-se aos seus servidores",
-                "body": "Use túneis SSH, TLS ou métodos de login na nuvem suportados. Organize conexões salvas com grupos e tags."
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "Defina um nível Safe Mode para cada conexão. No Mac, Alert pede confirmação antes de gravações. Safe Mode e Safe Mode (Full) também exigem Touch ID ou senha. Silent é o padrão. DROP, TRUNCATE e DELETE sem WHERE sempre pedem confirmação.",
-            "No iPhone e iPad, Confirm Writes pede confirmação antes de gravações. Read-Only bloqueia gravações nos dois apps; para MongoDB, Redis e etcd, bloqueia todos os comandos."
-        ],
-        "levels": "Níveis do Safe Mode",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "Assistente de AI e MCP",
-        "body": [
-            "Explique ou corrija SQL com o provedor que você escolher, incluindo um modelo executado localmente. Disponível no Mac; nada é enviado até que você adicione um provedor.",
-            "O chat começa no modo Ask. Edit e Agent podem executar instruções conforme Safe Mode; em Silent, as gravações podem ocorrer sem aprovação. Agent em janela inteira usa Alert ou um nível mais restrito.",
-            "Conecte clientes como {mcpClients} a conexões salvas por meio do servidor MCP (Model Context Protocol) integrado. Ele escuta em {mcpHost}, está desativado por padrão e inicia com acesso somente leitura. Os clientes nunca veem as senhas salvas.",
-            "Ambos os recursos são gratuitos. Seu provedor AI pode cobrar pelo uso."
-        ],
-        "providers": "Provedores que você pode adicionar: {providers}."
-    },
-    "platforms": {
-        "title": "Apps nativos para {deviceList}",
-        "cardTitle": "TablePro para {devices}",
-        "mac": "O aplicativo de desktop, com versões separadas para {architectures}. Inclui o editor SQL, ferramentas de esquema, assistente AI e servidor MCP.",
-        "ios": "Execute consultas e trabalhe com tabelas suportadas em {devices}. Um aplicativo gratuito separado com túneis SSH e um bloqueio de Face ID opcional.",
-        "sync": "iCloud Sync compartilha conexões, grupos e tags entre dispositivos Apple. Está desativado por padrão e requer {tier} no Mac."
-    },
-    "switch": {
-        "title": "Traga suas conexões",
-        "lead": "O app para iPhone e iPad não importa de outros apps, e Open Project Folder está disponível apenas no {macApp}.",
-        "import": "Importe conexões de {apps}, incluindo as senhas salvas.",
-        "importWithoutPasswords": "As conexões de {apps} são importadas sem as senhas.",
-        "project": "Open Project Folder cria conexões a partir de arquivos de projeto compatíveis, incluindo <code>.env</code>, <code>docker-compose.yml</code> e esquemas Prisma.",
-        "link": "Comparar TablePro com outros clientes"
+        "platform": "Mostrar o app em",
+        "tabs": "Recursos",
+        "more": "Mais sobre {feature}",
+        "items": {
+            "querying": "Escreva SQL com preenchimento automático a partir do seu esquema, depois execute e leia os resultados abaixo.",
+            "dataEditing": "Edite células na grade. As alterações aguardam até você salvar, e você pode descartá-las.",
+            "schema": "Adicione e altere colunas, índices e chaves estrangeiras. Nada muda até você salvar.",
+            "importExport": "Exporte tabelas e resultados de consultas para arquivos, e importe arquivos CSV e SQL.",
+            "aiMcp": "Pergunte sobre seu banco de dados em um chat, ou deixe seu agente de programação trabalhar com ele via MCP.",
+            "connections": "Conecte-se via SSH e TLS, e salve seus servidores como conexões."
+        }
     },
     "testimonials": {
         "title": "O que dizem os desenvolvedores",
@@ -115,17 +50,22 @@
             "en": "Traduzido do inglês",
             "ja": "Traduzido do japonês",
             "zh": "Traduzido do chinês"
-        }
+        },
+        "more": {
+            "one": "Mais {count} comentário de desenvolvedores",
+            "other": "Mais {count} comentários de desenvolvedores"
+        },
+        "fewer": "Mostrar menos"
     },
     "pricing": {
-        "title": "Grátis, Pro e Team",
-        "lead": "Use o {macApp} gratuitamente, sem período de teste. Pro adiciona {starterExamples}; Team adiciona {teamExamples}. O {iosApp} é gratuito, sem compras no aplicativo."
+        "title": "Preços",
+        "lead": "Uso gratuito, sem período de teste. Pro e Team adicionam recursos, e uma licença cobre {deviceLimit} computadores, Mac ou Linux."
     },
     "openSource": {
         "title": "Código aberto",
-        "body": "TablePro é de código aberto sob a AGPLv3, incluindo o código dos recursos pagos. Licenças e patrocinadores financiam o desenvolvimento.",
+        "statement": "TablePro é de código aberto sob a AGPLv3, recursos pagos incluídos.",
+        "funding": "A equipe TablePro o desenvolve, e licenças e patrocinadores financiam o trabalho.",
         "about": "Sobre o TablePro",
-        "github": "Ver no GitHub",
-        "productHunt": "TablePro no Product Hunt"
+        "github": "Código-fonte no GitHub"
     }
 }

@@ -1,57 +1,39 @@
 import { usePage } from '@inertiajs/react';
-import AiSection from '@/components/home/ai-section';
 import CampaignBand from '@/components/campaign/campaign-band';
-import { availability as availabilityFor } from '@/components/home/availability';
-import DatabasesSection from '@/components/home/databases-section';
+import Closing from '@/components/home/closing';
+import FeatureTabs from '@/components/home/feature-tabs';
 import Hero from '@/components/home/hero';
-import OpenSourceSection from '@/components/home/open-source-section';
-import PlatformsSection from '@/components/home/platforms-section';
-import SafetySection from '@/components/home/safety-section';
-import SponsorsSection from '@/components/home/sponsors-section';
+import { DatabaseBand, SponsorBand } from '@/components/home/index-bands';
+import Quotes from '@/components/home/quotes';
 import { homeJsonLd } from '@/components/home/structured-data';
-import SwitchSection from '@/components/home/switch-section';
-import TestimonialsSection from '@/components/home/testimonials-section';
 import type { HomePageProps } from '@/components/home/types';
-import WorkflowsSection from '@/components/home/workflows-section';
 import PricingSection from '@/components/pricing/pricing-section';
 import SEOHead from '@/components/seo/seo-head';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, useI18n } from '@/i18n';
-import { examplesText } from '@/lib/data/paid-features';
+import { deviceList } from '@/lib/data/platforms';
+import { PRICING } from '@/lib/data/pricing';
 import LandingLayout from '@/layouts/landing-layout';
 
-/**
- * `/` and `/vi` (sitemap §A.1, §D; positioning; design-system §8.1).
- *
- * Eleven sections in the order a first-time reader asks their questions: what it
- * is and where it runs, whether it supports their database, who sponsors it
- * (third, by the owner's decision), what they would do with it, whether it is
- * safe on production, what the AI can touch, how the Mac and iPhone apps
- * relate, how to bring connections over, what people who use it say, what
- * costs money, and where the code is. Section ids are English in every language, and the older ids
- * (`#mcp`, `#mobile`, `#compare`, `#license`) are empty anchors inside the
- * sections that replaced them. `#pricing` is where shipped Mac builds land
- * with `/?ref=…#pricing`.
- *
- * While a dated sale is live, its band comes first, above the hero, which
- * stays as it is (`CampaignBand`).
- *
- * Copy is `content/{locale}/home.json`. Every platform, requirement, engine,
- * format, plan and price comes from resources/data, so nothing here is typed
- * twice and nothing is counted by hand.
- */
-/** Positioning §5: a homepage title longer than this falls back to the "for developers" form. */
+// Positioning §5: a homepage title longer than this falls back to the "for developers" form.
 const TITLE_LIMIT = 60;
 
-export default function Home({ content, engines, categories, iosEngines, testimonials }: HomePageProps) {
+/**
+ * `/` and every locale's home (sitemap §D; design-system §8.1): the hero with every platform's app, the databases and
+ * the sponsors as two index bands, the features as tabs with each one's Mac and Linux capture, three quotes, pricing,
+ * and the open source band. Section ids are English in every language; the ids of the sections this page replaced are
+ * empty anchors, and `#pricing` (with its `#license` alias) is where shipped Mac builds land.
+ *
+ * While a dated sale is live, its band comes first, above the hero (`CampaignBand`).
+ */
+export default function Home({ content, engines, testimonials }: HomePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    useRevealOnScroll('main > section:not(#top)');
 
-    const availability = availabilityFor(m, { mac: content.hero.macCaption, ios: content.hero.iosCaption });
     const featuredEngines = engines.filter((engine) => engine.featured).map((engine) => engine.name);
-    const macApp = m.platforms.app.mac;
-    const iosApp = m.platforms.app.ios;
-    /* The platforms in the title come from platforms.json, so it follows the apps that ship. */
-    const listedTitle = fmt(content.seo.title, { deviceList: availability.deviceList });
+    // The platforms in the title come from platforms.json, so it follows the apps that ship.
+    const listedTitle = fmt(content.seo.title, { deviceList: deviceList(m.common.list) });
     const title = listedTitle.length <= TITLE_LIMIT ? listedTitle : content.seo.titleFallback;
 
     return (
@@ -71,32 +53,13 @@ export default function Home({ content, engines, categories, iosEngines, testimo
             />
 
             <CampaignBand variant="home" />
-            <Hero content={content.hero} availability={availability} featuredEngines={featuredEngines.join(', ')} />
-            <DatabasesSection
-                content={content.databases}
-                engines={engines}
-                categories={categories}
-                iosEngines={iosEngines}
-                availability={availability}
-                macApp={macApp}
-            />
-            <SponsorsSection content={content.sponsors} />
-            <WorkflowsSection content={content.workflows} engines={engines} />
-            <SafetySection content={content.safety} />
-            <AiSection content={content.ai} />
-            <PlatformsSection content={content.platforms} availability={availability} />
-            <SwitchSection content={content.switch} macApp={macApp} />
-            <TestimonialsSection content={content.testimonials} quotes={testimonials} />
-            <PricingSection
-                title={content.pricing.title}
-                lead={fmt(content.pricing.lead, {
-                    macApp,
-                    iosApp,
-                    starterExamples: examplesText('starter', m.common.list),
-                    teamExamples: examplesText('team', m.common.list),
-                })}
-            />
-            <OpenSourceSection content={content.openSource} availability={availability} />
+            <Hero content={content.hero} />
+            <DatabaseBand content={content.databases} engines={engines} />
+            <SponsorBand content={content.sponsors} />
+            <FeatureTabs content={content.features} />
+            <Quotes content={content.testimonials} quotes={testimonials} />
+            <PricingSection title={content.pricing.title} lead={fmt(content.pricing.lead, { deviceLimit: PRICING.license.deviceLimit })} />
+            <Closing content={content.openSource} download={content.hero.download} />
         </LandingLayout>
     );
 }

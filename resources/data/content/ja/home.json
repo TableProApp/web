@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "ネイティブのデータベースクライアント。",
-        "subtitle": "{featuredEngines} <more>などのデータベース</more>でクエリを実行し、データを閲覧・編集できます。",
-        "native": "Electron や Java ランタイムではなく、ネイティブのインターフェースで構築しています。",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "その他のインストール方法",
-        "business": "無料で使えるオープンソースアプリです。有料プランで {paidPlatformApps}に機能を追加できます。<pricing>料金を見る</pricing>"
+        "subtitle": "各プラットフォーム標準の UI ツールキットで作っているので、ほかのアプリと同じように動きます。",
+        "download": "ダウンロード",
+        "docs": "ドキュメント"
     },
     "databases": {
         "title": "対応データベース",
-        "lead": "{macApp}は一般的なドライバーを同梱し、その他は初めて使うときにダウンロードします。",
-        "count": "Mac で {count} 種類のデータベースに接続：",
-        "ios": "{iosDevices} では、TablePro は {iosEngines} に接続できます。",
-        "iosSynced": "Mac から同期した {syncedOnly} の接続も開けます。",
-        "link": "対応データベース"
+        "more": "などのデータベース"
     },
     "sponsors": {
         "title": "スポンサー",
-        "link": "TablePro を支援",
         "invite": {
             "title": "ここにロゴを掲載",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "データベースでできること",
-        "paid": "追加の有料機能：{features}（{tier}）。",
-        "link": "すべての機能",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "SQL エディター",
-                "body": "スキーマをもとにテーブル名や列名を補完します。よく使うクエリを保存し、クエリ履歴を検索できます。"
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "変更内容を事前に確認",
-                "body": "行の編集は保存するまで反映されません。先に SQL を確認したり、タブ内の変更を取り消したりできます。"
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "データベースを比較",
-                "body": "対応エンジンでスキーマやデータを比較し、同期スクリプトを生成できます。データを削除する可能性のある変更は、含める前に確認します。"
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "インポートとエクスポート",
-                "body": "対応している場合は {importFormats} ファイルをインポートできます。テーブルやクエリ結果を {exportFormats} でエクスポートできます。"
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "サーバーに接続",
-                "body": "SSH トンネル、TLS、対応するクラウドのログイン方法で接続できます。保存した接続をグループやタグで整理できます。"
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "接続ごとに Safe Mode のレベルを設定できます。Mac では Alert が書き込み前に確認します。Safe Mode と Safe Mode (Full) では Touch ID またはパスワードも必要です。初期設定は Silent です。DROP、TRUNCATE、WHERE のない DELETE は常に確認します。",
-            "iPhone・iPad では Confirm Writes が書き込み前に確認します。Read-Only は両アプリで書き込みを拒否し、MongoDB、Redis、etcd ではすべてのコマンドをブロックします。"
-        ],
-        "levels": "Safe Mode のレベル",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "AI アシスタントと MCP",
-        "body": [
-            "選んだプロバイダーやローカルで動くモデルで SQL の説明や修正ができます。Mac で利用可能で、プロバイダーを追加するまでデータは送信しません。",
-            "チャットは Ask モードで始まります。Edit と Agent は Safe Mode に従って文を実行できます。Silent では承認なしで書き込めます。全画面の Agent modeは Alert 以上を使います。",
-            "内蔵の MCP (Model Context Protocol) サーバーから、{mcpClients} などのクライアントを保存済みの接続につなげます。{mcpHost} で待ち受け、初期状態では無効です。有効化後は読み取り専用アクセスで始まり、保存したパスワードはクライアントに渡しません。",
-            "どちらの機能も無料です。AI プロバイダーの利用料金は別途かかる場合があります。"
-        ],
-        "providers": "追加できるプロバイダー：{providers}。"
-    },
-    "platforms": {
-        "title": "{deviceList} 向けのネイティブアプリ",
-        "cardTitle": "{devices} 版 TablePro",
-        "mac": "{architectures} 向けに別々のビルドを提供するデスクトップアプリです。SQL エディター、スキーマツール、AI アシスタント、MCP サーバーを含みます。",
-        "ios": "{devices} でクエリを実行し、対応テーブルを操作できます。SSH トンネルと任意の Face ID ロックを備えた、別の無料アプリです。",
-        "sync": "iCloud Sync は Apple デバイス間で接続、グループ、タグを共有します。初期状態では無効で、Mac では {tier} が必要です。"
-    },
-    "switch": {
-        "title": "接続を移行",
-        "lead": "iPhone・iPad アプリは他のアプリからインポートできません。Open Project Folder は{macApp}のみの機能です。",
-        "import": "保存済みパスワードも含めて、{apps} から接続をインポートできます。",
-        "importWithoutPasswords": "{apps} の接続はパスワードを含まずにインポートされます。",
-        "project": "Open Project Folder は、<code>.env</code>、<code>docker-compose.yml</code>、Prisma スキーマなど、対応するプロジェクトファイルから接続を作成します。",
-        "link": "TablePro と他のクライアントを比較"
+        "platform": "アプリを表示するプラットフォーム",
+        "tabs": "機能",
+        "more": "「{feature}」の詳細",
+        "items": {
+            "querying": "スキーマをもとにした補完で SQL を書いて実行し、下に表示される結果を確認できます。",
+            "dataEditing": "グリッドでセルを編集できます。変更は保存するまで反映されず、破棄することもできます。",
+            "schema": "列、インデックス、外部キーを追加・変更できます。保存するまで何も変わりません。",
+            "importExport": "テーブルやクエリ結果をファイルにエクスポートし、CSV と SQL のファイルを取り込めます。",
+            "aiMcp": "チャットでデータベースについて質問したり、MCP 経由でコーディングエージェントに操作を任せたりできます。",
+            "connections": "SSH と TLS で接続し、サーバーを接続として保存しておけます。"
+        }
     },
     "testimonials": {
         "title": "開発者の声",
@@ -115,17 +50,22 @@
             "en": "英語からの翻訳",
             "ja": "日本語からの翻訳",
             "zh": "中国語からの翻訳"
-        }
+        },
+        "more": {
+            "one": "開発者の声をさらに {count} 件表示",
+            "other": "開発者の声をさらに {count} 件表示"
+        },
+        "fewer": "折りたたむ"
     },
     "pricing": {
-        "title": "Free、Pro、Team",
-        "lead": "{macApp}は試用期限なしで無料で使えます。Pro は {starterExamples}、Team は {teamExamples} を追加します。{iosApp}は無料で、アプリ内課金はありません。"
+        "title": "料金",
+        "lead": "無料で使え、試用期限はありません。Pro と Team で機能が加わり、1 つのライセンスを Mac または Linux のコンピューター {deviceLimit} 台で使えます。"
     },
     "openSource": {
         "title": "オープンソース",
-        "body": "TablePro は有料機能のコードも含めて AGPLv3 で公開されています。ライセンスとスポンサーの支援が開発資金になります。",
+        "statement": "TablePro は有料機能も含めて AGPLv3 のオープンソースです。",
+        "funding": "TablePro チームが開発し、ライセンスとスポンサーの支援が開発資金になっています。",
         "about": "TablePro について",
-        "github": "GitHub で見る",
-        "productHunt": "Product Hunt の TablePro"
+        "github": "GitHub のソースコード"
     }
 }

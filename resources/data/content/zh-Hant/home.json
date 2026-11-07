@@ -10,24 +10,16 @@
     },
     "hero": {
         "title": "原生資料庫用戶端。",
-        "subtitle": "在 {featuredEngines} <more>等資料庫</more>中執行查詢、瀏覽及編輯資料。",
-        "native": "採用原生介面，不依賴 Electron 或 Java 執行階段。",
-        "macCaption": "{requirement} · {architectures}",
-        "iosCaption": "{devices} · {requirement}",
-        "otherWays": "其他安裝方式",
-        "business": "免費使用，程式碼開源。付費方案為 {paidPlatformApps} 加入功能。<pricing>查看價格</pricing>"
+        "subtitle": "採用各平台自身的 UI 工具組建構，用起來與同平台的其他 App 一致。",
+        "download": "下載",
+        "docs": "文件"
     },
     "databases": {
         "title": "支援的資料庫",
-        "lead": "{macApp} 內建常用驅動程式，其他驅動程式在首次使用時下載。",
-        "count": "在 Mac 上連線至 {count} 種資料庫：",
-        "ios": "在 {iosDevices} 上，TablePro 可連線至 {iosEngines}。",
-        "iosSynced": "從 Mac 同步的 {syncedOnly} 連線也可在這些裝置上開啟。",
-        "link": "支援的資料庫"
+        "more": "等資料庫"
     },
     "sponsors": {
         "title": "贊助者",
-        "link": "贊助 TablePro",
         "invite": {
             "title": "在此展示標誌",
             "open": {
@@ -36,76 +28,19 @@
             }
         }
     },
-    "workflows": {
+    "features": {
         "title": "資料庫操作",
-        "paid": "選用付費功能：{features}（{tier}）。",
-        "link": "所有功能",
-        "rows": [
-            {
-                "id": "query",
-                "asset": "mac-query-autocomplete",
-                "title": "SQL 編輯器",
-                "body": "根據結構自動完成資料表和欄位。儲存常用查詢，並搜尋查詢歷史。"
-            },
-            {
-                "id": "edit",
-                "asset": "mac-edit-preview-sql",
-                "title": "預覽變更",
-                "body": "列編輯在儲存後才會提交。先檢查 SQL，或復原目前分頁中的變更。"
-            },
-            {
-                "id": "schema",
-                "asset": "mac-compare-sync-structure",
-                "title": "比較資料庫",
-                "body": "在支援的引擎上比較結構或資料，並產生同步腳本。納入可能刪除資料的變更前，先檢查內容。"
-            },
-            {
-                "id": "files",
-                "asset": "mac-data-files-window",
-                "title": "匯入與匯出",
-                "body": "在支援的引擎上匯入 {importFormats} 檔案。將資料表或查詢結果匯出為 {exportFormats}。"
-            },
-            {
-                "id": "connect",
-                "asset": "mac-connection-ssh-form",
-                "title": "連線至伺服器",
-                "body": "使用 SSH 通道、TLS 或支援的雲端登入方式連線。用群組和標籤整理已儲存的連線。"
-            }
-        ]
-    },
-    "safety": {
-        "title": "Safe Mode",
-        "body": [
-            "為每個連線設定 Safe Mode 層級。在 Mac 上，Alert 會在寫入前要求確認；Safe Mode 和 Safe Mode (Full) 還需要 Touch ID 或密碼。預設層級為 Silent。DROP、TRUNCATE 和不含 WHERE 的 DELETE 一律需要確認。",
-            "在 iPhone 和 iPad 上，Confirm Writes 會在寫入前要求確認。Read-Only 在兩款 App 中都拒絕寫入；對 MongoDB、Redis 和 etcd 則封鎖所有命令。"
-        ],
-        "levels": "Safe Mode 等級",
-        "link": "Safe Mode"
-    },
-    "ai": {
-        "title": "AI 助手與 MCP",
-        "body": [
-            "使用您選擇的服務商或本機模型解釋、修正 SQL。在 Mac 上提供；加入服務商前不會傳送任何資料。",
-            "聊天預設使用 Ask 模式。Edit 和 Agent 可在 Safe Mode 限制下執行陳述式；Silent 下寫入可能無需核准。全視窗 Agent mode使用 Alert 或更嚴格的層級。",
-            "透過內建 MCP (Model Context Protocol) 伺服器，將 {mcpClients} 等用戶端連線至已儲存的連線。伺服器監聽 {mcpHost}，預設關閉，啟用後從唯讀權限開始。用戶端無法看到已儲存的密碼。",
-            "兩項功能均免費。AI 服務商可能另收使用費用。"
-        ],
-        "providers": "可加入的供應商：{providers}。"
-    },
-    "platforms": {
-        "title": "適用於 {deviceList} 的原生 App",
-        "cardTitle": "{devices} 版 TablePro",
-        "mac": "桌面 App 為 {architectures} 提供獨立版本，包含 SQL 編輯器、結構工具、AI 助手和 MCP 伺服器。",
-        "ios": "在 {devices} 上執行查詢並操作支援的資料表。這是一款獨立的免費 App，支援 SSH 通道和選用的 Face ID 鎖定。",
-        "sync": "iCloud Sync 在 Apple 裝置間共享連線、群組和標籤。預設關閉，Mac 上需要 {tier}。"
-    },
-    "switch": {
-        "title": "移轉連線",
-        "lead": "iPhone 與 iPad App 不支援從其他 App 匯入，Open Project Folder 僅在 {macApp} 中提供。",
-        "import": "從 {apps} 匯入連線，包括已儲存的密碼。",
-        "importWithoutPasswords": "從 {apps} 匯入連線時不包含密碼。",
-        "project": "Open Project Folder 可從支援的專案檔案建立連線，包括 <code>.env</code>、<code>docker-compose.yml</code> 和 Prisma 綱要檔案。",
-        "link": "比較 TablePro 與其他用戶端"
+        "platform": "顯示平台",
+        "tabs": "功能",
+        "more": "詳細了解「{feature}」",
+        "items": {
+            "querying": "編寫 SQL 時依資料庫結構自動完成，執行後在下方查看結果。",
+            "dataEditing": "在表格中編輯儲存格。變更在儲存前不會生效，也可以捨棄這些變更。",
+            "schema": "新增和變更欄位、索引與外部索引鍵。儲存之前不會有任何改動。",
+            "importExport": "將資料表和查詢結果匯出為檔案，也可以匯入 CSV 和 SQL 檔案。",
+            "aiMcp": "在聊天中詢問資料庫相關的問題，或讓程式設計代理透過 MCP 操作資料庫。",
+            "connections": "透過 SSH 和 TLS 連線，並將伺服器儲存為連線。"
+        }
     },
     "testimonials": {
         "title": "開發者怎麼說",
@@ -115,17 +50,22 @@
             "en": "譯自英文",
             "ja": "譯自日文",
             "zh": "譯自中文"
-        }
+        },
+        "more": {
+            "one": "查看另外 {count} 則開發者評價",
+            "other": "查看另外 {count} 則開發者評價"
+        },
+        "fewer": "收合"
     },
     "pricing": {
-        "title": "Free、Pro 和 Team",
-        "lead": "{macApp} 可免費使用，沒有試用期。Pro 加入 {starterExamples}，Team 加入 {teamExamples}。{iosApp} 免費，無 App 內購買。"
+        "title": "價格方案",
+        "lead": "免費使用，沒有試用期。Pro 和 Team 增加功能，一個授權可在 {deviceLimit} 台 Mac 或 Linux 電腦上使用。"
     },
     "openSource": {
         "title": "開源",
-        "body": "TablePro 以 AGPLv3 開源，包括付費功能的程式碼。授權收入和贊助支持開發。",
+        "statement": "TablePro 以 AGPLv3 開源，付費功能也包括在內。",
+        "funding": "由 TablePro 團隊開發，經費來自授權收入和贊助。",
         "about": "關於 TablePro",
-        "github": "在 GitHub 查看",
-        "productHunt": "Product Hunt 上的 TablePro"
+        "github": "GitHub 上的原始碼"
     }
 }

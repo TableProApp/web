@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Support\Content\EnginePaths;
-use App\Services\Releases\PlatformCatalog;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\Testimonials;
@@ -18,15 +17,14 @@ use Inertia\Response;
  * The page copy comes from `content/{locale}/home.json`. Facts the page
  * shares with the site chrome (platforms, prices, paid features, links) are
  * read in the browser from the data files the bundle already carries. The one
- * large file, `engines.json`, is read here instead: the databases section
- * needs a few fields of each engine, so the page receives that slice rather
- * than shipping the whole file in its bundle.
+ * large file, `engines.json`, is read here instead: the databases band needs
+ * each engine's name and page, so the page receives that slice rather than
+ * shipping the whole file in its bundle.
  *
- * `lcpAsset` is the hero window's preload descriptor. It is null while the
- * hero is a placeholder, because a placeholder requests nothing, and becomes
- * a preload for the shown variant once the owner supplies the image.
+ * `lcpAsset` preloads the Mac layer of the hero's devices, the largest image
+ * in the first screen, in the variant the reader's theme shows.
  *
- * @phpstan-type HomeEngine array{id: string, name: string, icon: string|null, monogram: string, path: string, featured: bool, usersRoles: bool}
+ * @phpstan-type HomeEngine array{id: string, name: string, path: string, featured: bool}
  */
 class HomeController extends Controller
 {
@@ -37,23 +35,21 @@ class HomeController extends Controller
      */
     private array $decoded = [];
 
-    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, AssetManifest $assets, Testimonials $testimonials): Response
+    public function __invoke(ContentRepository $content, AssetManifest $assets, Testimonials $testimonials): Response
     {
         $locale = App::getLocale();
 
         return Inertia::render('Home', [
             'content' => $content->page('home', $locale),
             'engines' => $this->engines(),
-            'categories' => $this->categories($content->page('databases/index', $locale)),
-            'iosEngines' => $this->iosEngines($platforms),
             'testimonials' => $testimonials->forLocale($locale),
-            'lcpAsset' => $assets->lcpDescriptor('mac-hero-window', $locale),
+            'lcpAsset' => $assets->lcpDescriptor('home-hero-mac', $locale),
         ]);
     }
 
     /**
      * Every published engine in data order, with what the page shows: its
-     * name and mark, and where the site describes it.
+     * name and where the site describes it.
      *
      * @return list<HomeEngine>
      */
@@ -78,78 +74,12 @@ class HomeController extends Controller
             $engines[] = [
                 'id' => $engine['id'],
                 'name' => $engine['name'],
-                'icon' => is_string($engine['icon'] ?? null) ? $engine['icon'] : null,
-                'monogram' => (string) ($engine['monogram'] ?? ''),
                 'path' => $path,
                 'featured' => ($engine['featured'] ?? false) === true,
-                'usersRoles' => ($engine['capabilities']['usersRoles'] ?? false) === true,
             ];
         }
 
         return $engines;
-    }
-
-    /**
-     * The hub's categories that hold a published engine, under the hub's
-     * titles and in its order.
-     *
-     * @param  array<string, mixed>  $hub
-     * @return list<array{id: string, title: string}>
-     */
-    private function categories(array $hub): array
-    {
-        $published = array_filter($this->json('engines.json'), fn(mixed $engine): bool => is_array($engine) && ($engine['state'] ?? null) === 'published');
-        $used = array_column($published, 'category');
-        $categories = [];
-
-        foreach (DatabaseController::CATEGORIES as $id) {
-            $title = $hub['categories'][$id]['title'] ?? null;
-
-            if (in_array($id, $used, true) && is_string($title)) {
-                $categories[] = ['id' => $id, 'title' => $title];
-            }
-        }
-
-        return $categories;
-    }
-
-    /**
-     * The engine names the iPhone and iPad app offers when you add a
-     * connection, in its picker's order, and the ones it opens only when a
-     * connection arrives from a Mac.
-     *
-     * @return array{picker: list<string>, syncedOnly: list<string>}
-     */
-    private function iosEngines(PlatformCatalog $platforms): array
-    {
-        if (! $platforms->isReleased('ios')) {
-            return ['picker' => [], 'syncedOnly' => []];
-        }
-
-        $names = [];
-        $syncedOnly = [];
-
-        foreach ($this->json('engines.json') as $engine) {
-            if (! is_array($engine) || ($engine['state'] ?? null) !== 'published' || ! is_string($engine['id'] ?? null) || ! is_string($engine['name'] ?? null)) {
-                continue;
-            }
-
-            $names[$engine['id']] = $engine['name'];
-
-            if (($engine['ios']['openable'] ?? false) === true && ($engine['ios']['inPicker'] ?? false) !== true) {
-                $syncedOnly[] = $engine['name'];
-            }
-        }
-
-        $picker = [];
-
-        foreach ($platforms->find('ios')['iosEngines'] ?? [] as $id) {
-            if (is_string($id) && isset($names[$id])) {
-                $picker[] = $names[$id];
-            }
-        }
-
-        return ['picker' => $picker, 'syncedOnly' => $syncedOnly];
     }
 
     /**

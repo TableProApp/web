@@ -4,6 +4,7 @@
     "quotes": [
         {
             "id": "rockpilp-dbeaver",
+            "featured": true,
             "name": "u/rockpilp",
             "handle": null,
             "platform": "Reddit",
@@ -27,6 +28,7 @@
         },
         {
             "id": "narr-review",
+            "featured": true,
             "name": "Florian Narr",
             "handle": null,
             "platform": "codeline.co",
@@ -96,6 +98,7 @@
         },
         {
             "id": "acerola-native",
+            "featured": true,
             "name": "Acerola",
             "handle": "@Acerola-1",
             "platform": "GitHub",
@@ -135,7 +138,9 @@
                 "pt-BR": "Descobri o TablePro recentemente e tenho gostado de usá-lo para explorar conjuntos de dados com DuckDB como backend. Obrigado por criá-lo!",
                 "ko": "최근에 TablePro를 알게 되었는데, DuckDB 백엔드로 데이터셋을 둘러보는 데 즐겁게 쓰고 있습니다. 만들어 주셔서 감사합니다!",
                 "it": "Ho scoperto TablePro da poco e mi piace molto usarlo per esplorare dataset con DuckDB come backend. Grazie per averlo creato!",
-                "id": "Saya baru menemukan TablePro dan senang memakainya untuk menjelajahi dataset dengan backend DuckDB. Terima kasih sudah membuatnya!"
+                "id": "Saya baru menemukan TablePro dan senang memakainya untuk menjelajahi dataset dengan backend DuckDB. Terima kasih sudah membuatnya!",
+                "zh-Hans": "我最近发现了 TablePro，一直很喜欢用它浏览以 DuckDB 为后端的数据集。感谢你们做了这个！",
+                "zh-Hant": "我最近發現了 TablePro，一直很喜歡用它瀏覽以 DuckDB 為後端的資料集。感謝你們做了這個！"
             }
         },
         {
@@ -147,7 +152,18 @@
             "date": "2026-03-12",
             "lang": "zh-Hans",
             "text": "不试试 TablePro ，免费好用，还是原生应用",
-            "translations": {}
+            "translations": {
+                "de": "Warum nicht TablePro ausprobieren? Kostenlos, einfach zu benutzen und eine native App.",
+                "en": "Why not try TablePro? It’s free, easy to use, and a native app.",
+                "es": "¿Por qué no pruebas TablePro? Es gratis, fácil de usar y una app nativa.",
+                "fr": "Pourquoi ne pas essayer TablePro ? Gratuit, facile à utiliser, et c’est une app native.",
+                "id": "Kenapa tidak coba TablePro? Gratis, mudah dipakai, dan aplikasi native.",
+                "it": "Perché non provare TablePro? È gratis, facile da usare ed è un’app nativa.",
+                "ja": "TablePro を試してみない？無料で使いやすく、しかもネイティブアプリです。",
+                "ko": "TablePro 한번 써 보세요. 무료이고 쓰기 편하며 네이티브 앱입니다.",
+                "pt-BR": "Por que não experimentar o TablePro? É grátis, fácil de usar e um app nativo.",
+                "vi": "Sao không thử TablePro? Miễn phí, dễ dùng, lại là ứng dụng native."
+            }
         }
     ]
 }

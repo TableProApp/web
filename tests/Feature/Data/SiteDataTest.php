@@ -181,12 +181,19 @@ describe('testimonials.json', function (): void {
         expect(siteDataFilesIn('images/testimonials'))->toBe($ids);
     });
 
-    it('shows quotes in the reader\'s language first, translating the rest', function (string $locale): void {
+    it('leads with the three featured quotes, then the reader\'s language, translating the rest', function (string $locale): void {
+        $all = siteDataJson('testimonials.json')['quotes'];
         $shown = app(Testimonials::class)->forLocale($locale);
+        $featured = array_values(array_filter($all, fn(array $quote): bool => ($quote['featured'] ?? false) === true));
+        $rest = array_slice($shown, count($featured));
         $own = array_map(fn(array $quote): bool => Testimonials::sameLanguage($quote['lang'], $locale), $shown);
+        $restOwn = array_map(fn(array $quote): bool => Testimonials::sameLanguage($quote['lang'], $locale), $rest);
 
-        expect($shown)->toHaveCount(Testimonials::SHOWN)
-            ->and($own)->toBe(array_values([...array_filter($own), ...array_filter($own, fn(bool $same): bool => ! $same)]));
+        expect($featured)->toHaveCount(3)
+            ->and($shown)->toHaveCount(count($all))
+            ->and(array_column(array_slice($shown, 0, 3), 'id'))->toBe(array_column($featured, 'id'))
+            ->and(array_column($shown, 'featured'))->toBe([true, true, true, ...array_fill(0, count($rest), false)])
+            ->and($restOwn)->toBe(array_values([...array_filter($restOwn), ...array_filter($restOwn, fn(bool $same): bool => ! $same)]));
 
         foreach ($shown as $index => $quote) {
             expect($quote['translation'] === null)->toBe($own[$index], "{$quote['id']} in {$locale}");
