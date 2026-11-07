@@ -58,6 +58,6 @@ export default {
         }
     },
     "bottom": {
-        "copyright": "© {year} TablePro。{city}の {maker} が開発しています。ソースコードは AGPLv3 で公開しています。"
+        "copyright": "© {year} TablePro チーム。ソースコードは AGPLv3 で公開しています。"
     }
 } satisfies Messages['footer'];

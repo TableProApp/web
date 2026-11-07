@@ -58,6 +58,6 @@ export default {
         },
     },
     bottom: {
-        copyright: '© {year} TablePro, do {maker} phát triển tại {city}. Mã nguồn theo giấy phép AGPLv3.',
+        copyright: '© {year} Đội ngũ TablePro. Mã nguồn theo giấy phép AGPLv3.',
     },
 } satisfies Messages['footer'];

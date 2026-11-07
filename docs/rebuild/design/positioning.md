@@ -277,7 +277,7 @@ tier.
 
 | Node | `@id` (keep stable) | `@type` | Key fields |
 |---|---|---|---|
-| Organization | `https://tablepro.app/#organization` | Organization | `name` TablePro. `description` = short description, localized. `logo`, `sameAs` from `links`. `address` (locality and country code) and `founder`, a Person with the id `#founder`, from `facts.json` → `publisher`. No `legalName` |
+| Organization | `https://tablepro.app/#organization` | Organization | `name` TablePro. `description` = short description, localized. `logo`, `sameAs` from `links`. No `address`, `founder` or `legalName`: the site names the TablePro team, never a person or a city (owner, 2026-11-07) |
 | WebSite | `https://tablepro.app/#website` | WebSite | `name` TablePro. `inLanguage` `["en","vi"]`. `publisher` → Organization. Page-level `WebPage` nodes carry the page's own `inLanguage` |
 | Mac app | `https://tablepro.app/#app` | SoftwareApplication | Fields below |
 | iPhone and iPad app | `https://tablepro.app/#ios-app` | MobileApplication | Fields below |
@@ -570,7 +570,7 @@ move to their hubs, so no page becomes undiscoverable. There is no footer blurb.
 | Community / Cộng đồng | GitHub Discussions · Discord · X · Sponsor TablePro ↗ | GitHub Discussions · Discord · X · Telegram · Tài trợ TablePro ↗ | `facts.json` `links`. Brand names stay as they are. Telegram is a Vietnamese group, so only Vietnamese pages link it. "Sponsor TablePro" goes to GitHub Sponsors |
 | Legal / Pháp lý | Privacy · Terms · Refund policy · Cookie settings | Quyền riêng tư · Điều khoản sử dụng · Chính sách hoàn tiền · Cài đặt cookie | `/privacy`, `/terms`, `/refund-policy`. "Cookie settings" is a button that reopens the consent bar (`tablepro:analytics-consent`) |
 | Newsletter block | Subscribe | Đăng ký nhận tin | `newsletter_signup_clicked{source:'footer'}`. No subscriber count (sitemap §B.3) |
-| Bottom row | © {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3. · English · Tiếng Việt · theme control | © {year} TablePro, do {maker} phát triển tại {city}. Mã nguồn theo giấy phép AGPLv3. · English · Tiếng Việt · giao diện | `{maker}` and `{city}` come from `facts.json` → `publisher`. The language links repeat as plain links |
+| Bottom row | © {year} The TablePro team. Source code under the AGPLv3. · English · Tiếng Việt · theme control | © {year} Đội ngũ TablePro. Mã nguồn theo giấy phép AGPLv3. · English · Tiếng Việt · giao diện | No person or city: `facts.json` → `publisher` is for the legal pages only. The language links repeat as plain links |
 
 **Keys:**
 - Group labels and their links live under `footer.groups.*`, which are identity keys (§13).

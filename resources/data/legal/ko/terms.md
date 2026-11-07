@@ -8,7 +8,7 @@ updatedAt: "2026-11-07"
 
 ## 정의 {#definitions}
 
-- "**TablePro**" 및 "**운영자**"는 TablePro를 배포하는 {publisherCountry} {publisherCity}의 개인 개발자 {publisherName}입니다.
+- "**TablePro**" 및 "**운영자**"는 TablePro를 배포하는 {publisherCountry}의 개인 개발자 {publisherName}입니다.
 - "**애플리케이션**"은 업데이트와 플러그인을 포함한 Mac용 TablePro, Linux용 TablePro 및 iPhone과 iPad용 TablePro를 뜻합니다.
 - "**웹사이트**"는 tablepro.app, docs.tablepro.app 및 운영자가 관리하는 다른 도메인을 뜻합니다.
 - "**서비스**"는 웹사이트, 계정 포털 및 Mac 앱과 Linux 앱이 라이선스 확인과 Team Library를 위해 통신하는 서버를 뜻합니다.

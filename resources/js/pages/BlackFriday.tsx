@@ -25,7 +25,6 @@ import { LOCALES, Trans, useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { calendarHref } from '@/lib/campaign';
 import type { AssetId } from '@/lib/data/assets';
-import { PUBLISHER } from '@/lib/data/facts';
 import { featureHref, paidFeaturesForTier } from '@/lib/data/paid-features';
 import { PRICING } from '@/lib/data/pricing';
 import { discountedAmount } from '@/lib/regional-pricing';
@@ -129,7 +128,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
                     name: title,
                     description,
                     crumbs,
-                    organization: { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER },
+                    organization: { description: m.seo.product.short, sameAs: organizationProfiles },
                 })}
             />
 

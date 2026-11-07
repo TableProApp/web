@@ -58,6 +58,6 @@ export default {
         }
     },
     "bottom": {
-        "copyright": "© {year} TablePro，由{city}的 {maker} 開發。原始碼採用 AGPLv3 授權。"
+        "copyright": "© {year} TablePro 團隊。原始碼採用 AGPLv3 授權。"
     }
 } satisfies Messages['footer'];

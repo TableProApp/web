@@ -49,8 +49,33 @@ it('names the publisher in every supported language', function (): void {
     expect($publisher['name'])->toBeString()->not->toBeEmpty()
         ->and(filter_var(factsJson()['support']['email'], FILTER_VALIDATE_EMAIL))->not->toBeFalse();
 
-    foreach (['city', 'country'] as $field) {
-        expect(array_keys($publisher[$field]))->toEqualCanonicalizing(Locales::codes(), "publisher.{$field} does not cover every locale");
+    expect(array_keys($publisher['country']))->toEqualCanonicalizing(Locales::codes(), 'publisher.country does not cover every locale')
+        ->and($publisher)->not->toHaveKey('city');
+});
+
+it('names the TablePro team, not the publisher or a city, outside the legal pages', function (): void {
+    $publisher = factsJson()['publisher'];
+    $needles = [$publisher['name'], 'Ho Chi Minh', 'Hồ Chí Minh', 'Ho-Chi-Minh', 'Hô Chi Minh', 'ホーチミン', '胡志明', '호찌민'];
+    $files = [
+        ...File::allFiles(resource_path('data/content')),
+        ...File::allFiles(resource_path('js/i18n/messages')),
+        ...File::allFiles(base_path('lang')),
+    ];
+
+    foreach ($files as $file) {
+        $text = $file->getContents();
+
+        expect($text)->not->toMatch('/\\{(maker|city)\\}/u', "{$file->getRelativePathname()} has a maker or city slot");
+
+        foreach ($needles as $needle) {
+            expect(str_contains($text, $needle))->toBeFalse("{$file->getRelativePathname()} names {$needle}");
+        }
+    }
+});
+
+it('gives the legal pages the publisher and country, never a city', function (): void {
+    foreach (File::allFiles(resource_path('data/legal')) as $file) {
+        expect($file->getContents())->not->toContain('{publisherCity}', "{$file->getRelativePathname()} names a city");
     }
 });
 

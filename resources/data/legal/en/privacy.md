@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro collects, why it is used, who receives it, how long it stays, and your choices and rights.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 This policy covers TablePro for Mac, Linux, iPhone and iPad; tablepro.app; docs.tablepro.app; and our account, purchase, support and newsletter services. The [technical inventory](https://docs.tablepro.app/security/privacy) lists app fields, endpoints and controls. The apps' source is in the [public repository]({github}).
@@ -18,7 +18,7 @@ The website uses page analytics and loads Crisp chat on every page. Google Analy
 
 ## Who is responsible {#controller}
 
-{publisherName}, an individual developer in {publisherCity}, {publisherCountry}, is the controller for the personal data described here. Contact [{email}](mailto:{email}). We have no data protection officer. For teams, we manage account, invitation and service records as controller. We process published Team Library content on the team's instructions; the team decides what to publish and who has access.
+{publisherName}, an individual developer in {publisherCountry}, is the controller for the personal data described here. Contact [{email}](mailto:{email}). We have no data protection officer. For teams, we manage account, invitation and service records as controller. We process published Team Library content on the team's instructions; the team decides what to publish and who has access.
 
 <span id="lawful-basis"></span>
 

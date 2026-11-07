@@ -1,7 +1,7 @@
 ---
 title: Informativa sulla privacy
 description: Dati raccolti da TablePro, finalità, destinatari, conservazione, scelte e diritti.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 Questa informativa copre TablePro per Mac, Linux, iPhone e iPad; tablepro.app; docs.tablepro.app; e servizi di account, acquisto, assistenza e newsletter. L'[inventario tecnico](https://docs.tablepro.app/security/privacy) elenca campi, destinazioni e controlli. Il codice è nel [repository pubblico]({github}).
@@ -18,7 +18,7 @@ Il sito misura visite e carica Crisp su ogni pagina. I cookie Google Analytics r
 
 ## Titolare {#controller}
 
-{publisherName}, sviluppatore indipendente a {publisherCity}, {publisherCountry}, è titolare dei dati personali descritti. Contatto: [{email}](mailto:{email}). Non abbiamo un responsabile della protezione dei dati. Per i gruppi siamo titolari dei dati di account, inviti e servizio. Trattiamo i contenuti Team Library su istruzione del gruppo, che decide cosa pubblicare e chi accede.
+{publisherName}, sviluppatore indipendente in {publisherCountry}, è titolare dei dati personali descritti. Contatto: [{email}](mailto:{email}). Non abbiamo un responsabile della protezione dei dati. Per i gruppi siamo titolari dei dati di account, inviti e servizio. Trattiamo i contenuti Team Library su istruzione del gruppo, che decide cosa pubblicare e chi accede.
 
 <span id="lawful-basis"></span>
 

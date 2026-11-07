@@ -16,7 +16,6 @@ import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
-import { PUBLISHER } from '@/lib/data/facts';
 import { cn } from '@/lib/utils';
 import { deviceList } from '@/lib/data/platforms';
 import {
@@ -99,7 +98,7 @@ export default function BlogPost({ post, archived, correction, pages, notes, rel
     const changelogLang = locale === 'en' ? undefined : 'en';
 
     const jsonLd = graph([
-        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(EXTERNAL), publisher: PUBLISHER }),
+        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(EXTERNAL) }),
         blogPostingNode(
             { baseUrl: canonicalBaseUrl, inLanguage },
             {

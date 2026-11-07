@@ -8,7 +8,7 @@ updatedAt: "2026-11-07"
 
 ## 定義 {#definitions}
 
-- 「**TablePro**」「**運営者**」は、{publisherCountry}・{publisherCity}を拠点に TablePro を公開している個人開発者 {publisherName} を指します。
+- 「**TablePro**」「**運営者**」は、{publisherCountry}を拠点に TablePro を公開している個人開発者 {publisherName} を指します。
 - 「**アプリケーション**」は、アップデートとプラグインを含む、Mac 版 TablePro、Linux 版 TablePro、および iPhone・iPad 版 TablePro を指します。
 - 「**ウェブサイト**」は、tablepro.app、docs.tablepro.app、および運営者が管理するその他のドメインを指します。
 - 「**サービス**」は、ウェブサイト、アカウントポータル、およびライセンスの確認と Team Library のために Mac アプリと Linux アプリが通信するサーバーを指します。

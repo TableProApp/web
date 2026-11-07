@@ -8,7 +8,7 @@ Các điều khoản này điều chỉnh website tablepro.app, trang tài kho�
 
 ## Định nghĩa {#definitions}
 
-- **"TablePro", "chúng tôi"** là {publisherName}, một lập trình viên độc lập tại {publisherCity}, {publisherCountry}, người phát hành TablePro.
+- **"TablePro", "chúng tôi"** là {publisherName}, một lập trình viên độc lập tại {publisherCountry}, người phát hành TablePro.
 - **"Ứng dụng"** là TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
 - **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac và ứng dụng cho Linux liên lạc để kiểm tra license và dùng Team Library.

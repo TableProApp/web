@@ -1,7 +1,7 @@
 ---
 title: Política de privacidade
 description: Dados coletados pelo TablePro, finalidades, destinatários, retenção, escolhas e direitos.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 Esta política cobre TablePro para Mac, Linux, iPhone e iPad; tablepro.app; docs.tablepro.app; e serviços de conta, compras, suporte e newsletter. O [inventário técnico](https://docs.tablepro.app/security/privacy) lista campos, destinos e controles. O código está no [repositório público]({github}).
@@ -18,7 +18,7 @@ O site mede visitas e carrega Crisp em todas as páginas. Cookies do Google Anal
 
 ## Responsável {#controller}
 
-{publisherName}, desenvolvedor individual em {publisherCity}, {publisherCountry}, é o controlador dos dados pessoais descritos. Contato: [{email}](mailto:{email}). Não temos encarregado de proteção de dados. Para equipes, controlamos registros de conta, convites e serviço. Processamos conteúdo da Team Library conforme instruções da equipe, que decide o que publicar e quem acessa.
+{publisherName}, desenvolvedor individual no {publisherCountry}, é o controlador dos dados pessoais descritos. Contato: [{email}](mailto:{email}). Não temos encarregado de proteção de dados. Para equipes, controlamos registros de conta, convites e serviço. Processamos conteúdo da Team Library conforme instruções da equipe, que decide o que publicar e quem acessa.
 
 <span id="lawful-basis"></span>
 

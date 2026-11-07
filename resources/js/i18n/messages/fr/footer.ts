@@ -58,6 +58,6 @@ export default {
         }
     },
     "bottom": {
-        "copyright": "© {year} TablePro, créé par {maker} à {city}. Code source sous AGPLv3."
+        "copyright": "© {year} L’équipe TablePro. Code source sous AGPLv3."
     }
 } satisfies Messages['footer'];

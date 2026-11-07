@@ -1,7 +1,7 @@
 ---
 title: プライバシーポリシー
 description: TablePro が収集するデータ、目的、受領者、保存期間、および選択肢と権利。
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 本方針は Mac、Linux、iPhone、iPad の TablePro、tablepro.app、docs.tablepro.app、アカウント、購入、サポート、ニュースレターに適用されます。[技術一覧](https://docs.tablepro.app/security/privacy)にフィールド、接続先、設定を記載しています。ソースは[公開リポジトリ]({github})にあります。
@@ -18,7 +18,7 @@ Mac と Linux の利用データは初期状態で有効で、無効にできま
 
 ## 管理者 {#controller}
 
-{publisherCity}、{publisherCountry} の個人開発者 {publisherName} が、記載する個人データの管理者です。連絡先は [{email}](mailto:{email}) です。データ保護責任者はいません。チームのアカウント、招待、サービス記録は管理者として扱います。Team Library の公開内容はチームの指示に従って処理します。公開内容と閲覧者はチームが決めます。
+{publisherCountry} の個人開発者 {publisherName} が、記載する個人データの管理者です。連絡先は [{email}](mailto:{email}) です。データ保護責任者はいません。チームのアカウント、招待、サービス記録は管理者として扱います。Team Library の公開内容はチームの指示に従って処理します。公開内容と閲覧者はチームが決めます。
 
 <span id="lawful-basis"></span>
 

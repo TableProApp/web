@@ -66,10 +66,6 @@ export function macAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#app`;
 }
 
-export function founderId(baseUrl: string): string {
-    return `${origin(baseUrl)}/#founder`;
-}
-
 export function iosAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#ios-app`;
 }
@@ -102,17 +98,7 @@ export function organizationProfiles(links: ProfileLinks): string[] {
     return [links.github, links.x, links.discord, links.telegram];
 }
 
-export interface PublisherInput {
-    name: string;
-    locality: string;
-    countryCode: string;
-}
-
-function postalAddress(publisher: PublisherInput): JsonLdNode {
-    return { '@type': 'PostalAddress', addressLocality: publisher.locality, addressCountry: publisher.countryCode };
-}
-
-export function organizationNode(baseUrl: string, input: { description: string; sameAs: readonly string[]; publisher: PublisherInput }): JsonLdNode {
+export function organizationNode(baseUrl: string, input: { description: string; sameAs: readonly string[] }): JsonLdNode {
     return {
         '@type': 'Organization',
         '@id': organizationId(baseUrl),
@@ -125,13 +111,6 @@ export function organizationNode(baseUrl: string, input: { description: string; 
             height: 256,
         },
         description: input.description,
-        address: postalAddress(input.publisher),
-        founder: {
-            '@type': 'Person',
-            '@id': founderId(baseUrl),
-            name: input.publisher.name,
-            address: postalAddress(input.publisher),
-        },
         ...(input.sameAs.length > 0 ? { sameAs: [...input.sameAs] } : {}),
     };
 }

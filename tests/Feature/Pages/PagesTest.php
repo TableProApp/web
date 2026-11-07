@@ -23,7 +23,7 @@ function pageFamilies(): array
         'landing.pricing' => ['Pricing', ['content', 'apiOrigin', 'paidFeatures']],
         'landing.teams' => ['Teams', ['content.header.title', 'content.seats.items', 'organizationProfiles']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
-        'landing.about' => ['About', ['content', 'publisher.name', 'repositoryCreated', 'links']],
+        'landing.about' => ['About', ['content', 'repositoryCreated', 'links']],
         'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],
         'landing.sponsors' => ['Sponsors', ['content.header.title', 'content.tiers.benefit.name', 'organizationProfiles']],
         'landing.black-friday' => ['BlackFriday', ['content.hero.title', 'paidFeatures', 'organizationProfiles', 'campaign.phase']],

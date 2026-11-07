@@ -58,6 +58,6 @@ export default {
         }
     },
     "bottom": {
-        "copyright": "© {year} TablePro，由{city}的 {maker} 开发。源代码采用 AGPLv3 许可证。"
+        "copyright": "© {year} TablePro 团队。源代码采用 AGPLv3 许可证。"
     }
 } satisfies Messages['footer'];

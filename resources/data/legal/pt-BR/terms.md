@@ -8,7 +8,7 @@ Estes termos regem o site tablepro.app, o portal da conta, nosso servidor de lic
 
 ## Definições {#definitions}
 
-- **"TablePro", "nós", "nos" e "nosso"** significam {publisherName}, um desenvolvedor independente em {publisherCity}, {publisherCountry}, que publica o TablePro.
+- **"TablePro", "nós", "nos" e "nosso"** significam {publisherName}, um desenvolvedor independente no {publisherCountry}, que publica o TablePro.
 - **"Aplicativo"** significa TablePro para Mac, TablePro para Linux e TablePro para iPhone e iPad, incluindo atualizações e plugins.
 - **"Site"** significa tablepro.app, docs.tablepro.app e os demais domínios que operamos.
 - **"Serviços"** significa o Site, o portal da conta e o servidor que os apps para Mac e para Linux contatam para verificações de licença e para a Team Library.

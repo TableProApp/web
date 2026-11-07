@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Dữ liệu TablePro thu thập, mục đích, bên nhận, thời gian lưu giữ và quyền lựa chọn của bạn.
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-07"
 ---
 
 Chính sách này áp dụng cho TablePro trên Mac, Linux, iPhone và iPad; tablepro.app; docs.tablepro.app; cùng dịch vụ tài khoản, mua hàng, hỗ trợ và newsletter. [Danh mục kỹ thuật](https://docs.tablepro.app/security/privacy) liệt kê trường dữ liệu, endpoint và cách kiểm soát. Mã nguồn ứng dụng nằm trong [repository công khai]({github}).
@@ -18,7 +18,7 @@ Website dùng analytics và tải Crisp trên mọi trang. Cookie Google Analyti
 
 ## Bên chịu trách nhiệm {#controller}
 
-{publisherName}, lập trình viên cá nhân tại {publisherCity}, {publisherCountry}, là bên kiểm soát dữ liệu cá nhân mô tả ở đây. Liên hệ [{email}](mailto:{email}). Chúng tôi không có cán bộ bảo vệ dữ liệu. Với nhóm, chúng tôi kiểm soát bản ghi tài khoản, lời mời và dịch vụ. Nội dung Team Library được xử lý theo chỉ dẫn của nhóm; nhóm quyết định nội dung đăng và người được truy cập.
+{publisherName}, lập trình viên cá nhân tại {publisherCountry}, là bên kiểm soát dữ liệu cá nhân mô tả ở đây. Liên hệ [{email}](mailto:{email}). Chúng tôi không có cán bộ bảo vệ dữ liệu. Với nhóm, chúng tôi kiểm soát bản ghi tài khoản, lời mời và dịch vụ. Nội dung Team Library được xử lý theo chỉ dẫn của nhóm; nhóm quyết định nội dung đăng và người được truy cập.
 
 <span id="lawful-basis"></span>
 

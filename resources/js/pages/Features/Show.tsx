@@ -21,7 +21,7 @@ import TextLink from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
-import { FACTS, PUBLISHER } from '@/lib/data/facts';
+import { FACTS } from '@/lib/data/facts';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
 import { iosPlatform, macPlatform } from '@/lib/data/platforms';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, organizationNode, organizationProfiles, webPageNode } from '@/lib/structured-data';
@@ -59,7 +59,7 @@ export default function FeatureShow({ slug, content, labels, facts, linux }: Fea
     const pageUrl = absoluteUrl(canonicalBaseUrl, path(`/features/${slug}`));
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
     const jsonLd = graph([
-        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links), publisher: PUBLISHER }),
+        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links) }),
         webPageNode(context, {
             url: pageUrl,
             name: content.header.title,

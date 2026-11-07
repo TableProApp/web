@@ -121,7 +121,6 @@ class LegalDocuments
             'graceDays' => $commerce['graceDays'],
             'teamMinSeats' => $commerce['teamMinSeats'],
             'publisherName' => $publisher['name'] ?? null,
-            'publisherCity' => $publisher['city'] ?? null,
             'publisherCountry' => $publisher['country'] ?? null,
         ];
 
