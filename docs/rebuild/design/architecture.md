@@ -633,7 +633,7 @@ The ten `ProFeature` cases, in display order. `highlight` marks the examples beh
 {
   "links": { "github": "…", "appStore": "…", "sponsorsProgram": "…", "discord": "…", "x": "…", "facebook": "…",
              "telegram": "…", "docs": "https://docs.tablepro.app", "changelog": "…", "issues": "…", "productHunt": "…" },
-  "support": { "email": "hello@tablepro.app" },
+  "support": { "email": "hello@tablepro.app", "securityEmail": "security@tablepro.app" },   // security@: /security and security.txt
   "openSource": { "license": "AGPL-3.0" },
   "ai": { "providers": ["…"] },                                   // names, in the app's order
   "mcp": { "host": "127.0.0.1", "enabledByDefault": false, "toolGroups": ["…"],

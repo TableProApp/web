@@ -9,41 +9,34 @@
     },
     "header": {
         "title": "安全性",
-        "lead": "了解 TablePro 如何儲存憑證、傳送資料、處理更新並保護資料庫操作。"
+        "lead": "您的查詢從 App 直接傳到您自己的資料庫伺服器，從不經過 TablePro。以下是各款 App 保存和傳送的內容。"
     },
     "breadcrumb": "安全性",
-    "jump": "本頁內容",
-    "limits": "值得了解的限制",
-    "more": "了解更多",
-    "sections": [
+    "nav": "本頁內容",
+    "labelled": "{label}：",
+    "counts": {
+        "businessDays": {
+            "one": "一個工作天",
+            "other": "{count} 個工作天"
+        }
+    },
+    "bands": [
         {
             "id": "credentials",
-            "title": "憑證",
-            "items": [
-                {
-                    "id": "mac-keychain",
-                    "title": "Mac 上",
-                    "text": "密碼、金鑰的通關密語、AI 供應商的 API 金鑰和授權金鑰都儲存在 macOS 鑰匙圈中；從支援 TablePro 帳戶的版本起，保持您登入的權杖也儲存在這裡。磁碟上的連線清單不含密碼，SSH 金鑰仍是磁碟上的檔案。"
-                },
-                {
-                    "id": "ios-keychain",
-                    "title": "iPhone 與 iPad 上",
-                    "text": "密碼和貼上的 SSH 金鑰儲存在鑰匙圈中。"
-                },
-                {
-                    "id": "icloud",
-                    "title": "iCloud Sync",
-                    "text": "iCloud Sync 預設關閉。記錄存入您自己 iCloud 帳戶中的私有資料庫，TablePro 無法讀取，且不含密碼。只有同時開啟 Mac 上的<ui>密碼</ui>（Passwords）或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords），密碼才會同步，並透過 iCloud 鑰匙圈傳輸。"
-                },
-                {
-                    "id": "not-sent",
-                    "title": "TablePro 會收到什麼",
-                    "text": "您執行的查詢、查詢結果和您的密碼不會傳送給 TablePro。唯一的例外是您選擇發佈到的 Team Library：它會收到連線設定和已儲存的查詢，但從不包含密碼。"
-                }
+            "also": [
+                "mac-keychain",
+                "ios-keychain",
+                "icloud"
             ],
-            "limits": [
-                "在 Mac 上，密碼同步也會同步 AI 供應商的 API 金鑰和授權金鑰。從支援 TablePro 帳戶的版本起，授權金鑰在兌換為登入後即被刪除，登入狀態從不同步。",
-                "1Password 或 Shell 指令等密碼來源會在每次連線時於您的 Mac 上執行一個程式。"
+            "nav": "憑證",
+            "title": "密碼保存在系統鑰匙圈中",
+            "text": [
+                "Mac App 將密碼、金鑰的通關密語、AI 供應商金鑰和您的登入狀態儲存在 macOS 鑰匙圈中。iPhone 與 iPad 同樣使用鑰匙圈，Linux 則使用 GNOME Keyring 或 KWallet 等 Secret Service 金鑰圈。",
+                "iCloud Sync 在您開啟前保持關閉；只有同時開啟 Mac 上的<ui>密碼</ui>（Passwords）或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords），密碼才會透過 iCloud 鑰匙圈同步。"
+            ],
+            "notes": [
+                "在 Mac 上，密碼同步也會同步 AI 供應商金鑰，但從不同步您的登入狀態。",
+                "1Password 或 shell 指令等密碼來源會在每次連線時執行一個程式。"
             ],
             "links": [
                 {
@@ -58,30 +51,77 @@
         },
         {
             "id": "network",
-            "title": "哪些內容會離開您的裝置",
-            "items": [
-                {
-                    "id": "your-servers",
-                    "title": "傳到您的伺服器與供應商",
-                    "text": "查詢和結果在 App 與您自己的資料庫伺服器之間傳輸，從不經過 TablePro。AI 請求直接傳到您加入的供應商。"
-                },
-                {
-                    "id": "to-tablepro",
-                    "title": "傳到 TablePro",
-                    "text": "Mac 0.86.0（從 0.86.0-beta.1 起）直接向 PostHog EU 傳送使用資料。預設開啟，可在設定關閉。已發布的 iPhone/iPad 僅在啟用 Share Usage Data 後報告。Apple 診斷另計。使用資料不含主機名、使用者名稱、密碼、查詢或資料列。"
-                }
+            "also": [
+                "your-servers",
+                "to-tablepro",
+                "not-sent"
             ],
-            "limits": [
-                "Mac 傳送前不詢問。PostHog 接收 IP 並推算大致位置。登入使用可關聯帳戶和購買。帳戶變更也保留稽核 IP。關閉 App 使用資料不會停止伺服器分析。"
+            "nav": "離開裝置的內容",
+            "title": "您的查詢從不經過 TablePro",
+            "text": [
+                "除了傳到您的資料庫伺服器和 SSH 主機的內容，各款 App 傳送的全部內容如下。"
+            ],
+            "table": {
+                "caption": "App 傳送什麼、何時傳送，以及如何關閉",
+                "columns": [
+                    "傳送目標",
+                    "傳送內容",
+                    "何時傳送",
+                    "如何關閉"
+                ],
+                "rows": [
+                    [
+                        "PostHog，來自 Mac 和 Linux",
+                        "使用事件，從不包含主機名稱、使用者名稱、密碼、查詢或資料列",
+                        "預設開啟",
+                        "App 隱私權設定中的<ui>分享使用資料</ui>（Share Usage Data）"
+                    ],
+                    [
+                        "TablePro，來自 iPhone 與 iPad",
+                        "每日使用報告，同樣不含上述內容",
+                        "您主動開啟後",
+                        "<ui>設定 > 隱私權</ui>（Settings > Privacy）"
+                    ],
+                    [
+                        "您的 TablePro 帳戶",
+                        "這台電腦的名稱、機器 ID 和版本",
+                        "登入後：啟動時及每天一次",
+                        "保持未登入"
+                    ],
+                    [
+                        "GitHub，經由 updates.tablepro.app",
+                        "您的 IP 位址，用於 Mac 更新和驅動程式外掛",
+                        "檢查更新時，以及首次使用某個驅動程式時",
+                        "<ui>自動檢查更新</ui>（Automatically check for updates）"
+                    ],
+                    [
+                        "您的 AI 供應商",
+                        "您的問題、綱要以及目前涉及的查詢",
+                        "您向助理提問時",
+                        "不加入任何供應商"
+                    ],
+                    [
+                        "您的 iCloud 帳戶",
+                        "您選擇的連線和設定",
+                        "開啟 iCloud Sync 前保持關閉",
+                        "關閉 iCloud Sync"
+                    ],
+                    [
+                        "Team Library，位於 TablePro 的伺服器",
+                        "您發佈的連線和已儲存查詢，從不包含密碼",
+                        "您發佈時",
+                        "不發佈任何內容"
+                    ]
+                ]
+            },
+            "notes": [
+                "PostHog 會根據 IP 位址推算大致位置，並在您登入後將使用資料關聯到您的帳戶。",
+                "較舊的 Mac 版本改為透過我們的伺服器傳送使用資料和授權檢查。"
             ],
             "links": [
                 {
-                    "label": "隱私權政策：Mac App 傳送什麼",
-                    "href": "/privacy#mac-app"
-                },
-                {
-                    "label": "隱私權政策：iPhone 與 iPad App 傳送什麼",
-                    "href": "/privacy#ios-app"
+                    "label": "隱私權政策：各款 App",
+                    "href": "/privacy#apps"
                 },
                 {
                     "label": "所有對外請求",
@@ -90,107 +130,51 @@
             ]
         },
         {
-            "id": "distribution",
-            "title": "App 散佈",
-            "items": [
-                {
-                    "id": "signing",
-                    "title": "簽署與公證",
-                    "text": "Mac 版本使用 Developer ID 簽署、啟用 Hardened Runtime，並經 Apple 公證。磁碟映像檔發佈在 GitHub Releases，每個都附有 SHA-256 總和檢查碼。Homebrew cask 下載同一個映像檔並核對其 SHA-256。"
-                },
-                {
-                    "id": "updates",
-                    "title": "更新",
-                    "text": "Mac App 透過 Sparkle 更新，並在安裝每個更新前以 App 內建的公開金鑰驗證其 EdDSA 簽章。這項驗證無法關閉。自動更新可以關閉，可在設定中或透過設定描述檔操作。"
-                },
-                {
-                    "id": "plugins",
-                    "title": "驅動程式外掛",
-                    "text": "未隨 Mac App 提供的驅動程式從 GitHub 下載。每個驅動程式都必須與外掛登錄中的 SHA-256 一致，並帶有有效的程式碼簽章：TablePro 自己的簽章，或您明確同意信任的其他開發者的 Developer ID。"
-                },
-                {
-                    "id": "app-store",
-                    "title": "iPhone 與 iPad",
-                    "text": "iPhone 與 iPad App 在 App Store 上提供，更新也由 App Store 推送。驅動程式已內建，App 不下載任何外掛。"
-                }
+            "id": "ai-mcp",
+            "also": [
+                "mcp",
+                "local",
+                "approval",
+                "permissions"
             ],
-            "limits": [
-                "Mac App 不使用 macOS App Sandbox，而是以您的使用者帳戶對檔案與網路的存取權限執行。",
-                "驅動程式外掛作為 TablePro 的一部分執行，可以讀取您開啟的每個連線的憑證。"
+            "nav": "AI 與 MCP",
+            "title": "TablePro 不執行任何 AI 服務",
+            "text": [
+                "助理直接與您的供應商通訊。MCP 伺服器在您開啟前保持關閉，只接聽 {mcpHost}，也從不向用戶端顯示密碼。"
             ],
-            "links": [
-                {
-                    "label": "下載與更新",
-                    "href": "/download#updates"
-                },
-                {
-                    "label": "受管理的更新",
-                    "docs": "/security/managed-updates"
-                },
-                {
-                    "label": "外掛",
-                    "docs": "/features/plugins"
-                }
-            ]
-        },
-        {
-            "id": "safe-mode",
-            "title": "資料庫保護",
-            "items": [
-                {
-                    "id": "levels",
-                    "title": "Safe Mode 等級",
-                    "text": "在 Mac 上，每個連線都有 Safe Mode 等級：{macSafeModeLevels}。Alert 在寫入前詢問，Safe Mode 等級還要求 Touch ID 或 Mac 密碼，Full 等級在讀取前也會詢問，Read-Only 拒絕寫入。組織可透過設定描述檔為其 Mac 強制設定最低等級。Linux 上的等級為 {linuxSafeModeLevels}，iPhone 與 iPad 上為 {iosSafeModeLevels}。"
-                },
-                {
-                    "id": "destructive",
-                    "title": "破壞性陳述式",
-                    "text": "在 Mac 上的任何等級，DROP、TRUNCATE 和無 WHERE 的 DELETE 都會停下並先詢問，同時顯示完整陳述式。"
-                }
-            ],
-            "limits": [
-                "Safe Mode 在 TablePro 內部執行，用來防止誤操作。它不是沙盒，也不是權限系統：必須嚴格執行的規則，請使用資料庫本身的權限。",
-                "新連線預設為 {macSafeModeDefault}，陳述式依原樣執行，無 WHERE 的 UPDATE 也一樣。",
-                "在聊天的 Edit 和 Agent 模式下，AI 助理可以執行陳述式，在 {macSafeModeDefault} 等級下它的寫入無須詢問。佔用整個視窗的 Agent mode 會讓連線保持 Alert 或更嚴格的等級，但這只是提醒，不是鎖定。"
-            ],
-            "links": [
-                {
-                    "label": "正式環境連線的 Safe Mode",
-                    "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "聊天模式與 Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                },
-                {
-                    "label": "Safe Mode",
-                    "docs": "/features/safe-mode"
-                }
-            ]
-        },
-        {
-            "id": "mcp",
-            "title": "MCP 伺服器",
-            "items": [
-                {
-                    "id": "local",
-                    "title": "僅限本機",
-                    "text": "在 Mac App 中，MCP 伺服器在您手動開啟或已設定的用戶端啟動它之前保持關閉。它接聽 {mcpHost}，沒有遠端模式，用戶端也從不會看到密碼。"
-                },
-                {
-                    "id": "approval",
-                    "title": "用戶端如何獲得核准",
-                    "text": "預設情況下，每個請求都需要帶有範圍（Read Only、Read & Write 或 Full Access）的權杖；用戶端首次存取某個連線時，Mac 上的對話框會詢問您。"
-                },
-                {
-                    "id": "permissions",
-                    "title": "用戶端可以做什麼",
-                    "text": "每個連線決定外部用戶端可以做什麼：Blocked、Read Only（預設）或 Read & Write。寫入仍需經過該連線的 Safe Mode 等級，DROP 和 TRUNCATE 每次都需要 Full Access 權杖和您的核准，每次呼叫都會記錄在您的 Mac 上。"
-                }
-            ],
-            "limits": [
-                "{mcpHost} 表示伺服器接聽的位置，而不是誰能存取它。您 Mac 上的任何程式都能連線，在 claude.ai 或 app.cursor.com 上開啟的頁面也可以。它們都仍需要權杖，因此請保持要求驗證。",
-                "用戶端讀取的內容會依其 AI 服務的條款傳送給該服務。"
+            "table": {
+                "caption": "每個 AI 請求的去向",
+                "columns": [
+                    "路徑",
+                    "由誰處理",
+                    "須知"
+                ],
+                "rows": [
+                    [
+                        "助理，使用雲端供應商",
+                        "您的供應商，依其條款處理",
+                        "只有在您允許時才會傳送結果列。"
+                    ],
+                    [
+                        "助理，使用本機模型",
+                        "您的電腦，透過 {localAiProviders}",
+                        "不會有任何內容離開本機。"
+                    ],
+                    [
+                        "Claude Code 等 MCP 用戶端",
+                        "TablePro 的 MCP 伺服器",
+                        "每個請求都需要權杖，每個連線設定用戶端可執行的操作，寫入需經過 Safe Mode。"
+                    ],
+                    [
+                        "外部 MCP 伺服器",
+                        "該伺服器",
+                        "每次工具呼叫都會等待您點按確認。"
+                    ]
+                ]
+            },
+            "notes": [
+                "{mcpHost} 表示伺服器接聽的位置，而不是誰能存取它：您電腦上的任何程式，或在 claude.ai 或 app.cursor.com 上開啟的頁面，都可以連線。",
+                "MCP 用戶端讀取的內容，會傳送給它自己的 AI 服務。"
             ],
             "links": [
                 {
@@ -204,16 +188,72 @@
             ]
         },
         {
-            "id": "open-source",
-            "title": "開放原始碼",
-            "items": [
-                {
-                    "id": "source",
-                    "title": "程式碼公開",
-                    "text": "各款 App 均採用 AGPLv3 開放原始碼，包括付費功能的程式碼。本頁描述的內容都能在儲存庫中查閱，簽署與公證每個版本的指令碼也在其中，您還可以自行建置 Mac App。"
-                }
+            "id": "updates",
+            "also": [
+                "distribution",
+                "signing",
+                "plugins",
+                "app-store"
             ],
-            "limits": [],
+            "nav": "更新與簽署",
+            "title": "每個版本都經過簽署，每次更新都經過驗證",
+            "text": [
+                "Mac 版本使用 Developer ID 簽署、啟用 Hardened Runtime，並經 Apple 公證。只有更新的 EdDSA 簽章與 App 內建的金鑰相符，App 才會安裝該更新。",
+                "在 Linux 上，Launchpad 和 COPR 為 apt 和 dnf 套件簽署，TablePro 為自己的 Flatpak 儲存庫簽署。GitHub Release 中的每個檔案都附有 SHA-256 總和檢查碼，每個 Linux 檔案還附有建置證明（build attestation）。",
+                "驅動程式外掛只有在與外掛登錄中的 SHA-256 一致並帶有有效的程式碼簽章時才會安裝。iPhone 與 iPad App 透過 App Store 提供。"
+            ],
+            "notes": [
+                "Mac App 不使用 macOS App Sandbox：它以您的使用者帳戶對檔案與網路的存取權限執行。",
+                "驅動程式外掛在 TablePro 內部執行，可以讀取您開啟的每個連線的憑證。"
+            ],
+            "links": [
+                {
+                    "label": "下載與更新",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "受管理的更新",
+                    "docs": "/security/managed-updates"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "also": [
+                "levels",
+                "destructive"
+            ],
+            "nav": "Safe Mode",
+            "title": "每個連線都有自己的 Safe Mode 等級",
+            "text": [
+                "Mac 上的等級為 {macSafeModeLevels}：Alert 在寫入前詢問，Safe Mode 等級還要求 Touch ID 或您的密碼，Full 等級在讀取前也會詢問，Read-Only 拒絕寫入。在任何等級下，DROP、TRUNCATE 和無 WHERE 的 DELETE 都會先詢問。",
+                "Linux 上為 {linuxSafeModeLevels}，iPhone 與 iPad 上為 {iosSafeModeLevels}。組織可以為其 Mac 強制設定最低等級。"
+            ],
+            "notes": [
+                "Safe Mode 用來在 TablePro 內攔截誤操作；必須嚴格執行的規則，請使用資料庫本身的權限。",
+                "新的 Mac 連線預設為 {macSafeModeDefault}，陳述式依原樣執行，AI 助理的寫入也一樣。"
+            ],
+            "links": [
+                {
+                    "label": "正式環境連線的 Safe Mode",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "聊天模式與 Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "also": [
+                "source"
+            ],
+            "nav": "開放原始碼",
+            "title": "程式碼以 AGPLv3 公開",
+            "text": [
+                "各款 App 皆為開放原始碼，包括付費功能，以及為每個版本簽署與公證的指令碼，因此您可以對照程式碼核實本頁內容。"
+            ],
             "links": [
                 {
                     "label": "GitHub 上的原始碼",
@@ -231,25 +271,18 @@
         },
         {
             "id": "report",
-            "title": "回報漏洞",
-            "items": [
-                {
-                    "id": "contact",
-                    "title": "如何回報",
-                    "text": "請寄送郵件至 <email>{email}</email>，或<advisory>在 GitHub 上私下回報</advisory>，使用英語或越南語皆可。請勿為漏洞建立公開的 issue、討論或 pull request。"
-                },
-                {
-                    "id": "include",
-                    "title": "需要提供的資訊",
-                    "text": "受影響的對象及其版本：Mac App、iPhone 與 iPad App、外掛或本網站。另請提供 macOS 或 iOS 版本、涉及驅動程式時的資料庫類型、重現步驟或概念驗證，以及攻擊者能取得什麼。"
-                },
-                {
-                    "id": "fixes",
-                    "title": "哪些版本會獲得修正",
-                    "text": "只有每個 App 和外掛的最新版本會獲得安全性修正，因此回報前請確認問題在最新版本中仍然存在。"
-                }
+            "also": [
+                "contact",
+                "include",
+                "fixes"
             ],
-            "limits": [],
+            "nav": "回報漏洞",
+            "title": "私下回報漏洞",
+            "text": [
+                "請寄送郵件至 <securityEmail>{securityEmail}</securityEmail>，或<advisory>在 GitHub 上建立私密安全性公告</advisory>，使用英語或越南語皆可，切勿建立公開 issue。我們會在 {businessDays}內回覆。",
+                "請說明受影響的對象及其版本、您的系統、重現步驟或概念驗證，以及攻擊者能取得什麼。",
+                "修正會在新版本中發佈，因此請先檢查最新版本。我們沒有漏洞獎勵計畫。"
+            ],
             "links": [
                 {
                     "label": "GitHub 上的安全性政策",

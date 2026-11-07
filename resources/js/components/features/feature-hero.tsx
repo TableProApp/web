@@ -15,7 +15,7 @@ interface FeatureHeroProps {
     // A docs.tablepro.app path; the hub links the docs home.
     docs?: string;
     docsLabel?: string;
-    // In place of Download and the docs link: the /ios App Store badge.
+    // In place of Download and the docs link: the /ios App Store badge. Null for none, as on /faq and /security.
     actions?: ReactNode;
     // Above the H1: a database page's breadcrumb and mark.
     eyebrow?: ReactNode;
@@ -42,7 +42,7 @@ export default function FeatureHero({ title, lead, docs, docsLabel, actions, eye
                 {title}
             </h1>
             <p className="mt-5 max-w-[34rem] text-[1.0625rem] leading-[1.5] tracking-[-0.012em] text-pretty text-muted-foreground md:text-[1.1875rem]">{lead}</p>
-            {actions !== undefined ? (
+            {actions === null ? null : actions !== undefined ? (
                 <div className="mt-8">{actions}</div>
             ) : (
                 <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">

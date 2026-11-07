@@ -42,6 +42,14 @@ class SiteFacts
         ];
     }
 
+    // `/security` and security.txt, apart from the support address.
+    public function securityEmail(): ?string
+    {
+        $email = $this->json('facts.json')['support']['securityEmail'] ?? null;
+
+        return is_string($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false ? $email : null;
+    }
+
     /**
      * @return array{name: string, country: string|null, countryCode: string|null}|null
      */

@@ -204,7 +204,7 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
             <Section id="faq" title={content.faq.title}>
                 <PricingFaq groups={groups} />
                 <p className="mt-8">
-                    <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
+                    <LocaleLink href="/faq" className={textLinkClasses('standalone')}>
                         {content.faq.more}
                         <span aria-hidden="true">→</span>
                     </LocaleLink>

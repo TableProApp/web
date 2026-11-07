@@ -22,7 +22,7 @@ database and no credentials: every page is built from markdown in
 /vi/…                      every page above, in Vietnamese, where it exists
 /robots.txt  /sitemap.xml
 /llms.txt                  llmstxt.org, English, built from the page registry
-/.well-known/security.txt  RFC 9116; `SecurityTxtController::EXPIRES` is moved by hand
+/.well-known/security.txt  RFC 9116: security@ then a private GitHub advisory; `SecurityTxtController::EXPIRES` is moved by hand
 ```
 
 Pages resolve by convention from `resources/js/pages`. The shared

@@ -9,10 +9,10 @@
     },
     "header": {
         "title": "Câu hỏi thường gặp",
-        "lead": "Câu hỏi về ứng dụng, license và quyền riêng tư."
+        "lead": "Câu trả lời ngắn gọn, mỗi câu đều kèm liên kết tới trang có đầy đủ chi tiết."
     },
     "breadcrumb": "Câu hỏi thường gặp",
-    "jump": "Câu hỏi theo chủ đề",
+    "nav": "Chủ đề",
     "languages": {
         "en": "tiếng Anh",
         "vi": "tiếng Việt",
@@ -24,47 +24,78 @@
     },
     "groups": [
         {
-            "id": "general",
-            "title": "Tổng quan",
+            "id": "product",
+            "also": [
+                "general"
+            ],
+            "title": "Sản phẩm",
             "items": [
                 {
                     "id": "what-is-tablepro",
+                    "also": [
+                        "native"
+                    ],
                     "question": "TablePro là gì?",
-                    "answer": [
-                        "Database client native, mã nguồn mở. Trên Mac, chạy query và sửa dữ liệu trong {featuredEngines} và các engine khác, cùng công cụ schema. Bản beta cho Linux, cùng ứng dụng iPhone và iPad, có ít công cụ cơ sở dữ liệu hơn.",
-                        "Xem tất cả <features>tính năng</features>."
-                    ]
-                },
-                {
-                    "id": "native",
-                    "question": "“Native” ở đây có nghĩa là gì?",
-                    "answer": [
-                        "TablePro dùng giao diện và driver cơ sở dữ liệu native, không dùng Electron hay JDBC. Ứng dụng cho Mac, iPhone và iPad viết bằng Swift: AppKit và SwiftUI trên Mac, cùng tính năng thiết bị như Face ID và Phím tắt trên iPhone và iPad. Ứng dụng cho Linux dùng Rust, GTK 4 và libadwaita."
-                    ]
-                },
-                {
-                    "id": "is-it-free",
-                    "question": "TablePro có miễn phí không?",
-                    "answer": [
-                        "Có. Ứng dụng Mac không có thời gian dùng thử hay giới hạn thời gian. Mọi engine được hỗ trợ, AI, MCP và Safe Mode đều miễn phí. Pro và Team bổ sung các tính năng trên <pricing>trang bảng giá</pricing>.",
-                        "Ứng dụng cho Linux dùng miễn phí. Ứng dụng iPhone và iPad miễn phí, không cần license và không có mua hàng trong ứng dụng."
-                    ]
+                    "answer": "Một database client native, mã nguồn mở cho Mac và Linux, có thêm ứng dụng cho iPhone và iPad, không dùng Electron hay JDBC. TablePro chạy query, sửa dữ liệu và làm việc với schema: <features>xem tất cả tính năng</features>."
                 },
                 {
                     "id": "open-source",
                     "question": "TablePro có phải mã nguồn mở không?",
-                    "answer": [
-                        "Có. Các ứng dụng, kể cả mã của tính năng trả phí, dùng AGPLv3 trong cùng <source>repository GitHub</source>. Bản build từ mã nguồn vẫn kiểm tra license cho tính năng trả phí."
-                    ]
+                    "answer": "Có. Các ứng dụng, kể cả mã của tính năng trả phí, dùng giấy phép AGPLv3 trong cùng một <source>repository GitHub</source>, và bản build từ mã nguồn vẫn kiểm tra gói của bạn khi dùng tính năng trả phí."
+                },
+                {
+                    "id": "compare",
+                    "question": "TablePro so với các database client khác thế nào?",
+                    "answer": "Mỗi <compare>bài so sánh</compare> liệt kê các điểm khác biệt kèm ngày kiểm tra và nguồn, kể cả trường hợp client khác có thể phù hợp hơn."
+                }
+            ]
+        },
+        {
+            "id": "pricing",
+            "also": [
+                "licensing",
+                "account"
+            ],
+            "title": "Bảng giá",
+            "items": [
+                {
+                    "id": "is-it-free",
+                    "question": "TablePro có miễn phí không?",
+                    "answer": "Có, không phải bản dùng thử và không giới hạn thời gian: mọi engine được hỗ trợ, trợ lý AI, MCP và Safe Mode đều miễn phí, còn ứng dụng cho iPhone và iPad không có mua hàng trong ứng dụng. Pro và Team thêm các tính năng trên <pricing>trang bảng giá</pricing>."
+                },
+                {
+                    "id": "what-a-license-adds",
+                    "question": "Gói trả phí có thêm gì?",
+                    "answer": "Pro thêm {starterFeatures}. Team còn thêm {teamFeatures}: <pricingFeatures>so sánh các gói</pricingFeatures>."
                 },
                 {
                     "id": "work-use",
-                    "question": "Tôi có dùng TablePro trong công việc được không?",
-                    "answer": [
-                        "Có, trong công ty ở bất kỳ quy mô nào. AGPL không đặt điều kiện cho việc chạy TablePro. Các điều kiện áp dụng khi phân phối hoặc cung cấp bản đã chỉnh sửa cho người khác qua mạng. Xem <agpl>nội dung license</agpl>."
-                    ]
+                    "question": "Tôi có dùng bản miễn phí cho công việc được không?",
+                    "answer": "Có, trong công ty ở bất kỳ quy mô nào, và những gì đang miễn phí sẽ không chuyển sang trả phí. AGPL đặt điều kiện cho việc phân phối TablePro hoặc cung cấp bản đã chỉnh sửa qua mạng, chứ không phải cho việc chạy nó: <agpl>đọc giấy phép</agpl>."
+                },
+                {
+                    "id": "students-teachers",
+                    "question": "Học sinh, sinh viên và giáo viên có được dùng Pro miễn phí không?",
+                    "answer": "Có, trong một năm: đăng nhập <account>tài khoản của bạn</account> bằng email của trường học hoặc trường đại học rồi chọn <ui>Nhận Pro miễn phí</ui>. Đây là Pro cho một người, được gia hạn miễn là địa chỉ email còn hoạt động, và không áp dụng cho tài khoản đã mua Pro."
                 }
-            ]
+            ],
+            "more": {
+                "also": [
+                    "cost",
+                    "how-many-macs",
+                    "subscription-ends",
+                    "offline",
+                    "payment",
+                    "payment-methods",
+                    "company-invoice",
+                    "refunds",
+                    "lost-license-key",
+                    "members",
+                    "seats",
+                    "cancel"
+                ],
+                "text": "Giá, thanh toán, hóa đơn, hoàn tiền, seat, license key và cách dùng offline có trong <pricingFaq>phần câu hỏi ở trang Bảng giá</pricingFaq>."
+            }
         },
         {
             "id": "platforms",
@@ -73,274 +104,117 @@
                 {
                     "id": "mac-requirements",
                     "question": "TablePro chạy trên những máy Mac nào?",
-                    "answer": [
-                        "Ứng dụng Mac cần {macRequirement} và chạy native trên Apple silicon và Intel. Tải về từ <download>trang tải về</download> hoặc cài bằng Homebrew."
-                    ]
+                    "answer": "Ứng dụng cho Mac cần {macRequirement} và chạy native trên Apple silicon và Intel. Tải về từ <download>trang tải về</download> hoặc cài bằng Homebrew."
                 },
                 {
                     "id": "windows-linux",
                     "question": "Có phiên bản cho Windows hoặc Linux không?",
-                    "answer": [
-                        "Linux thì có: <downloadLinux>TablePro cho Linux</downloadLinux> đang ở bản beta, với bộ <databasesLinux>engine</databasesLinux> và tính năng riêng. Không có bản cho Windows, và cũng không có ngày phát hành."
-                    ]
+                    "answer": "Linux thì có: <downloadLinux>TablePro cho Linux</downloadLinux> là bản beta cho {linuxDistributions}, và cho các bản phân phối khác qua Flatpak, với bộ engine và tính năng riêng. Không có phiên bản cho Windows, và cũng chưa có ngày phát hành."
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "Có ứng dụng cho iPhone và iPad không?",
-                    "answer": [
-                        "Có. Ứng dụng miễn phí trên App Store cần {iosRequirement} và kết nối tới {iosEngines}. Có query, SSH tunnel, Safe Mode và Face ID; khả năng xem và sửa table tùy engine.",
-                        "Không có trợ lý AI, MCP server hay query đã lưu. Xem <ios>tính năng và giới hạn</ios>."
-                    ]
+                    "answer": "Có, một ứng dụng miễn phí trên App Store, cần {iosRequirement} và kết nối tới {iosEngines}. Ứng dụng chạy query qua SSH tunnel, có Safe Mode và Face ID, nhưng không có trợ lý AI, MCP server hay query đã lưu: <ios>xem ứng dụng làm được gì</ios>."
                 },
                 {
                     "id": "languages",
                     "question": "Ứng dụng có những ngôn ngữ nào?",
-                    "answer": [
-                        "Ứng dụng Mac hỗ trợ {macLanguages}, nhưng một số màn hình đã dịch vẫn có tiếng Anh. Ứng dụng cho Linux hỗ trợ {linuxLanguages}. Ứng dụng iPhone và iPad hỗ trợ {iosLanguages}.",
-                        "Website và trang tài khoản hỗ trợ nhiều ngôn ngữ. <docs>Tài liệu</docs> bằng tiếng Anh."
-                    ]
+                    "answer": "Ứng dụng cho Mac hỗ trợ {macLanguages}, dù một số màn hình vẫn hiện tiếng Anh; ứng dụng cho Linux hỗ trợ {linuxLanguages}, còn ứng dụng cho iPhone và iPad hỗ trợ {iosLanguages}. Website có nhiều ngôn ngữ hơn, còn <docs>tài liệu</docs> bằng tiếng Anh."
                 }
             ]
         },
         {
             "id": "databases",
+            "also": [
+                "switching"
+            ],
             "title": "Cơ sở dữ liệu",
             "items": [
                 {
                     "id": "supported-databases",
                     "question": "Tôi kết nối được tới những cơ sở dữ liệu nào?",
-                    "answer": [
-                        "Ứng dụng Mac hỗ trợ {featuredEngines} và nhiều engine khác. Xem <databases>cơ sở dữ liệu được hỗ trợ</databases> để biết khả năng của từng engine.",
-                        "Ứng dụng cho iPhone và iPad kết nối tới {iosEngines}."
-                    ]
+                    "answer": "Ứng dụng cho Mac kết nối tới {featuredEngines} và nhiều engine khác, còn ứng dụng cho Linux và cho iPhone, iPad có bộ engine riêng. Trang <databases>cơ sở dữ liệu được hỗ trợ</databases> liệt kê khả năng của từng engine."
                 },
                 {
                     "id": "drivers",
                     "question": "Tôi có phải tự cài driver cơ sở dữ liệu không?",
-                    "answer": [
-                        "Mac có sẵn driver cho {bundledEngines}. Driver khác tải vào lần đầu sử dụng, cần internet và cập nhật riêng. TablePro kiểm tra checksum và chữ ký mã.",
-                        "iPhone và iPad có sẵn mọi driver."
-                    ]
+                    "answer": "Không: ứng dụng cho Mac có sẵn driver cho {bundledEngines}, và tải các driver khác dưới dạng plugin vào lần đầu bạn cần, sau khi kiểm tra checksum và chữ ký mã. Driver trên iPhone và iPad được tích hợp sẵn."
                 },
                 {
                     "id": "ssh-ssl",
-                    "question": "Có thể kết nối qua SSH hoặc TLS không?",
-                    "answer": [
-                        "Có, trên engine được hỗ trợ. Mac hỗ trợ SSH key, mật khẩu, agent và jump host, cùng xác minh chứng chỉ TLS và tunnel hoặc proxy bên ngoài. Xem <connections>tùy chọn kết nối</connections>.",
-                        "Trên iPhone và iPad, SSH dùng mật khẩu hoặc private key. Không hỗ trợ jump host."
-                    ]
-                },
-                {
-                    "id": "passwords",
-                    "question": "Mật khẩu của tôi được lưu ở đâu?",
-                    "answer": [
-                        "Mật khẩu đã lưu nằm trong Keychain, hoặc trên Linux là trong keyring của Secret Service như GNOME Keyring hay KWallet. Trên Mac, bạn cũng có thể lấy mật khẩu từ file, biến môi trường, shell command, 1Password, Vault hoặc AWS Secrets Manager.",
-                        "Đồng bộ mật khẩu cần bật riêng: <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên iPhone và iPad. Tính năng này dùng iCloud Keychain."
-                    ]
+                    "question": "Tôi có kết nối qua SSH hoặc TLS được không?",
+                    "answer": "Có, nếu engine hỗ trợ: trên Mac có SSH key, mật khẩu, agent và jump host, xác minh chứng chỉ TLS, cùng tunnel hoặc proxy bên ngoài. iPhone và iPad dùng SSH với mật khẩu hoặc private key, không có jump host: <connections>xem các tùy chọn kết nối</connections>."
                 },
                 {
                     "id": "import-connections",
+                    "also": [
+                        "switch-connections"
+                    ],
                     "question": "Tôi có mang connection từ ứng dụng khác sang được không?",
-                    "answer": [
-                        "Có. Mac import connection và mật khẩu đã lưu từ {importApps}. Import miễn phí."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "licensing",
-            "title": "Bảng giá và license",
-            "items": [
-                {
-                    "id": "what-a-license-adds",
-                    "question": "License bổ sung những gì?",
-                    "answer": [
-                        "Pro thêm {starterFeatures}. Team còn thêm {teamFeatures}. Xem chi tiết <pricing>tính năng trả phí</pricing>."
-                    ]
-                },
-                {
-                    "id": "cost",
-                    "question": "License giá bao nhiêu?",
-                    "answer": [
-                        "Chọn thanh toán hàng tháng, hàng năm hoặc một lần bằng USD. Team bắt đầu từ {teamMinSeats} seat. Xem <pricing>giá và tổng tiền hiện tại</pricing>."
-                    ]
-                },
-                {
-                    "id": "students-teachers",
-                    "question": "Học sinh, sinh viên và giáo viên có được dùng Pro miễn phí không?",
-                    "answer": [
-                        "Có, trong một năm. Đăng nhập <account>tài khoản của bạn</account> bằng địa chỉ email của trường học hoặc trường đại học, hoặc đổi email của tài khoản sang địa chỉ đó, rồi chọn <ui>Nhận Pro miễn phí</ui> trên trang Tổng quan và nhập mã chúng tôi gửi tới địa chỉ đó. Bạn gia hạn theo cách tương tự miễn là địa chỉ đó vẫn còn hoạt động, và chúng tôi sẽ gửi email cho bạn một tuần trước khi năm miễn phí kết thúc.",
-                        "Năm miễn phí này là Pro cho một người và không bao gồm Team. Chương trình không áp dụng cho tài khoản đã có license Pro trả phí. Nếu chúng tôi chưa nhận diện được địa chỉ của bạn, bạn vui lòng gửi email tới <email>{email}</email>."
-                    ]
-                },
-                {
-                    "id": "how-many-macs",
-                    "question": "Một license dùng được trên bao nhiêu máy tính?",
-                    "answer": [
-                        "Pro dành cho một người trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Team có tối thiểu {teamMinSeats} seat, và mỗi seat dành cho một người trên tối đa {deviceLimit} máy tính. Giới hạn này tính theo tài khoản, chung cho Pro và Team. Máy Linux bạn đăng nhập cũng được tính. iPhone và iPad không dùng seat.",
-                        "Để dùng license trên một máy tính khác, gỡ một máy trên trang Thiết bị trong <account>tài khoản của bạn</account>, hoặc trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account) trên Mac. Trong lúc đó, máy kia vẫn dùng được các tính năng miễn phí."
-                    ]
-                },
-                {
-                    "id": "subscription-ends",
-                    "question": "Điều gì xảy ra khi gói thuê bao của tôi kết thúc?",
-                    "answer": [
-                        "Tính năng trả phí dừng: iCloud Sync tạm ngừng và connection được chia sẻ có thể bị ẩn. Connection, query và cài đặt trên máy vẫn còn. Tính năng miễn phí tiếp tục hoạt động; gia hạn khôi phục quyền dùng tính năng trả phí.",
-                        "License thanh toán một lần không có ngày hết hạn. iPhone và iPad không bị ảnh hưởng."
-                    ]
-                },
-                {
-                    "id": "offline",
-                    "question": "License có hoạt động khi không có mạng không?",
-                    "answer": [
-                        "Có. TablePro giữ một bản sao có chữ ký của gói bạn dùng và làm mới nó khi mở ứng dụng và mỗi ngày một lần. Nếu không liên lạc được với server, tính năng trả phí vẫn hoạt động tới khi bản sao đó hết hạn, tối đa {offlineDays} ngày sau lần làm mới gần nhất.",
-                        "Với máy Mac không bao giờ kết nối mạng, hãy tạo file offline trong <account>tài khoản của bạn</account> rồi nhập file đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). File dùng được tới hết kỳ đã trả, hoặc một năm với gói mua một lần.",
-                        "Các phiên bản trước khi có tài khoản TablePro thì kiểm tra license mỗi {revalidateDays} ngày, và giữ tính năng trả phí thêm {graceDays} ngày từ lần kiểm tra thành công gần nhất.",
-                        "Tải driver, cập nhật và AI cloud vẫn cần internet."
-                    ]
-                },
-                {
-                    "id": "payment",
-                    "question": "Ai xử lý thanh toán?",
-                    "answer": [
-                        "{merchant} là merchant of record, xử lý thanh toán, thuế và biên lai. Thẻ và hóa đơn của bạn nằm trong <portal>trang khách hàng của {merchant}</portal>, nơi bạn đăng nhập bằng email đã mua. Đổi hoặc hủy subscription trong <account>tài khoản của bạn</account>."
-                    ]
-                },
-                {
-                    "id": "payment-methods",
-                    "question": "Tôi có thể thanh toán bằng những phương thức nào?",
-                    "answer": [
-                        "Trang thanh toán của {merchant} chấp nhận thẻ tín dụng và thẻ ghi nợ."
-                    ]
-                },
-                {
-                    "id": "company-invoice",
-                    "question": "Có lấy được hóa đơn cho công ty không?",
-                    "answer": [
-                        "Có. Trong <portal>cổng khách hàng của {merchant}</portal>, bạn có thể thêm tên công ty, mã số thuế và địa chỉ thanh toán vào hóa đơn rồi tải về."
-                    ]
-                },
-                {
-                    "id": "refunds",
-                    "question": "Tôi có được hoàn tiền không?",
-                    "answer": [
-                        "Có. Mỗi lần mua hoặc gia hạn subscription được hoàn tiền trong {refundDays} ngày từ lần thu phí đó. Bạn tự hoàn tiền trong mục Thanh toán của <account>tài khoản của bạn</account>, hoặc xem <refundPolicy>chính sách hoàn tiền</refundPolicy>."
-                    ]
-                },
-                {
-                    "id": "lost-license-key",
-                    "question": "Tôi làm mất license key. Tìm lại ở đâu?",
-                    "answer": [
-                        "Bạn không cần key nữa. Đăng nhập ứng dụng cho Mac bằng email đã mua: giao dịch của bạn nằm trong tài khoản đó. Khi cập nhật TablePro, key đã có trên máy Mac sẽ tự đăng nhập cho bạn.",
-                        "Chỉ các phiên bản trước khi có tài khoản TablePro mới còn hỏi key, nằm trong email mua hàng. Các giao dịch mua sau đó không có key."
-                    ]
-                },
-                {
-                    "id": "priority-support",
-                    "question": "Hỗ trợ ưu tiên là gì?",
-                    "answer": [
-                        "Hỗ trợ ưu tiên đi kèm license Team: email của khách hàng Team được trả lời trước, trong vòng một ngày làm việc. <termsSupport>Điều khoản sử dụng</termsSupport> mô tả việc hỗ trợ cho mọi gói."
-                    ]
+                    "answer": "Có. Ứng dụng cho Mac import miễn phí connection từ {importApps}, kèm mật khẩu đã lưu, SSH tunnel và cài đặt TLS."
                 }
             ]
         },
         {
             "id": "privacy",
-            "title": "Quyền riêng tư và kết nối mạng",
+            "title": "Quyền riêng tư",
             "items": [
                 {
                     "id": "what-is-sent",
                     "question": "Ứng dụng gửi gì cho TablePro?",
-                    "answer": [
-                        "Mac gửi dữ liệu sử dụng theo mặc định; tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Từ phiên bản có tài khoản TablePro, dữ liệu đi thẳng tới PostHog: các sự kiện của ứng dụng kèm model máy Mac, phiên bản ứng dụng và macOS, loại cơ sở dữ liệu, gắn với một mã ngẫu nhiên trước khi bạn đăng nhập và mã tài khoản sau khi đăng nhập. Các phiên bản trước khi có tài khoản TablePro gửi báo cáo hằng ngày kèm ID máy đã hash qua máy chủ của chúng tôi. Cả hai đều không có hostname, username, mật khẩu, query hay dòng dữ liệu. Ứng dụng cho Linux cũng gửi dữ liệu sử dụng theo mặc định, không kèm các thông tin trên; bạn tắt được trong phần cài đặt của ứng dụng.",
-                        "Khi bạn đăng nhập, ứng dụng cho Mac đăng ký máy Mac với tài khoản của bạn, gửi ID máy, tên máy, phiên bản ứng dụng và macOS, rồi làm mới gói mỗi ngày một lần. Các phiên bản trước khi có tài khoản TablePro gửi license key cùng các thông tin đó mỗi {revalidateDays} ngày. Báo cáo iPhone và iPad chỉ gửi khi bạn bật. Team Library nhận cài đặt và SQL đã lưu mà bạn chia sẻ. Xem <privacy>chính sách quyền riêng tư</privacy>, gồm việc ghi IP."
-                    ]
+                    "answer": "Dữ liệu sử dụng, không kèm hostname, username, mật khẩu, query hay dòng dữ liệu, bật mặc định trên Mac và Linux và chỉ gửi khi bạn bật trên iPhone và iPad, cùng việc kiểm tra gói của bạn sau khi bạn đăng nhập: <securityNetwork>xem mọi thứ rời khỏi thiết bị của bạn</securityNetwork>."
                 },
                 {
-                    "id": "sign-up",
-                    "question": "Tôi có cần đăng ký không?",
-                    "answer": [
-                        "Không cần đăng ký để dùng ứng dụng. Tính năng trả phí hoạt động khi bạn đăng nhập tài khoản TablePro: giao dịch mua thuộc về tài khoản của email đã mua, được tạo nếu chưa có, và mỗi thành viên nhóm đăng nhập bằng tài khoản riêng. Các phiên bản trước khi có tài khoản TablePro thì dùng license key."
-                    ]
+                    "id": "passwords",
+                    "question": "Mật khẩu của tôi được lưu ở đâu?",
+                    "answer": "Trong Keychain trên Mac, iPhone và iPad, và trong keyring của desktop trên Linux, không bao giờ trên server của TablePro: <securityCredentials>xem cách lưu thông tin đăng nhập</securityCredentials>."
                 },
                 {
                     "id": "ai-data",
                     "question": "Trợ lý AI có gửi dữ liệu của tôi cho TablePro không?",
-                    "answer": [
-                        "Không. Request gửi thẳng tới nhà cung cấp bạn chọn, không qua TablePro. Mặc định gồm loại và tên cơ sở dữ liệu, schema và query hiện tại. Dòng kết quả cần bật riêng. {localAiProviders} chạy trên máy. Nhà cung cấp có thể tính phí. Xem <aiMcp>cách AI xử lý dữ liệu</aiMcp>."
-                    ]
+                    "answer": "Không, request của trợ lý đi thẳng tới nhà cung cấp bạn chọn, hoặc ở lại trên máy tính của bạn với {localAiProviders}: <securityAi>xem từng request AI đi đâu</securityAi>."
                 },
                 {
                     "id": "icloud-data",
                     "question": "iCloud Sync lưu những gì, và lưu ở đâu?",
-                    "answer": [
-                        "Sync tắt theo mặc định, dùng cơ sở dữ liệu riêng trong tài khoản iCloud mà TablePro không đọc được. Mật khẩu cần bật riêng: <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên iPhone và iPad.",
-                        "iCloud Sync cần Pro hoặc Team trên Mac và miễn phí trên iPhone và iPad."
-                    ]
+                    "answer": "Không lưu gì cho tới khi bạn bật; sau đó connection và cài đặt bạn chọn được lưu vào một cơ sở dữ liệu riêng tư trong tài khoản iCloud của chính bạn, nơi TablePro không đọc được, và chỉ kèm mật khẩu nếu bạn bật thêm đồng bộ mật khẩu: <securityCredentials>xem những gì được đồng bộ</securityCredentials>."
                 }
             ]
         },
         {
-            "id": "account",
-            "title": "Tài khoản và nhóm",
+            "id": "support",
+            "title": "Hỗ trợ",
             "items": [
                 {
-                    "id": "sign-in",
-                    "question": "Làm sao để đăng nhập vào tài khoản?",
-                    "answer": [
-                        "Trong <account>tài khoản của bạn</account>, nhập email để nhận liên kết đăng nhập và mã 6 chữ số, hoặc dùng passkey, Apple, GitHub hay Google. Không có mật khẩu. Liên kết chỉ dùng được một lần, và cả hai hết hạn sau 15 phút.",
-                        "Ứng dụng cho Mac mời bạn đăng nhập khi mở lần đầu, và sau đó trong <ui>Cài đặt > Tài khoản</ui> (Settings > Account). Ứng dụng mở trang đăng nhập trong một cửa sổ trình duyệt, nơi bạn gõ mã trong email. Các phiên bản trước khi có tài khoản TablePro không có chức năng đăng nhập."
-                    ]
+                    "id": "sign-up",
+                    "also": [
+                        "sign-in"
+                    ],
+                    "question": "Tôi có cần tài khoản không?",
+                    "answer": "Không cần với bản miễn phí; tính năng trả phí hoạt động khi bạn đăng nhập <account>tài khoản TablePro</account> của email đã dùng để mua, bằng liên kết qua email, passkey, Apple, GitHub hoặc Google. Các bản build cũ cho Mac thì dùng license key."
                 },
                 {
-                    "id": "members",
-                    "question": "Làm sao để thêm hoặc xóa thành viên nhóm?",
-                    "answer": [
-                        "Chủ sở hữu và quản trị viên mời người khác qua email trên trang Thành viên trong <account>tài khoản của bạn</account>, kèm vai trò và, nếu muốn, một seat. Liên kết trong email dùng được 7 ngày, và tài khoản TablePro nào cũng chấp nhận được. Thành viên mới dùng seat trong phiên bản TablePro có tài khoản.",
-                        "Gỡ một thành viên sẽ giải phóng seat của họ. Máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server."
-                    ]
+                    "id": "priority-support",
+                    "question": "Hỗ trợ ưu tiên là gì?",
+                    "answer": "Email của khách hàng Team được trả lời trước, trong vòng {businessDays}. <termsSupport>Điều khoản sử dụng</termsSupport> mô tả việc hỗ trợ cho mọi gói."
                 },
                 {
-                    "id": "seats",
-                    "question": "Làm sao để thay đổi số seat?",
-                    "answer": [
-                        "Chủ sở hữu nhóm đổi số seat trong mục Thanh toán của <account>tài khoản của bạn</account>. Với subscription, {merchant} thu hoặc hoàn phần chênh lệch theo tỷ lệ ngay khi đổi. Nhóm có seat mua một lần vẫn giữ các seat đó, và muốn thêm seat thì cần subscription Team."
-                    ]
-                },
-                {
-                    "id": "cancel",
-                    "question": "Làm sao để hủy gói thuê bao?",
-                    "answer": [
-                        "Hủy trong <account>tài khoản của bạn</account> hoặc <portal>trang khách hàng của {merchant}</portal>. Quyền sử dụng tiếp tục tới hết kỳ đã trả, không gia hạn nữa. Bạn có thể tiếp tục subscription trước khi kỳ đó kết thúc."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "switching",
-            "title": "Chuyển từ ứng dụng khác",
-            "items": [
-                {
-                    "id": "switch-connections",
-                    "question": "Tôi có phải thiết lập lại các connection không?",
-                    "answer": [
-                        "Nếu client hiện tại được hỗ trợ, bạn có thể import connection từ {importApps}, gồm mật khẩu đã lưu, SSH tunnel và cài đặt TLS."
-                    ]
-                },
-                {
-                    "id": "compare",
-                    "question": "TablePro so với các database client khác thế nào?",
-                    "answer": [
-                        "Xem <compare>các bài so sánh</compare> để biết khác biệt, ngày kiểm tra và nguồn, kể cả trường hợp client khác phù hợp hơn."
-                    ]
+                    "id": "report-vulnerability",
+                    "question": "Làm sao để báo cáo một vấn đề bảo mật?",
+                    "answer": "Báo cáo riêng, qua email hoặc GitHub security advisory, không bao giờ qua issue công khai: <securityReport>xem cách báo cáo lỗ hổng</securityReport>."
                 }
             ]
         }
     ],
+    "counts": {
+        "businessDays": {
+            "one": "một ngày làm việc",
+            "other": "{count} ngày làm việc"
+        }
+    },
     "contact": {
-        "title": "Cần hỗ trợ?",
+        "title": "Liên hệ",
         "body": "Hãy gửi email tới <email>{email}</email>, hoặc báo lỗi trên <issues>GitHub</issues>.",
-        "chat": "Bắt đầu chat",
-        "chatNote": "Live chat tải sau khi trang tải xong."
+        "chat": "Bắt đầu chat"
     }
 }

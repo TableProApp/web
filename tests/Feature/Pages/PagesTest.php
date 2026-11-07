@@ -24,7 +24,7 @@ function pageFamilies(): array
         'landing.teams' => ['Teams', ['content.header.title', 'content.seats.items', 'organizationProfiles']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
         'landing.about' => ['About', ['content', 'repositoryCreated', 'links']],
-        'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],
+        'landing.security' => ['Security', ['content.bands.0.text', 'facts.macSafeModeLevels', 'links.securityEmail', 'replyDays']],
         'landing.sponsors' => ['Sponsors', ['content.header.title', 'content.tiers.benefit.name', 'organizationProfiles']],
         'landing.black-friday' => ['BlackFriday', ['content.hero.title', 'paidFeatures', 'organizationProfiles', 'campaign.phase']],
         'landing.privacy' => ['Privacy', ['document.title', 'document.html', 'document.toc']],

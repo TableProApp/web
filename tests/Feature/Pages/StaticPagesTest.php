@@ -131,15 +131,17 @@ it('sends the pricing page each paid feature\'s lines, the featured engines and 
     }
 })->with('locales');
 
-// The server never asks GET /v2/pricing, so its HTML is the closed state the page keeps until the answer opens it.
-it('server-renders neither the education section nor its FAQ entry', function (string $locale): void {
+// The server never asks GET /v2/pricing, so its HTML is the closed state the page keeps until the answer opens it. Until
+// then the FAQ's education id lands on its Pricing band, as #cost does since that question moved to /pricing.
+it('server-renders neither the education section nor its FAQ question', function (string $locale): void {
     $pricing = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/pricing', $locale)), LIBXML_NOERROR);
     $faq = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/faq', $locale)), LIBXML_NOERROR);
 
     expect($pricing->getElementById('at-work'))->not->toBeNull()
         ->and($pricing->getElementById('education'))->toBeNull()
-        ->and($faq->getElementById('cost'))->not->toBeNull()
-        ->and($faq->getElementById('students-teachers'))->toBeNull();
+        ->and($faq->getElementById('cost')?->closest('section')?->getAttribute('id'))->toBe('pricing')
+        ->and($faq->getElementById('students-teachers')?->tagName)->toBe('SPAN')
+        ->and($faq->getElementById('students-teachers')?->closest('section')?->getAttribute('id'))->toBe('pricing');
 })->with(['en', 'vi'])->group('ssr');
 
 // The sections these anchors named became questions of one FAQ; sites and posts still link them.
@@ -199,27 +201,26 @@ it('names every app language platforms.json lists, in every locale', function (s
     }
 })->with('locales');
 
-it('sends the FAQ\'s Linux answer to the Linux downloads and the engines Linux runs', function (string $locale): void {
+it('sends the FAQ\'s Linux answer to the Linux downloads', function (string $locale): void {
     $answer = collect(data_get(staticPageData("content/{$locale}/faq.json"), 'groups.*.items.*'))->firstWhere('id', 'windows-linux')['answer'] ?? null;
     $links = (string) file_get_contents(resource_path('js/components/faq/content-links.tsx'));
 
-    expect(implode(' ', (array) $answer))->toContain('<downloadLinux>')->toContain('<databasesLinux>')
-        ->and($links)->toContain("databasesLinux: '/databases#linux'");
+    expect(implode(' ', (array) $answer))->toContain('<downloadLinux>')
+        ->and($links)->toContain("downloadLinux: '/download#linux'");
 })->with('locales');
 
-it('server-renders the FAQ\'s Linux links to sections that exist', function (string $locale): void {
+it('server-renders the FAQ\'s Linux link to a section that exists', function (string $locale): void {
     $faq = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/faq', $locale)), LIBXML_NOERROR);
-    $databases = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/databases', $locale)), LIBXML_NOERROR);
+    $download = HTMLDocument::createFromString(ssrHtml(LocalizedUrl::path('/download', $locale)), LIBXML_NOERROR);
     $answer = $faq->getElementById('windows-linux');
 
-    expect($answer->querySelector('a[href="' . LocalizedUrl::path('/databases', $locale) . '#linux"]'))->not->toBeNull()
-        ->and($answer->querySelector('a[href="' . LocalizedUrl::path('/download', $locale) . '#linux"]'))->not->toBeNull()
-        ->and($databases->getElementById('linux'))->not->toBeNull();
+    expect($answer->querySelector('a[href="' . LocalizedUrl::path('/download', $locale) . '#linux"]'))->not->toBeNull()
+        ->and($download->getElementById('linux'))->not->toBeNull();
 })->with(['en', 'vi'])->group('ssr');
 
 it('asks the FAQ’s platform questions Mac first, then Linux, then iPhone and iPad, and names the Linux app’s languages', function (string $locale): void {
     $platforms = collect(data_get(staticPageData("content/{$locale}/faq.json"), 'groups'))->firstWhere('id', 'platforms')['items'];
-    $languages = collect($platforms)->firstWhere('id', 'languages')['answer'][0];
+    $languages = implode(' ', (array) collect($platforms)->firstWhere('id', 'languages')['answer']);
 
     expect(array_slice(array_column($platforms, 'id'), 0, 3))->toBe(['mac-requirements', 'windows-linux', 'iphone-ipad'])
         ->and(strpos($languages, '{macLanguages}'))->toBeLessThan(strpos($languages, '{linuxLanguages}'))
