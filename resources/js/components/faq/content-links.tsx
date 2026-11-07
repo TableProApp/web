@@ -35,6 +35,8 @@ const INTERNAL: Record<string, string> = {
     ios: '/ios',
     iosLimits: '/ios#limits',
     pricing: '/pricing',
+    pricingFeatures: '/pricing#features',
+    pricingFaq: '/pricing#faq',
     pricingLicense: '/pricing#license',
     pricingTeam: '/pricing#team',
     faq: '/faq',
@@ -47,6 +49,10 @@ const INTERNAL: Record<string, string> = {
     refundPolicy: '/refund-policy',
     about: '/about',
     security: '/security',
+    securityCredentials: '/security#credentials',
+    securityNetwork: '/security#network',
+    securityAi: '/security#ai-mcp',
+    securityReport: '/security#report',
 };
 
 type ExternalKey = 'docs' | 'changelog' | 'github' | 'issues' | 'discussions' | 'sponsorsProgram' | 'license' | 'portal' | 'appStore';

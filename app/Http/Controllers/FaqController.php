@@ -9,18 +9,7 @@ use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
 use Inertia\Response;
 
-/**
- * The FAQ, `/faq` and `/vi/faq` (sitemap §A.1, design-system §8.12).
- *
- * The questions and answers are page copy in `content/{locale}/faq.json`.
- * Every fact an answer states (a requirement, a seat minimum, a refund
- * window, an engine or feature name, an outbound link) is a `{token}` or a
- * link reference in that copy, filled from the values sent here, so an answer
- * cannot disagree with the pricing, platform and privacy pages that read the
- * same files.
- *
- * There is no FAQPage markup (architecture §1.6): the page is a `WebPage`.
- */
+// Every fact an answer states is a {token} or a link tag filled from these props, so the FAQ cannot disagree with the pages that read the same files.
 class FaqController extends Controller
 {
     public function __invoke(ContentRepository $content, PlatformCatalog $platforms, SiteFacts $facts): Response
@@ -34,6 +23,7 @@ class FaqController extends Controller
                 'ios' => $platforms->summary('ios'),
                 'macLanguages' => $this->stringList($platforms->find('mac')['appLanguages'] ?? []),
                 'linuxLanguages' => $this->stringList($platforms->find('linux')['appLanguages'] ?? []),
+                'linuxDistributions' => $this->stringList(array_column($platforms->find('linux')['distributions'] ?? [], 'name')),
                 'iosLanguages' => $this->stringList($ios['appLanguages'] ?? []),
             ],
             'facts' => [
@@ -43,7 +33,7 @@ class FaqController extends Controller
                 'importApps' => $facts->connectionImportApps(),
                 'localAiProviders' => $facts->localAiProviders(),
                 'paidFeatures' => $facts->paidFeatureNames(),
-                'commerce' => $facts->commerce(),
+                'supportBusinessDays' => $facts->commerce()['supportBusinessDays'],
             ],
             'links' => $facts->links(),
             'organizationProfiles' => $facts->organizationProfiles(),

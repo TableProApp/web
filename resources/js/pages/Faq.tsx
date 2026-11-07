@@ -1,26 +1,53 @@
 import { usePage } from '@inertiajs/react';
+import { requirementLine } from '@/components/download/format';
 import { useContentTags, type SiteLinks } from '@/components/faq/content-links';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
-import { requirementLine } from '@/components/download/format';
+import AreaNav from '@/components/features/area-nav';
+import { BandFrame } from '@/components/features/feature-band';
+import { ClosingFrame } from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
+import { AlsoAnchors } from '@/components/features/feature-part';
+import { MoreItem } from '@/components/features/more-list';
 import SEOHead from '@/components/seo/seo-head';
 import ChatButton, { useChatAvailable } from '@/components/site/chat-button';
-import Callout from '@/components/ui/callout';
-import CellGrid from '@/components/ui/cell-grid';
-import Container from '@/components/ui/container';
-import FaqList from '@/components/ui/faq-list';
-import PageHeader from '@/components/ui/page-header';
-import { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { useEducationOpen } from '@/hooks/use-regional-pricing';
-import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
+import { LOCALES, Trans, useI18n, type PluralNode, type Values } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import type { Requirements } from '@/lib/data/platforms';
-import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
-type FaqContent = typeof import('@data/content/en/faq.json');
-
-// Shown only while GET /v2/pricing says the education program is open.
+// Shown only while GET /v2/pricing says the education program is open; until then its id lands on the Pricing band.
 const EDUCATION_QUESTION = 'students-teachers';
+
+const ANSWER = 'mt-2 text-base leading-[1.55] text-pretty text-muted-foreground';
+
+interface FaqItem {
+    id: string;
+    also?: string[];
+    question: string;
+    answer: string;
+}
+
+interface FaqGroup {
+    id: string;
+    also?: string[];
+    title: string;
+    items: FaqItem[];
+    // One line to the page that owns the rest of the topic, carrying the ids of the questions that moved there.
+    more?: { also: string[]; text: string };
+}
+
+interface FaqContent {
+    seo: { title: string; description: string };
+    header: { title: string; lead: string };
+    breadcrumb: string;
+    nav: string;
+    languages: Record<string, string>;
+    groups: FaqGroup[];
+    counts: { businessDays: PluralNode };
+    contact: { title: string; body: string; chat: string };
+}
 
 interface PlatformSummary {
     deviceNames: string[];
@@ -34,6 +61,8 @@ interface FaqProps {
         ios: PlatformSummary | null;
         macLanguages: string[];
         linuxLanguages: string[];
+        // Those with packages of their own; any other takes the Flatpak.
+        linuxDistributions: string[];
         iosLanguages: string[];
     };
     facts: {
@@ -43,33 +72,25 @@ interface FaqProps {
         importApps: string[];
         localAiProviders: string[];
         paidFeatures: { starter: string[]; team: string[] };
-        commerce: {
-            merchant: string | null;
-            currency: string | null;
-            refundDays: number | null;
-            deviceLimit: number | null;
-            offlineDays: number | null;
-            revalidateDays: number | null;
-            graceDays: number | null;
-            teamMinSeats: number | null;
-            supportBusinessDays: number | null;
-        };
+        supportBusinessDays: number | null;
     };
     links: SiteLinks;
     organizationProfiles: string[];
 }
 
-// A slot whose data is missing stays visible as written, which a test catches. No FAQPage markup.
+// `/faq` in every locale (sitemap §A.1, design-system §8.12): one band per topic on the feature-page grid, every answer
+// open, then the contact line. A slot whose data is missing stays visible as written, which a test catches. No FAQPage.
 export default function Faq({ content, platforms, facts, links, organizationProfiles }: FaqProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, path } = useI18n();
+    const { locale, m, path, plural } = useI18n();
     const tags = useContentTags(links);
     const chat = useChatAvailable();
     const educationOpen = useEducationOpen();
+    useRevealOnScroll('main > section:not(#top)');
 
-    const languageName = (tag: string): string => (content.languages as Record<string, string>)[tag] ?? tag;
+    const languageName = (tag: string): string => content.languages[tag] ?? tag;
     const list = (items: string[]): string => joinList(items, m.common.list);
-    const { commerce } = facts;
+    const shown = (item: FaqItem): boolean => educationOpen || item.id !== EDUCATION_QUESTION;
 
     const values: Values = {
         // The sentence ends "… and more", so the names take commas only.
@@ -83,10 +104,11 @@ export default function Faq({ content, platforms, facts, links, organizationProf
         macLanguages: list(platforms.macLanguages.map(languageName)),
         linuxLanguages: list(platforms.linuxLanguages.map(languageName)),
         iosLanguages: list(platforms.iosLanguages.map(languageName)),
+        linuxDistributions: list(platforms.linuxDistributions),
         ...(platforms.mac !== null && { macRequirement: requirementLine(platforms.mac.requirements, m.platforms) }),
         ...(platforms.ios !== null && { iosRequirement: requirementLine(platforms.ios.requirements, m.platforms) }),
         ...(links.email !== null && { email: links.email }),
-        ...Object.fromEntries(Object.entries(commerce).filter((entry): entry is [string, string | number] => entry[1] !== null)),
+        ...(facts.supportBusinessDays !== null && { businessDays: plural(content.counts.businessDays, facts.supportBusinessDays) }),
     };
 
     const crumbs = [
@@ -110,81 +132,45 @@ export default function Faq({ content, platforms, facts, links, organizationProf
                 })}
             />
 
-            <PageHeader
-                variant="utility"
-                title={content.header.title}
-                lead={content.header.lead}
-                breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
-            >
-                <nav aria-labelledby="faq-topics">
-                    <h2 id="faq-topics" className="type-label text-muted-foreground">
-                        {content.jump}
-                    </h2>
-                    <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                        {content.groups.map((group) => (
-                            <li key={group.id}>
-                                <a href={`#${group.id}`} className={textLinkClasses('standalone')}>
-                                    {group.title}
-                                </a>
-                            </li>
+            <AreaNav current="/faq" label={content.nav} items={content.groups.map((group) => ({ href: `#${group.id}`, label: group.title }))} />
+            <FeatureHero title={content.header.title} lead={content.header.lead} actions={null} />
+
+            {content.groups.map((group) => (
+                <BandFrame
+                    key={group.id}
+                    id={group.id}
+                    also={[...(group.also ?? []), ...group.items.filter((item) => !shown(item)).map((item) => item.id)]}
+                    title={group.title}
+                >
+                    <ul className="space-y-8">
+                        {group.items.filter(shown).map((item) => (
+                            <MoreItem key={item.id} id={item.id} also={item.also} title={item.question}>
+                                <p className={ANSWER}>
+                                    <Trans text={item.answer} tags={tags} values={values} />
+                                </p>
+                            </MoreItem>
                         ))}
                     </ul>
-                </nav>
-            </PageHeader>
-
-            {/*
-              * One row of two cells per topic (design-system §4.7): the topic beside
-              * its questions, whose rules run from the cell divider to the rail.
-              * Each topic is its own grid; 1px between grids lets two neighbours
-              * share one line.
-              */}
-            <div>
-                <Container>
-                    {content.groups.map((group, index) => (
-                        <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className={cn(index > 0 && 'mt-px')}>
-                            <CellGrid className="lg:grid-cols-12">
-                                <div className="lg:col-span-4">
-                                    <h2 id={`${group.id}-title`} className="type-h2 text-foreground lg:sticky lg:top-24">
-                                        {group.title}
-                                    </h2>
-                                </div>
-                                <div className="py-0 md:py-0 xl:py-0 lg:col-span-8">
-                                    <FaqList
-                                        className="cell-rows border-t-0 [&>*:last-child]:border-b-0"
-                                        items={group.items
-                                            .filter((item) => educationOpen || item.id !== EDUCATION_QUESTION)
-                                            .map((item) => ({
-                                                id: item.id,
-                                                question: item.question,
-                                                answer: item.answer.map((paragraph, paragraphIndex) => (
-                                                    <p key={paragraphIndex}>
-                                                        <Trans text={paragraph} tags={tags} values={values} />
-                                                    </p>
-                                                )),
-                                            }))}
-                                    />
-                                </div>
-                            </CellGrid>
-                        </section>
-                    ))}
-                </Container>
-            </div>
-
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container>
-                    <Callout className="max-w-[44rem]" title={content.contact.title}>
-                        <p>
-                            <Trans text={content.contact.body} tags={tags} values={values} />
+                    {group.more !== undefined && (
+                        <p className="mt-8 text-base leading-[1.55] text-pretty text-foreground">
+                            <AlsoAnchors part={{ id: `${group.id}-more`, also: group.more.also }} />
+                            <Trans text={group.more.text} tags={tags} values={values} />
                         </p>
-                        {chat && (
-                            <p>
-                                <ChatButton className={textLinkClasses('standalone', 'cursor-pointer')}>{content.contact.chat}</ChatButton>{' '}
-                                <span className="text-muted-foreground">{content.contact.chatNote}</span>
-                            </p>
-                        )}
-                    </Callout>
-                </Container>
-            </div>
+                    )}
+                </BandFrame>
+            ))}
+
+            <ClosingFrame
+                id="contact"
+                title={content.contact.title}
+                sentence={<Trans text={content.contact.body} tags={tags} values={values} />}
+            >
+                {chat ? (
+                    <ChatButton className="cursor-pointer text-[0.9375rem] font-medium tracking-[-0.009em] text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground">
+                        {content.contact.chat}
+                    </ChatButton>
+                ) : undefined}
+            </ClosingFrame>
         </LandingLayout>
     );
 }
