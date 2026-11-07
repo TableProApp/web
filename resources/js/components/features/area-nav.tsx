@@ -20,7 +20,7 @@ export default function AreaNav({ current, items, label }: AreaNavProps) {
     return (
         <nav aria-label={label ?? m.nav.features}>
             <Container>
-                <ul className="-mx-4 flex snap-x gap-x-6 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:flex-wrap md:gap-y-1 md:overflow-visible md:px-0">
+                <ul className="-mx-4 flex snap-x scroll-px-4 gap-x-6 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:flex-wrap md:gap-y-1 md:overflow-visible md:px-0">
                     {links.map((item) => {
                         const active = item.href === current;
 
