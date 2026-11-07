@@ -30,30 +30,41 @@ export function Band({ id, title, aside, children, className }: { id: string; ti
     );
 }
 
-// The featured engines as words, not marks: each name links to its page, and "and more" to the hub.
+// Engines as words, not marks, each linked to its page when it has one. Names never break.
+export function EngineWords({ engines, children }: { engines: { id: string; name: string; href: string | null }[]; children?: ReactNode }) {
+    return (
+        <ul className="text-[1.75rem] leading-[1.25] font-[480] tracking-[-0.025em] text-balance md:text-[2.25rem] xl:text-[2.5rem]">
+            {engines.map((engine) => (
+                <li key={engine.id} className="mr-[0.55em] inline-block whitespace-nowrap">
+                    {engine.href !== null ? (
+                        <LocaleLink
+                            href={engine.href}
+                            className="text-foreground decoration-rule-strong decoration-2 underline-offset-[0.18em] transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:underline"
+                        >
+                            {engine.name}
+                        </LocaleLink>
+                    ) : (
+                        <span className="text-foreground">{engine.name}</span>
+                    )}
+                </li>
+            ))}
+            {children}
+        </ul>
+    );
+}
+
+// The featured engines, and "and more" to the hub.
 export function DatabaseBand({ content, engines }: { content: HomeContent['databases']; engines: HomeEngine[] }) {
     return (
         <Band id="databases" title={content.title}>
-            <ul className="text-[1.75rem] leading-[1.25] font-[480] tracking-[-0.025em] text-balance md:text-[2.25rem] xl:text-[2.5rem]">
-                {engines
-                    .filter((engine) => engine.featured)
-                    .map((engine) => (
-                        <li key={engine.id} className="mr-[0.55em] inline-block whitespace-nowrap">
-                            <LocaleLink
-                                href={engine.path}
-                                className="text-foreground decoration-rule-strong decoration-2 underline-offset-[0.18em] transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:underline"
-                            >
-                                {engine.name}
-                            </LocaleLink>
-                        </li>
-                    ))}
-                {/* Engine names never break; "and more" may, since some languages say it in several words. */}
+            <EngineWords engines={engines.filter((engine) => engine.featured).map((engine) => ({ id: engine.id, name: engine.name, href: engine.path }))}>
+                {/* "And more" may break, since some languages say it in several words. */}
                 <li className="inline">
                     <LocaleLink href="/databases" className="text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground">
                         {content.more}
                     </LocaleLink>
                 </li>
-            </ul>
+            </EngineWords>
         </Band>
     );
 }

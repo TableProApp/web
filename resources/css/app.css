@@ -899,12 +899,15 @@ html {
  * shadow under each, and one settle on load. The shadow follows the device's
  * own transparent edge, so it is a drop-shadow, never a box. A feature page's
  * hero window settles the same way (components/features/feature-hero.tsx).
+ * The framed devices in the /ios bands take the shadow without the settle.
  */
-.hero-device {
+.hero-device,
+.framed-device {
   filter: drop-shadow(0 24px 40px oklch(0 0 0 / 0.16));
 }
 
-.dark .hero-device {
+.dark .hero-device,
+.dark .framed-device {
   filter: drop-shadow(0 24px 48px oklch(0 0 0 / 0.55));
 }
 

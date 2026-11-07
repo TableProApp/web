@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Container from '@/components/ui/container';
+import { cn } from '@/lib/utils';
 import { AlsoAnchors, PartDetails, PartText, PlanPills, type PartContext } from './feature-part';
 import type { FeatureBand as Band } from './types';
 
@@ -14,12 +15,15 @@ interface BandFrameProps {
     // Under the title: a plan pill, a release badge.
     marker?: ReactNode;
     asset?: string;
+    assetClassName?: string;
+    // A right column beside the text from 1024px, under it below: an /ios band's iPhone.
+    beside?: ReactNode;
     children: ReactNode;
 }
 
 // The Home index grid that feature and database pages share: the name in the left quarter, the text beside it, the
 // whole window below.
-export function BandFrame({ id, also, title, marker, asset, children }: BandFrameProps) {
+export function BandFrame({ id, also, title, marker, asset, assetClassName, beside, children }: BandFrameProps) {
     const shown = useShownSlot();
     const slot = asset !== undefined ? shown(asset) : null;
 
@@ -34,11 +38,12 @@ export function BandFrame({ id, also, title, marker, asset, children }: BandFram
                         </h2>
                         {marker}
                     </div>
-                    <div className="max-w-[42rem] md:col-span-8 lg:col-span-9">{children}</div>
+                    <div className={cn('max-w-[42rem] md:col-span-8', beside === undefined ? 'lg:col-span-9' : 'lg:col-span-5')}>{children}</div>
+                    {beside !== undefined && <div className="mt-5 md:col-span-8 md:col-start-5 lg:col-span-4 lg:col-start-auto lg:mt-0">{beside}</div>}
                 </div>
                 {slot !== null && (
                     <div className="mt-8 md:mt-12">
-                        <AssetSlot id={slot} sizes={WINDOW_SIZES} caption={false} />
+                        <AssetSlot id={slot} sizes={WINDOW_SIZES} caption={false} className={assetClassName} />
                     </div>
                 )}
             </Container>
