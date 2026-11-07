@@ -9,64 +9,41 @@
     },
     "header": {
         "title": "Fonctionnalités",
-        "lead": "Interrogez, modifiez et exploitez les données des bases compatibles."
+        "lead": "Ce que fait TablePro sur Mac et Linux, domaine par domaine, sur les bases de données qu’il prend en charge."
     },
-    "areas": {
-        "title": "Fonctionnalités par tâche",
-        "paid": "Fonctions payantes optionnelles : {features} ({tier})",
-        "noPaid": "Aucune fonctionnalité payante",
-        "items": [
-            {
-                "slug": "querying",
-                "summary": "Écrivez du SQL avec autocomplétion, réutilisez les requêtes enregistrées et recherchez dans l’historique. Inspectez les plans sur les moteurs compatibles."
-            },
-            {
-                "slug": "data-editing",
-                "summary": "Filtrez les lignes, suivez les clés étrangères et vérifiez les modifications avant d’enregistrer."
-            },
-            {
-                "slug": "schema",
-                "summary": "Inspectez les relations, modifiez la structure des tables et comparez les bases compatibles."
-            },
-            {
-                "slug": "import-export",
-                "summary": "Importez des fichiers {importFormats} et exportez tables ou résultats. Ouvrez les fichiers de données sans connexion à une base."
-            },
-            {
-                "slug": "ai-mcp",
-                "summary": "Utilisez votre fournisseur IA préféré ou connectez un client externe via MCP (Model Context Protocol)."
-            },
-            {
-                "slug": "connections",
-                "summary": "Utilisez des tunnels SSH et connexions cloud. Importez les connexions d’autres apps."
-            },
-            {
-                "slug": "sync-and-teams",
-                "summary": "Synchronisez via iCloud ou partagez connexions et requêtes avec votre équipe."
-            }
-        ]
-    },
-    "ios": {
-        "title": "iPhone et iPad",
-        "body": "Parcourez les tables, modifiez les lignes et exécutez des requêtes sur iPhone et iPad. L’app mobile distincte est gratuite, sans achats intégrés. La disponibilité figure sur chaque page détaillée.",
-        "link": "TablePro pour iPhone et iPad"
-    },
-    "paid": {
-        "title": "Gratuit et payant",
-        "lead": "Les fonctions de base sont gratuites, sans période d’essai. Pro ajoute des fonctions payantes ; Team inclut Pro. Toutes les bases compatibles, l’assistant IA, MCP et Safe Mode sont accessibles sans licence.",
-        "caption": "Fonctions payantes actuellement disponibles sur Mac",
-        "columns": {
-            "feature": "Fonctionnalité",
-            "plan": "Offre",
-            "page": "Décrite sur"
+    "areas": [
+        {
+            "slug": "querying",
+            "summary": "Écrivez du SQL avec une autocomplétion qui lit votre schéma, gardez les requêtes que vous réutilisez et lisez les plans de requête sur les moteurs compatibles."
         },
-        "pricing": "Voir les tarifs"
-    },
-    "docs": {
-        "title": "Documentation",
-        "body": "Retrouvez les instructions, réglages et raccourcis.",
-        "link": "Lire la documentation",
-        "path": "/features/overview"
+        {
+            "slug": "data-editing",
+            "summary": "Filtrez les lignes, suivez les clés étrangères et modifiez dans la grille, avec le SQL à vérifier avant tout enregistrement."
+        },
+        {
+            "slug": "schema",
+            "summary": "Modifiez la structure des tables, lisez les diagrammes ER et comparez deux bases avant de les synchroniser."
+        },
+        {
+            "slug": "import-export",
+            "summary": "Importez des fichiers {importFormats}, exportez tables et résultats, et modifiez des fichiers de données sans base de données."
+        },
+        {
+            "slug": "ai-mcp",
+            "summary": "Utilisez le fournisseur IA de votre choix, et laissez les clients IA utiliser les connexions enregistrées via MCP."
+        },
+        {
+            "slug": "connections",
+            "summary": "Accédez aux serveurs privés par SSH et tunnels, connectez-vous avec votre compte cloud et importez les connexions d’autres apps."
+        },
+        {
+            "slug": "sync-and-teams",
+            "summary": "Synchronisez les connexions via iCloud, partagez-les sous forme de fichiers, et publiez connexions et requêtes pour votre équipe."
+        }
+    ],
+    "closing": {
+        "body": "TablePro est gratuit, au travail aussi, sans période d’essai. Pro ajoute des fonctions payantes, et Team inclut Pro.",
+        "ios": "TablePro pour {devices}"
     },
     "labels": {
         "number": {
@@ -78,29 +55,13 @@
             "starter": "Pro",
             "team": "Team"
         },
-        "paidBadge": "{name} : offre {tier}",
-        "header": {
-            "paid": "Payant : {features}. Les autres fonctions sont gratuites.",
-            "paidItem": "{name} ({tier})",
-            "allFree": "Tout ce qui figure sur cette page est gratuit.",
-            "docs": "Lire la documentation"
-        },
-        "sections": {
-            "availability": "Disponibilité",
-            "limits": "Limites",
-            "docs": "Documentation",
-            "related": "À voir aussi"
-        },
-        "availability": {
-            "caption": "Disponibilité et forfaits sur Mac, iPhone et iPad",
-            "capability": "Fonctionnalité",
-            "free": "Gratuit",
-            "notAvailable": "Non disponible",
-            "plan": "Offre {tier}"
-        },
-        "download": {
+        "docs": "Documentation",
+        "more": "Et aussi",
+        "closing": {
             "title": "Obtenez TablePro",
-            "body": "Utilisation gratuite et code open source.",
+            "tier": "{tier} ajoute {features}.",
+            "rest": "Tout le reste de cette page est gratuit.",
+            "allFree": "Tout ce qui figure sur cette page est gratuit.",
             "pricing": "Voir les tarifs"
         }
     }

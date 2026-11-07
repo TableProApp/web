@@ -95,29 +95,114 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "fr": "Éditeur SQL TablePro avec une requête joignant la CTE recent_orders à users et une liste d’autocomplétion affichant les colonnes de la CTE."
+            "fr": "Analyse des requêtes sur les 7 derniers jours : graphique quotidien des requêtes réussies et échouées au-dessus des listes Les plus exécutées, Les plus lentes et Devenues plus lentes, où une forme est signalée comme Devenue plus lente."
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "fr": "Gros plan de la liste d’autocomplétion suggérant les colonnes d’une CTE dans l’éditeur SQL TablePro."
+            "fr": "Table products avec quatre modifications de prix en attente d’enregistrement et feuille d’aperçu SQL listant les instructions UPDATE correspondantes."
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "fr": "Requête utilisant les paramètres :customer_id et :since, panneau de saisie de leurs valeurs et volet d’historique des requêtes."
+            "fr": "Diagramme ER du schéma shop avec ses tables et relations, product_tags représenté comme ligne plusieurs-à-plusieurs entre products et tags."
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "fr": "Comparaison EXPLAIN d’une requête sur orders, montrant le passage d’Index Scan à Seq Scan et une requête plus lente que sa référence."
+            "fr": "Comparer et synchroniser entre shop et shop_staging, listant une colonne de longueur différente et un DROP COLUMN retenu du script."
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "fr": "Tableau de bord d’un serveur PostgreSQL listant les sessions actives, avec un SELECT de longue durée sélectionné et le bouton Terminer visible."
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "fr": "Fenêtre Fichiers de données avec orders.csv ouvert et recherché sur Hanoi, barre d’état indiquant 2 498 lignes sur 20 000."
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "alt": {
+            "fr": "L’éditeur SQL de TablePro sur Mac, avec l’historique des requêtes ouvert à côté d’une requête qui utilise un paramètre."
+        },
+        "caption": null
+    },
+    "features-querying-explain": {
+        "alt": {
+            "fr": "Un plan de requête PostgreSQL dessiné en diagramme dans TablePro sur Mac."
+        },
+        "caption": null
+    },
+    "features-querying-charts": {
+        "description": {
+            "fr": "Une requête sur shop du chiffre d’affaires par mois, affichée en graphique à barres dans la zone de résultat de l’éditeur SQL Mac."
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "fr": "Enregistrement d’une modification sur une connexion au niveau Safe Mode : la demande de Touch ID ou de mot de passe au-dessus de la grille, avec l’instruction en attente affichée."
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "fr": "Data Rewind sur shop : la revue d’un enregistrement, avec les valeurs précédentes et actuelles des lignes modifiées, et Restore Previous Values."
+        }
+    },
+    "features-schema-copy": {
+        "alt": {
+            "fr": "La vérification Copy To dans TablePro sur Mac, avec le DDL, les nombres de lignes et les conversions de types pour une copie vers un fichier SQLite."
+        },
+        "caption": null
+    },
+    "features-import-export-import": {
+        "alt": {
+            "fr": "La feuille d’import de TablePro sur Mac, qui associe les colonnes d’un fichier CSV à une table."
+        },
+        "caption": null
+    },
+    "features-import-export-backup": {
+        "alt": {
+            "fr": "La feuille Backup Dump de TablePro sur Mac, réglée pour faire un dump d’une base PostgreSQL avec pg_dump."
+        },
+        "caption": null
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "fr": "Agent mode en pleine fenêtre sur shop : une demande dans le chat, les instructions proposées par l’agent et le bouton Run en attente d’approbation."
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "alt": {
+            "fr": "Les réglages MCP de TablePro sur Mac, avec le serveur activé et le niveau d’accès de chaque connexion."
+        },
+        "caption": null
+    },
+    "features-connections-import": {
+        "alt": {
+            "fr": "La feuille Import from Other App de TablePro sur Mac, qui liste les connexions trouvées dans un autre client de bases de données."
+        },
+        "caption": null
+    },
+    "features-connections-network": {
+        "alt": {
+            "fr": "Le formulaire de connexion de TablePro sur Mac, réglé pour passer par un hôte de rebond SSH avec une clé."
+        },
+        "caption": null
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "fr": "Team Library dans la barre latérale : les connexions et requêtes enregistrées publiées par des collègues, avec qui a modifié chaque requête en dernier."
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +228,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "fr": "Table products avec quatre modifications de prix en attente d’enregistrement et feuille d’aperçu SQL listant les instructions UPDATE correspondantes."
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "fr": "Gros plan de l’aperçu SQL listant quatre instructions UPDATE pour des modifications de prix en attente."
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "fr": "Table orders avec les lignes payées teintées en vert, les remboursées en orange et le panneau des règles de surbrillance ouvert."
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "fr": "Sélecteur de valeurs pour la clé étrangère orders.user_id, recherché sur Silva, listant les utilisateurs par prénom et nom."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "fr": "Invite Touch ID du mode sécurisé avant un DELETE sur la table orders, sur une connexion marquée de la couleur rouge de production."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "fr": "Gros plan de l’invite Touch ID affichée par le mode sécurisé avant l’exécution d’un DELETE."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "fr": "Feuille de vérification Restaurer les valeurs précédentes, avec trois lignes marquées Sera restaurée et une marquée Modifiée depuis l’enregistrement."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "fr": "Onglet Structure de la table reviews avec une nouvelle contrainte CHECK et un nouvel index en attente d’enregistrement, aperçu DDL ouvert."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "fr": "Gros plan d’un aperçu DDL avec les instructions ajoutant une contrainte CHECK et un index à la table reviews."
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "fr": "Diagramme ER du schéma shop avec ses tables et relations, product_tags représenté comme ligne plusieurs-à-plusieurs entre products et tags."
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "fr": "Gros plan d’un diagramme ER reliant products et tags en plusieurs-à-plusieurs."
         },
         "caption": null
     },
@@ -218,12 +243,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "fr": "Gros plan du script Comparer et synchroniser, avec un DROP COLUMN retenu pour cette exécution et son avertissement de perte de données."
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "fr": "Vérification Copier vers de MariaDB à PostgreSQL : lignes attendues de chaque table, deux colonnes enum dans Modifications de type car leurs listes de valeurs autorisées ne sont pas transférées, et script CREATE TABLE."
         },
         "caption": null
     },
@@ -245,116 +264,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "fr": "Fenêtre Fichiers de données avec orders.csv ouvert et recherché sur Hanoi, barre d’état indiquant 2 498 lignes sur 20 000."
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "fr": "Gros plan des lignes d’orders.csv correspondant à Hanoi, avec le nombre de résultats dans la barre d’état."
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "fr": "Statistiques de la colonne status d’orders.csv dans la fenêtre Fichiers de données."
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "fr": "Feuille d’importation d’un CSV vers la table orders, avec chaque colonne du fichier associée à une colonne de table et l’option en cas d’erreur."
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "fr": "Boîte de dialogue Exporter avec orders cochée parmi les tables et vues du schéma, et XLSX choisi comme format."
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "fr": "Feuille de sauvegarde pour une connexion passant par un bastion SSH, avec uniquement la base shop sélectionnée."
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "fr": "Volet de chat IA répondant sur les meilleurs clients par chiffre d’affaires du mois dernier, avec une requête SQL et ses boutons Copier et Insérer."
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "fr": "Gros plan d’une réponse du chat IA avec une requête SQL et le bouton Insérer."
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "fr": "Session du mode agent « Trouver les commandes sans articles » : trois instructions, une écriture en attente d’Exécuter."
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "fr": "Gros plan de l’écriture en attente : sa carte d’instruction avec Exécuter et Rejeter."
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "fr": "Feuille Connecter un client dans les réglages MCP, avec la commande claude mcp add pour Claude Code."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "fr": "Paramètres SSH d’un formulaire de connexion : hôte bastion.acme.internal, utilisateur deploy, authentification par clé et un hôte de rebond."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "fr": "Gros plan des paramètres de tunnel SSH, avec hôte bastion.acme.internal, utilisateur deploy, authentification SSH Agent et un hôte de rebond."
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "fr": "Fenêtre d’accueil listant les connexions enregistrées dans les groupes Production et Staging avec étiquettes colorées, et la base d’exemple Chinook."
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "fr": "Feuille Importer depuis DataGrip listant trois connexions trouvées dans DataGrip, chacune marquée prête à importer."
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "fr": "Résultats d’Ouvrir un dossier de projet pour acme-shop, avec connexions trouvées dans .env et .env.production."
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "fr": "Connexion par tunnel kubectl port-forward vers svc/orders-db, avec la commande qui sera exécutée."
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "fr": "Diagramme de synchronisation des connexions, groupes et étiquettes entre un Mac et un iPhone ou iPad via votre compte iCloud ; les mots de passe passent séparément par iCloud Keychain, uniquement si leur synchronisation est activée."
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "fr": "Barre latérale des favoris avec section Bibliothèque d’équipe : trois requêtes enregistrées portant le nom de la personne qui les a modifiées en dernier."
-        }
     },
     "mac-handoff-ios": {
         "description": {

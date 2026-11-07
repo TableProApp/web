@@ -9,119 +9,105 @@
     },
     "header": {
         "title": "Schémas et comparaison de bases",
-        "lead": "Inspectez les relations entre tables, modifiez les structures compatibles et comparez les bases avant d’appliquer un script de synchronisation.",
-        "docs": "/features/table-structure"
+        "lead": "Voyez comment les tables sont liées, modifiez leur structure avec le SQL sous les yeux, et comparez deux bases avant de les synchroniser.",
+        "docs": "/features/table-structure",
+        "asset": "mac-home-schema"
     },
-    "sections": [
+    "bands": [
         {
             "id": "structure",
             "title": "Modifier la structure des tables",
-            "paragraphs": [
-                "Modifiez colonnes, index, clés étrangères et contraintes CHECK dans l’onglet Structure. Vérifiez le DDL en attente avec <ui>Aperçu SQL</ui> (Preview SQL). Les changements destructifs, de type, de NOT NULL et de clé primaire nécessitent confirmation même avec {macSafeModeDefault}.",
-                "Créez des tables avec un aperçu SQL en direct. Modifier les clés étrangères sur les moteurs SQLite peut nécessiter une reconstruction. TablePro exécute les reconstructions confirmées sur SQLite et libSQL local ; sur Turso, libSQL distant et Cloudflare D1, vous exécutez le script généré vous-même."
+            "text": [
+                "Modifiez colonnes, index, clés étrangères et contraintes CHECK dans l’onglet Structure, puis lisez le DDL dans <ui>Aperçu SQL</ui> (Preview SQL) avant son exécution. Les changements de type, de NOT NULL, de clé primaire et tout changement destructif demandent confirmation, même avec {macSafeModeDefault}. Les nouvelles tables ont un aperçu SQL en direct."
+            ],
+            "notes": [
+                "Quand SQLite exige une reconstruction de la table, TablePro l’exécute après votre confirmation ; sur Turso, libSQL distant et Cloudflare D1, il vous donne le script. iPhone et iPad affichent la structure en lecture seule."
             ],
             "engines": [
                 {
-                    "label": "Structure en lecture seule",
+                    "label": "Structure en lecture seule :",
                     "list": "schemaReadOnly"
                 },
                 {
-                    "label": "Certaines modifications de structure seulement",
+                    "label": "Modifiable en partie :",
                     "list": "schemaPartial"
                 }
             ],
-            "asset": "mac-structure-ddl-preview"
+            "docs": "/features/table-structure"
         },
         {
             "id": "er-diagram",
             "title": "Diagramme ER",
-            "paragraphs": [
-                "<ui>Afficher le diagramme entité-relation</ui> (View ER Diagram) affiche les tables et relations de clés étrangères en notation patte de corbeau. Exportez en PNG ou SQL, ou copiez le diagramme en image.",
-                "Le diagramme est en lecture seule, pas un outil de conception de schéma. Modifiez dans l’onglet Structure."
+            "text": [
+                "<ui>Afficher le diagramme entité-relation</ui> (View ER Diagram) dessine les tables et leurs clés étrangères en notation patte de corbeau. Exportez-le en PNG ou SQL, ou copiez-le en image. C’est une vue, pas un outil de conception : les modifications se font dans l’onglet Structure."
             ],
-            "asset": "mac-er-diagram"
-        },
-        {
-            "id": "objects",
-            "title": "Objets de base de données",
-            "paragraphs": [
-                "Inspectez les routines et déclencheurs compatibles dans des onglets source en lecture seule, puis copiez leur SQL ou ouvrez-le dans l’éditeur. Les objets listés varient selon le moteur. Les partitions PostgreSQL apparaissent sous leur table parente."
-            ],
-            "blocks": [
-                {
-                    "id": "table-folders",
-                    "title": "Dossiers pour tables et vues",
-                    "paragraphs": [
-                        "Regroupez tables et vues par glisser-déposer ou <ui>Déplacer vers</ui> (Move to). Les dossiers changent uniquement la barre latérale, pas la base, et se synchronisent entre Mac lorsque iCloud Sync est actif."
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
+            "docs": "/features/er-diagram",
+            "asset": "features-schema-er-diagram"
         },
         {
             "id": "compare-sync",
             "title": "Compare & Sync",
-            "paragraphs": [
-                "Comparez le schéma ou les données entre une base source et cible. Incluez vues, routines et déclencheurs lorsque le moteur le permet. Les comparaisons de données associent les lignes par clé, avec filtres et limites par table.",
-                "Vérifiez le script de synchronisation ordonné selon les clés étrangères. Les changements destructifs restent exclus jusqu’à votre autorisation pour cette exécution. Les connexions Read-Only ne peuvent pas être des cibles. Enregistrez les comparaisons pour les réutiliser."
+            "text": [
+                "Comparez le schéma ou les données de deux bases, avec vues, routines et déclencheurs si le moteur le permet. Le script de synchronisation est ordonné selon les clés étrangères, les changements destructifs restent exclus jusqu’à votre autorisation, et une connexion Read-Only n’est jamais une cible. Enregistrez une comparaison pour la relancer."
             ],
             "paid": [
                 "compare-sync"
             ],
-            "asset": "mac-compare-sync-structure"
+            "notes": [
+                "Un script de structure n’est généré qu’entre bases du même moteur, MySQL et MariaDB comptant comme un seul."
+            ],
+            "docs": "/features/compare-sync",
+            "asset": "features-schema-compare-sync"
         },
         {
             "id": "copy",
-            "title": "Copier et transférer des tables",
-            "paragraphs": [
-                "Copy To transfère les objets et données compatibles entre bases, y compris entre moteurs. Vérifiez d’abord DDL, nombres de lignes et conversions de types. Les conversions peuvent perdre des contraintes : <code>ENUM</code> de MariaDB devient <code>VARCHAR</code> de PostgreSQL sans liste de valeurs autorisées.",
-                "Duplicate Database copie une base sur la même connexion. Transfer To associe les lignes à une table existante sur une autre connexion, sans fichier intermédiaire. Ces outils sont gratuits."
+            "title": "Copier des tables entre bases",
+            "text": [
+                "Copy To transfère des tables et leurs données vers une autre base, y compris entre moteurs, une fois que vous avez vérifié le DDL, les nombres de lignes et les conversions de types. Une conversion peut perdre une contrainte : un <code>ENUM</code> MariaDB devient un <code>VARCHAR</code> PostgreSQL. Duplicate Database et Transfer To sont aussi gratuits."
             ],
-            "asset": "mac-copy-to-review"
+            "docs": "/features/copy-objects",
+            "asset": "features-schema-copy"
         },
         {
             "id": "administer",
-            "title": "Utilisateurs, sessions et maintenance",
-            "paragraphs": [
-                "La maintenance des tables, comme VACUUM et REINDEX sur PostgreSQL ou OPTIMIZE et CHECK sur MySQL, affiche son SQL avant exécution. Les bases et les schémas peuvent être créés, supprimés et renommés depuis la barre latérale si le moteur le permet."
+            "also": [
+                "users-roles",
+                "server-dashboard"
             ],
-            "blocks": [
+            "title": "Utilisateurs, sessions et maintenance",
+            "text": [
+                "Server Dashboard affiche les sessions actives, les métriques du serveur et les requêtes lentes, et annule une requête ou met fin à une session en passant par le Safe Mode de la connexion. Users & Roles prépare les attributions et révocations jusqu’au niveau des colonnes, avec leur SQL à vérifier. La maintenance comme VACUUM ou OPTIMIZE affiche son SQL avant exécution."
+            ],
+            "engines": [
                 {
-                    "id": "users-roles",
-                    "title": "Users & Roles",
-                    "paragraphs": [
-                        "Inspectez les privilèges du serveur jusqu’aux colonnes sur les moteurs compatibles. Préparez les attributions et révocations, puis vérifiez leur SQL avant de les appliquer."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Users & Roles",
-                            "list": "usersRoles"
-                        }
-                    ],
-                    "asset": "mac-users-roles-mysql"
+                    "label": "Server Dashboard :",
+                    "list": "dashboard"
                 },
                 {
-                    "id": "server-dashboard",
-                    "title": "Server Dashboard",
-                    "paragraphs": [
-                        "Server Dashboard affiche les sessions actives, les métriques du serveur et les requêtes lentes, actualisées à l’intervalle de votre choix. Si le moteur le permet, annulez une requête en cours ou mettez fin à une session depuis sa ligne ; les deux passent par le Safe Mode de la connexion. Sur Typesense, seules les métriques sont affichées."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Server Dashboard",
-                            "list": "dashboard"
-                        }
-                    ],
-                    "asset": "mac-server-dashboard-postgresql"
+                    "label": "Users & Roles :",
+                    "list": "usersRoles"
                 }
+            ],
+            "docs": "/features/server-dashboard",
+            "asset": "features-schema-dashboard"
+        }
+    ],
+    "more": [
+        {
+            "id": "objects",
+            "also": [
+                "table-folders"
+            ],
+            "title": "Routines, déclencheurs et dossiers",
+            "text": [
+                "Lisez les routines et déclencheurs dans des onglets source, puis ouvrez-les dans l’éditeur. Regroupez tables et vues dans des dossiers de la barre latérale, qui se synchronisent entre Mac avec iCloud Sync."
             ]
         },
         {
             "id": "iphone",
             "title": "Sur iPhone et iPad",
-            "paragraphs": [
-                "L’application iPhone et iPad affiche les colonnes, les index et les clés étrangères d’une table, en lecture seule. Depuis la liste des tables, vous pouvez tronquer ou supprimer une table sur un moteur SQL, sauf si la connexion est en Read-Only.",
-                "La modification de structure, le diagramme ER, Compare & Sync, Copy To, Users & Roles et Server Dashboard ne sont pas dans l’application iPhone et iPad."
+            "text": [
+                "Colonnes, index et clés étrangères sont en lecture seule. Une table peut être tronquée ou supprimée, sauf si la connexion est en Read-Only."
             ],
             "links": [
                 {
@@ -129,114 +115,6 @@
                     "href": "/ios#browse"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Modification de structure avec aperçu DDL",
-            "ios": "partial",
-            "iosNote": "Colonnes, index et clés étrangères en lecture seule",
-            "linux": "yes"
-        },
-        {
-            "label": "New Table",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Tronquer et supprimer des tables",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Diagramme ER",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Routines, déclencheurs et dossiers de tables",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Routines et déclencheurs ; pas de dossiers de tables"
-        },
-        {
-            "label": "Compare & Sync",
-            "paid": "compare-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copy To, Duplicate Database et Transfer To",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Users & Roles",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Server Dashboard et maintenance de tables",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Compare & Sync ne génère un script de structure qu’entre deux bases du même moteur, MySQL et MariaDB comptant comme un seul. Les autres paires se comparent en lecture seule, les structures MongoDB n’ont jamais de script, et une synchronisation de données entre moteurs vous invite à vérifier l’écriture des valeurs. Pour déplacer des tables vers un autre moteur, utilisez Copy To.",
-        "Réordonner les colonnes reconstruit la table sur SQLite et sur un fichier libSQL local, après confirmation. Sur PostgreSQL, Turso, libSQL distant et Cloudflare D1, TablePro écrit le script de reconstruction et vous laisse l’exécuter.",
-        "Le diagramme ER est en lecture seule. Ce n’est pas un concepteur de schémas.",
-        "Les sessions et le texte des requêtes que Server Dashboard peut afficher dépendent des privilèges du compte avec lequel vous vous connectez."
-    ],
-    "docs": [
-        {
-            "label": "Structure de table",
-            "docs": "/features/table-structure"
-        },
-        {
-            "label": "Diagramme ER",
-            "docs": "/features/er-diagram"
-        },
-        {
-            "label": "Procédures, fonctions et déclencheurs",
-            "docs": "/features/routines-triggers"
-        },
-        {
-            "label": "Compare & Sync",
-            "docs": "/features/compare-sync"
-        },
-        {
-            "label": "Copier et dupliquer",
-            "docs": "/features/copy-objects"
-        },
-        {
-            "label": "Users & Roles",
-            "docs": "/features/users-roles"
-        },
-        {
-            "label": "Server Dashboard",
-            "docs": "/features/server-dashboard"
-        },
-        {
-            "label": "Opérations et maintenance de tables",
-            "docs": "/features/table-operations"
-        }
-    ],
-    "related": [
-        {
-            "label": "Importation, exportation et fichiers de données",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "PostgreSQL dans TablePro",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "MySQL et MariaDB dans TablePro",
-            "href": "/mysql-client"
-        },
-        {
-            "label": "Ce qu’ajoute une offre payante",
-            "href": "/pricing#features"
         }
     ]
 }

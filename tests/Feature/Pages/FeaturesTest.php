@@ -27,16 +27,18 @@ function featuresFactItems(string $name, string $field = 'name'): array
     return array_column((new FeatureFacts())->all()[$name]['items'], $field);
 }
 
-function featuresBlocks(array $content): array
+function featuresParts(array $content): array
 {
-    $blocks = [];
+    return [...$content['bands'], ...$content['more']];
+}
 
-    foreach ($content['sections'] as $section) {
-        $blocks[] = $section;
-        array_push($blocks, ...($section['blocks'] ?? []));
-    }
-
-    return $blocks;
+// Every id a feature page answers to: its bands' and list items' own, the ids they replaced, and the template's.
+function featuresIds(array $content): array
+{
+    return [
+        'top', 'more', 'get-started',
+        ...array_merge(...array_map(fn(array $part): array => [$part['id'], ...($part['also'] ?? [])], featuresParts($content))),
+    ];
 }
 
 it('renders the hub with the feature pages that exist in its language', function (string $prefix, string $locale): void {
@@ -44,7 +46,9 @@ it('renders the hub with the feature pages that exist in its language', function
 
     get("{$prefix}/features")
         ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('pages', $pages));
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('areas', fn($areas): bool => collect($areas)->pluck('slug')->all() === $pages)
+            ->where('areas.0.bands', fn($bands): bool => collect($bands)->pluck('id')->all() === array_column(featuresData("content/{$locale}/features/{$pages[0]}.json")['bands'], 'id')));
 })->with([['', 'en'], ['/vi', 'vi']]);
 
 it('sends a feature page the facts its copy names, and only those', function (string $slug): void {
@@ -62,65 +66,93 @@ it('names only facts the server computes on the hub', function (): void {
     expect(array_diff(FeatureFacts::referencedNames(featuresData('content/en/features/index.json')), array_keys((new FeatureFacts())->all())))->toBe([]);
 });
 
-it('links, lists and marks only what exists', function (string $slug): void {
+it('links, lists, marks and places only what exists', function (string $slug): void {
     $content = featuresData("content/en/features/{$slug}.json");
     $facts = (new FeatureFacts())->all();
     $paid = array_column(featuresData('paid-features.json'), 'id');
-    $links = [...$content['docs'], ...$content['related']];
+    $assets = featuresData('assets.json')['assets'];
+    $ids = featuresIds($content);
 
-    foreach (featuresBlocks($content) as $block) {
-        expect(array_diff($block['paid'] ?? [], $paid))->toBe([], "{$slug}: unknown paid feature");
+    expect($ids)->toBe(array_values(array_unique($ids)), "{$slug}: an id is used twice")
+        ->and(in_array(['path' => "/features/{$slug}", 'section' => 'top'], $assets[$content['header']['asset']]['usedOn'] ?? [], true))->toBeTrue("{$slug}: the hero window is not placed at #top in assets.json")
+        ->and(count($content['bands']))->toBeGreaterThanOrEqual(3)->toBeLessThanOrEqual(5);
 
-        foreach ($block['engines'] ?? [] as $list) {
+    foreach (featuresParts($content) as $part) {
+        expect(array_diff($part['paid'] ?? [], $paid))->toBe([], "{$slug}#{$part['id']}: unknown paid feature")
+            ->and(array_key_exists('where', $part))->toBeFalse("{$slug}#{$part['id']}: no platform line; a bare \"On Mac.\" reads as not on Linux")
+            ->and(trim(implode(' ', $part['text'])))->not->toBe('', "{$slug}#{$part['id']}: no text");
+
+        if (isset($part['asset'])) {
+            expect(in_array(['path' => "/features/{$slug}", 'section' => $part['id']], $assets[$part['asset']]['usedOn'] ?? [], true))->toBeTrue("{$slug}#{$part['id']}: {$part['asset']} is not placed here in assets.json");
+        }
+
+        foreach ($part['engines'] ?? [] as $list) {
             expect($facts[$list['list']]['kind'] ?? null)->toBe('engines', "{$slug}: {$list['list']} is not an engine list");
         }
 
-        array_push($links, ...($block['links'] ?? []));
-    }
+        foreach ([...($part['links'] ?? []), ...(isset($part['docs']) ? [['label' => 'docs', 'docs' => $part['docs']]] : [])] as $link) {
+            $targets = array_intersect_key($link, array_flip(['href', 'docs', 'account']));
 
-    foreach ($links as $link) {
-        $targets = array_intersect_key($link, array_flip(['href', 'docs', 'account']));
+            expect($link['label'] ?? '')->not->toBe('')
+                ->and($targets)->toHaveCount(1, "{$slug}: a link has one of href, docs or account");
 
-        expect($link['label'] ?? '')->not->toBe('')
-            ->and($targets)->toHaveCount(1, "{$slug}: a link has one of href, docs or account");
-
-        if (isset($link['href'])) {
-            expect($link['href'])->toMatch('#^/(?!/)#', "{$slug}: {$link['href']} is not a path on this site");
+            foreach (['href', 'docs'] as $key) {
+                if (isset($link[$key])) {
+                    expect($link[$key])->toMatch('#^/(?!/)#', "{$slug}: {$link[$key]} is not a path");
+                }
+            }
         }
     }
 })->with(FeatureSlugs::ALL);
 
-it('marks each availability row on Linux the same in every language', function (string $slug): void {
-    $english = featuresData("content/en/features/{$slug}.json")['availability'];
-    $paidPlatforms = array_column(featuresData('paid-features.json'), 'platforms', 'id');
+it('keeps every language on the English ids, plans and windows', function (string $slug): void {
+    $shape = fn(array $content): array => [
+        'asset' => $content['header']['asset'],
+        'parts' => array_map(fn(array $part): array => array_intersect_key($part, array_flip(['id', 'also', 'paid', 'asset', 'docs'])), featuresParts($content)),
+    ];
+    $english = $shape(featuresData("content/en/features/{$slug}.json"));
 
     foreach (Locales::codes() as $locale) {
-        $path = "content/{$locale}/features/{$slug}.json";
-
-        if (! File::exists(resource_path("data/{$path}"))) {
-            continue;
-        }
-
-        $rows = featuresData($path)['availability'];
-
-        expect(array_column($rows, 'linux'))->toBe(array_column($english, 'linux'), "{$locale}/{$slug}: a row's Linux value differs from English");
-
-        foreach ($rows as $index => $row) {
-            $where = "{$locale}/{$slug} availability.{$index}";
-
-            expect($row['linux'] ?? null)->toBeIn(['yes', 'partial', 'no'], "{$where}.linux")
-                ->and(array_key_exists('linuxNote', $row))->toBe($row['linux'] === 'partial', "{$where}: linuxNote exactly when partial");
-
-            if (array_key_exists('linuxNote', $row)) {
-                expect(trim($row['linuxNote']))->not->toBe('', "{$where}.linuxNote");
-            }
-
-            if (isset($row['paid']) && ! in_array('linux', $paidPlatforms[$row['paid']], true)) {
-                expect($row['linux'])->toBe('no', "{$where}: {$row['paid']} is not in the Linux app");
-            }
+        if (File::exists(resource_path("data/content/{$locale}/features/{$slug}.json"))) {
+            expect($shape(featuresData("content/{$locale}/features/{$slug}.json")))->toBe($english, "{$locale}/{$slug}");
         }
     }
 })->with(FeatureSlugs::ALL);
+
+it('keeps every link into a feature page landing on an id it still has', function (): void {
+    $sources = [
+        ...File::allFiles(resource_path('data/content')),
+        ...File::allFiles(resource_path('blog')),
+        ...File::allFiles(resource_path('js')),
+        resource_path('data/redirects.json'),
+        app_path('Services/Blog/PostTopics.php'),
+    ];
+    $ids = [];
+
+    foreach (FeatureSlugs::ALL as $slug) {
+        $ids[$slug] = featuresIds(featuresData("content/en/features/{$slug}.json"));
+    }
+
+    $pattern = '~features/(' . implode('|', array_map(fn(string $slug): string => preg_quote($slug, '~'), FeatureSlugs::ALL)) . ')#([a-z0-9-]+)~';
+    $anchors = 0;
+
+    foreach ($sources as $source) {
+        preg_match_all($pattern, File::get((string) $source), $matches, PREG_SET_ORDER);
+
+        foreach ($matches as [$link, $slug, $anchor]) {
+            $anchors++;
+            expect(in_array($anchor, $ids[$slug], true))->toBeTrue("{$source}: {$link}");
+        }
+    }
+
+    // paid-features.json names the page and the anchor in two fields.
+    foreach (featuresData('paid-features.json') as $feature) {
+        $anchors++;
+        expect(in_array($feature['page']['anchor'], $ids[basename($feature['page']['path'])] ?? [], true))->toBeTrue("paid-features.json: {$feature['id']}");
+    }
+
+    expect($anchors)->toBeGreaterThan(150);
+});
 
 it('quotes limits, the device limit and Safe Mode levels from the data files', function (): void {
     $facts = (new FeatureFacts())->all();
@@ -199,48 +231,31 @@ function featuresDocument(string $path): Dom\HTMLDocument
     return Dom\HTMLDocument::createFromString((string) get($path)->assertOk()->getContent(), LIBXML_NOERROR);
 }
 
-function featuresBadges(Dom\HTMLDocument $document): array
-{
-    return array_map(fn(Dom\Element $badge): string => trim((string) $badge->textContent), iterator_to_array($document->querySelectorAll('span.rounded-chip')));
-}
-
-it('sends a feature page the Linux record only once Linux is released', function (string $status): void {
-    $linux = bindPlatformsWithLinux($status);
-
-    get('/features/querying')->assertInertia(fn(AssertableInertia $page) => $status === 'released'
-        ? $page->where('linux.deviceNames', $linux['deviceNames'])->where('linux.channel', $linux['channel'])->where('linux.distributions', fn($distributions): bool => count($distributions) === count($linux['distributions']))
-        : $page->where('linux', null));
-})->with(['released', 'prototype']);
-
-it('gives Where it works a Linux column after the Mac’s that follows each row, and a Linux badge where a row is on Linux', function (string $slug): void {
-    $name = bindPlatformsWithLinux('released')['deviceNames'][0];
-    $rows = featuresData("content/en/features/{$slug}.json")['availability'];
-    $labels = featuresData('content/en/features/index.json')['labels']['availability'];
+it('renders the area nav, the bands in order with the ids they replaced, and one paid sentence', function (string $slug): void {
+    $content = featuresData("content/en/features/{$slug}.json");
+    $labels = featuresData('content/en/features/index.json')['labels'];
     $document = featuresDocument("/features/{$slug}");
+    $named = array_merge(...array_map(fn(array $part): array => $part['paid'] ?? [], featuresParts($content)));
+    $paid = collect(featuresData('paid-features.json'))->filter(fn(array $feature): bool => in_array($feature['id'], $named, true));
 
-    $heads = array_map(fn(Dom\Element $head): string => trim((string) $head->textContent), iterator_to_array($document->querySelectorAll('#availability thead th')));
-    $cells = array_map(fn(Dom\Element $row): string => trim((string) $row->querySelector('td:nth-child(3)')?->textContent), iterator_to_array($document->querySelectorAll('#availability tbody tr')));
+    $bands = array_map(fn(Dom\Element $band): string => $band->getAttribute('id'), iterator_to_array($document->querySelectorAll('main > section:not(#top):not(#more):not(#get-started)')));
+    $closing = trim((string) $document->querySelector('#get-started p')?->textContent);
 
-    expect($heads)->toHaveCount(4)
-        ->and($heads[2])->toBe($name)
-        ->and($cells)->toHaveCount(count($rows))
-        ->and($document->querySelectorAll('#availability tbody th span.grid > span'))->toHaveCount(3 * count($rows))
-        ->and(in_array($name, featuresBadges($document), true))->toBe(collect($rows)->contains(fn(array $row): bool => $row['linux'] !== 'no'));
+    expect($bands)->toBe(array_column($content['bands'], 'id'))
+        ->and($document->querySelector('main > nav a[aria-current="page"]')?->getAttribute('href'))->toBe("/features/{$slug}")
+        ->and($document->querySelectorAll('main h1'))->toHaveCount(1);
 
-    foreach ($rows as $index => $row) {
-        match ($row['linux']) {
-            'yes' => expect($cells[$index])->toBe($labels['free'], "{$slug} row {$index}"),
-            'no' => expect($cells[$index])->toStartWith($labels['notAvailable'], "{$slug} row {$index}"),
-            'partial' => expect($cells[$index])->not->toBe($labels['free'])->not->toStartWith($labels['notAvailable']),
-        };
+    foreach (featuresIds($content) as $id) {
+        expect($document->getElementById($id))->not->toBeNull("{$slug}: #{$id} is missing");
+    }
+
+    if ($paid->isEmpty()) {
+        expect($closing)->toBe($labels['closing']['allFree']);
+    } else {
+        expect($closing)->toEndWith($labels['closing']['rest']);
+
+        foreach ($paid as $feature) {
+            expect($closing)->toContain($feature['name']);
+        }
     }
 })->with(FeatureSlugs::ALL)->group('ssr');
-
-it('shows no Linux column or badge while Linux is not released', function (): void {
-    $name = bindPlatformsWithLinux('prototype')['deviceNames'][0];
-    $document = featuresDocument('/features/querying');
-
-    expect($document->querySelectorAll('#availability thead th'))->toHaveCount(3)
-        ->and(featuresBadges($document))->not->toContain($name)
-        ->and((string) $document->querySelector('#availability table')?->textContent)->not->toContain($name);
-})->group('ssr');

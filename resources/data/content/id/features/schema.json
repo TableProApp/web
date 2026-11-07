@@ -9,119 +9,105 @@
     },
     "header": {
         "title": "Perbandingan skema dan database",
-        "lead": "Periksa hubungan tabel, ubah struktur tabel yang didukung, dan bandingkan database sebelum menerapkan skrip sinkronisasi.",
-        "docs": "/features/table-structure"
+        "lead": "Lihat hubungan antartabel, ubah strukturnya dengan SQL di depan Anda, dan bandingkan dua database sebelum menyinkronkannya.",
+        "docs": "/features/table-structure",
+        "asset": "mac-home-schema"
     },
-    "sections": [
+    "bands": [
         {
             "id": "structure",
             "title": "Edit struktur tabel",
-            "paragraphs": [
-                "Edit kolom, indeks, kunci asing, dan batasan CHECK di tab Structure. Tinjau DDL tertunda dengan <ui>Preview SQL</ui>. Perubahan destruktif, tipe, NOT NULL, dan kunci utama memerlukan konfirmasi bahkan pada {macSafeModeDefault}.",
-                "Buat tabel dengan pratinjau SQL langsung. Perubahan kunci asing pada mesin keluarga SQLite mungkin memerlukan pembuatan ulang tabel. TablePro menjalankan pembangunan kembali yang dikonfirmasi pada SQLite dan libSQL lokal; di Turso, libSQL jarak jauh, dan Cloudflare D1, Anda menjalankan sendiri skrip yang dihasilkan."
+            "text": [
+                "Ubah kolom, indeks, kunci asing, dan batasan CHECK di tab Structure, lalu baca DDL di <ui>Preview SQL</ui> sebelum dijalankan. Perubahan tipe, NOT NULL, primary key, dan perubahan destruktif apa pun meminta konfirmasi lebih dulu, bahkan pada {macSafeModeDefault}. Tabel baru dilengkapi pratinjau SQL langsung."
+            ],
+            "notes": [
+                "Jika SQLite memerlukan pembangunan ulang tabel, TablePro menjalankannya setelah Anda mengonfirmasi; di Turso, libSQL jarak jauh, dan Cloudflare D1, TablePro memberikan skripnya kepada Anda. iPhone dan iPad menampilkan struktur secara hanya-baca."
             ],
             "engines": [
                 {
-                    "label": "Structure hanya-baca",
+                    "label": "Struktur hanya-baca:",
                     "list": "schemaReadOnly"
                 },
                 {
-                    "label": "Hanya sebagian perubahan struktur",
+                    "label": "Sebagian dapat diedit:",
                     "list": "schemaPartial"
                 }
             ],
-            "asset": "mac-structure-ddl-preview"
+            "docs": "/features/table-structure"
         },
         {
             "id": "er-diagram",
             "title": "Diagram ER",
-            "paragraphs": [
-                "<ui>View ER Diagram</ui> menunjukkan tabel dan hubungan kunci asing dengan notasi gagak. Ekspor sebagai PNG atau SQL, atau salin diagram sebagai gambar.",
-                "Diagram bersifat read-only, bukan perancang skema. Buat perubahan di tab Structure."
+            "text": [
+                "<ui>View ER Diagram</ui> menggambar tabel dan kunci asingnya dengan notasi crow’s-foot. Ekspor sebagai PNG atau SQL, atau salin sebagai gambar. Diagram ini hanya tampilan, bukan perancang: perubahan dilakukan di tab Structure."
             ],
-            "asset": "mac-er-diagram"
-        },
-        {
-            "id": "objects",
-            "title": "Objek database",
-            "paragraphs": [
-                "Periksa rutinitas dan pemicu yang didukung di tab sumber hanya baca, lalu salin SQL atau buka di editor. Daftar objek bervariasi berdasarkan mesin. Partisi PostgreSQL muncul di bawah tabel induknya."
-            ],
-            "blocks": [
-                {
-                    "id": "table-folders",
-                    "title": "Folder untuk tabel dan view",
-                    "paragraphs": [
-                        "Kelompokkan tabel dan tampilan dengan drag-and-drop atau <ui>Move to</ui>. Folder hanya mengubah sidebar, bukan database, dan menyinkronkan antar Mac saat iCloud Sync diaktifkan."
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
+            "docs": "/features/er-diagram",
+            "asset": "features-schema-er-diagram"
         },
         {
             "id": "compare-sync",
             "title": "Compare & Sync",
-            "paragraphs": [
-                "Bandingkan skema atau data antara database sumber dan target. Sertakan tampilan, rutinitas, dan pemicu jika didukung. Perbandingan data mencocokkan baris demi kunci, dengan filter dan batas baris untuk setiap tabel.",
-                "Tinjau skrip sinkronisasi yang dihasilkan yang diurutkan berdasarkan kunci asing. Perubahan yang merusak tetap dikecualikan sampai Anda mengizinkannya untuk dijalankan. Koneksi Read-Only tidak dapat menjadi target. Simpan perbandingan untuk digunakan kembali."
+            "text": [
+                "Bandingkan skema atau data dua database, termasuk tampilan, routine, dan trigger jika didukung. Skrip sinkronisasi diurutkan berdasarkan kunci asing, perubahan destruktif tetap dikecualikan sampai Anda mengizinkannya, dan koneksi Read-Only tidak pernah menjadi target. Simpan perbandingan untuk menjalankannya lagi."
             ],
             "paid": [
                 "compare-sync"
             ],
-            "asset": "mac-compare-sync-structure"
+            "notes": [
+                "Skrip struktur hanya dibuat antara database dari mesin yang sama, dengan MySQL dan MariaDB dianggap satu."
+            ],
+            "docs": "/features/compare-sync",
+            "asset": "features-schema-compare-sync"
         },
         {
             "id": "copy",
-            "title": "Salin dan transfer tabel",
-            "paragraphs": [
-                "Copy To memindahkan objek dan data yang didukung antar database, termasuk antar mesin. Tinjau DDL, jumlah baris, dan ketik konversi terlebih dahulu. Konversi dapat kehilangan batasan: MariaDB <code>ENUM</code> menjadi PostgreSQL <code>VARCHAR</code> tanpa daftar nilai yang diizinkan.",
-                "Duplicate Database menyalin database pada koneksi yang sama. Transfer To memetakan baris ke tabel yang sudah ada pada koneksi lain tanpa file perantara. Alat ini gratis."
+            "title": "Salin tabel antar database",
+            "text": [
+                "Copy To memindahkan tabel beserta datanya ke database lain, juga lintas mesin, setelah Anda meninjau DDL, jumlah baris, dan konversi tipe. Konversi dapat kehilangan batasan: MariaDB <code>ENUM</code> menjadi PostgreSQL <code>VARCHAR</code>. Duplicate Database dan Transfer To juga gratis."
             ],
-            "asset": "mac-copy-to-review"
+            "docs": "/features/copy-objects",
+            "asset": "features-schema-copy"
         },
         {
             "id": "administer",
-            "title": "Pengguna, sesi, dan pemeliharaan",
-            "paragraphs": [
-                "Pemeliharaan tabel, seperti VACUUM dan REINDEX pada PostgreSQL atau OPTIMIZE dan CHECK pada MySQL, menampilkan SQL sebelum dijalankan. Database dan skema dapat dibuat, dihapus, dan diganti namanya dari sidebar jika mesin mendukungnya."
+            "also": [
+                "users-roles",
+                "server-dashboard"
             ],
-            "blocks": [
+            "title": "Pengguna, sesi, dan pemeliharaan",
+            "text": [
+                "Server Dashboard menampilkan sesi aktif, metrik server, dan kueri lambat, serta membatalkan kueri atau mengakhiri sesi melalui Safe Mode koneksi. Users & Roles menyiapkan pemberian dan pencabutan izin hingga tingkat kolom, dengan SQL-nya untuk ditinjau. Pemeliharaan seperti VACUUM atau OPTIMIZE menampilkan SQL-nya sebelum dijalankan."
+            ],
+            "engines": [
                 {
-                    "id": "users-roles",
-                    "title": "Users & Roles",
-                    "paragraphs": [
-                        "Periksa hak akses dari tingkat server hingga kolom pada engine yang didukung. Siapkan pemberian dan pencabutan izin, lalu tinjau SQL sebelum menerapkannya."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Users & Roles",
-                            "list": "usersRoles"
-                        }
-                    ],
-                    "asset": "mac-users-roles-mysql"
+                    "label": "Server Dashboard:",
+                    "list": "dashboard"
                 },
                 {
-                    "id": "server-dashboard",
-                    "title": "Server Dashboard",
-                    "paragraphs": [
-                        "Server Dashboard menampilkan sesi aktif, metrik server, dan kueri lambat, diperbarui pada interval pilihan Anda. Jika mesin mengizinkan, batalkan kueri yang berjalan atau akhiri sesi dari barisnya; keduanya melewati Safe Mode koneksi. Pada Typesense, hanya metrik yang ditampilkan."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Server Dashboard",
-                            "list": "dashboard"
-                        }
-                    ],
-                    "asset": "mac-server-dashboard-postgresql"
+                    "label": "Users & Roles:",
+                    "list": "usersRoles"
                 }
+            ],
+            "docs": "/features/server-dashboard",
+            "asset": "features-schema-dashboard"
+        }
+    ],
+    "more": [
+        {
+            "id": "objects",
+            "also": [
+                "table-folders"
+            ],
+            "title": "Routine, trigger, dan folder",
+            "text": [
+                "Baca routine dan trigger di tab sumber, lalu buka di editor. Kelompokkan tabel dan tampilan ke dalam folder sidebar, yang tersinkron antar Mac dengan iCloud Sync."
             ]
         },
         {
             "id": "iphone",
             "title": "Di iPhone dan iPad",
-            "paragraphs": [
-                "Aplikasi iPhone dan iPad menampilkan kolom, indeks, dan foreign key tabel secara hanya-baca. Dari daftar tabel, Anda dapat melakukan truncate atau menghapus tabel pada mesin SQL, kecuali koneksi Read-Only.",
-                "Pengeditan struktur, diagram ER, Compare & Sync, Copy To, Users & Roles, serta Server Dashboard tidak tersedia di aplikasi iPhone dan iPad."
+            "text": [
+                "Kolom, indeks, dan kunci asing hanya-baca. Tabel dapat di-truncate atau dihapus kecuali koneksinya Read-Only."
             ],
             "links": [
                 {
@@ -129,114 +115,6 @@
                     "href": "/ios#browse"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Pengeditan struktur dengan pratinjau DDL",
-            "ios": "partial",
-            "iosNote": "Kolom, indeks, dan foreign key, hanya-baca",
-            "linux": "yes"
-        },
-        {
-            "label": "New Table",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Truncate dan hapus tabel",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Diagram ER",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Routine, trigger, dan folder tabel",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Routine dan trigger; tanpa folder tabel"
-        },
-        {
-            "label": "Compare & Sync",
-            "paid": "compare-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copy To, Duplicate Database, dan Transfer To",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Users & Roles",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Server Dashboard dan pemeliharaan tabel",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Compare & Sync menghasilkan skrip struktur hanya antara dua database dari mesin yang sama, dengan MySQL dan MariaDB dianggap satu. Pasangan lain dibandingkan secara hanya-baca, struktur MongoDB tidak pernah menerima skrip, dan sinkronisasi data lintas mesin memberi peringatan untuk memeriksa penulisan nilai. Untuk memindahkan tabel ke mesin lain, gunakan Copy To.",
-        "Mengurutkan ulang kolom membangun ulang tabel pada SQLite dan file libSQL lokal setelah dikonfirmasi. Pada PostgreSQL, Turso, libSQL jarak jauh, dan Cloudflare D1, TablePro menulis skrip pembangunan ulang dan menyerahkan eksekusinya kepada Anda.",
-        "Diagram ER hanya-baca. Diagram ini bukan perancang skema.",
-        "Sesi dan teks kueri yang dapat ditampilkan Server Dashboard bergantung pada hak akses akun yang digunakan untuk terhubung."
-    ],
-    "docs": [
-        {
-            "label": "Structure tabel",
-            "docs": "/features/table-structure"
-        },
-        {
-            "label": "Diagram ER",
-            "docs": "/features/er-diagram"
-        },
-        {
-            "label": "Procedure, function, dan trigger",
-            "docs": "/features/routines-triggers"
-        },
-        {
-            "label": "Compare & Sync",
-            "docs": "/features/compare-sync"
-        },
-        {
-            "label": "Salin dan duplikasi",
-            "docs": "/features/copy-objects"
-        },
-        {
-            "label": "Users & Roles",
-            "docs": "/features/users-roles"
-        },
-        {
-            "label": "Server Dashboard",
-            "docs": "/features/server-dashboard"
-        },
-        {
-            "label": "Operasi dan pemeliharaan tabel",
-            "docs": "/features/table-operations"
-        }
-    ],
-    "related": [
-        {
-            "label": "Impor, ekspor, dan file data",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "PostgreSQL di TablePro",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "MySQL dan MariaDB di TablePro",
-            "href": "/mysql-client"
-        },
-        {
-            "label": "Tambahan dari paket berbayar",
-            "href": "/pricing#features"
         }
     ]
 }

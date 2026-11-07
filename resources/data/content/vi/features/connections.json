@@ -9,173 +9,118 @@
     },
     "header": {
         "title": "Connection",
-        "lead": "Lưu và sắp xếp connection, tới server riêng qua SSH và đăng nhập bằng tài khoản cloud được hỗ trợ.",
-        "docs": "/connections"
+        "lead": "Lưu và sắp xếp connection, kết nối tới server riêng qua SSH và tunnel, và đăng nhập bằng tài khoản cloud của bạn.",
+        "docs": "/connections",
+        "asset": "mac-home-connections"
     },
-    "sections": [
+    "bands": [
         {
             "id": "organize",
             "title": "Sắp xếp connection",
-            "paragraphs": [
-                "Điền cài đặt connection từ URL, gồm URL <code>jdbc:</code> và <code>+ssh</code>. Dùng <ui>Use clipboard URL</ui> để import URL đã sao chép.",
-                "Sắp xếp connection trong nhóm lồng nhau, thêm tag, màu và đánh dấu yêu thích. Thử mẫu SQLite có sẵn bằng <ui>Open Sample Database</ui>.",
-                "Giữ nhiều connection trong một cửa sổ hoặc dùng <ui>Open in New Window</ui>. Mỗi connection nhớ tab gần nhất."
+            "text": [
+                "Dán một URL, kể cả URL <code>jdbc:</code> và <code>+ssh</code>, form sẽ tự điền. Sắp xếp connection trong nhóm lồng nhau với tag, màu và mục yêu thích, mở nhiều connection trong một cửa sổ hoặc cho một connection cửa sổ riêng, và mỗi connection nhớ tab gần nhất."
             ],
-            "asset": "mac-connection-library"
+            "notes": [
+                "Trên iPhone và iPad, mỗi connection có một tag."
+            ],
+            "docs": "/connections"
         },
         {
             "id": "import",
-            "title": "Import connection",
-            "paragraphs": [
-                "Import từ database client khác, file cấu hình dự án hoặc tài khoản AWS."
+            "also": [
+                "other-apps",
+                "project-folder",
+                "aws"
             ],
-            "links": [
-                {
-                    "label": "File connection và liên kết chia sẻ",
-                    "href": "/features/sync-and-teams#share"
-                }
+            "title": "Mang connection của bạn sang",
+            "text": [
+                "<ui>Nhập từ ứng dụng khác</ui> (Import from Other App) đọc {connectionImportApps}, kèm mật khẩu nếu ứng dụng nguồn cho phép. <ui>Mở thư mục dự án</ui> (Open Project Folder) tìm cài đặt cơ sở dữ liệu trong file môi trường, framework và Docker, và <ui>Import from AWS</ui> liệt kê các cơ sở dữ liệu RDS và Aurora mà một profile thấy được."
             ],
-            "blocks": [
-                {
-                    "id": "other-apps",
-                    "title": "Từ một database client khác",
-                    "paragraphs": [
-                        "<ui>Import from Other App</ui> đọc {connectionImportApps}, gồm bản Setapp của TablePlus. Import mật khẩu tùy cách ứng dụng nguồn lưu chúng. Hỗ trợ mật khẩu mã hóa của DBeaver và Navicat; Navicat cần file export <code>.ncx</code>."
-                    ],
-                    "asset": "mac-import-other-app"
-                },
-                {
-                    "id": "project-folder",
-                    "title": "Từ file cấu hình của dự án",
-                    "paragraphs": [
-                        "<ui>Open Project Folder</ui> tìm cài đặt cơ sở dữ liệu trong file môi trường, framework và Docker được hỗ trợ. Xem từng nguồn trước khi import; mật khẩu vào Keychain. Tên production được nhận diện bắt đầu ở Alert thay vì mức Safe Mode mặc định."
-                    ],
-                    "asset": "mac-open-project-folder"
-                },
-                {
-                    "id": "aws",
-                    "title": "Từ tài khoản AWS",
-                    "paragraphs": [
-                        "<ui>Import from AWS</ui> liệt kê các RDS instance và Aurora cluster mà một AWS profile nhìn thấy trong các region bạn chọn, rồi thêm những mục bạn chọn. Profile đó cần quyền <code>rds:DescribeDBInstances</code> và <code>rds:DescribeDBClusters</code>."
-                    ]
-                }
-            ]
+            "notes": [
+                "Linux import được từ ứng dụng khác."
+            ],
+            "docs": "/switching",
+            "asset": "features-connections-import"
         },
         {
             "id": "network",
+            "also": [
+                "ssh",
+                "tunnels"
+            ],
             "title": "SSH, TLS và tunnel",
-            "paragraphs": [],
-            "blocks": [
+            "text": [
+                "Kết nối qua SSH bằng mật khẩu, key, agent hoặc prompt, đi qua jump host, và lưu tunnel thành profile để dùng lại. TLS có các mức từ Required tới Verify Identity. SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và command của riêng bạn, như <code>kubectl port-forward</code>, lo phần còn lại."
+            ],
+            "notes": [
+                "Linux, iPhone và iPad kết nối qua SSH và TLS."
+            ],
+            "engines": [
                 {
-                    "id": "ssh",
-                    "title": "SSH và TLS",
-                    "paragraphs": [
-                        "Kết nối SSH bằng mật khẩu, key, agent hoặc prompt tương tác. Dùng jump host hoặc <code>ProxyJump</code>, tái sử dụng tunnel bằng SSH profile. Host key chưa biết cần bạn duyệt fingerprint.",
-                        "Chọn mức TLS và cung cấp CA hoặc client certificate. Required mã hóa mà không xác minh chứng chỉ server; Verify CA và Verify Identity thêm bước xác minh."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Engine kết nối qua mạng nhưng không có SSH tunnel",
-                            "list": "noSsh"
-                        }
-                    ],
-                    "asset": "mac-connection-ssh-form"
-                },
-                {
-                    "id": "tunnels",
-                    "title": "Proxy, Cloudflare, Cloud SQL và tunnel command",
-                    "paragraphs": [
-                        "Dùng SOCKS5 với DNS từ xa hoặc Cloudflare Access qua <code>cloudflared</code>. Với {cloudSqlProxy}, TablePro tải, kiểm tra và chạy Cloud SQL Auth Proxy.",
-                        "Tunnel Command kết nối qua cổng local do <code>kubectl port-forward</code>, <code>aws ssm start-session</code> hoặc command của bạn mở. Shell script trước kết nối hỏi duyệt ở mỗi session."
-                    ],
-                    "asset": "mac-tunnel-command"
+                    "label": "Không có SSH:",
+                    "list": "noSsh"
                 }
-            ]
+            ],
+            "docs": "/connections/ssh-tunneling",
+            "asset": "features-connections-network"
         },
         {
             "id": "cloud-auth",
             "title": "Đăng nhập bằng tài khoản cloud",
-            "paragraphs": [
-                "Xác thực cơ sở dữ liệu bằng AWS IAM ký một token mới cho mỗi lần kết nối, từ access key, một profile trong <code>~/.aws</code> (hỗ trợ <code>credential_process</code> và assume role) hoặc AWS IAM Identity Center. Cách xác thực này cũng nâng TLS lên Required. Amazon ElastiCache for Redis, Amazon Keyspaces và DynamoDB có cơ chế ký AWS riêng.",
-                "SQL Server đăng nhập bằng Microsoft Entra ID qua trình duyệt, với client ID của app registration do bạn cung cấp, hoặc bằng Kerberos từ ticket có sẵn hay từ principal và mật khẩu. Google BigQuery nhận service account key, Application Default Credentials hoặc Google OAuth với client của riêng bạn, còn Google Cloud Spanner và Cloud SQL Auth Proxy có thể dùng tài khoản Google của bạn."
+            "text": [
+                "AWS IAM ký một token mới mỗi lần kết nối, từ access key, một profile hoặc IAM Identity Center. SQL Server đăng nhập bằng Microsoft Entra ID hoặc Kerberos, còn BigQuery, Spanner và Cloud SQL Auth Proxy có thể dùng tài khoản Google của bạn."
+            ],
+            "notes": [
+                "Linux đăng nhập bằng Kerberos. iPhone và iPad dùng Entra ID cho connection được đồng bộ từ Mac."
             ],
             "engines": [
                 {
-                    "label": "Xác thực AWS IAM trên RDS và Aurora",
+                    "label": "AWS IAM:",
                     "list": "awsIam"
                 }
             ],
-            "links": [
-                {
-                    "label": "SQL Server trong TablePro",
-                    "href": "/sql-server-client"
-                },
-                {
-                    "label": "BigQuery trong TablePro",
-                    "href": "/bigquery-client"
-                }
-            ]
+            "docs": "/connections/aws-iam"
         },
         {
             "id": "credentials",
-            "title": "Thông tin đăng nhập và nguồn mật khẩu",
-            "paragraphs": [
-                "Mật khẩu và passphrase SSH key lưu trong macOS Keychain. Đồng bộ mật khẩu qua iCloud Keychain cần bật riêng. File SSH key nằm trên ổ đĩa.",
-                "Credential profile miễn phí tái sử dụng thông tin đăng nhập và đọc mật khẩu từ 1Password, Vault, AWS Secrets Manager, command, file hoặc biến môi trường. Cần cài công cụ CLI tương ứng. Nguồn không đồng bộ. Connection thuộc họ PostgreSQL còn dùng được <code>~/.pgpass</code> ở nơi hỗ trợ."
+            "also": [
+                "environment-variables"
             ],
-            "links": [
-                {
-                    "label": "iCloud Sync và đồng bộ mật khẩu",
-                    "href": "/features/sync-and-teams#icloud-sync"
-                }
+            "title": "Mật khẩu và thông tin đăng nhập",
+            "text": [
+                "Mật khẩu và passphrase SSH được lưu trong macOS Keychain. Credential profile dùng lại thông tin đăng nhập và đọc mật khẩu từ 1Password, Vault, AWS Secrets Manager, một command, một file hoặc biến môi trường; tính năng này miễn phí. Environment Variables, thuộc gói Pro, điền <code>$DB_HOST</code> và các trường khác khi bạn kết nối."
             ],
-            "blocks": [
-                {
-                    "id": "environment-variables",
-                    "title": "Environment Variables",
-                    "paragraphs": [
-                        "Dùng tham chiếu như <code>$DB_HOST</code> trong trường connection được hỗ trợ. Giá trị lấy từ môi trường ứng dụng lúc kết nối. Không áp dụng cho port và mật khẩu; mật khẩu có nguồn riêng, miễn phí."
-                    ],
-                    "paid": [
-                        "environment-variables"
-                    ]
-                }
-            ]
-        },
+            "paid": [
+                "environment-variables"
+            ],
+            "notes": [
+                "Linux lưu mật khẩu trong keyring của hệ thống."
+            ],
+            "docs": "/connections/credential-profiles"
+        }
+    ],
+    "more": [
         {
             "id": "policies",
+            "also": [
+                "timeouts"
+            ],
             "title": "Chính sách connection",
-            "paragraphs": [
-                "Safe Mode kiểm soát việc xác nhận câu lệnh. External Clients kiểm soát truy cập MCP và AppleScript, mặc định Read Only và chỉ nằm trên máy Mac này. Chính sách AI kiểm soát trợ lý; Never cũng chặn MCP client.",
-                "Tổ chức của bạn có thể áp một mức Safe Mode tối thiểu cho mọi connection, và kiểm soát việc cập nhật, thông qua configuration profile."
+            "text": [
+                "Mỗi connection tự đặt mức Safe Mode, những gì MCP client và AppleScript được làm, trợ lý AI có thấy connection đó hay không, cùng connect timeout và query timeout riêng."
             ],
             "links": [
                 {
-                    "label": "Các mức Safe Mode",
+                    "label": "Safe Mode",
                     "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "MCP client và External Clients",
-                    "href": "/features/ai-mcp#mcp"
-                }
-            ],
-            "blocks": [
-                {
-                    "id": "timeouts",
-                    "title": "Timeout khi kết nối và khi chạy query",
-                    "paragraphs": [
-                        "Mỗi connection có thể đặt connect timeout riêng, tính cả mạng, TLS, đăng nhập và mọi tunnel hay proxy, cùng query timeout riêng thay cho giá trị chung của ứng dụng. Query timeout áp dụng cho các driver hỗ trợ nó, sau khi bạn kết nối lại."
-                    ],
-                    "since": "0.77.0"
                 }
             ]
         },
         {
             "id": "iphone",
             "title": "Trên iPhone và iPad",
-            "paragraphs": [
-                "Ứng dụng cho iPhone và iPad có form connection riêng cho {iosPicker}, với nhóm, một tag cho mỗi connection và mục yêu thích. SSH tunnel xác thực bằng mật khẩu hoặc private key, từ file hoặc dán vào, và có kiểm tra host key; SSH agent và jump host không được hỗ trợ trên iPhone và iPad. TLS có thể kiểm tra chứng chỉ của server, trừ với SQL Server: kết nối được mã hóa nhưng không kiểm tra. Chứng chỉ chỉ nằm trên thiết bị và không bao giờ được đồng bộ.",
-                "Mật khẩu và key dán vào được lưu trong Keychain. Connection SQL Server đồng bộ từ Mac có thể đăng nhập bằng Microsoft Entra ID. Import từ ứng dụng khác, đăng nhập bằng AWS IAM, Kerberos và Google, proxy và tunnel command, nguồn mật khẩu và timeout không có trong ứng dụng iPhone và iPad."
+            "text": [
+                "Ứng dụng có form connection riêng, SSH bằng mật khẩu hoặc key, TLS, và mật khẩu lưu trong Keychain."
             ],
             "links": [
                 {
@@ -183,152 +128,6 @@
                     "href": "/ios#security"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Form connection, nhóm, tag và mục yêu thích",
-            "ios": "partial",
-            "iosNote": "Một tag cho mỗi connection; không có màu",
-            "linux": "yes"
-        },
-        {
-            "label": "Import từ URL hoặc clipboard",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Import từ ứng dụng khác, thư mục dự án và AWS",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Chỉ từ ứng dụng khác"
-        },
-        {
-            "label": "SSH tunnel bằng mật khẩu hoặc private key",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "SSH agent, mã dùng một lần và jump host",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "TLS có kiểm tra chứng chỉ",
-            "ios": "partial",
-            "iosNote": "SQL Server mã hóa nhưng không kiểm tra",
-            "linux": "yes"
-        },
-        {
-            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy và Tunnel Command",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Đăng nhập bằng AWS IAM, Kerberos và Google",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Chỉ Kerberos"
-        },
-        {
-            "label": "Microsoft Entra ID",
-            "ios": "partial",
-            "iosNote": "Với connection đồng bộ từ Mac",
-            "linux": "no"
-        },
-        {
-            "label": "Lưu mật khẩu trong Keychain",
-            "ios": "yes",
-            "linux": "partial",
-            "linuxNote": "Trong keyring của hệ thống"
-        },
-        {
-            "label": "Nguồn mật khẩu, credential profile và ~/.pgpass",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Environment Variables",
-            "paid": "environment-variables",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Safe Mode cho từng connection",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Connect timeout và query timeout",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Chỉ có query timeout"
-        },
-        {
-            "label": "Mức Safe Mode tối thiểu qua configuration profile",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Nguồn mật khẩu, cùng proxy và tunnel command trong tab Mạng, chỉ nằm trên máy Mac nơi bạn thiết lập: chúng không bao giờ được đồng bộ, nên một connection đồng bộ sang máy Mac khác cần thiết lập lại các phần này.",
-        "TablePro đọc các biến môi trường có tại thời điểm nó được khởi chạy. Khi mở từ Dock hoặc Finder, ứng dụng không thấy các biến do shell profile của bạn đặt, nên cả nguồn mật khẩu từ biến môi trường lẫn Environment Variables đều bị ảnh hưởng.",
-        "Khi gói trả phí kết thúc, <code>$DB_HOST</code> và các tham chiếu khác không còn được điền giá trị mà được gửi tới server nguyên văn, không có cảnh báo nào.",
-        "Open Project Folder chỉ import một lần: không có gì được theo dõi, và import cùng một bộ thiết lập hai lần sẽ tạo ra hai connection.",
-        "Xác thực AWS IAM dùng được với {awsIam}, không dùng được với Amazon Redshift. Configuration profile chỉ áp được mức Safe Mode tối thiểu và thiết lập cập nhật, ngoài ra không có gì khác."
-    ],
-    "docs": [
-        {
-            "label": "Quản lý connection",
-            "docs": "/connections"
-        },
-        {
-            "label": "Chuyển từ client khác sang TablePro",
-            "docs": "/switching"
-        },
-        {
-            "label": "Open Project Folder",
-            "docs": "/features/project-folder-import"
-        },
-        {
-            "label": "SSH tunnel",
-            "docs": "/connections/ssh-tunneling"
-        },
-        {
-            "label": "Tunnel Command",
-            "docs": "/connections/tunnel-command"
-        },
-        {
-            "label": "Xác thực AWS IAM",
-            "docs": "/connections/aws-iam"
-        },
-        {
-            "label": "Credential profile",
-            "docs": "/connections/credential-profiles"
-        },
-        {
-            "label": "Nguồn mật khẩu và Environment Variables",
-            "docs": "/features/connection-sharing#environment-variables"
-        }
-    ],
-    "related": [
-        {
-            "label": "Đồng bộ và chia sẻ connection",
-            "href": "/features/sync-and-teams"
-        },
-        {
-            "label": "Safe Mode và chỉnh sửa dữ liệu",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "So sánh TablePro với các client khác",
-            "href": "/compare"
-        },
-        {
-            "label": "Gói trả phí bổ sung những gì",
-            "href": "/pricing#features"
         }
     ]
 }

@@ -9,133 +9,120 @@
     },
     "header": {
         "title": "SQL エディター",
-        "lead": "スキーマを参照する補完で SQL を書けます。よく使うクエリを保存し、履歴を検索して、対応エンジンのプランを確認できます。",
-        "docs": "/features/sql-editor"
+        "lead": "スキーマを参照する補完で SQL を書き、よく使うクエリを保存して、データベースがクエリをどう実行するかを確認できます。",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
+            "also": [
+                "open-quickly"
+            ],
             "title": "スキーマを参照する補完",
-            "paragraphs": [
-                "エイリアス、CTE、サブクエリを含むテーブルや列を補完します。<kbd>⌘⇧L</kbd> で現在の文を整形し、コメントを保持します。",
-                "現在の文、選択範囲、スクリプト全体を実行できます。通常の文バッチは一つのトランザクションを使い、失敗時にロールバックします。SQL Server スクリプト、明示的トランザクション、VACUUM などは例外です。MySQL、MariaDB、Oracle の DDL は独立してコミットします。"
+            "text": [
+                "エイリアス、CTE、サブクエリを含め、テーブルと列を補完します。現在の文、選択範囲、スクリプト全体を実行できます。通常のバッチは一つのトランザクションで実行し、文が失敗するとロールバックします。",
+                "<kbd>⌘⇧L</kbd> で整形し、Vim mode を有効にしたり、Open Quickly（<kbd>⌘⇧O</kbd>）でテーブル、ビュー、保存済みクエリに移動したりできます。"
             ],
-            "points": [
-                "ガターに文のマーカーを表示し、それぞれに実行ボタンを用意。",
-                "正規表現に対応した検索と置換。",
-                "移動、レジスターとマクロに対応する Vim mode。<code>:w</code> でクエリを実行。",
-                "<code>.sql</code> ファイルをクエリタブとして開き、編集し、保存。"
+            "notes": [
+                "iPhone と iPad の Query タブは、自動補完なしで SQL を実行します。"
             ],
-            "asset": "mac-query-autocomplete"
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "パラメーター、履歴と保存済みクエリ",
-            "paragraphs": [
-                "<code>:customer_id</code> などのパラメーターで実行前に値を入力できます。対応ドライバーではネイティブに値をバインドします。",
-                "テキスト、実行元、失敗、期間でローカルのクエリ履歴を検索できます。既定では {historyDays} 日間に {historyEntries} 件を保持し、同期しません。",
-                "キーワードと版履歴を付けてクエリを保存できます。<code>.sql</code> フォルダーをサイドバーにリンクし、双方向更新と Git 状態を使えます。SQL フォルダーのリンクは無料で、接続ファイル用の有料 Linked Folders とは別機能です。"
+            "text": [
+                "<code>:customer_id</code> と書くと、TablePro は実行前に値を尋ねます。テキスト、実行元、失敗、期間で履歴を検索できます。履歴は {historyEntries} 件を {historyDays} 日間保持し、同期しません。",
+                "よく使うクエリを保存するか、<code>.sql</code> ファイルのフォルダーをサイドバーにリンクできます。双方向の更新と Git 状態に対応します。"
             ],
-            "asset": "mac-query-parameters-history"
-        },
-        {
-            "id": "open-quickly",
-            "title": "Open Quickly とタブ",
-            "paragraphs": [
-                "Open Quickly（<kbd>⌘⇧O</kbd>）で開いている接続のテーブル、ビュー、クエリを横断検索できます。アプリを開き直してもタブの SQL とグリッド設定は残ります。"
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "クエリのパフォーマンス",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "explain",
-                    "title": "EXPLAIN と EXPLAIN Compare",
-                    "paragraphs": [
-                        "クエリプランを図、コストツリー、エンジンの生出力で確認できます。前の実行と比べて時間やプランの変化を調べ、{explainNoise}% 未満の差はノイズとして扱います。どちらも無料です。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "図とツリーでプラン表示",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "テキストでプラン表示",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "ドライランでコスト推定",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "EXPLAIN 非対応の SQL エンジン",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
-                },
-                {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "この Mac のローカル履歴で遅い、失敗した、頻出のクエリを探せます。パラメーター値に関係なく類似する文をまとめます。Query Insights はローカルで期間を比較する機能で、サーバー全体の監視ではなく、指標はアップロードしません。"
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
-                }
-            ]
-        },
-        {
-            "id": "results",
-            "title": "結果をグラフや地図で見る",
-            "paragraphs": [
-                "同じタブで、結果をグリッドからグラフや地図に切り替え、また戻せます。"
+            "notes": [
+                "Linux には履歴と保存済みクエリがあります。iPhone と iPad は直近 {historyEntriesIos} 件のクエリを保持します。"
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "結果を棒、折れ線、面、散布図で表示できます。先頭 {chartInspectedRows} 行から最大 {chartPoints} 点・{chartSeries} 系列を表示し、省略時は通知します。"
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "地図ビュー",
-                    "paragraphs": [
-                        "対応するジオメトリ列を Apple Maps で表示し、図形を選んで行を探せます。行データは Mac に残り、地図タイルは Apple が提供します。地図表示は無料です。"
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "other-languages",
-            "title": "その他のクエリ言語",
-            "paragraphs": [
-                "SQL 以外のエンジンはそれぞれのクエリ言語をエディターで使えます。MongoDB は mongosh 自体ではなく、内蔵の mongosh 形式 JavaScript シェルを使います。対応コマンドはデータベースページをご覧ください。"
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN と EXPLAIN Compare",
+            "text": [
+                "クエリプランを図、コストツリー、エンジンの生出力で確認できます。変更後にクエリを再実行して二つの実行を比較すると、時間とプランの違いが並べて表示されます。{explainNoise}% 未満の差はノイズとして扱います。"
             ],
             "engines": [
                 {
-                    "label": "エンジンごとのクエリ言語",
+                    "label": "図でプラン表示：",
+                    "list": "explainDiagram"
+                },
+                {
+                    "label": "テキストでプラン表示：",
+                    "list": "explainText"
+                },
+                {
+                    "label": "ドライランでコスト推定：",
+                    "list": "explainCost"
+                }
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "この Mac の履歴から、遅いクエリ、失敗したクエリ、よく実行するクエリを探せます。値だけが異なる文はまとめて扱い、二つの期間を並べて比較できます。読むのはローカル履歴だけです。サーバー監視ではなく、何もアップロードしません。"
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
+        },
+        {
+            "id": "results",
+            "also": [
+                "result-charts",
+                "map"
+            ],
+            "title": "グラフと地図",
+            "text": [
+                "同じタブで、先頭 {chartInspectedRows} 行から結果を棒、折れ線、面、散布図のグラフにできます。ジオメトリ列は地図で開き、図形を選ぶとその行を探せます。Result Charts は Pro に含まれ、地図ビューは無料です。"
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
+        {
+            "id": "other-languages",
+            "title": "その他のクエリ言語",
+            "text": [
+                "SQL 以外のエンジンは、エディターでそれぞれのクエリ言語を使います。MongoDB には mongosh 形式の内蔵シェルがあります。"
+            ],
+            "engines": [
+                {
+                    "label": "エンジンごと：",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "大きな結果",
+            "text": [
+                "Settings で上限を最大 {rowCapMax} 行まで引き上げない限り、クエリが返すのは最大 {rowCap} 行です。自分で書いた LIMIT が常に優先されます。"
+            ]
+        },
+        {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "iPhone・iPad アプリの Query タブには SQL ハイライト、Run と Stop（キーボードでは <kbd>⌘↩</kbd>）、そのデバイスで実行した直近 {historyEntriesIos} 件の履歴があります。結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有できます。",
-                "自動補完、整形、パラメーター、EXPLAIN や保存済みクエリには対応しません。結果は最大 {resultBufferIos} 行まで保持するため、必要な範囲を見るには LIMIT を追加してください。"
+            "text": [
+                "Query タブは SQL をハイライトし、実行と停止ができ、結果を JSON、CSV、INSERT 文として共有できます。"
             ],
             "links": [
                 {
@@ -143,109 +130,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "自動補完と整形付き SQL エディター",
-            "ios": "partial",
-            "iosNote": "ハイライト、Run と Stop のみ。自動補完なし",
-            "linux": "yes"
-        },
-        {
-            "label": "クエリパラメーター",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "クエリ履歴",
-            "ios": "partial",
-            "iosNote": "デバイス上の直近 {historyEntriesIos} 件",
-            "linux": "yes"
-        },
-        {
-            "label": "保存済みクエリとリンクした SQL フォルダー",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "保存済みクエリのみ"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "サイドバーで接続とテーブルを検索"
-        },
-        {
-            "label": "EXPLAIN と EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "地図ビュー",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "結果をコピーまたは共有",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Settings で上限を最大 {rowCapMax} 行に引き上げるか、<kbd>⌘⌥⏎</kbd> で実行しない限り、クエリが返すのは最大 {rowCap} 行です。自分で記述した LIMIT が常に優先されます。",
-        "クエリ履歴と Query Insights はこの Mac のみが対象です。他の Mac や iPhone で実行したクエリは含まれません。",
-        "シェルコマンド <code>tablepro</code> はアプリで接続やファイルを開きます。ターミナルからクエリを実行する機能ではありません。"
-    ],
-    "docs": [
-        {
-            "label": "SQL エディター",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "クエリパラメーター",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "クエリ履歴",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "EXPLAIN の可視化",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "データグリッドのグラフと地図",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "データ編集",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "対応データベース",
-            "href": "/databases"
-        },
-        {
-            "label": "有料プランで増える機能",
-            "href": "/pricing#features"
         }
     ]
 }

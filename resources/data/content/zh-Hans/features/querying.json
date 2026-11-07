@@ -9,133 +9,120 @@
     },
     "header": {
         "title": "SQL 编辑器",
-        "lead": "使用结构感知的自动补全编写 SQL。保存常用查询、搜索历史，并检查支持的引擎的计划。",
-        "docs": "/features/sql-editor"
+        "lead": "使用结构感知的自动补全编写 SQL，保存常用查询，并查看数据库如何执行它们。",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
+            "also": [
+                "open-quickly"
+            ],
             "title": "结构感知的自动补全",
-            "paragraphs": [
-                "自动补全建议表和列，包括别名、CTE 和子查询。用 <kbd>⌘⇧L</kbd> 格式化当前语句，并保留注释。",
-                "运行当前语句、选中内容或完整脚本。普通语句批次使用一个事务，失败时回滚。SQL Server 脚本、显式事务及 VACUUM 等语句除外。MySQL、MariaDB 和 Oracle 的 DDL 独立提交。"
+            "text": [
+                "自动补全建议表和列，包括别名、CTE 和子查询。运行当前语句、选中内容或完整脚本；普通批次在一个事务中运行，任一语句失败时回滚。",
+                "用 <kbd>⌘⇧L</kbd> 格式化，开启 Vim mode，或用 Open Quickly（<kbd>⌘⇧O</kbd>）跳转到任意表、视图或已保存查询。"
             ],
-            "points": [
-                "编辑器行号旁的语句标记各有独立的运行按钮。",
-                "支持正则表达式的查找和替换。",
-                "Vim mode 支持移动、寄存器和宏，使用 <code>:w</code> 运行查询。",
-                "在查询标签页中打开、编辑和保存 <code>.sql</code> 文件。"
+            "notes": [
+                "在 iPhone 和 iPad 上，Query 标签页可运行 SQL，但不提供自动补全。"
             ],
-            "asset": "mac-query-autocomplete"
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "参数、历史和已保存查询",
-            "paragraphs": [
-                "用 <code>:customer_id</code> 等参数在查询执行前输入值。在驱动支持时，值会原生绑定。",
-                "按文本、来源、失败或时间范围搜索本地查询历史。默认保留 {historyEntries} 条记录，期限为 {historyDays} 天，绝不参与同步。",
-                "保存带可复用关键词和版本历史的查询。将 <code>.sql</code> 文件夹链接到侧边栏，支持双向更新和 Git 状态。SQL 文件夹链接免费，与连接文件的付费 Linked Folders 功能不同。"
+            "text": [
+                "写入 <code>:customer_id</code>，TablePro 会在查询运行前询问其值。按文本、来源、失败或时间范围搜索历史：保留 {historyEntries} 条记录，期限为 {historyDays} 天，绝不参与同步。",
+                "保存常用查询，或将 <code>.sql</code> 文件夹链接到侧边栏，支持双向更新和 Git 状态。"
             ],
-            "asset": "mac-query-parameters-history"
-        },
-        {
-            "id": "open-quickly",
-            "title": "Open Quickly 和标签页",
-            "paragraphs": [
-                "Open Quickly（<kbd>⌘⇧O</kbd>）跨已打开连接搜索表、视图和查询。重新打开 App 时，标签页保留 SQL 和表格设置。"
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "查询性能",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "explain",
-                    "title": "EXPLAIN 和 EXPLAIN Compare",
-                    "paragraphs": [
-                        "将查询计划显示为图表、成本树或引擎原始输出。与之前运行比较，发现耗时和计划变化；低于 {explainNoise}% 的差异视为噪声。两项功能均免费。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "以图形和树显示计划",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "以文本显示计划",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "试运行成本估算",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "不支持 EXPLAIN 的 SQL 引擎",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
-                },
-                {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "在这台 Mac 的本地历史中查找缓慢、失败和常用查询。相似语句按结构分组，不受参数值影响。Query Insights 在本地比较时段，并非服务器级监控，不上传指标。"
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
-                }
-            ]
-        },
-        {
-            "id": "results",
-            "title": "以图表和地图查看结果",
-            "paragraphs": [
-                "结果可在同一标签页中从网格切换到图表或地图，也可切回。"
+            "notes": [
+                "Linux 提供历史和已保存查询。iPhone 和 iPad 保留最近 {historyEntriesIos} 条查询。"
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "将结果绘制为柱状图、折线图、面积图或散点图。从前 {chartInspectedRows} 行显示最多 {chartPoints} 个点和 {chartSeries} 个系列，截断时会提示。"
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "地图视图",
-                    "paragraphs": [
-                        "在 Apple Maps 上显示支持的几何列，选择图形定位对应行。行数据保留在 Mac；地图图块由 Apple 提供。地图视图免费。"
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "other-languages",
-            "title": "其他查询语言",
-            "paragraphs": [
-                "在编辑器中使用各非 SQL 引擎的查询语言。MongoDB 使用内置 mongosh 风格 JavaScript shell，而非 mongosh 本身。支持的命令见数据库页面。"
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN 和 EXPLAIN Compare",
+            "text": [
+                "将查询计划显示为图形、成本树或引擎原始输出。更改后再次运行查询并比较两次运行：耗时和计划差异并排显示，低于 {explainNoise}% 的差异视为噪声。"
             ],
             "engines": [
                 {
-                    "label": "各引擎的查询语言",
+                    "label": "以图形显示计划：",
+                    "list": "explainDiagram"
+                },
+                {
+                    "label": "以文本显示计划：",
+                    "list": "explainText"
+                },
+                {
+                    "label": "试运行成本：",
+                    "list": "explainCost"
+                }
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "在这台 Mac 的历史中查找缓慢、失败和最常运行的查询。仅值不同的语句会归为一组，两个时段可并排比较。它只读取本地历史：不是服务器监控，也不上传任何内容。"
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
+        },
+        {
+            "id": "results",
+            "also": [
+                "result-charts",
+                "map"
+            ],
+            "title": "图表和地图",
+            "text": [
+                "在同一标签页中，将结果的前 {chartInspectedRows} 行绘制为柱状图、折线图、面积图或散点图。几何列在地图上打开，选择图形即可定位对应行。Result Charts 属于 Pro；地图视图免费。"
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
+        {
+            "id": "other-languages",
+            "title": "其他查询语言",
+            "text": [
+                "非 SQL 引擎在编辑器中使用各自的查询语言。MongoDB 使用内置的 mongosh 风格 shell。"
+            ],
+            "engines": [
+                {
+                    "label": "按引擎：",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "大型结果",
+            "text": [
+                "除非在 Settings 中将上限提高至最多 {rowCapMax} 行，否则查询最多返回 {rowCap} 行。手写的 LIMIT 始终优先。"
+            ]
+        },
+        {
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
-            "paragraphs": [
-                "iPhone 和 iPad 应用的 Query 标签页提供 SQL 高亮、Run 和 Stop（使用键盘时为 <kbd>⌘↩</kbd>），以及此设备最近运行的 {historyEntriesIos} 条查询历史。可以将结果复制或分享为 JSON、CSV 或 SQL INSERT 语句。",
-                "不提供自动补全、格式化、参数、EXPLAIN 或已保存查询，最多保留 {resultBufferIos} 行结果，因此请添加 LIMIT 来查看所需部分。"
+            "text": [
+                "Query 标签页高亮 SQL，可运行和停止查询，并将结果分享为 JSON、CSV 或 INSERT 语句。"
             ],
             "links": [
                 {
@@ -143,109 +130,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "支持自动补全和格式化的 SQL 编辑器",
-            "ios": "partial",
-            "iosNote": "高亮、Run 和 Stop；不支持自动补全",
-            "linux": "yes"
-        },
-        {
-            "label": "查询参数",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "查询历史",
-            "ios": "partial",
-            "iosNote": "设备上最近 {historyEntriesIos} 条查询",
-            "linux": "yes"
-        },
-        {
-            "label": "已保存查询和关联 SQL 文件夹",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "仅已保存查询"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "在侧边栏搜索连接和表"
-        },
-        {
-            "label": "EXPLAIN 和 EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "地图视图",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "复制或分享结果",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "除非在 Settings 中将上限提高至最多 {rowCapMax} 行，或使用 <kbd>⌘⌥⏎</kbd> 运行，否则查询最多返回 {rowCap} 行。手写的 LIMIT 始终优先。",
-        "查询历史和 Query Insights 仅涵盖此 Mac，其他 Mac 或 iPhone 上运行的查询不会包含在内。",
-        "<code>tablepro</code> shell 命令在应用中打开连接和文件，不会从终端执行查询。"
-    ],
-    "docs": [
-        {
-            "label": "SQL 编辑器",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "查询参数",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "查询历史",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "EXPLAIN 可视化",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "数据网格中的图表和地图",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "数据编辑",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "支持的数据库",
-            "href": "/databases"
-        },
-        {
-            "label": "付费方案提供的功能",
-            "href": "/pricing#features"
         }
     ]
 }

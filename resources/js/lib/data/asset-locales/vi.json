@@ -95,29 +95,114 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "vi": "SQL editor của TablePro với một query join CTE recent_orders với users, danh sách autocomplete hiển thị các cột của CTE."
+            "vi": "Query Insights trong 7 ngày qua, với biểu đồ số query thành công và thất bại mỗi ngày phía trên các mục Most Run, Slowest và Got Slower, trong đó một dạng query được đánh dấu Got Slower."
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "vi": "Cận cảnh danh sách autocomplete gợi ý các cột của một CTE trong SQL editor của TablePro."
+            "vi": "Table products với bốn thay đổi giá đang chờ lưu, và hộp thoại Preview SQL liệt kê các câu UPDATE tương ứng."
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "vi": "Một query dùng tham số :customer_id và :since, khung nhập giá trị tham số và ngăn lịch sử query."
+            "vi": "ER diagram của schema shop với các table và quan hệ giữa chúng, product_tags hiển thị thành đường quan hệ nhiều-nhiều giữa products và tags."
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "vi": "EXPLAIN Compare cho một query trên orders: plan đổi từ Index Scan sang Seq Scan và query chậm hơn so với lần đo gốc."
+            "vi": "Compare & Sync giữa shop và shop_staging, liệt kê một cột có độ dài khác nhau và một lệnh DROP COLUMN chưa được đưa vào script."
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "vi": "Server Dashboard của một server PostgreSQL liệt kê các session đang chạy, một câu SELECT chạy lâu đang được chọn và có nút Terminate."
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "vi": "Cửa sổ Data Files mở file orders.csv, đang tìm Hanoi, thanh trạng thái hiển thị 2.498 trên 20.000 dòng."
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "alt": {
+            "vi": "SQL editor của TablePro trên Mac, với lịch sử query mở bên cạnh một query dùng tham số."
+        },
+        "caption": null
+    },
+    "features-querying-explain": {
+        "alt": {
+            "vi": "Query plan PostgreSQL vẽ dạng sơ đồ trong TablePro trên Mac."
+        },
+        "caption": null
+    },
+    "features-querying-charts": {
+        "description": {
+            "vi": "Một query doanh thu theo tháng trên shop, hiển thị dạng biểu đồ cột trong vùng kết quả của SQL editor trên Mac."
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "vi": "Lưu một thay đổi trên connection đặt mức Safe Mode: hộp thoại Touch ID hoặc mật khẩu hiện trên data grid, kèm câu lệnh đang chờ chạy."
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "vi": "Data Rewind trên shop: màn hình xem lại một lần lưu, liệt kê giá trị trước đó và giá trị hiện tại của các dòng đã đổi, cùng nút Restore Previous Values."
+        }
+    },
+    "features-schema-copy": {
+        "alt": {
+            "vi": "Màn hình xem lại của Copy To trong TablePro trên Mac, với DDL, số dòng và chuyển đổi kiểu cho lần sao chép sang một file SQLite."
+        },
+        "caption": null
+    },
+    "features-import-export-import": {
+        "alt": {
+            "vi": "Sheet import trong TablePro trên Mac, ghép các cột của file CSV vào một table."
+        },
+        "caption": null
+    },
+    "features-import-export-backup": {
+        "alt": {
+            "vi": "Sheet Backup Dump trong TablePro trên Mac, thiết lập để dump một cơ sở dữ liệu PostgreSQL bằng pg_dump."
+        },
+        "caption": null
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "vi": "Agent mode toàn cửa sổ trên shop: một yêu cầu trong chat, các câu lệnh agent đề xuất, và nút Run đang chờ duyệt."
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "alt": {
+            "vi": "Cài đặt MCP trong TablePro trên Mac, với server đang bật và mức truy cập của từng connection."
+        },
+        "caption": null
+    },
+    "features-connections-import": {
+        "alt": {
+            "vi": "Sheet Nhập từ ứng dụng khác (Import from Other App) trong TablePro trên Mac, liệt kê các connection tìm thấy trong một database client khác."
+        },
+        "caption": null
+    },
+    "features-connections-network": {
+        "alt": {
+            "vi": "Form connection trong TablePro trên Mac, thiết lập để kết nối qua SSH jump host bằng key."
+        },
+        "caption": null
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "vi": "Team Library trong sidebar: connection và query đã lưu do thành viên trong nhóm chia sẻ, kèm người sửa gần nhất của từng query."
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +228,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "vi": "Table products với bốn thay đổi giá đang chờ lưu, và hộp thoại Preview SQL liệt kê các câu UPDATE tương ứng."
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "vi": "Cận cảnh hộp thoại Preview SQL liệt kê bốn câu UPDATE cho các thay đổi giá đang chờ lưu."
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "vi": "Table orders với các dòng paid tô màu xanh lá, các dòng refunded tô màu cam, popover highlight rules đang mở."
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "vi": "Bộ chọn giá trị cho khóa ngoại orders.user_id, đang tìm Silva, liệt kê user theo tên và họ."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "vi": "Hộp thoại Touch ID mà Safe Mode hiện ra trước khi câu lệnh DELETE trên table orders chạy, trên một connection được đánh dấu bằng màu đỏ của production."
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "vi": "Cận cảnh hộp thoại Touch ID mà Safe Mode hiện ra trước khi câu lệnh DELETE chạy."
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "vi": "Hộp thoại xem lại Restore Previous Values: ba dòng được đánh dấu Will restore, một dòng được đánh dấu Changed since the save."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "vi": "Tab Structure của table reviews với một CHECK constraint và một index mới đang chờ lưu, bản xem trước DDL đang mở."
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "vi": "Cận cảnh bản xem trước DDL với các câu lệnh thêm một CHECK constraint và một index vào table reviews."
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "vi": "ER diagram của schema shop với các table và quan hệ giữa chúng, product_tags hiển thị thành đường quan hệ nhiều-nhiều giữa products và tags."
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "vi": "Cận cảnh ER diagram nối products và tags theo quan hệ nhiều-nhiều."
         },
         "caption": null
     },
@@ -218,12 +243,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "vi": "Cận cảnh script của Compare & Sync, với một lệnh DROP COLUMN chưa được đưa vào lần chạy này và cảnh báo mất dữ liệu."
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "vi": "Bước xem lại của Copy To từ MariaDB sang PostgreSQL: số dòng dự kiến của từng table, hai cột enum trong mục Type changes vì danh sách giá trị cho phép không được mang sang, và script CREATE TABLE."
         },
         "caption": null
     },
@@ -245,116 +264,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "vi": "Cửa sổ Data Files mở file orders.csv, đang tìm Hanoi, thanh trạng thái hiển thị 2.498 trên 20.000 dòng."
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "vi": "Cận cảnh các dòng trong orders.csv khớp với Hanoi, kèm số kết quả ở thanh trạng thái."
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "vi": "Thống kê cột status của orders.csv trong cửa sổ Data Files."
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "vi": "Hộp thoại import một file CSV vào table orders, mỗi cột trong file được ghép với một cột của table, kèm tùy chọn khi gặp lỗi."
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "vi": "Hộp thoại Export với table orders được chọn trong danh sách table và view của schema, định dạng XLSX đã được chọn."
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "vi": "Hộp thoại Back Up cho một connection qua SSH bastion, chỉ chọn cơ sở dữ liệu shop."
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "vi": "Khung AI chat trả lời câu hỏi về những khách hàng có doanh thu cao nhất tháng trước, kèm một query SQL và các nút Copy và Insert."
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "vi": "Cận cảnh câu trả lời của AI chat với một query SQL và nút Insert."
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "vi": "Phiên Agent mode \"Find orders with no items\": ba câu lệnh, một lệnh ghi đang chờ bấm Run."
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "vi": "Cận cảnh lệnh ghi đang chờ: thẻ câu lệnh với nút Run và Reject."
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "vi": "Hộp thoại Connect a Client trong cài đặt MCP, với lệnh claude mcp add cho Claude Code."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "vi": "Phần cài đặt SSH trong form connection: host bastion.acme.internal, user deploy, xác thực bằng key và một jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "vi": "Cận cảnh phần cài đặt SSH tunnel, với host bastion.acme.internal, user deploy, xác thực bằng SSH Agent và một jump host."
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "vi": "Cửa sổ Welcome liệt kê các connection đã lưu trong nhóm Production và Staging với tag màu, cùng cơ sở dữ liệu mẫu Chinook."
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "vi": "Hộp thoại Import from DataGrip liệt kê ba connection tìm thấy trong DataGrip, mỗi connection được đánh dấu sẵn sàng để import."
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "vi": "Kết quả Open Project Folder cho project acme-shop, với các connection tìm thấy trong .env và .env.production."
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "vi": "Một connection dùng tunnel kubectl port-forward tới svc/orders-db, kèm câu lệnh sẽ chạy."
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "vi": "Sơ đồ connection, nhóm và tag đồng bộ giữa Mac và iPhone hoặc iPad qua tài khoản iCloud của bạn; mật khẩu đi riêng qua iCloud Keychain, chỉ khi bật đồng bộ mật khẩu."
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "vi": "Sidebar Favorites có mục Team Library: ba query đã lưu, ghi tên người sửa gần nhất."
-        }
     },
     "mac-handoff-ios": {
         "description": {

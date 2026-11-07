@@ -54,7 +54,7 @@ it('never ties the paid plans to the Mac app in any language, once Linux ships',
         'about.json' => ['funding.plans'],
         'black-friday.json' => ['includes.lead'],
         'databases/index.json' => ['license.body'],
-        'features/index.json' => ['paid.lead'],
+        'features/index.json' => ['closing.body'],
         'compare/index.json' => ['labels.tablepro.priceFree'],
     ];
 

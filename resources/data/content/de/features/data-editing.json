@@ -9,211 +9,108 @@
     },
     "header": {
         "title": "Daten bearbeiten",
-        "lead": "Filtere Zeilen, folge Fremdschlüsseln und bearbeite Werte im Raster. Änderungen warten auf das Speichern; SQL lässt sich vorher prüfen.",
-        "docs": "/features/change-tracking"
+        "lead": "Filtere Zeilen, folge Fremdschlüsseln und bearbeite Werte im Raster. Nichts wird geschrieben, bevor du speicherst, und du kannst das SQL vorher lesen.",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "Die Zeilen finden, die du brauchst",
-            "paragraphs": [
-                "Sortieren und Blättern laufen auf dem Server; eine große Tabelle öffnet sich daher mit ihrer ersten Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. Count Exactly liefert bei Bedarf die tatsächliche Zahl."
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "Filter und Hervorhebungsregeln",
-                    "paragraphs": [
-                        "Erstelle Filter mit {filterOperatorCount} Operatoren oder einer SQL-Bedingung und speichere sie zur Wiederverwendung. Hervorhebungsregeln färben passende Zeilen oder Zellen und bleiben auf diesem Mac."
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "Fremdschlüssel und JSON",
-                    "paragraphs": [
-                        "Folge einem Fremdschlüssel zur referenzierten Zeile oder zeige sie direkt als Vorschau. Ein Auswahldialog hilft bei referenzierten Werten. Öffne JSON-Werte in einer Baumansicht oder einem Texteditor."
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "Die Zeilen finden, die du brauchst",
+            "text": [
+                "Sortieren und Blättern laufen auf dem Server, daher öffnet sich eine große Tabelle mit ihrer ersten Seite. Filtere mit {filterOperatorCount} Operatoren oder einer SQL-Bedingung, speichere wiederkehrende Filter und färbe passende Zeilen oder Zellen mit Hervorhebungsregeln.",
+                "Folge einem Fremdschlüssel zu seiner Zeile oder zeige sie direkt als Vorschau, und öffne JSON-Werte in einer Baumansicht."
+            ],
+            "notes": [
+                "Gespeicherte Filter und Hervorhebungsregeln bleiben auf dem Mac, auf dem du sie angelegt hast."
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "Änderungen vor dem Speichern prüfen",
-            "paragraphs": [
-                "Änderungen, neue Zeilen und Löschungen bleiben im Tab, bis du mit <kbd>⌘S</kbd> speicherst. <ui>Preview SQL</ui> zeigt ausstehende Anweisungen. Speichern nutzt gebundene Parameter und prüft betroffene Zeilenzahlen, mit Transaktion und Rollback, wo die Engine es unterstützt."
+            "text": [
+                "Änderungen, neue Zeilen und Löschungen warten im Tab, bis du <kbd>⌘S</kbd> drückst. <ui>Preview SQL</ui> zeigt vorher die Anweisungen, Rückgängig funktioniert bis zum Speichern, und das Speichern prüft die betroffenen Zeilenzahlen, in einer Transaktion, wo die Engine eine hat.",
+                "Jeder Typ hat seinen Editor: Datumswerte, ENUM- und SET-Listen, Arrays, JSON, Hex für Binärwerte und Bilder."
             ],
-            "points": [
-                "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
-                "Rückgängig und Wiederholen pro Tab bis zum Speichern.",
-                "Abfrageergebnisse lassen sich bearbeiten, wenn die Abfrage eine einzelne Tabelle ohne Join, CTE oder UNION liest.",
-                "Kopiere Zeilen als CSV, JSON, Markdown, IN-Liste oder INSERT- und UPDATE-Anweisungen."
+            "notes": [
+                "Unter Linux sowie auf iPhone und iPad braucht eine Zeile einen Primärschlüssel, um bearbeitet zu werden. Das Ergebnis eines Joins, einer CTE oder einer UNION ist überall schreibgeschützt."
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "Wähle pro Verbindung eine Stufe: {macSafeModeLevels}. Der Standard {macSafeModeDefault} führt Anweisungen ohne Bestätigung aus. Alert bestätigt Schreibvorgänge; Safe Mode ergänzt Touch ID oder Passwortfreigabe. Full-Stufen bestätigen auch Lesevorgänge. Read-Only blockiert Schreiben und Bearbeitung. Safe Mode ist kostenlos.",
-                "DROP, TRUNCATE und DELETE ohne WHERE benötigen immer eine Bestätigung. Agent mode im ganzen Fenster erzwingt mindestens Alert. Schreibgeschützte Engines und Geräteverwaltungsrichtlinien eines Unternehmens können die wirksame Stufe ebenfalls erhöhen."
+            "text": [
+                "Gib jeder Verbindung eine Stufe. Der Standard {macSafeModeDefault} führt Anweisungen ohne Nachfrage aus; Alert bestätigt Schreibvorgänge, Safe Mode ergänzt Touch ID oder dein Passwort, die Full-Stufen bestätigen auch Lesevorgänge, und Read-Only blockiert Schreibvorgänge. DROP, TRUNCATE und DELETE ohne WHERE fragen immer nach. Safe Mode ist kostenlos."
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                {
-                    "label": "Safe Mode und weitere Verbindungsrichtlinien",
-                    "href": "/features/connections#policies"
-                },
-                {
-                    "label": "Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                }
-            ]
+            "notes": [
+                "Linux bietet {linuxSafeModeLevels}. iPhone und iPad bieten {iosSafeModeLevels}."
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "Prüfe und stelle durch Speichern ersetzte Werte mit <ui>Restore Previous Values</ui> wieder her. Die Prüfung markiert seitdem geänderte Zeilen. Wiederherstellungen folgen Safe Mode und nutzen eine Transaktion, wo die Engine es erlaubt.",
-                "Frühere Werte bleiben {rewindDays} Tage verschlüsselt auf diesem Mac und werden nie synchronisiert. Aufzeichnung und Wiederherstellung stoppen bei Ende des kostenpflichtigen Tarifs."
+            "text": [
+                "Nach dem Speichern holt <ui>Restore Previous Values</ui> zurück, was ersetzt wurde. Die Prüfung markiert seitdem geänderte Zeilen, und die Wiederherstellung folgt Safe Mode, in einer Transaktion, wo die Engine es erlaubt. Frühere Werte bleiben {rewindDays} Tage verschlüsselt auf diesem Mac und werden nie synchronisiert."
             ],
             "paid": [
                 "data-rewind"
             ],
-            "asset": "mac-data-rewind-review"
-        },
+            "notes": [
+                "Es ist kein Backup: Trigger, Kaskaden und Änderungen außerhalb von TablePro werden nicht rückgängig gemacht."
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "Dokumente und Schlüssel",
-            "paragraphs": [
-                "Bearbeite MongoDB-Dokumente als Extended JSON oder benenne und entferne Felder in ganzen Collections. Auf Redis bearbeitest du Strings, benennst Schlüssel um und setzt TTLs im Raster oder fügst String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel hinzu. Andere Werttypen änderst du mit Editorbefehlen."
+            "text": [
+                "Bearbeite MongoDB-Dokumente als Extended JSON und Redis-Strings, Schlüsselnamen und TTLs im Raster."
             ],
             "links": [
                 {
-                    "label": "MongoDB in TablePro",
+                    "label": "MongoDB",
                     "href": "/mongodb-client"
                 },
                 {
-                    "label": "Redis in TablePro",
+                    "label": "Redis",
                     "href": "/redis-gui"
                 }
             ]
         },
         {
+            "id": "copy-rows",
+            "title": "Zeilen kopieren",
+            "text": [
+                "Kopiere Zeilen als CSV, JSON, Markdown, IN-Liste oder INSERT- und UPDATE-Anweisungen."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Auf iPhone und iPad",
-            "paragraphs": [
-                "Durchsuche Zeilen als Karten, sortiere und filtere sie oder tippe auf einen Fremdschlüssel für die Zeilenvorschau. Bearbeite Werte oder setze NULL; Bearbeiten und Löschen benötigen einen Primärschlüssel. Neue Zeilen starten mit DEFAULT-Werten, alternativ NULL oder leerem String.",
-                "Mobiles Safe Mode bietet {iosSafeModeLevels}, standardmäßig {iosSafeModeDefault}. Vorgemerkte Änderungen, Preview SQL, Hervorhebungsregeln und Data Rewind gibt es nicht in der App für iPhone und iPad."
+            "text": [
+                "Zeilen erscheinen als Karten, die du sortieren, filtern und bearbeiten kannst. Bearbeiten und Löschen benötigen einen Primärschlüssel."
             ],
             "links": [
                 {
                     "label": "Durchsuchen und Bearbeiten auf iPhone und iPad",
                     "href": "/ios#browse"
-                },
-                {
-                    "label": "Safe Mode auf iPhone und iPad",
-                    "href": "/ios#safe-mode"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Sortieren, Blättern und Filtern",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Gespeicherte Filter und Hervorhebungsregeln",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Fremdschlüsselnavigation und Werteauswahl",
-            "ios": "partial",
-            "iosNote": "Tippen zeigt die referenzierte Zeile",
-            "linux": "partial",
-            "linuxNote": "Navigation; keine Werteauswahl"
-        },
-        {
-            "label": "Zeilen bearbeiten, einfügen und löschen",
-            "ios": "partial",
-            "iosNote": "Zeileneditor; benötigt einen Primärschlüssel",
-            "linux": "partial",
-            "linuxNote": "Benötigt einen Primärschlüssel"
-        },
-        {
-            "label": "Vorgemerkte Änderungen, Preview SQL und Rückgängig",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Vorgemerkte Änderungen und Rückgängig; kein Preview SQL"
-        },
-        {
-            "label": "Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Touch ID oder Passwort vor Schreibvorgängen",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Rewind",
-            "paid": "data-rewind",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "MongoDB-Dokumente und Redis-Schlüssel",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Redis-Schlüssel nur per Befehl änderbar"
-        }
-    ],
-    "limits": [
-        "Data Rewind ist kein Backup. Es macht weder Trigger noch Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
-        "Ein UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Nachgefragt wird nur auf Alert oder einer strengeren Stufe.",
-        "Das Ergebnis eines Joins, einer CTE oder UNION ist in der Datentabelle schreibgeschützt; öffne zum Bearbeiten die Tabelle."
-    ],
-    "docs": [
-        {
-            "label": "Datentabelle",
-            "docs": "/features/data-grid"
-        },
-        {
-            "label": "Filter",
-            "docs": "/features/filtering"
-        },
-        {
-            "label": "Änderungsverfolgung und Preview SQL",
-            "docs": "/features/change-tracking"
-        },
-        {
-            "label": "Data Rewind",
-            "docs": "/features/change-tracking#restoring-a-save"
-        },
-        {
-            "label": "Safe Mode",
-            "docs": "/features/safe-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Abfragen",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Was ein bezahlter Tarif zusätzlich bietet",
-            "href": "/pricing#features"
         }
     ]
 }

@@ -9,133 +9,86 @@
     },
     "header": {
         "title": "AI assistant and MCP",
-        "lead": "Explain or fix SQL with your preferred provider. Connect AI clients to saved connections through MCP (Model Context Protocol).",
-        "docs": "/features/ai-assistant"
+        "lead": "Ask about your database with the AI provider you choose, and let AI clients work with saved connections through MCP (Model Context Protocol).",
+        "docs": "/features/ai-assistant",
+        "asset": "mac-home-ai-mcp"
     },
-    "sections": [
+    "bands": [
         {
             "id": "assistant",
-            "title": "Choose your AI provider",
-            "paragraphs": [
-                "Supported providers: {aiProviders}. Use an API key, an existing account or a local model, depending on the provider. Requests go directly to your provider; TablePro runs no AI service. The feature is free, but provider charges may apply.",
-                "Messages include schema context and the query in the editor. Result rows are excluded unless enabled in <ui>Settings > AI</ui>. Set a connection's AI policy to Never to block both the assistant and MCP clients."
+            "also": [
+                "in-the-editor"
             ],
-            "asset": "mac-ai-chat"
-        },
-        {
-            "id": "in-the-editor",
-            "title": "Review, explain, optimize and fix",
-            "paragraphs": [
-                "Review a statement, explain it or request an optimization. Fix with AI is available when a query fails. These actions send relevant schema and SQL without running the statement. <ui>Apply to Editor</ui> requires confirmation.",
-                "Inline suggestions are off by default. Add connection-specific AI Rules to provide instructions with each message; they are model instructions, not enforced database permissions."
-            ]
+            "title": "Choose your AI provider",
+            "text": [
+                "Use {aiProviders} with an API key, an account or a local model. Requests go straight to the provider; TablePro runs no AI service. The assistant is free, and your provider may charge.",
+                "From the editor, review, explain or optimize a statement, or fix one that failed. Nothing runs, and a suggestion reaches the editor only when you apply it."
+            ],
+            "notes": [
+                "Result rows stay out of messages unless you allow them in <ui>Settings > AI</ui>. Linux supports {aiProvidersLinux}."
+            ],
+            "docs": "/features/ai-assistant"
         },
         {
             "id": "agent-mode",
             "title": "Chat modes and Agent mode",
-            "paragraphs": [
-                "Ask is the default chat mode: it reads schema and runs no statements. Edit can run queries; Agent can also propose destructive statements. At the default {macSafeModeDefault} level, Edit and Agent writes can run without approval. Alert and stricter levels confirm writes; Read-Only refuses them. Destructive statements always require confirmation.",
-                "Full-window Agent mode is separate from the chat's Agent option. It keeps the connection at Alert or stricter, so writes wait for Run. Turning that mode off removes its minimum level. Sessions remain on this Mac."
+            "text": [
+                "Ask, the default, reads the schema and runs nothing. Edit runs queries, and Agent can also propose destructive statements, under the connection’s Safe Mode: Alert and stricter levels confirm writes, Read-Only refuses them. Full-window Agent mode keeps the connection at Alert or stricter while it works."
             ],
-            "asset": "mac-agent-mode",
-            "links": [{ "label": "Safe Mode levels", "href": "/features/data-editing#safe-mode" }]
+            "docs": "/features/agent-mode",
+            "asset": "features-ai-mcp-agent"
         },
         {
             "id": "mcp",
-            "title": "Connect external AI clients",
-            "paragraphs": [
-                "The built-in MCP server gives clients access through saved connections without exposing their passwords. It is off by default and listens only on {mcpHost}. Enable it yourself or let a configured client start it.",
-                "Clients can inspect schemas and use permitted query, object and administration tools. Calls are logged locally with statement digests; executed queries also appear in query history."
+            "also": [
+                "connect",
+                "permissions"
             ],
-            "asset": "mac-mcp-settings",
-            "blocks": [
-                {
-                    "id": "connect",
-                    "title": "Connect a client",
-                    "paragraphs": [
-                        "Find setup instructions for {mcpSetupClients} in <ui>Settings > MCP</ui>. The bundled <code>tablepro-mcp</code> bridge also supports {mcpBridgeClients} and starts the app when needed. Raycast uses a separate pairing flow that requires approval.",
-                        "For example, ask a client to find duplicate email addresses. It can inspect the schema, identify the column and run a permitted SELECT through your saved connection."
-                    ]
-                },
-                {
-                    "id": "permissions",
-                    "title": "What a client may do",
-                    "paragraphs": ["Every call passes each of these checks, and the strictest one wins."],
-                    "points": [
-                        "Token scope: Read Only, Read & Write or Full Access, optionally restricted to named connections. The bridge uses Read & Write, which excludes destructive statements.",
-                        "External Clients: Blocked, Read Only (default) or Read & Write per connection. Blocked connections are not listed.",
-                        "Connection approval: ask every time, once per connection or never.",
-                        "AI policy: a connection set to Never refuses MCP clients too.",
-                        "Safe Mode: confirmation follows the connection's level. DROP and TRUNCATE require Full Access and approval every time. File access and server-side code execution statements are refused."
-                    ]
-                }
-            ]
-        },
+            "title": "Connect AI clients through MCP",
+            "text": [
+                "The built-in MCP server lets clients such as {mcpSetupClients} use your saved connections without seeing their passwords. It is off until you turn it on, listens on {mcpHost} only, and logs every call.",
+                "Each call passes the token’s scope, the connection’s External Clients level, its approval setting and Safe Mode, and the strictest one wins."
+            ],
+            "notes": [
+                "On Linux the server offers {mcpToolCountLinux} tools, over HTTP."
+            ],
+            "docs": "/features/mcp",
+            "asset": "features-ai-mcp-mcp"
+        }
+    ],
+    "more": [
         {
             "id": "outside-servers",
-            "title": "Use external MCP tools",
-            "paragraphs": [
-                "TablePro's assistant can also call an external MCP server over Streamable HTTP. HTTPS is required except for local servers. Choose which connections can use each server; every tool call requires a click. Server settings stay on this Mac."
+            "title": "External MCP tools",
+            "text": [
+                "The assistant can call an outside MCP server over Streamable HTTP. Every tool call waits for your click."
             ]
         },
         {
             "id": "automation",
             "title": "Automation",
-            "paragraphs": [
-                "AppleScript can connect, run a query and open a table, within the connection’s External Clients level and Safe Mode. <code>tablepro://</code> links open a connection, a table or a query tab; a query in a link is filled in after you confirm and never runs by itself. Database URLs such as <code>postgresql://</code> open as connections.",
-                "The <code>tablepro</code> shell command opens those URLs and files in the app; it does not run queries from the terminal. The official Raycast extension searches your connections, tables and query history, and runs queries through the paired app."
+            "text": [
+                "AppleScript, <code>tablepro://</code> links and the Raycast extension open connections and run queries, within each connection’s limits."
             ],
-            "links": [{ "label": "Integrations", "href": "/integrations" }]
+            "links": [
+                {
+                    "label": "Integrations",
+                    "href": "/integrations"
+                }
+            ]
         },
         {
             "id": "privacy",
             "title": "Where your data goes",
-            "paragraphs": [
-                "Prompts, schema and attachments go directly to your provider under its terms. Local models keep them on your machine when served locally. TablePro receives none of this content. External MCP clients handle accessed data under their own settings and terms.",
-                "When you add GitHub Copilot, its option to send telemetry to GitHub starts switched on; turn it off where you set Copilot up."
+            "text": [
+                "Prompts and schema go to your provider under its terms, or stay on your machine with a local model. TablePro receives none of it."
             ],
-            "links": [{ "label": "What the Mac app sends", "href": "/privacy#ai-tools" }]
-        },
-        {
-            "id": "iphone",
-            "title": "Availability",
-            "paragraphs": [
-                "The iPhone and iPad app has none of the AI, MCP or automation tools on this page."
-            ],
-            "links": [{ "label": "What the iPhone and iPad app does", "href": "/ios" }]
+            "links": [
+                {
+                    "label": "What the apps send",
+                    "href": "/privacy#ai-tools"
+                }
+            ]
         }
-    ],
-    "availability": [
-        { "label": "AI chat with your own provider", "ios": "no", "linux": "partial", "linuxNote": "{aiProvidersLinux}" },
-        { "label": "Review, Explain, Optimize and Fix with AI", "ios": "no", "linux": "yes" },
-        { "label": "Inline suggestions and AI Rules", "ios": "no", "linux": "partial", "linuxNote": "Inline suggestions; no AI Rules" },
-        { "label": "Agent mode", "ios": "no", "linux": "no" },
-        { "label": "MCP server", "ios": "no", "linux": "partial", "linuxNote": "{mcpToolCountLinux} tools, over HTTP only" },
-        { "label": "Outside MCP servers", "ios": "no", "linux": "no" },
-        { "label": "AppleScript and the <code>tablepro</code> shell command", "ios": "no", "linux": "partial", "linuxNote": "The <code>tablepro</code> command opens files" },
-        { "label": "Raycast extension", "ios": "no", "linux": "no" }
-    ],
-    "limits": [
-        "Cursor cannot call TablePro’s tools, so with Cursor as the provider, Edit and Agent run no queries. Local models call tools only if the model supports it.",
-        "Claude Agent uses your Claude Code login and reaches the schema through the MCP server, which has to be on. It depends on Claude Code and can break with a Claude Code release.",
-        "The MCP server listens on {mcpHost} only. Reaching it from another machine means forwarding the port yourself, and owning what that exposes.",
-        "The Mac app has no Shortcuts actions; automate it with AppleScript, links or the MCP server.",
-        "Agent sessions and outside MCP servers stay on the Mac where you set them up and do not sync."
-    ],
-    "docs": [
-        { "label": "AI assistant", "docs": "/features/ai-assistant" },
-        { "label": "Agent mode", "docs": "/features/agent-mode" },
-        { "label": "MCP server", "docs": "/features/mcp" },
-        { "label": "MCP clients", "docs": "/integrations/mcp-clients" },
-        { "label": "MCP tokens and scopes", "docs": "/developers/tokens" },
-        { "label": "Outside MCP servers", "docs": "/features/mcp-outside-servers" },
-        { "label": "AppleScript", "docs": "/developers/applescript" },
-        { "label": "Raycast extension", "docs": "/integrations/raycast" }
-    ],
-    "related": [
-        { "label": "Safe Mode", "href": "/features/data-editing#safe-mode" },
-        { "label": "Connection policies", "href": "/features/connections#policies" },
-        { "label": "What the Mac app sends", "href": "/privacy#ai-tools" },
-        { "label": "Compare TablePro with other clients", "href": "/compare" }
     ]
 }

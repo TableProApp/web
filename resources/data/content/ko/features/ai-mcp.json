@@ -9,222 +9,86 @@
     },
     "header": {
         "title": "AI 도우미와 MCP",
-        "lead": "선호하는 제공자로 SQL을 설명하거나 수정하세요. MCP (Model Context Protocol)로 AI 클라이언트를 저장된 연결에 연결할 수 있습니다.",
-        "docs": "/features/ai-assistant"
+        "lead": "선택한 AI 제공자로 데이터베이스에 대해 질문하고, MCP (Model Context Protocol)로 AI 클라이언트가 저장된 연결을 사용하게 하세요.",
+        "docs": "/features/ai-assistant",
+        "asset": "mac-home-ai-mcp"
     },
-    "sections": [
+    "bands": [
         {
             "id": "assistant",
-            "title": "AI 제공자 선택",
-            "paragraphs": [
-                "지원 제공자: {aiProviders}. 제공자에 따라 API 키, 기존 계정, 로컬 모델을 사용합니다. 요청은 제공자에게 직접 전송되며 TablePro는 AI 서비스를 운영하지 않습니다. 기능은 무료지만 제공자의 요금이 발생할 수 있습니다.",
-                "메시지에는 스키마 정보와 편집기의 쿼리가 포함됩니다. 결과 행은 <ui>설정 > AI</ui> (Settings > AI)에서 켜지 않으면 제외됩니다. 연결의 AI 정책을 Never로 설정하면 도우미와 MCP 클라이언트를 모두 차단합니다."
+            "also": [
+                "in-the-editor"
             ],
-            "asset": "mac-ai-chat"
-        },
-        {
-            "id": "in-the-editor",
-            "title": "검토, 설명, 최적화 및 수정",
-            "paragraphs": [
-                "구문 검토, 설명, 최적화를 요청하세요. 쿼리가 실패하면 Fix with AI를 사용할 수 있습니다. 관련 스키마와 SQL을 보내지만 구문은 실행하지 않습니다. <ui>편집기에 적용</ui> (Apply to Editor)는 확인이 필요합니다.",
-                "인라인 제안은 기본적으로 꺼져 있습니다. 연결별 AI Rules로 각 메시지에 지침을 추가하세요. 이는 모델 지침이며 강제되는 데이터베이스 권한이 아닙니다."
-            ]
+            "title": "AI 제공자 선택",
+            "text": [
+                "지원 제공자: {aiProviders}. API 키, 계정 또는 로컬 모델로 사용할 수 있습니다. 요청은 제공자에게 직접 전송되며 TablePro는 AI 서비스를 운영하지 않습니다. 도우미는 무료이며 제공자의 요금이 발생할 수 있습니다.",
+                "편집기에서 구문을 검토, 설명, 최적화하거나 실패한 구문을 수정하세요. 아무것도 실행되지 않으며 제안은 적용할 때만 편집기에 반영됩니다."
+            ],
+            "notes": [
+                "결과 행은 <ui>설정 > AI</ui> (Settings > AI)에서 허용하지 않으면 메시지에 포함되지 않습니다. Linux는 {aiProvidersLinux} 제공자를 지원합니다."
+            ],
+            "docs": "/features/ai-assistant"
         },
         {
             "id": "agent-mode",
             "title": "채팅 모드 및 Agent mode",
-            "paragraphs": [
-                "기본 채팅 모드 Ask는 스키마만 읽고 구문을 실행하지 않습니다. Edit는 쿼리를 실행하며 Agent는 파괴적 구문도 제안할 수 있습니다. 기본 {macSafeModeDefault}에서는 Edit와 Agent의 쓰기가 승인 없이 실행될 수 있습니다. Alert 이상은 쓰기를 확인하고 Read-Only는 거부합니다. 파괴적 구문은 항상 확인이 필요합니다.",
-                "전체 창 Agent mode는 채팅의 Agent 옵션과 별개입니다. 연결을 Alert 이상으로 유지하므로 쓰기는 Run을 누를 때까지 대기합니다. 모드를 끄면 최소 수준 제한이 해제됩니다. 세션은 이 Mac에 남습니다."
+            "text": [
+                "기본 모드인 Ask는 스키마를 읽고 아무것도 실행하지 않습니다. Edit는 쿼리를 실행하고 Agent는 파괴적 구문도 제안할 수 있으며, 둘 다 연결의 Safe Mode를 따릅니다. Alert 이상의 수준은 쓰기를 확인하고 Read-Only는 거부합니다. 전체 창 Agent mode는 작업하는 동안 연결을 Alert 이상으로 유지합니다."
             ],
-            "asset": "mac-agent-mode",
-            "links": [
-                {
-                    "label": "Safe Mode 수준",
-                    "href": "/features/data-editing#safe-mode"
-                }
-            ]
+            "docs": "/features/agent-mode",
+            "asset": "features-ai-mcp-agent"
         },
         {
             "id": "mcp",
-            "title": "외부 AI 클라이언트 연결",
-            "paragraphs": [
-                "내장 MCP 서버는 암호를 노출하지 않고 저장된 연결을 통해 접근을 제공합니다. 기본적으로 꺼져 있으며 {mcpHost}에서만 수신합니다. 직접 켜거나 설정된 클라이언트가 시작하도록 할 수 있습니다.",
-                "클라이언트는 스키마를 확인하고 허용된 쿼리, 객체, 관리 도구를 사용할 수 있습니다. 호출은 구문 요약과 함께 로컬에 기록되며 실행된 쿼리는 쿼리 기록에도 나타납니다."
+            "also": [
+                "connect",
+                "permissions"
             ],
-            "asset": "mac-mcp-settings",
-            "blocks": [
-                {
-                    "id": "connect",
-                    "title": "클라이언트 연결",
-                    "paragraphs": [
-                        "{mcpSetupClients} 설정 안내는 <ui>설정 > MCP</ui> (Settings > MCP)에서 확인하세요. 내장 <code>tablepro-mcp</code> 브리지는 {mcpBridgeClients}도 지원하며 필요하면 앱을 시작합니다. Raycast는 승인이 필요한 별도의 페어링 절차를 사용합니다.",
-                        "예를 들어 중복 이메일 주소를 찾아 달라고 요청하세요. 클라이언트는 스키마를 확인하고 열을 찾은 뒤 저장된 연결로 허용된 SELECT를 실행할 수 있습니다."
-                    ]
-                },
-                {
-                    "id": "permissions",
-                    "title": "클라이언트에 허용되는 작업",
-                    "paragraphs": [
-                        "모든 호출은 다음 검사를 모두 통과해야 하며 가장 엄격한 조건이 적용됩니다."
-                    ],
-                    "points": [
-                        "토큰 범위: Read Only, Read & Write, Full Access. 지정한 연결로 제한할 수도 있습니다. 브리지는 파괴적 구문을 제외하는 Read & Write를 사용합니다.",
-                        "External Clients: 연결별 Blocked, Read Only (기본값), Read & Write. Blocked 연결은 목록에 표시되지 않습니다.",
-                        "연결 승인: 매번, 연결당 한 번 또는 확인하지 않음.",
-                        "AI 정책: Never로 설정한 연결은 MCP 클라이언트도 거부합니다.",
-                        "Safe Mode: 연결 수준에 따라 확인합니다. DROP과 TRUNCATE에는 Full Access와 매번 승인이 필요합니다. 파일 접근 및 서버 측 코드 실행 구문은 거부됩니다."
-                    ]
-                }
-            ]
-        },
+            "title": "MCP로 AI 클라이언트 연결",
+            "text": [
+                "내장 MCP 서버를 사용하면 {mcpSetupClients} 같은 클라이언트가 암호를 보지 않고 저장된 연결을 사용할 수 있습니다. 직접 켜기 전까지 꺼져 있고 {mcpHost}에서만 수신하며 모든 호출을 기록합니다.",
+                "모든 호출은 토큰 범위, 연결의 External Clients 수준, 승인 설정, Safe Mode를 거치며 가장 엄격한 조건이 적용됩니다."
+            ],
+            "notes": [
+                "Linux에서는 서버가 HTTP로 {mcpToolCountLinux}개 도구를 제공합니다."
+            ],
+            "docs": "/features/mcp",
+            "asset": "features-ai-mcp-mcp"
+        }
+    ],
+    "more": [
         {
             "id": "outside-servers",
-            "title": "외부 MCP 도구 사용",
-            "paragraphs": [
-                "TablePro 도우미는 Streamable HTTP로 외부 MCP 서버도 호출할 수 있습니다. 로컬 서버 외에는 HTTPS가 필요합니다. 서버별로 사용할 연결을 선택하며 모든 도구 호출에 클릭이 필요합니다. 서버 설정은 이 Mac에 남습니다."
+            "title": "외부 MCP 도구",
+            "text": [
+                "도우미는 Streamable HTTP로 외부 MCP 서버를 호출할 수 있습니다. 모든 도구 호출은 클릭할 때까지 대기합니다."
             ]
         },
         {
             "id": "automation",
             "title": "자동화",
-            "paragraphs": [
-                "AppleScript는 연결의 External Clients 수준과 Safe Mode 안에서 연결하고 쿼리를 실행하고 테이블을 열 수 있습니다. <code>tablepro://</code> 링크는 연결, 테이블 또는 쿼리 탭을 엽니다. 링크의 쿼리는 확인 후 입력되며 자동으로 실행되지 않습니다. <code>postgresql://</code> 같은 데이터베이스 URL은 연결로 열립니다.",
-                "<code>tablepro</code> 셸 명령은 해당 URL과 파일을 앱에서 열며 터미널에서 쿼리를 실행하지 않습니다. 공식 Raycast 확장은 연결, 테이블 및 쿼리 기록을 검색하고 페어링된 앱을 통해 쿼리를 실행합니다."
+            "text": [
+                "AppleScript, <code>tablepro://</code> 링크, Raycast 확장은 각 연결의 제한 안에서 연결을 열고 쿼리를 실행합니다."
             ],
-            "links": [{ "label": "통합", "href": "/integrations" }]
+            "links": [
+                {
+                    "label": "통합",
+                    "href": "/integrations"
+                }
+            ]
         },
         {
             "id": "privacy",
             "title": "데이터가 전달되는 곳",
-            "paragraphs": [
-                "프롬프트, 스키마, 첨부 파일은 제공자의 약관에 따라 직접 전송됩니다. 로컬에서 제공하는 모델은 데이터를 기기에 유지합니다. TablePro는 이 내용을 받지 않습니다. 외부 MCP 클라이언트는 자신의 설정과 약관에 따라 접근한 데이터를 처리합니다.",
-                "GitHub Copilot을 추가하면 GitHub로 텔레메트리를 보내는 옵션이 기본적으로 켜져 있습니다. Copilot 설정에서 끌 수 있습니다."
+            "text": [
+                "프롬프트와 스키마는 제공자의 약관에 따라 제공자에게 전송되며, 로컬 모델을 쓰면 기기에 남습니다. TablePro는 이 내용을 받지 않습니다."
             ],
             "links": [
                 {
-                    "label": "Mac 앱이 보내는 정보",
+                    "label": "앱이 보내는 정보",
                     "href": "/privacy#ai-tools"
                 }
             ]
-        },
-        {
-            "id": "iphone",
-            "title": "지원 환경",
-            "paragraphs": [
-                "iPhone 및 iPad 앱에는 이 페이지의 AI, MCP, 자동화 도구가 없습니다."
-            ],
-            "links": [
-                {
-                    "label": "iPhone과 iPad 앱의 기능",
-                    "href": "/ios"
-                }
-            ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "직접 선택한 제공업체를 사용하는 AI 채팅",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "{aiProvidersLinux}"
-        },
-        {
-            "label": "Review, Explain, Optimize 및 Fix with AI",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "인라인 제안 및 AI Rules",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "인라인 제안; AI Rules 없음"
-        },
-        {
-            "label": "Agent mode",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "MCP 서버",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "{mcpToolCountLinux}개 도구, HTTP 전용"
-        },
-        {
-            "label": "외부 MCP 서버",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AppleScript 및 <code>tablepro</code> 셸 명령",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "<code>tablepro</code> 명령으로 파일 열기"
-        },
-        {
-            "label": "Raycast 확장",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Cursor는 TablePro 도구를 호출할 수 없으므로 Cursor를 제공업체로 사용하면 Edit와 Agent는 쿼리를 실행하지 않습니다. 로컬 모델은 해당 모델이 지원할 때만 도구를 호출합니다.",
-        "Claude Agent는 Claude Code 로그인을 사용하고 켜져 있어야 하는 MCP 서버를 통해 스키마에 접근합니다. Claude Code에 의존하므로 Claude Code 릴리스로 인해 작동하지 않을 수 있습니다.",
-        "MCP 서버는 {mcpHost}에서만 수신합니다. 다른 기기에서 접근하려면 직접 포트를 전달하고 그로 인해 노출되는 범위를 책임져야 합니다.",
-        "Mac 앱에는 단축어 동작이 없습니다. AppleScript, 링크 또는 MCP 서버로 자동화하세요.",
-        "Agent 세션과 외부 MCP 서버는 설정한 Mac에만 남으며 동기화되지 않습니다."
-    ],
-    "docs": [
-        {
-            "label": "AI 어시스턴트",
-            "docs": "/features/ai-assistant"
-        },
-        {
-            "label": "Agent mode",
-            "docs": "/features/agent-mode"
-        },
-        {
-            "label": "MCP 서버",
-            "docs": "/features/mcp"
-        },
-        {
-            "label": "MCP 클라이언트",
-            "docs": "/integrations/mcp-clients"
-        },
-        {
-            "label": "MCP 토큰 및 범위",
-            "docs": "/developers/tokens"
-        },
-        {
-            "label": "외부 MCP 서버",
-            "docs": "/features/mcp-outside-servers"
-        },
-        {
-            "label": "AppleScript",
-            "docs": "/developers/applescript"
-        },
-        {
-            "label": "Raycast 확장",
-            "docs": "/integrations/raycast"
-        }
-    ],
-    "related": [
-        {
-            "label": "Safe Mode",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "연결 정책",
-            "href": "/features/connections#policies"
-        },
-        {
-            "label": "Mac 앱이 보내는 정보",
-            "href": "/privacy#ai-tools"
-        },
-        {
-            "label": "TablePro와 다른 클라이언트 비교",
-            "href": "/compare"
         }
     ]
 }

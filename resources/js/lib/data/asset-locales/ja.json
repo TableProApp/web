@@ -95,29 +95,114 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "ja": "TablePro の SQL エディタ。recent_orders という CTE を users に結合するクエリと、CTE の列を表示する自動補完リスト。"
+            "ja": "過去 7 日間の Query Insights。Most Run、Slowest、Got Slower のリストの上に日ごとの成功・失敗クエリのグラフがあり、一つのクエリ形式が Got Slower と表示されています。"
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "ja": "TablePro の SQL エディタで CTE の列を提案する自動補完リストの拡大図。"
+            "ja": "products テーブルで四つの価格変更が保存を待ち、Preview SQL シートには対応する UPDATE 文が表示されています。"
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "ja": ":customer_id と :since パラメータを使うクエリ、値を入力するパネル、クエリ履歴のドロワー。"
+            "ja": "shop スキーマのテーブルとリレーションを示す ER 図。product_tags は products と tags の間の多対多の線で表されています。"
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "ja": "orders に対するクエリの EXPLAIN Compare。計画が Index Scan から Seq Scan に変わり、クエリがベースラインより遅くなったことを示しています。"
+            "ja": "shop と shop_staging の Compare & Sync。長さの異なる列と、スクリプトへの追加を保留された DROP COLUMN が表示されています。"
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "ja": "PostgreSQL サーバーの Server Dashboard。アクティブなセッションの一覧で長時間実行中の SELECT が選択され、Terminate ボタンが表示されています。"
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "ja": "Data Files ウインドウで orders.csv を開き、Hanoi を検索しています。ステータスバーは 20,000 行中 2,498 行を示しています。"
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "alt": {
+            "ja": "Mac の TablePro SQL エディター。パラメーターを使うクエリの横にクエリ履歴が開いています。"
+        },
+        "caption": null
+    },
+    "features-querying-explain": {
+        "alt": {
+            "ja": "Mac の TablePro で図として描かれた PostgreSQL のクエリプラン。"
+        },
+        "caption": null
+    },
+    "features-querying-charts": {
+        "description": {
+            "ja": "Mac の SQL エディターの結果エリアに、shop の月別売上クエリを棒グラフで表示しています。"
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "ja": "Safe Mode レベルの接続で編集を保存する場面。グリッドの上に Touch ID またはパスワードの確認が表示され、保留中の文も見えます。"
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "ja": "shop の Data Rewind。保存の確認画面に、変更された行の以前の値と現在の値が並び、Restore Previous Values があります。"
+        }
+    },
+    "features-schema-copy": {
+        "alt": {
+            "ja": "Mac の TablePro の Copy To 確認画面。SQLite ファイルへのコピーの DDL、行数、型変換が表示されています。"
+        },
+        "caption": null
+    },
+    "features-import-export-import": {
+        "alt": {
+            "ja": "Mac の TablePro のインポートシート。CSV ファイルの列をテーブルに対応付けています。"
+        },
+        "caption": null
+    },
+    "features-import-export-backup": {
+        "alt": {
+            "ja": "Mac の TablePro の Backup Dump シート。pg_dump で PostgreSQL データベースをダンプする設定です。"
+        },
+        "caption": null
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "ja": "shop での全画面 Agent mode。チャットの依頼、エージェントが提案した文、承認を待つ Run ボタン。"
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "alt": {
+            "ja": "Mac の TablePro の MCP 設定。サーバーが有効で、接続ごとのアクセスレベルが表示されています。"
+        },
+        "caption": null
+    },
+    "features-connections-import": {
+        "alt": {
+            "ja": "Mac の TablePro の Import from Other App シート。別のデータベースクライアントで見つかった接続を一覧表示しています。"
+        },
+        "caption": null
+    },
+    "features-connections-network": {
+        "alt": {
+            "ja": "Mac の TablePro の接続フォーム。キーを使い、SSH 踏み台ホスト経由で接続する設定です。"
+        },
+        "caption": null
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "ja": "サイドバーの Team Library。メンバーが公開した接続と保存済みクエリ、各クエリを最後に変更した人が表示されています。"
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +228,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "ja": "products テーブルで四つの価格変更が保存を待ち、Preview SQL シートには対応する UPDATE 文が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "ja": "未保存の四つの価格変更に対応する四つの UPDATE 文を表示する Preview SQL シートの拡大図。"
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "ja": "orders テーブルの支払い済みの行が緑、返金済みの行がオレンジで表示され、ハイライトルールのポップオーバーが開いています。"
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "ja": "orders.user_id 外部キーの値ピッカー。Silva を検索し、ユーザーを名と姓で一覧表示しています。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "ja": "本番環境を示す赤色の接続で、orders テーブルへの DELETE の実行前に Safe Mode が表示する Touch ID の確認。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "ja": "DELETE 文の実行前に Safe Mode が表示する Touch ID の確認の拡大図。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "ja": "Restore Previous Values のレビューシート。三行が Will restore、一行が Changed since the save と表示されています。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "ja": "reviews テーブルの Structure タブ。新しい CHECK 制約と新しいインデックスが保存を待ち、DDL プレビューが開いています。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "ja": "reviews テーブルに CHECK 制約とインデックスを追加する文を表示する DDL プレビューの拡大図。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "ja": "shop スキーマのテーブルとリレーションを示す ER 図。product_tags は products と tags の間の多対多の線で表されています。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "ja": "products と tags を多対多で結ぶ ER 図の拡大図。"
         },
         "caption": null
     },
@@ -218,12 +243,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "ja": "Compare & Sync スクリプトの拡大図。今回の実行から保留された DROP COLUMN と、そのデータ損失の警告。"
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "ja": "MariaDB から PostgreSQL への Copy To のレビュー。各テーブルの想定行数、許可する値のリストが引き継がれないため Type changes に表示された二つの enum 列、CREATE TABLE スクリプト。"
         },
         "caption": null
     },
@@ -245,116 +264,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "ja": "Data Files ウインドウで orders.csv を開き、Hanoi を検索しています。ステータスバーは 20,000 行中 2,498 行を示しています。"
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "ja": "orders.csv で Hanoi に一致した行の拡大図。ステータスバーに一致件数が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "ja": "Data Files ウインドウで orders.csv の status 列の統計情報を表示しています。"
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "ja": "CSV ファイルを orders テーブルに取り込むインポートシート。ファイルの各列がテーブルの列にマッピングされ、エラー時の処理の選択肢も表示されています。"
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "ja": "Export ダイアログ。スキーマのテーブルとビューの中から orders テーブルにチェックが入り、形式として XLSX が選ばれています。"
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "ja": "SSH 踏み台経由の接続の Back Up シート。shop データベースのみが選択されています。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "ja": "先月の売上上位の顧客について回答する AI チャットパネル。SQL クエリと Copy、Insert ボタンが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "ja": "SQL クエリと Insert ボタンを含む AI チャットの回答の拡大図。"
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "ja": "Agent モードの「Find orders with no items」セッション。三つのステートメントと、Run を待つ一つの書き込み。"
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "ja": "待機中の書き込みの拡大図。Run と Reject を表示したステートメントのカード。"
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "ja": "MCP 設定の Connect a Client シート。Claude Code 用の claude mcp add コマンドが表示されています。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "ja": "接続フォームの SSH 設定。ホストは bastion.acme.internal、ユーザーは deploy、鍵認証を使用し、ジャンプホストが一台あります。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "ja": "SSH トンネル設定の拡大図。ホストは bastion.acme.internal、ユーザーは deploy、SSH Agent 認証を使用し、ジャンプホストが一台あります。"
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "ja": "Welcome ウインドウ。色付きタグのある Production と Staging のグループに保存済み接続が並び、Chinook サンプルデータベースも表示されています。"
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "ja": "Import from DataGrip シート。DataGrip で見つかった三つの接続が表示され、それぞれインポート可能と示されています。"
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "ja": "acme-shop プロジェクトの Open Project Folder の結果。.env と .env.production で見つかった接続が表示されています。"
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "ja": "kubectl port-forward で svc/orders-db にトンネル接続する接続と、実行予定のコマンド。"
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "ja": "お客様の iCloud アカウントを通じて Mac と iPhone・iPad 間で接続、グループ、タグを同期する図。パスワードは、パスワード同期がオンの場合のみ、別途 iCloud キーチェーンを通じて同期します。"
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "ja": "Favorites サイドバーの Team Library セクション。最後に変更した人が示された三つの保存済みクエリ。"
-        }
     },
     "mac-handoff-ios": {
         "description": {

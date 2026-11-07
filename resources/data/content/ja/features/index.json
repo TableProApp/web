@@ -9,64 +9,41 @@
     },
     "header": {
         "title": "機能",
-        "lead": "対応データベースのデータをクエリ、編集、操作できます。"
+        "lead": "TablePro が Mac と Linux でできることを、対応データベース全体にわたって分野ごとに紹介します。"
     },
-    "areas": {
-        "title": "作業別の機能",
-        "paid": "追加の有料機能：{features}（{tier}）",
-        "noPaid": "有料機能なし",
-        "items": [
-            {
-                "slug": "querying",
-                "summary": "補完機能で SQL を書き、保存したクエリを再利用し、履歴を検索できます。対応エンジンでクエリプランを確認できます。"
-            },
-            {
-                "slug": "data-editing",
-                "summary": "行をフィルターし、外部キーをたどり、保存前に編集内容を確認できます。"
-            },
-            {
-                "slug": "schema",
-                "summary": "リレーションを確認し、テーブル構造を変更して、対応データベースを比較できます。"
-            },
-            {
-                "slug": "import-export",
-                "summary": "{importFormats} ファイルを取り込み、テーブルや結果を出力できます。データベース接続なしでデータファイルを開けます。"
-            },
-            {
-                "slug": "ai-mcp",
-                "summary": "好みの AI プロバイダーを使うか、MCP (Model Context Protocol) で外部クライアントを接続できます。"
-            },
-            {
-                "slug": "connections",
-                "summary": "SSH トンネルやクラウド認証を使い、他のアプリから接続を取り込めます。"
-            },
-            {
-                "slug": "sync-and-teams",
-                "summary": "iCloud で同期するか、チームで接続やクエリを共有できます。"
-            }
-        ]
-    },
-    "ios": {
-        "title": "iPhone と iPad",
-        "body": "iPhone・iPad でテーブル参照、行編集、クエリ実行ができます。別の無料モバイルアプリで、アプリ内課金はありません。対応状況は各機能ページに記載しています。",
-        "link": "iPhone・iPad 版 TablePro"
-    },
-    "paid": {
-        "title": "無料と有料",
-        "lead": "基本機能は試用期限なしで無料です。Pro は有料機能を追加し、Team は Pro を含みます。対応する全データベース、AI アシスタント、MCP、Safe Mode はライセンスなしで使えます。",
-        "caption": "現在 Mac で使える有料機能",
-        "columns": {
-            "feature": "機能",
-            "plan": "プラン",
-            "page": "説明ページ"
+    "areas": [
+        {
+            "slug": "querying",
+            "summary": "スキーマを参照する補完で SQL を書き、よく使うクエリを保存し、対応エンジンでクエリプランを確認できます。"
         },
-        "pricing": "料金を見る"
-    },
-    "docs": {
-        "title": "ドキュメント",
-        "body": "設定手順、設定項目、ショートカットを確認できます。",
-        "link": "ドキュメントを読む",
-        "path": "/features/overview"
+        {
+            "slug": "data-editing",
+            "summary": "行をフィルターし、外部キーをたどり、グリッドで編集できます。保存する前に SQL を確認できます。"
+        },
+        {
+            "slug": "schema",
+            "summary": "テーブル構造を変更し、ER 図を確認し、二つのデータベースを比較してから同期できます。"
+        },
+        {
+            "slug": "import-export",
+            "summary": "{importFormats} ファイルをインポートし、テーブルや結果をエクスポートできます。データファイルはデータベースなしで編集できます。"
+        },
+        {
+            "slug": "ai-mcp",
+            "summary": "好みの AI プロバイダーを使えます。MCP を介して AI クライアントが保存済み接続を使えます。"
+        },
+        {
+            "slug": "connections",
+            "summary": "SSH やトンネルで非公開サーバーに接続し、クラウドアカウントでログインし、他のアプリから接続をインポートできます。"
+        },
+        {
+            "slug": "sync-and-teams",
+            "summary": "iCloud で接続を同期し、ファイルとして共有し、チームに接続とクエリを公開できます。"
+        }
+    ],
+    "closing": {
+        "body": "TablePro は仕事でも無料で使え、試用期間はありません。Pro は有料機能を追加し、Team は Pro を含みます。",
+        "ios": "{devices} 版 TablePro"
     },
     "labels": {
         "number": {
@@ -78,29 +55,13 @@
             "starter": "Pro",
             "team": "Team"
         },
-        "paidBadge": "{name}：{tier} プラン",
-        "header": {
-            "paid": "有料：{features}。その他は無料です。",
-            "paidItem": "{name} ({tier})",
-            "allFree": "このページの機能はすべて無料です。",
-            "docs": "ドキュメントを読む"
-        },
-        "sections": {
-            "availability": "対応範囲",
-            "limits": "制限",
-            "docs": "ドキュメント",
-            "related": "関連情報"
-        },
-        "availability": {
-            "caption": "Mac・iPhone・iPad の対応状況とプラン",
-            "capability": "機能",
-            "free": "無料",
-            "notAvailable": "非対応",
-            "plan": "{tier} プラン"
-        },
-        "download": {
+        "docs": "ドキュメント",
+        "more": "その他",
+        "closing": {
             "title": "TablePro を入手",
-            "body": "無料で使えるオープンソースアプリです。",
+            "tier": "{tier} は {features} を追加します。",
+            "rest": "このページのその他の機能は無料です。",
+            "allFree": "このページの機能はすべて無料です。",
             "pricing": "料金を見る"
         }
     }

@@ -9,173 +9,118 @@
     },
     "header": {
         "title": "连接",
-        "lead": "保存和整理连接，通过 SSH 访问私有服务器，并使用支持的云端账户登录。",
-        "docs": "/connections"
+        "lead": "保存和整理连接，通过 SSH 和隧道访问私有服务器，并使用云账户登录。",
+        "docs": "/connections",
+        "asset": "mac-home-connections"
     },
-    "sections": [
+    "bands": [
         {
             "id": "organize",
             "title": "整理连接",
-            "paragraphs": [
-                "通过 URL 填充连接设置，支持 <code>jdbc:</code> 和 <code>+ssh</code> URL。用 <ui>使用剪贴板中的 URL</ui> (Use clipboard URL) 导入已复制的 URL。",
-                "将连接整理为嵌套分组，添加标签和颜色，并标记收藏。通过 <ui>打开示例数据库</ui> (Open Sample Database) 试用内置 SQLite 示例。",
-                "在一个窗口保留多个连接，或使用 <ui>在新窗口中打开</ui> (Open in New Window)。每个连接记住上次使用的标签页。"
+            "text": [
+                "粘贴 URL（包括 <code>jdbc:</code> 和 <code>+ssh</code> URL），表单会自动填写。用嵌套分组、标签、颜色和收藏整理连接，可在一个窗口保留多个连接，也可让某个连接单独使用一个窗口，每个连接都会记住上次使用的标签页。"
             ],
-            "asset": "mac-connection-library"
+            "notes": [
+                "在 iPhone 和 iPad 上，每个连接只能有一个标签。"
+            ],
+            "docs": "/connections"
         },
         {
             "id": "import",
+            "also": [
+                "other-apps",
+                "project-folder",
+                "aws"
+            ],
             "title": "导入连接",
-            "paragraphs": [
-                "从其他数据库客户端、项目配置文件或 AWS 账户导入。"
+            "text": [
+                "<ui>从其他应用导入</ui> (Import from Other App) 读取 {connectionImportApps}，在源应用允许时一并导入密码。<ui>打开项目文件夹</ui> (Open Project Folder) 从环境、框架和 Docker 文件中查找数据库设置，<ui>Import from AWS</ui> 列出配置文件可见的 RDS 和 Aurora 数据库。"
             ],
-            "links": [
-                {
-                    "label": "连接文件和分享链接",
-                    "href": "/features/sync-and-teams#share"
-                }
+            "notes": [
+                "Linux 支持从其他应用导入。"
             ],
-            "blocks": [
-                {
-                    "id": "other-apps",
-                    "title": "从其他数据库客户端导入",
-                    "paragraphs": [
-                        "<ui>从其他应用导入</ui> (Import from Other App) 读取 {connectionImportApps}，包括 TablePlus 的 Setapp 版。密码导入取决于源 App 的存储方式。支持 DBeaver 和 Navicat 的加密密码；Navicat 需要 <code>.ncx</code> 导出文件。"
-                    ],
-                    "asset": "mac-import-other-app"
-                },
-                {
-                    "id": "project-folder",
-                    "title": "从项目配置文件导入",
-                    "paragraphs": [
-                        "<ui>打开项目文件夹</ui> (Open Project Folder) 从支持的环境、框架和 Docker 配置文件中查找数据库设置。导入前检查各来源；密码保存在 Keychain。识别为生产环境的名称从 Alert 开始，而非通常的 Safe Mode 默认级别。"
-                    ],
-                    "asset": "mac-open-project-folder"
-                },
-                {
-                    "id": "aws",
-                    "title": "从 AWS 账户导入",
-                    "paragraphs": [
-                        "<ui>Import from AWS</ui> 列出 AWS 配置文件在所选区域中可见的 RDS 实例和 Aurora 集群，并添加选中的项目。配置文件需要 <code>rds:DescribeDBInstances</code> 和 <code>rds:DescribeDBClusters</code> 权限。"
-                    ]
-                }
-            ]
+            "docs": "/switching",
+            "asset": "features-connections-import"
         },
         {
             "id": "network",
+            "also": [
+                "ssh",
+                "tunnels"
+            ],
             "title": "SSH、TLS 和隧道",
-            "paragraphs": [],
-            "blocks": [
+            "text": [
+                "通过 SSH 连接时可使用密码、密钥、SSH agent 或交互式提示，支持跳板主机，并可将隧道保存为可复用的配置。TLS 支持从 Required 到 Verify Identity 的各级模式。其余情况可使用 SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy，或 <code>kubectl port-forward</code> 等自定义命令。"
+            ],
+            "notes": [
+                "Linux 以及 iPhone 和 iPad 支持通过 SSH 和 TLS 连接。"
+            ],
+            "engines": [
                 {
-                    "id": "ssh",
-                    "title": "SSH 和 TLS",
-                    "paragraphs": [
-                        "使用密码、密钥、代理或交互式提示通过 SSH 连接。可用跳板主机或 <code>ProxyJump</code>，并将隧道保存为 SSH 配置供复用。未知主机密钥需要指纹批准。",
-                        "选择 TLS 模式并提供 CA 或客户端证书。Required 加密连接但不验证服务器证书；Verify CA 和 Verify Identity 增加证书检查。"
-                    ],
-                    "engines": [
-                        {
-                            "label": "不支持 SSH 隧道的网络引擎",
-                            "list": "noSsh"
-                        }
-                    ],
-                    "asset": "mac-connection-ssh-form"
-                },
-                {
-                    "id": "tunnels",
-                    "title": "代理、Cloudflare、Cloud SQL 和隧道命令",
-                    "paragraphs": [
-                        "使用远程 DNS 的 SOCKS5，或通过 <code>cloudflared</code> 使用 Cloudflare Access。对于 {cloudSqlProxy}，TablePro 会下载、验证并运行 Cloud SQL Auth Proxy。",
-                        "Tunnel Command 通过 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自定义命令打开的本地端口连接。连接前 shell 脚本每个会话都需批准。"
-                    ],
-                    "asset": "mac-tunnel-command"
+                    "label": "不支持 SSH：",
+                    "list": "noSsh"
                 }
-            ]
+            ],
+            "docs": "/connections/ssh-tunneling",
+            "asset": "features-connections-network"
         },
         {
             "id": "cloud-auth",
             "title": "使用云账户登录",
-            "paragraphs": [
-                "AWS IAM 数据库认证在每次连接时签发新令牌，可使用访问密钥、<code>~/.aws</code> 中的配置文件（支持 <code>credential_process</code> 和角色代入）或 AWS IAM Identity Center。它还会将 TLS 提升为 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 和 DynamoDB 使用各自的 AWS 签名。",
-                "SQL Server 可使用提供的应用注册客户端 ID，在浏览器中通过 Microsoft Entra ID 登录，或使用票据、主体和密码进行 Kerberos 登录。Google BigQuery 支持服务账户密钥、Application Default Credentials，或使用自有客户端的 Google OAuth；Google Cloud Spanner 和 Cloud SQL Auth Proxy 可使用 Google 账户。"
+            "text": [
+                "AWS IAM 在每次连接时签发新令牌，可使用密钥、配置文件或 IAM Identity Center。SQL Server 可通过 Microsoft Entra ID 或 Kerberos 登录，BigQuery、Spanner 和 Cloud SQL Auth Proxy 可使用您的 Google 账户。"
+            ],
+            "notes": [
+                "Linux 支持 Kerberos 登录。iPhone 和 iPad 可在从 Mac 同步的连接上使用 Entra ID。"
             ],
             "engines": [
                 {
-                    "label": "RDS 和 Aurora 的 AWS IAM 认证",
+                    "label": "AWS IAM：",
                     "list": "awsIam"
                 }
             ],
-            "links": [
-                {
-                    "label": "在 TablePro 中使用 SQL Server",
-                    "href": "/sql-server-client"
-                },
-                {
-                    "label": "在 TablePro 中使用 BigQuery",
-                    "href": "/bigquery-client"
-                }
-            ]
+            "docs": "/connections/aws-iam"
         },
         {
             "id": "credentials",
-            "title": "凭据和密码来源",
-            "paragraphs": [
-                "密码和 SSH 密钥口令保存在 macOS Keychain。通过 iCloud Keychain 同步密码需单独开启。SSH 密钥文件保留在磁盘上。",
-                "免费的凭据配置可复用登录信息，并从 1Password、Vault、AWS Secrets Manager、命令、文件或环境变量读取密码。所需 CLI 工具须自行安装。来源不参与同步。支持的 PostgreSQL 系列连接也可使用 <code>~/.pgpass</code>。"
+            "also": [
+                "environment-variables"
             ],
-            "links": [
-                {
-                    "label": "iCloud Sync 和密码同步",
-                    "href": "/features/sync-and-teams#icloud-sync"
-                }
+            "title": "密码和凭据",
+            "text": [
+                "密码和 SSH 密钥口令保存在 macOS Keychain。凭据配置免费，可复用登录信息，并从 1Password、Vault、AWS Secrets Manager、命令、文件或环境变量读取密码。Environment Variables 属于 Pro，在连接时填入 <code>$DB_HOST</code> 等字段。"
             ],
-            "blocks": [
-                {
-                    "id": "environment-variables",
-                    "title": "Environment Variables",
-                    "paragraphs": [
-                        "在支持的连接字段中使用 <code>$DB_HOST</code> 等引用。连接时从 App 环境读取值。端口和密码字段不适用；密码使用单独的免费来源。"
-                    ],
-                    "paid": [
-                        "environment-variables"
-                    ]
-                }
-            ]
-        },
+            "paid": [
+                "environment-variables"
+            ],
+            "notes": [
+                "Linux 将密码保存在系统密钥环中。"
+            ],
+            "docs": "/connections/credential-profiles"
+        }
+    ],
+    "more": [
         {
             "id": "policies",
+            "also": [
+                "timeouts"
+            ],
             "title": "连接策略",
-            "paragraphs": [
-                "Safe Mode 控制语句确认。External Clients 控制 MCP 和 AppleScript 访问，默认为 Read Only，设置保留在这台 Mac。AI 策略控制助手访问；Never 也会阻止 MCP 客户端。",
-                "组织可通过配置描述文件强制所有连接的最低 Safe Mode 级别，并控制更新。"
+            "text": [
+                "每个连接可设置自己的 Safe Mode 级别、MCP 和 AppleScript 客户端可执行的操作、AI 助手能否访问，以及自己的连接和查询超时。"
             ],
             "links": [
                 {
-                    "label": "Safe Mode 级别",
+                    "label": "Safe Mode",
                     "href": "/features/data-editing#safe-mode"
-                },
-                {
-                    "label": "MCP 客户端和 External Clients",
-                    "href": "/features/ai-mcp#mcp"
-                }
-            ],
-            "blocks": [
-                {
-                    "id": "timeouts",
-                    "title": "连接和查询超时",
-                    "paragraphs": [
-                        "每个连接可设置自己的连接超时，涵盖网络、TLS、登录及任何隧道或代理，也可设置查询超时替代全局值。查询超时在重新连接后对支持该功能的驱动生效。"
-                    ],
-                    "since": "0.77.0"
                 }
             ]
         },
         {
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
-            "paragraphs": [
-                "iPhone 和 iPad 应用有专用于 {iosPicker} 的连接表单，支持分组、每个连接一个标签以及收藏。SSH 隧道使用密码或从文件读取、直接粘贴的私钥登录，并检查主机密钥；iPhone 和 iPad 不支持 SSH agent 和跳板机。TLS 可验证服务器证书，但 SQL Server 仅加密而不验证。证书保留在设备上，从不同步。",
-                "密码和粘贴的密钥保存在钥匙串中。从 Mac 同步的 SQL Server 连接可通过 Microsoft Entra ID 登录。从其他应用导入、AWS IAM、Kerberos 和 Google 登录、代理与隧道命令、密码来源及超时设置不在 iPhone 和 iPad 应用中提供。"
+            "text": [
+                "应用有自己的连接表单，支持使用密码或密钥的 SSH 和 TLS，并将密码保存在钥匙串中。"
             ],
             "links": [
                 {
@@ -183,152 +128,6 @@
                     "href": "/ios#security"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "连接表单、分组、标签和收藏",
-            "ios": "partial",
-            "iosNote": "每个连接一个标签；不支持颜色",
-            "linux": "yes"
-        },
-        {
-            "label": "从 URL 或剪贴板导入",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "从其他应用、项目文件夹和 AWS 导入",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "仅从其他应用导入"
-        },
-        {
-            "label": "使用密码或私钥的 SSH 隧道",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "SSH agent、一次性验证码和跳板机",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "带证书验证的 TLS",
-            "ios": "partial",
-            "iosNote": "SQL Server 仅加密，不验证",
-            "linux": "yes"
-        },
-        {
-            "label": "SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy 和 Tunnel Command",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "AWS IAM、Kerberos 和 Google 登录",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "仅 Kerberos"
-        },
-        {
-            "label": "Microsoft Entra ID",
-            "ios": "partial",
-            "iosNote": "用于从 Mac 同步的连接",
-            "linux": "no"
-        },
-        {
-            "label": "密码保存在钥匙串中",
-            "ios": "yes",
-            "linux": "partial",
-            "linuxNote": "保存在系统密钥环中"
-        },
-        {
-            "label": "密码来源、凭据配置文件和 ~/.pgpass",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Environment Variables",
-            "paid": "environment-variables",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "每个连接的 Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "连接和查询超时",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "仅查询超时"
-        },
-        {
-            "label": "通过配置描述文件设置最低 Safe Mode 级别",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "密码来源以及 Network 标签页的代理和隧道命令仅保存在设置它们的 Mac 上，从不同步，因此同步的连接需要在每台 Mac 上重新配置这些设置。",
-        "TablePro 读取启动时的环境。从 Dock 或 Finder 打开时，它无法看到 shell 配置文件设置的变量，这同时影响环境变量密码来源和 Environment Variables 功能。",
-        "方案结束后，<code>$DB_HOST</code> 等引用不再替换，也不会警告，而是以输入的原文发送给服务器。",
-        "Open Project Folder 是一次性导入，不会监控任何变化；重复导入同一组配置会创建两个连接。",
-        "AWS IAM 认证支持 {awsIam}，不支持 Amazon Redshift。配置描述文件只能强制最低 Safe Mode 级别和更新设置，无法控制其他项目。"
-    ],
-    "docs": [
-        {
-            "label": "管理连接",
-            "docs": "/connections"
-        },
-        {
-            "label": "从其他客户端迁移",
-            "docs": "/switching"
-        },
-        {
-            "label": "Open Project Folder",
-            "docs": "/features/project-folder-import"
-        },
-        {
-            "label": "SSH 隧道",
-            "docs": "/connections/ssh-tunneling"
-        },
-        {
-            "label": "Tunnel Command",
-            "docs": "/connections/tunnel-command"
-        },
-        {
-            "label": "AWS IAM 认证",
-            "docs": "/connections/aws-iam"
-        },
-        {
-            "label": "凭据配置文件",
-            "docs": "/connections/credential-profiles"
-        },
-        {
-            "label": "密码来源和 Environment Variables",
-            "docs": "/features/connection-sharing#environment-variables"
-        }
-    ],
-    "related": [
-        {
-            "label": "同步和共享连接",
-            "href": "/features/sync-and-teams"
-        },
-        {
-            "label": "Safe Mode 和数据编辑",
-            "href": "/features/data-editing#safe-mode"
-        },
-        {
-            "label": "对比 TablePro 和其他客户端",
-            "href": "/compare"
-        },
-        {
-            "label": "付费方案提供的功能",
-            "href": "/pricing#features"
         }
     ]
 }

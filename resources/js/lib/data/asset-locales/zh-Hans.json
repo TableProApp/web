@@ -95,29 +95,114 @@
         },
         "caption": null
     },
-    "mac-query-autocomplete": {
+    "features-querying-insights": {
         "alt": {
-            "zh-Hans": "TablePro SQL 编辑器中的查询将名为 recent_orders 的 CTE 与 users 连接，自动补全列表显示该 CTE 的列。"
+            "zh-Hans": "过去 7 天的 Query Insights，上方图表按日显示成功和失败的查询，下方为 Most Run、Slowest 和 Got Slower 列表，其中一种查询形态标记为 Got Slower。"
         },
         "caption": null
     },
-    "mac-query-autocomplete-mobile": {
+    "features-data-editing-edit": {
         "alt": {
-            "zh-Hans": "TablePro SQL 编辑器的自动补全列表局部图，列出 CTE 的列建议。"
+            "zh-Hans": "products 表中有四处等待保存的价格修改，Preview SQL 面板列出对应的 UPDATE 语句。"
         },
         "caption": null
     },
-    "mac-query-parameters-history": {
+    "features-schema-er-diagram": {
         "alt": {
-            "zh-Hans": "使用 :customer_id 和 :since 参数的查询、输入参数值的面板，以及查询历史抽屉。"
+            "zh-Hans": "shop 模式的 ER 图显示各表及其关系，product_tags 表示为 products 和 tags 之间的多对多连线。"
         },
         "caption": null
     },
-    "mac-explain-compare": {
+    "features-schema-compare-sync": {
         "alt": {
-            "zh-Hans": "orders 表查询的 EXPLAIN Compare，显示执行计划从 Index Scan 变为 Seq Scan，查询速度比基线更慢。"
+            "zh-Hans": "shop 和 shop_staging 之间的 Compare & Sync，列出长度不同的列，以及未加入脚本的 DROP COLUMN。"
         },
         "caption": null
+    },
+    "features-schema-dashboard": {
+        "alt": {
+            "zh-Hans": "PostgreSQL 服务器的 Server Dashboard 列出活动会话，选中了一条运行时间较长的 SELECT，并显示 Terminate 按钮。"
+        },
+        "caption": null
+    },
+    "features-import-export-data-files": {
+        "alt": {
+            "zh-Hans": "Data Files 窗口打开 orders.csv 并搜索 Hanoi，状态栏显示 20,000 行中的 2,498 行。"
+        },
+        "caption": null
+    },
+    "features-querying-history": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro SQL 编辑器，查询历史在一条使用参数的查询旁打开。"
+        },
+        "caption": null
+    },
+    "features-querying-explain": {
+        "alt": {
+            "zh-Hans": "Mac 上的 TablePro 以图形绘制的 PostgreSQL 查询计划。"
+        },
+        "caption": null
+    },
+    "features-querying-charts": {
+        "description": {
+            "zh-Hans": "shop 中按月统计收入的查询，在 Mac SQL 编辑器的结果区域显示为柱状图。"
+        }
+    },
+    "features-data-editing-safe-mode": {
+        "description": {
+            "zh-Hans": "在 Safe Mode 级别的连接上保存编辑：表格上方显示 Touch ID 或密码提示，并显示待执行语句。"
+        }
+    },
+    "features-data-editing-rewind": {
+        "description": {
+            "zh-Hans": "shop 上的 Data Rewind：一次保存的检查界面，列出已更改行的先前值和当前值，并提供 Restore Previous Values。"
+        }
+    },
+    "features-schema-copy": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Copy To 检查界面，显示复制到 SQLite 文件 的 DDL、行数和类型转换。"
+        },
+        "caption": null
+    },
+    "features-import-export-import": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的导入面板，将 CSV 文件的列映射到表。"
+        },
+        "caption": null
+    },
+    "features-import-export-backup": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Backup Dump 面板，设置为用 pg_dump 转储 PostgreSQL 数据库。"
+        },
+        "caption": null
+    },
+    "features-ai-mcp-agent": {
+        "description": {
+            "zh-Hans": "shop 上的全窗口 Agent mode：聊天中的请求、Agent 提出的语句，以及等待批准的 Run 按钮。"
+        }
+    },
+    "features-ai-mcp-mcp": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 MCP 设置，服务器已开启，并显示每个连接的访问级别。"
+        },
+        "caption": null
+    },
+    "features-connections-import": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的 Import from Other App 面板，列出在另一个数据库客户端中找到的连接。"
+        },
+        "caption": null
+    },
+    "features-connections-network": {
+        "alt": {
+            "zh-Hans": "Mac 上 TablePro 的连接表单，设置为使用密钥通过 SSH 跳板主机连接。"
+        },
+        "caption": null
+    },
+    "features-sync-and-teams-team": {
+        "description": {
+            "zh-Hans": "侧边栏中的 Team Library：队友发布的连接和已保存查询，并显示每条查询的最后修改者。"
+        }
     },
     "mac-query-insights": {
         "alt": {
@@ -143,69 +228,9 @@
         },
         "caption": null
     },
-    "mac-edit-preview-sql": {
-        "alt": {
-            "zh-Hans": "products 表中有四处等待保存的价格修改，Preview SQL 面板列出对应的 UPDATE 语句。"
-        },
-        "caption": null
-    },
-    "mac-edit-preview-sql-mobile": {
-        "alt": {
-            "zh-Hans": "Preview SQL 面板的局部图，列出四处暂存价格修改对应的四条 UPDATE 语句。"
-        },
-        "caption": null
-    },
-    "mac-grid-highlight-rules": {
-        "alt": {
-            "zh-Hans": "orders 表将已付款行标为绿色、已退款行标为橙色，并打开了高亮规则弹出框。"
-        },
-        "caption": null
-    },
-    "mac-fk-picker": {
-        "alt": {
-            "zh-Hans": "orders.user_id 外键的值选择器，搜索 Silva 后按名字和姓氏列出用户。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid": {
-        "alt": {
-            "zh-Hans": "标有红色生产环境颜色的连接中，Safe Mode 在执行 orders 表的 DELETE 前显示 Touch ID 提示。"
-        },
-        "caption": null
-    },
-    "mac-safe-mode-touchid-mobile": {
-        "alt": {
-            "zh-Hans": "Safe Mode 在执行 DELETE 语句前显示的 Touch ID 提示局部图。"
-        },
-        "caption": null
-    },
     "mac-data-rewind-review": {
         "alt": {
             "zh-Hans": "Restore Previous Values 审核面板，三行标记为 Will restore，一行标记为 Changed since the save。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview": {
-        "alt": {
-            "zh-Hans": "reviews 表的 Structure 标签页中有等待保存的新 CHECK 约束和新索引，DDL 预览已打开。"
-        },
-        "caption": null
-    },
-    "mac-structure-ddl-preview-mobile": {
-        "alt": {
-            "zh-Hans": "DDL 预览的局部图，显示向 reviews 表添加 CHECK 约束和索引的语句。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram": {
-        "alt": {
-            "zh-Hans": "shop 模式的 ER 图显示各表及其关系，product_tags 表示为 products 和 tags 之间的多对多连线。"
-        },
-        "caption": null
-    },
-    "mac-er-diagram-mobile": {
-        "alt": {
-            "zh-Hans": "ER 图的局部图，显示 products 与 tags 的多对多关系。"
         },
         "caption": null
     },
@@ -218,12 +243,6 @@
     "mac-compare-sync-structure-mobile": {
         "alt": {
             "zh-Hans": "Compare & Sync 脚本的局部图，一条 DROP COLUMN 被排除在本次运行之外，并显示数据丢失警告。"
-        },
-        "caption": null
-    },
-    "mac-copy-to-review": {
-        "alt": {
-            "zh-Hans": "从 MariaDB 到 PostgreSQL 的 Copy To 审核：各表的预期行数、Type changes 下的两个枚举列（允许值列表不会被带过去），以及 CREATE TABLE 脚本。"
         },
         "caption": null
     },
@@ -245,116 +264,11 @@
         },
         "caption": null
     },
-    "mac-data-files-window": {
-        "alt": {
-            "zh-Hans": "Data Files 窗口打开 orders.csv 并搜索 Hanoi，状态栏显示 20,000 行中的 2,498 行。"
-        },
-        "caption": null
-    },
-    "mac-data-files-window-mobile": {
-        "alt": {
-            "zh-Hans": "orders.csv 中匹配 Hanoi 的行局部图，状态栏显示匹配数量。"
-        },
-        "caption": null
-    },
-    "mac-data-files-statistics": {
-        "alt": {
-            "zh-Hans": "Data Files 窗口中 orders.csv 的 status 列统计信息。"
-        },
-        "caption": null
-    },
-    "mac-import-mapping": {
-        "alt": {
-            "zh-Hans": "将 CSV 文件导入 orders 表的面板，文件的每列都映射到表列，并显示出错时的处理选项。"
-        },
-        "caption": null
-    },
-    "mac-export-dialog": {
-        "alt": {
-            "zh-Hans": "Export 对话框在模式的表和视图列表中勾选 orders 表，并选定 XLSX 格式。"
-        },
-        "caption": null
-    },
-    "mac-backup-dump": {
-        "alt": {
-            "zh-Hans": "通过 SSH 堡垒机连接的 Back Up 面板，只选中了 shop 数据库。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat": {
-        "alt": {
-            "zh-Hans": "AI 聊天面板回答上个月按收入排名最高的客户问题，给出一条 SQL 查询及 Copy 和 Insert 按钮。"
-        },
-        "caption": null
-    },
-    "mac-ai-chat-mobile": {
-        "alt": {
-            "zh-Hans": "AI 聊天回答的局部图，包含一条 SQL 查询和 Insert 按钮。"
-        },
-        "caption": null
-    },
-    "mac-agent-mode": {
-        "description": {
-            "zh-Hans": "Agent mode 会话“Find orders with no items”：三条语句，一项写入等待点击 Run。"
-        }
-    },
-    "mac-agent-mode-mobile": {
-        "description": {
-            "zh-Hans": "待执行写入的局部图：显示 Run 和 Reject 的语句卡片。"
-        }
-    },
-    "mac-mcp-settings": {
-        "alt": {
-            "zh-Hans": "MCP 设置中的 Connect a Client 面板，显示适用于 Claude Code 的 claude mcp add 命令。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form": {
-        "alt": {
-            "zh-Hans": "连接表单的 SSH 设置：主机 bastion.acme.internal、用户 deploy、密钥认证，以及一个跳板主机。"
-        },
-        "caption": null
-    },
-    "mac-connection-ssh-form-mobile": {
-        "alt": {
-            "zh-Hans": "SSH 隧道设置的局部图，显示主机 bastion.acme.internal、用户 deploy、SSH Agent 认证，以及一个跳板主机。"
-        },
-        "caption": null
-    },
-    "mac-connection-library": {
-        "alt": {
-            "zh-Hans": "Welcome 窗口以带颜色标签的 Production 和 Staging 分组列出已保存的连接，同时显示 Chinook 示例数据库。"
-        },
-        "caption": null
-    },
-    "mac-import-other-app": {
-        "alt": {
-            "zh-Hans": "Import from DataGrip 面板列出在 DataGrip 中找到的三个连接，每个都标记为可以导入。"
-        },
-        "caption": null
-    },
-    "mac-open-project-folder": {
-        "alt": {
-            "zh-Hans": "acme-shop 项目的 Open Project Folder 结果，显示在 .env 和 .env.production 中找到的连接。"
-        },
-        "caption": null
-    },
-    "mac-tunnel-command": {
-        "alt": {
-            "zh-Hans": "通过 kubectl port-forward 隧道连接 svc/orders-db 的连接，显示将执行的命令。"
-        },
-        "caption": null
-    },
     "diagram-icloud-sync": {
         "alt": {
             "zh-Hans": "示意图：连接、分组和标签通过您的 iCloud 账户在 Mac 与 iPhone 或 iPad 之间同步；密码仅在开启密码同步后，单独通过 iCloud 钥匙串同步。"
         },
         "caption": null
-    },
-    "mac-team-library": {
-        "description": {
-            "zh-Hans": "Favorites 侧边栏的 Team Library 区域：三条已保存的查询，各自标注最后修改者。"
-        }
     },
     "mac-handoff-ios": {
         "description": {

@@ -9,97 +9,89 @@
     },
     "header": {
         "title": "Import und Export",
-        "lead": "Importiere Dateien in unterstützte Tabellen und exportiere Tabellen oder Abfrageergebnisse. Öffne CSV-, JSON- und Excel-Dateien ohne Datenbankverbindung.",
-        "docs": "/features/import-export"
+        "lead": "Importiere Dateien in Tabellen, exportiere Tabellen und Ergebnisse und öffne CSV, JSON oder Excel ohne Datenbank.",
+        "docs": "/features/import-export",
+        "asset": "mac-home-import-export"
     },
-    "sections": [
-        {
-            "id": "import",
-            "title": "Dateien in eine Tabelle importieren",
-            "paragraphs": [
-                "Importiere {importFormats}-Dateien. Datenformate nutzen Spaltenzuordnung in bestehende oder neue Tabellen; Excel importiert nur das erste Blatt. SQL-Dateien laufen als Anweisungen, auch <code>.sql.gz</code>-Dumps und SQL-Server-Skripte mit <code>GO</code>.",
-                "Importe nutzen eine Transaktion, sofern nicht deaktiviert. Wähle bei fehlerhaften Zeilen zwischen Rollback, Behalten importierter Zeilen oder Überspringen. Exportiere übersprungene Zeilen als CSV zur Prüfung."
-            ],
-            "engines": [
-                {
-                    "label": "Systeme ohne Import",
-                    "list": "noImport"
-                }
-            ],
-            "asset": "mac-import-mapping",
-            "blocks": [
-                {
-                    "id": "mappings",
-                    "title": "Gespeicherte Zuordnungen und Kodierungen",
-                    "paragraphs": [
-                        "Nutze gespeicherte Spaltenzuordnungen für CSV, JSON und Excel erneut. <ui>Match by Name</ui> ordnet benannte Felder zu; <ui>Match by Position</ui> funktioniert für CSV und Excel. CSV und SQL unterstützen auch UTF-16 und ausgewählte japanische, chinesische und koreanische Kodierungen."
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
-        },
+    "bands": [
         {
             "id": "export",
             "title": "Tabellen und Ergebnisse exportieren",
-            "paragraphs": [
-                "Exportiere Tabellen und Views als {exportFormats}, per Streaming über das Zeilenlimit des Rasters hinaus. SQL-Engines unterstützen Filter, Limits und Spaltenauswahl pro Tabelle. SQL-Exporte können die Struktur enthalten; Excel nutzt ein Blatt pro Tabelle. MongoDB exportiert mongosh-Skripte, kein SQL. Redis hat ebenfalls keinen SQL-Export.",
-                "<ui>Export Results</ui> führt begrenzte Abfragen erneut aus, um das vollständige Ergebnis zu streamen. Ergänze {exportPluginFormats}-Export mit einem kostenlosen Plugin unter <ui>Settings > Plugins</ui>, mit einer Datei pro Tabelle."
+            "text": [
+                "Exportiere Tabellen und Views als {exportFormats}, per Streaming über das Zeilenlimit des Rasters hinaus. SQL-Engines nehmen pro Tabelle einen Filter, ein Limit und eine Spaltenliste, und ein SQL-Export kann die Struktur enthalten. <ui>Export Results</ui> führt eine begrenzte Abfrage erneut aus, um das ganze Ergebnis zu schreiben, und ein kostenloses Plugin ergänzt {exportPluginFormats}."
             ],
-            "asset": "mac-export-dialog"
+            "notes": [
+                "Ein SQL-Export setzt DROP TABLE IF EXISTS vor jede Tabelle, außer du schaltest das ab."
+            ],
+            "docs": "/features/import-export"
+        },
+        {
+            "id": "import",
+            "also": [
+                "mappings"
+            ],
+            "title": "Dateien in eine Tabelle importieren",
+            "text": [
+                "Importiere {importFormats}-Dateien in eine neue oder bestehende Tabelle, mit einer Spaltenzuordnung, die du für das nächste Mal speichern kannst. SQL-Dateien laufen als Anweisungen, auch <code>.sql.gz</code>-Dumps und SQL-Server-Skripte mit <code>GO</code>. Ein Import ist eine Transaktion, außer du schaltest das ab, und bei fehlerhaften Zeilen wählst du zwischen Rollback, Behalten der importierten Zeilen oder Überspringen und Exportieren."
+            ],
+            "notes": [
+                "Linux importiert CSV in eine bestehende Tabelle sowie SQL-Dateien. iPhone und iPad fügen Zeilen über Kurzbefehle hinzu."
+            ],
+            "engines": [
+                {
+                    "label": "Kein Import:",
+                    "list": "noImport"
+                }
+            ],
+            "docs": "/features/import-export",
+            "asset": "features-import-export-import"
         },
         {
             "id": "data-files",
+            "also": [
+                "open-and-clean",
+                "statistics"
+            ],
             "title": "Data Files",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "open-and-clean",
-                    "title": "Datendateien bearbeiten",
-                    "paragraphs": [
-                        "Öffne und bearbeite getrennten Text, JSON und JSON Lines als Tabellen. Filtere, suche, ersetze Text oder entferne doppelte Zeilen. Excel-Blätter und komprimierte Dateien wie <code>.csv.gz</code> öffnen schreibgeschützt.",
-                        "Änderungen bleiben bis zum Speichern in einer privaten Kopie. Speichern schreibt das Originalformat und erhält unveränderte Zeilen."
-                    ],
-                    "asset": "mac-data-files-window"
-                },
-                {
-                    "id": "statistics",
-                    "title": "Spaltenstatistik, dann exportieren oder importieren",
-                    "paragraphs": [
-                        "Prüfe leere und unterschiedliche Werte, Bereiche und häufige Werte. Klicke auf einen Wert zum Filtern, exportiere dann die Datei oder nutze <ui>Import into Table</ui> auf einer offenen Verbindung."
-                    ],
-                    "asset": "mac-data-files-statistics"
-                }
-            ]
+            "text": [
+                "Öffne Text mit Trennzeichen, JSON und JSON Lines als Tabellen, ohne Verbindung. Filtere, ersetze Text, entferne doppelte Zeilen und lies die Statistik jeder Spalte, und speichere dann im Originalformat oder importiere in eine Tabelle. Excel- und komprimierte Dateien öffnen sich schreibgeschützt."
+            ],
+            "docs": "/features/data-files",
+            "asset": "features-import-export-data-files"
         },
         {
             "id": "backup",
             "title": "Backup und Wiederherstellung",
-            "paragraphs": [
-                "Backup Dump und Restore Dump nutzen {backupTools} mit den SSH- und TLS-Einstellungen der Verbindung. Installiere das benötigte CLI-Werkzeug selbst; DuckDB schreibt seine Datenbank- oder Parquet-Dumps ohne externes Werkzeug.",
-                "Server-Side Export auf {serverSideExport} schreibt über Oracle Data Pump, eine Snowflake-Stage oder Cloud Storage. Der Export läuft nicht über deinen Mac."
+            "text": [
+                "Backup Dump und Restore Dump führen {backupTools} mit den SSH- und TLS-Einstellungen der Verbindung aus; das Werkzeug installierst du selbst, außer bei DuckDB. Server-Side Export auf {serverSideExport} schreibt über Oracle Data Pump, eine Snowflake-Stage oder Cloud Storage, sodass die Daten nie über deinen Mac laufen."
+            ],
+            "notes": [
+                "Linux schreibt SQL-Dumps ohne externe Werkzeuge."
             ],
             "engines": [
                 {
-                    "label": "Backup Dump mit zugehörigem Werkzeug",
+                    "label": "Backup Dump:",
                     "list": "backupEngines"
                 }
             ],
-            "asset": "mac-backup-dump"
-        },
+            "docs": "/features/backup-restore",
+            "asset": "features-import-export-backup"
+        }
+    ],
+    "more": [
         {
             "id": "files",
             "title": "Dateien, die Datenbanken sind",
-            "paragraphs": [
-                "SQLite- und DuckDB-Dateien öffnen sich aus dem Finder als Verbindungen. DuckDB liest auch Parquet-, CSV- und JSON-Dateien als schreibgeschützte Views; eine <code>.parquet</code>-Datei öffnet sich daher als DuckDB-Verbindung statt in Data Files. Eine SQLite-Datenbank auf einem SSH-Server öffnet sich entweder live über einen kleinen Agenten, der Python 3.6 oder neuer auf dem Server benötigt, oder als schreibgeschützte Kopie.",
-                "<code>.sql</code>-Dateien öffnen sich als Abfrage-Tabs und werden auf die Festplatte zurückgespeichert; ein Beancount-Hauptbuch öffnet sich schreibgeschützt als Satz von Tabellen."
+            "text": [
+                "SQLite- und DuckDB-Dateien öffnen sich aus dem Finder als Verbindungen. Eine SQLite-Datei auf einem SSH-Server öffnet sich live oder als schreibgeschützte Kopie, und DuckDB liest Parquet, CSV und JSON als Views."
             ],
             "links": [
                 {
-                    "label": "SQLite in TablePro",
+                    "label": "SQLite",
                     "href": "/sqlite-client"
                 },
                 {
-                    "label": "DuckDB in TablePro",
+                    "label": "DuckDB",
                     "href": "/duckdb-client"
                 }
             ]
@@ -107,8 +99,8 @@
         {
             "id": "between-databases",
             "title": "Von einer Datenbank zur anderen",
-            "paragraphs": [
-                "Kopiere oder übertrage Tabellen zwischen unterstützten Verbindungen ohne Zwischendatei. Unter Schema findest du Details zu Typkonvertierung und Prüfung."
+            "text": [
+                "Kopiere oder übertrage Tabellen zwischen Verbindungen ohne Zwischendatei."
             ],
             "links": [
                 {
@@ -120,9 +112,8 @@
         {
             "id": "iphone",
             "title": "Auf iPhone und iPad",
-            "paragraphs": [
-                "Die iPhone- und iPad-App kopiert oder teilt geladene Zeilen und Abfrageergebnisse als JSON, CSV oder SQL-INSERT-Anweisungen. Eine Kopie bleibt in der Zwischenablage dieses Geräts und wird nicht mit deinen anderen Geräten geteilt.",
-                "Zeilen kommen über die Kurzbefehl-Aktionen Add Row to Table und Add Rows to Table hinein, die JSON- oder CSV-Text oder eine Datei annehmen und den Safe Mode der Verbindung beachten. Einen Importdialog, Dateiexport, das Fenster Data Files und Backups gibt es auf iPhone und iPad nicht."
+            "text": [
+                "Kopiere oder teile Zeilen als JSON, CSV oder INSERT-Anweisungen und füge Zeilen mit den Kurzbefehl-Aktionen hinzu."
             ],
             "links": [
                 {
@@ -130,110 +121,6 @@
                     "href": "/ios#automation"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Dateien in Tabellen importieren",
-            "ios": "partial",
-            "iosNote": "Kurzbefehl-Aktionen, aus JSON oder CSV",
-            "linux": "partial",
-            "linuxNote": "CSV in eine bestehende Tabelle und SQL-Dateien"
-        },
-        {
-            "label": "Gespeicherte Zuordnungen, Match by Name und Match by Position",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Tabellen und Ergebnisse in Dateien exportieren",
-            "ios": "partial",
-            "iosNote": "Als JSON, CSV oder SQL INSERT kopieren oder teilen",
-            "linux": "yes"
-        },
-        {
-            "label": "{exportPluginFormats}-Export-Plugin",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Fenster Data Files",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Backup Dump und Restore Dump",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "SQL-Dumps ohne externe Tools"
-        },
-        {
-            "label": "Server-Side Export",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "SQLite- und DuckDB-Dateien",
-            "ios": "partial",
-            "iosNote": "Dateien auf dem Gerät oder DuckDB im Arbeitsspeicher",
-            "linux": "yes"
-        },
-        {
-            "label": "SQLite-Dateien über SSH",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Ein SQL-Export enthält vor jeder Tabelle DROP TABLE IF EXISTS, sofern du das nicht abwählst. Prüfe daher die Optionen, bevor du die Datei auf einer Datenbank ausführst, deren Tabellen erhalten bleiben sollen.",
-        "Backup Dump nutzt Kommandozeilenwerkzeuge, die du selbst installierst, und nur auf den aufgeführten Systemen. Die Werkzeuge erhalten das Passwort über eine Umgebungsvariable oder eine temporäre Datei. Die Ausnahme ist sqlpackage: Es erhält das SQL-Server-Passwort in seiner Kommandozeile, wo andere Prozesse auf dem Mac es lesen können; TablePro fragt vor dem Start nach.",
-        "Restore Dump ersetzt Tabellen eines MySQL- oder MariaDB-Dumps. Auf anderen Systemen ersetzt es keine bestehenden Objekte; SQL-Server-<code>.bacpac</code> benötigt eine leere Datenbank.",
-        "Das Öffnen von Datenbankdateien über SSH funktioniert nur für SQLite.",
-        "Nicht integrierte DuckDB-Erweiterungen wie httpfs für S3, Iceberg und Delta werden von den Servern von DuckDB heruntergeladen, sobald eine Abfrage sie zum ersten Mal braucht.",
-        "In der aktuellen App-Store-Version lesen die Kurzbefehl-Aktionen CSV und JSON nur als UTF-8 und CSV nur mit LF-Zeilenenden."
-    ],
-    "docs": [
-        {
-            "label": "Import und Export",
-            "docs": "/features/import-export"
-        },
-        {
-            "label": "Data Files",
-            "docs": "/features/data-files"
-        },
-        {
-            "label": "Backup und Wiederherstellung",
-            "docs": "/features/backup-restore"
-        },
-        {
-            "label": "Remote-Datenbankdateien",
-            "docs": "/connections/remote-database-files"
-        },
-        {
-            "label": "SQL-Dateien",
-            "docs": "/features/sql-files"
-        },
-        {
-            "label": "Plugins",
-            "docs": "/features/plugins"
-        }
-    ],
-    "related": [
-        {
-            "label": "Schema, Vergleich und Synchronisierung",
-            "href": "/features/schema"
-        },
-        {
-            "label": "SQLite in TablePro",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "DuckDB in TablePro",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "TablePro für iPhone und iPad",
-            "href": "/ios"
         }
     ]
 }

@@ -1,189 +1,118 @@
 import { usePage } from '@inertiajs/react';
-import DownloadBand from '@/components/features/download-band';
-import { docsHref, factValues } from '@/components/features/model';
+import AreaNav from '@/components/features/area-nav';
+import FeatureClosing from '@/components/features/feature-closing';
+import { PlanPills } from '@/components/features/feature-part';
+import FeatureHero from '@/components/features/feature-hero';
+import { factValues } from '@/components/features/model';
 import RichText from '@/components/features/rich-text';
-import type { FeatureHubProps } from '@/components/features/types';
+import type { FeatureArea, FeatureHubProps } from '@/components/features/types';
 import SEOHead from '@/components/seo/seo-head';
 import { FEATURE_PAGES } from '@/components/site/site-links';
-import Badge from '@/components/ui/badge';
-import DataTable, { TABLE_CELL, TABLE_HEAD_CELL, TABLE_ROW, TABLE_ROW_HEADER } from '@/components/ui/data-table';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
+import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
-import TextLink, { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { FACTS } from '@/lib/data/facts';
-import { featureHref, PAID_FEATURES } from '@/lib/data/paid-features';
-import type { PaidTierId } from '@/lib/data/pricing';
+import { iosPlatform } from '@/lib/data/platforms';
 import { absoluteUrl, collectionPageNode, graph, organizationNode, organizationProfiles } from '@/lib/structured-data';
-import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
-const TIERS: readonly PaidTierId[] = ['starter', 'team'];
+const WINDOW_SIZES = '(min-width: 1280px) 900px, (min-width: 768px) 66vw, calc(100vw - 32px)';
 
-/**
- * The feature hub, `/features` and `/vi/features` (sitemap §A.2, §E.8).
- *
- * An overview list, not a card mosaic: each area is a link named as in the
- * Features menu, two lines of what it covers, and the paid features it
- * describes with their plan, derived from `paid-features.json`. Then the
- * iPhone and iPad app, every paid feature in one table, and the docs. Only
- * pages that render in this locale are listed, so the hub never links a 404.
- *
- * Structured data: a `CollectionPage` listing the same-locale feature pages,
- * and the organization.
- */
-export default function FeatureIndex({ content, pages, facts }: FeatureHubProps) {
+const LINK = 'text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
+
+// One area on the hub, on the same index grid as the pages: its menu name, what it covers, its bands as links, its
+// window.
+function AreaBand({ area, label, summary, values, labels }: { area: FeatureArea; label: string; summary: string; values: Record<string, string>; labels: FeatureHubProps['content']['labels'] }) {
+    const shown = useShownSlot();
+    const asset = shown(area.asset);
+    const href = `/features/${area.slug}`;
+
+    return (
+        <section id={area.slug} aria-labelledby={`${area.slug}-title`} className="py-14 md:py-20">
+            <Container>
+                <div className="grid gap-5 md:grid-cols-12 md:gap-x-8">
+                    <h2 id={`${area.slug}-title`} className="md:col-span-4 lg:col-span-3">
+                        <LocaleLink href={href} className="text-[1.5rem] leading-[1.15] font-[520] tracking-[-0.022em] text-balance text-foreground hover:underline md:text-[1.75rem]">
+                            {label}
+                        </LocaleLink>
+                    </h2>
+                    <div className="md:col-span-8 lg:col-span-9">
+                        <p className="max-w-[40rem] text-[1.0625rem] leading-[1.55] tracking-[-0.011em] text-pretty text-foreground">
+                            <RichText text={summary} values={values} />
+                        </p>
+                        <ul className="mt-5 flex max-w-[44rem] flex-wrap gap-x-5 gap-y-2 text-[0.9375rem] leading-[1.5]">
+                            {area.bands.map((band) => (
+                                <li key={band.id} className="inline-flex items-center gap-2">
+                                    <LocaleLink href={`${href}#${band.id}`} className={LINK}>
+                                        {band.title}
+                                    </LocaleLink>
+                                    <PlanPills paid={band.paid} labels={labels} />
+                                </li>
+                            ))}
+                        </ul>
+                        {asset !== null && (
+                            <div className="mt-10">
+                                <AssetSlot id={asset} sizes={WINDOW_SIZES} caption={false} />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </Container>
+        </section>
+    );
+}
+
+// The feature hub, `/features` in every locale (sitemap §A.2, §E.8): the area nav, a short hero, one band per area
+// in the menu's order (only areas that render in this locale, so it never links a 404), and the closing line on
+// what is free. Structured data: a CollectionPage of the same-locale pages.
+export default function FeatureIndex({ content, areas, facts }: FeatureHubProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    useRevealOnScroll('main > section:not(#top)');
+
     const labels = content.labels;
     const values = factValues(facts, labels.number, m.common.list);
-
-    const summaries = new Map(content.areas.items.map((item) => [item.slug, item.summary]));
-    const areas = pages.flatMap((slug) => {
+    const summaries = new Map(content.areas.map((item) => [item.slug, item.summary]));
+    const label = (slug: string): string => {
         const page = FEATURE_PAGES.find((candidate) => candidate.href === `/features/${slug}`);
 
-        return page !== undefined ? [{ slug, href: page.href, title: m.nav.featureLinks[page.key], summary: summaries.get(slug) ?? '' }] : [];
-    });
-
-    const pageTitle = (href: string): string => {
-        const page = FEATURE_PAGES.find((candidate) => candidate.href === href);
-
-        return page !== undefined ? m.nav.featureLinks[page.key] : href;
+        return page !== undefined ? m.nav.featureLinks[page.key] : slug;
     };
 
-    const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
     const jsonLd = graph([
         organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links) }),
-        collectionPageNode(context, {
-            url: absoluteUrl(canonicalBaseUrl, path('/features')),
-            name: content.header.title,
-            description: content.seo.description,
-            items: areas.map((area) => ({ name: area.title, path: path(area.href) })),
-        }),
+        collectionPageNode(
+            { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang },
+            {
+                url: absoluteUrl(canonicalBaseUrl, path('/features')),
+                name: content.header.title,
+                description: content.seo.description,
+                items: areas.map((area) => ({ name: label(area.slug), path: path(`/features/${area.slug}`) })),
+            },
+        ),
     ]);
 
     return (
         <LandingLayout>
             <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
-            <PageHeader title={content.header.title} lead={content.header.lead} />
+            <AreaNav current="/features" />
+            <FeatureHero title={content.header.title} lead={content.header.lead} docs="/features/overview" docsLabel={labels.docs} />
 
-            <Section id="areas" title={content.areas.title}>
-                <ul data-rule-list className="frame-rows border-t border-rule">
-                    {areas.map((area) => {
-                        const paid = PAID_FEATURES.filter((feature) => feature.page.path === area.href);
+            {areas.map((area) => (
+                <AreaBand key={area.slug} area={area} label={label(area.slug)} summary={summaries.get(area.slug) ?? ''} values={values} labels={labels} />
+            ))}
 
-                        return (
-                            <li key={area.slug} className="grid gap-2 border-b border-rule py-6 md:grid-cols-12 md:gap-8">
-                                <h3 className="type-h3 md:col-span-4">
-                                    <LocaleLink href={area.href} className={textLinkClasses('inline')}>
-                                        {area.title}
-                                    </LocaleLink>
-                                </h3>
-                                <div className="md:col-span-8">
-                                    <p className="type-body text-foreground">
-                                        <RichText text={area.summary} values={values} />
-                                    </p>
-                                    <p className="type-small mt-2 flex flex-wrap gap-2 text-muted-foreground">
-                                        {paid.length === 0 && content.areas.noPaid}
-                                        {TIERS.map((tier) => {
-                                            const names = paid.filter((feature) => feature.tier === tier).map((feature) => feature.name);
-
-                                            return names.length > 0 ? (
-                                                <Badge key={tier} variant="accent">
-                                                    {fmt(content.areas.paid, { tier: labels.tiers[tier], features: joinList(names, m.common.list) })}
-                                                </Badge>
-                                            ) : null;
-                                        })}
-                                    </p>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </Section>
-
-            <Section id="ios" title={content.ios.title} width="text">
-                <p className="type-body text-foreground">
-                    <RichText text={content.ios.body} values={values} />
-                </p>
-                <p className="mt-4">
-                    <LocaleLink href="/ios" className={textLinkClasses('standalone')}>
-                        {content.ios.link}
-                        <span aria-hidden="true">→</span>
-                    </LocaleLink>
-                </p>
-            </Section>
-
-            <Section id="paid" title={content.paid.title} lead={content.paid.lead}>
-                {/* Below 640px, Plan and "Described on" fold into the feature's row header (design-system §5.3.10). */}
-                <DataTable wrapperClassName="frame-table" caption={content.paid.caption} className="sm:min-w-[32rem]">
-                    <thead>
-                        <tr>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {content.paid.columns.feature}
-                            </th>
-                            <th scope="col" className={cn(TABLE_HEAD_CELL, 'hidden sm:table-cell')}>
-                                {content.paid.columns.plan}
-                            </th>
-                            <th scope="col" className={cn(TABLE_HEAD_CELL, 'hidden sm:table-cell')}>
-                                {content.paid.columns.page}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {PAID_FEATURES.map((feature) => {
-                            const plan = (
-                                <Badge variant="accent" className="whitespace-nowrap">
-                                    {fmt(labels.availability.plan, { tier: labels.tiers[feature.tier] })}
-                                </Badge>
-                            );
-                            const page = pages.includes(feature.page.path.replace('/features/', '')) ? (
-                                <LocaleLink href={featureHref(feature)} className={textLinkClasses('inline')}>
-                                    {pageTitle(feature.page.path)}
-                                </LocaleLink>
-                            ) : (
-                                pageTitle(feature.page.path)
-                            );
-
-                            return (
-                                <tr key={feature.id} className={TABLE_ROW}>
-                                    <th scope="row" className={TABLE_ROW_HEADER}>
-                                        {feature.name}
-                                        <span className="type-caption mt-1.5 grid justify-items-start gap-1.5 font-normal text-muted-foreground sm:hidden">
-                                            {plan}
-                                            <span className="block">
-                                                {content.paid.columns.page}: {page}
-                                            </span>
-                                        </span>
-                                    </th>
-                                    <td className={cn(TABLE_CELL, 'hidden sm:table-cell')}>{plan}</td>
-                                    <td className={cn(TABLE_CELL, 'hidden sm:table-cell')}>{page}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </DataTable>
-                <p className="mt-6">
-                    <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
-                        {content.paid.pricing}
-                        <span aria-hidden="true">→</span>
-                    </LocaleLink>
-                </p>
-            </Section>
-
-            <Section id="docs" title={content.docs.title} width="text">
-                <p className="type-body text-foreground">{content.docs.body}</p>
-                <p className="mt-4">
-                    <TextLink href={docsHref(FACTS.links.docs, content.docs.path)} kind="standalone" external hrefLang="en">
-                        {locale === 'en' ? content.docs.link : `${content.docs.link} ${m.common.englishOnly}`}
-                    </TextLink>
-                </p>
-            </Section>
-
-            <DownloadBand labels={labels} location="features-hub" />
+            <FeatureClosing
+                labels={labels}
+                paid={[]}
+                body={content.closing.body}
+                extra={{ href: iosPlatform().page ?? '/ios', label: fmt(content.closing.ios, { devices: joinList(iosPlatform().deviceNames, m.common.shortList) }) }}
+                location="features-hub"
+            />
         </LandingLayout>
     );
 }

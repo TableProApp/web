@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-// The homepage's sections below the first screen rise into place once as they scroll in (owner, 2026-11-07; the
-// homepage's exception to design-system §7.1). A section already on screen is never hidden, nothing is hidden before
+// Home's and the feature pages' sections below the first screen rise into place once as they scroll in (owner,
+// 2026-11-07; their exception to design-system §7.1). A section already on screen is never hidden, nothing is hidden before
 // this runs, so the server-rendered page and readers without JavaScript see everything, and reduced motion skips it.
 export function useRevealOnScroll(selector: string): void {
     useEffect(() => {

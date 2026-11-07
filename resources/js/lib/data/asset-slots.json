@@ -737,15 +737,15 @@
                 "base": "linux-home-connections"
             }
         },
-        "mac-query-autocomplete": {
-            "kind": "window",
+        "features-querying-insights": {
+            "kind": "window-whole",
             "type": "screenshot",
             "slot": true,
             "aspect": null,
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": "mac-query-autocomplete-mobile",
+            "mobile": null,
             "status": "supplied",
             "src": {
                 "light": {
@@ -777,12 +777,12 @@
             },
             "replacement": {
                 "dir": "public/images/features",
-                "base": "mac-query-autocomplete"
+                "base": "features-querying-insights"
             }
         },
-        "mac-query-autocomplete-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
+        "features-data-editing-edit": {
+            "kind": "window-whole",
+            "type": "screenshot",
             "slot": true,
             "aspect": null,
             "priority": false,
@@ -793,37 +793,39 @@
             "src": {
                 "light": {
                     "widths": [
-                        343,
-                        686
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 686,
-                    "height": 858
+                    "width": 2432,
+                    "height": 1368
                 },
                 "dark": {
                     "widths": [
-                        343,
-                        686
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 686,
-                    "height": 858
+                    "width": 2432,
+                    "height": 1368
                 }
             },
             "replacement": {
                 "dir": "public/images/features",
-                "base": "mac-query-autocomplete-mobile"
+                "base": "features-data-editing-edit"
             }
         },
-        "mac-query-parameters-history": {
-            "kind": "detail",
-            "type": "detail",
+        "features-schema-er-diagram": {
+            "kind": "window-whole",
+            "type": "screenshot",
             "slot": true,
             "aspect": null,
             "priority": false,
@@ -834,37 +836,39 @@
             "src": {
                 "light": {
                     "widths": [
-                        696,
-                        1392
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 1392,
-                    "height": 1044
+                    "width": 2432,
+                    "height": 1368
                 },
                 "dark": {
                     "widths": [
-                        696,
-                        1392
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 1392,
-                    "height": 1044
+                    "width": 2432,
+                    "height": 1368
                 }
             },
             "replacement": {
                 "dir": "public/images/features",
-                "base": "mac-query-parameters-history"
+                "base": "features-schema-er-diagram"
             }
         },
-        "mac-explain-compare": {
-            "kind": "detail",
-            "type": "detail",
+        "features-schema-compare-sync": {
+            "kind": "window-whole",
+            "type": "screenshot",
             "slot": true,
             "aspect": null,
             "priority": false,
@@ -875,32 +879,544 @@
             "src": {
                 "light": {
                     "widths": [
-                        696,
-                        1392
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 1392,
-                    "height": 1044
+                    "width": 2432,
+                    "height": 1368
                 },
                 "dark": {
                     "widths": [
-                        696,
-                        1392
+                        720,
+                        1216,
+                        2432
                     ],
                     "formats": [
                         "avif",
                         "webp"
                     ],
-                    "width": 1392,
-                    "height": 1044
+                    "width": 2432,
+                    "height": 1368
                 }
             },
             "replacement": {
                 "dir": "public/images/features",
-                "base": "mac-explain-compare"
+                "base": "features-schema-compare-sync"
+            }
+        },
+        "features-schema-dashboard": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-schema-dashboard"
+            }
+        },
+        "features-import-export-data-files": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-import-export-data-files"
+            }
+        },
+        "features-querying-history": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-querying-history"
+            }
+        },
+        "features-querying-explain": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-querying-explain"
+            }
+        },
+        "features-querying-charts": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-querying-charts"
+            }
+        },
+        "features-data-editing-safe-mode": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-data-editing-safe-mode"
+            }
+        },
+        "features-data-editing-rewind": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-data-editing-rewind"
+            }
+        },
+        "features-schema-copy": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-schema-copy"
+            }
+        },
+        "features-import-export-import": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-import-export-import"
+            }
+        },
+        "features-import-export-backup": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-import-export-backup"
+            }
+        },
+        "features-ai-mcp-agent": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-ai-mcp-agent"
+            }
+        },
+        "features-ai-mcp-mcp": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-ai-mcp-mcp"
+            }
+        },
+        "features-connections-import": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-connections-import"
+            }
+        },
+        "features-connections-network": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-connections-network"
+            }
+        },
+        "features-sync-and-teams-team": {
+            "kind": "window-whole",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "features-sync-and-teams-team"
             }
         },
         "mac-query-insights": {
@@ -1069,254 +1585,6 @@
                 "base": "mac-result-map"
             }
         },
-        "mac-edit-preview-sql": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-edit-preview-sql-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-edit-preview-sql"
-            }
-        },
-        "mac-edit-preview-sql-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": "1:1",
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 686
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 686
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-edit-preview-sql-mobile"
-            }
-        },
-        "mac-grid-highlight-rules": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-grid-highlight-rules"
-            }
-        },
-        "mac-fk-picker": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-fk-picker"
-            }
-        },
-        "mac-safe-mode-touchid": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-safe-mode-touchid-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-safe-mode-touchid"
-            }
-        },
-        "mac-safe-mode-touchid-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-safe-mode-touchid-mobile"
-            }
-        },
         "mac-data-rewind-review": {
             "kind": "detail",
             "type": "detail",
@@ -1356,174 +1624,6 @@
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-data-rewind-review"
-            }
-        },
-        "mac-structure-ddl-preview": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-structure-ddl-preview-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-structure-ddl-preview"
-            }
-        },
-        "mac-structure-ddl-preview-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": "1:1",
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 686
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 686
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-structure-ddl-preview-mobile"
-            }
-        },
-        "mac-er-diagram": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-er-diagram-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-er-diagram"
-            }
-        },
-        "mac-er-diagram-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-er-diagram-mobile"
             }
         },
         "mac-compare-sync-structure": {
@@ -1608,47 +1708,6 @@
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-compare-sync-structure-mobile"
-            }
-        },
-        "mac-copy-to-review": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-copy-to-review"
             }
         },
         "mac-users-roles-mysql": {
@@ -1774,657 +1833,6 @@
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-server-dashboard-postgresql-mobile"
-            }
-        },
-        "mac-data-files-window": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-data-files-window-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-data-files-window"
-            }
-        },
-        "mac-data-files-window-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-data-files-window-mobile"
-            }
-        },
-        "mac-data-files-statistics": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-data-files-statistics"
-            }
-        },
-        "mac-import-mapping": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-import-mapping"
-            }
-        },
-        "mac-export-dialog": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-export-dialog"
-            }
-        },
-        "mac-backup-dump": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-backup-dump"
-            }
-        },
-        "mac-ai-chat": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-ai-chat-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                },
-                "dark": {
-                    "widths": [
-                        720,
-                        1216,
-                        2432
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 2432,
-                    "height": 1368
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-ai-chat"
-            }
-        },
-        "mac-ai-chat-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-ai-chat-mobile"
-            }
-        },
-        "mac-agent-mode": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-agent-mode-mobile",
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-agent-mode"
-            }
-        },
-        "mac-agent-mode-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-agent-mode-mobile"
-            }
-        },
-        "mac-mcp-settings": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-mcp-settings"
-            }
-        },
-        "mac-connection-ssh-form": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-connection-ssh-form-mobile",
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-connection-ssh-form"
-            }
-        },
-        "mac-connection-ssh-form-mobile": {
-            "kind": "mobile-crop",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                },
-                "dark": {
-                    "widths": [
-                        343,
-                        686
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 686,
-                    "height": 858
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-connection-ssh-form-mobile"
-            }
-        },
-        "mac-connection-library": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-connection-library"
-            }
-        },
-        "mac-import-other-app": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-import-other-app"
-            }
-        },
-        "mac-open-project-folder": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-open-project-folder"
-            }
-        },
-        "mac-tunnel-command": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "supplied",
-            "src": {
-                "light": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                },
-                "dark": {
-                    "widths": [
-                        696,
-                        1392
-                    ],
-                    "formats": [
-                        "avif",
-                        "webp"
-                    ],
-                    "width": 1392,
-                    "height": 1044
-                }
-            },
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-tunnel-command"
             }
         },
         "diagram-icloud-sync": {
@@ -2658,22 +2066,6 @@
             "replacement": {
                 "dir": "public/images/features",
                 "base": "diagram-icloud-sync"
-            }
-        },
-        "mac-team-library": {
-            "kind": "detail",
-            "type": "detail",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": null,
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-team-library"
             }
         },
         "mac-handoff-ios": {

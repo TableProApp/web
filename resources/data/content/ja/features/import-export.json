@@ -9,97 +9,89 @@
     },
     "header": {
         "title": "インポートとエクスポート",
-        "lead": "対応テーブルにファイルをインポートし、テーブルやクエリ結果を出力できます。CSV、JSON、Excel はデータベース接続なしで開けます。",
-        "docs": "/features/import-export"
+        "lead": "ファイルをテーブルにインポートし、テーブルや結果をエクスポートできます。CSV、JSON、Excel はデータベースなしで開けます。",
+        "docs": "/features/import-export",
+        "asset": "mac-home-import-export"
     },
-    "sections": [
-        {
-            "id": "import",
-            "title": "ファイルをテーブルにインポート",
-            "paragraphs": [
-                "{importFormats} ファイルをインポートできます。データ形式は列を対応付けて既存か新しいテーブルへ取り込み、Excel は最初のシートだけを使います。SQL ファイルは文として実行し、<code>.sql.gz</code> ダンプや <code>GO</code> を使う SQL Server スクリプトにも対応します。",
-                "無効にしない限り、インポートは一つのトランザクションを使います。行の失敗時はロールバック、取り込み済み行の保持、失敗行のスキップを選べます。スキップ行を CSV に出力して確認できます。"
-            ],
-            "engines": [
-                {
-                    "label": "インポート非対応のエンジン",
-                    "list": "noImport"
-                }
-            ],
-            "asset": "mac-import-mapping",
-            "blocks": [
-                {
-                    "id": "mappings",
-                    "title": "対応付けの保存と文字コード",
-                    "paragraphs": [
-                        "CSV、JSON、Excel の列対応を保存して再利用できます。<ui>Match by Name</ui> は名前、<ui>Match by Position</ui> は CSV・Excel の位置で対応付けます。CSV・SQL は UTF-16 と一部の日・中・韓の文字コードにも対応します。"
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
-        },
+    "bands": [
         {
             "id": "export",
             "title": "テーブルと結果をエクスポート",
-            "paragraphs": [
-                "テーブルとビューを {exportFormats} で出力でき、グリッドの行数上限を超えてストリーミングします。SQL エンジンはテーブル別のフィルター、上限、列選択に対応します。SQL 出力に構造も含められ、Excel はテーブルごとに一シートを使います。MongoDB は mongosh スクリプト出力に対応し、SQL 出力はありません。Redis も SQL 出力はありません。",
-                "<ui>Export Results</ui> は上限付きクエリを再実行し、全結果をストリーミングします。<ui>Settings > Plugins</ui> の無料プラグインで {exportPluginFormats} 出力を追加でき、テーブルごとに一つのファイルを作ります。"
+            "text": [
+                "テーブルとビューを {exportFormats} でエクスポートでき、グリッドの行数上限を超えてストリーミングします。SQL エンジンではテーブルごとにフィルター、上限、列を指定でき、SQL 出力には構造も含められます。<ui>Export Results</ui> は上限付きクエリを再実行して全結果を書き出します。無料プラグインで {exportPluginFormats} を追加できます。"
             ],
-            "asset": "mac-export-dialog"
+            "notes": [
+                "SQL エクスポートは、オフにしない限り各テーブルの前に DROP TABLE IF EXISTS を入れます。"
+            ],
+            "docs": "/features/import-export"
+        },
+        {
+            "id": "import",
+            "also": [
+                "mappings"
+            ],
+            "title": "ファイルをテーブルにインポート",
+            "text": [
+                "{importFormats} ファイルを新規または既存のテーブルにインポートでき、列の対応付けは次回用に保存できます。SQL ファイルは文として実行し、<code>.sql.gz</code> ダンプや SQL Server の <code>GO</code> スクリプトにも対応します。オフにしない限りインポートは一つのトランザクションで行います。行が失敗したときは、ロールバックする、インポート済みの行を残す、失敗した行をスキップしてエクスポートする、のいずれかを選べます。"
+            ],
+            "notes": [
+                "Linux は既存テーブルへの CSV と、SQL ファイルをインポートします。iPhone と iPad はショートカットで行を追加します。"
+            ],
+            "engines": [
+                {
+                    "label": "インポート非対応：",
+                    "list": "noImport"
+                }
+            ],
+            "docs": "/features/import-export",
+            "asset": "features-import-export-import"
         },
         {
             "id": "data-files",
+            "also": [
+                "open-and-clean",
+                "statistics"
+            ],
             "title": "Data Files",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "open-and-clean",
-                    "title": "データファイルを編集",
-                    "paragraphs": [
-                        "区切りテキスト、JSON、JSON Lines をテーブルとして開いて編集できます。フィルター、検索、テキスト置換、重複行の削除ができます。Excel シートや <code>.csv.gz</code> などの圧縮ファイルは読み取り専用です。",
-                        "保存するまで変更は非公開のコピーに留まります。保存は元の形式で書き込み、変更していない行を保持します。"
-                    ],
-                    "asset": "mac-data-files-window"
-                },
-                {
-                    "id": "statistics",
-                    "title": "カラムの統計を確認してエクスポートやインポート",
-                    "paragraphs": [
-                        "空値数、一意の値の数、範囲、頻出値を確認できます。値をクリックしてフィルターし、ファイルを出力するか、開いている接続で <ui>Import into Table</ui> を使えます。"
-                    ],
-                    "asset": "mac-data-files-statistics"
-                }
-            ]
+            "text": [
+                "区切りテキスト、JSON、JSON Lines を接続なしでテーブルとして開けます。フィルター、テキスト置換、重複行の削除、各列の統計の確認ができ、元の形式で保存するか、テーブルにインポートできます。Excel と圧縮ファイルは読み取り専用で開きます。"
+            ],
+            "docs": "/features/data-files",
+            "asset": "features-import-export-data-files"
         },
         {
             "id": "backup",
             "title": "バックアップと復元",
-            "paragraphs": [
-                "Backup Dump と Restore Dump は接続の SSH・TLS 設定を使って {backupTools} を実行します。必要な CLI ツールは自分でインストールします。DuckDB は例外で、独自にデータベースか Parquet ダンプを書き出します。",
-                "{serverSideExport} の Server-Side Export は Oracle Data Pump、Snowflake ステージ、Cloud Storage を使って書き出します。エクスポートは Mac を経由しません。"
+            "text": [
+                "Backup Dump と Restore Dump は、接続の SSH と TLS 設定で {backupTools} を実行します。DuckDB 以外はツールを自分でインストールします。{serverSideExport} の Server-Side Export は Oracle Data Pump、Snowflake ステージ、Cloud Storage を使って書き出すため、データは Mac を経由しません。"
+            ],
+            "notes": [
+                "Linux は外部ツールなしで SQL ダンプを書き出します。"
             ],
             "engines": [
                 {
-                    "label": "Backup Dump と使用ツール",
+                    "label": "Backup Dump：",
                     "list": "backupEngines"
                 }
             ],
-            "asset": "mac-backup-dump"
-        },
+            "docs": "/features/backup-restore",
+            "asset": "features-import-export-backup"
+        }
+    ],
+    "more": [
         {
             "id": "files",
             "title": "データベースとしてのファイル",
-            "paragraphs": [
-                "SQLite と DuckDB ファイルは Finder から接続として開きます。DuckDB は Parquet、CSV、JSON ファイルを読み取り専用ビューとしても読み取るため、<code>.parquet</code> ファイルは Data Files ではなく DuckDB 接続として開きます。SSH サーバー上の SQLite データベースは、サーバーに Python 3.6 以降を必要とする小さなエージェント経由で直接開くか、読み取り専用コピーとして開けます。",
-                "<code>.sql</code> ファイルはクエリタブで開き、ディスクに保存できます。Beancount の台帳は読み取り専用のテーブル群として開きます。"
+            "text": [
+                "SQLite と DuckDB のファイルは Finder から接続として開きます。SSH サーバー上の SQLite ファイルは直接開くか読み取り専用コピーとして開けます。DuckDB は Parquet、CSV、JSON をビューとして読み取ります。"
             ],
             "links": [
                 {
-                    "label": "TablePro で使う SQLite",
+                    "label": "SQLite",
                     "href": "/sqlite-client"
                 },
                 {
-                    "label": "TablePro で使う DuckDB",
+                    "label": "DuckDB",
                     "href": "/duckdb-client"
                 }
             ]
@@ -107,8 +99,8 @@
         {
             "id": "between-databases",
             "title": "データベースから別のデータベースへ",
-            "paragraphs": [
-                "中間ファイルなしで対応接続間のテーブルをコピー・転送できます。型変換と確認の詳細は Schema をご覧ください。"
+            "text": [
+                "中間ファイルなしで、接続間でテーブルをコピー・転送できます。"
             ],
             "links": [
                 {
@@ -120,9 +112,8 @@
         {
             "id": "iphone",
             "title": "iPhone と iPad では",
-            "paragraphs": [
-                "iPhone・iPad アプリは、読み込んだ行とクエリ結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有します。コピーはそのデバイスのクリップボードに留まり、他のデバイスとは共有しません。",
-                "ショートカットの Add Row to Table と Add Rows to Table アクションは、JSON や CSV のテキストまたはファイルを受け取り、接続の Safe Mode に従って行を追加します。iPhone と iPad にはインポートシート、ファイルエクスポート、Data Files ウィンドウやバックアップはありません。"
+            "text": [
+                "行を JSON、CSV、INSERT 文としてコピー・共有し、ショートカットのアクションで行を追加できます。"
             ],
             "links": [
                 {
@@ -130,110 +121,6 @@
                     "href": "/ios#automation"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "ファイルをテーブルにインポート",
-            "ios": "partial",
-            "iosNote": "JSON や CSV のショートカットアクション",
-            "linux": "partial",
-            "linuxNote": "既存テーブルへの CSV と SQL ファイル"
-        },
-        {
-            "label": "対応付けの保存、Match by Name と Match by Position",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "テーブルと結果をファイルにエクスポート",
-            "ios": "partial",
-            "iosNote": "JSON、CSV や SQL INSERT としてコピー・共有",
-            "linux": "yes"
-        },
-        {
-            "label": "{exportPluginFormats} エクスポートプラグイン",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Files ウィンドウ",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Backup Dump と Restore Dump",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "外部ツール不要の SQL ダンプ"
-        },
-        {
-            "label": "Server-Side Export",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "SQLite と DuckDB ファイル",
-            "ios": "partial",
-            "iosNote": "デバイス上のファイルやインメモリ DuckDB",
-            "linux": "yes"
-        },
-        {
-            "label": "SSH 経由の SQLite ファイル",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "SQL エクスポートは、チェックを外さない限り各テーブルの前に DROP TABLE IF EXISTS を含みます。残したいテーブルがあるデータベースでファイルを実行する前に、オプションを確認してください。",
-        "Backup Dump は自分でインストールしたコマンドラインツールを使い、記載したエンジンだけに対応します。ツールには環境変数や一時ファイルでパスワードを渡します。ただし sqlpackage は SQL Server のパスワードをコマンドラインで受け取り、Mac 上の他のプロセスが読めるため、TablePro は開始前に確認します。",
-        "Restore Dump は MySQL や MariaDB ダンプ内のテーブルを置き換えます。他のエンジンでは既存のオブジェクトを置き換えません。SQL Server の <code>.bacpac</code> には空のデータベースが必要です。",
-        "SSH 経由でデータベースファイルを開けるのは SQLite だけです。",
-        "S3 用の httpfs、Iceberg、Delta など組み込みでない DuckDB 拡張は、初めてクエリで必要になったときに DuckDB のサーバーからダウンロードします。",
-        "現在の App Store 版では、ショートカットアクションが読む CSV と JSON は UTF-8 のみで、CSV の改行は LF のみに対応します。"
-    ],
-    "docs": [
-        {
-            "label": "インポートとエクスポート",
-            "docs": "/features/import-export"
-        },
-        {
-            "label": "Data Files",
-            "docs": "/features/data-files"
-        },
-        {
-            "label": "バックアップと復元",
-            "docs": "/features/backup-restore"
-        },
-        {
-            "label": "リモートのデータベースファイル",
-            "docs": "/connections/remote-database-files"
-        },
-        {
-            "label": "SQL ファイル",
-            "docs": "/features/sql-files"
-        },
-        {
-            "label": "プラグイン",
-            "docs": "/features/plugins"
-        }
-    ],
-    "related": [
-        {
-            "label": "スキーマ、比較と同期",
-            "href": "/features/schema"
-        },
-        {
-            "label": "TablePro で使う SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "TablePro で使う DuckDB",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "iPhone・iPad 版 TablePro",
-            "href": "/ios"
         }
     ]
 }

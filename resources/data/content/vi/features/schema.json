@@ -9,119 +9,105 @@
     },
     "header": {
         "title": "Schema và so sánh cơ sở dữ liệu",
-        "lead": "Xem quan hệ table, sửa cấu trúc được hỗ trợ và so sánh cơ sở dữ liệu trước khi áp dụng script đồng bộ.",
-        "docs": "/features/table-structure"
+        "lead": "Xem quan hệ giữa các table, sửa cấu trúc với câu lệnh SQL ngay trước mắt, và so sánh hai cơ sở dữ liệu trước khi đồng bộ.",
+        "docs": "/features/table-structure",
+        "asset": "mac-home-schema"
     },
-    "sections": [
+    "bands": [
         {
             "id": "structure",
             "title": "Sửa cấu trúc table",
-            "paragraphs": [
-                "Sửa cột, index, khóa ngoại và ràng buộc CHECK trong tab Structure. Xem DDL chờ chạy bằng <ui>Preview SQL</ui>. Thay đổi phá hủy dữ liệu, đổi kiểu, NOT NULL và khóa chính cần xác nhận ngay cả ở {macSafeModeDefault}.",
-                "Tạo table với SQL preview cập nhật trực tiếp. Đổi khóa ngoại trên họ SQLite có thể cần dựng lại table. TablePro chạy bước dựng lại đã xác nhận trên SQLite và libSQL local; trên Turso, libSQL remote và Cloudflare D1, bạn tự chạy script được tạo."
+            "text": [
+                "Sửa cột, index, khóa ngoại và ràng buộc CHECK trong tab Structure, rồi đọc DDL trong <ui>Xem trước SQL</ui> (Preview SQL) trước khi chạy. Đổi kiểu, NOT NULL, khóa chính và mọi thay đổi phá hủy dữ liệu đều hỏi trước, ngay cả ở mức {macSafeModeDefault}. Table mới có SQL preview cập nhật trực tiếp."
+            ],
+            "notes": [
+                "Khi SQLite cần dựng lại table, TablePro chạy bước đó sau khi bạn xác nhận; trên Turso, libSQL remote và Cloudflare D1, TablePro viết sẵn script để bạn tự chạy. iPhone và iPad hiển thị cấu trúc ở chế độ chỉ đọc."
             ],
             "engines": [
                 {
-                    "label": "Cấu trúc chỉ đọc",
+                    "label": "Cấu trúc chỉ đọc:",
                     "list": "schemaReadOnly"
                 },
                 {
-                    "label": "Chỉ hỗ trợ một số thay đổi cấu trúc",
+                    "label": "Sửa được một phần:",
                     "list": "schemaPartial"
                 }
             ],
-            "asset": "mac-structure-ddl-preview"
+            "docs": "/features/table-structure"
         },
         {
             "id": "er-diagram",
             "title": "ER diagram",
-            "paragraphs": [
-                "<ui>View ER Diagram</ui> hiển thị table và quan hệ khóa ngoại bằng ký hiệu chân quạ. Export PNG hoặc SQL, hoặc sao chép sơ đồ dạng ảnh.",
-                "Sơ đồ chỉ đọc, không phải công cụ thiết kế schema. Sửa trong tab Structure."
+            "text": [
+                "<ui>Xem sơ đồ ER</ui> (View ER Diagram) vẽ table và khóa ngoại của chúng bằng ký hiệu chân quạ. Export ra PNG hoặc SQL, hoặc sao chép dạng ảnh. Sơ đồ chỉ để xem, không phải công cụ thiết kế: muốn thay đổi thì sửa trong tab Structure."
             ],
-            "asset": "mac-er-diagram"
-        },
-        {
-            "id": "objects",
-            "title": "Object cơ sở dữ liệu",
-            "paragraphs": [
-                "Xem routine và trigger được hỗ trợ trong tab mã nguồn chỉ đọc, rồi sao chép SQL hoặc mở trong editor. Danh sách object tùy engine. Partition PostgreSQL nằm dưới table cha."
-            ],
-            "blocks": [
-                {
-                    "id": "table-folders",
-                    "title": "Thư mục cho table và view",
-                    "paragraphs": [
-                        "Nhóm table và view bằng kéo thả hoặc <ui>Move to</ui>. Thư mục chỉ đổi sidebar, không đổi cơ sở dữ liệu, và đồng bộ giữa các máy Mac khi bật iCloud Sync."
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
+            "docs": "/features/er-diagram",
+            "asset": "features-schema-er-diagram"
         },
         {
             "id": "compare-sync",
             "title": "Compare & Sync",
-            "paragraphs": [
-                "So sánh schema hoặc dữ liệu giữa cơ sở dữ liệu nguồn và đích. Có view, routine và trigger ở nơi hỗ trợ. So sánh dữ liệu ghép dòng theo key, có bộ lọc và giới hạn dòng theo table.",
-                "Xem script đồng bộ được sắp xếp theo khóa ngoại. Thay đổi phá hủy dữ liệu không được đưa vào cho tới khi bạn cho phép ở lần chạy đó. Connection Read-Only không làm đích được. Lưu bài so sánh để dùng lại."
+            "text": [
+                "So sánh schema hoặc dữ liệu của hai cơ sở dữ liệu, gồm cả view, routine và trigger ở nơi hỗ trợ. Script đồng bộ được sắp xếp theo khóa ngoại, thay đổi phá hủy dữ liệu bị loại ra cho tới khi bạn cho phép, và connection Read-Only không bao giờ được dùng làm đích. Lưu bài so sánh để chạy lại."
             ],
             "paid": [
                 "compare-sync"
             ],
-            "asset": "mac-compare-sync-structure"
+            "notes": [
+                "Script cấu trúc chỉ được tạo giữa hai cơ sở dữ liệu cùng engine, trong đó MySQL và MariaDB được tính là một."
+            ],
+            "docs": "/features/compare-sync",
+            "asset": "features-schema-compare-sync"
         },
         {
             "id": "copy",
-            "title": "Sao chép và chuyển table",
-            "paragraphs": [
-                "Copy To chuyển object và dữ liệu được hỗ trợ giữa cơ sở dữ liệu, kể cả khác engine. Xem DDL, số dòng và chuyển đổi kiểu trước. Chuyển đổi có thể mất ràng buộc: <code>ENUM</code> của MariaDB thành <code>VARCHAR</code> của PostgreSQL không kèm danh sách giá trị cho phép.",
-                "Duplicate Database sao chép cơ sở dữ liệu trong cùng connection. Transfer To ghép dòng vào table có sẵn trên connection khác mà không qua file trung gian. Các công cụ này miễn phí."
+            "title": "Sao chép table giữa các cơ sở dữ liệu",
+            "text": [
+                "Copy To chuyển table và dữ liệu của chúng sang cơ sở dữ liệu khác, kể cả khác engine, sau khi bạn đã xem lại DDL, số dòng và các chuyển đổi kiểu. Chuyển đổi có thể làm mất ràng buộc: <code>ENUM</code> của MariaDB thành <code>VARCHAR</code> của PostgreSQL. Duplicate Database và Transfer To cũng miễn phí."
             ],
-            "asset": "mac-copy-to-review"
+            "docs": "/features/copy-objects",
+            "asset": "features-schema-copy"
         },
         {
             "id": "administer",
-            "title": "Người dùng, session và bảo trì",
-            "paragraphs": [
-                "Các thao tác bảo trì table, như VACUUM và REINDEX trên PostgreSQL hay OPTIMIZE và CHECK trên MySQL, hiển thị câu lệnh SQL trước khi chạy. Bạn cũng có thể tạo, xóa và đổi tên cơ sở dữ liệu và schema ngay từ sidebar, nếu engine hỗ trợ."
+            "also": [
+                "users-roles",
+                "server-dashboard"
             ],
-            "blocks": [
+            "title": "Người dùng, session và bảo trì",
+            "text": [
+                "Server Dashboard hiển thị các session đang chạy, chỉ số của server và query chậm, và có thể hủy query hoặc kết thúc session, đều đi qua Safe Mode của connection. Users & Roles cho bạn chuẩn bị việc cấp và thu hồi quyền, chi tiết tới từng cột, kèm SQL để xem lại. Thao tác bảo trì như VACUUM hay OPTIMIZE hiển thị SQL trước khi chạy."
+            ],
+            "engines": [
                 {
-                    "id": "users-roles",
-                    "title": "Users & Roles",
-                    "paragraphs": [
-                        "Xem quyền từ cấp server tới cột trên engine được hỗ trợ. Chuẩn bị cấp và thu hồi quyền, rồi xem SQL trước khi áp dụng."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Users & Roles",
-                            "list": "usersRoles"
-                        }
-                    ],
-                    "asset": "mac-users-roles-mysql"
+                    "label": "Server Dashboard:",
+                    "list": "dashboard"
                 },
                 {
-                    "id": "server-dashboard",
-                    "title": "Server Dashboard",
-                    "paragraphs": [
-                        "Server Dashboard hiển thị các session đang chạy, chỉ số của server và các query chậm, làm mới theo khoảng thời gian bạn chọn. Nếu engine cho phép, bạn có thể hủy một query đang chạy hoặc kết thúc một session ngay trên dòng của nó; cả hai đều đi qua Safe Mode của connection. Trên Typesense, dashboard chỉ hiển thị chỉ số."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Server Dashboard",
-                            "list": "dashboard"
-                        }
-                    ],
-                    "asset": "mac-server-dashboard-postgresql"
+                    "label": "Users & Roles:",
+                    "list": "usersRoles"
                 }
+            ],
+            "docs": "/features/server-dashboard",
+            "asset": "features-schema-dashboard"
+        }
+    ],
+    "more": [
+        {
+            "id": "objects",
+            "also": [
+                "table-folders"
+            ],
+            "title": "Routine, trigger và thư mục",
+            "text": [
+                "Xem routine và trigger trong tab mã nguồn, rồi mở chúng trong editor. Nhóm table và view vào thư mục trên sidebar; thư mục được đồng bộ giữa các máy Mac qua iCloud Sync."
             ]
         },
         {
             "id": "iphone",
             "title": "Trên iPhone và iPad",
-            "paragraphs": [
-                "Ứng dụng cho iPhone và iPad hiển thị cột, index và khóa ngoại của table ở chế độ chỉ đọc. Từ danh sách table, bạn có thể xóa toàn bộ dữ liệu (truncate) hoặc xóa hẳn (drop) một table trên engine SQL, trừ khi connection đặt Read-Only.",
-                "Sửa cấu trúc, ER diagram, Compare & Sync, Copy To, Users & Roles và Server Dashboard không có trong ứng dụng iPhone và iPad."
+            "text": [
+                "Cột, index và khóa ngoại chỉ đọc. Bạn có thể truncate hoặc drop một table, trừ khi connection ở mức Read-Only."
             ],
             "links": [
                 {
@@ -129,114 +115,6 @@
                     "href": "/ios#browse"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Sửa cấu trúc với bản xem trước DDL",
-            "ios": "partial",
-            "iosNote": "Cột, index và khóa ngoại, chỉ đọc",
-            "linux": "yes"
-        },
-        {
-            "label": "New Table",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Truncate và drop table",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "ER diagram",
-            "ios": "no",
-            "linux": "yes"
-        },
-        {
-            "label": "Routine, trigger và thư mục table",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Routine và trigger; không có thư mục table"
-        },
-        {
-            "label": "Compare & Sync",
-            "paid": "compare-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copy To, Duplicate Database và Transfer To",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Users & Roles",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Server Dashboard và bảo trì table",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Compare & Sync chỉ tạo script cấu trúc giữa hai cơ sở dữ liệu cùng engine, trong đó MySQL và MariaDB được tính là một. Các cặp khác chỉ so sánh để xem, cấu trúc MongoDB không bao giờ có script, và khi đồng bộ dữ liệu giữa hai engine khác nhau, TablePro nhắc bạn kiểm tra cách giá trị được ghi. Để chuyển table sang engine khác, hãy dùng Copy To.",
-        "Đổi thứ tự cột sẽ dựng lại table trên SQLite và trên file libSQL cục bộ, sau khi bạn xác nhận. Trên PostgreSQL, Turso, libSQL từ xa và Cloudflare D1, TablePro viết sẵn script dựng lại và để bạn tự chạy.",
-        "ER diagram chỉ đọc. Đây không phải công cụ thiết kế schema.",
-        "Những session và nội dung query mà Server Dashboard hiển thị được tùy thuộc vào quyền của tài khoản bạn dùng để kết nối."
-    ],
-    "docs": [
-        {
-            "label": "Cấu trúc table",
-            "docs": "/features/table-structure"
-        },
-        {
-            "label": "ER diagram",
-            "docs": "/features/er-diagram"
-        },
-        {
-            "label": "Procedure, hàm và trigger",
-            "docs": "/features/routines-triggers"
-        },
-        {
-            "label": "Compare & Sync",
-            "docs": "/features/compare-sync"
-        },
-        {
-            "label": "Sao chép và nhân bản",
-            "docs": "/features/copy-objects"
-        },
-        {
-            "label": "Users & Roles",
-            "docs": "/features/users-roles"
-        },
-        {
-            "label": "Server Dashboard",
-            "docs": "/features/server-dashboard"
-        },
-        {
-            "label": "Thao tác và bảo trì table",
-            "docs": "/features/table-operations"
-        }
-    ],
-    "related": [
-        {
-            "label": "Import, export và file dữ liệu",
-            "href": "/features/import-export"
-        },
-        {
-            "label": "PostgreSQL trong TablePro",
-            "href": "/postgresql-client"
-        },
-        {
-            "label": "MySQL và MariaDB trong TablePro",
-            "href": "/mysql-client"
-        },
-        {
-            "label": "Gói trả phí bổ sung những gì",
-            "href": "/pricing#features"
         }
     ]
 }

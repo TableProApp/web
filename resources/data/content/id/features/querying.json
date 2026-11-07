@@ -9,133 +9,120 @@
     },
     "header": {
         "title": "Editor SQL",
-        "lead": "Tulis SQL dengan pelengkapan otomatis sadar skema. Simpan kueri yang Anda gunakan kembali, telusuri riwayat Anda, dan periksa paket di mesin yang didukung.",
-        "docs": "/features/sql-editor"
+        "lead": "Tulis SQL dengan pelengkapan otomatis yang membaca skema Anda, simpan kueri yang Anda gunakan kembali, dan lihat cara database menjalankannya.",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
-            "title": "Pelengkapan otomatis sadar skema",
-            "paragraphs": [
-                "Pelengkapan otomatis menyarankan tabel dan kolom, termasuk alias, CTE, dan subkueri. Format pernyataan saat ini dengan <kbd>⌘⇧L</kbd> sambil menyimpan komentarnya.",
-                "Jalankan pernyataan saat ini, pilihan atau keseluruhan skrip. Kumpulan pernyataan biasa menggunakan satu transaksi dan melakukan roll back jika terjadi kegagalan. Skrip SQL Server, transaksi eksplisit, dan pernyataan seperti VACUUM adalah pengecualian. DDL pada MySQL, MariaDB dan Oracle dilakukan secara independen."
+            "also": [
+                "open-quickly"
             ],
-            "points": [
-                "Penanda pernyataan di margin, masing-masing dengan tombol jalankan sendiri.",
-                "Cari dan ganti, dengan ekspresi reguler.",
-                "Vim mode dengan gerakan, register, dan makro; <code>:w</code> menjalankan kueri.",
-                "File <code>.sql</code> dibuka, diedit, dan disimpan sebagai tab kueri."
+            "title": "Pelengkapan otomatis dari skema Anda",
+            "text": [
+                "Pelengkapan otomatis menyarankan tabel dan kolom, termasuk alias, CTE, dan subkueri. Jalankan pernyataan saat ini, pilihan, atau seluruh skrip; kumpulan pernyataan biasa berjalan dalam satu transaksi dan di-rollback jika ada pernyataan yang gagal.",
+                "Format dengan <kbd>⌘⇧L</kbd>, aktifkan Vim mode, atau lompat ke tabel, tampilan, atau kueri tersimpan mana pun dengan Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "asset": "mac-query-autocomplete"
+            "notes": [
+                "Di iPhone dan iPad, tab Query menjalankan SQL tanpa pelengkapan otomatis."
+            ],
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "Parameter, riwayat, dan kueri tersimpan",
-            "paragraphs": [
-                "Gunakan parameter seperti <code>:customer_id</code> untuk memasukkan nilai sebelum kueri dijalankan. Nilai terikat secara asli jika pengemudi mendukungnya.",
-                "Cari riwayat kueri lokal berdasarkan teks, sumber, kegagalan, atau rentang waktu. Itu menyimpan entri {historyEntries} selama {historyDays} hari secara default dan tidak pernah disinkronkan.",
-                "Simpan kueri dengan kata kunci dan riwayat versi yang dapat digunakan kembali. Tautkan folder file <code>.sql</code> ke sidebar dengan pembaruan dua arah dan status Git. Folder SQL yang ditautkan gratis, terpisah dari fitur Linked Folders berbayar untuk file koneksi."
+            "text": [
+                "Tulis <code>:customer_id</code> dan TablePro meminta nilainya sebelum kueri dijalankan. Cari riwayat Anda berdasarkan teks, sumber, kegagalan, atau rentang waktu: riwayat menyimpan {historyEntries} entri selama {historyDays} hari dan tidak pernah disinkronkan.",
+                "Simpan kueri yang Anda gunakan kembali, atau tautkan folder file <code>.sql</code> ke sidebar, dengan pembaruan dua arah dan status Git."
             ],
-            "asset": "mac-query-parameters-history"
-        },
-        {
-            "id": "open-quickly",
-            "title": "Open Quickly dan tab",
-            "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) mencari tabel, tampilan, dan kueri di seluruh koneksi terbuka. Tab mempertahankan SQL dan pengaturan kisinya saat Anda membuka kembali aplikasi."
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "Performa kueri",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "explain",
-                    "title": "EXPLAIN dan EXPLAIN Compare",
-                    "paragraphs": [
-                        "Lihat rencana kueri sebagai diagram, pohon biaya, atau keluaran mesin mentah. Bandingkan dengan proses sebelumnya untuk mengetahui waktu dan perubahan rencana; perbedaan di bawah {explainNoise}% dihitung sebagai kebisingan. Kedua fitur tersebut gratis."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Rencana sebagai diagram dan pohon",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "Rencana sebagai teks",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "Estimasi biaya tanpa eksekusi",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "Mesin SQL tanpa EXPLAIN",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
-                },
-                {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "Temukan kueri yang lambat, gagal, dan sering dijalankan dalam riwayat lokal Mac ini. Pernyataan serupa dikelompokkan terlepas dari nilai parameternya. Query Insights membandingkan periode secara lokal; ini bukan pemantauan seluruh server dan tidak mengunggah metrik."
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
-                }
-            ]
-        },
-        {
-            "id": "results",
-            "title": "Hasil sebagai diagram dan peta",
-            "paragraphs": [
-                "Hasil dapat dialihkan dari grid ke diagram atau peta dalam tab yang sama, lalu kembali."
+            "notes": [
+                "Linux memiliki riwayat dan kueri tersimpan. iPhone dan iPad menyimpan {historyEntriesIos} kueri terakhir."
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "Tampilkan hasil sebagai grafik batang, garis, area, atau sebar. Grafik menampilkan hingga {chartPoints} titik dan {chartSeries} seri dari {chartInspectedRows} baris pertama, dengan pemberitahuan jika terpotong."
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "Tampilan Peta",
-                    "paragraphs": [
-                        "Lihat kolom geometri yang didukung di Apple Maps dan pilih bentuk untuk menemukan barisnya. Baris tetap di Mac Anda; Apple memasok ubin peta. Tampilan peta gratis."
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "other-languages",
-            "title": "Bahasa kueri lainnya",
-            "paragraphs": [
-                "Gunakan bahasa kueri setiap mesin non-SQL di editor. MongoDB menggunakan shell JavaScript bergaya mongosh bawaan, bukan mongosh itu sendiri. Lihat halaman database untuk perintah yang didukung."
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN dan EXPLAIN Compare",
+            "text": [
+                "Baca rencana kueri sebagai diagram, pohon biaya, atau keluaran asli mesin. Jalankan kueri lagi setelah ada perubahan dan bandingkan kedua eksekusi: perbedaan waktu dan rencana tampil berdampingan, dan selisih di bawah {explainNoise}% dianggap noise."
             ],
             "engines": [
                 {
-                    "label": "Bahasa kueri menurut mesin",
+                    "label": "Rencana sebagai diagram:",
+                    "list": "explainDiagram"
+                },
+                {
+                    "label": "Rencana sebagai teks:",
+                    "list": "explainText"
+                },
+                {
+                    "label": "Estimasi biaya tanpa eksekusi:",
+                    "list": "explainCost"
+                }
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "Temukan kueri yang lambat, gagal, dan paling sering dijalankan dalam riwayat Mac ini. Pernyataan yang hanya berbeda nilainya dikelompokkan bersama, dan dua periode dibandingkan berdampingan. Fitur ini hanya membaca riwayat lokal: bukan pemantauan server, dan tidak mengunggah apa pun."
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
+        },
+        {
+            "id": "results",
+            "also": [
+                "result-charts",
+                "map"
+            ],
+            "title": "Grafik dan peta",
+            "text": [
+                "Ubah hasil menjadi grafik batang, garis, area, atau sebar di tab yang sama, dari {chartInspectedRows} baris pertama. Kolom geometri terbuka di peta, dan memilih bentuk akan menemukan barisnya. Result Charts termasuk dalam Pro; Tampilan Peta gratis."
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
+        {
+            "id": "other-languages",
+            "title": "Bahasa kueri lainnya",
+            "text": [
+                "Mesin non-SQL memakai bahasa kuerinya sendiri di editor. MongoDB mendapat shell bawaan bergaya mongosh."
+            ],
+            "engines": [
+                {
+                    "label": "Menurut mesin:",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "Hasil besar",
+            "text": [
+                "Kueri mengembalikan paling banyak {rowCap} baris kecuali Anda menaikkan batas di Settings, hingga {rowCapMax}. LIMIT yang Anda tulis sendiri selalu berlaku lebih dahulu."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Di iPhone dan iPad",
-            "paragraphs": [
-                "Aplikasi iPhone dan iPad memiliki tab Query dengan sorotan SQL, Run dan Stop (<kbd>⌘↩</kbd> dengan keyboard), serta riwayat {historyEntriesIos} kueri terakhir yang dijalankan di perangkat itu. Anda dapat menyalin atau membagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT.",
-                "Tidak ada pelengkapan otomatis, pemformatan, parameter, EXPLAIN, atau kueri tersimpan, dan aplikasi menampung paling banyak {resultBufferIos} baris hasil; tambahkan LIMIT untuk melihat bagian yang diperlukan."
+            "text": [
+                "Tab Query menyorot SQL, menjalankan dan menghentikannya, serta membagikan hasil sebagai JSON, CSV, atau pernyataan INSERT."
             ],
             "links": [
                 {
@@ -143,109 +130,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Editor SQL dengan pelengkapan otomatis dan pemformatan",
-            "ios": "partial",
-            "iosNote": "Sorotan, Run dan Stop; tanpa pelengkapan otomatis",
-            "linux": "yes"
-        },
-        {
-            "label": "Parameter kueri",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Riwayat kueri",
-            "ios": "partial",
-            "iosNote": "{historyEntriesIos} kueri terakhir di perangkat",
-            "linux": "yes"
-        },
-        {
-            "label": "Kueri tersimpan dan folder SQL tertaut",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Hanya kueri tersimpan"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Cari koneksi dan tabel di sidebar"
-        },
-        {
-            "label": "EXPLAIN dan EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Tampilan Peta",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Salin atau bagikan hasil",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Kueri mengembalikan paling banyak {rowCap} baris kecuali Anda menaikkan batas di Settings, hingga {rowCapMax}, atau menjalankannya dengan <kbd>⌘⌥⏎</kbd>. LIMIT yang Anda tulis sendiri selalu berlaku lebih dahulu.",
-        "Riwayat kueri dan Query Insights hanya mencakup Mac ini: kueri yang dijalankan di Mac lain atau iPhone tidak termasuk.",
-        "Perintah shell <code>tablepro</code> membuka koneksi dan file dalam aplikasi. Perintah ini tidak menjalankan kueri dari terminal."
-    ],
-    "docs": [
-        {
-            "label": "Editor SQL",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "Parameter kueri",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "Riwayat kueri",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "Visualisasi EXPLAIN",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "Diagram dan peta dalam grid data",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Pengeditan data",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Database yang didukung",
-            "href": "/databases"
-        },
-        {
-            "label": "Tambahan dari paket berbayar",
-            "href": "/pricing#features"
         }
     ]
 }

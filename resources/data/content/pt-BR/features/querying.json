@@ -9,133 +9,120 @@
     },
     "header": {
         "title": "Editor SQL",
-        "lead": "Escreva SQL com preenchimento automático com reconhecimento de esquema. Salve consultas reutilizadas, pesquise seu histórico e inspecione planos em mecanismos suportados.",
-        "docs": "/features/sql-editor"
+        "lead": "Escreva SQL com preenchimento automático que lê seu esquema, guarde as consultas que você reutiliza e veja como o banco de dados as executa.",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
-            "title": "Preenchimento automático com reconhecimento de esquema",
-            "paragraphs": [
-                "O preenchimento automático sugere tabelas e colunas, incluindo aliases, CTEs e subconsultas. Formate a instrução atual com <kbd>⌘⇧L</kbd> enquanto mantém seus comentários.",
-                "Execute a instrução atual, uma seleção ou um script inteiro. Os lotes de instruções comuns usam uma transação e revertem em caso de falha. Scripts SQL Server, transações explícitas e instruções como VACUUM são exceções. DDL em MySQL, MariaDB e Oracle é confirmado de forma independente."
+            "also": [
+                "open-quickly"
             ],
-            "points": [
-                "Marcadores de instrução na margem, cada um com seu botão de execução.",
-                "Buscar e substituir, com expressões regulares.",
-                "Vim mode com movimentos, registros e macros, em que <code>:w</code> executa a consulta.",
-                "Arquivos <code>.sql</code> são abertos, editados e salvos como abas de consulta."
+            "title": "Preenchimento automático a partir do seu esquema",
+            "text": [
+                "O preenchimento automático sugere tabelas e colunas, incluindo aliases, CTEs e subconsultas. Execute a instrução atual, uma seleção ou o script inteiro; um lote comum roda em uma transação e é revertido se uma instrução falhar.",
+                "Formate com <kbd>⌘⇧L</kbd>, ative o Vim mode ou vá direto a qualquer tabela, visualização ou consulta salva com Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "asset": "mac-query-autocomplete"
+            "notes": [
+                "No iPhone e iPad, a aba Query executa SQL sem preenchimento automático."
+            ],
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "Parâmetros, histórico e consultas salvas",
-            "paragraphs": [
-                "Use parâmetros como <code>:customer_id</code> para inserir valores antes da execução de uma consulta. Os valores são vinculados nativamente onde o driver os suporta.",
-                "Pesquise o histórico de consultas locais por texto, origem, falhas ou intervalo de tempo. Ele mantém entradas {historyEntries} por dias {historyDays} por padrão e nunca sincroniza.",
-                "Salve consultas com palavras-chave reutilizáveis e histórico de versões. Vincule uma pasta de arquivos <code>.sql</code> à barra lateral com atualizações bidirecionais e status do Git. As pastas SQL vinculadas são gratuitas, separadas do recurso Linked Folders pago para arquivos de conexão."
+            "text": [
+                "Escreva <code>:customer_id</code> e o TablePro pede o valor antes de executar a consulta. Pesquise o histórico por texto, origem, falhas ou intervalo de tempo: ele guarda {historyEntries} entradas por {historyDays} dias e nunca sincroniza.",
+                "Salve as consultas que você reutiliza ou vincule uma pasta de arquivos <code>.sql</code> à barra lateral, com atualizações bidirecionais e status do Git."
             ],
-            "asset": "mac-query-parameters-history"
-        },
-        {
-            "id": "open-quickly",
-            "title": "Open Quickly e abas",
-            "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) pesquisa tabelas, visualizações e consultas em conexões abertas. As guias mantêm suas configurações SQL e de grade quando você reabre o aplicativo."
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "Desempenho da consulta",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "explain",
-                    "title": "EXPLAIN e EXPLAIN Compare",
-                    "paragraphs": [
-                        "Visualize planos de consulta como diagramas, árvores de custos ou resultados brutos do mecanismo. Compare com uma execução anterior para identificar o tempo e planejar mudanças; diferenças abaixo de {explainNoise}% contam como ruído. Ambos os recursos são gratuitos."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Plano como diagrama e árvore",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "Plano como texto",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "Estimativa de custo sem execução",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "Mecanismos SQL sem EXPLAIN",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
-                },
-                {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "Encontre consultas lentas, com falha e executadas com frequência no histórico local deste Mac. Instruções semelhantes são agrupadas independentemente dos valores dos parâmetros. Query Insights compara períodos localmente; não é um monitoramento de todo o servidor e não carrega nenhuma métrica."
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
-                }
-            ]
-        },
-        {
-            "id": "results",
-            "title": "Resultados como gráficos e mapas",
-            "paragraphs": [
-                "Um resultado pode alternar da grade para um gráfico ou mapa na mesma aba e voltar."
+            "notes": [
+                "O Linux tem histórico e consultas salvas. O iPhone e o iPad guardam as últimas {historyEntriesIos} consultas."
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "Crie gráficos de barras, linhas, áreas ou dispersão com os resultados. Mostram até {chartPoints} pontos e {chartSeries} séries das primeiras {chartInspectedRows} linhas, com aviso quando há truncamento."
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "Visualização Mapa",
-                    "paragraphs": [
-                        "Visualize colunas geométricas suportadas no Apple Maps e selecione uma forma para encontrar sua linha. As linhas permanecem no seu Mac; A Apple fornece os blocos do mapa. A visualização do mapa é gratuita."
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "other-languages",
-            "title": "Outras linguagens de consulta",
-            "paragraphs": [
-                "Use a linguagem de consulta de cada mecanismo não SQL no editor. MongoDB usa um shell JavaScript integrado no estilo mongosh, não o próprio mongosh. Consulte as páginas do banco de dados para obter comandos suportados."
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN e EXPLAIN Compare",
+            "text": [
+                "Leia um plano de consulta como diagrama, árvore de custos ou a saída do próprio mecanismo. Execute a consulta de novo após uma mudança e compare as duas execuções: as diferenças de tempo e de plano aparecem lado a lado, e o que fica abaixo de {explainNoise}% conta como ruído."
             ],
             "engines": [
                 {
-                    "label": "Linguagem de consulta por mecanismo",
+                    "label": "Planos como diagrama:",
+                    "list": "explainDiagram"
+                },
+                {
+                    "label": "Planos como texto:",
+                    "list": "explainText"
+                },
+                {
+                    "label": "Custo estimado sem execução:",
+                    "list": "explainCost"
+                }
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "Encontre as consultas lentas, com falha e mais executadas no histórico deste Mac. Instruções que diferem só nos valores são agrupadas, e dois períodos são comparados lado a lado. Lê apenas o histórico local: não é monitoramento do servidor e não envia nada."
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
+        },
+        {
+            "id": "results",
+            "also": [
+                "result-charts",
+                "map"
+            ],
+            "title": "Gráficos e mapas",
+            "text": [
+                "Transforme um resultado em gráfico de barras, linhas, áreas ou dispersão na mesma aba, a partir das primeiras {chartInspectedRows} linhas. Colunas geométricas abrem em um mapa, e selecionar uma forma encontra a linha dela. Result Charts faz parte do Pro; a visualização Mapa é gratuita."
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
+        {
+            "id": "other-languages",
+            "title": "Outras linguagens de consulta",
+            "text": [
+                "Mecanismos não SQL usam a própria linguagem de consulta no editor. O MongoDB tem um shell integrado no estilo do mongosh."
+            ],
+            "engines": [
+                {
+                    "label": "Por mecanismo:",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "Resultados grandes",
+            "text": [
+                "Uma consulta retorna no máximo {rowCap} linhas, a menos que você aumente o limite em Ajustes, até {rowCapMax}. Um LIMIT escrito por você sempre prevalece."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "No iPhone e iPad",
-            "paragraphs": [
-                "O app para iPhone e iPad tem uma aba Query com destaque SQL, Run e Stop (<kbd>⌘↩</kbd> com teclado) e um histórico das últimas {historyEntriesIos} consultas executadas nesse dispositivo. Você pode copiar ou compartilhar um resultado como JSON, CSV ou instruções SQL INSERT.",
-                "Não tem preenchimento automático, formatação, parâmetros, EXPLAIN nem consultas salvas e mantém no máximo {resultBufferIos} linhas de um resultado; adicione LIMIT para ver o trecho necessário."
+            "text": [
+                "A aba Query destaca a sintaxe SQL, executa e interrompe a consulta e compartilha um resultado como JSON, CSV ou instruções INSERT."
             ],
             "links": [
                 {
@@ -143,109 +130,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Editor SQL com preenchimento automático e formatação",
-            "ios": "partial",
-            "iosNote": "Destaque, Run e Stop; sem preenchimento automático",
-            "linux": "yes"
-        },
-        {
-            "label": "Parâmetros de consulta",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Histórico de consultas",
-            "ios": "partial",
-            "iosNote": "As últimas {historyEntriesIos} consultas no dispositivo",
-            "linux": "yes"
-        },
-        {
-            "label": "Consultas salvas e pastas SQL vinculadas",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Somente consultas salvas"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Busca de conexões e tabelas na barra lateral"
-        },
-        {
-            "label": "EXPLAIN e EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Visualização Mapa",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Copiar ou compartilhar resultados",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Uma consulta retorna no máximo {rowCap} linhas, a menos que você aumente o limite em Ajustes, até {rowCapMax}, ou a execute com <kbd>⌘⌥⏎</kbd>. Um LIMIT escrito por você sempre prevalece.",
-        "O histórico de consultas e Query Insights abrangem apenas este Mac: consultas executadas em outro Mac ou no iPhone não estão neles.",
-        "O comando de shell <code>tablepro</code> abre conexões e arquivos no app. Ele não executa consultas pelo terminal."
-    ],
-    "docs": [
-        {
-            "label": "Editor SQL",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "Parâmetros de consulta",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "Histórico de consultas",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "Visualização EXPLAIN",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "Gráficos e mapas na grade de dados",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Edição de dados",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Bancos de dados compatíveis",
-            "href": "/databases"
-        },
-        {
-            "label": "O que um plano pago adiciona",
-            "href": "/pricing#features"
         }
     ]
 }

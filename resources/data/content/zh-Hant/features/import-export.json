@@ -9,97 +9,89 @@
     },
     "header": {
         "title": "匯入與匯出",
-        "lead": "將檔案匯入支援的資料表，並匯出資料表或查詢結果。無需資料庫連線即可開啟 CSV、JSON 和 Excel 檔案。",
-        "docs": "/features/import-export"
+        "lead": "將檔案匯入資料表，匯出資料表和結果，並且無需資料庫即可開啟 CSV、JSON 或 Excel。",
+        "docs": "/features/import-export",
+        "asset": "mac-home-import-export"
     },
-    "sections": [
-        {
-            "id": "import",
-            "title": "將檔案匯入資料表",
-            "paragraphs": [
-                "匯入 {importFormats} 檔案。資料格式透過欄位對應寫入既有或新資料表；Excel 僅匯入首個工作表。SQL 檔案作為陳述式執行，包括 <code>.sql.gz</code> 傾印和使用 <code>GO</code> 的 SQL Server 腳本。",
-                "除非停用，匯入使用一個交易。可選擇失敗列處理方式：復原、保留已匯入列或略過失敗。略過的列可匯出為 CSV 供檢查。"
-            ],
-            "engines": [
-                {
-                    "label": "不支援匯入的引擎",
-                    "list": "noImport"
-                }
-            ],
-            "asset": "mac-import-mapping",
-            "blocks": [
-                {
-                    "id": "mappings",
-                    "title": "已儲存對應與編碼",
-                    "paragraphs": [
-                        "重複使用已儲存的 CSV、JSON 和 Excel 欄位對應。<ui>Match by Name</ui> 依欄位名稱對應；<ui>Match by Position</ui> 適用於 CSV 和 Excel。CSV 和 SQL 也支援 UTF-16 及部分日文、中文、韓文編碼。"
-                    ],
-                    "since": "0.77.0"
-                }
-            ]
-        },
+    "bands": [
         {
             "id": "export",
             "title": "匯出資料表與結果",
-            "paragraphs": [
-                "將資料表和檢視匯出為 {exportFormats}，串流輸出超過表格列數上限的資料。SQL 引擎支援逐表篩選、限制和欄位選擇。SQL 匯出可包含結構；Excel 每表一張工作表。MongoDB 支援 mongosh 腳本匯出，不支援 SQL 匯出；Redis 也沒有 SQL 匯出。",
-                "<ui>匯出結果</ui> (Export Results) 重新執行受列數限制的查詢，串流輸出完整結果。透過 <ui>設定 > 外掛</ui> (Settings > Plugins) 中的免費外掛加入 {exportPluginFormats} 匯出，每表一個檔案。"
+            "text": [
+                "將資料表和檢視匯出為 {exportFormats}，串流輸出超過表格列數上限的資料。SQL 引擎可逐表設定篩選、限制和欄位清單，SQL 匯出可包含結構。<ui>匯出結果</ui> (Export Results) 重新執行受列數限制的查詢以寫出完整結果，免費外掛可加入 {exportPluginFormats}。"
             ],
-            "asset": "mac-export-dialog"
+            "notes": [
+                "SQL 匯出會在每個資料表前加入 DROP TABLE IF EXISTS，除非您將其關閉。"
+            ],
+            "docs": "/features/import-export"
+        },
+        {
+            "id": "import",
+            "also": [
+                "mappings"
+            ],
+            "title": "將檔案匯入資料表",
+            "text": [
+                "將 {importFormats} 檔案匯入新資料表或既有資料表，欄位對應可儲存供下次使用。SQL 檔案作為陳述式執行，包括 <code>.sql.gz</code> 傾印和 SQL Server <code>GO</code> 腳本。除非停用，匯入使用一個交易；有列失敗時，可以復原整個匯入、保留已匯入的列，或略過失敗的列並將其匯出。"
+            ],
+            "notes": [
+                "Linux 可將 CSV 匯入既有資料表，也可匯入 SQL 檔案。iPhone 與 iPad 透過捷徑新增列。"
+            ],
+            "engines": [
+                {
+                    "label": "不支援匯入：",
+                    "list": "noImport"
+                }
+            ],
+            "docs": "/features/import-export",
+            "asset": "features-import-export-import"
         },
         {
             "id": "data-files",
+            "also": [
+                "open-and-clean",
+                "statistics"
+            ],
             "title": "Data Files",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "open-and-clean",
-                    "title": "編輯資料檔案",
-                    "paragraphs": [
-                        "將分隔文字、JSON 和 JSON Lines 作為資料表開啟並編輯。可篩選、搜尋、取代文字或刪除重複列。Excel 工作表和 <code>.csv.gz</code> 等壓縮檔案為唯讀。",
-                        "變更在儲存前保留在私人副本中。儲存時寫入原始格式，並保留未修改列。"
-                    ],
-                    "asset": "mac-data-files-window"
-                },
-                {
-                    "id": "statistics",
-                    "title": "查看欄位統計後匯出或匯入",
-                    "paragraphs": [
-                        "檢查空值和相異值的數量、範圍及常見值。點擊值進行篩選，再匯出檔案，或在已開啟連線上使用 <ui>Import into Table</ui>。"
-                    ],
-                    "asset": "mac-data-files-statistics"
-                }
-            ]
+            "text": [
+                "無需連線，即可將分隔文字、JSON 和 JSON Lines 作為資料表開啟。篩選、取代文字、刪除重複列並查看各欄位統計，再以原始格式儲存或匯入資料表。Excel 和壓縮檔案以唯讀方式開啟。"
+            ],
+            "docs": "/features/data-files",
+            "asset": "features-import-export-data-files"
         },
         {
             "id": "backup",
             "title": "備份和還原",
-            "paragraphs": [
-                "Backup Dump 和 Restore Dump 使用 {backupTools} 及連線的 SSH、TLS 設定。所需命令列工具須自行安裝；DuckDB 除外，它自行寫入資料庫或 Parquet 傾印。",
-                "{serverSideExport} 上的 Server-Side Export 透過 Oracle Data Pump、Snowflake 暫存區或 Cloud Storage 寫入。匯出資料不經過 Mac。"
+            "text": [
+                "Backup Dump 和 Restore Dump 使用連線的 SSH 與 TLS 設定執行 {backupTools}；工具需自行安裝，DuckDB 除外。{serverSideExport} 上的 Server-Side Export 透過 Oracle Data Pump、Snowflake 暫存區或 Cloud Storage 寫入，資料不經過您的 Mac。"
+            ],
+            "notes": [
+                "Linux 無需外部工具即可寫出 SQL 傾印。"
             ],
             "engines": [
                 {
-                    "label": "Backup Dump 及其工具",
+                    "label": "Backup Dump：",
                     "list": "backupEngines"
                 }
             ],
-            "asset": "mac-backup-dump"
-        },
+            "docs": "/features/backup-restore",
+            "asset": "features-import-export-backup"
+        }
+    ],
+    "more": [
         {
             "id": "files",
             "title": "作為資料庫的檔案",
-            "paragraphs": [
-                "SQLite 和 DuckDB 檔案從 Finder 以連線形式開啟。DuckDB 也可將 Parquet、CSV 和 JSON 檔案讀取為唯讀檢視表，因此 <code>.parquet</code> 檔案會作為 DuckDB 連線開啟，而非進入 Data Files。SSH 伺服器上的 SQLite 資料庫可透過一個小型代理程式直接存取（伺服器需安裝 Python 3.6 或更新版本），或開啟為唯讀副本。",
-                "<code>.sql</code> 檔案以查詢分頁開啟並儲存回磁碟，Beancount 帳本以一組唯讀資料表開啟。"
+            "text": [
+                "SQLite 和 DuckDB 檔案可從 Finder 以連線形式開啟。SSH 伺服器上的 SQLite 檔案可直接開啟或開啟為唯讀副本，DuckDB 可將 Parquet、CSV 和 JSON 讀取為檢視。"
             ],
             "links": [
                 {
-                    "label": "在 TablePro 中使用 SQLite",
+                    "label": "SQLite",
                     "href": "/sqlite-client"
                 },
                 {
-                    "label": "在 TablePro 中使用 DuckDB",
+                    "label": "DuckDB",
                     "href": "/duckdb-client"
                 }
             ]
@@ -107,8 +99,8 @@
         {
             "id": "between-databases",
             "title": "從一個資料庫到另一個資料庫",
-            "paragraphs": [
-                "無需中間檔案即可在支援的連線間複製或傳輸資料表。型別轉換和檢查詳情請見 Schema。"
+            "text": [
+                "無需中間檔案，即可在連線之間複製或傳輸資料表。"
             ],
             "links": [
                 {
@@ -120,9 +112,8 @@
         {
             "id": "iphone",
             "title": "在 iPhone 與 iPad 上",
-            "paragraphs": [
-                "iPhone 與 iPad App 從已載入的列中，將列和查詢結果複製或分享為 JSON、CSV 或 SQL INSERT 陳述式。複製內容僅留在該裝置剪貼簿，不會與其他裝置共用。",
-                "透過捷徑的 Add Row to Table 和 Add Rows to Table 動作可匯入列，接受 JSON 或 CSV 文字或檔案，並遵循連線的 Safe Mode。iPhone 與 iPad 不提供匯入面板、檔案匯出、Data Files 視窗或備份。"
+            "text": [
+                "將列複製或分享為 JSON、CSV 或 INSERT 陳述式，並透過捷徑動作新增列。"
             ],
             "links": [
                 {
@@ -130,110 +121,6 @@
                     "href": "/ios#automation"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "將檔案匯入資料表",
-            "ios": "partial",
-            "iosNote": "透過捷徑從 JSON 或 CSV 匯入",
-            "linux": "partial",
-            "linuxNote": "CSV 匯入現有資料表，以及 SQL 檔案"
-        },
-        {
-            "label": "已儲存對應、Match by Name 與 Match by Position",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "將資料表和結果匯出為檔案",
-            "ios": "partial",
-            "iosNote": "複製或分享為 JSON、CSV 或 SQL INSERT",
-            "linux": "yes"
-        },
-        {
-            "label": "{exportPluginFormats} 匯出外掛程式",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Files 視窗",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Backup Dump 與 Restore Dump",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "無需外部工具的 SQL 傾印"
-        },
-        {
-            "label": "Server-Side Export",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "SQLite 與 DuckDB 檔案",
-            "ios": "partial",
-            "iosNote": "裝置上的檔案，或記憶體中的 DuckDB",
-            "linux": "yes"
-        },
-        {
-            "label": "透過 SSH 存取 SQLite 檔案",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "SQL 匯出預設在每個資料表前包含 DROP TABLE IF EXISTS，除非取消勾選。因此，在需要保留資料表的資料庫上執行檔案前，請檢查選項。",
-        "Backup Dump 使用自行安裝的命令列工具，僅支援列出的引擎。工具透過環境變數或暫存檔取得密碼。sqlpackage 例外：它在命令列接收 SQL Server 密碼，Mac 上的其他處理程序可以讀取；TablePro 會在啟動前徵求確認。",
-        "Restore Dump 會取代 MySQL 或 MariaDB 傾印中的資料表。其他引擎不會取代已存在的物件，SQL Server 的 <code>.bacpac</code> 需要空資料庫。",
-        "透過 SSH 開啟資料庫檔案僅支援 SQLite。",
-        "S3 的 httpfs、Iceberg、Delta 等非內建 DuckDB 擴充功能，會在查詢首次需要時從 DuckDB 自有伺服器下載。",
-        "目前 App Store 版本的捷徑動作僅以 UTF-8 讀取 CSV 和 JSON，CSV 僅支援 LF 換行。"
-    ],
-    "docs": [
-        {
-            "label": "匯入與匯出",
-            "docs": "/features/import-export"
-        },
-        {
-            "label": "Data Files",
-            "docs": "/features/data-files"
-        },
-        {
-            "label": "備份與還原",
-            "docs": "/features/backup-restore"
-        },
-        {
-            "label": "遠端資料庫檔案",
-            "docs": "/connections/remote-database-files"
-        },
-        {
-            "label": "SQL 檔案",
-            "docs": "/features/sql-files"
-        },
-        {
-            "label": "外掛程式",
-            "docs": "/features/plugins"
-        }
-    ],
-    "related": [
-        {
-            "label": "結構、比較與同步",
-            "href": "/features/schema"
-        },
-        {
-            "label": "在 TablePro 中使用 SQLite",
-            "href": "/sqlite-client"
-        },
-        {
-            "label": "在 TablePro 中使用 DuckDB",
-            "href": "/duckdb-client"
-        },
-        {
-            "label": "適用於 iPhone 與 iPad 的 TablePro",
-            "href": "/ios"
         }
     ]
 }

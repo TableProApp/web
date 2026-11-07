@@ -9,116 +9,91 @@
     },
     "header": {
         "title": "Sync và chia sẻ",
-        "lead": "Sync connection qua iCloud, chia sẻ file connection hoặc đưa connection và query lên cho nhóm.",
-        "docs": "/features/icloud-sync"
+        "lead": "Đồng bộ connection qua iCloud, chia sẻ chúng dưới dạng file, hoặc đưa connection và query lên cho nhóm của bạn.",
+        "docs": "/features/icloud-sync",
+        "asset": "diagram-icloud-sync"
     },
-    "sections": [
+    "bands": [
         {
             "id": "icloud-sync",
             "title": "iCloud Sync",
-            "paragraphs": [
-                "Sync qua cơ sở dữ liệu iCloud riêng giữa máy Mac, iPhone và iPad. Bật riêng trên từng thiết bị. iCloud Sync cần Pro hoặc Team trên Mac và miễn phí trên iPhone và iPad.",
-                "Mật khẩu sync riêng qua iCloud Keychain khi bật <ui>Passwords</ui> trên Mac hoặc <ui>Sync Passwords</ui> trên mobile. Công tắc Mac còn sync AI key và license key đã lưu. Từ phiên bản có tài khoản TablePro, license key bị xóa ngay khi được đổi lấy phiên đăng nhập, và phiên đăng nhập không bao giờ được sync. Đánh dấu Local only để loại connection và query đã lưu của nó khỏi sync."
-            ],
-            "points": [
-                "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, credential profile (tên profile và tên người dùng, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
-                "Trên iPhone và iPad: connection, nhóm connection và tag.",
-                "Một connection được đồng bộ mang theo host, port, tên người dùng, tên cơ sở dữ liệu, thiết lập SSH và TLS, startup command, pre-connect script và AI rules.",
-                "Không bao giờ được đồng bộ: lịch sử query, Data Rewind, nguồn mật khẩu, tunnel command và mức External Clients của từng connection."
+            "text": [
+                "Đồng bộ qua một cơ sở dữ liệu iCloud riêng tư giữa các máy Mac, iPhone và iPad của bạn, bật riêng trên từng thiết bị. Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm, cài đặt, SSH profile và credential profile, mục yêu thích, query đã lưu và thư mục table. Mật khẩu chỉ được đồng bộ qua iCloud Keychain nếu bạn bật thêm tùy chọn đó."
             ],
             "paid": [
                 "icloud-sync"
             ],
-            "asset": "diagram-icloud-sync"
-        },
-        {
-            "id": "handoff",
-            "title": "Handoff",
-            "paragraphs": [
-                "Tiếp tục cùng connection hoặc table đã lưu trên thiết bị Apple khác. Cả hai cần connection sync qua iCloud; bản import từ file có ID khác. Handoff gửi ID connection và tên table qua Apple, không gửi session query. Nếu không mở table, nó gửi tên connection hoặc host nếu chưa đặt tên."
+            "notes": [
+                "Miễn phí trên iPhone và iPad, cho connection, nhóm và tag. Lịch sử query, Data Rewind, nguồn mật khẩu và tunnel command không bao giờ được đồng bộ."
             ],
-            "paid": [
-                "icloud-sync"
-            ],
-            "asset": "mac-handoff-ios"
+            "docs": "/features/icloud-sync"
         },
         {
             "id": "share",
             "title": "Chia sẻ một connection",
-            "paragraphs": [
-                "Export file <code>.tablepro</code> có cài đặt connection, nhóm và tag, không kèm mật khẩu. Encrypted Export kèm mật khẩu dưới passphrase bằng AES-256-GCM. Import cả hai định dạng miễn phí trên Mac, iPhone và iPad.",
-                "Export mật khẩu mã hóa miễn phí trên iPhone và iPad. Link chia sẻ dùng <code>tablepro://import</code> chứa cài đặt connection, không chứa mật khẩu."
+            "text": [
+                "Export file <code>.tablepro</code> có cài đặt, nhóm và tag, không kèm mật khẩu, hoặc dùng Encrypted Export để kèm mật khẩu, được bảo vệ bằng passphrase và mã hóa AES-256-GCM. Import cả hai loại đều miễn phí, và liên kết <code>tablepro://import</code> chỉ mang cài đặt, không bao giờ mang mật khẩu."
             ],
             "paid": [
                 "encrypted-export"
             ],
+            "notes": [
+                "Encrypted Export miễn phí trên iPhone và iPad."
+            ],
+            "docs": "/features/connection-sharing#export"
+        },
+        {
+            "id": "team",
+            "also": [
+                "team-catalog",
+                "team-library"
+            ],
+            "title": "Team Catalog và Team Library",
+            "text": [
+                "Team Catalog ghi file connection không có mật khẩu vào một thư mục bạn chia sẻ, và thành viên thêm thư mục đó dưới dạng Linked Folder. Team Library đưa connection và query đã lưu lên server của TablePro, không bao giờ kèm mật khẩu: thành viên có seat tải thay đổi về khi mở ứng dụng và cứ 15 phút một lần, và thấy ai là người sửa gần nhất của từng query."
+            ],
+            "paid": [
+                "team-catalog",
+                "team-library"
+            ],
             "links": [
                 {
-                    "label": "Import connection từ các client khác",
-                    "href": "/features/connections#import"
+                    "label": "Team Library gửi đi những gì",
+                    "href": "/privacy#library"
                 }
-            ]
-        },
+            ],
+            "docs": "/features/connection-sharing#team-catalog",
+            "asset": "features-sync-and-teams-team"
+        }
+    ],
+    "more": [
         {
             "id": "linked-folders",
             "title": "Linked Folders",
-            "paragraphs": [
-                "Theo dõi thư mục file connection <code>.tablepro</code>, như Git checkout hoặc ổ đĩa chung. Sửa connection qua file, không qua ứng dụng. Bỏ qua file mã hóa, startup command và tunnel command.",
-                "Linked Folders dành cho file connection. Linked SQL folder là tính năng riêng, miễn phí cho query <code>.sql</code> đã lưu."
+            "text": [
+                "Theo dõi một thư mục file <code>.tablepro</code>, như Git checkout hoặc ổ đĩa chung, và connection thay đổi theo các file đó."
             ],
             "paid": [
                 "linked-folders"
             ],
-            "links": [
-                {
-                    "label": "Query đã lưu và linked SQL folder",
-                    "href": "/features/querying#history"
-                }
-            ]
+            "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "id": "team",
-            "title": "Team Catalog và Team Library",
-            "paragraphs": [
-                "Chia sẻ qua thư mục của bạn với Team Catalog, hoặc qua server TablePro với Team Library."
+            "id": "handoff",
+            "title": "Handoff",
+            "text": [
+                "Tiếp tục với cùng connection hoặc table trên một thiết bị Apple khác, khi connection đó đã được đồng bộ qua iCloud trên cả hai thiết bị."
             ],
-            "blocks": [
-                {
-                    "id": "team-catalog",
-                    "title": "Team Catalog",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> ghi file connection không có mật khẩu vào thư mục chung. Thành viên thêm thư mục đó dưới dạng Linked Folder. Ổ đĩa hoặc repository của bạn chuyển file, không phải server TablePro."
-                    ],
-                    "paid": [
-                        "team-catalog"
-                    ]
-                },
-                {
-                    "id": "team-library",
-                    "title": "Team Library",
-                    "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> và <ui>Publish Saved Queries to Team…</ui> upload cài đặt connection và SQL query đã lưu lên server TablePro, không có mật khẩu. Thành viên có seat tải chúng về. Bỏ qua startup command và tunnel command.",
-                        "Từ phiên bản có tài khoản TablePro, ứng dụng tải các thay đổi về khi khởi động, cứ 15 phút một lần và sau mỗi lần chia sẻ, chỉ gửi phần đã thay đổi, hiển thị người sửa gần nhất của từng query của nhóm, và hỏi bạn giữ bản nào khi một thành viên khác đã sửa trước. Các phiên bản trước khi có tài khoản TablePro tải thư viện tối đa mỗi tuần một lần, và chia sẻ lại từ các phiên bản đó sẽ thay phần đóng góp trước của bạn."
-                    ],
-                    "paid": [
-                        "team-library"
-                    ],
-                    "asset": "mac-team-library",
-                    "links": [
-                        {
-                            "label": "Team Library gửi gì cho TablePro",
-                            "href": "/privacy#library"
-                        }
-                    ]
-                }
-            ]
+            "paid": [
+                "icloud-sync"
+            ],
+            "docs": "/features/handoff"
         },
         {
             "id": "seats",
             "title": "Seat Team",
-            "paragraphs": [
-                "Một seat Team dành cho một người trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Chủ sở hữu và quản trị viên mời người khác qua email từ trang tài khoản, kèm hoặc không kèm seat, và người được mời tham gia bằng liên kết trong email.",
-                "Chủ sở hữu đổi số seat của subscription trong mục Thanh toán, và nhóm có seat mua một lần vẫn giữ các seat đó; muốn thêm seat thì cần subscription Team. Gỡ một thành viên sẽ giải phóng seat của họ, và máy Mac của họ mất các tính năng của Team vào lần tiếp theo TablePro liên lạc với server."
+            "text": [
+                "Một seat dành cho một người trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Chủ sở hữu và quản trị viên mời người khác qua email từ trang tài khoản."
             ],
             "links": [
                 {
@@ -134,8 +109,8 @@
         {
             "id": "iphone",
             "title": "Trên iPhone và iPad",
-            "paragraphs": [
-                "Ứng dụng cho iPhone và iPad đồng bộ connection, nhóm connection và tag qua iCloud, dùng được Handoff, và import, export file <code>.tablepro</code>, kèm mật khẩu được bảo vệ bằng passphrase nếu bạn muốn. Linked Folders, Team Catalog và Team Library không có trong ứng dụng cho iPhone và iPad."
+            "text": [
+                "Đồng bộ connection qua iCloud, tiếp tục bằng Handoff, và import hoặc export file <code>.tablepro</code>."
             ],
             "links": [
                 {
@@ -143,115 +118,6 @@
                     "href": "/ios#mac"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "iCloud Sync",
-            "paid": "icloud-sync",
-            "ios": "partial",
-            "iosNote": "Connection, nhóm và tag; miễn phí",
-            "linux": "no"
-        },
-        {
-            "label": "Đồng bộ mật khẩu qua iCloud Keychain",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Chọn mục đồng bộ và giữ connection ở chế độ Chỉ cục bộ",
-            "paid": "icloud-sync",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Handoff, khi bật iCloud Sync",
-            "paid": "icloud-sync",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Export và import file .tablepro",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Encrypted Export kèm mật khẩu",
-            "paid": "encrypted-export",
-            "ios": "yes",
-            "linux": "no"
-        },
-        {
-            "label": "Linked Folders",
-            "paid": "linked-folders",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Catalog",
-            "paid": "team-catalog",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Team Library",
-            "paid": "team-library",
-            "ios": "no",
-            "linux": "no"
-        }
-    ],
-    "limits": [
-        "Khi gói trả phí trên Mac kết thúc, iCloud Sync tạm dừng và cho biết lý do, còn connection từ Linked Folders và Team Library biến mất khỏi danh sách. Các lệnh xuất bản lên Team Catalog và Team Library bị ẩn, và Encrypted Export mất tùy chọn kèm mật khẩu.",
-        "Sửa một connection đã đồng bộ trên iPhone hoặc iPad có thể thay đổi những thiết lập mà ứng dụng ở đó không có. Một mức Safe Mode chặt hơn trên Mac, như Safe Mode (Full), quay về thành Alert, và SSH jump host có thể bị mất qua lần đồng bộ đó. Hãy sửa các connection này trên Mac.",
-        "Nếu license Team kết thúc hoặc bị thu hồi, những gì đã xuất bản lên Team Library vẫn nằm trên server của TablePro cho tới khi chủ sở hữu nhóm xóa nhóm, và thư viện bị xóa theo."
-    ],
-    "docs": [
-        {
-            "label": "iCloud Sync",
-            "docs": "/features/icloud-sync"
-        },
-        {
-            "label": "Handoff",
-            "docs": "/features/handoff"
-        },
-        {
-            "label": "File connection và Encrypted Export",
-            "docs": "/features/connection-sharing#export"
-        },
-        {
-            "label": "Linked Folders",
-            "docs": "/features/connection-sharing#linked-folders"
-        },
-        {
-            "label": "Team Catalog",
-            "docs": "/features/connection-sharing#team-catalog"
-        },
-        {
-            "label": "Team Library",
-            "docs": "/features/favorites#team-library"
-        },
-        {
-            "label": "Gói Team và seat",
-            "docs": "/features/team#seats"
-        }
-    ],
-    "related": [
-        {
-            "label": "TablePro cho iPhone và iPad",
-            "href": "/ios"
-        },
-        {
-            "label": "Connection, tunnel và thông tin đăng nhập",
-            "href": "/features/connections"
-        },
-        {
-            "label": "Gói trả phí bổ sung những gì",
-            "href": "/pricing#features"
-        },
-        {
-            "label": "Quyền riêng tư: iCloud Sync và Handoff",
-            "href": "/privacy#icloud"
         }
     ]
 }

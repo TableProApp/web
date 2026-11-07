@@ -9,64 +9,41 @@
     },
     "header": {
         "title": "功能",
-        "lead": "在支持的数据库中查询、编辑和处理数据。"
+        "lead": "TablePro 在 Mac 和 Linux 上能做什么，按领域分类，适用于其支持的数据库。"
     },
-    "areas": {
-        "title": "按任务查看功能",
-        "paid": "可选付费功能：{features}（{tier}）",
-        "noPaid": "无付费功能",
-        "items": [
-            {
-                "slug": "querying",
-                "summary": "借助自动补全编写 SQL，复用已保存查询并搜索历史。在支持的引擎上检查查询计划。"
-            },
-            {
-                "slug": "data-editing",
-                "summary": "筛选行、跟随外键，并在保存前检查更改。"
-            },
-            {
-                "slug": "schema",
-                "summary": "检查关系、更改表结构，并比较支持的数据库。"
-            },
-            {
-                "slug": "import-export",
-                "summary": "导入 {importFormats} 文件，导出表或结果。无需数据库连接即可打开数据文件。"
-            },
-            {
-                "slug": "ai-mcp",
-                "summary": "使用您选择的 AI 服务商，或通过 MCP (Model Context Protocol) 连接外部客户端。"
-            },
-            {
-                "slug": "connections",
-                "summary": "使用 SSH 隧道和云端登录，从其他 App 导入连接。"
-            },
-            {
-                "slug": "sync-and-teams",
-                "summary": "通过 iCloud Sync，或与团队共享连接和查询。"
-            }
-        ]
-    },
-    "ios": {
-        "title": "iPhone 和 iPad",
-        "body": "在 iPhone 和 iPad 上浏览表、编辑行并运行查询。独立移动 App 免费，无 App 内购买。各详情页列出功能可用情况。",
-        "link": "iPhone 和 iPad 版 TablePro"
-    },
-    "paid": {
-        "title": "免费与付费",
-        "lead": "核心 App 免费，没有试用期。Pro 添加付费功能；Team 包含 Pro。所有支持的数据库、AI 助手、MCP 和 Safe Mode 无需许可证即可使用。",
-        "caption": "目前在 Mac 上提供的付费功能",
-        "columns": {
-            "feature": "功能",
-            "plan": "方案",
-            "page": "说明页面"
+    "areas": [
+        {
+            "slug": "querying",
+            "summary": "使用结构感知的自动补全编写 SQL，保存常用查询，并在支持的引擎上查看查询计划。"
         },
-        "pricing": "查看定价"
-    },
-    "docs": {
-        "title": "文档",
-        "body": "查找设置步骤、选项和快捷键。",
-        "link": "阅读文档",
-        "path": "/features/overview"
+        {
+            "slug": "data-editing",
+            "summary": "筛选行、跟随外键并在表格中编辑，保存前可检查 SQL。"
+        },
+        {
+            "slug": "schema",
+            "summary": "更改表结构，查看 ER 图，并在同步前比较两个数据库。"
+        },
+        {
+            "slug": "import-export",
+            "summary": "导入 {importFormats} 文件，导出表和结果，无需数据库即可编辑数据文件。"
+        },
+        {
+            "slug": "ai-mcp",
+            "summary": "使用您选择的 AI 服务商，并让 AI 客户端通过 MCP 使用已保存的连接。"
+        },
+        {
+            "slug": "connections",
+            "summary": "通过 SSH 和隧道访问私有服务器，使用云账户登录，并从其他应用导入连接。"
+        },
+        {
+            "slug": "sync-and-teams",
+            "summary": "通过 iCloud 同步连接，以文件形式共享，并向团队发布连接和查询。"
+        }
+    ],
+    "closing": {
+        "body": "TablePro 免费，工作中使用也免费，没有试用期。Pro 添加付费功能，Team 包含 Pro。",
+        "ios": "{devices} 版 TablePro"
     },
     "labels": {
         "number": {
@@ -78,29 +55,13 @@
             "starter": "Pro",
             "team": "Team"
         },
-        "paidBadge": "{name}：{tier} 方案",
-        "header": {
-            "paid": "付费：{features}。其他功能免费。",
-            "paidItem": "{name} ({tier})",
-            "allFree": "本页功能全部免费。",
-            "docs": "阅读文档"
-        },
-        "sections": {
-            "availability": "支持范围",
-            "limits": "限制",
-            "docs": "文档",
-            "related": "相关内容"
-        },
-        "availability": {
-            "caption": "Mac、iPhone 和 iPad 的可用功能与方案",
-            "capability": "能力",
-            "free": "免费",
-            "notAvailable": "不支持",
-            "plan": "{tier} 方案"
-        },
-        "download": {
+        "docs": "文档",
+        "more": "其他功能",
+        "closing": {
             "title": "获取 TablePro",
-            "body": "免费使用，代码开源。",
+            "tier": "{tier} 增加 {features}。",
+            "rest": "本页其他功能均免费。",
+            "allFree": "本页功能全部免费。",
             "pricing": "查看定价"
         }
     }

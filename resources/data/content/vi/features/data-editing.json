@@ -9,211 +9,108 @@
     },
     "header": {
         "title": "Sửa dữ liệu",
-        "lead": "Lọc dòng, theo khóa ngoại và sửa giá trị trong data grid. Thay đổi chờ tới khi bạn lưu, có SQL để xem trước.",
-        "docs": "/features/change-tracking"
+        "lead": "Lọc dòng, đi theo khóa ngoại và sửa ngay trong data grid. Không có gì được ghi cho tới khi bạn lưu, và bạn có thể đọc câu lệnh SQL trước.",
+        "docs": "/features/change-tracking",
+        "asset": "mac-home-data-editing"
     },
-    "sections": [
+    "bands": [
         {
             "id": "browse",
-            "title": "Tìm đúng dòng bạn cần",
-            "paragraphs": [
-                "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Khi table có trên {countEstimate} dòng, tổng số dòng là con số ước tính, kèm nút Đếm chính xác (Count Exactly) khi bạn cần số chính xác."
+            "also": [
+                "filters",
+                "foreign-keys"
             ],
-            "blocks": [
-                {
-                    "id": "filters",
-                    "title": "Bộ lọc và highlight rules",
-                    "paragraphs": [
-                        "Tạo bộ lọc với {filterOperatorCount} toán tử hoặc điều kiện SQL, rồi lưu để dùng lại. Highlight rule tô màu dòng hoặc ô phù hợp, chỉ nằm trên máy Mac này."
-                    ],
-                    "asset": "mac-grid-highlight-rules"
-                },
-                {
-                    "id": "foreign-keys",
-                    "title": "Khóa ngoại và JSON",
-                    "paragraphs": [
-                        "Theo khóa ngoại tới dòng được tham chiếu hoặc xem ngay tại chỗ. Bộ chọn giá trị giúp chọn từ các dòng tham chiếu. Mở JSON trong trình xem cây hoặc text editor."
-                    ],
-                    "asset": "mac-fk-picker"
-                }
-            ]
+            "title": "Tìm đúng dòng bạn cần",
+            "text": [
+                "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Lọc bằng {filterOperatorCount} toán tử hoặc một điều kiện SQL, lưu các bộ lọc hay dùng, và tô màu dòng hoặc ô khớp điều kiện bằng highlight rule.",
+                "Đi theo khóa ngoại tới dòng được tham chiếu hoặc xem ngay tại chỗ, và mở giá trị JSON dạng cây."
+            ],
+            "notes": [
+                "Bộ lọc đã lưu và highlight rule chỉ nằm trên máy Mac nơi bạn tạo chúng."
+            ],
+            "docs": "/features/filtering"
         },
         {
             "id": "edit",
+            "also": [
+                "query-results"
+            ],
             "title": "Xem thay đổi trước khi lưu",
-            "paragraphs": [
-                "Thay đổi, dòng mới và dòng xóa nằm trong tab cho tới khi lưu bằng <kbd>⌘S</kbd>. <ui>Preview SQL</ui> hiển thị câu lệnh chờ chạy. Khi lưu, ứng dụng dùng bound parameter và kiểm tra số dòng bị ảnh hưởng, với transaction và rollback ở engine hỗ trợ."
+            "text": [
+                "Giá trị đã sửa, dòng mới và dòng bị xóa nằm chờ trong tab cho tới khi bạn bấm <kbd>⌘S</kbd>. <ui>Xem trước SQL</ui> (Preview SQL) hiển thị câu lệnh trước, undo dùng được cho tới khi lưu, và khi lưu, TablePro kiểm tra số dòng bị ảnh hưởng, trong một transaction nếu engine có hỗ trợ.",
+                "Mỗi kiểu dữ liệu có trình sửa riêng: ngày giờ, danh sách ENUM và SET, mảng, JSON, hex cho giá trị nhị phân, và ảnh."
             ],
-            "points": [
-                "Trình sửa ô theo kiểu dữ liệu của cột: chọn ngày giờ, danh sách giá trị ENUM và SET, mảng, JSON, trình sửa hex cho dữ liệu nhị phân, và trình xem ảnh.",
-                "Undo và redo trong từng tab cho tới khi bạn lưu.",
-                "Có thể sửa trực tiếp kết quả query khi query chỉ đọc từ một table, không có JOIN, CTE hay UNION.",
-                "Sao chép dòng dưới dạng CSV, JSON, Markdown, danh sách IN, hoặc câu lệnh INSERT và UPDATE."
+            "notes": [
+                "Trên Linux, iPhone và iPad, dòng phải có khóa chính mới sửa được. Kết quả có JOIN, CTE hoặc UNION chỉ đọc trên mọi nền tảng."
             ],
-            "asset": "mac-edit-preview-sql"
+            "docs": "/features/change-tracking",
+            "asset": "features-data-editing-edit"
         },
         {
             "id": "safe-mode",
             "title": "Safe Mode",
-            "paragraphs": [
-                "Chọn mức cho từng connection: {macSafeModeLevels}. Mặc định {macSafeModeDefault} chạy câu lệnh không hỏi xác nhận. Alert hỏi trước khi ghi; Safe Mode thêm duyệt bằng Touch ID hoặc mật khẩu. Các mức Full còn hỏi trước khi đọc. Read-Only chặn ghi và chỉnh sửa. Safe Mode miễn phí.",
-                "DROP, TRUNCATE và DELETE không có WHERE luôn cần xác nhận. Agent mode toàn cửa sổ yêu cầu tối thiểu Alert. Engine chỉ đọc và chính sách quản lý thiết bị của tổ chức cũng có thể nâng mức hiệu lực."
+            "text": [
+                "Đặt một mức cho từng connection. Mức mặc định, {macSafeModeDefault}, chạy câu lệnh mà không hỏi; Alert hỏi xác nhận trước khi ghi, Safe Mode thêm Touch ID hoặc mật khẩu, các mức Full hỏi cả trước khi đọc, và Read-Only chặn ghi. DROP, TRUNCATE và DELETE không có WHERE luôn cần xác nhận. Safe Mode miễn phí."
             ],
-            "asset": "mac-safe-mode-touchid",
-            "links": [
-                {
-                    "label": "Safe Mode và các chính sách khác của connection",
-                    "href": "/features/connections#policies"
-                },
-                {
-                    "label": "Agent mode",
-                    "href": "/features/ai-mcp#agent-mode"
-                }
-            ]
+            "notes": [
+                "Linux có các mức {linuxSafeModeLevels}. iPhone và iPad có các mức {iosSafeModeLevels}."
+            ],
+            "docs": "/features/safe-mode",
+            "asset": "features-data-editing-safe-mode"
         },
         {
             "id": "data-rewind",
             "title": "Data Rewind",
-            "paragraphs": [
-                "Xem và khôi phục giá trị bị lần lưu ghi đè bằng <ui>Restore Previous Values</ui>. Màn hình xem đánh dấu dòng đã đổi từ lần lưu đó. Khôi phục theo Safe Mode, trong một transaction ở engine hỗ trợ.",
-                "Giá trị trước đó được mã hóa trên máy Mac này trong {rewindDays} ngày và không đồng bộ. Ghi nhận và khôi phục dừng khi gói trả phí kết thúc."
+            "text": [
+                "Sau một lần lưu, <ui>Khôi phục giá trị trước đó</ui> (Restore Previous Values) đưa lại những giá trị mà lần lưu đó đã ghi đè. Màn hình xem lại đánh dấu các dòng đã thay đổi kể từ lần lưu, và việc khôi phục tuân theo Safe Mode, trong một transaction nếu engine cho phép. Giá trị trước đó được mã hóa trên máy Mac này trong {rewindDays} ngày và không bao giờ được đồng bộ."
             ],
             "paid": [
                 "data-rewind"
             ],
-            "asset": "mac-data-rewind-review"
-        },
+            "notes": [
+                "Data Rewind không phải bản sao lưu: trigger, cascade và thay đổi từ bên ngoài TablePro không được hoàn tác."
+            ],
+            "docs": "/features/change-tracking#restoring-a-save",
+            "asset": "features-data-editing-rewind"
+        }
+    ],
+    "more": [
         {
             "id": "documents-and-keys",
             "title": "Document và key",
-            "paragraphs": [
-                "Sửa document MongoDB dạng Extended JSON, hoặc đổi tên và xóa field trên cả collection. Với Redis, sửa string, đổi tên key và đặt TTL trong data grid, hoặc thêm key string, hash, list, set hay sorted set. Dùng command trong editor để sửa loại giá trị khác."
+            "text": [
+                "Sửa document MongoDB dạng Extended JSON, và sửa string, tên key và TTL của Redis ngay trong data grid."
             ],
             "links": [
                 {
-                    "label": "MongoDB trong TablePro",
+                    "label": "MongoDB",
                     "href": "/mongodb-client"
                 },
                 {
-                    "label": "Redis trong TablePro",
+                    "label": "Redis",
                     "href": "/redis-gui"
                 }
             ]
         },
         {
+            "id": "copy-rows",
+            "title": "Sao chép dòng",
+            "text": [
+                "Sao chép dòng dưới dạng CSV, JSON, Markdown, danh sách IN, hoặc câu lệnh INSERT và UPDATE."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Trên iPhone và iPad",
-            "paragraphs": [
-                "Xem dòng dạng thẻ, sắp xếp, lọc hoặc chạm khóa ngoại để xem dòng tham chiếu. Sửa giá trị hoặc đặt NULL; sửa và xóa cần khóa chính. Dòng mới bắt đầu với DEFAULT, có thể chọn NULL hoặc chuỗi rỗng.",
-                "Safe Mode mobile có {iosSafeModeLevels}, mặc định {iosSafeModeDefault}. Thay đổi chờ lưu, Preview SQL, highlight rule và Data Rewind không có trong ứng dụng iPhone và iPad."
+            "text": [
+                "Dòng hiển thị dạng thẻ mà bạn có thể sắp xếp, lọc và sửa. Sửa và xóa cần khóa chính."
             ],
             "links": [
                 {
                     "label": "Xem và sửa dữ liệu trên iPhone và iPad",
                     "href": "/ios#browse"
-                },
-                {
-                    "label": "Safe Mode trên iPhone và iPad",
-                    "href": "/ios#safe-mode"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "Sắp xếp, phân trang và bộ lọc",
-            "ios": "yes",
-            "linux": "yes"
-        },
-        {
-            "label": "Bộ lọc đã lưu và highlight rules",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Đi theo khóa ngoại và bộ chọn giá trị",
-            "ios": "partial",
-            "iosNote": "Chạm để xem nhanh dòng được tham chiếu",
-            "linux": "partial",
-            "linuxNote": "Đi theo khóa ngoại; không có bộ chọn giá trị"
-        },
-        {
-            "label": "Sửa, thêm và xóa dòng",
-            "ios": "partial",
-            "iosNote": "Trình sửa từng dòng; cần khóa chính",
-            "linux": "partial",
-            "linuxNote": "Cần khóa chính"
-        },
-        {
-            "label": "Thay đổi đang chờ lưu, Preview SQL và undo",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Thay đổi đang chờ lưu và undo; không có Preview SQL"
-        },
-        {
-            "label": "Safe Mode",
-            "ios": "partial",
-            "iosNote": "{iosSafeModeLevels}",
-            "linux": "partial",
-            "linuxNote": "{linuxSafeModeLevels}"
-        },
-        {
-            "label": "Touch ID hoặc mật khẩu trước câu lệnh ghi",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Data Rewind",
-            "paid": "data-rewind",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Document MongoDB và key Redis",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Key Redis chỉ sửa được bằng lệnh"
-        }
-    ],
-    "limits": [
-        "Data Rewind không phải là bản sao lưu. Tính năng này không hoàn tác trigger, cascade hay thay đổi từ bên ngoài TablePro, và không khôi phục được dòng không có khóa chính, giá trị lớn hơn {rewindMaxValue} MB hay giá trị do server tính ra.",
-        "UPDATE không có WHERE là một câu lệnh ghi bình thường: chỉ được hỏi lại từ mức Alert trở lên.",
-        "Kết quả của query có JOIN, CTE hay UNION chỉ đọc trong data grid; hãy mở chính table đó để sửa."
-    ],
-    "docs": [
-        {
-            "label": "Data grid",
-            "docs": "/features/data-grid"
-        },
-        {
-            "label": "Bộ lọc",
-            "docs": "/features/filtering"
-        },
-        {
-            "label": "Theo dõi thay đổi và Preview SQL",
-            "docs": "/features/change-tracking"
-        },
-        {
-            "label": "Data Rewind",
-            "docs": "/features/change-tracking#restoring-a-save"
-        },
-        {
-            "label": "Safe Mode",
-            "docs": "/features/safe-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Query",
-            "href": "/features/querying"
-        },
-        {
-            "label": "Schema",
-            "href": "/features/schema"
-        },
-        {
-            "label": "Gói trả phí bổ sung những gì",
-            "href": "/pricing#features"
         }
     ]
 }

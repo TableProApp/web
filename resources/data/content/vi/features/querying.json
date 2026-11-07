@@ -9,133 +9,120 @@
     },
     "header": {
         "title": "SQL editor",
-        "lead": "Viết SQL với autocomplete theo schema. Lưu query thường dùng, tìm lịch sử và xem plan trên engine được hỗ trợ.",
-        "docs": "/features/sql-editor"
+        "lead": "Viết SQL với autocomplete đọc schema của bạn, lưu các query hay dùng lại, và xem cơ sở dữ liệu chạy chúng ra sao.",
+        "docs": "/features/sql-editor",
+        "asset": "mac-home-querying"
     },
-    "sections": [
+    "bands": [
         {
             "id": "editor",
+            "also": [
+                "open-quickly"
+            ],
             "title": "Autocomplete theo schema",
-            "paragraphs": [
-                "Autocomplete gợi ý table và cột, gồm alias, CTE và subquery. Format câu lệnh hiện tại bằng <kbd>⌘⇧L</kbd> mà vẫn giữ comment.",
-                "Chạy câu lệnh hiện tại, phần được chọn hoặc cả script. Batch thông thường dùng một transaction và rollback khi lỗi. Script SQL Server, transaction tường minh và câu lệnh như VACUUM là ngoại lệ. DDL trên MySQL, MariaDB và Oracle tự commit riêng."
+            "text": [
+                "Autocomplete gợi ý table và cột, gồm cả alias, CTE và subquery. Chạy câu lệnh hiện tại, phần đang chọn hoặc cả script; một batch thông thường chạy trong một transaction và rollback nếu có câu lệnh lỗi.",
+                "Format bằng <kbd>⌘⇧L</kbd>, bật Vim mode, hoặc nhảy tới bất kỳ table, view hay query đã lưu nào bằng Open Quickly (<kbd>⌘⇧O</kbd>)."
             ],
-            "points": [
-                "Đánh dấu từng câu lệnh ở lề trái, mỗi câu có nút chạy riêng.",
-                "Tìm và thay thế, hỗ trợ biểu thức chính quy (regex).",
-                "Vim mode với motion, register và macro; <code>:w</code> sẽ chạy query.",
-                "Mở, sửa và lưu file <code>.sql</code> ngay trong một tab query."
+            "notes": [
+                "Trên iPhone và iPad, tab Truy vấn (Query) chạy SQL nhưng không có autocomplete."
             ],
-            "asset": "mac-query-autocomplete"
+            "docs": "/features/sql-editor"
         },
         {
             "id": "history",
             "title": "Tham số, lịch sử và query đã lưu",
-            "paragraphs": [
-                "Dùng tham số như <code>:customer_id</code> để nhập giá trị trước khi chạy query. Giá trị được bind native ở driver hỗ trợ.",
-                "Tìm lịch sử query trên máy theo nội dung, nguồn, lỗi hoặc thời gian. Mặc định giữ {historyEntries} mục trong {historyDays} ngày và không đồng bộ.",
-                "Lưu query kèm keyword tái sử dụng và lịch sử phiên bản. Liên kết thư mục file <code>.sql</code> vào sidebar với cập nhật hai chiều và trạng thái Git. Linked SQL folder miễn phí, tách biệt với Linked Folders trả phí dành cho file connection."
+            "text": [
+                "Viết <code>:customer_id</code> và TablePro sẽ hỏi giá trị trước khi chạy query. Tìm lịch sử theo nội dung, nguồn, lỗi hoặc khoảng thời gian: lịch sử giữ {historyEntries} mục trong {historyDays} ngày và không bao giờ được đồng bộ.",
+                "Lưu các query bạn hay dùng lại, hoặc liên kết một thư mục file <code>.sql</code> vào sidebar, với cập nhật hai chiều và trạng thái Git."
             ],
-            "asset": "mac-query-parameters-history"
-        },
-        {
-            "id": "open-quickly",
-            "title": "Open Quickly và tab",
-            "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) tìm table, view và query trong các connection đang mở. Tab giữ SQL và cài đặt data grid khi mở lại ứng dụng."
-            ]
-        },
-        {
-            "id": "performance",
-            "title": "Hiệu năng query",
-            "paragraphs": [],
-            "blocks": [
-                {
-                    "id": "explain",
-                    "title": "EXPLAIN và EXPLAIN Compare",
-                    "paragraphs": [
-                        "Xem query plan dạng sơ đồ, cây chi phí hoặc output gốc của engine. So với lần chạy trước để tìm thay đổi thời gian và plan; chênh lệch dưới {explainNoise}% tính là nhiễu. Cả hai tính năng miễn phí."
-                    ],
-                    "engines": [
-                        {
-                            "label": "Plan dạng sơ đồ và cây",
-                            "list": "explainDiagram"
-                        },
-                        {
-                            "label": "Plan dạng văn bản",
-                            "list": "explainText"
-                        },
-                        {
-                            "label": "Ước tính chi phí bằng dry run",
-                            "list": "explainCost"
-                        },
-                        {
-                            "label": "Engine SQL không có EXPLAIN",
-                            "list": "explainNoneSql"
-                        }
-                    ],
-                    "asset": "mac-explain-compare"
-                },
-                {
-                    "id": "query-insights",
-                    "title": "Query Insights",
-                    "paragraphs": [
-                        "Tìm query chậm, lỗi và thường chạy trong lịch sử trên máy Mac này. Câu lệnh tương tự được nhóm bất kể giá trị tham số. Query Insights so sánh các khoảng thời gian trên máy, không giám sát toàn server và không upload metric."
-                    ],
-                    "paid": [
-                        "query-insights"
-                    ],
-                    "asset": "mac-query-insights"
-                }
-            ]
-        },
-        {
-            "id": "results",
-            "title": "Kết quả dạng biểu đồ và bản đồ",
-            "paragraphs": [
-                "Ngay trong một tab, kết quả có thể chuyển từ data grid sang biểu đồ hoặc bản đồ, rồi quay lại."
+            "notes": [
+                "Linux có lịch sử và query đã lưu. iPhone và iPad giữ {historyEntriesIos} query gần nhất."
             ],
-            "blocks": [
-                {
-                    "id": "result-charts",
-                    "title": "Result Charts",
-                    "paragraphs": [
-                        "Vẽ kết quả dạng biểu đồ cột, đường, vùng hoặc scatter. Biểu đồ hiển thị tối đa {chartPoints} điểm và {chartSeries} series từ {chartInspectedRows} dòng đầu, có thông báo khi cắt bớt."
-                    ],
-                    "paid": [
-                        "result-charts"
-                    ],
-                    "asset": "mac-result-chart"
-                },
-                {
-                    "id": "map",
-                    "title": "Map view",
-                    "paragraphs": [
-                        "Xem cột geometry được hỗ trợ trên Apple Maps và chọn hình để tìm dòng tương ứng. Dòng dữ liệu nằm trên Mac; Apple cung cấp map tile. Map view miễn phí."
-                    ],
-                    "asset": "mac-result-map"
-                }
-            ]
+            "docs": "/features/query-history",
+            "asset": "features-querying-history"
         },
         {
-            "id": "other-languages",
-            "title": "Ngôn ngữ query khác",
-            "paragraphs": [
-                "Dùng ngôn ngữ query của từng engine không phải SQL trong editor. MongoDB dùng JavaScript shell kiểu mongosh tích hợp, không phải mongosh thật. Xem trang cơ sở dữ liệu để biết command hỗ trợ."
+            "id": "explain",
+            "also": [
+                "performance"
+            ],
+            "title": "EXPLAIN và EXPLAIN Compare",
+            "text": [
+                "Xem query plan dạng sơ đồ, cây chi phí hoặc output gốc của engine. Chạy lại query sau khi sửa rồi so sánh hai lần chạy: chênh lệch về thời gian và plan hiện cạnh nhau, và mọi chênh lệch dưới {explainNoise}% được tính là nhiễu."
             ],
             "engines": [
                 {
-                    "label": "Ngôn ngữ query theo engine",
+                    "label": "Plan dạng sơ đồ:",
+                    "list": "explainDiagram"
+                },
+                {
+                    "label": "Plan dạng văn bản:",
+                    "list": "explainText"
+                },
+                {
+                    "label": "Ước tính chi phí bằng dry run:",
+                    "list": "explainCost"
+                }
+            ],
+            "docs": "/features/explain-visualization",
+            "asset": "features-querying-explain"
+        },
+        {
+            "id": "query-insights",
+            "title": "Query Insights",
+            "text": [
+                "Tìm các query chậm, bị lỗi và chạy nhiều nhất trong lịch sử của máy Mac này. Các câu lệnh chỉ khác nhau ở giá trị được gom vào một nhóm, và hai khoảng thời gian được so sánh cạnh nhau. Query Insights chỉ đọc lịch sử trên máy: đây không phải công cụ giám sát server, và không upload gì cả."
+            ],
+            "paid": [
+                "query-insights"
+            ],
+            "docs": "/features/query-insights",
+            "asset": "features-querying-insights"
+        },
+        {
+            "id": "results",
+            "also": [
+                "result-charts",
+                "map"
+            ],
+            "title": "Biểu đồ và bản đồ",
+            "text": [
+                "Chuyển kết quả thành biểu đồ cột, đường, vùng hoặc scatter ngay trong tab đó, từ {chartInspectedRows} dòng đầu. Cột geometry mở trên bản đồ, và chọn một hình sẽ tìm ra dòng của nó. Result Charts thuộc gói Pro; Map view miễn phí."
+            ],
+            "paid": [
+                "result-charts"
+            ],
+            "docs": "/features/data-grid#chart-mode",
+            "asset": "features-querying-charts"
+        }
+    ],
+    "more": [
+        {
+            "id": "other-languages",
+            "title": "Ngôn ngữ query khác",
+            "text": [
+                "Engine không dùng SQL có ngôn ngữ query riêng trong editor. MongoDB có shell tích hợp theo kiểu mongosh."
+            ],
+            "engines": [
+                {
+                    "label": "Theo engine:",
                     "list": "otherLanguages"
                 }
             ]
         },
         {
+            "id": "row-cap",
+            "title": "Kết quả lớn",
+            "text": [
+                "Một query trả về tối đa {rowCap} dòng, trừ khi bạn nâng giới hạn trong Cài đặt, tối đa {rowCapMax}. LIMIT bạn tự viết luôn được ưu tiên."
+            ]
+        },
+        {
             "id": "iphone",
             "title": "Trên iPhone và iPad",
-            "paragraphs": [
-                "Ứng dụng cho iPhone và iPad có tab Truy vấn (Query) với tô sáng cú pháp SQL, nút Run và Stop (<kbd>⌘↩</kbd> khi dùng bàn phím), và lịch sử {historyEntriesIos} query gần nhất đã chạy trên thiết bị đó. Bạn có thể sao chép hoặc chia sẻ kết quả dưới dạng JSON, CSV hoặc câu lệnh SQL INSERT.",
-                "Ứng dụng không có autocomplete, định dạng query, tham số, EXPLAIN hay query đã lưu, và chỉ giữ tối đa {resultBufferIos} dòng của một kết quả, nên hãy thêm LIMIT để xem đúng phần bạn cần."
+            "text": [
+                "Tab Truy vấn (Query) tô sáng cú pháp SQL, chạy và dừng query, và chia sẻ kết quả dưới dạng JSON, CSV hoặc câu lệnh INSERT."
             ],
             "links": [
                 {
@@ -143,109 +130,6 @@
                     "href": "/ios#query"
                 }
             ]
-        }
-    ],
-    "availability": [
-        {
-            "label": "SQL editor có autocomplete và định dạng",
-            "ios": "partial",
-            "iosNote": "Tô sáng cú pháp, Run và Stop; không có autocomplete",
-            "linux": "yes"
-        },
-        {
-            "label": "Tham số trong query",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Lịch sử query",
-            "ios": "partial",
-            "iosNote": "{historyEntriesIos} query gần nhất trên thiết bị",
-            "linux": "yes"
-        },
-        {
-            "label": "Query đã lưu và linked SQL folder",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Chỉ có query đã lưu"
-        },
-        {
-            "label": "Open Quickly",
-            "ios": "no",
-            "linux": "partial",
-            "linuxNote": "Tìm connection và table trong sidebar"
-        },
-        {
-            "label": "EXPLAIN và EXPLAIN Compare",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Query Insights",
-            "paid": "query-insights",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Result Charts",
-            "paid": "result-charts",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Map view",
-            "ios": "no",
-            "linux": "no"
-        },
-        {
-            "label": "Sao chép hoặc chia sẻ kết quả",
-            "ios": "yes",
-            "linux": "yes"
-        }
-    ],
-    "limits": [
-        "Một query trả về tối đa {rowCap} dòng, trừ khi bạn nâng giới hạn trong Cài đặt (tối đa {rowCapMax}) hoặc chạy bằng <kbd>⌘⌥⏎</kbd>. LIMIT bạn tự viết luôn được ưu tiên.",
-        "Lịch sử query và Query Insights chỉ lấy dữ liệu trên máy Mac này: query chạy trên máy Mac khác hay trên iPhone không có trong đó.",
-        "Lệnh shell <code>tablepro</code> mở connection và file trong ứng dụng, không chạy query từ terminal."
-    ],
-    "docs": [
-        {
-            "label": "SQL editor",
-            "docs": "/features/sql-editor"
-        },
-        {
-            "label": "Tham số trong query",
-            "docs": "/features/query-parameters"
-        },
-        {
-            "label": "Lịch sử query",
-            "docs": "/features/query-history"
-        },
-        {
-            "label": "Hiển thị EXPLAIN",
-            "docs": "/features/explain-visualization"
-        },
-        {
-            "label": "Query Insights",
-            "docs": "/features/query-insights"
-        },
-        {
-            "label": "Biểu đồ và bản đồ trong data grid",
-            "docs": "/features/data-grid#chart-mode"
-        }
-    ],
-    "related": [
-        {
-            "label": "Chỉnh sửa dữ liệu",
-            "href": "/features/data-editing"
-        },
-        {
-            "label": "Cơ sở dữ liệu được hỗ trợ",
-            "href": "/databases"
-        },
-        {
-            "label": "Gói trả phí bổ sung những gì",
-            "href": "/pricing#features"
         }
     ]
 }
