@@ -48,7 +48,13 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
     return (
         <article
             aria-labelledby={`${id}-title`}
-            className={cn('grid content-start gap-5 lg:grid-rows-subgrid', variant === 'full' ? 'lg:row-span-4' : 'lg:row-span-3', leads && 'plan-lead')}
+            className={cn(
+                'grid content-start gap-5 lg:grid-rows-subgrid',
+                variant === 'full' ? 'lg:row-span-4' : 'lg:row-span-3',
+                leads && 'plan-lead',
+                // Stacked on a phone or tablet, the paid plans come first and Free last (owner, 2026-11-07).
+                tier === 'free' && 'max-lg:order-1',
+            )}
         >
             <div>
                 <Title id={`${id}-title`} className="type-h3 text-foreground">
