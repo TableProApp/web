@@ -11,7 +11,8 @@ import type { FeatureLabels } from './types';
 const LINK = 'text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
 
 interface FeatureClosingProps {
-    labels: FeatureLabels;
+    // Database pages bring their own words for the same sentence.
+    labels: Pick<FeatureLabels, 'closing' | 'tiers'>;
     // paid-features.json ids in display order; the hub passes none and a sentence of its own.
     paid: string[];
     body?: string;
