@@ -1544,23 +1544,27 @@ platform's version, requirement and update line, and the release row only links.
 
 ### 8.8 iPhone & iPad (`/ios`)
 
-Sections, ids and slots follow sitemap §A.1 and §A.8.
+Rebuilt 2026-11-08 on the grid of Home and the feature pages (§8.1, §8.2): `FeatureHero`, `BandFrame`, `MoreFrame`, `ClosingFrame`.
+Ids and slots follow sitemap §A.1 and §A.8.
 
 ```
-PageHeader   H1 · lead (scope: a separate app designed for the phone and tablet, not a copy of the Mac app)
-             [ App Store badge ] + AvailabilityLine (requirement · free, no in-app purchases)
-             ▒ ios-connection-list (phone, 280) │ ▒ ipad-table-browse (4:3)
-Rows         one capability each, in order: #databases · #browse · #query · #security · #safe-mode · #ipad · #mac · #automation
-             phone rows: text cols 1–6 │ ▒ phone (280) cols 8–10      iPad rows: text, then ▒ 4:3 cols 2–11 below
-             (slots from sitemap §A.8: ios-table-browse, ios-row-edit, ios-query, ios-live-activity, ios-connection-form,
-              ios-safe-mode-confirm, ipad-two-windows, diagram-icloud-sync, mac-handoff-ios, ios-widgets, ios-shortcuts-add-rows)
-#limits      Not on iPhone and iPad (list or DataTable from data)
-#privacy     Share Usage Data is off by default; what is sent · ▒ ios-settings-privacy
-Get it       App Store badge + a short FAQ
-DownloadBand (App Store first on this page)
+Hero         H1 · one sentence · [ App Store badge ] · requirement line (free, no in-app purchases, iOS and iPadOS 18)
+             ▒ ios-hero-ipad (75.54%) │ gap 5% │ ▒ ios-hero-iphone (19.46%), one baseline, never overlapping
+#databases   Band: the engines the app opens as linked words (EngineWords, from iosEngines) · Redshift and file notes
+Bands        #connect · #browse · #query · #safe-mode · #shortcuts · #mac, 40 to 60 words each
+             iPhone band: title cols 1–3 │ text cols 4–8 │ ▒ framed iPhone cols 9–12, 300 px, right edge
+             iPad band:   title cols 1–3 │ text cols 4–12, then ▒ framed iPad across the band, 1216 px
+             #mac:        the same, with diagram-icloud-sync below
+#more        Also: What stays on the Mac (#limits) · On iPad (#ipad) · Privacy (#privacy) · Open source
+#get         one sentence · [ App Store badge ]
 ```
 
-At 375 the phone slot (240) sits above its text.
+- Framed devices are the `framed-device` kind: Apple's frame, light and dark, at their real relative size (the iPhone
+  is 0.2576 of the landscape iPad's width). Whole screens, never cropped; a soft drop shadow follows the frame's edge.
+- The hero devices settle in once on load, like Home's (`.hero-device`); the bands rise into place as they scroll in.
+- Below 768 the hero shows the iPhone alone, 240 px wide, and the lazy iPad is never fetched; its preload carries
+  `(min-width: 768px)`. A band's iPhone sits under its text, 240 px wide (260 px from 768).
+- A band whose capture has no file shows its text across the band.
 
 ### 8.9 Blog index (`/blog`, `/vi/blog`)
 
