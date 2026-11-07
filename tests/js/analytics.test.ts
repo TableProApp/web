@@ -33,11 +33,13 @@ test('sends an event once the reader has allowed analytics', () => {
     trackEvent('checkout_started', { tier: 'starter', cycle: 'yearly' });
     trackDownload('header');
     trackDownload('ios-page', 'ios');
+    trackDownload('download-page-ppa', 'linux');
 
     assert.deepEqual(calls, [
         ['event', 'checkout_started', { tier: 'starter', cycle: 'yearly' }],
         ['event', 'download_click', { location: 'header', platform: 'mac' }],
         ['event', 'download_click', { location: 'ios-page', platform: 'ios' }],
+        ['event', 'download_click', { location: 'download-page-ppa', platform: 'linux' }],
     ]);
 });
 

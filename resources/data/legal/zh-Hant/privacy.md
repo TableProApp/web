@@ -153,7 +153,7 @@ Cloudflare Web Analytics 不在瀏覽器儲存內容。公開頁面不設第一�
 | `_ga`, `_ga_<ID>` | 同意後的 Google Analytics | 最長 2 年；拒絕即刪除 |
 | `tablepro:analytics-consent` | 必要的選擇記錄，網站/文件各自儲存 | 直到清除 |
 | `tablepro:attribution` | 隨結賬傳送首次來源；合法利益 | 90 天 |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | 外觀、所選/忽略語言、已關閉促銷；合法利益 | 直到清除；門戶主題獨立 |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | 外觀、所選/忽略語言、已關閉促銷、所選 Linux 安裝方式；合法利益 | 直到清除；門戶主題獨立 |
 | `mintlify_anonymous_id` | 文件訪客 ID，在該處同意後 | 直到清除或拒絕 |
 | `crisp-client/` Cookie | 每頁載入後的聊天延續；合法利益 | 6 個月，返回續期 |
 | `__Host-tp_session` | 必要門戶登入 | 登入後 30 天；登入過程最多 10 分鐘；退出刪除 |

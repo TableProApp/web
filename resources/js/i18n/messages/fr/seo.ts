@@ -13,6 +13,9 @@ export default {
     "iosApp": {
         "alternateName": "TablePro pour iPhone et iPad"
     },
+    "linuxApp": {
+        "alternateName": "TablePro pour Linux"
+    },
     "breadcrumbs": {
         "features": "Fonctionnalités",
         "databases": "Bases de données",

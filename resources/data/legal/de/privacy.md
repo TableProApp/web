@@ -153,7 +153,7 @@ Cloudflare Web Analytics speichert nichts im Browser. Öffentliche Seiten setzen
 | `_ga`, `_ga_<ID>` | Google Analytics nach Einwilligung | Bis 2 Jahre; Ablehnen löscht |
 | `tablepro:analytics-consent` | Notwendige Wahl, separat Website/Docs | Bis gelöscht |
 | `tablepro:attribution` | Erstquelle beim Checkout; berechtigtes Interesse | 90 Tage |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Aussehen, gewählte/verworfene Sprachen, geschlossener Angebotshinweis; berechtigtes Interesse | Bis gelöscht; Portaldesign separat |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | Aussehen, gewählte/verworfene Sprachen, geschlossener Angebotshinweis, gewählte Linux-Installationsmethode; berechtigtes Interesse | Bis gelöscht; Portaldesign separat |
 | `mintlify_anonymous_id` | Docs-ID nach dortiger Einwilligung | Bis gelöscht oder abgelehnt |
 | `crisp-client/`-Cookies | Chatfortsetzung nach Laden auf jeder Seite; berechtigtes Interesse | 6 Monate, bei Rückkehr erneuert |
 | `__Host-tp_session` | Notwendige Portalanmeldung | 30 Tage angemeldet; beim Anmelden höchstens 10 Minuten; Abmeldung löscht |

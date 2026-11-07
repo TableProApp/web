@@ -20,7 +20,7 @@ export function trackEvent(name: string, params: Record<string, string> = {}): v
     }
 }
 
-// One event name for every download, so the total survives a layout change. `platform` splits it into Mac and iOS.
-export function trackDownload(location: string, platform: 'mac' | 'ios' = 'mac'): void {
+// One event name for every download, so the total survives a layout change. `platform` splits it by platform.
+export function trackDownload(location: string, platform: 'mac' | 'ios' | 'linux' = 'mac'): void {
     trackEvent('download_click', { location, platform });
 }

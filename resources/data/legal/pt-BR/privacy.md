@@ -153,7 +153,7 @@ Cloudflare Web Analytics não guarda nada no navegador. Páginas públicas não 
 | `_ga`, `_ga_<ID>` | Google Analytics após consentir | Até 2 anos; recusar exclui |
 | `tablepro:analytics-consent` | Escolha necessária, separada site/docs | Até limpar |
 | `tablepro:attribution` | Fonte inicial enviada ao checkout; interesse legítimo | 90 dias |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Aparência, idiomas escolhidos/recusados, aviso fechado; interesse legítimo | Até limpar; tema portal separado |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | Aparência, idiomas escolhidos/recusados, aviso fechado, método de instalação no Linux escolhido; interesse legítimo | Até limpar; tema portal separado |
 | `mintlify_anonymous_id` | ID docs após consentir lá | Até limpar ou recusar |
 | Cookies `crisp-client/` | Continuidade do chat após carregar em toda página; interesse legítimo | 6 meses, renovados ao voltar |
 | `__Host-tp_session` | Login necessário no portal | 30 dias autenticado; até 10 minutos durante login; sair exclui |

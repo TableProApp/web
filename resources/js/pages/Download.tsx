@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
 import { usePage } from '@inertiajs/react';
-import LatestPost from '@/components/blog/latest-post';
+import { Laptop, SquareTerminal, TabletSmartphone } from 'lucide-react';
+import { requirementLine } from '@/components/download/format';
+import IosPanel from '@/components/download/ios-panel';
+import LinuxPanel from '@/components/download/linux-panel';
+import { distributionFloor } from '@/components/download/linux-text';
+import MacPanel from '@/components/download/mac-panel';
+import PlatformSwitch, { type PlatformTab } from '@/components/download/platform-switch';
+import type { DownloadPageProps, LinuxProp } from '@/components/download/types';
 import SEOHead from '@/components/seo/seo-head';
+import Badge from '@/components/ui/badge';
 import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
-import DotList from '@/components/ui/dot-list';
 import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
-import { requirementLine } from '@/components/download/format';
-import IosCard from '@/components/download/ios-card';
-import MacCard, { UI_TAGS } from '@/components/download/mac-card';
-import type { DownloadPageProps } from '@/components/download/types';
-import { LOCALES, Trans, useI18n, type Messages } from '@/i18n';
-import { joinList, keepTogether } from '@/i18n/format';
+import { LOCALES, useI18n, type Messages } from '@/i18n';
+import { joinList } from '@/i18n/format';
 import { architecturesText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
-import { appStoreFirst, classifyDevice, type DeviceKind } from '@/lib/device';
-import { absoluteUrl, graph, iosAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
+import { absoluteUrl, graph, iosAppNode, linuxAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
+import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
 type PlatformName = keyof Messages['platforms']['names'];
 
-interface JsonLdInput extends Pick<DownloadPageProps, 'content' | 'release' | 'mac' | 'ios' | 'links' | 'featuredEngines'> {
+interface JsonLdInput extends Pick<DownloadPageProps, 'content' | 'release' | 'mac' | 'ios' | 'linux' | 'links' | 'featuredEngines'> {
     baseUrl: string;
     inLanguage: string;
     m: Messages;
@@ -31,21 +31,16 @@ interface JsonLdInput extends Pick<DownloadPageProps, 'content' | 'release' | 'm
     path: (path: string) => string;
 }
 
-/**
- * The page's structured data (architecture §1.6, positioning §6.3), from the
- * shared builders, so `#app` and `#ios-app` say the same thing on every page
- * that emits them: a `WebPage` about the Mac app, the Mac app, and the iPhone
- * and iPad app while it is released.
- *
- * `softwareVersion` appears only when a release source answered, never from a
- * guess. There is no `offers` on the Mac app (this page shows no price), no
- * rating, no file size, and no `BreadcrumbList`, because the page shows no
- * breadcrumbs.
- */
-function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, mac, ios, links, featuredEngines }: JsonLdInput): JsonLdGraph {
+function linuxRequirements(linux: LinuxProp, m: Messages): string {
+    return `${linux.distributions.map((distribution) => distributionFloor(distribution, m.download.linux)).join(', ')}; ${linux.architectures.join(', ')}`;
+}
+
+// `softwareVersion` only from a release source that answered. No `offers` on the Mac app (this page shows no price),
+// no file size, and no BreadcrumbList, because the page shows no breadcrumbs.
+function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, mac, ios, linux, links, featuredEngines }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
     const pageUrl = absoluteUrl(baseUrl, path('/download'));
-    const deviceNames = [...mac.deviceNames, ...(ios?.deviceNames ?? [])];
+    const deviceNames = [...mac.deviceNames, ...(ios?.deviceNames ?? []), ...(linux?.deviceNames ?? [])];
     const live = release.source !== 'unavailable' && release.version !== null;
 
     return graph([
@@ -82,41 +77,63 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
                 licenseUrl: links.license,
                 currency: PRICING.currency,
             }),
+        linux !== null &&
+            links.license !== null &&
+            linuxAppNode(context, {
+                alternateName: m.seo.linuxApp.alternateName,
+                operatingSystem: linux.deviceNames[0] ?? 'Linux',
+                requirements: linuxRequirements(linux, m),
+                installUrl: `${pageUrl}#linux`,
+                licenseUrl: links.license,
+                currency: PRICING.currency,
+                version: linux.release?.version ?? null,
+            }),
     ]);
 }
 
-/**
- * `/download` and `/vi/download` (sitemap §A.1, design-system §8.7).
- *
- * The server renders everything a reader needs: the universal DMG with its
- * real URL, the Homebrew command and the App Store card. After mount the page
- * reads the device only to adjust emphasis (resources/js/lib/device.ts): on an
- * iPhone or iPad the App Store card comes first. Nothing starts a download on
- * its own, and no copy says a download started.
- *
- * If no release source has ever answered, the button opens GitHub's latest
- * release, no version is shown, and the Mac card says why.
- */
-export default function Download({ content, release, mac, ios, unreleased, links, featuredEngines, latestPost }: DownloadPageProps) {
+// The visitor's platform opens first, decided in the browser (PlatformSwitch); the server renders the Mac panel and
+// every panel's links, so nothing depends on JavaScript to download.
+export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
-    const [device, setDevice] = useState<DeviceKind | null>(null);
 
-    useEffect(() => {
-        setDevice(classifyDevice(navigator.userAgent, navigator.maxTouchPoints ?? 0));
-    }, []);
+    const names = {
+        mac: mac.deviceNames[0] ?? 'Mac',
+        ios: joinList(ios?.deviceNames ?? [], m.common.shortList),
+        linux: linux?.deviceNames[0] ?? 'Linux',
+    };
 
-    const available = release.source !== 'unavailable' && release.version !== null;
-    const iosFirst = ios !== null && device !== null && appStoreFirst(device);
+    const tabs: PlatformTab[] = [
+        { key: 'mac', name: names.mac, label: names.mac, icon: <Laptop aria-hidden="true" className="size-6" />, panel: <MacPanel content={content} release={release} mac={mac} /> },
+        ...(ios !== null
+            ? [{ key: 'ios' as const, name: names.ios, label: names.ios, icon: <TabletSmartphone aria-hidden="true" className="size-6" />, panel: <IosPanel content={content} ios={ios} /> }]
+            : []),
+        ...(linux !== null
+            ? [
+                  {
+                      key: 'linux' as const,
+                      name: names.linux,
+                      label: (
+                          <span className="inline-flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
+                              {names.linux}
+                              {linux.channel === 'beta' && <Badge variant="outline">{m.download.panel.beta}</Badge>}
+                          </span>
+                      ),
+                      icon: <SquareTerminal aria-hidden="true" className="size-6" />,
+                      panel: <LinuxPanel linux={linux} issues={links.issues} />,
+                  },
+              ]
+            : []),
+    ];
 
-    const unreleasedNames = unreleased
-        .filter((id): id is PlatformName => Object.hasOwn(m.platforms.names, id))
-        .map((id) => m.platforms.names[id]);
+    const unreleasedNames = unreleased.filter((id): id is PlatformName => Object.hasOwn(m.platforms.names, id)).map((id) => m.platforms.names[id]);
+    const others = joinList(unreleasedNames, m.download.orList);
 
-    const macCard = (
-        <MacCard content={content} release={release} mac={mac} links={links} device={device} className="lg:col-span-7" />
-    );
-    const iosCard = ios !== null ? <IosCard content={content} ios={ios} className="lg:col-span-5" /> : null;
+    const notes = [
+        release.source !== 'unavailable' && { href: release.releaseUrl, label: names.mac },
+        linux !== null && linux.release !== null && { href: linux.release.releaseUrl, label: names.linux },
+        links.changelog !== null && { href: links.changelog, label: content.olderVersions.changelog },
+    ].filter((link): link is { href: string; label: string } => link !== false);
 
     return (
         <LandingLayout>
@@ -134,132 +151,93 @@ export default function Download({ content, release, mac, ios, unreleased, links
                     release,
                     mac,
                     ios,
+                    linux,
                     links,
                     featuredEngines,
                 })}
             />
 
-            {/* The shared header, so the lead is muted and 56 characters wide like every other page's. */}
-            <PageHeader
-                title={content.header.title}
-                lead={content.header.lead}
-                meta={
-                    available ? (
-                        <DotList
-                            items={[
-                                <span key="version" className="tabular-nums">
-                                    {release.publishedAtFormatted !== null
-                                        ? fmt(m.download.release.dated, { version: release.version ?? '', date: keepTogether(release.publishedAtFormatted) })
-                                        : fmt(m.download.release.undated, { version: release.version ?? '' })}
-                                </span>,
-                                <TextLink key="notes" href={release.releaseUrl} kind="standalone" external hrefLang="en">
-                                    {m.download.release.notes}
-                                </TextLink>,
-                            ]}
-                        />
-                    ) : undefined
-                }
-            />
+            <div className="pt-10 pb-16 md:pt-14 md:pb-20 xl:pt-16 xl:pb-24">
+                <Container>
+                    <div className="mx-auto max-w-[40rem]">
+                        <header className="grid justify-items-center text-center">
+                            <img
+                                src="/images/brand/tablepro-icon-128.png"
+                                srcSet="/images/brand/tablepro-icon-128.png 1x, /images/brand/tablepro-icon-256.png 2x"
+                                alt=""
+                                width={72}
+                                height={72}
+                                className="size-18"
+                            />
+                            <h1 className="type-h1 mt-5 text-foreground">{content.header.title}</h1>
+                        </header>
 
-            {/* The two platforms are cells of the page grid, between two joins (design-system §4.7). */}
+                        {/* Security links "Download and updates" here; each panel says how its platform updates. */}
+                        <span id="updates" className="block" />
+                        <div className="mt-10">
+                            <PlatformSwitch legend={m.download.panel.legend} tabs={tabs} />
+                        </div>
+                    </div>
+                </Container>
+            </div>
+
             <div>
                 <Container>
-                    <CellGrid className="lg:grid-cols-12">
-                        {iosFirst ? (
-                            <>
-                                {iosCard}
-                                {macCard}
-                            </>
-                        ) : (
-                            <>
-                                {macCard}
-                                {iosCard}
-                            </>
+                    <CellGrid density="compact" className={cn('md:grid-cols-2', unreleasedNames.length > 0 && 'lg:grid-cols-3')}>
+                        {notes.length > 0 && (
+                            <section id="release-notes" aria-labelledby="release-notes-title">
+                                <h2 id="release-notes-title" className="type-label text-foreground">
+                                    {m.download.release.notes}
+                                </h2>
+                                <ul className="type-small mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                                    {notes.map((link) => (
+                                        <li key={link.href}>
+                                            <TextLink href={link.href} kind="standalone" external hrefLang="en">
+                                                {link.label}
+                                            </TextLink>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </section>
+                        )}
+
+                        <section id="older-versions" aria-labelledby="older-versions-title">
+                            <h2 id="older-versions-title" className="type-label text-foreground">
+                                {content.olderVersions.title}
+                            </h2>
+                            <ul className="type-small mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                                <li>
+                                    <TextLink href={release.releasesUrl} kind="standalone" external>
+                                        {content.olderVersions.releases}
+                                    </TextLink>
+                                </li>
+                                {links.source !== null && (
+                                    <li>
+                                        <TextLink href={links.source} kind="standalone" external>
+                                            {content.mac.source}
+                                        </TextLink>
+                                    </li>
+                                )}
+                            </ul>
+                        </section>
+
+                        {unreleasedNames.length > 0 && (
+                            <section id="other-platforms" aria-labelledby="other-platforms-title">
+                                <h2 id="other-platforms-title" className="type-label text-foreground">
+                                    {fmt(m.download.otherPlatforms.question, { platforms: others })}
+                                </h2>
+                                <p className="type-small mt-3 text-foreground">{fmt(content.otherPlatforms.body, { platforms: others })}</p>
+                                <p className="type-small mt-2">
+                                    <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
+                                        {content.otherPlatforms.faq}
+                                        <span aria-hidden="true">→</span>
+                                    </LocaleLink>
+                                </p>
+                            </section>
                         )}
                     </CellGrid>
                 </Container>
             </div>
-
-            {/* What to do after the download: one section each, so the page frame's joins separate them (design-system §4.7). */}
-            <Section id="install" title={content.install.title} width="text">
-                <div className="space-y-4">
-                    <ol className="type-body list-decimal space-y-3 pl-6 text-foreground marker:text-muted-foreground">
-                        {content.install.steps.map((step, index) => (
-                            <li key={index} className="pl-1">
-                                <Trans text={step} tags={UI_TAGS} />
-                            </li>
-                        ))}
-                    </ol>
-                    <p className="type-body text-foreground">{content.install.signing}</p>
-                    <p className="type-body text-foreground">{content.install.drivers}</p>
-                    <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                        <li>
-                            <LocaleLink href="/databases" className={textLinkClasses('standalone')}>
-                                {content.install.databases}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </li>
-                        {links.docs !== null && (
-                            <li>
-                                <TextLink href={links.docs.replace(/\/+$/, '') + content.install.guide.path} kind="standalone" external hrefLang="en">
-                                    {content.install.guide.label}
-                                </TextLink>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-            </Section>
-
-            <Section id="updates" title={content.updates.title} width="text">
-                <div className="space-y-4">
-                    {content.updates.paragraphs.map((paragraph, index) => (
-                        <p key={index} className="type-body text-foreground">
-                            <Trans text={paragraph} tags={UI_TAGS} />
-                        </p>
-                    ))}
-                </div>
-            </Section>
-
-            {unreleasedNames.length > 0 && (
-                <Section id="other-platforms" title={content.otherPlatforms.title} width="text">
-                    <div className="space-y-4">
-                        <p className="type-body text-foreground">
-                            {fmt(content.otherPlatforms.body, { platforms: joinList(unreleasedNames, m.download.otherPlatforms.joiner) })}
-                        </p>
-                        <p>
-                            <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
-                                {content.otherPlatforms.faq}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </p>
-                    </div>
-                </Section>
-            )}
-
-            <Section id="older-versions" title={content.olderVersions.title} width="text">
-                <div className="space-y-4">
-                    <p className="type-body text-foreground">{content.olderVersions.body}</p>
-                    {latestPost !== null && (
-                        <p className="type-body text-foreground">
-                            <LatestPost post={latestPost} />
-                        </p>
-                    )}
-                    <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                        <li>
-                            <TextLink href={release.releasesUrl} kind="standalone" external>
-                                {content.olderVersions.releases}
-                            </TextLink>
-                        </li>
-                        {links.changelog !== null && (
-                            <li>
-                                <TextLink href={links.changelog} kind="standalone" external hrefLang="en">
-                                    {content.olderVersions.changelog}
-                                </TextLink>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-            </Section>
         </LandingLayout>
     );
 }

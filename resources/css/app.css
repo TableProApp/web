@@ -457,6 +457,37 @@ html.campaign-live .campaign-band {
   }
 }
 
+/*
+ * The download page's platform before React has chosen it (PlatformSwitch): the head script's `ios` or `linux` class
+ * shows that panel and marks its segment, so an iPhone or a Linux desktop never sees the Mac panel first. Panels hide
+ * with the `hidden` class, not the attribute, which preflight hides with `!important`.
+ */
+:is(html.ios [data-platform-switch]:has(> [data-panel='ios']), html.linux [data-platform-switch]:has(> [data-panel='linux'])):not([data-ready]) {
+  & > [data-panel] {
+    display: none;
+  }
+
+  & > fieldset [data-segment] {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--muted-foreground);
+  }
+}
+
+/* The same specificity as the rule above, so these win by coming after it. */
+html.ios [data-platform-switch]:has(> [data-panel='ios']):not([data-ready]) > [data-panel='ios'],
+html.linux [data-platform-switch]:has(> [data-panel='linux']):not([data-ready]) > [data-panel='linux'] {
+  display: block;
+}
+
+html.ios [data-platform-switch]:has(> [data-panel='ios']):not([data-ready]) > fieldset [data-segment='ios'],
+html.linux [data-platform-switch]:has(> [data-panel='linux']):not([data-ready]) > fieldset [data-segment='linux'] {
+  border-color: var(--rule);
+  background-color: var(--segment-selected);
+  color: var(--foreground);
+}
+
 /* A row of the plan table under the pointer, on whichever ground the table sits. */
 @media (hover: hover) {
   .plan-row:hover {

@@ -13,6 +13,9 @@ export default {
     "iosApp": {
         "alternateName": "iPhone 및 iPad용 TablePro"
     },
+    "linuxApp": {
+        "alternateName": "Linux용 TablePro"
+    },
     "breadcrumbs": {
         "features": "기능",
         "databases": "데이터베이스",

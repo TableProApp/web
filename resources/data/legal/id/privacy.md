@@ -153,7 +153,7 @@ Cloudflare Web Analytics tidak menyimpan apa pun di browser. Halaman publik tida
 | `_ga`, `_ga_<ID>` | Google Analytics setelah persetujuan | Hingga 2 tahun; menolak menghapus |
 | `tablepro:analytics-consent` | Pilihan wajib, terpisah situs/docs | Sampai dihapus |
 | `tablepro:attribution` | Sumber awal bersama checkout; kepentingan sah | 90 hari |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | Tampilan, bahasa dipilih/ditutup, promo ditutup; kepentingan sah | Sampai dihapus; tema portal terpisah |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | Tampilan, bahasa dipilih/ditutup, promo ditutup, metode instal Linux dipilih; kepentingan sah | Sampai dihapus; tema portal terpisah |
 | `mintlify_anonymous_id` | ID docs setelah persetujuan di sana | Sampai dihapus/ditolak |
 | Cookie `crisp-client/` | Kelanjutan chat setelah dimuat tiap halaman; kepentingan sah | 6 bulan, diperbarui saat kembali |
 | `__Host-tp_session` | Masuk portal yang diperlukan | 30 hari masuk; paling lama 10 menit saat proses; keluar menghapus |

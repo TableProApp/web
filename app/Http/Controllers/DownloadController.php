@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Blog\BlogService;
+use App\Services\Content\SiteFacts;
+use App\Services\Releases\LinuxRelease;
+use App\Services\Releases\LinuxReleaseService;
 use App\Services\Releases\MacReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
-use App\Support\Localization\Locales;
-use App\Support\Seo\BlogPosts;
-use App\Support\Seo\PageRegistry;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 use Inertia\Response;
 
-/**
- * The download page, `/download` and `/vi/download` (sitemap §A.1, §E.5).
- *
- * Everything the page links to outside this site arrives here, as props: the
- * DMG URL and size from the release service, the App Store and GitHub
- * Releases URLs from `platforms.json`, and the docs, source and licence links
- * from `facts.json`. No URL is typed into the page or its copy.
- *
- * The DMG link is in the server-rendered HTML; nothing starts a download on
- * its own.
- */
+// Every URL and fact the page shows arrives as a prop from the data files and the release services. Linux is sent only
+// once platforms.json says it is released, the same way an unreleased iPhone app sends null.
 class DownloadController extends Controller
 {
-    public function __invoke(ContentRepository $content, MacReleaseService $releases, PlatformCatalog $platforms, BlogService $blog, PageRegistry $registry): Response
-    {
+    // Which install method a package format belongs to, so a file row can name its distribution.
+    private const PACKAGE_METHOD = ['deb' => 'ppa', 'rpm' => 'copr', 'flatpak' => 'flatpak'];
+
+    public function __invoke(
+        ContentRepository $content,
+        MacReleaseService $releases,
+        LinuxReleaseService $linuxReleases,
+        PlatformCatalog $platforms,
+        SiteFacts $facts,
+    ): Response {
         $locale = App::getLocale();
         $release = $releases->latest();
         $floor = $platforms->macFloorVersion();
+        $linux = $platforms->isReleased('linux') ? $this->linux($platforms, $linuxReleases->latest(), $locale) : null;
 
         return Inertia::render('Download', [
             'content' => $content->page('download', $locale),
@@ -41,39 +41,18 @@ class DownloadController extends Controller
                 'homebrewCommand' => $this->string($platforms->destination('mac', 'homebrew')['command'] ?? null),
                 'homebrewTrails' => $floor !== null && $release->version !== null && version_compare($floor, $release->version, '<'),
             ],
-            'ios' => $this->ios($platforms),
+            'ios' => $this->ios($platforms, $facts, $locale),
+            'linux' => $linux,
             'unreleased' => $platforms->unreleased(),
-            'links' => $this->links(),
-            'featuredEngines' => $this->featuredEngines(),
-            'latestPost' => $this->latestPost($blog, $registry, $locale),
+            'links' => $this->links($facts),
+            'featuredEngines' => $facts->featuredEngineNames(),
         ]);
     }
 
     /**
-     * The newest release post whose URL is a page, in the reader's language
-     * when it is written in it.
-     *
-     * @return array{slug: string, locale: string, kind: string, title: string, description: string, date: string, dateFormatted: string, url: string}|null
+     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}, appStoreUrl: string|null, free: bool, inAppPurchases: bool, version: string|null, publishedAtFormatted: string|null}|null
      */
-    private function latestPost(BlogService $blog, PageRegistry $registry, string $locale): ?array
-    {
-        foreach ($blog->all(Locales::default()) as $post) {
-            $post = $blog->find($post->slug, $locale) ?? $post;
-
-            if ($post->release !== null && ($registry->find(BlogPosts::ROUTE, ['slug' => $post->slug])?->renders($post->locale) ?? false)) {
-                return $post->summary($locale);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * The iPhone and iPad card's facts, or null while that app is not released.
-     *
-     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}, appStoreUrl: string|null, free: bool, inAppPurchases: bool}|null
-     */
-    private function ios(PlatformCatalog $platforms): ?array
+    private function ios(PlatformCatalog $platforms, SiteFacts $facts, string $locale): ?array
     {
         $summary = $platforms->summary('ios');
 
@@ -81,86 +60,129 @@ class DownloadController extends Controller
             return null;
         }
 
-        $price = $platforms->find('ios')['price'] ?? [];
+        $platform = $platforms->find('ios') ?? [];
+        $price = is_array($platform['price'] ?? null) ? $platform['price'] : [];
+        $release = is_array($platform['release'] ?? null) ? $platform['release'] : [];
 
         return [
             ...$summary,
-            'appStoreUrl' => $this->url($platforms->destination('ios', 'app-store')['url'] ?? null) ?? $this->url($this->facts()['appStore'] ?? null),
-            'free' => is_array($price) && is_numeric($price['amount'] ?? null) && (float) $price['amount'] === 0.0,
-            'inAppPurchases' => is_array($price) && ($price['inAppPurchases'] ?? false) === true,
+            'appStoreUrl' => $this->url($platforms->destination('ios', 'app-store')['url'] ?? null) ?? $facts->links()['appStore'],
+            'free' => is_numeric($price['amount'] ?? null) && (float) $price['amount'] === 0.0,
+            'inAppPurchases' => ($price['inAppPurchases'] ?? false) === true,
+            'version' => $this->string($release['version'] ?? null),
+            'publishedAtFormatted' => $this->date($release['publishedAt'] ?? null, $locale),
         ];
     }
 
     /**
-     * The outbound links the page shows or states in its structured data, each
-     * null when the data does not name it.
-     *
-     * @return array{docs: string|null, changelog: string|null, source: string|null, license: string|null}
+     * @return array{deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>, desktop: array{name: string, version: string}|null, architectures: list<string>, methods: list<array{kind: string, commands: list<string>, update: string|null}>, packages: list<array{format: string, series: string|null, distribution: string|null, files: array<string, array{name: string, url: string, bytes: int|null}|null>}>, checksums: array{name: string, url: string|null}|null, verify: string|null, release: array{version: string, publishedOn: string|null, releaseUrl: string, releasesUrl: string}|null}
      */
-    private function links(): array
+    private function linux(PlatformCatalog $platforms, ?LinuxRelease $release, string $locale): array
     {
-        $facts = $this->facts();
-        $docs = $this->url($facts['docs'] ?? null);
+        $platform = $platforms->find('linux') ?? [];
+        $packages = $platforms->linuxPackages();
+        $architectures = $this->strings($platform['architectures'] ?? []);
+        $desktop = $platform['desktop'] ?? null;
 
-        return [
-            'docs' => $docs,
-            'changelog' => $this->url($facts['changelog'] ?? null) ?? ($docs !== null ? rtrim($docs, '/') . '/changelog' : null),
-            'source' => $this->url($facts['github'] ?? null) ?? 'https://github.com/' . config('services.github.repo'),
-            'license' => $this->url($facts['license'] ?? null),
-        ];
-    }
+        $distributions = [];
 
-    /**
-     * `facts.json` → `links`, or nothing when the file is missing or malformed.
-     *
-     * @return array<string, mixed>
-     */
-    private function facts(): array
-    {
-        $facts = $this->json('facts.json');
-
-        return is_array($facts['links'] ?? null) ? $facts['links'] : [];
-    }
-
-    /**
-     * The names of the featured, published engines in data order, for the
-     * `{featuredEngines}` slot of the Mac app's description in the page's
-     * structured data (positioning §6.3). Read here rather than in the page,
-     * so the page's bundle does not carry all of `engines.json` for six names.
-     *
-     * @return list<string>
-     */
-    private function featuredEngines(): array
-    {
-        $names = [];
-
-        foreach ($this->json('engines.json') as $engine) {
-            if (is_array($engine) && ($engine['featured'] ?? false) === true && ($engine['state'] ?? null) === 'published' && is_string($engine['name'] ?? null)) {
-                $names[] = $engine['name'];
+        foreach (is_array($platform['distributions'] ?? null) ? $platform['distributions'] : [] as $distribution) {
+            if (is_array($distribution) && is_string($distribution['id'] ?? null) && is_string($distribution['via'] ?? null)) {
+                $distributions[] = [
+                    'id' => $distribution['id'],
+                    'name' => $this->string($distribution['name'] ?? null),
+                    'versions' => $this->strings($distribution['versions'] ?? []),
+                    'via' => $distribution['via'],
+                ];
             }
         }
 
-        return $names;
+        $methods = [];
+
+        foreach (is_array($platform['destinations'] ?? null) ? $platform['destinations'] : [] as $destination) {
+            $commands = $this->strings(is_array($destination) ? ($destination['commands'] ?? []) : []);
+
+            if ($commands !== [] && in_array($destination['kind'] ?? null, self::PACKAGE_METHOD, true)) {
+                $methods[] = ['kind' => $destination['kind'], 'commands' => $commands, 'update' => $this->string($destination['update'] ?? null)];
+            }
+        }
+
+        $byName = [];
+
+        foreach ($release?->assets ?? [] as $asset) {
+            $byName[$asset['name']] = ['name' => $asset['name'], 'url' => $asset['url'], 'bytes' => $asset['bytes']];
+        }
+
+        $rows = [];
+
+        foreach ($release !== null ? ($packages['assets'] ?? []) : [] as $asset) {
+            $via = self::PACKAGE_METHOD[$asset['format']] ?? null;
+            $named = collect($distributions)->first(fn(array $distribution): bool => $distribution['via'] === $via && $distribution['name'] !== null);
+
+            foreach ($asset['series'] === [] ? [null] : $asset['series'] as $series) {
+                $files = [];
+
+                foreach ($architectures as $architecture) {
+                    $name = strtr($asset['template'], ['{version}' => $release->version, '{series}' => (string) $series, '{arch}' => $asset['arch'][$architecture] ?? $architecture]);
+                    $files[$architecture] = $byName[$name] ?? null;
+                }
+
+                if (array_filter($files) !== []) {
+                    $rows[] = ['format' => $asset['format'], 'series' => $series, 'distribution' => $named['name'] ?? null, 'files' => $files];
+                }
+            }
+        }
+
+        return [
+            'deviceNames' => $this->strings($platform['deviceNames'] ?? []),
+            'channel' => $platforms->linuxChannel(),
+            'distributions' => $distributions,
+            'desktop' => is_array($desktop) && is_string($desktop['name'] ?? null) && is_string($desktop['version'] ?? null) ? ['name' => $desktop['name'], 'version' => $desktop['version']] : null,
+            'architectures' => $architectures,
+            'methods' => $methods,
+            'packages' => $rows,
+            'checksums' => $packages !== null && is_string($packages['checksums'] ?? null) ? ['name' => $packages['checksums'], 'url' => $release?->checksumsUrl] : null,
+            'verify' => $this->string($packages['verify'] ?? null),
+            'release' => $release === null ? null : [
+                'version' => $release->version,
+                'publishedOn' => $this->date($release->publishedAt, $locale),
+                'releaseUrl' => $release->releaseUrl,
+                'releasesUrl' => $release->releasesUrl,
+            ],
+        ];
     }
 
     /**
-     * A file in `resources/data`, decoded, or an empty array when it is missing
-     * or malformed: the page degrades instead of failing. Each file's `Data`
-     * test is what keeps it valid.
-     *
-     * @return array<array-key, mixed>
+     * @return array{docs: string|null, changelog: string|null, source: string|null, license: string|null, issues: string|null}
      */
-    private function json(string $file): array
+    private function links(SiteFacts $facts): array
     {
-        $path = resource_path('data/' . $file);
+        $links = $facts->links();
 
-        if (! File::isFile($path)) {
-            return [];
+        return [
+            'docs' => $links['docs'],
+            'changelog' => $links['changelog'] ?? ($links['docs'] !== null ? rtrim($links['docs'], '/') . '/changelog' : null),
+            'source' => $links['github'] ?? 'https://github.com/' . config('services.github.repo'),
+            'license' => $links['license'],
+            'issues' => $links['issues'],
+        ];
+    }
+
+    private function date(mixed $date, string $locale): ?string
+    {
+        if (! is_string($date) || preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) !== 1) {
+            return null;
         }
 
-        $decoded = json_decode((string) File::get($path), true);
+        return CarbonImmutable::createFromFormat('!Y-m-d', $date)?->locale($locale)->isoFormat('LL') ?: null;
+    }
 
-        return is_array($decoded) ? $decoded : [];
+    /**
+     * @return list<string>
+     */
+    private function strings(mixed $values): array
+    {
+        return is_array($values) ? array_values(array_filter($values, fn(mixed $value): bool => is_string($value) && $value !== '')) : [];
     }
 
     private function url(mixed $value): ?string

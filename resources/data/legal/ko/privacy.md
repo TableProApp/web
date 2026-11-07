@@ -153,7 +153,7 @@ Cloudflare Web Analytics는 브라우저에 저장하지 않습니다. 공개 �
 | `_ga`, `_ga_<ID>` | 동의 후 Google Analytics | 최대 2년, 거부하면 삭제 |
 | `tablepro:analytics-consent` | 필수 선택 기록, 사이트/문서 별도 | 지울 때까지 |
 | `tablepro:attribution` | 결제 시 첫 출처, 정당한 이익 | 90일 |
-| `theme`, `tablepro:language`, `tablepro:campaign-closed` | 모양, 언어 선택/닫기, 닫은 할인 알림, 정당한 이익 | 지울 때까지, 포털 테마 별도 |
+| `theme`, `tablepro:language`, `tablepro:campaign-closed`, `tablepro:linux-install` | 모양, 언어 선택/닫기, 닫은 할인 알림, 선택한 Linux 설치 방법, 정당한 이익 | 지울 때까지, 포털 테마 별도 |
 | `mintlify_anonymous_id` | 문서 동의 후 방문자 ID | 지우거나 거부할 때까지 |
 | `crisp-client/` 쿠키 | 페이지 로드 후 채팅 유지, 정당한 이익 | 6개월, 재방문 시 갱신 |
 | `__Host-tp_session` | 필수 포털 로그인 | 로그인 후 30일, 과정 중 최대 10분, 로그아웃 삭제 |

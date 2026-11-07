@@ -1,40 +1,38 @@
-import CopyButton from '@/components/ui/copy-button';
+import { Fragment } from 'react';
+import { CodeBlock } from '@/components/ui/code';
 import { useI18n } from '@/i18n';
 
 interface CommandBlockProps {
-    /** The command exactly as it is copied, without a prompt. */
-    command: string;
-    /** The title bar's text, such as "Terminal". */
+    // One command per line, exactly as copied: no prompt.
+    lines: string[];
     title: string;
-    /** Names the command for the copy button and the scroll region: "Homebrew command". */
     label: string;
+    onCopied?: () => void;
+    className?: string;
 }
 
-/**
- * A shell command with a copy button (design-system §5.3.12, `command` variant).
- *
- * The `$` prompt is drawn but never selected or copied. The command sits in a
- * focusable scroll region, so a narrow screen can scroll it from the keyboard
- * instead of clipping it. No version is printed beside it: the Homebrew cask
- * can trail a release, so any version here would be wrong some of the time.
- */
-export default function CommandBlock({ command, title, label }: CommandBlockProps) {
+// One copy button takes every line. A line wraps only at a space (a browser would also break after a hyphen, so every
+// token is kept whole), its continuation indented so it never reads as the next command; a token wider than the block
+// (a URL) scrolls inside it.
+export default function CommandBlock({ lines, title, label, onCopied, className }: CommandBlockProps) {
     const { m } = useI18n();
 
     return (
-        <div className="rounded-panel border border-rule bg-raised">
-            <div className="flex min-h-9 items-center justify-between gap-2 border-b border-rule pr-1 pl-4">
-                <span className="type-caption text-muted-foreground">{title}</span>
-                <CopyButton value={command} label={label} labels={m.controls.copy} />
-            </div>
-            <div role="region" aria-label={label} tabIndex={0} className="overflow-x-auto rounded-b-panel px-4 py-3">
-                <pre className="type-mono text-foreground">
-                    <span aria-hidden="true" className="text-muted-foreground select-none">
-                        ${' '}
-                    </span>
-                    <code>{command}</code>
-                </pre>
-            </div>
-        </div>
+        <CodeBlock label={label} title={title} copyLabels={m.controls.copy} copyValue={lines.join('\n')} onCopied={onCopied} className={className}>
+            <pre className="type-mono p-4 break-normal whitespace-pre-wrap text-foreground">
+                <code>
+                    {lines.map((line, index) => (
+                        <span key={index} className="block pl-[2ch] -indent-[2ch]">
+                            {line.split(' ').map((token, position) => (
+                                <Fragment key={position}>
+                                    {position > 0 && ' '}
+                                    <span className="whitespace-nowrap">{token}</span>
+                                </Fragment>
+                            ))}
+                        </span>
+                    ))}
+                </code>
+            </pre>
+        </CodeBlock>
     );
 }

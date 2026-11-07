@@ -8,55 +8,25 @@
         "title": "TablePro herunterladen"
     },
     "header": {
-        "title": "TablePro herunterladen",
-        "lead": "Wähle einen Build für dein Gerät."
+        "title": "TablePro herunterladen"
     },
     "mac": {
-        "otherWays": "Weitere Installationsmöglichkeiten",
         "homebrew": {
             "title": "Homebrew",
-            "body": "Homebrew installiert die Version für den Chip deines Macs. Danach hält sich die App selbst aktuell.",
             "trails": "Die Homebrew-Version wird separat aktualisiert und kann einer neuen Veröffentlichung hinterherhinken. Falls eine ältere Version installiert wird, wähle <ui>TablePro > Check for Updates…</ui>, um die aktuelle zu erhalten."
         },
-        "releases": "Alle Builds auf GitHub Releases",
+        "signing": "TablePro ist mit einer Developer ID signiert und von Apple notarisiert. Du musst daher keine Sicherheitseinstellung ändern, um TablePro zu öffnen.",
         "source": "Aus dem Quellcode bauen (AGPLv3)"
     },
     "ios": {
-        "body": "Eine kostenlose App für {devices} mit eigenem Funktionsumfang.",
         "link": "TablePro für {devices}"
     },
-    "install": {
-        "title": "Installation und erster Start",
-        "steps": [
-            "Öffne die heruntergeladene .dmg-Datei.",
-            "Ziehe TablePro in den Ordner Programme.",
-            "Öffne TablePro aus Programme. Wähle <ui>Open</ui>, wenn macOS um Bestätigung bittet.",
-            "Füge eine Verbindung hinzu oder teste die enthaltene Chinook-SQLite-Datenbank über <ui>Help > Open Sample Database</ui>."
-        ],
-        "signing": "TablePro ist mit einer Developer ID signiert und von Apple notarisiert. Du musst daher keine Sicherheitseinstellung ändern, um TablePro zu öffnen.",
-        "drivers": "Gängige Treiber sind enthalten. Andere benötigen Internet für den ersten Download und werden unabhängig von der App aktualisiert.",
-        "databases": "Unterstützte Datenbanken",
-        "guide": {
-            "label": "Installationsanleitung lesen (Englisch)",
-            "path": "/installation"
-        }
-    },
-    "updates": {
-        "title": "Updates",
-        "paragraphs": [
-            "TablePro sucht einmal täglich nach Updates. Eine neue Version wird im Hintergrund heruntergeladen und beim nächsten Beenden der App installiert.",
-            "Die meisten Versionen werden über etwa anderthalb Tage schrittweise an Macs ausgeliefert. Um sie früher zu erhalten, wähle <ui>TablePro > Check for Updates…</ui>",
-            "Du kannst automatische Prüfungen oder Installationen unter <ui>Settings > General</ui> deaktivieren. Update-Prüfungen gehen an GitHub, wo die Versionen veröffentlicht werden. Jedes Update ist signiert und wird vor der Installation überprüft."
-        ]
-    },
     "otherPlatforms": {
-        "title": "Andere Plattformen",
         "body": "TablePro ist für {platforms} nicht verfügbar und es gibt keinen Erscheinungstermin.",
         "faq": "Plattformfragen in den FAQ"
     },
     "olderVersions": {
-        "title": "Ältere Versionen und Versionshinweise",
-        "body": "Jede Version mit ihren Hinweisen und Disk-Images findest du auf GitHub Releases. Das Änderungsprotokoll listet die Änderungen jeder Version auf.",
+        "title": "Ältere Versionen",
         "releases": "Alle Versionen auf GitHub",
         "changelog": "Änderungsprotokoll (Englisch)"
     }
