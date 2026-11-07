@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Existe uma versão para Windows ou Linux?",
+                    "answer": [
+                        "Para Linux, sim: o <downloadLinux>TablePro para Linux</downloadLinux> está disponível em versão beta, com seu próprio conjunto de <databasesLinux>bancos</databasesLinux> e recursos. Windows não está disponível, e não há data de lançamento."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "Existe um app para iPhone e iPad?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Existe uma versão para Windows ou Linux?",
-                    "answer": [
-                        "Para Linux, sim: o <downloadLinux>TablePro para Linux</downloadLinux> está disponível em versão beta, com seu próprio conjunto de <databasesLinux>bancos</databasesLinux> e recursos. Windows não está disponível, e não há data de lançamento."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "Em quais idiomas os apps estão disponíveis?",
                     "answer": [
-                        "O app para Mac oferece suporte a {macLanguages}, embora algumas telas traduzidas ainda mostrem o inglês. O aplicativo para iPhone e iPad é compatível com {iosLanguages}.",
+                        "O app para Mac oferece suporte a {macLanguages}, embora algumas telas traduzidas ainda mostrem o inglês. O app para Linux oferece suporte a {linuxLanguages}. O aplicativo para iPhone e iPad é compatível com {iosLanguages}.",
                         "O site e o portal da conta oferecem suporte a vários idiomas. <docs>Documentação</docs> está em inglês."
                     ]
                 }

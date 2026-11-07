@@ -226,3 +226,18 @@ it('server-renders the FAQ\'s Linux links to sections that exist', function (str
         ->and($answer->querySelector('a[href="' . LocalizedUrl::path('/download', $locale) . '#linux"]'))->not->toBeNull()
         ->and($databases->getElementById('linux'))->not->toBeNull();
 })->with(['en', 'vi'])->group('ssr');
+
+it('asks the FAQ’s platform questions Mac first, then Linux, then iPhone and iPad, and names the Linux app’s languages', function (string $locale): void {
+    $platforms = collect(data_get(staticPageData("content/{$locale}/faq.json"), 'groups'))->firstWhere('id', 'platforms')['items'];
+    $languages = collect($platforms)->firstWhere('id', 'languages')['answer'][0];
+
+    expect(array_slice(array_column($platforms, 'id'), 0, 3))->toBe(['mac-requirements', 'windows-linux', 'iphone-ipad'])
+        ->and(strpos($languages, '{macLanguages}'))->toBeLessThan(strpos($languages, '{linuxLanguages}'))
+        ->and(strpos($languages, '{linuxLanguages}'))->toBeLessThan(strpos($languages, '{iosLanguages}'));
+})->with('locales');
+
+it('sends the FAQ the Linux app’s languages from platforms.json', function (): void {
+    $linux = collect(staticPageData('platforms.json')['platforms'])->firstWhere('id', 'linux');
+
+    get('/faq')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('platforms.linuxLanguages', $linux['appLanguages']));
+});

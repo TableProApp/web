@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Có phiên bản cho Windows hoặc Linux không?",
+                    "answer": [
+                        "Linux thì có: <downloadLinux>TablePro cho Linux</downloadLinux> đang ở bản beta, với bộ <databasesLinux>engine</databasesLinux> và tính năng riêng. Không có bản cho Windows, và cũng không có ngày phát hành."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "Có ứng dụng cho iPhone và iPad không?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Có phiên bản cho Windows hoặc Linux không?",
-                    "answer": [
-                        "Linux thì có: <downloadLinux>TablePro cho Linux</downloadLinux> đang ở bản beta, với bộ <databasesLinux>engine</databasesLinux> và tính năng riêng. Không có bản cho Windows, và cũng không có ngày phát hành."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "Ứng dụng có những ngôn ngữ nào?",
                     "answer": [
-                        "Ứng dụng Mac hỗ trợ {macLanguages}, nhưng một số màn hình đã dịch vẫn có tiếng Anh. Ứng dụng iPhone và iPad hỗ trợ {iosLanguages}.",
+                        "Ứng dụng Mac hỗ trợ {macLanguages}, nhưng một số màn hình đã dịch vẫn có tiếng Anh. Ứng dụng cho Linux hỗ trợ {linuxLanguages}. Ứng dụng iPhone và iPad hỗ trợ {iosLanguages}.",
                         "Website và trang tài khoản hỗ trợ nhiều ngôn ngữ. <docs>Tài liệu</docs> bằng tiếng Anh."
                     ]
                 }

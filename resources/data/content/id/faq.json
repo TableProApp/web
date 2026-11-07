@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Apakah ada versi Windows atau Linux?",
+                    "answer": [
+                        "Untuk Linux, ya: <downloadLinux>TablePro untuk Linux</downloadLinux> tersedia sebagai versi beta, dengan <databasesLinux>engine</databasesLinux> dan fitur tersendiri. Windows tidak tersedia, dan tidak ada tanggal rilis."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "Apakah ada aplikasi iPhone dan iPad?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Apakah ada versi Windows atau Linux?",
-                    "answer": [
-                        "Untuk Linux, ya: <downloadLinux>TablePro untuk Linux</downloadLinux> tersedia sebagai versi beta, dengan <databasesLinux>engine</databasesLinux> dan fitur tersendiri. Windows tidak tersedia, dan tidak ada tanggal rilis."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "Dalam bahasa apa aplikasi tersedia?",
                     "answer": [
-                        "Aplikasi Mac mendukung {macLanguages}, meskipun beberapa layar terjemahan masih menampilkan bahasa Inggris. Aplikasi iPhone dan iPad mendukung {iosLanguages}.",
+                        "Aplikasi Mac mendukung {macLanguages}, meskipun beberapa layar terjemahan masih menampilkan bahasa Inggris. Aplikasi Linux mendukung {linuxLanguages}. Aplikasi iPhone dan iPad mendukung {iosLanguages}.",
                         "Situs web dan portal akun mendukung berbagai bahasa. <docs>Dokumentasi</docs> dalam bahasa Inggris."
                     ]
                 }

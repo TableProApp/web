@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "有 Windows 或 Linux 版本吗？",
+                    "answer": [
+                        "有 Linux 版：<downloadLinux>Linux 版 TablePro</downloadLinux> 以 Beta 版提供，支持的<databasesLinux>引擎</databasesLinux>和功能与 Mac 版不同。没有 Windows 版本，也没有发布日期。"
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "有 iPhone 和 iPad 应用吗？",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "有 Windows 或 Linux 版本吗？",
-                    "answer": [
-                        "有 Linux 版：<downloadLinux>Linux 版 TablePro</downloadLinux> 以 Beta 版提供，支持的<databasesLinux>引擎</databasesLinux>和功能与 Mac 版不同。没有 Windows 版本，也没有发布日期。"
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "应用支持哪些语言？",
                     "answer": [
-                        "Mac App 支持 {macLanguages}，但部分已翻译界面仍显示英文。iPhone 和 iPad App 支持 {iosLanguages}。",
+                        "Mac App 支持 {macLanguages}，但部分已翻译界面仍显示英文。Linux App 支持 {linuxLanguages}。iPhone 和 iPad App 支持 {iosLanguages}。",
                         "网站和账户门户支持多种语言。<docs>文档</docs>为英文。"
                     ]
                 }

@@ -78,6 +78,13 @@
                     ]
                 },
                 {
+                    "id": "windows-linux",
+                    "question": "Existe-t-il une version Windows ou Linux ?",
+                    "answer": [
+                        "Pour Linux, oui : <downloadLinux>TablePro pour Linux</downloadLinux> est disponible en bêta, avec ses propres <databasesLinux>moteurs</databasesLinux> et fonctions. Windows n’est pas disponible, et il n’y a aucune date de sortie."
+                    ]
+                },
+                {
                     "id": "iphone-ipad",
                     "question": "Existe-t-il une application iPhone et iPad ?",
                     "answer": [
@@ -86,17 +93,10 @@
                     ]
                 },
                 {
-                    "id": "windows-linux",
-                    "question": "Existe-t-il une version Windows ou Linux ?",
-                    "answer": [
-                        "Pour Linux, oui : <downloadLinux>TablePro pour Linux</downloadLinux> est disponible en bêta, avec ses propres <databasesLinux>moteurs</databasesLinux> et fonctions. Windows n’est pas disponible, et il n’y a aucune date de sortie."
-                    ]
-                },
-                {
                     "id": "languages",
                     "question": "Dans quelles langues les applications sont-elles disponibles ?",
                     "answer": [
-                        "L’app Mac prend en charge {macLanguages}, mais certains écrans traduits affichent encore de l’anglais. L’app iPhone et iPad prend en charge {iosLanguages}.",
+                        "L’app Mac prend en charge {macLanguages}, mais certains écrans traduits affichent encore de l’anglais. L’app Linux prend en charge {linuxLanguages}. L’app iPhone et iPad prend en charge {iosLanguages}.",
                         "Le site et le portail de compte sont disponibles en plusieurs langues. La <docs>documentation</docs> est en anglais."
                     ]
                 }
