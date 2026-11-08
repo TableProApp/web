@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     index: {
         empty: 'Chưa có bài viết nào.',
-        guides: 'Hướng dẫn',
-        news: 'Tin tức',
-        releases: 'Ghi chú phát hành',
+        tabs: {
+            label: 'Bài viết theo loại',
+            all: 'Tất cả',
+            release: 'Bản phát hành',
+            guide: 'Hướng dẫn',
+            news: 'Tin tức',
+        },
+        kind: {
+            release: 'Bản phát hành',
+            guide: 'Hướng dẫn',
+            news: 'Tin tức',
+        },
+        pages: {
+            label: 'Phân trang',
+            newer: 'Bài mới hơn',
+            older: 'Bài cũ hơn',
+            page: 'Trang {page} trên {pages}',
+        },
     },
     latest: 'Bài phát hành mới nhất: <post>{title}</post>.',
     post: {

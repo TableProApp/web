@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     "index": {
         "empty": "Belum ada artikel.",
-        "guides": "Panduan",
-        "news": "Berita",
-        "releases": "Catatan rilis"
+        "tabs": {
+            "label": "Artikel menurut jenis",
+            "all": "Semua",
+            "release": "Rilis",
+            "guide": "Panduan",
+            "news": "Berita"
+        },
+        "kind": {
+            "release": "Rilis",
+            "guide": "Panduan",
+            "news": "Berita"
+        },
+        "pages": {
+            "label": "Halaman",
+            "newer": "Artikel lebih baru",
+            "older": "Artikel lebih lama",
+            "page": "Halaman {page} dari {pages}"
+        }
     },
     "latest": "Artikel rilis terbaru: <post>{title}</post>.",
     "post": {

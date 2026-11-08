@@ -14,6 +14,7 @@ use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageRegistry;
 use Carbon\CarbonImmutable;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
@@ -24,12 +25,14 @@ use Throwable;
 /**
  * The blog: `/blog`, `/vi/blog` and `/blog/{slug}` (sitemap §A.5, §E.6).
  *
- * Two kinds of post: release announcements, an English-only archive, and
- * guides, each with a Vietnamese version under `resources/blog/vi`. `/vi/blog`
- * lists the Vietnamese guides and the English release posts, each of those
- * marked as English and linked at its English URL, and is indexed with `/blog`
- * as its alternate. Every other language's index lists only the English posts
- * and is not indexed (`seo.indexable: false` in its `blog.json`).
+ * Three kinds of post: release announcements, an English-only archive, guides
+ * and news, the last two with a Vietnamese version under `resources/blog/vi`.
+ * The index is one list, newest first, narrowed to a kind by `?kind=` and cut
+ * into pages of 20 by `?page=`. `/vi/blog` lists the Vietnamese posts and the
+ * English release posts, each of those marked as English and linked at its
+ * English URL, and is indexed with `/blog` as its alternate. Every other
+ * language's index lists only the English posts and is not indexed
+ * (`seo.indexable: false` in its `blog.json`).
  * `/vi/blog/{slug}` never wraps an English body: `EnsurePageRenders` answers
  * it with a 404 that links the English post by its title
  * (`MissingTranslationException::forEntry()`).
@@ -43,6 +46,12 @@ class BlogController extends Controller
     /** How many related posts a post page links. */
     private const RELATED = 3;
 
+    /** How many posts one page of the index lists. */
+    private const PER_PAGE = 20;
+
+    /** The index's tabs after All, in their order. */
+    private const KINDS = [Post::KIND_RELEASE, Post::KIND_GUIDE, Post::KIND_NEWS];
+
     /** The tag every release post carries, which says nothing about how two posts relate. */
     private const COMMON_TAG = 'release';
 
@@ -51,18 +60,47 @@ class BlogController extends Controller
         private readonly PageRegistry $registry,
     ) {}
 
-    public function index(ContentRepository $content): Response
+    public function index(Request $request, ContentRepository $content): Response
     {
         $locale = App::getLocale();
+        $posts = $this->published($this->blog->listing($locale));
+        $kinds = array_values(array_filter(self::KINDS, fn(string $kind): bool => $this->ofKind($posts, $kind) !== []));
+        $kind = in_array($request->query('kind'), $kinds, true) ? $request->query('kind') : null;
+        $listed = $kind === null ? $posts : $this->ofKind($posts, $kind);
+        $pages = max(1, (int) ceil(count($listed) / self::PER_PAGE));
+        $page = $this->pageNumber($request->query('page'));
+
+        abort_if($page === null || $page > $pages, 404);
 
         return Inertia::render('Blog/Index', [
             'feed' => $this->feedLink(),
             'content' => Arr::except($content->page('blog', $locale), ['corrections']),
             'posts' => array_map(
                 static fn(Post $post): array => $post->summary($locale),
-                $this->published($this->blog->listing($locale)),
+                array_slice($listed, ($page - 1) * self::PER_PAGE, self::PER_PAGE),
             ),
+            'kinds' => $kinds,
+            'filter' => ['kind' => $kind, 'page' => $page, 'pages' => $pages],
         ]);
+    }
+
+    /**
+     * @param  list<Post>  $posts
+     * @return list<Post>
+     */
+    private function ofKind(array $posts, string $kind): array
+    {
+        return array_values(array_filter($posts, fn(Post $post): bool => $post->kind() === $kind));
+    }
+
+    // No page asked for is the first; anything but a whole number from 1 is no page at all.
+    private function pageNumber(mixed $value): ?int
+    {
+        if ($value === null) {
+            return 1;
+        }
+
+        return is_string($value) && preg_match('/^[1-9][0-9]{0,3}$/', $value) === 1 ? (int) $value : null;
     }
 
     public function show(ContentRepository $content, PostTopics $topics, PostRelease $releases, string $slug): Response

@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     "index": {
         "empty": "暂无文章。",
-        "guides": "指南",
-        "news": "公告",
-        "releases": "发行说明"
+        "tabs": {
+            "label": "按类型浏览文章",
+            "all": "全部",
+            "release": "版本发布",
+            "guide": "指南",
+            "news": "公告"
+        },
+        "kind": {
+            "release": "版本发布",
+            "guide": "指南",
+            "news": "公告"
+        },
+        "pages": {
+            "label": "分页",
+            "newer": "较新的文章",
+            "older": "较早的文章",
+            "page": "第 {page} 页，共 {pages} 页"
+        }
     },
     "latest": "最新版本文章：<post>{title}</post>。",
     "post": {

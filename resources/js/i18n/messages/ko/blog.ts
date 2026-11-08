@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     "index": {
         "empty": "아직 게시물이 없습니다.",
-        "guides": "가이드",
-        "news": "소식",
-        "releases": "릴리스 노트"
+        "tabs": {
+            "label": "종류별 게시물",
+            "all": "전체",
+            "release": "릴리스",
+            "guide": "가이드",
+            "news": "소식"
+        },
+        "kind": {
+            "release": "릴리스",
+            "guide": "가이드",
+            "news": "소식"
+        },
+        "pages": {
+            "label": "페이지",
+            "newer": "최근 게시물",
+            "older": "이전 게시물",
+            "page": "{pages}페이지 중 {page}페이지"
+        }
     },
     "latest": "최신 릴리스 글: <post>{title}</post>.",
     "post": {

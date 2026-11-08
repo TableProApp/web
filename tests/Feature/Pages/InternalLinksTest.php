@@ -13,7 +13,7 @@ beforeEach(function (): void {
 
 const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'webhooks'];
 
-const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt'];
+const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt', '/blog/feed.xml'];
 
 function internalLinkTarget(string $href, string $page): ?array
 {

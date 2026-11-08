@@ -20,6 +20,8 @@ interface LocaleLinkProps {
     'aria-label'?: string;
     'aria-current'?: AriaAttributes['aria-current'];
     'aria-describedby'?: string;
+    // An Inertia visit only: keep the scroll position, as the blog index's tabs do.
+    preserveScroll?: boolean;
     [data: `data-${string}`]: string | undefined;
     children?: ReactNode;
 }
@@ -37,14 +39,14 @@ interface LocaleLinkProps {
  * answers without this app (`/account`, `/checkout`, … see `PLATFORM_PATHS`
  * in `@/i18n/paths`): they are never prefixed and never an Inertia visit.
  */
-export default function LocaleLink({ href, locale, children, ...rest }: LocaleLinkProps) {
+export default function LocaleLink({ href, locale, preserveScroll, children, ...rest }: LocaleLinkProps) {
     const { locale: current } = useI18n();
     const target = locale ?? current;
     const link = localeLink(href, target, current);
 
     if (link.kind === 'visit') {
         return (
-            <Link href={link.href} {...rest}>
+            <Link href={link.href} preserveScroll={preserveScroll} {...rest}>
                 {children}
             </Link>
         );

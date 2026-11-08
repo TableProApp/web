@@ -11,11 +11,13 @@ import { trackEvent } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 interface NewsletterSignupProps {
+    // Only the form, for a band that names the offer itself: the blog index's closing band.
+    bare?: boolean;
     className?: string;
 }
 
 // The blog index's signup (sitemap §A.5): the footer's list under the footer's own title and body, so the offer has one name.
-export default function NewsletterSignup({ className }: NewsletterSignupProps) {
+export default function NewsletterSignup({ bare = false, className }: NewsletterSignupProps) {
     const { m } = useI18n();
     const form = useEmailForm();
     const id = useId();
@@ -28,13 +30,9 @@ export default function NewsletterSignup({ className }: NewsletterSignupProps) {
         void form.submit();
     }
 
-    return (
-        <section aria-labelledby={`${id}-title`} className={cn('rounded-panel border border-rule bg-surface p-6', className)}>
-            <h2 id={`${id}-title`} className="type-h3 text-foreground">
-                {m.footer.newsletter.title}
-            </h2>
-            <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
-            <SubscriberCount className="mt-1" />
+    const fields = (
+        <>
+            <SubscriberCount className={bare ? undefined : 'mt-1'} />
             <form onSubmit={submit} onFocus={form.warm} onPointerEnter={form.warm} className="mt-3 grid gap-1.5">
                 <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
                 <div className="flex flex-col gap-2 sm:flex-row">
@@ -80,6 +78,20 @@ export default function NewsletterSignup({ className }: NewsletterSignupProps) {
                     }}
                 />
             </p>
+        </>
+    );
+
+    if (bare) {
+        return <div className={cn('max-w-[32rem]', className)}>{fields}</div>;
+    }
+
+    return (
+        <section aria-labelledby={`${id}-title`} className={cn('rounded-panel border border-rule bg-surface p-6', className)}>
+            <h2 id={`${id}-title`} className="type-h3 text-foreground">
+                {m.footer.newsletter.title}
+            </h2>
+            <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
+            {fields}
         </section>
     );
 }

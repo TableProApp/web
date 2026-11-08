@@ -3,9 +3,9 @@ slug: tablepro-for-linux-beta
 title: "TablePro for Linux: the first public beta"
 description: Install the Linux beta through apt, dnf or Flatpak. Browse tables, write SQL and connect through SSH in a native GNOME app.
 date: 2026-11-08
-release: "TablePro for Linux 0.1.0-beta.3"
+kind: news
 author: TablePro Team
-tags: [release, sql-editor, connections]
+tags: [sql-editor, connections]
 ogPunchline: Browse tables and write SQL on Linux. Install through apt, dnf or Flatpak.
 ---
 
