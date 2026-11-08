@@ -31,7 +31,7 @@ function pageFamilies(): array
         'landing.terms' => ['Terms', ['document.title', 'document.html', 'document.toc']],
         'landing.refundPolicy' => ['RefundPolicy', ['document.title', 'document.html', 'document.toc']],
         'landing.brand' => ['Brand', ['document.title', 'document.html', 'document.toc']],
-        'landing.blog.index' => ['Blog/Index', ['content', 'posts.0']],
+        'landing.blog.index' => ['Blog/Index', ['content', 'posts.0', 'kinds', 'filter']],
         'landing.blog.show' => ['Blog/Post', ['post', 'related']],
         'landing.features.index' => ['Features/Index', ['content', 'areas.0.bands', 'facts']],
         'landing.features.show' => ['Features/Show', ['content', 'slug', 'facts', 'labels', 'heroSizes']],

@@ -4,6 +4,7 @@
  * corrections are in resources/data/content/{locale}/blog.json; the posts are
  * markdown.
  *
+ * - `index.tabs` narrow the index to one kind; `index.kind` labels each row.
  * - `latest` is the line on /download that links the newest release post.
  * - `post.archive` is the note above a release post once a newer release is
  *   out. `{date}` is the publication date, formatted by the server, and
@@ -17,9 +18,24 @@
 export default {
     index: {
         empty: 'No posts yet.',
-        guides: 'Guides',
-        news: 'News',
-        releases: 'Release notes',
+        tabs: {
+            label: 'Posts by kind',
+            all: 'All',
+            release: 'Releases',
+            guide: 'Guides',
+            news: 'News',
+        },
+        kind: {
+            release: 'Release',
+            guide: 'Guide',
+            news: 'News',
+        },
+        pages: {
+            label: 'Pages',
+            newer: 'Newer posts',
+            older: 'Older posts',
+            page: 'Page {page} of {pages}',
+        },
     },
     latest: 'Latest release post: <post>{title}</post>.',
     post: {

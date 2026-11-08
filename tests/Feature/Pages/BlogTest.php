@@ -34,27 +34,60 @@ function blogPost(array $tags, ?string $release = null, string $date = '2026-10-
     return new Post('a-post', 'en', 'A post', 'What shipped.', CarbonImmutable::parse($date), $tags, $release);
 }
 
-it('lists every post on disk, newest first, by its kind', function (): void {
-    $posts = blogPostsOnDisk();
-    $kind = fn(array $matter): string => match (true) {
+function blogKind(array $matter): string
+{
+    return match (true) {
         isset($matter['release']) => 'release',
         ($matter['kind'] ?? null) === 'news' => 'news',
         default => 'guide',
     };
+}
 
-    get('/blog')
-        ->assertOk()
-        ->assertInertia(fn(AssertableInertia $page) => $page
-            ->component('Blog/Index')
-            ->where('posts', fn($listed): bool => collect($listed)->pluck('slug')->all() === array_keys($posts))
-            ->where('posts', fn($listed): bool => collect($listed)->every(fn(array $post): bool => $post['kind'] === $kind($posts[$post['slug']]))));
+it('lists every post on disk, newest first, 20 to a page, by its kind', function (): void {
+    $posts = blogPostsOnDisk();
+    $pages = array_chunk(array_keys($posts), 20);
+
+    foreach ($pages as $index => $slugs) {
+        get('/blog' . ($index === 0 ? '' : '?page=' . ($index + 1)))
+            ->assertOk()
+            ->assertInertia(fn(AssertableInertia $page) => $page
+                ->component('Blog/Index')
+                ->where('filter', ['kind' => null, 'page' => $index + 1, 'pages' => count($pages)])
+                ->where('posts', fn($listed): bool => collect($listed)->pluck('slug')->all() === $slugs)
+                ->where('posts', fn($listed): bool => collect($listed)->every(fn(array $post): bool => $post['kind'] === blogKind($posts[$post['slug']]))));
+    }
+});
+
+it('narrows the list to one kind, and offers only the kinds that have a post', function (): void {
+    $posts = blogPostsOnDisk();
+    $kinds = array_values(array_intersect(['release', 'guide', 'news'], array_map('blogKind', $posts)));
+
+    get('/blog')->assertInertia(fn(AssertableInertia $page) => $page->where('kinds', $kinds));
+
+    foreach ($kinds as $kind) {
+        $slugs = array_keys(array_filter($posts, fn(array $matter): bool => blogKind($matter) === $kind));
+
+        get("/blog?kind={$kind}")->assertOk()->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('filter.kind', $kind)
+            ->where('posts', fn($listed): bool => collect($listed)->pluck('slug')->all() === array_slice($slugs, 0, 20)));
+    }
+
+    get('/blog?kind=nonsense')->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where('filter.kind', null));
+});
+
+it('answers a page past the last, or one that is not a whole number, with a 404', function (string $query): void {
+    get("/blog?{$query}")->assertNotFound();
+})->with(['page=0', 'page=-1', 'page=abc', 'page=1.5', 'page=99']);
+
+it('files the Linux beta post under news, not releases', function (): void {
+    expect(blogKind(blogPostsOnDisk()['tablepro-for-linux-beta']))->toBe('news');
 });
 
 it('lists a translated post in its own language and every other post in English', function (): void {
     get('/vi/blog')
         ->assertOk()
         ->assertInertia(fn(AssertableInertia $page) => $page
-            ->has('posts', count(blogPostsOnDisk()))
+            ->has('posts', min(20, count(blogPostsOnDisk())))
             ->where('posts', fn($listed): bool => collect($listed)->every(function (array $post): bool {
                 $locale = is_file(resource_path("blog/vi/{$post['slug']}.md")) ? 'vi' : 'en';
 
@@ -250,3 +283,26 @@ describe('the feed', function (): void {
             ->where('feed.url', 'https://tablepro.app/blog/feed.xml'));
     })->with(['/blog', '/vi/blog', '/blog/tablepro-0-77']);
 });
+
+it('draws the tabs, the pages and the newsletter band', function (): void {
+    $document = Dom\HTMLDocument::createFromString(ssrHtml('/blog?kind=release'), LIBXML_NOERROR);
+    $current = $document->querySelector('main nav a[aria-current="page"]');
+
+    expect($current?->getAttribute('href'))->toBe('/blog?kind=release')
+        ->and($document->querySelector('main nav a[href="/blog"]'))->not->toBeNull()
+        ->and($document->querySelector('#newsletter form input[type="email"]'))->not->toBeNull()
+        ->and($document->querySelector('#top a[href$="/blog/feed.xml"]'))->not->toBeNull();
+
+    foreach (['posts', 'news', 'guides', 'releases'] as $id) {
+        expect($document->getElementById($id))->not->toBeNull("#{$id} is gone from /blog");
+    }
+
+    $pages = (int) ceil(count(blogPostsOnDisk()) / 20);
+
+    if ($pages > 1) {
+        $first = Dom\HTMLDocument::createFromString(ssrHtml('/blog'), LIBXML_NOERROR);
+
+        expect($first->querySelector('main a[rel="next"]')?->getAttribute('href'))->toBe('/blog?page=2')
+            ->and($first->querySelector('main a[rel="prev"]'))->toBeNull();
+    }
+})->group('ssr');
