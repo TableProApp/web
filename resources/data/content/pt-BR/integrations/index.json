@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Integrações",
-        "lead": "Apps e ferramentas que funcionam com o TablePro.",
+        "lead": "Apps e ferramentas que funcionam com o TablePro, desenvolvidos pela equipe TablePro ou por terceiros.",
         "build": "Criar uma integração"
-    },
-    "filters": {
-        "label": "Filtrar integrações",
-        "search": "Pesquisar",
-        "category": {
-            "label": "Categoria",
-            "all": "Todas as categorias"
-        },
-        "platform": {
-            "label": "App do TablePro",
-            "all": "Todos os apps"
-        },
-        "tier": {
-            "label": "Tipo",
-            "all": "Todos os tipos"
-        },
-        "submit": "Mostrar resultados",
-        "count": {
-            "one": "{count} integração",
-            "other": "{count} integrações"
-        },
-        "empty": "Nenhuma integração corresponde a esses filtros.",
-        "clear": "Limpar filtros"
     },
     "publish": {
         "title": "Adicione sua integração",
+        "sentence": "Criou algo que funciona com o TablePro? Envie para o registro no GitHub.",
         "guide": "Como enviar",
         "policy": "Política do diretório"
     },
     "notice": "Nomes e logotipos pertencem aos seus proprietários. Só as integrações do tipo Oficial são desenvolvidas pelo TablePro.",
     "labels": {
         "by": "Por {publisher}",
+        "byTier": "{tier}, por {publisher}",
         "closedSource": "Código fechado",
         "tiers": {
             "official": "Oficial",
@@ -72,7 +51,8 @@
         "source": "Código-fonte",
         "details": {
             "title": "Detalhes",
-            "publisher": "Desenvolvedor",
+            "publisher": "Desenvolvido por",
+            "tier": "Tipo",
             "category": "Categoria",
             "host": "Funciona com",
             "hostVersion": "{host} {version} ou posterior",
@@ -82,7 +62,6 @@
             "added": "Adicionada em",
             "verified": "Última verificação"
         },
-        "about": "Sobre",
         "screenshots": "Capturas de tela",
         "uses": {
             "title": "O que usa",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Grátis, com opções pagas",
                 "paid": "Pago"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Conta",
+                "payment": "Preço"
             }
         },
         "support": {
             "title": "Ajuda",
-            "report": "Relatar um problema nesta página",
+            "sentence": "Algo errado nesta página? <report>Relate no GitHub</report>.",
             "help": "Obter ajuda de {publisher}",
             "docs": "Ler a documentação"
         },

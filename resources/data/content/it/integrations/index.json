@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Integrazioni",
-        "lead": "App e strumenti che funzionano con TablePro.",
+        "lead": "App e strumenti che funzionano con TablePro, sviluppati dal team di TablePro o da terzi.",
         "build": "Crea un’integrazione"
-    },
-    "filters": {
-        "label": "Filtra integrazioni",
-        "search": "Cerca",
-        "category": {
-            "label": "Categoria",
-            "all": "Tutte le categorie"
-        },
-        "platform": {
-            "label": "App TablePro",
-            "all": "Tutte le app"
-        },
-        "tier": {
-            "label": "Tipo",
-            "all": "Tutti i tipi"
-        },
-        "submit": "Mostra risultati",
-        "count": {
-            "one": "{count} integrazione",
-            "other": "{count} integrazioni"
-        },
-        "empty": "Nessuna integrazione corrisponde a questi filtri.",
-        "clear": "Rimuovi filtri"
     },
     "publish": {
         "title": "Aggiungi la tua integrazione",
+        "sentence": "Hai creato qualcosa che funziona con TablePro? Invialo al registro su GitHub.",
         "guide": "Come inviarla",
         "policy": "Criteri di inclusione"
     },
     "notice": "Nomi e loghi appartengono ai rispettivi proprietari. TablePro sviluppa solo le integrazioni di tipo Ufficiale.",
     "labels": {
         "by": "Di {publisher}",
+        "byTier": "{tier}, di {publisher}",
         "closedSource": "Codice chiuso",
         "tiers": {
             "official": "Ufficiale",
@@ -72,7 +51,8 @@
         "source": "Codice sorgente",
         "details": {
             "title": "Dettagli",
-            "publisher": "Sviluppatore",
+            "publisher": "Sviluppato da",
+            "tier": "Tipo",
             "category": "Categoria",
             "host": "Funziona con",
             "hostVersion": "{host} {version} o successivo",
@@ -82,7 +62,6 @@
             "added": "Aggiunta il",
             "verified": "Ultimo controllo"
         },
-        "about": "Informazioni",
         "screenshots": "Schermate",
         "uses": {
             "title": "Cosa usa",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Gratuita, con opzioni a pagamento",
                 "paid": "A pagamento"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Account",
+                "payment": "Prezzo"
             }
         },
         "support": {
             "title": "Assistenza",
-            "report": "Segnala un problema con questa voce",
+            "sentence": "Qualcosa non va in questa voce? <report>Segnalalo su GitHub</report>.",
             "help": "Chiedi aiuto a {publisher}",
             "docs": "Leggi la documentazione"
         },

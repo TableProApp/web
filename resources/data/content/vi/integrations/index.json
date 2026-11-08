@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Tích hợp",
-        "lead": "Ứng dụng và công cụ dùng được với TablePro.",
+        "lead": "Ứng dụng và công cụ dùng được với TablePro, do đội ngũ TablePro hoặc bên khác phát triển.",
         "build": "Tự xây dựng tích hợp"
-    },
-    "filters": {
-        "label": "Lọc tích hợp",
-        "search": "Tìm kiếm",
-        "category": {
-            "label": "Danh mục",
-            "all": "Mọi danh mục"
-        },
-        "platform": {
-            "label": "Ứng dụng TablePro",
-            "all": "Mọi ứng dụng"
-        },
-        "tier": {
-            "label": "Loại",
-            "all": "Mọi loại"
-        },
-        "submit": "Xem kết quả",
-        "count": {
-            "one": "{count} tích hợp",
-            "other": "{count} tích hợp"
-        },
-        "empty": "Không có tích hợp nào khớp với bộ lọc này.",
-        "clear": "Xóa bộ lọc"
     },
     "publish": {
         "title": "Đăng tích hợp của bạn",
+        "sentence": "Bạn đã làm ra thứ gì đó dùng được với TablePro? Hãy gửi vào registry trên GitHub.",
         "guide": "Cách gửi tích hợp",
         "policy": "Chính sách đăng tích hợp"
     },
     "notice": "Tên và logo thuộc về chủ sở hữu của chúng. Chỉ tích hợp Chính thức do TablePro phát triển.",
     "labels": {
         "by": "Do {publisher} phát triển",
+        "byTier": "{tier}, do {publisher} phát triển",
         "closedSource": "Mã nguồn đóng",
         "tiers": {
             "official": "Chính thức",
@@ -72,7 +51,8 @@
         "source": "Mã nguồn",
         "details": {
             "title": "Chi tiết",
-            "publisher": "Nhà phát hành",
+            "publisher": "Nhà phát triển",
+            "tier": "Loại",
             "category": "Danh mục",
             "host": "Dùng với",
             "hostVersion": "{host} {version} trở lên",
@@ -82,7 +62,6 @@
             "added": "Ngày đăng",
             "verified": "Kiểm tra lần cuối"
         },
-        "about": "Giới thiệu",
         "screenshots": "Ảnh chụp màn hình",
         "uses": {
             "title": "Tích hợp dùng gì",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Miễn phí, có tùy chọn trả phí",
                 "paid": "Trả phí"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Tài khoản",
+                "payment": "Giá"
             }
         },
         "support": {
             "title": "Trợ giúp",
-            "report": "Báo vấn đề với mục này",
+            "sentence": "Mục này có gì sai? <report>Báo lỗi trên GitHub</report>.",
             "help": "Nhờ {publisher} hỗ trợ",
             "docs": "Đọc tài liệu"
         },

@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Integrasi",
-        "lead": "Aplikasi dan alat yang bekerja dengan TablePro.",
+        "lead": "Aplikasi dan alat yang bekerja dengan TablePro, dibuat oleh tim TablePro atau pihak lain.",
         "build": "Buat integrasi"
-    },
-    "filters": {
-        "label": "Filter integrasi",
-        "search": "Cari",
-        "category": {
-            "label": "Kategori",
-            "all": "Semua kategori"
-        },
-        "platform": {
-            "label": "Aplikasi TablePro",
-            "all": "Semua aplikasi"
-        },
-        "tier": {
-            "label": "Jenis",
-            "all": "Semua jenis"
-        },
-        "submit": "Tampilkan hasil",
-        "count": {
-            "one": "{count} integrasi",
-            "other": "{count} integrasi"
-        },
-        "empty": "Tidak ada integrasi yang cocok dengan filter ini.",
-        "clear": "Hapus filter"
     },
     "publish": {
         "title": "Cantumkan integrasi Anda",
+        "sentence": "Sudah membuat sesuatu yang bekerja dengan TablePro? Kirimkan ke registri di GitHub.",
         "guide": "Cara mengirim",
         "policy": "Kebijakan pencantuman"
     },
     "notice": "Nama dan logo adalah milik pemiliknya masing-masing. Hanya integrasi Resmi yang dibuat oleh TablePro.",
     "labels": {
         "by": "Oleh {publisher}",
+        "byTier": "{tier}, oleh {publisher}",
         "closedSource": "Sumber tertutup",
         "tiers": {
             "official": "Resmi",
@@ -72,7 +51,8 @@
         "source": "Kode sumber",
         "details": {
             "title": "Detail",
-            "publisher": "Penerbit",
+            "publisher": "Dibuat oleh",
+            "tier": "Jenis",
             "category": "Kategori",
             "host": "Berfungsi dengan",
             "hostVersion": "{host} {version} atau lebih baru",
@@ -82,7 +62,6 @@
             "added": "Dicantumkan",
             "verified": "Terakhir diperiksa"
         },
-        "about": "Tentang",
         "screenshots": "Tangkapan layar",
         "uses": {
             "title": "Yang digunakan",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Gratis, dengan opsi berbayar",
                 "paid": "Berbayar"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Akun",
+                "payment": "Harga"
             }
         },
         "support": {
             "title": "Bantuan",
-            "report": "Laporkan masalah pada entri ini",
+            "sentence": "Ada yang salah dengan entri ini? <report>Laporkan di GitHub</report>.",
             "help": "Dapatkan bantuan dari {publisher}",
             "docs": "Baca dokumentasi"
         },
