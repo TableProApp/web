@@ -1793,6 +1793,24 @@ Bands ×7     cols 1–3: H2 that states the band's fact   cols 4–12 at 42rem:
   first two columns and fold the rest under the second as labelled lines (§5.3.10, priority columns).
 - No diagram, badges or certification claims.
 
+### 8.24 Teams (`/teams`, every locale)
+
+Rebuilt 2026-11-08 short, like zed.dev/business: about 320 words.
+
+```
+Hero         H1 · one sentence · See Team pricing (to #price) · How Team works ↗ (docs)
+             the Team Library, whole Mac window
+#includes    cols 1–3: What Team includes   cols 4–12: two columns, Every seat gets | Team adds, name + one sentence each
+#price       cols 1–3: Price, "no one-time Team license" under it   cols 4–12: the Team card (§8.6) without Includes
+#seats       cols 1–3: H2   cols 4–12 at 42rem: term rows (DescriptionList, body size), one sentence each
+#buying      the same
+#data        the same, then Security and Privacy policy links
+#enterprise  closing band: one sentence, Contact us with the Enterprise row's subject
+```
+
+- No ticks, icons or grey panels. Unbuilt Enterprise features are never listed.
+- No platform is named for what a seat gets: a seat is "{deviceLimit} computers, Mac or Linux", Pro is never "each Mac".
+
 ---
 
 ## 9. Sharing between the two repositories
