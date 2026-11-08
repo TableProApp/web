@@ -10,38 +10,46 @@
     "breadcrumb": "후원자",
     "header": {
         "title": "후원자",
-        "lead": "TablePro는 오픈 소스입니다. 후원금은 개발과 유지 보수에 드는 시간을 지원합니다.",
+        "lead": "TablePro는 라이선스와 이 페이지의 후원자들로 운영되며, 투자자는 없습니다.",
         "action": "GitHub에서 후원하기"
     },
-    "companies": {
-        "title": "기업",
+    "places": {
         "open": {
-            "one": "홈페이지의 {total}개 자리 중 {count}개가 비어 있습니다.",
-            "other": "홈페이지의 {total}개 자리 중 {count}개가 비어 있습니다."
+            "one": "홈페이지의 {total}개 자리 중 {count}개가 비어 있습니다",
+            "other": "홈페이지의 {total}개 자리 중 {count}개가 비어 있습니다"
         },
-        "full": "홈페이지의 {total}개 자리가 모두 찼습니다."
-    },
-    "people": {
-        "title": "개인"
+        "full": "홈페이지의 {total}개 자리가 모두 찼습니다"
     },
     "tiers": {
-        "title": "후원 등급",
-        "lead": {
-            "one": "매월 후원하거나, 한 번 결제로 같은 혜택을 {count}개월 동안 받을 수 있습니다.",
-            "other": "매월 후원하거나, 한 번 결제로 같은 혜택을 {count}개월 동안 받을 수 있습니다."
-        },
-        "caption": "후원 등급별 월 금액, 일시불 금액, 혜택",
-        "columns": {
-            "monthly": "월",
-            "oneTime": "일시불",
-            "benefit": "혜택"
-        },
-        "oneTimePrice": "일시불 {price}",
-        "benefit": {
-            "name": "이 페이지와 TablePro README에 이름과 링크를 게재합니다.",
-            "homepage": "홈페이지, 이 페이지, TablePro README에 로고와 링크를 게재합니다. 홈페이지에는 {total}개 자리가 있습니다.",
-            "lead": "홈페이지, 이 페이지, README에서 로고를 맨 앞에 더 크게 게재합니다."
-        },
-        "link": "GitHub에서 TablePro 후원하기"
+        "monthly": "월 {price}",
+        "oneTime": "또는 일시불 {price}",
+        "open": "<open>모집 중.</open> {benefit}",
+        "items": {
+            "lead": {
+                "title": "메인",
+                "benefit": "홈페이지, 이 페이지, TablePro README에서 로고를 맨 앞에 가장 크게 게재합니다."
+            },
+            "homepage": {
+                "title": "로고",
+                "benefit": "홈페이지, 이 페이지, TablePro README에 로고와 링크를 게재합니다."
+            },
+            "name": {
+                "title": "이름",
+                "benefit": "이 페이지와 TablePro README에 이름과 링크를 게재합니다."
+            }
+        }
+    },
+    "finePrint": {
+        "title": "세부 사항",
+        "rows": [
+            { "term": "일시불", "text": "자리가 비어 있으면 월 금액의 {multiplier}배를 한 번에 결제해 같은 자리를 {months}개월 동안 유지할 수 있습니다." },
+            { "term": "후원이 끝나면", "text": "다음 GitHub Sponsors 확인 때 로고나 이름이 내려갑니다." },
+            { "term": "비공개 후원", "text": "GitHub에서 비공개로 설정한 후원은 이 페이지나 README에 이름이 실리지 않습니다." },
+            { "term": "로고 파일", "text": "보내 주신 파일을 그대로 사용하며 색을 바꾸지 않습니다. 다크 모드용 버전도 함께 보내 주세요." }
+        ]
+    },
+    "closing": {
+        "title": "TablePro 후원하기",
+        "sentence": "GitHub Sponsors에서 등급을 고르거나, 회사에서 먼저 궁금한 점이 있으면 <email>{email}</email>로 연락하세요."
     }
 }

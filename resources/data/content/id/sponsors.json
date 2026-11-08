@@ -10,38 +10,46 @@
     "breadcrumb": "Sponsor",
     "header": {
         "title": "Sponsor",
-        "lead": "TablePro adalah open source. Sponsor membayar waktu yang dicurahkan untuk mengembangkan dan merawatnya.",
+        "lead": "Lisensi dan sponsor di halaman ini mendanai TablePro, yang tidak memiliki investor.",
         "action": "Sponsori di GitHub"
     },
-    "companies": {
-        "title": "Perusahaan",
+    "places": {
         "open": {
-            "one": "{count} dari {total} tempat di beranda masih tersedia.",
-            "other": "{count} dari {total} tempat di beranda masih tersedia."
+            "one": "{count} dari {total} tempat di beranda masih tersedia",
+            "other": "{count} dari {total} tempat di beranda masih tersedia"
         },
-        "full": "Semua {total} tempat di beranda sudah terisi."
-    },
-    "people": {
-        "title": "Perorangan"
+        "full": "Semua {total} tempat di beranda sudah terisi"
     },
     "tiers": {
-        "title": "Tingkatan",
-        "lead": {
-            "one": "Sponsori setiap bulan, atau sekali untuk {count} bulan dengan penempatan yang sama.",
-            "other": "Sponsori setiap bulan, atau sekali untuk {count} bulan dengan penempatan yang sama."
-        },
-        "caption": "Tingkatan sponsor dengan harga bulanan, harga sekali bayar, dan isi setiap tingkatan",
-        "columns": {
-            "monthly": "Bulanan",
-            "oneTime": "Sekali",
-            "benefit": "Yang Anda dapatkan"
-        },
-        "oneTimePrice": "{price} sekali",
-        "benefit": {
-            "name": "Nama dan tautan Anda di halaman ini dan di README TablePro.",
-            "homepage": "Logo dan tautan Anda di beranda, halaman ini, dan README TablePro. Beranda memuat {total} tempat.",
-            "lead": "Logo Anda paling depan dan lebih besar di beranda, halaman ini, dan README."
-        },
-        "link": "Sponsori TablePro di GitHub"
+        "monthly": "{price} per bulan",
+        "oneTime": "atau {price} sekali bayar",
+        "open": "<open>Tersedia.</open> {benefit}",
+        "items": {
+            "lead": {
+                "title": "Sponsor utama",
+                "benefit": "Logo Anda paling depan dan paling besar di beranda, halaman ini, dan README TablePro."
+            },
+            "homepage": {
+                "title": "Logo",
+                "benefit": "Logo dan tautan Anda di beranda, halaman ini, dan README TablePro."
+            },
+            "name": {
+                "title": "Nama",
+                "benefit": "Nama dan tautan Anda di halaman ini dan di README TablePro."
+            }
+        }
+    },
+    "finePrint": {
+        "title": "Ketentuan",
+        "rows": [
+            { "term": "Bayar sekali", "text": "Bayar sekali sebesar {multiplier} kali harga bulanan untuk mempertahankan tempat yang sama selama {months} bulan, jika masih ada yang tersedia." },
+            { "term": "Saat berakhir", "text": "Logo atau nama dihapus pada pengecekan berikutnya dengan GitHub Sponsors." },
+            { "term": "Sponsor privat", "text": "Sponsor yang Anda jadikan privat di GitHub tidak pernah disebutkan di sini atau di README." },
+            { "term": "Logo Anda", "text": "File Anda sendiri, warnanya tidak pernah diubah. Kirim juga versi untuk mode gelap." }
+        ]
+    },
+    "closing": {
+        "title": "Sponsori TablePro",
+        "sentence": "Pilih tingkatan di GitHub Sponsors, atau kirim email ke <email>{email}</email> jika perusahaan Anda ingin bertanya lebih dulu."
     }
 }
