@@ -2,7 +2,7 @@
 import { interpolate } from '../../i18n/core.ts';
 import { joinList } from '../../i18n/format.ts';
 import type { Messages } from '../../i18n/types.ts';
-import type { LinuxDistributionProp, LinuxMethodKind, LinuxProp, LinuxSummary } from './types.ts';
+import type { LinuxDistributionProp, LinuxSummary } from './types.ts';
 
 type Strings = Messages['download']['linux'];
 
@@ -13,13 +13,6 @@ export function distributionFloor(distribution: LinuxDistributionProp, strings: 
     }
 
     return interpolate(strings.floor, { name: distribution.name, version: distribution.versions[0] ?? '' });
-}
-
-// The tab label of an install method: the distribution it serves, or "Flatpak".
-export function methodLabel(kind: LinuxMethodKind, linux: LinuxProp, strings: Strings): string {
-    const distribution = linux.distributions.find((each) => each.via === kind && each.name !== null);
-
-    return distribution !== undefined ? distributionFloor(distribution, strings) : strings.flatpak;
 }
 
 // "Ubuntu 26.04+, Fedora 44+ or any distribution via Flatpak", in data order.

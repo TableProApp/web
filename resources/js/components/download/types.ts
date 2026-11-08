@@ -10,13 +10,14 @@ export interface ReleaseAsset {
     name: string | null;
     // GitHub's latest-release page when no release source answered.
     url: string;
-    // The Sparkle appcast has no sizes or digests, only the GitHub API does.
     bytes: number | null;
     sha256: string | null;
 }
 
 export interface ReleaseProp {
     version: string | null;
+    // "0.85" for 0.85.0, the H1's version.
+    shortVersion: string | null;
     publishedAt: string | null;
     // Formatted in PHP, so SSR and the browser agree.
     publishedAtFormatted: string | null;
@@ -29,9 +30,9 @@ export interface ReleaseProp {
 export interface MacProp {
     deviceNames: string[];
     requirements: Requirements | null;
+    // One DMG for Apple silicon and Intel.
+    universal: boolean;
     homebrewCommand: string | null;
-    // The Homebrew cask still serves an older version than this release.
-    homebrewTrails: boolean;
 }
 
 export interface IosProp {
@@ -41,6 +42,7 @@ export interface IosProp {
     free: boolean;
     inAppPurchases: boolean;
     version: string | null;
+    shortVersion: string | null;
     publishedAtFormatted: string | null;
 }
 
@@ -56,49 +58,28 @@ export interface LinuxDistributionProp {
 export interface LinuxMethod {
     kind: LinuxMethodKind;
     commands: string[];
-    update: string | null;
-}
-
-export interface LinuxFile {
-    name: string;
-    url: string;
-    bytes: number | null;
-}
-
-export interface LinuxPackageRow {
-    format: 'deb' | 'rpm' | 'flatpak';
-    series: string | null;
-    distribution: string | null;
-    // Keyed by the architecture as platforms.json names it; null where the release has no such file.
-    files: Record<string, LinuxFile | null>;
 }
 
 export interface LinuxProp {
     deviceNames: string[];
     channel: 'beta' | 'stable';
     distributions: LinuxDistributionProp[];
-    desktop: { name: string; version: string } | null;
     architectures: string[];
     methods: LinuxMethod[];
-    packages: LinuxPackageRow[];
-    checksums: { name: string; url: string | null } | null;
-    // `{file}` stands for the downloaded file.
-    verify: string | null;
-    release: { version: string; publishedOn: string | null; releaseUrl: string; releasesUrl: string } | null;
+    release: { version: string; shortVersion: string; publishedOn: string | null; releaseUrl: string; releasesUrl: string } | null;
 }
 
 // What a page outside /download says about Linux: `PlatformCatalog::linuxSummary`, null until Linux is released.
 export type LinuxSummary = Pick<LinuxProp, 'deviceNames' | 'channel' | 'distributions'>;
 
 export interface LinksProp {
-    docs: string | null;
     changelog: string | null;
     source: string | null;
     license: string | null;
-    issues: string | null;
 }
 
-export type PlatformKey = 'mac' | 'linux' | 'ios';
+// What the head script in app.blade.php calls the reader's machine; a Mac carries no class.
+export type DeviceKey = 'mac' | 'linux' | 'ios' | 'other';
 
 export interface DownloadPageProps {
     content: DownloadContent;
