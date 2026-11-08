@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Integrationen",
-        "lead": "Apps und Werkzeuge, die mit TablePro zusammenarbeiten.",
+        "lead": "Apps und Werkzeuge, die mit TablePro zusammenarbeiten, entwickelt vom TablePro-Team oder von anderen.",
         "build": "Integration entwickeln"
-    },
-    "filters": {
-        "label": "Integrationen filtern",
-        "search": "Suchen",
-        "category": {
-            "label": "Kategorie",
-            "all": "Alle Kategorien"
-        },
-        "platform": {
-            "label": "TablePro-App",
-            "all": "Alle Apps"
-        },
-        "tier": {
-            "label": "Typ",
-            "all": "Alle Typen"
-        },
-        "submit": "Ergebnisse anzeigen",
-        "count": {
-            "one": "{count} Integration",
-            "other": "{count} Integrationen"
-        },
-        "empty": "Keine Integration passt zu diesen Filtern.",
-        "clear": "Filter zurücksetzen"
     },
     "publish": {
         "title": "Deine Integration eintragen",
+        "sentence": "Du hast etwas gebaut, das mit TablePro zusammenarbeitet? Reiche es in der Registry auf GitHub ein.",
         "guide": "Anleitung zum Einreichen",
         "policy": "Aufnahmerichtlinie"
     },
     "notice": "Namen und Logos gehören ihren Inhabern. Nur offizielle Integrationen werden von TablePro entwickelt.",
     "labels": {
         "by": "Von {publisher}",
+        "byTier": "{tier}, von {publisher}",
         "closedSource": "Nicht quelloffen",
         "tiers": {
             "official": "Offiziell",
@@ -72,7 +51,8 @@
         "source": "Quellcode",
         "details": {
             "title": "Informationen",
-            "publisher": "Herausgeber",
+            "publisher": "Entwickelt von",
+            "tier": "Typ",
             "category": "Kategorie",
             "host": "Funktioniert mit",
             "hostVersion": "{host} {version} oder neuer",
@@ -82,7 +62,6 @@
             "added": "Aufgenommen",
             "verified": "Zuletzt geprüft"
         },
-        "about": "Beschreibung",
         "screenshots": "Bildschirmfotos",
         "uses": {
             "title": "Was die Integration nutzt",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Kostenlos, mit kostenpflichtigen Optionen",
                 "paid": "Kostenpflichtig"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Konto",
+                "payment": "Preis"
             }
         },
         "support": {
             "title": "Hilfe",
-            "report": "Problem mit diesem Eintrag melden",
+            "sentence": "Stimmt etwas mit diesem Eintrag nicht? <report>Melde es auf GitHub</report>.",
             "help": "Hilfe bei {publisher} erhalten",
             "docs": "Dokumentation lesen"
         },

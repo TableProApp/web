@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "통합",
-        "lead": "TablePro와 함께 작동하는 앱과 도구입니다.",
+        "lead": "TablePro와 함께 작동하는 앱과 도구입니다. TablePro 팀이 만든 것과 다른 개발자가 만든 것이 있습니다.",
         "build": "통합 만들기"
-    },
-    "filters": {
-        "label": "통합 필터",
-        "search": "검색",
-        "category": {
-            "label": "카테고리",
-            "all": "모든 카테고리"
-        },
-        "platform": {
-            "label": "TablePro 앱",
-            "all": "모든 앱"
-        },
-        "tier": {
-            "label": "유형",
-            "all": "모든 유형"
-        },
-        "submit": "결과 보기",
-        "count": {
-            "one": "통합 {count}개",
-            "other": "통합 {count}개"
-        },
-        "empty": "필터에 맞는 통합이 없습니다.",
-        "clear": "필터 지우기"
     },
     "publish": {
         "title": "통합 등록하기",
+        "sentence": "TablePro와 함께 작동하는 무언가를 만드셨나요? GitHub의 레지스트리에 제출하세요.",
         "guide": "제출 방법",
         "policy": "등록 정책"
     },
     "notice": "이름과 로고의 권리는 각 소유자에게 있습니다. TablePro가 만드는 통합은 공식 통합뿐입니다.",
     "labels": {
         "by": "{publisher} 제공",
+        "byTier": "{tier}, {publisher} 제공",
         "closedSource": "비공개 소스",
         "tiers": {
             "official": "공식",
@@ -72,7 +51,8 @@
         "source": "소스 코드",
         "details": {
             "title": "세부 정보",
-            "publisher": "게시자",
+            "publisher": "개발",
+            "tier": "유형",
             "category": "카테고리",
             "host": "호환 앱",
             "hostVersion": "{host} {version} 이상",
@@ -82,7 +62,6 @@
             "added": "등록일",
             "verified": "마지막 확인"
         },
-        "about": "소개",
         "screenshots": "스크린샷",
         "uses": {
             "title": "사용하는 기능과 데이터",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "무료, 유료 옵션 있음",
                 "paid": "유료"
+            },
+            "terms": {
+                "internet": "인터넷",
+                "account": "계정",
+                "payment": "가격"
             }
         },
         "support": {
             "title": "도움말",
-            "report": "이 등록 정보의 문제 신고",
+            "sentence": "이 등록 정보에 문제가 있나요? <report>GitHub에서 신고하세요</report>.",
             "help": "{publisher}에 도움 요청",
             "docs": "문서 읽기"
         },

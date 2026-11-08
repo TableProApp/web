@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Intégrations",
-        "lead": "Applications et outils compatibles avec TablePro.",
+        "lead": "Applications et outils compatibles avec TablePro, créés par l’équipe TablePro ou par d’autres.",
         "build": "Créer une intégration"
-    },
-    "filters": {
-        "label": "Filtrer les intégrations",
-        "search": "Rechercher",
-        "category": {
-            "label": "Catégorie",
-            "all": "Toutes les catégories"
-        },
-        "platform": {
-            "label": "Application TablePro",
-            "all": "Toutes les applications"
-        },
-        "tier": {
-            "label": "Type",
-            "all": "Tous les types"
-        },
-        "submit": "Afficher les résultats",
-        "count": {
-            "one": "{count} intégration",
-            "other": "{count} intégrations"
-        },
-        "empty": "Aucune intégration ne correspond à ces filtres.",
-        "clear": "Effacer les filtres"
     },
     "publish": {
         "title": "Référencez votre intégration",
+        "sentence": "Vous avez créé quelque chose qui fonctionne avec TablePro ? Envoyez-le au registre sur GitHub.",
         "guide": "Comment la soumettre",
         "policy": "Politique de référencement"
     },
     "notice": "Les noms et logos appartiennent à leurs propriétaires. Seules les intégrations officielles sont créées par TablePro.",
     "labels": {
         "by": "Par {publisher}",
+        "byTier": "{tier}, par {publisher}",
         "closedSource": "Code source fermé",
         "tiers": {
             "official": "Officielle",
@@ -72,7 +51,8 @@
         "source": "Code source",
         "details": {
             "title": "Détails",
-            "publisher": "Éditeur",
+            "publisher": "Développé par",
+            "tier": "Type",
             "category": "Catégorie",
             "host": "Fonctionne avec",
             "hostVersion": "{host} {version} ou version ultérieure",
@@ -82,7 +62,6 @@
             "added": "Date d’ajout",
             "verified": "Dernière vérification"
         },
-        "about": "À propos",
         "screenshots": "Captures d’écran",
         "uses": {
             "title": "Ce que l’intégration utilise",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Gratuit, avec des options payantes",
                 "paid": "Payant"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Compte",
+                "payment": "Prix"
             }
         },
         "support": {
             "title": "Aide",
-            "report": "Signaler un problème avec cette fiche",
+            "sentence": "Un problème avec cette fiche ? <report>Signalez-le sur GitHub</report>.",
             "help": "Obtenir de l’aide auprès de {publisher}",
             "docs": "Lire la documentation"
         },

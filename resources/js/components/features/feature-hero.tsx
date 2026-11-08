@@ -12,6 +12,8 @@ import { docsHref } from './model';
 interface FeatureHeroProps {
     title: ReactNode;
     lead: ReactNode;
+    // Under the lead, before the actions: an integration's description and archive notice.
+    more?: ReactNode;
     // A docs.tablepro.app path; the hub links the docs home.
     docs?: string;
     docsLabel?: string;
@@ -31,7 +33,7 @@ interface FeatureHeroProps {
 }
 
 // The same editorial hero as Home: left on the grid, one Download, the docs as a quiet link.
-export default function FeatureHero({ title, lead, docs, docsLabel, actions, primary, eyebrow, aside, location = 'feature-header', settle = true, children }: FeatureHeroProps) {
+export default function FeatureHero({ title, lead, more, docs, docsLabel, actions, primary, eyebrow, aside, location = 'feature-header', settle = true, children }: FeatureHeroProps) {
     const { locale, m } = useI18n();
 
     const text = (
@@ -44,6 +46,7 @@ export default function FeatureHero({ title, lead, docs, docsLabel, actions, pri
                 {title}
             </h1>
             <p className="mt-5 max-w-[34rem] text-[1.0625rem] leading-[1.5] tracking-[-0.012em] text-pretty text-muted-foreground md:text-[1.1875rem]">{lead}</p>
+            {more}
             {actions === null ? null : actions !== undefined ? (
                 <div className="mt-8">{actions}</div>
             ) : (

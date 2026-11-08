@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "集成",
-        "lead": "与 TablePro 配合使用的应用和工具。",
+        "lead": "与 TablePro 配合使用的应用和工具，由 TablePro 团队或其他开发者构建。",
         "build": "构建集成"
-    },
-    "filters": {
-        "label": "筛选集成",
-        "search": "搜索",
-        "category": {
-            "label": "类别",
-            "all": "所有类别"
-        },
-        "platform": {
-            "label": "TablePro 应用",
-            "all": "所有应用"
-        },
-        "tier": {
-            "label": "类型",
-            "all": "所有类型"
-        },
-        "submit": "显示结果",
-        "count": {
-            "one": "{count} 个集成",
-            "other": "{count} 个集成"
-        },
-        "empty": "没有符合这些筛选条件的集成。",
-        "clear": "清除筛选"
     },
     "publish": {
         "title": "提交您的集成",
+        "sentence": "开发了能与 TablePro 配合使用的项目？请提交到 GitHub 上的收录仓库。",
         "guide": "提交方法",
         "policy": "收录政策"
     },
     "notice": "名称和标志归其所有者所有。只有官方集成由 TablePro 构建。",
     "labels": {
         "by": "由 {publisher} 提供",
+        "byTier": "{tier}，由 {publisher} 提供",
         "closedSource": "闭源",
         "tiers": {
             "official": "官方",
@@ -72,7 +51,8 @@
         "source": "源代码",
         "details": {
             "title": "详细信息",
-            "publisher": "发布者",
+            "publisher": "开发者",
+            "tier": "类型",
             "category": "类别",
             "host": "适用于",
             "hostVersion": "{host} {version} 或更新版本",
@@ -82,7 +62,6 @@
             "added": "收录日期",
             "verified": "最后检查"
         },
-        "about": "简介",
         "screenshots": "截图",
         "uses": {
             "title": "使用的功能和数据",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "免费，提供付费选项",
                 "paid": "付费"
+            },
+            "terms": {
+                "internet": "互联网",
+                "account": "账户",
+                "payment": "价格"
             }
         },
         "support": {
             "title": "帮助",
-            "report": "报告此条目的问题",
+            "sentence": "此条目有误？<report>在 GitHub 上报告</report>。",
             "help": "向 {publisher} 获取帮助",
             "docs": "阅读文档"
         },

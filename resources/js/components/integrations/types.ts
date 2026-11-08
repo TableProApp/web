@@ -8,7 +8,7 @@ export type Tier = keyof IntegrationLabels['tiers'];
 
 export type Category = keyof IntegrationLabels['categories'];
 
-export type AppPlatform = 'mac' | 'ios';
+export type AppPlatform = 'mac' | 'linux' | 'ios';
 
 export type InstallType = keyof IntegrationPageLabels['install'];
 
@@ -29,19 +29,11 @@ export interface IntegrationSummary {
     name: string;
     publisher: string;
     tier: Tier;
-    categories: Category[];
-    platforms: AppPlatform[];
+    // The first category the content file labels, in the registry's order: the hub band it sits in.
+    group: Category;
     closedSource: boolean;
     tagline: string;
-    keywords: string[];
     icon: IntegrationImage | null;
-}
-
-export interface IntegrationFilters {
-    q: string | null;
-    category: Category | null;
-    platform: AppPlatform | null;
-    tier: Tier | null;
 }
 
 export interface IntegrationDetail {
@@ -81,7 +73,6 @@ export type IntegrationsHubContent = Omit<IntegrationsContent, 'show'>;
 export interface IntegrationsHubProps {
     content: IntegrationsHubContent;
     integrations: IntegrationSummary[];
-    filters: IntegrationFilters;
 }
 
 export interface IntegrationPageProps {

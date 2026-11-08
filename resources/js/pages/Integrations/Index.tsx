@@ -1,66 +1,38 @@
-import { router, usePage } from '@inertiajs/react';
-import { useEffect, useRef, useState } from 'react';
-import IntegrationFilters from '@/components/integrations/integration-filters';
+import { usePage } from '@inertiajs/react';
+import { ArrowUpRight } from 'lucide-react';
+import { BandFrame } from '@/components/features/feature-band';
+import { ClosingFrame } from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
 import IntegrationList from '@/components/integrations/integration-list';
-import { facetOptions, filterIntegrations, filtersToSearch, NO_FILTERS } from '@/components/integrations/model';
-import type { AppPlatform, IntegrationFilters as Filters, IntegrationsHubProps } from '@/components/integrations/types';
+import { groupIntegrations } from '@/components/integrations/model';
+import type { IntegrationsHubProps } from '@/components/integrations/types';
 import SEOHead from '@/components/seo/seo-head';
-import Container from '@/components/ui/container';
-import EmptyState from '@/components/ui/empty-state';
-import LocaleLink from '@/components/ui/locale-link';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
-import TextLink, { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, useI18n } from '@/i18n';
 import LandingLayout from '@/layouts/landing-layout';
 import { docsUrl, FACTS } from '@/lib/data/facts';
-import { devicesOf, iosPlatform, macPlatform } from '@/lib/data/platforms';
 import { absoluteUrl, collectionPageNode, graph } from '@/lib/structured-data';
 
-export default function IntegrationsIndex({ content, integrations, filters: initial }: IntegrationsHubProps) {
+const LINK =
+    'inline-flex items-center gap-1 text-[0.9375rem] font-medium tracking-[-0.009em] text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
+
+// One band per category, no search or filters: the list is short enough to read whole. Add them back past about
+// twenty entries (owner, 2026-11-08).
+export default function IntegrationsIndex({ content, integrations }: IntegrationsHubProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, plural, path } = useI18n();
-    const [filters, setFilters] = useState<Filters>(initial);
-    const timer = useRef<number | null>(null);
+    const { locale, m, path } = useI18n();
+    useRevealOnScroll('main > section:not(#top)');
+
     const english = locale === 'en' ? undefined : 'en';
     const englishOnly = english ? ` ${m.common.englishOnly}` : '';
 
-    const shown = filterIntegrations(integrations, filters, content.labels.categories);
-    const options = facetOptions(integrations, content.labels.categories);
-    const appName = (platform: AppPlatform) => devicesOf(platform === 'mac' ? macPlatform() : iosPlatform(), m.common.shortList);
-
-    useEffect(
-        () => () => {
-            if (timer.current !== null) {
-                window.clearTimeout(timer.current);
-            }
-        },
-        [],
+    const external = (href: string, label: string) => (
+        <a href={href} hrefLang={english} className={LINK}>
+            {label}
+            {englishOnly}
+            <ArrowUpRight aria-hidden="true" className="size-4 text-muted-foreground" />
+        </a>
     );
-
-    const change = (next: Filters, urlDelay: number) => {
-        setFilters(next);
-
-        if (timer.current !== null) {
-            window.clearTimeout(timer.current);
-        }
-
-        // Replace, never push: a reader filtering should not have to step back through every keystroke.
-        const follow = () =>
-            router.replace({
-                url: path('/integrations') + filtersToSearch(next),
-                props: (props) => ({ ...props, filters: next }),
-                preserveScroll: true,
-                preserveState: true,
-            });
-
-        if (urlDelay > 0) {
-            timer.current = window.setTimeout(follow, urlDelay);
-        } else {
-            timer.current = null;
-            follow();
-        }
-    };
 
     const jsonLd = graph([
         collectionPageNode(
@@ -78,64 +50,21 @@ export default function IntegrationsIndex({ content, integrations, filters: init
         <LandingLayout>
             <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
-            <PageHeader
-                title={content.header.title}
-                lead={content.header.lead}
-                actions={
-                    <TextLink href={docsUrl('/developers')} kind="standalone" external hrefLang={english}>
-                        {content.header.build}
-                        {englishOnly}
-                    </TextLink>
-                }
-            >
-                <IntegrationFilters content={content} filters={filters} options={options} appName={appName} onChange={change} />
-            </PageHeader>
+            <FeatureHero title={content.header.title} lead={content.header.lead} actions={external(docsUrl('/developers'), content.header.build)} />
 
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container className="@container">
-                    <p role="status" className="type-small mb-4 text-muted-foreground">
-                        {plural(content.filters.count, shown.length)}
-                    </p>
-                    {shown.length > 0 ? (
-                        <IntegrationList integrations={shown} labels={content.labels} />
-                    ) : (
-                        <EmptyState
-                            headingLevel="h2"
-                            title={content.filters.empty}
-                            action={
-                                <LocaleLink
-                                    href="/integrations"
-                                    onClick={(event) => {
-                                        event.preventDefault();
-                                        change(NO_FILTERS, 0);
-                                    }}
-                                    className={textLinkClasses('standalone')}
-                                >
-                                    {content.filters.clear}
-                                </LocaleLink>
-                            }
-                        />
-                    )}
-                </Container>
-            </div>
+            {groupIntegrations(integrations).map((group) => (
+                <BandFrame key={group.category} id={group.category} title={content.labels.categories[group.category]}>
+                    <IntegrationList integrations={group.integrations} labels={content.labels} />
+                </BandFrame>
+            ))}
 
-            <Section id="publish" title={content.publish.title}>
-                <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                    <li>
-                        <TextLink href={`${FACTS.links.integrations}/blob/main/CONTRIBUTING.md`} kind="standalone" external hrefLang={english}>
-                            {content.publish.guide}
-                            {englishOnly}
-                        </TextLink>
-                    </li>
-                    <li>
-                        <TextLink href={`${FACTS.links.integrations}/blob/main/POLICY.md`} kind="standalone" external hrefLang={english}>
-                            {content.publish.policy}
-                            {englishOnly}
-                        </TextLink>
-                    </li>
-                </ul>
-                <p className="type-small mt-6 max-w-[56ch] text-muted-foreground">{content.notice}</p>
-            </Section>
+            <ClosingFrame id="publish" title={content.publish.title} sentence={content.publish.sentence}>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    {external(`${FACTS.links.integrations}/blob/main/CONTRIBUTING.md`, content.publish.guide)}
+                    {external(`${FACTS.links.integrations}/blob/main/POLICY.md`, content.publish.policy)}
+                </div>
+                <p className="mt-6 max-w-[40rem] text-sm leading-[1.5] text-pretty text-muted-foreground">{content.notice}</p>
+            </ClosingFrame>
         </LandingLayout>
     );
 }

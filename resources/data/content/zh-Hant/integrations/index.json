@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "整合",
-        "lead": "與 TablePro 搭配使用的 App 和工具。",
+        "lead": "與 TablePro 搭配使用的 App 和工具，由 TablePro 團隊或其他開發者打造。",
         "build": "開發整合"
-    },
-    "filters": {
-        "label": "篩選整合",
-        "search": "搜尋",
-        "category": {
-            "label": "類別",
-            "all": "所有類別"
-        },
-        "platform": {
-            "label": "TablePro App",
-            "all": "所有 App"
-        },
-        "tier": {
-            "label": "類型",
-            "all": "所有類型"
-        },
-        "submit": "顯示結果",
-        "count": {
-            "one": "{count} 個整合",
-            "other": "{count} 個整合"
-        },
-        "empty": "沒有符合這些篩選條件的整合。",
-        "clear": "清除篩選條件"
     },
     "publish": {
         "title": "提交您的整合",
+        "sentence": "開發了能與 TablePro 搭配使用的專案？請提交到 GitHub 上的收錄儲存庫。",
         "guide": "提交方式",
         "policy": "收錄政策"
     },
     "notice": "名稱和標誌歸其所有者所有。只有官方整合由 TablePro 打造。",
     "labels": {
         "by": "由 {publisher} 提供",
+        "byTier": "{tier}，由 {publisher} 提供",
         "closedSource": "封閉原始碼",
         "tiers": {
             "official": "官方",
@@ -72,7 +51,8 @@
         "source": "原始碼",
         "details": {
             "title": "詳細資訊",
-            "publisher": "發佈者",
+            "publisher": "開發者",
+            "tier": "類型",
             "category": "類別",
             "host": "適用於",
             "hostVersion": "{host} {version} 或更新版本",
@@ -82,7 +62,6 @@
             "added": "收錄日期",
             "verified": "最後檢查"
         },
-        "about": "簡介",
         "screenshots": "螢幕截圖",
         "uses": {
             "title": "使用的功能與資料",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "免費，提供付費選項",
                 "paid": "付費"
+            },
+            "terms": {
+                "internet": "網際網路",
+                "account": "帳戶",
+                "payment": "價格"
             }
         },
         "support": {
             "title": "說明",
-            "report": "回報此項目的問題",
+            "sentence": "此項目有誤？<report>在 GitHub 上回報</report>。",
             "help": "向 {publisher} 尋求協助",
             "docs": "閱讀文件"
         },

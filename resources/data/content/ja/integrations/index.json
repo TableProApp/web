@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "連携",
-        "lead": "TablePro と連携するアプリとツール。",
+        "lead": "TablePro と連携するアプリとツール。TablePro チームが開発したものと、他の開発者によるものがあります。",
         "build": "連携を開発する"
-    },
-    "filters": {
-        "label": "連携を絞り込む",
-        "search": "検索",
-        "category": {
-            "label": "カテゴリ",
-            "all": "すべてのカテゴリ"
-        },
-        "platform": {
-            "label": "TablePro アプリ",
-            "all": "すべてのアプリ"
-        },
-        "tier": {
-            "label": "種類",
-            "all": "すべての種類"
-        },
-        "submit": "結果を表示",
-        "count": {
-            "one": "{count} 件の連携",
-            "other": "{count} 件の連携"
-        },
-        "empty": "条件に一致する連携はありません。",
-        "clear": "絞り込みを解除"
     },
     "publish": {
         "title": "連携を掲載する",
+        "sentence": "TablePro と連携するものを作りましたか？GitHub のレジストリに申請してください。",
         "guide": "申請方法",
         "policy": "掲載ポリシー"
     },
     "notice": "名称とロゴは各権利者に帰属します。TablePro が開発しているのは公式の連携だけです。",
     "labels": {
         "by": "提供：{publisher}",
+        "byTier": "{tier}、提供：{publisher}",
         "closedSource": "クローズドソース",
         "tiers": {
             "official": "公式",
@@ -72,7 +51,8 @@
         "source": "ソースコード",
         "details": {
             "title": "詳細",
-            "publisher": "提供元",
+            "publisher": "開発元",
+            "tier": "種類",
             "category": "カテゴリ",
             "host": "対応アプリ",
             "hostVersion": "{host} {version} 以降",
@@ -82,7 +62,6 @@
             "added": "掲載日",
             "verified": "最終確認日"
         },
-        "about": "概要",
         "screenshots": "スクリーンショット",
         "uses": {
             "title": "利用する機能とデータ",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "無料（有料オプションあり）",
                 "paid": "有料"
+            },
+            "terms": {
+                "internet": "インターネット",
+                "account": "アカウント",
+                "payment": "価格"
             }
         },
         "support": {
             "title": "ヘルプ",
-            "report": "この掲載内容の問題を報告",
+            "sentence": "この掲載内容に誤りがありますか？<report>GitHub で報告してください</report>。",
             "help": "{publisher} のサポートを受ける",
             "docs": "ドキュメントを読む"
         },

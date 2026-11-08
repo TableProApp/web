@@ -51,14 +51,25 @@ it('lists an entry in another language only while its tagline translates the cur
     get('/integrations')->assertInertia(fn(AssertableInertia $page) => $page->where('integrations.0.tagline', 'Open database URLs in TablePro from Terminal.'));
 });
 
-it('keeps only filter values that some listed entry has', function (string $query, array $filters): void {
-    get("/integrations?{$query}")->assertInertia(fn(AssertableInertia $page) => $page->where('filters', $filters));
-})->with([
-    'every filter' => ['q=+acme+&category=local-development&platform=mac&tier=community', ['q' => 'acme', 'category' => 'local-development', 'platform' => 'mac', 'tier' => 'community']],
-    'values no entry has' => ['category=launchers&platform=windows&tier=partner', ['q' => null, 'category' => null, 'platform' => null, 'tier' => null]],
-    'arrays and empty values' => ['q[]=x&category=&tier[]=official', ['q' => null, 'category' => null, 'platform' => null, 'tier' => null]],
-    'a long query' => ['q=' . str_repeat('a', 150), ['q' => str_repeat('a', 100), 'category' => null, 'platform' => null, 'tier' => null]],
-]);
+it('groups each entry under its first labelled category, in the registry order', function (): void {
+    seoWriteIntegrations($this->root, [
+        ['slug' => 'command-line'],
+        ['slug' => 'acme-cli', 'name' => 'Acme CLI', 'categories' => ['local-development', 'command-line']],
+        ['slug' => 'mystery', 'name' => 'Mystery', 'categories' => ['quantum']],
+    ]);
+
+    get('/integrations')->assertInertia(fn(AssertableInertia $page) => $page
+        ->missing('filters')
+        ->where('integrations', fn($integrations): bool => collect($integrations)->pluck('group', 'slug')->all() === ['acme-cli' => 'local-development', 'command-line' => 'command-line']));
+});
+
+it('names the Linux app and its version when the registry lists Linux', function (): void {
+    seoWriteIntegrations($this->root, [['slug' => 'command-line', 'platforms' => ['macos', 'linux'], 'minTableProVersion' => ['macos' => '0.37.0', 'linux' => '0.1.0']]]);
+
+    get('/integrations/command-line')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('integration.platforms', ['mac', 'linux'])
+        ->where('integration.versions', ['mac' => '0.37.0', 'linux' => '0.1.0', 'ios' => null]));
+});
 
 it('renders a detail page with its install command', function (): void {
     get('/integrations/acme-cli')
@@ -89,3 +100,23 @@ it('answers a detail page in another language with a 404 that offers the English
 it('answers an unknown integration with a plain 404', function (string $path): void {
     get($path)->assertNotFound()->assertInertia(fn(AssertableInertia $page) => $page->component('Error')->missing('suggestion'));
 })->with(['/integrations/raycast', '/vi/integrations/raycast', '/integrations/Command-Line']);
+
+it('lists the hub as one band per category, with no search or filters', function (): void {
+    $document = Dom\HTMLDocument::createFromString(ssrHtml('/integrations'), LIBXML_NOERROR);
+    $sections = array_map(fn(Dom\Element $section): string => $section->id, iterator_to_array($document->querySelectorAll('main > section')));
+
+    expect($sections)->toBe(['top', 'command-line', 'automation', 'publish'])
+        ->and($document->querySelector('main form, main input, main select'))->toBeNull()
+        ->and($document->querySelector('#command-line a[href="/integrations/acme-cli"]'))->not->toBeNull();
+})->group('ssr');
+
+it('sets a detail page as a hero, two sets of rows and the way to report a problem', function (): void {
+    $document = Dom\HTMLDocument::createFromString(ssrHtml('/integrations/acme-cli'), LIBXML_NOERROR);
+    $sections = array_map(fn(Dom\Element $section): string => $section->id, iterator_to_array($document->querySelectorAll('main > section')));
+
+    expect($sections)->toBe(['top', 'details', 'uses', 'support'])
+        ->and($document->getElementById('about'))->not->toBeNull()
+        ->and($document->getElementById('top')->textContent)->toContain('brew install --cask acme-cli')
+        ->and($document->querySelector('#support a[href*="issues/new?template=report-integration.yml&slug=acme-cli"]'))->not->toBeNull()
+        ->and($document->getElementById('support')->textContent)->toContain('not by TablePro');
+})->group('ssr');
