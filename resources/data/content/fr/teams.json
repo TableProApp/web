@@ -11,64 +11,63 @@
     "header": {
         "title": "TablePro pour les équipes",
         "lead": "Partagez connexions et requêtes enregistrées avec votre équipe, sans leurs mots de passe. Chaque poste inclut Pro, et votre entreprise reçoit une facture.",
-        "primary": "Voir les tarifs Team",
-        "secondary": "Nous contacter"
+        "pricing": "Voir les tarifs Team",
+        "docs": "Comment fonctionne Team"
     },
-    "share": {
-        "title": "Ce que votre équipe partage",
-        "lead": "Deux façons de partager, selon l’endroit où vous voulez conserver les fichiers.",
-        "library": {
-            "title": "Team Library",
-            "text": "Les propriétaires et les administrateurs publient réglages de connexion, requêtes enregistrées et leurs dossiers sur le serveur de TablePro. Les membres qui ont un poste les retrouvent dans la barre latérale, toujours à jour, et voient qui a modifié en dernier chaque requête.",
-            "link": "Comment fonctionne Team Library"
-        },
-        "catalog": {
-            "title": "Team Catalog",
-            "text": "Publiez des fichiers de connexion sans mots de passe dans un dossier que votre équipe partage déjà, comme un dépôt Git ou un disque partagé. Vos collègues l’ajoutent comme Linked Folder. Rien ne passe par le serveur de TablePro.",
-            "link": "Comment fonctionne Team Catalog"
-        },
-        "pro": {
-            "title": "Pro sur chaque poste",
-            "text": "Chaque Mac de l’équipe reçoit toutes les fonctions Pro, comme {proExamples}.",
+    "includes": {
+        "title": "Ce que comprend Team",
+        "seat": {
+            "title": "Chaque poste inclut",
+            "items": [
+                { "name": "Pro", "text": "Toutes les fonctions Pro, comme {proExamples}." },
+                { "name": "Jusqu’à {deviceLimit} ordinateurs", "text": "Une personne, sur Mac ou Linux." }
+            ],
             "link": "Toutes les fonctions payantes"
+        },
+        "team": {
+            "title": "Team ajoute",
+            "items": [
+                { "name": "Team Library", "text": "Les administrateurs publient connexions et requêtes enregistrées, et chaque membre les retrouve dans la barre latérale." },
+                { "name": "Team Catalog", "text": "Des fichiers de connexion sans mots de passe, dans un dossier que votre équipe partage déjà, comme un dépôt Git." }
+            ],
+            "link": "Comment fonctionne le partage"
         }
+    },
+    "price": {
+        "title": "Prix",
+        "note": "Team est un abonnement. Il n’existe pas de licence Team à achat unique."
     },
     "seats": {
         "title": "Postes et membres",
-        "items": [
-            "Un poste couvre une personne sur {deviceLimit} ordinateurs au maximum, Mac ou Linux.",
-            "Les propriétaires et administrateurs invitent par e-mail depuis la page Membres de votre compte, avec un rôle et, s’ils le souhaitent, un poste. Le lien est valable 7 jours, et n’importe quel compte TablePro peut l’accepter.",
-            "Le propriétaire gère la facturation. Les administrateurs gèrent les membres, les invitations, Team Library et le journal d’audit de l’équipe. Les membres utilisent ce qui est partagé.",
-            "Le propriétaire modifie les postes d’un abonnement dans Facturation, et {merchant} facture ou crédite aussitôt la différence au prorata.",
-            "Retirer un membre libère son poste. Ses Mac perdent les fonctions de Team la prochaine fois que TablePro contacte le serveur."
+        "rows": [
+            { "term": "Invitations", "text": "Les propriétaires et administrateurs invitent des personnes par e-mail, avec un rôle et un poste. Le lien est valable {inviteDays} jours." },
+            { "term": "Rôles", "text": "Le propriétaire paie. Les administrateurs gèrent les membres et Team Library. Les membres utilisent ce qui est partagé." },
+            { "term": "Modifier les postes", "text": "Le propriétaire ajoute ou retire des postes dans Facturation (Billing), et {merchant} facture ou crédite aussitôt la différence." },
+            { "term": "Retirer quelqu’un", "text": "Son poste est libéré aussitôt. Team s’arrête sur ses ordinateurs à la prochaine vérification de licence." }
         ]
-    },
-    "pricing": {
-        "title": "Prix",
-        "note": "Team est un abonnement ; il n’existe pas de licence Team à achat unique."
     },
     "buying": {
         "title": "Acheter pour une entreprise",
-        "items": [
-            "{merchant} est le merchant of record : il encaisse le paiement et calcule la taxe de vente ou la TVA selon votre adresse de facturation.",
-            "Dans le portail client de {merchant}, vous pouvez ajouter à chaque facture le nom de votre entreprise, votre numéro de TVA et votre adresse de facturation, puis la télécharger.",
-            "Un achat est remboursable dans les {refundDays} jours, et chaque renouvellement dans les {refundDays} jours suivant son paiement.",
-            "Besoin d’un bon de commande ou d’un autre moyen de paiement ? Écrivez à <email>{email}</email> et nous trouverons une solution avec vous."
+        "rows": [
+            { "term": "Merchant of record", "text": "{merchant} encaisse le paiement et ajoute la taxe de vente ou la TVA selon votre adresse de facturation." },
+            { "term": "Factures", "text": "Ajoutez le nom de votre entreprise et votre numéro de TVA dans le portail de {merchant}, puis téléchargez chaque facture." },
+            { "term": "Remboursements", "text": "Dans les {refundDays} jours suivant un achat, et suivant chaque renouvellement." },
+            { "term": "Bons de commande", "text": "Ou un autre moyen de paiement : écrivez à <email>{email}</email>." }
         ]
     },
     "data": {
         "title": "Les données de votre équipe",
-        "items": [
-            "Les mots de passe ne sont jamais envoyés au serveur de TablePro. L’app les retire avant la publication, et le serveur refuse tout ce qui en contient un.",
-            "Team Library conserve réglages de connexion et requêtes enregistrées sur le serveur de TablePro. Seuls les Mac activés sur votre licence peuvent les lire.",
-            "Si l’offre prend fin, ce qui a été publié reste sur le serveur jusqu’à ce que le propriétaire de l’équipe supprime l’équipe, ce qui supprime aussi la bibliothèque."
+        "rows": [
+            { "term": "Mots de passe", "text": "Jamais envoyés. L’app les retire avant la publication, et le serveur refuse tout ce qui en contient un." },
+            { "term": "Stockage", "text": "Team Library est conservée sur le serveur de TablePro, et seuls les ordinateurs activés sur votre licence peuvent la lire." },
+            { "term": "Fin de l’offre", "text": "Ce qui a été publié reste jusqu’à ce que le propriétaire supprime l’équipe." }
         ],
         "security": "Comment TablePro traite vos données",
         "privacy": "Politique de confidentialité"
     },
     "enterprise": {
-        "title": "Besoin de plus de contrôle ?",
-        "text": "La connexion avec les comptes de votre entreprise, des règles imposées sur les connexions de l’équipe, un audit des écritures en production et le déploiement par MDM sont développés quand des entreprises les demandent. Dites-nous ce qu’il vous faut.",
+        "title": "Enterprise",
+        "sentence": "Besoin d’une authentification unique, de vos propres conditions ou d’un déploiement plus large ? Dites-nous ce dont votre entreprise a besoin.",
         "cta": "Nous contacter"
     }
 }

@@ -19,15 +19,19 @@ export default function DescriptionList({ className, children }: DescriptionList
 
 interface DescriptionItemProps {
     term: ReactNode;
+    // `body`: a /teams row, the term in the text's colour and the sentence muted, at reading size.
+    size?: 'small' | 'body';
     className?: string;
     children: ReactNode;
 }
 
-export function DescriptionItem({ term, className, children }: DescriptionItemProps) {
+export function DescriptionItem({ term, size = 'small', className, children }: DescriptionItemProps) {
+    const body = size === 'body';
+
     return (
-        <div className={cn('grid gap-1 border-b border-rule py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] sm:gap-6', className)}>
-            <dt className="text-sm leading-[1.4] font-medium text-muted-foreground">{term}</dt>
-            <dd className="type-small min-w-0 text-foreground">{children}</dd>
+        <div className={cn('grid gap-1 border-b border-rule sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] sm:gap-6', body ? 'py-4' : 'py-3', className)}>
+            <dt className={body ? 'text-base leading-[1.5] font-medium tracking-[-0.011em] text-foreground' : 'text-sm leading-[1.4] font-medium text-muted-foreground'}>{term}</dt>
+            <dd className={cn('min-w-0', body ? 'type-body text-pretty text-muted-foreground' : 'type-small text-foreground')}>{children}</dd>
         </div>
     );
 }

@@ -11,64 +11,63 @@
     "header": {
         "title": "適合團隊的 TablePro",
         "lead": "與團隊共用連線和已儲存查詢，不含密碼。每個席位都包含 Pro，公司可取得發票。",
-        "primary": "查看 Team 價格",
-        "secondary": "聯絡我們"
+        "pricing": "查看 Team 價格",
+        "docs": "Team 的運作方式"
     },
-    "share": {
-        "title": "團隊共用哪些內容",
-        "lead": "共用方式有兩種，取決於您希望檔案存放在哪裡。",
-        "library": {
-            "title": "Team Library",
-            "text": "擁有者和管理員將連線設定、已儲存查詢及其資料夾發佈至 TablePro 伺服器。擁有席位的成員會在側邊欄取得這些內容並保持最新，還能看到每項查詢的最後修改者。",
-            "link": "Team Library 的運作方式"
-        },
-        "catalog": {
-            "title": "Team Catalog",
-            "text": "將不含密碼的連線檔案發佈至團隊已在共用的資料夾，例如 Git 儲存庫或共用雲端硬碟。隊友將其加入為 Linked Folder。所有內容都不經過 TablePro 伺服器。",
-            "link": "Team Catalog 的運作方式"
-        },
-        "pro": {
-            "title": "每個席位都有 Pro",
-            "text": "團隊中的每台 Mac 都可使用所有 Pro 功能，例如 {proExamples}。",
+    "includes": {
+        "title": "Team 包含的內容",
+        "seat": {
+            "title": "每個席位包含",
+            "items": [
+                { "name": "Pro", "text": "所有 Pro 功能，例如 {proExamples}。" },
+                { "name": "最多 {deviceLimit} 台電腦", "text": "供一人使用，Mac 或 Linux 皆可。" }
+            ],
             "link": "所有付費功能"
+        },
+        "team": {
+            "title": "Team 另外提供",
+            "items": [
+                { "name": "Team Library", "text": "管理員發佈連線和已儲存查詢，每位成員都能在側邊欄中找到。" },
+                { "name": "Team Catalog", "text": "將不含密碼的連線檔案放在團隊已在共用的資料夾中，例如 Git 儲存庫。" }
+            ],
+            "link": "共用的運作方式"
         }
+    },
+    "price": {
+        "title": "價格",
+        "note": "Team 為訂閱制。沒有一次性購買的 Team 授權。"
     },
     "seats": {
         "title": "席位與成員",
-        "items": [
-            "一個席位供一人在最多 {deviceLimit} 台 Mac 或 Linux 電腦上使用。",
-            "擁有者和管理員在您帳戶的成員頁面透過郵件邀請他人，設定角色，並可選擇附帶席位。連結 7 天內有效，任何 TablePro 帳戶都可接受。",
-            "擁有者負責帳單。管理員管理成員、邀請、Team Library 和團隊的稽核記錄。成員使用共用的內容。",
-            "擁有者在帳單頁面變更訂閱席位，{merchant} 會立即按比例收取或退還差額。",
-            "移除成員會釋放其席位。其 Mac 會在 TablePro 下次聯絡伺服器時失去 Team 功能。"
+        "rows": [
+            { "term": "邀請", "text": "擁有者和管理員透過郵件邀請他人，並設定角色和席位。連結 {inviteDays} 天內有效。" },
+            { "term": "角色", "text": "擁有者付費。管理員管理成員和 Team Library。成員使用共用的內容。" },
+            { "term": "變更席位", "text": "擁有者在帳單 (Billing) 中增減席位，{merchant} 會立即收取或退還差額。" },
+            { "term": "移除成員", "text": "其席位立即釋出。下次授權檢查時，其電腦上的 Team 會停用。" }
         ]
-    },
-    "pricing": {
-        "title": "價格",
-        "note": "Team 僅提供訂閱，沒有一次性購買的 Team 授權。"
     },
     "buying": {
         "title": "為公司購買",
-        "items": [
-            "{merchant} 是 merchant of record：負責收款，並依您的帳單地址計算銷售稅或 VAT。",
-            "在 {merchant} 客戶入口網站中，您可以為每張發票加上公司名稱、加值稅號碼和帳單地址，然後下載。",
-            "每次購買可在 {refundDays} 天內退款，每次續費可在扣款後 {refundDays} 天內退款。",
-            "需要採購單，或想用其他方式付款？請寄信至 <email>{email}</email>，我們會與您討論做法。"
+        "rows": [
+            { "term": "Merchant of record", "text": "{merchant} 負責收款，並依您的帳單地址加收銷售稅或 VAT。" },
+            { "term": "發票", "text": "在 {merchant} 入口網站中加上公司名稱和加值稅號碼，然後下載每張發票。" },
+            { "term": "退款", "text": "可在購買後以及每次續費後 {refundDays} 天內退款。" },
+            { "term": "採購單", "text": "需要採購單或其他付款方式，請寄信至 <email>{email}</email>。" }
         ]
     },
     "data": {
         "title": "團隊的資料",
-        "items": [
-            "密碼絕不會傳送至 TablePro 伺服器。App 在發佈前移除密碼，伺服器會拒絕任何包含密碼的內容。",
-            "Team Library 將連線設定和已儲存查詢存放在 TablePro 伺服器上。只有在您的授權上啟用的 Mac 才能讀取。",
-            "方案結束後，已發佈的內容仍保留在伺服器上，直到團隊擁有者刪除團隊，資源庫也隨之刪除。"
+        "rows": [
+            { "term": "密碼", "text": "絕不傳送。App 在發佈前移除密碼，伺服器會拒絕任何包含密碼的內容。" },
+            { "term": "存放位置", "text": "Team Library 存放在 TablePro 伺服器上，只有在您的授權上啟用的電腦才能讀取。" },
+            { "term": "方案結束後", "text": "已發佈的內容會保留，直到擁有者刪除團隊。" }
         ],
         "security": "TablePro 如何處理您的資料",
         "privacy": "隱私權政策"
     },
     "enterprise": {
-        "title": "需要更多控管？",
-        "text": "使用公司帳號登入、對團隊連線強制執行的政策、正式環境寫入稽核和透過 MDM 部署，會在有公司提出需求時開發。告訴我們您的需求。",
+        "title": "Enterprise",
+        "sentence": "需要單一登入、自己的合約條款或更大規模的部署？告訴我們貴公司的需求。",
         "cta": "聯絡我們"
     }
 }

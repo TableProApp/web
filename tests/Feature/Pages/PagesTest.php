@@ -21,7 +21,7 @@ function pageFamilies(): array
         'landing.download' => ['Download', ['content', 'mac', 'release', 'unreleased']],
         'landing.ios' => ['Ios', ['content', 'ios', 'engines']],
         'landing.pricing' => ['Pricing', ['content', 'apiOrigin', 'paidFeatures']],
-        'landing.teams' => ['Teams', ['content.header.title', 'content.seats.items', 'organizationProfiles']],
+        'landing.teams' => ['Teams', ['content.header.title', 'content.includes.team.items', 'content.seats.rows', 'organizationProfiles']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
         'landing.about' => ['About', ['content', 'repositoryCreated', 'links']],
         'landing.security' => ['Security', ['content.bands.0.text', 'facts.macSafeModeLevels', 'links.securityEmail', 'replyDays']],

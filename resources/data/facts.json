@@ -378,5 +378,9 @@
             "platform": "mac",
             "evidence": "TablePro/Models/Query/QueryPlanDiff.swift:57 (noiseRatio = 1.15) @v0.77.0"
         }
+    },
+    "account": {
+        "teamInviteDays": 7,
+        "evidence": "TableProApp/license app/Services/Team/TeamMembershipService.php:28 (INVITE_VALID_DAYS, used at :102) @72e9d14"
     }
 }
