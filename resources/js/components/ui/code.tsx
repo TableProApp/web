@@ -29,6 +29,8 @@ interface CodeBlockProps {
     command?: boolean;
     // Without them there is no copy button.
     copyLabels?: CopyButtonLabels;
+    // `md` writes "Copy" and "Copied" beside the icon.
+    copySize?: 'sm' | 'md';
     // What to copy when `code` is not given.
     copyValue?: string;
     onCopied?: () => void;
@@ -37,9 +39,9 @@ interface CodeBlockProps {
 }
 
 // A line wider than the column scrolls inside the block, from the keyboard too, instead of widening the page.
-export function CodeBlock({ label, title, code, command = false, copyLabels, copyValue, onCopied, className, children }: CodeBlockProps) {
+export function CodeBlock({ label, title, code, command = false, copyLabels, copySize, copyValue, onCopied, className, children }: CodeBlockProps) {
     const value = code ?? copyValue;
-    const copy = copyLabels && value !== undefined ? <CopyButton value={value} label={label} labels={copyLabels} onCopied={onCopied} /> : null;
+    const copy = copyLabels && value !== undefined ? <CopyButton value={value} label={label} size={copySize} labels={copyLabels} onCopied={onCopied} /> : null;
 
     return (
         <div className={cn('relative min-w-0 rounded-panel border border-(--code-border) bg-(--code-background)', className)}>

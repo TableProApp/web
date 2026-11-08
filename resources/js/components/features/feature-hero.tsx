@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { docsHref } from './model';
 
 interface FeatureHeroProps {
-    title: string;
+    title: ReactNode;
     lead: ReactNode;
     // A docs.tablepro.app path; the hub links the docs home.
     docs?: string;

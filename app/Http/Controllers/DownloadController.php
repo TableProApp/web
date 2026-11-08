@@ -10,7 +10,6 @@ use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,8 +17,7 @@ use Inertia\Response;
 // once platforms.json says it is released, the same way an unreleased iPhone app sends null.
 class DownloadController extends Controller
 {
-    // Which install method a package format belongs to, so a file row can name its distribution.
-    private const PACKAGE_METHOD = ['deb' => 'ppa', 'rpm' => 'copr', 'flatpak' => 'flatpak'];
+    private const LINUX_METHODS = ['ppa', 'copr', 'flatpak'];
 
     public function __invoke(
         ContentRepository $content,
@@ -30,19 +28,17 @@ class DownloadController extends Controller
     ): Response {
         $locale = App::getLocale();
         $release = $releases->latest();
-        $floor = $platforms->macFloorVersion();
-        $linux = $platforms->isReleased('linux') ? $this->linux($platforms, $linuxReleases->latest(), $locale) : null;
 
         return Inertia::render('Download', [
             'content' => $content->page('download', $locale),
-            'release' => $release->toProps($locale),
+            'release' => [...$release->toProps($locale), 'shortVersion' => $this->shortVersion($release->version)],
             'mac' => [
                 ...($platforms->summary('mac') ?? ['deviceNames' => [], 'requirements' => null]),
+                'universal' => ($platforms->find('mac')['universalBinary'] ?? false) === true,
                 'homebrewCommand' => $this->string($platforms->destination('mac', 'homebrew')['command'] ?? null),
-                'homebrewTrails' => $floor !== null && $release->version !== null && version_compare($floor, $release->version, '<'),
             ],
             'ios' => $this->ios($platforms, $facts, $locale),
-            'linux' => $linux,
+            'linux' => $platforms->isReleased('linux') ? $this->linux($platforms, $linuxReleases->latest(), $locale) : null,
             'unreleased' => $platforms->unreleased(),
             'links' => $this->links($facts),
             'featuredEngines' => $facts->featuredEngineNames(),
@@ -50,7 +46,7 @@ class DownloadController extends Controller
     }
 
     /**
-     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}, appStoreUrl: string|null, free: bool, inAppPurchases: bool, version: string|null, publishedAtFormatted: string|null}|null
+     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}, appStoreUrl: string|null, free: bool, inAppPurchases: bool, version: string|null, shortVersion: string|null, publishedAtFormatted: string|null}|null
      */
     private function ios(PlatformCatalog $platforms, SiteFacts $facts, string $locale): ?array
     {
@@ -63,77 +59,45 @@ class DownloadController extends Controller
         $platform = $platforms->find('ios') ?? [];
         $price = is_array($platform['price'] ?? null) ? $platform['price'] : [];
         $release = is_array($platform['release'] ?? null) ? $platform['release'] : [];
+        $version = $this->string($release['version'] ?? null);
 
         return [
             ...$summary,
             'appStoreUrl' => $this->url($platforms->destination('ios', 'app-store')['url'] ?? null) ?? $facts->links()['appStore'],
             'free' => is_numeric($price['amount'] ?? null) && (float) $price['amount'] === 0.0,
             'inAppPurchases' => ($price['inAppPurchases'] ?? false) === true,
-            'version' => $this->string($release['version'] ?? null),
+            'version' => $version,
+            'shortVersion' => $this->shortVersion($version),
             'publishedAtFormatted' => $this->date($release['publishedAt'] ?? null, $locale),
         ];
     }
 
     /**
-     * @return array{deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>, desktop: array{name: string, version: string}|null, architectures: list<string>, methods: list<array{kind: string, commands: list<string>, update: string|null}>, packages: list<array{format: string, series: string|null, distribution: string|null, files: array<string, array{name: string, url: string, bytes: int|null}|null>}>, checksums: array{name: string, url: string|null}|null, verify: string|null, release: array{version: string, publishedOn: string|null, releaseUrl: string, releasesUrl: string}|null}
+     * @return array{deviceNames: list<string>, channel: string, distributions: list<array{id: string, name: string|null, versions: list<string>, via: string}>, architectures: list<string>, methods: list<array{kind: string, commands: list<string>}>, release: array{version: string, shortVersion: string, publishedOn: string|null, releaseUrl: string, releasesUrl: string}|null}
      */
     private function linux(PlatformCatalog $platforms, ?LinuxRelease $release, string $locale): array
     {
         $platform = $platforms->find('linux') ?? [];
         $summary = $platforms->linuxSummary() ?? ['deviceNames' => [], 'channel' => $platforms->linuxChannel(), 'distributions' => []];
-        $packages = $platforms->linuxPackages();
-        $architectures = $this->strings($platform['architectures'] ?? []);
-        $desktop = $platform['desktop'] ?? null;
-        $distributions = $summary['distributions'];
-
         $methods = [];
 
         foreach (is_array($platform['destinations'] ?? null) ? $platform['destinations'] : [] as $destination) {
             $commands = $this->strings(is_array($destination) ? ($destination['commands'] ?? []) : []);
 
-            if ($commands !== [] && in_array($destination['kind'] ?? null, self::PACKAGE_METHOD, true)) {
-                $methods[] = ['kind' => $destination['kind'], 'commands' => $commands, 'update' => $this->string($destination['update'] ?? null)];
-            }
-        }
-
-        $byName = [];
-
-        foreach ($release?->assets ?? [] as $asset) {
-            $byName[$asset['name']] = ['name' => $asset['name'], 'url' => $asset['url'], 'bytes' => $asset['bytes']];
-        }
-
-        $rows = [];
-
-        foreach ($release !== null ? ($packages['assets'] ?? []) : [] as $asset) {
-            $via = self::PACKAGE_METHOD[$asset['format']] ?? null;
-            $named = collect($distributions)->first(fn(array $distribution): bool => $distribution['via'] === $via && $distribution['name'] !== null);
-
-            foreach ($asset['series'] === [] ? [null] : $asset['series'] as $series) {
-                $files = [];
-
-                foreach ($architectures as $architecture) {
-                    $name = strtr($asset['template'], ['{version}' => $release->version, '{series}' => (string) $series, '{arch}' => $asset['arch'][$architecture] ?? $architecture]);
-                    $files[$architecture] = $byName[$name] ?? null;
-                }
-
-                if (array_filter($files) !== []) {
-                    $rows[] = ['format' => $asset['format'], 'series' => $series, 'distribution' => $named['name'] ?? null, 'files' => $files];
-                }
+            if ($commands !== [] && in_array($destination['kind'] ?? null, self::LINUX_METHODS, true)) {
+                $methods[] = ['kind' => $destination['kind'], 'commands' => $commands];
             }
         }
 
         return [
             'deviceNames' => $summary['deviceNames'],
             'channel' => $summary['channel'],
-            'distributions' => $distributions,
-            'desktop' => is_array($desktop) && is_string($desktop['name'] ?? null) && is_string($desktop['version'] ?? null) ? ['name' => $desktop['name'], 'version' => $desktop['version']] : null,
-            'architectures' => $architectures,
+            'distributions' => $summary['distributions'],
+            'architectures' => $this->strings($platform['architectures'] ?? []),
             'methods' => $methods,
-            'packages' => $rows,
-            'checksums' => $packages !== null && is_string($packages['checksums'] ?? null) ? ['name' => $packages['checksums'], 'url' => $release?->checksumsUrl] : null,
-            'verify' => $this->string($packages['verify'] ?? null),
             'release' => $release === null ? null : [
                 'version' => $release->version,
+                'shortVersion' => $this->shortVersion($release->version) ?? $release->version,
                 'publishedOn' => $this->date($release->publishedAt, $locale),
                 'releaseUrl' => $release->releaseUrl,
                 'releasesUrl' => $release->releasesUrl,
@@ -142,19 +106,27 @@ class DownloadController extends Controller
     }
 
     /**
-     * @return array{docs: string|null, changelog: string|null, source: string|null, license: string|null, issues: string|null}
+     * @return array{changelog: string|null, source: string|null, license: string|null}
      */
     private function links(SiteFacts $facts): array
     {
         $links = $facts->links();
 
         return [
-            'docs' => $links['docs'],
             'changelog' => $links['changelog'] ?? ($links['docs'] !== null ? rtrim($links['docs'], '/') . '/changelog' : null),
             'source' => $links['github'] ?? 'https://github.com/' . config('services.github.repo'),
             'license' => $links['license'],
-            'issues' => $links['issues'],
         ];
+    }
+
+    // The page's H1 names a release by major and minor, as Zed does: 0.85.0 is "0.85", 0.1.0-beta.3 is "0.1".
+    private function shortVersion(?string $version): ?string
+    {
+        if ($version === null || preg_match('/^(\d+)\.(\d+)/', $version, $parts) !== 1) {
+            return $version;
+        }
+
+        return "{$parts[1]}.{$parts[2]}";
     }
 
     private function date(mixed $date, string $locale): ?string

@@ -57,8 +57,8 @@ test('the App Store card leads only on an iPhone or iPad', () => {
     assert.equal(appStoreFirst('linux'), false);
 });
 
-// The head script cannot import this module, so it repeats the rule.
-test('the head script marks exactly the devices classifyDevice calls ios or linux', () => {
+// The head script cannot import this module, so it repeats the rule: one class per machine but a Mac.
+test('the head script marks each device as classifyDevice names it, and a Mac with nothing', () => {
     const blade = readFileSync(new URL('../../resources/views/app.blade.php', import.meta.url), 'utf8');
     const start = blade.indexOf('var ua = navigator.userAgent;');
     const end = blade.indexOf('})();', start);
@@ -67,16 +67,15 @@ test('the head script marks exactly the devices classifyDevice calls ios or linu
     assert.ok(start < blade.indexOf("document.documentElement.classList.remove('has-banner')"), 'the device is known before the banner rule reads it');
 
     const run = new Function('navigator', 'document', blade.slice(start, end));
+    const classes = { mac: [], ios: ['ios'], linux: ['linux'], other: ['other-device'] };
 
-    for (const [name, userAgent] of Object.entries(UA)) {
+    for (const [name, userAgent] of Object.entries({ ...UA, unknown: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' })) {
         for (const maxTouchPoints of [0, 1, 5]) {
             const added: string[] = [];
 
             run({ userAgent, maxTouchPoints }, { documentElement: { classList: { add: (cls: string) => added.push(cls) } } });
 
-            const kind = classifyDevice(userAgent, maxTouchPoints);
-
-            assert.deepEqual(added, kind === 'ios' || kind === 'linux' ? [kind] : [], `${name}, ${maxTouchPoints} touch points`);
+            assert.deepEqual(added, classes[classifyDevice(userAgent, maxTouchPoints)], `${name}, ${maxTouchPoints} touch points`);
         }
     }
 });

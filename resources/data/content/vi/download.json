@@ -10,24 +10,44 @@
     "header": {
         "title": "Tải TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Phát hành ngày {date}.",
+        "universal": "Ứng dụng Universal. Yêu cầu {requirement}.",
+        "requires": "Yêu cầu {requirement}.",
+        "linux": "Chạy trên {distributions}.",
+        "free": "Miễn phí. Yêu cầu {requirement}.",
+        "other": "TablePro chạy trên {platforms}."
+    },
+    "started": {
+        "title": "Đã bắt đầu tải về.",
+        "retry": "Nếu file chưa được tải về, hãy <link>tải lại</link>.",
+        "steps": [
+            "Mở {file}.",
+            "Kéo TablePro vào thư mục Ứng dụng (Applications).",
+            "Mở TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Bản trên Homebrew được cập nhật riêng nên có thể chưa kịp lên phiên bản mới nhất. Nếu Homebrew cài bản cũ hơn, hãy chọn <ui>TablePro > Kiểm tra cập nhật…</ui> (TablePro > Check for Updates…) để lên bản mới nhất."
-        },
-        "signing": "TablePro được ký bằng Developer ID và được Apple notarize, nên bạn không cần thay đổi cài đặt bảo mật nào để mở ứng dụng.",
-        "source": "Build từ mã nguồn (AGPLv3)"
+        "text": "Yêu cầu {requirement}, chạy trên {architectures}. TablePro tự cập nhật.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Các bản phân phối khác, qua Flatpak",
+        "architectures": "Có bản build cho {architectures}. Package manager sẽ chọn đúng bản và luôn cập nhật nó cho bạn.",
+        "packages": "Các package trên GitHub"
     },
     "ios": {
         "link": "TablePro cho {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro không có bản cho {platforms}, và không có ngày phát hành.",
-        "faq": "Câu hỏi về nền tảng trong phần Câu hỏi thường gặp"
+        "body": "Bản cho {platform} sẽ có sau."
     },
-    "olderVersions": {
-        "title": "Phiên bản cũ",
-        "releases": "Tất cả bản phát hành trên GitHub",
-        "changelog": "Changelog (tiếng Anh)"
+    "more": {
+        "title": "Bản phát hành và mã nguồn",
+        "releases": "Các phiên bản cũ trên GitHub",
+        "source": "Build từ mã nguồn (AGPLv3)",
+        "changelog": "Changelog"
     }
 }

@@ -10,24 +10,44 @@
     "header": {
         "title": "Télécharger TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Publiée le {date}.",
+        "universal": "App universelle. Nécessite {requirement}.",
+        "requires": "Nécessite {requirement}.",
+        "linux": "Fonctionne sur {distributions}.",
+        "free": "Gratuit. Nécessite {requirement}.",
+        "other": "TablePro fonctionne sur {platforms}."
+    },
+    "started": {
+        "title": "Votre téléchargement a commencé.",
+        "retry": "Si ce n’est pas le cas, <link>téléchargez-le à nouveau</link>.",
+        "steps": [
+            "Ouvrez {file}.",
+            "Faites glisser TablePro dans Applications.",
+            "Ouvrez TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "La version de Homebrew est mise à jour séparément et peut être en retard sur une nouvelle sortie. Si une ancienne version est installée, choisissez <ui>TablePro > Rechercher les mises à jour…</ui> (TablePro > Check for Updates…) pour obtenir la version actuelle."
-        },
-        "signing": "TablePro est signé avec un Developer ID et notarié par Apple. Vous n’avez donc aucun réglage de sécurité à modifier pour l’ouvrir.",
-        "source": "Compiler depuis le code source (AGPLv3)"
+        "text": "Nécessite {requirement}, sur {architectures}. TablePro se met à jour tout seul.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Autres distributions, via Flatpak",
+        "architectures": "Builds pour {architectures}. Votre gestionnaire de paquets choisit le bon et le maintient à jour.",
+        "packages": "Paquets sur GitHub"
     },
     "ios": {
         "link": "TablePro pour {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro n’est pas disponible pour {platforms}, et il n’y a aucune date de sortie.",
-        "faq": "Questions sur les plateformes dans la FAQ"
+        "body": "{platform} arrivera plus tard."
     },
-    "olderVersions": {
-        "title": "Anciennes versions",
-        "releases": "Toutes les versions sur GitHub",
-        "changelog": "Journal des modifications (anglais)"
+    "more": {
+        "title": "Versions et code source",
+        "releases": "Anciennes versions sur GitHub",
+        "source": "Compiler depuis le code source (AGPLv3)",
+        "changelog": "Journal des modifications"
     }
 }

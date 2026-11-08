@@ -147,18 +147,21 @@ it('keeps every link into /faq landing on an id it still has', function (): void
         ...File::allFiles(resource_path('js')),
         app_path('Services/Blog/PostTopics.php'),
     ];
-    $anchors = 0;
+    $links = 0;
 
     foreach ($sources as $source) {
-        preg_match_all('~/faq#([a-z0-9-]+)~', File::get((string) $source), $matches, PREG_SET_ORDER);
+        preg_match_all('~/faq(?:#([a-z0-9-]+))?\b~', File::get((string) $source), $matches, PREG_SET_ORDER);
 
-        foreach ($matches as [$link, $anchor]) {
-            $anchors++;
-            expect(in_array($anchor, $ids, true))->toBeTrue("{$source}: {$link}");
+        foreach ($matches as $match) {
+            $links++;
+
+            if (isset($match[1])) {
+                expect(in_array($match[1], $ids, true))->toBeTrue("{$source}: {$match[0]}");
+            }
         }
     }
 
-    expect($anchors)->toBeGreaterThanOrEqual(1);
+    expect($links)->toBeGreaterThanOrEqual(1);
 });
 
 it('renders the topic row, one band per topic with every answer open, and the contact line', function (): void {

@@ -458,34 +458,42 @@ html.campaign-live .campaign-band {
 }
 
 /*
- * The download page's platform before React has chosen it (PlatformSwitch): the head script's `ios` or `linux` class
- * shows that panel and marks its segment, so an iPhone or a Linux desktop never sees the Mac panel first. Panels hide
- * with the `hidden` class, not the attribute, which preflight hides with `!important`.
+ * /download's variants for the reader's machine (components/download/download-hero.tsx), chosen before first paint by
+ * the head script's class in app.blade.php. With no class the machine is a Mac, as the server rendered it.
  */
-:is(html.ios [data-platform-switch]:has(> [data-panel='ios']), html.linux [data-platform-switch]:has(> [data-panel='linux'])):not([data-ready]) {
-  & > [data-panel] {
-    display: none;
-  }
+html:not(.ios, .linux, .other-device) [data-device]:not([data-device~='mac']),
+html.ios [data-device]:not([data-device~='ios']),
+html.linux [data-device]:not([data-device~='linux']),
+html.other-device [data-device]:not([data-device~='other']) {
+  display: none;
+}
 
-  & > fieldset [data-segment] {
-    border-color: transparent;
-    background-color: transparent;
-    box-shadow: none;
-    color: var(--muted-foreground);
+/* The DMG action giving way to the install steps after a click. */
+@media (prefers-reduced-motion: no-preference) {
+  .download-started {
+    animation: download-started 240ms var(--ease-panel) both;
   }
 }
 
-/* The same specificity as the rule above, so these win by coming after it. */
-html.ios [data-platform-switch]:has(> [data-panel='ios']):not([data-ready]) > [data-panel='ios'],
-html.linux [data-platform-switch]:has(> [data-panel='linux']):not([data-ready]) > [data-panel='linux'] {
-  display: block;
+@keyframes download-started {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
 }
 
-html.ios [data-platform-switch]:has(> [data-panel='ios']):not([data-ready]) > fieldset [data-segment='ios'],
-html.linux [data-platform-switch]:has(> [data-panel='linux']):not([data-ready]) > fieldset [data-segment='linux'] {
-  border-color: var(--rule);
-  background-color: var(--segment-selected);
-  color: var(--foreground);
+/* A copy button's check mark arriving. */
+@media (prefers-reduced-motion: no-preference) {
+  .copy-confirm {
+    animation: copy-confirm var(--dur-state) var(--ease-feedback) both;
+  }
+}
+
+@keyframes copy-confirm {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
 }
 
 /* A row of the plan table under the pointer, on whichever ground the table sits. */

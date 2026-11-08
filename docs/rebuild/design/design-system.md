@@ -212,7 +212,6 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 
 - One primary (accent) button per view region.
 - Allowed exceptions:
-  - Download: the arch pair, where one is primary and one secondary.
   - Pricing: no button is primary (§5.3.18).
 
 **Never:**
@@ -506,7 +505,6 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
-- `/download`: the release row
 
 Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, callouts, code blocks, account panels).
 
@@ -515,7 +513,7 @@ Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Car
 - `frame-table` on a DataTable's scroll region: the region reaches the rails, the first and last cells pad their text back to the content edges (the first column's text now starts on the heading edge), and the header row has one rule, not the 2px of its own rule plus the first row's.
 - `frame-rows` on a ruled list in a wide section, and `frame-rows-text` on one at the reading measure: the list reaches the rails from whatever measure it sits in, using container units (`Section`'s Container is a size container), and each row keeps its text at the measure. Used by DescriptionList rows, FaqList items, PostList rows and the feature and comparison lists.
 - `cell-rows` on a ruled list inside a cell, and the same bleed on a single divider in a cell (a plan's "Includes", the Mac card's "Other ways to install"): wall to wall.
-- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s release row, and a blog post's related posts.
+- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s platforms, and a blog post's related posts.
 - A list that opens a block starts on its join (the blog index), and a list inside a card keeps its own inset rules, closed by the card's edge.
 
 `PageFrameTest` fails any `dl`, ruled list or table in `<main>` that does none of these, outside a card or a blog article's own prose.
@@ -640,7 +638,7 @@ Repo key:
 - `fullWidth` stretches the button in cards and on mobile.
 - Labels never truncate, and wrap to two centred lines at most.
 - Filled variants keep a transparent 1px border so they stay outlined in forced-colours mode.
-- Render `<a>` when the button navigates and `<button>` when it acts. `ref` stays forwarded, because `Download.tsx` assigns the resolved asset URL imperatively.
+- Render `<a>` when the button navigates and `<button>` when it acts. `ref` stays forwarded to the `<a>`.
 - `buttonClasses()` stays exported for the arch swap.
 
 #### 5.3.2 TextLink
@@ -910,7 +908,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Mac first in the markup on every device. On an iPhone or iPad the badge is drawn first (CSS `order` under the `ios` class the root template sets before first paint), so the actions never swap after the page is shown.
 - **DownloadBand:** an H2 + one sentence + PlatformActions, at `wide` width, on `--background`.
 
-**PlatformCard** (the homepage's `#platforms`; the download page uses platform tabs, §8.7):
+**PlatformCard** (the homepage's `#platforms`; the download page uses bands, §8.7):
 
 - A cell of a `CellGrid` (§4.7), in the homepage's `#platforms`, with:
   - platform name (`h2` semantic, `h3` style)
@@ -1507,39 +1505,47 @@ The `#features` heading and the intro say "adds" / "bổ sung", never "unlock" (
 
 ### 8.7 Download (`/download`)
 
-Rebuilt on 2026-11-07 as platform tabs, after tailscale.com/download (owner: the three-card page was too much and hard
-to use). Linux renders only once `platforms.json` says it is released; with two platforms the switch has two segments.
+Rebuilt 2026-11-08 on the grid of Home and the feature pages (§8.1, §8.2): `FeatureHero`, `BandFrame`, the reveal on
+scroll. Left-aligned, no tabs, every platform shown (owner: v2's centred tabs hid the other platforms). Linux renders
+only once `platforms.json` says it is released.
 
 ```
-header            the app icon (72px) and the H1, centred. No lead. The only centred page header (owner, 2026-11-07)
-switch            SegmentedControl size lg, centred at 40rem: Mac | Linux (Beta) | iPhone & iPad, icon above label (the
-                  platform order of positioning §3.3)
-panel #mac        [Download for Mac] primary lg · version, date · size · requirement · architectures · updates line
-                  Homebrew: CodeBlock with copy, the trailing-cask note · Verify your download (Disclosure: signed and
-                  notarized, shasum, the SHA-256)
-panel #linux      version, date · what beta means (GitHub issues) · tabs Ubuntu | Fedora | Flatpak | Files, each one
-                  CodeBlock of platforms.json's commands, its requirement and update lines; Files: packages by format ×
-                  architecture, SHA256SUMS, Verify a file
-panel #ios        App Store badge · version, date · free · requirement · updates line · /ios →
-release row       CellGrid: Release notes (Mac, Linux, Changelog) #release-notes | Older versions (all releases, build
-                  from source) #older-versions | Is there a version for Windows? #other-platforms
+Hero #top    app icon (64, 80 from 768) · H1 "TablePro 0.85" (Home's size) · "Released November 4, 2026." Release notes ↗
+             the action for the reader's machine:
+               Mac        [Download for Mac] primary lg · "Universal app. Requires macOS 13 Ventura or later."
+               Linux      H1 "TablePro 0.1 (Beta)" · [Install on Linux] → #linux · "Runs on Ubuntu 26.04+, …"
+               iOS        H1 "TablePro 1.0" · App Store badge · "Free. Requires iOS and iPadOS 18 or later."
+               other      "TablePro runs on Mac, Linux, iPhone and iPad." No download.
+#mac         cols 1–3: Mac   cols 4–12: requirement, architectures, updates itself · [Download for Mac] secondary
+             · Homebrew: one CommandBlock with Copy
+#linux       cols 1–3: Linux · Beta badge   cols 4–12: architectures and updates in one sentence · Ubuntu 26.04 and
+             26.10 / Fedora 44 and 45 / Other distributions, with Flatpak: a heading and one CommandBlock each ·
+             Packages on GitHub ↗
+#ios         cols 1–3: iPhone & iPad   cols 4–12: App Store badge · requirement · /ios →   ▒ QR code, 112 px
+#other-…     cols 4–12: "Windows is coming later."
+#older-…     cols 1–3: Releases and source (label)   cols 4–12: Older versions on GitHub ↗ · Build from source ↗ ·
+             Changelog ↗
 ```
 
-The page holds downloads only (owner, 2026-11-07): no feature table, no engine counts, no screenshots. What runs where
-lives on the feature pages' "Where it works" tables and /databases. Each fact appears once: a panel carries its
-platform's version, requirement and update line, and the release row only links.
-
-- One panel shows at a time. The server renders the Mac panel; every panel is in the markup, hidden by the `hidden`
-  class (preflight's `[hidden]` is `!important`, so the attribute could not be overridden before paint).
-- Before paint, the root template's `ios` or `linux` class shows that platform's panel and marks its segment (app.css),
-  so an iPhone or a Linux desktop never sees the Mac panel first. After mount `classifyDevice()` takes over with the
-  same answer: no swap, no layout shift.
-- `#mac`, `#ios` and `#linux` open their panel; a choice is written to the URL hash with `replaceState`. `#updates`
-  (Security's "Download and updates") lands on the switch.
-- The segments' thumb slides only after the reader chose; a value restored on load lands in place. The chosen Linux tab
-  is kept in `localStorage` (`tablepro:linux-install`).
-- **No auto-download**, and an iPhone user agent is never detected as a Mac.
-- If the release API fails, the Mac button falls back to GitHub `releases/latest` (server-rendered).
+- **Machine, before paint.** The server renders every hero variant; each carries `data-device` with the machines it
+  is for. The root template's head script sets `ios`, `linux` or `other-device` on `<html>` (no class on a Mac, as
+  `classifyDevice()` names it), and app.css hides every variant but the reader's. No React state, no swap, no layout
+  shift; the Mac's shows without JavaScript. A machine with no app, or a platform not yet released, gets the `other`
+  variant: the Mac's release and the sentence, never a guessed download.
+- **After the click.** The DMG action, in the hero or the Mac band, gives way in place to "Your download has started.
+  If it didn't, download again." (the same link, `download-retry`) and three numbered steps, and takes focus. Only when
+  a release source answered; with none the button opens GitHub's latest release and nothing claims a download.
+- **Commands** wrap at spaces with a hanging indent, and a long URL after a slash, so nothing scrolls on a phone. The
+  copy button says Copy and Copied.
+- **QR code** of the App Store URL, drawn on the server by `lib/qr.ts` (byte mode, level M), black on white in both
+  themes with its quiet zone. Hidden below 640px and on an iPhone or iPad. `tests/js/qr.test.ts` decodes it.
+- **Ids.** `#mac`, `#linux`, `#ios` are the bands; `#updates` (Security's "Download and updates") lands on the Mac
+  band; `#release-notes` on the last band. `DownloadTest` checks every `/download#…` link in the repository lands.
+- **Analytics** (`download_click`): `download-page` for the hero's action (mac, linux, ios), `download-page-dmg` the
+  band's DMG, `download-retry`, `download-page-homebrew`, `download-page-ppa` / `-copr` / `-flatpak` on copy,
+  `download-page-files` for Packages on GitHub, `download-page-app-store` for the band's badge.
+- **Motion:** the after-click swap, the copy check mark, the bands rising on scroll. Reduced motion turns all off.
+- The page holds downloads only: no feature table, engine counts, screenshots, checksums or file table.
 
 ### 8.8 iPhone & iPad (`/ios`)
 
@@ -1853,7 +1859,7 @@ The non-blocking `compare-shared-ui.sh` of an earlier draft is that same script,
 
 Confirm no mark touches the line above. Also check:
 
-- buttons "Tải bản cho Apple silicon" (positioning §4)
+- the button "Tải về cho Mac" (positioning §4)
 - theme "Giao diện: Theo hệ thống"
 - the nav "Cơ sở dữ liệu" and the link "Cơ sở dữ liệu được hỗ trợ →"
 

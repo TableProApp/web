@@ -75,7 +75,7 @@ export default function CopyButton({ value, label, size = 'sm', labels = ENGLISH
                 )}
             >
                 {copied ? (
-                    <Check className="size-4 shrink-0 text-accent-text" strokeWidth={2} aria-hidden="true" />
+                    <Check className="copy-confirm size-4 shrink-0 text-accent-text" strokeWidth={2} aria-hidden="true" />
                 ) : (
                     <Copy className="size-4 shrink-0 text-muted-foreground" strokeWidth={1.75} aria-hidden="true" />
                 )}

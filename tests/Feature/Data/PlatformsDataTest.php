@@ -87,8 +87,8 @@ it('labels a link to the platform chooser Download, not Download for Mac, once L
         $this->markTestSkipped('Linux is not released.');
     }
 
-    // The Mac panel on /download and the Mac button beside the Linux one are the only Mac-specific downloads.
-    $allowed = ['components/download/mac-panel.tsx', 'components/download/action-pair.tsx'];
+    // The DMG button on /download is the only Mac-specific download.
+    $allowed = ['components/download/mac-download.tsx'];
 
     foreach (File::allFiles(resource_path('js')) as $file) {
         $path = str_replace(resource_path('js') . '/', '', $file->getPathname());
@@ -99,8 +99,6 @@ it('labels a link to the platform chooser Download, not Download for Mac, once L
 
         expect($file->getContents())->not->toMatch('/m\\.download\\.macCta/', "{$path} labels a link to /download Download for Mac");
     }
-
-    expect(File::get(resource_path('js/components/download/action-pair.tsx')))->toContain('href="/download#mac"');
 });
 
 it('gives a released platform everything a page needs and an unreleased one nothing', function (): void {

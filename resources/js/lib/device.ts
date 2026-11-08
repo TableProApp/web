@@ -1,5 +1,5 @@
 // What the download page may infer about the reader's device (architecture §1.13). It never acts on it: every download
-// is a server-rendered link and nothing starts on its own. The result only decides which card is marked and leads.
+// is a server-rendered link and nothing starts on its own. The result only decides which action leads.
 // Pure, with no imports, so `node --test` loads it directly (tests/js/device.test.ts).
 
 export type DeviceKind = 'mac' | 'ios' | 'linux' | 'other';

@@ -10,24 +10,44 @@
     "header": {
         "title": "Download TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Released {date}.",
+        "universal": "Universal app. Requires {requirement}.",
+        "requires": "Requires {requirement}.",
+        "linux": "Runs on {distributions}.",
+        "free": "Free. Requires {requirement}.",
+        "other": "TablePro runs on {platforms}."
+    },
+    "started": {
+        "title": "Your download has started.",
+        "retry": "If it didn’t, <link>download again</link>.",
+        "steps": [
+            "Open {file}.",
+            "Drag TablePro to Applications.",
+            "Open TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Homebrew’s copy is updated separately and can trail a new release. If it installs an older version, choose <ui>TablePro > Check for Updates…</ui> to get the current one."
-        },
-        "signing": "TablePro is signed with a Developer ID and notarized by Apple, so you don’t need to change any security setting to open it.",
-        "source": "Build from source (AGPLv3)"
+        "text": "Requires {requirement}, on {architectures}. TablePro updates itself.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Other distributions, with Flatpak",
+        "architectures": "Builds for {architectures}. Your package manager picks the right one and keeps it up to date.",
+        "packages": "Packages on GitHub"
     },
     "ios": {
         "link": "TablePro for {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro is not available for {platforms}, and there is no release date.",
-        "faq": "Platform questions in the FAQ"
+        "body": "{platform} is coming later."
     },
-    "olderVersions": {
-        "title": "Older versions",
-        "releases": "All releases on GitHub",
+    "more": {
+        "title": "Releases and source",
+        "releases": "Older versions on GitHub",
+        "source": "Build from source (AGPLv3)",
         "changelog": "Changelog"
     }
 }

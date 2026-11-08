@@ -10,24 +10,44 @@
     "header": {
         "title": "TablePro herunterladen"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Veröffentlicht am {date}.",
+        "universal": "Universal-App. Erfordert {requirement}.",
+        "requires": "Erfordert {requirement}.",
+        "linux": "Für {distributions}.",
+        "free": "Kostenlos. Erfordert {requirement}.",
+        "other": "TablePro läuft auf {platforms}."
+    },
+    "started": {
+        "title": "Dein Download hat begonnen.",
+        "retry": "Falls nicht, <link>lade ihn erneut herunter</link>.",
+        "steps": [
+            "Öffne {file}.",
+            "Ziehe TablePro in den Ordner Programme.",
+            "Öffne TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Die Homebrew-Version wird separat aktualisiert und kann einer neuen Veröffentlichung hinterherhinken. Falls eine ältere Version installiert wird, wähle <ui>TablePro > Check for Updates…</ui>, um die aktuelle zu erhalten."
-        },
-        "signing": "TablePro ist mit einer Developer ID signiert und von Apple notarisiert. Du musst daher keine Sicherheitseinstellung ändern, um TablePro zu öffnen.",
-        "source": "Aus dem Quellcode bauen (AGPLv3)"
+        "text": "Erfordert {requirement}, auf {architectures}. TablePro aktualisiert sich selbst.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Andere Distributionen, per Flatpak",
+        "architectures": "Builds für {architectures}. Dein Paketmanager wählt den passenden und hält ihn aktuell.",
+        "packages": "Pakete auf GitHub"
     },
     "ios": {
         "link": "TablePro für {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro ist für {platforms} nicht verfügbar und es gibt keinen Erscheinungstermin.",
-        "faq": "Plattformfragen in den FAQ"
+        "body": "{platform} kommt später."
     },
-    "olderVersions": {
-        "title": "Ältere Versionen",
-        "releases": "Alle Versionen auf GitHub",
-        "changelog": "Änderungsprotokoll (Englisch)"
+    "more": {
+        "title": "Versionen und Quellcode",
+        "releases": "Ältere Versionen auf GitHub",
+        "source": "Aus dem Quellcode bauen (AGPLv3)",
+        "changelog": "Änderungsprotokoll"
     }
 }

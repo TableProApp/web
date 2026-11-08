@@ -10,24 +10,44 @@
     "header": {
         "title": "TablePro 다운로드"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "{date} 출시.",
+        "universal": "유니버설 앱. {requirement} 필요.",
+        "requires": "{requirement} 필요.",
+        "linux": "{distributions}에서 실행됩니다.",
+        "free": "무료. {requirement} 필요.",
+        "other": "TablePro는 {platforms}에서 실행됩니다."
+    },
+    "started": {
+        "title": "다운로드가 시작되었습니다.",
+        "retry": "시작되지 않았다면 <link>다시 다운로드</link>하세요.",
+        "steps": [
+            "{file} 파일을 여세요.",
+            "TablePro를 응용 프로그램 폴더로 드래그하세요.",
+            "TablePro를 여세요."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Homebrew의 배포본은 별도로 업데이트되므로 새 릴리스보다 늦을 수 있습니다. 이전 버전이 설치되면 <ui>TablePro > 업데이트 확인…</ui>(TablePro > Check for Updates…)을 선택해 최신 버전을 받으세요."
-        },
-        "signing": "TablePro는 Developer ID로 서명되었으며 Apple의 공증을 받았습니다. 열기 위해 보안 설정을 변경할 필요가 없습니다.",
-        "source": "소스에서 빌드 (AGPLv3)"
+        "text": "{requirement} 필요, {architectures} 지원. TablePro는 자동으로 업데이트됩니다.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "다른 배포판 (Flatpak)",
+        "architectures": "{architectures}용 빌드가 있습니다. 패키지 관리자가 알맞은 빌드를 골라 최신 상태로 유지합니다.",
+        "packages": "GitHub의 패키지"
     },
     "ios": {
         "link": "{devices}용 TablePro"
     },
     "otherPlatforms": {
-        "body": "TablePro는 {platforms}용으로 제공되지 않으며 출시 일정도 없습니다.",
-        "faq": "FAQ의 플랫폼 관련 질문"
+        "body": "{platform} 버전은 나중에 출시됩니다."
     },
-    "olderVersions": {
-        "title": "이전 버전",
-        "releases": "GitHub의 모든 릴리스",
-        "changelog": "변경 기록 (영어)"
+    "more": {
+        "title": "릴리스 및 소스 코드",
+        "releases": "GitHub의 이전 버전",
+        "source": "소스에서 빌드 (AGPLv3)",
+        "changelog": "변경 기록"
     }
 }

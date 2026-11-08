@@ -145,7 +145,7 @@ platforms or requirements in text.
 |---|---|---|---|
 | Header button | Download | Tải về | `/download`, one card per available platform. The label stays neutral when a platform ships |
 | Mac action (hero, closing CTA, blog CTA, mobile menu, `/download`) | Download for Mac | Tải về cho Mac | Only place "for Mac" appears on the homepage. An availability key, not a `nav.*` key (§13) |
-| `/download` architecture buttons | Download for Apple silicon · Download for Intel | Tải bản cho Apple silicon · Tải bản cho Intel | Both server-rendered. A client hint may highlight one, never choose |
+| `/download` Linux action | Install on Linux | Cài đặt trên Linux | Jumps to the Linux commands; there is no single file |
 | Package managers / mirrors | Other ways to install | Cách cài đặt khác | |
 | Copy a command | Copy · Copied | Sao chép · Đã sao chép | |
 | iPhone and iPad | App Store badge (no custom text button) | App Store badge | "App Store" is never translated |
