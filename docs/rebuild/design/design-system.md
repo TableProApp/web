@@ -1573,18 +1573,21 @@ Bands        #connect · #browse · #query · #safe-mode · #shortcuts · #mac, 
 
 ### 8.9 Blog index (`/blog`, `/vi/blog`)
 
+Rebuilt 2026-11-08 on the feature-page grid.
+
 ```
-PageHeader   H1 · release announcements; not every release gets a post; every version's notes are in the docs changelog ↗
-List         opens on the frame's join; per post, newest first, one row from rail to rail (§4.7): <time> (caption) in its
-             own column from 768 · H2 (h3 style) title link · description (small, muted, ≤ 200 chars) at the reading measure
-             /vi/blog: a Vietnamese intro saying the posts are in English; each entry lang="en", Badge "tiếng Anh",
-             link to /blog/{slug} hreflang="en"
-Newsletter   inline signup under the footer's title and body (newsletter_signup_clicked{source:'blog'})
+Hero         H1 · one sentence · RSS ↗ (the Atom feed) · Changelog ↗ (docs, "(English)" outside English)
+#posts       text tabs All · Releases · Guides · News (?kind=, no counts; a kind with no post has no tab)
+             one list, newest first, 20 to a page: cols 1–3 the <time> and the kind (small, muted) · cols 4–12 the H2 title
+             link (20–22px) and the description at 42rem; rules between rows, none under the last
+             ← Newer posts · Page 1 of 2 · Older posts → (?page=, keeping ?kind=)
+#newsletter  closing band: the footer's title and body, then the email form (newsletter_signup_clicked{source:'blog'})
 ```
 
-- **No filter and no per-post type badge.** Every retained post is a release post (sitemap decision 5 merges all four guides away), so a "Guides" filter would lead nowhere and a "Release" badge on every row says nothing. Add both only when a second kind of post exists.
-- No thumbnails, so the index carries no wall of placeholders.
-- Pagination appears only past 20 posts.
+- The server narrows and pages the list; a page past the last, or one that is not a whole number from 1, answers 404. The tabs and the pages are links, so they work without JavaScript.
+- `/vi/blog` lists the Vietnamese posts and the English release posts; an English post keeps `lang`, the "(tiếng Anh)" label and its English URL.
+- No thumbnails and no tag pills. The old `#news`, `#guides` and `#releases` land on `#posts`.
+- The footer leaves its newsletter out on this page.
 
 ### 8.10 Blog post (`/blog/{slug}`, English only)
 
