@@ -17,7 +17,7 @@ export default function IntegrationList({ integrations, labels }: IntegrationLis
         <ul className="divide-y divide-rule border-y border-rule">
             {integrations.map((integration) => (
                 <li key={integration.slug} className="group relative flex items-start gap-4 py-5">
-                    <DatabaseMark icon={integration.icon?.src} name={integration.name} size={40} className="mt-0.5" />
+                    <DatabaseMark icon={integration.icon?.src} name={integration.name} size={40} tile={false} className="mt-0.5" />
                     <div className="min-w-0">
                         <h3 className="text-[1.25rem] leading-[1.25] font-[520] tracking-[-0.018em] text-foreground">
                             {/* Detail pages are English only, so other languages link the English page. */}

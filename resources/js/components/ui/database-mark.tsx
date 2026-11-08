@@ -14,6 +14,8 @@ interface DatabaseMarkProps {
     name: string;
     /** 24px in lists and tables (the default), 32 or 40 where a mark leads a card. */
     size?: 24 | 32 | 40;
+    // False for an app icon that brings its own ground, such as an integration's: no white tile in dark mode.
+    tile?: boolean;
     className?: string;
 }
 
@@ -39,7 +41,7 @@ const TILE = { 24: 'size-8', 32: 'size-10', 40: 'size-12' } as const;
  * Decorative in every branch (`alt=""`): the engine's name is always rendered
  * beside it, and that is the accessible label.
  */
-export default function DatabaseMark({ icon, iconDark, monogram, name, size = 24, className }: DatabaseMarkProps) {
+export default function DatabaseMark({ icon, iconDark, monogram, name, size = 24, tile = true, className }: DatabaseMarkProps) {
     if (!icon) {
         return (
             <span aria-hidden="true" className={cn('inline-grid shrink-0 place-items-center', TILE[size], className)}>
@@ -69,7 +71,7 @@ export default function DatabaseMark({ icon, iconDark, monogram, name, size = 24
     }
 
     return (
-        <span aria-hidden="true" className={cn('inline-grid shrink-0 place-items-center rounded-chip dark:bg-[#ffffff]', TILE[size], className)}>
+        <span aria-hidden="true" className={cn('inline-grid shrink-0 place-items-center', tile && 'rounded-chip dark:bg-[#ffffff]', TILE[size], className)}>
             {image(icon)}
         </span>
     );
