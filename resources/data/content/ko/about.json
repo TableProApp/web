@@ -9,40 +9,29 @@
     },
     "breadcrumb": "소개",
     "header": {
-        "title": "TablePro 소개",
-        "lead": "TablePro는 TablePro 팀이 개발합니다. 라이선스와 후원이 개발을 지원합니다."
+        "title": "공개적으로 개발하는 데이터베이스 클라이언트.",
+        "lead": "TablePro 팀이 Mac, Linux, iPhone 및 iPad용 TablePro를 만듭니다. 라이선스와 후원이 개발을 지원합니다."
     },
-    "maker": {
-        "title": "개발자",
-        "body": "Mac 앱과 플러그인, Linux 앱, iPhone 및 iPad 앱, 그리고 이 웹사이트는 모두 TablePro 팀이 개발합니다.",
-        "identity": "같은 팀이 <appStore>App Store</appStore>에 TablePro를 배포하고 <sponsorsProgram>GitHub Sponsors</sponsorsProgram>로 후원을 받습니다.",
-        "facts": {
-            "created": "저장소 생성일",
-            "email": "이메일"
-        }
+    "principles": {
+        "title": "원칙",
+        "items": [
+            { "id": "native", "name": "네이티브", "text": "플랫폼마다 앱을 하나씩, 각 플랫폼의 툴킷으로 만듭니다. Apple 기기에서는 Swift로 AppKit과 SwiftUI를, Linux에서는 Rust로 GTK 4를 씁니다." },
+            { "id": "open", "name": "공개", "text": "유료 기능을 포함한 모든 코드가 AGPLv3로 GitHub에 공개되어 있습니다." },
+            { "id": "private", "name": "프라이버시", "text": "비밀번호는 시스템 키체인에 보관됩니다. Apple 기기에서는 키체인, Linux에서는 Secret Service 키링입니다." },
+            { "id": "independent", "name": "독립", "text": "TablePro는 라이선스와 후원으로 운영됩니다. 투자자가 없으며 데이터를 판매하지 않습니다." }
+        ]
     },
-    "funding": {
-        "title": "개발 자금",
-        "body": "TablePro는 유료 라이선스와 후원으로 운영됩니다. 투자자가 없으며 데이터를 판매하지 않습니다.",
-        "plans": "Pro 또는 Team 라이선스는 선택 기능을 추가하며 <pricing>요금 페이지</pricing>에 목록이 있습니다.",
-        "sponsors": "현재 후원자와 각 등급의 혜택은 <sponsors>후원 페이지</sponsors>에서 볼 수 있습니다."
-    },
-    "source": {
-        "title": "소스 코드",
-        "body": "모든 앱은 유료 기능 코드를 포함해 AGPLv3로 공개되며 하나의 <source>GitHub 저장소</source>에 있습니다.",
-        "license": "<agpl>라이선스 본문</agpl>도 같은 저장소에 있습니다."
+    "facts": {
+        "title": "기본 정보",
+        "maker": { "term": "개발", "text": "TablePro 팀" },
+        "created": { "term": "저장소 생성일" },
+        "source": { "term": "소스 코드", "text": "GitHub의 <source>TableProApp/TablePro</source>" },
+        "license": { "term": "라이선스", "text": "AGPLv3, <agpl>라이선스 본문</agpl>은 저장소에 있습니다" },
+        "funding": { "term": "개발 자금", "text": "<pricing>Pro 및 Team 라이선스</pricing>와 <sponsors>후원자</sponsors>" }
     },
     "contact": {
         "title": "연락처",
-        "email": "지원, 라이선스, 계정 관련 문의는 <email>{email}</email>로 보내 주세요.",
-        "github": "버그 신고와 기능 요청은 <issues>GitHub Issues</issues>에, 질문과 아이디어는 <discussions>GitHub Discussions</discussions>에 올려 주세요."
-    },
-    "policies": {
-        "title": "정책",
-        "body": "<privacy>개인정보 처리방침</privacy>, <terms>이용약관</terms>, <security>보안 안내</security>를 확인하세요."
-    },
-    "brand": {
-        "title": "브랜드",
-        "body": "TablePro 이름과 로고의 사용 방법, 로고 파일 다운로드는 <brand>브랜드 가이드라인</brand>에서 확인하세요."
+        "body": "지원, 라이선스, 계정 관련 문의는 <email>{email}</email>로 보내 주시고, 문제는 <issues>GitHub</issues>에서 신고해 주세요.",
+        "chat": "실시간 채팅 시작"
     }
 }

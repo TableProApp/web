@@ -9,40 +9,29 @@
     },
     "breadcrumb": "TablePro について",
     "header": {
-        "title": "TablePro について",
-        "lead": "TablePro は TablePro チームが開発しています。ライセンスとスポンサーの支援が開発資金になります。"
+        "title": "オープンに開発するデータベースクライアント。",
+        "lead": "TablePro チームが Mac、Linux、iPhone・iPad 向けの TablePro を開発しています。ライセンスとスポンサーの支援が開発資金になります。"
     },
-    "maker": {
-        "title": "開発者",
-        "body": "TablePro チームは、Mac アプリとそのプラグイン、Linux アプリ、iPhone・iPad アプリ、そしてこのウェブサイトを開発しています。",
-        "identity": "同じチームが <appStore>App Store</appStore> で TablePro を公開し、<sponsorsProgram>GitHub Sponsors</sponsorsProgram> で支援を受けています。",
-        "facts": {
-            "created": "リポジトリ作成日",
-            "email": "メール"
-        }
+    "principles": {
+        "title": "原則",
+        "items": [
+            { "id": "native", "name": "ネイティブ", "text": "プラットフォームごとに 1 つのアプリを、それぞれのツールキットで作っています。Apple デバイスでは Swift で AppKit と SwiftUI を、Linux では Rust で GTK 4 を使います。" },
+            { "id": "open", "name": "オープン", "text": "有料機能を含むすべてのコードを、AGPLv3 で GitHub に公開しています。" },
+            { "id": "private", "name": "プライバシー", "text": "パスワードはシステムのキーチェーンに保存されます。Apple デバイスではキーチェーン、Linux では Secret Service のキーリングです。" },
+            { "id": "independent", "name": "独立", "text": "TablePro はライセンスとスポンサーの支援で開発されています。投資家はおらず、データの販売もしません。" }
+        ]
     },
-    "funding": {
-        "title": "開発資金",
-        "body": "TablePro は有料ライセンスとスポンサーの支援で開発されています。投資家はおらず、データの販売もしません。",
-        "plans": "Pro または Team ライセンスで任意の機能を追加できます。<pricing>料金ページ</pricing>に一覧があります。",
-        "sponsors": "現在のスポンサーと各ティアの内容は<sponsors>スポンサーページ</sponsors>に掲載しています。"
-    },
-    "source": {
-        "title": "ソースコード",
-        "body": "各アプリは有料機能のコードも含め、AGPLv3 で公開しており、1 つの <source>GitHub リポジトリ</source>にあります。",
-        "license": "<agpl>ライセンス本文</agpl>も同じリポジトリにあります。"
+    "facts": {
+        "title": "基本情報",
+        "maker": { "term": "開発元", "text": "TablePro チーム" },
+        "created": { "term": "リポジトリ作成日" },
+        "source": { "term": "ソースコード", "text": "GitHub の <source>TableProApp/TablePro</source>" },
+        "license": { "term": "ライセンス", "text": "AGPLv3、<agpl>ライセンス本文</agpl>はリポジトリにあります" },
+        "funding": { "term": "開発資金", "text": "<pricing>Pro・Team ライセンス</pricing>と<sponsors>スポンサー</sponsors>" }
     },
     "contact": {
         "title": "連絡先",
-        "email": "サポート、ライセンス、アカウントに関する質問は <email>{email}</email> までお送りください。",
-        "github": "バグ報告と機能リクエストは <issues>GitHub Issues</issues> へ、質問やアイデアは <discussions>GitHub Discussions</discussions> へお寄せください。"
-    },
-    "policies": {
-        "title": "ポリシー",
-        "body": "<privacy>プライバシーポリシー</privacy>、<terms>利用規約</terms>、<security>セキュリティの詳細</security>をご覧ください。"
-    },
-    "brand": {
-        "title": "ブランド",
-        "body": "TablePro の名前とロゴの使い方、ロゴファイルのダウンロードは<brand>ブランドガイドライン</brand>をご覧ください。"
+        "body": "サポート、ライセンス、アカウントに関する質問は <email>{email}</email> までお送りください。問題の報告は <issues>GitHub</issues> で受け付けています。",
+        "chat": "ライブチャットを開始"
     }
 }

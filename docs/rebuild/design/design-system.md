@@ -1811,6 +1811,20 @@ Hero         H1 · one sentence · See Team pricing (to #price) · How Team work
 - No ticks, icons or grey panels. Unbuilt Enterprise features are never listed.
 - No platform is named for what a seat gets: a seat is "{deviceLimit} computers, Mac or Linux", Pro is never "each Mac".
 
+### 8.25 About (`/about`, every locale)
+
+Rebuilt 2026-11-08: about 150 words, no image.
+
+```
+Hero         statement H1 · one sentence naming the TablePro team; no actions
+#principles  cols 1–3: Principles   cols 4–12: four items in two columns, name + one sentence (Native, Open, Private, Independent)
+#facts       cols 1–3: Facts   cols 4–12 at 42rem: term rows (Made by, Repository created, Source code, License, Funded by)
+#contact     closing band: one sentence with the email and GitHub, then live chat
+```
+
+- No person, photo, city or investor. Every principle states a fact the app or the repository shows.
+- `#maker`, `#funding` and `#source` land on `#facts`; `#policies` and `#brand` on `#contact`.
+
 ---
 
 ## 9. Sharing between the two repositories

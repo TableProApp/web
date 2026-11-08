@@ -9,40 +9,29 @@
     },
     "breadcrumb": "Tentang",
     "header": {
-        "title": "Tentang TablePro",
-        "lead": "Tim TablePro membuat TablePro. Lisensi dan sponsor mendanai pengembangannya."
+        "title": "Klien database yang dikembangkan secara terbuka.",
+        "lead": "Tim TablePro membuat TablePro untuk Mac, Linux, iPhone, dan iPad. Lisensi dan sponsor mendanai pengembangannya."
     },
-    "maker": {
-        "title": "Siapa pembuatnya",
-        "body": "Tim TablePro membuat aplikasi Mac beserta plugin-nya, aplikasi Linux, aplikasi iPhone dan iPad, serta situs web ini.",
-        "identity": "Tim yang sama menerbitkan TablePro di <appStore>App Store</appStore> dan menerima dukungan melalui <sponsorsProgram>GitHub Sponsors</sponsorsProgram>.",
-        "facts": {
-            "created": "Repositori dibuat",
-            "email": "Email"
-        }
+    "principles": {
+        "title": "Prinsip",
+        "items": [
+            { "id": "native", "name": "Native", "text": "Satu aplikasi per platform, masing-masing dengan toolkit-nya sendiri: Swift dengan AppKit dan SwiftUI di perangkat Apple, Rust dengan GTK 4 di Linux." },
+            { "id": "open", "name": "Terbuka", "text": "Seluruh kode ada di GitHub di bawah AGPLv3, termasuk fitur berbayarnya." },
+            { "id": "private", "name": "Privat", "text": "Kata sandi tetap tersimpan di rantai kunci sistem Anda: Rantai Kunci di perangkat Apple, keyring Secret Service di Linux." },
+            { "id": "independent", "name": "Independen", "text": "Lisensi dan sponsor mendanai TablePro. Proyek ini tidak memiliki investor dan tidak menjual data." }
+        ]
     },
-    "funding": {
-        "title": "Pendanaan",
-        "body": "Lisensi berbayar dan sponsor mendanai TablePro. Proyek ini tidak memiliki investor dan tidak menjual data.",
-        "plans": "Lisensi Pro atau Team menambahkan fitur opsional; <pricing>halaman harga</pricing> mencantumkannya.",
-        "sponsors": "Sponsor saat ini dan isi setiap tingkatan ada di <sponsors>halaman sponsor</sponsors>."
-    },
-    "source": {
-        "title": "Kode sumber",
-        "body": "Aplikasi-aplikasinya bersumber terbuka di bawah AGPLv3, termasuk kode fitur berbayar, dalam satu <source>repositori di GitHub</source>.",
-        "license": "<agpl>Teks lisensi</agpl> ada di repositori yang sama."
+    "facts": {
+        "title": "Fakta",
+        "maker": { "term": "Dibuat oleh", "text": "Tim TablePro" },
+        "created": { "term": "Repositori dibuat" },
+        "source": { "term": "Kode sumber", "text": "<source>TableProApp/TablePro</source> di GitHub" },
+        "license": { "term": "Lisensi", "text": "AGPLv3, dengan <agpl>teks lisensi</agpl> di repositori" },
+        "funding": { "term": "Didanai oleh", "text": "<pricing>Lisensi Pro dan Team</pricing> serta <sponsors>sponsor</sponsors>" }
     },
     "contact": {
         "title": "Kontak",
-        "email": "Pertanyaan tentang dukungan, lisensi, dan akun dapat dikirim ke <email>{email}</email>.",
-        "github": "Laporan bug dan permintaan fitur masuk ke <issues>GitHub Issues</issues>, sedangkan pertanyaan dan ide ke <discussions>GitHub Discussions</discussions>."
-    },
-    "policies": {
-        "title": "Kebijakan",
-        "body": "Baca <privacy>kebijakan privasi</privacy>, <terms>ketentuan layanan</terms>, atau <security>detail keamanan</security>."
-    },
-    "brand": {
-        "title": "Merek",
-        "body": "<brand>Pedoman merek</brand> menjelaskan cara memakai nama dan logo TablePro, beserta file logo untuk diunduh."
+        "body": "Kirim email ke <email>{email}</email> untuk dukungan, lisensi, atau akun Anda, atau laporkan masalah di <issues>GitHub</issues>.",
+        "chat": "Mulai chat langsung"
     }
 }

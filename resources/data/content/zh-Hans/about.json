@@ -9,40 +9,29 @@
     },
     "breadcrumb": "关于",
     "header": {
-        "title": "关于 TablePro",
-        "lead": "TablePro 由 TablePro 团队开发。许可证收入和赞助支持开发。"
+        "title": "公开开发的数据库客户端。",
+        "lead": "TablePro 团队为 Mac、Linux、iPhone 和 iPad 开发 TablePro。许可证收入和赞助支持开发。"
     },
-    "maker": {
-        "title": "开发者",
-        "body": "TablePro 团队开发了 Mac 应用及其插件、Linux 应用、iPhone 和 iPad 应用，以及本网站。",
-        "identity": "该团队在 <appStore>App Store</appStore> 发布 TablePro，并通过 <sponsorsProgram>GitHub Sponsors</sponsorsProgram> 接受赞助。",
-        "facts": {
-            "created": "仓库创建日期",
-            "email": "邮箱"
-        }
+    "principles": {
+        "title": "原则",
+        "items": [
+            { "id": "native", "name": "原生", "text": "每个平台一款应用，各用该平台自己的工具包：Apple 设备上用 Swift 搭配 AppKit 和 SwiftUI，Linux 上用 Rust 搭配 GTK 4。" },
+            { "id": "open", "name": "开放", "text": "包括付费功能在内，全部代码都以 AGPLv3 发布在 GitHub 上。" },
+            { "id": "private", "name": "隐私", "text": "密码保存在系统的钥匙串中：Apple 设备上是钥匙串，Linux 上是 Secret Service 密钥环。" },
+            { "id": "independent", "name": "独立", "text": "TablePro 的资金来自许可证和赞助。TablePro 没有投资者，也不出售数据。" }
+        ]
     },
-    "funding": {
-        "title": "资金来源",
-        "body": "TablePro 的资金来自付费许可证和赞助商。TablePro 没有投资者，也不出售数据。",
-        "plans": "Pro 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。",
-        "sponsors": "当前的赞助商和各档位的权益列在<sponsors>赞助页面</sponsors>上。"
-    },
-    "source": {
-        "title": "源代码",
-        "body": "各款应用均采用 AGPLv3 开源，包括付费功能代码，位于同一个 <source>GitHub 仓库</source>。",
-        "license": "<agpl>许可证全文</agpl>也在同一个仓库中。"
+    "facts": {
+        "title": "基本信息",
+        "maker": { "term": "开发者", "text": "TablePro 团队" },
+        "created": { "term": "仓库创建日期" },
+        "source": { "term": "源代码", "text": "GitHub 上的 <source>TableProApp/TablePro</source>" },
+        "license": { "term": "许可证", "text": "AGPLv3，<agpl>许可证全文</agpl>位于仓库中" },
+        "funding": { "term": "资金来源", "text": "<pricing>Pro 和 Team 许可证</pricing>以及<sponsors>赞助商</sponsors>" }
     },
     "contact": {
         "title": "联系方式",
-        "email": "有关支持、许可证和账户的问题，请发送邮件至 <email>{email}</email>。",
-        "github": "错误报告和功能请求请提交到 <issues>GitHub Issues</issues>，问题和想法请发到 <discussions>GitHub Discussions</discussions>。"
-    },
-    "policies": {
-        "title": "政策",
-        "body": "阅读<privacy>隐私政策</privacy>、<terms>服务条款</terms>或<security>安全说明</security>。"
-    },
-    "brand": {
-        "title": "品牌",
-        "body": "<brand>品牌指南</brand>说明了如何使用 TablePro 的名称和徽标，并提供徽标文件下载。"
+        "body": "有关支持、许可证和账户的问题，请发送邮件至 <email>{email}</email>，或在 <issues>GitHub</issues> 报告问题。",
+        "chat": "开始在线聊天"
     }
 }
