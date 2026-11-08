@@ -143,7 +143,7 @@ describe('sponsors.json', function (): void {
     it('describes every tier in the page copy', function (): void {
         $copy = json_decode(File::get(resource_path('data/content/en/sponsors.json')), true, 512, JSON_THROW_ON_ERROR);
 
-        expect(array_keys($copy['tiers']['benefit']))->toEqualCanonicalizing(array_column(siteDataJson('sponsors.json')['tiers'], 'placement'));
+        expect(array_keys($copy['tiers']['items']))->toEqualCanonicalizing(array_column(siteDataJson('sponsors.json')['tiers'], 'placement'));
     });
 
     it('reads sponsors from GitHub only on a maintainer machine, never with a token in the app', function (): void {

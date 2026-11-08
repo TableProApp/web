@@ -1,17 +1,20 @@
+import type { ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
+import { BandFrame } from '@/components/features/feature-band';
+import { ClosingFrame } from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
 import SEOHead from '@/components/seo/seo-head';
-import SponsorGrid from '@/components/sponsors/sponsor-grid';
-import Button from '@/components/ui/button';
-import DataTable, { TABLE_CELL, TABLE_HEAD_CELL, TABLE_ROW, TABLE_ROW_HEADER } from '@/components/ui/data-table';
-import PageHeader from '@/components/ui/page-header';
-import Section from '@/components/ui/section';
-import TextLink, { textLinkClasses } from '@/components/ui/text-link';
-import { LOCALES, useI18n } from '@/i18n';
+import { SUPPORT_EMAIL } from '@/components/site/site-links';
+import SponsorLink from '@/components/sponsors/sponsor-link';
+import { buttonClasses } from '@/components/ui/button';
+import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
+import { textLinkClasses } from '@/components/ui/text-link';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+import { LOCALES, Trans, useI18n } from '@/i18n';
 import { FACTS } from '@/lib/data/facts';
-import { SPONSORS } from '@/lib/data/sponsors';
-import { byName, onHomepage, openSlots } from '@/lib/sponsors';
-import { cn } from '@/lib/utils';
+import { SPONSORS, type Placement } from '@/lib/data/sponsors';
+import { openSlots } from '@/lib/sponsors';
 import LandingLayout from '@/layouts/landing-layout';
 
 type SponsorsContent = typeof import('@data/content/en/sponsors.json');
@@ -21,18 +24,64 @@ interface SponsorsProps {
     organizationProfiles: string[];
 }
 
-// The price columns shrink to their content, so the benefit takes the rest of the row.
-const PRICE = 'w-px whitespace-nowrap tabular-nums';
+// The sections this page had before each tier became a band.
+const ALSO: Record<Placement, string[]> = { lead: ['tiers'], homepage: ['companies'], name: ['individuals'] };
 
-// No amounts per sponsor, no totals and no goal: what each placement costs is the tiers table.
+const NAME_LINK = 'text-[1.0625rem] font-medium tracking-[-0.011em] text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
+
+// One band per tier, dearest first: the name and both prices on the left, that tier's sponsors on the right. No amount
+// per sponsor, no total and no goal.
 export default function Sponsors({ content, organizationProfiles }: SponsorsProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path, format } = useI18n();
-    const companies = onHomepage(SPONSORS);
-    const people = byName(SPONSORS);
-    const open = openSlots(SPONSORS);
-    const total = SPONSORS.homepageSlots;
+    useRevealOnScroll('main > section:not(#top)');
+
     const usd = (amount: number): string => format.formatUsd(amount, m.pricing.currency);
+    const total = SPONSORS.homepageSlots;
+    const open = openSlots(SPONSORS);
+    const places = open > 0 ? plural(content.places.open, open, { total }) : fmt(content.places.full, { total });
+    const tiers = [...SPONSORS.tiers].sort((a, b) => b.monthly - a.monthly);
+    const values = { multiplier: SPONSORS.oneTime.multiplier, months: SPONSORS.oneTime.months, email: SUPPORT_EMAIL };
+
+    const tags = {
+        open: (text: string) => <span className="font-medium text-foreground">{text}</span>,
+        email: (text: string) => (
+            <a href={`mailto:${SUPPORT_EMAIL}`} className={textLinkClasses('inline')}>
+                {text}
+            </a>
+        ),
+    };
+
+    const github = (
+        <a href={FACTS.links.sponsorsProgram} className={buttonClasses('primary', 'lg', 'min-w-36')}>
+            {content.header.action}
+            <span aria-hidden="true">↗</span>
+        </a>
+    );
+
+    const sponsorsIn = (placement: Placement): ReactNode => {
+        const sponsors = SPONSORS.sponsors.filter((sponsor) => sponsor.placement === placement);
+
+        if (sponsors.length === 0) {
+            return undefined;
+        }
+
+        return (
+            <ul className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-6 sm:gap-x-14 sm:gap-y-10">
+                {sponsors.map((sponsor) => (
+                    <li key={sponsor.id}>
+                        {sponsor.logo === null ? (
+                            <a href={sponsor.url} rel="sponsored noopener" translate="no" className={NAME_LINK}>
+                                {sponsor.name}
+                            </a>
+                        ) : (
+                            <SponsorLink sponsor={sponsor} size="page" />
+                        )}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
 
     const crumbs = [
         { name: m.common.home, path: path('/') },
@@ -55,83 +104,56 @@ export default function Sponsors({ content, organizationProfiles }: SponsorsProp
                 })}
             />
 
-            <PageHeader
-                variant="utility"
+            <FeatureHero
                 title={content.header.title}
                 lead={content.header.lead}
-                breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
-                actions={
-                    <Button href={FACTS.links.sponsorsProgram}>
-                        {content.header.action}
-                        <span aria-hidden="true">↗</span>
-                    </Button>
+                primary={
+                    <>
+                        {github}
+                        <span className="text-[0.9375rem] leading-[1.4] text-muted-foreground">{places}</span>
+                    </>
                 }
             />
 
-            <Section
-                id="companies"
-                title={content.companies.title}
-                lead={open > 0 ? plural(content.companies.open, open, { total }) : fmt(content.companies.full, { total })}
-                flush={companies.length > 0}
-            >
-                {companies.length > 0 && <SponsorGrid sponsors={companies} />}
-            </Section>
+            {tiers.map((tier) => {
+                const copy = content.tiers.items[tier.placement];
+                const sponsors = sponsorsIn(tier.placement);
 
-            {people.length > 0 && (
-                <Section id="individuals" title={content.people.title}>
-                    <ul className="type-body flex flex-wrap gap-x-6 gap-y-2">
-                        {people.map((sponsor) => (
-                            <li key={sponsor.id}>
-                                <a href={sponsor.url} rel="sponsored noopener" translate="no" className={textLinkClasses('inline')}>
-                                    {sponsor.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </Section>
-            )}
+                return (
+                    <BandFrame
+                        key={tier.placement}
+                        id={tier.placement}
+                        also={ALSO[tier.placement]}
+                        title={copy.title}
+                        marker={
+                            <p className="mt-3 text-[0.9375rem] leading-[1.5] tabular-nums">
+                                <span className="block font-medium text-foreground">{fmt(content.tiers.monthly, { price: usd(tier.monthly) })}</span>
+                                <span className="block text-muted-foreground">{fmt(content.tiers.oneTime, { price: usd(tier.monthly * SPONSORS.oneTime.multiplier) })}</span>
+                            </p>
+                        }
+                    >
+                        <p className="text-[1.0625rem] leading-[1.55] tracking-[-0.011em] text-pretty text-muted-foreground">
+                            {sponsors === undefined ? <Trans text={content.tiers.open} tags={tags} values={{ benefit: copy.benefit }} /> : copy.benefit}
+                        </p>
+                        {tier.placement === 'homepage' && <p className="mt-2 text-[0.9375rem] leading-[1.5] text-muted-foreground">{places}</p>}
+                        {sponsors}
+                    </BandFrame>
+                );
+            })}
 
-            <Section id="tiers" title={content.tiers.title} lead={plural(content.tiers.lead, SPONSORS.oneTime.months)}>
-                {/* Below 640px the one-time price folds under the monthly one, in the row header. */}
-                <DataTable wrapperClassName="frame-table" caption={content.tiers.caption} className="sm:min-w-[36rem]">
-                    <thead>
-                        <tr>
-                            <th scope="col" className={cn(TABLE_HEAD_CELL, PRICE)}>
-                                {content.tiers.columns.monthly}
-                            </th>
-                            <th scope="col" className={cn(TABLE_HEAD_CELL, PRICE, 'hidden sm:table-cell')}>
-                                {content.tiers.columns.oneTime}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {content.tiers.columns.benefit}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {SPONSORS.tiers.map((tier) => {
-                            const once = usd(tier.monthly * SPONSORS.oneTime.multiplier);
+            <BandFrame id="fine-print" title={content.finePrint.title}>
+                <DescriptionList>
+                    {content.finePrint.rows.map((row) => (
+                        <DescriptionItem key={row.term} term={row.term} size="body">
+                            <Trans text={row.text} values={values} />
+                        </DescriptionItem>
+                    ))}
+                </DescriptionList>
+            </BandFrame>
 
-                            return (
-                                <tr key={tier.placement} className={TABLE_ROW}>
-                                    <th scope="row" className={cn(TABLE_ROW_HEADER, PRICE)}>
-                                        {usd(tier.monthly)}
-                                        <span className="type-caption mt-1.5 block font-normal text-muted-foreground sm:hidden">
-                                            {fmt(content.tiers.oneTimePrice, { price: once })}
-                                        </span>
-                                    </th>
-                                    <td className={cn(TABLE_CELL, PRICE, 'hidden sm:table-cell')}>{once}</td>
-                                    <td className={TABLE_CELL}>{fmt(content.tiers.benefit[tier.placement], { total })}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </DataTable>
-                <p className="mt-6">
-                    <TextLink href={FACTS.links.sponsorsProgram} kind="standalone" external>
-                        {content.tiers.link}
-                    </TextLink>
-                </p>
-            </Section>
+            <ClosingFrame id="sponsor" title={content.closing.title} sentence={<Trans text={content.closing.sentence} tags={tags} values={values} />}>
+                {github}
+            </ClosingFrame>
         </LandingLayout>
     );
 }
