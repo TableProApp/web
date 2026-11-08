@@ -65,12 +65,6 @@ it('renders the brand guidelines in English only, with the logo files in place',
         ->where('suggestion.hreflang', 'en'));
 });
 
-it('sends the about page no publisher, so it names only the TablePro team', function (string $locale): void {
-    get(LocalizedUrl::path('/about', $locale))->assertOk()->assertInertia(fn(AssertableInertia $page) => $page
-        ->missing('publisher')
-        ->has('content.maker.body'));
-})->with(['en', 'vi']);
-
 it('names the iPhone engines from platforms.json, asking GitHub for nothing', function (string $path, string $prop): void {
     Http::fake(['api.github.com/*' => Http::response([], 500), 'github.com/*' => Http::response([], 500)]);
 

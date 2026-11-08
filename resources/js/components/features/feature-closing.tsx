@@ -6,6 +6,7 @@ import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
+import { AlsoAnchors } from './feature-part';
 import { paidByTier } from './model';
 import type { FeatureLabels } from './types';
 
@@ -23,9 +24,10 @@ interface FeatureClosingProps {
 }
 
 // The page's last band: a small title in the left quarter, one sentence, then the way in.
-export function ClosingFrame({ id = 'get-started', title, sentence, children }: { id?: string; title: string; sentence: ReactNode; children?: ReactNode }) {
+export function ClosingFrame({ id = 'get-started', also, title, sentence, children }: { id?: string; also?: string[]; title: string; sentence: ReactNode; children?: ReactNode }) {
     return (
         <section id={id} aria-labelledby={`${id}-title`} className="py-16 md:py-24">
+            <AlsoAnchors part={{ id, also }} />
             <Container>
                 <div className="grid gap-6 md:grid-cols-12 md:gap-x-8">
                     <h2 id={`${id}-title`} className="text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground md:col-span-4 lg:col-span-3">
