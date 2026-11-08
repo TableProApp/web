@@ -40,7 +40,7 @@ export function BandFrame({ id, also, title, marker, asset, assetClassName, besi
                         </h2>
                         {marker}
                     </div>
-                    <div className={cn('max-w-[42rem] md:col-span-8', beside === undefined ? 'lg:col-span-9' : 'lg:col-span-5')}>{children}</div>
+                    <div className={cn('max-w-[42rem] min-w-0 md:col-span-8', beside === undefined ? 'lg:col-span-9' : 'lg:col-span-5')}>{children}</div>
                     {beside !== undefined && <div className="mt-5 md:col-span-8 md:col-start-5 lg:col-span-4 lg:col-start-auto lg:mt-0">{beside}</div>}
                     {after !== undefined && <div className="mt-3 min-w-0 md:col-span-8 md:col-start-5 lg:col-span-9 lg:col-start-4">{after}</div>}
                 </div>
