@@ -1084,19 +1084,18 @@ the appcast top item, `formulae.brew.sh/api/cask/tablepro.json` and the iTunes l
 non-zero on a mismatch. It is never scheduled. It runs at final verification because spec §0 says to re-check the
 release state. Its tests use `Http::fake`.
 
-**Client** (`resources/js/pages/Download.tsx`, rewritten). The pure logic lives in `resources/js/lib/device.ts`, which
-`node --test` can load:
+**Client** (`resources/js/pages/Download.tsx`, rebuilt 2026-11-08). The pure logic lives in `resources/js/lib/device.ts`,
+which `node --test` can load:
 
 | Function | Rule |
 |---|---|
-| `classifyDevice(ua, maxTouchPoints)` | `ios` when `/iPhone\|iPad\|iPod/` matches, or when `Macintosh` matches and `maxTouchPoints > 1` (iPadOS desktop UA). `mac` when `Macintosh` matches. `other` for Android and ChromeOS, `linux` for any other `Linux` or `X11`. Otherwise `other`. **An iPhone UA ("like Mac OS X") is never `mac`**. The root template's head script repeats the `ios` and `linux` rules as classes, before first paint (`tests/js/device.test.ts` runs it against this function) |
+| `classifyDevice(ua, maxTouchPoints)` | `ios` when `/iPhone\|iPad\|iPod/` matches, or when `Macintosh` matches and `maxTouchPoints > 1` (iPadOS desktop UA). `mac` when `Macintosh` matches. `other` for Android and ChromeOS, `linux` for any other `Linux` or `X11`. Otherwise `other`. **An iPhone UA ("like Mac OS X") is never `mac`**. The root template's head script repeats the rules as `ios`, `linux` and `other-device` classes, before first paint (`tests/js/device.test.ts` runs it against this function) |
 
-**Behaviour.** SSR renders one panel per released platform with real URLs from the server props (the DMG, the App
-Store, the Linux commands and files) and shows the Mac panel. Before paint, the head script's `ios` or `linux` class
-shows that platform's panel instead; after mount `classifyDevice()` keeps the same choice, or the one a `#mac`, `#ios`
-or `#linux` link names (design-system §8.7). **Nothing starts on its own**, and no copy says a download is starting.
-After a click the page may say "If the download didn't begin, use this link". `trackDownload(location, platform)` takes
-`mac`, `ios` or `linux`. No Windows button appears.
+**Behaviour.** SSR renders the hero's variant for every machine and a band per released platform, with real URLs from
+the server props (the DMG, Homebrew, the Linux commands, the App Store). The head script's class picks the hero's
+variant before paint (design-system §8.7); no script chooses after it. **Nothing starts on its own.** After a click on
+the DMG link the action gives way to "Your download has started", the same link and three install steps.
+`trackDownload(location, platform)` takes `mac`, `ios` or `linux`. No Windows button appears.
 
 ### 1.14 Forms and cross-app contracts
 
