@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     "index": {
         "empty": "Nenhum artigo ainda.",
-        "guides": "Guias",
-        "news": "Novidades",
-        "releases": "Notas de versão"
+        "tabs": {
+            "label": "Artigos por tipo",
+            "all": "Todos",
+            "release": "Versões",
+            "guide": "Guias",
+            "news": "Novidades"
+        },
+        "kind": {
+            "release": "Versão",
+            "guide": "Guia",
+            "news": "Novidade"
+        },
+        "pages": {
+            "label": "Páginas",
+            "newer": "Artigos mais recentes",
+            "older": "Artigos mais antigos",
+            "page": "Página {page} de {pages}"
+        }
     },
     "latest": "Último post de lançamento: <post>{title}</post>.",
     "post": {

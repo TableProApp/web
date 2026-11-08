@@ -3,9 +3,24 @@ import type { Messages } from '../../types.ts';
 export default {
     "index": {
         "empty": "記事はまだありません。",
-        "guides": "ガイド",
-        "news": "お知らせ",
-        "releases": "リリースノート"
+        "tabs": {
+            "label": "種類別の記事",
+            "all": "すべて",
+            "release": "リリース",
+            "guide": "ガイド",
+            "news": "お知らせ"
+        },
+        "kind": {
+            "release": "リリース",
+            "guide": "ガイド",
+            "news": "お知らせ"
+        },
+        "pages": {
+            "label": "ページ",
+            "newer": "新しい記事",
+            "older": "以前の記事",
+            "page": "{page} / {pages} ページ"
+        }
     },
     "latest": "最新のリリース記事：<post>{title}</post>。",
     "post": {
