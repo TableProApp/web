@@ -318,10 +318,16 @@ it('renders the Linux band with platforms.json’s commands under their distribu
 
     $expected = collect($linux['destinations'])->filter(fn(array $destination): bool => isset($destination['commands']))->map(fn(array $destination): array => $destination['commands'])->values()->all();
     $blocks = array_map(
-        fn(Dom\Element $block): array => array_map(fn(Dom\Element $line): string => (string) $line->textContent, iterator_to_array($block->querySelectorAll('pre code > span'))),
+        fn(Dom\Element $block): array => explode("\n", (string) $block->querySelector('pre code')?->textContent),
         iterator_to_array($document->querySelectorAll('#linux [role="region"]')),
     );
     $headings = array_map(fn(Dom\Element $heading): string => downloadText($heading), iterator_to_array($document->querySelectorAll('#linux h3')));
+
+    // A command keeps its line and the block scrolls sideways (owner, 2026-11-08).
+    foreach ($document->querySelectorAll('#linux pre') as $pre) {
+        expect(in_array('whitespace-pre', explode(' ', (string) $pre->getAttribute('class')), true))->toBeTrue('a command block wraps its lines')
+            ->and($pre->querySelectorAll('wbr'))->toHaveCount(0);
+    }
 
     expect($blocks)->toBe($expected)
         ->and($headings)->toBe(['Ubuntu 26.04 and 26.10', 'Fedora 44 and 45', 'Other distributions, with Flatpak'])
