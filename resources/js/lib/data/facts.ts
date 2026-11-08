@@ -115,6 +115,7 @@ export interface FactsData {
         neverSynced: string[];
     };
     limits: Record<string, Limit>;
+    account: { teamInviteDays: number; evidence: string };
 }
 
 /**

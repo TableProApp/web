@@ -24,10 +24,12 @@ function factsUnique(array $list, string $label): void
 it('is dated and has the sections the pages read', function (): void {
     expect(factsJson())->toHaveKeys([
         'verifiedAt', 'links', 'privacyPolicies', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
-        'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits',
+        'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits', 'account',
     ])
         ->and(factsJson()['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/')
-        ->and(factsJson()['verifiedAt'] <= now()->toDateString())->toBeTrue('verifiedAt is in the future');
+        ->and(factsJson()['verifiedAt'] <= now()->toDateString())->toBeTrue('verifiedAt is in the future')
+        ->and(factsJson()['account']['teamInviteDays'])->toBeInt()->toBeGreaterThan(0)
+        ->and(factsJson()['account']['evidence'])->toContain('INVITE_VALID_DAYS');
 });
 
 it('links only over HTTPS, and to the App Store destination platforms.json has', function (): void {
