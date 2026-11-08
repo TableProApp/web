@@ -10,24 +10,44 @@
     "header": {
         "title": "Unduh TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Dirilis {date}.",
+        "universal": "Aplikasi universal. Memerlukan {requirement}.",
+        "requires": "Memerlukan {requirement}.",
+        "linux": "Berjalan di {distributions}.",
+        "free": "Gratis. Memerlukan {requirement}.",
+        "other": "TablePro berjalan di {platforms}."
+    },
+    "started": {
+        "title": "Unduhan Anda sudah dimulai.",
+        "retry": "Jika belum, <link>unduh lagi</link>.",
+        "steps": [
+            "Buka {file}.",
+            "Seret TablePro ke Aplikasi.",
+            "Buka TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Salinan Homebrew diperbarui secara terpisah dan mungkin tertinggal dari rilis terbaru. Jika versi lama terinstal, pilih <ui>TablePro > Check for Updates…</ui> untuk mendapatkan versi terbaru."
-        },
-        "signing": "TablePro ditandatangani dengan Developer ID dan dinotarisasi Apple, sehingga Anda tidak perlu mengubah pengaturan keamanan untuk membukanya.",
-        "source": "Build dari kode sumber (AGPLv3)"
+        "text": "Memerlukan {requirement}, di {architectures}. TablePro memperbarui dirinya sendiri.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Distribusi lain, lewat Flatpak",
+        "architectures": "Build untuk {architectures}. Manajer paket Anda memilih yang tepat dan terus memperbaruinya.",
+        "packages": "Paket di GitHub"
     },
     "ios": {
         "link": "TablePro untuk {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro tidak tersedia untuk {platforms} dan tidak ada tanggal rilis.",
-        "faq": "Pertanyaan tentang platform di halaman Pertanyaan umum"
+        "body": "{platform} menyusul nanti."
     },
-    "olderVersions": {
-        "title": "Versi lama",
-        "releases": "Semua rilis di GitHub",
-        "changelog": "Catatan perubahan (bahasa Inggris)"
+    "more": {
+        "title": "Rilis dan kode sumber",
+        "releases": "Versi lama di GitHub",
+        "source": "Build dari kode sumber (AGPLv3)",
+        "changelog": "Catatan perubahan"
     }
 }

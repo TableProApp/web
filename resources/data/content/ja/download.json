@@ -10,24 +10,44 @@
     "header": {
         "title": "TablePro をダウンロード"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "{date} にリリースされました。",
+        "universal": "ユニバーサルアプリです。{requirement}が必要です。",
+        "requires": "{requirement}が必要です。",
+        "linux": "{distributions} で動作します。",
+        "free": "無料です。{requirement}が必要です。",
+        "other": "TablePro は {platforms} で動作します。"
+    },
+    "started": {
+        "title": "ダウンロードを開始しました。",
+        "retry": "開始されなかった場合は、<link>もう一度ダウンロード</link>してください。",
+        "steps": [
+            "{file} を開きます。",
+            "TablePro をアプリケーションフォルダーにドラッグします。",
+            "TablePro を開きます。"
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Homebrew の配布版は別途更新されるため、新しいリリースより遅れる場合があります。古いバージョンが入った場合は、<ui>TablePro > Check for Updates…</ui> を選んで最新バージョンを取得してください。"
-        },
-        "signing": "TablePro は Developer ID で署名され、Apple の公証を受けています。開くためにセキュリティ設定を変更する必要はありません。",
-        "source": "ソースからビルド（AGPLv3）"
+        "text": "{requirement}が必要です。{architectures} に対応しています。TablePro は自動でアップデートされます。",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "その他のディストリビューション（Flatpak）",
+        "architectures": "{architectures} 向けのビルドがあります。パッケージマネージャーが適切なものを選び、最新の状態に保ちます。",
+        "packages": "GitHub のパッケージ"
     },
     "ios": {
         "link": "{devices} 版 TablePro"
     },
     "otherPlatforms": {
-        "body": "TablePro は {platforms} に対応していません。リリース日の予定もありません。",
-        "faq": "FAQ のプラットフォームに関する質問"
+        "body": "{platform} 版は後日提供予定です。"
     },
-    "olderVersions": {
-        "title": "以前のバージョン",
-        "releases": "GitHub の全リリース",
-        "changelog": "変更履歴（英語）"
+    "more": {
+        "title": "リリースとソースコード",
+        "releases": "GitHub の以前のバージョン",
+        "source": "ソースからビルド（AGPLv3）",
+        "changelog": "変更履歴"
     }
 }

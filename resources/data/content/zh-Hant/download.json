@@ -10,24 +10,44 @@
     "header": {
         "title": "下載 TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "發佈於 {date}。",
+        "universal": "通用 App。需要 {requirement}。",
+        "requires": "需要 {requirement}。",
+        "linux": "執行於 {distributions}。",
+        "free": "免費。需要 {requirement}。",
+        "other": "TablePro 可在 {platforms} 上執行。"
+    },
+    "started": {
+        "title": "下載已開始。",
+        "retry": "如果沒有開始，請<link>重新下載</link>。",
+        "steps": [
+            "開啟 {file}。",
+            "將 TablePro 拖到「應用程式」。",
+            "開啟 TablePro。"
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "Homebrew 的版本獨立更新，可能落後於新版本。若安裝了舊版本，請選擇 <ui>TablePro > 檢查更新…</ui>（TablePro > Check for Updates…）取得目前版本。"
-        },
-        "signing": "TablePro 使用 Developer ID 簽署並經 Apple 公證，開啟時無需更改任何安全性設定。",
-        "source": "從原始碼建置（AGPLv3）"
+        "text": "需要 {requirement}，支援 {architectures}。TablePro 會自動更新。",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "其他發行版，透過 Flatpak",
+        "architectures": "提供 {architectures} 版本。您的套件管理器會選擇合適的版本並保持更新。",
+        "packages": "GitHub 上的套件"
     },
     "ios": {
         "link": "{devices} 版 TablePro"
     },
     "otherPlatforms": {
-        "body": "TablePro 不支援 {platforms}，也沒有發佈日期。",
-        "faq": "常見問題中的平台說明"
+        "body": "{platform} 版將於之後推出。"
     },
-    "olderVersions": {
-        "title": "舊版本",
-        "releases": "GitHub 上的所有版本",
-        "changelog": "更新紀錄（英文）"
+    "more": {
+        "title": "版本與原始碼",
+        "releases": "GitHub 上的舊版本",
+        "source": "從原始碼建置（AGPLv3）",
+        "changelog": "更新紀錄"
     }
 }

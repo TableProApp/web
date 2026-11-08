@@ -10,24 +10,44 @@
     "header": {
         "title": "Scarica TablePro"
     },
+    "hero": {
+        "title": "TablePro {version}",
+        "released": "Rilasciata il {date}.",
+        "universal": "App universale. Richiede {requirement}.",
+        "requires": "Richiede {requirement}.",
+        "linux": "Funziona su {distributions}.",
+        "free": "Gratuita. Richiede {requirement}.",
+        "other": "TablePro funziona su {platforms}."
+    },
+    "started": {
+        "title": "Il download è iniziato.",
+        "retry": "Se non è partito, <link>scaricalo di nuovo</link>.",
+        "steps": [
+            "Apri {file}.",
+            "Trascina TablePro in Applicazioni.",
+            "Apri TablePro."
+        ]
+    },
     "mac": {
-        "homebrew": {
-            "title": "Homebrew",
-            "trails": "La copia di Homebrew viene aggiornata separatamente e può essere in ritardo rispetto a un nuovo rilascio. Se installa una versione precedente, scegli <ui>TablePro > Check for Updates…</ui> per ottenere quella attuale."
-        },
-        "signing": "TablePro è firmato con un Developer ID e autenticato da Apple, quindi non devi modificare alcuna impostazione di sicurezza per aprirlo.",
-        "source": "Compila dal sorgente (AGPLv3)"
+        "text": "Richiede {requirement}, su {architectures}. TablePro si aggiorna da solo.",
+        "homebrew": "Homebrew"
+    },
+    "linux": {
+        "distribution": "{name} {versions}",
+        "flatpak": "Altre distribuzioni, con Flatpak",
+        "architectures": "Build per {architectures}. Il tuo gestore di pacchetti sceglie quella giusta e la mantiene aggiornata.",
+        "packages": "Pacchetti su GitHub"
     },
     "ios": {
         "link": "TablePro per {devices}"
     },
     "otherPlatforms": {
-        "body": "TablePro non è disponibile per {platforms} e non c’è una data di rilascio.",
-        "faq": "Domande sulle piattaforme nelle FAQ"
+        "body": "{platform} arriverà più avanti."
     },
-    "olderVersions": {
-        "title": "Versioni precedenti",
-        "releases": "Tutti i rilasci su GitHub",
-        "changelog": "Registro delle modifiche (inglese)"
+    "more": {
+        "title": "Rilasci e codice sorgente",
+        "releases": "Versioni precedenti su GitHub",
+        "source": "Compila dal sorgente (AGPLv3)",
+        "changelog": "Registro delle modifiche"
     }
 }
