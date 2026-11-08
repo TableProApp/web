@@ -78,7 +78,7 @@ export default function IntegrationShow({ content, integration, dates }: Integra
                 eyebrow={
                     <div className="mb-8 md:mb-10">
                         <Breadcrumbs items={[{ label: m.seo.breadcrumbs.integrations, href: '/integrations' }, { label: integration.name }]} />
-                        <DatabaseMark icon={integration.icon?.src} name={integration.name} size={40} className="mt-6 md:mt-8" />
+                        <DatabaseMark icon={integration.icon?.src} name={integration.name} size={40} tile={false} className="mt-6 md:mt-8" />
                     </div>
                 }
                 title={integration.name}
