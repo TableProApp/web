@@ -9,40 +9,29 @@
     },
     "breadcrumb": "Giới thiệu",
     "header": {
-        "title": "Giới thiệu về TablePro",
-        "lead": "Đội ngũ TablePro phát triển TablePro. License và nhà tài trợ là nguồn kinh phí phát triển."
+        "title": "Một database client được phát triển công khai.",
+        "lead": "Đội ngũ TablePro phát triển TablePro cho Mac, Linux, iPhone và iPad. License và nhà tài trợ là nguồn kinh phí phát triển."
     },
-    "maker": {
-        "title": "Người phát triển",
-        "body": "Đội ngũ TablePro phát triển ứng dụng cho Mac cùng các plugin, ứng dụng cho Linux, ứng dụng cho iPhone và iPad và website này.",
-        "identity": "Đội ngũ này phát hành TablePro trên <appStore>App Store</appStore> và nhận tài trợ qua <sponsorsProgram>GitHub Sponsors</sponsorsProgram>.",
-        "facts": {
-            "created": "Ngày tạo kho mã nguồn",
-            "email": "Email liên hệ"
-        }
+    "principles": {
+        "title": "Nguyên tắc",
+        "items": [
+            { "id": "native", "name": "Native", "text": "Mỗi nền tảng có một ứng dụng riêng, viết bằng toolkit của chính nền tảng đó: Swift với AppKit và SwiftUI trên thiết bị Apple, Rust với GTK 4 trên Linux." },
+            { "id": "open", "name": "Mã nguồn mở", "text": "Toàn bộ mã nguồn nằm trên GitHub theo giấy phép AGPLv3, kể cả các tính năng trả phí." },
+            { "id": "private", "name": "Riêng tư", "text": "Mật khẩu nằm trong keychain của hệ thống: Keychain trên thiết bị Apple, keyring của Secret Service trên Linux." },
+            { "id": "independent", "name": "Độc lập", "text": "Tiền bán license và tiền tài trợ là nguồn kinh phí của TablePro. TablePro không có nhà đầu tư và không bán dữ liệu." }
+        ]
     },
-    "funding": {
-        "title": "Nguồn kinh phí",
-        "body": "Tiền bán license và tiền tài trợ là nguồn kinh phí của TablePro. TablePro không có nhà đầu tư và không bán dữ liệu.",
-        "plans": "License Pro hoặc Team bổ sung một số tính năng tùy chọn; <pricing>trang bảng giá</pricing> liệt kê các tính năng này.",
-        "sponsors": "Các nhà tài trợ hiện tại và quyền lợi của từng mức tài trợ có trên <sponsors>trang nhà tài trợ</sponsors>."
-    },
-    "source": {
-        "title": "Mã nguồn",
-        "body": "Các ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí, trong cùng một <source>kho mã nguồn trên GitHub</source>.",
-        "license": "<agpl>Văn bản giấy phép AGPL</agpl> nằm trong cùng kho mã nguồn đó."
+    "facts": {
+        "title": "Thông tin",
+        "maker": { "term": "Nhà phát triển", "text": "Đội ngũ TablePro" },
+        "created": { "term": "Ngày tạo kho mã nguồn" },
+        "source": { "term": "Mã nguồn", "text": "<source>TableProApp/TablePro</source> trên GitHub" },
+        "license": { "term": "Giấy phép", "text": "AGPLv3, <agpl>văn bản giấy phép</agpl> nằm trong kho mã nguồn" },
+        "funding": { "term": "Nguồn kinh phí", "text": "<pricing>License Pro và Team</pricing> cùng <sponsors>các nhà tài trợ</sponsors>" }
     },
     "contact": {
         "title": "Liên hệ",
-        "email": "Câu hỏi về hỗ trợ, license và tài khoản, bạn gửi tới <email>{email}</email>.",
-        "github": "Báo lỗi và đề xuất tính năng trên <issues>GitHub Issues</issues>; câu hỏi và ý tưởng trên <discussions>GitHub Discussions</discussions>."
-    },
-    "policies": {
-        "title": "Chính sách",
-        "body": "Xem <privacy>chính sách quyền riêng tư</privacy>, <terms>Điều khoản sử dụng</terms> hoặc <security>thông tin bảo mật</security>."
-    },
-    "brand": {
-        "title": "Thương hiệu",
-        "body": "<brand>Hướng dẫn thương hiệu</brand> giải thích cách dùng tên và logo TablePro, kèm các file logo để tải về."
+        "body": "Hãy gửi email tới <email>{email}</email> về hỗ trợ, license hay tài khoản, hoặc báo lỗi trên <issues>GitHub</issues>.",
+        "chat": "Bắt đầu chat"
     }
 }

@@ -9,40 +9,29 @@
     },
     "breadcrumb": "Acerca de",
     "header": {
-        "title": "Acerca de TablePro",
-        "lead": "El equipo de TablePro desarrolla TablePro. Las licencias y los patrocinadores financian su desarrollo."
+        "title": "Un cliente de bases de datos desarrollado en abierto.",
+        "lead": "El equipo de TablePro desarrolla TablePro para Mac, Linux, iPhone y iPad. Las licencias y los patrocinadores lo financian."
     },
-    "maker": {
-        "title": "Quién lo crea",
-        "body": "El equipo de TablePro crea la app para Mac y sus plugins, la app para Linux, la app para iPhone y iPad y este sitio web.",
-        "identity": "El equipo publica TablePro en la <appStore>App Store</appStore> y recibe apoyo a través de <sponsorsProgram>GitHub Sponsors</sponsorsProgram>.",
-        "facts": {
-            "created": "Repositorio creado el",
-            "email": "Correo electrónico"
-        }
+    "principles": {
+        "title": "Principios",
+        "items": [
+            { "id": "native", "name": "Nativo", "text": "Una app por plataforma, cada una con su propio toolkit: Swift con AppKit y SwiftUI en los dispositivos de Apple, Rust con GTK 4 en Linux." },
+            { "id": "open", "name": "Abierto", "text": "Todo el código está en GitHub bajo AGPLv3, incluidas las funciones de pago." },
+            { "id": "private", "name": "Privado", "text": "Las contraseñas se quedan en el llavero de tu sistema: el Llavero en los dispositivos de Apple, un llavero de Secret Service en Linux." },
+            { "id": "independent", "name": "Independiente", "text": "Las licencias de pago y los patrocinadores financian TablePro. No tiene inversores ni vende datos." }
+        ]
     },
-    "funding": {
-        "title": "Financiación",
-        "body": "Las licencias de pago y los patrocinadores financian TablePro. No tiene inversores ni vende datos.",
-        "plans": "Una licencia Pro o Team añade funciones opcionales; la <pricing>página de precios</pricing> las enumera.",
-        "sponsors": "Los patrocinadores actuales y lo que incluye cada nivel aparecen en la <sponsors>página de patrocinadores</sponsors>."
-    },
-    "source": {
-        "title": "Código fuente",
-        "body": "Las apps son de código abierto bajo AGPLv3, incluido el código de las funciones de pago, en un <source>repositorio en GitHub</source>.",
-        "license": "El <agpl>texto de la licencia</agpl> está en el mismo repositorio."
+    "facts": {
+        "title": "Datos clave",
+        "maker": { "term": "Creado por", "text": "El equipo de TablePro" },
+        "created": { "term": "Repositorio creado el" },
+        "source": { "term": "Código fuente", "text": "<source>TableProApp/TablePro</source> en GitHub" },
+        "license": { "term": "Licencia", "text": "AGPLv3, con el <agpl>texto de la licencia</agpl> en el repositorio" },
+        "funding": { "term": "Financiado por", "text": "<pricing>Licencias Pro y Team</pricing> y <sponsors>patrocinadores</sponsors>" }
     },
     "contact": {
         "title": "Contacto",
-        "email": "Las consultas sobre soporte, licencias y cuentas se envían a <email>{email}</email>.",
-        "github": "Los errores y las solicitudes de funciones se publican en <issues>GitHub Issues</issues>; las preguntas y las ideas, en <discussions>GitHub Discussions</discussions>."
-    },
-    "policies": {
-        "title": "Políticas",
-        "body": "Consulta la <privacy>política de privacidad</privacy>, los <terms>términos de uso</terms> o los <security>detalles de seguridad</security>."
-    },
-    "brand": {
-        "title": "Marca",
-        "body": "Las <brand>pautas de marca</brand> explican cómo usar el nombre y el logotipo de TablePro, e incluyen los archivos del logotipo para descargar."
+        "body": "Escribe a <email>{email}</email> sobre soporte, licencias o tu cuenta, o informa de un problema en <issues>GitHub</issues>.",
+        "chat": "Iniciar chat en directo"
     }
 }
