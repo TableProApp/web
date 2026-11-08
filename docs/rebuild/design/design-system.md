@@ -1750,32 +1750,34 @@ None of these pages is indexed (`noindex`). The single robots tag comes from the
 
 ### 8.21 Integrations hub (`/integrations`, every locale)
 
+Rebuilt 2026-11-08 on the feature-page grid.
+
 ```
-PageHeader       H1 · lead · Build an integration ↗ (docs)
-                 IntegrationFilters: Search · Category · TablePro app · Type · [Show results]
-p role=status    "{count} integrations"
-IntegrationList  one row per entry, Official first; or EmptyState "No integrations match" · Clear filters →
-#publish         How to submit ↗ · Listing policy ↗ (the registry on GitHub) · owners' names and logos line
+Hero         H1 · one sentence · Build an integration ↗ (docs)
+#{category}  one band per category, in the order the sorted list first reaches it (ai-clients, command-line, …)
+             cols 1–3: the category label   cols 4–12: ruled rows, mark 40 · name 20px · tagline · "By {publisher}" or "{tier}, by {publisher}"
+#publish     closing band: one sentence · How to submit ↗ · Listing policy ↗ · the owners' names and logos line
 ```
 
-- **The one page with search and filters**, by the owner's decision of 2026-10-10. §8.9's "no filter" rule still holds for the blog.
-- One filter function serves the server render and the browser. Without JavaScript the form reloads the page with the query; with it, results follow each change and the address bar is replaced, never pushed. The canonical stays `/integrations`.
-- Another language lists an entry only once its tagline there is translated from the current English summary. Each row links the English detail page with "(English)".
+- No search and no filters while the registry is short; add them back past about twenty entries (owner, 2026-11-08).
+- An entry sits under its first category the content file labels, in the registry's order. Official first, then by name, inside each band.
+- Another language lists an entry only once its tagline there is translated from the current English summary. Each row links the English detail page with "(English)"; the name's link covers the row.
 
 ### 8.22 Integration page (`/integrations/{slug}`, English only)
 
+Rebuilt 2026-11-08 on the feature-page grid.
+
 ```
-Breadcrumbs  Integrations / {name}
-cols 1-8     mark 40 · H1 {name} · lead {summary} · By {publisher} · type Badge · Closed source · Archived
+Hero         Integrations / {name} · mark 40 · H1 {name} · lead {summary} · the description under it
              Callout warning when archived · install action by type (button ↗, or a Homebrew CodeBlock) · Source code ↗
-cols 9-12    Card "Details": Publisher · Category · Works with · TablePro app · License · Listed · Last checked
-#about       description paragraphs, as text
-#screenshots CellGrid, 2 columns from 768
-#uses        "What it uses": TablePro features (docs ↗) · Reads · Changes · Callouts for lowered Safe Mode, internet, account, cost
-#support     Report a problem ↗ (registry issue form) · Get help from {publisher} ↗ · Documentation ↗ · Callout when not Official
+#details     term rows: Made by · Type · Category · Works with · TablePro app (Mac, Linux, iPhone & iPad, each with its version) · License · Listed · Last checked
+#screenshots 2 columns from 640, only when the entry has them
+#uses        term rows: TablePro features (docs ↗) · Reads · Changes · Internet · Account · Price; the access note; a warning Callout only for a lowered Safe Mode
+#support     closing band: "Something wrong with this listing? Report it on GitHub." · Get help from {publisher} ↗ · Read the docs ↗ · the disclaimer when not Official
 ```
 
-`/vi/integrations/{slug}` and the other languages answer 404 with a link to the English page.
+- `#about` lands on `#details`.
+- `/vi/integrations/{slug}` and the other languages answer 404 with a link to the English page.
 
 ### 8.23 Security (`/security`, every locale)
 
