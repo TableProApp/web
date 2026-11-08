@@ -107,7 +107,9 @@ it('lists the hub as one band per category, with no search or filters', function
 
     expect($sections)->toBe(['top', 'command-line', 'automation', 'publish'])
         ->and($document->querySelector('main form, main input, main select'))->toBeNull()
-        ->and($document->querySelector('#command-line a[href="/integrations/acme-cli"]'))->not->toBeNull();
+        ->and($document->querySelector('#command-line a[href="/integrations/acme-cli"]'))->not->toBeNull()
+        // An app icon brings its own ground, so it gets no white tile in dark mode.
+        ->and($document->querySelector('#command-line li span[aria-hidden="true"]')->getAttribute('class'))->not->toContain('dark:bg-');
 })->group('ssr');
 
 it('sets a detail page as a hero, two sets of rows and the way to report a problem', function (): void {
