@@ -5,40 +5,19 @@
     },
     "header": {
         "title": "Integrations",
-        "lead": "Apps and tools that work with TablePro.",
+        "lead": "Apps and tools that work with TablePro, built by the TablePro team or by others.",
         "build": "Build an integration"
-    },
-    "filters": {
-        "label": "Filter integrations",
-        "search": "Search",
-        "category": {
-            "label": "Category",
-            "all": "All categories"
-        },
-        "platform": {
-            "label": "TablePro app",
-            "all": "All apps"
-        },
-        "tier": {
-            "label": "Type",
-            "all": "All types"
-        },
-        "submit": "Show results",
-        "count": {
-            "one": "{count} integration",
-            "other": "{count} integrations"
-        },
-        "empty": "No integrations match these filters.",
-        "clear": "Clear filters"
     },
     "publish": {
         "title": "List your integration",
+        "sentence": "Built something that works with TablePro? Send it to the registry on GitHub.",
         "guide": "How to submit",
         "policy": "Listing policy"
     },
     "notice": "Names and logos belong to their owners. Only Official integrations are built by TablePro.",
     "labels": {
         "by": "By {publisher}",
+        "byTier": "{tier}, by {publisher}",
         "closedSource": "Closed source",
         "tiers": {
             "official": "Official",
@@ -72,7 +51,8 @@
         "source": "Source code",
         "details": {
             "title": "Details",
-            "publisher": "Publisher",
+            "publisher": "Made by",
+            "tier": "Type",
             "category": "Category",
             "host": "Works with",
             "hostVersion": "{host} {version} or later",
@@ -82,7 +62,6 @@
             "added": "Listed",
             "verified": "Last checked"
         },
-        "about": "About",
         "screenshots": "Screenshots",
         "uses": {
             "title": "What it uses",
@@ -133,11 +112,16 @@
             "payment": {
                 "optional": "Free, with paid options",
                 "paid": "Paid"
+            },
+            "terms": {
+                "internet": "Internet",
+                "account": "Account",
+                "payment": "Price"
             }
         },
         "support": {
             "title": "Help",
-            "report": "Report a problem with this listing",
+            "sentence": "Something wrong with this listing? <report>Report it on GitHub</report>.",
             "help": "Get help from {publisher}",
             "docs": "Read the docs"
         },

@@ -39,7 +39,7 @@ function pageFamilies(): array
         'landing.databaseClient' => ['Databases/Show', ['content', 'engine', 'slug', 'platforms']],
         'landing.compare.index' => ['Compare/Index', ['content', 'products.0', 'tablepro']],
         'landing.compare' => ['Compare/Show', ['content', 'product', 'slug', 'tablepro']],
-        'landing.integrations.index' => ['Integrations/Index', ['content', 'integrations', 'filters']],
+        'landing.integrations.index' => ['Integrations/Index', ['content', 'integrations']],
         'landing.integrations.show' => ['Integrations/Show', ['content.show', 'integration', 'dates']],
     ];
 }

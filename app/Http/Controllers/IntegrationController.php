@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\IntegrationCatalog;
 use App\Support\Localization\Locales;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
@@ -15,34 +14,29 @@ use InvalidArgumentException;
 
 /**
  * @phpstan-type Icon array{src: string, width: int, height: int}
- * @phpstan-type Summary array{slug: string, name: string, publisher: string, tier: string, categories: list<string>, platforms: list<string>, closedSource: bool, tagline: string, keywords: list<string>, icon: Icon|null}
- * @phpstan-type Filters array{q: string|null, category: string|null, platform: string|null, tier: string|null}
+ * @phpstan-type Summary array{slug: string, name: string, publisher: string, tier: string, group: string, closedSource: bool, tagline: string, icon: Icon|null}
  */
 class IntegrationController extends Controller
 {
     private const array TIERS = ['official', 'partner', 'community'];
 
     // The registry names the OS a TablePro app runs on; the site names the app.
-    private const array PLATFORMS = ['macos' => 'mac', 'ios' => 'ios', 'ipados' => 'ios'];
+    private const array PLATFORMS = ['macos' => 'mac', 'linux' => 'linux', 'ios' => 'ios', 'ipados' => 'ios'];
 
     private const array NETWORK = ['none', 'local', 'internet'];
 
     private const array PAYMENT = ['free', 'optional', 'paid'];
 
-    private const int QUERY_LENGTH = 100;
-
     private const string IMAGES = '/images/integrations/';
 
-    public function index(Request $request, ContentRepository $content, IntegrationCatalog $catalog): Response
+    public function index(ContentRepository $content, IntegrationCatalog $catalog): Response
     {
         $locale = App::getLocale();
         $page = $content->page('integrations/index', $locale);
-        $listed = $this->listed($catalog, $page, $content, $locale);
 
         return Inertia::render('Integrations/Index', [
             'content' => Arr::except($page, ['taglines', 'show']),
-            'integrations' => $listed,
-            'filters' => $this->filters($request, $listed),
+            'integrations' => $this->listed($catalog, $page, $content, $locale),
         ]);
     }
 
@@ -94,16 +88,21 @@ class IntegrationController extends Controller
                 continue;
             }
 
+            // The hub groups an entry under its first category the content file labels, in the registry's order.
+            $group = array_values(array_intersect($integration['categories'], $categories))[0] ?? null;
+
+            if ($group === null) {
+                continue;
+            }
+
             $listed[] = [
                 'slug' => $slug,
                 'name' => $integration['name'],
                 'publisher' => $integration['publisher']['name'],
                 'tier' => $this->tier($integration),
-                'categories' => $this->known($integration['categories'], $categories),
-                'platforms' => $this->platforms($integration['platforms']),
+                'group' => $group,
                 'closedSource' => $integration['closedSource'] === true,
                 'tagline' => $tagline,
-                'keywords' => array_values(array_filter($integration['keywords'] ?? [], 'is_string')),
                 'icon' => $this->image($integration['icon']['128'] ?? null),
             ];
         }
@@ -124,30 +123,6 @@ class IntegrationController extends Controller
         $taglines = is_array($page['taglines'] ?? null) ? $page['taglines'] : [];
 
         return array_filter($taglines, fn(mixed $tagline): bool => is_string($tagline) && trim($tagline) !== '');
-    }
-
-    /**
-     * @param  list<Summary>  $listed
-     * @return Filters
-     */
-    private function filters(Request $request, array $listed): array
-    {
-        $value = function (string $key, string $field) use ($request, $listed): ?string {
-            $value = $request->query($key);
-            $present = array_merge(...array_map(fn(array $entry): array => (array) $entry[$field], $listed));
-
-            return is_string($value) && in_array($value, $present, true) ? $value : null;
-        };
-
-        $q = $request->query('q');
-        $q = is_string($q) ? trim(mb_substr(trim($q), 0, self::QUERY_LENGTH)) : '';
-
-        return [
-            'q' => $q !== '' ? $q : null,
-            'category' => $value('category', 'categories'),
-            'platform' => $value('platform', 'platforms'),
-            'tier' => $value('tier', 'tier'),
-        ];
     }
 
     /**
@@ -182,6 +157,7 @@ class IntegrationController extends Controller
             'platforms' => $this->platforms($integration['platforms']),
             'versions' => [
                 'mac' => $this->text($versions['macos'] ?? null),
+                'linux' => $this->text($versions['linux'] ?? null),
                 'ios' => $this->text($versions['ios'] ?? $versions['ipados'] ?? null),
             ],
             'host' => is_array($host) ? [

@@ -9,8 +9,8 @@
 
 ## The content file
 
-- `seo`, `header`, `filters`, `publish`, `notice`: the hub.
-- `labels`: shared by the hub and the detail page (tiers, categories, "By {publisher}", "Closed source").
+- `seo`, `header`, `publish`, `notice`: the hub. It has one band per category and no filters (owner, 2026-11-08).
+- `labels`: shared by the hub and the detail page (tiers, categories, "By {publisher}", "Closed source"). An entry sits in the hub band of its first category that `labels.categories` names, in the registry's order; an entry with no labelled category stays off the hub.
 - `show`: the detail page. It renders in English only today, but the keys exist in every language, so translating the page later is a content change.
 - `show.uses.surface.{id}.docs`: a docs.tablepro.app path, the same in every language.
 - `taglines`: one sentence per slug. The English value is the registry `summary` it was translated from.
