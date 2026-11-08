@@ -14,7 +14,7 @@ export default function IntegrationList({ integrations, labels }: IntegrationLis
     const english = locale !== DEFAULT_LOCALE;
 
     return (
-        <ul className="divide-y divide-rule border-y border-rule">
+        <ul className="divide-y divide-rule border-t border-rule">
             {integrations.map((integration) => (
                 <li key={integration.slug} className="group relative flex items-start gap-4 py-5">
                     <DatabaseMark icon={integration.icon?.src} name={integration.name} size={40} tile={false} className="mt-0.5" />
