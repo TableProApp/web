@@ -1535,8 +1535,8 @@ Hero #top    app icon (64, 80 from 768) · H1 "TablePro 0.85" (Home's size) · "
 - **After the click.** The DMG action, in the hero or the Mac band, gives way in place to "Your download has started.
   If it didn't, download again." (the same link, `download-retry`) and three numbered steps, and takes focus. Only when
   a release source answered; with none the button opens GitHub's latest release and nothing claims a download.
-- **Commands** wrap at spaces with a hanging indent, and a long URL after a slash, so nothing scrolls on a phone. The
-  copy button says Copy and Copied.
+- **Commands** keep one line each and the block scrolls sideways, as a terminal does (owner, 2026-11-08). The copy
+  button says Copy and Copied.
 - **QR code** of the App Store URL, drawn on the server by `lib/qr.ts` (byte mode, level M), black on white in both
   themes with its quiet zone. Hidden below 640px and on an iPhone or iPad. `tests/js/qr.test.ts` decodes it.
 - **Ids.** `#mac`, `#linux`, `#ios` are the bands; `#updates` (Security's "Download and updates") lands on the Mac
