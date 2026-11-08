@@ -10,38 +10,46 @@
     "breadcrumb": "Sponsor",
     "header": {
         "title": "Sponsor",
-        "lead": "TablePro è open source. Gli sponsor pagano il tempo dedicato a svilupparlo e mantenerlo.",
+        "lead": "Le licenze e gli sponsor di questa pagina finanziano TablePro, che non ha investitori.",
         "action": "Sponsorizza su GitHub"
     },
-    "companies": {
-        "title": "Aziende",
+    "places": {
         "open": {
-            "one": "{count} posto su {total} è libero nella home page.",
-            "other": "{count} posti su {total} sono liberi nella home page."
+            "one": "{count} posto su {total} è libero nella home page",
+            "other": "{count} posti su {total} sono liberi nella home page"
         },
-        "full": "Tutti i {total} posti nella home page sono occupati."
-    },
-    "people": {
-        "title": "Persone"
+        "full": "Tutti i {total} posti nella home page sono occupati"
     },
     "tiers": {
-        "title": "Livelli",
-        "lead": {
-            "one": "Sponsorizza ogni mese, oppure una volta sola per {count} mese con lo stesso posizionamento.",
-            "other": "Sponsorizza ogni mese, oppure una volta sola per {count} mesi con lo stesso posizionamento."
-        },
-        "caption": "Livelli di sponsorizzazione con il prezzo mensile, il prezzo una tantum e cosa include ciascuno",
-        "columns": {
-            "monthly": "Mensile",
-            "oneTime": "Una tantum",
-            "benefit": "Cosa include"
-        },
-        "oneTimePrice": "{price} una tantum",
-        "benefit": {
-            "name": "Il tuo nome con un link in questa pagina e nel README di TablePro.",
-            "homepage": "Il tuo logo con un link nella home page, in questa pagina e nel README di TablePro. La home page ha {total} posti.",
-            "lead": "Il tuo logo per primo e più grande nella home page, in questa pagina e nel README."
-        },
-        "link": "Sponsorizza TablePro su GitHub"
+        "monthly": "{price} al mese",
+        "oneTime": "o {price} una tantum",
+        "open": "<open>Libero.</open> {benefit}",
+        "items": {
+            "lead": {
+                "title": "Sponsor principale",
+                "benefit": "Il tuo logo per primo e più grande di tutti nella home page, in questa pagina e nel README di TablePro."
+            },
+            "homepage": {
+                "title": "Logo",
+                "benefit": "Il tuo logo con un link nella home page, in questa pagina e nel README di TablePro."
+            },
+            "name": {
+                "title": "Nome",
+                "benefit": "Il tuo nome con un link in questa pagina e nel README di TablePro."
+            }
+        }
+    },
+    "finePrint": {
+        "title": "Condizioni",
+        "rows": [
+            { "term": "Pagamento unico", "text": "Paga una volta sola {multiplier} volte il prezzo mensile per tenere lo stesso posto per {months} mesi, se ce n’è uno libero." },
+            { "term": "Alla fine", "text": "Il logo o il nome viene tolto al controllo successivo con GitHub Sponsors." },
+            { "term": "Sponsor privati", "text": "Una sponsorizzazione che rendi privata su GitHub non viene mai nominata qui né nel README." },
+            { "term": "Il tuo logo", "text": "Il tuo file, mai ricolorato. Manda anche una versione per il tema scuro." }
+        ]
+    },
+    "closing": {
+        "title": "Sostieni TablePro",
+        "sentence": "Scegli un livello su GitHub Sponsors, oppure scrivi a <email>{email}</email> se la tua azienda ha prima una domanda."
     }
 }

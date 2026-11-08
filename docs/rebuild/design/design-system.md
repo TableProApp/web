@@ -593,7 +593,7 @@ Repo key:
 | `IntegrationFilters` | P | **New** | — | `/integrations` only: a `role="search"` GET form of native controls (search, category, TablePro app, type). Results update as you type once the page has hydrated |
 | `IntegrationList` | P | **New** | — | Integrations as ruled rows, rail to rail: mark, name, publisher, type, tagline. Not a card grid |
 | `DatabaseMark` | P | **Refactor** | `ui/database-mark.tsx` | Original colours, no `grayscale` / `opacity-40` / `invert`. Uses `iconDark` from data or a light tile |
-| `SponsorList` | P | **Refactor** | `sponsors/sponsor-grid.tsx` | The homepage-placed sponsors from `sponsors.json`, then one invite cell. Each link named |
+| `SponsorLink` | P | **Built** | `sponsors/sponsor-link.tsx` | One sponsor's logo, sized by area, linking to its site; the homepage band and `/sponsors` share it. Each link named |
 | `ProseArticle` | P | **Refactor** | `.blog-article` CSS, `ui/prose-block.tsx` | Blog and legal. Body in `--foreground`. Permalink glyph kept out of the heading's accessible name |
 | `TableOfContents` | P | **New** (optional) | — | Legal and long guides: sticky at ≥ 1280, a `Disclosure` below that |
 | `AccountBar`, `AccountNav` | A | **Refactor** | A `dashboard/account-bar.tsx`, `nav-rail.tsx` | Adds language and theme. Rail bar uses `--accent-indicator` |
@@ -987,13 +987,13 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Always next to the visible name; the mark is `alt=""`.
 - Integration icons follow the same rules, as PNG only: no third-party SVG is served from the site's origin.
 
-**SponsorList:**
+**SponsorLink:**
 
-- Section 3 on the homepage, and the `#companies` section of `/sponsors`.
-- An H2 in the `h3` style, then one cell per sponsor with the logo 28px tall. A `lead` sponsor spans two cells with a 44px logo.
-- Each link is named (visible name in `caption` under the logo, or `aria-label`) with `rel="sponsored noopener"`.
-- On the homepage, an invite cell after the last logo ("Your logo here", "7 of 12 open") and the heading link both go to `/sponsors`; the cell is hidden when no place is open. Only `/sponsors` links to GitHub Sponsors.
-- Logos follow the DatabaseMark rules in dark mode.
+- Section 3 on the homepage, and the `#lead` and `#homepage` bands of `/sponsors`.
+- Sized by area, so a long wordmark and a square mark carry the same weight: 4200px² (lead 9000) up to 34px tall (lead 48). `/sponsors` draws them 1.5 times as large from 640px.
+- No cell, border or tile. A square mark shows the sponsor's name beside it; a wordmark names the link for screen readers only. `rel="sponsored noopener"`.
+- In dark mode, the sponsor's own dark file; a mark without one keeps its colours, a wordmark without one gives way to the name in text. Never a filter or recolouring.
+- On the homepage, "Your logo here" with the open places goes to `/sponsors`. Only `/sponsors` links to GitHub Sponsors.
 
 #### 5.3.19 ProseArticle and TableOfContents
 
@@ -1824,6 +1824,22 @@ Hero         statement H1 · one sentence naming the TablePro team; no actions
 
 - No person, photo, city or investor. Every principle states a fact the app or the repository shows.
 - `#maker`, `#funding` and `#source` land on `#facts`; `#policies` and `#brand` on `#contact`.
+
+### 8.26 Sponsors (`/sponsors`, every locale)
+
+Rebuilt 2026-11-08 like eslint.org/sponsors: about 200 words.
+
+```
+Hero         H1 · one sentence (licenses and sponsors pay, no investors) · Sponsor on GitHub ↗ · "7 of 12 homepage places are open"
+#lead        cols 1–3: tier name, "$250 a month", "or $2,500 once"   cols 4–12: what it gets, then the sponsor, or "Open." first
+#homepage    the same, the open places under the sentence, the logos (SponsorLink at 1.5x) in a wrapping row
+#name        the same, the names as links
+#fine-print  cols 1–3: Fine print   cols 4–12 at 42rem: term rows (paying once, when it ends, private sponsors, your logo)
+#sponsor     closing band: one sentence with the email, Sponsor on GitHub ↗
+```
+
+- Tiers come from `sponsors.json`, dearest first. No amount per sponsor, no total and no goal.
+- `#tiers` lands on `#lead`, `#companies` on `#homepage`, `#individuals` on `#name`.
 
 ---
 

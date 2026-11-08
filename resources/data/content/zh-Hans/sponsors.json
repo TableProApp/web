@@ -10,38 +10,46 @@
     "breadcrumb": "赞助商",
     "header": {
         "title": "赞助商",
-        "lead": "TablePro 是开源软件。赞助用于支付开发和维护所投入的时间。",
+        "lead": "TablePro 的资金来自许可证和本页的赞助商，没有投资者。",
         "action": "在 GitHub 上赞助"
     },
-    "companies": {
-        "title": "公司",
+    "places": {
         "open": {
-            "one": "首页共 {total} 个位置，还剩 {count} 个。",
-            "other": "首页共 {total} 个位置，还剩 {count} 个。"
+            "one": "首页共 {total} 个位置，还剩 {count} 个",
+            "other": "首页共 {total} 个位置，还剩 {count} 个"
         },
-        "full": "首页的 {total} 个位置已全部占满。"
-    },
-    "people": {
-        "title": "个人"
+        "full": "首页的 {total} 个位置已全部占满"
     },
     "tiers": {
-        "title": "赞助档位",
-        "lead": {
-            "one": "可以按月赞助，也可以一次性付款，在 {count} 个月内获得相同的展示位置。",
-            "other": "可以按月赞助，也可以一次性付款，在 {count} 个月内获得相同的展示位置。"
-        },
-        "caption": "各赞助档位的月付价格、一次性价格和权益",
-        "columns": {
-            "monthly": "月付",
-            "oneTime": "一次性",
-            "benefit": "权益"
-        },
-        "oneTimePrice": "一次性 {price}",
-        "benefit": {
-            "name": "在本页和 TablePro 的 README 中展示名字和链接。",
-            "homepage": "在首页、本页和 TablePro 的 README 中展示徽标和链接。首页共 {total} 个位置。",
-            "lead": "在首页、本页和 README 中，徽标排在最前并以更大尺寸展示。"
-        },
-        "link": "在 GitHub 上赞助 TablePro"
+        "monthly": "每月 {price}",
+        "oneTime": "或一次性支付 {price}",
+        "open": "<open>开放中。</open>{benefit}",
+        "items": {
+            "lead": {
+                "title": "首席",
+                "benefit": "在首页、本页和 TablePro 的 README 中，徽标排在最前并以最大尺寸展示。"
+            },
+            "homepage": {
+                "title": "徽标",
+                "benefit": "在首页、本页和 TablePro 的 README 中展示徽标和链接。"
+            },
+            "name": {
+                "title": "名字",
+                "benefit": "在本页和 TablePro 的 README 中展示名字和链接。"
+            }
+        }
+    },
+    "finePrint": {
+        "title": "细则",
+        "rows": [
+            { "term": "一次性支付", "text": "如有空位，一次性支付月费的 {multiplier} 倍，即可保留同一位置 {months} 个月。" },
+            { "term": "结束后", "text": "下次与 GitHub Sponsors 核对时，徽标或名字会被移除。" },
+            { "term": "私密赞助", "text": "在 GitHub 上设为私密的赞助，绝不会在本页或 README 中列出名字。" },
+            { "term": "您的徽标", "text": "使用您自己的文件，绝不改色。请同时提供深色模式的版本。" }
+        ]
+    },
+    "closing": {
+        "title": "赞助 TablePro",
+        "sentence": "在 GitHub Sponsors 上选择档位；贵公司如想先咨询，请发邮件至 <email>{email}</email>。"
     }
 }

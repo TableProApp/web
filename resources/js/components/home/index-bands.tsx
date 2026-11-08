@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
+import SponsorLink from '@/components/sponsors/sponsor-link';
 import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
 import { useI18n } from '@/i18n';
-import type { LogoSponsor } from '@/lib/data/sponsors';
 import { SPONSORS } from '@/lib/data/sponsors';
 import { onHomepage, openSlots } from '@/lib/sponsors';
 import { cn } from '@/lib/utils';
@@ -69,52 +69,6 @@ export function DatabaseBand({ content, engines }: { content: HomeContent['datab
     );
 }
 
-// Sized by area, so a long wordmark and a square mark carry the same weight.
-const AREA = { lead: 9000, homepage: 4200 } as const;
-const MAX_HEIGHT = { lead: 48, homepage: 34 } as const;
-
-const isMark = (sponsor: LogoSponsor): boolean => sponsor.logo.width / sponsor.logo.height < 1.6;
-
-function size(sponsor: LogoSponsor): { width: number; height: number } {
-    const kind = sponsor.placement === 'lead' ? 'lead' : 'homepage';
-    const ratio = sponsor.logo.width / sponsor.logo.height;
-    const height = Math.min(Math.sqrt(AREA[kind] / ratio), MAX_HEIGHT[kind]);
-
-    return { width: Math.round(height * ratio), height: Math.round(height) };
-}
-
-// No filter or recolouring ever touches a trademark (design-system §5.3.18). A dark mode logo is the sponsor's own
-// file; a mark without one keeps its colours, and a wordmark without one gives way to the sponsor's name in text.
-function SponsorLogo({ sponsor }: { sponsor: LogoSponsor }) {
-    const { width, height } = size(sponsor);
-    const { logo } = sponsor;
-    const image = (src: string, className?: string) => (
-        <img src={src} alt="" width={width} height={height} decoding="async" fetchPriority="low" style={{ width, height }} className={cn('max-w-none', className)} />
-    );
-
-    if (logo.dark !== null) {
-        return (
-            <>
-                {image(logo.light, 'block dark:hidden')}
-                {image(logo.dark, 'hidden dark:block')}
-            </>
-        );
-    }
-
-    if (isMark(sponsor)) {
-        return image(logo.light, 'block');
-    }
-
-    return (
-        <>
-            {image(logo.light, 'block dark:hidden')}
-            <span aria-hidden="true" translate="no" className="hidden text-[1.375rem] leading-none font-semibold tracking-[-0.02em] text-foreground dark:inline">
-                {sponsor.name}
-            </span>
-        </>
-    );
-}
-
 export function SponsorBand({ content }: { content: HomeContent['sponsors'] }) {
     const { plural } = useI18n();
     const open = openSlots(SPONSORS);
@@ -133,12 +87,7 @@ export function SponsorBand({ content }: { content: HomeContent['sponsors'] }) {
             <ul className="grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:flex sm:flex-wrap sm:gap-x-10 md:min-h-12">
                 {onHomepage(SPONSORS).map((sponsor) => (
                     <li key={sponsor.id}>
-                        <a href={sponsor.url} rel="sponsored noopener" className="flex items-center gap-2.5 rounded-control">
-                            <SponsorLogo sponsor={sponsor} />
-                            <span translate="no" className={isMark(sponsor) ? 'text-[0.9375rem] font-medium text-foreground' : 'sr-only'}>
-                                {sponsor.name}
-                            </span>
-                        </a>
+                        <SponsorLink sponsor={sponsor} />
                     </li>
                 ))}
             </ul>

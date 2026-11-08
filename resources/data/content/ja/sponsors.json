@@ -10,38 +10,46 @@
     "breadcrumb": "スポンサー",
     "header": {
         "title": "スポンサー",
-        "lead": "TablePro はオープンソースです。スポンサーの支援が、開発と保守に費やす時間を支えています。",
+        "lead": "TablePro はライセンスとこのページのスポンサーの支援で開発されており、投資家はいません。",
         "action": "GitHub でスポンサーになる"
     },
-    "companies": {
-        "title": "企業",
+    "places": {
         "open": {
-            "one": "トップページの {total} 枠のうち {count} 枠が空いています。",
-            "other": "トップページの {total} 枠のうち {count} 枠が空いています。"
+            "one": "トップページの {total} 枠のうち {count} 枠が空いています",
+            "other": "トップページの {total} 枠のうち {count} 枠が空いています"
         },
-        "full": "トップページの {total} 枠はすべて埋まっています。"
-    },
-    "people": {
-        "title": "個人"
+        "full": "トップページの {total} 枠はすべて埋まっています"
     },
     "tiers": {
-        "title": "ティア",
-        "lead": {
-            "one": "毎月のスポンサーのほか、一括払いで同じ掲載を {count} か月受けられます。",
-            "other": "毎月のスポンサーのほか、一括払いで同じ掲載を {count} か月受けられます。"
-        },
-        "caption": "スポンサーティアの月額、一括払いの金額、各ティアの内容",
-        "columns": {
-            "monthly": "月額",
-            "oneTime": "一括",
-            "benefit": "内容"
-        },
-        "oneTimePrice": "一括 {price}",
-        "benefit": {
-            "name": "このページと TablePro の README に名前とリンクを掲載。",
-            "homepage": "トップページ、このページ、TablePro の README にロゴとリンクを掲載。トップページの掲載枠は {total} 枠です。",
-            "lead": "トップページ、このページ、README でロゴを先頭に大きく掲載。"
-        },
-        "link": "GitHub で TablePro を支援"
+        "monthly": "月額 {price}",
+        "oneTime": "または一括 {price}",
+        "open": "<open>募集中。</open>{benefit}",
+        "items": {
+            "lead": {
+                "title": "筆頭",
+                "benefit": "トップページ、このページ、TablePro の README で、ロゴを先頭に最も大きく掲載。"
+            },
+            "homepage": {
+                "title": "ロゴ",
+                "benefit": "トップページ、このページ、TablePro の README にロゴとリンクを掲載。"
+            },
+            "name": {
+                "title": "名前",
+                "benefit": "このページと TablePro の README に名前とリンクを掲載。"
+            }
+        }
+    },
+    "finePrint": {
+        "title": "注意事項",
+        "rows": [
+            { "term": "一括払い", "text": "空きがある場合、月額の {multiplier} 倍を一括で支払うと、同じ枠を {months} か月間使えます。" },
+            { "term": "終了時", "text": "次回 GitHub Sponsors と照合したときに、ロゴまたは名前を外します。" },
+            { "term": "非公開のスポンサー", "text": "GitHub で非公開にしたスポンサーは、このページにも README にも名前が載りません。" },
+            { "term": "ロゴのファイル", "text": "お送りいただいたファイルをそのまま使い、色は変えません。ダークモード用のファイルもお送りください。" }
+        ]
+    },
+    "closing": {
+        "title": "TablePro を支援する",
+        "sentence": "GitHub Sponsors でティアを選ぶか、会社として先に質問がある場合は <email>{email}</email> までご連絡ください。"
     }
 }

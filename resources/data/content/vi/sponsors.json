@@ -10,38 +10,46 @@
     "breadcrumb": "Nhà tài trợ",
     "header": {
         "title": "Nhà tài trợ",
-        "lead": "TablePro là phần mềm mã nguồn mở. Tiền tài trợ trả cho thời gian phát triển và bảo trì TablePro.",
+        "lead": "License và các nhà tài trợ trên trang này là nguồn kinh phí của TablePro, một dự án không có nhà đầu tư.",
         "action": "Tài trợ trên GitHub"
     },
-    "companies": {
-        "title": "Công ty",
+    "places": {
         "open": {
-            "one": "Trang chủ còn trống {count} trong số {total} chỗ.",
-            "other": "Trang chủ còn trống {count} trong số {total} chỗ."
+            "one": "Trang chủ còn trống {count} trong số {total} chỗ",
+            "other": "Trang chủ còn trống {count} trong số {total} chỗ"
         },
-        "full": "Trang chủ đã kín cả {total} chỗ."
-    },
-    "people": {
-        "title": "Cá nhân"
+        "full": "Trang chủ đã kín cả {total} chỗ"
     },
     "tiers": {
-        "title": "Các mức tài trợ",
-        "lead": {
-            "one": "Bạn có thể tài trợ theo tháng, hoặc tài trợ một lần để giữ cùng vị trí trong {count} tháng.",
-            "other": "Bạn có thể tài trợ theo tháng, hoặc tài trợ một lần để giữ cùng vị trí trong {count} tháng."
-        },
-        "caption": "Các mức tài trợ với giá hằng tháng, giá một lần và quyền lợi của từng mức",
-        "columns": {
-            "monthly": "Theo tháng",
-            "oneTime": "Một lần",
-            "benefit": "Quyền lợi"
-        },
-        "oneTimePrice": "{price} một lần",
-        "benefit": {
-            "name": "Tên và link của bạn trên trang này và trong README của TablePro.",
-            "homepage": "Logo và link của bạn trên trang chủ, trang này và README của TablePro. Trang chủ có {total} chỗ.",
-            "lead": "Logo của bạn đứng đầu và lớn hơn trên trang chủ, trang này và README."
-        },
-        "link": "Tài trợ TablePro trên GitHub"
+        "monthly": "{price} mỗi tháng",
+        "oneTime": "hoặc {price} một lần",
+        "open": "<open>Còn trống.</open> {benefit}",
+        "items": {
+            "lead": {
+                "title": "Dẫn đầu",
+                "benefit": "Logo của bạn đứng đầu và lớn nhất trên trang chủ, trên trang này và trong README của TablePro."
+            },
+            "homepage": {
+                "title": "Logo",
+                "benefit": "Logo và link của bạn trên trang chủ, trên trang này và trong README của TablePro."
+            },
+            "name": {
+                "title": "Tên",
+                "benefit": "Tên và link của bạn trên trang này và trong README của TablePro."
+            }
+        }
+    },
+    "finePrint": {
+        "title": "Lưu ý",
+        "rows": [
+            { "term": "Trả một lần", "text": "Trả một lần gấp {multiplier} lần giá tháng để giữ cùng một chỗ trong {months} tháng, nếu còn chỗ trống." },
+            { "term": "Khi kết thúc", "text": "Logo hoặc tên được gỡ xuống ở lần đối chiếu tiếp theo với GitHub Sponsors." },
+            { "term": "Tài trợ riêng tư", "text": "Nếu bạn đặt khoản tài trợ ở chế độ riêng tư trên GitHub, tên của bạn không bao giờ xuất hiện ở đây hay trong README." },
+            { "term": "Logo của bạn", "text": "Dùng đúng file của bạn, không bao giờ đổi màu. Hãy gửi kèm một bản cho giao diện tối." }
+        ]
+    },
+    "closing": {
+        "title": "Tài trợ TablePro",
+        "sentence": "Hãy chọn một mức tài trợ trên GitHub Sponsors, hoặc gửi email tới <email>{email}</email> nếu công ty bạn cần hỏi trước."
     }
 }

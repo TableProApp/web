@@ -10,38 +10,46 @@
     "breadcrumb": "贊助者",
     "header": {
         "title": "贊助者",
-        "lead": "TablePro 是開源軟體。贊助用於支付開發與維護所投入的時間。",
+        "lead": "TablePro 的資金來自授權與本頁的贊助者，沒有投資者。",
         "action": "在 GitHub 上贊助"
     },
-    "companies": {
-        "title": "公司",
+    "places": {
         "open": {
-            "one": "首頁共 {total} 個位置，還剩 {count} 個。",
-            "other": "首頁共 {total} 個位置，還剩 {count} 個。"
+            "one": "首頁共 {total} 個位置，還剩 {count} 個",
+            "other": "首頁共 {total} 個位置，還剩 {count} 個"
         },
-        "full": "首頁的 {total} 個位置已全部額滿。"
-    },
-    "people": {
-        "title": "個人"
+        "full": "首頁的 {total} 個位置已全部額滿"
     },
     "tiers": {
-        "title": "贊助級別",
-        "lead": {
-            "one": "可以按月贊助，也可以一次付款，在 {count} 個月內享有相同的展示位置。",
-            "other": "可以按月贊助，也可以一次付款，在 {count} 個月內享有相同的展示位置。"
-        },
-        "caption": "各贊助級別的月付價格、一次性價格與權益",
-        "columns": {
-            "monthly": "月付",
-            "oneTime": "一次性",
-            "benefit": "權益"
-        },
-        "oneTimePrice": "一次性 {price}",
-        "benefit": {
-            "name": "在本頁和 TablePro 的 README 中展示名字和連結。",
-            "homepage": "在首頁、本頁和 TablePro 的 README 中展示標誌和連結。首頁共 {total} 個位置。",
-            "lead": "在首頁、本頁和 README 中，標誌排在最前並以更大尺寸展示。"
-        },
-        "link": "在 GitHub 上贊助 TablePro"
+        "monthly": "每月 {price}",
+        "oneTime": "或一次性支付 {price}",
+        "open": "<open>開放中。</open>{benefit}",
+        "items": {
+            "lead": {
+                "title": "首席",
+                "benefit": "在首頁、本頁和 TablePro 的 README 中，標誌排在最前並以最大尺寸展示。"
+            },
+            "homepage": {
+                "title": "標誌",
+                "benefit": "在首頁、本頁和 TablePro 的 README 中展示標誌和連結。"
+            },
+            "name": {
+                "title": "名字",
+                "benefit": "在本頁和 TablePro 的 README 中展示名字和連結。"
+            }
+        }
+    },
+    "finePrint": {
+        "title": "細則",
+        "rows": [
+            { "term": "一次性支付", "text": "如有空位，一次性支付月費的 {multiplier} 倍，即可保留同一位置 {months} 個月。" },
+            { "term": "結束後", "text": "下次與 GitHub Sponsors 核對時，標誌或名字會被移除。" },
+            { "term": "私人贊助", "text": "在 GitHub 上設為私人的贊助，絕不會在本頁或 README 中列出名字。" },
+            { "term": "您的標誌", "text": "使用您自己的檔案，絕不改色。請一併提供深色模式的版本。" }
+        ]
+    },
+    "closing": {
+        "title": "贊助 TablePro",
+        "sentence": "在 GitHub Sponsors 上選擇級別；貴公司如想先詢問，請寄信至 <email>{email}</email>。"
     }
 }
