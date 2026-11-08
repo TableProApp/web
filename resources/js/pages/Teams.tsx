@@ -1,17 +1,20 @@
 import { usePage } from '@inertiajs/react';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
+import { BandFrame } from '@/components/features/feature-band';
+import { ClosingFrame } from '@/components/features/feature-closing';
+import FeatureHero from '@/components/features/feature-hero';
 import { INQUIRY_SUBJECT } from '@/components/pricing/enterprise-row';
 import PricingPlans from '@/components/pricing/pricing-plans';
 import SEOHead from '@/components/seo/seo-head';
 import { SUPPORT_EMAIL } from '@/components/site/site-links';
-import Button from '@/components/ui/button';
-import CellGrid from '@/components/ui/cell-grid';
-import { CheckGlyph } from '@/components/ui/glyph';
-import PageHeader from '@/components/ui/page-header';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
+import { buttonClasses } from '@/components/ui/button';
+import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import LocaleLink from '@/components/ui/locale-link';
-import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
-import { LOCALES, Trans, useI18n } from '@/i18n';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
+import { FACTS } from '@/lib/data/facts';
 import { examplesText } from '@/lib/data/paid-features';
 import { PRICING } from '@/lib/data/pricing';
 import LandingLayout from '@/layouts/landing-layout';
@@ -23,32 +26,28 @@ interface TeamsProps {
     organizationProfiles: string[];
 }
 
-/**
- * `/teams` in every language: Team for the person who buys it for a company
- * (monetization roadmap R4.2).
- *
- * What a team shares, how seats and members work, the price per seat, how a
- * company pays, and what reaches TablePro's server, each in a few lines with a
- * link to where the site explains it in full: the features page for Team
- * Library and Team Catalog, Pricing for checkout, Security and the privacy
- * policy for the data. Every price, seat bound and day count comes from
- * pricing.json.
- *
- * It promises only what checkout and the account do today. Payment and the
- * invoice are Polar's, as merchant of record; a purchase order or a bank
- * transfer is a conversation with support, not a feature. What a company
- * might need beyond Team goes to the same contact route as the Enterprise
- * card, under its subject, so each inquiry can be counted.
- */
+interface Row {
+    term: string;
+    text: string;
+}
+
+const WINDOW_SIZES = '(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)';
+const LINK = 'text-[0.9375rem] font-medium tracking-[-0.009em] text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
+
+// `/teams` in every locale: what a seat and the plan include, the Team card, then seats, buying and data as rows.
+// Every number comes from pricing.json or facts.json. Inquiries share the Enterprise row's subject so they can be counted.
 export default function Teams({ content, organizationProfiles }: TeamsProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
-    const team = PRICING.tiers.team;
-    const enterprise = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
+    const shown = useShownSlot();
+    useRevealOnScroll('main > section:not(#top)');
 
-    const values = {
-        min: team.seats.min,
+    const team = PRICING.tiers.team;
+    const contact = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
+
+    const values: Values = {
         deviceLimit: PRICING.license.deviceLimit,
+        inviteDays: FACTS.account.teamInviteDays,
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
         email: SUPPORT_EMAIL,
@@ -56,7 +55,6 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
     };
 
     const tags = {
-        ui: (text: string) => <span className="font-medium">{text}</span>,
         email: (text: string) => (
             <a href={`mailto:${SUPPORT_EMAIL}`} className={textLinkClasses('inline')}>
                 {text}
@@ -69,23 +67,23 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
         { name: content.breadcrumb, path: path('/teams') },
     ];
 
-    const shared = [
-        { copy: content.share.library, href: '/features/sync-and-teams#team' },
-        { copy: content.share.catalog, href: '/features/sync-and-teams#team' },
-        { copy: content.share.pro, href: '/pricing#features' },
+    const columns = [
+        { ...content.includes.seat, href: '/pricing#features', extra: [] },
+        {
+            ...content.includes.team,
+            href: '/features/sync-and-teams#team',
+            extra: [{ name: m.pricing.prioritySupport.name, text: plural(m.pricing.prioritySupport.detail, team.prioritySupport.responseBusinessDays) }],
+        },
     ];
 
-    const list = (items: string[]) => (
-        <ul className="type-body grid max-w-[68ch] gap-3 text-foreground">
-            {items.map((item, index) => (
-                <li key={index} className="flex items-start gap-2.5">
-                    <CheckGlyph className="mt-[0.3em] shrink-0" />
-                    <span>
-                        <Trans text={fmt(item, values)} tags={tags} />
-                    </span>
-                </li>
+    const rows = (items: Row[]) => (
+        <DescriptionList>
+            {items.map((row) => (
+                <DescriptionItem key={row.term} term={row.term} size="body">
+                    <Trans text={row.text} tags={tags} values={values} />
+                </DescriptionItem>
             ))}
-        </ul>
+        </DescriptionList>
     );
 
     return (
@@ -104,78 +102,74 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
                 })}
             />
 
-            <PageHeader
+            <FeatureHero
                 title={content.header.title}
                 lead={content.header.lead}
-                breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
-                actions={
-                    <>
-                        <Button href="#price">{content.header.primary}</Button>
-                        <a href={enterprise} className={textLinkClasses('standalone')}>
-                            {content.header.secondary}
-                        </a>
-                    </>
+                primary={
+                    <a href="#price" className={buttonClasses('primary', 'lg', 'min-w-36')}>
+                        {content.header.pricing}
+                    </a>
                 }
-            />
+                docs="/features/team"
+                docsLabel={content.header.docs}
+            >
+                {shown('features-sync-and-teams-team') !== null ? (
+                    <AssetSlot id="features-sync-and-teams-team" sizes={WINDOW_SIZES} caption={false} priority />
+                ) : undefined}
+            </FeatureHero>
 
-            <Section id="share" title={content.share.title} lead={content.share.lead} flush>
-                <CellGrid className="md:grid-cols-3">
-                    {shared.map(({ copy, href }) => (
-                        <div key={copy.title} className="grid content-start gap-3">
-                            <h3 className="type-h3 text-foreground">{copy.title}</h3>
-                            <p className="type-body text-muted-foreground">{fmt(copy.text, values)}</p>
-                            <p>
-                                <LocaleLink href={href} className={textLinkClasses('standalone')}>
-                                    {copy.link}
-                                    <span aria-hidden="true">→</span>
+            <BandFrame id="includes" also={['share']} title={content.includes.title}>
+                <div className="grid gap-10 sm:grid-cols-2 sm:gap-x-10">
+                    {columns.map((column) => (
+                        <div key={column.title}>
+                            <h3 className="text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground">{column.title}</h3>
+                            <ul className="mt-5 space-y-6">
+                                {[...column.items.map((item) => ({ name: fmt(item.name, values), text: fmt(item.text, values) })), ...column.extra].map((item) => (
+                                    <li key={item.name}>
+                                        <p className="text-[1.0625rem] leading-[1.35] font-semibold tracking-[-0.012em] text-foreground">{item.name}</p>
+                                        <p className="mt-1.5 text-[0.9375rem] leading-[1.55] text-pretty text-muted-foreground">{item.text}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                            <p className="mt-6">
+                                <LocaleLink href={column.href} className={LINK}>
+                                    {column.link}
                                 </LocaleLink>
                             </p>
                         </div>
                     ))}
-                </CellGrid>
-            </Section>
-
-            <Section id="seats" title={content.seats.title}>
-                {list(content.seats.items)}
-            </Section>
-
-            <Section id="price" tone="surface" title={content.pricing.title}>
-                <div className="grid gap-8 lg:grid-cols-[28rem_minmax(0,1fr)] lg:items-start lg:gap-16">
-                    <PricingPlans tiers={['team']} cycles={['monthly', 'yearly']} enterprise={false} />
-                    <ul className="type-body grid max-w-[44ch] gap-3 text-muted-foreground lg:pt-14">
-                        <li>{plural(m.pricing.prioritySupport.detail, team.prioritySupport.responseBusinessDays)}</li>
-                        <li>{content.pricing.note}</li>
-                    </ul>
                 </div>
-            </Section>
+            </BandFrame>
 
-            <Section id="buying" title={content.buying.title}>
-                {list(content.buying.items)}
-            </Section>
+            <BandFrame id="price" title={content.price.title} marker={<p className="mt-3 max-w-[18rem] text-[0.9375rem] leading-[1.5] text-pretty text-muted-foreground">{content.price.note}</p>}>
+                <PricingPlans variant="compact" tiers={['team']} cycles={['monthly', 'yearly']} enterprise={false} className="max-w-[30rem]" />
+            </BandFrame>
 
-            <Section id="data" title={content.data.title}>
-                {list(content.data.items)}
+            <BandFrame id="seats" title={content.seats.title}>
+                {rows(content.seats.rows)}
+            </BandFrame>
+
+            <BandFrame id="buying" title={content.buying.title}>
+                {rows(content.buying.rows)}
+            </BandFrame>
+
+            <BandFrame id="data" title={content.data.title}>
+                {rows(content.data.rows)}
                 <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-                    <LocaleLink href="/security" className={textLinkClasses('standalone')}>
+                    <LocaleLink href="/security" className={LINK}>
                         {content.data.security}
                     </LocaleLink>
-                    <LocaleLink href="/privacy" className={textLinkClasses('standalone')}>
+                    <LocaleLink href="/privacy" className={LINK}>
                         {content.data.privacy}
                     </LocaleLink>
                 </p>
-            </Section>
+            </BandFrame>
 
-            <Section id="enterprise" tone="surface" title={content.enterprise.title}>
-                <div className="grid max-w-[68ch] gap-4">
-                    <p className="type-body text-foreground">{content.enterprise.text}</p>
-                    <p>
-                        <a href={enterprise} className={textLinkClasses('standalone')}>
-                            {content.enterprise.cta}
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </p>
-                </div>
-            </Section>
+            <ClosingFrame id="enterprise" title={content.enterprise.title} sentence={content.enterprise.sentence}>
+                <a href={contact} className={buttonClasses('primary', 'lg', 'min-w-36')}>
+                    {content.enterprise.cta}
+                </a>
+            </ClosingFrame>
         </LandingLayout>
     );
 }

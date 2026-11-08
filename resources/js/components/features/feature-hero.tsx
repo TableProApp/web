@@ -17,6 +17,8 @@ interface FeatureHeroProps {
     docsLabel?: string;
     // In place of Download and the docs link: the /ios App Store badge. Null for none, as on /faq and /security.
     actions?: ReactNode;
+    // In place of Download only, beside the docs link: /teams' See Team pricing.
+    primary?: ReactNode;
     // Above the H1: a database page's breadcrumb and mark.
     eyebrow?: ReactNode;
     // Beside the text from 1024px: a database page's facts.
@@ -29,7 +31,7 @@ interface FeatureHeroProps {
 }
 
 // The same editorial hero as Home: left on the grid, one Download, the docs as a quiet link.
-export default function FeatureHero({ title, lead, docs, docsLabel, actions, eyebrow, aside, location = 'feature-header', settle = true, children }: FeatureHeroProps) {
+export default function FeatureHero({ title, lead, docs, docsLabel, actions, primary, eyebrow, aside, location = 'feature-header', settle = true, children }: FeatureHeroProps) {
     const { locale, m } = useI18n();
 
     const text = (
@@ -46,9 +48,11 @@ export default function FeatureHero({ title, lead, docs, docsLabel, actions, eye
                 <div className="mt-8">{actions}</div>
             ) : (
                 <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                    <LocaleLink href="/download" onClick={() => trackDownload(location)} className={buttonClasses('primary', 'lg', 'min-w-36')}>
-                        {m.nav.download}
-                    </LocaleLink>
+                    {primary ?? (
+                        <LocaleLink href="/download" onClick={() => trackDownload(location)} className={buttonClasses('primary', 'lg', 'min-w-36')}>
+                            {m.nav.download}
+                        </LocaleLink>
+                    )}
                     {docsLabel !== undefined && (
                         <a
                             href={docsHref(FACTS.links.docs, docs ?? '/')}

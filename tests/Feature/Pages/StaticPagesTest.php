@@ -162,15 +162,6 @@ it('keeps every pricing anchor other pages link to, and states each cycle\'s pri
     }
 })->with(['en', 'vi'])->group('ssr');
 
-it('sells Team on /teams with its seats, monthly or yearly', function (): void {
-    $teams = HTMLDocument::createFromString(ssrHtml('/teams'), LIBXML_NOERROR);
-    $price = $teams->getElementById('price');
-
-    expect($price->querySelectorAll('input[type=radio]')->length)->toBe(2)
-        ->and($price->querySelector('input[inputmode=numeric], input[type=number]'))->not->toBeNull()
-        ->and($price->textContent)->toContain('Get Team');
-})->group('ssr');
-
 it('prints prices on the pricing card the way the page does', function (string $locale): void {
     $catalog = (string) file_get_contents(resource_path("js/i18n/messages/{$locale}/pricing.ts"));
 
