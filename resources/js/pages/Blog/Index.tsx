@@ -95,23 +95,24 @@ export default function BlogIndex({ content, feed, posts, kinds, filter }: Props
                 }
             />
 
-            <section id="posts" aria-label={content.header.title} className="pb-12 md:pb-16">
+            <section id="posts" aria-label={content.header.title} className="pt-10 pb-12 md:pt-12 md:pb-16">
                 <AlsoAnchors part={{ id: 'posts', also: ['news', 'guides', 'releases'] }} />
                 <Container>
                     {tabs.length > 0 && (
                         <nav aria-label={index.tabs.label}>
-                            <ul className="flex flex-wrap gap-x-7 gap-y-2">
+                            <ul className="flex flex-wrap gap-x-7 border-b border-rule">
                                 {tabs.map((kind) => {
                                     const current = kind === filter.kind;
 
                                     return (
-                                        <li key={kind ?? 'all'}>
+                                        // The tab's underline sits on the list's top rule.
+                                        <li key={kind ?? 'all'} className="-mb-px">
                                             <LocaleLink
                                                 href={listHref(kind)}
                                                 preserveScroll
                                                 aria-current={current ? 'page' : undefined}
                                                 className={cn(
-                                                    'inline-block border-b-2 pb-2 text-[0.9375rem] font-medium tracking-[-0.009em] transition-colors duration-(--dur-tap) ease-(--ease-feedback)',
+                                                    'inline-block border-b-2 pb-3 text-[0.9375rem] font-medium tracking-[-0.009em] transition-colors duration-(--dur-tap) ease-(--ease-feedback)',
                                                     current ? 'border-foreground text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground',
                                                 )}
                                             >
@@ -125,7 +126,7 @@ export default function BlogIndex({ content, feed, posts, kinds, filter }: Props
                     )}
 
                     {posts.length > 0 ? (
-                        <ol className="mt-4 divide-y divide-rule border-t border-rule">
+                        <ol className={cn('divide-y divide-rule', tabs.length === 0 && 'border-t border-rule')}>
                             {posts.map((post) => {
                                 const lang = post.locale !== locale ? post.locale : undefined;
 
