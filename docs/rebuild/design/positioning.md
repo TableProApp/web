@@ -447,7 +447,7 @@ prices, with a code that works only inside the window (`App\Support\Pricing\Camp
 - **Where, while it is live:** the banner slot on every page but the sale's own, a black band above the homepage
   hero and Pricing's header, and the plan cards of the cycles it covers. Checkout from the site attaches the code.
   Before and after the window, only the sale's own page mentions it.
-- **The sale's own page,** `/black-friday`, keeps one URL from year to year. Before the sale it states the window and
+- **The sale's own page,** `/black-friday`, keeps one URL from year to year and is black throughout, in both themes. Before the sale it states the window and
   the prices, and offers a calendar file for the start instead of a button that cannot be pressed; during it the offers
   can be bought from it; after it, its title, heading and description say the sale has ended, and nothing on it is
   offered. Its copy stays near 150 words: the offers as two ruled rows, Pro one-time first and larger, then the Pro

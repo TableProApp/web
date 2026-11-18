@@ -37,23 +37,6 @@ interface MobileNavProps {
     desktop: string;
 }
 
-/**
- * The menu below the desktop header (sitemap §B.2; design-system §5.3.17): a
- * modal `<dialog>` sheet over the whole viewport.
- *
- * `showModal()` traps focus and makes the page behind it inert; Escape and the
- * close button close it, and focus returns to the toggle that opened it.
- * Crossing to the desktop layout while it is open closes it too, so a rotated
- * tablet never keeps a scroll-locked page with no visible control.
- *
- * Order: Features (expanding in place to the same links as the desktop menu),
- * Databases, Pricing, the platform pages, Docs, Blog, FAQ, GitHub with its star
- * count, Account; then
- * Download for Mac and the App Store badge, each with the system it needs, so
- * both are on the first screen of a phone; last, the language, one row that
- * opens the list, and the theme control. On an iPhone or iPad the badge comes
- * before the Mac button.
- */
 export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps) {
     const { locale, m, fmt } = useI18n();
     const { url } = usePage();
@@ -278,7 +261,7 @@ export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps
 
                 <div className="mt-8 grid gap-4 border-t border-rule pt-4">
                     <LanguageSwitcher variant="stack" />
-                    <div className="grid gap-2">
+                    <div className="theme-setting grid gap-2">
                         <p className="type-small font-medium text-muted-foreground" aria-hidden="true">
                             {m.controls.theme.label}
                         </p>

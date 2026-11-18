@@ -119,7 +119,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
     const big = { big: (text: string) => <span className="sale-display block pb-2 text-foreground">{text}</span> };
 
     return (
-        <LandingLayout footerNewsletter={phase === 'live'}>
+        <LandingLayout footerNewsletter={phase === 'live'} alwaysDark>
             <SEOHead
                 title={title}
                 description={description}

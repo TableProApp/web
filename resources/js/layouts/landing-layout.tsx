@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { useLiveChat } from '@/components/site/chat-button';
 import ConsentBar from '@/components/site/consent-bar';
 import FrameRails from '@/components/shared/frame-rails';
@@ -6,61 +6,27 @@ import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
 import TopBanner from '@/components/site/top-banner';
 import { useI18n } from '@/i18n';
-import { syncTheme } from '@/lib/theme';
+import { forceDark, syncTheme } from '@/lib/theme';
 
 interface Props {
     children: ReactNode;
-    /**
-     * False on a page that carries its own newsletter form (the blog index),
-     * so the footer does not repeat the same field a screen below it.
-     */
     footerNewsletter?: boolean;
+    alwaysDark?: boolean;
 }
 
-/**
- * The public page frame: a stack in reading and tab order, drawn as a grid
- * (design-system §4.6, §4.7, §7.2).
- *
- * 1. The skip link, first in the document.
- * 2. The top banner, which scrolls away with the page: the license banner,
- *    or the bar offering this page in the reader's language. Then the sticky
- *    header. The header is a real `banner` landmark because it sits outside
- *    `<main>`.
- * 3. `<main id="main-content" tabIndex={-1}>`, so the skip link moves focus
- *    into it rather than only scrolling.
- * 4. The footer, a `contentinfo` landmark for the same reason.
- * 5. The consent bar, last, so it is the last tab stop on the page.
- *
- * The grid is drawn, not laid out: the rails are a decorative overlay on this
- * `relative` root (`FrameRails`, from 1280px), and a full-bleed hairline joins
- * every two blocks of `<main>` (frame.css). Neither moves content or takes a
- * tab stop.
- *
- * Crisp's chat launcher joins every page once it has loaded and the browser is
- * idle (`useLiveChat`, `lib/crisp.ts`); it is not part of the server render.
- *
- * There is no toast region: nothing on the public site calls `toast()`, and
- * Sonner's region carried an English landmark name onto every /vi page.
- *
- * Nothing here clips overflow: `overflow-x: hidden` on an ancestor masked
- * horizontal-scroll regressions instead of preventing them, and would break the
- * sticky header. Anything wide scrolls inside its own region.
- */
-export default function LandingLayout({ children, footerNewsletter = true }: Props) {
+// Nothing here clips overflow: `overflow-x: hidden` on an ancestor would break the sticky header.
+export default function LandingLayout({ children, footerNewsletter = true, alwaysDark = false }: Props) {
     const { locale, m } = useI18n();
 
-    /*
-     * `<html lang>` is right on the first byte, from Blade. A visit between
-     * locales is a full document load (`LocaleLink` renders a plain `<a>` for
-     * it), so this only matters if history navigation ever restores a page in
-     * the other language without one. It is a safety net, not the mechanism.
-     */
+    // History navigation can restore a page in another language without a document load.
     useEffect(() => {
         document.documentElement.lang = locale;
     }, [locale]);
 
-    /* Another tab changed the theme, or the system did while "System" is chosen. */
     useEffect(() => syncTheme(), []);
+
+    // Before paint, so a visit from a light page never shows this one light. Blade covers the first load.
+    useLayoutEffect(() => (alwaysDark ? forceDark() : undefined), [alwaysDark]);
 
     useLiveChat();
 

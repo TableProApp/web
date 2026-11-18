@@ -265,18 +265,21 @@ Every row of the §2.3 table becomes an assertion. Add a gamut assertion: no tok
     var t = localStorage.getItem('theme');
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }
   } catch (e) {}
-  var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   var root = document.documentElement;
+  var forced = root.dataset.themeForced === 'dark';
+  var dark = forced || choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   if (dark) { root.classList.add('dark'); }
   root.dataset.themeChoice = choice;          /* drives the control's icon without hydration */
   root.style.colorScheme = dark ? 'dark' : 'light';
   var m = document.querySelector('meta[name="theme-color"]');
-  if (m) { m.setAttribute('content', dark ? '#121212' : '#ffffff'); }
+  if (m) { m.setAttribute('content', forced ? '#060606' : dark ? '#121212' : '#ffffff'); }
 })();
 </script>
 ```
 
 `#ffffff` and `#121212` are the two `--background` values in §2.2.
+
+**The one forced page.** `/black-friday` is dark in both themes, from the banner to the footer (owner decision, 2026-11-18). Blade stamps `html[data-theme-forced="dark"]` and `LandingLayout`'s `alwaysDark` holds it across visits inside the app. The reader's stored choice is untouched, the theme control is hidden there, and `--background`, `--surface` and `--raised` drop to `oklch(0.12 0 0)` (`#060606`), `oklch(0.15 0 0)` and `oklch(0.18 0 0)`.
 
 **Rules:**
 

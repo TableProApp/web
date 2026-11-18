@@ -82,7 +82,8 @@ server (`docs/architecture.md`, "The language bar").
   every call through `useApi()` with `credentials: 'omit'`, so no cookie lands
   on a public page.
 - The theme follows the OS by default; `localStorage.theme` holds an explicit
-  choice. The portal is another origin and keeps its own.
+  choice. `/black-friday` alone is always dark. The portal is another origin and
+  keeps its own.
 
 ## Conventions
 
