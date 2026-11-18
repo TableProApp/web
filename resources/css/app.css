@@ -249,6 +249,19 @@ html.campaign-live .campaign-band {
   color: var(--foreground);
 }
 
+/* /black-friday is black from the banner to the footer in either theme, so its hero's ground is the page's. */
+@media screen {
+  html[data-theme-forced] {
+    --background: oklch(0.12 0 0);
+    --surface: oklch(0.15 0 0);
+    --raised: oklch(0.18 0 0);
+  }
+}
+
+html[data-theme-forced] .theme-setting {
+  display: none;
+}
+
 .campaign-banner {
   border-bottom: 1px solid color-mix(in oklab, var(--accent) 45%, var(--rule));
 }

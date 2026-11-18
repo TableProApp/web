@@ -23,6 +23,15 @@ function afterSale(): void
     travelTo(Campaign::current()?->endsAt ?? now());
 }
 
+it('holds only the sale page dark before first paint', function (string $path, bool $forced): void {
+    expect(str_contains(get($path)->assertOk()->getContent(), 'data-theme-forced="dark"'))->toBe($forced);
+})->with([
+    'the sale page' => ['/black-friday', true],
+    'a translated sale page' => ['/vi/black-friday', true],
+    'the homepage' => ['/', false],
+    'pricing' => ['/pricing', false],
+]);
+
 it('is upcoming before the start, live from it, and ended from the end', function (): void {
     $campaign = saleCampaign();
 

@@ -130,16 +130,6 @@ interface FooterBarProps {
     className?: string;
 }
 
-/**
- * The last row of every page in both apps (design-system §5.3.17): the mark
- * and the copyright on the left, the language menu and the theme on the
- * right. Its rule runs rail to rail, so above a cell grid it lands on the
- * grid's last line and draws it once.
- *
- * With `chat`, the controls stop short of the chat launcher: they keep
- * `LAUNCHER_REACH` clear of the screen's right edge, which costs nothing once
- * the page's own margin is that wide (from about 1416px).
- */
 export default function FooterBar({ copyright, language, themeLabels, chat = false, className }: FooterBarProps) {
     return (
         <div
@@ -158,7 +148,7 @@ export default function FooterBar({ copyright, language, themeLabels, chat = fal
                 style={chat ? { paddingRight: `max(0px, calc(${LAUNCHER_REACH}px - max(var(--cell-bleed), (100vw - 76rem) / 2)))` } : undefined}
             >
                 {language}
-                <ThemeControl variant="icons" labels={themeLabels} />
+                <ThemeControl variant="icons" labels={themeLabels} className="theme-setting" />
             </div>
         </div>
     );

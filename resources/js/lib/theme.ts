@@ -23,8 +23,8 @@ export type ThemeChoice = 'light' | 'dark' | 'system';
 
 export const THEME_CHOICES: readonly ThemeChoice[] = ['light', 'dark', 'system'];
 
-/** `theme-color` per resolved theme: the two `--background` values in tokens.css. */
-export const THEME_COLORS = { light: '#ffffff', dark: '#121212' } as const;
+// `sale` is the `--background` app.css gives a page under `html[data-theme-forced]`.
+export const THEME_COLORS = { light: '#ffffff', dark: '#121212', sale: '#060606' } as const;
 
 const SYSTEM_DARK_QUERY = '(prefers-color-scheme: dark)';
 
@@ -56,28 +56,20 @@ export function resolveDark(choice: ThemeChoice, prefersDark: boolean): boolean 
     return choice === 'dark' || (choice === 'system' && prefersDark);
 }
 
-/**
- * Paints `choice` on the document without storing it.
- *
- * Toggles `.dark` (every token and every themed image follows that class, never
- * the media query), and updates `data-theme-choice` (which drives the theme
- * control's icon and selected option from CSS), `color-scheme` and the single
- * `theme-color` meta.
- *
- * Transitions are suppressed for one frame with `theme-switching`, so the
- * colour transitions on links and buttons do not ripple across the page as
- * every token changes at once.
- */
 export function renderTheme(choice: ThemeChoice): void {
     const root = document.documentElement;
-    const dark = resolveDark(choice, systemPrefersDark());
+    const forced = root.dataset.themeForced === 'dark';
+    const dark = forced || resolveDark(choice, systemPrefersDark());
 
+    // `theme-switching` stops link and button transitions rippling across the page as every token changes.
     root.classList.add('theme-switching');
     root.classList.toggle('dark', dark);
     root.dataset.themeChoice = choice;
     root.style.colorScheme = dark ? 'dark' : 'light';
 
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? THEME_COLORS.dark : THEME_COLORS.light);
+    document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', forced ? THEME_COLORS.sale : dark ? THEME_COLORS.dark : THEME_COLORS.light);
 
     // Reading a computed value forces the new colours to apply while
     // transitions are still off; the class comes off on the next frame.
@@ -90,6 +82,19 @@ export function renderTheme(choice: ThemeChoice): void {
     } else {
         release();
     }
+}
+
+// Holds the page dark whatever the reader chose, without touching that choice. Returns the release.
+export function forceDark(): () => void {
+    const root = document.documentElement;
+
+    root.dataset.themeForced = 'dark';
+    renderTheme(readTheme());
+
+    return () => {
+        delete root.dataset.themeForced;
+        renderTheme(readTheme());
+    };
 }
 
 /**
