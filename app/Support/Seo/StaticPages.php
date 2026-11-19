@@ -43,6 +43,14 @@ final class StaticPages implements PageFamily
     public const OWN_CARDS = [
         'landing.black-friday' => 'campaign',
         'landing.pricing' => 'pricing',
+        'landing.download' => 'page',
+        'landing.ios' => 'page',
+        'landing.teams' => 'page',
+        'landing.faq' => 'page',
+        'landing.about' => 'page',
+        'landing.security' => 'page',
+        'landing.sponsors' => 'page',
+        'landing.blog.index' => 'page',
     ];
 
     public function __construct(

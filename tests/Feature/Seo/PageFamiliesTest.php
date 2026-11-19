@@ -70,14 +70,14 @@ describe('ContentCollection', function (): void {
         expect($entry->hreflangCluster())->toBe([]);
     });
 
-    it('knows the hubs by their index file and gives them no card of their own', function (): void {
+    it('knows the hubs by their index file, which is also their card', function (): void {
         seoWriteContent($this->dirs['content'], 'en', 'databases/index');
         seoWriteContent($this->dirs['content'], 'vi', 'databases/index');
 
         $hub = (new ContentCollection(app(ContentRepository::class)))->find('landing.databases.index', []);
 
         expect($hub->renderLocales)->toBe(['en', 'vi']);
-        expect($hub->ogSlug)->toBeNull();
+        expect([$hub->ogFamily, $hub->ogSlug])->toBe(['database', 'index']);
         expect(ContentCollection::contentName($hub))->toBe('databases/index');
     });
 
@@ -415,16 +415,16 @@ describe('OgImages', function (): void {
         File::ensureDirectoryExists($this->public . '/og/vi');
         File::put($this->public . '/og/vi/default.png', seoPngBytes());
 
-        expect($images->for($entry, 'en')['url'])->toBe('https://localhost/og.png');
-        expect($images->for($entry, 'vi')['url'])->toBe('https://localhost/og/vi/default.png');
+        expect($images->for($entry, 'en')['url'])->toBe('https://localhost/og.png?v=57d0c8af');
+        expect($images->for($entry, 'vi')['url'])->toBe('https://localhost/og/vi/default.png?v=57d0c8af');
 
         File::ensureDirectoryExists($this->public . '/og/compare');
         File::ensureDirectoryExists($this->public . '/og/vi/compare');
         File::put($this->public . '/og/compare/tableplus.png', seoPngBytes());
         File::put($this->public . '/og/vi/compare/tableplus.png', seoPngBytes());
 
-        expect($images->for($entry, 'en'))->toBe(['url' => 'https://localhost/og/compare/tableplus.png', 'width' => 1, 'height' => 1, 'type' => 'image/png', 'alt' => null]);
-        expect($images->for($entry, 'vi')['url'])->toBe('https://localhost/og/vi/compare/tableplus.png');
+        expect($images->for($entry, 'en'))->toBe(['url' => 'https://localhost/og/compare/tableplus.png?v=57d0c8af', 'width' => 1, 'height' => 1, 'type' => 'image/png', 'alt' => null]);
+        expect($images->for($entry, 'vi')['url'])->toBe('https://localhost/og/vi/compare/tableplus.png?v=57d0c8af');
     });
 
     it('never borrows another locale card', function (): void {
@@ -442,7 +442,7 @@ describe('OgImages', function (): void {
 
         $home = new PageEntry('landing.home', [], ['en'], ['en'], [], 'site', null);
 
-        expect((new OgImages())->for($home, 'en')['url'])->toBe('https://localhost/og.png');
+        expect((new OgImages())->for($home, 'en')['url'])->toBe('https://localhost/og.png?v=57d0c8af');
     });
 
     // The fixture's fixture-og entry is already supplied, so only the files decide.
@@ -455,23 +455,23 @@ describe('OgImages', function (): void {
         File::ensureDirectoryExists($this->public . '/og/vi');
         File::put($this->public . '/og/vi/default.png', seoPngBytes());
 
-        expect($images->for($home, 'en')['url'])->toBe('https://localhost/og.png');
+        expect($images->for($home, 'en')['url'])->toBe('https://localhost/og.png?v=57d0c8af');
 
         File::ensureDirectoryExists($this->public . '/og/fixture');
         File::put($this->public . '/og/fixture/fixture-og-en.png', seoPngBytes());
 
-        expect($images->for($home, 'en')['url'])->toBe('https://localhost/og/fixture/fixture-og-en.png');
-        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/vi/default.png');
+        expect($images->for($home, 'en')['url'])->toBe('https://localhost/og/fixture/fixture-og-en.png?v=57d0c8af');
+        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/vi/default.png?v=57d0c8af');
 
         File::put($this->public . '/og/fixture/fixture-og-vi.png', seoPngBytes());
 
-        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png');
+        expect($images->for($home, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png?v=57d0c8af');
 
         File::ensureDirectoryExists($this->public . '/og/compare');
         File::put($this->public . '/og/compare/tableplus.png', seoPngBytes());
 
-        expect($images->for($compare, 'en')['url'])->toBe('https://localhost/og/compare/tableplus.png');
-        expect($images->for($compare, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png');
+        expect($images->for($compare, 'en')['url'])->toBe('https://localhost/og/compare/tableplus.png?v=57d0c8af');
+        expect($images->for($compare, 'vi')['url'])->toBe('https://localhost/og/fixture/fixture-og-vi.png?v=57d0c8af');
     });
 
     it('names the paths og:generate writes', function (): void {

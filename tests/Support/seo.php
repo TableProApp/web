@@ -90,6 +90,8 @@ function seoScratchPublic(): string
 
     File::ensureDirectoryExists($public);
     File::copy(base_path('public/logo.png'), $public . '/logo.png');
+    File::ensureDirectoryExists($public . '/images/brand');
+    File::copy(base_path('public/images/brand/tablepro-icon-256.png'), $public . '/images/brand/tablepro-icon-256.png');
     app()->usePublicPath($public);
 
     return $public;

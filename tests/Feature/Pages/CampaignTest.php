@@ -194,7 +194,7 @@ it('shares its own card on its page, in every language', function (string $local
 
     get("{$prefix}/black-friday")->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->where(
         'seo.ogImage.url',
-        fn(string $url): bool => str_ends_with($url, ($locale === Locales::default() ? '/og' : "/og/{$locale}") . '/campaign/black-friday.png'),
+        fn(string $url): bool => str_ends_with(seoPathOf($url), ($locale === Locales::default() ? '/og' : "/og/{$locale}") . '/campaign/black-friday.png'),
     ));
 })->with('locales');
 

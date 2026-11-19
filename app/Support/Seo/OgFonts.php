@@ -20,9 +20,38 @@ use RuntimeException;
  */
 final class OgFonts
 {
+    public const CJK = ['ja', 'ko', 'zh-Hans', 'zh-Hant'];
+
     public function __construct(
         private readonly string $stylesheet,
+        private readonly ?string $cjkDirectory = null,
     ) {}
+
+    /**
+     * The `Card CJK` faces of a locale, from the directory `scripts/assets/prepare_fonts.py` fills.
+     * Empty without that directory: the card then uses the Noto Sans CJK the machine has.
+     */
+    public function cjk(string $locale): string
+    {
+        if ($this->cjkDirectory === null || ! in_array($locale, self::CJK, true)) {
+            return '';
+        }
+
+        $faces = '';
+
+        foreach ([500, 600] as $weight) {
+            $path = rtrim($this->cjkDirectory, '/') . "/noto-{$locale}-{$weight}.otf";
+
+            if (! is_file($path)) {
+                throw new RuntimeException("{$path} is missing. Run `python3 scripts/assets/prepare_fonts.py {$this->cjkDirectory}`.");
+            }
+
+            // By path, not inlined: each face is 16 MB. The renderer lets a file:// page read file:// fonts.
+            $faces .= "@font-face { font-family: 'Card CJK'; font-weight: {$weight}; src: url('file://{$path}') format('opentype'); }\n";
+        }
+
+        return $faces;
+    }
 
     /**
      * The `@font-face` rules, with every font file inlined.

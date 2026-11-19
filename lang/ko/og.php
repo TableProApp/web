@@ -7,10 +7,4 @@ return [
         'database' => '데이터베이스',
         'feature' => '기능',
     ],
-    'author' => 'TablePro',
-    'byline' => ':author · :date',
-
-    'free' => '무료',
-
-    'currency' => '${amount}',
 ];

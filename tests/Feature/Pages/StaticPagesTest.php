@@ -156,16 +156,6 @@ it('keeps every pricing anchor other pages link to, and states each cycle\'s pri
     }
 })->with(['en', 'vi'])->group('ssr');
 
-it('prints prices on the pricing card the way the page does', function (string $locale): void {
-    $catalog = (string) file_get_contents(resource_path("js/i18n/messages/{$locale}/pricing.ts"));
-
-    preg_match('/pattern["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $pattern);
-    preg_match('/free["\']?\s*:\s*\{\s*["\']?name["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $free);
-
-    expect(trans('og.currency', [], $locale))->toBe($pattern[1])
-        ->and(trans('og.free', [], $locale))->toBe($free[1]);
-})->with('locales');
-
 it('lists the engines whose driver ships with the Mac app from engines.json on the FAQ', function (): void {
     $bundled = staticPagePublishedEngines()->where('distribution', 'bundled')->pluck('name')->values()->all();
 

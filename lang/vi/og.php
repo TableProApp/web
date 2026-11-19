@@ -16,12 +16,4 @@ return [
         'database' => 'Cơ sở dữ liệu',
         'feature' => 'Tính năng',
     ],
-
-    'author' => 'TablePro',
-
-    'byline' => ':author · :date',
-
-    'free' => 'Miễn phí',
-
-    'currency' => '{amount} US$',
 ];

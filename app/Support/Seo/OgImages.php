@@ -150,7 +150,8 @@ final class OgImages
         $size = @getimagesize($file);
 
         return [
-            'url' => LocalizedUrl::base() . $path,
+            // Clients cache a card by its URL, and the paths never move.
+            'url' => LocalizedUrl::base() . $path . '?v=' . hash_file('crc32b', $file),
             'width' => is_array($size) ? $size[0] : 1200,
             'height' => is_array($size) ? $size[1] : 630,
             'type' => is_array($size) && isset($size['mime']) ? $size['mime'] : 'image/png',

@@ -7,10 +7,4 @@ return [
         'database' => 'Bases de datos',
         'feature' => 'Funciones',
     ],
-    'author' => 'TablePro',
-    'byline' => ':author · :date',
-
-    'free' => 'Gratis',
-
-    'currency' => '{amount} US$',
 ];
