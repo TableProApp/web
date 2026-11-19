@@ -1,7 +1,7 @@
 ---
 title: Conditions d’utilisation
 description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Pro ou Team.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac, TablePro pour Linux et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
@@ -31,7 +31,7 @@ TablePro™, le logo TablePro et l’icône de l’application TablePro sont des
 
 Les licences sont vendues par {merchant} (Polar Software, Inc.), notre merchant of record et revendeur. Vous achetez une Licence auprès de {merchant}, selon les conditions d’achat de {merchant}, et TablePro vous accorde le droit de l’utiliser selon les présentes conditions. {merchant} encaisse le paiement, calcule et reverse la taxe sur les ventes ou la TVA, et envoie reçus et factures. Les prix sont en dollars américains et figurent sur la [page des tarifs](/fr/pricing).
 
-Les offres mensuelles et annuelles se renouvellent automatiquement jusqu’à résiliation. Vous pouvez les résilier dans le portail de comptes ou le portail client de {merchant} ; une offre résiliée n’est plus facturée et reste active jusqu’à la fin de la période payée. Un achat à paiement unique est réglé une seule fois et n’a pas de date d’expiration.
+Les offres mensuelles et annuelles se renouvellent automatiquement jusqu’à résiliation. Vous pouvez les résilier dans le portail de comptes ou le portail client de {merchant} ; une offre résiliée n’est plus facturée et reste active jusqu’à la fin de la période payée. Un achat à paiement unique est facturé une seule fois et ne se renouvelle pas.
 
 Les remboursements sont décrits dans la [politique de remboursement](/fr/refund-policy).
 
@@ -43,6 +43,8 @@ Une Licence vous accorde un droit non exclusif et non transférable d’utiliser
 - Une Licence **Team** est facturée par poste, avec au minimum {teamMinSeats} postes. Chaque poste est destiné à une personne, sur un maximum de {deviceLimit} ordinateurs, Mac ou Linux. Le propriétaire et les administrateurs de l’équipe invitent ses membres, qui la rejoignent via un lien d’invitation reçu par e-mail.
 
 La limite de {deviceLimit} ordinateurs s’applique par compte, pour l’ensemble des Licences qu’il utilise. Vous ne pouvez pas partager votre compte ou une Clé de licence au-delà des personnes et des ordinateurs couverts par votre offre, ni sous-licencier, vendre, louer ou transférer autrement une Licence ou une Clé de licence sans notre autorisation écrite.
+
+Une Licence mensuelle ou annuelle court pendant la période que vous avez payée, et une Licence à paiement unique n’a pas de date de fin. Tant qu’elle court, une Licence couvre toutes les versions de l’Application que nous publions et toutes les fonctionnalités que nous ajoutons à son offre, sans frais supplémentaires. Pour une Licence à paiement unique, cela signifie toutes les versions et fonctionnalités ultérieures, nouvelles versions majeures comprises, sur toute plateforme de bureau pour laquelle nous publierons TablePro. Cela vaut pour toutes les Licences à paiement unique, quelle que soit leur date d’achat.
 
 Les applications renouvellent votre offre auprès de notre serveur une fois par jour. Si le serveur est inaccessible, les fonctionnalités payantes continuent de fonctionner jusqu’à {offlineDays} jours après le dernier renouvellement ou, sur un Mac qui utilise un fichier hors ligne du portail du compte, jusqu’à l’expiration de ce fichier. Les versions antérieures aux comptes TablePro vérifient plutôt une Clé de licence tous les {revalidateDays} jours et gardent les fonctionnalités payantes pendant {graceDays} jours après la dernière vérification réussie. Lorsqu’une offre mensuelle ou annuelle prend fin, ses fonctionnalités s’arrêtent et les applications continuent de fonctionner sans elles.
 
@@ -95,7 +97,7 @@ Vous acceptez d’indemniser TablePro et ses contributeurs et de les dégager de
 
 ## Mises à jour et disponibilité {#updates}
 
-Nous publions mises à jour, corrections et nouvelles fonctionnalités à notre discrétion. Hormis l’assistance prioritaire ci-dessus, nous n’avons aucune obligation de maintenir, mettre à jour ou assister une version de l’Application ; les anciennes versions peuvent cesser de recevoir des correctifs de sécurité.
+Nous décidons des mises à jour, corrections et nouvelles fonctionnalités que nous publions, et du moment de leur publication. Celles que nous publions font partie de votre Licence, comme indiqué dans [Utiliser une licence](#license). Hormis cela et l’assistance prioritaire ci-dessus, nous n’avons aucune obligation de maintenir, mettre à jour ou assister une version de l’Application ; les anciennes versions peuvent cesser de recevoir des correctifs de sécurité.
 
 Certains Services, comme les vérifications de licence et Team Library, nécessitent un accès réseau. Nous ne garantissons pas leur disponibilité permanente et pouvons les arrêter avec un préavis raisonnable. Les fonctionnalités payantes des applications nécessitent notre serveur de licences : s’il est inaccessible, elles continuent de fonctionner pendant la durée indiquée dans [Utiliser une licence](#license).
 

@@ -16,7 +16,7 @@ export default {
         "monthly": "취소할 때까지 매월 갱신됩니다.",
         "yearly": "취소할 때까지 매년 갱신됩니다. 월간 결제 12회보다 {percent}% 저렴합니다.",
         "yearlyByTier": "취소할 때까지 매년 갱신됩니다. 월간 결제 12회보다 Pro는 {starterPercent}%, Team은 {teamPercent}% 저렴합니다.",
-        "lifetime": "한 번 결제하며 만료일은 없습니다."
+        "lifetime": "한 번 결제하면 모든 업데이트와 새로운 Pro 기능이 포함됩니다."
     },
     "tiers": {
         "free": {

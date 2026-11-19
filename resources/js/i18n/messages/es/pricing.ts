@@ -16,7 +16,7 @@ export default {
         "monthly": "Se renueva cada mes hasta que canceles.",
         "yearly": "Se renueva cada año hasta que canceles. Un {percent}% menos que doce pagos mensuales.",
         "yearlyByTier": "Se renueva cada año hasta que canceles. Pro cuesta un {starterPercent}% menos que doce pagos mensuales; Team, un {teamPercent}% menos.",
-        "lifetime": "Un solo pago, sin fecha de caducidad."
+        "lifetime": "Un solo pago. Incluye todas las actualizaciones y todas las funciones nuevas de Pro."
     },
     "tiers": {
         "free": {

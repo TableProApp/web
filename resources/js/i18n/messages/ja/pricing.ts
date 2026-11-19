@@ -16,7 +16,7 @@ export default {
         "monthly": "解約するまで毎月更新されます。",
         "yearly": "解約するまで毎年更新されます。月払い 12 回分より {percent}% 安くなります。",
         "yearlyByTier": "解約するまで毎年更新されます。月払い 12 回分と比べ、Pro は {starterPercent}%、Team は {teamPercent}% 安くなります。",
-        "lifetime": "一度のお支払いで、有効期限はありません。"
+        "lifetime": "一度のお支払いで、すべてのアップデートと Pro の新機能が含まれます。"
     },
     "tiers": {
         "free": {

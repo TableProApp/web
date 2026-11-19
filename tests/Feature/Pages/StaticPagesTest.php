@@ -140,6 +140,16 @@ it('server-renders neither the education section nor its FAQ question', function
         ->and($faq->getElementById('students-teachers')?->closest('section')?->getAttribute('id'))->toBe('pricing');
 })->with(['en', 'vi'])->group('ssr');
 
+// Pricing promises a one-time license every update; the terms are what makes that binding.
+it('says what a one-time license includes on Pricing, and grants it in the terms', function (string $locale): void {
+    $question = data_get(staticPageData("content/{$locale}/pricing.json"), 'faq.groups.license.items.one-time');
+    $terms = (string) file_get_contents(resource_path("data/legal/{$locale}/terms.md"));
+    preg_match('/^## .*\{#updates\}\n\n(.*?)\n\n/ms', $terms, $updates);
+
+    expect($question['answer'] ?? '')->toContain('<terms>')
+        ->and($updates[1] ?? '')->toContain('](#license)');
+})->with('locales');
+
 // The sections these anchors named became questions of one FAQ; sites and posts still link them.
 it('keeps every pricing anchor other pages link to, and states each cycle\'s price', function (string $locale): void {
     // A running sale prints its own prices in the plans.
@@ -149,7 +159,7 @@ it('keeps every pricing anchor other pages link to, and states each cycle\'s pri
     $pricing = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $prices = staticPageData('pricing.json')['tiers'];
 
-    foreach (['plans', 'features', 'faq', 'license', 'billing', 'refunds', 'team', 'at-work', 'open-source'] as $id) {
+    foreach (['plans', 'features', 'faq', 'license', 'one-time', 'billing', 'refunds', 'team', 'at-work', 'open-source'] as $id) {
         expect($pricing->getElementById($id))->not->toBeNull("#{$id} is gone from /pricing");
     }
 

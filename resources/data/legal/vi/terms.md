@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -31,7 +31,7 @@ TablePro™, logo TablePro và icon ứng dụng TablePro là nhãn hiệu của
 
 License được bán bởi {merchant} (Polar Software, Inc.), merchant of record kiêm đơn vị bán lại của chúng tôi. Bạn mua License từ {merchant} theo điều khoản dành cho người mua của {merchant}, và TablePro trao cho bạn quyền sử dụng License đó theo các điều khoản này. {merchant} nhận thanh toán, tính và nộp thuế bán hàng hoặc VAT nếu có, và gửi biên nhận cùng hóa đơn. Giá tính bằng USD và được niêm yết trên [trang bảng giá](/vi/pricing).
 
-Gói theo tháng và theo năm tự động gia hạn cho tới khi bạn hủy. Bạn có thể hủy trong trang tài khoản hoặc trong cổng khách hàng của {merchant}; gói đã hủy không bị tính phí lần nào nữa và vẫn hoạt động tới hết kỳ bạn đã trả tiền. Gói mua một lần chỉ thanh toán một lần và không có ngày hết hạn.
+Gói theo tháng và theo năm tự động gia hạn cho tới khi bạn hủy. Bạn có thể hủy trong trang tài khoản hoặc trong cổng khách hàng của {merchant}; gói đã hủy không bị tính phí lần nào nữa và vẫn hoạt động tới hết kỳ bạn đã trả tiền. Gói mua một lần chỉ bị tính phí một lần và không gia hạn.
 
 Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refund-policy).
 
@@ -43,6 +43,8 @@ Một License cho bạn quyền không độc quyền, không chuyển nhượng
 - License **Team** tính giá theo seat, tối thiểu {teamMinSeats} seat. Mỗi seat dành cho một người, trên tối đa {deviceLimit} máy tính, Mac hoặc Linux. Chủ sở hữu và quản trị viên của nhóm mời các thành viên, và họ tham gia bằng liên kết mời gửi qua email.
 
 Giới hạn {deviceLimit} máy tính được tính theo tài khoản, chung cho mọi License mà tài khoản đó dùng. Bạn không được chia sẻ tài khoản hoặc License Key ra ngoài phạm vi những người và máy tính mà gói của bạn bao gồm, cũng không được cấp phép lại, bán, cho thuê hoặc chuyển nhượng License hay License Key dưới bất kỳ hình thức nào khác, nếu không có sự cho phép bằng văn bản của chúng tôi.
+
+License theo tháng hoặc theo năm có hiệu lực trong kỳ bạn đã trả tiền, còn License mua một lần không có ngày kết thúc. Trong thời gian có hiệu lực, License bao gồm mọi phiên bản của Ứng dụng mà chúng tôi phát hành và mọi tính năng chúng tôi thêm vào gói của License đó, không thu thêm phí. Với License mua một lần, điều đó có nghĩa là mọi phiên bản và tính năng về sau, kể cả các phiên bản lớn mới, trên mọi nền tảng desktop mà sau này chúng tôi phát hành TablePro. Điều này áp dụng cho mọi License mua một lần, bất kể mua khi nào.
 
 Các ứng dụng làm mới gói của bạn với máy chủ của chúng tôi mỗi ngày một lần. Nếu không liên lạc được với máy chủ, các tính năng trả phí vẫn hoạt động tối đa {offlineDays} ngày kể từ lần làm mới gần nhất, hoặc, trên máy Mac dùng tệp offline từ trang tài khoản, tới khi tệp đó hết hạn. Các phiên bản trước khi có tài khoản TablePro thì kiểm tra License Key mỗi {revalidateDays} ngày, và giữ các tính năng trả phí trong {graceDays} ngày kể từ lần kiểm tra thành công gần nhất. Khi một gói theo tháng hoặc theo năm kết thúc, các tính năng của gói đó ngừng hoạt động, các ứng dụng vẫn hoạt động bình thường mà không có các tính năng đó.
 
@@ -95,7 +97,7 @@ Bạn đồng ý bồi thường và bảo vệ TablePro cùng những người 
 
 ## Cập nhật và tính sẵn sàng {#updates}
 
-Chúng tôi phát hành bản cập nhật, bản sửa lỗi và tính năng mới theo quyết định của mình. Ngoài hỗ trợ ưu tiên nêu trên, chúng tôi không có nghĩa vụ duy trì, cập nhật hoặc hỗ trợ bất kỳ phiên bản nào của Ứng dụng, và các phiên bản cũ có thể không còn nhận bản sửa lỗi bảo mật.
+Chúng tôi quyết định phát hành bản cập nhật, bản sửa lỗi và tính năng mới nào, và vào lúc nào. Những gì chúng tôi phát hành thuộc về License của bạn, như nêu ở mục [Sử dụng license](#license). Ngoài điều đó và hỗ trợ ưu tiên nêu trên, chúng tôi không có nghĩa vụ duy trì, cập nhật hoặc hỗ trợ bất kỳ phiên bản nào của Ứng dụng, và các phiên bản cũ có thể không còn nhận bản sửa lỗi bảo mật.
 
 Một số Dịch vụ, chẳng hạn kiểm tra license và Team Library, cần kết nối mạng. Chúng tôi không bảo đảm rằng các Dịch vụ này luôn sẵn sàng, và có thể ngừng cung cấp chúng sau khi thông báo trước trong thời gian hợp lý. Các tính năng trả phí của các ứng dụng cần máy chủ license của chúng tôi: nếu không liên lạc được với máy chủ, các tính năng này vẫn hoạt động trong khoảng thời gian nêu tại [Sử dụng license](#license).
 

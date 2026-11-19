@@ -391,7 +391,7 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 > {starterExamples}. Team includes everything in Starter and adds {teamExamples} for sharing connections and queries
 > with your team. Connecting to any supported engine needs no license, and neither do the AI assistant, the MCP server
 > or Safe Mode. If a monthly or yearly plan ends, its features lock and the rest of the app keeps working. A one-time
-> purchase has no expiry date. The iPhone and iPad app is free, with no in-app purchases, and needs no license. To
+> purchase has no expiry date and includes every update and every feature later added to its plan. The iPhone and iPad app is free, with no in-app purchases, and needs no license. To
 > sync it with a Mac through iCloud, the Mac needs Starter.
 
 **VI**
@@ -401,7 +401,7 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 > tính năng tùy chọn cho ứng dụng Mac, như {starterExamples}. Gói Team gồm mọi thứ trong Starter và có thêm
 > {teamExamples} để chia sẻ connection và query trong nhóm. Kết nối tới bất kỳ engine nào được hỗ trợ, trợ lý AI, MCP
 > server và Safe Mode đều không cần license. Khi gói theo tháng hoặc theo năm kết thúc, các tính năng trả phí bị khóa,
-> phần còn lại của ứng dụng vẫn hoạt động bình thường. Gói mua một lần không có ngày hết hạn. Ứng dụng cho iPhone và
+> phần còn lại của ứng dụng vẫn hoạt động bình thường. Gói mua một lần không có ngày hết hạn, bao gồm mọi bản cập nhật và mọi tính năng được thêm vào gói sau này. Ứng dụng cho iPhone và
 > iPad miễn phí, không có mua hàng trong ứng dụng và không cần license. Muốn đồng bộ với máy Mac qua iCloud thì máy Mac
 > cần gói Starter.
 
@@ -420,7 +420,7 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 | The paid boundary, and Team includes Starter | `ProFeature.swift` |
 | AI, MCP, Safe Mode and engines are free | None of them checks a license |
 | On lapse the paid features lock; there is no perpetual fallback | The app's license lifecycle |
-| A one-time purchase has no expiry date | The plan's own wording, "paid once, no expiry date", and nothing more |
+| A one-time purchase has no expiry date and includes every update | The terms of service, "Using a license": every version released and every feature added to the plan, new major versions and later desktop platforms included, for every one-time license whenever it was bought |
 | The iPhone app gates nothing | App Store 1.0 has no in-app purchases; iCloud Sync needs Starter on the Mac and nothing on iOS |
 | The paid code is public | The paid features live in the same public repository |
 
@@ -432,7 +432,7 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 
 **Deliberately absent:**
 - "the whole app", "no feature gating", "free forever";
-- lifetime updates, savings badges or "most popular" (a dated sale's tag on the cards it covers is the one
+- "lifetime" as a name for the one-time plan or its updates, savings badges or "most popular" (a dated sale's tag on the cards it covers is the one
   exception, below);
 - regional prices, PPP, bank transfer, VND or named local payment gateways, with one exception: the plan block
   (`/pricing` and the homepage's `#pricing`) shows the regional discount checkout applies in some countries, once the
@@ -456,7 +456,7 @@ prices, with a code that works only inside the window (`App\Support\Pricing\Camp
   the percentage off and the window.
 - **Wording:** "{percent}% off" beside the struck list price and the sale price, never "save N%" (§12.1). A
   subscription's sale price is its first charge's, and the line under it says what it renews at. A one-time license
-  is still "paid once, no expiry date", never lifetime updates.
+  is worded as on Pricing: paid once, with every update and every new Pro feature.
 - **Honest reference prices:** every struck price is dated ("regular prices since …"), and the sale's page says when
   the prices last changed, linking the post that explains it.
 - **Time:** a countdown to the real end, the same instant for every reader, which never resets and is never
@@ -629,7 +629,7 @@ toàn" appear. Prose keeps "Safe Mode".
 | plan / paid plan | gói / gói trả phí | "gói Starter", "gói Team" |
 | Free (tier) | Miễn phí | |
 | license (commercial) / license key / activate | license / license key / kích hoạt | Never "giấy phép" for the paid key (prose); the app's pane label is quoted only in click paths |
-| monthly / yearly / one-time | theo tháng / theo năm / mua một lần | The `lifetime` cycle displays as "One-time" / "Mua một lần" with "Paid once, no expiry date" / "Trả một lần, không có ngày hết hạn". The checkout value stays `lifetime` |
+| monthly / yearly / one-time | theo tháng / theo năm / mua một lần | The `lifetime` cycle displays as "One-time" / "Mua một lần" with "Pay once. Every update and every new Pro feature is included." / "Trả một lần. Bao gồm mọi bản cập nhật và mọi tính năng Pro mới." The checkout value stays `lifetime` |
 | per seat / seat / minimum {n} seats | mỗi seat / seat / tối thiểu {n} seat | Explain on first use: "mỗi seat là một máy Mac được kích hoạt" |
 | activated Macs | máy Mac đã kích hoạt | |
 | subscription | gói thuê bao | Avoid "đăng ký", which also means sign up |
@@ -713,7 +713,7 @@ Structured data and OG cards take their text from those sources, so they need no
 | Hype | Any (legal pages exempt) | powerful, seamless, effortless, revolutionary, supercharge, game-changing, ultimate, best-in-class, next-generation, cutting-edge, magic, AI-powered | mạnh mẽ, liền mạch, đột phá, vượt trội, tuyệt vời, hàng đầu, tốt nhất, thế hệ mới | Plain verbs and names |
 | Typed counts | TablePro | numerals for engines, MCP tools, AI providers, Safe Mode levels, sync record types, paid features, UI languages | same | Data-driven values, or names instead of counts. A competitor's count appears only in a comparison cell with a source (§12.2, A6) |
 | Stale facts | TablePro | macOS 14, Sonoma, 16 MCP tools, 13 AI providers, remote MCP / MCP over TLS, CSV inspector, Quick Switcher, Redis pub/sub, Mongo pipeline builder, SQLCipher, "#1 on GitHub Trending" (unqualified), bring your own key | same terms | The current fact from the app at the copy floor. A competitor's OS floor is written as a version number ("macOS 14 or later", §12.2, A2), never as a release name |
-| Commerce | Any | most popular, best value, save N% (typed), lifetime updates, all future updates, money-back guarantee, PPP, regional pricing, bank transfer, VND, named local payment gateways, LemonSqueezy | phổ biến nhất, tiết kiệm N%, cập nhật trọn đời, chuyển khoản ngân hàng | "Refunds within 7 days of purchase" (policy wording owned by the refund page); "Paid once, no expiry date"; the plan block's regional discount line, worded without the banned phrases (§9) |
+| Commerce | Any | most popular, best value, save N% (typed), lifetime, lifetime updates, money-back guarantee, PPP, regional pricing, bank transfer, VND, named local payment gateways, LemonSqueezy | phổ biến nhất, tiết kiệm N%, cập nhật trọn đời, chuyển khoản ngân hàng | "Refunds within 7 days of purchase" (policy wording owned by the refund page); "Pay once. Every update and every new Pro feature is included." (the promise the terms make, in those words: updates and features we release, never a schedule or a roadmap); the plan block's regional discount line, worded without the banned phrases (§9) |
 | iOS 1.0 specifics | TablePro | jump hosts on iPhone, Redis key browsing on iPhone, side-by-side iPad layout, editing long values on iPhone, nothing connects until you unlock, feature parity | same | Describe App Store 1.0 only; rows that exist only on the app's main branch are gated in data |
 
 ### 12.2 Exemptions and allowlist

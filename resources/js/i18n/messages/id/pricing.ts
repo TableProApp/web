@@ -16,7 +16,7 @@ export default {
         "monthly": "Diperpanjang setiap bulan hingga Anda membatalkannya.",
         "yearly": "Diperpanjang setiap tahun hingga Anda membatalkannya. {percent}% lebih murah daripada dua belas pembayaran bulanan.",
         "yearlyByTier": "Diperpanjang setiap tahun hingga Anda membatalkannya. Pro {starterPercent}% lebih murah daripada dua belas pembayaran bulanan, Team {teamPercent}% lebih murah.",
-        "lifetime": "Dibayar sekali, tanpa tanggal kedaluwarsa."
+        "lifetime": "Sekali bayar. Semua pembaruan dan semua fitur Pro baru sudah termasuk."
     },
     "tiers": {
         "free": {

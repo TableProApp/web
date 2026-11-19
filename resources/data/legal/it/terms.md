@@ -1,7 +1,7 @@
 ---
 title: Termini di servizio
 description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Pro o Team.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac, TablePro per Linux e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
@@ -31,7 +31,7 @@ TablePro™, il logo di TablePro e l’icona dell’app TablePro sono marchi di 
 
 Le Licenze sono vendute da {merchant} (Polar Software, Inc.), nostro merchant of record e rivenditore. Acquisti una Licenza da {merchant} secondo i termini di {merchant} per gli acquirenti e TablePro ti concede il diritto di usarla secondo questi termini. {merchant} incassa il pagamento, calcola e versa le eventuali imposte sulle vendite o l’IVA e invia ricevute e fatture. I prezzi sono in dollari statunitensi e sono elencati nella [pagina dei prezzi](/it/pricing).
 
-I piani mensili e annuali si rinnovano automaticamente finché non li annulli. Puoi annullarli nel portale dell’account o nel portale clienti di {merchant}; un piano annullato non riceve altri addebiti e continua a funzionare fino alla fine del periodo pagato. Un acquisto una tantum si paga una sola volta e non ha scadenza.
+I piani mensili e annuali si rinnovano automaticamente finché non li annulli. Puoi annullarli nel portale dell’account o nel portale clienti di {merchant}; un piano annullato non riceve altri addebiti e continua a funzionare fino alla fine del periodo pagato. Un acquisto una tantum viene addebitato una sola volta e non si rinnova.
 
 I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy).
 
@@ -43,6 +43,8 @@ Una Licenza concede un diritto non esclusivo e non trasferibile di usare le funz
 - Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} posti. Ogni posto è per una persona, su un massimo di {deviceLimit} computer, Mac o Linux. Il proprietario e gli amministratori del team invitano i membri, che partecipano tramite un link di invito ricevuto via email.
 
 Il limite di {deviceLimit} computer vale per account, sommando tutte le Licenze che usa. Non puoi condividere il tuo account o una Chiave di licenza oltre le persone e i computer coperti dal piano, né concedere in sublicenza, vendere, noleggiare o trasferire altrimenti una Licenza o una Chiave di licenza senza la nostra autorizzazione scritta.
+
+Una Licenza mensile o annuale dura per il periodo che hai pagato, e una Licenza una tantum non ha una data di fine. Finché è in corso, una Licenza copre tutte le versioni dell’Applicazione che pubblichiamo e tutte le funzionalità che aggiungiamo al suo piano, senza costi aggiuntivi. Per una Licenza una tantum questo significa tutte le versioni e funzionalità successive, comprese le nuove versioni principali, su qualsiasi piattaforma desktop per cui pubblicheremo TablePro. Questo vale per tutte le Licenze una tantum, a prescindere dalla data di acquisto.
 
 Le app rinnovano il piano con il nostro server una volta al giorno. Se il server non è raggiungibile, le funzionalità a pagamento continuano a funzionare fino a {offlineDays} giorni dall’ultimo rinnovo o, su un Mac che usa un file offline del portale dell’account, finché il file non scade. Le versioni precedenti agli account TablePro verificano invece una Chiave di licenza ogni {revalidateDays} giorni e mantengono le funzionalità a pagamento per {graceDays} giorni dall’ultima verifica riuscita. Quando termina un piano mensile o annuale, le sue funzionalità smettono di funzionare e le app continuano a funzionare senza di esse.
 
@@ -95,7 +97,7 @@ Accetti di indennizzare e tenere indenni TablePro e i suoi collaboratori da qual
 
 ## Aggiornamenti e disponibilità {#updates}
 
-Pubblichiamo aggiornamenti, correzioni e nuove funzionalità a nostra discrezione. Oltre all’assistenza prioritaria sopra, non siamo obbligati a mantenere, aggiornare o fornire assistenza per alcuna versione dell’Applicazione; le versioni precedenti possono smettere di ricevere correzioni di sicurezza.
+Decidiamo noi quali aggiornamenti, correzioni e nuove funzionalità pubblicare, e quando. Quelli che pubblichiamo fanno parte della tua Licenza, come indicato in [Uso di una licenza](#license). Oltre a questo e all’assistenza prioritaria sopra, non siamo obbligati a mantenere, aggiornare o fornire assistenza per alcuna versione dell’Applicazione; le versioni precedenti possono smettere di ricevere correzioni di sicurezza.
 
 Alcuni Servizi, come verifiche delle licenze e Team Library, richiedono accesso alla rete. Non garantiamo che siano sempre disponibili e possiamo interromperli con un ragionevole preavviso. Le funzionalità a pagamento delle app richiedono il nostro server delle licenze: se non è raggiungibile, continuano a funzionare per il tempo indicato in [Uso di una licenza](#license).
 

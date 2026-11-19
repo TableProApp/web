@@ -1,7 +1,7 @@
 ---
 title: Nutzungsbedingungen
 description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Pro- oder Team-Lizenz.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac, TablePro für Linux sowie TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
@@ -31,7 +31,7 @@ TablePro™, das TablePro-Logo und das TablePro-App-Icon sind Marken von {publis
 
 Lizenzen werden von {merchant} (Polar Software, Inc.), unserem Merchant of Record und Wiederverkäufer, verkauft. Du kaufst eine Lizenz von {merchant} nach den Käuferbedingungen von {merchant}; TablePro gewährt dir das Recht zur Nutzung nach diesen Bedingungen. {merchant} nimmt die Zahlung entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer und sendet Belege und Rechnungen. Preise sind in US-Dollar angegeben und stehen auf der [Preisseite](/de/pricing).
 
-Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie kündigst. Du kannst im Kontoportal oder im Kundenportal von {merchant} kündigen. Ein gekündigter Tarif wird nicht erneut berechnet und bleibt bis zum Ende des bezahlten Zeitraums aktiv. Ein einmaliger Kauf wird einmal bezahlt und hat kein Ablaufdatum.
+Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie kündigst. Du kannst im Kontoportal oder im Kundenportal von {merchant} kündigen. Ein gekündigter Tarif wird nicht erneut berechnet und bleibt bis zum Ende des bezahlten Zeitraums aktiv. Ein einmaliger Kauf wird einmal berechnet und verlängert sich nicht.
 
 Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben.
 
@@ -43,6 +43,8 @@ Eine Lizenz gewährt dir ein nicht ausschließliches, nicht übertragbares Recht
 - Eine **Team**-Lizenz wird pro Arbeitsplatz berechnet, mit mindestens {teamMinSeats} Arbeitsplätzen. Jeder Arbeitsplatz gilt für eine Person auf bis zu {deviceLimit} Computern, Mac oder Linux. Inhaber und Admins des Teams laden Teammitglieder ein, die über einen per E-Mail gesendeten Einladungslink beitreten.
 
 Das Limit von {deviceLimit} Computern gilt pro Konto, über alle Lizenzen hinweg, die es nutzt. Ohne unsere schriftliche Erlaubnis darfst du dein Konto oder einen Lizenzschlüssel nicht über die von deinem Tarif abgedeckten Personen und Computer hinaus teilen und keine Lizenz und keinen Lizenzschlüssel unterlizenzieren, verkaufen, vermieten oder anderweitig übertragen.
+
+Eine monatliche oder jährliche Lizenz läuft für den Zeitraum, den du bezahlt hast, und eine einmalig gekaufte Lizenz hat kein Enddatum. Solange eine Lizenz läuft, umfasst sie jede Version der Anwendung, die wir veröffentlichen, und jede Funktion, die wir ihrem Tarif hinzufügen, ohne weitere Kosten. Bei einer einmalig gekauften Lizenz sind das alle späteren Versionen und Funktionen, auch neue Hauptversionen, auf jeder Desktop-Plattform, für die wir TablePro später veröffentlichen. Das gilt für jede einmalig gekaufte Lizenz, unabhängig vom Kaufdatum.
 
 Die Apps erneuern deinen Tarif einmal täglich bei unserem Server. Ist der Server nicht erreichbar, funktionieren die Bezahlfunktionen noch bis zu {offlineDays} Tage nach der letzten Erneuerung oder, auf einem Mac mit einer Offline-Datei aus dem Kontoportal, bis die Datei abläuft. Versionen vor den TablePro-Konten prüfen stattdessen alle {revalidateDays} Tage einen Lizenzschlüssel und behalten die Bezahlfunktionen {graceDays} Tage nach der letzten erfolgreichen Prüfung. Wenn ein monatlicher oder jährlicher Tarif endet, stehen seine Funktionen nicht mehr bereit; die Apps funktionieren ohne sie weiter.
 
@@ -95,7 +97,7 @@ Du verpflichtest dich, TablePro und seine Mitwirkenden von Ansprüchen, Forderun
 
 ## Updates und Verfügbarkeit {#updates}
 
-Wir veröffentlichen Updates, Fehlerbehebungen und neue Funktionen nach eigenem Ermessen. Abgesehen vom oben genannten bevorzugten Support sind wir nicht verpflichtet, eine Version der Anwendung zu warten, zu aktualisieren oder zu unterstützen. Ältere Versionen erhalten möglicherweise keine Sicherheitskorrekturen mehr.
+Wir entscheiden, welche Updates, Fehlerbehebungen und neuen Funktionen wir veröffentlichen und wann. Was wir veröffentlichen, gehört zu deiner Lizenz, wie unter [Eine Lizenz nutzen](#license) beschrieben. Abgesehen davon und vom oben genannten bevorzugten Support sind wir nicht verpflichtet, eine Version der Anwendung zu warten, zu aktualisieren oder zu unterstützen. Ältere Versionen erhalten möglicherweise keine Sicherheitskorrekturen mehr.
 
 Einige Dienste wie Lizenzprüfungen und die Team Library benötigen Netzwerkzugang. Wir garantieren keine ständige Verfügbarkeit und können sie nach angemessener Ankündigung einstellen. Die Bezahlfunktionen der Apps benötigen unseren Lizenzserver: Ist er nicht erreichbar, funktionieren sie noch für die unter [Eine Lizenz nutzen](#license) genannte Zeit.
 

@@ -16,7 +16,7 @@ export default {
         "monthly": "Verlängert sich monatlich, bis du kündigst.",
         "yearly": "Verlängert sich jährlich, bis du kündigst. {percent} % günstiger als zwölf Monatszahlungen.",
         "yearlyByTier": "Verlängert sich jährlich, bis du kündigst. Pro ist {starterPercent} % günstiger als zwölf Monatszahlungen, Team {teamPercent} % günstiger.",
-        "lifetime": "Einmalige Zahlung, ohne Ablaufdatum."
+        "lifetime": "Einmal zahlen. Alle Updates und alle neuen Pro-Funktionen sind enthalten."
     },
     "tiers": {
         "free": {

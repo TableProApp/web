@@ -16,7 +16,7 @@ export default {
         monthly: 'Tự động gia hạn mỗi tháng cho tới khi bạn hủy.',
         yearly: 'Tự động gia hạn mỗi năm cho tới khi bạn hủy. Rẻ hơn {percent}% so với trả theo tháng trong một năm.',
         yearlyByTier: 'Tự động gia hạn mỗi năm cho tới khi bạn hủy. So với trả theo tháng trong một năm, gói Pro rẻ hơn {starterPercent}%, gói Team rẻ hơn {teamPercent}%.',
-        lifetime: 'Trả một lần, không có ngày hết hạn.',
+        lifetime: 'Trả một lần. Bao gồm mọi bản cập nhật và mọi tính năng Pro mới.',
     },
     tiers: {
         free: {
