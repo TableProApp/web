@@ -4,12 +4,14 @@ use App\Http\Controllers\IosController;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Assets\AssetManifest;
 use App\Support\Localization\LocalizedUrl;
+use App\Support\Pricing\Campaign;
 use Dom\HTMLDocument;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
 
 function staticPageData(string $file): array
 {
@@ -140,6 +142,9 @@ it('server-renders neither the education section nor its FAQ question', function
 
 // The sections these anchors named became questions of one FAQ; sites and posts still link them.
 it('keeps every pricing anchor other pages link to, and states each cycle\'s price', function (string $locale): void {
+    // A running sale prints its own prices in the plans.
+    travelTo(Campaign::current()?->endsAt ?? now());
+
     $html = ssrHtml(LocalizedUrl::path('/pricing', $locale));
     $pricing = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $prices = staticPageData('pricing.json')['tiers'];
