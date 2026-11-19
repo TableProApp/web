@@ -130,6 +130,9 @@ return [
 
     'web_domain' => env('WEB_DOMAIN', 'localhost'),
 
+    // Noto Sans CJK for og:generate, as scripts/assets/prepare_fonts.py writes it. Unset: the machine's own.
+    'og_cjk_fonts' => env('OG_CJK_FONTS'),
+
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),

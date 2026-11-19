@@ -1,8 +1,10 @@
 <?php
 
 use App\Support\Localization\LocalizedUrl;
+use App\Support\Pricing\Campaign;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
 
 function homeDocument(string $locale): Dom\HTMLDocument
 {
@@ -12,6 +14,9 @@ function homeDocument(string $locale): Dom\HTMLDocument
 }
 
 it('renders the sections in order, the sponsors third, under one h1', function (string $locale): void {
+    // A running sale adds its band above the hero.
+    travelTo(Campaign::current()?->endsAt ?? now());
+
     $document = homeDocument($locale);
     $sections = array_map(fn(Dom\Element $section): string => $section->id, iterator_to_array($document->querySelectorAll('main > section')));
 

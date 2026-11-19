@@ -7,10 +7,4 @@ return [
         'database' => '資料庫',
         'feature' => '功能',
     ],
-    'author' => 'TablePro',
-    'byline' => ':author · :date',
-
-    'free' => '免費',
-
-    'currency' => 'US${amount}',
 ];

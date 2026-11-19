@@ -7,10 +7,4 @@ return [
         'database' => '数据库',
         'feature' => '功能',
     ],
-    'author' => 'TablePro',
-    'byline' => ':author · :date',
-
-    'free' => '免费',
-
-    'currency' => '${amount}',
 ];

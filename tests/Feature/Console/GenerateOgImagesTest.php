@@ -20,11 +20,14 @@ beforeEach(function (): void {
     seoWriteContent($content, 'en', 'features/querying', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Querying', 'title' => 'Write <SQL> & run it']]);
     seoWriteContent($content, 'vi', 'features/querying', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Query', 'title' => 'Viết query và chạy ngay']]);
     seoWriteContent($content, 'en', 'compare/tableplus', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['title' => 'TablePro or TablePlus']]);
-    seoWriteContent($content, 'en', 'databases/index', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['title' => 'Hubs use the site card']]);
-    seoWriteContent($content, 'en', 'faq', ['seo' => ['title' => 't', 'description' => 'd']]);
+    seoWriteContent($content, 'en', 'databases/index', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Databases', 'title' => 'Supported databases']]);
+    seoWriteContent($content, 'en', 'databases/mysql-client', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['title' => 'MySQL client']]);
+    seoWriteContent($content, 'en', 'faq', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'FAQ', 'title' => 'Frequently asked questions']]);
+    seoWriteContent($content, 'en', 'about', ['seo' => ['title' => 't', 'description' => 'd']]);
+    seoWriteContent($content, 'en', 'pricing', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Pricing', 'title' => 'Free to use.']]);
 
-    seoWriteMarkdown($this->dirs['blog'] . '/tablepro-0-77.md', ['title' => 'TablePro 0.77', 'ogPunchline' => 'Folders in the sidebar.', 'date' => '2026-10-02']);
-    seoWriteMarkdown($this->dirs['blog'] . '/a-guide.md', ['title' => 'A guide', 'description' => 'What it covers.', 'date' => '2026-03-01']);
+    seoWriteMarkdown($this->dirs['blog'] . '/tablepro-0-77.md', ['title' => 'TablePro 0.77: Folders in the sidebar', 'release' => 'TablePro 0.77', 'date' => '2026-10-02']);
+    seoWriteMarkdown($this->dirs['blog'] . '/a-guide.md', ['title' => 'A guide: with a colon', 'description' => 'What it covers.', 'date' => '2026-03-01']);
     seoWriteMarkdown($this->dirs['blog'] . '/vi/a-guide.md', ['title' => 'Một hướng dẫn', 'description' => 'Nội dung chính.', 'date' => '2026-03-01']);
 
     $this->app->forgetInstance(PageRegistry::class);
@@ -67,6 +70,10 @@ it('renders every card in both languages by default', function (): void {
         '/og/feature/querying.png',
         '/og/vi/feature/querying.png',
         '/og/compare/tableplus.png',
+        '/og/database/index.png',
+        '/og/database/mysql-client.png',
+        '/og/page/faq.png',
+        '/og/pricing/pricing.png',
         '/og/blog/tablepro-0-77.png',
         '/og/blog/a-guide.png',
         '/og/vi/blog/a-guide.png',
@@ -80,14 +87,11 @@ it('renders every card in both languages by default', function (): void {
     expect(public_path())->toBe($this->public);
 });
 
-it('renders one language with --locale', function (string $locale, array $paths): void {
-    $this->artisan('og:generate', ['--locale' => $locale])->assertSuccessful();
+it('renders one language with --locale', function (): void {
+    $this->artisan('og:generate', ['--locale' => 'vi'])->assertSuccessful();
 
-    expect(array_keys($this->rendered))->toEqualCanonicalizing($paths);
-})->with([
-    'English' => ['en', ['/og.png', '/og/feature/querying.png', '/og/compare/tableplus.png', '/og/blog/tablepro-0-77.png', '/og/blog/a-guide.png']],
-    'Vietnamese' => ['vi', ['/og/vi/default.png', '/og/vi/feature/querying.png', '/og/vi/blog/a-guide.png']],
-]);
+    expect(array_keys($this->rendered))->toEqualCanonicalizing(['/og/vi/default.png', '/og/vi/feature/querying.png', '/og/vi/blog/a-guide.png']);
+});
 
 it('renders one set with --type, and one page with --slug', function (array $options, array $paths): void {
     $this->artisan('og:generate', $options)->assertSuccessful();
@@ -97,6 +101,8 @@ it('renders one set with --type, and one page with --slug', function (array $opt
     'the generic cards' => [['--type' => 'site'], ['/og.png', '/og/vi/default.png']],
     'the feature cards in English' => [['--type' => 'feature', '--locale' => 'en'], ['/og/feature/querying.png']],
     'the blog cards' => [['--type' => 'blog'], ['/og/blog/tablepro-0-77.png', '/og/blog/a-guide.png', '/og/vi/blog/a-guide.png']],
+    'the one-off pages' => [['--type' => 'page'], ['/og/page/faq.png']],
+    'a hub' => [['--type' => 'database', '--slug' => 'index'], ['/og/database/index.png']],
     'one page, every language' => [['--slug' => 'querying'], ['/og/feature/querying.png', '/og/vi/feature/querying.png']],
     'one post, one language' => [['--slug' => 'a-guide', '--locale' => 'vi'], ['/og/vi/blog/a-guide.png']],
 ]);
@@ -119,60 +125,82 @@ it('renders nothing and says so when no page has the slug', function (): void {
 });
 
 it('skips a page with no card copy and keeps its existing card', function (): void {
-    seoWriteContent($this->dirs['content'], 'en', 'databases/mysql-client', ['seo' => ['title' => 't', 'description' => 'd']]);
-    $this->app->forgetInstance(PageRegistry::class);
+    File::ensureDirectoryExists($this->public . '/og/page');
+    File::put($this->public . '/og/page/about.png', 'old card');
 
-    File::ensureDirectoryExists($this->public . '/og/database');
-    File::put($this->public . '/og/database/mysql-client.png', 'old card');
-
-    $this->artisan('og:generate', ['--type' => 'database'])
+    $this->artisan('og:generate', ['--slug' => 'about'])
         ->expectsOutputToContain('skipped')
         ->assertSuccessful();
 
     expect($this->rendered)->toBe([]);
-    expect(File::get($this->public . '/og/database/mysql-client.png'))->toBe('old card');
+    expect(File::get($this->public . '/og/page/about.png'))->toBe('old card');
 });
 
-it('fills each card from its own language, escaped, with the page address', function (): void {
+it('fills each card from its own language, escaped', function (): void {
     $this->artisan('og:generate')->assertSuccessful();
 
-    $site = $this->rendered['/og/vi/default.png']['html'];
-    $feature = $this->rendered['/og/feature/querying.png']['html'];
-    $featureVi = $this->rendered['/og/vi/feature/querying.png']['html'];
-    $compare = $this->rendered['/og/compare/tableplus.png']['html'];
-
-    expect($site)
+    expect($this->rendered['/og/vi/default.png']['html'])
         ->toContain('<html lang="vi">')
-        ->toContain('TablePro là database client native, mã nguồn mở, dành cho lập trình viên.')
-        ->toContain('localhost/vi<');
+        ->toContain('TablePro là database client native, mã nguồn mở, dành cho lập trình viên.');
 
-    expect($feature)
+    expect($this->rendered['/og/feature/querying.png']['html'])
         ->toContain('<html lang="en">')
-        ->toContain('Write &lt;SQL&gt; &amp; run it')
-        ->not->toContain('<SQL>')
-        ->toContain('localhost/features/querying');
+        ->toContain('<h1 class="title t1">Write &lt;SQL&gt; &amp; run it</h1>')
+        ->not->toContain('<SQL>');
 
-    expect($featureVi)->toContain('<p class="kicker">Query</p>')->toContain('Viết query và chạy ngay')->toContain('localhost/vi/features/querying');
-
-    // A page with no kicker of its own takes its family's label.
-    expect($compare)->toContain(trans('og.family.compare', [], 'en'));
+    expect($this->rendered['/og/vi/feature/querying.png']['html'])->toContain('Viết query và chạy ngay');
 });
 
-it('dates a post in the language of its card', function (): void {
+it('prints the title and at most a section and a sub line', function (): void {
+    $this->artisan('og:generate')->assertSuccessful();
+
+    $section = fn(string $label): string => '<span class="section">' . $label . '</span>';
+
+    // A page names its family, never its own kicker.
+    expect($this->rendered['/og/feature/querying.png']['html'])
+        ->toContain($section(trans('og.family.feature', [], 'en')))
+        ->not->toContain('Querying');
+    expect($this->rendered['/og/vi/feature/querying.png']['html'])->toContain($section(trans('og.family.feature', [], 'vi')));
+    expect($this->rendered['/og/compare/tableplus.png']['html'])->toContain($section(trans('og.family.compare', [], 'en')));
+    expect($this->rendered['/og/pricing/pricing.png']['html'])->toContain($section('Pricing'));
+
+    foreach (['/og/database/index.png', '/og/page/faq.png', '/og/vi/default.png'] as $path) {
+        expect($this->rendered[$path]['html'])->not->toContain('class="section"');
+    }
+
+    foreach ($this->rendered as $path => $card) {
+        expect($card['html'])->not->toContain('localhost', "{$path} prints an address");
+    }
+});
+
+it('shows the engine on a database card and nowhere else', function (): void {
+    File::ensureDirectoryExists($this->public . '/images/databases');
+    File::copy(base_path('public/images/databases/mysql.svg'), $this->public . '/images/databases/mysql.svg');
+
+    $this->artisan('og:generate')->assertSuccessful();
+
+    expect($this->rendered['/og/database/mysql-client.png']['html'])
+        ->toContain('<div class="tile"><img src="data:image/svg+xml;base64,' . base64_encode(File::get(base_path('public/images/databases/mysql.svg'))));
+
+    foreach (['/og/database/index.png', '/og/feature/querying.png', '/og/blog/a-guide.png'] as $path) {
+        expect($this->rendered[$path]['html'])->not->toContain('<div class="tile">');
+    }
+});
+
+it('splits a release title into the version and its headline, and leaves a guide whole', function (): void {
     $this->artisan('og:generate', ['--type' => 'blog'])->assertSuccessful();
 
     expect($this->rendered['/og/blog/tablepro-0-77.png']['html'])
-        ->toContain('Folders in the sidebar.')
-        ->toContain('October 2, 2026')
-        ->toContain(trans('og.author', [], 'en'));
+        ->toContain('<h1 class="title t1">TablePro 0.77</h1>')
+        ->toContain('<p class="sub">Folders in the sidebar</p>')
+        ->not->toContain('2026');
 
-    expect($this->rendered['/og/blog/a-guide.png']['html'])->toContain('What it covers.');
+    expect($this->rendered['/og/blog/a-guide.png']['html'])
+        ->toContain('<h1 class="title t1">A guide: with a colon</h1>')
+        ->not->toContain('class="sub"')
+        ->not->toContain('What it covers.');
 
-    expect($this->rendered['/og/vi/blog/a-guide.png']['html'])
-        ->toContain('<html lang="vi">')
-        ->toContain('Một hướng dẫn')
-        ->toContain('tháng 3')
-        ->toContain(trans('og.author', [], 'vi'));
+    expect($this->rendered['/og/vi/blog/a-guide.png']['html'])->toContain('<html lang="vi">')->toContain('Một hướng dẫn');
 });
 
 it('embeds the fonts and the logo, so a card never depends on the machine', function (): void {
@@ -180,9 +208,25 @@ it('embeds the fonts and the logo, so a card never depends on the machine', func
 
     expect($this->rendered['/og.png']['html'])
         ->toContain('data:font/woff2;base64,AAAA')
-        ->toContain('data:image/png;base64,' . base64_encode(File::get($this->public . '/logo.png')))
+        ->toContain('data:image/png;base64,' . base64_encode(File::get($this->public . '/images/brand/tablepro-icon-256.png')))
         ->not->toContain('<img src="/')
         ->not->toContain('<link');
+});
+
+it('loads the CJK faces of the card\'s language from the configured directory', function (): void {
+    $fonts = $this->dirs['root'] . '/cjk';
+    File::ensureDirectoryExists($fonts);
+
+    foreach ([500, 600] as $weight) {
+        File::put("{$fonts}/noto-ja-{$weight}.otf", 'font');
+    }
+
+    $cards = new OgFonts($this->dirs['root'] . '/fonts.css', $fonts);
+
+    expect($cards->cjk('ja'))->toContain("url('file://{$fonts}/noto-ja-500.otf')")->toContain("url('file://{$fonts}/noto-ja-600.otf')")
+        ->and($cards->cjk('vi'))->toBe('')
+        ->and((new OgFonts($this->dirs['root'] . '/fonts.css'))->cjk('ja'))->toBe('')
+        ->and(fn() => $cards->cjk('ko'))->toThrow(RuntimeException::class);
 });
 
 it('fails before rendering when a font is missing', function (): void {

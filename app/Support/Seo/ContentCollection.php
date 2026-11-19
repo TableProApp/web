@@ -28,11 +28,13 @@ final class ContentCollection implements PageFamily
     /**
      * Hub route => [content family, OG family, data files the page renders].
      *
-     * Hubs have no card of their own; their OG family only tells the language
-     * switcher which section they belong to.
+     * A hub's card is `index` in its family. The OG family also tells the
+     * language switcher which section a page belongs to.
      *
      * @var array<string, array{0: string, 1: string, 2: list<string>}>
      */
+    public const HUB_CARD = 'index';
+
     private const HUBS = [
         'landing.features.index' => ['features', 'feature', ['resources/data/paid-features.json', 'resources/data/facts.json']],
         'landing.databases.index' => ['databases', 'database', ['resources/data/engines.json']],
@@ -105,7 +107,7 @@ final class ContentCollection implements PageFamily
         if (array_key_exists($route, self::HUBS)) {
             [$family, $ogFamily, $data] = self::HUBS[$route];
 
-            return $params === [] ? $this->entry($route, [], "{$family}/index", $data, $ogFamily, null) : null;
+            return $params === [] ? $this->entry($route, [], "{$family}/index", $data, $ogFamily, $ogFamily === 'integration' ? null : self::HUB_CARD) : null;
         }
 
         if (! array_key_exists($route, self::PAGES)) {

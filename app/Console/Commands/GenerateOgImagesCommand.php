@@ -7,7 +7,6 @@ use App\Services\Og\OgImageRenderException;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
-use App\Support\Localization\LocalizedUrl;
 use App\Support\Pricing\Campaign;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\ContentCollection;
@@ -15,8 +14,6 @@ use App\Support\Seo\OgFonts;
 use App\Support\Seo\OgImages;
 use App\Support\Seo\PageEntry;
 use App\Support\Seo\PageRegistry;
-use Carbon\CarbonImmutable;
-use DateTimeInterface;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -27,30 +24,8 @@ use RuntimeException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Throwable;
 
-/**
- * Renders the Open Graph cards, per page and per language.
- *
- * The set comes from the page registry, so a card exists for exactly the
- * pages and locales that render, and the paths are the ones `OgImages` reads
- * (`OgImages::cardPath()`, `OgImages::fallbackPath()`):
- *
- * - `site`: the generic brand card per locale, from `content/{locale}/home.json`
- *   → `og`. English goes to `/og.png` unless supplied artwork already occupies
- *   that URL, in which case it is preserved; Vietnamese to `/og/vi/default.png`.
- * - `feature`, `database`, `compare`: one card per page, from the `og` block
- *   of its content file. A page whose content has no `og` block keeps
- *   whatever card it has.
- * - `blog`: one card per post and language it is written in, from its front
- *   matter.
- *
- * Text comes from content, front matter and `lang/{locale}/og.php`; dates are
- * `isoFormat('LL')` in the card's locale. Nothing on a card is typed here.
- * Cards are committed under `public/og` (see .github/workflows/og.yml), never
- * generated in production. Rendering needs Chromium through Browsershot and
- * the fonts from `npm ci`.
- */
 #[Signature('og:generate
-    {--type=all : Card set to render (site|blog|database|compare|feature|campaign|pricing|all)}
+    {--type=all : Card set to render (site|page|blog|database|compare|feature|campaign|pricing|all)}
     {--slug= : Render only the page with this slug}
     {--locale=all : Supported language code, or all}')]
 #[Description('Render the Open Graph cards for the public pages, in each language they exist in.')]
@@ -59,7 +34,9 @@ class GenerateOgImagesCommand extends Command
     /**
      * @var list<string>
      */
-    public const TYPES = ['site', 'blog', 'database', 'compare', 'feature', 'campaign', 'pricing'];
+    public const TYPES = ['site', 'page', 'blog', 'database', 'compare', 'feature', 'campaign', 'pricing'];
+
+    public const VIEW = 'og.card';
 
     public function handle(
         PageRegistry $registry,
@@ -99,15 +76,15 @@ class GenerateOgImagesCommand extends Command
                     continue;
                 }
 
-                $card = $this->siteCard($content, $code);
+                $title = $this->ogTitle($content, 'home', $code);
 
-                if ($card === null) {
+                if ($title === null) {
                     $skipped[] = "site ({$code}): no `og` block in content/{$code}/home.json";
 
                     continue;
                 }
 
-                $cards[] = $card;
+                $cards[] = self::card($code, OgImages::fallbackPath($code), "site ({$code})", $title);
             }
         }
 
@@ -128,8 +105,7 @@ class GenerateOgImagesCommand extends Command
                 $card = match ($entry->ogFamily) {
                     'blog' => $this->blogCard($blog, $entry, $code),
                     'campaign' => $this->campaignCard($content, $entry, $code),
-                    'pricing' => $this->pricingCard($content, $entry, $code),
-                    default => $this->pageCard($content, $entry, $code),
+                    default => $this->pageCard($content, $files, $entry, $code),
                 };
 
                 if ($card === null) {
@@ -150,29 +126,15 @@ class GenerateOgImagesCommand extends Command
             return self::SUCCESS;
         }
 
-        $domain = (string) config('app.web_domain');
-
-        if (! str_contains($domain, '.')) {
-            $this->components->warn("WEB_DOMAIN is {$domain}, so the cards print that address. Set the production domain for cards you commit.");
-        }
-
         try {
-            $shared = ['fonts' => $fonts->css(), 'logo' => base64_encode((string) $files->get(public_path('logo.png')))];
+            $css = $fonts->css();
+            $logo = base64_encode((string) $files->get(public_path('images/brand/tablepro-icon-256.png')));
         } catch (RuntimeException $e) {
             $this->components->error($e->getMessage());
 
             return self::FAILURE;
         }
 
-        return $this->render($cards, $shared, $renderer, $files);
-    }
-
-    /**
-     * @param  list<array{view: string, data: array<string, string>, path: string, label: string}>  $cards
-     * @param  array{fonts: string, logo: string}  $shared
-     */
-    private function render(array $cards, array $shared, OgImageRenderer $renderer, Filesystem $files): int
-    {
         $progress = $this->output->createProgressBar(count($cards));
         $progress->start();
         $rendered = 0;
@@ -183,7 +145,12 @@ class GenerateOgImagesCommand extends Command
             $files->ensureDirectoryExists(dirname($output));
 
             try {
-                $html = View::make($card['view'], [...$shared, ...$card['data']])->render();
+                $html = View::make(self::VIEW, [
+                    'fonts' => $css,
+                    'cjk' => $fonts->cjk($card['data']['locale']),
+                    'logo' => $logo,
+                    ...$card['data'],
+                ])->render();
                 $renderer->render($html, $output);
                 $rendered++;
             } catch (OgImageRenderException $e) {
@@ -206,142 +173,80 @@ class GenerateOgImagesCommand extends Command
     }
 
     /**
-     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     * @return array{data: array{locale: string, title: string, section: string, sub: string, tile: string}, path: string, label: string}
      */
-    private function siteCard(ContentRepository $content, string $locale): ?array
+    private static function card(string $locale, string $path, string $label, string $title, string $section = '', string $sub = '', string $tile = ''): array
     {
-        $og = $content->has('home', $locale) ? ($content->page('home', $locale)['og'] ?? null) : null;
-        $title = is_array($og) && is_string($og['title'] ?? null) ? trim($og['title']) : '';
-
-        if ($title === '') {
-            return null;
+        // A section that only repeats the title says nothing.
+        if (mb_strtolower($section) === mb_strtolower($title)) {
+            $section = '';
         }
 
         return [
-            'view' => 'og.site',
-            'data' => [
-                'locale' => $locale,
-                'kicker' => is_string($og['kicker'] ?? null) ? trim($og['kicker']) : '',
-                'title' => $title,
-                'titleSize' => self::titleSize($title, false),
-                'address' => self::address(LocalizedUrl::route('landing.home', [], $locale)),
-            ],
-            'path' => OgImages::fallbackPath($locale),
-            'label' => "site ({$locale})",
+            'data' => ['locale' => $locale, 'title' => $title, 'section' => $section, 'sub' => $sub, 'tile' => $tile],
+            'path' => $path,
+            'label' => $label,
         ];
     }
 
     /**
-     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     * @return array{data: array<string, string>, path: string, label: string}|null
      */
-    private function pageCard(ContentRepository $content, PageEntry $entry, string $locale): ?array
+    private function pageCard(ContentRepository $content, Filesystem $files, PageEntry $entry, string $locale): ?array
     {
         $name = ContentCollection::contentName($entry);
-        $og = $name !== null && $content->has($name, $locale) ? ($content->page($name, $locale)['og'] ?? null) : null;
-        $title = is_array($og) && is_string($og['title'] ?? null) ? trim($og['title']) : '';
+        $title = $name === null ? null : $this->ogTitle($content, $name, $locale);
 
-        if ($title === '' || $entry->ogSlug === null) {
+        if ($title === null || $entry->ogSlug === null) {
             return null;
         }
 
-        $kicker = is_string($og['kicker'] ?? null) ? trim($og['kicker']) : '';
+        $section = match (true) {
+            $entry->ogFamily === 'pricing' => trim((string) ($content->page((string) $name, $locale)['og']['kicker'] ?? '')),
+            $entry->ogFamily === 'page', $entry->params === [] => '',
+            default => (string) trans("og.family.{$entry->ogFamily}", [], $locale),
+        };
 
-        return [
-            'view' => 'og.page',
-            'data' => [
-                'locale' => $locale,
-                'kicker' => $kicker !== '' ? $kicker : $this->label("og.family.{$entry->ogFamily}", $locale),
-                'title' => $title,
-                'titleSize' => self::titleSize($title, false),
-                'address' => self::address($entry->url($locale)),
-            ],
-            'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
-            'label' => "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
-        ];
+        return self::card(
+            $locale,
+            OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
+            "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
+            $title,
+            $section,
+            tile: $entry->ogFamily === 'database' && $entry->params !== [] ? self::engineMark($files, $entry->ogSlug) : '',
+        );
     }
 
     /**
-     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     * @return array{data: array<string, string>, path: string, label: string}|null
      */
     private function campaignCard(ContentRepository $content, PageEntry $entry, string $locale): ?array
     {
         $campaign = Campaign::current();
         $name = ContentCollection::contentName($entry);
 
-        if ($campaign === null || $name === null || ! $content->has($name, $locale)) {
+        if ($campaign === null || $name === null || $entry->ogSlug === null || ! $content->has($name, $locale)) {
             return null;
         }
 
         $og = $content->page($name, $locale)['og'] ?? null;
 
-        if (! is_array($og) || ! is_string($og['title'] ?? null) || ! is_string($og['headline'] ?? null) || $entry->ogSlug === null) {
+        if (! is_array($og) || ! is_string($og['title'] ?? null) || ! is_string($og['headline'] ?? null)) {
             return null;
         }
 
-        $dates = $campaign->props($locale);
-        $headline = str_replace('{percent}', (string) $campaign->percent, $og['headline']);
-        $width = mb_strwidth($headline);
-
-        return [
-            'view' => 'og.campaign',
-            'data' => [
-                'locale' => $locale,
-                'title' => trim($og['title']),
-                'kicker' => trim((string) ($og['kicker'] ?? '')),
-                'headline' => $headline,
-                'headlineSize' => $width <= 8 ? 'l' : ($width <= 12 ? 'm' : 's'),
-                'product' => trim((string) ($og['product'] ?? '')),
-                'window' => strtr((string) ($og['window'] ?? ''), ['{startsOn}' => $dates['startsOn'], '{endsOn}' => $dates['endsOn']]),
-                'address' => self::address($entry->url($locale)),
-            ],
-            'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
-            'label' => "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
-        ];
+        return self::card(
+            $locale,
+            OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
+            "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
+            str_replace('{percent}', (string) $campaign->percent, trim($og['headline'])),
+            trim((string) ($og['kicker'] ?? '')),
+            trim((string) ($og['product'] ?? '')),
+        );
     }
 
     /**
-     * The plans with their yearly price, which every plan has and which is a whole number of dollars.
-     *
-     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
-     */
-    private function pricingCard(ContentRepository $content, PageEntry $entry, string $locale): ?array
-    {
-        $name = ContentCollection::contentName($entry);
-
-        if ($name === null || $entry->ogSlug === null || ! $content->has($name, $locale)) {
-            return null;
-        }
-
-        $og = $content->page($name, $locale)['og'] ?? null;
-
-        if (! is_array($og) || ! is_string($og['title'] ?? null) || ! is_string($og['proPrice'] ?? null) || ! is_string($og['teamPrice'] ?? null)) {
-            return null;
-        }
-
-        $tiers = File::json(resource_path('data/pricing.json'), JSON_THROW_ON_ERROR)['tiers'];
-        $usd = fn(int|float $amount): string => str_replace(['{amount}', ' '], [(string) $amount, "\u{00A0}"], (string) trans('og.currency', [], $locale));
-
-        return [
-            'view' => 'og.pricing',
-            'data' => [
-                'locale' => $locale,
-                'kicker' => trim((string) ($og['kicker'] ?? '')),
-                'title' => trim($og['title']),
-                'free' => $this->label('og.free', $locale),
-                'freePrice' => $usd(0),
-                'pro' => trim((string) ($og['pro'] ?? 'Pro')),
-                'proPrice' => str_replace('{price}', $usd($tiers['starter']['prices']['yearly']), $og['proPrice']),
-                'team' => trim((string) ($og['team'] ?? 'Team')),
-                'teamPrice' => str_replace('{price}', $usd($tiers['team']['prices']['yearly'] / 12), $og['teamPrice']),
-                'address' => self::address($entry->url($locale)),
-            ],
-            'path' => OgImages::cardPath($entry->ogFamily, $entry->ogSlug, $locale),
-            'label' => "{$entry->ogFamily}/{$entry->ogSlug} ({$locale})",
-        ];
-    }
-
-    /**
-     * @return array{view: string, data: array<string, string>, path: string, label: string}|null
+     * @return array{data: array<string, string>, path: string, label: string}|null
      */
     private function blogCard(BlogPosts $blog, PageEntry $entry, string $locale): ?array
     {
@@ -361,70 +266,41 @@ class GenerateOgImagesCommand extends Command
             return null;
         }
 
-        $lead = trim((string) ($document->matter('ogPunchline') ?: $document->matter('description')));
-        $date = self::date($document->matter('date'));
+        $sub = '';
 
-        return [
-            'view' => 'og.blog',
-            'data' => [
-                'locale' => $locale,
-                'kicker' => $this->label('og.family.blog', $locale),
-                'title' => $title,
-                'titleSize' => self::titleSize($title, $lead !== ''),
-                'lead' => $lead,
-                'byline' => $date === null
-                    ? $this->label('og.author', $locale)
-                    : $this->label('og.byline', $locale, [
-                        'author' => $this->label('og.author', $locale),
-                        'date' => $date->locale($locale)->isoFormat('LL'),
-                    ]),
-                'address' => self::address($entry->url($locale)),
-            ],
-            'path' => OgImages::cardPath('blog', $entry->ogSlug, $locale),
-            'label' => "blog/{$entry->ogSlug} ({$locale})",
-        ];
-    }
-
-    /**
-     * @param  array<string, string>  $replace
-     */
-    private function label(string $key, string $locale, array $replace = []): string
-    {
-        return (string) trans($key, $replace, $locale);
-    }
-
-    /**
-     * A size step for the title, so a long title, which Vietnamese often is,
-     * stays inside the card instead of being clipped.
-     */
-    private static function titleSize(string $title, bool $withLead): string
-    {
-        $length = mb_strlen($title);
-        [$large, $medium] = $withLead ? [36, 60] : [44, 80];
-
-        return $length <= $large ? 'l' : ($length <= $medium ? 'm' : 's');
-    }
-
-    /**
-     * The address printed on a card: the page's canonical URL without its scheme.
-     */
-    private static function address(string $url): string
-    {
-        return rtrim((string) preg_replace('#^https?://#', '', $url), '/');
-    }
-
-    private static function date(mixed $value): ?CarbonImmutable
-    {
-        try {
-            return match (true) {
-                $value instanceof DateTimeInterface => CarbonImmutable::instance($value),
-                is_int($value) => CarbonImmutable::createFromTimestamp($value),
-                is_string($value) && $value !== '' => CarbonImmutable::parse($value),
-                default => null,
-            };
-        } catch (Throwable) {
-            return null;
+        // "TablePro 0.84: Find and Replace" reads as a version over its headline.
+        if ($document->matter('release') && str_contains($title, ': ')) {
+            [$title, $sub] = array_map(trim(...), explode(': ', $title, 2));
         }
+
+        return self::card(
+            $locale,
+            OgImages::cardPath('blog', $entry->ogSlug, $locale),
+            "blog/{$entry->ogSlug} ({$locale})",
+            $title,
+            (string) trans('og.family.blog', [], $locale),
+            $sub,
+        );
+    }
+
+    private function ogTitle(ContentRepository $content, string $name, string $locale): ?string
+    {
+        $title = $content->has($name, $locale) ? ($content->page($name, $locale)['og']['title'] ?? null) : null;
+
+        return is_string($title) && trim($title) !== '' ? trim($title) : null;
+    }
+
+    private static function engineMark(Filesystem $files, string $slug): string
+    {
+        foreach (File::json(resource_path('data/engines.json'), JSON_THROW_ON_ERROR) as $engine) {
+            $icon = public_path(ltrim((string) ($engine['icon'] ?? ''), '/'));
+
+            if (($engine['slug'] ?? null) === $slug && str_ends_with($icon, '.svg') && $files->isFile($icon)) {
+                return 'data:image/svg+xml;base64,' . base64_encode($files->get($icon));
+            }
+        }
+
+        return '';
     }
 
     /**

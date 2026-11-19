@@ -319,7 +319,7 @@ it('treats a Blade template as PHP, so the caches drop and FPM reloads', functio
     expect(deployMatches('PHP_CHANGED', $path))->toBeTrue();
 })->with([
     'resources/views/app.blade.php',
-    'resources/views/og/blog.blade.php',
+    'resources/views/og/card.blade.php',
     'resources/views/partials/head-theme.blade.php',
     'resources/views/errors/503.blade.php',
     'app/Http/Controllers/LandingController.php',

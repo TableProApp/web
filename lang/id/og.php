@@ -7,10 +7,4 @@ return [
         'database' => 'Database',
         'feature' => 'Fitur',
     ],
-    'author' => 'TablePro',
-    'byline' => ':author · :date',
-
-    'free' => 'Gratis',
-
-    'currency' => 'US$ {amount}',
 ];

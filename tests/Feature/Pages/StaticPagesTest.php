@@ -4,12 +4,14 @@ use App\Http\Controllers\IosController;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Assets\AssetManifest;
 use App\Support\Localization\LocalizedUrl;
+use App\Support\Pricing\Campaign;
 use Dom\HTMLDocument;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia;
 
 use function Pest\Laravel\get;
+use function Pest\Laravel\travelTo;
 
 function staticPageData(string $file): array
 {
@@ -140,6 +142,9 @@ it('server-renders neither the education section nor its FAQ question', function
 
 // The sections these anchors named became questions of one FAQ; sites and posts still link them.
 it('keeps every pricing anchor other pages link to, and states each cycle\'s price', function (string $locale): void {
+    // A running sale prints its own prices in the plans.
+    travelTo(Campaign::current()?->endsAt ?? now());
+
     $html = ssrHtml(LocalizedUrl::path('/pricing', $locale));
     $pricing = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $prices = staticPageData('pricing.json')['tiers'];
@@ -155,16 +160,6 @@ it('keeps every pricing anchor other pages link to, and states each cycle\'s pri
         expect($pricing->getElementById('plans')->textContent)->toContain(str_replace('.', $locale === 'en' ? '.' : ',', (string) $amount));
     }
 })->with(['en', 'vi'])->group('ssr');
-
-it('prints prices on the pricing card the way the page does', function (string $locale): void {
-    $catalog = (string) file_get_contents(resource_path("js/i18n/messages/{$locale}/pricing.ts"));
-
-    preg_match('/pattern["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $pattern);
-    preg_match('/free["\']?\s*:\s*\{\s*["\']?name["\']?\s*:\s*["\']([^"\']+)["\']/', $catalog, $free);
-
-    expect(trans('og.currency', [], $locale))->toBe($pattern[1])
-        ->and(trans('og.free', [], $locale))->toBe($free[1]);
-})->with('locales');
 
 it('lists the engines whose driver ships with the Mac app from engines.json on the FAQ', function (): void {
     $bundled = staticPagePublishedEngines()->where('distribution', 'bundled')->pluck('name')->values()->all();

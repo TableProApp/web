@@ -11832,26 +11832,23 @@ No editorial image slot. This app's screens are live data, forms and controls, w
 
 ## Social cards (Open Graph)
 
-**Current state.** One social card is bespoke artwork: `og-site` below, supplied on 2026-10-03, which every page
-without a card of its own shares. Every other `og:image` is a card that `php artisan og:generate` renders from the
-templates in `resources/views/og/` (architecture §1.15): the TablePro logo and the page's own title on the site
-palette, set in Inter, with no screenshot and no app chrome. Those cards are committed under `public/og/`; they are
+**Current state.** The home page's card is bespoke artwork: `og-site` below, which the legal and integration pages
+share. Every other `og:image` is a card that `php artisan og:generate` renders from `resources/views/og/card.blade.php`:
+dark ground, the site's rails and join, the logo and section top left, one title sitting on the join. Database cards
+add the engine's logo. No URL, date, price, lead or screenshot. Those cards are committed under `public/og/`; they are
 generated, not drawn, so they are not part of your work.
 
-- The generic card, used by every page without a card of its own (the homepage, the hubs, `/pricing`, `/download`,
-  `/ios`, `/faq`, the legal pages and the blog index): the bespoke `/og/bespoke/og-site-en.png` in English and
-  `/og/bespoke/og-site-vi.png` in Vietnamese. The generated `/og.png` and `/og/vi/default.png` stay committed and
-  current: a locale whose bespoke file is missing falls back to its generated card, and `/og.png` is the card that
-  shares made before the rebuild and the platform app's default point at.
-- Page cards: `/og/{feature,database,compare}/{slug}.png` in English and `/og/vi/{feature,database,compare}/{slug}.png`
-  in Vietnamese. Release posts keep their English cards at `/og/blog/{slug}.png`; no post has a Vietnamese card.
-- `App\Support\Seo\OgImages` picks, in order: the page's own card, the bespoke `og-site` card once supplied, the
-  generated generic card for the page's language, and otherwise no `og:image` at all. A page never points at a card
-  file that does not exist, and no placeholder box is ever published as a card.
-- The cards are rendered with `php artisan og:generate --type=all --locale=all` (Chromium is required; locally set
-  `PUPPETEER_EXECUTABLE_PATH`), or by the `og cards` workflow (`.github/workflows/og.yml`), which opens a pull
-  request with them. Before launch, check that every card under `public/og/` comes from the current templates: a
-  card rendered before the rebuild still shows the old design and its claims.
+- Page cards: `/og/{feature,database,compare}/{slug}.png`, with `index` for a hub; `/og/page/{name}.png` for the
+  one-off pages (download, iOS, teams, FAQ, about, security, sponsors, blog index); `/og/pricing/pricing.png`;
+  `/og/campaign/black-friday.png`; `/og/blog/{slug}.png`. Other languages sit under `/og/{locale}/`.
+- A release post's title splits at its first colon: the version is the title, the rest the line under it.
+- `App\Support\Seo\OgImages` picks, in order: the page's own card, the bespoke `og-site` card, the generated generic
+  card for the page's language, and otherwise no `og:image` at all. The URL carries `?v=` and a hash of the file, so
+  a regenerated card replaces the one a client cached.
+- The cards are rendered with `php artisan og:generate --type=all --locale=all` (Chromium is required: set
+  `PUPPETEER_EXECUTABLE_PATH`; for ja, ko and zh set `OG_CJK_FONTS` to a directory filled by
+  `python3 scripts/assets/prepare_fonts.py <dir>`), or by the `og cards` workflow (`.github/workflows/og.yml`), which
+  opens a pull request with them.
 
 The one bespoke card is `og-site` below. To redesign it, replace its two files with new ones of the same name and
 size, and update its `alt` in `resources/data/assets.json` if the words change.

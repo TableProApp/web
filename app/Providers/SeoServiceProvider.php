@@ -60,7 +60,7 @@ class SeoServiceProvider extends ServiceProvider
          */
         $this->app->singleton(OgImages::class, fn(): OgImages => new OgImages());
 
-        $this->app->bind(OgFonts::class, fn(): OgFonts => new OgFonts(resource_path('css/fonts.css')));
+        $this->app->bind(OgFonts::class, fn(): OgFonts => new OgFonts(resource_path('css/fonts.css'), config('app.og_cjk_fonts')));
 
         $this->app->singleton(PageRegistry::class, function (Application $app): PageRegistry {
             $content = $app->make(ContentRepository::class);

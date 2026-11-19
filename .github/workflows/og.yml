@@ -14,7 +14,7 @@ on:
         required: true
         default: "all"
         type: choice
-        options: [all, site, blog, database, compare, feature]
+        options: [all, site, page, blog, database, compare, feature, pricing, campaign]
       locale:
         description: "Which language's cards"
         required: true
@@ -78,19 +78,20 @@ jobs:
           npm install -g puppeteer
           npx puppeteer browsers install chrome
 
-      - name: Install CJK fonts
-        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      # The pinned Noto Sans CJK the cards load by path, so ja, ko and zh render the same here as on a Mac.
+      - name: Fetch CJK fonts
+        run: |
+          pip install --user fonttools brotli
+          python3 scripts/assets/prepare_fonts.py "$RUNNER_TEMP/og-fonts"
 
       - name: Prepare environment
         run: |
           cp .env.example .env
           php artisan key:generate
 
-      # WEB_DOMAIN overrides the localhost value .env.example carries: each
-      # card prints its page's canonical address.
       - name: Generate cards
         env:
-          WEB_DOMAIN: tablepro.app
+          OG_CJK_FONTS: ${{ runner.temp }}/og-fonts
           OG_TYPE: ${{ inputs.type }}
           OG_LOCALE: ${{ inputs.locale }}
           OG_SLUG: ${{ inputs.slug }}
