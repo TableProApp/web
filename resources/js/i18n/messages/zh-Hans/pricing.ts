@@ -16,7 +16,7 @@ export default {
         "monthly": "取消前每月自动续订。",
         "yearly": "取消前每年自动续订。比按月支付十二次低 {percent}%。",
         "yearlyByTier": "取消前每年自动续订。相比按月支付十二次，Pro 低 {starterPercent}%，Team 低 {teamPercent}%。",
-        "lifetime": "一次付费，无到期日。"
+        "lifetime": "一次付费，包含所有更新和所有新增的 Pro 功能。"
     },
     "tiers": {
         "free": {

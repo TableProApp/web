@@ -16,7 +16,7 @@ export default {
         "monthly": "Si rinnova ogni mese fino alla disdetta.",
         "yearly": "Si rinnova ogni anno fino alla disdetta. {percent}% in meno rispetto a dodici pagamenti mensili.",
         "yearlyByTier": "Si rinnova ogni anno fino alla disdetta. Pro costa il {starterPercent}% in meno rispetto a dodici pagamenti mensili, Team il {teamPercent}% in meno.",
-        "lifetime": "Un solo pagamento, senza scadenza."
+        "lifetime": "Un solo pagamento. Tutti gli aggiornamenti e tutte le nuove funzionalità Pro sono inclusi."
     },
     "tiers": {
         "free": {

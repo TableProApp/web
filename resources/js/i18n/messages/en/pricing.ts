@@ -1,5 +1,5 @@
 // No price, seat bound, day count or percentage is typed here: each comes through a {slot} from resources/data/pricing.json.
-// Commerce rules (positioning §12): no "most popular", typed saving, "unlock", promise of future updates or other ways to pay.
+// Commerce rules (positioning §12): no "most popular", typed saving, "unlock", "lifetime" or other ways to pay.
 export default {
     // How formatUsd() writes an amount; every locale is billed in US dollars.
     currency: {
@@ -18,7 +18,7 @@ export default {
         monthly: 'Renews every month until you cancel.',
         yearly: 'Renews every year until you cancel. {percent}% less than twelve monthly payments.',
         yearlyByTier: 'Renews every year until you cancel. Pro is {starterPercent}% less than twelve monthly payments, Team {teamPercent}% less.',
-        lifetime: 'Paid once, no expiry date.',
+        lifetime: 'Pay once. Every update and every new Pro feature is included.',
     },
     tiers: {
         free: {

@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Pro o Team.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac, TablePro para Linux y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
@@ -31,7 +31,7 @@ TablePro™, el logotipo de TablePro y el icono de la app TablePro son marcas co
 
 Las licencias las vende {merchant} (Polar Software, Inc.), nuestro merchant of record y revendedor. Compras una Licencia a {merchant} según las condiciones para compradores de {merchant}, y TablePro te concede el derecho a usarla según estas condiciones. {merchant} recibe el pago, calcula y paga los impuestos sobre ventas o el IVA y envía recibos y facturas. Los precios se indican en dólares estadounidenses y aparecen en la [página de precios](/es/pricing).
 
-Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles. Puedes cancelarlos en el portal de cuentas o en el portal de clientes de {merchant}; un plan cancelado no vuelve a cobrarse y sigue funcionando hasta el final del periodo pagado. Una compra de pago único se paga una sola vez y no tiene fecha de caducidad.
+Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles. Puedes cancelarlos en el portal de cuentas o en el portal de clientes de {merchant}; un plan cancelado no vuelve a cobrarse y sigue funcionando hasta el final del periodo pagado. Una compra de pago único se cobra una sola vez y no se renueva.
 
 Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 
@@ -43,6 +43,8 @@ Una Licencia te concede un derecho no exclusivo e intransferible a usar las func
 - Una Licencia **Team** tiene un precio por puesto, con un mínimo de {teamMinSeats} puestos. Cada puesto es para una persona, en hasta {deviceLimit} ordenadores, Mac o Linux. El propietario y los administradores del equipo invitan a sus miembros, que se unen mediante un enlace de invitación enviado por correo.
 
 El límite de {deviceLimit} ordenadores se aplica por cuenta, sumando todas las Licencias que usa. No puedes compartir tu cuenta ni una Clave de licencia fuera de las personas y los ordenadores que cubre tu plan, ni sublicenciar, vender, alquilar o transferir de otro modo una Licencia o Clave de licencia sin nuestro permiso por escrito.
+
+Una Licencia mensual o anual dura el periodo que has pagado, y una Licencia de pago único no tiene fecha de finalización. Mientras dura, una Licencia cubre todas las versiones de la Aplicación que publiquemos y todas las funciones que añadamos a su plan, sin ningún cargo adicional. En una Licencia de pago único, eso significa todas las versiones y funciones posteriores, incluidas las nuevas versiones mayores, en cualquier plataforma de escritorio para la que publiquemos TablePro más adelante. Esto se aplica a todas las Licencias de pago único, con independencia de cuándo se compraron.
 
 Las apps renuevan tu plan con nuestro servidor una vez al día. Si no se puede acceder al servidor, las funciones de pago siguen funcionando hasta {offlineDays} días desde la última renovación o, en un Mac que usa un archivo sin conexión del portal de la cuenta, hasta que caduca el archivo. Las versiones anteriores a las cuentas de TablePro comprueban una Clave de licencia cada {revalidateDays} días y mantienen las funciones de pago durante {graceDays} días desde la última comprobación correcta. Cuando termina un plan mensual o anual, sus funciones dejan de funcionar y las apps siguen funcionando sin ellas.
 
@@ -95,7 +97,7 @@ Aceptas indemnizar y mantener indemnes a TablePro y sus colaboradores frente a c
 
 ## Actualizaciones y disponibilidad {#updates}
 
-Publicamos actualizaciones, correcciones y nuevas funciones a nuestra discreción. Aparte del soporte prioritario anterior, no tenemos obligación de mantener, actualizar o dar soporte a ninguna versión de la Aplicación, y las versiones antiguas pueden dejar de recibir correcciones de seguridad.
+Decidimos qué actualizaciones, correcciones y nuevas funciones publicamos, y cuándo. Las que publicamos forman parte de tu Licencia, como se indica en [Usar una licencia](#license). Aparte de eso y del soporte prioritario anterior, no tenemos obligación de mantener, actualizar o dar soporte a ninguna versión de la Aplicación, y las versiones antiguas pueden dejar de recibir correcciones de seguridad.
 
 Algunos Servicios, como las comprobaciones de licencia y Team Library, necesitan acceso a la red. No garantizamos que estén siempre disponibles y podemos interrumpirlos con un preaviso razonable. Las funciones de pago de las apps necesitan nuestro servidor de licencias: si no se puede acceder a él, siguen funcionando durante el tiempo indicado en [Usar una licencia](#license).
 

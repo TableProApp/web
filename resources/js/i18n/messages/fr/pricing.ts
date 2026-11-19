@@ -16,7 +16,7 @@ export default {
         "monthly": "Renouvellement chaque mois jusqu’à résiliation.",
         "yearly": "Renouvellement chaque année jusqu’à résiliation. {percent} % de moins que douze paiements mensuels.",
         "yearlyByTier": "Renouvellement chaque année jusqu’à résiliation. Pro coûte {starterPercent} % de moins que douze paiements mensuels, Team {teamPercent} % de moins.",
-        "lifetime": "Un seul paiement, sans date d’expiration."
+        "lifetime": "Un seul paiement. Toutes les mises à jour et toutes les nouvelles fonctions Pro sont incluses."
     },
     "tiers": {
         "free": {

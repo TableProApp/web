@@ -1,7 +1,7 @@
 ---
 title: Terms of service
 description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Pro or Team license.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac, TablePro for Linux, and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
@@ -31,7 +31,7 @@ TablePro™, the TablePro logo and the TablePro app icon are trademarks of {publ
 
 Licenses are sold by {merchant} (Polar Software, Inc.), our merchant of record and reseller. You buy a License from {merchant}, under {merchant}'s buyer terms, and TablePro grants you the right to use it under these terms. {merchant} takes the payment, calculates and pays any sales tax or VAT, and sends receipts and invoices. Prices are in US dollars and are listed on the [pricing page](/pricing).
 
-Monthly and yearly plans renew automatically until you cancel them. You can cancel in the account portal or in {merchant}'s customer portal; a cancelled plan is not charged again and keeps working until the end of the period you paid for. A one-time purchase is paid once and has no expiry date.
+Monthly and yearly plans renew automatically until you cancel them. You can cancel in the account portal or in {merchant}'s customer portal; a cancelled plan is not charged again and keeps working until the end of the period you paid for. A one-time purchase is charged once and does not renew.
 
 Refunds are described in the [refund policy](/refund-policy).
 
@@ -43,6 +43,8 @@ A License gives you a non-exclusive, non-transferable right to use the paid feat
 - A **Team** License is priced per seat, with at least {teamMinSeats} seats. Each seat is for one person, on up to {deviceLimit} computers, Mac or Linux. The team's owner and admins invite its members, who join from an emailed invitation link.
 
 The limit of {deviceLimit} computers applies per account, across all the Licenses it uses. You may not share your account or a License Key beyond the people and computers your plan covers, or sublicense, sell, rent or otherwise transfer a License or License Key, without our written permission.
+
+A monthly or yearly License runs for the period you have paid for, and a one-time License has no end date. While a License runs, it covers every version of the Application we release and every feature we add to its plan, at no further charge. For a one-time License that means every later version and feature, new major versions included, on any desktop platform we later release TablePro for. This applies to every one-time License, whenever it was bought.
 
 The apps renew your plan with our server once a day. If our server cannot be reached, the paid features keep working for up to {offlineDays} days after the last renewal, or, on a Mac that uses an offline file from the account portal, until the file expires. Versions before TablePro accounts check a License Key every {revalidateDays} days instead, and keep the paid features for {graceDays} days after the last successful check. When a monthly or yearly plan ends, its features stop working and the apps keep working without them.
 
@@ -95,7 +97,7 @@ You agree to indemnify and hold harmless TablePro and its contributors against a
 
 ## Updates and availability {#updates}
 
-We release updates, fixes and new features at our discretion. Apart from the priority support above, we have no obligation to maintain, update or provide support for any version of the Application, and older versions may stop receiving security fixes.
+We decide which updates, fixes and new features to release, and when. Those we release are part of your License, as set out under [Using a license](#license). Apart from that and the priority support above, we have no obligation to maintain, update or provide support for any version of the Application, and older versions may stop receiving security fixes.
 
 Some Services, such as license checks and the Team Library, need network access. We do not guarantee that they are always available, and we may discontinue them with reasonable notice. The paid features of the apps need our license server: if it cannot be reached, they keep working for the time set out under [Using a license](#license).
 

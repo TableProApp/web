@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-19"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac, TablePro untuk Linux, serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -31,7 +31,7 @@ TablePro™, logo TablePro, dan ikon aplikasi TablePro adalah merek dagang milik
 
 Lisensi dijual oleh {merchant} (Polar Software, Inc.), merchant of record dan reseller kami. Anda membeli Lisensi dari {merchant} sesuai ketentuan pembeli {merchant}, dan TablePro memberikan hak penggunaan sesuai ketentuan ini. {merchant} menerima pembayaran, menghitung dan membayar pajak penjualan atau PPN, serta mengirim tanda terima dan faktur. Harga dalam dolar AS dan tercantum di [halaman harga](/id/pricing).
 
-Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya. Pembatalan dapat dilakukan dalam portal akun atau portal pelanggan {merchant}; paket yang dibatalkan tidak ditagih lagi dan tetap berfungsi hingga akhir periode yang dibayar. Pembelian sekali bayar dibayar satu kali dan tidak memiliki tanggal kedaluwarsa.
+Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya. Pembatalan dapat dilakukan dalam portal akun atau portal pelanggan {merchant}; paket yang dibatalkan tidak ditagih lagi dan tetap berfungsi hingga akhir periode yang dibayar. Pembelian sekali bayar ditagih satu kali dan tidak diperpanjang.
 
 Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-policy).
 
@@ -43,6 +43,8 @@ Lisensi memberikan hak non-eksklusif dan tidak dapat dipindahtangankan untuk men
 - Lisensi **Team** dihargai per seat, dengan setidaknya {teamMinSeats} seat. Setiap seat untuk satu orang, di maksimal {deviceLimit} komputer, Mac atau Linux. Pemilik dan admin tim mengundang anggota tim, yang bergabung melalui tautan undangan yang dikirim lewat email.
 
 Batas {deviceLimit} komputer berlaku per akun, untuk semua Lisensi yang dipakainya. Anda tidak boleh membagikan akun Anda atau Kunci Lisensi di luar orang dan komputer yang dicakup paket, atau mensublisensikan, menjual, menyewakan, maupun memindahtangankan Lisensi atau Kunci Lisensi tanpa izin tertulis kami.
+
+Lisensi bulanan atau tahunan berlaku selama periode yang Anda bayar, dan Lisensi sekali bayar tidak memiliki tanggal akhir. Selama berlaku, Lisensi mencakup setiap versi Aplikasi yang kami rilis dan setiap fitur yang kami tambahkan ke paketnya, tanpa biaya tambahan. Untuk Lisensi sekali bayar, itu berarti setiap versi dan fitur berikutnya, termasuk versi mayor baru, di platform desktop mana pun tempat kami merilis TablePro di kemudian hari. Ketentuan ini berlaku untuk setiap Lisensi sekali bayar, kapan pun dibeli.
 
 Aplikasi TablePro memperbarui paket Anda ke server kami sekali sehari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi hingga {offlineDays} hari setelah pembaruan terakhir atau, di Mac yang memakai file offline dari portal akun, hingga file itu kedaluwarsa. Versi sebelum akun TablePro memeriksa Kunci Lisensi setiap {revalidateDays} hari dan mempertahankan fitur berbayar selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil. Saat paket bulanan atau tahunan berakhir, fiturnya berhenti berfungsi dan aplikasi tetap berjalan tanpa fitur tersebut.
 
@@ -95,7 +97,7 @@ Anda setuju mengganti kerugian dan membebaskan TablePro serta kontributornya dar
 
 ## Pembaruan dan ketersediaan {#updates}
 
-Kami merilis pembaruan, perbaikan, dan fitur baru sesuai kebijakan kami. Selain dukungan prioritas di atas, kami tidak berkewajiban memelihara, memperbarui, atau mendukung versi Aplikasi apa pun, dan versi lama mungkin berhenti menerima perbaikan keamanan.
+Kami menentukan pembaruan, perbaikan, dan fitur baru mana yang kami rilis, dan kapan. Yang kami rilis menjadi bagian dari Lisensi Anda, sebagaimana diatur dalam [Penggunaan lisensi](#license). Selain itu dan dukungan prioritas di atas, kami tidak berkewajiban memelihara, memperbarui, atau mendukung versi Aplikasi apa pun, dan versi lama mungkin berhenti menerima perbaikan keamanan.
 
 Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi TablePro memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama waktu yang disebut di [Penggunaan lisensi](#license).
 

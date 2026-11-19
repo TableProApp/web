@@ -16,7 +16,7 @@ export default {
         "monthly": "Renovação mensal até você cancelar.",
         "yearly": "Renovação anual até você cancelar. {percent}% menos que doze pagamentos mensais.",
         "yearlyByTier": "Renovação anual até você cancelar. Pro custa {starterPercent}% menos que doze pagamentos mensais; Team, {teamPercent}% menos.",
-        "lifetime": "Pago uma vez, sem data de expiração."
+        "lifetime": "Pague uma vez. Todas as atualizações e todos os novos recursos do Pro estão incluídos."
     },
     "tiers": {
         "free": {
